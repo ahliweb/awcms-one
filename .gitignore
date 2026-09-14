@@ -36,3 +36,26 @@ graphify-out/graph.html
 # hold a FULL copy of the working tree — one careless `git add -A` would commit
 # the whole repository into itself.
 .claude/worktrees/
+
+# knowledge-graph federation (issue #11) — extends the graphify section above,
+# does not duplicate it. `graphify-out/.*` and `graphify-out/[date]/` already
+# cover this repo's OWN cache/markers/dated-copies at the root; the two rules
+# below are specific to the FEDERATED workflow and have nothing to do with
+# apps/cms, which carries its own separate `graphify-out/` and its own gate.
+#
+# The on-demand combined graph (root + apps/cms, `bun run
+# knowledge:graph:combine`): generated outside the subtree, deliberately never
+# committed — see `knowledge/README.md` and `bun run audit:graf`, which
+# asserts this stays true.
+graphify-out/combined/
+# Staging output of `graphify export obsidian`, validated and allowlist-synced
+# into `knowledge/generated/graphify/` by `bun run knowledge:obsidian:export`
+# — the staging tree itself (which may briefly hold apps/cms-sourced notes
+# before filtering) is never the committed artefact.
+graphify-out/obsidian-staging/
+
+# Personal Obsidian vault/workspace state, if a contributor opens
+# knowledge/generated/graphify/ (or a combined-graph export) as a vault.
+# Never team configuration, never generated content this repo tracks.
+knowledge/generated/graphify/.obsidian/
+knowledge/generated/graphify/.graphify_obsidian_manifest.json

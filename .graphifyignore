@@ -1,0 +1,91 @@
+# What stays OUT of the ROOT knowledge graph (`graphify-out/`).
+#
+# Syntax is `.gitignore` syntax, and graphify reads this file AFTER
+# `.gitignore` — so it can only ever exclude MORE, never re-include something
+# `.gitignore` already dropped. Adding a line here is safe in exactly one
+# direction: the graph gets narrower, never wider.
+#
+# Read `knowledge/README.md` before adding an entry — it carries the
+# rationale for every rule below and the federated (root + apps/cms) model
+# this file is one half of.
+
+# ---------------------------------------------------------------------------
+# apps/cms/** — the subtree already owns a Graphify graph. Do not duplicate it.
+# ---------------------------------------------------------------------------
+#
+# `apps/cms` is `ahliweb/awcms` embedded whole via `git subtree` (AGENTS.md,
+# "The subtree embed"). It carries its OWN `.graphifyignore`,
+# `graphify-out/graph.json` (tracked, ~19 MB, 12700+ nodes), and its own gate
+# (`bun run graph:artifacts:check` inside `apps/cms`). Extracting it again
+# from the root would:
+#
+#   - build a second, competing graph authority for the same code, which
+#     disagrees with the first the moment either one is rebuilt alone;
+#   - roughly double the size of every rebuild this workspace commits to
+#     history, for content that is already committed once, correctly, inside
+#     the subtree;
+#   - give every node two `source_file` identities (root-relative and
+#     `apps/cms`-relative), which is exactly the "duplicate extraction
+#     producing contradictory node identities" risk issue #11 names.
+#
+# The federated view over BOTH graphs is `knowledge:graph:combine`
+# (`tools/knowledge-graph-combine.mjs`), which merges this root graph with
+# `apps/cms/graphify-out/graph.json` via `graphify merge-graphs` into a
+# gitignored, on-demand location — never by re-extracting `apps/cms` here.
+#
+# `bun run knowledge:check` enforces this line stays in force AND that the
+# tracked root `graph.json` holds no node whose `source_file` starts with
+# `apps/cms/` — a rebuild run from the wrong directory, or with this file
+# missing, re-admits what is excluded here, and that is precisely what the
+# gate exists to catch.
+apps/cms/
+
+# ---------------------------------------------------------------------------
+# packages/kontrak/** — does not exist yet (issue #6, landing in parallel).
+# ---------------------------------------------------------------------------
+#
+# NOT excluded here, deliberately: this file does not need an entry for a
+# workspace member that has not landed, because a path graphify never finds
+# on disk is already outside its corpus. Recorded so the omission reads as
+# intentional rather than forgotten — once `packages/kontrak` lands, it is
+# root-owned code and is INCLUDED in the next `knowledge:graph:update`
+# automatically, with no edit to this file required.
+
+# ---------------------------------------------------------------------------
+# Translation mirrors (`*.id.md`) — the source is indexed, not both halves.
+# ---------------------------------------------------------------------------
+#
+# ADR-0097 (via `ahliweb/awcms`'s own convention, adopted here — see
+# AGENTS.md's "Language") makes English at the bare path the source and
+# Indonesian at `<name>.id.md` a mirror that records the hash of the English
+# it was translated from. A mirror therefore RESTATES its source word for
+# word, in another language: indexing both puts every concept into the graph
+# twice, for a second copy that contributes no sentence the first did not.
+#
+# `apps/cms/.graphifyignore` measured this exact rule there (256 mirrors,
+# landing after its last graph build, would have doubled a wave of content
+# with nothing new to say) and excluded it for the same reason. This root
+# corpus is far smaller today, but the shape of the defect does not depend on
+# corpus size: a pair of documents with identical content clusters into two
+# adjacent, near-indistinguishable communities, and community naming — human
+# or hub-based — cannot tell them apart.
+#
+# This root graph's DEFAULT build is `--code-only` (see `knowledge/README.md`
+# — semantic/doc extraction is opt-in, never automatic), so this rule has no
+# effect on today's tracked `graph.json`. It is written now, ahead of that
+# need, so the first person who opts into semantic extraction here inherits
+# the same guard `apps/cms` already needed instead of rediscovering it.
+*.id.md
+
+# ---------------------------------------------------------------------------
+# Deliberately NOT excluded — recorded so the question is not reopened blind.
+# ---------------------------------------------------------------------------
+#
+# `.changesets/` — `apps/cms/.graphifyignore` measured this directory in two
+# sibling repos and got two different answers (an isolated blob in one, a
+# well-connected 0.16% in the other) — "measure before you exclude" is the
+# rule it leaves behind, not a verdict that transfers. This repo's own
+# `.changesets/` is two files as of this workspace's own graph baseline
+# (`bun run audit:rilis`'s own backlog), too small for the isolated-blob
+# shape to even be possible. Re-measure if it grows large enough to matter,
+# the same way `apps/cms/.graphifyignore` recorded doing.

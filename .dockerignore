@@ -21,5 +21,12 @@ docs/
 # size, and every rebuild of them busts the image's source layer cache.
 graphify-out/
 
+# knowledge-graph federation docs (issue #11): human/agent reference, not a
+# build input. `*.md` below already catches knowledge/curated/ and the
+# generated notes; this line is explicit so the one non-.md file in there
+# (knowledge/generated/graphify/graph.canvas) is caught too, deliberately
+# rather than by the coincidence of a broader rule.
+knowledge/
+
 .DS_Store
 npm-debug.log*
