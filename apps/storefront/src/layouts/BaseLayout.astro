@@ -1,0 +1,129 @@
+---
+/**
+ * The page shell every route renders through: `<head>` metadata, the skip
+ * link, header, `<main>` landmark, and footer. A page never writes its own
+ * `<html>`/`<head>` — this is the one place that happens, so every page gets
+ * the same accessibility and SEO surface for free.
+ *
+ * One `<h1>` per page is a contract this file does NOT fulfil — it renders
+ * no heading of its own, on purpose, so the page inside `<slot />` can own
+ * the single `<h1>` without this shell competing with it.
+ */
+import { siteConfig, absoluteUrl } from "../config/site";
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description?: string;
+  /** Site-relative, e.g. `/` or `/product/produk-x`. Resolved against `siteConfig.siteUrl` for the canonical link and Open Graph `url`. */
+  canonicalPath: string;
+  /** Page-specific JSON-LD (e.g. `Product`). Omitted entirely means no `<script type="application/ld+json">` at all. */
+  schema?: Record<string, unknown>;
+}
+
+const {
+  title,
+  description = siteConfig.description,
+  canonicalPath,
+  schema
+} = Astro.props;
+
+const canonicalUrl = absoluteUrl(canonicalPath);
+const fullTitle = title === siteConfig.name ? title : `${title} — ${siteConfig.name}`;
+const metaDescription = description.slice(0, 160);
+
+/**
+ * JSON that is safe to write inside a `<script>` element.
+ *
+ * `JSON.stringify` escapes quotes and backslashes but NOT `<`, and the HTML
+ * *parser* — not the JavaScript engine — ends a `<script>` element at the
+ * first `</script>` byte sequence it meets, regardless of what `type` says.
+ * `schema` here is built from CMS-supplied strings (`product.name`,
+ * `product.description`, `category.name`, via `src/pages/product/[slug].astro`), so
+ * a product named `…</script><script>alert(1)</script>` would otherwise
+ * close this data block early and turn the text that follows into real,
+ * executing markup — a stored-XSS surface that only the CSP in
+ * `server/penyaji.mjs` (`script-src 'self'`) would be standing between it
+ * and running. That CSP is real protection, but a page must not depend on
+ * it as the ONLY protection.
+ *
+ * Replacing `<`, `>`, and `&` with their `\uXXXX` JSON escapes is the
+ * standard fix: none of the three is meaningful inside a JSON string, so
+ * the escaped form parses back to the byte-identical value, while giving
+ * the HTML parser no `<` to ever start a tag with.
+ */
+function jsonForScript(value: unknown): string {
+  return JSON.stringify(value)
+    .replace(/</g, "\\u003c")
+    .replace(/>/g, "\\u003e")
+    .replace(/&/g, "\\u0026");
+}
+---
+
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={metaDescription} />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="stylesheet" href="/product-labels.css" />
+
+    {/* Open Graph. `og:type` stays "website" even on a product page: Open
+        Graph's "product" type is only valid alongside the product
+        namespace prefix and `product:price:*` meta tags, neither of which
+        this app declares — issue #5 asks for the structured price/
+        availability data as `Product` JSON-LD (below), not as OG meta, so
+        adding a half-implemented product type here would be less correct,
+        not more. No og:image either: the DTO this app renders carries no
+        product photo field, so the honest choice is no image tag rather
+        than one pointing at a file that does not exist. */}
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={metaDescription} />
+    <meta property="og:site_name" content={siteConfig.name} />
+    <meta property="og:locale" content="id_ID" />
+
+    {/* JSON-LD is a DATA block, not a script: `type="application/ld+json"` is
+        not a JavaScript MIME type, so the browser never executes this as
+        code, and `script-src` (server/penyaji.mjs) does not apply to it —
+        no CSP exemption needed for this to render. That does NOT make raw
+        `JSON.stringify` output safe to write here: the HTML parser closes a
+        `<script>` element at the first `</script>` it meets no matter what
+        `type` says, so CMS-supplied text (a product name, a description)
+        could still break out of this block as MARKUP and start a new,
+        executing `<script>` after it. `jsonForScript` above is what
+        actually prevents that; see its docblock. `is:inline` stops Astro
+        from treating this as a module it should process. */}
+    {schema && (
+      <script is:inline type="application/ld+json" set:html={jsonForScript({
+        "@context": "https://schema.org",
+        ...schema
+      })} />
+    )}
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Lewati ke konten utama</a>
+
+    <header class="site-header">
+      <div class="container site-header-inner">
+        <a href="/" class="site-brand">{siteConfig.name}</a>
+        <nav aria-label="Navigasi utama">
+          <a href="/">Katalog</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>&copy; {new Date().getFullYear()} {siteConfig.name}</p>
+      </div>
+    </footer>
+  </body>
+</html>

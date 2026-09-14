@@ -1,0 +1,18 @@
+{
+  "categories": [
+    {
+      "id": "b6f1a3c2-1d4e-4a5b-8c6d-7e8f9a0b1c2d",
+      "parentId": null,
+      "name": "Makanan & Minuman",
+      "slug": "makanan-minuman",
+      "icon": "coffee"
+    },
+    {
+      "id": "d4e5f6a7-8b9c-4d0e-af1b-2c3d4e5f6a7b",
+      "parentId": null,
+      "name": "Produk Digital",
+      "slug": "produk-digital",
+      "icon": "download"
+    }
+  ]
+}

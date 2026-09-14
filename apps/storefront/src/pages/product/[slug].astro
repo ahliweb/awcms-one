@@ -1,0 +1,104 @@
+---
+/**
+ * Product detail. One page per active product, generated from the SAME
+ * cached `getProducts()` call `getStaticPaths()` below makes — see
+ * `src/lib/catalog.ts` for why `getProduct()` itself is not called here
+ * per-page (it would still hit the same cache, but the props below skip
+ * the extra lookup entirely).
+ */
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { absoluteUrl } from "../../config/site";
+import {
+  getProducts,
+  getCategories,
+  formatPrice,
+  labelClassName,
+  type CommerceProduct
+} from "../../lib/catalog";
+
+export async function getStaticPaths() {
+  const products = await getProducts();
+
+  return products.map((product) => ({
+    params: { slug: product.slug },
+    props: { product }
+  }));
+}
+
+interface Props {
+  product: CommerceProduct;
+}
+
+const { product } = Astro.props;
+
+const categories = await getCategories();
+const category = product.categoryId
+  ? categories.find((candidate) => candidate.id === product.categoryId)
+  : undefined;
+
+const inStock = product.stock > 0;
+const canonicalPath = `/product/${product.slug}`;
+const badgeClass = labelClassName(product.labelColor);
+
+/**
+ * `availability` is DERIVED from `stock` (issue #5), never carried as a
+ * separate field awcms could disagree with itself about. `offers.price` is
+ * the raw `numeric(14,2)` string, unformatted — schema.org's `price`
+ * property wants a plain decimal, not a locale-formatted string like
+ * "Rp150.000", and Google's structured-data validator rejects the latter.
+ */
+const productSchema = {
+  "@type": "Product",
+  name: product.name,
+  sku: product.sku,
+  ...(product.description ? { description: product.description } : {}),
+  ...(category ? { category: category.name } : {}),
+  offers: {
+    "@type": "Offer",
+    url: absoluteUrl(canonicalPath),
+    price: product.price,
+    priceCurrency: "IDR",
+    availability: inStock ? "https://schema.org/InStock" : "https://schema.org/OutOfStock"
+  }
+};
+---
+
+<BaseLayout
+  title={product.name}
+  description={product.description ?? `${product.name} — SKU ${product.sku}.`}
+  canonicalPath={canonicalPath}
+  schema={productSchema}
+>
+  <div class="container product-detail">
+    <nav class="breadcrumb" aria-label="Remah roti">
+      <a href="/">Katalog</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">{product.name}</span>
+    </nav>
+
+    {category && <p class="card-eyebrow">{category.name}</p>}
+    <h1>{product.name}</h1>
+    <p class="sku">SKU: {product.sku}</p>
+
+    <div class="product-meta">
+      {product.label && (
+        <span class={`label-badge ${badgeClass ?? ""}`}>{product.label}</span>
+      )}
+      <span class={`stock-badge ${inStock ? "stock-badge--in" : "stock-badge--out"}`}>
+        {inStock ? "Stok tersedia" : "Stok habis"}
+      </span>
+    </div>
+
+    <p class="card-price">{formatPrice(product.price)}</p>
+    {product.discountPercent > 0 && <p>Diskon {product.discountPercent}%</p>}
+
+    {product.description && <p class="product-description">{product.description}</p>}
+
+    {product.digitalNote && (
+      <div class="product-note">
+        <h2>Catatan produk digital</h2>
+        <p>{product.digitalNote}</p>
+      </div>
+    )}
+  </div>
+</BaseLayout>
