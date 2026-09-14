@@ -1,0 +1,117 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+# Cancel a stale run when a new push lands on the same branch.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+# ---------------------------------------------------------------------------
+# Actions are pinned to a commit SHA, not a tag (see AGENTS.md's
+# "Configuration and toolchain"). A tag can be moved; a SHA cannot, and an
+# action runs with access to the workflow token and the whole checkout.
+#
+# The `# vX.Y.Z` comment behind each SHA is not decoration: Dependabot reads
+# it to raise the pin and its comment together, so this stays readable by a
+# human without becoming unreadable to the tool that maintains it.
+# ---------------------------------------------------------------------------
+
+jobs:
+  # ---------------------------------------------------------------------------
+  # The one job this repo has today. Everything in it runs unconditionally —
+  # none of it needs a build, a network beyond fetching dependencies, or
+  # apps/cms's own database.
+  # ---------------------------------------------------------------------------
+  check:
+    name: Check
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      # Bun's version here must equal packageManager/engines.bun in the root
+      # package.json — see AGENTS.md's "Configuration and toolchain" for why
+      # that pin is load-bearing rather than cosmetic.
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2.2.0
+        with:
+          bun-version: "1.4.0"
+
+      - name: Cache Bun install cache
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ~/.bun/install/cache
+          key: bun-${{ runner.os }}-${{ hashFiles('bun.lock') }}
+          restore-keys: |
+            bun-${{ runner.os }}-
+
+      # Before install, not after: this gate is a pure file read, so its
+      # failure reads as "the lockfile has drifted" — not as an unrelated
+      # install failure whose cause has to be guessed. `bun install
+      # --frozen-lockfile` below is the second layer: it refuses a bun.lock
+      # that does not satisfy package.json at all.
+      - name: Lockfile matches package.json
+        run: bun run check:lockfile
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      # apps/storefront does not exist yet (issue #5). The root `check`
+      # script already delegates into it (`cd apps/storefront && bun run
+      # check`), so once it lands this step starts running with no change
+      # needed here — it is written to activate itself, not to be edited
+      # into existence later.
+      - name: Type check
+        if: hashFiles('apps/storefront/package.json') != ''
+        run: bun run check
+
+      - name: Report type check status
+        if: hashFiles('apps/storefront/package.json') == ''
+        run: |
+          echo "apps/storefront does not exist yet (issue #5) — type check SKIPPED, not passed." >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "The root \`check\` script already delegates into apps/storefront; this step starts running unconditionally the moment that workspace lands, with no workflow change required." >> "$GITHUB_STEP_SUMMARY"
+
+      # The root gate suite. bunfig.toml's [test] pathIgnorePatterns excludes
+      # apps/cms/** — that suite is ~500 files and needs a live PostgreSQL;
+      # it runs under its own gate (`bun run check:cms`), not this one. This
+      # step calling `bun test` BARE (not `bun run test`) matters: a flag on
+      # the package.json script would be silently skipped by a bare
+      # invocation, and CI always invokes it bare — see
+      # `tests/cakupan-uji-akar.test.mjs`, which guards this exact point.
+      - name: Unit tests
+        run: bun test
+
+      # Dead markdown links, the ADR index (self-skips until docs/adr/
+      # exists), file paths a document names, ADR-NNNN citations, and marked
+      # linked counts. Needs no build, no network, no apps/cms.
+      - name: Audit dokumen
+        run: bun run audit:dokumen
+
+      # A stale or missing Indonesian mirror of a governance document.
+      - name: Audit translation
+        run: bun run audit:translation
+
+      # The waiting .changesets/ backlog crossing its bound. This can go red
+      # on a push that did nothing wrong — see that gate's own docblock for
+      # why that is accepted: main carries no required checks yet, so a red
+      # run here informs without blocking anyone's merge, and it is cleared
+      # by a maintainer running one release.
+      - name: Audit rilis
+        run: bun run audit:rilis
+
+      # `bun audit` (dependency-chain vulnerabilities) and this repo's own
+      # `audit:*` gates check unrelated things; their names are kept
+      # distinct on purpose. This scans the WHOLE resolved lockfile,
+      # apps/cms's dependencies included — a finding here may belong to
+      # that embedded tree rather than to this workspace's own new code.
+      - name: Dependency audit
+        run: bun audit --audit-level=low
