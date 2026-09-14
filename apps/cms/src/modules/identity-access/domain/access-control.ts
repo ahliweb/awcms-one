@@ -1,0 +1,651 @@
+import {
+  AbacEvaluationError,
+  evaluateAbacPolicies,
+  type AbacEnvironment,
+  type CompiledPolicy
+} from "./abac-evaluator";
+import { SCOPE_NARROWING_ENABLED } from "./scope-narrowing";
+
+export type TenantContext = {
+  tenantId: string;
+  tenantUserId: string;
+  identityId: string;
+  roles: string[];
+  /** Issue #179 — acting subject's default office id, exposed to the ABAC DSL
+   * as `subject.defaultOfficeId` (may be absent; no base resolver populates it
+   * yet, so it resolves as absent until a deployment wires one). Optional and
+   * additive: no existing call site sets it and every leaf referencing it is
+   * simply false while unset. */
+  defaultOfficeId?: string;
+  /**
+   * ADR-0090 — `awcms_tenant_users.principal_kind`, carried so the chokepoint
+   * can refuse a delegated actor without a second query.
+   *
+   * Optional, and absent reads as `"user"`. That is fail-OPEN for this one
+   * field, so it is only safe because of where the value comes from: BOTH
+   * context resolvers that feed the chokepoint select the column from the
+   * `awcms_tenant_users` row they already read, and
+   * `tests/delegated-access.test.ts` pins both of those SELECTs at source. Every
+   * other constructor of this type builds a context for an ordinary member and
+   * never reaches the chokepoint's delegated gate.
+   *
+   * A required field would instead have made ~30 call sites a compile error for
+   * a value they all mean the same way, and the usual outcome of that is 30
+   * hand-written `"user"` literals — 30 places for the wrong one to appear.
+   */
+  principalKind?: "user" | "delegated";
+  /**
+   * ADR-0091 — the live delegated-access grant behind this actor, resolved only
+   * when `principalKind` is `"delegated"`.
+   *
+   * Every decision-log and audit row written under it carries the id, which is
+   * what turns "what did our vendor do in here" from an unanswerable question
+   * into one query. Absent for every ordinary member, which is the overwhelming
+   * majority of requests — and the reason it is resolved by a second small
+   * lookup rather than by joining the grant table into the hot auth query that
+   * runs for everyone.
+   */
+  delegatedGrantId?: string;
+  correlationId?: string;
+};
+
+/**
+ * Grows one literal at a time as a real endpoint needs it (same convention
+ * as `awcms-mini`'s own `identity-access/domain/access-control.ts`) — never
+ * pre-declare an action for a module that doesn't exist yet.
+ */
+export type AccessAction =
+  | "read"
+  | "create"
+  | "update"
+  | "delete"
+  | "approve"
+  | "assign"
+  | "configure"
+  | "restore"
+  | "purge"
+  | "retry"
+  | "sync"
+  | "enable"
+  | "disable"
+  | "check"
+  | "replay"
+  | "manage"
+  // Workflow-approval actions (ported alongside the workflow module).
+  | "publish"
+  | "retire"
+  | "cancel"
+  | "reassign"
+  | "force_decide"
+  | "revoke"
+  // Reporting actions (ported alongside the reporting module): `rebuild`
+  // and `export` mutate/produce artifacts (high-risk); `analyze` is a
+  // read-only reconciliation analysis (not high-risk, same posture as a
+  // dry-run).
+  | "rebuild"
+  | "analyze"
+  | "export"
+  // MFA administration (Issue #184): `reset` disables another user's factor
+  // (high-risk); `configure` sets the tenant MFA enforcement policy.
+  | "reset"
+  // SoD exception decision (Issue #181): `reject` denies a pending
+  // segregation-of-duties conflict exception request. Deliberately NOT
+  // high-risk — rejecting an exception is the SAFE outcome (the conflict stays
+  // denied), unlike `approve`/`revoke` which change an override's standing.
+  // (`approve`/`revoke` for exceptions reuse the existing high-risk actions.)
+  | "reject"
+  // Theming (ADR-0034 Fase 3): `archive` retires the active theme so the site
+  // falls back to the default. High-risk (it changes the live public
+  // presentation surface), same posture as `publish`/`restore`.
+  | "archive"
+  // Blog content (ported from awcms-mini): `schedule` sets a post/page's
+  // future `scheduled_at` (high-risk, same posture as `publish` — it commits
+  // to a future state transition). `preview` is read-only (previews the
+  // automatic internal tag linking transform for a post before publishing,
+  // not itself a mutation).
+  | "schedule"
+  | "preview"
+  // News portal (ported from awcms-mini): `verify` finalizes an uploaded news
+  // media object (flips its status based on server-side MIME/checksum
+  // verification). Deliberately NOT in `HIGH_RISK_ACTIONS` — it only advances
+  // a media object's own status, does not delete or irreversibly change data;
+  // the finalize endpoint still requires `Idempotency-Key` and is audited
+  // regardless of this classification (`isHighRiskAction` is metadata, not a
+  // gate on idempotency/audit). (`delete`/`restore`/`purge`/`cancel` are also
+  // seeded in the `media_library.media` permission catalog (repointed from
+  // `news_portal.media` by ADR-0036's `sql/052`) and reuse existing union
+  // members. `attach`/`detach` were seeded there too and are REVOKED by
+  // ADR-0056 §A / `sql/087` — they named a relation ADR-0036 moved to the
+  // consumer's own FK, so nothing ever checked them.)
+  | "verify"
+  // Tenant domain (ported from awcms-micro epic #555): `set_primary` atomically
+  // makes a verified tenant domain the active primary. Deliberately NOT in
+  // `HIGH_RISK_ACTIONS` (same posture as `verify` — it only flips one row's
+  // primary flag, does not delete or irreversibly change data); the set-primary
+  // endpoint still requires `Idempotency-Key` and is audited regardless of this
+  // classification. (`read`/`create`/`update`/`delete`/`verify` for
+  // tenant_domain reuse existing union members.)
+  | "set_primary"
+  // Data lifecycle (ported from awcms-micro Issue #745, ADR-0037): `release`
+  // ends an active legal hold — a distinct, default-deny-separate permission
+  // from `create` (a role that can create a hold must not implicitly also be
+  // able to release one). Classified HIGH-RISK below: releasing a hold removes
+  // a data-protection safeguard that may let purge/archive resume against
+  // previously-protected rows. (`read`/`create`/`analyze`/`purge` for
+  // data_lifecycle reuse existing union members.)
+  | "release"
+  // Site search (ported from awcms-micro Issue #270, ADR-0040): `reconcile`
+  // runs an idempotent index sweep (upsert the current public documents, remove
+  // stale ones). Deliberately NOT high-risk — it is a bounded, fully
+  // regenerable projection sync whose end state is the source of truth
+  // restated, unlike `rebuild` (already high-risk above) which DELETEs every
+  // document first. The reconcile route still requires `Idempotency-Key` and is
+  // audited regardless of this classification (`isHighRiskAction` is metadata,
+  // not a gate on idempotency/audit). (`read`/`update` for site_search reuse
+  // existing union members.)
+  | "reconcile"
+  // Media library (Issue #794, `sql/152`): `adjudicate_rights` transitions
+  // `awcms_news_media_objects.rights_verification_status` — a HUMAN decision
+  // that a licence permits (or forbids) publication, distinct from `update`
+  // (routine credit-line/source/copyright-status/notes editing) since
+  // Issue #782/PR #791 gave `'verified'` a real, near-irreversible
+  // consequence: it makes the credit fields cross into the PUBLIC
+  // `GET /api/v1/media/objects` response. Before #782 this transition rode
+  // on `media.update` alone, which let whoever could type a credit line also
+  // self-attest it cleared for publication. Classified HIGH-RISK below: see
+  // that Set's own comment for why.
+  | "adjudicate_rights";
+
+export type AccessRequest = {
+  moduleKey: string;
+  activityCode: string;
+  action: AccessAction;
+  resourceType?: string;
+  resourceId?: string;
+  /**
+   * Issue #180 — `resourceAttributes.requiredScopeType`/`.requiredScopeId`
+   * (both `string`, set together) are an ADDITIVE opt-in: when present,
+   * `evaluateAccess` ALSO requires the caller to hold a resolved
+   * business-scope fact covering that `(scopeType, scopeId)` pair (see the
+   * `businessScopeFacts` param below), denying otherwise. Absent (the default
+   * for every pre-existing `AccessRequest` call site) means "no
+   * business-scope constraint on this request" — behavior is completely
+   * unchanged for every endpoint that does not opt in.
+   *
+   * `resourceAttributes.requiredScopeRelations` (optional `string[]`, a
+   * subset of `"exact"`/`"descendant"`/`"ancestor"`) selects which hierarchy
+   * relations satisfy the requirement — defaults to `["exact"]` (the
+   * strictest). A tenant-wide grant always satisfies it regardless. See
+   * `BusinessScopeFact` for the exact coverage semantics.
+   */
+  resourceAttributes?: Record<string, unknown>;
+};
+
+export type AccessDecision = {
+  allowed: boolean;
+  reason: string;
+  matchedPolicy?: string;
+  /** Issue #179 — the `dsl_version` of the stored ABAC policy that produced
+   * this decision, when one did. Built-in guards (tenant_isolation, etc.)
+   * leave this undefined. Recorded on the decision log. */
+  matchedPolicyVersion?: number;
+};
+
+/** A `(scopeType, scopeId)` reference — the generic scope address used everywhere in the business-scope layer (Issue #180). */
+export type BusinessScopeReference = {
+  scopeType: string;
+  scopeId: string;
+};
+
+/** The scope relations a required-scope check can accept (Issue #180). */
+export type BusinessScopeRelation = "exact" | "descendant" | "ancestor";
+
+/**
+ * The reserved `scopeType` denoting a TENANT-WIDE grant. A business-scope
+ * assignment whose `scopeType` is this value is not confined to any single
+ * scope — it covers every required scope in the tenant (the "tenant-wide"
+ * relation of issue #180). `scopeId` for such a fact is conventionally the
+ * tenant id, but coverage does not depend on it.
+ */
+export const TENANT_WIDE_SCOPE_TYPE = "tenant";
+
+/**
+ * One resolved-and-verified business-scope fact for the acting subject —
+ * always produced ahead of time by a caller via `BusinessScopeHierarchyPort`/
+ * `application/business-scope-facts.ts` (I/O), NEVER resolved inside this
+ * file (`evaluateAccess` stays pure, no I/O, matching every other ABAC
+ * decision in this module).
+ *
+ * Coverage of a required `(scopeType, scopeId)` by a set of these facts
+ * (Issue #180 scope relations):
+ * - `tenantWide`  — a tenant-wide grant covers EVERY required scope.
+ * - `exact`       — the subject holds an assignment to exactly the required
+ *                   scope. For HIGH-RISK actions the held scope must still be
+ *                   `resolved` (a deleted/stale scope must not authorize a
+ *                   high-risk action — fail-closed, issue #180).
+ * - `descendant`  — the required scope is a DESCENDANT of a scope the subject
+ *                   holds (i.e. the held scope is an ancestor of it). Only a
+ *                   `resolved` fact carries a non-empty `descendantScopes`, so
+ *                   an unresolved/stale hierarchy can never widen access.
+ * - `ancestor`    — the required scope is an ANCESTOR of a scope the subject
+ *                   holds. Same `resolved`-gated safety as `descendant`.
+ */
+export type BusinessScopeFact = {
+  scopeType: string;
+  scopeId: string;
+  /** Whether the held scope's hierarchy was resolvable by the `BusinessScopeHierarchyPort` at fact-resolution time. `false` ⇒ no ancestor/descendant coverage, and no exact coverage for high-risk actions. */
+  resolved: boolean;
+  /** Ancestor references of the held scope — only ever non-empty when `resolved` is `true`. */
+  ancestorScopes: readonly BusinessScopeReference[];
+  /** Descendant references of the held scope — only ever non-empty when `resolved` is `true`. */
+  descendantScopes: readonly BusinessScopeReference[];
+  /** Whether this fact is a tenant-wide grant (`scopeType === TENANT_WIDE_SCOPE_TYPE`), covering every required scope. */
+  tenantWide: boolean;
+  /**
+   * The permission keys THIS fact covers, when the fact came from a grant that
+   * knows (ADR-0080, Gelombang 3 PR 3.4 of #423).
+   *
+   * `undefined` means "this fact does not qualify by permission" and is what
+   * every fact derived from `awcms_business_scope_assignments` carries — a scope
+   * assignment says which SCOPES the subject may act in and has never said which
+   * ACTIONS, so inventing a set for it would be inventing an answer.
+   *
+   * A scoped `awcms_access_policies` grant does know: it names a role, and that
+   * role's permissions are exactly what the grant confers at that scope. Such a
+   * fact carries the set, and the coverage predicate then refuses to let it
+   * cover a permission it does not include.
+   *
+   * The asymmetry is the safety property. `undefined` evaluates identically to
+   * before; a populated set can only remove coverage. There is no input, in any
+   * order, that turns a deny into an allow through this field.
+   */
+  permissionKeys?: ReadonlySet<string>;
+};
+
+const HIGH_RISK_ACTIONS: ReadonlySet<AccessAction> = new Set([
+  "delete",
+  "approve",
+  "assign",
+  "configure",
+  "restore",
+  "purge",
+  "sync",
+  "enable",
+  "disable",
+  "replay",
+  "manage",
+  "publish",
+  "retire",
+  "cancel",
+  "reassign",
+  "force_decide",
+  "revoke",
+  "rebuild",
+  "export",
+  "archive",
+  // Data lifecycle (ADR-0037): releasing a legal hold removes a data-protection
+  // safeguard — see the `AccessAction` union's own comment for `release`.
+  "release",
+  // Media library (Issue #794): a rights-verification transition is what makes
+  // a credit line cross into a public, machine-credentialed API response — the
+  // same public-disclosure blast radius as `publish`/`archive` above. Being
+  // high-risk does not itself change today's behaviour (the endpoint already
+  // requires `Idempotency-Key` unconditionally, and no SoD rule references
+  // this key yet), but it makes the action-time SoD check
+  // (`checkHighRiskSoDConflicts`) available the moment a tenant authors one —
+  // e.g. "the same subject may not both edit routine credit fields and
+  // adjudicate rights" — without a second code change.
+  "adjudicate_rights"
+]);
+
+export function isHighRiskAction(action: AccessAction): boolean {
+  return HIGH_RISK_ACTIONS.has(action);
+}
+
+export function permissionKey(
+  moduleKey: string,
+  activityCode: string,
+  action: string
+): string {
+  return `${moduleKey}.${activityCode}.${action}`;
+}
+
+/**
+ * The inverse of {@link permissionKey}: turns a stored `module.activity.action`
+ * string back into the request shape the chokepoint takes. `null` when the
+ * string is not three non-empty dot-separated segments.
+ *
+ * Exists because some permission keys are DATA rather than code —
+ * `SoDRuleDescriptor.exceptionPolicy.requiresApprovalPermission` names the
+ * permission a checker must hold to approve an exception to that particular
+ * rule, and a module declares it as a string. Enforcing it means asking the
+ * chokepoint about a key nobody wrote as a literal.
+ *
+ * `action` is cast rather than checked against the `AccessAction` union: there
+ * is no runtime list of the union's members, and inventing one here would be a
+ * second place to forget when an action is added. The cast is safe in the only
+ * direction that matters — an action nobody declared matches no row in the
+ * permission catalogue, so the chokepoint denies it. A parser that threw would
+ * turn a typo in a descriptor into a 500 instead of a refusal.
+ */
+export function parsePermissionKey(key: string): AccessRequest | null {
+  const parts = key.split(".");
+  if (parts.length !== 3) return null;
+
+  const [moduleKey, activityCode, action] = parts;
+  if (!moduleKey || !activityCode || !action) return null;
+
+  return { moduleKey, activityCode, action: action as AccessAction };
+}
+
+function scopeListContains(
+  list: readonly BusinessScopeReference[],
+  scopeType: string,
+  scopeId: string
+): boolean {
+  return list.some(
+    (scope) => scope.scopeType === scopeType && scope.scopeId === scopeId
+  );
+}
+
+/**
+ * Whether `fact` is allowed to cover `requiredKey` at all (ADR-0080).
+ *
+ * The entire security argument is readable in the expression: the only value
+ * this can contribute is `false`. There is no branch that produces coverage, so
+ * no input, in any order, can turn a deny into an allow through it. A fact with
+ * no `permissionKeys` — which is every fact derived from a scope ASSIGNMENT —
+ * qualifies for everything, exactly as it did before #423.
+ *
+ * `enabled` exists so both states of the build-time switch are TESTED rather
+ * than one of them being a claim. Production always passes the constant.
+ */
+export function scopeFactQualifies(
+  fact: BusinessScopeFact,
+  requiredKey: string,
+  enabled: boolean = SCOPE_NARROWING_ENABLED
+): boolean {
+  if (!enabled) return true;
+  if (fact.permissionKeys === undefined) return true;
+
+  return fact.permissionKeys.has(requiredKey);
+}
+
+/**
+ * Which scope relations satisfy a required-scope check. Defaults to `exact`
+ * only (the strictest, matching the pre-#180 exact-match behavior) when the
+ * request supplies no `requiredScopeRelations`, and can never be empty (an
+ * empty/garbage list still enforces at least `exact`, never "no constraint").
+ */
+function normalizeScopeRelations(
+  raw: unknown
+): ReadonlySet<BusinessScopeRelation> {
+  if (!Array.isArray(raw)) {
+    return new Set<BusinessScopeRelation>(["exact"]);
+  }
+  const relations = new Set<BusinessScopeRelation>();
+  for (const value of raw) {
+    if (value === "exact" || value === "descendant" || value === "ancestor") {
+      relations.add(value);
+    }
+  }
+  if (relations.size === 0) {
+    relations.add("exact");
+  }
+  return relations;
+}
+
+/**
+ * Issue #179 — optional stored-policy input passed by the application guard.
+ * When omitted (or `policies` empty) the dynamic ABAC layer is a NO-OP and
+ * `evaluateAccess` behaves exactly as before: every pre-existing call site that
+ * supplies ≤4 arguments is completely unaffected. `env` is injected so the
+ * evaluator stays pure and deterministic (no clock read inside the domain).
+ */
+export type AbacEvaluationInput = {
+  policies: readonly CompiledPolicy[];
+  env: AbacEnvironment;
+};
+
+/**
+ * Default deny, deny overrides allow. Built-in hard guards (tenant isolation,
+ * self-approval, force-decision, business-scope #180) run first and
+ * short-circuit. Then the dynamic ABAC layer (Issue #179):
+ *
+ *   1. An explicit DENY policy whose condition matches → DENY (overrides RBAC
+ *      allow and any allow-policy — "explicit deny wins"). An applicable but
+ *      INVALID stored policy, or any evaluation error, also → DENY (fail-closed).
+ *   2. The RBAC permission is STILL REQUIRED; an allow-policy never creates a
+ *      permission the subject lacks.
+ *   3. Applicable ALLOW policies act as an additional CONSTRAINT on the
+ *      already-granted permission: if any allow-policy is applicable, at least
+ *      one must be satisfied, else DENY. No applicable policy → ABAC is a no-op
+ *      and RBAC decides.
+ *
+ * The #181 segregation-of-duties high-risk guard remains in the application
+ * chokepoint (`authorizeInTransaction`), additive AFTER this decision.
+ */
+export function evaluateAccess(
+  context: TenantContext,
+  request: AccessRequest,
+  grantedPermissionKeys: ReadonlySet<string>,
+  businessScopeFacts?: readonly BusinessScopeFact[],
+  abac?: AbacEvaluationInput
+): AccessDecision {
+  const resourceTenantId = request.resourceAttributes?.tenantId;
+
+  if (resourceTenantId !== undefined && resourceTenantId !== context.tenantId) {
+    return {
+      allowed: false,
+      reason: "Resource belongs to a different tenant.",
+      matchedPolicy: "tenant_isolation"
+    };
+  }
+
+  // Self-approval guard (ported alongside workflow-approval). When a caller
+  // opts a request into it by supplying `requestedByTenantUserId`, an actor
+  // may never approve a request they themselves filed. Two directions are
+  // covered: the ordinary `approve` action, and the administrative
+  // `force_decide` override (which bypasses quorum entirely — a caller who
+  // filed their own instance AND holds `workflow.recovery.force_decide`
+  // would otherwise be able to force-approve their own request, structurally
+  // bypassing the `approve`-only check). No pre-existing call site sets
+  // `requestedByTenantUserId`, so this is inert for every other endpoint.
+  const requestedBy = request.resourceAttributes?.requestedByTenantUserId;
+
+  if (
+    (request.action === "approve" || request.action === "force_decide") &&
+    requestedBy !== undefined &&
+    requestedBy === context.tenantUserId
+  ) {
+    return {
+      allowed: false,
+      reason:
+        request.action === "approve"
+          ? "Self-approval is not allowed."
+          : "Self-administered force-decision is not allowed.",
+      matchedPolicy: "self_approval_deny"
+    };
+  }
+
+  // Issue #180 — additive business-scope constraint. Only evaluated when a
+  // caller opts a request into it via `requiredScopeType`/`requiredScopeId`
+  // (see `AccessRequest`'s own doc comment); every pre-existing call site that
+  // never sets these two fields is completely unaffected. The subject's
+  // resolved `businessScopeFacts` are produced by the caller ahead of time
+  // (`application/business-scope-facts.ts`); this function stays pure.
+  //
+  // Default-deny when no fact covers the required scope — "unresolved scope
+  // ... default to deny for high-risk actions" (issue #180 security model),
+  // applied here even for non-high-risk actions that explicitly opt in, since
+  // declaring a required scope at all is itself an explicit request for this
+  // guarantee.
+  const requiredScopeType = request.resourceAttributes?.requiredScopeType;
+  const requiredScopeId = request.resourceAttributes?.requiredScopeId;
+
+  if (
+    typeof requiredScopeType === "string" &&
+    typeof requiredScopeId === "string"
+  ) {
+    const relations = normalizeScopeRelations(
+      request.resourceAttributes?.requiredScopeRelations
+    );
+    const highRisk = isHighRiskAction(request.action);
+    const facts = businessScopeFacts ?? [];
+
+    const requiredKey = permissionKey(
+      request.moduleKey,
+      request.activityCode,
+      request.action
+    );
+
+    const covered = facts.some((fact) => {
+      // Scope qualification (ADR-0080) — see `scopeFactQualifies`. FIRST, so it
+      // also constrains `tenantWide` below.
+      if (!scopeFactQualifies(fact, requiredKey)) {
+        return false;
+      }
+
+      // Tenant-wide grant (reserved "tenant" scope type) covers every scope.
+      if (fact.tenantWide) {
+        return true;
+      }
+
+      // Hierarchy-derived coverage: the required scope is a descendant or an
+      // ancestor of a scope the subject holds. Only a RESOLVED fact carries a
+      // non-empty ancestor/descendant list, so an unresolved/stale hierarchy
+      // can never widen access this way — fail-closed by construction.
+      if (
+        relations.has("descendant") &&
+        scopeListContains(
+          fact.descendantScopes,
+          requiredScopeType,
+          requiredScopeId
+        )
+      ) {
+        return true;
+      }
+      if (
+        relations.has("ancestor") &&
+        scopeListContains(
+          fact.ancestorScopes,
+          requiredScopeType,
+          requiredScopeId
+        )
+      ) {
+        return true;
+      }
+
+      // Exact coverage: the subject holds an active assignment to exactly this
+      // scope. For HIGH-RISK actions the held scope must still be RESOLVED — a
+      // deleted/stale scope must not authorize a high-risk action. This is the
+      // `resolved: false -> deny` fail-closed predicate (issue #180).
+      if (
+        relations.has("exact") &&
+        fact.scopeType === requiredScopeType &&
+        fact.scopeId === requiredScopeId
+      ) {
+        if (highRisk && !fact.resolved) {
+          return false;
+        }
+        return true;
+      }
+
+      return false;
+    });
+
+    if (!covered) {
+      return {
+        allowed: false,
+        reason:
+          "Required business scope is not resolved or not assigned to this subject.",
+        matchedPolicy: "business_scope_unresolved"
+      };
+    }
+  }
+
+  // Issue #179 — dynamic ABAC policy pass. Runs only when the application guard
+  // supplied active policies. Evaluated ONCE here; the deny/invalid parts take
+  // effect BEFORE the RBAC check (deny overrides RBAC), the allow-constraint
+  // part AFTER (an allow-policy only constrains a permission the subject already
+  // holds). Any evaluation error → fail-closed DENY.
+  let abacPass: ReturnType<typeof evaluateAbacPolicies> | undefined;
+
+  if (abac && abac.policies.length > 0) {
+    try {
+      abacPass = evaluateAbacPolicies(
+        abac.policies,
+        context,
+        request,
+        abac.env
+      );
+    } catch (error) {
+      if (error instanceof AbacEvaluationError) {
+        return {
+          allowed: false,
+          reason: "ABAC policy evaluation failed; access denied (fail-closed).",
+          matchedPolicy: "abac_evaluation_error"
+        };
+      }
+      throw error;
+    }
+
+    if (abacPass.invalidMatch) {
+      return {
+        allowed: false,
+        reason:
+          "An active ABAC policy is invalid; access denied (fail-closed).",
+        matchedPolicy: abacPass.invalidMatch.policyCode,
+        matchedPolicyVersion: abacPass.invalidMatch.dslVersion
+      };
+    }
+
+    if (abacPass.denyMatch) {
+      return {
+        allowed: false,
+        reason: "Denied by ABAC policy.",
+        matchedPolicy: abacPass.denyMatch.policyCode,
+        matchedPolicyVersion: abacPass.denyMatch.dslVersion
+      };
+    }
+  }
+
+  const key = permissionKey(
+    request.moduleKey,
+    request.activityCode,
+    request.action
+  );
+
+  if (!grantedPermissionKeys.has(key)) {
+    return {
+      allowed: false,
+      reason: "No role permission grants this action.",
+      matchedPolicy: "default_deny"
+    };
+  }
+
+  // Allow-constraint: an allow-policy never grants a permission (the RBAC gate
+  // above already passed), but when any allow-policy is applicable it narrows
+  // the grant — at least one must be satisfied, else deny.
+  if (abacPass && abacPass.allowApplicable) {
+    if (abacPass.allowSatisfied) {
+      return {
+        allowed: true,
+        reason: "Granted via role permission and allowed by ABAC policy.",
+        matchedPolicy: abacPass.allowSatisfied.policyCode,
+        matchedPolicyVersion: abacPass.allowSatisfied.dslVersion
+      };
+    }
+    return {
+      allowed: false,
+      reason: "No ABAC allow-policy condition is satisfied for this request.",
+      matchedPolicy: "abac_allow_unsatisfied"
+    };
+  }
+
+  return {
+    allowed: true,
+    reason: "Granted via role permission.",
+    matchedPolicy: "role_permission"
+  };
+}

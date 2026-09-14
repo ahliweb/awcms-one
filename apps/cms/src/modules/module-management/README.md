@@ -1,0 +1,193 @@
+🇬🇧 English (source) · 🇮🇩 [Bahasa Indonesia](README.id.md)
+
+# Module Management
+
+Database-backed, tenant-aware module registry. Generic infrastructure for
+managing every other registered module — not a domain-specific feature.
+Ported and adapted from the awcms-mini module-management module.
+
+## What it does
+
+- **Descriptor sync** (`application/descriptor-sync.ts`) — reads the trusted,
+  in-process code registry (`listModules()`, `src/modules/index.ts`) and
+  upserts it into the database registry (`awcms_modules` +
+  `awcms_module_dependencies`/`_navigation`/`_jobs`, migration 008). Naturally
+  idempotent. Refuses to write when the registry fails dependency-graph
+  validation (`_shared/module-dependency-graph.ts`).
+- **Module catalog** (`application/module-catalog.ts`) — merges each
+  descriptor's always-current static metadata with the DB's tracked lifecycle
+  state. `GET /api/v1/modules`, `GET /api/v1/modules/{moduleKey}`.
+- **Tenant module lifecycle** (`application/tenant-module-lifecycle.ts`) —
+  per-tenant enable/disable, dependency-validated. A missing
+  `awcms_tenant_modules` row means "enabled by default" (backward-compatible).
+  `isCore` modules cannot be disabled (prevents admin lockout). Writes only
+  `awcms_tenant_modules`, never unloads code.
+- **Module settings** (`application/module-settings.ts`) — tenant-aware,
+  **non-secret** operational preferences. `PATCH` shallow-merges. Secret-shaped
+  keys and secret-shaped values are rejected at request time (never stored),
+  reusing `_shared/redaction.ts`'s `findSensitiveKeys`/`findSecretShapedValues`.
+- **Permission sync/status** (`application/permission-sync.ts`) — read-only
+  report of `synced`/`missing`/`orphaned`/`mismatched_description` against
+  `awcms_permissions`. Never writes to the catalog.
+- **Navigation registry** (`application/navigation-registry.ts`) — filters
+  module-declared nav entries by module status, tenant enablement, and
+  required permission, as a flat list for `GET /api/v1/modules`. Navigation
+  filtering is **not** authorization.
+- **Sidebar model** (`domain/sidebar-menu.ts`) — the same declarations, grouped
+  into the admin shell's `type -> module -> entries` tree.
+  `src/layouts/AdminLayout.astro` renders from this; it previously kept its own
+  hand-written array, which had drifted into three entries pointing at pages
+  that do not exist and eight pages the registry had never heard of.
+  `tests/admin-navigation-registry.test.ts` binds declarations to the
+  filesystem in both directions.
+
+  Ported from awcms-micro's `domain/sidebar-menu.ts` **minus the per-tenant
+  override layer** — its `sidebar_menu_types`/`sidebar_menu_items` tables and
+  admin editor let a tenant reorder, hide, relabel and re-bucket entries. That
+  needs a migration and is a separate increment; the model here is the default
+  those overrides apply on top of, so it arrives without rework.
+
+- **Module presets** (`domain/module-presets.ts`, `application/module-presets.ts`)
+  — named profiles (`minimal`, `website`, `news_portal`, `back_office`) a tenant
+  can be brought TO in one action. A preset ENABLES what it lists and DISABLES
+  every enabled, unlisted, unprotected module; enable-only would make presets
+  useless as a way to reach a profile. Executed through the existing
+  `enableTenantModule`/`disableTenantModule` primitives, one call per planned
+  change, so a change can still be rejected and is reported rather than
+  swallowed (`complete: false` with per-module reasons).
+
+  "Protected" is not `isCore`: only `module_management` sets that flag, and the
+  rest are protected indirectly by the reverse-dependency check.
+  `resolveProtectedModuleKeys` makes that explicit for planning.
+
+  No new permission: an apply IS a sequence of enables and disables, so
+  `POST .../presets/{name}/apply` guards on
+  `module_management.tenant_modules.disable` — the stronger of the two the
+  underlying calls already need. A new action would need a seed migration, and
+  an unseeded action denies even the owner.
+
+- **Tenant-module matrix** (`application/module-matrix.ts`) — every module ×
+  what matters for this tenant, in TWO queries (catalog + tenant entries; the
+  rest is pure). Adds two lifecycle warnings by re-running the REAL
+  `evaluateModuleEnable`/`evaluateModuleDisable` against each module's actual
+  state, never a UI-side re-derivation that can drift from the endpoints.
+
+  One-directional on purpose: `dependencyWarning` only for a DISABLED module,
+  `reverseDependencyWarning` only for an ENABLED one. The other two combinations
+  cannot arise, and asking `evaluateModuleEnable` about an enabled module
+  short-circuits to `MODULE_ALREADY_ENABLED` — an answer that looks like a check
+  and is not one.
+
+  **No health column.** awcms-micro's matrix has one, fed by a BATCHED health
+  reader this base does not have; a per-row `fetchModuleHealthReport` would be
+  21 reads in one transaction. Health stays at
+  `GET /api/v1/modules/{moduleKey}/health` until a batched reader exists.
+
+- **Module audit summary** (`application/module-audit-summary.ts`) — recent
+  activity recorded against one module key (`tenant_module`, `module_settings`,
+  `module_health`, `module_preset`). Guarded by `logging.audit_trail.read`, not
+  a module-management permission: these are audit-log rows, and whoever may not
+  read the audit log must not get a filtered view of it through another door.
+  `module_registry` is excluded — descriptor sync's `resource_id` is not a
+  module key, so it would match nothing while implying it might.
+
+- **Sidebar arrangement** (`domain/sidebar-menu.ts` override half,
+  `application/sidebar-menu-config.ts`, `sql/071`/`sql/072`) — per-tenant
+  reorder, hide, relabel, move-between-sections, and custom sections, applied on
+  top of the code-derived default.
+
+  Stored as a DELTA, never a snapshot. A tenant with no rows renders exactly the
+  code default, which is what makes a newly added module's nav entry appear
+  everywhere with no data migration; a snapshot would freeze each tenant's
+  sidebar at the moment they first touched it.
+
+  **A tenant can override, never inject.** Every stored row is resolved BY KEY
+  against `buildDefaultSidebarModel`, and one that matches nothing is ignored —
+  there is no code path from a request body to a new menu link. Overrides are
+  also applied BEFORE `composeSidebarSections`, so relabelling or moving an
+  entry can never carry it past `requiredPermission` or a disabled module.
+
+  `module_management.navigation.configure` (`sql/072`) gates the mutations; the
+  read reuses the pre-existing `navigation.read`. Existing tenants do NOT gain
+  the new permission automatically — see the migration's operator note.
+
+- **Job registry** (`application/job-registry.ts`) — documentation-only
+  metadata about each module's operational commands. Never an execution
+  surface.
+- **Health/readiness** (`application/health-registry.ts`) — cheap, bounded
+  signals (registry synced, migrations applied, permissions synced, settings
+  valid, jobs documented, OpenAPI/AsyncAPI documented). `GET .../health` is a
+  passive read; `POST .../health/check` records history and runs any live
+  provider check (none in this base yet).
+
+## "Sync first"
+
+`awcms_tenant_modules`, `awcms_module_settings`, and
+`awcms_module_health_checks` all have a foreign key to
+`awcms_modules.module_key`. Registering a module in `src/modules/index.ts` does
+**not** automatically create its registry row. Every tenant-scoped mutation
+that needs the registry row to exist (`enableTenantModule`,
+`disableTenantModule`, `updateModuleSettings`, `runModuleHealthCheck`) calls
+`syncModuleDescriptors(tx)` itself first — do not assume an operator ran
+`POST /api/v1/modules/sync` beforehand.
+
+## Module-registry composition (Issue #178, ADR-0025; ADR-0034 §3)
+
+Distinct from the tenant lifecycle above: **which modules exist in the code**
+is determined at build/compile time, not at runtime and never from tenant
+input. ADR-0034 §3 removed the derived-application pathway — the composition
+engine now validates the reviewed **base** registry (the same shape a new
+domain module added directly to `src/modules/` produces).
+
+- **`domain/module-composition.ts`** — the pure validation engine.
+  `composeModuleRegistry(registry)` / `validateComposedModuleRegistry(registry)`
+  reject: duplicate module key, missing/cyclic dependency (reuses
+  `_shared/module-dependency-graph.ts`), capability provider conflict/missing
+  (`ModuleCapabilityContract`), deployment-profile incompatibility, navigation
+  path conflict, and invalid job descriptor (reuses `domain/job-registry.ts`).
+  It lives here — not `_shared/` — so both reused validators are imported
+  cleanly (DAG down from `_shared/`, job-registry as a sibling); see the file
+  header and ADR-0025 for the placement rationale.
+- **`buildComposedModuleInventory()`** — a deterministic, sorted-by-key,
+  timestamp-free snapshot for CI/release evidence
+  (`docs/awcms/module-composition-inventory.json`).
+- **Gates** (all in `bun run check` + CI): `modules:compose:check`,
+  `modules:composition:inventory:generate`/`:check`.
+- Fixture: `tests/fixtures/example-domain-modules/` (a test-support example
+  domain module), exercised by `tests/module-composition-fixture.test.ts`.
+
+## API surface
+
+| Method + Path                                       | Permission                                 |
+| --------------------------------------------------- | ------------------------------------------ |
+| `GET /api/v1/modules`                               | `module_management.modules.read`           |
+| `GET /api/v1/modules/{moduleKey}`                   | `module_management.modules.read`           |
+| `POST /api/v1/modules/sync`                         | `module_management.modules.sync`           |
+| `GET /api/v1/modules/{moduleKey}/health`            | `module_management.health.read`            |
+| `POST /api/v1/modules/{moduleKey}/health/check`     | `module_management.health.check`           |
+| `GET /api/v1/modules/{moduleKey}/jobs`              | `module_management.jobs.read`              |
+| `GET /api/v1/modules/{moduleKey}/permissions`       | `module_management.permissions.read`       |
+| `GET /api/v1/tenant/modules`                        | `module_management.tenant_modules.read`    |
+| `POST /api/v1/tenant/modules/{moduleKey}/enable`    | `module_management.tenant_modules.enable`  |
+| `POST /api/v1/tenant/modules/{moduleKey}/disable`   | `module_management.tenant_modules.disable` |
+| `GET /api/v1/tenant/modules/{moduleKey}/settings`   | `module_management.settings.read`          |
+| `PATCH /api/v1/tenant/modules/{moduleKey}/settings` | `module_management.settings.update`        |
+| `GET /api/v1/access/modules`                        | `identity_access.access_control.read`      |
+
+All high-risk mutations (sync, enable, disable, settings update, health check)
+write an audit event to `awcms_audit_events` with
+`module_key = 'module_management'`.
+
+## Adapted for this base
+
+Relative to the awcms-mini source, module-registry composition IS present
+(Issue #178 — `modules:compose:check`, `modules:composition:inventory:*`; see
+the section above). ADR-0034 §3 removed the derived-application pathway (the
+`application-registry.ts` seam, migration namespace 900-999, and the
+`extension:check` gate) — awcms is a template used directly, so those no longer
+exist. The following remain intentionally **not** ported (they depend on
+toolchain/UI that does not exist in this repo, or are scheduled separately):
+tenant module presets, the tenant-module matrix, module audit summary (admin
+UI), and the live email provider health check. The core registry, lifecycle,
+settings, permission sync, navigation, jobs, health, and composition services
+are all present.

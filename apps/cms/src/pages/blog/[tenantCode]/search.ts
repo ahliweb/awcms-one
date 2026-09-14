@@ -1,0 +1,141 @@
+import type { APIRoute } from "astro";
+
+import { getDatabaseClient } from "../../../lib/database/client";
+import { withPublicLocalePrefix } from "../../../lib/i18n/public-locale-path";
+import { withTenantOrThrow } from "../../../lib/database/tenant-context";
+import { resolvePublicTenantByCode } from "../../../lib/tenant/public-tenant-resolver";
+import { escapeHtml } from "../../../lib/html/escape";
+import {
+  notFoundHtmlResponse,
+  serverErrorHtmlResponse
+} from "../../../lib/html/error-responses";
+import { log } from "../../../lib/logging/logger";
+import { searchPublicBlogContent } from "../../../modules/blog-content/application/blog-search";
+import { isLegacyTenantRouteEnabled } from "../../../modules/blog-content/application/public-route-settings";
+import { composeAdSlots } from "../../../modules/blog-content/application/ad-slot-composition";
+import { AD_SLOT_AVAILABLE_LABEL } from "../../../modules/blog-content/domain/ad-slot-labels";
+import {
+  renderPostSummaryListHtmlAtBasePath,
+  renderPublicPageShell
+} from "../../../modules/blog-content/domain/public-page-rendering";
+import { decodeKeysetCursor } from "../../../modules/_shared/keyset-pagination";
+import { publishEdgeCacheTenant } from "../../../lib/edge-cache/publish-tenant";
+
+/**
+ * `GET /blog/{tenantCode}/search?q=` (Issue #540) — public search, reuses
+ * #539's `searchPublicBlogContent` directly (same public visibility
+ * predicate, `resourceType: "post"` since this issue has no public page
+ * detail route to link to — see README §Public routes). An empty/missing
+ * `q` renders the search form with no results rather than a 400 — this is
+ * a browsable public page, not a JSON API. Issue #564: 404s (same generic
+ * shape) when `legacyTenantRouteEnabled` is `false`.
+ */
+export const GET: APIRoute = async ({ locals, params, url }) => {
+  const tenantCode = params.tenantCode;
+
+  if (!tenantCode) {
+    return notFoundHtmlResponse();
+  }
+
+  try {
+    const sql = getDatabaseClient();
+    const tenant = await resolvePublicTenantByCode(sql, tenantCode);
+
+    if (!tenant) {
+      return notFoundHtmlResponse();
+    }
+
+    const query = url.searchParams.get("q")?.trim() ?? "";
+    const cursorParam = url.searchParams.get("cursor");
+    const cursor = cursorParam ? decodeKeysetCursor(cursorParam) : null;
+
+    return await withTenantOrThrow(sql, tenant.tenantId, async (tx) => {
+      if (!(await isLegacyTenantRouteEnabled(tx, tenant.tenantId))) {
+        return notFoundHtmlResponse();
+      }
+
+      const result =
+        query.length > 0
+          ? await searchPublicBlogContent(tx, tenant.tenantId, {
+              query,
+              resourceType: "post",
+              cursor: cursor ?? undefined
+            })
+          : { items: [], nextCursor: null };
+
+      const nextLink =
+        result.nextCursor && query.length > 0
+          ? `<a href="?q=${encodeURIComponent(query)}&cursor=${encodeURIComponent(result.nextCursor)}">Next</a>`
+          : "";
+
+      // ADR-0098 — search itself is NOT locale-prefixed: it is `private,
+      // no-store` (an unbounded query key space, refused by the surface
+      // registry), so it localises from the cookie exactly as `/admin` does and
+      // needs no second URL. Its RESULTS, though, link into the prefixed blog,
+      // so the base path carries the reader's locale forward.
+      const postsBasePath = withPublicLocalePrefix(
+        `/blog/${tenantCode}`,
+        locals.locale
+      );
+
+      // Issue #594 — one slot above the results.
+      const ads = await composeAdSlots(
+        tx,
+        tenant.tenantId,
+        ["search_result_top"],
+        { placeholderLabel: AD_SLOT_AVAILABLE_LABEL }
+      );
+
+      const bodyHtml = `${ads.get("search_result_top") ?? ""}
+<h1>Search ${escapeHtml(tenant.tenantName)} Blog</h1>
+<form method="get" action="/blog/${escapeHtml(tenantCode)}/search">
+  <input type="text" name="q" value="${escapeHtml(query)}" aria-label="Search" />
+  <button type="submit">Search</button>
+</form>
+<div class="posts">${
+        query.length === 0
+          ? "<p>Enter a search term above.</p>"
+          : renderPostSummaryListHtmlAtBasePath(
+              postsBasePath,
+              result.items,
+              "No results found."
+            )
+      }</div>
+<nav>${nextLink}</nav>`;
+
+      const html = renderPublicPageShell({
+        title: query
+          ? `Search: ${query} — ${tenant.tenantName} Blog`
+          : `Search — ${tenant.tenantName} Blog`,
+        description: `Search results for "${query}" on the ${tenant.tenantName} blog.`,
+        canonicalUrl: null,
+        bodyHtml,
+        locale: tenant.defaultLocale,
+        variant: "list"
+      });
+
+      // Finding B3 — publish the tenant this response belongs to, so middleware
+      // does not repeat the `awcms_tenants` lookup this route already made on
+      // every cache MISS. `discovery-route.ts:145` is the working precedent.
+      //
+      // HERE and not earlier, which is the rule `publish-tenant.ts` states: a
+      // 404 is a cacheable status, so publishing before the missing-resource
+      // branch would annotate that 404 differently from the unknown-tenant one
+      // and answer "is this tenant code live?" from a single request. Every
+      // `return notFound…` above is therefore left unpublished, and this sits
+      // immediately before the only response that serves the resource.
+      publishEdgeCacheTenant(locals, tenant.tenantId);
+
+      return new Response(html, {
+        status: 200,
+        headers: { "content-type": "text/html; charset=utf-8" }
+      });
+    });
+  } catch (error) {
+    log("error", "public_blog.search.failed", {
+      tenantCode,
+      error: error instanceof Error ? error.message : String(error)
+    });
+    return serverErrorHtmlResponse();
+  }
+};

@@ -1,0 +1,721 @@
+/*
+ * admin-screens.css — additive presentation layer for the 8 admin management
+ * screens (`src/pages/admin/*.astro`). Phase-2 of the UI/UX overhaul.
+ *
+ * SCOPE: imported ONLY by the admin page frontmatter (never by the login or
+ * public/blog shells), so it is an admin-owned file — it does NOT modify the
+ * shared Phase-1 foundation (`tokens.css`, `motion.css`, `admin.css`,
+ * layouts). It COMPOSES those: every value here is a `tokens.css` custom
+ * property, and every animation reuses a `motion.css` utility applied in the
+ * markup (`.fade-in-up`, `.stagger-children`, `.hover-lift`, …). This file
+ * introduces NO new design token.
+ *
+ * CSP (unchanged): pure same-origin CSS, no @import / font / CDN / inline. With
+ * `build.inlineStylesheets: "never"` (astro.config.mjs) an `import "*.css"`
+ * from a page is emitted as an external <link> from our own origin, so the
+ * strict `default-src 'self'` policy (tests/security-headers-csp.test.ts)
+ * holds — nothing here weakens it.
+ *
+ * ACCESSIBILITY: the only local transitions are on `.admin-panel`/`.stat-card`
+ * hover and the details/summary marker; all are decorative and stripped under
+ * `@media (prefers-reduced-motion: reduce)` at the bottom. Entrance motion is
+ * delegated entirely to `motion.css` (already reduced-motion guarded). Touch
+ * targets in tables are bumped to >=44px on small screens.
+ */
+
+/* ==================================================================== */
+/* Page header — title + supporting description                         */
+/* ==================================================================== */
+/*
+ * ADR-0120 — the SHELL owns the page title now.
+ *
+ * `AdminLayout` renders breadcrumb, `<h1>`, description and the screen's
+ * actions in one band above a rule, so a screen no longer positions its own
+ * heading. These rules stay because a screen may still head a SUB-section, and
+ * because 48 templates use the class — they are the same treatment one level
+ * down rather than a second page title.
+ */
+.page-header {
+  margin-bottom: var(--sp-5);
+}
+
+.page-header h1,
+.page-header h2 {
+  margin: 0;
+  font-size: var(--fs-md);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-tight);
+  line-height: var(--lh-snug);
+}
+
+.page-header .page-description {
+  margin: var(--sp-2) 0 0;
+  max-width: 70ch;
+  color: var(--color-text-muted);
+  font-size: var(--fs-sm);
+  line-height: var(--lh-normal);
+  text-wrap: pretty;
+}
+
+/* Action row that sits under a header (e.g. a count + a right-aligned CTA). */
+.admin-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-4);
+}
+
+/* ==================================================================== */
+/* Panel / section wrapper — a titled surface card                       */
+/* ==================================================================== */
+/* ADR-0120 — unchanged in shape, restyled to the redesigned card surface. The
+   framed variant (header strip + edge-to-edge rule) is `.admin-frame` in
+   `admin.css`; see that block for why it is a separate name. */
+.admin-panel {
+  padding: var(--sp-5);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xs);
+}
+
+.admin-section {
+  margin-top: var(--sp-6);
+}
+
+.admin-section-title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--sp-2);
+  margin: 0 0 var(--sp-3);
+  /* ADR-0120 — down from `--fs-lg`. The shell's `<h1>` is 24px; a section
+     heading inside the page must sit clearly below it, and at 20px the two
+     competed. */
+  font-size: var(--fs-md);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-tight);
+  line-height: var(--lh-snug);
+}
+
+.admin-section-title .count-pill {
+  padding: 2px var(--sp-2);
+  border-radius: var(--radius-full);
+  background: var(--color-surface-2);
+  color: var(--color-text-muted);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+}
+
+/* A form title so the create-form card reads as a labelled section. */
+.form-legend {
+  margin: 0 0 var(--sp-3);
+  font-size: var(--fs-md);
+  font-weight: var(--fw-semibold);
+  color: var(--color-text);
+  flex: 1 1 100%;
+}
+
+/* ==================================================================== */
+/* Stat cards (dashboard)                                                */
+/* ==================================================================== */
+.stat-grid {
+  display: grid;
+  gap: var(--sp-4);
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
+  .stat-grid {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+}
+
+/*
+ * ADR-0120 — the stat card is INVERTED: value first, label under it.
+ *
+ * It used to read label-then-value, which is how a form field reads. A stat
+ * card is scanned, not read: the eye wants the number, and the word is what
+ * explains the number it already found. The design reference makes the same
+ * choice, and it is why the value can carry the large type while the label
+ * stays at body size.
+ *
+ * `.stat-head` is an optional first row for an icon tile (`.admin-tile`) and a
+ * delta, so a screen can add either without a second card class.
+ */
+.stat-card {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  padding: var(--sp-4);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xs);
+}
+
+.stat-card .stat-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-2);
+}
+
+.stat-card .stat-delta {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  color: var(--color-text-faint);
+  font-variant-numeric: tabular-nums;
+}
+
+.stat-card .stat-delta[data-tone="success"] {
+  color: var(--color-success-on-soft);
+}
+
+.stat-card .stat-delta[data-tone="danger"] {
+  color: var(--color-danger-on-soft);
+}
+
+/* `order` puts the value above the label without either needing to move in the
+   markup — so a screen keeps writing label-then-value (which is the sensible
+   reading order for a screen reader) while the eye gets value-then-label. */
+.stat-card .stat-label {
+  order: 2;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-normal);
+  color: var(--color-text-muted);
+}
+
+.stat-card .stat-value {
+  order: 1;
+  margin-top: 0;
+  font-size: 29px;
+  font-weight: var(--fw-bold);
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--color-text);
+  font-variant-numeric: tabular-nums;
+  word-break: break-word;
+}
+
+.stat-card .stat-value.stat-value--mono {
+  font-family: var(--font-mono);
+  font-size: var(--fs-lg);
+  letter-spacing: 0;
+}
+
+.stat-card .stat-hint {
+  order: 3;
+  margin-top: 0;
+  font-size: var(--fs-xs);
+  color: var(--color-text-faint);
+}
+
+/* Quick-link tiles (dashboard shortcuts). */
+.quick-links {
+  display: grid;
+  gap: var(--sp-3);
+  grid-template-columns: 1fr;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+@media (min-width: 640px) {
+  .quick-links {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+}
+
+.quick-link {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  min-height: 48px;
+  padding: var(--sp-3) var(--sp-4);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  color: var(--color-text);
+  text-decoration: none;
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-sm);
+  box-shadow: var(--shadow-xs);
+  transition:
+    border-color var(--motion-fast) var(--ease-standard),
+    box-shadow var(--motion-fast) var(--ease-standard);
+}
+
+.quick-link:hover {
+  text-decoration: none;
+  box-shadow: var(--shadow-md);
+}
+
+.quick-link .quick-link-arrow {
+  margin-left: auto;
+  color: var(--color-text-muted);
+  transition: transform var(--motion-fast) var(--ease-standard);
+}
+
+.quick-link:hover {
+  border-color: var(--color-primary);
+}
+
+.quick-link:hover .quick-link-arrow {
+  transform: translateX(3px);
+  color: var(--color-primary);
+}
+
+/* ==================================================================== */
+/* Friendly empty state (rendered inside a full-width table cell)        */
+/* ==================================================================== */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: var(--sp-6) var(--sp-4);
+  text-align: center;
+  color: var(--color-text-muted);
+}
+
+/* ADR-0120 — a rounded square rather than a circle, matching `.admin-tile`.
+   A circle among cards and pills read as an avatar. */
+.empty-state .empty-state-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-2);
+  color: var(--color-text-faint);
+  font-size: var(--fs-lg);
+  line-height: 1;
+}
+
+.empty-state .empty-state-title {
+  font-size: var(--fs-md);
+  font-weight: var(--fw-semibold);
+  color: var(--color-text);
+}
+
+.empty-state .empty-state-text {
+  max-width: 44ch;
+  font-size: var(--fs-sm);
+}
+
+/* ==================================================================== */
+/* Status badge — additive variants (composes admin.css .status-badge)   */
+/* ==================================================================== */
+/* ADR-0120 — tinted, matching the variants in `admin.css`. Both files must
+   agree: they style the SAME element, and a solid `info` beside a tinted
+   `success` in one table is the drift this pairing exists to avoid. */
+.status-badge[data-variant="info"] {
+  background: var(--color-info-soft);
+  color: var(--color-info-on-soft);
+}
+
+.status-badge[data-variant="danger"] {
+  background: var(--color-danger-soft);
+  color: var(--color-danger-on-soft);
+}
+
+/*
+ * The dot is now laid out by the flex rule in `admin.css` (`gap`), so the
+ * `margin-right` + `vertical-align` pair here would double the spacing and
+ * push it off the text baseline. Only the size differs from that rule, and it
+ * is set to match: 5px, because at 6px the dot reads as a bullet rather than
+ * as a status light.
+ */
+.status-badge .status-dot {
+  width: 5px;
+  height: 5px;
+}
+
+/* ==================================================================== */
+/* Small inline / row action buttons                                     */
+/* ==================================================================== */
+.btn-inline {
+  min-height: 32px;
+  padding: 2px var(--sp-2);
+  background: transparent;
+  color: var(--color-primary);
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  transition:
+    background-color var(--motion-fast) var(--ease-standard),
+    color var(--motion-fast) var(--ease-standard);
+}
+
+.btn-inline:hover {
+  color: var(--color-primary-on-soft);
+  background: var(--color-primary-soft);
+  color: var(--color-primary-hover);
+}
+
+.btn-inline.btn-inline--danger {
+  color: var(--color-danger);
+}
+
+.btn-inline.btn-inline--danger:hover {
+  background: var(--color-surface-2);
+  color: var(--color-danger-strong);
+}
+
+.btn-inline:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* A tidy inline group so row actions wrap gracefully instead of butting up. */
+.row-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  align-items: center;
+}
+
+/* ==================================================================== */
+/* Permission chips (roles screen) + granted list                        */
+/* ==================================================================== */
+.perm-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+  margin: var(--sp-2) 0;
+  padding: 0;
+  list-style: none;
+}
+
+.perm-list li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-2);
+  padding: var(--sp-1) 0;
+}
+
+.perm-list code {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: var(--color-text);
+  word-break: break-all;
+}
+
+/* details/summary as a compact disclosure "chip". */
+.role-permissions > summary {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-1);
+  min-height: 32px;
+  padding: 2px var(--sp-2);
+  border-radius: var(--radius-sm);
+  color: var(--color-text-muted);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+  transition: background-color var(--motion-fast) var(--ease-standard);
+}
+
+.role-permissions > summary::-webkit-details-marker {
+  display: none;
+}
+
+.role-permissions > summary::before {
+  content: "▸";
+  display: inline-block;
+  font-size: var(--fs-xs);
+  transition: transform var(--motion-fast) var(--ease-standard);
+}
+
+.role-permissions[open] > summary::before {
+  transform: rotate(90deg);
+}
+
+.role-permissions > summary:hover {
+  background: var(--color-surface-hover);
+  color: var(--color-text);
+}
+
+/* ==================================================================== */
+/* Table polish (composes admin.css .data-table / .data-table--stack)    */
+/* ==================================================================== */
+
+/* Numeric/id cells in a monospace so codes line up + scan cleanly. */
+.data-table td .cell-code {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: var(--color-text);
+}
+
+.data-table td .cell-muted {
+  color: var(--color-text-muted);
+}
+
+/* Rejected-dataset failure reason (Issue #768) — escaped text, never HTML. */
+.data-table td .cell-error {
+  color: var(--color-danger-on-soft);
+  font-size: var(--fs-xs);
+  margin: var(--sp-2) 0 0;
+  white-space: pre-line;
+}
+
+/* On small screens, when a table opts into the card/stack layout, drop the
+   scroll wrapper's frame so we don't nest a border around the cards. */
+@media (max-width: 767.98px) {
+  .data-table-scroll:has(.data-table--stack) {
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    overflow: visible;
+  }
+
+  /* A stacked cell that holds a full-width control (input/select) or a row of
+     buttons reads better as label-on-top than as a squeezed right column. */
+  .data-table--stack td.stacked-block {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: left;
+  }
+
+  .data-table--stack td.stacked-block::before {
+    margin-bottom: var(--sp-1);
+  }
+
+  .data-table--stack td.stacked-block .row-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  /* Comfortable touch targets for any control living inside a table on mobile
+     (admin.css bases some at 40px; 44px is the WCAG target). */
+  .data-table td button,
+  .data-table td .module-toggle,
+  .data-table td input,
+  .data-table td select {
+    min-height: 44px;
+    width: 100%;
+  }
+
+  .data-table td .btn-inline {
+    width: auto;
+  }
+}
+
+/* ==================================================================== */
+/* Reduced motion — strip this file's few local transitions              */
+/* ==================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .quick-link .quick-link-arrow,
+  .quick-link:hover .quick-link-arrow,
+  .btn-inline,
+  .role-permissions > summary,
+  .role-permissions > summary::before,
+  .role-permissions[open] > summary::before {
+    transition: none;
+    transform: none;
+  }
+}
+
+/* /admin/account — single sign-on list (ADR-0096). One row per enabled
+   provider: name, state, action. */
+.account-sso-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+
+.account-sso-item {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  flex-wrap: wrap;
+}
+
+.account-sso-name {
+  font-weight: 600;
+  /* Takes the slack so the action buttons stay right-aligned on wide screens
+     and wrap beneath the name on narrow ones. */
+  margin-inline-end: auto;
+}
+
+/* Portable Text block editor (ADR-0100, Issue #589).
+   One editable element per block, which is what keeps every hard editing case
+   local and is why this needs no editing framework. */
+.pt-editor {
+  margin: var(--sp-3) 0;
+}
+
+.pt-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-1);
+  align-items: center;
+  padding: var(--sp-2);
+  border: 1px solid var(--color-border);
+  border-bottom: none;
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  background: var(--color-surface-muted);
+}
+
+.pt-toolbar button,
+.pt-toolbar select {
+  padding: var(--sp-1) var(--sp-2);
+  font-size: var(--fs-sm);
+  line-height: 1.2;
+}
+
+.pt-rows {
+  border: 1px solid var(--color-border);
+  border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+  background: var(--color-surface);
+}
+
+.pt-row + .pt-row {
+  border-top: 1px dashed var(--color-border);
+}
+
+.pt-block {
+  padding: var(--sp-2) var(--sp-3);
+  min-height: 2.2em;
+  outline: none;
+}
+
+.pt-block:focus {
+  background: var(--color-surface-muted);
+}
+
+/* The style/list a block will SAVE as, shown on the block itself — an editor
+   whose formatting is only visible in a toolbar dropdown makes an author guess
+   what they are about to store. */
+.pt-row[data-style="h1"] .pt-block,
+.pt-row[data-style="h2"] .pt-block,
+.pt-row[data-style="h3"] .pt-block {
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-lg);
+}
+
+.pt-row[data-style="blockquote"] .pt-block {
+  border-left: 3px solid var(--color-border);
+  font-style: italic;
+}
+
+.pt-row[data-list="bullet"] .pt-block::before {
+  content: "• ";
+  color: var(--color-text-muted);
+}
+
+.pt-row[data-list="number"] .pt-block::before {
+  content: "1. ";
+  color: var(--color-text-muted);
+}
+
+/* An opaque node — a gallery, a video. Rendered as a card and carried through
+   byte-identical, which is the whole reason this editor can open a post the
+   previous one refused. */
+.pt-row--opaque {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--sp-2) var(--sp-3);
+  background: var(--color-surface-muted);
+}
+
+.pt-opaque-label {
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-sm);
+}
+
+/*
+ * Media picker (Issue #595) — the featured-image chooser on /admin/blog, and
+ * the same markup wherever else a picker is wired.
+ *
+ * The panel is a plain grid of buttons rather than a `<dialog>`: it opens
+ * inline under the control that owns it, so the form's own scroll position is
+ * kept and nothing has to restore focus across a modal boundary.
+ */
+.media-choice-actions {
+  display: flex;
+  gap: var(--space-2, 0.5rem);
+  flex-wrap: wrap;
+}
+
+.media-picker-panel {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
+  gap: var(--space-2, 0.5rem);
+  margin-top: var(--space-2, 0.5rem);
+  max-height: 22rem;
+  overflow-y: auto;
+  padding: var(--space-2, 0.5rem);
+  border: 1px solid var(--color-border, #d4d4d8);
+  border-radius: var(--radius-md, 0.375rem);
+}
+
+/* `[hidden]` loses to a `display` rule, and this repo has shipped that defect
+   before — four auth pages had an inert `form.hidden`. Stated explicitly so a
+   hidden panel is actually hidden. */
+.media-picker-panel[hidden] {
+  display: none;
+}
+
+.media-option {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1, 0.25rem);
+  align-items: stretch;
+  padding: var(--space-1, 0.25rem);
+  background: var(--color-surface, #fff);
+  border: 1px solid var(--color-border, #d4d4d8);
+  border-radius: var(--radius-sm, 0.25rem);
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+  color: inherit;
+}
+
+.media-option:hover,
+.media-option:focus-visible {
+  border-color: var(--color-primary, #2563eb);
+}
+
+.media-option-thumb {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--radius-sm, 0.25rem);
+  background: var(--color-surface-muted, #f4f4f5);
+}
+
+/* Term picker (Issue #595) — four vocabularies, kept visually separate so
+   "which channel" and "which topic" stay different questions. */
+.term-picker,
+.institution-picker {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  gap: var(--space-3, 0.75rem);
+}
+
+.term-group-title {
+  font-weight: 600;
+  margin: 0 0 var(--space-1, 0.25rem);
+}
+
+.term-option {
+  display: flex;
+  gap: var(--space-1, 0.25rem);
+  align-items: center;
+  padding: 0.125rem 0;
+}

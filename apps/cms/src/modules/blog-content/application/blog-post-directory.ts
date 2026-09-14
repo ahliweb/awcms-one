@@ -1,0 +1,1135 @@
+import type {
+  BlogContentStatus,
+  BlogContentVisibility
+} from "../domain/post-status";
+import type {
+  CreateBlogPostInput,
+  UpdateBlogPostInput
+} from "../domain/blog-post-validation";
+import {
+  boundedPageNumber,
+  boundedPageSize
+} from "../../_shared/offset-pagination";
+import {
+  keysetCursorCreatedAtSql,
+  encodeKeysetCursor,
+  type KeysetCursor
+} from "../../_shared/keyset-pagination";
+import {
+  portableTextToContentBlocks,
+  portableTextToPlainText,
+  withProjectedBlocks
+} from "../domain/portable-text-conversion";
+import type { PortableTextDocument } from "../domain/portable-text";
+import { isSupportedLocale } from "../../../lib/i18n/locales";
+import { withPublicLocalePrefix } from "../../../lib/i18n/public-locale-path";
+import { fetchPostTermIdsForPosts } from "./blog-taxonomy-directory";
+import { fetchPostInstitutionIdsForPosts } from "./institution-directory";
+import { fetchPublicBylinesForAuthors } from "../../identity-access/application/own-byline";
+
+/**
+ * Read/write query module for `awcms_blog_posts` (Issue #537 scaffolded
+ * this file as a read-only placeholder; Issue #538 fills in the mutations
+ * its admin API needs) — same "directory holds both reads and writes for one
+ * resource" convention as `email/application/email-template-directory.ts`.
+ */
+export type BlogPostSummary = {
+  id: string;
+  tenantId: string;
+  title: string;
+  slug: string;
+  status: string;
+  visibility: string;
+  locale: string;
+  publishedAt: Date | null;
+  updatedAt: Date;
+  /** Immutable — the only sort key a keyset cursor over this table can be sound on. */
+  createdAt: Date;
+};
+
+type BlogPostSummaryRow = {
+  id: string;
+  tenant_id: string;
+  title: string;
+  slug: string;
+  status: string;
+  visibility: string;
+  locale: string;
+  published_at: Date | null;
+  updated_at: Date;
+  created_at: Date;
+};
+
+function toBlogPostSummary(row: BlogPostSummaryRow): BlogPostSummary {
+  return {
+    id: row.id,
+    tenantId: row.tenant_id,
+    title: row.title,
+    slug: row.slug,
+    status: row.status,
+    visibility: row.visibility,
+    locale: row.locale,
+    publishedAt: row.published_at,
+    updatedAt: row.updated_at,
+    createdAt: row.created_at
+  };
+}
+
+export type BlogPostView = {
+  id: string;
+  tenantId: string;
+  authorTenantUserId: string;
+  title: string;
+  slug: string;
+  excerpt: string | null;
+  contentJson: Record<string, unknown>;
+  contentText: string;
+  /** ADR-0100 — the canonical body. `contentJson.blocks` is a derived projection of it. */
+  bodyPortableText: PortableTextDocument;
+  status: BlogContentStatus;
+  visibility: BlogContentVisibility;
+  featuredMediaId: string | null;
+  /** Issue #649 — explicit social/SEO preview image override; see `blog-post-validation.ts`'s `CreateBlogPostInput.seoImageMediaId`. */
+  seoImageMediaId: string | null;
+  seoTitle: string | null;
+  metaDescription: string | null;
+  canonicalUrl: string | null;
+  locale: string;
+  publishedAt: Date | null;
+  scheduledAt: Date | null;
+  unpublishAt: Date | null;
+  createdAt: Date;
+  updatedAt: Date;
+  deletedAt: Date | null;
+  deletedBy: string | null;
+  deleteReason: string | null;
+  restoredAt: Date | null;
+  restoredBy: string | null;
+  version: number;
+  /** Issue #641 — manual per-post opt-out of automatic internal tag linking. */
+  autoInternalTagLinksDisabled: boolean;
+  /**
+   * Groups the locale variants of one logical post.
+   *
+   * Writable since the column existed and returned by nothing until now, even
+   * though the OpenAPI `BlogPost` schema declared it the whole time. A client
+   * pairing locales (an `awcms-astro` build is the one that hit this) could set
+   * the field and never read it back, so every translation looked like an
+   * unrelated post.
+   */
+  translationGroupId: string | null;
+};
+
+/**
+ * A post as the BUILD FEED returns it — every column of `BlogPostView` plus the
+ * classifications the detail endpoint has always returned alongside the row.
+ *
+ * Kept as its own type rather than widening `BlogPostView` with two optional
+ * fields: optional would let a caller read `termIds` as `undefined` from any of
+ * the several functions that do not fetch them and conclude the article has no
+ * categories. `[]` and "not asked for" must not be spellable the same way — the
+ * exact confusion that made the list endpoint's documented shape a lie about
+ * `contentJson` (see `listBlogPostsFullPage`).
+ */
+export type BlogPostFeedView = BlogPostView & {
+  /** Category/tag/channel/topic assignments. `[]` means none, never "not fetched". */
+  termIds: string[];
+  /** Institution assignments (Issue #595). `[]` means none, never "not fetched". */
+  institutionIds: string[];
+  /**
+   * The author's OPT-IN public byline (ADR-0109), or `null`.
+   *
+   * `null` is the normal state and means "no byline": the article keeps the
+   * organisation-level attribution ADR-0102 ships, which is what every article
+   * had before this field existed. It is deliberately NOT
+   * `awcms_profiles.display_name` — publishing an internal account name because
+   * somebody happens to have written an article is the PII surface #649 refused
+   * to open.
+   */
+  authorByline: string | null;
+};
+
+type BlogPostRow = {
+  id: string;
+  tenant_id: string;
+  author_tenant_user_id: string;
+  title: string;
+  slug: string;
+  excerpt: string | null;
+  content_json: Record<string, unknown>;
+  content_text: string;
+  body_portable_text: PortableTextDocument;
+  status: BlogContentStatus;
+  visibility: BlogContentVisibility;
+  featured_media_id: string | null;
+  seo_image_media_id: string | null;
+  seo_title: string | null;
+  meta_description: string | null;
+  canonical_url: string | null;
+  locale: string;
+  published_at: Date | null;
+  scheduled_at: Date | null;
+  unpublish_at: Date | null;
+  created_at: Date;
+  updated_at: Date;
+  deleted_at: Date | null;
+  deleted_by: string | null;
+  delete_reason: string | null;
+  restored_at: Date | null;
+  restored_by: string | null;
+  version: number;
+  auto_internal_tag_links_disabled: boolean;
+  translation_group_id: string | null;
+};
+
+function toView(row: BlogPostRow): BlogPostView {
+  return {
+    id: row.id,
+    tenantId: row.tenant_id,
+    authorTenantUserId: row.author_tenant_user_id,
+    title: row.title,
+    slug: row.slug,
+    excerpt: row.excerpt,
+    contentJson: row.content_json,
+    contentText: row.content_text,
+    bodyPortableText: row.body_portable_text,
+    status: row.status,
+    visibility: row.visibility,
+    featuredMediaId: row.featured_media_id,
+    seoImageMediaId: row.seo_image_media_id,
+    seoTitle: row.seo_title,
+    metaDescription: row.meta_description,
+    canonicalUrl: row.canonical_url,
+    locale: row.locale,
+    publishedAt: row.published_at,
+    scheduledAt: row.scheduled_at,
+    unpublishAt: row.unpublish_at,
+    createdAt: row.created_at,
+    updatedAt: row.updated_at,
+    deletedAt: row.deleted_at,
+    deletedBy: row.deleted_by,
+    deleteReason: row.delete_reason,
+    restoredAt: row.restored_at,
+    restoredBy: row.restored_by,
+    version: row.version,
+    autoInternalTagLinksDisabled: row.auto_internal_tag_links_disabled,
+    translationGroupId: row.translation_group_id
+  };
+}
+
+export async function createBlogPost(
+  tx: Bun.SQL,
+  tenantId: string,
+  authorTenantUserId: string,
+  input: CreateBlogPostInput
+): Promise<BlogPostView> {
+  const rows = (await tx`
+    INSERT INTO awcms_blog_posts
+      (tenant_id, author_tenant_user_id, title, slug, excerpt, content_json,
+       content_text, body_portable_text, status, visibility, featured_media_id,
+       seo_image_media_id,
+       seo_title, meta_description, canonical_url, locale,
+       auto_internal_tag_links_disabled)
+    VALUES (
+      ${tenantId}, ${authorTenantUserId}, ${input.title}, ${input.slug},
+      ${input.excerpt},
+      ${withProjectedBlocks(input.contentJson, input.bodyPortableText)},
+      ${portableTextToPlainText(input.bodyPortableText)},
+      ${input.bodyPortableText}::jsonb, 'draft',
+      ${input.visibility}, ${input.featuredMediaId}, ${input.seoImageMediaId},
+      ${input.seoTitle}, ${input.metaDescription}, ${input.canonicalUrl}, ${input.locale},
+      ${input.autoInternalTagLinksDisabled}
+    )
+    RETURNING id, tenant_id, author_tenant_user_id, title, slug, excerpt, content_json,
+      content_text, body_portable_text, status, visibility, featured_media_id, seo_image_media_id, seo_title,
+      meta_description, canonical_url, locale, published_at, scheduled_at,
+      unpublish_at, created_at, updated_at, deleted_at, deleted_by, delete_reason,
+      restored_at, restored_by, version, auto_internal_tag_links_disabled,
+      translation_group_id
+  `) as BlogPostRow[];
+
+  return toView(rows[0]!);
+}
+
+export type FetchBlogPostOptions = {
+  includeDeleted?: boolean;
+};
+
+/** Excludes soft-deleted posts unless `includeDeleted` (restore/purge need to look up an already-deleted row). */
+export async function fetchBlogPostById(
+  tx: Bun.SQL,
+  tenantId: string,
+  postId: string,
+  options: FetchBlogPostOptions = {}
+): Promise<BlogPostView | null> {
+  const rows = (
+    options.includeDeleted
+      ? await tx`
+        SELECT id, tenant_id, author_tenant_user_id, title, slug, excerpt, content_json,
+      content_text, body_portable_text, status, visibility, featured_media_id, seo_image_media_id, seo_title,
+      meta_description, canonical_url, locale, published_at, scheduled_at,
+      unpublish_at, created_at, updated_at, deleted_at, deleted_by, delete_reason,
+      restored_at, restored_by, version, auto_internal_tag_links_disabled,
+      translation_group_id
+        FROM awcms_blog_posts
+        WHERE tenant_id = ${tenantId} AND id = ${postId}
+      `
+      : await tx`
+        SELECT id, tenant_id, author_tenant_user_id, title, slug, excerpt, content_json,
+      content_text, body_portable_text, status, visibility, featured_media_id, seo_image_media_id, seo_title,
+      meta_description, canonical_url, locale, published_at, scheduled_at,
+      unpublish_at, created_at, updated_at, deleted_at, deleted_by, delete_reason,
+      restored_at, restored_by, version, auto_internal_tag_links_disabled,
+      translation_group_id
+        FROM awcms_blog_posts
+        WHERE tenant_id = ${tenantId} AND id = ${postId} AND deleted_at IS NULL
+      `
+  ) as BlogPostRow[];
+
+  const row = rows[0];
+  return row ? toView(row) : null;
+}
+
+export type ListBlogPostsFilter = {
+  status?: BlogContentStatus;
+  /**
+   * Exact match on `awcms_blog_posts.locale`. Absent means every locale — the
+   * pre-existing behaviour, and still the right default for the admin table,
+   * where hiding a translation because the operator did not name its language
+   * would be the surprising answer.
+   */
+  locale?: string;
+  limit?: number;
+};
+
+const DEFAULT_LIST_LIMIT = 20;
+const MAX_LIST_LIMIT = 100;
+
+/**
+ * Full rows carry `content_json` — a page of 100 of them is a different order
+ * of magnitude from a page of summaries. The caller that wants them (a static
+ * build) walks the whole set anyway, so a smaller page costs it nothing while
+ * bounding any single response.
+ */
+const DEFAULT_FULL_LIST_LIMIT = 20;
+const MAX_FULL_LIST_LIMIT = 50;
+
+/**
+ * STABLE, cursor-paginated traversal — ordered `(created_at DESC, id DESC)`.
+ *
+ * ## Why this is a second function and not a `cursor` option on the one above
+ *
+ * `listBlogPosts` orders by `updated_at`, which is the right answer for a human
+ * looking at an admin table and the WRONG key for a keyset cursor: editing any
+ * post moves it in the ordering, so a row can cross the page boundary between
+ * two requests and be skipped — or returned twice — with nothing to detect it.
+ * A cursor is only sound over an ordering that does not change under the writes
+ * the traversal races with, so this one uses `created_at`, which is immutable.
+ *
+ * The caller therefore CHOOSES a traversal rather than accidentally mixing
+ * them; the route refuses a cursor against the mutable ordering outright.
+ *
+ * `nextCursor` is minted here, where the full-microsecond text is still in
+ * hand — never re-derived from a JS `Date` in a route, which would floor the
+ * microseconds and resurrect the row-skipping bug of Issue #158.
+ */
+export async function listBlogPostsPage(
+  tx: Bun.SQL,
+  tenantId: string,
+  options: {
+    status?: BlogContentStatus;
+    locale?: string;
+    limit?: number;
+    cursor?: KeysetCursor | null;
+  } = {}
+): Promise<{ items: BlogPostSummary[]; nextCursor: string | null }> {
+  const limit = boundedPageSize(
+    options.limit,
+    DEFAULT_LIST_LIMIT,
+    MAX_LIST_LIMIT
+  );
+
+  const cursorCreatedAt = options.cursor?.createdAt ?? null;
+  const cursorId = options.cursor?.id ?? null;
+  const status = options.status ?? null;
+  const locale = options.locale ?? null;
+
+  // One statement for both filtered and unfiltered: `${status}::text IS NULL`
+  // keeps the plan shape identical and stops this from growing a fourth
+  // near-identical copy of the same SELECT as filters accumulate. `locale`
+  // joined the same way for the same reason.
+  const rows = (await tx`
+    SELECT id, tenant_id, title, slug, status, visibility, locale, published_at,
+           updated_at, created_at,
+           ${tx.unsafe(keysetCursorCreatedAtSql())} AS created_at_cursor
+    FROM awcms_blog_posts
+    WHERE tenant_id = ${tenantId}
+      AND deleted_at IS NULL
+      AND (${status}::text IS NULL OR status = ${status})
+      AND (${locale}::text IS NULL OR locale = ${locale})
+      AND (
+        ${cursorCreatedAt}::timestamptz IS NULL
+        OR (created_at, id) < (${cursorCreatedAt}::timestamptz, ${cursorId}::uuid)
+      )
+    ORDER BY created_at DESC, id DESC
+    LIMIT ${limit}
+  `) as (BlogPostSummaryRow & { created_at_cursor: string })[];
+
+  const last = rows[rows.length - 1];
+  const nextCursor =
+    rows.length === limit && last
+      ? encodeKeysetCursor(last.created_at_cursor, last.id)
+      : null;
+
+  return { items: rows.map(toBlogPostSummary), nextCursor };
+}
+
+/** `LIMIT` bounded (default 20, max 100), newest-updated first — same bounded-list convention as `email/templates` and `workflows/tasks`. For a STABLE traversal past page one, use {@link listBlogPostsPage}. */
+/**
+ * The same stable traversal as {@link listBlogPostsPage}, but returning FULL
+ * posts instead of summaries — the shape the OpenAPI contract calls `BlogPost`.
+ *
+ * ## Why this exists
+ *
+ * A static-site build needs every published post WITH its body: `contentJson`,
+ * `excerpt`, `metaDescription`, `canonicalUrl`, and `translationGroupId`. The
+ * summary traversal carries none of those, so the only way to build a site was
+ * to walk the list and then fetch every post again by id — N+1 requests per
+ * build, against an admin endpoint, on every publish.
+ *
+ * Worse, nothing said so. The contract documented this endpoint as returning
+ * `BlogPost`, the implementation returned a summary, and a client that trusted
+ * the contract read `contentJson` as `undefined` — producing a site that built
+ * green with every article body empty, and (because the section an article
+ * belongs to also lives inside `contentJson`) every section empty too. That is
+ * the defect this closes, and the reason the summary shape is now spelled out
+ * in the contract as its own schema instead of being left to be inferred.
+ *
+ * The projection is identical to `fetchBlogPostById`'s, `termIds` and
+ * `institutionIds` included.
+ *
+ * ## Why the classifications are here now (Issue #597 item 1)
+ *
+ * They were left out, and the reason recorded here was that they are "a second
+ * query each, which would put the N+1 straight back". The premise was right —
+ * `fetchPostTermIds` takes one post — and the conclusion did not follow: a page
+ * of fifty posts needs ONE query holding fifty ids, which is what
+ * `fetchPostTermIdsForPosts` is. Three round trips per page, not fifty-one.
+ *
+ * What the omission cost was not performance. `awcms-astro` builds its sections
+ * from a key inside `contentJson`, because the classification a newsroom
+ * actually files an article under was the one thing this feed did not carry —
+ * so no consumer could build a category or tag archive at all, which is exactly
+ * the first item Issue #597 lists. Every write path has accepted `termIds`
+ * since Issue #539 and the detail endpoint has returned them the whole time;
+ * only the traversal that a static site is built from could not see them.
+ *
+ * A post with no assignments gets `[]`, never `undefined`. "This article has no
+ * categories" and "this payload does not carry categories" are different facts,
+ * and a consumer that cannot tell them apart silently drops the article from
+ * every archive rather than reporting a gap.
+ */
+export async function listBlogPostsFullPage(
+  tx: Bun.SQL,
+  tenantId: string,
+  options: {
+    status?: BlogContentStatus;
+    locale?: string;
+    limit?: number;
+    cursor?: KeysetCursor | null;
+  } = {}
+): Promise<{ items: BlogPostFeedView[]; nextCursor: string | null }> {
+  const limit = boundedPageSize(
+    options.limit,
+    DEFAULT_FULL_LIST_LIMIT,
+    MAX_FULL_LIST_LIMIT
+  );
+
+  const cursorCreatedAt = options.cursor?.createdAt ?? null;
+  const cursorId = options.cursor?.id ?? null;
+  const status = options.status ?? null;
+  const locale = options.locale ?? null;
+
+  const rows = (await tx`
+    SELECT id, tenant_id, author_tenant_user_id, title, slug, excerpt, content_json,
+      content_text, body_portable_text, status, visibility, featured_media_id, seo_image_media_id, seo_title,
+      meta_description, canonical_url, locale, published_at, scheduled_at,
+      unpublish_at, created_at, updated_at, deleted_at, deleted_by, delete_reason,
+      restored_at, restored_by, version, auto_internal_tag_links_disabled,
+      translation_group_id,
+      ${tx.unsafe(keysetCursorCreatedAtSql())} AS created_at_cursor
+    FROM awcms_blog_posts
+    WHERE tenant_id = ${tenantId}
+      AND deleted_at IS NULL
+      AND (${status}::text IS NULL OR status = ${status})
+      AND (${locale}::text IS NULL OR locale = ${locale})
+      AND (
+        ${cursorCreatedAt}::timestamptz IS NULL
+        OR (created_at, id) < (${cursorCreatedAt}::timestamptz, ${cursorId}::uuid)
+      )
+    ORDER BY created_at DESC, id DESC
+    LIMIT ${limit}
+  `) as (BlogPostRow & { created_at_cursor: string })[];
+
+  const last = rows[rows.length - 1];
+  const nextCursor =
+    rows.length === limit && last
+      ? encodeKeysetCursor(last.created_at_cursor, last.id)
+      : null;
+
+  const postIds = rows.map((row) => row.id);
+  const termIdsByPost = await fetchPostTermIdsForPosts(tx, tenantId, postIds);
+  const institutionIdsByPost = await fetchPostInstitutionIdsForPosts(
+    tx,
+    tenantId,
+    postIds
+  );
+  // A third batched lookup, awaited sequentially like the two above — same
+  // connection, one query at a time — and ONE query for the whole page rather
+  // than one per post. Cross-module read through `identity_access`'s own
+  // service: `awcms_tenant_users` is its table.
+  const bylineByAuthor = await fetchPublicBylinesForAuthors(
+    tx,
+    tenantId,
+    rows.map((row) => row.author_tenant_user_id)
+  );
+
+  const items = rows.map((row) => ({
+    ...toView(row),
+    termIds: termIdsByPost.get(row.id) ?? [],
+    institutionIds: institutionIdsByPost.get(row.id) ?? [],
+    authorByline: bylineByAuthor.get(row.author_tenant_user_id) ?? null
+  }));
+
+  return { items, nextCursor };
+}
+
+export async function listBlogPosts(
+  tx: Bun.SQL,
+  tenantId: string,
+  filter: ListBlogPostsFilter = {}
+): Promise<BlogPostSummary[]> {
+  const limit = boundedPageSize(
+    filter.limit,
+    DEFAULT_LIST_LIMIT,
+    MAX_LIST_LIMIT
+  );
+
+  const status = filter.status ?? null;
+  const locale = filter.locale ?? null;
+
+  // Collapsed from a two-branch `filter.status ? … : …` into one statement when
+  // `locale` was added: two optional filters written that way is four copies of
+  // the same SELECT, and the third filter would make it eight. Same
+  // `${param}::text IS NULL` idiom the paged siblings above already use.
+  const rows = (await tx`
+    SELECT id, tenant_id, title, slug, status, visibility, locale, published_at, updated_at, created_at
+    FROM awcms_blog_posts
+    WHERE tenant_id = ${tenantId}
+      AND deleted_at IS NULL
+      AND (${status}::text IS NULL OR status = ${status})
+      AND (${locale}::text IS NULL OR locale = ${locale})
+    ORDER BY updated_at DESC
+    LIMIT ${limit}
+  `) as BlogPostSummaryRow[];
+
+  return rows.map(toBlogPostSummary);
+}
+
+/** Kept for the pre-#538 call shape (filter by status with an explicit limit) — a thin wrapper over `listBlogPosts`. */
+export async function listBlogPostsByStatus(
+  tx: Bun.SQL,
+  tenantId: string,
+  status: BlogContentStatus,
+  limit: number = DEFAULT_LIST_LIMIT
+): Promise<BlogPostSummary[]> {
+  return listBlogPosts(tx, tenantId, { status, limit });
+}
+
+/**
+ * Partial update; `version` is bumped on every successful write (monotonic
+ * change counter — no optimistic-concurrency check is enforced yet, see module
+ * README).
+ *
+ * ## Why `content_json` has THREE branches and not two
+ *
+ * ADR-0100 §4 keeps `content_json` alive as the non-body ENVELOPE precisely
+ * because `ahliweb/awcms-astro` stores a sidecar in it — `awcmsAstro.kategori`,
+ * which ADR-0115 §2 then turned into a written contract that
+ * `blog:legacy:import` populates from `--section-map`.
+ *
+ * This function used to have two branches, and a **body-only** PATCH took the
+ * projection branch with `input.contentJson === undefined`. `withProjectedBlocks`
+ * spreads a non-object envelope to `{}`, so the row came back holding `blocks`
+ * and nothing else: **the sidecar was destroyed on every save.** The admin edit
+ * screen is exactly that caller — `admin/blog.astro` sends `bodyPortableText`
+ * and has never sent `contentJson`.
+ *
+ * Nothing failed, and that is the whole shape of it. The article still renders
+ * perfectly HERE, because `/blog/{code}/{slug}` reads `body_portable_text`. What
+ * breaks is in the other repo, where `getArticles` keeps a post only when the
+ * sidecar names a configured tab — so the article silently stops being BUILT.
+ * Green build, no page, no warning on either side.
+ *
+ * The projection is therefore merged onto the STORED envelope, and merged **in
+ * SQL** rather than by reading the row first: a read-modify-write would race
+ * with a concurrent update of the same envelope, and `jsonb_set` cannot.
+ *
+ * `blog-page-directory.ts` carries the identical three branches. No consumer
+ * stores a sidecar on a page today, so that half repairs nothing currently
+ * broken — but a twin that keeps its sibling's defect is how the defect returns.
+ */
+export async function updateBlogPost(
+  tx: Bun.SQL,
+  tenantId: string,
+  id: string,
+  input: UpdateBlogPostInput
+): Promise<BlogPostView | null> {
+  const rows = (await tx`
+    UPDATE awcms_blog_posts
+    SET title = COALESCE(${input.title ?? null}, title),
+        slug = COALESCE(${input.slug ?? null}, slug),
+        excerpt = CASE WHEN ${input.excerpt === undefined} THEN excerpt ELSE ${input.excerpt ?? null} END,
+        -- ADR-0100 — the three body columns move TOGETHER or not at all. A
+        -- partial update that changed the envelope without the body, or the
+        -- body without the derived search text, would leave the row internally
+        -- inconsistent in a way nothing downstream could detect.
+        --
+        -- THREE branches, not two. See this function's docblock for why the
+        -- third one has to exist; in short, a body-only PATCH must not be
+        -- allowed to rebuild the envelope from nothing.
+        content_json = CASE
+          -- Body untouched: the envelope moves only if the caller sent one.
+          WHEN ${input.bodyPortableText === undefined}
+            THEN COALESCE(${input.contentJson ?? null}, content_json)
+          -- Body AND envelope supplied: the caller owns both, unchanged.
+          WHEN ${input.contentJson !== undefined}
+            THEN ${input.bodyPortableText === undefined ? null : withProjectedBlocks(input.contentJson, input.bodyPortableText)}
+          -- Body only: re-project onto the STORED envelope, so every key the
+          -- caller never mentioned survives the write.
+          ELSE jsonb_set(
+            CASE WHEN jsonb_typeof(content_json) = 'object' THEN content_json ELSE '{}'::jsonb END,
+            '{blocks}',
+            ${input.bodyPortableText === undefined ? null : portableTextToContentBlocks(input.bodyPortableText)}::jsonb
+          )
+        END,
+        content_text = CASE
+          WHEN ${input.bodyPortableText !== undefined}
+            THEN ${input.bodyPortableText === undefined ? null : portableTextToPlainText(input.bodyPortableText)}
+          ELSE content_text
+        END,
+        body_portable_text = CASE
+          WHEN ${input.bodyPortableText !== undefined}
+            THEN ${input.bodyPortableText ?? null}::jsonb
+          ELSE body_portable_text
+        END,
+        locale = COALESCE(${input.locale ?? null}, locale),
+        visibility = COALESCE(${input.visibility ?? null}, visibility),
+        featured_media_id = CASE
+          WHEN ${input.featuredMediaId === undefined} THEN featured_media_id
+          ELSE ${input.featuredMediaId ?? null}
+        END,
+        seo_image_media_id = CASE
+          WHEN ${input.seoImageMediaId === undefined} THEN seo_image_media_id
+          ELSE ${input.seoImageMediaId ?? null}
+        END,
+        seo_title = CASE WHEN ${input.seoTitle === undefined} THEN seo_title ELSE ${input.seoTitle ?? null} END,
+        meta_description = CASE
+          WHEN ${input.metaDescription === undefined} THEN meta_description
+          ELSE ${input.metaDescription ?? null}
+        END,
+        canonical_url = CASE
+          WHEN ${input.canonicalUrl === undefined} THEN canonical_url
+          ELSE ${input.canonicalUrl ?? null}
+        END,
+        auto_internal_tag_links_disabled = COALESCE(
+          ${input.autoInternalTagLinksDisabled ?? null},
+          auto_internal_tag_links_disabled
+        ),
+        version = version + 1,
+        updated_at = now()
+    WHERE tenant_id = ${tenantId} AND id = ${id} AND deleted_at IS NULL
+    RETURNING id, tenant_id, author_tenant_user_id, title, slug, excerpt, content_json,
+      content_text, body_portable_text, status, visibility, featured_media_id, seo_image_media_id, seo_title,
+      meta_description, canonical_url, locale, published_at, scheduled_at,
+      unpublish_at, created_at, updated_at, deleted_at, deleted_by, delete_reason,
+      restored_at, restored_by, version, auto_internal_tag_links_disabled,
+      translation_group_id
+  `) as BlogPostRow[];
+
+  return rows[0] ? toView(rows[0]) : null;
+}
+
+export async function softDeleteBlogPost(
+  tx: Bun.SQL,
+  tenantId: string,
+  actorTenantUserId: string,
+  id: string,
+  reason: string
+): Promise<boolean> {
+  const rows = await tx`
+    UPDATE awcms_blog_posts
+    SET deleted_at = now(), deleted_by = ${actorTenantUserId}, delete_reason = ${reason},
+        updated_at = now()
+    WHERE tenant_id = ${tenantId} AND id = ${id} AND deleted_at IS NULL
+    RETURNING id
+  `;
+
+  return rows.length > 0;
+}
+
+export type TransitionBlogPostStatusOptions = {
+  scheduledAt?: Date;
+  /**
+   * Issue #591. `undefined` leaves the stored value alone; an explicit `null`
+   * clears it. The distinction matters: publishing a post must not silently
+   * discard a withdrawal date an editor set while scheduling it.
+   */
+  unpublishAt?: Date | null;
+};
+
+/**
+ * Shared mutation for submit-review/publish/schedule/archive (Issue #538) —
+ * status-transition validity itself (`isValidStatusTransition`) is checked
+ * by the caller before this runs, so this is a plain conditional write, not
+ * a second source of truth for which transitions are legal.
+ */
+export async function transitionBlogPostStatus(
+  tx: Bun.SQL,
+  tenantId: string,
+  id: string,
+  toStatus: BlogContentStatus,
+  options: TransitionBlogPostStatusOptions = {}
+): Promise<BlogPostView | null> {
+  const rows = (await tx`
+    UPDATE awcms_blog_posts
+    SET status = ${toStatus},
+        published_at = CASE WHEN ${toStatus === "published"} THEN now() ELSE published_at END,
+        scheduled_at = CASE
+          WHEN ${toStatus === "scheduled"} THEN ${options.scheduledAt ?? null}
+          WHEN ${toStatus !== "scheduled"} THEN NULL
+          ELSE scheduled_at
+        END,
+        -- Deliberately NOT cleared on a transition the way scheduled_at is.
+        -- scheduled_at describes an intent that has been carried out and would
+        -- re-fire if kept; unpublish_at describes a window that is still open,
+        -- and dropping it when the post publishes would silently cancel the
+        -- withdrawal the editor set at the same moment.
+        unpublish_at = CASE
+          WHEN ${options.unpublishAt === undefined} THEN unpublish_at
+          ELSE ${options.unpublishAt ?? null}
+        END,
+        version = version + 1,
+        updated_at = now()
+    WHERE tenant_id = ${tenantId} AND id = ${id} AND deleted_at IS NULL
+    RETURNING id, tenant_id, author_tenant_user_id, title, slug, excerpt, content_json,
+      content_text, body_portable_text, status, visibility, featured_media_id, seo_image_media_id, seo_title,
+      meta_description, canonical_url, locale, published_at, scheduled_at,
+      unpublish_at, created_at, updated_at, deleted_at, deleted_by, delete_reason,
+      restored_at, restored_by, version, auto_internal_tag_links_disabled,
+      translation_group_id
+  `) as BlogPostRow[];
+
+  return rows[0] ? toView(rows[0]) : null;
+}
+
+export async function restoreBlogPost(
+  tx: Bun.SQL,
+  tenantId: string,
+  actorTenantUserId: string,
+  id: string
+): Promise<BlogPostView | null> {
+  const rows = (await tx`
+    UPDATE awcms_blog_posts
+    SET deleted_at = NULL, deleted_by = NULL, delete_reason = NULL,
+        restored_at = now(), restored_by = ${actorTenantUserId}, updated_at = now()
+    WHERE tenant_id = ${tenantId} AND id = ${id} AND deleted_at IS NOT NULL
+    RETURNING id, tenant_id, author_tenant_user_id, title, slug, excerpt, content_json,
+      content_text, body_portable_text, status, visibility, featured_media_id, seo_image_media_id, seo_title,
+      meta_description, canonical_url, locale, published_at, scheduled_at,
+      unpublish_at, created_at, updated_at, deleted_at, deleted_by, delete_reason,
+      restored_at, restored_by, version, auto_internal_tag_links_disabled,
+      translation_group_id
+  `) as BlogPostRow[];
+
+  return rows[0] ? toView(rows[0]) : null;
+}
+
+export type ListBlogPostsForAdminFilter = {
+  search?: string;
+  status?: BlogContentStatus;
+  /** Matches posts assigned this category/tag term id (via `awcms_blog_post_terms`). */
+  termId?: string;
+  /**
+   * `true` lists ONLY soft-deleted posts — the bin — instead of only live ones.
+   *
+   * Without it `posts.restore` is a permission `/admin/blog` could appear to
+   * drive and never could: this list hard-filtered `deleted_at IS NULL`, so a
+   * soft-deleted post was never on screen to restore, and the Restore control
+   * was therefore rendered against `status = 'archived'` — which is a different
+   * axis, is not soft-deleted, and makes `POST .../restore` answer 404 every
+   * time (it requires `canRestorePost`, i.e. `deleted_at IS NOT NULL`).
+   *
+   * Deliberately a separate VIEW rather than an `includeDeleted` union: mixing
+   * binned rows into the working list gives every row's status badge two
+   * possible meanings, and the operator question is "what is in the bin", not
+   * "show me everything at once".
+   */
+  deletedOnly?: boolean;
+  page?: number;
+  pageSize?: number;
+};
+
+export type ListBlogPostsForAdminResult = {
+  items: (BlogPostSummary & { authorTenantUserId: string })[];
+  total: number;
+  page: number;
+  pageSize: number;
+};
+
+type BlogPostAdminListRow = BlogPostSummaryRow & {
+  author_tenant_user_id: string;
+};
+
+const DEFAULT_ADMIN_LIST_PAGE_SIZE = 20;
+const MAX_ADMIN_LIST_PAGE_SIZE = 100;
+
+/**
+ * Admin post list (Issue #543 §Post List — search, status filter,
+ * category/tag filter, pagination) — additive to this file, does not touch
+ * `listBlogPosts` (still used by `GET /api/v1/blog/posts` as-is). `search`
+ * is a plain `ILIKE` on `title` (not `search_vector`/`websearch_to_tsquery`
+ * — those reject an empty query, which the default "no filter" list view
+ * needs to tolerate). `termId` matches via `EXISTS` against
+ * `awcms_blog_post_terms` rather than a `JOIN`, so a post with several
+ * terms is never returned more than once. Page-number/`LIMIT`/`OFFSET`
+ * pagination (not keyset) — this is a human-browsed admin table with
+ * "page 1, 2, 3" controls, same UX category `public-blog-directory.ts`'s
+ * index/archive pagination already chose over keyset for the same reason.
+ */
+export async function listBlogPostsForAdmin(
+  tx: Bun.SQL,
+  tenantId: string,
+  filter: ListBlogPostsForAdminFilter = {}
+): Promise<ListBlogPostsForAdminResult> {
+  const pageSize = boundedPageSize(
+    filter.pageSize,
+    DEFAULT_ADMIN_LIST_PAGE_SIZE,
+    MAX_ADMIN_LIST_PAGE_SIZE
+  );
+  const page = boundedPageNumber(filter.page);
+  const offset = (page - 1) * pageSize;
+  const search = filter.search?.trim() || null;
+  const status = filter.status ?? null;
+  const termId = filter.termId ?? null;
+  const deletedOnly = filter.deletedOnly === true;
+
+  const rows = (await tx`
+    SELECT p.id, p.tenant_id, p.title, p.slug, p.status, p.visibility, p.locale,
+           p.author_tenant_user_id, p.published_at, p.updated_at
+    FROM awcms_blog_posts p
+    WHERE p.tenant_id = ${tenantId}
+      AND (CASE WHEN ${deletedOnly} THEN p.deleted_at IS NOT NULL ELSE p.deleted_at IS NULL END)
+      AND (${status}::text IS NULL OR p.status = ${status})
+      AND (${search}::text IS NULL OR p.title ILIKE '%' || ${search} || '%')
+      AND (
+        ${termId}::uuid IS NULL
+        OR EXISTS (
+          SELECT 1 FROM awcms_blog_post_terms pt
+          WHERE pt.tenant_id = p.tenant_id AND pt.post_id = p.id AND pt.term_id = ${termId}
+        )
+      )
+    ORDER BY p.updated_at DESC
+    LIMIT ${pageSize} OFFSET ${offset}
+  `) as BlogPostAdminListRow[];
+
+  const countRows = (await tx`
+    SELECT count(*)::int AS count
+    FROM awcms_blog_posts p
+    WHERE p.tenant_id = ${tenantId}
+      AND (CASE WHEN ${deletedOnly} THEN p.deleted_at IS NOT NULL ELSE p.deleted_at IS NULL END)
+      AND (${status}::text IS NULL OR p.status = ${status})
+      AND (${search}::text IS NULL OR p.title ILIKE '%' || ${search} || '%')
+      AND (
+        ${termId}::uuid IS NULL
+        OR EXISTS (
+          SELECT 1 FROM awcms_blog_post_terms pt
+          WHERE pt.tenant_id = p.tenant_id AND pt.post_id = p.id AND pt.term_id = ${termId}
+        )
+      )
+  `) as { count: number }[];
+
+  return {
+    items: rows.map((row) => ({
+      ...toBlogPostSummary(row),
+      authorTenantUserId: row.author_tenant_user_id
+    })),
+    total: countRows[0]?.count ?? 0,
+    page,
+    pageSize
+  };
+}
+
+/**
+ * Hard delete. Both join tables — `awcms_blog_post_terms` and
+ * `awcms_blog_post_institutions` (sql/131) — are deleted first. They are pure
+ * join metadata with no independent meaning once the post is gone, unlike
+ * `awcms_blog_revisions` (no FK to the post, intentionally left as historical
+ * record, same reasoning audit events keep referencing purged resources by
+ * id). Caller must have already verified `canPurgePost` (archived or
+ * soft-deleted) before calling this.
+ *
+ * Both DELETEs are load-bearing, not tidiness: each join table holds a real
+ * foreign key to `awcms_blog_posts`, so leaving either behind does not leak a
+ * row — it makes the post DELETE raise a foreign-key violation and the whole
+ * purge fail. That is why a new post-scoped join table must be added here in
+ * the same change that creates it; `awcms_blog_post_institutions` is the
+ * second, and the reason this comment now names the rule instead of the table.
+ */
+export async function purgeBlogPost(
+  tx: Bun.SQL,
+  tenantId: string,
+  id: string
+): Promise<boolean> {
+  await tx`
+    DELETE FROM awcms_blog_post_terms
+    WHERE tenant_id = ${tenantId} AND post_id = ${id}
+  `;
+
+  await tx`
+    DELETE FROM awcms_blog_post_institutions
+    WHERE tenant_id = ${tenantId} AND post_id = ${id}
+  `;
+
+  const rows = await tx`
+    DELETE FROM awcms_blog_posts
+    WHERE tenant_id = ${tenantId} AND id = ${id}
+    RETURNING id
+  `;
+
+  return rows.length > 0;
+}
+
+/**
+ * Legacy provenance (Issue #599, `sql/138`).
+ *
+ * ## Why a separate function and not a field on create/update
+ *
+ * Provenance is an IMPORT-TIME fact, not editorial content. Putting
+ * `legacySourceId` on `CreateBlogPostInput` would put it in the admin API body,
+ * where any caller holding `posts.create` could claim an article came from
+ * somewhere it did not — and the 301 map is derived from exactly that claim.
+ * A dedicated writer keeps the surface where the fact actually originates.
+ *
+ * Idempotent by construction: the partial unique index
+ * `awcms_blog_posts_legacy_source_dedup` refuses a second post claiming the same
+ * (system, id) in one tenant, which is the failure that produces two live URLs
+ * for one document and splits the ranking this work exists to preserve.
+ */
+export async function recordLegacyProvenance(
+  tx: Bun.SQL,
+  tenantId: string,
+  postId: string,
+  provenance: { system: string; legacyId: string }
+): Promise<boolean> {
+  const rows = (await tx`
+    UPDATE awcms_blog_posts
+    SET legacy_source_system = ${provenance.system},
+        legacy_source_id = ${provenance.legacyId},
+        updated_at = now()
+    WHERE tenant_id = ${tenantId} AND id = ${postId} AND deleted_at IS NULL
+    RETURNING id
+  `) as { id: string }[];
+
+  return rows.length > 0;
+}
+
+export type LegacyRedirectMapping = {
+  legacyId: string;
+  slug: string;
+  /** The post's stored locale — what decides the target's prefix (ADR-0098). */
+  locale: string;
+  /** The path the legacy site served. */
+  sourcePath: string;
+  /** The path this repo serves now, LOCALE-PREFIXED so the hop is the last one. */
+  targetPath: string;
+};
+
+/**
+ * Bounded per call — a cutover map is built in pages, never as one 23,906-row
+ * result set. NOTE ON "23,906": the measured snapshot is 25,029 — see ADR-0114
+ * §Consequences, which is the single correction the figure points at. Left
+ * standing because this is an argument about scale, and it does not move.
+ */
+export const LEGACY_REDIRECT_MAP_LIMIT = 500;
+
+/**
+ * The 301 map, DERIVED from stored provenance rather than guessed from slugs.
+ *
+ * The guess is what this replaces and why `sql/138` exists: a slug moves when an
+ * editor fixes a headline, so a map built from slugs is wrong precisely for the
+ * URLs that have the inbound links worth preserving.
+ *
+ * `pathTemplate` carries `{legacyId}` and `{slug}` because the legacy URL shape
+ * belongs to the system being migrated FROM — SeputarBorneo served
+ * `/news/{id_ber}_{slug}.html`, the next archive will serve something else, and
+ * hard-coding one of them here would make the second migration a code change.
+ *
+ * Only posts this deployment would actually SERVE to an anonymous reader: a
+ * redirect pointing at anything else sends a search engine to a 404, which is
+ * worse than the 404 it already had.
+ *
+ * That sentence used to read "only PUBLISHED, non-deleted posts", over a
+ * predicate that was exactly those two things — and the route that serves the
+ * target requires four (`fetchPublicBlogPostBySlug`:
+ * `status = 'published' AND visibility IN ('public','unlisted') AND deleted_at
+ * IS NULL AND published_at IS NOT NULL AND published_at <= now()`). So a
+ * `private` post and a future-dated one each got a rule whose destination
+ * answers 404 — the failure the paragraph names, produced by the paragraph's
+ * own function. The predicate below is now the route's, and the two are held
+ * together by an integration test rather than by these two comments agreeing.
+ *
+ * ## The target carries a LOCALE prefix (Issue #599 follow-up)
+ *
+ * ADR-0098 made `/blog/{code}/{slug}` a locale-prefixed surface. This function
+ * originally emitted the bare path, which a reader would have been redirected
+ * to and then redirected AGAIN onto the prefixed canonical — a two-hop chain,
+ * which is exactly what this issue's own acceptance criterion forbids (PRD
+ * §9.2). The prefix comes from the POST's own locale, because a legacy article
+ * was written in one language and the redirect knows which.
+ *
+ * A post whose stored locale is not one this deployment supports falls back to
+ * the bare path rather than inventing a prefix for a language that has no
+ * routes: a one-hop redirect to a path that then normalizes is still better
+ * than a confident redirect into nothing.
+ */
+export async function listLegacyRedirectMappings(
+  tx: Bun.SQL,
+  tenantId: string,
+  options: {
+    system: string;
+    tenantCode: string;
+    /** e.g. `/news/{legacyId}_{slug}.html` */
+    pathTemplate: string;
+    afterLegacyId?: string | null;
+  }
+): Promise<LegacyRedirectMapping[]> {
+  const after = options.afterLegacyId ?? null;
+
+  const rows = (await tx`
+    SELECT legacy_source_id, slug, locale
+    FROM awcms_blog_posts
+    WHERE tenant_id = ${tenantId}
+      AND legacy_source_system = ${options.system}
+      AND legacy_source_id IS NOT NULL
+      AND status = 'published'
+      AND visibility IN ('public', 'unlisted')
+      AND deleted_at IS NULL
+      AND published_at IS NOT NULL
+      AND published_at <= now()
+      AND (${after}::text IS NULL OR legacy_source_id > ${after})
+    ORDER BY legacy_source_id ASC
+    LIMIT ${LEGACY_REDIRECT_MAP_LIMIT}
+  `) as { legacy_source_id: string; slug: string; locale: string }[];
+
+  return rows.map((row) => {
+    const barePath = `/blog/${options.tenantCode}/${row.slug}`;
+
+    return {
+      legacyId: row.legacy_source_id,
+      slug: row.slug,
+      locale: row.locale,
+      sourcePath: options.pathTemplate
+        .replace("{legacyId}", row.legacy_source_id)
+        .replace("{slug}", row.slug),
+      targetPath: isSupportedLocale(row.locale)
+        ? withPublicLocalePrefix(barePath, row.locale)
+        : barePath
+    };
+  });
+}
+
+export type LegacyArticlePath = {
+  legacyId: string;
+  slug: string;
+  locale: string;
+  /**
+   * The SECTION the consuming site files this article under, read back out of
+   * `content_json.awcmsAstro.kategori` — the field `blog:legacy:import`'s
+   * `--section-map` writes.
+   *
+   * `null` means the row carries no sidecar, which means `ahliweb/awcms-astro`
+   * builds no page for it. The caller REPORTS those rather than emitting a
+   * path for them; see `scripts/blog-legacy-article-paths.ts`.
+   */
+  section: string | null;
+};
+
+/**
+ * The rows behind ADR-0114's id→path artefact, in keyset pages.
+ *
+ * ## Why this is not `listLegacyRedirectMappings` with a different template
+ *
+ * That function answers "what rule should `awcms_seo_redirects` hold", and its
+ * target is hard-coded `/blog/{tenantCode}/{slug}` — THIS repo's surface.
+ * ADR-0115 puts the migrated archive's articles on `ahliweb/awcms-astro`
+ * alongside the category archives ADR-0113 already sent there, so the artefact
+ * needs a different destination built from a field that function does not read.
+ *
+ * Keeping them separate rather than adding a flag is deliberate: one is a
+ * writer into a table this application consults, the other is a FILE handed to
+ * the edge, and ADR-0114 declares the first inert for this cutover. A single
+ * function that did both would be one `if` away from writing the inert rules
+ * again.
+ *
+ * ## The predicate is the SERVING repo's, not this one's
+ *
+ * `status = 'published'`, `visibility = 'public'`, `published_at <= now()` and
+ * `deleted_at IS NULL` are what `awcms-astro`'s adapter requires before it will
+ * build a page (`fetchPublishedPosts`: status, visibility and a `publishedAt`
+ * that exists). `unlisted` is accepted by THIS repo's route and is deliberately
+ * NOT accepted here — the artefact must describe the pages the consuming site
+ * actually generates, and an artefact that is more generous than its consumer
+ * is a 301 into a 404 wearing a green report.
+ */
+export async function listLegacyArticlePaths(
+  tx: Bun.SQL,
+  tenantId: string,
+  options: { system: string; afterLegacyId?: string | null }
+): Promise<LegacyArticlePath[]> {
+  const after = options.afterLegacyId ?? null;
+
+  const rows = (await tx`
+    SELECT
+      legacy_source_id,
+      slug,
+      locale,
+      content_json -> 'awcmsAstro' ->> 'kategori' AS section
+    FROM awcms_blog_posts
+    WHERE tenant_id = ${tenantId}
+      AND legacy_source_system = ${options.system}
+      AND legacy_source_id IS NOT NULL
+      AND status = 'published'
+      AND visibility = 'public'
+      AND deleted_at IS NULL
+      AND published_at IS NOT NULL
+      AND published_at <= now()
+      AND (${after}::text IS NULL OR legacy_source_id > ${after})
+    ORDER BY legacy_source_id ASC
+    LIMIT ${LEGACY_REDIRECT_MAP_LIMIT}
+  `) as {
+    legacy_source_id: string;
+    slug: string;
+    locale: string;
+    section: string | null;
+  }[];
+
+  return rows.map((row) => ({
+    legacyId: row.legacy_source_id,
+    slug: row.slug,
+    locale: row.locale,
+    // `->>` yields SQL NULL for a missing key AND for a JSON null, which is the
+    // same answer here: no section was written, so no page is built.
+    section: row.section
+  }));
+}

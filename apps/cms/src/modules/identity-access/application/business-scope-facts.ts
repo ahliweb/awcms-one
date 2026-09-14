@@ -1,0 +1,506 @@
+/**
+ * Resolves the bounded, I/O-derived business-scope facts
+ * `domain/access-control.ts`'s `evaluateAccess` needs to stay pure (Issue
+ * #180, epic #177 Wave 2 authorization). Ported from awcms-mini
+ * (`identity-access/application/business-scope-facts.ts`, Issue #746),
+ * REDUCED to the generic scope-fact resolver only.
+ *
+ * `resolveBusinessScopeFacts` returns the `(scopeType, scopeId)` scopes the
+ * subject currently holds ANY active assignment for (regardless of
+ * role/permission), each ENRICHED with the hierarchy resolution from the
+ * injected `BusinessScopeHierarchyPort` (ancestors/descendants for
+ * descendant/ancestor coverage; `resolved` for the fail-closed high-risk
+ * gate). These feed `evaluateAccess`'s optional `businessScopeFacts`
+ * parameter (a route opts a request in via
+ * `resourceAttributes.requiredScopeType`/`.requiredScopeId`).
+ *
+ * SoD facts (#181, filled from mini): this file ALSO exports the
+ * permission-keyed facts that segregation-of-duties conflict detection
+ * consumes — `resolveSoDAssignmentFacts` (merging BOTH the
+ * business-scope-assignment path AND the ordinary RBAC role-grant path, see
+ * `resolveOrdinaryRbacFacts`'s own header) and `resolveRolePermissionKeys`
+ * (the keys a role would newly confer at assignment-create time). These feed
+ * `domain/sod-conflict-evaluation.ts` (the pure matcher) via the
+ * assignment-service SEAM and the `high-risk-sod-guard` chokepoint. #180
+ * shipped only the generic scope resolver above; #181 adds these below without
+ * changing anything above.
+ */
+import { isBusinessScopeAssignmentCurrentlyActive } from "../domain/business-scope-assignment";
+import { SCOPE_NARROWING_ENABLED } from "../domain/scope-narrowing";
+import { activeRoleGrants } from "./grant-source";
+import {
+  TENANT_WIDE_SCOPE_TYPE,
+  type BusinessScopeFact
+} from "../domain/access-control";
+import type { SoDAssignmentFact } from "../domain/sod-conflict-evaluation";
+import type {
+  BusinessScopeHierarchyPort,
+  BusinessScopeResolution
+} from "../../_shared/ports/business-scope-hierarchy-port";
+
+const UNRESOLVED_RESULT: BusinessScopeResolution = {
+  resolved: false,
+  ancestorScopes: [],
+  descendantScopes: []
+};
+
+// Fail-closed guard bounds for the DERIVED-app-provided hierarchy adapter
+// (issue #180 review F1). Env-overridable, clamped to sane ranges.
+const DEFAULT_HIERARCHY_RESOLVE_TIMEOUT_MS = 500;
+const DEFAULT_HIERARCHY_MAX_RELATED_SCOPES = 5000;
+
+function clampInt(
+  raw: string | undefined,
+  fallback: number,
+  min: number,
+  max: number
+): number {
+  const parsed = Number(raw);
+  if (!Number.isFinite(parsed) || !Number.isInteger(parsed)) return fallback;
+  return Math.min(Math.max(parsed, min), max);
+}
+
+type HierarchyGuardConfig = { timeoutMs: number; maxRelatedScopes: number };
+
+function resolveHierarchyGuardConfig(): HierarchyGuardConfig {
+  return {
+    timeoutMs: clampInt(
+      process.env.AUTH_BUSINESS_SCOPE_HIERARCHY_TIMEOUT_MS,
+      DEFAULT_HIERARCHY_RESOLVE_TIMEOUT_MS,
+      1,
+      60_000
+    ),
+    maxRelatedScopes: clampInt(
+      process.env.AUTH_BUSINESS_SCOPE_HIERARCHY_MAX_RELATED_SCOPES,
+      DEFAULT_HIERARCHY_MAX_RELATED_SCOPES,
+      0,
+      1_000_000
+    )
+  };
+}
+
+/**
+ * Fail-closed defense-in-depth around a DERIVED-app-provided hierarchy adapter
+ * (issue #180 review F1). Base-side, the adapter is UNTRUSTED — it may be buggy
+ * or hostile — so its output is bounded two ways before it can widen access:
+ *
+ * - WALL-CLOCK TIMEOUT (`AUTH_BUSINESS_SCOPE_HIERARCHY_TIMEOUT_MS`, default
+ *   500ms): if the adapter does not resolve in time, the scope is treated as
+ *   `resolved: false` (deny hierarchy coverage), NEVER as coverage. **Honest
+ *   limit (ADR-0030):** this only bounds an adapter that AWAITS I/O (e.g. a
+ *   SQL query — which Postgres `statement_timeout` independently caps). A
+ *   purely-SYNCHRONOUS CPU infinite loop inside the adapter cannot be
+ *   interrupted from JavaScript — the event loop never regains control, so the
+ *   timer never fires, and the `resolveScope()` call itself blocks before this
+ *   race is even set up. That case remains the contributing domain module's
+ *   own responsibility (`src/modules/`; ADR-0034 removed the derived-app
+ *   pathway).
+ * - COMBINED-LENGTH CAP (`AUTH_BUSINESS_SCOPE_HIERARCHY_MAX_RELATED_SCOPES`,
+ *   default 5000): if `ancestorScopes.length + descendantScopes.length`
+ *   exceeds the bound, the scope is treated as `resolved: false` — a runaway
+ *   adapter cannot flood the evaluator's per-fact coverage scan.
+ */
+async function resolveScopeGuarded(
+  hierarchyPort: BusinessScopeHierarchyPort,
+  tx: Bun.SQL,
+  tenantId: string,
+  scopeType: string,
+  scopeId: string,
+  config: HierarchyGuardConfig
+): Promise<BusinessScopeResolution> {
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  const timeout = new Promise<BusinessScopeResolution>((resolve) => {
+    timer = setTimeout(() => resolve(UNRESOLVED_RESULT), config.timeoutMs);
+  });
+
+  try {
+    const resolution = await Promise.race([
+      hierarchyPort.resolveScope(tx, tenantId, scopeType, scopeId),
+      timeout
+    ]);
+
+    if (
+      resolution.resolved &&
+      resolution.ancestorScopes.length + resolution.descendantScopes.length >
+        config.maxRelatedScopes
+    ) {
+      return UNRESOLVED_RESULT;
+    }
+
+    return resolution;
+  } finally {
+    if (timer !== undefined) clearTimeout(timer);
+  }
+}
+
+type ActiveAssignmentRow = {
+  id: string;
+  scope_type: string;
+  scope_id: string;
+  effective_from: Date;
+  effective_to: Date | null;
+  status: "active" | "expired" | "revoked";
+};
+
+async function fetchActiveAssignmentRows(
+  tx: Bun.SQL,
+  tenantId: string,
+  tenantUserId: string
+): Promise<ActiveAssignmentRow[]> {
+  return (await tx`
+    SELECT id, scope_type, scope_id, effective_from, effective_to, status
+    FROM awcms_business_scope_assignments
+    WHERE tenant_id = ${tenantId} AND tenant_user_id = ${tenantUserId}
+      AND status = 'active'
+  `) as ActiveAssignmentRow[];
+}
+
+type ScopedGrantRow = {
+  scope_type: string;
+  scope_id: string;
+  module_key: string;
+  activity_code: string;
+  action: string;
+};
+
+/**
+ * The permission keys the subject holds AT EACH NON-TENANT-WIDE SCOPE
+ * (ADR-0080), keyed `scopeType:scopeId`.
+ *
+ * Tenant-wide grants are excluded, and that exclusion is the whole reason this
+ * is safe to add. A tenant-wide grant is the ABSENCE of a scope confinement, not
+ * a confinement to a scope called "tenant" — minting a `tenantWide` fact from
+ * one would hand every subject holding any role coverage of EVERY required
+ * scope, which is a blanket widening of the #180 guard. What a tenant-wide grant
+ * does about a required-scope check is what it does today: nothing.
+ *
+ * Effective dating and status come from `activeRoleGrants`, so a scoped grant
+ * stops covering at exactly the instant it stops granting — one definition, not
+ * a second one that could drift. Soft-deleted roles are dropped here for the
+ * same reason `fetchGrantedPermissionKeys` drops them: `deleted_at` belongs to
+ * the role, not to the grant.
+ *
+ * ONE query regardless of how many scopes or permissions the subject holds.
+ */
+async function fetchScopedGrantKeys(
+  tx: Bun.SQL,
+  tenantId: string,
+  tenantUserId: string
+): Promise<Map<string, Set<string>>> {
+  const byScope = new Map<string, Set<string>>();
+
+  // The switch is read BEFORE the query, so OFF costs nothing at all — not a
+  // round-trip, not a plan. Rollback has to be cheap in every sense or it stops
+  // being a rollback anyone reaches for.
+  if (!SCOPE_NARROWING_ENABLED) return byScope;
+
+  const rows = (await tx`
+    SELECT DISTINCT g.scope_type, g.scope_id, p.module_key, p.activity_code, p.action
+    FROM (${activeRoleGrants(tx, tenantId)}) g
+    JOIN awcms_role_permissions rp ON rp.role_id = g.role_id AND rp.tenant_id = ${tenantId}
+    JOIN awcms_permissions p ON p.id = rp.permission_id
+    JOIN awcms_roles r ON r.id = g.role_id AND r.tenant_id = ${tenantId}
+    WHERE g.tenant_user_id = ${tenantUserId}
+      AND g.scope_type <> ${TENANT_WIDE_SCOPE_TYPE}
+      AND r.deleted_at IS NULL
+  `) as ScopedGrantRow[];
+
+  for (const row of rows) {
+    const key = `${row.scope_type}:${row.scope_id}`;
+    const keys = byScope.get(key) ?? new Set<string>();
+    keys.add(`${row.module_key}.${row.activity_code}.${row.action}`);
+    byScope.set(key, keys);
+  }
+
+  return byScope;
+}
+
+/**
+ * Resolves the subject's currently-in-force business-scope facts, each
+ * enriched with hierarchy resolution from `hierarchyPort`. `status = 'active'`
+ * rows whose effective dating has NOT yet started or has already elapsed are
+ * excluded here (via `isBusinessScopeAssignmentCurrentlyActive`), so an
+ * assignment revoked or expired a millisecond ago stops covering IMMEDIATELY —
+ * no cache, no wait for the batch expiry job (issue #180: "Revocation/expiry
+ * langsung memengaruhi authorization").
+ *
+ * The hierarchy port is called once per DISTINCT held scope (deduplicated
+ * first) — a subject with many assignments to the same scope costs one
+ * resolution, not N. Sequential awaits over the single `tx` (never
+ * `Promise.all`): one Postgres connection serves one query at a time.
+ *
+ * Since ADR-0080 the result ALSO carries facts derived from grants that name
+ * their own scope (`awcms_access_policies` rows whose `scope_type` is not the
+ * reserved tenant-wide one), each qualified by the permission keys its role
+ * confers. Nothing writes such a grant yet, so this is inert today — and that is
+ * an assertion, not a hope: `tests/integration/scope-qualification` proves the
+ * fact set is unchanged for every subject who holds only tenant-wide grants.
+ */
+export async function resolveBusinessScopeFacts(
+  tx: Bun.SQL,
+  tenantId: string,
+  tenantUserId: string,
+  now: Date,
+  hierarchyPort: BusinessScopeHierarchyPort
+): Promise<BusinessScopeFact[]> {
+  const rows = await fetchActiveAssignmentRows(tx, tenantId, tenantUserId);
+  const facts: BusinessScopeFact[] = [];
+  const seen = new Set<string>();
+  const guardConfig = resolveHierarchyGuardConfig();
+
+  for (const row of rows) {
+    if (
+      !isBusinessScopeAssignmentCurrentlyActive(
+        {
+          status: row.status,
+          effectiveFrom: row.effective_from,
+          effectiveTo: row.effective_to
+        },
+        now
+      )
+    ) {
+      continue;
+    }
+
+    const dedupeKey = `${row.scope_type}:${row.scope_id}`;
+    if (seen.has(dedupeKey)) continue;
+    seen.add(dedupeKey);
+
+    // A tenant-wide grant (reserved scope type) is intrinsic — it needs no
+    // hierarchy resolution and always covers, so it is trusted (`resolved`)
+    // by construction.
+    //
+    // ADR-0060: trusted only when it names THIS TENANT. The fact minted here
+    // covers EVERY required scope, so accepting an arbitrary `scope_id` under
+    // the reserved type would turn any row whose `scope_type` happens to read
+    // `tenant` into a blanket grant. No supported path can write such a row —
+    // `validateCreateBusinessScopeAssignmentInput` rejects the reserved type
+    // as unassignable (#180 review F2) — which is exactly why the check
+    // belongs here: a row carrying it did not come through the service, so it
+    // has passed no validation at all.
+    if (row.scope_type === TENANT_WIDE_SCOPE_TYPE) {
+      facts.push({
+        scopeType: row.scope_type,
+        scopeId: row.scope_id,
+        resolved: row.scope_id === tenantId,
+        ancestorScopes: [],
+        descendantScopes: [],
+        tenantWide: row.scope_id === tenantId
+      });
+      continue;
+    }
+
+    const resolution = await resolveScopeGuarded(
+      hierarchyPort,
+      tx,
+      tenantId,
+      row.scope_type,
+      row.scope_id,
+      guardConfig
+    );
+
+    // `resolved: false` NEVER contributes ancestor/descendant coverage — the
+    // arrays are forced empty regardless of what an adapter returned, so a
+    // buggy/hostile adapter that sets `resolved: false` with a non-empty list
+    // cannot widen access (defense in depth on top of the port contract).
+    facts.push({
+      scopeType: row.scope_type,
+      scopeId: row.scope_id,
+      resolved: resolution.resolved,
+      ancestorScopes: resolution.resolved ? resolution.ancestorScopes : [],
+      descendantScopes: resolution.resolved ? resolution.descendantScopes : [],
+      tenantWide: false
+    });
+  }
+
+  // ADR-0080 — scope-qualified facts from grants that carry their own scope.
+  //
+  // Appended rather than merged into the loop above, and with their OWN dedupe
+  // set, because the two sources answer different questions and the wider answer
+  // must keep winning: a scope ASSIGNMENT covers every action at its scope (that
+  // is the #180 contract and it is unchanged), while a scoped GRANT covers only
+  // the actions its role confers. `evaluateAccess` uses `.some()`, so holding
+  // both for one scope resolves to the assignment's answer — which is exactly
+  // today's answer, and therefore not a change.
+  const scopedGrantKeys = await fetchScopedGrantKeys(
+    tx,
+    tenantId,
+    tenantUserId
+  );
+
+  for (const [dedupeKey, permissionKeys] of scopedGrantKeys) {
+    const separator = dedupeKey.indexOf(":");
+    const scopeType = dedupeKey.slice(0, separator);
+    const scopeId = dedupeKey.slice(separator + 1);
+
+    const resolution = await resolveScopeGuarded(
+      hierarchyPort,
+      tx,
+      tenantId,
+      scopeType,
+      scopeId,
+      guardConfig
+    );
+
+    facts.push({
+      scopeType,
+      scopeId,
+      resolved: resolution.resolved,
+      ancestorScopes: resolution.resolved ? resolution.ancestorScopes : [],
+      descendantScopes: resolution.resolved ? resolution.descendantScopes : [],
+      tenantWide: false,
+      permissionKeys
+    });
+  }
+
+  return facts;
+}
+
+// ===========================================================================
+// SoD facts (#181) — permission-keyed facts for `sod-conflict-evaluation.ts`.
+// ===========================================================================
+
+type AssignmentPermissionRow = {
+  scope_type: string;
+  scope_id: string;
+  effective_from: Date;
+  effective_to: Date | null;
+  status: "active" | "expired" | "revoked";
+  module_key: string;
+  activity_code: string;
+  action: string;
+};
+
+type OrdinaryRbacPermissionRow = {
+  module_key: string;
+  activity_code: string;
+  action: string;
+};
+
+/**
+ * Permissions the subject holds via an ORDINARY RBAC role grant
+ * (`activeRoleGrants` -> `awcms_role_permissions` -> `awcms_permissions`) — the
+ * exact same path `auth-context.ts`'s `fetchGrantedPermissionKeys` already reads
+ * for every ordinary ABAC decision, through the same shared fragment so the two
+ * cannot drift (ADR-0079: they had, and SoD went blind to every grant written
+ * after PR 3.2 while looking untouched).
+ * SoD conflict detection MUST reason about this path (not only the
+ * business-scope-assignment path), or it is blind to the realistic, common
+ * case where a subject holds BOTH halves of a registered conflict through an
+ * ordinary role (e.g. the setup wizard's "owner" role, which grants every
+ * permission in the tenant). Returned facts have `scopeType`/`scopeId: null` —
+ * an ordinary role grant is not confined to any business scope, so
+ * `detectSoDConflicts` treats it as conflicting at EVERY requested scope for a
+ * `"same_scope_only"` rule (see `sod-conflict-evaluation.ts`'s
+ * `SoDAssignmentFact` doc comment).
+ */
+async function resolveOrdinaryRbacFacts(
+  tx: Bun.SQL,
+  tenantId: string,
+  tenantUserId: string
+): Promise<SoDAssignmentFact[]> {
+  const rows = (await tx`
+    SELECT DISTINCT p.module_key, p.activity_code, p.action
+    FROM (${activeRoleGrants(tx, tenantId)}) g
+    JOIN awcms_role_permissions rp ON rp.role_id = g.role_id AND rp.tenant_id = ${tenantId}
+    JOIN awcms_permissions p ON p.id = rp.permission_id
+    JOIN awcms_roles r ON r.id = g.role_id AND r.tenant_id = ${tenantId}
+    WHERE g.tenant_user_id = ${tenantUserId}
+      AND r.deleted_at IS NULL
+  `) as OrdinaryRbacPermissionRow[];
+
+  return rows.map((row) => ({
+    permissionKey: `${row.module_key}.${row.activity_code}.${row.action}`,
+    scopeType: null,
+    scopeId: null
+  }));
+}
+
+/**
+ * The subject's currently-in-force SoD facts (`(permissionKey, scopeType,
+ * scopeId)` triples) that conflict detection reasons about. Merges TWO sources
+ * (see `resolveOrdinaryRbacFacts`'s header for why the second is required):
+ * the business-scope-assignment-granted permissions (each carrying that
+ * assignment's real scope) PLUS the subject's ordinary RBAC-granted
+ * permissions (`scopeType`/`scopeId: null`).
+ *
+ * `excludeAssignmentId` lets `assignment_create` conflict evaluation check the
+ * subject's OTHER existing active assignments without a not-yet-committed row
+ * interfering. Effective-dated rows whose window has not started / already
+ * elapsed are excluded via `isBusinessScopeAssignmentCurrentlyActive` — an
+ * assignment expired/revoked a millisecond ago stops contributing IMMEDIATELY
+ * (no cache; issue #181 "Exception expired/revoked langsung tidak berlaku"
+ * mirrors #180's assignment revocation immediacy). Sequential awaits over the
+ * single `tx` (never `Promise.all`): one Postgres connection serves one query
+ * at a time — the bounded, non-N+1 query count issue #181 requires (exactly
+ * two SELECTs regardless of how many permissions/assignments the subject has).
+ */
+export async function resolveSoDAssignmentFacts(
+  tx: Bun.SQL,
+  tenantId: string,
+  tenantUserId: string,
+  now: Date,
+  excludeAssignmentId: string | null = null
+): Promise<SoDAssignmentFact[]> {
+  const rows = (await tx`
+    SELECT bsa.scope_type, bsa.scope_id, bsa.effective_from, bsa.effective_to, bsa.status,
+      p.module_key, p.activity_code, p.action
+    FROM awcms_business_scope_assignments bsa
+    JOIN awcms_role_permissions rp
+      ON rp.role_id = bsa.role_id AND rp.tenant_id = bsa.tenant_id
+    JOIN awcms_permissions p ON p.id = rp.permission_id
+    WHERE bsa.tenant_id = ${tenantId} AND bsa.tenant_user_id = ${tenantUserId}
+      AND bsa.status = 'active' AND bsa.role_id IS NOT NULL
+      AND (${excludeAssignmentId}::uuid IS NULL OR bsa.id <> ${excludeAssignmentId})
+  `) as AssignmentPermissionRow[];
+
+  const facts: SoDAssignmentFact[] = [];
+
+  for (const row of rows) {
+    if (
+      !isBusinessScopeAssignmentCurrentlyActive(
+        {
+          status: row.status,
+          effectiveFrom: row.effective_from,
+          effectiveTo: row.effective_to
+        },
+        now
+      )
+    ) {
+      continue;
+    }
+
+    facts.push({
+      permissionKey: `${row.module_key}.${row.activity_code}.${row.action}`,
+      scopeType: row.scope_type,
+      scopeId: row.scope_id
+    });
+  }
+
+  facts.push(...(await resolveOrdinaryRbacFacts(tx, tenantId, tenantUserId)));
+
+  return facts;
+}
+
+/**
+ * The permission keys `roleId` grants — used at assignment-CREATE time to know
+ * which permission keys the NOT-YET-created assignment would newly confer at
+ * its scope, so SoD conflict detection can check each one against the
+ * subject's OTHER already-active assignment facts.
+ */
+export async function resolveRolePermissionKeys(
+  tx: Bun.SQL,
+  tenantId: string,
+  roleId: string
+): Promise<string[]> {
+  const rows = (await tx`
+    SELECT DISTINCT p.module_key, p.activity_code, p.action
+    FROM awcms_role_permissions rp
+    JOIN awcms_permissions p ON p.id = rp.permission_id
+    WHERE rp.tenant_id = ${tenantId} AND rp.role_id = ${roleId}
+  `) as { module_key: string; activity_code: string; action: string }[];
+
+  return rows.map(
+    (row) => `${row.module_key}.${row.activity_code}.${row.action}`
+  );
+}

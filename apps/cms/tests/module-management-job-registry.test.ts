@@ -1,0 +1,146 @@
+import { describe, expect, test } from "bun:test";
+
+import { validateJobDescriptor } from "../src/modules/module-management/domain/job-registry";
+import { fetchModuleJobs } from "../src/modules/module-management/application/job-registry";
+import { listModules } from "../src/modules";
+
+describe("validateJobDescriptor", () => {
+  test("accepts a well-formed job descriptor", () => {
+    const result = validateJobDescriptor({
+      command: "bun run config:validate",
+      purpose: "Validate required environment variables."
+    });
+
+    expect(result).toEqual({ valid: true });
+  });
+
+  test("rejects a command that isn't a bun run script", () => {
+    const result = validateJobDescriptor({
+      command: "npm run config:validate",
+      purpose: "Validate required environment variables."
+    });
+
+    expect(result).toMatchObject({ valid: false });
+    expect((result as { errors: string[] }).errors[0]).toContain(
+      "bun run <script>"
+    );
+  });
+
+  test("rejects a raw shell command", () => {
+    const result = validateJobDescriptor({
+      command: "rm -rf /tmp/whatever",
+      purpose: "Something"
+    });
+
+    expect(result).toMatchObject({ valid: false });
+  });
+
+  test("rejects an empty purpose", () => {
+    const result = validateJobDescriptor({
+      command: "bun run config:validate",
+      purpose: "   "
+    });
+
+    expect(result).toMatchObject({ valid: false });
+  });
+
+  test("collects multiple errors at once", () => {
+    const result = validateJobDescriptor({
+      command: "not-bun-at-all",
+      purpose: ""
+    });
+
+    expect(result).toMatchObject({ valid: false });
+    expect((result as { errors: string[] }).errors).toHaveLength(2);
+  });
+});
+
+describe("fetchModuleJobs", () => {
+  test("returns null for an unregistered module key", () => {
+    expect(fetchModuleJobs("does_not_exist")).toBeNull();
+  });
+
+  test("returns an empty list for a registered module with no declared jobs", () => {
+    // `tenant_admin` (Core, tenant/office data only) declares no scheduled
+    // jobs — a stable "zero jobs" fixture for the base registry.
+    expect(fetchModuleJobs("tenant_admin")).toEqual([]);
+  });
+
+  test("returns jobs scoped to one module, each tagged with its moduleKey", () => {
+    const jobs = fetchModuleJobs("module_management");
+
+    expect(jobs).toEqual([
+      expect.objectContaining({
+        moduleKey: "module_management",
+        command: "bun run config:validate"
+      })
+    ]);
+  });
+
+  test("returns every declared job across all modules when no moduleKey is given", () => {
+    const jobs = fetchModuleJobs();
+    const commands = jobs!.map((job) => job.command).sort();
+
+    expect(commands).toEqual(
+      [
+        "bun run analytics:purge",
+        "bun run analytics:rollup",
+        // ADR-0044 §4 Fase 2. The only two entries here that are NOT scheduled:
+        // an operator-run migration and the read-only readiness check that
+        // gates its irreversible final step. Their descriptors exist so the
+        // jobs are discoverable at all, and both retire along with the legacy
+        // ad tables they read.
+        "bun run blog:ads:drop-readiness",
+        "bun run blog:ads:ingest",
+        "bun run blog:portable-text:backfill",
+        "bun run blog:publish:scheduled",
+        "bun run comments:retention",
+        "bun run config:validate",
+        "bun run data-lifecycle:archive-purge",
+        "bun run domain-events:deliveries:purge",
+        "bun run domain-events:dispatch",
+        "bun run email:dispatch",
+        "bun run email:provider:health",
+        "bun run email:queue:purge",
+        "bun run email:templates:seed-defaults",
+        "bun run entitlements:backfill",
+        "bun run form-drafts:purge",
+        "bun run identity-access:business-scope:expiry",
+        "bun run identity-access:delegated-access:expiry",
+        "bun run identity-access:subscription-lifecycle",
+        "bun run idn-regions:activate",
+        "bun run idn-regions:import",
+        "bun run idn-regions:rollback",
+        "bun run logs:audit:purge",
+        "bun run news-media:reconcile",
+        "bun run push:dispatch",
+        "bun run push:queue:purge",
+        "bun run reporting:exports:dispatch",
+        "bun run reporting:projections:refresh",
+        "bun run site-search:reconcile",
+        "bun run sync:objects:dispatch",
+        "bun run sync:objects:purge",
+        "bun run tenant-domain:dns:sync",
+        "bun run workflow:escalations:dispatch"
+      ].sort()
+    );
+  });
+
+  test("every real registered job descriptor passes shape validation", () => {
+    const jobs = fetchModuleJobs()!;
+    expect(jobs.length).toBeGreaterThan(0);
+
+    for (const job of jobs) {
+      const result = validateJobDescriptor(job);
+      expect(result).toEqual({ valid: true });
+    }
+  });
+
+  test("every real registered job descriptor's declared moduleKey is an actual registered module", () => {
+    const registeredKeys = new Set(listModules().map((d) => d.key));
+
+    for (const job of fetchModuleJobs()!) {
+      expect(registeredKeys.has(job.moduleKey)).toBe(true);
+    }
+  });
+});

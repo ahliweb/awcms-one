@@ -1,0 +1,304 @@
+# AWCMS contract manifest (Issue #183, epic #177; re-anchored by ADR-0055).
+#
+# Machine-readable, versioned, schema-validated statement of the contracts this
+# repo OWNS — the ones `ahliweb/awcms-astro` binds against, and the ones a
+# future consumer would read before integrating.
+#
+# It began (ADR-0001/ADR-0032) as a declaration of conformance to the awcms-mini
+# modular-monolith STANDARD. ADR-0055 retired that anchor: development happens in
+# `ahliweb/awcms` and `ahliweb/awcms-astro` only, awcms-mini/awcms-micro are
+# archives, and awcms defines its own contracts. The mechanism was never the
+# problem and is unchanged — every value below is still cross-checked against a
+# REAL source constant, which is what has repeatedly caught drift.
+#
+# Validated + enforced by `bun run family:conformance:check`
+# (scripts/family-conformance-check.ts) against the REAL source-of-truth
+# constants — every value below is cross-checked, none is decorative:
+#   - contracts.moduleDescriptorContractVersion  → src/modules/_shared/module-contract.ts (MODULE_CONTRACT_VERSION)
+#   - contracts.capabilityContractVersions       → src/modules/_shared/capability-contract-versions.ts
+#   - contracts.restApiInfoVersion               → openapi/awcms-public-api.openapi.yaml (info.version)
+#   - contracts.eventApiInfoVersion              → asyncapi/awcms-domain-events.asyncapi.yaml (info.version)
+#   - contracts.* family-owned versions          → src/modules/_shared/family-contract.ts + pinned semantic contract tests
+#   - stack.*                                     → package.json + .github/workflows/ci.yml
+#
+# Schema: awcms-family-compatibility.schema.json. Versioning/upgrade policy:
+# docs/awcms/family-compatibility.md.
+
+manifestSchemaVersion: "1.0.0"
+familyContractVersion: "1.0.0"
+
+family:
+  # Self-anchored since ADR-0055. There is no external standard to conform to:
+  # this repo IS the standard, and the only other repo in scope is
+  # `ahliweb/awcms-astro` (public pages + USER admin surface, ADR-0045 as
+  # narrowed by ADR-0070) which binds to the contracts declared below.
+  #
+  # `awcms-mini` and `awcms-micro` are ARCHIVES (ADR-0055 §1) — not a standard,
+  # not a port source, not family templates. The pair above is the multi-purpose
+  # replacement for all three of the old templates; neither repo is that on its
+  # own. Their names still appear throughout this repo as PROVENANCE, which is a
+  # permanent fact and deliberately not scrubbed.
+  standard: awcms
+  standardRepository: https://github.com/ahliweb/awcms
+  # `role` is prose and NO test asserts its content (the validator only demands a
+  # non-empty string) — which is exactly how it rotted into claiming ownership of
+  # "every admin screen" months after that stopped being true. ADR-0070 is what
+  # binds it now; if the two disagree, the ADR wins and this line is the bug.
+  role: system of record — online-first hybrid ERP + integrated-SaaS modular monolith owning every authorization surface, every API, and every SYSTEM admin screen (modules, roles, tenants, audit trail, anything cross-tenant) (ADR-0034, ADR-0035, ADR-0051 as narrowed by ADR-0070); paired with ahliweb/awcms-astro, whose primary function is PUBLIC pages and which may additionally carry a USER admin surface when a site declares one (`owner` refused by a gate there) while never being a source of truth (ADR-0045, ADR-0070). Development is confined to these two repositories (ADR-0055)
+
+# Pinned contract versions. Where a real source constant exists it is the
+# authority (the gate reads it and fails on mismatch). Where the contract is
+# "family-owned" (no standalone constant), the number is anchored to
+# FAMILY_OWNED_CONTRACT_VERSIONS in src/modules/_shared/family-contract.ts and
+# given teeth by a SEMANTIC contract test that goes RED if the control drifts.
+contracts:
+  # 4.1.0 sejak ADR-0108: field opsional
+  # `SubjectDataDescriptor.anonymizedColumns` DITAMBAHKAN (penambahan murni,
+  # jadi MINOR) dan makna terdokumentasi `redactedColumns` DIPERSEMPIT menjadi
+  # pengecualian ekspor saja. Perubahan PERILAKU-nya ada di penghapusan:
+  # eksekutor kini menulis apa yang dinamai `anonymizedColumns`, bukan apa yang
+  # dinamai `redactedColumns` — karena satu daftar memaksa tabel yang memuat
+  # NAMA seseorang memilih antara "diekspor" dan "dihapus", dan mereka dengan
+  # tepat memilih yang pertama, sehingga penghapusannya tidak menulis apa pun.
+  # Setiap deskriptor `anonymize` diperbarui dalam perubahan yang sama, dan
+  # `subject-data:registry:check` menolak `anonymize` yang tidak menamai apa pun.
+  #
+  # 4.0.0 sejak ADR-0094 gelombang 2 (#557): DUA perubahan pada keluarga
+  # `subjectData`, keduanya MAJOR menurut aturan file kontraknya sendiri.
+  #
+  # (1) Union `SubjectDataErasure` DILEBARKAN dengan `"severed_with_subject_row"`.
+  # Union yang melebar dihitung MAJOR di sini karena konsumen yang penting adalah
+  # `switch` exhaustive di atasnya — dan justru itu maksudnya: tiap konsumen
+  # HARUS memutuskan artinya, bukan jatuh ke `default`. Ini jawaban jujur ~90
+  # tabel: mereka hanya membawa id subjek sebagai stempel (`created_by`,
+  # `deleted_by`), dan meng-`anonymize`-nya justru akan menghancurkan catatan
+  # tenant tentang siapa menghapus apa demi memutus tautan yang sudah tak
+  # teresolusi setelah `awcms_identities` dianonimkan.
+  #
+  # (2) `SubjectDataDescriptor.tenantColumn` DIUBAH TIPENYA jadi `string | null`.
+  # Sebelumnya "absen" berarti DUA hal sekaligus — "pakai `tenant_id`" DAN
+  # "tabel global" — kontradiksi yang diselesaikan perencana dengan diam-diam
+  # mengikat `tenant_id`. Kini `null` dinyatakan dengan sengaja.
+  #
+  # Tidak ada field `ModuleDescriptor` yang dihapus dan seluruh deskriptor
+  # gelombang 1 tetap sah tanpa perubahan.
+  #
+  # 3.2.0 sejak ADR-0094 (#542): field opsional `ModuleDescriptor.subjectData`
+  # plus tipe `SubjectDataDescriptor`/`SubjectDataColumn`/`SubjectDataErasure`
+  # DITAMBAHKAN — penambahan murni, jadi MINOR. Menghilangkannya berarti tabel
+  # itu belum menjawab pertanyaan subjek data, yang hanya diizinkan
+  # `subject-data:coverage:check` untuk tabel yang mendahului aturannya, di
+  # ledger yang hanya boleh menyusut.
+  #
+  # 3.1.0 sejak ADR-0084 (Gelombang 5 PR 5.1, #423): field opsional
+  # `ModuleDescriptor.requiresEntitlement` DITAMBAHKAN — penambahan murni, jadi
+  # MINOR: descriptor yang menghilangkannya berarti "tanpa prasyarat komersial",
+  # yang persis makna setiap descriptor hari ini. NOL modul base mendeklarasikannya.
+  #
+  # 3.0.0 sejak ADR-0083 (diamandemen 11 Agustus 2026): anggota `"staging"`
+  # DIHAPUS dari union `ModuleDeploymentProfile` — union yang menyempit adalah
+  # penarikan kemampuan, jadi MAJOR (preseden 2.0.0, yang menghapus tipe
+  # ekspor). Nilai ini di-cross-check gerbang terhadap MODULE_CONTRACT_VERSION.
+  moduleDescriptorContractVersion: "4.1.0"
+  # Per-capability port SemVer for capabilities OWNED BY A BASE MODULE (matches
+  # CAPABILITY_CONTRACT_VERSIONS). Only capabilities whose owning module actually
+  # ships in this base belong here. `party_directory` is owned by the base
+  # `profile_identity` module (forward-declared ahead of an in-repo consumer,
+  # ADR-0011). `media_library` is owned by the base `media_library` module
+  # (ADR-0036 media ownership inversion — the media registry extracted out of
+  # news_portal); it SUPERSEDES the retired `news_media` capability. ADR-0034 Fase
+  # 3 admitted the first website module (`theming`) directly into the base, but
+  # `theming` provides no capability port, so it adds no entry here. Other content
+  # capabilities whose owning CMS modules provide no versioned base port yet (e.g.
+  # public_content/social_publishing) remain unlisted.
+  capabilityContractVersions:
+    party_directory: "1.0.0"
+    media_library: "1.0.0"
+    # seo_facts is owned (provided) by the base `blog_content` module and consumed
+    # by `seo_distribution` (ADR-0038 discovery scope). Declared at 1.1.0 — the port
+    # ships with the `summarizePublicResourceFacts` roll-up + `offset`/`order` list
+    # options (awcms-micro's own 1.1.0 minor), so 1.0.0 would understate the shape a
+    # consumer binds against.
+    seo_facts: "1.1.0"
+    # auth_notification is owned (provided) by the base `email` module and consumed
+    # by `identity_access`'s password-reset flow (Gelombang 2 delta auth). It exists
+    # because the reverse edge is impossible: `email` already depends on
+    # `identity_access`, so a direct import would close a module cycle.
+    auth_notification: "1.0.0"
+    # business_scope_hierarchy is owned (provided) by the base `tenant_admin`
+    # module since ADR-0060, which resolves the `office` scope type against
+    # `awcms_offices`. The port itself is unchanged since #180; what changed is
+    # that a base module finally provides an adapter for it, so it belongs here
+    # for the first time. `identity_access` consumes it, still `optional: true`.
+    business_scope_hierarchy: "1.0.0"
+  apiResponseEnvelopeVersion: "1.0.0"
+  restApiInfoVersion: "0.1.0"
+  eventApiInfoVersion: "0.1.0"
+  tenantContextRlsContractVersion: "1.0.0"
+  auditRedactionContractVersion: "1.0.0"
+  idempotencyContractVersion: "1.0.0"
+  migrationChecksum:
+    algorithm: sha256
+    version: "1.0.0"
+
+# Validated stack versions — declared value MUST equal the real toolchain value
+# the `source` points at (the compatibility-matrix assertion). The gate asserts
+# CI's distinct Bun versions are EXACTLY {ci (current), ciMinimum (floor)} — so
+# the dedicated minimum-supported CI cell (Bun 1.3.0, == engines floor) can
+# never silently drop out. See docs/awcms/family-compatibility.md §4.
+stack:
+  bun:
+    packageManager:
+      declared: "1.4.2"
+      source: package.json packageManager
+    engines:
+      declared: ">=1.3.0"
+      source: package.json engines.bun
+    ci:
+      declared: "1.4.2"
+      source: .github/workflows/ci.yml setup-bun bun-version (current pin)
+    ciMinimum:
+      declared: "1.3.0"
+      source: .github/workflows/ci.yml minimum-supported job setup-bun (== engines floor)
+  astro:
+    declared: "^7.3.1"
+    source: package.json dependencies.astro
+  astroNode:
+    declared: "^11.1.5"
+    source: package.json dependencies["@astrojs/node"]
+  typescript:
+    declared: "^7.0.2"
+    source: package.json devDependencies.typescript
+  postgres:
+    declared: "18.4"
+    source: .github/workflows/ci.yml services.postgres image
+
+# Intentional divergences from a contract this repo must bind against — today
+# that means `ahliweb/awcms-astro`'s, and only its. (The heading said "from the
+# awcms-mini standard" until ADR-0070; that anchor was retired by ADR-0055 and
+# no entry below has referred to it since ADR-0068 refilled the list.)
+#
+# NOT a backlog of unfinished ports — each entry is a decision AWCMS
+# deliberately made and must keep justified: reason + accountable owner + review
+# date + backing ADR. The gate fails once a reviewDate is in the past (an
+# unreviewed divergence cannot live forever) or its ADR file is missing.
+#
+# REFILLED by ADR-0068, extended by ADR-0069, and extended again by ADR-0070 —
+# the last one at the WRITTEN REQUEST of the other repo, whose ADR-0034 §Hubungan
+# states the difference and then says plainly that it cannot record it from
+# there. Every entry was previously recorded nowhere on this side, and each
+# carries the reviewDate that brings it back to the table without anyone having
+# to remember.
+intentionalDivergences:
+  - id: hsts-include-subdomains
+    summary: This repo sends `Strict-Transport-Security` with `includeSubDomains`; awcms-astro sends it without.
+    reason: >-
+      Both are correct for their own surface, and copying either direction would be wrong. This repo is ONE
+      deployment whose operator knows every subdomain it owns, so `includeSubDomains` costs nothing and closes
+      the sibling-host gap. awcms-astro is a TEMPLATE that runs on domains belonging to organisations that
+      almost certainly serve other things on other subdomains; there the directive forces every one of them
+      to HTTPS-only for a year, in the browser of every visitor, and the cost is borne by services whose
+      owners never took part in the decision (awcms-astro ADR-0029). Recorded here because an unrecorded
+      difference gets rediscovered as a finding and "fixed" toward parity — a one-word change that relocates
+      a context-dependent decision to the place with none of the context.
+    owner: "@ahliweb"
+    reviewDate: "2027-02-04"
+    adr: 0068-family-standards-posture-editions-and-recorded-divergences.md
+    since: "2026-08-04"
+
+  - id: astro-files-not-type-checked
+    summary: >-
+      awcms-astro runs `astro check`; this repo cannot. NARROWED by ADR-0112 — `.astro` frontmatter IS
+      type-checked here now; what remains unchecked is component props at their call sites.
+    reason: >-
+      Not a discipline gap — a toolchain one. `@astrojs/check` requires the TypeScript 6.x programmatic API;
+      this repo is on TypeScript 7.0.2, whose native compiler does not ship it ("does not expose the
+      programmatic API that `astro check` relies on" — verified by installing it and running it, not by
+      reading). awcms-astro is on `^6.0.3`, which is the only reason its gate runs. Downgrading this repo to
+      6.x to satisfy one checker would regress the toolchain under 33 gates and ~156,000 lines that
+      `tsc --noEmit` keeps clean today.
+      ADR-0112 closed the larger half without that downgrade: `check:astro-frontmatter:check` extracts every
+      `.astro` frontmatter to a sibling `.ts` and runs this repo's own `tsc` over it, so all 61 files are
+      checked for undefined variables, wrong types across every `src/` import, null handling, and statement
+      ordering. Its first run found `/admin/seo` reading three `const`s 130 lines before their declaration —
+      a temporal dead zone that had been answering 500 on every request, with every gate green.
+      What is still NOT checked, and is the whole of what this entry now covers: a component's `Props` at its
+      call sites, because `tsc` cannot parse `.astro` and the imports resolve through a wildcard shim. A
+      misspelled or missing prop still compiles. `awcms-testing` and `awcms-pr-review` continue to instruct
+      that any diff touching `.astro` is read by eye for that class.
+    owner: "@ahliweb"
+    reviewDate: "2027-02-04"
+    adr: 0112-astro-frontmatter-is-type-checked-by-extraction.md
+    since: "2026-08-04"
+
+  - id: owasp-edition-pin-owned-here
+    summary: The family pins OWASP Top 10 2021 / ASVS 4.0.3 / API Security Top 10 2023, and this repo owns the pin.
+    reason: >-
+      awcms-astro ADR-0028 states in writing that it matches this repo's OWASP editions and will not move
+      ahead of it. The decision it defers to had never been taken: the pin arrived through the
+      `awcms-security-hardening` skill, written when those were current, and was then followed because it was
+      already written. Recording it as a divergence with a reviewDate is what turns an inherited default into
+      a decision — and what stops one repo waiting on a signal the other does not know it holds. Raising an
+      edition is family-level work (it remaps the whole matrix in
+      docs/awcms/standar-performa-dan-keamanan.md §3-§7 and obliges telling the neighbour in the same
+      breath), so it needs its own ADR rather than an edit to a table.
+    owner: "@ahliweb"
+    reviewDate: "2027-02-04"
+    adr: 0068-family-standards-posture-editions-and-recorded-divergences.md
+    since: "2026-08-04"
+
+  - id: coop-corp-cross-origin-isolation
+    summary: This repo sends `Cross-Origin-Opener-Policy` and `Cross-Origin-Resource-Policy` (`same-origin`, unconditional); awcms-astro sends neither.
+    reason: >-
+      Deliberate on both sides, for opposite surfaces. This repo gained both headers when gap C2 closed
+      (commit 769292d7): it serves an admin session worth fencing, so cross-origin isolation costs nothing
+      and closes a recommended-header gap. awcms-astro is a TEMPLATE serving public navigation pages with no
+      session to fence; CORP there is explicitly REJECTED ("blocking other sites from embedding this site's
+      images is not a template's decision to make" — its ADR-0028 rejected-controls list), and COOP has no
+      surface to protect. A derived site that wants either adds it by ADR in its own repo. Recorded here
+      because the difference now points the OPPOSITE way from every earlier one (this repo ahead, the
+      template behind by choice) — precisely the shape that gets "fixed" toward parity by someone without
+      the context (gap C15).
+    owner: "@ahliweb"
+    reviewDate: "2027-02-04"
+    adr: 0069-cross-origin-isolation-divergence-with-awcms-astro.md
+    since: "2026-08-05"
+
+  - id: admin-user-surface-in-awcms-astro
+    summary: ADR-0051 AS WRITTEN said every admin screen is built here; ADR-0070 narrows it to SYSTEM screens — awcms-astro may carry a USER admin surface (never `owner`) when a site declares one.
+    reason: >-
+      Recorded at the other repo's written request — awcms-astro ADR-0034 §Hubungan states the difference
+      and then says plainly "Repo ini tidak bisa menulisnya sendiri". ADR-0070 narrows ADR-0051 rather than
+      superseding it: the axis moves from AUDIENCE (tenant vs owner/internal/platform) to WHAT IS MANAGED.
+      SYSTEM admin — modules, roles, tenants, audit trail, anything cross-tenant — stays here under one
+      `/admin/*` shell, and all three of ADR-0051's replacement gates are unchanged. USER admin — a signed-in
+      person doing their own work on ONE site (write a post, submit it for review, manage their own profile)
+      — may live in awcms-astro, and only when that site declares it via `permukaanAdmin`; `owner` is
+      refused by a gate THERE, and nothing may exist only there (every such capability must also be
+      manageable from `/admin/*` here). What makes this safe is ADR-0051's own sentence: what holds a
+      cross-tenant action is the authorization gate, not the address of the repo the button is drawn in.
+      The reviewDate is not asking whether USER admin belongs there — that is decided — but whether the
+      BOUNDARY is still where it was put. A surface that grows one screen a quarter is the most ordinary way
+      a "USER admin" becomes a system admin with nobody deciding it.
+    owner: "@ahliweb"
+    reviewDate: "2027-02-04"
+    adr: 0070-peran-keluarga-awcms-astro-memikul-publik-dan-admin-user.md
+    since: "2026-08-08"
+# A NOTE ON WHAT USED TO BE HERE, kept because it explains the shape above.
+#
+# This list was EMPTIED by ADR-0055, not lost. The NINE entries that lived here
+# recorded how this repo deliberately differed from the awcms-mini standard,
+# each with an owner and a `reviewDate` that turned CI red on expiry.
+#
+# With awcms-mini archived, that review became work whose answer cannot change:
+# it asks whether a difference from a repo nobody develops is still justified.
+# The entries are preserved verbatim as a historical record in
+# `docs/awcms/family-compatibility.md` §Historical divergences, where their ADR
+# links are still verified to exist — by `check:docs`, which fails on a link to
+# a missing file. (That section states the same count; if the two ever disagree,
+# the document is the one holding the entries and wins.)
+#
+# The prediction that closed this comment — "a future contract this repo must
+# diverge from — awcms-astro's, say — would refill it" — CAME TRUE, three times:
+# ADR-0068 (three entries), ADR-0069, and ADR-0070. An empty list is still valid
+# per the schema; it is simply no longer the state.

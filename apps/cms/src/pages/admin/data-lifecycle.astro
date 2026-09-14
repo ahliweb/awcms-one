@@ -1,0 +1,910 @@
+---
+/**
+ * Data lifecycle console — the admin screen for `data_lifecycle` (ADR-0037).
+ * The module shipped its registry / legal-hold / dry-run / run-history API with
+ * no screen at all, so the entire surface was reachable only by `curl`. Under
+ * ADR-0051 every admin screen is built here, and the module's `navigation`
+ * entry lands in this SAME change — an entry without a page is a permanent 404
+ * in the menu, which `tests/admin-navigation-registry.test.ts` enforces in both
+ * directions.
+ *
+ * Reads call the SAME application functions the JSON endpoints use
+ * (`listLegalHolds` / `listLifecycleRuns`) inside ONE `withTenantOrThrow`
+ * transaction, awaited SEQUENTIALLY — concurrent queries on a single
+ * transaction connection leak it. The registry panel needs no query at all: it
+ * is code-declared descriptor metadata (`collectHighVolumeTableDescriptors`),
+ * so it is computed outside the transaction.
+ *
+ * Writes go the other way — to the guarded `/api/v1/data-lifecycle/*`
+ * endpoints. Creating and releasing a hold are both idempotency-keyed and
+ * audited `critical` server-side, so each click mints a FRESH
+ * `Idempotency-Key`. The dry-run POST deliberately carries none: that endpoint
+ * requires no key because it performs no mutation at all (not even a run row),
+ * so sending one would imply a replay contract it does not have.
+ *
+ * ## Why `create` and `release` gate independently
+ *
+ * They are a maker/checker pair — `data_lifecycle.legal_hold_maker_checker` is
+ * a `critical` SoD rule in this module's own descriptor, so a subject holding
+ * BOTH is itself the conflict. The ordinary viewer of this page therefore has
+ * at most one of them, and a screen that gated the create form and the release
+ * control on one shared permission would be wrong for every real operator.
+ * Each control below is gated on exactly the permission its endpoint enforces.
+ *
+ * Every gate here is UX-only — the endpoint's ABAC guard is the authority. The
+ * gates exist so a viewer without a permission gets a clean notice or a hidden
+ * control instead of a form that 403s on submit.
+ */
+import AdminLayout from "../../layouts/AdminLayout.astro";
+import "../../styles/admin-screens.css";
+import { loadAdminScreen } from "../../lib/auth/admin-screen";
+import { logAdminPageError } from "../../lib/logging/error-log";
+import { listModules } from "../../modules";
+import { collectHighVolumeTableDescriptors } from "../../modules/data-lifecycle/domain/lifecycle-registry";
+import { INFRASTRUCTURE_LIFECYCLE_DESCRIPTORS } from "../../modules/data-lifecycle/domain/infrastructure-lifecycle-registry";
+import { getTranslatorFor } from "../../lib/i18n";
+import {
+  listLegalHolds,
+  type LegalHoldRow
+} from "../../modules/data-lifecycle/application/legal-hold-service";
+import {
+  listLifecycleRuns,
+  type LifecycleRunRow
+} from "../../modules/data-lifecycle/application/run-record-store";
+import {
+  MAX_TEXT_FIELD_LENGTH,
+  MIN_REASON_LENGTH
+} from "../../modules/data-lifecycle/domain/legal-hold";
+
+const ssr = Astro.locals.ssrContext;
+const { t } = getTranslatorFor(Astro.locals.locale);
+
+if (!ssr) {
+  throw new Error(
+    "data-lifecycle.astro rendered without Astro.locals.ssrContext — the /admin guard in src/middleware.ts must run first."
+  );
+}
+
+// Code-declared metadata, identical for every tenant — the same values
+// `GET /api/v1/data-lifecycle/registry` returns. Computed unconditionally
+// because it touches nothing but the module registry; it is only RENDERED, and
+// only offered as a picker, under `registry.read` (below).
+const descriptors = collectHighVolumeTableDescriptors(listModules());
+
+// ADR-0076 — one table, two kinds of owner. Rendering them in separate
+// sections was the first shape and it was worse: an operator scanning for "is
+// this table covered?" would have to know which of the two lists to look in,
+// which is the same question the ledger could not answer before this landed.
+// One list with an OWNER column answers it by reading.
+const registryRows = [
+  ...descriptors.map((descriptor) => ({
+    descriptor,
+    owner: descriptor.ownerModuleKey,
+    ownerKind: "module"
+  })),
+  ...INFRASTRUCTURE_LIFECYCLE_DESCRIPTORS.map((descriptor) => ({
+    descriptor,
+    owner: descriptor.ownerPath,
+    ownerKind: "infrastructure"
+  }))
+];
+const tenantDescriptors = registryRows.filter(
+  (row) => row.descriptor.scope === "tenant"
+);
+// Legal holds may target either registry, so the picker must offer both — an
+// infrastructure descriptor declaring `legalHold.applicable: true` that the
+// console cannot name would be enforcement nobody can reach.
+const holdTargetKeys = registryRows.map((row) => row.descriptor.key);
+
+// Issue #450 — the entry decision and the reads share ONE transaction, and the
+// decision is the chokepoint's.
+//
+// ANY-OF over FIVE requests, and note that two of them are WRITES
+// (`legal_hold.create`, `plan.analyze`). That is what `showAnything` has always
+// been: this console admits anyone who can do anything here, including someone
+// who may place a hold without being able to list existing ones. Trimming the
+// list to the three reads would have quietly locked those operators out, so it
+// is ported exactly.
+const screen = await loadAdminScreen({
+  ssr,
+  workClass: "interactive",
+  authorize: [
+    { moduleKey: "data_lifecycle", activityCode: "registry", action: "read" },
+    { moduleKey: "data_lifecycle", activityCode: "legal_hold", action: "read" },
+    {
+      moduleKey: "data_lifecycle",
+      activityCode: "legal_hold",
+      action: "create"
+    },
+    { moduleKey: "data_lifecycle", activityCode: "plan", action: "analyze" },
+    { moduleKey: "data_lifecycle", activityCode: "runs", action: "read" }
+  ],
+  load: async ({ tx, can, entry }) => {
+    const [
+      readRegistry = false,
+      readHolds = false,
+      createHold = false,
+      plan = false,
+      readRuns = false
+    ] = entry;
+
+    // One transaction, one awaited query at a time. Concurrent queries on a
+    // single transaction connection leak it, so nothing here runs in parallel.
+    return {
+      readRegistry,
+      readHolds,
+      createHold,
+      plan,
+      readRuns,
+      holds: readHolds ? await listLegalHolds(tx, ssr.tenantId) : [],
+      runs: readRuns ? await listLifecycleRuns(tx, ssr.tenantId) : [],
+      canReleaseHold: await can({
+        moduleKey: "data_lifecycle",
+        activityCode: "legal_hold",
+        action: "release"
+      })
+    };
+  },
+  onError: (error) => {
+    logAdminPageError(
+      "admin/data-lifecycle.astro: failed to load console",
+      error,
+      { correlationId: Astro.locals.correlationId }
+    );
+  }
+});
+
+const showAnything = screen.state !== "denied";
+const loadError = screen.state === "error";
+const canReadRegistry = screen.state === "allowed" && screen.data.readRegistry;
+const canReadHolds = screen.state === "allowed" && screen.data.readHolds;
+const canCreateHold = screen.state === "allowed" && screen.data.createHold;
+const canPlan = screen.state === "allowed" && screen.data.plan;
+const canReadRuns = screen.state === "allowed" && screen.data.readRuns;
+const canReleaseHold = screen.state === "allowed" && screen.data.canReleaseHold;
+const holds: LegalHoldRow[] =
+  screen.state === "allowed" ? screen.data.holds : [];
+const runs: LifecycleRunRow[] =
+  screen.state === "allowed" ? screen.data.runs : [];
+
+/** `2026-08-01T03:18:38.929Z` -> `2026-08-01 03:18` (UTC, no locale dependency). */
+function formatTimestamp(value: Date | string | null): string {
+  if (!value) return "—";
+  const parsed = value instanceof Date ? value : new Date(value);
+  if (Number.isNaN(parsed.getTime())) return "—";
+  return parsed.toISOString().replace("T", " ").slice(0, 16);
+}
+
+/** Run status -> the shared `.status-badge` variant vocabulary. */
+function runStatusVariant(status: string): string {
+  if (status === "completed") return "success";
+  if (status === "failed") return "danger";
+  if (status === "partial") return "warning";
+  return "neutral";
+}
+
+const activeHoldCount = holds.filter((hold) => hold.status === "active").length;
+
+// A tenant-wide hold (`descriptorKey === null`) blocks purge for EVERY
+// descriptor, so it is worth stating plainly rather than leaving the reader to
+// infer it from an em dash in a table cell.
+const hasTenantWideHold = holds.some(
+  (hold) => hold.status === "active" && hold.descriptorKey === null
+);
+---
+
+<AdminLayout title={t("Data lifecycle")}>
+  <Fragment slot="page-description"
+    >{
+      t(
+        "Retention, archive and purge for the high-volume tables each module declares \u2014 plus the legal holds that override them. Real archive and purge run only as the scheduled"
+      )
+    }<code>{t("data-lifecycle:archive-purge")}</code>{
+      t("job; this screen plans, records and holds, it never deletes.")
+    }</Fragment
+  >
+
+  {
+    !showAnything && (
+      <p class="state-notice fade-in-up" id="data-lifecycle-denied">
+        {t("You do not have permission to view the data lifecycle console.")}
+      </p>
+    )
+  }
+
+  {
+    loadError && (
+      <p class="state-notice fade-in-up" id="data-lifecycle-error">
+        {t(
+          "The data lifecycle console could not be loaded right now. Please try again later."
+        )}
+      </p>
+    )
+  }
+
+  <p
+    id="data-lifecycle-action-error"
+    class="admin-create-error"
+    role="alert"
+    hidden
+  >
+  </p>
+
+  {
+    canReadHolds && (
+      <section class="admin-section fade-in-up" id="data-lifecycle-summary">
+        <h2 class="admin-section-title">{t("Holds in force")}</h2>
+        <div class="stat-grid stagger-children">
+          <div class="stat-card">
+            <span class="stat-label">{t("Active legal holds")}</span>
+            <span class="stat-value">{activeHoldCount}</span>
+            {hasTenantWideHold && (
+              <span class="stat-hint">
+                {t("One or more cover every table")}
+              </span>
+            )}
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">{t("Registered tables")}</span>
+            <span class="stat-value">{registryRows.length}</span>
+            <span class="stat-hint">
+              {t("{count} tenant-scoped", { count: tenantDescriptors.length })}
+            </span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">{t("Recorded runs")}</span>
+            <span class="stat-value">{canReadRuns ? runs.length : "—"}</span>
+            <span class="stat-hint">{t("Newest 100")}</span>
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  {
+    canReadRegistry && (
+      <section class="admin-section fade-in-up" id="data-lifecycle-registry">
+        <h2 class="admin-section-title">
+          {t("Lifecycle registry")}
+          <span class="count-pill">{registryRows.length}</span>
+        </h2>
+        <p class="page-description">
+          {t("Declared by each owning module in its own")}
+          <code>{t("module.ts")}</code>
+          {t(", or \u2014 for a table owned by")}
+          <code>{t("src/lib/")}</code>
+          {t(
+            "infrastructure with no module to declare it \u2014 in the infrastructure registry (ADR-0076). Code, not tenant configuration. Nothing here reveals row contents or live counts."
+          )}
+        </p>
+        <div class="data-table-scroll">
+          <table class="data-table data-table--stack">
+            <caption class="sr-only">
+              {t("Every registered high-volume table descriptor")}
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">{t("Descriptor")}</th>
+                <th scope="col">{t("Table")}</th>
+                <th scope="col">{t("Owner")}</th>
+                <th scope="col">{t("Scope")}</th>
+                <th scope="col">{t("Retention (days)")}</th>
+                <th scope="col">{t("Execution")}</th>
+                <th scope="col">{t("Archive")}</th>
+                <th scope="col">{t("Deletion")}</th>
+                <th scope="col">{t("Legal hold")}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {registryRows.map(({ descriptor, owner, ownerKind }) => (
+                <tr>
+                  <td data-label="Descriptor">
+                    <span class="cell-code">{descriptor.key}</span>
+                  </td>
+                  <td data-label="Table">
+                    <span class="cell-code">{descriptor.tableName}</span>
+                  </td>
+                  <td data-label="Owner">
+                    <span class="cell-code">{owner}</span>
+                    {ownerKind === "infrastructure" && (
+                      <span class="cell-muted">{t("(infrastructure)")}</span>
+                    )}
+                  </td>
+                  <td data-label="Scope">{descriptor.scope}</td>
+                  <td data-label="Retention (days)">
+                    {descriptor.defaultRetentionDays}
+                    <span class="cell-muted">
+                      {" "}
+                      ({descriptor.retentionMinDays}–
+                      {descriptor.retentionMaxDays})
+                    </span>
+                  </td>
+                  <td data-label="Execution">{descriptor.executionMode}</td>
+                  <td data-label="Archive">
+                    {descriptor.archive.archivable
+                      ? descriptor.archive.format
+                      : "no"}
+                  </td>
+                  <td data-label="Deletion">{descriptor.deletion.mode}</td>
+                  <td data-label="Legal hold">
+                    {descriptor.legalHold.applicable ? (
+                      <span class="status-badge" data-variant="info">
+                        <span class="status-dot" aria-hidden="true" />
+                        {descriptor.legalHold.precedence}
+                      </span>
+                    ) : (
+                      <span class="cell-muted">{t("not applicable")}</span>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+    )
+  }
+
+  {
+    canPlan && (
+      <section class="admin-section fade-in-up" id="data-lifecycle-plan">
+        <h2 class="admin-section-title">{t("Dry-run plan")}</h2>
+        <p class="page-description">
+          {t(
+            "Counts what a purge WOULD do for one tenant-scoped table, right now. Read-only by construction: it writes nothing, not even a run record, and an active legal hold is applied before anything is reported purgeable."
+          )}
+        </p>
+        <form id="data-lifecycle-plan-form" class="admin-create-form">
+          <p
+            id="data-lifecycle-plan-error"
+            class="admin-create-error"
+            role="alert"
+            hidden
+          />
+
+          <label for="plan-descriptor-key">
+            {t("Table")}
+            {canReadRegistry ? (
+              <select id="plan-descriptor-key" name="descriptorKey" required>
+                {tenantDescriptors.map((descriptor) => (
+                  <option value={descriptor.key}>{descriptor.key}</option>
+                ))}
+              </select>
+            ) : (
+              /* Without `registry.read` the descriptor list is not this
+                 viewer's to see (it is what the registry endpoint gates), so
+                 the picker degrades to free text and the server validates the
+                 key — rather than this screen handing out the catalogue. */
+              <input
+                type="text"
+                id="plan-descriptor-key"
+                name="descriptorKey"
+                placeholder="module_key.table_shortname"
+                required
+              />
+            )}
+          </label>
+
+          <label for="plan-retention-override">
+            {t("Retention override (days, optional)")}
+            <input
+              type="number"
+              id="plan-retention-override"
+              name="retentionDaysOverride"
+              min="0"
+              placeholder="Descriptor default"
+            />
+          </label>
+
+          <button
+            type="submit"
+            id="data-lifecycle-plan-submit"
+            class="module-toggle"
+          >
+            {t("Run plan")}
+          </button>
+        </form>
+
+        <div id="data-lifecycle-plan-result" hidden>
+          <div class="stat-grid stagger-children">
+            <div class="stat-card">
+              <span class="stat-label">{t("Cutoff")}</span>
+              <span
+                class="stat-value stat-value--mono"
+                id="plan-result-cutoff"
+              />
+              <span class="stat-hint">
+                {t("UTC \u2014 rows older than this")}
+              </span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-label">{t("Eligible")}</span>
+              <span class="stat-value" id="plan-result-eligible" />
+            </div>
+            <div class="stat-card">
+              <span class="stat-label">{t("Held")}</span>
+              <span class="stat-value" id="plan-result-held" />
+              <span class="stat-hint">{t("Withheld by a legal hold")}</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-label">{t("Already archived")}</span>
+              <span class="stat-value" id="plan-result-archived" />
+            </div>
+            <div class="stat-card">
+              <span class="stat-label">{t("Purgeable")}</span>
+              <span class="stat-value" id="plan-result-purgeable" />
+            </div>
+            <div class="stat-card">
+              <span class="stat-label">{t("Blocked")}</span>
+              <span class="stat-value" id="plan-result-blocked" />
+            </div>
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  {
+    canCreateHold && (
+      <section class="admin-section fade-in-up" id="data-lifecycle-create-hold">
+        <h2 class="admin-section-title">{t("Place a legal hold")}</h2>
+        <p class="page-description">
+          {t(
+            "A hold overrides ordinary retention and purge and cannot be bypassed by tenant policy. Leave the table unset for a tenant-wide hold that covers every registered table. Both the reason and the authority reference are recorded as the evidence that later justifies withholding this data."
+          )}
+        </p>
+        <form id="data-lifecycle-hold-form" class="admin-create-form">
+          <p
+            id="data-lifecycle-hold-error"
+            class="admin-create-error"
+            role="alert"
+            hidden
+          />
+
+          <label for="hold-descriptor-key">
+            {t("Table (optional)")}
+            {canReadRegistry ? (
+              <select id="hold-descriptor-key" name="descriptorKey">
+                <option value="">{t("Every table (tenant-wide)")}</option>
+                {holdTargetKeys.map((key) => (
+                  <option value={key}>{key}</option>
+                ))}
+              </select>
+            ) : (
+              <input
+                type="text"
+                id="hold-descriptor-key"
+                name="descriptorKey"
+                placeholder="Leave empty for a tenant-wide hold"
+              />
+            )}
+          </label>
+
+          <label for="hold-scope-description">
+            {t("Scope")}
+            <input
+              type="text"
+              id="hold-scope-description"
+              name="scopeDescription"
+              maxlength={MAX_TEXT_FIELD_LENGTH}
+              placeholder="What the hold covers, in words"
+              required
+            />
+          </label>
+
+          <label for="hold-reason">
+            {t("Reason")}
+            <textarea
+              id="hold-reason"
+              name="reason"
+              rows="3"
+              minlength={MIN_REASON_LENGTH}
+              maxlength={MAX_TEXT_FIELD_LENGTH}
+              required
+            />
+          </label>
+
+          <label for="hold-authority-reference">
+            {t("Authority reference")}
+            <input
+              type="text"
+              id="hold-authority-reference"
+              name="authorityReference"
+              maxlength={MAX_TEXT_FIELD_LENGTH}
+              placeholder="Court order or regulator reference number"
+              required
+            />
+          </label>
+
+          <label for="hold-ends-at">
+            {t("Ends at (optional)")}
+            <input type="date" id="hold-ends-at" name="endsAt" />
+          </label>
+
+          <button
+            type="submit"
+            id="data-lifecycle-hold-submit"
+            class="module-toggle"
+          >
+            {t("Place hold")}
+          </button>
+        </form>
+      </section>
+    )
+  }
+
+  {
+    canReadHolds && (
+      <section class="admin-section fade-in-up" id="data-lifecycle-holds">
+        <h2 class="admin-section-title">
+          {t("Legal holds")}
+          <span class="count-pill">{holds.length}</span>
+        </h2>
+        <div class="data-table-scroll">
+          <table class="data-table data-table--stack">
+            <caption class="sr-only">
+              {t("Legal holds for this tenant, newest first")}
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">{t("Status")}</th>
+                <th scope="col">{t("Table")}</th>
+                <th scope="col">{t("Scope")}</th>
+                <th scope="col">{t("Authority")}</th>
+                <th scope="col">{t("Started")}</th>
+                <th scope="col">{t("Ends")}</th>
+                <th scope="col">{t("Detail")}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {holds.length === 0 && (
+                <tr>
+                  <td class="data-table-empty" colspan={7}>
+                    <div class="empty-state">
+                      <span class="empty-state-icon" aria-hidden="true">
+                        ✓
+                      </span>
+                      <span class="empty-state-title">
+                        {t("No legal holds")}
+                      </span>
+                      <span class="empty-state-text">
+                        {t(
+                          "Ordinary retention applies to every registered table."
+                        )}
+                      </span>
+                    </div>
+                  </td>
+                </tr>
+              )}
+              {holds.map((hold) => (
+                <tr>
+                  <td data-label="Status">
+                    <span
+                      class="status-badge"
+                      data-variant={
+                        hold.status === "active" ? "warning" : "neutral"
+                      }
+                    >
+                      <span class="status-dot" aria-hidden="true" />
+                      {hold.status}
+                    </span>
+                  </td>
+                  <td data-label="Table">
+                    {hold.descriptorKey ? (
+                      <span class="cell-code">{hold.descriptorKey}</span>
+                    ) : (
+                      <span class="cell-muted">{t("Every table")}</span>
+                    )}
+                  </td>
+                  <td data-label="Scope">{hold.scopeDescription}</td>
+                  <td data-label="Authority">{hold.authorityReference}</td>
+                  <td data-label="Started">
+                    <span class="cell-code">
+                      {formatTimestamp(hold.startsAt)}
+                    </span>
+                  </td>
+                  <td data-label="Ends">
+                    <span class="cell-code">
+                      {formatTimestamp(hold.endsAt)}
+                    </span>
+                  </td>
+                  <td data-label="Detail">
+                    {/* Reason and release reason are operator-authored text,
+                        rendered as escaped TEXT inside `<details>` — never as
+                        HTML — the same treatment the audit-trail viewer gives
+                        its payloads. */}
+                    <details>
+                      <summary>{t("Reason")}</summary>
+                      <p>{hold.reason}</p>
+                      {hold.releaseReason && (
+                        <p>
+                          <strong>{t("Released:")}</strong> {hold.releaseReason}
+                        </p>
+                      )}
+                    </details>
+
+                    {canReleaseHold && hold.status === "active" && (
+                      <details class="hold-release">
+                        <summary>{t("Release")}</summary>
+                        <form
+                          class="admin-create-form"
+                          data-release-form
+                          data-hold-id={hold.id}
+                        >
+                          <label for={`release-reason-${hold.id}`}>
+                            {t("Release reason")}
+                            <textarea
+                              id={`release-reason-${hold.id}`}
+                              name="releaseReason"
+                              rows="2"
+                              minlength={MIN_REASON_LENGTH}
+                              maxlength={MAX_TEXT_FIELD_LENGTH}
+                              required
+                            />
+                          </label>
+                          <button
+                            type="submit"
+                            class="btn-inline btn-inline--danger"
+                          >
+                            {t("Release hold")}
+                          </button>
+                        </form>
+                      </details>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+    )
+  }
+
+  {
+    canReadRuns && (
+      <section class="admin-section fade-in-up" id="data-lifecycle-runs">
+        <h2 class="admin-section-title">
+          {t("Run history")}
+          <span class="count-pill">{runs.length}</span>
+        </h2>
+        <p class="page-description">
+          {t(
+            "Aggregate counts only \u2014 what the scheduled job planned, archived or purged, and when. This history is itself retention evidence."
+          )}
+        </p>
+        <div class="data-table-scroll">
+          <table class="data-table data-table--stack">
+            <caption class="sr-only">
+              {t("The most recent lifecycle runs, newest first")}
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">{t("Finished")}</th>
+                <th scope="col">{t("Descriptor")}</th>
+                <th scope="col">{t("Type")}</th>
+                <th scope="col">{t("Status")}</th>
+                <th scope="col">{t("Eligible")}</th>
+                <th scope="col">{t("Held")}</th>
+                <th scope="col">{t("Archived")}</th>
+                <th scope="col">{t("Purged")}</th>
+                <th scope="col">{t("Errors")}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {runs.length === 0 && (
+                <tr>
+                  <td class="data-table-empty" colspan={9}>
+                    <div class="empty-state">
+                      <span class="empty-state-icon" aria-hidden="true">
+                        ⌛
+                      </span>
+                      <span class="empty-state-title">
+                        {t("No runs recorded")}
+                      </span>
+                      <span class="empty-state-text">
+                        {t(
+                          "The archive/purge job has not run for this tenant yet."
+                        )}
+                      </span>
+                    </div>
+                  </td>
+                </tr>
+              )}
+              {runs.map((run) => (
+                <tr>
+                  <td data-label="Finished">
+                    <span class="cell-code">
+                      {formatTimestamp(run.finishedAt)}
+                    </span>
+                  </td>
+                  <td data-label="Descriptor">
+                    <span class="cell-code">{run.descriptorKey}</span>
+                  </td>
+                  <td data-label="Type">{run.runType}</td>
+                  <td data-label="Status">
+                    <span
+                      class="status-badge"
+                      data-variant={runStatusVariant(run.status)}
+                    >
+                      <span class="status-dot" aria-hidden="true" />
+                      {run.status}
+                    </span>
+                  </td>
+                  <td data-label="Eligible">{run.eligibleCount}</td>
+                  <td data-label="Held">{run.heldCount}</td>
+                  <td data-label="Archived">{run.archivedCount}</td>
+                  <td data-label="Purged">{run.purgedCount}</td>
+                  <td data-label="Errors">
+                    {run.errorCount > 0 ? (
+                      run.errorCount
+                    ) : (
+                      <span class="cell-muted">—</span>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+    )
+  }
+</AdminLayout>
+
+<script>
+  // Bound unconditionally: every control only renders when its permission gate
+  // passed server-side, so the lookups find nothing for a viewer who lacks it
+  // and no listener fires. Astro hoists this script at build time, so a
+  // conditional wrapper would be meaningless.
+  //
+  // The import is deliberate and load-bearing for CSP: an import-free script is
+  // INLINED by Astro, and inline scripts are blocked by this app's
+  // `default-src 'self'` policy. See admin-form-client.ts.
+  import {
+    blankToNull,
+    field,
+    lockElement,
+    messageBox,
+    mutateAndReload,
+    onSubmitAll,
+    onSubmit,
+    sendJson,
+    sendJsonForData
+  } from "../../lib/ui/admin-form-client";
+
+  const actionError = messageBox("data-lifecycle-action-error");
+  const planError = messageBox("data-lifecycle-plan-error");
+  const holdError = messageBox("data-lifecycle-hold-error");
+
+  function setPlanField(id: string, value: unknown): void {
+    const element = document.getElementById(id);
+    if (!element) return;
+    element.textContent =
+      typeof value === "number" || typeof value === "string"
+        ? String(value)
+        : "—";
+  }
+
+  const planResult = document.getElementById("data-lifecycle-plan-result");
+
+  /**
+   * The dry run is the one control here that is NOT `mutateAndReload`: its
+   * response BODY is the point, and there is nothing to reload because it
+   * mutates nothing — not even a run row. That is also why it sends no
+   * `Idempotency-Key`: the endpoint requires none, and sending one would imply
+   * a replay contract it does not have. Every value rendered goes out through
+   * `textContent`, never `innerHTML`.
+   */
+  onSubmit("data-lifecycle-plan-form", async ({ data, submit }) => {
+    if (!submit) return;
+    planError.clear();
+    const unlock = lockElement(submit, "Planning…");
+
+    const override = field(data, "retentionDaysOverride");
+
+    const result = await sendJsonForData<{ plan?: Record<string, unknown> }>(
+      "POST",
+      "/api/v1/data-lifecycle/dry-run",
+      {
+        descriptorKey: field(data, "descriptorKey"),
+        // Omitted rather than sent as null when blank: the endpoint reads it as
+        // "override present" only for a number, and the descriptor default is
+        // what an empty field means.
+        ...(override === "" ? {} : { retentionDaysOverride: Number(override) })
+      }
+    );
+
+    const plan = result.data?.plan;
+
+    if (result.ok && plan) {
+      const cutoff = plan.cutoffAt;
+      setPlanField(
+        "plan-result-cutoff",
+        typeof cutoff === "string" ? cutoff.replace("T", " ").slice(0, 16) : "—"
+      );
+      setPlanField("plan-result-eligible", plan.eligibleCount);
+      setPlanField("plan-result-held", plan.heldCount);
+      setPlanField("plan-result-archived", plan.archivedCount);
+      setPlanField("plan-result-purgeable", plan.purgeableCount);
+      setPlanField("plan-result-blocked", plan.blockedCount);
+      if (planResult) planResult.hidden = false;
+      unlock();
+      return;
+    }
+
+    if (planResult) planResult.hidden = true;
+    planError.show(
+      result.errorCode === "NOT_FOUND"
+        ? "That table is not a registered lifecycle descriptor."
+        : result.errorCode === "VALIDATION_ERROR"
+          ? "Check the table key and the retention override, then try again."
+          : "Could not run the plan. Please try again."
+    );
+    unlock();
+  });
+
+  onSubmit("data-lifecycle-hold-form", async ({ data, submit }) => {
+    const endsAt = field(data, "endsAt");
+
+    await mutateAndReload(
+      submit,
+      holdError,
+      () =>
+        sendJson(
+          "POST",
+          "/api/v1/data-lifecycle/legal-holds",
+          {
+            // Empty means a TENANT-WIDE hold, which the API models as null —
+            // not as an empty string, which fails the descriptor-key grammar.
+            descriptorKey: blankToNull(field(data, "descriptorKey")),
+            scopeDescription: String(data.get("scopeDescription") ?? ""),
+            reason: String(data.get("reason") ?? ""),
+            authorityReference: String(data.get("authorityReference") ?? ""),
+            endsAt: endsAt === "" ? null : new Date(endsAt).toISOString()
+          },
+          { "Idempotency-Key": crypto.randomUUID() }
+        ),
+      (errorCode) =>
+        errorCode === "VALIDATION_ERROR"
+          ? "Check the scope, reason and authority reference, then try again."
+          : "Could not place the hold. Please try again.",
+      "Placing…"
+    );
+  });
+
+  // One release form per hold, so this is delegated rather than bound by id.
+  onSubmitAll("form[data-release-form]", async ({ form, data, submit }) => {
+    const holdId = form.dataset.holdId;
+    if (!holdId) return;
+
+    // Releasing ends the protection a hold exists to provide, and the action is
+    // audited `critical` — confirm before it goes out.
+    if (
+      !window.confirm(
+        "Release this legal hold? Ordinary retention and purge resume for what it covered."
+      )
+    ) {
+      return;
+    }
+
+    await mutateAndReload(
+      submit,
+      actionError,
+      () =>
+        sendJson(
+          "POST",
+          `/api/v1/data-lifecycle/legal-holds/${encodeURIComponent(holdId)}/release`,
+          { releaseReason: String(data.get("releaseReason") ?? "") },
+          { "Idempotency-Key": crypto.randomUUID() }
+        ),
+      (errorCode) =>
+        errorCode === "VALIDATION_ERROR"
+          ? "The release reason must be at least ten characters."
+          : errorCode === "ALREADY_RELEASED"
+            ? "That hold has already been released."
+            : "Could not release the hold. Please try again.",
+      "Releasing…"
+    );
+  });
+</script>

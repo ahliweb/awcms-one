@@ -1,0 +1,1141 @@
+import { defineModule } from "../_shared/module-contract";
+
+export const blogContentModule = defineModule({
+  key: "blog_content",
+  name: "Blog Content",
+  version: "0.12.0",
+  status: "active",
+  description:
+    "Tenant-scoped blog/content management, ported from awcms-mini (epic #536, issues #537-#543 plus the later #636-#649/#681 hardening lineage — see README.md for the full port-adaptation notes). Admin CRUD + lifecycle for posts/pages (draft -> review -> scheduled/published -> archived, soft delete/restore/purge), hierarchical categories/tags with post-term relations, PostgreSQL full-text search, append-only revision history (restore never overwrites, it appends a new revision), presentation/monetization extensions (templates, hierarchical menus, position-based widgets, advertisements with placement targeting/scheduling, a per-tenant theme override falling back to `awcms_tenants.default_theme`), an optional `translation_group_id` linking locale-variants of one post, a whitelisted `gallery`/`video_news` content_json block type (no raw HTML, no new media table), per-tenant blog settings (title/description/RSS/sitemap flags), and automatic internal tag linking (a pure render-time transform, `domain/internal-tag-linking.ts`, gated by a deployment-wide config plus a per-tenant policy table and a per-post opt-out column). Public (anonymous) routes under `/blog/{tenantCode}/...` per ADR-0009 (index, post detail, category/tag archive, search, RSS feed, sitemap) reuse the `resolvePublicTenantByCode` resolver theming's own public preview route already established in this base. ADR-0059 had added a SECOND, host-resolved public family `/news/**` (index, post detail, category archive, tag archive) with its own `withHostResolvedBlogTenant` gate and a `publicRouteMode` switch; ADR-0071 supersedes it and this module serves ONE public family again. `/blog/**` is this repo's permanent public vocabulary and `/news/**` belongs to `ahliweb/awcms-astro`, so the four routes, the gate, and the switch are gone — `seo_distribution` 301s the retired family to `/blog/{tenantCode}/**` for any tenant that still serves it, because those URLs were live and advertised in sitemaps and feeds this repo published. `legacyTenantRouteEnabled` survives as the single switch for the `/blog/{tenantCode}` family. The archived `publicBasePath`/`publicLabel` settings keys are NOT adopted — they change only the links a page emits and cannot repoint the file-based route that serves, which is a per-tenant generator of URLs that 404. The managed-media-reference enforcement (Issue #636/#639/#640/#649, gated by the `media_library` capability below — ADR-0036 ownership inversion; formerly `news_media`) and the publish-time social-publishing outbox trigger (Issue #643, gated by the `social_publishing` capability below) both consume a REQUIRED port parameter at their call sites. The media gate now injects `media_library`'s real adapter (`media-library/application/media-library-port-adapter.ts`) at every composition root: managed-media enforcement reports inactive (a safe no-op) for any tenant that has not enabled it, and enabling it no longer requires a news portal. `social_publishing` is still not ported to this base, so its call sites inject this module's own no-op adapter (`application/social-publishing-port-noop-adapter.ts`), which always reports `{ jobsCreated: 0 }`. Swapping in a real social-publishing adapter is a pure composition-root change (no `blog_content` file touched) once that module is ported. ADR-0044 MERGE: the `news_portal` module is retired and its two surviving features are absorbed here — the editorial homepage section composer (`GET/POST /api/v1/news-portal/homepage-sections`, `PATCH/DELETE .../{id}`, `awcms_news_portal_homepage_sections`, migration 044) and R2-only advertisement placements (`GET/POST /api/v1/news-portal/ad-placements`, `PATCH/DELETE .../{id}`, `awcms_news_portal_ad_placements`, migration 045, every row holding a real FK to a verified media object). Table names and API paths are deliberately UNCHANGED (ADR-0044 §3/§6, following ADR-0036's precedent of not renaming `awcms_news_media_objects` when its ownership moved): a rename costs every foreign key, policy, index, and consumer while buying nothing that the descriptor and inventory do not already record. The `public_content` capability this module PROVIDES was `news_portal`'s only reason to consume it, so that consumption is now an internal call; the capability itself stays declared because `seo_distribution` and future consumers still read it. Dropped in the same change, not absorbed: `awcms_news_portal_tenant_state` (migration 043) and its read helper, which had no writer in this base — the preset ACTIVATION path that would have written it was never ported, and managed-media enforcement is turned on per tenant by `media_library`'s `POST /api/v1/media/enforcement` instead (`sql/077` drops the table). The four absorbed permissions (`homepage_sections`/`ad_placements` x `read`/`configure`, seeded under `news_portal` by migrations 044/045) are repointed to this module's key by `sql/076`, which moves every existing role grant before deleting the old catalog rows so no tenant loses the capability. ADR-0044 §4 FASE 2, STEP 1 (`sql/078`): the surviving media-backed ad table gains the targeting the free-URL system had (`target_type` global/widget/post/page + `target_id`), so it can now express everything `awcms_blog_ad_placements` could — the precondition the ADR sets before `awcms_blog_ads` may be dropped. `placement_key` remains the SLOT (where on the page), `target_type`/`target_id` are the SCOPE (which pages); rendering a page returns its own targeted ads UNIONED with every global ad for that slot, which is a deliberate improvement on the retired system's exact-scope match. The pairing rule (`target_id` required for a scoped type, forbidden for `global`) is a database CHECK, not application-only as the retired table left it, and the polymorphic `target_id` is existence-checked at write time by `application/ad-placement-reference-validation.ts` since no foreign key can span three tables. Migration 078 deliberately moves NO data and drops NO table: the ingest of `awcms_blog_ads.image_url` into `media_library` (with a dry-runnable residue report) and the drop of both legacy tables are separate, later steps, in that order.",
+  // `module_management` + `logging` are real value imports this module
+  // already makes — `application/public-route-settings.ts` calls
+  // `module_management`'s tenant-module/settings helpers, and
+  // `application/blog-scheduled-publish.ts` calls `logging`'s
+  // `recordAuditEvent`. Declaring them keeps `modules:dag:check` acyclic
+  // (both are foundation modules that never depend back on `blog_content`).
+  dependencies: [
+    "tenant_admin",
+    "identity_access",
+    "module_management",
+    "logging"
+  ],
+  type: "domain",
+  // This module PROVIDES the `public_content` capability
+  // (`_shared/ports/public-content-port.ts`, implemented by
+  // `application/public-content-port-adapter.ts`) for `news_portal`'s homepage
+  // section composer to consume, and CONSUMES (both `optional: true`)
+  // `media_library`'s `media_library` capability and `social_publishing`'s own
+  // `social_publishing` capability. Neither direction is a `dependencies` edge
+  // (capabilities document a SOURCE-LEVEL relationship, not a lifecycle-ordering
+  // constraint).
+  //
+  // ADR-0036 ownership inversion: was `news_media` providedBy `news_portal` — the
+  // capability is retired and `media_library` provides its successor. Still
+  // `optional`, and for the same reason as before: the media gate safely no-ops
+  // when managed-media enforcement is not active for the tenant. What changed is
+  // that enforcement no longer requires a news portal to exist — the real
+  // `media_library` adapter (`media-library/application/media-library-port-adapter.ts`)
+  // is injected at every composition root. `social_publishing` is still not
+  // ported to this base, so its call sites inject this module's own no-op adapter
+  // (`application/social-publishing-port-noop-adapter.ts`); `optional: true` is
+  // what keeps that safe.
+  capabilities: {
+    // `public_content` (consumed by `news_portal`'s homepage composer) and, as of
+    // ADR-0038 (`seo_distribution` admission, discovery scope), `seo_facts` — the
+    // frozen `_shared/ports/seo-facts-port.ts` contract this module implements in
+    // `application/seo-facts-port-adapter.ts`, mapping an `awcms_blog_posts` row
+    // to the neutral `SeoResourceFacts` the sitemap/feed/robots aggregator
+    // consumes. `blog_content` is the base's single declared `seo_facts` provider
+    // (it owns the public post resources SEO renders); `news_portal` composes those
+    // posts but owns no standalone public resource, so it is not a second provider.
+    provides: ["public_content", "seo_facts"],
+    consumes: [
+      // ADR-0044 flipped this from `optional: true`. Before the merge, this
+      // module's own media handling genuinely degraded safely: managed-media
+      // enforcement reports inactive for a tenant that has not enabled it, and
+      // everything keeps rendering. That is no longer the whole story. The
+      // absorbed ad placements hold a REAL foreign key to a verified media
+      // object (`awcms_news_portal_ad_placements.media_object_id`, migration
+      // 045), which is exactly why `news_portal` declared this capability
+      // non-optional. Absorbing the code has to absorb the constraint too —
+      // leaving it `optional` would silently downgrade a declared guarantee to
+      // match the weaker of the two merged modules.
+      {
+        capability: "media_library",
+        providedBy: "media_library"
+      },
+      {
+        capability: "social_publishing",
+        providedBy: "social_publishing",
+        optional: true
+      }
+    ]
+  },
+  /**
+   * `/admin/blog` is back, in the change that adds the page — which is what
+   * the note that stood here promised.
+   *
+   * The history is worth keeping: this module declared this exact path when it
+   * was ported from awcms-mini, where the page exists. It did not exist here —
+   * the port brought the API and the public routes, not the authoring screens
+   * — and nothing rendered descriptor navigation at the time, so the entry was
+   * invisible while `descriptor-sync` published it to
+   * `awcms_module_navigation` and `GET /api/v1/modules` as a valid item.
+   * `tests/admin-navigation-registry.test.ts` now fails on any entry whose
+   * path has no page, in both directions.
+   *
+   * FIVE entries for fifteen activity codes: the post lifecycle, the page
+   * lifecycle, taxonomy, presentation, and settings. Homepage composition is
+   * the one sibling screen still to come, and it brings its own entry when its
+   * page lands — not before. `tests/admin-blog-page-contract.test.ts` pins the
+   * count, so each arrival is a line someone edits deliberately.
+   *
+   * The pages entry is gated on `pages.read` rather than `posts.read`: they
+   * are separate permissions, and an operator granted one and not the other
+   * must see exactly the screen they can use.
+   */
+  navigation: [
+    {
+      labelKey: "admin.layout.nav_blog",
+      path: "/admin/blog",
+      order: 36,
+      requiredPermission: "blog_content.posts.read"
+    },
+    {
+      labelKey: "admin.layout.nav_blog_pages",
+      path: "/admin/blog-pages",
+      order: 37,
+      requiredPermission: "blog_content.pages.read"
+    },
+    {
+      labelKey: "admin.layout.nav_blog_taxonomy",
+      path: "/admin/blog-taxonomy",
+      order: 38,
+      requiredPermission: "blog_content.taxonomies.read"
+    },
+    {
+      // Its own entry rather than a tab on `/admin/blog-taxonomy`: an
+      // institution is not a term (it carries a branch, a region code and its
+      // own landing SEO), and its five actions are gated on a separate
+      // activity — so an operator holding `taxonomies.read` and nothing else
+      // must not be shown a screen every control of which will 403.
+      labelKey: "admin.layout.nav_blog_institutions",
+      path: "/admin/blog-institutions",
+      order: 39,
+      requiredPermission: "blog_content.institutions.read"
+    },
+    {
+      // Issue #594. Separate from `/admin/blog-presentation` even though both
+      // are "how the site looks": presentation is templates, menus, widgets and
+      // theme — tenant-wide chrome gated on `templates.read` — while this is
+      // TODAY's front page, edited by whoever is on shift. An operator holding
+      // `homepage_sections.*` and nothing else must not be handed a screen whose
+      // every other control 403s, and the reverse holds just as strongly.
+      labelKey: "admin.layout.nav_blog_homepage",
+      path: "/admin/blog-homepage",
+      order: 40,
+      requiredPermission: "blog_content.homepage_sections.read"
+    },
+    {
+      // Issue #594. Not a tab on `/admin/blog-homepage` even though both are
+      // "what appears on the front page": advertising is booked by whoever
+      // sells it, and `ad_placements.*` is a separate activity precisely so
+      // that person needs no authority over editorial curation.
+      labelKey: "admin.layout.nav_blog_ads",
+      path: "/admin/blog-ads",
+      order: 41,
+      requiredPermission: "blog_content.ad_placements.read"
+    },
+    {
+      labelKey: "admin.layout.nav_blog_presentation",
+      path: "/admin/blog-presentation",
+      order: 42,
+      requiredPermission: "blog_content.templates.read"
+    },
+    {
+      // Gated on `settings.read`, not on any of the four above: an operator
+      // may hold blog authoring without holding the tenant's discovery
+      // switches, and `rssEnabled`/`sitemapEnabled` decide whether the feed
+      // and sitemap are served at all.
+      labelKey: "admin.layout.nav_blog_settings",
+      path: "/admin/blog-settings",
+      order: 43,
+      requiredPermission: "blog_content.settings.read"
+    }
+  ],
+  permissions: [
+    { activityCode: "posts", action: "read", description: "Read blog posts" },
+    {
+      activityCode: "posts",
+      action: "create",
+      description: "Create blog posts"
+    },
+    {
+      activityCode: "posts",
+      action: "update",
+      description: "Update blog posts"
+    },
+    {
+      activityCode: "posts",
+      action: "publish",
+      description: "Publish blog posts"
+    },
+    {
+      activityCode: "posts",
+      action: "schedule",
+      description: "Schedule blog posts for future publishing"
+    },
+    {
+      activityCode: "posts",
+      action: "archive",
+      description: "Archive blog posts"
+    },
+    {
+      activityCode: "posts",
+      action: "delete",
+      description: "Soft delete blog posts"
+    },
+    {
+      activityCode: "posts",
+      action: "restore",
+      description: "Restore soft-deleted blog posts"
+    },
+    {
+      activityCode: "posts",
+      action: "purge",
+      description: "Purge soft-deleted blog posts"
+    },
+    // `posts.export` was declared here and seeded by sql/036 with no route, no
+    // application function and no export machinery of any kind. REVOKED by
+    // ADR-0058 §D + sql/089; a real export feature arrives with its own ADR and
+    // its own permission, not on the strength of a row that predates the need.
+    { activityCode: "pages", action: "read", description: "Read blog pages" },
+    {
+      activityCode: "pages",
+      action: "create",
+      description: "Create blog pages"
+    },
+    {
+      activityCode: "pages",
+      action: "update",
+      description: "Update blog pages"
+    },
+    {
+      activityCode: "pages",
+      action: "publish",
+      description: "Publish blog pages"
+    },
+    {
+      activityCode: "pages",
+      action: "archive",
+      description: "Archive blog pages"
+    },
+    {
+      activityCode: "pages",
+      action: "delete",
+      description: "Soft delete blog pages"
+    },
+    {
+      activityCode: "pages",
+      action: "restore",
+      description: "Restore soft-deleted blog pages"
+    },
+    {
+      activityCode: "pages",
+      action: "purge",
+      description: "Purge soft-deleted blog pages"
+    },
+    {
+      activityCode: "taxonomies",
+      action: "read",
+      description: "Read blog categories, tags, channels and topics"
+    },
+    {
+      activityCode: "taxonomies",
+      action: "configure",
+      description:
+        "Create, update, or delete blog categories, tags, channels and topics"
+    },
+    // Institutions are gated separately from `taxonomies` on purpose (sql/132):
+    // an institution owns a public landing page with its own SEO title and
+    // description, so `institutions.update` is the power to rewrite what search
+    // engines index for thirty pages. Folding it into `taxonomies.configure`
+    // would hand that to everyone allowed to fix a tag's spelling, with no
+    // grantable way to separate the two afterwards.
+    {
+      activityCode: "institutions",
+      action: "read",
+      description:
+        "Read this tenant's institution registry (the legislative/executive bodies articles are filed against)"
+    },
+    {
+      activityCode: "institutions",
+      action: "create",
+      description:
+        "Register a new institution, including the slug its public landing page is served at"
+    },
+    {
+      activityCode: "institutions",
+      action: "update",
+      description:
+        "Update an institution — including its landing-page SEO title/description, which changes what search engines index"
+    },
+    {
+      activityCode: "institutions",
+      action: "delete",
+      description:
+        "Soft-delete an institution; its slug is released and its articles keep their other classifications"
+    },
+    {
+      activityCode: "institutions",
+      action: "restore",
+      description: "Restore a soft-deleted institution"
+    },
+    {
+      activityCode: "institutions",
+      action: "purge",
+      description:
+        "Permanently remove a soft-deleted institution and every article link pointing at it — irreversible, audited at critical severity"
+    },
+    {
+      activityCode: "revisions",
+      action: "read",
+      description: "Read blog post/page revision history"
+    },
+    {
+      activityCode: "revisions",
+      action: "restore",
+      description: "Restore a blog post/page revision"
+    },
+    {
+      activityCode: "settings",
+      action: "read",
+      description: "Read blog module settings"
+    },
+    {
+      activityCode: "settings",
+      action: "configure",
+      description: "Update blog module settings"
+    },
+    // `seo.configure` was a SECOND authorisation axis over data
+    // `settings.configure` above already governs: blog SEO defaults are
+    // `seo_default_title`/`seo_default_description` in `awcms_blog_settings`,
+    // written through `PATCH /api/v1/blog/settings`. REVOKED by ADR-0058 §C +
+    // sql/089. Nothing about blog SEO itself changed.
+    {
+      activityCode: "search",
+      action: "read",
+      description: "Search blog posts and pages"
+    },
+    {
+      activityCode: "templates",
+      action: "read",
+      description: "Read blog presentation templates"
+    },
+    {
+      activityCode: "templates",
+      action: "configure",
+      description: "Create, update, or delete blog presentation templates"
+    },
+    {
+      activityCode: "menus",
+      action: "read",
+      description: "Read blog navigation menus"
+    },
+    {
+      activityCode: "menus",
+      action: "configure",
+      description: "Create, update, or delete blog navigation menus"
+    },
+    {
+      activityCode: "widgets",
+      action: "read",
+      description: "Read blog widgets"
+    },
+    {
+      activityCode: "widgets",
+      action: "configure",
+      description: "Create, update, or delete blog widgets"
+    },
+    {
+      activityCode: "ads",
+      action: "read",
+      description: "Read blog advertisements"
+    },
+    {
+      activityCode: "ads",
+      action: "configure",
+      description: "Create, update, or delete blog advertisements"
+    },
+    {
+      activityCode: "theme",
+      action: "read",
+      description: "Read blog theme mode setting"
+    },
+    {
+      activityCode: "theme",
+      action: "configure",
+      description: "Update blog theme mode setting"
+    },
+    // Issue #641 — deliberately separate from `settings.*` (see migration
+    // 050's header comment for why this policy lives in its own dedicated
+    // table/endpoint rather than folded into `awcms_blog_settings`).
+    {
+      activityCode: "internal_links",
+      action: "read",
+      description: "Read automatic internal tag linking settings"
+    },
+    {
+      activityCode: "internal_links",
+      action: "configure",
+      description: "Configure automatic internal tag linking settings"
+    },
+    {
+      activityCode: "internal_links",
+      action: "preview",
+      description:
+        "Preview automatic internal tag links for a post before publishing"
+    },
+    // ADR-0044 — absorbed from the retired `news_portal` module. `sql/044`/
+    // `sql/045` seeded these under `news_portal`; `sql/076` repoints both the
+    // catalog rows and every existing role grant onto this module's key, in
+    // the insert -> repoint -> delete order `sql/052` established, so no tenant
+    // loses the capability. The descriptions here are byte-identical to that
+    // migration's on purpose.
+    {
+      activityCode: "homepage_sections",
+      action: "read",
+      description: "Read editorial homepage section configuration"
+    },
+    {
+      activityCode: "homepage_sections",
+      action: "configure",
+      description:
+        "Create, update, reorder, enable/disable, or delete editorial homepage sections"
+    },
+    {
+      activityCode: "ad_placements",
+      action: "read",
+      description: "Read advertisement placement configuration"
+    },
+    {
+      activityCode: "ad_placements",
+      action: "configure",
+      description:
+        "Create, update, enable/disable, or delete advertisement placements"
+    }
+  ],
+  api: {
+    // ADR-0026: a module points at its OWN fragment, never at the generated
+    // bundle. Pointing at the bundle made this module look like it declared
+    // every other module's surface too, and left
+    // `openapi/modules/blog-content.openapi.yaml` claimed by nobody — which is
+    // how a fragment for the retired `news_portal` module survived ADR-0044.
+    openApiPath: "openapi/modules/blog-content.openapi.yaml",
+    basePath: "/api/v1/blog",
+    // The public path-based tenant routes (ADR-0009) are this module's surface
+    // too; before Issue #256 no descriptor claimed them at all.
+    //
+    // ADR-0044 §6: `/api/v1/news-portal` is claimed here because the merge
+    // moved OWNERSHIP without renaming the paths. Renaming them in the same
+    // change would produce one diff that is reviewable as neither an ownership
+    // move nor an API change, and every consumer would have to absorb both at
+    // once. Consolidating under `/api/v1/blog` is a separate, redirect-carrying
+    // decision.
+    // ADR-0059: `/news` is the HOST-RESOLVED public content family (index,
+    // detail, category, tag) — this module's surface too, resolved from the
+    // request rather than from a `{tenantCode}` path segment.
+    // ADR-0098 (as amended): `/[locale]/blog` is the CANONICAL spelling of the
+    // four reader-facing public surfaces — the bare `/blog` family stays as the
+    // unprefixed alias the middleware `307`s away from, and as the module the
+    // prefixed routes re-export. Both belong to this module; the prefixed one
+    // needs its own claim because `[locale]` is a leading dynamic segment and
+    // no `/blog` prefix can cover it.
+    routes: ["/api/v1/blog", "/blog", "/[locale]/blog", "/api/v1/news-portal"]
+  },
+  // Public search-source contribution to `site_search` (ADR-0040 §3, ported
+  // from awcms-micro Issue #270). Pure DATA — no executable extractor, no SQL:
+  // `site_search`'s generic engine reads `awcms_blog_posts` through this
+  // declarative column mapping + publication filter. The filter is the EXACT
+  // public-visibility predicate this module's own public routes and its
+  // `seo_facts` adapter use (published + public + not soft-deleted + a reached
+  // `published_at`), enforced at the source->index boundary so a
+  // draft/private/deleted/scheduled post is never even read into the index.
+  //
+  // `urlTemplate` carries `:tenantCode` because this base's public post route is
+  // path-tenant-scoped (`/blog/{tenantCode}/{slug}`, ADR-0009) — awcms-micro's
+  // descriptor used host-resolved `/news/:slug`, a route family that is NOT
+  // ported here (see this module's `description`). Blog PAGES are contributed
+  // too since Issue #625, and it took two changes rather than one: Issue #617
+  // gave them a public route, so a hit no longer 404s, and `sql/136` gave
+  // `awcms_worker` the SELECT the reconcile job needs. Registering the
+  // descriptor without that grant would have passed every gate here — the
+  // registry check is pure, no test touches a database — and failed at 03:00 in
+  // a job nobody is watching. `site-search:sources:check` now derives that
+  // requirement from the descriptors themselves, so the next contributor cannot
+  // repeat it.
+  //
+  // This declaration adds NO dependency edge to `site_search`: the arrow points
+  // inward (ADR-0040 §2) — content declares, the aggregator discovers.
+  /**
+   * ADR-0094 wave 2 (Issue #557).
+   *
+   * Published content is the TENANT's, not the author's — a post survives the
+   * person who wrote it, and erasure must not empty the site. So every table
+   * here answers `severed_with_subject_row`: the byline stops resolving to a
+   * person when the identity is anonymised, and the article stays up.
+   *
+   * Only three are exportable, and the line between them is authorship. A post
+   * carries a byline and the author's own words; a menu carries a `deleted_by`
+   * stamp. Exporting the second kind would hand a subject the tenant's whole
+   * content catalogue because they once tidied it.
+   */
+  /**
+   * ADR-0037 (`data_lifecycle`). `blog_content` had no `dataLifecycle` array
+   * until sql/131 added the institution registry: every table it owned before
+   * that predates the rule and sits on the coverage gate's legacy ledger.
+   *
+   * Both descriptors are `delegated` rather than `generic`, and that is the
+   * whole point of them. `generic` is age-only with no status predicate, so it
+   * would delete an institution for being OLD — DPRD Kalteng, created once,
+   * correct ever since, referenced by thousands of archived articles. What
+   * removes a row here is an operator purging one they already soft-deleted,
+   * which is a decision, not an age.
+   */
+  dataLifecycle: [
+    {
+      key: "blog_content.blog_institutions",
+      tableName: "awcms_blog_institutions",
+      ownerModuleKey: "blog_content",
+      scope: "tenant",
+      cursorColumn: "created_at",
+      retentionClass: "system_event",
+      // The window describes how long a SOFT-DELETED institution stays
+      // restorable before an operator may purge it — not how long a live one
+      // lives, which is forever. Wide, because the mistake this protects
+      // against ("we dissolved the wrong body") is often noticed only when an
+      // old article's landing page 404s.
+      retentionMinDays: 30,
+      retentionMaxDays: 3650,
+      defaultRetentionDays: 365,
+      partition: {
+        eligible: false,
+        rationale:
+          "Bounded by how many legislative and executive bodies exist in the tenant's coverage area — thirty for the province this landed for. Partitioning a table that will not reach four figures would add operational surface with nothing to show for it."
+      },
+      archive: {
+        archivable: false,
+        rationale:
+          "The row is a label for a public institution: a name, a branch, a region code and landing-page copy, all of it reconstructible from the tenant's own published pages. Archiving it would preserve nothing that the articles referencing it do not already say."
+      },
+      deletion: {
+        mode: "status_transition_then_purge",
+        rationale:
+          "Exactly the two phases the endpoints implement: DELETE /api/v1/blog/institutions/{id} sets deleted_at (reversible, slug released), then POST .../purge physically removes the row. purgeInstitution refuses a row whose deleted_at IS NULL, so the transition is not merely conventional — it is in the statement's predicate."
+      },
+      legalHold: {
+        applicable: true,
+        precedence: "overrides_retention"
+      },
+      requiredIndexes: [
+        {
+          columns: ["tenant_id"],
+          purpose:
+            "awcms_blog_institutions_tenant_idx (sql/131) — the tenant predicate every read and the purge share."
+        }
+      ],
+      batchLimit: 5000,
+      backupRestoreNotes:
+        "Included in ordinary full-database backup/restore; no standalone archive artifact exists (archive.archivable is false above). A purge is irreversible outside a restore, which is why the endpoint requires a prior soft delete and audits at critical severity.",
+      executionMode: "delegated",
+      existingAdopter: {
+        purgeFunctionRef:
+          "src/modules/blog-content/application/institution-directory.ts#purgeInstitution",
+        description:
+          "Operator-driven, not scheduled: POST /api/v1/blog/institutions/{id}/purge (gated by blog_content.institutions.purge, Idempotency-Key required) deletes the awcms_blog_post_institutions rows pointing at the institution and then the institution itself, refusing any row that is not already soft-deleted. There is deliberately no cron job — an institution has no expiry, and a scheduled sweep would delete a correct row for being old."
+      }
+    },
+    {
+      key: "blog_content.blog_post_institutions",
+      tableName: "awcms_blog_post_institutions",
+      ownerModuleKey: "blog_content",
+      scope: "tenant",
+      cursorColumn: "created_at",
+      retentionClass: "system_event",
+      // Inherited, not independent: a link lives exactly as long as the post or
+      // the institution it joins. The numbers mirror the institution
+      // descriptor so the pair cannot be read as two different policies.
+      retentionMinDays: 30,
+      retentionMaxDays: 3650,
+      defaultRetentionDays: 365,
+      partition: {
+        eligible: false,
+        rationale:
+          "Bounded by its parent: at most one row per (post, institution) pair, enforced by awcms_blog_post_institutions_unique, and written only by a full-replace sync so editing a post cannot accumulate rows."
+      },
+      archive: {
+        archivable: false,
+        rationale:
+          "Two ids and a timestamp. The post carries the byline and the institution carries the name; a join row archived without both is not readable as anything."
+      },
+      deletion: {
+        mode: "hard_delete",
+        rationale:
+          "There is no intermediate state to transition through — the row is removed outright when either parent goes, by the same statement that removes the parent."
+      },
+      legalHold: {
+        applicable: true,
+        precedence: "overrides_retention"
+      },
+      requiredIndexes: [
+        {
+          columns: ["tenant_id"],
+          purpose:
+            "awcms_blog_post_institutions_tenant_idx (sql/131); the two directional lookups are served by awcms_blog_post_institutions_post_idx and _institution_idx, which are also what the two purge statements below use."
+        }
+      ],
+      batchLimit: 5000,
+      backupRestoreNotes:
+        "Included in ordinary full-database backup/restore. Restoring a post or an institution without this table restores an article that has silently lost its institution classification, which is why it is never archived or restored separately.",
+      executionMode: "delegated",
+      existingAdopter: {
+        purgeFunctionRef:
+          "src/modules/blog-content/application/blog-post-directory.ts#purgeBlogPost",
+        description:
+          "TWO adopters, because this table has two parents. purgeBlogPost deletes the rows for a post before deleting the post; purgeInstitution (institution-directory.ts) deletes the rows for an institution before deleting the institution. Both DELETEs are load-bearing rather than tidy — each parent column is a real foreign key, so skipping either does not orphan rows, it makes the parent DELETE fail."
+      }
+    }
+  ],
+  subjectData: [
+    {
+      key: "blog_content.blog_posts",
+      tableName: "awcms_blog_posts",
+      ownerModuleKey: "blog_content",
+      subjectColumns: [
+        { column: "author_tenant_user_id", references: "tenant_user" },
+        { column: "deleted_by", references: "tenant_user" },
+        { column: "restored_by", references: "tenant_user" }
+      ],
+      exportable: true,
+      erasure: "severed_with_subject_row",
+      rationale:
+        "Articles this person wrote, under their byline. Their own words, so the export carries them; the article itself outlives the erasure with the byline detached, because unpublishing a tenant's archive is not what a subject asked for."
+    },
+    {
+      key: "blog_content.blog_pages",
+      tableName: "awcms_blog_pages",
+      ownerModuleKey: "blog_content",
+      subjectColumns: [
+        { column: "author_tenant_user_id", references: "tenant_user" },
+        { column: "deleted_by", references: "tenant_user" },
+        { column: "restored_by", references: "tenant_user" }
+      ],
+      exportable: true,
+      erasure: "severed_with_subject_row",
+      rationale:
+        "Standing pages this person authored. Held on exactly the same terms as the posts above."
+    },
+    {
+      key: "blog_content.blog_revisions",
+      tableName: "awcms_blog_revisions",
+      ownerModuleKey: "blog_content",
+      subjectColumns: [
+        { column: "created_by_tenant_user_id", references: "tenant_user" }
+      ],
+      exportable: true,
+      erasure: "severed_with_subject_row",
+      rationale:
+        "Every draft this person saved and the note they wrote explaining the change. More revealing than the published version — it records what they tried and reconsidered — which is why it exports rather than being treated as internal history."
+    },
+    {
+      key: "blog_content.blog_ads",
+      tableName: "awcms_blog_ads",
+      ownerModuleKey: "blog_content",
+      subjectColumns: [{ column: "deleted_by", references: "tenant_user" }],
+      exportable: false,
+      erasure: "severed_with_subject_row",
+      rationale:
+        "Advertising creatives belonging to the tenant. The subject appears only as whoever retired one."
+    },
+    {
+      key: "blog_content.blog_menus",
+      tableName: "awcms_blog_menus",
+      ownerModuleKey: "blog_content",
+      subjectColumns: [{ column: "deleted_by", references: "tenant_user" }],
+      exportable: false,
+      erasure: "severed_with_subject_row",
+      rationale:
+        "Site navigation structures. Personal data only in the sense that somebody deleted one."
+    },
+    {
+      key: "blog_content.blog_templates",
+      tableName: "awcms_blog_templates",
+      ownerModuleKey: "blog_content",
+      subjectColumns: [{ column: "deleted_by", references: "tenant_user" }],
+      exportable: false,
+      erasure: "severed_with_subject_row",
+      rationale:
+        "Layout templates owned by the tenant, carrying nothing about a person but the deletion stamp."
+    },
+    {
+      key: "blog_content.blog_terms",
+      tableName: "awcms_blog_terms",
+      ownerModuleKey: "blog_content",
+      subjectColumns: [{ column: "deleted_by", references: "tenant_user" }],
+      exportable: false,
+      erasure: "severed_with_subject_row",
+      rationale:
+        "Categories and tags — the tenant's taxonomy, with a deletion stamp as its only link to anybody."
+    },
+    {
+      key: "blog_content.blog_widgets",
+      tableName: "awcms_blog_widgets",
+      ownerModuleKey: "blog_content",
+      subjectColumns: [{ column: "deleted_by", references: "tenant_user" }],
+      exportable: false,
+      erasure: "severed_with_subject_row",
+      rationale:
+        "Sidebar widgets authored as site furniture; `body_text` is content about the site, not about a person."
+    },
+    {
+      key: "blog_content.blog_redirects",
+      tableName: "awcms_blog_redirects",
+      ownerModuleKey: "blog_content",
+      subjectColumns: [{ column: "deleted_by", references: "tenant_user" }],
+      exportable: false,
+      erasure: "severed_with_subject_row",
+      rationale:
+        "URL redirects for moved content. A routing rule, linked to a person only by who removed it."
+    },
+    {
+      key: "blog_content.news_portal_ad_placements",
+      tableName: "awcms_news_portal_ad_placements",
+      ownerModuleKey: "blog_content",
+      subjectColumns: [{ column: "deleted_by", references: "tenant_user" }],
+      exportable: false,
+      erasure: "severed_with_subject_row",
+      rationale:
+        "ADR-0044 — ad placements absorbed from the former `news_portal` module. Tenant configuration with a deletion stamp."
+    },
+    {
+      key: "blog_content.news_portal_homepage_sections",
+      tableName: "awcms_news_portal_homepage_sections",
+      ownerModuleKey: "blog_content",
+      subjectColumns: [{ column: "deleted_by", references: "tenant_user" }],
+      exportable: false,
+      erasure: "severed_with_subject_row",
+      rationale:
+        "ADR-0044 — homepage composition, likewise the tenant's own layout rather than anybody's data."
+    },
+
+    // Six configuration and join tables that reach NOBODY — no author column,
+    // no editor stamp. They answer here as this module's own statement rather
+    // than as a central exclusion, because this module is where a `created_by`
+    // would one day be added, and that is the day this entry has to change.
+    {
+      key: "blog_content.blog_settings",
+      tableName: "awcms_blog_settings",
+      ownerModuleKey: "blog_content",
+      unreachableBySubject: true,
+      subjectColumns: [],
+      exportable: false,
+      erasure: "retain_under_obligation",
+      rationale:
+        "One row of per-tenant blog defaults — locale, page size, fallback SEO strings. Site configuration with no author column and nobody to match."
+    },
+    {
+      key: "blog_content.blog_theme_settings",
+      tableName: "awcms_blog_theme_settings",
+      ownerModuleKey: "blog_content",
+      unreachableBySubject: true,
+      subjectColumns: [],
+      exportable: false,
+      erasure: "retain_under_obligation",
+      rationale:
+        "A single light/dark mode flag per tenant. Tenant-wide presentation, not a per-user preference, and it names nobody."
+    },
+    {
+      key: "blog_content.blog_menu_items",
+      tableName: "awcms_blog_menu_items",
+      ownerModuleKey: "blog_content",
+      unreachableBySubject: true,
+      subjectColumns: [],
+      exportable: false,
+      erasure: "retain_under_obligation",
+      rationale:
+        "Entries inside a navigation menu — a label, a link and a sort order. The menu they belong to answers above; the item itself has no person on it."
+    },
+    {
+      key: "blog_content.blog_ad_placements",
+      tableName: "awcms_blog_ad_placements",
+      ownerModuleKey: "blog_content",
+      unreachableBySubject: true,
+      subjectColumns: [],
+      exportable: false,
+      erasure: "retain_under_obligation",
+      rationale:
+        "Which ad appears in which slot. A join row between an ad and a placement target, carrying no author and no viewer."
+    },
+    {
+      key: "blog_content.blog_institutions",
+      tableName: "awcms_blog_institutions",
+      ownerModuleKey: "blog_content",
+      subjectColumns: [{ column: "deleted_by", references: "tenant_user" }],
+      exportable: false,
+      erasure: "severed_with_subject_row",
+      rationale:
+        "The legislative and executive bodies articles are filed against — public institutions, not people. `name` is an organisation's name and `seo_title`/`seo_description` are landing-page copy about that organisation; the deletion stamp is its only link to anybody."
+    },
+    {
+      key: "blog_content.blog_post_institutions",
+      tableName: "awcms_blog_post_institutions",
+      ownerModuleKey: "blog_content",
+      unreachableBySubject: true,
+      subjectColumns: [],
+      exportable: false,
+      erasure: "retain_under_obligation",
+      rationale:
+        "The join between a post and the institutions it names. Two ids and a timestamp; the post carries the byline and answers for it — the same position `blog_content.blog_post_terms` takes."
+    },
+    {
+      key: "blog_content.blog_post_terms",
+      tableName: "awcms_blog_post_terms",
+      ownerModuleKey: "blog_content",
+      unreachableBySubject: true,
+      subjectColumns: [],
+      exportable: false,
+      erasure: "retain_under_obligation",
+      rationale:
+        "The join between a post and its categories or tags. Two ids and a timestamp; the post carries the byline and answers for it."
+    },
+    {
+      key: "blog_content.blog_internal_tag_link_settings",
+      tableName: "awcms_blog_internal_tag_link_settings",
+      ownerModuleKey: "blog_content",
+      unreachableBySubject: true,
+      subjectColumns: [],
+      exportable: false,
+      erasure: "retain_under_obligation",
+      rationale:
+        "Whether automatic internal tag linking is on, and which tags are excluded. An editorial automation switch belonging to the tenant."
+    }
+  ],
+  searchSources: [
+    {
+      key: "blog_content.post",
+      ownerModuleKey: "blog_content",
+      resourceType: "blog_post",
+      tableName: "awcms_blog_posts",
+      tenantColumn: "tenant_id",
+      idColumn: "id",
+      localeColumn: "locale",
+      updatedAtColumn: "updated_at",
+      titleColumn: "title",
+      summaryColumn: "excerpt",
+      bodyColumns: ["content_text"],
+      tagsColumn: null,
+      /**
+       * Facetable dimensions (Issue #633). These are what PRD FR-DSC-002 asks
+       * for, and until the descriptor could express a JOIN there was no value
+       * `tagsColumn` could have been given that was correct: since `sql/131`,
+       * channel and topic are `awcms_blog_terms` rows reached through
+       * `awcms_blog_post_terms`, and institution is `awcms_blog_institutions`
+       * reached through `awcms_blog_post_institutions`.
+       *
+       * `taxonomy_type` is what splits ONE vocabulary table into two facets. A
+       * `category`/`tag` facet is deliberately NOT declared here: those two are
+       * the pre-#131 vocabulary and already have their own archive routes, and
+       * a facet list is a place to narrow a search rather than a mirror of every
+       * taxonomy that exists.
+       *
+       * The values are SLUGS, not names. A slug is what a filter matches and
+       * what a URL carries; renaming a channel from "Politik" to "Politik &
+       * Pemerintahan" must not break every saved link, and it does not, because
+       * the name travels as the label instead.
+       *
+       * `region` is a plain column, because PRD §8.5 gives an article exactly
+       * one region — declaring it through a join it does not have would be a
+       * fiction the query builder would then have to honour. It has no label
+       * column: `awcms_blog_posts.region_code` is a dotted code whose human name
+       * lives in the dataset-versioned `awcms_idn_admin_regions`, which is not a
+       * tenant table and is deliberately not joined here (see that column's own
+       * COMMENT — an unresolvable code degrades to "no region label"). The code
+       * is therefore its own label, which is honest about what was stored.
+       */
+      termFacets: [
+        {
+          facetKey: "channel",
+          kind: "join",
+          linkTable: "awcms_blog_post_terms",
+          linkSourceColumn: "post_id",
+          linkValueColumn: "term_id",
+          valueTable: "awcms_blog_terms",
+          valueIdColumn: "id",
+          valueColumn: "slug",
+          labelColumn: "name",
+          valueEquals: { taxonomy_type: "channel" },
+          valueNullColumns: ["deleted_at"]
+        },
+        {
+          facetKey: "topic",
+          kind: "join",
+          linkTable: "awcms_blog_post_terms",
+          linkSourceColumn: "post_id",
+          linkValueColumn: "term_id",
+          valueTable: "awcms_blog_terms",
+          valueIdColumn: "id",
+          valueColumn: "slug",
+          labelColumn: "name",
+          valueEquals: { taxonomy_type: "topic" },
+          valueNullColumns: ["deleted_at"]
+        },
+        {
+          facetKey: "institution",
+          kind: "join",
+          linkTable: "awcms_blog_post_institutions",
+          linkSourceColumn: "post_id",
+          linkValueColumn: "institution_id",
+          valueTable: "awcms_blog_institutions",
+          valueIdColumn: "id",
+          valueColumn: "slug",
+          labelColumn: "name",
+          valueNullColumns: ["deleted_at"]
+        },
+        {
+          facetKey: "region",
+          kind: "column",
+          valueColumn: "region_code"
+        }
+      ],
+      urlTemplate: "/blog/:tenantCode/:slug",
+      slugColumn: "slug",
+      publicationFilter: {
+        equals: { status: "published", visibility: "public" },
+        nullColumns: ["deleted_at"],
+        notNullColumns: ["published_at"],
+        timeReachedColumns: ["published_at"]
+      },
+      weight: 1.0,
+      privacyClassification: "public"
+    },
+    /**
+     * Static pages (Issue #625). Reachable at `/blog/{tenantCode}/pages/{slug}`
+     * since Issue #617 and listed in `sitemap-blog.xml`, so a reader can be sent
+     * here and arrive at a real document — which is the precondition for
+     * indexing something, and the reason this descriptor could not exist before.
+     *
+     * The publication filter is the LISTING predicate — strict
+     * `visibility = 'public'`, matching `listPublicBlogPagesForSitemap` rather
+     * than `fetchPublicBlogPageBySlug`. The detail route also serves `unlisted`,
+     * and that difference is the whole point of the unlisted tier: reachable by
+     * direct link, absent from every listing. A search result IS a listing.
+     *
+     * `weight: 0.6` — a page and an article are not equally relevant to the same
+     * query. Someone searching a news site is usually looking for coverage, and
+     * ranking the disclaimer alongside it would be a worse index, not a fairer
+     * one. The page still wins when the query is actually about it, because the
+     * weight scales a score rather than capping it.
+     *
+     * Requires `GRANT SELECT ON awcms_blog_pages TO awcms_worker` (`sql/136`) —
+     * the reconcile job runs as that role, and this descriptor without that
+     * grant is a job that passes every gate here and fails at 03:00.
+     */
+    {
+      key: "blog_content.page",
+      ownerModuleKey: "blog_content",
+      resourceType: "blog_page",
+      tableName: "awcms_blog_pages",
+      tenantColumn: "tenant_id",
+      idColumn: "id",
+      localeColumn: "locale",
+      updatedAtColumn: "updated_at",
+      titleColumn: "title",
+      summaryColumn: "excerpt",
+      bodyColumns: ["content_text"],
+      tagsColumn: null,
+      urlTemplate: "/blog/:tenantCode/pages/:slug",
+      slugColumn: "slug",
+      publicationFilter: {
+        equals: { status: "published", visibility: "public" },
+        nullColumns: ["deleted_at"],
+        notNullColumns: ["published_at"],
+        timeReachedColumns: ["published_at"]
+      },
+      weight: 0.6,
+      privacyClassification: "public"
+    }
+  ],
+  /**
+   * Reviewed commentable resource contributed to `comments` (ADR-0041). The
+   * publication filter is IDENTICAL to the `searchSources` one above and must
+   * stay that way: both answer "is this post public right now?", and letting
+   * them drift would mean a post is searchable but not commentable (or worse,
+   * commentable while unpublished). `comments` reads this through
+   * `listModules()`; nothing here imports `comments`.
+   *
+   * ## Why PAGES are searchable (Issue #625) but not commentable
+   *
+   * The two lists are deliberately asymmetric, and the asymmetry is the
+   * decision rather than an omission. A reader looking for the Pedoman Media
+   * Siber should find it — that is what an index is for. A comment thread under
+   * the Pedoman Media Siber, the disclaimer or the privacy policy is a different
+   * thing: those pages exist because a press council expects to find them
+   * stated, and a discussion appended to a published standard reads as
+   * qualifying it. Nothing is lost by leaving it off — a page can be given a
+   * thread the day a tenant asks for one, and adding it then is one descriptor.
+   *
+   * So the "filters must be identical" rule above binds POST to POST. It says
+   * nothing about which resource types appear in both lists.
+   */
+  commentableResources: [
+    {
+      key: "blog_content.post",
+      ownerModuleKey: "blog_content",
+      resourceType: "blog_post",
+      tableName: "awcms_blog_posts",
+      tenantColumn: "tenant_id",
+      idColumn: "id",
+      localeColumn: "locale",
+      slugColumn: "slug",
+      urlTemplate: "/blog/:tenantCode/:slug",
+      publicationFilter: {
+        equals: { status: "published", visibility: "public" },
+        nullColumns: ["deleted_at"],
+        notNullColumns: ["published_at"],
+        timeReachedColumns: ["published_at"]
+      },
+      defaultPolicy: "moderated-anonymous"
+    }
+  ],
+  // Non-secret public-route-behavior preference, read/written through
+  // Module Management's existing generic framework (GET/PATCH
+  // /api/v1/tenant/modules/blog_content/settings), not a bespoke settings
+  // mechanism.
+  //
+  // `publicBasePath`/`publicLabel` — two further keys awcms-mini carries —
+  // are not adopted: they change only the self-referential links a page emits
+  // and cannot move the file-based route that actually serves. `publicRouteMode`
+  // was adopted by ADR-0059 and REMOVED by ADR-0071 §4 along with the
+  // `/news/**` family it governed; `/news/**` is `ahliweb/awcms-astro`'s
+  // vocabulary now, and a switch for a route family this repo does not serve is
+  // dead configuration. `legacyTenantRouteEnabled` survives both: it gates
+  // `/blog/{tenantCode}`, which is this repo's permanent public vocabulary.
+  //
+  // DELIBERATELY DOES NOT INCLUDE `rssEnabled`/`sitemapEnabled` — those two
+  // flags live in, and stay in, `awcms_blog_settings`
+  // (`application/blog-settings-directory.ts`'s `fetchBlogSettings`, written
+  // via `PATCH /api/v1/blog/settings`). Duplicating them into this second
+  // store would create two disconnected, independently-writable sources of
+  // truth for the same concept. See `application/public-route-settings.ts`'s
+  // header comment for the full reasoning.
+  settings: {
+    schemaVersion: 1,
+    defaults: {
+      // Default true = today's behavior unchanged: /blog/{tenantCode}
+      // remains fully available (the legacy family is never removed by
+      // default). Setting this false disables all 7 /blog/{tenantCode}
+      // routes (index/detail/category/tag/search/feed/sitemap) with the
+      // same generic 404 shape as an unknown tenant code — a
+      // tenant-chosen opt-out, not a removal of the route family itself.
+      // Setting it false leaves the tenant with no public content URL at all,
+      // and `resolvePublicContentBasePath` then emits no sitemap/feed links
+      // rather than links that are certain to 404. The retirement 301 for the
+      // removed `/news/**` family honors the same rule: it skips a tenant whose
+      // switch is off, because a 301 to `/blog/{tenantCode}` would be a 301 to
+      // a guaranteed 404 (ADR-0071 §4).
+    }
+  },
+  events: {
+    asyncApiPath: "asyncapi/awcms-domain-events.asyncapi.yaml",
+    publishes: [
+      "awcms.blog-content.post.created",
+      "awcms.blog-content.post.updated",
+      "awcms.blog-content.post.submitted-for-review",
+      "awcms.blog-content.post.published",
+      "awcms.blog-content.post.scheduled",
+      "awcms.blog-content.post.archived",
+      "awcms.blog-content.post.deleted",
+      "awcms.blog-content.post.restored",
+      "awcms.blog-content.post.purged",
+      "awcms.blog-content.revision.created",
+      "awcms.blog-content.term.created",
+      "awcms.blog-content.term.updated",
+      "awcms.blog-content.settings.updated",
+      "awcms.blog-content.template.created",
+      "awcms.blog-content.template.updated",
+      "awcms.blog-content.template.deleted",
+      "awcms.blog-content.menu.created",
+      "awcms.blog-content.menu.updated",
+      "awcms.blog-content.menu.deleted",
+      "awcms.blog-content.widget.created",
+      "awcms.blog-content.widget.updated",
+      "awcms.blog-content.widget.deleted",
+      "awcms.blog-content.ad.created",
+      "awcms.blog-content.ad.updated",
+      "awcms.blog-content.ad.deleted",
+      "awcms.blog-content.theme.updated",
+      "awcms.blog-content.internal-tag-linking-policy.updated"
+    ]
+  },
+  jobs: [
+    {
+      command: "bun run blog:portable-text:backfill",
+      schedule: {
+        mode: "manual",
+        because:
+          "One-shot data migration (ADR-0100). It converts each legacy content_json.blocks body into body_portable_text exactly once; its selection predicate is body_portable_text = '[]'::jsonb, so a scheduled re-run would find nothing and burn a connection every night forever. An operator runs it with --commit after sql/134 is applied, repeating until the report stops saying partial."
+      },
+      purpose:
+        "Convert legacy content_json.blocks bodies to the canonical Portable Text column for every active tenant, rewriting content_text from the converted body. DRY-RUN unless --commit.",
+      recommendedSchedule:
+        "Once, by an operator, immediately after sql/134 is applied. Repeat until the run reports no remaining rows.",
+      environmentNotes:
+        "No external provider call — pure database conversion. Needs WORKER_DATABASE_URL; awcms_worker already holds the SELECT/UPDATE it uses.",
+      safeInOfflineLan: true
+    },
+    {
+      command: "bun run blog:publish:scheduled",
+      schedule: {
+        mode: "cron",
+        expression: "*/5 * * * *",
+        backlog: "bounded"
+      },
+      purpose:
+        "Publish every due `status='scheduled'` blog post (scheduled_at <= now()) for every active tenant. Idempotent — a post already published, or still in the future, is a no-op on re-run.",
+      recommendedSchedule: "Every 1-5 minutes via cron/systemd timer.",
+      environmentNotes:
+        "No external provider call — pure database transition, safe to run in any deployment profile.",
+      safeInOfflineLan: true
+    },
+    {
+      command: "bun run blog:ads:ingest",
+      schedule: {
+        mode: "manual",
+        because:
+          "A one-shot migration of legacy ad rows. Re-running it on a timer would re-ingest a source that is only supposed to be read once."
+      },
+      purpose:
+        "ADR-0044 §4 Fase 2: migrate the retired free-URL advertisement system (`awcms_blog_ads` + `awcms_blog_ad_placements`) onto the media-backed `awcms_news_portal_ad_placements`, and REPORT every ad it cannot migrate. Preview is the default — the job writes nothing until given `--apply`, which additionally requires `--placement-key=<key>` because the legacy data does not say which of the twelve slots an ad belongs in and this job will not guess. An ad is migrated only when its `image_url` is already the public URL of one of that tenant's registered, publicly-referenceable media objects; a remote, malformed, foreign-key, or unregistered image is residue, printed with its URL for a human to re-upload through the media library. Idempotent via `source_legacy_ad_id` under a partial unique index (migration 079), so the intended preview -> apply -> fix residue -> apply again loop never duplicates a row.",
+      recommendedSchedule:
+        "NOT scheduled. A one-shot operator-run migration for a planned window — run it, read the residue, resolve it, run it again. It becomes a no-op once every legacy ad has moved or been accepted as residue, and the script is retired with the legacy tables in the step after that.",
+      environmentNotes:
+        "Reads `NEWS_MEDIA_R2_PUBLIC_BASE_URL` to recognise this deployment's own media URLs; with it unset every ad is reported as residue rather than migrated, which is loud and lossless. Makes no network call of any kind — it never fetches an image, and deliberately so (see `domain/legacy-ad-ingest.ts`).",
+      safeInOfflineLan: true
+    },
+    {
+      command: "bun run blog:ads:drop-readiness",
+      schedule: {
+        mode: "manual",
+        because:
+          "A pre-flight report an operator reads by hand before writing the drop migration. It answers a question a human is about to ask, not one a timer is."
+      },
+      purpose:
+        "ADR-0044 §4 Fase 2: answers whether `awcms_blog_ads` and `awcms_blog_ad_placements` may be dropped yet, and exits non-zero while the answer is no. A legacy ad is accounted for when a successor row names it via `source_legacy_ad_id` (migration 079) or when it is soft-deleted — an operator read the residue report and decided it does not come along. Anything else blocks, and there is deliberately no override flag. Read-only: it issues no INSERT, UPDATE or DELETE, so it is safe to run against production at any time, including before the ingest has ever run.",
+      recommendedSchedule:
+        "NOT scheduled. Run it by hand before writing the drop migration, and re-run it after each round of `blog:ads:ingest`. Retired together with the legacy tables it inspects.",
+      environmentNotes:
+        "No configuration and no external call — a pure database read. Answers only 'is there a legacy row whose fate nobody has decided'; whether the successor rows are editorially correct is human judgement it does not pretend to check.",
+      safeInOfflineLan: true
+    }
+  ]
+});

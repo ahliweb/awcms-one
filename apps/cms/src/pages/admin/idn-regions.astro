@@ -1,0 +1,1379 @@
+---
+/**
+ * Indonesia administrative-region dataset console — the admin screen for
+ * `idn_admin_regions` (ADR-0046), and the first screen in this base whose write
+ * controls are PLATFORM-scoped (ADR-0053).
+ *
+ * ## What makes this screen different from every other one here
+ *
+ * Every other `/admin/*` screen acts on the viewer's OWN tenant data. This one
+ * acts on `awcms_idn_region_datasets` — global reference data with no
+ * `tenant_id` and no RLS, served identically to every tenant. Activating a
+ * version changes what every address form in the product returns, everywhere,
+ * at once.
+ *
+ * So the read panels are ordinary tenant reads (`dataset.read`), while the two
+ * write controls are gated on platform-scoped permissions that only the
+ * platform tenant can exercise — enforced at the chokepoint, not here. A viewer
+ * in an ordinary tenant sees the versions being served and the provenance
+ * behind them, and no buttons.
+ *
+ * ## Reads vs writes
+ *
+ * Reads call the module's own `listDatasets` inside one `withTenantOrThrow`
+ * transaction (sequential awaits — concurrent queries on one transaction
+ * connection leak it). Writes POST to the guarded
+ * `/api/v1/idn-regions/datasets/*` endpoints with a fresh `Idempotency-Key`
+ * per click, so the audit row and idempotency record cannot be bypassed.
+ *
+ * Import is deliberately absent: it parses a dump vendored in the repository
+ * (`data/idn-admin-regions/`) and belongs to a deploy, not to a browser
+ * (ADR-0046 §5). The screen says so rather than leaving a reader to wonder
+ * where the button is.
+ *
+ * ## The region browser (Issue #767) is a SEPARATE panel with its OWN gate
+ *
+ * `idn_admin_regions.region.read` shipped with the module and, until this
+ * panel, had no caller anywhere — not the lookup API's own route files, not
+ * `awcms-astro`, nothing. It is a TENANT permission (unlike `dataset.configure`
+ * /`.restore`), because reading the hierarchy is ordinary tenant work, so this
+ * panel must render for a viewer who holds `region.read` and NOTHING else on
+ * this module — no `dataset.read`, no platform scope, no write buttons.
+ *
+ * That is why `authorize` below is an ANY-OF array rather than the single
+ * `dataset.read` request it used to be: `loadAdminScreen`'s `entry` array
+ * reports each request's own answer, so the dataset console renders on
+ * `entry[0]` and the region browser renders on `entry[1]`, independently. A
+ * viewer holding only one of the two sees exactly one panel, not a denial —
+ * the same any-of shape `/admin/domain-events` already uses for three
+ * independently-readable panels.
+ *
+ * Browsing is entirely server-rendered `GET` forms and plain links — query
+ * params (`level`, `parentCode`, `search`, `dataset`, `after`, `code`) that
+ * mirror the API's own — so it ships ZERO client JavaScript. The asset budget
+ * for this build had 4,193 bytes of headroom; a client data layer for 91,599
+ * rows was never going to be the honest way to spend it.
+ */
+import AdminLayout from "../../layouts/AdminLayout.astro";
+import "../../styles/admin-screens.css";
+import { getDatabaseClient } from "../../lib/database/client";
+import { loadAdminScreen } from "../../lib/auth/admin-screen";
+import { logAdminPageError } from "../../lib/logging/error-log";
+import {
+  resolvePlatformTenant,
+  resolveTenancyMode,
+  type TenancyMode
+} from "../../lib/tenant/platform-tenant";
+import {
+  listDatasets,
+  type DatasetSummary
+} from "../../modules/idn-admin-regions/application/dataset-lifecycle";
+import { IDN_ADMIN_REGIONS_PROVENANCE } from "../../modules/idn-admin-regions/domain/source-provenance";
+import {
+  queryRegions,
+  getRegionByCode,
+  REGION_PAGE_LIMIT_DEFAULT,
+  type RegionRecord,
+  type RegionQueryResult
+} from "../../modules/idn-admin-regions/application/region-lookup";
+import {
+  getDatasetTierCounts,
+  buildTierComparison,
+  diffDatasetsPage,
+  type DatasetDiffKind,
+  type DatasetDiffPage,
+  type TierComparisonRow
+} from "../../modules/idn-admin-regions/application/dataset-diff";
+import { getTranslatorFor } from "../../lib/i18n";
+
+const ssr = Astro.locals.ssrContext;
+const { t } = getTranslatorFor(Astro.locals.locale);
+
+if (!ssr) {
+  throw new Error(
+    "idn-regions.astro rendered without Astro.locals.ssrContext — the /admin guard in src/middleware.ts must run first."
+  );
+}
+
+/**
+ * Resolved OUTSIDE any tenant transaction on purpose: both read RLS-free root
+ * tables (`awcms_tenants`, `awcms_setup_state`) and neither needs — or should
+ * imply — a tenant context.
+ *
+ * DISPLAY only, since #450. The DECISION about the two platform-scoped actions
+ * is the chokepoint's; this is here so the screen can say WHY a control is
+ * missing instead of leaving a blank space.
+ */
+let tenancyMode: TenancyMode = "single";
+let isPlatformTenant = false;
+let platformTenantCode: string | null = null;
+let platformResolutionFailed = false;
+
+try {
+  const sql = getDatabaseClient();
+  const platformTenant = await resolvePlatformTenant(sql);
+
+  tenancyMode = await resolveTenancyMode(sql);
+  isPlatformTenant = platformTenant?.tenantId === ssr.tenantId;
+  platformTenantCode = platformTenant?.tenantCode ?? null;
+} catch (error) {
+  logAdminPageError(
+    "admin/idn-regions.astro: failed to resolve platform tenant",
+    error,
+    { correlationId: Astro.locals.correlationId }
+  );
+  platformResolutionFailed = true;
+}
+
+/**
+ * The region browser's filters ride the query string, like the audit trail's
+ * `method="get"` form — linkable, works with JavaScript disabled, ships no
+ * bundle. Every value is re-validated here rather than trusted: a hand-edited
+ * query string must degrade this read-only screen gracefully, never error it.
+ */
+function readParam(name: string): string | null {
+  return Astro.url.searchParams.get(name)?.trim() || null;
+}
+
+/** Shape-checked the same way `GET /api/v1/idn-regions/regions/{code}` checks it. */
+const REGION_CODE_PATTERN = /^[0-9]+(\.[0-9]+){0,3}$/;
+
+const regionSearchParam = readParam("search");
+const regionDatasetParam = readParam("dataset");
+const regionAfterParam = readParam("after");
+
+const regionParentCodeParam = readParam("parentCode");
+const regionParentCode =
+  regionParentCodeParam && REGION_CODE_PATTERN.test(regionParentCodeParam)
+    ? regionParentCodeParam
+    : null;
+
+const regionSelectedCodeParam = readParam("code");
+const regionSelectedCode =
+  regionSelectedCodeParam && REGION_CODE_PATTERN.test(regionSelectedCodeParam)
+    ? regionSelectedCodeParam
+    : null;
+
+const regionLevelParam = readParam("level");
+const parsedRegionLevel = regionLevelParam ? Number(regionLevelParam) : null;
+const explicitRegionLevel =
+  parsedRegionLevel !== null &&
+  Number.isInteger(parsedRegionLevel) &&
+  parsedRegionLevel >= 1 &&
+  parsedRegionLevel <= 4
+    ? parsedRegionLevel
+    : null;
+
+/**
+ * A malformed or absent `level` does not error the screen — it falls back to
+ * the province tier as a landing page, UNLESS a search or a parent is already
+ * narrowing the query, in which case forcing a tier would silently answer a
+ * different question than the one the URL asks (searching "Bakongan" across
+ * every tier, not just provinces).
+ */
+const regionLevel: number | null =
+  explicitRegionLevel ?? (regionSearchParam || regionParentCode ? null : 1);
+
+/**
+ * Dataset comparison (Issue #766) query params — same idiom as the region
+ * browser above: everything rides the query string, re-validated here rather
+ * than trusted. `compareFrom`/`compareTo` are dataset CODEs (not ids), so a
+ * comparison link is bookmarkable and matches the `?dataset=<code>` spelling
+ * the lookup API already uses. Their defaults (active vs. the version being
+ * considered) can only be resolved once the dataset list is loaded, so the raw
+ * params are threaded into `load` below rather than defaulted here.
+ */
+const compareFromParam = readParam("compareFrom");
+const compareToParam = readParam("compareTo");
+const addedAfterParam = readParam("addedAfter");
+const removedAfterParam = readParam("removedAfter");
+const renamedAfterParam = readParam("renamedAfter");
+
+/** Builds a link to this screen with the given query params overridden. */
+function regionQueryLink(overrides: Record<string, string | null>): string {
+  const params = new URLSearchParams(Astro.url.search);
+  for (const [key, value] of Object.entries(overrides)) {
+    if (value === null || value === "") params.delete(key);
+    else params.set(key, value);
+  }
+  const query = params.toString();
+  return query ? `/admin/idn-regions?${query}` : "/admin/idn-regions";
+}
+
+/**
+ * Issue #766 — the read-only comparison between two dataset versions,
+ * reachable from the activate row. Gated on `dataset.read` alone (the same
+ * tenant-scoped permission the "Imported versions" table already requires),
+ * NOT the platform-scoped `dataset.configure`/`.restore`: a non-platform
+ * tenant must be able to audit what it was served last week against what it
+ * is served now, even though it can never flip the switch itself.
+ */
+type DatasetCompareResult = {
+  fromCode: string;
+  toCode: string;
+  /** Same dataset picked on both sides — every count/list below is trivially empty. */
+  sameVersion: boolean;
+  tierRows: TierComparisonRow[];
+  diffs: Record<DatasetDiffKind, DatasetDiffPage>;
+};
+
+const EMPTY_DIFF_PAGE: DatasetDiffPage = { items: [], nextCursor: null };
+
+// Issue #450 — the entry decision and the read share ONE transaction, and the
+// decision is the chokepoint's.
+//
+// `dataset.read` and `region.read` are BOTH tenant-scoped, and independently
+// readable: an ANY-OF entry (the same shape `/admin/domain-events` uses for
+// three panels) means a viewer holding only `region.read` gets the region
+// browser and nothing else, rather than a blanket denial. `dataset.configure`
+// and `dataset.restore` are PLATFORM-scoped (ADR-0052/0053) and stay decided
+// by `can(...)`, which runs the same ADR-0053 gate the endpoint runs, so the
+// screen never keeps a second copy of the platform rule that could drift from
+// it.
+const screen = await loadAdminScreen({
+  ssr,
+  workClass: "interactive",
+  authorize: [
+    { moduleKey: "idn_admin_regions", activityCode: "dataset", action: "read" },
+    { moduleKey: "idn_admin_regions", activityCode: "region", action: "read" }
+  ],
+  load: async ({ tx, can, entry }) => {
+    const canReadDatasets = entry[0]!;
+    const canReadRegions = entry[1]!;
+
+    // One transaction, one awaited query at a time, in the order declared —
+    // concurrent queries on a single transaction connection leak it, so
+    // nothing here runs in parallel (`Promise.all` included).
+    const datasets = canReadDatasets ? await listDatasets(tx) : [];
+
+    const regionPage: RegionQueryResult = canReadRegions
+      ? await queryRegions(tx, {
+          datasetCode: regionDatasetParam,
+          level: regionLevel,
+          parentCode: regionParentCode,
+          search: regionSearchParam,
+          limit: REGION_PAGE_LIMIT_DEFAULT,
+          afterCode: regionAfterParam
+        })
+      : { datasetCode: null, items: [], nextCursor: null };
+
+    // The breadcrumb for "browsing children of X" — a point lookup by the
+    // parent's own code, not a second listing query.
+    const parentRegion =
+      canReadRegions && regionParentCode
+        ? await getRegionByCode(tx, regionParentCode, {
+            datasetCode: regionDatasetParam
+          })
+        : null;
+
+    const selectedRegion =
+      canReadRegions && regionSelectedCode
+        ? await getRegionByCode(tx, regionSelectedCode, {
+            datasetCode: regionDatasetParam
+          })
+        : null;
+
+    // Issue #766 — dataset version comparison. Defaults resolved here (not at
+    // the top of the frontmatter) because "active vs. the version being
+    // considered" needs the dataset list `listDatasets` just fetched:
+    //   - `from` defaults to the ACTIVE dataset's code;
+    //   - `to` defaults to the most recently imported OTHER version — the
+    //     newest entry in `datasets` (already ordered `created_at DESC`) that
+    //     is not the resolved `from`, which is exactly "the version being
+    //     considered" when reached from the top of the console rather than
+    //     from a specific row's "Compare with active" link.
+    const activeDatasetForCompare = datasets.find(
+      (dataset) => dataset.status === "active"
+    );
+    const compareFromCode: string | null =
+      compareFromParam ?? activeDatasetForCompare?.datasetCode ?? null;
+    const compareToCode: string | null =
+      compareToParam ??
+      datasets.find((dataset) => dataset.datasetCode !== compareFromCode)
+        ?.datasetCode ??
+      null;
+
+    let compare: DatasetCompareResult | null = null;
+
+    if (canReadDatasets && compareFromCode && compareToCode) {
+      const fromDataset = datasets.find(
+        (dataset) => dataset.datasetCode === compareFromCode
+      );
+      const toDataset = datasets.find(
+        (dataset) => dataset.datasetCode === compareToCode
+      );
+
+      if (fromDataset && toDataset) {
+        if (fromDataset.id === toDataset.id) {
+          // Comparing a version with itself: every count and list below would
+          // be identical/empty by construction, so skip the five queries
+          // entirely rather than run a join that can only answer "nothing".
+          compare = {
+            fromCode: fromDataset.datasetCode,
+            toCode: toDataset.datasetCode,
+            sameVersion: true,
+            tierRows: buildTierComparison(),
+            diffs: {
+              added: EMPTY_DIFF_PAGE,
+              removed: EMPTY_DIFF_PAGE,
+              renamed: EMPTY_DIFF_PAGE
+            }
+          };
+        } else {
+          // Sequential, on the one reserved transaction connection — same
+          // discipline as every other read on this screen.
+          const fromTierCounts = await getDatasetTierCounts(tx, fromDataset.id);
+          const toTierCounts = await getDatasetTierCounts(tx, toDataset.id);
+
+          const added = await diffDatasetsPage(tx, {
+            fromDatasetId: fromDataset.id,
+            toDatasetId: toDataset.id,
+            kind: "added",
+            afterCode: addedAfterParam
+          });
+          const removed = await diffDatasetsPage(tx, {
+            fromDatasetId: fromDataset.id,
+            toDatasetId: toDataset.id,
+            kind: "removed",
+            afterCode: removedAfterParam
+          });
+          const renamed = await diffDatasetsPage(tx, {
+            fromDatasetId: fromDataset.id,
+            toDatasetId: toDataset.id,
+            kind: "renamed",
+            afterCode: renamedAfterParam
+          });
+
+          compare = {
+            fromCode: fromDataset.datasetCode,
+            toCode: toDataset.datasetCode,
+            sameVersion: false,
+            tierRows: buildTierComparison(fromTierCounts, toTierCounts),
+            diffs: { added, removed, renamed }
+          };
+        }
+      }
+    }
+
+    return {
+      canReadDatasets,
+      canReadRegions,
+      datasets,
+      regionPage,
+      parentRegion,
+      selectedRegion,
+      compare,
+      compareFromCode,
+      compareToCode,
+      canActivate: await can({
+        moduleKey: "idn_admin_regions",
+        activityCode: "dataset",
+        action: "configure"
+      }),
+      canRollback: await can({
+        moduleKey: "idn_admin_regions",
+        activityCode: "dataset",
+        action: "restore"
+      })
+    };
+  },
+  onError: (error) => {
+    logAdminPageError(
+      "admin/idn-regions.astro: failed to load dataset console",
+      error,
+      { correlationId: Astro.locals.correlationId }
+    );
+  }
+});
+
+/** At least one of the two entry permissions passed — SOME panel will render. */
+const canEnterPage = screen.state !== "denied";
+const loadError = screen.state === "error" || platformResolutionFailed;
+const canReadDatasets =
+  screen.state === "allowed" && screen.data.canReadDatasets;
+const canReadRegions = screen.state === "allowed" && screen.data.canReadRegions;
+const datasets: DatasetSummary[] =
+  screen.state === "allowed" ? screen.data.datasets : [];
+const canActivate = screen.state === "allowed" && screen.data.canActivate;
+const canRollback = screen.state === "allowed" && screen.data.canRollback;
+
+const compare: DatasetCompareResult | null =
+  screen.state === "allowed" ? screen.data.compare : null;
+const compareFromCode: string | null =
+  screen.state === "allowed" ? screen.data.compareFromCode : null;
+const compareToCode: string | null =
+  screen.state === "allowed" ? screen.data.compareToCode : null;
+
+const regionPage: RegionQueryResult =
+  screen.state === "allowed"
+    ? screen.data.regionPage
+    : { datasetCode: null, items: [], nextCursor: null };
+const regionItems: RegionRecord[] = regionPage.items;
+const regionReason = regionPage.reason ?? null;
+const parentRegion =
+  screen.state === "allowed" ? screen.data.parentRegion : null;
+const selectedRegion =
+  screen.state === "allowed" ? screen.data.selectedRegion : null;
+
+/** Tier label shared by the filter form, the results table, and the details panel. */
+function regionTierLabel(level: number): string {
+  if (level === 1) return t("Province");
+  if (level === 2) return t("Regency/City");
+  if (level === 3) return t("District");
+  return t("Village");
+}
+
+/**
+ * Held the permission but is not the platform tenant — worth explaining, not
+ * hiding. The chokepoint has already refused the two actions by this point; the
+ * flag exists so the refusal is narrated rather than rendered as absence.
+ */
+const withheldByPlatformScope =
+  canReadDatasets && !isPlatformTenant && !canActivate && !canRollback;
+
+const activeDataset = datasets.find((dataset) => dataset.status === "active");
+const hasPreviousDataset = datasets.some(
+  (dataset) => dataset.status === "superseded"
+);
+
+/** `2026-08-01T03:18:38.929Z` -> `2026-08-01 03:18` (UTC, no locale dependency). */
+function formatTimestamp(value: string | null): string {
+  if (!value) return "—";
+  const parsed = new Date(value);
+  if (Number.isNaN(parsed.getTime())) return "—";
+  return parsed.toISOString().replace("T", " ").slice(0, 16);
+}
+
+function statusVariant(status: string): string {
+  if (status === "active") return "success";
+  if (status === "rejected") return "danger";
+  if (status === "validated") return "info";
+  return "neutral";
+}
+
+const numberFormatter = new Intl.NumberFormat("en-US");
+---
+
+<AdminLayout
+  title={t("Region datasets")}
+  description={t(
+    "The Indonesia administrative-region hierarchy (province, regency/city, district, village) that address forms and regional reports read from. Versions are imported on deploy; exactly one is served at a time, to every tenant."
+  )}
+>
+  {
+    !canEnterPage && (
+      <p class="state-notice fade-in-up" id="idn-regions-denied">
+        {t(
+          "You do not have permission to view region datasets or look up Indonesia administrative regions."
+        )}
+      </p>
+    )
+  }
+
+  {
+    loadError && (
+      <p class="state-notice fade-in-up" id="idn-regions-error">
+        {t(
+          "The dataset console could not be loaded right now. Please try again later."
+        )}
+      </p>
+    )
+  }
+
+  <p
+    id="idn-regions-action-error"
+    class="admin-create-error"
+    role="alert"
+    hidden
+  >
+  </p>
+
+  {
+    canReadDatasets && (
+      <section class="admin-section fade-in-up" id="idn-regions-summary">
+        <h2 class="admin-section-title">{t("Currently served")}</h2>
+        <div class="stat-grid stagger-children">
+          <div class="stat-card">
+            <span class="stat-label">{t("Active version")}</span>
+            <span class="stat-value stat-value--mono">
+              {activeDataset ? activeDataset.datasetCode : "none"}
+            </span>
+            {activeDataset && (
+              <span class="stat-hint">
+                {t("since {timestamp} UTC", {
+                  timestamp: formatTimestamp(activeDataset.activatedAt)
+                })}
+              </span>
+            )}
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">{t("Regions in this version")}</span>
+            <span class="stat-value">
+              {activeDataset
+                ? numberFormatter.format(activeDataset.rowCount)
+                : "—"}
+            </span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">{t("Imported versions")}</span>
+            <span class="stat-value">{datasets.length}</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">{t("Deployment")}</span>
+            <span class="stat-value stat-value--mono">{tenancyMode}</span>
+            <span class="stat-hint">
+              {tenancyMode === "single"
+                ? "one active tenant"
+                : "serving more than one tenant"}
+            </span>
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  {
+    withheldByPlatformScope && (
+      <section class="admin-section fade-in-up" id="idn-regions-scope-notice">
+        <h2 class="admin-section-title">{t("Read-only here")}</h2>
+        {/* TWO whole msgids rather than one sentence with an optional
+            fragment spliced into its middle. The tenant code is not always
+            resolvable, and a single `{code}` msgid would render "platform
+            tenant () —" when it is not. */}
+        <p class="page-description">
+          {platformTenantCode
+            ? t(
+                "Changing the served version affects every tenant, so it can only be done from the platform tenant ({code}) — not from this one. Your role carries the permission; the action is refused because of where it is being made, not who is making it.",
+                { code: platformTenantCode }
+              )
+            : t(
+                "Changing the served version affects every tenant, so it can only be done from the platform tenant — not from this one. Your role carries the permission; the action is refused because of where it is being made, not who is making it."
+              )}
+        </p>
+      </section>
+    )
+  }
+
+  {
+    (canActivate || canRollback) && (
+      <section class="admin-section fade-in-up" id="idn-regions-actions">
+        <h2 class="admin-section-title">{t("Serve a different version")}</h2>
+        <p class="page-description">
+          {tenancyMode === "multi"
+            ? "This deployment serves more than one tenant. A change here reaches all of them at once."
+            : "This deployment currently has one tenant, but the data is platform-wide: the same change would reach every tenant added later."}
+        </p>
+        {canRollback && (
+          <div class="admin-toolbar">
+            <button
+              type="button"
+              id="idn-regions-rollback"
+              class="btn-inline btn-inline--danger"
+              disabled={!hasPreviousDataset}
+            >
+              {t("Roll back to previous version")}
+            </button>
+            {!hasPreviousDataset && (
+              <span class="cell-muted">
+                No superseded version to return to.
+              </span>
+            )}
+          </div>
+        )}
+      </section>
+    )
+  }
+
+  {
+    canReadDatasets && (
+      <section class="admin-section fade-in-up" id="idn-regions-datasets">
+        <h2 class="admin-section-title">
+          {t("Imported versions")}
+          <span class="count-pill">{datasets.length}</span>
+        </h2>
+        <div class="data-table-scroll">
+          <table class="data-table data-table--stack">
+            <caption class="sr-only">
+              {t("Every imported dataset version, newest first")}
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">{t("Version")}</th>
+                <th scope="col">{t("Status")}</th>
+                <th scope="col">{t("Regions")}</th>
+                <th scope="col">{t("Imported")}</th>
+                <th scope="col">{t("Activated")}</th>
+                <th scope="col">{t("Provenance")}</th>
+                <th scope="col">{t("Compare")}</th>
+                {canActivate && <th scope="col">{t("Action")}</th>}
+              </tr>
+            </thead>
+            <tbody>
+              {datasets.length === 0 && (
+                <tr>
+                  <td class="data-table-empty" colspan={canActivate ? 8 : 7}>
+                    <div class="empty-state">
+                      <span class="empty-state-icon" aria-hidden="true">
+                        📦
+                      </span>
+                      <span class="empty-state-title">
+                        {t("No versions imported")}
+                      </span>
+                      <span class="empty-state-text">
+                        {t("Run {command} to import the vendored dataset.", {
+                          command: "bun run idn-regions:import -- --commit"
+                        })}{" "}
+                        {t(
+                          "That command runs in the awcms-jobs image ({image}), not in the application container serving this page.",
+                          { image: "ghcr.io/ahliweb/awcms-jobs" }
+                        )}
+                      </span>
+                    </div>
+                  </td>
+                </tr>
+              )}
+              {datasets.map((dataset) => (
+                <tr>
+                  <td data-label="Version">
+                    <span class="cell-code">{dataset.datasetCode}</span>
+                  </td>
+                  <td data-label="Status">
+                    <span
+                      class="status-badge"
+                      data-variant={statusVariant(dataset.status)}
+                    >
+                      <span class="status-dot" aria-hidden="true" />
+                      {dataset.status}
+                    </span>
+                  </td>
+                  <td data-label="Regions">
+                    {numberFormatter.format(dataset.rowCount)}
+                  </td>
+                  <td data-label="Imported">
+                    <span class="cell-code">
+                      {formatTimestamp(dataset.createdAt)}
+                    </span>
+                  </td>
+                  <td data-label="Activated">
+                    <span class="cell-code">
+                      {formatTimestamp(dataset.activatedAt)}
+                    </span>
+                  </td>
+                  <td data-label="Provenance">
+                    {/* Operator-facing evidence, rendered as escaped TEXT
+                        inside `<details>` — never as HTML. */}
+                    <details>
+                      <summary>{t("Source")}</summary>
+                      <p>
+                        <strong>{t("Repository:")}</strong>{" "}
+                        {dataset.sourceRepository}
+                      </p>
+                      <p>
+                        <strong>{t("Commit:")}</strong>{" "}
+                        <span class="cell-code">{dataset.sourceCommitSha}</span>
+                      </p>
+                      <p>
+                        <strong>{t("File SHA-256:")}</strong>{" "}
+                        <span class="cell-code">
+                          {dataset.sourceFileSha256}
+                        </span>
+                      </p>
+                      <p>
+                        <strong>{t("License:")}</strong> {dataset.sourceLicense}
+                      </p>
+                      {dataset.sourceReference && (
+                        <p>
+                          <strong>{t("Decree:")}</strong>{" "}
+                          {dataset.sourceReference}
+                        </p>
+                      )}
+                    </details>
+                    {dataset.status === "rejected" &&
+                      dataset.rejectionReason && (
+                        <p class="cell-error">
+                          {/* Escaped TEXT, never HTML — the reason is the
+                              validation problems joined by planDatasetImport,
+                              which can contain arbitrary dump content. */}
+                          <strong>{t("Rejected:")}</strong>{" "}
+                          {dataset.rejectionReason}
+                        </p>
+                      )}
+                  </td>
+                  <td data-label="Compare">
+                    {/* Issue #766 — reachable from the row about to be
+                        activated, so the comparison is in front of the
+                        operator at the moment of the decision. `compareFrom`
+                        is reset to null (falling back to the active dataset)
+                        rather than carried over from the current URL, so this
+                        link always means "compare with what is served now". */}
+                    {dataset.status === "active" ? (
+                      <span class="cell-muted">{t("Currently active")}</span>
+                    ) : (
+                      <a
+                        class="btn-inline"
+                        href={
+                          regionQueryLink({
+                            compareTo: dataset.datasetCode,
+                            compareFrom: null,
+                            addedAfter: null,
+                            removedAfter: null,
+                            renamedAfter: null
+                          }) + "#idn-regions-compare"
+                        }
+                      >
+                        {t("Compare with active")}
+                      </a>
+                    )}
+                  </td>
+                  {canActivate && (
+                    <td data-label="Action">
+                      {dataset.status === "validated" ? (
+                        <button
+                          type="button"
+                          class="module-toggle"
+                          data-activate-dataset={dataset.id}
+                          data-dataset-code={dataset.datasetCode}
+                        >
+                          {t("Serve this version")}
+                        </button>
+                      ) : (
+                        <span class="cell-muted">—</span>
+                      )}
+                    </td>
+                  )}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+    )
+  }
+
+  {
+    canReadDatasets && (
+      <section class="admin-section fade-in-up" id="idn-regions-compare">
+        <h2 class="admin-section-title">{t("Compare dataset versions")}</h2>
+        <p class="page-description">
+          {t(
+            "See exactly what changes before you activate a version: per-tier counts on both sides, codes added, codes removed, and regions whose name changed. Defaults to the active version against the one being considered."
+          )}
+        </p>
+
+        {/* A GET form, like the region browser's filter — linkable, works
+            with JavaScript disabled, ships no bundle. Submitting it carries
+            no `*After` cursor, so choosing a new pair always starts each list
+            from its first page rather than resuming a stale one. */}
+        <form class="admin-create-form fade-in-up" method="get">
+          <p class="form-legend">{t("Versions to compare")}</p>
+
+          <label for="compare-from">
+            {t("From")}
+            <select id="compare-from" name="compareFrom">
+              {datasets.map((dataset) => (
+                <option
+                  value={dataset.datasetCode}
+                  selected={dataset.datasetCode === compareFromCode}
+                >
+                  {dataset.datasetCode} ({dataset.status})
+                </option>
+              ))}
+            </select>
+          </label>
+
+          <label for="compare-to">
+            {t("To")}
+            <select id="compare-to" name="compareTo">
+              {datasets.map((dataset) => (
+                <option
+                  value={dataset.datasetCode}
+                  selected={dataset.datasetCode === compareToCode}
+                >
+                  {dataset.datasetCode} ({dataset.status})
+                </option>
+              ))}
+            </select>
+          </label>
+
+          <button type="submit" class="module-toggle">
+            {t("Compare")}
+          </button>
+        </form>
+
+        {datasets.length < 2 && (
+          <p class="page-description">
+            {t(
+              "Import at least two versions to compare them — there is nothing to compare a single version against."
+            )}
+          </p>
+        )}
+
+        {datasets.length >= 2 && !compare && (
+          <p class="page-description">
+            {t("Choose two versions above to see what differs between them.")}
+          </p>
+        )}
+
+        {compare && compare.sameVersion && (
+          <p class="page-description" id="idn-regions-compare-same-version">
+            {t("{from} and {to} are the same version — nothing differs.", {
+              from: compare.fromCode,
+              to: compare.toCode
+            })}
+          </p>
+        )}
+
+        {compare && !compare.sameVersion && (
+          <div class="data-table-scroll">
+            <table class="data-table" id="idn-regions-compare-tiers">
+              <caption class="sr-only">
+                {t("Per-tier region counts, {from} versus {to}", {
+                  from: compare.fromCode,
+                  to: compare.toCode
+                })}
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col">{t("Tier")}</th>
+                  <th scope="col">
+                    <span class="cell-code">{compare.fromCode}</span>
+                  </th>
+                  <th scope="col">
+                    <span class="cell-code">{compare.toCode}</span>
+                  </th>
+                  <th scope="col">{t("Delta")}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {compare.tierRows.map((row) => (
+                  <tr>
+                    <td data-label="Tier">{regionTierLabel(row.level)}</td>
+                    <td data-label={compare!.fromCode}>
+                      {numberFormatter.format(row.fromCount)}
+                    </td>
+                    <td data-label={compare!.toCode}>
+                      {numberFormatter.format(row.toCount)}
+                    </td>
+                    <td data-label="Delta">
+                      {row.delta === 0 ? (
+                        <span class="cell-muted">0</span>
+                      ) : (
+                        <span
+                          class={row.delta < 0 ? "cell-error" : "cell-code"}
+                        >
+                          {row.delta > 0 ? `+${row.delta}` : row.delta}
+                        </span>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </section>
+    )
+  }
+
+  {
+    // Three SIBLING sections, one per diff kind — the same "several
+    // independently laid out panels under one gate" shape the region browser
+    // above already uses, rather than nesting a second heading level inside
+    // one section. Each list is capped and keyset-paged on `code`
+    // independently: choosing "next page" on `added` must not disturb
+    // `removed`/`renamed`'s own cursor.
+    canReadDatasets &&
+      compare &&
+      !compare.sameVersion &&
+      (
+        [
+          {
+            kind: "added" as const,
+            after: "addedAfter",
+            title: t("Codes added"),
+            empty: t("No codes were added.")
+          },
+          {
+            kind: "removed" as const,
+            after: "removedAfter",
+            title: t("Codes removed"),
+            empty: t("No codes were removed.")
+          },
+          {
+            kind: "renamed" as const,
+            after: "renamedAfter",
+            title: t("Renamed regions"),
+            empty: t("No region name changed.")
+          }
+        ] as const
+      ).map(({ kind, after, title, empty }) => {
+        const page = compare!.diffs[kind];
+        return (
+          <section
+            class="admin-section fade-in-up"
+            id={`idn-regions-compare-${kind}`}
+          >
+            <h2 class="admin-section-title">
+              {title}
+              <span class="count-pill">{page.items.length}</span>
+            </h2>
+            <div class="data-table-scroll">
+              <table class="data-table data-table--stack">
+                <caption class="sr-only">{title}</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">{t("Code")}</th>
+                    <th scope="col">
+                      {kind === "added" ? t("Name") : t("Old name")}
+                    </th>
+                    {kind === "renamed" && <th scope="col">{t("New name")}</th>}
+                  </tr>
+                </thead>
+                <tbody>
+                  {page.items.length === 0 && (
+                    <tr>
+                      <td
+                        class="data-table-empty"
+                        colspan={kind === "renamed" ? 3 : 2}
+                      >
+                        {empty}
+                      </td>
+                    </tr>
+                  )}
+                  {page.items.map((item) => (
+                    <tr>
+                      <td data-label="Code">
+                        <span class="cell-code">{item.code}</span>
+                      </td>
+                      <td data-label="Name">
+                        {kind === "added" ? item.newName : item.oldName}
+                      </td>
+                      {kind === "renamed" && (
+                        <td data-label="New name">{item.newName}</td>
+                      )}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            {page.nextCursor && (
+              <p class="page-description">
+                <a
+                  class="quick-link"
+                  href={regionQueryLink({ [after]: page.nextCursor })}
+                >
+                  {t("Next page")}
+                </a>
+              </p>
+            )}
+          </section>
+        );
+      })
+  }
+
+  {
+    canReadDatasets && (
+      <section class="admin-section fade-in-up" id="idn-regions-caveat">
+        <h2 class="admin-section-title">
+          {t("What this data is, and is not")}
+        </h2>
+        <p class="page-description">
+          {IDN_ADMIN_REGIONS_PROVENANCE.officialReferenceCaveat}
+        </p>
+        <p class="page-description">
+          {t("New versions arrive by deploy, not from this screen:")}
+          <code>{t("bun run idn-regions:import -- --commit")}</code>
+          {t(
+            "That command runs in the awcms-jobs image ({image}), not in the application container serving this page.",
+            { image: "ghcr.io/ahliweb/awcms-jobs" }
+          )}
+          {t(
+            "It parses the dump vendored in the repository. Importing never activates \u2014 a new version lands as"
+          )}
+          <span class="cell-code">{t("validated")}</span>
+          {t("and is served only when someone chooses it here.")}
+        </p>
+      </section>
+    )
+  }
+
+  {
+    canReadRegions && (
+      <>
+        <section
+          class="admin-section fade-in-up"
+          id="idn-regions-browser-filter"
+        >
+          <h2 class="admin-section-title">{t("Browse regions")}</h2>
+          <p class="page-description">
+            {t(
+              "Drill down by tier — province, regency/city, district, village — or search by name. Pages are 50 rows at a time."
+            )}
+          </p>
+          {/* A GET form: it navigates with query params, so filtering works
+              with JavaScript disabled and ships no bundle — the same
+              pattern as the audit trail and media library filters. */}
+          <form class="admin-create-form fade-in-up" method="get" role="search">
+            <p class="form-legend">{t("Filter")}</p>
+
+            <label for="region-filter-level">
+              {t("Tier")}
+              <select id="region-filter-level" name="level">
+                <option value="" selected={regionLevel === null}>
+                  {t("Any tier")}
+                </option>
+                {[1, 2, 3, 4].map((levelOption) => (
+                  <option
+                    value={String(levelOption)}
+                    selected={regionLevel === levelOption}
+                  >
+                    {regionTierLabel(levelOption)}
+                  </option>
+                ))}
+              </select>
+            </label>
+
+            <label for="region-filter-parent">
+              {t("Parent code")}
+              <input
+                type="text"
+                id="region-filter-parent"
+                name="parentCode"
+                value={regionParentCode ?? ""}
+                placeholder="11.01"
+              />
+            </label>
+
+            <label for="region-filter-search">
+              {t("Name")}
+              <input
+                type="text"
+                id="region-filter-search"
+                name="search"
+                value={regionSearchParam ?? ""}
+                placeholder={t("Search by name…")}
+              />
+            </label>
+
+            <label for="region-filter-dataset">
+              {t("Dataset code (optional)")}
+              <input
+                type="text"
+                id="region-filter-dataset"
+                name="dataset"
+                value={regionDatasetParam ?? ""}
+                placeholder={t("Leave blank for the active dataset")}
+              />
+            </label>
+
+            <button type="submit" class="module-toggle">
+              {t("Apply filter")}
+            </button>
+            {(regionSearchParam ||
+              regionParentCode ||
+              regionDatasetParam ||
+              regionLevel !== 1) && (
+              <a class="btn-inline" href="/admin/idn-regions">
+                {t("Reset to provinces")}
+              </a>
+            )}
+          </form>
+
+          {parentRegion?.region && (
+            <p class="page-description" id="idn-regions-browser-breadcrumb">
+              {t("Browsing children of: {path}", {
+                path:
+                  parentRegion.region.fullPathName ?? parentRegion.region.name
+              })}{" "}
+              <a
+                class="btn-inline"
+                href={regionQueryLink({
+                  level: String(parentRegion.region.level),
+                  parentCode: parentRegion.region.parentCode,
+                  code: null,
+                  after: null
+                })}
+              >
+                {t("Up one level")}
+              </a>
+            </p>
+          )}
+        </section>
+
+        <section
+          class="admin-section fade-in-up"
+          id="idn-regions-browser-results"
+        >
+          <h2 class="admin-section-title">
+            {t("Regions")}
+            <span class="count-pill">{regionItems.length}</span>
+          </h2>
+
+          {regionReason === "no_active_dataset" && (
+            <div class="empty-state" id="idn-regions-browser-no-active-dataset">
+              <span class="empty-state-icon" aria-hidden="true">
+                🗺
+              </span>
+              <span class="empty-state-title">{t("No active dataset")}</span>
+              <span class="empty-state-text">
+                {t(
+                  "No region dataset has been activated yet, so there is nothing to browse. Ask a platform operator to activate an imported version."
+                )}
+              </span>
+            </div>
+          )}
+
+          {regionReason === "dataset_not_found" && (
+            <div class="empty-state" id="idn-regions-browser-dataset-not-found">
+              <span class="empty-state-icon" aria-hidden="true">
+                🗺
+              </span>
+              <span class="empty-state-title">{t("Dataset not found")}</span>
+              <span class="empty-state-text">
+                {t("No dataset with the code {code} exists.", {
+                  code: regionDatasetParam ?? ""
+                })}
+              </span>
+            </div>
+          )}
+
+          {regionReason === null && (
+            <div class="data-table-scroll">
+              <table class="data-table data-table--stack">
+                <caption class="sr-only">
+                  {t(
+                    "Indonesia administrative regions matching the current filter"
+                  )}
+                </caption>
+                <thead>
+                  <tr>
+                    <th scope="col">{t("Code")}</th>
+                    <th scope="col">{t("Name")}</th>
+                    <th scope="col">{t("Tier")}</th>
+                    <th scope="col">{t("Action")}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {regionItems.length === 0 && (
+                    <tr>
+                      <td class="data-table-empty" colspan={4}>
+                        <div class="empty-state">
+                          <span class="empty-state-icon" aria-hidden="true">
+                            🔍
+                          </span>
+                          <span class="empty-state-title">
+                            {t("No regions match this filter")}
+                          </span>
+                          <span class="empty-state-text">
+                            {t(
+                              "Try a different tier, parent, or name, or clear the filter."
+                            )}
+                          </span>
+                        </div>
+                      </td>
+                    </tr>
+                  )}
+                  {regionItems.map((region) => (
+                    <tr>
+                      <td data-label="Code">
+                        <span class="cell-code">{region.code}</span>
+                      </td>
+                      <td data-label="Name">
+                        {region.name}
+                        {region.localTerm && (
+                          <span class="cell-muted"> ({region.localTerm})</span>
+                        )}
+                      </td>
+                      <td data-label="Tier">{regionTierLabel(region.level)}</td>
+                      <td data-label="Action">
+                        {region.level < 4 && (
+                          <a
+                            class="btn-inline"
+                            href={regionQueryLink({
+                              level: String(region.level + 1),
+                              parentCode: region.code,
+                              search: null,
+                              after: null,
+                              code: null
+                            })}
+                          >
+                            {t("Browse children")}
+                          </a>
+                        )}{" "}
+                        <a
+                          class="btn-inline"
+                          href={regionQueryLink({ code: region.code })}
+                        >
+                          {t("View path")}
+                        </a>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+
+          {regionReason === null && regionPage.nextCursor && (
+            <p class="page-description" id="idn-regions-browser-next">
+              <a
+                class="quick-link"
+                href={regionQueryLink({ after: regionPage.nextCursor })}
+              >
+                {t("Next page")}
+              </a>
+            </p>
+          )}
+        </section>
+
+        {regionSelectedCode && (
+          <section
+            class="admin-section fade-in-up"
+            id="idn-regions-browser-selected"
+          >
+            <h2 class="admin-section-title">{t("Selected region")}</h2>
+            {selectedRegion?.region ? (
+              <>
+                <p>
+                  <strong>{t("Code:")}</strong>{" "}
+                  <span class="cell-code">{selectedRegion.region.code}</span>
+                </p>
+                <p>
+                  <strong>{t("Name:")}</strong> {selectedRegion.region.name}
+                </p>
+                <p>
+                  <strong>{t("Tier:")}</strong>{" "}
+                  {regionTierLabel(selectedRegion.region.level)}
+                </p>
+                {selectedRegion.region.localTerm && (
+                  <p>
+                    <strong>{t("Local term:")}</strong>{" "}
+                    {selectedRegion.region.localTerm}
+                  </p>
+                )}
+                <p>
+                  <strong>{t("Resolved path:")}</strong>{" "}
+                  {selectedRegion.region.fullPathName ??
+                    selectedRegion.region.name}
+                </p>
+                <p>
+                  <strong>{t("Dataset:")}</strong>{" "}
+                  <span class="cell-code">{selectedRegion.dataset}</span>
+                </p>
+                <a class="btn-inline" href={regionQueryLink({ code: null })}>
+                  {t("Close")}
+                </a>
+              </>
+            ) : (
+              <p class="page-description">
+                {selectedRegion?.reason === "no_active_dataset"
+                  ? t("No region dataset has been activated yet.")
+                  : t("Region {code} was not found in this dataset.", {
+                      code: regionSelectedCode
+                    })}
+              </p>
+            )}
+          </section>
+        )}
+      </>
+    )
+  }
+</AdminLayout>
+
+<script>
+  // Bound unconditionally: the controls only render when BOTH the permission
+  // gate and the platform-tenant check passed server-side, so the delegated
+  // listeners match nothing for anyone else. Astro hoists this script at build
+  // time, so a conditional wrapper would be meaningless.
+  //
+  // The import is deliberate and load-bearing for CSP: an import-free script is
+  // INLINED by Astro, and inline scripts are blocked by this app's
+  // `default-src 'self'` policy. See admin-form-client.ts.
+  import {
+    messageBox,
+    mutateAndReload,
+    onAction,
+    sendJson
+  } from "../../lib/ui/admin-form-client";
+
+  const actionError = messageBox("idn-regions-action-error");
+
+  function describeFailure(errorCode: string | null): string {
+    if (errorCode === "ACCESS_DENIED") {
+      // The most likely 403 here is not a missing permission but the platform
+      // gate — the screen already hides the buttons for that case, so reaching
+      // this branch usually means the platform tenant moved under the session.
+      return "This action is only permitted from the platform tenant. Reload the page — the platform tenant may have changed.";
+    }
+    if (errorCode === "NO_PREVIOUS_DATASET") {
+      return "There is no superseded version to roll back to.";
+    }
+    if (errorCode === "DATASET_NOT_ACTIVATABLE") {
+      return "That version cannot be served — only a validated version can be activated.";
+    }
+    if (errorCode === "DATASET_NOT_FOUND") {
+      return "That version no longer exists. Reload the page.";
+    }
+    return "The change could not be applied. Please try again.";
+  }
+
+  /**
+   * Activation and rollback are both idempotency-keyed server-side, so each
+   * click mints a FRESH key — reusing one would make a deliberate second action
+   * replay the first one's stored response instead of running again.
+   */
+  async function runLifecycleAction(
+    button: HTMLButtonElement,
+    url: string,
+    busyLabel: string
+  ): Promise<void> {
+    await mutateAndReload(
+      button,
+      actionError,
+      () =>
+        sendJson("POST", url, undefined, {
+          "Idempotency-Key": crypto.randomUUID()
+        }),
+      describeFailure,
+      busyLabel
+    );
+  }
+
+  onAction("[data-activate-dataset]", async (button) => {
+    const datasetId = button.dataset.activateDataset;
+    const datasetCode = button.dataset.datasetCode ?? "this version";
+    if (!datasetId) return;
+
+    // Platform-wide and immediate: every tenant's address forms change the
+    // moment this commits.
+    if (
+      !window.confirm(
+        `Serve ${datasetCode} to every tenant? The current version is superseded immediately.`
+      )
+    ) {
+      return;
+    }
+
+    await runLifecycleAction(
+      button,
+      `/api/v1/idn-regions/datasets/${encodeURIComponent(datasetId)}/activate`,
+      "Activating…"
+    );
+  });
+
+  onAction("#idn-regions-rollback", async (button) => {
+    if (
+      !window.confirm(
+        "Roll back to the previously served version? This affects every tenant."
+      )
+    ) {
+      return;
+    }
+
+    await runLifecycleAction(
+      button,
+      "/api/v1/idn-regions/datasets/rollback",
+      "Rolling back…"
+    );
+  });
+</script>

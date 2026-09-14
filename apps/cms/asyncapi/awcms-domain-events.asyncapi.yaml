@@ -1,0 +1,769 @@
+asyncapi: 3.0.0
+info:
+  title: AWCMS Domain Events
+  version: 0.1.0
+  description: |-
+    Domain event contract for AWCMS. The `domain_event_runtime` module ships
+    exactly one self-contained reference event
+    (`awcms.domain-event-runtime.sample.recorded`) that exercises the
+    transactional outbox, dispatcher, ordering, retry/backoff, dead-letter,
+    and replay mechanism end-to-end. Real producer modules add their OWN
+    channels here (and their own `ModuleDescriptor.events.publishes` entries)
+    when they start calling `appendDomainEvent`
+    (docs/awcms/10_template_kode_coding_standard.md §Domain event envelope).
+channels:
+  awcms.domain-event-runtime.sample.recorded:
+    address: awcms.domain-event-runtime.sample.recorded
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      Reference/example event used to exercise the domain-event-runtime
+      outbox, dispatcher, ordering, retry/backoff, dead-letter, and replay
+      mechanism end-to-end. Real producer modules publish their OWN event
+      types the same way, via `appendDomainEvent` — this one is intentionally
+      self-contained rather than tied to another module's business logic in
+      this foundation module (see
+      `src/modules/domain-event-runtime/domain/event-type-registry.ts`'s own
+      doc comment). Producer: any caller of
+      `application/append-domain-event.ts`'s `appendDomainEvent` for this
+      event type; consumers:
+      `infrastructure/consumer-registry.ts`'s two reference consumers
+      (a same-process cross-module audit projector and a self-contained
+      read-model activity-rollup projection).
+  awcms.workflow.instance.started:
+    address: awcms.workflow.instance.started
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A workflow instance was started, pinned to the currently-active
+      workflow definition version. Producer:
+      `workflow-approval/application/workflow-instance.ts`'s
+      `startWorkflowInstance`, via `appendDomainEvent` in the same
+      transaction as the instance's creation.
+  awcms.workflow.instance.advanced:
+    address: awcms.workflow.instance.advanced
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A workflow instance's active task was decided (or force-decided) and
+      the instance advanced to its next node(s), without yet reaching a
+      terminal outcome. Producer:
+      `workflow-approval/application/workflow-instance-decision.ts`'s
+      `completeApprovalTaskAndAdvance`.
+  awcms.workflow.instance.approved:
+    address: awcms.workflow.instance.approved
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A workflow instance reached an `end` node with outcome `approved`.
+      Producer: `workflow-approval/application/workflow-instance.ts` /
+      `workflow-instance-decision.ts`.
+  awcms.workflow.instance.rejected:
+    address: awcms.workflow.instance.rejected
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A workflow instance reached an `end` node with outcome `rejected`, or
+      was force-rejected. Producer:
+      `workflow-approval/application/workflow-instance.ts` /
+      `workflow-instance-decision.ts`.
+  awcms.workflow.instance.cancelled:
+    address: awcms.workflow.instance.cancelled
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      An administrator cancelled a running workflow instance. Producer:
+      `workflow-approval/application/workflow-recovery.ts`'s
+      `cancelWorkflowInstance`, via
+      `POST /api/v1/workflows/instances/{id}/cancel`.
+  awcms.workflow.task.escalated:
+    address: awcms.workflow.task.escalated
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A pending workflow task passed its due date and was escalated by the
+      scheduled escalation/timeout job. Producer:
+      `workflow-approval/application/workflow-escalation.ts`'s
+      `escalateDueTasksForTenant`, run via
+      `bun run workflow:escalations:dispatch`.
+  awcms.workflow.delegation.created:
+    address: awcms.workflow.delegation.created
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A workflow delegation/substitute assignment was created. Producer:
+      `workflow-approval/application/workflow-delegation-directory.ts`'s
+      `createWorkflowDelegation`.
+  awcms.workflow.delegation.revoked:
+    address: awcms.workflow.delegation.revoked
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A workflow delegation/substitute assignment was revoked. Producer:
+      `workflow-approval/application/workflow-delegation-directory.ts`'s
+      `revokeWorkflowDelegation`.
+  awcms.comments.comment.submitted:
+    address: awcms.comments.comment.submitted
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A comment was submitted against a published, public commentable resource
+      (ADR-0041). Producer: `comments/application/comment-service.ts`'s
+      `submitComment`. The payload carries opaque references only — comment and
+      thread id, resource type, the server-derived public URL, and the resulting
+      status. Never the body text, the author address, or any identity hash.
+  awcms.comments.comment.approved:
+    address: awcms.comments.comment.approved
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A comment became publicly visible, either by auto-approval under the
+      thread policy or by a moderator's approve decision. Producers:
+      `comments/application/comment-service.ts`'s `submitComment` and
+      `comments/application/comment-moderation.ts`'s `moderateComment`. The
+      reply-notification consumer keys off THIS event rather than
+      `comment.submitted`, so a comment still held for moderation never triggers
+      a notification.
+  awcms.comments.reply.created:
+    address: awcms.comments.reply.created
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A submitted comment was a reply to an existing comment. Producer:
+      `comments/application/comment-service.ts`'s `submitComment`, published
+      alongside `comment.submitted` so a consumer can distinguish thread replies
+      without re-reading the row. The recipient address is resolved from
+      encrypted storage by the dispatcher at send time and is never carried
+      here.
+  awcms.email.message.queued:
+    address: awcms.email.message.queued
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      An email message was enqueued into `awcms_email_messages`. Documented
+      contract only, same convention as `database.pool.saturated` — the
+      concrete producer is the structured JSON logger, invoked from
+      `email/application/announcement-directory.ts`'s `enqueueAnnouncement`
+      (`email.message.queued` log line).
+  awcms.email.message.sent:
+    address: awcms.email.message.sent
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      The email dispatcher (`bun run email:dispatch`) delivered a message
+      through the configured provider. Documented contract only; producer is
+      the structured JSON logger (`email/application/email-dispatch.ts`'s
+      `email.dispatch.sent` log line).
+  awcms.email.message.failed:
+    address: awcms.email.message.failed
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      The email dispatcher exhausted retries (or hit a non-retryable failure)
+      for a queued message. Documented contract only; producer is the
+      structured JSON logger (`email/application/email-dispatch.ts`'s
+      `email.dispatch.failed` log line).
+  awcms.email.message.suppressed:
+    address: awcms.email.message.suppressed
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      The email dispatcher found a claimed message's recipient newly present
+      on `awcms_email_suppression_list` (added after enqueue, before dispatch)
+      and skipped the provider call entirely. Documented contract only;
+      producer is the structured JSON logger
+      (`email/application/email-dispatch.ts`'s `email.dispatch.suppressed`
+      log line).
+  awcms.email.message.cancelled:
+    address: awcms.email.message.cancelled
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      An operator cancelled a still-queued message
+      (`POST /api/v1/email/messages/{id}/cancel`) before dispatch. Documented
+      contract only; producer is the structured JSON logger
+      (`pages/api/v1/email/messages/[id]/cancel.ts`'s `email.message.cancelled`
+      log line).
+  awcms.blog-content.post.created:
+    address: awcms.blog-content.post.created
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A blog post was created (draft). Ported from awcms-mini. Documented
+      contract only, same structured-logger-producer convention as
+      `awcms.email.*` above; producer is
+      `pages/api/v1/blog/posts/index.ts`'s `blog-content.post.created` log
+      line.
+  awcms.blog-content.post.updated:
+    address: awcms.blog-content.post.updated
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A blog post was updated. Documented contract only; producer is
+      `pages/api/v1/blog/posts/[id].ts`'s `blog-content.post.updated` log
+      line.
+  awcms.blog-content.post.submitted-for-review:
+    address: awcms.blog-content.post.submitted-for-review
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A blog post transitioned draft -> review. Documented contract only;
+      producer is `pages/api/v1/blog/posts/[id]/submit-review.ts`'s
+      `blog-content.post.submitted-for-review` log line.
+  awcms.blog-content.post.published:
+    address: awcms.blog-content.post.published
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A blog post was published (manually or by the scheduled-publish job).
+      Documented contract only; producer is
+      `pages/api/v1/blog/posts/[id]/publish.ts` /
+      `application/blog-scheduled-publish.ts`'s `blog-content.post.published`
+      log line.
+  awcms.blog-content.post.scheduled:
+    address: awcms.blog-content.post.scheduled
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A blog post was scheduled for future publishing. Documented contract
+      only; producer is `pages/api/v1/blog/posts/[id]/schedule.ts`'s
+      `blog-content.post.scheduled` log line.
+  awcms.blog-content.post.archived:
+    address: awcms.blog-content.post.archived
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A blog post was archived. Documented contract only; producer is
+      `pages/api/v1/blog/posts/[id]/archive.ts`'s `blog-content.post.archived`
+      log line.
+  awcms.blog-content.post.deleted:
+    address: awcms.blog-content.post.deleted
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A blog post was soft-deleted. Documented contract only; producer is
+      `pages/api/v1/blog/posts/[id].ts`'s `blog-content.post.deleted` log
+      line.
+  awcms.blog-content.post.restored:
+    address: awcms.blog-content.post.restored
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A soft-deleted blog post was restored. Documented contract only;
+      producer is `pages/api/v1/blog/posts/[id]/restore.ts`'s
+      `blog-content.post.restored` log line.
+  awcms.blog-content.post.purged:
+    address: awcms.blog-content.post.purged
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A soft-deleted blog post was permanently purged. Documented contract
+      only; producer is `pages/api/v1/blog/posts/[id]/purge.ts`'s
+      `blog-content.post.purged` log line.
+  awcms.blog-content.revision.created:
+    address: awcms.blog-content.revision.created
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      An append-only revision snapshot was created for a post/page (a
+      significant content change, or a revision restore). Documented
+      contract only; producer is
+      `application/blog-revision-directory.ts`'s `blog-content.revision.created`
+      log line.
+  awcms.blog-content.term.created:
+    address: awcms.blog-content.term.created
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A blog category/tag was created. Documented contract only; producer is
+      `pages/api/v1/blog/terms/index.ts`'s `blog-content.term.created` log
+      line.
+  awcms.blog-content.term.updated:
+    address: awcms.blog-content.term.updated
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A blog category/tag was updated or soft-deleted. Documented contract
+      only; producer is `pages/api/v1/blog/terms/[id].ts`'s
+      `blog-content.term.updated` log line.
+  awcms.blog-content.settings.updated:
+    address: awcms.blog-content.settings.updated
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A tenant's blog settings were updated. Documented contract only;
+      producer is `pages/api/v1/blog/settings/index.ts`'s
+      `blog-content.settings.updated` log line.
+  awcms.blog-content.template.created:
+    address: awcms.blog-content.template.created
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A presentation template was created. Documented contract only;
+      producer is `pages/api/v1/blog/templates/index.ts`'s
+      `blog-content.template.created` log line.
+  awcms.blog-content.template.updated:
+    address: awcms.blog-content.template.updated
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A presentation template was updated. Documented contract only;
+      producer is `pages/api/v1/blog/templates/[id].ts`'s
+      `blog-content.template.updated` log line.
+  awcms.blog-content.template.deleted:
+    address: awcms.blog-content.template.deleted
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A presentation template was soft-deleted. Documented contract only;
+      producer is `pages/api/v1/blog/templates/[id].ts`'s
+      `blog-content.template.deleted` log line.
+  awcms.blog-content.menu.created:
+    address: awcms.blog-content.menu.created
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A navigation menu was created. Documented contract only; producer is
+      `pages/api/v1/blog/menus/index.ts`'s `blog-content.menu.created` log
+      line.
+  awcms.blog-content.menu.updated:
+    address: awcms.blog-content.menu.updated
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A navigation menu (or its items tree) was updated. Documented contract
+      only; producer is `pages/api/v1/blog/menus/[id].ts`'s
+      `blog-content.menu.updated` log line.
+  awcms.blog-content.menu.deleted:
+    address: awcms.blog-content.menu.deleted
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A navigation menu was soft-deleted. Documented contract only; producer
+      is `pages/api/v1/blog/menus/[id].ts`'s `blog-content.menu.deleted` log
+      line.
+  awcms.blog-content.widget.created:
+    address: awcms.blog-content.widget.created
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A widget was created. Documented contract only; producer is
+      `pages/api/v1/blog/widgets/index.ts`'s `blog-content.widget.created`
+      log line.
+  awcms.blog-content.widget.updated:
+    address: awcms.blog-content.widget.updated
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A widget was updated. Documented contract only; producer is
+      `pages/api/v1/blog/widgets/[id].ts`'s `blog-content.widget.updated`
+      log line.
+  awcms.blog-content.widget.deleted:
+    address: awcms.blog-content.widget.deleted
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A widget was soft-deleted. Documented contract only; producer is
+      `pages/api/v1/blog/widgets/[id].ts`'s `blog-content.widget.deleted`
+      log line.
+  awcms.blog-content.ad.created:
+    address: awcms.blog-content.ad.created
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      An advertisement was created. Documented contract only; producer is
+      `pages/api/v1/blog/ads/index.ts`'s `blog-content.ad.created` log line.
+  awcms.blog-content.ad.updated:
+    address: awcms.blog-content.ad.updated
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      An advertisement (or its placements) was updated. Documented contract
+      only; producer is `pages/api/v1/blog/ads/[id].ts`'s
+      `blog-content.ad.updated` log line.
+  awcms.blog-content.ad.deleted:
+    address: awcms.blog-content.ad.deleted
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      An advertisement was soft-deleted. Documented contract only; producer
+      is `pages/api/v1/blog/ads/[id].ts`'s `blog-content.ad.deleted` log
+      line.
+  awcms.blog-content.theme.updated:
+    address: awcms.blog-content.theme.updated
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A tenant's blog theme mode override was updated. Documented contract
+      only; producer is `pages/api/v1/blog/theme/index.ts`'s
+      `blog-content.theme.updated` log line.
+  awcms.blog-content.internal-tag-linking-policy.updated:
+    address: awcms.blog-content.internal-tag-linking-policy.updated
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A tenant's automatic internal tag linking policy was updated.
+      Documented contract only; producer is
+      `pages/api/v1/blog/internal-tag-links/settings.ts`'s
+      `blog-content.internal-tag-linking-policy.updated` log line.
+operations:
+  publishDomainEventRuntimeSampleRecorded:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.domain-event-runtime.sample.recorded"
+    messages:
+      - $ref: "#/channels/awcms.domain-event-runtime.sample.recorded/messages/DomainEvent"
+  subscribeDomainEventRuntimeSampleRecorded:
+    action: receive
+    channel:
+      $ref: "#/channels/awcms.domain-event-runtime.sample.recorded"
+    messages:
+      - $ref: "#/channels/awcms.domain-event-runtime.sample.recorded/messages/DomainEvent"
+  publishWorkflowInstanceStarted:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.workflow.instance.started"
+    messages:
+      - $ref: "#/channels/awcms.workflow.instance.started/messages/DomainEvent"
+  publishWorkflowInstanceAdvanced:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.workflow.instance.advanced"
+    messages:
+      - $ref: "#/channels/awcms.workflow.instance.advanced/messages/DomainEvent"
+  publishWorkflowInstanceApproved:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.workflow.instance.approved"
+    messages:
+      - $ref: "#/channels/awcms.workflow.instance.approved/messages/DomainEvent"
+  publishWorkflowInstanceRejected:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.workflow.instance.rejected"
+    messages:
+      - $ref: "#/channels/awcms.workflow.instance.rejected/messages/DomainEvent"
+  publishWorkflowInstanceCancelled:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.workflow.instance.cancelled"
+    messages:
+      - $ref: "#/channels/awcms.workflow.instance.cancelled/messages/DomainEvent"
+  publishWorkflowTaskEscalated:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.workflow.task.escalated"
+    messages:
+      - $ref: "#/channels/awcms.workflow.task.escalated/messages/DomainEvent"
+  publishWorkflowDelegationCreated:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.workflow.delegation.created"
+    messages:
+      - $ref: "#/channels/awcms.workflow.delegation.created/messages/DomainEvent"
+  publishWorkflowDelegationRevoked:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.workflow.delegation.revoked"
+    messages:
+      - $ref: "#/channels/awcms.workflow.delegation.revoked/messages/DomainEvent"
+  publishCommentSubmitted:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.comments.comment.submitted"
+    messages:
+      - $ref: "#/channels/awcms.comments.comment.submitted/messages/DomainEvent"
+  publishCommentApproved:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.comments.comment.approved"
+    messages:
+      - $ref: "#/channels/awcms.comments.comment.approved/messages/DomainEvent"
+  publishCommentReplyCreated:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.comments.reply.created"
+    messages:
+      - $ref: "#/channels/awcms.comments.reply.created/messages/DomainEvent"
+  publishEmailMessageQueued:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.email.message.queued"
+    messages:
+      - $ref: "#/channels/awcms.email.message.queued/messages/DomainEvent"
+  publishEmailMessageSent:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.email.message.sent"
+    messages:
+      - $ref: "#/channels/awcms.email.message.sent/messages/DomainEvent"
+  publishEmailMessageFailed:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.email.message.failed"
+    messages:
+      - $ref: "#/channels/awcms.email.message.failed/messages/DomainEvent"
+  publishEmailMessageSuppressed:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.email.message.suppressed"
+    messages:
+      - $ref: "#/channels/awcms.email.message.suppressed/messages/DomainEvent"
+  publishEmailMessageCancelled:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.email.message.cancelled"
+    messages:
+      - $ref: "#/channels/awcms.email.message.cancelled/messages/DomainEvent"
+  publishBlogContentPostCreated:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.blog-content.post.created"
+    messages:
+      - $ref: "#/channels/awcms.blog-content.post.created/messages/DomainEvent"
+  publishBlogContentPostUpdated:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.blog-content.post.updated"
+    messages:
+      - $ref: "#/channels/awcms.blog-content.post.updated/messages/DomainEvent"
+  publishBlogContentPostSubmittedForReview:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.blog-content.post.submitted-for-review"
+    messages:
+      - $ref: "#/channels/awcms.blog-content.post.submitted-for-review/messages/DomainEvent"
+  publishBlogContentPostPublished:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.blog-content.post.published"
+    messages:
+      - $ref: "#/channels/awcms.blog-content.post.published/messages/DomainEvent"
+  publishBlogContentPostScheduled:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.blog-content.post.scheduled"
+    messages:
+      - $ref: "#/channels/awcms.blog-content.post.scheduled/messages/DomainEvent"
+  publishBlogContentPostArchived:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.blog-content.post.archived"
+    messages:
+      - $ref: "#/channels/awcms.blog-content.post.archived/messages/DomainEvent"
+  publishBlogContentPostDeleted:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.blog-content.post.deleted"
+    messages:
+      - $ref: "#/channels/awcms.blog-content.post.deleted/messages/DomainEvent"
+  publishBlogContentPostRestored:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.blog-content.post.restored"
+    messages:
+      - $ref: "#/channels/awcms.blog-content.post.restored/messages/DomainEvent"
+  publishBlogContentPostPurged:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.blog-content.post.purged"
+    messages:
+      - $ref: "#/channels/awcms.blog-content.post.purged/messages/DomainEvent"
+  publishBlogContentRevisionCreated:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.blog-content.revision.created"
+    messages:
+      - $ref: "#/channels/awcms.blog-content.revision.created/messages/DomainEvent"
+  publishBlogContentTermCreated:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.blog-content.term.created"
+    messages:
+      - $ref: "#/channels/awcms.blog-content.term.created/messages/DomainEvent"
+  publishBlogContentTermUpdated:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.blog-content.term.updated"
+    messages:
+      - $ref: "#/channels/awcms.blog-content.term.updated/messages/DomainEvent"
+  publishBlogContentSettingsUpdated:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.blog-content.settings.updated"
+    messages:
+      - $ref: "#/channels/awcms.blog-content.settings.updated/messages/DomainEvent"
+  publishBlogContentTemplateCreated:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.blog-content.template.created"
+    messages:
+      - $ref: "#/channels/awcms.blog-content.template.created/messages/DomainEvent"
+  publishBlogContentTemplateUpdated:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.blog-content.template.updated"
+    messages:
+      - $ref: "#/channels/awcms.blog-content.template.updated/messages/DomainEvent"
+  publishBlogContentTemplateDeleted:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.blog-content.template.deleted"
+    messages:
+      - $ref: "#/channels/awcms.blog-content.template.deleted/messages/DomainEvent"
+  publishBlogContentMenuCreated:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.blog-content.menu.created"
+    messages:
+      - $ref: "#/channels/awcms.blog-content.menu.created/messages/DomainEvent"
+  publishBlogContentMenuUpdated:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.blog-content.menu.updated"
+    messages:
+      - $ref: "#/channels/awcms.blog-content.menu.updated/messages/DomainEvent"
+  publishBlogContentMenuDeleted:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.blog-content.menu.deleted"
+    messages:
+      - $ref: "#/channels/awcms.blog-content.menu.deleted/messages/DomainEvent"
+  publishBlogContentWidgetCreated:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.blog-content.widget.created"
+    messages:
+      - $ref: "#/channels/awcms.blog-content.widget.created/messages/DomainEvent"
+  publishBlogContentWidgetUpdated:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.blog-content.widget.updated"
+    messages:
+      - $ref: "#/channels/awcms.blog-content.widget.updated/messages/DomainEvent"
+  publishBlogContentWidgetDeleted:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.blog-content.widget.deleted"
+    messages:
+      - $ref: "#/channels/awcms.blog-content.widget.deleted/messages/DomainEvent"
+  publishBlogContentAdCreated:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.blog-content.ad.created"
+    messages:
+      - $ref: "#/channels/awcms.blog-content.ad.created/messages/DomainEvent"
+  publishBlogContentAdUpdated:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.blog-content.ad.updated"
+    messages:
+      - $ref: "#/channels/awcms.blog-content.ad.updated/messages/DomainEvent"
+  publishBlogContentAdDeleted:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.blog-content.ad.deleted"
+    messages:
+      - $ref: "#/channels/awcms.blog-content.ad.deleted/messages/DomainEvent"
+  publishBlogContentThemeUpdated:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.blog-content.theme.updated"
+    messages:
+      - $ref: "#/channels/awcms.blog-content.theme.updated/messages/DomainEvent"
+  publishBlogContentInternalTagLinkingPolicyUpdated:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.blog-content.internal-tag-linking-policy.updated"
+    messages:
+      - $ref: "#/channels/awcms.blog-content.internal-tag-linking-policy.updated/messages/DomainEvent"
+components:
+  messages:
+    DomainEvent:
+      name: DomainEvent
+      title: Domain event envelope
+      contentType: application/json
+      payload:
+        $ref: "#/components/schemas/DomainEventEnvelope"
+  schemas:
+    DomainEventEnvelope:
+      type: object
+      required:
+        [
+          eventId,
+          eventType,
+          eventVersion,
+          tenantId,
+          aggregateType,
+          aggregateId,
+          occurredAt,
+          payload,
+          metadata
+        ]
+      properties:
+        eventId: { type: string, format: uuid }
+        eventType: { type: string }
+        eventVersion: { type: string }
+        tenantId: { type: string, format: uuid }
+        nodeId: { type: string, format: uuid }
+        aggregateType: { type: string }
+        aggregateId: { type: string }
+        occurredAt: { type: string, format: date-time }
+        actor:
+          type: object
+          properties:
+            tenantUserId: { type: string, format: uuid }
+            profileId: { type: string, format: uuid }
+        correlationId: { type: string }
+        causationId: { type: string }
+        payload: {}
+        metadata:
+          type: object
+          required: [sourceModule, schemaVersion]
+          properties:
+            sourceModule: { type: string }
+            schemaVersion: { type: string }

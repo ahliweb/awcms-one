@@ -1,0 +1,1073 @@
+# Source fragment for the "Media Library" module (ADR-0036 ownership inversion,
+# adapting awcms-micro ADR-0026). One file per MODULE (Issue #182 convention):
+# this file owns the tenant media registry's presigned-upload/finalize/cancel
+# HTTP surface (moved here out of the news-portal fragment) plus the managed-media
+# enforcement switch, and every schema referenced ONLY by those operations.
+#
+# The "News Media" tag is KEPT on these operations deliberately (same reason the
+# `awcms_news_media_objects` table name and the `news-media:reconcile` command are
+# kept — ADR-0036 §3): a cosmetic rename would churn the api-docs grouping for no
+# gain.
+#
+# Adapted to this base's shared-component vocabulary: success responses are
+# modelled inline (no `ApiSuccess` schema here), the Idempotency-Key header is
+# declared inline where a mutation requires it, and only the shared components
+# this base actually defines (CorrelationId; BadRequest/Unauthorized/Forbidden/
+# NotFound; ApiError) are referenced.
+#
+# NOT independently valid OpenAPI — $ref targets pointing at shared components
+# only resolve after `bun run openapi:bundle` merges this file with the root and
+# every sibling module fragment into openapi/awcms-public-api.openapi.yaml.
+# Edit this file (or the root for shared components), never the generated bundle.
+paths:
+  /api/v1/media/news-images/upload-sessions:
+    post:
+      tags:
+        - News Media
+      summary: Create a direct-to-R2 presigned upload session for a news image
+      description: Gated by media_library.media.create. Returns a `pending_upload` metadata row plus a short-lived presigned PUT URL scoped to exactly one server-generated object key. Raw R2 credentials are never exposed to the browser.
+      operationId: newsMediaUploadSessionsCreate
+      parameters:
+        - $ref: "#/components/parameters/CorrelationId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateNewsMediaUploadSessionRequest"
+      responses:
+        "200":
+          description: Upload session created — a `pending_upload` metadata row plus a short-lived presigned PUT URL.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum: [true]
+                  data:
+                    $ref: "#/components/schemas/NewsMediaUploadSessionCreated"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "502":
+          description: News media R2 storage is not configured/enabled for this deployment.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/media/news-images/upload-sessions/{id}/cancel:
+    post:
+      tags:
+        - News Media
+      summary: Cancel a still-pending-upload session
+      description: Gated by media_library.media.cancel. Transitions a `pending_upload` session to `failed`.
+      operationId: newsMediaUploadSessionsCancel
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/CorrelationId"
+      responses:
+        "200":
+          description: Upload session cancelled (status `failed`).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum: [true]
+                  data:
+                    $ref: "#/components/schemas/NewsMediaObjectItem"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: Upload session is not `pending_upload` (already uploaded/verified/attached/failed).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/media/news-images/upload-sessions/{id}/finalize:
+    post:
+      tags:
+        - News Media
+      summary: Finalize an upload session — real R2 GET + magic-byte MIME sniffing + server-side SHA-256 checksum (never a bare HEAD)
+      description: "Gated by media_library.media.verify. High-risk, requires Idempotency-Key. Verifies the object actually uploaded to R2 (HEAD for existence/real size, then a full GET), sniffs the MIME type from the object's real magic bytes, and computes a SHA-256 checksum server-side. A client-claimed `checksumSha256` is only a transport-corruption cross-check, never a substitute for the MIME sniff — HEAD alone can never promote a media object to `verified`."
+      operationId: newsMediaUploadSessionsFinalize
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+        - $ref: "#/components/parameters/CorrelationId"
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/FinalizeNewsMediaUploadSessionRequest"
+      responses:
+        "200":
+          description: Object verified — media object status is now `verified` (or an idempotent replay).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum: [true]
+                  data:
+                    $ref: "#/components/schemas/NewsMediaObjectItem"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: Upload session is not `pending_upload`, has expired (`UPLOAD_SESSION_EXPIRED`), or the Idempotency-Key was reused with a different request (`IDEMPOTENCY_CONFLICT`).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "422":
+          description: "Uploaded object failed content verification (`UPLOAD_VERIFICATION_FAILED`). `error.details.reason` is one of `object_not_found`, `size_exceeded`, `mime_not_recognized`, `mime_not_allowed`, `mime_mismatch`, `checksum_mismatch`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "502":
+          description: Unable to verify the uploaded object right now (R2 provider error/circuit breaker open) — retry shortly.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/media/objects:
+    get:
+      operationId: mediaResolveObjects
+      tags:
+        - News Media
+      summary: Batch-resolve media object ids to their public reference.
+      description: |
+        Resolves up to 100 media object ids at once to `{publicUrl, altText, mimeType, width, height, sizeBytes, creditLine, sourceName, copyrightStatus}`. Gated on `media_library.media.read`; read-only, so a machine credential (ADR-0049) may hold it.
+
+        Issue #782 — `creditLine`/`sourceName`/`copyrightStatus` are populated ONLY when the object's rights-verification decision is `verified`; otherwise all three are `null`. This is a distinct verification concept from the upload-integrity `verified`/`attached` status below.
+
+        An object resolves ONLY when it is `verified` or `attached`, belongs to the calling tenant, and is not soft-deleted. Everything else — unknown, cross-tenant, unverified, deleted — is returned in `unresolved` rather than dropped, so a caller can tell "this resource has no image" from "this resource's image reference is broken". A malformed (non-uuid) id is a 400 instead: "you sent junk" and "that object is not referenceable" are different facts.
+
+        Batch rather than one-per-id because a build feed resolves every image on a page at once, and the underlying query is already a single `id = ANY(...)`.
+      parameters:
+        - name: ids
+          in: query
+          required: true
+          description: Comma-separated media object uuids, at most 100.
+          schema:
+            type: string
+        - $ref: "#/components/parameters/CorrelationId"
+      responses:
+        "200":
+          description: Resolved references, plus the ids that did not resolve.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum: [true]
+                  data:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/ResolvedMediaReference"
+                      unresolved:
+                        type: array
+                        description: Ids that are unknown, cross-tenant, unverified, or soft-deleted — one bucket on purpose, so the response is not an oracle over which.
+                        items:
+                          type: string
+                          format: uuid
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+  /api/v1/media/public-origin:
+    get:
+      operationId: mediaPublicOrigin
+      tags:
+        - News Media
+      summary: The origin media public URLs are served from.
+      description: >-
+        Requires `media_library.media.read`. Deployment config, not tenant data:
+        every tenant on a deployment is served from the same bucket.
+
+
+        Exists for build clients such as `awcms-astro`, whose
+        Content-Security-Policy must name the media host in `img-src` BEFORE it
+        fetches any object — an image resolved correctly still renders as
+        nothing when the policy blocks the host it lives on. The alternative is
+        copying `NEWS_MEDIA_R2_PUBLIC_BASE_URL` into the consumer by hand, which
+        is two copies of one value that agree until one is edited.
+
+
+        `origin` is scheme + host + port, for the host-wide CSP form; `baseUrl`
+        includes the path, for the tighter prefix form. Both are reported
+        because neither choice is this API's to make.
+
+
+        A deployment that serves no public media (LAN/offline profiles) answers
+        `200` with `configured: false` rather than an error, so a build can omit
+        the `img-src` entry instead of failing. A value that is set but
+        unparseable, or on a scheme that cannot serve media, is reported the
+        same way and never echoed back.
+      responses:
+        "200":
+          description: The configured media origin, or an explicit "not configured".
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    required:
+                      - configured
+                      - origin
+                      - baseUrl
+                    properties:
+                      configured:
+                        type: boolean
+                      origin:
+                        type: string
+                        nullable: true
+                        example: https://media.example.com
+                      baseUrl:
+                        type: string
+                        nullable: true
+                        example: https://media.example.com/news
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+  /api/v1/media/objects/list:
+    get:
+      operationId: mediaObjectList
+      tags:
+        - News Media
+      summary: Browse this tenant's media registry.
+      description: |
+        Gated on `media_library.media.read`. Keyset-paginated, newest first, 50 per page. Read-only, so a machine credential (ADR-0049) may hold it.
+
+        **A separate path from `GET /api/v1/media/objects`, deliberately.** That endpoint demands `?ids=` — it is a batch RESOLVER built for the `awcms-astro` build to swap ids for public URLs. Teaching it a "no `ids` means list everything" branch would turn a request that is a 400 today into a dump of the whole registry: a contract change wearing the clothes of an addition, and one no existing caller could opt out of.
+
+        `list` can never be mistaken for an object id — the object routes require a uuid and answer 400 otherwise — so this static path and `/{id}` do not contend.
+
+        **Unlike the resolver, this returns rows in ANY status** (`pending_upload`, `failed`, `orphaned`) and, with `deletion`, soft-deleted ones. That inverts the resolver's public-safety rule on purpose: an administrator opens this list precisely because of the objects that are not healthy, and the lifecycle endpoints need a way to find their targets. Nothing returned here may be used as a public reference — that is what the resolver is for.
+
+        The projection omits `bucket_name`/`storage_driver` (deployment facts) and `owner_resource_type`/`owner_resource_id` (vestigial since ADR-0036 moved attachment to the consumer's FK).
+
+        `cursor` is opaque: pass back `nextCursor` verbatim. A malformed one is a 400, never silently treated as "no cursor" — that would serve page 1 to a caller who asked for page 4.
+      parameters:
+        - name: status
+          in: query
+          required: false
+          description: Exact media object status. An unrecognised value is a 400, never ignored.
+          schema:
+            type: string
+            enum:
+              - pending_upload
+              - uploaded
+              - verified
+              - attached
+              - orphaned
+              - deleted
+              - failed
+        - name: mimeType
+          in: query
+          required: false
+          description: Exact mime type. Lowercased before matching, since that is how the registry stores it.
+          schema:
+            type: string
+        - name: deletion
+          in: query
+          required: false
+          description: "Which soft-delete state to list. Defaults to `live`; `deleted` is what a restore/purge workflow needs, and a boolean could not ask for it."
+          schema:
+            type: string
+            enum: [live, deleted, all]
+            default: live
+        - name: cursor
+          in: query
+          required: false
+          description: Opaque keyset cursor from a previous response's `nextCursor`.
+          schema:
+            type: string
+        - $ref: "#/components/parameters/CorrelationId"
+      responses:
+        "200":
+          description: One page of media objects, newest first.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum: [true]
+                  data:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/MediaObjectListItem"
+                      nextCursor:
+                        type: string
+                        nullable: true
+                        description: Null on the last page.
+                      pageSize:
+                        type: integer
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+  /api/v1/media/objects/{id}:
+    delete:
+      operationId: mediaObjectSoftDelete
+      tags:
+        - News Media
+      summary: Soft delete one media object.
+      description: |
+        Gated on `media_library.media.delete`. High-risk, requires `Idempotency-Key`. Body: `{ "reason": string }` — required, trimmed, at most 500 characters, and recorded on the audit row.
+
+        Soft delete only: `deleted_at`/`deleted_by`/`delete_reason` are set and `status` is left alone. The R2 object is untouched.
+
+        This BREAKS live references on purpose — `GET /api/v1/media/objects` resolves only non-deleted objects, so a post whose `featured_media_id` points here begins resolving to nothing immediately. That is the intended outcome for the case this endpoint serves (a policy-violating image must stop being served), and it is recoverable through `POST /api/v1/media/objects/{id}/restore`. The endpoint deliberately does not scan for referencing rows first: that would require this module to know its own consumers.
+
+        An already-deleted object and an unknown id both answer 404 — a distinct "already deleted" would let a caller without `media.read` probe which ids exist.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+        - $ref: "#/components/parameters/CorrelationId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SoftDeleteMediaObjectRequest"
+      responses:
+        "200":
+          description: The media object is soft-deleted.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum: [true]
+                  data:
+                    $ref: "#/components/schemas/MediaObjectLifecycleResult"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: The Idempotency-Key was reused with a different request (`IDEMPOTENCY_CONFLICT`).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+    patch:
+      operationId: mediaObjectRightsUpdate
+      tags:
+        - News Media
+      summary: Edit a media object's usage-rights metadata.
+      description: |
+        Gated on `media_library.media.update` (Issue #615, `sql/137`) — the eighth media permission, added together with this endpoint rather than ahead of it. Requires `Idempotency-Key`: `update` is not a high-risk action, but a rights adjudication replayed by a retrying client would write a second audit entry claiming a second decision.
+
+        **Issue #794 — the permission split by request content.** Since Issue #782/PR #791, `rightsVerificationStatus === 'verified'` makes `creditLine`/`sourceName`/`copyrightStatus` cross into the PUBLIC `GET /api/v1/media/objects` response, so `media.update` alone let whoever could type a credit line also self-attest it cleared for publication. The body's SHAPE now decides the required permission(s): a request that omits `rightsVerificationStatus` needs only `media_library.media.update`, unchanged. A request that includes `rightsVerificationStatus` (any transition, including into or out of `verified`/`rejected`) additionally needs `media_library.media.adjudicate_rights` — UNLESS `rightsVerificationStatus` is the ONLY field present, in which case `media_library.media.adjudicate_rights` is sufficient on its own (a designated rights reviewer need not also hold `media.update` to adjudicate). Either permission missing from the combination the request actually needs denies the WHOLE request with `403 ACCESS_DENIED` — never a partial write.
+
+        **Rights, not accessibility, and not the byte check.** This endpoint deliberately cannot edit `altText` (an accessibility obligation) or `caption` (editorial copy). It is also not `media.verify`: that permission and a `verified` object status mean the BYTES passed a MIME-sniff and checksum. Whether a licence permits publication is a person reading a contract, and one word for both would make the legal half read as done whenever a file sniffed clean.
+
+        Every field is optional but the body may not be empty. `null` clears a field; omitting it leaves the stored value alone. A request that changes nothing is refused, because an audit row for a no-op is indistinguishable from one for a decision.
+
+        Changing `rightsVerificationStatus` stamps `rightsVerifiedBy` from the AUTHENTICATED actor and `rightsVerifiedAt` from the transaction clock — never from the body. Returning to `unverified` clears both, so the record never names a verifier for a verification that no longer stands.
+
+        A soft-deleted object and an unknown id both answer 404.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+        - $ref: "#/components/parameters/CorrelationId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MediaRightsUpdateRequest"
+      responses:
+        "200":
+          description: The updated media object.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum: [true]
+                  data:
+                    $ref: "#/components/schemas/MediaObjectRights"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: The Idempotency-Key was reused with a different request (`IDEMPOTENCY_CONFLICT`).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/media/objects/{id}/restore:
+    post:
+      operationId: mediaObjectRestore
+      tags:
+        - News Media
+      summary: Undo a soft delete.
+      description: |
+        Gated on `media_library.media.restore`. High-risk, requires `Idempotency-Key`. No body.
+
+        Clears `deleted_at`/`deleted_by`/`delete_reason` and stamps `restored_at`/`restored_by`. `status` is untouched — soft delete is orthogonal to it — so the object returns to whatever lifecycle state it was in.
+
+        Restoring an object that is NOT soft-deleted answers 404 rather than succeeding as a no-op: "there was nothing to undo" and "it worked" must not share a response.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+        - $ref: "#/components/parameters/CorrelationId"
+      responses:
+        "200":
+          description: The media object is restored.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum: [true]
+                  data:
+                    $ref: "#/components/schemas/MediaObjectRestored"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: The Idempotency-Key was reused with a different request (`IDEMPOTENCY_CONFLICT`).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/media/objects/{id}/purge:
+    post:
+      operationId: mediaObjectPurge
+      tags:
+        - News Media
+      summary: Hard-delete the registry row of an already soft-deleted media object.
+      description: |
+        Gated on `media_library.media.purge`. High-risk, requires `Idempotency-Key`, and cannot be undone. No body.
+
+        **Clears the registry row, NOT the R2 bytes.** The `news-media:reconcile` job owns the bucket and has the ordering discipline for deleting from it; a second writer here would mean two processes with different ideas of what is safe to remove. Accepted, stated cost: a window where the R2 object outlives its registry row, closed by the next reconciliation tick, which sees a key with no row and treats it as an orphan-in-R2.
+
+        The object must ALREADY be soft-deleted — purging a live object answers 404 rather than destroying it.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+        - $ref: "#/components/parameters/CorrelationId"
+      responses:
+        "200":
+          description: The registry row is gone. The R2 object is removed later by the reconciliation job.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum: [true]
+                  data:
+                    $ref: "#/components/schemas/MediaObjectLifecycleResult"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: Another resource still holds a foreign key to this object (`MEDIA_OBJECT_REFERENCED` — remove the reference first), or the Idempotency-Key was reused with a different request (`IDEMPOTENCY_CONFLICT`).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/media/enforcement:
+    get:
+      tags:
+        - News Media
+      summary: Read whether managed-media enforcement is active for this tenant
+      description: "Gated by media_library.enforcement.read. Reports whether this tenant's content media references must resolve to verified registry objects, and — when enforcement cannot be enabled — the deployment-config reasons why (ADR-0036 step 5a). `reasons` name environment variables, never their values, so nothing secret is exposed; the endpoint is still permission-gated rather than public."
+      operationId: mediaEnforcementRead
+      parameters:
+        - $ref: "#/components/parameters/CorrelationId"
+      responses:
+        "200":
+          description: Current enforcement state for this tenant plus this deployment's media readiness.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum: [true]
+                  data:
+                    $ref: "#/components/schemas/MediaEnforcementState"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+    post:
+      tags:
+        - News Media
+      summary: Turn managed-media enforcement ON for this tenant (one-way)
+      description: "Gated by media_library.enforcement.enable. High-risk, requires Idempotency-Key. Enables managed-media enforcement: from then on, content media references must resolve to verified, same-tenant registry objects rather than raw URLs (ADR-0036 step 5a). This is the switch a brochure-site tenant (`blog_content` + `tenant_domain`, no news portal) previously did not have. This operation is one-way and there is deliberately no counterpart that disables enforcement — a tenant able to switch its own media validation off is a confirmed exploit this design exists to prevent (see migration `sql/043`'s header). A deployment that must roll back does so by changing its `NEWS_MEDIA_R2_*` configuration. Idempotent: re-enabling an already-enforcing tenant succeeds, refreshes the timestamp, and returns `alreadyEnforced: true`; only a successful enable is recorded under the Idempotency-Key, so a rejected (not-ready) attempt may retry the same key after the R2 config is fixed."
+      operationId: mediaEnforcementEnable
+      parameters:
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+        - $ref: "#/components/parameters/CorrelationId"
+      responses:
+        "200":
+          description: Enforcement is active for this tenant.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum: [true]
+                  data:
+                    $ref: "#/components/schemas/MediaEnforcementEnabled"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: "Either the deployment's media storage is not ready, so enforcement cannot be enabled (`MANAGED_MEDIA_NOT_READY`) — `error.details.reasons` says which check failed; a 409 rather than a 400 on purpose (the request is well-formed and the caller is authorized; it is the deployment, not the request body, that must change) — or the Idempotency-Key was reused with a different request (`IDEMPOTENCY_CONFLICT`)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+components:
+  schemas:
+    MediaObjectListItem:
+      type: object
+      description: One registry row as the browse listing presents it. NOT a public reference — unlike `ResolvedMediaReference`, an item here may be in any status, including one that is unsafe to publish.
+      properties:
+        id:
+          type: string
+          format: uuid
+        objectKey:
+          type: string
+        publicUrl:
+          type: string
+        originalFilename:
+          type: string
+          nullable: true
+        mimeType:
+          type: string
+        sizeBytes:
+          type: integer
+          nullable: true
+        checksumSha256:
+          type: string
+          nullable: true
+        width:
+          type: integer
+          nullable: true
+        height:
+          type: integer
+          nullable: true
+        altText:
+          type: string
+          nullable: true
+        caption:
+          type: string
+          nullable: true
+        status:
+          type: string
+          enum:
+            - pending_upload
+            - uploaded
+            - verified
+            - attached
+            - orphaned
+            - deleted
+            - failed
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        deletedAt:
+          type: string
+          format: date-time
+          nullable: true
+        deleteReason:
+          type: string
+          nullable: true
+        restoredAt:
+          type: string
+          format: date-time
+          nullable: true
+    MediaRightsUpdateRequest:
+      type: object
+      minProperties: 1
+      description: At least one field. `null` clears; an omitted field is left alone.
+      properties:
+        creditLine:
+          type: string
+          nullable: true
+          maxLength: 300
+          description: What gets printed beside the image. Not the alt text and not the caption.
+        sourceName:
+          type: string
+          nullable: true
+          maxLength: 200
+          description: Where the file came from, which is often not who is credited.
+        rightsNotes:
+          type: string
+          nullable: true
+          maxLength: 2000
+        copyrightStatus:
+          type: string
+          enum:
+            [
+              unknown,
+              owned,
+              licensed,
+              public_domain,
+              permission_granted,
+              fair_use
+            ]
+          description: "`unknown` is a real answer, not a missing one — most of a legacy archive is exactly that."
+        rightsVerificationStatus:
+          type: string
+          enum: [unverified, verified, rejected]
+          description: A HUMAN judgement about a licence. Changing it is audited at `warning` severity.
+    MediaObjectRights:
+      type: object
+      description: A media object as returned by the rights endpoint. Includes the full registry row; the rights fields are listed here.
+      properties:
+        id:
+          type: string
+          format: uuid
+        creditLine:
+          type: string
+          nullable: true
+        sourceName:
+          type: string
+          nullable: true
+        rightsNotes:
+          type: string
+          nullable: true
+        copyrightStatus:
+          type: string
+          enum:
+            [
+              unknown,
+              owned,
+              licensed,
+              public_domain,
+              permission_granted,
+              fair_use
+            ]
+        rightsVerificationStatus:
+          type: string
+          enum: [unverified, verified, rejected]
+        rightsVerifiedBy:
+          type: string
+          format: uuid
+          nullable: true
+        rightsVerifiedAt:
+          type: string
+          format: date-time
+          nullable: true
+    SoftDeleteMediaObjectRequest:
+      type: object
+      required:
+        - reason
+      properties:
+        reason:
+          type: string
+          minLength: 1
+          maxLength: 500
+          description: Why the object is being removed. Trimmed before length-checking, so a whitespace-only value fails as "required". Written to the audit row, which outlives the object it describes — hence the bound.
+    MediaObjectLifecycleResult:
+      type: object
+      description: Result of a terminal lifecycle action. `status` here is the ACTION's outcome, not the object's `status` column.
+      properties:
+        id:
+          type: string
+          format: uuid
+        status:
+          type: string
+          enum: [deleted, purged]
+    MediaObjectRestored:
+      type: object
+      description: Result of a restore. `status` here IS the object's own lifecycle status column, untouched by soft delete and therefore whatever it was before.
+      properties:
+        id:
+          type: string
+          format: uuid
+        status:
+          type: string
+          enum:
+            - pending_upload
+            - uploaded
+            - verified
+            - attached
+            - orphaned
+            - deleted
+            - failed
+        restoredAt:
+          type: string
+          format: date-time
+          nullable: true
+    ResolvedMediaReference:
+      type: object
+      description: A media object safe to reference publicly (verified/attached, same tenant, not deleted).
+      properties:
+        id:
+          type: string
+          format: uuid
+        publicUrl:
+          type: string
+        altText:
+          type: string
+          nullable: true
+        mimeType:
+          type: string
+        width:
+          type: integer
+          nullable: true
+        height:
+          type: integer
+          nullable: true
+        sizeBytes:
+          type: integer
+          nullable: true
+        creditLine:
+          type: string
+          nullable: true
+          description: "Issue #782. The photo credit — what gets printed beside the image. `null` unless the source object's rights claim has been HUMAN-verified (internal `rightsVerificationStatus = 'verified'`); an unverified or rejected claim never reaches this field, even if the object has a credit line on file."
+        sourceName:
+          type: string
+          nullable: true
+          description: "Issue #782. Where the file came from (often distinct from who is credited). Same verification gate as `creditLine`: `null` unless the rights claim has been verified."
+        copyrightStatus:
+          type: string
+          nullable: true
+          enum:
+            [
+              unknown,
+              owned,
+              licensed,
+              public_domain,
+              permission_granted,
+              fair_use,
+              null
+            ]
+          description: 'Issue #782. Same verification gate as `creditLine`/`sourceName`: `null` unless the rights claim has been verified — including when the underlying object''s copyright status is the real, non-null `''unknown''` value (verification and "unknown" are different facts, and only one of them is nullability here).'
+    CreateNewsMediaUploadSessionRequest:
+      type: object
+      required:
+        - mimeType
+        - byteSize
+      additionalProperties: false
+      properties:
+        mimeType:
+          type: string
+          description: "Must be one of the deployment's configured NEWS_MEDIA_R2_ALLOWED_MIME_TYPES (default: image/jpeg, image/png, image/webp, image/gif — image/svg+xml is never allowed by default)."
+          example: image/jpeg
+        byteSize:
+          type: integer
+          minimum: 1
+          description: Claimed size in bytes — shape-only check against NEWS_MEDIA_R2_MAX_UPLOAD_BYTES; the real size is re-checked from R2 itself at finalize time.
+        originalFilename:
+          type: string
+          nullable: true
+          description: Stored as display-only metadata — never part of the server-generated object key.
+        altText:
+          type: string
+          nullable: true
+        caption:
+          type: string
+          nullable: true
+    FinalizeNewsMediaUploadSessionRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        checksumSha256:
+          type: string
+          nullable: true
+          description: Optional. When supplied, compared against the checksum computed server-side from the bytes actually read from R2 — a transport-corruption check only, never a substitute for the server-side MIME sniff.
+          pattern: ^[0-9a-fA-F]{64}$
+          example: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+    NewsMediaObjectItem:
+      type: object
+      required:
+        - id
+        - tenantId
+        - objectKey
+        - publicUrl
+        - mimeType
+        - status
+        - createdAt
+        - updatedAt
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+          format: uuid
+        tenantId:
+          type: string
+          format: uuid
+        moduleKey:
+          type: string
+        ownerResourceType:
+          type: string
+          nullable: true
+          enum:
+            - blog_post
+            - blog_page
+            - homepage_section
+            - gallery_item
+            - ad
+            - video_thumbnail
+            - seo_image
+            - null
+        ownerResourceId:
+          type: string
+          format: uuid
+          nullable: true
+        storageDriver:
+          type: string
+          enum:
+            - cloudflare_r2
+        objectKey:
+          type: string
+        originalFilename:
+          type: string
+          nullable: true
+        publicUrl:
+          type: string
+          format: uri
+        mimeType:
+          type: string
+        sizeBytes:
+          type: integer
+          nullable: true
+        checksumSha256:
+          type: string
+          nullable: true
+        width:
+          type: integer
+          nullable: true
+        height:
+          type: integer
+          nullable: true
+        altText:
+          type: string
+          nullable: true
+        caption:
+          type: string
+          nullable: true
+        status:
+          type: string
+          enum:
+            - pending_upload
+            - uploaded
+            - verified
+            - attached
+            - orphaned
+            - deleted
+            - failed
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    NewsMediaUploadSessionCreated:
+      type: object
+      required:
+        - objectId
+        - objectKey
+        - presignedUrl
+        - expiresAt
+      additionalProperties: false
+      properties:
+        objectId:
+          type: string
+          format: uuid
+        objectKey:
+          type: string
+          description: Server-generated — news-media/{tenantId}/{yyyy}/{mm}/{uuid}.{ext}. Never derived from client input.
+          example: news-media/3fa85f64-5717-4562-b3fc-2c963f66afa6/2026/07/1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed.jpg
+        presignedUrl:
+          type: string
+          format: uri
+          description: Short-lived presigned PUT URL scoped to exactly one object key. Never includes raw R2 credentials.
+        expiresAt:
+          type: string
+          format: date-time
+    MediaEnforcementState:
+      type: object
+      required:
+        - enforced
+        - ready
+        - reasons
+        - detail
+      additionalProperties: false
+      properties:
+        enforced:
+          type: boolean
+          description: Whether this tenant's content media references must resolve to verified registry objects. Once true it stays true — enforcement is one-way by design.
+        ready:
+          type: boolean
+          description: Whether this DEPLOYMENT's media storage is configured well enough for enforcement to be enabled. Independent of `enforced` — both must hold for validation to actually run.
+        reasons:
+          type: array
+          description: Machine-readable readiness failures; empty when `ready` is true.
+          items:
+            type: string
+            enum:
+              - news_media_r2_disabled
+              - news_media_r2_config_incomplete
+              - news_media_r2_shares_sync_storage_bucket_or_credentials
+        detail:
+          type: array
+          description: Human-readable evidence, one entry per failing check. Names environment variables, never their values.
+          items:
+            type: string
+    MediaEnforcementEnabled:
+      type: object
+      required:
+        - enforced
+        - enforcedAt
+        - alreadyEnforced
+      additionalProperties: false
+      properties:
+        enforced:
+          type: boolean
+          enum: [true]
+          description: "Always true — a non-enforcing outcome is reported as a 409, never as a 200 whose `enforced` is false."
+        enforcedAt:
+          type: string
+          format: date-time
+          description: When this activation was confirmed. Refreshed on re-activation so it always reflects the most recent confirmed-ready enable.
+        alreadyEnforced:
+          type: boolean
+          description: True when the tenant was already enforcing before this call — an idempotent no-change, still audited.

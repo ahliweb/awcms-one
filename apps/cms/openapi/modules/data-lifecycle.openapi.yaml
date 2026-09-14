@@ -1,0 +1,959 @@
+# Source fragment for the "Data Lifecycle" module (ADR-0037, ported from
+# awcms-micro Issue #745). One file per MODULE (Issue #182 convention): this file
+# owns every path carrying the "Data Lifecycle" tag and every schema referenced
+# ONLY by those operations.
+#
+# Real archive/purge execution is deliberately NOT exposed over HTTP — it is an
+# internal scheduled job (`bun run data-lifecycle:archive-purge`), same
+# administrative-operation posture as `bun run logs:audit:purge`. The HTTP
+# surface is: read the code-declared descriptor registry, create/release legal
+# holds (which override ordinary retention/purge and cannot be bypassed by tenant
+# policy), trigger an on-demand read-only dry-run plan, and read run history.
+#
+# NOT independently valid OpenAPI — $ref targets pointing at shared components
+# only resolve after `bun run openapi:bundle` merges this file with the root and
+# every sibling module fragment into openapi/awcms-public-api.openapi.yaml. Edit
+# this file (or the root for shared components), never the generated bundle.
+paths:
+  /api/v1/data-lifecycle/registry:
+    get:
+      tags:
+        - Data Lifecycle
+      summary: List the high-volume table lifecycle registry
+      description: Gated by data_lifecycle.registry.read. Code-declared descriptor metadata only (table/owner/scope/cursor/retention bounds/execution mode) — never row contents, never a live count. The response body is identical for every tenant; auth/ABAC still applies. Two arrays, because a table's owner is either a module or infrastructure and the two cannot be spelled the same way (ADR-0076).
+      operationId: dataLifecycleRegistryList
+      parameters:
+        - $ref: "#/components/parameters/CorrelationId"
+      responses:
+        "200":
+          description: The registered high-volume table descriptors.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum: [true]
+                  data:
+                    type: object
+                    properties:
+                      descriptors:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/DataLifecycleDescriptor"
+                      infrastructureDescriptors:
+                        type: array
+                        description: Descriptors for tables owned by src/lib/ infrastructure rather than by a module (ADR-0076). Always executionMode "delegated" — the generic engine purges on behalf of an owning module, and these have none.
+                        items:
+                          $ref: "#/components/schemas/DataLifecycleInfrastructureDescriptor"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+  /api/v1/data-lifecycle/dry-run:
+    post:
+      tags:
+        - Data Lifecycle
+      summary: Compute an on-demand, read-only dry-run lifecycle plan
+      description: "Gated by data_lifecycle.plan.analyze. Zero mutation and zero persistence — no Idempotency-Key required. Legal hold is checked first and unconditionally: a held descriptor reports every eligible row as `heldCount`, nothing purgeable."
+      operationId: dataLifecycleDryRunCreate
+      parameters:
+        - $ref: "#/components/parameters/CorrelationId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DataLifecycleDryRunRequest"
+      responses:
+        "200":
+          description: The dry-run plan for the named descriptor.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum: [true]
+                  data:
+                    type: object
+                    properties:
+                      plan:
+                        $ref: "#/components/schemas/DataLifecycleDryRunPlan"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+  /api/v1/data-lifecycle/runs:
+    get:
+      tags:
+        - Data Lifecycle
+      summary: Read lifecycle run history
+      description: Gated by data_lifecycle.runs.read. Categorized AGGREGATE counts only — never row contents or PII. Optionally filtered by descriptorKey/runType. Newest first (limit 100).
+      operationId: dataLifecycleRunsList
+      parameters:
+        - name: descriptorKey
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: runType
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [dry_run, archive, purge]
+        - $ref: "#/components/parameters/CorrelationId"
+      responses:
+        "200":
+          description: A page of lifecycle run history.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum: [true]
+                  data:
+                    type: object
+                    properties:
+                      runs:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/DataLifecycleRun"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+  /api/v1/data-lifecycle/legal-holds:
+    get:
+      tags:
+        - Data Lifecycle
+      summary: List legal holds
+      description: Gated by data_lifecycle.legal_hold.read. Optionally filtered by status/descriptorKey. Newest first (limit 200).
+      operationId: dataLifecycleLegalHoldsList
+      parameters:
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [active, released]
+        - name: descriptorKey
+          in: query
+          required: false
+          schema:
+            type: string
+        - $ref: "#/components/parameters/CorrelationId"
+      responses:
+        "200":
+          description: A page of legal holds.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum: [true]
+                  data:
+                    type: object
+                    properties:
+                      legalHolds:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/DataLifecycleLegalHold"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+    post:
+      tags:
+        - Data Lifecycle
+      summary: Create a legal hold
+      description: "Gated by data_lifecycle.legal_hold.create. High-risk mutation: requires Idempotency-Key, reason-required (min 10 chars), audited critical. Creating a hold does NOT grant the ability to release one (default-deny release)."
+      operationId: dataLifecycleLegalHoldsCreate
+      parameters:
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+        - $ref: "#/components/parameters/CorrelationId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DataLifecycleCreateLegalHoldRequest"
+      responses:
+        "200":
+          description: Legal hold created, or replay of a prior identical request.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum: [true]
+                  data:
+                    type: object
+                    properties:
+                      legalHold:
+                        $ref: "#/components/schemas/DataLifecycleLegalHold"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: The Idempotency-Key was reused with a different request (IDEMPOTENCY_CONFLICT).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/data-lifecycle/legal-holds/{id}/release:
+    post:
+      tags:
+        - Data Lifecycle
+      summary: Release (end) an active legal hold
+      description: "Gated by data_lifecycle.legal_hold.release — a DISTINCT permission from create (default-deny release). High-risk mutation: requires Idempotency-Key, releaseReason-required (min 10 chars), audited critical."
+      operationId: dataLifecycleLegalHoldsRelease
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+        - $ref: "#/components/parameters/CorrelationId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DataLifecycleReleaseLegalHoldRequest"
+      responses:
+        "200":
+          description: Legal hold released, or replay of a prior identical request.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum: [true]
+                  data:
+                    type: object
+                    properties:
+                      legalHold:
+                        $ref: "#/components/schemas/DataLifecycleLegalHold"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: The hold is already released (ALREADY_RELEASED), or the Idempotency-Key was reused with a different request (IDEMPOTENCY_CONFLICT).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/data-lifecycle/subject-requests:
+    get:
+      tags:
+        - Data Lifecycle
+      summary: List subject requests (and the pending-erasure inbox)
+      description: "Gated by data_lifecycle.subject_request.read — a permission that discloses NO subject data: the rows carry ids, a status and the stated reason, never exported content. Filtering by status=pending_approval is the checker's inbox. Newest first (limit 100)."
+      operationId: dataLifecycleSubjectRequestsList
+      parameters:
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [disclosed, pending_approval, rejected, completed]
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+        - $ref: "#/components/parameters/CorrelationId"
+      responses:
+        "200":
+          description: A page of subject requests.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum: [true]
+                  data:
+                    type: object
+                    properties:
+                      requests:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/DataLifecycleSubjectRequest"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+
+  /api/v1/data-lifecycle/subject-requests/export:
+    post:
+      tags:
+        - Data Lifecycle
+      summary: Export everything this tenant holds about a data subject
+      description: "ADR-0094. Gated by data_lifecycle.subject_request.export — its OWN permission, because export and erasure are not one authority. Audited as a DISCLOSURE (action subject_data.disclosed, severity critical) rather than as a read, and a durable row lands in awcms_subject_requests in the same transaction. Requires Idempotency-Key and a stated reason. The response carries `unanswered`: the tables this report deliberately does not reach (global, or matchable by no column) with the reason each owning module wrote — a subject-access report that is incomplete and does not say so is worse than none, because it is signed. Answered PER TENANT (ADR-0094 Decision 1): there is no cross-tenant export."
+      operationId: dataLifecycleSubjectExport
+      parameters:
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+        - $ref: "#/components/parameters/CorrelationId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DataLifecycleSubjectRequestInput"
+      responses:
+        "200":
+          description: The subject's data, or replay of a prior identical request.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum: [true]
+                  data:
+                    type: object
+                    properties:
+                      request:
+                        $ref: "#/components/schemas/DataLifecycleSubjectRequest"
+                      tables:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/DataLifecycleSubjectTableExport"
+                      unanswered:
+                        type: array
+                        description: What this answer does NOT cover, and why.
+                        items:
+                          $ref: "#/components/schemas/DataLifecycleSubjectUnanswered"
+                      truncatedTables:
+                        type: array
+                        description: >-
+                          Keys of tables that hit the per-table row cap, so the
+                          report is INCOMPLETE for them. Empty means complete —
+                          a claim worth being able to make explicitly rather
+                          than by the absence of a warning. The cap is a safety
+                          valve against a pathological subject (an automation
+                          account named as actor on a million audit rows), not a
+                          page size; there is deliberately no cursor, because a
+                          "complete answer" assembled across pages has a
+                          boundary at every request where a partial answer can
+                          be mistaken for the whole one.
+                        items:
+                          type: string
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: The Idempotency-Key was reused with a different request (IDEMPOTENCY_CONFLICT).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+
+  /api/v1/data-lifecycle/subject-requests/erase:
+    post:
+      tags:
+        - Data Lifecycle
+      summary: Request erasure of a data subject (maker half)
+      description: "ADR-0094 Decision 3. Gated by data_lifecycle.subject_erasure.create and it ERASES NOTHING — it records a request for somebody else to decide. Execution lives behind POST /{id}/decide under a different permission, and the row's own CHECK constraint refuses a decision by its own requester, so a caller holding both keys still cannot approve their own request. High-risk: requires Idempotency-Key, a stated ground, audited critical. The response previews what approving it would actually WRITE (`wouldWrite`) — far fewer tables than the subject appears in, because most are severed by anonymising the identity row and need no write of their own."
+      operationId: dataLifecycleSubjectEraseRequest
+      parameters:
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+        - $ref: "#/components/parameters/CorrelationId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DataLifecycleSubjectRequestInput"
+      responses:
+        "200":
+          description: Erasure request recorded (pending approval), or replay of a prior identical request.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum: [true]
+                  data:
+                    type: object
+                    properties:
+                      request:
+                        $ref: "#/components/schemas/DataLifecycleSubjectRequest"
+                      wouldWrite:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/DataLifecycleSubjectErasureTarget"
+                      retained:
+                        type: array
+                        description: Tables an erasure deliberately leaves ALONE, and why.
+                        items:
+                          $ref: "#/components/schemas/DataLifecycleSubjectUnanswered"
+                      unanswered:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/DataLifecycleSubjectUnanswered"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: The Idempotency-Key was reused with a different request (IDEMPOTENCY_CONFLICT).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+
+  /api/v1/data-lifecycle/subject-requests/{id}/decide:
+    post:
+      tags:
+        - Data Lifecycle
+      summary: Approve (and execute) or reject a pending erasure (checker half)
+      description: "ADR-0094 Decision 3. Gated by data_lifecycle.subject_erasure.approve — a DIFFERENT permission from the maker's, and holding both is a critical SoD conflict (data_lifecycle.subject_erasure_maker_checker). Approving executes the erasure inside the SAME transaction as the status claim, so two simultaneous approvals cannot both run. Rejecting is a first-class outcome with its own reason. Both are audited critical. Requires Idempotency-Key."
+      operationId: dataLifecycleSubjectEraseDecide
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+        - $ref: "#/components/parameters/CorrelationId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DataLifecycleSubjectDecisionInput"
+      responses:
+        "200":
+          description: Decision recorded (and, when approved, the erasure executed), or replay of a prior identical request.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum: [true]
+                  data:
+                    type: object
+                    properties:
+                      request:
+                        $ref: "#/components/schemas/DataLifecycleSubjectRequest"
+                      erasedTables:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/DataLifecycleSubjectErasureTarget"
+                      skippedColumns:
+                        type: array
+                        description: "Columns a descriptor named as redactable that the engine did NOT write, because their type cannot hold the sentinel. Reported rather than swallowed."
+                        items:
+                          type: string
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "The decision was attempted by the requester (SOD_MAKER_IS_CHECKER), the request is no longer pending (REQUEST_NOT_PENDING), or the Idempotency-Key was reused with a different request (IDEMPOTENCY_CONFLICT)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+
+components:
+  schemas:
+    DataLifecycleSubjectRequestInput:
+      type: object
+      required: [tenantUserId, reason]
+      properties:
+        tenantUserId:
+          type: string
+          format: uuid
+          description: The SUBJECT — a tenant user in the caller's own tenant (ADR-0094 Decision 1, never the global principal).
+        reason:
+          type: string
+          minLength: 8
+          description: Why the disclosure or erasure is being made. Recorded on the request row and in the audit trail; the checker's only input for an irreversible decision.
+    DataLifecycleSubjectDecisionInput:
+      type: object
+      required: [decision, reason]
+      properties:
+        decision:
+          type: string
+          enum: [approve, reject]
+        reason:
+          type: string
+          minLength: 8
+    DataLifecycleSubjectRequest:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        subjectTenantUserId:
+          type: string
+          format: uuid
+        requestType:
+          type: string
+          enum: [export, erasure]
+        status:
+          type: string
+          enum: [disclosed, pending_approval, rejected, completed]
+          description: "`disclosed` is an export that happened; an export is never pending, because it waits for nobody."
+        reason:
+          type: string
+        requestedBy:
+          type: string
+          format: uuid
+        requestedAt:
+          type: string
+          format: date-time
+        decidedBy:
+          type: string
+          format: uuid
+          nullable: true
+          description: Always a DIFFERENT tenant user from requestedBy — enforced by a CHECK constraint, not only by the SoD rule.
+        decidedAt:
+          type: string
+          format: date-time
+          nullable: true
+        decisionReason:
+          type: string
+          nullable: true
+        completedAt:
+          type: string
+          format: date-time
+          nullable: true
+        tablesAnswered:
+          type: integer
+          nullable: true
+        tablesUnanswered:
+          type: integer
+          nullable: true
+          description: Tables outside this answer (global, or matchable by no column). Carried so the record states its own coverage.
+        rowsAffected:
+          type: integer
+          nullable: true
+    DataLifecycleSubjectTableExport:
+      type: object
+      properties:
+        key:
+          type: string
+        tableName:
+          type: string
+        ownerModuleKey:
+          type: string
+        redactedColumns:
+          type: array
+          description: Columns withheld from the export — hashes, tokens, secrets — even though the row is the subject's own.
+          items:
+            type: string
+        rows:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+        truncated:
+          type: boolean
+          description: >-
+            True when this table filled the per-table row cap, so the export is
+            incomplete for it. Reported rather than swallowed: a subject-access
+            export that quietly returned the first N rows would answer a legal
+            obligation with a number dressed as an answer.
+    DataLifecycleSubjectErasureTarget:
+      type: object
+      properties:
+        key:
+          type: string
+        tableName:
+          type: string
+        erasure:
+          type: string
+          enum: [anonymize, hard_delete, status_transition_then_purge]
+        rowsAffected:
+          type: integer
+    DataLifecycleSubjectUnanswered:
+      type: object
+      properties:
+        key:
+          type: string
+        tableName:
+          type: string
+        ownerModuleKey:
+          type: string
+        reason:
+          type: string
+          enum: [global, no_subject_column]
+        rationale:
+          type: string
+    DataLifecycleDescriptor:
+      type: object
+      description: "Trusted code-declared metadata (never tenant/request-controlled) — see src/modules/_shared/module-contract.ts's HighVolumeTableDescriptor. additionalProperties is true because the full descriptor also carries nested partition/archive/deletion/legalHold/requiredIndexes/existingAdopter policy objects; only the flat scalar facts are enumerated here."
+      required:
+        - key
+        - tableName
+        - ownerModuleKey
+        - scope
+        - cursorColumn
+        - retentionClass
+        - retentionMinDays
+        - retentionMaxDays
+        - defaultRetentionDays
+        - batchLimit
+        - executionMode
+      additionalProperties: true
+      properties:
+        key:
+          type: string
+        tableName:
+          type: string
+        ownerModuleKey:
+          type: string
+        scope:
+          type: string
+          enum: [tenant, global]
+        cursorColumn:
+          type: string
+        retentionClass:
+          type: string
+        retentionMinDays:
+          type: integer
+        retentionMaxDays:
+          type: integer
+        defaultRetentionDays:
+          type: integer
+        batchLimit:
+          type: integer
+        executionMode:
+          type: string
+          enum: [delegated, generic]
+    DataLifecycleInfrastructureDescriptor:
+      type: object
+      description: "Trusted code-declared metadata for a table with NO owning module — see src/modules/data-lifecycle/domain/infrastructure-lifecycle-registry.ts. Identical to DataLifecycleDescriptor except that ownerPath (a src/lib/ directory) replaces ownerModuleKey: naming a module here would be a false ownership claim, which is the defect this registry exists to make unstateable."
+      required:
+        - key
+        - tableName
+        - ownerPath
+        - scope
+        - cursorColumn
+        - retentionClass
+        - retentionMinDays
+        - retentionMaxDays
+        - defaultRetentionDays
+        - batchLimit
+        - executionMode
+      additionalProperties: true
+      properties:
+        key:
+          type: string
+        tableName:
+          type: string
+        ownerPath:
+          type: string
+          description: The src/lib/<subsystem>/ directory that owns the schema.
+        scope:
+          type: string
+          enum: [tenant, global]
+        cursorColumn:
+          type: string
+        retentionClass:
+          type: string
+        retentionMinDays:
+          type: integer
+        retentionMaxDays:
+          type: integer
+        defaultRetentionDays:
+          type: integer
+        batchLimit:
+          type: integer
+        executionMode:
+          type: string
+          enum: [delegated]
+    DataLifecycleDryRunRequest:
+      type: object
+      required:
+        - descriptorKey
+      additionalProperties: false
+      properties:
+        descriptorKey:
+          type: string
+          description: A key from GET /api/v1/data-lifecycle/registry.
+        retentionDaysOverride:
+          type: integer
+          description: Optional — clamped to the descriptor's [retentionMinDays, retentionMaxDays] bounds. Cannot widen eligibility around a legal hold (the hold check runs first, unconditionally).
+    DataLifecycleDryRunPlan:
+      type: object
+      required:
+        - descriptorKey
+        - cutoffAt
+        - eligibleCount
+        - heldCount
+        - archivedCount
+        - purgeableCount
+        - blockedCount
+        - matchedHoldIds
+      additionalProperties: false
+      properties:
+        descriptorKey:
+          type: string
+        cutoffAt:
+          type: string
+          format: date-time
+        eligibleCount:
+          type: integer
+        heldCount:
+          type: integer
+        archivedCount:
+          type: integer
+        purgeableCount:
+          type: integer
+        blockedCount:
+          type: integer
+        matchedHoldIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+    DataLifecycleCreateLegalHoldRequest:
+      type: object
+      required:
+        - scopeDescription
+        - reason
+        - authorityReference
+      additionalProperties: false
+      properties:
+        descriptorKey:
+          type: string
+          nullable: true
+          description: Omit or null for a tenant-wide hold applying to every registered descriptor.
+        scopeDescription:
+          type: string
+          maxLength: 2000
+        reason:
+          type: string
+          minLength: 10
+          maxLength: 2000
+        authorityReference:
+          type: string
+          maxLength: 2000
+          description: e.g. a court order or regulator reference number.
+        endsAt:
+          type: string
+          format: date-time
+          nullable: true
+          description: Reporting metadata only (an operator's expected review date) — NEVER an automatic-expiry mechanism. A hold stops applying only via an explicit, audited release.
+    DataLifecycleReleaseLegalHoldRequest:
+      type: object
+      required:
+        - releaseReason
+      additionalProperties: false
+      properties:
+        releaseReason:
+          type: string
+          minLength: 10
+          maxLength: 2000
+    DataLifecycleLegalHold:
+      type: object
+      required:
+        - id
+        - tenantId
+        - descriptorKey
+        - scopeDescription
+        - reason
+        - authorityReference
+        - status
+        - startsAt
+        - endsAt
+        - requestedBy
+        - releasedBy
+        - releasedAt
+        - releaseReason
+        - createdAt
+        - updatedAt
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+          format: uuid
+        tenantId:
+          type: string
+          format: uuid
+        descriptorKey:
+          type: string
+          nullable: true
+          description: null means a tenant-wide hold applying to every registered descriptor.
+        scopeDescription:
+          type: string
+        reason:
+          type: string
+        authorityReference:
+          type: string
+        status:
+          type: string
+          enum: [active, released]
+        startsAt:
+          type: string
+          format: date-time
+        endsAt:
+          type: string
+          format: date-time
+          nullable: true
+        requestedBy:
+          type: string
+          format: uuid
+        releasedBy:
+          type: string
+          format: uuid
+          nullable: true
+        releasedAt:
+          type: string
+          format: date-time
+          nullable: true
+        releaseReason:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    DataLifecycleRun:
+      type: object
+      required:
+        - id
+        - descriptorKey
+        - runType
+        - status
+        - eligibleCount
+        - heldCount
+        - archivedCount
+        - purgeableCount
+        - purgedCount
+        - blockedCount
+        - errorCount
+        - cutoffAt
+        - startedAt
+        - finishedAt
+        - triggeredBy
+        - createdAt
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+          format: uuid
+        descriptorKey:
+          type: string
+        runType:
+          type: string
+          enum: [dry_run, archive, purge]
+        status:
+          type: string
+          enum: [completed, partial, failed]
+        eligibleCount:
+          type: integer
+        heldCount:
+          type: integer
+        archivedCount:
+          type: integer
+        purgeableCount:
+          type: integer
+        purgedCount:
+          type: integer
+        blockedCount:
+          type: integer
+        errorCount:
+          type: integer
+        cutoffAt:
+          type: string
+          format: date-time
+          nullable: true
+        startedAt:
+          type: string
+          format: date-time
+        finishedAt:
+          type: string
+          format: date-time
+        triggeredBy:
+          type: string
+          format: uuid
+          nullable: true
+          description: null for a scheduled/system job run; a tenant_user_id for an on-demand API-triggered run.
+        createdAt:
+          type: string
+          format: date-time

@@ -1,0 +1,1109 @@
+---
+/**
+ * Media library console — the last module in this base without a screen.
+ *
+ * ## Why this took an ADR and four PRs
+ *
+ * It was listed for two waves beside modules that were genuinely only missing a
+ * page. That was wrong for this one ([ADR-0056](../../../docs/adr/0056-media-library-admin-surface.md)):
+ * five of eleven permissions were enforced by nothing, five application
+ * functions had zero callers, and there was **no list function at all** — so
+ * this screen could not have been built on the surface that existed, whatever
+ * the catalog said. `attach`/`detach` were revoked (§A, `sql/087`),
+ * `delete`/`restore`/`purge` got endpoints (§B), and the browse listing got its
+ * own function and route (§C). This page is what those three were for.
+ *
+ * All four remaining reachable permissions are driven here:
+ * `media.read`, `media.delete`, `media.restore`, `media.purge`.
+ *
+ * ## Upload arrived in Issue #595, and the old objection is what it answers
+ *
+ * ADR-0056 kept `media.create` off this screen for a stated reason: uploading
+ * is a three-step browser dance (create session → PUT the bytes straight to R2
+ * → finalize), and "a button that starts a session this page cannot finish
+ * would leave `pending_upload` rows behind on every misclick".
+ *
+ * That objection was about an UNFINISHED flow, not about this screen. The
+ * uploader here finishes it, and every failure path cancels the session it
+ * created — a failed transfer cancels, a failed finalize cancels, and a cancel
+ * that itself fails does not replace the error the operator can act on.
+ * `tests/media-upload-client.test.ts` pins each of those, because "it cancelled"
+ * is the property the objection was about.
+ *
+ * It renders only where it can work: `POST .../upload-sessions` answers
+ * `502 PROVIDER_ERROR` with R2 unconfigured (the LAN/offline default), so the
+ * same config the endpoint checks decides whether the panel exists, and the
+ * `accept` attribute comes from the same allow-list the server validates
+ * against.
+ *
+ * `media.verify`/`media.cancel` remain absent as PAGE gates: `cancel` is driven
+ * by the uploader's own failure handling rather than by an operator clicking
+ * it, and nothing here verifies.
+ *
+ * ## Two further deliberate absences
+ * - **`enforcement.read`/`enforcement.enable`** — a tenant-wide, ONE-WAY
+ *   content policy switch, not an object action. It is on `/admin/security`
+ *   with the other policy controls; offering it beside a row of thumbnails
+ *   would misrepresent its blast radius.
+ * - **No preview `<img>`.** A registry row can be in `pending_upload` or
+ *   `failed` — the bytes may be absent, unverified, or the very thing an
+ *   operator is here to delete. Rendering them is how a policy-violating image
+ *   gets shown one more time, to the person removing it.
+ *
+ * ## Reads
+ *
+ * `listMediaObjects` inside ONE `withTenantOrThrow`, awaited sequentially —
+ * concurrent queries on a single transaction connection leak it. Keyset
+ * paginated: the cursor carries full-precision `created_at` text, so a page
+ * boundary cannot skip rows sharing a millisecond, which a batch upload
+ * produces by the dozen.
+ *
+ * ## Writes
+ *
+ * Nothing here writes SQL. All three mutations post to the guarded endpoints,
+ * each with a fresh `Idempotency-Key` — unlike `/admin/sync`, where none of the
+ * endpoints wants one, every endpoint here requires it.
+ *
+ * ## Gates
+ *
+ * UX-only; `authorizeInTransaction` in the routes is the authority. Pinned by
+ * `tests/admin-media-page-contract.test.ts`, which also asserts that the three
+ * absences above stay absences rather than quietly becoming gaps.
+ */
+import AdminLayout from "../../layouts/AdminLayout.astro";
+import "../../styles/admin-screens.css";
+import { loadAdminScreen } from "../../lib/auth/admin-screen";
+import { logAdminPageError } from "../../lib/logging/error-log";
+import { decodeKeysetCursor } from "../../modules/_shared/keyset-pagination";
+import { MAX_DELETE_REASON_LENGTH } from "../../modules/media-library/domain/media-lifecycle-validation";
+import { getTranslatorFor } from "../../lib/i18n";
+import { resolveNewsMediaR2Config } from "../../modules/media-library/domain/media-r2-config";
+import {
+  listMediaObjects,
+  MEDIA_OBJECT_LIST_LIMIT,
+  type MediaObjectDeletionFilter,
+  type NewsMediaObjectStatus,
+  type NewsMediaObjectView
+} from "../../modules/media-library/application/media-object-directory";
+import {
+  COPYRIGHT_STATUSES,
+  MAX_CREDIT_LINE_LENGTH,
+  MAX_RIGHTS_NOTES_LENGTH,
+  MAX_SOURCE_NAME_LENGTH,
+  RIGHTS_VERIFICATION_STATUSES
+} from "../../modules/media-library/domain/media-rights-policy";
+
+const ssr = Astro.locals.ssrContext!;
+const { t } = getTranslatorFor(Astro.locals.locale);
+
+function readParam(name: string): string {
+  return (Astro.url.searchParams.get(name) ?? "").trim();
+}
+
+// Two of these are statuses nothing WRITES any more, and both stay on purpose
+// (finding D16). `attached` was retired by ADR-0036's inversion (`sql/087`) and
+// rows already hold it. `orphaned` never had a reachable writer at all, and its
+// only one is now deleted — but `sql/041`'s CHECK still admits the value, so a
+// row could reach it by hand, and this list is a READ over that column. The
+// same is true of the API's own `status` filter; dropping the option here and
+// not there would leave two surfaces disagreeing about the same column.
+const STATUS_OPTIONS: readonly NewsMediaObjectStatus[] = [
+  "pending_upload",
+  "uploaded",
+  "verified",
+  "attached",
+  "orphaned",
+  "deleted",
+  "failed"
+];
+
+const DELETION_OPTIONS: readonly MediaObjectDeletionFilter[] = [
+  "live",
+  "deleted",
+  "all"
+];
+
+const statusRaw = readParam("status");
+const statusFilter = (STATUS_OPTIONS as readonly string[]).includes(statusRaw)
+  ? (statusRaw as NewsMediaObjectStatus)
+  : undefined;
+
+const deletionRaw = readParam("deletion");
+const deletionFilter = (DELETION_OPTIONS as readonly string[]).includes(
+  deletionRaw
+)
+  ? (deletionRaw as MediaObjectDeletionFilter)
+  : "live";
+
+const mimeTypeFilter = readParam("mimeType").toLowerCase() || undefined;
+
+const cursorParam = readParam("cursor");
+// A malformed cursor is dropped rather than forwarded — a hand-edited query
+// string must not turn this screen into an error page. The API answers 400 for
+// the same input, which is correct there: a machine caller should be told.
+const cursor = cursorParam ? decodeKeysetCursor(cursorParam) : null;
+
+// Issue #450 — the entry decision and the read share ONE transaction, and the
+// decision is the chokepoint's rather than `ssr.permissions.has()`.
+const screen = await loadAdminScreen({
+  ssr,
+  workClass: "interactive",
+  authorize: {
+    moduleKey: "media_library",
+    activityCode: "media",
+    action: "read"
+  },
+  load: async ({ tx, can }) => ({
+    // One transaction, one awaited query at a time. Concurrent queries on a
+    // single transaction connection leak it, so nothing here runs in parallel.
+    page: await listMediaObjects(
+      tx,
+      ssr.tenantId,
+      {
+        status: statusFilter,
+        mimeType: mimeTypeFilter,
+        deletion: deletionFilter
+      },
+      cursor ?? undefined
+    ),
+    canDelete: await can({
+      moduleKey: "media_library",
+      activityCode: "media",
+      action: "delete"
+    }),
+    canRestore: await can({
+      moduleKey: "media_library",
+      activityCode: "media",
+      action: "restore"
+    }),
+    canPurge: await can({
+      moduleKey: "media_library",
+      activityCode: "media",
+      action: "purge"
+    }),
+    // Issue #615 — `media.update` gates the rights editor below. Resolved here
+    // rather than from `ssr.permissions` so the decision is the chokepoint's,
+    // like every other flag on this screen.
+    canUpdate: await can({
+      moduleKey: "media_library",
+      activityCode: "media",
+      action: "update"
+    }),
+    // Issue #794 — split OUT of `media.update`: whether this caller may
+    // change `rightsVerificationStatus` (the transition PATCH .../objects/{id}
+    // now separately gates). Resolved here, same reasoning as `canUpdate`
+    // above, so the rights-verification control below can be disabled for a
+    // caller the endpoint would 403 rather than let them submit and fail.
+    canAdjudicateRights: await can({
+      moduleKey: "media_library",
+      activityCode: "media",
+      action: "adjudicate_rights"
+    }),
+    // The same guard `POST .../upload-sessions` enforces. Resolved here so the
+    // uploader is not rendered to someone the endpoint would refuse — a form
+    // that always 403s is worse than no form.
+    canCreate: await can({
+      moduleKey: "media_library",
+      activityCode: "media",
+      action: "create"
+    })
+  }),
+  onError: (error) => {
+    // Includes `DatabaseBusyError` (pool/circuit-breaker refusal). A refusal
+    // must never render as "this tenant has no media".
+    logAdminPageError(
+      "admin/media.astro: failed to load the media library",
+      error,
+      { correlationId: Astro.locals.correlationId }
+    );
+  }
+});
+
+const canRead = screen.state !== "denied";
+const loadError = screen.state === "error";
+const objects: NewsMediaObjectView[] =
+  screen.state === "allowed" ? screen.data.page.items : [];
+const nextCursor: string | null =
+  screen.state === "allowed" ? screen.data.page.nextCursor : null;
+const canDelete = screen.state === "allowed" && screen.data.canDelete;
+const canRestore = screen.state === "allowed" && screen.data.canRestore;
+const canPurge = screen.state === "allowed" && screen.data.canPurge;
+const canCreate = screen.state === "allowed" && screen.data.canCreate;
+const canUpdate = screen.state === "allowed" && screen.data.canUpdate;
+const canAdjudicateRights =
+  screen.state === "allowed" && screen.data.canAdjudicateRights;
+
+/**
+ * The rights editor opens through the QUERY STRING (`?rights=<id>`), the same
+ * way `/admin/blog-ads` opens its edit form.
+ *
+ * Server-rendered and pre-filled, so the page ships no client code for
+ * populating a form from row data — this screen's bundle is already the largest
+ * on the admin side, and a reveal-and-fill widget buys nothing a link does not.
+ * It also means an editor can send somebody the URL of the exact photo whose
+ * credit is wrong.
+ *
+ * Confined to the CURRENT page of results on purpose: the id comes from a row
+ * that was rendered, so an id that is not here is simply not opened rather than
+ * fetched separately.
+ */
+const rightsEditingId = readParam("rights");
+const rightsEditing =
+  canUpdate && rightsEditingId
+    ? (objects.find((item) => item.id === rightsEditingId) ?? null)
+    : null;
+
+/**
+ * `verified` is a HUMAN judgement about a licence and shares no vocabulary with
+ * `status: "verified"`, which means the BYTES passed a MIME/checksum check.
+ * Different colours would help; the same word in two columns would not, so the
+ * rights badge is labelled with its own prefix wherever it appears.
+ */
+const RIGHTS_VARIANT: Record<string, string> = {
+  unverified: "info",
+  verified: "success",
+  rejected: "danger"
+};
+
+/**
+ * The uploader is rendered only where it can actually work.
+ *
+ * `POST .../upload-sessions` answers `502 PROVIDER_ERROR` when R2 is
+ * unconfigured — the LAN/offline default. Showing a file picker there gives a
+ * journalist a control that fails every time for a reason they cannot fix, so
+ * the same config the endpoint checks decides whether the panel exists at all.
+ * The `accept` attribute is derived from the SAME allow-list the server
+ * validates against, so the picker cannot offer a type the server refuses.
+ */
+const uploadConfig = resolveNewsMediaR2Config();
+const uploadEnabled =
+  canCreate && uploadConfig.enabled && uploadConfig.allowedMimeTypes.length > 0;
+const uploadAccept = uploadConfig.allowedMimeTypes.join(",");
+const uploadMaxBytes = uploadConfig.maxUploadBytes;
+
+/**
+ * `verified`/`attached` are the two statuses safe to reference publicly
+ * (`isNewsMediaObjectSafeForPublicReference`). The rest are shown, and shown as
+ * what they are — this list exists for the unhealthy ones.
+ */
+const STATUS_VARIANT: Record<string, string> = {
+  pending_upload: "info",
+  uploaded: "info",
+  verified: "success",
+  attached: "success",
+  orphaned: "warning",
+  deleted: "warning",
+  failed: "danger"
+};
+
+function formatBytes(bytes: number | null): string {
+  if (bytes === null) return "—";
+  if (bytes < 1024) return `${bytes} B`;
+  if (bytes < 1024 * 1024) return `${Math.round(bytes / 1024)} KB`;
+  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+}
+
+function formatDimensions(view: NewsMediaObjectView): string {
+  if (view.width === null || view.height === null) return "—";
+  return `${view.width}×${view.height}`;
+}
+
+function formatTimestamp(value: Date | null): string {
+  return value ? value.toISOString().replace("T", " ").slice(0, 19) : "—";
+}
+
+/** Rebuilds the current query string with one key replaced — keeps filters across paging. */
+function linkWith(overrides: Record<string, string | null>): string {
+  const params = new URLSearchParams(Astro.url.search);
+  for (const [key, value] of Object.entries(overrides)) {
+    if (value === null || value === "") params.delete(key);
+    else params.set(key, value);
+  }
+  const query = params.toString();
+  return query ? `/admin/media?${query}` : "/admin/media";
+}
+
+const unsafeCount = objects.filter(
+  (item) => item.status !== "verified" && item.status !== "attached"
+).length;
+const deletedCount = objects.filter((item) => item.deletedAt !== null).length;
+const canActOnAny = canDelete || canRestore || canPurge || canUpdate;
+const columnCount = canActOnAny ? 9 : 8;
+---
+
+<AdminLayout
+  title={t("Media library")}
+  description={t(
+    "Every media object this tenant has registered, in any state \u2014 including the ones that never finished uploading or failed verification. Deleting is reversible; purging is not, and clears the registry row rather than the stored file."
+  )}
+>
+  {
+    !canRead && (
+      <p class="state-notice fade-in-up" id="media-denied">
+        {t("You do not have permission to view the media library.")}
+      </p>
+    )
+  }
+
+  {
+    canRead && loadError && (
+      <p class="state-notice fade-in-up" id="media-error">
+        {t(
+          "The media library could not be loaded right now. This is a problem reading it, not an empty library \u2014 please try again later."
+        )}
+      </p>
+    )
+  }
+
+  {
+    canRead && !loadError && (
+      <p
+        id="media-action-error"
+        class="admin-create-error"
+        role="alert"
+        hidden
+      />
+    )
+  }
+
+  {
+    uploadEnabled && !loadError && (
+      <section
+        class="admin-section fade-in-up"
+        aria-labelledby="media-upload-title"
+      >
+        <h2 class="admin-section-title" id="media-upload-title">
+          {t("Upload an image")}
+        </h2>
+        <p class="admin-section-hint">
+          {t(
+            "The file goes straight to storage from this browser. The server checks the real bytes on arrival — the type is read from the file itself, not from its name."
+          )}
+        </p>
+        <form id="media-upload-form" class="admin-form media-upload-form">
+          <div class="form-field">
+            <label class="form-label" for="media-upload-file">
+              {t("Image file")}
+            </label>
+            <input
+              class="form-input"
+              type="file"
+              id="media-upload-file"
+              name="file"
+              accept={uploadAccept}
+              required
+            />
+            <p class="form-hint">
+              {t("Accepted: {types}. Maximum {max} kB.", {
+                types: uploadConfig.allowedMimeTypes.join(", "),
+                max: Math.floor(uploadMaxBytes / 1024)
+              })}
+            </p>
+          </div>
+          <p
+            id="media-upload-progress"
+            class="form-hint"
+            role="status"
+            hidden
+          />
+          <p
+            id="media-upload-error"
+            class="admin-create-error"
+            role="alert"
+            hidden
+          />
+          <button
+            type="submit"
+            class="btn btn-primary"
+            id="media-upload-submit"
+          >
+            {t("Upload")}
+          </button>
+        </form>
+      </section>
+    )
+  }
+
+  {
+    canRead && !loadError && (
+      <section class="admin-section fade-in-up" aria-label="Media summary">
+        <div class="stat-grid stagger-children">
+          <div class="stat-card">
+            <span class="stat-label">{t("On this page")}</span>
+            <span class="stat-value">{objects.length}</span>
+            <span class="stat-hint">
+              {t("{count} per page", { count: MEDIA_OBJECT_LIST_LIMIT })}
+            </span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">{t("Not publicly referenceable")}</span>
+            <span class="stat-value">{unsafeCount}</span>
+            {unsafeCount > 0 && (
+              <span class="stat-hint">
+                {t("Only verified and attached objects resolve")}
+              </span>
+            )}
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">{t("Soft-deleted (this page)")}</span>
+            <span class="stat-value">{deletedCount}</span>
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  {
+    canRead && !loadError && (
+      <section
+        class="admin-section fade-in-up"
+        aria-labelledby="media-filter-title"
+      >
+        <h2 class="admin-section-title" id="media-filter-title">
+          {t("Filters")}
+        </h2>
+        {/* A GET form, so every filtered view is a shareable URL and the back
+            button works. Paging drops `cursor` by omitting it. */}
+        <form method="get" action="/admin/media" class="admin-filter-form">
+          <label class="field">
+            <span class="field-label">{t("Status")}</span>
+            <select name="status" class="field-input">
+              <option value="">{t("Any")}</option>
+              {STATUS_OPTIONS.map((option) => (
+                <option value={option} selected={statusRaw === option}>
+                  {option}
+                </option>
+              ))}
+            </select>
+          </label>
+
+          <label class="field">
+            <span class="field-label">{t("Deletion")}</span>
+            <select name="deletion" class="field-input">
+              {DELETION_OPTIONS.map((option) => (
+                <option value={option} selected={deletionFilter === option}>
+                  {option}
+                </option>
+              ))}
+            </select>
+          </label>
+
+          <label class="field">
+            <span class="field-label">{t("Mime type")}</span>
+            <input
+              type="text"
+              name="mimeType"
+              class="field-input"
+              value={readParam("mimeType")}
+              placeholder="image/png"
+            />
+          </label>
+
+          <div class="admin-toolbar">
+            <button type="submit" class="btn-primary">
+              {t("Apply")}
+            </button>
+            <a class="quick-link" href="/admin/media">
+              {t("Reset")}
+            </a>
+          </div>
+        </form>
+      </section>
+    )
+  }
+
+  {
+    canRead && !loadError && (
+      <section
+        class="admin-section fade-in-up"
+        aria-labelledby="media-objects-title"
+        id="media-objects"
+      >
+        <h2 class="admin-section-title" id="media-objects-title">
+          {t("Objects")}
+          <span class="count-pill">{objects.length}</span>
+        </h2>
+        <p class="page-description">
+          {t(
+            "Deleting an object stops every reference to it resolving immediately \u2014 a published page pointing at it loses its image. That is the point when the object should not be served, and restore is how it comes back. Purging removes the registry row only; the stored file is removed later by the reconciliation job, which owns the bucket."
+          )}
+        </p>
+
+        <div class="data-table-scroll">
+          <table class="data-table data-table--stack" id="media-objects-table">
+            <caption class="sr-only">{t("Registered media objects.")}</caption>
+            <thead>
+              <tr>
+                <th scope="col">{t("Object")}</th>
+                <th scope="col">{t("Type")}</th>
+                <th scope="col">{t("Size")}</th>
+                <th scope="col">{t("Dimensions")}</th>
+                <th scope="col">{t("Status")}</th>
+                <th scope="col">{t("Created")}</th>
+                <th scope="col">{t("Deleted")}</th>
+                <th scope="col">{t("Rights")}</th>
+                {canActOnAny && <th scope="col">{t("Actions")}</th>}
+              </tr>
+            </thead>
+            <tbody>
+              {objects.length === 0 ? (
+                <tr>
+                  <td colspan={columnCount} class="cell-muted">
+                    {t("No media objects match these filters.")}
+                  </td>
+                </tr>
+              ) : (
+                objects.map((item) => (
+                  <tr>
+                    <td data-label="Object">
+                      {/* `set:text`, never parsed: a filename is caller-supplied
+                          and reaches this table verbatim. No image tag either — see
+                          this file's header. */}
+                      <span
+                        class="cell-strong"
+                        set:text={item.originalFilename ?? item.objectKey}
+                      />
+                      <span class="cell-muted" set:text={item.objectKey} />
+                    </td>
+                    <td data-label="Type" set:text={item.mimeType} />
+                    <td data-label="Size">{formatBytes(item.sizeBytes)}</td>
+                    <td data-label="Dimensions">{formatDimensions(item)}</td>
+                    <td data-label="Status">
+                      <span
+                        class={`status-badge status-badge--${STATUS_VARIANT[item.status] ?? "info"}`}
+                      >
+                        <span class="status-dot" aria-hidden="true" />
+                        {item.status}
+                      </span>
+                    </td>
+                    <td data-label="Created">
+                      <span class="cell-muted">
+                        {formatTimestamp(item.createdAt)}
+                      </span>
+                    </td>
+                    <td data-label="Deleted">
+                      {item.deletedAt === null ? (
+                        <span class="cell-muted">—</span>
+                      ) : (
+                        <>
+                          <span class="cell-muted">
+                            {formatTimestamp(item.deletedAt)}
+                          </span>
+                          <span
+                            class="cell-muted"
+                            set:text={item.deleteReason ?? ""}
+                          />
+                        </>
+                      )}
+                    </td>
+                    <td data-label="Rights">
+                      {/* `set:text` for both — a credit line is caller-supplied
+                          and reaches this table verbatim. */}
+                      {item.creditLine ? (
+                        <span class="cell-strong" set:text={item.creditLine} />
+                      ) : (
+                        <span class="cell-muted">
+                          {t("No credit recorded")}
+                        </span>
+                      )}
+                      <span
+                        class={`status-badge status-badge--${RIGHTS_VARIANT[item.rightsVerificationStatus] ?? "info"}`}
+                      >
+                        <span class="status-dot" aria-hidden="true" />
+                        {t("Rights")}: {item.rightsVerificationStatus}
+                      </span>
+                    </td>
+                    {canActOnAny && (
+                      <td data-label="Actions">
+                        <div class="row-actions">
+                          {/* Issue #615 — a link, not a button: the editor is
+                              server-rendered from `?rights=<id>`, so the URL of
+                              a specific photo's credit can be shared. Offered
+                              only for a live object; a soft-deleted one's rights
+                              record is evidence about something withdrawn. */}
+                          {canUpdate && item.deletedAt === null && (
+                            <a
+                              class="btn-inline"
+                              href={`${linkWith({ rights: item.id })}#media-rights-form`}
+                            >
+                              {t("Edit rights")}
+                            </a>
+                          )}
+                          {item.deletedAt === null
+                            ? canDelete && (
+                                <button
+                                  type="button"
+                                  class="btn-inline media-delete-btn"
+                                  data-media-id={item.id}
+                                  data-media-label={
+                                    item.originalFilename ?? item.objectKey
+                                  }
+                                >
+                                  {t("Delete")}
+                                </button>
+                              )
+                            : [
+                                canRestore && (
+                                  <button
+                                    type="button"
+                                    class="btn-inline media-restore-btn"
+                                    data-media-id={item.id}
+                                  >
+                                    {t("Restore")}
+                                  </button>
+                                ),
+                                canPurge && (
+                                  <button
+                                    type="button"
+                                    class="btn-inline btn-inline--danger media-purge-btn"
+                                    data-media-id={item.id}
+                                    data-media-label={
+                                      item.originalFilename ?? item.objectKey
+                                    }
+                                  >
+                                    {t("Purge")}
+                                  </button>
+                                )
+                              ]}
+                        </div>
+                      </td>
+                    )}
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
+
+        {nextCursor && (
+          <div class="admin-toolbar">
+            {/* Keyset, not offset: the cursor carries full-precision
+                `created_at` TEXT, so a page boundary cannot skip rows sharing a
+                millisecond — which a batch upload produces by the dozen. */}
+            <a class="quick-link" href={linkWith({ cursor: nextCursor })}>
+              {t("Next page")}
+              <span class="quick-link-arrow" aria-hidden="true">
+                →
+              </span>
+            </a>
+          </div>
+        )}
+      </section>
+    )
+  }
+
+  {
+    rightsEditing && (
+      <section
+        class="admin-section fade-in-up"
+        aria-labelledby="media-rights-title"
+        id="media-rights-form"
+      >
+        <h2 class="admin-section-title" id="media-rights-title">
+          {t("Usage rights")}
+        </h2>
+        <p class="admin-section-hint">
+          {t(
+            "Who took this photograph, where it came from, and whether anyone has checked that it may be published. This is not the same as the object status above \u2014 that says the FILE passed a format check; this says a person read the licence."
+          )}
+        </p>
+        <p class="cell-muted" set:text={rightsEditing.objectKey} />
+
+        <p class="form-error" id="media-rights-error" hidden />
+
+        <form class="admin-form" id="media-rights-fields">
+          <input type="hidden" id="media-rights-id" value={rightsEditing.id} />
+
+          <div class="form-field">
+            <label class="form-label" for="media-rights-credit">
+              {t("Credit line")}
+            </label>
+            <input
+              class="form-input"
+              id="media-rights-credit"
+              type="text"
+              maxlength={MAX_CREDIT_LINE_LENGTH}
+              value={rightsEditing.creditLine ?? ""}
+            />
+            <p class="form-hint">
+              {t(
+                "Printed beside the image. Not the alt text, which describes the picture for a screen reader, and not the caption, which tells the reader about the scene."
+              )}
+            </p>
+          </div>
+
+          <div class="form-field">
+            <label class="form-label" for="media-rights-source">
+              {t("Source")}
+            </label>
+            <input
+              class="form-input"
+              id="media-rights-source"
+              type="text"
+              maxlength={MAX_SOURCE_NAME_LENGTH}
+              value={rightsEditing.sourceName ?? ""}
+            />
+            <p class="form-hint">
+              {t(
+                "Where the file came from, which is often not who is credited \u2014 a takedown request names the agency, not the stringer."
+              )}
+            </p>
+          </div>
+
+          <div class="form-field">
+            <label class="form-label" for="media-rights-copyright">
+              {t("Copyright status")}
+            </label>
+            <select class="form-input" id="media-rights-copyright">
+              {COPYRIGHT_STATUSES.map((status) => (
+                <option
+                  value={status}
+                  selected={status === rightsEditing.copyrightStatus}
+                >
+                  {status}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div class="form-field">
+            <label class="form-label" for="media-rights-status">
+              {t("Rights verification")}
+            </label>
+            {/*
+             * Issue #794 — this transition now needs `media.adjudicate_rights`
+             * IN ADDITION to `media.update` (the permission that gates the rest
+             * of this form). Disabled rather than omitted for a caller who
+             * lacks it: the current decision is still worth showing, and the
+             * submit handler below reads `media-rights-status-original`
+             * (never this control) to decide whether the body may omit the
+             * field entirely — a disabled `<select>` still reports its
+             * (unchanged) `.value`, so disabling alone would not stop the
+             * request from requiring `adjudicate_rights` for a submit that
+             * changed nothing.
+             */}
+            <select
+              class="form-input"
+              id="media-rights-status"
+              disabled={!canAdjudicateRights}
+            >
+              {RIGHTS_VERIFICATION_STATUSES.map((status) => (
+                <option
+                  value={status}
+                  selected={status === rightsEditing.rightsVerificationStatus}
+                >
+                  {status}
+                </option>
+              ))}
+            </select>
+            <input
+              type="hidden"
+              id="media-rights-status-original"
+              value={rightsEditing.rightsVerificationStatus}
+            />
+            <p class="form-hint">
+              {canAdjudicateRights
+                ? t(
+                    "Changing this records who decided and when, and writes an audit entry. Setting it back to unverified clears both."
+                  )
+                : t(
+                    "Only a rights reviewer may change this (media_library.media.adjudicate_rights)."
+                  )}
+            </p>
+          </div>
+
+          <div class="form-field">
+            <label class="form-label" for="media-rights-notes">
+              {t("Licence notes")}
+            </label>
+            <textarea
+              class="form-input"
+              id="media-rights-notes"
+              rows="3"
+              maxlength={MAX_RIGHTS_NOTES_LENGTH}
+              set:text={rightsEditing.rightsNotes ?? ""}
+            />
+          </div>
+
+          <div class="admin-toolbar">
+            <button
+              type="submit"
+              class="btn btn-primary"
+              id="media-rights-submit"
+            >
+              {t("Save rights")}
+            </button>
+            <a class="quick-link" href={linkWith({ rights: null })}>
+              {t("Cancel")}
+            </a>
+          </div>
+        </form>
+      </section>
+    )
+  }
+</AdminLayout>
+
+<script>
+  // The import is load-bearing for CSP, not just DRY: Astro inlines a hoisted
+  // `<script>` with no imports, and this app's CSP is `default-src 'self'`
+  // with no `'unsafe-inline'` — an inlined script is blocked and the page's
+  // behaviour dies silently. Importing forces an external `/_astro/*.js`.
+  import {
+    inputValue,
+    messageBox,
+    mutateAndReload,
+    onAction,
+    sendJson
+  } from "../../lib/ui/admin-form-client";
+  import { MAX_DELETE_REASON_LENGTH } from "../../modules/media-library/domain/media-lifecycle-validation";
+  import {
+    describeUploadFailure,
+    formatProgress,
+    uploadMediaBytes
+  } from "../../lib/ui/media-upload-client";
+  import { browserUploadTransport } from "../../lib/ui/media-upload-transport";
+
+  const actionError = messageBox("media-action-error");
+
+  /**
+   * The uploader. Present only when the server rendered it — an unconfigured
+   * deployment has no form, so this whole block is inert there rather than
+   * guarding at every step.
+   */
+  const uploadForm = document.getElementById("media-upload-form");
+
+  if (uploadForm instanceof HTMLFormElement) {
+    const fileInput = document.getElementById("media-upload-file");
+    const submit = document.getElementById("media-upload-submit");
+    const progress = document.getElementById("media-upload-progress");
+    const uploadError = messageBox("media-upload-error");
+
+    uploadForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      if (!(fileInput instanceof HTMLInputElement)) return;
+      const file = fileInput.files?.[0];
+
+      if (!file) {
+        uploadError.show("Choose a file to upload.");
+        return;
+      }
+
+      uploadError.clear();
+
+      // Locked for the whole flow: a second submit would create a second
+      // session for the same file and leave one of them orphaned.
+      if (submit instanceof HTMLButtonElement) submit.disabled = true;
+      fileInput.disabled = true;
+
+      const showProgress = (text: string) => {
+        if (!(progress instanceof HTMLElement)) return;
+        progress.hidden = false;
+        progress.textContent = text;
+      };
+
+      showProgress("Reading the file…");
+
+      try {
+        // Read once: the same buffer is hashed and uploaded, so the two can
+        // never disagree about what was sent.
+        const bytes = await file.arrayBuffer();
+
+        showProgress("Uploading… 0%");
+
+        const outcome = await uploadMediaBytes(
+          { name: file.name, type: file.type, bytes },
+          browserUploadTransport(),
+          (reading) => showProgress(`Uploading… ${formatProgress(reading)}`)
+        );
+
+        if (outcome.ok) {
+          showProgress("Uploaded. Reloading…");
+          window.location.reload();
+          return;
+        }
+
+        uploadError.show(describeUploadFailure(outcome));
+        if (progress instanceof HTMLElement) progress.hidden = true;
+      } catch {
+        uploadError.show(
+          "The file could not be read from disk. Nothing was uploaded."
+        );
+        if (progress instanceof HTMLElement) progress.hidden = true;
+      } finally {
+        if (submit instanceof HTMLButtonElement) submit.disabled = false;
+        fileInput.disabled = false;
+      }
+    });
+  }
+
+  /**
+   * Every endpoint on this screen requires `Idempotency-Key` — unlike
+   * `/admin/sync`, where none does. A fresh uuid per click, so a double-click
+   * replays the first result instead of doing the work twice.
+   */
+  function idempotency(): Record<string, string> {
+    return { "Idempotency-Key": crypto.randomUUID() };
+  }
+
+  onAction(".media-delete-btn", async (button) => {
+    const id = button.dataset.mediaId;
+    if (!id) return;
+    const label = button.dataset.mediaLabel ?? "this object";
+
+    // A reason is required by the endpoint and recorded on the audit row,
+    // which outlives the object. Prompt rather than send a placeholder:
+    // "deleted via admin" tells the next reader nothing.
+    const reason = window.prompt(
+      `Why are you deleting ${label}? Every reference to it stops resolving immediately — a published page pointing at it loses its image. Restore undoes this.`
+    );
+    if (reason === null) return;
+
+    if (reason.trim() === "") {
+      actionError.show("A reason is required to delete a media object.");
+      return;
+    }
+
+    if (reason.trim().length > MAX_DELETE_REASON_LENGTH) {
+      actionError.show(
+        `The reason must be at most ${MAX_DELETE_REASON_LENGTH} characters.`
+      );
+      return;
+    }
+
+    await mutateAndReload(
+      button,
+      actionError,
+      () =>
+        sendJson(
+          "DELETE",
+          `/api/v1/media/objects/${id}`,
+          { reason: reason.trim() },
+          idempotency()
+        ),
+      // Generic copy only — never surface internal detail.
+      "Could not delete the media object. Please try again.",
+      "Deleting…"
+    );
+  });
+
+  onAction(".media-restore-btn", async (button) => {
+    const id = button.dataset.mediaId;
+    if (!id) return;
+
+    await mutateAndReload(
+      button,
+      actionError,
+      () =>
+        // No body: this endpoint takes none, and its request hash covers the
+        // id alone.
+        sendJson(
+          "POST",
+          `/api/v1/media/objects/${id}/restore`,
+          undefined,
+          idempotency()
+        ),
+      "Could not restore the media object. Please try again.",
+      "Restoring…"
+    );
+  });
+
+  onAction(".media-purge-btn", async (button) => {
+    const id = button.dataset.mediaId;
+    if (!id) return;
+    const label = button.dataset.mediaLabel ?? "this object";
+
+    // The one action on this screen that cannot be undone.
+    if (
+      !window.confirm(
+        `Purge ${label}? This removes its registry row permanently and cannot be undone. The stored file is removed later by the reconciliation job.`
+      )
+    ) {
+      return;
+    }
+
+    await mutateAndReload(
+      button,
+      actionError,
+      () =>
+        sendJson(
+          "POST",
+          `/api/v1/media/objects/${id}/purge`,
+          undefined,
+          idempotency()
+        ),
+      // The one failure worth naming: a live foreign key is caller-actionable
+      // in a way "try again" is not — retrying will never succeed.
+      (errorCode) =>
+        errorCode === "MEDIA_OBJECT_REFERENCED"
+          ? "This object is still referenced by another resource. Remove that reference first."
+          : "Could not purge the media object. Please try again.",
+      "Purging…"
+    );
+  });
+
+  /**
+   * Issue #615 — the rights editor. Present only when the server rendered it
+   * (`?rights=<id>` plus `media.update`), so this block is inert everywhere
+   * else rather than guarding at every step.
+   */
+  const rightsForm = document.getElementById("media-rights-fields");
+
+  if (rightsForm instanceof HTMLFormElement) {
+    const rightsError = messageBox("media-rights-error");
+
+    rightsForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      const id = inputValue("media-rights-id");
+      if (!id) return;
+
+      const submit = document.getElementById("media-rights-submit");
+      if (!(submit instanceof HTMLButtonElement)) return;
+
+      rightsError.clear();
+
+      // Every OTHER field is sent every time, blanks included: this form shows
+      // the whole record, so an emptied box means "remove this", which the
+      // endpoint reads as `null`. Sending only the changed ones would need the
+      // page to track what changed, and the failure mode of getting that wrong
+      // is a credit silently surviving its own deletion.
+      //
+      // `rightsVerificationStatus` is the ONE deliberate exception (Issue
+      // #794): the endpoint now requires `media.adjudicate_rights`
+      // ADDITIONALLY to `media.update` whenever this field is present in the
+      // body at all — not only when it differs from the stored value. Sending
+      // it unconditionally, the way the other four fields are sent, would mean
+      // every save through this form — including a caller who only fixed a
+      // typo in the credit line and never touched this control — would 403 for
+      // anyone who holds `media.update` but not `media.adjudicate_rights`.
+      // Comparing against `media-rights-status-original` (the value this page
+      // rendered, not whatever a disabled `<select>` still reports) is what
+      // keeps that the common, unaffected case.
+      const nextRightsStatus = inputValue("media-rights-status");
+      const originalRightsStatus = inputValue("media-rights-status-original");
+
+      await mutateAndReload(
+        submit,
+        rightsError,
+        () =>
+          sendJson(
+            "PATCH",
+            `/api/v1/media/objects/${id}`,
+            {
+              creditLine: inputValue("media-rights-credit"),
+              sourceName: inputValue("media-rights-source"),
+              rightsNotes: inputValue("media-rights-notes"),
+              copyrightStatus: inputValue("media-rights-copyright"),
+              ...(nextRightsStatus !== originalRightsStatus
+                ? { rightsVerificationStatus: nextRightsStatus }
+                : {})
+            },
+            idempotency()
+          ),
+        "Could not save the usage rights. Please try again.",
+        "Saving\u2026"
+      );
+    });
+  }
+</script>

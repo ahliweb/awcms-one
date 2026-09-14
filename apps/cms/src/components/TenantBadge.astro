@@ -1,0 +1,134 @@
+---
+/**
+ * TenantBadge — non-interactive current-tenant indicator in the admin topbar,
+ * adapted from awcms-micro's `src/components/TenantBadge.astro`.
+ *
+ * The point of the badge (and the reason it is NOT a `<select disabled>`): a
+ * disabled form control is a presentation attribute only — anyone can strip it
+ * in devtools — and it advertises an interactive capability that has no
+ * server-side counterpart to enforce. A control that looks like "a switcher
+ * that happens to be off" is worse than no control: it invites someone to
+ * "just re-enable it" later without building the authorization behind it.
+ *
+ * awcms's data model makes this concrete: `awcms_tenant_users` scopes an
+ * identity to exactly one tenant, so there is nothing to switch TO for any
+ * role — a structural fact, not a permission gate.
+ *
+ * `availableTenants` is the extensibility seam for the day cross-tenant
+ * identity linking exists. It must be a list the SERVER computed from verified
+ * authorization data, never client state. `AdminLayout.astro` passes nothing
+ * today, so the badge branch always renders — that absence IS the enforcement
+ * (no switcher markup at all, rather than hidden or disabled markup).
+ */
+interface Props {
+  tenantName: string;
+  ariaLabel?: string;
+  /**
+   * Server-verified tenants this identity may actually switch to (excluding
+   * the current one). Empty/undefined -> non-interactive badge, which is the
+   * only real case today.
+   */
+  availableTenants?: ReadonlyArray<{ id: string; name: string }>;
+}
+
+const {
+  tenantName,
+  ariaLabel = "Active tenant",
+  availableTenants = []
+} = Astro.props;
+
+const canSwitch = availableTenants.length > 0;
+---
+
+{
+  canSwitch ? (
+    <form
+      class="tenant-badge tenant-switch-form"
+      method="get"
+      action="/admin/tenant/switch"
+    >
+      <label class="sr-only" for="tenant-switch-select">
+        {ariaLabel}
+      </label>
+      <select
+        id="tenant-switch-select"
+        name="tenantId"
+        class="tenant-switch-select"
+        aria-label={ariaLabel}
+      >
+        {availableTenants.map((tenant) => (
+          <option value={tenant.id}>{tenant.name}</option>
+        ))}
+      </select>
+    </form>
+  ) : (
+    <div class="tenant-badge" role="status" aria-label={ariaLabel}>
+      {/* ADR-0120 — the design reference draws this as a workspace SWITCHER: a
+          bordered pill with a chevron. The chevron is deliberately NOT adopted.
+          The header above explains why at length — one identity is scoped to
+          exactly one tenant, so there is nothing to switch to — and a chevron is
+          precisely the "looks like a switcher that happens to be off" affordance
+          that reasoning rejects. What IS adopted is the mark tile and the pill
+          shape, which say "you are inside this workspace" without promising a
+          menu. */}
+      <span class="tenant-badge-mark" aria-hidden="true">
+        {tenantName.trim().charAt(0).toUpperCase() || "?"}
+      </span>
+      <span class="tenant-badge-text">{tenantName}</span>
+    </div>
+  )
+}
+
+<style>
+  .tenant-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    max-width: 14rem;
+    height: 34px;
+    padding: 0 10px;
+    background: transparent;
+    border: 1px solid var(--color-border);
+    border-radius: 9px;
+    font-size: var(--fs-xs);
+    font-weight: var(--fw-semibold);
+    color: var(--color-text);
+  }
+
+  .tenant-badge-mark {
+    display: grid;
+    place-items: center;
+    width: 19px;
+    height: 19px;
+    flex: none;
+    border-radius: 5px;
+    background: var(--color-primary-soft);
+    color: var(--color-primary-on-soft);
+    font-size: 10px;
+    font-weight: var(--fw-bold);
+  }
+
+  .tenant-badge-text {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .tenant-switch-select {
+    height: 100%;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+  }
+
+  /* The topbar is a fixed 58px row that cannot wrap; the tenant name is the
+     first thing to give way, because the sidebar and dashboard both name it. */
+  @media (max-width: 1023.98px) {
+    .tenant-badge {
+      display: none;
+    }
+  }
+</style>

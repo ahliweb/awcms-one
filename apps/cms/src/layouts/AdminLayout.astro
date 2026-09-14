@@ -1,0 +1,878 @@
+---
+/**
+ * Admin shell (Issue #166; grown into a mobile-first responsive shell by the
+ * UI/UX overhaul foundation; brought to structural parity with awcms-micro's
+ * admin shell by the admin-shell parity work).
+ *
+ * WHAT WAS ADOPTED FROM awcms-micro
+ * ---------------------------------
+ * The chrome, which is what an operator actually sees and compares:
+ *   - `.admin-shell` column wrapper + sticky topbar
+ *   - a tenant badge (`TenantBadge`) naming the active tenant
+ *   - a `SyncIndicator` dot, fed by the real `fetchSyncIndicatorActive`
+ *     (a bounded `EXISTS`, not the full sync-health aggregation)
+ *   - a working colour-theme control (`ThemeToggle`) — awcms already shipped
+ *     `:root[data-theme="dark"]` tokens with nothing to set that attribute, so
+ *     dark mode existed but was unreachable
+ *   - an avatar + roles + log-out cluster
+ *   - a TWO-LEVEL sidebar (section heading -> owning module -> links) instead
+ *     of one flat list, with the app version pinned to its footer
+ *   - a breadcrumb above the page slot
+ *
+ * The tenant-name lookup and the sync `EXISTS` share ONE transaction, so all
+ * this chrome costs a single round trip per `/admin/*` render.
+ *
+ * WHAT WAS ADAPTED RATHER THAN COPIED
+ * -----------------------------------
+ *   - The avatar is a plain tile, not a link: micro's points at
+ *     `/admin/profile`, a page awcms does not have.
+ *
+ * SUPERSEDED: the language slot is a real switcher again (ADR-0095)
+ * -----------------------------------------------------------------
+ * This header used to record `LanguageSwitcher -> LocaleBadge`, on the grounds
+ * that a `<select>` with one option is a fake affordance. That was right, and it
+ * stopped being right the moment a catalog existed: `LocaleBadge` is deleted and
+ * `LanguageSwitcher` fills the slot. The shell's own strings now go through
+ * `t()`/`tx()`, and the sidebar is translated by passing its composed ENGLISH
+ * labels through the catalog — so no module descriptor changed to make this work.
+ *
+ * WHAT WAS DELIBERATELY NOT ADOPTED
+ * ---------------------------------
+ *   - micro's JS drawer (focus trap + `inert` + Escape). awcms's CSS-only
+ *     checkbox drawer is KEPT: it needs no script at all, which is strictly
+ *     better under this repo's CSP, and swapping it for JS would be a
+ *     regression dressed up as parity. The visible result is the same.
+ *   - micro's per-tenant sidebar arrangement subsystem (`sidebar-menu-config`).
+ *     The grouping below is static; the DB-backed reordering is a separate
+ *     capability, not a UI/UX detail.
+ *
+ * SUPERSEDED: the sidebar is no longer a static array
+ * ---------------------------------------------------
+ * It is composed from `listModules()` by
+ * `module-management/domain/sidebar-menu.ts` — micro's default model, ported
+ * without its per-tenant override tables. The "grouping below is static" note
+ * above described the state that let three modules ship sidebar entries
+ * pointing at pages that do not exist. Tenant-level module disable and the
+ * caller's permissions now both filter it; reordering and relabelling per
+ * tenant remain the separate capability that note was right about.
+ *
+ * Auth is NOT enforced here — `src/middleware.ts` already guards `/admin/*`
+ * (resolves the session, redirects to `/login` when absent, and sets
+ * `Astro.locals.ssrContext`). This layout only READS that context; a missing
+ * one is a middleware invariant violation, not a user-facing state, so it
+ * throws rather than rendering a half-authenticated page.
+ *
+ * CSP (see astro.config.mjs / security-headers.ts): styles are external
+ * stylesheets (`inlineStylesheets: "never"`), the logout + theme-toggle
+ * scripts are Astro-bundled external modules, and the ONE inline script — the
+ * theme-init in `<head>` — is admitted by SHA-256, not `'unsafe-inline'`. See
+ * `src/lib/security/theme-init-script.ts` for why it must be inline.
+ */
+import "../styles/tokens.css";
+import "../styles/motion.css";
+import "../styles/admin.css";
+import TenantBadge from "../components/TenantBadge.astro";
+import ThemeToggle from "../components/ThemeToggle.astro";
+import SyncIndicator from "../components/SyncIndicator.astro";
+import LanguageSwitcher from "../components/LanguageSwitcher.astro";
+import { getTranslatorFor } from "../lib/i18n";
+import { getDatabaseClient } from "../lib/database/client";
+import { withTenantOrThrow } from "../lib/database/tenant-context";
+import { fetchSyncIndicatorActive } from "../modules/reporting/application/sync-indicator";
+import { fetchTenantModuleEntries } from "../modules/module-management/application/tenant-module-lifecycle";
+import {
+  applySidebarOverrides,
+  applySidebarTypeOverrides,
+  buildDefaultSidebarModel,
+  composeSidebarSections,
+  type SidebarArrangement
+} from "../modules/module-management/domain/sidebar-menu";
+import { fetchSidebarArrangement } from "../modules/module-management/application/sidebar-menu-config";
+import { listModules } from "../modules";
+import { THEME_INIT_SCRIPT_BODY } from "../lib/security/theme-init-script";
+import { resolveAdminIcon, ADMIN_ICON_PATHS } from "../lib/ui/admin-icons";
+import packageJson from "../../package.json";
+
+/** Shown in the sidebar footer; single source of truth is package.json. */
+const appVersion = packageJson.version;
+
+interface Props {
+  title: string;
+  /**
+   * ADR-0120 — the one-line answer to "what is this screen for", rendered under
+   * the `<h1>` in the page-header band.
+   *
+   * Optional, and the band renders without it. That is deliberate rather than
+   * lax: 48 screens adopt this shell, and a required prop would mean either 48
+   * simultaneous edits or 48 placeholder sentences, and a placeholder sentence
+   * is worse than none — it occupies the slot where a real one would go and
+   * nothing ever notices it is filler.
+   */
+  description?: string;
+  /**
+   * Breadcrumb segment between "AWCMS" and the page title — normally the
+   * sidebar section the screen sits in.
+   *
+   * When omitted it is DERIVED from the composed sidebar below, so a screen
+   * gets the right crumb without naming it. A screen only passes this when it
+   * has no sidebar entry at all (a detail page reached from a list, say).
+   */
+  breadcrumb?: string;
+}
+
+/**
+ * The `active` prop is gone. It named a sidebar key by hand on every page, so
+ * marking the current link depended on the page and the layout agreeing — and
+ * `/admin/comments` proved they need not: it never passed one, and was never
+ * highlighted. The current entry is now derived from `Astro.url.pathname`,
+ * which cannot disagree with itself.
+ */
+const { title, description, breadcrumb } = Astro.props;
+
+/** See the heading block below for why both a prop and a slot exist. */
+const hasPageDescriptionSlot = Astro.slots.has("page-description");
+
+const ssr = Astro.locals.ssrContext;
+
+if (!ssr) {
+  throw new Error(
+    "AdminLayout rendered without Astro.locals.ssrContext — the /admin guard in src/middleware.ts must run first."
+  );
+}
+
+/**
+ * ADR-0095. `Astro.locals.locale` is set by the middleware for every request, so
+ * this never falls back in practice — `getTranslatorFor` tolerates absence only
+ * so a page rendered outside the middleware (a unit test) still renders English
+ * rather than throwing.
+ *
+ * `tx` is needed as well as `t` because this shell has two genuine collisions:
+ * "System" is both a colour-theme mode and a sidebar section, and "Admin" is both
+ * the brand-ish landmark name and a word that appears in module labels. Indonesian
+ * translates each differently ("Sistem" the theme vs "Sistem" the section happen
+ * to match; "Administrasi" the landmark does not), and without a context one of
+ * them would always be wrong.
+ */
+const { t, tx } = getTranslatorFor(Astro.locals.locale);
+
+const roles = ssr.roles.length > 0 ? ssr.roles.join(", ") : t("no roles");
+
+/**
+ * ADR-0095 — the tenant's default theme, handed to the head script through the
+ * `data-tenant-default-theme` attribute that `theme-init-script.ts` has always
+ * read but that nothing ever set.
+ *
+ * The order below is what makes a server-stored theme work WITHOUT changing the
+ * init script's bytes (and therefore without invalidating its CSP hash): the
+ * script prefers `localStorage`, falling back to this attribute. So on a device
+ * the reader has used, their local choice wins; on a NEW device, where
+ * `localStorage` is empty, the value stored against their principal applies. That
+ * is exactly the desired precedence, and it needed no new mechanism.
+ */
+const defaultThemeAttribute =
+  ssr.display.preferredTheme ?? ssr.display.tenantDefaultTheme ?? "system";
+
+/**
+ * Topbar chrome: tenant name, whether any sync node is active, and which
+ * modules this tenant switched off. All three are cosmetic on a page that
+ * renders for EVERY `/admin/*` request, so a database hiccup must degrade
+ * rather than 500 the whole admin area.
+ *
+ * The disabled-module set joins the SAME transaction rather than adding a
+ * second round trip — the one-query-per-render property this block was built
+ * for is the reason the sidebar can be tenant-aware at all.
+ *
+ * Note the shape check rather than a truthiness check: this repo's
+ * `withTenant` RETURNS a `Response` (503 `DATABASE_BUSY`) when the circuit
+ * breaker is open instead of throwing. A `Response` is truthy, so `catch`
+ * alone would let it through and every field read off it would silently be
+ * `undefined`. Testing for a key we know we returned is what makes the
+ * fallback real.
+ */
+/**
+ * Finding B4 — taken from the session, which already had the row open.
+ *
+ * This layout used to open a THIRD transaction whose first statement was
+ * `SELECT tenant_name FROM awcms_tenants WHERE id = $1`. `readTenantDisplayDefaults`
+ * in `ssr-session.ts` reads that same row for `default_locale`/`default_theme`
+ * on every `/admin/*` render, so the name now rides along on that query and this
+ * screen spends a connection acquisition and a round trip less.
+ *
+ * `"Tenant"` stays the fallback for the same reason it always was: on a
+ * circuit-open session resolution the field is `null`, and chrome degrades
+ * rather than failing.
+ */
+let tenantName = ssr.display.tenantName?.trim() || "Tenant";
+let syncActive = false;
+/**
+ * Empty on failure, which shows the full sidebar. Deliberate: hiding a link is
+ * not a security control (the target page guards itself), so degrading toward
+ * MORE links costs nothing, while degrading toward fewer would make a database
+ * hiccup look like a tenant losing modules.
+ */
+let disabledModuleKeys: ReadonlySet<string> = new Set<string>();
+/**
+ * Empty on failure — the code default. Same degrade-toward-MORE reasoning as
+ * `disabledModuleKeys`: a database hiccup must not look like a tenant losing
+ * their menu customization.
+ */
+let arrangement: SidebarArrangement = { types: [], items: [] };
+
+try {
+  const sql = getDatabaseClient();
+  const chrome = await withTenantOrThrow(sql, ssr.tenantId, async (tx) => {
+    return {
+      // Bounded EXISTS, not the full sync-health aggregation — the topbar
+      // needs one boolean and this runs on every `/admin/*` request.
+      syncActive: await fetchSyncIndicatorActive(tx, ssr.tenantId),
+      // Read through the owning module's service rather than querying
+      // `awcms_tenant_modules` here, so the "row absent = enabled" convention
+      // stays defined in exactly one place.
+      disabledModuleKeys: (await fetchTenantModuleEntries(tx, ssr.tenantId))
+        .filter((entry) => !entry.tenantEnabled)
+        .map((entry) => entry.moduleKey),
+      // Issue #260 — the tenant's sidebar overrides, joining the SAME
+      // transaction. A tenant with no rows gets `{types: [], items: []}`,
+      // which `applySidebarOverrides` treats as "use the code default".
+      arrangement: await fetchSidebarArrangement(tx, ssr.tenantId)
+    };
+  });
+
+  // Shape check, not a truthiness check: on circuit-open `withTenant` hands back
+  // a `Response`, whose fields are `undefined` rather than an error.
+  //
+  // Keyed on `syncActive` since finding B4 moved `tenantName` to the session —
+  // keying on a field this block no longer returns would test for something that
+  // is never there and silently skip every assignment below.
+  if (chrome && typeof chrome === "object" && "syncActive" in chrome) {
+    syncActive = chrome.syncActive === true;
+    disabledModuleKeys = new Set(chrome.disabledModuleKeys);
+    arrangement = chrome.arrangement;
+  }
+} catch {
+  // Chrome falls back to generic label + inactive — never a broken admin page.
+}
+
+/**
+ * The sidebar, built from the module registry.
+ *
+ * Previously a hand-maintained array here. It had drifted apart from
+ * `ModuleDescriptor.navigation` in both directions — three declared entries
+ * pointed at pages that do not exist while eight pages that do exist were
+ * unknown to the registry — and nothing compared the two. See
+ * `module-management/domain/sidebar-menu.ts` for the model and why the type
+ * taxonomy looks the way it does.
+ *
+ * Still presentation only, and still NOT a permission gate: every target route
+ * runs its own server-side guard, so a visible link grants nothing. What
+ * changed is that `requiredPermission` is now honoured for VISIBILITY, which
+ * the old array could not do — an operator no longer sees links to screens
+ * that will only deny them. The header note claiming this "would need
+ * `ssr.permissions`" was stale: `resolveSsrContext` has populated that set
+ * since it was written.
+ */
+const navSections = applySidebarTypeOverrides(
+  composeSidebarSections(
+    // Issue #260: overrides are applied FIRST, so a relabelled or re-bucketed
+    // entry still passes through exactly the same permission and
+    // tenant-disable filtering. An override can never be a way around
+    // `requiredPermission` or a disabled module.
+    applySidebarOverrides(buildDefaultSidebarModel(listModules()), arrangement),
+    {
+      grantedPermissionKeys: ssr.permissions,
+      tenantDisabledModuleKeys: disabledModuleKeys,
+      // Exact match. Every admin page in this base is a leaf path, so no prefix
+      // logic is needed; a nested screen would have to revisit this.
+      currentPath: Astro.url.pathname
+    }
+  ),
+  arrangement
+);
+
+/**
+ * ADR-0120 — the breadcrumb's middle segment, derived rather than declared.
+ *
+ * `composeSidebarSections` already knows which section the current path sits
+ * in, because it just marked that entry `isCurrent`. Reading the answer back
+ * out is free and cannot disagree with the sidebar; asking 48 pages to pass a
+ * `breadcrumb` prop would recreate exactly the drift the `active` prop caused
+ * before it was removed (see the note above `const { title }`: `/admin/comments`
+ * never passed one and was never highlighted).
+ *
+ * An explicit `breadcrumb` prop still wins, for the screens that have no
+ * sidebar entry of their own.
+ */
+const currentSection = navSections.find((section) =>
+  section.groups.some((group) => group.entries.some((entry) => entry.isCurrent))
+);
+
+/*
+ * `tx("menu-section", …)`, NOT the raw `section.label`.
+ *
+ * The raw value is the English `msgid`. Rendering it directly put "System" in
+ * the breadcrumb while the sidebar heading two centimetres to its left read
+ * "SISTEM" — the same section, named twice, in two languages, on one screen.
+ * Section labels take the `menu-section` context for the reason the sidebar
+ * already documents: "System" is also a theme mode, and gettext has no other
+ * way to keep three translations of one English word apart.
+ */
+const currentSectionLabel =
+  breadcrumb ??
+  (currentSection ? tx("menu-section", currentSection.label) : undefined);
+
+/**
+ * Every nav entry, flattened, for the command palette.
+ *
+ * This is the SAME array the sidebar renders — deliberately, and it is the
+ * whole security argument for the palette. `composeSidebarSections` has already
+ * filtered by `ssr.permissions` and the tenant's disabled modules, so the
+ * palette cannot surface a screen the menu would not. It is not a second
+ * decision that has to be kept in step with the first; it is the first
+ * decision, displayed twice.
+ *
+ * `search` is lowercased HERE rather than in the browser so matching never
+ * depends on the client's locale casing rules — see the client module for the
+ * Turkish-`I` case that motivates it.
+ */
+const paletteEntries = navSections.flatMap((section) =>
+  section.groups.flatMap((group) =>
+    group.entries.map((entry) => {
+      const label = t(entry.label);
+      const group_ = tx("menu-section", section.label);
+
+      return {
+        path: entry.path,
+        label,
+        group: group_,
+        icon: resolveAdminIcon(entry.icon),
+        search: `${label} ${group_} ${entry.path}`.toLowerCase()
+      };
+    })
+  )
+);
+
+/**
+ * ADR-0120 — avatar initials, and the ONE line beside them.
+ *
+ * The design reference draws a two-line account cluster: display name over
+ * email address. This shell has NEITHER. `SsrContext` carries `tenantId`,
+ * `tenantUserId`, `identityId`, `roles`, `permissions`, `tokenHash` and the
+ * display preferences — no name, no email. Reading one would mean a third query
+ * on every `/admin/*` render for chrome.
+ *
+ * So the cluster renders ONE line: the role list, which is what this topbar has
+ * always shown and is genuinely useful ("am I acting as owner here?"). A second
+ * line is not faked, and initials come from the same roles rather than from an
+ * invented name — an owner's avatar reading "OW" is at least true.
+ *
+ * `·` rather than an empty circle when there are no roles, so the topbar's
+ * geometry never changes shape based on data.
+ */
+const accountInitials =
+  ssr.roles
+    .slice(0, 2)
+    .map((role) => role.trim().charAt(0))
+    .filter((char) => char.length > 0)
+    .join("") || "·";
+---
+
+<!doctype html>
+<html
+  lang={Astro.locals.locale}
+  data-tenant-default-theme={defaultThemeAttribute}
+>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title} · AWCMS</title>
+    {
+      /* The one inline script in this repo — must run before body paint or the
+        shell flashes the wrong theme. CSP admits it by SHA-256; `set:html`
+        guarantees the rendered bytes are exactly the hashed constant. */
+    }
+    <script is:inline set:html={THEME_INIT_SCRIPT_BODY} />
+  </head>
+  <body class="admin-body">
+    <a class="skip-link" href="#admin-main">{t("Skip to main content")}</a>
+
+    <div class="admin-shell">
+      {
+        /* CSS-only responsive drawer toggle (see admin.css). The checkbox,
+          topbar and layout row must stay SIBLINGS — admin.css drives the
+          drawer with `:checked + .admin-topbar` / `:checked ~ .admin-layout`
+          selectors. */
+      }
+      <input
+        type="checkbox"
+        id="admin-nav-toggle"
+        class="admin-nav-toggle-checkbox"
+        aria-label={t("Toggle navigation menu")}
+      />
+
+      <header class="admin-topbar">
+        <div class="admin-brand-cluster">
+          <label class="admin-nav-toggle" for="admin-nav-toggle">
+            <span class="admin-nav-toggle-bars" aria-hidden="true"></span>
+            <span class="sr-only">{t("Toggle navigation menu")}</span>
+          </label>
+          <a href="/admin" class="admin-brand">
+            {
+              /* ADR-0120 — a letterform tile, not an image file: it costs no
+                request on a page that renders for every `/admin/*` hit, it
+                inherits the theme, and it cannot 404. */
+            }
+            <span class="admin-brand-mark" aria-hidden="true">A</span>
+            {
+              /* Wrapped so the wordmark can be hidden at phone widths while the
+                mark stays. A bare text node cannot be targeted by CSS, and the
+                topbar is a fixed-height row that must fit — see the phone-width
+                block in admin.css. The link keeps its full accessible name
+                either way, because the text is hidden with `display: none`
+                only on the SPAN, and the mark carries `aria-hidden`. */
+            }
+            <span class="admin-brand-text">AWCMS</span>
+          </a>
+        </div>
+
+        {
+          /* ADR-0120 — the command-palette launcher. A `<button>` rather than an
+            `<input>`, because it opens a dialog instead of accepting text where
+            it stands. It is rendered only when there is something to search:
+            with no visible nav entries the dialog below is absent, and a button
+            that opens nothing is worse than no button. */
+        }
+        {
+          paletteEntries.length > 0 && (
+            <button
+              type="button"
+              id="admin-palette-open"
+              class="admin-palette-open"
+              aria-haspopup="dialog"
+              aria-controls="admin-palette"
+            >
+              <svg
+                width="15"
+                height="15"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                aria-hidden="true"
+                focusable="false"
+                class="admin-palette-open-icon"
+              >
+                <path d={ADMIN_ICON_PATHS.search} />
+              </svg>
+              <span class="admin-palette-open-label">
+                {t("Search screens")}
+              </span>
+              <kbd class="admin-kbd">Ctrl K</kbd>
+            </button>
+          )
+        }
+
+        <div class="admin-topbar-spacer"></div>
+
+        <div class="admin-topbar-right">
+          <TenantBadge tenantName={tenantName} ariaLabel={t("Active tenant")} />
+          <SyncIndicator
+            active={syncActive}
+            activeLabel={t("Sync active")}
+            inactiveLabel={t("Sync inactive")}
+          />
+          <ThemeToggle
+            ariaLabel={t("Change colour theme")}
+            systemLabel={tx("theme", "System")}
+            lightLabel={tx("theme", "Light")}
+            darkLabel={tx("theme", "Dark")}
+          />
+          {
+            /* `persist` because this shell only ever renders inside a resolved
+              session (the middleware redirects to /login otherwise), so the
+              choice can be stored against the principal and not merely cookied. */
+          }
+          <LanguageSwitcher persist />
+          <div class="admin-topbar-divider" aria-hidden="true"></div>
+          <div class="admin-user-menu">
+            {
+              /* ADR-0096 — the avatar is a LINK. ADR-0120 turned it into an
+                initials disc: a stroked person-glyph at 26px reads as a smudge,
+                where two letters read as a person. Both the disc and the role
+                line are `aria-hidden`/decorative-adjacent — the accessible name
+                comes from the link's own label, so a screen reader announces
+                "My account", not "OW owner". */
+            }
+            <a
+              href="/admin/account"
+              class="admin-account-link"
+              aria-label={t("My account")}
+            >
+              <span class="admin-avatar" aria-hidden="true">
+                {accountInitials}
+              </span>
+              <span class="admin-account-meta" aria-hidden="true">
+                <span class="admin-account-name" id="admin-roles">{roles}</span>
+              </span>
+            </a>
+          </div>
+        </div>
+      </header>
+
+      <div class="admin-layout">
+        <label class="admin-scrim" for="admin-nav-toggle" aria-hidden="true"
+        ></label>
+        <aside class="admin-sidebar" id="admin-sidebar">
+          {
+            /* ADR-0095 — the sidebar is translated by passing the composed
+              ENGLISH labels through the catalog, because `msgid` is the English
+              source text. `SIDEBAR_LABELS` and `ModuleDescriptor.name` therefore
+              stay exactly as they are: no descriptor grows a label key, and no
+              registry gate has to learn about locales.
+
+              A tenant's own `labelOverride` (Issue #260) flows through here too
+              and simply misses the catalog, so it renders as the tenant wrote it
+              — which is correct: their words are not ours to translate.
+
+              Section labels take a context: "System" and "General" are also a
+              theme mode and a module group, and gettext has no other way to keep
+              three different translations of one English word apart. */
+          }
+          <nav aria-label={tx("landmark", "Admin")}>
+            <ul class="admin-sidebar-groups">
+              {
+                navSections.map((section) => (
+                  <li>
+                    {/* ADR-0120 — sections COLLAPSE, via `<details>`/`<summary>`
+                        rather than script. This shell's header records why awcms
+                        kept a CSS-only drawer where awcms-micro used JS: a
+                        script-free control is strictly better under
+                        `default-src 'self'`. Same problem, same answer — and
+                        `<details>` brings the implicit `aria-expanded`, keyboard
+                        operation and state exposure for free.
+
+                        `open` on every section, so the default is the full menu.
+                        Nothing persists the toggle, and a remembered-collapsed
+                        section would hide a screen from someone who does not
+                        know it collapses. */}
+                    <details class="admin-sidebar-group" open>
+                      <summary class="admin-sidebar-group-label">
+                        <span class="admin-sidebar-group-label-text">
+                          {tx("menu-section", section.label)}
+                        </span>
+                        <svg
+                          class="admin-sidebar-caret"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2.4"
+                          stroke-linecap="round"
+                          aria-hidden="true"
+                          focusable="false"
+                        >
+                          <path d="m6 9 6 6 6-6" />
+                        </svg>
+                      </summary>
+                      <ul class="admin-sidebar-modules">
+                        {section.groups.map((group) => (
+                          <li class="admin-sidebar-module">
+                            {group.moduleLabel !== null && (
+                              <span class="admin-sidebar-module-label">
+                                {t(group.moduleLabel)}
+                              </span>
+                            )}
+                            <ul class="admin-sidebar-links">
+                              {group.entries.map((entry) => (
+                                <li>
+                                  <a
+                                    href={entry.path}
+                                    aria-current={
+                                      entry.isCurrent ? "page" : undefined
+                                    }
+                                  >
+                                    {/* ADR-0120 — `entry.icon` was a field the
+                                        contract declared, the composition
+                                        checker validated, and NOTHING rendered.
+                                        This is the read that makes it real.
+                                        `resolveAdminIcon` never echoes an
+                                        unknown name back, so a bad descriptor
+                                        value becomes a neutral dot rather than
+                                        attribute content. */}
+                                    <svg
+                                      class="admin-sidebar-icon"
+                                      viewBox="0 0 24 24"
+                                      fill="none"
+                                      stroke="currentColor"
+                                      stroke-width="1.8"
+                                      stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      aria-hidden="true"
+                                      focusable="false"
+                                    >
+                                      <path d={resolveAdminIcon(entry.icon)} />
+                                    </svg>
+                                    <span class="admin-sidebar-link-label">
+                                      {t(entry.label)}
+                                    </span>
+                                  </a>
+                                </li>
+                              ))}
+                            </ul>
+                          </li>
+                        ))}
+                      </ul>
+                    </details>
+                  </li>
+                ))
+              }
+            </ul>
+          </nav>
+          <div class="admin-sidebar-footer">
+            {
+              /* ADR-0120 — sign-out moved here from the topbar. It is the last
+                thing in the navigation, which is where it belongs and where
+                every other admin puts it; in a fixed-height topbar it was a
+                bordered button competing with four other controls.
+
+                The busy label travels as a data attribute rather than a string
+                in the script: client code cannot reach the catalog (it is a
+                server module, and shipping it would send both languages to every
+                browser), and this is the same seam `ThemeToggle` uses for its
+                three mode labels. */
+            }
+            <button
+              type="button"
+              id="admin-logout"
+              class="admin-logout"
+              data-label-busy={t("Signing out…")}
+            >
+              <svg
+                viewBox="0 0 24 24"
+                width="17"
+                height="17"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"
+                ></path>
+              </svg>
+              {t("Log out")}
+            </button>
+            <span class="admin-sidebar-version">
+              {t("Version")}
+              <span class="admin-sidebar-version-value">v{appVersion}</span>
+            </span>
+          </div>
+        </aside>
+
+        <main class="admin-main" id="admin-main" tabindex="-1">
+          {
+            /* ADR-0120 — the page-header band: breadcrumb, title, description
+              and the screen's own actions, above one rule, at the same inline
+              padding as the body below it.
+
+              Before this every screen positioned its own `<h1>` and its own
+              primary button, and no two agreed on where either belonged. The
+              `page-actions` slot is what lets a screen put its button here
+              instead of inventing a place for it. */
+          }
+          <div class="admin-page-head">
+            <nav class="admin-breadcrumb" aria-label={t("Breadcrumb")}>
+              <ol>
+                <li><a href="/admin">AWCMS</a></li>
+                {currentSectionLabel && <li>{currentSectionLabel}</li>}
+                <li aria-current="page">{title}</li>
+              </ol>
+            </nav>
+            <div class="admin-page-head-main">
+              <div class="admin-page-heading">
+                <h1>{title}</h1>
+                {
+                  /* Two ways to fill one slot, because the screens genuinely
+                    need both.
+
+                    Thirty screens have a description that is a single `t(…)`
+                    call, and a `description` prop is the least ceremony for
+                    those. Fifteen have one carrying inline markup — a `<code>`
+                    naming a job, a link to the screen that owns a setting — and
+                    a prop cannot carry an element. Rewriting those fifteen into
+                    plain sentences would delete real information to satisfy the
+                    shape of a prop.
+
+                    `Astro.slots.has` rather than an always-present `<p>` with a
+                    slot inside it: an empty paragraph still occupies its
+                    line-height, which would leave a ragged gap under the title
+                    of every screen that has no description at all. */
+                }
+                {
+                  description !== undefined && (
+                    <p class="admin-page-description">{description}</p>
+                  )
+                }
+                {
+                  description === undefined && hasPageDescriptionSlot && (
+                    <p class="admin-page-description">
+                      <slot name="page-description" />
+                    </p>
+                  )
+                }
+              </div>
+              <div class="admin-page-actions">
+                <slot name="page-actions" />
+              </div>
+            </div>
+          </div>
+          <div class="admin-page-body">
+            <slot />
+          </div>
+        </main>
+      </div>
+    </div>
+
+    {
+      /* ADR-0120 — the command palette.
+
+        Every entry is rendered SERVER-SIDE, already filtered by
+        `composeSidebarSections` against this caller's permissions and the
+        tenant's disabled modules. The client script only shows and hides them,
+        so the palette cannot surface a screen the sidebar would not — not by
+        policy, but because it has nothing else to show. See
+        `src/lib/ui/admin-command-palette.ts` for why that beats a search
+        endpoint here.
+
+        A native `<dialog>`: `showModal()` supplies the focus trap, Escape,
+        page inertness, the backdrop and focus restoration, none of which is
+        then ours to own. */
+    }
+    {
+      paletteEntries.length > 0 && (
+        <dialog
+          id="admin-palette"
+          class="admin-palette"
+          aria-label={t("Search screens")}
+        >
+          <div class="admin-palette-search">
+            <svg
+              width="17"
+              height="17"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <path d={ADMIN_ICON_PATHS.search} />
+            </svg>
+            <input
+              type="text"
+              id="admin-palette-input"
+              class="admin-palette-input"
+              autocomplete="off"
+              placeholder={t("Type a screen name…")}
+              aria-label={t("Type a screen name…")}
+            />
+            <kbd class="admin-kbd">Esc</kbd>
+          </div>
+          <ul class="admin-palette-results">
+            {paletteEntries.map((entry) => (
+              <li data-search={entry.search}>
+                <a href={entry.path}>
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                    focusable="false"
+                  >
+                    <path d={entry.icon} />
+                  </svg>
+                  <span class="admin-palette-label">{entry.label}</span>
+                  <span class="admin-palette-group">{entry.group}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+          <p class="admin-palette-empty" id="admin-palette-empty" hidden>
+            {t("No screen matches that.")}
+          </p>
+        </dialog>
+      )
+    }
+
+    <script>
+      // The import forces Astro to bundle this to an EXTERNAL file — an
+      // import-free script would be inlined, and inline scripts are blocked by
+      // the middleware CSP (`default-src 'self'`). See admin-form-client.ts.
+      //
+      // "Has an import" turns out to be the wrong way to state that rule, and
+      // stating it wrongly cost a release. What Astro actually inlines is a
+      // script left with no CROSS-CHUNK import after bundling. `lockElement`
+      // survives because `admin-form-client` is shared by many screens and so
+      // becomes its own chunk; a private one-caller module is folded into the
+      // script itself and the script is then inlined.
+      //
+      // `LanguageSwitcher` learned that the expensive way: its own `<script>`
+      // imported a module nothing else used, was inlined, and never ran under
+      // the CSP. Its behaviour is loaded HERE instead, from the one script
+      // already proven external, because `AdminLayout` is the only thing that
+      // renders that component.
+      //
+      // `ThemeToggle` was the SAME defect, sitting in the build unnoticed while
+      // its own comment asserted it was external. Its import was a string
+      // constant, which the minifier folds away entirely — so "has an import"
+      // was true in the source and false in the artefact. It is loaded here for
+      // the same reason, and `bun run build:inline-scripts:check` now reads the
+      // built manifest so the next one is caught by a gate rather than by a
+      // user reporting a dead button.
+      import { lockElement } from "../lib/ui/admin-form-client";
+      import "../lib/ui/language-switcher-client";
+      import "../lib/ui/theme-toggle-client";
+      // ADR-0120. Loaded here for the same reason as the two above: this block
+      // already has a cross-chunk import (`lockElement`), which is what keeps
+      // the whole script external. A `<script>` inside a component would be
+      // folded and inlined, and the CSP would then refuse it.
+      import { initAdminCommandPalette } from "../lib/ui/admin-command-palette";
+
+      initAdminCommandPalette();
+
+      const logoutButton = document.getElementById(
+        "admin-logout"
+      ) as HTMLButtonElement | null;
+
+      logoutButton?.addEventListener("click", async () => {
+        if (logoutButton.disabled) return;
+        // Falls back to English if the attribute is somehow absent — a missing
+        // label must not stop the sign-out it labels.
+        lockElement(
+          logoutButton,
+          logoutButton.dataset.labelBusy ?? "Signing out…"
+        );
+        try {
+          await fetch("/api/v1/auth/logout", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            credentials: "same-origin"
+          });
+        } catch {
+          // Even if the network call fails, send the user to /login — the
+          // cookie may already be cleared, and staying on a stale admin page
+          // is worse than an optimistic redirect.
+        }
+        window.location.href = "/login";
+      });
+    </script>
+  </body>
+</html>

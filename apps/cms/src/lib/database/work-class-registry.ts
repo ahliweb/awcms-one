@@ -1,0 +1,231 @@
+/**
+ * Job-side work-class registry (Issue #743, epic #738 platform-evolution).
+ * Complements the ROUTE-side registry, which is entirely GENERATED (see
+ * `scripts/work-class-registry-generate.ts` — every `src/pages/api/v1/**`
+ * route that calls `withTenant(...)` already declares its work class
+ * inline, either explicitly or by relying on the documented default, so
+ * generating a snapshot from that source is strictly more reliable than a
+ * second hand-maintained copy).
+ *
+ * Background jobs (`scripts/*.ts` that call `getWorkerDatabaseClient()`/
+ * `getSetupDatabaseClient()`) have no equivalent inline declaration to
+ * generate FROM, so this is a small, hand-authored, DECLARATIVE map: which
+ * work-class "bucket" each job's connection usage is attributed to.
+ *
+ * ## What "declared" means here, corrected 22 August 2026
+ *
+ * This header used to say jobs "do not call `withTenant`/`acquireWorkClassSlot`
+ * at all today", and the capacity runbook said the same. **That was written
+ * when it was true and stayed after it stopped being true.** Jobs open tenant
+ * transactions through `withTenantOrThrow` — which is `acquireWorkClassSlot`,
+ * the same pool gate a request goes through — and finding D11 found seven
+ * scripts passing no class at all, so a nightly purge attributed its pool
+ * pressure to the bucket that serves live users, and one script passing
+ * `maintenance` where this map says `background_sync`.
+ *
+ * So the map is no longer only a capacity-planning label: for a script that
+ * opens its own transactions, the class here is the class the script must
+ * PASS, and `db:work-class:generate` refuses to run when it does not (in both
+ * directions — a missing option and a contradicting one). What the gate cannot
+ * see is a script whose transactions live in a job module under `src/`; those
+ * have no call of their own to inspect, and the rationales below that claim
+ * "every call inside <module> already passes it explicitly" are not verified
+ * by it.
+ *
+ * ## Job concurrency is still bounded by something else, and that is unchanged
+ *
+ * `src/lib/jobs/job-runner.ts`'s Postgres advisory lock ensures at most ONE
+ * instance of a given job NAME runs cluster-wide at a time, which is the
+ * dominant connection-storm risk for scheduled jobs (an overlapping re-run of
+ * the SAME job — a slow purge still running when the next cron tick fires).
+ * The work class governs which bounded queue the job's transactions wait in;
+ * the advisory lock governs how many of the job there are. Neither replaces
+ * the other.
+ *
+ * `scripts/work-class-registry-check.ts` discovers the CURRENT set of
+ * worker scripts by grepping `scripts/*.ts` for `getWorkerDatabaseClient(`/
+ * `getSetupDatabaseClient(` (ground truth — independent of whether a
+ * module's `jobs:` descriptor also happens to list the script) and fails if
+ * any discovered file is missing from this map, or if this map contains a
+ * stale entry for a file that no longer exists/no longer opens a worker
+ * connection.
+ */
+import type { WorkClass } from "./work-class";
+
+export type JobWorkClassEntry = {
+  workClass: WorkClass;
+  rationale: string;
+};
+
+/**
+ * Keyed by path relative to the repo root. Add an entry here (and re-run
+ * `bun run db:work-class:check`) whenever a new `scripts/*.ts` file starts
+ * calling `getWorkerDatabaseClient()`/`getSetupDatabaseClient()`.
+ */
+export const JOB_WORK_CLASS_REGISTRY: Readonly<
+  Record<string, JobWorkClassEntry>
+> = {
+  "scripts/audit-log-purge.ts": {
+    workClass: "maintenance",
+    rationale:
+      "Scheduled retention purge (logs:audit:purge) — tolerant of delay, never latency-sensitive."
+  },
+  "scripts/identity-access-delegated-access-expiry.ts": {
+    workClass: "maintenance",
+    rationale:
+      'Scheduled expiry sweep (identity-access:delegated-access:expiry, ADR-0090) — the same tolerant-of-delay profile as identity-access:business-scope:expiry, and for the same reason: the authorization decision is already made at the chokepoint, so a late pass costs bookkeeping and never access. Both its sweep and its --dry-run count pass workClass: "maintenance" explicitly.'
+  },
+  "scripts/form-draft-purge.ts": {
+    workClass: "maintenance",
+    rationale:
+      "Scheduled retention purge (form-drafts:purge) — same profile as audit-log-purge."
+  },
+  "scripts/visitor-analytics-purge.ts": {
+    workClass: "maintenance",
+    rationale:
+      "Scheduled retention/anonymization purge (analytics:purge) — tolerant of delay."
+  },
+  "scripts/visitor-analytics-rollup.ts": {
+    workClass: "background_sync",
+    rationale:
+      "Frequent scheduled aggregation (analytics:rollup, doc recommends every run of the daily rollup) — same low-priority-but-regular profile as sync push/pull, not a one-off maintenance task."
+  },
+  "scripts/email-dispatch.ts": {
+    workClass: "background_sync",
+    rationale:
+      "Outbox dispatcher (email:dispatch), recommended every 1-2 minutes — matches sync/object dispatch's own background_sync classification."
+  },
+  "scripts/push-dispatch.ts": {
+    workClass: "background_sync",
+    rationale:
+      'Outbox dispatcher (push:dispatch, ADR-0074), recommended every 1-2 minutes — the same profile as email/object dispatch, and every withTenantOrThrow call inside push-dispatch.ts already passes workClass: "background_sync" explicitly.'
+  },
+  "scripts/push-queue-purge.ts": {
+    workClass: "maintenance",
+    rationale:
+      'Scheduled retention purge (push:queue:purge, ADR-0074) — same tolerant-of-delay profile as form-draft-purge; purgePushQueue passes workClass: "maintenance" explicitly.'
+  },
+  "scripts/email-queue-purge.ts": {
+    workClass: "maintenance",
+    rationale:
+      'Scheduled retention purge (email:queue:purge, Issue #468/ADR-0072) — same tolerant-of-delay profile as push:queue:purge and form-draft-purge; purgeEmailQueue passes workClass: "maintenance" explicitly. Its --dry-run path counts outside a tenant transaction and so opens no classified connection of its own.'
+  },
+  "scripts/domain-event-deliveries-purge.ts": {
+    workClass: "maintenance",
+    rationale:
+      'Scheduled retention purge (domain-events:deliveries:purge, Issue #468/ADR-0072) — same tolerant-of-delay profile as the three sibling purges; purgeSettledDeliveries passes workClass: "maintenance" explicitly. Its --dry-run path counts outside a tenant transaction and so opens no classified connection of its own.'
+  },
+  "scripts/object-queue-purge.ts": {
+    workClass: "maintenance",
+    rationale:
+      'Scheduled retention purge (sync:objects:purge, Issue #468/ADR-0072) — same tolerant-of-delay profile as email:queue:purge and push:queue:purge; purgeObjectSyncQueue passes workClass: "maintenance" explicitly. Its --dry-run path counts outside a tenant transaction and so opens no classified connection of its own.'
+  },
+  "scripts/object-sync-dispatch.ts": {
+    workClass: "background_sync",
+    rationale:
+      "Outbox dispatcher (sync:objects:dispatch) — the module's own module.ts already documents this as background/low-priority traffic."
+  },
+  "scripts/domain-events-dispatch.ts": {
+    workClass: "background_sync",
+    rationale:
+      'Outbox dispatcher (domain-events:dispatch, Issue #742), recommended every 30-60 seconds — same recurring dispatcher profile as email/object-sync/social-publish dispatch; its own internal withTenantOrThrow calls already pass workClass: "background_sync" explicitly.'
+  },
+  "scripts/blog-scheduled-publish.ts": {
+    workClass: "background_sync",
+    rationale:
+      "Scheduled-publish dispatcher (blog:publish:scheduled) — recurring, not latency-sensitive, but more time-relevant than a maintenance purge."
+  },
+  "scripts/blog-portable-text-backfill.ts": {
+    workClass: "maintenance",
+    rationale:
+      "One-shot Portable Text cutover (blog:portable-text:backfill, ADR-0100) — not scheduled, run by an operator after sql/134, dry-run unless --commit. Delay-tolerant by nature: nothing waits on it, and it is bounded per run so a large tenant is finished across several invocations rather than by holding a connection open."
+  },
+  "scripts/blog-ads-drop-readiness.ts": {
+    workClass: "maintenance",
+    rationale:
+      "Read-only readiness report (blog:ads:drop-readiness, ADR-0044 §4 Fase 2) — issues no write at all and is run by an operator deciding whether the drop migration may be written, so it is as delay-tolerant as work gets."
+  },
+  "scripts/blog-ads-ingest.ts": {
+    workClass: "maintenance",
+    rationale:
+      "One-shot operator-run data migration (blog:ads:ingest, ADR-0044 §4 Fase 2) — not recurring at all, which makes it the most delay-tolerant profile in this map: it runs once during a planned migration window with an operator watching, never on a timer alongside request traffic."
+  },
+  "scripts/news-media-r2-reconcile.ts": {
+    workClass: "maintenance",
+    rationale:
+      "Infrequent reconciliation sweep (news-media:reconcile) — tolerant of delay, run far less often than the dispatchers above."
+  },
+  "scripts/data-lifecycle-archive-purge.ts": {
+    workClass: "maintenance",
+    rationale:
+      'Scheduled bounded archive/purge (data-lifecycle:archive-purge, Issue #745) — same tolerant-of-delay, never-latency-sensitive profile as audit-log-purge/form-draft-purge; every withTenantOrThrow call inside archive-purge-job.ts already passes workClass: "maintenance" explicitly.'
+  },
+  "scripts/identity-access-subscription-lifecycle.ts": {
+    workClass: "maintenance",
+    rationale:
+      'Scheduled subscription-ladder sweep (identity-access:subscription-lifecycle, ADR-0084) — one bounded read plus at most one UPDATE per tenant, tolerant of delay by construction: every transition is anchored to a date the billing cycle owns, so running late changes what happens, never whether it happens. Every withTenantOrThrow call inside subscription-lifecycle-job.ts passes workClass: "maintenance" explicitly.'
+  },
+  "scripts/identity-access-business-scope-expiry.ts": {
+    workClass: "maintenance",
+    rationale:
+      'Scheduled expiry sweep for business-scope assignments/SoD conflict exceptions (identity-access:business-scope:expiry, Issue #746) — same tolerant-of-delay, never-latency-sensitive profile as audit-log-purge/data-lifecycle-archive-purge; every withTenantOrThrow call inside business-scope-expiry-job.ts already passes workClass: "maintenance" explicitly.'
+  },
+  "scripts/workflow-escalations-dispatch.ts": {
+    workClass: "background_sync",
+    rationale:
+      "Escalation/timeout sweep (workflow:escalations:dispatch, Issue #747), recommended every 1-5 minutes — same recurring dispatcher profile as domain-events/social-publish/object-sync dispatch, not a tolerant-of-delay maintenance sweep since it drives due-date/overdue task state operators rely on."
+  },
+  "scripts/reporting-projections-refresh.ts": {
+    workClass: "maintenance",
+    rationale:
+      'Incremental cursor_table projection updates + rebuild-continuation sweep (reporting:projections:refresh, Issue #753), recommended every 2 minutes — same tolerant-of-delay, never-latency-sensitive profile as audit-log-purge/data-lifecycle-archive-purge; every withTenantOrThrow call inside projection-incremental-worker.ts/projection-rebuild.ts already passes workClass: "maintenance" explicitly.'
+  },
+  "scripts/reporting-exports-dispatch.ts": {
+    workClass: "maintenance",
+    rationale:
+      "Scheduled projection export generation (reporting:exports:dispatch, Issue #753), recommended every 15 minutes — same tolerant-of-delay, never-latency-sensitive profile as audit-log-purge/data-lifecycle-archive-purge; a delayed export run has no operational urgency."
+  },
+  // The four below were added when `db:work-class:generate` (Issue #263) first
+  // ran and REFUSED to, because they open a worker connection with no entry
+  // here — all four shipped with the awcms-micro absorption wave and were
+  // outside the capacity model entirely. The same run removed four entries for
+  // scripts that do not exist in this repo (`social-publish-dispatch`,
+  // `organization-structure-metrics-snapshot`,
+  // `integration-hub-outbound-dispatch`, `data-exchange-worker`), carried over
+  // from awcms-mini with their ADR-accepted-but-unimplemented modules.
+  "scripts/comments-retention.ts": {
+    workClass: "maintenance",
+    rationale:
+      "Scheduled retention sweep (comments:retention, ADR-0041) — tolerant of delay, never latency-sensitive; same profile as audit-log-purge/form-draft-purge."
+  },
+  "scripts/idn-regions-import.ts": {
+    workClass: "maintenance",
+    rationale:
+      "One-shot reference-data import (idn-regions:import, ADR-0046) — 91,599 rows written in a single transaction on deploy, not on a timer. Tolerant of delay and never latency-sensitive, but deliberately NOT background_sync: it is a long single write, so it belongs in the class sized for sweeps rather than the one sized for recurring dispatchers competing with request traffic."
+  },
+  "scripts/idn-regions-activate.ts": {
+    workClass: "maintenance",
+    rationale:
+      "Operator-run dataset activation (idn-regions:activate, ADR-0052) — a short status flip plus a superseding update, run by hand and never on a timer. `maintenance` for the same reason as idn-regions-import: tolerant of delay, never latency-sensitive, and not a recurring dispatcher competing with request traffic."
+  },
+  "scripts/idn-regions-rollback.ts": {
+    workClass: "maintenance",
+    rationale:
+      "Operator-run rollback to the previously active dataset (idn-regions:rollback, ADR-0052) — same shape and same class as idn-regions:activate; run by hand to recover from a bad activation, never scheduled."
+  },
+  "scripts/edge-cache-purge.ts": {
+    workClass: "background_sync",
+    rationale:
+      "Drains the durable invalidation queue (edge-cache:purge, ADR-0042, sql/068) every minute and issues one Varnish BAN per surrogate key — a recurring dispatcher, not a tolerant-of-delay sweep: lag here means stale content served to real visitors."
+  },
+  "scripts/site-search-reconcile.ts": {
+    workClass: "background_sync",
+    rationale:
+      "Recurring per-tenant search index reconciliation (site-search:reconcile, ADR-0040) — drives user-visible public search freshness, same dispatcher profile as domain-events-dispatch rather than a maintenance purge."
+  },
+  "scripts/tenant-domain-dns-sync.ts": {
+    workClass: "background_sync",
+    rationale:
+      "Reconciles active platform subdomains to serving DNS records (tenant-domain:dns:sync) — SELECT-only as awcms_worker, but a tenant waiting for its domain to resolve is waiting on this pass, so it is a dispatcher rather than a sweep."
+  }
+};

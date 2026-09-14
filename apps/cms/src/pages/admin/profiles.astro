@@ -1,0 +1,220 @@
+---
+/**
+ * Profile (party) management screen (Issue #166) — the tenant's central
+ * profiles/parties. Same pattern as `offices.astro`: calls the same
+ * `listParties` the `GET /api/v1/profiles` endpoint uses, gated on
+ * `profile_identity.profile_management.read`. Read-only. Identifiers (email/
+ * phone/NIK) are deliberately NOT shown here — they are masked PII surfaced
+ * only through the dedicated identifiers endpoint, never a bulk list.
+ */
+import AdminLayout from "../../layouts/AdminLayout.astro";
+import "../../styles/admin-screens.css";
+import { loadAdminScreen } from "../../lib/auth/admin-screen";
+import { logAdminPageError } from "../../lib/logging/error-log";
+import { listParties } from "../../modules/profile-identity/application/party-directory";
+import { getTranslatorFor } from "../../lib/i18n";
+
+type PartyRow = {
+  id: string;
+  displayName: string;
+  profileType: string;
+  status: string;
+  verificationStatus: string;
+};
+
+const ssr = Astro.locals.ssrContext!;
+const { t, tn } = getTranslatorFor(Astro.locals.locale);
+
+// R3 (#450) — the entry decision is the chokepoint's, and the read runs in the
+// same transaction. `canCreate` is decided the same way, so a tenant's ABAC
+// `deny` hides the form instead of only refusing the POST behind it.
+const screen = await loadAdminScreen({
+  ssr,
+  workClass: "interactive",
+  authorize: {
+    moduleKey: "profile_identity",
+    activityCode: "profile_management",
+    action: "read"
+  },
+  load: async ({ tx, can }) => ({
+    profiles: (await listParties(tx, ssr.tenantId, {})).items as PartyRow[],
+    canCreate: await can({
+      moduleKey: "profile_identity",
+      activityCode: "profile_management",
+      action: "create"
+    })
+  }),
+  onError: (error) => {
+    logAdminPageError("admin/profiles.astro: failed to list profiles", error, {
+      correlationId: Astro.locals.correlationId
+    });
+  }
+});
+
+const canRead = screen.state !== "denied";
+// A pool/circuit-breaker refusal is not an empty directory and not a denial.
+const loadError = screen.state === "error";
+const profiles: PartyRow[] =
+  screen.state === "allowed" ? screen.data.profiles : [];
+const canCreate = screen.state === "allowed" && screen.data.canCreate;
+---
+
+<AdminLayout
+  title={t("Profiles")}
+  description={t(
+    "The tenant's central directory of people and organizations. Sensitive identifiers (email, phone, NIK) are never listed here \u2014 they are surfaced only through the dedicated, masked identifiers view."
+  )}
+>
+  {
+    !canRead && (
+      <p class="state-notice fade-in-up" id="profiles-denied">
+        {t("You do not have permission to view profiles.")}
+      </p>
+    )
+  }
+
+  {
+    canCreate && (
+      <form
+        id="profile-create-form"
+        class="admin-create-form fade-in-up"
+        novalidate
+      >
+        <p class="form-legend">{t("Create a profile")}</p>
+        <label for="profile-type">
+          {t("Type")}
+          <select id="profile-type" name="profileType">
+            <option value="person" selected>
+              {t("person")}
+            </option>
+            <option value="organization">{t("organization")}</option>
+          </select>
+        </label>
+        <label for="profile-display-name">
+          {t("Display name")}
+          <input
+            id="profile-display-name"
+            name="displayName"
+            type="text"
+            required
+          />
+        </label>
+        <button type="submit" id="profile-create-submit">
+          {t("Create profile")}
+        </button>
+        <p
+          id="profile-create-error"
+          class="admin-create-error"
+          role="alert"
+          hidden
+        />
+      </form>
+    )
+  }
+
+  {
+    canRead && loadError && (
+      <p class="state-notice fade-in-up" id="profiles-error">
+        {t("Profiles could not be loaded right now. Please try again later.")}
+      </p>
+    )
+  }
+
+  {
+    canRead && !loadError && (
+      <div class="data-table-scroll fade-in-up">
+        <table class="data-table data-table--stack" id="profiles-table">
+          <caption>
+            {tn("{count} profile", "{count} profiles", profiles.length, {
+              count: profiles.length
+            })}
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">{t("Display name")}</th>
+              <th scope="col">{t("Type")}</th>
+              <th scope="col">{t("Status")}</th>
+              <th scope="col">{t("Verification")}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {profiles.length === 0 ? (
+              <tr>
+                <td class="data-table-empty" colspan="4">
+                  <div class="empty-state">
+                    <span class="empty-state-icon" aria-hidden="true">
+                      ○
+                    </span>
+                    <span class="empty-state-title">
+                      {t("No profiles yet")}
+                    </span>
+                    <span class="empty-state-text">
+                      {canCreate
+                        ? "Create the first profile using the form above."
+                        : "Profiles created for this tenant will appear here."}
+                    </span>
+                  </div>
+                </td>
+              </tr>
+            ) : (
+              profiles.map((profile) => (
+                <tr>
+                  <td data-label="Display name">{profile.displayName}</td>
+                  <td data-label="Type">
+                    <span class="cell-muted">{profile.profileType}</span>
+                  </td>
+                  <td data-label="Status">
+                    <span
+                      class="status-badge"
+                      data-variant={
+                        profile.status === "active" ? "success" : "neutral"
+                      }
+                    >
+                      <span class="status-dot" aria-hidden="true" />
+                      {profile.status}
+                    </span>
+                  </td>
+                  <td data-label="Verification">
+                    <span class="cell-muted">{profile.verificationStatus}</span>
+                  </td>
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
+    )
+  }
+
+  <script>
+    // The import is deliberate — it forces Astro to bundle this script to an
+    // external file. An import-free hoisted script would be inlined, and inline
+    // scripts are blocked by this app's CSP (`default-src 'self'`, no
+    // 'unsafe-inline'). See admin-form-client.ts / login.astro.
+    import {
+      field,
+      messageBox,
+      mutateAndReload,
+      onSubmit,
+      sendJson
+    } from "../../lib/ui/admin-form-client";
+
+    const errorBox = messageBox("profile-create-error");
+
+    onSubmit("profile-create-form", async ({ data, submit }) => {
+      await mutateAndReload(
+        submit,
+        errorBox,
+        () =>
+          sendJson("POST", "/api/v1/profiles", {
+            profileType: String(data.get("profileType") ?? "person"),
+            displayName: field(data, "displayName")
+          }),
+        // Generic message only — never reconstruct a specific deny/validation
+        // reason or surface internal detail (Issue #540).
+        "Could not create the profile. Check your details and try again.",
+        "Creating…"
+      );
+    });
+  </script>
+</AdminLayout>

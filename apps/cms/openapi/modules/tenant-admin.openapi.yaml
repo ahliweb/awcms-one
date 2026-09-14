@@ -1,0 +1,786 @@
+# Source fragment for the "tenant-admin" module (Issue #182, epic #177).
+#
+# Owns every path whose operations carry this module's OpenAPI tag(s), plus
+# every components.schemas entry referenced ONLY by this module's operations.
+# Schemas shared by 2+ modules (or referenced by none) live in the root
+# fragment (openapi/awcms-public-api.src.yaml) instead.
+#
+# NOT independently valid OpenAPI: $ref targets pointing at shared components
+# (securitySchemes/parameters/responses and cross-module schemas) only resolve
+# after `bun run openapi:bundle` merges this file with the root fragment and
+# every sibling module fragment into openapi/awcms-public-api.openapi.yaml.
+# Edit this file (or the root fragment for shared components), never the
+# generated bundle.
+paths:
+  /api/v1/offices:
+    get:
+      operationId: listOffices
+      tags:
+        - Tenant Admin
+      summary: List offices for the current tenant — keyset-paginated, newest first.
+      parameters:
+        - name: cursor
+          in: query
+          required: false
+          description: Opaque cursor from a previous response's nextCursor. A malformed value is rejected with 400.
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Live offices for the tenant (limit 100), newest first, with an opaque nextCursor for the next page (null on the last page).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/Office"
+                      nextCursor:
+                        type: string
+                        nullable: true
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+    post:
+      operationId: createOffice
+      tags:
+        - Tenant Admin
+      summary: Create an office.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - officeCode
+                - officeName
+              properties:
+                officeCode:
+                  type: string
+                officeName:
+                  type: string
+                officeType:
+                  type: string
+                  enum:
+                    - head_office
+                    - branch
+                    - store
+                    - warehouse
+                    - other
+                parentOfficeId:
+                  type: string
+                  format: uuid
+                  nullable: true
+                  description: Must reference a live office in the SAME tenant. An id that is unknown, soft-deleted, or belongs to another tenant is rejected identically with 400 — the responses are deliberately indistinguishable so the field cannot be used to probe for office ids elsewhere on the platform.
+      responses:
+        "201":
+          description: Office created.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/Office"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: officeCode is already taken by a live office in this tenant (OFFICE_CODE_ALREADY_EXISTS).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/offices/{id}:
+    get:
+      operationId: getOffice
+      tags:
+        - Tenant Admin
+      summary: Fetch one office.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Office detail.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/Office"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+    patch:
+      operationId: updateOffice
+      tags:
+        - Tenant Admin
+      summary: Update an office.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                officeName:
+                  type: string
+                officeType:
+                  type: string
+                  enum:
+                    - head_office
+                    - branch
+                    - store
+                    - warehouse
+                    - other
+                status:
+                  type: string
+                  enum:
+                    - active
+                    - inactive
+      responses:
+        "200":
+          description: Office updated.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/Office"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+    delete:
+      operationId: deleteOffice
+      tags:
+        - Tenant Admin
+      summary: Soft-delete an office (audited, restorable).
+      description: Sets deleted_at/deleted_by/delete_reason; the office code is freed for reuse and the row remains restorable via POST /api/v1/offices/{id}/restore. Not a hard delete.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/CorrelationId"
+      requestBody:
+        required: false
+        description: Optional. A bodyless delete is accepted (delete_reason stays null); a present reason is stored and audited. A blank reason is rejected.
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reason:
+                  type: string
+      responses:
+        "200":
+          description: Office soft-deleted.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        format: uuid
+                      status:
+                        type: string
+                        enum:
+                          - deleted
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+  /api/v1/offices/{id}/restore:
+    post:
+      operationId: restoreOffice
+      tags:
+        - Tenant Admin
+      summary: Restore a soft-deleted office (audited).
+      description: Clears the delete stamps and records restored_at/restored_by. 404 when the id is not currently soft-deleted (idempotent-safe). 409 when a live office has since taken the same code.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/CorrelationId"
+      responses:
+        "200":
+          description: Office restored.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/Office"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: A live office already uses this office code (OFFICE_CODE_ALREADY_EXISTS).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/settings:
+    get:
+      operationId: getSettings
+      tags:
+        - Tenant Admin
+      summary: Current tenant's settings.
+      responses:
+        "200":
+          description: Tenant settings.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      tenantId:
+                        type: string
+                        format: uuid
+                      tenantName:
+                        type: string
+                      legalName:
+                        type: string
+                        nullable: true
+                      defaultLocale:
+                        type: string
+                      defaultTheme:
+                        type: string
+                      timezone:
+                        type: string
+                      featureFlags:
+                        type: object
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+    patch:
+      operationId: patchSettings
+      tags:
+        - Tenant Admin
+      summary: Update tenant settings.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tenantName:
+                  type: string
+                legalName:
+                  type: string
+                  nullable: true
+                defaultLocale:
+                  type: string
+                  enum:
+                    - id
+                    - en
+                    - ms
+                    - ar
+                defaultTheme:
+                  type: string
+                  enum:
+                    - light
+                    - dark
+                    - system
+                timezone:
+                  type: string
+                featureFlags:
+                  type: object
+      responses:
+        "200":
+          description: Updated tenant settings.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+  /api/v1/setup/initialize:
+    post:
+      operationId: postSetupInitialize
+      tags:
+        - Tenant Admin
+      summary: Bootstrap the first tenant, owner, office, role, and access assignment. Rejected once already locked.
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - tenantCode
+                - tenantName
+                - officeCode
+                - officeName
+                - ownerLoginIdentifier
+                - ownerPassword
+                - ownerDisplayName
+              properties:
+                tenantCode:
+                  type: string
+                tenantName:
+                  type: string
+                officeCode:
+                  type: string
+                officeName:
+                  type: string
+                ownerLoginIdentifier:
+                  type: string
+                ownerPassword:
+                  type: string
+                  minLength: 8
+                ownerDisplayName:
+                  type: string
+                turnstileToken:
+                  type: string
+                  description: >-
+                    Cloudflare Turnstile response token (Issue #186). Required
+                    only on a full-online deployment where Turnstile is enabled;
+                    absent and ignored on every LAN/offline deployment. Verified
+                    server-side before the tenant/owner bootstrap.
+      responses:
+        "200":
+          description: Tenant bootstrapped.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      tenantId:
+                        type: string
+                        format: uuid
+                      officeId:
+                        type: string
+                        format: uuid
+                      ownerProfileId:
+                        type: string
+                        format: uuid
+                      ownerIdentityId:
+                        type: string
+                        format: uuid
+                      ownerTenantUserId:
+                        type: string
+                        format: uuid
+                      ownerRoleId:
+                        type: string
+                        format: uuid
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "403":
+          description: Setup already completed.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/setup/status:
+    get:
+      operationId: getSetupStatus
+      tags:
+        - Tenant Admin
+      summary: Whether the one-time setup wizard has already run.
+      security: []
+      responses:
+        "200":
+          description: Setup lock state.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      locked:
+                        type: boolean
+                      tenantId:
+                        type: string
+                        format: uuid
+                      lockedAt:
+                        type: string
+                        format: date-time
+  /api/v1/tenants/{id}/suspend:
+    post:
+      operationId: suspendTenant
+      tags:
+        - Tenant Admin
+      summary: Suspend a tenant, stopping service (PLATFORM-scoped).
+      description: "ADR-0073. Gated by tenant_admin.tenant_lifecycle.disable, which is scope: platform — suspending a tenant changes ANOTHER party's state, so no ordinary tenant may hold it however its roles are arranged. No revocation sweep runs and none is needed: the chokepoint checks the TENANT, not the credential, so every live session and every machine credential (which can live up to a year) is refused from its next request onward. Before this existed, suspending a tenant killed its public site instantly and left its admin sessions and machine credentials fully working. Re-suspending an already-suspended tenant returns 200 with changed=false and writes no transition row. Suspending the PLATFORM tenant returns 409: it would be refused every action including the one that lifts the suspension."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/CorrelationId"
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reason:
+                  type: string
+                  maxLength: 500
+                  nullable: true
+                  description: Recorded on the tenant, in its status-transition log, and in its own audit trail — a suspended customer is entitled to see why.
+      responses:
+        "200":
+          description: The tenant's resulting status.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/TenantLifecycleResult"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: The PLATFORM tenant cannot be suspended (PLATFORM_TENANT_PROTECTED) — it would be refused every action, including the one that lifts the suspension.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/tenants/{id}/restore:
+    post:
+      operationId: restoreTenant
+      tags:
+        - Tenant Admin
+      summary: Lift a tenant suspension and resume service (PLATFORM-scoped).
+      description: "ADR-0073. Gated by tenant_admin.tenant_lifecycle.restore — a SEPARATE permission from disable, on purpose: during an incident you want someone who can bring a customer back without being able to cut one off, the same split machine_credentials already draws between create and revoke. Restoring an already-active tenant returns 200 with changed=false."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/CorrelationId"
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reason:
+                  type: string
+                  maxLength: 500
+                  nullable: true
+      responses:
+        "200":
+          description: The tenant's resulting status.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/TenantLifecycleResult"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+  /api/v1/tenants:
+    get:
+      operationId: listTenants
+      tags:
+        - Tenant Admin
+      summary: List every tenant on the deployment (PLATFORM-scoped).
+      description: "Gated by tenant_admin.tenant_provisioning.read, which is scope: platform (ADR-0053) — the chokepoint refuses it unless the acting tenant IS the platform tenant. Deliberately platform-scoped rather than tenant-scoped: this lists EVERY tenant, so a tenant-scoped read would let any customer enumerate the platform's customer list. The projection is narrow on purpose (code, name, status, created_at) — a directory answers who is on the deployment, not what is inside their tenant."
+      parameters:
+        - $ref: "#/components/parameters/CorrelationId"
+      responses:
+        "200":
+          description: The tenant directory, newest first.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/TenantDirectoryEntry"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+    post:
+      operationId: provisionTenant
+      tags:
+        - Tenant Admin
+      summary: Provision a new tenant with its owner account (PLATFORM-scoped).
+      description: "Gated by tenant_admin.tenant_provisioning.create, which is scope: platform. Creates the tenant, its head office, the owner profile/identity/tenant-user, the system `owner` role, and that role's grants — the SAME code path the setup wizard uses, so the `WHERE scope = 'tenant'` filter on those grants cannot drift between the two. A provisioned tenant NEVER receives platform-scoped permissions. `Idempotency-Key` required; audited in the platform tenant's log. Returns 409 when the tenant_code is taken."
+      parameters:
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+        - $ref: "#/components/parameters/CorrelationId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - tenantCode
+                - tenantName
+                - officeCode
+                - officeName
+                - ownerLoginIdentifier
+                - ownerPassword
+                - ownerDisplayName
+              properties:
+                tenantCode:
+                  type: string
+                tenantName:
+                  type: string
+                officeCode:
+                  type: string
+                officeName:
+                  type: string
+                ownerLoginIdentifier:
+                  type: string
+                ownerPassword:
+                  type: string
+                  minLength: 8
+                ownerDisplayName:
+                  type: string
+      responses:
+        "200":
+          description: The provisioned tenant.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      tenant:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            format: uuid
+                          tenantCode:
+                            type: string
+                          tenantName:
+                            type: string
+                          officeId:
+                            type: string
+                            format: uuid
+                          ownerTenantUserId:
+                            type: string
+                            format: uuid
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: Idempotency-Key reused with a different request, or tenant_code already taken.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+components:
+  schemas:
+    TenantLifecycleResult:
+      type: object
+      description: Result of a suspend/restore transition (ADR-0073).
+      properties:
+        tenantId:
+          type: string
+          format: uuid
+        status:
+          type: string
+          description: The tenant's status after the call.
+        changed:
+          type: boolean
+          description: False when the tenant was already in the requested status — the caller got what they asked for, and no transition row was written.
+      required:
+        - tenantId
+        - status
+        - changed
+    TenantDirectoryEntry:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        tenantCode:
+          type: string
+        tenantName:
+          type: string
+        status:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+    Office:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        officeCode:
+          type: string
+        officeName:
+          type: string
+        officeType:
+          type: string
+        parentOfficeId:
+          type: string
+          format: uuid
+          nullable: true
+        status:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time

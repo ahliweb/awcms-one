@@ -1,0 +1,239 @@
+---
+/**
+ * Email template management screen (Issue #166; create form added #171). Same
+ * pattern as `offices.astro`: calls the same `listEmailTemplates` the
+ * `GET /api/v1/email/templates` endpoint uses, gated on `email.template.read`.
+ * Includes inactive templates so the list is the full config surface.
+ *
+ * A create form is shown to users holding `email.template.create` and posts to
+ * the existing `POST /api/v1/email/templates` (cookie auth). The endpoint's
+ * ABAC guard + `validateCreateEmailTemplateInput` (restricted `templateKey`
+ * category, localized-text shape, unsafe-HTML rejection) are the real
+ * authority; the form gate is UX-only. `templateKey` is a fixed select of the
+ * base categories (a domain module registers its own `derived.*` in code, not
+ * from this form); subject/body are captured for the `en` locale — the endpoint
+ * accepts the full `{ locale: text }` map, this UI seeds one locale.
+ */
+import AdminLayout from "../../layouts/AdminLayout.astro";
+import "../../styles/admin-screens.css";
+import { loadAdminScreen } from "../../lib/auth/admin-screen";
+import { logAdminPageError } from "../../lib/logging/error-log";
+import { listEmailTemplates } from "../../modules/email/application/email-template-directory";
+import { BASE_EMAIL_TEMPLATE_CATEGORIES } from "../../modules/email/domain/email-template-categories";
+import { getTranslatorFor } from "../../lib/i18n";
+
+type TemplateRow = {
+  id: string;
+  templateKey: string;
+  name: string;
+  isActive: boolean;
+  updatedAt: string;
+};
+
+const ssr = Astro.locals.ssrContext!;
+const { t, tn } = getTranslatorFor(Astro.locals.locale);
+
+// R3 (#450) — the entry decision is the chokepoint's, and the read runs in the
+// same transaction. The previous `result instanceof Response` branch was dead:
+// `withTenantOrThrow` throws on a pool refusal, it never returns one.
+const screen = await loadAdminScreen({
+  ssr,
+  workClass: "interactive",
+  authorize: { moduleKey: "email", activityCode: "template", action: "read" },
+  load: async ({ tx, can }) => ({
+    templates: (await listEmailTemplates(tx, ssr.tenantId, {
+      includeInactive: true
+    })) as TemplateRow[],
+    canCreate: await can({
+      moduleKey: "email",
+      activityCode: "template",
+      action: "create"
+    })
+  }),
+  onError: (error) => {
+    logAdminPageError(
+      "admin/email-templates.astro: failed to list templates",
+      error,
+      { correlationId: Astro.locals.correlationId }
+    );
+  }
+});
+
+const canRead = screen.state !== "denied";
+const loadError = screen.state === "error";
+const templates: TemplateRow[] =
+  screen.state === "allowed" ? screen.data.templates : [];
+const canCreate = screen.state === "allowed" && screen.data.canCreate;
+---
+
+<AdminLayout title={t("Email templates")}>
+  <Fragment slot="page-description"
+    >{
+      t(
+        "Transactional email templates for this tenant, including inactive ones. Subject and body are captured for the"
+      )
+    }<code>en</code>{
+      t("locale; the endpoint validates and escapes the content.")
+    }</Fragment
+  >
+
+  {
+    !canRead && (
+      <p class="state-notice fade-in-up" id="email-templates-denied">
+        {t("You do not have permission to view email templates.")}
+      </p>
+    )
+  }
+
+  {
+    canRead && loadError && (
+      <p class="state-notice fade-in-up" id="email-templates-error">
+        {t("Templates could not be loaded right now. Please try again later.")}
+      </p>
+    )
+  }
+
+  {
+    canCreate && (
+      <form
+        id="email-template-create-form"
+        class="admin-create-form fade-in-up"
+      >
+        <p class="form-legend">{t("Create a template")}</p>
+        <p
+          id="email-template-create-error"
+          class="admin-create-error"
+          role="alert"
+          hidden
+        />
+
+        <label for="email-template-key">{t("Template key")}</label>
+        <select id="email-template-key" name="templateKey">
+          {BASE_EMAIL_TEMPLATE_CATEGORIES.map((category) => (
+            <option value={category}>{category}</option>
+          ))}
+        </select>
+
+        <label for="email-template-name">{t("Name")}</label>
+        <input
+          id="email-template-name"
+          name="name"
+          type="text"
+          required
+          autocomplete="off"
+        />
+
+        <label for="email-template-subject">{t("Subject (en)")}</label>
+        <input
+          id="email-template-subject"
+          name="subject"
+          type="text"
+          required
+          autocomplete="off"
+        />
+
+        <label for="email-template-body">{t("Text body (en)")}</label>
+        <textarea id="email-template-body" name="body" rows="3" required />
+
+        <button type="submit" id="email-template-create-submit">
+          {t("Create template")}
+        </button>
+      </form>
+    )
+  }
+
+  {
+    canRead && !loadError && (
+      <div class="data-table-scroll fade-in-up">
+        <table class="data-table data-table--stack" id="email-templates-table">
+          <caption>
+            {tn("{count} template", "{count} templates", templates.length, {
+              count: templates.length
+            })}
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">{t("Key")}</th>
+              <th scope="col">{t("Name")}</th>
+              <th scope="col">{t("Active")}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {templates.length === 0 ? (
+              <tr>
+                <td class="data-table-empty" colspan="3">
+                  <div class="empty-state">
+                    <span class="empty-state-icon" aria-hidden="true">
+                      ✉
+                    </span>
+                    <span class="empty-state-title">
+                      {t("No templates yet")}
+                    </span>
+                    <span class="empty-state-text">
+                      {canCreate
+                        ? "Create your first email template using the form above."
+                        : "Email templates configured for this tenant will appear here."}
+                    </span>
+                  </div>
+                </td>
+              </tr>
+            ) : (
+              templates.map((template) => (
+                <tr>
+                  <td data-label="Key">
+                    <span class="cell-code">{template.templateKey}</span>
+                  </td>
+                  <td data-label="Name">{template.name}</td>
+                  <td data-label="Active">
+                    <span
+                      class="status-badge"
+                      data-variant={template.isActive ? "success" : "neutral"}
+                    >
+                      <span class="status-dot" aria-hidden="true" />
+                      {template.isActive ? "active" : "inactive"}
+                    </span>
+                  </td>
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
+    )
+  }
+</AdminLayout>
+
+<script>
+  // Bundled EXTERNAL via the import (an import-free script would be inlined and
+  // blocked by this app's CSP — see admin-form-client.ts). Harmless without the
+  // create permission: the form only renders when `canCreate`, so `onSubmit`
+  // finds no form and never binds.
+  import {
+    field,
+    messageBox,
+    mutateAndReload,
+    onSubmit,
+    sendJson
+  } from "../../lib/ui/admin-form-client";
+
+  const errorBox = messageBox("email-template-create-error");
+
+  onSubmit("email-template-create-form", async ({ data, submit }) => {
+    await mutateAndReload(
+      submit,
+      errorBox,
+      () =>
+        // The endpoint takes a `{ locale: text }` map; this form seeds the `en`
+        // locale. Sending `textBodyTemplate` (not html) keeps the create input
+        // on the safe path — the endpoint HTML-escapes/validates either way.
+        sendJson("POST", "/api/v1/email/templates", {
+          templateKey: field(data, "templateKey"),
+          name: field(data, "name"),
+          subjectTemplate: { en: field(data, "subject") },
+          textBodyTemplate: { en: field(data, "body") }
+        }),
+      // Generic message only — never surface internal detail (Issue #540).
+      "Could not create the template. Check the key is not already in use and try again."
+    );
+  });
+</script>

@@ -1,0 +1,340 @@
+---
+/**
+ * User group management screen (ADR-0081, Gelombang 3 PR 3.5 of #423).
+ *
+ * A group is a SUBJECT that can hold role grants, so this screen answers a
+ * question the Users and Roles screens cannot: which authorities exist that
+ * nobody appears to hold. That is why the table shows a ROLE count next to the
+ * member count — a group holding three grants is three grants an administrator
+ * would otherwise only find by inspecting the group.
+ *
+ * Gated on `identity_access.user_groups.read`. Writers additionally need
+ * `user_groups.create` (the create form), `user_groups.update` (rename) and
+ * `user_groups.assign` (membership). Granting a group a ROLE is deliberately NOT
+ * here: it stays on `/admin/users`' assignment surface under
+ * `access_control.assign`, so a group administrator cannot also decide what
+ * their own group may do.
+ *
+ * Directory-managed (`scim`) groups render read-only. The API refuses them too
+ * with `409 GROUP_EXTERNALLY_MANAGED` — these controls are UX, the guard is the
+ * authority.
+ */
+import AdminLayout from "../../layouts/AdminLayout.astro";
+import "../../styles/admin-screens.css";
+import { loadAdminScreen } from "../../lib/auth/admin-screen";
+import { logAdminPageError } from "../../lib/logging/error-log";
+import { getTranslatorFor } from "../../lib/i18n";
+import {
+  listUserGroups,
+  type UserGroupView
+} from "../../modules/identity-access/application/user-group-admin";
+
+const ssr = Astro.locals.ssrContext!;
+const { t, tn } = getTranslatorFor(Astro.locals.locale);
+
+const screen = await loadAdminScreen({
+  ssr,
+  workClass: "interactive",
+  authorize: {
+    moduleKey: "identity_access",
+    activityCode: "user_groups",
+    action: "read"
+  },
+  load: async ({ tx, can }) => {
+    // One transaction, one awaited query at a time — concurrent queries on a
+    // single transaction connection leak it.
+    const groups = await listUserGroups(tx, ssr.tenantId);
+
+    return {
+      groups,
+      canCreate: await can({
+        moduleKey: "identity_access",
+        activityCode: "user_groups",
+        action: "create"
+      }),
+      canUpdate: await can({
+        moduleKey: "identity_access",
+        activityCode: "user_groups",
+        action: "update"
+      }),
+      canAssign: await can({
+        moduleKey: "identity_access",
+        activityCode: "user_groups",
+        action: "assign"
+      })
+    };
+  },
+  onError: (error) => {
+    logAdminPageError(
+      "admin/user-groups.astro: failed to load user groups",
+      error,
+      { correlationId: Astro.locals.correlationId }
+    );
+  }
+});
+
+const canRead = screen.state !== "denied";
+// A pool/circuit-breaker refusal is NOT "this tenant has no groups": an empty
+// list would say nobody holds a group-derived role, which is a claim about
+// authorization this screen has no basis to make.
+const loadError = screen.state === "error";
+const groups: UserGroupView[] =
+  screen.state === "allowed" ? screen.data.groups : [];
+const canCreate = screen.state === "allowed" && screen.data.canCreate;
+const canUpdate = screen.state === "allowed" && screen.data.canUpdate;
+const canAssign = screen.state === "allowed" && screen.data.canAssign;
+const canMutate = canUpdate || canAssign;
+const colCount = canMutate ? 6 : 5;
+---
+
+<AdminLayout
+  title={t("User groups")}
+  description={t(
+    "A group is a subject: it can hold role grants, and everyone in it holds them too. Granting a group a role is done from the role assignment surface \u2014 this screen manages who is in which group."
+  )}
+>
+  {
+    !canRead && (
+      <p class="state-notice fade-in-up" id="user-groups-denied">
+        {t("You do not have permission to view user groups.")}
+      </p>
+    )
+  }
+
+  {
+    canRead && loadError && (
+      <p class="state-notice fade-in-up" id="user-groups-error">
+        {t(
+          "User groups could not be loaded right now. Please try again later."
+        )}
+      </p>
+    )
+  }
+
+  {
+    canRead && !loadError && (
+      <p
+        id="user-groups-action-error"
+        class="admin-create-error"
+        role="alert"
+        hidden
+      />
+    )
+  }
+
+  {
+    canCreate && !loadError && (
+      <form id="user-group-create-form" class="admin-create-form fade-in-up">
+        <p class="form-legend">{t("Create a group")}</p>
+        <p
+          id="user-group-create-error"
+          class="admin-create-error"
+          role="alert"
+          hidden
+        />
+
+        <label for="user-group-code">{t("Group code")}</label>
+        <input
+          id="user-group-code"
+          name="groupCode"
+          type="text"
+          required
+          autocomplete="off"
+        />
+
+        <label for="user-group-name">{t("Group name")}</label>
+        <input
+          id="user-group-name"
+          name="groupName"
+          type="text"
+          required
+          autocomplete="off"
+        />
+
+        <button type="submit" id="user-group-create-submit">
+          {t("Create group")}
+        </button>
+      </form>
+    )
+  }
+
+  {
+    canRead && !loadError && (
+      <div class="data-table-scroll fade-in-up">
+        <table class="data-table data-table--stack" id="user-groups-table">
+          <caption>
+            {tn("{count} group", "{count} groups", groups.length, {
+              count: groups.length
+            })}
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">{t("Code")}</th>
+              <th scope="col">{t("Name")}</th>
+              <th scope="col">{t("Source")}</th>
+              <th scope="col">{t("Members")}</th>
+              <th scope="col">{t("Roles held")}</th>
+              {canMutate && <th scope="col">{t("Actions")}</th>}
+            </tr>
+          </thead>
+          <tbody>
+            {groups.length === 0 ? (
+              <tr>
+                <td class="data-table-empty" colspan={colCount}>
+                  <div class="empty-state">
+                    <span class="empty-state-icon" aria-hidden="true">
+                      ◆
+                    </span>
+                    <span class="empty-state-title">{t("No groups yet")}</span>
+                    <span class="empty-state-text">
+                      {canCreate
+                        ? "Create the first group using the form above."
+                        : "Groups defined for this tenant will appear here."}
+                    </span>
+                  </div>
+                </td>
+              </tr>
+            ) : (
+              groups.map((group) => (
+                <tr data-group-id={group.id}>
+                  <td data-label="Code">
+                    <code>{group.groupCode}</code>
+                  </td>
+                  <td data-label="Name">{group.groupName}</td>
+                  <td data-label="Source">
+                    {group.source === "scim" ? "Directory" : "Local"}
+                  </td>
+                  <td data-label="Members">{group.memberCount}</td>
+                  <td data-label="Roles held">{group.roleCount}</td>
+                  {canMutate && (
+                    <td data-label="Actions">
+                      {group.source !== "local" ? (
+                        <span class="state-notice">
+                          {t("Managed externally")}
+                        </span>
+                      ) : (
+                        <>
+                          {canUpdate && (
+                            <button
+                              type="button"
+                              data-action="rename"
+                              data-group-id={group.id}
+                              data-group-name={group.groupName}
+                            >
+                              {t("Rename")}
+                            </button>
+                          )}
+                          {canAssign && (
+                            <button
+                              type="button"
+                              data-action="add-member"
+                              data-group-id={group.id}
+                            >
+                              {t("Add member")}
+                            </button>
+                          )}
+                          {canAssign && group.memberCount > 0 && (
+                            <button
+                              type="button"
+                              data-action="remove-member"
+                              data-group-id={group.id}
+                            >
+                              {t("Remove member")}
+                            </button>
+                          )}
+                        </>
+                      )}
+                    </td>
+                  )}
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
+    )
+  }
+</AdminLayout>
+
+<script>
+  // Bundled unconditionally (Astro hoists every `<script>` at build time, so it
+  // cannot be runtime-conditional). Harmless without the write permissions: the
+  // buttons only render when the viewer holds them, so the listener finds no
+  // targets. The import forces Astro to bundle this EXTERNAL — an import-free
+  // script would be inlined, and inline scripts are blocked by this app's CSP.
+  import {
+    field,
+    messageBox,
+    mutateAndReload,
+    onAction,
+    onSubmit,
+    sendJson
+  } from "../../lib/ui/admin-form-client";
+
+  const actionError = messageBox("user-groups-action-error");
+  const createError = messageBox("user-group-create-error");
+
+  onSubmit("user-group-create-form", async ({ data, submit }) => {
+    await mutateAndReload(
+      submit,
+      createError,
+      () =>
+        sendJson("POST", "/api/v1/user-groups", {
+          groupCode: field(data, "groupCode"),
+          groupName: field(data, "groupName")
+        }),
+      "Could not create the group. The code may already be in use, or it may not match the required format.",
+      "…"
+    );
+  });
+
+  onAction("#user-groups-table button[data-action]", async (button) => {
+    const action = button.dataset.action;
+    const groupId = button.dataset.groupId;
+    if (!action || !groupId) return;
+
+    const id = encodeURIComponent(groupId);
+
+    if (action === "rename") {
+      const next = window.prompt(
+        "New group name",
+        button.dataset.groupName ?? ""
+      );
+      if (next === null || next.trim().length === 0) return;
+
+      await mutateAndReload(
+        button,
+        actionError,
+        () =>
+          sendJson("PATCH", `/api/v1/user-groups/${id}`, {
+            groupName: next.trim()
+          }),
+        "Could not rename the group. Directory-managed groups can only be changed in the directory.",
+        "…"
+      );
+      return;
+    }
+
+    if (action === "add-member" || action === "remove-member") {
+      const tenantUserId = window.prompt(
+        action === "add-member"
+          ? "Tenant user id to add"
+          : "Tenant user id to remove"
+      );
+      if (tenantUserId === null || tenantUserId.trim().length === 0) return;
+
+      await mutateAndReload(
+        button,
+        actionError,
+        () =>
+          sendJson(
+            action === "add-member" ? "POST" : "DELETE",
+            "/api/v1/user-groups/members",
+            { userGroupId: groupId, tenantUserId: tenantUserId.trim() }
+          ),
+        "Could not change the membership. Check the tenant user id, and note that directory-managed groups cannot be changed here.",
+        "…"
+      );
+    }
+  });
+</script>

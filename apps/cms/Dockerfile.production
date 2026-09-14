@@ -1,0 +1,102 @@
+# syntax=docker/dockerfile:1.7
+#
+# Dockerfile.production — image registry-based deployment (ADR-0001,
+# docs/awcms/deployment-profiles.md §production (online) — image registry).
+# Immutable, built once in CI (release.yml), pulled+run identically per
+# environment. NOT the LAN-first default (docker-compose.yml bind-mount
+# path) — this is the opt-in registry/orchestrator path.
+#
+# Does NOT run migrations — the runtime role (awcms_app, least-privilege)
+# has no DDL/GRANT rights. Run `bun run db:migrate` as a separate step
+# against a privileged connection before this container's first start
+# (docs/awcms/deployment-profiles.md §Model dua-peran basis data).
+
+FROM oven/bun:1.4.2 AS base
+WORKDIR /home/bun/app
+
+# ---- deps: full deps (incl. dev) needed to build ----
+FROM base AS deps
+COPY package.json bun.lock ./
+RUN bun install --frozen-lockfile
+
+# ---- build: astro build (server output, node adapter standalone) ----
+FROM base AS build
+COPY --from=deps /home/bun/app/node_modules ./node_modules
+COPY . .
+RUN bun run build
+
+# ---- prod-deps: production-only deps for the final runtime image ----
+FROM base AS prod-deps
+COPY package.json bun.lock ./
+RUN bun install --frozen-lockfile --production
+
+# ---- jobs: the same source, able to RUN the 32 registered job targets --------
+#
+# The `runtime` stage below deliberately carries only `dist/`. That makes it
+# small and it makes `bun run <target>` impossible: every one of the 32 job
+# targets in the module registry resolves to `bun scripts/<name>.ts`, and
+# `scripts/` is not in that image. The failure is `Script not found` — a job that
+# is scheduled and cannot execute, which reads in a log exactly like a job that
+# had nothing to do.
+#
+# This stage exists so the jobs image is BUILT AND PUBLISHED BY CI from the same
+# commit as the app. Before it, the host kept a hand-copied snapshot of the
+# source as a docker build context: it worked, and it did not follow releases, so
+# after every deploy the cron ran the PREVIOUS release's code against the NEW
+# schema until someone remembered to refresh it. Nothing reported that either.
+#
+# It intentionally uses the FULL dependency set (`deps`, not `prod-deps`): jobs
+# execute TypeScript directly through Bun and import from `src/`, so trimming to
+# production dependencies would fail at import time rather than at build time —
+# the worst place to discover it.
+#
+# No HEALTHCHECK and no CMD default: this image is invoked as
+# `docker run --rm awcms-jobs bun run <target>` by a scheduler, never left
+# running. A default CMD would invite starting it as a service.
+#
+# It is placed BEFORE `runtime` on purpose. `docker build` with no `--target`
+# builds the LAST stage, and several things build this file that way (Coolify's
+# build-from-repo path among them). Putting the jobs image last would silently
+# swap the published application image for one that has no `dist/` and no CMD —
+# a deploy that "succeeds" and serves nothing. `runtime` stays last so the
+# defaultless build keeps meaning "the app"; CI names both targets explicitly.
+FROM base AS jobs
+ENV APP_ENV=production
+
+COPY --from=deps --chown=bun:bun /home/bun/app/node_modules ./node_modules
+COPY --chown=bun:bun package.json bun.lock tsconfig.json ./
+COPY --chown=bun:bun scripts ./scripts
+COPY --chown=bun:bun src ./src
+COPY --chown=bun:bun sql ./sql
+COPY --chown=bun:bun locales ./locales
+COPY --chown=bun:bun openapi ./openapi
+
+USER bun
+
+# ---- runtime: minimal, non-root, read-only-filesystem compatible ----
+FROM base AS runtime
+ENV APP_ENV=production
+ENV HOST=0.0.0.0
+ENV PORT=4321
+
+COPY --from=prod-deps --chown=bun:bun /home/bun/app/node_modules ./node_modules
+COPY --from=build --chown=bun:bun /home/bun/app/dist ./dist
+COPY --chown=bun:bun package.json ./
+
+USER bun
+EXPOSE 4321
+
+# LIVENESS, deliberately — `/api/v1/health` is dependency-free and answers 200
+# with the database on fire. That is the right question for a probe that
+# RESTARTS things: restarting an app does not repair a database, and a probe
+# that cycles containers through a database outage turns one incident into two.
+#
+# The other question — can this process actually serve content — is answered by
+# `/api/v1/database/pool/health` (`databaseReachable`, `circuitBreakerState`).
+# Finding D10 was that nothing read it; `ops/synthetic-check.sh` now does, from
+# outside, where it alerts a human instead of restarting a container. Do not
+# "fix" the probe below to point at it.
+HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
+  CMD bun -e "fetch('http://localhost:'+(process.env.PORT||4321)+'/api/v1/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+
+CMD ["bun", "./dist/standalone-entry.mjs"]

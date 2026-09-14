@@ -1,0 +1,2108 @@
+---
+/**
+ * Blog posts console — the editorial surface of `blog_content`.
+ *
+ * `blog_content` is the largest module in this repo: 43 permissions across 15
+ * activity codes and ~30 route files, and until now not one screen. Under
+ * ADR-0051 the screens belong here, and this is the FIRST of them — the post
+ * lifecycle, which is the surface an editor uses every day.
+ *
+ * ## Scope, and what is deliberately elsewhere
+ *
+ * This page drives eleven permissions: `posts.read`/`create`/`update`/
+ * `publish`/`schedule`/`archive`/`delete`/`restore`/`purge` and
+ * `revisions.read`/`restore`.
+ *
+ * The other thirty-two belong to sibling screens that are NOT in this change —
+ * pages, taxonomy, templates/menus/widgets, settings/seo/theme, internal
+ * links, homepage sections and ad placements. Cramming fifteen activity codes
+ * into one page would produce something nobody can use and nobody can review.
+ *
+ * Two are absent for reasons worth stating, because "not yet" and "never here"
+ * are different claims and `tests/admin-blog-page-contract.test.ts` asserts
+ * both:
+ *
+ * - **`posts.export` has NO route at all.** It is declared by the descriptor
+ *   and seeded by `sql/036`, and no endpoint anywhere enforces it. A screen
+ *   cannot drive a permission that has no surface, and gating a control on it
+ *   would render a button whose request 404s.
+ * - **`search.read` has a route, and this page still does not use it.** The
+ *   admin list already searches, through `listBlogPostsForAdmin`'s own
+ *   `ILIKE` on title — which tolerates an empty query, the thing the
+ *   `websearch_to_tsquery` surface behind `search.read` rejects. Two search
+ *   boxes with different semantics on one screen is a worse answer than one.
+ *
+ * There IS a body editor here, and its absence used to be a working-feature
+ * defect rather than a scope decision: the create form sent `contentJson: {}`
+ * with `contentText: ""`, `validateContentTextField` requires a non-empty
+ * `contentText`, so every create from this screen was answered 400 and no
+ * article could be published through the CMS at all. The repair is the missing
+ * INPUT — never a laxer validator: `content-quality-checklist.ts` has no
+ * "body present" rule, so an empty body accepted at write time reaches
+ * `publish` unchallenged.
+ *
+ * The EDIT form now carries the Portable Text block editor
+ * (`lib/ui/portable-text-editor`, ADR-0100 / Issue #589), which is what lets a
+ * post holding a gallery or a video be edited at all — the plain-paragraph
+ * textarea it replaced refused to open one rather than rewrite those blocks as
+ * paragraphs and destroy them. The CREATE form stays a textarea on purpose: a
+ * new draft has no galleries or links to preserve.
+ *
+ * SEO fields ARRIVED in Issue #595 — `seoTitle`, `metaDescription` and
+ * `canonicalUrl` on both forms. Before that every article published with none
+ * of them, and `seo_distribution` faithfully rendered that absence into
+ * `<head>` and into every share card. `maxlength` comes from the validator's
+ * own exported constants rather than a hand-typed copy. On CREATE an empty
+ * field is OMITTED (absent means "none", and `seoTitle` rejects `""`); on
+ * PATCH it is sent as `null`, because absent means "leave unchanged" there and
+ * an editor deleting a wrong meta description has to be able to make it gone.
+ *
+ * FEATURED MEDIA arrived in the same issue, through a reusable picker
+ * (`lib/ui/media-picker-client`). Its catalogue is read from the BROWSER
+ * against `GET /api/v1/media/objects/list`, which enforces
+ * `media_library.media.read` itself — so this screen still gates on
+ * `blog_content.posts.*` and nothing else, and the eleven-key contract below
+ * is untouched. Only `verified`, undeleted objects are offered: those are the
+ * ones `isPubliclyReferenceable` admits, and attaching anything else would let
+ * an author publish a story pointing at bytes that may not exist.
+ *
+ * TERMS arrived in the same issue, and the blocker recorded here turned out to
+ * have an answer that did not cost the contract. The objection was: "a picker
+ * needs the taxonomy catalogue, and reading it under this screen's `posts.*`
+ * gates would be a read with no permission of its own". True of a SERVER-side
+ * read — and not true of a browser fetch against `GET /api/v1/blog/terms`,
+ * which enforces `blog_content.taxonomies.read` itself. So the eleven-key
+ * contract stands, unborrowed, and the picker still works.
+ *
+ * Two things about it are load-bearing:
+ *
+ * - `termIds` is sent ONLY when the vocabulary actually loaded. Absent means
+ *   "leave the assignments alone" and `[]` means "remove them all", so a
+ *   failed fetch that sent `[]` would silently strip every category the post
+ *   already had on the next save.
+ * - The four vocabularies render as four groups, including EMPTY ones. An
+ *   absent group reads as "this build has no channel picker", which is a
+ *   different and wrong conclusion from "no channels defined yet".
+ *
+ * ## Reads
+ *
+ * Through this module's own application functions inside ONE
+ * `withTenantOrThrow`, awaited sequentially — concurrent queries on a single
+ * transaction connection leak it.
+ *
+ * `listBlogPostsForAdmin` was written for exactly this screen and paginates by
+ * page NUMBER rather than keyset, deliberately: this is a human-browsed table
+ * with "page 2, 3" controls, and its own header comment records that choice.
+ * That is the opposite of `/admin/approvals`, which is keyset — the difference
+ * is the UX, not an inconsistency.
+ *
+ * ## Two views, because delete and archive are different axes
+ *
+ * `?view=deleted` lists the BIN (`deletedOnly`); the default lists live posts.
+ * The first edition of this screen had only the live list, and that made
+ * `posts.restore` a permission the page appeared to drive and could not: the
+ * list hard-filtered `deleted_at IS NULL`, so the Restore control was hung off
+ * `status === "archived"` instead — a different axis, not soft-deleted, and a
+ * guaranteed 404 from an endpoint that requires `canRestorePost`. Restore now
+ * belongs to bin rows; the lifecycle controls belong to live rows (a
+ * soft-deleted post cannot transition — `transitionBlogPostStatus` matches
+ * `deleted_at IS NULL`); and Purge appears in both, because `canPurgePost`
+ * accepts archived OR soft-deleted.
+ *
+ * ## Writes
+ *
+ * Nothing here writes SQL. The mutations split on idempotency, and the split
+ * is per-endpoint rather than per-repo:
+ *
+ * - **six require an `Idempotency-Key`** — publish, schedule, archive,
+ *   restore, purge and revision restore;
+ * - **create requires none, by documented design.** `POST /api/v1/blog/posts`
+ *   records that a retry duplicating a create is caught by the
+ *   `(tenant_id, locale, slug)` partial unique index instead;
+ * - **soft delete and submit-for-review require none** either.
+ *
+ * ## Gates
+ *
+ * UX-only; `authorizeInTransaction` in the routes is the authority. The trap
+ * specific to this module: `submit-review` is gated on `posts.update`, not on
+ * a `posts.submit` or `posts.review` — neither of those is seeded anywhere.
+ */
+import AdminLayout from "../../layouts/AdminLayout.astro";
+import "../../styles/admin-screens.css";
+import { loadAdminScreen } from "../../lib/auth/admin-screen";
+import { logAdminPageError } from "../../lib/logging/error-log";
+import {
+  fetchBlogPostById,
+  listBlogPostsForAdmin,
+  type ListBlogPostsForAdminResult
+} from "../../modules/blog-content/application/blog-post-directory";
+import { fetchPostTermIds } from "../../modules/blog-content/application/blog-taxonomy-directory";
+import { fetchPostInstitutionIds } from "../../modules/blog-content/application/institution-directory";
+import {
+  listBlogRevisions,
+  type BlogRevisionSummary
+} from "../../modules/blog-content/application/blog-revision-directory";
+import {
+  BLOG_CONTENT_STATUSES,
+  BLOG_CONTENT_VISIBILITIES,
+  isBlogContentStatus,
+  type BlogContentStatus
+} from "../../modules/blog-content/domain/post-status";
+import {
+  MAX_EXCERPT_LENGTH,
+  MAX_TITLE_LENGTH
+} from "../../modules/blog-content/domain/content-validation";
+import {
+  MAX_META_DESCRIPTION_LENGTH,
+  MAX_SEO_TITLE_LENGTH
+} from "../../modules/blog-content/domain/seo-validation";
+import {
+  blockToEditableHtml,
+  describeOpaqueNode,
+  toEditorRows
+} from "../../lib/ui/portable-text-editor";
+import {
+  PORTABLE_TEXT_BLOCK_STYLES,
+  type PortableTextBlock
+} from "../../modules/blog-content/domain/portable-text";
+import { getTranslatorFor } from "../../lib/i18n";
+
+const ssr = Astro.locals.ssrContext!;
+const { t } = getTranslatorFor(Astro.locals.locale);
+
+function readParam(name: string): string {
+  return (Astro.url.searchParams.get(name) ?? "").trim();
+}
+
+const searchFilter = readParam("search");
+const statusRaw = readParam("status");
+// An unknown status is dropped rather than forwarded: the list endpoint answers
+// a bad value with a 400, and a hand-edited query string must not turn this
+// screen into an error page.
+const statusFilter: BlogContentStatus | undefined = isBlogContentStatus(
+  statusRaw
+)
+  ? statusRaw
+  : undefined;
+
+const pageRaw = Number(readParam("page"));
+const pageNumber = Number.isInteger(pageRaw) && pageRaw > 0 ? pageRaw : 1;
+
+/**
+ * `?view=deleted` shows the BIN — soft-deleted posts — instead of live ones.
+ *
+ * This screen shipped without it, and the omission made `posts.restore`
+ * undrivable rather than merely absent. `listBlogPostsForAdmin` hard-filtered
+ * `deleted_at IS NULL`, so a soft-deleted post was never on screen; the Restore
+ * control was therefore rendered against `status === "archived"`, which is a
+ * different axis entirely. `POST .../restore` requires `canRestorePost`
+ * (`deleted_at IS NOT NULL`), so the button appeared exactly where it would
+ * 404, and never where it would work.
+ *
+ * Note the two axes stay separate here: `deleted_at` is "in the bin",
+ * `status` is where in the lifecycle a post sits. A post can be soft-deleted
+ * while published, and comes back published.
+ */
+const showsBin = readParam("view") === "deleted";
+
+/** `?post=<id>` opens the revision panel for one post, rather than N queries for a list nobody expanded. */
+const selectedPostId = readParam("post");
+
+/**
+ * `?edit=<id>` opens the editor for one post — again one row, not a body
+ * column on every row of a list nobody is editing.
+ *
+ * Shape-checked here rather than passed straight through: `fetchBlogPostById`
+ * binds it as a `uuid`, and a hand-edited `?edit=nonsense` aborts the
+ * transaction, which `onError` renders as "posts could not be loaded". That
+ * says "the list is broken" for what is really "no such post".
+ */
+const UUID_PARAM =
+  /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+const editingPostId = UUID_PARAM.test(readParam("edit"))
+  ? readParam("edit")
+  : "";
+
+// Issue #450 — the entry decision and the read share ONE transaction, and the
+// decision is the chokepoint's. `posts.read` is the entry: this screen's denied
+// state has always been `!canRead` alone.
+//
+// The nine affordances are spelled out one by one rather than looped over an
+// action array: a loop would make them INVISIBLE to
+// `admin:screen-coverage:check`, whose matcher only sees literal triples.
+const screen = await loadAdminScreen({
+  ssr,
+  workClass: "interactive",
+  authorize: {
+    moduleKey: "blog_content",
+    activityCode: "posts",
+    action: "read"
+  },
+  load: async ({ tx, can }) => {
+    // One transaction, one awaited query at a time. Concurrent queries on a
+    // single transaction connection leak it, so nothing here runs in parallel.
+    const listing = await listBlogPostsForAdmin(tx, ssr.tenantId, {
+      search: searchFilter || undefined,
+      status: statusFilter,
+      deletedOnly: showsBin || undefined,
+      page: pageNumber
+    });
+
+    const canReadRevisions = await can({
+      moduleKey: "blog_content",
+      activityCode: "revisions",
+      action: "read"
+    });
+
+    // Hoisted out of the returned literal because the editor read below is
+    // conditional on it: an edit form rendered from a row the chokepoint would
+    // refuse is a form that can only fail on save.
+    const canUpdate = await can({
+      moduleKey: "blog_content",
+      activityCode: "posts",
+      action: "update"
+    });
+
+    return {
+      listing,
+      canReadRevisions,
+      // `listBlogRevisions` asserts the id is a UUID and throws otherwise,
+      // which `onError` turns into the load-error notice — a hand-edited
+      // `?post=` must not 500 the page.
+      revisions:
+        selectedPostId && canReadRevisions
+          ? await listBlogRevisions(tx, ssr.tenantId, "post", selectedPostId)
+          : [],
+      canRestoreRevisions: await can({
+        moduleKey: "blog_content",
+        activityCode: "revisions",
+        action: "restore"
+      }),
+      canCreate: await can({
+        moduleKey: "blog_content",
+        activityCode: "posts",
+        action: "create"
+      }),
+      // Also the gate on "submit for review" — there is no `posts.submit`.
+      canUpdate,
+      // The list summary carries no body, so the editor needs the WHOLE row.
+      // One extra query for the one post being edited, never for the list.
+      // ONE extra query, for the ONE post being edited — not the list, where
+      // per-post terms would be the N+1 `listBlogPostsForAdmin` avoids on
+      // purpose. Awaited sequentially like everything else here: concurrent
+      // queries on a single transaction connection leak it.
+      editingPostTermIds:
+        editingPostId && canUpdate
+          ? await fetchPostTermIds(tx, ssr.tenantId, editingPostId)
+          : [],
+      editingPostInstitutionIds:
+        editingPostId && canUpdate
+          ? await fetchPostInstitutionIds(tx, ssr.tenantId, editingPostId)
+          : [],
+      editingPost:
+        editingPostId && canUpdate
+          ? await fetchBlogPostById(tx, ssr.tenantId, editingPostId)
+          : null,
+      canPublish: await can({
+        moduleKey: "blog_content",
+        activityCode: "posts",
+        action: "publish"
+      }),
+      canSchedule: await can({
+        moduleKey: "blog_content",
+        activityCode: "posts",
+        action: "schedule"
+      }),
+      canArchive: await can({
+        moduleKey: "blog_content",
+        activityCode: "posts",
+        action: "archive"
+      }),
+      canDelete: await can({
+        moduleKey: "blog_content",
+        activityCode: "posts",
+        action: "delete"
+      }),
+      canRestore: await can({
+        moduleKey: "blog_content",
+        activityCode: "posts",
+        action: "restore"
+      }),
+      canPurge: await can({
+        moduleKey: "blog_content",
+        activityCode: "posts",
+        action: "purge"
+      })
+    };
+  },
+  onError: (error) => {
+    // Includes `DatabaseBusyError` (pool/circuit-breaker refusal). A refusal
+    // must never render as "this tenant has no posts".
+    logAdminPageError("admin/blog.astro: failed to load posts", error, {
+      correlationId: Astro.locals.correlationId
+    });
+  }
+});
+
+const canRead = screen.state !== "denied";
+const loadError = screen.state === "error";
+const listing: ListBlogPostsForAdminResult | null =
+  screen.state === "allowed" ? screen.data.listing : null;
+const revisions: BlogRevisionSummary[] =
+  screen.state === "allowed" ? screen.data.revisions : [];
+const canReadRevisions =
+  screen.state === "allowed" && screen.data.canReadRevisions;
+const canRestoreRevisions =
+  screen.state === "allowed" && screen.data.canRestoreRevisions;
+const canCreate = screen.state === "allowed" && screen.data.canCreate;
+const canUpdate = screen.state === "allowed" && screen.data.canUpdate;
+const canPublish = screen.state === "allowed" && screen.data.canPublish;
+const canSchedule = screen.state === "allowed" && screen.data.canSchedule;
+const canArchive = screen.state === "allowed" && screen.data.canArchive;
+const canDelete = screen.state === "allowed" && screen.data.canDelete;
+const canRestore = screen.state === "allowed" && screen.data.canRestore;
+const canPurge = screen.state === "allowed" && screen.data.canPurge;
+const editingPost = screen.state === "allowed" ? screen.data.editingPost : null;
+const editingPostTermIds =
+  screen.state === "allowed" ? screen.data.editingPostTermIds : [];
+const editingPostInstitutionIds =
+  screen.state === "allowed" ? screen.data.editingPostInstitutionIds : [];
+
+/**
+ * ADR-0100 / Issue #589 — the block editor's rows.
+ *
+ * The screen used to compute `readParagraphBodyText(...)` here and render
+ * `null` — NO body field at all — for any post holding a gallery or a video,
+ * because the plain `<textarea>` it had could only write paragraphs and saving
+ * would have destroyed them. That refusal was correct for that editor and is
+ * exactly what this issue removes: a gallery is now an OPAQUE CARD carried
+ * through byte-identical, so the post is editable without its blocks being at
+ * risk.
+ */
+const editorRows = editingPost
+  ? toEditorRows(editingPost.bodyPortableText)
+  : [];
+
+const STATUS_VARIANT: Record<string, string> = {
+  draft: "neutral",
+  review: "info",
+  scheduled: "info",
+  published: "success",
+  archived: "warning"
+};
+
+function formatTimestamp(value: Date | null): string {
+  return value ? value.toISOString() : "—";
+}
+
+/** Rebuilds the current query string with one key replaced — keeps filters across paging. */
+function linkWith(overrides: Record<string, string | null>): string {
+  const params = new URLSearchParams(Astro.url.search);
+  for (const [key, value] of Object.entries(overrides)) {
+    if (value === null) params.delete(key);
+    else params.set(key, value);
+  }
+  // Paging is per-view: carrying `page=3` from a 60-post list into a two-row
+  // bin lands the operator on an empty page that looks like an empty bin.
+  if ("view" in overrides) params.delete("page");
+  const query = params.toString();
+  return query ? `/admin/blog?${query}` : "/admin/blog";
+}
+
+const posts = listing?.items ?? [];
+const total = listing?.total ?? 0;
+const pageSize = listing?.pageSize ?? 20;
+const lastPage = Math.max(1, Math.ceil(total / pageSize));
+const hasFilters = searchFilter !== "" || statusFilter !== undefined;
+
+const showsRowActions =
+  canPublish ||
+  canSchedule ||
+  canArchive ||
+  canDelete ||
+  canRestore ||
+  canPurge ||
+  canUpdate ||
+  canReadRevisions;
+const postColumns = 5 + (showsRowActions ? 1 : 0);
+const selectedPost = selectedPostId
+  ? (posts.find((post) => post.id === selectedPostId) ?? null)
+  : null;
+---
+
+<AdminLayout title={t("Blog posts")}>
+  <Fragment slot="page-description"
+    >{
+      t(
+        "The post lifecycle: draft, review, scheduled, published, archived. Pages, taxonomy, presentation and homepage composition are separate screens. Scheduled posts are published by"
+      )
+    }<code>{t("blog:publish:scheduled")}</code>{
+      t("\u2014 scheduling sets the time, it does not publish.")
+    }</Fragment
+  >
+
+  {
+    !canRead && (
+      <p class="state-notice fade-in-up" id="blog-denied">
+        {t("You do not have permission to view blog posts.")}
+      </p>
+    )
+  }
+
+  {
+    canRead && loadError && (
+      <p class="state-notice fade-in-up" id="blog-error">
+        {t(
+          "Posts could not be loaded right now. This is a problem reading the list, not an empty list \u2014 please try again later."
+        )}
+      </p>
+    )
+  }
+
+  {
+    canRead && !loadError && (
+      <p
+        id="blog-action-error"
+        class="admin-create-error"
+        role="alert"
+        hidden
+      />
+    )
+  }
+
+  {
+    canRead && !loadError && (
+      <form method="get" class="admin-toolbar fade-in-up" id="post-filter-form">
+        <label for="filter-search">{t("Search titles")}</label>
+        <input
+          id="filter-search"
+          name="search"
+          type="search"
+          value={searchFilter}
+          autocomplete="off"
+        />
+
+        <label for="filter-status">{t("Status")}</label>
+        <select id="filter-status" name="status">
+          <option value="" selected={statusFilter === undefined}>
+            {t("Any status")}
+          </option>
+          {BLOG_CONTENT_STATUSES.map((value) => (
+            <option value={value} selected={statusFilter === value}>
+              {value}
+            </option>
+          ))}
+        </select>
+
+        <button type="submit">{t("Apply filters")}</button>
+
+        {/* Carried across submit, so applying a filter does not silently
+            bounce the operator out of the bin. */}
+        {showsBin && <input type="hidden" name="view" value="deleted" />}
+
+        <a
+          class="quick-link"
+          href={linkWith({ view: showsBin ? null : "deleted" })}
+        >
+          {showsBin ? "← Back to live posts" : "View deleted posts"}
+        </a>
+      </form>
+    )
+  }
+
+  {
+    canRead && !loadError && (
+      <section
+        class="admin-section fade-in-up"
+        aria-labelledby="post-list-title"
+      >
+        <h2 class="admin-section-title" id="post-list-title">
+          {showsBin ? "Deleted posts" : "Posts"}
+          <span class="count-pill">{total}</span>
+        </h2>
+
+        <div class="data-table-scroll">
+          <table class="data-table data-table--stack" id="blog-posts-table">
+            <caption class="sr-only">
+              {t("Blog posts, most recently updated first.")}
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">{t("Title")}</th>
+                <th scope="col">{t("Status")}</th>
+                <th scope="col">{t("Visibility")}</th>
+                <th scope="col">{t("Published")}</th>
+                <th scope="col">{t("Updated")}</th>
+                {showsRowActions && <th scope="col">{t("Actions")}</th>}
+              </tr>
+            </thead>
+            <tbody>
+              {posts.length === 0 ? (
+                <tr>
+                  <td class="data-table-empty" colspan={postColumns}>
+                    <div class="empty-state">
+                      <span class="empty-state-icon" aria-hidden="true">
+                        ✎
+                      </span>
+                      <span class="empty-state-title">
+                        {showsBin
+                          ? "Nothing in the bin"
+                          : hasFilters
+                            ? "No posts match these filters"
+                            : "No posts yet"}
+                      </span>
+                      <span class="empty-state-text">
+                        {showsBin
+                          ? "Deleted posts appear here until they are purged."
+                          : hasFilters
+                            ? "Clear or widen the filters above to see more posts."
+                            : "Create a draft below to get started."}
+                      </span>
+                    </div>
+                  </td>
+                </tr>
+              ) : (
+                posts.map((post) => (
+                  <tr data-post-row={post.id}>
+                    <td data-label="Title">
+                      <span set:text={post.title} />
+                      <span class="cell-muted">
+                        {" "}
+                        · <span class="cell-code">{post.slug}</span> ·{" "}
+                        {post.locale}
+                      </span>
+                    </td>
+                    <td data-label="Status">
+                      <span
+                        class="status-badge"
+                        data-variant={STATUS_VARIANT[post.status] ?? "neutral"}
+                      >
+                        <span class="status-dot" aria-hidden="true" />
+                        {post.status}
+                      </span>
+                    </td>
+                    <td data-label="Visibility">
+                      <span class="cell-code">{post.visibility}</span>
+                    </td>
+                    <td data-label="Published">
+                      <span class="cell-muted">
+                        {formatTimestamp(post.publishedAt)}
+                      </span>
+                    </td>
+                    <td data-label="Updated">
+                      <span class="cell-muted">
+                        {formatTimestamp(post.updatedAt)}
+                      </span>
+                    </td>
+                    {showsRowActions && (
+                      <td data-label="Actions">
+                        <div class="row-actions">
+                          {canReadRevisions && (
+                            <a
+                              class="quick-link"
+                              href={linkWith({ post: post.id })}
+                            >
+                              {t("Revisions")}
+                              <span class="quick-link-arrow" aria-hidden="true">
+                                →
+                              </span>
+                            </a>
+                          )}
+                          {/* A binned post cannot be updated — the endpoint
+                              matches `deleted_at IS NULL` — so the editor is
+                              offered on live rows only. */}
+                          {canUpdate && !showsBin && (
+                            <a
+                              class="quick-link"
+                              href={linkWith({ edit: post.id })}
+                            >
+                              {t("Edit")}
+                              <span class="quick-link-arrow" aria-hidden="true">
+                                →
+                              </span>
+                            </a>
+                          )}
+                          {/* Issue #592 — the article through the SAME public
+                              template, so an editor stops guessing. Same guard
+                              as Edit: the person who may change it is the person
+                              who may see it unpublished. Opens in a new tab
+                              because it is a whole page, not a panel. */}
+                          {canUpdate && !showsBin && (
+                            <a
+                              class="quick-link"
+                              href={`/admin/blog/${post.id}/preview`}
+                              target="_blank"
+                              rel="noopener"
+                            >
+                              {t("Preview")}
+                              <span class="quick-link-arrow" aria-hidden="true">
+                                →
+                              </span>
+                            </a>
+                          )}
+                          {canUpdate &&
+                            !showsBin &&
+                            post.status === "draft" && (
+                              <button
+                                type="button"
+                                class="btn-inline post-submit-btn"
+                                data-post-id={post.id}
+                              >
+                                {t("Submit for review")}
+                              </button>
+                            )}
+                          {canPublish &&
+                            !showsBin &&
+                            post.status !== "published" && (
+                              <button
+                                type="button"
+                                class="btn-inline post-publish-btn"
+                                data-post-id={post.id}
+                              >
+                                {t("Publish")}
+                              </button>
+                            )}
+                          {canSchedule &&
+                            !showsBin &&
+                            post.status !== "published" && (
+                              <button
+                                type="button"
+                                class="btn-inline post-schedule-btn"
+                                data-post-id={post.id}
+                              >
+                                {t("Schedule")}
+                              </button>
+                            )}
+                          {canArchive &&
+                            !showsBin &&
+                            post.status === "published" && (
+                              <button
+                                type="button"
+                                class="btn-inline post-archive-btn"
+                                data-post-id={post.id}
+                              >
+                                {t("Archive")}
+                              </button>
+                            )}
+                          {/* Restore undoes the BIN, so it belongs to rows in
+                              the bin — not to `status === "archived"`, which is
+                              a different axis and makes the endpoint 404. */}
+                          {canRestore && showsBin && (
+                            <button
+                              type="button"
+                              class="btn-inline post-restore-btn"
+                              data-post-id={post.id}
+                            >
+                              {t("Restore")}
+                            </button>
+                          )}
+                          {canDelete && !showsBin && (
+                            <button
+                              type="button"
+                              class="btn-inline btn-inline--danger post-delete-btn"
+                              data-post-id={post.id}
+                              data-post-title={post.title}
+                            >
+                              {t("Delete")}
+                            </button>
+                          )}
+                          {/* `canPurgePost` accepts archived OR soft-deleted,
+                              so both views can offer it. */}
+                          {canPurge &&
+                            (showsBin || post.status === "archived") && (
+                              <button
+                                type="button"
+                                class="btn-inline btn-inline--danger post-purge-btn"
+                                data-post-id={post.id}
+                                data-post-title={post.title}
+                              >
+                                {t("Purge")}
+                              </button>
+                            )}
+                        </div>
+                      </td>
+                    )}
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
+
+        {total > pageSize && (
+          <div class="admin-toolbar">
+            {/* Page numbers, not a cursor: `listBlogPostsForAdmin` is
+                LIMIT/OFFSET by design for a human-browsed table, and its own
+                header comment records that choice. */}
+            {pageNumber > 1 && (
+              <a
+                class="quick-link"
+                href={linkWith({ page: String(pageNumber - 1) })}
+              >
+                {t("\u2190 Previous")}
+              </a>
+            )}
+            <span class="cell-muted">
+              {t("Page")} {pageNumber} of {lastPage}
+            </span>
+            {pageNumber < lastPage && (
+              <a
+                class="quick-link"
+                href={linkWith({ page: String(pageNumber + 1) })}
+              >
+                {t("Next \u2192")}
+              </a>
+            )}
+          </div>
+        )}
+      </section>
+    )
+  }
+
+  {
+    canRead && !loadError && canReadRevisions && selectedPostId && (
+      <section
+        class="admin-section fade-in-up"
+        aria-labelledby="revisions-title"
+        id="blog-revisions"
+      >
+        <h2 class="admin-section-title" id="revisions-title">
+          {t("Revisions")}
+          <span class="count-pill">{revisions.length}</span>
+        </h2>
+        <p class="page-description">
+          <span class="cell-code">{selectedPostId}</span>
+          {selectedPost && (
+            <span class="cell-muted"> · {selectedPost.title}</span>
+          )}
+          {" · "}
+          <a href={linkWith({ post: null })}>{t("Close")}</a>
+        </p>
+
+        <div class="data-table-scroll">
+          <table class="data-table data-table--stack">
+            <caption class="sr-only">
+              {t("Revisions for the selected post.")}
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">{t("Title at revision")}</th>
+                <th scope="col">{t("Status")}</th>
+                <th scope="col">{t("Note")}</th>
+                <th scope="col">{t("Created")}</th>
+                {canRestoreRevisions && <th scope="col">{t("Actions")}</th>}
+              </tr>
+            </thead>
+            <tbody>
+              {revisions.length === 0 ? (
+                <tr>
+                  <td
+                    class="data-table-empty"
+                    colspan={canRestoreRevisions ? 6 : 5}
+                  >
+                    <div class="empty-state">
+                      <span class="empty-state-icon" aria-hidden="true">
+                        ⌸
+                      </span>
+                      <span class="empty-state-title">{t("No revisions")}</span>
+                      <span class="empty-state-text">
+                        {t(
+                          "A revision is recorded when a post is edited \u2014 or the id does not name a post in this tenant."
+                        )}
+                      </span>
+                    </div>
+                  </td>
+                </tr>
+              ) : (
+                revisions.map((revision) => (
+                  <tr>
+                    <td data-label="#">{revision.revisionNumber}</td>
+                    <td data-label="Title at revision">
+                      <span set:text={revision.title} />
+                    </td>
+                    <td data-label="Status">
+                      <span class="cell-code">{revision.status}</span>
+                    </td>
+                    <td data-label="Note">
+                      <span
+                        class="cell-muted"
+                        set:text={revision.changeNote ?? "—"}
+                      />
+                    </td>
+                    <td data-label="Created">
+                      <span class="cell-muted">
+                        {formatTimestamp(revision.createdAt)}
+                      </span>
+                    </td>
+                    {canRestoreRevisions && (
+                      <td data-label="Actions">
+                        <div class="row-actions">
+                          <button
+                            type="button"
+                            class="btn-inline revision-restore-btn"
+                            data-post-id={selectedPostId}
+                            data-revision-id={revision.id}
+                            data-revision-number={String(
+                              revision.revisionNumber
+                            )}
+                          >
+                            {t("Restore")}
+                          </button>
+                        </div>
+                      </td>
+                    )}
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
+      </section>
+    )
+  }
+
+  {
+    canUpdate && !loadError && editingPost && (
+      <section class="admin-section fade-in-up" aria-labelledby="edit-title">
+        <h2 class="admin-section-title" id="edit-title">
+          {t("Edit post")}
+        </h2>
+        <form id="post-edit-form" class="admin-create-form">
+          <p class="form-legend">
+            <span class="cell-code">{editingPost.id}</span>
+            {" · "}
+            <a href={linkWith({ edit: null })}>{t("Close")}</a>
+          </p>
+          <p class="form-legend">
+            {t(
+              "A partial update: only the fields below are sent, so a change made elsewhere to the SEO fields, terms or featured media is not clobbered by a stale copy of them."
+            )}
+          </p>
+          <p
+            id="post-edit-error"
+            class="admin-create-error"
+            role="alert"
+            hidden
+          />
+
+          <input type="hidden" id="edit-post-id" value={editingPost.id} />
+
+          <label for="edit-title-field">
+            {t("Title")}
+            <input
+              type="text"
+              id="edit-title-field"
+              name="title"
+              required
+              maxlength={MAX_TITLE_LENGTH}
+              value={editingPost.title}
+              autocomplete="off"
+            />
+          </label>
+
+          <label for="edit-slug">
+            {t("Slug")}
+            <input
+              type="text"
+              id="edit-slug"
+              name="slug"
+              required
+              value={editingPost.slug}
+              autocomplete="off"
+            />
+          </label>
+
+          <label for="edit-visibility">
+            {t("Visibility")}
+            <select id="edit-visibility" name="visibility">
+              {BLOG_CONTENT_VISIBILITIES.map((value) => (
+                <option
+                  value={value}
+                  selected={editingPost.visibility === value}
+                >
+                  {value}
+                </option>
+              ))}
+            </select>
+          </label>
+
+          <label for="edit-excerpt">
+            {t("Excerpt (optional)")}
+            <textarea
+              id="edit-excerpt"
+              name="excerpt"
+              rows="2"
+              maxlength={MAX_EXCERPT_LENGTH}
+              set:text={editingPost.excerpt ?? ""}
+            />
+          </label>
+
+          <div class="pt-editor" id="edit-body-editor">
+            <div class="pt-toolbar" role="toolbar" aria-label={t("Formatting")}>
+              <button type="button" class="pt-mark" data-mark="strong">
+                <strong>B</strong>
+              </button>
+              <button type="button" class="pt-mark" data-mark="em">
+                <em>I</em>
+              </button>
+              <button type="button" class="pt-mark" data-mark="code">
+                {"<>"}
+              </button>
+              <button type="button" class="pt-link">
+                {t("Link")}
+              </button>
+              <button type="button" class="pt-unlink">
+                {t("Unlink")}
+              </button>
+              <select class="pt-style" aria-label={t("Block style")}>
+                {PORTABLE_TEXT_BLOCK_STYLES.map((style) => (
+                  <option value={style}>{style}</option>
+                ))}
+              </select>
+              <button type="button" class="pt-list" data-list="bullet">
+                {t("Bullet")}
+              </button>
+              <button type="button" class="pt-list" data-list="number">
+                {t("Numbered")}
+              </button>
+              <button type="button" class="pt-add">
+                {t("Add block")}
+              </button>
+            </div>
+
+            <div class="pt-rows" id="edit-body-rows">
+              {editorRows.map((row) =>
+                row.opaque ? (
+                  <div
+                    class="pt-row pt-row--opaque"
+                    data-opaque={JSON.stringify(row.node)}
+                  >
+                    <span class="pt-opaque-label">
+                      {describeOpaqueNode(row.node)}
+                    </span>
+                    <span class="cell-muted">
+                      {t("Preserved as-is — edit it in the media library.")}
+                    </span>
+                  </div>
+                ) : (
+                  <div
+                    class="pt-row"
+                    data-key={(row.node as PortableTextBlock)._key}
+                    data-style={(row.node as PortableTextBlock).style}
+                    data-list={(row.node as PortableTextBlock).listItem ?? ""}
+                    data-markdefs={JSON.stringify(
+                      (row.node as PortableTextBlock).markDefs ?? []
+                    )}
+                  >
+                    <div
+                      class="pt-block"
+                      contenteditable="true"
+                      set:html={blockToEditableHtml(
+                        row.node as PortableTextBlock
+                      )}
+                    />
+                  </div>
+                )
+              )}
+            </div>
+          </div>
+
+          {/* Issue #595 — terms. The vocabulary is read from the BROWSER
+              against `GET /api/v1/blog/terms`, which enforces
+              `blog_content.taxonomies.read` itself, so this screen still gates
+              on `posts.*` only. Grouped by vocabulary because sql/131 made
+              category/tag/channel/topic four different questions. */}
+          <fieldset class="admin-fieldset">
+            <legend>{t("Categories, channels and topics")}</legend>
+            <div
+              class="term-picker"
+              id="edit-term-picker"
+              data-selected={editingPostTermIds.join(",")}
+            >
+              <p class="form-hint">{t("Loading vocabularies…")}</p>
+            </div>
+          </fieldset>
+
+          {/* Issue #595 — institutions. A SEPARATE fetch from the terms one:
+              sql/131 made institution a table, not a taxonomy type, and it is
+              guarded by `institutions.read` rather than `taxonomies.read`, so
+              an editor can hold one permission and not the other and the two
+              surfaces must fail independently. */}
+          <fieldset class="admin-fieldset">
+            <legend>{t("Institutions")}</legend>
+            <div
+              class="institution-picker"
+              id="edit-institution-picker"
+              data-selected={editingPostInstitutionIds.join(",")}
+            >
+              <p class="form-hint">{t("Loading institutions…")}</p>
+            </div>
+          </fieldset>
+
+          {/* Issue #595 — the featured image. The catalogue is read from the
+              BROWSER against `GET /api/v1/media/objects/list`, which enforces
+              `media_library.media.read` itself: this screen holds
+              `blog_content.posts.*` and nothing else, and borrowing another
+              module's permission server-side is a decision the contract test
+              exists to force. A caller without that permission is told so,
+              rather than shown an empty library. */}
+          <fieldset class="admin-fieldset">
+            <legend>{t("Featured image")}</legend>
+
+            <input
+              type="hidden"
+              id="edit-featured-media-id"
+              name="featuredMediaId"
+              value={editingPost.featuredMediaId ?? ""}
+            />
+
+            <div class="media-choice" id="edit-featured-choice">
+              <p class="form-hint" id="edit-featured-label">
+                {editingPost.featuredMediaId
+                  ? t("An image is attached.")
+                  : t("No image attached.")}
+              </p>
+              <div class="media-choice-actions">
+                <button
+                  type="button"
+                  class="btn btn-secondary media-pick-btn"
+                  data-target="edit-featured-media-id"
+                  data-label="edit-featured-label"
+                >
+                  {t("Choose image")}
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-secondary media-clear-btn"
+                  data-target="edit-featured-media-id"
+                  data-label="edit-featured-label"
+                >
+                  {t("Remove image")}
+                </button>
+              </div>
+              <div class="media-picker-panel" hidden />
+            </div>
+          </fieldset>
+
+          {/* Issue #595 — same three fields as the create form, prefilled.
+              Clearing one sends `null` rather than omitting it: the PATCH
+              validator reads absent as "leave unchanged" and `null` as
+              "clear", so an omitted empty field would make these
+              write-once. */}
+          <fieldset class="admin-fieldset">
+            <legend>{t("Search & social (optional)")}</legend>
+
+            <label for="edit-seo-title">
+              {t("SEO title")}
+              <input
+                type="text"
+                id="edit-seo-title"
+                name="seoTitle"
+                maxlength={MAX_SEO_TITLE_LENGTH}
+                value={editingPost.seoTitle ?? ""}
+              />
+              <span class="form-hint">
+                {t("Falls back to the article title when empty.")}
+              </span>
+            </label>
+
+            <label for="edit-meta-description">
+              {t("Meta description")}
+              <textarea
+                id="edit-meta-description"
+                name="metaDescription"
+                rows="2"
+                maxlength={MAX_META_DESCRIPTION_LENGTH}
+                set:text={editingPost.metaDescription ?? ""}
+              />
+            </label>
+
+            <label for="edit-canonical-url">
+              {t("Canonical URL")}
+              <input
+                type="url"
+                id="edit-canonical-url"
+                name="canonicalUrl"
+                placeholder="https://"
+                value={editingPost.canonicalUrl ?? ""}
+              />
+              <span class="form-hint">
+                {t(
+                  "Set this only when this article is a copy of one that lives elsewhere."
+                )}
+              </span>
+            </label>
+          </fieldset>
+
+          <button type="submit" id="post-edit-submit">
+            {t("Save post")}
+          </button>
+        </form>
+      </section>
+    )
+  }
+
+  {
+    canCreate && !loadError && (
+      <section class="admin-section fade-in-up" aria-labelledby="create-title">
+        <h2 class="admin-section-title" id="create-title">
+          {t("New draft")}
+        </h2>
+        <form id="post-create-form" class="admin-create-form">
+          <p class="form-legend">
+            {t(
+              "Creates a draft. Separate paragraphs with a blank line \u2014 each one becomes a"
+            )}
+            <code>{t("paragraph")}</code>
+            {t("block, the only block type this editor writes.")}
+          </p>
+          <p
+            id="post-create-error"
+            class="admin-create-error"
+            role="alert"
+            hidden
+          />
+
+          <label for="create-title-field">
+            {t("Title")}
+            {/* `maxlength` comes from the SAME constant the validator
+                enforces, so the browser cannot accept what the server
+                rejects. */}
+            <input
+              type="text"
+              id="create-title-field"
+              name="title"
+              required
+              maxlength={MAX_TITLE_LENGTH}
+              autocomplete="off"
+            />
+          </label>
+
+          <label for="create-slug">
+            {t("Slug")}
+            <input
+              type="text"
+              id="create-slug"
+              name="slug"
+              required
+              autocomplete="off"
+              placeholder="url-safe-identifier"
+            />
+          </label>
+
+          <label for="create-locale">
+            {t("Locale")}
+            <input
+              type="text"
+              id="create-locale"
+              name="locale"
+              value="id"
+              autocomplete="off"
+            />
+          </label>
+
+          <label for="create-visibility">
+            {t("Visibility")}
+            <select id="create-visibility" name="visibility">
+              {BLOG_CONTENT_VISIBILITIES.map((value) => (
+                <option value={value}>{value}</option>
+              ))}
+            </select>
+          </label>
+
+          <label for="create-excerpt">
+            {t("Excerpt (optional)")}
+            <textarea
+              id="create-excerpt"
+              name="excerpt"
+              rows="2"
+              maxlength={MAX_EXCERPT_LENGTH}
+            />
+          </label>
+
+          {/* The field whose absence made this form unusable: the API requires
+              a non-empty `contentText`, and the screen sent `""`. No
+              `maxlength` — the validator imposes no bound on the body, and a
+              hand-typed one would be a limit no server enforces. */}
+          <label for="create-body">
+            {t("Body")}
+            <textarea id="create-body" name="body" rows="14" required />
+          </label>
+
+          {/* Issue #595 — terms. The vocabulary is read from the BROWSER
+              against `GET /api/v1/blog/terms`, which enforces
+              `blog_content.taxonomies.read` itself, so this screen still gates
+              on `posts.*` only. Grouped by vocabulary because sql/131 made
+              category/tag/channel/topic four different questions. */}
+          <fieldset class="admin-fieldset">
+            <legend>{t("Categories, channels and topics")}</legend>
+            <div class="term-picker" id="create-term-picker" data-selected="">
+              <p class="form-hint">{t("Loading vocabularies…")}</p>
+            </div>
+          </fieldset>
+
+          {/* Issue #595 — institutions. A SEPARATE fetch from the terms one:
+              sql/131 made institution a table, not a taxonomy type, and it is
+              guarded by `institutions.read` rather than `taxonomies.read`, so
+              an editor can hold one permission and not the other and the two
+              surfaces must fail independently. */}
+          <fieldset class="admin-fieldset">
+            <legend>{t("Institutions")}</legend>
+            <div
+              class="institution-picker"
+              id="create-institution-picker"
+              data-selected=""
+            >
+              <p class="form-hint">{t("Loading institutions…")}</p>
+            </div>
+          </fieldset>
+
+          {/* Issue #595 — the same picker as the edit form, driven by the same
+              generic client wiring (`data-target`/`data-label`). */}
+          <fieldset class="admin-fieldset">
+            <legend>{t("Featured image")}</legend>
+
+            <input
+              type="hidden"
+              id="create-featured-media-id"
+              name="featuredMediaId"
+              value=""
+            />
+
+            <div class="media-choice" id="create-featured-choice">
+              <p class="form-hint" id="create-featured-label">
+                {t("No image attached.")}
+              </p>
+              <div class="media-choice-actions">
+                <button
+                  type="button"
+                  class="btn btn-secondary media-pick-btn"
+                  data-target="create-featured-media-id"
+                  data-label="create-featured-label"
+                >
+                  {t("Choose image")}
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-secondary media-clear-btn"
+                  data-target="create-featured-media-id"
+                  data-label="create-featured-label"
+                >
+                  {t("Remove image")}
+                </button>
+              </div>
+              <div class="media-picker-panel" hidden />
+            </div>
+          </fieldset>
+
+          {/* Issue #595 — every article used to publish with no meta
+              description and no canonical, and `seo_distribution` faithfully
+              rendered that absence into `<head>` and into every share card.
+              `maxlength` mirrors the validator's own bounds so the browser
+              refuses what the server would refuse. */}
+          <fieldset class="admin-fieldset">
+            <legend>{t("Search & social (optional)")}</legend>
+
+            <label for="create-seo-title">
+              {t("SEO title")}
+              <input
+                type="text"
+                id="create-seo-title"
+                name="seoTitle"
+                maxlength={MAX_SEO_TITLE_LENGTH}
+              />
+              <span class="form-hint">
+                {t("Falls back to the article title when empty.")}
+              </span>
+            </label>
+
+            <label for="create-meta-description">
+              {t("Meta description")}
+              <textarea
+                id="create-meta-description"
+                name="metaDescription"
+                rows="2"
+                maxlength={MAX_META_DESCRIPTION_LENGTH}
+              />
+            </label>
+
+            <label for="create-canonical-url">
+              {t("Canonical URL")}
+              <input
+                type="url"
+                id="create-canonical-url"
+                name="canonicalUrl"
+                placeholder="https://"
+              />
+              <span class="form-hint">
+                {t(
+                  "Set this only when this article is a copy of one that lives elsewhere."
+                )}
+              </span>
+            </label>
+          </fieldset>
+
+          <button type="submit" id="post-create-submit">
+            {t("Create draft")}
+          </button>
+        </form>
+      </section>
+    )
+  }
+</AdminLayout>
+
+<script>
+  // The import is load-bearing for CSP, not just DRY: Astro inlines a hoisted
+  // `<script>` with no imports, and this app's CSP is `default-src 'self'`
+  // with no `'unsafe-inline'` — an inlined script is blocked and the page's
+  // behaviour dies silently. Importing forces an external `/_astro/*.js`.
+  import {
+    field,
+    messageBox,
+    mutateAndReload,
+    onAction,
+    onSubmit,
+    sendJson
+  } from "../../lib/ui/admin-form-client";
+  import { submitWithFieldErrors } from "../../lib/ui/admin-field-errors-client";
+  import {
+    buildBlockFromEditable,
+    nextEditorKey
+  } from "../../lib/ui/portable-text-editor";
+  import { wireMediaPickers } from "../../lib/ui/media-picker-client";
+  import {
+    fetchPickableInstitutions,
+    fetchPickableTerms,
+    type TermGroup
+  } from "../../lib/ui/term-picker-client";
+
+  const actionError = messageBox("blog-action-error");
+  const createError = messageBox("post-create-error");
+  const editError = messageBox("post-edit-error");
+
+  /**
+   * API field -> the control the operator can actually fix. `contentJson` and
+   * `contentText` are one textarea, so a body the validator rejects on both
+   * counts is reported once.
+   */
+  const FIELD_LABELS: Record<string, string> = {
+    title: "Title",
+    slug: "Slug",
+    excerpt: "Excerpt",
+    locale: "Locale",
+    visibility: "Visibility",
+    contentJson: "Body",
+    contentText: "Body",
+    bodyPortableText: "Body",
+    // Without these a server-side rejection of an SEO field would surface
+    // under its raw API name, which is not what the label above the input
+    // says — the operator would be told a field they cannot find is wrong.
+    seoTitle: "SEO title",
+    metaDescription: "Meta description",
+    canonicalUrl: "Canonical URL",
+    featuredMediaId: "Featured image"
+  };
+
+  /** Publish/schedule/archive/restore/purge/revision-restore all require the header. */
+  function idempotency(): Record<string, string> {
+    return { "Idempotency-Key": crypto.randomUUID() };
+  }
+
+  wireMediaPickers("No image attached.");
+
+  /**
+   * Issue #595 — the term pickers. Rendered from the browser because the
+   * vocabulary lives behind `blog_content.taxonomies.read`, which this screen
+   * does not hold and deliberately does not borrow.
+   */
+  const TAXONOMY_LEGENDS: Record<string, string> = {
+    category: "Categories",
+    tag: "Tags",
+    channel: "Channels",
+    topic: "Topics"
+  };
+
+  function renderTermGroups(host: HTMLElement, groups: TermGroup[]): void {
+    const selected = new Set(
+      (host.dataset.selected ?? "").split(",").filter((id) => id !== "")
+    );
+
+    host.replaceChildren();
+
+    for (const group of groups) {
+      const block = document.createElement("div");
+      block.className = "term-group";
+
+      const heading = document.createElement("p");
+      heading.className = "term-group-title";
+      heading.textContent =
+        TAXONOMY_LEGENDS[group.taxonomyType] ?? group.taxonomyType;
+      block.append(heading);
+
+      if (group.terms.length === 0) {
+        const empty = document.createElement("p");
+        empty.className = "form-hint";
+        // Says the vocabulary is EMPTY, not that this build has no picker
+        // for it — the second is what an absent group would imply.
+        empty.textContent = "None defined yet.";
+        block.append(empty);
+        host.append(block);
+        continue;
+      }
+
+      for (const term of group.terms) {
+        const label = document.createElement("label");
+        label.className = "term-option";
+
+        const input = document.createElement("input");
+        input.type = "checkbox";
+        input.name = "termIds";
+        input.value = term.id;
+        input.checked = selected.has(term.id);
+
+        const text = document.createElement("span");
+        // `textContent`, never `innerHTML`: a term name is editor-supplied.
+        text.textContent = term.name;
+
+        label.append(input, text);
+        block.append(label);
+      }
+
+      host.append(block);
+    }
+  }
+
+  async function wireTermPickers(): Promise<void> {
+    const hosts = [...document.querySelectorAll(".term-picker")].filter(
+      (host): host is HTMLElement => host instanceof HTMLElement
+    );
+
+    if (hosts.length === 0) return;
+
+    const result = await fetchPickableTerms();
+
+    for (const host of hosts) {
+      if (!result.ok) {
+        host.textContent =
+          result.reason === "forbidden"
+            ? "You do not have permission to read the taxonomy, so terms cannot be assigned here."
+            : "The taxonomy could not be loaded. Terms were left unchanged.";
+        // Marked so the submit handler can tell "no terms chosen" apart from
+        // "the vocabulary never loaded" — sending [] on the second would
+        // silently strip every term the post already has.
+        host.dataset.failed = "true";
+        continue;
+      }
+
+      renderTermGroups(host, result.groups);
+    }
+  }
+
+  void wireTermPickers();
+
+  /**
+   * Institutions — its own fetch and its own failure state, because it is its
+   * own permission (`institutions.read`). Folding it into `wireTermPickers`
+   * would make one refusal blank both halves of the form.
+   */
+  async function wireInstitutionPickers(): Promise<void> {
+    const hosts = [...document.querySelectorAll(".institution-picker")].filter(
+      (host): host is HTMLElement => host instanceof HTMLElement
+    );
+
+    if (hosts.length === 0) return;
+
+    const result = await fetchPickableInstitutions();
+
+    for (const host of hosts) {
+      if (!result.ok) {
+        host.textContent =
+          result.reason === "forbidden"
+            ? "You do not have permission to read institutions, so they cannot be assigned here."
+            : "Institutions could not be loaded. They were left unchanged.";
+        host.dataset.failed = "true";
+        continue;
+      }
+
+      const selected = new Set(
+        (host.dataset.selected ?? "").split(",").filter((id) => id !== "")
+      );
+
+      host.replaceChildren();
+
+      if (result.institutions.length === 0) {
+        const empty = document.createElement("p");
+        empty.className = "form-hint";
+        empty.textContent = "None defined yet.";
+        host.append(empty);
+        continue;
+      }
+
+      for (const institution of result.institutions) {
+        const label = document.createElement("label");
+        label.className = "term-option";
+
+        const input = document.createElement("input");
+        input.type = "checkbox";
+        input.name = "institutionIds";
+        input.value = institution.id;
+        input.checked = selected.has(institution.id);
+
+        const text = document.createElement("span");
+        // `textContent`, never `innerHTML`: an institution name is
+        // editor-supplied.
+        text.textContent = institution.name;
+
+        label.append(input, text);
+        host.append(label);
+      }
+    }
+  }
+
+  void wireInstitutionPickers();
+
+  /** As `readTermIds`, for institutions — same absent-vs-`[]` rule. */
+  function readInstitutionIds(hostId: string): string[] | undefined {
+    const host = document.getElementById(hostId);
+    if (!(host instanceof HTMLElement)) return undefined;
+    if (host.dataset.failed === "true") return undefined;
+
+    return [...host.querySelectorAll('input[name="institutionIds"]')]
+      .filter(
+        (input): input is HTMLInputElement =>
+          input instanceof HTMLInputElement && input.checked
+      )
+      .map((input) => input.value);
+  }
+
+  /**
+   * Reads the chosen term ids, or `undefined` when the picker never loaded.
+   *
+   * `undefined` matters: the API treats an absent `termIds` as "leave the
+   * assignments alone" and `[]` as "remove them all". A failed fetch that sent
+   * `[]` would quietly unassign every category on the next save.
+   */
+  function readTermIds(hostId: string): string[] | undefined {
+    const host = document.getElementById(hostId);
+    if (!(host instanceof HTMLElement)) return undefined;
+    if (host.dataset.failed === "true") return undefined;
+
+    return [...host.querySelectorAll('input[name="termIds"]')]
+      .filter(
+        (input): input is HTMLInputElement =>
+          input instanceof HTMLInputElement && input.checked
+      )
+      .map((input) => input.value);
+  }
+
+  /** Wires a row button to one endpoint, with an optional confirm and body. */
+  function wireLifecycle(
+    selector: string,
+    busyLabel: string,
+    url: (postId: string) => string,
+    options: {
+      confirm?: (button: HTMLButtonElement) => string | null;
+      body?: (button: HTMLButtonElement) => unknown | null;
+      idempotent?: boolean;
+      failure: string;
+    }
+  ): void {
+    onAction(selector, async (button) => {
+      const postId = button.dataset.postId;
+      if (!postId) return;
+
+      const confirmText = options.confirm?.(button) ?? null;
+      if (confirmText !== null && !window.confirm(confirmText)) return;
+
+      let body: unknown;
+      if (options.body) {
+        const value = options.body(button);
+        // `null` means the operator cancelled a prompt — not an empty body.
+        if (value === null) return;
+        body = value;
+      }
+
+      await mutateAndReload(
+        button,
+        actionError,
+        () =>
+          sendJson(
+            "POST",
+            url(postId),
+            body,
+            options.idempotent === false ? undefined : idempotency()
+          ),
+        // Generic copy only — never surface internal detail.
+        options.failure,
+        busyLabel
+      );
+    });
+  }
+
+  wireLifecycle(
+    ".post-publish-btn",
+    "Publishing…",
+    (id) => `/api/v1/blog/posts/${id}/publish`,
+    {
+      confirm: () =>
+        "Publish this post? It becomes visible on the public site immediately.",
+      failure: "Could not publish the post. Please try again."
+    }
+  );
+
+  wireLifecycle(
+    ".post-schedule-btn",
+    "Scheduling…",
+    (id) => `/api/v1/blog/posts/${id}/schedule`,
+    {
+      body: () => {
+        const at = window.prompt(
+          "Publish at (ISO 8601, e.g. 2026-08-05T09:00:00Z):"
+        );
+        if (at === null || at.trim() === "") return null;
+        return { scheduledAt: at.trim() };
+      },
+      failure:
+        "Could not schedule the post. Check the date is in the future and try again."
+    }
+  );
+
+  wireLifecycle(
+    ".post-archive-btn",
+    "Archiving…",
+    (id) => `/api/v1/blog/posts/${id}/archive`,
+    {
+      confirm: () =>
+        "Archive this post? It is removed from the public site but kept.",
+      failure: "Could not archive the post. Please try again."
+    }
+  );
+
+  wireLifecycle(
+    ".post-restore-btn",
+    "Restoring…",
+    (id) => `/api/v1/blog/posts/${id}/restore`,
+    { failure: "Could not restore the post. Please try again." }
+  );
+
+  wireLifecycle(
+    ".post-purge-btn",
+    "Purging…",
+    (id) => `/api/v1/blog/posts/${id}/purge`,
+    {
+      confirm: (button) =>
+        `Permanently delete "${button.dataset.postTitle ?? "this post"}"? This cannot be undone — the post row is removed, not soft-deleted.`,
+      failure: "Could not purge the post. Please try again."
+    }
+  );
+
+  // Submit-for-review is gated on `posts.update` and needs NO key: it is a
+  // status transition to `review`, not work that repeats per call.
+  wireLifecycle(
+    ".post-submit-btn",
+    "Submitting…",
+    (id) => `/api/v1/blog/posts/${id}/submit-review`,
+    {
+      idempotent: false,
+      failure: "Could not submit the post for review. Please try again."
+    }
+  );
+
+  onAction(".post-delete-btn", async (button) => {
+    const postId = button.dataset.postId;
+    if (!postId) return;
+    const title = button.dataset.postTitle ?? "this post";
+
+    if (
+      !window.confirm(
+        `Delete "${title}"? It is soft-deleted — recoverable until it is purged.`
+      )
+    ) {
+      return;
+    }
+
+    await mutateAndReload(
+      button,
+      actionError,
+      () =>
+        // Soft delete needs no key: the endpoint's `deleted_at IS NULL` guard
+        // makes a repeat a no-op rather than a second deletion.
+        sendJson("DELETE", `/api/v1/blog/posts/${postId}`),
+      "Could not delete the post. Please try again.",
+      "Deleting…"
+    );
+  });
+
+  onAction(".revision-restore-btn", async (button) => {
+    const postId = button.dataset.postId;
+    const revisionId = button.dataset.revisionId;
+    if (!postId || !revisionId) return;
+    const number = button.dataset.revisionNumber ?? "?";
+
+    if (
+      !window.confirm(
+        `Restore revision ${number}? The post's current content is replaced by this revision's, and the replacement is itself recorded as a new revision.`
+      )
+    ) {
+      return;
+    }
+
+    await mutateAndReload(
+      button,
+      actionError,
+      () =>
+        sendJson(
+          "POST",
+          `/api/v1/blog/posts/${postId}/revisions/${revisionId}/restore`,
+          undefined,
+          idempotency()
+        ),
+      "Could not restore the revision. Please try again.",
+      "Restoring…"
+    );
+  });
+
+  /* ------------------------------------------------------------- editor */
+
+  /**
+   * Paste is inserted as PLAIN TEXT, deliberately.
+   *
+   * It is the single decision that removes this editor's hardest security
+   * question. The editable region then only ever contains tags this page
+   * created through the toolbar, so the serializer never has to reason about
+   * what a browser produced from somebody's Word document. It is also the
+   * better editorial outcome: pasted markup is a newsroom problem in its own
+   * right, and the copy that survives is the copy the author meant.
+   */
+  function interceptPaste(root: HTMLElement): void {
+    root.addEventListener("paste", (event) => {
+      const clipboard = (event as ClipboardEvent).clipboardData;
+      if (!clipboard) return;
+      event.preventDefault();
+      const text = clipboard.getData("text/plain");
+      document.execCommand("insertText", false, text);
+    });
+  }
+
+  function activeBlock(): HTMLElement | null {
+    const selection = window.getSelection();
+    const node = selection?.anchorNode ?? null;
+    if (!node) return null;
+    const element =
+      node.nodeType === Node.ELEMENT_NODE
+        ? (node as HTMLElement)
+        : node.parentElement;
+    return element?.closest<HTMLElement>(".pt-block") ?? null;
+  }
+
+  function activeRow(): HTMLElement | null {
+    return activeBlock()?.closest<HTMLElement>(".pt-row") ?? null;
+  }
+
+  function wrapSelection(open: string, close: string): void {
+    const selection = window.getSelection();
+    if (!selection || selection.isCollapsed) return;
+    // `insertHTML` with the selection's own TEXT, escaped — never its HTML.
+    // Re-inserting the selected markup is how a nested tag soup appears after
+    // three clicks, and how anything the parser does not know gets duplicated.
+    const text = selection.toString();
+    const escaped = text
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;");
+    document.execCommand("insertHTML", false, `${open}${escaped}${close}`);
+  }
+
+  function wireEditor(root: HTMLElement): void {
+    interceptPaste(root);
+
+    for (const button of root.querySelectorAll<HTMLButtonElement>(".pt-mark")) {
+      button.addEventListener("mousedown", (event) => {
+        // `mousedown`, not `click`: clicking a button blurs the editable and
+        // collapses the selection before a click handler ever runs.
+        event.preventDefault();
+        const mark = button.dataset.mark;
+        if (mark === "strong") document.execCommand("bold");
+        else if (mark === "em") document.execCommand("italic");
+        else if (mark === "code") wrapSelection("<code>", "</code>");
+      });
+    }
+
+    root
+      .querySelector<HTMLButtonElement>(".pt-link")
+      ?.addEventListener("mousedown", (event) => {
+        event.preventDefault();
+        const row = activeRow();
+        if (!row) return;
+
+        const href = window.prompt(
+          "Link URL (https://, mailto:, tel: or /path)"
+        );
+        if (!href) return;
+
+        const key = nextEditorKey("k");
+        const defs = JSON.parse(row.dataset.markdefs || "[]") as unknown[];
+        defs.push({ _type: "link", _key: key, href });
+        row.dataset.markdefs = JSON.stringify(defs);
+        wrapSelection(`<a data-mark="${key}">`, "</a>");
+      });
+
+    root
+      .querySelector<HTMLButtonElement>(".pt-unlink")
+      ?.addEventListener("mousedown", (event) => {
+        event.preventDefault();
+        document.execCommand("unlink");
+      });
+
+    root
+      .querySelector<HTMLSelectElement>(".pt-style")
+      ?.addEventListener("change", (event) => {
+        const row = activeRow();
+        if (!row) return;
+        row.dataset.style = (event.target as HTMLSelectElement).value;
+      });
+
+    for (const button of root.querySelectorAll<HTMLButtonElement>(".pt-list")) {
+      button.addEventListener("mousedown", (event) => {
+        event.preventDefault();
+        const row = activeRow();
+        if (!row) return;
+        const wanted = button.dataset.list ?? "";
+        // Second click on the same kind clears it, so a list can be undone
+        // without reaching for a different control.
+        row.dataset.list = row.dataset.list === wanted ? "" : wanted;
+      });
+    }
+
+    root
+      .querySelector<HTMLButtonElement>(".pt-add")
+      ?.addEventListener("click", () => {
+        const rows = root.querySelector<HTMLElement>(".pt-rows");
+        if (!rows) return;
+        const row = document.createElement("div");
+        row.className = "pt-row";
+        row.dataset.key = nextEditorKey("b");
+        row.dataset.style = "normal";
+        row.dataset.list = "";
+        row.dataset.markdefs = "[]";
+        const block = document.createElement("div");
+        block.className = "pt-block";
+        block.contentEditable = "true";
+        row.append(block);
+        rows.append(row);
+        block.focus();
+      });
+  }
+
+  /**
+   * Reads the rows back into a Portable Text document.
+   *
+   * Opaque rows are parsed straight out of `data-opaque` and pushed unchanged.
+   * That is the whole point of this issue: the previous editor refused to open
+   * a post containing a gallery because it could only write paragraphs.
+   */
+  function readEditorDocument(root: HTMLElement): unknown[] {
+    const out: unknown[] = [];
+
+    for (const row of root.querySelectorAll<HTMLElement>(".pt-row")) {
+      const opaque = row.dataset.opaque;
+      if (opaque) {
+        try {
+          out.push(JSON.parse(opaque));
+        } catch {
+          // A card whose payload will not parse is DROPPED rather than sent as
+          // a broken node — but only after this branch has been reached, which
+          // cannot happen for markup this page rendered itself.
+        }
+        continue;
+      }
+
+      const block = row.querySelector<HTMLElement>(".pt-block");
+      if (!block) continue;
+
+      const html = block.innerHTML.trim();
+      const key = row.dataset.key || nextEditorKey("b");
+      const style = (row.dataset.style || "normal") as never;
+      const listItem = (row.dataset.list || undefined) as never;
+      let defs: never[] = [];
+      try {
+        defs = JSON.parse(row.dataset.markdefs || "[]");
+      } catch {
+        defs = [];
+      }
+
+      const built = buildBlockFromEditable(key, html, style, listItem, defs);
+
+      // A block whose every span is empty contributes nothing to the article
+      // and would render as a stray empty paragraph.
+      if (built.children.every((child) => child.text.trim() === "")) continue;
+
+      out.push(built);
+    }
+
+    return out;
+  }
+
+  const editBodyEditor = document.getElementById("edit-body-editor");
+  if (editBodyEditor) wireEditor(editBodyEditor);
+
+  onSubmit("post-create-form", async ({ data, submit }) => {
+    const bodyText = String(data.get("body") ?? "");
+
+    // The create form stays a plain textarea on purpose: a new draft has no
+    // galleries or links to preserve, one blank-line-separated paragraph per
+    // block is the fastest way to get a story down, and the block editor is
+    // there the moment it is reopened for editing.
+    const paragraphs = bodyText
+      .split(/\n\s*\n/)
+      .map((part) => part.trim())
+      .filter((part) => part.length > 0);
+
+    // Checked here as well as by `required`, because `required` accepts a
+    // textarea holding only whitespace and the validator does not — this is
+    // the one rejection the form can name before the round trip.
+    if (paragraphs.length === 0) {
+      createError.show(
+        "The body cannot be empty — write at least one paragraph."
+      );
+      return;
+    }
+
+    const bodyPortableText = paragraphs.map((text, index) => ({
+      _type: "block",
+      _key: `b${index}`,
+      style: "normal",
+      children: [
+        { _type: "span", _key: `b${index}s0`, text, marks: [] as string[] }
+      ],
+      markDefs: [] as unknown[]
+    }));
+
+    const excerpt = field(data, "excerpt");
+    const body: Record<string, unknown> = {
+      title: field(data, "title"),
+      slug: field(data, "slug"),
+      locale: field(data, "locale") || "id",
+      visibility: String(data.get("visibility") ?? "public"),
+      // ADR-0100 — the body is Portable Text. `contentText` is derived by the
+      // server and REFUSED if sent, and `contentJson` is the optional envelope
+      // whose `blocks` key the server overwrites with the projection.
+      bodyPortableText
+    };
+    // Omitted rather than sent as "": an empty string is a value, and the
+    // validator treats absent as "no excerpt".
+    if (excerpt !== "") body.excerpt = excerpt;
+
+    // Same rule for the SEO trio on CREATE: absent means "none". (On edit they
+    // are sent as `null` to clear — see the edit handler.) `seoTitle` rejects
+    // an empty string outright, so sending "" would 400 a form the operator
+    // simply left blank.
+    for (const name of ["seoTitle", "metaDescription", "canonicalUrl"]) {
+      const value = field(data, name);
+      if (value !== "") body[name] = value;
+    }
+
+    // Issue #595 — `null` on create too, not omitted: the validator accepts
+    // UUID-or-null and `null` is the honest "no featured image", where an
+    // omitted field would leave the reader of this payload guessing.
+    body.featuredMediaId = field(data, "featuredMediaId") || null;
+
+    const createTermIds = readTermIds("create-term-picker");
+    if (createTermIds !== undefined) body.termIds = createTermIds;
+
+    const createInstitutionIds = readInstitutionIds(
+      "create-institution-picker"
+    );
+    if (createInstitutionIds !== undefined) {
+      body.institutionIds = createInstitutionIds;
+    }
+
+    // No `Idempotency-Key`: `POST /api/v1/blog/posts` requires none by
+    // documented design — a retry that duplicates a create is caught by the
+    // `(tenant_id, locale, slug)` partial unique index instead.
+    await submitWithFieldErrors(
+      submit,
+      createError,
+      "POST",
+      "/api/v1/blog/posts",
+      body,
+      {
+        labels: FIELD_LABELS,
+        busyLabel: "Creating…",
+        conflict: "A post with that slug and locale already exists.",
+        failure: "Could not create the draft. Please try again."
+      }
+    );
+  });
+
+  onSubmit("post-edit-form", async ({ data, submit }) => {
+    const idField = document.getElementById(
+      "edit-post-id"
+    ) as HTMLInputElement | null;
+    if (!idField) return;
+
+    // PATCH is a partial update, and this screen sends only what it owns.
+    const body: Record<string, unknown> = {
+      title: field(data, "title"),
+      slug: field(data, "slug"),
+      visibility: String(data.get("visibility") ?? "public"),
+      // `null` clears it — the API distinguishes that from absent, which is
+      // "leave the excerpt alone".
+      excerpt: field(data, "excerpt") || null,
+      // Issue #595. `null` rather than omitted, for the same reason: these are
+      // rendered into `<head>` and into every share card, so an editor who
+      // deletes a wrong meta description has to be able to make it GONE. Omit
+      // on empty and the fields would be write-once.
+      seoTitle: field(data, "seoTitle") || null,
+      metaDescription: field(data, "metaDescription") || null,
+      canonicalUrl: field(data, "canonicalUrl") || null,
+      // Issue #595. `null` clears the featured image, for the same reason the
+      // SEO fields do — otherwise the wrong photo could never be detached.
+      featuredMediaId: field(data, "featuredMediaId") || null
+    };
+
+    // Absent means "leave the assignments alone"; `[]` means "remove them
+    // all". Only sent when the picker actually loaded — see `readTermIds`.
+    const editTermIds = readTermIds("edit-term-picker");
+    if (editTermIds !== undefined) body.termIds = editTermIds;
+
+    const editInstitutionIds = readInstitutionIds("edit-institution-picker");
+    if (editInstitutionIds !== undefined) {
+      body.institutionIds = editInstitutionIds;
+    }
+
+    // ADR-0100 — the body is Portable Text read back out of the block editor.
+    // Opaque rows (a gallery, a video) come back byte-identical, which is what
+    // lets a post containing one be edited at all; the previous editor refused
+    // to open it rather than risk destroying them.
+    if (editBodyEditor) {
+      const document_ = readEditorDocument(editBodyEditor);
+
+      if (document_.length === 0) {
+        editError.show(
+          "The body cannot be empty — write at least one paragraph."
+        );
+        return;
+      }
+
+      body.bodyPortableText = document_;
+    }
+
+    // No `Idempotency-Key`: `PATCH /api/v1/blog/posts/{id}` requires none —
+    // a same-body retry converges to the same end state.
+    await submitWithFieldErrors(
+      submit,
+      editError,
+      "PATCH",
+      `/api/v1/blog/posts/${idField.value}`,
+      body,
+      {
+        labels: FIELD_LABELS,
+        busyLabel: "Saving…",
+        conflict: "A post with that slug and locale already exists.",
+        failure: "Could not save the post. Please try again."
+      }
+    );
+  });
+</script>

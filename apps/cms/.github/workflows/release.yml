@@ -1,0 +1,588 @@
+# Release AWCMS — Changesets version → tag → validate → build+SBOM →
+# keyless sign + provenance/SBOM attest → publish. Design: docs/awcms/release-process.md.
+#
+# Two entry points, same job graph (docs/awcms/release-process.md §2):
+#   - push tag `v*.*.*`   -> REAL release (image :latest moved, GitHub Release published)
+#   - workflow_dispatch   -> REHEARSAL (image tag `dryrun-<sha>`, no GitHub Release, :latest untouched)
+#
+# `validate` runs identically on both triggers — rehearsal only skips the
+# ancestor-of-main guard and release:verify (both `if: github.event_name ==
+# 'push'`); `bun run check` itself always runs. See ADR-0024 for why the
+# current tag (v5.0.0) continues the pre-rebuild legacy major line.
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+  workflow_dispatch: {}
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate (read-only)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    services:
+      postgres:
+        image: postgres:18.4
+        env:
+          POSTGRES_USER: awcms
+          POSTGRES_PASSWORD: awcms_password
+          POSTGRES_DB: awcms
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U awcms"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      DATABASE_URL: postgres://awcms:awcms_password@localhost:5432/awcms
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          fetch-depth: 0
+
+      # Rilis nyata saja: tag yang commit-nya bukan ancestor origin/main
+      # ditolak sebelum apa pun dibangun (pengganti level-workflow untuk
+      # "publish hanya dari branch terproteksi" selama belum ada branch
+      # protection rule di `main`).
+      - name: Ancestor-of-main guard (real release only)
+        if: github.event_name == 'push'
+        run: |
+          git fetch origin main
+          git merge-base --is-ancestor HEAD origin/main || {
+            echo "::error::Tag ${{ github.ref_name }} bukan ancestor origin/main — ditolak."
+            exit 1
+          }
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
+        with:
+          bun-version: "1.4.2"
+
+      - name: Cache Bun install cache
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ~/.bun/install/cache
+          key: bun-${{ runner.os }}-${{ hashFiles('bun.lock') }}
+          restore-keys: |
+            bun-${{ runner.os }}-
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Verify tag matches package.json/CHANGELOG (real release only)
+        if: github.event_name == 'push'
+        run: bun run release:verify
+        env:
+          RELEASE_VERIFY_TAG: ${{ github.ref_name }}
+
+      - name: Apply migrations against validate-time Postgres
+        run: bun run db:migrate
+
+      - name: Full quality gate (bun run check)
+        # `check` includes a bare `bun test`. Several older, independent
+        # DB-gated test files (each opening their own ad-hoc connection to
+        # `DATABASE_URL`) were never designed to run concurrently against one
+        # shared, already-migrated database in a single `bun test` process —
+        # `.github/workflows/ci.yml`'s `integration-tests` job comment
+        # documents the empirically-reproduced 26-failure collision from this
+        # exact trigger (DATABASE_URL set + migrated schema + bare `bun
+        # test`). Unset DATABASE_URL for just this step so its `bun test`
+        # skips DB-gated suites cleanly, matching `ci.yml`'s `quality` job.
+        # Real DB/RLS integration coverage runs in the next, scoped step.
+        run: bun run check
+        env:
+          DATABASE_URL: ""
+
+      - name: Run DB-gated integration tests (RLS + DB role separation)
+        # Scoped to `tests/integration/` (the harness-based suite — see
+        # `tests/integration/harness.ts`), not a bare `bun test`. The legacy
+        # ad-hoc DB-gated suite runs in its own step below, in a fresh
+        # `bun test` process, to avoid the collision documented in
+        # `.github/workflows/ci.yml`'s `integration-tests` job.
+        #
+        # `--timeout 60000` is not decoration. `setupIntegrationDatabase()`
+        # creates an ephemeral database and applies EVERY file in `sql/` as a
+        # subprocess, inside `beforeAll` — which is subject to bun's 5000ms
+        # per-hook default. Thirteen files each do that, and the cost grows
+        # with every migration added, so the default is a deadline the suite
+        # was always going to cross: observed on PR #259 (run 30188228406),
+        # green on a re-run with no code change. Setup takes ~1-2s on an idle
+        # runner, so 60s is ~30x headroom and still far under the job timeout.
+        # Set here rather than per-hook in 13 files: one place to forget, not
+        # thirteen.
+        run: bun test tests/integration/ --timeout 60000
+
+      - name: Run DB-gated integration tests (legacy ad-hoc suite)
+        # These 15 files each open their own ad-hoc `Bun.SQL(DATABASE_URL)`
+        # connection to the SAME database `db:migrate` just applied above,
+        # and were designed to run together — this is what "release.yml is
+        # where these actually execute" meant before `tests/integration/`
+        # existed — but NOT concurrently with the harness-based files in one
+        # `bun test` process. Listed explicitly rather than relying on the
+        # bare `bun test` inside `bun run check` (which now runs with
+        # DATABASE_URL unset, see the step above).
+        #
+        # Kept identical to `ci.yml`'s list, and that identity is now enforced
+        # rather than intended: `tests/db-gated-suite-ci-parity.test.ts` reads
+        # BOTH workflows and both directions. The five MFA/OIDC/Turnstile/office
+        # entries below were missing from here for months — a release could go
+        # out with 36 DB-gated tests never executed anywhere.
+        run: >-
+          bun test
+          tests/audit-log-purge.test.ts
+          tests/family-conformance-db.test.ts
+          tests/keyset-pagination-precision-postgres.test.ts
+          tests/mfa-integration.test.ts
+          tests/mfa-login-e2e.test.ts
+          tests/office-directory-postgres.test.ts
+          tests/partner-delegated-access-e2e.test.ts
+          tests/oidc-integration.test.ts
+          tests/openapi-office-response-schema-postgres.test.ts
+          tests/reporting-projection-rebuild-lock.test.ts
+          tests/security-readiness-failclosed.test.ts
+          tests/security-readiness-rls.test.ts
+          tests/security-readiness-worker-setup-grants.test.ts
+          tests/sync-hmac-versioned.test.ts
+          tests/tenant-selection-e2e.test.ts
+          tests/turnstile-login-e2e.test.ts
+          tests/workflow-approval-concurrency.test.ts
+
+  build:
+    name: Build image + SBOM
+    needs: validate
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    outputs:
+      image-digest: ${{ steps.push.outputs.digest }}
+      image-ref: ${{ steps.tags.outputs.primary }}
+      image-repo: ${{ steps.tags.outputs.repo }}
+      jobs-repo: ${{ steps.tags.outputs.jobs-repo }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+
+      # `:latest` is deliberately NOT produced here. This job runs BEFORE the
+      # `release` environment approval gate, so anything it tags is public the
+      # moment the tag is pushed — with no signature and no attestation yet.
+      # Moving `:latest` from here meant every unapproved build silently became
+      # what `docker pull ghcr.io/ahliweb/awcms` returns: v8.0.0, v9.0.0,
+      # v9.1.0 and v9.1.1 all pushed images and transited `:latest` through
+      # builds that were never approved and are unsigned to this day, so a
+      # consumer running `gh attestation verify oci://…:latest` during those
+      # windows would have failed against an image the project had never
+      # published. `:latest` now moves in the `promote-latest` job below, which
+      # cannot start until the gate is approved and the digest is signed.
+      # See ADR-0117.
+      - name: Compute image tags
+        id: tags
+        run: |
+          REPO="ghcr.io/ahliweb/awcms"
+          JOBS_REPO="ghcr.io/ahliweb/awcms-jobs"
+          if [ "${{ github.event_name }}" = "push" ]; then
+            VERSION="${GITHUB_REF_NAME#v}"
+            TAGS="${REPO}:${VERSION}
+          ${REPO}:sha-${GITHUB_SHA::12}"
+            JOBS_TAGS="${JOBS_REPO}:${VERSION}
+          ${JOBS_REPO}:sha-${GITHUB_SHA::12}"
+            PRIMARY="${REPO}:${VERSION}"
+          else
+            TAGS="${REPO}:dryrun-${GITHUB_SHA::12}"
+            JOBS_TAGS="${JOBS_REPO}:dryrun-${GITHUB_SHA::12}"
+            PRIMARY="${REPO}:dryrun-${GITHUB_SHA::12}"
+          fi
+          {
+            echo "tags<<EOF"
+            echo "$TAGS"
+            echo "EOF"
+            echo "jobs-tags<<EOF"
+            echo "$JOBS_TAGS"
+            echo "EOF"
+            echo "primary=$PRIMARY"
+            echo "repo=$REPO"
+            echo "jobs-repo=$JOBS_REPO"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Setup Docker Buildx
+        uses: docker/setup-buildx-action@37fe631027851001ddb9b187196cc803df7f5f0e # v4.3.0
+
+      - name: Log in to ghcr.io
+        uses: docker/login-action@dbcb813823bdd20940b903addbd779551569679f # v4.6.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push image
+        id: push
+        uses: docker/build-push-action@53b7df96c91f9c12dcc8a07bcb9ccacbed38856a # v7.3.0
+        with:
+          context: .
+          file: Dockerfile.production
+          # Named explicitly. Without it this builds the LAST stage, so adding a
+          # stage to the Dockerfile would silently change what gets published as
+          # the application image.
+          target: runtime
+          push: true
+          tags: ${{ steps.tags.outputs.tags }}
+          provenance: false # provenance handled explicitly below (attest-build-provenance), not buildx's own
+          sbom: false # SBOM handled explicitly below (anchore/sbom-action), not buildx's own
+
+      # The runtime image carries only `dist/`, so none of the 32 registered job
+      # targets can execute in it (`bun run logs:audit:purge` →
+      # `Module not found "scripts/audit-log-purge.ts"`, verified on the running
+      # production container). The `jobs` stage is the same commit with the
+      # sources the schedulers need.
+      #
+      # It is published HERE, from the release, because the alternative was a
+      # hand-copied source snapshot on the host that did not follow releases —
+      # so after every deploy the cron ran the previous release's code against
+      # the new schema until someone remembered to refresh it, and nothing
+      # reported that.
+      - name: Build and push jobs image
+        uses: docker/build-push-action@53b7df96c91f9c12dcc8a07bcb9ccacbed38856a # v7.3.0
+        with:
+          context: .
+          file: Dockerfile.production
+          target: jobs
+          push: true
+          tags: ${{ steps.tags.outputs.jobs-tags }}
+          provenance: false
+          sbom: false
+
+      - name: SBOM — source tree
+        uses: anchore/sbom-action@3ad7283483fc7af8ff2b4ea19663c2d5ca935e26 # v0.24.2
+        with:
+          path: .
+          format: cyclonedx-json
+          output-file: sbom-source.cdx.json
+          upload-artifact: false
+
+      - name: SBOM — built image
+        uses: anchore/sbom-action@3ad7283483fc7af8ff2b4ea19663c2d5ca935e26 # v0.24.2
+        with:
+          image: ${{ steps.tags.outputs.primary }}@${{ steps.push.outputs.digest }}
+          format: cyclonedx-json
+          output-file: sbom-image.cdx.json
+          upload-artifact: false
+
+      - name: Source tarball
+        run: git archive --format=tar.gz --output=source.tar.gz HEAD
+
+      - name: Checksums
+        run: sha256sum sbom-source.cdx.json sbom-image.cdx.json source.tar.gz > CHECKSUMS.txt
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: release-artifacts
+          path: |
+            sbom-source.cdx.json
+            sbom-image.cdx.json
+            source.tar.gz
+            CHECKSUMS.txt
+          # Must outlive the `release` environment approval gate below, which has
+          # no time limit of its own. At `retention-days: 1` the v7.0.0 run died
+          # exactly this way: build finished 2026-08-05 08:43 UTC, the artifacts
+          # expired 24 h later, and the approval that arrived on 2026-08-08 hit
+          # `Artifact not found for name: release-artifacts` — a run that can
+          # never publish, with nothing in the failure text naming the cause.
+          # 30 days matches GitHub's own ceiling for how long a run may sit
+          # waiting for approval, so any gate that can still be approved now has
+          # artifacts to approve.
+          retention-days: 30
+
+  sign-attest-publish:
+    name: Sign, attest, publish
+    needs: build
+    runs-on: ubuntu-latest
+    environment: release
+    permissions:
+      contents: write # gh release create (real release only)
+      id-token: write # keyless OIDC signing/attestation
+      attestations: write
+      packages: write # cosign sign against ghcr.io digest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: release-artifacts
+
+      - name: Install cosign
+        uses: sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6 # v4.1.2
+
+      - name: Log in to ghcr.io
+        uses: docker/login-action@dbcb813823bdd20940b903addbd779551569679f # v4.6.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Keyless sign image digest
+        run: cosign sign --yes "${{ needs.build.outputs.image-ref }}@${{ needs.build.outputs.image-digest }}"
+
+      - name: Attest build provenance — image
+        uses: actions/attest-build-provenance@4d101475d8b20a2381f78447822ac1eab6504dd8 # v4.2.2
+        with:
+          subject-name: ${{ needs.build.outputs.image-repo }}
+          subject-digest: ${{ needs.build.outputs.image-digest }}
+          push-to-registry: true
+
+      - name: Attest build provenance — source artifacts
+        uses: actions/attest-build-provenance@4d101475d8b20a2381f78447822ac1eab6504dd8 # v4.2.2
+        with:
+          subject-path: |
+            CHECKSUMS.txt
+            sbom-source.cdx.json
+            source.tar.gz
+
+      # `actions/attest-sbom` is deprecated — it emitted a deprecation warning on
+      # the v10.0.2 run and GitHub's notice names `actions/attest` as the
+      # replacement. The generic action takes the same `sbom-path` input and
+      # produces the same SBOM attestation, so this is an action swap, not a
+      # change of what gets attested.
+      - name: Attest SBOM — image
+        uses: actions/attest@1e69f48acb82d1966a394da916b4c1698aa569d6 # v4.2.2
+        with:
+          subject-name: ${{ needs.build.outputs.image-repo }}
+          subject-digest: ${{ needs.build.outputs.image-digest }}
+          sbom-path: sbom-image.cdx.json
+          push-to-registry: true
+
+      - name: Extract CHANGELOG section for this version (real release only)
+        if: github.event_name == 'push'
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          VERSION_RE=$(printf '%s' "$VERSION" | sed 's/[.[\*^$]/\\&/g')
+          awk -v ver="$VERSION_RE" '
+            $0 ~ "^## \\[?" ver "\\]?[[:space:]]*$" { found=1; next }
+            found && /^## / { exit }
+            found { print }
+          ' CHANGELOG.md > release-notes.md
+
+          # GitHub rejects a release body over 125,000 characters with a bare
+          # `HTTP 422: body is too long`, AFTER signing, attestation, and the
+          # image push have already succeeded — so the run dies with a published,
+          # signed, attested image and no release to point at it. v7.0.0's
+          # section was 186,449 characters and failed exactly here; v6.0.0's was
+          # 103,262, so the ceiling had been approaching for several releases
+          # without anything reporting the distance to it.
+          #
+          # Budget in BYTES against a 125,000-CHARACTER ceiling: for UTF-8 bytes
+          # are always >= characters, so a byte budget can only ever undercount,
+          # never overshoot. The margin also covers the footer appended below.
+          LIMIT=118000
+          SIZE=$(wc -c < release-notes.md)
+          echo "release notes: ${SIZE} bytes (ceiling 125000 chars)"
+          if [ "$SIZE" -gt "$LIMIT" ]; then
+            echo "::warning::Release notes ${SIZE} B exceed ${LIMIT} B; truncating. Full text stays in CHANGELOG.md."
+            # head -c can split a UTF-8 sequence; cut back to the last complete
+            # line so the body never ends mid-character or mid-markdown.
+            head -c "$LIMIT" release-notes.md | head -n -1 > release-notes.trunc.md
+            {
+              printf '\n\n---\n\n'
+              printf '**Catatan rilis dipotong.** Isi lengkapnya %s karakter, di atas batas %s karakter milik GitHub.\n\n' "$SIZE" "125000"
+              printf 'Teks utuh: [CHANGELOG.md pada %s](https://github.com/%s/blob/%s/CHANGELOG.md)\n' \
+                "${GITHUB_REF_NAME}" "${GITHUB_REPOSITORY}" "${GITHUB_REF_NAME}"
+            } >> release-notes.trunc.md
+            mv release-notes.trunc.md release-notes.md
+            echo "truncated to $(wc -c < release-notes.md) bytes"
+          fi
+
+      # ADR-0119. `gh release create` without `--latest` inherits GitHub's
+      # default, and that default assumes releases only ever move FORWARD. This
+      # repo breaks that assumption by design: the `release` environment gate
+      # can hold a run for days, so releases can publish OUT OF VERSION ORDER.
+      # On 28 August 2026 approving the parked `v10.0.0`/`v10.0.1` runs moved
+      # the "Latest" badge off `v10.0.4` and onto a version four releases stale.
+      # The flag is therefore DECIDED, never inherited.
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
+        with:
+          bun-version: "1.4.2"
+
+      - name: Decide the "Latest" badge for this release
+        id: latest_flag
+        if: github.event_name == 'push'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          flag=$(gh release list --limit 200 \
+                   --json tagName,isPrerelease,isDraft \
+                 | bun scripts/release-latest-flag.ts "${GITHUB_REF_NAME}")
+          echo "value=${flag}" >> "$GITHUB_OUTPUT"
+
+      - name: Publish GitHub Release (real release only)
+        if: github.event_name == 'push'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "${{ github.ref_name }}" \
+            --title "${{ github.ref_name }}" \
+            --latest="${{ steps.latest_flag.outputs.value }}" \
+            --notes-file release-notes.md \
+            CHECKSUMS.txt sbom-source.cdx.json sbom-image.cdx.json source.tar.gz
+
+      # The step that looks redundant. ADR-0117's amendment exists because the
+      # mechanism chosen to guarantee a property broke it on first run, and the
+      # only reason that was caught in the release that introduced it — rather
+      # than by a consumer weeks later — was a re-read nobody thought necessary.
+      # Same reasoning, same shape: assert what the badge ACTUALLY says.
+      - name: Verify the badge landed where it was decided
+        if: github.event_name == 'push'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          actual=$(gh api "repos/${GITHUB_REPOSITORY}/releases/latest" --jq .tag_name)
+          want='${{ steps.latest_flag.outputs.value }}'
+          echo "decided latest=${want}; /releases/latest now reports ${actual}"
+
+          if [ "$want" = "true" ] && [ "$actual" != "${GITHUB_REF_NAME}" ]; then
+            echo "::error::decided Latest for ${GITHUB_REF_NAME} but the badge is on ${actual}"
+            exit 1
+          fi
+
+          if [ "$want" = "false" ] && [ "$actual" = "${GITHUB_REF_NAME}" ]; then
+            echo "::error::${GITHUB_REF_NAME} took the Latest badge it was denied — a superseded version is now what consumers resolve"
+            exit 1
+          fi
+
+  # ADR-0117. `:latest` used to be produced by `build`, which runs before the
+  # approval gate — so it moved whether or not anyone ever approved the release.
+  # It lives in its own job rather than in `sign-attest-publish` for the same
+  # reason that job exists at all (see its comment): `id-token`/`attestations`
+  # are JOB-scoped, so the fewer steps that sit in the job holding them, the
+  # smaller the surface that can mint an OIDC token. This job needs only
+  # `packages: write`, and `needs: sign-attest-publish` already makes it
+  # unreachable until the gate is approved — no second `environment:` needed.
+  #
+  # Ordering is deliberate: this runs AFTER the GitHub Release is published, not
+  # before. Both orderings keep `:latest` signed, but the failure modes are not
+  # equal — the release-notes step is the one that has actually failed in this
+  # pipeline before (v7.0.0 died there on a 186,449-character body, after the
+  # image was already pushed). Promoting last means such a failure leaves
+  # `:latest` on the previous release rather than pointing at a version with no
+  # Release to describe it.
+  promote-latest:
+    name: Point :latest at the published release
+    needs: [build, sign-attest-publish]
+    # Real releases only. A rehearsal must never move `:latest` — that is the
+    # property that lets `workflow_dispatch` be run against any ref safely.
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      # Retagging is a REGISTRY operation here, not a Docker one — see the step
+      # below for why. No buildx, no daemon, no `docker login`: the only
+      # credential needed is a ghcr bearer token minted from GITHUB_TOKEN.
+      - name: Point :latest at the released digest
+        env:
+          APP_REPO: ${{ needs.build.outputs.image-repo }}
+          JOBS_REPO: ${{ needs.build.outputs.jobs-repo }}
+          APP_DIGEST: ${{ needs.build.outputs.image-digest }}
+          GHCR_USER: ${{ github.actor }}
+          GHCR_PASS: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          VERSION="${GITHUB_REF_NAME#v}"
+
+          # `docker buildx imagetools create` CANNOT do this job, and the v10.0.3
+          # release is the proof: it always emits a NEW manifest list wrapping
+          # its sources, so `:latest` landed on a freshly-serialised index
+          # (sha256:5dde705e…) instead of the signed manifest
+          # (sha256:d5423378…). Same layers, different digest — and an
+          # attestation is bound to a DIGEST, so `gh attestation verify
+          # oci://…:latest` failed against a release whose `:10.0.3` verified
+          # fine. That is precisely the condition ADR-0117 exists to prevent,
+          # reintroduced by the mechanism chosen to prevent it.
+          #
+          # A tag is just a name the registry maps to manifest bytes, so the
+          # digest-preserving retag is: GET the manifest, PUT the SAME bytes
+          # under the new name. Byte-identical content hashes identically, so
+          # `:latest` cannot land anywhere but the signed digest. Uses only curl
+          # and jq (both present on the runner) — no extra action in a job that
+          # holds `packages: write`.
+          retag() {
+            local repo="$1" src="$2" dst="$3" path token ct
+            path="${repo#ghcr.io/}"
+
+            token=$(curl -fsSL -u "${GHCR_USER}:${GHCR_PASS}" \
+              "https://ghcr.io/token?service=ghcr.io&scope=repository:${path}:pull,push" | jq -r .token)
+
+            # Ask for every manifest media type; echo back whatever came, so an
+            # index and a single manifest are both carried through untouched.
+            ct=$(curl -fsSL -o manifest.json -D - \
+              -H "Authorization: Bearer ${token}" \
+              -H 'Accept: application/vnd.oci.image.index.v1+json' \
+              -H 'Accept: application/vnd.docker.distribution.manifest.list.v2+json' \
+              -H 'Accept: application/vnd.oci.image.manifest.v1+json' \
+              -H 'Accept: application/vnd.docker.distribution.manifest.v2+json' \
+              "https://ghcr.io/v2/${path}/manifests/${src}" \
+              | tr -d '\r' | awk 'tolower($1)=="content-type:"{print $2}' | tail -1)
+
+            test -n "$ct"
+            curl -fsSL -X PUT \
+              -H "Authorization: Bearer ${token}" \
+              -H "Content-Type: ${ct}" \
+              --data-binary @manifest.json \
+              "https://ghcr.io/v2/${path}/manifests/${dst}" >/dev/null
+            rm -f manifest.json
+          }
+
+          # The app image is bound by DIGEST — the one `cosign sign` and both
+          # attest steps were given — so it cannot drift even if something else
+          # moved the version tag in between.
+          retag "${APP_REPO}" "${APP_DIGEST}" latest
+
+          # The jobs image's digest is not exported as a job output, so it is
+          # bound by its immutable `:${VERSION}` tag — written once per release
+          # and never reused, since `release:verify` rejects a tag whose version
+          # does not match `package.json`.
+          retag "${JOBS_REPO}" "${VERSION}" latest
+
+      # This step is why the v10.0.3 defect was caught in the release that
+      # introduced it rather than by a consumer weeks later. It stays.
+      - name: Verify :latest resolves to the signed digest
+        env:
+          APP_REPO: ${{ needs.build.outputs.image-repo }}
+          APP_DIGEST: ${{ needs.build.outputs.image-digest }}
+          GHCR_USER: ${{ github.actor }}
+          GHCR_PASS: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          path="${APP_REPO#ghcr.io/}"
+          token=$(curl -fsSL -u "${GHCR_USER}:${GHCR_PASS}" \
+            "https://ghcr.io/token?service=ghcr.io&scope=repository:${path}:pull" | jq -r .token)
+
+          # Read the digest the REGISTRY reports for the tag (Docker-Content-Digest),
+          # rather than anything a local tool re-computes.
+          ACTUAL=$(curl -fsSL -I \
+            -H "Authorization: Bearer ${token}" \
+            -H 'Accept: application/vnd.oci.image.index.v1+json' \
+            -H 'Accept: application/vnd.docker.distribution.manifest.list.v2+json' \
+            -H 'Accept: application/vnd.oci.image.manifest.v1+json' \
+            -H 'Accept: application/vnd.docker.distribution.manifest.v2+json' \
+            "https://ghcr.io/v2/${path}/manifests/latest" \
+            | tr -d '\r' | awk 'tolower($1)=="docker-content-digest:"{print $2}' | tail -1)
+
+          echo "latest -> ${ACTUAL}"
+          echo "signed -> ${APP_DIGEST}"
+          if [ "$ACTUAL" != "$APP_DIGEST" ]; then
+            echo "::error::${APP_REPO}:latest resolves to ${ACTUAL}, not the signed digest ${APP_DIGEST}."
+            exit 1
+          fi

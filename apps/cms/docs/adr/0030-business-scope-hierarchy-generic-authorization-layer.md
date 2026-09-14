@@ -1,0 +1,52 @@
+🇬🇧 English (source) · 🇮🇩 [Bahasa Indonesia](0030-business-scope-hierarchy-generic-authorization-layer.id.md)
+
+# ADR-0030 — Business-scope hierarchy as a generic authorization layer for multi-entity ERP
+
+- **Status:** Accepted
+- **Date:** 2026-07-19
+- **Decision maker:** maintainer
+- **Related:** Issue #180, epic #177 (derived ERP foundation readiness, Wave 2 authorization); ADR-0011 (capability port); ADR-0025 (module composition seam #178); ADR-0026 (modular OpenAPI); doc `docs/awcms/derived-application-guide.md`; port from awcms-mini Issue #746 (adapted, not copied). #179 (dynamic ABAC evaluator) and #181 (segregation of duties) are separate issues — see "Scope boundaries".
+
+## Context
+
+ERP authorization is not enough with tenant + role. An actor is usually bounded by legal entity, company, branch, office, department, cost center, warehouse, or project. AWCMS has tenants/offices + baseline ABAC, but does not yet have a generic business-scope model that the policy evaluator and derived ERP applications can consume — **without** pulling real ERP domain entities (chart of accounts, warehouse, etc.) into the base.
+
+This foundation is already mature in awcms-mini (Issue #746), but in mini business-scope and segregation-of-duties (SoD) were built **together** and are intertwined, and mini also carries an `organization_structure` module (legal-entity/organization-unit) as a concrete consumer. For this base the two must be split apart.
+
+## Decision
+
+Port **only the generic business-scope foundation** from mini and leave a clean seam for SoD, with the following decisions:
+
+1. **No scope-definition table in the base.** `scope_type text` + `scope_id uuid` is a **generic reference**, not an FK into any organisation module's table. The validity and ancestry of a `(scope_type, scope_id)` is resolved in the application layer via the capability port `BusinessScopeHierarchyPort` (`src/modules/_shared/ports/business-scope-hierarchy-port.ts`, ADR-0011), which is provided by the **derived application**. The base never depends on an organisation domain module.
+2. **The base ships a default no-op resolver** (`business-scope-hierarchy-port-adapter.ts`) that returns `resolved: false` for **every** scope type (the base owns no real hierarchy). The deliberate fail-closed consequence: in a base-only deployment with no derived provider, `createBusinessScopeAssignment` always rejects with `scope_unresolved`, and high-risk actions gated on scope are always denied. The fixture `tests/fixtures/example-domain-modules/` ships a dummy in-memory resolver that proves exact/descendant/ancestor resolution without a real domain module.
+3. **Subject→scope assignment is tenant-scoped, RLS `ENABLE`+`FORCE`** (`awcms_business_scope_assignments` + append-only `awcms_business_scope_assignment_events`). Every subject/role/actor FK is a **composite FK `(tenant_id, …)`** to `UNIQUE (tenant_id, id)` — because PostgreSQL referential integrity checks run as the table owner and **bypass RLS** (GHSA-r7cx-c4jh-cvvw / sql/020), a single-column FK can point at another tenant's row even with FORCE on. Cross-tenant references are rejected in **TWO layers**: the DB constraint (subject/role) + application/port validation (scope_id, which has no FK table).
+4. **Scope relations: exact, descendant, ancestor, tenant-wide.** Integrated as an optional `businessScopeFacts` parameter on `evaluateAccess` (`domain/access-control.ts`). A request opts in via `resourceAttributes.requiredScopeType`/`.requiredScopeId` (+ `requiredScopeRelations`, default `["exact"]`). The subject's scope facts are resolved beforehand by the caller (`business-scope-facts.ts`) — the evaluator function stays pure/I/O-free. `tenant` is a reserved `scopeType` for tenant-wide grants.
+5. **Unknown scope type / unresolved scope / stale hierarchy → default-DENY for high-risk actions.** `resolved: false` is **different** from "resolved with an empty ancestor list": it is never treated as "no restriction". Descendant/ancestor coverage only comes from `resolved` facts (the ancestor/descendant lists are forced empty when `resolved: false`), and even exact-match for high-risk actions requires `resolved: true`. The `resolved:false → deny` predicate is proven by mutation testing (RED when removed).
+6. **Effective dating is enforced; revocation/expiry takes effect IMMEDIATELY.** `isBusinessScopeAssignmentCurrentlyActive(row, now)` is the authoritative gate (status is only a cache); an `active` row whose `effective_to` has passed or whose `effective_from` has not yet arrived does **not** become a fact — without waiting for the expiry job. The scheduled job (`identity-access:business-scope:expiry`, sql/027 worker grants) only flips `status` and writes the event/audit as housekeeping.
+7. **Every create/assign/revoke/expire is audited** (`awcms_audit_events`, no sensitive data). Self-grant (grantor == subject) is rejected in the application layer.
+8. **Capability wiring #178.** `identity_access` declares `capabilities.consumes` for `business_scope_hierarchy` (`optional: true`, `providedBy: "organization_structure"` — the canonical provider lives in the derived ERP application, **not** in the base). The derived fixture module (`example_crm`) declares `provides: ["business_scope_hierarchy"]` and ships a dummy adapter — proving the seam end-to-end without a domain module in the base.
+9. **Base-side fail-closed guard over the derived adapter (review F1).** The hierarchy adapter is provided by the derived application and is **not trusted** from the base side. `resolveBusinessScopeFacts` wraps every `resolveScope()` call with (a) a **wall-clock timeout** (`AUTH_BUSINESS_SCOPE_HIERARCHY_TIMEOUT_MS`, default 500ms) → a timeout is treated as `resolved: false` (deny, not coverage), and (b) a **combined length cap** on ancestors+descendants (`AUTH_BUSINESS_SCOPE_HIERARCHY_MAX_RELATED_SCOPES`, default 5000) → exceeding the cap is treated as `resolved: false`. Both are defence-in-depth on top of the bounded/cycle obligations in the port contract.
+10. **Reject the reserved scope_type `tenant` on the create path (review F2).** `business-scope-facts.ts` short-circuits `scope_type === "tenant"` into tenant-wide coverage **without** calling the port. So that a permissive derived adapter can never mint a stored `tenant` grant that bypasses scope validation, create rejects the reserved scope_type as a validation error (structural, in `domain/business-scope-assignment.ts`, independent of any resolver).
+11. **Self-grant is checked BEFORE I/O (review F3).** The self-grant deny (grantor == subject) runs ahead of any DB read or port call — the identity guard precedes external I/O, and `SELF_GRANT_DENIED` stays reachable in a base-only deployment (where the no-op resolver would otherwise short the request to `SCOPE_UNRESOLVED` first).
+
+## Scope boundaries (what was DELIBERATELY not ported)
+
+- **Segregation of Duties (#181).** In mini, `business-scope-assignment-service.ts` evaluates SoD conflicts, and the expiry job also expires `sod_conflict_exceptions`. All of that is **stripped** here: grants are persisted + audited **without** conflict detection. The seam is left behind with a clear comment in the service (`// SoD SEAM (#181)`) and in the facts (`resolveSoDAssignmentFacts` is not ported). The `sod_conflict_exceptions`/`sod_conflict_evaluations` tables and the `exceptions/*`/`conflicts/*` routes are **not** created.
+- **The `organization-structure` module.** The concrete ERP module (legal-entity/organization-unit + its schema/routes) lives in the derived application, not in the base. It is only referenced as the canonical `providedBy` (a metadata string), never imported.
+- **Full evaluator integration (#179).** `businessScopeFacts` is threaded through `authorizeInTransaction` as an optional backward-compatible seam; integration into the full dynamic ABAC policy is #179.
+
+## Consequences
+
+- Two new tables with RLS `ENABLE`+`FORCE`; `awcms_tenant_users`/`awcms_roles` gain `UNIQUE (tenant_id, id)` (free on top of the PK) as composite-FK targets. Cross-tenant denial is proven under the non-superuser role `awcms_app` (`tests/integration/business-scope.integration.test.ts`).
+- `evaluateAccess` gains an optional 4th parameter (`businessScopeFacts`) — 100% backward-compatible; every existing call site (which does not set `requiredScope*`) is unchanged in behaviour. The tenant-isolation and self-approval guards are not regressed (both mutation-tested RED).
+- A new job `identity-access:business-scope:expiry` is registered in `identity_access` module.ts + package.json; the worker grant policy in `scripts/security-readiness.ts` is extended by two tables.
+- Two new endpoints (`GET`/`POST /api/v1/identity/business-scope/assignments`, `POST …/{id}/revoke`) in the `identity-access` OpenAPI fragment, bundle+docs regenerated.
+- **Residual (honestly):** cycle/depth detection lives in the **port contract** (every adapter must be bounded + cycle-safe) — the base cannot enforce it for a derived adapter; only the fixture dummy resolver proves boundedness in the base. Heterogeneous ancestry (`{scopeType, scopeId}`, not `string[]`) is already supported so that cross-type chains (unit → legal_entity) are valid.
+- **Honest boundary of guard F1:** the wall-clock timeout only bounds an adapter that **AWAITs** I/O (e.g. a SQL query — also bounded by Postgres `statement_timeout`). An **endless synchronous CPU loop** inside a derived adapter **cannot** be interrupted from JavaScript: the event loop never returns so the timer never fires, and the `resolveScope()` call itself blocks before `Promise.race` is even installed. That case remains the derived application's responsibility (stated in code + in the guide). The length cap still applies once resolution returns.
+
+## Rejected alternatives
+
+- **Bringing the `organization_structure` tables into the base** — violates the "no ERP domain in the base" principle (epic #177); the real hierarchy belongs to the derived application.
+- **Porting SoD at the same time** — locks the base into one SoD model before #181 decides it; the scope of #180 is the foundation only.
+- **A default resolver that reads `awcms_offices`** (like mini) — would make the base "office" the only live scope, mixing a concrete consumer into the generic layer; the base chooses a pure no-op + a derived seam.
+- **Putting hierarchy resolution inside `evaluateAccess`** — would make the ABAC decision function do I/O; facts are resolved outside, the evaluator stays pure.

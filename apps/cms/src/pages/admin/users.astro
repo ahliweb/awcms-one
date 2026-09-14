@@ -1,0 +1,606 @@
+---
+/**
+ * User (tenant users) management screen (Issue #166 read + Issue #171 writes).
+ * SSR-reads via the same `listTenantUsers` the `GET /api/v1/users` endpoint
+ * uses, gated on `identity_access.access_control.read`. Login identifiers are
+ * masked (PII) both in the render and everywhere they are logged.
+ *
+ * Write controls (Issue #171), each UX-gated on the permission its endpoint
+ * enforces (the endpoint guard is the real authority — the gate only hides
+ * controls a user cannot use):
+ *  - activate / deactivate a user (`PATCH /api/v1/users/{id}`), gated on
+ *    `identity_access.access_control.configure`.
+ *  - assign / unassign a role (`POST` / `DELETE /api/v1/access/assignments`),
+ *    gated on `identity_access.access_control.assign`.
+ *
+ * `listTenantUsers` returns each user's assigned role CODES; the unassign
+ * endpoint needs the role ID, so we resolve code → id here from `listRoles`.
+ */
+import AdminLayout from "../../layouts/AdminLayout.astro";
+import "../../styles/admin-screens.css";
+import { loadAdminScreen } from "../../lib/auth/admin-screen";
+import { logAdminPageError } from "../../lib/logging/error-log";
+import { getTranslatorFor } from "../../lib/i18n";
+import {
+  listRoles,
+  listTenantUsers,
+  type RoleView,
+  type TenantUserView
+} from "../../modules/identity-access/application/access-directory";
+
+const ssr = Astro.locals.ssrContext!;
+const { t, tn } = getTranslatorFor(Astro.locals.locale);
+
+// Issue #450 — the entry decision and the read share ONE transaction, and the
+// decision is the chokepoint's. This screen lists who holds what in the tenant,
+// so a `deny` a tenant wrote about `access_control` now applies to READING the
+// roster, not only to changing it.
+const screen = await loadAdminScreen({
+  ssr,
+  workClass: "interactive",
+  authorize: {
+    moduleKey: "identity_access",
+    activityCode: "access_control",
+    action: "read"
+  },
+  load: async ({ tx, can }) => ({
+    // One transaction, one awaited query at a time. Concurrent queries on a
+    // single transaction connection leak it, so nothing here runs in parallel.
+    users: await listTenantUsers(tx, ssr.tenantId),
+    roles: await listRoles(tx, ssr.tenantId),
+    canConfigure: await can({
+      moduleKey: "identity_access",
+      activityCode: "access_control",
+      action: "configure"
+    }),
+    canAssign: await can({
+      moduleKey: "identity_access",
+      activityCode: "access_control",
+      action: "assign"
+    }),
+    // Gelombang 2 PR 2.2 (#423) — two SEPARATE keys, asked separately, because
+    // they are separately grantable on purpose: an incident responder may hold
+    // `revoke` without `read`, and the page must then show the button that ends
+    // sessions and NOT the one that lists them.
+    canReadSessions: await can({
+      moduleKey: "identity_access",
+      activityCode: "user_sessions",
+      action: "read"
+    }),
+    canRevokeSessions: await can({
+      moduleKey: "identity_access",
+      activityCode: "user_sessions",
+      action: "revoke"
+    })
+  }),
+  onError: (error) => {
+    logAdminPageError(
+      "admin/users.astro: failed to load the tenant user directory",
+      error,
+      { correlationId: Astro.locals.correlationId }
+    );
+  }
+});
+
+const canRead = screen.state !== "denied";
+// A pool/circuit-breaker refusal is NOT "this tenant has no users" and NOT a
+// denial — an empty roster would be a lie about who holds access.
+const loadError = screen.state === "error";
+const users: TenantUserView[] =
+  screen.state === "allowed" ? screen.data.users : [];
+const roles: RoleView[] = screen.state === "allowed" ? screen.data.roles : [];
+const canConfigure = screen.state === "allowed" && screen.data.canConfigure;
+const canAssign = screen.state === "allowed" && screen.data.canAssign;
+const canReadSessions =
+  screen.state === "allowed" && screen.data.canReadSessions;
+const canRevokeSessions =
+  screen.state === "allowed" && screen.data.canRevokeSessions;
+
+// role code -> role id, so a user's assigned role codes can be turned into
+// removable controls carrying the id the unassign endpoint expects.
+const roleIdByCode = new Map(roles.map((role) => [role.roleCode, role.id]));
+const showActions =
+  canConfigure || canAssign || canReadSessions || canRevokeSessions;
+---
+
+<AdminLayout
+  title={t("Users")}
+  description={t(
+    "Tenant users, their status, and their assigned roles. Login identifiers are masked here \u2014 they are personal data and are never shown in full in a list view."
+  )}
+>
+  {
+    !canRead && (
+      <p class="state-notice fade-in-up" id="users-denied">
+        {t("You do not have permission to view users.")}
+      </p>
+    )
+  }
+
+  {
+    canRead && loadError && (
+      <p class="state-notice fade-in-up" id="users-error">
+        {t("Users could not be loaded right now. Please try again later.")}
+      </p>
+    )
+  }
+
+  {
+    canRead && !loadError && (
+      <>
+        <p
+          id="users-action-error"
+          class="admin-create-error"
+          role="alert"
+          hidden
+        />
+        <div class="data-table-scroll fade-in-up">
+          <table class="data-table data-table--stack" id="users-table">
+            <caption>
+              {tn("{count} user", "{count} users", users.length, {
+                count: users.length
+              })}
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">{t("Login identifier")}</th>
+                <th scope="col">{t("Status")}</th>
+                <th scope="col">{t("Roles")}</th>
+                {showActions && <th scope="col">{t("Actions")}</th>}
+              </tr>
+            </thead>
+            <tbody>
+              {users.length === 0 ? (
+                <tr>
+                  <td class="data-table-empty" colspan={showActions ? 4 : 3}>
+                    <div class="empty-state">
+                      <span class="empty-state-icon" aria-hidden="true">
+                        ◑
+                      </span>
+                      <span class="empty-state-title">{t("No users yet")}</span>
+                      <span class="empty-state-text">
+                        {t(
+                          "Users provisioned for this tenant will appear here."
+                        )}
+                      </span>
+                    </div>
+                  </td>
+                </tr>
+              ) : (
+                users.map((user) => (
+                  <>
+                    <tr>
+                      <td data-label="Login identifier">
+                        <span class="cell-code">
+                          {user.loginIdentifierMasked}
+                        </span>
+                      </td>
+                      <td data-label="Status">
+                        <span
+                          class="status-badge"
+                          data-variant={
+                            user.status === "active" ? "success" : "neutral"
+                          }
+                        >
+                          <span class="status-dot" aria-hidden="true" />
+                          {user.status}
+                        </span>
+                      </td>
+                      <td data-label="Roles" class="stacked-block">
+                        {user.roles.length === 0 ? (
+                          <span class="cell-muted">—</span>
+                        ) : (
+                          <ul class="role-chip-list">
+                            {user.roles.map((code) => (
+                              <li>
+                                <span class="role-chip">{code}</span>
+                                {canAssign && roleIdByCode.has(code) && (
+                                  <button
+                                    type="button"
+                                    class="link-button js-unassign-role"
+                                    data-user-id={user.id}
+                                    data-role-id={roleIdByCode.get(code)}
+                                    aria-label={`Remove role ${code}`}
+                                  >
+                                    {t("Remove")}
+                                  </button>
+                                )}
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </td>
+                      {showActions && (
+                        <td data-label="Actions" class="stacked-block">
+                          <div class="row-actions">
+                            {canConfigure && (
+                              <button
+                                type="button"
+                                class="module-toggle js-user-status"
+                                data-user-id={user.id}
+                                data-next-status={
+                                  user.status === "active"
+                                    ? "inactive"
+                                    : "active"
+                                }
+                              >
+                                {user.status === "active"
+                                  ? "Deactivate"
+                                  : "Activate"}
+                              </button>
+                            )}
+                            {canAssign && roles.length > 0 && (
+                              <span class="assign-role-control">
+                                <label
+                                  class="visually-hidden"
+                                  for={`assign-role-${user.id}`}
+                                >
+                                  {t("Role to assign")}
+                                </label>
+                                <select
+                                  id={`assign-role-${user.id}`}
+                                  class="js-assign-role-select"
+                                >
+                                  {roles.map((role) => (
+                                    <option value={role.id}>
+                                      {role.roleCode}
+                                    </option>
+                                  ))}
+                                </select>
+                                <button
+                                  type="button"
+                                  class="module-toggle js-assign-role"
+                                  data-user-id={user.id}
+                                  data-select-id={`assign-role-${user.id}`}
+                                >
+                                  {t("Assign")}
+                                </button>
+                              </span>
+                            )}
+                            {canReadSessions && (
+                              <button
+                                type="button"
+                                class="module-toggle js-user-sessions"
+                                data-user-id={user.id}
+                                aria-expanded="false"
+                                aria-controls={`sessions-${user.id}`}
+                              >
+                                {t("Sessions")}
+                              </button>
+                            )}
+                            {canRevokeSessions && (
+                              <button
+                                type="button"
+                                class="module-toggle js-user-sessions-revoke"
+                                data-user-id={user.id}
+                              >
+                                {t("Sign out everywhere")}
+                              </button>
+                            )}
+                          </div>
+                        </td>
+                      )}
+                    </tr>
+                    {canReadSessions && (
+                      <tr
+                        class="session-panel-row"
+                        id={`sessions-${user.id}`}
+                        hidden
+                      >
+                        <td colspan={4}>
+                          <p
+                            class="cell-muted js-session-status"
+                            data-user-id={user.id}
+                            role="status"
+                          />
+                          <ul
+                            class="session-list js-session-list"
+                            data-user-id={user.id}
+                          />
+                        </td>
+                      </tr>
+                    )}
+                  </>
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
+      </>
+    )
+  }
+</AdminLayout>
+
+<script>
+  // Bundled unconditionally (Astro hoists every `<script>` at build time). The
+  // import forces Astro to emit this EXTERNAL, where the app's
+  // `default-src 'self'` CSP allows it — an import-free script would inline and
+  // be blocked. See admin-form-client.ts. Handlers are attached via event
+  // delegation so they bind whether or not any given control rendered.
+  import {
+    messageBox,
+    mutateAndReload,
+    onAction,
+    sendJson
+  } from "../../lib/ui/admin-form-client";
+
+  const actionError = messageBox("users-action-error");
+
+  type SessionSummary = {
+    id: string;
+    issuedAt: string;
+    expiresAt: string;
+    assuranceLevel: string;
+    originAuth: string;
+    clientIpHash: string | null;
+    userAgentSummary: string | null;
+    isCallerSession: boolean;
+  };
+
+  /**
+   * Reads one tenant user's live sessions. Page-local rather than a shared
+   * helper: this is a GET whose whole purpose is the body, and the shared
+   * helpers all send one.
+   */
+  async function fetchSessions(
+    userId: string
+  ): Promise<SessionSummary[] | null> {
+    try {
+      const response = await fetch(`/api/v1/users/${userId}/sessions`, {
+        credentials: "same-origin"
+      });
+      const payload = (await response.json().catch(() => null)) as {
+        success?: boolean;
+        data?: { sessions?: SessionSummary[] };
+      } | null;
+
+      if (response.ok && payload?.success === true) {
+        return payload.data?.sessions ?? [];
+      }
+      return null;
+    } catch {
+      return null;
+    }
+  }
+
+  /**
+   * Built with `createElement` + `textContent`, never `innerHTML`. Every field
+   * here is server-derived and already coarse (`summarizeUserAgent` emits a
+   * bounded label, `clientIpHash` is hex), but a list of session metadata is
+   * exactly the kind of surface where "it is safe today" quietly stops being
+   * true, and the safe construction costs nothing.
+   */
+  function renderSessions(list: HTMLUListElement, sessions: SessionSummary[]) {
+    list.replaceChildren();
+
+    for (const session of sessions) {
+      const item = document.createElement("li");
+      item.className = "session-list-item";
+
+      const when = document.createElement("span");
+      when.className = "cell-code";
+      when.textContent = new Date(session.issuedAt).toLocaleString();
+      item.append(when);
+
+      const details = document.createElement("span");
+      details.className = "cell-muted";
+      details.textContent = [
+        session.userAgentSummary ?? "unknown device",
+        session.originAuth,
+        session.assuranceLevel,
+        // Null when the deployment has no stable hash key — say so rather than
+        // rendering an empty gap the reader has to interpret.
+        session.clientIpHash
+          ? `ip ${session.clientIpHash.slice(0, 12)}`
+          : "ip not recorded",
+        session.isCallerSession ? "this session" : null
+      ]
+        .filter((part) => part !== null)
+        .join(" · ");
+      item.append(details);
+
+      list.append(item);
+    }
+  }
+
+  onAction(".js-user-sessions", async (button) => {
+    const userId = button.dataset.userId;
+    if (!userId) return;
+
+    const panel = document.getElementById(`sessions-${userId}`);
+    const list = panel?.querySelector(".js-session-list");
+    const status = panel?.querySelector(".js-session-status");
+    if (!panel || !(list instanceof HTMLUListElement) || !status) return;
+
+    if (!panel.hidden) {
+      panel.hidden = true;
+      button.setAttribute("aria-expanded", "false");
+      return;
+    }
+
+    panel.hidden = false;
+    button.setAttribute("aria-expanded", "true");
+    status.textContent = "Loading sessions…";
+    list.replaceChildren();
+
+    const sessions = await fetchSessions(userId);
+
+    if (sessions === null) {
+      status.textContent = "Sessions could not be loaded.";
+      return;
+    }
+
+    status.textContent =
+      sessions.length === 0
+        ? "No live sessions."
+        : `${sessions.length} live session(s).`;
+    renderSessions(list, sessions);
+  });
+
+  onAction(".js-user-sessions-revoke", async (button) => {
+    const userId = button.dataset.userId;
+    if (!userId) return;
+
+    await mutateAndReload(
+      button,
+      actionError,
+      () => sendJson("POST", `/api/v1/users/${userId}/sessions/revoke-all`),
+      "Could not end this user's sessions. Please try again."
+    );
+  });
+
+  onAction(".js-user-status", async (button) => {
+    const userId = button.dataset.userId;
+    const nextStatus = button.dataset.nextStatus;
+    if (!userId || !nextStatus) return;
+
+    await mutateAndReload(
+      button,
+      actionError,
+      () =>
+        sendJson("PATCH", `/api/v1/users/${userId}`, { status: nextStatus }),
+      "Could not update the user status. Please try again."
+    );
+  });
+
+  onAction(".js-assign-role", async (button) => {
+    const userId = button.dataset.userId;
+    const selectId = button.dataset.selectId;
+    if (!userId || !selectId) return;
+    const select = document.getElementById(
+      selectId
+    ) as HTMLSelectElement | null;
+    const roleId = select?.value;
+    if (!roleId) return;
+
+    await mutateAndReload(
+      button,
+      actionError,
+      () =>
+        sendJson("POST", "/api/v1/access/assignments", {
+          tenantUserId: userId,
+          roleId
+        }),
+      "Could not assign the role. It may already be assigned."
+    );
+  });
+
+  onAction(".js-unassign-role", async (button) => {
+    const userId = button.dataset.userId;
+    const roleId = button.dataset.roleId;
+    if (!userId || !roleId) return;
+
+    await mutateAndReload(
+      button,
+      actionError,
+      () =>
+        sendJson("DELETE", "/api/v1/access/assignments", {
+          tenantUserId: userId,
+          roleId
+        }),
+      "Could not remove the role. Please try again."
+    );
+  });
+</script>
+
+<style>
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .role-chip-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-2);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .role-chip-list li {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--sp-1);
+  }
+
+  .role-chip {
+    padding: var(--sp-1) var(--sp-2);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    background: var(--color-surface-2);
+    font-size: var(--fs-xs);
+    font-weight: var(--fw-medium);
+  }
+
+  .link-button {
+    min-height: 32px;
+    padding: 0 var(--sp-1);
+    border: 0;
+    background: none;
+    color: var(--color-text-muted);
+    font-size: var(--fs-xs);
+    text-decoration: underline;
+    cursor: pointer;
+    transition: color var(--motion-fast) var(--ease-standard);
+  }
+
+  .link-button:hover {
+    color: var(--color-danger);
+  }
+
+  .assign-role-control {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--sp-2);
+  }
+
+  /* Load-bearing, not defensive.
+     `admin.css` turns every row of a `.data-table--stack` into a card below
+     `--bp-md` with `.data-table--stack tr { display: block }`. That selector
+     (0,1,1) outranks the user-agent `[hidden] { display: none }` (0,1,0), so
+     on a phone the collapsed panel below is NOT collapsed: every user row grows
+     a permanently-open, empty session strip that no button can close.
+     `.session-panel-row[hidden]` is (0,2,0) and wins in both directions, and it
+     lives outside the media query on purpose — media queries add no
+     specificity, so one rule covers both layouts. */
+  .session-panel-row[hidden] {
+    display: none;
+  }
+
+  .session-panel-row > td {
+    background: var(--color-surface-2);
+  }
+
+  .session-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-1);
+    margin: var(--sp-2) 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .session-list-item {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--sp-2);
+    font-size: var(--fs-xs);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .link-button {
+      transition: none;
+    }
+  }
+</style>
