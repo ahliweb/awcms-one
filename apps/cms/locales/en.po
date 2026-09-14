@@ -4697,3 +4697,38 @@ msgstr ""
 
 msgid "Editorial disclosure. Standard needs none; advertorial and sponsored are surfaced to readers as paid content."
 msgstr ""
+
+msgid "Products"
+msgstr ""
+
+msgid "The tenant's product catalog — the first page of Issue #4's slice, read-only. SKU, name, type, price, stock, and status."
+msgstr ""
+
+msgid "You do not have permission to view products."
+msgstr ""
+
+msgid "Products could not be loaded right now. Please try again later."
+msgstr ""
+
+msgid "SKU"
+msgstr ""
+
+msgid "Price"
+msgstr ""
+
+msgid "Stock"
+msgstr ""
+
+msgid "{count} product"
+msgid_plural "{count} products"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "No products yet"
+msgstr ""
+
+msgid "Products created for this tenant will appear here."
+msgstr ""
+
+msgid "Commerce"
+msgstr ""

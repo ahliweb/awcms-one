@@ -450,6 +450,36 @@ channels:
       Documented contract only; producer is
       `pages/api/v1/blog/internal-tag-links/settings.ts`'s
       `blog-content.internal-tag-linking-policy.updated` log line.
+  awcms.commerce.product.created:
+    address: awcms.commerce.product.created
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A product was created (status `draft`). Producer:
+      `commerce/application/product-directory.ts`'s `createProduct`, via
+      `appendDomainEvent` in the same transaction as the row's creation.
+  awcms.commerce.product.updated:
+    address: awcms.commerce.product.updated
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A product's fields other than `status` were changed. Producer:
+      `commerce/application/product-directory.ts`'s `updateProduct`.
+      Published alongside `commerce.product.status_changed` when a single
+      `PATCH` changes both.
+  awcms.commerce.product.status_changed:
+    address: awcms.commerce.product.status_changed
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A product's lifecycle status transitioned
+      (`commerce/domain/product-status.ts`'s `LEGAL_TRANSITIONS`). Producer:
+      `commerce/application/product-directory.ts`'s `updateProduct`. Carries
+      `previousStatus` and `status`; a consumer that only cares whether a
+      product is still sellable can key off this without diffing the row.
 operations:
   publishDomainEventRuntimeSampleRecorded:
     action: send
@@ -721,6 +751,24 @@ operations:
       $ref: "#/channels/awcms.blog-content.internal-tag-linking-policy.updated"
     messages:
       - $ref: "#/channels/awcms.blog-content.internal-tag-linking-policy.updated/messages/DomainEvent"
+  publishCommerceProductCreated:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.product.created"
+    messages:
+      - $ref: "#/channels/awcms.commerce.product.created/messages/DomainEvent"
+  publishCommerceProductUpdated:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.product.updated"
+    messages:
+      - $ref: "#/channels/awcms.commerce.product.updated/messages/DomainEvent"
+  publishCommerceProductStatusChanged:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.product.status_changed"
+    messages:
+      - $ref: "#/channels/awcms.commerce.product.status_changed/messages/DomainEvent"
 components:
   messages:
     DomainEvent:

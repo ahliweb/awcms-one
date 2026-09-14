@@ -19,7 +19,7 @@
  * but it is an edit somebody makes on purpose, in a file whose only content is
  * work not done.
  *
- * Nine modules. Two groups here were named as NOT cosmetic, and both have since
+ * Ten modules. Two groups here were named as NOT cosmetic, and both have since
  * been built: every `email` suppression key (a suppressed address silently
  * stops receiving mail, including password resets, and nothing could list or
  * clear it from a page), and every `identity_access.business_scope_*` key
@@ -53,6 +53,18 @@ export const NOT_YET_SCREENED: readonly string[] = [
   "comments.moderation.delete",
   "comments.settings.read",
   "comments.settings.update",
+
+  // commerce (7) — `/admin/commerce` (Issue #4) is read-only and claims only
+  // `products.read`; the other seven are enforced by real routes
+  // (`src/pages/api/v1/commerce/{categories,products}/**`), just not driven
+  // from a page yet.
+  "commerce.categories.create",
+  "commerce.categories.delete",
+  "commerce.categories.read",
+  "commerce.categories.update",
+  "commerce.products.create",
+  "commerce.products.delete",
+  "commerce.products.update",
 
   // email (6)
   "email.announcement.create",

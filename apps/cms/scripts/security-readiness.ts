@@ -1508,7 +1508,15 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   // Replay rows are WRITTEN on the request path as `awcms_app`; a worker with
   // INSERT here could fabricate a replay that pins a delivery against retention
   // forever.
-  awcms_domain_event_replays: ["SELECT"]
+  awcms_domain_event_replays: ["SELECT"],
+  // commerce (Issue #4, sql/155) — the generic purge of already soft-deleted
+  // categories/products (`cursorColumn: "deleted_at"`, `deletion.mode:
+  // "hard_delete"`). SELECT for the bounded cursor scan and the DELETE's own
+  // subquery, DELETE for the purge; no INSERT/UPDATE, because a worker able to
+  // write here could plant or edit a merchant's catalog rather than merely
+  // sweeping ones the merchant already deleted.
+  awcms_commerce_categories: ["SELECT", "DELETE"],
+  awcms_commerce_products: ["SELECT", "DELETE"]
 };
 
 /**

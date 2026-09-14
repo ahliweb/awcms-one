@@ -1,0 +1,21 @@
+-- `data-lifecycle:archive-purge` runs as `awcms_worker` (`WORKER_DATABASE_URL`)
+-- and, for a `executionMode: "generic"` descriptor, issues:
+--
+--   SELECT * FROM <table> WHERE tenant_id = $1 AND <cursor> < $2 …   -- candidates
+--   DELETE FROM <table> WHERE id IN (SELECT id FROM <table> …)       -- hard_delete
+--
+-- `sql/153`'s two `dataLifecycle` descriptors (`commerce/module.ts`) declare
+-- exactly this shape (`cursorColumn: "deleted_at"`, `deletion.mode:
+-- "hard_delete"`), so the worker needs SELECT + DELETE on both tables — the
+-- same grant `sql/129`'s header describes finding missing by actually running
+-- the job. Migration 013's `ALTER DEFAULT PRIVILEGES` only ever covered
+-- `awcms_app`; `awcms_worker` gets nothing by default and always needs an
+-- explicit, per-table grant (`WORKER_ROLE_GRANTS` in
+-- `scripts/security-readiness.ts` is drift-tested against exactly this kind
+-- of statement).
+--
+-- No UPDATE: the engine never anonymises these rows, only deletes them, and a
+-- privilege the code does not use is a privilege that outlives the reason it
+-- was added.
+GRANT SELECT, DELETE ON awcms_commerce_categories TO awcms_worker;
+GRANT SELECT, DELETE ON awcms_commerce_products TO awcms_worker;

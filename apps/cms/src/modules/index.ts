@@ -23,6 +23,7 @@ import { siteProfileModule } from "./site-profile/module";
 import { commentsModule } from "./comments/module";
 import { idnAdminRegionsModule } from "./idn-admin-regions/module";
 import { pushDeliveryModule } from "./push-delivery/module";
+import { commerceModule } from "./commerce/module";
 
 /**
  * The reviewed BASE registry. Every module below is reviewed, in-repo code.
@@ -158,7 +159,14 @@ const baseModules: ModuleDescriptor[] = [
   // without a single gate going red. Depends on tenant_admin/logging, both
   // already above, so the DAG stays acyclic; nothing depends on it yet.
   // See src/modules/push-delivery/module.ts's `description`.
-  pushDeliveryModule
+  pushDeliveryModule,
+  // Issue #4 (epic #1) — the catalog slice of the re-platformed storefront:
+  // tenant-scoped product categories (hierarchical, self-referencing) and
+  // products. Depends on tenant_admin/identity_access/domain_event_runtime
+  // (all above), so the DAG stays acyclic. No media_library dependency in
+  // this slice — product images are one of the tables Issue #4 deliberately
+  // defers. See src/modules/commerce/module.ts's `description`.
+  commerceModule
 ];
 
 /**

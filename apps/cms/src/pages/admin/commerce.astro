@@ -1,0 +1,137 @@
+---
+/**
+ * Commerce product catalog screen (Issue #4). Read-only for this slice — same
+ * "every ACTIVE module needs a screen" reasoning `offices.astro`/
+ * `profiles.astro` already satisfy, kept deliberately minimal since Issue #4's
+ * checklist is the API, not an admin UI: no create/edit form here, just the
+ * list `listProducts` already serves over `GET /api/v1/commerce/products`.
+ * Gated on `commerce.products.read`; categories have no screen yet (see
+ * `scripts/admin-screen-coverage-ledger.ts`'s `NOT_YET_SCREENED`).
+ */
+import AdminLayout from "../../layouts/AdminLayout.astro";
+import "../../styles/admin-screens.css";
+import { loadAdminScreen } from "../../lib/auth/admin-screen";
+import { logAdminPageError } from "../../lib/logging/error-log";
+import { listProducts } from "../../modules/commerce/application/product-directory";
+import { getTranslatorFor } from "../../lib/i18n";
+
+const ssr = Astro.locals.ssrContext!;
+const { t, tn } = getTranslatorFor(Astro.locals.locale);
+
+const screen = await loadAdminScreen({
+  ssr,
+  workClass: "interactive",
+  authorize: {
+    moduleKey: "commerce",
+    activityCode: "products",
+    action: "read"
+  },
+  load: async ({ tx }) => ({
+    products: (await listProducts(tx, ssr.tenantId, null)).items
+  }),
+  onError: (error) => {
+    logAdminPageError("admin/commerce.astro: failed to list products", error, {
+      correlationId: Astro.locals.correlationId
+    });
+  }
+});
+
+const canRead = screen.state !== "denied";
+// A pool/circuit-breaker refusal is not an empty catalog and not a denial.
+const loadError = screen.state === "error";
+const products = screen.state === "allowed" ? screen.data.products : [];
+---
+
+<AdminLayout
+  title={t("Products")}
+  description={t(
+    "The tenant's product catalog — the first page of Issue #4's slice, read-only. SKU, name, type, price, stock, and status."
+  )}
+>
+  {
+    !canRead && (
+      <p class="state-notice fade-in-up" id="commerce-denied">
+        {t("You do not have permission to view products.")}
+      </p>
+    )
+  }
+
+  {
+    canRead && loadError && (
+      <p class="state-notice fade-in-up" id="commerce-error">
+        {t("Products could not be loaded right now. Please try again later.")}
+      </p>
+    )
+  }
+
+  {
+    canRead && !loadError && (
+      <div class="data-table-scroll fade-in-up">
+        <table
+          class="data-table data-table--stack"
+          id="commerce-products-table"
+        >
+          <caption>
+            {tn("{count} product", "{count} products", products.length, {
+              count: products.length
+            })}
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">{t("SKU")}</th>
+              <th scope="col">{t("Name")}</th>
+              <th scope="col">{t("Type")}</th>
+              <th scope="col">{t("Price")}</th>
+              <th scope="col">{t("Stock")}</th>
+              <th scope="col">{t("Status")}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {products.length === 0 ? (
+              <tr>
+                <td class="data-table-empty" colspan="6">
+                  <div class="empty-state">
+                    <span class="empty-state-icon" aria-hidden="true">
+                      ○
+                    </span>
+                    <span class="empty-state-title">
+                      {t("No products yet")}
+                    </span>
+                    <span class="empty-state-text">
+                      {t("Products created for this tenant will appear here.")}
+                    </span>
+                  </div>
+                </td>
+              </tr>
+            ) : (
+              products.map((product) => (
+                <tr>
+                  <td data-label="SKU">
+                    <span class="cell-muted">{product.sku}</span>
+                  </td>
+                  <td data-label="Name">{product.name}</td>
+                  <td data-label="Type">
+                    <span class="cell-muted">{product.type}</span>
+                  </td>
+                  <td data-label="Price">{product.price}</td>
+                  <td data-label="Stock">{product.stock}</td>
+                  <td data-label="Status">
+                    <span
+                      class="status-badge"
+                      data-variant={
+                        product.status === "active" ? "success" : "neutral"
+                      }
+                    >
+                      <span class="status-dot" aria-hidden="true" />
+                      {product.status}
+                    </span>
+                  </td>
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
+    )
+  }
+</AdminLayout>

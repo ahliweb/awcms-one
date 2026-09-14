@@ -9392,6 +9392,220 @@ Proves the parts of the chain nothing else can see — that the VAPID key pair m
 | 403    | Access denied by RBAC/ABAC.                                                                                                                                | [`ApiError`](#standard-error-envelope) |
 | 409    | Push is disabled on this deployment (the dispatcher would claim nothing, leaving the probe queued forever), or the caller has no active device to send to. | [`ApiError`](#standard-error-envelope) |
 
+## Commerce
+
+Catalog slice of the re-platformed storefront (commerce module, Issue #4, epic #1) — tenant-scoped product categories (hierarchical, self-referencing parent) and products (physical/digital/service/subscription), ported from the legacy MySQL commerce_bj_mart schema's core catalog columns. price is numeric(14,2) and crosses the wire as a string, never a JSON number, so money arithmetic never drifts through binary floating point. A product's lifecycle status (draft/active/inactive/archived) travels through the same PATCH as every other field and is checked against a legal-transition table before any write. Categories have no status and no re-parenting via update — a hierarchy position is set once, at creation. This slice ships no restore endpoint: a soft-deleted row is retained (for the FK integrity of anything still referencing it) but not exposed for recovery here.
+
+### `GET /api/v1/commerce/categories` — List categories for the current tenant — keyset-paginated, newest first.
+
+- **operationId**: `listCommerceCategories`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name     | In    | Required | Type   | Description                                                                                  |
+| -------- | ----- | -------- | ------ | -------------------------------------------------------------------------------------------- |
+| `cursor` | query | no       | string | Opaque cursor from a previous response's nextCursor. A malformed value is rejected with 400. |
+
+**Responses**
+
+| Status | Description                                                                                                                    | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------- |
+| 200    | Live categories for the tenant (limit 100), newest first, with an opaque nextCursor for the next page (null on the last page). | object                                 |
+| 400    | Validation error.                                                                                                              | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                    | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                    | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/categories` — Create a category.
+
+- **operationId**: `createCommerceCategory`
+- **Security**: bearerAuth + tenantHeader
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                                             | Schema                                 |
+| ------ | --------------------------------------------------------------------------------------- | -------------------------------------- |
+| 201    | Category created.                                                                       | object                                 |
+| 400    | Validation error.                                                                       | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                             | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                             | [`ApiError`](#standard-error-envelope) |
+| 409    | slug is already taken by a live category in this tenant (CATEGORY_SLUG_ALREADY_EXISTS). | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/categories/{id}` — Fetch one category.
+
+- **operationId**: `getCommerceCategory`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | Category detail.            | object                                 |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
+
+### `PATCH /api/v1/commerce/categories/{id}` — Update a category's name/slug/icon.
+
+- **operationId**: `updateCommerceCategory`
+- **Security**: bearerAuth + tenantHeader
+
+No parentId here — a category's position in the hierarchy is set once, at creation. Move a category by deleting and recreating it.
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                                             | Schema                                 |
+| ------ | --------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | Category updated.                                                                       | object                                 |
+| 400    | Validation error.                                                                       | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                             | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                             | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                     | [`ApiError`](#standard-error-envelope) |
+| 409    | slug is already taken by a live category in this tenant (CATEGORY_SLUG_ALREADY_EXISTS). | [`ApiError`](#standard-error-envelope) |
+
+### `DELETE /api/v1/commerce/categories/{id}` — Soft-delete a category (audited).
+
+- **operationId**: `deleteCommerceCategory`
+- **Security**: bearerAuth + tenantHeader
+
+Sets deleted_at; the slug is freed for reuse. Not a hard delete, and this slice ships no restore endpoint — a soft-deleted row is retained (for the FK integrity of any product still referencing it) but not exposed for recovery here.
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | Category soft-deleted.      | object                                 |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/products` — List products for the current tenant — keyset-paginated, newest first.
+
+- **operationId**: `listCommerceProducts`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name     | In    | Required | Type   | Description                                                                                  |
+| -------- | ----- | -------- | ------ | -------------------------------------------------------------------------------------------- |
+| `cursor` | query | no       | string | Opaque cursor from a previous response's nextCursor. A malformed value is rejected with 400. |
+
+**Responses**
+
+| Status | Description                                                                                                                  | Schema                                 |
+| ------ | ---------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | Live products for the tenant (limit 100), newest first, with an opaque nextCursor for the next page (null on the last page). | object                                 |
+| 400    | Validation error.                                                                                                            | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                  | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                  | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/products` — Create a product. Always starts in status draft.
+
+- **operationId**: `createCommerceProduct`
+- **Security**: bearerAuth + tenantHeader
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                                                                               | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 201    | Product created.                                                                                                          | object                                 |
+| 400    | Validation error.                                                                                                         | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                               | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                               | [`ApiError`](#standard-error-envelope) |
+| 409    | slug or sku is already taken by a live product in this tenant (PRODUCT_SLUG_ALREADY_EXISTS / PRODUCT_SKU_ALREADY_EXISTS). | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/products/{id}` — Fetch one product.
+
+- **operationId**: `getCommerceProduct`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | Product detail.             | object                                 |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
+
+### `PATCH /api/v1/commerce/products/{id}` — Update a product, including a status transition.
+
+- **operationId**: `updateCommerceProduct`
+- **Security**: bearerAuth + tenantHeader
+
+There is no dedicated status-transition endpoint — status travels through this same PATCH, checked against product-status.ts's LEGAL_TRANSITIONS. An illegal transition (e.g. draft -> inactive) is rejected with 400, naming the states legally reachable from the product's current one.
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                                                                               | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | Product updated.                                                                                                          | object                                 |
+| 400    | Validation error.                                                                                                         | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                               | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                               | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                       | [`ApiError`](#standard-error-envelope) |
+| 409    | slug or sku is already taken by a live product in this tenant (PRODUCT_SLUG_ALREADY_EXISTS / PRODUCT_SKU_ALREADY_EXISTS). | [`ApiError`](#standard-error-envelope) |
+
+### `DELETE /api/v1/commerce/products/{id}` — Soft-delete a product (audited).
+
+- **operationId**: `deleteCommerceProduct`
+- **Security**: bearerAuth + tenantHeader
+
+Sets deleted_at; the sku and slug are freed for reuse. Not a hard delete, and this slice ships no restore endpoint — see the category DELETE description for the same reasoning.
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | Product soft-deleted.       | object                                 |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
+
 ## Schema appendix
 
 Every schema referenced by at least one operation above (excluding the standard envelope schemas, covered in §Standard success/error envelope).
@@ -10887,7 +11101,7 @@ consumer/subscriber contract in this file).
 }
 ```
 
-### Channels (44)
+### Channels (47)
 
 - `awcms.blog-content.ad.created` — An advertisement was created. Documented contract only; producer is `pages/api/v1/blog/ads/index.ts`'s `blog-content.ad.created` log line.
 - `awcms.blog-content.ad.deleted` — An advertisement was soft-deleted. Documented contract only; producer is `pages/api/v1/blog/ads/[id].ts`'s `blog-content.ad.deleted` log line.
@@ -10919,6 +11133,9 @@ consumer/subscriber contract in this file).
 - `awcms.comments.comment.approved` — A comment became publicly visible, either by auto-approval under the thread policy or by a moderator's approve decision. Producers: `comments/application/comment-service.ts`'s `submitComment` and `comments/application/comment-moderation.ts`'s `moderateComment`. The reply-notification consumer keys off THIS event rather than `comment.submitted`, so a comment still held for moderation never triggers a notification.
 - `awcms.comments.comment.submitted` — A comment was submitted against a published, public commentable resource (ADR-0041). Producer: `comments/application/comment-service.ts`'s `submitComment`. The payload carries opaque references only — comment and thread id, resource type, the server-derived public URL, and the resulting status. Never the body text, the author address, or any identity hash.
 - `awcms.comments.reply.created` — A submitted comment was a reply to an existing comment. Producer: `comments/application/comment-service.ts`'s `submitComment`, published alongside `comment.submitted` so a consumer can distinguish thread replies without re-reading the row. The recipient address is resolved from encrypted storage by the dispatcher at send time and is never carried here.
+- `awcms.commerce.product.created` — A product was created (status `draft`). Producer: `commerce/application/product-directory.ts`'s `createProduct`, via `appendDomainEvent` in the same transaction as the row's creation.
+- `awcms.commerce.product.status_changed` — A product's lifecycle status transitioned (`commerce/domain/product-status.ts`'s `LEGAL_TRANSITIONS`). Producer: `commerce/application/product-directory.ts`'s `updateProduct`. Carries `previousStatus` and `status`; a consumer that only cares whether a product is still sellable can key off this without diffing the row.
+- `awcms.commerce.product.updated` — A product's fields other than `status` were changed. Producer: `commerce/application/product-directory.ts`'s `updateProduct`. Published alongside `commerce.product.status_changed` when a single `PATCH` changes both.
 - `awcms.domain-event-runtime.sample.recorded` — Reference/example event used to exercise the domain-event-runtime outbox, dispatcher, ordering, retry/backoff, dead-letter, and replay mechanism end-to-end. Real producer modules publish their OWN event types the same way, via `appendDomainEvent` — this one is intentionally self-contained rather than tied to another module's business logic in this foundation module (see `src/modules/domain-event-runtime/domain/event-type-registry.ts`'s own doc comment). Producer: any caller of `application/append-domain-event.ts`'s `appendDomainEvent` for this event type; consumers: `infrastructure/consumer-registry.ts`'s two reference consumers (a same-process cross-module audit projector and a self-contained read-model activity-rollup projection).
 - `awcms.email.message.cancelled` — An operator cancelled a still-queued message (`POST /api/v1/email/messages/{id}/cancel`) before dispatch. Documented contract only; producer is the structured JSON logger (`pages/api/v1/email/messages/[id]/cancel.ts`'s `email.message.cancelled` log line).
 - `awcms.email.message.failed` — The email dispatcher exhausted retries (or hit a non-retryable failure) for a queued message. Documented contract only; producer is the structured JSON logger (`email/application/email-dispatch.ts`'s `email.dispatch.failed` log line).

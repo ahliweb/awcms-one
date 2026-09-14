@@ -50,12 +50,12 @@ export const DEFAULT_FALLBACK_TYPE = "general";
  * The ordered type taxonomy. Position here IS the rendered section order.
  *
  * Kept identical to awcms-micro's list so the two admin shells stay
- * structurally comparable — including `commerce`, which no module in this base
- * populates yet. An unpopulated type renders nothing at all (see
- * `composeSidebarSections`), so carrying it costs a line and avoids a family
- * divergence that would have to be justified in
- * `awcms-family-compatibility.yaml`. ADR-0035 puts the e-commerce cluster in
- * scope for this template, so it is a slot that is expected to fill.
+ * structurally comparable. `commerce` sat unpopulated for a long time — an
+ * unpopulated type renders nothing at all (see `composeSidebarSections`), so
+ * carrying it cost a line and avoided a family divergence that would have had
+ * to be justified in `awcms-family-compatibility.yaml` — until Issue #4's
+ * `commerce` module (ADR-0035's e-commerce cluster) became the first to fill
+ * the slot.
  */
 export const DEFAULT_MENU_TYPES: readonly {
   typeKey: string;
@@ -137,7 +137,11 @@ export const DEFAULT_MODULE_TYPE: Readonly<Record<string, string>> = {
   idn_admin_regions: "operations",
   // Identity.
   identity_access: "identity",
-  profile_identity: "identity"
+  profile_identity: "identity",
+  // E-commerce catalog (Issue #4). ADR-0035 reserved the `commerce` menu type
+  // for exactly this cluster before any module populated it — see this file's
+  // `DEFAULT_MENU_TYPES` comment; `commerce` is the first module to fill it.
+  commerce: "commerce"
 };
 
 /**
@@ -252,7 +256,8 @@ export const SIDEBAR_LABELS: Readonly<Record<string, string>> = {
   "admin.layout.nav_machine_credentials": "Machine credentials",
   "admin.layout.nav_invitations": "Invitations",
   "admin.layout.nav_business_scope": "Business scope",
-  "admin.layout.nav_seo": "SEO & distribution"
+  "admin.layout.nav_seo": "SEO & distribution",
+  "admin.layout.nav_commerce": "Products"
 };
 
 /**
@@ -338,7 +343,9 @@ export const DEFAULT_SIDEBAR_ICONS: Readonly<Record<string, string>> = {
   "admin.layout.nav_partner_registry": "handshake",
   "admin.layout.nav_machine_credentials": "key",
   "admin.layout.nav_invitations": "send",
-  "admin.layout.nav_business_scope": "layers"
+  "admin.layout.nav_business_scope": "layers",
+  // Commerce.
+  "admin.layout.nav_commerce": "tag"
 };
 
 /** Display name for the synthetic core group. Rendered as a module sub-label. */
