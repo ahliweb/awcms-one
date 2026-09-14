@@ -1,0 +1,54 @@
+---
+/**
+ * The catalog grid — every active product, one card each. `getProducts()`
+ * already filters to `status === "active"` and throws if awcms's catalog
+ * looks emptier than it honestly should (see `src/lib/catalog.ts`); an
+ * empty array reaching this page is therefore a genuinely empty catalog,
+ * not a fetch that silently failed, and is rendered as that rather than as
+ * a blank grid.
+ */
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { siteConfig } from "../config/site";
+import { getProducts, getCategories, formatPrice, labelClassName } from "../lib/catalog";
+
+const products = await getProducts();
+const categories = await getCategories();
+const categoryById = new Map(categories.map((category) => [category.id, category]));
+---
+
+<BaseLayout title={siteConfig.name} description={siteConfig.description} canonicalPath="/">
+  <div class="container">
+    <div class="page-heading">
+      <h1>Katalog Produk</h1>
+      <p>{products.length} produk tersedia.</p>
+    </div>
+
+    {products.length === 0 ? (
+      <p class="empty-state">Belum ada produk yang dipublikasikan.</p>
+    ) : (
+      <ul class="grid-cards">
+        {products.map((product) => {
+          const category = product.categoryId ? categoryById.get(product.categoryId) : undefined;
+          const badgeClass = labelClassName(product.labelColor);
+          const inStock = product.stock > 0;
+
+          return (
+            <li>
+              <a href={`/${product.slug}/`} class="card">
+                {category && <span class="card-eyebrow">{category.name}</span>}
+                <h2 class="card-title">{product.name}</h2>
+                {product.label && (
+                  <span class={`label-badge ${badgeClass ?? ""}`}>{product.label}</span>
+                )}
+                <p class="card-price">{formatPrice(product.price)}</p>
+                <span class={`stock-badge ${inStock ? "stock-badge--in" : "stock-badge--out"}`}>
+                  {inStock ? "Stok tersedia" : "Stok habis"}
+                </span>
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+    )}
+  </div>
+</BaseLayout>

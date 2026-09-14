@@ -1,0 +1,3 @@
+{
+  "extends": ["astro/tsconfigs/strict", "../../packages/config/tsconfig.base.json"]
+}
