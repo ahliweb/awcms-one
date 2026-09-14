@@ -36,6 +36,17 @@ export default defineConfig({
   output: "static",
 
   /**
+   * Product pages publish at `/product/{slug}` with no trailing slash —
+   * the live site's own URL shape (issue #5 comment "Scope amendment:
+   * match the live site's URL shape"), so an indexed link, bookmark, or
+   * shared URL keeps working unchanged at cutover instead of needing a
+   * permanent 301 map. `"never"` makes that the site-wide rule rather than
+   * a per-page opt-out, so a future page can't silently reintroduce a
+   * trailing slash Astro itself would otherwise tolerate.
+   */
+  trailingSlash: "never",
+
+  /**
    * The adapter is here to SERVE the build, not to render pages on demand.
    * `output` above stays `"static"` — every page is prerendered at build
    * time, no route declares `prerender = false`, and the container still
@@ -71,7 +82,16 @@ export default defineConfig({
      * component-scoped style — an external file the CSP already allows via
      * `'self'`, by construction rather than by luck.
      */
-    inlineStylesheets: "never"
+    inlineStylesheets: "never",
+
+    /**
+     * `"file"` writes `dist/client/product/{slug}.html` instead of the
+     * default `"directory"` format's `dist/client/product/{slug}/index.html`
+     * — so the file this build emits and the URL `trailingSlash: "never"`
+     * above serves are byte-identical, with no directory-index rewrite and
+     * no 301 between what is indexed and what is served.
+     */
+    format: "file"
   },
 
   /**

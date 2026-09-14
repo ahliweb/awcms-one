@@ -15,7 +15,7 @@ import "../styles/global.css";
 interface Props {
   title: string;
   description?: string;
-  /** Site-relative, e.g. `/` or `/produk-x/`. Resolved against `siteConfig.siteUrl` for the canonical link and Open Graph `url`. */
+  /** Site-relative, e.g. `/` or `/product/produk-x`. Resolved against `siteConfig.siteUrl` for the canonical link and Open Graph `url`. */
   canonicalPath: string;
   /** Page-specific JSON-LD (e.g. `Product`). Omitted entirely means no `<script type="application/ld+json">` at all. */
   schema?: Record<string, unknown>;
@@ -39,7 +39,7 @@ const metaDescription = description.slice(0, 160);
  * *parser* — not the JavaScript engine — ends a `<script>` element at the
  * first `</script>` byte sequence it meets, regardless of what `type` says.
  * `schema` here is built from CMS-supplied strings (`product.name`,
- * `product.description`, `category.name`, via `src/pages/[slug].astro`), so
+ * `product.description`, `category.name`, via `src/pages/product/[slug].astro`), so
  * a product named `…</script><script>alert(1)</script>` would otherwise
  * close this data block early and turn the text that follows into real,
  * executing markup — a stored-XSS surface that only the CSP in

@@ -12,20 +12,32 @@
  * only add a second place that check could be wrong. What the adapter does
  * NOT do is set the security headers this app needs, or tell a hashed,
  * cacheable build asset apart from an HTML page that must always be
- * revalidated. Those two things are this file's whole job.
+ * revalidated. Those two things, plus one hardcoded URL-continuity
+ * redirect (`isProductsRedirect` below), are this file's whole job.
  *
- * No compression middleware and no redirect map here: issue #5 lists
- * `astro`, `@astrojs/node`, and `@astrojs/check` as this app's dependencies
- * and nothing else, and its file checklist carries no redirect config to
- * read. A reverse proxy in front of this container commonly already
- * handles gzip/brotli; a second compression layer here would be scope this
- * app was not asked to carry.
+ * No compression middleware here: a reverse proxy in front of this
+ * container commonly already handles gzip/brotli, and a second compression
+ * layer here would be scope this app was not asked to carry. No redirect
+ * MAP either — `isProductsRedirect` is one hardcoded rule for one URL this
+ * app itself used to serve, not the generated `asal-pengalihan`-style
+ * redirect data file issue #5's file checklist excludes; see that issue's
+ * "Scope amendment: match the live site's URL shape" comment.
  */
 import http from "node:http";
 import { posix } from "node:path";
 
 /** Prefix Astro gives its content-hashed build assets (`build.assets`, default `_astro`). */
 const ASSET_PREFIX = "/_astro/";
+
+/**
+ * The live site's old catalog URL, matched on path only so a query string
+ * (e.g. `?category_slug=…`) does not prevent the match — see
+ * `isProductsRedirect` below.
+ */
+const PRODUCTS_REDIRECT_PATH = "/products";
+
+/** Where `PRODUCTS_REDIRECT_PATH` sends a reader. */
+const PRODUCTS_REDIRECT_LOCATION = "/";
 
 export const CACHE_ASSET = "public, max-age=31536000, immutable";
 export const CACHE_PAGE = "public, max-age=0, must-revalidate";
@@ -136,6 +148,28 @@ export function cacheControlFor(url) {
 }
 
 /**
+ * Whether `url` is the live site's old catalog URL (`/products`, with or
+ * without a query string like `?category_slug=…`) and should 301 to
+ * `PRODUCTS_REDIRECT_LOCATION` instead of reaching the adapter's file
+ * lookup, which has nothing at that path any more.
+ *
+ * The `category_slug` filter such a URL might carry is dropped BY DESIGN,
+ * not lost by oversight: category listing pages are not in this slice
+ * (issue #5's own out-of-scope list), so there is no page left for that
+ * filter to select on. This is one hardcoded rule in the same file that
+ * already sets every other response header — not the generated
+ * `asal-pengalihan`-style redirect *data file* issue #5 excludes; see that
+ * issue's "Scope amendment: match the live site's URL shape" comment for
+ * why the two are different things.
+ *
+ * @param {string} url
+ * @returns {boolean}
+ */
+export function isProductsRedirect(url) {
+  return normalizedPath(url) === PRODUCTS_REDIRECT_PATH;
+}
+
+/**
  * Sets every response header BEFORE the application handler touches the
  * response.
  *
@@ -170,6 +204,14 @@ export function applyHeaders(req, res) {
 export function createServer(appHandler) {
   return http.createServer((req, res) => {
     applyHeaders(req, res);
+
+    if (isProductsRedirect(req.url ?? "/")) {
+      res.statusCode = 301;
+      res.setHeader("Location", PRODUCTS_REDIRECT_LOCATION);
+      res.end();
+      return;
+    }
+
     appHandler(req, res);
   });
 }

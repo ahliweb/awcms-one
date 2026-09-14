@@ -29,7 +29,7 @@ export const siteConfig = {
   domain: new URL(siteUrl).host
 };
 
-/** Resolves a site-relative path (e.g. `/produk-x/`) to an absolute URL under `siteConfig.siteUrl`. */
+/** Resolves a site-relative path (e.g. `/product/produk-x`) to an absolute URL under `siteConfig.siteUrl`. */
 export function absoluteUrl(path: string): string {
   return new URL(path, siteConfig.siteUrl).toString();
 }

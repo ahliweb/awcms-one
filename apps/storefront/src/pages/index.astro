@@ -34,7 +34,7 @@ const categoryById = new Map(categories.map((category) => [category.id, category
 
           return (
             <li>
-              <a href={`/${product.slug}/`} class="card">
+              <a href={`/product/${product.slug}`} class="card">
                 {category && <span class="card-eyebrow">{category.name}</span>}
                 <h2 class="card-title">{product.name}</h2>
                 {product.label && (

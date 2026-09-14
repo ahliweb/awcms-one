@@ -6,15 +6,15 @@
  * per-page (it would still hit the same cache, but the props below skip
  * the extra lookup entirely).
  */
-import BaseLayout from "../layouts/BaseLayout.astro";
-import { absoluteUrl } from "../config/site";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { absoluteUrl } from "../../config/site";
 import {
   getProducts,
   getCategories,
   formatPrice,
   labelClassName,
   type CommerceProduct
-} from "../lib/catalog";
+} from "../../lib/catalog";
 
 export async function getStaticPaths() {
   const products = await getProducts();
@@ -37,7 +37,7 @@ const category = product.categoryId
   : undefined;
 
 const inStock = product.stock > 0;
-const canonicalPath = `/${product.slug}/`;
+const canonicalPath = `/product/${product.slug}`;
 const badgeClass = labelClassName(product.labelColor);
 
 /**

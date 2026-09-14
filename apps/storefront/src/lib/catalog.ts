@@ -152,7 +152,7 @@ let productsCache: Promise<CommerceProduct[]> | undefined;
  * place that can tell "awcms honoured the filter" apart from "awcms ignored
  * it and sent everything".
  *
- * `getStaticPaths()` in `src/pages/[slug].astro` calls this to build every
+ * `getStaticPaths()` in `src/pages/product/[slug].astro` calls this to build every
  * product page in one traversal, so it costs one request set for the whole
  * build no matter how many pages Astro renders from it.
  */
