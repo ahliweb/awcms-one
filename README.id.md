@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:bbb8cc192de666d65043282e44edf2390a0eedb98640ec177ae70491409f1b64 -->
+<!-- i18n-source-hash: sha256:6bf4272daea1da3b40ae19e547bf767d940c07e6777514194bc6441c4e805e8f -->
 
 [![License](https://img.shields.io/badge/License-MIT-blue)](LICENSE) [![runtime](https://img.shields.io/badge/runtime-Bun-blue?logo=bun&logoColor=white)](https://bun.sh)
 
@@ -69,6 +69,10 @@ Repo ini **hanya-Bun**: Bun adalah runtime sekaligus package manager, versinya d
 | `bun run audit:dokumen` | Tautan markdown mati, indeks ADR (begitu `docs/adr/` ada), jalur berkas yang disebut sebuah dokumen, kutipan `ADR-NNNN`, dan hitungan tertaut bertanda |
 | `bun run audit:rilis` | Backlog `.changesets/` yang menunggu, dibatasi 10 berkas dan 14 hari |
 | `bun run audit:translation` | Cermin Indonesia dokumen governance yang basi atau hilang |
+| `bun run audit:graf` (alias: `knowledge:check`) | Korpus graf pengetahuan akar menggambarkan dirinya sendiri secara jujur — lihat [`knowledge/README.md`](knowledge/README.md) |
+| `bun run knowledge:graph:update` | Membangun ulang graf Graphify akar (`--code-only`, tanpa LLM) — butuh `graphify` di `PATH`, tidak dijalankan di CI |
+| `bun run knowledge:graph:combine` | Menggabungkan graf akar dengan graf milik `apps/cms` sendiri menjadi graf federasi yang di-gitignore dan sesuai permintaan — butuh `graphify` di `PATH` |
+| `bun run knowledge:obsidian:export` | Mementaskan, memvalidasi, dan menyinkronkan ekspor Obsidian yang aman dari graf akar ke `knowledge/generated/graphify/` — butuh `graphify` di `PATH` |
 | `bun run docs:i18n:stamp` | Menulis banner bahasa dan penanda hash sumber pada setiap cermin `.id.md` |
 | `bun run check:cms` | Rangkaian gerbang penuh `apps/cms` sendiri (lint, typecheck, tesnya sendiri, build-nya sendiri) |
 | `bun run db:migrate:cms` | Menjalankan migrasi `apps/cms` terhadap `DATABASE_URL` — lihat `apps/cms/.env.example` |
@@ -77,9 +81,11 @@ Repo ini **hanya-Bun**: Bun adalah runtime sekaligus package manager, versinya d
 
 ### Gerbang
 
-`bun test` plus tiga skrip `audit:*`, semuanya diadaptasi dari `packages/gerbang` milik `ahliweb/media-lenterakalteng`. Tidak satu pun butuh build, jaringan, atau `apps/cms`, jadi semuanya berjalan tanpa syarat di setiap push.
+`bun test` plus empat skrip `audit:*`, semuanya diadaptasi dari `packages/gerbang` milik `ahliweb/media-lenterakalteng`. Tidak satu pun butuh build, jaringan, atau `apps/cms`, jadi semuanya berjalan tanpa syarat di setiap push.
 
-**Tidak diporting**, dan itu disengaja: `media-lenterakalteng` juga membawa `audit:konten` (pemeriksaan konten keluaran terbit), `audit:aset` (anggaran byte pembaca), `audit:graf` (kebersihan artefak graphify), dan `audit:serapan` (penyerapan ADR upstream). Setiap satu darinya menjaga permukaan — keluaran HTML yang dibangun, server hidup yang bisa dirayapi, korpus graf — yang belum dimiliki repo ini. Memporting-nya sekarang akan mengirim gerbang yang selalu lulus secara trivial, yang terbaca lebih berbahaya daripada tanpa gerbang sama sekali: sebuah pemeriksaan hijau yang tidak memeriksa apa pun terlihat persis seperti yang memeriksa sesuatu dan menemukannya bersih.
+`audit:graf` (kebersihan artefak graphify) dulu ada di daftar "tidak diporting" di bawah — repo ini belum punya korpus `graphify-out/` untuk dijaganya. [Issue #11](https://github.com/ahliweb/awcms-one/issues/11) membangun satu: graf Graphify milik-akar, `--code-only`, yang sengaja mengecualikan `apps/cms/**` (yang sudah punya graf dan gerbangnya sendiri), plus keluarga perintah federasi (`bun run knowledge:graph:update` / `knowledge:graph:combine` / `knowledge:obsidian:export`) yang didokumentasikan di [`knowledge/README.md`](knowledge/README.md). `audit:graf` sekarang memeriksa korpus itu sungguhan — lihat dokumen itu untuk persisnya apa.
+
+**Masih tidak diporting**, dan itu disengaja: `media-lenterakalteng` juga membawa `audit:konten` (pemeriksaan konten keluaran terbit), `audit:aset` (anggaran byte pembaca), dan `audit:serapan` (penyerapan ADR upstream). Setiap satu darinya menjaga permukaan — keluaran HTML yang dibangun, server hidup yang bisa dirayapi — yang belum dimiliki repo ini. Memporting-nya sekarang akan mengirim gerbang yang selalu lulus secara trivial, yang terbaca lebih berbahaya daripada tanpa gerbang sama sekali: sebuah pemeriksaan hijau yang tidak memeriksa apa pun terlihat persis seperti yang memeriksa sesuatu dan menemukannya bersih.
 
 ## Dokumentasi
 
@@ -93,6 +99,7 @@ Repo ini **hanya-Bun**: Bun adalah runtime sekaligus package manager, versinya d
 | [`SUPPORT.md`](SUPPORT.md) | Ke mana pertanyaan atau laporan bug diarahkan |
 | [`CHANGELOG.md`](CHANGELOG.md) | Riwayat rilis, dilipat dari changeset |
 | [`.changesets/README.md`](.changesets/README.md) | Cara menulis catatan perubahan |
+| [`knowledge/README.md`](knowledge/README.md) | Workflow graf pengetahuan Graphify + Obsidian yang terfederasi |
 
 ## Bahasa
 

@@ -100,6 +100,18 @@ jobs:
       - name: Audit translation
         run: bun run audit:translation
 
+      # The root knowledge-graph corpus (graphify-out/) describing itself
+      # honestly — issue #11. Reads only artefacts already committed (plus
+      # `git ls-files`), so it runs here like the other audit:* gates. What
+      # it deliberately does NOT do: `graphify` itself is a local Python tool
+      # this runner does not have installed, so `bun run knowledge:graph:*` /
+      # `knowledge:obsidian:*` (which shell out to it) are NOT run in CI —
+      # only the read-only, already-committed-artefact check is. See
+      # knowledge/README.md's "Toolchain" table for which commands need
+      # `graphify` locally and which do not.
+      - name: Audit graf
+        run: bun run audit:graf
+
       # The waiting .changesets/ backlog crossing its bound. This can go red
       # on a push that did nothing wrong — see that gate's own docblock for
       # why that is accepted: main carries no required checks yet, so a red
