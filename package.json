@@ -1,0 +1,38 @@
+{
+  "name": "awcms-one",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "description": "awcms-one — the borneojek-mart commerce platform on the AWCMS stack. Bun workspace root: apps/storefront is the public Astro storefront, apps/cms is ahliweb/awcms embedded via git subtree, packages/config and packages/gerbang are the shared presets and audit gates, packages/kontrak carries the type-only DTO contract the storefront imports from the CMS.",
+  "homepage": "https://mart.borneojek.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ahliweb/awcms-one.git"
+  },
+  "license": "MIT",
+  "packageManager": "bun@1.4.0",
+  "engines": {
+    "bun": ">=1.3.0"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "cd apps/storefront && bun run dev",
+    "build": "cd apps/storefront && bun run build",
+    "check": "cd apps/storefront && bun run check",
+    "check:lockfile": "bun tools/cek-lockfile.mjs",
+    "check:cms": "cd apps/cms && bun run check",
+    "audit:dokumen": "bun packages/gerbang/audit-dokumen.mjs",
+    "audit:rilis": "bun packages/gerbang/audit-rilis.mjs",
+    "audit:translation": "bun packages/gerbang/check-docs-translation.mjs",
+    "docs:i18n:stamp": "bun tools/docs-i18n-stamp.mjs",
+    "db:migrate:cms": "cd apps/cms && bun run db:migrate",
+    "test": "bun test",
+    "serve": "cd apps/storefront && bun run serve",
+    "start": "bun run serve",
+    "preview": "bun run serve",
+    "release": "bun tools/rilis.mjs"
+  }
+}

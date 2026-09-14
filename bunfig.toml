@@ -1,0 +1,24 @@
+# Bun configuration for this repository.
+#
+# [test] pathIgnorePatterns — why it lives HERE and not in a script
+# ------------------------------------------------------------------------
+# `apps/cms` is `ahliweb/awcms` embedded via `git subtree`. Its suite is
+# ~500 files and demands a live PostgreSQL; it is run by its OWN gate
+# (`bun run check:cms`), not by the root suite. A bare `bun test` from the
+# root must not pick it up.
+#
+# This exclusion must NOT be written as a flag inside the `test` script
+# (`bun test --path-ignore-patterns=…`). That is not enough, and the failure
+# is concrete rather than hypothetical: CI workflows call `bun test` BARE,
+# not `bun run test`, so the flag is skipped entirely — CI then runs the
+# whole CMS suite red against a database it has not provisioned, while
+# `bun run test` on a developer machine is green. Two commands that look
+# alike give two different answers, and the green one is the one typed more
+# often.
+#
+# `bunfig.toml` is read by `bun test` however it is invoked, so it is the one
+# place this rule cannot be stepped around. The `test` script in
+# `package.json` stays a plain `bun test`: one source of truth, not two that
+# have to be remembered into agreement.
+[test]
+pathIgnorePatterns = ["apps/cms/**"]
