@@ -1,0 +1,38 @@
+node_modules/
+dist/
+.astro/
+.env
+.env.*
+!.env.example
+.DS_Store
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# graphify skill: machine- and user-specific caches and markers never enter the
+# repository. This follows `ahliweb/awcms`, which TRACKS the shareable graph
+# output (`graph.json`, `manifest.json`, `GRAPH_REPORT.md`) but never tracks
+# anything below.
+graphify-out/cache/
+
+# EVERY dotfile inside graphify-out is an intermediate or a marker, never
+# shared output: shared output is named without a leading dot. A blanket rule is
+# used rather than an enumeration, because an INTERRUPTED run leaves files that
+# appear on no list at all — enumeration only keeps finished runs tidy, and it is
+# the failed runs that leave the litter.
+graphify-out/.*
+
+# Dated copies graphify writes on every rebuild — full duplicates of the live
+# artefacts sitting beside them.
+graphify-out/[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]/
+
+# graph.html is deliberately untracked: graphify stops emitting it once the
+# corpus passes the visualisation node limit (a committed copy then rots
+# silently), and its size doubles the cost of every rebuild against history.
+graphify-out/graph.html
+
+# Temporary git worktrees created by agent tooling inside the repository. They
+# hold a FULL copy of the working tree — one careless `git add -A` would commit
+# the whole repository into itself.
+.claude/worktrees/

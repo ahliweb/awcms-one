@@ -1,0 +1,25 @@
+# Never ship secrets into the build context.
+.env
+.env.*
+!.env.example
+
+# Reinstalled / rebuilt inside the image.
+node_modules/
+dist/
+.astro/
+
+# Not used to build, and copying them busts the source layer cache on every
+# commit or note that changes.
+.git/
+.github/
+.claude/
+.changesets/
+docs/
+*.md
+
+# graphify skill output: analysis artefacts, not build inputs. Megabytes in
+# size, and every rebuild of them busts the image's source layer cache.
+graphify-out/
+
+.DS_Store
+npm-debug.log*

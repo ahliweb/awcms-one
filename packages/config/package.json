@@ -1,0 +1,7 @@
+{
+  "name": "@awcms-one/config",
+  "type": "module",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Shared tsconfig preset for this workspace. No formatter preset ships here — this repository has none to extract, and introducing one would be new tooling rather than a move of existing layout."
+}
