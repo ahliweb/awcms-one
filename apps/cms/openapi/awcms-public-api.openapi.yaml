@@ -75,6 +75,8 @@ tags:
     description: "Tenant-scoped, moderation-first commenting over PUBLISHED, PUBLIC commentable resources (comments module, ADR-0041) — the public, anonymous, host-resolved submit/list/reply/edit/report/delete-request surface plus the ABAC-guarded admin moderation queue, per-decision transitions, bulk moderation, and tenant comment configuration. A comment is only ever accepted against, or shown on, a resource that satisfies its owning module's declarative publicationFilter, so a draft/private/deleted/scheduled resource never receives or exposes comments, and the comment surface is NEVER an authorization source for the underlying resource. Bodies are stored as raw plain text and HTML-escaped on render (no stored HTML, therefore no stored XSS), permitting only http(s) autolinks with rel=nofollow ugc noopener noreferrer. The public list returns approved rows only and never moderation metadata. Public submit responses are deliberately uniform: an anti-abuse block, an unresolved resource, and an accepted-but-pending comment all return the same neutral body, so the endpoint cannot be used as an oracle for blocked terms or for unpublished content. moderation.approve/restore/delete and settings.update are high-risk, idempotency-keyed, and audited with a reason code."
   - name: Push Delivery
     description: "Transactional outbox for device push notifications (push_delivery module, ADR-0074) — the caller's own device registration/revocation plus the operator's queue diagnostics, message cancel, and end-to-end delivery probe. It is a SECOND outbox on purpose: domain-event-runtime calls its consumers INSIDE the claim transaction by design, and ADR-0006 forbids the external HTTP call a push provider needs from inside a transaction. Two transports, neither of which costs a client byte or a CSP origin: Web Push (RFC 8030/8291/8292, VAPID) to browsers — chosen over the FCM Web SDK, which is 2.1x the per-file asset budget and demands three third-party origins the CSP does not have — and FCM HTTP v1 server-to-Google for native clients. Managing one's own device is self-service (the subject is the caller and no recipient is accepted); everything that touches another person's rows or makes the deployment emit traffic goes through the ABAC chokepoint. Endpoints are credential-grade and are stored hashed/masked, projected raw by exactly one function immediately before a provider call."
+  - name: Commerce
+    description: "Catalog slice of the re-platformed storefront (commerce module, Issue #4, epic #1) — tenant-scoped product categories (hierarchical, self-referencing parent) and products (physical/digital/service/subscription), ported from the legacy MySQL commerce_bj_mart schema's core catalog columns. price is numeric(14,2) and crosses the wire as a string, never a JSON number, so money arithmetic never drifts through binary floating point. A product's lifecycle status (draft/active/inactive/archived) travels through the same PATCH as every other field and is checked against a legal-transition table before any write. Categories have no status and no re-parenting via update — a hierarchy position is set once, at creation. This slice ships no restore endpoint: a soft-deleted row is retained (for the FK integrity of anything still referencing it) but not exposed for recovery here."
 paths:
   /api/v1/abac/policies:
     get:
@@ -7360,6 +7362,526 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/categories:
+    get:
+      operationId: listCommerceCategories
+      tags:
+        - Commerce
+      summary: List categories for the current tenant — keyset-paginated, newest first.
+      parameters:
+        - name: cursor
+          in: query
+          required: false
+          description: Opaque cursor from a previous response's nextCursor. A malformed value is rejected with 400.
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Live categories for the tenant (limit 100), newest first, with an opaque nextCursor for the next page (null on the last page).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/CommerceCategory"
+                      nextCursor:
+                        type: string
+                        nullable: true
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+    post:
+      operationId: createCommerceCategory
+      tags:
+        - Commerce
+      summary: Create a category.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - name
+                - slug
+              properties:
+                name:
+                  type: string
+                slug:
+                  type: string
+                  description: Lowercase alphanumeric segments separated by single hyphens.
+                parentId:
+                  type: string
+                  format: uuid
+                  nullable: true
+                  description: Must reference a live category in the SAME tenant. An id that is unknown, soft-deleted, or belongs to another tenant is rejected identically with 400 — the responses are deliberately indistinguishable so the field cannot be used to probe for category ids elsewhere on the platform.
+                icon:
+                  type: string
+                  nullable: true
+      responses:
+        "201":
+          description: Category created.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceCategory"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: slug is already taken by a live category in this tenant (CATEGORY_SLUG_ALREADY_EXISTS).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/categories/{id}:
+    get:
+      operationId: getCommerceCategory
+      tags:
+        - Commerce
+      summary: Fetch one category.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Category detail.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceCategory"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+    patch:
+      operationId: updateCommerceCategory
+      tags:
+        - Commerce
+      summary: Update a category's name/slug/icon.
+      description: No parentId here — a category's position in the hierarchy is set once, at creation. Move a category by deleting and recreating it.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                slug:
+                  type: string
+                icon:
+                  type: string
+                  nullable: true
+      responses:
+        "200":
+          description: Category updated.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceCategory"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: slug is already taken by a live category in this tenant (CATEGORY_SLUG_ALREADY_EXISTS).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+    delete:
+      operationId: deleteCommerceCategory
+      tags:
+        - Commerce
+      summary: Soft-delete a category (audited).
+      description: Sets deleted_at; the slug is freed for reuse. Not a hard delete, and this slice ships no restore endpoint — a soft-deleted row is retained (for the FK integrity of any product still referencing it) but not exposed for recovery here.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Category soft-deleted.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        format: uuid
+                      status:
+                        type: string
+                        enum:
+                          - deleted
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+  /api/v1/commerce/products:
+    get:
+      operationId: listCommerceProducts
+      tags:
+        - Commerce
+      summary: List products for the current tenant — keyset-paginated, newest first.
+      parameters:
+        - name: cursor
+          in: query
+          required: false
+          description: Opaque cursor from a previous response's nextCursor. A malformed value is rejected with 400.
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Live products for the tenant (limit 100), newest first, with an opaque nextCursor for the next page (null on the last page).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/CommerceProduct"
+                      nextCursor:
+                        type: string
+                        nullable: true
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+    post:
+      operationId: createCommerceProduct
+      tags:
+        - Commerce
+      summary: Create a product. Always starts in status draft.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - sku
+                - name
+                - slug
+                - price
+              properties:
+                categoryId:
+                  type: string
+                  format: uuid
+                  nullable: true
+                  description: Must reference a live category in the SAME tenant. An id that is unknown, soft-deleted, or belongs to another tenant is rejected identically with 400 (same GHSA-r7cx-c4jh-cvvw-shaped reasoning as categories.parentId).
+                type:
+                  type: string
+                  enum:
+                    - physical
+                    - digital
+                    - service
+                    - subscription
+                  default: physical
+                sku:
+                  type: string
+                name:
+                  type: string
+                slug:
+                  type: string
+                  description: Lowercase alphanumeric segments separated by single hyphens.
+                description:
+                  type: string
+                  nullable: true
+                digitalNote:
+                  type: string
+                  nullable: true
+                price:
+                  type: string
+                  description: numeric(14,2) as a decimal string, e.g. "19999.00" — never a JSON number. Non-negative, at most 2 fractional digits.
+                discountPercent:
+                  type: integer
+                  minimum: 0
+                  maximum: 100
+                  default: 0
+                stock:
+                  type: integer
+                  minimum: 0
+                  default: 0
+                label:
+                  type: string
+                  nullable: true
+                labelColor:
+                  type: string
+                  nullable: true
+      responses:
+        "201":
+          description: Product created.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceProduct"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: slug or sku is already taken by a live product in this tenant (PRODUCT_SLUG_ALREADY_EXISTS / PRODUCT_SKU_ALREADY_EXISTS).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/products/{id}:
+    get:
+      operationId: getCommerceProduct
+      tags:
+        - Commerce
+      summary: Fetch one product.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Product detail.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceProduct"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+    patch:
+      operationId: updateCommerceProduct
+      tags:
+        - Commerce
+      summary: Update a product, including a status transition.
+      description: There is no dedicated status-transition endpoint — status travels through this same PATCH, checked against product-status.ts's LEGAL_TRANSITIONS. An illegal transition (e.g. draft -> inactive) is rejected with 400, naming the states legally reachable from the product's current one.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                categoryId:
+                  type: string
+                  format: uuid
+                  nullable: true
+                type:
+                  type: string
+                  enum:
+                    - physical
+                    - digital
+                    - service
+                    - subscription
+                sku:
+                  type: string
+                name:
+                  type: string
+                slug:
+                  type: string
+                description:
+                  type: string
+                  nullable: true
+                digitalNote:
+                  type: string
+                  nullable: true
+                price:
+                  type: string
+                  description: numeric(14,2) as a decimal string — see POST's description.
+                discountPercent:
+                  type: integer
+                  minimum: 0
+                  maximum: 100
+                stock:
+                  type: integer
+                  minimum: 0
+                status:
+                  type: string
+                  enum:
+                    - draft
+                    - active
+                    - inactive
+                    - archived
+                label:
+                  type: string
+                  nullable: true
+                labelColor:
+                  type: string
+                  nullable: true
+      responses:
+        "200":
+          description: Product updated.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceProduct"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: slug or sku is already taken by a live product in this tenant (PRODUCT_SLUG_ALREADY_EXISTS / PRODUCT_SKU_ALREADY_EXISTS).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+    delete:
+      operationId: deleteCommerceProduct
+      tags:
+        - Commerce
+      summary: Soft-delete a product (audited).
+      description: Sets deleted_at; the sku and slug are freed for reuse. Not a hard delete, and this slice ships no restore endpoint — see the category DELETE description for the same reasoning.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Product soft-deleted.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        format: uuid
+                      status:
+                        type: string
+                        enum:
+                          - deleted
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
   /api/v1/data-lifecycle/dry-run:
     post:
       tags:
@@ -20835,6 +21357,72 @@ components:
           type: boolean
         notifyOnReply:
           type: boolean
+    CommerceCategory:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        parentId:
+          type: string
+          format: uuid
+          nullable: true
+        name:
+          type: string
+        slug:
+          type: string
+        icon:
+          type: string
+          nullable: true
+    CommerceProduct:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        categoryId:
+          type: string
+          format: uuid
+          nullable: true
+        type:
+          type: string
+          enum:
+            - physical
+            - digital
+            - service
+            - subscription
+        sku:
+          type: string
+        name:
+          type: string
+        slug:
+          type: string
+        description:
+          type: string
+          nullable: true
+        digitalNote:
+          type: string
+          nullable: true
+        price:
+          type: string
+          description: numeric(14,2) as a decimal string — never a JSON number (money is never a float; see sql/153's header).
+        discountPercent:
+          type: integer
+        stock:
+          type: integer
+        status:
+          type: string
+          enum:
+            - draft
+            - active
+            - inactive
+            - archived
+        label:
+          type: string
+          nullable: true
+        labelColor:
+          type: string
+          nullable: true
     ComposedHomepageGroup:
       type: object
       properties:

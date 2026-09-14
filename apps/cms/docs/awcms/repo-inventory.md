@@ -7,13 +7,13 @@
 
 | Aspect                              | Value |
 | ----------------------------------- | ----- |
-| Registered modules                  | 24    |
-| Migrations                          | 152   |
-| `awcms_*` tables                    | 152   |
-| Tables with `FORCE` RLS             | 134   |
+| Registered modules                  | 25    |
+| Migrations                          | 155   |
+| `awcms_*` tables                    | 154   |
+| Tables with `FORCE` RLS             | 136   |
 | RLS-free tables (global, by design) | 18    |
-| Test files                          | 514   |
-| Route files                         | 388   |
+| Test files                          | 515   |
+| Route files                         | 393   |
 | ADR                                 | 244   |
 
 ### Modules
@@ -44,6 +44,7 @@
 | `comments`             | 0.1.0   | active | domain | no   | `tenant_admin`, `identity_access`, `module_management`, `profile_identity`, `domain_event_runtime` |
 | `idn_admin_regions`    | 0.1.0   | active | system | no   | `tenant_admin`, `identity_access`                                                                  |
 | `push_delivery`        | 0.1.0   | active | —      | no   | `tenant_admin`, `logging`                                                                          |
+| `commerce`             | 0.1.0   | active | domain | no   | `tenant_admin`, `identity_access`, `domain_event_runtime`                                          |
 
 ### Migrations
 
@@ -201,6 +202,9 @@
 | 150 | `sql/150_awcms_idn_admin_regions_dataset_diff_indexes.sql`         |
 | 151 | `sql/151_awcms_ad_placement_content_class.sql`                     |
 | 152 | `sql/152_awcms_media_rights_adjudication_permission.sql`           |
+| 153 | `sql/153_awcms_commerce_schema.sql`                                |
+| 154 | `sql/154_awcms_commerce_permissions.sql`                           |
+| 155 | `sql/155_awcms_commerce_worker_lifecycle_purge_grants.sql`         |
 
 ### Tables & Row-Level Security
 
@@ -240,6 +244,8 @@
 | `awcms_comments_reports`                 | `sql/066_awcms_comments_schema.sql`                        | yes | yes   |
 | `awcms_comments_settings`                | `sql/066_awcms_comments_schema.sql`                        | yes | yes   |
 | `awcms_comments_threads`                 | `sql/066_awcms_comments_schema.sql`                        | yes | yes   |
+| `awcms_commerce_categories`              | `sql/153_awcms_commerce_schema.sql`                        | yes | yes   |
+| `awcms_commerce_products`                | `sql/153_awcms_commerce_schema.sql`                        | yes | yes   |
 | `awcms_data_lifecycle_archive_manifests` | `sql/055_awcms_data_lifecycle_schema.sql`                  | yes | yes   |
 | `awcms_data_lifecycle_cursors`           | `sql/055_awcms_data_lifecycle_schema.sql`                  | yes | yes   |
 | `awcms_data_lifecycle_legal_holds`       | `sql/055_awcms_data_lifecycle_schema.sql`                  | yes | yes   |
@@ -363,7 +369,7 @@
 
 | Directory     | Test files |
 | ------------- | ---------- |
-| `(root)`      | 415        |
+| `(root)`      | 416        |
 | `e2e`         | 19         |
 | `integration` | 79         |
 | `unit`        | 1          |
@@ -372,8 +378,8 @@
 
 | Surface         | Files |
 | --------------- | ----- |
-| `/api/v1/**`    | 308   |
-| `/admin/**`     | 50    |
+| `/api/v1/**`    | 312   |
+| `/admin/**`     | 51    |
 | publik / anonim | 30    |
 
 <!-- END GENERATED: repo-inventory -->

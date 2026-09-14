@@ -389,6 +389,10 @@ describe("openapi bundle — contract equivalence to pre-migration monolith", ()
     expect(added).toEqual([
       "Blog Content",
       "Comments",
+      // "Commerce" (commerce, Issue #4, epic #1) — genuinely new surface: the
+      // catalog slice (categories + products) of the re-platformed
+      // storefront. Nothing here is anonymous.
+      "Commerce",
       "Data Lifecycle",
       "Domain Event Runtime",
       "Form Drafts",

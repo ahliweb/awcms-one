@@ -70,6 +70,20 @@ export const COMMENT_SUBMITTED_EVENT_TYPE = "awcms.comments.comment.submitted";
 export const COMMENT_APPROVED_EVENT_TYPE = "awcms.comments.comment.approved";
 export const COMMENT_REPLY_CREATED_EVENT_TYPE = "awcms.comments.reply.created";
 
+/**
+ * `commerce` (Issue #4). Declared here — not imported from
+ * `commerce/domain/commerce-events.ts` — deliberately: this foundation module
+ * must not depend on a domain module. The literals are kept identical on both
+ * sides by the AsyncAPI parity gate, which reads the registry and the spec.
+ */
+export const COMMERCE_EVENT_VERSION = "1.0";
+export const COMMERCE_PRODUCT_CREATED_EVENT_TYPE =
+  "awcms.commerce.product.created";
+export const COMMERCE_PRODUCT_UPDATED_EVENT_TYPE =
+  "awcms.commerce.product.updated";
+export const COMMERCE_PRODUCT_STATUS_CHANGED_EVENT_TYPE =
+  "awcms.commerce.product.status_changed";
+
 export const DOMAIN_EVENT_TYPE_REGISTRY: readonly RegisteredDomainEventType[] =
   [
     {
@@ -141,6 +155,24 @@ export const DOMAIN_EVENT_TYPE_REGISTRY: readonly RegisteredDomainEventType[] =
       eventVersion: COMMENTS_EVENT_VERSION,
       description:
         "A submitted comment was a reply to an existing comment. Published alongside comment.submitted so a consumer can distinguish thread replies without re-reading the row; the recipient address is resolved from encrypted storage by the dispatcher at send time, never carried here."
+    },
+    {
+      eventType: COMMERCE_PRODUCT_CREATED_EVENT_TYPE,
+      eventVersion: COMMERCE_EVENT_VERSION,
+      description:
+        "A product was created (status draft). Producer: commerce/application/product-directory.ts's createProduct, via appendDomainEvent in the same transaction as the row's creation."
+    },
+    {
+      eventType: COMMERCE_PRODUCT_UPDATED_EVENT_TYPE,
+      eventVersion: COMMERCE_EVENT_VERSION,
+      description:
+        "A product's fields other than status were changed. Producer: commerce/application/product-directory.ts's updateProduct. Published alongside product.status_changed when a single PATCH changes both."
+    },
+    {
+      eventType: COMMERCE_PRODUCT_STATUS_CHANGED_EVENT_TYPE,
+      eventVersion: COMMERCE_EVENT_VERSION,
+      description:
+        "A product's lifecycle status transitioned (commerce/domain/product-status.ts's LEGAL_TRANSITIONS). Producer: commerce/application/product-directory.ts's updateProduct. Carries previousStatus and status; a consumer that only cares whether a product is still sellable can key off this without diffing the row."
     }
   ];
 

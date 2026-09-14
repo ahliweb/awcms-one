@@ -4685,3 +4685,37 @@ msgstr "Kelas konten"
 
 msgid "Editorial disclosure. Standard needs none; advertorial and sponsored are surfaced to readers as paid content."
 msgstr "Pengungkapan editorial. Standard tidak memerlukan pengungkapan; advertorial dan sponsored ditampilkan kepada pembaca sebagai konten berbayar."
+
+msgid "Products"
+msgstr "Produk"
+
+msgid "The tenant's product catalog — the first page of Issue #4's slice, read-only. SKU, name, type, price, stock, and status."
+msgstr "Katalog produk tenant — halaman pertama dari irisan Issue #4, hanya-baca. SKU, nama, tipe, harga, stok, dan status."
+
+msgid "You do not have permission to view products."
+msgstr "Anda tidak memiliki izin untuk melihat produk."
+
+msgid "Products could not be loaded right now. Please try again later."
+msgstr "Produk tidak dapat dimuat saat ini. Silakan coba lagi nanti."
+
+msgid "SKU"
+msgstr "SKU"
+
+msgid "Price"
+msgstr "Harga"
+
+msgid "Stock"
+msgstr "Stok"
+
+msgid "{count} product"
+msgid_plural "{count} products"
+msgstr[0] "{count} produk"
+
+msgid "No products yet"
+msgstr "Belum ada produk"
+
+msgid "Products created for this tenant will appear here."
+msgstr "Produk yang dibuat untuk tenant ini akan muncul di sini."
+
+msgid "Commerce"
+msgstr "Perdagangan"
