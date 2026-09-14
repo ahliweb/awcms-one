@@ -88,7 +88,7 @@ describe("packages/gerbang/lib/git.mjs — git never travels through a shell", (
 });
 
 describe("packages/gerbang/lib/reporter.mjs — one finding apparatus", () => {
-  const gates = ["audit-dokumen.mjs", "audit-rilis.mjs"];
+  const gates = ["audit-dokumen.mjs", "audit-rilis.mjs", "audit-graf.mjs"];
 
   test("every audit gate builds its report through createReporter", () => {
     for (const gate of gates) {
