@@ -31,6 +31,33 @@ const {
 const canonicalUrl = absoluteUrl(canonicalPath);
 const fullTitle = title === siteConfig.name ? title : `${title} — ${siteConfig.name}`;
 const metaDescription = description.slice(0, 160);
+
+/**
+ * JSON that is safe to write inside a `<script>` element.
+ *
+ * `JSON.stringify` escapes quotes and backslashes but NOT `<`, and the HTML
+ * *parser* — not the JavaScript engine — ends a `<script>` element at the
+ * first `</script>` byte sequence it meets, regardless of what `type` says.
+ * `schema` here is built from CMS-supplied strings (`product.name`,
+ * `product.description`, `category.name`, via `src/pages/[slug].astro`), so
+ * a product named `…</script><script>alert(1)</script>` would otherwise
+ * close this data block early and turn the text that follows into real,
+ * executing markup — a stored-XSS surface that only the CSP in
+ * `server/penyaji.mjs` (`script-src 'self'`) would be standing between it
+ * and running. That CSP is real protection, but a page must not depend on
+ * it as the ONLY protection.
+ *
+ * Replacing `<`, `>`, and `&` with their `\uXXXX` JSON escapes is the
+ * standard fix: none of the three is meaningful inside a JSON string, so
+ * the escaped form parses back to the byte-identical value, while giving
+ * the HTML parser no `<` to ever start a tag with.
+ */
+function jsonForScript(value: unknown): string {
+  return JSON.stringify(value)
+    .replace(/</g, "\\u003c")
+    .replace(/>/g, "\\u003e")
+    .replace(/&/g, "\\u0026");
+}
 ---
 
 <!doctype html>
@@ -60,12 +87,18 @@ const metaDescription = description.slice(0, 160);
     <meta property="og:locale" content="id_ID" />
 
     {/* JSON-LD is a DATA block, not a script: `type="application/ld+json"` is
-        not a JavaScript MIME type, so the browser never executes it and
-        `script-src` (server/penyaji.mjs) does not apply to it — no CSP
-        exemption needed for this to render. `is:inline` stops Astro from
-        treating it as a module it should process. */}
+        not a JavaScript MIME type, so the browser never executes this as
+        code, and `script-src` (server/penyaji.mjs) does not apply to it —
+        no CSP exemption needed for this to render. That does NOT make raw
+        `JSON.stringify` output safe to write here: the HTML parser closes a
+        `<script>` element at the first `</script>` it meets no matter what
+        `type` says, so CMS-supplied text (a product name, a description)
+        could still break out of this block as MARKUP and start a new,
+        executing `<script>` after it. `jsonForScript` above is what
+        actually prevents that; see its docblock. `is:inline` stops Astro
+        from treating this as a module it should process. */}
     {schema && (
-      <script is:inline type="application/ld+json" set:html={JSON.stringify({
+      <script is:inline type="application/ld+json" set:html={jsonForScript({
         "@context": "https://schema.org",
         ...schema
       })} />
