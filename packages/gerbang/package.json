@@ -3,5 +3,5 @@
   "type": "module",
   "version": "0.0.0",
   "private": true,
-  "description": "This workspace's audit gates, as a package: audit:dokumen (dead links, ADR index, named paths, ADR citations, linked counts), audit:rilis (the waiting changeset backlog), audit:translation (stale/missing Indonesian mirrors). Adapted from ahliweb/media-lenterakalteng's packages/gerbang — its content/asset/crawl gates (audit-konten, audit-aset, audit-graf, audit-serapan) are not ported here: this repository has no built content, asset, or crawl surface for them to guard yet. No runtime dependencies of its own."
+  "description": "This workspace's audit gates, as a package: audit:dokumen (dead links, ADR index, named paths, ADR citations, linked counts), audit:rilis (the waiting changeset backlog), audit:translation (stale/missing Indonesian mirrors), audit:graf (the root knowledge-graph corpus under graphify-out/ — issue #11). Adapted from ahliweb/media-lenterakalteng's packages/gerbang — its remaining content/asset/crawl gates (audit-konten, audit-aset, audit-serapan) are not ported here: this repository has no built content, asset, or crawl surface for them to guard yet. No runtime dependencies of its own."
 }

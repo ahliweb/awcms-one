@@ -67,6 +67,10 @@ This repo is **Bun-only**: Bun is both the runtime and the package manager, its 
 | `bun run audit:dokumen` | Dead markdown links, the ADR index (once `docs/adr/` exists), file paths a document names, `ADR-NNNN` citations, and marked linked counts |
 | `bun run audit:rilis` | The waiting `.changesets/` backlog, bounded at 10 files and 14 days |
 | `bun run audit:translation` | Stale or missing Indonesian mirrors of the governance documents |
+| `bun run audit:graf` (alias: `knowledge:check`) | The root knowledge-graph corpus describes itself honestly — see [`knowledge/README.md`](knowledge/README.md) |
+| `bun run knowledge:graph:update` | Rebuilds the root Graphify graph (`--code-only`, no LLM) — needs `graphify` on `PATH`, not run in CI |
+| `bun run knowledge:graph:combine` | Merges the root graph with `apps/cms`'s own into a gitignored, on-demand federated graph — needs `graphify` on `PATH` |
+| `bun run knowledge:obsidian:export` | Stages, validates, and syncs a safe Obsidian export of the root graph to `knowledge/generated/graphify/` — needs `graphify` on `PATH` |
 | `bun run docs:i18n:stamp` | Writes the language banners and source-hash markers on every `.id.md` mirror |
 | `bun run check:cms` | `apps/cms`'s own full gate chain (lint, typecheck, its own tests, its own build) |
 | `bun run db:migrate:cms` | Runs `apps/cms`'s migrations against `DATABASE_URL` — see `apps/cms/.env.example` |
@@ -75,9 +79,11 @@ This repo is **Bun-only**: Bun is both the runtime and the package manager, its 
 
 ### Gates
 
-`bun test` plus three `audit:*` scripts, all adapted from `ahliweb/media-lenterakalteng`'s `packages/gerbang`. None of them need a build, a network, or `apps/cms`, so all of them run unconditionally on every push.
+`bun test` plus four `audit:*` scripts, all adapted from `ahliweb/media-lenterakalteng`'s `packages/gerbang`. None of them need a build, a network, or `apps/cms`, so all of them run unconditionally on every push.
 
-**Not ported**, and deliberately so: `media-lenterakalteng` also carries `audit:konten` (published-output content checks), `audit:aset` (reader byte budget), `audit:graf` (graphify artefact hygiene), and `audit:serapan` (upstream ADR uptake). Every one of them guards a surface — built HTML output, a crawlable running server, a graph corpus — that this repository does not have yet. Porting them now would ship a gate that always passes trivially, which reads as more dangerous than no gate at all: a green check that has checked nothing looks exactly like one that checked something and found it clean.
+`audit:graf` (graphify artefact hygiene) used to sit on the "not ported" list below — this repository had no `graphify-out/` corpus for it to guard. [Issue #11](https://github.com/ahliweb/awcms-one/issues/11) built one: a root-owned, `--code-only` Graphify graph that deliberately excludes `apps/cms/**` (which already has its own graph and its own gate), plus a federated command family (`bun run knowledge:graph:update` / `knowledge:graph:combine` / `knowledge:obsidian:export`) documented in [`knowledge/README.md`](knowledge/README.md). `audit:graf` now checks that corpus for real — see that document for exactly what.
+
+**Still not ported**, and deliberately so: `media-lenterakalteng` also carries `audit:konten` (published-output content checks), `audit:aset` (reader byte budget), and `audit:serapan` (upstream ADR uptake). Every one of them guards a surface — built HTML output, a crawlable running server — that this repository does not have yet. Porting them now would ship a gate that always passes trivially, which reads as more dangerous than no gate at all: a green check that has checked nothing looks exactly like one that checked something and found it clean.
 
 ## Documentation
 
@@ -91,6 +97,7 @@ This repo is **Bun-only**: Bun is both the runtime and the package manager, its 
 | [`SUPPORT.md`](SUPPORT.md) | Where a question or a bug report goes |
 | [`CHANGELOG.md`](CHANGELOG.md) | Release history, folded from changesets |
 | [`.changesets/README.md`](.changesets/README.md) | How to write a change note |
+| [`knowledge/README.md`](knowledge/README.md) | The federated Graphify + Obsidian knowledge-graph workflow |
 
 ## Language
 

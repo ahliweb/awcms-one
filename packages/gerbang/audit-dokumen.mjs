@@ -490,7 +490,12 @@ const PATH_PREFIXES = [
   "infra/",
   "apps/",
   "packages/",
-  "tools/"
+  "tools/",
+  // knowledge/ (issue #11): the federated Graphify + Obsidian workflow's own
+  // docs and generated/curated output. Added the same way every other
+  // top-level source directory is — a path named in backticks under it
+  // should exist, same as any other.
+  "knowledge/"
 ];
 
 function auditNamedPaths(files) {
