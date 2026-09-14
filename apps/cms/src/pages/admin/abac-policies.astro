@@ -1,0 +1,368 @@
+---
+/**
+ * ABAC policy management screen (Issue #166 read; write authoring + toggle added
+ * #171). SSR-reads via the same `listAbacPolicies` the
+ * `GET /api/v1/abac/policies` endpoint uses, gated on
+ * `identity_access.access_control.read`.
+ *
+ * A create-policy form and per-row Edit / Enable-Disable controls both post to
+ * `POST` / `PATCH /api/v1/abac/policies[/{id}]`, gated on
+ * `identity_access.access_control.configure` — the access-control
+ * administration permission. That activity seeds only `read`/`assign`/
+ * `configure` (no `create`/`update`), and the owner is granted only seeded
+ * permissions, so `configure` is the write gate for policy authoring. The gates
+ * are UX-only — the endpoints' ABAC guards are the real authority; the buttons
+ * just avoid rendering controls the user can't use.
+ *
+ * Note: like awcms-mini, the base ships this table seeded-EMPTY — the ABAC
+ * evaluator uses built-in role/permission rules by default, and per-tenant
+ * custom policies are an opt-in extension surface. An empty table here is the
+ * expected default, not an error.
+ */
+import AdminLayout from "../../layouts/AdminLayout.astro";
+import "../../styles/admin-screens.css";
+import { loadAdminScreen } from "../../lib/auth/admin-screen";
+import { logAdminPageError } from "../../lib/logging/error-log";
+import { getTranslatorFor } from "../../lib/i18n";
+import {
+  listAbacPolicies,
+  type AbacPolicyView
+} from "../../modules/identity-access/application/access-directory";
+
+const ssr = Astro.locals.ssrContext!;
+const { t, tn } = getTranslatorFor(Astro.locals.locale);
+
+// Issue #450 — the entry decision and the read share ONE transaction, and the
+// decision is the chokepoint's. Note what that closes HERE in particular: this
+// is the screen a tenant authors its ABAC policies on, and until now the
+// policies it writes were enforced on `/api/v1/abac/policies` and inert on the
+// page listing them.
+const screen = await loadAdminScreen({
+  ssr,
+  workClass: "interactive",
+  authorize: {
+    moduleKey: "identity_access",
+    activityCode: "access_control",
+    action: "read"
+  },
+  load: async ({ tx, can }) => ({
+    // One transaction, one awaited query at a time. Concurrent queries on a
+    // single transaction connection leak it, so nothing here runs in parallel.
+    policies: await listAbacPolicies(tx, ssr.tenantId),
+    // Both write surfaces gate on `configure` — the only seeded write action
+    // for this activity (no `create`/`update` exist in the catalog).
+    canConfigure: await can({
+      moduleKey: "identity_access",
+      activityCode: "access_control",
+      action: "configure"
+    })
+  }),
+  onError: (error) => {
+    logAdminPageError(
+      "admin/abac-policies.astro: failed to list ABAC policies",
+      error,
+      { correlationId: Astro.locals.correlationId }
+    );
+  }
+});
+
+const canRead = screen.state !== "denied";
+// A pool/circuit-breaker refusal is NOT "no policies" and NOT a denial — and on
+// this screen the difference matters most: an empty table is the documented
+// default posture, so an unreported load failure would read as normal.
+const loadError = screen.state === "error";
+const policies: AbacPolicyView[] =
+  screen.state === "allowed" ? screen.data.policies : [];
+const canConfigure = screen.state === "allowed" && screen.data.canConfigure;
+const canCreate = canConfigure;
+const canUpdate = canConfigure;
+---
+
+<AdminLayout
+  title={t("ABAC policies")}
+  description={t(
+    "Per-tenant custom access policies. This table is empty by default — the evaluator applies the built-in role/permission rules, and custom policies are an opt-in extension surface."
+  )}
+>
+  {
+    /*
+        The screen used to say only that the table is empty by default, which
+        reads as "nothing here yet" rather than "nothing written here takes
+        effect". Policies authored on THIS screen keep `is_dsl_managed = false`
+        and `policy-cache.ts` never loads them (ADR-0033 \u00a73) \u2014 deliberate, since
+        a flat row cannot be scoped or conditioned and a flat `deny` would deny
+        every request in the tenant. But an operator writing a rule here and
+        expecting it to bite deserves to be told, not to discover it.
+      */
+  }
+  <p class="state-notice" id="abac-policies-inert-notice">
+    {
+      t(
+        "Policies created here are stored but never evaluated. The policies the evaluator consults are on the Access policies screen."
+      )
+    }
+  </p>
+
+  {
+    !canRead && (
+      <p class="state-notice fade-in-up" id="abac-policies-denied">
+        {t("You do not have permission to view ABAC policies.")}
+      </p>
+    )
+  }
+
+  {
+    canRead && loadError && (
+      <p class="state-notice fade-in-up" id="abac-policies-error">
+        {t("Policies could not be loaded right now. Please try again later.")}
+      </p>
+    )
+  }
+
+  {
+    canCreate && (
+      <form id="policy-create-form" class="admin-create-form fade-in-up">
+        <p class="form-legend">{t("Create a policy")}</p>
+        <p
+          id="policy-create-error"
+          class="admin-create-error"
+          role="alert"
+          hidden
+        />
+
+        <label for="policy-code">{t("Policy code")}</label>
+        <input
+          id="policy-code"
+          name="policyCode"
+          type="text"
+          required
+          autocomplete="off"
+        />
+
+        <label for="policy-effect">{t("Effect")}</label>
+        <select id="policy-effect" name="effect">
+          <option value="allow">{t("allow")}</option>
+          <option value="deny">{t("deny")}</option>
+        </select>
+
+        <label for="policy-description">{t("Description (optional)")}</label>
+        <input
+          id="policy-description"
+          name="description"
+          type="text"
+          autocomplete="off"
+        />
+
+        <button type="submit" id="policy-create-submit">
+          {t("Create policy")}
+        </button>
+      </form>
+    )
+  }
+
+  {
+    canUpdate && (
+      <p
+        id="policy-update-error"
+        class="admin-create-error"
+        role="alert"
+        hidden
+      />
+    )
+  }
+
+  {
+    canRead && !loadError && (
+      <div class="data-table-scroll fade-in-up">
+        <table class="data-table data-table--stack" id="abac-policies-table">
+          <caption>
+            {tn("{count} policy", "{count} policies", policies.length, {
+              count: policies.length
+            })}
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">{t("Code")}</th>
+              <th scope="col">{t("Effect")}</th>
+              <th scope="col">{t("Description")}</th>
+              <th scope="col">{t("Active")}</th>
+              {canUpdate && <th scope="col">{t("Actions")}</th>}
+            </tr>
+          </thead>
+          <tbody>
+            {policies.length === 0 ? (
+              <tr>
+                <td class="data-table-empty" colspan={canUpdate ? 5 : 4}>
+                  <div class="empty-state">
+                    <span class="empty-state-icon" aria-hidden="true">
+                      ⚖
+                    </span>
+                    <span class="empty-state-title">
+                      {t("No custom policies")}
+                    </span>
+                    <span class="empty-state-text">
+                      {t(
+                        "The built-in role/permission rules apply. Add a custom policy to extend or override them for this tenant."
+                      )}
+                    </span>
+                  </div>
+                </td>
+              </tr>
+            ) : (
+              policies.map((policy) => (
+                <tr>
+                  <td data-label="Code">
+                    <span class="cell-code">{policy.policyCode}</span>
+                  </td>
+                  <td data-label="Effect">
+                    <span
+                      class="status-badge"
+                      data-variant={
+                        policy.effect === "allow" ? "success" : "danger"
+                      }
+                    >
+                      <span class="status-dot" aria-hidden="true" />
+                      {policy.effect}
+                    </span>
+                  </td>
+                  <td data-label="Description">
+                    {policy.description ?? <span class="cell-muted">—</span>}
+                  </td>
+                  <td data-label="Active">
+                    <span
+                      class="status-badge"
+                      data-variant={policy.isActive ? "success" : "neutral"}
+                    >
+                      {policy.isActive ? "active" : "inactive"}
+                    </span>
+                  </td>
+                  {canUpdate && (
+                    <td data-label="Actions" class="stacked-block">
+                      <div class="row-actions">
+                        <button
+                          type="button"
+                          class="module-toggle policy-edit"
+                          data-policy-id={policy.id}
+                          data-policy-code={policy.policyCode}
+                          data-effect={policy.effect}
+                          data-description={policy.description ?? ""}
+                        >
+                          {t("Edit")}
+                        </button>
+                        <button
+                          type="button"
+                          class="module-toggle policy-toggle"
+                          data-policy-id={policy.id}
+                          data-active={policy.isActive ? "true" : "false"}
+                        >
+                          {policy.isActive ? "Disable" : "Enable"}
+                        </button>
+                      </div>
+                    </td>
+                  )}
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
+    )
+  }
+</AdminLayout>
+
+<script>
+  // Bundled unconditionally (Astro hoists every `<script>` at build time, so it
+  // can't be runtime-conditional). Harmless for users without create/update
+  // permission: the form and buttons only render when their gate passes, so the
+  // lookups below find nothing and no listener binds. The import forces Astro to
+  // bundle this script EXTERNAL — an import-free script would be inlined, and
+  // inline scripts are blocked by this app's CSP. See admin-form-client.ts.
+  import {
+    field,
+    messageBox,
+    mutateAndReload,
+    onAction,
+    onSubmit,
+    sendJson
+  } from "../../lib/ui/admin-form-client";
+
+  const createError = messageBox("policy-create-error");
+  const updateError = messageBox("policy-update-error");
+
+  // --- Create ---------------------------------------------------------------
+  onSubmit("policy-create-form", async ({ data, submit }) => {
+    const description = field(data, "description");
+
+    await mutateAndReload(
+      submit,
+      createError,
+      () =>
+        sendJson("POST", "/api/v1/abac/policies", {
+          policyCode: field(data, "policyCode"),
+          effect: field(data, "effect"),
+          // Empty string clears / omits the description; the endpoint
+          // normalises it to null.
+          description: description.length > 0 ? description : null
+        }),
+      // Generic message only — never surface internal detail (Issue #540).
+      "Could not create the policy. Check the code is unique and try again."
+    );
+  });
+
+  // --- Edit effect / description --------------------------------------------
+  onAction("button.policy-edit", async (button) => {
+    const policyId = button.dataset.policyId;
+    if (!policyId) return;
+
+    const nextEffect = window.prompt(
+      `Effect for "${button.dataset.policyCode}" (allow or deny):`,
+      button.dataset.effect ?? "allow"
+    );
+    if (nextEffect === null) return; // cancelled
+    const effect = nextEffect.trim();
+    if (effect !== "allow" && effect !== "deny") {
+      updateError.show("Effect must be exactly 'allow' or 'deny'.");
+      return;
+    }
+
+    const nextDescription = window.prompt(
+      "Description (leave blank to clear):",
+      button.dataset.description ?? ""
+    );
+    if (nextDescription === null) return; // cancelled
+
+    await mutateAndReload(
+      button,
+      updateError,
+      () =>
+        sendJson(
+          "PATCH",
+          `/api/v1/abac/policies/${encodeURIComponent(policyId)}`,
+          {
+            effect,
+            description:
+              nextDescription.trim().length > 0 ? nextDescription.trim() : null
+          }
+        ),
+      "Could not update the policy. Please try again."
+    );
+  });
+
+  // --- Enable / disable toggle ----------------------------------------------
+  onAction("button.policy-toggle", async (button) => {
+    const policyId = button.dataset.policyId;
+    if (!policyId) return;
+
+    await mutateAndReload(
+      button,
+      updateError,
+      () =>
+        sendJson(
+          "PATCH",
+          `/api/v1/abac/policies/${encodeURIComponent(policyId)}`,
+          { isActive: button.dataset.active !== "true" }
+        ),
+      "Could not change the policy state. Please try again."
+    );
+  });
+</script>

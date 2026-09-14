@@ -1,0 +1,149 @@
+import { describe, expect, test } from "bun:test";
+
+import { getModuleByKey, listModules } from "../src/modules";
+import { tenantDomainModule } from "../src/modules/tenant-domain/module";
+import { validateCreateTenantDomainInput } from "../src/modules/tenant-domain/domain/tenant-domain-validation";
+
+// The six permissions seeded by sql/047_awcms_tenant_domain_permissions.sql,
+// verbatim. The descriptor's `permissions` array must match this list exactly
+// (activityCode/action/description) or Module Management's permission
+// sync/status report will show `missing`/`mismatched_description`.
+const MIGRATION_047_PERMISSIONS = [
+  {
+    activityCode: "domains",
+    action: "read",
+    description: "Read tenant domain/subdomain mappings"
+  },
+  {
+    activityCode: "domains",
+    action: "create",
+    description: "Add a tenant domain/subdomain mapping"
+  },
+  {
+    activityCode: "domains",
+    action: "update",
+    description: "Update a tenant domain/subdomain mapping"
+  },
+  {
+    activityCode: "domains",
+    action: "delete",
+    description: "Soft delete a tenant domain/subdomain mapping"
+  },
+  {
+    activityCode: "domains",
+    action: "verify",
+    description: "Verify ownership of a tenant domain/subdomain"
+  },
+  {
+    activityCode: "domains",
+    action: "set_primary",
+    description: "Set a tenant domain as the active primary domain"
+  }
+];
+
+describe("tenant_domain module descriptor (ported from awcms-micro)", () => {
+  test("listModules() includes tenant_domain", () => {
+    expect(listModules().some((m) => m.key === "tenant_domain")).toBe(true);
+    expect(getModuleByKey("tenant_domain")).toBe(tenantDomainModule);
+  });
+
+  test("descriptor shape", () => {
+    expect(tenantDomainModule.key).toBe("tenant_domain");
+    expect(tenantDomainModule.status).toBe("active");
+    // Registered as "domain" in this base (the port instruction), like the
+    // other directly-in-base website modules.
+    expect(tenantDomainModule.type).toBe("domain");
+    expect(tenantDomainModule.dependencies).toEqual([
+      "tenant_admin",
+      "identity_access"
+    ]);
+  });
+
+  test("api points at the module fragment + management basePath", () => {
+    expect(tenantDomainModule.api?.basePath).toBe("/api/v1/tenant/domains");
+    expect(tenantDomainModule.api?.openApiPath).toBe(
+      "openapi/modules/tenant-domain.openapi.yaml"
+    );
+  });
+
+  test("navigation.path is permission-gated on read", () => {
+    expect(tenantDomainModule.navigation).toHaveLength(1);
+    expect(tenantDomainModule.navigation?.[0]?.path).toBe(
+      "/admin/tenant/domains"
+    );
+    expect(tenantDomainModule.navigation?.[0]?.requiredPermission).toBe(
+      "tenant_domain.domains.read"
+    );
+  });
+
+  test("permissions array matches migration 047's seed exactly", () => {
+    expect(tenantDomainModule.permissions).toEqual(MIGRATION_047_PERMISSIONS);
+  });
+
+  test("permission keys reproduce the six tenant_domain.domains.* keys", () => {
+    const permissionKeys = (tenantDomainModule.permissions ?? []).map(
+      (p) => `${tenantDomainModule.key}.${p.activityCode}.${p.action}`
+    );
+
+    expect(permissionKeys).toEqual([
+      "tenant_domain.domains.read",
+      "tenant_domain.domains.create",
+      "tenant_domain.domains.update",
+      "tenant_domain.domains.delete",
+      "tenant_domain.domains.verify",
+      "tenant_domain.domains.set_primary"
+    ]);
+  });
+
+  test("the module declares NO settings, and that is the decision (D7)", () => {
+    // It used to declare `defaults: { defaultVerificationMethod: "manual" }`
+    // that nothing read. The repair that suggests itself — apply it when a
+    // domain is created — is the one that must not be taken: `verify` performs
+    // no verification at all, so a NULL `verification_method` is currently the
+    // only step between "a tenant created a hostname row" and "that hostname is
+    // active" in host->tenant resolution. See the comment in `module.ts`.
+    expect(tenantDomainModule.settings).toBeUndefined();
+  });
+
+  test("the create surface has no verification input at all (ADR-0106)", () => {
+    // The behavioural half of the above, and it changed direction once. When
+    // D7 was closed, this asserted that creation left `verification_method`
+    // NULL, because NULL was the only thing standing between a hostname row
+    // and an active domain. ADR-0106 removed the reason: `verify` now performs
+    // a real DNS TXT check, so the column is server-minted at creation and
+    // there is nothing for a caller to supply or default.
+    const validation = validateCreateTenantDomainInput({
+      hostname: "example.test",
+      domainType: "custom_domain"
+    });
+
+    expect(validation.valid).toBe(true);
+    expect(validation.valid && validation.value).not.toHaveProperty(
+      "verificationMethod"
+    );
+  });
+
+  test("the DNS sync job is declared, with a schedule an operator can act on", () => {
+    // This used to assert `jobs` was UNDEFINED, pinning the defect in place:
+    // `scripts/tenant-domain-dns-sync.ts` was already in
+    // `JOB_WORK_CLASS_REGISTRY` (so it was fully inside the capacity model)
+    // while `GET /api/v1/modules/tenant_domain/jobs` returned nothing — the
+    // one surface an operator reads to learn a job needs scheduling. A job
+    // nobody schedules never runs, and nothing says so. `modules:jobs:check`
+    // now compares the two registries; this pins the module's own half.
+    const job = tenantDomainModule.jobs?.find(
+      (entry) => entry.command === "bun run tenant-domain:dns:sync"
+    );
+
+    expect(job).toBeDefined();
+    expect(job!.recommendedSchedule?.trim()).toBeTruthy();
+    // The outbound-call condition belongs in the descriptor, not only in the
+    // script: `safeInOfflineLan` is how an offline/LAN operator decides.
+    expect(job!.environmentNotes).toContain("TENANT_DOMAIN_DNS_PROVIDER");
+    expect(job!.safeInOfflineLan).toBe(true);
+  });
+
+  test("the module declares no health contract", () => {
+    expect(tenantDomainModule.health).toBeUndefined();
+  });
+});

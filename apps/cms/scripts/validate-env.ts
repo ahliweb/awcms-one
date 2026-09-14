@@ -1,0 +1,815 @@
+/**
+ * validate-env.ts — `bun run config:validate`.
+ *
+ * Validasi kontrak environment fondasi AWCMS sebelum boot/deploy. Membaca
+ * `process.env` (default) atau file env eksplisit (`--file <path>`), lalu
+ * memeriksa: variabel required hadir & tak kosong, variabel bertipe punya
+ * format benar (int > 0, boolean `true`/`false`, URL postgres/http), dan
+ * aturan khusus produksi (cookie secure, secret bukan placeholder, URL
+ * https). Tanpa I/O database/network — murni memeriksa nilai env.
+ *
+ * Versi ramping yang disesuaikan untuk env fondasi repo ini; kontrak per
+ * modul ERP ditambahkan seiring modulnya dibangun (bandingkan pola agregasi
+ * per-modul di awcms-mini `scripts/validate-env.ts`).
+ */
+import { readFile } from "node:fs/promises";
+
+import { parseFcmCredentialsBase64 } from "../src/modules/push-delivery/domain/fcm-credentials";
+import { parseVapidConfig } from "../src/modules/push-delivery/domain/vapid-config";
+
+type EnvBag = Record<string, string | undefined>;
+
+type Rule = {
+  name: string;
+  required: boolean;
+  type: "string" | "int" | "bool" | "url-postgres" | "url-http" | "enum";
+  values?: readonly string[];
+  min?: number;
+  /** Rahasia yang tak boleh bernilai placeholder di produksi. */
+  secret?: boolean;
+};
+
+const BOOL_VALUES = ["true", "false"] as const;
+
+const RULES: readonly Rule[] = [
+  {
+    // `staging` DIHAPUS oleh ADR-0083 (diamandemen 11 Agustus 2026) bersama
+    // profil deployment-nya di `_shared/module-contract.ts`. Menyisakannya di
+    // sini akan membuat gerbang ini MENERIMA `APP_ENV=staging` untuk sebuah
+    // environment yang tidak ada — persis kegagalan yang ADR itu tutup: sebuah
+    // nama environment yang berhenti menandakan apa pun lebih buruk daripada
+    // nama yang hilang, karena pembaca `APP_ENV` berikutnya akan yakin dan
+    // salah. `test` BUKAN profil deployment dan tetap tinggal: ia dipakai
+    // harness (mis. drill DR/performa yang menolak `production`), dan tidak
+    // pernah menamai sebuah deployment.
+    name: "APP_ENV",
+    required: true,
+    type: "enum",
+    values: ["development", "test", "production"]
+  },
+  { name: "APP_URL", required: true, type: "url-http" },
+  {
+    name: "LOG_LEVEL",
+    required: false,
+    type: "enum",
+    // `warning` is the level the logger implements; `warn` is accepted as an
+    // alias it canonicalises. Finding D3: this list used to hold `warn` and NOT
+    // `warning`, so the only spelling that validated was the one that matched
+    // no level and silently fell back to `info`, and the spelling that worked
+    // was rejected. There was no value that both passed and worked.
+    values: ["debug", "info", "warning", "warn", "error"]
+  },
+  { name: "AUDIT_LOG_RETENTION_DAYS", required: false, type: "int", min: 1 },
+
+  { name: "DATABASE_URL", required: true, type: "url-postgres" },
+  { name: "DATABASE_POOL_MAX", required: false, type: "int", min: 1 },
+  {
+    name: "DATABASE_STATEMENT_TIMEOUT_MS",
+    required: false,
+    type: "int",
+    min: 0
+  },
+  { name: "DATABASE_PGBOUNCER", required: false, type: "bool" },
+  { name: "WORKER_DATABASE_URL", required: false, type: "url-postgres" },
+  { name: "SETUP_DATABASE_URL", required: false, type: "url-postgres" },
+
+  { name: "AUTH_SESSION_TTL_MIN", required: false, type: "int", min: 1 },
+  { name: "AUTH_COOKIE_SECURE", required: false, type: "bool" },
+  { name: "AUTH_LOGIN_MAX_ATTEMPTS", required: false, type: "int", min: 1 },
+  { name: "AUTH_LOGIN_RATE_LIMIT_MAX", required: false, type: "int", min: 1 },
+  {
+    name: "AUTH_LOGIN_RATE_LIMIT_WINDOW_SEC",
+    required: false,
+    type: "int",
+    min: 1
+  },
+  { name: "AUTH_SOURCE_RATE_LIMIT_MAX", required: false, type: "int", min: 1 },
+  {
+    name: "AUTH_SOURCE_RATE_LIMIT_WINDOW_SEC",
+    required: false,
+    type: "int",
+    min: 1
+  },
+  { name: "SETUP_RATE_LIMIT_MAX", required: false, type: "int", min: 1 },
+  { name: "SETUP_RATE_LIMIT_WINDOW_SEC", required: false, type: "int", min: 1 },
+  { name: "TRUSTED_PROXY_ENABLED", required: false, type: "bool" },
+  { name: "TRUSTED_PROXY_HOP_COUNT", required: false, type: "int", min: 1 },
+  {
+    name: "AUTH_IP_HASH_SECRET",
+    required: false,
+    type: "string",
+    secret: true
+  },
+
+  { name: "AUTH_MFA_ENABLED", required: false, type: "bool" },
+  {
+    name: "AUTH_MFA_SECRET_ENCRYPTION_KEY",
+    required: false,
+    type: "string",
+    secret: true
+  },
+  { name: "AUTH_MFA_TOTP_ISSUER", required: false, type: "string" },
+  { name: "AUTH_MFA_TOTP_PERIOD_SEC", required: false, type: "int", min: 1 },
+  {
+    name: "AUTH_MFA_TOTP_DIGITS",
+    required: false,
+    type: "enum",
+    values: ["6", "8"]
+  },
+  { name: "AUTH_MFA_TOTP_WINDOW_STEPS", required: false, type: "int", min: 0 },
+  { name: "AUTH_MFA_CHALLENGE_TTL_SEC", required: false, type: "int", min: 1 },
+  { name: "AUTH_MFA_STEPUP_TTL_SEC", required: false, type: "int", min: 1 },
+  {
+    name: "AUTH_MFA_MAX_VERIFY_ATTEMPTS",
+    required: false,
+    type: "int",
+    min: 1
+  },
+  { name: "AUTH_MFA_LOCKOUT_MINUTES", required: false, type: "int", min: 1 },
+  { name: "AUTH_MFA_RATE_LIMIT_MAX", required: false, type: "int", min: 1 },
+  {
+    name: "AUTH_MFA_RATE_LIMIT_WINDOW_SEC",
+    required: false,
+    type: "int",
+    min: 1
+  },
+
+  { name: "AUTH_SSO_ENABLED", required: false, type: "bool" },
+  {
+    name: "AUTH_SSO_CREDENTIAL_ENCRYPTION_KEY",
+    required: false,
+    type: "string",
+    secret: true
+  },
+  {
+    name: "AUTH_SSO_DISCOVERY_TIMEOUT_MS",
+    required: false,
+    type: "int",
+    min: 1
+  },
+  { name: "AUTH_SSO_MAX_RESPONSE_BYTES", required: false, type: "int", min: 1 },
+  {
+    name: "AUTH_SSO_MAX_PROVIDERS_PER_TENANT",
+    required: false,
+    type: "int",
+    min: 1
+  },
+  {
+    name: "AUTH_SSO_OAUTH_REQUEST_TTL_SEC",
+    required: false,
+    type: "int",
+    min: 1
+  },
+  { name: "AUTH_SSO_ALLOW_INSECURE_HOSTS", required: false, type: "string" },
+
+  // Password recovery (Wave 2 delta auth). All optional: the flow ships on with
+  // safe defaults, because a recovery path that has to be switched on is a
+  // recovery path that is off when it is needed.
+  //
+  // `AUTH_URL_PARAM_ENCRYPTION_KEY` is the one exception to "optional means
+  // cosmetic": unset, the emailed link carries plain `?token=…&tenantId=…`;
+  // set (32 bytes base64, `openssl rand -base64 32`, SEPARATE from MFA's and
+  // SSO's), both are sealed into one opaque `?p=` value. Either way the token
+  // itself is a 256-bit CSPRNG value — this is defense-in-depth, not the
+  // primary control, which is why an invalid key degrades to plain params
+  // instead of failing closed.
+  {
+    name: "AUTH_PASSWORD_RESET_TOKEN_TTL_MIN",
+    required: false,
+    type: "int",
+    min: 1
+  },
+  {
+    name: "AUTH_PASSWORD_RESET_RATE_LIMIT_MAX",
+    required: false,
+    type: "int",
+    min: 1
+  },
+  {
+    name: "AUTH_PASSWORD_RESET_RATE_LIMIT_WINDOW_SEC",
+    required: false,
+    type: "int",
+    min: 1
+  },
+  // Public self-registration (Wave 2 delta auth). Off by default; the two rate
+  // limit knobs apply to the public submit endpoint only.
+  { name: "AUTH_SELF_REGISTRATION_ENABLED", required: false, type: "bool" },
+  {
+    name: "AUTH_SELF_REGISTRATION_RATE_LIMIT_MAX",
+    required: false,
+    type: "int",
+    min: 1
+  },
+  {
+    name: "AUTH_SELF_REGISTRATION_RATE_LIMIT_WINDOW_SEC",
+    required: false,
+    type: "int",
+    min: 1
+  },
+  {
+    name: "AUTH_URL_PARAM_ENCRYPTION_KEY",
+    required: false,
+    type: "string",
+    secret: true
+  },
+
+  // Full-online deployment-profile gate + Cloudflare Turnstile (Issue #186).
+  // All optional/off by default so every LAN/offline deployment passes with
+  // none of them set. `TURNSTILE_SITE_KEY` is public (embedded in the widget),
+  // so it is NOT marked `secret`; only `TURNSTILE_SECRET_KEY` is.
+  { name: "AUTH_ONLINE_SECURITY_ENABLED", required: false, type: "bool" },
+  {
+    name: "AUTH_ONLINE_SECURITY_PROFILE",
+    required: false,
+    type: "enum",
+    values: ["disabled", "full_online"]
+  },
+  { name: "TURNSTILE_ENABLED", required: false, type: "bool" },
+  { name: "TURNSTILE_SITE_KEY", required: false, type: "string" },
+  {
+    name: "TURNSTILE_SECRET_KEY",
+    required: false,
+    type: "string",
+    secret: true
+  },
+  { name: "TURNSTILE_EXPECTED_HOSTNAME", required: false, type: "string" },
+  {
+    name: "TURNSTILE_VERIFY_TIMEOUT_MS",
+    required: false,
+    type: "int",
+    min: 1
+  },
+  { name: "TURNSTILE_MAX_TOKEN_AGE_SEC", required: false, type: "int", min: 1 },
+  {
+    name: "TURNSTILE_MAX_RESPONSE_BYTES",
+    required: false,
+    type: "int",
+    min: 1
+  },
+
+  { name: "AWCMS_SYNC_ENABLED", required: false, type: "bool" },
+  {
+    name: "AWCMS_SYNC_HMAC_SECRET",
+    required: false,
+    type: "string",
+    secret: true
+  },
+  { name: "AWCMS_SYNC_MAX_SKEW_SEC", required: false, type: "int", min: 1 },
+  { name: "SYNC_HMAC_ALLOW_LEGACY", required: false, type: "bool" },
+
+  {
+    name: "STORAGE_DRIVER",
+    required: false,
+    type: "enum",
+    values: ["local", "r2", "s3"]
+  },
+  { name: "LOCAL_STORAGE_PATH", required: false, type: "string" },
+  { name: "R2_ENABLED", required: false, type: "bool" },
+
+  { name: "EMAIL_ENABLED", required: false, type: "bool" },
+  { name: "EMAIL_FROM_NAME", required: false, type: "string" },
+  { name: "EMAIL_SEND_TIMEOUT_MS", required: false, type: "int", min: 1 },
+  { name: "EMAIL_SEND_MAX_RETRIES", required: false, type: "int", min: 0 },
+
+  // push_delivery (ADR-0074, epic #463). Off by default; off means the
+  // dispatcher claims nothing at all. `PUSH_PROVIDER` is an enum listing only
+  // the adapters that EXIST — `fcm`/`web_push` join it in Issue #466, and
+  // listing them early would let a deployment pass validation here and then
+  // fail at resolve time, which is the worst place to learn it.
+  { name: "PUSH_ENABLED", required: false, type: "bool" },
+  {
+    name: "PUSH_PROVIDER",
+    required: false,
+    type: "enum",
+    values: ["log", "fcm", "web_push"]
+  },
+  { name: "PUSH_SEND_MAX_RETRIES", required: false, type: "int", min: 0 },
+  { name: "PUSH_SEND_TIMEOUT_MS", required: false, type: "int", min: 1 },
+  { name: "PUSH_FCM_CREDENTIALS_BASE64", required: false, type: "string" },
+  { name: "PUSH_VAPID_PUBLIC_KEY", required: false, type: "string" },
+  { name: "PUSH_VAPID_PRIVATE_KEY", required: false, type: "string" },
+  { name: "PUSH_VAPID_SUBJECT", required: false, type: "string" },
+
+  // visitor_analytics (ported from awcms-micro epic #617-#624). All optional,
+  // privacy-first off-by-default; see
+  // src/modules/visitor-analytics/domain/visitor-analytics-config.ts. The
+  // HASH_SALT cross-rule below requires a real salt whenever the module is
+  // enabled (salted HMAC of visitor identifiers must not use an empty key).
+  { name: "VISITOR_ANALYTICS_ENABLED", required: false, type: "bool" },
+  {
+    name: "VISITOR_ANALYTICS_MODE",
+    required: false,
+    type: "enum",
+    values: ["basic", "detailed"]
+  },
+  { name: "VISITOR_ANALYTICS_COLLECT_ADMIN", required: false, type: "bool" },
+  { name: "VISITOR_ANALYTICS_COLLECT_PUBLIC", required: false, type: "bool" },
+  { name: "VISITOR_ANALYTICS_COLLECT_API", required: false, type: "bool" },
+  { name: "VISITOR_ANALYTICS_DETAILED_ENABLED", required: false, type: "bool" },
+  { name: "VISITOR_ANALYTICS_RAW_IP_ENABLED", required: false, type: "bool" },
+  {
+    name: "VISITOR_ANALYTICS_RAW_USER_AGENT_ENABLED",
+    required: false,
+    type: "bool"
+  },
+  { name: "VISITOR_ANALYTICS_GEO_ENABLED", required: false, type: "bool" },
+  { name: "VISITOR_ANALYTICS_TRUST_PROXY", required: false, type: "bool" },
+  { name: "VISITOR_ANALYTICS_TRUST_CLOUDFLARE", required: false, type: "bool" },
+  {
+    name: "VISITOR_ANALYTICS_ONLINE_WINDOW_SECONDS",
+    required: false,
+    type: "int",
+    min: 1
+  },
+  {
+    name: "VISITOR_ANALYTICS_EVENT_RETENTION_DAYS",
+    required: false,
+    type: "int",
+    min: 1
+  },
+  {
+    name: "VISITOR_ANALYTICS_RAW_DETAIL_RETENTION_DAYS",
+    required: false,
+    type: "int",
+    min: 1
+  },
+  {
+    name: "VISITOR_ANALYTICS_ROLLUP_RETENTION_DAYS",
+    required: false,
+    type: "int",
+    min: 1
+  },
+  {
+    name: "VISITOR_ANALYTICS_VISITOR_KEY_COOKIE_TTL_DAYS",
+    required: false,
+    type: "int",
+    min: 1
+  },
+  // Per-IP rate-limit backstop on the PUBLIC ingest beacon
+  // (`POST /api/v1/analytics/collect`). Optional; the endpoint applies safe
+  // defaults (120 req / 60 s per IP) when unset or invalid.
+  {
+    name: "VISITOR_ANALYTICS_COLLECT_RATE_LIMIT_MAX",
+    required: false,
+    type: "int",
+    min: 1
+  },
+  {
+    name: "VISITOR_ANALYTICS_COLLECT_RATE_LIMIT_WINDOW_SEC",
+    required: false,
+    type: "int",
+    min: 1
+  },
+  {
+    name: "VISITOR_ANALYTICS_HASH_SALT",
+    required: false,
+    type: "string",
+    secret: true
+  },
+  // comments (ADR-0041). Both are OPTIONAL, and both degrade rather than fail:
+  // without the encryption key, reply-notify subscriptions store an
+  // unresolvable sentinel instead of a recipient (no plaintext address ever
+  // reaches disk); without the timing secret, the form's timing token is signed
+  // with a per-process random key. `security:readiness` explains the cost of
+  // each — see `checkCommentsSecrets` there.
+  {
+    name: "COMMENTS_SUBSCRIBER_ENCRYPTION_KEY",
+    required: false,
+    type: "string",
+    secret: true
+  },
+  {
+    name: "COMMENTS_TIMING_SECRET",
+    required: false,
+    type: "string",
+    secret: true
+  },
+  { name: "COMMENTS_RETENTION_DAYS", required: false, type: "int", min: 1 },
+  // ADR-0042 edge cache (Varnish). All optional: unset means the subsystem is
+  // inert. The one dangerous combination — a purge endpoint with no token, which
+  // makes every invalidation fail silently — is a CRITICAL finding in
+  // `security:readiness` (`checkEdgeCacheConfigured`) rather than a shape error
+  // here, because it is a relationship between two variables, not a bad value in
+  // one of them.
+  { name: "EDGE_CACHE_MODE", required: false, type: "string" },
+  { name: "EDGE_CACHE_PURGE_ENDPOINT", required: false, type: "string" },
+  {
+    name: "EDGE_CACHE_PURGE_TOKEN",
+    required: false,
+    type: "string",
+    secret: true
+  },
+  { name: "EDGE_CACHE_MAX_TTL_SECONDS", required: false, type: "int", min: 0 },
+  {
+    name: "EDGE_CACHE_STALE_WHILE_REVALIDATE_SECONDS",
+    required: false,
+    type: "int",
+    min: 0
+  },
+  {
+    name: "EDGE_CACHE_AUTO_REQUEST_RATE_THRESHOLD",
+    required: false,
+    type: "int",
+    min: 1
+  },
+  {
+    name: "EDGE_CACHE_AUTO_LATENCY_THRESHOLD_MS",
+    required: false,
+    type: "int",
+    min: 1
+  },
+  {
+    name: "EDGE_CACHE_AUTO_WINDOW_SECONDS",
+    required: false,
+    type: "int",
+    min: 1
+  },
+  { name: "EDGE_CACHE_PURGE_BATCH_SIZE", required: false, type: "int", min: 1 }
+];
+
+/** Nilai placeholder yang aman di dev tapi dilarang di produksi. */
+const PLACEHOLDER_SECRETS = new Set(["change-me", "changeme", "secret", ""]);
+
+/**
+ * Panjang minimum `VISITOR_ANALYTICS_HASH_SALT` saat modul aktif. Salt inilah
+ * kunci HMAC yang menahan korelasi hash identifier pengunjung terhadap tabel
+ * pra-komputasi; salt 1-2 karakter praktis tak memberi perlindungan itu, jadi
+ * ditegakkan fail-closed di semua tier saat modul enabled.
+ */
+const VISITOR_ANALYTICS_HASH_SALT_MIN_LENGTH = 16;
+
+function parseEnvFile(source: string): EnvBag {
+  const bag: EnvBag = {};
+  for (const rawLine of source.split("\n")) {
+    const line = rawLine.trim();
+    if (line === "" || line.startsWith("#")) continue;
+    const eq = line.indexOf("=");
+    if (eq === -1) continue;
+    const key = line.slice(0, eq).trim();
+    let value = line.slice(eq + 1).trim();
+    if (
+      (value.startsWith('"') && value.endsWith('"')) ||
+      (value.startsWith("'") && value.endsWith("'"))
+    ) {
+      value = value.slice(1, -1);
+    }
+    bag[key] = value;
+  }
+  return bag;
+}
+
+/** True when `value` base64-decodes to exactly 32 bytes (an AES-256 key). */
+function isBase32ByteKey(value: string): boolean {
+  try {
+    return Buffer.from(value, "base64").length === 32;
+  } catch {
+    return false;
+  }
+}
+
+function isValidUrl(value: string, protocols: readonly string[]): boolean {
+  try {
+    const url = new URL(value);
+    return protocols.includes(url.protocol);
+  } catch {
+    return false;
+  }
+}
+
+export function validateEnv(env: EnvBag): string[] {
+  const problems: string[] = [];
+  const isProduction = env.APP_ENV === "production";
+
+  for (const rule of RULES) {
+    const raw = env[rule.name];
+    const present = raw !== undefined && raw.trim() !== "";
+
+    if (!present) {
+      if (rule.required) {
+        problems.push(`${rule.name} wajib diisi tetapi kosong/tidak ada.`);
+      }
+      continue;
+    }
+
+    const value = raw!.trim();
+
+    switch (rule.type) {
+      case "int": {
+        if (!/^-?\d+$/.test(value)) {
+          problems.push(`${rule.name} harus bilangan bulat, dapat "${value}".`);
+        } else if (rule.min !== undefined && Number(value) < rule.min) {
+          problems.push(`${rule.name} harus >= ${rule.min}, dapat ${value}.`);
+        }
+        break;
+      }
+      case "bool": {
+        if (!BOOL_VALUES.includes(value as (typeof BOOL_VALUES)[number])) {
+          problems.push(`${rule.name} harus "true"/"false", dapat "${value}".`);
+        }
+        break;
+      }
+      case "enum": {
+        if (!rule.values!.includes(value)) {
+          problems.push(
+            `${rule.name} harus salah satu [${rule.values!.join(", ")}], dapat "${value}".`
+          );
+        }
+        break;
+      }
+      case "url-postgres": {
+        if (!isValidUrl(value, ["postgres:", "postgresql:"])) {
+          problems.push(`${rule.name} harus URL postgres yang valid.`);
+        }
+        break;
+      }
+      case "url-http": {
+        if (!isValidUrl(value, ["http:", "https:"])) {
+          problems.push(`${rule.name} harus URL http(s) yang valid.`);
+        } else if (isProduction && new URL(value).protocol !== "https:") {
+          problems.push(`${rule.name} harus https di produksi.`);
+        }
+        break;
+      }
+      case "string":
+        break;
+    }
+
+    if (rule.secret && isProduction && PLACEHOLDER_SECRETS.has(value)) {
+      problems.push(
+        `${rule.name} masih bernilai placeholder ("${value}") — dilarang di produksi.`
+      );
+    }
+  }
+
+  // Aturan silang bergantung.
+  if (env.AWCMS_SYNC_ENABLED === "true") {
+    const secret = env.AWCMS_SYNC_HMAC_SECRET?.trim() ?? "";
+    if (secret === "" || PLACEHOLDER_SECRETS.has(secret)) {
+      problems.push(
+        "AWCMS_SYNC_HMAC_SECRET wajib berisi secret nyata saat AWCMS_SYNC_ENABLED=true."
+      );
+    }
+  }
+
+  // Cocokkan arah runtime, bukan kebalikannya. `auth/login.ts`,
+  // `mfa-session-assurance.ts` dan `analytics/collect.ts` semuanya menyetel
+  // `secure: process.env.AUTH_COOKIE_SECURE === "true"`, jadi apa pun yang
+  // bukan persis `"true"` menghasilkan cookie sesi TANPA `Secure`.
+  //
+  // Versi sebelumnya menolak hanya nilai literal `"false"`. Ejaan salah seperti
+  // `"1"`/`"TRUE"`/`"yes"` TIDAK lolos — aturan tipe `bool` di atas
+  // (`BOOL_VALUES`) sudah menolaknya di environment mana pun, dan itu
+  // diverifikasi dengan menjalankannya, bukan dibaca. Yang lolos tepat SATU
+  // keadaan, dan ia justru keadaan bawaannya: **variabel tidak diset sama
+  // sekali**. `required: false` mengizinkannya, dan aturan silang lama tidak
+  // menyentuhnya — sehingga produksi mengirim cookie sesi lewat kanal plaintext
+  // dengan `bun run config:validate` melaporkan bersih.
+  //
+  // HSTS tidak menutupi lubang itu: yang TIDAK dijaga HSTS justru permintaan
+  // PERTAMA seorang pengguna, sebelum kebijakannya pernah diterima browser.
+  //
+  // Bentuk "wajib diset eksplisit" ini bukan hal baru di berkas ini:
+  // `TRUSTED_PROXY_ENABLED` di bawah sudah memperlakukan kosong sebagai
+  // pelanggaran, dengan alasan yang sama persis.
+  if (isProduction && env.AUTH_COOKIE_SECURE !== "true") {
+    const actual =
+      env.AUTH_COOKIE_SECURE === undefined
+        ? "tidak diset"
+        : `"${env.AUTH_COOKIE_SECURE}"`;
+
+    problems.push(
+      `AUTH_COOKIE_SECURE wajib bernilai persis "true" di produksi (sekarang: ${actual}). ` +
+        'Runtime membandingkannya dengan === "true", jadi tidak diset berarti cookie sesi ' +
+        "dikirim TANPA atribut Secure."
+    );
+  }
+
+  // visitor_analytics: enabling collection REQUIRES a real hash salt. Visitor
+  // identifiers (visitor-key cookie, IP, user-agent) are stored only as salted
+  // HMAC-SHA256; an empty/placeholder salt would make those hashes trivially
+  // correlatable against a precomputed table. Enforced regardless of APP_ENV —
+  // an empty salt with the module enabled is a privacy defect at any tier.
+  if (env.VISITOR_ANALYTICS_ENABLED === "true") {
+    const salt = env.VISITOR_ANALYTICS_HASH_SALT?.trim() ?? "";
+    if (salt === "" || PLACEHOLDER_SECRETS.has(salt)) {
+      problems.push(
+        "VISITOR_ANALYTICS_HASH_SALT wajib berisi salt nyata saat VISITOR_ANALYTICS_ENABLED=true (hash identifier pengunjung tidak boleh memakai salt kosong)."
+      );
+    } else if (salt.length < VISITOR_ANALYTICS_HASH_SALT_MIN_LENGTH) {
+      problems.push(
+        `VISITOR_ANALYTICS_HASH_SALT harus minimal ${VISITOR_ANALYTICS_HASH_SALT_MIN_LENGTH} karakter saat VISITOR_ANALYTICS_ENABLED=true (salt terlalu pendek mudah ditebak/brute-force).`
+      );
+    }
+  }
+
+  // push_delivery (ADR-0074): enabling push REQUIRES naming an adapter. Without
+  // one the resolver degrades to a provider that fails every send
+  // non-retryably, so every queued notification would go terminal with an error
+  // an operator only sees in the delivery-attempt ledger. Caught at config time
+  // instead.
+  if (env.PUSH_ENABLED === "true") {
+    const provider = env.PUSH_PROVIDER?.trim() ?? "";
+
+    if (provider === "") {
+      problems.push(
+        "PUSH_PROVIDER wajib diisi saat PUSH_ENABLED=true (tanpa adapter, setiap notifikasi yang diantre langsung menjadi `failed`)."
+      );
+    }
+
+    // Memakai parser yang SAMA dengan adapter (`parseFcmCredentialsBase64`),
+    // bukan cek terpisah. Validator yang mengimplementasikan ulang pemeriksaan
+    // bebas berbeda pendapat dengan benda yang ia validasi — dan akan berbeda,
+    // persis pada kasus yang tak diuji siapa pun.
+    if (provider === "fcm") {
+      const raw = env.PUSH_FCM_CREDENTIALS_BASE64?.trim() ?? "";
+
+      if (raw === "") {
+        problems.push(
+          "PUSH_FCM_CREDENTIALS_BASE64 wajib diisi saat PUSH_PROVIDER=fcm."
+        );
+      } else {
+        const parsed = parseFcmCredentialsBase64(raw);
+
+        if (!parsed.ok) {
+          // `reason` menyebut NAMA field dan bentuk, tidak pernah nilai —
+          // parser-nya ditulis supaya `private_key` tak bisa sampai ke pesan.
+          problems.push(
+            `PUSH_FCM_CREDENTIALS_BASE64 tidak valid: ${parsed.reason}.`
+          );
+        }
+      }
+    }
+
+    // Sama seperti FCM: parser yang SAMA dengan adapter, bukan cek kedua yang
+    // bebas berbeda pendapat.
+    if (provider === "web_push") {
+      const vapid = parseVapidConfig(env as NodeJS.ProcessEnv);
+
+      if (!vapid.ok) {
+        problems.push(`Konfigurasi VAPID tidak valid: ${vapid.reason}.`);
+      }
+    }
+  }
+
+  // MFA: enabling TOTP enrollment REQUIRES a real 32-byte AES-256 key (no
+  // default key exists by design — a DB backup alone must not yield secrets).
+  // Enforced regardless of APP_ENV: a missing/placeholder key would make every
+  // enrollment fail closed at runtime, so surfacing it at config time is
+  // strictly better than a confusing MFA_MISCONFIGURED in production.
+  if (env.AUTH_MFA_ENABLED === "true") {
+    const key = env.AUTH_MFA_SECRET_ENCRYPTION_KEY?.trim() ?? "";
+
+    if (key === "" || PLACEHOLDER_SECRETS.has(key)) {
+      problems.push(
+        "AUTH_MFA_SECRET_ENCRYPTION_KEY wajib berisi key nyata saat AUTH_MFA_ENABLED=true (tidak ada default key)."
+      );
+    } else if (!isBase32ByteKey(key)) {
+      problems.push(
+        "AUTH_MFA_SECRET_ENCRYPTION_KEY harus 32 byte base64 (mis. `openssl rand -base64 32`)."
+      );
+    }
+  }
+
+  // OIDC/SSO (Issue #185): enabling SSO REQUIRES a real 32-byte AES-256 key to
+  // encrypt tenant client secrets at rest (no default key by design). Enforced
+  // regardless of APP_ENV — a missing/placeholder key makes every provider
+  // create/token-exchange fail closed (SSO_MISCONFIGURED).
+  if (env.AUTH_SSO_ENABLED === "true") {
+    const key = env.AUTH_SSO_CREDENTIAL_ENCRYPTION_KEY?.trim() ?? "";
+
+    if (key === "" || PLACEHOLDER_SECRETS.has(key)) {
+      problems.push(
+        "AUTH_SSO_CREDENTIAL_ENCRYPTION_KEY wajib berisi key nyata saat AUTH_SSO_ENABLED=true (tidak ada default key)."
+      );
+    } else if (!isBase32ByteKey(key)) {
+      problems.push(
+        "AUTH_SSO_CREDENTIAL_ENCRYPTION_KEY harus 32 byte base64 (mis. `openssl rand -base64 32`)."
+      );
+    }
+  }
+
+  // The SSRF-guard escape hatch that allows non-HTTPS/loopback OIDC endpoints
+  // (`AUTH_SSO_ALLOW_INSECURE_HOSTS`) exists ONLY for a local fake IdP in tests.
+  // It must never be set in production — doing so would re-open the exact SSRF
+  // surface Issue #185 makes its top requirement to close.
+  if (isProduction && (env.AUTH_SSO_ALLOW_INSECURE_HOSTS ?? "").trim() !== "") {
+    problems.push(
+      "AUTH_SSO_ALLOW_INSECURE_HOSTS harus kosong di produksi — hanya untuk fake IdP lokal saat test."
+    );
+  }
+
+  // Full-online deployment-profile gate (Issue #186). This is what lets a
+  // production preflight distinguish "disabled intentionally" (flag unset —
+  // nothing required, LAN/offline is fine) from "misconfigured" (flag on but
+  // the profile is anything other than full_online, including the explicitly
+  // contradictory "disabled"). Enforced regardless of APP_ENV.
+  if (env.AUTH_ONLINE_SECURITY_ENABLED === "true") {
+    const profile = (env.AUTH_ONLINE_SECURITY_PROFILE ?? "").trim();
+
+    if (profile !== "full_online") {
+      problems.push(
+        `AUTH_ONLINE_SECURITY_ENABLED=true membutuhkan AUTH_ONLINE_SECURITY_PROFILE=full_online; dapat ${
+          profile ? `"${profile}"` : "kosong"
+        }.`
+      );
+    }
+  }
+
+  // Cloudflare Turnstile (Issue #186): when enabled, the public site key, the
+  // secret key, AND the expected hostname must all be present — the hostname is
+  // required so the runtime hostname-confusion check fails closed rather than
+  // being silently skipped. Independent of the deployment-profile gate above,
+  // so an operator can stage the credentials before flipping the profile on.
+  if (env.TURNSTILE_ENABLED === "true") {
+    for (const name of [
+      "TURNSTILE_SITE_KEY",
+      "TURNSTILE_SECRET_KEY",
+      "TURNSTILE_EXPECTED_HOSTNAME"
+    ] as const) {
+      if ((env[name] ?? "").trim() === "") {
+        problems.push(
+          `${name} wajib diisi saat TURNSTILE_ENABLED=true (Turnstile fail-closed).`
+        );
+      }
+    }
+  }
+
+  // Tidak ada default yang aman untuk dua-duanya, jadi produksi wajib memilih
+  // sadar. Profil production repo ini adalah nginx TLS-termination
+  // (deployment-profiles.md), dan di sana `false` membuat setiap request
+  // terlihat berasal dari IP nginx: bucket rate limit login runtuh jadi satu
+  // per tenant, sehingga 20 login gagal/menit mengunci seluruh pengguna tenant
+  // itu. Sebaliknya `true` pada app yang terekspos langsung membuat rate limit
+  // bisa dilucuti dengan merotasi header X-Forwarded-For.
+  if (isProduction && (env.TRUSTED_PROXY_ENABLED ?? "").trim() === "") {
+    problems.push(
+      "TRUSTED_PROXY_ENABLED wajib diset eksplisit di produksi: `true` bila ada proxy tepercaya di depan (mis. profil nginx), `false` bila app terekspos langsung."
+    );
+  }
+
+  // Plafon per-SUMBER wajib >= plafon login per-tenant (#447). Kalau lebih
+  // rendah, ia mengikat lebih dulu bahkan pada deployment SATU tenant — dan
+  // sifat "terbukti inert pada satu tenant", yang jadi alasan perubahan itu
+  // bisa mendarat tanpa flag, berhenti berlaku diam-diam.
+  const sourceMax = Number.parseInt(
+    (env.AUTH_SOURCE_RATE_LIMIT_MAX ?? "").trim(),
+    10
+  );
+  const loginMax = Number.parseInt(
+    (env.AUTH_LOGIN_RATE_LIMIT_MAX ?? "").trim(),
+    10
+  );
+
+  if (
+    Number.isInteger(sourceMax) &&
+    Number.isInteger(loginMax) &&
+    sourceMax < loginMax
+  ) {
+    problems.push(
+      `AUTH_SOURCE_RATE_LIMIT_MAX (${sourceMax}) lebih kecil dari AUTH_LOGIN_RATE_LIMIT_MAX (${loginMax}): plafon per-sumber akan mengikat lebih dulu bahkan pada satu tenant, sehingga login sah tertolak sebelum plafon per-tenant tercapai.`
+    );
+  }
+
+  // `TRUSTED_PROXY_HOP_COUNT` hanya berarti bila headernya dipercaya sama
+  // sekali. Menyetelnya sambil `TRUSTED_PROXY_ENABLED=false` adalah operator
+  // yang mengira sudah menyetel sesuatu — persis kelas kesalahan yang
+  // ditemukan #438, cuma satu tingkat lebih awal.
+  if (
+    (env.TRUSTED_PROXY_HOP_COUNT ?? "").trim() !== "" &&
+    (env.TRUSTED_PROXY_ENABLED ?? "").trim() !== "true"
+  ) {
+    problems.push(
+      "TRUSTED_PROXY_HOP_COUNT diset tetapi TRUSTED_PROXY_ENABLED bukan `true` — X-Forwarded-For tidak dibaca sama sekali, jadi nilainya tidak berpengaruh."
+    );
+  }
+
+  return problems;
+}
+
+if (import.meta.main) {
+  const fileFlagIndex = process.argv.indexOf("--file");
+  let env: EnvBag = process.env;
+  let source = "process.env";
+
+  if (fileFlagIndex !== -1) {
+    const filePath = process.argv[fileFlagIndex + 1];
+    if (!filePath) {
+      console.error("config:validate — --file butuh path.");
+      process.exit(1);
+    }
+    env = parseEnvFile(await readFile(filePath, "utf8"));
+    source = filePath;
+  }
+
+  const problems = validateEnv(env);
+
+  if (problems.length > 0) {
+    for (const problem of problems) console.error(`  - ${problem}`);
+    console.error(
+      `\nconfig:validate GAGAL — ${problems.length} masalah pada ${source}.`
+    );
+    process.exitCode = 1;
+  } else {
+    console.log(`config:validate OK — kontrak env terpenuhi (${source}).`);
+  }
+}

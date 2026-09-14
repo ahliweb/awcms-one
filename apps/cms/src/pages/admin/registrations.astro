@@ -1,0 +1,276 @@
+---
+/**
+ * Self-registration approval queue (Wave 2 delta auth).
+ *
+ * SSR-reads through the same `listPendingRegistrations` that
+ * `GET /api/v1/registration-requests` uses, and every action posts to the real
+ * approve/reject endpoints — so the ABAC guards, the account creation and the
+ * audit rows all live there, never here. The permission checks below decide
+ * what to render, never what is allowed.
+ *
+ * Identifiers are MASKED, both here and in the API response. A reviewer decides
+ * on a name and a domain; rendering a whole tenant's applicant addresses in one
+ * table is a disclosure the decision does not need.
+ *
+ * `approve` and `reject` gate on SEPARATE permissions, matching their
+ * endpoints: a reviewer may be trusted to clear spam without being trusted to
+ * admit anyone.
+ */
+import AdminLayout from "../../layouts/AdminLayout.astro";
+import "../../styles/admin-screens.css";
+import { loadAdminScreen } from "../../lib/auth/admin-screen";
+import { logAdminPageError } from "../../lib/logging/error-log";
+import { isSelfRegistrationEnabled } from "../../lib/auth/self-registration-config";
+import { listRoles } from "../../modules/identity-access/application/access-directory";
+import { getTranslatorFor } from "../../lib/i18n";
+import {
+  listPendingRegistrations,
+  type PendingRegistrationView
+} from "../../modules/identity-access/application/self-registration";
+
+const ssr = Astro.locals.ssrContext!;
+const { t } = getTranslatorFor(Astro.locals.locale);
+
+const selfRegistrationEnabled = isSelfRegistrationEnabled();
+
+// Issue #450 — the entry decision and the read share ONE transaction, and the
+// decision is the chokepoint's. `approve`/`reject` are decided the same way, so
+// a tenant's ABAC `deny` hides the control instead of only failing when it is
+// pressed. The endpoints remain the authority either way.
+const screen = await loadAdminScreen({
+  ssr,
+  workClass: "interactive",
+  authorize: {
+    moduleKey: "identity_access",
+    activityCode: "registration_requests",
+    action: "read"
+  },
+  load: async ({ tx, can }) => {
+    // One transaction, one awaited query at a time. Concurrent queries on a
+    // single transaction connection leak it, so nothing here runs in parallel.
+    const requests = await listPendingRegistrations(tx, ssr.tenantId);
+    const canApprove = await can({
+      moduleKey: "identity_access",
+      activityCode: "registration_requests",
+      action: "approve"
+    });
+    const canReject = await can({
+      moduleKey: "identity_access",
+      activityCode: "registration_requests",
+      action: "reject"
+    });
+    // Only needed to render the optional role picker on the approve control.
+    //
+    // System roles are dropped because the endpoint refuses them (409
+    // `ROLE_SYSTEM_PROTECTED`). Rendering `owner` in this picker offered a
+    // control that either escalated privilege or — once the service started
+    // refusing it — failed in the reviewer's face for no reason they could
+    // read. This is presentation only; the refusal is the endpoint's.
+    const roles = canApprove
+      ? (await listRoles(tx, ssr.tenantId))
+          .filter((role) => !role.isSystem)
+          .map((role) => ({ id: role.id, roleCode: role.roleCode }))
+      : [];
+
+    return { requests, roles, canApprove, canReject };
+  },
+  onError: (error) => {
+    logAdminPageError(
+      "admin/registrations.astro: failed to list pending registrations",
+      error,
+      { correlationId: Astro.locals.correlationId }
+    );
+  }
+});
+
+const canRead = screen.state !== "denied";
+// A pool/circuit-breaker refusal is NOT "the queue is empty" and NOT a denial.
+const loadError = screen.state === "error";
+const requests: PendingRegistrationView[] =
+  screen.state === "allowed" ? screen.data.requests : [];
+const roles: { id: string; roleCode: string }[] =
+  screen.state === "allowed" ? screen.data.roles : [];
+const canApprove = screen.state === "allowed" && screen.data.canApprove;
+const canReject = screen.state === "allowed" && screen.data.canReject;
+
+const columnCount = canApprove || canReject ? 4 : 3;
+---
+
+<AdminLayout
+  title={t("Registration requests")}
+  description={t(
+    "People who asked to join this tenant. Approving creates their account and emails them a link to set a password \u2014 it does not set one for them. Rejecting creates nothing and notifies nobody."
+  )}
+>
+  {
+    !canRead && (
+      <p class="state-notice fade-in-up" id="registrations-denied">
+        {t("You do not have permission to view registration requests.")}
+      </p>
+    )
+  }
+
+  {
+    canRead && !selfRegistrationEnabled && (
+      <p class="state-notice fade-in-up" id="registrations-disabled">
+        {t(
+          "Self-registration is switched off for this deployment ({setting}), so no new request can arrive. Anything already queued below can still be reviewed.",
+          { setting: "AUTH_SELF_REGISTRATION_ENABLED" }
+        )}
+      </p>
+    )
+  }
+
+  {
+    canRead && loadError && (
+      <p class="state-notice fade-in-up" id="registrations-load-error">
+        {t("Could not load registration requests. Please try again.")}
+      </p>
+    )
+  }
+
+  {
+    canRead && !loadError && (
+      <>
+        <p
+          id="registrations-action-error"
+          class="state-notice"
+          role="alert"
+          hidden
+        />
+
+        {requests.length === 0 ? (
+          <div class="empty-state fade-in-up" id="registrations-empty">
+            <p class="empty-state-title">{t("Nothing waiting")}</p>
+            <p class="empty-state-text">
+              {t("No registration request is pending review.")}
+            </p>
+          </div>
+        ) : (
+          <div class="data-table-scroll fade-in-up">
+            <table class="data-table data-table--stack">
+              <thead>
+                <tr>
+                  <th scope="col">{t("Name")}</th>
+                  <th scope="col">{t("Email")}</th>
+                  <th scope="col">{t("Requested")}</th>
+                  {columnCount === 4 && <th scope="col">{t("Actions")}</th>}
+                </tr>
+              </thead>
+              <tbody>
+                {requests.map((entry) => (
+                  <tr>
+                    <th scope="row" data-label="Name">
+                      {entry.displayName}
+                    </th>
+                    <td data-label="Email">
+                      <code class="cell-code">
+                        {entry.loginIdentifierMasked}
+                      </code>
+                    </td>
+                    <td data-label="Requested">{entry.requestedAt}</td>
+                    {columnCount === 4 && (
+                      <td data-label="Actions">
+                        {canApprove && roles.length > 0 && (
+                          <select
+                            id={`role-${entry.id}`}
+                            aria-label="Role to grant on approval (optional)"
+                          >
+                            <option value="">{t("No role")}</option>
+                            {roles.map((role) => (
+                              <option value={role.id}>{role.roleCode}</option>
+                            ))}
+                          </select>
+                        )}
+                        {canApprove && (
+                          <button
+                            type="button"
+                            class="js-approve-registration"
+                            data-request-id={entry.id}
+                            data-select-id={`role-${entry.id}`}
+                          >
+                            {t("Approve")}
+                          </button>
+                        )}
+                        {canReject && (
+                          <button
+                            type="button"
+                            class="js-reject-registration"
+                            data-request-id={entry.id}
+                          >
+                            {t("Reject")}
+                          </button>
+                        )}
+                      </td>
+                    )}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </>
+    )
+  }
+</AdminLayout>
+
+<script>
+  // Bundled unconditionally (Astro hoists every `<script>` at build time). The
+  // import forces Astro to emit this EXTERNAL, where the app's
+  // `default-src 'self'` CSP allows it. Handlers are attached via event
+  // delegation so they bind whether or not any given control rendered.
+  import {
+    messageBox,
+    mutateAndReload,
+    onAction,
+    sendJson
+  } from "../../lib/ui/admin-form-client";
+
+  const actionError = messageBox("registrations-action-error");
+
+  /** Approving a request whose email was taken meanwhile can never succeed. */
+  function describeFailure(fallback: string) {
+    return (errorCode: string | null): string =>
+      errorCode === "IDENTIFIER_TAKEN"
+        ? "An account with that email already exists — the request cannot be approved. Reject it instead."
+        : fallback;
+  }
+
+  onAction(".js-approve-registration", async (button) => {
+    const requestId = button.dataset.requestId;
+    if (!requestId) return;
+
+    const selectId = button.dataset.selectId;
+    const select = selectId
+      ? (document.getElementById(selectId) as HTMLSelectElement | null)
+      : null;
+    const roleId = select?.value ?? "";
+
+    await mutateAndReload(
+      button,
+      actionError,
+      () =>
+        sendJson(
+          "POST",
+          `/api/v1/registration-requests/${requestId}/approve`,
+          // No role selected means an account with no permissions, which is
+          // the correct floor — never a silent default grant.
+          roleId ? { roleIds: [roleId] } : { roleIds: [] }
+        ),
+      describeFailure("Could not approve the request. Please try again.")
+    );
+  });
+
+  onAction(".js-reject-registration", async (button) => {
+    const requestId = button.dataset.requestId;
+    if (!requestId) return;
+
+    await mutateAndReload(
+      button,
+      actionError,
+      () =>
+        sendJson("POST", `/api/v1/registration-requests/${requestId}/reject`),
+      describeFailure("Could not reject the request. Please try again.")
+    );
+  });
+</script>

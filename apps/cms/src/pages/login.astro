@@ -1,0 +1,338 @@
+---
+/**
+ * Login page (Issue #166 — ported from awcms-mini's `login.astro`; redesigned
+ * into a modern, mobile-first auth screen by the UI/UX overhaul phase 2).
+ * POSTs to `POST /api/v1/auth/login`, which sets the two httpOnly SSR session
+ * cookies (`src/lib/auth/ssr-session.ts`) the `/admin` guard in
+ * `src/middleware.ts` then consumes.
+ *
+ * ## Stable DOM contract (do not rename — E2E specs + client script depend on
+ * these): `#login-form`, `#tenant-id`, `#login-identifier`, `#password`,
+ * `#login-submit`, `#login-error`. The tenant field ALWAYS carries
+ * `name="tenantId"` and id `#tenant-id` regardless of which of the three
+ * shapes below it takes, so `String(formData.get("tenantId"))` in the client
+ * script keeps working and the submit still sends the `X-AWCMS-Tenant-ID`
+ * header. `<select>` and `<input>` both expose `.value` via `FormData`.
+ *
+ * ## Auto tenant picker (UI/UX phase 2)
+ * The manual "paste a UUID" field is a poor experience, so this page reads the
+ * active tenant registry SERVER-SIDE (SSR frontmatter) — `awcms_tenants` is the
+ * root table, deliberately WITHOUT RLS (see `sql/017`), so it is queried on the
+ * app connection with NO tenant context (there is none yet — the user has not
+ * picked one). Only `id` + `tenant_name` of `status = 'active'` rows are read,
+ * nothing sensitive. The shape adapts to the count:
+ *   - 0 rows (pre-setup) OR any DB error (placeholder `DATABASE_URL`, not
+ *     migrated, breaker open) → the original manual TEXT `#tenant-id` input,
+ *     preserving backward-compatibility and the zero-fixture E2E render path.
+ *   - exactly 1 → a HIDDEN `#tenant-id` prefilled with that tenant's id plus a
+ *     read-only "Signing in to <name>" readout; the user types nothing.
+ *   - 2..TENANT_PICKER_LIMIT → a `<select id="tenant-id">` of tenant NAMES
+ *     (value = UUID).
+ *   - more than TENANT_PICKER_LIMIT → fall back to the manual input rather than
+ *     render a huge public dropdown (bounds the query AND avoids mass tenant
+ *     enumeration; a deployment with that many tenants resolves the tenant by
+ *     domain, not by asking the user to scroll a list).
+ * Rendering tenant names to an unauthenticated visitor when count > 1 is an
+ * accepted product decision for this base repo's small multi-tenant dev
+ * setups; the query is capped and read-only.
+ *
+ * ## Cloudflare Turnstile (Issue #186)
+ * The widget and its loader render ONLY when `isTurnstileRequired()` (the
+ * full-online deployment-profile gate AND `TURNSTILE_ENABLED=true`). Every
+ * local/offline/LAN deployment (the default) renders no `cf-turnstile` div and
+ * no `challenges.cloudflare.com` script. When required, the middleware CSP
+ * opens `script-src`/`frame-src` for that one Cloudflare origin
+ * (`src/lib/security/security-headers.ts`) and the external loader is an
+ * explicit `is:inline` `<script src>`. `TURNSTILE_SITE_KEY` is public;
+ * `TURNSTILE_SECRET_KEY` is server-side only and never reaches this page.
+ *
+ * ## CSP (strict, single-owner)
+ * `default-src 'self'` with NO `'unsafe-inline'`. Everything on this page obeys
+ * it: `tokens.css`/`motion.css`/`auth.css` are all
+ * emitted as external same-origin `<link>`s (`build.inlineStylesheets:
+ * "never"`, see astro.config.mjs), the login client is an Astro-BUNDLED module
+ * script (not `is:inline`), animations are pure CSS, and no third-party origin
+ * (font CDN / library) is referenced. Non-essential motion degrades under
+ * `@media (prefers-reduced-motion: reduce)`.
+ */
+import "../styles/tokens.css";
+import "../styles/motion.css";
+import "../styles/auth.css";
+import {
+  isTurnstileRequired,
+  resolveTurnstileSiteKey,
+  LOGIN_TURNSTILE_ACTION
+} from "../lib/security/turnstile";
+import { loadTenantPickerModel } from "../modules/tenant-admin/application/tenant-picker-directory";
+import AuthBrandPanel from "../components/AuthBrandPanel.astro";
+
+const turnstileActive = isTurnstileRequired();
+const turnstileSiteKey = turnstileActive ? resolveTurnstileSiteKey() : null;
+
+// --- Auto tenant picker (read-only SSR read of the root tenant registry) ---
+// Shared with `/forgot-password` — the cap, the status filter, and the
+// degrade-to-manual behaviour all live in `tenant-picker-directory.ts`.
+const picker = await loadTenantPickerModel();
+const tenantOptions = picker.options;
+const tenantPickerMode = picker.mode;
+const singleTenant = tenantPickerMode === "single" ? tenantOptions[0]! : null;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Sign in · AWCMS</title>
+  </head>
+  <body class="auth-body">
+    <main class="auth">
+      <AuthBrandPanel />
+      <div class="auth-form-panel">
+        <div class="auth-card">
+          <div class="auth-head">
+            <div class="auth-brand">
+              <span class="auth-mark" aria-hidden="true">A</span>
+              <span class="auth-wordmark">AWCMS</span>
+            </div>
+            <h1 class="auth-title">Sign in</h1>
+            <p class="auth-subtitle">
+              Welcome back. Sign in to your workspace.
+            </p>
+          </div>
+
+          <form id="login-form" class="auth-form" novalidate>
+            <p id="login-error" class="auth-error" role="alert" hidden></p>
+
+            {
+              singleTenant && (
+                <div class="auth-tenant-context">
+                  <span class="auth-tenant-context-label">Signing in to</span>
+                  <span class="auth-tenant-context-name">
+                    {singleTenant.name}
+                  </span>
+                  <input
+                    id="tenant-id"
+                    name="tenantId"
+                    type="hidden"
+                    value={singleTenant.id}
+                  />
+                </div>
+              )
+            }
+
+            {
+              tenantPickerMode === "select" && (
+                <div class="auth-field">
+                  <label for="tenant-id">Organization</label>
+                  <div class="auth-select">
+                    <select
+                      id="tenant-id"
+                      name="tenantId"
+                      required
+                      autocomplete="organization"
+                    >
+                      <option value="" disabled selected>
+                        Choose your organization
+                      </option>
+                      {tenantOptions.map((tenant) => (
+                        <option value={tenant.id}>{tenant.name}</option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+              )
+            }
+
+            {
+              tenantPickerMode === "manual" && (
+                <div class="auth-field">
+                  <label for="tenant-id">Tenant ID</label>
+                  <input
+                    id="tenant-id"
+                    name="tenantId"
+                    type="text"
+                    required
+                    autocomplete="off"
+                    spellcheck={false}
+                  />
+                </div>
+              )
+            }
+
+            <div class="auth-field">
+              <label for="login-identifier">Login identifier</label>
+              <input
+                id="login-identifier"
+                name="loginIdentifier"
+                type="text"
+                required
+                autocomplete="username"
+                spellcheck={false}
+              />
+            </div>
+
+            <div class="auth-field">
+              <label for="password">Password</label>
+              <div class="auth-password">
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  required
+                  autocomplete="current-password"
+                />
+                <button
+                  type="button"
+                  id="password-toggle"
+                  class="auth-password-toggle"
+                  aria-pressed="false"
+                  aria-label="Show password"
+                >
+                  <span class="auth-password-toggle-label">Show</span>
+                </button>
+              </div>
+            </div>
+
+            {
+              turnstileActive && turnstileSiteKey && (
+                <div
+                  class="cf-turnstile auth-turnstile"
+                  data-sitekey={turnstileSiteKey}
+                  data-action={LOGIN_TURNSTILE_ACTION}
+                />
+              )
+            }
+
+            <button type="submit" id="login-submit" class="auth-submit">
+              Sign in
+            </button>
+          </form>
+
+          <nav class="auth-links" aria-label="Account recovery">
+            <a href="/forgot-password">Forgot your password?</a>
+          </nav>
+
+          <p class="auth-foot">Secured workspace access · AWCMS</p>
+        </div>
+      </div>
+    </main>
+
+    {
+      turnstileActive && turnstileSiteKey && (
+        <script
+          is:inline
+          src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+          async
+          defer
+        />
+      )
+    }
+
+    <script>
+      // The import is deliberate — it forces Astro to bundle this script to an
+      // external file (an import-free script would be inlined, and inline
+      // scripts are blocked by this app's CSP). See admin-form-client.ts.
+      import { lockElement } from "../lib/ui/admin-form-client";
+
+      const form = document.getElementById(
+        "login-form"
+      ) as HTMLFormElement | null;
+      const errorBox = document.getElementById("login-error");
+      const submitButton = document.getElementById(
+        "login-submit"
+      ) as HTMLButtonElement | null;
+
+      // Password visibility toggle — pure enhancement, wired here (no inline
+      // handler) so the strict CSP is respected. Absent-safe if the elements
+      // are ever removed.
+      const passwordInput = document.getElementById(
+        "password"
+      ) as HTMLInputElement | null;
+      const passwordToggle = document.getElementById(
+        "password-toggle"
+      ) as HTMLButtonElement | null;
+      const passwordToggleLabel = passwordToggle?.querySelector(
+        ".auth-password-toggle-label"
+      );
+
+      passwordToggle?.addEventListener("click", () => {
+        if (!passwordInput) return;
+        const reveal = passwordInput.type === "password";
+        passwordInput.type = reveal ? "text" : "password";
+        passwordToggle.setAttribute("aria-pressed", String(reveal));
+        passwordToggle.setAttribute(
+          "aria-label",
+          reveal ? "Hide password" : "Show password"
+        );
+        if (passwordToggleLabel) {
+          passwordToggleLabel.textContent = reveal ? "Hide" : "Show";
+        }
+      });
+
+      function showError(message: string): void {
+        if (!errorBox) return;
+        errorBox.textContent = message;
+        errorBox.hidden = false;
+      }
+
+      form?.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        // Guard + disable the submit button for the request duration so a fast
+        // double-click can't fire two login POSTs before the redirect lands.
+        if (!submitButton || submitButton.disabled) return;
+        const unlock = lockElement(submitButton, "Please wait…");
+
+        if (errorBox) errorBox.hidden = true;
+
+        const formData = new FormData(form);
+        const tenantId = String(formData.get("tenantId") ?? "").trim();
+        const loginIdentifier = String(
+          formData.get("loginIdentifier") ?? ""
+        ).trim();
+        const password = String(formData.get("password") ?? "");
+        // Cloudflare Turnstile (Issue #186) auto-injects a hidden
+        // `cf-turnstile-response` field into this form once solved — absent
+        // entirely when the widget is not rendered (Turnstile not required for
+        // this deployment), matching the server's own optional field.
+        const turnstileToken = formData.get("cf-turnstile-response");
+
+        try {
+          const response = await fetch("/api/v1/auth/login", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "X-AWCMS-Tenant-ID": tenantId
+            },
+            credentials: "same-origin",
+            body: JSON.stringify({
+              loginIdentifier,
+              password,
+              ...(turnstileToken ? { turnstileToken } : {})
+            })
+          });
+
+          const payload = await response.json().catch(() => null);
+
+          if (!response.ok || !payload || payload.success !== true) {
+            // Generic message only — the server deliberately collapses every
+            // deny reason so the UI must not reconstruct a specific one, and it
+            // must never surface internal detail (Issue #540).
+            showError("Sign in failed. Check your details and try again.");
+            unlock();
+            return;
+          }
+
+          // Navigating away — leave the button disabled so it can't be
+          // re-clicked during the redirect.
+          window.location.href = "/admin";
+        } catch {
+          showError("Network error. Please try again.");
+          unlock();
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,1215 @@
+# Source fragment for the "module-management" module (Issue #182, epic #177).
+#
+# Owns every path whose operations carry this module's OpenAPI tag(s), plus
+# every components.schemas entry referenced ONLY by this module's operations.
+# Schemas shared by 2+ modules (or referenced by none) live in the root
+# fragment (openapi/awcms-public-api.src.yaml) instead.
+#
+# NOT independently valid OpenAPI: $ref targets pointing at shared components
+# (securitySchemes/parameters/responses and cross-module schemas) only resolve
+# after `bun run openapi:bundle` merges this file with the root fragment and
+# every sibling module fragment into openapi/awcms-public-api.openapi.yaml.
+# Edit this file (or the root fragment for shared components), never the
+# generated bundle.
+paths:
+  /api/v1/access/modules:
+    get:
+      operationId: listAccessModules
+      tags:
+        - Module Management
+      summary: The permission catalog grouped by module (read-only).
+      responses:
+        "200":
+          description: Permission catalog.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      modules:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            moduleKey:
+                              type: string
+                            activityCode:
+                              type: string
+                            action:
+                              type: string
+                            description:
+                              type: string
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+  /api/v1/modules:
+    get:
+      operationId: listModuleCatalog
+      tags:
+        - Module Management
+      summary: List the module catalog (code registry merged with DB lifecycle state).
+      responses:
+        "200":
+          description: Module catalog.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      modules:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/ModuleCatalogEntry"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+  /api/v1/modules/{moduleKey}:
+    get:
+      operationId: getModuleCatalogEntry
+      tags:
+        - Module Management
+      summary: Fetch one module's catalog entry.
+      parameters:
+        - name: moduleKey
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Module detail.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/ModuleCatalogEntry"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+  /api/v1/modules/{moduleKey}/health:
+    get:
+      operationId: getModuleHealth
+      tags:
+        - Module Management
+      summary: Passive, bounded module readiness signals (no live provider call).
+      parameters:
+        - name: moduleKey
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Module health report.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/ModuleHealthReport"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+  /api/v1/modules/{moduleKey}/health/check:
+    post:
+      operationId: checkModuleHealth
+      tags:
+        - Module Management
+      summary: Explicit on-demand health check (records history; may run provider checks).
+      parameters:
+        - name: moduleKey
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Module health report.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/ModuleHealthReport"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+  /api/v1/modules/{moduleKey}/audit:
+    get:
+      operationId: getModuleAuditSummary
+      tags:
+        - Module Management
+      summary: Recent module-management activity for one module.
+      description: >-
+        Tenant enable/disable, settings updates, health checks and preset
+        applies recorded against this module key. Guarded by
+        `logging.audit_trail.read`, not a module-management permission: these
+        are audit-log rows, and whoever may not read the audit log must not get
+        a filtered view of it through another door. An unregistered `moduleKey`
+        answers 404, because an empty list would read as "nothing happened".
+      parameters:
+        - name: moduleKey
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 50
+            default: 20
+      responses:
+        "200":
+          description: Recent activity, newest first.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      moduleKey:
+                        type: string
+                      limit:
+                        type: integer
+                      entries:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            action:
+                              type: string
+                            resourceType:
+                              type: string
+                            severity:
+                              type: string
+                            message:
+                              type: string
+                            createdAt:
+                              type: string
+                              format: date-time
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+  /api/v1/modules/{moduleKey}/jobs:
+    get:
+      operationId: listModuleJobs
+      tags:
+        - Module Management
+      summary: The module's declared operational commands (documentation only).
+      parameters:
+        - name: moduleKey
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Module job list.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      moduleKey:
+                        type: string
+                      jobs:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/ModuleJob"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+  /api/v1/modules/{moduleKey}/permissions:
+    get:
+      operationId: getModulePermissionSync
+      tags:
+        - Module Management
+      summary: Permission sync/status report for one module (read-only).
+      parameters:
+        - name: moduleKey
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Permission sync report.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/ModulePermissionSyncReport"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+  /api/v1/modules/sync:
+    post:
+      operationId: syncModuleRegistry
+      tags:
+        - Module Management
+      summary: Sync trusted code descriptors into the database registry.
+      responses:
+        "200":
+          description: Sync result.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/ModuleSyncResult"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "500":
+          $ref: "#/components/responses/BadRequest"
+  /api/v1/tenant/modules:
+    get:
+      operationId: listTenantModules
+      tags:
+        - Module Management
+      summary: Every registered module's enablement state for the current tenant.
+      responses:
+        "200":
+          description: Tenant module list.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      modules:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/TenantModule"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+  /api/v1/tenant/modules/{moduleKey}/disable:
+    post:
+      operationId: disableTenantModule
+      tags:
+        - Module Management
+      summary: Disable a module for the current tenant (reason required).
+      parameters:
+        - name: moduleKey
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - reason
+              properties:
+                reason:
+                  type: string
+      responses:
+        "200":
+          description: Module disabled.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      moduleKey:
+                        type: string
+                      tenantEnabled:
+                        type: boolean
+                        enum:
+                          - false
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: Rejected — core module or active reverse dependency.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/tenant/modules/{moduleKey}/enable:
+    post:
+      operationId: enableTenantModule
+      tags:
+        - Module Management
+      summary: Enable a module for the current tenant (dependency-validated).
+      parameters:
+        - name: moduleKey
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Module enabled.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      moduleKey:
+                        type: string
+                      tenantEnabled:
+                        type: boolean
+                        enum:
+                          - true
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: Rejected — dependency/state conflict.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/tenant/navigation/sidebar:
+    get:
+      operationId: getTenantSidebarArrangement
+      tags:
+        - Module Management
+      summary: This tenant's admin sidebar arrangement, plus the arrangeable entry set.
+      description: >-
+        The entry set is code-derived (`listModules()` navigation plus the
+        synthetic core items) and is returned for the editor to render; it is
+        never writable. `arrangement` is the tenant's stored delta — a tenant
+        with no rows gets empty arrays, meaning "use the code default".
+        Deliberately unfiltered by permission and by tenant-disabled module:
+        this arranges the menu rather than previewing one operator's view of it.
+      responses:
+        "200":
+          description: Entry set plus the tenant's current overrides.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      entries:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            entryKey:
+                              type: string
+                            path:
+                              type: string
+                            moduleKey:
+                              type: string
+                            moduleName:
+                              type: string
+                            defaultTypeKey:
+                              type: string
+                            defaultLabel:
+                              type: string
+                      arrangement:
+                        type: object
+                        properties:
+                          types:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                typeKey:
+                                  type: string
+                                labelOverride:
+                                  type: string
+                                  nullable: true
+                                position:
+                                  type: integer
+                                hidden:
+                                  type: boolean
+                          items:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                entryKey:
+                                  type: string
+                                typeKey:
+                                  type: string
+                                  nullable: true
+                                position:
+                                  type: integer
+                                labelOverride:
+                                  type: string
+                                  nullable: true
+                                hidden:
+                                  type: boolean
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+    put:
+      operationId: saveTenantSidebarArrangement
+      tags:
+        - Module Management
+      summary: Replace this tenant's sidebar arrangement.
+      description: >-
+        A full replace, not a merge: the payload IS the arrangement, so an
+        omitted override disappears. Only overrides are submitted — each is
+        resolved by `entryKey` against the code-derived default and one that
+        matches nothing is ignored, so a request can never introduce a menu
+        link. Requires `module_management.navigation.configure`.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - types
+                - items
+              properties:
+                types:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      typeKey:
+                        type: string
+                      labelOverride:
+                        type: string
+                        nullable: true
+                      position:
+                        type: integer
+                      hidden:
+                        type: boolean
+                items:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      entryKey:
+                        type: string
+                      typeKey:
+                        type: string
+                        nullable: true
+                      position:
+                        type: integer
+                      labelOverride:
+                        type: string
+                        nullable: true
+                      hidden:
+                        type: boolean
+      responses:
+        "200":
+          description: Arrangement saved.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      entries:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            entryKey:
+                              type: string
+                            path:
+                              type: string
+                            moduleKey:
+                              type: string
+                            moduleName:
+                              type: string
+                            defaultTypeKey:
+                              type: string
+                            defaultLabel:
+                              type: string
+                      arrangement:
+                        type: object
+                        properties:
+                          types:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                typeKey:
+                                  type: string
+                                labelOverride:
+                                  type: string
+                                  nullable: true
+                                position:
+                                  type: integer
+                                hidden:
+                                  type: boolean
+                          items:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                entryKey:
+                                  type: string
+                                typeKey:
+                                  type: string
+                                  nullable: true
+                                position:
+                                  type: integer
+                                labelOverride:
+                                  type: string
+                                  nullable: true
+                                hidden:
+                                  type: boolean
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "413":
+          $ref: "#/components/responses/BadRequest"
+    delete:
+      operationId: resetTenantSidebarArrangement
+      tags:
+        - Module Management
+      summary: Drop every override, returning this tenant to the code default.
+      responses:
+        "200":
+          description: Arrangement reset.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      entries:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            entryKey:
+                              type: string
+                            path:
+                              type: string
+                            moduleKey:
+                              type: string
+                            moduleName:
+                              type: string
+                            defaultTypeKey:
+                              type: string
+                            defaultLabel:
+                              type: string
+                      arrangement:
+                        type: object
+                        properties:
+                          types:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                typeKey:
+                                  type: string
+                                labelOverride:
+                                  type: string
+                                  nullable: true
+                                position:
+                                  type: integer
+                                hidden:
+                                  type: boolean
+                          items:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                entryKey:
+                                  type: string
+                                typeKey:
+                                  type: string
+                                  nullable: true
+                                position:
+                                  type: integer
+                                labelOverride:
+                                  type: string
+                                  nullable: true
+                                hidden:
+                                  type: boolean
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+  /api/v1/tenant/modules/matrix:
+    get:
+      operationId: getTenantModuleMatrix
+      tags:
+        - Module Management
+      summary: Every module by what matters for this tenant, in two queries.
+      description: >-
+        Single-tenant scope, never cross-tenant. Adds two lifecycle warnings by
+        re-running the real enable/disable validation for each module's actual
+        current state: `dependencyWarning` only for a DISABLED module ("would
+        enabling succeed now?") and `reverseDependencyWarning` only for an
+        ENABLED one ("would disabling be blocked?"). No health column — this
+        base has no batched health reader, and a per-row one would be an N+1.
+      responses:
+        "200":
+          description: Module matrix for the caller's tenant.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      modules:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            moduleKey:
+                              type: string
+                            name:
+                              type: string
+                            version:
+                              type: string
+                            status:
+                              type: string
+                            isCore:
+                              type: boolean
+                            isProtected:
+                              type: boolean
+                            tenantEnabled:
+                              type: boolean
+                            disableReason:
+                              type: string
+                              nullable: true
+                            dependencies:
+                              type: array
+                              items:
+                                type: string
+                            dependencyWarning:
+                              nullable: true
+                              type: object
+                              properties:
+                                code:
+                                  type: string
+                                message:
+                                  type: string
+                            reverseDependencyWarning:
+                              nullable: true
+                              type: object
+                              properties:
+                                code:
+                                  type: string
+                                message:
+                                  type: string
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+  /api/v1/tenant/modules/presets:
+    get:
+      operationId: listTenantModulePresets
+      tags:
+        - Module Management
+      summary: Named module profiles, and optionally a dry-run plan for one.
+      description: >-
+        Applying a preset DISABLES every enabled, unlisted, unprotected module,
+        so `?preset=<name>` returns the plan without writing anything — an
+        operator switching a live tenant's profile sees the disable list before
+        it happens. An unknown name returns the catalog with `plan: null`.
+      parameters:
+        - name: preset
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Preset catalog, plus a plan when `preset` was supplied.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      presets:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                            label:
+                              type: string
+                            description:
+                              type: string
+                            enabledModuleKeys:
+                              type: array
+                              items:
+                                type: string
+                      plan:
+                        nullable: true
+                        type: object
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+  /api/v1/tenant/modules/presets/{presetName}/apply:
+    post:
+      operationId: applyTenantModulePreset
+      tags:
+        - Module Management
+      summary: Bring the tenant's module state to a named profile.
+      description: >-
+        Enables every module the preset lists and disables every enabled,
+        unlisted, unprotected module. Each change runs the real lifecycle
+        validation, so a change can be rejected: `complete: false` with
+        per-module reasons is a real outcome, not an error.
+      parameters:
+        - name: presetName
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Preset applied, completely or partially.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      presetName:
+                        type: string
+                      complete:
+                        type: boolean
+                      plan:
+                        type: object
+                      changes:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            moduleKey:
+                              type: string
+                            action:
+                              type: string
+                              enum:
+                                - enable
+                                - disable
+                            outcome:
+                              type: string
+                              enum:
+                                - applied
+                                - rejected
+                            code:
+                              type: string
+                            message:
+                              type: string
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+  /api/v1/tenant/modules/{moduleKey}/settings:
+    get:
+      operationId: getTenantModuleSettings
+      tags:
+        - Module Management
+      summary: Effective tenant module settings (defaults + tenant override).
+      parameters:
+        - name: moduleKey
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Module settings view.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/ModuleSettingsView"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+    patch:
+      operationId: updateTenantModuleSettings
+      tags:
+        - Module Management
+      summary: Shallow-merge non-secret settings for a module (rejects secret-shaped keys/values).
+      parameters:
+        - name: moduleKey
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Updated module settings view.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/ModuleSettingsView"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+components:
+  schemas:
+    ModuleCatalogEntry:
+      type: object
+      properties:
+        moduleKey:
+          type: string
+        name:
+          type: string
+        version:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+        type:
+          type: string
+          nullable: true
+        isCore:
+          type: boolean
+        dependencies:
+          type: array
+          items:
+            type: string
+        api:
+          type: object
+          nullable: true
+          properties:
+            openApiPath:
+              type: string
+            basePath:
+              type: string
+        events:
+          type: object
+          nullable: true
+        lastSyncedAt:
+          type: string
+          format: date-time
+          nullable: true
+    ModuleHealthReport:
+      type: object
+      properties:
+        moduleKey:
+          type: string
+        status:
+          type: string
+          enum:
+            - healthy
+            - degraded
+            - failed
+            - unknown
+        signals:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              status:
+                type: string
+                enum:
+                  - pass
+                  - fail
+                  - not_applicable
+              detail:
+                type: string
+        generatedAt:
+          type: string
+          format: date-time
+    ModuleJob:
+      type: object
+      properties:
+        moduleKey:
+          type: string
+        command:
+          type: string
+        purpose:
+          type: string
+        recommendedSchedule:
+          type: string
+        environmentNotes:
+          type: string
+        safeInOfflineLan:
+          type: boolean
+    ModulePermissionSyncReport:
+      type: object
+      properties:
+        moduleKey:
+          type: string
+        entries:
+          type: array
+          items:
+            type: object
+            properties:
+              moduleKey:
+                type: string
+              activityCode:
+                type: string
+              action:
+                type: string
+              status:
+                type: string
+                enum:
+                  - synced
+                  - missing
+                  - orphaned
+                  - mismatched_description
+              descriptorDescription:
+                type: string
+                nullable: true
+              catalogDescription:
+                type: string
+                nullable: true
+    ModuleSettingsView:
+      type: object
+      properties:
+        moduleKey:
+          type: string
+        schemaVersion:
+          type: integer
+        defaults:
+          type: object
+          additionalProperties: true
+        tenantOverride:
+          type: object
+          additionalProperties: true
+        effective:
+          type: object
+          additionalProperties: true
+        updatedAt:
+          type: string
+          format: date-time
+          nullable: true
+    ModuleSyncResult:
+      type: object
+      properties:
+        created:
+          type: array
+          items:
+            type: string
+        updated:
+          type: array
+          items:
+            type: string
+        unchanged:
+          type: array
+          items:
+            type: string
+        orphaned:
+          type: array
+          items:
+            type: string
+    TenantModule:
+      type: object
+      properties:
+        moduleKey:
+          type: string
+        name:
+          type: string
+        version:
+          type: string
+        isCore:
+          type: boolean
+        tenantEnabled:
+          type: boolean
+        enabledAt:
+          type: string
+          format: date-time
+          nullable: true
+        disabledAt:
+          type: string
+          format: date-time
+          nullable: true
+        disableReason:
+          type: string
+          nullable: true

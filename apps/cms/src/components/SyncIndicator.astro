@@ -1,0 +1,54 @@
+---
+/**
+ * SyncIndicator — dot + label showing whether this tenant has any active sync
+ * node, adapted from awcms-micro's `src/components/SyncIndicator.astro`.
+ *
+ * This is REAL state, not decoration: `active` comes from
+ * `reporting/application/sync-indicator.ts`'s `fetchSyncIndicatorActive`, a
+ * single bounded `EXISTS` over `awcms_sync_nodes` — deliberately not the full
+ * `fetchSyncHealthReport` aggregation, because this renders on every single
+ * `/admin/*` request and the topbar only needs one boolean.
+ *
+ * Red (inactive) is the honest default for this base: most deployments have no
+ * offline node registered at all, and "inactive" is the accurate word for that
+ * — it does not imply a fault, only that nothing is pushing.
+ */
+interface Props {
+  active: boolean;
+  activeLabel?: string;
+  inactiveLabel?: string;
+}
+
+const {
+  active,
+  activeLabel = "Sync active",
+  inactiveLabel = "Sync inactive"
+} = Astro.props;
+
+const label = active ? activeLabel : inactiveLabel;
+---
+
+<div
+  class="admin-sync-pill sync-indicator"
+  data-status={active ? "active" : "inactive"}
+  data-active={active ? "true" : "false"}
+  role="status"
+>
+  <span class="admin-sync-pill-dot" aria-hidden="true"></span>
+  <span class="sync-indicator-label">{label}</span>
+</div>
+
+<style>
+  /*
+   * ADR-0120 — the box and both colour pairs come from `.admin-sync-pill` in
+   * `admin.css`, which reads them from the `-soft` / `-on-soft` token pairs the
+   * status badges use. That is the point: "sync is off" in the topbar and a
+   * warning badge in a table are now the same colour, because they are the same
+   * statement.
+   *
+   * Nothing is left to declare here. The rules that used to live in this block
+   * set a bare dot on `--color-danger` with muted text beside it; red for "no
+   * offline node is registered" overstated a state the component's own header
+   * describes as "not a fault, only that nothing is pushing". Amber says that.
+   */
+</style>

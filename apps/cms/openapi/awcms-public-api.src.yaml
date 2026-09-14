@@ -1,0 +1,184 @@
+# Root OpenAPI source fragment (Issue #182, epic #177).
+#
+# Contains everything shared across every module: openapi/info/servers/tags/
+# security, and components.securitySchemes/parameters/responses/schemas (only
+# the schemas genuinely shared by 2+ modules, plus schemas not referenced by
+# any path). This file is NOT the published contract by itself and is NOT
+# independently valid OpenAPI (it has no `paths`). It is merged with every
+# openapi/modules/*.openapi.yaml fragment by `bun run openapi:bundle`
+# (scripts/openapi-bundle.ts) into the single published artifact,
+# openapi/awcms-public-api.openapi.yaml -- edit sources here and in
+# openapi/modules/*.openapi.yaml, never the generated bundle directly.
+openapi: 3.1.0
+info:
+  title: AWCMS Public API
+  version: 0.1.0
+  description: |-
+    REST contract for the AWCMS foundation modules (tenant-admin, profile-identity,
+    identity-access, logging). Every endpoint that accepts a body enforces an
+    application-level size cap (default 128 KiB) independent of any reverse-proxy
+    limit; a body over the limit is rejected with `413 Payload Too Large` /
+    `PAYLOAD_TOO_LARGE`, using the same envelope as every other error response.
+servers:
+  - url: http://localhost:4321
+    description: Local development
+tags:
+  - name: Foundation
+    description: Foundation and platform endpoints.
+  - name: Tenant Admin
+    description: Tenant, office, tenant settings, and the one-time setup wizard.
+  - name: Tenant Domains
+    description: Tenant domain/subdomain mapping for host-based public routing (tenant_domain module, ported from awcms-micro) — tenant-scoped, RLS-protected CRUD over hostname mappings plus verification (dns_txt/dns_cname/file/manual) and primary-host selection. A hostname only serves a tenant once it is verified and active; the optional DNS provider adapter is env-gated and never stores a provider credential in the database. verify and set-primary change which host answers for a tenant, so both are ABAC-gated, idempotency-keyed, and audited.
+  - name: Identity & Access
+    description: Login identity, session authentication, and tenant user membership.
+  - name: Profile Identity
+    description: Canonical person/organization profile lifecycle, identifiers, and entity links.
+  - name: Logging & Audit
+    description: Cross-module audit trail (awcms_audit_events) and its read API.
+  - name: Module Management
+    description: Database-backed module registry, tenant module lifecycle, settings, permission sync, jobs, and health.
+  - name: Sync Storage
+    description: "Offline-first sync node registration, HMAC-signed push/pull, conflict tracking, and the object sync upload queue. Server-to-node replication is DECLARED EMPTY, not missing (ADR-0077): POST /api/v1/sync/pull reads awcms_domain_events — this repo's one transactional outbox — filtered by an explicit allow-list of replicable event types that currently contains none, so it answers 200 with an empty list. A node polling it is up to date with everything the server has chosen to replicate, which today is nothing. Two things block the first entry, both stated in src/modules/sync-storage/domain/sync-replication.ts: a per-event-type payload projection (a node is HMAC-authenticated, not a session), and commit-visibility safety (event_sequence is assigned at INSERT and visible at COMMIT, so a plain cursor can skip a late-committing event). The push direction (node to server) is fully implemented and unaffected. The operation's own description is unchanged because the pre-migration contract snapshot is frozen, so this notice lives here."
+  - name: Workflow Approval
+    description: Managed, versioned graph-based approval workflows — definition lifecycle, approval inbox/decisions, delegation, escalation, and administrative recovery.
+  - name: Email
+    description: Provider-neutral transactional email — template management, bulk announcement/notification enqueue, delivery-queue diagnostics/cancel, and suppression list.
+  - name: Management Reporting
+    description: Generic management reporting views (tenant activity, access/audit summary, sync health, module usage, email queue health) built as live read-aggregations over the foundation modules' tables.
+  - name: Reporting Projections
+    description: Module-contributed read-model projection extension to Management Reporting — list registered projection descriptors with live snapshot/freshness status, trigger/resume/cancel an idempotent full rebuild, trigger an on-demand reconciliation against a source control total, and manage/trigger/download scheduled exports (manifest/checksum/expiry, secure tenant-scoped download). A projection is a DERIVED read model, never an authorization source of truth — every operation independently re-checks RBAC/ABAC.
+  - name: Domain Event Runtime
+    description: Transactional, versioned domain-event outbox and dispatcher admin API — read-only inspection of outbox events and per-consumer deliveries (redacted payload projections only), permission-gated/reason-required/idempotent/audited replay of a dead-lettered delivery, and per-tenant pause/resume of a registered consumer.
+  - name: Theming
+    description: Tenant-selectable presentation (ADR-0034 Fase 3 — the first website module in the base). Select a trusted, reviewed, build-time theme and configure it by DATA only (design tokens, slot variants, media asset ids, section order, nav placement) — no uploaded code, no arbitrary templates. Every token value is validated by rejection against strict CSS grammars; published versions are immutable; publish/rollback/retire are ABAC-gated, idempotency-keyed, and audited.
+  - name: News Media
+    description: Direct-to-R2 presigned upload flow for news images (media_library module, ADR-0036 ownership inversion — the registry moved out of the retired news_portal module and the tag/path names were deliberately kept) — create an upload session (server-generated object key + short-lived presigned PUT URL), finalize (real R2 GET + magic-byte MIME sniffing + server-side SHA-256 checksum, never a bare HEAD), and cancel a still-pending_upload session. R2 credentials are never exposed to the browser; only a scoped, expiring presigned URL is returned.
+  - name: Blog Content
+    description: "Tenant-scoped blog/content administration (blog_content module, ported from awcms-mini) — posts and pages with their full lifecycle (draft → review → scheduled/published → archived, soft delete/restore/purge), hierarchical categories/tags, append-only revision history (restore APPENDS a revision, never overwrites), PostgreSQL full-text search, presentation/monetization extensions (templates, hierarchical menus, position-based widgets, advertisements), per-tenant blog settings, internal tag-link policy, and the editorial content-quality checklist. The public, anonymous reader surface (`/blog/{tenantCode}/...` index/detail/archive/search/feed/sitemap, ADR-0009) is served by Astro text/html/xml routes and is deliberately NOT part of this REST contract. Publish/unpublish/purge and settings writes are ABAC-gated, idempotency-keyed, and audited."
+  - name: News Portal Homepage Sections
+    description: Editorial homepage section composer (blog_content module — absorbed from the retired news_portal module by ADR-0044, which moved ownership without renaming the paths or this tag) — tenant-scoped, RLS-protected CRUD for configurable homepage sections (headline, latest_posts, featured_posts, editor_picks, category_grid, gallery_block). config shape is validated per sectionType server-side; every referenced post/category/media object must already exist for the same tenant (and gallery_block media must be a verified R2 media object). sectionType is immutable after creation; reordering is just a patchable sortOrder field.
+  - name: News Portal Ad Placements
+    description: R2-only advertisement placement presets for the news portal (blog_content module — absorbed from the retired news_portal module by ADR-0044, which moved ownership without renaming the paths or this tag) — tenant-scoped, RLS-protected CRUD for ads assigned to a fixed set of placement keys. mediaObjectId must reference a verified R2 media object belonging to the same tenant — never a local path or arbitrary external image URL. linkUrl is optional and may be external, but is validated server-side as an absolute http(s) URL only.
+  - name: Visitor Analytics
+    description: "Privacy-first human visitor statistics for admin and public routes (visitor_analytics module, ported from awcms-micro) — the anonymous public visit-ingest beacon plus the authenticated, ABAC-guarded read API (summary/realtime/sessions/events/pages/devices/locations/security), tenant analytics settings, and the high-risk retention purge. Collection is OFF until an operator opts in, and raw IP/user-agent/geolocation are each independently disabled unless explicitly enabled: visitor identifiers are stored as salted HMAC-SHA256 hashes, never raw. The retention purge is idempotency-keyed, critically audited, and refused while a data_lifecycle legal hold is active."
+  - name: Indonesia Regions
+    description: "Versioned master data for Indonesia's administrative hierarchy — province / regency-city / district / village (idn_admin_regions module, ADR-0046) — for address forms, coverage mapping, and regional reporting. Read-only lookup with tier/parent/name filters and keyset pagination, plus the imported dataset versions and their upstream provenance. The rows are GLOBAL reference data (identical for every tenant, no tenant_id, no RLS), but every endpoint still requires a session, a tenant context, and a permission grant: what is global is the row, not the authorization. Importing is deliberately NOT in this contract — it is a worker job reading a repo-vendored dump; what IS here are the two audited, idempotency-keyed lifecycle actions (activate, rollback) that decide which imported version the platform serves. The data is a third-party community packaging of the Kepmendagri decree, NOT an official Kementerian Dalam Negeri API or export, and that caveat is returned in the dataset response body rather than left to documentation."
+  - name: Data Lifecycle
+    description: "Module-contributed high-volume table registry and safe lifecycle engine (data_lifecycle module, ADR-0037, ported from awcms-micro) — read the code-declared retention/partition/archive/purge descriptors and past run history, plan a dry run, and manage legal holds. Real archive/purge execution is deliberately NOT exposed over HTTP; it runs only as a bounded worker job. A legal hold overrides ordinary retention and is non-bypassable: it is enforced through a port that logging and visitor_analytics consume at their own purge composition roots, and placing/releasing one is a maker-checker SoD-guarded, audited action. The registry endpoint returns code-declared metadata only, never row contents."
+  - name: SEO & Distribution
+    description: Tenant SEO defaults for the central metadata renderer + public discovery/syndication surfaces (seo_distribution module, ADR-0038 discovery scope) — read/update site identity, default social/Organization images, Twitter handle, the tenant-wide noindex switch, and feed/sitemap config. The public robots.txt/sitemap/feed routes themselves are unauthenticated Astro XML/text routes (not part of this OpenAPI contract), host-resolved and cache-validated. config.update is high-risk (rewrites the public metadata/indexability surface), idempotency-keyed, and audited.
+  - name: Form Drafts
+    description: Generic, domain-agnostic server-side draft store for multi-step forms (form_drafts module) — tenant-scoped, RLS-protected create/read/update/submit/delete of an opaque JSONB payload plus the wizard coordinates needed to resume it. The payload is size-bounded and rejected outright (never silently redacted) when any key at any nesting depth resembles a secret — password/token/secret/credential/apiKey/privateKey — so a caller can never mistake a stripped field for a saved one. What a payload MEANS is owned by the module that created it (moduleKey/wizardKey), never by this one. submit is high-risk (it hands the payload to a domain action), idempotency-keyed, and audited; create deliberately is not, since a retry costs one deletable scratch row.
+  - name: Site Search
+    description: "Tenant-scoped, cross-content PostgreSQL full-text search over PUBLISHED public website content (site_search module, ADR-0040) — the public, anonymous, host-resolved query/suggest endpoints plus the admin index status/reconcile/rebuild, tenant search configuration, and failed-item diagnostics API. The index is a projection of public content only and is NEVER an authorization source: publication state is enforced at the source-to-index boundary, so a draft/private/deleted/scheduled resource is never even read into it. Query text is always a bound parameter into websearch_to_tsquery (no SQL injection) and snippets are HTML-escaped before the <mark> highlights are inserted (no XSS). index.rebuild is high-risk (delete + re-extract every document); index.reconcile is an idempotent, fully regenerable sync — both are idempotency-keyed and audited, as is settings.update, which changes what the public surface returns."
+  - name: Newsletter
+    description: "Per-tenant newsletter subscriber list (newsletter module, Issue #598, ADR-0103, PRD §22/§30). The email module could already SEND mail; there was no list a reader could JOIN. All three operations are anonymous — a reader has no account, and PRD §30 forbids making them get one to stop receiving mail — with the tenant resolved from the request HOST rather than a header, so a caller cannot choose whose list they are writing to. Every one answers the SAME neutral body for every outcome, because a distinguishing response turns a public endpoint into a way to ask whether a named person subscribes to a particular newsroom. Double opt-in: consent is recorded when the confirmation link is FOLLOWED, never at submission. Both tokens are stored hashed because both are bearer credentials, and the unsubscribe token is stable for the row's lifetime because it appears in the footer of every message the subscriber receives."
+  - name: Site Profile
+    description: "Per-tenant SITE CHROME (site_profile module, Issue #596, ADR-0102) — the masthead tagline, footer copyright line, logo and favicon, editorial address, contact email/phone/WhatsApp, and social profile links that every public page renders. Before it, a footer, masthead, contact page and Organization JSON-LD node all had to hard-code the publisher's identity in frontend source, which made a second tenant impossible without a fork. The boundary against seo_distribution is deliberate: awcms_seo_tenant_settings keeps what CRAWLERS see (og:site_name, the JSON-LD Organization node, the default og:image) because each is an SEO output consumed by a meta-tag renderer, while this module owns what PEOPLE read. Nothing is duplicated across the two, so no value can drift, and consumers are never asked to know the split — GET /api/v1/site-profile/composed merges both halves for build clients. Social link URLs are REFUSED rather than sanitized unless absolute http(s), because they are rendered as <a href> on every public page. read and update are separately grantable: changing what every page's contact block says is a different power from reading it. Nothing here is anonymous — 'public read' means the public site's BUILDER can read it, not that anyone can."
+  - name: Comments
+    description: "Tenant-scoped, moderation-first commenting over PUBLISHED, PUBLIC commentable resources (comments module, ADR-0041) — the public, anonymous, host-resolved submit/list/reply/edit/report/delete-request surface plus the ABAC-guarded admin moderation queue, per-decision transitions, bulk moderation, and tenant comment configuration. A comment is only ever accepted against, or shown on, a resource that satisfies its owning module's declarative publicationFilter, so a draft/private/deleted/scheduled resource never receives or exposes comments, and the comment surface is NEVER an authorization source for the underlying resource. Bodies are stored as raw plain text and HTML-escaped on render (no stored HTML, therefore no stored XSS), permitting only http(s) autolinks with rel=nofollow ugc noopener noreferrer. The public list returns approved rows only and never moderation metadata. Public submit responses are deliberately uniform: an anti-abuse block, an unresolved resource, and an accepted-but-pending comment all return the same neutral body, so the endpoint cannot be used as an oracle for blocked terms or for unpublished content. moderation.approve/restore/delete and settings.update are high-risk, idempotency-keyed, and audited with a reason code."
+  - name: Push Delivery
+    description: "Transactional outbox for device push notifications (push_delivery module, ADR-0074) — the caller's own device registration/revocation plus the operator's queue diagnostics, message cancel, and end-to-end delivery probe. It is a SECOND outbox on purpose: domain-event-runtime calls its consumers INSIDE the claim transaction by design, and ADR-0006 forbids the external HTTP call a push provider needs from inside a transaction. Two transports, neither of which costs a client byte or a CSP origin: Web Push (RFC 8030/8291/8292, VAPID) to browsers — chosen over the FCM Web SDK, which is 2.1x the per-file asset budget and demands three third-party origins the CSP does not have — and FCM HTTP v1 server-to-Google for native clients. Managing one's own device is self-service (the subject is the caller and no recipient is accepted); everything that touches another person's rows or makes the deployment emit traffic goes through the ABAC chokepoint. Endpoints are credential-grade and are stored hashed/masked, projected raw by exactly one function immediately before a provider call."
+security:
+  - bearerAuth: []
+    tenantHeader: []
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Opaque session token issued by POST /auth/login.
+    tenantHeader:
+      type: apiKey
+      in: header
+      name: X-AWCMS-Tenant-ID
+      description: Active tenant context for tenant-scoped API.
+    syncHmac:
+      type: apiKey
+      in: header
+      name: X-AWCMS-Signature
+      description: HMAC-SHA256 signature over "<timestamp>.<body>" for machine-to-machine sync endpoints (with X-AWCMS-Node-ID and X-AWCMS-Timestamp).
+  parameters:
+    CorrelationId:
+      name: X-Correlation-ID
+      in: header
+      required: false
+      schema:
+        type: string
+    SyncNodeId:
+      name: X-AWCMS-Node-ID
+      in: header
+      required: true
+      description: Node code identifying the calling sync node (auto-registers on first contact).
+      schema:
+        type: string
+    SyncTimestamp:
+      name: X-AWCMS-Timestamp
+      in: header
+      required: true
+      description: ISO-8601 timestamp of the request, validated against the allowed skew (anti-replay).
+      schema:
+        type: string
+    SyncSignature:
+      name: X-AWCMS-Signature
+      in: header
+      required: true
+      description: HMAC-SHA256 signature over "<timestamp>.<body>".
+      schema:
+        type: string
+  responses:
+    BadRequest:
+      description: Validation error.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ApiError"
+    Unauthorized:
+      description: Missing or invalid session.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ApiError"
+    Forbidden:
+      description: Access denied by RBAC/ABAC.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ApiError"
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ApiError"
+  schemas:
+    ApiError:
+      type: object
+      required:
+        - success
+        - error
+      properties:
+        success:
+          type: boolean
+          enum:
+            - false
+        error:
+          type: object
+          required:
+            - code
+            - message
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+            details: {}
+        meta:
+          $ref: "#/components/schemas/ApiMeta"
+    ApiMeta:
+      type: object
+      properties:
+        correlationId:
+          type: string
+        requestId:
+          type: string

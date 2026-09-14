@@ -1,0 +1,84 @@
+/**
+ * Parity test (Issue #183, epic #177, ADR-0032) — the conformance step must
+ * not silently drop out of `bun run check` OR the CI/release workflows, and the
+ * DB-gated fail-closed contract test must stay wired into the dedicated
+ * DB-suite steps of both pipelines.
+ *
+ * This is the guard ADR-0015 §6 documents the need for (PR #770 lesson: a new
+ * `bun run X:check` was added to package.json's `check` but never to
+ * `.github/workflows/ci.yml`'s manually-listed steps, so it silently never ran
+ * in CI). No DB, no network — plain file reads.
+ */
+import { readFileSync } from "node:fs";
+import path from "node:path";
+
+import { describe, expect, test } from "bun:test";
+
+const ROOT = path.resolve(import.meta.dir, "..");
+
+function read(rel: string): string {
+  return readFileSync(path.join(ROOT, rel), "utf8");
+}
+
+describe("family conformance — CI/check parity", () => {
+  test("package.json `check` chain runs family:conformance:check", () => {
+    const pkg = JSON.parse(read("package.json")) as {
+      scripts: Record<string, string>;
+    };
+    expect(pkg.scripts["family:conformance:check"]).toBeDefined();
+    expect(pkg.scripts.check).toContain("bun run family:conformance:check");
+  });
+
+  test("ci.yml quality job runs the FULL `bun run check` chain (no manual mirror)", () => {
+    // PR #770's failure mode was a manually-listed step mirror drifting from
+    // package.json's `check`. The durable fix is structural: the quality job
+    // runs `bun run check` itself, so every gate added to the chain runs in CI
+    // by construction. This assertion guards against re-growing a partial
+    // manual mirror (which once silently dropped 16 of 34 gates).
+    const ci = read(".github/workflows/ci.yml");
+    expect(ci).toContain("run: bun run check");
+    // The step must neutralise DATABASE_URL so `check`'s bare `bun test`
+    // skips DB-gated suites cleanly (they run in `integration-tests`).
+    expect(ci).toMatch(/run: bun run check\s+env:\s+DATABASE_URL: ""/);
+  });
+
+  test("ci.yml integration-tests lists the DB-gated conformance test", () => {
+    const ci = read(".github/workflows/ci.yml");
+    expect(ci).toContain("tests/family-conformance-db.test.ts");
+  });
+
+  test("release.yml inherits the gate via `bun run check` and lists the DB test", () => {
+    const release = read(".github/workflows/release.yml");
+    expect(release).toContain("bun run check");
+    expect(release).toContain("tests/family-conformance-db.test.ts");
+  });
+
+  test("ci.yml runs the minimum-supported (Bun 1.3.0) cell", () => {
+    // F1 AC "menguji current DAN minimum-supported": a dedicated cell must set
+    // up the floor Bun and run a meaningful subset. (The family-conformance gate
+    // ALSO enforces this via its CI-Bun-set check; this is the direct guard.)
+    const ci = read(".github/workflows/ci.yml");
+    expect(ci).toContain("minimum-supported:");
+    expect(ci).toMatch(/bun-version:\s*"1\.3\.0"/);
+  });
+
+  test("ci.yml keeps the e2e-smoke SSR-start-on-Bun proof (Astro SSR contract)", () => {
+    // The "Astro SSR production build/start on Bun" family contract is exercised
+    // by `bun run build` (in `check`) PLUS the e2e-smoke job, which actually
+    // STARTS the built server on Bun and drives login/SSR render. There is no
+    // standalone in-suite SSR test (a duplicate build+start+probe would just
+    // re-run e2e-smoke); this parity assertion is the guard — deleting
+    // e2e-smoke turns conformance RED.
+    //
+    // The entrypoint is `dist/standalone-entry.mjs`, NOT the adapter's own
+    // `dist/server/entry.mjs` (Issue #464): the adapter answers static files
+    // before `src/middleware.ts` ever runs, so starting its entry directly
+    // serves every file under `dist/client/` with zero security headers. CI
+    // must exercise the entrypoint production actually uses, which is why this
+    // asserts the wrapper AND that the raw adapter entry is not started.
+    const ci = read(".github/workflows/ci.yml");
+    expect(ci).toContain("e2e-smoke:");
+    expect(ci).toContain("bun ./dist/standalone-entry.mjs");
+    expect(ci).not.toContain("bun ./dist/server/entry.mjs");
+  });
+});

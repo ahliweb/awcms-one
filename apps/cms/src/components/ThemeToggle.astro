@@ -1,0 +1,122 @@
+---
+/**
+ * ThemeToggle — cycles system -> light -> dark -> system, persists the choice
+ * in `localStorage["awcms_theme"]`, and updates `data-theme` on `<html>` live
+ * (no reload). Adapted from awcms-micro's `src/components/ThemeToggle.astro`.
+ *
+ * The no-flash resolution on first paint is NOT this component's job — that
+ * happens in the `is:inline` head script (`src/lib/security/theme-init-script.ts`),
+ * which runs before the body paints. This toggle only handles the live change
+ * after the user clicks. Both agree on one storage key, exported from that same
+ * module so the two can never drift.
+ *
+ * Unlike awcms-micro's version, the labels are plain English literals rather
+ * than `t()` props: awcms has no gettext catalog (no i18n module ported), and
+ * every other string in this admin shell is likewise literal English. The
+ * `data-label-*` attributes are kept anyway — that is the seam that lets
+ * translated labels arrive later without the client script needing to read a
+ * catalog it cannot access.
+ *
+ * CSP: this component ships NO script of its own. The behaviour lives in
+ * `src/lib/ui/theme-toggle-client.ts`, imported by `AdminLayout.astro`'s script
+ * block so it lands in a shared chunk that `script-src 'self'` admits.
+ *
+ * That is a CORRECTION, not a preference. This comment used to claim that a
+ * component `<script>` without `is:inline` is bundled to an external module and
+ * therefore needs no hash bookkeeping. The built manifest disagreed: the one
+ * import was a string constant, the minifier folded it, nothing was left that
+ * needed a chunk, and Astro inlined the whole body — which the CSP then refused,
+ * leaving this button rendered and inert in production. See the module's own
+ * doc comment for the full mechanism, and `bun run build:inline-scripts:check`
+ * for the gate that now reads `dist/` instead of trusting a comment like this
+ * one.
+ */
+import { ADMIN_ICON_PATHS } from "../lib/ui/admin-icons";
+
+interface Props {
+  ariaLabel?: string;
+  systemLabel?: string;
+  lightLabel?: string;
+  darkLabel?: string;
+}
+
+const {
+  ariaLabel = "Change colour theme",
+  systemLabel = "System",
+  lightLabel = "Light",
+  darkLabel = "Dark"
+} = Astro.props;
+
+/**
+ * Order matters only for the DOM; the cycle order lives in the client module.
+ * `system` is rendered visible because that is the mode the button starts in
+ * before the client reads `localStorage` — so the icon is never absent, even
+ * for the frame before hydration or if the script fails to load.
+ */
+const MODE_ICONS = [
+  { key: "system", path: ADMIN_ICON_PATHS.monitor },
+  { key: "light", path: ADMIN_ICON_PATHS.sun },
+  { key: "dark", path: ADMIN_ICON_PATHS.moon }
+] as const;
+---
+
+<button
+  type="button"
+  id="theme-toggle"
+  class="admin-topbar-btn theme-toggle"
+  data-mode="system"
+  data-label-system={systemLabel}
+  data-label-light={lightLabel}
+  data-label-dark={darkLabel}
+  aria-label={ariaLabel}
+>
+  {
+    /* ADR-0120 — all three glyphs render; `theme-toggle-client.ts` shows one by
+      toggling `hidden`. Rendering them here rather than assigning markup in the
+      client is what keeps `innerHTML` out of the admin shell entirely. They are
+      `aria-hidden` because the button already has a name and a description. */
+  }
+  {
+    MODE_ICONS.map((mode) => (
+      <svg
+        class="theme-toggle-icon"
+        data-mode={mode.key}
+        hidden={mode.key !== "system"}
+        width="15"
+        height="15"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.8"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+        focusable="false"
+      >
+        <path d={mode.path} />
+      </svg>
+    ))
+  }
+  <span class="theme-toggle-label">{systemLabel}</span>
+</button>
+
+<style>
+  /*
+   * ADR-0120 — the button's box comes from `.admin-topbar-btn` in `admin.css`,
+   * so the theme, language and tenant controls cannot drift into three
+   * different heights inside a fixed-height topbar. Only what is specific to
+   * this control lives here.
+   */
+  .theme-toggle-icon {
+    flex: none;
+  }
+
+  @media (max-width: 767.98px) {
+    /* Icon alone on phones — the topbar is a fixed 58px row and the word is
+       redundant next to the glyph. The mode still reaches assistive tech
+       through `aria-description`, which the client keeps in step. */
+    .theme-toggle-label {
+      display: none;
+    }
+  }
+</style>

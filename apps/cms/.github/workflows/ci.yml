@@ -1,0 +1,395 @@
+# CI AWCMS — kualitas dokumentasi, kontrak, unit/integration test, & hygiene
+# (Bun-only).
+#
+# Job `quality` menjalankan `bun run check` PENUH — script `check` di
+# package.json adalah satu-satunya sumber kebenaran, dan menjalankannya
+# langsung berarti CI tidak bisa drift darinya. Bentuk sebelumnya (daftar
+# step manual per gerbang) sempat mengklaim "cermin yang tidak bisa drift"
+# sambil kehilangan 16 dari 34 gerbang: `access:chokepoint:check` masuk
+# rantai lewat PR #380 tanpa pernah ditambahkan ke sini — persis pelajaran
+# PR #770 yang guard-nya (tests/family-conformance-ci-parity.test.ts) hanya
+# dibangun untuk satu gerbang. `DATABASE_URL` dikosongkan pada step itu
+# (pola yang sama dengan job Validate release.yml): `bun test` di dalam
+# `check` men-skip bersih suite DB-gated (lihat gerbang `integrationEnabled`
+# di `tests/integration/harness.ts`); suite itu benar-benar jalan di job
+# `integration-tests` di bawah yang menyalakan Postgres-nya sendiri.
+# Sejak Issue #166 ada job `e2e-smoke` (Playwright + Bun):
+# 404 + login render tidak butuh DB, tapi alur admin ter-autentikasi butuh,
+# jadi job-nya menyalakan service `postgres:18.4`, `db:migrate`, lalu men-seed
+# satu tenant+owner lewat `POST /api/v1/setup/initialize` (bootstrap
+# sungguhan, bukan seed SQL ad-hoc) dan mengoperkan kredensialnya ke spec via
+# env.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    name: Quality (lint + docs + contracts + typecheck + test + build)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          # `bun run check` memuat `version:check`, yang memverifikasi seluruh
+          # namespace tag mematuhi model `vX.Y.Z`. Checkout default itu shallow
+          # dan TIDAK mengambil satu tag pun, sehingga aturan itu akan melihat
+          # nol tag — dan sebuah aturan yang melapor "OK, 0 tag diperiksa"
+          # tidak bisa dibedakan dari aturan yang benar-benar lulus. Ini kelas
+          # cacat yang sama dengan gerbang cakupan yang hijau karena tidak
+          # melihat apa-apa. `fetch-tags` membuat aturan itu punya data;
+          # `tests/version-check.test.ts` mengikat baris ini agar tidak bisa
+          # dihapus diam-diam.
+          fetch-tags: true
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
+        with:
+          bun-version: "1.4.2"
+
+      - name: Cache Bun install cache
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ~/.bun/install/cache
+          key: bun-${{ runner.os }}-${{ hashFiles('bun.lock') }}
+          restore-keys: |
+            bun-${{ runner.os }}-
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Full quality gate (bun run check — seluruh 52 gerbang)
+        # `check` memuat `bun test` polos. Suite DB-gated lama (masing-masing
+        # membuka koneksi ad-hoc ke `DATABASE_URL`) tidak dirancang jalan
+        # bersamaan atas satu database ter-migrasi dalam satu proses `bun
+        # test` — komentar job `integration-tests` di bawah mendokumentasikan
+        # tabrakan 26-kegagalan yang direproduksi empiris dari pemicu persis
+        # itu. `DATABASE_URL` dikosongkan untuk step ini sehingga suite
+        # DB-gated skip bersih; cakupan DB/RLS nyata jalan di job
+        # `integration-tests`. Pola identik dengan job Validate release.yml.
+        run: bun run check
+        env:
+          DATABASE_URL: ""
+
+      # Diagnostik ringkas, hanya di-upload bila ada step di atas yang
+      # gagal. Sengaja sempit (bukan seluruh workspace/node_modules) dan
+      # log-only — logger terstruktur repo ini tidak pernah mencetak
+      # DATABASE_URL/secret (lihat src/lib/logging), dan job ini tidak
+      # memakai secret sungguhan sama sekali.
+      - name: Upload failure diagnostics
+        if: failure()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: quality-failure-diagnostics
+          path: |
+            dist/
+            !dist/**/*.map
+          retention-days: 5
+          if-no-files-found: ignore
+
+  e2e-smoke:
+    name: E2E smoke (Playwright)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    env:
+      POSTGRES_USER: awcms
+      POSTGRES_PASSWORD: awcms_ci_password
+      POSTGRES_DB: awcms
+    # Ephemeral per-job Postgres, created + torn down by the runner for THIS
+    # job only. Migrations run as this superuser and the app connects as it
+    # too — E2E smoke proves the UI flow (login → session → SSR render), not
+    # RLS enforcement (that is what the `integration-tests` job below proves,
+    # run under a non-superuser role there).
+    services:
+      postgres:
+        image: postgres:18.4
+        env:
+          POSTGRES_USER: awcms
+          POSTGRES_PASSWORD: awcms_ci_password
+          POSTGRES_DB: awcms
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U awcms -d awcms"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
+        with:
+          bun-version: "1.4.2"
+
+      - name: Cache Bun install cache
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ~/.bun/install/cache
+          key: bun-${{ runner.os }}-${{ hashFiles('bun.lock') }}
+          restore-keys: |
+            bun-${{ runner.os }}-
+
+      - name: Assemble DATABASE_URL for this job's Postgres
+        run: echo "DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@127.0.0.1:5432/${POSTGRES_DB}" >> "$GITHUB_ENV"
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Apply migrations
+        run: bun run db:migrate
+
+      - name: Build Astro foundation
+        run: bun run build
+
+      - name: Install Playwright Chromium (with OS deps)
+        run: bun run test:e2e:install
+
+      # HOST=127.0.0.1 is load-bearing: @astrojs/node binds to `localhost` by
+      # default, which on the CI runner resolves to IPv6 `::1` while the probe,
+      # the seed curl, and Playwright hit IPv4 `127.0.0.1` — the server is up
+      # but unreachable, and the probe times out. Pinning HOST (and matching
+      # E2E_BASE_URL) forces every end onto the same IPv4 address.
+      - name: Start server, seed a tenant via the setup wizard, run E2E
+        env:
+          HOST: 127.0.0.1
+          PORT: "4321"
+          E2E_BASE_URL: http://127.0.0.1:4321
+          E2E_LOGIN_IDENTIFIER: e2e-owner@example.com
+          E2E_PASSWORD: e2e-password-123
+          E2E_OFFICE_CODE: HQ-E2E
+          # Nyalakan gerbang Core Web Vitals LAB (ADR-0067 Opsi D):
+          # tests/e2e/cwv-lab.e2e.ts mengukur LCP+CLS /login terhadap build
+          # ini — angka LAB satu mesin (detektor regresi), bukan p75 lapangan.
+          # Tanpa env ini spec-nya mencetak pernyataan skip, tidak diam.
+          E2E_CWV_LAB: "1"
+        run: |
+          bun ./dist/standalone-entry.mjs &
+          APP_PID=$!
+          cleanup() { kill "$APP_PID" 2>/dev/null || true; }
+          trap cleanup EXIT
+
+          # Wait until the catch-all 404 answers (server up).
+          up=""
+          for i in $(seq 1 30); do
+            code=$(curl -s -o /dev/null -w "%{http_code}" "http://127.0.0.1:4321/__e2e_probe" || true)
+            if [ "$code" = "404" ]; then up="yes"; break; fi
+            sleep 1
+          done
+          if [ -z "$up" ]; then echo "::error::server never became ready on 127.0.0.1:4321"; exit 1; fi
+
+          # Seed one tenant + owner + head office through the REAL bootstrap
+          # (singleton — runs once against this fresh DB), then hand its
+          # tenantId to the authenticated spec.
+          seed=$(curl -s -X POST "http://127.0.0.1:4321/api/v1/setup/initialize" \
+            -H "Content-Type: application/json" \
+            -d "{\"tenantCode\":\"e2e\",\"tenantName\":\"E2E Tenant\",\"officeCode\":\"${E2E_OFFICE_CODE}\",\"officeName\":\"E2E Head Office\",\"ownerDisplayName\":\"E2E Owner\",\"ownerLoginIdentifier\":\"${E2E_LOGIN_IDENTIFIER}\",\"ownerPassword\":\"${E2E_PASSWORD}\"}")
+          echo "setup response: $seed"
+          tenant_id=$(echo "$seed" | jq -r '.data.tenantId // empty')
+          if [ -z "$tenant_id" ]; then echo "::error::setup/initialize did not return a tenantId"; exit 1; fi
+          export E2E_TENANT_ID="$tenant_id"
+
+          bun run test:e2e
+
+  integration-tests:
+    name: Integration tests (RLS + DB role separation)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    env:
+      POSTGRES_USER: awcms
+      POSTGRES_PASSWORD: awcms_ci_password
+      POSTGRES_DB: awcms
+    # Own ephemeral per-job Postgres — a fresh throwaway instance, never
+    # shared with `e2e-smoke`'s. `tests/integration/harness.ts` treats this
+    # superuser DATABASE_URL purely as an admin channel: it builds its OWN
+    # ephemeral database/roles on top of it and runs real migrations via
+    # `bun scripts/db-migrate.ts` as a subprocess — nothing else needs to be
+    # pre-migrated here for the DB-gated suites this job exists to run.
+    services:
+      postgres:
+        image: postgres:18.4
+        env:
+          POSTGRES_USER: awcms
+          POSTGRES_PASSWORD: awcms_ci_password
+          POSTGRES_DB: awcms
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U awcms -d awcms"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
+        with:
+          bun-version: "1.4.2"
+
+      - name: Cache Bun install cache
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ~/.bun/install/cache
+          key: bun-${{ runner.os }}-${{ hashFiles('bun.lock') }}
+          restore-keys: |
+            bun-${{ runner.os }}-
+
+      - name: Assemble DATABASE_URL for this job's Postgres
+        run: echo "DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@127.0.0.1:5432/${POSTGRES_DB}" >> "$GITHUB_ENV"
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Apply migrations against this job's Postgres
+        # Needed for both steps below: world-2 harness tests (module-tenant-
+        # lifecycle) resolve `getDatabaseClient()` to THIS same `DATABASE_URL`
+        # and soft-skip if it isn't migrated, and the legacy ad-hoc suite
+        # connects to it directly and expects `sql/` already applied.
+        run: bun run db:migrate
+
+      - name: Run DB-gated integration tests
+        # Scoped to `tests/integration/` (the harness-based suite, purpose-built
+        # for concurrent execution against ITS OWN ephemeral per-run database —
+        # see `tests/integration/harness.ts`), not a bare `bun test`. The older,
+        # independent `*-postgres.test.ts`/concurrency test files elsewhere under
+        # `tests/` each open their own ad-hoc connection to the SAME `DATABASE_URL`
+        # database and were never designed to run concurrently against a shared
+        # DB in one `bun test` process — verified empirically: a bare `bun test`
+        # here made 26 of them fail (data collisions/ordering), while all 4
+        # harness-based integration files passed cleanly. They run in their own
+        # step below instead, in a fresh `bun test` process of their own.
+        #
+        # `--timeout 60000` is not decoration. `setupIntegrationDatabase()`
+        # creates an ephemeral database and applies EVERY file in `sql/` as a
+        # subprocess, inside `beforeAll` — which is subject to bun's 5000ms
+        # per-hook default. Thirteen files each do that, and the cost grows
+        # with every migration added, so the default is a deadline the suite
+        # was always going to cross: observed on PR #259 (run 30188228406),
+        # green on a re-run with no code change. Setup takes ~1-2s on an idle
+        # runner, so 60s is ~30x headroom and still far under the job timeout.
+        # Set here rather than per-hook in 13 files: one place to forget, not
+        # thirteen.
+        run: bun test tests/integration/ --timeout 60000
+
+      - name: Run DB-gated integration tests (legacy ad-hoc suite)
+        # These 15 files each open their own ad-hoc `Bun.SQL(DATABASE_URL)`
+        # connection to the SAME database this job's harness step just used,
+        # and were designed to run together (that is release.yml's original,
+        # pre-`tests/integration/` DB-gated suite) — but NOT concurrently with
+        # the harness-based files above in one `bun test` process (see the
+        # step above's comment). Listed explicitly rather than relying on a
+        # bare `bun test` so this suite can't silently regrow the collision
+        # by pulling in `tests/integration/` again.
+        #
+        # The list is EXPLICIT, so it drifts silently — and it did. It was born
+        # with 10 entries and five more DB-gated files landed after it
+        # (#188/#189/#190/#191) without touching it, so 36 tests skipped in
+        # every pipeline while looking like coverage: MFA lockout/replay
+        # atomicity, cross-tenant denial on the four OIDC tables, Turnstile
+        # enforcement on the real login handler, and the office
+        # response-vs-schema contract. Each of those five files even documents
+        # that it "runs in the dedicated legacy `bun test <files>` step" — the
+        # step right here. `tests/db-gated-suite-ci-parity.test.ts` now holds
+        # this list to the filesystem in BOTH directions, so the next one
+        # cannot land quietly.
+        run: >-
+          bun test
+          tests/audit-log-purge.test.ts
+          tests/family-conformance-db.test.ts
+          tests/keyset-pagination-precision-postgres.test.ts
+          tests/mfa-integration.test.ts
+          tests/mfa-login-e2e.test.ts
+          tests/office-directory-postgres.test.ts
+          tests/partner-delegated-access-e2e.test.ts
+          tests/oidc-integration.test.ts
+          tests/openapi-office-response-schema-postgres.test.ts
+          tests/reporting-projection-rebuild-lock.test.ts
+          tests/security-readiness-failclosed.test.ts
+          tests/security-readiness-rls.test.ts
+          tests/security-readiness-worker-setup-grants.test.ts
+          tests/sync-hmac-versioned.test.ts
+          tests/tenant-selection-e2e.test.ts
+          tests/turnstile-login-e2e.test.ts
+          tests/workflow-approval-concurrency.test.ts
+
+  minimum-supported:
+    # Issue #183 AC "CI menguji minimal versi current DAN minimum-supported":
+    # the `quality` job pins the CURRENT Bun (1.4.2); this cell actually RUNS
+    # the declared floor `engines.bun >=1.3.0` (Bun 1.3.0) so a regression that
+    # only breaks on the floor can never ship green. Verified locally: Bun 1.3.0
+    # runs this exact subset (install/typecheck/build/family-conformance) clean.
+    # Astro/@astrojs/node/TS "minimum" == the current caret range, so no separate
+    # cell is needed for them (see ADR-0032 §Konsekuensi). The family-conformance
+    # gate itself asserts CI runs EXACTLY {current, minimum} Bun versions, so
+    # deleting this job turns that gate RED.
+    name: Minimum-supported versions (Bun 1.3.0 floor)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+
+      - name: Setup Bun (minimum-supported floor)
+        uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
+        with:
+          bun-version: "1.3.0"
+
+      - name: Cache Bun install cache
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ~/.bun/install/cache
+          key: bun-min-${{ runner.os }}-${{ hashFiles('bun.lock') }}
+          restore-keys: |
+            bun-min-${{ runner.os }}-
+
+      - name: Install dependencies (frozen)
+        run: bun install --frozen-lockfile
+
+      - name: Typecheck on minimum Bun
+        run: bun run typecheck
+
+      - name: Build Astro SSR on minimum Bun
+        run: bun run build
+
+      - name: Family conformance on minimum Bun
+        run: bun run family:conformance:check
+
+  hygiene:
+    name: Repo hygiene (Bun-only + no secrets)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+
+      - name: No Node.js tooling in package scripts (Bun-only)
+        run: |
+          if grep -REn '"[^"]*":\s*"(npm|npx|pnpm|yarn|node) ' package.json; then
+            echo "::error::package.json scripts harus Bun-only (lihat AGENTS.md aturan Bun-only)."
+            exit 1
+          fi
+          echo "OK: tidak ada tooling Node.js di package scripts."
+
+      - name: No committed .env / secret files
+        run: |
+          if git ls-files | grep -E '(^|/)\.env($|\.)' | grep -v '\.env\.example$'; then
+            echo "::error::Berkas .env tidak boleh di-commit."
+            exit 1
+          fi
+          echo "OK: tidak ada berkas .env yang ter-track."

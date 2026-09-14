@@ -1,0 +1,420 @@
+---
+/**
+ * Tenant domains management screen — ported/adapted from awcms-micro
+ * (epic #555). Mirrors this base's SSR-read-then-render pattern (see
+ * `admin/offices.astro`): read the tenant's domain mappings server-side by
+ * calling the SAME application function the JSON endpoint uses
+ * (`listTenantDomains`) inside `withTenant`, then render a plain accessible
+ * table + status badges.
+ *
+ * ABAC is enforced server-side by the endpoints; this page additionally gates
+ * its own render on `tenant_domain.domains.read`. Every mutation
+ * (create/update/delete/verify/set-primary) goes through `fetch` to
+ * `/api/v1/tenant/domains/**` — there is no privileged SSR mutation shortcut.
+ * `verify`/`set-primary` send a fresh `Idempotency-Key` per click. Client-side
+ * hostname validation is UX-only — `normalizePublicHost()` via the API is the
+ * single enforcement point.
+ */
+import AdminLayout from "../../../layouts/AdminLayout.astro";
+import "../../../styles/admin-screens.css";
+import { loadAdminScreen } from "../../../lib/auth/admin-screen";
+import { logAdminPageError } from "../../../lib/logging/error-log";
+import { getTranslatorFor } from "../../../lib/i18n";
+import {
+  listTenantDomains,
+  type TenantDomainView
+} from "../../../modules/tenant-domain/application/tenant-domain-directory";
+import {
+  TENANT_DOMAIN_TYPES,
+  TENANT_DOMAIN_ROUTE_MODES
+} from "../../../modules/tenant-domain/domain/tenant-domain-validation";
+
+const ssr = Astro.locals.ssrContext!;
+const { t, tn } = getTranslatorFor(Astro.locals.locale);
+
+// Issue #450 — the entry decision and the read share ONE transaction, and the
+// decision is the chokepoint's. Five write affordances are decided the same
+// way; `normalizePublicHost()` via the API remains the enforcement point.
+const screen = await loadAdminScreen({
+  ssr,
+  workClass: "interactive",
+  authorize: {
+    moduleKey: "tenant_domain",
+    activityCode: "domains",
+    action: "read"
+  },
+  load: async ({ tx, can }) => ({
+    // One transaction, one awaited query at a time. Concurrent queries on a
+    // single transaction connection leak it, so nothing here runs in parallel.
+    domains: (await listTenantDomains(tx, ssr.tenantId)).domains,
+    canCreate: await can({
+      moduleKey: "tenant_domain",
+      activityCode: "domains",
+      action: "create"
+    }),
+    canUpdate: await can({
+      moduleKey: "tenant_domain",
+      activityCode: "domains",
+      action: "update"
+    }),
+    canDelete: await can({
+      moduleKey: "tenant_domain",
+      activityCode: "domains",
+      action: "delete"
+    }),
+    canVerify: await can({
+      moduleKey: "tenant_domain",
+      activityCode: "domains",
+      action: "verify"
+    }),
+    canSetPrimary: await can({
+      moduleKey: "tenant_domain",
+      activityCode: "domains",
+      action: "set_primary"
+    })
+  }),
+  onError: (error) => {
+    logAdminPageError(
+      "admin/tenant/domains.astro: failed to list tenant domains",
+      error,
+      { correlationId: Astro.locals.correlationId }
+    );
+  }
+});
+
+const canRead = screen.state !== "denied";
+// A pool/circuit-breaker refusal is NOT "no domains" and NOT a denial.
+const loadError = screen.state === "error";
+const domains: TenantDomainView[] =
+  screen.state === "allowed" ? screen.data.domains : [];
+const canCreate = screen.state === "allowed" && screen.data.canCreate;
+const canUpdate = screen.state === "allowed" && screen.data.canUpdate;
+const canDelete = screen.state === "allowed" && screen.data.canDelete;
+const canVerify = screen.state === "allowed" && screen.data.canVerify;
+const canSetPrimary = screen.state === "allowed" && screen.data.canSetPrimary;
+
+const showActions = canUpdate || canDelete || canVerify || canSetPrimary;
+
+function statusVariant(status: string): string {
+  if (status === "active") return "success";
+  if (status === "failed") return "danger";
+  if (status === "suspended") return "warning";
+  return "neutral";
+}
+---
+
+<AdminLayout
+  title={t("Tenant domains")}
+  description={t(
+    "Hostname/subdomain mappings for this tenant. Add a mapping, verify ownership (manual-first), and choose one active primary. Deleting a mapping frees its hostname for reuse."
+  )}
+>
+  {
+    !canRead && (
+      <p class="state-notice fade-in-up" id="tenant-domains-denied">
+        {t("You do not have permission to view tenant domains.")}
+      </p>
+    )
+  }
+
+  {
+    canRead && loadError && (
+      <p class="state-notice fade-in-up" id="tenant-domains-error">
+        {t(
+          "Tenant domains could not be loaded right now. Please try again later."
+        )}
+      </p>
+    )
+  }
+
+  {
+    canCreate && (
+      <form id="domain-create-form" class="admin-create-form fade-in-up">
+        <p class="form-legend">{t("Add a domain")}</p>
+        <p
+          id="domain-create-error"
+          class="admin-create-error"
+          role="alert"
+          hidden
+        />
+
+        <label for="domain-hostname">{t("Hostname")}</label>
+        <input
+          id="domain-hostname"
+          name="hostname"
+          type="text"
+          required
+          autocomplete="off"
+          placeholder="tenant.example.com"
+        />
+
+        <label for="domain-type">{t("Domain type")}</label>
+        <select id="domain-type" name="domainType">
+          {TENANT_DOMAIN_TYPES.map((value) => (
+            <option value={value} selected={value === "custom_domain"}>
+              {value}
+            </option>
+          ))}
+        </select>
+
+        <label for="domain-route-mode">{t("Route mode")}</label>
+        <select id="domain-route-mode" name="routeMode">
+          {TENANT_DOMAIN_ROUTE_MODES.map((value) => (
+            <option value={value} selected={value === "canonical"}>
+              {value}
+            </option>
+          ))}
+        </select>
+
+        <p class="cell-muted">
+          {t(
+            "A DNS TXT record is generated when the domain is added. Publish it in the domain's zone, then press Verify."
+          )}
+        </p>
+
+        <button type="submit" id="domain-create-submit">
+          {t("Add domain")}
+        </button>
+      </form>
+    )
+  }
+
+  {
+    canRead && !loadError && (
+      <p
+        id="domain-action-error"
+        class="admin-create-error"
+        role="alert"
+        hidden
+      />
+    )
+  }
+
+  {
+    canRead && !loadError && (
+      <div class="data-table-scroll fade-in-up">
+        <table class="data-table data-table--stack" id="tenant-domains-table">
+          <caption>
+            {tn("{count} domain", "{count} domains", domains.length, {
+              count: domains.length
+            })}
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">{t("Hostname")}</th>
+              <th scope="col">{t("Type")}</th>
+              <th scope="col">{t("Route mode")}</th>
+              <th scope="col">{t("Status")}</th>
+              <th scope="col">{t("Primary")}</th>
+              {showActions && <th scope="col">{t("Actions")}</th>}
+            </tr>
+          </thead>
+          <tbody>
+            {domains.length === 0 ? (
+              <tr>
+                <td class="data-table-empty" colspan={showActions ? 6 : 5}>
+                  <div class="empty-state">
+                    <span class="empty-state-icon" aria-hidden="true">
+                      ⌂
+                    </span>
+                    <span class="empty-state-title">{t("No domains yet")}</span>
+                    <span class="empty-state-text">
+                      {canCreate
+                        ? "Add your first domain mapping using the form above."
+                        : "Domain mappings for this tenant will appear here."}
+                    </span>
+                  </div>
+                </td>
+              </tr>
+            ) : (
+              domains.map((domain) => (
+                <tr data-domain-row={domain.id}>
+                  <td data-label="Hostname" class="stacked-block">
+                    <span class="cell-code">{domain.hostname}</span>
+                    {domain.status !== "active" &&
+                      domain.verificationRecordName &&
+                      domain.verificationRecordValue && (
+                        <p class="cell-muted">
+                          {t("Publish TXT")}{" "}
+                          <span class="cell-code">
+                            {domain.verificationRecordName}
+                          </span>{" "}
+                          ={" "}
+                          <span class="cell-code">
+                            {domain.verificationRecordValue}
+                          </span>
+                        </p>
+                      )}
+                  </td>
+                  <td data-label="Type">
+                    <span class="cell-muted">{domain.domainType}</span>
+                  </td>
+                  <td data-label="Route mode">
+                    <span class="cell-muted">{domain.routeMode}</span>
+                  </td>
+                  <td data-label="Status">
+                    <span
+                      class="status-badge"
+                      data-variant={statusVariant(domain.status)}
+                    >
+                      <span class="status-dot" aria-hidden="true" />
+                      {domain.status}
+                    </span>
+                  </td>
+                  <td data-label="Primary">{domain.isPrimary ? "Yes" : "—"}</td>
+                  {showActions && (
+                    <td data-label="Actions" class="stacked-block">
+                      <div class="row-actions">
+                        {canVerify &&
+                          (domain.status === "pending_verification" ||
+                            domain.status === "failed") && (
+                            <button
+                              type="button"
+                              class="module-toggle domain-verify-btn"
+                              data-domain-id={domain.id}
+                            >
+                              {t("Verify")}
+                            </button>
+                          )}
+                        {canSetPrimary &&
+                          domain.status === "active" &&
+                          !domain.isPrimary && (
+                            <button
+                              type="button"
+                              class="module-toggle domain-primary-btn"
+                              data-domain-id={domain.id}
+                            >
+                              {t("Set primary")}
+                            </button>
+                          )}
+                        {canDelete && (
+                          <button
+                            type="button"
+                            class="module-toggle domain-delete-btn"
+                            data-domain-id={domain.id}
+                            data-domain-host={domain.hostname}
+                          >
+                            {t("Delete")}
+                          </button>
+                        )}
+                      </div>
+                    </td>
+                  )}
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
+    )
+  }
+</AdminLayout>
+
+<script>
+  // The import forces Astro to bundle this EXTERNAL (an import-free script is
+  // inlined, and inline scripts are blocked by the middleware CSP). See
+  // admin-form-client.ts.
+  import {
+    field,
+    messageBox,
+    mutateAndReload,
+    onAction,
+    onSubmit,
+    sendJson
+  } from "../../../lib/ui/admin-form-client";
+
+  const createError = messageBox("domain-create-error");
+  const actionError = messageBox("domain-action-error");
+
+  /** The two high-risk transitions require the header; a fresh key per click. */
+  function idempotency(): Record<string, string> {
+    return { "Idempotency-Key": crypto.randomUUID() };
+  }
+
+  onSubmit("domain-create-form", async ({ data, submit }) => {
+    // No verification fields are sent: the DNS TXT challenge is minted by the
+    // server (ADR-0106), and the API now REFUSES a caller that tries to choose
+    // its own. Sending one would be a 400, not a preference.
+    await mutateAndReload(
+      submit,
+      createError,
+      () =>
+        sendJson("POST", "/api/v1/tenant/domains", {
+          hostname: field(data, "hostname"),
+          domainType: field(data, "domainType"),
+          routeMode: field(data, "routeMode")
+        }),
+      (errorCode) =>
+        errorCode === "HOSTNAME_CONFLICT"
+          ? "That hostname is already mapped. Choose another."
+          : "Could not add the domain. Check the hostname and try again."
+    );
+  });
+
+  onAction(".domain-verify-btn", async (button) => {
+    const id = button.dataset.domainId;
+    if (!id) return;
+
+    await mutateAndReload(
+      button,
+      actionError,
+      () =>
+        sendJson(
+          "POST",
+          `/api/v1/tenant/domains/${id}/verify`,
+          undefined,
+          idempotency()
+        ),
+      (errorCode) =>
+        errorCode === "DOMAIN_NOT_VERIFIED"
+          ? "The DNS TXT record was not found. Publish the record shown beside the hostname, then verify again."
+          : errorCode === "SERVICE_UNAVAILABLE"
+            ? "DNS could not be reached. Nothing changed — try again shortly."
+            : errorCode === "RATE_LIMITED"
+              ? "Too many attempts. Wait a minute, then try again."
+              : "Could not verify the domain. Try again.",
+      "Verifying…"
+    );
+  });
+
+  onAction(".domain-primary-btn", async (button) => {
+    const id = button.dataset.domainId;
+    if (!id) return;
+
+    await mutateAndReload(
+      button,
+      actionError,
+      () =>
+        sendJson(
+          "POST",
+          `/api/v1/tenant/domains/${id}/set-primary`,
+          undefined,
+          idempotency()
+        ),
+      "Could not set the domain as primary. Only a verified domain can be primary.",
+      "Setting…"
+    );
+  });
+
+  // Delete: reason-required soft delete after an explicit confirm.
+  onAction(".domain-delete-btn", async (button) => {
+    const id = button.dataset.domainId;
+    if (!id) return;
+    const host = button.dataset.domainHost ?? "this domain";
+    const reason = window.prompt(
+      `Delete ${host}? Enter a reason (the hostname becomes reusable):`
+    );
+    if (reason === null || reason.trim().length === 0) return;
+
+    await mutateAndReload(
+      button,
+      actionError,
+      () =>
+        sendJson("DELETE", `/api/v1/tenant/domains/${id}`, {
+          reason: reason.trim()
+        }),
+      "Could not delete the domain. Please try again.",
+      "Deleting…"
+    );
+  });
+</script>

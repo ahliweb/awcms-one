@@ -1,0 +1,4687 @@
+# AWCMS — Bahasa Indonesia catalog (ADR-0095).
+#
+# `nplurals=1`: Bahasa Indonesia does not inflect for number ("satu berkas" /
+# "dua berkas"), so every plural message has exactly one form. `PLURAL_FORM_COUNT`
+# in `src/lib/i18n/locales.ts` declares the same thing in code, and
+# `i18n:catalog:check` asserts the two agree — the `plural=` expression below is
+# read to be VERIFIED, never evaluated (ADR-0095 §"Keputusan 2").
+#
+# TRANSLATION NOTES
+#
+# - Product and protocol names stay untranslated: AWCMS, ABAC, SEO, MFA, TOTP,
+#   sync, cache, outbox. Translating "ABAC policies" to "Kebijakan ABAC" keeps the
+#   acronym because that is what the operator reads in the ADRs and the API.
+# - "Tenant" is kept as "tenant". It is the domain term throughout this repo's
+#   Indonesian documentation and ADRs; "penyewa" would be a second vocabulary for
+#   the same concept.
+# - Imperative UI verbs use the bare stem Indonesian UI convention ("Simpan",
+#   "Keluar") rather than the me- prefix.
+msgid ""
+msgstr ""
+"Project-Id-Version: awcms\n"
+"Language: id\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. Admin shell — skip link, drawer, topbar
+msgid "Skip to main content"
+msgstr "Lewati ke konten utama"
+
+msgid "Toggle navigation menu"
+msgstr "Buka/tutup menu navigasi"
+
+msgid "Log out"
+msgstr "Keluar"
+
+msgid "Signing out…"
+msgstr "Sedang keluar…"
+
+msgid "Version"
+msgstr "Versi"
+
+msgid "no roles"
+msgstr "tanpa peran"
+
+#. Accessible name of the sidebar navigation landmark.
+msgctxt "landmark"
+msgid "Admin"
+msgstr "Administrasi"
+
+msgid "Breadcrumb"
+msgstr "Jejak navigasi"
+
+#. Topbar — tenant badge and sync indicator
+msgid "Active tenant"
+msgstr "Tenant aktif"
+
+msgid "Sync active"
+msgstr "Sinkronisasi aktif"
+
+msgid "Sync inactive"
+msgstr "Sinkronisasi nonaktif"
+
+#. Topbar — colour theme control
+msgid "Change colour theme"
+msgstr "Ubah tema warna"
+
+#. Colour theme following the operating system setting.
+msgctxt "theme"
+msgid "System"
+msgstr "Sistem"
+
+msgctxt "theme"
+msgid "Light"
+msgstr "Terang"
+
+msgctxt "theme"
+msgid "Dark"
+msgstr "Gelap"
+
+#. Topbar — language switcher
+msgid "Language"
+msgstr "Bahasa"
+
+msgid "Change language"
+msgstr "Ubah bahasa"
+
+#. Sidebar section headings (SIDEBAR_LABELS menu types)
+msgctxt "menu-section"
+msgid "System"
+msgstr "Sistem"
+
+msgctxt "menu-section"
+msgid "Content"
+msgstr "Konten"
+
+msgctxt "menu-section"
+msgid "Commerce"
+msgstr "Perdagangan"
+
+msgctxt "menu-section"
+msgid "Engagement"
+msgstr "Interaksi"
+
+msgctxt "menu-section"
+msgid "Operations"
+msgstr "Operasional"
+
+msgctxt "menu-section"
+msgid "Identity"
+msgstr "Identitas"
+
+msgctxt "menu-section"
+msgid "General"
+msgstr "Umum"
+
+#. Sidebar links (SIDEBAR_LABELS nav entries)
+msgid "Dashboard"
+msgstr "Dasbor"
+
+msgid "Tenants"
+msgstr "Tenant"
+
+msgid "Offices"
+msgstr "Kantor"
+
+msgid "Tenant domains"
+msgstr "Domain tenant"
+
+msgid "Modules"
+msgstr "Modul"
+
+msgid "Sidebar menu"
+msgstr "Menu samping"
+
+msgid "Form drafts"
+msgstr "Draf formulir"
+
+msgid "Site search"
+msgstr "Pencarian situs"
+
+msgid "Theming"
+msgstr "Tema tampilan"
+
+msgid "Email templates"
+msgstr "Templat email"
+
+msgid "Email suppression"
+msgstr "Penyaringan email"
+
+msgid "Audit trail"
+msgstr "Jejak audit"
+
+msgid "Moderation queue"
+msgstr "Antrean moderasi"
+
+msgid "Visitor analytics"
+msgstr "Analitik pengunjung"
+
+msgid "Data lifecycle"
+msgstr "Siklus hidup data"
+
+msgid "Subject requests"
+msgstr "Permintaan subjek data"
+
+msgid "Region datasets"
+msgstr "Dataset wilayah"
+
+msgid "Blog posts"
+msgstr "Postingan blog"
+
+msgid "Blog pages"
+msgstr "Halaman blog"
+
+msgid "Blog taxonomy"
+msgstr "Taksonomi blog"
+
+msgid "Blog presentation"
+msgstr "Presentasi blog"
+
+msgid "Blog settings"
+msgstr "Pengaturan blog"
+
+msgid "Media library"
+msgstr "Pustaka media"
+
+msgid "Reporting operations"
+msgstr "Operasi pelaporan"
+
+msgid "Approvals"
+msgstr "Persetujuan"
+
+msgid "Domain events"
+msgstr "Event domain"
+
+msgid "Push notifications"
+msgstr "Notifikasi push"
+
+msgid "Sync & storage"
+msgstr "Sinkronisasi & penyimpanan"
+
+msgid "Profiles"
+msgstr "Profil"
+
+msgid "Users"
+msgstr "Pengguna"
+
+msgid "Roles"
+msgstr "Peran"
+
+msgid "ABAC policies"
+msgstr "Kebijakan ABAC"
+
+msgid "User groups"
+msgstr "Grup pengguna"
+
+msgid "Registration requests"
+msgstr "Permintaan pendaftaran"
+
+msgid "Authentication & security"
+msgstr "Autentikasi & keamanan"
+
+msgid "Partner access"
+msgstr "Akses mitra"
+
+msgid "Partner registry"
+msgstr "Registri mitra"
+
+msgid "Machine credentials"
+msgstr "Kredensial mesin"
+
+msgid "Invitations"
+msgstr "Undangan"
+
+msgid "Business scope"
+msgstr "Cakupan bisnis"
+
+msgid "SEO & distribution"
+msgstr "SEO & distribusi"
+
+#. Module display names, rendered as sidebar sub-labels
+msgid "Blog Content"
+msgstr "Konten Blog"
+
+msgid "Comments"
+msgstr "Komentar"
+
+msgid "Data Lifecycle"
+msgstr "Siklus Hidup Data"
+
+msgid "Domain Event Runtime"
+msgstr "Runtime Event Domain"
+
+msgid "Email"
+msgstr "Email"
+
+msgid "Form Drafts"
+msgstr "Draf Formulir"
+
+msgid "Identity & Access"
+msgstr "Identitas & Akses"
+
+msgid "Indonesia Administrative Regions"
+msgstr "Wilayah Administratif Indonesia"
+
+msgid "Logging & Audit Trail"
+msgstr "Pencatatan & Jejak Audit"
+
+msgid "Management Reporting"
+msgstr "Pelaporan Manajemen"
+
+msgid "Media Library"
+msgstr "Pustaka Media"
+
+msgid "Module Management"
+msgstr "Manajemen Modul"
+
+msgid "Profile Identity"
+msgstr "Identitas Profil"
+
+msgid "Push Delivery"
+msgstr "Pengiriman Push"
+
+msgid "SEO & Distribution"
+msgstr "SEO & Distribusi"
+
+msgid "Site Search"
+msgstr "Pencarian Situs"
+
+msgid "Sync Storage"
+msgstr "Penyimpanan Sinkronisasi"
+
+msgid "Tenant Admin"
+msgstr "Administrasi Tenant"
+
+msgid "Tenant Domain"
+msgstr "Domain Tenant"
+
+msgid "Visitor Analytics"
+msgstr "Analitik Pengunjung"
+
+msgid "Workflow Approval"
+msgstr "Persetujuan Alur Kerja"
+
+#. Account screen — ADR-0096 (self-service: profile, preferences, password, MFA, sessions)
+msgid "My account"
+msgstr "Akun saya"
+
+msgid "Your name, the language and theme you read this admin in, your password, and the devices and sign-in methods attached to your account. Everything here is about you — nothing on this page can change anyone else."
+msgstr "Nama Anda, bahasa dan tema yang Anda pakai membaca admin ini, kata sandi Anda, serta perangkat dan metode masuk yang terkait dengan akun Anda. Semua di sini tentang Anda — tidak ada di halaman ini yang bisa mengubah orang lain."
+
+msgid "Could not load your account. Please try again."
+msgstr "Tidak dapat memuat akun Anda. Silakan coba lagi."
+
+msgid "Profile"
+msgstr "Profil"
+
+msgid "Your display name is what other people in this tenant see next to your actions."
+msgstr "Nama tampilan Anda adalah yang dilihat orang lain di tenant ini di samping tindakan Anda."
+
+msgid "Display name"
+msgstr "Nama tampilan"
+
+msgid "Sign-in address"
+msgstr "Alamat masuk"
+
+msgid "Changing the address you sign in with is not available here yet — it needs proof that the new address is yours."
+msgstr "Mengubah alamat yang Anda pakai untuk masuk belum tersedia di sini — ia butuh pembuktian bahwa alamat baru itu milik Anda."
+
+msgid "Save profile"
+msgstr "Simpan profil"
+
+msgid "Language and appearance"
+msgstr "Bahasa dan tampilan"
+
+msgid "These follow you to any device you sign in from, because they belong to you rather than to one tenant."
+msgstr "Ini mengikuti Anda ke perangkat mana pun tempat Anda masuk, karena keduanya milik Anda dan bukan milik satu tenant."
+
+msgid "Follow this tenant's default"
+msgstr "Ikuti default tenant ini"
+
+msgid "Match my device"
+msgstr "Samakan dengan perangkat saya"
+
+msgid "Colour theme"
+msgstr "Tema warna"
+
+msgid "The theme button in the top bar changes this device straight away. What you choose here applies on devices you have not used yet."
+msgstr "Tombol tema di bilah atas mengubah perangkat ini seketika. Pilihan di sini berlaku pada perangkat yang belum pernah Anda pakai."
+
+msgid "Save preferences"
+msgstr "Simpan preferensi"
+
+msgid "Password"
+msgstr "Kata sandi"
+
+msgid "Current password"
+msgstr "Kata sandi saat ini"
+
+msgid "New password"
+msgstr "Kata sandi baru"
+
+msgid "Change password"
+msgstr "Ubah kata sandi"
+
+msgid "Two-factor authentication"
+msgstr "Autentikasi dua faktor"
+
+msgid "Enabled since {activated}."
+msgstr "Aktif sejak {activated}."
+
+msgid "Enabled."
+msgstr "Aktif."
+
+msgid "Generate new recovery codes"
+msgstr "Buat kode pemulihan baru"
+
+msgid "Turn off two-factor authentication"
+msgstr "Matikan autentikasi dua faktor"
+
+msgid "Not enabled. Two-factor authentication asks for a code from your phone in addition to your password."
+msgstr "Belum aktif. Autentikasi dua faktor meminta kode dari ponsel Anda selain kata sandi."
+
+msgid "Set up two-factor authentication"
+msgstr "Siapkan autentikasi dua faktor"
+
+msgid "Add this secret to your authenticator app, then enter the six-digit code it shows."
+msgstr "Tambahkan rahasia ini ke aplikasi autentikator Anda, lalu masukkan kode enam digit yang ditampilkannya."
+
+msgid "Six-digit code"
+msgstr "Kode enam digit"
+
+msgid "Confirm code"
+msgstr "Konfirmasi kode"
+
+msgid "Save these recovery codes somewhere safe. Each one works once, and they are shown only now."
+msgstr "Simpan kode pemulihan ini di tempat aman. Masing-masing hanya berlaku sekali, dan hanya ditampilkan sekarang."
+
+msgid "Where you are signed in"
+msgstr "Tempat Anda sedang masuk"
+
+msgid "Each row is a browser or device holding a live session. Signing one out takes effect immediately."
+msgstr "Tiap baris adalah peramban atau perangkat yang memegang sesi aktif. Mengeluarkannya berlaku seketika."
+
+msgid "No other sessions to show."
+msgstr "Tidak ada sesi lain untuk ditampilkan."
+
+msgid "Device"
+msgstr "Perangkat"
+
+msgid "Signed in"
+msgstr "Masuk pada"
+
+msgid "Expires"
+msgstr "Kedaluwarsa"
+
+msgid "Sign-in method"
+msgstr "Metode masuk"
+
+msgid "Actions"
+msgstr "Tindakan"
+
+msgid "Unknown device"
+msgstr "Perangkat tidak dikenal"
+
+msgid "This device"
+msgstr "Perangkat ini"
+
+msgid "Sign out"
+msgstr "Keluarkan"
+
+msgid "Sign out everywhere else"
+msgstr "Keluar dari semua tempat lain"
+
+msgid "Saving…"
+msgstr "Menyimpan…"
+
+msgid "Too many attempts. Please wait a moment and try again."
+msgstr "Terlalu banyak percobaan. Tunggu sebentar lalu coba lagi."
+
+msgid "Public byline"
+msgstr "Byline publik"
+
+msgid "The name your articles are published under. Leave it empty and articles are attributed to this site, not to you."
+msgstr "Nama yang tercantum pada artikel Anda saat terbit. Biarkan kosong dan artikel diatribusikan kepada situs ini, bukan kepada Anda."
+
+msgid "Enter a display name of 1 to 200 characters, and a byline of at most 120."
+msgstr "Masukkan nama tampilan sepanjang 1 sampai 200 karakter, dan byline paling panjang 120 karakter."
+
+msgid "Could not save your profile. Please try again."
+msgstr "Tidak dapat menyimpan profil Anda. Silakan coba lagi."
+
+msgid "Could not save your preferences. Please try again."
+msgstr "Tidak dapat menyimpan preferensi Anda. Silakan coba lagi."
+
+msgid "Your current password is not correct."
+msgstr "Kata sandi Anda saat ini tidak tepat."
+
+msgid "That new password does not meet the password policy."
+msgstr "Kata sandi baru itu tidak memenuhi kebijakan kata sandi."
+
+msgid "Could not change your password. Please try again."
+msgstr "Tidak dapat mengubah kata sandi Anda. Silakan coba lagi."
+
+msgid "Two-factor authentication is already switched on for your account."
+msgstr "Autentikasi dua faktor sudah aktif untuk akun Anda."
+
+msgid "Could not start setup. Please try again."
+msgstr "Tidak dapat memulai penyiapan. Silakan coba lagi."
+
+msgid "That code is not right. Try the next one."
+msgstr "Kode itu tidak tepat. Coba kode berikutnya."
+
+msgid "That command runs in the awcms-jobs image ({image}), not in the application container serving this page."
+msgstr "Perintah itu berjalan di image awcms-jobs ({image}), bukan di kontainer aplikasi yang menyajikan halaman ini."
+
+msgid "Could not confirm the code. Please try again."
+msgstr "Tidak dapat mengonfirmasi kode. Silakan coba lagi."
+
+msgid "Could not turn off two-factor authentication. Please try again."
+msgstr "Tidak dapat mematikan autentikasi dua faktor. Silakan coba lagi."
+
+msgid "Could not generate new recovery codes. Please try again."
+msgstr "Tidak dapat membuat kode pemulihan baru. Silakan coba lagi."
+
+msgid "Enter the current six-digit code from your authenticator app to confirm."
+msgstr "Masukkan kode enam digit terkini dari aplikasi autentikator Anda untuk konfirmasi."
+
+msgid "Confirmation cancelled — nothing changed."
+msgstr "Konfirmasi dibatalkan — tidak ada yang berubah."
+
+msgid "Could not sign that device out. Please try again."
+msgstr "Tidak dapat mengeluarkan perangkat itu. Silakan coba lagi."
+
+msgid "Could not sign your other devices out. Please try again."
+msgstr "Tidak dapat mengeluarkan perangkat Anda yang lain. Silakan coba lagi."
+
+#. Account screen — single sign-on section (ADR-0096)
+msgid "Single sign-on"
+msgstr "Single sign-on"
+
+msgid "Sign-in providers this tenant has enabled. Linking one lets you sign in with it as well as with your password."
+msgstr "Penyedia masuk yang diaktifkan tenant ini. Menautkan salah satunya membuat Anda bisa masuk dengannya selain dengan kata sandi."
+
+msgid "Connect"
+msgstr "Hubungkan"
+
+msgid "Connected {linked}"
+msgstr "Terhubung {linked}"
+
+msgid "Disconnect"
+msgstr "Putuskan"
+
+msgid "Could not start connecting that provider. Please try again."
+msgstr "Tidak dapat memulai penghubungan penyedia itu. Silakan coba lagi."
+
+msgid "Could not disconnect that provider. Please try again."
+msgstr "Tidak dapat memutuskan penyedia itu. Silakan coba lagi."
+
+msgid "That is the only way you can sign in, so it cannot be disconnected. Set a password first."
+msgstr "Itu satu-satunya cara Anda bisa masuk, jadi ia tidak bisa diputuskan. Setel kata sandi lebih dulu."
+
+#. Dashboard — /admin (ADR-0095 wave 3)
+msgid "You do not have permission to view the tenant dashboard reports"
+msgstr "Anda tidak punya izin untuk melihat laporan dasbor tenant"
+
+msgid "Your session details are shown below."
+msgstr "Detail sesi Anda ditampilkan di bawah."
+
+msgid "The dashboard reports could not be loaded right now. Your session details are shown below; try again shortly."
+msgstr "Laporan dasbor tidak dapat dimuat saat ini. Detail sesi Anda ditampilkan di bawah; coba lagi sebentar."
+
+msgid "Active users"
+msgstr "Pengguna aktif"
+
+msgid "Active offices"
+msgstr "Kantor aktif"
+
+msgid "Allow ({days} days)"
+msgstr "Izinkan ({days} hari)"
+
+msgid "Deny ({days} days)"
+msgstr "Tolak ({days} hari)"
+
+msgid "Active nodes"
+msgstr "Node aktif"
+
+msgid "Needs attention"
+msgstr "Perlu perhatian"
+
+msgid "Not configured"
+msgstr "Belum dikonfigurasi"
+
+msgid "Tenant Activity"
+msgstr "Aktivitas Tenant"
+
+msgid "Tenant"
+msgstr "Tenant"
+
+msgid "Last login"
+msgstr "Login terakhir"
+
+msgid "Access & Audit"
+msgstr "Akses & Audit"
+
+msgid "Total decision logs"
+msgstr "Total log keputusan"
+
+msgid "Audit events"
+msgstr "Event audit"
+
+msgid "Sync Health"
+msgstr "Kesehatan Sinkronisasi"
+
+msgid "Open conflicts"
+msgstr "Konflik terbuka"
+
+msgid "Pending objects"
+msgstr "Objek tertunda"
+
+msgid "Failed objects"
+msgstr "Objek gagal"
+
+msgid "Module Usage"
+msgstr "Penggunaan Modul"
+
+msgid "Module"
+msgstr "Modul"
+
+msgid "Metric"
+msgstr "Metrik"
+
+msgid "Count"
+msgstr "Jumlah"
+
+msgid "Session"
+msgstr "Sesi"
+
+msgid "Your session"
+msgstr "Sesi Anda"
+
+msgid "Active tenant context"
+msgstr "Konteks tenant aktif"
+
+msgid "Granted permissions"
+msgstr "Izin yang diberikan"
+
+msgid "Across all assigned roles"
+msgstr "Dari seluruh peran yang ditetapkan"
+
+#. Admin screens — bulk migration (ADR-0095 wave 3). Entries below are
+#. DECLARED so they are visible to translators; the ones still carrying an
+#. empty msgstr are counted by i18n:catalog:check's shrink-only ledger.
+msgid "Access denied."
+msgstr "Akses ditolak."
+
+msgid "Accounts that keep password sign-in even when SSO is required. Turning off password sign-in, or requiring SSO, is refused server-side unless at least one of these is still active — that is what stops an identity-provider outage from locking everyone out of the tenant permanently."
+msgstr "Akun yang tetap bisa masuk dengan kata sandi meski SSO diwajibkan. Mematikan masuk dengan kata sandi, atau mewajibkan SSO, ditolak di sisi server kecuali setidaknya satu akun seperti ini masih aktif — itulah yang mencegah gangguan penyedia identitas mengunci semua orang keluar dari tenant secara permanen."
+
+msgid "A credential that can change data is bound to an address range and expires within {days} days. Leave this empty for the read-only credential."
+msgstr "Kredensial yang bisa mengubah data terikat pada rentang alamat dan kedaluwarsa dalam {days} hari. Biarkan kosong untuk kredensial hanya-baca."
+
+msgid "Action"
+msgstr "Tindakan"
+
+msgid "Activate"
+msgstr "Aktifkan"
+
+msgid "Activated"
+msgstr "Diaktifkan"
+
+msgid "Active"
+msgstr "Aktif"
+
+msgid "Active devices"
+msgstr "Perangkat aktif"
+
+msgid "Active legal holds"
+msgstr "Penahanan hukum aktif"
+
+msgid "Active version"
+msgstr "Versi aktif"
+
+msgid "Actor"
+msgstr "Pelaku"
+
+msgid "Acts as"
+msgstr "Bertindak sebagai"
+
+msgid "Add"
+msgstr "Tambah"
+
+msgid "Add a domain"
+msgstr "Tambah domain"
+
+msgid "Add domain"
+msgstr "Tambah domain"
+
+msgid "Added"
+msgstr "Ditambahkan"
+
+msgid "Add member"
+msgstr "Tambah anggota"
+
+msgid "Add permission"
+msgstr "Tambah izin"
+
+msgid "Address"
+msgstr "Alamat"
+
+msgid "Addresses this tenant will not send to. A suppressed address receives nothing — including password resets — so an account can look broken when it is only unreachable. This is where to check, and where to undo it."
+msgstr "Alamat yang tidak akan dikirimi oleh tenant ini. Alamat yang disaring tidak menerima apa pun — termasuk reset kata sandi — sehingga sebuah akun bisa tampak rusak padahal ia hanya tak terjangkau. Di sinilah tempat memeriksanya, dan tempat membatalkannya."
+
+msgid "A delegation lets the delegate decide on the delegator's behalf while it is in effect. It never widens what the delegate may decide beyond the delegator's own eligibility."
+msgstr "Delegasi membuat penerima delegasi bisa memutuskan atas nama pemberi delegasi selama ia berlaku. Ia tidak pernah melebarkan apa yang boleh diputuskan penerima melampaui kelayakan pemberi delegasi sendiri."
+
+msgid "/admin/modules"
+msgstr "/admin/modules"
+
+msgid "Admin unique users"
+msgstr "Pengguna unik admin"
+
+msgid "against the office tree. Anything else is refused rather than assumed, which is what keeps an unresolvable scope from reading as unrestricted access."
+msgstr "terhadap pohon kantor. Selain itu ditolak alih-alih diasumsikan, dan itulah yang mencegah cakupan yang tak terselesaikan terbaca sebagai akses tanpa batas."
+
+msgid "Aggregate"
+msgstr "Agregat"
+
+msgid "Aggregate counts only — what the scheduled job planned, archived or purged, and when. This history is itself retention evidence."
+msgstr "Hanya hitungan agregat — apa yang direncanakan, diarsipkan, atau dibersihkan oleh job terjadwal, dan kapan. Riwayat ini sendiri adalah bukti retensi."
+
+msgid "Aggregate type"
+msgstr "Tipe agregat"
+
+msgid "A group is a subject: it can hold role grants, and everyone in it holds them too. Granting a group a role is done from the role assignment surface — this screen manages who is in which group."
+msgstr "Grup adalah subjek: ia bisa memegang pemberian peran, dan semua anggotanya ikut memegangnya. Memberikan peran kepada grup dilakukan dari permukaan penetapan peran — layar ini mengelola siapa berada di grup mana."
+
+msgid "A hold overrides ordinary retention and purge and cannot be bypassed by tenant policy. Leave the table unset for a tenant-wide hold that covers every registered table. Both the reason and the authority reference are recorded as the evidence that later justifies withholding this data."
+msgstr "Penahanan menimpa retensi dan pembersihan biasa dan tidak bisa dilewati oleh kebijakan tenant. Biarkan tabel kosong untuk penahanan selingkup tenant yang mencakup setiap tabel terdaftar. Alasan dan rujukan otoritas sama-sama dicatat sebagai bukti yang kelak membenarkan penahanan data ini."
+
+msgid "All"
+msgstr "Semua"
+
+msgid "all eligible types"
+msgstr "semua tipe yang memenuhi syarat"
+
+msgid "all observations"
+msgstr "semua observasi"
+
+msgid "allow"
+msgstr "izinkan"
+
+msgid "Allow again"
+msgstr "Izinkan lagi"
+
+msgid "Allowed addresses (CIDR)"
+msgstr "Alamat yang diizinkan (CIDR)"
+
+msgid "Allowed email domains (comma separated; empty means any)"
+msgstr "Domain email yang diizinkan (dipisah koma; kosong berarti apa pun)"
+
+msgid "Allow password sign-in"
+msgstr "Izinkan masuk dengan kata sandi"
+
+msgid "Allow SSO sign-in"
+msgstr "Izinkan masuk dengan SSO"
+
+msgid "Already archived"
+msgstr "Sudah diarsipkan"
+
+msgid "already live"
+msgstr "sudah aktif"
+
+msgid "Analytics could not be loaded right now. Please try again later."
+msgstr "Analitik tidak dapat dimuat saat ini. Silakan coba lagi nanti."
+
+msgid "and is served only when someone chooses it here."
+msgstr "dan hanya disajikan ketika seseorang memilihnya di sini."
+
+msgid "Then set the three"
+msgstr "Lalu setel ketiga"
+
+msgid "An exception lets one person hold both halves of a conflict for a bounded window. Approving is the whole point of the checker half of this flow — and the person who asked for it, and the person it is for, are both refused."
+msgstr "Pengecualian membuat satu orang bisa memegang kedua sisi sebuah konflik untuk jangka waktu terbatas. Menyetujui adalah inti dari sisi pemeriksa pada alur ini — dan orang yang memintanya, serta orang yang dituju, sama-sama ditolak."
+
+msgid "A node registers itself on its first authenticated push, inactive until an administrator activates it."
+msgstr "Node mendaftarkan dirinya sendiri pada push terautentikasi pertamanya, nonaktif sampai seorang administrator mengaktifkannya."
+
+msgid "any"
+msgstr "apa pun"
+
+msgid "Any"
+msgstr "Apa pun"
+
+msgid "Any position"
+msgstr "Posisi apa pun"
+
+msgid "Any status"
+msgstr "Status apa pun"
+
+msgid "Any type"
+msgstr "Tipe apa pun"
+
+msgid "anywhere"
+msgstr "di mana pun"
+
+msgid "A partial update: only the fields below are sent, so a change made elsewhere to the SEO fields, terms or featured media is not clobbered by a stale copy of them."
+msgstr "Pembaruan sebagian: hanya field di bawah yang dikirim, sehingga perubahan yang dibuat di tempat lain pada field SEO, istilah, atau media unggulan tidak tertimpa oleh salinan basi."
+
+msgid "A paused consumer accrues backlog"
+msgstr "Konsumen yang dijeda menumpuk backlog"
+
+msgid "API"
+msgstr "API"
+
+msgid "/api/v1/auth/sso-providers"
+msgstr "/api/v1/auth/sso-providers"
+
+msgid "Append-only record of high-risk actions taken in this tenant — who did what, to which resource, and when. Sensitive values are redacted before an event is ever stored, so nothing here can be un-redacted."
+msgstr "Catatan hanya-tambah atas tindakan berisiko tinggi di tenant ini — siapa melakukan apa, pada sumber daya mana, dan kapan. Nilai sensitif disunting sebelum sebuah event pernah disimpan, jadi tidak ada di sini yang bisa dikembalikan."
+
+msgid "Apply"
+msgstr "Terapkan"
+
+msgid "Apply changes"
+msgstr "Terapkan perubahan"
+
+msgid "Apply filter"
+msgstr "Terapkan filter"
+
+msgid "Apply filters"
+msgstr "Terapkan filter"
+
+msgid "Approve"
+msgstr "Setujui"
+
+msgid "Approve access"
+msgstr "Setujui akses"
+
+msgid "Approve and erase"
+msgstr "Setujui dan hapus"
+
+msgid "Approved by"
+msgstr "Disetujui oleh"
+
+msgid "A projection can still be exported on demand below."
+msgstr "Proyeksi tetap bisa diekspor sesuai permintaan di bawah."
+
+msgid "Archive"
+msgstr "Arsipkan"
+
+msgid "Archived"
+msgstr "Diarsipkan"
+
+msgid "Area"
+msgstr "Area"
+
+msgid "are not edited here. The API replaces the entire item list on every save, so a flat form would delete every item it did not happen to render."
+msgstr "tidak diedit di sini. API mengganti seluruh daftar item pada setiap penyimpanan, sehingga form datar akan menghapus setiap item yang kebetulan tidak dirender."
+
+msgid "A revision is recorded when a post is edited — or the id does not name a post in this tenant."
+msgstr "Revisi dicatat ketika sebuah post diedit — atau id itu tidak menamai post mana pun di tenant ini."
+
+msgid "Artifact"
+msgstr "Artefak"
+
+msgid "Assign a scope"
+msgstr "Tetapkan cakupan"
+
+msgid "Assign scope"
+msgstr "Tetapkan cakupan"
+
+msgid "At most 50. Choosing a permission the account does not hold grants nothing — the credential gets the intersection."
+msgstr "Paling banyak 50. Memilih izin yang tidak dipegang akun tidak memberikan apa pun — kredensial mendapat irisannya."
+
+msgid "Attempt"
+msgstr "Percobaan"
+
+msgid "Attempts"
+msgstr "Percobaan"
+
+msgid "Audit events, newest first"
+msgstr "Event audit, terbaru dulu"
+
+msgid "Author"
+msgstr "Penulis"
+
+msgid "Authority"
+msgstr "Otoritas"
+
+msgid "Authority reference"
+msgstr "Rujukan otoritas"
+
+msgid "AUTH_SSO_ENABLED"
+msgstr "AUTH_SSO_ENABLED"
+
+msgid "Auto-link an SSO login to an existing account with the same verified email"
+msgstr "Tautkan otomatis login SSO ke akun yang sudah ada dengan email terverifikasi yang sama"
+
+msgid "Awaiting a decision"
+msgstr "Menunggu keputusan"
+
+msgid "Awaiting retry"
+msgstr "Menunggu percobaan ulang"
+
+msgid "Bearers for callers with no human behind them — build feeds, deploy hooks, integrations. A credential authenticates only: every request it makes still passes the same permission and policy checks a person's would. Revoking one takes effect on its next request."
+msgstr "Pembawa untuk pemanggil tanpa manusia di belakangnya — feed build, hook deploy, integrasi. Kredensial hanya mengautentikasi: setiap permintaan yang dibuatnya tetap melewati pemeriksaan izin dan kebijakan yang sama seperti milik orang. Mencabutnya berlaku pada permintaan berikutnya."
+
+msgid "Blocked"
+msgstr "Diblokir"
+
+msgid "block, the only block type this editor writes."
+msgstr "blok, satu-satunya tipe blok yang ditulis editor ini."
+
+msgid "Blog categories and tags, by name."
+msgstr "Kategori dan tag blog, menurut nama."
+
+msgid "Blog identity"
+msgstr "Identitas blog"
+
+msgid "Blog navigation menus."
+msgstr "Menu navigasi blog."
+
+msgid "Blog pages, most recently updated first."
+msgstr "Halaman blog, yang paling baru diperbarui dulu."
+
+msgid "Blog page templates."
+msgstr "Templat halaman blog."
+
+msgid "blog posts"
+msgstr "postingan blog"
+
+msgid "Blog posts, most recently updated first."
+msgstr "Postingan blog, yang paling baru diperbarui dulu."
+
+msgid "blog:publish:scheduled"
+msgstr "blog:publish:scheduled"
+
+msgid "Blog title"
+msgstr "Judul blog"
+
+msgid "Blog widgets, in render order within each position."
+msgstr "Widget blog, dalam urutan render pada setiap posisi."
+
+msgid "Body"
+msgstr "Isi"
+
+msgid "Body text"
+msgstr "Teks isi"
+
+msgid "Bot pageviews"
+msgstr "Tayangan halaman bot"
+
+msgid "Bot reason"
+msgstr "Alasan bot"
+
+msgid "Bot traffic"
+msgstr "Lalu lintas bot"
+
+msgid "branch"
+msgstr "cabang"
+
+msgid "Break-glass accounts"
+msgstr "Akun break-glass"
+
+msgid "Broken links (404)"
+msgstr "Tautan rusak (404)"
+
+msgid "Broken links visitors hit on this tenant's public site will be aggregated here."
+msgstr "Tautan rusak yang ditemui pengunjung di situs publik tenant ini akan diagregasi di sini."
+
+msgid "Browser"
+msgstr "Peramban"
+
+msgid "Browsers & devices"
+msgstr "Peramban & perangkat"
+
+msgid "bun run idn-regions:import -- --commit"
+msgstr "bun run idn-regions:import -- --commit"
+
+msgid "bun run push:vapid:generate"
+msgstr "bun run push:vapid:generate"
+
+msgid "Cancel"
+msgstr "Batal"
+
+msgid "Cancel instance"
+msgstr "Batalkan instance"
+
+msgid "· cancelling"
+msgstr "· membatalkan"
+
+msgid "Cancel rebuild"
+msgstr "Batalkan pembangunan ulang"
+
+msgid "Categories and tags"
+msgstr "Kategori dan tag"
+
+msgid "Categories and tags for"
+msgstr "Kategori dan tag untuk"
+
+msgid ". Categories may nest; tags may not. Terms are assigned to a post from the post itself, not from here."
+msgstr ". Kategori boleh bersarang; tag tidak. Istilah ditetapkan ke sebuah post dari post itu sendiri, bukan dari sini."
+
+msgid "Categories only — a tag may not have a parent."
+msgstr "Hanya kategori — tag tidak boleh punya induk."
+
+msgid "category"
+msgstr "kategori"
+
+msgid "Category"
+msgstr "Kategori"
+
+msgid "Change some keys"
+msgstr "Ubah sebagian kunci"
+
+msgid "Changing the served version affects every tenant, so it can only be done from the platform tenant ({code}) — not from this one. Your role carries the permission; the action is refused because of where it is being made, not who is making it."
+msgstr "Mengubah versi yang disajikan berdampak pada setiap tenant, jadi ia hanya bisa dilakukan dari tenant platform ({code}) — bukan dari tenant ini. Peran Anda membawa izinnya; tindakan ini ditolak karena DI MANA ia dilakukan, bukan siapa yang melakukannya."
+
+msgid "Changing the served version affects every tenant, so it can only be done from the platform tenant — not from this one. Your role carries the permission; the action is refused because of where it is being made, not who is making it."
+msgstr "Mengubah versi yang disajikan berdampak pada setiap tenant, jadi ia hanya bisa dilakukan dari tenant platform — bukan dari tenant ini. Peran Anda membawa izinnya; tindakan ini ditolak karena DI MANA ia dilakukan, bukan siapa yang melakukannya."
+
+msgid "Checking this browser…"
+msgstr "Memeriksa peramban ini…"
+
+msgid "Choose an account…"
+msgstr "Pilih akun…"
+
+msgid "Choose one of the reviewed, built-in themes and configure it by data — design tokens, layout slots, media asset ids, section order and nav placement. There is no uploaded code and no raw CSS: every value is validated against the theme's own declared grammar before it can reach the published stylesheet. The lifecycle is draft → validate → preview → publish, with rollback and retire moving the live pointer only; published versions are immutable."
+msgstr "Pilih salah satu tema bawaan yang sudah ditinjau dan konfigurasikan lewat data — token desain, slot tata letak, id aset media, urutan seksi, dan penempatan navigasi. Tidak ada kode yang diunggah dan tidak ada CSS mentah: setiap nilai divalidasi terhadap tata bahasa yang dideklarasikan tema itu sendiri sebelum bisa mencapai stylesheet terbit. Siklus hidupnya draf → validasi → pratinjau → terbitkan, dengan rollback dan pensiun hanya memindahkan penunjuk aktif; versi terbit bersifat tak-berubah."
+
+msgid "Class"
+msgstr "Kelas"
+
+msgid "Clear filter"
+msgstr "Bersihkan filter"
+
+msgid "Close"
+msgstr "Tutup"
+
+msgid "Close history"
+msgstr "Tutup riwayat"
+
+msgid "Code"
+msgstr "Kode"
+
+msgid "Columns"
+msgstr "Kolom"
+
+msgid "Comment"
+msgstr "Komentar"
+
+msgid "Comment moderation"
+msgstr "Moderasi komentar"
+
+msgid "comments.moderation.read"
+msgstr "comments.moderation.read"
+
+msgid "Commit:"
+msgstr "Commit:"
+
+msgid "Config hash"
+msgstr "Hash konfigurasi"
+
+msgid "Conflict"
+msgstr "Konflik"
+
+msgid "Conflict history"
+msgstr "Riwayat konflik"
+
+msgid "Conflicts"
+msgstr "Konflik"
+
+msgid "Consecutive failures"
+msgstr "Kegagalan beruntun"
+
+msgid "Consumer"
+msgstr "Konsumen"
+
+msgid "Consumers"
+msgstr "Konsumen"
+
+msgid "Consumers are a static, reviewed source-code registry — never registered at runtime."
+msgstr "Konsumen adalah registri kode sumber yang statis dan sudah ditinjau — tidak pernah didaftarkan saat runtime."
+
+msgid "Control"
+msgstr "Kontrol"
+
+msgid "Coordinated Universal Time (UTC)"
+msgstr "Waktu Universal Terkoordinasi (UTC)"
+
+msgid "core"
+msgstr "inti"
+
+msgid "Core"
+msgstr "Inti"
+
+msgid "Correlation:"
+msgstr "Korelasi:"
+
+msgid "Could not load authentication settings. Please try again."
+msgstr "Tidak dapat memuat pengaturan autentikasi. Silakan coba lagi."
+
+msgid "Could not load invitations. Please try again."
+msgstr "Tidak dapat memuat undangan. Silakan coba lagi."
+
+msgid "Could not load machine credentials. Please try again."
+msgstr "Tidak dapat memuat kredensial mesin. Silakan coba lagi."
+
+msgid "Could not load partner access. Please try again."
+msgstr "Tidak dapat memuat akses mitra. Silakan coba lagi."
+
+msgid "Could not load registration requests. Please try again."
+msgstr "Tidak dapat memuat permintaan pendaftaran. Silakan coba lagi."
+
+msgid "Could not load subject requests. Please try again."
+msgstr "Tidak dapat memuat permintaan subjek data. Silakan coba lagi."
+
+msgid "Could not load the blog settings. Please try again."
+msgstr "Tidak dapat memuat pengaturan blog. Silakan coba lagi."
+
+msgid "Could not load the business-scope console. Please try again."
+msgstr "Tidak dapat memuat konsol cakupan bisnis. Silakan coba lagi."
+
+msgid "Could not load the partner registry. Please try again."
+msgstr "Tidak dapat memuat registri mitra. Silakan coba lagi."
+
+msgid "Could not load these settings. Please try again."
+msgstr "Tidak dapat memuat pengaturan ini. Silakan coba lagi."
+
+msgid "Could not load the sidebar configuration right now."
+msgstr "Tidak dapat memuat konfigurasi menu samping saat ini."
+
+msgid "Could not load the suppression list. Please try again."
+msgstr "Tidak dapat memuat daftar penyaringan. Silakan coba lagi."
+
+msgid "Could not save these settings. Please try again."
+msgstr "Tidak dapat menyimpan pengaturan ini. Silakan coba lagi."
+
+msgid "{count} office"
+msgid_plural "{count} offices"
+msgstr[0] "{count} kantor"
+
+msgid "{count} deleted office"
+msgid_plural "{count} deleted offices"
+msgstr[0] "{count} kantor terhapus"
+
+msgid "{count} module"
+msgid_plural "{count} modules"
+msgstr[0] "{count} modul"
+
+msgid "{count} deleted role"
+msgid_plural "{count} deleted roles"
+msgstr[0] "{count} peran terhapus"
+
+msgid "{count} group"
+msgid_plural "{count} groups"
+msgstr[0] "{count} grup"
+
+msgid "{count} account configured."
+msgid_plural "{count} accounts configured."
+msgstr[0] "{count} akun dikonfigurasi."
+
+msgid "{count} domain"
+msgid_plural "{count} domains"
+msgstr[0] "{count} domain"
+
+msgid "{count} per page"
+msgstr "{count} per halaman"
+
+msgid "{count} policy"
+msgid_plural "{count} policies"
+msgstr[0] "{count} kebijakan"
+
+msgid "{count} profile"
+msgid_plural "{count} profiles"
+msgstr[0] "{count} profil"
+
+msgid "Countries"
+msgstr "Negara"
+
+msgid "{count} role"
+msgid_plural "{count} roles"
+msgstr[0] "{count} peran"
+
+msgid "Country"
+msgstr "Negara"
+
+msgid "Counts what a purge WOULD do for one tenant-scoped table, right now. Read-only by construction: it writes nothing, not even a run record, and an active legal hold is applied before anything is reported purgeable."
+msgstr "Menghitung apa yang AKAN dilakukan pembersihan untuk satu tabel selingkup tenant, saat ini juga. Hanya-baca secara konstruksi: ia tidak menulis apa pun, bahkan bukan catatan eksekusi, dan penahanan hukum yang aktif diterapkan sebelum apa pun dilaporkan bisa dibersihkan."
+
+msgid "{count} template"
+msgid_plural "{count} templates"
+msgstr[0] "{count} templat"
+
+msgid "{count} tenant-scoped"
+msgstr "{count} selingkup tenant"
+
+msgid "{count} user"
+msgid_plural "{count} users"
+msgstr[0] "{count} pengguna"
+
+msgid "Create a group"
+msgstr "Buat grup"
+
+msgid "Create an account on first SSO login (no roles granted)"
+msgstr "Buat akun pada login SSO pertama (tanpa peran diberikan)"
+
+msgid "Create an office"
+msgstr "Buat kantor"
+
+msgid "Create a policy"
+msgstr "Buat kebijakan"
+
+msgid "Create a profile"
+msgstr "Buat profil"
+
+msgid "Create a redirect rule"
+msgstr "Buat aturan redirect"
+
+msgid "Create a role"
+msgstr "Buat peran"
+
+msgid "Create a template"
+msgstr "Buat templat"
+
+msgid "Create a term"
+msgstr "Buat istilah"
+
+msgid "Created"
+msgstr "Dibuat"
+
+msgid "Create delegation"
+msgstr "Buat delegasi"
+
+msgid "Create draft"
+msgstr "Buat draf"
+
+msgid "Create group"
+msgstr "Buat grup"
+
+msgid "Create office"
+msgstr "Buat kantor"
+
+msgid "Create one below, or clear the position filter."
+msgstr "Buat satu di bawah, atau bersihkan filter posisi."
+
+msgid "Create one below to group navigation links."
+msgstr "Buat satu di bawah untuk mengelompokkan tautan navigasi."
+
+msgid "Create one below to offer a layout choice on posts and pages."
+msgstr "Buat satu di bawah untuk menawarkan pilihan tata letak pada post dan halaman."
+
+msgid "Create policy"
+msgstr "Buat kebijakan"
+
+msgid "Create preview link"
+msgstr "Buat tautan pratinjau"
+
+msgid "Create profile"
+msgstr "Buat profil"
+
+msgid "Create role"
+msgstr "Buat peran"
+
+msgid "Create rule"
+msgstr "Buat aturan"
+
+msgid "Creates a draft. Separate paragraphs with a blank line — each one becomes a"
+msgstr "Membuat draf. Pisahkan paragraf dengan baris kosong — masing-masing menjadi satu"
+
+msgid "Create schedule"
+msgstr "Buat jadwal"
+
+msgid "Create template"
+msgstr "Buat templat"
+
+msgid "Create term"
+msgstr "Buat istilah"
+
+msgid "csv"
+msgstr "csv"
+
+msgid "Currently served"
+msgstr "Sedang disajikan"
+
+msgid "Current mode is"
+msgstr "Mode saat ini adalah"
+
+msgid "Current redirect policy for this tenant (read-only)"
+msgstr "Kebijakan redirect tenant ini saat ini (hanya baca)"
+
+msgid "Current SEO defaults for this tenant (read-only)"
+msgstr "Default SEO tenant ini saat ini (hanya baca)"
+
+msgid "Current state"
+msgstr "Keadaan saat ini"
+
+msgid "Cutoff"
+msgstr "Batas waktu"
+
+msgid "dashboard"
+msgstr "dasbor"
+
+msgid "data-lifecycle:archive-purge"
+msgstr "data-lifecycle:archive-purge"
+
+msgid "Deactivate"
+msgstr "Nonaktifkan"
+
+msgid "Deactivating a node stops it syncing. Its queued objects and past conflicts are kept — deactivation is not deletion."
+msgstr "Menonaktifkan node menghentikan sinkronisasinya. Objek yang mengantre dan konflik masa lalunya tetap disimpan — menonaktifkan bukan menghapus."
+
+msgid "Dead-lettered"
+msgstr "Masuk dead-letter"
+
+msgid "decided"
+msgstr "diputuskan"
+
+msgid "Decided by"
+msgstr "Diputuskan oleh"
+
+msgid "Decided by this deployment's environment, not by the tenant — shown because the policies below depend on it. No key or secret value is displayed."
+msgstr "Ditentukan oleh environment deployment ini, bukan oleh tenant — ditampilkan karena kebijakan di bawah bergantung padanya. Tidak ada kunci atau nilai rahasia yang ditampilkan."
+
+msgid "Decided exceptions"
+msgstr "Pengecualian yang diputuskan"
+
+msgid "Decision"
+msgstr "Keputusan"
+
+msgid "Decisions and audit events for this workflow instance."
+msgstr "Keputusan dan event audit untuk instance alur kerja ini."
+
+msgid "Declared by each owning module in its own"
+msgstr "Dideklarasikan oleh tiap modul pemilik di dalam"
+
+msgid "Decree:"
+msgstr "Keputusan:"
+
+msgid "Default locale"
+msgstr "Locale bawaan"
+
+msgid "Default meta description"
+msgstr "Deskripsi meta bawaan"
+
+msgid "Default SEO description"
+msgstr "Deskripsi SEO bawaan"
+
+msgid "Default SEO title"
+msgstr "Judul SEO bawaan"
+
+msgid "Defaults (from the module's code — not editable here)"
+msgstr "Default (dari kode modul — tidak bisa diedit di sini)"
+
+msgid "Default social image (media object UUID)"
+msgstr "Gambar sosial bawaan (UUID objek media)"
+
+msgid "Default visibility"
+msgstr "Visibilitas bawaan"
+
+msgid "Delegate"
+msgstr "Delegasikan"
+
+msgid "Delegated access"
+msgstr "Akses terdelegasi"
+
+msgid "Delegate tenant user id"
+msgstr "Id pengguna tenant penerima delegasi"
+
+msgid "Delegate your decisions"
+msgstr "Delegasikan keputusan Anda"
+
+msgid "Delegations"
+msgstr "Delegasi"
+
+msgid "Delegator"
+msgstr "Pemberi delegasi"
+
+msgid "Delete"
+msgstr "Hapus"
+
+msgid "Deleted"
+msgstr "Dihapus"
+
+msgid "Deleted offices"
+msgstr "Kantor yang dihapus"
+
+msgid "Deleted roles"
+msgstr "Peran yang dihapus"
+
+msgid "Deleted rule id (UUID)"
+msgstr "Id aturan yang dihapus (UUID)"
+
+msgid "Deleting an object stops every reference to it resolving immediately — a published page pointing at it loses its image. That is the point when the object should not be served, and restore is how it comes back. Purging removes the registry row only; the stored file is removed later by the reconciliation job, which owns the bucket."
+msgstr "Menghapus sebuah objek langsung menghentikan setiap rujukan kepadanya terselesaikan — halaman terbit yang menunjuk kepadanya kehilangan gambarnya. Itulah saat objek tidak boleh disajikan, dan pulihkan adalah cara ia kembali. Membersihkan hanya menghapus baris registri; berkas tersimpan dihapus kemudian oleh job rekonsiliasi, yang memiliki bucket itu."
+
+msgid "Deletion"
+msgstr "Penghapusan"
+
+msgid "Deliveries"
+msgstr "Pengiriman"
+
+msgid "Delivery attempts, newest first, capped at 100 rows."
+msgstr "Percobaan pengiriman, terbaru dulu, dibatasi 100 baris."
+
+msgid "Delivery status"
+msgstr "Status pengiriman"
+
+msgid "deny"
+msgstr "tolak"
+
+msgid "Deployment"
+msgstr "Deployment"
+
+msgid "Deployment posture"
+msgstr "Postur deployment"
+
+msgid "Deployment-wide setting"
+msgstr "Setelan tingkat deployment"
+
+msgid "Description"
+msgstr "Deskripsi"
+
+msgid "Description (optional)"
+msgstr "Deskripsi (opsional)"
+
+msgid "Descriptor"
+msgstr "Deskriptor"
+
+msgid "Detail"
+msgstr "Detail"
+
+msgid "Device type"
+msgstr "Tipe perangkat"
+
+msgid "Dimensions"
+msgstr "Dimensi"
+
+msgid "Directory"
+msgstr "Direktori"
+
+msgid "Disable"
+msgstr "Nonaktifkan"
+
+msgid "disabled"
+msgstr "nonaktif"
+
+msgid "Disabled devices"
+msgstr "Perangkat nonaktif"
+
+msgid ". Disabling a schedule retires it — there is no re-enable, so an interval change means creating a new schedule."
+msgstr ". Menonaktifkan jadwal berarti mempensiunkannya — tidak ada pengaktifan kembali, jadi mengubah interval berarti membuat jadwal baru."
+
+msgid "disclosure"
+msgstr "pengungkapan"
+
+msgid "Discovery"
+msgstr "Penemuan"
+
+msgid "Dismiss"
+msgstr "Abaikan"
+
+msgid "Dispatch"
+msgstr "Kirim"
+
+msgid "Documents"
+msgstr "Dokumen"
+
+msgid "Documents by resource type"
+msgstr "Dokumen menurut tipe sumber daya"
+
+msgid "Documents indexed"
+msgstr "Dokumen terindeks"
+
+msgid "domain-events:dispatch"
+msgstr "domain-events:dispatch"
+
+msgid "Domain type"
+msgstr "Tipe domain"
+
+msgid "Download"
+msgstr "Unduh"
+
+msgid "Draft configuration"
+msgstr "Konfigurasi draf"
+
+msgid "draft, published, archived"
+msgstr "draf, terbit, diarsipkan"
+
+msgid "Drafts"
+msgstr "Draf"
+
+msgid "Drill down"
+msgstr "Telusuri"
+
+msgid "Dry run"
+msgstr "Uji coba"
+
+msgid "Dry-run plan"
+msgstr "Rencana uji coba"
+
+msgid "Due"
+msgstr "Jatuh tempo"
+
+msgid "Each artifact is checksum-verified when downloaded, and an expired one is refused rather than served stale."
+msgstr "Setiap artefak diverifikasi checksum-nya saat diunduh, dan yang kedaluwarsa ditolak alih-alih disajikan basi."
+
+msgid "Each needs a human decision"
+msgstr "Masing-masing butuh keputusan manusia"
+
+msgid "Each theme declares its own tokens, slots and sections, so switching reloads the editor for that theme and discards any unsaved edits on this page."
+msgstr "Setiap tema mendeklarasikan token, slot, dan seksinya sendiri, jadi berpindah tema memuat ulang editor untuk tema itu dan membuang setiap suntingan yang belum disimpan di halaman ini."
+
+msgid "Edit"
+msgstr "Sunting"
+
+msgid "Edit it on the blog_content module screen"
+msgstr "Edit lewat layar modul blog_content"
+
+msgid "Edit page"
+msgstr "Sunting halaman"
+
+msgid "Edit post"
+msgstr "Sunting postingan"
+
+msgid "Edit redirect policy"
+msgstr "Sunting kebijakan redirect"
+
+msgid "Edit SEO defaults (a full replace — every field below is sent)"
+msgstr "Edit default SEO (penggantian penuh — setiap field di bawah dikirim)"
+
+msgid "Edit term"
+msgstr "Sunting istilah"
+
+msgid "Effect"
+msgstr "Efek"
+
+msgid "Effective until"
+msgstr "Berlaku sampai"
+
+msgid "Effective until (blank = open-ended)"
+msgstr "Berlaku sampai (kosong = tanpa batas)"
+
+msgid "Effective until (optional)"
+msgstr "Berlaku sampai (opsional)"
+
+msgid "Eligible"
+msgstr "Memenuhi syarat"
+
+msgid "Email address"
+msgstr "Alamat email"
+
+msgid "Email queue health"
+msgstr "Kesehatan antrean email"
+
+msgid "Enable"
+msgstr "Aktifkan"
+
+msgid "enabled"
+msgstr "aktif"
+
+msgid "Enabled"
+msgstr "Aktif"
+
+msgid "Enable on this device"
+msgstr "Aktifkan di perangkat ini"
+
+msgid "Endpoint"
+msgstr "Endpoint"
+
+msgid "Ends"
+msgstr "Berakhir"
+
+msgid "Ends at (optional)"
+msgstr "Berakhir pada (opsional)"
+
+msgid "Enforcement level"
+msgstr "Tingkat penegakan"
+
+msgid "Engaged"
+msgstr "Terlibat"
+
+msgid "Engage partner"
+msgstr "Libatkan mitra"
+
+msgid "Error"
+msgstr "Galat"
+
+msgid "Errors"
+msgstr "Galat"
+
+msgid "; escalation notifies, it never decides."
+msgstr "; eskalasi memberi tahu, ia tidak pernah memutuskan."
+
+msgid "Event"
+msgstr "Event"
+
+msgid "Events"
+msgstr "Event"
+
+msgid "Event type"
+msgstr "Tipe event"
+
+msgid "Every exception is time-bounded — there is no indefinite override. The ceiling comes from the rule itself and the field above narrows to it as you choose one."
+msgstr "Setiap pengecualian dibatasi waktu — tidak ada penimpaan tanpa batas. Batas atasnya berasal dari aturan itu sendiri dan field di atas menyempit mengikutinya saat Anda memilih satu."
+
+msgid "Every imported dataset version, newest first"
+msgstr "Setiap versi dataset terimpor, terbaru dulu"
+
+msgid "Every media object this tenant has registered, in any state — including the ones that never finished uploading or failed verification. Deleting is reversible; purging is not, and clears the registry row rather than the stored file."
+msgstr "Setiap objek media yang didaftarkan tenant ini, dalam keadaan apa pun — termasuk yang tidak pernah selesai diunggah atau gagal verifikasi. Menghapus bisa dibatalkan; membersihkan tidak, dan ia menghapus baris registri alih-alih berkas tersimpan."
+
+msgid "Every party this deployment serves. Provisioning creates a tenant with its head office and owner account in one transaction — the same code path the setup wizard uses, so the two cannot drift."
+msgstr "Setiap pihak yang dilayani deployment ini. Penyediaan membuat sebuah tenant beserta kantor pusat dan akun pemiliknya dalam satu transaksi — jalur kode yang sama dengan yang dipakai wizard penyiapan, sehingga keduanya tidak bisa menyimpang."
+
+msgid "Every registered high-volume table descriptor"
+msgstr "Setiap deskriptor tabel bervolume tinggi yang terdaftar"
+
+msgid "Every source item indexed cleanly."
+msgstr "Setiap item sumber terindeks bersih."
+
+msgid "Every table"
+msgstr "Setiap tabel"
+
+msgid "Every table (tenant-wide)"
+msgstr "Setiap tabel (selingkup tenant)"
+
+msgid "Every tenant on this deployment, newest first"
+msgstr "Setiap tenant pada deployment ini, terbaru dulu"
+
+msgid "Every time a rule was evaluated — at assignment time and at every high-risk decision — and what it decided. Read-only: this is the evidence, not a control."
+msgstr "Setiap kali sebuah aturan dievaluasi — saat penetapan dan pada setiap keputusan berisiko tinggi — dan apa keputusannya. Hanya baca: ini bukti, bukan kendali."
+
+msgid "Excerpt (optional)"
+msgstr "Kutipan (opsional)"
+
+msgid "Execution"
+msgstr "Eksekusi"
+
+msgid "Export a subject's data"
+msgstr "Ekspor data seorang subjek"
+
+msgid "Export once, now"
+msgstr "Ekspor sekali, sekarang"
+
+msgid "Export result"
+msgstr "Hasil ekspor"
+
+msgid "Export runs"
+msgstr "Eksekusi ekspor"
+
+msgid "Export runs, newest first, capped at 100 rows."
+msgstr "Eksekusi ekspor, terbaru dulu, dibatasi 100 baris."
+
+msgid "Exports and erasures answered for a named person. A subject is answered"
+msgstr "Ekspor dan penghapusan yang dijawab untuk orang tertentu. Seorang subjek dijawab"
+
+msgid "Export subject data"
+msgstr "Ekspor data subjek"
+
+msgid "Failed"
+msgstr "Gagal"
+
+msgid "Failed items"
+msgstr "Item gagal"
+
+msgid "Failed objects (this page)"
+msgstr "Objek gagal (halaman ini)"
+
+msgid "Failures"
+msgstr "Kegagalan"
+
+msgid "Feed description"
+msgstr "Deskripsi feed"
+
+msgid "Feed item limit"
+msgstr "Batas item feed"
+
+msgid "Feed item limit (1–200)"
+msgstr "Batas item feed (1–200)"
+
+msgid "Feed logo (media object UUID)"
+msgstr "Logo feed (UUID objek media)"
+
+msgid "Feeds served"
+msgstr "Feed yang disajikan"
+
+msgid "Feed title"
+msgstr "Judul feed"
+
+msgid "File SHA-256:"
+msgstr "SHA-256 berkas:"
+
+msgid "File the request"
+msgstr "Ajukan permintaan"
+
+msgid "Filing one grants nothing: it is `pending` until a DIFFERENT person approves it, and it expires on its own."
+msgstr "Mengajukannya tidak memberikan apa pun: ia `pending` sampai orang yang BERBEDA menyetujuinya, dan ia kedaluwarsa dengan sendirinya."
+
+msgid "Filter"
+msgstr "Filter"
+
+msgid "Filters"
+msgstr "Filter"
+
+msgid "Finished"
+msgstr "Selesai"
+
+msgid "Force decision"
+msgstr "Paksa keputusan"
+
+msgid "Format"
+msgstr "Format"
+
+msgid "Form drafts could not be loaded right now. This is a problem reading the list, not an empty list — please try again later."
+msgstr "Draf formulir tidak dapat dimuat saat ini. Ini masalah membaca daftarnya, bukan daftar yang kosong — silakan coba lagi nanti."
+
+msgid "Form drafts, newest first, capped at 100 rows."
+msgstr "Draf formulir, terbaru dulu, dibatasi 100 baris."
+
+msgid "form-drafts:purge"
+msgstr "form-drafts:purge"
+
+msgid "Freshness is computed live from the last successful update, never read back from a stored column — a projection whose updater stopped running ages into {stale} on its own rather than staying frozen at {current}."
+msgstr "Kesegaran dihitung langsung dari pembaruan sukses terakhir, tidak pernah dibaca ulang dari kolom tersimpan — proyeksi yang pembaruinya berhenti berjalan akan menua sendiri menjadi {stale} alih-alih membeku di {current}."
+
+msgid "From"
+msgstr "Dari"
+
+msgid "Generated by"
+msgstr "Dihasilkan oleh"
+
+msgid "Generate export"
+msgstr "Hasilkan ekspor"
+
+msgid "GET /api/v1/invitations"
+msgstr "GET /api/v1/invitations"
+
+msgid "Granted by"
+msgstr "Diberikan oleh"
+
+msgid "Ground"
+msgstr "Dasar"
+
+msgid "Ground for erasure"
+msgstr "Dasar penghapusan"
+
+msgid "Group code"
+msgstr "Kode grup"
+
+msgid "Group name"
+msgstr "Nama grup"
+
+msgid "head_office"
+msgstr "kantor pusat"
+
+msgid "Head office code"
+msgstr "Kode kantor pusat"
+
+msgid "Head office name"
+msgstr "Nama kantor pusat"
+
+msgid "Held"
+msgstr "Ditahan"
+
+msgid "Hidden"
+msgstr "Tersembunyi"
+
+msgid "History"
+msgstr "Riwayat"
+
+msgid "Hits"
+msgstr "Hit"
+
+msgid "Holds in force"
+msgstr "Penahanan yang berlaku"
+
+msgid "holds platform-scoped permissions"
+msgstr "memegang izin selingkup platform"
+
+msgid "Hostname"
+msgstr "Nama host"
+
+msgid "Hostname/subdomain mappings for this tenant. Add a mapping, verify ownership (manual-first), and choose one active primary. Deleting a mapping frees its hostname for reuse."
+msgstr "Pemetaan hostname/subdomain untuk tenant ini. Tambahkan pemetaan, verifikasi kepemilikan (manual dulu), dan pilih satu primer yang aktif. Menghapus pemetaan membebaskan hostname-nya untuk dipakai ulang."
+
+msgid "Host scope (one of this tenant's verified domains; blank = all)"
+msgstr "Cakupan host (salah satu domain terverifikasi tenant ini; kosong = semua)"
+
+msgid "How the blog looks: page templates, navigation menus, sidebar and footer widgets, and the theme mode. Content itself lives on"
+msgstr "Tampilan blog: templat halaman, menu navigasi, widget samping dan kaki, serta mode tema. Kontennya sendiri berada di"
+
+msgid "How this tenant signs in: password and SSO policy, break-glass accounts, and MFA enforcement. Changes here go through the same guarded, audited endpoints an API client would use."
+msgstr "Cara tenant ini masuk: kebijakan kata sandi dan SSO, akun break-glass, dan penegakan MFA. Perubahan di sini melewati endpoint terjaga dan teraudit yang sama dengan yang dipakai klien API."
+
+msgid "Human pageviews"
+msgstr "Tayangan halaman manusia"
+
+msgid "Humans online"
+msgstr "Manusia daring"
+
+msgid "Human unique visitors"
+msgstr "Pengunjung unik manusia"
+
+msgid "Ids, not pickers: a selectable list of every tenant user is a directory this module gates separately, and"
+msgstr "Id, bukan pemilih: daftar terpilih berisi setiap pengguna tenant adalah direktori yang digerbangi modul ini secara terpisah, dan"
+
+msgid "Imported"
+msgstr "Diimpor"
+
+msgid "Imported versions"
+msgstr "Versi yang diimpor"
+
+msgid "Included resource types"
+msgstr "Tipe sumber daya yang disertakan"
+
+msgid "Included resource types (comma separated; blank = all)"
+msgstr "Tipe sumber daya yang disertakan (dipisah koma; kosong = semua)"
+
+msgid "Incremental updates keep a projection current without one; a rebuild is for recovering after a source or definition change."
+msgstr "Pembaruan inkremental menjaga proyeksi tetap terkini tanpa itu; pembangunan ulang untuk memulihkan setelah perubahan sumber atau definisi."
+
+msgid "indexable"
+msgstr "dapat diindeks"
+
+msgid "Indexed"
+msgstr "Terindeks"
+
+msgid "Indexed resource types"
+msgstr "Tipe sumber daya terindeks"
+
+msgid "Index operations"
+msgstr "Operasi indeks"
+
+msgid "Index status"
+msgstr "Status indeks"
+
+msgid "In force now"
+msgstr "Berlaku sekarang"
+
+msgid "(infrastructure)"
+msgstr "(infrastruktur)"
+
+msgid "infrastructure with no module to declare it — in the infrastructure registry (ADR-0076). Code, not tenant configuration. Nothing here reveals row contents or live counts."
+msgstr "infrastruktur tanpa modul yang mendeklarasikannya — di registri infrastruktur (ADR-0076). Kode, bukan konfigurasi tenant. Tidak ada di sini yang mengungkap isi baris atau hitungan langsung."
+
+msgid "Initial state"
+msgstr "Keadaan awal"
+
+msgid "Instance history"
+msgstr "Riwayat instance"
+
+msgid "Interval"
+msgstr "Interval"
+
+msgid "Interval (minutes)"
+msgstr "Interval (menit)"
+
+msgid "Invite somebody"
+msgstr "Undang seseorang"
+
+msgid "IP hash"
+msgstr "Hash IP"
+
+msgid "Issue a credential"
+msgstr "Terbitkan kredensial"
+
+msgid "Issue credential"
+msgstr "Terbitkan kredensial"
+
+msgid "Issued credentials"
+msgstr "Kredensial yang diterbitkan"
+
+msgid "Issuer"
+msgstr "Penerbit"
+
+msgid "is turned on."
+msgstr "diaktifkan."
+
+msgid "is where that lookup already belongs. Assigning to yourself is refused by the endpoint."
+msgstr "adalah tempat pencarian itu memang berada. Menetapkan ke diri sendiri ditolak oleh endpoint."
+
+msgid "items"
+msgstr "item"
+
+msgid "Items that could not be indexed, most recent first"
+msgstr "Item yang tidak dapat diindeks, terbaru dulu"
+
+msgid "job; this screen plans, records and holds, it never deletes."
+msgstr "job; layar ini merencanakan, mencatat, dan menahan, ia tidak pernah menghapus."
+
+msgid "json"
+msgstr "json"
+
+msgid "Justification"
+msgstr "Justifikasi"
+
+msgid "Key"
+msgstr "Kunci"
+
+msgid "Keys to set (JSON object)"
+msgstr "Kunci yang disetel (objek JSON)"
+
+msgid "Kind"
+msgstr "Jenis"
+
+msgid "Label override"
+msgstr "Penimpaan label"
+
+msgid "Last:"
+msgstr "Terakhir:"
+
+msgid "Last delivered"
+msgstr "Terakhir dikirim"
+
+msgid "Last error"
+msgstr "Galat terakhir"
+
+msgid "Last error:"
+msgstr "Galat terakhir:"
+
+msgid "Last indexed"
+msgstr "Terakhir diindeks"
+
+msgid "Last pull"
+msgstr "Pull terakhir"
+
+msgid "Last push"
+msgstr "Push terakhir"
+
+msgid "Last run"
+msgstr "Eksekusi terakhir"
+
+msgid "Last seen"
+msgstr "Terakhir terlihat"
+
+msgid "Last success"
+msgstr "Sukses terakhir"
+
+msgid "Last used"
+msgstr "Terakhir dipakai"
+
+msgid "Layout"
+msgstr "Tata letak"
+
+msgid "Leaving a key out does not remove it"
+msgstr "Menghilangkan sebuah kunci tidak menghapusnya"
+
+msgid "Legacy /blog redirect"
+msgstr "Redirect /blog warisan"
+
+msgid "Legacy /blog redirect (inert in this base — no /news routes)"
+msgstr "Redirect /blog warisan (inert di basis ini — tidak ada rute /news)"
+
+msgid "Legal hold"
+msgstr "Penahanan hukum"
+
+msgid "Legal holds"
+msgstr "Penahanan hukum"
+
+msgid "Legal holds for this tenant, newest first"
+msgstr "Penahanan hukum untuk tenant ini, terbaru dulu"
+
+msgid "Let it write (optional)"
+msgstr "Izinkan ia menulis (opsional)"
+
+msgid "License:"
+msgstr "Lisensi:"
+
+msgid "Lifecycle"
+msgstr "Siklus hidup"
+
+msgid "Lifecycle registry"
+msgstr "Registri siklus hidup"
+
+msgid "Link"
+msgstr "Tautkan"
+
+msgid "Listing"
+msgstr "Daftar"
+
+msgid "live"
+msgstr "aktif"
+
+msgid "Live theme"
+msgstr "Tema aktif"
+
+msgid "Live version"
+msgstr "Versi aktif"
+
+msgid "Locale"
+msgstr "Locale"
+
+msgid "locale; the endpoint validates and escapes the content."
+msgstr "locale; endpoint memvalidasi dan meng-escape kontennya."
+
+msgid "Login"
+msgstr "Login"
+
+msgid "Lower-case letters, digits and hyphens, unique across the deployment. Case matters to the index and not to a human, so a stray capital would make a second partner that reads like the first one."
+msgstr "Huruf kecil, angka, dan tanda hubung, unik di seluruh deployment. Kapitalisasi berarti bagi indeks dan tidak bagi manusia, jadi satu huruf besar yang terselip akan membuat mitra kedua yang terbaca sama dengan yang pertama."
+
+msgid "Managed externally"
+msgstr "Dikelola dari luar"
+
+msgid "Match"
+msgstr "Cocok"
+
+msgid "Members"
+msgstr "Anggota"
+
+msgid "Menu"
+msgstr "Menu"
+
+msgid "Menu order"
+msgstr "Urutan menu"
+
+msgid "Menus"
+msgstr "Menu"
+
+msgid "Message"
+msgstr "Pesan"
+
+msgid "MFA is enforced for this tenant, but enrolment is closed for this deployment ({setting}). A user without a factor cannot enrol one, and cannot sign in."
+msgstr "MFA ditegakkan untuk tenant ini, tetapi pendaftarannya ditutup untuk deployment ini ({setting}). Pengguna tanpa faktor tidak bisa mendaftarkannya, dan tidak bisa masuk."
+
+msgid "Mime type"
+msgstr "Tipe MIME"
+
+msgid "Minimum query length"
+msgstr "Panjang kueri minimum"
+
+msgid "Mode"
+msgstr "Mode"
+
+msgid "Module key"
+msgstr "Kunci modul"
+
+msgid "Modules could not be loaded right now. Please try again later."
+msgstr "Modul tidak dapat dimuat saat ini. Silakan coba lagi nanti."
+
+msgid "Module settings"
+msgstr "Pengaturan modul"
+
+msgid "module.ts"
+msgstr "module.ts"
+
+msgid "Most recent reconciliation of {projection}."
+msgstr "Rekonsiliasi terkini untuk {projection}."
+
+msgid "Multi-factor authentication"
+msgstr "Autentikasi multifaktor"
+
+msgid "Name"
+msgstr "Nama"
+
+msgid "Navigation placement"
+msgstr "Penempatan navigasi"
+
+msgid "never"
+msgstr "tidak pernah"
+
+msgid "New draft"
+msgstr "Draf baru"
+
+msgid "Newest 100"
+msgstr "100 terbaru"
+
+msgid "Newest 100. An address removed here can receive mail from the next send onwards; messages already skipped are not resent."
+msgstr "100 terbaru. Alamat yang dihapus di sini bisa menerima surel mulai pengiriman berikutnya; pesan yang sudah dilewati tidak dikirim ulang."
+
+msgid "New page"
+msgstr "Halaman baru"
+
+msgid "New versions arrive by deploy, not from this screen:"
+msgstr "Versi baru datang lewat deploy, bukan dari layar ini:"
+
+msgid "Next →"
+msgstr "Berikutnya →"
+
+msgid "Next 100"
+msgstr "100 berikutnya"
+
+msgid "Next attempt"
+msgstr "Percobaan berikutnya"
+
+msgid "Next page"
+msgstr "Halaman berikutnya"
+
+msgid "Next retry"
+msgstr "Percobaan ulang berikutnya"
+
+msgid "· next retry due:"
+msgstr "· percobaan ulang berikutnya:"
+
+msgid "No 404s recorded"
+msgstr "Tidak ada 404 tercatat"
+
+msgid "No access granted"
+msgstr "Tidak ada akses diberikan"
+
+msgid "No active account is currently eligible."
+msgstr "Tidak ada akun aktif yang saat ini memenuhi syarat."
+
+msgid "No assignment matches this filter. Without one, a person's authority is not narrowed to any part of the organisation."
+msgstr "Tidak ada penetapan yang cocok dengan filter ini. Tanpa penetapan, wewenang seseorang tidak dipersempit ke bagian mana pun dari organisasi."
+
+msgid "Nobody from outside"
+msgstr "Tidak ada pihak dari luar"
+
+msgid "Nobody has been invited to this tenant yet."
+msgstr "Belum ada siapa pun yang diundang ke tenant ini."
+
+msgid "Nobody is currently deciding on anyone else's behalf."
+msgstr "Saat ini tidak ada yang memutuskan atas nama orang lain."
+
+msgid "Nobody outside this organisation has been given a way in."
+msgstr "Tidak ada pihak di luar organisasi ini yang diberi jalan masuk."
+
+msgid "No conflicts"
+msgstr "Tidak ada konflik"
+
+msgid "No consumers"
+msgstr "Tidak ada konsumen"
+
+msgid "No custom policies"
+msgstr "Tidak ada kebijakan kustom"
+
+msgid "No data yet."
+msgstr "Belum ada data."
+
+msgid "Node"
+msgstr "Node"
+
+msgid "No delegations"
+msgstr "Tidak ada delegasi"
+
+msgid "No deliveries match"
+msgstr "Tidak ada pengiriman yang cocok"
+
+msgid "No delivery attempts recorded."
+msgstr "Tidak ada percobaan pengiriman tercatat."
+
+msgid "Nodes"
+msgstr "Node"
+
+msgid "No devices registered in this tenant."
+msgstr "Tidak ada perangkat terdaftar di tenant ini."
+
+msgid "No domains yet"
+msgstr "Belum ada domain"
+
+msgid "no draft saved yet"
+msgstr "belum ada draf tersimpan"
+
+msgid "No events match"
+msgstr "Tidak ada event yang cocok"
+
+msgid "No exception has been decided yet."
+msgstr "Belum ada pengecualian yang diputuskan."
+
+msgid "No export runs"
+msgstr "Tidak ada eksekusi ekspor"
+
+msgid "No failed items"
+msgstr "Tidak ada item gagal"
+
+msgid "No groups yet"
+msgstr "Belum ada grup"
+
+msgid "No history"
+msgstr "Tidak ada riwayat"
+
+msgid "noindex (hide the whole site from crawlers)"
+msgstr "noindex (sembunyikan seluruh situs dari crawler)"
+
+msgid "No index runs yet"
+msgstr "Belum ada eksekusi indeks"
+
+msgid "No installed module declares a segregation-of-duties rule that allows exceptions, so there is nothing here to except. Rules arrive with the module that owns them."
+msgstr "Tidak ada modul terpasang yang mendeklarasikan aturan pemisahan tugas yang mengizinkan pengecualian, jadi tidak ada yang bisa dikecualikan di sini. Aturan datang bersama modul yang memilikinya."
+
+msgid "No legal holds"
+msgstr "Tidak ada penahanan hukum"
+
+msgid "No machine credential has ever been issued for this tenant."
+msgstr "Belum pernah ada kredensial mesin yang diterbitkan untuk tenant ini."
+
+msgid "No media objects match these filters."
+msgstr "Tidak ada objek media yang cocok dengan filter ini."
+
+msgid "No menus yet"
+msgstr "Belum ada menu"
+
+msgid "No module is registered under that key. Check the list on"
+msgstr "Tidak ada modul terdaftar dengan kunci itu. Periksa daftarnya di"
+
+msgid "No modules"
+msgstr "Tidak ada modul"
+
+msgid "No modules are registered for this tenant yet."
+msgstr "Belum ada modul yang terdaftar untuk tenant ini."
+
+msgid "none"
+msgstr "tidak ada"
+
+msgid "none — falling back to the default theme"
+msgstr "tidak ada — kembali ke tema bawaan"
+
+msgid "No offices yet"
+msgstr "Belum ada kantor"
+
+msgid "No parent"
+msgstr "Tanpa induk"
+
+msgid "No partner reaches this tenant."
+msgstr "Tidak ada mitra yang menjangkau tenant ini."
+
+msgid "No permissions granted."
+msgstr "Tidak ada izin yang diberikan."
+
+msgid "No profiles yet"
+msgstr "Belum ada profil"
+
+msgid "No projections visible"
+msgstr "Tidak ada proyeksi yang terlihat"
+
+msgid "No provider configured"
+msgstr "Tidak ada penyedia dikonfigurasi"
+
+msgid "No push messages recorded."
+msgstr "Tidak ada pesan push tercatat."
+
+msgid "No rebuilds yet"
+msgstr "Belum ada pembangunan ulang"
+
+msgid "No redirect rules match"
+msgstr "Tidak ada aturan redirect yang cocok"
+
+msgid "No registration request is pending review."
+msgstr "Tidak ada permintaan pendaftaran yang menunggu tinjauan."
+
+msgid "No revisions"
+msgstr "Tidak ada revisi"
+
+msgid "No role"
+msgstr "Tanpa peran"
+
+msgid "No roles yet"
+msgstr "Belum ada peran"
+
+msgid "No rule has been evaluated yet."
+msgstr "Belum ada aturan yang dievaluasi."
+
+msgid "No runs recorded"
+msgstr "Tidak ada eksekusi tercatat"
+
+msgid "No scheduled exports"
+msgstr "Tidak ada ekspor terjadwal"
+
+msgid "No sessions yet."
+msgstr "Belum ada sesi."
+
+msgid "No {status} comments."
+msgstr "Tidak ada komentar {status}."
+
+msgid "No subject request has been made in this tenant."
+msgstr "Belum ada permintaan subjek data yang diajukan di tenant ini."
+
+msgid "No sync nodes"
+msgstr "Tidak ada node sinkronisasi"
+
+msgid "not applicable"
+msgstr "tidak berlaku"
+
+msgid ", not a read: it is audited as one, and the reason you give is part of that record. The result appears below and is never stored or downloadable."
+msgstr ", bukan pembacaan: ia diaudit sebagai tindakan, dan alasan yang Anda berikan adalah bagian dari catatan itu. Hasilnya muncul di bawah dan tidak pernah disimpan atau bisa diunduh."
+
+msgid "Not covered by this answer"
+msgstr "Tidak tercakup oleh jawaban ini"
+
+msgid "Note"
+msgstr "Catatan"
+
+msgid "No templates yet"
+msgstr "Belum ada templat"
+
+msgid "No tenant on this deployment is registered as a partner. Nobody can be engaged until one is."
+msgstr "Tidak ada tenant pada deployment ini yang terdaftar sebagai mitra. Tidak ada yang bisa digandeng sampai ada satu."
+
+msgid "No tenants listed"
+msgstr "Tidak ada tenant terdaftar"
+
+msgid "No themes are registered"
+msgstr "Tidak ada tema terdaftar"
+
+msgid "Nothing has been decided or recorded against this instance yet — or the id does not name one."
+msgstr "Belum ada yang diputuskan atau dicatat pada instance ini — atau id itu tidak menamai instance mana pun."
+
+msgid "Nothing is suppressed. Every address this tenant sends to can receive mail."
+msgstr "Tidak ada yang disaring. Setiap alamat yang dikirimi tenant ini bisa menerima surel."
+
+msgid "Nothing is waiting for a decision."
+msgstr "Tidak ada yang menunggu keputusan."
+
+msgid "Nothing is waiting on a human decision."
+msgstr "Tidak ada yang menunggu keputusan manusia."
+
+msgid "Nothing is waiting. Requests appear here the moment someone files one."
+msgstr "Tidak ada yang menunggu. Permintaan muncul di sini begitu seseorang mengajukannya."
+
+msgid "Nothing is waiting to upload under this filter."
+msgstr "Tidak ada yang menunggu diunggah pada filter ini."
+
+msgid "Nothing published yet"
+msgstr "Belum ada yang diterbitkan"
+
+msgid "Nothing waiting"
+msgstr "Tidak ada yang menunggu"
+
+msgid "Notifications on this device"
+msgstr "Notifikasi di perangkat ini"
+
+msgid "Not publicly referenceable"
+msgstr "Tidak bisa dirujuk secara publik"
+
+msgid "No versions imported"
+msgstr "Tidak ada versi diimpor"
+
+msgid "No widgets here"
+msgstr "Tidak ada widget di sini"
+
+msgid "Object"
+msgstr "Objek"
+
+msgid "Object queue"
+msgstr "Antrean objek"
+
+msgid "Objects"
+msgstr "Objek"
+
+msgid "Object upload queue, newest first, 200 per page."
+msgstr "Antrean unggah objek, terbaru dulu, 200 per halaman."
+
+msgid "Occurred"
+msgstr "Terjadi"
+
+msgid "Offers of an account in this tenant. An invitation names the roles its holder will get, and those roles stay inert until it is accepted — nothing here grants anything on its own."
+msgstr "Tawaran akun di tenant ini. Undangan menyebutkan peran yang akan didapat pemegangnya, dan peran itu tetap inert sampai undangan diterima — tidak ada di sini yang memberikan apa pun dengan sendirinya."
+
+msgid "office"
+msgstr "office"
+
+msgid "Office code"
+msgstr "Kode kantor"
+
+msgid "Office name"
+msgstr "Nama kantor"
+
+msgid "Offices could not be loaded right now. Please try again later."
+msgstr "Kantor tidak dapat dimuat saat ini. Silakan coba lagi nanti."
+
+msgid "Office type"
+msgstr "Tipe kantor"
+
+msgid "Offline/LAN replication: the nodes that push and pull, the conflicts that need a human decision, and the object upload queue. Nodes authenticate with an HMAC signature, not a session — this screen manages them, it never performs a sync."
+msgstr "Replikasi offline/LAN: node yang push dan pull, konflik yang butuh keputusan manusia, dan antrean unggah objek. Node mengautentikasi dengan tanda tangan HMAC, bukan sesi — layar ini mengelolanya, ia tidak pernah melakukan sinkronisasi."
+
+msgid "OIDC providers"
+msgstr "Penyedia OIDC"
+
+msgid "Older"
+msgstr "Lebih lama"
+
+msgid "Oldest:"
+msgstr "Terlama:"
+
+msgid "Oldest still waiting:"
+msgstr "Terlama yang masih menunggu:"
+
+msgid "One or more cover every table"
+msgstr "Satu atau lebih mencakup setiap tabel"
+
+msgid "Online now"
+msgstr "Daring sekarang"
+
+msgid "Only a scope type some module can RESOLVE is accepted — this base resolves"
+msgstr "Hanya tipe cakupan yang bisa DISELESAIKAN oleh suatu modul yang diterima — basis ini menyelesaikan"
+
+msgid "Only for an address you have already proven belongs to this person. It mints an account with no evidence its holder controls the address."
+msgstr "Hanya untuk alamat yang sudah Anda buktikan milik orang ini. Ia mencetak akun tanpa bukti bahwa pemegangnya menguasai alamat itu."
+
+msgid "Only verified and attached objects resolve"
+msgstr "Hanya objek terverifikasi dan terlampir yang terselesaikan"
+
+msgid "On this page"
+msgstr "Di halaman ini"
+
+msgid "Open failures"
+msgstr "Kegagalan terbuka"
+
+msgid "Open the preview"
+msgstr "Buka pratinjau"
+
+msgid "Order"
+msgstr "Urutan"
+
+msgid "Ordinary retention applies to every registered table."
+msgstr "Retensi biasa berlaku untuk setiap tabel terdaftar."
+
+msgid ", or — for a table owned by"
+msgstr ", atau — untuk tabel yang dimiliki"
+
+msgid "organization"
+msgstr "organisasi"
+
+msgid "Organization logo (media object UUID)"
+msgstr "Logo organisasi (UUID objek media)"
+
+msgid "Organization name"
+msgstr "Nama organisasi"
+
+msgid "other"
+msgstr "lainnya"
+
+msgid "Outcome"
+msgstr "Hasil"
+
+msgid "overdue"
+msgstr "terlambat"
+
+msgid "Overdue only"
+msgstr "Hanya yang terlambat"
+
+msgid "Owner"
+msgstr "Pemilik"
+
+msgid "Owner login identifier"
+msgstr "Pengenal login pemilik"
+
+msgid "Owner name"
+msgstr "Nama pemilik"
+
+msgid "Owner password"
+msgstr "Kata sandi pemilik"
+
+msgid "Page"
+msgstr "Halaman"
+
+msgid "Pages could not be loaded right now. This is a problem reading the list, not an empty list — please try again later."
+msgstr "Halaman tidak dapat dimuat saat ini. Ini masalah membaca daftarnya, bukan daftar yang kosong — silakan coba lagi nanti."
+
+msgid "Page type"
+msgstr "Tipe halaman"
+
+msgid "paragraph"
+msgstr "paragraph"
+
+msgid "Parent"
+msgstr "Induk"
+
+msgid "Parent category"
+msgstr "Kategori induk"
+
+msgid "It parses the dump vendored in the repository. Importing never activates — a new version lands as"
+msgstr "Ia mem-parse dump yang di-vendor di repositori. Mengimpor tidak pernah mengaktifkan — versi baru mendarat sebagai"
+
+msgid "Partner"
+msgstr "Mitra"
+
+msgid "Partner code"
+msgstr "Kode mitra"
+
+msgid "Partnerships"
+msgstr "Kemitraan"
+
+msgid "Partner tenant id"
+msgstr "Id tenant mitra"
+
+msgid "Path"
+msgstr "Jalur"
+
+msgid "Pause"
+msgstr "Jeda"
+
+msgid "Paused consumers"
+msgstr "Konsumen yang dijeda"
+
+msgid "Payload"
+msgstr "Payload"
+
+msgid "Payload ({summary})"
+msgstr "Payload ({summary})"
+
+msgid "Pending"
+msgstr "Tertunda"
+
+msgid "Pending deliveries"
+msgstr "Pengiriman tertunda"
+
+msgid "People who asked to join this tenant. Approving creates their account and emails them a link to set a password — it does not set one for them. Rejecting creates nothing and notifies nobody."
+msgstr "Orang yang meminta bergabung ke tenant ini. Menyetujui membuat akun mereka dan mengirimi mereka tautan untuk menyetel kata sandi — ia tidak menyetelkan kata sandi untuk mereka. Menolak tidak membuat apa pun dan tidak memberi tahu siapa pun."
+
+msgid "permission for this tenant."
+msgstr "izin untuk tenant ini."
+
+msgid "Permissions"
+msgstr "Izin"
+
+msgid "Permissions ({count})"
+msgstr "Izin ({count})"
+
+msgid "Per-module enablement for this tenant. Core modules cannot be disabled, and a module other enabled modules depend on will refuse to turn off."
+msgstr "Pengaktifan per modul untuk tenant ini. Modul inti tidak bisa dinonaktifkan, dan modul yang menjadi dependensi modul aktif lain akan menolak dimatikan."
+
+msgid "person"
+msgstr "orang"
+
+msgid "per tenant"
+msgstr "per tenant"
+
+msgid "Per-tenant custom access policies. This table is empty by default — the evaluator applies the built-in role/permission rules, and custom policies are an opt-in extension surface."
+msgstr "Kebijakan akses kustom per tenant. Tabel ini kosong secara default — evaluator menerapkan aturan peran/izin bawaan, dan kebijakan kustom adalah permukaan ekstensi yang harus diaktifkan sendiri."
+
+msgid "Per-tenant overrides for"
+msgstr "Penimpaan per tenant untuk"
+
+msgid "Place a legal hold"
+msgstr "Pasang penahanan hukum"
+
+msgid "Place hold"
+msgstr "Pasang penahanan"
+
+msgid "platform"
+msgstr "platform"
+
+msgid "Platform tenant"
+msgstr "Tenant platform"
+
+msgid "Policies could not be loaded right now. Please try again later."
+msgstr "Kebijakan tidak dapat dimuat saat ini. Silakan coba lagi nanti."
+
+msgid "Policy"
+msgstr "Kebijakan"
+
+msgid "Policy code"
+msgstr "Kode kebijakan"
+
+msgid "Position"
+msgstr "Posisi"
+
+msgid "Posts could not be loaded right now. This is a problem reading the list, not an empty list — please try again later."
+msgstr "Post tidak dapat dimuat saat ini. Ini masalah membaca daftarnya, bukan daftar yang kosong — silakan coba lagi nanti."
+
+msgid "Posts per page"
+msgstr "Post per halaman"
+
+msgid "Presentation settings could not be loaded right now. This is a problem reading them, not an empty configuration — please try again later."
+msgstr "Pengaturan presentasi tidak dapat dimuat saat ini. Ini masalah membacanya, bukan konfigurasi yang kosong — silakan coba lagi nanti."
+
+msgid "Preserve query string"
+msgstr "Pertahankan query string"
+
+msgid "Preview mints a short-lived, non-indexable link to the saved draft. Publish promotes the saved draft to a new immutable version and makes it the live look. Retire clears the live pointer so the site falls back to the default theme; published versions stay intact and can be rolled back to."
+msgstr "Pratinjau mencetak tautan berumur pendek dan tak-terindeks ke draf tersimpan. Terbitkan mempromosikan draf tersimpan menjadi versi tak-berubah yang baru dan menjadikannya tampilan aktif. Pensiunkan mengosongkan penunjuk aktif sehingga situs kembali ke tema bawaan; versi terbit tetap utuh dan bisa di-rollback."
+
+msgid "← Previous"
+msgstr "← Sebelumnya"
+
+msgid "Primary"
+msgstr "Primer"
+
+msgid "Privacy-first human visitor statistics. Visitor identifiers are stored as salted hashes, never raw, unless explicitly enabled. Figures are server-rendered from this tenant's own data."
+msgstr "Statistik pengunjung manusia yang mengutamakan privasi. Pengenal pengunjung disimpan sebagai hash ber-salt, tidak pernah mentah, kecuali diaktifkan secara eksplisit. Angka dirender di server dari data tenant ini sendiri."
+
+msgid "Privacy-minimized 404 observations, most-hit first"
+msgstr "Observasi 404 yang diminimalkan privasinya, paling banyak kena dulu"
+
+msgid "Producer"
+msgstr "Produsen"
+
+msgid "Profiles could not be loaded right now. Please try again later."
+msgstr "Profil tidak dapat dimuat saat ini. Silakan coba lagi nanti."
+
+msgid "Projection"
+msgstr "Proyeksi"
+
+msgid "Projection rebuild runs, newest first, capped at 100 rows."
+msgstr "Eksekusi pembangunan ulang proyeksi, terbaru dulu, dibatasi 100 baris."
+
+msgid "Projections"
+msgstr "Proyeksi"
+
+msgid "Projections are declared in code by the modules that own them. Any that exist require their own permission on top of this screen's, so this can also mean none of them is granted to you."
+msgstr "Proyeksi dideklarasikan di kode oleh modul yang memilikinya. Yang ada pun menuntut izinnya sendiri di atas izin layar ini, jadi ini juga bisa berarti tidak satu pun diberikan kepada Anda."
+
+msgid "Provenance"
+msgstr "Asal-usul"
+
+msgid "Provider"
+msgstr "Penyedia"
+
+msgid "Provision a tenant"
+msgstr "Sediakan tenant"
+
+msgid "Provision tenant"
+msgstr "Sediakan tenant"
+
+msgid "Public"
+msgstr "Publik"
+
+msgid "Public unique visitors"
+msgstr "Pengunjung unik publik"
+
+msgid "Publish"
+msgstr "Terbitkan"
+
+msgid "Publish draft"
+msgstr "Terbitkan draf"
+
+msgid "published"
+msgstr "terbit"
+
+msgid "Published"
+msgstr "Terbit"
+
+msgid "Published versions"
+msgstr "Versi terbit"
+
+msgid "Pull sequence"
+msgstr "Sequence pull"
+
+msgid "Purge"
+msgstr "Bersihkan"
+
+msgid "Purgeable"
+msgstr "Bisa dibersihkan"
+
+msgid "Purged"
+msgstr "Dibersihkan"
+
+msgid "Purge permanently"
+msgstr "Bersihkan permanen"
+
+msgid "Push delivery is switched off on this deployment ({setting} is not {value}), so the dispatcher claims nothing and no notification will be sent. This is the expected state on an offline/LAN deployment."
+msgstr "Pengiriman push dimatikan pada deployment ini ({setting} bukan {value}), jadi dispatcher tidak mengklaim apa pun dan tidak ada notifikasi yang akan dikirim. Ini keadaan yang diharapkan pada deployment offline/LAN."
+
+msgid "push:dispatch"
+msgstr "push:dispatch"
+
+msgid "Push is enabled but no valid VAPID key pair is configured, so a browser cannot subscribe. Generate one with"
+msgstr "Push aktif tetapi tidak ada pasangan kunci VAPID valid yang dikonfigurasi, sehingga peramban tidak bisa berlangganan. Hasilkan satu dengan"
+
+msgid "PUSH_VAPID_*"
+msgstr "PUSH_VAPID_*"
+
+msgid "Query"
+msgstr "Kueri"
+
+msgid "Query analytics (opt-in, stores query hashes and counts only)"
+msgstr "Analitik kueri (harus diaktifkan sendiri, hanya menyimpan hash kueri dan hitungannya)"
+
+msgid "Queue"
+msgstr "Antrean"
+
+msgid "Queued"
+msgstr "Diantrekan"
+
+msgid "Queue is empty"
+msgstr "Antrean kosong"
+
+msgid "Quorum"
+msgstr "Kuorum"
+
+msgid "Raised"
+msgstr "Diajukan"
+
+msgid "RBAC roles for this tenant and the permissions granted to each. System roles (such as {role}) are protected and cannot be deleted."
+msgstr "Peran RBAC untuk tenant ini dan izin yang diberikan pada masing-masing. Peran sistem (seperti {role}) dilindungi dan tidak bisa dihapus."
+
+msgid "Reach"
+msgstr "Jangkauan"
+
+msgid "Read-model health and delivery: the freshness of every registered projection, the rebuilds and reconciliations run against them, the email queue, and the scheduled exports built from them. The tenant activity, access & audit, sync health and module usage views live on the"
+msgstr "Kesehatan dan pengiriman read-model: kesegaran setiap proyeksi terdaftar, pembangunan ulang dan rekonsiliasi yang dijalankan padanya, antrean email, serta ekspor terjadwal yang dibangun darinya. Tampilan aktivitas tenant, akses & audit, kesehatan sinkronisasi, dan penggunaan modul berada di"
+
+msgid "Read-only — changing these needs {permission}."
+msgstr "Hanya baca — mengubahnya butuh {permission}."
+
+msgid "Read-only here"
+msgstr "Hanya baca di sini"
+
+msgid "Read-only here. Adding, editing and removing a provider stays on"
+msgstr "Hanya baca di sini. Menambah, mengedit, dan menghapus penyedia tetap di"
+
+msgid "Read-only: you do not have permission to change the sidebar arrangement."
+msgstr "Hanya baca: Anda tidak punya izin untuk mengubah susunan menu samping."
+
+msgid "Rearrange this tenant&rsquo;s admin sidebar. The list of links comes from the installed modules and cannot be added to here &mdash; you can reorder, rename, move between sections, or hide an entry."
+msgstr "Susun ulang menu samping admin tenant ini. Daftar tautannya berasal dari modul terpasang dan tidak bisa ditambah dari sini &mdash; Anda bisa mengurutkan ulang, mengganti nama, memindahkan antar seksi, atau menyembunyikan sebuah entri."
+
+msgid "Reason"
+msgstr "Alasan"
+
+msgid "Reason for disclosure"
+msgstr "Alasan pengungkapan"
+
+msgid "Reason (optional)"
+msgstr "Alasan (opsional)"
+
+msgid "Reassign"
+msgstr "Tetapkan ulang"
+
+msgid "Rebuild"
+msgstr "Bangun ulang"
+
+msgid "Rebuild history"
+msgstr "Riwayat pembangunan ulang"
+
+msgid "Rebuild index"
+msgstr "Bangun ulang indeks"
+
+msgid "Rebuild reason"
+msgstr "Alasan pembangunan ulang"
+
+msgid "Recent delivery attempts"
+msgstr "Percobaan pengiriman terkini"
+
+msgid "Recent index runs"
+msgstr "Eksekusi indeks terkini"
+
+msgid "Recent messages"
+msgstr "Pesan terkini"
+
+msgid "Recent sessions"
+msgstr "Sesi terkini"
+
+msgid "Reconcile"
+msgstr "Rekonsiliasi"
+
+msgid "Reconcile index"
+msgstr "Rekonsiliasi indeks"
+
+msgid "Reconcile upserts current public documents and removes stale ones. Rebuild deletes every document and re-extracts from scratch — slower, and the public search surface is degraded while it runs."
+msgstr "Rekonsiliasi meng-upsert dokumen publik terkini dan membuang yang basi. Bangun ulang menghapus setiap dokumen dan mengekstraknya lagi dari nol — lebih lambat, dan permukaan pencarian publik menurun selama ia berjalan."
+
+msgid "Reconciliation ·"
+msgstr "Rekonsiliasi ·"
+
+msgid "Recorded domain events, newest first, capped at 100 rows."
+msgstr "Event domain yang tercatat, terbaru dulu, dibatasi 100 baris."
+
+msgid "Recorded runs"
+msgstr "Eksekusi tercatat"
+
+msgid "Recover a deleted rule"
+msgstr "Pulihkan aturan yang dihapus"
+
+msgid "Redirect policy"
+msgstr "Kebijakan redirect"
+
+msgid "Redirect rules"
+msgstr "Aturan redirect"
+
+msgid "Redirect rules could not be loaded right now. Please try again later."
+msgstr "Aturan redirect tidak dapat dimuat saat ini. Silakan coba lagi nanti."
+
+msgid "Redirect rules for this tenant, newest first"
+msgstr "Aturan redirect untuk tenant ini, terbaru dulu"
+
+msgid "Referrer"
+msgstr "Perujuk"
+
+msgid "Regions"
+msgstr "Wilayah"
+
+msgid "Regions in this version"
+msgstr "Wilayah di versi ini"
+
+msgid "Register a partner"
+msgstr "Daftarkan mitra"
+
+msgid "Registered"
+msgstr "Terdaftar"
+
+msgid "Registered devices"
+msgstr "Perangkat terdaftar"
+
+msgid "Registered domain event consumers and their backlog."
+msgstr "Konsumen event domain yang terdaftar dan backlog-nya."
+
+msgid "Registered media objects."
+msgstr "Objek media terdaftar."
+
+msgid "Registered partners"
+msgstr "Mitra terdaftar"
+
+msgid "Registered sync nodes."
+msgstr "Node sinkronisasi terdaftar."
+
+msgid "Registered tables"
+msgstr "Tabel terdaftar"
+
+msgid "Register partner"
+msgstr "Daftarkan mitra"
+
+msgid "Reinstate"
+msgstr "Pulihkan kembali"
+
+msgid "Reject"
+msgstr "Tolak"
+
+msgid "Rejected:"
+msgstr "Ditolak:"
+
+msgid "Release"
+msgstr "Lepaskan"
+
+msgid "Released:"
+msgstr "Dilepaskan:"
+
+msgid "Release hold"
+msgstr "Lepaskan penahanan"
+
+msgid "Release reason"
+msgstr "Alasan pelepasan"
+
+msgid "Remove"
+msgstr "Hapus"
+
+msgid "Removed"
+msgstr "Dihapus"
+
+msgid "Remove member"
+msgstr "Hapus anggota"
+
+msgid "Rename"
+msgstr "Ganti nama"
+
+msgid "· replay"
+msgstr "· replay"
+
+msgid "Replay"
+msgstr "Replay"
+
+msgid "Replay below once the cause is fixed"
+msgstr "Replay di bawah setelah penyebabnya diperbaiki"
+
+msgid "Reply"
+msgstr "Balas"
+
+msgid "reporting:exports:dispatch"
+msgstr "reporting:exports:dispatch"
+
+msgid "Reports"
+msgstr "Laporan"
+
+msgid "Repository:"
+msgstr "Repositori:"
+
+msgid "Request an erasure"
+msgstr "Ajukan penghapusan"
+
+msgid "Request an exception"
+msgstr "Ajukan pengecualian"
+
+msgid "Requested"
+msgstr "Diminta"
+
+msgid "Requested at"
+msgstr "Diminta pada"
+
+msgid "Requested by"
+msgstr "Diminta oleh"
+
+msgid "Request erasure"
+msgstr "Ajukan penghapusan"
+
+msgid "Requesting does not erase anything. A DIFFERENT person holding the approval permission must decide — the two permissions are a segregation-of-duties conflict, so you will not normally be able to do both."
+msgstr "Mengajukan tidak menghapus apa pun. Orang yang BERBEDA dan memegang izin persetujuan harus memutuskannya — kedua izin itu adalah konflik pemisahan tugas, jadi Anda biasanya tidak akan bisa melakukan keduanya."
+
+msgid "Request log"
+msgstr "Log permintaan"
+
+msgid "Required when it can write, and refused when it cannot — a read-only credential is not restricted by this list, so storing one here would describe a binding that is not enforced."
+msgstr "Wajib ketika ia bisa menulis, dan ditolak ketika tidak — kredensial hanya-baca tidak dibatasi oleh daftar ini, jadi menyimpannya di sini akan menggambarkan ikatan yang tidak ditegakkan."
+
+msgid "Require SSO (password sign-in refused except for break-glass accounts)"
+msgstr "Wajibkan SSO (masuk dengan kata sandi ditolak kecuali untuk akun break-glass)"
+
+msgid "Resend"
+msgstr "Kirim ulang"
+
+msgid "Resent"
+msgstr "Dikirim ulang"
+
+msgid "Reset"
+msgstr "Setel ulang"
+
+msgid "Reset to default"
+msgstr "Kembalikan ke default"
+
+msgid "Resolution"
+msgstr "Penyelesaian"
+
+msgid "Resolve"
+msgstr "Selesaikan"
+
+msgid "resolved"
+msgstr "selesai"
+
+msgid "Resolved via"
+msgstr "Diselesaikan lewat"
+
+msgid "Resource"
+msgstr "Sumber daya"
+
+msgid "Resource type"
+msgstr "Tipe sumber daya"
+
+msgid "Resource type (optional — blank means every resource)"
+msgstr "Tipe sumber daya (opsional — kosong berarti setiap sumber daya)"
+
+msgid "Restore"
+msgstr "Pulihkan"
+
+msgid "Result limit"
+msgstr "Batas hasil"
+
+msgid "Resume"
+msgstr "Lanjutkan"
+
+msgid "Retention, archive and purge for the high-volume tables each module declares — plus the legal holds that override them. Real archive and purge run only as the scheduled"
+msgstr "Retensi, arsip, dan pembersihan untuk tabel bervolume tinggi yang dideklarasikan tiap modul — plus penahanan hukum yang menimpanya. Arsip dan pembersihan sungguhan hanya berjalan sebagai"
+
+msgid "Retention (days)"
+msgstr "Retensi (hari)"
+
+msgid "Retention override (days, optional)"
+msgstr "Penimpaan retensi (hari, opsional)"
+
+msgid "Retire live theme"
+msgstr "Pensiunkan tema aktif"
+
+msgid "Retries"
+msgstr "Percobaan ulang"
+
+msgid "Retry"
+msgstr "Coba lagi"
+
+msgid "Review comments submitted against published content. Every decision here is audited with its reason code and re-checked against your permissions on the server."
+msgstr "Tinjau komentar yang dikirim pada konten terbit. Setiap keputusan di sini diaudit beserta kode alasannya dan diperiksa ulang terhadap izin Anda di server."
+
+msgid "Revisions"
+msgstr "Revisi"
+
+msgid "Revisions for the selected post."
+msgstr "Revisi untuk post yang dipilih."
+
+msgid "Revoke"
+msgstr "Cabut"
+
+msgid "Role"
+msgstr "Peran"
+
+msgid "Role code"
+msgstr "Kode peran"
+
+msgid "Role id (blank = every role this person holds)"
+msgstr "Id peran (kosong = setiap peran yang dipegang orang ini)"
+
+msgid "Role name"
+msgstr "Nama peran"
+
+msgid "Roles could not be loaded right now. Please try again later."
+msgstr "Peran tidak dapat dimuat saat ini. Silakan coba lagi nanti."
+
+msgid "Roles held"
+msgstr "Peran yang dipegang"
+
+msgid "Roles on acceptance"
+msgstr "Peran saat undangan diterima"
+
+msgid "Role they will hold"
+msgstr "Peran yang akan mereka pegang"
+
+msgid "Roll back"
+msgstr "Rollback"
+
+msgid "Roll back to previous version"
+msgstr "Rollback ke versi sebelumnya"
+
+msgid "Route mode"
+msgstr "Mode rute"
+
+msgid "Rows"
+msgstr "Baris"
+
+msgid "Rows (max {max})"
+msgstr "Baris (maks {max})"
+
+msgid "RSS enabled"
+msgstr "RSS aktif"
+
+msgid "Rule"
+msgstr "Aturan"
+
+msgid "Rule id"
+msgstr "Id aturan"
+
+msgid "Run"
+msgstr "Jalankan"
+
+msgid "Run a reconcile to build the index for the first time."
+msgstr "Jalankan rekonsiliasi untuk membangun indeks pertama kali."
+
+msgid "Run {command} to import the vendored dataset."
+msgstr "Jalankan {command} untuk mengimpor dataset yang di-vendor."
+
+msgid "Run history"
+msgstr "Riwayat eksekusi"
+
+msgid "Run plan"
+msgstr "Rencana eksekusi"
+
+msgid "Runs appear here once a schedule fires or an on-demand export is generated."
+msgstr "Eksekusi muncul di sini begitu sebuah jadwal terpicu atau ekspor sesuai permintaan dihasilkan."
+
+msgid "Save"
+msgstr "Simpan"
+
+msgid "Save a draft and publish it to create the first immutable version."
+msgstr "Simpan draf lalu terbitkan untuk membuat versi tak-berubah yang pertama."
+
+msgid "Save arrangement"
+msgstr "Simpan susunan"
+
+msgid "Save authentication policy"
+msgstr "Simpan kebijakan autentikasi"
+
+msgid "Save configuration"
+msgstr "Simpan konfigurasi"
+
+msgid "Saved."
+msgstr "Tersimpan."
+
+msgid "Saved draft"
+msgstr "Draf tersimpan"
+
+msgid "Save draft"
+msgstr "Simpan draf"
+
+msgid "Save MFA policy"
+msgstr "Simpan kebijakan MFA"
+
+msgid "Save page"
+msgstr "Simpan halaman"
+
+msgid "Save post"
+msgstr "Simpan post"
+
+msgid "Save redirect policy"
+msgstr "Simpan kebijakan redirect"
+
+msgid "Save SEO defaults"
+msgstr "Simpan default SEO"
+
+msgid "Save term"
+msgstr "Simpan istilah"
+
+msgid "Save theme"
+msgstr "Simpan tema"
+
+msgid "Schedule"
+msgstr "Jadwal"
+
+msgid "schedule. A dead-lettered delivery has exhausted its attempts and will not be retried until it is replayed."
+msgstr "terjadwal. Pengiriman yang masuk dead-letter sudah menghabiskan percobaannya dan tidak akan dicoba lagi sampai ia di-replay."
+
+msgid "Schedule a new export"
+msgstr "Jadwalkan ekspor baru"
+
+msgid "schedule. A subscription the push service reports as gone is disabled rather than deleted, so it can still answer &quot;why did this user stop getting notifications&quot;."
+msgstr "terjadwal. Langganan yang dilaporkan hilang oleh layanan push dinonaktifkan alih-alih dihapus, sehingga ia masih bisa menjawab &quot;kenapa pengguna ini berhenti menerima notifikasi&quot;."
+
+msgid "Scheduled export configurations for this tenant."
+msgstr "Konfigurasi ekspor terjadwal untuk tenant ini."
+
+msgid "Scheduled exports"
+msgstr "Ekspor terjadwal"
+
+msgid "— scheduling sets the time, it does not publish."
+msgstr "— penjadwalan menetapkan waktunya, ia tidak menerbitkan."
+
+msgid "Schema version"
+msgstr "Versi skema"
+
+msgid "Scope"
+msgstr "Cakupan"
+
+msgid "Scope assignments"
+msgstr "Penetapan cakupan"
+
+msgid "Scope id"
+msgstr "Id cakupan"
+
+msgid "Scope type"
+msgstr "Tipe cakupan"
+
+msgid "Scope type (blank = tenant-wide)"
+msgstr "Tipe cakupan (kosong = selingkup tenant)"
+
+msgid "Search"
+msgstr "Cari"
+
+msgid "Search configuration"
+msgstr "Konfigurasi pencarian"
+
+msgid "Search enabled"
+msgstr "Pencarian aktif"
+
+msgid "Search titles"
+msgstr "Cari judul"
+
+msgid "Secret"
+msgstr "Rahasia"
+
+msgid "Secrets are refused, both by key name and by the shape of the value. These settings are stored in the database and readable by every admin who can see this page; a provider credential belongs in an environment variable."
+msgstr "Rahasia ditolak, baik berdasarkan nama kunci maupun bentuk nilainya. Setelan ini disimpan di basis data dan bisa dibaca setiap admin yang bisa melihat halaman ini; kredensial penyedia tempatnya di variabel environment."
+
+msgid "Section"
+msgstr "Bagian"
+
+msgid "Section order"
+msgstr "Urutan seksi"
+
+msgid "Sections"
+msgstr "Bagian"
+
+msgid "Sections, comma-separated, in the order they should render: {sections}. Leave a token empty to inherit the theme default shown as its placeholder."
+msgstr "Seksi, dipisah koma, dalam urutan render yang diinginkan: {sections}. Biarkan sebuah token kosong untuk mewarisi default tema yang ditampilkan sebagai placeholder-nya."
+
+msgid "See diagnostics below"
+msgstr "Lihat diagnostik di bawah"
+
+msgid "Seen"
+msgstr "Terlihat"
+
+msgid "Self-registration is switched off for this deployment ({setting}), so no new request can arrive. Anything already queued below can still be reviewed."
+msgstr "Pendaftaran mandiri dimatikan untuk deployment ini ({setting}), jadi tidak ada permintaan baru yang bisa masuk. Yang sudah mengantre di bawah tetap bisa ditinjau."
+
+msgid "Send a test notification"
+msgstr "Kirim notifikasi uji"
+
+msgid "Send invitation"
+msgstr "Kirim undangan"
+
+msgid "Sent (24h)"
+msgstr "Terkirim (24 jam)"
+
+msgid "Sent invitations"
+msgstr "Undangan terkirim"
+
+msgid "SEO defaults"
+msgstr "SEO bawaan"
+
+msgid "SEO defaults could not be loaded right now. Please try again later."
+msgstr "SEO bawaan tidak dapat dimuat saat ini. Silakan coba lagi nanti."
+
+msgid "Seq"
+msgstr "Seq"
+
+msgid "Serve a different version"
+msgstr "Sajikan versi lain"
+
+msgid "Serve feeds"
+msgstr "Sajikan feed"
+
+msgid "Server-side scratch state for multi-step forms. Drafts are created by the wizards of other modules — this screen is for inspecting and clearing them, not for authoring. The newest 100 matching drafts are shown; narrow the list with the filters below. Purged automatically by"
+msgstr "Keadaan sementara sisi server untuk formulir bertahap. Draf dibuat oleh wizard modul lain — layar ini untuk memeriksa dan membersihkannya, bukan untuk menulis. 100 draf terbaru yang cocok ditampilkan; persempit daftarnya dengan filter di bawah. Dibersihkan otomatis oleh"
+
+msgid "Serve sitemap"
+msgstr "Sajikan sitemap"
+
+msgid "Serve this version"
+msgstr "Sajikan versi ini"
+
+msgid "Service account"
+msgstr "Akun layanan"
+
+msgid "Set primary"
+msgstr "Jadikan primer"
+
+msgid "Setting"
+msgstr "Setelan"
+
+msgid "Setting a blog theme creates an override that cannot be removed from here — the API has no way to clear it, only to change it. Until one is set, the blog follows the tenant default."
+msgstr "Menyetel tema blog membuat penimpaan yang tidak bisa dihapus dari sini — API tidak punya cara untuk mengosongkannya, hanya mengubahnya. Sampai satu disetel, blog mengikuti default tenant."
+
+msgid "Sever"
+msgstr "Putuskan"
+
+msgid "Severity"
+msgstr "Tingkat keparahan"
+
+msgid "Show"
+msgstr "Tampilkan"
+
+msgid "Showing the first 100 terms by name. Filter by type to narrow the list."
+msgstr "Menampilkan 100 istilah pertama menurut nama. Filter berdasarkan tipe untuk mempersempit daftar."
+
+msgid "Showing the newest page. Older invitations are reachable through"
+msgstr "Menampilkan halaman terbaru. Undangan yang lebih lama bisa dijangkau lewat"
+
+msgid "Showing the {shown} most recent matching events. This view is capped at {max} rows and cannot page further back — older events exist and are retained according to the audit retention policy."
+msgstr "Menampilkan {shown} event terkini yang cocok. Tampilan ini dibatasi {max} baris dan tidak bisa menelusuri lebih jauh ke belakang — event yang lebih lama tetap ada dan disimpan sesuai kebijakan retensi audit."
+
+msgid "Sidebar"
+msgstr "Menu samping"
+
+msgid "Sign-in methods"
+msgstr "Metode masuk"
+
+msgid "since {timestamp} UTC"
+msgstr "sejak {timestamp} UTC"
+
+msgid "Sitemap enabled"
+msgstr "Sitemap aktif"
+
+msgid "Sitemap served"
+msgstr "Sitemap disajikan"
+
+msgid "Site name"
+msgstr "Nama situs"
+
+msgid "Site-wide noindex"
+msgstr "Noindex seluruh situs"
+
+msgid "Size"
+msgstr "Ukuran"
+
+msgid "Skip email confirmation"
+msgstr "Lewati konfirmasi email"
+
+msgid "{slot} media id"
+msgstr "id media {slot}"
+
+msgid "Slug"
+msgstr "Slug"
+
+msgid "Soft-deleted rules are excluded from the list above, so restore and purge are addressed by rule id. Deleting a rule on this page sends you back here with its id filled in."
+msgstr "Aturan yang di-soft-delete dikecualikan dari daftar di atas, jadi pemulihan dan pembersihan dialamatkan lewat id aturan. Menghapus sebuah aturan di halaman ini mengembalikan Anda ke sini dengan id-nya sudah terisi."
+
+msgid "Soft-deleted (this page)"
+msgstr "Di-soft-delete (halaman ini)"
+
+msgid "Sort order"
+msgstr "Urutan"
+
+msgid "Source"
+msgstr "Sumber"
+
+msgid "Source contains"
+msgstr "Sumber mengandung"
+
+msgid "Source path"
+msgstr "Path sumber"
+
+msgid "Spam"
+msgstr "Spam"
+
+msgid "src/lib/"
+msgstr "src/lib/"
+
+msgid "SSO is required for this tenant, but SSO sign-in is switched off for this deployment. Nobody outside the break-glass list can sign in until"
+msgstr "SSO diwajibkan untuk tenant ini, tetapi masuk dengan SSO dimatikan untuk deployment ini. Tidak ada yang bisa masuk di luar daftar break-glass sampai"
+
+msgid "Stable identifier. Cannot be changed after creation."
+msgstr "Pengenal stabil. Tidak bisa diubah setelah dibuat."
+
+msgid "Standing site content — about, contact, policies. Pages have a narrower lifecycle than posts:"
+msgstr "Konten situs yang tetap — tentang, kontak, kebijakan. Halaman punya siklus hidup yang lebih sempit daripada post:"
+
+msgid "Started"
+msgstr "Dimulai"
+
+msgid "State"
+msgstr "Keadaan"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Status code"
+msgstr "Kode status"
+
+msgid "{status} comments awaiting moderation"
+msgstr "komentar {status} menunggu moderasi"
+
+msgid "Step"
+msgstr "Langkah"
+
+msgid "store"
+msgstr "toko"
+
+msgid "Subject"
+msgstr "Subjek"
+
+msgid "Subject (en)"
+msgstr "Subjek (en)"
+
+msgid "Subject tenant user id"
+msgstr "Id pengguna tenant subjek"
+
+msgid "Submit for review"
+msgstr "Kirim untuk ditinjau"
+
+msgid "Submitted"
+msgstr "Dikirim"
+
+msgid "Successes as well as failures. A provider that started answering slowly, or one that changed which endpoints it accepts, is a pattern across both — a failures-only list answers &quot;what broke&quot; and never &quot;since when&quot;."
+msgstr "Keberhasilan sekaligus kegagalan. Penyedia yang mulai menjawab lambat, atau yang mengubah endpoint mana yang diterimanya, adalah pola yang terbaca dari keduanya — daftar yang hanya berisi kegagalan menjawab &quot;apa yang rusak&quot; dan tidak pernah &quot;sejak kapan&quot;."
+
+msgid "Suggestion limit"
+msgstr "Batas saran"
+
+msgid "Suggestions enabled"
+msgstr "Saran aktif"
+
+msgid "Summary"
+msgstr "Ringkasan"
+
+msgid "Suppress address"
+msgstr "Saring alamat"
+
+msgid "Suppress an address — or check one"
+msgstr "Saring sebuah alamat — atau periksa satu"
+
+msgid "Suppressed"
+msgstr "Disaring"
+
+msgid "Suppressed addresses"
+msgstr "Alamat yang disaring"
+
+msgid "Suspend"
+msgstr "Suspensi"
+
+msgid "Sync conflicts, newest first, capped at 50 rows."
+msgstr "Konflik sinkronisasi, terbaru dulu, dibatasi 50 baris."
+
+msgid "System roles are not offered: an invitation cannot grant one, and finding that out after composing the invitation is the worst moment to learn it."
+msgstr "Peran sistem tidak ditawarkan: undangan tidak bisa memberikannya, dan mengetahui itu setelah undangan disusun adalah saat terburuk untuk mengetahuinya."
+
+msgid "Table"
+msgstr "Tabel"
+
+msgid "Table (optional)"
+msgstr "Tabel (opsional)"
+
+msgid "Tables this report deliberately does not reach, and why. A report that omitted them silently would look complete."
+msgstr "Tabel yang sengaja tidak dijangkau laporan ini, dan alasannya. Laporan yang menghilangkannya diam-diam akan tampak lengkap."
+
+msgid "tag"
+msgstr "tag"
+
+msgid "Target"
+msgstr "Target"
+
+msgid "Target type"
+msgstr "Tipe target"
+
+msgid "Tasks"
+msgstr "Tugas"
+
+msgid "Tasks awaiting a decision, the history behind them, and the delegations that let someone else decide on your behalf. Overdue tasks are escalated by"
+msgstr "Tugas yang menunggu keputusan, riwayat di belakangnya, dan delegasi yang membuat orang lain bisa memutuskan atas nama Anda. Tugas yang terlambat dieskalasi oleh"
+
+msgid "Template key"
+msgstr "Kunci templat"
+
+msgid "Templates"
+msgstr "Templat"
+
+msgid "Templates could not be loaded right now. Please try again later."
+msgstr "Templat tidak dapat dimuat saat ini. Silakan coba lagi nanti."
+
+msgid "Tenancy mode"
+msgstr "Mode tenancy"
+
+msgid "Tenant authentication policy"
+msgstr "Kebijakan autentikasi tenant"
+
+msgid "Tenant code"
+msgstr "Kode tenant"
+
+msgid "Tenant domains could not be loaded right now. Please try again later."
+msgstr "Domain tenant tidak dapat dimuat saat ini. Silakan coba lagi nanti."
+
+msgid "Tenant id"
+msgstr "Id tenant"
+
+msgid "Tenant name"
+msgstr "Nama tenant"
+
+msgid "Tenants listed"
+msgstr "Tenant terdaftar"
+
+msgid "Tenant user id"
+msgstr "Id pengguna tenant"
+
+msgid "Tenant users, their status, and their assigned roles. Login identifiers are masked here — they are personal data and are never shown in full in a list view."
+msgstr "Pengguna tenant, statusnya, dan peran yang ditetapkan padanya. Pengenal login disamarkan di sini — ia data pribadi dan tidak pernah ditampilkan utuh dalam tampilan daftar."
+
+msgid "Terms"
+msgstr "Istilah"
+
+msgid "Terms could not be loaded right now. This is a problem reading the list, not an empty list — please try again later."
+msgstr "Istilah tidak dapat dimuat saat ini. Ini masalah membaca daftarnya, bukan daftar yang kosong — silakan coba lagi nanti."
+
+msgid "Text body (en)"
+msgstr "Isi teks (en)"
+
+msgid "The 404 log could not be loaded right now. Please try again later."
+msgstr "Log 404 tidak dapat dimuat saat ini. Silakan coba lagi nanti."
+
+msgid "The 50 most recent published theme versions, newest first"
+msgstr "50 versi tema terbit paling baru, terbaru dulu"
+
+msgid "The approval inbox could not be loaded right now. This is a problem reading it, not an empty inbox — please try again later."
+msgstr "Kotak masuk persetujuan tidak dapat dimuat saat ini. Ini masalah membacanya, bukan kotak masuk yang kosong — silakan coba lagi nanti."
+
+msgid "The archive/purge job has not run for this tenant yet."
+msgstr "Job arsip/pembersihan belum pernah berjalan untuk tenant ini."
+
+msgid "The audit trail could not be loaded right now. Please try again later."
+msgstr "Jejak audit tidak dapat dimuat saat ini. Silakan coba lagi nanti."
+
+msgid "the blog console"
+msgstr "konsol blog"
+
+msgid "The body of this page holds blocks this plain-text editor cannot represent — an image gallery or a video embed. Structure and excerpt are still editable; the body is left untouched, because saving it from here would drop those blocks."
+msgstr "Isi halaman ini memuat blok yang tidak bisa diwakili editor teks polos ini — galeri gambar atau sematan video. Struktur dan kutipan tetap bisa diedit; isinya dibiarkan utuh, karena menyimpannya dari sini akan membuang blok-blok itu."
+
+msgid "The body of this post holds blocks this plain-text editor cannot represent — an image gallery or a video embed. Title, slug, visibility and excerpt are still editable; the body is left untouched, because saving it from here would drop those blocks."
+msgstr "Isi post ini memuat blok yang tidak bisa diwakili editor teks polos ini — galeri gambar atau sematan video. Judul, slug, visibilitas, dan kutipan tetap bisa diedit; isinya dibiarkan utuh, karena menyimpannya dari sini akan membuang blok-blok itu."
+
+msgid "The built-in role/permission rules apply. Add a custom policy to extend or override them for this tenant."
+msgstr "Aturan peran/izin bawaan berlaku. Tambahkan kebijakan kustom untuk memperluas atau menimpanya bagi tenant ini."
+
+msgid "The code appears once, on this page, and cannot be read again. Hand it to your partner out of band. Access lasts at most {days} days."
+msgstr "Kode ini muncul sekali, di halaman ini, dan tidak bisa dibaca lagi. Serahkan kepada mitra Anda lewat jalur terpisah. Akses berlaku paling lama {days} hari."
+
+msgid "The credential acts AS this account. It can never do more than the account can — the permissions below narrow that, they never widen it."
+msgstr "Kredensial bertindak SEBAGAI akun ini. Ia tidak pernah bisa melakukan lebih dari yang bisa dilakukan akun itu — izin di bawah mempersempitnya, tidak pernah melebarkannya."
+
+msgid "The data lifecycle console could not be loaded right now. Please try again later."
+msgstr "Konsol siklus hidup data tidak dapat dimuat saat ini. Silakan coba lagi nanti."
+
+msgid "The dataset console could not be loaded right now. Please try again later."
+msgstr "Konsol dataset tidak dapat dimuat saat ini. Silakan coba lagi nanti."
+
+msgid "The device push outbox. A notification is queued in the same transaction as the thing that caused it; delivery happens afterwards, on the"
+msgstr "Outbox push perangkat. Notifikasi diantrekan dalam transaksi yang sama dengan hal yang menyebabkannya; pengiriman terjadi sesudahnya, pada"
+
+msgid "The event runtime console could not be loaded right now. This is a problem reading it, not an idle runtime — please try again later."
+msgstr "Konsol runtime event tidak dapat dimuat saat ini. Ini masalah membacanya, bukan runtime yang menganggur — silakan coba lagi nanti."
+
+msgid "The fifth management reporting view. An idle queue is healthy — only failures and a retry backlog are not."
+msgstr "Tampilan pelaporan manajemen kelima. Antrean yang menganggur itu sehat — hanya kegagalan dan backlog percobaan ulang yang tidak."
+
+msgid "The Indonesia administrative-region hierarchy (province, regency/city, district, village) that address forms and regional reports read from. Versions are imported on deploy; exactly one is served at a time, to every tenant."
+msgstr "Hierarki wilayah administratif Indonesia (provinsi, kabupaten/kota, kecamatan, desa) yang dibaca formulir alamat dan laporan kewilayahan. Versi diimpor saat deploy; tepat satu disajikan pada satu waktu, ke setiap tenant."
+
+msgid "The list below shows masked addresses only, so it cannot be searched. Submitting an address that is already suppressed does not add a second entry — it tells you it is already there, which is how to answer \"why is this person not getting our mail?\"."
+msgstr "Daftar di bawah hanya menampilkan alamat yang disamarkan, jadi ia tidak bisa dicari. Mengirimkan alamat yang sudah disaring tidak menambah entri kedua — ia memberi tahu Anda bahwa alamat itu sudah ada, dan begitulah cara menjawab \"kenapa orang ini tidak menerima surel kami?\"."
+
+msgid "Theme"
+msgstr "Tema"
+
+msgid "Theme default ({value})"
+msgstr "Default tema ({value})"
+
+msgid "The media library could not be loaded right now. This is a problem reading it, not an empty library — please try again later."
+msgstr "Pustaka media tidak dapat dimuat saat ini. Ini masalah membacanya, bukan pustaka yang kosong — silakan coba lagi nanti."
+
+msgid "The moderation queue could not be loaded. Try again."
+msgstr "Antrean moderasi tidak dapat dimuat. Coba lagi."
+
+msgid ". The module ships defaults in code; this tenant may override them key by key. What the rest of the system reads is the two merged together."
+msgstr ". Modul mengirimkan default di kode; tenant ini boleh menimpanya kunci demi kunci. Yang dibaca sistem selebihnya adalah gabungan keduanya."
+
+msgid "The most recent lifecycle runs, newest first"
+msgstr "Eksekusi siklus hidup terkini, terbaru dulu"
+
+msgid "The outbox itself, newest first. These rows are append-only evidence of what happened — they are never edited, and replaying a delivery does not create a new one."
+msgstr "Outbox itu sendiri, terbaru dulu. Baris-baris ini adalah bukti hanya-tambah atas apa yang terjadi — ia tidak pernah diedit, dan me-replay sebuah pengiriman tidak membuat pengiriman baru."
+
+msgid "The owner account is created with the password you set here — it is sent once and never stored by this screen. The new tenant receives the tenant-scoped permission catalogue only; platform permissions are never granted to a provisioned tenant."
+msgstr "Akun pemilik dibuat dengan kata sandi yang Anda setel di sini — ia dikirim sekali dan tidak pernah disimpan oleh layar ini. Tenant baru hanya menerima katalog izin selingkup tenant; izin platform tidak pernah diberikan kepada tenant yang disediakan."
+
+msgid "The post lifecycle: draft, review, scheduled, published, archived. Pages, taxonomy, presentation and homepage composition are separate screens. Scheduled posts are published by"
+msgstr "Siklus hidup post: draf, tinjauan, terjadwal, terbit, diarsipkan. Halaman, taksonomi, presentasi, dan komposisi beranda adalah layar terpisah. Post terjadwal diterbitkan oleh"
+
+msgid "The public-route switch {setting} is NOT here — it is a module setting, stored in {table}. It is linked rather than mirrored into this form: a field two screens both render is the field that goes stale silently."
+msgstr "Saklar rute publik {setting} BUKAN di sini — ia setting modul, disimpan di {table}. Ia dicantumkan sebagai tautan, bukan dicerminkan ke form ini: field yang dirender dua layar sekaligus adalah field yang basi diam-diam."
+
+msgid "The push console could not be loaded right now. This is a problem reading it, not an idle queue — please try again later."
+msgstr "Konsol push tidak dapat dimuat saat ini. Ini masalah membacanya, bukan antrean yang menganggur — silakan coba lagi nanti."
+
+msgid "The redirect policy could not be loaded right now. Please try again later."
+msgstr "Kebijakan redirect tidak dapat dimuat saat ini. Silakan coba lagi nanti."
+
+msgid "There is no partner directory to pick from, on purpose: a list of every partnership on this platform is exactly the cross-tenant artefact this design refuses to build. Ask your partner for their tenant id."
+msgstr "Tidak ada direktori mitra untuk dipilih, dan itu disengaja: daftar setiap kemitraan di platform ini persis merupakan artefak lintas-tenant yang ditolak dibangun oleh desain ini. Mintalah id tenant kepada mitra Anda."
+
+msgid "— there is no way to remove an override through the API yet, so to undo one, set it back to the default value shown above."
+msgstr "— belum ada cara menghapus penimpaan lewat API, jadi untuk membatalkannya, setel kembali ke nilai default yang ditampilkan di atas."
+
+msgid "There is no way to REMOVE a partner here, and that is deliberate: engagements and delegated grants reference these rows, and grants are built to outlive the partnership that produced them. Suspending is the retirement path, and it removes nothing — every grant row survives as the record of who could reach which customer and until when. What stops is the reach: each delegated actor the partner placed is refused at their next request, in every customer tenant, and reinstating restores all of it without anybody rewriting a row."
+msgstr "Tidak ada cara MENGHAPUS mitra di sini, dan itu disengaja: engagement dan grant terdelegasi merujuk baris-baris ini, dan grant dibangun untuk hidup lebih lama daripada kemitraan yang menghasilkannya. Menangguhkan adalah jalur pensiunnya, dan ia tidak menghapus apa pun — setiap baris grant bertahan sebagai catatan siapa yang bisa menjangkau pelanggan mana dan sampai kapan. Yang berhenti adalah jangkauannya: setiap aktor terdelegasi yang ditempatkan mitra itu ditolak pada permintaan berikutnya, di setiap tenant pelanggan, dan memulihkannya kembali mengembalikan semuanya tanpa siapa pun menulis ulang satu baris."
+
+msgid "The reporting console could not be loaded right now. This is a problem reading it, not an empty console — please try again later."
+msgstr "Konsol pelaporan tidak dapat dimuat saat ini. Ini masalah membacanya, bukan konsol yang kosong — silakan coba lagi nanti."
+
+msgid "The search console could not be loaded right now. Please try again later."
+msgstr "Konsol pencarian tidak dapat dimuat saat ini. Silakan coba lagi nanti."
+
+msgid "The sync console could not be loaded right now. This is a problem reading it, not a healthy silence — please try again later."
+msgstr "Konsol sinkronisasi tidak dapat dimuat saat ini. Ini masalah membacanya, bukan kesunyian yang sehat — silakan coba lagi nanti."
+
+msgid "The tenant directory belongs to the platform tenant ({code}), not to this one. The refusal is about WHERE the action is being made, not who is making it — no grant on this tenant can unlock it."
+msgstr "Direktori tenant milik tenant platform ({code}), bukan milik tenant ini. Penolakannya soal DI MANA tindakan itu dilakukan, bukan siapa yang melakukannya — tidak ada grant di tenant ini yang bisa membukanya."
+
+msgid "The tenant directory belongs to the platform tenant, not to this one. The refusal is about WHERE the action is being made, not who is making it — no grant on this tenant can unlock it."
+msgstr "Direktori tenant milik tenant platform, bukan milik tenant ini. Penolakannya soal DI MANA tindakan itu dilakukan, bukan siapa yang melakukannya — tidak ada grant di tenant ini yang bisa membukanya."
+
+msgid "The tenant directory could not be loaded right now. Please try again later."
+msgstr "Direktori tenant tidak dapat dimuat saat ini. Silakan coba lagi nanti."
+
+msgid "The tenant must already exist — this does not create one. There is no picker on purpose: a selectable list of every tenant is the directory this design declines to hand out. Look the id up on the Tenants screen if you need it."
+msgstr "Tenant itu harus sudah ada — ini tidak membuatnya. Tidak ada pemilih, dan itu disengaja: daftar terpilih berisi setiap tenant adalah direktori yang enggan diserahkan desain ini. Cari id-nya di layar Tenant jika Anda membutuhkannya."
+
+msgid "The tenant's active theme pointer and saved draft"
+msgstr "Penunjuk tema aktif tenant dan draf tersimpannya"
+
+msgid "The tenant's central directory of people and organizations. Sensitive identifiers (email, phone, NIK) are never listed here — they are surfaced only through the dedicated, masked identifiers view."
+msgstr "Direktori pusat orang dan organisasi milik tenant. Pengenal sensitif (email, telepon, NIK) tidak pernah didaftar di sini — ia hanya ditampilkan lewat tampilan pengenal khusus yang disamarkan."
+
+msgid "The tenant's full-text search index over published content: how fresh it is, what it contains, the last runs, and the items that failed to index. The index is a projection of public content only — it is never an authorization source."
+msgstr "Indeks pencarian teks penuh milik tenant atas konten terbit: seberapa segar, apa isinya, eksekusi terakhirnya, dan item yang gagal diindeks. Indeks adalah proyeksi konten publik saja — ia tidak pernah menjadi sumber otorisasi."
+
+msgid "The tenant's office hierarchy. Offices can be edited inline, soft-deleted, and restored — deleted offices are listed separately so they remain reachable."
+msgstr "Hierarki kantor milik tenant. Kantor bisa diedit langsung, di-soft-delete, dan dipulihkan — kantor yang dihapus didaftar terpisah agar tetap terjangkau."
+
+msgid "The ten most recent index runs"
+msgstr "Sepuluh eksekusi indeks terkini"
+
+msgid "The theming console could not be loaded right now. Please try again later."
+msgstr "Konsol tema tidak dapat dimuat saat ini. Silakan coba lagi nanti."
+
+msgid "The transactional outbox and its consumers. Events are recorded in the same transaction as the change that caused them; delivery is what happens afterwards, on the"
+msgstr "Outbox transaksional dan konsumennya. Event dicatat dalam transaksi yang sama dengan perubahan yang menyebabkannya; pengiriman adalah yang terjadi sesudahnya, pada"
+
+msgid "the Users screen"
+msgstr "layar Pengguna"
+
+msgid "This browser reports a time zone this deployment does not know. Choose the closest one."
+msgstr "Peramban ini melaporkan zona waktu yang tidak dikenal deployment ini. Pilih yang paling dekat."
+
+msgid "This build ships no theme descriptors, so there is nothing to configure."
+msgstr "Build ini tidak mengirimkan deskriptor tema, jadi tidak ada yang bisa dikonfigurasi."
+
+msgid "This is a"
+msgstr "Ini adalah"
+
+msgid "This is a PATCH, not a replacement. Keys you write here are merged into the override above; keys you leave out are kept as they are."
+msgstr "Ini PATCH, bukan penggantian. Kunci yang Anda tulis di sini digabungkan ke penimpaan di atas; kunci yang Anda hilangkan tetap seperti apa adanya."
+
+msgid ": this page covers what THIS tenant holds, and a person who belongs to several tenants has a separate request in each."
+msgstr ": halaman ini mencakup apa yang dipegang tenant INI, dan orang yang tergabung di beberapa tenant punya permintaan terpisah di masing-masing."
+
+msgid "This should not happen — the platform tenant itself is a tenant. Check the server logs."
+msgstr "Ini seharusnya tidak terjadi — tenant platform itu sendiri adalah sebuah tenant. Periksa log server."
+
+msgid "This tenant has no OIDC provider, so SSO sign-in cannot succeed regardless of the policy above."
+msgstr "Tenant ini tidak punya penyedia OIDC, jadi masuk dengan SSO tidak bisa berhasil terlepas dari kebijakan di atas."
+
+msgid "This tenant's override"
+msgstr "Penimpaan tenant ini"
+
+msgid "This tenant's public metadata defaults, discovery surfaces (robots.txt, sitemap, feeds), redirect rules, and the privacy-minimized 404 log. Bulk import and automatic URL-change capture are API-only; the redirect policy below governs the latter."
+msgstr "Default metadata publik tenant ini, permukaan discovery (robots.txt, sitemap, feed), aturan redirect, dan log 404 yang diminimalkan privasinya. Impor massal dan penangkapan perubahan URL otomatis hanya lewat API; kebijakan redirect di bawah mengatur yang terakhir."
+
+msgid "— those writes carry a client secret, and a form that posts one deserves its own change."
+msgstr "— penulisan itu membawa client secret, dan form yang mengirimkannya layak mendapat perubahannya sendiri."
+
+msgid "Time range"
+msgstr "Rentang waktu"
+
+msgid "Timestamps on this page and in your session list are shown in this zone. Leave it on UTC and every time carries a Z, which is what the admin did before this control existed."
+msgstr "Cap waktu di halaman ini dan di daftar sesi Anda ditampilkan dalam zona ini. Biarkan pada UTC dan setiap waktu membawa Z, yaitu yang dilakukan admin sebelum kendali ini ada."
+
+msgid "Time zone"
+msgstr "Zona waktu"
+
+msgid "Title"
+msgstr "Judul"
+
+msgid "Title, address, menu placement and body. Re-parenting is not offered here: it needs cycle detection the API does not perform, and a control that can build a loop is worse than none."
+msgstr "Judul, alamat, penempatan menu, dan isi. Mengubah induk tidak ditawarkan di sini: ia butuh deteksi siklus yang tidak dilakukan API, dan kendali yang bisa membangun lingkaran lebih buruk daripada tidak ada kendali sama sekali."
+
+msgid "Title at revision"
+msgstr "Judul pada revisi"
+
+msgid "Top pages"
+msgstr "Halaman teratas"
+
+msgid "Transactional email templates for this tenant, including inactive ones. Subject and body are captured for the"
+msgstr "Templat email transaksional untuk tenant ini, termasuk yang nonaktif. Subjek dan isi ditangkap untuk"
+
+msgid "Transport"
+msgstr "Transport"
+
+msgid "Trigger"
+msgstr "Pemicu"
+
+msgid "Turn off on this device"
+msgstr "Matikan di perangkat ini"
+
+msgid "Twitter site handle"
+msgstr "Handle situs Twitter"
+
+msgid "Type"
+msgstr "Tipe"
+
+msgid "Type is {type} and parent is {parent}. Neither can be changed after creation: the API performs no cycle detection, so re-parenting here could create a loop no reader can escape. Delete the term and create it again instead."
+msgstr "Tipenya {type} dan induknya {parent}. Keduanya tidak bisa diubah setelah dibuat: API tidak melakukan deteksi siklus, jadi mengubah induk di sini bisa menciptakan lingkaran yang tak bisa dilepaskan pembaca mana pun. Hapus istilah itu lalu buat lagi sebagai gantinya."
+
+msgid "UA hash"
+msgstr "Hash UA"
+
+msgid "unresolved only"
+msgstr "hanya yang belum selesai"
+
+msgid "Until"
+msgstr "Sampai"
+
+msgid "Updated"
+msgstr "Diperbarui"
+
+msgid "URL-change capture"
+msgstr "Penangkapan perubahan URL"
+
+msgid "User groups could not be loaded right now. Please try again later."
+msgstr "Grup pengguna tidak dapat dimuat saat ini. Silakan coba lagi nanti."
+
+msgid "Use this device's time zone"
+msgstr "Pakai zona waktu perangkat ini"
+
+msgid "UTC"
+msgstr "UTC"
+
+msgid "UTC — rows older than this"
+msgstr "UTC — baris yang lebih tua dari ini"
+
+msgid "Validate"
+msgstr "Validasi"
+
+msgid "validated"
+msgstr "validated"
+
+msgid "Value"
+msgstr "Nilai"
+
+msgid "variables."
+msgstr "variabel."
+
+msgid "Verification"
+msgstr "Verifikasi"
+
+msgid "A DNS TXT record is generated when the domain is added. Publish it in the domain's zone, then press Verify."
+msgstr "Record DNS TXT dibuat saat domain ditambahkan. Terbitkan di zona domain itu, lalu tekan Verifikasi."
+
+msgid "Publish TXT"
+msgstr "Terbitkan TXT"
+
+msgid "Verify"
+msgstr "Verifikasi"
+
+msgid "View"
+msgstr "Lihat"
+
+msgid "Views"
+msgstr "Tayangan"
+
+msgid "Visibility"
+msgstr "Visibilitas"
+
+msgid "Visitor analytics collection is disabled (VISITOR_ANALYTICS_ENABLED=false). Figures below reflect only data collected while it was enabled."
+msgstr "Pengumpulan analitik pengunjung dinonaktifkan (VISITOR_ANALYTICS_ENABLED=false). Angka di bawah hanya mencerminkan data yang dikumpulkan saat ia aktif."
+
+msgid "Waiting for a decision ({count})"
+msgstr "Menunggu keputusan ({count})"
+
+msgid "warehouse"
+msgstr "gudang"
+
+msgid "What"
+msgstr "Apa"
+
+msgid "What this data is, and is not"
+msgstr "Apa data ini, dan apa yang bukan"
+
+msgid "When"
+msgstr "Kapan"
+
+msgid "When a resource's URL changes"
+msgstr "Ketika URL sebuah sumber daya berubah"
+
+msgid "When (UTC)"
+msgstr "Kapan (UTC)"
+
+msgid "Where those values come from"
+msgstr "Dari mana nilai-nilai itu berasal"
+
+msgid "Which part of the organisation a person's authority covers, the segregation-of-duties conflicts that produced, and the time-bounded exceptions someone approved to work past one."
+msgstr "Bagian organisasi mana yang dicakup wewenang seseorang, konflik pemisahan tugas yang ditimbulkannya, dan pengecualian berbatas waktu yang disetujui seseorang untuk melewatinya."
+
+msgid "Which tenants on this deployment may be engaged as partners. A row here grants nothing — it is the precondition a customer's engagement checks. Whether a partner actually reaches a customer is that customer's decision, taken on their own Partner access screen."
+msgstr "Tenant mana pada deployment ini yang boleh digandeng sebagai mitra. Baris di sini tidak memberikan apa pun — ia prasyarat yang diperiksa engagement seorang pelanggan. Apakah seorang mitra benar-benar menjangkau seorang pelanggan adalah keputusan pelanggan itu, yang diambil di layar Akses mitra mereka sendiri."
+
+msgid "Who from outside this organisation can reach this tenant, and until when. Severing a partnership revokes every grant under it — memberships deactivated, sessions killed — in one step."
+msgstr "Siapa dari luar organisasi ini yang bisa menjangkau tenant ini, dan sampai kapan. Memutus kemitraan mencabut setiap grant di bawahnya — keanggotaan dinonaktifkan, sesi dimatikan — dalam satu langkah."
+
+msgid "Why"
+msgstr "Mengapa"
+
+msgid "Why disabled"
+msgstr "Alasan dinonaktifkan"
+
+msgid "Widen the filters above, or nothing has been dispatched yet."
+msgstr "Lebarkan filter di atas, atau memang belum ada yang dikirim."
+
+msgid "Widen the filters above, or nothing has published an event yet."
+msgstr "Lebarkan filter di atas, atau memang belum ada yang menerbitkan event."
+
+msgid "Widgets"
+msgstr "Widget"
+
+msgid "Window"
+msgstr "Jendela"
+
+msgid "Withheld by a legal hold"
+msgstr "Ditahan oleh penahanan hukum"
+
+msgid "with its cursor."
+msgstr "dengan cursor-nya."
+
+msgid ", with no review queue and no scheduling. Posts live on"
+msgstr ", tanpa antrean tinjauan dan tanpa penjadwalan. Post berada di"
+
+msgid "Wizard"
+msgstr "Wizard"
+
+msgid "Wizard key"
+msgstr "Kunci wizard"
+
+msgid "Workflow"
+msgstr "Alur kerja"
+
+msgid "Workflow delegations for this tenant."
+msgstr "Delegasi alur kerja untuk tenant ini."
+
+msgid "workflow:escalations:dispatch"
+msgstr "workflow:escalations:dispatch"
+
+msgid "Workflow key"
+msgstr "Kunci alur kerja"
+
+msgid "Workflow key (optional — blank means every workflow)"
+msgstr "Kunci alur kerja (opsional — kosong berarti setiap alur kerja)"
+
+msgid "Workflow tasks, newest first, 100 per page."
+msgstr "Tugas alur kerja, terbaru dulu, 100 per halaman."
+
+msgid "yes"
+msgstr "ya"
+
+msgid "You can see what is pending but not decide it. That separation is deliberate."
+msgstr "Anda bisa melihat apa yang tertunda tetapi tidak memutuskannya. Pemisahan itu disengaja."
+
+msgid "You do not have permission to view ABAC policies."
+msgstr "Anda tidak punya izin untuk melihat kebijakan ABAC."
+
+msgid "You do not have permission to view any blog presentation settings."
+msgstr "Anda tidak punya izin untuk melihat pengaturan presentasi blog mana pun."
+
+msgid "You do not have permission to view approvals."
+msgstr "Anda tidak punya izin untuk melihat persetujuan."
+
+msgid "You do not have permission to view authentication settings."
+msgstr "Anda tidak punya izin untuk melihat pengaturan autentikasi."
+
+msgid "You do not have permission to view blog pages."
+msgstr "Anda tidak punya izin untuk melihat halaman blog."
+
+msgid "You do not have permission to view blog posts."
+msgstr "Anda tidak punya izin untuk melihat postingan blog."
+
+msgid "You do not have permission to view blog settings."
+msgstr "Anda tidak punya izin untuk melihat pengaturan blog."
+
+msgid "You do not have permission to view blog taxonomy."
+msgstr "Anda tidak punya izin untuk melihat taksonomi blog."
+
+msgid "You do not have permission to view business scope."
+msgstr "Anda tidak punya izin untuk melihat cakupan bisnis."
+
+msgid "You do not have permission to view email templates."
+msgstr "Anda tidak punya izin untuk melihat templat email."
+
+msgid "You do not have permission to view form drafts."
+msgstr "Anda tidak punya izin untuk melihat draf formulir."
+
+msgid "You do not have permission to view invitations."
+msgstr "Anda tidak punya izin untuk melihat undangan."
+
+msgid "You do not have permission to view machine credentials."
+msgstr "Anda tidak punya izin untuk melihat kredensial mesin."
+
+msgid "You do not have permission to view modules."
+msgstr "Anda tidak punya izin untuk melihat modul."
+
+msgid "You do not have permission to view module settings."
+msgstr "Anda tidak punya izin untuk melihat pengaturan modul."
+
+msgid "You do not have permission to view offices."
+msgstr "Anda tidak punya izin untuk melihat kantor."
+
+msgid "You do not have permission to view partner access."
+msgstr "Anda tidak punya izin untuk melihat akses mitra."
+
+msgid "You do not have permission to view profiles."
+msgstr "Anda tidak punya izin untuk melihat profil."
+
+msgid "You do not have permission to view redirect rules."
+msgstr "Anda tidak punya izin untuk melihat aturan redirect."
+
+msgid "You do not have permission to view region datasets."
+msgstr "Anda tidak punya izin untuk melihat dataset wilayah."
+
+msgid "You do not have permission to view registration requests."
+msgstr "Anda tidak punya izin untuk melihat permintaan pendaftaran."
+
+msgid "You do not have permission to view reporting operations."
+msgstr "Anda tidak punya izin untuk melihat operasi pelaporan."
+
+msgid "You do not have permission to view roles."
+msgstr "Anda tidak punya izin untuk melihat peran."
+
+msgid "You do not have permission to view subject requests."
+msgstr "Anda tidak punya izin untuk melihat permintaan subjek data."
+
+msgid "You do not have permission to view sync and storage."
+msgstr "Anda tidak punya izin untuk melihat sinkronisasi dan penyimpanan."
+
+msgid "You do not have permission to view tenant domains."
+msgstr "Anda tidak punya izin untuk melihat domain tenant."
+
+msgid "You do not have permission to view the 404 log."
+msgstr "Anda tidak punya izin untuk melihat log 404."
+
+msgid "You do not have permission to view the audit trail."
+msgstr "Anda tidak punya izin untuk melihat jejak audit."
+
+msgid "You do not have permission to view the data lifecycle console."
+msgstr "Anda tidak punya izin untuk melihat konsol siklus hidup data."
+
+msgid "You do not have permission to view the domain event runtime."
+msgstr "Anda tidak punya izin untuk melihat runtime event domain."
+
+msgid "You do not have permission to view the media library."
+msgstr "Anda tidak punya izin untuk melihat pustaka media."
+
+msgid "You do not have permission to view the partner registry. It is platform-scoped: only the platform tenant can reach it."
+msgstr "Anda tidak punya izin untuk melihat registri mitra. Ia selingkup platform: hanya tenant platform yang bisa menjangkaunya."
+
+msgid "You do not have permission to view the push notification console."
+msgstr "Anda tidak punya izin untuk melihat konsol notifikasi push."
+
+msgid "You do not have permission to view the search console."
+msgstr "Anda tidak punya izin untuk melihat konsol pencarian."
+
+msgid "You do not have permission to view the sidebar configuration."
+msgstr "Anda tidak punya izin untuk melihat konfigurasi menu samping."
+
+msgid "You do not have permission to view the suppression list."
+msgstr "Anda tidak punya izin untuk melihat daftar penyaringan."
+
+msgid "You do not have permission to view the tenant directory."
+msgstr "Anda tidak punya izin untuk melihat direktori tenant."
+
+msgid "You do not have permission to view the theming console."
+msgstr "Anda tidak punya izin untuk melihat konsol tema."
+
+msgid "You do not have permission to view this tenant's redirect policy."
+msgstr "Anda tidak punya izin untuk melihat kebijakan redirect tenant ini."
+
+msgid "You do not have permission to view this tenant's SEO defaults."
+msgstr "Anda tidak punya izin untuk melihat SEO bawaan tenant ini."
+
+msgid "You do not have permission to view user groups."
+msgstr "Anda tidak punya izin untuk melihat grup pengguna."
+
+msgid "You do not have permission to view visitor analytics."
+msgstr "Anda tidak punya izin untuk melihat analitik pengunjung."
+
+msgid "You do not have the"
+msgstr "Anda tidak punya"
+
+msgid "You filed this or it is about you — a different checker must decide it."
+msgstr "Anda yang mengajukannya atau ia tentang Anda — pemeriksa yang berbeda harus memutuskannya."
+
+msgid "You may invite people, but not choose their roles — granting a role is a separate permission. The invitation will carry none, and somebody with that permission can assign one afterwards."
+msgstr "Anda boleh mengundang orang, tetapi tidak memilih peran mereka — memberikan peran adalah izin yang terpisah. Undangan tidak akan membawa peran apa pun, dan seseorang dengan izin itu bisa menetapkannya kemudian."
+
+#. Admin screens — bulk migration (ADR-0095 wave 3), continued
+msgid "Admin"
+msgstr "Administrasi"
+
+msgid "Assign"
+msgstr "Tetapkan"
+
+msgid "Login identifier"
+msgstr "Pengenal login"
+
+msgid "No users yet"
+msgstr "Belum ada pengguna"
+
+msgid "Role to assign"
+msgstr "Peran yang ditetapkan"
+
+msgid "Sessions"
+msgstr "Sesi"
+
+msgid "Sign out everywhere"
+msgstr "Keluar dari semua perangkat"
+
+msgid "System"
+msgstr "Sistem"
+
+msgid "Users could not be loaded right now. Please try again later."
+msgstr "Pengguna tidak dapat dimuat saat ini. Silakan coba lagi nanti."
+
+msgid "Users provisioned for this tenant will appear here."
+msgstr "Pengguna yang disediakan untuk tenant ini akan muncul di sini."
+
+msgid "You do not have permission to view users."
+msgstr "Anda tidak punya izin untuk melihat pengguna."
+
+msgid "Not available on this deployment"
+msgstr "Tidak tersedia pada deployment ini"
+
+msgid "Two-factor authentication is not available on this deployment. Ask an administrator to enable it."
+msgstr "Autentikasi dua faktor tidak tersedia pada deployment ini. Minta administrator mengaktifkannya."
+
+msgid "Add institution"
+msgstr "Tambah lembaga"
+
+msgid "All branches"
+msgstr "Semua cabang"
+
+msgid "All vocabularies"
+msgstr "Semua kosakata"
+
+msgid "Branch"
+msgstr "Cabang"
+
+msgid "Categories only — a tag or topic may not have a parent."
+msgstr "Hanya kategori — tag atau topik tidak boleh punya induk."
+
+msgid "Changing this changes the public landing-page URL. Record a redirect for the old one."
+msgstr "Mengubah ini mengubah URL halaman landing publik. Catat redirect untuk URL lama."
+
+msgid "Could not load institutions. Please try again."
+msgstr "Tidak dapat memuat lembaga. Silakan coba lagi."
+
+msgid "Create institution"
+msgstr "Buat lembaga"
+
+msgid "Deleted institutions"
+msgstr "Lembaga terhapus"
+
+msgid "Dotted code from the national region master, e.g. 62 or 62.71. Leave blank if the body is not tied to one region."
+msgstr "Kode bertitik dari master wilayah nasional, mis. 62 atau 62.71. Kosongkan bila lembaga tidak terikat pada satu wilayah."
+
+msgid "Edit institution"
+msgstr "Ubah lembaga"
+
+msgid "Institutions"
+msgstr "Lembaga"
+
+msgid "Institutions, by name."
+msgstr "Lembaga, berdasarkan nama."
+
+msgid "Legislative and executive bodies that articles are filed against. Each one has a public landing page at its own slug."
+msgstr "Lembaga legislatif dan eksekutif tempat artikel diarsipkan. Masing-masing punya halaman landing publik di slug-nya sendiri."
+
+msgid "Region code"
+msgstr "Kode wilayah"
+
+msgid "SEO description"
+msgstr "Deskripsi SEO"
+
+msgid "SEO title"
+msgstr "Judul SEO"
+
+msgid "Save institution"
+msgstr "Simpan lembaga"
+
+msgid "Showing the first 200 institutions by name. Filter by branch to narrow the list."
+msgstr "Menampilkan 200 lembaga pertama berdasarkan nama. Saring berdasarkan cabang untuk mempersempit daftar."
+
+msgid "You do not have permission to view the institution registry."
+msgstr "Anda tidak memiliki izin untuk melihat registri lembaga."
+
+msgid "Add block"
+msgstr "Tambah blok"
+
+msgid "Block style"
+msgstr "Gaya blok"
+
+msgid "Bullet"
+msgstr "Butir"
+
+msgid "Formatting"
+msgstr "Pemformatan"
+
+msgid "Numbered"
+msgstr "Bernomor"
+
+msgid "Preserved as-is — edit it in the media library."
+msgstr "Dipertahankan apa adanya — sunting di pustaka media."
+
+msgid "Unlink"
+msgstr "Lepas tautan"
+
+msgid "Upload an image"
+msgstr "Unggah gambar"
+
+msgid "The file goes straight to storage from this browser. The server checks the real bytes on arrival — the type is read from the file itself, not from its name."
+msgstr "Berkas dikirim langsung ke penyimpanan dari peramban ini. Server memeriksa byte sebenarnya saat tiba — tipenya dibaca dari isi berkas, bukan dari namanya."
+
+msgid "Image file"
+msgstr "Berkas gambar"
+
+msgid "Accepted: {types}. Maximum {max} kB."
+msgstr "Diterima: {types}. Maksimum {max} kB."
+
+msgid "Upload"
+msgstr "Unggah"
+
+msgid "Search & social (optional)"
+msgstr "Pencarian & media sosial (opsional)"
+
+msgid "Meta description"
+msgstr "Deskripsi meta"
+
+msgid "Canonical URL"
+msgstr "URL kanonik"
+
+msgid "Falls back to the article title when empty."
+msgstr "Memakai judul artikel bila dikosongkan."
+
+msgid "Set this only when this article is a copy of one that lives elsewhere."
+msgstr "Isi hanya bila artikel ini salinan dari artikel yang aslinya berada di tempat lain."
+
+msgid "Featured image"
+msgstr "Gambar utama"
+
+msgid "An image is attached."
+msgstr "Sebuah gambar terpasang."
+
+msgid "An image is attached, but it is not publicly referenceable — it is unverified or has been deleted, so this ad will render nothing."
+msgstr "Sebuah gambar terlampir, tetapi tidak dapat dirujuk publik — ia belum terverifikasi atau sudah dihapus, jadi iklan ini tidak akan merender apa pun."
+
+msgid "No image attached."
+msgstr "Belum ada gambar terpasang."
+
+msgid "Choose image"
+msgstr "Pilih gambar"
+
+msgid "Remove image"
+msgstr "Lepas gambar"
+
+msgid "Categories, channels and topics"
+msgstr "Kategori, kanal, dan topik"
+
+msgid "Loading vocabularies…"
+msgstr "Memuat kosakata…"
+
+msgid "Loading institutions…"
+msgstr "Memuat institusi…"
+
+msgid "Site profile"
+msgstr "Profil situs"
+
+msgid "Who this site is, as a reader sees it: masthead, footer, editorial address and contact details."
+msgstr "Siapa situs ini di mata pembaca: kepala halaman, footer, alamat redaksi, dan detail kontak."
+
+msgid "You do not have permission to view the site profile."
+msgstr "Anda tidak punya izin untuk melihat profil situs."
+
+msgid "The site profile could not be loaded. Please try again."
+msgstr "Profil situs tidak dapat dimuat. Silakan coba lagi."
+
+msgid "The site name, organisation name and default social image are edited on the SEO screen — they are what search engines and share cards read, and they are set by whoever owns index impact."
+msgstr "Nama situs, nama organisasi, dan gambar sosial bawaan disunting di layar SEO — ketiganya yang dibaca mesin pencari dan kartu berbagi, dan diatur oleh pihak yang memahami dampak indeks."
+
+msgid "Masthead and footer"
+msgstr "Kepala halaman dan footer"
+
+msgid "Tagline"
+msgstr "Tagline"
+
+msgid "Copyright notice"
+msgstr "Keterangan hak cipta"
+
+msgid "Logo and favicon"
+msgstr "Logo dan favicon"
+
+msgid "A favicon is attached."
+msgstr "Sebuah favicon terpasang."
+
+msgid "No favicon attached."
+msgstr "Belum ada favicon terpasang."
+
+msgid "Choose favicon"
+msgstr "Pilih favicon"
+
+msgid "Remove favicon"
+msgstr "Lepas favicon"
+
+msgid "Editorial and contact"
+msgstr "Redaksi dan kontak"
+
+msgid "Editorial address"
+msgstr "Alamat redaksi"
+
+msgid "Contact email"
+msgstr "Email kontak"
+
+msgid "Contact phone"
+msgstr "Telepon kontak"
+
+msgid "WhatsApp number"
+msgstr "Nomor WhatsApp"
+
+msgid "Kept separate from the contact phone: a tip line is often not the switchboard."
+msgstr "Dipisahkan dari telepon kontak: saluran aduan sering kali bukan nomor sentral."
+
+msgid "Social profiles"
+msgstr "Profil media sosial"
+
+msgid "One row per platform, up to {max}. Links must be absolute http(s) URLs — they are rendered on every public page."
+msgstr "Satu baris per platform, maksimum {max}. Tautan wajib berupa URL http(s) absolut — ia dirender di setiap halaman publik."
+
+msgid "Add a social profile"
+msgstr "Tambah profil media sosial"
+
+msgid "Save site profile"
+msgstr "Simpan profil situs"
+
+# Issue #594 — /admin/blog-homepage, the editorial homepage composer.
+
+msgid "Homepage composition"
+msgstr "Komposisi beranda"
+
+msgid "The ordered sections a reader sees on the homepage. A section that references content which is no longer public renders nothing rather than an error."
+msgstr "Bagian berurutan yang dilihat pembaca di beranda. Bagian yang merujuk konten yang tidak lagi publik merender nihil, bukan galat."
+
+msgid "You do not have permission to view the homepage composition."
+msgstr "Anda tidak memiliki izin untuk melihat komposisi beranda."
+
+msgid "Could not load homepage sections. Please try again."
+msgstr "Tidak dapat memuat bagian beranda. Silakan coba lagi."
+
+msgid "Homepage sections, in display order."
+msgstr "Bagian beranda, dalam urutan tampil."
+
+msgid "No sections yet"
+msgstr "Belum ada bagian"
+
+msgid "Until one exists the homepage falls back to the most recent eligible articles."
+msgstr "Selama belum ada, beranda jatuh kembali ke artikel terbaru yang memenuhi syarat."
+
+msgid "Disabled"
+msgstr "Nonaktif"
+
+msgid "Edit section"
+msgstr "Sunting bagian"
+
+msgid "Add section"
+msgstr "Tambah bagian"
+
+msgid "Lowercase letters, digits, hyphen and underscore. Unique per tenant, and fixed once created."
+msgstr "Huruf kecil, angka, tanda hubung dan garis bawah. Unik per tenant, dan tetap setelah dibuat."
+
+msgid "The type cannot be changed after a section is created."
+msgstr "Tipe tidak dapat diubah setelah bagian dibuat."
+
+msgid "Shown above the section. Leave blank for no heading."
+msgstr "Ditampilkan di atas bagian. Kosongkan bila tanpa judul."
+
+msgid "Starts at"
+msgstr "Mulai pada"
+
+msgid "Ends at"
+msgstr "Berakhir pada"
+
+msgid "Leave both blank for a section that is always on. Times are entered in your own timezone and stored as absolute instants."
+msgstr "Kosongkan keduanya untuk bagian yang selalu aktif. Waktu dimasukkan dalam zona waktu Anda dan disimpan sebagai instan absolut."
+
+msgid "Headline"
+msgstr "Berita utama"
+
+msgid "Article"
+msgstr "Artikel"
+
+msgid "Choose an article"
+msgstr "Pilih satu artikel"
+
+msgid "Latest articles"
+msgstr "Artikel terbaru"
+
+msgid "How many"
+msgstr "Berapa banyak"
+
+msgid "Every category"
+msgstr "Semua kategori"
+
+msgid "Curated articles"
+msgstr "Artikel kurasi"
+
+msgid "Article ids"
+msgstr "ID artikel"
+
+msgid "One id per line, in the order they should appear. Between 1 and 20. Copy them from the table below."
+msgstr "Satu ID per baris, dalam urutan tampilnya. Antara 1 dan 20. Salin dari tabel di bawah."
+
+msgid "Category grid"
+msgstr "Grid kategori"
+
+msgid "Categories"
+msgstr "Kategori"
+
+msgid "Between 1 and 8 categories."
+msgstr "Antara 1 dan 8 kategori."
+
+msgid "Articles per category"
+msgstr "Artikel per kategori"
+
+msgid "Gallery"
+msgstr "Galeri"
+
+msgid "Media ids"
+msgstr "ID media"
+
+msgid "One verified media object id per line, in display order. Between 1 and 20. Ids are listed on the media library screen."
+msgstr "Satu ID objek media terverifikasi per baris, dalam urutan tampil. Antara 1 dan 20. ID tercantum di layar pustaka media."
+
+msgid "Caption"
+msgstr "Keterangan"
+
+msgid "Save section"
+msgstr "Simpan bagian"
+
+msgid "Create section"
+msgstr "Buat bagian"
+
+msgid "Articles you can curate"
+msgstr "Artikel yang dapat dikurasi"
+
+msgid "The most recent published, publicly visible articles — the only ones a curated slot will render. Drafts, unlisted and scheduled articles are deliberately absent."
+msgstr "Artikel terbit terbaru yang terlihat publik — satu-satunya yang akan dirender slot kurasi. Draf, artikel tak terdaftar dan terjadwal sengaja tidak ada."
+
+msgid "Articles eligible for curation, newest first."
+msgstr "Artikel yang memenuhi syarat kurasi, terbaru lebih dulu."
+
+msgid "Id"
+msgstr "ID"
+
+msgid "No published articles yet"
+msgstr "Belum ada artikel terbit"
+
+msgid "Publish an article before curating a homepage slot for it."
+msgstr "Terbitkan artikel lebih dulu sebelum mengurasinya ke slot beranda."
+
+# Issue #594 — /admin/blog-ads, the advertisement inventory console.
+
+msgid "Advertisement inventory"
+msgstr "Inventaris iklan"
+
+msgid "Every slot the public pages offer, and the creatives booked into them. A slot with nothing scheduled renders an availability notice, not a gap in the layout."
+msgstr "Setiap slot yang disediakan halaman publik, dan materi yang dipesan ke dalamnya. Slot tanpa jadwal merender pemberitahuan ketersediaan, bukan lubang di tata letak."
+
+msgid "You do not have permission to view the advertisement inventory."
+msgstr "Anda tidak memiliki izin untuk melihat inventaris iklan."
+
+msgid "Could not load ad placements. Please try again."
+msgstr "Tidak dapat memuat penempatan iklan. Silakan coba lagi."
+
+msgid "Slots"
+msgstr "Slot"
+
+msgid "Advertisement slots and the creatives booked into them."
+msgstr "Slot iklan dan materi yang dipesan ke dalamnya."
+
+msgid "Slot"
+msgstr "Slot"
+
+msgid "Creative"
+msgstr "Materi"
+
+msgid "Rotation"
+msgstr "Rotasi"
+
+msgid "Available — nothing booked into this slot."
+msgstr "Tersedia — belum ada yang dipesan ke slot ini."
+
+msgid "shows"
+msgstr "menampilkan"
+
+msgid "priority"
+msgstr "prioritas"
+
+msgid "Paused"
+msgstr "Dijeda"
+
+msgid "Edit placement"
+msgstr "Sunting penempatan"
+
+msgid "Book a placement"
+msgstr "Pesan penempatan"
+
+msgid "The recommended size is guidance, not a rule: a differently-cropped image is still accepted."
+msgstr "Ukuran yang disarankan adalah panduan, bukan aturan: gambar dengan potongan berbeda tetap diterima."
+
+msgid "Internal only — the reader never sees it."
+msgstr "Hanya internal — pembaca tidak pernah melihatnya."
+
+msgid "Only verified images are offered. A creative always references a managed media object, never a remote URL."
+msgstr "Hanya gambar terverifikasi yang ditawarkan. Materi selalu merujuk objek media terkelola, tidak pernah URL jauh."
+
+msgid "Click-through URL"
+msgstr "URL tujuan klik"
+
+msgid "Absolute http(s) only. Anything else is refused rather than cleaned up."
+msgstr "Hanya http(s) absolut. Selain itu ditolak, bukan dibersihkan."
+
+msgid "How the slot chooses between the creatives booked into it when there is more than one."
+msgstr "Bagaimana slot memilih di antara materi yang dipesan ke dalamnya bila lebih dari satu."
+
+msgid "Priority"
+msgstr "Prioritas"
+
+msgid "Higher wins under priority rotation, and weights the draw under weighted rotation. Ignored by the other two."
+msgstr "Angka lebih tinggi menang pada rotasi prioritas, dan membobot undian pada rotasi berbobot. Diabaikan oleh dua mode lainnya."
+
+msgid "Global runs everywhere the slot appears. Any other target needs the id of the widget, article or page it belongs to."
+msgstr "Global tayang di mana pun slot muncul. Target lain memerlukan ID widget, artikel atau halaman yang dituju."
+
+msgid "Target id"
+msgstr "ID target"
+
+msgid "Required for every target except global, and refused for global. Article ids are listed below."
+msgstr "Wajib untuk setiap target kecuali global, dan ditolak untuk global. ID artikel tercantum di bawah."
+
+msgid "Leave both blank to run until paused. Times are entered in your own timezone and stored as absolute instants."
+msgstr "Kosongkan keduanya agar tayang sampai dijeda. Waktu dimasukkan dalam zona waktu Anda dan disimpan sebagai instan absolut."
+
+msgid "Save placement"
+msgstr "Simpan penempatan"
+
+msgid "Create placement"
+msgstr "Buat penempatan"
+
+msgid "Articles you can target"
+msgstr "Artikel yang dapat ditarget"
+
+msgid "Articles eligible for targeting, newest first."
+msgstr "Artikel yang memenuhi syarat penargetan, terbaru lebih dulu."
+
+msgid "Every slot can still run a global placement."
+msgstr "Setiap slot tetap dapat menayangkan penempatan global."
+
+# Issue #594 — slots this repo's own public templates do not render.
+
+msgid "This site's own templates do not render this slot. A booking here is shown only by a front end that reads the inventory itself."
+msgstr "Templat situs ini sendiri tidak merender slot ini. Pemesanan di sini hanya ditampilkan oleh front end yang membaca inventarisnya sendiri."
+
+msgid "Not rendered here"
+msgstr "Tidak dirender di sini"
+
+# Issue #615 — photo usage-rights metadata on /admin/media.
+
+msgid "Usage rights"
+msgstr "Hak penggunaan"
+
+msgid "Rights"
+msgstr "Hak"
+
+msgid "Credit line"
+msgstr "Baris kredit"
+
+msgid "Copyright status"
+msgstr "Status hak cipta"
+
+msgid "Rights verification"
+msgstr "Verifikasi hak"
+
+msgid "Licence notes"
+msgstr "Catatan lisensi"
+
+msgid "Edit rights"
+msgstr "Sunting hak"
+
+msgid "Save rights"
+msgstr "Simpan hak"
+
+msgid "No credit recorded"
+msgstr "Belum ada kredit"
+
+msgid "Who took this photograph, where it came from, and whether anyone has checked that it may be published. This is not the same as the object status above — that says the FILE passed a format check; this says a person read the licence."
+msgstr "Siapa yang memotret, dari mana asalnya, dan apakah sudah ada yang memeriksa bahwa foto ini boleh diterbitkan. Ini BUKAN status objek di atas — status itu menyatakan BERKASnya lolos pemeriksaan format; ini menyatakan seseorang membaca lisensinya."
+
+msgid "Printed beside the image. Not the alt text, which describes the picture for a screen reader, and not the caption, which tells the reader about the scene."
+msgstr "Dicetak di samping gambar. Bukan alt text, yang menggambarkan foto untuk pembaca layar, dan bukan takarir, yang menceritakan adegannya kepada pembaca."
+
+msgid "Where the file came from, which is often not who is credited — a takedown request names the agency, not the stringer."
+msgstr "Dari mana berkas ini berasal, yang sering berbeda dari siapa yang dikreditkan — permintaan takedown menyebut kantor beritanya, bukan stringernya."
+
+msgid "Changing this records who decided and when, and writes an audit entry. Setting it back to unverified clears both."
+msgstr "Mengubahnya mencatat siapa yang memutuskan dan kapan, serta menulis entri audit. Mengembalikannya ke unverified menghapus keduanya."
+
+# Issue #794 — shown instead of the hint above when the caller lacks
+# media_library.media.adjudicate_rights, so the control's disabled state is
+# explained rather than left silent.
+msgid "Only a rights reviewer may change this (media_library.media.adjudicate_rights)."
+msgstr "Hanya rights reviewer yang boleh mengubah ini (media_library.media.adjudicate_rights)."
+
+# Issue #592 — the editor preview link on /admin/blog.
+
+msgid "Preview"
+msgstr "Pratinjau"
+
+# Issue #598 — the newsletter subscriber screen.
+
+msgid "Newsletter"
+msgstr "Newsletter"
+
+msgid "Subscribers"
+msgstr "Pelanggan"
+
+msgid "Suppress"
+msgstr "Tangguhkan"
+
+msgid "Consent"
+msgstr "Persetujuan"
+
+msgid "Ended"
+msgstr "Berakhir"
+
+msgid "Newsletter subscribers."
+msgstr "Pelanggan newsletter."
+
+msgid "No subscribers match this filter."
+msgstr "Tidak ada pelanggan yang cocok dengan filter ini."
+
+msgid "per page."
+msgstr "per halaman."
+
+msgid "Up to"
+msgstr "Hingga"
+
+msgid "You do not have permission to read the subscriber list."
+msgstr "Anda tidak punya izin membaca daftar pelanggan."
+
+msgid "The subscriber list could not be loaded. Please try again."
+msgstr "Daftar pelanggan tidak dapat dimuat. Silakan coba lagi."
+
+msgid "Submitted and never confirmed. A number that only grows usually means this tenant has no active confirmation email template."
+msgstr "Dikirim dan tidak pernah dikonfirmasi. Angka yang hanya bertambah biasanya berarti tenant ini belum punya templat email konfirmasi yang aktif."
+
+msgid "Who asked to receive this tenant's newsletter, when they confirmed, and who has stopped. Addresses arrive only through the public form and only become active when somebody follows the confirmation link — there is deliberately no way to add one from here."
+msgstr "Siapa yang meminta menerima newsletter tenant ini, kapan mereka mengonfirmasi, dan siapa yang sudah berhenti. Alamat hanya masuk lewat formulir publik dan baru menjadi aktif ketika seseorang mengikuti tautan konfirmasi — memang sengaja tidak ada cara menambahkannya dari sini."
+
+msgid "Access policies"
+msgstr "Kebijakan akses"
+
+msgid "The policies the access evaluator consults. A policy is only consulted when it is DSL-managed and enabled — policies written on the legacy ABAC policies screen are stored but never evaluated."
+msgstr "Kebijakan yang dikonsultasikan evaluator akses. Sebuah kebijakan hanya dikonsultasikan bila ia dikelola-DSL dan aktif — kebijakan yang ditulis di layar Kebijakan ABAC lama tersimpan tetapi tidak pernah dievaluasi."
+
+msgid "You do not have permission to view access policies."
+msgstr "Anda tidak punya izin untuk melihat kebijakan akses."
+
+msgid "No access policies are stored. The evaluator is applying its built-in role and permission rules."
+msgstr "Tidak ada kebijakan akses tersimpan. Evaluator menerapkan aturan peran dan permission bawaannya."
+
+msgid "Applies to"
+msgstr "Berlaku untuk"
+
+msgid "In force"
+msgstr "Berlaku"
+
+msgid "Allow"
+msgstr "Izinkan"
+
+msgid "Deny"
+msgstr "Tolak"
+
+msgid "Yes"
+msgstr "Ya"
+
+msgid "No — disabled"
+msgstr "Tidak — dinonaktifkan"
+
+msgid "No — not evaluated"
+msgstr "Tidak — tidak dievaluasi"
+
+msgid "Simulate a decision"
+msgstr "Simulasikan sebuah keputusan"
+
+msgid "Ask what the evaluator would answer for a hypothetical subject. Nothing is written and no decision is recorded."
+msgstr "Tanyakan apa jawaban evaluator untuk subjek hipotetis. Tidak ada yang ditulis dan tidak ada keputusan yang dicatat."
+
+msgid "Role codes (comma-separated)"
+msgstr "Kode peran (dipisah koma)"
+
+msgid "Activity code"
+msgstr "Kode aktivitas"
+
+msgid "Simulate"
+msgstr "Simulasikan"
+
+msgid "Policies created here are stored but never evaluated. The policies the evaluator consults are on the Access policies screen."
+msgstr "Kebijakan yang dibuat di sini tersimpan tetapi tidak pernah dievaluasi. Kebijakan yang dikonsultasikan evaluator ada di layar Kebijakan akses."
+
+msgid "Search screens"
+msgstr "Cari layar"
+
+msgid "Type a screen name…"
+msgstr "Ketik nama layar…"
+
+msgid "No screen matches that."
+msgstr "Tidak ada layar yang cocok."
+
+# --- /admin/idn-regions region browser (Issue #767) ---
+
+msgid "Province"
+msgstr "Provinsi"
+
+msgid "Regency/City"
+msgstr "Kabupaten/Kota"
+
+msgid "District"
+msgstr "Kecamatan"
+
+msgid "Village"
+msgstr "Desa/Kelurahan"
+
+msgid "You do not have permission to view region datasets or look up Indonesia administrative regions."
+msgstr "Anda tidak memiliki izin untuk melihat dataset wilayah atau mencari wilayah administratif Indonesia."
+
+msgid "Browse regions"
+msgstr "Jelajahi wilayah"
+
+msgid "Drill down by tier — province, regency/city, district, village — or search by name. Pages are 50 rows at a time."
+msgstr "Telusuri berdasarkan tingkat — provinsi, kabupaten/kota, kecamatan, desa — atau cari berdasarkan nama. Setiap halaman berisi 50 baris."
+
+msgid "Tier"
+msgstr "Tingkat"
+
+msgid "Any tier"
+msgstr "Semua tingkat"
+
+msgid "Parent code"
+msgstr "Kode induk"
+
+msgid "Search by name…"
+msgstr "Cari berdasarkan nama…"
+
+msgid "Dataset code (optional)"
+msgstr "Kode dataset (opsional)"
+
+msgid "Leave blank for the active dataset"
+msgstr "Kosongkan untuk dataset aktif"
+
+msgid "Reset to provinces"
+msgstr "Atur ulang ke provinsi"
+
+msgid "Browsing children of: {path}"
+msgstr "Menjelajahi turunan dari: {path}"
+
+msgid "Up one level"
+msgstr "Naik satu tingkat"
+
+msgid "No active dataset"
+msgstr "Tidak ada dataset aktif"
+
+msgid "No region dataset has been activated yet, so there is nothing to browse. Ask a platform operator to activate an imported version."
+msgstr "Belum ada dataset wilayah yang diaktifkan, sehingga tidak ada yang dapat dijelajahi. Minta operator platform untuk mengaktifkan versi yang telah diimpor."
+
+msgid "Dataset not found"
+msgstr "Dataset tidak ditemukan"
+
+msgid "No dataset with the code {code} exists."
+msgstr "Tidak ada dataset dengan kode {code}."
+
+msgid "Indonesia administrative regions matching the current filter"
+msgstr "Wilayah administratif Indonesia yang cocok dengan filter saat ini"
+
+msgid "No regions match this filter"
+msgstr "Tidak ada wilayah yang cocok dengan filter ini"
+
+msgid "Try a different tier, parent, or name, or clear the filter."
+msgstr "Coba tingkat, induk, atau nama yang berbeda, atau hapus filter."
+
+msgid "Browse children"
+msgstr "Jelajahi turunan"
+
+msgid "View path"
+msgstr "Lihat jalur"
+
+msgid "Selected region"
+msgstr "Wilayah terpilih"
+
+msgid "Code:"
+msgstr "Kode:"
+
+msgid "Name:"
+msgstr "Nama:"
+
+msgid "Tier:"
+msgstr "Tingkat:"
+
+msgid "Local term:"
+msgstr "Istilah lokal:"
+
+msgid "Resolved path:"
+msgstr "Jalur terselesaikan:"
+
+msgid "Dataset:"
+msgstr "Dataset:"
+
+msgid "No region dataset has been activated yet."
+msgstr "Belum ada dataset wilayah yang diaktifkan."
+
+msgid "Region {code} was not found in this dataset."
+msgstr "Wilayah {code} tidak ditemukan dalam dataset ini."
+
+msgid "Compare dataset versions"
+msgstr "Bandingkan versi dataset"
+
+msgid "See exactly what changes before you activate a version: per-tier counts on both sides, codes added, codes removed, and regions whose name changed. Defaults to the active version against the one being considered."
+msgstr "Lihat persis apa yang berubah sebelum Anda mengaktifkan sebuah versi: jumlah per tingkat di kedua sisi, kode yang ditambahkan, kode yang dihapus, dan wilayah yang berganti nama. Secara bawaan membandingkan versi aktif dengan versi yang sedang dipertimbangkan."
+
+msgid "Versions to compare"
+msgstr "Versi yang dibandingkan"
+
+msgid "To"
+msgstr "Ke"
+
+msgid "Compare"
+msgstr "Bandingkan"
+
+msgid "Compare with active"
+msgstr "Bandingkan dengan yang aktif"
+
+msgid "Currently active"
+msgstr "Sedang aktif"
+
+msgid "Import at least two versions to compare them — there is nothing to compare a single version against."
+msgstr "Impor setidaknya dua versi untuk membandingkannya — tidak ada pembanding untuk satu versi saja."
+
+msgid "Choose two versions above to see what differs between them."
+msgstr "Pilih dua versi di atas untuk melihat apa yang berbeda di antara keduanya."
+
+msgid "{from} and {to} are the same version — nothing differs."
+msgstr "{from} dan {to} adalah versi yang sama — tidak ada yang berbeda."
+
+msgid "Per-tier region counts, {from} versus {to}"
+msgstr "Jumlah wilayah per tingkat, {from} versus {to}"
+
+msgid "Delta"
+msgstr "Selisih"
+
+msgid "Codes added"
+msgstr "Kode ditambahkan"
+
+msgid "Codes removed"
+msgstr "Kode dihapus"
+
+msgid "Renamed regions"
+msgstr "Wilayah yang berganti nama"
+
+msgid "Old name"
+msgstr "Nama lama"
+
+msgid "New name"
+msgstr "Nama baru"
+
+msgid "No codes were added."
+msgstr "Tidak ada kode yang ditambahkan."
+
+msgid "No codes were removed."
+msgstr "Tidak ada kode yang dihapus."
+
+msgid "No region name changed."
+msgstr "Tidak ada nama wilayah yang berubah."
+
+msgid "Content class"
+msgstr "Kelas konten"
+
+msgid "Editorial disclosure. Standard needs none; advertorial and sponsored are surfaced to readers as paid content."
+msgstr "Pengungkapan editorial. Standard tidak memerlukan pengungkapan; advertorial dan sponsored ditampilkan kepada pembaca sebagai konten berbayar."

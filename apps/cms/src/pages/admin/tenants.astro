@@ -1,0 +1,450 @@
+---
+/**
+ * Tenant directory and provisioning — the platform operator's screen
+ * (ADR-0054), and the second one whose whole surface is PLATFORM-scoped.
+ *
+ * ## What it is for
+ *
+ * Until this landed, a second tenant could not exist: `setup/initialize` claims
+ * the `awcms_setup_state` singleton and succeeds exactly once. Every deployment
+ * was permanently single-tenant, which is also why ADR-0053's platform gate had
+ * never met a real second tenant.
+ *
+ * ## Both panels are platform-scoped, `read` included
+ *
+ * The directory lists EVERY tenant. That is a platform question, not a tenant
+ * one — a tenant-scoped read here would let any customer's owner enumerate the
+ * platform's customer list, and no RLS policy would object, because
+ * `awcms_tenants` is deliberately the RLS-free root table.
+ *
+ * So there is no partial view: a viewer who is not the platform tenant sees an
+ * explanation, not an empty table. Hiding the reason would leave "why is this
+ * blank" as the only feedback.
+ *
+ * Reads use the module's own directory query inside one `withTenantOrThrow`;
+ * the write posts to the guarded `POST /api/v1/tenants` with a fresh
+ * `Idempotency-Key`.
+ */
+import AdminLayout from "../../layouts/AdminLayout.astro";
+import "../../styles/admin-screens.css";
+import { getDatabaseClient } from "../../lib/database/client";
+import { loadAdminScreen } from "../../lib/auth/admin-screen";
+import { logAdminPageError } from "../../lib/logging/error-log";
+import { getTranslatorFor } from "../../lib/i18n";
+import {
+  resolvePlatformTenant,
+  resolveTenancyMode,
+  type TenancyMode
+} from "../../lib/tenant/platform-tenant";
+
+const ssr = Astro.locals.ssrContext;
+const { t } = getTranslatorFor(Astro.locals.locale);
+
+if (!ssr) {
+  throw new Error(
+    "tenants.astro rendered without Astro.locals.ssrContext — the /admin guard in src/middleware.ts must run first."
+  );
+}
+
+type DirectoryEntry = {
+  id: string;
+  tenantCode: string;
+  tenantName: string;
+  status: string;
+  createdAt: Date;
+};
+
+/**
+ * Resolved OUTSIDE any tenant transaction: both read RLS-free root tables and
+ * neither needs — or should imply — a tenant context.
+ *
+ * DISPLAY only, since #450. `tenant_provisioning.read` is itself PLATFORM-scoped
+ * (ADR-0053), so the chokepoint below already refuses a non-platform tenant; the
+ * value of resolving it here is that the screen can name the platform tenant in
+ * its explanation rather than rendering a bare refusal.
+ */
+let tenancyMode: TenancyMode = "single";
+let isPlatformTenant = false;
+let platformTenantCode: string | null = null;
+let platformResolutionFailed = false;
+
+try {
+  const sql = getDatabaseClient();
+  const platformTenant = await resolvePlatformTenant(sql);
+
+  isPlatformTenant = platformTenant?.tenantId === ssr.tenantId;
+  platformTenantCode = platformTenant?.tenantCode ?? null;
+  tenancyMode = await resolveTenancyMode(sql);
+} catch (error) {
+  logAdminPageError(
+    "admin/tenants.astro: failed to resolve platform tenant",
+    error,
+    { correlationId: Astro.locals.correlationId }
+  );
+  platformResolutionFailed = true;
+}
+
+// Issue #450 — the entry decision and the read share ONE transaction, and the
+// decision is the chokepoint's. It applies ADR-0053's platform gate BEFORE
+// permissions are looked up, which is the same rule this screen used to compute
+// by hand as `holdsRead && isPlatformTenant` — one rule now, not two.
+//
+// The directory query stays inside the transaction unchanged. `awcms_tenants`
+// is the deliberately RLS-free root table, so the tenant context does not
+// filter it; what makes the read safe is the platform gate above it, and that
+// is precisely the gate that was being re-implemented here.
+const screen = await loadAdminScreen({
+  ssr,
+  workClass: "interactive",
+  authorize: {
+    moduleKey: "tenant_admin",
+    activityCode: "tenant_provisioning",
+    action: "read"
+  },
+  load: async ({ tx, can }) => ({
+    // One transaction, one awaited query at a time. Concurrent queries on a
+    // single transaction connection leak it, so nothing here runs in parallel.
+    rows: (await tx`
+      SELECT id, tenant_code, tenant_name, status, created_at
+      FROM awcms_tenants
+      ORDER BY created_at DESC
+      LIMIT 500
+    `) as {
+      id: string;
+      tenant_code: string;
+      tenant_name: string;
+      status: string;
+      created_at: Date;
+    }[],
+    canCreate: await can({
+      moduleKey: "tenant_admin",
+      activityCode: "tenant_provisioning",
+      action: "create"
+    })
+  }),
+  onError: (error) => {
+    logAdminPageError("admin/tenants.astro: failed to load directory", error, {
+      correlationId: Astro.locals.correlationId
+    });
+  }
+});
+
+const canRead = screen.state !== "denied";
+const loadError = screen.state === "error" || platformResolutionFailed;
+const tenants: DirectoryEntry[] =
+  screen.state === "allowed"
+    ? screen.data.rows.map((row) => ({
+        id: row.id,
+        tenantCode: row.tenant_code,
+        tenantName: row.tenant_name,
+        status: row.status,
+        createdAt: row.created_at
+      }))
+    : [];
+const canCreate = screen.state === "allowed" && screen.data.canCreate;
+
+/**
+ * Refused, and the reason is the platform gate rather than a missing grant.
+ * Worth explaining: "you are not the platform tenant" and "you were never
+ * granted this" are different problems with different fixes, and a screen that
+ * renders both as the same blank page sends the operator to the wrong one.
+ */
+const withheldByPlatformScope = !canRead && !isPlatformTenant;
+
+function formatTimestamp(value: Date | null): string {
+  if (!value) return "—";
+  const parsed = value instanceof Date ? value : new Date(value);
+  if (Number.isNaN(parsed.getTime())) return "—";
+  return parsed.toISOString().replace("T", " ").slice(0, 16);
+}
+
+function statusVariant(status: string): string {
+  if (status === "active") return "success";
+  if (status === "suspended") return "danger";
+  return "neutral";
+}
+---
+
+<AdminLayout
+  title={t("Tenants")}
+  description={t(
+    "Every party this deployment serves. Provisioning creates a tenant with its head office and owner account in one transaction \u2014 the same code path the setup wizard uses, so the two cannot drift."
+  )}
+>
+  {
+    !canRead && isPlatformTenant && (
+      <p class="state-notice fade-in-up" id="tenants-denied">
+        {t("You do not have permission to view the tenant directory.")}
+      </p>
+    )
+  }
+
+  {
+    /* Two whole msgids, not one sentence with an optional fragment spliced into
+      its middle — the code is not always resolvable, and a single `{code}`
+      msgid would render "platform tenant (), not to this one". */
+  }
+  {
+    withheldByPlatformScope && (
+      <p class="state-notice fade-in-up" id="tenants-scope-notice">
+        {platformTenantCode
+          ? t(
+              "The tenant directory belongs to the platform tenant ({code}), not to this one. The refusal is about WHERE the action is being made, not who is making it — no grant on this tenant can unlock it.",
+              { code: platformTenantCode }
+            )
+          : t(
+              "The tenant directory belongs to the platform tenant, not to this one. The refusal is about WHERE the action is being made, not who is making it — no grant on this tenant can unlock it."
+            )}
+      </p>
+    )
+  }
+
+  {
+    loadError && (
+      <p class="state-notice fade-in-up" id="tenants-error">
+        {t(
+          "The tenant directory could not be loaded right now. Please try again later."
+        )}
+      </p>
+    )
+  }
+
+  <p id="tenants-action-error" class="admin-create-error" role="alert" hidden>
+  </p>
+
+  {
+    canRead && (
+      <section class="admin-section fade-in-up" id="tenants-summary">
+        <h2 class="admin-section-title">{t("Deployment")}</h2>
+        <div class="stat-grid stagger-children">
+          <div class="stat-card">
+            <span class="stat-label">{t("Tenancy mode")}</span>
+            <span class="stat-value stat-value--mono">{tenancyMode}</span>
+            <span class="stat-hint">
+              {tenancyMode === "single"
+                ? "one active tenant — provisioning a second flips this"
+                : "derived from the active-tenant count, never configured"}
+            </span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">{t("Tenants listed")}</span>
+            <span class="stat-value">{tenants.length}</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">{t("Platform tenant")}</span>
+            <span class="stat-value stat-value--mono">
+              {platformTenantCode ?? "—"}
+            </span>
+            <span class="stat-hint">
+              {t("holds platform-scoped permissions")}
+            </span>
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  {
+    canCreate && (
+      <section class="admin-section fade-in-up" id="tenants-create">
+        <h2 class="admin-section-title">{t("Provision a tenant")}</h2>
+        <p class="page-description">
+          {t(
+            "The owner account is created with the password you set here \u2014 it is sent once and never stored by this screen. The new tenant receives the tenant-scoped permission catalogue only; platform permissions are never granted to a provisioned tenant."
+          )}
+        </p>
+        <form id="tenants-create-form" class="admin-create-form">
+          <p
+            id="tenants-create-error"
+            class="admin-create-error"
+            role="alert"
+            hidden
+          />
+
+          <label for="tenant-code">
+            {t("Tenant code")}
+            <input type="text" id="tenant-code" name="tenantCode" required />
+          </label>
+
+          <label for="tenant-name">
+            {t("Tenant name")}
+            <input type="text" id="tenant-name" name="tenantName" required />
+          </label>
+
+          <label for="office-code">
+            {t("Head office code")}
+            <input type="text" id="office-code" name="officeCode" required />
+          </label>
+
+          <label for="office-name">
+            {t("Head office name")}
+            <input type="text" id="office-name" name="officeName" required />
+          </label>
+
+          <label for="owner-display-name">
+            {t("Owner name")}
+            <input
+              type="text"
+              id="owner-display-name"
+              name="ownerDisplayName"
+              required
+            />
+          </label>
+
+          <label for="owner-login-identifier">
+            {t("Owner login identifier")}
+            <input
+              type="text"
+              id="owner-login-identifier"
+              name="ownerLoginIdentifier"
+              required
+            />
+          </label>
+
+          <label for="owner-password">
+            {t("Owner password")}
+            <input
+              type="password"
+              id="owner-password"
+              name="ownerPassword"
+              minlength="8"
+              autocomplete="new-password"
+              required
+            />
+          </label>
+
+          <button
+            type="submit"
+            id="tenants-create-submit"
+            class="module-toggle"
+          >
+            {t("Provision tenant")}
+          </button>
+        </form>
+      </section>
+    )
+  }
+
+  {
+    canRead && (
+      <section class="admin-section fade-in-up" id="tenants-directory">
+        <h2 class="admin-section-title">
+          {t("Directory")}
+          <span class="count-pill">{tenants.length}</span>
+        </h2>
+        <div class="data-table-scroll">
+          <table class="data-table data-table--stack">
+            <caption class="sr-only">
+              {t("Every tenant on this deployment, newest first")}
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">{t("Code")}</th>
+                <th scope="col">{t("Name")}</th>
+                <th scope="col">{t("Status")}</th>
+                <th scope="col">{t("Created")}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {tenants.length === 0 && (
+                <tr>
+                  <td class="data-table-empty" colspan={4}>
+                    <div class="empty-state">
+                      <span class="empty-state-icon" aria-hidden="true">
+                        🏢
+                      </span>
+                      <span class="empty-state-title">
+                        {t("No tenants listed")}
+                      </span>
+                      <span class="empty-state-text">
+                        {t(
+                          "This should not happen \u2014 the platform tenant itself is a tenant. Check the server logs."
+                        )}
+                      </span>
+                    </div>
+                  </td>
+                </tr>
+              )}
+              {tenants.map((tenant) => (
+                <tr>
+                  <td data-label="Code">
+                    <span class="cell-code">{tenant.tenantCode}</span>
+                    {tenant.tenantCode === platformTenantCode && (
+                      <span class="status-badge" data-variant="info">
+                        <span class="status-dot" aria-hidden="true" />
+                        {t("platform")}
+                      </span>
+                    )}
+                  </td>
+                  <td data-label="Name">{tenant.tenantName}</td>
+                  <td data-label="Status">
+                    <span
+                      class="status-badge"
+                      data-variant={statusVariant(tenant.status)}
+                    >
+                      <span class="status-dot" aria-hidden="true" />
+                      {tenant.status}
+                    </span>
+                  </td>
+                  <td data-label="Created">
+                    <span class="cell-code">
+                      {formatTimestamp(tenant.createdAt)}
+                    </span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+    )
+  }
+</AdminLayout>
+
+<script>
+  // Bound unconditionally: the form only renders when BOTH the permission and
+  // the platform-tenant check passed server-side. Astro hoists this script at
+  // build time, so a conditional wrapper would be meaningless.
+  //
+  // The import is load-bearing for CSP: an import-free script is INLINED by
+  // Astro, and inline scripts are blocked by `default-src 'self'`.
+  import {
+    messageBox,
+    mutateAndReload,
+    onSubmit,
+    sendJson
+  } from "../../lib/ui/admin-form-client";
+
+  const formError = messageBox("tenants-create-error");
+
+  onSubmit("tenants-create-form", async ({ data, submit }) => {
+    await mutateAndReload(
+      submit,
+      formError,
+      () =>
+        sendJson(
+          "POST",
+          "/api/v1/tenants",
+          {
+            tenantCode: String(data.get("tenantCode") ?? ""),
+            tenantName: String(data.get("tenantName") ?? ""),
+            officeCode: String(data.get("officeCode") ?? ""),
+            officeName: String(data.get("officeName") ?? ""),
+            ownerDisplayName: String(data.get("ownerDisplayName") ?? ""),
+            ownerLoginIdentifier: String(
+              data.get("ownerLoginIdentifier") ?? ""
+            ),
+            ownerPassword: String(data.get("ownerPassword") ?? "")
+          },
+          { "Idempotency-Key": crypto.randomUUID() }
+        ),
+      (errorCode) =>
+        errorCode === "TENANT_CODE_TAKEN"
+          ? "That tenant code is already taken. Choose another."
+          : errorCode === "VALIDATION_ERROR"
+            ? "Check the fields and try again — the owner password must be at least eight characters."
+            : "Could not provision the tenant. Please try again.",
+      "Provisioning…"
+    );
+  });
+</script>

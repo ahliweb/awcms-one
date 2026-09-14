@@ -1,0 +1,386 @@
+---
+/**
+ * Blog settings console — tenant blog identity, listing, and discovery flags.
+ *
+ * Fifth sibling of `/admin/blog` (posts), `/admin/blog-pages` (pages),
+ * `/admin/blog-taxonomy` (terms), and `/admin/blog-presentation`.
+ *
+ * ## Why this screen had to exist
+ *
+ * `GET`/`PATCH /api/v1/blog/settings` shipped complete with Issue #543 —
+ * guarded inside `withTenant`, audited, validated — and had **zero UI
+ * consumers**. `rssEnabled`/`sitemapEnabled` decide whether a tenant's feed and
+ * sitemap are served at all, and until now the only way to change either was
+ * `curl`. A capability an operator cannot reach is a capability the deployment
+ * does not really have.
+ *
+ * ## This is NOT the module-settings screen, and the difference is load-bearing
+ *
+ * `/admin/modules/blog_content` (Module Management, generic — built in #546,
+ * and until then a link into a 404) writes
+ * `awcms_module_settings` — the per-tenant override of the module descriptor's
+ * `settings.defaults`, which today is `legacyTenantRouteEnabled` alone. THIS
+ * screen writes `awcms_blog_settings`, a different table with a different
+ * permission (`blog_content.settings.*`) and a different endpoint.
+ *
+ * The module README records that two-store split as a deliberate decision
+ * ("**two** existing, already-authoritative stores — deliberately not a third
+ * one"), so the risk here is not a missing store but a duplicated CONTROL: two
+ * screens offering what looks like "blog settings" while writing different
+ * rows. This screen therefore renders **nothing** from the module-settings
+ * store and links to the generic screen for it, rather than mirroring the
+ * field. A mirrored field is the one that goes stale silently, because whichever
+ * screen is edited second wins and neither says so.
+ *
+ * ## Fields deliberately NOT on this screen
+ *
+ * The endpoint accepts more than this form sends, and the absences are choices:
+ *
+ * - `contentQualityChecklistPolicy` — a nested override map of per-rule
+ *   severities. Rendering it as a JSON textarea (the pattern
+ *   `/admin/blog-presentation` uses for its complex sub-arrays) would put a
+ *   publish-blocking policy behind a free-text field with no per-rule
+ *   validation feedback. It deserves its own control, not a corner of this one.
+ * - `socialPreviewFallbackImageMediaId` — a media object id. Typing a UUID is
+ *   not a media picker, and `/admin/media` already owns choosing an object.
+ *   Offering a raw id field here would invite pasting an id from another
+ *   tenant, which the endpoint correctly rejects — as a validation error the
+ *   operator cannot act on.
+ *
+ * Both remain reachable through the API, and both are named here so their
+ * absence reads as a decision rather than an oversight.
+ *
+ * ## Writes go through the endpoint, never the database
+ *
+ * Same rule as every sibling console: SSR reads through the application layer,
+ * every mutation is a client `fetch()` to the guarded/audited endpoint. The
+ * page's own permission checks are defence in depth — enforcement stays in
+ * `authorizeInTransaction` inside the route.
+ */
+import AdminLayout from "../../layouts/AdminLayout.astro";
+import "../../styles/admin-screens.css";
+import { loadAdminScreen } from "../../lib/auth/admin-screen";
+import { logAdminPageError } from "../../lib/logging/error-log";
+import { getTranslatorFor } from "../../lib/i18n";
+import {
+  fetchBlogSettings,
+  type BlogSettingsView
+} from "../../modules/blog-content/application/blog-settings-directory";
+
+const ssr = Astro.locals.ssrContext!;
+const { t } = getTranslatorFor(Astro.locals.locale);
+
+// Issue #450 — the entry decision and the read share ONE transaction, and the
+// decision is the chokepoint's rather than `ssr.permissions.has()`, so a tenant
+// that disabled `blog_content` no longer sees its settings form full of data.
+const screen = await loadAdminScreen({
+  ssr,
+  workClass: "interactive",
+  authorize: {
+    moduleKey: "blog_content",
+    activityCode: "settings",
+    action: "read"
+  },
+  load: async ({ tx, can }) => ({
+    // One transaction, one awaited query at a time. Concurrent queries on a
+    // single transaction connection leak it, so nothing here runs in parallel.
+    settings: await fetchBlogSettings(tx, ssr.tenantId),
+    // One permission gates every field on this form. `sql/036` seeds no
+    // per-field write permission, so inventing one in the UI would imply an
+    // authority no `authorizeInTransaction` call would honour.
+    canConfigure: await can({
+      moduleKey: "blog_content",
+      activityCode: "settings",
+      action: "configure"
+    })
+  }),
+  onError: (error) => {
+    logAdminPageError("admin.blog_settings.load_failed", error, {
+      moduleKey: "blog_content",
+      correlationId: Astro.locals.correlationId
+    });
+  }
+});
+
+const canRead = screen.state !== "denied";
+const settings: BlogSettingsView | null =
+  screen.state === "allowed" ? screen.data.settings : null;
+// A pool/circuit-breaker refusal is NOT a denial, and this screen already said
+// so with a message rather than a bare empty form.
+const loadError =
+  screen.state === "error"
+    ? t("Could not load the blog settings. Please try again.")
+    : null;
+const canConfigure = screen.state === "allowed" && screen.data.canConfigure;
+
+const VISIBILITY_OPTIONS = ["public", "private"] as const;
+---
+
+<AdminLayout title={t("Blog settings")}>
+  <h1>{t("Blog settings")}</h1>
+
+  {
+    !canRead && (
+      <p class="admin-empty" id="blog-settings-denied">
+        {t("You do not have permission to view blog settings.")}
+      </p>
+    )
+  }
+
+  {loadError && <p class="admin-error">{loadError}</p>}
+
+  {
+    canRead && settings && (
+      <>
+        {!canConfigure && (
+          <p class="admin-note">
+            {t("Read-only — changing these needs {permission}.", {
+              permission: "blog_content.settings.configure"
+            })}
+          </p>
+        )}
+
+        {/* The client script cannot read the message catalog — it is a server
+             module — so the page renders the strings it needs onto this host and
+             `admin-form-client` consumers read them back, with English
+             fallbacks. Same seam `/admin/account` uses. */}
+        <div
+          id="blog-settings-i18n"
+          hidden
+          data-saving={t("Saving…")}
+          data-saved={t("Saved.")}
+          data-save-failed={t(
+            "Could not save these settings. Please try again."
+          )}
+        />
+
+        {/* Both boxes render EMPTY. `messageBox().show()` overwrites
+             `textContent` and only then unhides, so any text placed here is
+             unreachable by construction — it was `Tersimpan.` before, which is
+             how an Indonesian string survived in this file unnoticed. */}
+        <p class="admin-error" id="settings-error" hidden />
+        <p class="admin-note" id="settings-ok" hidden />
+
+        <form id="blog-settings-form" class="admin-form">
+          <fieldset disabled={!canConfigure}>
+            {/* NOT `t("Identity")`: that msgid already exists carrying the
+                 `menu-section` context, where it means the identity_access
+                 module group. Reusing the bare word would put two unrelated
+                 senses on one key — the ambiguity `msgctxt` exists to prevent.
+                 This legend is about the blog's own title and description. */}
+            <legend>{t("Blog identity")}</legend>
+
+            <label>
+              {t("Blog title")}
+              <input
+                type="text"
+                name="blogTitle"
+                maxlength="200"
+                required
+                value={settings.blogTitle}
+              />
+            </label>
+
+            <label>
+              {t("Description")}
+              <textarea name="blogDescription" maxlength="500" rows="3">
+                {settings.blogDescription ?? ""}
+              </textarea>
+            </label>
+
+            <legend>{t("Listing")}</legend>
+
+            <label>
+              {t("Posts per page")}
+              <input
+                type="number"
+                name="postsPerPage"
+                min="1"
+                max="100"
+                required
+                value={String(settings.postsPerPage)}
+              />
+            </label>
+
+            <label>
+              {t("Default locale")}
+              <input
+                type="text"
+                name="defaultLocale"
+                required
+                value={settings.defaultLocale}
+              />
+            </label>
+
+            <label>
+              {t("Default visibility")}
+              <select name="defaultVisibility">
+                {VISIBILITY_OPTIONS.map((option) => (
+                  <option
+                    value={option}
+                    selected={settings!.defaultVisibility === option}
+                  >
+                    {option}
+                  </option>
+                ))}
+              </select>
+            </label>
+
+            <legend>{t("Discovery")}</legend>
+
+            {/*
+              These two decide whether `seo_distribution` serves this tenant's
+              feed and sitemap at all. They are the reason the screen exists.
+            */}
+            <label class="admin-checkbox">
+              <input
+                type="checkbox"
+                name="rssEnabled"
+                checked={settings.rssEnabled}
+              />
+              {t("RSS enabled")}
+            </label>
+
+            <label class="admin-checkbox">
+              <input
+                type="checkbox"
+                name="sitemapEnabled"
+                checked={settings.sitemapEnabled}
+              />
+              {t("Sitemap enabled")}
+            </label>
+
+            <legend>{t("SEO defaults")}</legend>
+
+            <label>
+              {t("Default SEO title")}
+              <input
+                type="text"
+                name="seoDefaultTitle"
+                maxlength="200"
+                value={settings.seoDefaultTitle ?? ""}
+              />
+            </label>
+
+            <label>
+              {t("Default SEO description")}
+              <textarea name="seoDefaultDescription" maxlength="300" rows="2">
+                {settings.seoDefaultDescription ?? ""}
+              </textarea>
+            </label>
+
+            <button type="submit" id="blog-settings-save">
+              {t("Save")}
+            </button>
+          </fieldset>
+        </form>
+
+        {/* One msgid per SENTENCE, not one per fragment. This note used to be
+             five `t()` calls interleaved with `<code>`/`<a>`, which asks a
+             translator to reorder a sentence they can only see in pieces \u2014 and
+             Indonesian does not put those pieces in the same order English
+             does. The identifiers are placeholders; the link keeps its own
+             label, because a link is a control rather than a phrase. */}
+        <p class="admin-note">
+          {t(
+            "The public-route switch {setting} is NOT here \u2014 it is a module setting, stored in {table}. It is linked rather than mirrored into this form: a field two screens both render is the field that goes stale silently.",
+            {
+              setting: "legacyTenantRouteEnabled",
+              table: "awcms_module_settings"
+            }
+          )}{" "}
+          <a href="/admin/modules/blog_content">
+            {t("Edit it on the blog_content module screen")}
+          </a>
+        </p>
+      </>
+    )
+  }
+</AdminLayout>
+
+<script>
+  // The import is load-bearing for CSP, not just DRY: Astro inlines a hoisted
+  // `<script>` with no imports, and this app's CSP is `default-src 'self'`
+  // with no `'unsafe-inline'` — an inlined script is blocked and the page's
+  // behaviour dies silently. Importing forces an external `/_astro/*.js`.
+  import {
+    blankToNull,
+    field,
+    lockElement,
+    messageBox,
+    onSubmit,
+    sendJson
+  } from "../../lib/ui/admin-form-client";
+
+  const errorBox = messageBox("settings-error");
+  const okBox = messageBox("settings-ok");
+
+  /**
+   * Translated strings the page rendered for us, with English fallbacks.
+   *
+   * The catalog is a server module: importing it here would ship every locale
+   * to every browser. Until this seam existed these three messages were
+   * hard-coded Indonesian, so an English reader saw Indonesian and an
+   * Indonesian reader saw it only by accident.
+   */
+  function message(key: string, fallback: string): string {
+    const host = document.getElementById("blog-settings-i18n");
+
+    return host?.dataset[key] ?? fallback;
+  }
+
+  // NOT `mutateAndReload`: saving settings confirms in place rather than
+  // reloading, so the operator can see that the values they just typed are the
+  // values now stored.
+  onSubmit("blog-settings-form", async ({ data, submit }) => {
+    errorBox.clear();
+    okBox.clear();
+
+    // Empty optional text fields are sent as `null`, not `""`. The endpoint
+    // treats `null` as "clear it" and `""` as a validation error on the
+    // non-empty fields — sending `""` would surface as a rejection the
+    // operator cannot interpret from a blank box they never typed in.
+    const optional = (name: string): string | null =>
+      blankToNull(field(data, name));
+
+    const body = {
+      blogTitle: field(data, "blogTitle"),
+      blogDescription: optional("blogDescription"),
+      postsPerPage: Number(field(data, "postsPerPage")),
+      defaultLocale: field(data, "defaultLocale"),
+      defaultVisibility: field(data, "defaultVisibility"),
+      rssEnabled: data.get("rssEnabled") !== null,
+      sitemapEnabled: data.get("sitemapEnabled") !== null,
+      seoDefaultTitle: optional("seoDefaultTitle"),
+      seoDefaultDescription: optional("seoDefaultDescription")
+    };
+
+    // `lockElement` used to be called with no busy label here, which set the
+    // button's text to the string "undefined" for the duration of the save,
+    // and threw outright when the button was absent.
+    const unlock = submit
+      ? lockElement(submit, message("saving", "Saving…"))
+      : () => {};
+
+    try {
+      const result = await sendJson("PATCH", "/api/v1/blog/settings", body);
+
+      if (!result.ok) {
+        // Generic copy only. This used to read `result.message`, a property
+        // `sendJson` has never returned — so the fallback below was the only
+        // message that could ever appear.
+        errorBox.show(
+          message(
+            "saveFailed",
+            "Could not save these settings. Please try again."
+          )
+        );
+        return;
+      }
+
+      okBox.show(message("saved", "Saved."));
+    } finally {
+      unlock();
+    }
+  });
+</script>
