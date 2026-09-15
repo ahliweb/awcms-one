@@ -27,11 +27,21 @@ Every child issue of [issue #1](https://github.com/ahliweb/awcms-one/issues/1) h
 
 | | |
 | --- | --- |
-| Upstream remote | `awcms` → `https://github.com/ahliweb/awcms.git`, fetch refspec narrowed to `+refs/heads/main:refs/remotes/awcms/main` |
+| Upstream remote | `awcms` → `https://github.com/ahliweb/awcms.git`, fetch refspec narrowed to `+refs/heads/main:refs/remotes/awcms/main`, and `tagOpt` set to `--no-tags` |
 | Embed point | `ahliweb/awcms` v10.3.0, commit `749404d4963af1dfaf8a5cf8b229299b29556ce2` |
 | Sync command | `git subtree pull --prefix=apps/cms awcms main` |
 
+Set both when adding the remote:
+
+```
+git remote add awcms https://github.com/ahliweb/awcms.git
+git config remote.awcms.fetch '+refs/heads/main:refs/remotes/awcms/main'
+git config remote.awcms.tagOpt --no-tags
+```
+
 **Why the remote's fetch is narrowed to `main` only:** adding the remote without narrowing its refspec drags in every upstream branch, including dependabot branches — seven of them, the first time this remote was added here. A subtree sync only ever wants `main`.
+
+**Why `--no-tags` is not optional:** the subtree carries upstream's full history, and git fetches every tag that points into history it receives — so a plain fetch of `awcms` imports `ahliweb/awcms`'s own release tags (`v10.3.0`, `v9.1.2`, some thirty-five of them) into this clone as if they were this repo's. They are not, and `tools/rilis.mjs` cannot tell: it finds the previous release with `git tag --list 'v*' --sort=-v:refname`, which then answers `v10.3.0` rather than this repo's real latest, and the next release is derived from the wrong base. This happened on the clone that cut `v0.2.0`; the upstream tags were deleted locally before tagging and none reached `origin`. If `git tag -l` here shows anything above this repo's own `v0.x` line, that is upstream's, and the fix is `git tag -d` plus the `tagOpt` line above — never `git push --tags`.
 
 ### The one rule that protects every future sync
 
@@ -39,7 +49,7 @@ Every child issue of [issue #1](https://github.com/ahliweb/awcms-one/issues/1) h
 
 This is not a style preference; it is a mechanical trap. `git subtree pull` works by finding the merge base between this repo's history and upstream's, and replaying upstream's commits on top of it. Squashing that pull collapses every one of those upstream commits into one synthetic commit that git did not create through a merge — which destroys the merge base the *next* `git subtree pull` needs to find. Every future sync after that then conflicts against history git can no longer line up, and the damage is not obvious at the time: the squashed PR merges cleanly, CI is green, and the break only surfaces the next time someone tries to pull from upstream, far from the commit that caused it.
 
-**Nothing mechanically stops this today.** This repository's merge settings currently allow squash merges, rebase merges, and merge commits alike, and `main` carries no branch protection yet (this document's own PR is what introduces CI; branch protection is a separate, not-yet-taken step). The only guard is this paragraph, read before the merge button is clicked. If branch protection is configured later, restricting `apps/cms`-touching PRs to merge commits only is the mechanical version of this rule and should replace the honour system above it — but until then, read this first.
+**Nothing mechanically stops this today.** `main` is protected — the `Check` workflow is a required status, the branch must be up to date before merging, and force-pushes and deletions are refused — but none of that constrains the merge *method*: this repository's settings still allow squash merges, rebase merges, and merge commits alike, and GitHub cannot restrict the method per path. The only guard is this paragraph, read before the merge button is clicked. Disabling squash and rebase merges repo-wide would close the trap mechanically at the cost of squash for every other PR; that trade has been recommended and not yet taken (see [`docs/alur-kerja-pengembangan.md`](docs/alur-kerja-pengembangan.md) for the protection settings as verified).
 
 Every other PR in this repo may be merged however the reviewer prefers; `delete_branch_on_merge` is enabled repo-wide, so a merged branch is cleaned up automatically regardless of merge strategy.
 
