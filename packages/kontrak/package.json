@@ -1,0 +1,17 @@
+{
+  "name": "@awcms-one/kontrak",
+  "type": "module",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Type-only DTO contract apps/storefront needs from apps/cms, IMPORTED from its source — not hand-copied (issue #6). Import direction is one-way: storefront -> kontrak -> cms, guarded by tests/kontrak-arah-impor.test.mjs. No runtime value of any kind ships from src/** — export type only — so apps/storefront's client bundle never carries a byte of apps/cms code.",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./src/index.ts"
+    }
+  },
+  "dependencies": {
+    "awcms": "workspace:*"
+  }
+}
