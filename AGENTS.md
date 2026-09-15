@@ -14,12 +14,12 @@ This document's own workspace layout, gate mechanism, and changeset convention a
 
 ## What is here today, and what is not
 
-Truthfully, as of this document landing:
+Truthfully, as of this document's latest update:
 
-- **Here:** the workspace root and its governance, `packages/config`, `packages/gerbang`, `tools/`, and `apps/cms` (`ahliweb/awcms` v10.3.0, embedded via `git subtree` with full history — closes [issue #2](https://github.com/ahliweb/awcms-one/issues/2)).
-- **Not here yet:** `apps/storefront` (the public Astro storefront — [issue #5](https://github.com/ahliweb/awcms-one/issues/5)), `packages/kontrak` (the type-only DTO contract between them plus its import-direction gate — [issue #6](https://github.com/ahliweb/awcms-one/issues/6)), the `commerce` module inside `apps/cms` ([issue #4](https://github.com/ahliweb/awcms-one/issues/4)), and formal architecture documentation ([issue #7](https://github.com/ahliweb/awcms-one/issues/7)).
+- **Here:** the workspace root and its governance, `packages/config`, `packages/gerbang`, `packages/kontrak` (the type-only DTO contract between `apps/storefront` and `apps/cms`, plus its import-direction gate — closes [issue #6](https://github.com/ahliweb/awcms-one/issues/6)), `tools/`, `knowledge/` (the federated Graphify + Obsidian workflow — closes [issue #11](https://github.com/ahliweb/awcms-one/issues/11)), `docs/` (architecture, schema, API, CMS, and reference documentation, with its own `docs/adr/` — closes [issue #7](https://github.com/ahliweb/awcms-one/issues/7)), `apps/storefront` (the public Astro storefront, catalog listing + product detail — closes [issue #5](https://github.com/ahliweb/awcms-one/issues/5)), and `apps/cms` (`ahliweb/awcms` v10.3.0, embedded via `git subtree` with full history — closes [issue #2](https://github.com/ahliweb/awcms-one/issues/2) — now carrying the `commerce` module, catalog domain + persistence + API — closes [issue #4](https://github.com/ahliweb/awcms-one/issues/4)).
+- **Not here yet:** a live PostgreSQL instance for `apps/cms` to run against (increment 2 — see [`docs/deployment.md`](docs/deployment.md)), and everything increment 1 deliberately excludes: cart, checkout, payment, orders, shipping, variants, flash sales, affiliate links, tiered pricing, advertising, logo management, and product/media imagery (see [`docs/arsitektur.md`](docs/arsitektur.md) and [`docs/cms.md`](docs/cms.md) for the full, current list).
 
-Do not write code, gates, or documentation that assumes any of the "not here yet" items already exist. A path cited in backticks that does not exist in this repo is caught by `bun run audit:dokumen`'s named-path check unless it is listed in that gate's `EXCLUDED_PATHS`, with a reason.
+Every child issue of [issue #1](https://github.com/ahliweb/awcms-one/issues/1) has now landed. Do not write code, gates, or documentation that assumes any of the "not here yet" items already exist. A path cited in backticks that does not exist in this repo is caught by `bun run audit:dokumen`'s named-path check unless it is listed in that gate's `EXCLUDED_PATHS`, with a reason. See [`docs/README.md`](docs/README.md) for the full documentation index.
 
 ## The subtree embed
 

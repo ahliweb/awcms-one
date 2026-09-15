@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:6bf4272daea1da3b40ae19e547bf767d940c07e6777514194bc6441c4e805e8f -->
+<!-- i18n-source-hash: sha256:cbb9598c2cd5be10f432a1e62bc814df0d00c27c3a614004283b787d1ec9c843 -->
 
 [![License](https://img.shields.io/badge/License-MIT-blue)](LICENSE) [![runtime](https://img.shields.io/badge/runtime-Bun-blue?logo=bun&logoColor=white)](https://bun.sh)
 
@@ -12,7 +12,7 @@
 
 | | |
 | --- | --- |
-| **Repo ini** | `ahliweb/awcms-one` — monorepo Bun: satu backend komersial (`apps/cms`), satu storefront publik (`apps/storefront`, sedang dikerjakan), satu kontrak DTO bersama (`packages/kontrak`, sedang dikerjakan) |
+| **Repo ini** | `ahliweb/awcms-one` — monorepo Bun: satu backend komersial (`apps/cms`), satu storefront publik (`apps/storefront`), satu kontrak DTO bersama (`packages/kontrak`) |
 | **Backend / system of record** | `apps/cms`, di repo ini — `ahliweb/awcms` disematkan utuh lewat `git subtree`, menjaga riwayat upstream tetap ada |
 | **Repo model** | [`ahliweb/media-lenterakalteng`](https://github.com/ahliweb/media-lenterakalteng) — tata letak workspace, gerbang audit, konvensi changeset, dan struktur dokumen governance di repo ini diadaptasi darinya |
 
@@ -28,28 +28,34 @@ Scaffold dulu, lalu **satu vertical slice tipis** — daftar katalog + detail pr
 
 Di luar cakupan increment 1: keranjang, checkout, pembayaran, pesanan, pengiriman, afiliasi, flash sale, varian, harga bertingkat, asuransi, tabel ukuran, banner promo. Slice skemanya sengaja adalah inti katalog; sisa dari tabel `products` sumber mendarat di increment berikutnya.
 
-## Yang ada hari ini, dan yang masih dikerjakan
+## Yang ada hari ini, dan yang tidak
 
-Repo ini masih dini: saat ini memuat akar workspace, governance dan perkakasnya, `packages/config`, dan `apps/cms`. **`apps/storefront` dan `packages/kontrak` belum ada** — keduanya sedang dikerjakan di [issue #5](https://github.com/ahliweb/awcms-one/issues/5) dan [issue #6](https://github.com/ahliweb/awcms-one/issues/6). Di mana pun dokumen ini atau `AGENTS.md` perlu menjelaskannya, ia menyatakannya terus terang alih-alih menjelaskan jalur yang belum ada.
+Setiap issue anak dari [issue #1](https://github.com/ahliweb/awcms-one/issues/1) sudah mendarat: akar workspace dan governance-nya, `packages/config`, `packages/gerbang`, `packages/kontrak`, `tools/`, `knowledge/`, `docs/`, `apps/storefront`, dan `apps/cms` (membawa modul `commerce`). Di mana pun dokumen ini atau `AGENTS.md` perlu mendeskripsikan permukaan yang belum dibangun increment 1, ia menyatakannya terus terang alih-alih mendeskripsikan jalur yang belum ada — lihat [`docs/arsitektur.md`](docs/arsitektur.md) dan [`docs/cms.md`](docs/cms.md) untuk daftar lengkap dan terkininya (keranjang, checkout, pembayaran, pesanan, pengiriman, varian, flash sale, tautan afiliasi, harga bertingkat, iklan, manajemen logo, gambar produk).
 
 ```
 apps/
-└── cms/                     ahliweb/awcms v10.3.0, disematkan lewat git subtree dengan riwayat penuh —
-                              backend komersial dan system of record (closes #2)
+├── cms/                     ahliweb/awcms v10.3.0, disematkan lewat git subtree dengan riwayat penuh —
+│                             backend komersial dan system of record, membawa modul commerce
+│                             (domain katalog, persistensi, API — closes #2, #4)
+└── storefront/              storefront Astro publik: daftar katalog + detail produk,
+                              output: "static", mengambil API apps/cms hanya saat build (closes #5)
 packages/
 ├── config/                  preset tsconfig bersama
-└── gerbang/                 gerbang audit workspace ini, sebagai paket
-tools/                       skrip lintas-workspace: rilis, pemeriksaan lockfile, stamp i18n docs
-tests/                       tes gerbang tingkat akar (docs, changeset, toolchain, skrip)
+├── gerbang/                 gerbang audit workspace ini, sebagai paket
+└── kontrak/                 kontrak DTO bertipe-saja yang diimpor apps/storefront dari apps/cms,
+                              plus gerbang arah-impornya (closes #6)
+tools/                       skrip lintas-workspace: rilis, pemeriksaan lockfile, stamp i18n docs,
+                              update/combine/export graf pengetahuan
+tests/                       tes gerbang tingkat akar (docs, changeset, toolchain, skrip,
+                              arah impor)
+docs/                        referensi arsitektur, skema, API, CMS, routing, SEO, aksesibilitas,
+                              responsif, UI/UX, pengujian, deployment, dan alur kerja,
+                              plus docs/adr/ (closes #7)
+knowledge/                   workflow graf pengetahuan Graphify + Obsidian yang terfederasi (closes #11)
 .changesets/, .github/       tetap di akar repo — keputusan tentang repo secara keseluruhan
 ```
 
-Direncanakan, belum ada:
-
-- **`apps/storefront`** (issue #5) — storefront Astro publik: daftar katalog dan detail produk, hanya membaca API publik `apps/cms`.
-- **`packages/kontrak`** (issue #6) — kontrak DTO bertipe-saja yang akan diimpor `apps/storefront` dari `apps/cms`, plus gerbang arah-impor yang menjaganya tetap satu arah.
-- **Modul `commerce`** (issue #4) — domain katalog, persistensi, migrasi, dan API di dalam `apps/cms`.
-- **Dokumentasi arsitektur dan referensi** (issue #7).
+Penyediaan PostgreSQL untuk increment 2 — memigrasi dan men-seed basis data hidup untuk dijalankan `apps/cms` — **belum dilakukan**; lihat [`docs/deployment.md`](docs/deployment.md).
 
 ## Menjalankannya
 
@@ -66,7 +72,7 @@ Repo ini **hanya-Bun**: Bun adalah runtime sekaligus package manager, versinya d
 | `bun install` | Meresolusi seluruh workspace |
 | `bun test` | Rangkaian gerbang akar. `bunfig.toml` mengecualikan `apps/cms/**` — rangkaian itu ~500 berkas dan butuh PostgreSQL hidup; ia berjalan di bawah gerbangnya sendiri, `bun run check:cms` |
 | `bun run check:lockfile` | Membuktikan `bun.lock` benar-benar milik `package.json` repo ini, untuk akar dan setiap anggota workspace |
-| `bun run audit:dokumen` | Tautan markdown mati, indeks ADR (begitu `docs/adr/` ada), jalur berkas yang disebut sebuah dokumen, kutipan `ADR-NNNN`, dan hitungan tertaut bertanda |
+| `bun run audit:dokumen` | Tautan markdown mati, indeks `docs/adr/` (lengkap di dua arah, kesepakatan status), jalur berkas yang disebut sebuah dokumen, kutipan `ADR-NNNN`, dan hitungan tertaut bertanda |
 | `bun run audit:rilis` | Backlog `.changesets/` yang menunggu, dibatasi 10 berkas dan 14 hari |
 | `bun run audit:translation` | Cermin Indonesia dokumen governance yang basi atau hilang |
 | `bun run audit:graf` (alias: `knowledge:check`) | Korpus graf pengetahuan akar menggambarkan dirinya sendiri secara jujur — lihat [`knowledge/README.md`](knowledge/README.md) |
@@ -77,7 +83,7 @@ Repo ini **hanya-Bun**: Bun adalah runtime sekaligus package manager, versinya d
 | `bun run check:cms` | Rangkaian gerbang penuh `apps/cms` sendiri (lint, typecheck, tesnya sendiri, build-nya sendiri) |
 | `bun run db:migrate:cms` | Menjalankan migrasi `apps/cms` terhadap `DATABASE_URL` — lihat `apps/cms/.env.example` |
 | `bun run release` | Memotong rilis bertag dari changeset yang menunggu — lihat [`CONTRIBUTING.md`](CONTRIBUTING.md) |
-| `dev` / `build` / `check` / `serve` | Mendelegasikan ke `apps/storefront` begitu ia ada (issue #5); belum ada yang bisa dijalankannya |
+| `dev` / `build` / `check` / `serve` | Mendelegasikan ke `apps/storefront` — `bun run build` men-type-check, mengambil katalog dari `apps/cms` saat build, dan memanggang output statis; `bun run serve` menjalankan `apps/storefront/server/penyaji.mjs` yang sudah di-build — lihat [`docs/deployment.md`](docs/deployment.md) |
 
 ### Gerbang
 
@@ -100,6 +106,7 @@ Repo ini **hanya-Bun**: Bun adalah runtime sekaligus package manager, versinya d
 | [`CHANGELOG.md`](CHANGELOG.md) | Riwayat rilis, dilipat dari changeset |
 | [`.changesets/README.md`](.changesets/README.md) | Cara menulis catatan perubahan |
 | [`knowledge/README.md`](knowledge/README.md) | Workflow graf pengetahuan Graphify + Obsidian yang terfederasi |
+| [`docs/README.md`](docs/README.md) | Referensi arsitektur, skema, API, CMS, routing, SEO, aksesibilitas, responsif, UI/UX, pengujian, deployment, dan alur kerja, plus [`docs/adr/`](docs/adr/README.md) |
 
 ## Bahasa
 

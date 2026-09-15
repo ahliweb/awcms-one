@@ -10,7 +10,7 @@
 
 | | |
 | --- | --- |
-| **This repo** | `ahliweb/awcms-one` — a Bun monorepo: one commerce backend (`apps/cms`), one public storefront (`apps/storefront`, in progress), one shared DTO contract (`packages/kontrak`, in progress) |
+| **This repo** | `ahliweb/awcms-one` — a Bun monorepo: one commerce backend (`apps/cms`), one public storefront (`apps/storefront`), one shared DTO contract (`packages/kontrak`) |
 | **Backend / system of record** | `apps/cms`, in this repo — `ahliweb/awcms` embedded whole via `git subtree`, preserving upstream history |
 | **Model repo** | [`ahliweb/media-lenterakalteng`](https://github.com/ahliweb/media-lenterakalteng) — the workspace layout, audit gates, changeset convention, and governance-document structure in this repo are adapted from it |
 
@@ -26,28 +26,34 @@ Scaffold-first, then **one thin vertical slice** — catalog listing + product d
 
 Out of scope for increment 1: cart, checkout, payment, orders, shipping, affiliate, flash sales, variants, tiered pricing, insurance, size charts, promo banners. The schema slice is deliberately the catalog core; the rest of the source `products` table lands in later increments.
 
-## What is here today, and what is still in progress
+## What is here today, and what is not
 
-This repository is early: it currently contains the workspace root, its governance and tooling, `packages/config`, and `apps/cms`. **`apps/storefront` and `packages/kontrak` do not exist yet** — they are in progress under [issue #5](https://github.com/ahliweb/awcms-one/issues/5) and [issue #6](https://github.com/ahliweb/awcms-one/issues/6). Where this document or `AGENTS.md` needs to describe them, it says so plainly rather than describing paths that are not there.
+Every child issue of [issue #1](https://github.com/ahliweb/awcms-one/issues/1) has landed: the workspace root and its governance, `packages/config`, `packages/gerbang`, `packages/kontrak`, `tools/`, `knowledge/`, `docs/`, `apps/storefront`, and `apps/cms` (carrying the `commerce` module). Where this document or `AGENTS.md` needs to describe a surface increment 1 does not build, it says so plainly rather than describing a path that is not there — see [`docs/arsitektur.md`](docs/arsitektur.md) and [`docs/cms.md`](docs/cms.md) for that full, current list (cart, checkout, payment, orders, shipping, variants, flash sales, affiliate links, tiered pricing, advertising, logo management, product imagery).
 
 ```
 apps/
-└── cms/                     ahliweb/awcms v10.3.0, embedded via git subtree with full history —
-                              the commerce backend and system of record (closes #2)
+├── cms/                     ahliweb/awcms v10.3.0, embedded via git subtree with full history —
+│                             the commerce backend and system of record, carrying the commerce
+│                             module (catalog domain, persistence, API — closes #2, #4)
+└── storefront/              the public Astro storefront: catalog listing + product detail,
+                              output: "static", fetching apps/cms's API at build time only (closes #5)
 packages/
 ├── config/                  shared tsconfig preset
-└── gerbang/                 this workspace's audit gates, as a package
-tools/                       cross-workspace scripts: release, lockfile check, docs i18n stamp
-tests/                       the root-level gate tests (docs, changesets, toolchain, scripts)
+├── gerbang/                 this workspace's audit gates, as a package
+└── kontrak/                 the type-only DTO contract apps/storefront imports from apps/cms,
+                              plus its import-direction gate (closes #6)
+tools/                       cross-workspace scripts: release, lockfile check, docs i18n stamp,
+                              knowledge-graph update/combine/export
+tests/                       the root-level gate tests (docs, changesets, toolchain, scripts,
+                              import direction)
+docs/                        architecture, schema, API, CMS, routing, SEO, accessibility,
+                              responsive, UI/UX, testing, deployment, and workflow reference,
+                              plus docs/adr/ (closes #7)
+knowledge/                   the federated Graphify + Obsidian knowledge-graph workflow (closes #11)
 .changesets/, .github/       stay at the repo root — decisions about the whole repo
 ```
 
-Planned, not yet present:
-
-- **`apps/storefront`** (issue #5) — the public Astro storefront: catalog listing and product detail, reading `apps/cms`'s public API only.
-- **`packages/kontrak`** (issue #6) — the type-only DTO contract `apps/storefront` will import from `apps/cms`, plus the import-direction gate that keeps that a one-way dependency.
-- **The `commerce` module** (issue #4) — catalog domain, persistence, migrations, and API inside `apps/cms`.
-- **Architecture and reference documentation** (issue #7).
+PostgreSQL provisioning for increment 2 — migrating and seeding a live database for `apps/cms` to run against — is **not done**; see [`docs/deployment.md`](docs/deployment.md).
 
 ## Running it
 
@@ -64,7 +70,7 @@ This repo is **Bun-only**: Bun is both the runtime and the package manager, its 
 | `bun install` | Resolves the whole workspace |
 | `bun test` | The root gate suite. `bunfig.toml` excludes `apps/cms/**` — that suite is ~500 files and needs a live PostgreSQL; it runs under its own gate, `bun run check:cms` |
 | `bun run check:lockfile` | Proves `bun.lock` actually belongs to this repo's `package.json`, for the root and every workspace member |
-| `bun run audit:dokumen` | Dead markdown links, the ADR index (once `docs/adr/` exists), file paths a document names, `ADR-NNNN` citations, and marked linked counts |
+| `bun run audit:dokumen` | Dead markdown links, the `docs/adr/` index (complete in both directions, status agreement), file paths a document names, `ADR-NNNN` citations, and marked linked counts |
 | `bun run audit:rilis` | The waiting `.changesets/` backlog, bounded at 10 files and 14 days |
 | `bun run audit:translation` | Stale or missing Indonesian mirrors of the governance documents |
 | `bun run audit:graf` (alias: `knowledge:check`) | The root knowledge-graph corpus describes itself honestly — see [`knowledge/README.md`](knowledge/README.md) |
@@ -75,7 +81,7 @@ This repo is **Bun-only**: Bun is both the runtime and the package manager, its 
 | `bun run check:cms` | `apps/cms`'s own full gate chain (lint, typecheck, its own tests, its own build) |
 | `bun run db:migrate:cms` | Runs `apps/cms`'s migrations against `DATABASE_URL` — see `apps/cms/.env.example` |
 | `bun run release` | Cuts a tagged release from the waiting changesets — see [`CONTRIBUTING.md`](CONTRIBUTING.md) |
-| `dev` / `build` / `check` / `serve` | Delegate into `apps/storefront` once it exists (issue #5); there is nothing for them to run yet |
+| `dev` / `build` / `check` / `serve` | Delegate into `apps/storefront` — `bun run build` type-checks, fetches the catalog from `apps/cms` at build time, and bakes static output; `bun run serve` runs the built `apps/storefront/server/penyaji.mjs` — see [`docs/deployment.md`](docs/deployment.md) |
 
 ### Gates
 
@@ -98,6 +104,7 @@ This repo is **Bun-only**: Bun is both the runtime and the package manager, its 
 | [`CHANGELOG.md`](CHANGELOG.md) | Release history, folded from changesets |
 | [`.changesets/README.md`](.changesets/README.md) | How to write a change note |
 | [`knowledge/README.md`](knowledge/README.md) | The federated Graphify + Obsidian knowledge-graph workflow |
+| [`docs/README.md`](docs/README.md) | Architecture, schema, API, CMS, routing, SEO, accessibility, responsive, UI/UX, testing, deployment, and workflow reference, plus [`docs/adr/`](docs/adr/README.md) |
 
 ## Language
 
