@@ -14,19 +14,28 @@
  * query parameter, a cursor, or an envelope.
  */
 import { awcmsGet } from "./awcms/client";
+import type { ProductType, ProductStatus } from "@awcms-one/kontrak";
+
+export type { ProductType, ProductStatus };
 
 // ---------------------------------------------------------------------------
 // DTO contract
 //
-// Declared LOCALLY and on purpose not this file's to redesign: every field
-// below is copied VERBATIM from issue #5, which shares it with the CMS-side
-// commerce module (issue #4). Editing a field here without editing it there
-// is a contract break neither build can see. Issue #6 replaces this block
-// with `export type { ... } from "@awcms-one/kontrak"`.
+// `ProductType`/`ProductStatus` are now IMPORTED from `@awcms-one/kontrak`
+// (issue #6), which itself re-exports them from `apps/cms`'s commerce domain
+// layer — see that package's `src/katalog.ts` docblock. `CommerceCategory`/
+// `CommerceProduct` below stay declared LOCALLY on purpose: their row shapes
+// (`CategoryRecord`/`ProductRecord`) live in
+// `apps/cms/src/modules/commerce/application/{category,product}-directory.ts`,
+// not `domain/`, so they are out of `@awcms-one/kontrak`'s scope by the same
+// rule that keeps that package from reaching into `application/` at all
+// (`import type` doesn't execute an I/O-bearing sibling import, but `tsc`
+// still parses the whole file to build its type graph). Every field below is
+// still copied VERBATIM from `apps/cms`'s `toRecord()` functions — editing a
+// field here without editing it there is a contract break neither build can
+// see; there is just no compiler catching that one, unlike the two unions
+// above.
 // ---------------------------------------------------------------------------
-
-export type ProductType = "physical" | "digital" | "service" | "subscription";
-export type ProductStatus = "draft" | "active" | "inactive" | "archived";
 
 export type CommerceCategory = {
   id: string;
@@ -67,18 +76,27 @@ export type CommerceProduct = {
 //
 // Endpoint paths follow the `/api/v1/{module}/{resource}` convention every
 // other awcms module already uses (`/api/v1/blog/posts`,
-// `/api/v1/media/objects`, …). They are NOT copied from a live commerce
-// endpoint: at the time this app was built, the commerce module (issue #4)
-// had not yet landed in this worktree's `apps/cms` — no route, no OpenAPI
-// fragment. If the real paths differ once #4 merges, this is the one place
-// that needs to change.
+// `/api/v1/media/objects`, …), and now match the real commerce routes
+// (`apps/cms/src/pages/api/v1/commerce/{products,categories}/index.ts`) —
+// verified as part of issue #6's reconciliation, which also caught two other
+// mismatches fixed below: the response envelope and the query parameters
+// actually honoured.
 // ---------------------------------------------------------------------------
 
 const PRODUCTS_PATH = "/api/v1/commerce/products";
 const CATEGORIES_PATH = "/api/v1/commerce/categories";
 
-/** Assumed page size for the products list; halved or doubled costs nothing but a few more/fewer requests. */
-const PAGE_SIZE = 100;
+/**
+ * The page size both commerce list routes fix server-side
+ * (`PRODUCT_LIST_LIMIT`/`CATEGORY_LIST_LIMIT` in
+ * `apps/cms/src/modules/commerce/application/*-directory.ts`, both 100).
+ * NOT sent as a request parameter — the routes' `prepare` reads only
+ * `cursor` from the query string, so a `limit` here would be a parameter the
+ * server silently ignores, and sending one it does not honour is a lie in
+ * the request log (issue #6). Kept as a constant purely so `MAX_PAGES`
+ * below has a documented basis.
+ */
+const SERVER_PAGE_SIZE = 100;
 
 /**
  * A runaway-loop backstop, not a content limit.
@@ -86,56 +104,58 @@ const PAGE_SIZE = 100;
  * Unlike the measured backstop in the sibling template's `content.ts` (which
  * cites a benchmarked memory/time curve), this number is NOT measured —
  * nothing about this catalog's real scale exists to measure yet. 200 pages
- * of 100 is 20,000 products, chosen only as "clearly larger than a single
- * mart's catalog will be for a long time." Re-derive it the same way that
- * file did — a real measurement — before raising it.
+ * of `SERVER_PAGE_SIZE` is 20,000 rows, chosen only as "clearly larger than
+ * a single mart's catalog will be for a long time." Re-derive it the same
+ * way that file did — a real measurement — before raising it.
  */
 const MAX_PAGES = 200;
 
-type ProductListResponse = {
-  products: CommerceProduct[];
+/**
+ * One keyset-paginated page envelope, exactly as both commerce routes
+ * return it inside `ok({...})`. Declared LOCALLY, by convention, rather than
+ * re-exported from `@awcms-one/kontrak`: the shape lives in
+ * `apps/cms/src/modules/_shared/keyset-pagination.ts`, which is not
+ * `domain/`, so it is out of that package's scope by the same rule that
+ * keeps `CommerceProduct`/`CommerceCategory` local too (see the DTO contract
+ * note above).
+ */
+type CommercePage<T> = {
+  items: T[];
   nextCursor: string | null;
 };
 
-type CategoryListResponse = {
-  categories: CommerceCategory[];
-};
-
 /**
- * Walks the products list with a keyset cursor, exactly like the sibling
- * template's blog traversal: `status=active` is a REQUEST to awcms, not a
- * guarantee, so `getProducts()` below re-checks it on every row rather than
- * trusting the filter was honoured.
+ * Walks a keyset-paginated commerce list to exhaustion, one cursor hop at a
+ * time. Shared by `listAllProducts`/`listAllCategories` below — both
+ * resources page identically (issue #6: "paginate categories with the same
+ * cursor walk products use").
  */
-async function listAllProducts(): Promise<CommerceProduct[]> {
-  const products: CommerceProduct[] = [];
+async function listAllPages<T>(path: string, resourceNoun: string): Promise<T[]> {
+  const items: T[] = [];
   let cursor: string | undefined;
 
   for (let page = 1; ; page += 1) {
-    const response = await awcmsGet<ProductListResponse>(PRODUCTS_PATH, {
-      status: "active",
-      limit: PAGE_SIZE,
-      cursor
-    });
+    const response = await awcmsGet<CommercePage<T>>(path, { cursor });
 
-    products.push(...response.products);
+    items.push(...response.items);
 
-    if (!response.nextCursor) return products;
+    if (!response.nextCursor) return items;
 
     if (page >= MAX_PAGES) {
       throw new Error(
-        `Stopped after ${MAX_PAGES} pages (${products.length} products) and ` +
+        `Stopped after ${MAX_PAGES} pages (${items.length} ${resourceNoun}) and ` +
           `awcms still returned a cursor.\n\n` +
           `Two causes, and they need different answers:\n` +
           `  - The cursor is not advancing. awcms would have to be returning ` +
-          `the same page forever; the product count above tells you which, ` +
-          `because it would be a multiple of ${PAGE_SIZE} with duplicate slugs.\n` +
+          `the same page forever; the ${resourceNoun} count above tells you ` +
+          `which, because it would be a multiple of ${SERVER_PAGE_SIZE} with ` +
+          `duplicate slugs.\n` +
           `  - This catalog really is that large. Then raise MAX_PAGES in ` +
           `src/lib/catalog.ts — but measure first; this backstop was chosen, ` +
           `not benchmarked.\n\n` +
           `What is NOT an answer is returning what has been collected so ` +
           `far: a short list that looks complete publishes a storefront ` +
-          `missing an unknown number of products, with every gate green.`
+          `missing an unknown number of ${resourceNoun}, with every gate green.`
       );
     }
 
@@ -143,14 +163,57 @@ async function listAllProducts(): Promise<CommerceProduct[]> {
   }
 }
 
+function listAllProducts(): Promise<CommerceProduct[]> {
+  return listAllPages<CommerceProduct>(PRODUCTS_PATH, "products");
+}
+
+function listAllCategories(): Promise<CommerceCategory[]> {
+  return listAllPages<CommerceCategory>(CATEGORIES_PATH, "categories");
+}
+
+/**
+ * Exhaustiveness backstop over `ProductStatus`. TypeScript narrows every
+ * named case away below, leaving `value: never` in the `default` branch — if
+ * `apps/cms` ever widens `ProductStatus` with a fifth value,
+ * `isPubliclyVisible` stops type-checking (this argument is no longer
+ * `never`) and `bun run check` in this app goes red AT THAT LINE, rather
+ * than silently treating the new value as "not active" and mis-reading it.
+ * This is the contract `@awcms-one/kontrak` exists to give teeth to (issue
+ * #6) — see its `src/katalog.ts` docblock, and the PR that landed this file
+ * for the captured error from deliberately widening the union once.
+ */
+function assertNeverProductStatus(value: never): never {
+  throw new Error(`Unhandled ProductStatus: ${String(value)}`);
+}
+
+/**
+ * Whether a product with this status should ever reach the public
+ * storefront. An exhaustive `switch` over every `ProductStatus`, not a bare
+ * `status === "active"` comparison, so a status `apps/cms` adds later cannot
+ * silently fall through as "not active" — it has to be named here, by a
+ * human, before this file type-checks again.
+ */
+function isPubliclyVisible(status: ProductStatus): boolean {
+  switch (status) {
+    case "active":
+      return true;
+    case "draft":
+    case "inactive":
+    case "archived":
+      return false;
+    default:
+      return assertNeverProductStatus(status);
+  }
+}
+
 let productsCache: Promise<CommerceProduct[]> | undefined;
 
 /**
  * Every product this build is willing to publish: fetched once, memoized,
- * and filtered to `status === "active"` — re-checked here rather than
- * trusted from the `status=active` request above, because this is the last
- * place that can tell "awcms honoured the filter" apart from "awcms ignored
- * it and sent everything".
+ * and filtered with `isPubliclyVisible` — a CLIENT-SIDE check, because the
+ * products route accepts no `status` filter at all (issue #6: the CMS list
+ * route only ever takes `cursor`), so this is the ONLY place anything checks
+ * status before a product reaches the storefront.
  *
  * `getStaticPaths()` in `src/pages/product/[slug].astro` calls this to build every
  * product page in one traversal, so it costs one request set for the whole
@@ -159,7 +222,7 @@ let productsCache: Promise<CommerceProduct[]> | undefined;
 export async function getProducts(): Promise<CommerceProduct[]> {
   productsCache ??= (async () => {
     const all = await listAllProducts();
-    const active = all.filter((product) => product.status === "active");
+    const active = all.filter((product) => isPubliclyVisible(product.status));
 
     // A filter that can only ever REMOVE needs a floor. One product held
     // back is an editorial state (a merchant unpublished it) and builds
@@ -210,17 +273,15 @@ export async function getProduct(slug: string): Promise<CommerceProduct> {
 let categoriesCache: Promise<CommerceCategory[]> | undefined;
 
 /**
- * Every category, fetched once and memoized. Unlike products, an empty
- * result is not treated as suspicious: a catalog with no categories yet
- * (products all uncategorised) is a normal, buildable state, not a sign
- * awcms ignored anything.
+ * Every category, fetched once and memoized, walking the same keyset cursor
+ * products use — the categories route is keyset-paginated exactly like
+ * products (issue #6), not a single unpaginated page as this file used to
+ * assume. Unlike products, an empty result is not treated as suspicious: a
+ * catalog with no categories yet (products all uncategorised) is a normal,
+ * buildable state, not a sign awcms ignored anything.
  */
 export async function getCategories(): Promise<CommerceCategory[]> {
-  categoriesCache ??= (async () => {
-    const response = await awcmsGet<CategoryListResponse>(CATEGORIES_PATH);
-    return response.categories;
-  })();
-
+  categoriesCache ??= listAllCategories();
   return categoriesCache;
 }
 

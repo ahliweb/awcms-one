@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@astrojs/node": "^11.1.5",
+    "@awcms-one/kontrak": "workspace:*",
     "astro": "^7.3.1"
   },
   "devDependencies": {
