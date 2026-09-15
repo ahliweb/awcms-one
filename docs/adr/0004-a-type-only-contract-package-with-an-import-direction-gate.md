@@ -1,0 +1,28 @@
+🇬🇧 English (source) · 🇮🇩 [Bahasa Indonesia](0004-a-type-only-contract-package-with-an-import-direction-gate.id.md)
+
+# ADR-0004 — `packages/kontrak` is a type-only contract, with a gate holding the import direction one-way
+
+- **Status:** Accepted
+- **Date:** 15 September 2026
+- **Decision maker:** ahliweb
+- **Related:** [issue #6](https://github.com/ahliweb/awcms-one/issues/6) (this package, and the coordinator's follow-up comment reconciling it against the real API — see Consequences); [ADR-0001](0001-git-subtree-with-full-history-for-apps-cms.md) (why a dependency pointing back into `apps/cms` is dangerous); [`packages/kontrak/`](../../packages/kontrak); [`tests/kontrak-arah-impor.test.mjs`](../../tests/kontrak-arah-impor.test.mjs)
+
+## Context
+
+Before this package existed, `apps/storefront/src/lib/catalog.ts` hand-copied `ProductType` and `ProductStatus` from `apps/cms`'s commerce domain layer. A hand-copied union type-checks perfectly today and says nothing about tomorrow: if `apps/cms` ever widens `ProductStatus` with a fifth value, the storefront's copy stays exactly as it was, compiles cleanly, and silently mis-handles the new value — the exact failure mode a re-export from the real source is built to turn into a compile error instead.
+
+The obvious fix — import the type from `apps/cms` directly — creates a new risk of its own: `apps/cms` is upstream code vendored whole via `git subtree` (ADR-0001). A dependency pointing *back* from this repository's own code into `apps/cms`, if left unguarded, would sit invisibly in `apps/cms`'s own source tree and turn every future `git subtree pull` into a merge conflict against code upstream has never heard of and did not write.
+
+## Decision
+
+`packages/kontrak` re-exports `ProductType` and `ProductStatus` from `apps/cms/src/modules/commerce/domain/{product-type,product-status}.ts` — **`export type` only, never a runtime value**. Not one line of `apps/cms` code executes inside `apps/storefront`'s bundle: an `export const` or `export function` here would type-check exactly as well and still be a defect, because `apps/storefront` is a static public site (ADR-0002) that must never carry backend code into a client-served artifact.
+
+**Scope is deliberately narrow: only `apps/cms/src/modules/**/domain/*.ts`.** That layer is the one `apps/cms`'s own convention keeps pure — no database, no I/O, verified by each source file's own docblock. `application/` and above may carry I/O-bearing imports on other lines of the same file; `import type` does not execute them, but `tsc` still parses the whole file to build its type graph, so reaching into `application/` would quietly widen what this package pulls into the storefront's compile graph. This is why `CommerceProduct`/`CommerceCategory` — the row DTO shapes, declared as `ProductRecord`/`CategoryRecord` in `commerce/application/{product,category}-directory.ts` — and the `{ items, nextCursor }` keyset page envelope (`_shared/keyset-pagination.ts`) are **not** re-exported here: `apps/storefront/src/lib/catalog.ts` keeps its own local, structural declarations of both, each with a comment naming this decision and the field lists it must be kept in step with by hand.
+
+**Import direction is one-way and mechanically enforced: `storefront → kontrak → cms`, never the reverse.** `tests/kontrak-arah-impor.test.mjs` scans every `.ts`/`.tsx`/`.astro` file under `apps/cms/src/` for an import, re-export, `require`, or dynamic `import()` specifier pointing at `apps/storefront`, `packages/kontrak`, or any `@awcms-one/*` package, and fails the moment it finds one. A text match on the specifier, deliberately short of full module resolution — enough for the one violation class that is actually possible here, and it needs no `tsc`/bundler run to check on every push.
+
+## Consequences
+
+- Widening `ProductStatus` in `apps/cms` now turns a non-exhaustive `switch` in the storefront into a real compile error, not a silent mis-read — `apps/storefront/src/lib/catalog.ts`'s `isPubliclyVisible` is written as an exhaustive `switch` with an `assertNeverProductStatus(value: never)` fallthrough specifically so this package's re-export has teeth somewhere concrete, and the widening-and-revert proof was captured once, by hand, in the PR that landed it.
+- **The package's first real use surfaced a second contract drift it was not built to catch, because it lives in `application/`, not `domain/`.** Reconciling `packages/kontrak` against the merged `commerce` module (issue #6's coordinator comment) found the storefront's hand-written client disagreeing with the real API on three points at once: the list envelope key (`items`, not the assumed `products`/`categories`), the fact that `?status=` is not a supported filter at all, and that `?limit=` is silently ignored (the page size is fixed at 100 server-side). None of these are types `packages/kontrak` re-exports — they are shapes declared in `_shared/` and route-level behaviour — so this package closing the `ProductStatus`/`ProductType` gap did not, and structurally could not, close this one. `apps/storefront/src/lib/catalog.ts` was fixed to match the real envelope and to stop sending parameters the server does not honour (sending one is a lie in the request log); see [`docs/api.md`](../api.md) for the actual envelope shape.
+- Any future DTO the storefront needs from a layer above `domain/` repeats this same choice: hand-declare it locally in `apps/storefront`, with a comment naming the `apps/cms` source it must be kept verbatim against — this package does not grow to cover it by reaching deeper into `apps/cms`.
