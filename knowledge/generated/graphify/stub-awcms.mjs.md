@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/scripts/stub-awcms.mjs"
 type: "code"
-community: "Storefront Dev API Stub"
+community: "stub-awcms.mjs"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Storefront_Dev_API_Stub
+  - community/stub-awcmsmjs
 ---
 
 # stub-awcms.mjs
@@ -15,7 +15,7 @@ tags:
 - [[FIXTURES]] - `contains` [EXTRACTED]
 - [[PORT]] - `contains` [EXTRACTED]
 - [[ROUTES]] - `contains` [EXTRACTED]
-- [[fixture()]] - `contains` [EXTRACTED]
+- [[fixture()_1]] - `contains` [EXTRACTED]
 - [[server]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Storefront_Dev_API_Stub
+#graphify/code #graphify/EXTRACTED #community/stub-awcmsmjs

@@ -1,12 +1,12 @@
 ---
 source_file: "tests/standar-skrip.test.mjs"
 type: "code"
-community: "Changeset Backlog Gate"
+community: "audit-rilis.mjs"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Changeset_Backlog_Gate
+  - community/audit-rilismjs
 ---
 
 # standar-skrip.test.mjs
@@ -16,6 +16,6 @@ tags:
 - [[codeOnly()]] - `contains` [EXTRACTED]
 - [[formatReport()]] - `imports` [EXTRACTED]
 - [[reporter.mjs]] - `imports_from` [EXTRACTED]
-- [[scripts_2]] - `contains` [EXTRACTED]
+- [[scripts_1]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Changeset_Backlog_Gate
+#graphify/code #graphify/EXTRACTED #community/audit-rilismjs

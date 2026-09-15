@@ -1,12 +1,12 @@
 ---
 source_file: "packages/config/tsconfig.base.json"
 type: "code"
-community: "Shared TypeScript Base Config"
+community: "compilerOptions"
 location: "L2"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Shared_TypeScript_Base_Config
+  - community/compilerOptions
 ---
 
 # compilerOptions
@@ -17,4 +17,4 @@ tags:
 - [[moduleResolution]] - `contains` [EXTRACTED]
 - [[tsconfig.base.json]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Shared_TypeScript_Base_Config
+#graphify/code #graphify/EXTRACTED #community/compilerOptions

@@ -1,17 +1,17 @@
 ---
-source_file: "tests/knowledge-no-subtree-write.test.mjs"
+source_file: "tests/knowledge-obsidian-export.test.mjs"
 type: "code"
-community: "Subtree Write Protection Tests"
-location: "L40"
+community: "knowledge-obsidian-export.test.mjs"
+location: "L21"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Subtree_Write_Protection_Tests
+  - community/knowledge-obsidian-exporttestmjs
 ---
 
 # cleanup
 
 ## Connections
-- [[knowledge-no-subtree-write.test.mjs]] - `contains` [EXTRACTED]
+- [[knowledge-obsidian-export.test.mjs]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Subtree_Write_Protection_Tests
+#graphify/code #graphify/EXTRACTED #community/knowledge-obsidian-exporttestmjs

@@ -1,12 +1,12 @@
 ---
 source_file: "tools/docs-i18n-stamp.mjs"
 type: "code"
-community: "Documentation Translation Mirroring"
+community: "docs-i18n-stamp.mjs"
 location: "L86"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Documentation_Translation_Mirroring
+  - community/docs-i18n-stampmjs
 ---
 
 # indonesianBanner()
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[docs-i18n-stamp.mjs]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Documentation_Translation_Mirroring
+#graphify/code #graphify/EXTRACTED #community/docs-i18n-stampmjs

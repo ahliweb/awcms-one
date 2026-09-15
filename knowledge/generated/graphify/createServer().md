@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/server/penyaji.mjs"
 type: "code"
-community: "Storefront Static Server Headers"
+community: "penyaji.mjs"
 location: "L204"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Storefront_Static_Server_Headers
+  - community/penyajimjs
 ---
 
 # createServer()
@@ -17,4 +17,4 @@ tags:
 - [[penyaji.mjs]] - `contains` [EXTRACTED]
 - [[run()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Storefront_Static_Server_Headers
+#graphify/code #graphify/EXTRACTED #community/penyajimjs

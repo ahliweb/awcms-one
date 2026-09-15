@@ -1,12 +1,12 @@
 ---
 source_file: "packages/gerbang/audit-rilis.mjs"
 type: "code"
-community: "Changeset Backlog Gate"
+community: "audit-rilis.mjs"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Changeset_Backlog_Gate
+  - community/audit-rilismjs
 ---
 
 # audit-rilis.mjs
@@ -25,4 +25,4 @@ tags:
 - [[today()]] - `contains` [EXTRACTED]
 - [[todayIso]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Changeset_Backlog_Gate
+#graphify/code #graphify/EXTRACTED #community/audit-rilismjs

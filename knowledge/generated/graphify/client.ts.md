@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/awcms/client.ts"
 type: "code"
-community: "Storefront Catalog Rendering"
+community: "client.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Storefront_Catalog_Rendering
+  - community/clientts
 ---
 
 # client.ts
@@ -21,4 +21,4 @@ tags:
 - [[readEnv()]] - `imports` [EXTRACTED]
 - [[timeoutMs()]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Storefront_Catalog_Rendering
+#graphify/code #graphify/EXTRACTED #community/clientts

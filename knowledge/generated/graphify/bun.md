@@ -1,12 +1,12 @@
 ---
 source_file: "package.json"
 type: "code"
-community: "Gate Test Harness & Toolchain Pin"
+community: "bun"
 location: "L15"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Gate_Test_Harness__Toolchain_Pin
+  - community/bun
 ---
 
 # bun
@@ -17,6 +17,6 @@ tags:
 - [[gitRunInherit()]] - `references` [EXTRACTED]
 - [[gitRunOrThrow()]] - `references` [EXTRACTED]
 - [[run()_1]] - `references` [EXTRACTED]
-- [[run()_2]] - `references` [EXTRACTED]
+- [[run()_4]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Gate_Test_Harness__Toolchain_Pin
+#graphify/code #graphify/EXTRACTED #community/bun

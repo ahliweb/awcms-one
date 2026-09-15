@@ -1,12 +1,12 @@
 ---
 source_file: "tests/knowledge-obsidian-export.test.mjs"
 type: "code"
-community: "Obsidian Export Behaviour Tests"
+community: "knowledge-obsidian-export.test.mjs"
 location: "L17"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Obsidian_Export_Behaviour_Tests
+  - community/knowledge-obsidian-exporttestmjs
 ---
 
 # REPO_ROOT
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[knowledge-obsidian-export.test.mjs]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Obsidian_Export_Behaviour_Tests
+#graphify/code #graphify/EXTRACTED #community/knowledge-obsidian-exporttestmjs

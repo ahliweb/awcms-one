@@ -1,12 +1,12 @@
 ---
 source_file: "package.json"
 type: "concept"
-community: "Gate Test Harness & Toolchain Pin"
+community: "scripts"
 location: "L17"
 tags:
   - graphify/concept
   - graphify/EXTRACTED
-  - community/Gate_Test_Harness__Toolchain_Pin
+  - community/scripts
 ---
 
 # packages/*
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[workspaces]] - `extends` [EXTRACTED]
 
-#graphify/concept #graphify/EXTRACTED #community/Gate_Test_Harness__Toolchain_Pin
+#graphify/concept #graphify/EXTRACTED #community/scripts

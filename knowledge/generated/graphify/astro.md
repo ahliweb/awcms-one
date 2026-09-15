@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/package.json"
 type: "code"
-community: "Storefront Package Manifest"
-location: "L18"
+community: "storefront/package.json"
+location: "L19"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Storefront_Package_Manifest
+  - community/storefront/packagejson
 ---
 
 # astro
@@ -15,4 +15,4 @@ tags:
 - [[astro_1]] - `imports` [EXTRACTED]
 - [[dependencies]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Storefront_Package_Manifest
+#graphify/code #graphify/EXTRACTED #community/storefront/packagejson

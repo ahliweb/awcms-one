@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/scripts/stub-awcms.mjs"
 type: "code"
-community: "Storefront Dev API Stub"
-location: "L31"
+community: "stub-awcms.mjs"
+location: "L35"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Storefront_Dev_API_Stub
+  - community/stub-awcmsmjs
 ---
 
 # ROUTES
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[stub-awcms.mjs]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Storefront_Dev_API_Stub
+#graphify/code #graphify/EXTRACTED #community/stub-awcmsmjs

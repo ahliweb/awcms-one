@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/awcms/client.ts"
 type: "code"
-community: "Storefront Catalog Rendering"
+community: "client.ts"
 location: "L132"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Storefront_Catalog_Rendering
+  - community/clientts
 ---
 
 # awcmsGet()
@@ -18,4 +18,4 @@ tags:
 - [[readEnv()]] - `calls` [EXTRACTED]
 - [[timeoutMs()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Storefront_Catalog_Rendering
+#graphify/code #graphify/EXTRACTED #community/clientts

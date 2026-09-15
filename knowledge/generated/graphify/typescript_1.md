@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/package.json"
 type: "concept"
-community: "Storefront Package Manifest"
-location: "L23"
+community: "storefront/package.json"
+location: "L24"
 tags:
   - graphify/concept
   - graphify/EXTRACTED
-  - community/Storefront_Package_Manifest
+  - community/storefront/packagejson
 ---
 
 # typescript
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[typescript]] - `imports` [EXTRACTED]
 
-#graphify/concept #graphify/EXTRACTED #community/Storefront_Package_Manifest
+#graphify/concept #graphify/EXTRACTED #community/storefront/packagejson

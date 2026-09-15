@@ -1,12 +1,12 @@
 ---
 source_file: "tools/knowledge-graph-update.mjs"
 type: "code"
-community: "Root Graph Update Wrapper"
+community: "knowledge-graph-update.mjs"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Root_Graph_Update_Wrapper
+  - community/knowledge-graph-updatemjs
 ---
 
 # knowledge-graph-update.mjs
@@ -14,6 +14,6 @@ tags:
 ## Connections
 - [[COST_PATH]] - `contains` [EXTRACTED]
 - [[ROOT_2]] - `contains` [EXTRACTED]
-- [[run()_4]] - `contains` [EXTRACTED]
+- [[run()_3]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Root_Graph_Update_Wrapper
+#graphify/code #graphify/EXTRACTED #community/knowledge-graph-updatemjs

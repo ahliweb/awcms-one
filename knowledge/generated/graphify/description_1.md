@@ -1,17 +1,17 @@
 ---
-source_file: "packages/config/package.json"
+source_file: "package.json"
 type: "code"
-community: "Shared Config Package Manifest"
+community: "scripts"
 location: "L6"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Shared_Config_Package_Manifest
+  - community/scripts
 ---
 
 # description
 
 ## Connections
-- [[configpackage.json]] - `contains` [EXTRACTED]
+- [[package.json]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Shared_Config_Package_Manifest
+#graphify/code #graphify/EXTRACTED #community/scripts

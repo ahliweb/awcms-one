@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/pages/product-labels.css.ts"
 type: "code"
-community: "Storefront Catalog Rendering"
+community: "catalog.ts"
 location: "L34"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Storefront_Catalog_Rendering
+  - community/catalogts
 ---
 
 # GET()
@@ -18,4 +18,4 @@ tags:
 - [[labelClassName()]] - `calls` [EXTRACTED]
 - [[product-labels.css.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Storefront_Catalog_Rendering
+#graphify/code #graphify/EXTRACTED #community/catalogts
