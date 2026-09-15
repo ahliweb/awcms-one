@@ -135,8 +135,23 @@ const SKIP = new Set([
  * for — precisely the failure class `EXCLUDED_PATHS` below exists to
  * prevent, one level higher (a directory, rather than one path). `apps/cms`
  * has its own gates (`bun run check:cms`).
+ *
+ * `knowledge/generated` is graphify's Obsidian export (issue #11): notes
+ * EXTRACTED from source code by `bun run knowledge:obsidian:export`, never
+ * authored. Holding them to this gate's rules produces only false positives,
+ * and the first one was concrete, not hypothetical (issue #15): the moment
+ * `docs/adr/` existed, the ADR-citation check below fired on three generated
+ * notes that quote THIS FILE's own illustrative `ADR-0042` example — text
+ * that is an example in the source comment, and a bare citation once
+ * extraction strips the prose around it. The same applies to every check
+ * here: a relative link in a generated note is a wikilink this gate does
+ * not parse, and a path a note names that no longer exists is graph
+ * staleness, which `bun run audit:graf` deliberately does not police
+ * either. Generated output belongs to that gate; the documents this one
+ * reads are the ones a person wrote. `knowledge/curated/` and
+ * `knowledge/README.md` stay in scope — they are authored.
  */
-const SKIP_PATHS = new Set(["apps/cms"]);
+const SKIP_PATHS = new Set(["apps/cms", "knowledge/generated"]);
 
 function violation(gate, file, message) {
   reporter.violation(gate, file, message);
