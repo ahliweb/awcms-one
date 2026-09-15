@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](AGENTS.md)
 
-<!-- i18n-source-hash: sha256:cc79bfa62d93ba23e26df94feb7dad43db466ce9efceab9c2986608d79248f66 -->
+<!-- i18n-source-hash: sha256:5cce1ac76fa2db2af84a6c2577aacf885f6e9616fff6e928a5298c39d6b7d769 -->
 
 # AGENTS.md — kontrak kerja awcms-one
 
@@ -16,12 +16,12 @@ Tata letak workspace, mekanisme gerbang, dan konvensi changeset dokumen ini diad
 
 ## Yang ada hari ini, dan yang tidak
 
-Sejujurnya, per dokumen ini mendarat:
+Sejujurnya, per pembaruan terakhir dokumen ini:
 
-- **Ada:** akar workspace dan governance-nya, `packages/config`, `packages/gerbang`, `tools/`, dan `apps/cms` (`ahliweb/awcms` v10.3.0, disematkan lewat `git subtree` dengan riwayat penuh — closes [issue #2](https://github.com/ahliweb/awcms-one/issues/2)).
-- **Belum ada:** `apps/storefront` (storefront Astro publik — [issue #5](https://github.com/ahliweb/awcms-one/issues/5)), `packages/kontrak` (kontrak DTO bertipe-saja di antara keduanya plus gerbang arah-impornya — [issue #6](https://github.com/ahliweb/awcms-one/issues/6)), modul `commerce` di dalam `apps/cms` ([issue #4](https://github.com/ahliweb/awcms-one/issues/4)), dan dokumentasi arsitektur formal ([issue #7](https://github.com/ahliweb/awcms-one/issues/7)).
+- **Ada:** akar workspace dan governance-nya, `packages/config`, `packages/gerbang`, `packages/kontrak` (kontrak DTO bertipe-saja antara `apps/storefront` dan `apps/cms`, plus gerbang arah-impornya — closes [issue #6](https://github.com/ahliweb/awcms-one/issues/6)), `tools/`, `knowledge/` (workflow Graphify + Obsidian terfederasi — closes [issue #11](https://github.com/ahliweb/awcms-one/issues/11)), `docs/` (dokumentasi arsitektur, skema, API, CMS, dan referensi, dengan `docs/adr/`-nya sendiri — closes [issue #7](https://github.com/ahliweb/awcms-one/issues/7)), `apps/storefront` (storefront Astro publik, daftar katalog + detail produk — closes [issue #5](https://github.com/ahliweb/awcms-one/issues/5)), dan `apps/cms` (`ahliweb/awcms` v10.3.0, disematkan lewat `git subtree` dengan riwayat penuh — closes [issue #2](https://github.com/ahliweb/awcms-one/issues/2) — kini membawa modul `commerce`, domain katalog + persistensi + API — closes [issue #4](https://github.com/ahliweb/awcms-one/issues/4)).
+- **Belum ada:** instans PostgreSQL hidup untuk dijalankan `apps/cms` (increment 2 — lihat [`docs/deployment.md`](docs/deployment.md)), dan segala sesuatu yang sengaja dikecualikan increment 1: keranjang, checkout, pembayaran, pesanan, pengiriman, varian, flash sale, tautan afiliasi, harga bertingkat, iklan, manajemen logo, dan gambar produk/media (lihat [`docs/arsitektur.md`](docs/arsitektur.md) dan [`docs/cms.md`](docs/cms.md) untuk daftar lengkap dan terkininya).
 
-Jangan menulis kode, gerbang, atau dokumentasi yang mengasumsikan salah satu dari butir "belum ada" itu sudah ada. Jalur yang dikutip dalam backtick yang tidak ada di repo ini akan tertangkap pemeriksaan jalur bertanda `bun run audit:dokumen`, kecuali terdaftar di `EXCLUDED_PATHS` gerbang itu, beserta alasannya.
+Setiap issue anak dari [issue #1](https://github.com/ahliweb/awcms-one/issues/1) sudah mendarat. Jangan menulis kode, gerbang, atau dokumentasi yang mengasumsikan salah satu dari butir "belum ada" itu sudah ada. Jalur yang dikutip dalam backtick yang tidak ada di repo ini akan tertangkap pemeriksaan jalur bertanda `bun run audit:dokumen`, kecuali terdaftar di `EXCLUDED_PATHS` gerbang itu, beserta alasannya. Lihat [`docs/README.md`](docs/README.md) untuk indeks dokumentasi lengkap.
 
 ## Penyematan subtree
 
