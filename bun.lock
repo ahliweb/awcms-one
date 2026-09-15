@@ -27,6 +27,7 @@
       "version": "0.1.0",
       "dependencies": {
         "@astrojs/node": "^11.1.5",
+        "@awcms-one/kontrak": "workspace:*",
         "astro": "^7.3.1",
       },
       "devDependencies": {
@@ -42,6 +43,13 @@
     "packages/gerbang": {
       "name": "@awcms-one/gerbang",
       "version": "0.0.0",
+    },
+    "packages/kontrak": {
+      "name": "@awcms-one/kontrak",
+      "version": "0.0.0",
+      "dependencies": {
+        "awcms": "workspace:*",
+      },
     },
   },
   "packages": {
@@ -88,6 +96,8 @@
     "@awcms-one/config": ["@awcms-one/config@workspace:packages/config"],
 
     "@awcms-one/gerbang": ["@awcms-one/gerbang@workspace:packages/gerbang"],
+
+    "@awcms-one/kontrak": ["@awcms-one/kontrak@workspace:packages/kontrak"],
 
     "@awcms-one/storefront": ["@awcms-one/storefront@workspace:apps/storefront"],
 
