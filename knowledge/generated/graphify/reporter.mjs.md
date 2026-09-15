@@ -1,12 +1,12 @@
 ---
 source_file: "packages/gerbang/lib/reporter.mjs"
 type: "code"
-community: "Changeset Backlog Gate"
+community: "audit-rilis.mjs"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Changeset_Backlog_Gate
+  - community/audit-rilismjs
 ---
 
 # reporter.mjs
@@ -19,4 +19,4 @@ tags:
 - [[formatReport()]] - `contains` [EXTRACTED]
 - [[standar-skrip.test.mjs]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Changeset_Backlog_Gate
+#graphify/code #graphify/EXTRACTED #community/audit-rilismjs

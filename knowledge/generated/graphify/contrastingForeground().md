@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/catalog.ts"
 type: "code"
-community: "Storefront Catalog Rendering"
-location: "L306"
+community: "catalog.ts"
+location: "L367"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Storefront_Catalog_Rendering
+  - community/catalogts
 ---
 
 # contrastingForeground()
@@ -18,4 +18,4 @@ tags:
 - [[product-labels.css.ts]] - `imports` [EXTRACTED]
 - [[relativeLuminance()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Storefront_Catalog_Rendering
+#graphify/code #graphify/EXTRACTED #community/catalogts

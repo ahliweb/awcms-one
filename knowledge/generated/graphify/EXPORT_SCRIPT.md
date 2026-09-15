@@ -1,12 +1,12 @@
 ---
 source_file: "tests/knowledge-no-subtree-write.test.mjs"
 type: "code"
-community: "Subtree Write Protection Tests"
+community: "knowledge-no-subtree-write.test.mjs"
 location: "L37"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Subtree_Write_Protection_Tests
+  - community/knowledge-no-subtree-writetestmjs
 ---
 
 # EXPORT_SCRIPT
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[knowledge-no-subtree-write.test.mjs]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Subtree_Write_Protection_Tests
+#graphify/code #graphify/EXTRACTED #community/knowledge-no-subtree-writetestmjs

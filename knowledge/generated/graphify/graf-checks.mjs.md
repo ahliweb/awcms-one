@@ -1,12 +1,12 @@
 ---
 source_file: "packages/gerbang/lib/graf-checks.mjs"
 type: "code"
-community: "Root Knowledge-Graph Gate"
+community: "audit-graf.mjs"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Root_Knowledge-Graph_Gate
+  - community/audit-grafmjs
 ---
 
 # graf-checks.mjs
@@ -27,4 +27,4 @@ tags:
 - [[reportedCommunityNames()]] - `contains` [EXTRACTED]
 - [[reportedCounts()]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Root_Knowledge-Graph_Gate
+#graphify/code #graphify/EXTRACTED #community/audit-grafmjs

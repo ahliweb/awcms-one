@@ -1,12 +1,12 @@
 ---
 source_file: "packages/gerbang/audit-dokumen.mjs"
 type: "code"
-community: "Markdown Documentation Audit"
-location: "L257"
+community: "audit-dokumen.mjs"
+location: "L272"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Markdown_Documentation_Audit
+  - community/audit-dokumenmjs
 ---
 
 # adrStatus()
@@ -15,4 +15,4 @@ tags:
 - [[audit-dokumen.mjs]] - `contains` [EXTRACTED]
 - [[auditAdrIndex()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Markdown_Documentation_Audit
+#graphify/code #graphify/EXTRACTED #community/audit-dokumenmjs

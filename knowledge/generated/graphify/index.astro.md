@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/pages/index.astro"
 type: "code"
-community: "Storefront Catalog Rendering"
+community: "catalog.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Storefront_Catalog_Rendering
+  - community/catalogts
 ---
 
 # index.astro
@@ -22,4 +22,4 @@ tags:
 - [[site.ts]] - `imports_from` [EXTRACTED]
 - [[siteConfig]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Storefront_Catalog_Rendering
+#graphify/code #graphify/EXTRACTED #community/catalogts

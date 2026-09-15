@@ -1,17 +1,17 @@
 ---
-source_file: "tests/audit-graf.test.mjs"
+source_file: "apps/storefront/scripts/stub-awcms.mjs"
 type: "code"
-community: "Knowledge-Graph Gate Tests"
-location: "L43"
+community: "stub-awcms.mjs"
+location: "L31"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Knowledge-Graph_Gate_Tests
+  - community/stub-awcmsmjs
 ---
 
 # fixture()
 
 ## Connections
-- [[audit-graf.test.mjs]] - `contains` [EXTRACTED]
+- [[stub-awcms.mjs]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Knowledge-Graph_Gate_Tests
+#graphify/code #graphify/EXTRACTED #community/stub-awcmsmjs

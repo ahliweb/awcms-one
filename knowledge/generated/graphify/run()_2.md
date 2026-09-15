@@ -1,18 +1,17 @@
 ---
-source_file: "tests/audit-rilis.test.mjs"
+source_file: "tests/audit-graf.test.mjs"
 type: "code"
-community: "Gate Test Harness & Toolchain Pin"
-location: "L63"
+community: "audit-graf.test.mjs"
+location: "L101"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Gate_Test_Harness__Toolchain_Pin
+  - community/audit-graftestmjs
 ---
 
 # run()
 
 ## Connections
-- [[audit-rilis.test.mjs]] - `contains` [EXTRACTED]
-- [[bun]] - `references` [EXTRACTED]
+- [[audit-graf.test.mjs]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Gate_Test_Harness__Toolchain_Pin
+#graphify/code #graphify/EXTRACTED #community/audit-graftestmjs

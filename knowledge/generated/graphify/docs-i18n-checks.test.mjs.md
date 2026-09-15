@@ -1,12 +1,12 @@
 ---
 source_file: "tests/docs-i18n-checks.test.mjs"
 type: "code"
-community: "Documentation Translation Mirroring"
+community: "docs-i18n-stamp.mjs"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Documentation_Translation_Mirroring
+  - community/docs-i18n-stampmjs
 ---
 
 # docs-i18n-checks.test.mjs
@@ -24,4 +24,4 @@ tags:
 - [[isInScope()]] - `imports` [EXTRACTED]
 - [[isMirrorInScope()]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Documentation_Translation_Mirroring
+#graphify/code #graphify/EXTRACTED #community/docs-i18n-stampmjs

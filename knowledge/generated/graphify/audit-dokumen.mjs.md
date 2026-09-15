@@ -1,12 +1,12 @@
 ---
 source_file: "packages/gerbang/audit-dokumen.mjs"
 type: "code"
-community: "Markdown Documentation Audit"
+community: "audit-dokumen.mjs"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Markdown_Documentation_Audit
+  - community/audit-dokumenmjs
 ---
 
 # audit-dokumen.mjs
@@ -42,8 +42,8 @@ tags:
 - [[numbersIn()]] - `contains` [EXTRACTED]
 - [[parseSource()]] - `contains` [EXTRACTED]
 - [[proseFromBlock()]] - `contains` [EXTRACTED]
-- [[reporter_1]] - `contains` [EXTRACTED]
+- [[reporter_2]] - `contains` [EXTRACTED]
 - [[reporter.mjs]] - `imports_from` [EXTRACTED]
 - [[violation()]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Markdown_Documentation_Audit
+#graphify/code #graphify/EXTRACTED #community/audit-dokumenmjs

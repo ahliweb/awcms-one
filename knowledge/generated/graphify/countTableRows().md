@@ -1,12 +1,12 @@
 ---
 source_file: "packages/gerbang/audit-dokumen.mjs"
 type: "code"
-community: "Markdown Documentation Audit"
-location: "L690"
+community: "audit-dokumen.mjs"
+location: "L705"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Markdown_Documentation_Audit
+  - community/audit-dokumenmjs
 ---
 
 # countTableRows()
@@ -15,4 +15,4 @@ tags:
 - [[actualCount()]] - `calls` [EXTRACTED]
 - [[audit-dokumen.mjs]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Markdown_Documentation_Audit
+#graphify/code #graphify/EXTRACTED #community/audit-dokumenmjs

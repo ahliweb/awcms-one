@@ -1,17 +1,17 @@
 ---
-source_file: "package.json"
+source_file: "packages/gerbang/package.json"
 type: "code"
-community: "Gate Test Harness & Toolchain Pin"
-location: "L9"
+community: "gerbang/package.json"
+location: "L3"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Gate_Test_Harness__Toolchain_Pin
+  - community/gerbang/packagejson
 ---
 
 # type
 
 ## Connections
-- [[repository]] - `contains` [EXTRACTED]
+- [[gerbangpackage.json]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Gate_Test_Harness__Toolchain_Pin
+#graphify/code #graphify/EXTRACTED #community/gerbang/packagejson

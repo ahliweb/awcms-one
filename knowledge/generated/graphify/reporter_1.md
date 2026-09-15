@@ -1,17 +1,17 @@
 ---
-source_file: "packages/gerbang/audit-dokumen.mjs"
+source_file: "packages/gerbang/audit-graf.mjs"
 type: "code"
-community: "Markdown Documentation Audit"
-location: "L106"
+community: "audit-graf.mjs"
+location: "L98"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Markdown_Documentation_Audit
+  - community/audit-grafmjs
 ---
 
 # reporter
 
 ## Connections
-- [[audit-dokumen.mjs]] - `contains` [EXTRACTED]
+- [[audit-graf.mjs]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Markdown_Documentation_Audit
+#graphify/code #graphify/EXTRACTED #community/audit-grafmjs

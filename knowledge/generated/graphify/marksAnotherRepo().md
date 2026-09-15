@@ -1,12 +1,12 @@
 ---
 source_file: "packages/gerbang/audit-dokumen.mjs"
 type: "code"
-community: "Markdown Documentation Audit"
-location: "L561"
+community: "audit-dokumen.mjs"
+location: "L576"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Markdown_Documentation_Audit
+  - community/audit-dokumenmjs
 ---
 
 # marksAnotherRepo()
@@ -15,4 +15,4 @@ tags:
 - [[audit-dokumen.mjs]] - `contains` [EXTRACTED]
 - [[auditAdrCitations()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Markdown_Documentation_Audit
+#graphify/code #graphify/EXTRACTED #community/audit-dokumenmjs

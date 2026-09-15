@@ -1,17 +1,17 @@
 ---
 source_file: "package.json"
 type: "code"
-community: "Gate Test Harness & Toolchain Pin"
-location: "L3"
+community: "scripts"
+location: "L9"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Gate_Test_Harness__Toolchain_Pin
+  - community/scripts
 ---
 
 # type
 
 ## Connections
-- [[package.json]] - `contains` [EXTRACTED]
+- [[repository]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Gate_Test_Harness__Toolchain_Pin
+#graphify/code #graphify/EXTRACTED #community/scripts

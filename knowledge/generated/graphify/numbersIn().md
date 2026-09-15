@@ -1,18 +1,19 @@
 ---
 source_file: "packages/gerbang/audit-dokumen.mjs"
 type: "code"
-community: "Markdown Documentation Audit"
-location: "L790"
+community: "audit-dokumen.mjs"
+location: "L805"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Markdown_Documentation_Audit
+  - community/audit-dokumenmjs
 ---
 
 # numbersIn()
 
 ## Connections
+- [[NUMBER_WORDS]] - `references` [EXTRACTED]
 - [[audit-dokumen.mjs]] - `contains` [EXTRACTED]
 - [[auditLinkedCounts()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Markdown_Documentation_Audit
+#graphify/code #graphify/EXTRACTED #community/audit-dokumenmjs

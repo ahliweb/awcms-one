@@ -1,17 +1,17 @@
 ---
 source_file: "apps/storefront/package.json"
 type: "code"
-community: "Storefront Package Manifest"
+community: "storefront/package.json"
 location: "L10"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Storefront_Package_Manifest
+  - community/storefront/packagejson
 ---
 
 # build:penyaji
 
 ## Connections
-- [[scripts]] - `contains` [EXTRACTED]
+- [[scripts_2]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Storefront_Package_Manifest
+#graphify/code #graphify/EXTRACTED #community/storefront/packagejson

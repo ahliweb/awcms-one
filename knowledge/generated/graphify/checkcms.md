@@ -1,17 +1,17 @@
 ---
 source_file: "package.json"
 type: "code"
-community: "Root Workspace Manifest"
+community: "scripts"
 location: "L26"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Root_Workspace_Manifest
+  - community/scripts
 ---
 
 # check:cms
 
 ## Connections
-- [[scripts_1]] - `contains` [EXTRACTED]
+- [[scripts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Root_Workspace_Manifest
+#graphify/code #graphify/EXTRACTED #community/scripts

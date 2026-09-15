@@ -1,17 +1,17 @@
 ---
-source_file: "tests/audit-graf.test.mjs"
+source_file: "tests/knowledge-no-subtree-write.test.mjs"
 type: "code"
-community: "Knowledge-Graph Gate Tests"
-location: "L24"
+community: "knowledge-no-subtree-write.test.mjs"
+location: "L40"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Knowledge-Graph_Gate_Tests
+  - community/knowledge-no-subtree-writetestmjs
 ---
 
 # cleanup
 
 ## Connections
-- [[audit-graf.test.mjs]] - `contains` [EXTRACTED]
+- [[knowledge-no-subtree-write.test.mjs]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Knowledge-Graph_Gate_Tests
+#graphify/code #graphify/EXTRACTED #community/knowledge-no-subtree-writetestmjs

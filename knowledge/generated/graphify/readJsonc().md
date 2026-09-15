@@ -1,12 +1,12 @@
 ---
 source_file: "tools/cek-lockfile.mjs"
 type: "code"
-community: "Lockfile Workspace Verification"
+community: "cek-lockfile.mjs"
 location: "L64"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Lockfile_Workspace_Verification
+  - community/cek-lockfilemjs
 ---
 
 # readJsonc()
@@ -16,4 +16,4 @@ tags:
 - [[findWorkspaces()]] - `calls` [EXTRACTED]
 - [[stripTrailingCommas()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Lockfile_Workspace_Verification
+#graphify/code #graphify/EXTRACTED #community/cek-lockfilemjs

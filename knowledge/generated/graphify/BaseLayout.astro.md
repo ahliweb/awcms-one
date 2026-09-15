@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/layouts/BaseLayout.astro"
 type: "code"
-community: "Storefront Catalog Rendering"
+community: "catalog.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Storefront_Catalog_Rendering
+  - community/catalogts
 ---
 
 # BaseLayout.astro
@@ -19,4 +19,4 @@ tags:
 - [[metaDescription]] - `contains` [EXTRACTED]
 - [[site.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Storefront_Catalog_Rendering
+#graphify/code #graphify/EXTRACTED #community/catalogts

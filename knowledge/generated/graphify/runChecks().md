@@ -1,12 +1,12 @@
 ---
 source_file: "packages/gerbang/check-docs-translation.mjs"
 type: "code"
-community: "Documentation Translation Mirroring"
+community: "docs-i18n-stamp.mjs"
 location: "L102"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Documentation_Translation_Mirroring
+  - community/docs-i18n-stampmjs
 ---
 
 # runChecks()
@@ -20,4 +20,4 @@ tags:
 - [[listSources()]] - `calls` [EXTRACTED]
 - [[readFileIfPresent()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Documentation_Translation_Mirroring
+#graphify/code #graphify/EXTRACTED #community/docs-i18n-stampmjs

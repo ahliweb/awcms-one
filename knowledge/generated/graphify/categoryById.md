@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/pages/index.astro"
 type: "code"
-community: "Storefront Catalog Rendering"
+community: "catalog.ts"
 location: "L16"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Storefront_Catalog_Rendering
+  - community/catalogts
 ---
 
 # categoryById
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[index.astro]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Storefront_Catalog_Rendering
+#graphify/code #graphify/EXTRACTED #community/catalogts

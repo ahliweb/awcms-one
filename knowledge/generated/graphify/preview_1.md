@@ -1,17 +1,17 @@
 ---
-source_file: "package.json"
+source_file: "apps/storefront/package.json"
 type: "code"
-community: "Root Workspace Manifest"
-location: "L40"
+community: "storefront/package.json"
+location: "L14"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Root_Workspace_Manifest
+  - community/storefront/packagejson
 ---
 
 # preview
 
 ## Connections
-- [[scripts_1]] - `contains` [EXTRACTED]
+- [[scripts_2]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Root_Workspace_Manifest
+#graphify/code #graphify/EXTRACTED #community/storefront/packagejson

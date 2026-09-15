@@ -1,12 +1,12 @@
 ---
 source_file: "packages/gerbang/audit-graf.mjs"
 type: "code"
-community: "Root Knowledge-Graph Gate"
+community: "audit-graf.mjs"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Root_Knowledge-Graph_Gate
+  - community/audit-grafmjs
 ---
 
 # audit-graf.mjs
@@ -30,9 +30,9 @@ tags:
 - [[outputDir]] - `contains` [EXTRACTED]
 - [[parseGraphifyIgnore()]] - `imports` [EXTRACTED]
 - [[reportPath]] - `contains` [EXTRACTED]
-- [[reporter_2]] - `contains` [EXTRACTED]
+- [[reporter_1]] - `contains` [EXTRACTED]
 - [[reporter.mjs]] - `imports_from` [EXTRACTED]
 - [[subtreeTrackedOutput]] - `contains` [EXTRACTED]
 - [[trackedOutput]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Root_Knowledge-Graph_Gate
+#graphify/code #graphify/EXTRACTED #community/audit-grafmjs

@@ -1,17 +1,17 @@
 ---
-source_file: "apps/storefront/package.json"
+source_file: "packages/config/package.json"
 type: "code"
-community: "Storefront Package Manifest"
+community: "config/package.json"
 location: "L4"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Storefront_Package_Manifest
+  - community/config/packagejson
 ---
 
 # version
 
 ## Connections
-- [[storefrontpackage.json]] - `contains` [EXTRACTED]
+- [[configpackage.json]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Storefront_Package_Manifest
+#graphify/code #graphify/EXTRACTED #community/config/packagejson

@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/server/penyaji.mjs"
 type: "code"
-community: "Storefront Static Server Headers"
+community: "penyaji.mjs"
 location: "L130"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Storefront_Static_Server_Headers
+  - community/penyajimjs
 ---
 
 # normalizedPath()
@@ -16,4 +16,4 @@ tags:
 - [[isProductsRedirect()]] - `calls` [EXTRACTED]
 - [[penyaji.mjs]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Storefront_Static_Server_Headers
+#graphify/code #graphify/EXTRACTED #community/penyajimjs

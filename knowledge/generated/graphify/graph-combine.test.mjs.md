@@ -1,12 +1,12 @@
 ---
 source_file: "tests/graph-combine.test.mjs"
 type: "code"
-community: "Federated Graph Combine & Subtree Guard"
+community: "knowledge-graph-combine.mjs"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Federated_Graph_Combine__Subtree_Guard
+  - community/knowledge-graph-combinemjs
 ---
 
 # graph-combine.test.mjs
@@ -17,4 +17,4 @@ tags:
 - [[graph-combine.mjs]] - `imports_from` [EXTRACTED]
 - [[validateGraphFile()]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Federated_Graph_Combine__Subtree_Guard
+#graphify/code #graphify/EXTRACTED #community/knowledge-graph-combinemjs

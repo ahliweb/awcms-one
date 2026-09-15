@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/catalog.ts"
 type: "code"
-community: "Storefront Catalog Rendering"
-location: "L253"
+community: "catalog.ts"
+location: "L314"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Storefront_Catalog_Rendering
+  - community/catalogts
 ---
 
 # formatPrice()
@@ -16,4 +16,4 @@ tags:
 - [[catalog.ts]] - `contains` [EXTRACTED]
 - [[index.astro]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Storefront_Catalog_Rendering
+#graphify/code #graphify/EXTRACTED #community/catalogts

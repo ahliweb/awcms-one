@@ -1,17 +1,18 @@
 ---
 source_file: "packages/gerbang/audit-dokumen.mjs"
 type: "code"
-community: "Markdown Documentation Audit"
-location: "L483"
+community: "audit-dokumen.mjs"
+location: "L498"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Markdown_Documentation_Audit
+  - community/audit-dokumenmjs
 ---
 
 # PATH_PREFIXES
 
 ## Connections
 - [[audit-dokumen.mjs]] - `contains` [EXTRACTED]
+- [[auditNamedPaths()]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Markdown_Documentation_Audit
+#graphify/code #graphify/EXTRACTED #community/audit-dokumenmjs

@@ -1,12 +1,12 @@
 ---
 source_file: "packages/gerbang/lib/changeset.mjs"
 type: "code"
-community: "Release & Changeset Versioning"
+community: "audit-rilis.mjs"
 location: "L118"
 tags:
   - graphify/code
   - graphify/INFERRED
-  - community/Release__Changeset_Versioning
+  - community/audit-rilismjs
 ---
 
 # isChangesetFile()
@@ -17,4 +17,4 @@ tags:
 - [[rilis.mjs]] - `indirect_call` [INFERRED]
 - [[versi-changeset.test.mjs]] - `indirect_call` [INFERRED]
 
-#graphify/code #graphify/INFERRED #community/Release__Changeset_Versioning
+#graphify/code #graphify/INFERRED #community/audit-rilismjs

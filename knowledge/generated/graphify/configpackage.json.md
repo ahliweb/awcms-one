@@ -1,21 +1,21 @@
 ---
 source_file: "packages/config/package.json"
 type: "code"
-community: "Shared Config Package Manifest"
+community: "config/package.json"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Shared_Config_Package_Manifest
+  - community/config/packagejson
 ---
 
 # config/package.json
 
 ## Connections
-- [[description_1]] - `contains` [EXTRACTED]
-- [[name_1]] - `contains` [EXTRACTED]
-- [[private_1]] - `contains` [EXTRACTED]
-- [[type_1]] - `contains` [EXTRACTED]
-- [[version_1]] - `contains` [EXTRACTED]
+- [[description]] - `contains` [EXTRACTED]
+- [[name]] - `contains` [EXTRACTED]
+- [[private]] - `contains` [EXTRACTED]
+- [[type]] - `contains` [EXTRACTED]
+- [[version]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Shared_Config_Package_Manifest
+#graphify/code #graphify/EXTRACTED #community/config/packagejson
