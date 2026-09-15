@@ -6,7 +6,11 @@
  * `src/lib/catalog.ts` calls, reading their response bodies straight from
  * the fixtures committed at `tests/fixtures/awcms/` — the shape this script
  * answers with is exactly the shape a reviewer can already read as plain
- * JSON, not a shape hidden inside this script.
+ * JSON, not a shape hidden inside this script. Both fixtures hold the real
+ * `{ items, nextCursor }` keyset page shape `apps/cms`'s commerce routes
+ * actually return inside `ok({...})` (issue #6 caught this script previously
+ * agreeing with an invented `{ products }` / `{ categories }` shape instead
+ * of the true one).
  *
  * Not part of the production build or image: nothing under `scripts/` is
  * imported by `astro.config.mjs`, `src/`, or `server/penyaji.mjs`, and this
