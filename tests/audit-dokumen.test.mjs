@@ -277,6 +277,34 @@ describe("ADR-NNNN citations", () => {
     const { code } = await run(root);
     expect(code).toBe(0);
   });
+
+  // Issue #15, reproduced: graphify's Obsidian export extracts a code
+  // comment's illustrative `ADR-0042` into a generated note where it reads
+  // as a bare citation. Generated notes are out of this gate's scope entirely
+  // (SKIP_PATHS), the same way apps/cms is — not authored here, not held to
+  // rules written for authored text.
+  test("a phantom citation inside knowledge/generated/ is not checked — generated notes are out of scope", async () => {
+    const root = tree({
+      "docs/adr/0001-example-decision.md": "# 0001. Example decision\n\n- **Status:** Accepted\n",
+      "knowledge/generated/graphify/ADR-0042.md": "# ADR-0042\n\nExtracted from a source comment; cites ADR-0042.\n",
+      "knowledge/generated/graphify/audit-dokumen.mjs.md": "Links to [[ADR-0042]] and names `no/such/path.mjs`.\n"
+    });
+    const { code, output } = await run(root);
+
+    expect(output).not.toContain("ADR-0042");
+    expect(code).toBe(0);
+  });
+
+  test("the same phantom citation in knowledge/curated/ IS a violation — curated notes are authored", async () => {
+    const root = tree({
+      "docs/adr/0001-example-decision.md": "# 0001. Example decision\n\n- **Status:** Accepted\n",
+      "knowledge/curated/lessons-learned.md": "We settled this in ADR-0042.\n"
+    });
+    const { code, output } = await run(root);
+
+    expect(output).toContain("cites ADR-0042");
+    expect(code).toBe(1);
+  });
 });
 
 describe("linked counts", () => {
