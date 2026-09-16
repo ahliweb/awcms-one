@@ -2,7 +2,7 @@
 
 # Data dictionary
 
-Every column across the eighteen `awcms_commerce_*` tables, its meaning, its unit/enum domain, and — where one exists — its source column in the legacy `commerce_bj_mart` MySQL schema.
+Every column across the nineteen `awcms_commerce_*` tables, its meaning, its unit/enum domain, and — where one exists — its source column in the legacy `commerce_bj_mart` MySQL schema.
 
 ## Provenance, stated once so every row below does not have to repeat it
 

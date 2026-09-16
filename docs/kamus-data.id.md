@@ -1,10 +1,10 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](kamus-data.md)
 
-<!-- i18n-source-hash: sha256:1ed15d66c56794ea7675ecb781045ab7092d74090932cbcf2c996fd71e1cf16a -->
+<!-- i18n-source-hash: sha256:c921fbf1f221a6bffd089035a93d8bac4ed5c622940863d7521b513631b8e788 -->
 
 # Kamus data
 
-Setiap kolom di delapan belas tabel `awcms_commerce_*`, maknanya, domain unit/enum-nya, dan — jika ada — kolom sumbernya di skema MySQL lawas `commerce_bj_mart`.
+Setiap kolom di sembilan belas tabel `awcms_commerce_*`, maknanya, domain unit/enum-nya, dan — jika ada — kolom sumbernya di skema MySQL lawas `commerce_bj_mart`.
 
 ## Provenans, dinyatakan sekali agar setiap baris di bawah tidak perlu mengulanginya
 

@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](skema-basis-data.md)
 
-<!-- i18n-source-hash: sha256:f7f75b63287fc8505d8d8f6307745ac62072def533f72cfce46c4752d30d52e7 -->
+<!-- i18n-source-hash: sha256:feaa4050fd0bc2115235ac09f85d3799069aeb56df3e157d5cb4d9722d2dd13a -->
 
 # Skema basis data
 
@@ -129,9 +129,9 @@ Tidak satu pun tabel commerce membawa `created_by`/`updated_by`/`deleted_by`. SI
 
 ## `dataLifecycle` dan `subjectData`: mesin purge tidak pernah bisa menjangkau baris hidup, dan setiap tabel adalah `unreachableBySubject`
 
-Kedelapan belas tabel commerce, masing-masing, opt-in ke mesin purge data-lifecycle generik milik `apps/cms` (array `dataLifecycle` milik `commerce/module.ts`), dengan `cursorColumn: "deleted_at"` untuk tujuh belas di antaranya dan `"created_at"` untuk `order_events` yang append-only — `NULL < $2` bukan benar maupun salah di SQL, jadi baris hidup tidak pernah bisa cocok dengan predikat purge; hanya baris yang sudah soft-delete, melewati jendela retensinya, yang menjadi memenuhi-syarat. `orders`/`order_items`/`payment_confirmations` memakai jendela retensi fiskal (`retentionMinDays: 365`, `defaultRetentionDays: 3650`); sisanya memakai `30`/`3650`/`365`.
+Kesembilan belas tabel commerce, masing-masing, opt-in ke mesin purge data-lifecycle generik milik `apps/cms` (array `dataLifecycle` milik `commerce/module.ts`), dengan `cursorColumn: "deleted_at"` untuk delapan belas di antaranya dan `"created_at"` untuk `order_events` yang append-only — `NULL < $2` bukan benar maupun salah di SQL, jadi baris hidup tidak pernah bisa cocok dengan predikat purge; hanya baris yang sudah soft-delete, melewati jendela retensinya, yang menjadi memenuhi-syarat. `orders`/`order_items`/`payment_confirmations` memakai jendela retensi fiskal (`retentionMinDays: 365`, `defaultRetentionDays: 3650`); sisanya memakai `30`/`3650`/`365`.
 
-Kedelapan belas tabel itu juga `unreachableBySubject: true` dalam deskriptor `subjectData` milik modul, `exportable: false`, `erasure: "retain_under_obligation"` — **termasuk tabel customer/address/order yang memegang PII tamu sungguhan.** Ini adalah pembacaan yang disengaja atas kosakata subject-data milik `apps/cms` (`SubjectDataColumn.references` adalah `"tenant_user" | "identity" | "profile" | "principal"` — semuanya konsep identitas sisi-staf), bukan kelalaian: tamu yang diidentifikasi hanya lewat nomor telepon yang diketik ke formulir checkout tidak punya satu pun dari itu. Permintaan erasure/export yang sungguhan ditangani sebagai lookup admin biasa (`GET`/`PATCH /api/v1/commerce/customers/{id}`), di luar cakupan mesin otomatis itu by construction — lihat [ADR-0009](adr/0009-guest-checkout-by-order-code-and-phone.id.md).
+Kesembilan belas tabel itu juga `unreachableBySubject: true` dalam deskriptor `subjectData` milik modul, `exportable: false`, `erasure: "retain_under_obligation"` — **termasuk tabel customer/address/order yang memegang PII tamu sungguhan.** Ini adalah pembacaan yang disengaja atas kosakata subject-data milik `apps/cms` (`SubjectDataColumn.references` adalah `"tenant_user" | "identity" | "profile" | "principal"` — semuanya konsep identitas sisi-staf), bukan kelalaian: tamu yang diidentifikasi hanya lewat nomor telepon yang diketik ke formulir checkout tidak punya satu pun dari itu. Permintaan erasure/export yang sungguhan ditangani sebagai lookup admin biasa (`GET`/`PATCH /api/v1/commerce/customers/{id}`), di luar cakupan mesin otomatis itu by construction — lihat [ADR-0009](adr/0009-guest-checkout-by-order-code-and-phone.id.md).
 
 ## Izin (`sql/154`, `158`, `163`, `166`)
 

@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](0007-cart-and-checkout-stay-static-the-browser-calls-anonymous-commerce-endpoints.md)
 
-<!-- i18n-source-hash: sha256:8fa162ad8808fff6efce215dcd728ffd7d02403ace113aef9b3061900df577dd -->
+<!-- i18n-source-hash: sha256:339860b92bdd5763f4c2df0f6cf39663a49a30072c57f29dad37af00750e2c00 -->
 
 # ADR-0007 — Keranjang, checkout, dan pelacakan pesanan tetap statis; browser memanggil endpoint commerce anonim milik CMS langsung
 
@@ -31,7 +31,7 @@ Rencana pertama adalah hybrid: menjaga situs tetap statis, menjadikan keranjang/
 
 ## Keputusan
 
-`apps/storefront` tetap `output: "static"` dengan **tanpa** rute `prerender = false` dan **tanpa** kredensial runtime — sebuah unit test (`apps/storefront/tests/checkout-build-smoke.test.ts`) menegaskan bahwa tidak ada berkas di bawah `apps/storefront/src/pages` yang keluar dari prerendering. Keranjang, checkout, dan pelacakan pesanan adalah halaman statis yang JavaScript sisi-kliennya memanggil `https://<cms>/api/v1/commerce/storefront/*` langsung. Endpoint-endpoint itu (issue #29) dibangun di atas pola `newsletter/application/public-newsletter-tenant.ts` + `domain/newsletter-cors.ts`: tenant dari `Origin`, preflight, origin yang di-echo, `Vary: Origin`, rate limit per-IP dan per-telepon, idempotency key pada pembuatan pesanan (UUID yang dibuat klien milik keranjang, dipakai ulang sebagai idempotency key request), dan satu 404 netral yang sama untuk "pesanan tak dikenal" maupun "telepon salah".
+`apps/storefront` tetap `output: "static"` dengan **tanpa** rute `prerender = false` dan **tanpa** kredensial runtime — sebuah unit test (`apps/storefront/tests/checkout-guard-no-prerender.test.ts`) menegaskan bahwa tidak ada berkas di bawah `apps/storefront/src/pages` yang keluar dari prerendering. Keranjang, checkout, dan pelacakan pesanan adalah halaman statis yang JavaScript sisi-kliennya memanggil `https://<cms>/api/v1/commerce/storefront/*` langsung. Endpoint-endpoint itu (issue #29) dibangun di atas pola `newsletter/application/public-newsletter-tenant.ts` + `domain/newsletter-cors.ts`: tenant dari `Origin`, preflight, origin yang di-echo, `Vary: Origin`, rate limit per-IP dan per-telepon, idempotency key pada pembuatan pesanan (UUID yang dibuat klien milik keranjang, dipakai ulang sebagai idempotency key request), dan satu 404 netral yang sama untuk "pesanan tak dikenal" maupun "telepon salah".
 
 Origin CMS adalah satu-satunya konfigurasi baru: `PUBLIC_AWCMS_ORIGIN`, sengaja diberi awalan `PUBLIC_` (ia adalah origin, bukan rahasia — nilai yang sama yang sudah diungkapkan setiap URL media), divalidasi saat build dan dipanggang ke dalam `connect-src` CSP lewat mekanisme artefak-turunan yang sama yang sudah dibangun ADR-0002 untuk `img-src` (`csp-asal-media.ts` / `dist/client/csp.json`, divalidasi ulang `apps/storefront/server/penyaji.mjs` saat startup — lihat `docs/arsitektur.md`). `AWCMS_API_TOKEN` tetap saat-build dan read-only; tidak ada apa pun setelah build yang membaca variabel `AWCMS_*` apa pun.
 
