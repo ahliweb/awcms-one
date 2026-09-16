@@ -8,7 +8,7 @@ impact: public
 
 Everything mart.borneojek.com's home page and promotions run on, as tenant-scoped tables in the one `commerce` module (issue #26, epic #21) — with a public read model per family that `apps/storefront` bakes the home page from, and six admin screens.
 
-Why one module rather than three (ADR-0008 in #31): every admission touches the same shared registries, and an order references products, flash-sale prices and vouchers as one aggregate.
+Why one module rather than three (the decision is recorded by issue #31, https://github.com/ahliweb/awcms-one/issues/31): every admission touches the same shared registries, and an order references products, flash-sale prices and vouchers as one aggregate.
 
 - New tables `awcms_commerce_{flash_sales,flash_sale_products,vouchers,sliders,testimonials,popups,store_settings}` (`sql/161`–`164`), 22 new permissions, two flash-sale events fired by the `commerce:flash-sales:tick` job, 20 new OpenAPI operations.
 - Voucher arithmetic is exact (integer cents, `maxDiscount` cap); `POST …/vouchers/validate` is a read — redemption belongs to the order (#29). Flash-sale status is derived from the window and persisted by the tick, never trusted from the column. At most one active popup per tenant, enforced by a partial unique index.
