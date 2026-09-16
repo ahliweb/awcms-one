@@ -28,3 +28,12 @@ GRANT UPDATE ON awcms_commerce_products TO awcms_worker;
 GRANT UPDATE ON awcms_commerce_product_variants TO awcms_worker;
 GRANT UPDATE ON awcms_commerce_flash_sale_products TO awcms_worker;
 GRANT UPDATE ON awcms_commerce_vouchers TO awcms_worker;
+
+-- Same gap, one job earlier: `commerce:flash-sales:tick` (Issue #26,
+-- `scripts/commerce-flash-sales-tick.ts`) persists a sale's derived status
+-- with an UPDATE on `awcms_commerce_flash_sales`, and `sql/164` granted the
+-- worker only the purge engine's SELECT + DELETE. Found while proving
+-- `commerce:orders:expire` as `awcms_worker` (PR #42); granted here rather
+-- than in a fifth migration because it is the same concern — the worker
+-- role must be able to run the module's own jobs.
+GRANT UPDATE ON awcms_commerce_flash_sales TO awcms_worker;

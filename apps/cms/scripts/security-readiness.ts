@@ -1528,7 +1528,8 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   // Issue #26 (`sql/164`): the marketing tables plus the store-settings
   // singleton, on the same `deleted_at`-cursor reasoning — a live slider,
   // voucher or settings row is unreachable by the purge predicate.
-  awcms_commerce_flash_sales: ["SELECT", "DELETE"],
+  // `UPDATE` (`sql/168`): `commerce:flash-sales:tick` persists the derived status.
+  awcms_commerce_flash_sales: ["SELECT", "DELETE", "UPDATE"],
   // `UPDATE` (`sql/168`, Issue #29): the expiry job restocks a flash sale's
   // `sold` counter for an order line that was on one.
   awcms_commerce_flash_sale_products: ["SELECT", "DELETE", "UPDATE"],
