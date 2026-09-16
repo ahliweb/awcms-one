@@ -67,14 +67,25 @@ export const CACHE_PAGE = "public, max-age=0, must-revalidate";
 /**
  * Content-Security-Policy for this storefront.
  *
- * Every directive is `'self'` or `'none'` — no exemption, no configured
- * external origin, because this app has none to allow: `CommerceProduct`
- * (`src/lib/catalog.ts`) carries no image/media field, so there is no
- * product-photo origin to widen `img-src` for, and no page here makes a
- * browser-side fetch/XHR call that would need `connect-src` widened either.
- * That is what "CSP-strict" (issue #5) means in practice for this app: not
- * a policy with exemptions carefully justified, but a policy that needs
- * none.
+ * Every directive is `'self'` or `'none'` — with exactly ONE kind of
+ * exemption, added by issue #27 and described below: the media origins
+ * this build's own product photos live on.
+ *
+ * Until products had images (issue #23), this app referenced nothing
+ * off-origin at all and the policy needed no exemption to justify. A
+ * product photo changes that: `images[].publicUrl` is resolved by
+ * `apps/cms` through `media_library` and points at that deployment's
+ * public media origin (R2, a CDN, or the CMS host — a deployment's choice,
+ * not this app's). Under a bare `img-src 'self'` the browser blocks it
+ * silently, with the HTML correct and every gate green, and the reader
+ * sees a broken page.
+ *
+ * Those origins are therefore DERIVED from the URLs the CMS actually sent
+ * for this build (`src/lib/csp-asal-media.ts`, written to
+ * `dist/client/csp.json` by `src/pages/csp.json.ts`) and read back here at
+ * startup — not configured through an env variable that could disagree
+ * with the content it protects. `CSP` below is the no-origin baseline, and
+ * remains what a build with no images at all is served under.
  *
  * The one thing that would normally tempt an inline `style=""` or a
  * hand-written `<style>` block — coloring a product's label badge from its
@@ -82,19 +93,113 @@ export const CACHE_PAGE = "public, max-age=0, must-revalidate";
  * stylesheet (`src/pages/product-labels.css.ts`), specifically so
  * `style-src 'self'` never needs `'unsafe-inline'`.
  */
-export const CSP = [
-  "default-src 'self'",
-  "script-src 'self'",
-  "style-src 'self'",
-  "img-src 'self'",
-  "font-src 'self'",
-  "connect-src 'self'",
-  "frame-src 'none'",
-  "object-src 'none'",
-  "base-uri 'none'",
-  "form-action 'self'",
-  "frame-ancestors 'none'"
-].join("; ");
+
+/**
+ * Builds the policy string, widening `img-src`/`connect-src` with the
+ * origins in `artifact`. Pure and exported so the composition is tested
+ * directly rather than through a served response.
+ *
+ * Every origin is re-validated here even though the build already
+ * validated it: this file reads a JSON file off disk that a different
+ * process wrote, possibly from a different (older or newer) build, and an
+ * unvalidated string interpolated into a CSP directive is how a policy
+ * ends up saying something nobody wrote — `*` being the worst of them.
+ * Anything that is not an absolute `http(s)` origin with no path, query,
+ * or fragment is dropped.
+ *
+ * @param {{ imgSrc?: string[], connectSrc?: string[] }} [artifact]
+ * @returns {string}
+ */
+export function buildCsp(artifact = {}) {
+  const img = sanitizeOrigins(artifact.imgSrc);
+  const connect = sanitizeOrigins(artifact.connectSrc);
+
+  return [
+    "default-src 'self'",
+    "script-src 'self'",
+    "style-src 'self'",
+    ["img-src 'self'", ...img].join(" "),
+    "font-src 'self'",
+    ["connect-src 'self'", ...connect].join(" "),
+    "frame-src 'none'",
+    "object-src 'none'",
+    "base-uri 'none'",
+    "form-action 'self'",
+    "frame-ancestors 'none'"
+  ].join("; ");
+}
+
+/**
+ * The subset of `values` that are absolute `http(s)` origins — sorted,
+ * de-duplicated, and stripped of anything a CSP source expression must not
+ * contain. A value carrying a path, a credential, a wildcard, or a
+ * character a directive uses as a separator (whitespace, `;`, `,`) is
+ * dropped rather than escaped: there is no safe escaping in a CSP
+ * directive, only omission.
+ *
+ * @param {unknown} values
+ * @returns {string[]}
+ */
+function sanitizeOrigins(values) {
+  if (!Array.isArray(values)) return [];
+
+  const origins = new Set();
+
+  for (const value of values) {
+    if (typeof value !== "string" || value.length === 0 || value.length > 253) continue;
+    if (/[\s;,'"*]/.test(value)) continue;
+
+    try {
+      const url = new URL(value);
+      if (url.protocol !== "https:" && url.protocol !== "http:") continue;
+      if (url.username || url.password) continue;
+      // `URL.origin` is already exactly `scheme://host[:port]`; comparing
+      // against it rejects anything that carried a path/query/fragment.
+      if (url.origin !== value) continue;
+      origins.add(url.origin);
+    } catch {
+      continue;
+    }
+  }
+
+  return [...origins].sort();
+}
+
+/** The baseline policy: no external origin allowed anywhere. What a build with no media references is served under, and the value every test that does not care about media asserts against. */
+export const CSP = buildCsp();
+
+/** Where `astro build` writes the derived-origins artifact, relative to `dist/client/` — a sibling of `build-id.txt`. */
+const CSP_ORIGINS_PATH = "csp.json";
+
+/**
+ * `dist/client/csp.json`, or the empty artifact when it is missing,
+ * unreadable, malformed, or written by a future/unknown shape version.
+ *
+ * Degrading to "no external origins" is the fail-CLOSED direction and the
+ * deliberate choice: a missing artifact costs product images on a page
+ * (visible immediately, fixed by a rebuild), while defaulting to anything
+ * wider would silently weaken the policy of a server whose build never
+ * asked for it.
+ *
+ * @param {URL} clientDir
+ * @returns {{ imgSrc: string[], connectSrc: string[] }}
+ */
+export function readCspOrigins(clientDir) {
+  const empty = { imgSrc: [], connectSrc: [] };
+
+  try {
+    const parsed = JSON.parse(readFileSync(new URL(CSP_ORIGINS_PATH, clientDir), "utf8"));
+    if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) return empty;
+    if (parsed.version !== 1) return empty;
+
+    return {
+      imgSrc: Array.isArray(parsed.imgSrc) ? parsed.imgSrc : [],
+      connectSrc: Array.isArray(parsed.connectSrc) ? parsed.connectSrc : []
+    };
+  } catch {
+    return empty;
+  }
+}
 
 /** This storefront has no form, collects no reader data, and loads no third-party script — so every one of these stays off. */
 export const PERMISSIONS_POLICY = "geolocation=(), camera=(), microphone=(), payment=()";
@@ -121,6 +226,23 @@ export const SECURITY_HEADERS = {
 export const HSTS = "max-age=31536000";
 
 const PRODUCTION_HEADERS = { ...SECURITY_HEADERS, "Strict-Transport-Security": HSTS };
+
+/**
+ * The header set for this environment with `csp` substituted for the
+ * baseline policy — the shape `applyHeaders` actually sends once the
+ * derived media origins (`readCspOrigins`) are known at startup.
+ *
+ * Kept a pure function of its two inputs rather than mutable module state:
+ * the served policy is then a value a test can construct and assert on
+ * directly, and there is no window during startup in which a request could
+ * be answered with a half-initialised policy.
+ *
+ * @param {string} csp
+ * @param {boolean} [isProduction]
+ */
+export function securityHeadersWithCsp(csp, isProduction) {
+  return { ...securityHeaders(isProduction), "Content-Security-Policy": csp };
+}
 
 /**
  * The headers sent for this environment — five, or six in production.
@@ -347,10 +469,19 @@ export function writeHealthzResponse(res, buildId) {
  *
  * @param {import("node:http").IncomingMessage} req
  * @param {import("node:http").ServerResponse} res
- * @param {{ cssPreloadLinks?: string[] }} [context]
+ * `context.csp` is injected the same way, and for the same reason: the
+ * policy depends on an artifact read from disk at startup
+ * (`readCspOrigins`), which a header test must be able to vary without
+ * writing files.
+ *
+ * @param {{ cssPreloadLinks?: string[], csp?: string }} [context]
  */
 export function applyHeaders(req, res, context = {}) {
-  for (const [name, value] of Object.entries(securityHeaders())) {
+  const headers = context.csp
+    ? securityHeadersWithCsp(context.csp)
+    : securityHeaders();
+
+  for (const [name, value] of Object.entries(headers)) {
     res.setHeader(name, value);
   }
 
@@ -383,7 +514,7 @@ export function applyHeaders(req, res, context = {}) {
  * `applyHeaders`/`readBuildId`/`discoverCssPreloadPaths`.
  *
  * @param {(req: import("node:http").IncomingMessage, res: import("node:http").ServerResponse) => unknown} appHandler
- * @param {{ buildId?: string, cssPreloadLinks?: string[], legacyRedirects?: Record<string, string> }} [context]
+ * @param {{ buildId?: string, cssPreloadLinks?: string[], legacyRedirects?: Record<string, string>, csp?: string }} [context]
  */
 export function createServer(appHandler, context = {}) {
   return http.createServer((req, res) => {
@@ -447,10 +578,15 @@ export async function run() {
   const buildId = readBuildId(clientDir);
   const cssPreloadLinks = discoverCssPreloadPaths(clientDir);
   const legacyRedirects = readLegacyRedirectMap(clientDir);
+  // Read once, at startup, not per request: the artifact cannot change
+  // while this process runs (a new build means a new container), and a
+  // per-request file read would put a disk hit in front of every response
+  // to answer a question whose answer is fixed.
+  const csp = buildCsp(readCspOrigins(clientDir));
 
   const port = Number(process.env.PORT ?? 8080);
   const host = process.env.HOST ?? "0.0.0.0";
-  const server = createServer(handler, { buildId, cssPreloadLinks, legacyRedirects });
+  const server = createServer(handler, { buildId, cssPreloadLinks, legacyRedirects, csp });
 
   server.listen(port, host, () => {
     console.log(`storefront served by Bun at http://${host}:${port}`);

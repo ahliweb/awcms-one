@@ -1,26 +1,24 @@
 ---
 /**
- * `/cari` — the search results page (issue #24). Minimal on purpose: a
- * heading, the query echoed back safely, and a placeholder where results
- * will render. #27 replaces this page's BODY once a searchable product
- * index exists; the URL (`ROUTES.search`, `?q=`) and the header's search
- * form (`GET`, no JS) are this issue's to get right so #27 only has to fill
- * the body in.
+ * `/cari` — the search results page. Issue #24 shipped the URL
+ * (`ROUTES.search`, `?q=`) and the header's no-JS `GET` search form; this
+ * issue (#27) replaces the placeholder body with a real, client-side search
+ * over the build-time index `/index/produk.json` — see `src/scripts/
+ * cari-listing.ts` for why the query can only be read in the BROWSER (this
+ * page is prerendered ONCE, `output: "static"`) and how it re-renders this
+ * page's grid from that index.
  *
- * ## Why the query is echoed by a `<script>`, not read from `Astro.url`
+ * `noindex` BOTH ways, because the two do different things: `robots.txt`'s
+ * `Disallow: /cari` (see `src/pages/robots.txt.ts`) asks a crawler not to
+ * FETCH this URL, while the `<meta name="robots">` below — through
+ * `BaseLayout.astro`'s `head` slot (issue #27) — tells one that already has
+ * the page not to INDEX it. A URL that was indexed before the rule existed,
+ * or is linked from elsewhere, needs the second; a search-results page with
+ * no stable content of its own should be in neither index.
  *
- * This page is prerendered (`output: "static"`, `astro.config.mjs`) — it is
- * built ONCE, with no request in flight, so `Astro.url.searchParams` is
- * always empty at build time no matter what a future visitor's URL holds.
- * A static file server also serves the SAME `cari.html` for every `?q=`
- * value (query strings do not affect which file is served). The only place
- * that can read the real query is the BROWSER, after the page loads — so
- * this file ships the "ketik kata kunci" empty state by default (correct
- * with no JavaScript at all) and a normal, externally-bundled `<script>`
- * (never `is:inline` — see `Header.astro`'s cart-count script for the same
- * CSP reasoning) swaps in the echoed query via `textContent`, which is
- * assignment, not markup — there is no HTML-injection path through it even
- * though `q` is untrusted input.
+ * `follow` is deliberate: the product links on a results page are real
+ * catalog URLs that SHOULD be crawled — it is this page, not its links,
+ * that has nothing to index.
  */
 import BaseLayout from "../layouts/BaseLayout.astro";
 import SearchForm from "../components/SearchForm.astro";
@@ -31,28 +29,20 @@ import SearchForm from "../components/SearchForm.astro";
   description="Cari produk di katalog."
   canonicalPath="/cari"
 >
+  <meta slot="head" name="robots" content="noindex, follow" />
+
   <div class="container">
     <div class="page-heading">
-      <h1>Cari Produk</h1>
+      <h1 data-search-heading>Cari Produk</h1>
       <SearchForm idPrefix="page-search" />
     </div>
 
-    <p data-search-result class="empty-state">Ketik kata kunci untuk mencari produk.</p>
+    <ul class="grid-cards" data-produk-grid hidden></ul>
+    <p class="empty-state" data-produk-empty>Ketik kata kunci untuk mencari produk.</p>
+    <nav class="pagination" data-produk-pagination aria-label="Halaman hasil pencarian"></nav>
   </div>
 </BaseLayout>
 
 <script>
-  const params = new URLSearchParams(window.location.search);
-  const query = params.get("q")?.trim();
-
-  if (query) {
-    const input = document.getElementById("page-search-q");
-    if (input instanceof HTMLInputElement) input.value = query;
-
-    const result = document.querySelector("[data-search-result]");
-    if (result) {
-      result.classList.remove("empty-state");
-      result.textContent = `Menampilkan hasil untuk "${query}" — hasil akan muncul di sini.`;
-    }
-  }
+  import "../scripts/cari-listing";
 </script>

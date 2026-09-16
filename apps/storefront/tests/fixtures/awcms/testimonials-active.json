@@ -1,0 +1,23 @@
+[
+  {
+    "id": "88000000-0000-4000-8000-000000000001",
+    "authorName": "Siti Aminah",
+    "authorRole": "Pelanggan",
+    "body": "Kopi arabikanya enak banget, wangi dan segar!",
+    "rating": 5,
+    "avatar": null,
+    "sortOrder": 1
+  },
+  {
+    "id": "88000000-0000-4000-8000-000000000002",
+    "authorName": "Budi Santoso",
+    "authorRole": "Reseller",
+    "body": "Pengiriman cepat, harga reseller sangat membantu usaha saya.",
+    "rating": 5,
+    "avatar": {
+      "url": "https://cms.example.test/media/avatar-budi.jpg",
+      "alt": "Foto Budi Santoso"
+    },
+    "sortOrder": 2
+  }
+]

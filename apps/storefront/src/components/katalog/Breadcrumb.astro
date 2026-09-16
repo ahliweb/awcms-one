@@ -1,0 +1,22 @@
+---
+/** A `<nav>` breadcrumb trail — the last item (no `href`) is `aria-current="page"`, never a link to itself. Paired with `src/lib/jsonld-produk.ts`'s `BreadcrumbList` node on the pages that need structured data too — the two are built from the SAME `items` list by the calling page, so they can never disagree. */
+export interface BreadcrumbCrumb {
+  label: string;
+  href?: string;
+}
+
+interface Props {
+  items: BreadcrumbCrumb[];
+}
+
+const { items } = Astro.props;
+---
+
+<nav class="breadcrumb" aria-label="Remah roti">
+  {items.map((item, index) => (
+    <Fragment>
+      {index > 0 && <span aria-hidden="true"> / </span>}
+      {item.href ? <a href={item.href}>{item.label}</a> : <span aria-current="page">{item.label}</span>}
+    </Fragment>
+  ))}
+</nav>

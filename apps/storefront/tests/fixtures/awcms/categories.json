@@ -1,18 +1,68 @@
 {
   "items": [
     {
-      "id": "b6f1a3c2-1d4e-4a5b-8c6d-7e8f9a0b1c2d",
+      "id": "b1000000-0000-4000-8000-000000000001",
       "parentId": null,
-      "name": "Makanan & Minuman",
-      "slug": "makanan-minuman",
-      "icon": "coffee"
+      "name": "Kebutuhan Pokok",
+      "slug": "kebutuhan-pokok",
+      "icon": "Utensils",
+      "productCount": 2
     },
     {
-      "id": "d4e5f6a7-8b9c-4d0e-af1b-2c3d4e5f6a7b",
+      "id": "b1000000-0000-4000-8000-000000000002",
       "parentId": null,
-      "name": "Produk Digital",
-      "slug": "produk-digital",
-      "icon": "download"
+      "name": "Minuman",
+      "slug": "minuman",
+      "icon": "Wine",
+      "productCount": 2
+    },
+    {
+      "id": "b1000000-0000-4000-8000-000000000003",
+      "parentId": null,
+      "name": "Roti dan Kue",
+      "slug": "roti-dan-kue",
+      "icon": "ShoppingBag",
+      "productCount": 0
+    },
+    {
+      "id": "b1000000-0000-4000-8000-000000000004",
+      "parentId": "b1000000-0000-4000-8000-000000000003",
+      "name": "Kue Kering",
+      "slug": "kue-kering",
+      "icon": null,
+      "productCount": 1
+    },
+    {
+      "id": "b1000000-0000-4000-8000-000000000005",
+      "parentId": null,
+      "name": "Layanan",
+      "slug": "layanan",
+      "icon": "Layers",
+      "productCount": 1
+    },
+    {
+      "id": "b1000000-0000-4000-8000-000000000006",
+      "parentId": null,
+      "name": "Resto Nasional",
+      "slug": "resto-nasional",
+      "icon": "Utensils",
+      "productCount": 0
+    },
+    {
+      "id": "b1000000-0000-4000-8000-000000000007",
+      "parentId": "b1000000-0000-4000-8000-000000000006",
+      "name": "Mie Gacoan Outlet",
+      "slug": "mie-gacoan-outlet",
+      "icon": "Glasses",
+      "productCount": 1
+    },
+    {
+      "id": "b1000000-0000-4000-8000-000000000008",
+      "parentId": null,
+      "name": "Sayuran",
+      "slug": "sayuran",
+      "icon": null,
+      "productCount": 1
     }
   ],
   "nextCursor": null

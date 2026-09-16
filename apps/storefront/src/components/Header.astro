@@ -22,10 +22,17 @@
  * attributes. This `<script>` tag is a normal ES module Astro bundles into
  * an external, content-hashed file under `_astro/` — satisfying the CSP by
  * construction, the same way `astro.config.mjs`'s `inlineStylesheets:
- * "never"` does for CSS. It reads the `"cart"` key from `localStorage` —
- * the key issue #30 is expected to write to — and renders `0` for any state
- * that is not a valid, non-empty array (no cart yet, corrupted JSON, a
- * shape from a future format this script does not recognise).
+ * "never"` does for CSS.
+ *
+ * Issue #27 replaces this block's logic (it used to read a bare `"cart"`
+ * array key increment-1 invented as a placeholder) with the real cart
+ * contract: `src/lib/keranjang-kontrak.ts` (key `awcms-one:keranjang:v1`,
+ * `{id, lines, updatedAt}` shape) and `src/scripts/keranjang-hitung.ts` (the
+ * actual logic — kept an EXTERNAL module, imported here, rather than grown
+ * inline in this file, so it stays unit-testable and this block stays a
+ * one-line `import`). It re-counts on load, on the `keranjang:berubah`
+ * `CustomEvent` `src/lib/keranjang-klien.ts` dispatches after every write on
+ * this tab, and on the native `storage` event for a write from another tab.
  */
 import type { SiteIdentity } from "../lib/awcms/profil";
 import { PRIMARY_NAV, ROUTES } from "../config/routes";
@@ -68,28 +75,5 @@ const { identity } = Astro.props;
 </header>
 
 <script>
-  const CART_STORAGE_KEY = "cart";
-
-  function countCartItems() {
-    try {
-      const raw = window.localStorage.getItem(CART_STORAGE_KEY);
-      if (!raw) return 0;
-
-      const parsed = JSON.parse(raw);
-      if (!Array.isArray(parsed)) return 0;
-
-      return parsed.reduce((total, item) => {
-        const quantity =
-          item && typeof item === "object" && "quantity" in item ? Number(item.quantity) : 1;
-        return total + (Number.isFinite(quantity) && quantity > 0 ? quantity : 1);
-      }, 0);
-    } catch {
-      // A private window, cleared storage, or a shape this script does not
-      // recognise all read the same way: no cart to report.
-      return 0;
-    }
-  }
-
-  const el = document.querySelector("[data-cart-count]");
-  if (el) el.textContent = String(countCartItems());
+  import "../scripts/keranjang-hitung";
 </script>
