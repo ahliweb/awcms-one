@@ -1,3 +1,17 @@
 {
-  "extends": ["astro/tsconfigs/strict", "../../packages/config/tsconfig.base.json"]
+  "extends": ["astro/tsconfigs/strict", "../../packages/config/tsconfig.base.json"],
+  "compilerOptions": {
+    /**
+     * `astro check` (this workspace's `check` script) type-checks
+     * `tests/*.test.ts` and every `.astro` file's client `<script>` blocks
+     * alongside the rest of the app — issue #24 is the first change to add
+     * `bun:test`/global `Bun` usage inside either (previously only
+     * `src/lib/env.ts` read `process.env`, which needs no ambient type at
+     * all). Without this, TypeScript cannot find `bun:test`'s module
+     * declaration or the global `Bun` namespace, even though `@types/bun`
+     * is an installed devDependency — the automatic `@types/*` inclusion
+     * astro's own base tsconfig relies on does not reach it here.
+     */
+    "types": ["bun"]
+  }
 }

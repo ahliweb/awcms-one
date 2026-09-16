@@ -1,0 +1,55 @@
+---
+/**
+ * CMS static pages (issue #24) — privacy policy, terms of service, shopping
+ * guide, and (once #28's news pages exist) Redaksi/Pedoman Media Siber/
+ * Disclaimer. One page per slug the CMS actually publishes
+ * (`GET /api/v1/blog/pages/public`), body rendered from Portable Text
+ * (`src/lib/portable-text.ts`).
+ */
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { listStaticPages, getStaticPage } from "../../lib/awcms/pages";
+import { renderPortableText } from "../../lib/portable-text";
+
+export async function getStaticPaths() {
+  const pages = await listStaticPages();
+
+  return pages.map((page) => ({
+    params: { slug: page.slug }
+  }));
+}
+
+const { slug } = Astro.params as { slug: string };
+const page = await getStaticPage(slug);
+
+if (!page) {
+  // This page is prerendered (`output: "static"`) — there is no request to
+  // redirect at build time, and `getStaticPaths()` only ever requests a
+  // slug `listStaticPages()` just returned from the SAME memoized fetch
+  // `getStaticPage()` reads (`src/lib/awcms/pages.ts`), so there is no
+  // window for the two to disagree within one build. Reaching here is a
+  // routing bug, not a content gap `getProducts()`-style callers degrade
+  // from — fail the build loudly, the same way `getProduct()` does for an
+  // unreachable slug in `src/lib/catalog.ts`.
+  throw new Error(
+    `No published static page with slug "${slug}" in the cached list. ` +
+      `getStaticPaths() only ever requests a slug listStaticPages() just ` +
+      `returned, so this can only happen if this route is reached with a ` +
+      `slug from somewhere else.`
+  );
+}
+
+const bodyHtml = renderPortableText(page.bodyPortableText);
+const canonicalPath = `/halaman/${page.slug}`;
+---
+
+<BaseLayout
+  title={page.title}
+  description={page.metaDescription ?? page.excerpt ?? undefined}
+  canonicalPath={page.canonicalUrl ?? canonicalPath}
+>
+  <div class="container product-detail">
+    <h1>{page.title}</h1>
+    {page.excerpt && <p class="page-heading">{page.excerpt}</p>}
+    <div class="page-body" set:html={bodyHtml} />
+  </div>
+</BaseLayout>

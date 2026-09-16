@@ -8,15 +8,16 @@
  * a blank grid.
  */
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { siteConfig } from "../config/site";
+import { getSiteIdentity } from "../lib/awcms/profil";
 import { getProducts, getCategories, formatPrice, labelClassName } from "../lib/catalog";
 
+const identity = await getSiteIdentity();
 const products = await getProducts();
 const categories = await getCategories();
 const categoryById = new Map(categories.map((category) => [category.id, category]));
 ---
 
-<BaseLayout title={siteConfig.name} description={siteConfig.description} canonicalPath="/">
+<BaseLayout title={identity.name} description={identity.description} canonicalPath="/">
   <div class="container">
     <div class="page-heading">
       <h1>Katalog Produk</h1>

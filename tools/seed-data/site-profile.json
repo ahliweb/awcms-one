@@ -1,0 +1,26 @@
+{
+  "current": {
+    "tagline": "Belanja kebutuhan sehari-hari, layanan antar, dan langganan rutin dalam satu tempat.",
+    "copyrightNotice": "© 2026 BjekMart. Hak cipta dilindungi undang-undang.",
+    "logoMediaId": null,
+    "faviconMediaId": null,
+    "editorialAddress": "Jl. Ahmad Wongso RT 19 Kelurahan Madurejo, Pangkalan Bun, Kotawaringin Barat",
+    "contactEmail": "borneojekpangkalanbun@gmail.com",
+    "contactPhone": "0851-2868-8885",
+    "whatsappNumber": null,
+    "socialLinks": []
+  },
+  "future": {
+    "note": "Legacy commerce_bj_mart site_settings with no home in the CMS API today (verified against /api/v1/site-profile, /api/v1/commerce/{categories,products}, and apps/cms's registered modules — none owns a customer-level, shipping-method, payment-method, or store-name field yet). Not applied by this script; a decision for #26/#29 (or a new admission) to record, not something this seed script invents an endpoint for.",
+    "storeName": "BjekMart",
+    "customerLevels": [
+      { "name": "Pelanggan Umum", "type": "percentage", "value": 0 },
+      { "name": "Reseller", "type": "percentage", "value": 5 },
+      { "name": "Agen", "type": "percentage", "value": 10 },
+      { "name": "Distributor", "type": "nominal", "value": 15000 }
+    ],
+    "shippingAlternative": { "serviceName": "BORNEOJEK", "cost": 15000 },
+    "selfPickupActive": true,
+    "manualQrisActive": true
+  }
+}

@@ -1,0 +1,22 @@
+[
+  {
+    "slug": "kebijakan-privasi",
+    "title": "Kebijakan Privasi",
+    "pageType": "legal",
+    "excerpt": "Bagaimana BjekMart mengumpulkan dan menggunakan data pelanggan.",
+    "bodyParagraphs": [
+      "Kebijakan ini menjelaskan bagaimana BjekMart mengumpulkan, menggunakan, dan melindungi data pelanggan saat berbelanja melalui platform ini.",
+      "PLACEHOLDER — konten seed awal. Operator BjekMart menggantikan paragraf ini dengan kebijakan privasi resmi sebelum tenant ini melayani pelanggan sungguhan."
+    ]
+  },
+  {
+    "slug": "tos",
+    "title": "Syarat dan Ketentuan",
+    "pageType": "legal",
+    "excerpt": "Syarat dan ketentuan penggunaan layanan BjekMart.",
+    "bodyParagraphs": [
+      "Dengan menggunakan BjekMart, pelanggan menyetujui syarat dan ketentuan yang berlaku atas transaksi, pengiriman, dan layanan berlangganan di platform ini.",
+      "PLACEHOLDER — konten seed awal. Operator BjekMart menggantikan paragraf ini dengan syarat dan ketentuan resmi sebelum tenant ini melayani pelanggan sungguhan."
+    ]
+  }
+]

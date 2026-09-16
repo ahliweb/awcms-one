@@ -1,0 +1,33 @@
+---
+/**
+ * The 404 page (issue #24) — search plus the top nav links, so a reader who
+ * followed a dead link (or the pre-cutover `/products` redirect target,
+ * `server/penyaji.mjs`) has an obvious way forward instead of a dead end.
+ */
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SearchForm from "../components/SearchForm.astro";
+import { PRIMARY_NAV } from "../config/routes";
+---
+
+<BaseLayout
+  title="Halaman Tidak Ditemukan"
+  description="Halaman yang Anda cari tidak ditemukan."
+  canonicalPath="/404"
+>
+  <div class="container">
+    <div class="page-heading">
+      <h1>Halaman Tidak Ditemukan</h1>
+      <p>Halaman yang Anda cari mungkin sudah dipindahkan atau tidak lagi tersedia.</p>
+    </div>
+
+    <SearchForm idPrefix="notfound-search" />
+
+    <nav aria-label="Tautan populer" class="page-heading">
+      <ul class="footer-page-links">
+        {PRIMARY_NAV.map((item) => (
+          <li><a href={item.href}>{item.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+</BaseLayout>

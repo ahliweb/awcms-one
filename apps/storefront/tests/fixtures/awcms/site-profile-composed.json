@@ -1,0 +1,18 @@
+{
+  "tagline": "Belanja online hemat, mudah, dan terpercaya (stub)",
+  "copyrightNotice": null,
+  "logoMediaId": "3f1b6c9e-6b1a-4e9a-9c2a-1a2b3c4d5e6f",
+  "faviconMediaId": null,
+  "editorialAddress": "Jl. Ahmad Wongso RT 19 Kelurahan Madurejo, Kotawaringin Barat (stub)",
+  "contactEmail": "stub@example.test",
+  "contactPhone": "0800-0000-0000",
+  "whatsappNumber": "628000000000",
+  "socialLinks": [
+    { "platform": "Instagram", "url": "https://instagram.com/bjekmart" },
+    { "platform": "javascript-should-be-dropped", "url": "javascript:alert(1)" }
+  ],
+  "siteName": "BjekMart (Stub)",
+  "organizationName": "BjekMart",
+  "organizationLogoMediaId": null,
+  "defaultSocialMediaId": null
+}

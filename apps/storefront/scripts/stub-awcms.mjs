@@ -22,6 +22,24 @@
  *   bun scripts/stub-awcms.mjs
  *   AWCMS_API_URL=http://localhost:4310 AWCMS_API_TOKEN=stub-token \
  *     SITE_URL=http://localhost:4321 bun run build
+ *
+ * Issue #24 adds four more routes, all read straight from committed
+ * fixtures the same way the two commerce ones already are:
+ *
+ *   - `/api/v1/site-profile/composed` — `site-profile-composed.json`
+ *     (`src/lib/awcms/profil.ts`).
+ *   - `/api/v1/blog/pages/public` — `blog-pages-public.json`, and
+ *     `/api/v1/blog/pages/public/{slug}` — one entry of
+ *     `blog-pages-public-detail.json`, keyed by slug (`src/lib/awcms/
+ *     pages.ts`).
+ *   - `/theming/{tenantCode}/tokens.css` — `tokens.css`, served RAW
+ *     (`text/css`, not the `{success,data}` envelope) and with NO
+ *     Authorization check, because the real route
+ *     (`apps/cms/src/modules/theming/presentation/theme-public-css.ts`) is
+ *     genuinely public — see `src/lib/awcms/theme.ts`'s docblock for why
+ *     this app calls that route and not `GET /api/v1/theming`. `tenantCode`
+ *     in the path is accepted but ignored, same as every other stub route
+ *     ignoring which tenant a token belongs to.
  */
 import { readFileSync } from "node:fs";
 
@@ -32,15 +50,35 @@ function fixture(name) {
   return JSON.parse(readFileSync(new URL(name, FIXTURES), "utf8"));
 }
 
+function rawFixture(name) {
+  return readFileSync(new URL(name, FIXTURES), "utf8");
+}
+
 const ROUTES = {
   "/api/v1/commerce/products": () => fixture("products.json"),
-  "/api/v1/commerce/categories": () => fixture("categories.json")
+  "/api/v1/commerce/categories": () => fixture("categories.json"),
+  "/api/v1/site-profile/composed": () => fixture("site-profile-composed.json"),
+  "/api/v1/blog/pages/public": () => fixture("blog-pages-public.json")
 };
+
+const TOKENS_CSS_PATTERN = /^\/theming\/[^/]+\/tokens\.css$/;
+const BLOG_PAGE_DETAIL_PATTERN = /^\/api\/v1\/blog\/pages\/public\/([^/]+)$/;
 
 const server = Bun.serve({
   port: PORT,
   fetch(request) {
     const url = new URL(request.url);
+
+    // Public, no auth at all — matches the real route exactly (see file
+    // header). Checked BEFORE the bearer-token gate below, not after: a
+    // stub that demanded a header the real route never asks for would hide
+    // a caller that forgot to send one wasn't actually required.
+    if (TOKENS_CSS_PATTERN.test(url.pathname)) {
+      return new Response(rawFixture("tokens.css"), {
+        headers: { "content-type": "text/css; charset=utf-8" }
+      });
+    }
+
     const authorization = request.headers.get("authorization") ?? "";
 
     // Not a security boundary — this is a local fixture server — but a
@@ -52,6 +90,19 @@ const server = Bun.serve({
         { success: false, error: { code: "UNAUTHENTICATED", message: "Missing bearer token." } },
         { status: 401 }
       );
+    }
+
+    const detailMatch = BLOG_PAGE_DETAIL_PATTERN.exec(url.pathname);
+    if (detailMatch) {
+      const slug = decodeURIComponent(detailMatch[1]);
+      const detail = fixture("blog-pages-public-detail.json")[slug];
+      if (!detail) {
+        return Response.json(
+          { success: false, error: { code: "RESOURCE_NOT_FOUND", message: `No stub page for slug ${slug}` } },
+          { status: 404 }
+        );
+      }
+      return Response.json({ success: true, data: detail });
     }
 
     const handler = ROUTES[url.pathname];

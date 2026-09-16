@@ -13,12 +13,14 @@
  * exactly the class of defect every gate in this repo exists to catch, and
  * the one this specific rule had no checker for until now.
  *
- * This repo has one CI job today (`check`), so one `bun-version`
- * declaration is expected — not the three `ahliweb/media-lenterakalteng`
- * checks for, which has a `build` job and a `cms` job neither of which
- * exist here yet. When `apps/storefront` or a from-source `apps/cms` CI job
+ * This repo has two CI jobs today (`check`, and `check-cms` since issue
+ * #25), so two `bun-version` declarations are expected — the comment this
+ * replaced predicted exactly this: "When ... a from-source `apps/cms` CI job
  * lands with its own `bun-version` line, this count should grow with them,
- * deliberately, rather than silently.
+ * deliberately, rather than silently." `check-cms` pins the SAME root
+ * version as `check` (not apps/cms's own `1.4.2` — see the next test), so
+ * growing the expected count is not enough on its own; every declaration
+ * found must still equal the one root version.
  */
 import { test, describe } from "bun:test";
 import assert from "node:assert/strict";
@@ -61,16 +63,18 @@ describe("the Bun version agrees everywhere it is used", () => {
     );
   });
 
-  test("the CI job's bun-version equals packageManager", () => {
+  test("every CI job's bun-version equals packageManager", () => {
     const used = [...ci.matchAll(/bun-version:\s*"([^"]+)"/g)].map((m) => m[1]);
 
     assert.equal(
       used.length,
-      1,
-      `expected exactly one bun-version declaration in ci.yml (this repo has one CI job today), found ${used.length}`
+      2,
+      `expected exactly two bun-version declarations in ci.yml (\`check\` and \`check-cms\` — issue #25), found ${used.length}`
     );
 
-    assert.equal(used[0], VERSION, "bun-version in ci.yml");
+    for (const version of used) {
+      assert.equal(version, VERSION, "bun-version in ci.yml");
+    }
   });
 
   test("apps/cms's own packageManager is a known, accepted divergence", () => {
