@@ -6,7 +6,8 @@
   "description": "borneojek-mart's public storefront: catalog listing and product detail. Static output, fetched from awcms at BUILD time only — see GitHub issue #5 for the rationale and docs/awcms-astro (the template this app is modelled on) for the pattern.",
   "scripts": {
     "dev": "bun --bun astro dev",
-    "build": "bun run check && bun --bun astro build && bun run build:penyaji",
+    "build": "bun run check && bun --bun astro build && bun run build:build-id && bun run build:penyaji",
+    "build:build-id": "bun scripts/write-build-id.mjs",
     "build:penyaji": "bun build server/penyaji.mjs --target=bun --outfile dist/server/penyaji.mjs",
     "check": "bun --bun astro check",
     "serve": "bun dist/server/penyaji.mjs",

@@ -1,0 +1,75 @@
+---
+/**
+ * The contact page (issue #24) — email, phone, address, and a `mailto:`/
+ * WhatsApp intent, all of which are just links, so there is nothing here
+ * that needs a runtime (`output: "static"` stays honoured).
+ *
+ * ## Two bullets this page does NOT implement, and why
+ *
+ * The issue also asks for "a maps iframe when set" and "a FAQ accordion
+ * from `contact_faqs`". Neither field exists on the real endpoint this page
+ * reads: `GET /api/v1/site-profile/composed`
+ * (`apps/cms/src/pages/api/v1/site-profile/composed.ts`) and the
+ * `awcms_site_profile` table behind it
+ * (`site-profile-directory.ts`/`site-profile.openapi.yaml`) carry
+ * `editorialAddress`/`contactEmail`/`contactPhone`/`whatsappNumber`/
+ * `socialLinks` and nothing shaped like a maps URL or an FAQ list. Rather
+ * than invent a field awcms does not send (the "do not invent shapes"
+ * instruction this issue was implemented under), this page renders every
+ * field the endpoint actually has and omits both — a deviation recorded
+ * here, in the PR, and in the implementation report.
+ */
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getSiteIdentity } from "../lib/awcms/profil";
+
+const identity = await getSiteIdentity();
+
+const whatsappHref = identity.whatsappNumber
+  ? `https://wa.me/${identity.whatsappNumber.replace(/[^\d]/g, "")}`
+  : null;
+---
+
+<BaseLayout
+  title="Kontak"
+  description={`Hubungi ${identity.name} melalui e-mail, telepon, atau WhatsApp.`}
+  canonicalPath="/kontak"
+>
+  <div class="container">
+    <div class="page-heading">
+      <h1>Kontak {identity.name}</h1>
+      <p>Ada pertanyaan tentang pesanan atau produk? Hubungi kami melalui salah satu cara di bawah ini.</p>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-card">
+        <h2>Alamat</h2>
+        <p>{identity.address}</p>
+      </div>
+
+      {identity.contactPhone && (
+        <div class="contact-card">
+          <h2>Telepon</h2>
+          <p><a href={`tel:${identity.contactPhone.replace(/[^+\d]/g, "")}`}>{identity.contactPhone}</a></p>
+        </div>
+      )}
+
+      {identity.contactEmail && (
+        <div class="contact-card">
+          <h2>E-mail</h2>
+          <p><a href={`mailto:${identity.contactEmail}`}>{identity.contactEmail}</a></p>
+        </div>
+      )}
+    </div>
+
+    <div class="contact-actions">
+      {identity.contactEmail && (
+        <a class="button-primary" href={`mailto:${identity.contactEmail}`}>Kirim E-mail</a>
+      )}
+      {whatsappHref && (
+        <a class="button-primary" href={whatsappHref} rel="noopener noreferrer" target="_blank">
+          Chat WhatsApp
+        </a>
+      )}
+    </div>
+  </div>
+</BaseLayout>

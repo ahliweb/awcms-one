@@ -1,0 +1,85 @@
+---
+/**
+ * The site footer (issue #24): contact details, social links, static-page
+ * links, copyright.
+ *
+ * ## "Render only the ones set"
+ *
+ * Applied twice here, the same rule `labelClassName`/`stock-badge` already
+ * apply to product data: a social link renders only if `identity.
+ * socialLinks` actually has one (never a placeholder icon for a platform
+ * nobody configured), and a footer page link (privacy/TOS/shopping guide,
+ * or Redaksi/Pedoman Media Siber/Disclaimer once #28's news pages exist)
+ * renders only if `staticPages` confirms that slug is a live, published
+ * page — see `src/config/routes.ts`'s `FOOTER_PAGE_LINKS` for why the
+ * three press-council links need no separate "does news exist" signal
+ * beyond this.
+ */
+import type { SiteIdentity } from "../lib/awcms/profil";
+import type { StaticPageSummary } from "../lib/awcms/pages";
+import { FOOTER_PAGE_LINKS, ROUTES } from "../config/routes";
+
+interface Props {
+  identity: SiteIdentity;
+  staticPages: StaticPageSummary[];
+}
+
+const { identity, staticPages } = Astro.props;
+
+const publishedSlugs = new Set(staticPages.map((page) => page.slug));
+const footerLinks = FOOTER_PAGE_LINKS.filter((link) => publishedSlugs.has(link.slug));
+
+const year = new Date().getFullYear();
+const copyright = identity.copyrightNotice ?? `© ${year} ${identity.name}`;
+---
+
+<footer class="site-footer">
+  <div class="container site-footer-grid">
+    <div class="site-footer-column">
+      <h2>{identity.name}</h2>
+      {identity.address && <p>{identity.address}</p>}
+      {identity.contactPhone && (
+        <p><a href={`tel:${identity.contactPhone.replace(/[^+\d]/g, "")}`}>{identity.contactPhone}</a></p>
+      )}
+      {identity.contactEmail && (
+        <p><a href={`mailto:${identity.contactEmail}`}>{identity.contactEmail}</a></p>
+      )}
+    </div>
+
+    {identity.socialLinks.length > 0 && (
+      <div class="site-footer-column">
+        <h2>Ikuti Kami</h2>
+        <ul class="social-links">
+          {identity.socialLinks.map((link) => (
+            <li>
+              <a href={link.url} rel="noopener noreferrer" target="_blank">{link.platform}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
+
+    {footerLinks.length > 0 && (
+      <div class="site-footer-column">
+        <h2>Informasi</h2>
+        <ul class="footer-page-links">
+          {footerLinks.map((link) => (
+            <li><a href={ROUTES.page(link.slug)}>{link.label}</a></li>
+          ))}
+        </ul>
+      </div>
+    )}
+
+    <div class="site-footer-column">
+      <h2>Bantuan</h2>
+      <ul class="footer-page-links">
+        <li><a href={ROUTES.contact}>Kontak</a></li>
+        <li><a href={ROUTES.search}>Cari Produk</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="container site-footer-bottom">
+    <p>{copyright}</p>
+  </div>
+</footer>
