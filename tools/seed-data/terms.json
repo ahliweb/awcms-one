@@ -1,0 +1,20 @@
+[
+  {
+    "taxonomyType": "category",
+    "name": "Pengumuman",
+    "slug": "pengumuman",
+    "description": "Kabar dan pengumuman resmi dari BjekMart."
+  },
+  {
+    "taxonomyType": "category",
+    "name": "Tips Belanja",
+    "slug": "tips-belanja",
+    "description": "Tips memanfaatkan katalog dan layanan BjekMart."
+  },
+  {
+    "taxonomyType": "tag",
+    "name": "Promo",
+    "slug": "promo",
+    "description": null
+  }
+]

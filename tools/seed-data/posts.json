@@ -1,0 +1,32 @@
+[
+  {
+    "slug": "selamat-datang-di-bjekmart",
+    "title": "Selamat Datang di BjekMart",
+    "excerpt": "BjekMart kini melayani kebutuhan pokok, layanan antar, dan berlangganan rutin dalam satu katalog.",
+    "termSlugs": ["pengumuman"],
+    "bodyParagraphs": [
+      "BjekMart menghadirkan kebutuhan pokok, minuman, sayuran, buah-buahan, roti dan kue, layanan antar (BjekMikro), dan langganan antar-jemput rutin (RutinRide) dalam satu tempat.",
+      "PLACEHOLDER — konten seed awal untuk membuktikan alur blog end-to-end (issue #28). Operator menggantikannya dengan artikel sungguhan."
+    ]
+  },
+  {
+    "slug": "cara-berlangganan-rutinride",
+    "title": "Cara Berlangganan RutinRide",
+    "excerpt": "Langkah memesan layanan antar-jemput rutin bulanan RutinRide.",
+    "termSlugs": ["tips-belanja"],
+    "bodyParagraphs": [
+      "RutinRide adalah layanan antar-jemput rutin bulanan untuk pelajar, karyawan, dan keluarga dengan jadwal serta rute yang disepakati di awal.",
+      "PLACEHOLDER — konten seed awal untuk membuktikan alur blog end-to-end (issue #28). Operator menggantikannya dengan panduan sungguhan."
+    ]
+  },
+  {
+    "slug": "promo-ongkir-borneojek",
+    "title": "Promo Ongkos Kirim BORNEOJEK",
+    "excerpt": "Opsi pengiriman alternatif BORNEOJEK kini tersedia di checkout BjekMart.",
+    "termSlugs": ["pengumuman", "promo"],
+    "bodyParagraphs": [
+      "Opsi pengiriman alternatif BORNEOJEK kini tersedia sebagai pilihan pengiriman di BjekMart.",
+      "PLACEHOLDER — konten seed awal untuk membuktikan alur blog end-to-end (issue #28). Operator menggantikannya dengan pengumuman sungguhan."
+    ]
+  }
+]

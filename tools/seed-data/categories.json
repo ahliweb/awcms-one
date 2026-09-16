@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Kebutuhan Pokok",
+    "slug": "kebutuhan-pokok-qy01",
+    "icon": "Utensils"
+  },
+  {
+    "name": "Minuman",
+    "slug": "minuman-pw2k",
+    "icon": "Wine"
+  },
+  {
+    "name": "Sayuran",
+    "slug": "sayuran-fresh-food-p44p",
+    "icon": null
+  },
+  {
+    "name": "Buah-Buahan",
+    "slug": "buah-buahan-tefz",
+    "icon": "Store"
+  },
+  {
+    "name": "Roti dan Kue",
+    "slug": "roti-dan-bakery-extg",
+    "icon": "ShoppingBag"
+  },
+  {
+    "name": "Layanan",
+    "slug": "layanan-berlangganan-wszq",
+    "icon": "Layers"
+  },
+  {
+    "name": "Resto Nasional",
+    "slug": "resto-nasional-q7dv",
+    "icon": "Utensils"
+  },
+  {
+    "name": "Resto Lokal",
+    "slug": "lokal-60pd",
+    "icon": "Footprints"
+  }
+]

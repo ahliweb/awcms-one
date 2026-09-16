@@ -33,10 +33,27 @@ A change affecting public behaviour, workspace structure, dependencies, or deplo
 
 `bun run release` (a maintainer's action, [`tools/rilis.mjs`](../tools/rilis.mjs)) folds every waiting changeset into `CHANGELOG.md`, using the **largest** `bump` among them to decide the next version — one `minor` beside nine `patch` entries makes the whole release `minor`, so the size of a release is a consequence of what went into it, not a judgement made at release time from a list of file names. `--commit` additionally tags `vX.Y.Z`.
 
-## CI: one job, everything unconditional
+## CI: two jobs — one unconditional, one against a real database
 
-`.github/workflows/ci.yml` defines a single job, `Check`, running on every push to `main`, every pull request, and on manual dispatch. Every step in it needs no build, no live `apps/cms`, and no database — the lockfile check, `bun install --frozen-lockfile`, a storefront type-check step that self-activates once `apps/storefront/package.json` exists (it does, as of this document), the root `bun test`, `audit:dokumen`, `audit:translation`, `audit:graf`, `audit:rilis`, and `bun audit --audit-level=low`. Nothing in this workflow builds a container image, deploys anything, or runs `apps/cms`'s own gate chain (`check:cms`) — see [`docs/deployment.md`](deployment.md) and [`docs/pengujian.md`](pengujian.md) for why the latter needs a database this CI job does not provision.
+`.github/workflows/ci.yml` defines two jobs.
+
+`check` runs on every push to `main`, every pull request, and on manual dispatch. Every step in it needs no build, no live `apps/cms`, and no database — the lockfile check, `bun install --frozen-lockfile`, a storefront type-check step that self-activates once `apps/storefront/package.json` exists (it does, as of this document), the root `bun test`, `audit:dokumen`, `audit:translation`, `audit:graf`, `audit:rilis`, and `bun audit --audit-level=low`. Nothing in this job builds a container image or deploys anything.
+
+`check-cms` (issue #25, `needs: check`, `timeout-minutes: 20`) runs `apps/cms`'s own full gate chain against a real `postgres:18.4` service: `cd apps/cms && DATABASE_URL="" bun run check` first (every DB-gated suite skips cleanly, exactly as `apps/cms`'s own `quality` job runs it), then `bun run db:migrate:cms` against the service and `bun test tests/integration/ --timeout 60000` — the harness-based suite, purpose-built for concurrent execution against its own ephemeral database. The job summary records the DB-gated skip count before and after the live database, so a reviewer can see the suites ran instead of silently skipping twice. This closes the gap [`docs/deployment.md`](deployment.md) and [`docs/pengujian.md`](pengujian.md) both used to describe: `apps/cms`'s own gate chain, and its RLS/DB coverage, now run in THIS repository's CI, not only locally.
+
+## Branch protection: `check-cms` is not required yet
+
+`check-cms` runs on every PR starting with the one that adds it, but branch protection's required status check list is unchanged by that alone — GitHub does not add a new job to the required list automatically, and requiring an unproven job from its first run would block every PR the moment a flaky new gate had one bad run. The plan, once `check-cms` has been green twice in a row on `main`:
+
+```bash
+gh api --method PATCH repos/ahliweb/awcms-one/branches/main/protection/required_status_checks \
+  --input - <<'EOF'
+{"strict": true, "checks": [{"context": "Check"}, {"context": "check-cms"}]}
+EOF
+```
+
+This preserves the existing required check (`Check`, `strict: true` — unchanged) and adds `check-cms` alongside it, rather than replacing the list. A maintainer runs this, not this PR — see the table in "Branch protection on `main`" above for what is required today, which this command has not yet been run against.
 
 ## Not enforced today
 
-A merge-strategy restriction tied specifically to `apps/cms`-touching PRs (the honour-system rule above). A required review count or code-owner requirement — branch protection here names one required check and nothing about reviewers. `check:cms` (or any `apps/cms` gate) running in this repository's own CI.
+A merge-strategy restriction tied specifically to `apps/cms`-touching PRs (the honour-system rule above). A required review count or code-owner requirement — branch protection here names one required check and nothing about reviewers. `check-cms` as a REQUIRED status on `main` — it runs, but is not required yet; see "Branch protection: `check-cms` is not required yet" above.
