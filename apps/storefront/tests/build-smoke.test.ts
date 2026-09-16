@@ -70,7 +70,8 @@ describe("build smoke: astro build against the stub CMS", () => {
             ...process.env,
             AWCMS_API_URL: `http://localhost:${stubPort}`,
             AWCMS_API_TOKEN: "stub-token",
-            SITE_URL: "http://localhost:4321"
+            SITE_URL: "http://localhost:4321",
+            PUBLIC_AWCMS_ORIGIN: "https://cms.example.com"
           },
           stdout: "pipe",
           stderr: "pipe"

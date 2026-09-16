@@ -190,3 +190,32 @@ describe("keranjang-kontrak: removeLine / setLineQuantity", () => {
     expect(setLineQuantity(cart, 0, 0, "t1").lines).toHaveLength(0);
   });
 });
+
+describe("keranjang-kontrak: idempotency key stability (issue #30)", () => {
+  // `cart.id` doubles as `POST …/orders`' `idempotencyKey`
+  // (`commerce-storefront-endpoints.md`) — it must survive every ordinary
+  // cart edit unchanged, or a retried checkout submission after a quantity
+  // tweak would be treated by the CMS as a DIFFERENT order rather than the
+  // same one being retried.
+  test("addOrMergeLine never changes cart.id", () => {
+    const cart = createEmptyCart("stable-id", "t0");
+    expect(addOrMergeLine(cart, line(), "t1").id).toBe("stable-id");
+    expect(addOrMergeLine(addOrMergeLine(cart, line(), "t1"), line({ sku: "B" }), "t2").id).toBe("stable-id");
+  });
+
+  test("removeLine never changes cart.id", () => {
+    const cart = { ...createEmptyCart("stable-id", "t0"), lines: [line()] };
+    expect(removeLine(cart, 0, "t1").id).toBe("stable-id");
+  });
+
+  test("setLineQuantity never changes cart.id, even when it empties the cart", () => {
+    const cart = { ...createEmptyCart("stable-id", "t0"), lines: [line()] };
+    expect(setLineQuantity(cart, 0, 5, "t1").id).toBe("stable-id");
+    expect(setLineQuantity(cart, 0, 0, "t1").id).toBe("stable-id");
+  });
+
+  test("parseCart round-trips the id unchanged", () => {
+    const cart = { id: "stable-id", lines: [line()], updatedAt: "2026-09-16T00:00:00.000Z" };
+    expect(parseCart(JSON.stringify(cart))?.id).toBe("stable-id");
+  });
+});

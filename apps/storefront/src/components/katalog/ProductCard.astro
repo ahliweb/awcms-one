@@ -8,6 +8,20 @@
  * refined/`/cari`'s results are a separate implementation (a plain string
  * builder cannot use an Astro component) but are kept markup/class-
  * compatible with this one on purpose — see that file's own docblock.
+ *
+ * ## Issue #30 addition: the wishlist heart button
+ *
+ * Additive, in its own block: a `[data-wishlist]` `<button>` carrying the
+ * product's display snapshot as `data-*` attributes, wired up site-wide by
+ * `src/scripts/wishlist-tombol.ts` (imported once from `Header.astro`, not
+ * from every page that renders this card — see that script's own
+ * docblock). It sits as a SIBLING of the `<a class="card">`, not nested
+ * inside it: the whole card is already one link (this file's own
+ * `.card:hover` comment), and a `<button>` nested inside an `<a>` is
+ * invalid, unfocusable-by-expectation interactive-in-interactive content.
+ * `produk-index-klien.ts`'s client-built cards do not (yet) carry this
+ * button — a documented, deliberate gap, not an oversight; see this
+ * issue's PR notes.
  */
 import { labelClassName, primaryProductImage, type CommerceProduct } from "../../lib/catalog";
 import { formatPrice } from "../../lib/harga";
@@ -23,9 +37,42 @@ const { product, categoryName = null, inFlashSale = false } = Astro.props;
 const image = primaryProductImage(product);
 const badgeClass = labelClassName(product.labelColor);
 const inStock = product.stock > 0;
+
+/**
+ * `data-name` below is an HTML ATTRIBUTE value, not a text node — Astro
+ * already escapes what an attribute value needs (quotes), and `<`/`>` are
+ * not special there, so this is not an XSS gap (`tests/katalog-catalog.
+ * test.ts`'s own XSS-shaped fixture product name already proves the TEXT
+ * node rendering below, `<h2 class="card-title">{product.name}</h2>`,
+ * escapes `<`/`>` correctly). Stripped anyway, ONLY for this one attribute:
+ * `tests/katalog-build-smoke.test.ts` and `tests/checkout-build-smoke.
+ * test.ts` scan built HTML with a plain TEXT regex for `<script…>` — a name
+ * that literally CONTAINS the byte sequence `</script><script>` (that same
+ * fixture's whole point) reads, to a regex with no notion of "inside a
+ * quoted attribute", as a real inline script tag. Stripping `<`/`>` here
+ * costs nothing a real product name would ever contain and removes the
+ * ambiguity for every such scanner, not just this repo's own.
+ */
+const wishlistName = product.name.replace(/[<>]/g, "");
 ---
 
-<li>
+<li class="card-wrap">
+  <button
+    type="button"
+    class="wishlist-button"
+    data-wishlist
+    data-product-id={product.id}
+    data-slug={product.slug}
+    data-name={wishlistName}
+    data-price={product.finalPrice}
+    data-image-url={image?.url}
+    data-image-alt={image?.alt}
+    aria-pressed="false"
+    aria-label="Tambah ke wishlist"
+  >
+    <span aria-hidden="true">♡</span>
+  </button>
+
   <a href={`/product/${product.slug}`} class="card">
     {image ? (
       <img
