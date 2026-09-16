@@ -7,11 +7,11 @@ How `apps/storefront` is built and served, its environment variables, and — pl
 ## Build, then serve — two separate steps, two separate trust levels
 
 ```bash
-bun run build          # bun run check && astro build && build:penyaji
+bun run build          # bun run check && astro build && build:build-id && build:penyaji
 bun run serve          # bun dist/server/penyaji.mjs
 ```
 
-`bun run build` (`apps/storefront/package.json`) runs `bun run check` (the type-check), then `astro build` (fetches the catalog from `apps/cms` using `AWCMS_API_TOKEN`, bakes every page to `dist/client/`), then `build:penyaji` (bundles `apps/storefront/server/penyaji.mjs` itself to `dist/server/penyaji.mjs` via `bun build --target=bun`). **Only the build step ever reads an `AWCMS_*` variable.** `bun run serve` runs the already-built `dist/server/penyaji.mjs`, which reads exactly two environment variables — `PORT` and `HOST` — and none of `apps/cms`'s. This is the mechanical proof of [ADR-0002](adr/0002-static-output-with-build-time-fetch-for-the-storefront.md)'s claim that the running container never talks to `apps/cms`: it is not merely that it does not today, it is that the served process's own source contains no code path that reads a credential or a URL that could reach it.
+`bun run build` (`apps/storefront/package.json`) runs `bun run check` (the type-check), then `astro build` (fetches the catalog, marketing surfaces, and news content from `apps/cms` using `AWCMS_API_TOKEN`, bakes every page to `dist/client/`, and writes the derived CSP artifact — see [`docs/arsitektur.md`](arsitektur.md)), then writes a build id, then `build:penyaji` (bundles `apps/storefront/server/penyaji.mjs` itself to `dist/server/penyaji.mjs` via `bun build --target=bun`). **Only the build step ever reads an `AWCMS_*` variable, and only the build step ever reads `AWCMS_API_TOKEN` at all.** `bun run serve` runs the already-built `dist/server/penyaji.mjs`, which reads `PORT`/`HOST` and, at startup only, its own built `csp.json` artifact — never a live `apps/cms` credential. This is the mechanical proof of [ADR-0002](adr/0002-static-output-with-build-time-fetch-for-the-storefront.md)'s claim that the *container* never talks to `apps/cms`: the served process's own source contains no code path that reads a credential or a URL that could reach it. **What increment 2 adds is a second, browser-side relationship** — cart, checkout, and order tracking pages ship client-side JavaScript that calls `apps/cms`'s anonymous `/api/v1/commerce/storefront/*` endpoints directly, cross-origin, from the reader's own browser, never from the container — see [ADR-0007](adr/0007-cart-and-checkout-stay-static-the-browser-calls-anonymous-commerce-endpoints.md).
 
 ## Environment variables
 
@@ -23,23 +23,30 @@ Two separate `.env.example` files, one per workspace, deliberately not merged �
 | --- | --- | --- |
 | `SITE_URL` | Build time (also `astro.config.mjs` directly, before `apps/storefront/src/config/site.ts` runs) | The canonical absolute origin — canonical links, Open Graph URLs, and `Product` JSON-LD are all built from it |
 | `SITE_NAME`, `SITE_DESCRIPTION` | Build time | Optional; sensible defaults so `bun run dev` works with no `.env` at all |
-| `AWCMS_API_URL` | Build time only | Origin of the `apps/cms` instance to fetch the catalog from |
-| `AWCMS_API_TOKEN` | Build time only | A **read-only** Bearer credential, scoped to the commerce module (products, categories) — never emitted into the build output; not prefixed `PUBLIC_`, deliberately, since Vite only inlines `PUBLIC_`-prefixed variables into client-reachable code |
+| `AWCMS_API_URL` | Build time only | Origin of the `apps/cms` instance to fetch the catalog, marketing, and news content from |
+| `AWCMS_API_TOKEN` | Build time only | A **read-only** Bearer credential, scoped to every commerce `read` permission (issue #25's seed now issues one credential covering catalog, marketing, and — where applicable — order export reads) — never emitted into the build output; not prefixed `PUBLIC_`, deliberately, since Vite only inlines `PUBLIC_`-prefixed variables into client-reachable code |
 | `AWCMS_API_TIMEOUT_MS` | Build time only, optional | How long one request to `apps/cms` may take before the build gives up (default 30000 ms) — a value that is not a positive number is refused outright, including `0`, which would otherwise mean "no limit" and restore the exact hang this deadline exists to prevent |
+| `PUBLIC_AWCMS_ORIGIN` | Build time, and baked into the served CSP | **New in issue #30.** The `apps/cms` origin the *browser* calls at runtime for cart/checkout/order-tracking — deliberately `PUBLIC_`-prefixed, since it is an origin, not a secret (the same value every media URL already reveals). Validated by `apps/storefront/src/lib/awcms/toko-origin.ts`; an unset or malformed value fails the build outright, naming the variable, because `apps/storefront/src/pages/csp.json.ts` — a page every build unconditionally prerenders — calls the validator unconditionally. See [ADR-0007](adr/0007-cart-and-checkout-stay-static-the-browser-calls-anonymous-commerce-endpoints.md) and [`docs/arsitektur.md`](arsitektur.md) |
+| `PUBLIC_WILAYAH_PROVINSI` | Build time, optional | Which Indonesian provinces' address-region data (`idn_admin_regions`) to bake into `/index/wilayah-*.json` for the checkout address form — default every Kalimantan province, deliberately not the full ~90,000-village national dataset |
 | `PORT`, `HOST` | Runtime, by `apps/storefront/server/penyaji.mjs` only | Defaults `8080`/`0.0.0.0` — `0.0.0.0` because this process normally runs inside a container behind a reverse proxy, where a `localhost`-only listener is unreachable from outside the container and shows up as a health check failing for no stated reason |
 
 ### `apps/cms/.env.example`
 
 A much larger file, owned entirely by `apps/cms` as embedded `ahliweb/awcms` code — this repository's root does not duplicate it (`AGENTS.md`'s "Configuration and toolchain": "every env variable a root-level script reads belongs in `.env.example`... `apps/cms` maintains its own `.env.example` for its own runtime configuration; this repo's root file does not duplicate it"). The variables that matter for understanding what a running `apps/cms` needs: `DATABASE_URL` (application role `awcms_app` — never the database owner role, which is a Postgres superuser that bypasses `FORCE ROW LEVEL SECURITY` outright, defeating the exact isolation [`docs/skema-basis-data.md`](skema-basis-data.md) documents), `APP_ENV`/`APP_URL`, and the HTTP listener variables (`PORT`, `HOST`, and optional in-process TLS certificate paths) its own standalone entrypoint reads.
 
-## What the storefront container may and may not reach
+## What may reach `apps/cms`: the build process, and — since issue #30 — the reader's browser
 
 | | May reach |
 | --- | --- |
-| Build process (`astro build`) | `apps/cms`'s public API, over HTTPS, with the read-only build token |
-| Running container (`bun dist/server/penyaji.mjs`) | Nothing outside itself — no `apps/cms`, no database, no external network call of any kind |
+| Build process (`astro build`) | `apps/cms`'s public owner API, over HTTPS, with the read-only build token |
+| Running container (`bun dist/server/penyaji.mjs`) | Nothing outside itself — no `apps/cms`, no database, no external network call of any kind. This is unchanged since increment 1 |
+| The reader's own browser | `apps/cms`'s anonymous `/api/v1/commerce/storefront/*` API, at `PUBLIC_AWCMS_ORIGIN`, `mode: "cors"` / `credentials: "omit"` — no cookie, no bearer token, ever |
 
-`apps/storefront/server/penyaji.mjs`'s own CSP (`connect-src 'self'`, among every other directive set to `'self'` or `'none'`) additionally blocks the *browser* from being made to call anything beyond this same origin — there is no configured external origin to widen it for, because this app has no product-image host or third-party script to allow.
+`apps/storefront/server/penyaji.mjs`'s own CSP is now derived rather than hand-configured — `img-src` and `connect-src` carry exactly the origins a given build actually referenced (product/media images, and `PUBLIC_AWCMS_ORIGIN`), re-validated at server startup and falling back to `'self'`-only on any missing/malformed artifact; see [`docs/arsitektur.md`](arsitektur.md) for the full mechanism. Every other CSP directive stays `'self'`/`'none'` — there is no third-party script or embed this app allows.
+
+## The seeded tenant's storefront origins must be registered in `awcms_tenant_domains`
+
+The anonymous storefront API resolves its tenant from the calling browser's `Origin` header against `apps/cms`'s `awcms_tenant_domains` table — an origin not registered there gets the same neutral refusal an unknown order code gets (see [`docs/api.md`](api.md)). `tools/seed-borneojek-mart.ts` registers `mart.borneojek.com` and `http://localhost:4321` (this repo's own dev default) as `active`, manually attested domains for the seeded tenant. A deployment that serves the storefront from a different origin must register that origin the same way before checkout will work at all — this is a real, easy-to-miss step, not an implementation detail.
 
 ## Local database (issue #25)
 
@@ -71,7 +78,20 @@ cd apps/cms && bun run dev              # or: bun run build && bun run start
 bun run db:seed:cms
 ```
 
-`tools/seed-borneojek-mart.ts` (`bun run db:seed:cms`) drives the running `apps/cms` from step above as an HTTP client of its own public `/api/v1/*` surface — the same interface `apps/storefront`'s build uses, and the only one issue #23/#26/#29 commit to keeping stable. It bootstraps the `borneojek-mart` tenant and owner (`POST /api/v1/setup/initialize`), seeds the 8-category catalog and one representative product per commerce `type` from `tools/seed-data/*.json`, a handful of blog terms/pages/posts, the site profile, and issues a read-only machine credential scoped to `commerce.products.read`/`commerce.categories.read` — the same credential shape `apps/storefront`'s build token needs. Every step is idempotent (checks for the row before creating it); re-running it against the same tenant creates nothing new and exits 0. It prints the owner password and the machine credential token exactly once, on the run that creates them — neither is stored anywhere by the script.
+`tools/seed-borneojek-mart.ts` (`bun run db:seed:cms`) drives the running `apps/cms` from step above as an HTTP client of its own public `/api/v1/*` surface — the same interface `apps/storefront`'s build uses, and the only one issues #23/#26/#29 commit to keeping stable. Every step is idempotent (checks for the row before creating it); re-running it against the same tenant creates nothing new and exits 0. As of issue #29, it seeds:
+
+- The `borneojek-mart` tenant and owner (`POST /api/v1/setup/initialize`), and its storefront origins in `awcms_tenant_domains` (see above).
+- The 8-category catalog and one product per commerce `type` (physical/service/subscription/digital, the last a clearly-marked synthetic placeholder), with full BjekMart parity fields (images, variants, size charts, service forms) from `tools/seed-data/*.json`.
+- The marketing surface: one flash sale with a product, two vouchers, three testimonials, a popup, and store settings.
+- A handful of blog terms/pages/posts and the site profile.
+- One customer with two orders in different states (`pending_payment`, `paid`), created through the anonymous order-creation path itself — not a backdoor — so the seed doubles as a proof that path works.
+- A read-only machine credential scoped to every commerce `read` permission (catalog, marketing, and order/customer/review reads) — the same credential shape `apps/storefront`'s build token needs.
+
+It prints the owner password and the machine credential token exactly once, on the run that creates them — neither is stored anywhere by the script.
+
+### A known gap: `SETUP_DATABASE_URL` / `awcms_setup` lacks a grant it needs
+
+Found during issue #26's development: the `awcms_setup` role (the one `SETUP_DATABASE_URL` is meant to scope the one-time setup wizard to) lacks a grant on `awcms_principals` — `sql/112` grants that table to `awcms_app` only. Configuring `SETUP_DATABASE_URL` as documented upstream therefore 500s the setup wizard. The sequence above works around it by leaving `SETUP_DATABASE_URL` unset entirely (the wizard then runs under `apps/cms`'s own configured `DATABASE_URL`) — this is the documented local flow, not a fix. Raised as an upstream `ahliweb/awcms` issue; not something this repository's own migrations can correct, since `sql/112` is upstream, subtree-embedded code.
 
 Proving the seeded catalog is servable:
 
@@ -84,20 +104,20 @@ cd apps/storefront && AWCMS_API_URL=http://localhost:4321 \
   AWCMS_API_TOKEN=<token> SITE_URL=http://localhost:4321 bun run build
 ```
 
-`bun run build` prerenders one page per seeded product plus the catalog index — the same acceptance criterion issue #25 states.
+`bun run build` prerenders one page per seeded product plus the catalog index, the marketing surfaces, and the seeded news content.
 
 ```bash
 bun run db:down                         # stop the container, keep the volume
 bun run db:reset                        # drop the volume too — a clean slate
 ```
 
-### Product types issue #23 fills in
+### A Postgres 18 gotcha, recorded so the next person does not lose an hour to it
 
-`/api/v1/commerce/products` accepts the 12-field shape `apps/cms/src/modules/commerce/domain/product-validation.ts`'s `CreateProductInput` defines today — no images, no variants, no `service_form`, no `subscription_period`. `tools/seed-data/products.json` already carries the BjekMikro/RutinRide `service_form`/variant/`subscription_period` values observed on the live site, under each product's `future` key, alongside `tools/seed-assets/`'s placeholder product images — so landing issue #23's fields is a change to what `tools/seed-borneojek-mart.ts`'s `ensureProducts()` sends, reading data already present in this file, never a restructure of the seed data or a second script.
+`postgres:18`'s official image refuses a volume mounted directly at `/var/lib/postgresql/data` — a pre-18 layout it no longer uses. `compose.yaml` mounts the named volume at `/var/lib/postgresql` instead. If a future edit to `compose.yaml` moves that mount point back, `bun run db:up` fails outright rather than starting a broken server.
 
-### What this script does NOT seed, and why
+### What this script still does not seed, and why
 
-The legacy `commerce_bj_mart` store settings (customer levels, the `BORNEOJEK` alternative shipping method, self-pickup, manual QRIS) have no field on `/api/v1/site-profile`, `/api/v1/commerce/*`, or any other endpoint `apps/cms` exposes today — verified by reading every registered module, not assumed. `tools/seed-data/site-profile.json` records these values under its own `future` key so the values are not lost, but this script does not invent an endpoint to receive them; that is a decision for issue #26/#29, or a new admission, to make.
+Product images, slider media, and payment-confirmation proof images are resolved through `media_library`'s existing reference mechanism (see [`docs/cms.md`](cms.md)) but not uploaded through a real R2 session here — `tools/seed-assets/` carries small, self-generated placeholder SVGs instead of real photos, and the anonymous payment-proof upload endpoints always answer `503 MEDIA_UNAVAILABLE`. RajaOngkir courier rates and a payment gateway have no field on any endpoint `apps/cms` exposes today, by design — see [ADR-0010](adr/0010-manual-payment-and-alternative-courier-first-gateways-via-outbox.md) and [issue #33](https://github.com/ahliweb/awcms-one/issues/33). Customer accounts are not seeded — the seeded customer has no password, matching [ADR-0009](adr/0009-guest-checkout-by-order-code-and-phone.md) and [issue #32](https://github.com/ahliweb/awcms-one/issues/32).
 
 ## Production PostgreSQL provisioning is not done
 

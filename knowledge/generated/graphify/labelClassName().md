@@ -1,22 +1,24 @@
 ---
 source_file: "apps/storefront/src/lib/catalog.ts"
 type: "code"
-community: "catalog.ts"
-location: "L391"
+community: "Flash Sale Countdown"
+location: "L677"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/catalogts
+  - community/Flash_Sale_Countdown
 ---
 
 # labelClassName()
 
 ## Connections
 - [[GET()]] - `calls` [EXTRACTED]
-- [[slug.astro]] - `imports` [EXTRACTED]
+- [[cardHtml()]] - `calls` [EXTRACTED]
 - [[catalog.ts]] - `contains` [EXTRACTED]
-- [[index.astro]] - `imports` [EXTRACTED]
 - [[isValidHexColor()]] - `calls` [EXTRACTED]
+- [[katalog-catalog.test.ts]] - `imports` [EXTRACTED]
 - [[product-labels.css.ts]] - `imports` [EXTRACTED]
+- [[productslug.astro]] - `imports` [EXTRACTED]
+- [[produk-index-klien.ts]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/catalogts
+#graphify/code #graphify/EXTRACTED #community/Flash_Sale_Countdown

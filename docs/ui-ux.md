@@ -2,34 +2,36 @@
 
 # UI / UX
 
-The storefront's visual and interaction design decisions that are load-bearing enough to need explaining, rather than a restatement of every CSS rule in `apps/storefront/src/styles/global.css`.
+The storefront's visual and interaction design decisions that are load-bearing enough to need explaining, rather than a restatement of every CSS rule in `apps/storefront/src/styles/`.
 
-## No product imagery, anywhere
+## Product imagery now exists — increment 1's "no imagery, anywhere" no longer holds
 
-Neither the catalog grid nor the product detail page renders a product photo. This is not an oversight to be filled in later within this document's scope — `CommerceProduct` carries no image field in this slice at all, because `product_images` is one of the tables this increment defers (see [`docs/skema-basis-data.md`](skema-basis-data.md) and [`docs/cms.md`](cms.md)). Every product card and detail page is composed from text (name, SKU, price, description) and, where set, a color-coded label badge.
+`awcms_commerce_product_images` (issue #23) gave `CommerceProduct` a real `images[]` field, resolved through `media_library` to a public URL, and the product detail page (`/product/{slug}`) renders an image gallery. `apps/storefront` still has no `media_library` client of its own for CMS-managed **site chrome** — the storefront's own logo/favicon are still not resolved from `logoMediaId`/`faviconMediaId` (see [`docs/cms.md`](cms.md)) — but **product photography is real**, and the CSP's `img-src` is now derived at build time specifically to allow it safely; see [`docs/arsitektur.md`](arsitektur.md).
 
-## `labelColor`: a CMS-chosen color, rendered safely
+## `labelColor`: a CMS-chosen color, rendered safely — unchanged mechanism
 
-`label`/`labelColor` on a product is a free-form merchandising badge — e.g. a "Baru" (new) tag — where `labelColor` is an **arbitrary hex string a merchandiser typed**, with no fixed palette this app could pre-declare as ordinary CSS classes. Two obvious ways to apply an arbitrary per-instance color — an inline `style="background: ..."` attribute, or a hand-written `<style>` block — are both exactly what this app's strict CSP (`style-src 'self'`, no `'unsafe-inline'`, see [`apps/storefront/server/penyaji.mjs`](../apps/storefront/server/penyaji.mjs)) refuses without an exemption this app is built never to need.
+`label`/`labelColor` on a product is still a free-form merchandising badge where `labelColor` is an arbitrary hex string a merchandiser typed. The same build-time mechanism from increment 1 still applies: `apps/storefront/src/pages/product-labels.css.ts` scans every product, collects the distinct `labelColor` values, and emits one small, same-origin stylesheet — `style-src 'self'` needs no exemption. Contrast is computed by `contrastingForeground()` (relative-luminance-based, picks whichever of black/white gives the higher ratio), unit-tested in `apps/storefront/tests/warna.test.ts` against every default brand colour.
 
-The third way: `apps/storefront/src/pages/product-labels.css.ts` is a build-time endpoint that scans every product in the catalog, collects the distinct `labelColor` values, and emits one small, genuinely external, same-origin stylesheet — `.label-bg-1a2b3c { background-color: #1a2b3c; color: ... }` — because every color in the catalog is already known at build time (the static-output decision, [ADR-0002](adr/0002-static-output-with-build-time-fetch-for-the-storefront.md), is what makes this possible at all). `style-src 'self'` allows it with no exemption, because it is a file like any other this build emits, not an inline anything.
+## Price presentation: five figures, never computed client-side
 
-## Contrast is computed, not assumed
+A product now carries `price`, up to three tier prices (`priceLevel2/3/4`), and a server-computed `finalPrice` — plus, when a flash sale applies, a flash-sale price fetched from `GET /flash-sales/active`. `apps/storefront` still performs **no price arithmetic of its own**: every figure shown is exactly what `apps/cms` computed, formatted through `Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR" })` (`formatPrice()`, now in `apps/storefront/src/lib/harga.ts` — the app's own grep-guarded rule that this is the *only* file converting a price string to a number, enforced by a unit test over `src/`). The cart and checkout pages re-quote every line against `apps/cms` live (`POST .../cart/quote`) rather than trusting a static page's own numbers into an order — see [ADR-0007](adr/0007-cart-and-checkout-stay-static-the-browser-calls-anonymous-commerce-endpoints.md).
 
-A badge's text color is not hardcoded white or black — `contrastingForeground()` (`apps/storefront/src/lib/catalog.ts`) computes the WCAG relative luminance of the background color and picks whichever of pure black or pure white yields the higher contrast ratio against it, rather than testing luminance against a single midpoint threshold (the two contrast formulas, against white and against black, are not symmetric around one fixed point, so a fixed threshold picks the worse option across a real range of colors). This closes a real bug class named directly in the code's own comments: assuming white text is always readable on a merchandiser-chosen background fails outright on a pale color — a light yellow "Baru" tag with white text, for instance.
+## The variant picker, size chart, service form, and subscription/digital notes
 
-**A stated limit, not hidden:** for a background color near the middle of the luminance range, *neither* pure black nor pure white may reach the 4.5:1 body-text contrast minimum — picking the higher-contrast one is the best a function of the background color alone can do, without altering the merchandiser's chosen color, which this app does not do silently.
+The product detail page renders, when present: a variant picker (attribute-based, e.g. size/colour, each variant carrying its own price/stock), an insurance note (`withInsurance`/`insuranceRequired`/`insuranceFee`), a size chart (`none`/an image/a table, per `sizeChartType`), a service product's intake-form fields (`serviceForm`), and a subscription-period or digital-download note. None of these compute anything — they render exactly the shape `apps/cms` returns, the same "no arithmetic in this app" rule extended to every new field rather than relaxed for it.
 
-A `labelColor` that is not a clean 6-digit `#rrggbb` hex string (free text, `rgb(...)`, a typo) gets **no** generated class at all — `isValidHexColor()` rejects it, `labelClassName()` returns `undefined`, and the product falls back to the plain `.label-badge` style already in `global.css`. One merchandiser's bad color value degrades a single badge's background; it does not fail the build.
+## The cart is a browser-local contract
 
-## Stock and price presentation
+`apps/storefront/src/lib/keranjang-kontrak.ts` defines the cart's shape: `localStorage` key `awcms-one:keranjang:v1`, `{id, lines, updatedAt}`, a `keranjang:berubah` event fired on every write (the header's cart-count badge listens for it). The cart's own `id` doubles as the checkout order's idempotency key — a double-submitted "place order" click cannot create two orders, because the client sends the same key both times and `apps/cms`'s `awcms_idempotency_keys` store recognises the repeat (see [`docs/api.md`](api.md)).
 
-`formatPrice()` renders `price` (a `numeric(14,2)` decimal string, see [ADR-0003](adr/0003-money-is-numeric-14-2-and-crosses-the-wire-as-a-string.md)) through `Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR" })` — the one place this app ever converts the price string to a number, immediately fed into a formatter with no string overload and never stored or recombined. `discountPercent` is shown as the percentage awcms sends ("Diskon 20%"), never as a computed discounted price — this app performs no price arithmetic anywhere, so it never has to invent a rounding rule that might disagree with whatever a future checkout computes. Stock is shown as a binary badge — "Stok tersedia" / "Stok habis" — derived from `stock > 0`, not the numeric count itself.
+## Stock and price presentation on cards
 
-## Language: Indonesian, unconditionally
+Stock is still shown as a binary badge — "Stok tersedia" / "Stok habis" — derived from `stock > 0`, not the numeric count. `discountPercent` is still shown as the percentage `apps/cms` sends, never as a client-computed discounted price.
 
-Every user-facing string in this app is written directly in Indonesian (`<html lang="id">`, "Katalog Produk", "Stok tersedia", "Lewati ke konten utama") — there is no i18n framework, no locale switcher, and no English copy anywhere in the rendered output. This is a smaller app than the sibling `awcms-astro`/`media-lenterakalteng` templates it is modelled on, which do carry multi-locale machinery; this storefront does not need it and does not carry it.
+## Language: Indonesian, unconditionally — unchanged
+
+Every user-facing string is written directly in Indonesian (`<html lang="id">`) — there is no i18n framework, no locale switcher, and no English copy anywhere in the rendered output, including every new cart/checkout/order-tracking/wishlist string added in increment 2.
 
 ## Not built
 
-Product imagery of any kind, a category-browse UI (see [`docs/routing.md`](routing.md)), any cart or checkout affordance, a locale switcher, and any dark-mode-specific product imagery decision (the color-scheme media query in `global.css` governs the app's own chrome, not product-supplied color like `labelColor`, which is rendered as the merchandiser set it regardless of the reader's OS theme).
+A locale switcher; any product-imagery decision tied to dark mode (the colour-scheme media query governs this app's own chrome, not CMS-supplied imagery or `labelColor`); a live carrier-rate comparison at checkout (courier options render as "segera" — disabled — pending [issue #33](https://github.com/ahliweb/awcms-one/issues/33), see [ADR-0010](adr/0010-manual-payment-and-alternative-courier-first-gateways-via-outbox.md)).

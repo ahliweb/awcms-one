@@ -1,12 +1,14 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](skema-basis-data.md)
 
-<!-- i18n-source-hash: sha256:7c8fa7a5f1415e789bea47dce24359351e73325a0cc1b3f8ccc9d0ea7d08feeb -->
+<!-- i18n-source-hash: sha256:f7f75b63287fc8505d8d8f6307745ac62072def533f72cfce46c4752d30d52e7 -->
 
 # Skema basis data
 
-Tabel `awcms_commerce_*`: kolom, tipe, constraint, indeks, dan row-level security yang membatasi setiap query ke satu tenant. Sumber kebenaran adalah [`apps/cms/sql/153_awcms_commerce_schema.sql`](../apps/cms/sql/153_awcms_commerce_schema.sql) (tabel dan indeks), [`sql/154_awcms_commerce_permissions.sql`](../apps/cms/sql/154_awcms_commerce_permissions.sql) (seed katalog izin), dan [`sql/155_awcms_commerce_worker_lifecycle_purge_grants.sql`](../apps/cms/sql/155_awcms_commerce_worker_lifecycle_purge_grants.sql) (grant untuk worker purge) — dokumen ini menjelaskannya, tidak menggantikan membacanya.
+Setiap tabel `awcms_commerce_*`: kolom, tipe, constraint, indeks, dan row-level security yang membatasi setiap query ke satu tenant. Sumber kebenaran adalah `apps/cms/sql/153_awcms_commerce_schema.sql` sampai `apps/cms/sql/168_awcms_commerce_orders_expire_worker_write_grants.sql` — enam belas migrasi, satu modul `commerce` (lihat [ADR-0008](adr/0008-one-commerce-module-carries-the-whole-store-not-three.id.md)) — plus [`apps/cms/src/modules/commerce/README.md`](../apps/cms/src/modules/commerce/README.id.md); dokumen ini menjelaskannya, tidak menggantikan membacanya.
 
-## `awcms_commerce_categories`
+## Katalog: `awcms_commerce_categories`, `awcms_commerce_products`, `_product_images`, `_product_variants`
+
+### `awcms_commerce_categories` (`sql/153`, `+restored_at` di `sql/156`)
 
 Hierarkis, self-referencing.
 
@@ -14,44 +16,98 @@ Hierarkis, self-referencing.
 | --- | --- | --- |
 | `id` | `uuid` | PK, `DEFAULT gen_random_uuid()` |
 | `tenant_id` | `uuid NOT NULL` | `REFERENCES awcms_tenants (id)` |
-| `parent_id` | `uuid` | `REFERENCES awcms_commerce_categories (id)`, nullable; diset hanya saat pembuatan — lihat "Tanpa re-parenting" di bawah |
+| `parent_id` | `uuid` | `REFERENCES awcms_commerce_categories (id)`, nullable; diset hanya saat pembuatan — lihat [`docs/cms.md`](cms.id.md) |
 | `name` | `text NOT NULL` | |
-| `slug` | `text NOT NULL` | Unik per tenant di antara baris hidup — lihat Indeks |
+| `slug` | `text NOT NULL` | Unik per tenant di antara baris hidup |
 | `icon` | `text` | Nullable |
-| `created_at` | `timestamptz NOT NULL DEFAULT now()` | |
-| `updated_at` | `timestamptz NOT NULL DEFAULT now()` | |
-| `deleted_at` | `timestamptz` | Nullable — lihat "Dua sumbu independen" di bawah |
+| `created_at`/`updated_at` | `timestamptz NOT NULL DEFAULT now()` | |
+| `deleted_at` | `timestamptz` | Nullable — soft delete |
+| `restored_at` | `timestamptz` | Nullable, ditambahkan di `sql/156` — fakta "kapan" yang dibutuhkan `restore`, mengikuti preseden yang sudah dipakai `awcms_offices` |
 
-**Indeks:** indeks unik pada `(tenant_id, slug) WHERE deleted_at IS NULL` (slug baris yang dihapus langsung bebas untuk dipakai ulang); indeks biasa pada `tenant_id`; indeks komposit pada `(tenant_id, deleted_at)` (bentuk filter mesin purge data-lifecycle generik); indeks pada `parent_id` (baik untuk penyusuran hierarki maupun gate `db:fk-index:check` milik `apps/cms`, yang mensyaratkan setiap kolom FK membawa satu).
+**Indeks:** unik `(tenant_id, slug) WHERE deleted_at IS NULL`; `(tenant_id)`; `(tenant_id, deleted_at)`; `(parent_id)`; `(tenant_id, parent_id) WHERE deleted_at IS NULL` (`sql/159`).
 
-## `awcms_commerce_products`
+### `awcms_commerce_products` (inti `sql/153` + kolom paritas BjekMart `sql/156`)
 
 | Kolom | Tipe | Catatan |
 | --- | --- | --- |
-| `id` | `uuid` | PK, `DEFAULT gen_random_uuid()` |
-| `tenant_id` | `uuid NOT NULL` | `REFERENCES awcms_tenants (id)` |
-| `category_id` | `uuid` | `REFERENCES awcms_commerce_categories (id)`, nullable |
-| `type` | `text NOT NULL DEFAULT 'physical'` | `CHECK IN ('physical', 'digital', 'service', 'subscription')` |
+| `id` | `uuid` | PK |
+| `tenant_id` | `uuid NOT NULL` | FK `awcms_tenants` |
+| `category_id` | `uuid` | FK `awcms_commerce_categories`, nullable |
+| `type` | `text NOT NULL DEFAULT 'physical'` | `CHECK IN ('physical','digital','service','subscription')` |
 | `sku` | `text NOT NULL` | Unik per tenant di antara baris hidup |
-| `name` | `text NOT NULL` | |
-| `slug` | `text NOT NULL` | Unik per tenant di antara baris hidup |
-| `description` | `text` | Nullable |
-| `digital_note` | `text` | Nullable |
-| `price` | `numeric(14, 2) NOT NULL` | `CHECK (price >= 0)` — lihat [ADR-0003](adr/0003-money-is-numeric-14-2-and-crosses-the-wire-as-a-string.md) |
+| `name`, `slug` | `text NOT NULL` | `slug` unik per tenant di antara baris hidup |
+| `description`, `digital_note` | `text` | Nullable |
+| `price` | `numeric(14,2) NOT NULL` | `CHECK (price >= 0)` — lihat [ADR-0003](adr/0003-money-is-numeric-14-2-and-crosses-the-wire-as-a-string.id.md) |
+| `price_level_2`, `price_level_3`, `price_level_4` | `numeric(14,2)` | Nullable — harga bertingkat berdasarkan level pelanggan (`sql/156`) |
+| `cost_price` | `numeric(14,2)` | Nullable, khusus admin — tidak pernah ada di model baca publik |
 | `discount_percent` | `integer NOT NULL DEFAULT 0` | `CHECK BETWEEN 0 AND 100` |
 | `stock` | `integer NOT NULL DEFAULT 0` | `CHECK (stock >= 0)` |
-| `status` | `text NOT NULL DEFAULT 'draft'` | `CHECK IN ('draft', 'active', 'inactive', 'archived')` — lihat [`docs/cms.md`](cms.md) untuk tabel transisi legal |
-| `label` | `text` | Nullable, mis. lencana merchandising seperti "Baru" |
-| `label_color` | `text` | Nullable, string hex sembarang; lihat [`docs/ui-ux.md`](ui-ux.md) untuk bagaimana storefront me-render-nya dengan aman |
-| `created_at` | `timestamptz NOT NULL DEFAULT now()` | |
-| `updated_at` | `timestamptz NOT NULL DEFAULT now()` | |
-| `deleted_at` | `timestamptz` | Nullable |
+| `status` | `text NOT NULL DEFAULT 'draft'` | `CHECK IN ('draft','active','inactive','archived')` — lihat [`docs/cms.md`](cms.id.md) |
+| `label`, `label_color` | `text` | Nullable, lencana merchandising |
+| `min_purchase` | `integer NOT NULL DEFAULT 1` | `CHECK (>= 1)` |
+| `weight_grams` | `integer NOT NULL DEFAULT 0` | `CHECK (>= 0)` |
+| `manual_rating` | `numeric(2,1)` | `CHECK BETWEEN 0 AND 5`, nullable |
+| `manual_sold_count` | `integer NOT NULL DEFAULT 0` | `CHECK (>= 0)` |
+| `with_insurance`, `insurance_required` | `boolean NOT NULL DEFAULT false` | |
+| `insurance_fee` | `numeric(14,2)` | Nullable |
+| `promo_banner_show` | `boolean NOT NULL DEFAULT false` | |
+| `promo_banner_{title,subtitle,badge,icon,color}` | `text` | Nullable |
+| `size_chart_type` | `text NOT NULL DEFAULT 'none'` | `CHECK IN ('none','image','table')`, plus CHECK lintas-kolom yang menyelaraskannya dengan dua kolom berikutnya |
+| `size_chart_media_id` | `uuid` | `REFERENCES awcms_news_media_objects` — nama tabel asli registry media, dipertahankan melewati penggabungan `news_portal`→`blog_content`; hanya divalidasi berbentuk UUID, tidak dicek secara live (lihat [`docs/cms.md`](cms.id.md)) |
+| `size_chart_details` | `jsonb` | Nullable |
+| `service_form` | `jsonb` | Nullable — daftar field formulir intake produk jasa |
+| `subscription_period` | `text` | `CHECK IN ('day','week','month','year')`, nullable |
+| `download_link` | `text` | Nullable — aset berbayar produk digital; sengaja dikecualikan dari setiap model baca publik (lihat [`docs/cms.md`](cms.id.md)) |
+| `allow_dp` | `boolean NOT NULL DEFAULT false` | |
+| `allow_free_shipping` | `boolean NOT NULL DEFAULT true` | |
+| `variant_attributes` | `jsonb` | Nullable |
+| `is_featured`, `is_recommended` | `boolean NOT NULL DEFAULT false` | |
+| `created_at`/`updated_at` | `timestamptz NOT NULL DEFAULT now()` | |
+| `deleted_at`, `restored_at` | `timestamptz` | Nullable |
 
-**Indeks:** indeks unik pada `(tenant_id, slug) WHERE deleted_at IS NULL` dan `(tenant_id, sku) WHERE deleted_at IS NULL`; indeks biasa pada `tenant_id`; indeks komposit pada `(tenant_id, deleted_at)`; indeks pada `category_id` (gate indeks-FK, dan indeks alami yang akan dibutuhkan halaman category-browse di masa depan).
+**Indeks:** unik `(tenant_id, slug)`/`(tenant_id, sku)` keduanya `WHERE deleted_at IS NULL`; `(tenant_id)`; `(tenant_id, deleted_at)`; `(category_id)`; `(size_chart_media_id)`; indeks GIN trigram pada `name`/`sku` (`pg_trgm`, `sql/159`, mendukung filter substring `q` milik daftar owner); parsial `(tenant_id) WHERE deleted_at IS NULL AND is_featured/is_recommended = true`; `(tenant_id, price)`/`(tenant_id, name)` keduanya `WHERE deleted_at IS NULL`; `(tenant_id, status) WHERE deleted_at IS NULL`.
+
+### `awcms_commerce_product_images` / `awcms_commerce_product_variants` (`sql/157`)
+
+| Tabel | Kolom kunci |
+| --- | --- |
+| `_product_images` | `product_id` (FK products), `media_object_id NOT NULL` (FK `awcms_news_media_objects`, dicek secara live lewat `MediaLibraryPort.isMediaReferenceSafe` sebelum insert), `sort_order`, `alt_text` |
+| `_product_variants` | `product_id` (FK products), `name NOT NULL`, `value NOT NULL`, `color_hex`, `image_media_object_id` (FK, validasi hanya-berbentuk-UUID), `sku` (unik per tenant di antara baris hidup, **dicek terhadap tabel ini maupun `awcms_commerce_products` itu sendiri** — indeks satu-tabel tidak bisa menyatakan itu), `price`/`price_level_2/3/4`, `stock`, `weight_grams`, `sort_order` |
+
+Keduanya: `id`/`tenant_id`/`created_at`/`updated_at`/`deleted_at` seperti biasa; RLS `ENABLE`+`FORCE`, kebijakan isolasi-tenant; indeks FK pada setiap kolom referensi.
+
+## Marketing: lima keluarga, plus pengaturan toko (`sql/161`–`162`)
+
+| Tabel | Kolom kunci |
+| --- | --- |
+| `awcms_commerce_flash_sales` | `name`, `slug` (unik per tenant, baris hidup), `starts_at`/`ends_at NOT NULL` (`CHECK ends_at > starts_at`), `status` (`CHECK IN ('draft','scheduled','active','ended')` — `active`/`ended` diturunkan oleh job, tidak pernah diset owner secara langsung) |
+| `awcms_commerce_flash_sale_products` | `flash_sale_id`, `product_id`, `variant_id` (nullable), `sale_price NOT NULL` (`CHECK >= 0`), `quota`/`sold integer NOT NULL DEFAULT 0`; unik `(flash_sale_id, product_id, variant_id) NULLS NOT DISTINCT WHERE deleted_at IS NULL` |
+| `awcms_commerce_vouchers` | `code` (unik per tenant, baris hidup), `type` (`CHECK IN ('percentage','nominal','free_shipping')`), `value NOT NULL` (`CHECK >= 0`), `min_order`, `max_discount`, `quota`/`used_count`, `is_public`, `status` (`CHECK IN ('active','inactive')`), `starts_at`/`ends_at NOT NULL` |
+| `awcms_commerce_sliders` | `title NOT NULL`, `subtitle`, `media_object_id NOT NULL` (FK), `link_url`, `button_text`, `sort_order`, `is_active`, `starts_at`/`ends_at` (nullable, berjendela) |
+| `awcms_commerce_testimonials` | `author_name NOT NULL`, `author_role`, `body NOT NULL`, `rating integer NOT NULL DEFAULT 5` (`CHECK BETWEEN 1 AND 5`), `avatar_media_object_id` (FK, nullable), `is_active`, `sort_order` |
+| `awcms_commerce_popups` | `title NOT NULL`, `body`, `media_object_id` (FK, nullable), `link_url`, `button_text`, `frequency` (`CHECK IN ('once_per_session','once_per_day','always')`), `is_active`, `starts_at`/`ends_at`; **indeks parsial unik `(tenant_id) WHERE deleted_at IS NULL AND is_active = true`** — paling banyak satu popup aktif per tenant, ditegakkan oleh skema, bukan kode aplikasi |
+| `awcms_commerce_store_settings` | `tenant_id uuid PRIMARY KEY` (satu baris per tenant — singleton, bukan daftar), `settings jsonb NOT NULL DEFAULT '{}'` (`CHECK jsonb_typeof(settings) = 'object'`), `deleted_at` (di sini berarti "reset ke default", bukan penghapusan tenant — lihat [`docs/api.md`](api.id.md)) |
+
+Keenamnya: `id`/`created_at`/`updated_at`/`deleted_at` standar, RLS `ENABLE`+`FORCE`, kebijakan isolasi-tenant, indeks FK.
+
+## Orders: delapan tabel (`sql/165`)
+
+| Tabel | Kolom kunci | Catatan |
+| --- | --- | --- |
+| `awcms_commerce_customers` | `name NOT NULL`, `phone NOT NULL` (unik per tenant, baris hidup), `email`, `level integer NOT NULL DEFAULT 1` (`CHECK BETWEEN 1 AND 4`), `status` (`CHECK IN ('active','blocked')`) | Tanpa `password_hash`/`identity_id` — khusus tamu (lihat [ADR-0009](adr/0009-guest-checkout-by-order-code-and-phone.id.md)); akun adalah #32 |
+| `awcms_commerce_customer_addresses` | `customer_id` (FK), `label`, `recipient_name NOT NULL`, `phone NOT NULL`, `province_code`/`name`, `city_code`/`name`, `district_code`/`name` (semuanya `text NOT NULL` **snapshot**, bukan FK live ke `idn_admin_regions`), `postal_code`, `street NOT NULL`, `latitude numeric(9,6)`, `longitude numeric(9,6)`, `is_default` | Di-snapshot sehingga perubahan data-induk wilayah di kemudian hari tidak pernah menulis ulang alamat terkirim milik pelanggan sendiri |
+| `awcms_commerce_orders` | `order_code NOT NULL` (unik per tenant — **selamanya**, tidak dibatasi ke baris hidup, karena order tidak pernah benar-benar dihapus), `customer_id` (FK), `status` (CHECK 7-nilai, lihat [`docs/cms.md`](cms.id.md)), `payment_method` (`CHECK IN ('manual_bank','manual_qris','dp','gateway')` — `gateway` diterima, belum diimplementasikan, lihat [ADR-0010](adr/0010-manual-payment-and-alternative-courier-first-gateways-via-outbox.id.md)), `payment_status` (`CHECK IN ('unpaid','dp_paid','paid','refunded')`), `shipping_method` (`CHECK IN ('alternative','self_pickup','courier')`), `shipping_service_name`, `shipping_cost`, `address jsonb` (snapshot, nullable untuk self-pickup), `subtotal`/`discount`/`voucher_code`/`voucher_discount`/`insurance_fee`/`tax`/`total`/`dp_amount`, `notes`, `paid_at`/`shipped_at`/`completed_at`/`cancelled_at`/`expires_at` | Indeks mencakup bentuk-scan milik job expiry sendiri, `(tenant_id, status, expires_at) WHERE status = 'pending_payment'`, dan milik daftar admin `(tenant_id, status, created_at DESC)` |
+| `awcms_commerce_order_items` | `order_id`, `product_id`, `variant_id` (nullable), `flash_sale_id` (FK nullable — diset saat baris dibeli dengan harga flash-sale), `name`/`variant_name`/`sku` (snapshot), `unit_price NOT NULL`, `quantity integer NOT NULL CHECK (> 0)`, `weight_grams`, `service_form_values jsonb`, `line_total NOT NULL` | |
+| `awcms_commerce_order_events` | `order_id`, `from_status` (nullable — null pada baris pembuatan), `to_status NOT NULL`, `actor` (`CHECK IN ('customer','admin','system')`), `note`, `created_at` | **Append-only — sama sekali tanpa `deleted_at`**, satu-satunya pengecualian dari bentuk soft-delete setiap tabel lain; sumber asli timeline order-tracking |
+| `awcms_commerce_payment_confirmations` | `order_id`, `method` (`CHECK IN ('manual_bank','manual_qris')`), `amount NOT NULL`, `bank_name`, `account_name`, `transferred_at`, `proof_media_object_id` (**tanpa constraint FK, tanpa indeks** — kolom stub, sejalan dengan jalur upload yang selalu-`503`, lihat [`docs/cms.md`](cms.id.md)), `status` (`CHECK IN ('submitted','accepted','rejected')`), `reviewed_by` (**tanpa constraint FK**), `reviewed_at` | |
+| `awcms_commerce_reviews` | `product_id`, `customer_id`, `order_id` (semuanya FK `NOT NULL`), `rating integer NOT NULL CHECK BETWEEN 1 AND 5`, `body NOT NULL`, `status` (`CHECK IN ('pending','published','rejected')`) | Unik `(customer_id, product_id, order_id) WHERE deleted_at IS NULL` — satu review per pelanggan, per produk, per order |
+| `awcms_commerce_wishlists` | `customer_id`, `product_id` (keduanya FK `NOT NULL`) | Unik `(customer_id, product_id) WHERE deleted_at IS NULL`; **hanya-skema — belum ada rute API di depannya**, dikirim mendahului sistem akun yang dibutuhkannya |
+
+Kedelapannya: RLS `ENABLE`+`FORCE`, kebijakan isolasi-tenant. `deleted_at` ada pada tujuh dari delapan (setiap tabel kecuali `order_events`) murni sebagai kursor purge data-lifecycle yang seragam — order, item order, pelanggan, dan konfirmasi pembayaran tidak pernah benar-benar di-soft-delete oleh kode modul ini sendiri.
 
 ## Row-level security: `ENABLE` dan `FORCE`, terbukti di bawah role tak-berhak-istimewa
 
-Kedua tabel membawa `ALTER TABLE ... ENABLE ROW LEVEL SECURITY` **dan** `ALTER TABLE ... FORCE ROW LEVEL SECURITY`, masing-masing dengan satu kebijakan:
+Setiap tabel di atas membawa `ALTER TABLE ... ENABLE ROW LEVEL SECURITY` **dan** `ALTER TABLE ... FORCE ROW LEVEL SECURITY`, masing-masing dengan satu kebijakan isolasi-tenant:
 
 ```sql
 CREATE POLICY awcms_commerce_products_tenant_isolation
@@ -59,36 +115,28 @@ CREATE POLICY awcms_commerce_products_tenant_isolation
   USING (tenant_id = current_setting('app.current_tenant_id')::uuid);
 ```
 
-`FORCE` penting justru karena pemilik tabel jika tidak akan melewati RLS sepenuhnya — `ENABLE` saja melindungi terhadap setiap role kecuali yang membuat tabelnya. Aplikasi terhubung sebagai `awcms_app`, role tak-berhak-istimewa, non-superuser (`apps/cms/sql/019_awcms_db_role_separation.sql`) — tidak pernah sebagai pemilik — jadi kebijakan ini adalah batas tenant nyata dan mengikat untuk setiap query komersial, bukan garis pertahanan-berlapis yang tidak pernah benar-benar diuji.
+`FORCE` penting justru karena pemilik tabel jika tidak akan melewati RLS sepenuhnya. Aplikasi terhubung sebagai `awcms_app`, role tak-berhak-istimewa, non-superuser — tidak pernah sebagai pemilik — jadi kebijakan ini adalah batas tenant nyata dan mengikat untuk setiap query commerce. Suite tes RLS generik milik `apps/cms` menurunkan daftar tabelnya dari pernyataan `ENABLE`/`FORCE` setiap tabel `awcms_%` sendiri di seluruh `sql/`, alih-alih menamai tabel dengan tangan, jadi setiap tabel di atas tercakup otomatis, dengan cara yang sama seperti setiap tabel RLS lain di basis kode ini — tidak ada tes RLS khusus-commerce yang dibutuhkan atau ditulis. **Resolusi tenant milik API storefront anonim sendiri adalah batas kedua, lebih awal**, bukan pengganti RLS: `application/public-commerce-tenant.ts` meresolusi tenant dari `Origin`/`Host` request terhadap `awcms_tenant_domains` sebelum transaksi bahkan dibuka; RLS kemudian tetap membatasi setiap query di dalam transaksi itu ke tenant yang ditemukan resolver. Pencarian `orders/{code}?phone=` lintas-tenant dan request origin-tak-teresolusi keduanya menjawab dengan `404` netral yang identik.
 
-Ini terbukti, bukan sekadar dinyatakan: suite tes RLS generik milik `apps/cms` (`apps/cms/tests/db-role-separation-migration.test.ts`, `apps/cms/tests/security-readiness-rls.test.ts`, `apps/cms/tests/integration/db-role-separation.integration.test.ts`) menurunkan daftar tabelnya dari pernyataan `ENABLE`/`FORCE` setiap tabel `awcms_%` sendiri di seluruh `sql/` (`apps/cms/scripts/lib/table-rls-states.ts`), bukan menamai tabel dengan tangan — jadi `awcms_commerce_categories`/`awcms_commerce_products` tercakup otomatis, dengan cara yang sama seperti setiap tabel RLS lain di basis kode ini, tanpa perlu tes khusus-commerce. Sebagai role `awcms_app` yang tak-berhak-istimewa: query yang diajukan tanpa konteks tenant yang diset gagal tertutup (`current_setting('app.current_tenant_id')` milik kebijakan itu melempar error alih-alih mengembalikan string kosong yang kebetulan tidak cocok apa-apa), dan percobaan memasukkan baris di bawah konteks satu tenant sambil menamai id tenant lain ditolak kebijakan yang sama. Tes integrasi ini butuh PostgreSQL hidup dan tidak dijalankan ulang untuk menulis dokumen ini (lihat [`docs/pengujian.md`](pengujian.md) untuk alasannya); klaim di atas adalah jaminan generik dan berdiri milik basis kode untuk setiap tabel `FORCE ROW LEVEL SECURITY`, commerce termasuk, bukan verifikasi-ulang yang dilakukan khusus untuk dokumen ini.
+**`category_id` yang melintasi tenant ditutup di lapisan aplikasi, bukan oleh foreign key** — FK PostgreSQL hanya membuktikan `category_id` menamai *suatu* baris, bukan satu yang milik tenant si pemanggil sendiri. `commerce/application/product-directory.ts` memanggil `fetchCategoryById(tx, tenantId, categoryId)` di dalam transaksi ber-RLS yang sama dan menolak request (400) jika itu tidak mengembalikan apa-apa — id yang tidak dikenal, sudah soft-delete, atau lintas-tenant ditolak secara identik, dengan sengaja (bentuk existence-oracle GHSA-r7cx-c4jh-cvvw). Pola yang sama menjaga setiap referensi lintas-tabel lain yang ditulis modul ini (`category_id` milik produk, `product_id`/`variant_id`/`flash_sale_id` milik item order, `product_id`/`customer_id`/`order_id` milik review).
 
-**`category_id` yang melintasi tenant ditutup di lapisan aplikasi, bukan oleh foreign key.** Constraint FK PostgreSQL tidak punya kesadaran tenant — ia hanya membuktikan `category_id` menamai *suatu* baris di `awcms_commerce_categories`, bukan satu yang milik tenant si pemanggil sendiri. `createProduct`/`updateProduct` milik `commerce/application/product-directory.ts` sebaliknya memanggil `fetchCategoryById(tx, tenantId, categoryId)` — query yang dibatasi transaksi ber-RLS, di dalam `tx` yang sama — dan menolak request (400) jika itu tidak mengembalikan apa-apa. Id yang tidak dikenal, sudah soft-delete, atau benar-benar milik tenant lain ditolak **secara identik**, dengan sengaja: membedakan ketiga penyebab itu dalam respons akan membiarkan field itu dipakai untuk menyelidik id kategori yang ada di tempat lain platform (bentuk existence-oracle GHSA-r7cx-c4jh-cvvw). Pola yang sama, untuk alasan yang sama, menjaga `parentId` milik kategori sendiri.
+## `status`/`payment_status` dan `deleted_at`: dua sumbu independen
 
-## `status` dan `deleted_at`: dua sumbu independen
+`status` milik produk, `status`/`payment_status` milik order, dan apakah barisnya soft-delete (`deleted_at`) menjawab pertanyaan yang berbeda dan tidak pernah dicampur — lihat [`docs/cms.md`](cms.id.md) untuk kedua state machine secara lengkap. Hanya `order_events` yang tidak membawa `deleted_at`: ia append-only by design, satu-satunya catatan riwayat order yang tahan lama dan tak-bisa-diedit.
 
-`status` siklus-hidup produk (`draft`/`active`/`inactive`/`archived`) dan apakah barisnya soft-delete (`deleted_at`) menjawab dua pertanyaan berbeda dan tidak pernah dicampur. Menarik produk dari penjualan tanpa kehilangan catatannya adalah `status = 'inactive'`; menghapusnya sepenuhnya dari tampilan katalog tenant adalah `deleted_at`. Kategori membawa `deleted_at` tapi tidak punya kolom `status` sama sekali — kategori tidak punya siklus hidup independen selain ada atau dihapus.
+## Tanpa kolom stempel-pelaku di mana pun dalam modul ini
 
-## Tanpa kolom stempel-pelaku
+Tidak satu pun tabel commerce membawa `created_by`/`updated_by`/`deleted_by`. SIAPA yang membuat, mengubah, atau soft-delete baris sisi-owner hanya ada di log audit; SIAPA yang mendorong perubahan status order sendiri ada di kolom `actor` milik `order_events` (`customer`/`admin`/`system`) — lihat [`docs/cms.md`](cms.id.md).
 
-Tidak satu pun tabel membawa `created_by`, `updated_by`, atau `deleted_by`. SIAPA yang membuat, mengubah, atau soft-delete suatu baris hidup **hanya** di log audit (`actorTenantUserId` milik `recordAuditEvent` — lihat [`docs/cms.md`](cms.md)), tidak pernah sebagai kolom di sini. Ini juga yang membuat deskriptor `subjectData` milik `commerce/module.ts` jujur `unreachableBySubject: true`: tanpa kolom yang bisa menghubungkan baris ke seseorang bahkan secara prinsip, tidak ada apa pun di sini yang bisa dijangkau permintaan subjek-data.
+## `dataLifecycle` dan `subjectData`: mesin purge tidak pernah bisa menjangkau baris hidup, dan setiap tabel adalah `unreachableBySubject`
 
-## Tanpa endpoint restore di irisan ini
+Kedelapan belas tabel commerce, masing-masing, opt-in ke mesin purge data-lifecycle generik milik `apps/cms` (array `dataLifecycle` milik `commerce/module.ts`), dengan `cursorColumn: "deleted_at"` untuk tujuh belas di antaranya dan `"created_at"` untuk `order_events` yang append-only — `NULL < $2` bukan benar maupun salah di SQL, jadi baris hidup tidak pernah bisa cocok dengan predikat purge; hanya baris yang sudah soft-delete, melewati jendela retensinya, yang menjadi memenuhi-syarat. `orders`/`order_items`/`payment_confirmations` memakai jendela retensi fiskal (`retentionMinDays: 365`, `defaultRetentionDays: 3650`); sisanya memakai `30`/`3650`/`365`.
 
-Tidak satu pun tabel membawa `restored_at`/`restored_by`, dan tidak ada rute `[id]/restore.ts` atau izin `restore` untuk resource mana pun. Kategori atau produk yang soft-delete dipertahankan — sehingga baris apa pun yang masih mereferensikannya (kategori anak, `category_id` milik produk) menjaga foreign key yang valid — tapi irisan ini tidak mengekspos cara mengembalikannya lewat API. Header `sql/153` sendiri menyebut ini sebagai aditif: dua kolom nullable dan satu endpoint, bukan migrasi baris yang sudah ada, kapan pun restore benar-benar dibangun.
+Kedelapan belas tabel itu juga `unreachableBySubject: true` dalam deskriptor `subjectData` milik modul, `exportable: false`, `erasure: "retain_under_obligation"` — **termasuk tabel customer/address/order yang memegang PII tamu sungguhan.** Ini adalah pembacaan yang disengaja atas kosakata subject-data milik `apps/cms` (`SubjectDataColumn.references` adalah `"tenant_user" | "identity" | "profile" | "principal"` — semuanya konsep identitas sisi-staf), bukan kelalaian: tamu yang diidentifikasi hanya lewat nomor telepon yang diketik ke formulir checkout tidak punya satu pun dari itu. Permintaan erasure/export yang sungguhan ditangani sebagai lookup admin biasa (`GET`/`PATCH /api/v1/commerce/customers/{id}`), di luar cakupan mesin otomatis itu by construction — lihat [ADR-0009](adr/0009-guest-checkout-by-order-code-and-phone.id.md).
 
-## `dataLifecycle`: mesin purge tidak pernah bisa menjangkau baris hidup
+## Izin (`sql/154`, `158`, `163`, `166`)
 
-Kedua tabel opt-in ke mesin purge data-lifecycle generik milik `apps/cms` (array `dataLifecycle` milik `commerce/module.ts`) alih-alih job purge buatan tangan, dengan `cursorColumn: "deleted_at"` — bukan `created_at`, berbeda dari kebanyakan tabel yang memakai mesin ini. Ini sengaja yang membuat purge aman: query mesin itu sendiri adalah `WHERE ... AND deleted_at < $2`, dan di SQL `NULL < $2` bukan benar maupun salah, jadi baris **hidup** (`deleted_at IS NULL`) tidak pernah bisa cocok dengan predikat itu. Hanya baris yang sudah soft-delete yang menjadi memenuhi-syarat-purge, dan hanya setelah duduk terhapus selama jendela retensi yang dikonfigurasi (30–3650 hari, default 365) — mesin ini secara matematis tidak mampu menjangkau baris hidup, bukan sekadar dikonfigurasi untuk tidak melakukannya.
-
-## Izin (`sql/154`)
-
-Dua activity code, `categories` dan `products`, masing-masing dengan empat aksi CRUD yang sama, di-seed ke katalog global `awcms_permissions` dan dicerminkan persis oleh array `permissions` milik `commerce/module.ts` (sebuah gate menjaga keduanya selaras): `commerce.categories.{read,create,update,delete}`, `commerce.products.{read,create,update,delete}` — delapan izin total. Sengaja tidak ada izin `restore` untuk resource mana pun, sejalan dengan tidak adanya endpoint restore di atas.
-
-## Grant worker (`sql/155`)
-
-`awcms_worker` — role yang dipakai job purge data-lifecycle untuk terhubung — mendapat `GRANT SELECT, DELETE` pada kedua tabel, dan tidak lebih luas. Tanpa `UPDATE`: mesin purge hanya pernah menghapus baris yang memenuhi syarat, tidak pernah menganonimkan satu pun, jadi grant yang tidak pernah dipakai kode tidak diterbitkan. Privilese default milik `apps/cms/sql/019_awcms_db_role_separation.sql` hanya pernah mencakup `awcms_app`; `awcms_worker` butuh grant eksplisit per-tabel ini untuk bisa berjalan sama sekali.
+39 kunci total di empat area — lihat [`docs/cms.md`](cms.id.md) dan [`docs/api.md`](api.id.md) untuk tabel lengkapnya. Grant worker untuk `SELECT, DELETE` generik milik mesin purge data-lifecycle di-seed per tabel di `sql/155`/`160`/`164`/`167`; `sql/168` memberi privilese tulis tambahan yang lebih sempit (`UPDATE`/`INSERT` pada tabel tertentu) yang dibutuhkan `commerce:orders:expire` dan `commerce:flash-sales:tick` agar bisa berjalan sama sekali sebagai role `awcms_worker` yang least-privilege.
 
 ## Sengaja tidak ada di skema ini
 
-Sesuai header `sql/153` sendiri dan [`docs/kamus-data.md`](kamus-data.md), kolom dan tabel ini tidak punya referensi kode di mana pun di irisan ini, jadi mengadopsinya nanti bersifat aditif alih-alih migrasi data yang sudah ada: tiered pricing (`price_level_2`, `price_level_3`, `price_level_4`), `cost_price`, setiap kolom `affiliate_*`, setiap kolom `size_chart_*`, setiap kolom `insurance_*`, setiap kolom `promo_banner_*`, `variant_attributes`, dan tabel terkait `product_images`, `product_variants`, `flash_sale_products`, `product_affiliate_links`.
+Integrasi kurir live (tanpa tabel rate/tracking RajaOngkir — `shipping_method`/`shipping_service_name` pada order adalah label yang ditentukan merchant, tidak pernah respons kurir live); catatan transaksi payment-gateway (nilai enum `gateway` diterima, belum diimplementasikan); akun pelanggan (`password_hash`, tabel session — [issue #32](https://github.com/ahliweb/awcms-one/issues/32)); kolom/endpoint `restore` untuk tabel marketing, order, customer, atau review mana pun.

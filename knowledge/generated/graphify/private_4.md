@@ -1,17 +1,17 @@
 ---
-source_file: "packages/kontrak/package.json"
+source_file: "package.json"
 type: "code"
-community: "kontrak/package.json"
+community: "Root Package Manifest"
 location: "L5"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/kontrak/packagejson
+  - community/Root_Package_Manifest
 ---
 
 # private
 
 ## Connections
-- [[kontrakpackage.json]] - `contains` [EXTRACTED]
+- [[package.json]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/kontrak/packagejson
+#graphify/code #graphify/EXTRACTED #community/Root_Package_Manifest

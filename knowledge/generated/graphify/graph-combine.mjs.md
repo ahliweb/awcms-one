@@ -1,12 +1,12 @@
 ---
 source_file: "packages/gerbang/lib/graph-combine.mjs"
 type: "code"
-community: "knowledge-graph-combine.mjs"
+community: "Knowledge Graph Combine"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/knowledge-graph-combinemjs
+  - community/Knowledge_Graph_Combine
 ---
 
 # graph-combine.mjs
@@ -18,4 +18,4 @@ tags:
 - [[knowledge-graph-combine.mjs]] - `imports_from` [EXTRACTED]
 - [[validateGraphFile()]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/knowledge-graph-combinemjs
+#graphify/code #graphify/EXTRACTED #community/Knowledge_Graph_Combine

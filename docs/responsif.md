@@ -2,24 +2,42 @@
 
 # Responsive design
 
-How `apps/storefront` behaves across viewport widths, and how that was checked. **Read this first: every claim below comes from reading `apps/storefront/src/styles/global.css` and the page templates — no browser, real or headless, was opened to verify a layout at any width while writing this document.** `apps/storefront` has no Playwright suite, no visual-regression test, and no responsive-specific CI step today.
+How `apps/storefront` behaves across viewport widths, and how that was checked. **Read this first: every claim below comes from reading `apps/storefront/src/styles/*.css` and the page templates — no browser, real or headless, was opened to verify a layout at any width while writing this document.** `apps/storefront` has no visual-regression test today; it does have a real Playwright e2e suite (`apps/storefront/tests/e2e/checkout.e2e.ts`), but that suite tests checkout behaviour, not layout at a range of widths.
 
-## Fluid, not breakpoint-based
+## Mostly fluid, with a small, deliberate set of breakpoints
 
-The catalog grid (`.grid-cards` in `apps/storefront/src/styles/global.css`) uses CSS Grid with `auto-fill`, not a fixed set of `@media` breakpoints:
+Increment 1's claim that this app carried **no** viewport-width breakpoints at all is no longer true — the catalog sidebar, the mobile nav, and the news two-column layout each need a real point where the layout reshapes, not just reflows:
+
+| File | Breakpoint | What changes |
+| --- | --- | --- |
+| `global.css` | `max-width: 720px` | Mobile navigation layout |
+| `katalog.css` | `max-width: 860px` (×2) | The `/produk` sidebar (`minmax(0,260px) 1fr` → single column); a second product-grid collapse |
+| `katalog.css` | `max-width: 720px` | Further catalog-page tightening |
+| `berita.css` | `min-width: 900px` | The **only min-width (desktop-up) breakpoint** — the news two-column layout (`minmax(0,1fr)` → `minmax(0,2fr) minmax(0,1fr)`) only activates above 900px; below it, both columns stack, which is the mobile-first default rather than an exception |
+
+Every card/product grid, though, is still fluid CSS Grid with `auto-fill`/`auto-fit`, not a breakpoint switch:
 
 ```css
+/* global.css — catalog grid */
 grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
+/* katalog.css — narrower product cards */
+repeat(auto-fill, minmax(min(140px, 100%), 1fr));
+/* berita.css — news card grid */
+repeat(auto-fill, minmax(min(220px, 100%), 1fr));
 ```
 
-The number of columns is a function of available width, computed by the browser at every width, not a small set of hand-picked layouts switched at hand-picked thresholds. The `min(280px, 100%)` clamp is deliberate: at a narrow viewport, a bare `280px` track could force horizontal scroll the moment `box-sizing` rounding or a border adds even a sub-pixel of width; wrapping it in `min(..., 100%)` caps the track at whatever width the grid actually has, so it can never force overflow, while behaving identically to a fixed `280px` above that point. `.container`'s own `max-width: 1200px` bounds the grid on large screens without a breakpoint either.
+The `min(Npx, 100%)` clamp is deliberate throughout: a bare fixed track could force horizontal scroll the moment `box-sizing` rounding or a border adds a sub-pixel of width; wrapping it in `min(...,100%)` caps the track at whatever width the grid actually has, so it can never force overflow, while behaving identically to the fixed value above that point. `.container`'s `max-width: 1200px` bounds every page on large screens.
+
+## Tap targets
+
+Every interactive control added for cart/checkout/wishlist (buttons, quantity steppers, the mobile nav toggle) carries `min-width: 44px` — verified in `global.css`, `katalog.css` (three separate declarations), matching the same 44px minimum recommended by WCAG 2.5.5 and Apple/Google's own platform guidance, applied consistently rather than only on the pages that happen to need it most.
 
 ## What was verified, and how
 
-- **`grep`-level confirmation that no `@media (min-width:` / `@media (max-width:` breakpoint exists in `apps/storefront/src/styles/global.css`** — the only `@media` queries present are `(prefers-color-scheme: dark)` and `(prefers-reduced-motion: reduce)`, neither of which is about viewport width. The layout's responsiveness is therefore a property of the fluid grid and flex layouts throughout the stylesheet, not of a breakpoint system this document could otherwise enumerate.
-- **Reading, not measuring, the 320px floor.** The stylesheet's own comment beside `.grid-cards` reasons explicitly about the narrow-viewport case (a `min()`-clamped track to avoid forced overflow at the low end of supported widths) — this document repeats that reasoning because it was read in the source, not because a 320px-wide browser window was opened and measured.
-- **The admin screen's table** (`apps/cms/src/pages/admin/commerce.astro`) declares a `data-table--stack` class with per-cell `data-label` attributes — a conventional CSS technique for turning a table into a stacked card layout below some width — but this belongs to `apps/cms`, not `apps/storefront`, and its own breakpoint (if any) was not inspected for this document.
+- **`grep`-level confirmation of every `@media` query** across `global.css`, `katalog.css`, `berita.css`, `toko.css` — the breakpoint table above is exhaustive, not a sample. `toko.css` (checkout/cart-specific styles) carries no width breakpoint of its own, relying on `min-width: 0` flex-shrink guards instead.
+- **Reading, not measuring, the narrow-viewport floor** for every fluid grid — the `min(Npx, 100%)` reasoning above was read in each stylesheet's own comments/structure, not confirmed with an open browser window.
+- **The admin screen's table** (`apps/cms/src/pages/admin/commerce.astro`) declares a `data-table--stack` class for its own responsive behaviour — belongs to `apps/cms`, not this storefront, and was not inspected further for this document.
 
 ## Not built
 
-Any automated responsive or visual-regression test — Playwright, a screenshot-diff tool, or a CI step that renders the storefront at multiple viewport widths. `apps/storefront`'s `bun run check` is a type-check; it asserts nothing about rendered layout at any width. A concrete next step, not yet taken, would be exactly the kind of real-browser check the `playwright` skill in this environment exists to set up.
+Any automated visual-regression test, or a CI step that renders the storefront at multiple viewport widths. `apps/storefront`'s `bun run check` is a type-check; the Playwright suite tests behaviour, not layout. A concrete next step, not yet taken, would be exactly the kind of real-browser check the `playwright` skill in this environment exists to set up.

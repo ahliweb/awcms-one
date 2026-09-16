@@ -1,46 +1,86 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](routing.md)
 
-<!-- i18n-source-hash: sha256:c9bb8f1f2874cadaf0e2836d352b3a790a7bd2c44d92279cdc4e439fcda55783 -->
+<!-- i18n-source-hash: sha256:20d93c7cb141548a64d4a0271de6e8cc853704ac27f7847f61ea2a40e3c1f8d8 -->
 
 # Routing
 
-Setiap rute yang dipublikasikan `apps/storefront`, dan bagaimana masing-masing diturunkan. Semuanya statis (lihat [ADR-0002](adr/0002-static-output-with-build-time-fetch-for-the-storefront.md)) — tidak ada keputusan routing sisi-server yang dibuat saat request; semua di bawah ini diputuskan saat `astro build`.
+Setiap rute yang dipublikasikan `apps/storefront` — 41 berkas rute di bawah `apps/storefront/src/pages/`, semuanya dihasilkan secara statis (`output: "static"`, `trailingSlash: "never"`, `build.format: "file"`, tidak ada `prerender = false` di mana pun — ditegakkan oleh [`apps/storefront/tests/checkout-guard-no-prerender.test.ts`](../apps/storefront/tests/checkout-guard-no-prerender.test.ts), yang men-grep setiap sumber halaman alih-alih meng-compile-nya). Halaman keranjang/checkout/pelacakan-order juga statis — lihat [ADR-0007](adr/0007-cart-and-checkout-stay-static-the-browser-calls-anonymous-commerce-endpoints.id.md) untuk alasan mengapa JavaScript sisi-klien-nya bisa memanggil `apps/cms` secara live tanpa halaman itu sendiri di-server-render.
 
-## Rute
+## Katalog
 
-| Jalur | Sumber | Diturunkan dari |
+| Path | Sumber | Catatan |
 | --- | --- | --- |
-| `/` | [`apps/storefront/src/pages/index.astro`](../apps/storefront/src/pages/index.astro) | Grid katalog — setiap produk yang dikembalikan `getProducts()` |
-| `/product/{slug}` | [`src/pages/product/[slug].astro`](../apps/storefront/src/pages/product/[slug].astro) | Satu halaman per produk, lewat `getStaticPaths()` (di bawah) |
-| `/product-labels.css` | [`apps/storefront/src/pages/product-labels.css.ts`](../apps/storefront/src/pages/product-labels.css.ts) | Satu kelas CSS per `labelColor` berbeda yang benar-benar dipakai katalog — lihat [`docs/ui-ux.md`](ui-ux.md) |
-| `/products` (query string apa pun) | 301 di [`apps/storefront/server/penyaji.mjs`](../apps/storefront/server/penyaji.mjs) | Mengalihkan ke `/` — lihat di bawah |
+| `/` | `apps/storefront/src/pages/index.astro` | Slider, kategori populer, strip flash-sale, produk featured/recommended, testimonial, berita terbaru, popup promo |
+| `/produk` | `apps/storefront/src/pages/produk.astro` | Grid + sidebar (pohon kategori, sort, rentang harga, stok, khusus-flash-sale); search/filter/sort/pagination sisi-klien atas `/index/produk.json`, halaman pertama di-server-render agar tetap terindeks |
+| `/kategori/{slug}` | `src/pages/kategori/[slug].astro` | Satu halaman per kategori hidup |
+| `/flash-sale` | `apps/storefront/src/pages/flash-sale.astro` | |
+| `/product/{slug}` | `src/pages/product/[slug].astro` | Galeri, pemilih varian, harga bertingkat/flash-sale, size chart, formulir jasa, produk terkait; JSON-LD `Product`/`Offer`/`BreadcrumbList` — lihat [ADR-0005](adr/0005-product-urls-match-the-live-sites-shape.id.md) untuk bentuk URL itu sendiri |
+| `/cari` | `apps/storefront/src/pages/cari.astro` | Pencarian katalog; `noindex, follow` |
 
-## `getStaticPaths()`: satu halaman per produk aktif
+## Berita (mencerminkan seputarborneo/beritasampit)
 
-```ts
-export async function getStaticPaths() {
-  const products = await getProducts();
-  return products.map((product) => ({
-    params: { slug: product.slug },
-    props: { product }
-  }));
-}
-```
+| Path | Sumber | Catatan |
+| --- | --- | --- |
+| `/berita` | `apps/storefront/src/pages/berita/index.astro` | Headline + satu bagian per rubrik tingkat-atas, strip video, strip mitra, sidebar |
+| `/berita/{slug}` | `src/pages/berita/[slug].astro` | Detail artikel; JSON-LD `NewsArticle`+`BreadcrumbList` |
+| `/berita/feed.xml` | `apps/storefront/src/pages/berita/feed.xml.ts` | RSS 2.0, 20 terbaru, `content:encoded` penuh |
+| `/rubrik/{slug}` | `src/pages/rubrik/[slug]/index.astro` | Arsip rubrik induk mencakup post setiap rubrik turunannya |
+| `/rubrik/{slug}/halaman/{n}` | `src/pages/rubrik/[slug]/halaman/[n].astro` | Pagination |
+| `/rubrik/{slug}/feed.xml` | `src/pages/rubrik/[slug]/feed.xml.ts` | RSS per-rubrik |
+| `/daerah/{slug}` | `src/pages/daerah/[slug].astro` | Arsip wilayah — dijangkau lewat `regionCode` milik institusi; post itu sendiri tidak membawa field wilayah |
+| `/mitra/{slug}` | `src/pages/mitra/[slug].astro` | Halaman landing institusi |
+| `/video` | `apps/storefront/src/pages/video/index.astro` | |
+| `/video/{slug}` | `src/pages/video/[slug].astro` | Post yang membawa blok `videoNews` yang bisa di-render; dipartisi dari `/berita/{slug}` sehingga tidak ada post yang punya dua URL kanonik |
+| `/tag/{slug}` | `src/pages/tag/[slug].astro` | |
+| `/penulis/{slug}` | `src/pages/penulis/[slug].astro` | Arsip penulis berbasis byline |
+| `/arsip/{yyyy}/{mm}` | `src/pages/arsip/[yyyy]/[mm].astro` | Bulan kalender WIB |
+| `/cari-berita` | `apps/storefront/src/pages/cari-berita.astro` | Pencarian sisi-klien atas `/index/berita.json` |
 
-`getProducts()` ([`apps/storefront/src/lib/catalog.ts`](../apps/storefront/src/lib/catalog.ts)) adalah satu-satunya sumber tempat setiap halaman produk digenerate: ia mengambil dan memoize seluruh katalog sekali per build, lalu menyaring hanya `status === "active"` lewat `switch` exhaustive yang gagal compile begitu `apps/cms` menambah nilai `ProductStatus` kelima tanpa storefront diberi tahu maknanya (lihat [ADR-0004](adr/0004-a-type-only-contract-package-with-an-import-direction-gate.md)). Setiap halaman produk yang pernah dihasilkan build ini karena itu berpadanan dengan persis satu produk hidup, aktif, saat build — tidak ada jalur yang bisa dijangkau produk `draft`, `inactive`, atau `archived`.
+## Commerce runtime (browser memanggil `apps/cms` secara langsung; halamannya sendiri statis)
 
-## Bentuk URL: `/product/{slug}`, tanpa trailing slash
+| Path | Sumber | Catatan |
+| --- | --- | --- |
+| `/keranjang` | `apps/storefront/src/pages/keranjang.astro` | Me-render keranjang `localStorage`, re-quote live, kode voucher, fallback WhatsApp no-JS |
+| `/checkout` | `apps/storefront/src/pages/checkout.astro` | Satu halaman, lima langkah yang diungkap progresif: kontak → alamat → pengiriman → pembayaran → review |
+| `/pesanan` | `apps/storefront/src/pages/pesanan.astro` | Pelacakan lewat `?kode=`; **bukan** `/pesanan/[kode]` — path per-kode tidak bisa di-prerender di bawah `output: "static"`, dan tidak ada catch-all sisi-server untuk redirect dari satu bentuk ke bentuk lain; nomor telepon berasal dari `sessionStorage` atau formulir, tidak pernah dari URL |
+| `/wishlist` | `apps/storefront/src/pages/wishlist.astro` | Hanya-`localStorage` |
 
-`astro.config.mjs` mengeset `trailingSlash: "never"` di seluruh situs dan `build.format: "file"`, sehingga berkas yang dihasilkan build ini (`dist/client/product/{slug}.html`) dan URL tempat ia dilayani identik byte-demi-byte — tanpa penulisan-ulang directory-index, tanpa pengalihan antara apa yang diindeks dan apa yang dilayani. Bentuk ini dipilih dengan sengaja untuk mencocokkan URL situs live borneojek-mart yang sudah ada; lihat [ADR-0005](adr/0005-product-urls-match-the-live-sites-shape.md) untuk bukti sitemap-nya dan trade-off terhadap bentuk `/{slug}` yang direncanakan semula.
+Keempatnya: `noindex, follow`, `aria-live="polite"` pada update quote/status, terjangkau keyboard, fallback `<noscript>` plus fallback WhatsApp untuk kondisi JS-berjalan-tapi-CMS-down (`apps/storefront/src/lib/wa-fallback.ts`).
 
-## `/products` → `/` (301), `category_slug` dijatuhkan by design
+## Statis
 
-URL katalog lama situs live, `/products` — dengan atau tanpa query string seperti `?category_slug=kebutuhan-pokok-qy01` — mengalihkan ke `/` dengan `301`, dicocokkan hanya pada jalur sehingga query string tidak pernah menggagalkan kecocokan (`isProductsRedirect` di `apps/storefront/server/penyaji.mjs`). Ini satu aturan hardcoded di berkas yang sama yang sudah mengatur setiap header respons lain, bukan berkas data-pengalihan hasil-generate. Filter `category_slug` yang mungkin dibawa URL semacam itu **dijatuhkan by design, bukan hilang karena kelalaian** — lihat bagian berikutnya.
+| Path | Sumber |
+| --- | --- |
+| `/kontak` | `apps/storefront/src/pages/kontak.astro` |
+| `/halaman/{slug}` | `src/pages/halaman/[slug].astro` — halaman CMS yang di-render dari Portable Text |
+| `/404` | `apps/storefront/src/pages/404.astro` |
 
-## Halaman listing kategori: belum dibangun
+## Discovery, feed, dan aset yang dihasilkan
 
-Tidak ada rute yang mendaftar produk berdasarkan kategori. `awcms_commerce_categories` ada dan setiap produk membawa `categoryId`, jadi data untuk membangun satu ada — tapi tidak ada apa pun di irisan ini yang membacanya seperti itu; `getCategories()` hanya dipakai untuk resolve nama kategori produk sendiri untuk ditampilkan di halaman detailnya dan di kartu katalog. Pembaca yang mendarat di `/products?category_slug=...` dari bookmark lama mencapai akar katalog, tanpa filter, alih-alih 404 atau filter yang diam-diam diabaikan.
+| Path | Sumber |
+| --- | --- |
+| `/robots.txt` | `apps/storefront/src/pages/robots.txt.ts` — men-`Disallow` `/keranjang`, `/checkout`, `/pesanan`, `/wishlist`, `/cari`, `/api/`; menyebut `Sitemap:` |
+| `/sitemap-index.xml` | `apps/storefront/src/pages/sitemap-index.xml.ts` |
+| `/sitemap-{n}.xml` | `src/pages/sitemap-[n].xml.ts` — dipecah per 5000 URL/berkas (`registerSitemapSource` milik `apps/storefront/src/lib/sitemap.ts`) |
+| `/feed.xml` | `apps/storefront/src/pages/feed.xml.ts` — produk |
+| `/manifest.webmanifest` | `apps/storefront/src/pages/manifest.webmanifest.ts` |
+| `/theme-tokens.css` | `apps/storefront/src/pages/theme-tokens.css.ts` — warna brand dibaca dari `apps/cms` saat build |
+| `/product-labels.css` | `apps/storefront/src/pages/product-labels.css.ts` — satu class CSS per `labelColor` unik yang benar-benar dipakai katalog |
+| `/csp.json` | `apps/storefront/src/pages/csp.json.ts` — artifact CSP turunan; lihat [`docs/arsitektur.md`](arsitektur.id.md) |
+| `/index/produk.json`, `/index/berita.json` | Indeks pencarian saat-build untuk filtering sisi-klien milik `/produk`/`/cari-berita` |
+| `/index/pengalihan-legacy.json` | Peta redirect-lawas, dibangun dari `awcms_seo_redirects` (di bawah) |
+| `/index/wilayah-provinsi.json`, `/index/wilayah-kabupaten-{provinceCode}.json`, `/index/wilayah-kecamatan-{cityCode}.json` | Data wilayah alamat untuk checkout, dipanggang saat build dan dibatasi oleh `PUBLIC_WILAYAH_PROVINSI` (default setiap provinsi Kalimantan) alih-alih dataset nasional penuh ~90.000 desa |
+
+## Redirect lawas
+
+`legacyRedirectLocation()` milik `apps/storefront/server/penyaji.mjs` mencari path yang masuk (dinormalisasi: URI-decoded, query/fragment dilepas, satu trailing slash dihapus) terhadap peta yang dibaca sekali saat server startup dari `dist/client/index/pengalihan-legacy.json`. Berkas itu dibangun dari baris `awcms_seo_redirects` milik `apps/cms` sendiri (`origin: "legacy_blog"`) — hanya baris dengan `targetType: "relative_same_tenant"` yang dipakai (baris `verified_external` menunjuk ke luar situs dan dilewati); kolom `target` milik CMS sendiri tidak dipakai verbatim — hanya segmen path terakhirnya (slug) yang diambil dan dibangun ulang sebagai `/berita/{slug}`, karena `target` membawa bentuk `/blog/{tenantCode}/{slug}` milik CMS sendiri. Dua baris yang menormalisasi ke path sumber yang sama tapi tidak sepakat soal tujuan menggagalkan **build**, bukan last-wins diam-diam saat request.
+
+Bentuk URL yang ditangani: `/news/{id}-{slug}.html` milik seputarborneo dan `/{yyyy}/{mm}/{dd}/{slug}/` milik beritasampit — keduanya menormalisasi dengan benar baik trailing slash ada maupun tidak, baik saat build (kunci peta) maupun saat request (lookup), termasuk regresi trailing-slash sungguhan yang ditangkap dan diperbaiki build ini (riwayat commit `legacyRedirectLocation` sendiri, `apps/storefront/tests/berita-penyaji-legacy.test.ts`).
+
+## `/products` → `/` (301), tidak berubah dari increment 1
+
+URL katalog lama milik situs live, `/products` — dengan atau tanpa query string — tetap redirect ke `/` dengan `301`, dicocokkan hanya pada path (`isProductsRedirect`/`PRODUCTS_REDIRECT_LOCATION` di `apps/storefront/server/penyaji.mjs`). Ini adalah aturan hardcoded terpisah, berbeda dari peta redirect-lawas yang dihasilkan di atas — lihat [ADR-0005](adr/0005-product-urls-match-the-live-sites-shape.id.md).
 
 ## Belum dibangun
 
-Pencarian, sitemap, feed RSS/Atom, rute `robots.txt` (tidak ada — empat rute yang terdaftar di atas adalah seluruh tabel rute), dan rute apa pun yang membaca `apps/cms` saat request. Setiap rute di atas sepenuhnya ditentukan saat build, tanpa halaman server-rendered mana pun di aplikasi ini.
+Path pelacakan-order per-kode (`/pesanan/{code}` — lihat "Commerce runtime" di atas untuk alasan mengapa `?kode=` adalah bentuk sungguhan yang kompatibel-statis). Job CI yang menjalankan suite e2e Playwright (`apps/storefront/tests/e2e/checkout.e2e.ts`, `bun run test:e2e` di dalam `apps/storefront`) — sudah ada dan lolos secara lokal, tapi belum dikaitkan ke `.github/workflows/ci.yml` (di luar cakupan berkas CI milik-ops untuk issue #30 — lihat [`docs/pengujian.md`](pengujian.id.md)).

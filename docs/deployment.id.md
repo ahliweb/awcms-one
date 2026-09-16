@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](deployment.md)
 
-<!-- i18n-source-hash: sha256:19d195b1a26073457296ea22f55603885c6bb3a780b4281ef616b79a1e4a0260 -->
+<!-- i18n-source-hash: sha256:0dd7809de9871c1e47b53a0cb9ae3343dfca1e93598bdeea9fb129062690e10b -->
 
 # Deployment
 
@@ -9,11 +9,11 @@ Bagaimana `apps/storefront` di-build dan dilayani, variabel environment-nya, dan
 ## Build, lalu serve — dua langkah terpisah, dua level kepercayaan terpisah
 
 ```bash
-bun run build          # bun run check && astro build && build:penyaji
+bun run build          # bun run check && astro build && build:build-id && build:penyaji
 bun run serve          # bun dist/server/penyaji.mjs
 ```
 
-`bun run build` (`apps/storefront/package.json`) menjalankan `bun run check` (type-check), lalu `astro build` (mengambil katalog dari `apps/cms` memakai `AWCMS_API_TOKEN`, memanggang setiap halaman ke `dist/client/`), lalu `build:penyaji` (mem-bundle `apps/storefront/server/penyaji.mjs` sendiri ke `dist/server/penyaji.mjs` lewat `bun build --target=bun`). **Hanya langkah build yang pernah membaca variabel `AWCMS_*`.** `bun run serve` menjalankan `dist/server/penyaji.mjs` yang sudah di-build, yang membaca persis dua variabel environment — `PORT` dan `HOST` — dan tidak satu pun milik `apps/cms`. Ini bukti mekanis dari klaim [ADR-0002](adr/0002-static-output-with-build-time-fetch-for-the-storefront.md) bahwa container yang berjalan tidak pernah berbicara ke `apps/cms`: bukan sekadar bahwa ia tidak melakukannya hari ini, tapi bahwa sumber proses yang dilayani sama sekali tidak punya jalur kode yang membaca kredensial atau URL yang bisa menjangkaunya.
+`bun run build` (`apps/storefront/package.json`) menjalankan `bun run check` (type-check), lalu `astro build` (mengambil katalog, permukaan marketing, dan konten berita dari `apps/cms` memakai `AWCMS_API_TOKEN`, memanggang setiap halaman ke `dist/client/`, dan menulis artefak CSP turunan — lihat [`docs/arsitektur.md`](arsitektur.id.md)), lalu menulis build id, lalu `build:penyaji` (mem-bundle `apps/storefront/server/penyaji.mjs` sendiri ke `dist/server/penyaji.mjs` lewat `bun build --target=bun`). **Hanya langkah build yang pernah membaca variabel `AWCMS_*`, dan hanya langkah build yang pernah membaca `AWCMS_API_TOKEN` sama sekali.** `bun run serve` menjalankan `dist/server/penyaji.mjs` yang sudah di-build, yang membaca `PORT`/`HOST` dan, hanya saat startup, artefak `csp.json` build-nya sendiri — tidak pernah kredensial `apps/cms` hidup. Ini bukti mekanis dari klaim [ADR-0002](adr/0002-static-output-with-build-time-fetch-for-the-storefront.md) bahwa *container* tidak pernah berbicara ke `apps/cms`: sumber proses yang dilayani sama sekali tidak punya jalur kode yang membaca kredensial atau URL yang bisa menjangkaunya. **Yang ditambahkan increment 2 adalah relasi kedua, sisi-browser** — halaman keranjang, checkout, dan pelacakan pesanan mengirimkan JavaScript sisi-klien yang memanggil endpoint anonim `apps/cms` `/api/v1/commerce/storefront/*` langsung, cross-origin, dari browser pembaca sendiri, tidak pernah dari container — lihat [ADR-0007](adr/0007-cart-and-checkout-stay-static-the-browser-calls-anonymous-commerce-endpoints.id.md).
 
 ## Variabel environment
 
@@ -25,23 +25,30 @@ Dua berkas `.env.example` terpisah, satu per workspace, sengaja tidak digabung �
 | --- | --- | --- |
 | `SITE_URL` | Saat build (juga `astro.config.mjs` langsung, sebelum `apps/storefront/src/config/site.ts` berjalan) | Origin absolut kanonik — tautan kanonik, URL Open Graph, dan JSON-LD `Product` semuanya dibangun darinya |
 | `SITE_NAME`, `SITE_DESCRIPTION` | Saat build | Opsional; default yang masuk akal sehingga `bun run dev` bekerja tanpa `.env` sama sekali |
-| `AWCMS_API_URL` | Hanya saat build | Origin instans `apps/cms` untuk mengambil katalog |
-| `AWCMS_API_TOKEN` | Hanya saat build | Kredensial Bearer **read-only**, dibatasi ke modul commerce (produk, kategori) — tidak pernah dipancarkan ke output build; tidak diprefiks `PUBLIC_`, dengan sengaja, karena Vite hanya meng-inline variabel berprefiks `PUBLIC_` ke kode yang terjangkau klien |
+| `AWCMS_API_URL` | Hanya saat build | Origin instans `apps/cms` untuk mengambil katalog, permukaan marketing, dan konten berita |
+| `AWCMS_API_TOKEN` | Hanya saat build | Kredensial Bearer **read-only**, dibatasi ke setiap permission `read` commerce (seed issue #25 kini menerbitkan satu kredensial yang mencakup pembacaan katalog, marketing, dan — bila berlaku — ekspor pesanan) — tidak pernah dipancarkan ke output build; tidak diprefiks `PUBLIC_`, dengan sengaja, karena Vite hanya meng-inline variabel berprefiks `PUBLIC_` ke kode yang terjangkau klien |
 | `AWCMS_API_TIMEOUT_MS` | Hanya saat build, opsional | Berapa lama satu request ke `apps/cms` boleh berlangsung sebelum build menyerah (default 30000 ms) — nilai yang bukan angka positif ditolak langsung, termasuk `0`, yang jika tidak berarti "tanpa batas" dan mengembalikan persis hang yang ingin dicegah deadline ini |
+| `PUBLIC_AWCMS_ORIGIN` | Saat build, dan dipanggang ke CSP yang dilayani | **Baru di issue #30.** Origin `apps/cms` yang dipanggil *browser* saat runtime untuk keranjang/checkout/pelacakan-pesanan — sengaja diprefiks `PUBLIC_`, karena ia origin, bukan rahasia (nilai yang sama yang sudah diungkap setiap URL media). Divalidasi oleh `apps/storefront/src/lib/awcms/toko-origin.ts`; nilai yang tidak diset atau malformed menggagalkan build langsung, menyebut nama variabelnya, karena `apps/storefront/src/pages/csp.json.ts` — halaman yang di-prerender tanpa syarat oleh setiap build — memanggil validator itu tanpa syarat. Lihat [ADR-0007](adr/0007-cart-and-checkout-stay-static-the-browser-calls-anonymous-commerce-endpoints.id.md) dan [`docs/arsitektur.md`](arsitektur.id.md) |
+| `PUBLIC_WILAYAH_PROVINSI` | Saat build, opsional | Provinsi Indonesia mana yang data wilayah-alamatnya (`idn_admin_regions`) dipanggang ke `/index/wilayah-*.json` untuk form alamat checkout — default semua provinsi Kalimantan, sengaja bukan dataset nasional penuh ~90.000 desa |
 | `PORT`, `HOST` | Runtime, hanya oleh `apps/storefront/server/penyaji.mjs` | Default `8080`/`0.0.0.0` — `0.0.0.0` karena proses ini biasanya berjalan di dalam container di belakang reverse proxy, di mana listener khusus-`localhost` tidak terjangkau dari luar container dan muncul sebagai health check yang gagal tanpa alasan yang dinyatakan |
 
 ### `apps/cms/.env.example`
 
 Berkas yang jauh lebih besar, dimiliki sepenuhnya oleh `apps/cms` sebagai kode `ahliweb/awcms` yang di-embed — root repositori ini tidak menduplikasinya ("Configuration and toolchain" milik `AGENTS.md`: "setiap variabel env yang dibaca skrip level-root harus ada di `.env.example`... `apps/cms` menjaga `.env.example`-nya sendiri untuk konfigurasi runtime-nya sendiri; berkas root repo ini tidak menduplikasinya"). Variabel yang penting untuk memahami apa yang dibutuhkan `apps/cms` yang berjalan: `DATABASE_URL` (role aplikasi `awcms_app` — tidak pernah role pemilik basis data, yang adalah superuser Postgres yang melewati `FORCE ROW LEVEL SECURITY` sama sekali, mengalahkan persis isolasi yang didokumentasikan [`docs/skema-basis-data.md`](skema-basis-data.md)), `APP_ENV`/`APP_URL`, dan variabel HTTP listener (`PORT`, `HOST`, dan jalur sertifikat TLS in-process opsional) yang dibaca entrypoint standalone-nya sendiri.
 
-## Apa yang boleh dan tidak boleh dijangkau container storefront
+## Apa yang boleh menjangkau `apps/cms`: proses build, dan — sejak issue #30 — browser pembaca
 
 | | Boleh menjangkau |
 | --- | --- |
 | Proses build (`astro build`) | API publik `apps/cms`, lewat HTTPS, dengan token build read-only |
-| Container yang berjalan (`bun dist/server/penyaji.mjs`) | Tidak ada apa pun di luar dirinya sendiri — tidak ada `apps/cms`, tidak ada basis data, tidak ada panggilan jaringan eksternal jenis apa pun |
+| Container yang berjalan (`bun dist/server/penyaji.mjs`) | Tidak ada apa pun di luar dirinya sendiri — tidak ada `apps/cms`, tidak ada basis data, tidak ada panggilan jaringan eksternal jenis apa pun. Ini tidak berubah sejak increment 1 |
+| Browser pembaca sendiri | API anonim `apps/cms` `/api/v1/commerce/storefront/*`, di `PUBLIC_AWCMS_ORIGIN`, `mode: "cors"` / `credentials: "omit"` — tidak ada cookie, tidak ada bearer token, tidak pernah |
 
-CSP milik `apps/storefront/server/penyaji.mjs` sendiri (`connect-src 'self'`, di antara setiap direktif lain yang diset `'self'` atau `'none'`) tambahan memblokir *browser* agar tidak bisa dibuat memanggil apa pun di luar origin yang sama ini — tidak ada origin eksternal terkonfigurasi untuk dilebarkan, karena aplikasi ini tidak punya host gambar-produk atau skrip pihak-ketiga untuk diizinkan.
+CSP milik `apps/storefront/server/penyaji.mjs` sendiri kini diturunkan, bukan dikonfigurasi tangan — `img-src` dan `connect-src` membawa persis origin yang benar-benar dirujuk suatu build tertentu (gambar produk/media, dan `PUBLIC_AWCMS_ORIGIN`), divalidasi ulang saat server startup dan jatuh kembali ke `'self'`-saja pada artefak yang hilang/malformed mana pun; lihat [`docs/arsitektur.md`](arsitektur.id.md) untuk mekanisme lengkapnya. Setiap direktif CSP lain tetap `'self'`/`'none'` — tidak ada skrip atau embed pihak-ketiga yang diizinkan aplikasi ini.
+
+## Origin storefront tenant yang di-seed harus didaftarkan di `awcms_tenant_domains`
+
+API storefront anonim me-resolve tenant-nya dari header `Origin` browser pemanggil terhadap tabel `awcms_tenant_domains` milik `apps/cms` — origin yang tidak terdaftar di sana mendapat penolakan netral yang sama seperti kode pesanan yang tidak dikenal (lihat [`docs/api.md`](api.id.md)). `tools/seed-borneojek-mart.ts` mendaftarkan `mart.borneojek.com` dan `http://localhost:4321` (default dev repo ini sendiri) sebagai domain `active` yang diatestasi manual untuk tenant yang di-seed. Deployment yang melayani storefront dari origin berbeda harus mendaftarkan origin itu dengan cara yang sama sebelum checkout bisa bekerja sama sekali — ini langkah nyata yang mudah terlewat, bukan detail implementasi.
 
 ## Basis data lokal (issue #25)
 
@@ -53,54 +60,66 @@ Urutan lengkap, berurutan, dengan nilai nyata (`cp .env.example .env` di root, `
 cp .env.example .env                    # root — POSTGRES_*, AWCMS_*_PASSWORD, SEED_*
 bun run db:up                           # postgres:18.4, project "awcms-one", host port 5433
 
-# DATABASE_URL milik apps/cms/.env sendiri default ke bentuk OWNER/superuser
-# di port 5432 — timpa itu untuk SATU perintah ini saja agar mengarah ke
-# superuser compose di port 5433. Jangan pernah arahkan DATABASE_URL
-# tersimpan milik apps/cms sendiri ke owner: role itu superuser Postgres dan
-# melewati `FORCE ROW LEVEL SECURITY` sama sekali.
+# apps/cms/.env's own DATABASE_URL defaults to the OWNER/superuser shape on
+# port 5432 — override it for THIS one command to point at the compose
+# superuser on port 5433 instead. Never point apps/cms's own persisted
+# DATABASE_URL at the owner: that role is a Postgres superuser and bypasses
+# `FORCE ROW LEVEL SECURITY` outright.
 DATABASE_URL=postgres://awcms:awcms_dev_password@localhost:5433/awcms \
   bun run db:migrate:cms
 
-# Edit DATABASE_URL milik apps/cms/.env ke role runtime LEAST-PRIVILEGE
-# sebagai gantinya, sesuai default terdokumentasi root .env.example:
+# Edit apps/cms/.env's DATABASE_URL to the LEAST-PRIVILEGE runtime role
+# instead, matching root .env.example's documented defaults:
 #   DATABASE_URL=postgres://awcms_app:awcms_app_dev_password@localhost:5433/awcms
-# lalu, di terminal KEDUA, jalankan server yang dijalankan skrip seed
-# repositori ini sebagai klien HTTP — pola dua-proses yang sama yang sudah
-# dipakai dokumen ini untuk verifikasi build `apps/storefront` sendiri di
-# bawah:
-cd apps/cms && bun run dev              # atau: bun run build && bun run start
+# then, in a SECOND terminal, start the server this repo's seed script drives
+# as an HTTP client — the same two-process pattern this document already
+# uses for apps/storefront's own build verification below:
+cd apps/cms && bun run dev              # or: bun run build && bun run start
 
-# terminal KETIGA, dari root repositori — idempoten, aman dijalankan ulang
+# a THIRD terminal, from the repo root — idempotent, safe to re-run
 bun run db:seed:cms
 ```
 
-`tools/seed-borneojek-mart.ts` (`bun run db:seed:cms`) menjalankan `apps/cms` yang sedang berjalan dari langkah di atas sebagai klien HTTP dari permukaan `/api/v1/*` publiknya sendiri — antarmuka yang sama yang dipakai build `apps/storefront`, dan satu-satunya yang dijanjikan tetap stabil oleh issue #23/#26/#29. Ia mem-bootstrap tenant dan owner `borneojek-mart` (`POST /api/v1/setup/initialize`), men-seed katalog 8 kategori dan satu produk representatif per `type` commerce dari `tools/seed-data/*.json`, segelintir term/halaman/post blog, profil situs, dan menerbitkan satu kredensial mesin baca-saja bercakupan `commerce.products.read`/`commerce.categories.read` — bentuk kredensial yang sama yang dibutuhkan token build `apps/storefront`. Setiap langkah idempoten (memeriksa baris sebelum membuatnya); menjalankannya ulang terhadap tenant yang sama tidak membuat apa pun baru dan keluar dengan 0. Ia mencetak password owner dan token kredensial mesin persis sekali, pada run yang membuatnya — tidak ada yang disimpan skrip ini di mana pun.
+`tools/seed-borneojek-mart.ts` (`bun run db:seed:cms`) menjalankan `apps/cms` yang sedang berjalan dari langkah di atas sebagai klien HTTP dari permukaan `/api/v1/*` publiknya sendiri — antarmuka yang sama yang dipakai build `apps/storefront`, dan satu-satunya yang dijanjikan tetap stabil oleh issue #23/#26/#29. Setiap langkah idempoten (memeriksa baris sebelum membuatnya); menjalankannya ulang terhadap tenant yang sama tidak membuat apa pun baru dan keluar dengan 0. Per issue #29, ia men-seed:
+
+- Tenant dan owner `borneojek-mart` (`POST /api/v1/setup/initialize`), dan origin storefront-nya di `awcms_tenant_domains` (lihat di atas).
+- Katalog 8 kategori dan satu produk per `type` commerce (physical/service/subscription/digital, yang terakhir placeholder sintetis yang ditandai jelas), dengan field paritas BjekMart lengkap (gambar, varian, size chart, service form) dari `tools/seed-data/*.json`.
+- Permukaan marketing: satu flash sale dengan satu produk, dua voucher, tiga testimoni, satu popup, dan store settings.
+- Segelintir term/halaman/post blog dan profil situs.
+- Satu pelanggan dengan dua pesanan pada state berbeda (`pending_payment`, `paid`), dibuat lewat jalur pembuatan-pesanan anonim itu sendiri — bukan backdoor — sehingga seed sekaligus membuktikan jalur itu bekerja.
+- Kredensial mesin baca-saja bercakupan setiap permission `read` commerce (pembacaan katalog, marketing, dan order/customer/review) — bentuk kredensial yang sama yang dibutuhkan token build `apps/storefront`.
+
+Ia mencetak password owner dan token kredensial mesin persis sekali, pada run yang membuatnya — tidak ada yang disimpan skrip ini di mana pun.
+
+### Celah yang diketahui: `SETUP_DATABASE_URL` / `awcms_setup` kekurangan grant yang dibutuhkan
+
+Ditemukan selama pengembangan issue #26: role `awcms_setup` (yang dimaksudkan `SETUP_DATABASE_URL` untuk membatasi cakupan wizard setup satu-kali) tidak punya grant pada `awcms_principals` — `sql/112` memberi grant tabel itu hanya ke `awcms_app`. Mengonfigurasi `SETUP_DATABASE_URL` seperti yang didokumentasikan upstream karena itu membuat wizard setup 500. Urutan di atas mengatasinya dengan membiarkan `SETUP_DATABASE_URL` tidak diset sama sekali (wizard kemudian berjalan di bawah `DATABASE_URL` `apps/cms` yang sudah dikonfigurasi) — ini alur lokal yang didokumentasikan, bukan perbaikan. Diajukan sebagai issue upstream `ahliweb/awcms`; bukan sesuatu yang bisa diperbaiki migrasi repositori ini sendiri, karena `sql/112` adalah kode upstream yang di-embed lewat subtree.
 
 Membuktikan katalog yang di-seed bisa dilayani:
 
 ```bash
-curl -H "Authorization: Bearer <AWCMS_API_TOKEN yang dicetak di atas>" \
-     -H "x-awcms-tenant-id: <tenantId yang dicetak di atas>" \
+curl -H "Authorization: Bearer <AWCMS_API_TOKEN printed above>" \
+     -H "x-awcms-tenant-id: <tenantId printed above>" \
      http://localhost:4321/api/v1/commerce/products
 
 cd apps/storefront && AWCMS_API_URL=http://localhost:4321 \
   AWCMS_API_TOKEN=<token> SITE_URL=http://localhost:4321 bun run build
 ```
 
-`bun run build` me-render satu halaman per produk yang di-seed plus indeks katalog — kriteria penerimaan yang sama yang dinyatakan issue #25.
+`bun run build` me-render satu halaman per produk yang di-seed plus indeks katalog, permukaan marketing, dan konten berita yang di-seed.
 
 ```bash
 bun run db:down                         # hentikan container, simpan volume
 bun run db:reset                        # hapus volume juga — bersih total
 ```
 
-### Field produk yang diisi issue #23
+### Gotcha Postgres 18, dicatat agar orang berikutnya tidak kehilangan satu jam untuknya
 
-`/api/v1/commerce/products` menerima bentuk 12-field yang didefinisikan `CreateProductInput` milik `apps/cms/src/modules/commerce/domain/product-validation.ts` hari ini — tanpa gambar, tanpa varian, tanpa `service_form`, tanpa `subscription_period`. `tools/seed-data/products.json` sudah membawa nilai `service_form`/varian/`subscription_period` BjekMikro/RutinRide yang diamati di situs live, di bawah kunci `future` masing-masing produk, bersama gambar produk placeholder milik `tools/seed-assets/` — jadi mendaratkan field issue #23 adalah perubahan pada apa yang dikirim `ensureProducts()` milik `tools/seed-borneojek-mart.ts`, membaca data yang sudah ada di berkas ini, tidak pernah restrukturisasi data seed atau skrip kedua.
+Image resmi `postgres:18` menolak volume yang di-mount langsung di `/var/lib/postgresql/data` — layout pra-18 yang sudah tidak dipakainya lagi. `compose.yaml` sebagai gantinya me-mount volume bernama itu di `/var/lib/postgresql`. Jika suatu saat edit ke `compose.yaml` memindahkan mount point itu kembali, `bun run db:up` gagal langsung alih-alih menjalankan server yang rusak.
 
-### Apa yang TIDAK di-seed skrip ini, dan mengapa
+### Apa yang masih TIDAK di-seed skrip ini, dan mengapa
 
-Pengaturan toko `commerce_bj_mart` legacy (level pelanggan, metode pengiriman alternatif `BORNEOJEK`, self-pickup, QRIS manual) tidak punya field di `/api/v1/site-profile`, `/api/v1/commerce/*`, atau endpoint lain mana pun yang diekspos `apps/cms` hari ini — diverifikasi dengan membaca setiap modul terdaftar, bukan diasumsikan. `tools/seed-data/site-profile.json` mencatat nilai-nilai ini di bawah kunci `future`-nya sendiri sehingga nilainya tidak hilang, tapi skrip ini tidak mengarang endpoint untuk menerimanya; itu keputusan untuk issue #26/#29, atau admission baru, yang membuatnya.
+Gambar produk, media slider, dan gambar bukti konfirmasi-pembayaran di-resolve lewat mekanisme referensi `media_library` yang sudah ada (lihat [`docs/cms.md`](cms.id.md)) tapi tidak diunggah lewat sesi R2 nyata di sini — `tools/seed-assets/` membawa SVG placeholder kecil buatan-sendiri alih-alih foto nyata, dan endpoint unggah bukti-pembayaran anonim selalu menjawab `503 MEDIA_UNAVAILABLE`. Tarif kurir RajaOngkir dan payment gateway tidak punya field pada endpoint mana pun yang diekspos `apps/cms` hari ini, by design — lihat [ADR-0010](adr/0010-manual-payment-and-alternative-courier-first-gateways-via-outbox.id.md) dan [issue #33](https://github.com/ahliweb/awcms-one/issues/33). Akun pelanggan tidak di-seed — pelanggan yang di-seed tidak punya password, cocok dengan [ADR-0009](adr/0009-guest-checkout-by-order-code-and-phone.id.md) dan [issue #32](https://github.com/ahliweb/awcms-one/issues/32).
 
 ## Penyediaan PostgreSQL produksi belum dilakukan
 

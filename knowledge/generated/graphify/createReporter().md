@@ -1,12 +1,12 @@
 ---
 source_file: "packages/gerbang/lib/reporter.mjs"
 type: "code"
-community: "audit-rilis.mjs"
+community: "Knowledge Graph Audit"
 location: "L87"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/audit-rilismjs
+  - community/Knowledge_Graph_Audit
 ---
 
 # createReporter()
@@ -17,4 +17,4 @@ tags:
 - [[audit-rilis.mjs]] - `imports` [EXTRACTED]
 - [[reporter.mjs]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/audit-rilismjs
+#graphify/code #graphify/EXTRACTED #community/Knowledge_Graph_Audit

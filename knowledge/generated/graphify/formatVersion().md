@@ -1,12 +1,12 @@
 ---
 source_file: "packages/gerbang/lib/semver.mjs"
 type: "code"
-community: "rilis.mjs"
+community: "Changeset Parsing"
 location: "L92"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/rilismjs
+  - community/Changeset_Parsing
 ---
 
 # formatVersion()
@@ -16,4 +16,4 @@ tags:
 - [[formatTag()]] - `calls` [EXTRACTED]
 - [[semver.mjs]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/rilismjs
+#graphify/code #graphify/EXTRACTED #community/Changeset_Parsing

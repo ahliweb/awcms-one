@@ -1,20 +1,18 @@
 ---
-source_file: "apps/storefront/package.json"
+source_file: "packages/kontrak/package.json"
 type: "code"
-community: "storefront/package.json"
-location: "L16"
+community: "Kontrak Package Manifest"
+location: "L14"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/storefront/packagejson
+  - community/Kontrak_Package_Manifest
 ---
 
 # dependencies
 
 ## Connections
-- [[@astrojsnode]] - `contains` [EXTRACTED]
-- [[@awcms-onekontrak]] - `contains` [EXTRACTED]
-- [[astro]] - `contains` [EXTRACTED]
-- [[storefrontpackage.json]] - `contains` [EXTRACTED]
+- [[awcms]] - `contains` [EXTRACTED]
+- [[kontrakpackage.json]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/storefront/packagejson
+#graphify/code #graphify/EXTRACTED #community/Kontrak_Package_Manifest

@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/catalog.ts"
 type: "code"
-community: "catalog.ts"
-location: "L122"
+community: "Catalog Fetch Client"
+location: "L223"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/catalogts
+  - community/Catalog_Fetch_Client
 ---
 
 # CommercePage
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[catalog.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/catalogts
+#graphify/code #graphify/EXTRACTED #community/Catalog_Fetch_Client

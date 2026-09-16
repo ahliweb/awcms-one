@@ -1,17 +1,17 @@
 ---
-source_file: "tools/rilis.mjs"
+source_file: "tests/versi-toolchain.test.mjs"
 type: "code"
-community: "rilis.mjs"
-location: "L145"
+community: "Toolchain Version Test"
+location: "L29"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/rilismjs
+  - community/Toolchain_Version_Test
 ---
 
 # pkg
 
 ## Connections
-- [[rilis.mjs]] - `contains` [EXTRACTED]
+- [[versi-toolchain.test.mjs]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/rilismjs
+#graphify/code #graphify/EXTRACTED #community/Toolchain_Version_Test

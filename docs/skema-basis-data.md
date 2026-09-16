@@ -2,9 +2,11 @@
 
 # Database schema
 
-The `awcms_commerce_*` tables: columns, types, constraints, indexes, and the row-level security that scopes every query to one tenant. Source of truth is [`apps/cms/sql/153_awcms_commerce_schema.sql`](../apps/cms/sql/153_awcms_commerce_schema.sql) (the tables and indexes), [`sql/154_awcms_commerce_permissions.sql`](../apps/cms/sql/154_awcms_commerce_permissions.sql) (the permission catalog seed), and [`sql/155_awcms_commerce_worker_lifecycle_purge_grants.sql`](../apps/cms/sql/155_awcms_commerce_worker_lifecycle_purge_grants.sql) (grants for the purge worker) — this document explains them, it does not replace reading them.
+Every `awcms_commerce_*` table: columns, types, constraints, indexes, and the row-level security that scopes each query to one tenant. Source of truth is `apps/cms/sql/153_awcms_commerce_schema.sql` through `apps/cms/sql/168_awcms_commerce_orders_expire_worker_write_grants.sql` — sixteen migrations, one `commerce` module (see [ADR-0008](adr/0008-one-commerce-module-carries-the-whole-store-not-three.md)) — plus [`apps/cms/src/modules/commerce/README.md`](../apps/cms/src/modules/commerce/README.md); this document explains them, it does not replace reading them.
 
-## `awcms_commerce_categories`
+## Catalog: `awcms_commerce_categories`, `awcms_commerce_products`, `_product_images`, `_product_variants`
+
+### `awcms_commerce_categories` (`sql/153`, `+restored_at` in `sql/156`)
 
 Hierarchical, self-referencing.
 
@@ -12,44 +14,98 @@ Hierarchical, self-referencing.
 | --- | --- | --- |
 | `id` | `uuid` | PK, `DEFAULT gen_random_uuid()` |
 | `tenant_id` | `uuid NOT NULL` | `REFERENCES awcms_tenants (id)` |
-| `parent_id` | `uuid` | `REFERENCES awcms_commerce_categories (id)`, nullable; set only at creation — see "No re-parenting" below |
+| `parent_id` | `uuid` | `REFERENCES awcms_commerce_categories (id)`, nullable; set only at creation — see [`docs/cms.md`](cms.md) |
 | `name` | `text NOT NULL` | |
-| `slug` | `text NOT NULL` | Unique per tenant among live rows — see Indexes |
+| `slug` | `text NOT NULL` | Unique per tenant among live rows |
 | `icon` | `text` | Nullable |
-| `created_at` | `timestamptz NOT NULL DEFAULT now()` | |
-| `updated_at` | `timestamptz NOT NULL DEFAULT now()` | |
-| `deleted_at` | `timestamptz` | Nullable — see "Two independent axes" below |
+| `created_at`/`updated_at` | `timestamptz NOT NULL DEFAULT now()` | |
+| `deleted_at` | `timestamptz` | Nullable — soft delete |
+| `restored_at` | `timestamptz` | Nullable, added `sql/156` — the "when" fact `restore` needs, on the same precedent `awcms_offices` already uses |
 
-**Indexes:** a unique index on `(tenant_id, slug) WHERE deleted_at IS NULL` (a deleted row's slug frees up immediately for reuse); a plain index on `tenant_id`; a composite index on `(tenant_id, deleted_at)` (the generic data-lifecycle purge engine's own filter shape); an index on `parent_id` (both the hierarchy walk and `apps/cms`'s `db:fk-index:check` gate, which requires every FK column to carry one).
+**Indexes:** unique `(tenant_id, slug) WHERE deleted_at IS NULL`; `(tenant_id)`; `(tenant_id, deleted_at)`; `(parent_id)`; `(tenant_id, parent_id) WHERE deleted_at IS NULL` (`sql/159`).
 
-## `awcms_commerce_products`
+### `awcms_commerce_products` (`sql/153` core + `sql/156` BjekMart parity columns)
 
 | Column | Type | Notes |
 | --- | --- | --- |
-| `id` | `uuid` | PK, `DEFAULT gen_random_uuid()` |
-| `tenant_id` | `uuid NOT NULL` | `REFERENCES awcms_tenants (id)` |
-| `category_id` | `uuid` | `REFERENCES awcms_commerce_categories (id)`, nullable |
-| `type` | `text NOT NULL DEFAULT 'physical'` | `CHECK IN ('physical', 'digital', 'service', 'subscription')` |
+| `id` | `uuid` | PK |
+| `tenant_id` | `uuid NOT NULL` | FK `awcms_tenants` |
+| `category_id` | `uuid` | FK `awcms_commerce_categories`, nullable |
+| `type` | `text NOT NULL DEFAULT 'physical'` | `CHECK IN ('physical','digital','service','subscription')` |
 | `sku` | `text NOT NULL` | Unique per tenant among live rows |
-| `name` | `text NOT NULL` | |
-| `slug` | `text NOT NULL` | Unique per tenant among live rows |
-| `description` | `text` | Nullable |
-| `digital_note` | `text` | Nullable |
-| `price` | `numeric(14, 2) NOT NULL` | `CHECK (price >= 0)` — see [ADR-0003](adr/0003-money-is-numeric-14-2-and-crosses-the-wire-as-a-string.md) |
+| `name`, `slug` | `text NOT NULL` | `slug` unique per tenant among live rows |
+| `description`, `digital_note` | `text` | Nullable |
+| `price` | `numeric(14,2) NOT NULL` | `CHECK (price >= 0)` — see [ADR-0003](adr/0003-money-is-numeric-14-2-and-crosses-the-wire-as-a-string.md) |
+| `price_level_2`, `price_level_3`, `price_level_4` | `numeric(14,2)` | Nullable — tiered pricing by customer level (`sql/156`) |
+| `cost_price` | `numeric(14,2)` | Nullable, admin-only — never on a public read model |
 | `discount_percent` | `integer NOT NULL DEFAULT 0` | `CHECK BETWEEN 0 AND 100` |
 | `stock` | `integer NOT NULL DEFAULT 0` | `CHECK (stock >= 0)` |
-| `status` | `text NOT NULL DEFAULT 'draft'` | `CHECK IN ('draft', 'active', 'inactive', 'archived')` — see [`docs/cms.md`](cms.md) for the legal transition table |
-| `label` | `text` | Nullable, e.g. a merchandising badge like "Baru" |
-| `label_color` | `text` | Nullable, an arbitrary hex string; see [`docs/ui-ux.md`](ui-ux.md) for how the storefront renders it safely |
-| `created_at` | `timestamptz NOT NULL DEFAULT now()` | |
-| `updated_at` | `timestamptz NOT NULL DEFAULT now()` | |
-| `deleted_at` | `timestamptz` | Nullable |
+| `status` | `text NOT NULL DEFAULT 'draft'` | `CHECK IN ('draft','active','inactive','archived')` — see [`docs/cms.md`](cms.md) |
+| `label`, `label_color` | `text` | Nullable, merchandising badge |
+| `min_purchase` | `integer NOT NULL DEFAULT 1` | `CHECK (>= 1)` |
+| `weight_grams` | `integer NOT NULL DEFAULT 0` | `CHECK (>= 0)` |
+| `manual_rating` | `numeric(2,1)` | `CHECK BETWEEN 0 AND 5`, nullable |
+| `manual_sold_count` | `integer NOT NULL DEFAULT 0` | `CHECK (>= 0)` |
+| `with_insurance`, `insurance_required` | `boolean NOT NULL DEFAULT false` | |
+| `insurance_fee` | `numeric(14,2)` | Nullable |
+| `promo_banner_show` | `boolean NOT NULL DEFAULT false` | |
+| `promo_banner_{title,subtitle,badge,icon,color}` | `text` | Nullable |
+| `size_chart_type` | `text NOT NULL DEFAULT 'none'` | `CHECK IN ('none','image','table')`, plus a cross-field CHECK reconciling it with the next two columns |
+| `size_chart_media_id` | `uuid` | `REFERENCES awcms_news_media_objects` — the media registry's real table name, kept across the `news_portal`→`blog_content` merge; validated UUID-shaped only, not checked live (see [`docs/cms.md`](cms.md)) |
+| `size_chart_details` | `jsonb` | Nullable |
+| `service_form` | `jsonb` | Nullable — a service product's intake-form field list |
+| `subscription_period` | `text` | `CHECK IN ('day','week','month','year')`, nullable |
+| `download_link` | `text` | Nullable — a digital product's paid asset; deliberately excluded from every public read model (see [`docs/cms.md`](cms.md)) |
+| `allow_dp` | `boolean NOT NULL DEFAULT false` | |
+| `allow_free_shipping` | `boolean NOT NULL DEFAULT true` | |
+| `variant_attributes` | `jsonb` | Nullable |
+| `is_featured`, `is_recommended` | `boolean NOT NULL DEFAULT false` | |
+| `created_at`/`updated_at` | `timestamptz NOT NULL DEFAULT now()` | |
+| `deleted_at`, `restored_at` | `timestamptz` | Nullable |
 
-**Indexes:** unique indexes on `(tenant_id, slug) WHERE deleted_at IS NULL` and `(tenant_id, sku) WHERE deleted_at IS NULL`; a plain index on `tenant_id`; a composite index on `(tenant_id, deleted_at)`; an index on `category_id` (the FK-index gate, and the natural index a future category-browse page would need).
+**Indexes:** unique `(tenant_id, slug)`/`(tenant_id, sku)` both `WHERE deleted_at IS NULL`; `(tenant_id)`; `(tenant_id, deleted_at)`; `(category_id)`; `(size_chart_media_id)`; GIN trigram indexes on `name`/`sku` (`pg_trgm`, `sql/159`, backing the owner list's `q` substring filter); partial `(tenant_id) WHERE deleted_at IS NULL AND is_featured/is_recommended = true`; `(tenant_id, price)`/`(tenant_id, name)` both `WHERE deleted_at IS NULL`; `(tenant_id, status) WHERE deleted_at IS NULL`.
+
+### `awcms_commerce_product_images` / `awcms_commerce_product_variants` (`sql/157`)
+
+| Table | Key columns |
+| --- | --- |
+| `_product_images` | `product_id` (FK products), `media_object_id NOT NULL` (FK `awcms_news_media_objects`, checked live via `MediaLibraryPort.isMediaReferenceSafe` before insert), `sort_order`, `alt_text` |
+| `_product_variants` | `product_id` (FK products), `name NOT NULL`, `value NOT NULL`, `color_hex`, `image_media_object_id` (FK, UUID-shaped-only validation), `sku` (unique per tenant among live rows, **checked against both this table and `awcms_commerce_products` itself** — a single-table index cannot express that), `price`/`price_level_2/3/4`, `stock`, `weight_grams`, `sort_order` |
+
+Both: `id`/`tenant_id`/`created_at`/`updated_at`/`deleted_at` as usual; RLS `ENABLE`+`FORCE`, tenant-isolation policy; FK indexes on every reference column.
+
+## Marketing: five families, plus store settings (`sql/161`–`162`)
+
+| Table | Key columns |
+| --- | --- |
+| `awcms_commerce_flash_sales` | `name`, `slug` (unique per tenant, live), `starts_at`/`ends_at NOT NULL` (`CHECK ends_at > starts_at`), `status` (`CHECK IN ('draft','scheduled','active','ended')` — `active`/`ended` are job-derived, never set by an owner directly) |
+| `awcms_commerce_flash_sale_products` | `flash_sale_id`, `product_id`, `variant_id` (nullable), `sale_price NOT NULL` (`CHECK >= 0`), `quota`/`sold integer NOT NULL DEFAULT 0`; unique `(flash_sale_id, product_id, variant_id) NULLS NOT DISTINCT WHERE deleted_at IS NULL` |
+| `awcms_commerce_vouchers` | `code` (unique per tenant, live), `type` (`CHECK IN ('percentage','nominal','free_shipping')`), `value NOT NULL` (`CHECK >= 0`), `min_order`, `max_discount`, `quota`/`used_count`, `is_public`, `status` (`CHECK IN ('active','inactive')`), `starts_at`/`ends_at NOT NULL` |
+| `awcms_commerce_sliders` | `title NOT NULL`, `subtitle`, `media_object_id NOT NULL` (FK), `link_url`, `button_text`, `sort_order`, `is_active`, `starts_at`/`ends_at` (nullable, windowed) |
+| `awcms_commerce_testimonials` | `author_name NOT NULL`, `author_role`, `body NOT NULL`, `rating integer NOT NULL DEFAULT 5` (`CHECK BETWEEN 1 AND 5`), `avatar_media_object_id` (FK, nullable), `is_active`, `sort_order` |
+| `awcms_commerce_popups` | `title NOT NULL`, `body`, `media_object_id` (FK, nullable), `link_url`, `button_text`, `frequency` (`CHECK IN ('once_per_session','once_per_day','always')`), `is_active`, `starts_at`/`ends_at`; **unique partial index `(tenant_id) WHERE deleted_at IS NULL AND is_active = true`** — at most one active popup per tenant, enforced by the schema, not application code |
+| `awcms_commerce_store_settings` | `tenant_id uuid PRIMARY KEY` (one row per tenant — a singleton, not a list), `settings jsonb NOT NULL DEFAULT '{}'` (`CHECK jsonb_typeof(settings) = 'object'`), `deleted_at` (here meaning "reset to defaults", not tenant removal — see [`docs/api.md`](api.md)) |
+
+All six: standard `id`/`created_at`/`updated_at`/`deleted_at`, RLS `ENABLE`+`FORCE`, tenant-isolation policy, FK indexes.
+
+## Orders: eight tables (`sql/165`)
+
+| Table | Key columns | Notes |
+| --- | --- | --- |
+| `awcms_commerce_customers` | `name NOT NULL`, `phone NOT NULL` (unique per tenant, live), `email`, `level integer NOT NULL DEFAULT 1` (`CHECK BETWEEN 1 AND 4`), `status` (`CHECK IN ('active','blocked')`) | No `password_hash`/`identity_id` — guest-only (see [ADR-0009](adr/0009-guest-checkout-by-order-code-and-phone.md)); accounts are #32 |
+| `awcms_commerce_customer_addresses` | `customer_id` (FK), `label`, `recipient_name NOT NULL`, `phone NOT NULL`, `province_code`/`name`, `city_code`/`name`, `district_code`/`name` (all `text NOT NULL` **snapshots**, not a live FK to `idn_admin_regions`), `postal_code`, `street NOT NULL`, `latitude numeric(9,6)`, `longitude numeric(9,6)`, `is_default` | Snapshotted so a later region-master-data change never rewrites a customer's own delivered address |
+| `awcms_commerce_orders` | `order_code NOT NULL` (unique per tenant — **forever**, not scoped to live rows, since an order is never actually deleted), `customer_id` (FK), `status` (7-value CHECK, see [`docs/cms.md`](cms.md)), `payment_method` (`CHECK IN ('manual_bank','manual_qris','dp','gateway')` — `gateway` accepted, unimplemented, see [ADR-0010](adr/0010-manual-payment-and-alternative-courier-first-gateways-via-outbox.md)), `payment_status` (`CHECK IN ('unpaid','dp_paid','paid','refunded')`), `shipping_method` (`CHECK IN ('alternative','self_pickup','courier')`), `shipping_service_name`, `shipping_cost`, `address jsonb` (snapshot, nullable for self-pickup), `subtotal`/`discount`/`voucher_code`/`voucher_discount`/`insurance_fee`/`tax`/`total`/`dp_amount`, `notes`, `paid_at`/`shipped_at`/`completed_at`/`cancelled_at`/`expires_at` | Indexes include the expiry job's own scan shape, `(tenant_id, status, expires_at) WHERE status = 'pending_payment'`, and the admin list's `(tenant_id, status, created_at DESC)` |
+| `awcms_commerce_order_items` | `order_id`, `product_id`, `variant_id` (nullable), `flash_sale_id` (nullable FK — set when the line was bought at a flash-sale price), `name`/`variant_name`/`sku` (snapshots), `unit_price NOT NULL`, `quantity integer NOT NULL CHECK (> 0)`, `weight_grams`, `service_form_values jsonb`, `line_total NOT NULL` | |
+| `awcms_commerce_order_events` | `order_id`, `from_status` (nullable — null on the creation row), `to_status NOT NULL`, `actor` (`CHECK IN ('customer','admin','system')`), `note`, `created_at` | **Append-only — no `deleted_at` at all**, the one exception to every other table's soft-delete shape; the order-tracking timeline's own source |
+| `awcms_commerce_payment_confirmations` | `order_id`, `method` (`CHECK IN ('manual_bank','manual_qris')`), `amount NOT NULL`, `bank_name`, `account_name`, `transferred_at`, `proof_media_object_id` (**no FK constraint, no index** — a stub column, matching the always-`503` upload path, see [`docs/cms.md`](cms.md)), `status` (`CHECK IN ('submitted','accepted','rejected')`), `reviewed_by` (**no FK constraint**), `reviewed_at` | |
+| `awcms_commerce_reviews` | `product_id`, `customer_id`, `order_id` (all `NOT NULL` FKs), `rating integer NOT NULL CHECK BETWEEN 1 AND 5`, `body NOT NULL`, `status` (`CHECK IN ('pending','published','rejected')`) | Unique `(customer_id, product_id, order_id) WHERE deleted_at IS NULL` — one review per customer, per product, per order |
+| `awcms_commerce_wishlists` | `customer_id`, `product_id` (both `NOT NULL` FKs) | Unique `(customer_id, product_id) WHERE deleted_at IS NULL`; **schema-only — no API route in front of it yet**, shipped ahead of the account system it needs |
+
+All eight: RLS `ENABLE`+`FORCE`, tenant-isolation policy. `deleted_at` exists on seven of eight (every table but `order_events`) purely as a uniform data-lifecycle purge cursor — orders, order items, customers, and payment confirmations are never actually soft-deleted by this module's own code.
 
 ## Row-level security: `ENABLE` and `FORCE`, proven under the unprivileged role
 
-Both tables carry `ALTER TABLE ... ENABLE ROW LEVEL SECURITY` **and** `ALTER TABLE ... FORCE ROW LEVEL SECURITY`, with one policy each:
+Every table above carries `ALTER TABLE ... ENABLE ROW LEVEL SECURITY` **and** `ALTER TABLE ... FORCE ROW LEVEL SECURITY`, with one tenant-isolation policy each:
 
 ```sql
 CREATE POLICY awcms_commerce_products_tenant_isolation
@@ -57,36 +113,28 @@ CREATE POLICY awcms_commerce_products_tenant_isolation
   USING (tenant_id = current_setting('app.current_tenant_id')::uuid);
 ```
 
-`FORCE` matters specifically because the table owner would otherwise bypass RLS entirely — `ENABLE` alone protects against every role except the one that created the table. The application connects as `awcms_app`, an unprivileged, non-superuser role (`apps/cms/sql/019_awcms_db_role_separation.sql`) — never the owner — so this policy is the actual, load-bearing tenant boundary for every commerce query, not a defence-in-depth line that never gets exercised.
+`FORCE` matters specifically because the table owner would otherwise bypass RLS entirely. The application connects as `awcms_app`, an unprivileged, non-superuser role — never the owner — so this policy is the actual, load-bearing tenant boundary for every commerce query. `apps/cms`'s generic RLS test suite derives its table list from every `awcms_%` table's own `ENABLE`/`FORCE` statements across `sql/`, rather than naming tables by hand, so every table above is covered automatically, the same way every other RLS table in this codebase is — no commerce-specific RLS test is needed or written. **The anonymous storefront API's own tenant resolution is a second, earlier boundary**, not a substitute for RLS: `application/public-commerce-tenant.ts` resolves a tenant from the request's `Origin`/`Host` against `awcms_tenant_domains` before a transaction even opens; RLS then still scopes every query inside that transaction to the tenant the resolver found. A cross-tenant `orders/{code}?phone=` lookup and an unresolvable-origin request both answer with the identical neutral `404`.
 
-This is proven, not merely declared: `apps/cms`'s generic RLS test suite (`apps/cms/tests/db-role-separation-migration.test.ts`, `apps/cms/tests/security-readiness-rls.test.ts`, `apps/cms/tests/integration/db-role-separation.integration.test.ts`) derives its table list from every `awcms_%` table's own `ENABLE`/`FORCE` statements across `sql/` (`apps/cms/scripts/lib/table-rls-states.ts`), rather than naming tables by hand — so `awcms_commerce_categories`/`awcms_commerce_products` are covered automatically, the same way every other RLS table in this codebase is, with no commerce-specific test needed. As the unprivileged `awcms_app` role: a query issued with no tenant context set fails closed (the policy's `current_setting('app.current_tenant_id')` raises rather than returning an empty string that would coincidentally match nothing), and an attempt to insert a row under one tenant's context while naming another tenant's id is refused by the same policy. These integration tests need a live PostgreSQL and were not re-run to write this document (see [`docs/pengujian.md`](pengujian.md) for why); the claim above is the codebase's standing, generic guarantee for every `FORCE ROW LEVEL SECURITY` table, commerce included, not a re-verification done specifically for this document.
+**`category_id` crossing tenants is closed at the application layer, not by the foreign key** — a PostgreSQL FK only proves a `category_id` names *some* row, not one belonging to the caller's own tenant. `commerce/application/product-directory.ts` calls `fetchCategoryById(tx, tenantId, categoryId)` inside the same RLS-scoped transaction and rejects the request (400) if it returns nothing — an unknown, soft-deleted, or cross-tenant id are rejected identically, on purpose (the GHSA-r7cx-c4jh-cvvw existence-oracle shape). The same pattern guards every other cross-table reference this module writes (a product's `category_id`, an order item's `product_id`/`variant_id`/`flash_sale_id`, a review's `product_id`/`customer_id`/`order_id`).
 
-**`category_id` crossing tenants is closed at the application layer, not by the foreign key.** A PostgreSQL FK constraint has no tenant awareness — it only proves a `category_id` names *some* row in `awcms_commerce_categories`, not one belonging to the caller's own tenant. `commerce/application/product-directory.ts`'s `createProduct`/`updateProduct` instead call `fetchCategoryById(tx, tenantId, categoryId)` — a query scoped by the RLS-bearing transaction, inside the same `tx` — and reject the request (400) if it returns nothing. An id that is unknown, soft-deleted, or genuinely belongs to another tenant is rejected **identically**, on purpose: telling those three causes apart in the response would let the field be used to probe for category ids that exist elsewhere on the platform (the GHSA-r7cx-c4jh-cvvw existence-oracle shape). The same pattern, for the same reason, guards a category's own `parentId`.
+## `status`/`payment_status` and `deleted_at`: independent axes
 
-## `status` and `deleted_at`: two independent axes
+A product's `status`, an order's `status`/`payment_status`, and whether a row is soft-deleted (`deleted_at`) answer different questions and are never conflated — see [`docs/cms.md`](cms.md) for both state machines in full. `order_events` alone carries no `deleted_at`: it is append-only by design, the one durable, un-editable record of an order's history.
 
-A product's lifecycle `status` (`draft`/`active`/`inactive`/`archived`) and whether its row is soft-deleted (`deleted_at`) answer two different questions and are never conflated. Pulling a product from sale without losing its record is `status = 'inactive'`; removing it from the tenant's own catalog view entirely is `deleted_at`. Categories carry `deleted_at` but no `status` column at all — a category has no independent lifecycle beyond existing or being removed.
+## No actor-stamp columns anywhere in this module
 
-## No actor-stamp columns
+No commerce table carries `created_by`/`updated_by`/`deleted_by`. WHO created, changed, or soft-deleted an owner-side row lives only in the audit log; WHO drove an order's own status changes lives in `order_events`' `actor` column (`customer`/`admin`/`system`) — see [`docs/cms.md`](cms.md).
 
-Neither table carries `created_by`, `updated_by`, or `deleted_by`. WHO created, changed, or soft-deleted a row lives **only** in the audit log (`recordAuditEvent`'s `actorTenantUserId` — see [`docs/cms.md`](cms.md)), never as a column here. This is also what makes `commerce/module.ts`'s `subjectData` descriptors honestly `unreachableBySubject: true`: with no column that could join a row to a person even in principle, there is nothing here a data-subject request could reach.
+## `dataLifecycle` and `subjectData`: the purge engine can never reach a live row, and every table is `unreachableBySubject`
 
-## No restore endpoint in this slice
+Every one of the eighteen commerce tables opts into `apps/cms`'s generic data-lifecycle purge engine (`commerce/module.ts`'s `dataLifecycle` array), `cursorColumn: "deleted_at"` for seventeen of them and `"created_at"` for the append-only `order_events` — `NULL < $2` is neither true nor false in SQL, so a live row can never match the purge predicate; only a row already soft-deleted, past its retention window, becomes eligible. `orders`/`order_items`/`payment_confirmations` use a fiscal retention window (`retentionMinDays: 365`, `defaultRetentionDays: 3650`); the rest use `30`/`3650`/`365`.
 
-Neither table carries `restored_at`/`restored_by`, and there is no `[id]/restore.ts` route or `restore` permission for either resource. A soft-deleted category or product is retained — so any row still referencing it (a child category, a product's `category_id`) keeps a valid foreign key — but this slice exposes no way to bring it back through the API. `sql/153`'s own header calls this out as additive: two nullable columns and an endpoint, not a migration of existing rows, whenever restore is actually built.
+Every one of the eighteen tables is also `unreachableBySubject: true` in the module's `subjectData` descriptors, `exportable: false`, `erasure: "retain_under_obligation"` — **including the customer/address/order tables that hold real guest PII.** This is a deliberate reading of `apps/cms`'s subject-data vocabulary (`SubjectDataColumn.references` is `"tenant_user" | "identity" | "profile" | "principal"` — every one a staff-side identity concept), not an oversight: a guest identified only by a phone number typed into a checkout form has none of those. A genuine erasure/export request is handled as an ordinary admin lookup (`GET`/`PATCH /api/v1/commerce/customers/{id}`), outside the automated engine's scope by construction — see [ADR-0009](adr/0009-guest-checkout-by-order-code-and-phone.md).
 
-## `dataLifecycle`: the purge engine can never reach a live row
+## Permissions (`sql/154`, `158`, `163`, `166`)
 
-Both tables opt into `apps/cms`'s generic data-lifecycle purge engine (`commerce/module.ts`'s `dataLifecycle` array) rather than a hand-rolled purge job, with `cursorColumn: "deleted_at"` — not `created_at`, unlike most tables that use this engine. This is deliberately what makes the purge safe: the engine's own query is `WHERE ... AND deleted_at < $2`, and in SQL `NULL < $2` is neither true nor false, so a **live** row (`deleted_at IS NULL`) can never match that predicate. Only a row already soft-deleted becomes purge-eligible, and only after sitting deleted for the configured retention window (30–3650 days, default 365) — the engine is mathematically incapable of reaching a live row, not merely configured not to.
-
-## Permissions (`sql/154`)
-
-Two activity codes, `categories` and `products`, each with the same four CRUD actions, seeded into the global `awcms_permissions` catalog and mirrored exactly by `commerce/module.ts`'s `permissions` array (a gate keeps the two in step): `commerce.categories.{read,create,update,delete}`, `commerce.products.{read,create,update,delete}` — eight permissions in total. There is deliberately no `restore` permission for either resource, matching the absence of a restore endpoint above.
-
-## Worker grants (`sql/155`)
-
-`awcms_worker` — the role the data-lifecycle purge job connects as — gets `GRANT SELECT, DELETE` on both tables, and nothing wider. No `UPDATE`: the purge engine only ever deletes an eligible row, never anonymises one, so a grant the code never exercises is not issued. `apps/cms/sql/019_awcms_db_role_separation.sql`'s default privileges only ever cover `awcms_app`; `awcms_worker` needs this explicit, per-table grant to run at all.
+39 keys in total across four areas — see [`docs/cms.md`](cms.md) and [`docs/api.md`](api.md) for the full table. Worker grants for the data-lifecycle purge engine's generic `SELECT, DELETE` are seeded per table in `sql/155`/`160`/`164`/`167`; `sql/168` grants the additional, narrower write privileges (`UPDATE`/`INSERT` on specific tables) that `commerce:orders:expire` and `commerce:flash-sales:tick` need to run at all as the least-privilege `awcms_worker` role.
 
 ## Deliberately not in this schema
 
-Per `sql/153`'s own header and [`docs/kamus-data.md`](kamus-data.md), these columns and tables carry no code reference anywhere in this slice, so admitting them later is additive rather than a migration of existing data: tiered pricing (`price_level_2`, `price_level_3`, `price_level_4`), `cost_price`, every `affiliate_*` column, every `size_chart_*` column, every `insurance_*` column, every `promo_banner_*` column, `variant_attributes`, and the related tables `product_images`, `product_variants`, `flash_sale_products`, `product_affiliate_links`.
+Live carrier integration (no RajaOngkir rate/tracking table — `shipping_method`/`shipping_service_name` on an order are merchant-defined labels, never a live carrier response); a payment-gateway transaction record (the `gateway` enum value is accepted, unimplemented); customer accounts (`password_hash`, session tables — [issue #32](https://github.com/ahliweb/awcms-one/issues/32)); a `restore` column/endpoint for any marketing, order, customer, or review table.

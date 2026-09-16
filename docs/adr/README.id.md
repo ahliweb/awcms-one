@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:71ee8472d3e81956d469719cf447b99954d3ae4d864dac7b19880d82308abef9 -->
+<!-- i18n-source-hash: sha256:1f937b69a3437456778face64a175e834c37af01a437ef422ccd0b6762e1e821 -->
 
 # Architecture Decision Records
 
@@ -24,6 +24,10 @@ Yang **tidak** butuh ADR: menambah field dalam skema yang sudah diputuskan, kena
 | [0004](0004-a-type-only-contract-package-with-an-import-direction-gate.md) | `packages/kontrak` adalah kontrak type-only, dengan gate yang menjaga arah impor satu jalur | Diterima |
 | [0005](0005-product-urls-match-the-live-sites-shape.md) | URL produk mengikuti bentuk situs live: `/product/{slug}`, tanpa trailing slash, `/products` dialihkan | Diterima |
 | [0006](0006-a-federated-knowledge-graph-that-never-duplicates-the-subtree.md) | Graf pengetahuan federasi: dimiliki root, code-only, tidak pernah menduplikasi milik `apps/cms` | Diterima |
+| [0007](0007-cart-and-checkout-stay-static-the-browser-calls-anonymous-commerce-endpoints.md) | Keranjang, checkout, dan pelacakan pesanan tetap statis; browser memanggil endpoint commerce anonim milik CMS langsung | Diterima |
+| [0008](0008-one-commerce-module-carries-the-whole-store-not-three.md) | Satu modul `commerce` membawa seluruh toko, bukan tiga | Diterima |
+| [0009](0009-guest-checkout-by-order-code-and-phone.md) | Checkout tamu, dialamatkan lewat kode pesanan + telepon; akun pelanggan menyusul kemudian | Diterima |
+| [0010](0010-manual-payment-and-alternative-courier-first-gateways-via-outbox.md) | Pembayaran manual dan kurir alternatif lebih dulu; gateway dan agregator datang lewat outbox | Diterima |
 
 ## Mengapa penomoran dimulai dari 0001
 
