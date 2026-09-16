@@ -1,0 +1,127 @@
+[
+  {
+    "slug": "mie-gacoan-jw13",
+    "current": {
+      "sku": "Gc",
+      "name": "Mie Gacoan",
+      "categorySlug": "resto-nasional-q7dv",
+      "type": "physical",
+      "description": "Mie Gacoan — mie pedas khas, tersedia lewat BorneoJek.",
+      "digitalNote": null,
+      "price": "10000",
+      "discountPercent": 0,
+      "stock": 100,
+      "label": null,
+      "labelColor": null
+    },
+    "future": {
+      "note": "issue #23 catalog-parity fields — not yet accepted by POST /api/v1/commerce/products. Applying them is a data-only change to this entry once that endpoint grows the field, not a script restructure.",
+      "images": ["tools/seed-assets/product-mie-gacoan.svg"]
+    }
+  },
+  {
+    "slug": "bjekmikro-ghoy",
+    "current": {
+      "sku": "bjek-mikro",
+      "name": "BjekMikro",
+      "categorySlug": "layanan-berlangganan-wszq",
+      "type": "service",
+      "description": "Layanan antar khusus UMKM. Tarif 3 km pertama: 1 titik drop Rp13.000, 2 titik Rp12.000/alamat, 3 titik Rp10.000/alamat. Rp2.000/km setelahnya.",
+      "digitalNote": null,
+      "price": "10000",
+      "discountPercent": 0,
+      "stock": 100,
+      "label": null,
+      "labelColor": "#e11d48"
+    },
+    "future": {
+      "note": "issue #23 catalog-parity fields — not yet accepted by POST /api/v1/commerce/products.",
+      "serviceForm": [
+        { "id": "v0n1zpo", "type": "textarea", "label": "Titik Drop 1 (Nama dan Alamat)", "required": true },
+        { "id": "hee5xuu", "type": "textarea", "label": "Titik Drop 2 (Nama dan Alamat)", "required": false },
+        { "id": "fv94uaa", "type": "text", "label": "Titik Drop 3 (Nama dan Alamat)", "required": false }
+      ],
+      "variantAttributes": [
+        {
+          "name": "MultiDrop",
+          "options": [
+            { "name": "1 Titik DROP", "sku": "bjek-mikro-1", "price": "13000" },
+            { "name": "2 Titik DROP", "sku": "bjek-mikro-2", "price": "24000" },
+            { "name": "3 Titik DROP", "sku": "bjek-mikro-3", "price": "30000" }
+          ]
+        }
+      ],
+      "images": ["tools/seed-assets/product-bjekmikro.svg"]
+    }
+  },
+  {
+    "slug": "rutinride-layanan-berlangganan-2abd",
+    "current": {
+      "sku": "Rutinride01",
+      "name": "RutinRide",
+      "categorySlug": "layanan-berlangganan-wszq",
+      "type": "subscription",
+      "description": "Layanan antar-jemput rutin BorneoJek untuk pelajar, karyawan, dan keluarga dengan jadwal serta rute yang disepakati. Praktis, terjadwal, tanpa order berulang setiap hari.",
+      "digitalNote": null,
+      "price": "90000",
+      "discountPercent": 0,
+      "stock": 99,
+      "label": null,
+      "labelColor": null
+    },
+    "future": {
+      "note": "issue #23 catalog-parity fields — not yet accepted by POST /api/v1/commerce/products. subscriptionPeriod in particular has no column/field on this slice today.",
+      "subscriptionPeriod": "month",
+      "serviceForm": [
+        { "id": "xq66q67", "type": "text", "label": "Lokasi Jemput", "required": true },
+        { "id": "lfd17l9", "type": "text", "label": "Jam Jemput", "required": true },
+        { "id": "cfxv2h2", "type": "text", "label": "Titik Antar", "required": true },
+        { "id": "6hdygij", "type": "text", "label": "Jam Pulang", "required": true },
+        { "id": "ce2bsiw", "type": "textarea", "label": "Catatan Tambahan", "required": true },
+        { "id": "td7623v", "type": "text", "label": "Mulai Tanggal", "required": true }
+      ],
+      "variantCount": 6,
+      "images": ["tools/seed-assets/product-rutinride.svg"]
+    }
+  },
+  {
+    "slug": "saldo-driver-904g",
+    "current": {
+      "sku": "T01",
+      "name": "Saldo Driver",
+      "categorySlug": "layanan-berlangganan-wszq",
+      "type": "service",
+      "description": "Saldo digital yang digunakan mitra driver BorneoJek untuk mendukung transaksi dan aktivitas operasional selama menjalankan layanan.",
+      "digitalNote": null,
+      "price": "20000",
+      "discountPercent": 0,
+      "stock": 1000,
+      "label": null,
+      "labelColor": null
+    },
+    "future": {
+      "note": "issue #23 catalog-parity fields — not yet accepted by POST /api/v1/commerce/products.",
+      "images": ["tools/seed-assets/product-saldo-driver.svg"]
+    }
+  },
+  {
+    "slug": "voucher-pulsa-digital-demo",
+    "current": {
+      "sku": "DGT-01",
+      "name": "Voucher Pulsa Digital",
+      "categorySlug": "layanan-berlangganan-wszq",
+      "type": "digital",
+      "description": "Voucher pulsa elektronik, dikirim otomatis setelah pembayaran terverifikasi.",
+      "digitalNote": "Kode voucher dikirim otomatis ke email pembeli setelah pembayaran terverifikasi.",
+      "price": "15000",
+      "discountPercent": 0,
+      "stock": 500,
+      "label": null,
+      "labelColor": null
+    },
+    "future": {
+      "note": "SYNTHETIC, not observed on the live site — the home page's featured/recommended lists carried no `type: digital` product to mirror, and issue #25 asks for one representative example of each of the four product types. Kept as a clearly-marked placeholder rather than omitted so the storefront's digital-product rendering path has something real to fetch.",
+      "images": ["tools/seed-assets/product-voucher-digital.svg"]
+    }
+  }
+]

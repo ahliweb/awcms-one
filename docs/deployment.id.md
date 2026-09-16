@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](deployment.md)
 
-<!-- i18n-source-hash: sha256:9355da449bfb8fef81668e8e60bc669ed018cd792ac2270d916b0247c2e4fabf -->
+<!-- i18n-source-hash: sha256:19d195b1a26073457296ea22f55603885c6bb3a780b4281ef616b79a1e4a0260 -->
 
 # Deployment
 
@@ -43,9 +43,68 @@ Berkas yang jauh lebih besar, dimiliki sepenuhnya oleh `apps/cms` sebagai kode `
 
 CSP milik `apps/storefront/server/penyaji.mjs` sendiri (`connect-src 'self'`, di antara setiap direktif lain yang diset `'self'` atau `'none'`) tambahan memblokir *browser* agar tidak bisa dibuat memanggil apa pun di luar origin yang sama ini — tidak ada origin eksternal terkonfigurasi untuk dilebarkan, karena aplikasi ini tidak punya host gambar-produk atau skrip pihak-ketiga untuk diizinkan.
 
-## Penyediaan PostgreSQL untuk increment 2 belum dilakukan
+## Basis data lokal (issue #25)
 
-`apps/cms` hanya-PostgreSQL. **Server produksi borneojek menjalankan MySQL** — basis data yang sama tempat skema katalog platform ini sedang diekspresikan-ulang (lihat [`docs/kamus-data.md`](kamus-data.md)) — jadi instans PostgreSQL harus disediakan di infrastruktur itu, atau di tempat lain, sebelum `apps/cms` bisa di-deploy terhadap basis data nyata sama sekali. Tidak ada apa pun di repositori ini yang menyediakan, memigrasikan, atau men-seed instans itu hari ini; `bun run db:migrate:cms` adalah skrip yang ada dan terdokumentasi, bukan langkah yang sudah dijalankan terhadap data produksi. Inilah mengapa [`docs/pengujian.md`](pengujian.md) mendeskripsikan suite tes ber-gate-DB `apps/cms` sebagai sesuatu untuk dijalankan terhadap PostgreSQL sekali-pakai yang disediakan lokal, tidak pernah terhadap apa pun yang saat ini dioperasikan borneojek.
+`compose.yaml` di root repositori menyediakan `postgres:18.4` sekali-pakai untuk pengembangan lokal dan CI — bukan produksi (lihat "Penyediaan PostgreSQL produksi belum dilakukan" di bawah). Ia hanya membuat apa yang TIDAK dibuat migrasi SQL `apps/cms` sendiri: server itu sendiri, dan separuh `LOGIN` dari tiga role yang dibuat migrasi sebagai `NOLOGIN` dan tanpa password dengan sengaja (`apps/cms/sql/019_awcms_db_role_separation.sql` membuat `awcms_app`, `apps/cms/sql/022_awcms_db_worker_setup_roles.sql` membuat `awcms_worker`/`awcms_setup` — password adalah rahasia dan tidak pernah boleh ada di migrasi yang di-commit; lihat header masing-masing berkas). Setiap tabel, indeks, kebijakan RLS, dan `GRANT` tetap tugas migrasi. `docker/postgres-init/01-create-least-privilege-roles.sh` melakukan satu hal yang sengaja tidak dilakukan migrasi, dan tidak lebih — headernya sendiri menjelaskan mengapa menduplikasi satu `GRANT` di sini akan melenceng begitu satu migrasi mempersempit atau melebarkannya.
+
+Urutan lengkap, berurutan, dengan nilai nyata (`cp .env.example .env` di root, `cp apps/cms/.env.example apps/cms/.env` dulu — lihat masing-masing berkas untuk apa yang perlu diedit):
+
+```bash
+cp .env.example .env                    # root — POSTGRES_*, AWCMS_*_PASSWORD, SEED_*
+bun run db:up                           # postgres:18.4, project "awcms-one", host port 5433
+
+# DATABASE_URL milik apps/cms/.env sendiri default ke bentuk OWNER/superuser
+# di port 5432 — timpa itu untuk SATU perintah ini saja agar mengarah ke
+# superuser compose di port 5433. Jangan pernah arahkan DATABASE_URL
+# tersimpan milik apps/cms sendiri ke owner: role itu superuser Postgres dan
+# melewati `FORCE ROW LEVEL SECURITY` sama sekali.
+DATABASE_URL=postgres://awcms:awcms_dev_password@localhost:5433/awcms \
+  bun run db:migrate:cms
+
+# Edit DATABASE_URL milik apps/cms/.env ke role runtime LEAST-PRIVILEGE
+# sebagai gantinya, sesuai default terdokumentasi root .env.example:
+#   DATABASE_URL=postgres://awcms_app:awcms_app_dev_password@localhost:5433/awcms
+# lalu, di terminal KEDUA, jalankan server yang dijalankan skrip seed
+# repositori ini sebagai klien HTTP — pola dua-proses yang sama yang sudah
+# dipakai dokumen ini untuk verifikasi build `apps/storefront` sendiri di
+# bawah:
+cd apps/cms && bun run dev              # atau: bun run build && bun run start
+
+# terminal KETIGA, dari root repositori — idempoten, aman dijalankan ulang
+bun run db:seed:cms
+```
+
+`tools/seed-borneojek-mart.ts` (`bun run db:seed:cms`) menjalankan `apps/cms` yang sedang berjalan dari langkah di atas sebagai klien HTTP dari permukaan `/api/v1/*` publiknya sendiri — antarmuka yang sama yang dipakai build `apps/storefront`, dan satu-satunya yang dijanjikan tetap stabil oleh issue #23/#26/#29. Ia mem-bootstrap tenant dan owner `borneojek-mart` (`POST /api/v1/setup/initialize`), men-seed katalog 8 kategori dan satu produk representatif per `type` commerce dari `tools/seed-data/*.json`, segelintir term/halaman/post blog, profil situs, dan menerbitkan satu kredensial mesin baca-saja bercakupan `commerce.products.read`/`commerce.categories.read` — bentuk kredensial yang sama yang dibutuhkan token build `apps/storefront`. Setiap langkah idempoten (memeriksa baris sebelum membuatnya); menjalankannya ulang terhadap tenant yang sama tidak membuat apa pun baru dan keluar dengan 0. Ia mencetak password owner dan token kredensial mesin persis sekali, pada run yang membuatnya — tidak ada yang disimpan skrip ini di mana pun.
+
+Membuktikan katalog yang di-seed bisa dilayani:
+
+```bash
+curl -H "Authorization: Bearer <AWCMS_API_TOKEN yang dicetak di atas>" \
+     -H "x-awcms-tenant-id: <tenantId yang dicetak di atas>" \
+     http://localhost:4321/api/v1/commerce/products
+
+cd apps/storefront && AWCMS_API_URL=http://localhost:4321 \
+  AWCMS_API_TOKEN=<token> SITE_URL=http://localhost:4321 bun run build
+```
+
+`bun run build` me-render satu halaman per produk yang di-seed plus indeks katalog — kriteria penerimaan yang sama yang dinyatakan issue #25.
+
+```bash
+bun run db:down                         # hentikan container, simpan volume
+bun run db:reset                        # hapus volume juga — bersih total
+```
+
+### Field produk yang diisi issue #23
+
+`/api/v1/commerce/products` menerima bentuk 12-field yang didefinisikan `CreateProductInput` milik `apps/cms/src/modules/commerce/domain/product-validation.ts` hari ini — tanpa gambar, tanpa varian, tanpa `service_form`, tanpa `subscription_period`. `tools/seed-data/products.json` sudah membawa nilai `service_form`/varian/`subscription_period` BjekMikro/RutinRide yang diamati di situs live, di bawah kunci `future` masing-masing produk, bersama gambar produk placeholder milik `tools/seed-assets/` — jadi mendaratkan field issue #23 adalah perubahan pada apa yang dikirim `ensureProducts()` milik `tools/seed-borneojek-mart.ts`, membaca data yang sudah ada di berkas ini, tidak pernah restrukturisasi data seed atau skrip kedua.
+
+### Apa yang TIDAK di-seed skrip ini, dan mengapa
+
+Pengaturan toko `commerce_bj_mart` legacy (level pelanggan, metode pengiriman alternatif `BORNEOJEK`, self-pickup, QRIS manual) tidak punya field di `/api/v1/site-profile`, `/api/v1/commerce/*`, atau endpoint lain mana pun yang diekspos `apps/cms` hari ini — diverifikasi dengan membaca setiap modul terdaftar, bukan diasumsikan. `tools/seed-data/site-profile.json` mencatat nilai-nilai ini di bawah kunci `future`-nya sendiri sehingga nilainya tidak hilang, tapi skrip ini tidak mengarang endpoint untuk menerimanya; itu keputusan untuk issue #26/#29, atau admission baru, yang membuatnya.
+
+## Penyediaan PostgreSQL produksi belum dilakukan
+
+`apps/cms` hanya-PostgreSQL. **Server produksi borneojek menjalankan MySQL** — basis data yang sama tempat skema katalog platform ini sedang diekspresikan-ulang (lihat [`docs/kamus-data.md`](kamus-data.md)) — jadi instans PostgreSQL harus disediakan di infrastruktur itu, atau di tempat lain, sebelum `apps/cms` bisa di-deploy terhadap basis data produksi nyata. Container `postgres:18.4` milik `compose.yaml` sengaja adalah kenyamanan LOKAL/CI (volume bernama di disk developer, password default kelas-development terdokumentasi di `.env.example`) dan tidak pernah dimaksudkan untuk diarahkan dari deployment produksi. Inilah mengapa [`docs/pengujian.md`](pengujian.md) mendeskripsikan suite tes ber-gate-DB `apps/cms` sebagai sesuatu untuk dijalankan terhadap PostgreSQL sekali-pakai yang disediakan lokal, tidak pernah terhadap apa pun yang saat ini dioperasikan borneojek.
 
 ## Belum dibangun
 
