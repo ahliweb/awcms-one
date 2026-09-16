@@ -1,0 +1,22 @@
+{
+  "pages": [
+    {
+      "title": "Kebijakan Privasi",
+      "slug": "kebijakan-privasi",
+      "locale": "id",
+      "updatedAt": "2026-01-10T00:00:00.000Z"
+    },
+    {
+      "title": "Syarat & Ketentuan",
+      "slug": "syarat-dan-ketentuan",
+      "locale": "id",
+      "updatedAt": "2026-01-10T00:00:00.000Z"
+    },
+    {
+      "title": "Panduan Belanja",
+      "slug": "panduan-belanja",
+      "locale": "id",
+      "updatedAt": "2026-01-12T00:00:00.000Z"
+    }
+  ]
+}

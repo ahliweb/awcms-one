@@ -22,9 +22,24 @@
  * app itself used to serve, not the generated `asal-pengalihan`-style
  * redirect data file issue #5's file checklist excludes; see that issue's
  * "Scope amendment: match the live site's URL shape" comment.
+ *
+ * Issue #24 adds two more small, self-contained jobs, both still read-only
+ * against files `astro build` already wrote — neither reads an `AWCMS_*`
+ * variable, so "a finished build never contacts awcms again" still holds:
+ *
+ *   - `/healthz` — reports the build id `scripts/write-build-id.mjs` wrote
+ *     to `dist/client/build-id.txt` as part of `bun run build`, so an
+ *     operator can tell which build a running container is actually
+ *     serving without shelling in.
+ *   - `Link: rel=preload` for every CSS file `astro build` emitted under
+ *     `dist/client/_astro/`, on every non-asset (HTML) response — the
+ *     browser can start fetching a page's stylesheet(s) the moment the
+ *     response headers arrive, instead of waiting to parse far enough into
+ *     `<head>` to find the `<link rel="stylesheet">` tag.
  */
 import http from "node:http";
 import { posix } from "node:path";
+import { readFileSync, readdirSync } from "node:fs";
 
 /** Prefix Astro gives its content-hashed build assets (`build.assets`, default `_astro`). */
 const ASSET_PREFIX = "/_astro/";
@@ -169,6 +184,88 @@ export function isProductsRedirect(url) {
   return normalizedPath(url) === PRODUCTS_REDIRECT_PATH;
 }
 
+/** The path `/healthz` reports on (issue #24). Never `/api/*` — this app has no API of its own, and the name must not collide with `Disallow: /api/` in `robots.txt.ts`. */
+const HEALTHZ_PATH = "/healthz";
+
+/** @param {string} url @returns {boolean} */
+export function isHealthzRequest(url) {
+  return normalizedPath(url) === HEALTHZ_PATH;
+}
+
+/**
+ * `dist/client/build-id.txt` — written by `scripts/write-build-id.mjs` as
+ * part of `bun run build`, AFTER `astro build` and BEFORE this file is
+ * bundled. Never re-derived here: computing "the current build id" inside
+ * the SERVED process would answer "what am I running right now", which is
+ * not the question `/healthz` exists to answer — a stale container
+ * serving an old image should report the OLD id it was actually built
+ * with.
+ *
+ * Missing/unreadable degrades to `"unknown"` rather than throwing: a
+ * health check that 500s because a diagnostic file is absent is worse than
+ * one that answers with a value that says, honestly, "no build id was
+ * recorded".
+ *
+ * @param {URL} clientDir
+ * @returns {string}
+ */
+export function readBuildId(clientDir) {
+  try {
+    const contents = readFileSync(new URL("build-id.txt", clientDir), "utf8").trim();
+    return contents.length > 0 ? contents : "unknown";
+  } catch {
+    return "unknown";
+  }
+}
+
+/**
+ * Every CSS file `astro build` emitted under `dist/client/_astro/`, as
+ * `/_astro/<file>` paths — the `Link: rel=preload` targets (issue #24).
+ * Sorted so the header is byte-stable across a rebuild that changes
+ * nothing.
+ *
+ * An unreadable/missing directory (a fresh checkout with no `dist/` yet)
+ * degrades to an empty list — no `Link` header is sent, not a crash.
+ *
+ * @param {URL} clientDir
+ * @returns {string[]}
+ */
+export function discoverCssPreloadPaths(clientDir) {
+  try {
+    const assetsDir = new URL("_astro/", clientDir);
+    return readdirSync(assetsDir)
+      .filter((name) => name.endsWith(".css"))
+      .sort()
+      .map((name) => `${ASSET_PREFIX}${name}`);
+  } catch {
+    return [];
+  }
+}
+
+/** @param {string[]} paths @returns {string} */
+export function preloadLinkHeaderValue(paths) {
+  return paths.map((path) => `<${path}>; rel=preload; as=style`).join(", ");
+}
+
+/**
+ * Writes the `/healthz` response directly — this is a plain `node:http`
+ * handler, not the Fetch-API adapter, so `res.end()` is how a response
+ * completes here, the same way `createServer`'s 301 branch below does.
+ *
+ * `Cache-Control: no-store` overrides whatever `applyHeaders` already set:
+ * an operator polling this path must never be shown a cached answer from
+ * before a redeploy.
+ *
+ * @param {import("node:http").ServerResponse} res
+ * @param {string} buildId
+ */
+export function writeHealthzResponse(res, buildId) {
+  res.statusCode = 200;
+  res.setHeader("Content-Type", "application/json; charset=utf-8");
+  res.setHeader("Cache-Control", "no-store");
+  res.end(JSON.stringify({ ok: true, build: buildId }));
+}
+
 /**
  * Sets every response header BEFORE the application handler touches the
  * response.
@@ -176,14 +273,29 @@ export function isProductsRedirect(url) {
  * Order matters: `send` (inside the adapter) only sets its own
  * `Cache-Control` when none is present yet, so the value set here wins.
  *
+ * `context.cssPreloadLinks` is injected (see `createServer` below) so this
+ * function stays testable with a fixed, known list rather than a real
+ * `dist/client/_astro/` directory.
+ *
  * @param {import("node:http").IncomingMessage} req
  * @param {import("node:http").ServerResponse} res
+ * @param {{ cssPreloadLinks?: string[] }} [context]
  */
-export function applyHeaders(req, res) {
+export function applyHeaders(req, res, context = {}) {
   for (const [name, value] of Object.entries(securityHeaders())) {
     res.setHeader(name, value);
   }
+
+  const path = normalizedPath(req.url ?? "/");
   res.setHeader("Cache-Control", cacheControlFor(req.url ?? "/"));
+
+  // Only on a page response, never on the asset itself: a stylesheet
+  // preloading ITSELF is meaningless, and `_astro/*` is exactly the prefix
+  // `cacheControlFor` above already treats as an immutable asset.
+  const cssPreloadLinks = context.cssPreloadLinks ?? [];
+  if (!path.startsWith(ASSET_PREFIX) && cssPreloadLinks.length > 0) {
+    res.setHeader("Link", preloadLinkHeaderValue(cssPreloadLinks));
+  }
 
   // Node does not send `Server`, and nothing here uses Express (the only
   // thing that would send `X-Powered-By`). Removed anyway: "not sent
@@ -194,16 +306,25 @@ export function applyHeaders(req, res) {
 }
 
 /**
- * Wraps an application handler with the header logic above.
+ * Wraps an application handler with the header logic above, plus the two
+ * routes that answer before the adapter ever sees the request: the
+ * `/products` redirect (unchanged from before issue #24) and `/healthz`.
  *
  * `appHandler` is injected so this file's header behaviour is testable
- * without a real `dist/` build present.
+ * without a real `dist/` build present; so is `context` — see
+ * `applyHeaders`/`readBuildId`/`discoverCssPreloadPaths`.
  *
  * @param {(req: import("node:http").IncomingMessage, res: import("node:http").ServerResponse) => unknown} appHandler
+ * @param {{ buildId?: string, cssPreloadLinks?: string[] }} [context]
  */
-export function createServer(appHandler) {
+export function createServer(appHandler, context = {}) {
   return http.createServer((req, res) => {
-    applyHeaders(req, res);
+    applyHeaders(req, res, context);
+
+    if (isHealthzRequest(req.url ?? "/")) {
+      writeHealthzResponse(res, context.buildId ?? "unknown");
+      return;
+    }
 
     if (isProductsRedirect(req.url ?? "/")) {
       res.statusCode = 301;
@@ -239,9 +360,20 @@ export async function run() {
   process.env.ASTRO_NODE_AUTOSTART = "disabled";
   const { handler } = await import("../dist/server/entry.mjs");
 
+  // Resolved relative to THIS file's own `import.meta.url` rather than
+  // `process.cwd()` — `run()` only ever executes as the BUNDLED
+  // `dist/server/penyaji.mjs` (`bun run serve`/`build:penyaji`, never the
+  // unbundled source), so "up one, into `client/`" is the one correct
+  // literal — `readBuildId`/`discoverCssPreloadPaths` take the resulting
+  // URL as a parameter precisely so a test can pass a fixture directory
+  // instead of relying on this resolution at all.
+  const clientDir = new URL("../client/", import.meta.url);
+  const buildId = readBuildId(clientDir);
+  const cssPreloadLinks = discoverCssPreloadPaths(clientDir);
+
   const port = Number(process.env.PORT ?? 8080);
   const host = process.env.HOST ?? "0.0.0.0";
-  const server = createServer(handler);
+  const server = createServer(handler, { buildId, cssPreloadLinks });
 
   server.listen(port, host, () => {
     console.log(`storefront served by Bun at http://${host}:${port}`);

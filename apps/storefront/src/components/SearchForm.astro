@@ -1,0 +1,35 @@
+---
+/**
+ * The site search form (issue #24) — posts `GET /cari?q=` (`ROUTES.search`).
+ * `GET`, not `POST`: the result is a normal, bookmarkable, shareable URL,
+ * and it works with no client-side script at all.
+ *
+ * Used twice on `/cari` itself (once here in the header, once as that
+ * page's own query-echo form) — `idPrefix` keeps the two instances' `id`/
+ * `for` pairs from colliding, which would otherwise make the SECOND
+ * `<label for="q">` on a page point at the FIRST form's input.
+ */
+import { ROUTES } from "../config/routes";
+
+interface Props {
+  idPrefix: string;
+  /** Pre-fills the field — used by `/cari` to echo back `?q=`. */
+  value?: string;
+}
+
+const { idPrefix, value = "" } = Astro.props;
+const inputId = `${idPrefix}-q`;
+---
+
+<form class="search-form" action={ROUTES.search} method="get" role="search">
+  <label for={inputId} class="visually-hidden">Cari produk</label>
+  <input
+    type="search"
+    id={inputId}
+    name="q"
+    value={value}
+    placeholder="Cari produk..."
+    autocomplete="off"
+  />
+  <button type="submit">Cari</button>
+</form>
