@@ -477,6 +477,16 @@
       "source": "factory"
     },
     {
+      "path": "src/pages/api/v1/commerce/customers/[id].ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/customers/index.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
       "path": "src/pages/api/v1/commerce/flash-sales/[id].ts",
       "workClass": "interactive",
       "source": "factory"
@@ -498,6 +508,31 @@
     },
     {
       "path": "src/pages/api/v1/commerce/flash-sales/index.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/orders/[id].ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/orders/[id]/payment-confirmations/[cid]/review.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/orders/[id]/status.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/orders/export.csv.ts",
+      "workClass": "reporting",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/orders/index.ts",
       "workClass": "interactive",
       "source": "factory"
     },
@@ -553,6 +588,16 @@
     },
     {
       "path": "src/pages/api/v1/commerce/products/index.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/reviews/[id].ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/reviews/index.ts",
       "workClass": "interactive",
       "source": "factory"
     },
@@ -1554,6 +1599,12 @@
       "workClass": "background_sync",
       "source": "registry",
       "rationale": "Scheduled status-derivation tick (commerce:flash-sales:tick, Issue #26), every 1-5 minutes — same recurring-but-not-latency-sensitive profile as blog:publish:scheduled; tickFlashSalesForTenant passes workClass: \"background_sync\" explicitly."
+    },
+    {
+      "path": "scripts/commerce-orders-expire.ts",
+      "workClass": "background_sync",
+      "source": "registry",
+      "rationale": "Scheduled pending-order expiry sweep (commerce:orders:expire, Issue #29), every 1-5 minutes — same recurring-but-not-latency-sensitive profile as commerce:flash-sales:tick; expireOrdersForTenant passes workClass: \"background_sync\" explicitly."
     },
     {
       "path": "scripts/data-lifecycle-archive-purge.ts",

@@ -63,6 +63,7 @@ function buildDefaultStoreSettings(storeName: string): StoreSettingsData {
       tax: { active: false, percent: 0 },
       insurance: { active: false, ratePercent: "0.0", minFee: "0.00" }
     },
+    orders: { expiryHours: 24 },
     promoSection: { active: false, items: [] },
     meta: {
       home: { title: null, description: null },
@@ -235,7 +236,19 @@ export type StoreSettingsPublicRecord = {
     downPayment: { active: boolean; percent: number };
     tax: { active: boolean; percent: number };
     insurance: { active: boolean; ratePercent: string; minFee: string };
+    /**
+     * Issue #29 — whether the public payment-proof upload path
+     * (`POST …/orders/{code}/payment-proof/upload-sessions`) is usable on
+     * this deployment. `toPublicRecord` below always answers `false`: this
+     * increment's public upload-session flow could not be built without a
+     * principal the anonymous surface does not have (see
+     * `application/order-directory.ts`'s header for the full reasoning) —
+     * a confirmation without a proof is still accepted, so the storefront
+     * simply hides the "attach proof" control when this is `false`.
+     */
+    proofUpload: boolean;
   };
+  orders: StoreSettingsData["orders"];
   promoSection: StoreSettingsData["promoSection"];
   meta: StoreSettingsData["meta"];
 };
@@ -323,8 +336,10 @@ export async function toPublicRecord(
       manualQris: { active: settings.payment.manualQris.active },
       downPayment: settings.payment.downPayment,
       tax: settings.payment.tax,
-      insurance: settings.payment.insurance
+      insurance: settings.payment.insurance,
+      proofUpload: false
     },
+    orders: settings.orders,
     promoSection: settings.promoSection,
     meta: settings.meta
   };

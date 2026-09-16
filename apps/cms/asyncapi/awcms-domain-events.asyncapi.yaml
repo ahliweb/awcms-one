@@ -501,6 +501,80 @@ channels:
       `ends_at`). Producer: `commerce/application/flash-sale-directory.ts`'s
       `tickFlashSalesForTenant`, run by the scheduled
       `commerce:flash-sales:tick` job.
+  awcms.commerce.order.created:
+    address: awcms.commerce.order.created
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      An order was created via the anonymous storefront checkout path.
+      Producer: `commerce/application/order-directory.ts`'s
+      `createOrderFromCart`, in the same transaction as the order/order-items
+      insert, the stock/flash-sale-quota decrement, and (when a voucher was
+      used) its redemption.
+  awcms.commerce.order.paid:
+    address: awcms.commerce.order.paid
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      An order's status transitioned to `paid` — normally an admin accepting
+      a payment confirmation. Producer:
+      `commerce/application/order-directory.ts`'s `transitionOrderStatus`,
+      published alongside `commerce.order.status_changed`.
+  awcms.commerce.order.status_changed:
+    address: awcms.commerce.order.status_changed
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      An order's status transitioned
+      (`commerce/domain/order-status.ts`'s
+      `LEGAL_ORDER_STATUS_TRANSITIONS`). Producer:
+      `commerce/application/order-directory.ts`'s `transitionOrderStatus`.
+      Carries `from`/`to` status; a consumer that only cares an order moved
+      can key off this without diffing the row.
+  awcms.commerce.order.cancelled:
+    address: awcms.commerce.order.cancelled
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      An order was cancelled, by the customer (while `pending_payment`) or
+      an admin. Producer: `commerce/application/order-directory.ts`'s
+      `transitionOrderStatus`, published alongside
+      `commerce.order.status_changed`; its line items are restocked and any
+      redeemed voucher un-redeemed in the same transaction.
+  awcms.commerce.order.expired:
+    address: awcms.commerce.order.expired
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A `pending_payment` order's payment window elapsed. Producer:
+      `commerce/application/order-directory.ts`'s `transitionOrderStatus`,
+      run by the scheduled `commerce:orders:expire` job; its line items are
+      restocked and any redeemed voucher un-redeemed in the same
+      transaction.
+  awcms.commerce.voucher.redeemed:
+    address: awcms.commerce.voucher.redeemed
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A voucher's `used_count` was incremented by a real order. Producer:
+      `commerce/application/order-directory.ts`'s `createOrderFromCart`, in
+      the same transaction as the order that redeemed it.
+  awcms.commerce.review.published:
+    address: awcms.commerce.review.published
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A pending review was moderated to `published` by an admin. Producer:
+      `commerce/application/review-directory.ts`'s `moderateReview` — never
+      fired on review creation, since a pending review is not yet a fact
+      worth publishing to anyone.
 operations:
   publishDomainEventRuntimeSampleRecorded:
     action: send
@@ -802,6 +876,48 @@ operations:
       $ref: "#/channels/awcms.commerce.flash_sale.ended"
     messages:
       - $ref: "#/channels/awcms.commerce.flash_sale.ended/messages/DomainEvent"
+  publishCommerceOrderCreated:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.order.created"
+    messages:
+      - $ref: "#/channels/awcms.commerce.order.created/messages/DomainEvent"
+  publishCommerceOrderPaid:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.order.paid"
+    messages:
+      - $ref: "#/channels/awcms.commerce.order.paid/messages/DomainEvent"
+  publishCommerceOrderStatusChanged:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.order.status_changed"
+    messages:
+      - $ref: "#/channels/awcms.commerce.order.status_changed/messages/DomainEvent"
+  publishCommerceOrderCancelled:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.order.cancelled"
+    messages:
+      - $ref: "#/channels/awcms.commerce.order.cancelled/messages/DomainEvent"
+  publishCommerceOrderExpired:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.order.expired"
+    messages:
+      - $ref: "#/channels/awcms.commerce.order.expired/messages/DomainEvent"
+  publishCommerceVoucherRedeemed:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.voucher.redeemed"
+    messages:
+      - $ref: "#/channels/awcms.commerce.voucher.redeemed/messages/DomainEvent"
+  publishCommerceReviewPublished:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.review.published"
+    messages:
+      - $ref: "#/channels/awcms.commerce.review.published/messages/DomainEvent"
 components:
   messages:
     DomainEvent:

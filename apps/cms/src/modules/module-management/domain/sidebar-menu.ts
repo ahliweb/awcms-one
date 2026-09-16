@@ -264,7 +264,10 @@ export const SIDEBAR_LABELS: Readonly<Record<string, string>> = {
   "admin.layout.nav_commerce_sliders": "Home sliders",
   "admin.layout.nav_commerce_testimonials": "Testimonials",
   "admin.layout.nav_commerce_popup": "Promo popup",
-  "admin.layout.nav_commerce_settings": "Store settings"
+  "admin.layout.nav_commerce_settings": "Store settings",
+  "admin.layout.nav_commerce_orders": "Orders",
+  "admin.layout.nav_commerce_customers": "Customers",
+  "admin.layout.nav_commerce_reviews": "Reviews"
 };
 
 /**
@@ -359,7 +362,10 @@ export const DEFAULT_SIDEBAR_ICONS: Readonly<Record<string, string>> = {
   "admin.layout.nav_commerce_sliders": "image",
   "admin.layout.nav_commerce_testimonials": "chat",
   "admin.layout.nav_commerce_popup": "bell",
-  "admin.layout.nav_commerce_settings": "gear"
+  "admin.layout.nav_commerce_settings": "gear",
+  "admin.layout.nav_commerce_orders": "inbox",
+  "admin.layout.nav_commerce_customers": "user",
+  "admin.layout.nav_commerce_reviews": "chat"
 };
 
 /** Display name for the synthetic core group. Rendered as a module sub-label. */

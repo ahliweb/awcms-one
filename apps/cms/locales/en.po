@@ -5158,3 +5158,93 @@ msgstr ""
 
 msgid "Save store settings"
 msgstr ""
+
+msgid "Orders"
+msgstr ""
+
+msgid "{count} order"
+msgid_plural "{count} orders"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Guest checkout orders — status, payment, and totals."
+msgstr ""
+
+msgid "You do not have permission to view orders."
+msgstr ""
+
+msgid "Orders could not be loaded right now. Please try again later."
+msgstr ""
+
+msgid "Order code"
+msgstr ""
+
+msgid "Customer"
+msgstr ""
+
+msgid "Payment"
+msgstr ""
+
+msgid "Total"
+msgstr ""
+
+msgid "Placed"
+msgstr ""
+
+msgid "No orders yet"
+msgstr ""
+
+msgid "Orders placed through the storefront will appear here."
+msgstr ""
+
+msgid "Customers"
+msgstr ""
+
+msgid "{count} customer"
+msgid_plural "{count} customers"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Guest checkout customers — one row per phone number that has placed an order."
+msgstr ""
+
+msgid "You do not have permission to view customers."
+msgstr ""
+
+msgid "Customers could not be loaded right now. Please try again later."
+msgstr ""
+
+msgid "E-mail"
+msgstr ""
+
+msgid "Level"
+msgstr ""
+
+msgid "No customers yet"
+msgstr ""
+
+msgid "Customers appear here after their first order."
+msgstr ""
+
+msgid "Reviews"
+msgstr ""
+
+msgid "{count} review"
+msgid_plural "{count} reviews"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Product reviews left by customers after a completed order — moderate before they publish."
+msgstr ""
+
+msgid "You do not have permission to view reviews."
+msgstr ""
+
+msgid "Reviews could not be loaded right now. Please try again later."
+msgstr ""
+
+msgid "No reviews yet"
+msgstr ""
+
+msgid "Reviews submitted for completed orders will appear here."
+msgstr ""

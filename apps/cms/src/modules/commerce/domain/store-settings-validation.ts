@@ -612,6 +612,18 @@ function validateMetaPage(
   };
 }
 
+/**
+ * Order-lifecycle settings (Issue #29). `expiryHours` is how long a
+ * newly-created order stays `pending_payment` before
+ * `commerce:orders:expire` moves it to `expired` and restocks/un-redeems its
+ * voucher — `application/order-directory.ts`'s `createOrderFromCart` reads
+ * it to stamp the order's own `expires_at` at creation time (a later change
+ * to this setting never retroactively moves an ALREADY-created order's
+ * deadline, the same "snapshot at creation" choice `awcms_commerce_orders`
+ * makes for its `address` column).
+ */
+export type StoreSettingsOrders = { expiryHours: number };
+
 export type StoreSettingsData = {
   schemaVersion: number;
   storeName: string;
@@ -628,6 +640,7 @@ export type StoreSettingsData = {
   customerLevels: StoreSettingsCustomerLevel[];
   shipping: StoreSettingsShipping;
   payment: StoreSettingsPayment;
+  orders: StoreSettingsOrders;
   promoSection: StoreSettingsPromoSection;
   meta: StoreSettingsMeta;
 };
@@ -660,9 +673,37 @@ const TOP_LEVEL_KEYS = [
   "customerLevels",
   "shipping",
   "payment",
+  "orders",
   "promoSection",
   "meta"
 ] as const;
+const ORDERS_KEYS = ["expiryHours"] as const;
+const DEFAULT_ORDER_EXPIRY_HOURS = 24;
+
+function validateOrdersSettings(
+  value: unknown,
+  errors: ValidationError[]
+): StoreSettingsOrders {
+  rejectUnknownKeys(value, ORDERS_KEYS, "orders", errors);
+  const record = isRecord(value) ? value : {};
+
+  if (record.expiryHours === undefined || record.expiryHours === null) {
+    return { expiryHours: DEFAULT_ORDER_EXPIRY_HOURS };
+  }
+  if (
+    typeof record.expiryHours !== "number" ||
+    !Number.isInteger(record.expiryHours) ||
+    record.expiryHours < 1 ||
+    record.expiryHours > 720
+  ) {
+    errors.push({
+      field: "orders.expiryHours",
+      message: "orders.expiryHours must be an integer between 1 and 720."
+    });
+    return { expiryHours: DEFAULT_ORDER_EXPIRY_HOURS };
+  }
+  return { expiryHours: record.expiryHours };
+}
 const PROMO_SECTION_KEYS = ["active", "items"] as const;
 const META_KEYS = ["home", "contact"] as const;
 
@@ -701,6 +742,7 @@ export function validateStoreSettingsInput(
   const customerLevels = validateCustomerLevels(record.customerLevels, errors);
   const shipping = validateShipping(record.shipping, errors);
   const payment = validatePayment(record.payment, errors);
+  const orders = validateOrdersSettings(record.orders, errors);
   rejectUnknownKeys(
     record.promoSection,
     PROMO_SECTION_KEYS,
@@ -748,6 +790,7 @@ export function validateStoreSettingsInput(
       customerLevels,
       shipping,
       payment,
+      orders,
       promoSection,
       meta
     }

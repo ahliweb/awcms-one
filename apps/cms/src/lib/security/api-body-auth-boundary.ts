@@ -193,6 +193,51 @@ export const SESSION_FREE_BODY_ENDPOINTS: readonly SessionFreeBodyEndpoint[] = [
       "Must work from an email link, for someone who may never have had an account."
   },
 
+  // ---- Storefront (Issue #29): the guest customer is the caller ----
+  {
+    method: "POST",
+    pattern: "/api/v1/commerce/storefront/cart/quote",
+    reason:
+      "A shopper's own cart, read-only. Tenant is resolved from the request Origin/Host, never a session."
+  },
+  {
+    method: "POST",
+    pattern: "/api/v1/commerce/storefront/orders",
+    reason:
+      "Guest checkout creates the order; there is no account/session to hold yet. Idempotency key required."
+  },
+  {
+    method: "POST",
+    pattern: "/api/v1/commerce/storefront/orders/:orderCode/cancel",
+    reason:
+      "The guest customer cancels their own order, holding orderCode + phone as the credential."
+  },
+  {
+    method: "POST",
+    pattern:
+      "/api/v1/commerce/storefront/orders/:orderCode/payment-confirmations",
+    reason: "Same orderCode + phone credential as cancel, above."
+  },
+  {
+    method: "POST",
+    pattern:
+      "/api/v1/commerce/storefront/orders/:orderCode/payment-proof/upload-sessions",
+    reason:
+      "Same orderCode + phone credential; always answers 503 MEDIA_UNAVAILABLE in this increment (see application/order-directory.ts's header)."
+  },
+  {
+    method: "POST",
+    pattern:
+      "/api/v1/commerce/storefront/orders/:orderCode/payment-proof/upload-sessions/:sessionId/finalize",
+    reason: "Same 503-only path as the upload-session endpoint above."
+  },
+  {
+    method: "POST",
+    pattern: "/api/v1/commerce/storefront/reviews",
+    reason:
+      "The guest customer reviews a product from their own completed order, holding orderCode + phone as the credential."
+  },
+
   // ---- Node-to-node: signed, not sessioned ----
   {
     method: "POST",

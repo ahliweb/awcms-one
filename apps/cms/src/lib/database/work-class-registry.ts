@@ -140,6 +140,11 @@ export const JOB_WORK_CLASS_REGISTRY: Readonly<
     rationale:
       'Scheduled status-derivation tick (commerce:flash-sales:tick, Issue #26), every 1-5 minutes — same recurring-but-not-latency-sensitive profile as blog:publish:scheduled; tickFlashSalesForTenant passes workClass: "background_sync" explicitly.'
   },
+  "scripts/commerce-orders-expire.ts": {
+    workClass: "background_sync",
+    rationale:
+      'Scheduled pending-order expiry sweep (commerce:orders:expire, Issue #29), every 1-5 minutes — same recurring-but-not-latency-sensitive profile as commerce:flash-sales:tick; expireOrdersForTenant passes workClass: "background_sync" explicitly.'
+  },
   "scripts/blog-portable-text-backfill.ts": {
     workClass: "maintenance",
     rationale:

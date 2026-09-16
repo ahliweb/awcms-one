@@ -5139,3 +5139,90 @@ msgstr "JSON pengaturan lanjutan"
 
 msgid "Save store settings"
 msgstr "Simpan pengaturan toko"
+
+msgid "Orders"
+msgstr "Pesanan"
+
+msgid "{count} order"
+msgid_plural "{count} orders"
+msgstr[0] "{count} pesanan"
+
+msgid "Guest checkout orders — status, payment, and totals."
+msgstr "Pesanan checkout tamu — status, pembayaran, dan total."
+
+msgid "You do not have permission to view orders."
+msgstr "Anda tidak memiliki izin untuk melihat pesanan."
+
+msgid "Orders could not be loaded right now. Please try again later."
+msgstr "Pesanan tidak dapat dimuat saat ini. Silakan coba lagi nanti."
+
+msgid "Order code"
+msgstr "Kode pesanan"
+
+msgid "Customer"
+msgstr "Pelanggan"
+
+msgid "Payment"
+msgstr "Pembayaran"
+
+msgid "Total"
+msgstr "Total"
+
+msgid "Placed"
+msgstr "Dibuat"
+
+msgid "No orders yet"
+msgstr "Belum ada pesanan"
+
+msgid "Orders placed through the storefront will appear here."
+msgstr "Pesanan yang dibuat melalui toko akan muncul di sini."
+
+msgid "Customers"
+msgstr "Pelanggan"
+
+msgid "{count} customer"
+msgid_plural "{count} customers"
+msgstr[0] "{count} pelanggan"
+
+msgid "Guest checkout customers — one row per phone number that has placed an order."
+msgstr "Pelanggan checkout tamu — satu baris per nomor telepon yang telah melakukan pemesanan."
+
+msgid "You do not have permission to view customers."
+msgstr "Anda tidak memiliki izin untuk melihat pelanggan."
+
+msgid "Customers could not be loaded right now. Please try again later."
+msgstr "Pelanggan tidak dapat dimuat saat ini. Silakan coba lagi nanti."
+
+msgid "E-mail"
+msgstr "E-mail"
+
+msgid "Level"
+msgstr "Level"
+
+msgid "No customers yet"
+msgstr "Belum ada pelanggan"
+
+msgid "Customers appear here after their first order."
+msgstr "Pelanggan muncul di sini setelah pesanan pertama mereka."
+
+msgid "Reviews"
+msgstr "Ulasan"
+
+msgid "{count} review"
+msgid_plural "{count} reviews"
+msgstr[0] "{count} ulasan"
+
+msgid "Product reviews left by customers after a completed order — moderate before they publish."
+msgstr "Ulasan produk yang ditinggalkan pelanggan setelah pesanan selesai — moderasi sebelum dipublikasikan."
+
+msgid "You do not have permission to view reviews."
+msgstr "Anda tidak memiliki izin untuk melihat ulasan."
+
+msgid "Reviews could not be loaded right now. Please try again later."
+msgstr "Ulasan tidak dapat dimuat saat ini. Silakan coba lagi nanti."
+
+msgid "No reviews yet"
+msgstr "Belum ada ulasan"
+
+msgid "Reviews submitted for completed orders will appear here."
+msgstr "Ulasan yang dikirim untuk pesanan selesai akan muncul di sini."

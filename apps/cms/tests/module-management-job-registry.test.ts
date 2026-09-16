@@ -97,6 +97,8 @@ describe("fetchModuleJobs", () => {
         "bun run comments:retention",
         // Issue #26 (awcms-one epic #21): the flash-sale status tick.
         "bun run commerce:flash-sales:tick",
+        // Issue #29 (awcms-one epic #21): the pending-order expiry sweep.
+        "bun run commerce:orders:expire",
         "bun run config:validate",
         "bun run data-lifecycle:archive-purge",
         "bun run domain-events:deliveries:purge",

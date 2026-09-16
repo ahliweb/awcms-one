@@ -66,3 +66,37 @@ export const COMMERCE_VOUCHER_REDEEMED_EVENT_TYPE =
 
 export const COMMERCE_FLASH_SALE_AGGREGATE_TYPE = "commerce.flash_sale";
 export const COMMERCE_VOUCHER_AGGREGATE_TYPE = "commerce.voucher";
+
+/**
+ * Order/review events (Issue #29). `order.created` fires once, from the
+ * anonymous `POST …/storefront/orders` path, in the SAME transaction that
+ * inserts the order, decrements stock/flash-sale quota, and (when a voucher
+ * was used) redeems it — see `application/order-directory.ts`'s
+ * `createOrderFromCart`. `order.status_changed` fires on every OTHER legal
+ * transition (`domain/order-status.ts`); `order.paid`/`.cancelled`/
+ * `.expired` are additionally fired alongside it for the three transitions a
+ * downstream consumer (e.g. a future fulfilment/notification module) is
+ * most likely to key off directly, the same "a generic fact plus a named one
+ * for the moments that matter" choice `product.status_changed` already
+ * makes in this file for products.
+ *
+ * `voucher.redeemed` was pre-declared above (Issue #26) as a forward
+ * reference; #29 is what actually fires it, registered here alongside the
+ * order events in the SAME change, following this file's own rule.
+ *
+ * `review.published` fires when an admin moderates a pending review to
+ * `published` (`application/review-directory.ts`) — never on creation, since
+ * a review lands `pending` and is not yet a fact worth publishing to anyone.
+ */
+export const COMMERCE_ORDER_CREATED_EVENT_TYPE = "awcms.commerce.order.created";
+export const COMMERCE_ORDER_PAID_EVENT_TYPE = "awcms.commerce.order.paid";
+export const COMMERCE_ORDER_STATUS_CHANGED_EVENT_TYPE =
+  "awcms.commerce.order.status_changed";
+export const COMMERCE_ORDER_CANCELLED_EVENT_TYPE =
+  "awcms.commerce.order.cancelled";
+export const COMMERCE_ORDER_EXPIRED_EVENT_TYPE = "awcms.commerce.order.expired";
+export const COMMERCE_REVIEW_PUBLISHED_EVENT_TYPE =
+  "awcms.commerce.review.published";
+
+export const COMMERCE_ORDER_AGGREGATE_TYPE = "commerce.order";
+export const COMMERCE_REVIEW_AGGREGATE_TYPE = "commerce.review";

@@ -84,15 +84,29 @@ export const COMMERCE_PRODUCT_UPDATED_EVENT_TYPE =
 export const COMMERCE_PRODUCT_STATUS_CHANGED_EVENT_TYPE =
   "awcms.commerce.product.status_changed";
 /**
- * Marketing surface (Issue #26). `voucher.redeemed` is deliberately NOT
- * declared here yet — nothing in `commerce` publishes it in this change
- * (#29's checkout flow does, in the same change that registers it); see
- * `commerce/domain/commerce-events.ts`'s header.
+ * Marketing surface (Issue #26).
  */
 export const COMMERCE_FLASH_SALE_STARTED_EVENT_TYPE =
   "awcms.commerce.flash_sale.started";
 export const COMMERCE_FLASH_SALE_ENDED_EVENT_TYPE =
   "awcms.commerce.flash_sale.ended";
+/**
+ * Transactional surface (Issue #29) — orders, voucher redemption, review
+ * publication. `voucher.redeemed` was forward-declared (but never
+ * registered) by Issue #26; #29 is what actually calls `appendDomainEvent`
+ * with it, registered here in the same change.
+ */
+export const COMMERCE_ORDER_CREATED_EVENT_TYPE = "awcms.commerce.order.created";
+export const COMMERCE_ORDER_PAID_EVENT_TYPE = "awcms.commerce.order.paid";
+export const COMMERCE_ORDER_STATUS_CHANGED_EVENT_TYPE =
+  "awcms.commerce.order.status_changed";
+export const COMMERCE_ORDER_CANCELLED_EVENT_TYPE =
+  "awcms.commerce.order.cancelled";
+export const COMMERCE_ORDER_EXPIRED_EVENT_TYPE = "awcms.commerce.order.expired";
+export const COMMERCE_VOUCHER_REDEEMED_EVENT_TYPE =
+  "awcms.commerce.voucher.redeemed";
+export const COMMERCE_REVIEW_PUBLISHED_EVENT_TYPE =
+  "awcms.commerce.review.published";
 
 export const DOMAIN_EVENT_TYPE_REGISTRY: readonly RegisteredDomainEventType[] =
   [
@@ -195,6 +209,48 @@ export const DOMAIN_EVENT_TYPE_REGISTRY: readonly RegisteredDomainEventType[] =
       eventVersion: COMMERCE_EVENT_VERSION,
       description:
         "A flash sale's derived status crossed into ended (now() passed ends_at). Producer: commerce/application/flash-sale-directory.ts's tickFlashSalesForTenant, run by the scheduled commerce:flash-sales:tick job."
+    },
+    {
+      eventType: COMMERCE_ORDER_CREATED_EVENT_TYPE,
+      eventVersion: COMMERCE_EVENT_VERSION,
+      description:
+        "An order was created via the anonymous storefront checkout path. Producer: commerce/application/order-directory.ts's createOrderFromCart, in the same transaction as the order/order-items insert, the stock/flash-sale-quota decrement, and (when a voucher was used) its redemption."
+    },
+    {
+      eventType: COMMERCE_ORDER_PAID_EVENT_TYPE,
+      eventVersion: COMMERCE_EVENT_VERSION,
+      description:
+        "An order's status transitioned to paid — normally an admin accepting a payment confirmation. Producer: commerce/application/order-directory.ts's transitionOrderStatus, published alongside order.status_changed."
+    },
+    {
+      eventType: COMMERCE_ORDER_STATUS_CHANGED_EVENT_TYPE,
+      eventVersion: COMMERCE_EVENT_VERSION,
+      description:
+        "An order's status transitioned (commerce/domain/order-status.ts's LEGAL_ORDER_STATUS_TRANSITIONS). Producer: commerce/application/order-directory.ts's transitionOrderStatus. Carries from/to status; a consumer that only cares an order moved can key off this without diffing the row."
+    },
+    {
+      eventType: COMMERCE_ORDER_CANCELLED_EVENT_TYPE,
+      eventVersion: COMMERCE_EVENT_VERSION,
+      description:
+        "An order was cancelled, by the customer (while pending_payment) or an admin. Producer: commerce/application/order-directory.ts's transitionOrderStatus, published alongside order.status_changed; its line items are restocked and any redeemed voucher un-redeemed in the same transaction."
+    },
+    {
+      eventType: COMMERCE_ORDER_EXPIRED_EVENT_TYPE,
+      eventVersion: COMMERCE_EVENT_VERSION,
+      description:
+        "A pending_payment order's payment window elapsed. Producer: commerce/application/order-directory.ts's transitionOrderStatus, run by the scheduled commerce:orders:expire job; its line items are restocked and any redeemed voucher un-redeemed in the same transaction."
+    },
+    {
+      eventType: COMMERCE_VOUCHER_REDEEMED_EVENT_TYPE,
+      eventVersion: COMMERCE_EVENT_VERSION,
+      description:
+        "A voucher's used_count was incremented by a real order. Producer: commerce/application/order-directory.ts's createOrderFromCart, in the same transaction as the order that redeemed it."
+    },
+    {
+      eventType: COMMERCE_REVIEW_PUBLISHED_EVENT_TYPE,
+      eventVersion: COMMERCE_EVENT_VERSION,
+      description:
+        "A pending review was moderated to published by an admin. Producer: commerce/application/review-directory.ts's moderateReview — never fired on review creation, since a pending review is not yet a fact worth publishing to anyone."
     }
   ];
 

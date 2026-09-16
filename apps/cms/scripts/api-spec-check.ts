@@ -66,6 +66,27 @@ const ALLOWED_PUBLIC_OPERATIONS = new Set([
   // return the same neutral empty payload for every non-serving outcome.
   "siteSearchQuery",
   "siteSearchSuggest",
+  // commerce storefront (Issue #29, awcms-one epic #21) — the anonymous
+  // customer-facing surface: a shopper has no account (guest checkout), and
+  // the storefront is a statically built site on a DIFFERENT origin (ADR-0070
+  // for the family, `commerce-storefront-endpoints.md` for this contract).
+  // Every one of these resolves the tenant from the request Origin/Host
+  // through `awcms_tenant_domains` (never a client-supplied header), is
+  // per-IP (and, for order creation, also per-phone) rate-limited, and the
+  // tracking/payment-confirmation/cancel/review endpoints treat
+  // orderCode+phone as the credential — checked inside the query, not merely
+  // in request validation. Unresolvable tenant / disabled module / a
+  // rate-limited caller all answer the SAME neutral 404, the anti-oracle rule
+  // this module's `application/public-commerce-tenant.ts` shares with
+  // newsletter/site_search/comments above.
+  "quoteCommerceStorefrontCart",
+  "createCommerceStorefrontOrder",
+  "trackCommerceStorefrontOrder",
+  "createCommerceStorefrontPaymentConfirmation",
+  "createCommerceStorefrontPaymentProofUploadSession",
+  "finalizeCommerceStorefrontPaymentProofUploadSession",
+  "cancelCommerceStorefrontOrder",
+  "createCommerceStorefrontReview",
   // comments (ADR-0041, ported from awcms-micro Issue #271) — the public
   // comment surface is anonymous by design: a site visitor commenting on an
   // article has no session, and requiring one would make the module useless for

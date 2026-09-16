@@ -55,6 +55,13 @@ AWCMS_LOCK=/home/admin1/awcms-jobs/locks
 # re-run.
 */5 * * * * /usr/bin/flock -n $AWCMS_LOCK/commerce-flash-sales-tick.lock $AWCMS_RUN_JOB commerce:flash-sales:tick >> $AWCMS_JOB_LOG/commerce-flash-sales-tick.log 2>&1
 
+# commerce — Move every pending_payment order in every active tenant whose
+# expires_at has elapsed to expired, restocking its line items and
+# un-redeeming its voucher (if any). Idempotent — an order already moved out
+# of pending_payment is simply absent from the next tick's scan (FOR UPDATE
+# SKIP LOCKED, bounded batch).
+*/5 * * * * /usr/bin/flock -n $AWCMS_LOCK/commerce-orders-expire.lock $AWCMS_RUN_JOB commerce:orders:expire >> $AWCMS_JOB_LOG/commerce-orders-expire.log 2>&1
+
 # data_lifecycle — Archive (where applicable) and purge rows past retention
 # for every registered generic-execution descriptor; record a dry-run backlog
 # snapshot for every delegated (existing-adopter) descriptor.
