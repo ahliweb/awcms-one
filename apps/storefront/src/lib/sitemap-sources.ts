@@ -120,3 +120,10 @@ export const SITEMAP_SOURCE_NAMES = [
   "berita-mitra",
   "berita-tag"
 ] as const;
+
+// #27 katalog: one import, for its side effect — `sitemap-katalog.ts` itself
+// registers "katalog-produk"/"katalog-kategori"/"katalog-product-detail"
+// (see `KATALOG_SITEMAP_SOURCE_NAMES` there). Kept as an import rather than
+// inline `registerSitemapSource(...)` calls here so this issue's sitemap
+// logic stays in its own owned file end-to-end.
+import "./sitemap-katalog";

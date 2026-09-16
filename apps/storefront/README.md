@@ -44,10 +44,13 @@ Two files exist specifically to prove this rule holds without a live CMS:
 
 | Route | What it is | Data source |
 | --- | --- | --- |
-| `/` | Catalog grid | `GET /api/v1/commerce/products`, `/categories` |
-| `/product/{slug}` | Product detail, `Product` JSON-LD | same as above |
+| `/` | Home: slider, popular categories, flash-sale strip, featured/recommended products, promo section, public vouchers, testimonials, recent news, promo popup (issue #27) | `GET /api/v1/commerce/products`, `/categories`, and the marketing read models |
+| `/produk` | Catalog listing — grid + sidebar, client-side search/filter/sort/pagination over `/index/produk.json` | `GET /api/v1/commerce/products`, `/categories` |
+| `/kategori/{slug}` | One page per category (its subtree's products, breadcrumb, `CollectionPage` JSON-LD) | same as above |
+| `/flash-sale` | Active + scheduled flash sales, sale price vs. normal price, quota, live countdown | `GET /api/v1/commerce/flash-sales/active` |
+| `/product/{slug}` | Product detail: image gallery, variant picker, tiered prices, service-form fields, size chart, promo banner, add-to-cart, share, related products, `Product`/`Offer`/`BreadcrumbList` JSON-LD | same as above |
 | `/kontak` | Contact card + `mailto:`/WhatsApp links | `GET /api/v1/site-profile/composed` |
-| `/cari` | Search landing (query echoed client-side; #27 fills in real results) | none — static shell |
+| `/cari` | Client-side product search over `/index/produk.json`; `noindex, follow` | `/index/produk.json` (build-time index) |
 | `/halaman/{slug}` | CMS static/legal pages (privacy, TOS, shopping guide, and — once #28's news pages exist — Redaksi/Pedoman Media Siber/Disclaimer), rendered from Portable Text | `GET /api/v1/blog/pages/public[/​{slug}]` |
 | `/404` | Not-found page with search + top nav links | none |
 | `/robots.txt` | Allow-all + sitemap line + disallowed paths | deployment identity |
@@ -63,6 +66,8 @@ Two files exist specifically to prove this rule holds without a live CMS:
 | `/video`, `/video/{slug}` | Video-news index + detail (a post with a `videoNews` block) | `GET /api/v1/blog/posts` |
 | `/tag/{slug}`, `/penulis/{slug}`, `/arsip/{yyyy}/{mm}` | Tag, author (byline-based), and monthly archives | `GET /api/v1/blog/posts`/`terms` |
 | `/cari-berita` | Client-side search over `/index/berita.json` | `/index/berita.json` (build-time index) |
+| `/index/produk.json` | The product search/listing index every client-side catalog surface reads | derived from the catalog fetch |
+| `/csp.json` | The external origins this build references, read at startup by `apps/storefront/server/penyaji.mjs` to widen `img-src` — see "Content-Security-Policy" below | derived from every image URL the CMS sent |
 | `/index/berita.json`, `/index/pengalihan-legacy.json` | The search index, and the legacy-URL redirect map `apps/storefront/server/penyaji.mjs` reads at startup | `GET /api/v1/blog/posts`, `/api/v1/seo/redirects` |
 
 Every non-static-asset route above is prerendered — there is no
@@ -171,6 +176,71 @@ issue was implemented under asks:
    schema (`provider`/`videoId`/`title`/`caption`/`thumbnailMediaObjectId`/
    `durationSeconds`/`sourceLabel`) has no transcript field of any kind —
    there is nothing for this app to link to without inventing one.
+
+## Catalog surface (issue #27)
+
+The full shopper-facing catalog: the home page, `/produk`, `/kategori/{slug}`,
+`/flash-sale`, `/cari`, and a product detail page that renders everything the
+product model carries — images, variants, tiered prices, service-form fields,
+size chart, promo banner, flash-sale price.
+
+Three things about it are load-bearing and easy to undo by accident:
+
+1. **No price arithmetic happens here.** `price`, `finalPrice`, a variant's
+   price, a flash-sale price and every tier price are displayed exactly as
+   `apps/cms` computed them (ADR-0003); `apps/storefront/src/lib/harga.ts` is the only file
+   that converts a price string to a number, and only to format it. A unit
+   test greps `src/` for any other `Number(`/`parseFloat(` on a price-shaped
+   field.
+2. **The cart is a browser-local contract, not a server one.**
+   `apps/storefront/src/lib/keranjang-kontrak.ts` defines it — `localStorage` key
+   `awcms-one:keranjang:v1`, shape `{id, lines, updatedAt}`, a
+   `keranjang:berubah` event dispatched on every write, which the header's
+   count listens for. Issue #30's checkout reads exactly this shape; the
+   `id` is also the idempotency key an order is created with.
+3. **Every client-side script is an external module** under `apps/storefront/src/scripts/`,
+   because `script-src 'self'` has no `'unsafe-inline'` and never will.
+
+### Content-Security-Policy: the one exemption, and why it is derived
+
+Product photos are the first thing this storefront references off its own
+origin. `images[].publicUrl` comes from `apps/cms`'s `media_library` and
+points at that deployment's public media origin (R2, a CDN, or the CMS host
+— a deployment's choice, not this app's), so a bare `img-src 'self'` blocks
+every one of them **silently**: correct HTML, green build, broken page.
+
+So the policy is widened, by exactly the origins this build actually
+references and no others:
+
+- `apps/storefront/src/pages/csp.json.ts` collects every image URL from the same memoized
+  fetches the pages rendered from, and writes `dist/client/csp.json`
+  (`{version, imgSrc, connectSrc}`) via `apps/storefront/src/lib/csp-asal-media.ts`.
+- `apps/storefront/server/penyaji.mjs` reads that file **once at startup**
+  (`readCspOrigins`), re-validates every origin (`sanitizeOrigins` — an
+  absolute `http(s)` origin with no path, credential, wildcard or separator
+  character, or it is dropped), and composes the served policy with
+  `buildCsp`.
+- A missing, malformed or unknown-version artifact degrades to the baseline
+  `img-src 'self'` — images stop rendering, which is visible and fixed by a
+  rebuild, rather than a policy silently wider than any build asked for.
+
+It is DERIVED rather than configured (`PUBLIC_MEDIA_ORIGIN`-style) because a
+configured origin is one more value to keep in step with the CMS's own
+configuration, and a wrong one fails in exactly the silent way this
+mechanism exists to prevent. The trade: a catalog with no images yet emits
+no origins, so the first product photo needs a rebuild before it renders —
+the same rebuild that page already needs (ADR-0002).
+
+### `BaseLayout.astro`'s `head` slot
+
+`<slot name="head" />` is the single extension point in `<head>`, last in
+document order so a page can override what the layout already declared
+without displacing the charset declaration. `/cari` uses it for
+`<meta name="robots" content="noindex, follow">` — `robots.txt`'s
+`Disallow: /cari` asks a crawler not to fetch the page, the meta tag tells
+one that already has it not to index it, and the two are not
+interchangeable. **Never put a `<script>` in this slot**: that would escape
+the `script-src 'self'` guarantee the whole app rests on.
 
 ## Environment variables
 

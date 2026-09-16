@@ -1,0 +1,615 @@
+/**
+ * Styles for every surface issue #27 (catalog parity) adds: listing +
+ * sidebar, category pages, flash sale, product detail, and the home page's
+ * new sections. Imported ONLY by the pages/components that need it — never
+ * `global.css` (issue #27's own file-ownership rule: append to that file
+ * only as a last resort, prefer this one) — so `global.css` stays #24's
+ * file, untouched.
+ *
+ * Reuses `global.css`'s custom properties (`--bg-surface`, `--text-primary`,
+ * `--radius-*`, `--shadow-*`, …) rather than redeclaring a second palette;
+ * every new class below is additive to `.card`/`.card-title`/`.card-price`/
+ * `.label-badge`/`.stock-badge`/`.breadcrumb` (`global.css`), not a
+ * replacement for them — `src/scripts/produk-index-klien.ts`'s
+ * client-rendered cards rely on exactly this being true.
+ */
+
+/* --- Grid card additions (image + flash badge) --------------------------- */
+
+.card-image,
+.card-image-placeholder {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  background: var(--bg-subtle);
+}
+
+.flash-badge {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  background: var(--danger-bg);
+  color: var(--danger-text);
+}
+
+.price-original {
+  text-decoration: line-through;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-right: 0.4rem;
+}
+
+.price-discount {
+  color: var(--danger-text);
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+/* --- Listing layout: sidebar + grid -------------------------------------- */
+
+.listing-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 260px) 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+@media (max-width: 860px) {
+  .listing-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.listing-sidebar {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+}
+
+.listing-sidebar h2 {
+  font-size: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.listing-sidebar-section + .listing-sidebar-section {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.category-tree,
+.category-tree ul {
+  list-style: none;
+}
+
+.category-tree ul {
+  padding-left: 1rem;
+  margin-top: 0.25rem;
+}
+
+.category-tree a {
+  display: inline-flex;
+  gap: 0.35rem;
+  padding-block: 0.3rem;
+  color: var(--text-secondary);
+}
+
+.category-tree a[aria-current="true"] {
+  color: var(--accent-primary);
+  font-weight: 700;
+}
+
+.category-count {
+  color: var(--text-muted);
+}
+
+.filter-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-block: 0.5rem;
+}
+
+.filter-field label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.filter-field select,
+.filter-field input[type="number"] {
+  min-height: 44px;
+  padding: 0.4rem 0.6rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  font: inherit;
+}
+
+.filter-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+}
+
+.filter-price-range {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.listing-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-block: 1.5rem;
+}
+
+.pagination button {
+  min-width: 44px;
+  min-height: 44px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  font: inherit;
+  cursor: pointer;
+}
+
+.pagination button[aria-current="page"] {
+  background: var(--color-primary, #10b981);
+  color: var(--color-primary-foreground, #000000);
+  border-color: transparent;
+}
+
+/* --- Flash sale strip / page ---------------------------------------------- */
+
+.flash-sale-strip {
+  background: var(--bg-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  margin-block: 2rem;
+}
+
+.flash-sale-strip-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+[data-countdown] {
+  font-weight: 700;
+  color: var(--danger-text);
+}
+
+[data-flash-sale-item][hidden] {
+  display: none;
+}
+
+.flash-sale-quota {
+  height: 0.5rem;
+  border-radius: 999px;
+  background: var(--border-color);
+  overflow: hidden;
+  margin-block: 0.35rem;
+}
+
+.flash-sale-quota-bar {
+  height: 100%;
+  background: var(--danger-text);
+}
+
+/* --- Home page sections ---------------------------------------------------- */
+
+.home-section {
+  margin-block: 3rem;
+}
+
+.home-section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.slider {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+.slider-track {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+}
+
+.slider-slide {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+  position: relative;
+  display: block;
+}
+
+.slider-slide img {
+  width: 100%;
+  aspect-ratio: 16 / 6;
+  object-fit: cover;
+  display: block;
+}
+
+.slider-caption {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  padding: 1rem 1.25rem;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.65), transparent);
+  color: #ffffff;
+  width: 100%;
+}
+
+.popular-categories {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(140px, 100%), 1fr));
+  gap: 1rem;
+  list-style: none;
+}
+
+.popular-category-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  text-align: center;
+  min-height: 44px;
+}
+
+.promo-section-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+  gap: 1.25rem;
+}
+
+.promo-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+}
+
+.voucher-strip {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding-block: 0.25rem;
+}
+
+.voucher-chip {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border: 1px dashed var(--accent-primary);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1rem;
+  background: var(--bg-surface);
+}
+
+.voucher-code {
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.voucher-copy {
+  min-height: 44px;
+  padding-inline: 0.75rem;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: var(--color-primary, #10b981);
+  color: var(--color-primary-foreground, #000000);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+  gap: 1.25rem;
+}
+
+.testimonial-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+}
+
+.testimonial-rating {
+  color: #f59e0b;
+  font-size: 0.9rem;
+}
+
+/* --- Promo popup (native <dialog>) ----------------------------------------- */
+
+dialog[data-promo-popup] {
+  border: none;
+  border-radius: var(--radius-lg);
+  padding: 0;
+  max-width: min(28rem, 92vw);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+}
+
+dialog[data-promo-popup]::backdrop {
+  background: rgba(15, 23, 42, 0.55);
+}
+
+.promo-popup-body {
+  padding: 1.5rem;
+}
+
+.promo-popup-close {
+  min-height: 44px;
+  min-width: 44px;
+  border: none;
+  background: transparent;
+  font-size: 1.25rem;
+  cursor: pointer;
+  float: right;
+}
+
+/* --- Product detail --------------------------------------------------------- */
+
+.detail-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 2.5rem;
+}
+
+@media (max-width: 860px) {
+  .detail-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.gallery-main img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  background: var(--bg-subtle);
+}
+
+.gallery-thumbs {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  overflow-x: auto;
+}
+
+.gallery-thumbs img {
+  width: 4.5rem;
+  height: 4.5rem;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  border: 2px solid transparent;
+}
+
+.gallery-thumbs a[aria-current="true"] img {
+  border-color: var(--accent-primary);
+}
+
+.variant-group {
+  border: none;
+  padding: 0;
+  margin-block: 1rem;
+}
+
+.variant-group legend {
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.variant-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.variant-options label {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0.3rem 0.9rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+}
+
+.variant-options input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+
+.variant-options input:checked + span,
+.variant-options label:has(input:checked) {
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+  font-weight: 700;
+}
+
+.variant-options input:disabled ~ span {
+  color: var(--text-muted);
+  text-decoration: line-through;
+}
+
+.qty-stepper {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.qty-stepper button {
+  min-width: 44px;
+  min-height: 44px;
+  border: none;
+  background: var(--bg-subtle);
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.qty-stepper input {
+  width: 3.5rem;
+  min-height: 44px;
+  text-align: center;
+  border: none;
+  border-inline: 1px solid var(--border-color);
+  font: inherit;
+}
+
+.tier-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-block: 1rem;
+}
+
+.tier-table th,
+.tier-table td {
+  text-align: left;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.service-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-block: 0.75rem;
+}
+
+.service-form-field input,
+.service-form-field select,
+.service-form-field textarea {
+  min-height: 44px;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  font: inherit;
+  background: var(--bg-surface);
+  color: var(--text-primary);
+}
+
+.size-chart-image {
+  max-width: 100%;
+  border-radius: var(--radius-md);
+}
+
+.share-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-block: 1rem;
+}
+
+.share-buttons a,
+.share-buttons button {
+  min-height: 44px;
+  padding-inline: 0.9rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  font: inherit;
+  cursor: pointer;
+}
+
+/**
+ * The quantity + "Tambah ke keranjang" row — ONE element (never duplicated
+ * for mobile) that becomes sticky to the viewport bottom below the mobile
+ * breakpoint. A duplicate copy would need `src/scripts/produk-detail.ts` to
+ * wire two `[data-add-to-cart]` buttons instead of one; repositioning the
+ * single real one with CSS avoids that entirely.
+ */
+.purchase-bar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-block: 1.25rem;
+}
+
+@media (max-width: 720px) {
+  .purchase-bar {
+    position: sticky;
+    bottom: 0;
+    background: var(--bg-surface);
+    border-top: 1px solid var(--border-color);
+    padding: 0.75rem 1.25rem;
+    margin-inline: -1.25rem;
+    z-index: 10;
+  }
+}
+
+/* --- Contact page: maps + FAQ (issue #27) ----------------------------------- */
+
+.maps-embed {
+  border: none;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-lg);
+  margin-block: 1.5rem;
+}
+
+.faq-list {
+  margin-block: 1.5rem;
+}
+
+.faq-item {
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 0.25rem 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.faq-item summary {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.faq-item p {
+  padding-block: 0.5rem 0.75rem;
+}

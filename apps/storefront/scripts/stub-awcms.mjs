@@ -60,6 +60,19 @@
  *     (`{ slots }`).
  *   - `/api/v1/seo/redirects` — `seo-redirects-legacy.json`
  *     (`{ redirects, nextCursor: null }`).
+ *
+ * Issue #27 adds six more, per the #26⇄#27 contract
+ * (`commerce-public-read-models.md`) — every response here is the array/
+ * object shape directly, NOT `{items, nextCursor}` (these read models are
+ * small by construction, per that document):
+ *
+ *   - `/api/v1/commerce/store-settings/public` — `store-settings-public.json`.
+ *   - `/api/v1/commerce/sliders/active` — `sliders-active.json`.
+ *   - `/api/v1/commerce/flash-sales/active` — `flash-sales-active.json`.
+ *   - `/api/v1/commerce/vouchers/public` — `vouchers-public.json`.
+ *   - `/api/v1/commerce/testimonials/active` — `testimonials-active.json`.
+ *   - `/api/v1/commerce/popups/active` — `popups-active.json` (a single
+ *     object or `null`, matching what `src/lib/awcms/pemasaran.ts` expects).
  */
 import { readFileSync } from "node:fs";
 
@@ -85,7 +98,15 @@ const ROUTES = {
   "/api/v1/blog/institutions": () => fixture("blog-institutions.json"),
   "/api/v1/idn-regions/regions": () => fixture("regions-kalteng.json"),
   "/api/v1/news-portal/ad-placements/active": () => fixture("ad-placements-active.json"),
-  "/api/v1/seo/redirects": () => fixture("seo-redirects-legacy.json")
+  "/api/v1/seo/redirects": () => fixture("seo-redirects-legacy.json"),
+  // #27 katalog: the #26⇄#27 marketing read-model contract
+  // (commerce-public-read-models.md) — src/lib/awcms/pemasaran.ts.
+  "/api/v1/commerce/store-settings/public": () => fixture("store-settings-public.json"),
+  "/api/v1/commerce/sliders/active": () => fixture("sliders-active.json"),
+  "/api/v1/commerce/flash-sales/active": () => fixture("flash-sales-active.json"),
+  "/api/v1/commerce/vouchers/public": () => fixture("vouchers-public.json"),
+  "/api/v1/commerce/testimonials/active": () => fixture("testimonials-active.json"),
+  "/api/v1/commerce/popups/active": () => fixture("popups-active.json")
 };
 
 const TOKENS_CSS_PATTERN = /^\/theming\/[^/]+\/tokens\.css$/;

@@ -1,0 +1,24 @@
+---
+/**
+ * A flash-sale countdown element — `src/scripts/flash-sale-countdown.ts`
+ * finds every `[data-countdown][data-ends-at]` on the page and keeps its
+ * text current. The initial server-rendered text is a placeholder, not a
+ * computed remaining time: this page is `output: "static"` (baked once, at
+ * build time), so any remaining-time text written here would be stale the
+ * moment a reader's clock has moved past the build — the script's very
+ * first tick (run before paint, in practice) replaces it immediately.
+ *
+ * `aria-live="polite"` here, not on the script — see that file's own
+ * docblock for why the UPDATE rate, not the ARIA attribute, is what keeps
+ * announcements at roughly minute granularity.
+ */
+interface Props {
+  endsAt: string;
+}
+
+const { endsAt } = Astro.props;
+---
+
+<time data-countdown data-ends-at={endsAt} datetime={endsAt} aria-live="polite">
+  Menghitung waktu tersisa…
+</time>

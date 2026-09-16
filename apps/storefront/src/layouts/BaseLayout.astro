@@ -123,6 +123,25 @@ function jsonForScript(value: unknown): string {
         ...schema
       })} />
     )}
+
+    {/* The one extension point in `<head>` (issue #27). A page that needs a
+        head tag this layout does not model — `robots`/`noindex` on a page
+        that must not be indexed, `rel="prev"`/`rel="next"` on a paginated
+        archive, an `article:published_time` on a news article — puts it
+        here instead of this layout growing a prop per tag, or a page
+        re-implementing the whole `<head>`.
+
+        Deliberately the LAST thing in `<head>`: everything this layout
+        itself declares (charset, viewport, canonical, Open Graph, the
+        stylesheet) is already set when a page's own tags arrive, so a page
+        can OVERRIDE one by declaring it again — later wins for most of
+        them — without being able to accidentally displace the charset
+        declaration, which browsers only honour in the first 1024 bytes.
+
+        A script here would escape the `script-src 'self'` guarantee this
+        app's CSP rests on, so nothing in this repository may place one in
+        this slot; `src/pages/*.astro` use it for meta/link tags only. */}
+    <slot name="head" />
   </head>
   <body>
     <a class="skip-link" href="#konten">Lewati ke konten utama</a>

@@ -1,0 +1,51 @@
+---
+/**
+ * One product card — every server-rendered grid in this issue (home's
+ * featured/recommended sections, `/produk`'s first SSR page, `/kategori/
+ * [slug]`, related products on the detail page) uses this ONE template, so
+ * "what a product card looks like" is decided once. The CLIENT-rendered
+ * cards `src/scripts/produk-index-klien.ts` builds for `/produk`'s
+ * refined/`/cari`'s results are a separate implementation (a plain string
+ * builder cannot use an Astro component) but are kept markup/class-
+ * compatible with this one on purpose — see that file's own docblock.
+ */
+import { labelClassName, primaryProductImage, type CommerceProduct } from "../../lib/catalog";
+import { formatPrice } from "../../lib/harga";
+
+interface Props {
+  product: CommerceProduct;
+  categoryName?: string | null;
+  inFlashSale?: boolean;
+}
+
+const { product, categoryName = null, inFlashSale = false } = Astro.props;
+
+const image = primaryProductImage(product);
+const badgeClass = labelClassName(product.labelColor);
+const inStock = product.stock > 0;
+---
+
+<li>
+  <a href={`/product/${product.slug}`} class="card">
+    {image ? (
+      <img
+        src={image.url}
+        alt={image.alt}
+        loading="lazy"
+        width="280"
+        height="280"
+        class="card-image"
+      />
+    ) : (
+      <span class="card-image-placeholder" aria-hidden="true" />
+    )}
+    {categoryName && <span class="card-eyebrow">{categoryName}</span>}
+    <h2 class="card-title">{product.name}</h2>
+    {product.label && <span class={`label-badge ${badgeClass ?? ""}`}>{product.label}</span>}
+    {inFlashSale && <span class="flash-badge">Flash Sale</span>}
+    <p class="card-price">{formatPrice(product.finalPrice)}</p>
+    <span class={`stock-badge ${inStock ? "stock-badge--in" : "stock-badge--out"}`}>
+      {inStock ? "Stok tersedia" : "Stok habis"}
+    </span>
+  </a>
+</li>

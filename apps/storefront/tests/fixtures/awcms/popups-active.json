@@ -1,0 +1,14 @@
+{
+  "id": "79000000-0000-4000-8000-000000000001",
+  "title": "Promo Spesial Minggu Ini",
+  "body": "Dapatkan diskon hingga 20% untuk semua produk kopi.",
+  "image": {
+    "url": "https://cms.example.test/media/popup-promo.jpg",
+    "alt": "Banner promo kopi"
+  },
+  "linkUrl": "/kategori/kebutuhan-pokok",
+  "buttonText": "Lihat Promo",
+  "frequency": "once_per_day",
+  "startsAt": null,
+  "endsAt": null
+}

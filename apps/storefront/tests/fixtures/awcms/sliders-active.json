@@ -1,0 +1,30 @@
+[
+  {
+    "id": "f5000000-0000-4000-8000-000000000001",
+    "title": "Promo Kemerdekaan",
+    "subtitle": "Diskon s.d. 70%",
+    "image": {
+      "url": "https://cms.example.test/media/slider-1.jpg",
+      "alt": "Banner promo kemerdekaan",
+      "width": 1600,
+      "height": 600
+    },
+    "linkUrl": "/flash-sale",
+    "buttonText": "Lihat",
+    "sortOrder": 1
+  },
+  {
+    "id": "f5000000-0000-4000-8000-000000000002",
+    "title": "Kopi Lokal Kalteng",
+    "subtitle": "Langsung dari petani",
+    "image": {
+      "url": "https://cms.example.test/media/slider-2.jpg",
+      "alt": "Banner kopi lokal Kalimantan Tengah",
+      "width": 1600,
+      "height": 600
+    },
+    "linkUrl": "/kategori/kebutuhan-pokok",
+    "buttonText": "Belanja Sekarang",
+    "sortOrder": 2
+  }
+]
