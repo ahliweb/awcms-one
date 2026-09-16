@@ -53,6 +53,15 @@ export type PaymentSettings = {
   downPayment: { active: boolean; percent: number };
   tax: { active: boolean; percent: number };
   insurance: { active: boolean; ratePercent: string; minFee: string };
+  /**
+   * Added by #29 to `GET /api/v1/commerce/store-settings/public`
+   * (`commerce-storefront-endpoints.md`'s own "Store settings additions").
+   * `false` (not just "absent") on any awcms that predates #29 — checked
+   * with `?? false` at every read site, never assumed `true` — so
+   * `/pesanan`'s payment-proof upload form stays hidden rather than
+   * offering an upload the CMS has nowhere to receive.
+   */
+  proofUpload?: boolean;
 };
 
 export type StoreSettings = {
@@ -76,6 +85,8 @@ export type StoreSettings = {
     home: { title: string | null; description: string | null };
     contact: { title: string | null; description: string | null };
   } | null;
+  /** Added by #29 alongside `payment.proofUpload` above — not read by this app today (`/pesanan`'s countdown uses each order's own `expiresAt`, not this store-wide default), modelled here only so `StoreSettings` stays a faithful mirror of the public read model. */
+  orders?: { expiryHours: number };
 };
 
 /** BjekMart's own well-known level names — the same "a real fallback, never an invented placeholder" convention `src/config/site.ts`'s `DEFAULT_IDENTITY` already follows — used only when awcms has not (yet) configured `customerLevels` at all. */

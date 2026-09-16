@@ -11,6 +11,15 @@
  * deliver without touching that shared file, and is a stronger signal than
  * a meta tag alone for a page whose whole point is arbitrary `?q=` query
  * strings a crawler should never index in the first place.
+ *
+ * Issue #30 adds `/pesanan` (order tracking — the code AND the phone travel
+ * as query string/`sessionStorage`, never content a crawler has business
+ * fetching) and `/wishlist` (pure `localStorage` state, no content of its
+ * own to index, same reasoning as `/cari`). Both also carry `<meta
+ * name="robots" content="noindex, follow">` via `BaseLayout.astro`'s `head`
+ * slot (issue #27), for the same "Disallow stops the FETCH, noindex stops
+ * the INDEX of a URL linked from elsewhere" reason `/cari`'s own comment
+ * above already gives.
  */
 import { siteConfig } from "../config/site";
 
@@ -22,6 +31,8 @@ export function GET(): Response {
     "Allow: /",
     "Disallow: /keranjang",
     "Disallow: /checkout",
+    "Disallow: /pesanan",
+    "Disallow: /wishlist",
     "Disallow: /cari",
     "Disallow: /api/",
     "",

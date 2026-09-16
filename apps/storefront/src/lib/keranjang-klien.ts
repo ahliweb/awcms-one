@@ -79,3 +79,22 @@ export function updateCartLineQuantity(index: number, quantity: number): Cart {
   saveCart(next);
   return next;
 }
+
+/**
+ * Issue #30: replaces the cart with a fresh, EMPTY one carrying a NEW `id` —
+ * called once, after `POST …/orders` succeeds (`src/scripts/checkout.ts`).
+ *
+ * A fresh id, not a cleared `lines` array on the SAME id, matters for one
+ * reason: `cart.id` doubles as the order's `idempotencyKey` (this file's own
+ * docblock, and the #29⇄#30 contract). Keeping the old id around after it
+ * has already been consumed by a successful order would let a SECOND,
+ * unrelated cart that happens to reuse browser storage before this tab
+ * reloads collide with an order the CMS already considers settled — an
+ * empty cart with a stale id is not "no cart", it is a landmine the next
+ * checkout would step on.
+ */
+export function clearCart(): Cart {
+  const next = createEmptyCart(newCartId(), new Date().toISOString());
+  saveCart(next);
+  return next;
+}

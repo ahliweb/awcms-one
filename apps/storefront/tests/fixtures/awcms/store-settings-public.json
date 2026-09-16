@@ -98,7 +98,11 @@
       "active": false,
       "ratePercent": "0.2",
       "minFee": "500.00"
-    }
+    },
+    "proofUpload": false
+  },
+  "orders": {
+    "expiryHours": 24
   },
   "promoSection": {
     "active": true,

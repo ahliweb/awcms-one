@@ -225,6 +225,37 @@ main {
   list-style: none;
 }
 
+/* Issue #30: the wishlist heart button sits as a sibling overlay of `.card`
+   (see `ProductCard.astro`'s own docblock for why it is not nested inside
+   the card's own `<a>`) — `.card-wrap` is the positioning context. */
+.card-wrap {
+  position: relative;
+}
+
+.wishlist-button {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+  background: var(--bg-surface);
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.wishlist-button--active {
+  color: var(--danger-text);
+  border-color: var(--danger-text);
+}
+
 .card {
   display: flex;
   flex-direction: column;
@@ -429,7 +460,8 @@ main {
   filter: brightness(0.92);
 }
 
-.cart-link {
+.cart-link,
+.wishlist-link {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
