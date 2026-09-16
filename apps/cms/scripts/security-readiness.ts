@@ -1519,7 +1519,17 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   awcms_commerce_categories: ["SELECT", "DELETE"],
   awcms_commerce_products: ["SELECT", "DELETE"],
   awcms_commerce_product_images: ["SELECT", "DELETE"],
-  awcms_commerce_product_variants: ["SELECT", "DELETE"]
+  awcms_commerce_product_variants: ["SELECT", "DELETE"],
+  // Issue #26 (`sql/164`): the marketing tables plus the store-settings
+  // singleton, on the same `deleted_at`-cursor reasoning — a live slider,
+  // voucher or settings row is unreachable by the purge predicate.
+  awcms_commerce_flash_sales: ["SELECT", "DELETE"],
+  awcms_commerce_flash_sale_products: ["SELECT", "DELETE"],
+  awcms_commerce_vouchers: ["SELECT", "DELETE"],
+  awcms_commerce_sliders: ["SELECT", "DELETE"],
+  awcms_commerce_testimonials: ["SELECT", "DELETE"],
+  awcms_commerce_popups: ["SELECT", "DELETE"],
+  awcms_commerce_store_settings: ["SELECT", "DELETE"]
 };
 
 /**

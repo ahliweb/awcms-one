@@ -4860,3 +4860,301 @@ msgstr ""
 
 msgid "The tenant's category tree: create, edit, soft delete and restore."
 msgstr ""
+
+msgid "Flash sales"
+msgstr ""
+
+msgid "Time-boxed promotions: name, window, and the products/variants on sale."
+msgstr ""
+
+msgid "You do not have permission to view flash sales."
+msgstr ""
+
+msgid "Flash sales could not be loaded right now. Please try again later."
+msgstr ""
+
+msgid "Create a flash sale"
+msgstr ""
+
+msgid "Draft"
+msgstr ""
+
+msgid "Scheduled"
+msgstr ""
+
+msgid "Create flash sale"
+msgstr ""
+
+msgid "No flash sales yet"
+msgstr ""
+
+msgid "Flash sales created for this tenant will appear here."
+msgstr ""
+
+msgid "{count} flash sale"
+msgid_plural "{count} flash sales"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Products in a flash sale"
+msgstr ""
+
+msgid "Flash sale"
+msgstr ""
+
+msgid "Product"
+msgstr ""
+
+msgid "Sale price"
+msgstr ""
+
+msgid "Quota"
+msgstr ""
+
+msgid "Add product to sale"
+msgstr ""
+
+msgid "Save the page after adding a line to see it listed; lines are edited by removing and re-adding."
+msgstr ""
+
+msgid "Vouchers"
+msgstr ""
+
+msgid "Discount codes: percentage, nominal, or free shipping."
+msgstr ""
+
+msgid "You do not have permission to view vouchers."
+msgstr ""
+
+msgid "Vouchers could not be loaded right now. Please try again later."
+msgstr ""
+
+msgid "Create a voucher"
+msgstr ""
+
+msgid "Percentage"
+msgstr ""
+
+msgid "Nominal"
+msgstr ""
+
+msgid "Free shipping"
+msgstr ""
+
+msgid "Minimum order"
+msgstr ""
+
+msgid "Max discount (percentage only)"
+msgstr ""
+
+msgid "Quota (0 = unlimited)"
+msgstr ""
+
+msgid "Show on the public voucher strip"
+msgstr ""
+
+msgid "Create voucher"
+msgstr ""
+
+msgid "No vouchers yet"
+msgstr ""
+
+msgid "Vouchers created for this tenant will appear here."
+msgstr ""
+
+msgid "{count} voucher"
+msgid_plural "{count} vouchers"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Quota / Used"
+msgstr ""
+
+msgid "Unlimited"
+msgstr ""
+
+msgid "No"
+msgstr ""
+
+msgid "Inactive"
+msgstr ""
+
+msgid "Home sliders"
+msgstr ""
+
+msgid "The home-page banner deck: image, link, and display order."
+msgstr ""
+
+msgid "You do not have permission to view sliders."
+msgstr ""
+
+msgid "Sliders could not be loaded right now. Please try again later."
+msgstr ""
+
+msgid "Create a slider"
+msgstr ""
+
+msgid "Subtitle"
+msgstr ""
+
+msgid "Media object id"
+msgstr ""
+
+msgid "Link URL"
+msgstr ""
+
+msgid "Button text"
+msgstr ""
+
+msgid "Create slider"
+msgstr ""
+
+msgid "No sliders yet"
+msgstr ""
+
+msgid "Sliders created for this tenant will appear here."
+msgstr ""
+
+msgid "{count} slider"
+msgid_plural "{count} sliders"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Testimonials"
+msgstr ""
+
+msgid "Customer quotes shown on the storefront's testimonial wall."
+msgstr ""
+
+msgid "You do not have permission to view testimonials."
+msgstr ""
+
+msgid "Testimonials could not be loaded right now. Please try again later."
+msgstr ""
+
+msgid "Create a testimonial"
+msgstr ""
+
+msgid "Author name"
+msgstr ""
+
+msgid "Author role"
+msgstr ""
+
+msgid "Quote"
+msgstr ""
+
+msgid "Rating (1-5)"
+msgstr ""
+
+msgid "Avatar media object id (optional)"
+msgstr ""
+
+msgid "Create testimonial"
+msgstr ""
+
+msgid "No testimonials yet"
+msgstr ""
+
+msgid "Testimonials created for this tenant will appear here."
+msgstr ""
+
+msgid "{count} testimonial"
+msgid_plural "{count} testimonials"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Rating"
+msgstr ""
+
+msgid "Promo popup"
+msgstr ""
+
+msgid "At most one active popup per tenant, shown on the storefront by its own frequency rule."
+msgstr ""
+
+msgid "You do not have permission to view popups."
+msgstr ""
+
+msgid "Popups could not be loaded right now. Please try again later."
+msgstr ""
+
+msgid "Create a popup"
+msgstr ""
+
+msgid "Media object id (optional)"
+msgstr ""
+
+msgid "Frequency"
+msgstr ""
+
+msgid "Once per session"
+msgstr ""
+
+msgid "Once per day"
+msgstr ""
+
+msgid "Always"
+msgstr ""
+
+msgid "Active (only one may be active at a time)"
+msgstr ""
+
+msgid "Create popup"
+msgstr ""
+
+msgid "No popups yet"
+msgstr ""
+
+msgid "Popups created for this tenant will appear here."
+msgstr ""
+
+msgid "{count} popup"
+msgid_plural "{count} popups"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Store settings"
+msgstr ""
+
+msgid "Store identity, shipping, payment and promo configuration for this tenant."
+msgstr ""
+
+msgid "You do not have permission to view store settings."
+msgstr ""
+
+msgid "Store settings could not be loaded right now. Please try again later."
+msgstr ""
+
+msgid "Store identity"
+msgstr ""
+
+msgid "Store name"
+msgstr ""
+
+msgid "Logo media object id"
+msgstr ""
+
+msgid "Favicon media object id"
+msgstr ""
+
+msgid "Phone"
+msgstr ""
+
+msgid "WhatsApp"
+msgstr ""
+
+msgid "Maps embed URL"
+msgstr ""
+
+msgid "Advanced settings (JSON)"
+msgstr ""
+
+msgid "FAQs, social links, customer levels, shipping, payment (including bank accounts — never shown publicly), promo section, and per-page meta titles."
+msgstr ""
+
+msgid "Advanced settings JSON"
+msgstr ""
+
+msgid "Save store settings"
+msgstr ""

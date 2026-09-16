@@ -83,6 +83,16 @@ export const COMMERCE_PRODUCT_UPDATED_EVENT_TYPE =
   "awcms.commerce.product.updated";
 export const COMMERCE_PRODUCT_STATUS_CHANGED_EVENT_TYPE =
   "awcms.commerce.product.status_changed";
+/**
+ * Marketing surface (Issue #26). `voucher.redeemed` is deliberately NOT
+ * declared here yet — nothing in `commerce` publishes it in this change
+ * (#29's checkout flow does, in the same change that registers it); see
+ * `commerce/domain/commerce-events.ts`'s header.
+ */
+export const COMMERCE_FLASH_SALE_STARTED_EVENT_TYPE =
+  "awcms.commerce.flash_sale.started";
+export const COMMERCE_FLASH_SALE_ENDED_EVENT_TYPE =
+  "awcms.commerce.flash_sale.ended";
 
 export const DOMAIN_EVENT_TYPE_REGISTRY: readonly RegisteredDomainEventType[] =
   [
@@ -173,6 +183,18 @@ export const DOMAIN_EVENT_TYPE_REGISTRY: readonly RegisteredDomainEventType[] =
       eventVersion: COMMERCE_EVENT_VERSION,
       description:
         "A product's lifecycle status transitioned (commerce/domain/product-status.ts's LEGAL_TRANSITIONS). Producer: commerce/application/product-directory.ts's updateProduct. Carries previousStatus and status; a consumer that only cares whether a product is still sellable can key off this without diffing the row."
+    },
+    {
+      eventType: COMMERCE_FLASH_SALE_STARTED_EVENT_TYPE,
+      eventVersion: COMMERCE_EVENT_VERSION,
+      description:
+        "A flash sale's derived status crossed into active (now() entered [starts_at, ends_at]). Producer: commerce/application/flash-sale-directory.ts's tickFlashSalesForTenant, run by the scheduled commerce:flash-sales:tick job — never a direct admin PATCH."
+    },
+    {
+      eventType: COMMERCE_FLASH_SALE_ENDED_EVENT_TYPE,
+      eventVersion: COMMERCE_EVENT_VERSION,
+      description:
+        "A flash sale's derived status crossed into ended (now() passed ends_at). Producer: commerce/application/flash-sale-directory.ts's tickFlashSalesForTenant, run by the scheduled commerce:flash-sales:tick job."
     }
   ];
 

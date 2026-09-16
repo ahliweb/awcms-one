@@ -95,6 +95,8 @@ describe("fetchModuleJobs", () => {
         "bun run blog:portable-text:backfill",
         "bun run blog:publish:scheduled",
         "bun run comments:retention",
+        // Issue #26 (awcms-one epic #21): the flash-sale status tick.
+        "bun run commerce:flash-sales:tick",
         "bun run config:validate",
         "bun run data-lifecycle:archive-purge",
         "bun run domain-events:deliveries:purge",

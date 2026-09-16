@@ -1,0 +1,364 @@
+---
+/**
+ * Commerce slider CRUD screen (Issue #26). `mediaObjectId` is a plain UUID
+ * field here (typed or pasted from `/admin/media`'s own registry browse),
+ * not a full picker widget — the same scope reduction this screen's sibling
+ * pages take, kept small deliberately rather than building a second
+ * media-picker component this issue does not require.
+ */
+import AdminLayout from "../../layouts/AdminLayout.astro";
+import "../../styles/admin-screens.css";
+import { loadAdminScreen } from "../../lib/auth/admin-screen";
+import { logAdminPageError } from "../../lib/logging/error-log";
+import { getTranslatorFor } from "../../lib/i18n";
+import { listSliders } from "../../modules/commerce/application/slider-directory";
+
+const ssr = Astro.locals.ssrContext!;
+const { t, tn } = getTranslatorFor(Astro.locals.locale);
+
+const screen = await loadAdminScreen({
+  ssr,
+  workClass: "interactive",
+  authorize: { moduleKey: "commerce", activityCode: "sliders", action: "read" },
+  load: async ({ tx, can }) => {
+    const page = await listSliders(tx, ssr.tenantId, null);
+    const canCreate = await can({
+      moduleKey: "commerce",
+      activityCode: "sliders",
+      action: "create"
+    });
+    const canUpdate = await can({
+      moduleKey: "commerce",
+      activityCode: "sliders",
+      action: "update"
+    });
+    const canDelete = await can({
+      moduleKey: "commerce",
+      activityCode: "sliders",
+      action: "delete"
+    });
+
+    return { sliders: page.items, canCreate, canUpdate, canDelete };
+  },
+  onError: (error) => {
+    logAdminPageError(
+      "admin/commerce-sliders.astro: failed to list sliders",
+      error,
+      {
+        correlationId: Astro.locals.correlationId
+      }
+    );
+  }
+});
+
+const canRead = screen.state !== "denied";
+const loadError = screen.state === "error";
+const sliders = screen.state === "allowed" ? screen.data.sliders : [];
+const canCreate = screen.state === "allowed" && screen.data.canCreate;
+const canUpdate = screen.state === "allowed" && screen.data.canUpdate;
+const canDelete = screen.state === "allowed" && screen.data.canDelete;
+const showActions = canUpdate || canDelete;
+---
+
+<AdminLayout
+  title={t("Home sliders")}
+  description={t("The home-page banner deck: image, link, and display order.")}
+>
+  {
+    !canRead && (
+      <p class="state-notice fade-in-up" id="sliders-denied">
+        {t("You do not have permission to view sliders.")}
+      </p>
+    )
+  }
+  {
+    canRead && loadError && (
+      <p class="state-notice fade-in-up" id="sliders-error">
+        {t("Sliders could not be loaded right now. Please try again later.")}
+      </p>
+    )
+  }
+
+  {
+    canCreate && (
+      <form id="slider-create-form" class="admin-create-form fade-in-up">
+        <p class="form-legend">{t("Create a slider")}</p>
+        <p
+          id="slider-create-error"
+          class="admin-create-error"
+          role="alert"
+          hidden
+        />
+
+        <label for="slider-title">{t("Title")}</label>
+        <input
+          id="slider-title"
+          name="title"
+          type="text"
+          required
+          autocomplete="off"
+        />
+
+        <label for="slider-subtitle">{t("Subtitle")}</label>
+        <input
+          id="slider-subtitle"
+          name="subtitle"
+          type="text"
+          autocomplete="off"
+        />
+
+        <label for="slider-mediaObjectId">{t("Media object id")}</label>
+        <input
+          id="slider-mediaObjectId"
+          name="mediaObjectId"
+          type="text"
+          required
+          placeholder="uuid — see /admin/media"
+        />
+
+        <label for="slider-linkUrl">{t("Link URL")}</label>
+        <input
+          id="slider-linkUrl"
+          name="linkUrl"
+          type="text"
+          autocomplete="off"
+          placeholder="/flash-sale"
+        />
+
+        <label for="slider-buttonText">{t("Button text")}</label>
+        <input
+          id="slider-buttonText"
+          name="buttonText"
+          type="text"
+          autocomplete="off"
+        />
+
+        <label for="slider-sortOrder">{t("Sort order")}</label>
+        <input
+          id="slider-sortOrder"
+          name="sortOrder"
+          type="number"
+          step="1"
+          value="0"
+        />
+
+        <label>
+          <input id="slider-isActive" name="isActive" type="checkbox" checked />{" "}
+          {t("Active")}
+        </label>
+
+        <button type="submit" id="slider-create-submit">
+          {t("Create slider")}
+        </button>
+      </form>
+    )
+  }
+
+  {
+    canRead && !loadError && (
+      <p
+        id="slider-action-error"
+        class="admin-create-error"
+        role="alert"
+        hidden
+      />
+    )
+  }
+
+  {
+    canRead && !loadError && (
+      <div class="data-table-scroll fade-in-up">
+        <table class="data-table data-table--stack" id="commerce-sliders-table">
+          <caption>
+            {tn("{count} slider", "{count} sliders", sliders.length, {
+              count: sliders.length
+            })}
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">{t("Title")}</th>
+              <th scope="col">{t("Sort order")}</th>
+              <th scope="col">{t("Active")}</th>
+              {showActions && <th scope="col">{t("Actions")}</th>}
+            </tr>
+          </thead>
+          <tbody>
+            {sliders.length === 0 ? (
+              <tr>
+                <td class="data-table-empty" colspan={showActions ? 4 : 3}>
+                  <div class="empty-state">
+                    <span class="empty-state-icon" aria-hidden="true">
+                      ◇
+                    </span>
+                    <span class="empty-state-title">{t("No sliders yet")}</span>
+                    <span class="empty-state-text">
+                      {t("Sliders created for this tenant will appear here.")}
+                    </span>
+                  </div>
+                </td>
+              </tr>
+            ) : (
+              sliders.map((slider) => (
+                <tr data-slider-row={slider.id}>
+                  <td
+                    data-label="Title"
+                    class={canUpdate ? "stacked-block" : ""}
+                  >
+                    {canUpdate ? (
+                      <input
+                        class="slider-title-input"
+                        type="text"
+                        value={slider.title}
+                        data-slider-title={slider.id}
+                      />
+                    ) : (
+                      slider.title
+                    )}
+                  </td>
+                  <td
+                    data-label="Sort order"
+                    class={canUpdate ? "stacked-block" : ""}
+                  >
+                    {canUpdate ? (
+                      <input
+                        class="slider-sort-input"
+                        type="number"
+                        step="1"
+                        value={slider.sortOrder}
+                        data-slider-sort={slider.id}
+                      />
+                    ) : (
+                      slider.sortOrder
+                    )}
+                  </td>
+                  <td
+                    data-label="Active"
+                    class={canUpdate ? "stacked-block" : ""}
+                  >
+                    {canUpdate ? (
+                      <input
+                        type="checkbox"
+                        class="slider-active-input"
+                        checked={slider.isActive}
+                        data-slider-active={slider.id}
+                      />
+                    ) : slider.isActive ? (
+                      t("Yes")
+                    ) : (
+                      t("No")
+                    )}
+                  </td>
+                  {showActions && (
+                    <td data-label="Actions" class="stacked-block">
+                      <div class="row-actions">
+                        {canUpdate && (
+                          <button
+                            type="button"
+                            class="module-toggle slider-save-btn"
+                            data-slider-id={slider.id}
+                          >
+                            {t("Save")}
+                          </button>
+                        )}
+                        {canDelete && (
+                          <button
+                            type="button"
+                            class="module-toggle slider-delete-btn"
+                            data-slider-id={slider.id}
+                            data-slider-title={slider.title}
+                          >
+                            {t("Delete")}
+                          </button>
+                        )}
+                      </div>
+                    </td>
+                  )}
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
+    )
+  }
+</AdminLayout>
+
+<script>
+  import {
+    checkboxChecked,
+    field,
+    integerValue,
+    messageBox,
+    mutateAndReload,
+    onAction,
+    onSubmit,
+    sendJson
+  } from "../../lib/ui/admin-form-client";
+
+  const createError = messageBox("slider-create-error");
+
+  onSubmit("slider-create-form", async ({ data, submit }) => {
+    await mutateAndReload(
+      submit,
+      createError,
+      () =>
+        sendJson("POST", "/api/v1/commerce/sliders", {
+          title: field(data, "title"),
+          subtitle: field(data, "subtitle") || null,
+          mediaObjectId: field(data, "mediaObjectId"),
+          linkUrl: field(data, "linkUrl") || null,
+          buttonText: field(data, "buttonText") || null,
+          sortOrder: integerValue("slider-sortOrder", 0),
+          isActive: checkboxChecked("slider-isActive", true)
+        }),
+      "Could not create the slider. Check the media object id is a live, verified image."
+    );
+  });
+
+  const actionError = messageBox("slider-action-error");
+
+  onAction(".slider-save-btn", async (button) => {
+    const id = button.dataset.sliderId;
+    if (!id) return;
+
+    const title =
+      document
+        .querySelector<HTMLInputElement>(`[data-slider-title="${id}"]`)
+        ?.value.trim() ?? "";
+    const sortOrder = Number(
+      document.querySelector<HTMLInputElement>(`[data-slider-sort="${id}"]`)
+        ?.value ?? "0"
+    );
+    const isActive =
+      document.querySelector<HTMLInputElement>(`[data-slider-active="${id}"]`)
+        ?.checked ?? true;
+
+    await mutateAndReload(
+      button,
+      actionError,
+      () =>
+        sendJson("PATCH", `/api/v1/commerce/sliders/${id}`, {
+          title,
+          sortOrder,
+          isActive
+        }),
+      "Could not save the slider. Please try again.",
+      "Saving…"
+    );
+  });
+
+  onAction(".slider-delete-btn", async (button) => {
+    const id = button.dataset.sliderId;
+    if (!id) return;
+    const title = button.dataset.sliderTitle ?? "this slider";
+    if (!window.confirm(`Delete ${title}?`)) return;
+
+    await mutateAndReload(
+      button,
+      actionError,
+      () => sendJson("DELETE", `/api/v1/commerce/sliders/${id}`),
+      "Could not delete the slider. Please try again.",
+      "Deleting…"
+    );
+  });
+</script>

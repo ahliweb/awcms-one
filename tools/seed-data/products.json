@@ -14,9 +14,30 @@
       "label": null,
       "labelColor": null
     },
+    "parity": {
+      "weightGrams": 350,
+      "minPurchase": 1,
+      "manualRating": "5.0",
+      "manualSoldCount": 100,
+      "withInsurance": true,
+      "insuranceRequired": false,
+      "promoBannerShow": true,
+      "promoBannerTitle": "Resto Nasional",
+      "promoBannerSubtitle": "Pesan lewat BorneoJek",
+      "promoBannerBadge": "Resto Nasional",
+      "promoBannerIcon": "utensils",
+      "promoBannerColor": "emerald",
+      "allowFreeShipping": true,
+      "isFeatured": true,
+      "isRecommended": true,
+      "label": "Resto Nasional",
+      "labelColor": "#e11d48"
+    },
     "future": {
-      "note": "issue #23 catalog-parity fields — not yet accepted by POST /api/v1/commerce/products. Applying them is a data-only change to this entry once that endpoint grows the field, not a script restructure.",
-      "images": ["tools/seed-assets/product-mie-gacoan.svg"]
+      "note": "Product images need a media object, and media objects are created through media_library's presigned direct-to-R2 upload session (NEWS_MEDIA_R2_*). Without R2 configured the seed cannot upload these, so they stay recorded here until an R2-backed environment applies them.",
+      "images": [
+        "tools/seed-assets/product-mie-gacoan.svg"
+      ]
     }
   },
   {
@@ -34,24 +55,93 @@
       "label": null,
       "labelColor": "#e11d48"
     },
-    "future": {
-      "note": "issue #23 catalog-parity fields — not yet accepted by POST /api/v1/commerce/products.",
+    "parity": {
+      "weightGrams": 1000,
+      "minPurchase": 1,
+      "costPrice": "10000.00",
+      "manualRating": "5.0",
+      "manualSoldCount": 10,
+      "withInsurance": true,
+      "insuranceRequired": true,
+      "promoBannerShow": true,
+      "promoBannerTitle": "Tarif Khusus UMKM",
+      "promoBannerSubtitle": "Jaminan Dapat Driver",
+      "promoBannerBadge": "Driver Terverifikasi",
+      "promoBannerIcon": "check-circle",
+      "promoBannerColor": "emerald",
+      "allowFreeShipping": true,
+      "isFeatured": true,
       "serviceForm": [
-        { "id": "v0n1zpo", "type": "textarea", "label": "Titik Drop 1 (Nama dan Alamat)", "required": true },
-        { "id": "hee5xuu", "type": "textarea", "label": "Titik Drop 2 (Nama dan Alamat)", "required": false },
-        { "id": "fv94uaa", "type": "text", "label": "Titik Drop 3 (Nama dan Alamat)", "required": false }
+        {
+          "id": "v0n1zpo",
+          "type": "textarea",
+          "label": "Titik Drop 1 (Nama dan Alamat)",
+          "required": true
+        },
+        {
+          "id": "hee5xuu",
+          "type": "textarea",
+          "label": "Titik Drop 2 (Nama dan Alamat)",
+          "required": false
+        },
+        {
+          "id": "fv94uaa",
+          "type": "text",
+          "label": "Titik Drop 3 (Nama dan Alamat)",
+          "required": false
+        }
       ],
       "variantAttributes": [
         {
           "name": "MultiDrop",
           "options": [
-            { "name": "1 Titik DROP", "sku": "bjek-mikro-1", "price": "13000" },
-            { "name": "2 Titik DROP", "sku": "bjek-mikro-2", "price": "24000" },
-            { "name": "3 Titik DROP", "sku": "bjek-mikro-3", "price": "30000" }
+            {
+              "name": "1 Titik DROP",
+              "description": ""
+            },
+            {
+              "name": "2 Titik DROP",
+              "description": ""
+            },
+            {
+              "name": "3 Titik DROP",
+              "description": ""
+            }
           ]
         }
       ],
-      "images": ["tools/seed-assets/product-bjekmikro.svg"]
+      "variants": [
+        {
+          "name": "1 Titik DROP",
+          "value": "Standard",
+          "sku": "bjek-mikro-1",
+          "price": "13000.00",
+          "stock": 100,
+          "sortOrder": 1
+        },
+        {
+          "name": "2 Titik DROP",
+          "value": "Standard",
+          "sku": "bjek-mikro-2",
+          "price": "24000.00",
+          "stock": 100,
+          "sortOrder": 2
+        },
+        {
+          "name": "3 Titik DROP",
+          "value": "Standard",
+          "sku": "bjek-mikro-3",
+          "price": "30000.00",
+          "stock": 10,
+          "sortOrder": 3
+        }
+      ]
+    },
+    "future": {
+      "note": "Product images need a media object, and media objects are created through media_library's presigned direct-to-R2 upload session (NEWS_MEDIA_R2_*). Without R2 configured the seed cannot upload these, so they stay recorded here until an R2-backed environment applies them.",
+      "images": [
+        "tools/seed-assets/product-bjekmikro.svg"
+      ]
     }
   },
   {
@@ -69,19 +159,149 @@
       "label": null,
       "labelColor": null
     },
-    "future": {
-      "note": "issue #23 catalog-parity fields — not yet accepted by POST /api/v1/commerce/products. subscriptionPeriod in particular has no column/field on this slice today.",
+    "parity": {
+      "weightGrams": 50,
+      "minPurchase": 1,
+      "discountPercent": 5,
+      "manualRating": "5.0",
+      "manualSoldCount": 100,
       "subscriptionPeriod": "month",
+      "label": "Langganan",
+      "labelColor": "#e11d48",
+      "promoBannerShow": true,
+      "promoBannerTitle": "Jaminan Driver",
+      "promoBannerSubtitle": "Tidak Perlu Order Berulang",
+      "promoBannerBadge": "Layanan Motor",
+      "promoBannerIcon": "rotate-ccw",
+      "promoBannerColor": "blue",
+      "allowFreeShipping": true,
+      "isFeatured": true,
+      "isRecommended": true,
       "serviceForm": [
-        { "id": "xq66q67", "type": "text", "label": "Lokasi Jemput", "required": true },
-        { "id": "lfd17l9", "type": "text", "label": "Jam Jemput", "required": true },
-        { "id": "cfxv2h2", "type": "text", "label": "Titik Antar", "required": true },
-        { "id": "6hdygij", "type": "text", "label": "Jam Pulang", "required": true },
-        { "id": "ce2bsiw", "type": "textarea", "label": "Catatan Tambahan", "required": true },
-        { "id": "td7623v", "type": "text", "label": "Mulai Tanggal", "required": true }
+        {
+          "id": "xq66q67",
+          "type": "text",
+          "label": "Lokasi Jemput",
+          "required": true
+        },
+        {
+          "id": "lfd17l9",
+          "type": "text",
+          "label": "Jam Jemput",
+          "required": true
+        },
+        {
+          "id": "cfxv2h2",
+          "type": "text",
+          "label": "Titik Antar",
+          "required": true
+        },
+        {
+          "id": "6hdygij",
+          "type": "text",
+          "label": "Jam Pulang",
+          "required": true
+        },
+        {
+          "id": "ce2bsiw",
+          "type": "textarea",
+          "label": "Catatan Tambahan",
+          "required": true
+        },
+        {
+          "id": "td7623v",
+          "type": "text",
+          "label": "Mulai Tanggal",
+          "required": true
+        }
       ],
-      "variantCount": 6,
-      "images": ["tools/seed-assets/product-rutinride.svg"]
+      "variantAttributes": [
+        {
+          "name": "Services",
+          "options": [
+            {
+              "name": "Jemput Berangkat - Mingguan",
+              "description": ""
+            },
+            {
+              "name": "Jemput Pulang - Mingguan",
+              "description": ""
+            },
+            {
+              "name": "Jemput dan Antar - Mingguan",
+              "description": ""
+            },
+            {
+              "name": "Jemput Berangkat - Bulanan",
+              "description": ""
+            },
+            {
+              "name": "Jemput Pulang - Bulanan",
+              "description": ""
+            },
+            {
+              "name": "Jemput Antar - Bulanan",
+              "description": ""
+            }
+          ]
+        }
+      ],
+      "variants": [
+        {
+          "name": "Jemput Berangkat - Mingguan",
+          "value": "Standard",
+          "sku": "Rutinride01-1",
+          "price": "100000.00",
+          "stock": 10,
+          "sortOrder": 1
+        },
+        {
+          "name": "Jemput Pulang - Mingguan",
+          "value": "Standard",
+          "sku": "Rutinride01-2",
+          "price": "90000.00",
+          "stock": 10,
+          "sortOrder": 2
+        },
+        {
+          "name": "Jemput dan Antar - Mingguan",
+          "value": "Standard",
+          "sku": "Rutinride01-3",
+          "price": "185000.00",
+          "stock": 10,
+          "sortOrder": 3
+        },
+        {
+          "name": "Jemput Berangkat - Bulanan",
+          "value": "Standard",
+          "sku": "Rutinride01-4",
+          "price": "480000.00",
+          "stock": 10,
+          "sortOrder": 4
+        },
+        {
+          "name": "Jemput Pulang - Bulanan",
+          "value": "Standard",
+          "sku": "Rutinride01-5",
+          "price": "432000.00",
+          "stock": 10,
+          "sortOrder": 5
+        },
+        {
+          "name": "Jemput Antar - Bulanan",
+          "value": "Standard",
+          "sku": "Rutinride01-6",
+          "price": "912000.00",
+          "stock": 10,
+          "sortOrder": 6
+        }
+      ]
+    },
+    "future": {
+      "note": "Product images need a media object, and media objects are created through media_library's presigned direct-to-R2 upload session (NEWS_MEDIA_R2_*). Without R2 configured the seed cannot upload these, so they stay recorded here until an R2-backed environment applies them.",
+      "images": [
+        "tools/seed-assets/product-rutinride.svg"
+      ]
     }
   },
   {
@@ -99,9 +319,19 @@
       "label": null,
       "labelColor": null
     },
+    "parity": {
+      "weightGrams": 0,
+      "minPurchase": 1,
+      "manualRating": "5.0",
+      "manualSoldCount": 250,
+      "isRecommended": true,
+      "allowFreeShipping": true
+    },
     "future": {
-      "note": "issue #23 catalog-parity fields — not yet accepted by POST /api/v1/commerce/products.",
-      "images": ["tools/seed-assets/product-saldo-driver.svg"]
+      "note": "Product images need a media object, and media objects are created through media_library's presigned direct-to-R2 upload session (NEWS_MEDIA_R2_*). Without R2 configured the seed cannot upload these, so they stay recorded here until an R2-backed environment applies them.",
+      "images": [
+        "tools/seed-assets/product-saldo-driver.svg"
+      ]
     }
   },
   {
@@ -119,9 +349,18 @@
       "label": null,
       "labelColor": null
     },
+    "parity": {
+      "weightGrams": 0,
+      "minPurchase": 1,
+      "isRecommended": true,
+      "allowFreeShipping": true,
+      "downloadLink": "https://example.invalid/voucher-pulsa-demo"
+    },
     "future": {
-      "note": "SYNTHETIC, not observed on the live site — the home page's featured/recommended lists carried no `type: digital` product to mirror, and issue #25 asks for one representative example of each of the four product types. Kept as a clearly-marked placeholder rather than omitted so the storefront's digital-product rendering path has something real to fetch.",
-      "images": ["tools/seed-assets/product-voucher-digital.svg"]
+      "note": "SYNTHETIC, not observed on the live site — the home page's featured/recommended lists carried no `type: digital` product to mirror, and issue #25 asks for one representative example of each of the four product types. Kept as a clearly-marked placeholder rather than omitted so the storefront's digital-product rendering path has something real to fetch. Product images need a media object, and media objects are created through media_library's presigned direct-to-R2 upload session (NEWS_MEDIA_R2_*). Without R2 configured the seed cannot upload these, so they stay recorded here until an R2-backed environment applies them.",
+      "images": [
+        "tools/seed-assets/product-voucher-digital.svg"
+      ]
     }
   }
 ]

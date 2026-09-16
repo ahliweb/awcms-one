@@ -135,6 +135,11 @@ export const JOB_WORK_CLASS_REGISTRY: Readonly<
     rationale:
       "Scheduled-publish dispatcher (blog:publish:scheduled) — recurring, not latency-sensitive, but more time-relevant than a maintenance purge."
   },
+  "scripts/commerce-flash-sales-tick.ts": {
+    workClass: "background_sync",
+    rationale:
+      'Scheduled status-derivation tick (commerce:flash-sales:tick, Issue #26), every 1-5 minutes — same recurring-but-not-latency-sensitive profile as blog:publish:scheduled; tickFlashSalesForTenant passes workClass: "background_sync" explicitly.'
+  },
   "scripts/blog-portable-text-backfill.ts": {
     workClass: "maintenance",
     rationale:

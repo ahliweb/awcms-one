@@ -26,7 +26,7 @@ import type {
   CreateProductInput,
   UpdateProductInput
 } from "../domain/product-validation";
-import { computeFinalPrice } from "../domain/price-calculation";
+import { computeFinalPrice, normalizeMoney } from "../domain/price-calculation";
 import { reconcileSizeChart, type SizeChartType } from "../domain/size-chart";
 import type { SubscriptionPeriod } from "../domain/subscription-period";
 import type { ServiceFormField } from "../domain/service-form-validation";
@@ -233,7 +233,6 @@ export type ProductRecord = {
   sizeChartDetails: unknown | null;
   serviceForm: ServiceFormField[] | null;
   subscriptionPeriod: SubscriptionPeriod | null;
-  downloadLink: string | null;
   allowDp: boolean;
   allowFreeShipping: boolean;
   variantAttributes: VariantAttributeGroup[] | null;
@@ -254,7 +253,19 @@ export type ProductRecord = {
  * return) rather than a convention every route author has to remember to
  * honour by hand. Used only by `src/pages/admin/commerce.astro`.
  */
-export type ProductAdminRecord = ProductRecord & { costPrice: string | null };
+export type ProductAdminRecord = ProductRecord & {
+  costPrice: string | null;
+  /**
+   * A digital product's download link — the thing a customer PAYS for
+   * (`type: "digital"`). Issue #26 moved it off the public `ProductRecord`
+   * after the manager's review of #37: on the catalog read model it would
+   * have handed every reader the paid asset for free. It is delivered to a
+   * customer only through the order path (Issue #29), never through the
+   * catalog. Same TYPE-level enforcement `costPrice` gets, for the same
+   * reason: a public route cannot return it by accident.
+   */
+  downloadLink: string | null;
+};
 
 function toRecord(row: ProductRow): ProductRecord {
   return {
@@ -266,22 +277,22 @@ function toRecord(row: ProductRow): ProductRecord {
     slug: row.slug,
     description: row.description,
     digitalNote: row.digital_note,
-    price: row.price,
+    price: normalizeMoney(row.price),
     discountPercent: row.discount_percent,
     stock: row.stock,
     status: row.status as ProductStatus,
     label: row.label,
     labelColor: row.label_color,
-    priceLevel2: row.price_level_2,
-    priceLevel3: row.price_level_3,
-    priceLevel4: row.price_level_4,
+    priceLevel2: normalizeMoney(row.price_level_2),
+    priceLevel3: normalizeMoney(row.price_level_3),
+    priceLevel4: normalizeMoney(row.price_level_4),
     minPurchase: row.min_purchase,
     weightGrams: row.weight_grams,
     manualRating: row.manual_rating,
     manualSoldCount: row.manual_sold_count,
     withInsurance: row.with_insurance,
     insuranceRequired: row.insurance_required,
-    insuranceFee: row.insurance_fee,
+    insuranceFee: normalizeMoney(row.insurance_fee),
     promoBannerShow: row.promo_banner_show,
     promoBannerTitle: row.promo_banner_title,
     promoBannerSubtitle: row.promo_banner_subtitle,
@@ -293,7 +304,6 @@ function toRecord(row: ProductRow): ProductRecord {
     sizeChartDetails: row.size_chart_details,
     serviceForm: row.service_form,
     subscriptionPeriod: row.subscription_period as SubscriptionPeriod | null,
-    downloadLink: row.download_link,
     allowDp: row.allow_dp,
     allowFreeShipping: row.allow_free_shipping,
     variantAttributes: row.variant_attributes,
@@ -306,7 +316,11 @@ function toRecord(row: ProductRow): ProductRecord {
 }
 
 function toAdminRecord(row: ProductRow): ProductAdminRecord {
-  return { ...toRecord(row), costPrice: row.cost_price };
+  return {
+    ...toRecord(row),
+    costPrice: normalizeMoney(row.cost_price),
+    downloadLink: row.download_link
+  };
 }
 
 /** `GET /api/v1/commerce/products` query filters — see `domain/product-sort.ts`'s header for the `sort` values. */
@@ -975,6 +989,15 @@ export type ProductVariantDTO = {
 export type ProductWithRelations = ProductRecord & {
   images: ProductImageDTO[];
   variants: ProductVariantDTO[];
+  /**
+   * `sizeChartMediaId` resolved to a public URL through the same
+   * `MediaLibraryPort` batch that resolves `images[]`/`variants[]` (Issue
+   * #26, a #23 follow-up): a storefront with no media client of its own can
+   * render an image size chart from the DTO alone. `null` when the type is
+   * not `image`, no media id is set, or the object is not publicly
+   * resolvable — the same three-way silence `images[].publicUrl` keeps.
+   */
+  sizeChartImageUrl: string | null;
 };
 
 function toImageDTO(
@@ -1006,10 +1029,10 @@ function toVariantDTO(
       ? (resolved.get(row.image_media_object_id)?.publicUrl ?? null)
       : null,
     sku: row.sku,
-    price: row.price,
-    priceLevel2: row.price_level_2,
-    priceLevel3: row.price_level_3,
-    priceLevel4: row.price_level_4,
+    price: normalizeMoney(row.price),
+    priceLevel2: normalizeMoney(row.price_level_2),
+    priceLevel3: normalizeMoney(row.price_level_3),
+    priceLevel4: normalizeMoney(row.price_level_4),
     stock: row.stock,
     weightGrams: row.weight_grams,
     sortOrder: row.sort_order
@@ -1054,6 +1077,11 @@ export async function attachProductRelations(
       mediaObjectIds.add(variant.image_media_object_id);
     }
   }
+  for (const product of products) {
+    if (product.sizeChartType === "image" && product.sizeChartMediaId) {
+      mediaObjectIds.add(product.sizeChartMediaId);
+    }
+  }
 
   const resolvedMedia =
     mediaObjectIds.size > 0
@@ -1079,6 +1107,10 @@ export async function attachProductRelations(
   return products.map((product) => ({
     ...product,
     images: imagesByProduct.get(product.id) ?? [],
-    variants: variantsByProduct.get(product.id) ?? []
+    variants: variantsByProduct.get(product.id) ?? [],
+    sizeChartImageUrl:
+      product.sizeChartType === "image" && product.sizeChartMediaId
+        ? (resolvedMedia.get(product.sizeChartMediaId)?.publicUrl ?? null)
+        : null
   }));
 }

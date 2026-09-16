@@ -35,3 +35,4 @@
  * page envelope).
  */
 export type { ProductType, ProductStatus } from "./katalog";
+export type { FlashSaleStatus, VoucherType, PopupFrequency } from "./promosi";

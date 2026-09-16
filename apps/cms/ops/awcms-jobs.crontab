@@ -48,6 +48,13 @@ AWCMS_LOCK=/home/admin1/awcms-jobs/locks
 # retention).
 0 4 * * * /usr/bin/flock -n $AWCMS_LOCK/comments-retention.lock $AWCMS_RUN_JOB comments:retention >> $AWCMS_JOB_LOG/comments-retention.log 2>&1
 
+# commerce — Recompute every active tenant's non-draft, non-ended flash sales
+# against now() and persist the derived status, firing
+# commerce.flash_sale.started/.ended on the transition. Idempotent — a sale
+# whose derived status has not changed since the last tick is a no-op on
+# re-run.
+*/5 * * * * /usr/bin/flock -n $AWCMS_LOCK/commerce-flash-sales-tick.lock $AWCMS_RUN_JOB commerce:flash-sales:tick >> $AWCMS_JOB_LOG/commerce-flash-sales-tick.log 2>&1
+
 # data_lifecycle — Archive (where applicable) and purge rows past retention
 # for every registered generic-execution descriptor; record a dry-run backlog
 # snapshot for every delegated (existing-adopter) descriptor.
