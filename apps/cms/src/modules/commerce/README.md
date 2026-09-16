@@ -7,19 +7,24 @@ Tenant-scoped product **categories** (hierarchical, self-referencing) and
 `commerce_bj_mart.{categories,products}` schema — plus, since Issue #26, the
 **marketing surface** BjekMart's home page and promotions run on: flash
 sales, vouchers, sliders, testimonials, a promo popup, and a per-tenant
-store-settings document. Issue #4 (part of epic #1) shipped the catalog
-core; Issue #23 (part of epic #21) brought it to full product-model parity
-with the legacy schema; Issue #26 (same epic) added the marketing tables.
+store-settings document — and, since Issue #29, **customers, orders and
+reviews**: a guest checkout that never requires an account, a cart quote that
+re-prices server-side, order tracking and cancellation by `orderCode` +
+phone, manual payment confirmations, and a review left from a completed
+order. Issue #4 (part of epic #1) shipped the catalog core; Issue #23 (part
+of epic #21) brought it to full product-model parity with the legacy schema;
+Issue #26 (same epic) added the marketing tables; Issue #29 (same epic) added
+customers, orders and the anonymous storefront checkout surface.
 
-| Aspect      | Value                                                                                                                                                                                                                                                                                                                                                                                                            |
-| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Key / type  | `commerce` · `domain`, `isCore: false`                                                                                                                                                                                                                                                                                                                                                                           |
-| Tables      | `awcms_commerce_categories`, `awcms_commerce_products` (`sql/153`, extended `sql/156`), `awcms_commerce_product_images`, `awcms_commerce_product_variants` (`sql/157`); `awcms_commerce_flash_sales`, `awcms_commerce_flash_sale_products`, `awcms_commerce_vouchers`, `awcms_commerce_sliders`, `awcms_commerce_testimonials`, `awcms_commerce_popups` (`sql/161`), `awcms_commerce_store_settings` (`sql/162`) |
-| Permissions | `categories.{read,create,update,delete,restore}`, `products.{read,create,update,delete,restore}` (`sql/154`, `sql/158`); `{flash_sales,vouchers,sliders,testimonials,popups}.{read,create,update,delete}`, `settings.{read,update}` (`sql/163`) — 32 in all                                                                                                                                                      |
-| API         | `/api/v1/commerce/{categories,products,flash-sales,vouchers,sliders,testimonials,popups,store-settings}` (`openapi/modules/commerce.openapi.yaml`)                                                                                                                                                                                                                                                               |
-| Events      | `commerce.product.{created,updated,status_changed}`; `commerce.flash_sale.{started,ended}` (Issue #26, emitted by the tick job)                                                                                                                                                                                                                                                                                  |
-| Depends on  | `tenant_admin`, `identity_access`, `domain_event_runtime`, `media_library` (product images, sliders, testimonial avatars, the popup image and the store logo/favicon all resolve through `MediaLibraryPort`)                                                                                                                                                                                                     |
-| Jobs        | `commerce:flash-sales:tick` (`scripts/commerce-flash-sales-tick.ts`, every 5 minutes — persists each sale's derived status and fires the two flash-sale events)                                                                                                                                                                                                                                                  |
+| Aspect      | Value                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Key / type  | `commerce` · `domain`, `isCore: false`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| Tables      | `awcms_commerce_categories`, `awcms_commerce_products` (`sql/153`, extended `sql/156`), `awcms_commerce_product_images`, `awcms_commerce_product_variants` (`sql/157`); `awcms_commerce_flash_sales`, `awcms_commerce_flash_sale_products`, `awcms_commerce_vouchers`, `awcms_commerce_sliders`, `awcms_commerce_testimonials`, `awcms_commerce_popups` (`sql/161`), `awcms_commerce_store_settings` (`sql/162`); `awcms_commerce_customers`, `awcms_commerce_customer_addresses`, `awcms_commerce_orders`, `awcms_commerce_order_items`, `awcms_commerce_order_events`, `awcms_commerce_payment_confirmations`, `awcms_commerce_reviews`, `awcms_commerce_wishlists` (`sql/165`) |
+| Permissions | `categories.{read,create,update,delete,restore}`, `products.{read,create,update,delete,restore}` (`sql/154`, `sql/158`); `{flash_sales,vouchers,sliders,testimonials,popups}.{read,create,update,delete}`, `settings.{read,update}` (`sql/163`); `orders.{read,update}`, `customers.{read,update}`, `reviews.{read,update,delete}` (`sql/166`, deliberately no create/delete for orders or customers — see "Customers, orders and reviews" below) — 39 in all                                                                                                                                                                                                                     |
+| API         | `/api/v1/commerce/{categories,products,flash-sales,vouchers,sliders,testimonials,popups,store-settings,orders,customers,reviews}` (owner side); `/api/v1/commerce/storefront/{cart/quote,orders,reviews}` (anonymous side) (`openapi/modules/commerce.openapi.yaml`)                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Events      | `commerce.product.{created,updated,status_changed}`; `commerce.flash_sale.{started,ended}` (Issue #26, emitted by the tick job); `commerce.order.{created,paid,status_changed,cancelled,expired}`, `commerce.voucher.redeemed`, `commerce.review.published` (Issue #29)                                                                                                                                                                                                                                                                                                                                                                                                           |
+| Depends on  | `tenant_admin`, `identity_access`, `domain_event_runtime`, `media_library` (product images, sliders, testimonial avatars, the popup image and the store logo/favicon all resolve through `MediaLibraryPort`), `module_management` (the anonymous storefront tenant resolver checks the module is enabled for the tenant before answering)                                                                                                                                                                                                                                                                                                                                         |
+| Jobs        | `commerce:flash-sales:tick` (`scripts/commerce-flash-sales-tick.ts`, every 5 minutes — persists each sale's derived status and fires the two flash-sale events); `commerce:orders:expire` (`scripts/commerce-orders-expire.ts`, every 5 minutes — expires unpaid orders past the store's configured window, restocks their lines, and fires `commerce.order.expired`)                                                                                                                                                                                                                                                                                                             |
 
 ## What Issue #23 adds, and what stays a later increment
 
@@ -35,7 +40,10 @@ Issue #4's slice took the catalog core (`categoryId`, `type`, `sku`, `name`,
 - **Merchandising**: `isFeatured`, `isRecommended` — explicit flags that
   replace BjekMart's ad-hoc `featuredProducts`/`recommendedProducts`
   heuristics; `manualRating`/`manualSoldCount`, exposed on the DTO as
-  `averageRating`/`soldCount` until Issue #29 lands real reviews/orders.
+  `averageRating`/`soldCount` — Issue #29's real reviews and order line counts
+  do not feed back into these two columns; they stay the merchant-entered
+  seed values, and reconciling them against real activity is a later
+  increment.
 - **Insurance**: `withInsurance`, `insuranceRequired`, `insuranceFee`.
 - **Promo banner**: `promoBannerShow` plus title/subtitle/badge/icon/color.
 - **Size chart**: `sizeChartType` (`none`/`image`/`table`), `sizeChartMediaId`
@@ -201,10 +209,14 @@ the family's `read` permission and returning only what a shopper may see:
 
 **Voucher arithmetic is exact** (`domain/voucher-arithmetic.ts`): integer
 cents, half-up, a percentage capped by `maxDiscount`, `free_shipping` a flag
-rather than an amount; `POST /vouchers/validate` is a READ — redemption
-belongs to the order that uses the code (Issue #29). **Flash-sale status is
-derived**, never trusted from the column: the editor sets `draft`/`scheduled`
-and `commerce:flash-sales:tick` persists what `now()` implies, firing
+rather than an amount; `POST /vouchers/validate` stays a READ. Redemption now
+belongs to the order that uses the code (Issue #29): `application/cart-quote-service.ts`
+and `application/order-directory.ts` both call the SAME `evaluateVoucher`
+this section describes, and only order creation increments `used_count` —
+inside the same transaction as the order insert, so a voucher's quota cannot
+be oversold by two concurrent checkouts. **Flash-sale status is derived**,
+never trusted from the column: the editor sets `draft`/`scheduled` and
+`commerce:flash-sales:tick` persists what `now()` implies, firing
 `commerce.flash_sale.{started,ended}` on the transition and never twice.
 
 **Store settings are one versioned `jsonb` document per tenant**
@@ -225,11 +237,122 @@ simple one; every `toRecord` in this module now passes money through
 depend on which protocol served the row.
 
 **What left the public product DTO in this issue:** `downloadLink` — a digital
-product's paid asset, now on `ProductAdminRecord` beside `costPrice` and
-delivered only through the order path (Issue #29). **What joined it:**
-`sizeChartImageUrl`, resolved through the same media batch as `images[]`.
+product's paid asset, now on `ProductAdminRecord` beside `costPrice`. **What
+joined it:** `sizeChartImageUrl`, resolved through the same media batch as
+`images[]`. Issue #29 does not, in fact, deliver `downloadLink` through the
+order path either — see "What Issue #29 does not do" below; it stays a gap
+recorded for #31, not a silently-closed forward reference.
 
-## Admin screens: eight, full CRUD (Issues #23 and #26)
+## Customers, orders and reviews (Issue #29)
+
+A guest checkout: the shopper never creates an account, and a customer row
+(`awcms_commerce_customers`, unique on `(tenant_id, phone)` among live rows)
+is found-or-created the moment an order is placed. `domain/phone-normalisation.ts`
+turns whatever the checkout form sent into E.164 or refuses it outright — the
+phone number, not a session, is the credential the storefront uses for every
+subsequent lookup, so a wrong number is treated as "not authenticated", not
+"validation error" (`maskPhone` is what the admin UI and logs show instead of
+the raw number).
+
+**The public surface is entirely anonymous**, under
+`/api/v1/commerce/storefront/{cart/quote,orders,reviews}`, tenant-resolved
+from the request Origin/Host the same way `newsletter` and the marketing
+public reads are (`application/public-commerce-tenant.ts` mirrors
+`newsletter`'s `public-newsletter-tenant.ts` file for file) — never a caller
+header, a neutral 404 for an unresolvable tenant or a disabled module, `Vary:
+Origin`, the origin echoed back verbatim and never `*`, no credentials. Every
+POST is rate-limited per IP and reads its body through `readJsonBody`, never
+raw `request.json()`.
+
+- **`POST /storefront/cart/quote`** re-prices a cart from tenant-side product/
+  variant/flash-sale/voucher state — never trusts a client-supplied price —
+  via `domain/cart-quote.ts`'s `quoteCart`, called from
+  `application/cart-quote-service.ts`. The arithmetic order is fixed:
+  subtotal → voucher discount → shipping (zeroed by the voucher's
+  `freeShipping` flag or by the store's free-shipping threshold, only when
+  every line allows free shipping) → insurance (`max(minFee, subtotal ×
+ratePercent)`, forced on when any line requires it) → tax (a percentage of
+  `subtotal − discount`) → total. `previousUnitPrice` is always `null` and a
+  `"price_changed"` line-diff is never emitted — there is no client-supplied
+  expected price to diff against in this contract, a documented gap rather
+  than an oversight (`domain/cart-quote.ts`'s header).
+- **`POST /storefront/orders`** creates the order from the same quote inputs,
+  inside one transaction: customer found-or-created, address saved, stock
+  and flash-sale quota decremented, the voucher's `used_count` incremented,
+  `order_code` minted (`domain/order-code.ts`, `BJM-YYYYMMDD-XXXX`, excluding
+  `0/O/1/I`), and `commerce.order.created` published. Idempotency is the
+  SHARED store (`_shared/idempotency.ts`), not a bespoke column — keyed
+  `(tenantId, "commerce.orders.create", idempotencyKey)` — so a retried
+  submit replays the first response rather than creating a second order; a
+  race between two concurrent identical submits is caught centrally
+  (`IdempotencyRaceLostError`) and answered as a replay, not a 500.
+- **`GET /storefront/orders/:orderCode`**, **`POST .../cancel`**, **`POST
+.../payment-confirmations`**, **`POST /storefront/reviews`** all take
+  `orderCode` + phone as the credential pair, checked against the order's own
+  `customer_id` before anything is read or written.
+- **Payment proof upload is a stub in this increment.** Both
+  `.../payment-proof/upload-sessions` endpoints always answer `503
+MEDIA_UNAVAILABLE` (`application/order-directory.ts`'s header explains why:
+  no media-upload contract for an anonymous, unauthenticated caller exists
+  yet in `media_library`) — a manual payment confirmation still works without
+  a photo; only the buyer-uploaded-proof path is deferred, recorded for #31.
+- **Order status is a small state machine** (`domain/order-status.ts`):
+  `LEGAL_ORDER_STATUS_TRANSITIONS` plus `actorMayApplyOrderStatus` decide, per
+  actor kind (customer vs. admin vs. system), which transition is legal —
+  a customer may only cancel from a payable state, an admin drives the
+  fulfilment states, and the system (the expiry job) may only expire an
+  unpaid order past the store's configured window
+  (`store-settings.orders.expiryHours`, default 24). Every transition appends
+  an `awcms_commerce_order_events` row (append-only, no `deleted_at`) rather
+  than only mutating the order's own `status` column, so the full history
+  survives even once the order itself ages out under retention.
+- **`commerce:orders:expire`** (`scripts/commerce-orders-expire.ts`, every 5
+  minutes) lists orders past their expiry window, transitions each to
+  `expired`, restocks its lines (including flash-sale quota), and fires
+  `commerce.order.expired` — the same restock path `cancelOrderByCustomer`
+  uses, so "cancelled" and "expired" cannot diverge in what they give back.
+- **Reviews** are gated on having a COMPLETED order for that product: a guest
+  cannot review a product they never bought. `POST /storefront/reviews`
+  requires the credential pair above; the admin `reviews` screen moderates
+  (publish/reject) and can hard-delete a review, the only hard-delete surface
+  this module has (`reviews.delete`, revoke-only entitlement).
+- **A guest customer cannot be honestly represented in `ADR-0094`'s
+  subject-data vocabulary** — `SubjectDataColumn.references` names only
+  staff-side identity concepts (`tenant_user`/`identity`/`profile`/
+  `principal`), and a phone-only customer with no account is none of those.
+  All eight new tables are declared `unreachableBySubject: true` in
+  `module.ts`, the same shape `commerce.testimonials` already used for an
+  anonymous submitter — a documented limitation of the vocabulary, not a
+  privacy decision made in this module.
+
+### What Issue #29 does not do
+
+- **No digital-product delivery.** `downloadLink` (Issue #23) is still never
+  returned by any order or storefront endpoint — a paid order for a digital
+  product does not hand back the asset. Recorded for #31, not silently
+  dropped.
+- **No customer account, login, or order history across orders.** Every
+  lookup is single-order, by `orderCode` + phone; there is no "my orders"
+  list for a returning shopper in this increment.
+- **`awcms_commerce_wishlists` ships its schema but no API route.** The
+  issue's own words: "Wishlist stays client-side in this increment (no
+  account) — no endpoint" — there is no customer identity yet to persist one
+  against. The table exists so a later, account-bearing increment does not
+  need its own migration.
+- **No `orders.create`/`orders.delete`/`customers.create`/`customers.delete`
+  admin permissions.** No admin route creates or hard-deletes an order or a
+  customer by design — an order only ever comes from the storefront's own
+  `POST /storefront/orders`, and a customer row only from the
+  find-or-create that order creation does.
+- **No formal `DATABASE_URL`-gated integration test suite** for order
+  creation, the double-submit idempotency replay, the wrong-phone credential
+  check, the expire-then-restock cycle, or cross-tenant RLS isolation on the
+  new tables. All five were proven by hand against a real Postgres instance
+  during this issue's own verification (see the PR's Verification section)
+  rather than committed as `tests/integration/*.test.ts` files — a real gap
+  in the test suite's durability, flagged here rather than left implicit.
+
+## Admin screens: eight, full CRUD (Issues #23 and #26); three more (Issue #29)
 
 `/admin/commerce` (`src/pages/admin/commerce.astro`) — filters
 (`categoryId`/`status`/`q`/`featured`/`recommended`), a create form covering
@@ -249,21 +372,29 @@ delete, restore.
 Issue #26 adds `/admin/commerce-flash-sales`, `-vouchers`, `-sliders`,
 `-testimonials`, `-popup` and `-settings`, each a list + create form + per-row
 edit/delete against its owner routes (the settings screen is one form with a
-"reset to defaults" action). All eight screens are off
+"reset to defaults" action). Issue #29 adds `/admin/commerce-orders` (list +
+filter by status, detail view, status transition, payment-confirmation
+review), `-customers` (list, detail, edit), and `-reviews` (list, moderate,
+delete) — no create form on any of the three, since none of their
+permissions include `create`. All eleven screens are off
 `scripts/admin-screen-coverage-ledger.ts`'s `NOT_YET_SCREENED` — every one of
-the 32 declared permissions is claimed by one of them, and
-`tests/admin-commerce-marketing-page-contract.test.ts` holds the six new ones
-to the same three properties the #23 screens satisfy.
+the 39 declared permissions is claimed by one of them, and
+`tests/admin-commerce-marketing-page-contract.test.ts` /
+`tests/admin-commerce-page-contract.test.ts` hold the new screens to the same
+properties the earlier ones satisfy.
 
 ## Deliberately not here
 
-- **No cart/checkout/payment/orders/shipping/affiliate-link surface** —
-  Issue #29 adds customers, orders and the anonymous storefront endpoints.
-- **No restore for the marketing tables.** Soft delete only; a deleted
-  voucher or slider is recreated, not brought back — the audit trail keeps the
-  record.
-- **No voucher redemption.** `validate` reads; the order that uses a code
-  redeems it (Issue #29), and `used_count` moves there.
+- **No shipping-carrier integration or affiliate-link surface.**
+  `shippingMethod` on an order is a merchant-defined label, not a live rate
+  or tracking number from a carrier API — out of scope for this epic so far.
+- **No restore for the marketing tables, nor for orders/customers/reviews.**
+  Soft delete only; a deleted voucher, slider, order or customer is
+  recreated, not brought back — the audit trail keeps the record. `order_code`
+  is the one exception to "unique among live rows": its uniqueness index is
+  NEVER scoped to `deleted_at IS NULL` (`sql/165`'s header), because an order
+  code must stay unique for the tenant forever, not just while the order is
+  live.
 - **No full-text relevance ranking on `q`.** The trigram/`ILIKE` match
   (`sql/159`) is substring search, not a ranked search index — `site_search`
   is this base's cross-content search module, and `commerce` does not

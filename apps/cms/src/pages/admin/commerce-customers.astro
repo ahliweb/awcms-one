@@ -1,0 +1,229 @@
+---
+/** Commerce customer list + level/status edit screen (Issue #29). A customer row is created only by a guest order (`findOrCreateCustomerByPhone`) — there is no create form here, matching `commerce-permissions.ts`'s "no `customers.create` permission" decision. */
+import AdminLayout from "../../layouts/AdminLayout.astro";
+import "../../styles/admin-screens.css";
+import { loadAdminScreen } from "../../lib/auth/admin-screen";
+import { logAdminPageError } from "../../lib/logging/error-log";
+import { getTranslatorFor } from "../../lib/i18n";
+import { listCustomers } from "../../modules/commerce/application/customer-directory";
+
+const ssr = Astro.locals.ssrContext!;
+const { t, tn } = getTranslatorFor(Astro.locals.locale);
+
+const screen = await loadAdminScreen({
+  ssr,
+  workClass: "interactive",
+  authorize: {
+    moduleKey: "commerce",
+    activityCode: "customers",
+    action: "read"
+  },
+  load: async ({ tx, can }) => {
+    const page = await listCustomers(tx, ssr.tenantId, null);
+    const canUpdate = await can({
+      moduleKey: "commerce",
+      activityCode: "customers",
+      action: "update"
+    });
+
+    return { customers: page.items, canUpdate };
+  },
+  onError: (error) => {
+    logAdminPageError(
+      "admin/commerce-customers.astro: failed to list customers",
+      error,
+      { correlationId: Astro.locals.correlationId }
+    );
+  }
+});
+
+const canRead = screen.state !== "denied";
+const loadError = screen.state === "error";
+const customers = screen.state === "allowed" ? screen.data.customers : [];
+const canUpdate = screen.state === "allowed" && screen.data.canUpdate;
+---
+
+<AdminLayout
+  title={t("Customers")}
+  description={t(
+    "Guest checkout customers — one row per phone number that has placed an order."
+  )}
+>
+  {
+    !canRead && (
+      <p class="state-notice fade-in-up" id="customers-denied">
+        {t("You do not have permission to view customers.")}
+      </p>
+    )
+  }
+  {
+    canRead && loadError && (
+      <p class="state-notice fade-in-up" id="customers-error">
+        {t("Customers could not be loaded right now. Please try again later.")}
+      </p>
+    )
+  }
+
+  {
+    canRead && !loadError && (
+      <p
+        id="customer-action-error"
+        class="admin-create-error"
+        role="alert"
+        hidden
+      />
+    )
+  }
+
+  {
+    canRead && !loadError && (
+      <div class="data-table-scroll fade-in-up">
+        <table
+          class="data-table data-table--stack"
+          id="commerce-customers-table"
+        >
+          <caption>
+            {tn("{count} customer", "{count} customers", customers.length, {
+              count: customers.length
+            })}
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">{t("Name")}</th>
+              <th scope="col">{t("Phone")}</th>
+              <th scope="col">{t("E-mail")}</th>
+              <th scope="col">{t("Level")}</th>
+              <th scope="col">{t("Status")}</th>
+              {canUpdate && <th scope="col">{t("Actions")}</th>}
+            </tr>
+          </thead>
+          <tbody>
+            {customers.length === 0 ? (
+              <tr>
+                <td class="data-table-empty" colspan={canUpdate ? 6 : 5}>
+                  <div class="empty-state">
+                    <span class="empty-state-icon" aria-hidden="true">
+                      ◇
+                    </span>
+                    <span class="empty-state-title">
+                      {t("No customers yet")}
+                    </span>
+                    <span class="empty-state-text">
+                      {t("Customers appear here after their first order.")}
+                    </span>
+                  </div>
+                </td>
+              </tr>
+            ) : (
+              customers.map((customer) => (
+                <tr data-customer-row={customer.id}>
+                  <td data-label="Name">{customer.name}</td>
+                  <td data-label="Phone">
+                    <span class="cell-code">{customer.phoneMasked}</span>
+                  </td>
+                  <td data-label="E-mail">{customer.email ?? "—"}</td>
+                  <td
+                    data-label="Level"
+                    class={canUpdate ? "stacked-block" : ""}
+                  >
+                    {canUpdate ? (
+                      <select
+                        class="customer-level-input"
+                        data-customer-level={customer.id}
+                      >
+                        {[1, 2, 3, 4].map((level) => (
+                          <option
+                            value={level}
+                            selected={customer.level === level}
+                          >
+                            {level}
+                          </option>
+                        ))}
+                      </select>
+                    ) : (
+                      customer.level
+                    )}
+                  </td>
+                  <td
+                    data-label="Status"
+                    class={canUpdate ? "stacked-block" : ""}
+                  >
+                    {canUpdate ? (
+                      <select
+                        class="customer-status-input"
+                        data-customer-status={customer.id}
+                      >
+                        <option
+                          value="active"
+                          selected={customer.status === "active"}
+                        >
+                          {t("Active")}
+                        </option>
+                        <option
+                          value="blocked"
+                          selected={customer.status === "blocked"}
+                        >
+                          {t("Blocked")}
+                        </option>
+                      </select>
+                    ) : (
+                      customer.status
+                    )}
+                  </td>
+                  {canUpdate && (
+                    <td data-label="Actions" class="stacked-block">
+                      <div class="row-actions">
+                        <button
+                          type="button"
+                          class="module-toggle customer-save-btn"
+                          data-customer-id={customer.id}
+                        >
+                          {t("Save")}
+                        </button>
+                      </div>
+                    </td>
+                  )}
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
+    )
+  }
+</AdminLayout>
+
+<script>
+  import {
+    messageBox,
+    mutateAndReload,
+    onAction,
+    sendJson
+  } from "../../lib/ui/admin-form-client";
+
+  const actionError = messageBox("customer-action-error");
+
+  onAction(".customer-save-btn", async (button) => {
+    const id = button.dataset.customerId;
+    if (!id) return;
+
+    const levelSelect = document.querySelector<HTMLSelectElement>(
+      `[data-customer-level="${id}"]`
+    );
+    const statusSelect = document.querySelector<HTMLSelectElement>(
+      `[data-customer-status="${id}"]`
+    );
+
+    await mutateAndReload(
+      button,
+      actionError,
+      () =>
+        sendJson("PATCH", `/api/v1/commerce/customers/${id}`, {
+          level: levelSelect ? Number(levelSelect.value) : undefined,
+          status: statusSelect?.value
+        }),
+      "Could not update the customer. Please try again.",
+      "Saving…"
+    );
+  });
+</script>

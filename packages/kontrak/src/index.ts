@@ -36,3 +36,10 @@
  */
 export type { ProductType, ProductStatus } from "./katalog";
 export type { FlashSaleStatus, VoucherType, PopupFrequency } from "./promosi";
+export type {
+  OrderStatus,
+  PaymentMethod,
+  PaymentStatus,
+  ShippingMethod,
+  CartLineStatus
+} from "./pesanan";

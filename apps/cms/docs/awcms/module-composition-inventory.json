@@ -67,13 +67,14 @@
         "tenant_admin",
         "identity_access",
         "domain_event_runtime",
-        "media_library"
+        "media_library",
+        "module_management"
       ],
       "capabilitiesProvided": [],
       "capabilitiesConsumed": [],
-      "permissionCount": 32,
-      "navigationCount": 8,
-      "jobCount": 1,
+      "permissionCount": 39,
+      "navigationCount": 11,
+      "jobCount": 2,
       "hasHealthCheck": false,
       "hasReadinessCheck": false,
       "deploymentProfiles": null

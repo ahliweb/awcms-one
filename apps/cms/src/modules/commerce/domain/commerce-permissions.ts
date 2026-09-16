@@ -138,3 +138,41 @@ export const COMMERCE_SETTINGS_PERMISSIONS = {
   read: "commerce.settings.read",
   update: "commerce.settings.update"
 } as const;
+
+/**
+ * Transactional-surface activity codes (Issue #29). `orders`/`customers`
+ * get only `read`/`update` — no `create`/`delete` action, and deliberately
+ * so: an order/customer is created only through the anonymous storefront
+ * path (which checks NO permission at all — see this file's header on "a
+ * permission with no enforcing code"), and this increment ships no admin
+ * route that creates one directly or hard-deletes one. Declaring a
+ * `create`/`delete` permission with nothing to enforce it is exactly the
+ * defect class this file's header warns against; add the action in the
+ * same change that ships its enforcing route. `reviews` gets
+ * `read`/`update`/`delete`: a review is likewise created anonymously, but
+ * an admin DOES get a real soft-delete route in this increment. `update`
+ * on both `orders` and `reviews` means MODERATION/status-transition, not an
+ * author editing their own text.
+ */
+export const COMMERCE_ORDERS_ACTIVITY_CODE = "orders";
+export const COMMERCE_CUSTOMERS_ACTIVITY_CODE = "customers";
+export const COMMERCE_REVIEWS_ACTIVITY_CODE = "reviews";
+
+export const COMMERCE_ORDER_PERMISSIONS = {
+  /** Also gates payment-confirmation review reads and the CSV export. */
+  read: "commerce.orders.read",
+  /** Also gates a status transition (including an admin-initiated cancel) and a payment-confirmation accept/reject. */
+  update: "commerce.orders.update"
+} as const;
+
+export const COMMERCE_CUSTOMER_PERMISSIONS = {
+  read: "commerce.customers.read",
+  update: "commerce.customers.update"
+} as const;
+
+export const COMMERCE_REVIEW_PERMISSIONS = {
+  read: "commerce.reviews.read",
+  /** Moderation: publish or reject a pending review. */
+  update: "commerce.reviews.update",
+  delete: "commerce.reviews.delete"
+} as const;

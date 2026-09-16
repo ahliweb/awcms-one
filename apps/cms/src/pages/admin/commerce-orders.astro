@@ -1,0 +1,210 @@
+---
+/** Commerce order list + status transition screen (Issue #29). Orders themselves are created only through the anonymous storefront path (`src/pages/api/v1/commerce/storefront/orders/index.ts`) — there is no create form here, matching `commerce-permissions.ts`'s "no `orders.create` permission" decision. */
+import AdminLayout from "../../layouts/AdminLayout.astro";
+import "../../styles/admin-screens.css";
+import { loadAdminScreen } from "../../lib/auth/admin-screen";
+import { logAdminPageError } from "../../lib/logging/error-log";
+import { getTranslatorFor } from "../../lib/i18n";
+import { listOrdersForAdmin } from "../../modules/commerce/application/order-directory";
+
+const ssr = Astro.locals.ssrContext!;
+const { t, tn } = getTranslatorFor(Astro.locals.locale);
+
+const ORDER_STATUSES = [
+  "pending_payment",
+  "paid",
+  "processing",
+  "shipped",
+  "completed",
+  "cancelled",
+  "expired"
+] as const;
+
+const screen = await loadAdminScreen({
+  ssr,
+  workClass: "interactive",
+  authorize: {
+    moduleKey: "commerce",
+    activityCode: "orders",
+    action: "read"
+  },
+  load: async ({ tx, can }) => {
+    const page = await listOrdersForAdmin(tx, ssr.tenantId, null);
+    const canUpdate = await can({
+      moduleKey: "commerce",
+      activityCode: "orders",
+      action: "update"
+    });
+
+    return { orders: page.items, canUpdate };
+  },
+  onError: (error) => {
+    logAdminPageError(
+      "admin/commerce-orders.astro: failed to list orders",
+      error,
+      {
+        correlationId: Astro.locals.correlationId
+      }
+    );
+  }
+});
+
+const canRead = screen.state !== "denied";
+const loadError = screen.state === "error";
+const orders = screen.state === "allowed" ? screen.data.orders : [];
+const canUpdate = screen.state === "allowed" && screen.data.canUpdate;
+---
+
+<AdminLayout
+  title={t("Orders")}
+  description={t("Guest checkout orders — status, payment, and totals.")}
+>
+  {
+    !canRead && (
+      <p class="state-notice fade-in-up" id="orders-denied">
+        {t("You do not have permission to view orders.")}
+      </p>
+    )
+  }
+  {
+    canRead && loadError && (
+      <p class="state-notice fade-in-up" id="orders-error">
+        {t("Orders could not be loaded right now. Please try again later.")}
+      </p>
+    )
+  }
+
+  {
+    canRead && !loadError && (
+      <p
+        id="order-action-error"
+        class="admin-create-error"
+        role="alert"
+        hidden
+      />
+    )
+  }
+
+  {
+    canRead && !loadError && (
+      <div class="data-table-scroll fade-in-up">
+        <table class="data-table data-table--stack" id="commerce-orders-table">
+          <caption>
+            {tn("{count} order", "{count} orders", orders.length, {
+              count: orders.length
+            })}
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">{t("Order code")}</th>
+              <th scope="col">{t("Customer")}</th>
+              <th scope="col">{t("Status")}</th>
+              <th scope="col">{t("Payment")}</th>
+              <th scope="col">{t("Total")}</th>
+              <th scope="col">{t("Placed")}</th>
+              {canUpdate && <th scope="col">{t("Actions")}</th>}
+            </tr>
+          </thead>
+          <tbody>
+            {orders.length === 0 ? (
+              <tr>
+                <td class="data-table-empty" colspan={canUpdate ? 7 : 6}>
+                  <div class="empty-state">
+                    <span class="empty-state-icon" aria-hidden="true">
+                      ◇
+                    </span>
+                    <span class="empty-state-title">{t("No orders yet")}</span>
+                    <span class="empty-state-text">
+                      {t(
+                        "Orders placed through the storefront will appear here."
+                      )}
+                    </span>
+                  </div>
+                </td>
+              </tr>
+            ) : (
+              orders.map((order) => (
+                <tr data-order-row={order.id}>
+                  <td data-label="Order code">
+                    <span class="cell-code">{order.orderCode}</span>
+                  </td>
+                  <td data-label="Customer">
+                    {order.customerName} ({order.customerPhoneMasked})
+                  </td>
+                  <td
+                    data-label="Status"
+                    class={canUpdate ? "stacked-block" : ""}
+                  >
+                    {canUpdate ? (
+                      <select
+                        class="order-status-input"
+                        data-order-status={order.id}
+                      >
+                        {ORDER_STATUSES.map((status) => (
+                          <option
+                            value={status}
+                            selected={order.status === status}
+                          >
+                            {status}
+                          </option>
+                        ))}
+                      </select>
+                    ) : (
+                      order.status
+                    )}
+                  </td>
+                  <td data-label="Payment">{order.paymentStatus}</td>
+                  <td data-label="Total">{order.total}</td>
+                  <td data-label="Placed">{order.createdAt}</td>
+                  {canUpdate && (
+                    <td data-label="Actions" class="stacked-block">
+                      <div class="row-actions">
+                        <button
+                          type="button"
+                          class="module-toggle order-status-save-btn"
+                          data-order-id={order.id}
+                        >
+                          {t("Save")}
+                        </button>
+                      </div>
+                    </td>
+                  )}
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
+    )
+  }
+</AdminLayout>
+
+<script>
+  import {
+    messageBox,
+    mutateAndReload,
+    onAction,
+    sendJson
+  } from "../../lib/ui/admin-form-client";
+
+  const actionError = messageBox("order-action-error");
+
+  onAction(".order-status-save-btn", async (button) => {
+    const id = button.dataset.orderId;
+    if (!id) return;
+
+    const status =
+      document.querySelector<HTMLSelectElement>(`[data-order-status="${id}"]`)
+        ?.value ?? "";
+    if (!status) return;
+
+    await mutateAndReload(
+      button,
+      actionError,
+      () =>
+        sendJson("PATCH", `/api/v1/commerce/orders/${id}/status`, { status }),
+      "Could not update the order status. Check the transition is legal from the order's current status.",
+      "Saving…"
+    );
+  });
+</script>

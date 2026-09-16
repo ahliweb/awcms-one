@@ -15,14 +15,27 @@ import {
   COMMERCE_TESTIMONIALS_ACTIVITY_CODE,
   COMMERCE_TESTIMONIAL_PERMISSIONS,
   COMMERCE_VOUCHERS_ACTIVITY_CODE,
-  COMMERCE_VOUCHER_PERMISSIONS
+  COMMERCE_VOUCHER_PERMISSIONS,
+  COMMERCE_ORDERS_ACTIVITY_CODE,
+  COMMERCE_ORDER_PERMISSIONS,
+  COMMERCE_CUSTOMERS_ACTIVITY_CODE,
+  COMMERCE_CUSTOMER_PERMISSIONS,
+  COMMERCE_REVIEWS_ACTIVITY_CODE,
+  COMMERCE_REVIEW_PERMISSIONS
 } from "./domain/commerce-permissions";
 import {
   COMMERCE_FLASH_SALE_ENDED_EVENT_TYPE,
   COMMERCE_FLASH_SALE_STARTED_EVENT_TYPE,
   COMMERCE_PRODUCT_CREATED_EVENT_TYPE,
   COMMERCE_PRODUCT_STATUS_CHANGED_EVENT_TYPE,
-  COMMERCE_PRODUCT_UPDATED_EVENT_TYPE
+  COMMERCE_PRODUCT_UPDATED_EVENT_TYPE,
+  COMMERCE_ORDER_CREATED_EVENT_TYPE,
+  COMMERCE_ORDER_PAID_EVENT_TYPE,
+  COMMERCE_ORDER_STATUS_CHANGED_EVENT_TYPE,
+  COMMERCE_ORDER_CANCELLED_EVENT_TYPE,
+  COMMERCE_ORDER_EXPIRED_EVENT_TYPE,
+  COMMERCE_VOUCHER_REDEEMED_EVENT_TYPE,
+  COMMERCE_REVIEW_PUBLISHED_EVENT_TYPE
 } from "./domain/commerce-events";
 
 /**
@@ -65,7 +78,13 @@ export const commerceModule = defineModule({
     "tenant_admin",
     "identity_access",
     "domain_event_runtime",
-    "media_library"
+    "media_library",
+    // Issue #29 — `application/public-commerce-tenant.ts` calls
+    // `fetchTenantModuleEntry` (`module_management`'s own application layer)
+    // to fail-closed when a tenant has not enabled `commerce`, the same
+    // dependency `newsletter`'s own public tenant resolver already declares
+    // for the identical call.
+    "module_management"
   ],
   type: "domain",
   isCore: false,
@@ -80,7 +99,14 @@ export const commerceModule = defineModule({
       COMMERCE_PRODUCT_UPDATED_EVENT_TYPE,
       COMMERCE_PRODUCT_STATUS_CHANGED_EVENT_TYPE,
       COMMERCE_FLASH_SALE_STARTED_EVENT_TYPE,
-      COMMERCE_FLASH_SALE_ENDED_EVENT_TYPE
+      COMMERCE_FLASH_SALE_ENDED_EVENT_TYPE,
+      COMMERCE_ORDER_CREATED_EVENT_TYPE,
+      COMMERCE_ORDER_PAID_EVENT_TYPE,
+      COMMERCE_ORDER_STATUS_CHANGED_EVENT_TYPE,
+      COMMERCE_ORDER_CANCELLED_EVENT_TYPE,
+      COMMERCE_ORDER_EXPIRED_EVENT_TYPE,
+      COMMERCE_VOUCHER_REDEEMED_EVENT_TYPE,
+      COMMERCE_REVIEW_PUBLISHED_EVENT_TYPE
     ]
   },
   /**
@@ -99,6 +125,16 @@ export const commerceModule = defineModule({
       schedule: { mode: "cron", expression: "*/5 * * * *", backlog: "bounded" },
       purpose:
         "Recompute every active tenant's non-draft, non-ended flash sales against now() and persist the derived status, firing commerce.flash_sale.started/.ended on the transition. Idempotent — a sale whose derived status has not changed since the last tick is a no-op on re-run.",
+      recommendedSchedule: "Every 1-5 minutes via cron/systemd timer.",
+      environmentNotes:
+        "No external provider call — pure database transition, safe to run in any deployment profile.",
+      safeInOfflineLan: true
+    },
+    {
+      command: "bun run commerce:orders:expire",
+      schedule: { mode: "cron", expression: "*/5 * * * *", backlog: "bounded" },
+      purpose:
+        "Move every pending_payment order in every active tenant whose expires_at has elapsed to expired, restocking its line items and un-redeeming its voucher (if any). Idempotent — an order already moved out of pending_payment is simply absent from the next tick's scan (FOR UPDATE SKIP LOCKED, bounded batch).",
       recommendedSchedule: "Every 1-5 minutes via cron/systemd timer.",
       environmentNotes:
         "No external provider call — pure database transition, safe to run in any deployment profile.",
@@ -161,6 +197,24 @@ export const commerceModule = defineModule({
       path: "/admin/commerce-settings",
       order: 8,
       requiredPermission: "commerce.settings.read"
+    },
+    {
+      labelKey: "admin.layout.nav_commerce_orders",
+      path: "/admin/commerce-orders",
+      order: 9,
+      requiredPermission: "commerce.orders.read"
+    },
+    {
+      labelKey: "admin.layout.nav_commerce_customers",
+      path: "/admin/commerce-customers",
+      order: 10,
+      requiredPermission: "commerce.customers.read"
+    },
+    {
+      labelKey: "admin.layout.nav_commerce_reviews",
+      path: "/admin/commerce-reviews",
+      order: 11,
+      requiredPermission: "commerce.reviews.read"
     }
   ],
   /**
@@ -613,6 +667,339 @@ export const commerceModule = defineModule({
       backupRestoreNotes:
         "Included in ordinary full-database backup/restore; no standalone archive artifact. A purged reset row is indistinguishable from a tenant that never saved settings — both read as the defaults.",
       executionMode: "generic"
+    },
+    /**
+     * Issue #29's eight transactional tables. `commerce.orders` is the one
+     * genuinely different shape in this array: an order is never
+     * soft-deleted by this module's own code (`sql/165`'s header — the
+     * `deleted_at` column exists only as a uniform cursor, always NULL), so
+     * the "purge already-soft-deleted rows" story every OTHER descriptor
+     * here tells does not apply to it at all. Its `retentionMaxDays` is
+     * deliberately the widest in this file — fiscal/statutory retention,
+     * not a housekeeping window — and `deletion.mode: "hard_delete"` stays
+     * technically accurate only because it is, in practice, UNREACHABLE:
+     * `cursorColumn: "deleted_at"` can never match a live order for the
+     * same NULL-cursor reason every sibling descriptor already relies on.
+     * `commerce.order_events` is the one exception in the OTHER direction:
+     * an append-only audit trail with no `deleted_at` column at all, so its
+     * cursor is `created_at` instead — a long window (it is evidence of
+     * every state transition an order went through), never purged in
+     * practice while the order it describes is still within ITS OWN
+     * retention window.
+     */
+    {
+      key: "commerce.customers",
+      tableName: "awcms_commerce_customers",
+      ownerModuleKey: "commerce",
+      scope: "tenant",
+      cursorColumn: "deleted_at",
+      retentionClass: "system_event",
+      retentionMinDays: 30,
+      retentionMaxDays: 3650,
+      defaultRetentionDays: 365,
+      partition: {
+        eligible: false,
+        rationale:
+          "A tenant's guest-checkout customer roster is bounded by its own order volume, nowhere near partition-worthy volume for a single storefront."
+      },
+      archive: {
+        archivable: false,
+        rationale:
+          "A name/phone/email/level/status row — reconstructible from the tenant's own order history and not evidence of anything on its own."
+      },
+      deletion: {
+        mode: "hard_delete",
+        rationale:
+          "The generic engine's only implemented mode. Safe here specifically because the cursor column (deleted_at) is NULL for every live row — see this array's header comment."
+      },
+      legalHold: { applicable: false, precedence: "not_applicable" },
+      requiredIndexes: [
+        {
+          columns: ["tenant_id", "deleted_at"],
+          purpose:
+            "awcms_commerce_customers_tenant_deleted_idx (sql/165) — the (tenant, cursor) composite the generic purge engine filters + orders by."
+        }
+      ],
+      batchLimit: 5000,
+      backupRestoreNotes:
+        "Included in ordinary full-database backup/restore; no standalone archive artifact.",
+      executionMode: "generic"
+    },
+    {
+      key: "commerce.customer_addresses",
+      tableName: "awcms_commerce_customer_addresses",
+      ownerModuleKey: "commerce",
+      scope: "tenant",
+      cursorColumn: "deleted_at",
+      retentionClass: "system_event",
+      retentionMinDays: 30,
+      retentionMaxDays: 3650,
+      defaultRetentionDays: 365,
+      partition: {
+        eligible: false,
+        rationale:
+          "Bounded by a tenant's own customer roster — a handful of saved addresses per customer at most."
+      },
+      archive: {
+        archivable: false,
+        rationale:
+          "A saved shipping address snapshot — reconstructible from the customer's own order history."
+      },
+      deletion: {
+        mode: "hard_delete",
+        rationale:
+          "The generic engine's only implemented mode; safe for the same NULL-cursor reason as every other descriptor here."
+      },
+      legalHold: { applicable: false, precedence: "not_applicable" },
+      requiredIndexes: [
+        {
+          columns: ["tenant_id", "deleted_at"],
+          purpose:
+            "awcms_commerce_customer_addresses_tenant_deleted_idx (sql/165) — the (tenant, cursor) composite the generic purge engine filters + orders by."
+        }
+      ],
+      batchLimit: 5000,
+      backupRestoreNotes:
+        "Included in ordinary full-database backup/restore; no standalone archive artifact.",
+      executionMode: "generic"
+    },
+    {
+      key: "commerce.orders",
+      tableName: "awcms_commerce_orders",
+      ownerModuleKey: "commerce",
+      scope: "tenant",
+      cursorColumn: "deleted_at",
+      retentionClass: "system_event",
+      // Fiscal/statutory retention, not a housekeeping window — an order is
+      // the tenant's own transaction record. Widest window in this module
+      // on purpose; see this array's header comment.
+      retentionMinDays: 365,
+      retentionMaxDays: 3650,
+      defaultRetentionDays: 3650,
+      partition: {
+        eligible: false,
+        rationale:
+          "Bounded by a single storefront's own order volume — nowhere near partition-worthy for the deployment profile this module targets."
+      },
+      archive: {
+        archivable: false,
+        rationale:
+          "The generic engine's only implemented artefact is ordinary backup/restore; no standalone archive exists yet for this table."
+      },
+      deletion: {
+        mode: "hard_delete",
+        rationale:
+          "Technically the generic engine's only mode, but practically UNREACHABLE: this module never soft-deletes an order (deleted_at stays NULL forever, sql/165's header) — the fiscal retention this descriptor exists to document is enforced by never matching the purge predicate, not by the predicate itself."
+      },
+      legalHold: { applicable: false, precedence: "not_applicable" },
+      requiredIndexes: [
+        {
+          columns: ["tenant_id", "deleted_at"],
+          purpose:
+            "awcms_commerce_orders_tenant_deleted_idx (sql/165) — the (tenant, cursor) composite the generic purge engine filters + orders by."
+        }
+      ],
+      batchLimit: 5000,
+      backupRestoreNotes:
+        "Included in ordinary full-database backup/restore; no standalone archive artifact. An order is never expected to reach this engine's purge predicate in practice.",
+      executionMode: "generic"
+    },
+    {
+      key: "commerce.order_items",
+      tableName: "awcms_commerce_order_items",
+      ownerModuleKey: "commerce",
+      scope: "tenant",
+      cursorColumn: "deleted_at",
+      retentionClass: "system_event",
+      retentionMinDays: 365,
+      retentionMaxDays: 3650,
+      defaultRetentionDays: 3650,
+      partition: {
+        eligible: false,
+        rationale: "Bounded by its parent order's own line-item count."
+      },
+      archive: {
+        archivable: false,
+        rationale:
+          "A per-line snapshot of a parent order this module never soft-deletes in practice."
+      },
+      deletion: {
+        mode: "hard_delete",
+        rationale:
+          "Same practically-unreachable shape as its parent order (commerce.orders) — see that descriptor's comment."
+      },
+      legalHold: { applicable: false, precedence: "not_applicable" },
+      requiredIndexes: [
+        {
+          columns: ["tenant_id", "deleted_at"],
+          purpose:
+            "awcms_commerce_order_items_tenant_deleted_idx (sql/165) — the (tenant, cursor) composite the generic purge engine filters + orders by."
+        }
+      ],
+      batchLimit: 5000,
+      backupRestoreNotes:
+        "Included in ordinary full-database backup/restore; no standalone archive artifact.",
+      executionMode: "generic"
+    },
+    {
+      key: "commerce.order_events",
+      tableName: "awcms_commerce_order_events",
+      ownerModuleKey: "commerce",
+      scope: "tenant",
+      // Append-only audit trail — no `deleted_at` column exists on this
+      // table at all (sql/165's header), so the cursor is `created_at`
+      // instead, the one exception to this array's usual `deleted_at`
+      // convention (see this array's own header comment).
+      cursorColumn: "created_at",
+      retentionClass: "system_event",
+      retentionMinDays: 365,
+      retentionMaxDays: 3650,
+      defaultRetentionDays: 3650,
+      partition: {
+        eligible: false,
+        rationale:
+          "Bounded by its parent order's own status-transition count — a handful of rows per order at most."
+      },
+      archive: {
+        archivable: false,
+        rationale:
+          "The order's own status timeline — evidence of what happened to a transaction the tenant already retains."
+      },
+      deletion: {
+        mode: "hard_delete",
+        rationale:
+          "The generic engine's only implemented mode; a genuinely old row (older than the parent order's own retention) is safe to purge."
+      },
+      legalHold: { applicable: false, precedence: "not_applicable" },
+      requiredIndexes: [
+        {
+          columns: ["tenant_id", "created_at"],
+          purpose:
+            "awcms_commerce_order_events_tenant_created_idx (sql/165) — the (tenant, cursor) composite the generic purge engine filters + orders by, keyed on created_at since this append-only table has no deleted_at."
+        },
+        {
+          columns: ["order_id", "created_at"],
+          purpose:
+            "awcms_commerce_order_events_order_idx (sql/165) — this table's own timeline read."
+        }
+      ],
+      batchLimit: 5000,
+      backupRestoreNotes:
+        "Included in ordinary full-database backup/restore; no standalone archive artifact.",
+      executionMode: "generic"
+    },
+    {
+      key: "commerce.payment_confirmations",
+      tableName: "awcms_commerce_payment_confirmations",
+      ownerModuleKey: "commerce",
+      scope: "tenant",
+      cursorColumn: "deleted_at",
+      retentionClass: "system_event",
+      retentionMinDays: 365,
+      retentionMaxDays: 3650,
+      defaultRetentionDays: 3650,
+      partition: {
+        eligible: false,
+        rationale:
+          "Bounded by its parent order's own confirmation count — usually one or two rows."
+      },
+      archive: {
+        archivable: false,
+        rationale:
+          "A confirmation submission the tenant's own order record already retains."
+      },
+      deletion: {
+        mode: "hard_delete",
+        rationale:
+          "Same practically-unreachable shape as its parent order — see commerce.orders' comment."
+      },
+      legalHold: { applicable: false, precedence: "not_applicable" },
+      requiredIndexes: [
+        {
+          columns: ["tenant_id", "deleted_at"],
+          purpose:
+            "awcms_commerce_payment_confirmations_tenant_deleted_idx (sql/165) — the (tenant, cursor) composite the generic purge engine filters + orders by."
+        }
+      ],
+      batchLimit: 5000,
+      backupRestoreNotes:
+        "Included in ordinary full-database backup/restore; no standalone archive artifact.",
+      executionMode: "generic"
+    },
+    {
+      key: "commerce.reviews",
+      tableName: "awcms_commerce_reviews",
+      ownerModuleKey: "commerce",
+      scope: "tenant",
+      cursorColumn: "deleted_at",
+      retentionClass: "system_event",
+      retentionMinDays: 30,
+      retentionMaxDays: 3650,
+      defaultRetentionDays: 365,
+      partition: {
+        eligible: false,
+        rationale: "Bounded by a single storefront's own product/order volume."
+      },
+      archive: {
+        archivable: false,
+        rationale:
+          "A rating + free-text body a moderator already sees in the admin screen."
+      },
+      deletion: {
+        mode: "hard_delete",
+        rationale:
+          "The generic engine's only implemented mode; safe for the same NULL-cursor reason as every other descriptor here."
+      },
+      legalHold: { applicable: false, precedence: "not_applicable" },
+      requiredIndexes: [
+        {
+          columns: ["tenant_id", "deleted_at"],
+          purpose:
+            "awcms_commerce_reviews_tenant_deleted_idx (sql/165) — the (tenant, cursor) composite the generic purge engine filters + orders by."
+        }
+      ],
+      batchLimit: 5000,
+      backupRestoreNotes:
+        "Included in ordinary full-database backup/restore; no standalone archive artifact.",
+      executionMode: "generic"
+    },
+    {
+      key: "commerce.wishlists",
+      tableName: "awcms_commerce_wishlists",
+      ownerModuleKey: "commerce",
+      scope: "tenant",
+      cursorColumn: "deleted_at",
+      retentionClass: "system_event",
+      retentionMinDays: 30,
+      retentionMaxDays: 3650,
+      defaultRetentionDays: 365,
+      partition: {
+        eligible: false,
+        rationale:
+          "Bounded by a single storefront's own customer/product volume."
+      },
+      archive: {
+        archivable: false,
+        rationale:
+          "A bare (customer, product) saved-item pair — no route reads or writes it in this increment (see this module's README)."
+      },
+      deletion: {
+        mode: "hard_delete",
+        rationale:
+          "The generic engine's only implemented mode; safe for the same NULL-cursor reason as every other descriptor here."
+      },
+      legalHold: { applicable: false, precedence: "not_applicable" },
+      requiredIndexes: [
+        {
+          columns: ["tenant_id", "deleted_at"],
+          purpose:
+            "awcms_commerce_wishlists_tenant_deleted_idx (sql/165) — the (tenant, cursor) composite the generic purge engine filters + orders by."
+        }
+      ],
+      batchLimit: 5000,
+      backupRestoreNotes:
+        "Included in ordinary full-database backup/restore; no standalone archive artifact.",
+      executionMode: "generic"
     }
   ],
   /**
@@ -764,6 +1151,129 @@ export const commerceModule = defineModule({
       erasure: "retain_under_obligation",
       rationale:
         "One jsonb settings blob per tenant — store identity, shipping/payment configuration, promo copy. The tenant's OWN business configuration, including its OWN bank account holder names (never a customer's), naming nobody but the merchant itself; no column identifies a natural person who is a data subject of this platform."
+    },
+    /**
+     * Issue #29 — the first tables in this module (indeed, one of the first
+     * in this REPO) that hold real personal data: a guest customer's name,
+     * phone and e-mail. All eight are still `unreachableBySubject: true`,
+     * and that is a deliberate, careful reading of ADR-0094's own subject
+     * vocabulary rather than an oversight: `SubjectDataColumn.references`
+     * is `"tenant_user" | "identity" | "profile" | "principal"` — every one
+     * of them a STAFF-side identity concept from `identity_access`/
+     * `profile_identity`. A guest storefront customer, identified only by a
+     * phone number they typed into a checkout form, has none of those rows
+     * at all in this increment (accounts are Issue #32) — there is no
+     * `tenant_user_id`/`identity_id`/`profile_id` this module could
+     * honestly put in `subjectColumns`, because none exists to put there.
+     *
+     * This is the EXACT shape `commerce.testimonials`' own descriptor above
+     * already documents for this module ("no column on this table can be
+     * MATCHED to a tenant_user/identity/profile id") and the same one
+     * `module-contract.ts`'s own header cites for `awcms_comments_reports`.
+     * Marking these `unreachableBySubject: false` with an invented
+     * `subjectColumns` entry pointing at, say, `customers.phone` would be
+     * the fiction that flag exists to prevent — this system has no "phone
+     * number" reference kind, and inventing one here would silently claim a
+     * capability (automated per-id export/erasure) the engine cannot
+     * actually perform for a phone-identified guest.
+     *
+     * A genuine subject-rights request naming a specific phone number is
+     * handled as an ordinary admin lookup/edit (`GET/PATCH
+     * /api/v1/commerce/customers/{id}`) — outside this automated engine's
+     * scope by construction, exactly the comments/testimonials precedent.
+     * `exportable: false` + `erasure: "retain_under_obligation"` is the
+     * pairing `subject-data:registry:check` requires whenever
+     * `unreachableBySubject` is `true`; it is not a claim that this data is
+     * legally exempt from a real request, only that THIS automated engine
+     * cannot address it by id.
+     */
+    {
+      key: "commerce.customers",
+      tableName: "awcms_commerce_customers",
+      ownerModuleKey: "commerce",
+      unreachableBySubject: true,
+      subjectColumns: [],
+      exportable: false,
+      erasure: "retain_under_obligation",
+      rationale:
+        "A guest checkout customer's own name/phone/e-mail — real personal data, but identified only by a phone number typed into a checkout form, not by a tenant_user/identity/profile id this system's subject vocabulary can name (accounts are Issue #32). See this array's header comment."
+    },
+    {
+      key: "commerce.customer_addresses",
+      tableName: "awcms_commerce_customer_addresses",
+      ownerModuleKey: "commerce",
+      unreachableBySubject: true,
+      subjectColumns: [],
+      exportable: false,
+      erasure: "retain_under_obligation",
+      rationale:
+        "A saved shipping address — recipient name, phone, street — real personal data, same unreachable-by-this-engine's-vocabulary shape as commerce.customers above."
+    },
+    {
+      key: "commerce.orders",
+      tableName: "awcms_commerce_orders",
+      ownerModuleKey: "commerce",
+      unreachableBySubject: true,
+      subjectColumns: [],
+      exportable: false,
+      erasure: "retain_under_obligation",
+      rationale:
+        "An order's own address-snapshot jsonb column carries the same recipient name/phone/street as commerce.customer_addresses, plus the transaction itself is the tenant's fiscal record. Unreachable by this engine's tenant_user/identity/profile vocabulary for the same reason as commerce.customers, AND independently subject to fiscal retention — retain_under_obligation is the honest answer on both grounds."
+    },
+    {
+      key: "commerce.order_items",
+      tableName: "awcms_commerce_order_items",
+      ownerModuleKey: "commerce",
+      unreachableBySubject: true,
+      subjectColumns: [],
+      exportable: false,
+      erasure: "retain_under_obligation",
+      rationale:
+        "A line item's own product/variant/price/quantity snapshot — names no person directly, but is part of the same order record as commerce.orders and inherits its reasoning."
+    },
+    {
+      key: "commerce.order_events",
+      tableName: "awcms_commerce_order_events",
+      ownerModuleKey: "commerce",
+      unreachableBySubject: true,
+      subjectColumns: [],
+      exportable: false,
+      erasure: "retain_under_obligation",
+      rationale:
+        "The order's own status timeline — from/to status, actor kind (customer/admin/system), an optional free-text note. Names no person by id; part of the same order record as commerce.orders."
+    },
+    {
+      key: "commerce.payment_confirmations",
+      tableName: "awcms_commerce_payment_confirmations",
+      ownerModuleKey: "commerce",
+      unreachableBySubject: true,
+      subjectColumns: [],
+      exportable: false,
+      erasure: "retain_under_obligation",
+      rationale:
+        "A payment confirmation's own method/amount/bank details/reviewer — bank_name/account_name here are the CUSTOMER's own transfer details (unlike commerce.store_settings' merchant-owned bank accounts), part of the same order record as commerce.orders and inheriting its reasoning."
+    },
+    {
+      key: "commerce.reviews",
+      tableName: "awcms_commerce_reviews",
+      ownerModuleKey: "commerce",
+      unreachableBySubject: true,
+      subjectColumns: [],
+      exportable: false,
+      erasure: "retain_under_obligation",
+      rationale:
+        "A rating + free-text review body a guest customer wrote — real personal expression, same unreachable-by-this-engine's-vocabulary shape as commerce.customers above. A genuine erasure request is handled as an ordinary admin moderation delete (DELETE /api/v1/commerce/reviews/{id}), outside this automated engine's scope by construction."
+    },
+    {
+      key: "commerce.wishlists",
+      tableName: "awcms_commerce_wishlists",
+      ownerModuleKey: "commerce",
+      unreachableBySubject: true,
+      subjectColumns: [],
+      exportable: false,
+      erasure: "retain_under_obligation",
+      rationale:
+        "A bare (customer, product) saved-item pair — no route reads or writes it in this increment (see this module's README); same unreachable-by-this-engine's-vocabulary shape as commerce.customers above."
     }
   ],
   permissions: [
@@ -933,6 +1443,43 @@ export const commerceModule = defineModule({
       activityCode: COMMERCE_SETTINGS_ACTIVITY_CODE,
       action: "update",
       description: "Change this tenant's store settings"
+    },
+    {
+      activityCode: COMMERCE_ORDERS_ACTIVITY_CODE,
+      action: "read",
+      description:
+        "Read order records, including payment confirmations and the status timeline"
+    },
+    {
+      activityCode: COMMERCE_ORDERS_ACTIVITY_CODE,
+      action: "update",
+      description:
+        "Update an order's status (including an admin-initiated cancel), review a payment confirmation (accept/reject)"
+    },
+    {
+      activityCode: COMMERCE_CUSTOMERS_ACTIVITY_CODE,
+      action: "read",
+      description: "Read customer records and their saved addresses"
+    },
+    {
+      activityCode: COMMERCE_CUSTOMERS_ACTIVITY_CODE,
+      action: "update",
+      description: "Update a customer's level/status"
+    },
+    {
+      activityCode: COMMERCE_REVIEWS_ACTIVITY_CODE,
+      action: "read",
+      description: "Read review records, published and pending"
+    },
+    {
+      activityCode: COMMERCE_REVIEWS_ACTIVITY_CODE,
+      action: "update",
+      description: "Moderate a review (publish/reject)"
+    },
+    {
+      activityCode: COMMERCE_REVIEWS_ACTIVITY_CODE,
+      action: "delete",
+      description: "Soft-delete a review record"
     }
   ]
 });
@@ -948,5 +1495,8 @@ export {
   COMMERCE_SLIDER_PERMISSIONS,
   COMMERCE_TESTIMONIAL_PERMISSIONS,
   COMMERCE_POPUP_PERMISSIONS,
-  COMMERCE_SETTINGS_PERMISSIONS
+  COMMERCE_SETTINGS_PERMISSIONS,
+  COMMERCE_ORDER_PERMISSIONS,
+  COMMERCE_CUSTOMER_PERMISSIONS,
+  COMMERCE_REVIEW_PERMISSIONS
 };

@@ -7633,6 +7633,127 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/customers:
+    get:
+      operationId: listCommerceCustomers
+      tags:
+        - Commerce
+      summary: Admin customer list (Issue 29). Keyset-paginated, newest first. Gated on customers.read.
+      parameters:
+        - name: cursor
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: One page of customers.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/CommerceCustomer"
+                      nextCursor:
+                        type: string
+                        nullable: true
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+  /api/v1/commerce/customers/{id}:
+    get:
+      operationId: getCommerceCustomer
+      tags:
+        - Commerce
+      summary: Admin customer detail (Issue 29). Gated on customers.read.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: The customer.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceCustomer"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+    patch:
+      operationId: updateCommerceCustomer
+      tags:
+        - Commerce
+      summary: Admin edit of a customer's level/status (Issue 29). Gated on customers.update.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                level:
+                  type: integer
+                  minimum: 1
+                  maximum: 4
+                status:
+                  type: string
+                  enum:
+                    - active
+                    - blocked
+      responses:
+        "200":
+          description: Customer updated.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceCustomer"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
   /api/v1/commerce/flash-sales:
     get:
       operationId: listCommerceFlashSales
@@ -8027,6 +8148,228 @@ paths:
                     type: array
                     items:
                       $ref: "#/components/schemas/CommerceFlashSalePublic"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+  /api/v1/commerce/orders:
+    get:
+      operationId: listCommerceOrders
+      tags:
+        - Commerce
+      summary: Admin order list (Issue 29). Keyset-paginated, newest first; optional status/paymentStatus filters. Gated on orders.read.
+      parameters:
+        - name: cursor
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: paymentStatus
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: One page of orders.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/CommerceOrderSummary"
+                      nextCursor:
+                        type: string
+                        nullable: true
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+  /api/v1/commerce/orders/{id}:
+    get:
+      operationId: getCommerceOrder
+      tags:
+        - Commerce
+      summary: Admin order detail, unmasked customer phone (Issue 29). Gated on orders.read.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: The order.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceOrderAdmin"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+  /api/v1/commerce/orders/{id}/payment-confirmations/{cid}/review:
+    patch:
+      operationId: reviewCommerceOrderPaymentConfirmation
+      tags:
+        - Commerce
+      summary: Admin accept/reject of a submitted payment confirmation (Issue 29). Accepting moves the order to paid when it is still pending_payment. Gated on orders.update.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: cid
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - decision
+              properties:
+                decision:
+                  type: string
+                  enum:
+                    - accepted
+                    - rejected
+      responses:
+        "200":
+          description: Reviewed.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      decision:
+                        type: string
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+  /api/v1/commerce/orders/{id}/status:
+    patch:
+      operationId: updateCommerceOrderStatus
+      tags:
+        - Commerce
+      summary: Admin status transition, enforced through the legal-transition table (Issue 29). Gated on orders.update.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - status
+              properties:
+                status:
+                  type: string
+                  enum:
+                    - pending_payment
+                    - paid
+                    - processing
+                    - shipped
+                    - completed
+                    - cancelled
+                    - expired
+                note:
+                  type: string
+                  nullable: true
+      responses:
+        "200":
+          description: Status updated.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      status:
+                        type: string
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: The requested transition is not legal from the order's current status.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/orders/export.csv:
+    get:
+      operationId: exportCommerceOrdersCsv
+      tags:
+        - Commerce
+      summary: Admin CSV export of the most recent orders (Issue 29, bounded to ~2000 rows). Gated on orders.read.
+      responses:
+        "200":
+          description: A CSV document.
+          content:
+            text/csv:
+              schema:
+                type: string
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
@@ -8867,6 +9210,137 @@ paths:
           $ref: "#/components/responses/Forbidden"
         "404":
           $ref: "#/components/responses/NotFound"
+  /api/v1/commerce/reviews:
+    get:
+      operationId: listCommerceReviews
+      tags:
+        - Commerce
+      summary: Admin review moderation list (Issue 29). Keyset-paginated; optional status filter. Gated on reviews.read.
+      parameters:
+        - name: cursor
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - pending
+              - published
+              - rejected
+      responses:
+        "200":
+          description: One page of reviews.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/CommerceReview"
+                      nextCursor:
+                        type: string
+                        nullable: true
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+  /api/v1/commerce/reviews/{id}:
+    patch:
+      operationId: moderateCommerceReview
+      tags:
+        - Commerce
+      summary: Admin moderation — publish or reject a pending review (Issue 29). Gated on reviews.update.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - status
+              properties:
+                status:
+                  type: string
+                  enum:
+                    - published
+                    - rejected
+      responses:
+        "200":
+          description: Review moderated.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceReview"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+    delete:
+      operationId: deleteCommerceReview
+      tags:
+        - Commerce
+      summary: Admin soft delete of a review (Issue 29). Gated on reviews.delete.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Review deleted.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      deleted:
+                        type: boolean
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
   /api/v1/commerce/sliders:
     get:
       operationId: listCommerceSliders
@@ -9188,6 +9662,380 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "403":
           $ref: "#/components/responses/Forbidden"
+  /api/v1/commerce/storefront/cart/quote:
+    post:
+      operationId: quoteCommerceStorefrontCart
+      tags:
+        - Commerce
+      summary: Anonymous, cross-origin cart quote (Issue 29, `commerce-storefront-endpoints.md`). Tenant resolved from the request Origin/Host — no bearer, no permission check. Read-only.
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CommerceCartQuoteRequest"
+      responses:
+        "200":
+          description: The quote.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceCartQuoteResult"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "404":
+          description: Unresolvable tenant, disabled module, or a rate-limited caller — the same neutral body (contract's own anti-oracle rule).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "429":
+          description: Rate limited.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/storefront/orders:
+    post:
+      operationId: createCommerceStorefrontOrder
+      tags:
+        - Commerce
+      summary: Anonymous order creation (Issue 29). Idempotent by the client-supplied idempotencyKey; re-quotes the cart inside the write transaction. No bearer, no permission check.
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CommerceCreateOrderRequest"
+      responses:
+        "200":
+          description: The idempotency key was seen before; the same order is returned.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceOrder"
+        "201":
+          description: Order created.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceOrder"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "404":
+          description: Unresolvable tenant, disabled module, or a rate-limited caller.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "409":
+          description: CART_CHANGED — a line's price/stock/shipping/payment method changed since it was last quoted; `error.details.quote` carries a fresh quote.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "429":
+          description: Rate limited (per IP and per normalised phone).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/storefront/orders/{orderCode}:
+    get:
+      operationId: trackCommerceStorefrontOrder
+      tags:
+        - Commerce
+      summary: Anonymous order tracking (Issue 29). orderCode + phone is the credential; an unknown code, a wrong phone, and another tenant's order all answer the same neutral 404.
+      security: []
+      parameters:
+        - name: orderCode
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: phone
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: The order.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceOrder"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "429":
+          description: Rate limited.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/storefront/orders/{orderCode}/cancel:
+    post:
+      operationId: cancelCommerceStorefrontOrder
+      tags:
+        - Commerce
+      summary: Anonymous customer-initiated cancel (Issue 29), only while pending_payment.
+      security: []
+      parameters:
+        - name: orderCode
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - phone
+              properties:
+                phone:
+                  type: string
+                reason:
+                  type: string
+                  nullable: true
+      responses:
+        "200":
+          description: Order cancelled.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceOrder"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: ORDER_NOT_CANCELLABLE.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/storefront/orders/{orderCode}/payment-confirmations:
+    post:
+      operationId: createCommerceStorefrontPaymentConfirmation
+      tags:
+        - Commerce
+      summary: Anonymous payment confirmation submission (Issue 29). Accepted without a proof image — see payment.proofUpload on the public store-settings read model.
+      security: []
+      parameters:
+        - name: orderCode
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - phone
+                - method
+                - amount
+              properties:
+                phone:
+                  type: string
+                method:
+                  type: string
+                  enum:
+                    - manual_bank
+                    - manual_qris
+                amount:
+                  type: string
+                  description: numeric(14,2) as a string.
+                bankName:
+                  type: string
+                  nullable: true
+                accountName:
+                  type: string
+                  nullable: true
+                transferredAt:
+                  type: string
+                  format: date-time
+                  nullable: true
+                proofMediaObjectId:
+                  type: string
+                  nullable: true
+      responses:
+        "201":
+          description: Confirmation recorded.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceOrder"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: ORDER_NOT_PAYABLE — the order is not pending_payment.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/storefront/orders/{orderCode}/payment-proof/upload-sessions:
+    post:
+      operationId: createCommerceStorefrontPaymentProofUploadSession
+      tags:
+        - Commerce
+      summary: Reserved for a future increment (Issue 29) — always 503 MEDIA_UNAVAILABLE today. See the module README for why.
+      security: []
+      parameters:
+        - name: orderCode
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "503":
+          description: Media upload is not available on this deployment.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/storefront/orders/{orderCode}/payment-proof/upload-sessions/{sessionId}/finalize:
+    post:
+      operationId: finalizeCommerceStorefrontPaymentProofUploadSession
+      tags:
+        - Commerce
+      summary: Reserved for a future increment (Issue 29) — always 503 MEDIA_UNAVAILABLE today.
+      security: []
+      parameters:
+        - name: orderCode
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: sessionId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "503":
+          description: Media upload is not available on this deployment.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/storefront/reviews:
+    post:
+      operationId: createCommerceStorefrontReview
+      tags:
+        - Commerce
+      summary: Anonymous review submission (Issue 29). Requires a completed order containing the product; lands pending for moderation.
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - orderCode
+                - phone
+                - productId
+                - rating
+                - body
+              properties:
+                orderCode:
+                  type: string
+                phone:
+                  type: string
+                productId:
+                  type: string
+                rating:
+                  type: integer
+                  minimum: 1
+                  maximum: 5
+                body:
+                  type: string
+      responses:
+        "201":
+          description: Review submitted, pending moderation.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        format: uuid
+                      status:
+                        type: string
+                        enum:
+                          - pending
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: REVIEW_NOT_ALLOWED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
   /api/v1/commerce/testimonials:
     get:
       operationId: listCommerceTestimonials
@@ -23143,6 +23991,134 @@ components:
           type: boolean
         notifyOnReply:
           type: boolean
+    CommerceCartQuoteLine:
+      type: object
+      description: Issue 29 — a resolved cart line, request or response shape depending on context.
+      properties:
+        productId:
+          type: string
+        variantId:
+          type: string
+          nullable: true
+        quantity:
+          type: integer
+        serviceFormValues:
+          type: object
+          nullable: true
+          additionalProperties:
+            type: string
+    CommerceCartQuoteRequest:
+      type: object
+      required:
+        - lines
+      properties:
+        lines:
+          type: array
+          items:
+            $ref: "#/components/schemas/CommerceCartQuoteLine"
+        shipping:
+          type: object
+          nullable: true
+          properties:
+            method:
+              type: string
+              enum:
+                - alternative
+                - self_pickup
+                - courier
+            serviceId:
+              type: string
+        voucherCode:
+          type: string
+          nullable: true
+        insurance:
+          type: boolean
+    CommerceCartQuoteResult:
+      type: object
+      description: Issue 29 — arithmetic order documented in `commerce-storefront-endpoints.md`. subtotal, discount, shippingCost, insuranceFee, tax and total are all numeric(14,2) strings.
+      properties:
+        lines:
+          type: array
+          items:
+            type: object
+            properties:
+              productId:
+                type: string
+              variantId:
+                type: string
+                nullable: true
+              slug:
+                type: string
+                nullable: true
+              name:
+                type: string
+                nullable: true
+              variantName:
+                type: string
+                nullable: true
+              sku:
+                type: string
+                nullable: true
+              quantity:
+                type: integer
+              unitPrice:
+                type: string
+              lineTotal:
+                type: string
+              weightGrams:
+                type: integer
+              status:
+                type: string
+                enum:
+                  - ok
+                  - price_changed
+                  - out_of_stock
+                  - quantity_reduced
+                  - unavailable
+                  - min_purchase
+                  - service_form_invalid
+              availableStock:
+                type: integer
+                nullable: true
+              minPurchase:
+                type: integer
+                nullable: true
+        subtotal:
+          type: string
+        weightGrams:
+          type: integer
+        shipping:
+          type: object
+          nullable: true
+        freeShippingApplied:
+          type: boolean
+        voucher:
+          type: object
+          nullable: true
+        insurance:
+          type: object
+        tax:
+          type: object
+        discount:
+          type: string
+        total:
+          type: string
+        downPayment:
+          type: object
+        paymentMethods:
+          type: array
+          items:
+            type: object
+            properties:
+              method:
+                type: string
+              available:
+                type: boolean
+        canCheckout:
+          type: boolean
+        quotedAt:
+          type: string
+          format: date-time
     CommerceCategory:
       type: object
       properties:
@@ -23163,6 +24139,85 @@ components:
         productCount:
           type: integer
           description: Computed — the tenant's LIVE products currently in this category (Issue 23).
+    CommerceCreateOrderRequest:
+      type: object
+      required:
+        - idempotencyKey
+        - customer
+        - lines
+        - shipping
+        - payment
+      properties:
+        idempotencyKey:
+          type: string
+        customer:
+          type: object
+          required:
+            - name
+            - phone
+          properties:
+            name:
+              type: string
+            phone:
+              type: string
+            email:
+              type: string
+              nullable: true
+        address:
+          type: object
+          nullable: true
+        lines:
+          type: array
+          items:
+            $ref: "#/components/schemas/CommerceCartQuoteLine"
+        shipping:
+          type: object
+        payment:
+          type: object
+          required:
+            - method
+          properties:
+            method:
+              type: string
+              enum:
+                - manual_bank
+                - manual_qris
+                - dp
+                - gateway
+        voucherCode:
+          type: string
+          nullable: true
+        insurance:
+          type: boolean
+        notes:
+          type: string
+          nullable: true
+    CommerceCustomer:
+      type: object
+      description: Issue 29 — admin customer record.
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        phone:
+          type: string
+        phoneMasked:
+          type: string
+        email:
+          type: string
+          nullable: true
+        level:
+          type: integer
+        status:
+          type: string
+          enum:
+            - active
+            - blocked
+        createdAt:
+          type: string
+          format: date-time
     CommerceFlashSale:
       type: object
       description: The editorial row. status is what the editor set (draft/scheduled) or what the tick job derived (active/ended) — see domain/flash-sale-status.ts.
@@ -23354,6 +24409,153 @@ components:
           enum:
             - draft
             - scheduled
+    CommerceOrder:
+      type: object
+      description: Issue 29 — the storefront tracking/order-creation shape (`commerce-storefront-endpoints.md`). Customer/address phone are MASKED (phoneMasked); money fields are numeric(14,2) strings.
+      properties:
+        orderCode:
+          type: string
+        status:
+          type: string
+          enum:
+            - pending_payment
+            - paid
+            - processing
+            - shipped
+            - completed
+            - cancelled
+            - expired
+        paymentStatus:
+          type: string
+        paymentMethod:
+          type: string
+        shippingMethod:
+          type: string
+        shippingServiceName:
+          type: string
+          nullable: true
+        customer:
+          type: object
+          properties:
+            name:
+              type: string
+            phoneMasked:
+              type: string
+            email:
+              type: string
+              nullable: true
+        address:
+          type: object
+          nullable: true
+        lines:
+          type: array
+          items:
+            type: object
+        subtotal:
+          type: string
+        discount:
+          type: string
+        voucherCode:
+          type: string
+          nullable: true
+        shippingCost:
+          type: string
+        insuranceFee:
+          type: string
+        tax:
+          type: string
+        total:
+          type: string
+        downPayment:
+          type: object
+          nullable: true
+        paymentInstructions:
+          type: object
+          nullable: true
+        paymentConfirmations:
+          type: array
+          items:
+            type: object
+        timeline:
+          type: array
+          items:
+            type: object
+            properties:
+              status:
+                type: string
+              at:
+                type: string
+                format: date-time
+              note:
+                type: string
+                nullable: true
+        canCancel:
+          type: boolean
+        canConfirmPayment:
+          type: boolean
+        canReview:
+          type: boolean
+        createdAt:
+          type: string
+          format: date-time
+        expiresAt:
+          type: string
+          format: date-time
+          nullable: true
+        paidAt:
+          type: string
+          format: date-time
+          nullable: true
+        shippedAt:
+          type: string
+          format: date-time
+          nullable: true
+        completedAt:
+          type: string
+          format: date-time
+          nullable: true
+        cancelledAt:
+          type: string
+          format: date-time
+          nullable: true
+        whatsapp:
+          type: object
+          properties:
+            number:
+              type: string
+            text:
+              type: string
+    CommerceOrderAdmin:
+      allOf:
+        - $ref: "#/components/schemas/CommerceOrder"
+        - type: object
+          description: Issue 29 — admin detail adds customerId and unmasked customer/address phone.
+          properties:
+            customerId:
+              type: string
+              format: uuid
+    CommerceOrderSummary:
+      type: object
+      description: Issue 29 — one row of the admin order list.
+      properties:
+        id:
+          type: string
+          format: uuid
+        orderCode:
+          type: string
+        status:
+          type: string
+        paymentStatus:
+          type: string
+        customerName:
+          type: string
+        customerPhoneMasked:
+          type: string
+        total:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
     CommercePopup:
       type: object
       properties:
@@ -23976,6 +25178,35 @@ components:
           minimum: 0
         sortOrder:
           type: integer
+    CommerceReview:
+      type: object
+      description: Issue 29 — admin review moderation record.
+      properties:
+        id:
+          type: string
+          format: uuid
+        productId:
+          type: string
+          format: uuid
+        customerId:
+          type: string
+          format: uuid
+        orderId:
+          type: string
+          format: uuid
+        rating:
+          type: integer
+        body:
+          type: string
+        status:
+          type: string
+          enum:
+            - pending
+            - published
+            - rejected
+        createdAt:
+          type: string
+          format: date-time
     CommerceServiceFormField:
       type: object
       required:
@@ -24370,6 +25601,16 @@ components:
                   type: string
                 minFee:
                   type: string
+            proofUpload:
+              type: boolean
+              description: Issue 29 — whether the public payment-proof upload path is usable on this deployment. Always false in this increment; a payment confirmation without a proof image is still accepted.
+        orders:
+          type: object
+          description: Issue 29.
+          properties:
+            expiryHours:
+              type: integer
+              description: How many hours a newly-created order stays pending_payment before commerce:orders:expire moves it to expired.
         promoSection:
           type: object
           properties:

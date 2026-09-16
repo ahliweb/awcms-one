@@ -293,6 +293,85 @@ async function ensureTenantAndSession(): Promise<{
 }
 
 // ---------------------------------------------------------------------------
+// Step 1b — storefront origins (`awcms_tenant_domains`), Issue #29.
+// ---------------------------------------------------------------------------
+//
+// The anonymous storefront routes under `/api/v1/commerce/storefront/*`
+// resolve their tenant from the request Origin/Host through
+// `awcms_tenant_domains`, never from a caller-supplied header
+// (`src/lib/tenant/public-host-tenant-resolver.ts`). This is the ONE place
+// this script reaches the database directly instead of going through the
+// HTTP API — see this file's header for why HTTP is the rule everywhere
+// else — and the exception is narrow and disclosed: a freshly created
+// domain row starts `pending_verification` and only resolves once genuinely
+// verified (`POST /api/v1/tenant/domains/{id}/verify`), which this script
+// cannot do for a local/CI seed run because there is no real DNS record to
+// prove. `verification_method: "manual"` is a real, documented value in
+// `sql/046`'s own CHECK constraint ("operator-attested, no automated
+// check"); marking a row `active` this way is exactly what an operator does
+// by hand for a domain they already control, and a seed script attesting
+// its OWN localhost/demo origins is the same act, done once,
+// non-interactively — not a bypass of the verification MODEL, a use of the
+// value the model already reserves for this case.
+//
+// Connects as the Postgres OWNER role (`POSTGRES_USER`/`POSTGRES_PASSWORD` —
+// the same connection `bun run db:migrate:cms` uses), a superuser that
+// bypasses `FORCE ROW LEVEL SECURITY`, required here since this is the one
+// write in this script issued OUTSIDE an authenticated tenant session.
+// Idempotent as an OPERATION (`ON CONFLICT ... DO NOTHING` against the
+// table's own global `normalized_hostname` uniqueness, `sql/046`) rather
+// than by a prior existence check — the same choice `ensureMarketing`'s
+// store-settings `PUT` already makes for the same reason.
+type StorefrontOrigin = { hostname: string; isPrimary: boolean };
+
+const STOREFRONT_ORIGINS: StorefrontOrigin[] = [
+  {
+    hostname: process.env.SEED_STOREFRONT_HOSTNAME?.trim() || "mart.borneojek.com",
+    isPrimary: true
+  },
+  // The `Origin` header a `bun run dev`/`astro dev` storefront sends —
+  // `parseRequestOrigin`/`normalizePublicHost` compare only the HOSTNAME
+  // (port stripped), so this row is "localhost", not "localhost:4321".
+  { hostname: "localhost", isPrimary: false }
+];
+
+async function ensureTenantDomains(tenantId: string): Promise<void> {
+  const host = process.env.SEED_DB_HOST?.trim() || "localhost";
+  const port = process.env.POSTGRES_PORT?.trim() || "5433";
+  const user = process.env.POSTGRES_USER?.trim() || "awcms";
+  const password = process.env.POSTGRES_PASSWORD?.trim() || "awcms_dev_password";
+  const database = process.env.POSTGRES_DB?.trim() || "awcms";
+  const connectionString = `postgres://${user}:${password}@${host}:${port}/${database}`;
+
+  const sql = new Bun.SQL(connectionString);
+
+  try {
+    for (const origin of STOREFRONT_ORIGINS) {
+      const rows = (await sql`
+        INSERT INTO awcms_tenant_domains (
+          tenant_id, hostname, normalized_hostname, domain_type, route_mode,
+          status, verification_method, verified_at, is_primary
+        )
+        VALUES (
+          ${tenantId}, ${origin.hostname}, ${origin.hostname}, 'custom_domain', 'canonical',
+          'active', 'manual', now(), ${origin.isPrimary}
+        )
+        ON CONFLICT (normalized_hostname) WHERE deleted_at IS NULL DO NOTHING
+        RETURNING id
+      `) as { id: string }[];
+
+      console.log(
+        rows.length > 0
+          ? `apply tenant domain "${origin.hostname}" (active, manually attested)`
+          : `skip tenant domain "${origin.hostname}" (already exists)`
+      );
+    }
+  } finally {
+    await sql.close({ timeout: 1 });
+  }
+}
+
+// ---------------------------------------------------------------------------
 // Step 2 — categories (`/api/v1/commerce/categories`)
 // ---------------------------------------------------------------------------
 
@@ -723,6 +802,140 @@ async function ensureMarketing(
 }
 
 // ---------------------------------------------------------------------------
+// Step 3b — orders (Issue #29): one customer, two orders in different
+// states, created through the ANONYMOUS storefront path
+// (`POST /api/v1/commerce/storefront/orders`) — never the authenticated
+// session, which has no permission for this action by design (see
+// `commerce-permissions.ts`'s header: "an order is created only through the
+// anonymous storefront path"). The tenant is resolved from an `Origin`
+// header naming one of `ensureTenantDomains`'s rows, exactly the way a real
+// storefront page's browser fetch would be resolved.
+// ---------------------------------------------------------------------------
+
+type OrderSeed = {
+  customer: { name: string; phone: string; email: string | null };
+  productSlug: string;
+  quantity: number;
+  notes: string | null;
+  finalStatus: "pending_payment" | "paid" | "processing" | "shipped" | "completed" | "cancelled";
+};
+
+/** A guest checkout call — `apiCall` cannot be reused as-is: this path takes no bearer/tenant header at all, and instead needs an `Origin` the tenant domain resolver recognises. */
+async function anonymousStorefrontCall<T = unknown>(
+  method: string,
+  urlPath: string,
+  body: unknown
+): Promise<ApiResult<T>> {
+  const origin = process.env.SEED_STOREFRONT_ORIGIN?.trim() || "http://localhost:4321";
+
+  const response = await fetch(`${BASE_URL}${urlPath}`, {
+    method,
+    headers: { "content-type": "application/json", origin },
+    body: JSON.stringify(body)
+  });
+
+  const text = await response.text();
+  const raw = text.length > 0 ? JSON.parse(text) : null;
+  const data = (raw && typeof raw === "object" && "data" in raw
+    ? (raw as { data: unknown }).data
+    : raw) as T;
+
+  return { status: response.status, ok: response.ok, data, raw };
+}
+
+async function ensureOrders(
+  session: Session,
+  productIdBySlug: Map<string, string>
+): Promise<void> {
+  const seed = readSeedJson<{ orders: OrderSeed[] }>("orders.json");
+
+  // List existing orders once (admin session) so a second run recognises
+  // the ones this script already created, matched by customer name + product
+  // — an order has no other natural key this script controls ahead of
+  // creation (the real key, `orderCode`, is server-generated).
+  const existing = await apiCall<{
+    items: Array<{ orderCode: string; customerName: string; status: string }>;
+  }>("GET", "/api/v1/commerce/orders", { session });
+  assertOk("GET /api/v1/commerce/orders", existing);
+  const existingCustomerNames = new Set(
+    existing.data.items.map((item) => item.customerName)
+  );
+
+  for (const order of seed.orders) {
+    if (existingCustomerNames.has(order.customer.name)) {
+      console.log(`skip order for "${order.customer.name}" (already exists)`);
+      continue;
+    }
+
+    const productId = productIdBySlug.get(order.productSlug);
+    if (!productId) {
+      throw new Error(
+        `orders.json names productSlug "${order.productSlug}", which was not seeded.`
+      );
+    }
+
+    const created = await anonymousStorefrontCall<{ orderCode: string }>(
+      "POST",
+      "/api/v1/commerce/storefront/orders",
+      {
+        idempotencyKey: crypto.randomUUID(),
+        customer: order.customer,
+        address: null,
+        lines: [
+          {
+            productId,
+            variantId: null,
+            quantity: order.quantity,
+            serviceFormValues: null
+          }
+        ],
+        shipping: { method: "self_pickup" },
+        payment: { method: "manual_qris" },
+        voucherCode: null,
+        insurance: false,
+        notes: order.notes
+      }
+    );
+    assertOk(
+      `POST /api/v1/commerce/storefront/orders (${order.customer.name})`,
+      created
+    );
+    console.log(
+      `apply order "${created.data.orderCode}" for "${order.customer.name}" (pending_payment)`
+    );
+
+    if (order.finalStatus === "pending_payment") continue;
+
+    // Move it to its target state through the authenticated admin path
+    // (`PATCH /api/v1/commerce/orders/{id}/status`) — the anonymous path
+    // never accepts a status, by design.
+    const adminList = await apiCall<{
+      items: Array<{ id: string; orderCode: string }>;
+    }>("GET", "/api/v1/commerce/orders", { session });
+    assertOk("GET /api/v1/commerce/orders (post-create lookup)", adminList);
+    const row = adminList.data.items.find(
+      (item) => item.orderCode === created.data.orderCode
+    );
+    if (!row) {
+      throw new Error(
+        `Could not find order "${created.data.orderCode}" in the admin list right after creating it.`
+      );
+    }
+
+    const statusUpdate = await apiCall(
+      "PATCH",
+      `/api/v1/commerce/orders/${row.id}/status`,
+      { session, body: { status: order.finalStatus, note: "Seeded for demo purposes." } }
+    );
+    assertOk(
+      `PATCH /api/v1/commerce/orders/${row.id}/status (${order.finalStatus})`,
+      statusUpdate
+    );
+    console.log(`  apply status "${order.finalStatus}" to "${created.data.orderCode}"`);
+  }
+}
+
+// ---------------------------------------------------------------------------
 // Step 4 — blog terms (`/api/v1/blog/terms`)
 // ---------------------------------------------------------------------------
 
@@ -984,9 +1197,11 @@ async function main(): Promise<void> {
   console.log(`db:seed:cms — target ${BASE_URL}, tenant "${TENANT_CODE}"`);
 
   const { session, ownerTenantUserId } = await ensureTenantAndSession();
+  await ensureTenantDomains(session.tenantId);
   const categoryIdBySlug = await ensureCategories(session);
   const productIdBySlug = await ensureProducts(session, categoryIdBySlug);
   await ensureMarketing(session, productIdBySlug);
+  await ensureOrders(session, productIdBySlug);
   const termIdBySlug = await ensureBlogTerms(session);
   await ensureBlogPages(session);
   await ensureBlogPosts(session, termIdBySlug);

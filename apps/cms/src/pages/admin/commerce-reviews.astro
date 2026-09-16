@@ -1,0 +1,229 @@
+---
+/** Commerce review moderation screen (Issue #29). A review is created only through the anonymous storefront path and always lands `pending` — this screen publishes/rejects it. */
+import AdminLayout from "../../layouts/AdminLayout.astro";
+import "../../styles/admin-screens.css";
+import { loadAdminScreen } from "../../lib/auth/admin-screen";
+import { logAdminPageError } from "../../lib/logging/error-log";
+import { getTranslatorFor } from "../../lib/i18n";
+import { listReviewsForAdmin } from "../../modules/commerce/application/review-directory";
+
+const ssr = Astro.locals.ssrContext!;
+const { t, tn } = getTranslatorFor(Astro.locals.locale);
+
+const screen = await loadAdminScreen({
+  ssr,
+  workClass: "interactive",
+  authorize: {
+    moduleKey: "commerce",
+    activityCode: "reviews",
+    action: "read"
+  },
+  load: async ({ tx, can }) => {
+    const page = await listReviewsForAdmin(tx, ssr.tenantId, null);
+    const canUpdate = await can({
+      moduleKey: "commerce",
+      activityCode: "reviews",
+      action: "update"
+    });
+    const canDelete = await can({
+      moduleKey: "commerce",
+      activityCode: "reviews",
+      action: "delete"
+    });
+
+    return { reviews: page.items, canUpdate, canDelete };
+  },
+  onError: (error) => {
+    logAdminPageError(
+      "admin/commerce-reviews.astro: failed to list reviews",
+      error,
+      { correlationId: Astro.locals.correlationId }
+    );
+  }
+});
+
+const canRead = screen.state !== "denied";
+const loadError = screen.state === "error";
+const reviews = screen.state === "allowed" ? screen.data.reviews : [];
+const canUpdate = screen.state === "allowed" && screen.data.canUpdate;
+const canDelete = screen.state === "allowed" && screen.data.canDelete;
+const showActions = canUpdate || canDelete;
+---
+
+<AdminLayout
+  title={t("Reviews")}
+  description={t(
+    "Product reviews left by customers after a completed order — moderate before they publish."
+  )}
+>
+  {
+    !canRead && (
+      <p class="state-notice fade-in-up" id="reviews-denied">
+        {t("You do not have permission to view reviews.")}
+      </p>
+    )
+  }
+  {
+    canRead && loadError && (
+      <p class="state-notice fade-in-up" id="reviews-error">
+        {t("Reviews could not be loaded right now. Please try again later.")}
+      </p>
+    )
+  }
+
+  {
+    canRead && !loadError && (
+      <p
+        id="review-action-error"
+        class="admin-create-error"
+        role="alert"
+        hidden
+      />
+    )
+  }
+
+  {
+    canRead && !loadError && (
+      <div class="data-table-scroll fade-in-up">
+        <table class="data-table data-table--stack" id="commerce-reviews-table">
+          <caption>
+            {tn("{count} review", "{count} reviews", reviews.length, {
+              count: reviews.length
+            })}
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">{t("Product")}</th>
+              <th scope="col">{t("Rating")}</th>
+              <th scope="col">{t("Body")}</th>
+              <th scope="col">{t("Status")}</th>
+              <th scope="col">{t("Submitted")}</th>
+              {showActions && <th scope="col">{t("Actions")}</th>}
+            </tr>
+          </thead>
+          <tbody>
+            {reviews.length === 0 ? (
+              <tr>
+                <td class="data-table-empty" colspan={showActions ? 6 : 5}>
+                  <div class="empty-state">
+                    <span class="empty-state-icon" aria-hidden="true">
+                      ◇
+                    </span>
+                    <span class="empty-state-title">{t("No reviews yet")}</span>
+                    <span class="empty-state-text">
+                      {t(
+                        "Reviews submitted for completed orders will appear here."
+                      )}
+                    </span>
+                  </div>
+                </td>
+              </tr>
+            ) : (
+              reviews.map((review) => (
+                <tr data-review-row={review.id}>
+                  <td data-label="Product">
+                    <span class="cell-code">{review.productId}</span>
+                  </td>
+                  <td data-label="Rating">{review.rating} / 5</td>
+                  <td data-label="Body">{review.body}</td>
+                  <td data-label="Status">{review.status}</td>
+                  <td data-label="Submitted">{review.createdAt}</td>
+                  {showActions && (
+                    <td data-label="Actions" class="stacked-block">
+                      <div class="row-actions">
+                        {canUpdate && review.status === "pending" && (
+                          <>
+                            <button
+                              type="button"
+                              class="module-toggle review-publish-btn"
+                              data-review-id={review.id}
+                            >
+                              {t("Publish")}
+                            </button>
+                            <button
+                              type="button"
+                              class="module-toggle review-reject-btn"
+                              data-review-id={review.id}
+                            >
+                              {t("Reject")}
+                            </button>
+                          </>
+                        )}
+                        {canDelete && (
+                          <button
+                            type="button"
+                            class="module-toggle review-delete-btn"
+                            data-review-id={review.id}
+                          >
+                            {t("Delete")}
+                          </button>
+                        )}
+                      </div>
+                    </td>
+                  )}
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
+    )
+  }
+</AdminLayout>
+
+<script>
+  import {
+    messageBox,
+    mutateAndReload,
+    onAction,
+    sendJson
+  } from "../../lib/ui/admin-form-client";
+
+  const actionError = messageBox("review-action-error");
+
+  onAction(".review-publish-btn", async (button) => {
+    const id = button.dataset.reviewId;
+    if (!id) return;
+
+    await mutateAndReload(
+      button,
+      actionError,
+      () =>
+        sendJson("PATCH", `/api/v1/commerce/reviews/${id}`, {
+          status: "published"
+        }),
+      "Could not publish the review. Please try again.",
+      "Publishing…"
+    );
+  });
+
+  onAction(".review-reject-btn", async (button) => {
+    const id = button.dataset.reviewId;
+    if (!id) return;
+
+    await mutateAndReload(
+      button,
+      actionError,
+      () =>
+        sendJson("PATCH", `/api/v1/commerce/reviews/${id}`, {
+          status: "rejected"
+        }),
+      "Could not reject the review. Please try again.",
+      "Rejecting…"
+    );
+  });
+
+  onAction(".review-delete-btn", async (button) => {
+    const id = button.dataset.reviewId;
+    if (!id) return;
+    if (!window.confirm("Delete this review?")) return;
+
+    await mutateAndReload(
+      button,
+      actionError,
+      () => sendJson("DELETE", `/api/v1/commerce/reviews/${id}`),
+      "Could not delete the review. Please try again.",
+      "Deleting…"
+    );
+  });
+</script>

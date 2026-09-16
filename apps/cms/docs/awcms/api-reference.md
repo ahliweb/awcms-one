@@ -9525,6 +9525,68 @@ Sets deleted_at; the slug is freed for reuse. Restore it with POST /api/v1/comme
 | 404    | Resource not found.                                                                     | [`ApiError`](#standard-error-envelope) |
 | 409    | slug is already taken by a live category in this tenant (CATEGORY_SLUG_ALREADY_EXISTS). | [`ApiError`](#standard-error-envelope) |
 
+### `GET /api/v1/commerce/customers` — Admin customer list (Issue 29). Keyset-paginated, newest first. Gated on customers.read.
+
+- **operationId**: `listCommerceCustomers`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name     | In    | Required | Type   | Description |
+| -------- | ----- | -------- | ------ | ----------- |
+| `cursor` | query | no       | string |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | One page of customers.      | object                                 |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/customers/{id}` — Admin customer detail (Issue 29). Gated on customers.read.
+
+- **operationId**: `getCommerceCustomer`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The customer.               | object                                 |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
+
+### `PATCH /api/v1/commerce/customers/{id}` — Admin edit of a customer's level/status (Issue 29). Gated on customers.update.
+
+- **operationId**: `updateCommerceCustomer`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | Customer updated.           | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
+
 ### `GET /api/v1/commerce/flash-sales` — List flash sales (Issue 26). Keyset-paginated, newest first. Gated on flash_sales.read.
 
 - **operationId**: `listCommerceFlashSales`
@@ -9729,6 +9791,108 @@ status is DERIVED from now() against startsAt/endsAt — scheduled or active; en
 | 200    | Scheduled and active flash sales. | object                                 |
 | 401    | Missing or invalid session.       | [`ApiError`](#standard-error-envelope) |
 | 403    | Access denied by RBAC/ABAC.       | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/orders` — Admin order list (Issue 29). Keyset-paginated, newest first; optional status/paymentStatus filters. Gated on orders.read.
+
+- **operationId**: `listCommerceOrders`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name            | In    | Required | Type   | Description |
+| --------------- | ----- | -------- | ------ | ----------- |
+| `cursor`        | query | no       | string |             |
+| `status`        | query | no       | string |             |
+| `paymentStatus` | query | no       | string |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | One page of orders.         | object                                 |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/orders/{id}` — Admin order detail, unmasked customer phone (Issue 29). Gated on orders.read.
+
+- **operationId**: `getCommerceOrder`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The order.                  | object                                 |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
+
+### `PATCH /api/v1/commerce/orders/{id}/payment-confirmations/{cid}/review` — Admin accept/reject of a submitted payment confirmation (Issue 29). Accepting moves the order to paid when it is still pending_payment. Gated on orders.update.
+
+- **operationId**: `reviewCommerceOrderPaymentConfirmation`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name  | In   | Required | Type          | Description |
+| ----- | ---- | -------- | ------------- | ----------- |
+| `id`  | path | yes      | string (uuid) |             |
+| `cid` | path | yes      | string (uuid) |             |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | Reviewed.                   | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
+
+### `PATCH /api/v1/commerce/orders/{id}/status` — Admin status transition, enforced through the legal-transition table (Issue 29). Gated on orders.update.
+
+- **operationId**: `updateCommerceOrderStatus`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                            | Schema                                 |
+| ------ | ---------------------------------------------------------------------- | -------------------------------------- |
+| 200    | Status updated.                                                        | object                                 |
+| 400    | Validation error.                                                      | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                            | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                            | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                    | [`ApiError`](#standard-error-envelope) |
+| 409    | The requested transition is not legal from the order's current status. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/orders/export.csv` — Admin CSV export of the most recent orders (Issue 29, bounded to ~2000 rows). Gated on orders.read.
+
+- **operationId**: `exportCommerceOrdersCsv`
+- **Security**: bearerAuth + tenantHeader
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | A CSV document.             | string                                 |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
 
 ### `GET /api/v1/commerce/popups` — List popups (Issue 26). Keyset-paginated, newest first. Gated on popups.read.
 
@@ -10136,6 +10300,69 @@ Sets deleted_at; the sku and slug are freed for reuse. Restore it with POST /api
 | 403    | Access denied by RBAC/ABAC.                        | [`ApiError`](#standard-error-envelope) |
 | 404    | Resource not found.                                | [`ApiError`](#standard-error-envelope) |
 
+### `GET /api/v1/commerce/reviews` — Admin review moderation list (Issue 29). Keyset-paginated; optional status filter. Gated on reviews.read.
+
+- **operationId**: `listCommerceReviews`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name     | In    | Required | Type                                     | Description |
+| -------- | ----- | -------- | ---------------------------------------- | ----------- |
+| `cursor` | query | no       | string                                   |             |
+| `status` | query | no       | enum(`pending`, `published`, `rejected`) |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | One page of reviews.        | object                                 |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `PATCH /api/v1/commerce/reviews/{id}` — Admin moderation — publish or reject a pending review (Issue 29). Gated on reviews.update.
+
+- **operationId**: `moderateCommerceReview`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | Review moderated.           | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
+
+### `DELETE /api/v1/commerce/reviews/{id}` — Admin soft delete of a review (Issue 29). Gated on reviews.delete.
+
+- **operationId**: `deleteCommerceReview`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | Review deleted.             | object                                 |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
+
 ### `GET /api/v1/commerce/sliders` — List sliders (Issue 26). Keyset-paginated, newest first. Gated on sliders.read.
 
 - **operationId**: `listCommerceSliders`
@@ -10302,6 +10529,156 @@ Sets deleted_at; the sku and slug are freed for reuse. Restore it with POST /api
 | 200    | The public subset.          | object                                 |
 | 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
 | 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/storefront/cart/quote` — Anonymous, cross-origin cart quote (Issue 29, `commerce-storefront-endpoints.md`). Tenant resolved from the request Origin/Host — no bearer, no permission check. Read-only.
+
+- **operationId**: `quoteCommerceStorefrontCart`
+- **Security**: none (public endpoint)
+
+**Request body** (required): [`CommerceCartQuoteRequest`](#schema-commercecartquoterequest)
+
+**Responses**
+
+| Status | Description                                                                                                               | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The quote.                                                                                                                | object                                 |
+| 400    | Validation error.                                                                                                         | [`ApiError`](#standard-error-envelope) |
+| 404    | Unresolvable tenant, disabled module, or a rate-limited caller — the same neutral body (contract's own anti-oracle rule). | [`ApiError`](#standard-error-envelope) |
+| 429    | Rate limited.                                                                                                             | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/storefront/orders` — Anonymous order creation (Issue 29). Idempotent by the client-supplied idempotencyKey; re-quotes the cart inside the write transaction. No bearer, no permission check.
+
+- **operationId**: `createCommerceStorefrontOrder`
+- **Security**: none (public endpoint)
+
+**Request body** (required): [`CommerceCreateOrderRequest`](#schema-commercecreateorderrequest)
+
+**Responses**
+
+| Status | Description                                                                                                                                | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------- |
+| 200    | The idempotency key was seen before; the same order is returned.                                                                           | object                                 |
+| 201    | Order created.                                                                                                                             | object                                 |
+| 400    | Validation error.                                                                                                                          | [`ApiError`](#standard-error-envelope) |
+| 404    | Unresolvable tenant, disabled module, or a rate-limited caller.                                                                            | [`ApiError`](#standard-error-envelope) |
+| 409    | CART_CHANGED — a line's price/stock/shipping/payment method changed since it was last quoted; `error.details.quote` carries a fresh quote. | [`ApiError`](#standard-error-envelope) |
+| 429    | Rate limited (per IP and per normalised phone).                                                                                            | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/storefront/orders/{orderCode}` — Anonymous order tracking (Issue 29). orderCode + phone is the credential; an unknown code, a wrong phone, and another tenant's order all answer the same neutral 404.
+
+- **operationId**: `trackCommerceStorefrontOrder`
+- **Security**: none (public endpoint)
+
+**Parameters**
+
+| Name        | In    | Required | Type   | Description |
+| ----------- | ----- | -------- | ------ | ----------- |
+| `orderCode` | path  | yes      | string |             |
+| `phone`     | query | yes      | string |             |
+
+**Responses**
+
+| Status | Description         | Schema                                 |
+| ------ | ------------------- | -------------------------------------- |
+| 200    | The order.          | object                                 |
+| 404    | Resource not found. | [`ApiError`](#standard-error-envelope) |
+| 429    | Rate limited.       | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/storefront/orders/{orderCode}/cancel` — Anonymous customer-initiated cancel (Issue 29), only while pending_payment.
+
+- **operationId**: `cancelCommerceStorefrontOrder`
+- **Security**: none (public endpoint)
+
+**Parameters**
+
+| Name        | In   | Required | Type   | Description |
+| ----------- | ---- | -------- | ------ | ----------- |
+| `orderCode` | path | yes      | string |             |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description            | Schema                                 |
+| ------ | ---------------------- | -------------------------------------- |
+| 200    | Order cancelled.       | object                                 |
+| 404    | Resource not found.    | [`ApiError`](#standard-error-envelope) |
+| 409    | ORDER_NOT_CANCELLABLE. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/storefront/orders/{orderCode}/payment-confirmations` — Anonymous payment confirmation submission (Issue 29). Accepted without a proof image — see payment.proofUpload on the public store-settings read model.
+
+- **operationId**: `createCommerceStorefrontPaymentConfirmation`
+- **Security**: none (public endpoint)
+
+**Parameters**
+
+| Name        | In   | Required | Type   | Description |
+| ----------- | ---- | -------- | ------ | ----------- |
+| `orderCode` | path | yes      | string |             |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                           | Schema                                 |
+| ------ | ----------------------------------------------------- | -------------------------------------- |
+| 201    | Confirmation recorded.                                | object                                 |
+| 400    | Validation error.                                     | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                   | [`ApiError`](#standard-error-envelope) |
+| 409    | ORDER_NOT_PAYABLE — the order is not pending_payment. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/storefront/orders/{orderCode}/payment-proof/upload-sessions` — Reserved for a future increment (Issue 29) — always 503 MEDIA_UNAVAILABLE today. See the module README for why.
+
+- **operationId**: `createCommerceStorefrontPaymentProofUploadSession`
+- **Security**: none (public endpoint)
+
+**Parameters**
+
+| Name        | In   | Required | Type   | Description |
+| ----------- | ---- | -------- | ------ | ----------- |
+| `orderCode` | path | yes      | string |             |
+
+**Responses**
+
+| Status | Description                                       | Schema                                 |
+| ------ | ------------------------------------------------- | -------------------------------------- |
+| 404    | Resource not found.                               | [`ApiError`](#standard-error-envelope) |
+| 503    | Media upload is not available on this deployment. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/storefront/orders/{orderCode}/payment-proof/upload-sessions/{sessionId}/finalize` — Reserved for a future increment (Issue 29) — always 503 MEDIA_UNAVAILABLE today.
+
+- **operationId**: `finalizeCommerceStorefrontPaymentProofUploadSession`
+- **Security**: none (public endpoint)
+
+**Parameters**
+
+| Name        | In   | Required | Type   | Description |
+| ----------- | ---- | -------- | ------ | ----------- |
+| `orderCode` | path | yes      | string |             |
+| `sessionId` | path | yes      | string |             |
+
+**Responses**
+
+| Status | Description                                       | Schema                                 |
+| ------ | ------------------------------------------------- | -------------------------------------- |
+| 404    | Resource not found.                               | [`ApiError`](#standard-error-envelope) |
+| 503    | Media upload is not available on this deployment. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/storefront/reviews` — Anonymous review submission (Issue 29). Requires a completed order containing the product; lands pending for moderation.
+
+- **operationId**: `createCommerceStorefrontReview`
+- **Security**: none (public endpoint)
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                           | Schema                                 |
+| ------ | ------------------------------------- | -------------------------------------- |
+| 201    | Review submitted, pending moderation. | object                                 |
+| 400    | Validation error.                     | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                   | [`ApiError`](#standard-error-envelope) |
+| 409    | REVIEW_NOT_ALLOWED.                   | [`ApiError`](#standard-error-envelope) |
 
 ### `GET /api/v1/commerce/testimonials` — List testimonials (Issue 26). Keyset-paginated, newest first. Gated on testimonials.read.
 
@@ -11050,6 +11427,101 @@ Per-tenant comment configuration. Every numeric bound mirrors a CHECK constraint
   "blockedTerms": ["string"],
   "turnstileEnabled": false,
   "notifyOnReply": false
+}
+```
+
+### Schema: CommerceCartQuoteLine
+
+Issue 29 — a resolved cart line, request or response shape depending on context.
+
+| Field               | Type    | Required | Nullable | Description |
+| ------------------- | ------- | -------- | -------- | ----------- |
+| `productId`         | string  | no       | no       |             |
+| `variantId`         | string  | no       | yes      |             |
+| `quantity`          | integer | no       | no       |             |
+| `serviceFormValues` | object  | no       | yes      |             |
+
+**Example**
+
+```json
+{
+  "productId": "string",
+  "variantId": "string",
+  "quantity": 0,
+  "serviceFormValues": "(operation-specific payload)"
+}
+```
+
+### Schema: CommerceCartQuoteRequest
+
+| Field         | Type                                                              | Required | Nullable | Description |
+| ------------- | ----------------------------------------------------------------- | -------- | -------- | ----------- |
+| `lines`       | array of [`CommerceCartQuoteLine`](#schema-commercecartquoteline) | yes      | no       |             |
+| `shipping`    | object                                                            | no       | yes      |             |
+| `voucherCode` | string                                                            | no       | yes      |             |
+| `insurance`   | boolean                                                           | no       | no       |             |
+
+**Example**
+
+```json
+{
+  "lines": [
+    {
+      "productId": "string",
+      "variantId": "string",
+      "quantity": 0,
+      "serviceFormValues": "(operation-specific payload)"
+    }
+  ],
+  "shipping": {
+    "method": "alternative",
+    "serviceId": "string"
+  },
+  "voucherCode": "string",
+  "insurance": false
+}
+```
+
+### Schema: CommerceCreateOrderRequest
+
+| Field            | Type                                                              | Required | Nullable | Description |
+| ---------------- | ----------------------------------------------------------------- | -------- | -------- | ----------- |
+| `idempotencyKey` | string                                                            | yes      | no       |             |
+| `customer`       | object                                                            | yes      | no       |             |
+| `address`        | object                                                            | no       | yes      |             |
+| `lines`          | array of [`CommerceCartQuoteLine`](#schema-commercecartquoteline) | yes      | no       |             |
+| `shipping`       | object                                                            | yes      | no       |             |
+| `payment`        | object                                                            | yes      | no       |             |
+| `voucherCode`    | string                                                            | no       | yes      |             |
+| `insurance`      | boolean                                                           | no       | no       |             |
+| `notes`          | string                                                            | no       | yes      |             |
+
+**Example**
+
+```json
+{
+  "idempotencyKey": "string",
+  "customer": {
+    "name": "string",
+    "phone": "string",
+    "email": "user@example.com"
+  },
+  "address": "(operation-specific payload)",
+  "lines": [
+    {
+      "productId": "string",
+      "variantId": "string",
+      "quantity": 0,
+      "serviceFormValues": "(operation-specific payload)"
+    }
+  ],
+  "shipping": "(operation-specific payload)",
+  "payment": {
+    "method": "manual_bank"
+  },
+  "voucherCode": "string",
+  "insurance": false,
+  "notes": "string"
 }
 ```
 
@@ -12729,7 +13201,7 @@ consumer/subscriber contract in this file).
 }
 ```
 
-### Channels (49)
+### Channels (56)
 
 - `awcms.blog-content.ad.created` — An advertisement was created. Documented contract only; producer is `pages/api/v1/blog/ads/index.ts`'s `blog-content.ad.created` log line.
 - `awcms.blog-content.ad.deleted` — An advertisement was soft-deleted. Documented contract only; producer is `pages/api/v1/blog/ads/[id].ts`'s `blog-content.ad.deleted` log line.
@@ -12763,9 +13235,16 @@ consumer/subscriber contract in this file).
 - `awcms.comments.reply.created` — A submitted comment was a reply to an existing comment. Producer: `comments/application/comment-service.ts`'s `submitComment`, published alongside `comment.submitted` so a consumer can distinguish thread replies without re-reading the row. The recipient address is resolved from encrypted storage by the dispatcher at send time and is never carried here.
 - `awcms.commerce.flash_sale.ended` — A flash sale's derived status crossed into `ended` (`now()` passed `ends_at`). Producer: `commerce/application/flash-sale-directory.ts`'s `tickFlashSalesForTenant`, run by the scheduled `commerce:flash-sales:tick` job.
 - `awcms.commerce.flash_sale.started` — A flash sale's derived status crossed into `active` (`now()` entered `[starts_at, ends_at]`). Producer: `commerce/application/flash-sale-directory.ts`'s `tickFlashSalesForTenant`, run by the scheduled `commerce:flash-sales:tick` job — never a direct admin `PATCH`.
+- `awcms.commerce.order.cancelled` — An order was cancelled, by the customer (while `pending_payment`) or an admin. Producer: `commerce/application/order-directory.ts`'s `transitionOrderStatus`, published alongside `commerce.order.status_changed`; its line items are restocked and any redeemed voucher un-redeemed in the same transaction.
+- `awcms.commerce.order.created` — An order was created via the anonymous storefront checkout path. Producer: `commerce/application/order-directory.ts`'s `createOrderFromCart`, in the same transaction as the order/order-items insert, the stock/flash-sale-quota decrement, and (when a voucher was used) its redemption.
+- `awcms.commerce.order.expired` — A `pending_payment` order's payment window elapsed. Producer: `commerce/application/order-directory.ts`'s `transitionOrderStatus`, run by the scheduled `commerce:orders:expire` job; its line items are restocked and any redeemed voucher un-redeemed in the same transaction.
+- `awcms.commerce.order.paid` — An order's status transitioned to `paid` — normally an admin accepting a payment confirmation. Producer: `commerce/application/order-directory.ts`'s `transitionOrderStatus`, published alongside `commerce.order.status_changed`.
+- `awcms.commerce.order.status_changed` — An order's status transitioned (`commerce/domain/order-status.ts`'s `LEGAL_ORDER_STATUS_TRANSITIONS`). Producer: `commerce/application/order-directory.ts`'s `transitionOrderStatus`. Carries `from`/`to` status; a consumer that only cares an order moved can key off this without diffing the row.
 - `awcms.commerce.product.created` — A product was created (status `draft`). Producer: `commerce/application/product-directory.ts`'s `createProduct`, via `appendDomainEvent` in the same transaction as the row's creation.
 - `awcms.commerce.product.status_changed` — A product's lifecycle status transitioned (`commerce/domain/product-status.ts`'s `LEGAL_TRANSITIONS`). Producer: `commerce/application/product-directory.ts`'s `updateProduct`. Carries `previousStatus` and `status`; a consumer that only cares whether a product is still sellable can key off this without diffing the row.
 - `awcms.commerce.product.updated` — A product's fields other than `status` were changed. Producer: `commerce/application/product-directory.ts`'s `updateProduct`. Published alongside `commerce.product.status_changed` when a single `PATCH` changes both.
+- `awcms.commerce.review.published` — A pending review was moderated to `published` by an admin. Producer: `commerce/application/review-directory.ts`'s `moderateReview` — never fired on review creation, since a pending review is not yet a fact worth publishing to anyone.
+- `awcms.commerce.voucher.redeemed` — A voucher's `used_count` was incremented by a real order. Producer: `commerce/application/order-directory.ts`'s `createOrderFromCart`, in the same transaction as the order that redeemed it.
 - `awcms.domain-event-runtime.sample.recorded` — Reference/example event used to exercise the domain-event-runtime outbox, dispatcher, ordering, retry/backoff, dead-letter, and replay mechanism end-to-end. Real producer modules publish their OWN event types the same way, via `appendDomainEvent` — this one is intentionally self-contained rather than tied to another module's business logic in this foundation module (see `src/modules/domain-event-runtime/domain/event-type-registry.ts`'s own doc comment). Producer: any caller of `application/append-domain-event.ts`'s `appendDomainEvent` for this event type; consumers: `infrastructure/consumer-registry.ts`'s two reference consumers (a same-process cross-module audit projector and a self-contained read-model activity-rollup projection).
 - `awcms.email.message.cancelled` — An operator cancelled a still-queued message (`POST /api/v1/email/messages/{id}/cancel`) before dispatch. Documented contract only; producer is the structured JSON logger (`pages/api/v1/email/messages/[id]/cancel.ts`'s `email.message.cancelled` log line).
 - `awcms.email.message.failed` — The email dispatcher exhausted retries (or hit a non-retryable failure) for a queued message. Documented contract only; producer is the structured JSON logger (`email/application/email-dispatch.ts`'s `email.dispatch.failed` log line).

@@ -1,0 +1,27 @@
+{
+  "_note": "Issue #29 — two guest orders in different states, created through the anonymous storefront path (POST /api/v1/commerce/storefront/orders, resolved by an Origin header matching a seeded tenant domain — never the authenticated session). Both name productSlug \"mie-gacoan-jw13\" (the same physical, no-service-form product the storefront-endpoints contract itself uses as its worked example), matched against ensureProducts's own productIdBySlug map. finalStatus \"pending_payment\" needs no follow-up call; any other value is applied afterwards via the authenticated admin PATCH /api/v1/commerce/orders/{id}/status.",
+  "orders": [
+    {
+      "customer": {
+        "name": "Siti Aminah",
+        "phone": "081234567890",
+        "email": null
+      },
+      "productSlug": "mie-gacoan-jw13",
+      "quantity": 2,
+      "notes": "Tolong dibungkus rapi, terima kasih.",
+      "finalStatus": "pending_payment"
+    },
+    {
+      "customer": {
+        "name": "Budi Santoso",
+        "phone": "081298765432",
+        "email": "budi.santoso@example.com"
+      },
+      "productSlug": "mie-gacoan-jw13",
+      "quantity": 1,
+      "notes": null,
+      "finalStatus": "paid"
+    }
+  ]
+}
