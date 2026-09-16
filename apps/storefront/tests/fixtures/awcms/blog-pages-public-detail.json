@@ -1,0 +1,131 @@
+{
+  "kebijakan-privasi": {
+    "id": "a1b2c3d4-0000-4000-8000-000000000001",
+    "title": "Kebijakan Privasi",
+    "slug": "kebijakan-privasi",
+    "excerpt": "Bagaimana kami mengelola data Anda.",
+    "seoTitle": null,
+    "metaDescription": null,
+    "canonicalUrl": null,
+    "locale": "id",
+    "publishedAt": "2026-01-10T00:00:00.000Z",
+    "updatedAt": "2026-01-10T00:00:00.000Z",
+    "visibility": "public",
+    "pageType": "legal",
+    "bodyPortableText": [
+      {
+        "_type": "block",
+        "_key": "b1",
+        "style": "h2",
+        "children": [
+          { "_type": "span", "_key": "s1", "text": "Pendahuluan", "marks": [] }
+        ],
+        "markDefs": []
+      },
+      {
+        "_type": "block",
+        "_key": "b2",
+        "style": "normal",
+        "children": [
+          { "_type": "span", "_key": "s2", "text": "Kami menghormati ", "marks": [] },
+          { "_type": "span", "_key": "s3", "text": "privasi", "marks": ["strong"] },
+          { "_type": "span", "_key": "s4", "text": " Anda. Lihat ", "marks": [] },
+          { "_type": "span", "_key": "s5", "text": "syarat dan ketentuan", "marks": ["link1"] },
+          { "_type": "span", "_key": "s6", "text": " kami juga, dan waspadai tautan ", "marks": [] },
+          { "_type": "span", "_key": "s7", "text": "berbahaya", "marks": ["link2"] },
+          { "_type": "span", "_key": "s8", "text": ".", "marks": [] }
+        ],
+        "markDefs": [
+          { "_type": "link", "_key": "link1", "href": "/halaman/syarat-dan-ketentuan" },
+          { "_type": "link", "_key": "link2", "href": "javascript:alert(1)" }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b3",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "children": [
+          { "_type": "span", "_key": "s9", "text": "Data yang kami kumpulkan", "marks": [] }
+        ],
+        "markDefs": []
+      },
+      {
+        "_type": "block",
+        "_key": "b4",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "children": [
+          { "_type": "span", "_key": "s10", "text": "Bagaimana kami menggunakannya", "marks": [] }
+        ],
+        "markDefs": []
+      },
+      {
+        "_type": "block",
+        "_key": "b5",
+        "style": "blockquote",
+        "children": [
+          { "_type": "span", "_key": "s11", "text": "Data Anda adalah milik Anda.", "marks": ["em"] }
+        ],
+        "markDefs": []
+      },
+      {
+        "_type": "gallery",
+        "_key": "g1",
+        "items": [{ "mediaObjectId": "00000000-0000-4000-8000-000000000000" }]
+      }
+    ]
+  },
+  "syarat-dan-ketentuan": {
+    "id": "a1b2c3d4-0000-4000-8000-000000000002",
+    "title": "Syarat & Ketentuan",
+    "slug": "syarat-dan-ketentuan",
+    "excerpt": null,
+    "seoTitle": null,
+    "metaDescription": null,
+    "canonicalUrl": null,
+    "locale": "id",
+    "publishedAt": "2026-01-10T00:00:00.000Z",
+    "updatedAt": "2026-01-10T00:00:00.000Z",
+    "visibility": "public",
+    "pageType": "legal",
+    "bodyPortableText": [
+      {
+        "_type": "block",
+        "_key": "b1",
+        "style": "normal",
+        "children": [
+          { "_type": "span", "_key": "s1", "text": "Dengan menggunakan situs ini, Anda menyetujui syarat berikut.", "marks": [] }
+        ],
+        "markDefs": []
+      }
+    ]
+  },
+  "panduan-belanja": {
+    "id": "a1b2c3d4-0000-4000-8000-000000000003",
+    "title": "Panduan Belanja",
+    "slug": "panduan-belanja",
+    "excerpt": "Cara berbelanja di BjekMart.",
+    "seoTitle": null,
+    "metaDescription": null,
+    "canonicalUrl": null,
+    "locale": "id",
+    "publishedAt": "2026-01-12T00:00:00.000Z",
+    "updatedAt": "2026-01-12T00:00:00.000Z",
+    "visibility": "public",
+    "pageType": "info",
+    "bodyPortableText": [
+      {
+        "_type": "block",
+        "_key": "b1",
+        "style": "normal",
+        "children": [
+          { "_type": "span", "_key": "s1", "text": "Pilih produk, hubungi kami melalui WhatsApp untuk memesan.", "marks": [] }
+        ],
+        "markDefs": []
+      }
+    ]
+  }
+}

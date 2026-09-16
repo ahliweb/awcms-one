@@ -1,0 +1,95 @@
+---
+/**
+ * The site header (issue #24): brand mark, primary nav, search, cart count.
+ *
+ * ## Mobile nav needs no JavaScript
+ *
+ * The nav list lives inside a native `<details>`/`<summary>` disclosure.
+ * `global.css` shows/hides the `<summary>` toggle and the nav's layout by
+ * viewport width — the browser's own disclosure widget does the opening and
+ * closing, keyboard included (`Enter`/`Space` on a focused `<summary>`), with
+ * nothing in this file's own `<script>` block touching it at all.
+ *
+ * ## No `<img>` logo — see `src/lib/awcms/profil.ts`
+ *
+ * `identity.logoMediaId` is surfaced but never resolved to a URL in this
+ * issue (documented deviation — this app carries no media-object client).
+ * The brand mark is the store NAME, styled as the wordmark.
+ *
+ * ## Cart count needs a script, and that script is never inline
+ *
+ * `script-src 'self'` (`server/penyaji.mjs`) refuses `is:inline`/handler
+ * attributes. This `<script>` tag is a normal ES module Astro bundles into
+ * an external, content-hashed file under `_astro/` — satisfying the CSP by
+ * construction, the same way `astro.config.mjs`'s `inlineStylesheets:
+ * "never"` does for CSS. It reads the `"cart"` key from `localStorage` —
+ * the key issue #30 is expected to write to — and renders `0` for any state
+ * that is not a valid, non-empty array (no cart yet, corrupted JSON, a
+ * shape from a future format this script does not recognise).
+ */
+import type { SiteIdentity } from "../lib/awcms/profil";
+import { PRIMARY_NAV, ROUTES } from "../config/routes";
+import SearchForm from "./SearchForm.astro";
+
+interface Props {
+  identity: SiteIdentity;
+}
+
+const { identity } = Astro.props;
+---
+
+<header class="site-header">
+  <div class="container site-header-inner">
+    <a href="/" class="site-brand">{identity.name}</a>
+
+    <details class="mobile-nav-toggle">
+      <summary aria-label="Buka menu navigasi">
+        <span aria-hidden="true">☰</span>
+        <span class="visually-hidden">Menu</span>
+      </summary>
+
+      <nav aria-label="Navigasi utama">
+        {PRIMARY_NAV.map((item) => (
+          <a href={item.href}>{item.label}</a>
+        ))}
+      </nav>
+    </details>
+
+    <div class="site-header-tools">
+      <SearchForm idPrefix="header-search" />
+
+      <a href={ROUTES.cart} class="cart-link">
+        <span aria-hidden="true">🛒</span>
+        Keranjang
+        <span class="cart-count" data-cart-count aria-live="polite">0</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  const CART_STORAGE_KEY = "cart";
+
+  function countCartItems() {
+    try {
+      const raw = window.localStorage.getItem(CART_STORAGE_KEY);
+      if (!raw) return 0;
+
+      const parsed = JSON.parse(raw);
+      if (!Array.isArray(parsed)) return 0;
+
+      return parsed.reduce((total, item) => {
+        const quantity =
+          item && typeof item === "object" && "quantity" in item ? Number(item.quantity) : 1;
+        return total + (Number.isFinite(quantity) && quantity > 0 ? quantity : 1);
+      }, 0);
+    } catch {
+      // A private window, cleared storage, or a shape this script does not
+      // recognise all read the same way: no cart to report.
+      return 0;
+    }
+  }
+
+  const el = document.querySelector("[data-cart-count]");
+  if (el) el.textContent = String(countCartItems());
+</script>

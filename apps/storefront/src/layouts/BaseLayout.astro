@@ -8,8 +8,26 @@
  * One `<h1>` per page is a contract this file does NOT fulfil — it renders
  * no heading of its own, on purpose, so the page inside `<slot />` can own
  * the single `<h1>` without this shell competing with it.
+ *
+ * ## Issue #24 additions
+ *
+ * - Site identity (`identity.name`/`identity.description`) now comes from
+ *   `getSiteIdentity()` — a build-time CMS fetch, memoized, so calling it
+ *   from every page's layout costs one request for the whole build, not one
+ *   per page. `title`'s "is this the homepage" check compares against
+ *   `identity.name` for the same reason it used to compare against
+ *   `siteConfig.name`: the homepage passes its own name as `title` and must
+ *   not render "BjekMart — BjekMart".
+ * - `<main id="konten">` — not `#main-content` — per this issue's own
+ *   accessibility naming; the skip link below points at the same id.
+ * - `theme-tokens.css` (CMS-driven `--color-primary/secondary/accent`) and
+ *   `favicon.svg` are linked here, once, for every page.
  */
-import { siteConfig, absoluteUrl } from "../config/site";
+import { absoluteUrl } from "../config/site";
+import { getSiteIdentity } from "../lib/awcms/profil";
+import { listStaticPages } from "../lib/awcms/pages";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
 import "../styles/global.css";
 
 interface Props {
@@ -21,16 +39,14 @@ interface Props {
   schema?: Record<string, unknown>;
 }
 
-const {
-  title,
-  description = siteConfig.description,
-  canonicalPath,
-  schema
-} = Astro.props;
+const { title, description, canonicalPath, schema } = Astro.props;
+
+const identity = await getSiteIdentity();
+const staticPages = await listStaticPages();
 
 const canonicalUrl = absoluteUrl(canonicalPath);
-const fullTitle = title === siteConfig.name ? title : `${title} — ${siteConfig.name}`;
-const metaDescription = description.slice(0, 160);
+const fullTitle = title === identity.name ? title : `${title} — ${identity.name}`;
+const metaDescription = (description ?? identity.description).slice(0, 160);
 
 /**
  * JSON that is safe to write inside a `<script>` element.
@@ -69,6 +85,10 @@ function jsonForScript(value: unknown): string {
     <meta name="description" content={metaDescription} />
     <link rel="canonical" href={canonicalUrl} />
     <link rel="stylesheet" href="/product-labels.css" />
+    <link rel="stylesheet" href="/theme-tokens.css" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="alternate" type="application/rss+xml" title={identity.name} href="/feed.xml" />
 
     {/* Open Graph. `og:type` stays "website" even on a product page: Open
         Graph's "product" type is only valid alongside the product
@@ -83,7 +103,7 @@ function jsonForScript(value: unknown): string {
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={metaDescription} />
-    <meta property="og:site_name" content={siteConfig.name} />
+    <meta property="og:site_name" content={identity.name} />
     <meta property="og:locale" content="id_ID" />
 
     {/* JSON-LD is a DATA block, not a script: `type="application/ld+json"` is
@@ -105,25 +125,14 @@ function jsonForScript(value: unknown): string {
     )}
   </head>
   <body>
-    <a class="skip-link" href="#main-content">Lewati ke konten utama</a>
+    <a class="skip-link" href="#konten">Lewati ke konten utama</a>
 
-    <header class="site-header">
-      <div class="container site-header-inner">
-        <a href="/" class="site-brand">{siteConfig.name}</a>
-        <nav aria-label="Navigasi utama">
-          <a href="/">Katalog</a>
-        </nav>
-      </div>
-    </header>
+    <Header identity={identity} />
 
-    <main id="main-content">
+    <main id="konten">
       <slot />
     </main>
 
-    <footer class="site-footer">
-      <div class="container">
-        <p>&copy; {new Date().getFullYear()} {siteConfig.name}</p>
-      </div>
-    </footer>
+    <Footer identity={identity} staticPages={staticPages} />
   </body>
 </html>

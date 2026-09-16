@@ -15,8 +15,10 @@
  */
 import { awcmsGet } from "./awcms/client";
 import type { ProductType, ProductStatus } from "@awcms-one/kontrak";
+import { isValidHexColor, contrastingForeground } from "./warna";
 
 export type { ProductType, ProductStatus };
+export { isValidHexColor, contrastingForeground };
 
 // ---------------------------------------------------------------------------
 // DTO contract
@@ -323,61 +325,6 @@ export function formatPrice(price: string): string {
   }
 
   return priceFormatter.format(value);
-}
-
-const HEX_COLOR = /^#[0-9a-f]{6}$/i;
-
-/** Whether `value` is a 6-digit `#rrggbb` hex color this app knows how to pair a readable foreground against. */
-export function isValidHexColor(value: string): boolean {
-  return HEX_COLOR.test(value.trim());
-}
-
-/** WCAG relative luminance (https://www.w3.org/TR/WCAG21/#dfn-relative-luminance) of a validated `#rrggbb` string. */
-function relativeLuminance(hex: string): number {
-  const [r, g, b] = [1, 3, 5]
-    .map((offset) => parseInt(hex.slice(offset, offset + 2), 16) / 255)
-    .map((channel) =>
-      channel <= 0.03928 ? channel / 12.92 : ((channel + 0.055) / 1.055) ** 2.4
-    );
-
-  return 0.2126 * r + 0.7152 * g + 0.0722 * b;
-}
-
-/**
- * Picks black or white text for readability against an arbitrary,
- * CMS-supplied background color — `label`/`labelColor` on `CommerceProduct`
- * is a merchandiser-chosen badge color with no fixed palette, and assuming
- * white text is always readable on it is exactly the bug issue #5 calls out
- * by name: a pale badge color (a light yellow "Baru" tag, say) with white
- * text fails contrast outright.
- *
- * Compares the WCAG contrast ratio of BOTH candidates against the
- * background and returns whichever is higher, rather than testing the
- * luminance against a single midpoint threshold — the two contrast formulas
- * (against white, against black) are not symmetric around one, so a fixed
- * threshold picks the worse option for a real range of colors.
- *
- * Known limit, stated rather than hidden: for a color near the middle of the
- * luminance range, NEITHER pure black nor pure white may reach the 4.5:1
- * body-text minimum — picking the higher-contrast one is the best a
- * function of the background color alone can do without altering the
- * merchandiser's chosen color, which is out of scope for this app to do
- * silently.
- */
-export function contrastingForeground(hex: string): "#000000" | "#ffffff" {
-  if (!isValidHexColor(hex)) {
-    throw new Error(
-      `contrastingForeground: "${hex}" is not a 6-digit hex color (e.g. ` +
-        `"#1a2b3c"). Callers are expected to check isValidHexColor() first — ` +
-        `see labelClassName(), which never passes anything else through.`
-    );
-  }
-
-  const luminance = relativeLuminance(hex);
-  const contrastWithWhite = 1.05 / (luminance + 0.05);
-  const contrastWithBlack = (luminance + 0.05) / 0.05;
-
-  return contrastWithWhite >= contrastWithBlack ? "#ffffff" : "#000000";
 }
 
 /**

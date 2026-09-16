@@ -1,0 +1,17 @@
+:root {
+  --awcms-theme-color_primary: #7c3aed;
+  --awcms-theme-color_on_primary: #ffffff;
+  --awcms-theme-color_background: #ffffff;
+  --awcms-theme-color_surface: #f8fafc;
+  --awcms-theme-color_text: #0f172a;
+  --awcms-theme-color_muted: #475569;
+  --awcms-theme-color_border: #e2e8f0;
+  --awcms-theme-color_accent: #db2777;
+  --awcms-theme-font_body: "Inter", system-ui, sans-serif;
+  --awcms-theme-font_heading: "Inter", system-ui, sans-serif;
+  --awcms-theme-font_size_base: 1rem;
+  --awcms-theme-radius_base: 0.5rem;
+  --awcms-theme-space_unit: 1rem;
+  --awcms-theme-container_max_width: 72rem;
+  --awcms-theme-line_height_base: 1.5;
+}
