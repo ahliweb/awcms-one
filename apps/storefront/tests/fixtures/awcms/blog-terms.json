@@ -1,0 +1,12 @@
+{
+  "terms": [
+    { "id": "t-peristiwa", "taxonomyType": "category", "parentId": null, "name": "Peristiwa", "slug": "peristiwa", "description": null },
+    { "id": "t-politik", "taxonomyType": "category", "parentId": null, "name": "Politik", "slug": "politik", "description": null },
+    { "id": "t-hukum", "taxonomyType": "category", "parentId": "t-peristiwa", "name": "Hukum", "slug": "hukum", "description": null },
+    { "id": "t-kriminal", "taxonomyType": "category", "parentId": "t-peristiwa", "name": "Kriminal", "slug": "kriminal", "description": null },
+    { "id": "t-hukum-pidana", "taxonomyType": "category", "parentId": "t-hukum", "name": "Pidana", "slug": "pidana", "description": null },
+    { "id": "t-tag-ekonomi", "taxonomyType": "tag", "parentId": null, "name": "Ekonomi", "slug": "ekonomi", "description": null },
+    { "id": "t-tag-pilkada", "taxonomyType": "tag", "parentId": null, "name": "Pilkada", "slug": "pilkada", "description": null }
+  ],
+  "nextCursor": null
+}

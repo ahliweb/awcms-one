@@ -56,6 +56,14 @@ Two files exist specifically to prove this rule holds without a live CMS:
 | `/manifest.webmanifest` | Web app manifest | site identity + theme + bundled favicon |
 | `/theme-tokens.css` | Build-time-generated `--color-primary/secondary/accent` stylesheet | `GET /theming/{tenantCode}/tokens.css` |
 | `/product-labels.css` | Build-time-generated per-product badge-color stylesheet | derived from the catalog fetch |
+| `/berita`, `/berita/{slug}`, `/berita/feed.xml` | News front page, article detail, RSS 2.0 (issue #28) | `GET /api/v1/blog/posts`/`terms`/`institutions` |
+| `/rubrik/{slug}`, `/rubrik/{slug}/halaman/{n}`, `/rubrik/{slug}/feed.xml` | Hierarchical rubrik (category) archive + pagination + feed | same as above |
+| `/daerah/{slug}` | Region archive, reached via an institution's `regionCode` | `GET /api/v1/blog/institutions`, `/api/v1/idn-regions/regions` |
+| `/mitra/{slug}` | Institution ("Mitra") landing | `GET /api/v1/blog/institutions` |
+| `/video`, `/video/{slug}` | Video-news index + detail (a post with a `videoNews` block) | `GET /api/v1/blog/posts` |
+| `/tag/{slug}`, `/penulis/{slug}`, `/arsip/{yyyy}/{mm}` | Tag, author (byline-based), and monthly archives | `GET /api/v1/blog/posts`/`terms` |
+| `/cari-berita` | Client-side search over `/index/berita.json` | `/index/berita.json` (build-time index) |
+| `/index/berita.json`, `/index/pengalihan-legacy.json` | The search index, and the legacy-URL redirect map `apps/storefront/server/penyaji.mjs` reads at startup | `GET /api/v1/blog/posts`, `/api/v1/seo/redirects` |
 
 Every non-static-asset route above is prerendered — there is no
 `prerender = false` anywhere in this app, and none should be added without
@@ -111,6 +119,59 @@ brief this issue was implemented under asks:
    fragment) — the page renders every field the endpoint actually returns
    and omits the two that would otherwise have to be invented.
 
+## News surface (issue #28)
+
+`/berita`, `/rubrik/{slug}`, `/daerah/{slug}`, `/mitra/{slug}`, `/video`,
+`/tag/{slug}`, `/penulis/{slug}`, `/arsip/{yyyy}/{mm}`, `/cari-berita` —
+seputarborneo/beritasampit parity over the CMS's `blog_content` module.
+`apps/storefront/src/lib/berita.ts` is the domain layer (mirrors
+`apps/storefront/src/lib/catalog.ts`'s shape: one memoized, once-per-build
+index; pages never see a term id, an institution id, or a keyset cursor);
+`apps/storefront/src/lib/awcms/{blog,wilayah,lembaga,iklan}.ts` are the raw,
+field-verified fetchers.
+
+Deliberate deviations from the issue text, recorded here as the brief this
+issue was implemented under asks:
+
+1. **No hero `<img>`, no real gallery/ad-creative image, no YouTube
+   `<iframe>` embed.** This app still has no media-object client (the same
+   gap issue #24 recorded) — a post's `featuredMediaId`/a gallery item's
+   `mediaObjectId`/an ad's `mediaPublicUrl` are either bare ids this app
+   cannot resolve to a URL, or (the ad case) a real URL this app's CSP
+   (`img-src 'self'`, `apps/storefront/server/penyaji.mjs`) has no exemption
+   for, and widening that CSP is outside this issue's file ownership (only
+   the legacy-redirect hook there is granted).
+   `apps/storefront/src/lib/portable-text.ts` renders `videoNews` as a real, semantic outbound link (never an
+   `<iframe>`) and a captioned `gallery` item as a real `<figure>`/
+   `<figcaption>` with no `<img>` — see that file's own docblock for the
+   full reasoning, including why this independently reaches the same
+   conclusion the sibling `media-lenterakalteng` app's own ADR-0046 does.
+2. **No `article:published_time` Open Graph tag, no `rel=prev/next`, no
+   `noindex` beyond page 1.** `BaseLayout.astro` (issue #24, outside this
+   issue's file ownership) has no mechanism for a page to add extra
+   `<meta>`/`<link>` tags. The same publish/update timestamps are present,
+   machine-readable, in every article's `NewsArticle` JSON-LD.
+3. **"Terpopuler" is always "latest", never a `visitor_analytics` rollup.**
+   No such endpoint was part of this issue's verified-safe read scope.
+4. **No footer ad slot.** The verified `AD_PLACEMENT_KEYS`
+   (`apps/storefront/src/lib/awcms/blog.ts`) has header/in-article/sidebar
+   slots and no footer one at all.
+5. **A region's URL slug is DERIVED from its name**
+   (`apps/storefront/src/lib/berita.ts`'s `slugifyName`) —
+   `idn_admin_regions` issues a `code`, never a slug. An
+   institution's own slug, by contrast, passes through from the CMS
+   unchanged.
+6. **"Internal tag links" needed no renderer change.** Verified against
+   `apps/cms`'s `internal-tag-linking.ts`: awcms's own auto-linking is a
+   render-time HTML transform on the CMS's own themed pages, never an
+   authored Portable Text node — a genuine internal link is already carried
+   by the ordinary `link` annotation issue #24 built, and every article
+   additionally renders an explicit tag list.
+7. **No "transcript link" for a video post.** The verified `videoNews`
+   schema (`provider`/`videoId`/`title`/`caption`/`thumbnailMediaObjectId`/
+   `durationSeconds`/`sourceLabel`) has no transcript field of any kind —
+   there is nothing for this app to link to without inventing one.
+
 ## Environment variables
 
 See `apps/storefront/.env.example` for the full, current list with
@@ -137,7 +198,10 @@ AWCMS_API_URL=http://localhost:4310 AWCMS_API_TOKEN=stub-token \
 
 The stub answers every endpoint this app calls (`/api/v1/commerce/*`,
 `/api/v1/site-profile/composed`, `/api/v1/blog/pages/public[/​{slug}]`,
-`/theming/{tenantCode}/tokens.css`) straight from the committed fixtures
+`/theming/{tenantCode}/tokens.css`, and — issue #28 — `/api/v1/blog/
+{posts,terms,institutions}`, `/api/v1/idn-regions/regions`, `/api/v1/
+news-portal/ad-placements/active`, `/api/v1/seo/redirects`) straight from
+the committed fixtures
 under `apps/storefront/tests/fixtures/awcms/` — a reviewer can read the
 exact response shape this app was built against as plain JSON/CSS, not a
 shape hidden inside the script. It is not part of the production build or

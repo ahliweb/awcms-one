@@ -40,6 +40,26 @@
  *     this app calls that route and not `GET /api/v1/theming`. `tenantCode`
  *     in the path is accepted but ignored, same as every other stub route
  *     ignoring which tenant a token belongs to.
+ *
+ * Issue #28 adds six more, all read straight from committed fixtures the
+ * same way, and all ignoring their query parameters exactly the way the
+ * commerce routes above already do (one fixture page is "the whole
+ * response", regardless of `?status=`/`?order=`/`?cursor=`/etc.):
+ *
+ *   - `/api/v1/blog/posts` — `blog-posts.json` (`src/lib/awcms/blog.ts`,
+ *     `{ posts, nextCursor: null }`, `view=full` shape).
+ *   - `/api/v1/blog/terms` — `blog-terms.json` (`{ terms, nextCursor: null }`).
+ *   - `/api/v1/blog/institutions` — `blog-institutions.json`
+ *     (`{ institutions }`, genuinely unpaginated — see that file's docblock).
+ *   - `/api/v1/idn-regions/regions` — `regions-kalteng.json`
+ *     (`src/lib/awcms/wilayah.ts`, `{ datasetCode, items, nextCursor: null,
+ *     reason: null }`). `/api/v1/idn-regions/regions/{code}` (the by-code
+ *     detail route) has NO stub entry: `wilayah.ts` only ever calls the list
+ *     route.
+ *   - `/api/v1/news-portal/ad-placements/active` — `ad-placements-active.json`
+ *     (`{ slots }`).
+ *   - `/api/v1/seo/redirects` — `seo-redirects-legacy.json`
+ *     (`{ redirects, nextCursor: null }`).
  */
 import { readFileSync } from "node:fs";
 
@@ -58,7 +78,14 @@ const ROUTES = {
   "/api/v1/commerce/products": () => fixture("products.json"),
   "/api/v1/commerce/categories": () => fixture("categories.json"),
   "/api/v1/site-profile/composed": () => fixture("site-profile-composed.json"),
-  "/api/v1/blog/pages/public": () => fixture("blog-pages-public.json")
+  "/api/v1/blog/pages/public": () => fixture("blog-pages-public.json"),
+  // #28 news
+  "/api/v1/blog/posts": () => fixture("blog-posts.json"),
+  "/api/v1/blog/terms": () => fixture("blog-terms.json"),
+  "/api/v1/blog/institutions": () => fixture("blog-institutions.json"),
+  "/api/v1/idn-regions/regions": () => fixture("regions-kalteng.json"),
+  "/api/v1/news-portal/ad-placements/active": () => fixture("ad-placements-active.json"),
+  "/api/v1/seo/redirects": () => fixture("seo-redirects-legacy.json")
 };
 
 const TOKENS_CSS_PATTERN = /^\/theming\/[^/]+\/tokens\.css$/;

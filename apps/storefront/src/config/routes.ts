@@ -20,10 +20,36 @@ export const ROUTES = {
   category: (slug: string): string => `/kategori/${slug}`,
   flashSale: "/flash-sale",
   news: "/berita",
+  // --- issue #28: news surface — one article/rubrik/tag/etc. constant each,
+  // added here (rather than restructuring anything above) so #27's own
+  // additions to this same object merge without conflict.
+  /** A single article's own page — distinct from `news` (`/berita`, the front page) above. */
+  article: (slug: string): string => `/berita/${slug}`,
   rubric: (slug: string): string => `/rubrik/${slug}`,
+  /**
+   * `page` defaults to `2` (never `1` — page 1 lives at bare `ROUTES.rubric`,
+   * see `src/lib/berita.ts`'s pagination docblock) SOLELY so this function's
+   * arity matches every other single-slug `ROUTES` entry: `tests/
+   * routes.test.ts` (issue #24, outside this issue's file ownership) and
+   * `tests/berita-guard-no-news-route.test.ts` both iterate `ROUTES` generically
+   * and call every function value with ONE argument — TypeScript cannot call a
+   * UNION of differently-shaped function types with an argument list that
+   * does not satisfy every member, so a strictly-2-argument function here
+   * breaks type-checking for both call sites even though neither one cares
+   * what the second argument defaults to. Every real caller of this
+   * function (`src/lib/berita.ts`, the `/rubrik/[slug]/halaman/[n]` pages)
+   * always passes `page` explicitly.
+   */
+  rubricPage: (slug: string, page = 2): string => `/rubrik/${slug}/halaman/${page}`,
   region: (slug: string): string => `/daerah/${slug}`,
   partner: (slug: string): string => `/mitra/${slug}`,
   video: "/video",
+  videoArticle: (slug: string): string => `/video/${slug}`,
+  tag: (slug: string): string => `/tag/${slug}`,
+  author: (slug: string): string => `/penulis/${slug}`,
+  /** `mm` defaults for the same arity reason `rubricPage`'s `page` does — see its docblock. Every real caller passes both segments explicitly. */
+  archive: (yyyy: string, mm = "01"): string => `/arsip/${yyyy}/${mm}`,
+  newsSearch: "/cari-berita",
   cart: "/keranjang",
   checkout: "/checkout",
   wishlist: "/wishlist",

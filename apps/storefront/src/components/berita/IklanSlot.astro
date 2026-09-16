@@ -1,0 +1,52 @@
+---
+/**
+ * One ad placement slot (issue #28) — "render nothing when no placement" is
+ * simply this component rendering nothing when `getAdSlot` answers `[]`.
+ *
+ * No `<img>` for the creative itself: `PublicAdPlacement.mediaPublicUrl`
+ * (`src/lib/awcms/blog.ts`) is a real, already-resolved absolute URL, but
+ * this app's CSP (`img-src 'self'`, `server/penyaji.mjs`) has no exemption
+ * for the CMS's media origin, and widening it is outside this issue's file
+ * ownership (only the legacy-redirect hook there is granted). This renders
+ * the creative's name/link and its editorial-disclosure label instead —
+ * see `src/lib/awcms/blog.ts`'s `PublicAdPlacement` docblock for the full
+ * reasoning.
+ */
+import { getAdSlot } from "../../lib/awcms/iklan";
+import type { AdPlacementKey } from "../../lib/awcms/blog";
+
+interface Props {
+  placement: AdPlacementKey;
+  /** The visible section label — "Iklan" by default, matching every disclosure convention this app otherwise renders in Indonesian. */
+  label?: string;
+}
+
+const { placement, label = "Iklan" } = Astro.props;
+const ads = await getAdSlot(placement);
+
+const disclosureLabel = {
+  standard: null,
+  advertorial: "Advertorial",
+  sponsored: "Konten Bersponsor"
+} as const;
+---
+
+{ads.length > 0 && (
+  <div class="ad-slot" data-placement={placement}>
+    <p class="ad-slot-label">{label}</p>
+    <ul class="ad-slot-list">
+      {ads.map((ad) => (
+        <li class="ad-slot-item">
+          {ad.linkUrl ? (
+            <a href={ad.linkUrl} rel="noopener noreferrer sponsored" target="_blank">{ad.name}</a>
+          ) : (
+            <span>{ad.name}</span>
+          )}
+          {disclosureLabel[ad.contentClass] && (
+            <span class="ad-slot-disclosure">{disclosureLabel[ad.contentClass]}</span>
+          )}
+        </li>
+      ))}
+    </ul>
+  </div>
+)}

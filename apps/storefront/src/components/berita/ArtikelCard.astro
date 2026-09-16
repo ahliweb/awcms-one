@@ -1,0 +1,32 @@
+---
+/**
+ * One post's card — reused by `/berita`, `/rubrik/[slug]`, `/daerah/[slug]`,
+ * `/mitra/[slug]`, `/video`, `/tag/[slug]`, `/penulis/[slug]`,
+ * `/arsip/[yyyy]/[mm]`, and `/cari-berita`'s client-rendered results
+ * (issue #28). Reuses `global.css`'s existing `.card`/`.card-title`/
+ * `.card-eyebrow` classes (issue #5/#24, generic — not product-specific
+ * despite their first use there) rather than inventing parallel ones.
+ */
+import { ROUTES } from "../../config/routes";
+import { formatTanggalPanjangWIB, toDatetimeAttr } from "../../lib/tanggal";
+import type { PostSummary } from "../../lib/berita";
+
+interface Props {
+  post: PostSummary;
+}
+
+const { post } = Astro.props;
+const href = post.isVideo ? ROUTES.videoArticle(post.slug) : ROUTES.article(post.slug);
+---
+
+<li>
+  <a href={href} class="card">
+    {post.rubric && <span class="card-eyebrow">{post.rubric.name}</span>}
+    <h3 class="card-title">{post.title}{post.isVideo && <span class="visually-hidden"> (video)</span>}</h3>
+    {post.excerpt && <p class="card-excerpt">{post.excerpt}</p>}
+    <p class="post-meta">
+      <time datetime={toDatetimeAttr(post.publishedAt)}>{formatTanggalPanjangWIB(post.publishedAt)}</time>
+      {post.region && <span class="post-meta-region"> &middot; {post.region.name}</span>}
+    </p>
+  </a>
+</li>

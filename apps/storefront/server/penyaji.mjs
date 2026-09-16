@@ -17,11 +17,11 @@
  *
  * No compression middleware here: a reverse proxy in front of this
  * container commonly already handles gzip/brotli, and a second compression
- * layer here would be scope this app was not asked to carry. No redirect
- * MAP either — `isProductsRedirect` is one hardcoded rule for one URL this
- * app itself used to serve, not the generated `asal-pengalihan`-style
- * redirect data file issue #5's file checklist excludes; see that issue's
- * "Scope amendment: match the live site's URL shape" comment.
+ * layer here would be scope this app was not asked to carry. `isProductsRedirect`
+ * is one hardcoded rule for one URL this app itself used to serve, not the
+ * generated `asal-pengalihan`-style redirect data file issue #5's file
+ * checklist excludes; see that issue's "Scope amendment: match the live
+ * site's URL shape" comment.
  *
  * Issue #24 adds two more small, self-contained jobs, both still read-only
  * against files `astro build` already wrote — neither reads an `AWCMS_*`
@@ -36,6 +36,13 @@
  *     browser can start fetching a page's stylesheet(s) the moment the
  *     response headers arrive, instead of waiting to parse far enough into
  *     `<head>` to find the `<link rel="stylesheet">` tag.
+ *
+ * Issue #28 adds a third: a legacy-URL redirect MAP this time (unlike
+ * `isProductsRedirect`'s one hardcoded rule) — `readLegacyRedirectMap`/
+ * `legacyRedirectLocation` below, read once at startup from a build-time
+ * artifact (`src/pages/index/pengalihan-legacy.json.ts`), never per
+ * request, so the same "no live awcms credential at runtime" invariant
+ * holds for it too.
  */
 import http from "node:http";
 import { posix } from "node:path";
@@ -192,6 +199,67 @@ export function isHealthzRequest(url) {
   return normalizedPath(url) === HEALTHZ_PATH;
 }
 
+// --- issue #28: legacy URL compatibility (seputarborneo/beritasampit) ------
+//
+// `src/pages/index/pengalihan-legacy.json.ts` bakes the CMS's own
+// `awcms_seo_redirects` rows (`origin: "legacy_blog"`) into a static
+// `sourcePath -> targetPath` map at build time
+// (`src/lib/pengalihan-legacy.ts`'s `buildLegacyRedirectMap`). This block
+// reads that SAME artifact once, at server startup — never at request
+// time, so a finished build still never contacts awcms again — and 301s a
+// matching request before it ever reaches the adapter's file lookup,
+// exactly the pattern `isProductsRedirect`/`PRODUCTS_REDIRECT_LOCATION`
+// above already established for one hardcoded URL.
+
+/** Where `astro build` writes the legacy-redirect artifact, relative to `dist/client/` — a sibling of `build-id.txt`. */
+const LEGACY_REDIRECTS_PATH = "index/pengalihan-legacy.json";
+
+/**
+ * The `sourcePath -> targetPath` map, or `{}` when the file is missing/
+ * unreadable/malformed (a fresh checkout with no `dist/` yet, or a build
+ * predating this issue) — degrades to "no legacy redirects configured"
+ * rather than throwing, the same posture `readBuildId` already takes for
+ * its own sibling artifact.
+ *
+ * @param {URL} clientDir
+ * @returns {Record<string, string>}
+ */
+export function readLegacyRedirectMap(clientDir) {
+  try {
+    const raw = readFileSync(new URL(LEGACY_REDIRECTS_PATH, clientDir), "utf8");
+    const parsed = JSON.parse(raw);
+    return parsed && typeof parsed === "object" && !Array.isArray(parsed) ? parsed : {};
+  } catch {
+    return {};
+  }
+}
+
+/**
+ * The destination for `url`'s path in `map`, or `null` when there is no
+ * matching legacy rule — a plain object lookup, not a loop, so a large
+ * redirect table costs no more per request than a small one.
+ *
+ * `normalizedPath` alone is not enough: `path.posix.normalize` PRESERVES a
+ * trailing slash (`/2024/01/15/x/` stays `/2024/01/15/x/`), but
+ * `src/lib/pengalihan-legacy.ts`'s `normalizeLegacyPath` — which built this
+ * map's keys at build time — STRIPS one (beritasampit's own
+ * `/{yyyy}/{mm}/{dd}/{slug}/` shape is a trailing-slash URL). Without
+ * stripping it here too, every beritasampit-shaped legacy URL would
+ * silently miss this map and fall through to the adapter, which redirects
+ * it to strip the slash anyway (`trailingSlash: "never"`) but to ITS OWN
+ * unchanged path — never to `/berita/{slug}` — one hop short of where a
+ * reader actually needs to land.
+ *
+ * @param {string} url
+ * @param {Record<string, string>} map
+ * @returns {string | null}
+ */
+export function legacyRedirectLocation(url, map) {
+  const path = normalizedPath(url);
+  const key = path.length > 1 && path.endsWith("/") ? path.slice(0, -1) : path;
+  return Object.prototype.hasOwnProperty.call(map, key) ? map[key] : null;
+}
+
 /**
  * `dist/client/build-id.txt` — written by `scripts/write-build-id.mjs` as
  * part of `bun run build`, AFTER `astro build` and BEFORE this file is
@@ -315,7 +383,7 @@ export function applyHeaders(req, res, context = {}) {
  * `applyHeaders`/`readBuildId`/`discoverCssPreloadPaths`.
  *
  * @param {(req: import("node:http").IncomingMessage, res: import("node:http").ServerResponse) => unknown} appHandler
- * @param {{ buildId?: string, cssPreloadLinks?: string[] }} [context]
+ * @param {{ buildId?: string, cssPreloadLinks?: string[], legacyRedirects?: Record<string, string> }} [context]
  */
 export function createServer(appHandler, context = {}) {
   return http.createServer((req, res) => {
@@ -329,6 +397,14 @@ export function createServer(appHandler, context = {}) {
     if (isProductsRedirect(req.url ?? "/")) {
       res.statusCode = 301;
       res.setHeader("Location", PRODUCTS_REDIRECT_LOCATION);
+      res.end();
+      return;
+    }
+
+    const legacyTarget = legacyRedirectLocation(req.url ?? "/", context.legacyRedirects ?? {});
+    if (legacyTarget) {
+      res.statusCode = 301;
+      res.setHeader("Location", legacyTarget);
       res.end();
       return;
     }
@@ -370,10 +446,11 @@ export async function run() {
   const clientDir = new URL("../client/", import.meta.url);
   const buildId = readBuildId(clientDir);
   const cssPreloadLinks = discoverCssPreloadPaths(clientDir);
+  const legacyRedirects = readLegacyRedirectMap(clientDir);
 
   const port = Number(process.env.PORT ?? 8080);
   const host = process.env.HOST ?? "0.0.0.0";
-  const server = createServer(handler, { buildId, cssPreloadLinks });
+  const server = createServer(handler, { buildId, cssPreloadLinks, legacyRedirects });
 
   server.listen(port, host, () => {
     console.log(`storefront served by Bun at http://${host}:${port}`);

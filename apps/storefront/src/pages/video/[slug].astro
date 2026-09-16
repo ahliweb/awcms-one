@@ -1,0 +1,77 @@
+---
+/**
+ * `/video/[slug]` — one video post's own page (issue #28). A video post is
+ * still just a post — rendered through the exact same
+ * `src/components/berita/ArtikelView.astro` `/berita/[slug]` uses — the
+ * only difference is which posts land on which route (`isVideo`, see
+ * `src/lib/berita.ts`'s `getPosts()`/`getVideo()`).
+ */
+import BeritaLayout from "../../layouts/BeritaLayout.astro";
+import ArtikelView from "../../components/berita/ArtikelView.astro";
+import { ROUTES } from "../../config/routes";
+import { getVideo, getPost, getRelatedPosts, getDaerah } from "../../lib/berita";
+import { newsArticleSchema, breadcrumbListSchema, combineSchemas } from "../../lib/jsonld-berita";
+import { getSiteIdentity } from "../../lib/awcms/profil";
+
+export async function getStaticPaths() {
+  const posts = await getVideo();
+  return posts.map((post) => ({ params: { slug: post.slug } }));
+}
+
+const { slug } = Astro.params as { slug: string };
+const post = await getPost(slug);
+
+if (!post || !post.isVideo) {
+  throw new Error(
+    `No video post with slug "${slug}" in the cached index. ` +
+      `getStaticPaths() only ever requests a slug getVideo() just returned, ` +
+      `so this can only happen if this route is reached with a slug from ` +
+      `somewhere else.`
+  );
+}
+
+const identity = await getSiteIdentity();
+const related = await getRelatedPosts(post, 3);
+const canonicalPath = ROUTES.videoArticle(post.slug);
+
+const daerahLainnya = post.region ? await getDaerah(post.region.slug) : null;
+const daerahLainnyaPosts = daerahLainnya
+  ? daerahLainnya.posts.filter((p) => p.id !== post.id).slice(0, 3)
+  : [];
+
+const breadcrumbItems = [
+  { name: "Beranda", path: ROUTES.home },
+  { name: "Video", path: ROUTES.video },
+  { name: post.title, path: canonicalPath }
+];
+
+const schema = combineSchemas(
+  newsArticleSchema({
+    headline: post.title,
+    description: post.excerpt ?? post.metaDescription,
+    canonicalPath,
+    publishedAt: post.publishedAt,
+    updatedAt: post.updatedAt,
+    authorByline: post.authorByline,
+    publisherName: identity.name,
+    rubricName: post.rubric?.name ?? null
+  }),
+  breadcrumbListSchema(breadcrumbItems)
+);
+---
+
+<BeritaLayout
+  title={post.seoTitle ?? post.title}
+  description={post.metaDescription ?? post.excerpt ?? undefined}
+  canonicalPath={canonicalPath}
+  schema={schema}
+>
+  <ArtikelView
+    post={post}
+    related={related}
+    daerahLainnyaPosts={daerahLainnyaPosts}
+    canonicalPath={canonicalPath}
+    parentLabel="Video"
+    parentPath={ROUTES.video}
+  />
+</BeritaLayout>
