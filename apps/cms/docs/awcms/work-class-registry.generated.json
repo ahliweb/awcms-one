@@ -477,6 +477,46 @@
       "source": "factory"
     },
     {
+      "path": "src/pages/api/v1/commerce/flash-sales/[id].ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/flash-sales/[id]/products/[productRowId].ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/flash-sales/[id]/products/index.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/flash-sales/active.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/flash-sales/index.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/popups/[id].ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/popups/active.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/popups/index.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
       "path": "src/pages/api/v1/commerce/products/[id].ts",
       "workClass": "interactive",
       "source": "factory"
@@ -513,6 +553,66 @@
     },
     {
       "path": "src/pages/api/v1/commerce/products/index.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/sliders/[id].ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/sliders/active.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/sliders/index.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/store-settings/index.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/store-settings/public.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/testimonials/[id].ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/testimonials/active.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/testimonials/index.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/vouchers/[id].ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/vouchers/index.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/vouchers/public.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/vouchers/validate.ts",
       "workClass": "interactive",
       "source": "factory"
     },
@@ -1448,6 +1548,12 @@
       "workClass": "maintenance",
       "source": "registry",
       "rationale": "Scheduled retention sweep (comments:retention, ADR-0041) — tolerant of delay, never latency-sensitive; same profile as audit-log-purge/form-draft-purge."
+    },
+    {
+      "path": "scripts/commerce-flash-sales-tick.ts",
+      "workClass": "background_sync",
+      "source": "registry",
+      "rationale": "Scheduled status-derivation tick (commerce:flash-sales:tick, Issue #26), every 1-5 minutes — same recurring-but-not-latency-sensitive profile as blog:publish:scheduled; tickFlashSalesForTenant passes workClass: \"background_sync\" explicitly."
     },
     {
       "path": "scripts/data-lifecycle-archive-purge.ts",

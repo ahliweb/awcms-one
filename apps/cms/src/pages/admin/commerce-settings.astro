@@ -1,0 +1,263 @@
+---
+/**
+ * Commerce store-settings screen (Issue #26) — a SINGLETON, `PUT`-only
+ * screen (`GET/PUT /api/v1/commerce/store-settings`), unlike every other
+ * screen in this module: there is nothing to list, create, or delete.
+ *
+ * Core identity fields (name/tagline/address/contact/logo/favicon ids) are
+ * plain inputs; the long tail (FAQs, social links, customer levels,
+ * shipping, payment, promo section, per-page meta) is ONE JSON textarea —
+ * the same deliberate compression `commerce.astro`'s own "Advanced fields
+ * (JSON)" editor uses for the product parity columns: dozens of individual
+ * controls would dwarf the screen, and this keeps every field genuinely
+ * editable without it. Bank account numbers/QRIS media id live inside that
+ * JSON, unmasked, because this IS the owner-only `settings.read` view — see
+ * `store-settings-directory.ts`'s header for why the PUBLIC read model
+ * strips them instead.
+ */
+import AdminLayout from "../../layouts/AdminLayout.astro";
+import "../../styles/admin-screens.css";
+import { loadAdminScreen } from "../../lib/auth/admin-screen";
+import { logAdminPageError } from "../../lib/logging/error-log";
+import { getTranslatorFor } from "../../lib/i18n";
+import { fetchStoreSettings } from "../../modules/commerce/application/store-settings-directory";
+
+const ssr = Astro.locals.ssrContext!;
+const { t } = getTranslatorFor(Astro.locals.locale);
+
+const screen = await loadAdminScreen({
+  ssr,
+  workClass: "interactive",
+  authorize: {
+    moduleKey: "commerce",
+    activityCode: "settings",
+    action: "read"
+  },
+  load: async ({ tx, can }) => {
+    const settings = await fetchStoreSettings(tx, ssr.tenantId);
+    const canUpdate = await can({
+      moduleKey: "commerce",
+      activityCode: "settings",
+      action: "update"
+    });
+    return { settings, canUpdate };
+  },
+  onError: (error) => {
+    logAdminPageError(
+      "admin/commerce-settings.astro: failed to load store settings",
+      error,
+      {
+        correlationId: Astro.locals.correlationId
+      }
+    );
+  }
+});
+
+const canRead = screen.state !== "denied";
+const loadError = screen.state === "error";
+const settings = screen.state === "allowed" ? screen.data.settings : null;
+const canUpdate = screen.state === "allowed" && screen.data.canUpdate;
+
+const advancedJson = settings
+  ? JSON.stringify(
+      {
+        faqs: settings.faqs,
+        social: settings.social,
+        customerLevels: settings.customerLevels,
+        shipping: settings.shipping,
+        payment: settings.payment,
+        promoSection: settings.promoSection,
+        meta: settings.meta
+      },
+      null,
+      2
+    )
+  : "{}";
+---
+
+<AdminLayout
+  title={t("Store settings")}
+  description={t(
+    "Store identity, shipping, payment and promo configuration for this tenant."
+  )}
+>
+  {
+    !canRead && (
+      <p class="state-notice fade-in-up" id="settings-denied">
+        {t("You do not have permission to view store settings.")}
+      </p>
+    )
+  }
+  {
+    canRead && loadError && (
+      <p class="state-notice fade-in-up" id="settings-error">
+        {t(
+          "Store settings could not be loaded right now. Please try again later."
+        )}
+      </p>
+    )
+  }
+
+  {
+    canRead && !loadError && settings && (
+      <form id="store-settings-form" class="admin-create-form fade-in-up">
+        <p class="form-legend">{t("Store identity")}</p>
+        <p
+          id="store-settings-error"
+          class="admin-create-error"
+          role="alert"
+          hidden
+        />
+        <p id="store-settings-success" class="state-notice" hidden>
+          {t("Saved.")}
+        </p>
+
+        <label for="settings-storeName">{t("Store name")}</label>
+        <input
+          id="settings-storeName"
+          type="text"
+          required
+          value={settings.storeName}
+        />
+
+        <label for="settings-tagline">{t("Tagline")}</label>
+        <input
+          id="settings-tagline"
+          type="text"
+          value={settings.tagline ?? ""}
+        />
+
+        <label for="settings-logoMediaObjectId">
+          {t("Logo media object id")}
+        </label>
+        <input
+          id="settings-logoMediaObjectId"
+          type="text"
+          value={settings.logoMediaObjectId ?? ""}
+          placeholder="uuid — see /admin/media"
+        />
+
+        <label for="settings-faviconMediaObjectId">
+          {t("Favicon media object id")}
+        </label>
+        <input
+          id="settings-faviconMediaObjectId"
+          type="text"
+          value={settings.faviconMediaObjectId ?? ""}
+          placeholder="uuid — see /admin/media"
+        />
+
+        <label for="settings-address">{t("Address")}</label>
+        <textarea id="settings-address" rows="2">
+          {settings.address ?? ""}
+        </textarea>
+
+        <label for="settings-phone">{t("Phone")}</label>
+        <input id="settings-phone" type="text" value={settings.phone ?? ""} />
+
+        <label for="settings-whatsapp">{t("WhatsApp")}</label>
+        <input
+          id="settings-whatsapp"
+          type="text"
+          value={settings.whatsapp ?? ""}
+        />
+
+        <label for="settings-email">{t("Email")}</label>
+        <input id="settings-email" type="email" value={settings.email ?? ""} />
+
+        <label for="settings-mapsEmbedUrl">{t("Maps embed URL")}</label>
+        <input
+          id="settings-mapsEmbedUrl"
+          type="text"
+          value={settings.mapsEmbedUrl ?? ""}
+        />
+
+        <p class="form-legend">{t("Advanced settings (JSON)")}</p>
+        <p class="cell-muted">
+          {t(
+            "FAQs, social links, customer levels, shipping, payment (including bank accounts — never shown publicly), promo section, and per-page meta titles."
+          )}
+        </p>
+        <label for="settings-advanced" class="sr-only">
+          {t("Advanced settings JSON")}
+        </label>
+        <textarea id="settings-advanced" rows="20" spellcheck="false">
+          {advancedJson}
+        </textarea>
+
+        {canUpdate && (
+          <button type="submit" id="store-settings-submit">
+            {t("Save store settings")}
+          </button>
+        )}
+      </form>
+    )
+  }
+</AdminLayout>
+
+<script>
+  import { messageBox, sendJson } from "../../lib/ui/admin-form-client";
+
+  const form = document.getElementById("store-settings-form");
+  const errorBox = messageBox("store-settings-error");
+  const successBox = messageBox("store-settings-success");
+
+  form?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    errorBox.clear();
+    successBox.clear();
+
+    const submit = document.getElementById(
+      "store-settings-submit"
+    ) as HTMLButtonElement | null;
+
+    let advanced: Record<string, unknown>;
+    try {
+      const raw = (
+        document.getElementById("settings-advanced") as HTMLTextAreaElement
+      ).value;
+      advanced = JSON.parse(raw || "{}");
+    } catch {
+      errorBox.show("Advanced settings must be valid JSON.");
+      return;
+    }
+
+    const value = (id: string) =>
+      (
+        document.getElementById(id) as
+          HTMLInputElement | HTMLTextAreaElement | null
+      )?.value.trim() ?? "";
+    const blankToNull = (input: string) => (input === "" ? null : input);
+
+    if (submit) {
+      submit.disabled = true;
+      submit.textContent = "Saving…";
+    }
+
+    const result = await sendJson("PUT", "/api/v1/commerce/store-settings", {
+      storeName: value("settings-storeName"),
+      tagline: blankToNull(value("settings-tagline")),
+      logoMediaObjectId: blankToNull(value("settings-logoMediaObjectId")),
+      faviconMediaObjectId: blankToNull(value("settings-faviconMediaObjectId")),
+      address: blankToNull(value("settings-address")),
+      phone: blankToNull(value("settings-phone")),
+      whatsapp: blankToNull(value("settings-whatsapp")),
+      email: blankToNull(value("settings-email")),
+      mapsEmbedUrl: blankToNull(value("settings-mapsEmbedUrl")),
+      ...advanced
+    });
+
+    if (result.ok) {
+      successBox.show("Saved.");
+    } else {
+      errorBox.show(
+        "Could not save store settings. Check the advanced JSON shape and try again."
+      );
+    }
+
+    if (submit) {
+      submit.disabled = false;
+      submit.textContent = "Save store settings";
+    }
+  });
+</script>

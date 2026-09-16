@@ -436,7 +436,31 @@ export const READER_BUDGET_BYTES = 24_000;
  * measured; 219,000 keeps the same tight-margin convention as every raise
  * above rather than buying slack for the next screen to spend unnoticed.
  */
-export const APP_BUDGET_BYTES = 219_000;
+/**
+ * 227,391 B measured after Issue #26 (awcms-one epic #21) — six new admin
+ * screens for the marketing surface, one per resource family, each with its
+ * own small client script for the same create/edit/delete interactions the
+ * #23 screens established:
+ *
+ * ```
+ * commerce-flash-sales.astro_...lang.js   1,934 B
+ * commerce-testimonials.astro_...lang.js  1,473 B
+ * commerce-popup.astro_...lang.js         1,306 B
+ * commerce-sliders.astro_...lang.js       1,286 B
+ * commerce-vouchers.astro_...lang.js      1,270 B
+ * commerce-settings.astro_...lang.js      1,136 B
+ * total new client script                 8,405 B
+ * ```
+ *
+ * Again no new CSS — every screen reuses the existing admin classes. The
+ * per-screen scripts are ~1.2–1.9 kB each because each one is the same
+ * pattern (a `sendJson` helper + one submit handler per form) specialised
+ * to its endpoint; Issue #552's consolidation lesson applies the moment
+ * a SEVENTH commerce screen arrives, and the honest next step then is one
+ * shared `admin-commerce-crud.ts` module rather than a ninth copy — not
+ * another raise. 228,000 keeps the tight-margin convention.
+ */
+export const APP_BUDGET_BYTES = 228_000;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.

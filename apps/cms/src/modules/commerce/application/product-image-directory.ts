@@ -87,7 +87,7 @@ export async function listLiveProductImagesByProductIds(
     SELECT id, product_id, media_object_id, sort_order, alt_text
     FROM awcms_commerce_product_images
     WHERE tenant_id = ${tenantId}
-      AND product_id = ANY(${productIds})
+      AND product_id = ANY(${tx.array([...productIds], "uuid")}::uuid[])
       AND deleted_at IS NULL
     ORDER BY product_id, sort_order, id
   `) as ProductImageRow[];

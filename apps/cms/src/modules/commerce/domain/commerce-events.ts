@@ -32,3 +32,37 @@ export const COMMERCE_PRODUCT_STATUS_CHANGED_EVENT_TYPE =
   "awcms.commerce.product.status_changed";
 
 export const COMMERCE_PRODUCT_AGGREGATE_TYPE = "commerce.product";
+
+/**
+ * Marketing-surface events (Issue #26). `flash_sale.{started,ended}` are
+ * producer-fired by the `commerce:flash-sales:tick` job
+ * (`scripts/commerce-flash-sales-tick.ts`) the moment
+ * `domain/flash-sale-status.ts`'s `deriveFlashSaleStatus` crosses into
+ * `active`/`ended` for a row — never by a direct admin PATCH, since a human
+ * can only ever set `draft`/`scheduled` (see that file's header).
+ * `voucher.redeemed` is declared here ONLY as a forward reference for #29 —
+ * issue #26 ships `POST .../vouchers/validate` as a pure, non-mutating
+ * check, so nothing in this module ever calls `appendDomainEvent` with it.
+ * Deliberately NOT yet added to `module.ts`'s `events.publishes`, NOT
+ * registered in `domain-event-runtime/domain/event-type-registry.ts`, and
+ * NOT in the AsyncAPI spec — registering an event nothing produces yet would
+ * be the same "permission/event admitted ahead of its enforcement" defect
+ * class `commerce-permissions.ts`'s header already warns against for
+ * permissions. #29 registers it in all three places in the same change that
+ * makes it fire, alongside the code that actually redeems a voucher.
+ * `flash_sale.{started,ended}` ARE registered in both places below — this
+ * module's own tick job is what emits them.
+ *
+ * Kept in sync with `domain-event-runtime/domain/event-type-registry.ts` by
+ * convention plus the AsyncAPI parity gate, same as every other constant in
+ * this file — see this file's header for why that is NOT a cross-import.
+ */
+export const COMMERCE_FLASH_SALE_STARTED_EVENT_TYPE =
+  "awcms.commerce.flash_sale.started";
+export const COMMERCE_FLASH_SALE_ENDED_EVENT_TYPE =
+  "awcms.commerce.flash_sale.ended";
+export const COMMERCE_VOUCHER_REDEEMED_EVENT_TYPE =
+  "awcms.commerce.voucher.redeemed";
+
+export const COMMERCE_FLASH_SALE_AGGREGATE_TYPE = "commerce.flash_sale";
+export const COMMERCE_VOUCHER_AGGREGATE_TYPE = "commerce.voucher";

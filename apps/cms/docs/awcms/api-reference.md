@@ -9525,6 +9525,325 @@ Sets deleted_at; the slug is freed for reuse. Restore it with POST /api/v1/comme
 | 404    | Resource not found.                                                                     | [`ApiError`](#standard-error-envelope) |
 | 409    | slug is already taken by a live category in this tenant (CATEGORY_SLUG_ALREADY_EXISTS). | [`ApiError`](#standard-error-envelope) |
 
+### `GET /api/v1/commerce/flash-sales` — List flash sales (Issue 26). Keyset-paginated, newest first. Gated on flash_sales.read.
+
+- **operationId**: `listCommerceFlashSales`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name     | In    | Required | Type   | Description                                               |
+| -------- | ----- | -------- | ------ | --------------------------------------------------------- |
+| `cursor` | query | no       | string | Opaque keyset cursor from the previous page's nextCursor. |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | One page of flash sales.    | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/flash-sales` — Create a flash sale (Issue 26). Gated on flash_sales.create.
+
+- **operationId**: `createCommerceFlashSale`
+- **Security**: bearerAuth + tenantHeader
+
+**Request body** (required): [`CommerceFlashSaleCreateInput`](#schema-commerceflashsalecreateinput)
+
+**Responses**
+
+| Status | Description                                                                                 | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 201    | Flash sale created.                                                                         | object                                 |
+| 400    | Validation error.                                                                           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                 | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                 | [`ApiError`](#standard-error-envelope) |
+| 409    | slug is already taken by a live flash sale in this tenant (FLASH_SALE_SLUG_ALREADY_EXISTS). | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/flash-sales/{id}` — Fetch one flash sale (Issue 26). Gated on flash_sales.read.
+
+- **operationId**: `getCommerceFlashSale`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The flash sale.             | object                                 |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
+
+### `PATCH /api/v1/commerce/flash-sales/{id}` — Update a flash sale (Issue 26). Gated on flash_sales.update.
+
+- **operationId**: `updateCommerceFlashSale`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Request body** (required): [`CommerceFlashSaleUpdateInput`](#schema-commerceflashsaleupdateinput)
+
+**Responses**
+
+| Status | Description                                                                                 | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | Flash sale updated.                                                                         | object                                 |
+| 400    | Validation error.                                                                           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                 | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                 | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                         | [`ApiError`](#standard-error-envelope) |
+| 409    | slug is already taken by a live flash sale in this tenant (FLASH_SALE_SLUG_ALREADY_EXISTS). | [`ApiError`](#standard-error-envelope) |
+
+### `DELETE /api/v1/commerce/flash-sales/{id}` — Soft-delete a flash sale (Issue 26). Gated on flash_sales.delete.
+
+- **operationId**: `deleteCommerceFlashSale`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | Flash sale soft-deleted.    | object                                 |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/flash-sales/{id}/products` — List the product rows of one flash sale (Issue 26). Gated on flash_sales.read.
+
+- **operationId**: `listCommerceFlashSaleProducts`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The sale's product rows.    | object                                 |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/flash-sales/{id}/products` — Add a product (or one variant of it) to a flash sale (Issue 26). Gated on flash_sales.update; only while the sale is draft or scheduled.
+
+- **operationId**: `createCommerceFlashSaleProduct`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Request body** (required): [`CommerceFlashSaleProductCreateInput`](#schema-commerceflashsaleproductcreateinput)
+
+**Responses**
+
+| Status | Description                                                                                                                                           | Schema                                 |
+| ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 201    | Flash-sale product row created.                                                                                                                       | object                                 |
+| 400    | Validation error.                                                                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                           | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                           | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                   | [`ApiError`](#standard-error-envelope) |
+| 409    | The (product, variant) pair is already in this sale (FLASH_SALE_PRODUCT_ALREADY_EXISTS), or the sale is no longer editable (FLASH_SALE_NOT_EDITABLE). | [`ApiError`](#standard-error-envelope) |
+
+### `PATCH /api/v1/commerce/flash-sales/{id}/products/{productRowId}` — Change a flash-sale product row's sale price, quota or order (Issue 26). Gated on flash_sales.update.
+
+- **operationId**: `updateCommerceFlashSaleProduct`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name           | In   | Required | Type          | Description |
+| -------------- | ---- | -------- | ------------- | ----------- |
+| `id`           | path | yes      | string (uuid) |             |
+| `productRowId` | path | yes      | string (uuid) |             |
+
+**Request body** (required): [`CommerceFlashSaleProductUpdateInput`](#schema-commerceflashsaleproductupdateinput)
+
+**Responses**
+
+| Status | Description                     | Schema                                 |
+| ------ | ------------------------------- | -------------------------------------- |
+| 200    | Flash-sale product row updated. | object                                 |
+| 400    | Validation error.               | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.     | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.     | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.             | [`ApiError`](#standard-error-envelope) |
+
+### `DELETE /api/v1/commerce/flash-sales/{id}/products/{productRowId}` — Remove a product row from a flash sale (Issue 26). Gated on flash_sales.update.
+
+- **operationId**: `deleteCommerceFlashSaleProduct`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name           | In   | Required | Type          | Description |
+| -------------- | ---- | -------- | ------------- | ----------- |
+| `id`           | path | yes      | string (uuid) |             |
+| `productRowId` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | Row removed.                | object                                 |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/flash-sales/active` — Public read model (Issue 26) — every non-draft flash sale whose window has not ended, with its products and sale prices. Gated on flash_sales.read (the storefront's read-only build token).
+
+- **operationId**: `listActiveCommerceFlashSales`
+- **Security**: bearerAuth + tenantHeader
+
+status is DERIVED from now() against startsAt/endsAt — scheduled or active; ended sales are never returned. Each product entry carries the product's slug, name and primary image (images[0].publicUrl), so a storefront can render a card without a second fetch.
+
+**Responses**
+
+| Status | Description                       | Schema                                 |
+| ------ | --------------------------------- | -------------------------------------- |
+| 200    | Scheduled and active flash sales. | object                                 |
+| 401    | Missing or invalid session.       | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.       | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/popups` — List popups (Issue 26). Keyset-paginated, newest first. Gated on popups.read.
+
+- **operationId**: `listCommercePopups`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name     | In    | Required | Type   | Description                                               |
+| -------- | ----- | -------- | ------ | --------------------------------------------------------- |
+| `cursor` | query | no       | string | Opaque keyset cursor from the previous page's nextCursor. |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | One page of popups.         | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/popups` — Create a popup (Issue 26). Gated on popups.create.
+
+- **operationId**: `createCommercePopup`
+- **Security**: bearerAuth + tenantHeader
+
+**Request body** (required): [`CommercePopupCreateInput`](#schema-commercepopupcreateinput)
+
+**Responses**
+
+| Status | Description                                                                                   | Schema                                 |
+| ------ | --------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 201    | Popup created.                                                                                | object                                 |
+| 400    | Validation error.                                                                             | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                   | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                   | [`ApiError`](#standard-error-envelope) |
+| 409    | Another popup is already active — at most one active popup per tenant (POPUP_ALREADY_ACTIVE). | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/popups/{id}` — Fetch one popup (Issue 26). Gated on popups.read.
+
+- **operationId**: `getCommercePopup`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The popup.                  | object                                 |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
+
+### `PATCH /api/v1/commerce/popups/{id}` — Update a popup (Issue 26). Gated on popups.update.
+
+- **operationId**: `updateCommercePopup`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Request body** (required): [`CommercePopupUpdateInput`](#schema-commercepopupupdateinput)
+
+**Responses**
+
+| Status | Description                                                                                   | Schema                                 |
+| ------ | --------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | Popup updated.                                                                                | object                                 |
+| 400    | Validation error.                                                                             | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                   | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                   | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                           | [`ApiError`](#standard-error-envelope) |
+| 409    | Another popup is already active — at most one active popup per tenant (POPUP_ALREADY_ACTIVE). | [`ApiError`](#standard-error-envelope) |
+
+### `DELETE /api/v1/commerce/popups/{id}` — Soft-delete a popup (Issue 26). Gated on popups.delete.
+
+- **operationId**: `deleteCommercePopup`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | Popup soft-deleted.         | object                                 |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/popups/active` — Public read model (Issue 26) — the single active popup inside its window, or null. Gated on popups.read.
+
+- **operationId**: `getActiveCommercePopup`
+- **Security**: bearerAuth + tenantHeader
+
+**Responses**
+
+| Status | Description                          | Schema                                 |
+| ------ | ------------------------------------ | -------------------------------------- |
+| 200    | The active popup, or null when none. | object                                 |
+| 401    | Missing or invalid session.          | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.          | [`ApiError`](#standard-error-envelope) |
+
 ### `GET /api/v1/commerce/products` — List products for the current tenant — filterable, sortable, keyset-paginated.
 
 - **operationId**: `listCommerceProducts`
@@ -9816,6 +10135,417 @@ Sets deleted_at; the sku and slug are freed for reuse. Restore it with POST /api
 | 401    | Missing or invalid session.                        | [`ApiError`](#standard-error-envelope) |
 | 403    | Access denied by RBAC/ABAC.                        | [`ApiError`](#standard-error-envelope) |
 | 404    | Resource not found.                                | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/sliders` — List sliders (Issue 26). Keyset-paginated, newest first. Gated on sliders.read.
+
+- **operationId**: `listCommerceSliders`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name     | In    | Required | Type   | Description                                               |
+| -------- | ----- | -------- | ------ | --------------------------------------------------------- |
+| `cursor` | query | no       | string | Opaque keyset cursor from the previous page's nextCursor. |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | One page of sliders.        | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/sliders` — Create a slider (Issue 26). Gated on sliders.create.
+
+- **operationId**: `createCommerceSlider`
+- **Security**: bearerAuth + tenantHeader
+
+**Request body** (required): [`CommerceSliderCreateInput`](#schema-commerceslidercreateinput)
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 201    | Slider created.             | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/sliders/{id}` — Fetch one slider (Issue 26). Gated on sliders.read.
+
+- **operationId**: `getCommerceSlider`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The slider.                 | object                                 |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
+
+### `PATCH /api/v1/commerce/sliders/{id}` — Update a slider (Issue 26). Gated on sliders.update.
+
+- **operationId**: `updateCommerceSlider`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Request body** (required): [`CommerceSliderUpdateInput`](#schema-commercesliderupdateinput)
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | Slider updated.             | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
+
+### `DELETE /api/v1/commerce/sliders/{id}` — Soft-delete a slider (Issue 26). Gated on sliders.delete.
+
+- **operationId**: `deleteCommerceSlider`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | Slider soft-deleted.        | object                                 |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/sliders/active` — Public read model (Issue 26) — active sliders inside their optional window, ordered by sortOrder, with the media object resolved to a public URL. Gated on sliders.read.
+
+- **operationId**: `listActiveCommerceSliders`
+- **Security**: bearerAuth + tenantHeader
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | Active sliders.             | object                                 |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/store-settings` — The OWNER view of the tenant's store settings (Issue 26) — everything, including manual-bank accounts and the QRIS media id. Gated on settings.read.
+
+- **operationId**: `getCommerceStoreSettings`
+- **Security**: bearerAuth + tenantHeader
+
+**Responses**
+
+| Status | Description                                                    | Schema                                 |
+| ------ | -------------------------------------------------------------- | -------------------------------------- |
+| 200    | The settings; a tenant that never saved any gets the defaults. | object                                 |
+| 401    | Missing or invalid session.                                    | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                    | [`ApiError`](#standard-error-envelope) |
+
+### `PUT /api/v1/commerce/store-settings` — Replace the tenant's store settings (Issue 26). Gated on settings.update. Unknown keys are rejected; the audit event names the changed SECTIONS, never a bank account.
+
+- **operationId**: `updateCommerceStoreSettings`
+- **Security**: bearerAuth + tenantHeader
+
+**Request body** (required): [`CommerceStoreSettings`](#schema-commercestoresettings)
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | Settings saved.             | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `DELETE /api/v1/commerce/store-settings` — Reset the tenant's store settings to the defaults (Issue 26). Gated on settings.update. Stamps deleted_at rather than removing the singleton row; the next PUT clears it. Idempotent.
+
+- **operationId**: `resetCommerceStoreSettings`
+- **Security**: bearerAuth + tenantHeader
+
+**Responses**
+
+| Status | Description                                  | Schema                                 |
+| ------ | -------------------------------------------- | -------------------------------------- |
+| 200    | Settings reset (or already at the defaults). | object                                 |
+| 401    | Missing or invalid session.                  | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                  | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/store-settings/public` — Public read model (Issue 26) — the subset a storefront may publish. Never carries a bank account number, account holder, or QRIS payload; manual-bank lists bank NAMES only. Gated on settings.read.
+
+- **operationId**: `getPublicCommerceStoreSettings`
+- **Security**: bearerAuth + tenantHeader
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The public subset.          | object                                 |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/testimonials` — List testimonials (Issue 26). Keyset-paginated, newest first. Gated on testimonials.read.
+
+- **operationId**: `listCommerceTestimonials`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name     | In    | Required | Type   | Description                                               |
+| -------- | ----- | -------- | ------ | --------------------------------------------------------- |
+| `cursor` | query | no       | string | Opaque keyset cursor from the previous page's nextCursor. |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | One page of testimonials.   | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/testimonials` — Create a testimonial (Issue 26). Gated on testimonials.create.
+
+- **operationId**: `createCommerceTestimonial`
+- **Security**: bearerAuth + tenantHeader
+
+**Request body** (required): [`CommerceTestimonialCreateInput`](#schema-commercetestimonialcreateinput)
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 201    | Testimonial created.        | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/testimonials/{id}` — Fetch one testimonial (Issue 26). Gated on testimonials.read.
+
+- **operationId**: `getCommerceTestimonial`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The testimonial.            | object                                 |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
+
+### `PATCH /api/v1/commerce/testimonials/{id}` — Update a testimonial (Issue 26). Gated on testimonials.update.
+
+- **operationId**: `updateCommerceTestimonial`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Request body** (required): [`CommerceTestimonialUpdateInput`](#schema-commercetestimonialupdateinput)
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | Testimonial updated.        | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
+
+### `DELETE /api/v1/commerce/testimonials/{id}` — Soft-delete a testimonial (Issue 26). Gated on testimonials.delete.
+
+- **operationId**: `deleteCommerceTestimonial`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | Testimonial soft-deleted.   | object                                 |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/testimonials/active` — Public read model (Issue 26) — active testimonials ordered by sortOrder, avatar resolved to a public URL. Gated on testimonials.read.
+
+- **operationId**: `listActiveCommerceTestimonials`
+- **Security**: bearerAuth + tenantHeader
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | Active testimonials.        | object                                 |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/vouchers` — List vouchers (Issue 26). Keyset-paginated, newest first. Gated on vouchers.read.
+
+- **operationId**: `listCommerceVouchers`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name     | In    | Required | Type   | Description                                               |
+| -------- | ----- | -------- | ------ | --------------------------------------------------------- |
+| `cursor` | query | no       | string | Opaque keyset cursor from the previous page's nextCursor. |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | One page of vouchers.       | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/vouchers` — Create a voucher (Issue 26). Gated on vouchers.create.
+
+- **operationId**: `createCommerceVoucher`
+- **Security**: bearerAuth + tenantHeader
+
+**Request body** (required): [`CommerceVoucherCreateInput`](#schema-commercevouchercreateinput)
+
+**Responses**
+
+| Status | Description                                                                           | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------- | -------------------------------------- |
+| 201    | Voucher created.                                                                      | object                                 |
+| 400    | Validation error.                                                                     | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                           | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                           | [`ApiError`](#standard-error-envelope) |
+| 409    | code is already taken by a live voucher in this tenant (VOUCHER_CODE_ALREADY_EXISTS). | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/vouchers/{id}` — Fetch one voucher (Issue 26). Gated on vouchers.read.
+
+- **operationId**: `getCommerceVoucher`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The voucher.                | object                                 |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
+
+### `PATCH /api/v1/commerce/vouchers/{id}` — Update a voucher (Issue 26). Gated on vouchers.update.
+
+- **operationId**: `updateCommerceVoucher`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Request body** (required): [`CommerceVoucherUpdateInput`](#schema-commercevoucherupdateinput)
+
+**Responses**
+
+| Status | Description                                                                           | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | Voucher updated.                                                                      | object                                 |
+| 400    | Validation error.                                                                     | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                           | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                           | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                   | [`ApiError`](#standard-error-envelope) |
+| 409    | code is already taken by a live voucher in this tenant (VOUCHER_CODE_ALREADY_EXISTS). | [`ApiError`](#standard-error-envelope) |
+
+### `DELETE /api/v1/commerce/vouchers/{id}` — Soft-delete a voucher (Issue 26). Gated on vouchers.delete.
+
+- **operationId**: `deleteCommerceVoucher`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | Voucher soft-deleted.       | object                                 |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/vouchers/public` — Public read model (Issue 26) — vouchers marked isPublic, inside their window, with quota remaining. Gated on vouchers.read.
+
+- **operationId**: `listPublicCommerceVouchers`
+- **Security**: bearerAuth + tenantHeader
+
+**Responses**
+
+| Status | Description                   | Schema                                 |
+| ------ | ----------------------------- | -------------------------------------- |
+| 200    | Publicly advertised vouchers. | object                                 |
+| 401    | Missing or invalid session.   | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.   | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/vouchers/validate` — Evaluate a voucher code against a subtotal (Issue 26). A read, not a redemption — nothing is written. Gated on vouchers.read.
+
+- **operationId**: `validateCommerceVoucher`
+- **Security**: bearerAuth + tenantHeader
+
+Arithmetic is exact (integer cents) — a percentage discount is capped by maxDiscount, a nominal one is the value, free_shipping yields discount "0.00" and freeShipping true. An unknown code and an ineligible one answer the same 200 shape with valid false and a reason.
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The evaluation.             | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
 
 ## Schema appendix
 
@@ -10323,6 +11053,154 @@ Per-tenant comment configuration. Every numeric bound mirrors a CHECK constraint
 }
 ```
 
+### Schema: CommerceFlashSaleCreateInput
+
+| Field      | Type                       | Required | Nullable | Description             |
+| ---------- | -------------------------- | -------- | -------- | ----------------------- |
+| `name`     | string                     | yes      | no       |                         |
+| `slug`     | string                     | yes      | no       |                         |
+| `startsAt` | string (date-time)         | yes      | no       |                         |
+| `endsAt`   | string (date-time)         | yes      | no       | Must be after startsAt. |
+| `status`   | enum(`draft`, `scheduled`) | no       | no       |                         |
+
+**Example**
+
+```json
+{
+  "name": "string",
+  "slug": "example-slug",
+  "startsAt": "2026-01-01T00:00:00.000Z",
+  "endsAt": "2026-01-01T00:00:00.000Z",
+  "status": "draft"
+}
+```
+
+### Schema: CommerceFlashSaleProductCreateInput
+
+| Field       | Type          | Required | Nullable | Description                                                             |
+| ----------- | ------------- | -------- | -------- | ----------------------------------------------------------------------- |
+| `productId` | string (uuid) | yes      | no       |                                                                         |
+| `variantId` | string (uuid) | no       | yes      |                                                                         |
+| `salePrice` | string        | yes      | no       | numeric(14,2) as a string (ADR-0003 in awcms-one); never a JSON number. |
+| `quota`     | integer       | no       | no       |                                                                         |
+| `sortOrder` | integer       | no       | no       |                                                                         |
+
+**Example**
+
+```json
+{
+  "productId": "00000000-0000-0000-0000-000000000000",
+  "variantId": "00000000-0000-0000-0000-000000000000",
+  "salePrice": "string",
+  "quota": 0,
+  "sortOrder": 0
+}
+```
+
+### Schema: CommerceFlashSaleProductUpdateInput
+
+| Field       | Type    | Required | Nullable | Description                                                             |
+| ----------- | ------- | -------- | -------- | ----------------------------------------------------------------------- |
+| `salePrice` | string  | no       | no       | numeric(14,2) as a string (ADR-0003 in awcms-one); never a JSON number. |
+| `quota`     | integer | no       | no       |                                                                         |
+| `sortOrder` | integer | no       | no       |                                                                         |
+
+**Example**
+
+```json
+{
+  "salePrice": "string",
+  "quota": 0,
+  "sortOrder": 0
+}
+```
+
+### Schema: CommerceFlashSaleUpdateInput
+
+Every field optional; only draft/scheduled sales are editable.
+
+| Field      | Type                       | Required | Nullable | Description |
+| ---------- | -------------------------- | -------- | -------- | ----------- |
+| `name`     | string                     | no       | no       |             |
+| `slug`     | string                     | no       | no       |             |
+| `startsAt` | string (date-time)         | no       | no       |             |
+| `endsAt`   | string (date-time)         | no       | no       |             |
+| `status`   | enum(`draft`, `scheduled`) | no       | no       |             |
+
+**Example**
+
+```json
+{
+  "name": "string",
+  "slug": "example-slug",
+  "startsAt": "2026-01-01T00:00:00.000Z",
+  "endsAt": "2026-01-01T00:00:00.000Z",
+  "status": "draft"
+}
+```
+
+### Schema: CommercePopupCreateInput
+
+| Field           | Type                                               | Required | Nullable | Description                                                                                   |
+| --------------- | -------------------------------------------------- | -------- | -------- | --------------------------------------------------------------------------------------------- |
+| `title`         | string                                             | yes      | no       |                                                                                               |
+| `body`          | string                                             | no       | yes      |                                                                                               |
+| `mediaObjectId` | string (uuid)                                      | no       | yes      |                                                                                               |
+| `linkUrl`       | string                                             | no       | yes      |                                                                                               |
+| `buttonText`    | string                                             | no       | yes      |                                                                                               |
+| `frequency`     | enum(`once_per_session`, `once_per_day`, `always`) | no       | no       |                                                                                               |
+| `isActive`      | boolean                                            | no       | no       | At most one popup may be active per tenant (partial unique index) — a second one answers 409. |
+| `startsAt`      | string (date-time)                                 | no       | yes      |                                                                                               |
+| `endsAt`        | string (date-time)                                 | no       | yes      |                                                                                               |
+
+**Example**
+
+```json
+{
+  "title": "string",
+  "body": "string",
+  "mediaObjectId": "00000000-0000-0000-0000-000000000000",
+  "linkUrl": "https://example.com/resource",
+  "buttonText": "string",
+  "frequency": "once_per_session",
+  "isActive": false,
+  "startsAt": "2026-01-01T00:00:00.000Z",
+  "endsAt": "2026-01-01T00:00:00.000Z"
+}
+```
+
+### Schema: CommercePopupUpdateInput
+
+Every field of CommercePopupCreateInput, all optional.
+
+| Field           | Type                                               | Required | Nullable | Description |
+| --------------- | -------------------------------------------------- | -------- | -------- | ----------- |
+| `title`         | string                                             | no       | no       |             |
+| `body`          | string                                             | no       | yes      |             |
+| `mediaObjectId` | string (uuid)                                      | no       | yes      |             |
+| `linkUrl`       | string                                             | no       | yes      |             |
+| `buttonText`    | string                                             | no       | yes      |             |
+| `frequency`     | enum(`once_per_session`, `once_per_day`, `always`) | no       | no       |             |
+| `isActive`      | boolean                                            | no       | no       |             |
+| `startsAt`      | string (date-time)                                 | no       | yes      |             |
+| `endsAt`        | string (date-time)                                 | no       | yes      |             |
+
+**Example**
+
+```json
+{
+  "title": "string",
+  "body": "string",
+  "mediaObjectId": "00000000-0000-0000-0000-000000000000",
+  "linkUrl": "https://example.com/resource",
+  "buttonText": "string",
+  "frequency": "once_per_session",
+  "isActive": false,
+  "startsAt": "2026-01-01T00:00:00.000Z",
+  "endsAt": "2026-01-01T00:00:00.000Z"
+}
+```
+
 ### Schema: CommerceProductCreateInput
 
 _No properties declared._
@@ -10593,6 +11471,186 @@ _No properties declared._
 }
 ```
 
+### Schema: CommerceSliderCreateInput
+
+| Field           | Type               | Required | Nullable | Description                                                |
+| --------------- | ------------------ | -------- | -------- | ---------------------------------------------------------- |
+| `title`         | string             | yes      | no       |                                                            |
+| `subtitle`      | string             | no       | yes      |                                                            |
+| `mediaObjectId` | string (uuid)      | yes      | no       | Must reference a live, verified, same-tenant media object. |
+| `linkUrl`       | string             | no       | yes      |                                                            |
+| `buttonText`    | string             | no       | yes      |                                                            |
+| `sortOrder`     | integer            | no       | no       |                                                            |
+| `isActive`      | boolean            | no       | no       |                                                            |
+| `startsAt`      | string (date-time) | no       | yes      |                                                            |
+| `endsAt`        | string (date-time) | no       | yes      |                                                            |
+
+**Example**
+
+```json
+{
+  "title": "string",
+  "subtitle": "string",
+  "mediaObjectId": "00000000-0000-0000-0000-000000000000",
+  "linkUrl": "https://example.com/resource",
+  "buttonText": "string",
+  "sortOrder": 0,
+  "isActive": false,
+  "startsAt": "2026-01-01T00:00:00.000Z",
+  "endsAt": "2026-01-01T00:00:00.000Z"
+}
+```
+
+### Schema: CommerceSliderUpdateInput
+
+Every field of CommerceSliderCreateInput, all optional.
+
+| Field           | Type               | Required | Nullable | Description |
+| --------------- | ------------------ | -------- | -------- | ----------- |
+| `title`         | string             | no       | no       |             |
+| `subtitle`      | string             | no       | yes      |             |
+| `mediaObjectId` | string (uuid)      | no       | no       |             |
+| `linkUrl`       | string             | no       | yes      |             |
+| `buttonText`    | string             | no       | yes      |             |
+| `sortOrder`     | integer            | no       | no       |             |
+| `isActive`      | boolean            | no       | no       |             |
+| `startsAt`      | string (date-time) | no       | yes      |             |
+| `endsAt`        | string (date-time) | no       | yes      |             |
+
+**Example**
+
+```json
+{
+  "title": "string",
+  "subtitle": "string",
+  "mediaObjectId": "00000000-0000-0000-0000-000000000000",
+  "linkUrl": "https://example.com/resource",
+  "buttonText": "string",
+  "sortOrder": 0,
+  "isActive": false,
+  "startsAt": "2026-01-01T00:00:00.000Z",
+  "endsAt": "2026-01-01T00:00:00.000Z"
+}
+```
+
+### Schema: CommerceStoreSettings
+
+The OWNER shape — a versioned settings document validated against domain/store-settings-validation.ts (unknown keys are rejected). Contains manual-bank account numbers and the QRIS media id; only settings.read may read it and it is never echoed on a public route.
+
+| Field                  | Type            | Required | Nullable | Description                                                                                                                                                                                                  |
+| ---------------------- | --------------- | -------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `schemaVersion`        | enum(`1`)       | no       | no       |                                                                                                                                                                                                              |
+| `storeName`            | string          | yes      | no       |                                                                                                                                                                                                              |
+| `tagline`              | string          | no       | yes      |                                                                                                                                                                                                              |
+| `logoMediaObjectId`    | string (uuid)   | no       | yes      |                                                                                                                                                                                                              |
+| `faviconMediaObjectId` | string (uuid)   | no       | yes      |                                                                                                                                                                                                              |
+| `address`              | string          | no       | yes      |                                                                                                                                                                                                              |
+| `phone`                | string          | no       | yes      |                                                                                                                                                                                                              |
+| `whatsapp`             | string          | no       | yes      |                                                                                                                                                                                                              |
+| `email`                | string          | no       | yes      |                                                                                                                                                                                                              |
+| `mapsEmbedUrl`         | string          | no       | yes      |                                                                                                                                                                                                              |
+| `faqs`                 | array of object | no       | no       |                                                                                                                                                                                                              |
+| `social`               | object          | no       | no       | facebook/instagram/tiktok/x/youtube/linkedin, each a URL or null.                                                                                                                                            |
+| `customerLevels`       | array of object | no       | no       |                                                                                                                                                                                                              |
+| `shipping`             | object          | no       | no       | alternativeServices[] {id,name,cost}, selfPickup, courierEnabled, pinpointEnabled, freeShipping {active,minOrder,maxDiscount}, originCityName, originSubdistrictName.                                        |
+| `payment`              | object          | no       | no       | manualBank {active, accounts[] {bankName, accountNumber, accountHolder}}, manualQris {active, mediaObjectId}, downPayment {active, percent}, tax {active, percent}, insurance {active, ratePercent, minFee}. |
+| `promoSection`         | object          | no       | no       |                                                                                                                                                                                                              |
+| `meta`                 | object          | no       | no       | home/contact, each {title, description} (nullable).                                                                                                                                                          |
+
+**Example**
+
+```json
+{
+  "schemaVersion": 1,
+  "storeName": "string",
+  "tagline": "string",
+  "logoMediaObjectId": "00000000-0000-0000-0000-000000000000",
+  "faviconMediaObjectId": "00000000-0000-0000-0000-000000000000",
+  "address": "string",
+  "phone": "string",
+  "whatsapp": "string",
+  "email": "user@example.com",
+  "mapsEmbedUrl": "https://example.com/resource",
+  "faqs": [
+    {
+      "question": "string",
+      "answer": "string"
+    }
+  ],
+  "social": "(operation-specific payload)",
+  "customerLevels": [
+    {
+      "level": 0,
+      "name": "string",
+      "type": "percentage",
+      "value": "string",
+      "active": false
+    }
+  ],
+  "shipping": "(operation-specific payload)",
+  "payment": "(operation-specific payload)",
+  "promoSection": {
+    "active": false,
+    "items": ["(operation-specific payload)"]
+  },
+  "meta": "(operation-specific payload)"
+}
+```
+
+### Schema: CommerceTestimonialCreateInput
+
+| Field                 | Type          | Required | Nullable | Description |
+| --------------------- | ------------- | -------- | -------- | ----------- |
+| `authorName`          | string        | yes      | no       |             |
+| `authorRole`          | string        | no       | yes      |             |
+| `body`                | string        | yes      | no       |             |
+| `rating`              | integer       | yes      | no       |             |
+| `avatarMediaObjectId` | string (uuid) | no       | yes      |             |
+| `isActive`            | boolean       | no       | no       |             |
+| `sortOrder`           | integer       | no       | no       |             |
+
+**Example**
+
+```json
+{
+  "authorName": "string",
+  "authorRole": "string",
+  "body": "string",
+  "rating": 1,
+  "avatarMediaObjectId": "00000000-0000-0000-0000-000000000000",
+  "isActive": false,
+  "sortOrder": 0
+}
+```
+
+### Schema: CommerceTestimonialUpdateInput
+
+Every field of CommerceTestimonialCreateInput, all optional.
+
+| Field                 | Type          | Required | Nullable | Description |
+| --------------------- | ------------- | -------- | -------- | ----------- |
+| `authorName`          | string        | no       | no       |             |
+| `authorRole`          | string        | no       | yes      |             |
+| `body`                | string        | no       | no       |             |
+| `rating`              | integer       | no       | no       |             |
+| `avatarMediaObjectId` | string (uuid) | no       | yes      |             |
+| `isActive`            | boolean       | no       | no       |             |
+| `sortOrder`           | integer       | no       | no       |             |
+
+**Example**
+
+```json
+{
+  "authorName": "string",
+  "authorRole": "string",
+  "body": "string",
+  "rating": 1,
+  "avatarMediaObjectId": "00000000-0000-0000-0000-000000000000",
+  "isActive": false,
+  "sortOrder": 0
+}
+```
+
 ### Schema: CommerceVariantAttributeGroup
 
 | Field     | Type            | Required | Nullable | Description |
@@ -10611,6 +11669,74 @@ _No properties declared._
       "description": "string"
     }
   ]
+}
+```
+
+### Schema: CommerceVoucherCreateInput
+
+| Field         | Type                                           | Required | Nullable | Description                                                             |
+| ------------- | ---------------------------------------------- | -------- | -------- | ----------------------------------------------------------------------- |
+| `code`        | string                                         | yes      | no       |                                                                         |
+| `name`        | string                                         | yes      | no       |                                                                         |
+| `description` | string                                         | no       | yes      |                                                                         |
+| `type`        | enum(`percentage`, `nominal`, `free_shipping`) | yes      | no       |                                                                         |
+| `value`       | string                                         | yes      | no       | numeric(14,2) as a string (ADR-0003 in awcms-one); never a JSON number. |
+| `minOrder`    | string                                         | no       | no       |                                                                         |
+| `maxDiscount` | string                                         | no       | yes      |                                                                         |
+| `quota`       | integer                                        | no       | no       |                                                                         |
+| `isPublic`    | boolean                                        | no       | no       |                                                                         |
+| `startsAt`    | string (date-time)                             | yes      | no       |                                                                         |
+| `endsAt`      | string (date-time)                             | yes      | no       |                                                                         |
+
+**Example**
+
+```json
+{
+  "code": "string",
+  "name": "string",
+  "description": "string",
+  "type": "percentage",
+  "value": "string",
+  "minOrder": "string",
+  "maxDiscount": "string",
+  "quota": 0,
+  "isPublic": false,
+  "startsAt": "2026-01-01T00:00:00.000Z",
+  "endsAt": "2026-01-01T00:00:00.000Z"
+}
+```
+
+### Schema: CommerceVoucherUpdateInput
+
+Every field optional; status may move between active and inactive.
+
+| Field         | Type                       | Required | Nullable | Description                                                             |
+| ------------- | -------------------------- | -------- | -------- | ----------------------------------------------------------------------- |
+| `name`        | string                     | no       | no       |                                                                         |
+| `description` | string                     | no       | yes      |                                                                         |
+| `value`       | string                     | no       | no       | numeric(14,2) as a string (ADR-0003 in awcms-one); never a JSON number. |
+| `minOrder`    | string                     | no       | no       | numeric(14,2) as a string (ADR-0003 in awcms-one); never a JSON number. |
+| `maxDiscount` | string                     | no       | yes      |                                                                         |
+| `quota`       | integer                    | no       | no       |                                                                         |
+| `isPublic`    | boolean                    | no       | no       |                                                                         |
+| `status`      | enum(`active`, `inactive`) | no       | no       |                                                                         |
+| `startsAt`    | string (date-time)         | no       | no       |                                                                         |
+| `endsAt`      | string (date-time)         | no       | no       |                                                                         |
+
+**Example**
+
+```json
+{
+  "name": "string",
+  "description": "string",
+  "value": "string",
+  "minOrder": "string",
+  "maxDiscount": "string",
+  "quota": 0,
+  "isPublic": false,
+  "status": "active",
+  "startsAt": "2026-01-01T00:00:00.000Z",
+  "endsAt": "2026-01-01T00:00:00.000Z"
 }
 ```
 
@@ -11603,7 +12729,7 @@ consumer/subscriber contract in this file).
 }
 ```
 
-### Channels (47)
+### Channels (49)
 
 - `awcms.blog-content.ad.created` — An advertisement was created. Documented contract only; producer is `pages/api/v1/blog/ads/index.ts`'s `blog-content.ad.created` log line.
 - `awcms.blog-content.ad.deleted` — An advertisement was soft-deleted. Documented contract only; producer is `pages/api/v1/blog/ads/[id].ts`'s `blog-content.ad.deleted` log line.
@@ -11635,6 +12761,8 @@ consumer/subscriber contract in this file).
 - `awcms.comments.comment.approved` — A comment became publicly visible, either by auto-approval under the thread policy or by a moderator's approve decision. Producers: `comments/application/comment-service.ts`'s `submitComment` and `comments/application/comment-moderation.ts`'s `moderateComment`. The reply-notification consumer keys off THIS event rather than `comment.submitted`, so a comment still held for moderation never triggers a notification.
 - `awcms.comments.comment.submitted` — A comment was submitted against a published, public commentable resource (ADR-0041). Producer: `comments/application/comment-service.ts`'s `submitComment`. The payload carries opaque references only — comment and thread id, resource type, the server-derived public URL, and the resulting status. Never the body text, the author address, or any identity hash.
 - `awcms.comments.reply.created` — A submitted comment was a reply to an existing comment. Producer: `comments/application/comment-service.ts`'s `submitComment`, published alongside `comment.submitted` so a consumer can distinguish thread replies without re-reading the row. The recipient address is resolved from encrypted storage by the dispatcher at send time and is never carried here.
+- `awcms.commerce.flash_sale.ended` — A flash sale's derived status crossed into `ended` (`now()` passed `ends_at`). Producer: `commerce/application/flash-sale-directory.ts`'s `tickFlashSalesForTenant`, run by the scheduled `commerce:flash-sales:tick` job.
+- `awcms.commerce.flash_sale.started` — A flash sale's derived status crossed into `active` (`now()` entered `[starts_at, ends_at]`). Producer: `commerce/application/flash-sale-directory.ts`'s `tickFlashSalesForTenant`, run by the scheduled `commerce:flash-sales:tick` job — never a direct admin `PATCH`.
 - `awcms.commerce.product.created` — A product was created (status `draft`). Producer: `commerce/application/product-directory.ts`'s `createProduct`, via `appendDomainEvent` in the same transaction as the row's creation.
 - `awcms.commerce.product.status_changed` — A product's lifecycle status transitioned (`commerce/domain/product-status.ts`'s `LEGAL_TRANSITIONS`). Producer: `commerce/application/product-directory.ts`'s `updateProduct`. Carries `previousStatus` and `status`; a consumer that only cares whether a product is still sellable can key off this without diffing the row.
 - `awcms.commerce.product.updated` — A product's fields other than `status` were changed. Producer: `commerce/application/product-directory.ts`'s `updateProduct`. Published alongside `commerce.product.status_changed` when a single `PATCH` changes both.

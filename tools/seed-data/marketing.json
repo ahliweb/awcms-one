@@ -1,0 +1,249 @@
+{
+  "_note": "Issue #26 (epic #21) — the marketing surface the BjekMart home page runs on. Every entry is applied through the owner API by tools/seed-borneojek-mart.ts and is idempotent (matched by slug/code/title). Sliders stay under `future`: a slider REQUIRES a media object, and media objects need the R2-backed upload session — see products.json's note.",
+  "flashSales": [
+    {
+      "slug": "flash-sale-jumat",
+      "name": "Flash Sale Jumat",
+      "startsInHours": -1,
+      "endsInHours": 72,
+      "status": "scheduled",
+      "products": [
+        {
+          "productSlug": "mie-gacoan-jw13",
+          "salePrice": "8500.00",
+          "quota": 50,
+          "sortOrder": 1
+        }
+      ]
+    }
+  ],
+  "vouchers": [
+    {
+      "code": "HEMAT10",
+      "name": "Hemat 10%",
+      "description": "Diskon 10% untuk belanja minimal Rp50.000, maksimal potongan Rp20.000.",
+      "type": "percentage",
+      "value": "10.00",
+      "minOrder": "50000.00",
+      "maxDiscount": "20000.00",
+      "quota": 100,
+      "isPublic": true,
+      "startsInHours": -24,
+      "endsInHours": 720
+    },
+    {
+      "code": "ONGKIRGRATIS",
+      "name": "Gratis Ongkir",
+      "description": "Bebas ongkir BORNEOJEK untuk belanja minimal Rp75.000.",
+      "type": "free_shipping",
+      "value": "0.00",
+      "minOrder": "75000.00",
+      "maxDiscount": null,
+      "quota": 0,
+      "isPublic": true,
+      "startsInHours": -24,
+      "endsInHours": 720
+    }
+  ],
+  "testimonials": [
+    {
+      "authorName": "Siti Rahmah",
+      "authorRole": "Pelanggan",
+      "body": "Pesan pagi, sampai sebelum siang. Drivernya ramah dan barang lengkap.",
+      "rating": 5,
+      "sortOrder": 1
+    },
+    {
+      "authorName": "Andi Pratama",
+      "authorRole": "Reseller",
+      "body": "Harga reseller jelas, stok akurat, dan mudah dipantau lewat status pesanan.",
+      "rating": 5,
+      "sortOrder": 2
+    },
+    {
+      "authorName": "Bu Yanti",
+      "authorRole": "Pemilik warung",
+      "body": "BjekMikro membantu antar ke tiga titik sekaligus dengan tarif yang masuk akal.",
+      "rating": 4,
+      "sortOrder": 3
+    }
+  ],
+  "popup": {
+    "title": "Promo Spesial Minggu Ini",
+    "body": "Gunakan kode HEMAT10 untuk potongan 10% — berlaku sampai akhir bulan.",
+    "linkUrl": "/flash-sale",
+    "buttonText": "Lihat promo",
+    "frequency": "once_per_day",
+    "isActive": true
+  },
+  "storeSettings": {
+    "storeName": "BjekMart",
+    "tagline": "Belanja online hemat, mudah, dan terpercaya di BjekMart",
+    "address": "Jl. Ahmad Wongso RT 19 Kelurahan Madurejo",
+    "phone": "0851-2868-8885",
+    "whatsapp": "6285128688885",
+    "email": "borneojekpangkalanbun@gmail.com",
+    "mapsEmbedUrl": null,
+    "faqs": [
+      {
+        "question": "Bagaimana cara memesan?",
+        "answer": "Pilih produk, tambahkan ke keranjang, lalu isi alamat dan pilih pengiriman BORNEOJEK atau ambil di toko."
+      },
+      {
+        "question": "Metode pembayaran apa yang tersedia?",
+        "answer": "QRIS manual — unggah bukti setelah pembayaran; bank transfer menyusul."
+      }
+    ],
+    "social": {
+      "facebook": null,
+      "instagram": null,
+      "tiktok": null,
+      "x": null,
+      "youtube": null,
+      "linkedin": null
+    },
+    "customerLevels": [
+      {
+        "level": 1,
+        "name": "Pelanggan Umum",
+        "type": "percentage",
+        "value": "0.00"
+      },
+      {
+        "level": 2,
+        "name": "Reseller",
+        "type": "percentage",
+        "value": "5.00"
+      },
+      {
+        "level": 3,
+        "name": "Agen",
+        "type": "percentage",
+        "value": "10.00"
+      },
+      {
+        "level": 4,
+        "name": "Distributor",
+        "type": "nominal",
+        "value": "15000.00"
+      }
+    ],
+    "shipping": {
+      "alternativeServices": [
+        {
+          "id": "borneojek",
+          "name": "BORNEOJEK",
+          "cost": "15000.00"
+        }
+      ],
+      "selfPickup": true,
+      "courierEnabled": false,
+      "pinpointEnabled": false,
+      "freeShipping": {
+        "active": false,
+        "minOrder": "50000.00",
+        "maxDiscount": "20000.00"
+      },
+      "originCityName": "Kabupaten Kotawaringin Barat",
+      "originSubdistrictName": "Arut Selatan"
+    },
+    "payment": {
+      "manualBank": {
+        "active": false,
+        "accounts": [
+          {
+            "bankName": "BCA",
+            "accountNumber": "0000000000",
+            "accountHolder": "PLACEHOLDER — ganti di /admin/commerce-settings"
+          }
+        ]
+      },
+      "manualQris": {
+        "active": true,
+        "mediaObjectId": null
+      },
+      "downPayment": {
+        "active": false,
+        "percent": 50
+      },
+      "tax": {
+        "active": false,
+        "percent": 11
+      },
+      "insurance": {
+        "active": false,
+        "ratePercent": "0.20",
+        "minFee": "500.00"
+      }
+    },
+    "promoSection": {
+      "active": false,
+      "items": [
+        {
+          "badge": "LazMall",
+          "title": "100% Original",
+          "subtitle": "Produk asli & garansi resmi",
+          "tags": [],
+          "buttonText": null,
+          "buttonLink": null
+        },
+        {
+          "badge": "Cicilan 0%",
+          "title": "Hingga 12 Bulan",
+          "subtitle": "Belanja sekarang, bayar nanti",
+          "tags": [
+            "bca",
+            "mandiri",
+            "cicil",
+            "kredivo"
+          ],
+          "buttonText": null,
+          "buttonLink": null
+        },
+        {
+          "badge": "Brand Pilihan",
+          "title": "Diskon s.d 70%",
+          "subtitle": "Produk favorit harga terbaik",
+          "tags": [],
+          "buttonText": "Cek Produk",
+          "buttonLink": "/produk"
+        }
+      ]
+    },
+    "meta": {
+      "home": {
+        "title": null,
+        "description": null
+      },
+      "contact": {
+        "title": null,
+        "description": null
+      }
+    }
+  },
+  "future": {
+    "sliders": [
+      {
+        "title": "Promo Kemerdekaan",
+        "subtitle": "Diskon s.d. 70%",
+        "linkUrl": "/flash-sale",
+        "buttonText": "Lihat",
+        "sortOrder": 1
+      },
+      {
+        "title": "BjekMikro untuk UMKM",
+        "subtitle": "Antar 3 titik sekali jalan",
+        "linkUrl": "/product/bjekmikro-ghoy",
+        "buttonText": "Pesan",
+        "sortOrder": 2
+      },
+      {
+        "title": "RutinRide",
+        "subtitle": "Antar-jemput terjadwal",
+        "linkUrl": "/product/rutinride-layanan-berlangganan-2abd",
+        "buttonText": "Langganan",
+        "sortOrder": 3
+      }
+    ]
+  }
+}
