@@ -1,0 +1,40 @@
+{
+  "datasetCode": "cahyadsn-wilayah-2025",
+  "nextCursor": null,
+  "reason": null,
+  "items": [
+    {
+      "code": "62",
+      "codeCompact": "62",
+      "parentCode": null,
+      "level": 1,
+      "regionType": "province",
+      "localTerm": null,
+      "name": "KALIMANTAN TENGAH",
+      "shortName": null,
+      "fullPathName": "KALIMANTAN TENGAH"
+    },
+    {
+      "code": "63",
+      "codeCompact": "63",
+      "parentCode": null,
+      "level": 1,
+      "regionType": "province",
+      "localTerm": null,
+      "name": "KALIMANTAN SELATAN",
+      "shortName": null,
+      "fullPathName": "KALIMANTAN SELATAN"
+    },
+    {
+      "code": "62.02",
+      "codeCompact": "6202",
+      "parentCode": "62",
+      "level": 2,
+      "regionType": "regency",
+      "localTerm": "Kabupaten",
+      "name": "KOTAWARINGIN BARAT",
+      "shortName": null,
+      "fullPathName": "KOTAWARINGIN BARAT, KALIMANTAN TENGAH"
+    }
+  ]
+}

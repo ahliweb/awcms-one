@@ -1,0 +1,126 @@
+---
+/**
+ * `/cari-berita?q=` — client-side search over the build-time index
+ * (`/index/berita.json`, issue #28, same pattern as issue #27's own product
+ * search). Distinct from the commerce `/cari` (`ROUTES.search`, issue #24)
+ * — the two catalogs are never merged into one search box.
+ *
+ * Prerendered with no server-side query handling (`output: "static"`) — the
+ * same reasoning `src/pages/cari.astro` documents: this page is built ONCE
+ * with no request in flight, so the actual query can only be read in the
+ * BROWSER, after load. The script here does real work (fetch the index,
+ * filter, render results) rather than `cari.astro`'s placeholder echo,
+ * because this issue actually has a searchable index to search.
+ */
+import BeritaLayout from "../layouts/BeritaLayout.astro";
+import { ROUTES } from "../config/routes";
+---
+
+<BeritaLayout title="Cari Berita" description="Cari berita di seluruh arsip." canonicalPath={ROUTES.newsSearch}>
+  <div class="container">
+    <div class="page-heading">
+      <h1>Cari Berita</h1>
+
+      <form class="search-form" action={ROUTES.newsSearch} method="get" role="search">
+        <label for="cari-berita-q" class="visually-hidden">Cari berita</label>
+        <input
+          type="search"
+          id="cari-berita-q"
+          name="q"
+          placeholder="Cari berita..."
+          autocomplete="off"
+        />
+        <button type="submit">Cari</button>
+      </form>
+    </div>
+
+    <p data-search-status class="search-hint">Ketik kata kunci untuk mencari berita.</p>
+    <ul class="grid-cards" data-search-results hidden></ul>
+  </div>
+</BeritaLayout>
+
+<script>
+  type BeritaIndexEntry = {
+    slug: string;
+    title: string;
+    excerpt: string | null;
+    rubrik: string | null;
+    region: string | null;
+    date: string;
+  };
+
+  function renderResult(item: BeritaIndexEntry): HTMLLIElement {
+    const li = document.createElement("li");
+    const a = document.createElement("a");
+    a.href = `/berita/${item.slug}`;
+    a.className = "card";
+
+    if (item.rubrik) {
+      const eyebrow = document.createElement("span");
+      eyebrow.className = "card-eyebrow";
+      eyebrow.textContent = item.rubrik;
+      a.append(eyebrow);
+    }
+
+    const title = document.createElement("h3");
+    title.className = "card-title";
+    title.textContent = item.title;
+    a.append(title);
+
+    if (item.excerpt) {
+      const excerpt = document.createElement("p");
+      excerpt.className = "card-excerpt";
+      excerpt.textContent = item.excerpt;
+      a.append(excerpt);
+    }
+
+    li.append(a);
+    return li;
+  }
+
+  async function run(): Promise<void> {
+    const params = new URLSearchParams(window.location.search);
+    const query = params.get("q")?.trim() ?? "";
+
+    const input = document.getElementById("cari-berita-q");
+    if (input instanceof HTMLInputElement) input.value = query;
+
+    if (!query) return;
+
+    const status = document.querySelector("[data-search-status]");
+    const resultsList = document.querySelector("[data-search-results]");
+    if (!status || !(resultsList instanceof HTMLUListElement)) return;
+
+    let entries: BeritaIndexEntry[];
+    try {
+      const response = await fetch("/index/berita.json");
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      entries = await response.json();
+    } catch {
+      status.textContent = "Indeks pencarian tidak dapat dimuat. Coba muat ulang halaman.";
+      return;
+    }
+
+    const needle = query.toLowerCase();
+    const matches = entries.filter(
+      (entry) =>
+        entry.title.toLowerCase().includes(needle) ||
+        (entry.excerpt ?? "").toLowerCase().includes(needle)
+    );
+
+    if (matches.length === 0) {
+      status.textContent = `Tidak ada hasil untuk "${query}".`;
+      return;
+    }
+
+    status.textContent = `${matches.length} hasil untuk "${query}":`;
+    status.classList.remove("empty-state");
+
+    for (const match of matches) {
+      resultsList.append(renderResult(match));
+    }
+    resultsList.hidden = false;
+  }
+
+  run();
+</script>

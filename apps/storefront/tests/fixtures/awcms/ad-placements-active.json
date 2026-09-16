@@ -1,0 +1,43 @@
+{
+  "slots": {
+    "header_banner": [
+      {
+        "id": "ad-header-1",
+        "name": "Bank Kalteng — Promo KUR",
+        "linkUrl": "https://example.test/promo-kur",
+        "mediaPublicUrl": "https://media.example.test/ads/bank-kalteng.jpg",
+        "mediaAltText": "Promo KUR Bank Kalteng",
+        "contentClass": "standard"
+      }
+    ],
+    "below_headline": [],
+    "homepage_middle": [],
+    "homepage_bottom": [],
+    "article_top": [],
+    "article_middle": [
+      {
+        "id": "ad-article-middle-1",
+        "name": "Wisata Kalteng — Advertorial",
+        "linkUrl": "https://example.test/wisata-kalteng",
+        "mediaPublicUrl": "https://media.example.test/ads/wisata-kalteng.jpg",
+        "mediaAltText": "Wisata Kalteng",
+        "contentClass": "advertorial"
+      }
+    ],
+    "article_bottom": [],
+    "sidebar_top": [
+      {
+        "id": "ad-sidebar-1",
+        "name": "UMKM Kalteng — Konten Bersponsor",
+        "linkUrl": null,
+        "mediaPublicUrl": "https://media.example.test/ads/umkm-kalteng.jpg",
+        "mediaAltText": "UMKM Kalteng",
+        "contentClass": "sponsored"
+      }
+    ],
+    "sidebar_middle": [],
+    "sidebar_bottom": [],
+    "category_archive_top": [],
+    "search_result_top": []
+  }
+}

@@ -1,0 +1,124 @@
+---
+/**
+ * `/berita` — the news front page (issue #28): a headline block (latest
+ * post), one section per top-level rubrik with its 4 latest posts and an
+ * "Indeks →" link, a video strip, a "Mitra" strip (institutions with posts
+ * this month), and a sidebar (terpopuler, tags cloud).
+ *
+ * Composed directly from `getPosts()`/`getRubrikTree()`/`getVideo()`/
+ * `getMitraStripBulanIni()`/`getTerpopuler()`/`getTags()` rather than the
+ * CMS's `news-portal/homepage-sections/composed` endpoint — see
+ * `src/lib/awcms/blog.ts`'s file header for why that endpoint's section
+ * vocabulary cannot express this page's actual shape.
+ */
+import BeritaLayout from "../../layouts/BeritaLayout.astro";
+import ArtikelCard from "../../components/berita/ArtikelCard.astro";
+import TagCloud from "../../components/berita/TagCloud.astro";
+import IklanSlot from "../../components/berita/IklanSlot.astro";
+import { ROUTES } from "../../config/routes";
+import { getPosts, getRubrikTree, getVideo, getMitraStripBulanIni, getTerpopuler, getTags } from "../../lib/berita";
+import { AD_SLOTS } from "../../lib/awcms/iklan";
+
+const posts = await getPosts();
+const [headline, ...rest] = posts;
+const rubrikTree = await getRubrikTree();
+const video = await getVideo({ limit: 4 });
+const mitraAktif = await getMitraStripBulanIni();
+const terpopuler = await getTerpopuler(5);
+const tags = await getTags();
+
+const rubrikSections = rubrikTree
+  .map((rubrik) => ({
+    rubrik,
+    posts: rest.filter((p) => p.rubric?.slug === rubrik.slug).slice(0, 4)
+  }))
+  .filter((section) => section.posts.length > 0);
+---
+
+<BeritaLayout title="Berita" description="Berita terbaru." canonicalPath={ROUTES.news}>
+  <div class="container">
+    <div class="page-heading">
+      <h1>Berita</h1>
+    </div>
+
+    <IklanSlot placement={AD_SLOTS.header} label="Iklan" />
+
+    {posts.length === 0 ? (
+      <p class="empty-state">Belum ada berita yang dipublikasikan.</p>
+    ) : (
+      <div class="layout-with-sidebar">
+        <div>
+          {headline && (
+            <div class="berita-hero">
+              <ul class="grid-cards">
+                <ArtikelCard post={headline} />
+              </ul>
+            </div>
+          )}
+
+          <IklanSlot placement={AD_SLOTS.belowHeadline} />
+
+          {rubrikSections.map((section) => (
+            <section class="rubrik-section" aria-labelledby={`rubrik-${section.rubrik.slug}`}>
+              <div class="rubrik-section-header">
+                <h2 id={`rubrik-${section.rubrik.slug}`}>{section.rubrik.name}</h2>
+                <a class="rubrik-index-link" href={ROUTES.rubric(section.rubrik.slug)}>Indeks &rarr;</a>
+              </div>
+              <ul class="grid-cards">
+                {section.posts.map((post) => <ArtikelCard post={post} />)}
+              </ul>
+            </section>
+          ))}
+
+          {video.length > 0 && (
+            <section class="rubrik-section" aria-labelledby="rubrik-video">
+              <div class="rubrik-section-header">
+                <h2 id="rubrik-video">Video</h2>
+                <a class="rubrik-index-link" href={ROUTES.video}>Indeks &rarr;</a>
+              </div>
+              <ul class="video-strip">
+                {video.map((post) => <ArtikelCard post={post} />)}
+              </ul>
+            </section>
+          )}
+
+          {mitraAktif.length > 0 && (
+            <section class="rubrik-section" aria-labelledby="rubrik-mitra">
+              <h2 id="rubrik-mitra">Mitra</h2>
+              <ul class="mitra-strip">
+                {mitraAktif.map((mitra) => (
+                  <li>
+                    <a href={ROUTES.partner(mitra.slug)} class="card">
+                      <span class="card-eyebrow">{mitra.branch === "legislative" ? "Legislatif" : "Eksekutif"}</span>
+                      <h3 class="card-title">{mitra.name}</h3>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
+        </div>
+
+        <aside class="sidebar">
+          {terpopuler.length > 0 && (
+            <section>
+              <h2>Terpopuler</h2>
+              <ul class="archive-list">
+                {terpopuler.map((post) => <ArtikelCard post={post} />)}
+              </ul>
+            </section>
+          )}
+
+          {tags.length > 0 && (
+            <section>
+              <h2>Tag</h2>
+              <TagCloud tags={tags} ariaLabel="Tag populer" />
+            </section>
+          )}
+
+          <IklanSlot placement={AD_SLOTS.sidebar} />
+        </aside>
+      </div>
+    )}
+  </div>
+</BeritaLayout>

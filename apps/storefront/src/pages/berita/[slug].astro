@@ -1,0 +1,100 @@
+---
+/**
+ * `/berita/[slug]` — article detail (issue #28). Kicker, title, byline,
+ * body, tags, share, related posts, region cross-link, `NewsArticle` +
+ * `BreadcrumbList` JSON-LD, canonical — the actual markup is shared with
+ * `/video/[slug]` via `src/components/berita/ArtikelView.astro` (a video
+ * post is rendered through the exact same Portable Text renderer; only the
+ * URL and the breadcrumb hub differ).
+ *
+ * ## Two things this page deliberately does NOT render
+ *
+ * - **No hero `<img>`.** `PostDetail` carries `featuredMediaId` only as a
+ *   bare id (`src/lib/awcms/blog.ts`'s `RawPost` docblock) with no
+ *   caption/credit field on the post itself, and this app has no
+ *   media-object client to resolve it to a URL at all (the same gap issue
+ *   #24 recorded for `site-profile`'s logo/favicon ids). Rendering nothing
+ *   is the honest choice over inventing a caption/credit that does not
+ *   exist or a URL this app cannot safely construct.
+ * - **No `article:published_time` Open Graph tag.** `BaseLayout.astro`
+ *   (issue #24) has no mechanism for a page to add extra `<meta>` tags, and
+ *   that file is outside this issue's file ownership. The same timestamp is
+ *   present, machine-readable, in this page's own `NewsArticle` JSON-LD
+ *   (`datePublished`/`dateModified`) — the modern equivalent most crawlers
+ *   read; only an OG-specific consumer (Facebook's own crawler) would miss
+ *   the dedicated tag.
+ */
+import BeritaLayout from "../../layouts/BeritaLayout.astro";
+import ArtikelView from "../../components/berita/ArtikelView.astro";
+import { ROUTES } from "../../config/routes";
+import { getPosts, getPost, getRelatedPosts, getDaerah } from "../../lib/berita";
+import { newsArticleSchema, breadcrumbListSchema, combineSchemas } from "../../lib/jsonld-berita";
+import { getSiteIdentity } from "../../lib/awcms/profil";
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  return posts.map((post) => ({ params: { slug: post.slug } }));
+}
+
+const { slug } = Astro.params as { slug: string };
+const post = await getPost(slug);
+
+if (!post || post.isVideo) {
+  // Prerendered (`output: "static"`) — no request to redirect at build
+  // time. getStaticPaths() only ever requests a non-video slug getPosts()
+  // just returned, so reaching here is a routing bug, not a content gap —
+  // the same posture src/pages/halaman/[slug].astro already takes.
+  throw new Error(
+    `No non-video published post with slug "${slug}" in the cached index. ` +
+      `getStaticPaths() only ever requests a slug getPosts() just returned, ` +
+      `so this can only happen if this route is reached with a slug from ` +
+      `somewhere else.`
+  );
+}
+
+const identity = await getSiteIdentity();
+const related = await getRelatedPosts(post, 3);
+const canonicalPath = ROUTES.article(post.slug);
+
+const daerahLainnya = post.region ? await getDaerah(post.region.slug) : null;
+const daerahLainnyaPosts = daerahLainnya
+  ? daerahLainnya.posts.filter((p) => p.id !== post.id).slice(0, 3)
+  : [];
+
+const breadcrumbItems = [
+  { name: "Beranda", path: ROUTES.home },
+  { name: "Berita", path: ROUTES.news },
+  ...(post.rubric ? [{ name: post.rubric.name, path: ROUTES.rubric(post.rubric.slug) }] : []),
+  { name: post.title, path: canonicalPath }
+];
+
+const schema = combineSchemas(
+  newsArticleSchema({
+    headline: post.title,
+    description: post.excerpt ?? post.metaDescription,
+    canonicalPath,
+    publishedAt: post.publishedAt,
+    updatedAt: post.updatedAt,
+    authorByline: post.authorByline,
+    publisherName: identity.name,
+    rubricName: post.rubric?.name ?? null
+  }),
+  breadcrumbListSchema(breadcrumbItems)
+);
+---
+
+<BeritaLayout
+  title={post.seoTitle ?? post.title}
+  description={post.metaDescription ?? post.excerpt ?? undefined}
+  canonicalPath={canonicalPath}
+  schema={schema}
+>
+  <ArtikelView
+    post={post}
+    related={related}
+    daerahLainnyaPosts={daerahLainnyaPosts}
+    canonicalPath={canonicalPath}
+    parentLabel="Berita"
+    parentPath={ROUTES.news}
+  />
+</BeritaLayout>
