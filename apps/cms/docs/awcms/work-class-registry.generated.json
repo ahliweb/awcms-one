@@ -467,12 +467,47 @@
       "source": "factory"
     },
     {
+      "path": "src/pages/api/v1/commerce/categories/[id]/restore.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
       "path": "src/pages/api/v1/commerce/categories/index.ts",
       "workClass": "interactive",
       "source": "factory"
     },
     {
       "path": "src/pages/api/v1/commerce/products/[id].ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/products/[id]/images/[imageId].ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/products/[id]/images/index.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/products/[id]/restore.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/products/[id]/variants/[variantId].ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/products/[id]/variants/index.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/products/by-slug/[slug].ts",
       "workClass": "interactive",
       "source": "factory"
     },

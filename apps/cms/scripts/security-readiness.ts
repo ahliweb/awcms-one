@@ -1509,14 +1509,17 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   // INSERT here could fabricate a replay that pins a delivery against retention
   // forever.
   awcms_domain_event_replays: ["SELECT"],
-  // commerce (Issue #4, sql/155) — the generic purge of already soft-deleted
-  // categories/products (`cursorColumn: "deleted_at"`, `deletion.mode:
-  // "hard_delete"`). SELECT for the bounded cursor scan and the DELETE's own
-  // subquery, DELETE for the purge; no INSERT/UPDATE, because a worker able to
-  // write here could plant or edit a merchant's catalog rather than merely
-  // sweeping ones the merchant already deleted.
+  // commerce (Issue #4, sql/155; extended to product_images/product_variants
+  // by Issue #23, sql/160) — the generic purge of already soft-deleted
+  // categories/products/images/variants (`cursorColumn: "deleted_at"`,
+  // `deletion.mode: "hard_delete"`). SELECT for the bounded cursor scan and
+  // the DELETE's own subquery, DELETE for the purge; no INSERT/UPDATE,
+  // because a worker able to write here could plant or edit a merchant's
+  // catalog rather than merely sweeping ones the merchant already deleted.
   awcms_commerce_categories: ["SELECT", "DELETE"],
-  awcms_commerce_products: ["SELECT", "DELETE"]
+  awcms_commerce_products: ["SELECT", "DELETE"],
+  awcms_commerce_product_images: ["SELECT", "DELETE"],
+  awcms_commerce_product_variants: ["SELECT", "DELETE"]
 };
 
 /**

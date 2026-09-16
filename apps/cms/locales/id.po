@@ -4719,3 +4719,130 @@ msgstr "Produk yang dibuat untuk tenant ini akan muncul di sini."
 
 msgid "Commerce"
 msgstr "Perdagangan"
+
+msgid "—"
+msgstr "—"
+
+msgid "Add image"
+msgstr "Tambah gambar"
+
+msgid "Add variant"
+msgstr "Tambah varian"
+
+msgid "Advanced fields (JSON)"
+msgstr "Bidang lanjutan (JSON)"
+
+msgid "Advanced fields (JSON, optional)"
+msgstr "Bidang lanjutan (JSON, opsional)"
+
+msgid "All categories"
+msgstr "Semua kategori"
+
+msgid "All statuses"
+msgstr "Semua status"
+
+msgid "Alt text"
+msgstr "Teks alternatif"
+
+msgid "Attribute name"
+msgstr "Nama atribut"
+
+msgid "Categories could not be loaded right now. Please try again later."
+msgstr "Kategori tidak dapat dimuat saat ini. Silakan coba lagi nanti."
+
+msgid "Categories created for this tenant will appear here."
+msgstr "Kategori yang dibuat untuk tenant ini akan muncul di sini."
+
+msgid "Create a category"
+msgstr "Buat kategori"
+
+msgid "Create a product"
+msgstr "Buat produk"
+
+msgid "Create category"
+msgstr "Buat kategori"
+
+msgid "Create product"
+msgstr "Buat produk"
+
+msgid "Deleted categories"
+msgstr "Kategori terhapus"
+
+msgid "Deleted products"
+msgstr "Produk terhapus"
+
+msgid "Discount percent"
+msgstr "Persentase diskon"
+
+msgid "Featured"
+msgstr "Unggulan"
+
+msgid "Featured only"
+msgstr "Hanya unggulan"
+
+msgid "Icon"
+msgstr "Ikon"
+
+msgid "Images"
+msgstr "Gambar"
+
+msgid "Media object"
+msgstr "Objek media"
+
+msgid "Minimum purchase"
+msgstr "Pembelian minimum"
+
+msgid "No categories yet"
+msgstr "Belum ada kategori"
+
+msgid "None"
+msgstr "Tidak ada"
+
+msgid "None (top-level)"
+msgstr "Tidak ada (tingkat atas)"
+
+msgid "Price (optional)"
+msgstr "Harga (opsional)"
+
+msgid "Product categories"
+msgstr "Kategori produk"
+
+msgid "Recommended"
+msgstr "Direkomendasikan"
+
+msgid "Recommended only"
+msgstr "Hanya direkomendasikan"
+
+msgid "Search (name or SKU)"
+msgstr "Cari (nama atau SKU)"
+
+msgid "Select a media object"
+msgstr "Pilih objek media"
+
+msgid "SKU (optional)"
+msgstr "SKU (opsional)"
+
+msgid "stock"
+msgstr "stok"
+
+msgid "(unresolved image)"
+msgstr "(gambar tidak dapat dimuat)"
+
+msgid "Variants"
+msgstr "Varian"
+
+msgid "Weight (grams)"
+msgstr "Berat (gram)"
+
+msgid "You do not have permission to view categories."
+msgstr "Anda tidak memiliki izin untuk melihat kategori."
+
+msgid "{count} category"
+msgid_plural "{count} categories"
+msgstr[0] "{count} kategori"
+
+msgid "The tenant's product catalog: filters, full create/edit, images, variants, status, soft delete and restore."
+msgstr "Katalog produk tenant: filter, buat/ubah lengkap, gambar, varian, status, hapus lunak, dan pemulihan."
+
+msgid "The tenant's category tree: create, edit, soft delete and restore."
+msgstr "Pohon kategori tenant: buat, ubah, hapus lunak, dan pemulihan."

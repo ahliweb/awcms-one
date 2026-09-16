@@ -9403,18 +9403,19 @@ Catalog slice of the re-platformed storefront (commerce module, Issue #4, epic #
 
 **Parameters**
 
-| Name     | In    | Required | Type   | Description                                                                                  |
-| -------- | ----- | -------- | ------ | -------------------------------------------------------------------------------------------- |
-| `cursor` | query | no       | string | Opaque cursor from a previous response's nextCursor. A malformed value is rejected with 400. |
+| Name       | In    | Required | Type          | Description                                                                                  |
+| ---------- | ----- | -------- | ------------- | -------------------------------------------------------------------------------------------- |
+| `cursor`   | query | no       | string        | Opaque cursor from a previous response's nextCursor. A malformed value is rejected with 400. |
+| `parentId` | query | no       | string (uuid) | Filter to the direct children of one category (Issue 23).                                    |
 
 **Responses**
 
-| Status | Description                                                                                                                    | Schema                                 |
-| ------ | ------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------- |
-| 200    | Live categories for the tenant (limit 100), newest first, with an opaque nextCursor for the next page (null on the last page). | object                                 |
-| 400    | Validation error.                                                                                                              | [`ApiError`](#standard-error-envelope) |
-| 401    | Missing or invalid session.                                                                                                    | [`ApiError`](#standard-error-envelope) |
-| 403    | Access denied by RBAC/ABAC.                                                                                                    | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                                                                       | Schema                                 |
+| ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | Live categories for the tenant (limit 100), newest first, each with a computed productCount, with an opaque nextCursor for the next page (null on the last page). | object                                 |
+| 400    | Validation error.                                                                                                                                                 | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                       | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                       | [`ApiError`](#standard-error-envelope) |
 
 ### `POST /api/v1/commerce/categories` — Create a category.
 
@@ -9484,7 +9485,7 @@ No parentId here — a category's position in the hierarchy is set once, at crea
 - **operationId**: `deleteCommerceCategory`
 - **Security**: bearerAuth + tenantHeader
 
-Sets deleted_at; the slug is freed for reuse. Not a hard delete, and this slice ships no restore endpoint — a soft-deleted row is retained (for the FK integrity of any product still referencing it) but not exposed for recovery here.
+Sets deleted_at; the slug is freed for reuse. Restore it with POST /api/v1/commerce/categories/{id}/restore (Issue 23).
 
 **Parameters**
 
@@ -9501,32 +9502,61 @@ Sets deleted_at; the slug is freed for reuse. Not a hard delete, and this slice 
 | 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
 | 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
 
-### `GET /api/v1/commerce/products` — List products for the current tenant — keyset-paginated, newest first.
+### `POST /api/v1/commerce/categories/{id}/restore` — Restore a soft-deleted category (Issue 23).
+
+- **operationId**: `restoreCommerceCategory`
+- **Security**: bearerAuth + tenantHeader
+
+404 when the id is not currently soft-deleted (idempotent-safe — a repeat restore is a 404, never a duplicate). 409 when a live category has since taken the same slug.
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                                                                             | Schema                                 |
+| ------ | --------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | Category restored.                                                                      | object                                 |
+| 401    | Missing or invalid session.                                                             | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                             | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                     | [`ApiError`](#standard-error-envelope) |
+| 409    | slug is already taken by a live category in this tenant (CATEGORY_SLUG_ALREADY_EXISTS). | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/products` — List products for the current tenant — filterable, sortable, keyset-paginated.
 
 - **operationId**: `listCommerceProducts`
 - **Security**: bearerAuth + tenantHeader
 
 **Parameters**
 
-| Name     | In    | Required | Type   | Description                                                                                  |
-| -------- | ----- | -------- | ------ | -------------------------------------------------------------------------------------------- |
-| `cursor` | query | no       | string | Opaque cursor from a previous response's nextCursor. A malformed value is rejected with 400. |
+| Name          | In    | Required | Type                                              | Description                                                                                                                                                                                      |
+| ------------- | ----- | -------- | ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `cursor`      | query | no       | string                                            | Opaque cursor from a previous response's nextCursor. Only meaningful with the default sort=newest; combined with any other sort it is rejected with 400. A malformed value is rejected with 400. |
+| `categoryId`  | query | no       | string (uuid)                                     |                                                                                                                                                                                                  |
+| `status`      | query | no       | enum(`draft`, `active`, `inactive`, `archived`)   |                                                                                                                                                                                                  |
+| `q`           | query | no       | string                                            | Case-insensitive substring match on name or sku (trigram-indexed).                                                                                                                               |
+| `sort`        | query | no       | enum(`newest`, `price_asc`, `price_desc`, `name`) | Defaults to newest. price_asc/price_desc/name return a single bounded page (no nextCursor) rather than a keyset walk — see domain/product-sort.ts.                                               |
+| `featured`    | query | no       | boolean                                           |                                                                                                                                                                                                  |
+| `recommended` | query | no       | boolean                                           |                                                                                                                                                                                                  |
 
 **Responses**
 
-| Status | Description                                                                                                                  | Schema                                 |
-| ------ | ---------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
-| 200    | Live products for the tenant (limit 100), newest first, with an opaque nextCursor for the next page (null on the last page). | object                                 |
-| 400    | Validation error.                                                                                                            | [`ApiError`](#standard-error-envelope) |
-| 401    | Missing or invalid session.                                                                                                  | [`ApiError`](#standard-error-envelope) |
-| 403    | Access denied by RBAC/ABAC.                                                                                                  | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                                                                                                                                            | Schema                                 |
+| ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | Live products for the tenant (limit 100) matching every supplied filter, in the requested order, each with images[]/variants[] resolved, with an opaque nextCursor for the next page (null on the last page or for a non-newest sort). | object                                 |
+| 400    | Validation error.                                                                                                                                                                                                                      | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                                                                                            | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                                                                                            | [`ApiError`](#standard-error-envelope) |
 
 ### `POST /api/v1/commerce/products` — Create a product. Always starts in status draft.
 
 - **operationId**: `createCommerceProduct`
 - **Security**: bearerAuth + tenantHeader
 
-**Request body** (required): object
+**Request body** (required): [`CommerceProductCreateInput`](#schema-commerceproductcreateinput)
 
 **Responses**
 
@@ -9538,7 +9568,7 @@ Sets deleted_at; the slug is freed for reuse. Not a hard delete, and this slice 
 | 403    | Access denied by RBAC/ABAC.                                                                                               | [`ApiError`](#standard-error-envelope) |
 | 409    | slug or sku is already taken by a live product in this tenant (PRODUCT_SLUG_ALREADY_EXISTS / PRODUCT_SKU_ALREADY_EXISTS). | [`ApiError`](#standard-error-envelope) |
 
-### `GET /api/v1/commerce/products/{id}` — Fetch one product.
+### `GET /api/v1/commerce/products/{id}` — Fetch one product, with images[]/variants[] resolved.
 
 - **operationId**: `getCommerceProduct`
 - **Security**: bearerAuth + tenantHeader
@@ -9558,12 +9588,12 @@ Sets deleted_at; the slug is freed for reuse. Not a hard delete, and this slice 
 | 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
 | 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
 
-### `PATCH /api/v1/commerce/products/{id}` — Update a product, including a status transition.
+### `PATCH /api/v1/commerce/products/{id}` — Update a product, including a status transition and every parity field.
 
 - **operationId**: `updateCommerceProduct`
 - **Security**: bearerAuth + tenantHeader
 
-There is no dedicated status-transition endpoint — status travels through this same PATCH, checked against product-status.ts's LEGAL_TRANSITIONS. An illegal transition (e.g. draft -> inactive) is rejected with 400, naming the states legally reachable from the product's current one.
+There is no dedicated status-transition endpoint — status travels through this same PATCH, checked against product-status.ts's LEGAL_TRANSITIONS. sizeChartType's cross-field consistency (domain/size-chart.ts) is checked against the MERGED next state.
 
 **Parameters**
 
@@ -9571,7 +9601,7 @@ There is no dedicated status-transition endpoint — status travels through this
 | ---- | ---- | -------- | ------------- | ----------- |
 | `id` | path | yes      | string (uuid) |             |
 
-**Request body** (required): object
+**Request body** (required): [`CommerceProductUpdateInput`](#schema-commerceproductupdateinput)
 
 **Responses**
 
@@ -9589,7 +9619,7 @@ There is no dedicated status-transition endpoint — status travels through this
 - **operationId**: `deleteCommerceProduct`
 - **Security**: bearerAuth + tenantHeader
 
-Sets deleted_at; the sku and slug are freed for reuse. Not a hard delete, and this slice ships no restore endpoint — see the category DELETE description for the same reasoning.
+Sets deleted_at; the sku and slug are freed for reuse. Restore it with POST /api/v1/commerce/products/{id}/restore (Issue 23).
 
 **Parameters**
 
@@ -9605,6 +9635,187 @@ Sets deleted_at; the sku and slug are freed for reuse. Not a hard delete, and th
 | 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
 | 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
 | 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/products/{id}/images` — Attach a media object to a product (Issue 23). Gated on products.update.
+
+- **operationId**: `createCommerceProductImage`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 201    | Product image created.      | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
+
+### `PATCH /api/v1/commerce/products/{id}/images/{imageId}` — Edit a product image's altText/sortOrder (Issue 23). mediaObjectId is immutable once attached.
+
+- **operationId**: `updateCommerceProductImage`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name      | In   | Required | Type          | Description |
+| --------- | ---- | -------- | ------------- | ----------- |
+| `id`      | path | yes      | string (uuid) |             |
+| `imageId` | path | yes      | string (uuid) |             |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | Product image updated.      | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
+
+### `DELETE /api/v1/commerce/products/{id}/images/{imageId}` — Soft-delete a product image (audited) (Issue 23).
+
+- **operationId**: `deleteCommerceProductImage`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name      | In   | Required | Type          | Description |
+| --------- | ---- | -------- | ------------- | ----------- |
+| `id`      | path | yes      | string (uuid) |             |
+| `imageId` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | Product image soft-deleted. | object                                 |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/products/{id}/restore` — Restore a soft-deleted product (Issue 23).
+
+- **operationId**: `restoreCommerceProduct`
+- **Security**: bearerAuth + tenantHeader
+
+404 when the id is not currently soft-deleted. 409 when a live product has since taken the same slug or sku.
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                                                                                                               | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | Product restored.                                                                                                         | object                                 |
+| 401    | Missing or invalid session.                                                                                               | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                               | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                       | [`ApiError`](#standard-error-envelope) |
+| 409    | slug or sku is already taken by a live product in this tenant (PRODUCT_SLUG_ALREADY_EXISTS / PRODUCT_SKU_ALREADY_EXISTS). | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/products/{id}/variants` — Add a variant to a product (Issue 23). Gated on products.update.
+
+- **operationId**: `createCommerceProductVariant`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Request body** (required): [`CommerceProductVariantInput`](#schema-commerceproductvariantinput)
+
+**Responses**
+
+| Status | Description                                                                                   | Schema                                 |
+| ------ | --------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 201    | Product variant created.                                                                      | object                                 |
+| 400    | Validation error.                                                                             | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                   | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                   | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                           | [`ApiError`](#standard-error-envelope) |
+| 409    | sku is already used by a live product or variant in this tenant (VARIANT_SKU_ALREADY_EXISTS). | [`ApiError`](#standard-error-envelope) |
+
+### `PATCH /api/v1/commerce/products/{id}/variants/{variantId}` — Edit a product variant (Issue 23).
+
+- **operationId**: `updateCommerceProductVariant`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name        | In   | Required | Type          | Description |
+| ----------- | ---- | -------- | ------------- | ----------- |
+| `id`        | path | yes      | string (uuid) |             |
+| `variantId` | path | yes      | string (uuid) |             |
+
+**Request body** (required): [`CommerceProductVariantInput`](#schema-commerceproductvariantinput)
+
+**Responses**
+
+| Status | Description                                                                                   | Schema                                 |
+| ------ | --------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | Product variant updated.                                                                      | object                                 |
+| 400    | Validation error.                                                                             | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                   | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                   | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                           | [`ApiError`](#standard-error-envelope) |
+| 409    | sku is already used by a live product or variant in this tenant (VARIANT_SKU_ALREADY_EXISTS). | [`ApiError`](#standard-error-envelope) |
+
+### `DELETE /api/v1/commerce/products/{id}/variants/{variantId}` — Soft-delete a product variant (audited) (Issue 23).
+
+- **operationId**: `deleteCommerceProductVariant`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name        | In   | Required | Type          | Description |
+| ----------- | ---- | -------- | ------------- | ----------- |
+| `id`        | path | yes      | string (uuid) |             |
+| `variantId` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                   | Schema                                 |
+| ------ | ----------------------------- | -------------------------------------- |
+| 200    | Product variant soft-deleted. | object                                 |
+| 401    | Missing or invalid session.   | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.   | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.           | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/products/by-slug/{slug}` — Fetch one product by its URL slug (Issue 23) — the storefront's detail fetch.
+
+- **operationId**: `getCommerceProductBySlug`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name   | In   | Required | Type   | Description |
+| ------ | ---- | -------- | ------ | ----------- |
+| `slug` | path | yes      | string |             |
+
+**Responses**
+
+| Status | Description                                        | Schema                                 |
+| ------ | -------------------------------------------------- | -------------------------------------- |
+| 200    | Product detail, with images[]/variants[] resolved. | object                                 |
+| 401    | Missing or invalid session.                        | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                        | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                | [`ApiError`](#standard-error-envelope) |
 
 ## Schema appendix
 
@@ -10109,6 +10320,297 @@ Per-tenant comment configuration. Every numeric bound mirrors a CHECK constraint
   "blockedTerms": ["string"],
   "turnstileEnabled": false,
   "notifyOnReply": false
+}
+```
+
+### Schema: CommerceProductCreateInput
+
+_No properties declared._
+
+**Example**
+
+```json
+{
+  "priceLevel2": "string",
+  "priceLevel3": "string",
+  "priceLevel4": "string",
+  "costPrice": "string",
+  "minPurchase": 1,
+  "weightGrams": 0,
+  "manualRating": "string",
+  "manualSoldCount": 0,
+  "withInsurance": false,
+  "insuranceRequired": false,
+  "insuranceFee": "string",
+  "promoBannerShow": false,
+  "promoBannerTitle": "string",
+  "promoBannerSubtitle": "string",
+  "promoBannerBadge": "string",
+  "promoBannerIcon": "string",
+  "promoBannerColor": "string",
+  "sizeChartType": "none",
+  "sizeChartMediaId": "00000000-0000-0000-0000-000000000000",
+  "sizeChartDetails": "(operation-specific payload)",
+  "serviceForm": [
+    {
+      "id": "string",
+      "type": "text",
+      "label": "string",
+      "required": false,
+      "options": []
+    }
+  ],
+  "subscriptionPeriod": "day",
+  "downloadLink": "string",
+  "allowDp": false,
+  "allowFreeShipping": false,
+  "variantAttributes": [
+    {
+      "name": "string",
+      "options": []
+    }
+  ],
+  "isFeatured": false,
+  "isRecommended": false,
+  "categoryId": "00000000-0000-0000-0000-000000000000",
+  "type": "physical",
+  "sku": "string",
+  "name": "string",
+  "slug": "example-slug",
+  "description": "string",
+  "digitalNote": "string",
+  "price": "string",
+  "discountPercent": 0,
+  "stock": 0,
+  "label": "string",
+  "labelColor": "string"
+}
+```
+
+### Schema: CommerceProductParityFields
+
+Fields Issue 23 adds on top of Issue 4's catalog core — shared by the create and update request bodies below.
+
+| Field                 | Type                                                                              | Required | Nullable | Description                                                                                                                           |
+| --------------------- | --------------------------------------------------------------------------------- | -------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| `priceLevel2`         | string                                                                            | no       | yes      | numeric(14,2) as a decimal string.                                                                                                    |
+| `priceLevel3`         | string                                                                            | no       | yes      |                                                                                                                                       |
+| `priceLevel4`         | string                                                                            | no       | yes      |                                                                                                                                       |
+| `costPrice`           | string                                                                            | no       | yes      | Admin-only — never present on a GET response's CommerceProduct.                                                                       |
+| `minPurchase`         | integer                                                                           | no       | no       |                                                                                                                                       |
+| `weightGrams`         | integer                                                                           | no       | no       |                                                                                                                                       |
+| `manualRating`        | string                                                                            | no       | yes      | numeric(2,1) as a decimal string, "0.0"-"5.0".                                                                                        |
+| `manualSoldCount`     | integer                                                                           | no       | no       |                                                                                                                                       |
+| `withInsurance`       | boolean                                                                           | no       | no       |                                                                                                                                       |
+| `insuranceRequired`   | boolean                                                                           | no       | no       |                                                                                                                                       |
+| `insuranceFee`        | string                                                                            | no       | yes      |                                                                                                                                       |
+| `promoBannerShow`     | boolean                                                                           | no       | no       |                                                                                                                                       |
+| `promoBannerTitle`    | string                                                                            | no       | yes      |                                                                                                                                       |
+| `promoBannerSubtitle` | string                                                                            | no       | yes      |                                                                                                                                       |
+| `promoBannerBadge`    | string                                                                            | no       | yes      |                                                                                                                                       |
+| `promoBannerIcon`     | string                                                                            | no       | yes      |                                                                                                                                       |
+| `promoBannerColor`    | string                                                                            | no       | yes      |                                                                                                                                       |
+| `sizeChartType`       | enum(`none`, `image`, `table`)                                                    | no       | no       |                                                                                                                                       |
+| `sizeChartMediaId`    | string (uuid)                                                                     | no       | yes      | Required when sizeChartType is "image"; must be null otherwise.                                                                       |
+| `sizeChartDetails`    | object                                                                            | no       | yes      | Required when sizeChartType is "table"; must be null otherwise. Arbitrary JSON (object/array), capped at 20000 serialized characters. |
+| `serviceForm`         | array of [`CommerceServiceFormField`](#schema-commerceserviceformfield)           | no       | yes      |                                                                                                                                       |
+| `subscriptionPeriod`  | enum(`day`, `week`, `month`, `year`)                                              | no       | yes      |                                                                                                                                       |
+| `downloadLink`        | string                                                                            | no       | yes      |                                                                                                                                       |
+| `allowDp`             | boolean                                                                           | no       | no       |                                                                                                                                       |
+| `allowFreeShipping`   | boolean                                                                           | no       | no       |                                                                                                                                       |
+| `variantAttributes`   | array of [`CommerceVariantAttributeGroup`](#schema-commercevariantattributegroup) | no       | yes      |                                                                                                                                       |
+| `isFeatured`          | boolean                                                                           | no       | no       |                                                                                                                                       |
+| `isRecommended`       | boolean                                                                           | no       | no       |                                                                                                                                       |
+
+**Example**
+
+```json
+{
+  "priceLevel2": "string",
+  "priceLevel3": "string",
+  "priceLevel4": "string",
+  "costPrice": "string",
+  "minPurchase": 1,
+  "weightGrams": 0,
+  "manualRating": "string",
+  "manualSoldCount": 0,
+  "withInsurance": false,
+  "insuranceRequired": false,
+  "insuranceFee": "string",
+  "promoBannerShow": false,
+  "promoBannerTitle": "string",
+  "promoBannerSubtitle": "string",
+  "promoBannerBadge": "string",
+  "promoBannerIcon": "string",
+  "promoBannerColor": "string",
+  "sizeChartType": "none",
+  "sizeChartMediaId": "00000000-0000-0000-0000-000000000000",
+  "sizeChartDetails": "(operation-specific payload)",
+  "serviceForm": [
+    {
+      "id": "string",
+      "type": "text",
+      "label": "string",
+      "required": false,
+      "options": []
+    }
+  ],
+  "subscriptionPeriod": "day",
+  "downloadLink": "string",
+  "allowDp": false,
+  "allowFreeShipping": false,
+  "variantAttributes": [
+    {
+      "name": "string",
+      "options": []
+    }
+  ],
+  "isFeatured": false,
+  "isRecommended": false
+}
+```
+
+### Schema: CommerceProductUpdateInput
+
+_No properties declared._
+
+**Example**
+
+```json
+{
+  "priceLevel2": "string",
+  "priceLevel3": "string",
+  "priceLevel4": "string",
+  "costPrice": "string",
+  "minPurchase": 1,
+  "weightGrams": 0,
+  "manualRating": "string",
+  "manualSoldCount": 0,
+  "withInsurance": false,
+  "insuranceRequired": false,
+  "insuranceFee": "string",
+  "promoBannerShow": false,
+  "promoBannerTitle": "string",
+  "promoBannerSubtitle": "string",
+  "promoBannerBadge": "string",
+  "promoBannerIcon": "string",
+  "promoBannerColor": "string",
+  "sizeChartType": "none",
+  "sizeChartMediaId": "00000000-0000-0000-0000-000000000000",
+  "sizeChartDetails": "(operation-specific payload)",
+  "serviceForm": [
+    {
+      "id": "string",
+      "type": "text",
+      "label": "string",
+      "required": false,
+      "options": []
+    }
+  ],
+  "subscriptionPeriod": "day",
+  "downloadLink": "string",
+  "allowDp": false,
+  "allowFreeShipping": false,
+  "variantAttributes": [
+    {
+      "name": "string",
+      "options": []
+    }
+  ],
+  "isFeatured": false,
+  "isRecommended": false,
+  "categoryId": "00000000-0000-0000-0000-000000000000",
+  "type": "physical",
+  "sku": "string",
+  "name": "string",
+  "slug": "example-slug",
+  "description": "string",
+  "digitalNote": "string",
+  "price": "string",
+  "discountPercent": 0,
+  "stock": 0,
+  "status": "draft",
+  "label": "string",
+  "labelColor": "string"
+}
+```
+
+### Schema: CommerceProductVariantInput
+
+| Field                | Type          | Required | Nullable | Description                                                                        |
+| -------------------- | ------------- | -------- | -------- | ---------------------------------------------------------------------------------- |
+| `name`               | string        | no       | no       |                                                                                    |
+| `value`              | string        | no       | no       |                                                                                    |
+| `colorHex`           | string        | no       | yes      | #RRGGBB.                                                                           |
+| `imageMediaObjectId` | string (uuid) | no       | yes      |                                                                                    |
+| `sku`                | string        | no       | yes      | Checked for uniqueness against BOTH this tenant's live products and live variants. |
+| `price`              | string        | no       | yes      |                                                                                    |
+| `priceLevel2`        | string        | no       | yes      |                                                                                    |
+| `priceLevel3`        | string        | no       | yes      |                                                                                    |
+| `priceLevel4`        | string        | no       | yes      |                                                                                    |
+| `stock`              | integer       | no       | no       |                                                                                    |
+| `weightGrams`        | integer       | no       | no       |                                                                                    |
+| `sortOrder`          | integer       | no       | no       |                                                                                    |
+
+**Example**
+
+```json
+{
+  "name": "string",
+  "value": "string",
+  "colorHex": "string",
+  "imageMediaObjectId": "00000000-0000-0000-0000-000000000000",
+  "sku": "string",
+  "price": "string",
+  "priceLevel2": "string",
+  "priceLevel3": "string",
+  "priceLevel4": "string",
+  "stock": 0,
+  "weightGrams": 0,
+  "sortOrder": 0
+}
+```
+
+### Schema: CommerceServiceFormField
+
+| Field      | Type                                                 | Required | Nullable | Description                                                                |
+| ---------- | ---------------------------------------------------- | -------- | -------- | -------------------------------------------------------------------------- |
+| `id`       | string                                               | yes      | no       |                                                                            |
+| `type`     | enum(`text`, `textarea`, `select`, `number`, `date`) | yes      | no       |                                                                            |
+| `label`    | string                                               | yes      | no       |                                                                            |
+| `required` | boolean                                              | yes      | no       |                                                                            |
+| `options`  | array of string                                      | no       | yes      | Required (non-empty) when type is "select"; rejected for every other type. |
+
+**Example**
+
+```json
+{
+  "id": "string",
+  "type": "text",
+  "label": "string",
+  "required": false,
+  "options": ["string"]
+}
+```
+
+### Schema: CommerceVariantAttributeGroup
+
+| Field     | Type            | Required | Nullable | Description |
+| --------- | --------------- | -------- | -------- | ----------- |
+| `name`    | string          | yes      | no       |             |
+| `options` | array of object | yes      | no       |             |
+
+**Example**
+
+```json
+{
+  "name": "string",
+  "options": [
+    {
+      "name": "string",
+      "description": "string"
+    }
+  ]
 }
 ```
 

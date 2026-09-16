@@ -7375,9 +7375,16 @@ paths:
           description: Opaque cursor from a previous response's nextCursor. A malformed value is rejected with 400.
           schema:
             type: string
+        - name: parentId
+          in: query
+          required: false
+          description: Filter to the direct children of one category (Issue 23).
+          schema:
+            type: string
+            format: uuid
       responses:
         "200":
-          description: Live categories for the tenant (limit 100), newest first, with an opaque nextCursor for the next page (null on the last page).
+          description: Live categories for the tenant (limit 100), newest first, each with a computed productCount, with an opaque nextCursor for the next page (null on the last page).
           content:
             application/json:
               schema:
@@ -7550,7 +7557,7 @@ paths:
       tags:
         - Commerce
       summary: Soft-delete a category (audited).
-      description: Sets deleted_at; the slug is freed for reuse. Not a hard delete, and this slice ships no restore endpoint — a soft-deleted row is retained (for the FK integrity of any product still referencing it) but not exposed for recovery here.
+      description: Sets deleted_at; the slug is freed for reuse. Restore it with POST /api/v1/commerce/categories/{id}/restore (Issue 23).
       parameters:
         - name: id
           in: path
@@ -7586,22 +7593,105 @@ paths:
           $ref: "#/components/responses/Forbidden"
         "404":
           $ref: "#/components/responses/NotFound"
+  /api/v1/commerce/categories/{id}/restore:
+    post:
+      operationId: restoreCommerceCategory
+      tags:
+        - Commerce
+      summary: Restore a soft-deleted category (Issue 23).
+      description: 404 when the id is not currently soft-deleted (idempotent-safe — a repeat restore is a 404, never a duplicate). 409 when a live category has since taken the same slug.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Category restored.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceCategory"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: slug is already taken by a live category in this tenant (CATEGORY_SLUG_ALREADY_EXISTS).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
   /api/v1/commerce/products:
     get:
       operationId: listCommerceProducts
       tags:
         - Commerce
-      summary: List products for the current tenant — keyset-paginated, newest first.
+      summary: List products for the current tenant — filterable, sortable, keyset-paginated.
       parameters:
         - name: cursor
           in: query
           required: false
-          description: Opaque cursor from a previous response's nextCursor. A malformed value is rejected with 400.
+          description: Opaque cursor from a previous response's nextCursor. Only meaningful with the default sort=newest; combined with any other sort it is rejected with 400. A malformed value is rejected with 400.
           schema:
             type: string
+        - name: categoryId
+          in: query
+          required: false
+          schema:
+            type: string
+            format: uuid
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - draft
+              - active
+              - inactive
+              - archived
+        - name: q
+          in: query
+          required: false
+          description: Case-insensitive substring match on name or sku (trigram-indexed).
+          schema:
+            type: string
+        - name: sort
+          in: query
+          required: false
+          description: Defaults to newest. price_asc/price_desc/name return a single bounded page (no nextCursor) rather than a keyset walk — see domain/product-sort.ts.
+          schema:
+            type: string
+            enum:
+              - newest
+              - price_asc
+              - price_desc
+              - name
+        - name: featured
+          in: query
+          required: false
+          schema:
+            type: boolean
+        - name: recommended
+          in: query
+          required: false
+          schema:
+            type: boolean
       responses:
         "200":
-          description: Live products for the tenant (limit 100), newest first, with an opaque nextCursor for the next page (null on the last page).
+          description: Live products for the tenant (limit 100) matching every supplied filter, in the requested order, each with images[]/variants[] resolved, with an opaque nextCursor for the next page (null on the last page or for a non-newest sort).
           content:
             application/json:
               schema:
@@ -7637,57 +7727,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              required:
-                - sku
-                - name
-                - slug
-                - price
-              properties:
-                categoryId:
-                  type: string
-                  format: uuid
-                  nullable: true
-                  description: Must reference a live category in the SAME tenant. An id that is unknown, soft-deleted, or belongs to another tenant is rejected identically with 400 (same GHSA-r7cx-c4jh-cvvw-shaped reasoning as categories.parentId).
-                type:
-                  type: string
-                  enum:
-                    - physical
-                    - digital
-                    - service
-                    - subscription
-                  default: physical
-                sku:
-                  type: string
-                name:
-                  type: string
-                slug:
-                  type: string
-                  description: Lowercase alphanumeric segments separated by single hyphens.
-                description:
-                  type: string
-                  nullable: true
-                digitalNote:
-                  type: string
-                  nullable: true
-                price:
-                  type: string
-                  description: numeric(14,2) as a decimal string, e.g. "19999.00" — never a JSON number. Non-negative, at most 2 fractional digits.
-                discountPercent:
-                  type: integer
-                  minimum: 0
-                  maximum: 100
-                  default: 0
-                stock:
-                  type: integer
-                  minimum: 0
-                  default: 0
-                label:
-                  type: string
-                  nullable: true
-                labelColor:
-                  type: string
-                  nullable: true
+              $ref: "#/components/schemas/CommerceProductCreateInput"
       responses:
         "201":
           description: Product created.
@@ -7719,7 +7759,7 @@ paths:
       operationId: getCommerceProduct
       tags:
         - Commerce
-      summary: Fetch one product.
+      summary: Fetch one product, with images[]/variants[] resolved.
       parameters:
         - name: id
           in: path
@@ -7751,8 +7791,8 @@ paths:
       operationId: updateCommerceProduct
       tags:
         - Commerce
-      summary: Update a product, including a status transition.
-      description: There is no dedicated status-transition endpoint — status travels through this same PATCH, checked against product-status.ts's LEGAL_TRANSITIONS. An illegal transition (e.g. draft -> inactive) is rejected with 400, naming the states legally reachable from the product's current one.
+      summary: Update a product, including a status transition and every parity field.
+      description: There is no dedicated status-transition endpoint — status travels through this same PATCH, checked against product-status.ts's LEGAL_TRANSITIONS. sizeChartType's cross-field consistency (domain/size-chart.ts) is checked against the MERGED next state.
       parameters:
         - name: id
           in: path
@@ -7765,54 +7805,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                categoryId:
-                  type: string
-                  format: uuid
-                  nullable: true
-                type:
-                  type: string
-                  enum:
-                    - physical
-                    - digital
-                    - service
-                    - subscription
-                sku:
-                  type: string
-                name:
-                  type: string
-                slug:
-                  type: string
-                description:
-                  type: string
-                  nullable: true
-                digitalNote:
-                  type: string
-                  nullable: true
-                price:
-                  type: string
-                  description: numeric(14,2) as a decimal string — see POST's description.
-                discountPercent:
-                  type: integer
-                  minimum: 0
-                  maximum: 100
-                stock:
-                  type: integer
-                  minimum: 0
-                status:
-                  type: string
-                  enum:
-                    - draft
-                    - active
-                    - inactive
-                    - archived
-                label:
-                  type: string
-                  nullable: true
-                labelColor:
-                  type: string
-                  nullable: true
+              $ref: "#/components/schemas/CommerceProductUpdateInput"
       responses:
         "200":
           description: Product updated.
@@ -7846,7 +7839,7 @@ paths:
       tags:
         - Commerce
       summary: Soft-delete a product (audited).
-      description: Sets deleted_at; the sku and slug are freed for reuse. Not a hard delete, and this slice ships no restore endpoint — see the category DELETE description for the same reasoning.
+      description: Sets deleted_at; the sku and slug are freed for reuse. Restore it with POST /api/v1/commerce/products/{id}/restore (Issue 23).
       parameters:
         - name: id
           in: path
@@ -7876,6 +7869,377 @@ paths:
                         type: string
                         enum:
                           - deleted
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+  /api/v1/commerce/products/{id}/images:
+    post:
+      operationId: createCommerceProductImage
+      tags:
+        - Commerce
+      summary: Attach a media object to a product (Issue 23). Gated on products.update.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - mediaObjectId
+              properties:
+                mediaObjectId:
+                  type: string
+                  format: uuid
+                  description: Must reference a live, verified, same-tenant media object.
+                altText:
+                  type: string
+                  nullable: true
+                sortOrder:
+                  type: integer
+                  default: 0
+      responses:
+        "201":
+          description: Product image created.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceProductImage"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+  /api/v1/commerce/products/{id}/images/{imageId}:
+    patch:
+      operationId: updateCommerceProductImage
+      tags:
+        - Commerce
+      summary: Edit a product image's altText/sortOrder (Issue 23). mediaObjectId is immutable once attached.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: imageId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                altText:
+                  type: string
+                  nullable: true
+                sortOrder:
+                  type: integer
+      responses:
+        "200":
+          description: Product image updated.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceProductImage"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+    delete:
+      operationId: deleteCommerceProductImage
+      tags:
+        - Commerce
+      summary: Soft-delete a product image (audited) (Issue 23).
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: imageId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Product image soft-deleted.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        format: uuid
+                      status:
+                        type: string
+                        enum:
+                          - deleted
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+  /api/v1/commerce/products/{id}/restore:
+    post:
+      operationId: restoreCommerceProduct
+      tags:
+        - Commerce
+      summary: Restore a soft-deleted product (Issue 23).
+      description: 404 when the id is not currently soft-deleted. 409 when a live product has since taken the same slug or sku.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Product restored.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceProduct"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: slug or sku is already taken by a live product in this tenant (PRODUCT_SLUG_ALREADY_EXISTS / PRODUCT_SKU_ALREADY_EXISTS).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/products/{id}/variants:
+    post:
+      operationId: createCommerceProductVariant
+      tags:
+        - Commerce
+      summary: Add a variant to a product (Issue 23). Gated on products.update.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CommerceProductVariantInput"
+      responses:
+        "201":
+          description: Product variant created.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceProductVariant"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: sku is already used by a live product or variant in this tenant (VARIANT_SKU_ALREADY_EXISTS).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/products/{id}/variants/{variantId}:
+    patch:
+      operationId: updateCommerceProductVariant
+      tags:
+        - Commerce
+      summary: Edit a product variant (Issue 23).
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: variantId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CommerceProductVariantInput"
+      responses:
+        "200":
+          description: Product variant updated.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceProductVariant"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: sku is already used by a live product or variant in this tenant (VARIANT_SKU_ALREADY_EXISTS).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+    delete:
+      operationId: deleteCommerceProductVariant
+      tags:
+        - Commerce
+      summary: Soft-delete a product variant (audited) (Issue 23).
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: variantId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Product variant soft-deleted.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        format: uuid
+                      status:
+                        type: string
+                        enum:
+                          - deleted
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+  /api/v1/commerce/products/by-slug/{slug}:
+    get:
+      operationId: getCommerceProductBySlug
+      tags:
+        - Commerce
+      summary: Fetch one product by its URL slug (Issue 23) — the storefront's detail fetch.
+      parameters:
+        - name: slug
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Product detail, with images[]/variants[] resolved.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceProduct"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
@@ -21374,6 +21738,9 @@ components:
         icon:
           type: string
           nullable: true
+        productCount:
+          type: integer
+          description: Computed — the tenant's LIVE products currently in this category (Issue 23).
     CommerceProduct:
       type: object
       properties:
@@ -21423,6 +21790,475 @@ components:
         labelColor:
           type: string
           nullable: true
+        priceLevel2:
+          type: string
+          nullable: true
+        priceLevel3:
+          type: string
+          nullable: true
+        priceLevel4:
+          type: string
+          nullable: true
+        minPurchase:
+          type: integer
+        weightGrams:
+          type: integer
+        manualRating:
+          type: string
+          nullable: true
+        manualSoldCount:
+          type: integer
+        withInsurance:
+          type: boolean
+        insuranceRequired:
+          type: boolean
+        insuranceFee:
+          type: string
+          nullable: true
+        promoBannerShow:
+          type: boolean
+        promoBannerTitle:
+          type: string
+          nullable: true
+        promoBannerSubtitle:
+          type: string
+          nullable: true
+        promoBannerBadge:
+          type: string
+          nullable: true
+        promoBannerIcon:
+          type: string
+          nullable: true
+        promoBannerColor:
+          type: string
+          nullable: true
+        sizeChartType:
+          type: string
+          enum:
+            - none
+            - image
+            - table
+        sizeChartMediaId:
+          type: string
+          format: uuid
+          nullable: true
+        sizeChartDetails:
+          type: object
+          nullable: true
+        serviceForm:
+          type: array
+          nullable: true
+          items:
+            $ref: "#/components/schemas/CommerceServiceFormField"
+        subscriptionPeriod:
+          type: string
+          nullable: true
+          enum:
+            - day
+            - week
+            - month
+            - year
+        downloadLink:
+          type: string
+          nullable: true
+        allowDp:
+          type: boolean
+        allowFreeShipping:
+          type: boolean
+        variantAttributes:
+          type: array
+          nullable: true
+          items:
+            $ref: "#/components/schemas/CommerceVariantAttributeGroup"
+        isFeatured:
+          type: boolean
+        isRecommended:
+          type: boolean
+        finalPrice:
+          type: string
+          description: price after discountPercent off, computed server-side in integer cents (domain/price-calculation.ts) — never a float.
+        averageRating:
+          type: string
+          nullable: true
+          description: "= manualRating (until #29 lands reviews)."
+        soldCount:
+          type: integer
+          description: "= manualSoldCount (until #29 lands orders)."
+        images:
+          type: array
+          items:
+            $ref: "#/components/schemas/CommerceProductImage"
+        variants:
+          type: array
+          items:
+            $ref: "#/components/schemas/CommerceProductVariant"
+    CommerceProductCreateInput:
+      allOf:
+        - $ref: "#/components/schemas/CommerceProductParityFields"
+        - type: object
+          required:
+            - sku
+            - name
+            - slug
+            - price
+          properties:
+            categoryId:
+              type: string
+              format: uuid
+              nullable: true
+              description: Must reference a live category in the SAME tenant. An id that is unknown, soft-deleted, or belongs to another tenant is rejected identically with 400 (same GHSA-r7cx-c4jh-cvvw-shaped reasoning as categories.parentId).
+            type:
+              type: string
+              enum:
+                - physical
+                - digital
+                - service
+                - subscription
+              default: physical
+            sku:
+              type: string
+            name:
+              type: string
+            slug:
+              type: string
+              description: Lowercase alphanumeric segments separated by single hyphens.
+            description:
+              type: string
+              nullable: true
+            digitalNote:
+              type: string
+              nullable: true
+            price:
+              type: string
+              description: numeric(14,2) as a decimal string, e.g. "19999.00" — never a JSON number. Non-negative, at most 2 fractional digits.
+            discountPercent:
+              type: integer
+              minimum: 0
+              maximum: 100
+              default: 0
+            stock:
+              type: integer
+              minimum: 0
+              default: 0
+            label:
+              type: string
+              nullable: true
+            labelColor:
+              type: string
+              nullable: true
+    CommerceProductImage:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        productId:
+          type: string
+          format: uuid
+        mediaObjectId:
+          type: string
+          format: uuid
+        publicUrl:
+          type: string
+          nullable: true
+          description: Resolved through media_library's MediaLibraryPort; null if the media object is no longer safe to reference.
+        altText:
+          type: string
+          nullable: true
+        sortOrder:
+          type: integer
+    CommerceProductParityFields:
+      type: object
+      description: Fields Issue 23 adds on top of Issue 4's catalog core — shared by the create and update request bodies below.
+      properties:
+        priceLevel2:
+          type: string
+          nullable: true
+          description: numeric(14,2) as a decimal string.
+        priceLevel3:
+          type: string
+          nullable: true
+        priceLevel4:
+          type: string
+          nullable: true
+        costPrice:
+          type: string
+          nullable: true
+          description: Admin-only — never present on a GET response's CommerceProduct.
+        minPurchase:
+          type: integer
+          minimum: 1
+          default: 1
+        weightGrams:
+          type: integer
+          minimum: 0
+          default: 0
+        manualRating:
+          type: string
+          nullable: true
+          description: numeric(2,1) as a decimal string, "0.0"-"5.0".
+        manualSoldCount:
+          type: integer
+          minimum: 0
+          default: 0
+        withInsurance:
+          type: boolean
+          default: false
+        insuranceRequired:
+          type: boolean
+          default: false
+        insuranceFee:
+          type: string
+          nullable: true
+        promoBannerShow:
+          type: boolean
+          default: false
+        promoBannerTitle:
+          type: string
+          nullable: true
+        promoBannerSubtitle:
+          type: string
+          nullable: true
+        promoBannerBadge:
+          type: string
+          nullable: true
+        promoBannerIcon:
+          type: string
+          nullable: true
+        promoBannerColor:
+          type: string
+          nullable: true
+        sizeChartType:
+          type: string
+          enum:
+            - none
+            - image
+            - table
+          default: none
+        sizeChartMediaId:
+          type: string
+          format: uuid
+          nullable: true
+          description: Required when sizeChartType is "image"; must be null otherwise.
+        sizeChartDetails:
+          type: object
+          nullable: true
+          description: Required when sizeChartType is "table"; must be null otherwise. Arbitrary JSON (object/array), capped at 20000 serialized characters.
+        serviceForm:
+          type: array
+          nullable: true
+          items:
+            $ref: "#/components/schemas/CommerceServiceFormField"
+        subscriptionPeriod:
+          type: string
+          nullable: true
+          enum:
+            - day
+            - week
+            - month
+            - year
+        downloadLink:
+          type: string
+          nullable: true
+        allowDp:
+          type: boolean
+          default: false
+        allowFreeShipping:
+          type: boolean
+          default: true
+        variantAttributes:
+          type: array
+          nullable: true
+          items:
+            $ref: "#/components/schemas/CommerceVariantAttributeGroup"
+        isFeatured:
+          type: boolean
+          default: false
+        isRecommended:
+          type: boolean
+          default: false
+    CommerceProductUpdateInput:
+      allOf:
+        - $ref: "#/components/schemas/CommerceProductParityFields"
+        - type: object
+          properties:
+            categoryId:
+              type: string
+              format: uuid
+              nullable: true
+            type:
+              type: string
+              enum:
+                - physical
+                - digital
+                - service
+                - subscription
+            sku:
+              type: string
+            name:
+              type: string
+            slug:
+              type: string
+            description:
+              type: string
+              nullable: true
+            digitalNote:
+              type: string
+              nullable: true
+            price:
+              type: string
+            discountPercent:
+              type: integer
+              minimum: 0
+              maximum: 100
+            stock:
+              type: integer
+              minimum: 0
+            status:
+              type: string
+              enum:
+                - draft
+                - active
+                - inactive
+                - archived
+            label:
+              type: string
+              nullable: true
+            labelColor:
+              type: string
+              nullable: true
+    CommerceProductVariant:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        productId:
+          type: string
+          format: uuid
+        name:
+          type: string
+        value:
+          type: string
+        colorHex:
+          type: string
+          nullable: true
+        imageMediaObjectId:
+          type: string
+          format: uuid
+          nullable: true
+        imageUrl:
+          type: string
+          nullable: true
+        sku:
+          type: string
+          nullable: true
+        price:
+          type: string
+          nullable: true
+          description: numeric(14,2) as a decimal string, or null to inherit the product's own price.
+        priceLevel2:
+          type: string
+          nullable: true
+        priceLevel3:
+          type: string
+          nullable: true
+        priceLevel4:
+          type: string
+          nullable: true
+        stock:
+          type: integer
+        weightGrams:
+          type: integer
+        sortOrder:
+          type: integer
+    CommerceProductVariantInput:
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+        colorHex:
+          type: string
+          nullable: true
+          description: "#RRGGBB."
+        imageMediaObjectId:
+          type: string
+          format: uuid
+          nullable: true
+        sku:
+          type: string
+          nullable: true
+          description: Checked for uniqueness against BOTH this tenant's live products and live variants.
+        price:
+          type: string
+          nullable: true
+        priceLevel2:
+          type: string
+          nullable: true
+        priceLevel3:
+          type: string
+          nullable: true
+        priceLevel4:
+          type: string
+          nullable: true
+        stock:
+          type: integer
+          minimum: 0
+        weightGrams:
+          type: integer
+          minimum: 0
+        sortOrder:
+          type: integer
+    CommerceServiceFormField:
+      type: object
+      required:
+        - id
+        - type
+        - label
+        - required
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          enum:
+            - text
+            - textarea
+            - select
+            - number
+            - date
+        label:
+          type: string
+        required:
+          type: boolean
+        options:
+          type: array
+          items:
+            type: string
+          nullable: true
+          description: Required (non-empty) when type is "select"; rejected for every other type.
+    CommerceVariantAttributeGroup:
+      type: object
+      required:
+        - name
+        - options
+      properties:
+        name:
+          type: string
+        options:
+          type: array
+          items:
+            type: object
+            required:
+              - name
+            properties:
+              name:
+                type: string
+              description:
+                type: string
+                nullable: true
     ComposedHomepageGroup:
       type: object
       properties:
