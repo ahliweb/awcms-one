@@ -23,6 +23,7 @@ import {
   mkdirSync,
   mkdtempSync,
   readFileSync,
+  realpathSync,
   rmSync,
   writeFileSync
 } from "node:fs";
@@ -49,6 +50,30 @@ import {
   compareReleaseVersions
 } from "../scripts/lib/semver.ts";
 import { REPO_ROOT } from "../scripts/lib/repo-files.ts";
+import { execFileSync } from "node:child_process";
+
+/**
+ * Whether `REPO_ROOT` sits inside a larger git repository — i.e. this tree
+ * is a `git subtree` embed rather than a clone of ahliweb/awcms itself.
+ * `git rev-parse --show-toplevel` from `REPO_ROOT` answers with the enclosing
+ * repository's root in that case, and with `REPO_ROOT` itself otherwise.
+ * `realpathSync` on both sides because a checkout reached through a symlink
+ * would otherwise compare unequal to itself. Unreadable git (no `git` binary,
+ * not a repository at all) reads as "not embedded" so the caller's own
+ * no-git guard decides.
+ */
+function isEmbeddedInEnclosingRepository(): boolean {
+  try {
+    const toplevel = execFileSync("git", ["rev-parse", "--show-toplevel"], {
+      cwd: REPO_ROOT,
+      encoding: "utf8",
+      stdio: ["ignore", "pipe", "ignore"]
+    }).trim();
+    return realpathSync(toplevel) !== realpathSync(REPO_ROOT);
+  } catch {
+    return false;
+  }
+}
 
 // ---------------------------------------------------------------------------
 // The shared model
@@ -396,7 +421,22 @@ describe("the real repo satisfies every rule", () => {
     if (tags === null || tags.length === 0) return; // no git / no tags here
     const result = checkTagNamespace(tags);
     expect(result.problems).toEqual([]);
-    expect(result.examined).toBeGreaterThan(20);
+    // Non-vacuity guard: upstream ahliweb/awcms carries ~35 `v*` tags, so a
+    // count this low would mean `git tag` was not really read. It does NOT
+    // hold when this tree is embedded as a `git subtree` inside another
+    // repository (ahliweb/awcms-one, `apps/cms/`): `git tag` then answers with
+    // the ENCLOSING repo's own tags — two of them at the time of writing —
+    // and upstream's must never be fetched there (its remote is configured
+    // `--no-tags`, because the enclosing repo's release tooling derives the
+    // next version from `git tag --list 'v*'`). The two assertions that
+    // actually state a rule (namespace conformance above, version-not-behind
+    // below) still run against whatever tags ARE present; only the
+    // "enough tags were examined" floor is skipped, and only in the embed.
+    // Local divergence from upstream — see awcms-one's AGENTS.md, "The
+    // subtree embed".
+    if (!isEmbeddedInEnclosingRepository()) {
+      expect(result.examined).toBeGreaterThan(20);
+    }
     expect(checkVersionNotBehindTags(packageJson.version, tags)).toBeNull();
   });
 

@@ -57,6 +57,10 @@ Every other PR in this repo may be merged however the reviewer prefers; `delete_
 
 `apps/cms`'s own source is upstream's tree, carried here for the reasons in [`README.md`](README.md#why-apps-cms-embeds-awcms-whole). Changes that belong upstream — a fix to `awcms` shared infrastructure, a change to a module `awcms` itself owns — should be made there and pulled in via the sync above, not patched locally in a way that a future `git subtree pull` will conflict with or silently overwrite. Work that is specific to this platform (the `commerce` module, issue #4) is additive inside `apps/cms`'s own module directory, following its own module-admission discipline (`apps/cms/AGENTS.md`).
 
+**Known local divergences from upstream, kept deliberately small** — each one is a place a future `git subtree pull` may conflict, and the resolution is always "keep this repo's version, then re-run the generators":
+
+- `apps/cms/tests/version-check.test.ts` — its "the committed tag namespace conforms" test asserts that more than 20 git tags were examined, a non-vacuity floor that is true in a clone of `ahliweb/awcms` (some thirty-five `v*` tags) and false by construction in this embed, where `git tag` answers with this repo's own `v0.x` line and upstream's tags must never be fetched (see "Why `--no-tags` is not optional" above). The local patch skips only that floor, and only when `git rev-parse --show-toplevel` from `apps/cms` is not `apps/cms` itself; the two assertions that state a rule still run. Without it `bun run check:cms` is red on a clean `main` ([issue #22](https://github.com/ahliweb/awcms-one/issues/22)).
+
 ## Workspace boundaries
 
 This is a Bun workspace (`workspaces: ["apps/*", "packages/*"]`); each directory under `apps/` and `packages/` is a separate concern, and a change should stay inside the workspace(s) it is actually about. Concretely:

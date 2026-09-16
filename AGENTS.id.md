@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](AGENTS.md)
 
-<!-- i18n-source-hash: sha256:167f13f444c9afe4472281ed35076d6ee571fcf5afbb15a1831a8d0bebaa5531 -->
+<!-- i18n-source-hash: sha256:11a8948c9edbcb3dbd5dd337c27af2821a2d18c177ec4c4399cfcbaf62632a7e -->
 
 # AGENTS.md — kontrak kerja awcms-one
 
@@ -58,6 +58,10 @@ Setiap PR lain di repo ini boleh di-merge dengan cara apa pun yang disukai revie
 ### Apa yang boleh, dan tidak boleh, disunting repo ini
 
 Sumber `apps/cms` sendiri adalah pohon milik upstream, dibawa ke sini untuk alasan yang ada di [`README.md`](README.md#kenapa-appscms-menyematkan-awcms-utuh). Perubahan yang seharusnya milik upstream — perbaikan pada infrastruktur bersama `awcms`, perubahan pada modul yang dimiliki `awcms` sendiri — sebaiknya dibuat di sana dan ditarik masuk lewat sinkronisasi di atas, bukan ditambal lokal dengan cara yang akan bentrok dengan atau diam-diam ditimpa `git subtree pull` berikutnya. Pekerjaan yang spesifik untuk platform ini (modul `commerce`, issue #4) bersifat aditif di dalam direktori modul `apps/cms` sendiri, mengikuti disiplin admission modulnya sendiri (`apps/cms/AGENTS.md`).
+
+**Divergensi lokal dari upstream yang diketahui, sengaja dijaga tetap kecil** — masing-masing adalah tempat `git subtree pull` berikutnya mungkin bentrok, dan penyelesaiannya selalu "pertahankan versi repo ini, lalu jalankan ulang generator":
+
+- `apps/cms/tests/version-check.test.ts` — test "the committed tag namespace conforms" di dalamnya menegaskan bahwa lebih dari 20 tag git telah diperiksa, sebuah ambang non-vakuitas yang benar pada klon `ahliweb/awcms` (sekitar tiga puluh lima tag `v*`) dan salah secara konstruksi di embed ini, di mana `git tag` menjawab dengan lini `v0.x` milik repo ini sendiri dan tag upstream tidak boleh pernah diambil (lihat "Kenapa `--no-tags` bukan pilihan" di atas). Tambalan lokalnya hanya melewati ambang itu, dan hanya ketika `git rev-parse --show-toplevel` dari `apps/cms` bukan `apps/cms` itu sendiri; dua asersi yang menyatakan aturan tetap berjalan. Tanpanya `bun run check:cms` merah pada `main` yang bersih ([issue #22](https://github.com/ahliweb/awcms-one/issues/22)).
 
 ## Batas workspace
 
