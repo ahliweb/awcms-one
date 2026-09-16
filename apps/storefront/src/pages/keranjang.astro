@@ -1,0 +1,86 @@
+---
+/**
+ * `/keranjang` — the cart page (issue #30, ADR-0007 revised).
+ *
+ * A static SHELL only: every number a shopper sees comes from the CMS's
+ * live `POST …/cart/quote` (`src/lib/toko-klien.ts`), never computed here —
+ * "Totals shown are the quote's, never computed client-side" is the
+ * issue's own acceptance rule, mirroring `harga.ts`'s ADR-0003 posture one
+ * layer up (this page does not even attempt the arithmetic `harga.ts`
+ * would otherwise have to own). All interactivity is `src/scripts/
+ * keranjang.ts`, an external module (`script-src 'self'`).
+ *
+ * `noindex, follow` — a cart is per-visitor state, not indexable content
+ * (`robots.txt.ts` also `Disallow`s this path outright, for a crawler that
+ * has not seen this meta tag yet).
+ */
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getSiteIdentity } from "../lib/awcms/profil";
+import { getStoreSettings } from "../lib/awcms/pemasaran";
+import "../styles/katalog.css";
+import "../styles/toko.css";
+
+const identity = await getSiteIdentity();
+const storeSettings = await getStoreSettings();
+const whatsappNumber = storeSettings.whatsapp ?? identity.whatsappNumber ?? "";
+---
+
+<BaseLayout title="Keranjang" description="Tinjau keranjang belanja Anda." canonicalPath="/keranjang">
+  <meta slot="head" name="robots" content="noindex, follow" />
+
+  <noscript>
+    <div class="container">
+      <div class="toko-banner toko-banner--info">
+        Keranjang dan checkout memerlukan JavaScript aktif di peramban Anda. Anda tetap bisa memesan
+        langsung melalui WhatsApp:
+        {whatsappNumber && (
+          <a class="toko-wa-fallback" href={`https://wa.me/${whatsappNumber.replace(/\D/g, "")}`}>
+            Pesan lewat WhatsApp
+          </a>
+        )}
+      </div>
+    </div>
+  </noscript>
+
+  <div class="container" data-keranjang-root data-whatsapp-number={whatsappNumber} data-store-name={identity.name}>
+    <div class="page-heading">
+      <h1>Keranjang Belanja</h1>
+    </div>
+
+    <div data-quote-error class="toko-banner toko-banner--danger" hidden>
+      <p data-quote-error-message>Gagal memuat harga terbaru.</p>
+      <div class="toko-actions">
+        <button type="button" data-quote-retry>Coba lagi</button>
+        <a data-wa-fallback-link class="toko-wa-fallback" hidden>Pesan lewat WhatsApp</a>
+      </div>
+    </div>
+
+    <p class="toko-empty" data-keranjang-empty hidden>Keranjang Anda masih kosong.</p>
+
+    <ul class="toko-lines" data-keranjang-lines aria-live="polite"></ul>
+
+    <div data-keranjang-body hidden>
+      <div class="toko-section">
+        <label for="voucher-code">Kode voucher</label>
+        <div class="toko-qty">
+          <input type="text" id="voucher-code" name="voucherCode" data-voucher-input autocomplete="off" />
+          <button type="button" data-voucher-apply>Terapkan</button>
+        </div>
+        <p class="toko-field-hint" data-voucher-message></p>
+      </div>
+
+      <div class="toko-section" aria-live="polite" data-quote-summary>
+        <h2>Ringkasan</h2>
+        <div class="toko-summary" data-summary-body></div>
+      </div>
+
+      <div class="toko-actions">
+        <a href="/checkout" class="button" data-checkout-link aria-disabled="true">Lanjut ke checkout</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    import "../scripts/keranjang";
+  </script>
+</BaseLayout>

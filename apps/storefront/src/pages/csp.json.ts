@@ -17,6 +17,21 @@
  * The file is public by construction. It names only origins that already
  * appear in the HTML this same build published, so it reveals nothing a
  * reader could not read off a product page's `<img src>`.
+ *
+ * ## Issue #30: `connectSrc` stops being permanently empty
+ *
+ * `src/lib/csp-asal-media.ts`'s `connectSrc` field existed since issue #27
+ * but had no producer — no page made a browser-side request to another
+ * origin yet. Cart/checkout/order-tracking are the first: the browser calls
+ * `<PUBLIC_AWCMS_ORIGIN>/api/v1/commerce/storefront/*` directly
+ * (`src/lib/toko-klien.ts`, ADR-0007 revised). `requireAwcmsOrigin()`
+ * (`src/lib/awcms/toko-origin.ts`) is called HERE, in a page that is
+ * unconditionally prerendered as part of every `astro build`, specifically
+ * so an unset/malformed `PUBLIC_AWCMS_ORIGIN` fails the BUILD — a checkout
+ * page that silently posts nowhere is the failure this exists to prevent —
+ * with a message naming the variable, rather than shipping a storefront
+ * that only fails once a shopper tries to check out. This is the ONE place
+ * that origin is added to the CSP artifact; there is no second mechanism.
  */
 import { getProducts } from "../lib/catalog";
 import {
@@ -27,6 +42,7 @@ import {
   getStoreSettings
 } from "../lib/awcms/pemasaran";
 import { buildCspOriginsArtifact } from "../lib/csp-asal-media";
+import { requireAwcmsOrigin } from "../lib/awcms/toko-origin";
 
 export const prerender = true;
 
@@ -57,7 +73,12 @@ export async function GET(): Promise<Response> {
   imageUrls.push(storeSettings.logo?.url);
   imageUrls.push(storeSettings.favicon?.url);
 
-  const artifact = buildCspOriginsArtifact(imageUrls);
+  // Throws (naming the variable) when `PUBLIC_AWCMS_ORIGIN` is unset or
+  // malformed — see this file's own docblock for why that failure belongs
+  // HERE, in a page every build unconditionally prerenders.
+  const awcmsOrigin = requireAwcmsOrigin();
+
+  const artifact = buildCspOriginsArtifact(imageUrls, [awcmsOrigin]);
 
   return new Response(JSON.stringify(artifact), {
     headers: { "Content-Type": "application/json; charset=utf-8" }

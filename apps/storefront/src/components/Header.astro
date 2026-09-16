@@ -33,6 +33,12 @@
  * one-line `import`). It re-counts on load, on the `keranjang:berubah`
  * `CustomEvent` `src/lib/keranjang-klien.ts` dispatches after every write on
  * this tab, and on the native `storage` event for a write from another tab.
+ *
+ * Issue #30 adds the wishlist link and `src/scripts/wishlist-tombol.ts` —
+ * the SAME "imported once here, loaded on every page via `BaseLayout.astro`"
+ * pattern, so every `[data-wishlist]` heart button anywhere in the site
+ * (`ProductCard.astro`) works without every page that renders one having to
+ * remember to import a script for it.
  */
 import type { SiteIdentity } from "../lib/awcms/profil";
 import { PRIMARY_NAV, ROUTES } from "../config/routes";
@@ -65,6 +71,11 @@ const { identity } = Astro.props;
     <div class="site-header-tools">
       <SearchForm idPrefix="header-search" />
 
+      <a href={ROUTES.wishlist} class="wishlist-link">
+        <span aria-hidden="true">♡</span>
+        Wishlist
+      </a>
+
       <a href={ROUTES.cart} class="cart-link">
         <span aria-hidden="true">🛒</span>
         Keranjang
@@ -76,4 +87,5 @@ const { identity } = Astro.props;
 
 <script>
   import "../scripts/keranjang-hitung";
+  import "../scripts/wishlist-tombol";
 </script>

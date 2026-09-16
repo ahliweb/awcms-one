@@ -67,8 +67,13 @@ Two files exist specifically to prove this rule holds without a live CMS:
 | `/tag/{slug}`, `/penulis/{slug}`, `/arsip/{yyyy}/{mm}` | Tag, author (byline-based), and monthly archives | `GET /api/v1/blog/posts`/`terms` |
 | `/cari-berita` | Client-side search over `/index/berita.json` | `/index/berita.json` (build-time index) |
 | `/index/produk.json` | The product search/listing index every client-side catalog surface reads | derived from the catalog fetch |
-| `/csp.json` | The external origins this build references, read at startup by `apps/storefront/server/penyaji.mjs` to widen `img-src` — see "Content-Security-Policy" below | derived from every image URL the CMS sent |
+| `/csp.json` | The external origins this build references, read at startup by `apps/storefront/server/penyaji.mjs` to widen `img-src`/`connect-src` — see "Content-Security-Policy" below | derived from every image URL the CMS sent, plus `PUBLIC_AWCMS_ORIGIN` |
 | `/index/berita.json`, `/index/pengalihan-legacy.json` | The search index, and the legacy-URL redirect map `apps/storefront/server/penyaji.mjs` reads at startup | `GET /api/v1/blog/posts`, `/api/v1/seo/redirects` |
+| `/keranjang` | Cart — renders `localStorage`, re-quotes live, voucher/quantity/remove, "Lanjut ke checkout" (issue #30) | `POST <PUBLIC_AWCMS_ORIGIN>/api/v1/commerce/storefront/cart/quote` |
+| `/checkout` | One-page, five-step checkout: contact → address → shipping → payment → review → place order | the same quote endpoint, plus `POST …/orders` |
+| `/pesanan` | Order tracking by `?kode=`; phone from `sessionStorage`/a form, never the URL | `GET …/orders/{code}`, `POST …/orders/{code}/{payment-confirmations,cancel}` |
+| `/wishlist` | `localStorage`-only saved-products list; heart button on `ProductCard.astro` | none (client-side only) |
+| `/index/wilayah-provinsi.json`, `/index/wilayah-kabupaten-{code}.json`, `/index/wilayah-kecamatan-{code}.json` | Checkout address region indexes, scoped to `PUBLIC_WILAYAH_PROVINSI` | `GET /api/v1/idn-regions/regions` |
 
 Every non-static-asset route above is prerendered — there is no
 `prerender = false` anywhere in this app, and none should be added without
@@ -242,6 +247,103 @@ one that already has it not to index it, and the two are not
 interchangeable. **Never put a `<script>` in this slot**: that would escape
 the `script-src 'self'` guarantee the whole app rests on.
 
+## Cart, checkout, order tracking, wishlist (issue #30)
+
+This is the one place ADR-0002's "static build, no runtime CMS credential"
+rule meets a real WRITE — the architecture revision tracked at
+https://github.com/ahliweb/awcms-one/issues/31 (to be recorded there as an
+ADR). The chosen answer is not a runtime route (`prerender = false` stays
+absent everywhere — see `apps/storefront/tests/checkout-guard-no-prerender.test.ts`)
+but the anonymous, cross-origin commerce endpoint pattern awcms already uses
+elsewhere (its own newsletter form, site search, comments): the **browser**
+calls `<PUBLIC_AWCMS_ORIGIN>/api/v1/commerce/storefront/*` directly. The CMS
+resolves the tenant from the request `Origin` header and answers with CORS —
+no cookie, no bearer token, ever. The exact request/response shapes are
+fixed by a contract document shared with the CMS-side issue (#29) building
+the same routes in parallel; `apps/storefront/src/lib/toko-klien.ts` is this
+app's one implementation of the BROWSER half of it.
+
+- **`PUBLIC_AWCMS_ORIGIN`** (required, build-time, deliberately `PUBLIC_`) —
+  the CMS origin cart/checkout/tracking POST to. Validated by
+  `apps/storefront/src/lib/awcms/toko-origin.ts`, called from
+  `apps/storefront/src/pages/csp.json.ts` (a page every build
+  unconditionally prerenders) so an unset or malformed value **fails the
+  build**, naming the variable — a checkout page that silently posts nowhere
+  is the failure this exists to prevent. The same value becomes this
+  build's `connect-src` CSP entry, via the identical `csp-asal-media.ts`
+  artifact mechanism issue #27 built for `img-src` — never a second
+  mechanism.
+- **`PUBLIC_WILAYAH_PROVINSI`** (optional, default every Kalimantan
+  province) — which provinces' administrative regions
+  (`apps/storefront/src/lib/awcms/wilayah-checkout.ts`) get baked into the
+  `/index/wilayah-*.json` files the checkout address step fetches
+  client-side (same-origin, no CORS/CSP concern at all) — so a deployment
+  never bakes in the ~90,000-village national dataset by default.
+- **The cart contract stays issue #27's** (`keranjang-kontrak.ts`); this
+  issue adds `clearCart()` (`keranjang-klien.ts`) — a FRESH cart id, not a
+  cleared `lines` array on the same one, because `cart.id` doubles as the
+  order's `idempotencyKey` and must never be reused after the order it
+  named has already been placed.
+- **The wishlist is a brand-new, parallel, `localStorage`-only contract**
+  (`wishlist-kontrak.ts`/`wishlist-klien.ts`), the same pattern as the cart
+  but with no server quote at all — a bookmark, not a purchase intent.
+  `ProductCard.astro` gained an additive `[data-wishlist]` heart button;
+  `apps/storefront/src/scripts/wishlist-tombol.ts` wires up every such
+  button SITE-WIDE via event delegation, imported once from `Header.astro`
+  (the same place the cart-count script already is) rather than from every
+  page that happens to render a card.
+- **Every page degrades**: a `<noscript>` block explains that JavaScript is
+  required and offers a generic WhatsApp contact link; once JavaScript HAS
+  run but a live quote/checkout call fails (CMS down, tenant unresolved), the
+  same pages build a REAL cart-summary WhatsApp link instead
+  (`apps/storefront/src/lib/wa-fallback.ts`) — pure and unit-tested with no
+  DOM.
+- **A phone number never appears in a URL.** `/pesanan?kode=` carries only
+  the order code; the phone lives in `sessionStorage`
+  (`apps/storefront/src/lib/pesanan-sesi.ts`'s `PESANAN_PHONE_KEY`), written
+  once by `checkout.ts` on a successful order and read by `pesanan.ts`.
+- **`/pesanan/{kode}` does not exist.** A per-code page cannot be
+  prerendered (the order does not exist at build time, and enumerating every
+  future order code is not a real option) — `/pesanan?kode={code}` is the
+  actual URL shape, a documented, deliberate deviation from the issue's own
+  `/pesanan/[kode]` naming.
+
+### Browser-level tests (Playwright)
+
+`apps/storefront/tests/e2e/checkout.e2e.ts` exercises add-to-cart → cart
+quote renders totals → checkout submits an order → `/pesanan` shows it, plus
+the neutral not-found state for a wrong phone — against a REAL built static
+site (`bun run build`, stub-backed) served by `bun run serve`/preview and the
+extended `apps/storefront/scripts/stub-awcms.mjs` state machine. Run it from
+`apps/storefront`:
+
+```bash
+bun install   # once — @playwright/test is a devDependency of this workspace only
+bun run test:e2e
+```
+
+This is a SEPARATE script (`test:e2e`), never part of `bun run build`/`bun
+test`/the root suite: `bunfig.toml`'s root exclusion only ever kept
+`apps/cms` out, and a browser dependency in the root `bun test` invocation
+would make every contributor's `bun test` need Chromium installed to pass.
+The spec file's own `*.e2e.ts` suffix (not `*.test.ts`) is what keeps it out
+of `bun test`'s own file discovery, the same trap-avoidance the repo's
+`playwright` skill documents for any project mixing a unit-test runner with
+Playwright.
+
+**Running it in CI later** (not wired into `.github/workflows/ci.yml` by
+this change — that file is out of this issue's scope): a job would need (1)
+`bunx playwright install chromium` (no `--with-deps` unless the runner image
+already has the OS libraries, or is given root), (2) start
+`apps/storefront/scripts/stub-awcms.mjs`, (3) a stub-backed `bun run build` with
+`PUBLIC_AWCMS_ORIGIN` pointed at the stub's own origin, (4) `bun run serve`
+(or `astro preview`) against that build, with `STUB_ALLOWED_ORIGIN` (the
+stub's CORS allow-list) set to match whatever port step 4 actually listens
+on, then (5) `bun run test:e2e` with `E2E_BASE_URL` pointed at step 4's
+origin. Steps 2–4 are exactly what `apps/storefront/tests/checkout-build-smoke.test.ts`
+already automates for the build-only assertions; the e2e job would be that
+same shape with a real browser added on top.
+
 ## Environment variables
 
 See `apps/storefront/.env.example` for the full, current list with
@@ -271,7 +373,12 @@ The stub answers every endpoint this app calls (`/api/v1/commerce/*`,
 `/theming/{tenantCode}/tokens.css`, and — issue #28 — `/api/v1/blog/
 {posts,terms,institutions}`, `/api/v1/idn-regions/regions`, `/api/v1/
 news-portal/ad-placements/active`, `/api/v1/seo/redirects`) straight from
-the committed fixtures
+the committed fixtures, and — issue #30 — `/api/v1/commerce/storefront/*`
+as a small in-memory STATE MACHINE (quote → create order → track → confirm
+payment → cancel) rather than a fixed fixture, since these routes are
+mutations; `STUB_ALLOWED_ORIGIN` (default `http://localhost:4321`) is the
+one `Origin` it answers, matching the anonymous cross-origin CORS contract
+these routes implement for real.
 under `apps/storefront/tests/fixtures/awcms/` — a reviewer can read the
 exact response shape this app was built against as plain JSON/CSS, not a
 shape hidden inside the script. It is not part of the production build or
@@ -295,9 +402,17 @@ this app's tests are part of the same root gate suite:
    preload discovery), then real HTTP requests against a server built
    in-process (no `dist/` build needed) to assert headers, `/healthz`, and
    the CSS preload `Link` header end to end.
-3. **The build smoke test** — the one test that runs a REAL `astro build`
-   against the stub CMS above and inspects the actual `dist/client/*`
-   output. Bounded under ~60s; if `bun` cannot be spawned in the environment
-   running the suite, this test reports SKIPPED with a named reason rather
-   than a false pass — it never silently reports green for a build that
-   never ran.
+3. **The build smoke tests** — run a REAL `astro build` against the stub CMS
+   above and inspect the actual `dist/client/*` output; each issue that
+   needs one adds its OWN file rather than editing a prior issue's
+   (`build-smoke.test.ts` #24, `katalog-build-smoke.test.ts` #27,
+   `berita-build-smoke.test.ts` #28, `checkout-build-smoke.test.ts` #30).
+   Each is bounded under ~60s; if `bun` cannot be spawned in the environment
+   running the suite, it reports SKIPPED with a named reason rather than a
+   false pass.
+4. **Browser-level Playwright tests** (issue #30, `apps/storefront/tests/
+   e2e/`) — the top of the pyramid, run by their OWN `bun run test:e2e`
+   script from `apps/storefront`, never by `bun test`/the root suite (a
+   browser dependency has no business gating every contributor's unit-test
+   run). See "Cart, checkout, order tracking, wishlist" above for how to run
+   it and how CI could run it later.

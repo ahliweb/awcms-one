@@ -35,6 +35,39 @@
       "name": "KOTAWARINGIN BARAT",
       "shortName": null,
       "fullPathName": "KOTAWARINGIN BARAT, KALIMANTAN TENGAH"
+    },
+    {
+      "code": "63.01",
+      "codeCompact": "6301",
+      "parentCode": "63",
+      "level": 2,
+      "regionType": "regency",
+      "localTerm": "Kabupaten",
+      "name": "BANJAR",
+      "shortName": null,
+      "fullPathName": "BANJAR, KALIMANTAN SELATAN"
+    },
+    {
+      "code": "62.02.01",
+      "codeCompact": "620201",
+      "parentCode": "62.02",
+      "level": 3,
+      "regionType": "district",
+      "localTerm": "Kecamatan",
+      "name": "ARUT SELATAN",
+      "shortName": null,
+      "fullPathName": "ARUT SELATAN, KOTAWARINGIN BARAT, KALIMANTAN TENGAH"
+    },
+    {
+      "code": "63.01.01",
+      "codeCompact": "630101",
+      "parentCode": "63.01",
+      "level": 3,
+      "regionType": "district",
+      "localTerm": "Kecamatan",
+      "name": "MARTAPURA",
+      "shortName": null,
+      "fullPathName": "MARTAPURA, BANJAR, KALIMANTAN SELATAN"
     }
   ]
 }

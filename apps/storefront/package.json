@@ -12,7 +12,8 @@
     "check": "bun --bun astro check",
     "serve": "bun dist/server/penyaji.mjs",
     "start": "bun run serve",
-    "preview": "bun run serve"
+    "preview": "bun run serve",
+    "test:e2e": "bun --bun playwright test"
   },
   "dependencies": {
     "@astrojs/node": "^11.1.5",
@@ -21,6 +22,7 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
+    "@playwright/test": "^1.63.0",
     "@types/bun": "^1.4.0",
     "typescript": "^6.0.3"
   }
