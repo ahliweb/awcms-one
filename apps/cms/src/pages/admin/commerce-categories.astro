@@ -1,0 +1,416 @@
+---
+/**
+ * Commerce category CRUD screen (Issue #23) — the second screen this module
+ * ships, off `NOT_YET_SCREENED` alongside `commerce.astro`'s upgrade to full
+ * CRUD. `parentId` is set only at creation (`category-directory.ts`'s
+ * `UpdateCategoryInput` has no such field) — the same "move by delete and
+ * recreate" limitation `offices.astro` accepts for `parentOfficeId`.
+ */
+import AdminLayout from "../../layouts/AdminLayout.astro";
+import "../../styles/admin-screens.css";
+import { loadAdminScreen } from "../../lib/auth/admin-screen";
+import { logAdminPageError } from "../../lib/logging/error-log";
+import { getTranslatorFor } from "../../lib/i18n";
+import {
+  listCategories,
+  listDeletedCategories
+} from "../../modules/commerce/application/category-directory";
+
+const ssr = Astro.locals.ssrContext!;
+const { t, tn } = getTranslatorFor(Astro.locals.locale);
+
+const screen = await loadAdminScreen({
+  ssr,
+  workClass: "interactive",
+  authorize: {
+    moduleKey: "commerce",
+    activityCode: "categories",
+    action: "read"
+  },
+  load: async ({ tx, can }) => {
+    const page = await listCategories(tx, ssr.tenantId, null, {});
+    const canCreate = await can({
+      moduleKey: "commerce",
+      activityCode: "categories",
+      action: "create"
+    });
+    const canUpdate = await can({
+      moduleKey: "commerce",
+      activityCode: "categories",
+      action: "update"
+    });
+    const canDelete = await can({
+      moduleKey: "commerce",
+      activityCode: "categories",
+      action: "delete"
+    });
+    const canRestore = await can({
+      moduleKey: "commerce",
+      activityCode: "categories",
+      action: "restore"
+    });
+    const deleted = canRestore
+      ? await listDeletedCategories(tx, ssr.tenantId)
+      : [];
+
+    return {
+      categories: page.items,
+      deleted,
+      canCreate,
+      canUpdate,
+      canDelete,
+      canRestore
+    };
+  },
+  onError: (error) => {
+    logAdminPageError(
+      "admin/commerce-categories.astro: failed to list categories",
+      error,
+      { correlationId: Astro.locals.correlationId }
+    );
+  }
+});
+
+const canRead = screen.state !== "denied";
+const loadError = screen.state === "error";
+const categories = screen.state === "allowed" ? screen.data.categories : [];
+const deletedCategories = screen.state === "allowed" ? screen.data.deleted : [];
+const canCreate = screen.state === "allowed" && screen.data.canCreate;
+const canUpdate = screen.state === "allowed" && screen.data.canUpdate;
+const canDelete = screen.state === "allowed" && screen.data.canDelete;
+const canRestore = screen.state === "allowed" && screen.data.canRestore;
+const showActions = canUpdate || canDelete;
+---
+
+<AdminLayout
+  title={t("Product categories")}
+  description={t(
+    "The tenant's category tree: create, edit, soft delete and restore."
+  )}
+>
+  {
+    !canRead && (
+      <p class="state-notice fade-in-up" id="categories-denied">
+        {t("You do not have permission to view categories.")}
+      </p>
+    )
+  }
+
+  {
+    canRead && loadError && (
+      <p class="state-notice fade-in-up" id="categories-error">
+        {t("Categories could not be loaded right now. Please try again later.")}
+      </p>
+    )
+  }
+
+  {
+    canCreate && (
+      <form id="category-create-form" class="admin-create-form fade-in-up">
+        <p class="form-legend">{t("Create a category")}</p>
+        <p
+          id="category-create-error"
+          class="admin-create-error"
+          role="alert"
+          hidden
+        />
+
+        <label for="category-name">{t("Name")}</label>
+        <input
+          id="category-name"
+          name="name"
+          type="text"
+          required
+          autocomplete="off"
+        />
+
+        <label for="category-slug">{t("Slug")}</label>
+        <input
+          id="category-slug"
+          name="slug"
+          type="text"
+          required
+          autocomplete="off"
+        />
+
+        <label for="category-parentId">{t("Parent category")}</label>
+        <select id="category-parentId" name="parentId">
+          <option value="">{t("None (top-level)")}</option>
+          {categories.map((category) => (
+            <option value={category.id}>{category.name}</option>
+          ))}
+        </select>
+
+        <label for="category-icon">{t("Icon")}</label>
+        <input id="category-icon" name="icon" type="text" autocomplete="off" />
+
+        <button type="submit" id="category-create-submit">
+          {t("Create category")}
+        </button>
+      </form>
+    )
+  }
+
+  {
+    canRead && !loadError && (
+      <p
+        id="category-action-error"
+        class="admin-create-error"
+        role="alert"
+        hidden
+      />
+    )
+  }
+
+  {
+    canRead && !loadError && (
+      <div class="data-table-scroll fade-in-up">
+        <table
+          class="data-table data-table--stack"
+          id="commerce-categories-table"
+        >
+          <caption>
+            {tn("{count} category", "{count} categories", categories.length, {
+              count: categories.length
+            })}
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">{t("Name")}</th>
+              <th scope="col">{t("Slug")}</th>
+              <th scope="col">{t("Parent")}</th>
+              <th scope="col">{t("Products")}</th>
+              {showActions && <th scope="col">{t("Actions")}</th>}
+            </tr>
+          </thead>
+          <tbody>
+            {categories.length === 0 ? (
+              <tr>
+                <td class="data-table-empty" colspan={showActions ? 5 : 4}>
+                  <div class="empty-state">
+                    <span class="empty-state-icon" aria-hidden="true">
+                      ◇
+                    </span>
+                    <span class="empty-state-title">
+                      {t("No categories yet")}
+                    </span>
+                    <span class="empty-state-text">
+                      {t(
+                        "Categories created for this tenant will appear here."
+                      )}
+                    </span>
+                  </div>
+                </td>
+              </tr>
+            ) : (
+              categories.map((category) => {
+                const parent = categories.find(
+                  (c) => c.id === category.parentId
+                );
+                return (
+                  <tr data-category-row={category.id}>
+                    <td
+                      data-label="Name"
+                      class={canUpdate ? "stacked-block" : ""}
+                    >
+                      {canUpdate ? (
+                        <input
+                          class="category-name-input"
+                          type="text"
+                          value={category.name}
+                          aria-label={`Name for ${category.slug}`}
+                          data-category-name={category.id}
+                        />
+                      ) : (
+                        category.name
+                      )}
+                    </td>
+                    <td
+                      data-label="Slug"
+                      class={canUpdate ? "stacked-block" : ""}
+                    >
+                      {canUpdate ? (
+                        <input
+                          class="category-slug-input"
+                          type="text"
+                          value={category.slug}
+                          aria-label={`Slug for ${category.name}`}
+                          data-category-slug={category.id}
+                        />
+                      ) : (
+                        <span class="cell-code">{category.slug}</span>
+                      )}
+                    </td>
+                    <td data-label="Parent">
+                      <span class="cell-muted">
+                        {parent ? parent.name : t("—")}
+                      </span>
+                    </td>
+                    <td data-label="Products">{category.productCount}</td>
+                    {showActions && (
+                      <td data-label="Actions" class="stacked-block">
+                        <div class="row-actions">
+                          {canUpdate && (
+                            <button
+                              type="button"
+                              class="module-toggle category-save-btn"
+                              data-category-id={category.id}
+                            >
+                              {t("Save")}
+                            </button>
+                          )}
+                          {canDelete && (
+                            <button
+                              type="button"
+                              class="module-toggle category-delete-btn"
+                              data-category-id={category.id}
+                              data-category-name={category.name}
+                            >
+                              {t("Delete")}
+                            </button>
+                          )}
+                        </div>
+                      </td>
+                    )}
+                  </tr>
+                );
+              })
+            )}
+          </tbody>
+        </table>
+      </div>
+    )
+  }
+
+  {
+    canRead && !loadError && canRestore && deletedCategories.length > 0 && (
+      <section class="admin-section fade-in-up" id="deleted-categories">
+        <h2 class="admin-section-title">
+          {t("Deleted categories")}
+          <span class="count-pill">{deletedCategories.length}</span>
+        </h2>
+        <div class="data-table-scroll">
+          <table
+            class="data-table data-table--stack"
+            id="deleted-categories-table"
+          >
+            <thead>
+              <tr>
+                <th scope="col">{t("Name")}</th>
+                <th scope="col">{t("Slug")}</th>
+                <th scope="col">{t("Actions")}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {deletedCategories.map((category) => (
+                <tr data-deleted-category-row={category.id}>
+                  <td data-label="Name">{category.name}</td>
+                  <td data-label="Slug">
+                    <span class="cell-code">{category.slug}</span>
+                  </td>
+                  <td data-label="Actions" class="stacked-block">
+                    <div class="row-actions">
+                      <button
+                        type="button"
+                        class="module-toggle category-restore-btn"
+                        data-category-id={category.id}
+                        data-category-name={category.name}
+                      >
+                        {t("Restore")}
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+    )
+  }
+</AdminLayout>
+
+<script>
+  import {
+    field,
+    messageBox,
+    mutateAndReload,
+    onAction,
+    onSubmit,
+    sendJson
+  } from "../../lib/ui/admin-form-client";
+
+  const createError = messageBox("category-create-error");
+
+  onSubmit("category-create-form", async ({ data, submit }) => {
+    await mutateAndReload(
+      submit,
+      createError,
+      () =>
+        sendJson("POST", "/api/v1/commerce/categories", {
+          name: field(data, "name"),
+          slug: field(data, "slug"),
+          parentId: field(data, "parentId") || null,
+          icon: field(data, "icon") || null
+        }),
+      "Could not create the category. Check the slug is unique and try again."
+    );
+  });
+
+  const actionError = messageBox("category-action-error");
+
+  onAction(".category-save-btn", async (button) => {
+    const id = button.dataset.categoryId;
+    if (!id) return;
+
+    const nameInput = document.querySelector<HTMLInputElement>(
+      `[data-category-name="${id}"]`
+    );
+    const slugInput = document.querySelector<HTMLInputElement>(
+      `[data-category-slug="${id}"]`
+    );
+
+    await mutateAndReload(
+      button,
+      actionError,
+      () =>
+        sendJson("PATCH", `/api/v1/commerce/categories/${id}`, {
+          name: nameInput?.value.trim() ?? "",
+          slug: slugInput?.value.trim() ?? ""
+        }),
+      "Could not save the category. Please try again.",
+      "Saving…"
+    );
+  });
+
+  onAction(".category-delete-btn", async (button) => {
+    const id = button.dataset.categoryId;
+    if (!id) return;
+    const name = button.dataset.categoryName ?? "this category";
+    if (!window.confirm(`Delete ${name}? It can be restored later.`)) return;
+
+    await mutateAndReload(
+      button,
+      actionError,
+      () => sendJson("DELETE", `/api/v1/commerce/categories/${id}`),
+      "Could not delete the category. Please try again.",
+      "Deleting…"
+    );
+  });
+
+  onAction(".category-restore-btn", async (button) => {
+    const id = button.dataset.categoryId;
+    if (!id) return;
+
+    await mutateAndReload(
+      button,
+      actionError,
+      () => sendJson("POST", `/api/v1/commerce/categories/${id}/restore`),
+      (errorCode) =>
+        errorCode === "CATEGORY_SLUG_ALREADY_EXISTS"
+          ? "Cannot restore: another category already uses this slug."
+          : "Could not restore the category. Please try again.",
+      "Restoring…"
+    );
+  });
+</script>

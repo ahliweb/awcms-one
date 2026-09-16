@@ -4,12 +4,15 @@ import {
   bodyTooLargeResponse,
   readJsonBody
 } from "../../../../../lib/security/request-body-limit";
+import { mediaLibraryPortAdapter } from "../../../../../modules/media-library/application/media-library-port-adapter";
 import {
+  attachProductRelations,
   deleteProduct,
   DuplicateProductSkuError,
   DuplicateProductSlugError,
   fetchProductById,
   IllegalProductStatusTransitionError,
+  InvalidSizeChartFieldsError,
   ProductCategoryNotFoundError,
   updateProduct
 } from "../../../../../modules/commerce/application/product-directory";
@@ -35,7 +38,7 @@ const DELETE_GUARD = {
   action: "delete"
 } as const;
 
-/** `GET /api/v1/commerce/products/{id}` — fetch one product. */
+/** `GET /api/v1/commerce/products/{id}` — fetch one product, with images[]/variants[] resolved (Issue #23). */
 export const GET = defineTenantRoute({
   workClass: "interactive",
   authorize: READ_GUARD,
@@ -50,7 +53,14 @@ export const GET = defineTenantRoute({
       return fail(404, "RESOURCE_NOT_FOUND", "Product not found.");
     }
 
-    return ok(product);
+    const [withRelations] = await attachProductRelations(
+      tx,
+      tenantId,
+      mediaLibraryPortAdapter,
+      [product]
+    );
+
+    return ok(withRelations);
   }
 });
 
@@ -58,7 +68,9 @@ export const GET = defineTenantRoute({
  * `PATCH /api/v1/commerce/products/{id}` — update, including a status
  * transition. There is no dedicated status endpoint: `status` travels through
  * this same request, checked against `product-status.ts`'s `LEGAL_TRANSITIONS`
- * by `updateProduct` before any write.
+ * by `updateProduct` before any write. Issue #23 adds every parity field to
+ * the same request; `sizeChartType`'s cross-field consistency
+ * (`domain/size-chart.ts`) is checked the same way.
  */
 export const PATCH = defineTenantRoute({
   workClass: "interactive",
@@ -99,12 +111,20 @@ export const PATCH = defineTenantRoute({
         return fail(404, "RESOURCE_NOT_FOUND", "Product not found.");
       }
 
-      return ok(product);
+      const [withRelations] = await attachProductRelations(
+        tx,
+        tenantId,
+        mediaLibraryPortAdapter,
+        [product]
+      );
+
+      return ok(withRelations);
     } catch (error) {
       // Every one of these is raised either before the UPDATE runs
-      // (`ProductCategoryNotFoundError`, `IllegalProductStatusTransitionError`)
-      // or after a unique violation already aborted the transaction (the two
-      // duplicate errors) — so nothing further may be written in any branch.
+      // (`ProductCategoryNotFoundError`, `IllegalProductStatusTransitionError`,
+      // `InvalidSizeChartFieldsError`) or after a unique violation already
+      // aborted the transaction (the two duplicate errors) — so nothing
+      // further may be written in any branch.
       if (error instanceof ProductCategoryNotFoundError) {
         return fail(
           400,
@@ -116,6 +136,16 @@ export const PATCH = defineTenantRoute({
       }
 
       if (error instanceof IllegalProductStatusTransitionError) {
+        return fail(
+          400,
+          "VALIDATION_ERROR",
+          "Product update input is invalid.",
+          {},
+          error.errors
+        );
+      }
+
+      if (error instanceof InvalidSizeChartFieldsError) {
         return fail(
           400,
           "VALIDATION_ERROR",
@@ -140,8 +170,8 @@ export const PATCH = defineTenantRoute({
 
 /**
  * `DELETE /api/v1/commerce/products/{id}` — soft delete (audited). Not a hard
- * delete, and this slice ships no restore endpoint — see the module README's
- * "No restore endpoint" section.
+ * delete; restore it with `POST /api/v1/commerce/products/{id}/restore`
+ * (Issue #23).
  */
 export const DELETE = defineTenantRoute({
   workClass: "interactive",

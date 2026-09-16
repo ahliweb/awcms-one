@@ -54,18 +54,6 @@ export const NOT_YET_SCREENED: readonly string[] = [
   "comments.settings.read",
   "comments.settings.update",
 
-  // commerce (7) — `/admin/commerce` (Issue #4) is read-only and claims only
-  // `products.read`; the other seven are enforced by real routes
-  // (`src/pages/api/v1/commerce/{categories,products}/**`), just not driven
-  // from a page yet.
-  "commerce.categories.create",
-  "commerce.categories.delete",
-  "commerce.categories.read",
-  "commerce.categories.update",
-  "commerce.products.create",
-  "commerce.products.delete",
-  "commerce.products.update",
-
   // email (6)
   "email.announcement.create",
   "email.message.cancel",

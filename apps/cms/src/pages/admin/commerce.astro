@@ -1,22 +1,90 @@
 ---
 /**
- * Commerce product catalog screen (Issue #4). Read-only for this slice — same
- * "every ACTIVE module needs a screen" reasoning `offices.astro`/
- * `profiles.astro` already satisfy, kept deliberately minimal since Issue #4's
- * checklist is the API, not an admin UI: no create/edit form here, just the
- * list `listProducts` already serves over `GET /api/v1/commerce/products`.
- * Gated on `commerce.products.read`; categories have no screen yet (see
- * `scripts/admin-screen-coverage-ledger.ts`'s `NOT_YET_SCREENED`).
+ * Commerce product CRUD screen (Issue #4, brought to full CRUD by Issue #23):
+ * list with filters, a create form covering every core field plus the common
+ * merchandising flags, per-row inline edit for the core fields, an "Advanced
+ * fields (JSON)" editor for the long tail of Issue #23's parity columns
+ * (tiered pricing, insurance, promo banner, size chart, service form,
+ * subscription/digital, variant attributes — see this file's own comment on
+ * why those are JSON rather than thirty individual controls), an images
+ * picker sourced from `media_library`'s registry, a variants editor, status
+ * transition, soft delete, and restore.
+ *
+ * Every control here is UX-only — the API routes it calls are the real
+ * authority (same rule `offices.astro` documents).
  */
 import AdminLayout from "../../layouts/AdminLayout.astro";
 import "../../styles/admin-screens.css";
 import { loadAdminScreen } from "../../lib/auth/admin-screen";
 import { logAdminPageError } from "../../lib/logging/error-log";
-import { listProducts } from "../../modules/commerce/application/product-directory";
 import { getTranslatorFor } from "../../lib/i18n";
+import { mediaLibraryPortAdapter } from "../../modules/media-library/application/media-library-port-adapter";
+import { listMediaObjects } from "../../modules/media-library/application/media-object-directory";
+import {
+  attachProductRelations,
+  listDeletedProductsForAdmin,
+  listProductsForAdmin,
+  type ProductAdminRecord,
+  type ProductImageDTO,
+  type ProductVariantDTO
+} from "../../modules/commerce/application/product-directory";
+import { listCategories } from "../../modules/commerce/application/category-directory";
+import { PRODUCT_TYPES } from "../../modules/commerce/domain/product-type";
+import {
+  isProductStatus,
+  PRODUCT_STATUSES
+} from "../../modules/commerce/domain/product-status";
+
+type AdminProductRow = ProductAdminRecord & {
+  images: ProductImageDTO[];
+  variants: ProductVariantDTO[];
+};
+
+/** The long tail of Issue #23's parity fields, edited as one JSON object rather than thirty individual controls — see this file's header. */
+const ADVANCED_FIELD_KEYS = [
+  "priceLevel2",
+  "priceLevel3",
+  "priceLevel4",
+  "costPrice",
+  "manualRating",
+  "manualSoldCount",
+  "withInsurance",
+  "insuranceRequired",
+  "insuranceFee",
+  "promoBannerShow",
+  "promoBannerTitle",
+  "promoBannerSubtitle",
+  "promoBannerBadge",
+  "promoBannerIcon",
+  "promoBannerColor",
+  "sizeChartType",
+  "sizeChartMediaId",
+  "sizeChartDetails",
+  "serviceForm",
+  "subscriptionPeriod",
+  "downloadLink",
+  "allowDp",
+  "allowFreeShipping",
+  "variantAttributes"
+] as const;
+
+function advancedFieldsJson(product: ProductAdminRecord): string {
+  const picked: Record<string, unknown> = {};
+  for (const key of ADVANCED_FIELD_KEYS) {
+    picked[key] = (product as unknown as Record<string, unknown>)[key];
+  }
+  return JSON.stringify(picked, null, 2);
+}
 
 const ssr = Astro.locals.ssrContext!;
 const { t, tn } = getTranslatorFor(Astro.locals.locale);
+
+const url = new URL(Astro.request.url);
+const filterCategoryId = url.searchParams.get("categoryId") ?? "";
+const filterStatus = url.searchParams.get("status") ?? "";
+const filterQuery = url.searchParams.get("q") ?? "";
+const filterFeatured = url.searchParams.get("featured") === "true";
+const filterRecommended = url.searchParams.get("recommended") === "true";
 
 const screen = await loadAdminScreen({
   ssr,
@@ -26,9 +94,65 @@ const screen = await loadAdminScreen({
     activityCode: "products",
     action: "read"
   },
-  load: async ({ tx }) => ({
-    products: (await listProducts(tx, ssr.tenantId, null)).items
-  }),
+  load: async ({ tx, can }) => {
+    // One transaction, one awaited query at a time — see `offices.astro`'s
+    // comment; nothing here runs in parallel.
+    const page = await listProductsForAdmin(tx, ssr.tenantId, null, {
+      categoryId: filterCategoryId || undefined,
+      status: isProductStatus(filterStatus) ? filterStatus : undefined,
+      q: filterQuery || undefined,
+      featured: url.searchParams.has("featured") ? filterFeatured : undefined,
+      recommended: url.searchParams.has("recommended")
+        ? filterRecommended
+        : undefined
+    });
+    const withRelations = (await attachProductRelations(
+      tx,
+      ssr.tenantId,
+      mediaLibraryPortAdapter,
+      page.items
+    )) as unknown as AdminProductRow[];
+
+    const canCreate = await can({
+      moduleKey: "commerce",
+      activityCode: "products",
+      action: "create"
+    });
+    const canUpdate = await can({
+      moduleKey: "commerce",
+      activityCode: "products",
+      action: "update"
+    });
+    const canDelete = await can({
+      moduleKey: "commerce",
+      activityCode: "products",
+      action: "delete"
+    });
+    const canRestore = await can({
+      moduleKey: "commerce",
+      activityCode: "products",
+      action: "restore"
+    });
+
+    const categoryPage = await listCategories(tx, ssr.tenantId, null, {});
+    const deleted = canRestore
+      ? await listDeletedProductsForAdmin(tx, ssr.tenantId)
+      : [];
+    const mediaOptions = canUpdate
+      ? (await listMediaObjects(tx, ssr.tenantId, { deletion: "live" })).items
+      : [];
+
+    return {
+      products: withRelations,
+      categories: categoryPage.items,
+      deleted,
+      mediaOptions,
+      canCreate,
+      canUpdate,
+      canDelete,
+      canRestore
+    };
+  },
   onError: (error) => {
     logAdminPageError("admin/commerce.astro: failed to list products", error, {
       correlationId: Astro.locals.correlationId
@@ -37,15 +161,22 @@ const screen = await loadAdminScreen({
 });
 
 const canRead = screen.state !== "denied";
-// A pool/circuit-breaker refusal is not an empty catalog and not a denial.
 const loadError = screen.state === "error";
 const products = screen.state === "allowed" ? screen.data.products : [];
+const categories = screen.state === "allowed" ? screen.data.categories : [];
+const deletedProducts = screen.state === "allowed" ? screen.data.deleted : [];
+const mediaOptions = screen.state === "allowed" ? screen.data.mediaOptions : [];
+const canCreate = screen.state === "allowed" && screen.data.canCreate;
+const canUpdate = screen.state === "allowed" && screen.data.canUpdate;
+const canDelete = screen.state === "allowed" && screen.data.canDelete;
+const canRestore = screen.state === "allowed" && screen.data.canRestore;
+const showActions = canUpdate || canDelete;
 ---
 
 <AdminLayout
   title={t("Products")}
   description={t(
-    "The tenant's product catalog — the first page of Issue #4's slice, read-only. SKU, name, type, price, stock, and status."
+    "The tenant's product catalog: filters, full create/edit, images, variants, status, soft delete and restore."
   )}
 >
   {
@@ -61,6 +192,197 @@ const products = screen.state === "allowed" ? screen.data.products : [];
       <p class="state-notice fade-in-up" id="commerce-error">
         {t("Products could not be loaded right now. Please try again later.")}
       </p>
+    )
+  }
+
+  {
+    canRead && !loadError && (
+      <form
+        id="product-filter-form"
+        class="admin-create-form fade-in-up"
+        method="get"
+      >
+        <p class="form-legend">{t("Filters")}</p>
+        <label for="filter-categoryId">{t("Category")}</label>
+        <select id="filter-categoryId" name="categoryId">
+          <option value="">{t("All categories")}</option>
+          {categories.map((category) => (
+            <option
+              value={category.id}
+              selected={category.id === filterCategoryId}
+            >
+              {category.name}
+            </option>
+          ))}
+        </select>
+
+        <label for="filter-status">{t("Status")}</label>
+        <select id="filter-status" name="status">
+          <option value="">{t("All statuses")}</option>
+          {PRODUCT_STATUSES.map((status) => (
+            <option value={status} selected={status === filterStatus}>
+              {status}
+            </option>
+          ))}
+        </select>
+
+        <label for="filter-q">{t("Search (name or SKU)")}</label>
+        <input id="filter-q" name="q" type="text" value={filterQuery} />
+
+        <label>
+          <input
+            type="checkbox"
+            name="featured"
+            value="true"
+            checked={filterFeatured}
+          />{" "}
+          {t("Featured only")}
+        </label>
+        <label>
+          <input
+            type="checkbox"
+            name="recommended"
+            value="true"
+            checked={filterRecommended}
+          />{" "}
+          {t("Recommended only")}
+        </label>
+
+        <button type="submit">{t("Apply filters")}</button>
+      </form>
+    )
+  }
+
+  {
+    canCreate && (
+      <form id="product-create-form" class="admin-create-form fade-in-up">
+        <p class="form-legend">{t("Create a product")}</p>
+        <p
+          id="product-create-error"
+          class="admin-create-error"
+          role="alert"
+          hidden
+        />
+
+        <label for="create-sku">{t("SKU")}</label>
+        <input
+          id="create-sku"
+          name="sku"
+          type="text"
+          required
+          autocomplete="off"
+        />
+
+        <label for="create-name">{t("Name")}</label>
+        <input
+          id="create-name"
+          name="name"
+          type="text"
+          required
+          autocomplete="off"
+        />
+
+        <label for="create-slug">{t("Slug")}</label>
+        <input
+          id="create-slug"
+          name="slug"
+          type="text"
+          required
+          autocomplete="off"
+        />
+
+        <label for="create-categoryId">{t("Category")}</label>
+        <select id="create-categoryId" name="categoryId">
+          <option value="">{t("None")}</option>
+          {categories.map((category) => (
+            <option value={category.id}>{category.name}</option>
+          ))}
+        </select>
+
+        <label for="create-type">{t("Type")}</label>
+        <select id="create-type" name="type">
+          {PRODUCT_TYPES.map((type) => (
+            <option value={type}>{type}</option>
+          ))}
+        </select>
+
+        <label for="create-price">{t("Price")}</label>
+        <input
+          id="create-price"
+          name="price"
+          type="text"
+          required
+          autocomplete="off"
+        />
+
+        <label for="create-discountPercent">{t("Discount percent")}</label>
+        <input
+          id="create-discountPercent"
+          name="discountPercent"
+          type="number"
+          min="0"
+          max="100"
+          value="0"
+        />
+
+        <label for="create-stock">{t("Stock")}</label>
+        <input id="create-stock" name="stock" type="number" min="0" value="0" />
+
+        <label for="create-minPurchase">{t("Minimum purchase")}</label>
+        <input
+          id="create-minPurchase"
+          name="minPurchase"
+          type="number"
+          min="1"
+          value="1"
+        />
+
+        <label for="create-weightGrams">{t("Weight (grams)")}</label>
+        <input
+          id="create-weightGrams"
+          name="weightGrams"
+          type="number"
+          min="0"
+          value="0"
+        />
+
+        <label for="create-description">{t("Description")}</label>
+        <textarea id="create-description" name="description" />
+
+        <label>
+          <input type="checkbox" name="isFeatured" value="true" />{" "}
+          {t("Featured")}
+        </label>
+        <label>
+          <input type="checkbox" name="isRecommended" value="true" />{" "}
+          {t("Recommended")}
+        </label>
+
+        <label for="create-advancedFields">
+          {t("Advanced fields (JSON, optional)")}
+        </label>
+        <textarea
+          id="create-advancedFields"
+          name="advancedFields"
+          rows="4"
+          placeholder="{}"
+        />
+
+        <button type="submit" id="product-create-submit">
+          {t("Create product")}
+        </button>
+      </form>
+    )
+  }
+
+  {
+    canRead && !loadError && (
+      <p
+        id="product-action-error"
+        class="admin-create-error"
+        role="alert"
+        hidden
+      />
     )
   }
 
@@ -84,12 +406,13 @@ const products = screen.state === "allowed" ? screen.data.products : [];
               <th scope="col">{t("Price")}</th>
               <th scope="col">{t("Stock")}</th>
               <th scope="col">{t("Status")}</th>
+              {showActions && <th scope="col">{t("Actions")}</th>}
             </tr>
           </thead>
           <tbody>
             {products.length === 0 ? (
               <tr>
-                <td class="data-table-empty" colspan="6">
+                <td class="data-table-empty" colspan={showActions ? 7 : 6}>
                   <div class="empty-state">
                     <span class="empty-state-icon" aria-hidden="true">
                       ○
@@ -105,28 +428,295 @@ const products = screen.state === "allowed" ? screen.data.products : [];
               </tr>
             ) : (
               products.map((product) => (
-                <tr>
-                  <td data-label="SKU">
-                    <span class="cell-muted">{product.sku}</span>
-                  </td>
-                  <td data-label="Name">{product.name}</td>
-                  <td data-label="Type">
-                    <span class="cell-muted">{product.type}</span>
-                  </td>
-                  <td data-label="Price">{product.price}</td>
-                  <td data-label="Stock">{product.stock}</td>
-                  <td data-label="Status">
-                    <span
-                      class="status-badge"
-                      data-variant={
-                        product.status === "active" ? "success" : "neutral"
-                      }
-                    >
-                      <span class="status-dot" aria-hidden="true" />
-                      {product.status}
-                    </span>
-                  </td>
-                </tr>
+                <>
+                  <tr data-product-row={product.id}>
+                    <td data-label="SKU">
+                      <span class="cell-code">{product.sku}</span>
+                    </td>
+                    <td data-label="Name">{product.name}</td>
+                    <td data-label="Type">
+                      <span class="cell-muted">{product.type}</span>
+                    </td>
+                    <td data-label="Price">{product.price}</td>
+                    <td data-label="Stock">{product.stock}</td>
+                    <td data-label="Status">
+                      <span
+                        class="status-badge"
+                        data-variant={
+                          product.status === "active" ? "success" : "neutral"
+                        }
+                      >
+                        <span class="status-dot" aria-hidden="true" />
+                        {product.status}
+                      </span>
+                    </td>
+                    {showActions && (
+                      <td data-label="Actions" class="stacked-block">
+                        <div class="row-actions">
+                          {canDelete && (
+                            <button
+                              type="button"
+                              class="module-toggle product-delete-btn"
+                              data-product-id={product.id}
+                              data-product-sku={product.sku}
+                            >
+                              {t("Delete")}
+                            </button>
+                          )}
+                        </div>
+                      </td>
+                    )}
+                  </tr>
+                  {canUpdate && (
+                    <tr>
+                      <td colspan={showActions ? 7 : 6}>
+                        <details class="admin-section">
+                          <summary>{t("Edit")}</summary>
+
+                          <form
+                            class="admin-create-form product-edit-form"
+                            data-product-id={product.id}
+                          >
+                            <p
+                              id={`product-edit-error-${product.id}`}
+                              class="admin-create-error"
+                              role="alert"
+                              hidden
+                            />
+                            <label>{t("Name")}</label>
+                            <input
+                              name="name"
+                              type="text"
+                              value={product.name}
+                            />
+                            <label>{t("Slug")}</label>
+                            <input
+                              name="slug"
+                              type="text"
+                              value={product.slug}
+                            />
+                            <label>{t("Category")}</label>
+                            <select name="categoryId">
+                              <option value="" selected={!product.categoryId}>
+                                {t("None")}
+                              </option>
+                              {categories.map((category) => (
+                                <option
+                                  value={category.id}
+                                  selected={category.id === product.categoryId}
+                                >
+                                  {category.name}
+                                </option>
+                              ))}
+                            </select>
+                            <label>{t("Type")}</label>
+                            <select name="type">
+                              {PRODUCT_TYPES.map((type) => (
+                                <option
+                                  value={type}
+                                  selected={type === product.type}
+                                >
+                                  {type}
+                                </option>
+                              ))}
+                            </select>
+                            <label>{t("Price")}</label>
+                            <input
+                              name="price"
+                              type="text"
+                              value={product.price}
+                            />
+                            <label>{t("Discount percent")}</label>
+                            <input
+                              name="discountPercent"
+                              type="number"
+                              min="0"
+                              max="100"
+                              value={product.discountPercent}
+                            />
+                            <label>{t("Stock")}</label>
+                            <input
+                              name="stock"
+                              type="number"
+                              min="0"
+                              value={product.stock}
+                            />
+                            <label>{t("Status")}</label>
+                            <select name="status">
+                              {PRODUCT_STATUSES.map((status) => (
+                                <option
+                                  value={status}
+                                  selected={status === product.status}
+                                >
+                                  {status}
+                                </option>
+                              ))}
+                            </select>
+                            <label>{t("Minimum purchase")}</label>
+                            <input
+                              name="minPurchase"
+                              type="number"
+                              min="1"
+                              value={product.minPurchase}
+                            />
+                            <label>{t("Weight (grams)")}</label>
+                            <input
+                              name="weightGrams"
+                              type="number"
+                              min="0"
+                              value={product.weightGrams}
+                            />
+                            <label>{t("Description")}</label>
+                            <textarea name="description">
+                              {product.description ?? ""}
+                            </textarea>
+                            <label>
+                              <input
+                                type="checkbox"
+                                name="isFeatured"
+                                value="true"
+                                checked={product.isFeatured}
+                              />{" "}
+                              {t("Featured")}
+                            </label>
+                            <label>
+                              <input
+                                type="checkbox"
+                                name="isRecommended"
+                                value="true"
+                                checked={product.isRecommended}
+                              />{" "}
+                              {t("Recommended")}
+                            </label>
+                            <label>{t("Advanced fields (JSON)")}</label>
+                            <textarea name="advancedFields" rows="6">
+                              {advancedFieldsJson(product)}
+                            </textarea>
+                            <button type="submit">{t("Save")}</button>
+                          </form>
+
+                          <section class="admin-section">
+                            <h3 class="admin-section-title">
+                              {t("Images")}
+                              <span class="count-pill">
+                                {product.images.length}
+                              </span>
+                            </h3>
+                            <ul>
+                              {product.images.map((image) => (
+                                <li data-product-image-row={image.id}>
+                                  {image.publicUrl ? (
+                                    <img
+                                      src={image.publicUrl}
+                                      alt={image.altText ?? ""}
+                                      style="max-height:48px;vertical-align:middle;margin-right:8px;"
+                                    />
+                                  ) : (
+                                    <span>{t("(unresolved image)")}</span>
+                                  )}
+                                  <span class="cell-muted">
+                                    {image.altText ?? ""} · #{image.sortOrder}
+                                  </span>{" "}
+                                  <button
+                                    type="button"
+                                    class="module-toggle product-image-delete-btn"
+                                    data-product-id={product.id}
+                                    data-image-id={image.id}
+                                  >
+                                    {t("Remove")}
+                                  </button>
+                                </li>
+                              ))}
+                            </ul>
+                            <form
+                              class="admin-create-form product-image-add-form"
+                              data-product-id={product.id}
+                            >
+                              <label>{t("Media object")}</label>
+                              <select name="mediaObjectId" required>
+                                <option value="">
+                                  {t("Select a media object")}
+                                </option>
+                                {mediaOptions.map((media) => (
+                                  <option value={media.id}>
+                                    {media.originalFilename ?? media.id}
+                                  </option>
+                                ))}
+                              </select>
+                              <label>{t("Alt text")}</label>
+                              <input name="altText" type="text" />
+                              <label>{t("Sort order")}</label>
+                              <input name="sortOrder" type="number" value="0" />
+                              <button type="submit">{t("Add image")}</button>
+                            </form>
+                          </section>
+
+                          <section class="admin-section">
+                            <h3 class="admin-section-title">
+                              {t("Variants")}
+                              <span class="count-pill">
+                                {product.variants.length}
+                              </span>
+                            </h3>
+                            <ul>
+                              {product.variants.map((variant) => (
+                                <li data-product-variant-row={variant.id}>
+                                  <span class="cell-muted">
+                                    {variant.name}: {variant.value}
+                                    {variant.sku ? ` (${variant.sku})` : ""}
+                                    {variant.price
+                                      ? ` — ${variant.price}`
+                                      : ""}{" "}
+                                    · {t("stock")} {variant.stock}
+                                  </span>{" "}
+                                  <button
+                                    type="button"
+                                    class="module-toggle product-variant-delete-btn"
+                                    data-product-id={product.id}
+                                    data-variant-id={variant.id}
+                                  >
+                                    {t("Remove")}
+                                  </button>
+                                </li>
+                              ))}
+                            </ul>
+                            <form
+                              class="admin-create-form product-variant-add-form"
+                              data-product-id={product.id}
+                            >
+                              <label>{t("Attribute name")}</label>
+                              <input
+                                name="name"
+                                type="text"
+                                required
+                                placeholder="Size"
+                              />
+                              <label>{t("Value")}</label>
+                              <input
+                                name="value"
+                                type="text"
+                                required
+                                placeholder="L"
+                              />
+                              <label>{t("SKU (optional)")}</label>
+                              <input name="sku" type="text" />
+                              <label>{t("Price (optional)")}</label>
+                              <input name="price" type="text" />
+                              <label>{t("Stock")}</label>
+                              <input
+                                name="stock"
+                                type="number"
+                                min="0"
+                                value="0"
+                              />
+                              <button type="submit">{t("Add variant")}</button>
+                            </form>
+                          </section>
+                        </details>
+                      </td>
+                    </tr>
+                  )}
+                </>
               ))
             )}
           </tbody>
@@ -134,4 +724,252 @@ const products = screen.state === "allowed" ? screen.data.products : [];
       </div>
     )
   }
+
+  {
+    canRead && !loadError && canRestore && deletedProducts.length > 0 && (
+      <section class="admin-section fade-in-up" id="deleted-products">
+        <h2 class="admin-section-title">
+          {t("Deleted products")}
+          <span class="count-pill">{deletedProducts.length}</span>
+        </h2>
+        <div class="data-table-scroll">
+          <table
+            class="data-table data-table--stack"
+            id="deleted-products-table"
+          >
+            <thead>
+              <tr>
+                <th scope="col">{t("SKU")}</th>
+                <th scope="col">{t("Name")}</th>
+                <th scope="col">{t("Actions")}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {deletedProducts.map((product) => (
+                <tr data-deleted-product-row={product.id}>
+                  <td data-label="SKU">
+                    <span class="cell-code">{product.sku}</span>
+                  </td>
+                  <td data-label="Name">{product.name}</td>
+                  <td data-label="Actions" class="stacked-block">
+                    <div class="row-actions">
+                      <button
+                        type="button"
+                        class="module-toggle product-restore-btn"
+                        data-product-id={product.id}
+                        data-product-sku={product.sku}
+                      >
+                        {t("Restore")}
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+    )
+  }
 </AdminLayout>
+
+<script>
+  import {
+    field,
+    messageBox,
+    mutateAndReload,
+    onAction,
+    onSubmit,
+    onSubmitAll,
+    sendJson
+  } from "../../lib/ui/admin-form-client";
+
+  function parseAdvancedFields(raw: string): Record<string, unknown> | null {
+    const trimmed = raw.trim();
+    if (trimmed.length === 0) return {};
+    try {
+      const parsed = JSON.parse(trimmed);
+      return parsed && typeof parsed === "object" && !Array.isArray(parsed)
+        ? (parsed as Record<string, unknown>)
+        : null;
+    } catch {
+      return null;
+    }
+  }
+
+  const createError = messageBox("product-create-error");
+
+  onSubmit("product-create-form", async ({ data, submit }) => {
+    const advanced = parseAdvancedFields(field(data, "advancedFields"));
+    if (advanced === null) {
+      createError.show(
+        "Advanced fields must be valid JSON (an object), or left blank."
+      );
+      return;
+    }
+
+    await mutateAndReload(
+      submit,
+      createError,
+      () =>
+        sendJson("POST", "/api/v1/commerce/products", {
+          sku: field(data, "sku"),
+          name: field(data, "name"),
+          slug: field(data, "slug"),
+          categoryId: field(data, "categoryId") || null,
+          type: field(data, "type"),
+          price: field(data, "price"),
+          discountPercent: Number(field(data, "discountPercent") || "0"),
+          stock: Number(field(data, "stock") || "0"),
+          minPurchase: Number(field(data, "minPurchase") || "1"),
+          weightGrams: Number(field(data, "weightGrams") || "0"),
+          description: field(data, "description") || null,
+          isFeatured: data.get("isFeatured") !== null,
+          isRecommended: data.get("isRecommended") !== null,
+          ...advanced
+        }),
+      "Could not create the product. Check the required fields and try again."
+    );
+  });
+
+  const actionError = messageBox("product-action-error");
+
+  onAction(".product-delete-btn", async (button) => {
+    const id = button.dataset.productId;
+    if (!id) return;
+    const sku = button.dataset.productSku ?? "this product";
+    if (!window.confirm(`Delete ${sku}? It can be restored later.`)) return;
+
+    await mutateAndReload(
+      button,
+      actionError,
+      () => sendJson("DELETE", `/api/v1/commerce/products/${id}`),
+      "Could not delete the product. Please try again.",
+      "Deleting…"
+    );
+  });
+
+  onAction(".product-restore-btn", async (button) => {
+    const id = button.dataset.productId;
+    if (!id) return;
+
+    await mutateAndReload(
+      button,
+      actionError,
+      () => sendJson("POST", `/api/v1/commerce/products/${id}/restore`),
+      (errorCode) =>
+        errorCode === "PRODUCT_SLUG_ALREADY_EXISTS" ||
+        errorCode === "PRODUCT_SKU_ALREADY_EXISTS"
+          ? "Cannot restore: another product already uses this slug or SKU."
+          : "Could not restore the product. Please try again.",
+      "Restoring…"
+    );
+  });
+
+  onSubmitAll(".product-edit-form", async ({ form, data, submit }) => {
+    const id = form.dataset.productId;
+    if (!id) return;
+    const rowError = messageBox(`product-edit-error-${id}`);
+
+    const advanced = parseAdvancedFields(field(data, "advancedFields"));
+    if (advanced === null) {
+      rowError.show("Advanced fields must be valid JSON (an object).");
+      return;
+    }
+
+    await mutateAndReload(
+      submit,
+      rowError,
+      () =>
+        sendJson("PATCH", `/api/v1/commerce/products/${id}`, {
+          name: field(data, "name"),
+          slug: field(data, "slug"),
+          categoryId: field(data, "categoryId") || null,
+          type: field(data, "type"),
+          price: field(data, "price"),
+          discountPercent: Number(field(data, "discountPercent") || "0"),
+          stock: Number(field(data, "stock") || "0"),
+          status: field(data, "status"),
+          minPurchase: Number(field(data, "minPurchase") || "1"),
+          weightGrams: Number(field(data, "weightGrams") || "0"),
+          description: field(data, "description") || null,
+          isFeatured: data.get("isFeatured") !== null,
+          isRecommended: data.get("isRecommended") !== null,
+          ...advanced
+        }),
+      "Could not save the product. Please try again."
+    );
+  });
+
+  onSubmitAll(".product-image-add-form", async ({ form, data, submit }) => {
+    const id = form.dataset.productId;
+    if (!id) return;
+
+    await mutateAndReload(
+      submit,
+      actionError,
+      () =>
+        sendJson("POST", `/api/v1/commerce/products/${id}/images`, {
+          mediaObjectId: field(data, "mediaObjectId"),
+          altText: field(data, "altText") || null,
+          sortOrder: Number(field(data, "sortOrder") || "0")
+        }),
+      "Could not add the image. Make sure a media object is selected."
+    );
+  });
+
+  onAction(".product-image-delete-btn", async (button) => {
+    const productId = button.dataset.productId;
+    const imageId = button.dataset.imageId;
+    if (!productId || !imageId) return;
+
+    await mutateAndReload(
+      button,
+      actionError,
+      () =>
+        sendJson(
+          "DELETE",
+          `/api/v1/commerce/products/${productId}/images/${imageId}`
+        ),
+      "Could not remove the image. Please try again.",
+      "Removing…"
+    );
+  });
+
+  onSubmitAll(".product-variant-add-form", async ({ form, data, submit }) => {
+    const id = form.dataset.productId;
+    if (!id) return;
+
+    await mutateAndReload(
+      submit,
+      actionError,
+      () =>
+        sendJson("POST", `/api/v1/commerce/products/${id}/variants`, {
+          name: field(data, "name"),
+          value: field(data, "value"),
+          sku: field(data, "sku") || null,
+          price: field(data, "price") || null,
+          stock: Number(field(data, "stock") || "0")
+        }),
+      "Could not add the variant. Please try again."
+    );
+  });
+
+  onAction(".product-variant-delete-btn", async (button) => {
+    const productId = button.dataset.productId;
+    const variantId = button.dataset.variantId;
+    if (!productId || !variantId) return;
+
+    await mutateAndReload(
+      button,
+      actionError,
+      () =>
+        sendJson(
+          "DELETE",
+          `/api/v1/commerce/products/${productId}/variants/${variantId}`
+        ),
+      "Could not remove the variant. Please try again.",
+      "Removing…"
+    );
+  });
+</script>
