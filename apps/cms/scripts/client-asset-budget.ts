@@ -413,8 +413,30 @@ export const READER_BUDGET_BYTES = 24_000;
  *
  * 218,000 is measured + ~2.1%, holding the tight margin the raises above
  * established — a wider one would buy silence rather than room.
+ *
+ * ## Raised to 219,000 for the commerce product/category CRUD screens
+ * (Issue #23, 16 September 2026)
+ *
+ * `/admin/commerce` went from a read-only list to a full product CRUD screen
+ * (filters, create form, per-row edit, an images picker, a variants editor,
+ * status transition, soft delete, restore), and `/admin/commerce-categories`
+ * is an entirely new screen. Measured on a clean build:
+ *
+ * ```
+ * commerce.astro_...lang.js              3,568 B
+ * commerce-categories.astro_...lang.js   1,406 B
+ * total new client script                4,974 B
+ * ```
+ *
+ * No new CSS: both screens reuse the existing `.admin-create-form`/
+ * `.data-table`/`.row-actions`/`.admin-section` classes every other CRUD
+ * screen already loads — the whole increase is client script for
+ * genuinely new interactions (per-row edit forms, an image/variant add
+ * flow), not duplication of something already on the page. 218,986 B
+ * measured; 219,000 keeps the same tight-margin convention as every raise
+ * above rather than buying slack for the next screen to spend unnoticed.
  */
-export const APP_BUDGET_BYTES = 218_000;
+export const APP_BUDGET_BYTES = 219_000;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.

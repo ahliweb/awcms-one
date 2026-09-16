@@ -4732,3 +4732,131 @@ msgstr ""
 
 msgid "Commerce"
 msgstr ""
+
+msgid "—"
+msgstr ""
+
+msgid "Add image"
+msgstr ""
+
+msgid "Add variant"
+msgstr ""
+
+msgid "Advanced fields (JSON)"
+msgstr ""
+
+msgid "Advanced fields (JSON, optional)"
+msgstr ""
+
+msgid "All categories"
+msgstr ""
+
+msgid "All statuses"
+msgstr ""
+
+msgid "Alt text"
+msgstr ""
+
+msgid "Attribute name"
+msgstr ""
+
+msgid "Categories could not be loaded right now. Please try again later."
+msgstr ""
+
+msgid "Categories created for this tenant will appear here."
+msgstr ""
+
+msgid "Create a category"
+msgstr ""
+
+msgid "Create a product"
+msgstr ""
+
+msgid "Create category"
+msgstr ""
+
+msgid "Create product"
+msgstr ""
+
+msgid "Deleted categories"
+msgstr ""
+
+msgid "Deleted products"
+msgstr ""
+
+msgid "Discount percent"
+msgstr ""
+
+msgid "Featured"
+msgstr ""
+
+msgid "Featured only"
+msgstr ""
+
+msgid "Icon"
+msgstr ""
+
+msgid "Images"
+msgstr ""
+
+msgid "Media object"
+msgstr ""
+
+msgid "Minimum purchase"
+msgstr ""
+
+msgid "No categories yet"
+msgstr ""
+
+msgid "None"
+msgstr ""
+
+msgid "None (top-level)"
+msgstr ""
+
+msgid "Price (optional)"
+msgstr ""
+
+msgid "Product categories"
+msgstr ""
+
+msgid "Recommended"
+msgstr ""
+
+msgid "Recommended only"
+msgstr ""
+
+msgid "Search (name or SKU)"
+msgstr ""
+
+msgid "Select a media object"
+msgstr ""
+
+msgid "SKU (optional)"
+msgstr ""
+
+msgid "stock"
+msgstr ""
+
+msgid "(unresolved image)"
+msgstr ""
+
+msgid "Variants"
+msgstr ""
+
+msgid "Weight (grams)"
+msgstr ""
+
+msgid "You do not have permission to view categories."
+msgstr ""
+
+msgid "{count} category"
+msgid_plural "{count} categories"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "The tenant's product catalog: filters, full create/edit, images, variants, status, soft delete and restore."
+msgstr ""
+
+msgid "The tenant's category tree: create, edit, soft delete and restore."
+msgstr ""

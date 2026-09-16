@@ -1,15 +1,18 @@
 /**
  * `ProductType`, `ProductStatus` — imported from `apps/cms`, not
- * hand-copied (issue #6).
+ * hand-copied (issue #6). Issue #23 (catalog-parity) adds four more:
+ * `SizeChartType`, `SubscriptionPeriod`, `ServiceFormFieldType`,
+ * `ProductSort` — every one of them a plain string union `apps/cms`'s
+ * `domain/*.ts` owns, re-exported here for the identical reason.
  *
- * `apps/storefront/src/lib/catalog.ts` used to declare these two unions by
- * hand, copied verbatim from the commerce module (issue #4 / #5). When
- * `apps/cms` widens `ProductStatus` with a fifth value, a hand-copied union
- * stays green and the storefront silently mis-reads the new value instead of
- * failing to type-check. Re-exporting the TYPE from its source turns that
- * widening into the storefront's own compile error — see the exhaustiveness
- * check in `apps/storefront/src/lib/catalog.ts` (`isPubliclyVisible`) for
- * where that bites.
+ * `apps/storefront/src/lib/catalog.ts` used to declare these unions by
+ * hand, copied verbatim from the commerce module. When `apps/cms` widens one
+ * of them with a new value, a hand-copied union stays green and the
+ * storefront silently mis-reads the new value instead of failing to
+ * type-check. Re-exporting the TYPE from its source turns that widening into
+ * the storefront's own compile error — see the exhaustiveness check in
+ * `apps/storefront/src/lib/catalog.ts` (`isPubliclyVisible`) for where that
+ * bites `ProductStatus` already.
  *
  * `export type` only, no value: the storefront is a static public site that
  * must never carry `apps/cms` code into a client bundle. See this package's
@@ -32,6 +35,16 @@
  * (`apps/cms/src/modules/_shared/keyset-pagination.ts` and the `ok({...})`
  * shape the routes return) out of this package too — `_shared/` is not
  * `domain/` either, so the storefront declares that shape locally as well.
+ * `ServiceFormField`/`VariantAttributeGroup` (the STRUCTURED per-field/
+ * per-group shapes, as opposed to `ServiceFormFieldType`'s plain union) stay
+ * out — Issue #23 names exactly the four unions re-exported below, not the
+ * structured shapes around them, and the storefront has not needed either
+ * one yet. Both are still pure `domain/*.ts` types, so re-exporting them
+ * later is a one-line addition, not a new exception to this file's rules.
  */
 export type { ProductType } from "awcms/src/modules/commerce/domain/product-type";
 export type { ProductStatus } from "awcms/src/modules/commerce/domain/product-status";
+export type { SizeChartType } from "awcms/src/modules/commerce/domain/size-chart";
+export type { SubscriptionPeriod } from "awcms/src/modules/commerce/domain/subscription-period";
+export type { ServiceFormFieldType } from "awcms/src/modules/commerce/domain/service-form-validation";
+export type { ProductSort } from "awcms/src/modules/commerce/domain/product-sort";

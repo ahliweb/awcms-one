@@ -5,6 +5,10 @@ import {
   type KeysetCursor
 } from "../../_shared/keyset-pagination";
 import { appendDomainEvent } from "../../domain-event-runtime/application/append-domain-event";
+import type {
+  MediaLibraryPort,
+  ResolvedMediaReferenceDTO
+} from "../../_shared/ports/media-library-port";
 import {
   COMMERCE_EVENT_VERSION,
   COMMERCE_PRODUCT_AGGREGATE_TYPE,
@@ -22,7 +26,21 @@ import type {
   CreateProductInput,
   UpdateProductInput
 } from "../domain/product-validation";
+import { computeFinalPrice } from "../domain/price-calculation";
+import { reconcileSizeChart, type SizeChartType } from "../domain/size-chart";
+import type { SubscriptionPeriod } from "../domain/subscription-period";
+import type { ServiceFormField } from "../domain/service-form-validation";
+import type { VariantAttributeGroup } from "../domain/variant-attributes-validation";
+import type { ProductSort } from "../domain/product-sort";
 import { fetchCategoryById } from "./category-directory";
+import {
+  listLiveProductImagesByProductIds,
+  type ProductImageRow
+} from "./product-image-directory";
+import {
+  listLiveProductVariantsByProductIds,
+  type ProductVariantRow
+} from "./product-variant-directory";
 
 const AUDIT_MODULE_KEY = "commerce";
 const AUDIT_RESOURCE_TYPE = "product";
@@ -84,34 +102,46 @@ export class IllegalProductStatusTransitionError extends Error {
   }
 }
 
+/**
+ * `updateProduct`'s merged next-state (existing row patched by the request)
+ * fails `domain/size-chart.ts`'s `reconcileSizeChart` cross-field rule — e.g.
+ * the request sets `sizeChartType: "image"` without ever having set
+ * `sizeChartMediaId` (on this request OR a previous one). Same "check the
+ * next state before the write, throw a 4xx-shaped error" rule
+ * `IllegalProductStatusTransitionError` follows.
+ */
+export class InvalidSizeChartFieldsError extends Error {
+  public readonly errors: { field: string; message: string }[];
+
+  constructor(errors: { field: string; message: string }[]) {
+    super(errors.map((error) => error.message).join(" "));
+    this.name = "InvalidSizeChartFieldsError";
+    this.errors = errors;
+  }
+}
+
 const POSTGRES_UNIQUE_VIOLATION = "23505";
 const PRODUCTS_SLUG_CONSTRAINT = "awcms_commerce_products_tenant_slug_key";
 const PRODUCTS_SKU_CONSTRAINT = "awcms_commerce_products_tenant_sku_key";
 
 /**
- * The wire shape — exactly `CommerceProduct` from Issue #4's DTO contract
- * (shared verbatim with #5). `price` stays the STRING `Bun.SQL` hands back
- * for a `numeric` column — never `Number(...)`'d, per Issue #4's "money is
- * numeric(14,2), and crosses the wire as a string" decision. No
- * `createdAt`/`updatedAt`/`deletedAt`: on the row for auditing/soft-delete,
- * deliberately outside the contract, so `toRecord` must not leak them.
+ * Every column `awcms_commerce_products` carries, reused across every
+ * SELECT/RETURNING below so the column list is declared exactly once
+ * (same convention `media-object-directory.ts`'s `SELECT_COLUMNS` follows).
  */
-export type ProductRecord = {
-  id: string;
-  categoryId: string | null;
-  type: ProductType;
-  sku: string;
-  name: string;
-  slug: string;
-  description: string | null;
-  digitalNote: string | null;
-  price: string;
-  discountPercent: number;
-  stock: number;
-  status: ProductStatus;
-  label: string | null;
-  labelColor: string | null;
-};
+const PRODUCT_COLUMNS = `
+  id, category_id, type, sku, name, slug, description, digital_note,
+  price, discount_percent, stock, status, label, label_color,
+  price_level_2, price_level_3, price_level_4, cost_price,
+  min_purchase, weight_grams, manual_rating, manual_sold_count,
+  with_insurance, insurance_required, insurance_fee,
+  promo_banner_show, promo_banner_title, promo_banner_subtitle,
+  promo_banner_badge, promo_banner_icon, promo_banner_color,
+  size_chart_type, size_chart_media_id, size_chart_details,
+  service_form, subscription_period, download_link,
+  allow_dp, allow_free_shipping, variant_attributes,
+  is_featured, is_recommended
+`;
 
 type ProductRow = {
   id: string;
@@ -128,7 +158,103 @@ type ProductRow = {
   status: string;
   label: string | null;
   label_color: string | null;
+  price_level_2: string | null;
+  price_level_3: string | null;
+  price_level_4: string | null;
+  cost_price: string | null;
+  min_purchase: number;
+  weight_grams: number;
+  manual_rating: string | null;
+  manual_sold_count: number;
+  with_insurance: boolean;
+  insurance_required: boolean;
+  insurance_fee: string | null;
+  promo_banner_show: boolean;
+  promo_banner_title: string | null;
+  promo_banner_subtitle: string | null;
+  promo_banner_badge: string | null;
+  promo_banner_icon: string | null;
+  promo_banner_color: string | null;
+  size_chart_type: string;
+  size_chart_media_id: string | null;
+  size_chart_details: unknown | null;
+  service_form: ServiceFormField[] | null;
+  subscription_period: string | null;
+  download_link: string | null;
+  allow_dp: boolean;
+  allow_free_shipping: boolean;
+  variant_attributes: VariantAttributeGroup[] | null;
+  is_featured: boolean;
+  is_recommended: boolean;
 };
+
+/**
+ * The public wire shape — `CommerceProduct` (Issue #4, extended to full
+ * parity by Issue #23). `price`/`priceLevel2/3/4`/`finalPrice`/`insuranceFee`
+ * stay the STRING `Bun.SQL` hands back for a `numeric` column — never
+ * `Number(...)`'d (ADR-0003). `costPrice` is deliberately ABSENT — see
+ * `ProductAdminRecord` below and `sql/156`'s header. No
+ * `createdAt`/`updatedAt`/`deletedAt`/`restoredAt`: on the row for
+ * auditing/soft-delete, deliberately outside the contract.
+ */
+export type ProductRecord = {
+  id: string;
+  categoryId: string | null;
+  type: ProductType;
+  sku: string;
+  name: string;
+  slug: string;
+  description: string | null;
+  digitalNote: string | null;
+  price: string;
+  discountPercent: number;
+  stock: number;
+  status: ProductStatus;
+  label: string | null;
+  labelColor: string | null;
+  priceLevel2: string | null;
+  priceLevel3: string | null;
+  priceLevel4: string | null;
+  minPurchase: number;
+  weightGrams: number;
+  manualRating: string | null;
+  manualSoldCount: number;
+  withInsurance: boolean;
+  insuranceRequired: boolean;
+  insuranceFee: string | null;
+  promoBannerShow: boolean;
+  promoBannerTitle: string | null;
+  promoBannerSubtitle: string | null;
+  promoBannerBadge: string | null;
+  promoBannerIcon: string | null;
+  promoBannerColor: string | null;
+  sizeChartType: SizeChartType;
+  sizeChartMediaId: string | null;
+  sizeChartDetails: unknown | null;
+  serviceForm: ServiceFormField[] | null;
+  subscriptionPeriod: SubscriptionPeriod | null;
+  downloadLink: string | null;
+  allowDp: boolean;
+  allowFreeShipping: boolean;
+  variantAttributes: VariantAttributeGroup[] | null;
+  isFeatured: boolean;
+  isRecommended: boolean;
+  /** `price` after `discountPercent` off — `domain/price-calculation.ts`, never a float. */
+  finalPrice: string;
+  /** = `manualRating` (Issue #23 — "until #29 lands reviews/orders"). */
+  averageRating: string | null;
+  /** = `manualSoldCount`. */
+  soldCount: number;
+};
+
+/**
+ * Admin-only superset of {@link ProductRecord} that additionally carries
+ * `costPrice` — Issue #23's table says "never in the public DTO"; this type
+ * exists so that promise is a TYPE distinction (what a public API route may
+ * return) rather than a convention every route author has to remember to
+ * honour by hand. Used only by `src/pages/admin/commerce.astro`.
+ */
+export type ProductAdminRecord = ProductRecord & { costPrice: string | null };
 
 function toRecord(row: ProductRow): ProductRecord {
   return {
@@ -145,8 +271,126 @@ function toRecord(row: ProductRow): ProductRecord {
     stock: row.stock,
     status: row.status as ProductStatus,
     label: row.label,
-    labelColor: row.label_color
+    labelColor: row.label_color,
+    priceLevel2: row.price_level_2,
+    priceLevel3: row.price_level_3,
+    priceLevel4: row.price_level_4,
+    minPurchase: row.min_purchase,
+    weightGrams: row.weight_grams,
+    manualRating: row.manual_rating,
+    manualSoldCount: row.manual_sold_count,
+    withInsurance: row.with_insurance,
+    insuranceRequired: row.insurance_required,
+    insuranceFee: row.insurance_fee,
+    promoBannerShow: row.promo_banner_show,
+    promoBannerTitle: row.promo_banner_title,
+    promoBannerSubtitle: row.promo_banner_subtitle,
+    promoBannerBadge: row.promo_banner_badge,
+    promoBannerIcon: row.promo_banner_icon,
+    promoBannerColor: row.promo_banner_color,
+    sizeChartType: row.size_chart_type as SizeChartType,
+    sizeChartMediaId: row.size_chart_media_id,
+    sizeChartDetails: row.size_chart_details,
+    serviceForm: row.service_form,
+    subscriptionPeriod: row.subscription_period as SubscriptionPeriod | null,
+    downloadLink: row.download_link,
+    allowDp: row.allow_dp,
+    allowFreeShipping: row.allow_free_shipping,
+    variantAttributes: row.variant_attributes,
+    isFeatured: row.is_featured,
+    isRecommended: row.is_recommended,
+    finalPrice: computeFinalPrice(row.price, row.discount_percent),
+    averageRating: row.manual_rating,
+    soldCount: row.manual_sold_count
   };
+}
+
+function toAdminRecord(row: ProductRow): ProductAdminRecord {
+  return { ...toRecord(row), costPrice: row.cost_price };
+}
+
+/** `GET /api/v1/commerce/products` query filters — see `domain/product-sort.ts`'s header for the `sort` values. */
+export type ProductListFilters = {
+  categoryId?: string | null;
+  status?: ProductStatus;
+  q?: string;
+  sort?: ProductSort;
+  featured?: boolean;
+  recommended?: boolean;
+};
+
+/**
+ * One literal `ORDER BY` clause per {@link ProductSort} value — never built
+ * from the request string directly, so there is no path from caller input to
+ * arbitrary SQL text. `price_asc`/`price_desc` sort the STORED `price`, never
+ * `finalPrice` — see `domain/product-sort.ts`'s header for why.
+ */
+const ORDER_BY_SQL: Record<ProductSort, string> = {
+  newest: "created_at DESC, id DESC",
+  price_asc: "price ASC, id ASC",
+  price_desc: "price DESC, id ASC",
+  name: "name ASC, id ASC"
+};
+
+/** Escapes `\`, `%`, `_` so a caller's search term cannot smuggle in `LIKE` wildcards of its own. */
+function escapeLikeTerm(term: string): string {
+  return term.replace(/[\\%_]/g, (char) => `\\${char}`);
+}
+
+async function queryProductRows(
+  tx: Bun.SQL,
+  tenantId: string,
+  cursor: KeysetCursor | null,
+  filters: ProductListFilters
+): Promise<{ rows: ProductRow[]; nextCursor: string | null }> {
+  const sort = filters.sort ?? "newest";
+  const categoryIdParam = filters.categoryId ?? null;
+  const statusParam = filters.status ?? null;
+  const featuredParam = filters.featured ?? null;
+  const recommendedParam = filters.recommended ?? null;
+  const qLike =
+    filters.q && filters.q.trim().length > 0
+      ? `%${escapeLikeTerm(filters.q.trim())}%`
+      : null;
+
+  // Keyset pagination stays scoped to `sort=newest` — see `ORDER_BY_SQL`'s
+  // comment. A cursor supplied alongside any other sort is rejected by the
+  // ROUTE (400) before this ever runs, so treating it as "no cursor" here is
+  // unreachable defence, not the primary guard.
+  const cursorCreatedAt =
+    sort === "newest" ? (cursor?.createdAt ?? null) : null;
+  const cursorId = sort === "newest" ? (cursor?.id ?? null) : null;
+
+  const rows = (await tx`
+    SELECT ${tx.unsafe(PRODUCT_COLUMNS)},
+           ${tx.unsafe(keysetCursorCreatedAtSql())} AS created_at_cursor
+    FROM awcms_commerce_products
+    WHERE tenant_id = ${tenantId}
+      AND deleted_at IS NULL
+      AND (${categoryIdParam}::uuid IS NULL OR category_id = ${categoryIdParam}::uuid)
+      AND (${statusParam}::text IS NULL OR status = ${statusParam})
+      AND (${featuredParam}::boolean IS NULL OR is_featured = ${featuredParam})
+      AND (${recommendedParam}::boolean IS NULL OR is_recommended = ${recommendedParam})
+      AND (
+        ${qLike}::text IS NULL
+        OR name ILIKE ${qLike} ESCAPE '\\'
+        OR sku ILIKE ${qLike} ESCAPE '\\'
+      )
+      AND (
+        ${cursorCreatedAt}::timestamptz IS NULL
+        OR (created_at, id) < (${cursorCreatedAt}, ${cursorId})
+      )
+    ORDER BY ${tx.unsafe(ORDER_BY_SQL[sort])}
+    LIMIT ${PRODUCT_LIST_LIMIT}
+  `) as (ProductRow & { created_at_cursor: string })[];
+
+  const last = rows[rows.length - 1];
+  const nextCursor =
+    sort === "newest" && rows.length === PRODUCT_LIST_LIMIT && last
+      ? encodeKeysetCursor(last.created_at_cursor, last.id)
+      : null;
+
+  return { rows, nextCursor };
 }
 
 export type ProductListPage = {
@@ -154,37 +398,41 @@ export type ProductListPage = {
   nextCursor: string | null;
 };
 
-/** One keyset-paginated page of live products, newest first — see `office-directory.ts`'s `listOffices` for the full precision/tiebreaker rationale this copies. */
+/** One filtered, sorted, keyset-paginated page of live products — public shape (no `costPrice`). */
 export async function listProducts(
   tx: Bun.SQL,
   tenantId: string,
-  cursor: KeysetCursor | null = null
+  cursor: KeysetCursor | null = null,
+  filters: ProductListFilters = {}
 ): Promise<ProductListPage> {
-  const cursorCreatedAt = cursor?.createdAt ?? null;
-  const cursorId = cursor?.id ?? null;
-
-  const rows = (await tx`
-    SELECT id, category_id, type, sku, name, slug, description, digital_note,
-           price, discount_percent, stock, status, label, label_color,
-           ${tx.unsafe(keysetCursorCreatedAtSql())} AS created_at_cursor
-    FROM awcms_commerce_products
-    WHERE tenant_id = ${tenantId}
-      AND deleted_at IS NULL
-      AND (
-        ${cursorCreatedAt}::timestamptz IS NULL
-        OR (created_at, id) < (${cursorCreatedAt}, ${cursorId})
-      )
-    ORDER BY created_at DESC, id DESC
-    LIMIT ${PRODUCT_LIST_LIMIT}
-  `) as (ProductRow & { created_at_cursor: string })[];
-
-  const last = rows[rows.length - 1];
-  const nextCursor =
-    rows.length === PRODUCT_LIST_LIMIT && last
-      ? encodeKeysetCursor(last.created_at_cursor, last.id)
-      : null;
-
+  const { rows, nextCursor } = await queryProductRows(
+    tx,
+    tenantId,
+    cursor,
+    filters
+  );
   return { items: rows.map(toRecord), nextCursor };
+}
+
+export type ProductAdminListPage = {
+  items: ProductAdminRecord[];
+  nextCursor: string | null;
+};
+
+/** As {@link listProducts}, but includes `costPrice` — `src/pages/admin/commerce.astro` only. */
+export async function listProductsForAdmin(
+  tx: Bun.SQL,
+  tenantId: string,
+  cursor: KeysetCursor | null = null,
+  filters: ProductListFilters = {}
+): Promise<ProductAdminListPage> {
+  const { rows, nextCursor } = await queryProductRows(
+    tx,
+    tenantId,
+    cursor,
+    filters
+  );
+  return { items: rows.map(toAdminRecord), nextCursor };
 }
 
 export async function fetchProductById(
@@ -193,8 +441,7 @@ export async function fetchProductById(
   productId: string
 ): Promise<ProductRecord | null> {
   const rows = (await tx`
-    SELECT id, category_id, type, sku, name, slug, description, digital_note,
-           price, discount_percent, stock, status, label, label_color
+    SELECT ${tx.unsafe(PRODUCT_COLUMNS)}
     FROM awcms_commerce_products
     WHERE tenant_id = ${tenantId} AND id = ${productId} AND deleted_at IS NULL
   `) as ProductRow[];
@@ -202,12 +449,55 @@ export async function fetchProductById(
   return rows[0] ? toRecord(rows[0]) : null;
 }
 
+/** As {@link fetchProductById}, but includes `costPrice` — admin edit-form prefill only. */
+export async function fetchProductByIdForAdmin(
+  tx: Bun.SQL,
+  tenantId: string,
+  productId: string
+): Promise<ProductAdminRecord | null> {
+  const rows = (await tx`
+    SELECT ${tx.unsafe(PRODUCT_COLUMNS)}
+    FROM awcms_commerce_products
+    WHERE tenant_id = ${tenantId} AND id = ${productId} AND deleted_at IS NULL
+  `) as ProductRow[];
+
+  return rows[0] ? toAdminRecord(rows[0]) : null;
+}
+
+/** `GET /api/v1/commerce/products/by-slug/{slug}` — the storefront's detail fetch by URL key. */
+export async function fetchProductBySlug(
+  tx: Bun.SQL,
+  tenantId: string,
+  slug: string
+): Promise<ProductRecord | null> {
+  const rows = (await tx`
+    SELECT ${tx.unsafe(PRODUCT_COLUMNS)}
+    FROM awcms_commerce_products
+    WHERE tenant_id = ${tenantId} AND slug = ${slug} AND deleted_at IS NULL
+  `) as ProductRow[];
+
+  return rows[0] ? toRecord(rows[0]) : null;
+}
+
+/** Fetches a product regardless of `deleted_at` — `restoreProduct`'s own lookup, and nothing else. */
+async function fetchProductRowIncludingDeleted(
+  tx: Bun.SQL,
+  tenantId: string,
+  productId: string
+): Promise<ProductRow | null> {
+  const rows = (await tx`
+    SELECT ${tx.unsafe(PRODUCT_COLUMNS)}
+    FROM awcms_commerce_products
+    WHERE tenant_id = ${tenantId} AND id = ${productId}
+  `) as ProductRow[];
+
+  return rows[0] ?? null;
+}
+
 /**
- * @throws {ProductCategoryNotFoundError} `categoryId` is not a live category
- *   in this tenant. Raised BEFORE the INSERT — ordering is load-bearing, same
- *   rule as `office-directory.ts`'s `createOffice`.
- * @throws {DuplicateProductSlugError} `slug` is already taken in this tenant.
- * @throws {DuplicateProductSkuError} `sku` is already taken in this tenant.
+ * Public row insert fields shared by `INSERT`/`RETURNING` — kept close to
+ * `createProduct` since (unlike `PRODUCT_COLUMNS`) it names VALUES, not a
+ * plain column list.
  */
 export async function createProduct(
   tx: Bun.SQL,
@@ -227,16 +517,33 @@ export async function createProduct(
     rows = (await tx`
       INSERT INTO awcms_commerce_products (
         tenant_id, category_id, type, sku, name, slug, description, digital_note,
-        price, discount_percent, stock, status, label, label_color
+        price, discount_percent, stock, status, label, label_color,
+        price_level_2, price_level_3, price_level_4, cost_price,
+        min_purchase, weight_grams, manual_rating, manual_sold_count,
+        with_insurance, insurance_required, insurance_fee,
+        promo_banner_show, promo_banner_title, promo_banner_subtitle,
+        promo_banner_badge, promo_banner_icon, promo_banner_color,
+        size_chart_type, size_chart_media_id, size_chart_details,
+        service_form, subscription_period, download_link,
+        allow_dp, allow_free_shipping, variant_attributes,
+        is_featured, is_recommended
       )
       VALUES (
         ${tenantId}, ${input.categoryId}, ${input.type}, ${input.sku}, ${input.name},
         ${input.slug}, ${input.description}, ${input.digitalNote},
         ${input.price}, ${input.discountPercent}, ${input.stock}, 'draft',
-        ${input.label}, ${input.labelColor}
+        ${input.label}, ${input.labelColor},
+        ${input.priceLevel2}, ${input.priceLevel3}, ${input.priceLevel4}, ${input.costPrice},
+        ${input.minPurchase}, ${input.weightGrams}, ${input.manualRating}, ${input.manualSoldCount},
+        ${input.withInsurance}, ${input.insuranceRequired}, ${input.insuranceFee},
+        ${input.promoBannerShow}, ${input.promoBannerTitle}, ${input.promoBannerSubtitle},
+        ${input.promoBannerBadge}, ${input.promoBannerIcon}, ${input.promoBannerColor},
+        ${input.sizeChartType}, ${input.sizeChartMediaId}, ${input.sizeChartDetails}::jsonb,
+        ${input.serviceForm}::jsonb, ${input.subscriptionPeriod}, ${input.downloadLink},
+        ${input.allowDp}, ${input.allowFreeShipping}, ${input.variantAttributes}::jsonb,
+        ${input.isFeatured}, ${input.isRecommended}
       )
-      RETURNING id, category_id, type, sku, name, slug, description, digital_note,
-                price, discount_percent, stock, status, label, label_color
+      RETURNING ${tx.unsafe(PRODUCT_COLUMNS)}
     `) as ProductRow[];
   } catch (error) {
     if (error instanceof Bun.SQL.PostgresError) {
@@ -297,6 +604,8 @@ export async function createProduct(
  *   resolve to a live category in this tenant.
  * @throws {IllegalProductStatusTransitionError} `status` is set and is not a
  *   legal transition from the product's current status.
+ * @throws {InvalidSizeChartFieldsError} the MERGED next state (existing row
+ *   patched by `input`) fails `reconcileSizeChart`'s cross-field rule.
  * @throws {DuplicateProductSlugError} `slug` is set and already taken.
  * @throws {DuplicateProductSkuError} `sku` is set and already taken.
  */
@@ -308,7 +617,11 @@ export async function updateProduct(
   input: UpdateProductInput,
   correlationId?: string
 ): Promise<ProductRecord | null> {
-  const existing = await fetchProductById(tx, tenantId, productId);
+  // The ADMIN fetch (includes `costPrice`) so the `COALESCE`-by-hand pattern
+  // below can preserve it on a patch that never mentions it — `costPrice` is
+  // absent from the public `ProductRecord`, but the UPDATE still has to
+  // leave it untouched when the caller does not send it.
+  const existing = await fetchProductByIdForAdmin(tx, tenantId, productId);
   if (!existing) return null;
 
   if (input.categoryId !== undefined && input.categoryId !== null) {
@@ -342,6 +655,23 @@ export async function updateProduct(
     nextStatus = transition.value;
   }
 
+  // Same load-bearing-ordering rule as `status` above: the merged next state
+  // is checked BEFORE the UPDATE runs.
+  const sizeChart = reconcileSizeChart({
+    sizeChartType: input.sizeChartType ?? existing.sizeChartType,
+    sizeChartMediaId:
+      input.sizeChartMediaId !== undefined
+        ? input.sizeChartMediaId
+        : existing.sizeChartMediaId,
+    sizeChartDetails:
+      input.sizeChartDetails !== undefined
+        ? input.sizeChartDetails
+        : existing.sizeChartDetails
+  });
+  if (!sizeChart.valid) {
+    throw new InvalidSizeChartFieldsError(sizeChart.errors);
+  }
+
   let rows: ProductRow[];
 
   try {
@@ -361,10 +691,37 @@ export async function updateProduct(
         status = ${nextStatus},
         label = ${input.label === undefined ? existing.label : input.label},
         label_color = ${input.labelColor === undefined ? existing.labelColor : input.labelColor},
+        price_level_2 = ${input.priceLevel2 === undefined ? existing.priceLevel2 : input.priceLevel2},
+        price_level_3 = ${input.priceLevel3 === undefined ? existing.priceLevel3 : input.priceLevel3},
+        price_level_4 = ${input.priceLevel4 === undefined ? existing.priceLevel4 : input.priceLevel4},
+        cost_price = ${input.costPrice === undefined ? existing.costPrice : input.costPrice},
+        min_purchase = ${input.minPurchase ?? existing.minPurchase},
+        weight_grams = ${input.weightGrams ?? existing.weightGrams},
+        manual_rating = ${input.manualRating === undefined ? existing.manualRating : input.manualRating},
+        manual_sold_count = ${input.manualSoldCount ?? existing.manualSoldCount},
+        with_insurance = ${input.withInsurance ?? existing.withInsurance},
+        insurance_required = ${input.insuranceRequired ?? existing.insuranceRequired},
+        insurance_fee = ${input.insuranceFee === undefined ? existing.insuranceFee : input.insuranceFee},
+        promo_banner_show = ${input.promoBannerShow ?? existing.promoBannerShow},
+        promo_banner_title = ${input.promoBannerTitle === undefined ? existing.promoBannerTitle : input.promoBannerTitle},
+        promo_banner_subtitle = ${input.promoBannerSubtitle === undefined ? existing.promoBannerSubtitle : input.promoBannerSubtitle},
+        promo_banner_badge = ${input.promoBannerBadge === undefined ? existing.promoBannerBadge : input.promoBannerBadge},
+        promo_banner_icon = ${input.promoBannerIcon === undefined ? existing.promoBannerIcon : input.promoBannerIcon},
+        promo_banner_color = ${input.promoBannerColor === undefined ? existing.promoBannerColor : input.promoBannerColor},
+        size_chart_type = ${sizeChart.value.sizeChartType},
+        size_chart_media_id = ${sizeChart.value.sizeChartMediaId},
+        size_chart_details = ${sizeChart.value.sizeChartDetails}::jsonb,
+        service_form = ${input.serviceForm === undefined ? existing.serviceForm : input.serviceForm}::jsonb,
+        subscription_period = ${input.subscriptionPeriod === undefined ? existing.subscriptionPeriod : input.subscriptionPeriod},
+        download_link = ${input.downloadLink === undefined ? existing.downloadLink : input.downloadLink},
+        allow_dp = ${input.allowDp ?? existing.allowDp},
+        allow_free_shipping = ${input.allowFreeShipping ?? existing.allowFreeShipping},
+        variant_attributes = ${input.variantAttributes === undefined ? existing.variantAttributes : input.variantAttributes}::jsonb,
+        is_featured = ${input.isFeatured ?? existing.isFeatured},
+        is_recommended = ${input.isRecommended ?? existing.isRecommended},
         updated_at = now()
       WHERE tenant_id = ${tenantId} AND id = ${productId} AND deleted_at IS NULL
-      RETURNING id, category_id, type, sku, name, slug, description, digital_note,
-                price, discount_percent, stock, status, label, label_color
+      RETURNING ${tx.unsafe(PRODUCT_COLUMNS)}
     `) as ProductRow[];
   } catch (error) {
     if (error instanceof Bun.SQL.PostgresError) {
@@ -482,4 +839,246 @@ export async function deleteProduct(
   });
 
   return true;
+}
+
+/**
+ * The tenant's soft-deleted products, newest-deleted first — `src/pages/admin
+ * /commerce.astro`'s "Deleted products" section, so a viewer holding
+ * `products.restore` has something to restore. Same shape as
+ * `office-directory.ts`'s `listDeletedOffices`; a plain top-N list rather
+ * than keyset-paginated, since Issue #4/#23 never pagination-tested the
+ * deleted set (it is expected to be small relative to the live catalog).
+ */
+export async function listDeletedProductsForAdmin(
+  tx: Bun.SQL,
+  tenantId: string
+): Promise<ProductAdminRecord[]> {
+  const rows = (await tx`
+    SELECT ${tx.unsafe(PRODUCT_COLUMNS)}
+    FROM awcms_commerce_products
+    WHERE tenant_id = ${tenantId} AND deleted_at IS NOT NULL
+    ORDER BY deleted_at DESC, id DESC
+    LIMIT ${PRODUCT_LIST_LIMIT}
+  `) as ProductRow[];
+
+  return rows.map(toAdminRecord);
+}
+
+/**
+ * Restores a soft-deleted product (Issue #23) — `office-directory.ts`'s
+ * `restoreOffice` shape, adapted to this module's columns: no
+ * `deleted_by`/`delete_reason`/`restored_by` (this module carries no
+ * actor-stamp columns at all, `sql/153`'s header), so this only clears
+ * `deleted_at` and stamps `restored_at`. Returns `null` when the id is
+ * absent, in another tenant, or NOT currently soft-deleted (idempotent-safe:
+ * a repeat restore is a "not found", never a silent no-op success).
+ *
+ * @throws {DuplicateProductSlugError} another LIVE product has since taken
+ *   this product's slug.
+ * @throws {DuplicateProductSkuError} another LIVE product has since taken
+ *   this product's sku.
+ */
+export async function restoreProduct(
+  tx: Bun.SQL,
+  tenantId: string,
+  actorTenantUserId: string,
+  productId: string,
+  correlationId?: string
+): Promise<ProductRecord | null> {
+  const existing = await fetchProductRowIncludingDeleted(
+    tx,
+    tenantId,
+    productId
+  );
+  if (!existing) return null;
+
+  let rows: ProductRow[];
+
+  try {
+    rows = (await tx`
+      UPDATE awcms_commerce_products
+      SET deleted_at = NULL, restored_at = now(), updated_at = now()
+      WHERE tenant_id = ${tenantId} AND id = ${productId} AND deleted_at IS NOT NULL
+      RETURNING ${tx.unsafe(PRODUCT_COLUMNS)}
+    `) as ProductRow[];
+  } catch (error) {
+    if (error instanceof Bun.SQL.PostgresError) {
+      if (
+        String(error.errno) === POSTGRES_UNIQUE_VIOLATION &&
+        error.constraint === PRODUCTS_SLUG_CONSTRAINT
+      ) {
+        throw new DuplicateProductSlugError(existing.slug);
+      }
+      if (
+        String(error.errno) === POSTGRES_UNIQUE_VIOLATION &&
+        error.constraint === PRODUCTS_SKU_CONSTRAINT
+      ) {
+        throw new DuplicateProductSkuError(existing.sku);
+      }
+    }
+
+    throw error;
+  }
+
+  if (rows.length === 0) return null;
+
+  const record = toRecord(rows[0]!);
+
+  await recordAuditEvent(tx, {
+    tenantId,
+    actorTenantUserId,
+    moduleKey: AUDIT_MODULE_KEY,
+    action: "update",
+    resourceType: AUDIT_RESOURCE_TYPE,
+    resourceId: record.id,
+    message: "Product restored.",
+    correlationId
+  });
+
+  return record;
+}
+
+// ---------------------------------------------------------------------------
+// Relations composition — images[] / variants[], resolved through
+// MediaLibraryPort. Kept in this file (rather than a separate module) because
+// it is the one place `ProductRecord` is widened into the shape a GET route
+// actually answers with, and every caller of it already imports this file.
+// ---------------------------------------------------------------------------
+
+export type ProductImageDTO = {
+  id: string;
+  productId: string;
+  mediaObjectId: string;
+  publicUrl: string | null;
+  altText: string | null;
+  sortOrder: number;
+};
+
+export type ProductVariantDTO = {
+  id: string;
+  productId: string;
+  name: string;
+  value: string;
+  colorHex: string | null;
+  imageMediaObjectId: string | null;
+  imageUrl: string | null;
+  sku: string | null;
+  price: string | null;
+  priceLevel2: string | null;
+  priceLevel3: string | null;
+  priceLevel4: string | null;
+  stock: number;
+  weightGrams: number;
+  sortOrder: number;
+};
+
+export type ProductWithRelations = ProductRecord & {
+  images: ProductImageDTO[];
+  variants: ProductVariantDTO[];
+};
+
+function toImageDTO(
+  row: ProductImageRow,
+  resolved: ReadonlyMap<string, ResolvedMediaReferenceDTO>
+): ProductImageDTO {
+  return {
+    id: row.id,
+    productId: row.product_id,
+    mediaObjectId: row.media_object_id,
+    publicUrl: resolved.get(row.media_object_id)?.publicUrl ?? null,
+    altText: row.alt_text,
+    sortOrder: row.sort_order
+  };
+}
+
+function toVariantDTO(
+  row: ProductVariantRow,
+  resolved: ReadonlyMap<string, ResolvedMediaReferenceDTO>
+): ProductVariantDTO {
+  return {
+    id: row.id,
+    productId: row.product_id,
+    name: row.name,
+    value: row.value,
+    colorHex: row.color_hex,
+    imageMediaObjectId: row.image_media_object_id,
+    imageUrl: row.image_media_object_id
+      ? (resolved.get(row.image_media_object_id)?.publicUrl ?? null)
+      : null,
+    sku: row.sku,
+    price: row.price,
+    priceLevel2: row.price_level_2,
+    priceLevel3: row.price_level_3,
+    priceLevel4: row.price_level_4,
+    stock: row.stock,
+    weightGrams: row.weight_grams,
+    sortOrder: row.sort_order
+  };
+}
+
+/**
+ * Batch-attaches `images[]`/`variants[]` to every product in `products` —
+ * ONE round trip each for images, variants, and media resolution, regardless
+ * of how many products are in the page (never N+1). GET routes only
+ * (list/detail/by-slug); create/update/delete/restore return the plain
+ * {@link ProductRecord} — a freshly mutated product's relations have not
+ * changed as a side effect of that call.
+ */
+export async function attachProductRelations(
+  tx: Bun.SQL,
+  tenantId: string,
+  mediaPort: MediaLibraryPort,
+  products: readonly ProductRecord[]
+): Promise<ProductWithRelations[]> {
+  if (products.length === 0) return [];
+
+  // Sequential, never `Promise.all` — `tx` is ONE reserved connection
+  // (`tenant-route.ts`'s header: concurrent queries on one connection desync
+  // it and strand the session holding its work-class slot).
+  const productIds = products.map((product) => product.id);
+  const imageRows = await listLiveProductImagesByProductIds(
+    tx,
+    tenantId,
+    productIds
+  );
+  const variantRows = await listLiveProductVariantsByProductIds(
+    tx,
+    tenantId,
+    productIds
+  );
+
+  const mediaObjectIds = new Set<string>();
+  for (const image of imageRows) mediaObjectIds.add(image.media_object_id);
+  for (const variant of variantRows) {
+    if (variant.image_media_object_id) {
+      mediaObjectIds.add(variant.image_media_object_id);
+    }
+  }
+
+  const resolvedMedia =
+    mediaObjectIds.size > 0
+      ? await mediaPort.resolveMediaReferences(tx, tenantId, [
+          ...mediaObjectIds
+        ])
+      : new Map<string, ResolvedMediaReferenceDTO>();
+
+  const imagesByProduct = new Map<string, ProductImageDTO[]>();
+  for (const row of imageRows) {
+    const list = imagesByProduct.get(row.product_id) ?? [];
+    list.push(toImageDTO(row, resolvedMedia));
+    imagesByProduct.set(row.product_id, list);
+  }
+
+  const variantsByProduct = new Map<string, ProductVariantDTO[]>();
+  for (const row of variantRows) {
+    const list = variantsByProduct.get(row.product_id) ?? [];
+    list.push(toVariantDTO(row, resolvedMedia));
+    variantsByProduct.set(row.product_id, list);
+  }
+
+  return products.map((product) => ({
+    ...product,
+    images: imagesByProduct.get(product.id) ?? [],
+    variants: variantsByProduct.get(product.id) ?? []
+  }));
 }

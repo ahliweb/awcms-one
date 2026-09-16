@@ -127,3 +127,139 @@ jobs:
       # that embedded tree rather than to this workspace's own new code.
       - name: Dependency audit
         run: bun audit --audit-level=low
+
+  # ---------------------------------------------------------------------------
+  # check-cms (issue #25) — apps/cms's own full gate chain
+  # (`bun run check` — lint, docs, inventories, spec, gates, typecheck,
+  # tests, build), plus its DB-gated integration suite, against a real
+  # `postgres:18.4` service. Modeled directly on apps/cms's OWN CI
+  # (apps/cms/.github/workflows/ci.yml)'s `quality` + `integration-tests`
+  # jobs — that workflow file is otherwise dead weight in THIS repo, since
+  # GitHub only ever reads workflow files under the CHECKED-OUT repo's own
+  # top-level `.github/workflows/`, and every checkout of this workflow is
+  # awcms-one's, never a standalone checkout of `apps/cms`'s own history.
+  #
+  # `needs: check` — no reason to spin up a database for a tree the cheap
+  # gates above have not already confirmed installs, lints, and tests
+  # cleanly at the root.
+  # ---------------------------------------------------------------------------
+  check-cms:
+    name: check-cms
+    needs: check
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    services:
+      postgres:
+        image: postgres:18.4
+        env:
+          POSTGRES_USER: awcms
+          POSTGRES_PASSWORD: awcms_ci_password
+          POSTGRES_DB: awcms
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U awcms -d awcms"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          # `bun run check` (below) loads apps/cms's `version:check`, which
+          # reads `git tag --list 'v*'`. Its own non-vacuity floor already
+          # skips itself inside the subtree embed regardless of how many tags
+          # are fetched (fix/22, `apps/cms/tests/version-check.test.ts`), so
+          # this is not load-bearing for correctness the way it is in
+          # apps/cms's own standalone CI — kept anyway, matching that
+          # workflow's own checkout, so the two assertions that DO state a
+          # rule have this repo's real `v0.x` tags to check against instead
+          # of none.
+          fetch-tags: true
+
+      # The ROOT pin (package.json's `packageManager`/`engines.bun`), NOT
+      # apps/cms's own `1.4.2` — AGENTS.md's "Configuration and toolchain"
+      # records that divergence as a known, accepted leftover from when
+      # apps/cms was its own standalone repository; it does not govern what
+      # this workspace installs with.
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2.2.0
+        with:
+          bun-version: "1.4.0"
+
+      - name: Cache Bun install cache
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ~/.bun/install/cache
+          key: bun-${{ runner.os }}-${{ hashFiles('bun.lock') }}
+          restore-keys: |
+            bun-${{ runner.os }}-
+
+      # Once, at the root — apps/cms is a workspace member (AGENTS.md: "bun
+      # install runs once, at the root, for the whole workspace"), not a
+      # second install.
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      # Mirrors apps/cms's own `quality` job exactly: `DATABASE_URL` is
+      # EMPTY for this step only, so the bare `bun test` inside `check` skips
+      # every DB-gated suite cleanly (`tests/integration/harness.ts`'s
+      # `integrationEnabled`) instead of failing against a database this step
+      # has not migrated yet. Real DB/RLS coverage is the step below,
+      # deliberately separate — apps/cms's own `integration-tests` job
+      # documents WHY DB-gated suites cannot share one `bun test` process
+      # with this one: a bare `bun test` running both concurrently against a
+      # shared database reproduced 26 failures (data collisions/ordering).
+      #
+      # Output is duplicated to a log file (`tee`) so the next step can read
+      # its own before/after skip count into the job summary without
+      # re-running the whole gate chain a second time just to see the number.
+      - name: apps/cms full quality gate (DATABASE_URL empty — DB-gated suites skip)
+        run: |
+          cd apps/cms
+          DATABASE_URL="" bun run check 2>&1 | tee /tmp/check-cms-quality.log
+
+      - name: Assemble DATABASE_URL for this job's Postgres
+        run: echo "DATABASE_URL=postgres://awcms:awcms_ci_password@127.0.0.1:5432/awcms" >> "$GITHUB_ENV"
+
+      - name: Migrate apps/cms against this job's Postgres
+        run: bun run db:migrate:cms
+
+      # Scoped to `tests/integration/` — the harness-based suite, purpose-built
+      # for concurrent execution against its OWN ephemeral per-run database
+      # (`tests/integration/harness.ts`) — not a bare `bun test`, for the same
+      # reason `check` above only ever runs with `DATABASE_URL=""`. The
+      # `*-postgres.test.ts`/legacy DB-gated files elsewhere under
+      # `apps/cms/tests/` are apps/cms's own CI's job (its `integration-tests`
+      # job's second step); this workflow's 20-minute budget and issue #25's
+      # own ≤15-minute target are spent on the harness suite only.
+      #
+      # `--timeout 60000`: `setupIntegrationDatabase()` applies every file in
+      # `sql/` as a subprocess inside `beforeAll`, which is subject to Bun's
+      # 5000ms per-hook default — see apps/cms's own CI comment on the
+      # identical step for the measured cost this headroom covers.
+      - name: Run DB-gated integration tests
+        run: |
+          cd apps/cms
+          bun test tests/integration/ --timeout 60000 2>&1 | tee /tmp/check-cms-integration.log
+
+      # Issue #25's acceptance criterion: "integration suites that gate on
+      # DATABASE_URL run instead of skipping (assert the skip count dropped
+      # in the job summary)". Bun's own reporter prints a trailing
+      # " N skip" line; both log files came from the two steps above.
+      - name: Job summary — DB-gated skip count before/after
+        if: always()
+        run: |
+          before="$(grep -oE '[0-9]+ skip$' /tmp/check-cms-quality.log | tail -1 | grep -oE '^[0-9]+' || echo 0)"
+          after="$(grep -oE '[0-9]+ skip$' /tmp/check-cms-integration.log | tail -1 | grep -oE '^[0-9]+' || echo 0)"
+          {
+            echo "### check-cms — DB-gated skip count"
+            echo ""
+            echo "- Before a live database (\`cd apps/cms && DATABASE_URL=\"\" bun run check\`): **$before** skipped"
+            echo "- After a live database (\`cd apps/cms && bun test tests/integration/\`): **$after** skipped"
+            if [ "$after" -lt "$before" ]; then
+              echo "- Skip count dropped ($before → $after) — DB-gated suites ran instead of skipping."
+            else
+              echo "- ⚠️ skip count did NOT drop ($before → $after) — this job is not exercising the database it provisions; investigate before trusting it as coverage."
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"

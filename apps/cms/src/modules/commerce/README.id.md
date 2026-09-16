@@ -1,65 +1,227 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:45adeefd84615055de6e96523c8f2a491fde2ad718ec3c07177db9b6b4f03d6c -->
+<!-- i18n-source-hash: sha256:82613371f61c91f1fbc6fb38d9f71bc41673d09a6d5149d21d5e9f2b1ae12bb8 -->
 
 # `commerce`
 
-Irisan katalog dari storefront yang di-re-platform (Issue #4, bagian dari epic #1): **kategori** produk (hierarkis, self-referencing) dan **produk**, tenant-scoped, di-port dari kolom katalog inti tabel MySQL legacy `commerce_bj_mart.{categories,products}`.
+Kategori produk (hierarkis, self-referencing) dan produk (dengan gambar dan
+varian), tenant-scoped, di-port dari skema MySQL legacy
+`commerce_bj_mart.{categories,products}`. Issue #4 (bagian dari epic #1)
+mengirimkan inti katalog; Issue #23 (bagian dari epic #21) membawanya ke
+paritas model produk penuh dengan skema legacy.
 
-| Aspek      | Nilai                                                                                                           |
-| ---------- | --------------------------------------------------------------------------------------------------------------- |
-| Key / type | `commerce` · `domain`, `isCore: false`                                                                          |
-| Tabel      | `awcms_commerce_categories`, `awcms_commerce_products` (`sql/153`)                                              |
-| Permission | `categories.{read,create,update,delete}`, `products.{read,create,update,delete}` (`sql/154`)                    |
-| API        | `/api/v1/commerce/{categories,products}` (`openapi/modules/commerce.openapi.yaml`)                              |
-| Event      | `commerce.product.{created,updated,status_changed}` — lihat di bawah                                            |
-| Depends on | `tenant_admin`, `identity_access`, `domain_event_runtime` — belum ada modul lain yang bergantung pada modul ini |
+| Aspek      | Nilai                                                                                                                                                                   |
+| ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Key / type | `commerce` · `domain`, `isCore: false`                                                                                                                                  |
+| Tabel      | `awcms_commerce_categories`, `awcms_commerce_products` (`sql/153`, diperluas `sql/156`), `awcms_commerce_product_images`, `awcms_commerce_product_variants` (`sql/157`) |
+| Permission | `categories.{read,create,update,delete,restore}`, `products.{read,create,update,delete,restore}` (`sql/154`, `sql/158`)                                                 |
+| API        | `/api/v1/commerce/{categories,products}` (`openapi/modules/commerce.openapi.yaml`)                                                                                      |
+| Event      | `commerce.product.{created,updated,status_changed}` — tidak berubah oleh Issue #23, lihat di bawah                                                                      |
+| Depends on | `tenant_admin`, `identity_access`, `domain_event_runtime`, `media_library` (ditambahkan Issue #23 — gambar produk di-resolve lewat `MediaLibraryPort`)                  |
 
-## Hanya katalog, dan apa yang TIDAK ada di sini
+## Apa yang ditambahkan Issue #23, dan apa yang masih peningkatan berikutnya
 
-Ini dengan sengaja sebuah irisan, bukan skema upstream penuh. Tabel sumbernya membawa 40+ kolom produk; modul ini mengambil intinya (`categoryId`, `type`, `sku`, `name`, `slug`, `description`, `digitalNote`, `price`, `discountPercent`, `stock`, `status`, `label`, `labelColor`) dan menyisakan sisanya untuk peningkatan berikutnya: harga bertingkat (`price_level_2/3/4`), `cost_price`, field afiliasi, size chart, field asuransi, promo banner, `variant_attributes`, dan tabel-tabel terkait `product_images`, `product_variants`, `flash_sale_products`, `product_affiliate_links`. Tidak ada kode di modul ini yang mereferensikan satu pun dari itu, jadi mengadopsinya nanti bersifat aditif — kolom baru dan sebuah migrasi, bukan penulisan ulang.
+Irisan Issue #4 mengambil inti katalog (`categoryId`, `type`, `sku`, `name`,
+`slug`, `description`, `digitalNote`, `price`, `discountPercent`, `stock`,
+`status`, `label`, `labelColor`) dan menunda sisa field tabel `products`
+legacy. Issue #23 mengirimkan setiap field yang ditunda itu:
 
-Itu juga sebabnya modul ini **tidak punya dependensi `media_library`**: `product_images` adalah salah satu tabel yang ditunda, jadi belum ada apa pun di sini yang me-resolve referensi media.
+- **Harga bertingkat & biaya**: `priceLevel2/3/4` (string `numeric(14,2)`
+  nullable), `costPrice` (bentuk sama, **admin-only** — lihat di bawah).
+- **Inventori & pengiriman**: `minPurchase` (`>= 1`), `weightGrams`,
+  `allowDp`, `allowFreeShipping`.
+- **Merchandising**: `isFeatured`, `isRecommended` — flag eksplisit yang
+  menggantikan heuristik ad-hoc `featuredProducts`/`recommendedProducts`
+  milik BjekMart; `manualRating`/`manualSoldCount`, diekspos di DTO sebagai
+  `averageRating`/`soldCount` sampai Issue #29 mengirimkan review/order
+  sungguhan.
+- **Asuransi**: `withInsurance`, `insuranceRequired`, `insuranceFee`.
+- **Promo banner**: `promoBannerShow` plus title/subtitle/badge/icon/color.
+- **Size chart**: `sizeChartType` (`none`/`image`/`table`),
+  `sizeChartMediaId` (wajib saat `image`), `sizeChartDetails` (`jsonb`, wajib
+  saat `table`) — aturan cross-field-nya hidup di `reconcileSizeChart` milik
+  `domain/size-chart.ts`, dipanggil dari validator create (terhadap nilai
+  yang sudah di-default) maupun `updateProduct` (terhadap baris yang
+  DIGABUNG dengan patch), dan dicerminkan sebagai `CHECK` kasar di
+  `sql/156`. `sizeChartMediaId` hanya divalidasi bentuk UUID-nya, tidak
+  diperiksa keberadaannya — lihat "Apa yang masih TIDAK diperiksa" di bawah.
+- **Form intake service**: `serviceForm` (`jsonb`,
+  `domain/service-form-validation.ts`) — array deskriptor field
+  `{id, type, label, required, options}` untuk form booking sebuah produk
+  `type: "service"`. Divalidasi bentuknya, disimpan apa adanya; tak ada yang
+  me-render-nya di sisi server.
+- **Langganan / digital**: `subscriptionPeriod`
+  (`day`/`week`/`month`/`year`, secara deskriptif terkait `type:
+"subscription"` tapi tidak divalidasi silang — kolom BjekMart sendiri
+  membawa nilai yang independen dari `type`), `downloadLink`.
+- **Atribut varian**: `variantAttributes` (`jsonb`,
+  `domain/variant-attributes-validation.ts`) — kumpulan grup atribut/opsi
+  yang DIDEKLARASIKAN merchant (mis. `[{name: "Size", options: [{name:
+"M"}, {name: "L"}]}]`). Metadata deskriptif, bukan constraint yang
+  ditegakkan terhadap baris varian sungguhan.
+- **Restore**: `restoredAt` di kedua tabel — lihat "Restore" di bawah.
+
+**`costPrice` tidak pernah sampai ke response publik.**
+`application/product-directory.ts` menjaga dua mapper atas baris yang sama:
+`toRecord` (DTO publik `ProductRecord`/`CommerceProduct` — tanpa
+`costPrice`) dan `toAdminRecord` (`ProductAdminRecord`, `costPrice`
+disertakan) — hanya dipakai oleh fetch milik
+`src/pages/admin/commerce.astro` sendiri. Sistem tipe yang membuat janji
+itu, bukan konvensi yang harus diingat setiap rute.
 
 ## Uang adalah `numeric(14,2)`, dan melintasi wire sebagai string
 
-`price` tidak pernah berupa float — binary floating point tidak bisa merepresentasikan `0.10` secara eksak, dan aritmetika uang di atasnya melenceng. `numeric(14,2)` PostgreSQL eksak; `Bun.SQL` mengembalikan kolom `numeric` sebagai **string**, dan `application/product-directory.ts` tidak pernah mem-parsingnya menjadi angka. DTO menjaganya tetap string sampai ke response API; storefront memformatnya dengan `Intl.NumberFormat`, bukan menghitung dengannya di sini. `discountPercent` dan `stock` adalah `integer` biasa — keduanya bukan uang, dan keduanya eksak dalam floating point.
+Prinsip tak berubah dari Issue #4, kini mencakup lebih banyak kolom:
+`price`, `priceLevel2/3/4`, `costPrice`, `insuranceFee`, dan `finalPrice`
+yang dihitung semuanya `numeric(14,2)`, tak pernah float — `Bun.SQL`
+mengembalikan masing-masing sebagai STRING, dan tak ada kode di modul ini
+yang mem-parsingnya menjadi `number`. `finalPrice` (`price` setelah dipotong
+`discountPercent`) dihitung di sisi server di
+`domain/price-calculation.ts`, seluruhnya dalam satuan SEN via `BigInt` —
+`"19.10"` pada diskon 10% menjadi `"17.19"`, tak pernah
+`17.189999999999998`. `discountPercent`, `stock`, `minPurchase`,
+`weightGrams`, dan `manualSoldCount` adalah `integer` biasa: bukan uang, dan
+eksak di floating point.
 
 ## Dua sumbu independen: `status` dan soft delete
 
-Status siklus hidup produk (`draft` → `active`/`archived`, `active` ⇄ `inactive`, keduanya → `archived`, `archived` → `draft` saja — `LEGAL_TRANSITIONS` milik `domain/product-status.ts`) dan apakah baris itu soft-deleted (`deleted_at`) dengan sengaja dipisah. Menarik produk dari penjualan tanpa kehilangan recordnya adalah `status = 'inactive'`; menghapusnya dari tampilan katalog admin tenant adalah `deleted_at`. Tidak ada endpoint transisi-status khusus — `status` melintas lewat `PATCH /api/v1/commerce/products/{id}` yang sama dengan field lainnya, dan `updateProduct` milik `application/product-directory.ts` yang memeriksa transisinya sah (sebelum tulisan apa pun — lihat komentarnya soal kenapa urutannya krusial) dan menolak yang tidak sah dengan 400, menyebutkan status yang benar-benar bisa dicapai dari status produk saat ini.
-
-Kategori tidak punya status dan tidak punya `parentId` di update (lihat bagian berikutnya) — analog struktural terdekat di base ini, `awcms_offices`, mengambil dua pilihan yang sama, dan untuk alasan yang sama: posisi hierarki ditetapkan sekali, dan re-parenting akan butuh deteksi siklus yang bahkan tidak dibangun codebase ini untuk offices.
+Tak berubah dari Issue #4. Status siklus hidup produk (`draft` →
+`active`/`archived`, `active` ⇄ `inactive`, keduanya → `archived`,
+`archived` → `draft` saja — `LEGAL_TRANSITIONS` milik
+`domain/product-status.ts`) dan apakah baris itu soft-deleted (`deleted_at`)
+dengan sengaja dipisah. Menarik produk dari penjualan tanpa kehilangan
+recordnya adalah `status = 'inactive'`; menghapusnya dari tampilan katalog
+tenant adalah `deleted_at`. Masih tak ada endpoint transisi-status khusus —
+`status` melintas lewat `PATCH /api/v1/commerce/products/{id}` yang sama
+dengan field lain, diperiksa `updateProduct` sebelum tulisan apa pun.
 
 ## Hierarki, dan ongkos re-parenting
 
-`parentId` self-referencing dan hanya ditetapkan saat pembuatan (`CreateCategoryInput`); `UpdateCategoryInput` sama sekali tidak membawanya. Memindahkan kategori ke parent baru karena itu adalah "hapus lalu buat ulang", bukan edit — keterbatasan yang sama yang diterima `office-directory.ts` untuk `parentOfficeId`. Kategori yang `parentId`-nya menyebut baris tenant lain, id yang tidak ada, atau yang sudah soft-deleted ditolak secara identik (400, `ParentCategoryNotFoundError`) — ketiga penyebabnya sengaja tak terbedakan, supaya field itu tak bisa dipakai untuk menyelidiki id kategori di tempat lain di platform (bentuk yang sama dengan GHSA-r7cx-c4jh-cvvw). `products.categoryId` mendapat perlakuan yang sama (`ProductCategoryNotFoundError`), dan tak seperti parent kategori, ia **bisa** ditetapkan ulang lewat update.
+Tak berubah: `parentId` self-referencing dan hanya ditetapkan saat pembuatan
+(`CreateCategoryInput`); `UpdateCategoryInput` sama sekali tidak
+membawanya. Memindahkan kategori ke parent baru karena itu adalah "hapus
+lalu buat ulang", keterbatasan yang sama yang diterima
+`office-directory.ts` untuk `parentOfficeId`. Kategori yang `parentId`-nya
+menyebut baris tenant lain, id yang tidak ada, atau yang sudah soft-deleted
+ditolak secara identik (400, `ParentCategoryNotFoundError`) — ketiga
+penyebabnya sengaja tak terbedakan (bentuk yang sama dengan
+GHSA-r7cx-c4jh-cvvw). `products.categoryId` mendapat perlakuan sama, dan tak
+seperti parent kategori, ia BISA ditetapkan ulang lewat update.
 
-## Belum ada endpoint restore
+## Restore (Issue #23)
 
-Tak seperti `awcms_offices`, kedua tabel ini tak punya kolom `deleted_by`/`restored_at`/`restored_by`, dan tak ada rute `[id]/restore.ts` atau permission `restore`. Kategori atau produk yang soft-deleted tetap disimpan — supaya baris apa pun yang masih mereferensikannya (kategori anak, `category_id` sebuah produk) menjaga FK yang valid — tapi irisan ini tidak menyediakan cara untuk mengembalikannya. Menambahkan restore nanti bersifat aditif: dua kolom nullable, satu permission, dan satu endpoint.
+Kedua tabel kini punya kolom `restored_at timestamptz` (milik kategori
+tidak ada di tabel kolom Issue #23 sendiri, yang hanya mendaftarkannya
+untuk produk — ditambahkan di sini demi simetri: endpoint restore kategori
+butuh fakta "kapan" yang sama, dan `awcms_offices` adalah preseden modul ini
+untuk kedua tabel). Tak seperti offices, kedua tabel tidak mendapat
+`deleted_by`/`delete_reason`/`restored_by` — tabel modul ini sama sekali
+tidak membawa kolom actor-stamp (pilihan asli Issue #4, tak berubah); SIAPA
+yang me-restore sebuah baris adalah `actorTenantUserId` milik log audit
+sendiri.
 
-SIAPA yang membuat/mengubah/menghapus sebuah baris hanya hidup di log audit (`actorTenantUserId` milik `recordAuditEvent`), tak pernah di kolom pada kedua tabel ini — itu juga yang membuat entri `subjectData` di `module.ts` jujur ber-`unreachableBySubject`: tak ada kolom di sini yang bisa menautkan sebuah baris ke seseorang bahkan secara prinsip.
+`POST /api/v1/commerce/{categories,products}/{id}/restore` mengikuti bentuk
+`office-directory.ts`: 404 saat id sedang tidak soft-deleted (aman-idempoten
+— restore berulang adalah 404, tak pernah duplikat), 409 saat baris hidup
+lain sudah memakai slug yang sama (kategori, produk) atau sku yang sama
+(produk). `restore` adalah permission-nya SENDIRI di kedua activity code —
+tak seperti `offices/[id]/restore.ts` yang memakai ulang `.update`, supaya
+kebijakan masa depan bisa memberikan salah satu tanpa yang lain; lihat
+header `domain/commerce-permissions.ts`.
 
-## Domain event: hanya produk, tiga event
+## Domain event: hanya produk, tiga event — tak berubah
 
-`categories` tidak mempublikasikan apa pun — pilihan yang sama yang diambil `tenant_admin` untuk `awcms_offices`, tabel yang struktural paling dekat di base ini. `products` mempublikasikan tiga, semuanya pada aggregate `commerce.product`:
-
-- `commerce.product.created` — sebuah produk dibuat (selalu `status: draft`).
-- `commerce.product.updated` — field apa pun selain `status` berubah.
-- `commerce.product.status_changed` — `status` bertransisi; membawa `previousStatus` dan `status`, jadi consumer yang hanya peduli apakah produk masih bisa dijual tak perlu men-diff barisnya.
-
-Satu `PATCH` yang mengubah field biasa maupun `status` sekaligus mempublikasikan keduanya — keduanya fakta independen. Tidak ada event `product.deleted`: soft delete adalah urusan admin/audit (tercatat di log audit, sama seperti delete pada `categories`), bukan urusan visibilitas katalog — consumer yang peduli apakah produk masih bisa dijual sudah punya `status_changed`.
+Kategori masih tidak mempublikasikan apa pun. Produk masih mempublikasikan
+persis tiga yang didefinisikan Issue #4
+(`created`/`updated`/`status_changed`) — Issue #23 tidak menambah tipe event
+baru, dan CRUD gambar/varian juga tidak mempublikasikan event (pilihan yang
+sama "soft delete/perubahan sub-resource adalah fakta log audit, bukan
+event katalog" yang sudah diambil delete milik kategori sendiri). Satu
+`PATCH` yang mengubah field biasa maupun `status` sekaligus tetap
+mempublikasikan keduanya secara independen.
 
 ## Keunikan
 
-`(tenant_id, slug)` unik per tabel di antara baris yang **hidup** (indeks parsial, `WHERE deleted_at IS NULL` — slug baris yang dihapus langsung bebas dipakai ulang), dan produk tambahan menegakkan `(tenant_id, sku)`. Benturan pada salah satunya muncul sebagai `409` dengan kode spesifik-field (`CATEGORY_SLUG_ALREADY_EXISTS`, `PRODUCT_SLUG_ALREADY_EXISTS`, `PRODUCT_SKU_ALREADY_EXISTS`) alih-alih `500` yang tak tertangani — `product-directory.ts` membedakan dua constraint produk lewat nama `PostgresError.constraint`, karena satu tangkapan `23505` saja tak bisa mengatakan field mana yang harus diperbaiki.
+`(tenant_id, slug)` tetap unik per tabel di antara baris HIDUP; produk
+tambahan menegakkan `(tenant_id, sku)`. **Baru di Issue #23**: `sku` sebuah
+varian, saat ditetapkan, harus unik terhadap BAIK
+`awcms_commerce_products` MAUPUN `awcms_commerce_product_variants` di
+tenant tersebut — indeks unik parsial satu-tabel tidak bisa menyatakan
+aturan lintas-tabel itu, jadi `checkVariantSkuAvailable` milik
+`application/product-variant-directory.ts` memeriksa kedua tabel SEBELUM
+setiap INSERT/UPDATE (urutan krusial, aturan yang sama dengan setiap
+pemeriksaan keberadaan sebelum-tulis lain di modul ini), dan indeks unik
+parsial DB pada `awcms_commerce_product_variants` sendiri tetap menjadi
+jaring pengaman race satu-tabel. Benturan muncul sebagai `409
+VARIANT_SKU_ALREADY_EXISTS`.
 
-## Layar admin: satu, hanya-baca, khusus produk
+## Gambar dan varian (Issue #23)
 
-`/admin/commerce` (`src/pages/admin/commerce.astro`) mendaftar produk — SKU, nama, tipe, harga, stok, status — ber-gate pada `commerce.products.read`. Tidak ada form buat/edit: checklist Issue #4 adalah API, dan setiap modul tetap butuh minimal satu layar ("no active module is left without an admin screen" milik `admin-media-page-contract.test.ts`), jadi inilah minimum yang sekaligus jujur dan benar. `categories.*` dan setiap aksi `products.*` selain `read` tetap berada di `NOT_YET_SCREENED` milik `scripts/admin-screen-coverage-ledger.ts` sampai layar CRUD yang lebih lengkap dibangun.
+`awcms_commerce_product_images` (`media_object_id NOT NULL` — baris ITU
+SENDIRI adalah referensinya) dan `awcms_commerce_product_variants` dimiliki
+sebuah produk dan diedit melaluinya:
+`POST/PATCH/DELETE /api/v1/commerce/products/{id}/images` (`+ /{imageId}`)
+dan `.../variants` (`+ /{variantId}`), semuanya ber-gate pada
+`products.update` — sub-resource dari mengedit sebuah produk, bukan
+resource dengan audiensnya sendiri.
+
+`mediaObjectId` sebuah gambar produk DIPERIKSA keberadaan
+hidup/terverifikasi/tenant-yang-sama sebelum insert —
+`MediaLibraryPort.isMediaReferenceSafe`, kapabilitas yang sama yang
+dikonsumsi `blog_content`, disuntikkan di rute (pola composition-root: rute
+mengimpor `mediaLibraryPortAdapter`, `application/` tak pernah mengimpor
+`media_library` langsung). Response `GET` (list/detail/by-slug)
+me-resolve setiap `mediaObjectId` gambar (dan `imageMediaObjectId` opsional
+milik sebuah varian) menjadi `publicUrl`/`imageUrl` dalam SATU panggilan
+`resolveMediaReferences` yang di-batch per response — tak pernah N+1 —
+lewat `attachProductRelations` milik `product-directory.ts`.
+
+### Apa yang masih TIDAK diperiksa
+
+- **`sizeChartMediaId` (produk) dan `imageMediaObjectId` (varian) hanya
+  divalidasi bentuk UUID-nya** — tidak diperiksa keberadaan
+  hidup/terverifikasi seperti `mediaObjectId` sebuah baris gambar. Id yang
+  basi atau asing cukup me-resolve menjadi tanpa `publicUrl` saat render
+  (RLS tetap menjaga id lintas-tenant tak pernah me-resolve ke media tenant
+  lain); pengurangan cakupan yang disengaja, dicatat untuk #31, bukan celah
+  keamanan — setiap referensi tetap terisolasi per-tenant.
+- **Keyset pagination tetap terbatas pada `sort=newest`.**
+  `?sort=price_asc`/`price_desc`/`name` mengembalikan satu halaman terbatas
+  (`PRODUCT_LIST_LIMIT` = 100, `nextCursor: null`) alih-alih walk keyset
+  yang diurutkan kolom kedua — lihat header `domain/product-sort.ts`.
+- **`price_level_n <= price` tidak ditegakkan** — BjekMart membiarkan harga
+  distributor melebihi harga eceran, jadi modul ini tidak
+  mempertanyakannya.
+
+## Layar admin: dua, CRUD penuh (Issue #23)
+
+`/admin/commerce` (`src/pages/admin/commerce.astro`) — filter
+(`categoryId`/`status`/`q`/`featured`/`recommended`), form buat yang
+mencakup setiap field inti plus flag merchandising umum, edit inline
+per-baris untuk field inti, editor "Advanced fields (JSON)" untuk ekor
+panjang kolom paritas (harga bertingkat, asuransi, promo banner, size
+chart, form service, langganan/digital, atribut varian — kompresi yang
+disengaja: tiga puluh kontrol individual akan membanjiri layar, dan ini
+menjaga setiap field tetap benar-benar bisa diedit tanpa itu), pemilih
+gambar bersumber dari registry `media_library`, editor varian, transisi
+status, soft delete, dan restore.
+
+`/admin/commerce-categories` (baru) — CRUD kategori: buat dengan parent,
+edit inline (name/slug — `parentId` hanya-saat-buat, lihat "Hierarki" di
+atas), soft delete, restore.
+
+Kedua layar sudah keluar dari `NOT_YET_SCREENED` milik
+`scripts/admin-screen-coverage-ledger.ts` — setiap satu dari sepuluh
+permission yang dideklarasikan (lima per activity code, termasuk
+`restore`) diklaim salah satu dari dua layar.
 
 ## Dengan sengaja tidak ada di sini
 
-- **Tidak ada filter/pencarian di endpoint list.** `GET .../products` dan `GET .../categories` hanya menerima `cursor`, mengikuti bentuk `GET /api/v1/offices` — belum ada `?categoryId=`/`?status=`.
-- **Tidak ada aksi `restore`** — lihat di atas.
+- **Tidak ada permukaan cart/checkout/payment/order/shipping/flash-sale/
+  affiliate-link.** Modul ini masih katalog + dua tabel dependensi
+  render-nya, bukan sisa storefront.
+- **Tidak ada ranking relevansi full-text pada `q`.** Pencocokan
+  trigram/`ILIKE` (`sql/159`) adalah pencarian substring, bukan indeks
+  pencarian ber-ranking — `site_search` adalah modul pencarian
+  lintas-konten base ini, dan `commerce` tidak berintegrasi dengannya di
+  peningkatan ini.

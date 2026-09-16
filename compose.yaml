@@ -1,0 +1,70 @@
+# compose.yaml — local PostgreSQL for apps/cms (issue #25).
+#
+# This file provisions ONLY what apps/cms's own SQL migrations do NOT:
+#
+#   - the postgres:18.4 server itself, with a named volume and a healthcheck
+#     `bun run db:up --wait` (via `docker compose up -d --wait`) can block on;
+#   - the LOGIN half of the three roles the migrations create NOLOGIN and
+#     passwordless on purpose (sql/019 `awcms_app`, sql/022
+#     `awcms_worker`/`awcms_setup` — see `docker/postgres-init/`'s own header
+#     for why a password never belongs in a committed migration).
+#
+# Every table, index, RLS policy and GRANT is `bun run db:migrate:cms`'s job,
+# run AFTER this is up — see docs/deployment.md's "Local database" for the
+# full sequence, in order, with real commands.
+#
+# `name:` is set explicitly (not left to the checkout directory name, which
+# varies by worktree/clone path) so `docker compose` commands are stable
+# wherever this repo lives, and so container names get the documented
+# `awcms-one-` prefix regardless.
+name: awcms-one
+
+services:
+  postgres:
+    image: postgres:18.4
+    container_name: awcms-one-postgres
+    restart: unless-stopped
+    environment:
+      # The four required env vars below have no defaults here — see
+      # .env.example: leaving any of them unset in .env fails `docker compose
+      # up` closed (Compose refuses to start with an unset required
+      # variable) rather than starting a database with a guessable password.
+      POSTGRES_DB: ${POSTGRES_DB:?POSTGRES_DB is required — see .env.example}
+      POSTGRES_USER: ${POSTGRES_USER:?POSTGRES_USER is required — see .env.example}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?POSTGRES_PASSWORD is required — see .env.example}
+      # Read by docker/postgres-init/01-create-least-privilege-roles.sh only
+      # — never granted anything by this file, see that script's header.
+      AWCMS_APP_PASSWORD: ${AWCMS_APP_PASSWORD:?AWCMS_APP_PASSWORD is required — see .env.example}
+      AWCMS_WORKER_PASSWORD: ${AWCMS_WORKER_PASSWORD:?AWCMS_WORKER_PASSWORD is required — see .env.example}
+      AWCMS_SETUP_PASSWORD: ${AWCMS_SETUP_PASSWORD:?AWCMS_SETUP_PASSWORD is required — see .env.example}
+    ports:
+      # Host port defaults to 5433, not Postgres's usual 5432: a development
+      # machine commonly already has something bound to 5432, and colliding
+      # with it is a more confusing failure than choosing a different port.
+      # The container's OWN port stays 5432 — nothing inside this compose
+      # project needs it renamed, only what the host sees.
+      - "${POSTGRES_PORT:-5433}:5432"
+    volumes:
+      # Mounted at `/var/lib/postgresql` (NOT `.../data`) — postgres:18's own
+      # image refuses to start against a volume mounted directly at
+      # `/var/lib/postgresql/data`, treating it as the pre-18 layout it no
+      # longer uses (data now lives in a major-version-specific subdirectory,
+      # e.g. `/var/lib/postgresql/18/docker`, so `pg_upgrade --link` has a
+      # mount-point boundary to work with later). Verified empirically: this
+      # compose file failed its own healthcheck with exactly that error
+      # before this comment was written to explain the fix.
+      - awcms-one-pgdata:/var/lib/postgresql
+      # Read-only: this container writes nothing back into the repo.
+      - ./docker/postgres-init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  # Named explicitly (rather than left to Compose's own
+  # "<project>_<service>" default) so `docker volume ls` reads the same
+  # `awcms-one-` prefix as the container itself.
+  awcms-one-pgdata:
+    name: awcms-one-pgdata

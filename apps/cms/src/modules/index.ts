@@ -160,12 +160,14 @@ const baseModules: ModuleDescriptor[] = [
   // already above, so the DAG stays acyclic; nothing depends on it yet.
   // See src/modules/push-delivery/module.ts's `description`.
   pushDeliveryModule,
-  // Issue #4 (epic #1) — the catalog slice of the re-platformed storefront:
-  // tenant-scoped product categories (hierarchical, self-referencing) and
-  // products. Depends on tenant_admin/identity_access/domain_event_runtime
-  // (all above), so the DAG stays acyclic. No media_library dependency in
-  // this slice — product images are one of the tables Issue #4 deliberately
-  // defers. See src/modules/commerce/module.ts's `description`.
+  // Issue #4 (epic #1), brought to full product-model parity by Issue #23
+  // (epic #21) — tenant-scoped product categories (hierarchical,
+  // self-referencing) and products, plus product_images/product_variants.
+  // Depends on tenant_admin/identity_access/domain_event_runtime/
+  // media_library (all above — `mediaLibraryModule` is registered earlier in
+  // this array), so the DAG stays acyclic: `product_images` references
+  // `media_library`'s registry and resolves a public URL through
+  // `MediaLibraryPort`. See src/modules/commerce/module.ts's `description`.
   commerceModule
 ];
 

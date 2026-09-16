@@ -60,18 +60,19 @@
     {
       "key": "commerce",
       "name": "Commerce",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "status": "active",
       "type": "domain",
       "dependencies": [
         "tenant_admin",
         "identity_access",
-        "domain_event_runtime"
+        "domain_event_runtime",
+        "media_library"
       ],
       "capabilitiesProvided": [],
       "capabilitiesConsumed": [],
-      "permissionCount": 8,
-      "navigationCount": 1,
+      "permissionCount": 10,
+      "navigationCount": 2,
       "jobCount": 0,
       "hasHealthCheck": false,
       "hasReadinessCheck": false,

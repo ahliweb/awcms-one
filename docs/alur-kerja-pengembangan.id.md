@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](alur-kerja-pengembangan.md)
 
-<!-- i18n-source-hash: sha256:e1dc70a9b88e2229a9674794f7ce42756655692e914d21acb06f4ec4d8b14571 -->
+<!-- i18n-source-hash: sha256:72534177e3edd016050c448cfbf29f770401a16366d334b876f749dd0ab91d30 -->
 
 # Alur kerja pengembangan
 
@@ -35,10 +35,27 @@ Perubahan yang memengaruhi perilaku publik, struktur workspace, dependensi, atau
 
 `bun run release` (aksi maintainer, [`tools/rilis.mjs`](../tools/rilis.mjs)) melipat setiap changeset yang menunggu ke `CHANGELOG.md`, memakai `bump` **terbesar** di antara mereka untuk memutuskan versi berikutnya — satu `minor` di samping sembilan entri `patch` membuat seluruh rilis `minor`, jadi ukuran rilis adalah konsekuensi dari apa yang masuk ke dalamnya, bukan penilaian yang dibuat saat rilis dari daftar nama berkas. `--commit` tambahan menandai `vX.Y.Z`.
 
-## CI: satu job, semuanya tanpa syarat
+## CI: dua job — satu tanpa syarat, satu terhadap basis data nyata
 
-`.github/workflows/ci.yml` mendefinisikan satu job, `Check`, berjalan pada setiap push ke `main`, setiap pull request, dan dispatch manual. Setiap langkah di dalamnya tidak butuh build, tidak butuh `apps/cms` hidup, dan tidak butuh basis data — pemeriksaan lockfile, `bun install --frozen-lockfile`, langkah type-check storefront yang mengaktifkan diri sendiri begitu `apps/storefront/package.json` ada (memang ada, per dokumen ini), root `bun test`, `audit:dokumen`, `audit:translation`, `audit:graf`, `audit:rilis`, dan `bun audit --audit-level=low`. Tidak ada apa pun di workflow ini yang membangun image container, men-deploy apa pun, atau menjalankan rantai gate `apps/cms` sendiri (`check:cms`) — lihat [`docs/deployment.md`](deployment.md) dan [`docs/pengujian.md`](pengujian.md) untuk mengapa yang belakangan butuh basis data yang tidak disediakan job CI ini.
+`.github/workflows/ci.yml` mendefinisikan dua job.
+
+`check` berjalan pada setiap push ke `main`, setiap pull request, dan dispatch manual. Setiap langkah di dalamnya tidak butuh build, tidak butuh `apps/cms` hidup, dan tidak butuh basis data — pemeriksaan lockfile, `bun install --frozen-lockfile`, langkah type-check storefront yang mengaktifkan diri sendiri begitu `apps/storefront/package.json` ada (memang ada, per dokumen ini), root `bun test`, `audit:dokumen`, `audit:translation`, `audit:graf`, `audit:rilis`, dan `bun audit --audit-level=low`. Tidak ada apa pun di job ini yang membangun image container atau men-deploy apa pun.
+
+`check-cms` (issue #25, `needs: check`, `timeout-minutes: 20`) menjalankan rantai gate penuh `apps/cms` sendiri terhadap layanan `postgres:18.4` nyata: `cd apps/cms && DATABASE_URL="" bun run check` dulu (setiap suite ber-gate-DB skip bersih, persis seperti job `quality` milik `apps/cms` sendiri menjalankannya), lalu `bun run db:migrate:cms` terhadap layanan itu dan `bun test tests/integration/ --timeout 60000` — suite berbasis harness, dirancang khusus untuk eksekusi konkuren terhadap basis data efemeralnya sendiri. Ringkasan job mencatat jumlah skip ber-gate-DB sebelum dan sesudah basis data nyata, sehingga reviewer bisa melihat suite itu benar-benar berjalan, bukan diam-diam skip dua kali. Ini menutup celah yang selama ini dideskripsikan [`docs/deployment.md`](deployment.md) dan [`docs/pengujian.md`](pengujian.md): rantai gate `apps/cms` sendiri, dan cakupan RLS/basis datanya, kini berjalan di CI repositori INI, tidak hanya lokal.
+
+## Branch protection: `check-cms` belum wajib
+
+`check-cms` berjalan di setiap PR mulai dari PR yang menambahkannya, tapi daftar status check wajib branch protection tidak berubah hanya karena itu — GitHub tidak menambahkan job baru ke daftar wajib secara otomatis, dan mewajibkan job baru yang belum terbukti sejak run pertamanya akan memblokir setiap PR begitu satu gate baru yang belum stabil punya satu run buruk. Rencananya, begitu `check-cms` hijau dua kali berturut-turut di `main`:
+
+```bash
+gh api --method PATCH repos/ahliweb/awcms-one/branches/main/protection/required_status_checks \
+  --input - <<'EOF'
+{"strict": true, "checks": [{"context": "Check"}, {"context": "check-cms"}]}
+EOF
+```
+
+Ini mempertahankan status check wajib yang sudah ada (`Check`, `strict: true` — tidak berubah) dan menambahkan `check-cms` di sampingnya, bukan menggantikan daftarnya. Seorang maintainer yang menjalankan ini, bukan PR ini — lihat tabel di "Branch protection pada `main`" di atas untuk apa yang wajib hari ini, yang belum dijalankan perintah ini terhadapnya.
 
 ## Belum ditegakkan hari ini
 
-Pembatasan strategi-merge yang terikat khusus pada PR yang menyentuh `apps/cms` (aturan honour-system di atas). Jumlah review wajib atau syarat code-owner — branch protection di sini menamai satu status check wajib dan tidak ada apa pun soal reviewer. `check:cms` (atau gate `apps/cms` mana pun) berjalan di CI repositori ini sendiri.
+Pembatasan strategi-merge yang terikat khusus pada PR yang menyentuh `apps/cms` (aturan honour-system di atas). Jumlah review wajib atau syarat code-owner — branch protection di sini menamai satu status check wajib dan tidak ada apa pun soal reviewer. `check-cms` sebagai status WAJIB di `main` — ia berjalan, tapi belum wajib; lihat "Branch protection: `check-cms` belum wajib" di atas.

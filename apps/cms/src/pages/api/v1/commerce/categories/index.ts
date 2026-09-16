@@ -12,7 +12,8 @@ import {
   createCategory,
   DuplicateCategorySlugError,
   listCategories,
-  ParentCategoryNotFoundError
+  ParentCategoryNotFoundError,
+  type CategoryListFilters
 } from "../../../../../modules/commerce/application/category-directory";
 import {
   validateCreateCategoryInput,
@@ -31,23 +32,48 @@ const CREATE_GUARD = {
   action: "create"
 } as const;
 
-/** `GET /api/v1/commerce/categories` — keyset-paginated, newest first, limit 100. */
+const UUID_PATTERN =
+  /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
+type ListPrepared = {
+  cursor: KeysetCursor | null;
+  filters: CategoryListFilters;
+};
+
+/**
+ * `GET /api/v1/commerce/categories` — keyset-paginated, newest first, limit
+ * 100; each row carries a computed `productCount` (Issue #23). `?parentId=`
+ * filters to a category's direct children.
+ */
 export const GET = defineTenantRoute({
   workClass: "interactive",
   // A malformed cursor is rejected rather than treated as "no cursor": silently
   // serving page 1 for a corrupt cursor is how paging bugs hide.
-  prepare: ({ url }): KeysetCursor | null | Response => {
+  prepare: ({ url }): ListPrepared | Response => {
     const cursorParam = url.searchParams.get("cursor");
-    if (!cursorParam) return null;
+    let cursor: KeysetCursor | null = null;
+    if (cursorParam) {
+      const decoded = decodeKeysetCursor(cursorParam);
+      if (!decoded)
+        return fail(400, "VALIDATION_ERROR", "cursor is malformed.");
+      cursor = decoded;
+    }
 
-    const cursor = decodeKeysetCursor(cursorParam);
-    if (!cursor) return fail(400, "VALIDATION_ERROR", "cursor is malformed.");
+    const parentIdParam = url.searchParams.get("parentId");
+    if (parentIdParam !== null && !UUID_PATTERN.test(parentIdParam)) {
+      return fail(400, "VALIDATION_ERROR", "parentId must be a valid UUID.");
+    }
 
-    return cursor;
+    return { cursor, filters: { parentId: parentIdParam ?? undefined } };
   },
   authorize: READ_GUARD,
   handler: async ({ tx, tenantId, prepared }) => {
-    const page = await listCategories(tx, tenantId, prepared);
+    const page = await listCategories(
+      tx,
+      tenantId,
+      prepared.cursor,
+      prepared.filters
+    );
     return ok({ items: page.items, nextCursor: page.nextCursor });
   }
 });

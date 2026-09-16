@@ -1,4 +1,21 @@
 import { PRODUCT_TYPES, type ProductType } from "./product-type";
+import {
+  reconcileSizeChart,
+  SIZE_CHART_TYPES,
+  type SizeChartType
+} from "./size-chart";
+import {
+  SUBSCRIPTION_PERIODS,
+  type SubscriptionPeriod
+} from "./subscription-period";
+import {
+  validateServiceForm,
+  type ServiceFormField
+} from "./service-form-validation";
+import {
+  validateVariantAttributes,
+  type VariantAttributeGroup
+} from "./variant-attributes-validation";
 
 export type ValidationError = { field: string; message: string };
 
@@ -28,12 +45,22 @@ const MAX_SLUG_LENGTH = 200;
  * the arithmetic-safe storage (Issue #4's "money is numeric(14,2)" decision).
  */
 const PRICE_PATTERN = /^\d{1,12}(\.\d{1,2})?$/;
+/** `numeric(2,1)` as TEXT — `manualRating`, `0.0`..`5.0`. */
+const RATING_PATTERN = /^\d(\.\d)?$/;
 
 const MAX_SKU_LENGTH = 64;
 const MAX_NAME_LENGTH = 200;
 const MAX_LABEL_LENGTH = 50;
 const MAX_LABEL_COLOR_LENGTH = 20;
 const MAX_DISCOUNT_PERCENT = 100;
+const MAX_PROMO_TITLE_LENGTH = 200;
+const MAX_PROMO_SUBTITLE_LENGTH = 200;
+const MAX_PROMO_BADGE_LENGTH = 50;
+const MAX_PROMO_ICON_LENGTH = 100;
+const MAX_PROMO_COLOR_LENGTH = 20;
+const MAX_DOWNLOAD_LINK_LENGTH = 2000;
+/** `sizeChartDetails` is `jsonb`; capped so an admin form cannot wedge megabytes into one row. */
+const MAX_SIZE_CHART_DETAILS_JSON_LENGTH = 20000;
 
 function isNonEmptyTrimmedString(value: unknown): value is string {
   return typeof value === "string" && value.trim().length > 0;
@@ -52,6 +79,392 @@ function normalizeOptionalText(value: unknown): string | null {
   return trimmed.length > 0 ? trimmed : null;
 }
 
+/**
+ * A `numeric(14,2)` field that may be `null`/absent — `priceLevel2/3/4`,
+ * `costPrice`, `insuranceFee`. Returns `undefined` when nothing was supplied
+ * (caller decides what "absent" means), `null` when explicitly cleared, or
+ * the validated string otherwise; pushes onto `errors` on a bad shape.
+ */
+function validateOptionalMoney(
+  value: unknown,
+  field: string,
+  errors: ValidationError[]
+): string | null | undefined {
+  if (value === undefined) return undefined;
+  if (value === null) return null;
+  if (typeof value !== "string" || !PRICE_PATTERN.test(value)) {
+    errors.push({
+      field,
+      message: `${field} must be a non-negative decimal string with at most 2 fractional digits (numeric(14,2)), or null.`
+    });
+    return undefined;
+  }
+  return value;
+}
+
+function validateOptionalBoundedText(
+  value: unknown,
+  field: string,
+  maxLength: number,
+  errors: ValidationError[]
+): string | null | undefined {
+  if (value === undefined) return undefined;
+  if (value === null) return null;
+  if (typeof value !== "string" || value.trim().length > maxLength) {
+    errors.push({
+      field,
+      message: `${field} must be a string of at most ${maxLength} characters, or null.`
+    });
+    return undefined;
+  }
+  return normalizeOptionalText(value);
+}
+
+function validateBoolean(
+  value: unknown,
+  field: string,
+  fallback: boolean,
+  errors: ValidationError[]
+): boolean {
+  if (value === undefined) return fallback;
+  if (typeof value !== "boolean") {
+    errors.push({ field, message: `${field} must be a boolean.` });
+    return fallback;
+  }
+  return value;
+}
+
+/**
+ * The fields Issue #23 adds to `awcms_commerce_products` — shared shape
+ * between create (always fully resolved, defaults applied) and update
+ * (`Partial<...>`, only the fields a caller actually sent).
+ */
+type ProductParityFields = {
+  priceLevel2: string | null;
+  priceLevel3: string | null;
+  priceLevel4: string | null;
+  costPrice: string | null;
+  minPurchase: number;
+  weightGrams: number;
+  manualRating: string | null;
+  manualSoldCount: number;
+  withInsurance: boolean;
+  insuranceRequired: boolean;
+  insuranceFee: string | null;
+  promoBannerShow: boolean;
+  promoBannerTitle: string | null;
+  promoBannerSubtitle: string | null;
+  promoBannerBadge: string | null;
+  promoBannerIcon: string | null;
+  promoBannerColor: string | null;
+  sizeChartType: SizeChartType;
+  sizeChartMediaId: string | null;
+  sizeChartDetails: unknown | null;
+  serviceForm: ServiceFormField[] | null;
+  subscriptionPeriod: SubscriptionPeriod | null;
+  downloadLink: string | null;
+  allowDp: boolean;
+  allowFreeShipping: boolean;
+  variantAttributes: VariantAttributeGroup[] | null;
+  isFeatured: boolean;
+  isRecommended: boolean;
+};
+
+/**
+ * Validates every Issue #23 field COMMON to create/update, filling `value`
+ * with only the keys actually present in `record` (so update's "absent means
+ * unchanged" contract holds) and pushing onto the shared `errors` array.
+ * Create fills in the rest of the defaults itself, since it always resolves a
+ * FULL set of values; update passes its partial result straight through to
+ * `updateProduct`, which merges against the existing row.
+ */
+function validateParityFields(
+  record: Record<string, unknown>,
+  errors: ValidationError[]
+): Partial<ProductParityFields> {
+  const value: Partial<ProductParityFields> = {};
+
+  const priceLevel2 = validateOptionalMoney(
+    record.priceLevel2,
+    "priceLevel2",
+    errors
+  );
+  if (priceLevel2 !== undefined) value.priceLevel2 = priceLevel2;
+  const priceLevel3 = validateOptionalMoney(
+    record.priceLevel3,
+    "priceLevel3",
+    errors
+  );
+  if (priceLevel3 !== undefined) value.priceLevel3 = priceLevel3;
+  const priceLevel4 = validateOptionalMoney(
+    record.priceLevel4,
+    "priceLevel4",
+    errors
+  );
+  if (priceLevel4 !== undefined) value.priceLevel4 = priceLevel4;
+  const costPrice = validateOptionalMoney(
+    record.costPrice,
+    "costPrice",
+    errors
+  );
+  if (costPrice !== undefined) value.costPrice = costPrice;
+  const insuranceFee = validateOptionalMoney(
+    record.insuranceFee,
+    "insuranceFee",
+    errors
+  );
+  if (insuranceFee !== undefined) value.insuranceFee = insuranceFee;
+
+  if (record.minPurchase !== undefined) {
+    if (
+      typeof record.minPurchase !== "number" ||
+      !Number.isInteger(record.minPurchase) ||
+      record.minPurchase < 1
+    ) {
+      errors.push({
+        field: "minPurchase",
+        message: "minPurchase must be an integer >= 1."
+      });
+    } else {
+      value.minPurchase = record.minPurchase;
+    }
+  }
+
+  if (record.weightGrams !== undefined) {
+    if (
+      typeof record.weightGrams !== "number" ||
+      !Number.isInteger(record.weightGrams) ||
+      record.weightGrams < 0
+    ) {
+      errors.push({
+        field: "weightGrams",
+        message: "weightGrams must be a non-negative integer."
+      });
+    } else {
+      value.weightGrams = record.weightGrams;
+    }
+  }
+
+  if (record.manualRating !== undefined) {
+    if (record.manualRating === null) {
+      value.manualRating = null;
+    } else if (
+      typeof record.manualRating !== "string" ||
+      !RATING_PATTERN.test(record.manualRating) ||
+      Number(record.manualRating) > 5
+    ) {
+      errors.push({
+        field: "manualRating",
+        message:
+          'manualRating must be a decimal string "0.0"-"5.0" with at most 1 fractional digit (numeric(2,1)), or null.'
+      });
+    } else {
+      value.manualRating = record.manualRating;
+    }
+  }
+
+  if (record.manualSoldCount !== undefined) {
+    if (
+      typeof record.manualSoldCount !== "number" ||
+      !Number.isInteger(record.manualSoldCount) ||
+      record.manualSoldCount < 0
+    ) {
+      errors.push({
+        field: "manualSoldCount",
+        message: "manualSoldCount must be a non-negative integer."
+      });
+    } else {
+      value.manualSoldCount = record.manualSoldCount;
+    }
+  }
+
+  if (record.withInsurance !== undefined) {
+    value.withInsurance = validateBoolean(
+      record.withInsurance,
+      "withInsurance",
+      false,
+      errors
+    );
+  }
+  if (record.insuranceRequired !== undefined) {
+    value.insuranceRequired = validateBoolean(
+      record.insuranceRequired,
+      "insuranceRequired",
+      false,
+      errors
+    );
+  }
+
+  if (record.promoBannerShow !== undefined) {
+    value.promoBannerShow = validateBoolean(
+      record.promoBannerShow,
+      "promoBannerShow",
+      false,
+      errors
+    );
+  }
+
+  const promoBannerTitle = validateOptionalBoundedText(
+    record.promoBannerTitle,
+    "promoBannerTitle",
+    MAX_PROMO_TITLE_LENGTH,
+    errors
+  );
+  if (promoBannerTitle !== undefined) value.promoBannerTitle = promoBannerTitle;
+  const promoBannerSubtitle = validateOptionalBoundedText(
+    record.promoBannerSubtitle,
+    "promoBannerSubtitle",
+    MAX_PROMO_SUBTITLE_LENGTH,
+    errors
+  );
+  if (promoBannerSubtitle !== undefined)
+    value.promoBannerSubtitle = promoBannerSubtitle;
+  const promoBannerBadge = validateOptionalBoundedText(
+    record.promoBannerBadge,
+    "promoBannerBadge",
+    MAX_PROMO_BADGE_LENGTH,
+    errors
+  );
+  if (promoBannerBadge !== undefined) value.promoBannerBadge = promoBannerBadge;
+  const promoBannerIcon = validateOptionalBoundedText(
+    record.promoBannerIcon,
+    "promoBannerIcon",
+    MAX_PROMO_ICON_LENGTH,
+    errors
+  );
+  if (promoBannerIcon !== undefined) value.promoBannerIcon = promoBannerIcon;
+  const promoBannerColor = validateOptionalBoundedText(
+    record.promoBannerColor,
+    "promoBannerColor",
+    MAX_PROMO_COLOR_LENGTH,
+    errors
+  );
+  if (promoBannerColor !== undefined) value.promoBannerColor = promoBannerColor;
+
+  if (record.sizeChartType !== undefined) {
+    if (
+      typeof record.sizeChartType !== "string" ||
+      !(SIZE_CHART_TYPES as readonly string[]).includes(record.sizeChartType)
+    ) {
+      errors.push({
+        field: "sizeChartType",
+        message: `sizeChartType must be one of: ${SIZE_CHART_TYPES.join(", ")}.`
+      });
+    } else {
+      value.sizeChartType = record.sizeChartType as SizeChartType;
+    }
+  }
+
+  if (record.sizeChartMediaId !== undefined) {
+    if (
+      record.sizeChartMediaId !== null &&
+      (typeof record.sizeChartMediaId !== "string" ||
+        !UUID_PATTERN.test(record.sizeChartMediaId))
+    ) {
+      errors.push({
+        field: "sizeChartMediaId",
+        message: "sizeChartMediaId must be a valid UUID, or null."
+      });
+    } else {
+      value.sizeChartMediaId = record.sizeChartMediaId as string | null;
+    }
+  }
+
+  if (record.sizeChartDetails !== undefined) {
+    if (record.sizeChartDetails === null) {
+      value.sizeChartDetails = null;
+    } else if (
+      typeof record.sizeChartDetails !== "object" ||
+      JSON.stringify(record.sizeChartDetails).length >
+        MAX_SIZE_CHART_DETAILS_JSON_LENGTH
+    ) {
+      errors.push({
+        field: "sizeChartDetails",
+        message: `sizeChartDetails must be a JSON object/array of at most ${MAX_SIZE_CHART_DETAILS_JSON_LENGTH} serialized characters, or null.`
+      });
+    } else {
+      value.sizeChartDetails = record.sizeChartDetails;
+    }
+  }
+
+  if (record.serviceForm !== undefined) {
+    const serviceForm = validateServiceForm(record.serviceForm);
+    if (!serviceForm.valid) {
+      errors.push(...serviceForm.errors);
+    } else {
+      value.serviceForm = serviceForm.value;
+    }
+  }
+
+  if (record.subscriptionPeriod !== undefined) {
+    if (
+      record.subscriptionPeriod !== null &&
+      (typeof record.subscriptionPeriod !== "string" ||
+        !(SUBSCRIPTION_PERIODS as readonly string[]).includes(
+          record.subscriptionPeriod
+        ))
+    ) {
+      errors.push({
+        field: "subscriptionPeriod",
+        message: `subscriptionPeriod must be one of: ${SUBSCRIPTION_PERIODS.join(", ")}, or null.`
+      });
+    } else {
+      value.subscriptionPeriod =
+        record.subscriptionPeriod as SubscriptionPeriod | null;
+    }
+  }
+
+  const downloadLink = validateOptionalBoundedText(
+    record.downloadLink,
+    "downloadLink",
+    MAX_DOWNLOAD_LINK_LENGTH,
+    errors
+  );
+  if (downloadLink !== undefined) value.downloadLink = downloadLink;
+
+  if (record.allowDp !== undefined) {
+    value.allowDp = validateBoolean(record.allowDp, "allowDp", false, errors);
+  }
+  if (record.allowFreeShipping !== undefined) {
+    value.allowFreeShipping = validateBoolean(
+      record.allowFreeShipping,
+      "allowFreeShipping",
+      true,
+      errors
+    );
+  }
+
+  if (record.variantAttributes !== undefined) {
+    const variantAttributes = validateVariantAttributes(
+      record.variantAttributes
+    );
+    if (!variantAttributes.valid) {
+      errors.push(...variantAttributes.errors);
+    } else {
+      value.variantAttributes = variantAttributes.value;
+    }
+  }
+
+  if (record.isFeatured !== undefined) {
+    value.isFeatured = validateBoolean(
+      record.isFeatured,
+      "isFeatured",
+      false,
+      errors
+    );
+  }
+  if (record.isRecommended !== undefined) {
+    value.isRecommended = validateBoolean(
+      record.isRecommended,
+      "isRecommended",
+      false,
+      errors
+    );
+  }
+
+  return value;
+}
+
 export type CreateProductInput = {
   categoryId: string | null;
   type: ProductType;
@@ -65,7 +478,7 @@ export type CreateProductInput = {
   stock: number;
   label: string | null;
   labelColor: string | null;
-};
+} & ProductParityFields;
 
 export function validateCreateProductInput(
   body: unknown
@@ -199,7 +612,24 @@ export function validateCreateProductInput(
     });
   }
 
-  if (errors.length > 0) {
+  const parity = validateParityFields(record, errors);
+
+  // Cross-field size-chart consistency (`domain/size-chart.ts`'s
+  // `reconcileSizeChart`) runs against the FULLY RESOLVED values — create
+  // always has a complete set (default `"none"`/`null`/`null` when the caller
+  // sends none of the three fields), unlike update's partial patch, which
+  // reconciles against the MERGED existing+patch state in
+  // `product-directory.ts`'s `updateProduct` instead.
+  const sizeChart = reconcileSizeChart({
+    sizeChartType: parity.sizeChartType ?? "none",
+    sizeChartMediaId: parity.sizeChartMediaId ?? null,
+    sizeChartDetails: parity.sizeChartDetails ?? null
+  });
+  if (!sizeChart.valid) {
+    errors.push(...sizeChart.errors);
+  }
+
+  if (errors.length > 0 || !sizeChart.valid) {
     return { valid: false, errors };
   }
 
@@ -217,7 +647,35 @@ export function validateCreateProductInput(
       discountPercent,
       stock,
       label: normalizeOptionalText(record.label),
-      labelColor: normalizeOptionalText(record.labelColor)
+      labelColor: normalizeOptionalText(record.labelColor),
+      priceLevel2: parity.priceLevel2 ?? null,
+      priceLevel3: parity.priceLevel3 ?? null,
+      priceLevel4: parity.priceLevel4 ?? null,
+      costPrice: parity.costPrice ?? null,
+      minPurchase: parity.minPurchase ?? 1,
+      weightGrams: parity.weightGrams ?? 0,
+      manualRating: parity.manualRating ?? null,
+      manualSoldCount: parity.manualSoldCount ?? 0,
+      withInsurance: parity.withInsurance ?? false,
+      insuranceRequired: parity.insuranceRequired ?? false,
+      insuranceFee: parity.insuranceFee ?? null,
+      promoBannerShow: parity.promoBannerShow ?? false,
+      promoBannerTitle: parity.promoBannerTitle ?? null,
+      promoBannerSubtitle: parity.promoBannerSubtitle ?? null,
+      promoBannerBadge: parity.promoBannerBadge ?? null,
+      promoBannerIcon: parity.promoBannerIcon ?? null,
+      promoBannerColor: parity.promoBannerColor ?? null,
+      sizeChartType: sizeChart.value.sizeChartType,
+      sizeChartMediaId: sizeChart.value.sizeChartMediaId,
+      sizeChartDetails: sizeChart.value.sizeChartDetails,
+      serviceForm: parity.serviceForm ?? null,
+      subscriptionPeriod: parity.subscriptionPeriod ?? null,
+      downloadLink: parity.downloadLink ?? null,
+      allowDp: parity.allowDp ?? false,
+      allowFreeShipping: parity.allowFreeShipping ?? true,
+      variantAttributes: parity.variantAttributes ?? null,
+      isFeatured: parity.isFeatured ?? false,
+      isRecommended: parity.isRecommended ?? false
     }
   };
 }
@@ -245,7 +703,7 @@ export type UpdateProductInput = {
   status?: string;
   label?: string | null;
   labelColor?: string | null;
-};
+} & Partial<ProductParityFields>;
 
 export function validateUpdateProductInput(
   body: unknown
@@ -420,6 +878,9 @@ export function validateUpdateProductInput(
       value.labelColor = normalizeOptionalText(record.labelColor);
     }
   }
+
+  const parity = validateParityFields(record, errors);
+  Object.assign(value, parity);
 
   if (errors.length === 0 && Object.keys(value).length === 0) {
     errors.push({

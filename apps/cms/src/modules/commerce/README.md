@@ -2,62 +2,208 @@
 
 # `commerce`
 
-The catalog slice of the re-platformed storefront (Issue #4, part of epic #1): tenant-scoped product **categories** (hierarchical, self-referencing) and **products**, ported from the legacy MySQL `commerce_bj_mart.{categories,products}` core catalog columns.
+Tenant-scoped product **categories** (hierarchical, self-referencing) and
+**products** (with images and variants), ported from the legacy MySQL
+`commerce_bj_mart.{categories,products}` schema. Issue #4 (part of epic #1)
+shipped the catalog core; Issue #23 (part of epic #21) brings it to full
+product-model parity with the legacy schema.
 
-| Aspect      | Value                                                                                          |
-| ----------- | ---------------------------------------------------------------------------------------------- |
-| Key / type  | `commerce` · `domain`, `isCore: false`                                                         |
-| Tables      | `awcms_commerce_categories`, `awcms_commerce_products` (`sql/153`)                             |
-| Permissions | `categories.{read,create,update,delete}`, `products.{read,create,update,delete}` (`sql/154`)   |
-| API         | `/api/v1/commerce/{categories,products}` (`openapi/modules/commerce.openapi.yaml`)             |
-| Events      | `commerce.product.{created,updated,status_changed}` — see below                                |
-| Depends on  | `tenant_admin`, `identity_access`, `domain_event_runtime` — nothing depends on this module yet |
+| Aspect      | Value                                                                                                                                                                  |
+| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Key / type  | `commerce` · `domain`, `isCore: false`                                                                                                                                 |
+| Tables      | `awcms_commerce_categories`, `awcms_commerce_products` (`sql/153`, extended `sql/156`), `awcms_commerce_product_images`, `awcms_commerce_product_variants` (`sql/157`) |
+| Permissions | `categories.{read,create,update,delete,restore}`, `products.{read,create,update,delete,restore}` (`sql/154`, `sql/158`)                                                |
+| API         | `/api/v1/commerce/{categories,products}` (`openapi/modules/commerce.openapi.yaml`)                                                                                     |
+| Events      | `commerce.product.{created,updated,status_changed}` — unchanged by Issue #23, see below                                                                                |
+| Depends on  | `tenant_admin`, `identity_access`, `domain_event_runtime`, `media_library` (added by Issue #23 — product images resolve through `MediaLibraryPort`)                    |
 
-## Catalog only, and what is NOT here
+## What Issue #23 adds, and what stays a later increment
 
-This is deliberately a slice, not the full upstream schema. The source table carries 40+ product columns; this module takes the core (`categoryId`, `type`, `sku`, `name`, `slug`, `description`, `digitalNote`, `price`, `discountPercent`, `stock`, `status`, `label`, `labelColor`) and leaves the rest for a later increment: tiered pricing (`price_level_2/3/4`), `cost_price`, affiliate fields, size charts, insurance fields, promo banners, `variant_attributes`, and the related tables `product_images`, `product_variants`, `flash_sale_products`, `product_affiliate_links`. None of this module's code references any of them, so admitting them later is additive — new columns and a migration, not a rewrite.
+Issue #4's slice took the catalog core (`categoryId`, `type`, `sku`, `name`,
+`slug`, `description`, `digitalNote`, `price`, `discountPercent`, `stock`,
+`status`, `label`, `labelColor`) and deferred the rest of the legacy
+`products` table. Issue #23 lands every one of those deferred fields:
 
-That is also why this module has **no `media_library` dependency**: `product_images` is one of the deferred tables, so there is nothing here yet that resolves a media reference.
+- **Tiered pricing & cost**: `priceLevel2/3/4` (nullable `numeric(14,2)`
+  strings), `costPrice` (same shape, **admin-only** — see below).
+- **Inventory & shipping**: `minPurchase` (`>= 1`), `weightGrams`, `allowDp`,
+  `allowFreeShipping`.
+- **Merchandising**: `isFeatured`, `isRecommended` — explicit flags that
+  replace BjekMart's ad-hoc `featuredProducts`/`recommendedProducts`
+  heuristics; `manualRating`/`manualSoldCount`, exposed on the DTO as
+  `averageRating`/`soldCount` until Issue #29 lands real reviews/orders.
+- **Insurance**: `withInsurance`, `insuranceRequired`, `insuranceFee`.
+- **Promo banner**: `promoBannerShow` plus title/subtitle/badge/icon/color.
+- **Size chart**: `sizeChartType` (`none`/`image`/`table`), `sizeChartMediaId`
+  (required when `image`), `sizeChartDetails` (`jsonb`, required when
+  `table`) — the cross-field rule lives in `domain/size-chart.ts`'s
+  `reconcileSizeChart`, called from both the create validator (against
+  already-defaulted values) and `updateProduct` (against the row MERGED with
+  the patch), and mirrored as a coarse `CHECK` in `sql/156`.
+  `sizeChartMediaId` is validated as UUID-shaped only, not checked for live
+  existence — see "What is still NOT checked" below.
+- **Service intake form**: `serviceForm` (`jsonb`, `domain/service-form-validation.ts`)
+  — an array of `{id, type, label, required, options}` field descriptors for
+  a `type: "service"` product's booking form. Shape-validated, stored as-is;
+  nothing renders it server-side.
+- **Subscription / digital**: `subscriptionPeriod` (`day`/`week`/`month`/`year`,
+  descriptively tied to `type: "subscription"` but not cross-validated —
+  BjekMart's own column carries a value independent of `type`), `downloadLink`.
+- **Variant attributes**: `variantAttributes` (`jsonb`,
+  `domain/variant-attributes-validation.ts`) — the DECLARED set of attribute
+  groups/options a merchant has defined (e.g. `[{name: "Size", options:
+[{name: "M"}, {name: "L"}]}]`). Descriptive metadata, not a constraint
+  enforced against actual variant rows.
+- **Restore**: `restoredAt` on both tables — see "Restore" below.
+
+**`costPrice` never reaches a public response.**
+`application/product-directory.ts` keeps two mappers over the same row:
+`toRecord` (the public `ProductRecord`/`CommerceProduct` DTO — no
+`costPrice`) and `toAdminRecord` (`ProductAdminRecord`, `costPrice` included)
+— used only by `src/pages/admin/commerce.astro`'s own fetch. The type system
+makes the promise, not a convention every route has to remember.
 
 ## Money is `numeric(14,2)`, and crosses the wire as a string
 
-`price` is never a float — binary floating point cannot represent `0.10` exactly, and money arithmetic on it drifts. PostgreSQL `numeric(14,2)` is exact; `Bun.SQL` hands a `numeric` column back as a **string**, and `application/product-directory.ts` never parses it to a number. The DTO keeps it a string all the way through the API response; a storefront formats it with `Intl.NumberFormat`, it does not compute with it here. `discountPercent` and `stock` are plain `integer` — neither is money, and both are exact in floating point anyway.
+Unchanged principle from Issue #4, now covering more columns: `price`,
+`priceLevel2/3/4`, `costPrice`, `insuranceFee`, and the computed `finalPrice`
+are all `numeric(14,2)`, never a float — `Bun.SQL` hands each back as a
+STRING, and nothing in this module parses one to a `number`. `finalPrice`
+(`price` after `discountPercent` off) is computed server-side in
+`domain/price-calculation.ts`, entirely in integer CENTS via `BigInt` —
+`"19.10"` at 10% becomes `"17.19"`, never `17.189999999999998`.
+`discountPercent`, `stock`, `minPurchase`, `weightGrams`, and
+`manualSoldCount` are plain `integer`: none is money, and all are exact in
+floating point anyway.
 
 ## Two independent axes: `status` and soft delete
 
-A product's lifecycle status (`draft` → `active`/`archived`, `active` ⇄ `inactive`, either → `archived`, `archived` → `draft` only — `domain/product-status.ts`'s `LEGAL_TRANSITIONS`) and whether the row is soft-deleted (`deleted_at`) are deliberately separate. Pulling a product from sale without losing it is `status = 'inactive'`; removing it from the tenant's own catalog view is `deleted_at`. There is no dedicated status-transition endpoint — `status` travels through the same `PATCH /api/v1/commerce/products/{id}` as every other field, and `application/product-directory.ts`'s `updateProduct` is what checks the transition is legal (before any write — see its comment on why the ordering is load-bearing) and rejects an illegal one with 400, naming the states actually reachable from the product's current one.
-
-Categories carry no status and no `parentId` on update (see the next section) — the closest structural analog in this base, `awcms_offices`, makes the same two choices, and for the same reason: a hierarchy position is set once, and re-parenting would need cycle detection this codebase does not build even for offices.
+Unchanged from Issue #4. A product's lifecycle status (`draft` →
+`active`/`archived`, `active` ⇄ `inactive`, either → `archived`, `archived` →
+`draft` only — `domain/product-status.ts`'s `LEGAL_TRANSITIONS`) and whether
+the row is soft-deleted (`deleted_at`) are deliberately separate. Pulling a
+product from sale without losing it is `status = 'inactive'`; removing it
+from the tenant's own catalog view is `deleted_at`. There is still no
+dedicated status-transition endpoint — `status` travels through the same
+`PATCH /api/v1/commerce/products/{id}` as every other field, checked by
+`updateProduct` before any write.
 
 ## Hierarchy, and what re-parenting would cost
 
-`parentId` is self-referencing and set only at creation (`CreateCategoryInput`); `UpdateCategoryInput` does not carry it at all. Moving a category to a new parent is therefore "delete and recreate", not an edit — the same limitation `office-directory.ts` accepts for `parentOfficeId`. A category whose `parentId` names another tenant's row, an absent id, or a soft-deleted one is rejected identically (400, `ParentCategoryNotFoundError`) — the three causes are indistinguishable on purpose, so the field cannot be used to probe for category ids elsewhere on the platform (GHSA-r7cx-c4jh-cvvw's shape). `products.categoryId` gets the same treatment (`ProductCategoryNotFoundError`), and unlike a category's parent it **is** re-assignable via update.
+Unchanged: `parentId` is self-referencing and set only at creation
+(`CreateCategoryInput`); `UpdateCategoryInput` does not carry it at all.
+Moving a category to a new parent is therefore "delete and recreate", the
+same limitation `office-directory.ts` accepts for `parentOfficeId`. A
+category whose `parentId` names another tenant's row, an absent id, or a
+soft-deleted one is rejected identically (400, `ParentCategoryNotFoundError`)
+— the three causes stay indistinguishable on purpose (GHSA-r7cx-c4jh-cvvw's
+shape). `products.categoryId` gets the same treatment and, unlike a
+category's parent, IS re-assignable via update.
 
-## No restore endpoint (yet)
+## Restore (Issue #23)
 
-Unlike `awcms_offices`, neither table has `deleted_by`/`restored_at`/`restored_by` columns, and there is no `[id]/restore.ts` route or `restore` permission. A soft-deleted category or product is retained — so that any row still referencing it (a child category, a product's `category_id`) keeps a valid FK — but this slice exposes no way to bring it back. Adding restore later is additive: two nullable columns, a permission, and an endpoint.
+Both tables now carry a `restored_at timestamptz` column (categories' was not
+in the issue's own column table, which only lists it for products — added
+here for symmetry: the categories restore endpoint needs the same "when" fact,
+and `awcms_offices` is this module's own precedent for both). Unlike offices,
+neither table gained `deleted_by`/`delete_reason`/`restored_by` — this
+module's tables carry no actor-stamp columns at all (Issue #4's original
+choice, unchanged); WHO restored a row is the audit log's own
+`actorTenantUserId`.
 
-WHO created/changed/deleted a row lives only in the audit log (`recordAuditEvent`'s `actorTenantUserId`), never in a column on these two tables — which is also what makes `module.ts`'s `subjectData` entries honestly `unreachableBySubject`: there is no column here that could join a row to a person even in principle.
+`POST /api/v1/commerce/{categories,products}/{id}/restore` follow
+`office-directory.ts`'s shape: 404 when the id is not currently soft-deleted
+(idempotent-safe — a repeat restore is a 404, never a duplicate), 409 when a
+live row has since taken the same slug (categories, products) or sku
+(products). `restore` is its OWN permission on both activity codes — unlike
+`offices/[id]/restore.ts`'s reuse of `.update`, so a future policy can grant
+one without the other; see `domain/commerce-permissions.ts`'s header.
 
-## Domain events: products only, three of them
+## Domain events: products only, three of them — unchanged
 
-`categories` publishes none — the same choice `tenant_admin` makes for `awcms_offices`, the structurally closest table in this base. `products` publishes three, all on the `commerce.product` aggregate:
-
-- `commerce.product.created` — a product was created (always `status: draft`).
-- `commerce.product.updated` — any field other than `status` changed.
-- `commerce.product.status_changed` — `status` transitioned; carries `previousStatus` and `status`, so a consumer that only cares whether a product is still sellable does not have to diff the row.
-
-A single `PATCH` that changes both ordinary fields and `status` publishes both events — they are independent facts. There is no `product.deleted` event: soft delete is an admin/audit concern (recorded in the audit log, like `categories`' own delete), not a catalog-visibility one — a consumer that cares whether a product is still sellable already has `status_changed`.
+Categories still publish none. Products still publish exactly the three
+Issue #4 defined (`created`/`updated`/`status_changed`) — Issue #23 adds no
+new event type, and image/variant CRUD does not publish events either (same
+"a soft delete/sub-resource change is an audit-log fact, not a catalog
+event" choice categories' own delete already made). A PATCH that touches
+both ordinary fields and `status` still fires both events independently.
 
 ## Uniqueness
 
-`(tenant_id, slug)` is unique per table among **live** rows (partial index, `WHERE deleted_at IS NULL` — a deleted row's slug is immediately free for reuse), and products additionally enforce `(tenant_id, sku)`. A collision on either surfaces as `409` with a field-specific code (`CATEGORY_SLUG_ALREADY_EXISTS`, `PRODUCT_SLUG_ALREADY_EXISTS`, `PRODUCT_SKU_ALREADY_EXISTS`) rather than an unhandled `500` — `product-directory.ts` distinguishes the two product constraints by the `PostgresError.constraint` name, since a single `23505` catch could not otherwise say which field to fix.
+`(tenant_id, slug)` stays unique per table among LIVE rows; products
+additionally enforce `(tenant_id, sku)`. **New in Issue #23**: a variant's
+`sku`, when set, must be unique against BOTH `awcms_commerce_products` AND
+`awcms_commerce_product_variants` in the tenant — a single-table partial
+unique index cannot express that cross-table rule, so
+`application/product-variant-directory.ts`'s `checkVariantSkuAvailable` checks
+both tables BEFORE every INSERT/UPDATE (load-bearing ordering, same rule as
+every other pre-write existence check in this module), and the DB partial
+unique index on `awcms_commerce_product_variants` itself remains the
+same-table race-safety net. A collision surfaces as `409
+VARIANT_SKU_ALREADY_EXISTS`.
 
-## Admin screen: one, read-only, products only
+## Images and variants (Issue #23)
 
-`/admin/commerce` (`src/pages/admin/commerce.astro`) lists products — SKU, name, type, price, stock, status — gated on `commerce.products.read`. No create/edit form: Issue #4's checklist is the API, and every module still needs at least one screen (`admin-media-page-contract.test.ts`'s "no active module is left without an admin screen"), so this is the minimum that is both honest and true. `categories.*` and every `products.*` action other than `read` stay on `scripts/admin-screen-coverage-ledger.ts`'s `NOT_YET_SCREENED` until a fuller CRUD screen lands.
+`awcms_commerce_product_images` (`media_object_id NOT NULL` — the row IS the
+reference) and `awcms_commerce_product_variants` are owned by a product and
+edited through it: `POST/PATCH/DELETE /api/v1/commerce/products/{id}/images`
+(`+ /{imageId}`) and `.../variants` (`+ /{variantId}`), all gated on
+`products.update` — sub-resources of editing a product, not a resource with
+its own audience.
+
+A product image's `mediaObjectId` IS checked for live/verified/same-tenant
+existence before insert — `MediaLibraryPort.isMediaReferenceSafe`, the same
+capability `blog_content` consumes, injected at the route (composition-root
+pattern: the route imports `mediaLibraryPortAdapter`, `application/` never
+imports `media_library` directly). `GET` responses (list/detail/by-slug)
+resolve every image's `mediaObjectId` (and a variant's own optional
+`imageMediaObjectId`) to a `publicUrl`/`imageUrl` in ONE batched
+`resolveMediaReferences` call per response — never N+1 — via
+`product-directory.ts`'s `attachProductRelations`.
+
+### What is still NOT checked
+
+- **`sizeChartMediaId` (product) and `imageMediaObjectId` (variant) are
+  validated as UUID-shaped only** — not checked for live/verified existence
+  the way an image row's `mediaObjectId` is. A stale or foreign id simply
+  resolves to no `publicUrl` at render time (RLS still keeps a cross-tenant
+  id from ever resolving to another tenant's media); a deliberate scope
+  reduction recorded for #31, not a security gap — every reference is
+  tenant-isolated regardless.
+- **Keyset pagination stays scoped to `sort=newest`.** `?sort=price_asc`/
+  `price_desc`/`name` return a single bounded page
+  (`PRODUCT_LIST_LIMIT` = 100, `nextCursor: null`) rather than a keyset walk
+  ordered by a second column — see `domain/product-sort.ts`'s header.
+- **`price_level_n <= price` is not enforced** — BjekMart lets a distributor
+  price exceed the retail price, so this module does not second-guess it.
+
+## Admin screens: two, full CRUD (Issue #23)
+
+`/admin/commerce` (`src/pages/admin/commerce.astro`) — filters
+(`categoryId`/`status`/`q`/`featured`/`recommended`), a create form covering
+every core field plus the common merchandising flags, per-row inline edit for
+the core fields, an "Advanced fields (JSON)" editor for the long tail of
+parity columns (tiered pricing, insurance, promo banner, size chart, service
+form, subscription/digital, variant attributes — a deliberate compression:
+thirty individual controls would dwarf the screen, and this keeps every field
+genuinely editable without it), an images picker sourced from
+`media_library`'s registry, a variants editor, status transition, soft
+delete, and restore.
+
+`/admin/commerce-categories` (new) — category CRUD: create with parent, inline
+edit (name/slug — `parentId` is create-only, see "Hierarchy" above), soft
+delete, restore.
+
+Both screens are off `scripts/admin-screen-coverage-ledger.ts`'s
+`NOT_YET_SCREENED` — every one of the ten declared permissions (five per
+activity code, including `restore`) is claimed by one of the two screens.
 
 ## Deliberately not here
 
-- **No filtering/search on the list endpoints.** `GET .../products` and `GET .../categories` take only `cursor`, matching `GET /api/v1/offices`'s shape — no `?categoryId=`/`?status=` yet.
-- **No `restore` action** — see above.
+- **No cart/checkout/payment/orders/shipping/flash-sale/affiliate-link
+  surface.** This module is still the catalog + its two rendering-dependency
+  tables, not the rest of the storefront.
+- **No full-text relevance ranking on `q`.** The trigram/`ILIKE` match
+  (`sql/159`) is substring search, not a ranked search index — `site_search`
+  is this base's cross-content search module, and `commerce` does not
+  integrate with it in this increment.
