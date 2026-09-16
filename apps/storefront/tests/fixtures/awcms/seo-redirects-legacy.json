@@ -1,0 +1,29 @@
+{
+  "redirects": [
+    {
+      "sourcePath": "/news/123-panduan-pemilu-2024.html",
+      "targetType": "relative_same_tenant",
+      "target": "/blog/bjekmart/panduan-pemilu-2024",
+      "origin": "legacy_blog"
+    },
+    {
+      "sourcePath": "/2024/01/15/panduan-pemilu-2024/",
+      "targetType": "relative_same_tenant",
+      "target": "/blog/bjekmart/panduan-pemilu-2024",
+      "origin": "legacy_blog"
+    },
+    {
+      "sourcePath": "/news/999-artikel-luar.html",
+      "targetType": "verified_external",
+      "target": "https://external.example.test/artikel",
+      "origin": "legacy_blog"
+    },
+    {
+      "sourcePath": "/news/1-lama.html",
+      "targetType": "relative_same_tenant",
+      "target": "/blog/bjekmart/lama",
+      "origin": "slug_change"
+    }
+  ],
+  "nextCursor": null
+}

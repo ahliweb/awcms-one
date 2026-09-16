@@ -1,0 +1,89 @@
+---
+/**
+ * `/flash-sale` — every active AND scheduled flash sale (the marketing
+ * contract's own `flash-sales/active` endpoint returns both, so the
+ * storefront can show "segera" for one that has not started yet — see
+ * `commerce-public-read-models.md`). Product cards show sale price vs.
+ * normal price and a quota progress bar; an ACTIVE sale also gets a live
+ * countdown to `endsAt`.
+ */
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getSiteIdentity } from "../lib/awcms/profil";
+import { getActiveFlashSales } from "../lib/awcms/pemasaran";
+import { formatPrice } from "../lib/harga";
+import Countdown from "../components/katalog/Countdown.astro";
+import "../styles/katalog.css";
+
+const identity = await getSiteIdentity();
+const flashSales = await getActiveFlashSales();
+
+const dateFormatter = new Intl.DateTimeFormat("id-ID", {
+  dateStyle: "long",
+  timeStyle: "short",
+  timeZone: "Asia/Pontianak"
+});
+---
+
+<BaseLayout
+  title="Flash Sale"
+  description={`Flash sale terbaru di ${identity.name}.`}
+  canonicalPath="/flash-sale"
+>
+  <div class="container">
+    <div class="page-heading">
+      <h1>Flash Sale</h1>
+      <p>{flashSales.length} flash sale tersedia.</p>
+    </div>
+
+    {flashSales.length === 0 ? (
+      <p class="empty-state">Belum ada flash sale saat ini.</p>
+    ) : (
+      flashSales.map((sale) => (
+        <section class="flash-sale-strip" aria-labelledby={`flash-sale-${sale.slug}`}>
+          <div class="flash-sale-strip-heading">
+            <h2 id={`flash-sale-${sale.slug}`}>{sale.name}</h2>
+            {sale.status === "active" ? (
+              <Countdown endsAt={sale.endsAt} />
+            ) : (
+              <span>Segera — mulai {dateFormatter.format(new Date(sale.startsAt))}</span>
+            )}
+          </div>
+
+          <ul class="grid-cards">
+            {sale.products.map((entry) => (
+              <li data-flash-sale-item={sale.status === "active" ? true : undefined}>
+                <a href={`/product/${entry.product.slug}`} class="card">
+                  {entry.product.image ? (
+                    <img
+                      src={entry.product.image.url}
+                      alt={entry.product.image.alt}
+                      loading="lazy"
+                      width="280"
+                      height="280"
+                      class="card-image"
+                    />
+                  ) : (
+                    <span class="card-image-placeholder" aria-hidden="true" />
+                  )}
+                  <h3 class="card-title">{entry.product.name}</h3>
+                  <p class="card-price">
+                    {formatPrice(entry.salePrice)}{" "}
+                    <span class="price-original">{formatPrice(entry.originalPrice)}</span>
+                  </p>
+                  <progress class="flash-sale-quota" value={entry.sold} max={entry.quota}>
+                    {entry.sold}/{entry.quota}
+                  </progress>
+                  <span>{entry.sold}/{entry.quota} terjual</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))
+    )}
+  </div>
+</BaseLayout>
+
+<script>
+  import "../scripts/flash-sale-countdown";
+</script>

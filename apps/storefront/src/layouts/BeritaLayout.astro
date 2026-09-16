@@ -1,0 +1,30 @@
+---
+/**
+ * Thin wrapper around `BaseLayout` (issue #24) for every news-surface page
+ * (issue #28) — its ONLY job is importing `src/styles/berita.css` once, so
+ * no individual `/berita`/`/rubrik`/`/daerah`/`/mitra`/`/video`/`/tag`/
+ * `/penulis`/`/arsip`/`/cari-berita` page has to. A NEW file rather than an
+ * edit to `BaseLayout.astro` itself — that file is outside this issue's
+ * file ownership (shared chrome, issue #24) — and CSS lives in its own file
+ * rather than a component-scoped `<style>` block because inline
+ * `<style>`/`<style is:global>` output is exactly what `style-src 'self'`
+ * with `inlineStylesheets: "never"` (`astro.config.mjs`) forbids; an
+ * imported `.css` file is compiled to an external, same-origin stylesheet
+ * the same way `src/styles/global.css` already is.
+ */
+import BaseLayout from "./BaseLayout.astro";
+import "../styles/berita.css";
+
+interface Props {
+  title: string;
+  description?: string;
+  canonicalPath: string;
+  schema?: Record<string, unknown>;
+}
+
+const { title, description, canonicalPath, schema } = Astro.props;
+---
+
+<BaseLayout title={title} description={description} canonicalPath={canonicalPath} schema={schema}>
+  <slot />
+</BaseLayout>

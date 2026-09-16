@@ -1,0 +1,147 @@
+{
+  "storeName": "BjekMart",
+  "tagline": "Belanja online hemat, mudah, dan terpercaya di BjekMart",
+  "logo": {
+    "url": "https://cms.example.test/media/logo.png",
+    "alt": "BjekMart",
+    "width": 512,
+    "height": 512
+  },
+  "favicon": {
+    "url": "https://cms.example.test/media/favicon.png"
+  },
+  "address": "Jl. Ahmad Wongso RT 19 Kelurahan Madurejo",
+  "phone": "0851-2868-8885",
+  "whatsapp": "6285128688885",
+  "email": "borneojekpangkalanbun@gmail.com",
+  "mapsEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!stub-embed-for-tests",
+  "faqs": [
+    {
+      "question": "Bagaimana cara memesan?",
+      "answer": "Pilih produk, tambahkan ke keranjang, lalu selesaikan pembayaran melalui QRIS atau transfer bank."
+    },
+    {
+      "question": "Apakah bisa COD?",
+      "answer": "Saat ini pembayaran hanya melalui QRIS dan transfer bank."
+    },
+    {
+      "question": "Berapa lama pengiriman?",
+      "answer": "Pengiriman dalam kota biasanya sampai dalam 1-2 jam."
+    }
+  ],
+  "social": {
+    "facebook": null,
+    "instagram": "https://instagram.com/bjekmart",
+    "tiktok": null,
+    "x": null,
+    "youtube": null,
+    "linkedin": null
+  },
+  "customerLevels": [
+    {
+      "level": 1,
+      "name": "Pelanggan Umum"
+    },
+    {
+      "level": 2,
+      "name": "Reseller"
+    },
+    {
+      "level": 3,
+      "name": "Agen"
+    },
+    {
+      "level": 4,
+      "name": "Distributor"
+    }
+  ],
+  "shipping": {
+    "alternativeServices": [
+      {
+        "id": "borneojek",
+        "name": "BORNEOJEK",
+        "cost": "15000.00"
+      }
+    ],
+    "selfPickup": true,
+    "courierEnabled": false,
+    "pinpointEnabled": false,
+    "freeShipping": {
+      "active": false,
+      "minOrder": "50000.00",
+      "maxDiscount": "20000.00"
+    },
+    "originCityName": "Kabupaten Kotawaringin Barat",
+    "originSubdistrictName": "Arut Selatan"
+  },
+  "payment": {
+    "manualBank": {
+      "active": false,
+      "banks": [
+        {
+          "bankName": "BCA"
+        }
+      ]
+    },
+    "manualQris": {
+      "active": true
+    },
+    "downPayment": {
+      "active": false,
+      "percent": 50
+    },
+    "tax": {
+      "active": false,
+      "percent": 11
+    },
+    "insurance": {
+      "active": false,
+      "ratePercent": "0.2",
+      "minFee": "500.00"
+    }
+  },
+  "promoSection": {
+    "active": true,
+    "items": [
+      {
+        "badge": "LazMall",
+        "title": "100% Original",
+        "subtitle": "Produk asli & garansi resmi",
+        "tags": [],
+        "buttonText": null,
+        "buttonLink": null
+      },
+      {
+        "badge": "Cicilan 0%",
+        "title": "Hingga 12 Bulan",
+        "subtitle": "Belanja sekarang, bayar nanti",
+        "tags": [
+          "bca",
+          "mandiri",
+          "cicil",
+          "kredivo"
+        ],
+        "buttonText": null,
+        "buttonLink": null
+      },
+      {
+        "badge": "Brand Pilihan",
+        "title": "Diskon s.d 70%",
+        "subtitle": "Produk favorit harga terbaik",
+        "tags": [],
+        "buttonText": "Cek Produk",
+        "buttonLink": "/produk"
+      }
+    ]
+  },
+  "meta": {
+    "home": {
+      "title": null,
+      "description": null
+    },
+    "contact": {
+      "title": null,
+      "description": null
+    }
+  }
+}

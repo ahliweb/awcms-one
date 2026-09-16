@@ -1,0 +1,58 @@
+[
+  {
+    "id": "a6000000-0000-4000-8000-000000000001",
+    "name": "Flash Sale Jumat",
+    "slug": "flash-sale-jumat",
+    "startsAt": "2026-09-18T01:00:00.000Z",
+    "endsAt": "2026-09-18T13:00:00.000Z",
+    "status": "active",
+    "products": [
+      {
+        "productId": "c2000000-0000-4000-8000-000000000001",
+        "variantId": null,
+        "salePrice": "8500.00",
+        "originalPrice": "12000.00",
+        "quota": 50,
+        "sold": 12,
+        "sortOrder": 1,
+        "product": {
+          "id": "c2000000-0000-4000-8000-000000000001",
+          "slug": "mie-gacoan",
+          "name": "Mie Gacoan",
+          "image": {
+            "url": "https://cms.example.test/media/mie-gacoan-1.webp",
+            "alt": "Semangkuk Mie Gacoan Original"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "a6000000-0000-4000-8000-000000000002",
+    "name": "Flash Sale Akhir Bulan",
+    "slug": "flash-sale-akhir-bulan",
+    "startsAt": "2026-09-30T01:00:00.000Z",
+    "endsAt": "2026-09-30T13:00:00.000Z",
+    "status": "scheduled",
+    "products": [
+      {
+        "productId": "c2000000-0000-4000-8000-000000000002",
+        "variantId": null,
+        "salePrice": "70000.00",
+        "originalPrice": "85000.00",
+        "quota": 30,
+        "sold": 0,
+        "sortOrder": 1,
+        "product": {
+          "id": "c2000000-0000-4000-8000-000000000002",
+          "slug": "kopi-arabika-kalteng-250g",
+          "name": "Kopi Arabika Kalteng 250g",
+          "image": {
+            "url": "https://cms.example.test/media/kopi-arabika.jpg",
+            "alt": "Kemasan Kopi Arabika Kalteng 250g"
+          }
+        }
+      }
+    ]
+  }
+]

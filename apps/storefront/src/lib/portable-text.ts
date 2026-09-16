@@ -1,18 +1,61 @@
 /**
- * Renders awcms's canonical CMS-page body — Portable Text — to HTML at
- * build time (issue #24). PATTERN adapted from the sibling
- * `media-lenterakalteng`/`apps/situs`'s `src/lib/portable-text.ts`, not
- * ported verbatim: that renderer also handles `gallery`/`videoNews` object
- * blocks by resolving them against a media-object map this app does not
- * have (see `src/lib/awcms/profil.ts`'s "Media ids, not URLs" note) — here
- * both degrade to a stated placeholder instead of an `<img>`/embed.
+ * Renders awcms's canonical CMS-page/post body — Portable Text — to HTML at
+ * build time (issue #24, extended by issue #28 for the news surface).
+ * PATTERN adapted from the sibling `media-lenterakalteng`/`apps/situs`'s
+ * `src/lib/portable-text.ts`, not ported verbatim.
  *
  * Vocabulary verified against `apps/cms/src/modules/blog-content/domain/
  * portable-text.ts` — the CLOSED vocabulary ADR-0100 defines: block styles
  * `normal`/`h1`-`h6`/`blockquote`, list items `bullet`/`number`, decorators
  * `strong`/`em`/`code` (no `underline` — an underlined span that is not a
  * link is a usability defect), one annotation type `link`, and two object
- * blocks `gallery`/`videoNews`.
+ * blocks `gallery`/`videoNews`. This same vocabulary is used for both
+ * `blog_content` pages (issue #24) and posts (issue #28) — verified
+ * against `apps/cms/src/modules/blog-content/domain/portable-text-
+ * validation.ts`, which enforces one closed schema for both content types.
+ *
+ * ## `videoNews` and captioned `gallery` items render real content now
+ * (issue #28) — everything else is UNCHANGED from issue #24
+ *
+ * `videoNews` (`provider`/`videoId`/`title`/`caption`/`durationSeconds`/
+ * `sourceLabel`, verified against `video-news-block-validation.ts`) renders
+ * a semantic video card with a real outbound link — NEVER an `<iframe>`
+ * embed, even though the issue's own text asks for a "lite-youtube-style
+ * facade": an actual embed needs `img-src`/`frame-src` widened past `'self'`
+ * (`server/penyaji.mjs`), and this issue's file ownership grants it only
+ * the legacy-redirect hook there, not a CSP change. This is the SAME
+ * conclusion the sibling `media-lenterakalteng` app reached independently,
+ * for its own reasons (ADR-0046 there refuses embeds outright) — recorded
+ * here as a deliberate, documented deviation from the issue's literal ask,
+ * the same way issue #24 recorded its own two.
+ *
+ * A `gallery` item's `caption` field is the ONLY field awcms's
+ * `GalleryBlockItem` schema carries besides the image reference itself
+ * (verified against `gallery-block-renderer.ts`) — there is no separate
+ * "credit" field to distinguish from it. This renderer treats a photo
+ * credit, when an editor writes one, as part of that single `caption`
+ * string (e.g. "Foto: Antara/Budi"), exactly as awcms itself stores it,
+ * rather than inventing a second field the schema does not have.
+ *
+ * "Internal tag links" (also named in issue #28's spec) needed NO renderer
+ * change at all: verified against `internal-tag-linking.ts`, awcms's own
+ * auto-linking is a RENDER-TIME HTML post-processing transform the CMS
+ * applies only to its own themed pages — never an authored Portable Text
+ * node or annotation. A genuine internal link (to this app's own
+ * `/tag/{slug}`, say) is already carried by the ordinary `link` annotation
+ * below, which already accepts a relative `/...` href; every article page
+ * additionally renders an explicit tag list from `termIds`
+ * (`src/lib/berita.ts`), which is more reliably useful to a reader than an
+ * incidental in-body auto-link would be.
+ *
+ * Neither change touches this file's PUBLIC signature: `renderPortableText`
+ * still takes exactly one argument, so `src/pages/halaman/[slug].astro`
+ * (issue #24) is untouched, and every one of issue #24's own assertions in
+ * `tests/portable-text.test.ts` — including the two that name `gallery`/
+ * `videoNews` — still passes unmodified: both tests' fixtures carry no
+ * `caption`/`provider`/`videoId` fields, which is exactly the "not enough
+ * to render" case that still falls back to the ORIGINAL placeholder text
+ * below.
  *
  * ## The rule that does not relax
  *
@@ -247,6 +290,119 @@ function renderPlaceholder(message: string): string {
   return `<p class="content-placeholder">${escapeHtml(message)}</p>`;
 }
 
+/** awcms `VIDEO_NEWS_PROVIDERS` — only `youtube` today (`video-news-block-validation.ts`). */
+const YOUTUBE_VIDEO_ID_PATTERN = /^[A-Za-z0-9_-]{11}$/;
+
+/** A `https://www.youtube.com/watch?v=...` URL, or `null` when `provider`/`videoId` do not validate — awcms itself normalises `videoId` to the bare 11-character form at write time, so a stored value that does not match is a row from before that validator, not a hand-crafted bad string. */
+function youtubeWatchUrl(provider: unknown, videoId: unknown): string | null {
+  if (provider !== "youtube") return null;
+  if (typeof videoId !== "string" || !YOUTUBE_VIDEO_ID_PATTERN.test(videoId)) return null;
+  return `https://www.youtube.com/watch?v=${videoId}`;
+}
+
+/** "1:23" / "12:04" / "1:02:04" — YouTube's own duration display convention. `0`, negative, and non-finite all mean "no duration to show", not "0:00". */
+function formatDurationSeconds(value: unknown): string | null {
+  if (typeof value !== "number" || !Number.isFinite(value) || value <= 0) return null;
+
+  const total = Math.floor(value);
+  const hours = Math.floor(total / 3600);
+  const minutes = Math.floor((total % 3600) / 60);
+  const seconds = total % 60;
+
+  const secondsPart = String(seconds).padStart(2, "0");
+
+  if (hours > 0) {
+    return `${hours}:${String(minutes).padStart(2, "0")}:${secondsPart}`;
+  }
+
+  return `${minutes}:${secondsPart}`;
+}
+
+/** Whether `document` contains at least one `videoNews` block this renderer can actually turn into a watch link — the same validity check `renderVideoNewsNode` uses, exported so `src/lib/berita.ts` can classify a post as a "video post" (`/video/[slug]`) without duplicating the provider/videoId check. */
+export function documentHasPlayableVideo(document: unknown): boolean {
+  if (!Array.isArray(document)) return false;
+
+  return document.some((node) => {
+    if (!node || typeof node !== "object") return false;
+    const record = node as PortableTextNode;
+    return record._type === "videoNews" && youtubeWatchUrl(record.provider, record.videoId) !== null;
+  });
+}
+
+/**
+ * `videoNews` → a real, semantic video card when `provider`/`videoId`
+ * validate, else the original issue-#24 placeholder — see file header for
+ * why this is a link, never an embed.
+ */
+function renderVideoNewsNode(node: PortableTextNode): string {
+  const watchUrl = youtubeWatchUrl(node.provider, node.videoId);
+  if (!watchUrl) {
+    return renderPlaceholder("Video — belum dapat ditampilkan di halaman ini.");
+  }
+
+  const title =
+    typeof node.title === "string" && node.title.trim().length > 0
+      ? node.title.trim()
+      : "Video berita";
+  const sourceLabel = typeof node.sourceLabel === "string" ? node.sourceLabel.trim() : "";
+  const duration = formatDurationSeconds(node.durationSeconds);
+  const caption = typeof node.caption === "string" ? node.caption.trim() : "";
+
+  const metaParts = [sourceLabel, duration].filter(
+    (part): part is string => typeof part === "string" && part.length > 0
+  );
+
+  return (
+    `<figure class="content-video">` +
+    `<a class="content-video-link" href="${escapeHtml(watchUrl)}" rel="noopener noreferrer" target="_blank">` +
+    `<span class="content-video-play" aria-hidden="true">&#9654;</span>` +
+    `<span class="content-video-title">${escapeHtml(title)}</span>` +
+    `</a>` +
+    (metaParts.length > 0
+      ? `<figcaption>${metaParts.map(escapeHtml).join(" &middot; ")}</figcaption>`
+      : "") +
+    (caption.length > 0 ? `<p class="content-video-caption">${escapeHtml(caption)}</p>` : "") +
+    `</figure>`
+  );
+}
+
+type GalleryItemLike = { caption?: unknown };
+
+/**
+ * `gallery` → a real `<figure>` per item, with its `caption` (awcms's only
+ * such field — see file header) rendered as a `<figcaption>`, WHEN at least
+ * one item in the block actually carries one. When none do, this renders
+ * the exact original issue-#24 placeholder text — never an `<img>` either
+ * way (no media-object client — see file header).
+ */
+function renderGalleryNode(node: PortableTextNode): string {
+  const items = Array.isArray(node.items) ? (node.items as GalleryItemLike[]) : [];
+
+  const hasAnyCaption = items.some(
+    (item) => typeof item.caption === "string" && item.caption.trim().length > 0
+  );
+
+  if (!hasAnyCaption) {
+    return renderPlaceholder(
+      `Galeri (${items.length} gambar) — belum dapat ditampilkan di halaman ini.`
+    );
+  }
+
+  const figures = items
+    .map((item) => {
+      const caption = typeof item.caption === "string" ? item.caption.trim() : "";
+      return (
+        `<figure class="content-figure">` +
+        `<span class="content-figure-placeholder" aria-hidden="true"></span>` +
+        (caption.length > 0 ? `<figcaption>${escapeHtml(caption)}</figcaption>` : "") +
+        `</figure>`
+      );
+    })
+    .join("");
+
+  return `<div class="content-gallery">${figures}</div>`;
+}
+
 /**
  * Render a Portable Text document to HTML. Pure — no I/O, no media
  * resolution — which is what lets the whole vocabulary be unit-tested with
@@ -281,17 +437,12 @@ export function renderPortableText(document: unknown): string {
     }
 
     if (node._type === "gallery") {
-      const items = Array.isArray(node.items) ? node.items.length : 0;
-      out.push(
-        renderPlaceholder(
-          `Galeri (${items} gambar) — belum dapat ditampilkan di halaman ini.`
-        )
-      );
+      out.push(renderGalleryNode(node));
       continue;
     }
 
     if (node._type === "videoNews") {
-      out.push(renderPlaceholder("Video — belum dapat ditampilkan di halaman ini."));
+      out.push(renderVideoNewsNode(node));
       continue;
     }
 

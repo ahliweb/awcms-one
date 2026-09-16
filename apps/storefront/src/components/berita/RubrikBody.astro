@@ -1,0 +1,68 @@
+---
+/**
+ * The shared body for `/rubrik/[slug]` (page 1) and
+ * `/rubrik/[slug]/halaman/[n]` (page N>=2, issue #28) — one component so
+ * the two page files only differ in HOW they resolve a page number, never
+ * in what a rubrik page actually renders.
+ *
+ * ## `rel=prev/next` and `noindex` beyond page 1 — not implemented, and why
+ *
+ * The issue text asks for both. `BaseLayout.astro` (issue #24) has no
+ * mechanism for a page to add an extra `<link>`/`<meta name="robots">` tag,
+ * and that file is outside this issue's file ownership — the same
+ * constraint recorded on `src/pages/berita/[slug].astro` for
+ * `article:published_time`. A future issue that adds a head-extension slot
+ * to `BaseLayout.astro` can wire both in without touching this file.
+ */
+import ArtikelCard from "./ArtikelCard.astro";
+import Pagination from "./Pagination.astro";
+import { ROUTES } from "../../config/routes";
+import type { RubrikArchive, PagedResult, PostSummary } from "../../lib/berita";
+
+interface Props {
+  archive: RubrikArchive;
+  paged: PagedResult<PostSummary>;
+  slug: string;
+}
+
+const { archive, paged, slug } = Astro.props;
+const hrefFor = (page: number): string => (page === 1 ? ROUTES.rubric(slug) : ROUTES.rubricPage(slug, page));
+---
+
+<div class="container">
+  <nav class="breadcrumb" aria-label="Remah roti">
+    <a href={ROUTES.home}>Beranda</a>
+    <span aria-hidden="true">/</span>
+    <a href={ROUTES.news}>Berita</a>
+    <span aria-hidden="true">/</span>
+    {archive.ancestors.map((ancestor) => (
+      <>
+        <a href={ROUTES.rubric(ancestor.slug)}>{ancestor.name}</a>
+        <span aria-hidden="true">/</span>
+      </>
+    ))}
+    <span aria-current="page">{archive.term.name}</span>
+  </nav>
+
+  <h1>{archive.term.name}</h1>
+
+  {archive.term.children.length > 0 && (
+    <nav aria-label="Sub-rubrik">
+      <ul class="tag-cloud">
+        {archive.term.children.map((child) => (
+          <li><a href={ROUTES.rubric(child.slug)} class="tag-chip" aria-current={child.slug === slug ? "page" : undefined}>{child.name}</a></li>
+        ))}
+      </ul>
+    </nav>
+  )}
+
+  {paged.items.length === 0 ? (
+    <p class="empty-state">Belum ada berita di rubrik ini.</p>
+  ) : (
+    <ul class="grid-cards">
+      {paged.items.map((post) => <ArtikelCard post={post} />)}
+    </ul>
+  )}
+
+  <Pagination paged={paged} hrefFor={hrefFor} />
+</div>

@@ -1,32 +1,33 @@
 ---
 /**
- * The contact page (issue #24) — email, phone, address, and a `mailto:`/
- * WhatsApp intent, all of which are just links, so there is nothing here
- * that needs a runtime (`output: "static"` stays honoured).
+ * The contact page. Issue #24 built the email/phone/address/WhatsApp cards
+ * from `GET /api/v1/site-profile/composed` — that endpoint has neither a
+ * maps-embed URL nor an FAQ list, so #24 deliberately left both out rather
+ * than invent a field awcms did not send.
  *
- * ## Two bullets this page does NOT implement, and why
- *
- * The issue also asks for "a maps iframe when set" and "a FAQ accordion
- * from `contact_faqs`". Neither field exists on the real endpoint this page
- * reads: `GET /api/v1/site-profile/composed`
- * (`apps/cms/src/pages/api/v1/site-profile/composed.ts`) and the
- * `awcms_site_profile` table behind it
- * (`site-profile-directory.ts`/`site-profile.openapi.yaml`) carry
- * `editorialAddress`/`contactEmail`/`contactPhone`/`whatsappNumber`/
- * `socialLinks` and nothing shaped like a maps URL or an FAQ list. Rather
- * than invent a field awcms does not send (the "do not invent shapes"
- * instruction this issue was implemented under), this page renders every
- * field the endpoint actually has and omits both — a deviation recorded
- * here, in the PR, and in the implementation report.
+ * Issue #27 adds both, from the SEPARATE `store-settings/public` read model
+ * (`src/lib/awcms/pemasaran.ts`, per the #26⇄#27 contract) rather than from
+ * `site-profile` — a different module owns this data. The maps iframe is
+ * SANDBOXED and rendered ONLY when `mapsEmbedUrl` is set AND verified to be
+ * a genuine Google Maps embed origin (`isGoogleMapsEmbedUrl`) — never an
+ * arbitrary URL a compromised/misconfigured admin session could point at an
+ * attacker-controlled page framed inside this site. The FAQ list is a plain
+ * `<details>`/`<summary>` accordion — the same native, JS-free disclosure
+ * pattern `Header.astro`'s mobile nav already uses.
  */
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { getSiteIdentity } from "../lib/awcms/profil";
+import { getStoreSettings, isGoogleMapsEmbedUrl } from "../lib/awcms/pemasaran";
+import "../styles/katalog.css";
 
 const identity = await getSiteIdentity();
+const storeSettings = await getStoreSettings();
 
 const whatsappHref = identity.whatsappNumber
   ? `https://wa.me/${identity.whatsappNumber.replace(/[^\d]/g, "")}`
   : null;
+
+const mapsEmbedUrl = isGoogleMapsEmbedUrl(storeSettings.mapsEmbedUrl) ? storeSettings.mapsEmbedUrl : null;
 ---
 
 <BaseLayout
@@ -71,5 +72,28 @@ const whatsappHref = identity.whatsappNumber
         </a>
       )}
     </div>
+
+    {mapsEmbedUrl && (
+      <iframe
+        class="maps-embed"
+        src={mapsEmbedUrl}
+        title={`Peta lokasi ${identity.name}`}
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        sandbox="allow-scripts allow-same-origin allow-popups"
+      />
+    )}
+
+    {storeSettings.faqs.length > 0 && (
+      <div class="faq-list">
+        <h2>Pertanyaan yang Sering Diajukan</h2>
+        {storeSettings.faqs.map((faq) => (
+          <details class="faq-item">
+            <summary>{faq.question}</summary>
+            <p>{faq.answer}</p>
+          </details>
+        ))}
+      </div>
+    )}
   </div>
 </BaseLayout>

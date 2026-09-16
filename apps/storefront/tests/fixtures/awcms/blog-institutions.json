@@ -1,0 +1,20 @@
+{
+  "institutions": [
+    {
+      "id": "i-pemkab-kobar",
+      "branch": "executive",
+      "name": "Pemkab Kotawaringin Barat",
+      "slug": "pemkab-kotawaringin-barat",
+      "regionCode": "62.02",
+      "description": "Pemerintah Kabupaten Kotawaringin Barat."
+    },
+    {
+      "id": "i-dprd-kalteng",
+      "branch": "legislative",
+      "name": "DPRD Kalimantan Tengah",
+      "slug": "dprd-kalimantan-tengah",
+      "regionCode": "62",
+      "description": "Dewan Perwakilan Rakyat Daerah Provinsi Kalimantan Tengah."
+    }
+  ]
+}

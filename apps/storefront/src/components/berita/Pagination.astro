@@ -1,0 +1,34 @@
+---
+/**
+ * Page-N navigation for a rubrik archive (issue #28) — page 1 lives at the
+ * bare archive path, page N>=2 at `.../halaman/{n}`
+ * (`src/config/routes.ts`'s `ROUTES.rubricPage`), never duplicated at both.
+ * `hrefFor` is a plain function rather than this component knowing the URL
+ * shape, so it works for `/rubrik/[slug]` today without needing a second
+ * copy for any future paginated archive.
+ */
+import type { PagedResult } from "../../lib/berita";
+
+interface Props {
+  paged: Pick<PagedResult<unknown>, "currentPage" | "totalPages">;
+  hrefFor: (page: number) => string;
+}
+
+const { paged, hrefFor } = Astro.props;
+---
+
+{paged.totalPages > 1 && (
+  <nav class="pagination" aria-label="Navigasi halaman">
+    {paged.currentPage > 1 ? (
+      <a rel="prev" href={hrefFor(paged.currentPage - 1)}>&larr; Sebelumnya</a>
+    ) : (
+      <span aria-hidden="true"></span>
+    )}
+    <span class="pagination-status">Halaman {paged.currentPage} dari {paged.totalPages}</span>
+    {paged.currentPage < paged.totalPages ? (
+      <a rel="next" href={hrefFor(paged.currentPage + 1)}>Berikutnya &rarr;</a>
+    ) : (
+      <span aria-hidden="true"></span>
+    )}
+  </nav>
+)}

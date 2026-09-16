@@ -1,0 +1,175 @@
+import { describe, expect, test } from "bun:test";
+import { existsSync, readFileSync, rmSync } from "node:fs";
+import { join } from "node:path";
+
+/**
+ * The news-surface build smoke test (issue #28) — a NEW file, per this
+ * issue's own instruction to extend issue #24's build-smoke pattern rather
+ * than edit `tests/build-smoke.test.ts` itself. Same structure as that
+ * file: start the stub CMS (now answering the six additional fixtures this
+ * issue adds — see `scripts/stub-awcms.mjs`), run a REAL `astro build`
+ * against it, and assert every page family this issue adds actually lands
+ * in `dist/client/`, plus the same CSP invariant (no inline `<script>`/
+ * `<style>` anywhere).
+ *
+ * Never a false pass: if `bun` cannot be spawned at all in this
+ * environment, every assertion below is SKIPPED with a clear message
+ * rather than silently reporting green for a build that never ran.
+ */
+
+const STOREFRONT_ROOT = new URL("../", import.meta.url).pathname;
+const TIMEOUT_MS = 60_000;
+
+function canSpawnBun(): boolean {
+  try {
+    const proc = Bun.spawnSync(["bun", "--version"]);
+    return proc.exitCode === 0;
+  } catch {
+    return false;
+  }
+}
+
+async function waitForStub(url: string, deadline: number): Promise<void> {
+  while (Date.now() < deadline) {
+    try {
+      const response = await fetch(url);
+      if (response.status === 401 || response.ok) return;
+    } catch {
+      // Not listening yet.
+    }
+    await new Promise((resolve) => setTimeout(resolve, 100));
+  }
+  throw new Error(`stub-awcms did not answer ${url} in time.`);
+}
+
+describe("build smoke: news surface (issue #28) against the stub CMS", () => {
+  if (!canSpawnBun()) {
+    test.skip("SKIPPED — this environment cannot spawn `bun` (Bun.spawnSync failed)", () => {});
+    return;
+  }
+
+  test(
+    "produces every news page this issue adds, with no inline <script>/<style> anywhere",
+    async () => {
+      const stubPort = 45000 + Math.floor(Math.random() * 4000);
+      const distClient = join(STOREFRONT_ROOT, "dist", "client");
+      rmSync(join(STOREFRONT_ROOT, "dist"), { recursive: true, force: true });
+
+      const stub = Bun.spawn(["bun", "scripts/stub-awcms.mjs"], {
+        cwd: STOREFRONT_ROOT,
+        env: { ...process.env, STUB_PORT: String(stubPort) },
+        stdout: "pipe",
+        stderr: "pipe"
+      });
+
+      try {
+        await waitForStub(`http://localhost:${stubPort}/api/v1/blog/posts`, Date.now() + 5000);
+
+        const build = Bun.spawnSync(["bun", "--bun", "astro", "build"], {
+          cwd: STOREFRONT_ROOT,
+          env: {
+            ...process.env,
+            AWCMS_API_URL: `http://localhost:${stubPort}`,
+            AWCMS_API_TOKEN: "stub-token",
+            SITE_URL: "http://localhost:4321"
+          },
+          stdout: "pipe",
+          stderr: "pipe"
+        });
+
+        if (build.exitCode !== 0) {
+          throw new Error(
+            `astro build exited ${build.exitCode}\n--- stdout ---\n${build.stdout.toString()}\n--- stderr ---\n${build.stderr.toString()}`
+          );
+        }
+
+        // Fixture data (tests/fixtures/awcms/blog-posts.json): "Bupati Kobar
+        // Resmikan Jembatan Baru" (pidana rubrik) / "DPRD Kalteng Gelar Rapat
+        // Paripurna" (politik rubrik) / "Detik-Detik Kebakaran di Pasar"
+        // (the video post) / "Panduan Pemilu 2024" (the legacy-redirect
+        // target). Rubrik slugs from tests/fixtures/awcms/blog-terms.json.
+        const expectedFiles = [
+          join("berita.html"),
+          join("berita", "bupati-kobar-resmikan-jembatan-baru.html"),
+          join("berita", "feed.xml"),
+          join("rubrik", "peristiwa.html"),
+          join("rubrik", "hukum.html"),
+          join("rubrik", "pidana.html"),
+          join("rubrik", "politik.html"),
+          join("rubrik", "peristiwa", "feed.xml"),
+          join("daerah", "kotawaringin-barat.html"),
+          join("daerah", "kalimantan-tengah.html"),
+          join("mitra", "pemkab-kotawaringin-barat.html"),
+          join("mitra", "dprd-kalimantan-tengah.html"),
+          join("video.html"),
+          join("video", "detik-detik-kebakaran-pasar.html"),
+          join("tag", "ekonomi.html"),
+          join("tag", "pilkada.html"),
+          join("cari-berita.html"),
+          join("index", "berita.json"),
+          join("index", "pengalihan-legacy.json")
+        ];
+
+        for (const file of expectedFiles) {
+          expect(existsSync(join(distClient, file))).toBe(true);
+        }
+
+        // The video post must NOT also get a plain /berita/{slug} page —
+        // one canonical URL per post (src/lib/berita.ts's getPosts()
+        // docblock).
+        expect(existsSync(join(distClient, "berita", "detik-detik-kebakaran-pasar.html"))).toBe(false);
+
+        // The legacy-redirect artifact actually carries the two fixture
+        // mappings (tests/fixtures/awcms/seo-redirects-legacy.json).
+        const legacyMap = JSON.parse(
+          readFileSync(join(distClient, "index", "pengalihan-legacy.json"), "utf8")
+        );
+        expect(legacyMap["/news/123-panduan-pemilu-2024.html"]).toBe("/berita/panduan-pemilu-2024");
+        expect(legacyMap["/2024/01/15/panduan-pemilu-2024"]).toBe("/berita/panduan-pemilu-2024");
+
+        const htmlFiles = [
+          "berita.html",
+          join("berita", "bupati-kobar-resmikan-jembatan-baru.html"),
+          join("video", "detik-detik-kebakaran-pasar.html"),
+          join("rubrik", "peristiwa.html"),
+          "cari-berita.html"
+        ];
+
+        for (const file of htmlFiles) {
+          const html = readFileSync(join(distClient, file), "utf8");
+
+          for (const match of html.matchAll(/<script\b([^>]*)>/gi)) {
+            const attrs = match[1] ?? "";
+            const isExternal = /\ssrc=/.test(attrs);
+            const isJsonLd = /type=["']application\/ld\+json["']/.test(attrs);
+            expect(isExternal || isJsonLd).toBe(true);
+          }
+
+          expect(html).not.toMatch(/<style[\s>]/i);
+          expect(html).not.toMatch(/\sstyle="/i);
+          // No media resolution — every image-bearing block degrades to a
+          // placeholder (src/lib/portable-text.ts) — never a real <img>.
+          expect(html).not.toMatch(/<img[\s>]/i);
+        }
+
+        // The video article renders a real watch link, not a placeholder —
+        // proving the well-formed-videoNews branch actually built.
+        const videoHtml = readFileSync(
+          join(distClient, "video", "detik-detik-kebakaran-pasar.html"),
+          "utf8"
+        );
+        expect(videoHtml).toContain("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
+
+        // The rubrik index renders the 3-level hierarchy: Peristiwa's own
+        // page must include a post filed under its grandchild rubrik
+        // (Pidana) — "the parent index includes children's posts".
+        const peristiwaHtml = readFileSync(join(distClient, "rubrik", "peristiwa.html"), "utf8");
+        expect(peristiwaHtml).toContain("Bupati Kobar Resmikan Jembatan Baru");
+      } finally {
+        stub.kill();
+        await stub.exited;
+      }
+    },
+    TIMEOUT_MS
+  );
+});

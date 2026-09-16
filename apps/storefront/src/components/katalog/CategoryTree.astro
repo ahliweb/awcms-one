@@ -1,0 +1,36 @@
+---
+/**
+ * The category sidebar tree — recursive, per `src/lib/catalog.ts`'s
+ * `buildCategoryTree`. Every link ALSO carries `data-filter-category`, so
+ * `src/scripts/produk-listing.ts` can intercept a click on `/produk` and
+ * filter client-side instead of navigating; with no JS (or on any other
+ * page, e.g. `/kategori/[slug]`'s own "browse other categories" sidebar,
+ * where that script is not loaded) the link is a completely ordinary
+ * navigation to that category's own page — the working, no-JS baseline
+ * this markup never depends on a script to provide.
+ */
+import type { CategoryNode } from "../../lib/catalog";
+import { ROUTES } from "../../config/routes";
+
+interface Props {
+  nodes: CategoryNode[];
+  activeSlug?: string | null;
+}
+
+const { nodes, activeSlug = null } = Astro.props;
+---
+
+<ul class="category-tree">
+  {nodes.map((node) => (
+    <li>
+      <a
+        href={ROUTES.category(node.slug)}
+        data-filter-category={node.slug}
+        aria-current={node.slug === activeSlug ? "true" : "false"}
+      >
+        {node.name} <span class="category-count">({node.productCount})</span>
+      </a>
+      {node.children.length > 0 && <Astro.self nodes={node.children} activeSlug={activeSlug} />}
+    </li>
+  ))}
+</ul>

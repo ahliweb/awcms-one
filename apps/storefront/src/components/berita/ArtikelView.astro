@@ -1,0 +1,123 @@
+---
+/**
+ * The shared article body for `/berita/[slug]` and `/video/[slug]` (issue
+ * #28) — one component so a video post's page (which is also just a post,
+ * rendered through the exact same Portable Text renderer) never drifts from
+ * an ordinary article's markup. `parentLabel`/`parentPath` is the only
+ * difference the two callers need to supply (the breadcrumb's hub —
+ * "Berita" vs "Video").
+ */
+import ArtikelCard from "./ArtikelCard.astro";
+import TagCloud from "./TagCloud.astro";
+import IklanSlot from "./IklanSlot.astro";
+import { ROUTES } from "../../config/routes";
+import { absoluteUrl } from "../../config/site";
+import { renderPortableText } from "../../lib/portable-text";
+import {
+  formatTanggalWaktuWIB,
+  toDatetimeAttr,
+  pernahDiperbaruiSetelahTerbit
+} from "../../lib/tanggal";
+import { AD_SLOTS } from "../../lib/awcms/iklan";
+import { estimasiWaktuBacaMenit, type PostDetail, type PostSummary } from "../../lib/berita";
+
+interface Props {
+  post: PostDetail;
+  related: PostSummary[];
+  daerahLainnyaPosts: PostSummary[];
+  canonicalPath: string;
+  parentLabel: string;
+  parentPath: string;
+}
+
+const { post, related, daerahLainnyaPosts, canonicalPath, parentLabel, parentPath } = Astro.props;
+
+const bodyHtml = renderPortableText(post.bodyPortableText);
+const readingMinutes = estimasiWaktuBacaMenit(bodyHtml);
+const wasUpdated = pernahDiperbaruiSetelahTerbit(post.publishedAt, post.updatedAt);
+const absoluteShareUrl = absoluteUrl(canonicalPath);
+const encodedTitle = encodeURIComponent(post.title);
+
+const breadcrumbItems = [
+  { name: "Beranda", path: ROUTES.home },
+  { name: parentLabel, path: parentPath },
+  ...(post.rubric ? [{ name: post.rubric.name, path: ROUTES.rubric(post.rubric.slug) }] : [])
+];
+---
+
+<div class="container article-header">
+  <nav class="breadcrumb" aria-label="Remah roti">
+    {breadcrumbItems.map((item) => (
+      <>
+        <a href={item.path}>{item.name}</a>
+        <span aria-hidden="true">/</span>
+      </>
+    ))}
+    <span aria-current="page">{post.title}</span>
+  </nav>
+
+  {post.rubric && <p class="card-eyebrow">{post.rubric.name}</p>}
+  <h1>{post.title}</h1>
+
+  <p class="article-byline">
+    {post.authorByline && <strong>{post.authorByline}</strong>}
+    {post.region && <span>{post.region.name}</span>}
+    <time datetime={toDatetimeAttr(post.publishedAt)}>{formatTanggalWaktuWIB(post.publishedAt)}</time>
+    {wasUpdated && (
+      <span>Diperbarui <time datetime={toDatetimeAttr(post.updatedAt)}>{formatTanggalWaktuWIB(post.updatedAt)}</time></span>
+    )}
+    <span>{readingMinutes} menit membaca</span>
+  </p>
+</div>
+
+<IklanSlot placement={AD_SLOTS.articleTop} />
+
+<div class="container article-body" set:html={bodyHtml} />
+
+<div class="container">
+  <IklanSlot placement={AD_SLOTS.articleMiddle} />
+
+  {post.tags.length > 0 && (
+    <div class="article-tags">
+      <p class="article-tags-heading">Tag</p>
+      <TagCloud tags={post.tags} ariaLabel="Tag artikel ini" />
+    </div>
+  )}
+
+  <div class="article-share">
+    <a
+      href={`https://wa.me/?text=${encodedTitle}%20${encodeURIComponent(absoluteShareUrl)}`}
+      rel="noopener noreferrer"
+      target="_blank"
+    >
+      Bagikan ke WhatsApp
+    </a>
+    <a
+      href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(absoluteShareUrl)}`}
+      rel="noopener noreferrer"
+      target="_blank"
+    >
+      Bagikan ke Facebook
+    </a>
+  </div>
+
+  {related.length > 0 && (
+    <div class="article-related">
+      <h2>Berita {post.rubric?.name} Lainnya</h2>
+      <ul class="grid-cards">
+        {related.map((item) => <ArtikelCard post={item} />)}
+      </ul>
+    </div>
+  )}
+
+  {daerahLainnyaPosts.length > 0 && post.region && (
+    <div class="article-related">
+      <h2>Berita {post.region.name} Lainnya</h2>
+      <ul class="grid-cards">
+        {daerahLainnyaPosts.map((item) => <ArtikelCard post={item} />)}
+      </ul>
+    </div>
+  )}
+
+  <IklanSlot placement={AD_SLOTS.articleBottom} />
+</div>

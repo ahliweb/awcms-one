@@ -1,0 +1,26 @@
+[
+  {
+    "id": "97000000-0000-4000-8000-000000000001",
+    "code": "HEMAT10",
+    "name": "Hemat 10%",
+    "type": "percentage",
+    "value": "10.00",
+    "minOrder": "50000.00",
+    "maxDiscount": "20000.00",
+    "startsAt": "2026-09-01T00:00:00.000Z",
+    "endsAt": "2026-10-01T00:00:00.000Z",
+    "description": null
+  },
+  {
+    "id": "97000000-0000-4000-8000-000000000002",
+    "code": "ONGKIRGRATIS",
+    "name": "Gratis Ongkir",
+    "type": "free_shipping",
+    "value": "0.00",
+    "minOrder": "30000.00",
+    "maxDiscount": null,
+    "startsAt": "2026-09-01T00:00:00.000Z",
+    "endsAt": "2026-10-01T00:00:00.000Z",
+    "description": "Berlaku untuk pengiriman dalam kota."
+  }
+]

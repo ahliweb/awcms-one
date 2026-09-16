@@ -1,0 +1,21 @@
+---
+/** A tag list rendered as chips — `/berita`'s sidebar and `/berita/[slug]`'s own tag list (issue #28). */
+import { ROUTES } from "../../config/routes";
+import type { TermSummary } from "../../lib/berita";
+
+interface Props {
+  tags: TermSummary[];
+  /** `/berita/[slug]` labels this "Tag:"; the sidebar cloud has no heading text of its own — the caller renders one, if any, outside this component. */
+  ariaLabel?: string;
+}
+
+const { tags, ariaLabel = "Daftar tag" } = Astro.props;
+---
+
+{tags.length > 0 && (
+  <ul class="tag-cloud" aria-label={ariaLabel}>
+    {tags.map((tag) => (
+      <li><a href={ROUTES.tag(tag.slug)} class="tag-chip">{tag.name}</a></li>
+    ))}
+  </ul>
+)}

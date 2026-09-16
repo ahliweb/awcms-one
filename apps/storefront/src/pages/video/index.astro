@@ -1,0 +1,25 @@
+---
+/** `/video` — video news index (issue #28): every post whose body carries a renderable `videoNews` block (`src/lib/berita.ts`'s `getVideo()`). */
+import BeritaLayout from "../../layouts/BeritaLayout.astro";
+import ArtikelCard from "../../components/berita/ArtikelCard.astro";
+import { ROUTES } from "../../config/routes";
+import { getVideo } from "../../lib/berita";
+
+const posts = await getVideo();
+---
+
+<BeritaLayout title="Video" description="Video berita terbaru." canonicalPath={ROUTES.video}>
+  <div class="container">
+    <div class="page-heading">
+      <h1>Video</h1>
+    </div>
+
+    {posts.length === 0 ? (
+      <p class="empty-state">Belum ada video berita.</p>
+    ) : (
+      <ul class="grid-cards">
+        {posts.map((post) => <ArtikelCard post={post} />)}
+      </ul>
+    )}
+  </div>
+</BeritaLayout>
