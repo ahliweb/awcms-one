@@ -4846,3 +4846,296 @@ msgstr "Katalog produk tenant: filter, buat/ubah lengkap, gambar, varian, status
 
 msgid "The tenant's category tree: create, edit, soft delete and restore."
 msgstr "Pohon kategori tenant: buat, ubah, hapus lunak, dan pemulihan."
+
+msgid "Flash sales"
+msgstr "Flash sale"
+
+msgid "Time-boxed promotions: name, window, and the products/variants on sale."
+msgstr "Promosi berbatas waktu: nama, jendela waktu, dan produk/varian yang didiskon."
+
+msgid "You do not have permission to view flash sales."
+msgstr "Anda tidak memiliki izin untuk melihat flash sale."
+
+msgid "Flash sales could not be loaded right now. Please try again later."
+msgstr "Flash sale tidak dapat dimuat saat ini. Silakan coba lagi nanti."
+
+msgid "Create a flash sale"
+msgstr "Buat flash sale"
+
+msgid "Draft"
+msgstr "Draf"
+
+msgid "Scheduled"
+msgstr "Terjadwal"
+
+msgid "Create flash sale"
+msgstr "Buat flash sale"
+
+msgid "No flash sales yet"
+msgstr "Belum ada flash sale"
+
+msgid "Flash sales created for this tenant will appear here."
+msgstr "Flash sale yang dibuat untuk tenant ini akan muncul di sini."
+
+msgid "{count} flash sale"
+msgid_plural "{count} flash sales"
+msgstr[0] "{count} flash sale"
+
+msgid "Products in a flash sale"
+msgstr "Produk dalam flash sale"
+
+msgid "Flash sale"
+msgstr "Flash sale"
+
+msgid "Product"
+msgstr "Produk"
+
+msgid "Sale price"
+msgstr "Harga diskon"
+
+msgid "Quota"
+msgstr "Kuota"
+
+msgid "Add product to sale"
+msgstr "Tambahkan produk ke flash sale"
+
+msgid "Save the page after adding a line to see it listed; lines are edited by removing and re-adding."
+msgstr "Simpan halaman setelah menambahkan baris untuk melihatnya terdaftar; baris diedit dengan menghapus dan menambahkan ulang."
+
+msgid "Vouchers"
+msgstr "Voucher"
+
+msgid "Discount codes: percentage, nominal, or free shipping."
+msgstr "Kode diskon: persentase, nominal, atau gratis ongkos kirim."
+
+msgid "You do not have permission to view vouchers."
+msgstr "Anda tidak memiliki izin untuk melihat voucher."
+
+msgid "Vouchers could not be loaded right now. Please try again later."
+msgstr "Voucher tidak dapat dimuat saat ini. Silakan coba lagi nanti."
+
+msgid "Create a voucher"
+msgstr "Buat voucher"
+
+msgid "Percentage"
+msgstr "Persentase"
+
+msgid "Nominal"
+msgstr "Nominal"
+
+msgid "Free shipping"
+msgstr "Gratis ongkos kirim"
+
+msgid "Minimum order"
+msgstr "Minimum belanja"
+
+msgid "Max discount (percentage only)"
+msgstr "Diskon maksimum (khusus persentase)"
+
+msgid "Quota (0 = unlimited)"
+msgstr "Kuota (0 = tanpa batas)"
+
+msgid "Show on the public voucher strip"
+msgstr "Tampilkan di strip voucher publik"
+
+msgid "Create voucher"
+msgstr "Buat voucher"
+
+msgid "No vouchers yet"
+msgstr "Belum ada voucher"
+
+msgid "Vouchers created for this tenant will appear here."
+msgstr "Voucher yang dibuat untuk tenant ini akan muncul di sini."
+
+msgid "{count} voucher"
+msgid_plural "{count} vouchers"
+msgstr[0] "{count} voucher"
+
+msgid "Quota / Used"
+msgstr "Kuota / Terpakai"
+
+msgid "Unlimited"
+msgstr "Tanpa batas"
+
+msgid "No"
+msgstr "Tidak"
+
+msgid "Inactive"
+msgstr "Nonaktif"
+
+msgid "Home sliders"
+msgstr "Slider beranda"
+
+msgid "The home-page banner deck: image, link, and display order."
+msgstr "Rangkaian banner halaman beranda: gambar, tautan, dan urutan tampilan."
+
+msgid "You do not have permission to view sliders."
+msgstr "Anda tidak memiliki izin untuk melihat slider."
+
+msgid "Sliders could not be loaded right now. Please try again later."
+msgstr "Slider tidak dapat dimuat saat ini. Silakan coba lagi nanti."
+
+msgid "Create a slider"
+msgstr "Buat slider"
+
+msgid "Subtitle"
+msgstr "Subjudul"
+
+msgid "Media object id"
+msgstr "ID objek media"
+
+msgid "Link URL"
+msgstr "URL tautan"
+
+msgid "Button text"
+msgstr "Teks tombol"
+
+msgid "Create slider"
+msgstr "Buat slider"
+
+msgid "No sliders yet"
+msgstr "Belum ada slider"
+
+msgid "Sliders created for this tenant will appear here."
+msgstr "Slider yang dibuat untuk tenant ini akan muncul di sini."
+
+msgid "{count} slider"
+msgid_plural "{count} sliders"
+msgstr[0] "{count} slider"
+
+msgid "Testimonials"
+msgstr "Testimoni"
+
+msgid "Customer quotes shown on the storefront's testimonial wall."
+msgstr "Kutipan pelanggan yang ditampilkan di dinding testimoni storefront."
+
+msgid "You do not have permission to view testimonials."
+msgstr "Anda tidak memiliki izin untuk melihat testimoni."
+
+msgid "Testimonials could not be loaded right now. Please try again later."
+msgstr "Testimoni tidak dapat dimuat saat ini. Silakan coba lagi nanti."
+
+msgid "Create a testimonial"
+msgstr "Buat testimoni"
+
+msgid "Author name"
+msgstr "Nama penulis"
+
+msgid "Author role"
+msgstr "Peran penulis"
+
+msgid "Quote"
+msgstr "Kutipan"
+
+msgid "Rating (1-5)"
+msgstr "Rating (1-5)"
+
+msgid "Avatar media object id (optional)"
+msgstr "ID objek media avatar (opsional)"
+
+msgid "Create testimonial"
+msgstr "Buat testimoni"
+
+msgid "No testimonials yet"
+msgstr "Belum ada testimoni"
+
+msgid "Testimonials created for this tenant will appear here."
+msgstr "Testimoni yang dibuat untuk tenant ini akan muncul di sini."
+
+msgid "{count} testimonial"
+msgid_plural "{count} testimonials"
+msgstr[0] "{count} testimoni"
+
+msgid "Rating"
+msgstr "Rating"
+
+msgid "Promo popup"
+msgstr "Popup promo"
+
+msgid "At most one active popup per tenant, shown on the storefront by its own frequency rule."
+msgstr "Maksimum satu popup aktif per tenant, ditampilkan di storefront sesuai aturan frekuensinya sendiri."
+
+msgid "You do not have permission to view popups."
+msgstr "Anda tidak memiliki izin untuk melihat popup."
+
+msgid "Popups could not be loaded right now. Please try again later."
+msgstr "Popup tidak dapat dimuat saat ini. Silakan coba lagi nanti."
+
+msgid "Create a popup"
+msgstr "Buat popup"
+
+msgid "Media object id (optional)"
+msgstr "ID objek media (opsional)"
+
+msgid "Frequency"
+msgstr "Frekuensi"
+
+msgid "Once per session"
+msgstr "Sekali per sesi"
+
+msgid "Once per day"
+msgstr "Sekali per hari"
+
+msgid "Always"
+msgstr "Selalu"
+
+msgid "Active (only one may be active at a time)"
+msgstr "Aktif (hanya satu yang boleh aktif dalam satu waktu)"
+
+msgid "Create popup"
+msgstr "Buat popup"
+
+msgid "No popups yet"
+msgstr "Belum ada popup"
+
+msgid "Popups created for this tenant will appear here."
+msgstr "Popup yang dibuat untuk tenant ini akan muncul di sini."
+
+msgid "{count} popup"
+msgid_plural "{count} popups"
+msgstr[0] "{count} popup"
+
+msgid "Store settings"
+msgstr "Pengaturan toko"
+
+msgid "Store identity, shipping, payment and promo configuration for this tenant."
+msgstr "Identitas toko, pengiriman, pembayaran, dan konfigurasi promo untuk tenant ini."
+
+msgid "You do not have permission to view store settings."
+msgstr "Anda tidak memiliki izin untuk melihat pengaturan toko."
+
+msgid "Store settings could not be loaded right now. Please try again later."
+msgstr "Pengaturan toko tidak dapat dimuat saat ini. Silakan coba lagi nanti."
+
+msgid "Store identity"
+msgstr "Identitas toko"
+
+msgid "Store name"
+msgstr "Nama toko"
+
+msgid "Logo media object id"
+msgstr "ID objek media logo"
+
+msgid "Favicon media object id"
+msgstr "ID objek media favicon"
+
+msgid "Phone"
+msgstr "Telepon"
+
+msgid "WhatsApp"
+msgstr "WhatsApp"
+
+msgid "Maps embed URL"
+msgstr "URL sematan peta"
+
+msgid "Advanced settings (JSON)"
+msgstr "Pengaturan lanjutan (JSON)"
+
+msgid "FAQs, social links, customer levels, shipping, payment (including bank accounts — never shown publicly), promo section, and per-page meta titles."
+msgstr "FAQ, tautan sosial, level pelanggan, pengiriman, pembayaran (termasuk rekening bank — tidak pernah ditampilkan publik), bagian promo, dan judul meta per halaman."
+
+msgid "Advanced settings JSON"
+msgstr "JSON pengaturan lanjutan"
+
+msgid "Save store settings"
+msgstr "Simpan pengaturan toko"

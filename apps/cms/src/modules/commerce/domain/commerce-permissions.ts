@@ -78,3 +78,63 @@ export type CommerceProductPermissionKey =
   keyof typeof COMMERCE_PRODUCT_PERMISSIONS;
 export type CommerceProductPermissionValue =
   (typeof COMMERCE_PRODUCT_PERMISSIONS)[CommerceProductPermissionKey];
+
+/**
+ * Marketing-surface activity codes (Issue #26). Five resources, four CRUD
+ * actions each (no `restore` — the issue's own API list never names one, and
+ * seeding an unenforced permission is exactly the defect class this file's
+ * header already warns against). `settings` is the one exception: it is a
+ * SINGLETON (`awcms_commerce_store_settings`, one row per tenant, upserted
+ * rather than created/deleted), so it gets only `read`/`update` — the same
+ * two-action shape `site_profile`'s `profile.{read,update}` uses for the
+ * same reason.
+ */
+export const COMMERCE_FLASH_SALES_ACTIVITY_CODE = "flash_sales";
+export const COMMERCE_VOUCHERS_ACTIVITY_CODE = "vouchers";
+export const COMMERCE_SLIDERS_ACTIVITY_CODE = "sliders";
+export const COMMERCE_TESTIMONIALS_ACTIVITY_CODE = "testimonials";
+export const COMMERCE_POPUPS_ACTIVITY_CODE = "popups";
+export const COMMERCE_SETTINGS_ACTIVITY_CODE = "settings";
+
+export const COMMERCE_FLASH_SALE_PERMISSIONS = {
+  create: "commerce.flash_sales.create",
+  /** Also gates the storefront's read model (`GET .../flash-sales/active`) and the `.../{id}/products` sub-resource routes — same "one verb per sub-resource edit" reasoning as `COMMERCE_PRODUCT_PERMISSIONS.update`. */
+  read: "commerce.flash_sales.read",
+  update: "commerce.flash_sales.update",
+  delete: "commerce.flash_sales.delete"
+} as const;
+
+export const COMMERCE_VOUCHER_PERMISSIONS = {
+  create: "commerce.vouchers.create",
+  /** Also gates `GET .../vouchers/public` and `POST .../vouchers/validate` — a voucher lookup is a read, not a mutation. */
+  read: "commerce.vouchers.read",
+  update: "commerce.vouchers.update",
+  delete: "commerce.vouchers.delete"
+} as const;
+
+export const COMMERCE_SLIDER_PERMISSIONS = {
+  create: "commerce.sliders.create",
+  read: "commerce.sliders.read",
+  update: "commerce.sliders.update",
+  delete: "commerce.sliders.delete"
+} as const;
+
+export const COMMERCE_TESTIMONIAL_PERMISSIONS = {
+  create: "commerce.testimonials.create",
+  read: "commerce.testimonials.read",
+  update: "commerce.testimonials.update",
+  delete: "commerce.testimonials.delete"
+} as const;
+
+export const COMMERCE_POPUP_PERMISSIONS = {
+  create: "commerce.popups.create",
+  read: "commerce.popups.read",
+  update: "commerce.popups.update",
+  delete: "commerce.popups.delete"
+} as const;
+
+/** Singleton settings row — see this section's header for why there is no `create`/`delete`. */
+export const COMMERCE_SETTINGS_PERMISSIONS = {
+  read: "commerce.settings.read",
+  update: "commerce.settings.update"
+} as const;

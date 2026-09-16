@@ -1,23 +1,27 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:82613371f61c91f1fbc6fb38d9f71bc41673d09a6d5149d21d5e9f2b1ae12bb8 -->
+<!-- i18n-source-hash: sha256:3a6c11280e2c6d262032a240a8ff05226e645bfd4649f97ca626a96c01408e0e -->
 
 # `commerce`
 
 Kategori produk (hierarkis, self-referencing) dan produk (dengan gambar dan
 varian), tenant-scoped, di-port dari skema MySQL legacy
-`commerce_bj_mart.{categories,products}`. Issue #4 (bagian dari epic #1)
-mengirimkan inti katalog; Issue #23 (bagian dari epic #21) membawanya ke
-paritas model produk penuh dengan skema legacy.
+`commerce_bj_mart.{categories,products}` — ditambah, sejak Issue #26,
+**permukaan pemasaran** yang menjalankan beranda dan promosi BjekMart: flash
+sale, voucher, slider, testimoni, popup promo, dan satu dokumen pengaturan
+toko per tenant. Issue #4 (bagian dari epic #1) mengirimkan inti katalog;
+Issue #23 (bagian dari epic #21) membawanya ke paritas model produk penuh
+dengan skema legacy; Issue #26 (epic yang sama) menambahkan tabel pemasaran.
 
-| Aspek      | Nilai                                                                                                                                                                   |
-| ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Key / type | `commerce` · `domain`, `isCore: false`                                                                                                                                  |
-| Tabel      | `awcms_commerce_categories`, `awcms_commerce_products` (`sql/153`, diperluas `sql/156`), `awcms_commerce_product_images`, `awcms_commerce_product_variants` (`sql/157`) |
-| Permission | `categories.{read,create,update,delete,restore}`, `products.{read,create,update,delete,restore}` (`sql/154`, `sql/158`)                                                 |
-| API        | `/api/v1/commerce/{categories,products}` (`openapi/modules/commerce.openapi.yaml`)                                                                                      |
-| Event      | `commerce.product.{created,updated,status_changed}` — tidak berubah oleh Issue #23, lihat di bawah                                                                      |
-| Depends on | `tenant_admin`, `identity_access`, `domain_event_runtime`, `media_library` (ditambahkan Issue #23 — gambar produk di-resolve lewat `MediaLibraryPort`)                  |
+| Aspek      | Nilai                                                                                                                                                                                                                                                                                                                                                                                                             |
+| ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Key / type | `commerce` · `domain`, `isCore: false`                                                                                                                                                                                                                                                                                                                                                                            |
+| Tabel      | `awcms_commerce_categories`, `awcms_commerce_products` (`sql/153`, diperluas `sql/156`), `awcms_commerce_product_images`, `awcms_commerce_product_variants` (`sql/157`); `awcms_commerce_flash_sales`, `awcms_commerce_flash_sale_products`, `awcms_commerce_vouchers`, `awcms_commerce_sliders`, `awcms_commerce_testimonials`, `awcms_commerce_popups` (`sql/161`), `awcms_commerce_store_settings` (`sql/162`) |
+| Permission | `categories.{read,create,update,delete,restore}`, `products.{read,create,update,delete,restore}` (`sql/154`, `sql/158`); `{flash_sales,vouchers,sliders,testimonials,popups}.{read,create,update,delete}`, `settings.{read,update}` (`sql/163`) — 32 total                                                                                                                                                        |
+| API        | `/api/v1/commerce/{categories,products,flash-sales,vouchers,sliders,testimonials,popups,store-settings}` (`openapi/modules/commerce.openapi.yaml`)                                                                                                                                                                                                                                                                |
+| Event      | `commerce.product.{created,updated,status_changed}`; `commerce.flash_sale.{started,ended}` (Issue #26, dipancarkan job tick)                                                                                                                                                                                                                                                                                      |
+| Depends on | `tenant_admin`, `identity_access`, `domain_event_runtime`, `media_library` (gambar produk, slider, avatar testimoni, gambar popup, dan logo/favicon toko semuanya di-resolve lewat `MediaLibraryPort`)                                                                                                                                                                                                            |
+| Job        | `commerce:flash-sales:tick` (`scripts/commerce-flash-sales-tick.ts`, tiap 5 menit — menyimpan status turunan tiap sale dan memancarkan dua event flash sale)                                                                                                                                                                                                                                                      |
 
 ## Apa yang ditambahkan Issue #23, dan apa yang masih peningkatan berikutnya
 
@@ -193,7 +197,57 @@ lewat `attachProductRelations` milik `product-directory.ts`.
   distributor melebihi harga eceran, jadi modul ini tidak
   mempertanyakannya.
 
-## Layar admin: dua, CRUD penuh (Issue #23)
+## Permukaan pemasaran (Issue #26)
+
+Enam keluarga resource, satu per layar admin, semuanya mengikuti konvensi
+katalog (RLS `FORCE`, soft delete lewat `deleted_at`, uang sebagai string
+`numeric(14,2)`, daftar pemilik ber-keyset, event audit pada tiap mutasi)
+dan masing-masing punya **read model publik** — endpoint yang dipakai
+`apps/storefront` (di `ahliweb/awcms-one`) untuk membangun berandanya,
+dijaga permission `read` keluarganya dan hanya mengembalikan apa yang boleh
+dilihat pembeli:
+
+| Keluarga        | Rute pemilik                                                        | Read model publik                       | Yang disembunyikan read model                                                                        |
+| --------------- | ------------------------------------------------------------------- | --------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| Flash sale      | `/flash-sales`, `/{id}`, `/{id}/products`, `/{id}/products/{rowId}` | `GET /flash-sales/active`               | sale draft dan yang sudah berakhir; `status` DITURUNKAN dari jendela (`domain/flash-sale-status.ts`) |
+| Voucher         | `/vouchers`, `/{id}`, `POST /vouchers/validate`                     | `GET /vouchers/public`                  | kode non-publik, yang nonaktif, kuota habis — kode privat tetap BERLAKU bila diketik                 |
+| Slider          | `/sliders`, `/{id}`                                                 | `GET /sliders/active`                   | baris nonaktif, baris di luar jendelanya; id media menjadi URL ter-resolve                           |
+| Testimoni       | `/testimonials`, `/{id}`                                            | `GET /testimonials/active`              | baris nonaktif                                                                                       |
+| Popup           | `/popups`, `/{id}`                                                  | `GET /popups/active` (satu atau `null`) | paling banyak SATU aktif per tenant — partial unique index (`sql/161`), bukan konvensi               |
+| Pengaturan toko | `GET`/`PUT`/`DELETE /store-settings`                                | `GET /store-settings/public`            | nomor dan pemilik rekening bank, id media QRIS, aturan diskon level pelanggan                        |
+
+**Aritmetika voucher eksak** (`domain/voucher-arithmetic.ts`): sen bulat,
+pembulatan setengah ke atas, persentase dibatasi `maxDiscount`,
+`free_shipping` berupa flag bukan nominal; `POST /vouchers/validate` adalah
+BACA — penebusan milik order yang memakai kodenya (Issue #29). **Status flash
+sale diturunkan**, tidak pernah dipercaya dari kolom: editor menyetel
+`draft`/`scheduled` dan `commerce:flash-sales:tick` menyimpan apa yang
+disiratkan `now()`, memancarkan `commerce.flash_sale.{started,ended}` pada
+transisi dan tidak pernah dua kali.
+
+**Pengaturan toko adalah satu dokumen `jsonb` berversi per tenant**
+(`domain/store-settings-validation.ts`, kunci tak dikenal ditolak, `PUT`
+adalah penggantian penuh). `DELETE` berarti "reset ke bawaan": ia mencap
+`deleted_at` alih-alih menghapus singleton (header `sql/162`), setiap pembaca
+lalu menjawab dengan bawaan, dan `PUT` berikutnya menghapus capnya — itu pula
+yang membuat baris ini menjawab pertanyaan retensi dengan kolom sungguhan,
+bukan pengecualian. Proyeksi publik (`toPublicRecord` di
+`application/store-settings-directory.ts`) adalah batas keamanan rekening
+bank: hanya ada pada `GET` pemilik, dan event audit perubahan menyebut
+BAGIAN yang berubah, tidak pernah nilainya.
+
+**Uang di wire selalu dua desimal.** `Bun.SQL` mendekode `0.00` tersimpan
+sebagai `"0"` lewat query berparameter dan `"0.00"` lewat query sederhana;
+setiap `toRecord` di modul ini kini melewatkan uang lewat `normalizeMoney`
+milik `domain/price-calculation.ts` agar kontrak tidak bergantung pada
+protokol mana yang kebetulan melayani barisnya.
+
+**Yang keluar dari DTO produk publik di issue ini:** `downloadLink` — aset
+berbayar produk digital, kini di `ProductAdminRecord` di samping `costPrice`
+dan hanya diserahkan lewat jalur order (Issue #29). **Yang masuk:**
+`sizeChartImageUrl`, di-resolve lewat batch media yang sama dengan `images[]`.
+
+## Layar admin: delapan, CRUD penuh (Issue #23 dan #26)
 
 `/admin/commerce` (`src/pages/admin/commerce.astro`) — filter
 (`categoryId`/`status`/`q`/`featured`/`recommended`), form buat yang
@@ -215,11 +269,24 @@ Kedua layar sudah keluar dari `NOT_YET_SCREENED` milik
 permission yang dideklarasikan (lima per activity code, termasuk
 `restore`) diklaim salah satu dari dua layar.
 
+Issue #26 menambahkan `/admin/commerce-flash-sales`, `-vouchers`, `-sliders`,
+`-testimonials`, `-popup`, dan `-settings`, masing-masing daftar + form buat +
+edit/hapus per baris terhadap rute pemiliknya (layar pengaturan adalah satu
+form dengan aksi "reset ke bawaan"). Kedelapan layar lepas dari
+`NOT_YET_SCREENED` — setiap satu dari 32 permission yang dideklarasikan
+diklaim salah satunya, dan
+`tests/admin-commerce-marketing-page-contract.test.ts` menuntut enam layar
+baru itu pada tiga sifat yang sama dengan layar #23.
+
 ## Dengan sengaja tidak ada di sini
 
-- **Tidak ada permukaan cart/checkout/payment/order/shipping/flash-sale/
-  affiliate-link.** Modul ini masih katalog + dua tabel dependensi
-  render-nya, bukan sisa storefront.
+- **Tidak ada permukaan cart/checkout/payment/order/shipping/affiliate-link**
+  — Issue #29 menambahkan pelanggan, order, dan endpoint storefront anonim.
+- **Tidak ada restore untuk tabel pemasaran.** Hanya soft delete; voucher
+  atau slider yang dihapus dibuat ulang, bukan dikembalikan — jejak audit
+  menyimpan catatannya.
+- **Tidak ada penebusan voucher.** `validate` membaca; order yang memakai
+  kode menebusnya (Issue #29), dan `used_count` bergerak di sana.
 - **Tidak ada ranking relevansi full-text pada `q`.** Pencocokan
   trigram/`ILIKE` (`sql/159`) adalah pencarian substring, bukan indeks
   pencarian ber-ranking — `site_search` adalah modul pencarian

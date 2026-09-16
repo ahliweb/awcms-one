@@ -1,0 +1,402 @@
+---
+/** Commerce voucher CRUD screen (Issue #26). `status` is a plain on/off switch — see `domain/voucher-validation.ts`'s header for why it is never in the public `reason` enum. */
+import AdminLayout from "../../layouts/AdminLayout.astro";
+import "../../styles/admin-screens.css";
+import { loadAdminScreen } from "../../lib/auth/admin-screen";
+import { logAdminPageError } from "../../lib/logging/error-log";
+import { getTranslatorFor } from "../../lib/i18n";
+import { listVouchers } from "../../modules/commerce/application/voucher-directory";
+
+const ssr = Astro.locals.ssrContext!;
+const { t, tn } = getTranslatorFor(Astro.locals.locale);
+
+const screen = await loadAdminScreen({
+  ssr,
+  workClass: "interactive",
+  authorize: {
+    moduleKey: "commerce",
+    activityCode: "vouchers",
+    action: "read"
+  },
+  load: async ({ tx, can }) => {
+    const page = await listVouchers(tx, ssr.tenantId, null);
+    const canCreate = await can({
+      moduleKey: "commerce",
+      activityCode: "vouchers",
+      action: "create"
+    });
+    const canUpdate = await can({
+      moduleKey: "commerce",
+      activityCode: "vouchers",
+      action: "update"
+    });
+    const canDelete = await can({
+      moduleKey: "commerce",
+      activityCode: "vouchers",
+      action: "delete"
+    });
+
+    return { vouchers: page.items, canCreate, canUpdate, canDelete };
+  },
+  onError: (error) => {
+    logAdminPageError(
+      "admin/commerce-vouchers.astro: failed to list vouchers",
+      error,
+      {
+        correlationId: Astro.locals.correlationId
+      }
+    );
+  }
+});
+
+const canRead = screen.state !== "denied";
+const loadError = screen.state === "error";
+const vouchers = screen.state === "allowed" ? screen.data.vouchers : [];
+const canCreate = screen.state === "allowed" && screen.data.canCreate;
+const canUpdate = screen.state === "allowed" && screen.data.canUpdate;
+const canDelete = screen.state === "allowed" && screen.data.canDelete;
+const showActions = canUpdate || canDelete;
+---
+
+<AdminLayout
+  title={t("Vouchers")}
+  description={t("Discount codes: percentage, nominal, or free shipping.")}
+>
+  {
+    !canRead && (
+      <p class="state-notice fade-in-up" id="vouchers-denied">
+        {t("You do not have permission to view vouchers.")}
+      </p>
+    )
+  }
+  {
+    canRead && loadError && (
+      <p class="state-notice fade-in-up" id="vouchers-error">
+        {t("Vouchers could not be loaded right now. Please try again later.")}
+      </p>
+    )
+  }
+
+  {
+    canCreate && (
+      <form id="voucher-create-form" class="admin-create-form fade-in-up">
+        <p class="form-legend">{t("Create a voucher")}</p>
+        <p
+          id="voucher-create-error"
+          class="admin-create-error"
+          role="alert"
+          hidden
+        />
+
+        <label for="voucher-code">{t("Code")}</label>
+        <input
+          id="voucher-code"
+          name="code"
+          type="text"
+          required
+          autocomplete="off"
+          placeholder="HEMAT10"
+        />
+
+        <label for="voucher-name">{t("Name")}</label>
+        <input
+          id="voucher-name"
+          name="name"
+          type="text"
+          required
+          autocomplete="off"
+        />
+
+        <label for="voucher-type">{t("Type")}</label>
+        <select id="voucher-type" name="type">
+          <option value="percentage">{t("Percentage")}</option>
+          <option value="nominal">{t("Nominal")}</option>
+          <option value="free_shipping">{t("Free shipping")}</option>
+        </select>
+
+        <label for="voucher-value">{t("Value")}</label>
+        <input
+          id="voucher-value"
+          name="value"
+          type="text"
+          inputmode="decimal"
+          placeholder="10.00"
+          value="0.00"
+        />
+
+        <label for="voucher-minOrder">{t("Minimum order")}</label>
+        <input
+          id="voucher-minOrder"
+          name="minOrder"
+          type="text"
+          inputmode="decimal"
+          placeholder="0.00"
+        />
+
+        <label for="voucher-maxDiscount">
+          {t("Max discount (percentage only)")}
+        </label>
+        <input
+          id="voucher-maxDiscount"
+          name="maxDiscount"
+          type="text"
+          inputmode="decimal"
+          placeholder="20000.00"
+        />
+
+        <label for="voucher-quota">{t("Quota (0 = unlimited)")}</label>
+        <input
+          id="voucher-quota"
+          name="quota"
+          type="number"
+          min="0"
+          step="1"
+          value="0"
+        />
+
+        <label for="voucher-startsAt">{t("Starts at")}</label>
+        <input
+          id="voucher-startsAt"
+          name="startsAt"
+          type="datetime-local"
+          required
+        />
+
+        <label for="voucher-endsAt">{t("Ends at")}</label>
+        <input
+          id="voucher-endsAt"
+          name="endsAt"
+          type="datetime-local"
+          required
+        />
+
+        <label>
+          <input id="voucher-isPublic" name="isPublic" type="checkbox" />{" "}
+          {t("Show on the public voucher strip")}
+        </label>
+
+        <button type="submit" id="voucher-create-submit">
+          {t("Create voucher")}
+        </button>
+      </form>
+    )
+  }
+
+  {
+    canRead && !loadError && (
+      <p
+        id="voucher-action-error"
+        class="admin-create-error"
+        role="alert"
+        hidden
+      />
+    )
+  }
+
+  {
+    canRead && !loadError && (
+      <div class="data-table-scroll fade-in-up">
+        <table
+          class="data-table data-table--stack"
+          id="commerce-vouchers-table"
+        >
+          <caption>
+            {tn("{count} voucher", "{count} vouchers", vouchers.length, {
+              count: vouchers.length
+            })}
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">{t("Code")}</th>
+              <th scope="col">{t("Type")}</th>
+              <th scope="col">{t("Value")}</th>
+              <th scope="col">{t("Quota / Used")}</th>
+              <th scope="col">{t("Public")}</th>
+              <th scope="col">{t("Status")}</th>
+              {showActions && <th scope="col">{t("Actions")}</th>}
+            </tr>
+          </thead>
+          <tbody>
+            {vouchers.length === 0 ? (
+              <tr>
+                <td class="data-table-empty" colspan={showActions ? 7 : 6}>
+                  <div class="empty-state">
+                    <span class="empty-state-icon" aria-hidden="true">
+                      ◇
+                    </span>
+                    <span class="empty-state-title">
+                      {t("No vouchers yet")}
+                    </span>
+                    <span class="empty-state-text">
+                      {t("Vouchers created for this tenant will appear here.")}
+                    </span>
+                  </div>
+                </td>
+              </tr>
+            ) : (
+              vouchers.map((voucher) => (
+                <tr data-voucher-row={voucher.id}>
+                  <td data-label="Code">
+                    <span class="cell-code">{voucher.code}</span>
+                  </td>
+                  <td data-label="Type">{voucher.type}</td>
+                  <td
+                    data-label="Value"
+                    class={canUpdate ? "stacked-block" : ""}
+                  >
+                    {canUpdate ? (
+                      <input
+                        class="voucher-value-input"
+                        type="text"
+                        inputmode="decimal"
+                        value={voucher.value}
+                        data-voucher-value={voucher.id}
+                      />
+                    ) : (
+                      voucher.value
+                    )}
+                  </td>
+                  <td data-label="Quota / Used">
+                    {voucher.quota === 0
+                      ? t("Unlimited")
+                      : `${voucher.usedCount} / ${voucher.quota}`}
+                  </td>
+                  <td data-label="Public">
+                    {voucher.isPublic ? t("Yes") : t("No")}
+                  </td>
+                  <td
+                    data-label="Status"
+                    class={canUpdate ? "stacked-block" : ""}
+                  >
+                    {canUpdate ? (
+                      <select
+                        class="voucher-status-input"
+                        data-voucher-status={voucher.id}
+                      >
+                        <option
+                          value="active"
+                          selected={voucher.status === "active"}
+                        >
+                          {t("Active")}
+                        </option>
+                        <option
+                          value="inactive"
+                          selected={voucher.status === "inactive"}
+                        >
+                          {t("Inactive")}
+                        </option>
+                      </select>
+                    ) : (
+                      voucher.status
+                    )}
+                  </td>
+                  {showActions && (
+                    <td data-label="Actions" class="stacked-block">
+                      <div class="row-actions">
+                        {canUpdate && (
+                          <button
+                            type="button"
+                            class="module-toggle voucher-save-btn"
+                            data-voucher-id={voucher.id}
+                          >
+                            {t("Save")}
+                          </button>
+                        )}
+                        {canDelete && (
+                          <button
+                            type="button"
+                            class="module-toggle voucher-delete-btn"
+                            data-voucher-id={voucher.id}
+                            data-voucher-code={voucher.code}
+                          >
+                            {t("Delete")}
+                          </button>
+                        )}
+                      </div>
+                    </td>
+                  )}
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
+    )
+  }
+</AdminLayout>
+
+<script>
+  import {
+    checkboxChecked,
+    field,
+    integerValue,
+    localDateTimeToInstant,
+    messageBox,
+    mutateAndReload,
+    onAction,
+    onSubmit,
+    sendJson
+  } from "../../lib/ui/admin-form-client";
+
+  const createError = messageBox("voucher-create-error");
+
+  onSubmit("voucher-create-form", async ({ data, submit }) => {
+    await mutateAndReload(
+      submit,
+      createError,
+      () =>
+        sendJson("POST", "/api/v1/commerce/vouchers", {
+          code: field(data, "code"),
+          name: field(data, "name"),
+          type: field(data, "type"),
+          value: field(data, "value") || "0.00",
+          minOrder: field(data, "minOrder") || "0.00",
+          maxDiscount: field(data, "maxDiscount") || null,
+          quota: integerValue("voucher-quota", 0),
+          isPublic: checkboxChecked("voucher-isPublic"),
+          startsAt: localDateTimeToInstant("voucher-startsAt"),
+          endsAt: localDateTimeToInstant("voucher-endsAt")
+        }),
+      "Could not create the voucher. Check the code is unique and the window is valid."
+    );
+  });
+
+  const actionError = messageBox("voucher-action-error");
+
+  onAction(".voucher-save-btn", async (button) => {
+    const id = button.dataset.voucherId;
+    if (!id) return;
+
+    const value =
+      document
+        .querySelector<HTMLInputElement>(`[data-voucher-value="${id}"]`)
+        ?.value.trim() ?? "";
+    const status =
+      document.querySelector<HTMLSelectElement>(`[data-voucher-status="${id}"]`)
+        ?.value ?? "active";
+
+    await mutateAndReload(
+      button,
+      actionError,
+      () =>
+        sendJson("PATCH", `/api/v1/commerce/vouchers/${id}`, { value, status }),
+      "Could not save the voucher. Please try again.",
+      "Saving…"
+    );
+  });
+
+  onAction(".voucher-delete-btn", async (button) => {
+    const id = button.dataset.voucherId;
+    if (!id) return;
+    const code = button.dataset.voucherCode ?? "this voucher";
+    if (!window.confirm(`Delete ${code}?`)) return;
+
+    await mutateAndReload(
+      button,
+      actionError,
+      () => sendJson("DELETE", `/api/v1/commerce/vouchers/${id}`),
+      "Could not delete the voucher. Please try again.",
+      "Deleting…"
+    );
+  });
+</script>

@@ -1,5 +1,7 @@
 # Source fragment for the "commerce" module (Issue 4, epic #1; brought to
-# full BjekMart product-model parity by Issue 23, epic #21).
+# full BjekMart product-model parity by Issue 23 and joined by the marketing
+# surface — flash sales, vouchers, sliders, testimonials, popup, store
+# settings — in Issue 26, both epic #21).
 #
 # Owns every path whose operations carry this module's OpenAPI tag, plus
 # every components.schemas entry referenced ONLY by this module's operations.
@@ -13,9 +15,10 @@
 # `CommerceCategory`/`CommerceProduct` below are the DTO contract, shared
 # VERBATIM with `apps/storefront` (issue #5, in `awcms-one`) — do not drift
 # their field lists from `commerce/application/category-directory.ts` /
-# `product-directory.ts`'s `toRecord` functions. `costPrice` is intentionally
-# ABSENT from `CommerceProduct` — it never leaves the admin-only fetch path
-# (`sql/156`'s header).
+# `product-directory.ts`'s `toRecord` functions. `costPrice` AND `downloadLink` are intentionally
+# ABSENT from `CommerceProduct` — neither leaves the admin-only fetch path
+# (`sql/156`'s header; a digital product's download link is what a customer
+# pays for, delivered through the order path of Issue 29, never the catalog).
 paths:
   /api/v1/commerce/categories:
     get:
@@ -901,6 +904,1428 @@ paths:
           $ref: "#/components/responses/Forbidden"
         "404":
           $ref: "#/components/responses/NotFound"
+  /api/v1/commerce/flash-sales:
+    get:
+      operationId: listCommerceFlashSales
+      tags:
+        - Commerce
+      summary: List flash sales (Issue 26). Keyset-paginated, newest first. Gated on flash_sales.read.
+      parameters:
+        - name: cursor
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Opaque keyset cursor from the previous page's nextCursor.
+      responses:
+        "200":
+          description: One page of flash sales.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/CommerceFlashSale"
+                      nextCursor:
+                        type: string
+                        nullable: true
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+    post:
+      operationId: createCommerceFlashSale
+      tags:
+        - Commerce
+      summary: Create a flash sale (Issue 26). Gated on flash_sales.create.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CommerceFlashSaleCreateInput"
+      responses:
+        "201":
+          description: Flash sale created.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceFlashSale"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: slug is already taken by a live flash sale in this tenant (FLASH_SALE_SLUG_ALREADY_EXISTS).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/flash-sales/{id}:
+    get:
+      operationId: getCommerceFlashSale
+      tags:
+        - Commerce
+      summary: Fetch one flash sale (Issue 26). Gated on flash_sales.read.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: The flash sale.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceFlashSale"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+    patch:
+      operationId: updateCommerceFlashSale
+      tags:
+        - Commerce
+      summary: Update a flash sale (Issue 26). Gated on flash_sales.update.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CommerceFlashSaleUpdateInput"
+      responses:
+        "200":
+          description: Flash sale updated.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceFlashSale"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: slug is already taken by a live flash sale in this tenant (FLASH_SALE_SLUG_ALREADY_EXISTS).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+    delete:
+      operationId: deleteCommerceFlashSale
+      tags:
+        - Commerce
+      summary: Soft-delete a flash sale (Issue 26). Gated on flash_sales.delete.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Flash sale soft-deleted.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        format: uuid
+                      status:
+                        type: string
+                        enum:
+                          - deleted
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+  /api/v1/commerce/flash-sales/active:
+    get:
+      operationId: listActiveCommerceFlashSales
+      tags:
+        - Commerce
+      summary: Public read model (Issue 26) — every non-draft flash sale whose window has not ended, with its products and sale prices. Gated on flash_sales.read (the storefront's read-only build token).
+      description: status is DERIVED from now() against startsAt/endsAt — scheduled or active; ended sales are never returned. Each product entry carries the product's slug, name and primary image (images[0].publicUrl), so a storefront can render a card without a second fetch.
+      responses:
+        "200":
+          description: Scheduled and active flash sales.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/CommerceFlashSalePublic"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+  /api/v1/commerce/flash-sales/{id}/products:
+    get:
+      operationId: listCommerceFlashSaleProducts
+      tags:
+        - Commerce
+      summary: List the product rows of one flash sale (Issue 26). Gated on flash_sales.read.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: The sale's product rows.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/CommerceFlashSaleProduct"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+    post:
+      operationId: createCommerceFlashSaleProduct
+      tags:
+        - Commerce
+      summary: Add a product (or one variant of it) to a flash sale (Issue 26). Gated on flash_sales.update; only while the sale is draft or scheduled.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CommerceFlashSaleProductCreateInput"
+      responses:
+        "201":
+          description: Flash-sale product row created.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceFlashSaleProduct"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: The (product, variant) pair is already in this sale (FLASH_SALE_PRODUCT_ALREADY_EXISTS), or the sale is no longer editable (FLASH_SALE_NOT_EDITABLE).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/flash-sales/{id}/products/{productRowId}:
+    patch:
+      operationId: updateCommerceFlashSaleProduct
+      tags:
+        - Commerce
+      summary: Change a flash-sale product row's sale price, quota or order (Issue 26). Gated on flash_sales.update.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: productRowId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CommerceFlashSaleProductUpdateInput"
+      responses:
+        "200":
+          description: Flash-sale product row updated.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceFlashSaleProduct"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+    delete:
+      operationId: deleteCommerceFlashSaleProduct
+      tags:
+        - Commerce
+      summary: Remove a product row from a flash sale (Issue 26). Gated on flash_sales.update.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: productRowId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Row removed.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        format: uuid
+                      status:
+                        type: string
+                        enum:
+                          - deleted
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+  /api/v1/commerce/vouchers:
+    get:
+      operationId: listCommerceVouchers
+      tags:
+        - Commerce
+      summary: List vouchers (Issue 26). Keyset-paginated, newest first. Gated on vouchers.read.
+      parameters:
+        - name: cursor
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Opaque keyset cursor from the previous page's nextCursor.
+      responses:
+        "200":
+          description: One page of vouchers.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/CommerceVoucher"
+                      nextCursor:
+                        type: string
+                        nullable: true
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+    post:
+      operationId: createCommerceVoucher
+      tags:
+        - Commerce
+      summary: Create a voucher (Issue 26). Gated on vouchers.create.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CommerceVoucherCreateInput"
+      responses:
+        "201":
+          description: Voucher created.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceVoucher"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: code is already taken by a live voucher in this tenant (VOUCHER_CODE_ALREADY_EXISTS).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/vouchers/{id}:
+    get:
+      operationId: getCommerceVoucher
+      tags:
+        - Commerce
+      summary: Fetch one voucher (Issue 26). Gated on vouchers.read.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: The voucher.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceVoucher"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+    patch:
+      operationId: updateCommerceVoucher
+      tags:
+        - Commerce
+      summary: Update a voucher (Issue 26). Gated on vouchers.update.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CommerceVoucherUpdateInput"
+      responses:
+        "200":
+          description: Voucher updated.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceVoucher"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: code is already taken by a live voucher in this tenant (VOUCHER_CODE_ALREADY_EXISTS).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+    delete:
+      operationId: deleteCommerceVoucher
+      tags:
+        - Commerce
+      summary: Soft-delete a voucher (Issue 26). Gated on vouchers.delete.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Voucher soft-deleted.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        format: uuid
+                      status:
+                        type: string
+                        enum:
+                          - deleted
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+  /api/v1/commerce/vouchers/public:
+    get:
+      operationId: listPublicCommerceVouchers
+      tags:
+        - Commerce
+      summary: Public read model (Issue 26) — vouchers marked isPublic, inside their window, with quota remaining. Gated on vouchers.read.
+      responses:
+        "200":
+          description: Publicly advertised vouchers.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/CommerceVoucher"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+  /api/v1/commerce/vouchers/validate:
+    post:
+      operationId: validateCommerceVoucher
+      tags:
+        - Commerce
+      summary: Evaluate a voucher code against a subtotal (Issue 26). A read, not a redemption — nothing is written. Gated on vouchers.read.
+      description: Arithmetic is exact (integer cents) — a percentage discount is capped by maxDiscount, a nominal one is the value, free_shipping yields discount "0.00" and freeShipping true. An unknown code and an ineligible one answer the same 200 shape with valid false and a reason.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - code
+                - subtotal
+              properties:
+                code:
+                  type: string
+                  maxLength: 40
+                subtotal:
+                  type: string
+                  description: numeric(14,2) as a string.
+                shippingCost:
+                  type: string
+                  description: numeric(14,2) as a string; defaults to "0.00".
+      responses:
+        "200":
+          description: The evaluation.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceVoucherValidation"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+  /api/v1/commerce/sliders:
+    get:
+      operationId: listCommerceSliders
+      tags:
+        - Commerce
+      summary: List sliders (Issue 26). Keyset-paginated, newest first. Gated on sliders.read.
+      parameters:
+        - name: cursor
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Opaque keyset cursor from the previous page's nextCursor.
+      responses:
+        "200":
+          description: One page of sliders.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/CommerceSlider"
+                      nextCursor:
+                        type: string
+                        nullable: true
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+    post:
+      operationId: createCommerceSlider
+      tags:
+        - Commerce
+      summary: Create a slider (Issue 26). Gated on sliders.create.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CommerceSliderCreateInput"
+      responses:
+        "201":
+          description: Slider created.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceSlider"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+  /api/v1/commerce/sliders/{id}:
+    get:
+      operationId: getCommerceSlider
+      tags:
+        - Commerce
+      summary: Fetch one slider (Issue 26). Gated on sliders.read.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: The slider.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceSlider"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+    patch:
+      operationId: updateCommerceSlider
+      tags:
+        - Commerce
+      summary: Update a slider (Issue 26). Gated on sliders.update.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CommerceSliderUpdateInput"
+      responses:
+        "200":
+          description: Slider updated.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceSlider"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+    delete:
+      operationId: deleteCommerceSlider
+      tags:
+        - Commerce
+      summary: Soft-delete a slider (Issue 26). Gated on sliders.delete.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Slider soft-deleted.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        format: uuid
+                      status:
+                        type: string
+                        enum:
+                          - deleted
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+  /api/v1/commerce/sliders/active:
+    get:
+      operationId: listActiveCommerceSliders
+      tags:
+        - Commerce
+      summary: Public read model (Issue 26) — active sliders inside their optional window, ordered by sortOrder, with the media object resolved to a public URL. Gated on sliders.read.
+      responses:
+        "200":
+          description: Active sliders.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/CommerceSliderPublic"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+  /api/v1/commerce/testimonials:
+    get:
+      operationId: listCommerceTestimonials
+      tags:
+        - Commerce
+      summary: List testimonials (Issue 26). Keyset-paginated, newest first. Gated on testimonials.read.
+      parameters:
+        - name: cursor
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Opaque keyset cursor from the previous page's nextCursor.
+      responses:
+        "200":
+          description: One page of testimonials.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/CommerceTestimonial"
+                      nextCursor:
+                        type: string
+                        nullable: true
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+    post:
+      operationId: createCommerceTestimonial
+      tags:
+        - Commerce
+      summary: Create a testimonial (Issue 26). Gated on testimonials.create.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CommerceTestimonialCreateInput"
+      responses:
+        "201":
+          description: Testimonial created.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceTestimonial"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+  /api/v1/commerce/testimonials/{id}:
+    get:
+      operationId: getCommerceTestimonial
+      tags:
+        - Commerce
+      summary: Fetch one testimonial (Issue 26). Gated on testimonials.read.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: The testimonial.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceTestimonial"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+    patch:
+      operationId: updateCommerceTestimonial
+      tags:
+        - Commerce
+      summary: Update a testimonial (Issue 26). Gated on testimonials.update.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CommerceTestimonialUpdateInput"
+      responses:
+        "200":
+          description: Testimonial updated.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceTestimonial"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+    delete:
+      operationId: deleteCommerceTestimonial
+      tags:
+        - Commerce
+      summary: Soft-delete a testimonial (Issue 26). Gated on testimonials.delete.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Testimonial soft-deleted.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        format: uuid
+                      status:
+                        type: string
+                        enum:
+                          - deleted
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+  /api/v1/commerce/testimonials/active:
+    get:
+      operationId: listActiveCommerceTestimonials
+      tags:
+        - Commerce
+      summary: Public read model (Issue 26) — active testimonials ordered by sortOrder, avatar resolved to a public URL. Gated on testimonials.read.
+      responses:
+        "200":
+          description: Active testimonials.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/CommerceTestimonialPublic"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+  /api/v1/commerce/popups:
+    get:
+      operationId: listCommercePopups
+      tags:
+        - Commerce
+      summary: List popups (Issue 26). Keyset-paginated, newest first. Gated on popups.read.
+      parameters:
+        - name: cursor
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Opaque keyset cursor from the previous page's nextCursor.
+      responses:
+        "200":
+          description: One page of popups.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/CommercePopup"
+                      nextCursor:
+                        type: string
+                        nullable: true
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+    post:
+      operationId: createCommercePopup
+      tags:
+        - Commerce
+      summary: Create a popup (Issue 26). Gated on popups.create.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CommercePopupCreateInput"
+      responses:
+        "201":
+          description: Popup created.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommercePopup"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: Another popup is already active — at most one active popup per tenant (POPUP_ALREADY_ACTIVE).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/popups/{id}:
+    get:
+      operationId: getCommercePopup
+      tags:
+        - Commerce
+      summary: Fetch one popup (Issue 26). Gated on popups.read.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: The popup.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommercePopup"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+    patch:
+      operationId: updateCommercePopup
+      tags:
+        - Commerce
+      summary: Update a popup (Issue 26). Gated on popups.update.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CommercePopupUpdateInput"
+      responses:
+        "200":
+          description: Popup updated.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommercePopup"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: Another popup is already active — at most one active popup per tenant (POPUP_ALREADY_ACTIVE).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+    delete:
+      operationId: deleteCommercePopup
+      tags:
+        - Commerce
+      summary: Soft-delete a popup (Issue 26). Gated on popups.delete.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Popup soft-deleted.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        format: uuid
+                      status:
+                        type: string
+                        enum:
+                          - deleted
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+  /api/v1/commerce/popups/active:
+    get:
+      operationId: getActiveCommercePopup
+      tags:
+        - Commerce
+      summary: Public read model (Issue 26) — the single active popup inside its window, or null. Gated on popups.read.
+      responses:
+        "200":
+          description: The active popup, or null when none.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    oneOf:
+                      - $ref: "#/components/schemas/CommercePopupPublic"
+                      - type: "null"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+  /api/v1/commerce/store-settings:
+    get:
+      operationId: getCommerceStoreSettings
+      tags:
+        - Commerce
+      summary: The OWNER view of the tenant's store settings (Issue 26) — everything, including manual-bank accounts and the QRIS media id. Gated on settings.read.
+      responses:
+        "200":
+          description: The settings; a tenant that never saved any gets the defaults.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceStoreSettings"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+    put:
+      operationId: updateCommerceStoreSettings
+      tags:
+        - Commerce
+      summary: Replace the tenant's store settings (Issue 26). Gated on settings.update. Unknown keys are rejected; the audit event names the changed SECTIONS, never a bank account.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CommerceStoreSettings"
+      responses:
+        "200":
+          description: Settings saved.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceStoreSettings"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+    delete:
+      operationId: resetCommerceStoreSettings
+      tags:
+        - Commerce
+      summary: Reset the tenant's store settings to the defaults (Issue 26). Gated on settings.update. Stamps deleted_at rather than removing the singleton row; the next PUT clears it. Idempotent.
+      responses:
+        "200":
+          description: Settings reset (or already at the defaults).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      tenantId:
+                        type: string
+                        format: uuid
+                      status:
+                        type: string
+                        enum:
+                          - reset
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+  /api/v1/commerce/store-settings/public:
+    get:
+      operationId: getPublicCommerceStoreSettings
+      tags:
+        - Commerce
+      summary: Public read model (Issue 26) — the subset a storefront may publish. Never carries a bank account number, account holder, or QRIS payload; manual-bank lists bank NAMES only. Gated on settings.read.
+      responses:
+        "200":
+          description: The public subset.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceStoreSettingsPublic"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
 components:
   schemas:
     CommerceCategory:
@@ -1397,6 +2822,10 @@ components:
           type: string
           format: uuid
           nullable: true
+        sizeChartImageUrl:
+          type: string
+          nullable: true
+          description: sizeChartMediaId resolved to a public URL through the media port (Issue 26). null unless sizeChartType is image and the object is publicly resolvable.
         sizeChartDetails:
           type: object
           nullable: true
@@ -1413,9 +2842,6 @@ components:
             - week
             - month
             - year
-        downloadLink:
-          type: string
-          nullable: true
         allowDp:
           type: boolean
         allowFreeShipping:
@@ -1447,3 +2873,992 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/CommerceProductVariant"
+    CommerceFlashSale:
+      type: object
+      description: The editorial row. status is what the editor set (draft/scheduled) or what the tick job derived (active/ended) — see domain/flash-sale-status.ts.
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        slug:
+          type: string
+        startsAt:
+          type: string
+          format: date-time
+        endsAt:
+          type: string
+          format: date-time
+        status:
+          type: string
+          enum:
+            - draft
+            - scheduled
+            - active
+            - ended
+    CommerceFlashSaleCreateInput:
+      type: object
+      required:
+        - name
+        - slug
+        - startsAt
+        - endsAt
+      properties:
+        name:
+          type: string
+        slug:
+          type: string
+        startsAt:
+          type: string
+          format: date-time
+        endsAt:
+          type: string
+          format: date-time
+          description: Must be after startsAt.
+        status:
+          type: string
+          enum:
+            - draft
+            - scheduled
+          default: draft
+    CommerceFlashSaleUpdateInput:
+      type: object
+      description: Every field optional; only draft/scheduled sales are editable.
+      properties:
+        name:
+          type: string
+        slug:
+          type: string
+        startsAt:
+          type: string
+          format: date-time
+        endsAt:
+          type: string
+          format: date-time
+        status:
+          type: string
+          enum:
+            - draft
+            - scheduled
+    CommerceFlashSaleProduct:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        flashSaleId:
+          type: string
+          format: uuid
+        productId:
+          type: string
+          format: uuid
+        variantId:
+          type: string
+          format: uuid
+          nullable: true
+        salePrice:
+          type: string
+          description: numeric(14,2) as a string (ADR-0003 in awcms-one); never a JSON number.
+        quota:
+          type: integer
+          description: 0 means unlimited.
+        sold:
+          type: integer
+        sortOrder:
+          type: integer
+    CommerceFlashSaleProductCreateInput:
+      type: object
+      required:
+        - productId
+        - salePrice
+      properties:
+        productId:
+          type: string
+          format: uuid
+        variantId:
+          type: string
+          format: uuid
+          nullable: true
+        salePrice:
+          type: string
+          description: numeric(14,2) as a string (ADR-0003 in awcms-one); never a JSON number.
+        quota:
+          type: integer
+          default: 0
+        sortOrder:
+          type: integer
+          default: 0
+    CommerceFlashSaleProductUpdateInput:
+      type: object
+      properties:
+        salePrice:
+          type: string
+          description: numeric(14,2) as a string (ADR-0003 in awcms-one); never a JSON number.
+        quota:
+          type: integer
+        sortOrder:
+          type: integer
+    CommerceFlashSalePublic:
+      type: object
+      description: The storefront read model — the contract awcms-one's storefront builds against.
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        slug:
+          type: string
+        startsAt:
+          type: string
+          format: date-time
+        endsAt:
+          type: string
+          format: date-time
+        status:
+          type: string
+          enum:
+            - scheduled
+            - active
+        products:
+          type: array
+          items:
+            type: object
+            properties:
+              productId:
+                type: string
+                format: uuid
+              variantId:
+                type: string
+                format: uuid
+                nullable: true
+              salePrice:
+                type: string
+                description: numeric(14,2) as a string (ADR-0003 in awcms-one); never a JSON number.
+              originalPrice:
+                type: string
+                description: numeric(14,2) as a string (ADR-0003 in awcms-one); never a JSON number.
+              quota:
+                type: integer
+              sold:
+                type: integer
+              sortOrder:
+                type: integer
+              product:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                  slug:
+                    type: string
+                  name:
+                    type: string
+                  image:
+                    type: object
+                    properties:
+                      url:
+                        type: string
+                        nullable: true
+                      alt:
+                        type: string
+                        nullable: true
+    CommerceVoucher:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        code:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+          nullable: true
+        type:
+          type: string
+          enum:
+            - percentage
+            - nominal
+            - free_shipping
+        value:
+          type: string
+          description: numeric(14,2) as a string (ADR-0003 in awcms-one); never a JSON number.
+        minOrder:
+          type: string
+          description: numeric(14,2) as a string (ADR-0003 in awcms-one); never a JSON number.
+        maxDiscount:
+          type: string
+          nullable: true
+          description: numeric(14,2) as a string; caps a percentage discount. null means uncapped.
+        quota:
+          type: integer
+          description: 0 means unlimited.
+        usedCount:
+          type: integer
+        isPublic:
+          type: boolean
+        status:
+          type: string
+          enum:
+            - active
+            - inactive
+        startsAt:
+          type: string
+          format: date-time
+        endsAt:
+          type: string
+          format: date-time
+    CommerceVoucherCreateInput:
+      type: object
+      required:
+        - code
+        - name
+        - type
+        - value
+        - startsAt
+        - endsAt
+      properties:
+        code:
+          type: string
+          maxLength: 40
+        name:
+          type: string
+        description:
+          type: string
+          nullable: true
+        type:
+          type: string
+          enum:
+            - percentage
+            - nominal
+            - free_shipping
+        value:
+          type: string
+          description: numeric(14,2) as a string (ADR-0003 in awcms-one); never a JSON number.
+        minOrder:
+          type: string
+          default: "0.00"
+        maxDiscount:
+          type: string
+          nullable: true
+        quota:
+          type: integer
+          default: 0
+        isPublic:
+          type: boolean
+          default: false
+        startsAt:
+          type: string
+          format: date-time
+        endsAt:
+          type: string
+          format: date-time
+    CommerceVoucherUpdateInput:
+      type: object
+      description: Every field optional; status may move between active and inactive.
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+          nullable: true
+        value:
+          type: string
+          description: numeric(14,2) as a string (ADR-0003 in awcms-one); never a JSON number.
+        minOrder:
+          type: string
+          description: numeric(14,2) as a string (ADR-0003 in awcms-one); never a JSON number.
+        maxDiscount:
+          type: string
+          nullable: true
+        quota:
+          type: integer
+        isPublic:
+          type: boolean
+        status:
+          type: string
+          enum:
+            - active
+            - inactive
+        startsAt:
+          type: string
+          format: date-time
+        endsAt:
+          type: string
+          format: date-time
+    CommerceVoucherValidation:
+      type: object
+      properties:
+        valid:
+          type: boolean
+        voucher:
+          oneOf:
+            - $ref: "#/components/schemas/CommerceVoucher"
+            - type: "null"
+        discount:
+          type: string
+          description: numeric(14,2) as a string (ADR-0003 in awcms-one); never a JSON number.
+        freeShipping:
+          type: boolean
+        reason:
+          type: string
+          nullable: true
+          enum:
+            - not_found
+            - not_started
+            - expired
+            - quota_exhausted
+            - min_order
+            - null
+    CommerceSlider:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        subtitle:
+          type: string
+          nullable: true
+        mediaObjectId:
+          type: string
+          format: uuid
+        linkUrl:
+          type: string
+          nullable: true
+        buttonText:
+          type: string
+          nullable: true
+        sortOrder:
+          type: integer
+        isActive:
+          type: boolean
+        startsAt:
+          type: string
+          format: date-time
+          nullable: true
+        endsAt:
+          type: string
+          format: date-time
+          nullable: true
+    CommerceSliderCreateInput:
+      type: object
+      required:
+        - title
+        - mediaObjectId
+      properties:
+        title:
+          type: string
+        subtitle:
+          type: string
+          nullable: true
+        mediaObjectId:
+          type: string
+          format: uuid
+          description: Must reference a live, verified, same-tenant media object.
+        linkUrl:
+          type: string
+          nullable: true
+        buttonText:
+          type: string
+          nullable: true
+        sortOrder:
+          type: integer
+          default: 0
+        isActive:
+          type: boolean
+          default: true
+        startsAt:
+          type: string
+          format: date-time
+          nullable: true
+        endsAt:
+          type: string
+          format: date-time
+          nullable: true
+    CommerceSliderUpdateInput:
+      type: object
+      description: Every field of CommerceSliderCreateInput, all optional.
+      properties:
+        title:
+          type: string
+        subtitle:
+          type: string
+          nullable: true
+        mediaObjectId:
+          type: string
+          format: uuid
+        linkUrl:
+          type: string
+          nullable: true
+        buttonText:
+          type: string
+          nullable: true
+        sortOrder:
+          type: integer
+        isActive:
+          type: boolean
+        startsAt:
+          type: string
+          format: date-time
+          nullable: true
+        endsAt:
+          type: string
+          format: date-time
+          nullable: true
+    CommerceSliderPublic:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        subtitle:
+          type: string
+          nullable: true
+        image:
+          type: object
+          properties:
+            url:
+              type: string
+              nullable: true
+            alt:
+              type: string
+              nullable: true
+            width:
+              type: integer
+              nullable: true
+            height:
+              type: integer
+              nullable: true
+        linkUrl:
+          type: string
+          nullable: true
+        buttonText:
+          type: string
+          nullable: true
+        sortOrder:
+          type: integer
+    CommerceTestimonial:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        authorName:
+          type: string
+        authorRole:
+          type: string
+          nullable: true
+        body:
+          type: string
+        rating:
+          type: integer
+          minimum: 1
+          maximum: 5
+        avatarMediaObjectId:
+          type: string
+          format: uuid
+          nullable: true
+        isActive:
+          type: boolean
+        sortOrder:
+          type: integer
+    CommerceTestimonialCreateInput:
+      type: object
+      required:
+        - authorName
+        - body
+        - rating
+      properties:
+        authorName:
+          type: string
+        authorRole:
+          type: string
+          nullable: true
+        body:
+          type: string
+        rating:
+          type: integer
+          minimum: 1
+          maximum: 5
+        avatarMediaObjectId:
+          type: string
+          format: uuid
+          nullable: true
+        isActive:
+          type: boolean
+          default: true
+        sortOrder:
+          type: integer
+          default: 0
+    CommerceTestimonialUpdateInput:
+      type: object
+      description: Every field of CommerceTestimonialCreateInput, all optional.
+      properties:
+        authorName:
+          type: string
+        authorRole:
+          type: string
+          nullable: true
+        body:
+          type: string
+        rating:
+          type: integer
+          minimum: 1
+          maximum: 5
+        avatarMediaObjectId:
+          type: string
+          format: uuid
+          nullable: true
+        isActive:
+          type: boolean
+        sortOrder:
+          type: integer
+    CommerceTestimonialPublic:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        authorName:
+          type: string
+        authorRole:
+          type: string
+          nullable: true
+        body:
+          type: string
+        rating:
+          type: integer
+        avatar:
+          type: object
+          nullable: true
+          properties:
+            url:
+              type: string
+            alt:
+              type: string
+              nullable: true
+        sortOrder:
+          type: integer
+    CommercePopup:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        body:
+          type: string
+          nullable: true
+        mediaObjectId:
+          type: string
+          format: uuid
+          nullable: true
+        linkUrl:
+          type: string
+          nullable: true
+        buttonText:
+          type: string
+          nullable: true
+        frequency:
+          type: string
+          enum:
+            - once_per_session
+            - once_per_day
+            - always
+        isActive:
+          type: boolean
+        startsAt:
+          type: string
+          format: date-time
+          nullable: true
+        endsAt:
+          type: string
+          format: date-time
+          nullable: true
+    CommercePopupCreateInput:
+      type: object
+      required:
+        - title
+      properties:
+        title:
+          type: string
+        body:
+          type: string
+          nullable: true
+        mediaObjectId:
+          type: string
+          format: uuid
+          nullable: true
+        linkUrl:
+          type: string
+          nullable: true
+        buttonText:
+          type: string
+          nullable: true
+        frequency:
+          type: string
+          enum:
+            - once_per_session
+            - once_per_day
+            - always
+          default: once_per_day
+        isActive:
+          type: boolean
+          default: true
+          description: At most one popup may be active per tenant (partial unique index) — a second one answers 409.
+        startsAt:
+          type: string
+          format: date-time
+          nullable: true
+        endsAt:
+          type: string
+          format: date-time
+          nullable: true
+    CommercePopupUpdateInput:
+      type: object
+      description: Every field of CommercePopupCreateInput, all optional.
+      properties:
+        title:
+          type: string
+        body:
+          type: string
+          nullable: true
+        mediaObjectId:
+          type: string
+          format: uuid
+          nullable: true
+        linkUrl:
+          type: string
+          nullable: true
+        buttonText:
+          type: string
+          nullable: true
+        frequency:
+          type: string
+          enum:
+            - once_per_session
+            - once_per_day
+            - always
+        isActive:
+          type: boolean
+        startsAt:
+          type: string
+          format: date-time
+          nullable: true
+        endsAt:
+          type: string
+          format: date-time
+          nullable: true
+    CommercePopupPublic:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        body:
+          type: string
+          nullable: true
+        image:
+          type: object
+          nullable: true
+          properties:
+            url:
+              type: string
+            alt:
+              type: string
+              nullable: true
+        linkUrl:
+          type: string
+          nullable: true
+        buttonText:
+          type: string
+          nullable: true
+        frequency:
+          type: string
+          enum:
+            - once_per_session
+            - once_per_day
+            - always
+        startsAt:
+          type: string
+          format: date-time
+          nullable: true
+        endsAt:
+          type: string
+          format: date-time
+          nullable: true
+    CommerceStoreSettings:
+      type: object
+      description: The OWNER shape — a versioned settings document validated against domain/store-settings-validation.ts (unknown keys are rejected). Contains manual-bank account numbers and the QRIS media id; only settings.read may read it and it is never echoed on a public route.
+      additionalProperties: false
+      required:
+        - storeName
+      properties:
+        schemaVersion:
+          type: integer
+          enum:
+            - 1
+        storeName:
+          type: string
+        tagline:
+          type: string
+          nullable: true
+        logoMediaObjectId:
+          type: string
+          format: uuid
+          nullable: true
+        faviconMediaObjectId:
+          type: string
+          format: uuid
+          nullable: true
+        address:
+          type: string
+          nullable: true
+        phone:
+          type: string
+          nullable: true
+        whatsapp:
+          type: string
+          nullable: true
+        email:
+          type: string
+          nullable: true
+        mapsEmbedUrl:
+          type: string
+          nullable: true
+        faqs:
+          type: array
+          items:
+            type: object
+            properties:
+              question:
+                type: string
+              answer:
+                type: string
+        social:
+          type: object
+          description: facebook/instagram/tiktok/x/youtube/linkedin, each a URL or null.
+          additionalProperties:
+            type: string
+            nullable: true
+        customerLevels:
+          type: array
+          items:
+            type: object
+            properties:
+              level:
+                type: integer
+              name:
+                type: string
+              type:
+                type: string
+                enum:
+                  - percentage
+                  - nominal
+              value:
+                type: string
+              active:
+                type: boolean
+        shipping:
+          type: object
+          description: alternativeServices[] {id,name,cost}, selfPickup, courierEnabled, pinpointEnabled, freeShipping {active,minOrder,maxDiscount}, originCityName, originSubdistrictName.
+        payment:
+          type: object
+          description: manualBank {active, accounts[] {bankName, accountNumber, accountHolder}}, manualQris {active, mediaObjectId}, downPayment {active, percent}, tax {active, percent}, insurance {active, ratePercent, minFee}.
+        promoSection:
+          type: object
+          properties:
+            active:
+              type: boolean
+            items:
+              type: array
+              items:
+                type: object
+        meta:
+          type: object
+          description: home/contact, each {title, description} (nullable).
+    CommerceStoreSettingsPublic:
+      type: object
+      description: The subset a storefront may publish — the contract awcms-one's storefront builds against. Never carries an account number, account holder or QRIS payload.
+      properties:
+        storeName:
+          type: string
+        tagline:
+          type: string
+          nullable: true
+        logo:
+          type: object
+          nullable: true
+          properties:
+            url:
+              type: string
+            alt:
+              type: string
+            width:
+              type: integer
+              nullable: true
+            height:
+              type: integer
+              nullable: true
+        favicon:
+          type: object
+          nullable: true
+          properties:
+            url:
+              type: string
+        address:
+          type: string
+          nullable: true
+        phone:
+          type: string
+          nullable: true
+        whatsapp:
+          type: string
+          nullable: true
+        email:
+          type: string
+          nullable: true
+        mapsEmbedUrl:
+          type: string
+          nullable: true
+        faqs:
+          type: array
+          items:
+            type: object
+            properties:
+              question:
+                type: string
+              answer:
+                type: string
+        social:
+          type: object
+          additionalProperties:
+            type: string
+            nullable: true
+        customerLevels:
+          type: array
+          items:
+            type: object
+            properties:
+              level:
+                type: integer
+              name:
+                type: string
+        shipping:
+          type: object
+          properties:
+            alternativeServices:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  cost:
+                    type: string
+            selfPickup:
+              type: boolean
+            courierEnabled:
+              type: boolean
+            pinpointEnabled:
+              type: boolean
+            freeShipping:
+              type: object
+              properties:
+                active:
+                  type: boolean
+                minOrder:
+                  type: string
+                maxDiscount:
+                  type: string
+            originCityName:
+              type: string
+              nullable: true
+            originSubdistrictName:
+              type: string
+              nullable: true
+        payment:
+          type: object
+          properties:
+            manualBank:
+              type: object
+              properties:
+                active:
+                  type: boolean
+                banks:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      bankName:
+                        type: string
+            manualQris:
+              type: object
+              properties:
+                active:
+                  type: boolean
+            downPayment:
+              type: object
+              properties:
+                active:
+                  type: boolean
+                percent:
+                  type: integer
+            tax:
+              type: object
+              properties:
+                active:
+                  type: boolean
+                percent:
+                  type: integer
+            insurance:
+              type: object
+              properties:
+                active:
+                  type: boolean
+                ratePercent:
+                  type: string
+                minFee:
+                  type: string
+        promoSection:
+          type: object
+          properties:
+            active:
+              type: boolean
+            items:
+              type: array
+              items:
+                type: object
+                properties:
+                  badge:
+                    type: string
+                    nullable: true
+                  title:
+                    type: string
+                  subtitle:
+                    type: string
+                    nullable: true
+                  tags:
+                    type: array
+                    items:
+                      type: string
+                  buttonText:
+                    type: string
+                    nullable: true
+                  buttonLink:
+                    type: string
+                    nullable: true
+        meta:
+          type: object

@@ -480,6 +480,27 @@ channels:
       `commerce/application/product-directory.ts`'s `updateProduct`. Carries
       `previousStatus` and `status`; a consumer that only cares whether a
       product is still sellable can key off this without diffing the row.
+  awcms.commerce.flash_sale.started:
+    address: awcms.commerce.flash_sale.started
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A flash sale's derived status crossed into `active` (`now()` entered
+      `[starts_at, ends_at]`). Producer:
+      `commerce/application/flash-sale-directory.ts`'s
+      `tickFlashSalesForTenant`, run by the scheduled
+      `commerce:flash-sales:tick` job — never a direct admin `PATCH`.
+  awcms.commerce.flash_sale.ended:
+    address: awcms.commerce.flash_sale.ended
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A flash sale's derived status crossed into `ended` (`now()` passed
+      `ends_at`). Producer: `commerce/application/flash-sale-directory.ts`'s
+      `tickFlashSalesForTenant`, run by the scheduled
+      `commerce:flash-sales:tick` job.
 operations:
   publishDomainEventRuntimeSampleRecorded:
     action: send
@@ -769,6 +790,18 @@ operations:
       $ref: "#/channels/awcms.commerce.product.status_changed"
     messages:
       - $ref: "#/channels/awcms.commerce.product.status_changed/messages/DomainEvent"
+  publishCommerceFlashSaleStarted:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.flash_sale.started"
+    messages:
+      - $ref: "#/channels/awcms.commerce.flash_sale.started/messages/DomainEvent"
+  publishCommerceFlashSaleEnded:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.flash_sale.ended"
+    messages:
+      - $ref: "#/channels/awcms.commerce.flash_sale.ended/messages/DomainEvent"
 components:
   messages:
     DomainEvent:

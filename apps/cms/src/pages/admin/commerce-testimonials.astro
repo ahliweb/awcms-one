@@ -1,0 +1,403 @@
+---
+/** Commerce testimonial CRUD screen (Issue #26). */
+import AdminLayout from "../../layouts/AdminLayout.astro";
+import "../../styles/admin-screens.css";
+import { loadAdminScreen } from "../../lib/auth/admin-screen";
+import { logAdminPageError } from "../../lib/logging/error-log";
+import { getTranslatorFor } from "../../lib/i18n";
+import { listTestimonials } from "../../modules/commerce/application/testimonial-directory";
+
+const ssr = Astro.locals.ssrContext!;
+const { t, tn } = getTranslatorFor(Astro.locals.locale);
+
+const screen = await loadAdminScreen({
+  ssr,
+  workClass: "interactive",
+  authorize: {
+    moduleKey: "commerce",
+    activityCode: "testimonials",
+    action: "read"
+  },
+  load: async ({ tx, can }) => {
+    const page = await listTestimonials(tx, ssr.tenantId, null);
+    const canCreate = await can({
+      moduleKey: "commerce",
+      activityCode: "testimonials",
+      action: "create"
+    });
+    const canUpdate = await can({
+      moduleKey: "commerce",
+      activityCode: "testimonials",
+      action: "update"
+    });
+    const canDelete = await can({
+      moduleKey: "commerce",
+      activityCode: "testimonials",
+      action: "delete"
+    });
+
+    return { testimonials: page.items, canCreate, canUpdate, canDelete };
+  },
+  onError: (error) => {
+    logAdminPageError(
+      "admin/commerce-testimonials.astro: failed to list testimonials",
+      error,
+      {
+        correlationId: Astro.locals.correlationId
+      }
+    );
+  }
+});
+
+const canRead = screen.state !== "denied";
+const loadError = screen.state === "error";
+const testimonials = screen.state === "allowed" ? screen.data.testimonials : [];
+const canCreate = screen.state === "allowed" && screen.data.canCreate;
+const canUpdate = screen.state === "allowed" && screen.data.canUpdate;
+const canDelete = screen.state === "allowed" && screen.data.canDelete;
+const showActions = canUpdate || canDelete;
+---
+
+<AdminLayout
+  title={t("Testimonials")}
+  description={t("Customer quotes shown on the storefront's testimonial wall.")}
+>
+  {
+    !canRead && (
+      <p class="state-notice fade-in-up" id="testimonials-denied">
+        {t("You do not have permission to view testimonials.")}
+      </p>
+    )
+  }
+  {
+    canRead && loadError && (
+      <p class="state-notice fade-in-up" id="testimonials-error">
+        {t(
+          "Testimonials could not be loaded right now. Please try again later."
+        )}
+      </p>
+    )
+  }
+
+  {
+    canCreate && (
+      <form id="testimonial-create-form" class="admin-create-form fade-in-up">
+        <p class="form-legend">{t("Create a testimonial")}</p>
+        <p
+          id="testimonial-create-error"
+          class="admin-create-error"
+          role="alert"
+          hidden
+        />
+
+        <label for="testimonial-authorName">{t("Author name")}</label>
+        <input
+          id="testimonial-authorName"
+          name="authorName"
+          type="text"
+          required
+          autocomplete="off"
+        />
+
+        <label for="testimonial-authorRole">{t("Author role")}</label>
+        <input
+          id="testimonial-authorRole"
+          name="authorRole"
+          type="text"
+          autocomplete="off"
+          placeholder="Pelanggan"
+        />
+
+        <label for="testimonial-body">{t("Quote")}</label>
+        <textarea id="testimonial-body" name="body" required rows="3" />
+
+        <label for="testimonial-rating">{t("Rating (1-5)")}</label>
+        <input
+          id="testimonial-rating"
+          name="rating"
+          type="number"
+          min="1"
+          max="5"
+          step="1"
+          value="5"
+        />
+
+        <label for="testimonial-avatarMediaObjectId">
+          {t("Avatar media object id (optional)")}
+        </label>
+        <input
+          id="testimonial-avatarMediaObjectId"
+          name="avatarMediaObjectId"
+          type="text"
+          placeholder="uuid — see /admin/media"
+        />
+
+        <label for="testimonial-sortOrder">{t("Sort order")}</label>
+        <input
+          id="testimonial-sortOrder"
+          name="sortOrder"
+          type="number"
+          step="1"
+          value="0"
+        />
+
+        <label>
+          <input
+            id="testimonial-isActive"
+            name="isActive"
+            type="checkbox"
+            checked
+          />{" "}
+          {t("Active")}
+        </label>
+
+        <button type="submit" id="testimonial-create-submit">
+          {t("Create testimonial")}
+        </button>
+      </form>
+    )
+  }
+
+  {
+    canRead && !loadError && (
+      <p
+        id="testimonial-action-error"
+        class="admin-create-error"
+        role="alert"
+        hidden
+      />
+    )
+  }
+
+  {
+    canRead && !loadError && (
+      <div class="data-table-scroll fade-in-up">
+        <table
+          class="data-table data-table--stack"
+          id="commerce-testimonials-table"
+        >
+          <caption>
+            {tn(
+              "{count} testimonial",
+              "{count} testimonials",
+              testimonials.length,
+              { count: testimonials.length }
+            )}
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">{t("Author")}</th>
+              <th scope="col">{t("Quote")}</th>
+              <th scope="col">{t("Rating")}</th>
+              <th scope="col">{t("Active")}</th>
+              {showActions && <th scope="col">{t("Actions")}</th>}
+            </tr>
+          </thead>
+          <tbody>
+            {testimonials.length === 0 ? (
+              <tr>
+                <td class="data-table-empty" colspan={showActions ? 5 : 4}>
+                  <div class="empty-state">
+                    <span class="empty-state-icon" aria-hidden="true">
+                      ◇
+                    </span>
+                    <span class="empty-state-title">
+                      {t("No testimonials yet")}
+                    </span>
+                    <span class="empty-state-text">
+                      {t(
+                        "Testimonials created for this tenant will appear here."
+                      )}
+                    </span>
+                  </div>
+                </td>
+              </tr>
+            ) : (
+              testimonials.map((testimonial) => (
+                <tr data-testimonial-row={testimonial.id}>
+                  <td
+                    data-label="Author"
+                    class={canUpdate ? "stacked-block" : ""}
+                  >
+                    {canUpdate ? (
+                      <input
+                        class="testimonial-author-input"
+                        type="text"
+                        value={testimonial.authorName}
+                        data-testimonial-author={testimonial.id}
+                      />
+                    ) : (
+                      testimonial.authorName
+                    )}
+                  </td>
+                  <td
+                    data-label="Quote"
+                    class={canUpdate ? "stacked-block" : ""}
+                  >
+                    {canUpdate ? (
+                      <input
+                        class="testimonial-body-input"
+                        type="text"
+                        value={testimonial.body}
+                        data-testimonial-body={testimonial.id}
+                      />
+                    ) : (
+                      testimonial.body
+                    )}
+                  </td>
+                  <td
+                    data-label="Rating"
+                    class={canUpdate ? "stacked-block" : ""}
+                  >
+                    {canUpdate ? (
+                      <input
+                        class="testimonial-rating-input"
+                        type="number"
+                        min="1"
+                        max="5"
+                        step="1"
+                        value={testimonial.rating}
+                        data-testimonial-rating={testimonial.id}
+                      />
+                    ) : (
+                      testimonial.rating
+                    )}
+                  </td>
+                  <td
+                    data-label="Active"
+                    class={canUpdate ? "stacked-block" : ""}
+                  >
+                    {canUpdate ? (
+                      <input
+                        type="checkbox"
+                        class="testimonial-active-input"
+                        checked={testimonial.isActive}
+                        data-testimonial-active={testimonial.id}
+                      />
+                    ) : testimonial.isActive ? (
+                      t("Yes")
+                    ) : (
+                      t("No")
+                    )}
+                  </td>
+                  {showActions && (
+                    <td data-label="Actions" class="stacked-block">
+                      <div class="row-actions">
+                        {canUpdate && (
+                          <button
+                            type="button"
+                            class="module-toggle testimonial-save-btn"
+                            data-testimonial-id={testimonial.id}
+                          >
+                            {t("Save")}
+                          </button>
+                        )}
+                        {canDelete && (
+                          <button
+                            type="button"
+                            class="module-toggle testimonial-delete-btn"
+                            data-testimonial-id={testimonial.id}
+                            data-testimonial-author={testimonial.authorName}
+                          >
+                            {t("Delete")}
+                          </button>
+                        )}
+                      </div>
+                    </td>
+                  )}
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
+    )
+  }
+</AdminLayout>
+
+<script>
+  import {
+    checkboxChecked,
+    field,
+    integerValue,
+    messageBox,
+    mutateAndReload,
+    onAction,
+    onSubmit,
+    sendJson
+  } from "../../lib/ui/admin-form-client";
+
+  const createError = messageBox("testimonial-create-error");
+
+  onSubmit("testimonial-create-form", async ({ data, submit }) => {
+    await mutateAndReload(
+      submit,
+      createError,
+      () =>
+        sendJson("POST", "/api/v1/commerce/testimonials", {
+          authorName: field(data, "authorName"),
+          authorRole: field(data, "authorRole") || null,
+          body: field(data, "body"),
+          rating: integerValue("testimonial-rating", 5),
+          avatarMediaObjectId: field(data, "avatarMediaObjectId") || null,
+          sortOrder: integerValue("testimonial-sortOrder", 0),
+          isActive: checkboxChecked("testimonial-isActive", true)
+        }),
+      "Could not create the testimonial. Please try again."
+    );
+  });
+
+  const actionError = messageBox("testimonial-action-error");
+
+  onAction(".testimonial-save-btn", async (button) => {
+    const id = button.dataset.testimonialId;
+    if (!id) return;
+
+    const authorName =
+      document
+        .querySelector<HTMLInputElement>(`[data-testimonial-author="${id}"]`)
+        ?.value.trim() ?? "";
+    const body =
+      document
+        .querySelector<HTMLInputElement>(`[data-testimonial-body="${id}"]`)
+        ?.value.trim() ?? "";
+    const rating = Number(
+      document.querySelector<HTMLInputElement>(
+        `[data-testimonial-rating="${id}"]`
+      )?.value ?? "5"
+    );
+    const isActive =
+      document.querySelector<HTMLInputElement>(
+        `[data-testimonial-active="${id}"]`
+      )?.checked ?? true;
+
+    await mutateAndReload(
+      button,
+      actionError,
+      () =>
+        sendJson("PATCH", `/api/v1/commerce/testimonials/${id}`, {
+          authorName,
+          body,
+          rating,
+          isActive
+        }),
+      "Could not save the testimonial. Please try again.",
+      "Saving…"
+    );
+  });
+
+  onAction(".testimonial-delete-btn", async (button) => {
+    const id = button.dataset.testimonialId;
+    if (!id) return;
+    const author = button.dataset.testimonialAuthor ?? "this testimonial";
+    if (!window.confirm(`Delete ${author}'s testimonial?`)) return;
+
+    await mutateAndReload(
+      button,
+      actionError,
+      () => sendJson("DELETE", `/api/v1/commerce/testimonials/${id}`),
+      "Could not delete the testimonial. Please try again.",
+      "Deleting…"
+    );
+  });
+</script>

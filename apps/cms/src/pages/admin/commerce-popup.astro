@@ -1,0 +1,338 @@
+---
+/**
+ * Commerce promo-popup CRUD screen (Issue #26). At most one ACTIVE popup per
+ * tenant (`sql/161`'s partial unique index) — the create form's `isActive`
+ * checkbox is left UNCHECKED by default so a merchant drafting a second
+ * popup while one is already live gets a normal save first, not a surprise
+ * 409 on the very first field they touch.
+ */
+import AdminLayout from "../../layouts/AdminLayout.astro";
+import "../../styles/admin-screens.css";
+import { loadAdminScreen } from "../../lib/auth/admin-screen";
+import { logAdminPageError } from "../../lib/logging/error-log";
+import { getTranslatorFor } from "../../lib/i18n";
+import { listPopups } from "../../modules/commerce/application/popup-directory";
+
+const ssr = Astro.locals.ssrContext!;
+const { t, tn } = getTranslatorFor(Astro.locals.locale);
+
+const screen = await loadAdminScreen({
+  ssr,
+  workClass: "interactive",
+  authorize: { moduleKey: "commerce", activityCode: "popups", action: "read" },
+  load: async ({ tx, can }) => {
+    const page = await listPopups(tx, ssr.tenantId, null);
+    const canCreate = await can({
+      moduleKey: "commerce",
+      activityCode: "popups",
+      action: "create"
+    });
+    const canUpdate = await can({
+      moduleKey: "commerce",
+      activityCode: "popups",
+      action: "update"
+    });
+    const canDelete = await can({
+      moduleKey: "commerce",
+      activityCode: "popups",
+      action: "delete"
+    });
+
+    return { popups: page.items, canCreate, canUpdate, canDelete };
+  },
+  onError: (error) => {
+    logAdminPageError(
+      "admin/commerce-popup.astro: failed to list popups",
+      error,
+      {
+        correlationId: Astro.locals.correlationId
+      }
+    );
+  }
+});
+
+const canRead = screen.state !== "denied";
+const loadError = screen.state === "error";
+const popups = screen.state === "allowed" ? screen.data.popups : [];
+const canCreate = screen.state === "allowed" && screen.data.canCreate;
+const canUpdate = screen.state === "allowed" && screen.data.canUpdate;
+const canDelete = screen.state === "allowed" && screen.data.canDelete;
+const showActions = canUpdate || canDelete;
+---
+
+<AdminLayout
+  title={t("Promo popup")}
+  description={t(
+    "At most one active popup per tenant, shown on the storefront by its own frequency rule."
+  )}
+>
+  {
+    !canRead && (
+      <p class="state-notice fade-in-up" id="popups-denied">
+        {t("You do not have permission to view popups.")}
+      </p>
+    )
+  }
+  {
+    canRead && loadError && (
+      <p class="state-notice fade-in-up" id="popups-error">
+        {t("Popups could not be loaded right now. Please try again later.")}
+      </p>
+    )
+  }
+
+  {
+    canCreate && (
+      <form id="popup-create-form" class="admin-create-form fade-in-up">
+        <p class="form-legend">{t("Create a popup")}</p>
+        <p
+          id="popup-create-error"
+          class="admin-create-error"
+          role="alert"
+          hidden
+        />
+
+        <label for="popup-title">{t("Title")}</label>
+        <input
+          id="popup-title"
+          name="title"
+          type="text"
+          required
+          autocomplete="off"
+        />
+
+        <label for="popup-body">{t("Body")}</label>
+        <textarea id="popup-body" name="body" rows="3" />
+
+        <label for="popup-mediaObjectId">
+          {t("Media object id (optional)")}
+        </label>
+        <input
+          id="popup-mediaObjectId"
+          name="mediaObjectId"
+          type="text"
+          placeholder="uuid — see /admin/media"
+        />
+
+        <label for="popup-linkUrl">{t("Link URL")}</label>
+        <input
+          id="popup-linkUrl"
+          name="linkUrl"
+          type="text"
+          placeholder="/flash-sale"
+        />
+
+        <label for="popup-buttonText">{t("Button text")}</label>
+        <input id="popup-buttonText" name="buttonText" type="text" />
+
+        <label for="popup-frequency">{t("Frequency")}</label>
+        <select id="popup-frequency" name="frequency">
+          <option value="once_per_session">{t("Once per session")}</option>
+          <option value="once_per_day" selected>
+            {t("Once per day")}
+          </option>
+          <option value="always">{t("Always")}</option>
+        </select>
+
+        <label>
+          <input id="popup-isActive" name="isActive" type="checkbox" />{" "}
+          {t("Active (only one may be active at a time)")}
+        </label>
+
+        <button type="submit" id="popup-create-submit">
+          {t("Create popup")}
+        </button>
+      </form>
+    )
+  }
+
+  {
+    canRead && !loadError && (
+      <p
+        id="popup-action-error"
+        class="admin-create-error"
+        role="alert"
+        hidden
+      />
+    )
+  }
+
+  {
+    canRead && !loadError && (
+      <div class="data-table-scroll fade-in-up">
+        <table class="data-table data-table--stack" id="commerce-popups-table">
+          <caption>
+            {tn("{count} popup", "{count} popups", popups.length, {
+              count: popups.length
+            })}
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">{t("Title")}</th>
+              <th scope="col">{t("Frequency")}</th>
+              <th scope="col">{t("Active")}</th>
+              {showActions && <th scope="col">{t("Actions")}</th>}
+            </tr>
+          </thead>
+          <tbody>
+            {popups.length === 0 ? (
+              <tr>
+                <td class="data-table-empty" colspan={showActions ? 4 : 3}>
+                  <div class="empty-state">
+                    <span class="empty-state-icon" aria-hidden="true">
+                      ◇
+                    </span>
+                    <span class="empty-state-title">{t("No popups yet")}</span>
+                    <span class="empty-state-text">
+                      {t("Popups created for this tenant will appear here.")}
+                    </span>
+                  </div>
+                </td>
+              </tr>
+            ) : (
+              popups.map((popup) => (
+                <tr data-popup-row={popup.id}>
+                  <td
+                    data-label="Title"
+                    class={canUpdate ? "stacked-block" : ""}
+                  >
+                    {canUpdate ? (
+                      <input
+                        class="popup-title-input"
+                        type="text"
+                        value={popup.title}
+                        data-popup-title={popup.id}
+                      />
+                    ) : (
+                      popup.title
+                    )}
+                  </td>
+                  <td data-label="Frequency">{popup.frequency}</td>
+                  <td
+                    data-label="Active"
+                    class={canUpdate ? "stacked-block" : ""}
+                  >
+                    {canUpdate ? (
+                      <input
+                        type="checkbox"
+                        class="popup-active-input"
+                        checked={popup.isActive}
+                        data-popup-active={popup.id}
+                      />
+                    ) : popup.isActive ? (
+                      t("Yes")
+                    ) : (
+                      t("No")
+                    )}
+                  </td>
+                  {showActions && (
+                    <td data-label="Actions" class="stacked-block">
+                      <div class="row-actions">
+                        {canUpdate && (
+                          <button
+                            type="button"
+                            class="module-toggle popup-save-btn"
+                            data-popup-id={popup.id}
+                          >
+                            {t("Save")}
+                          </button>
+                        )}
+                        {canDelete && (
+                          <button
+                            type="button"
+                            class="module-toggle popup-delete-btn"
+                            data-popup-id={popup.id}
+                            data-popup-title={popup.title}
+                          >
+                            {t("Delete")}
+                          </button>
+                        )}
+                      </div>
+                    </td>
+                  )}
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
+    )
+  }
+</AdminLayout>
+
+<script>
+  import {
+    checkboxChecked,
+    field,
+    messageBox,
+    mutateAndReload,
+    onAction,
+    onSubmit,
+    sendJson
+  } from "../../lib/ui/admin-form-client";
+
+  const createError = messageBox("popup-create-error");
+
+  onSubmit("popup-create-form", async ({ data, submit }) => {
+    await mutateAndReload(
+      submit,
+      createError,
+      () =>
+        sendJson("POST", "/api/v1/commerce/popups", {
+          title: field(data, "title"),
+          body: field(data, "body") || null,
+          mediaObjectId: field(data, "mediaObjectId") || null,
+          linkUrl: field(data, "linkUrl") || null,
+          buttonText: field(data, "buttonText") || null,
+          frequency: field(data, "frequency"),
+          isActive: checkboxChecked("popup-isActive")
+        }),
+      (errorCode) =>
+        errorCode === "POPUP_ALREADY_ACTIVE"
+          ? "Another popup is already active — deactivate it first."
+          : "Could not create the popup. Please try again."
+    );
+  });
+
+  const actionError = messageBox("popup-action-error");
+
+  onAction(".popup-save-btn", async (button) => {
+    const id = button.dataset.popupId;
+    if (!id) return;
+
+    const title =
+      document
+        .querySelector<HTMLInputElement>(`[data-popup-title="${id}"]`)
+        ?.value.trim() ?? "";
+    const isActive =
+      document.querySelector<HTMLInputElement>(`[data-popup-active="${id}"]`)
+        ?.checked ?? false;
+
+    await mutateAndReload(
+      button,
+      actionError,
+      () =>
+        sendJson("PATCH", `/api/v1/commerce/popups/${id}`, { title, isActive }),
+      (errorCode) =>
+        errorCode === "POPUP_ALREADY_ACTIVE"
+          ? "Another popup is already active — deactivate it first."
+          : "Could not save the popup. Please try again.",
+      "Saving…"
+    );
+  });
+
+  onAction(".popup-delete-btn", async (button) => {
+    const id = button.dataset.popupId;
+    if (!id) return;
+    const title = button.dataset.popupTitle ?? "this popup";
+    if (!window.confirm(`Delete ${title}?`)) return;
+
+    await mutateAndReload(
+      button,
+      actionError,
+      () => sendJson("DELETE", `/api/v1/commerce/popups/${id}`),
+      "Could not delete the popup. Please try again.",
+      "Deleting…"
+    );
+  });
+</script>

@@ -88,11 +88,23 @@ const OWNER_EMAIL =
   process.env.SEED_OWNER_EMAIL?.trim() || "owner@borneojek-mart.local";
 const OWNER_DISPLAY_NAME = "BjekMart Owner";
 
-/** Read-only build credential's name and scope — matches what apps/storefront's own catalog fetch calls (`apps/storefront/src/lib/catalog.ts`). */
+/**
+ * Read-only build credential's name and scope — every `read` the storefront's
+ * build fetches with (`apps/storefront/src/lib/catalog.ts` for the catalog,
+ * `apps/storefront/src/lib/awcms/pemasaran.ts` for the Issue #26 marketing
+ * read models). Machine credentials are read-only by construction (awcms
+ * ADR-0049), so listing a `read` here is the widest this token can ever be.
+ */
 const MACHINE_CREDENTIAL_NAME = "storefront-build (baca-saja)";
 const MACHINE_CREDENTIAL_PERMISSION_KEYS = [
   "commerce.products.read",
-  "commerce.categories.read"
+  "commerce.categories.read",
+  "commerce.flash_sales.read",
+  "commerce.vouchers.read",
+  "commerce.sliders.read",
+  "commerce.testimonials.read",
+  "commerce.popups.read",
+  "commerce.settings.read"
 ] as const;
 const MACHINE_CREDENTIAL_LIFETIME_DAYS = 365;
 
@@ -340,12 +352,36 @@ type ProductCurrent = {
   labelColor: string | null;
 };
 
-type ProductSeed = { slug: string; current: ProductCurrent; future?: Record<string, unknown> };
+/**
+ * `parity` (Issue #26) — the Issue #23 product-model fields, applied with one
+ * `PATCH` right after the product is created, plus `variants[]` created
+ * through `POST .../variants`. Kept separate from `current` so the create
+ * body stays the increment-1 shape the endpoint has always accepted, and so
+ * a reader can see at a glance which fields are catalog-core and which are
+ * parity. `future` holds what still cannot be applied here (images — they
+ * need an R2-backed upload session).
+ */
+type ProductVariantSeed = {
+  name: string;
+  value: string;
+  sku: string;
+  price: string;
+  stock: number;
+  sortOrder: number;
+};
+type ProductParity = Record<string, unknown> & { variants?: ProductVariantSeed[] };
+type ProductSeed = {
+  slug: string;
+  current: ProductCurrent;
+  parity?: ProductParity;
+  future?: Record<string, unknown>;
+};
 
 async function ensureProducts(
   session: Session,
   categoryIdBySlug: Map<string, string>
-): Promise<void> {
+): Promise<Map<string, string>> {
+  const productIdBySlug = new Map<string, string>();
   const list = await apiCall<{
     items: Array<{ id: string; slug: string; status: string }>;
   }>("GET", "/api/v1/commerce/products", { session });
@@ -398,6 +434,47 @@ async function ensureProducts(
       productId = created.data.id;
       console.log(`apply product "${product.slug}" (${product.current.type})`);
 
+      if (product.parity) {
+        const { variants, ...fields } = product.parity;
+        if (Object.keys(fields).length > 0) {
+          const patched = await apiCall(
+            "PATCH",
+            `/api/v1/commerce/products/${productId}`,
+            { session, body: fields }
+          );
+          assertOk(`PATCH /api/v1/commerce/products/${productId} (parity)`, patched);
+          console.log(`  apply parity fields: ${Object.keys(fields).join(", ")}`);
+        }
+        for (const variant of variants ?? []) {
+          const createdVariant = await apiCall(
+            "POST",
+            `/api/v1/commerce/products/${productId}/variants`,
+            {
+              session,
+              body: {
+                name: variant.name,
+                value: variant.value,
+                colorHex: null,
+                imageMediaObjectId: null,
+                sku: variant.sku,
+                price: variant.price,
+                priceLevel2: null,
+                priceLevel3: null,
+                priceLevel4: null,
+                stock: variant.stock,
+                weightGrams: 0,
+                sortOrder: variant.sortOrder
+              }
+            }
+          );
+          assertOk(
+            `POST /api/v1/commerce/products/${productId}/variants (${variant.sku})`,
+            createdVariant
+          );
+          console.log(`  apply variant "${variant.name}" (${variant.sku})`);
+        }
+      }
+
       if (product.future && Object.keys(product.future).length > 0) {
         const keys = Object.keys(product.future).filter((key) => key !== "note");
         console.log(
@@ -424,7 +501,225 @@ async function ensureProducts(
       assertOk(`PATCH /api/v1/commerce/products/${productId} (activate)`, activated);
       console.log(`apply product "${product.slug}" status -> active`);
     }
+
+    productIdBySlug.set(product.slug, productId);
   }
+
+  return productIdBySlug;
+}
+
+// ---------------------------------------------------------------------------
+// Step 3b — the marketing surface (Issue #26): flash sales, vouchers,
+// testimonials, the promo popup, and the store-settings block
+// (`/api/v1/commerce/{flash-sales,vouchers,testimonials,popups,store-settings}`).
+//
+// Idempotent the same way every step above is: each resource is LISTED first
+// and matched on its natural key (slug, code, author+body, title), and only
+// the missing ones are created. Store settings are a full-replace `PUT`, which
+// is idempotent by construction. Sliders are NOT here — a slider requires a
+// media object, and media objects only exist through the R2-backed upload
+// session; they stay under `future` in `tools/seed-data/marketing.json`.
+//
+// Windows are expressed as HOURS relative to the moment the seed runs
+// (`startsInHours`/`endsInHours`) rather than as fixed timestamps, so a seed
+// run next month still produces a flash sale that is live today.
+// ---------------------------------------------------------------------------
+
+type MarketingSeed = {
+  flashSales: Array<{
+    slug: string;
+    name: string;
+    startsInHours: number;
+    endsInHours: number;
+    status: "draft" | "scheduled";
+    products: Array<{
+      productSlug: string;
+      salePrice: string;
+      quota: number;
+      sortOrder: number;
+    }>;
+  }>;
+  vouchers: Array<{
+    code: string;
+    name: string;
+    description: string | null;
+    type: "percentage" | "nominal" | "free_shipping";
+    value: string;
+    minOrder: string;
+    maxDiscount: string | null;
+    quota: number;
+    isPublic: boolean;
+    startsInHours: number;
+    endsInHours: number;
+  }>;
+  testimonials: Array<{
+    authorName: string;
+    authorRole: string | null;
+    body: string;
+    rating: number;
+    sortOrder: number;
+  }>;
+  popup: {
+    title: string;
+    body: string | null;
+    linkUrl: string | null;
+    buttonText: string | null;
+    frequency: "once_per_session" | "once_per_day" | "always";
+    isActive: boolean;
+  };
+  storeSettings: Record<string, unknown>;
+};
+
+function hoursFromNow(hours: number): string {
+  return new Date(Date.now() + hours * 60 * 60 * 1000).toISOString();
+}
+
+async function ensureMarketing(
+  session: Session,
+  productIdBySlug: Map<string, string>
+): Promise<void> {
+  const seed = readSeedJson<MarketingSeed>("marketing.json");
+
+  // Flash sales — matched on slug; products attached only on first creation.
+  const sales = await apiCall<{ items: Array<{ id: string; slug: string }> }>(
+    "GET",
+    "/api/v1/commerce/flash-sales",
+    { session }
+  );
+  assertOk("GET /api/v1/commerce/flash-sales", sales);
+  const saleBySlug = new Map(sales.data.items.map((item) => [item.slug, item]));
+
+  for (const sale of seed.flashSales) {
+    if (saleBySlug.has(sale.slug)) {
+      console.log(`skip flash sale "${sale.slug}" (already exists)`);
+      continue;
+    }
+    const created = await apiCall<{ id: string }>(
+      "POST",
+      "/api/v1/commerce/flash-sales",
+      {
+        session,
+        body: {
+          name: sale.name,
+          slug: sale.slug,
+          startsAt: hoursFromNow(sale.startsInHours),
+          endsAt: hoursFromNow(sale.endsInHours),
+          status: sale.status
+        }
+      }
+    );
+    assertOk(`POST /api/v1/commerce/flash-sales (${sale.slug})`, created);
+    console.log(`apply flash sale "${sale.slug}"`);
+
+    for (const entry of sale.products) {
+      const productId = productIdBySlug.get(entry.productSlug);
+      if (!productId) {
+        throw new Error(
+          `flash sale "${sale.slug}" names productSlug "${entry.productSlug}", which was not seeded.`
+        );
+      }
+      const row = await apiCall(
+        "POST",
+        `/api/v1/commerce/flash-sales/${created.data.id}/products`,
+        {
+          session,
+          body: {
+            productId,
+            variantId: null,
+            salePrice: entry.salePrice,
+            quota: entry.quota,
+            sortOrder: entry.sortOrder
+          }
+        }
+      );
+      assertOk(`POST /api/v1/commerce/flash-sales/${created.data.id}/products`, row);
+      console.log(`  apply flash-sale product "${entry.productSlug}" @ ${entry.salePrice}`);
+    }
+  }
+
+  // Vouchers — matched on code.
+  const vouchers = await apiCall<{ items: Array<{ code: string }> }>(
+    "GET",
+    "/api/v1/commerce/vouchers",
+    { session }
+  );
+  assertOk("GET /api/v1/commerce/vouchers", vouchers);
+  const voucherCodes = new Set(vouchers.data.items.map((item) => item.code));
+
+  for (const voucher of seed.vouchers) {
+    if (voucherCodes.has(voucher.code)) {
+      console.log(`skip voucher "${voucher.code}" (already exists)`);
+      continue;
+    }
+    const { startsInHours, endsInHours, ...fields } = voucher;
+    const created = await apiCall("POST", "/api/v1/commerce/vouchers", {
+      session,
+      body: {
+        ...fields,
+        startsAt: hoursFromNow(startsInHours),
+        endsAt: hoursFromNow(endsInHours)
+      }
+    });
+    assertOk(`POST /api/v1/commerce/vouchers (${voucher.code})`, created);
+    console.log(`apply voucher "${voucher.code}" (${voucher.type})`);
+  }
+
+  // Testimonials — matched on author + body (the closest thing to a key).
+  const testimonials = await apiCall<{
+    items: Array<{ authorName: string; body: string }>;
+  }>("GET", "/api/v1/commerce/testimonials", { session });
+  assertOk("GET /api/v1/commerce/testimonials", testimonials);
+  const testimonialKeys = new Set(
+    testimonials.data.items.map((item) => `${item.authorName}\u0000${item.body}`)
+  );
+
+  for (const testimonial of seed.testimonials) {
+    if (testimonialKeys.has(`${testimonial.authorName}\u0000${testimonial.body}`)) {
+      console.log(`skip testimonial by "${testimonial.authorName}" (already exists)`);
+      continue;
+    }
+    const created = await apiCall("POST", "/api/v1/commerce/testimonials", {
+      session,
+      body: { ...testimonial, avatarMediaObjectId: null, isActive: true }
+    });
+    assertOk(`POST /api/v1/commerce/testimonials (${testimonial.authorName})`, created);
+    console.log(`apply testimonial by "${testimonial.authorName}"`);
+  }
+
+  // Popup — matched on title; at most one may be active per tenant, so an
+  // existing active popup of a different title is left alone rather than
+  // fought with.
+  const popups = await apiCall<{ items: Array<{ title: string }> }>(
+    "GET",
+    "/api/v1/commerce/popups",
+    { session }
+  );
+  assertOk("GET /api/v1/commerce/popups", popups);
+  if (popups.data.items.some((item) => item.title === seed.popup.title)) {
+    console.log(`skip popup "${seed.popup.title}" (already exists)`);
+  } else if (popups.data.items.length > 0) {
+    console.log(
+      `skip popup "${seed.popup.title}" (another popup exists — one active per tenant, see sql/161)`
+    );
+  } else {
+    const created = await apiCall("POST", "/api/v1/commerce/popups", {
+      session,
+      body: { ...seed.popup, mediaObjectId: null, startsAt: null, endsAt: null }
+    });
+    assertOk(`POST /api/v1/commerce/popups (${seed.popup.title})`, created);
+    console.log(`apply popup "${seed.popup.title}"`);
+  }
+
+  // Store settings — a full replace, idempotent by construction. The bank
+  // account in the seed data is a PLACEHOLDER by design: real account
+  // numbers are entered by the owner on /admin/commerce-settings, never
+  // committed.
+  const saved = await apiCall("PUT", "/api/v1/commerce/store-settings", {
+    session,
+    body: seed.storeSettings
+  });
+  assertOk("PUT /api/v1/commerce/store-settings", saved);
+  console.log("apply store settings (full replace)");
 }
 
 // ---------------------------------------------------------------------------
@@ -690,7 +985,8 @@ async function main(): Promise<void> {
 
   const { session, ownerTenantUserId } = await ensureTenantAndSession();
   const categoryIdBySlug = await ensureCategories(session);
-  await ensureProducts(session, categoryIdBySlug);
+  const productIdBySlug = await ensureProducts(session, categoryIdBySlug);
+  await ensureMarketing(session, productIdBySlug);
   const termIdBySlug = await ensureBlogTerms(session);
   await ensureBlogPages(session);
   await ensureBlogPosts(session, termIdBySlug);

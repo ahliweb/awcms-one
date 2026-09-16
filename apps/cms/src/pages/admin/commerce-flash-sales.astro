@@ -1,0 +1,534 @@
+---
+/**
+ * Commerce flash-sale CRUD screen (Issue #26). `status` here only ever
+ * offers `draft`/`scheduled` — `active`/`ended` are computed by the
+ * `commerce:flash-sales:tick` job, never a caller's choice (see
+ * `domain/flash-sale-status.ts`'s header). The "Products in this sale"
+ * panel is a second, simpler form scoped to one flash sale at a time,
+ * picked from a dropdown — the same pattern `commerce.astro`'s own
+ * images/variants editors use for a product's sub-resources.
+ */
+import AdminLayout from "../../layouts/AdminLayout.astro";
+import "../../styles/admin-screens.css";
+import { loadAdminScreen } from "../../lib/auth/admin-screen";
+import { logAdminPageError } from "../../lib/logging/error-log";
+import { getTranslatorFor } from "../../lib/i18n";
+import { listFlashSales } from "../../modules/commerce/application/flash-sale-directory";
+import { listProducts } from "../../modules/commerce/application/product-directory";
+
+const ssr = Astro.locals.ssrContext!;
+const { t, tn } = getTranslatorFor(Astro.locals.locale);
+
+const screen = await loadAdminScreen({
+  ssr,
+  workClass: "interactive",
+  authorize: {
+    moduleKey: "commerce",
+    activityCode: "flash_sales",
+    action: "read"
+  },
+  load: async ({ tx, can }) => {
+    const page = await listFlashSales(tx, ssr.tenantId, null);
+    const productPage = await listProducts(tx, ssr.tenantId, null, {});
+    const canCreate = await can({
+      moduleKey: "commerce",
+      activityCode: "flash_sales",
+      action: "create"
+    });
+    const canUpdate = await can({
+      moduleKey: "commerce",
+      activityCode: "flash_sales",
+      action: "update"
+    });
+    const canDelete = await can({
+      moduleKey: "commerce",
+      activityCode: "flash_sales",
+      action: "delete"
+    });
+
+    return {
+      flashSales: page.items,
+      products: productPage.items,
+      canCreate,
+      canUpdate,
+      canDelete
+    };
+  },
+  onError: (error) => {
+    logAdminPageError(
+      "admin/commerce-flash-sales.astro: failed to list flash sales",
+      error,
+      {
+        correlationId: Astro.locals.correlationId
+      }
+    );
+  }
+});
+
+const canRead = screen.state !== "denied";
+const loadError = screen.state === "error";
+const flashSales = screen.state === "allowed" ? screen.data.flashSales : [];
+const products = screen.state === "allowed" ? screen.data.products : [];
+const canCreate = screen.state === "allowed" && screen.data.canCreate;
+const canUpdate = screen.state === "allowed" && screen.data.canUpdate;
+const canDelete = screen.state === "allowed" && screen.data.canDelete;
+const showActions = canUpdate || canDelete;
+---
+
+<AdminLayout
+  title={t("Flash sales")}
+  description={t(
+    "Time-boxed promotions: name, window, and the products/variants on sale."
+  )}
+>
+  {
+    !canRead && (
+      <p class="state-notice fade-in-up" id="flash-sales-denied">
+        {t("You do not have permission to view flash sales.")}
+      </p>
+    )
+  }
+  {
+    canRead && loadError && (
+      <p class="state-notice fade-in-up" id="flash-sales-error">
+        {t(
+          "Flash sales could not be loaded right now. Please try again later."
+        )}
+      </p>
+    )
+  }
+
+  {
+    canCreate && (
+      <form id="flash-sale-create-form" class="admin-create-form fade-in-up">
+        <p class="form-legend">{t("Create a flash sale")}</p>
+        <p
+          id="flash-sale-create-error"
+          class="admin-create-error"
+          role="alert"
+          hidden
+        />
+
+        <label for="flash-sale-name">{t("Name")}</label>
+        <input
+          id="flash-sale-name"
+          name="name"
+          type="text"
+          required
+          autocomplete="off"
+        />
+
+        <label for="flash-sale-slug">{t("Slug")}</label>
+        <input
+          id="flash-sale-slug"
+          name="slug"
+          type="text"
+          required
+          autocomplete="off"
+        />
+
+        <label for="flash-sale-startsAt">{t("Starts at")}</label>
+        <input
+          id="flash-sale-startsAt"
+          name="startsAt"
+          type="datetime-local"
+          required
+        />
+
+        <label for="flash-sale-endsAt">{t("Ends at")}</label>
+        <input
+          id="flash-sale-endsAt"
+          name="endsAt"
+          type="datetime-local"
+          required
+        />
+
+        <label for="flash-sale-status">{t("Status")}</label>
+        <select id="flash-sale-status" name="status">
+          <option value="draft">{t("Draft")}</option>
+          <option value="scheduled">{t("Scheduled")}</option>
+        </select>
+
+        <button type="submit" id="flash-sale-create-submit">
+          {t("Create flash sale")}
+        </button>
+      </form>
+    )
+  }
+
+  {
+    canRead && !loadError && (
+      <p
+        id="flash-sale-action-error"
+        class="admin-create-error"
+        role="alert"
+        hidden
+      />
+    )
+  }
+
+  {
+    canRead && !loadError && (
+      <div class="data-table-scroll fade-in-up">
+        <table
+          class="data-table data-table--stack"
+          id="commerce-flash-sales-table"
+        >
+          <caption>
+            {tn(
+              "{count} flash sale",
+              "{count} flash sales",
+              flashSales.length,
+              { count: flashSales.length }
+            )}
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">{t("Name")}</th>
+              <th scope="col">{t("Slug")}</th>
+              <th scope="col">{t("Starts at")}</th>
+              <th scope="col">{t("Ends at")}</th>
+              <th scope="col">{t("Status")}</th>
+              {showActions && <th scope="col">{t("Actions")}</th>}
+            </tr>
+          </thead>
+          <tbody>
+            {flashSales.length === 0 ? (
+              <tr>
+                <td class="data-table-empty" colspan={showActions ? 6 : 5}>
+                  <div class="empty-state">
+                    <span class="empty-state-icon" aria-hidden="true">
+                      ◇
+                    </span>
+                    <span class="empty-state-title">
+                      {t("No flash sales yet")}
+                    </span>
+                    <span class="empty-state-text">
+                      {t(
+                        "Flash sales created for this tenant will appear here."
+                      )}
+                    </span>
+                  </div>
+                </td>
+              </tr>
+            ) : (
+              flashSales.map((sale) => (
+                <tr data-flash-sale-row={sale.id}>
+                  <td
+                    data-label="Name"
+                    class={canUpdate ? "stacked-block" : ""}
+                  >
+                    {canUpdate ? (
+                      <input
+                        class="flash-sale-name-input"
+                        type="text"
+                        value={sale.name}
+                        aria-label={`Name for ${sale.slug}`}
+                        data-flash-sale-name={sale.id}
+                      />
+                    ) : (
+                      sale.name
+                    )}
+                  </td>
+                  <td
+                    data-label="Slug"
+                    class={canUpdate ? "stacked-block" : ""}
+                  >
+                    {canUpdate ? (
+                      <input
+                        class="flash-sale-slug-input"
+                        type="text"
+                        value={sale.slug}
+                        aria-label={`Slug for ${sale.name}`}
+                        data-flash-sale-slug={sale.id}
+                      />
+                    ) : (
+                      <span class="cell-code">{sale.slug}</span>
+                    )}
+                  </td>
+                  <td
+                    data-label="Starts at"
+                    class={canUpdate ? "stacked-block" : ""}
+                  >
+                    {canUpdate ? (
+                      <input
+                        class="flash-sale-starts-input"
+                        type="datetime-local"
+                        value={sale.startsAt.slice(0, 16)}
+                        data-flash-sale-starts={sale.id}
+                      />
+                    ) : (
+                      sale.startsAt
+                    )}
+                  </td>
+                  <td
+                    data-label="Ends at"
+                    class={canUpdate ? "stacked-block" : ""}
+                  >
+                    {canUpdate ? (
+                      <input
+                        class="flash-sale-ends-input"
+                        type="datetime-local"
+                        value={sale.endsAt.slice(0, 16)}
+                        data-flash-sale-ends={sale.id}
+                      />
+                    ) : (
+                      sale.endsAt
+                    )}
+                  </td>
+                  <td
+                    data-label="Status"
+                    class={canUpdate ? "stacked-block" : ""}
+                  >
+                    {canUpdate ? (
+                      <select
+                        class="flash-sale-status-input"
+                        data-flash-sale-status={sale.id}
+                      >
+                        <option
+                          value="draft"
+                          selected={sale.status === "draft"}
+                        >
+                          {t("Draft")}
+                        </option>
+                        <option
+                          value="scheduled"
+                          selected={sale.status === "scheduled"}
+                        >
+                          {t("Scheduled")}
+                        </option>
+                      </select>
+                    ) : (
+                      sale.status
+                    )}
+                  </td>
+                  {showActions && (
+                    <td data-label="Actions" class="stacked-block">
+                      <div class="row-actions">
+                        {canUpdate && (
+                          <button
+                            type="button"
+                            class="module-toggle flash-sale-save-btn"
+                            data-flash-sale-id={sale.id}
+                          >
+                            {t("Save")}
+                          </button>
+                        )}
+                        {canDelete && (
+                          <button
+                            type="button"
+                            class="module-toggle flash-sale-delete-btn"
+                            data-flash-sale-id={sale.id}
+                            data-flash-sale-name={sale.name}
+                          >
+                            {t("Delete")}
+                          </button>
+                        )}
+                      </div>
+                    </td>
+                  )}
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
+    )
+  }
+
+  {
+    canRead && !loadError && canUpdate && flashSales.length > 0 && (
+      <section
+        class="admin-section fade-in-up"
+        id="flash-sale-products-section"
+      >
+        <h2 class="admin-section-title">{t("Products in a flash sale")}</h2>
+
+        <label for="flash-sale-products-select">{t("Flash sale")}</label>
+        <select id="flash-sale-products-select">
+          {flashSales.map((sale) => (
+            <option value={sale.id}>{sale.name}</option>
+          ))}
+        </select>
+
+        <form id="flash-sale-product-add-form" class="admin-create-form">
+          <p
+            id="flash-sale-product-add-error"
+            class="admin-create-error"
+            role="alert"
+            hidden
+          />
+
+          <label for="flash-sale-product-productId">{t("Product")}</label>
+          <select id="flash-sale-product-productId" name="productId" required>
+            {products.map((product) => (
+              <option value={product.id}>
+                {product.name} ({product.sku})
+              </option>
+            ))}
+          </select>
+
+          <label for="flash-sale-product-salePrice">{t("Sale price")}</label>
+          <input
+            id="flash-sale-product-salePrice"
+            name="salePrice"
+            type="text"
+            inputmode="decimal"
+            required
+            placeholder="0.00"
+          />
+
+          <label for="flash-sale-product-quota">{t("Quota")}</label>
+          <input
+            id="flash-sale-product-quota"
+            name="quota"
+            type="number"
+            min="0"
+            step="1"
+            required
+            value="0"
+          />
+
+          <label for="flash-sale-product-sortOrder">{t("Sort order")}</label>
+          <input
+            id="flash-sale-product-sortOrder"
+            name="sortOrder"
+            type="number"
+            step="1"
+            value="0"
+          />
+
+          <button type="submit" id="flash-sale-product-add-submit">
+            {t("Add product to sale")}
+          </button>
+        </form>
+
+        <p class="cell-muted">
+          {t(
+            "Save the page after adding a line to see it listed; lines are edited by removing and re-adding."
+          )}
+        </p>
+      </section>
+    )
+  }
+</AdminLayout>
+
+<script>
+  import {
+    field,
+    integerValue,
+    localDateTimeToInstant,
+    messageBox,
+    mutateAndReload,
+    onAction,
+    onSubmit,
+    sendJson
+  } from "../../lib/ui/admin-form-client";
+
+  const createError = messageBox("flash-sale-create-error");
+
+  onSubmit("flash-sale-create-form", async ({ data, submit }) => {
+    await mutateAndReload(
+      submit,
+      createError,
+      () =>
+        sendJson("POST", "/api/v1/commerce/flash-sales", {
+          name: field(data, "name"),
+          slug: field(data, "slug"),
+          startsAt: localDateTimeToInstant("flash-sale-startsAt"),
+          endsAt: localDateTimeToInstant("flash-sale-endsAt"),
+          status: field(data, "status")
+        }),
+      "Could not create the flash sale. Check the slug is unique and the window is valid."
+    );
+  });
+
+  const actionError = messageBox("flash-sale-action-error");
+
+  onAction(".flash-sale-save-btn", async (button) => {
+    const id = button.dataset.flashSaleId;
+    if (!id) return;
+
+    const name =
+      document
+        .querySelector<HTMLInputElement>(`[data-flash-sale-name="${id}"]`)
+        ?.value.trim() ?? "";
+    const slug =
+      document
+        .querySelector<HTMLInputElement>(`[data-flash-sale-slug="${id}"]`)
+        ?.value.trim() ?? "";
+    const startsAtInput = document.querySelector<HTMLInputElement>(
+      `[data-flash-sale-starts="${id}"]`
+    );
+    const endsAtInput = document.querySelector<HTMLInputElement>(
+      `[data-flash-sale-ends="${id}"]`
+    );
+    const status =
+      document.querySelector<HTMLSelectElement>(
+        `[data-flash-sale-status="${id}"]`
+      )?.value ?? "draft";
+
+    await mutateAndReload(
+      button,
+      actionError,
+      () =>
+        sendJson("PATCH", `/api/v1/commerce/flash-sales/${id}`, {
+          name,
+          slug,
+          startsAt: startsAtInput
+            ? new Date(startsAtInput.value).toISOString()
+            : undefined,
+          endsAt: endsAtInput
+            ? new Date(endsAtInput.value).toISOString()
+            : undefined,
+          status
+        }),
+      "Could not save the flash sale. Please try again.",
+      "Saving…"
+    );
+  });
+
+  onAction(".flash-sale-delete-btn", async (button) => {
+    const id = button.dataset.flashSaleId;
+    if (!id) return;
+    const name = button.dataset.flashSaleName ?? "this flash sale";
+    if (!window.confirm(`Delete ${name}?`)) return;
+
+    await mutateAndReload(
+      button,
+      actionError,
+      () => sendJson("DELETE", `/api/v1/commerce/flash-sales/${id}`),
+      "Could not delete the flash sale. Please try again.",
+      "Deleting…"
+    );
+  });
+
+  const productAddError = messageBox("flash-sale-product-add-error");
+
+  onSubmit("flash-sale-product-add-form", async ({ data, submit }) => {
+    const flashSaleId = (
+      document.getElementById(
+        "flash-sale-products-select"
+      ) as HTMLSelectElement | null
+    )?.value;
+    if (!flashSaleId) return;
+
+    await mutateAndReload(
+      submit,
+      productAddError,
+      () =>
+        sendJson(
+          "POST",
+          `/api/v1/commerce/flash-sales/${flashSaleId}/products`,
+          {
+            productId: field(data, "productId"),
+            variantId: null,
+            salePrice: field(data, "salePrice"),
+            quota: integerValue("flash-sale-product-quota", 0),
+            sortOrder: integerValue("flash-sale-product-sortOrder", 0)
+          }
+        ),
+      "Could not add the product to this sale. Check the sale price and quota."
+    );
+  });
+</script>

@@ -1,3 +1,4 @@
+import { normalizeMoney } from "../domain/price-calculation";
 import { recordAuditEvent } from "../../logging/application/audit-log";
 import type {
   CreateProductVariantInput,
@@ -79,10 +80,10 @@ function toRecord(row: ProductVariantRow): ProductVariantRecord {
     colorHex: row.color_hex,
     imageMediaObjectId: row.image_media_object_id,
     sku: row.sku,
-    price: row.price,
-    priceLevel2: row.price_level_2,
-    priceLevel3: row.price_level_3,
-    priceLevel4: row.price_level_4,
+    price: normalizeMoney(row.price),
+    priceLevel2: normalizeMoney(row.price_level_2),
+    priceLevel3: normalizeMoney(row.price_level_3),
+    priceLevel4: normalizeMoney(row.price_level_4),
     stock: row.stock,
     weightGrams: row.weight_grams,
     sortOrder: row.sort_order
@@ -139,7 +140,7 @@ export async function listLiveProductVariantsByProductIds(
     SELECT ${tx.unsafe(VARIANT_COLUMNS)}
     FROM awcms_commerce_product_variants
     WHERE tenant_id = ${tenantId}
-      AND product_id = ANY(${productIds})
+      AND product_id = ANY(${tx.array([...productIds], "uuid")}::uuid[])
       AND deleted_at IS NULL
     ORDER BY product_id, sort_order, id
   `) as ProductVariantRow[];

@@ -25,6 +25,7 @@ import {
   restoreCategory
 } from "../../src/modules/commerce/application/category-directory";
 import {
+  attachProductRelations,
   createProduct,
   deleteProduct,
   fetchProductBySlug,
@@ -350,6 +351,58 @@ suite("commerce catalog-parity integration (Issue #23)", () => {
           )
         )
       ).rejects.toBeInstanceOf(ProductImageMediaReferenceInvalidError);
+    }, 20000);
+    test("attachProductRelations batches images across SEVERAL products in one query (Issue #26 regression)", async () => {
+      // Bun.SQL does not bind a JS array as a Postgres array — `${ids}` reaches
+      // the server as the text `a,b` (22P02 "malformed array literal"), and
+      // the single-element shape is the dangerous one because it arrives as
+      // a bare `a` that looks like an ordinary string and PASSES. The batch
+      // reads therefore go through `tx.array(ids, "uuid")::uuid[]`, and this
+      // test is the one that fails if that ever regresses to `ANY(${ids})`:
+      // two products, each with one image, resolved in one round trip.
+      const first = await makeProduct(TENANT_A, {
+        sku: "SKU-BATCH-1",
+        slug: "batch-one"
+      });
+      const second = await makeProduct(TENANT_A, {
+        sku: "SKU-BATCH-2",
+        slug: "batch-two"
+      });
+      const mediaA = await seedVerifiedMediaObject(TENANT_A);
+      const mediaB = await seedVerifiedMediaObject(TENANT_A);
+
+      for (const [product, mediaId] of [
+        [first, mediaA],
+        [second, mediaB]
+      ] as const) {
+        await withTenantOrThrow(getRuntimeSql(), TENANT_A, (tx) =>
+          createProductImage(
+            tx,
+            TENANT_A,
+            ACTOR,
+            product.id,
+            { mediaObjectId: mediaId, altText: null, sortOrder: 0 },
+            mediaLibraryPortAdapter
+          )
+        );
+      }
+
+      const withRelations = await withTenantOrThrow(
+        getRuntimeSql(),
+        TENANT_A,
+        (tx) =>
+          attachProductRelations(tx, TENANT_A, mediaLibraryPortAdapter, [
+            first,
+            second
+          ])
+      );
+
+      expect(withRelations.map((p) => p.images[0]?.mediaObjectId)).toEqual([
+        mediaA,
+        mediaB
+      ]);
+      expect(withRelations[0]!.images[0]!.publicUrl).toContain(mediaA);
+      expect(withRelations[0]!.sizeChartImageUrl).toBeNull();
     }, 20000);
   });
 

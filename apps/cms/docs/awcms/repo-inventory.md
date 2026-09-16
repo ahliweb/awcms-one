@@ -8,12 +8,12 @@
 | Aspect                              | Value |
 | ----------------------------------- | ----- |
 | Registered modules                  | 25    |
-| Migrations                          | 160   |
-| `awcms_*` tables                    | 156   |
-| Tables with `FORCE` RLS             | 138   |
+| Migrations                          | 164   |
+| `awcms_*` tables                    | 163   |
+| Tables with `FORCE` RLS             | 145   |
 | RLS-free tables (global, by design) | 18    |
-| Test files                          | 517   |
-| Route files                         | 401   |
+| Test files                          | 520   |
+| Route files                         | 427   |
 | ADR                                 | 244   |
 
 ### Modules
@@ -210,6 +210,10 @@
 | 158 | `sql/158_awcms_commerce_restore_permissions.sql`                     |
 | 159 | `sql/159_awcms_commerce_list_filter_indexes.sql`                     |
 | 160 | `sql/160_awcms_commerce_relations_worker_lifecycle_purge_grants.sql` |
+| 161 | `sql/161_awcms_commerce_marketing_schema.sql`                        |
+| 162 | `sql/162_awcms_commerce_store_settings.sql`                          |
+| 163 | `sql/163_awcms_commerce_marketing_permissions.sql`                   |
+| 164 | `sql/164_awcms_commerce_marketing_worker_lifecycle_purge_grants.sql` |
 
 ### Tables & Row-Level Security
 
@@ -250,9 +254,16 @@
 | `awcms_comments_settings`                | `sql/066_awcms_comments_schema.sql`                        | yes | yes   |
 | `awcms_comments_threads`                 | `sql/066_awcms_comments_schema.sql`                        | yes | yes   |
 | `awcms_commerce_categories`              | `sql/153_awcms_commerce_schema.sql`                        | yes | yes   |
+| `awcms_commerce_flash_sale_products`     | `sql/161_awcms_commerce_marketing_schema.sql`              | yes | yes   |
+| `awcms_commerce_flash_sales`             | `sql/161_awcms_commerce_marketing_schema.sql`              | yes | yes   |
+| `awcms_commerce_popups`                  | `sql/161_awcms_commerce_marketing_schema.sql`              | yes | yes   |
 | `awcms_commerce_product_images`          | `sql/157_awcms_commerce_product_images_variants.sql`       | yes | yes   |
 | `awcms_commerce_product_variants`        | `sql/157_awcms_commerce_product_images_variants.sql`       | yes | yes   |
 | `awcms_commerce_products`                | `sql/153_awcms_commerce_schema.sql`                        | yes | yes   |
+| `awcms_commerce_sliders`                 | `sql/161_awcms_commerce_marketing_schema.sql`              | yes | yes   |
+| `awcms_commerce_store_settings`          | `sql/162_awcms_commerce_store_settings.sql`                | yes | yes   |
+| `awcms_commerce_testimonials`            | `sql/161_awcms_commerce_marketing_schema.sql`              | yes | yes   |
+| `awcms_commerce_vouchers`                | `sql/161_awcms_commerce_marketing_schema.sql`              | yes | yes   |
 | `awcms_data_lifecycle_archive_manifests` | `sql/055_awcms_data_lifecycle_schema.sql`                  | yes | yes   |
 | `awcms_data_lifecycle_cursors`           | `sql/055_awcms_data_lifecycle_schema.sql`                  | yes | yes   |
 | `awcms_data_lifecycle_legal_holds`       | `sql/055_awcms_data_lifecycle_schema.sql`                  | yes | yes   |
@@ -376,17 +387,17 @@
 
 | Directory     | Test files |
 | ------------- | ---------- |
-| `(root)`      | 417        |
+| `(root)`      | 419        |
 | `e2e`         | 19         |
-| `integration` | 80         |
+| `integration` | 81         |
 | `unit`        | 1          |
 
 ### Routes
 
 | Surface         | Files |
 | --------------- | ----- |
-| `/api/v1/**`    | 319   |
-| `/admin/**`     | 52    |
+| `/api/v1/**`    | 339   |
+| `/admin/**`     | 58    |
 | publik / anonim | 30    |
 
 <!-- END GENERATED: repo-inventory -->

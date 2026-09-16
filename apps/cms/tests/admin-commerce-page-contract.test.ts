@@ -89,9 +89,15 @@ async function enforcedTriples(
 }
 
 describe("commerce module descriptor — restore is declared for both activity codes", () => {
-  test("ten permissions total, five per activity code, including restore", () => {
+  test("thirty-two permissions total — five per catalog activity code (incl. restore), four per marketing code, two for settings", () => {
+    // Issue #23: categories/products carry read/create/update/delete/restore.
+    // Issue #26: flash_sales/vouchers/sliders/testimonials/popups carry
+    // read/create/update/delete (soft delete only, no restore — the marketing
+    // tables ship no restore endpoint, see the module description), and
+    // settings carries read/update (a singleton has nothing to create or
+    // delete as a separate capability; "reset" travels on update).
     const declared = declaredTriples();
-    expect(declared.size).toBe(10);
+    expect(declared.size).toBe(2 * 5 + 5 * 4 + 2);
 
     for (const activityCode of ["categories", "products"]) {
       for (const action of ["read", "create", "update", "delete", "restore"]) {
@@ -99,6 +105,27 @@ describe("commerce module descriptor — restore is declared for both activity c
           declared.has(`commerce.${activityCode}.${action}` as Triple)
         ).toBe(true);
       }
+    }
+
+    for (const activityCode of [
+      "flash_sales",
+      "vouchers",
+      "sliders",
+      "testimonials",
+      "popups"
+    ]) {
+      for (const action of ["read", "create", "update", "delete"]) {
+        expect(
+          declared.has(`commerce.${activityCode}.${action}` as Triple)
+        ).toBe(true);
+      }
+      expect(declared.has(`commerce.${activityCode}.restore` as Triple)).toBe(
+        false
+      );
+    }
+
+    for (const action of ["read", "update"]) {
+      expect(declared.has(`commerce.settings.${action}` as Triple)).toBe(true);
     }
   });
 

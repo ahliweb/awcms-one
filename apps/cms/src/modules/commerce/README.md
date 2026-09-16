@@ -4,18 +4,22 @@
 
 Tenant-scoped product **categories** (hierarchical, self-referencing) and
 **products** (with images and variants), ported from the legacy MySQL
-`commerce_bj_mart.{categories,products}` schema. Issue #4 (part of epic #1)
-shipped the catalog core; Issue #23 (part of epic #21) brings it to full
-product-model parity with the legacy schema.
+`commerce_bj_mart.{categories,products}` schema — plus, since Issue #26, the
+**marketing surface** BjekMart's home page and promotions run on: flash
+sales, vouchers, sliders, testimonials, a promo popup, and a per-tenant
+store-settings document. Issue #4 (part of epic #1) shipped the catalog
+core; Issue #23 (part of epic #21) brought it to full product-model parity
+with the legacy schema; Issue #26 (same epic) added the marketing tables.
 
-| Aspect      | Value                                                                                                                                                                  |
-| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Key / type  | `commerce` · `domain`, `isCore: false`                                                                                                                                 |
-| Tables      | `awcms_commerce_categories`, `awcms_commerce_products` (`sql/153`, extended `sql/156`), `awcms_commerce_product_images`, `awcms_commerce_product_variants` (`sql/157`) |
-| Permissions | `categories.{read,create,update,delete,restore}`, `products.{read,create,update,delete,restore}` (`sql/154`, `sql/158`)                                                |
-| API         | `/api/v1/commerce/{categories,products}` (`openapi/modules/commerce.openapi.yaml`)                                                                                     |
-| Events      | `commerce.product.{created,updated,status_changed}` — unchanged by Issue #23, see below                                                                                |
-| Depends on  | `tenant_admin`, `identity_access`, `domain_event_runtime`, `media_library` (added by Issue #23 — product images resolve through `MediaLibraryPort`)                    |
+| Aspect      | Value                                                                                                                                                                                                                                                                                                                                                                                                            |
+| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Key / type  | `commerce` · `domain`, `isCore: false`                                                                                                                                                                                                                                                                                                                                                                           |
+| Tables      | `awcms_commerce_categories`, `awcms_commerce_products` (`sql/153`, extended `sql/156`), `awcms_commerce_product_images`, `awcms_commerce_product_variants` (`sql/157`); `awcms_commerce_flash_sales`, `awcms_commerce_flash_sale_products`, `awcms_commerce_vouchers`, `awcms_commerce_sliders`, `awcms_commerce_testimonials`, `awcms_commerce_popups` (`sql/161`), `awcms_commerce_store_settings` (`sql/162`) |
+| Permissions | `categories.{read,create,update,delete,restore}`, `products.{read,create,update,delete,restore}` (`sql/154`, `sql/158`); `{flash_sales,vouchers,sliders,testimonials,popups}.{read,create,update,delete}`, `settings.{read,update}` (`sql/163`) — 32 in all                                                                                                                                                      |
+| API         | `/api/v1/commerce/{categories,products,flash-sales,vouchers,sliders,testimonials,popups,store-settings}` (`openapi/modules/commerce.openapi.yaml`)                                                                                                                                                                                                                                                               |
+| Events      | `commerce.product.{created,updated,status_changed}`; `commerce.flash_sale.{started,ended}` (Issue #26, emitted by the tick job)                                                                                                                                                                                                                                                                                  |
+| Depends on  | `tenant_admin`, `identity_access`, `domain_event_runtime`, `media_library` (product images, sliders, testimonial avatars, the popup image and the store logo/favicon all resolve through `MediaLibraryPort`)                                                                                                                                                                                                     |
+| Jobs        | `commerce:flash-sales:tick` (`scripts/commerce-flash-sales-tick.ts`, every 5 minutes — persists each sale's derived status and fires the two flash-sale events)                                                                                                                                                                                                                                                  |
 
 ## What Issue #23 adds, and what stays a later increment
 
@@ -177,7 +181,55 @@ resolve every image's `mediaObjectId` (and a variant's own optional
 - **`price_level_n <= price` is not enforced** — BjekMart lets a distributor
   price exceed the retail price, so this module does not second-guess it.
 
-## Admin screens: two, full CRUD (Issue #23)
+## The marketing surface (Issue #26)
+
+Six resource families, one per admin screen, all following the catalog's
+conventions (RLS `FORCE`, soft delete via `deleted_at`, money as
+`numeric(14,2)` strings, keyset-paginated owner lists, audit events on every
+mutation) and each with a **public read model** — the endpoint
+`apps/storefront` (in `ahliweb/awcms-one`) bakes its home page from, gated on
+the family's `read` permission and returning only what a shopper may see:
+
+| Family         | Owner routes                                                        | Public read model                    | What the read model hides                                                                  |
+| -------------- | ------------------------------------------------------------------- | ------------------------------------ | ------------------------------------------------------------------------------------------ |
+| Flash sales    | `/flash-sales`, `/{id}`, `/{id}/products`, `/{id}/products/{rowId}` | `GET /flash-sales/active`            | draft and ended sales; `status` is DERIVED from the window (`domain/flash-sale-status.ts`) |
+| Vouchers       | `/vouchers`, `/{id}`, `POST /vouchers/validate`                     | `GET /vouchers/public`               | non-public codes, inactive ones, exhausted quota — a private code still WORKS when typed   |
+| Sliders        | `/sliders`, `/{id}`                                                 | `GET /sliders/active`                | inactive rows, rows outside their window; the media id becomes a resolved URL              |
+| Testimonials   | `/testimonials`, `/{id}`                                            | `GET /testimonials/active`           | inactive rows                                                                              |
+| Popup          | `/popups`, `/{id}`                                                  | `GET /popups/active` (one or `null`) | at most ONE active per tenant — a partial unique index (`sql/161`), not a convention       |
+| Store settings | `GET`/`PUT`/`DELETE /store-settings`                                | `GET /store-settings/public`         | bank account numbers and holders, the QRIS media id, customer-level discount rules         |
+
+**Voucher arithmetic is exact** (`domain/voucher-arithmetic.ts`): integer
+cents, half-up, a percentage capped by `maxDiscount`, `free_shipping` a flag
+rather than an amount; `POST /vouchers/validate` is a READ — redemption
+belongs to the order that uses the code (Issue #29). **Flash-sale status is
+derived**, never trusted from the column: the editor sets `draft`/`scheduled`
+and `commerce:flash-sales:tick` persists what `now()` implies, firing
+`commerce.flash_sale.{started,ended}` on the transition and never twice.
+
+**Store settings are one versioned `jsonb` document per tenant**
+(`domain/store-settings-validation.ts`, unknown keys rejected, `PUT` is a
+full replace). `DELETE` is "reset to defaults": it stamps `deleted_at` rather
+than removing the singleton (`sql/162`'s header), every reader then answers
+with the defaults, and the next `PUT` clears the stamp — which is also what
+lets the row answer the retention question with a real column instead of an
+exemption. The public projection (`application/store-settings-directory.ts`'s
+`toPublicRecord`) is the security boundary for the bank accounts: they exist
+only on the owner `GET`, and the audit event for a change names the SECTIONS
+that changed, never a value.
+
+**Money on the wire is always two decimals.** `Bun.SQL` decodes a stored
+`0.00` as `"0"` through a parameterised query and as `"0.00"` through a
+simple one; every `toRecord` in this module now passes money through
+`domain/price-calculation.ts`'s `normalizeMoney` so the contract does not
+depend on which protocol served the row.
+
+**What left the public product DTO in this issue:** `downloadLink` — a digital
+product's paid asset, now on `ProductAdminRecord` beside `costPrice` and
+delivered only through the order path (Issue #29). **What joined it:**
+`sizeChartImageUrl`, resolved through the same media batch as `images[]`.
+
+## Admin screens: eight, full CRUD (Issues #23 and #26)
 
 `/admin/commerce` (`src/pages/admin/commerce.astro`) — filters
 (`categoryId`/`status`/`q`/`featured`/`recommended`), a create form covering
@@ -194,15 +246,24 @@ delete, and restore.
 edit (name/slug — `parentId` is create-only, see "Hierarchy" above), soft
 delete, restore.
 
-Both screens are off `scripts/admin-screen-coverage-ledger.ts`'s
-`NOT_YET_SCREENED` — every one of the ten declared permissions (five per
-activity code, including `restore`) is claimed by one of the two screens.
+Issue #26 adds `/admin/commerce-flash-sales`, `-vouchers`, `-sliders`,
+`-testimonials`, `-popup` and `-settings`, each a list + create form + per-row
+edit/delete against its owner routes (the settings screen is one form with a
+"reset to defaults" action). All eight screens are off
+`scripts/admin-screen-coverage-ledger.ts`'s `NOT_YET_SCREENED` — every one of
+the 32 declared permissions is claimed by one of them, and
+`tests/admin-commerce-marketing-page-contract.test.ts` holds the six new ones
+to the same three properties the #23 screens satisfy.
 
 ## Deliberately not here
 
-- **No cart/checkout/payment/orders/shipping/flash-sale/affiliate-link
-  surface.** This module is still the catalog + its two rendering-dependency
-  tables, not the rest of the storefront.
+- **No cart/checkout/payment/orders/shipping/affiliate-link surface** —
+  Issue #29 adds customers, orders and the anonymous storefront endpoints.
+- **No restore for the marketing tables.** Soft delete only; a deleted
+  voucher or slider is recreated, not brought back — the audit trail keeps the
+  record.
+- **No voucher redemption.** `validate` reads; the order that uses a code
+  redeems it (Issue #29), and `used_count` moves there.
 - **No full-text relevance ranking on `q`.** The trigram/`ILIKE` match
   (`sql/159`) is substring search, not a ranked search index — `site_search`
   is this base's cross-content search module, and `commerce` does not

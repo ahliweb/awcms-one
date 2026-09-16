@@ -19,18 +19,50 @@
  */
 const PRICE_PATTERN = /^\d{1,12}(\.\d{1,2})?$/;
 
-/** Parses a `numeric(14,2)`-shaped decimal string into integer cents. */
-function toCents(price: string): bigint {
+/**
+ * Parses a `numeric(14,2)`-shaped decimal string into an integer scaled by
+ * 100 — "cents" for a money string, hundredths-of-a-percent for a percentage
+ * string (`domain/voucher-arithmetic.ts` uses it both ways; the function
+ * itself does not care which). Exported (Issue #26) so every place in this
+ * module that does exact decimal arithmetic shares ONE parser rather than a
+ * second hand-rolled copy — `voucher-arithmetic.ts`'s discount math is the
+ * first cross-file caller.
+ */
+export function toCents(price: string): bigint {
   const [wholePart, fractionalPart = ""] = price.split(".");
   const paddedFraction = (fractionalPart + "00").slice(0, 2);
   return BigInt(wholePart!) * 100n + BigInt(paddedFraction);
 }
 
-/** Formats integer cents back into a `numeric(14,2)` decimal string. */
-function fromCents(cents: bigint): string {
+/** Formats an integer scaled by 100 back into a `numeric(14,2)` decimal string. Exported for the same reason as {@link toCents}. */
+export function fromCents(cents: bigint): string {
   const whole = cents / 100n;
   const fraction = cents % 100n;
   return `${whole}.${fraction.toString().padStart(2, "0")}`;
+}
+
+/**
+ * Re-renders a `numeric(14,2)` value read from the database as the canonical
+ * two-decimal string the API contract promises (`"0.00"`, never `"0"`).
+ *
+ * Exists because of a `Bun.SQL` decoding quirk found while seeding Issue #26:
+ * a numeric column read through a PARAMETERISED query (extended protocol,
+ * binary decoding) comes back as `"0"` for a stored `0.00`, while the same
+ * column read through a simple query comes back as `"0.00"` — every non-zero
+ * value keeps its scale either way. `toCents`/`fromCents` already round-trip
+ * any well-formed decimal string, so this is the cheapest place to make the
+ * wire shape independent of which protocol happened to serve the row. Apply
+ * it in a `toRecord`, never in arithmetic — arithmetic goes through
+ * `toCents` directly and is unaffected.
+ *
+ * `null` passes through: an absent money value is `null` on the wire, not
+ * `"0.00"`, and the two mean different things (no cap vs. a cap of zero).
+ */
+export function normalizeMoney(value: string): string;
+export function normalizeMoney(value: string | null): string | null;
+export function normalizeMoney(value: string | null): string | null {
+  if (value === null) return null;
+  return fromCents(toCents(value));
 }
 
 /**
