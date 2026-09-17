@@ -1,18 +1,18 @@
 ---
-source_file: "apps/storefront/src/pages/product/[slug].astro"
+source_file: "apps/storefront/src/pages/arsip/[yyyy]/[mm].astro"
 type: "code"
-community: "catalog.ts"
-location: "L19"
+community: "News Layout & Archive"
+location: "L9"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/catalogts
+  - community/News_Layout__Archive
 ---
 
 # getStaticPaths()
 
 ## Connections
-- [[slug.astro]] - `contains` [EXTRACTED]
-- [[getProducts()]] - `calls` [EXTRACTED]
+- [[mm.astro]] - `contains` [EXTRACTED]
+- [[listArsipBulan()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/catalogts
+#graphify/code #graphify/EXTRACTED #community/News_Layout__Archive

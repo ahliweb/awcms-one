@@ -1,12 +1,12 @@
 ---
 source_file: "tests/knowledge-no-subtree-write.test.mjs"
 type: "code"
-community: "knowledge-no-subtree-write.test.mjs"
+community: "Knowledge Subtree Guard Test"
 location: "L45"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/knowledge-no-subtree-writetestmjs
+  - community/Knowledge_Subtree_Guard_Test
 ---
 
 # write()
@@ -16,4 +16,4 @@ tags:
 - [[fakeGraphifyBin()]] - `calls` [EXTRACTED]
 - [[knowledge-no-subtree-write.test.mjs]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/knowledge-no-subtree-writetestmjs
+#graphify/code #graphify/EXTRACTED #community/Knowledge_Subtree_Guard_Test

@@ -1,12 +1,12 @@
 ---
 source_file: "packages/gerbang/audit-graf.mjs"
 type: "code"
-community: "audit-graf.mjs"
+community: "Knowledge Graph Audit"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/audit-grafmjs
+  - community/Knowledge_Graph_Audit
 ---
 
 # audit-graf.mjs
@@ -35,4 +35,4 @@ tags:
 - [[subtreeTrackedOutput]] - `contains` [EXTRACTED]
 - [[trackedOutput]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/audit-grafmjs
+#graphify/code #graphify/EXTRACTED #community/Knowledge_Graph_Audit

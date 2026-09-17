@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/awcms/client.ts"
 type: "code"
-community: "client.ts"
+community: "AWCMS Build Client"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/clientts
+  - community/AWCMS_Build_Client
 ---
 
 # client.ts
@@ -16,9 +16,15 @@ tags:
 - [[Envelope]] - `contains` [EXTRACTED]
 - [[awcmsGet()]] - `contains` [EXTRACTED]
 - [[baseUrl()]] - `contains` [EXTRACTED]
+- [[blog.ts]] - `imports_from` [EXTRACTED]
 - [[catalog.ts]] - `imports_from` [EXTRACTED]
 - [[env.ts]] - `imports_from` [EXTRACTED]
+- [[pages.ts]] - `imports_from` [EXTRACTED]
+- [[pemasaran.ts]] - `imports_from` [EXTRACTED]
+- [[profil.ts]] - `imports_from` [EXTRACTED]
 - [[readEnv()]] - `imports` [EXTRACTED]
 - [[timeoutMs()]] - `contains` [EXTRACTED]
+- [[wilayah-checkout.ts]] - `imports_from` [EXTRACTED]
+- [[wilayah.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/clientts
+#graphify/code #graphify/EXTRACTED #community/AWCMS_Build_Client

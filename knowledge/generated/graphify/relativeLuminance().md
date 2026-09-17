@@ -1,18 +1,18 @@
 ---
-source_file: "apps/storefront/src/lib/catalog.ts"
+source_file: "apps/storefront/src/lib/warna.ts"
 type: "code"
-community: "catalog.ts"
-location: "L336"
+community: "Theme Token Fetch"
+location: "L24"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/catalogts
+  - community/Theme_Token_Fetch
 ---
 
 # relativeLuminance()
 
 ## Connections
-- [[catalog.ts]] - `contains` [EXTRACTED]
-- [[contrastingForeground()]] - `calls` [EXTRACTED]
+- [[contrastRatio()]] - `calls` [EXTRACTED]
+- [[warna.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/catalogts
+#graphify/code #graphify/EXTRACTED #community/Theme_Token_Fetch

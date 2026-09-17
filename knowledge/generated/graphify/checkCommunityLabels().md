@@ -1,12 +1,12 @@
 ---
 source_file: "packages/gerbang/lib/graf-checks.mjs"
 type: "code"
-community: "audit-graf.mjs"
+community: "Knowledge Graph Audit"
 location: "L220"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/audit-grafmjs
+  - community/Knowledge_Graph_Audit
 ---
 
 # checkCommunityLabels()
@@ -16,4 +16,4 @@ tags:
 - [[graf-checks.mjs]] - `contains` [EXTRACTED]
 - [[reportedCommunityNames()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/audit-grafmjs
+#graphify/code #graphify/EXTRACTED #community/Knowledge_Graph_Audit

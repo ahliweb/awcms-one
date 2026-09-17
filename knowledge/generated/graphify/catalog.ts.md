@@ -1,39 +1,85 @@
 ---
 source_file: "apps/storefront/src/lib/catalog.ts"
 type: "code"
-community: "catalog.ts"
+community: "Catalog Fetch Client"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/catalogts
+  - community/Catalog_Fetch_Client
 ---
 
 # catalog.ts
 
 ## Connections
+- [[ADR-0003_1]] - `cites` [EXTRACTED]
+- [[CategoryNode]] - `contains` [EXTRACTED]
+- [[CategoryTree.astro]] - `imports_from` [EXTRACTED]
 - [[CommerceCategory]] - `contains` [EXTRACTED]
 - [[CommercePage]] - `contains` [EXTRACTED]
 - [[CommerceProduct]] - `contains` [EXTRACTED]
-- [[slug.astro]] - `imports_from` [EXTRACTED]
+- [[CommerceProductImage]] - `contains` [EXTRACTED]
+- [[CommerceProductVariant]] - `contains` [EXTRACTED]
+- [[DEFAULT_TIER_LABELS]] - `contains` [EXTRACTED]
+- [[PRODUK_PAGE_SIZE]] - `contains` [EXTRACTED]
+- [[PriceTierRow]] - `contains` [EXTRACTED]
+- [[ProductCard.astro]] - `imports_from` [EXTRACTED]
+- [[ProductSort]] - `contains` [EXTRACTED]
+- [[ProdukIndexEntry]] - `contains` [EXTRACTED]
+- [[ProdukIndexFilter]] - `contains` [EXTRACTED]
+- [[ProdukPage]] - `contains` [EXTRACTED]
+- [[ServiceFormField]] - `contains` [EXTRACTED]
+- [[ServiceFormFieldType]] - `contains` [EXTRACTED]
+- [[SizeChartType]] - `contains` [EXTRACTED]
+- [[SubscriptionPeriod]] - `contains` [EXTRACTED]
+- [[VariantAttributeGroup]] - `contains` [EXTRACTED]
+- [[VariantAttributeOption]] - `contains` [EXTRACTED]
 - [[assertNeverProductStatus()]] - `contains` [EXTRACTED]
 - [[awcmsGet()]] - `imports` [EXTRACTED]
+- [[buildCategoryTree()]] - `contains` [EXTRACTED]
+- [[buildPriceTiers()]] - `contains` [EXTRACTED]
+- [[buildProdukIndex()]] - `contains` [EXTRACTED]
+- [[cari-listing.ts]] - `imports_from` [EXTRACTED]
 - [[client.ts]] - `imports_from` [EXTRACTED]
-- [[contrastingForeground()]] - `contains` [EXTRACTED]
-- [[formatPrice()]] - `contains` [EXTRACTED]
+- [[collectCategorySubtreeIds()]] - `contains` [EXTRACTED]
+- [[comparePrices()]] - `imports` [EXTRACTED]
+- [[contrastingForeground()]] - `imports` [EXTRACTED]
+- [[csp.json.ts]] - `imports_from` [EXTRACTED]
+- [[filterProdukIndex()]] - `contains` [EXTRACTED]
+- [[findVariantForSelection()]] - `contains` [EXTRACTED]
+- [[formatPrice()]] - `imports` [EXTRACTED]
 - [[getCategories()]] - `contains` [EXTRACTED]
+- [[getCategoryBySlug()]] - `contains` [EXTRACTED]
 - [[getProduct()]] - `contains` [EXTRACTED]
 - [[getProducts()]] - `contains` [EXTRACTED]
-- [[index.astro]] - `imports_from` [EXTRACTED]
+- [[harga.ts]] - `re_exports` [EXTRACTED]
 - [[index.ts]] - `re_exports` [EXTRACTED]
-- [[isPubliclyVisible()]] - `contains` [EXTRACTED]
-- [[isValidHexColor()]] - `contains` [EXTRACTED]
+- [[isPubliclyVisible()_1]] - `contains` [EXTRACTED]
+- [[isValidHexColor()]] - `imports` [EXTRACTED]
+- [[jsonld-produk.ts]] - `imports_from` [EXTRACTED]
+- [[katalog-catalog.test.ts]] - `imports_from` [EXTRACTED]
+- [[katalog-jsonld.test.ts]] - `imports_from` [EXTRACTED]
+- [[kategorislug.astro]] - `imports_from` [EXTRACTED]
 - [[labelClassName()]] - `contains` [EXTRACTED]
 - [[listAllCategories()]] - `contains` [EXTRACTED]
 - [[listAllPages()]] - `contains` [EXTRACTED]
 - [[listAllProducts()]] - `contains` [EXTRACTED]
-- [[priceFormatter]] - `contains` [EXTRACTED]
+- [[normalizeSearchTerm()]] - `contains` [EXTRACTED]
+- [[pagesfeed.xml.ts]] - `imports_from` [EXTRACTED]
+- [[pagesindex.astro]] - `imports_from` [EXTRACTED]
+- [[paginateProdukIndex()]] - `contains` [EXTRACTED]
+- [[priceToNumber()]] - `imports` [EXTRACTED]
+- [[primaryProductImage()]] - `contains` [EXTRACTED]
 - [[product-labels.css.ts]] - `imports_from` [EXTRACTED]
-- [[relativeLuminance()]] - `contains` [EXTRACTED]
+- [[productslug.astro]] - `imports_from` [EXTRACTED]
+- [[productsInCategory()]] - `contains` [EXTRACTED]
+- [[produk-detail.ts]] - `imports_from` [EXTRACTED]
+- [[produk-index-klien.ts]] - `imports_from` [EXTRACTED]
+- [[produk-listing.ts]] - `imports_from` [EXTRACTED]
+- [[produk.astro]] - `imports_from` [EXTRACTED]
+- [[produk.json.ts]] - `imports_from` [EXTRACTED]
+- [[sitemap-katalog.ts]] - `imports_from` [EXTRACTED]
+- [[warna.test.ts]] - `imports_from` [EXTRACTED]
+- [[warna.ts]] - `re_exports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/catalogts
+#graphify/code #graphify/EXTRACTED #community/Catalog_Fetch_Client

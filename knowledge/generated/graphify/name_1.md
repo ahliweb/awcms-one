@@ -1,17 +1,17 @@
 ---
-source_file: "package.json"
+source_file: "packages/gerbang/package.json"
 type: "code"
-community: "scripts"
+community: "Gerbang Package Manifest"
 location: "L2"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/scripts
+  - community/Gerbang_Package_Manifest
 ---
 
 # name
 
 ## Connections
-- [[package.json]] - `contains` [EXTRACTED]
+- [[gerbangpackage.json]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/scripts
+#graphify/code #graphify/EXTRACTED #community/Gerbang_Package_Manifest

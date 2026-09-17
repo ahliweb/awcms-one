@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/server/penyaji.mjs"
 type: "code"
-community: "penyaji.mjs"
-location: "L168"
+community: "Storefront Server & CSP"
+location: "L312"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/penyajimjs
+  - community/Storefront_Server__CSP
 ---
 
 # isProductsRedirect()
@@ -15,5 +15,6 @@ tags:
 - [[createServer()]] - `calls` [EXTRACTED]
 - [[normalizedPath()]] - `calls` [EXTRACTED]
 - [[penyaji.mjs]] - `contains` [EXTRACTED]
+- [[penyaji.test.ts]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/penyajimjs
+#graphify/code #graphify/EXTRACTED #community/Storefront_Server__CSP

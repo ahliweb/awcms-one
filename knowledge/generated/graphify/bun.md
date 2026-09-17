@@ -1,22 +1,17 @@
 ---
-source_file: "package.json"
-type: "code"
-community: "bun"
+source_file: "apps/storefront/tsconfig.json"
+type: "concept"
+community: "Storefront TS Config"
 location: "L15"
 tags:
-  - graphify/code
+  - graphify/concept
   - graphify/EXTRACTED
-  - community/bun
+  - community/Storefront_TS_Config
 ---
 
 # bun
 
 ## Connections
-- [[engines]] - `contains` [EXTRACTED]
-- [[gitRun()]] - `references` [EXTRACTED]
-- [[gitRunInherit()]] - `references` [EXTRACTED]
-- [[gitRunOrThrow()]] - `references` [EXTRACTED]
-- [[run()_1]] - `references` [EXTRACTED]
-- [[run()_4]] - `references` [EXTRACTED]
+- [[types_1]] - `extends` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/bun
+#graphify/concept #graphify/EXTRACTED #community/Storefront_TS_Config

@@ -1,0 +1,22 @@
+---
+source_file: "apps/storefront/src/pages/video/index.astro"
+type: "code"
+community: "Site Chrome & Navigation"
+location: "L1"
+tags:
+  - graphify/code
+  - graphify/EXTRACTED
+  - community/Site_Chrome__Navigation
+---
+
+# video/index.astro
+
+## Connections
+- [[ArtikelCard.astro]] - `imports_from` [EXTRACTED]
+- [[BeritaLayout.astro]] - `imports_from` [EXTRACTED]
+- [[ROUTES_1]] - `imports` [EXTRACTED]
+- [[berita.ts]] - `imports_from` [EXTRACTED]
+- [[getVideo()]] - `imports` [EXTRACTED]
+- [[routes.ts]] - `imports_from` [EXTRACTED]
+
+#graphify/code #graphify/EXTRACTED #community/Site_Chrome__Navigation

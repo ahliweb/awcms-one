@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/package.json"
 type: "code"
-community: "storefront/package.json"
+community: "Storefront Package Manifest"
 location: "L5"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/storefront/packagejson
+  - community/Storefront_Package_Manifest
 ---
 
 # private
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[storefrontpackage.json]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/storefront/packagejson
+#graphify/code #graphify/EXTRACTED #community/Storefront_Package_Manifest

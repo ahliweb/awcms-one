@@ -18,42 +18,45 @@
 
 The commerce module this platform needs cannot stand on its own — it depends on `awcms` shared infrastructure that has no standalone package: `withTenant` (RLS tenant context), `authorizeInTransaction` (RBAC/ABAC), `appendDomainEvent` (outbox), `recordAuditEvent`, `_shared/module-contract` (`defineModule`), `getDatabaseClient`, the SQL migration runner, and `_shared/api-response`. So `awcms` is embedded whole, via `git subtree`, rather than depended on as a package — see [`AGENTS.md`](AGENTS.md#the-subtree-embed) for the sync mechanics and the one rule that protects them.
 
-## Approach: foundation first, then one thin vertical slice
+## Approach: foundation first, then one thin vertical slice, then the full store
 
-Scaffold-first, then **one thin vertical slice** — catalog listing + product detail — to prove the stack end to end before the full commerce build.
-
-**Increment 1 (this epic): foundation + authored slice, no live database.** Everything type-checks and every gate that does not need PostgreSQL runs green. Migrating and seeding a real PostgreSQL instance and rendering from it is increment 2 — AWCMS is PostgreSQL-only while the borneojek server runs MySQL, so a Postgres instance has to be provisioned first.
-
-Out of scope for increment 1: cart, checkout, payment, orders, shipping, affiliate, flash sales, variants, tiered pricing, insurance, size charts, promo banners. The schema slice is deliberately the catalog core; the rest of the source `products` table lands in later increments.
+Scaffold-first (increment 1: catalog listing + product detail, no live database), then **increment 2** (epic [#21](https://github.com/ahliweb/awcms-one/issues/21)): full BjekMart/news-portal parity — a provisioned PostgreSQL for local development and CI, the complete `commerce` module (catalog depth, marketing, orders), and the complete public site (catalog, news, cart, checkout, order tracking, wishlist).
 
 ## What is here today, and what is not
 
-Every child issue of [issue #1](https://github.com/ahliweb/awcms-one/issues/1) has landed: the workspace root and its governance, `packages/config`, `packages/gerbang`, `packages/kontrak`, `tools/`, `knowledge/`, `docs/`, `apps/storefront`, and `apps/cms` (carrying the `commerce` module). Where this document or `AGENTS.md` needs to describe a surface increment 1 does not build, it says so plainly rather than describing a path that is not there — see [`docs/arsitektur.md`](docs/arsitektur.md) and [`docs/cms.md`](docs/cms.md) for that full, current list (cart, checkout, payment, orders, shipping, variants, flash sales, affiliate links, tiered pricing, advertising, logo management, product imagery).
+Every child issue of [issue #21](https://github.com/ahliweb/awcms-one/issues/21) except this documentation issue has landed: the workspace root and its governance, `packages/config`, `packages/gerbang`, `packages/kontrak`, `tools/`, `knowledge/`, `docs/`, the full `apps/storefront` public site, and `apps/cms` (carrying the one `commerce` module — catalog, marketing, orders). Where this document or `AGENTS.md` needs to describe a surface that still does not exist, it says so plainly rather than describing a path that is not there — see [`docs/arsitektur.md`](docs/arsitektur.md) and [`docs/cms.md`](docs/cms.md) for that full, current list (customer accounts, RajaOngkir/payment-gateway integration, POS/reporting, a real media upload for product/slider images).
 
 ```
 apps/
 ├── cms/                     ahliweb/awcms v10.3.0, embedded via git subtree with full history —
-│                             the commerce backend and system of record, carrying the commerce
-│                             module (catalog domain, persistence, API — closes #2, #4)
-└── storefront/              the public Astro storefront: catalog listing + product detail,
-                              output: "static", fetching apps/cms's API at build time only (closes #5)
+│                             the commerce backend and system of record, carrying the one
+│                             commerce module: catalog (images, variants, tiers), marketing
+│                             (flash sales, vouchers, sliders, testimonials, popup, store
+│                             settings), and orders (guest checkout, payment confirmations,
+│                             reviews) — plus the anonymous /api/v1/commerce/storefront/* API
+└── storefront/              the public Astro storefront: full catalog + news parity, cart,
+                              checkout, order tracking, wishlist — output: "static" throughout,
+                              cart/checkout call apps/cms's anonymous API directly from the
+                              browser (ADR-0007)
 packages/
 ├── config/                  shared tsconfig preset
 ├── gerbang/                 this workspace's audit gates, as a package
 └── kontrak/                 the type-only DTO contract apps/storefront imports from apps/cms,
-                              plus its import-direction gate (closes #6)
+                              plus its import-direction gate
 tools/                       cross-workspace scripts: release, lockfile check, docs i18n stamp,
-                              knowledge-graph update/combine/export
+                              knowledge-graph update/combine/export, seed data
 tests/                       the root-level gate tests (docs, changesets, toolchain, scripts,
                               import direction)
 docs/                        architecture, schema, API, CMS, routing, SEO, accessibility,
                               responsive, UI/UX, testing, deployment, and workflow reference,
-                              plus docs/adr/ (closes #7)
-knowledge/                   the federated Graphify + Obsidian knowledge-graph workflow (closes #11)
+                              plus docs/adr/ (ten ADRs)
+knowledge/                   the federated Graphify + Obsidian knowledge-graph workflow
+.claude/skills/               awcms-one-storefront, awcms-one-commerce — how-to guides for
+                              adding a storefront page or a commerce table/endpoint
 .changesets/, .github/       stay at the repo root — decisions about the whole repo
 ```
 
-PostgreSQL provisioning for increment 2 — migrating and seeding a live database for `apps/cms` to run against — is **not done**; see [`docs/deployment.md`](docs/deployment.md).
+A live, provisioned PostgreSQL now exists for local development and CI (`compose.yaml`, `bun run db:up`/`db:migrate:cms`/`db:seed:cms`, the `check-cms` CI job) — see [`docs/deployment.md`](docs/deployment.md) for the full sequence, and for what is still true: **no production PostgreSQL deployment exists yet**.
 
 ## Running it
 
@@ -78,14 +81,16 @@ This repo is **Bun-only**: Bun is both the runtime and the package manager, its 
 | `bun run knowledge:graph:combine` | Merges the root graph with `apps/cms`'s own into a gitignored, on-demand federated graph — needs `graphify` on `PATH` |
 | `bun run knowledge:obsidian:export` | Stages, validates, and syncs a safe Obsidian export of the root graph to `knowledge/generated/graphify/` — needs `graphify` on `PATH` |
 | `bun run docs:i18n:stamp` | Writes the language banners and source-hash markers on every `.id.md` mirror |
-| `bun run check:cms` | `apps/cms`'s own full gate chain (lint, typecheck, its own tests, its own build) |
+| `bun run check:cms` | `apps/cms`'s own full gate chain (53 steps — lint, docs, inventories, spec, gates, typecheck, its own tests, its own build) |
+| `bun run db:up` / `db:down` / `db:reset` | Starts/stops/resets the disposable local `postgres:18.4` (`compose.yaml`, issue #25) |
 | `bun run db:migrate:cms` | Runs `apps/cms`'s migrations against `DATABASE_URL` — see `apps/cms/.env.example` |
+| `bun run db:seed:cms` | Seeds the `borneojek-mart` tenant, catalog, marketing surfaces, and sample orders through `apps/cms`'s own public API — see [`docs/deployment.md`](docs/deployment.md) |
 | `bun run release` | Cuts a tagged release from the waiting changesets — see [`CONTRIBUTING.md`](CONTRIBUTING.md) |
-| `dev` / `build` / `check` / `serve` | Delegate into `apps/storefront` — `bun run build` type-checks, fetches the catalog from `apps/cms` at build time, and bakes static output; `bun run serve` runs the built `apps/storefront/server/penyaji.mjs` — see [`docs/deployment.md`](docs/deployment.md) |
+| `dev` / `build` / `check` / `serve` | Delegate into `apps/storefront` — `bun run build` type-checks, fetches the catalog/marketing/news content from `apps/cms` at build time, and bakes static output including the derived CSP; `bun run serve` runs the built `apps/storefront/server/penyaji.mjs` — see [`docs/deployment.md`](docs/deployment.md) |
 
 ### Gates
 
-`bun test` plus four `audit:*` scripts, all adapted from `ahliweb/media-lenterakalteng`'s `packages/gerbang`. None of them need a build, a network, or `apps/cms`, so all of them run unconditionally on every push.
+`bun test` plus four `audit:*` scripts run unconditionally on every push, needing no build, network, or `apps/cms` — the `check` CI job. A second CI job, `check-cms`, runs `apps/cms`'s own full gate chain plus its DB-gated integration suite against a real, ephemeral PostgreSQL (issue #25) — see [`docs/alur-kerja-pengembangan.md`](docs/alur-kerja-pengembangan.md). **Both `Check` and `check-cms` are required status checks on `main`.**
 
 `audit:graf` (graphify artefact hygiene) used to sit on the "not ported" list below — this repository had no `graphify-out/` corpus for it to guard. [Issue #11](https://github.com/ahliweb/awcms-one/issues/11) built one: a root-owned, `--code-only` Graphify graph that deliberately excludes `apps/cms/**` (which already has its own graph and its own gate), plus a federated command family (`bun run knowledge:graph:update` / `knowledge:graph:combine` / `knowledge:obsidian:export`) documented in [`knowledge/README.md`](knowledge/README.md). `audit:graf` now checks that corpus for real — see that document for exactly what.
 

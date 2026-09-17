@@ -22,6 +22,10 @@ What does **not** need an ADR: adding a field within an already-decided schema, 
 | [0004](0004-a-type-only-contract-package-with-an-import-direction-gate.md) | `packages/kontrak` is a type-only contract, with a gate holding the import direction one-way | Accepted |
 | [0005](0005-product-urls-match-the-live-sites-shape.md) | Product URLs match the live site's shape: `/product/{slug}`, no trailing slash, `/products` redirects | Accepted |
 | [0006](0006-a-federated-knowledge-graph-that-never-duplicates-the-subtree.md) | A federated knowledge graph: root-owned, code-only, never duplicating `apps/cms`'s own | Accepted |
+| [0007](0007-cart-and-checkout-stay-static-the-browser-calls-anonymous-commerce-endpoints.md) | Cart, checkout and order tracking stay static; the browser calls the CMS's anonymous commerce endpoints directly | Accepted |
+| [0008](0008-one-commerce-module-carries-the-whole-store-not-three.md) | One `commerce` module carries the whole store, not three | Accepted |
+| [0009](0009-guest-checkout-by-order-code-and-phone.md) | Guest checkout, addressed by order code + phone; customer accounts come later | Accepted |
+| [0010](0010-manual-payment-and-alternative-courier-first-gateways-via-outbox.md) | Manual payment and alternative courier first; gateways and aggregators arrive through the outbox | Accepted |
 
 ## Why the numbering starts at 0001
 

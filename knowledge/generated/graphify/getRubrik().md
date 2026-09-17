@@ -1,0 +1,26 @@
+---
+source_file: "apps/storefront/src/lib/berita.ts"
+type: "code"
+community: "Rubrik Hierarchy"
+location: "L470"
+tags:
+  - graphify/code
+  - graphify/EXTRACTED
+  - community/Rubrik_Hierarchy
+---
+
+# getRubrik()
+
+## Connections
+- [[GET()_12]] - `calls` [EXTRACTED]
+- [[n.astro]] - `imports` [EXTRACTED]
+- [[slugfeed.xml.ts]] - `imports` [EXTRACTED]
+- [[slugindex.astro]] - `imports` [EXTRACTED]
+- [[berita.ts]] - `contains` [EXTRACTED]
+- [[collectAncestors()]] - `calls` [EXTRACTED]
+- [[collectDescendantSlugs()]] - `calls` [EXTRACTED]
+- [[getIndex()]] - `calls` [EXTRACTED]
+- [[getStaticPaths()_11]] - `calls` [EXTRACTED]
+- [[toPublicRubrikNode()]] - `calls` [EXTRACTED]
+
+#graphify/code #graphify/EXTRACTED #community/Rubrik_Hierarchy

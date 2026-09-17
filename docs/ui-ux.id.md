@@ -1,37 +1,39 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](ui-ux.md)
 
-<!-- i18n-source-hash: sha256:de5b5a32b2bd08b8954200cf1a4b0fd19e2aed58b553be16f3217c8c14171ce3 -->
+<!-- i18n-source-hash: sha256:3fff5bbb927fed83589c4f06da3b8d4b862f4face4359c01389b052cee98fbca -->
 
 # UI / UX
 
-Keputusan desain visual dan interaksi storefront yang cukup mengikat untuk perlu dijelaskan, alih-alih menyatakan ulang setiap aturan CSS di `apps/storefront/src/styles/global.css`.
+Keputusan desain visual dan interaksi storefront yang cukup mengikat untuk perlu dijelaskan, alih-alih menyatakan ulang setiap aturan CSS di `apps/storefront/src/styles/`.
 
-## Tanpa gambar produk, di mana pun
+## Gambar produk kini ada — "tanpa gambar, di mana pun" milik increment 1 tidak lagi berlaku
 
-Baik grid katalog maupun halaman detail produk tidak me-render foto produk. Ini bukan kelalaian untuk diisi nanti dalam cakupan dokumen ini — `CommerceProduct` sama sekali tidak membawa field gambar di irisan ini, karena `product_images` adalah salah satu tabel yang ditunda increment ini (lihat [`docs/skema-basis-data.md`](skema-basis-data.md) dan [`docs/cms.md`](cms.md)). Setiap kartu produk dan halaman detail disusun dari teks (nama, SKU, harga, deskripsi) dan, jika diset, lencana berkode-warna.
+`awcms_commerce_product_images` (issue #23) memberi `CommerceProduct` field `images[]` sungguhan, diresolusi lewat `media_library` menjadi URL publik, dan halaman detail produk (`/product/{slug}`) me-render galeri gambar. `apps/storefront` masih belum punya klien `media_library` sendiri untuk **chrome situs** yang dikelola CMS — logo/favicon storefront sendiri masih belum diresolusi dari `logoMediaId`/`faviconMediaId` (lihat [`docs/cms.md`](cms.id.md)) — tapi **fotografi produk sudah nyata**, dan `img-src` milik CSP kini diturunkan saat build khusus untuk mengizinkannya dengan aman; lihat [`docs/arsitektur.md`](arsitektur.id.md).
 
-## `labelColor`: warna pilihan-CMS, di-render dengan aman
+## `labelColor`: warna pilihan-CMS, di-render dengan aman — mekanisme tak berubah
 
-`label`/`labelColor` pada produk adalah lencana merchandising bebas-bentuk — mis. tag "Baru" — di mana `labelColor` adalah **string hex sembarang yang diketik merchandiser**, tanpa palet tetap yang bisa dideklarasikan aplikasi ini sebagai kelas CSS biasa. Dua cara umum menerapkan warna per-instans sembarang — atribut `style="background: ..."` inline, atau blok `<style>` tulisan-tangan — keduanya persis yang ditolak CSP ketat aplikasi ini (`style-src 'self'`, tanpa `'unsafe-inline'`, lihat [`apps/storefront/server/penyaji.mjs`](../apps/storefront/server/penyaji.mjs)) tanpa pengecualian yang sengaja dirancang untuk tidak pernah dibutuhkan aplikasi ini.
+`label`/`labelColor` pada produk masih lencana merchandising bebas-bentuk di mana `labelColor` adalah string hex sembarang yang diketik merchandiser. Mekanisme saat-build yang sama dari increment 1 masih berlaku: `apps/storefront/src/pages/product-labels.css.ts` memindai setiap produk, mengumpulkan nilai `labelColor` yang berbeda, dan memancarkan satu stylesheet kecil, same-origin — `style-src 'self'` tidak butuh pengecualian. Kontras dihitung oleh `contrastingForeground()` (berbasis luminansi relatif, memilih mana pun dari hitam/putih yang memberi rasio lebih tinggi), diuji unit di `apps/storefront/tests/warna.test.ts` terhadap setiap warna brand default.
 
-Cara ketiga: `apps/storefront/src/pages/product-labels.css.ts` adalah endpoint saat-build yang memindai setiap produk di katalog, mengumpulkan nilai `labelColor` yang berbeda, dan memancarkan satu stylesheet kecil, benar-benar eksternal, same-origin — `.label-bg-1a2b3c { background-color: #1a2b3c; color: ... }` — karena setiap warna di katalog sudah diketahui saat build (keputusan output-statis, [ADR-0002](adr/0002-static-output-with-build-time-fetch-for-the-storefront.md), yang membuat ini mungkin sama sekali). `style-src 'self'` mengizinkannya tanpa pengecualian, karena ia berkas seperti berkas lain yang dipancarkan build ini, bukan sesuatu yang inline.
+## Presentasi harga: lima angka, tidak pernah dihitung di sisi klien
 
-## Kontras dihitung, bukan diasumsikan
+Produk kini membawa `price`, hingga tiga harga tingkat (`priceLevel2/3/4`), dan `finalPrice` hasil hitung server — plus, saat flash sale berlaku, harga flash-sale yang diambil dari `GET /flash-sales/active`. `apps/storefront` masih **tidak melakukan aritmetika harga sendiri**: setiap angka yang ditampilkan persis apa yang dihitung `apps/cms`, diformat lewat `Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR" })` (`formatPrice()`, kini di `apps/storefront/src/lib/harga.ts` — aturan yang dijaga-grep milik aplikasi ini sendiri bahwa ini adalah *satu-satunya* berkas yang mengonversi string harga menjadi angka, ditegakkan oleh uji unit atas `src/`). Halaman keranjang dan checkout mengutip-ulang setiap baris terhadap `apps/cms` secara live (`POST .../cart/quote`) alih-alih mempercayakan angka milik halaman statis sendiri ke dalam pesanan — lihat [ADR-0007](adr/0007-cart-and-checkout-stay-static-the-browser-calls-anonymous-commerce-endpoints.id.md).
 
-Warna teks lencana tidak di-hardcode putih atau hitam — `contrastingForeground()` (`apps/storefront/src/lib/catalog.ts`) menghitung luminansi relatif WCAG dari warna latar dan memilih mana pun dari hitam murni atau putih murni yang menghasilkan rasio kontras lebih tinggi terhadapnya, alih-alih menguji luminansi terhadap satu ambang titik-tengah (kedua formula kontras, terhadap putih dan terhadap hitam, tidak simetris di sekitar satu titik tetap, jadi ambang tetap memilih opsi yang lebih buruk pada rentang warna nyata). Ini menutup kelas bug nyata yang disebutkan langsung di komentar kode sendiri: mengasumsikan teks putih selalu terbaca pada latar pilihan-merchandiser gagal telak pada warna pucat — tag "Baru" kuning muda dengan teks putih, misalnya.
+## Pemilih varian, size chart, formulir layanan, dan catatan langganan/digital
 
-**Batasan yang dinyatakan, tidak disembunyikan:** untuk warna latar dekat pertengahan rentang luminansi, *tidak ada* hitam murni maupun putih murni yang mungkin mencapai ambang kontras minimum 4,5:1 untuk teks-badan — memilih yang berkontras lebih tinggi adalah yang terbaik yang bisa dilakukan fungsi dari warna latar saja, tanpa mengubah warna pilihan merchandiser, yang tidak dilakukan aplikasi ini secara diam-diam.
+Halaman detail produk me-render, jika ada: pemilih varian (berbasis atribut, mis. ukuran/warna, tiap varian membawa harga/stok sendiri), catatan asuransi (`withInsurance`/`insuranceRequired`/`insuranceFee`), size chart (`none`/gambar/tabel, sesuai `sizeChartType`), field formulir intake produk layanan (`serviceForm`), dan catatan periode langganan atau unduhan digital. Tidak satu pun dari ini menghitung apa pun — semuanya me-render persis bentuk yang dikembalikan `apps/cms`, aturan "tanpa aritmetika di aplikasi ini" yang sama diperluas ke setiap field baru, bukan dilonggarkan untuknya.
 
-`labelColor` yang bukan string hex `#rrggbb` 6-digit bersih (teks bebas, `rgb(...)`, typo) sama sekali **tidak** mendapat kelas hasil-generate — `isValidHexColor()` menolaknya, `labelClassName()` mengembalikan `undefined`, dan produk jatuh kembali ke gaya `.label-badge` polos yang sudah ada di `global.css`. Satu nilai warna buruk merchandiser menurunkan latar satu lencana; ia tidak menggagalkan build.
+## Keranjang adalah kontrak lokal-browser
 
-## Presentasi stok dan harga
+`apps/storefront/src/lib/keranjang-kontrak.ts` mendefinisikan bentuk keranjang: kunci `localStorage` `awcms-one:keranjang:v1`, `{id, lines, updatedAt}`, event `keranjang:berubah` yang dipicu pada setiap penulisan (badge jumlah-keranjang header mendengarkannya). `id` milik keranjang sendiri berfungsi ganda sebagai kunci idempotensi pesanan checkout — klik "buat pesanan" yang terkirim ganda tidak bisa membuat dua pesanan, karena klien mengirim kunci yang sama kedua kalinya dan penyimpanan `awcms_idempotency_keys` milik `apps/cms` mengenali pengulangan itu (lihat [`docs/api.md`](api.id.md)).
 
-`formatPrice()` me-render `price` (string desimal `numeric(14,2)`, lihat [ADR-0003](adr/0003-money-is-numeric-14-2-and-crosses-the-wire-as-a-string.md)) lewat `Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR" })` — satu-satunya tempat aplikasi ini pernah mengonversi string harga ke angka, langsung diumpankan ke formatter tanpa overload string dan tidak pernah disimpan atau dikombinasikan ulang. `discountPercent` ditampilkan sebagai persentase yang dikirim awcms ("Diskon 20%"), tidak pernah sebagai harga-diskon yang dihitung — aplikasi ini tidak melakukan aritmetika harga di mana pun, jadi tidak pernah harus menciptakan aturan pembulatan yang mungkin berbeda dari apa pun yang dihitung checkout masa depan. Stok ditampilkan sebagai lencana biner — "Stok tersedia" / "Stok habis" — diturunkan dari `stock > 0`, bukan hitungan numeriknya sendiri.
+## Presentasi stok dan harga pada kartu
 
-## Bahasa: Indonesia, tanpa syarat
+Stok masih ditampilkan sebagai lencana biner — "Stok tersedia" / "Stok habis" — diturunkan dari `stock > 0`, bukan hitungan numeriknya. `discountPercent` masih ditampilkan sebagai persentase yang dikirim `apps/cms`, tidak pernah sebagai harga-diskon hasil hitung klien.
 
-Setiap string yang menghadap pengguna di aplikasi ini ditulis langsung dalam Bahasa Indonesia (`<html lang="id">`, "Katalog Produk", "Stok tersedia", "Lewati ke konten utama") — tidak ada framework i18n, tidak ada pengalih locale, dan tidak ada salinan berbahasa Inggris di mana pun pada output yang di-render. Ini aplikasi yang lebih kecil dari template `awcms-astro`/`media-lenterakalteng` serupa yang menjadi modelnya, yang memang membawa mesin multi-locale; storefront ini tidak membutuhkannya dan tidak membawanya.
+## Bahasa: Indonesia, tanpa syarat — tak berubah
+
+Setiap string yang menghadap pengguna ditulis langsung dalam Bahasa Indonesia (`<html lang="id">`) — tidak ada framework i18n, tidak ada pengalih locale, dan tidak ada salinan berbahasa Inggris di mana pun pada output yang di-render, termasuk setiap string keranjang/checkout/pelacakan-pesanan/wishlist baru yang ditambahkan di increment 2.
 
 ## Belum dibangun
 
-Gambar produk jenis apa pun, UI category-browse (lihat [`docs/routing.md`](routing.md)), afordansi keranjang atau checkout apa pun, pengalih locale, dan keputusan gambar-produk khusus-mode-gelap apa pun (media query color-scheme di `global.css` mengatur chrome aplikasi sendiri, bukan warna pasokan-produk seperti `labelColor`, yang di-render sebagaimana diset merchandiser tanpa memandang tema OS pembaca).
+Pengalih locale; keputusan gambar-produk apa pun yang terkait dark mode (media query color-scheme mengatur chrome aplikasi ini sendiri, bukan gambar pasokan-CMS atau `labelColor`); perbandingan tarif kurir live saat checkout (opsi kurir di-render sebagai "segera" — dinonaktifkan — menunggu [issue #33](https://github.com/ahliweb/awcms-one/issues/33), lihat [ADR-0010](adr/0010-manual-payment-and-alternative-courier-first-gateways-via-outbox.id.md)).

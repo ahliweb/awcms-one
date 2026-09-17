@@ -2,12 +2,12 @@
 
 # Documentation
 
-Architecture, schema, API, CMS workflow, storefront behaviour, testing, deployment, and process documentation for `awcms-one` — describing the repository **as it actually is after every implementation PR merged** (issues #2–#6, #11), never as it was originally planned. Where the tree and an issue's original text disagree, these documents follow the tree, and say so.
+Architecture, schema, API, CMS workflow, storefront behaviour, testing, deployment, and process documentation for `awcms-one` — describing the repository **as it actually is after every implementation PR merged** (increment 1: issues #2–#6, #11; increment 2, epic [#21](https://github.com/ahliweb/awcms-one/issues/21): issues #22–#30), never as it was originally planned. Where the tree and an issue's original text disagree, these documents follow the tree, and say so.
 
 | Document | Contents |
 | --- | --- |
-| [`arsitektur.md`](arsitektur.md) | The two-deployable topology, the one-way import direction, the subtree embed, build-time data flow |
-| [`adr/`](adr/README.md) | Six Architecture Decision Records — the trade-off behind each structural decision above |
+| [`arsitektur.md`](arsitektur.md) | The two-deployable topology, the one-way import direction, the subtree embed, the anonymous runtime seam (ADR-0007), the derived CSP |
+| [`adr/`](adr/README.md) | Ten Architecture Decision Records — the trade-off behind each structural decision above |
 | [`skema-basis-data.md`](skema-basis-data.md) | The `awcms_commerce_*` tables: columns, types, constraints, indexes, RLS |
 | [`kamus-data.md`](kamus-data.md) | Data dictionary: every column, its meaning, and its legacy `commerce_bj_mart` source column |
 | [`api.md`](api.md) | The `/api/v1/commerce/*` endpoints, envelope, pagination, permissions, domain events |

@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/server/penyaji.mjs"
 type: "code"
-community: "penyaji.mjs"
-location: "L182"
+community: "Storefront Server & CSP"
+location: "L479"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/penyajimjs
+  - community/Storefront_Server__CSP
 ---
 
 # applyHeaders()
@@ -14,7 +14,11 @@ tags:
 ## Connections
 - [[cacheControlFor()]] - `calls` [EXTRACTED]
 - [[createServer()]] - `calls` [EXTRACTED]
+- [[normalizedPath()]] - `calls` [EXTRACTED]
 - [[penyaji.mjs]] - `contains` [EXTRACTED]
+- [[penyaji.test.ts]] - `imports` [EXTRACTED]
+- [[preloadLinkHeaderValue()]] - `calls` [EXTRACTED]
 - [[securityHeaders()]] - `calls` [EXTRACTED]
+- [[securityHeadersWithCsp()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/penyajimjs
+#graphify/code #graphify/EXTRACTED #community/Storefront_Server__CSP

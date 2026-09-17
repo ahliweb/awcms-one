@@ -1,12 +1,12 @@
 ---
 source_file: "tests/standar-skrip.test.mjs"
 type: "code"
-community: "audit-rilis.mjs"
+community: "Knowledge Graph Audit"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/audit-rilismjs
+  - community/Knowledge_Graph_Audit
 ---
 
 # standar-skrip.test.mjs
@@ -16,6 +16,6 @@ tags:
 - [[codeOnly()]] - `contains` [EXTRACTED]
 - [[formatReport()]] - `imports` [EXTRACTED]
 - [[reporter.mjs]] - `imports_from` [EXTRACTED]
-- [[scripts_1]] - `contains` [EXTRACTED]
+- [[scripts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/audit-rilismjs
+#graphify/code #graphify/EXTRACTED #community/Knowledge_Graph_Audit

@@ -1,12 +1,12 @@
 ---
 source_file: "packages/gerbang/lib/graph-combine.mjs"
 type: "code"
-community: "knowledge-graph-combine.mjs"
+community: "Knowledge Graph Combine"
 location: "L105"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/knowledge-graph-combinemjs
+  - community/Knowledge_Graph_Combine
 ---
 
 # checkMergedResult()
@@ -16,4 +16,4 @@ tags:
 - [[graph-combine.test.mjs]] - `imports` [EXTRACTED]
 - [[knowledge-graph-combine.mjs]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/knowledge-graph-combinemjs
+#graphify/code #graphify/EXTRACTED #community/Knowledge_Graph_Combine
