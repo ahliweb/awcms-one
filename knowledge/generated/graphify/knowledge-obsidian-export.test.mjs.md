@@ -1,12 +1,12 @@
 ---
 source_file: "tests/knowledge-obsidian-export.test.mjs"
 type: "code"
-community: "knowledge-obsidian-export.test.mjs"
+community: "Obsidian Export Test"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/knowledge-obsidian-exporttestmjs
+  - community/Obsidian_Export_Test
 ---
 
 # knowledge-obsidian-export.test.mjs
@@ -21,4 +21,4 @@ tags:
 - [[runExport()]] - `contains` [EXTRACTED]
 - [[write()_1]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/knowledge-obsidian-exporttestmjs
+#graphify/code #graphify/EXTRACTED #community/Obsidian_Export_Test

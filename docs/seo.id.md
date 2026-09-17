@@ -1,47 +1,46 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](seo.md)
 
-<!-- i18n-source-hash: sha256:7cda4db5fa8b9a907bfb961ec4237f822ec6c93e98ea9e24519fa767de61df59 -->
+<!-- i18n-source-hash: sha256:dbbac55f12b5dbd45dfdcda8e2eb169c9f0d3be45e6dec821490267fb9d053f1 -->
 
 # SEO
 
-Apa yang dipancarkan `apps/storefront` untuk mesin pencari dan pratinjau tautan, dibaca langsung dari [`apps/storefront/src/layouts/BaseLayout.astro`](../apps/storefront/src/layouts/BaseLayout.astro) dan [`src/pages/product/[slug].astro`](../apps/storefront/src/pages/product/[slug].astro) — dua berkas yang bertanggung jawab atas semua di bawah ini.
+Apa yang dipancarkan `apps/storefront` untuk mesin pencari dan pratinjau tautan — metadata, data terstruktur, sitemap, feed, dan peta redirect-legacy yang menjaga tautan masuk tetap utuh saat cutover.
 
-## Metadata per-halaman
+## Metadata per-halaman — mekanisme tak berubah dari increment 1
 
-Setiap halaman di-render lewat `BaseLayout`, yang mengeset: `<title>` (judul halaman, atau `{title} — {siteConfig.name}` bila keduanya berbeda), `<meta name="description">` dipotong 160 karakter, `<link rel="canonical">` dibangun dari `siteConfig.siteUrl` (`SITE_URL`) ditambah `canonicalPath` halaman itu sendiri, dan tag Open Graph (`og:type` tetap `"website"`, `og:url`, `og:title`, `og:description`, `og:site_name`, `og:locale` tetap `id_ID`). Tidak ada `og:image`: `CommerceProduct` tidak membawa field foto-produk di irisan ini (lihat [`docs/cms.md`](cms.md)), dan mempublikasikan `og:image` yang menunjuk ke berkas yang tidak ada akan lebih buruk daripada meniadakan tag itu.
+Setiap halaman di-render lewat `BaseLayout`, yang mengatur `<title>`, `<meta name="description">` yang dipotong, `<link rel="canonical">`, dan tag Open Graph (`og:type` tetap `"website"` bahkan di halaman produk — data harga/ketersediaan terstruktur lewat JSON-LD sebagai gantinya, bukan meta `product:price:*`, yang tidak dideklarasikan aplikasi ini). Masih belum ada `og:image` di halaman mana pun.
 
-`og:type` tetap `"website"` bahkan di halaman produk — tipe `"product"` Open Graph hanya valid berdampingan dengan prefiks namespace-nya sendiri dan tag meta `product:price:*`, tidak satu pun dideklarasikan aplikasi ini. Data harga/ketersediaan terstruktur lewat JSON-LD `Product` (di bawah), bukan lewat meta OG, jadi mengimplementasikan setengah-jalan tipe produk OG akan kurang benar, bukan lebih.
+## JSON-LD berdasarkan jenis halaman
 
-## JSON-LD `Product` pada halaman detail
+| Halaman | `@type` | Dibangun oleh |
+| --- | --- | --- |
+| `/` (beranda) | *(tidak ada)* | Beranda tidak memancarkan JSON-LD — pemangkasan cakupan yang disengaja, bukan kelalaian |
+| `/product/{slug}` | `Product` + `Offer` bersarang, `AggregateRating` jika rating ada, `BreadcrumbList` | `apps/storefront/src/lib/jsonld-produk.ts` |
+| `/kategori/{slug}` | `CollectionPage` + `BreadcrumbList` | `buildCategoryPageSchema()` milik `apps/storefront/src/lib/jsonld-produk.ts` |
+| `/berita/{slug}` | `NewsArticle` + `BreadcrumbList` (`@graph`, menggabungkan beberapa node dalam satu blok script) | `apps/storefront/src/lib/jsonld-berita.ts` — author adalah node `Person` jika byline ada, jika tidak `Organization`; publisher selalu `Organization` |
 
-`src/pages/product/[slug].astro` membangun satu node `Product` per produk:
+`offers.price` di halaman produk masih string desimal `numeric(14,2)` **mentah**, tanpa format — validator schema.org menghendaki desimal polos, bukan yang diformat-locale. `availability` diturunkan dari `stock` (`InStock`/`OutOfStock`), tidak pernah dibawa sebagai field independen.
 
-```json
-{
-  "@type": "Product",
-  "name": "...", "sku": "...", "description": "...", "category": "...",
-  "offers": {
-    "@type": "Offer",
-    "url": "https://mart.borneojek.com/product/...",
-    "price": "150000.00",
-    "priceCurrency": "IDR",
-    "availability": "https://schema.org/InStock"
-  }
-}
-```
+## Escaping JSON-LD adalah pertahanan XSS sungguhan, bukan formalitas — tak berubah, kini dijalankan lebih banyak halaman
 
-`offers.price` adalah string desimal `numeric(14,2)` **mentah** yang dikirim awcms — tidak diformat, karena properti `price` schema.org menginginkan desimal polos (`"150000.00"`), bukan yang diformat-locale (`"Rp150.000"`), dan validator data-terstruktur Google menolak yang belakangan. `priceCurrency` hardcoded `"IDR"`. `availability` **diturunkan dari `stock`** — `InStock` ketika `stock > 0`, `OutOfStock` sebaliknya — tidak pernah dibawa sebagai field yang bisa diperselisihkan `apps/cms` sendiri secara independen.
+`jsonForScript()` milik `BaseLayout.astro` mengganti `<`, `>`, dan `&` dengan escape JSON `\uXXXX` sebelum string apa pun pasokan-CMS mencapai blok `<script type="application/ld+json">` — menutup permukaan stored-XSS yang sama yang pertama kali didokumentasikan `docs/seo.md` increment 1 (nama produk/artikel/kategori yang berisi `</script><script>...` jika tidak begitu akan keluar dari blok JSON-LD dan tereksekusi). Setiap emitter JSON-LD baru yang ditambahkan di increment 2 (`Offer`/`AggregateRating` milik `jsonld-produk.ts`, `NewsArticle` milik `jsonld-berita.ts`) melewati `jsonForScript()` yang sama — hanya ada tepat satu fungsi escaping di aplikasi ini, bukan satu per emitter.
 
-## Escaping JSON-LD adalah pertahanan XSS nyata, bukan formalitas
+## Halaman `noindex`
 
-`schema` dibangun dari string yang dipasok CMS (`name` produk, `description`, `name` kategori). `JSON.stringify` meng-escape kutip dan backslash tapi **tidak** `<` — dan *parser* HTML, bukan mesin JavaScript, mengakhiri elemen `<script>` pada urutan byte `</script>` pertama yang ditemuinya, tidak peduli atribut `type` apa yang dibawa tag itu. Produk bernama `…</script><script>alert(1)</script>` jika tidak akan menutup blok JSON-LD lebih awal dan mengubah teks setelahnya menjadi markup nyata dan tereksekusi: permukaan stored-XSS yang hanya dijaga CSP di `apps/storefront/server/penyaji.mjs` (`script-src 'self'`) — perlindungan nyata, tapi bukan yang seharusnya diandalkan halaman sebagai *satu-satunya* perlindungan.
+`checkout`, `pesanan`, `cari`, `wishlist`, dan `keranjang` semuanya membawa `<meta name="robots" content="noindex, follow">` lewat slot `head` milik `BaseLayout` — tidak satu pun dari halaman ini seharusnya menjadi tempat hasil pencarian mendaratkan pembaca secara langsung. `robots.txt` juga men-`Disallow` fetch untuk kelima path yang sama plus `/api/`.
 
-`jsonForScript()` milik `BaseLayout.astro` menutup ini dengan mengganti `<`, `>`, dan `&` dengan escape JSON `\uXXXX`-nya sebelum nilai ditulis ke halaman — tidak satu pun dari ketiganya bermakna di dalam string JSON, jadi bentuk yang di-escape ter-parse kembali identik byte-demi-byte, sambil tidak memberi parser HTML `<` apa pun untuk pernah memulai tag. Ini dibuktikan lewat fixture regresi, bukan sekadar diargumentasikan dalam komentar: `apps/storefront/tests/fixtures/awcms/products.json` membawa fixture bernama `XSS-REGRESI-01` khusus untuk menguji jalur ini.
+## Sitemap dan feed
 
-## URL kanonik dan pengalihan
+`registerSitemapSource(name, source)` milik `apps/storefront/src/lib/sitemap.ts` mendaftarkan fungsi penghasil-URL bernama; dua belas sumber didaftarkan di seluruh katalog dan berita (`static-routes`, `static-pages`, `berita-front`, `berita-posts`, `berita-video`, `berita-rubrik`, `berita-daerah`, `berita-mitra`, `berita-tag`, `katalog-produk`, `katalog-kategori`, `katalog-product-detail`). `chunkSitemapEntries` membagi hasil gabungan menjadi chunk berisi maksimal 5.000 URL masing-masing; `sitemap-index.xml` mendaftar berkas `/sitemap-{n}.xml` hasilnya. `feed.xml` (produk) dan `berita/feed.xml` + `rubrik/{slug}/feed.xml` per-rubrik (berita, RSS 2.0, `content:encoded`) adalah feed terpisah yang dibangun tangan, bukan sumber sitemap.
 
-Setiap URL kanonik absolut, dibangun dari `SITE_URL`, dan mengikuti bentuk URL situs live — lihat [ADR-0005](adr/0005-product-urls-match-the-live-sites-shape.md) dan [`docs/routing.md`](routing.md) untuk bentuk `/product/{slug}` dan pengalihan `/products` → `/` yang dipertahankannya.
+## Peta redirect-legacy
+
+Setiap URL masuk seputarborneo (`/news/{id}-{slug}.html`) atau beritasampit (`/{yyyy}/{mm}/{dd}/{slug}/`) diresolusi terhadap peta yang dibangun dari baris `awcms_seo_redirects` milik `apps/cms` sendiri dan dilayani dengan `301` sungguhan oleh `apps/storefront/server/penyaji.mjs` — lihat [`docs/routing.md`](routing.id.md) untuk mekanisme persisnya. Ini adalah jawaban increment 2 untuk baris "belum dibangun: sitemap, feed, robots.txt" milik increment 1 — ketiganya kini ada, dan peta redirect ini yang membuat cutover dari platform legacy mana pun tidak berbiaya setiap tautan dan bookmark yang terindeks.
+
+## URL kanonik
+
+Setiap URL kanonik masih absolut, dibangun dari `SITE_URL`, sesuai bentuk URL situs live untuk produk — lihat [ADR-0005](adr/0005-product-urls-match-the-live-sites-shape.id.md).
 
 ## Belum dibangun
 
-Sitemap, feed RSS/Atom, `robots.txt`, data terstruktur untuk halaman listing katalog itu sendiri (hanya halaman detail produk yang membawa JSON-LD `Product`), dan permukaan SEO apa pun yang akan butuh request runtime ke `apps/cms` — semua di atas diputuskan sekali, saat build.
+Data terstruktur untuk halaman listing katalog (`/produk`) itu sendiri — hanya halaman kategori dan halaman detail produk yang membawa JSON-LD. `og:image` di halaman mana pun (belum ada klien CMS-media untuknya di aplikasi ini — lihat [`docs/cms.md`](cms.id.md)). Namespace Open Graph `product:price:*` (node `Offer` JSON-LD membawa ini sebagai gantinya, secara sengaja, sesuai "Metadata per-halaman" di atas).

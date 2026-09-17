@@ -1,12 +1,12 @@
 ---
 source_file: "packages/gerbang/lib/subtree-guard.mjs"
 type: "code"
-community: "knowledge-graph-combine.mjs"
+community: "Knowledge Graph Combine"
 location: "L46"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/knowledge-graph-combinemjs
+  - community/Knowledge_Graph_Combine
 ---
 
 # isAbsoluteLike()
@@ -15,4 +15,4 @@ tags:
 - [[isUnderSubtree()]] - `calls` [EXTRACTED]
 - [[subtree-guard.mjs]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/knowledge-graph-combinemjs
+#graphify/code #graphify/EXTRACTED #community/Knowledge_Graph_Combine

@@ -1,21 +1,21 @@
 ---
-source_file: "apps/storefront/src/lib/catalog.ts"
+source_file: "apps/storefront/src/lib/warna.ts"
 type: "code"
-community: "catalog.ts"
-location: "L331"
+community: "Theme Token Fetch"
+location: "L19"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/catalogts
+  - community/Theme_Token_Fetch
 ---
 
 # isValidHexColor()
 
 ## Connections
-- [[GET()]] - `calls` [EXTRACTED]
-- [[catalog.ts]] - `contains` [EXTRACTED]
+- [[catalog.ts]] - `imports` [EXTRACTED]
 - [[contrastingForeground()]] - `calls` [EXTRACTED]
 - [[labelClassName()]] - `calls` [EXTRACTED]
-- [[product-labels.css.ts]] - `imports` [EXTRACTED]
+- [[warna.test.ts]] - `imports` [EXTRACTED]
+- [[warna.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/catalogts
+#graphify/code #graphify/EXTRACTED #community/Theme_Token_Fetch

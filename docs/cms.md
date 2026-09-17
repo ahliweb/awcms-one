@@ -2,11 +2,13 @@
 
 # CMS: authoring, publishing, permissions, audit, media, taxonomy
 
-How products and categories are authored and moved through their lifecycle inside `apps/cms`, and what a reader looking for media, advertising, or a fuller admin UI will and will not find here. The module itself is [`apps/cms/src/modules/commerce/`](../apps/cms/src/modules/commerce/), documented in depth in its own [`README.md`](../apps/cms/src/modules/commerce/README.md) — this page links to that document rather than restating it column by column, and focuses on the workflow a person or agent actually authoring content goes through.
+How products, orders, marketing surfaces, and content move through their lifecycle inside `apps/cms`, and what a reader looking for media, advertising, or a fuller admin UI will and will not find here. The module itself is [`apps/cms/src/modules/commerce/`](../apps/cms/src/modules/commerce/), documented in depth in its own [`README.md`](../apps/cms/src/modules/commerce/README.md) — this page links to that document rather than restating it column by column, and focuses on the workflow a person or agent actually authoring content goes through. News/blog authoring (`blog_content`) is `ahliweb/awcms`'s own module, carried by the subtree embed; this page describes only how `apps/storefront` consumes it, not its own admin workflow.
 
-## The product state machine
+## State machines
 
-A product's `status` is one of `draft`, `active`, `inactive`, `archived`. The legal transitions, read directly from [`apps/cms/src/modules/commerce/domain/product-status.ts`](../apps/cms/src/modules/commerce/domain/product-status.ts)'s `LEGAL_TRANSITIONS`:
+### Product `status`: `draft` → `active`/`inactive`/`archived`
+
+Read directly from [`apps/cms/src/modules/commerce/domain/product-status.ts`](../apps/cms/src/modules/commerce/domain/product-status.ts)'s `LEGAL_TRANSITIONS`:
 
 ```mermaid
 stateDiagram-v2
@@ -20,37 +22,116 @@ stateDiagram-v2
   archived --> draft
 ```
 
-A product is authored `draft`, switched to `active` to sell, pulled to `inactive` to take it off sale without losing the record (out of stock, seasonal), and moved to `archived` to retire it — from which only `draft` re-opens it, so a retired product goes back through authoring rather than straight back on sale. `current === next` is always legal (a `PATCH` that repeats the product's own status is a no-op, not an error). There is no dedicated status-transition endpoint: `status` travels through the same `PATCH /api/v1/commerce/products/{id}` as every other field, checked against `LEGAL_TRANSITIONS` **before** any write runs, and an illegal transition is rejected with 400 naming the states actually reachable from the product's current one.
+A product is authored `draft`, switched to `active` to sell, pulled to `inactive` to take it off sale without losing the record, and moved to `archived` to retire it — from which only `draft` re-opens it. `current === next` is always legal (a no-op, not an error). `status` travels through the same `PATCH /api/v1/commerce/products/{id}` as every other field, checked against `LEGAL_TRANSITIONS` **before** any write runs.
 
-Categories carry **no status at all** — a category exists or is soft-deleted, with nothing in between — and `parentId` is **immutable after creation**: `UpdateCategoryInput` does not accept it, so re-parenting a category is "delete and recreate," never an edit. The closest structural analog in this codebase, `awcms_offices`, makes the identical choice for the identical reason: a hierarchy position set once avoids building cycle-detection this codebase does not build even for offices.
+### Order `status`: seven states, three actors
 
-## Permissions and authorization
+Read directly from [`apps/cms/src/modules/commerce/domain/order-status.ts`](../apps/cms/src/modules/commerce/domain/order-status.ts):
 
-Every route is gated on one of the eight `commerce.{categories,products}.{read,create,update,delete}` permission keys — see [`docs/api.md`](api.md) for the full table and [`docs/skema-basis-data.md`](skema-basis-data.md) for how row-level security backs the same boundary at the database layer. There is no `restore` permission, matching the absence of a restore endpoint (below).
+```mermaid
+stateDiagram-v2
+  [*] --> pending_payment
+  pending_payment --> paid
+  pending_payment --> cancelled
+  pending_payment --> expired
+  paid --> processing
+  paid --> cancelled
+  processing --> shipped
+  processing --> cancelled
+  shipped --> completed
+```
+
+Every legal edge is also restricted by **who** may apply it (`actorMayApplyOrderStatus`):
+
+| Actor | May apply |
+| --- | --- |
+| `admin` | Any legal edge above |
+| `customer` | `pending_payment → cancelled` only (their own order, checked by phone) |
+| `system` (the `commerce:orders:expire` job) | `pending_payment → expired` only |
+
+Every transition writes a row to `awcms_commerce_order_events` (append-only, `from_status`/`to_status`/`actor`/`note`/`created_at` — see [`docs/skema-basis-data.md`](skema-basis-data.md)), which is what the storefront's order-tracking timeline renders. `completed`, `cancelled`, and `expired` are terminal. `paymentStatus` (`unpaid → dp_paid/paid → refunded`) is a separate axis from `status`, set by `PATCH .../payment-confirmations/{cid}/review` (`decision: "accepted"` moves it to `paid`) or, for down-payment, at order creation.
+
+### Flash-sale `status`: two editorial states, two job-derived states
+
+`draft`/`scheduled` are set by an owner; `active`/`ended` are **derived from the time window** and persisted by the `commerce:flash-sales:tick` job (schedule `*/5 * * * *`), which fires `commerce.flash_sale.{started,ended}` exactly once per transition — a page that reads `GET /flash-sales/active` never has to compute the window itself.
+
+## Permissions and authorization: 39 keys across three areas
+
+<!-- hitung:mulai key=commerce-areas source=table-rows -->
+
+Every commerce route is gated on a `commerce.*` permission key, grouped into three areas below.
+
+| Area | Resources | Actions |
+| --- | --- | --- |
+| Catalog | `categories`, `products` | `read`, `create`, `update`, `delete`, `restore` |
+| Marketing | `flash_sales`, `vouchers`, `sliders`, `testimonials`, `popups` | `read`, `create`, `update`, `delete` |
+| Store settings | `settings` | `read`, `update` |
+
+<!-- hitung:selesai -->
+
+Orders, customers, and reviews are a fourth, narrower area: `commerce.orders.{read,update}`, `commerce.customers.{read,update}`, `commerce.reviews.{read,update,delete}` — **deliberately no `create`/`delete`** for orders or customers, since both are created only through the anonymous storefront path, which has no admin identity to check a permission against. See [`docs/api.md`](api.md) for the full 39-key list and [ADR-0009](adr/0009-guest-checkout-by-order-code-and-phone.md) for why that path is anonymous at all. Row-level security backs the same boundary at the database layer — see [`docs/skema-basis-data.md`](skema-basis-data.md).
 
 ## Audit logging
 
-Every mutating route — create, update, delete, for both resources — calls `recordAuditEvent` inside the same RLS-scoped transaction as the write it records, naming the module (`commerce`), the resource type (`product`/`category`), the resource id, the action, and (for a delete) a `warning` severity. This is also the **only** place WHO performed a change is recorded: neither table carries a `created_by`/`updated_by`/`deleted_by` column (see [`docs/skema-basis-data.md`](skema-basis-data.md)), so the audit log is not a supplementary record here — it is the sole record of actorship for this module.
+Every mutating owner route — create, update, delete, restore, status transition, payment-confirmation review, review moderation — calls `recordAuditEvent` inside the same RLS-scoped transaction as the write it records, naming the module (`commerce`), the resource type, the resource id, the action, and (for a delete) a `warning` severity. Neither commerce table carries `created_by`/`updated_by`/`deleted_by`, so the audit log is the sole record of actorship for this module, not a supplementary one. The anonymous storefront path writes no audit event for order creation itself (there is no admin actor to attribute it to) — the order's own `order_events` row is that path's equivalent record, timestamped and reason-carrying.
 
-## The admin screen: one, read-only
+## Admin screens: eleven, covering every permission
 
-`/admin/commerce` ([`apps/cms/src/pages/admin/commerce.astro`](../apps/cms/src/pages/admin/commerce.astro)) lists products — SKU, name, type, price, stock, status — gated on `commerce.products.read`. **It exists because `apps/cms`'s admin-screen coverage gate requires every active module to have at least one screen, with zero exceptions — not because this slice needed an authoring UI.** There is no create/edit form of any kind: every product and category in this slice is authored through the API directly (or, for the migration, a script — see [`docs/deployment.md`](deployment.md)). Categories have no admin screen at all yet, and every `products.*` permission other than `read` stays on `apps/cms/scripts/admin-screen-coverage-ledger.ts`'s `NOT_YET_SCREENED` list until a fuller CRUD screen is built.
+<!-- hitung:mulai key=commerce-admin-screens source=table-rows -->
 
-## Media: not built
+Eleven screens under `apps/cms/src/pages/admin/`, each gated on its area's `read` permission via `loadAdminScreen`, with further inline checks for create/update/delete/restore:
 
-There is no `product_images` table, no media field on `CommerceProduct`, and no `media_library` dependency declared in `commerce/module.ts` — deliberately: `product_images` is one of the tables this slice defers (see [`docs/skema-basis-data.md`](skema-basis-data.md)), so there is nothing here yet for a media reference to resolve against. The storefront renders **no product imagery of any kind** — every product card and product-detail page is text and a color badge only (see [`docs/ui-ux.md`](ui-ux.md)).
+| Screen | Route | Gated on |
+| --- | --- | --- |
+| Products | `/admin/commerce` | `commerce.products.read` |
+| Categories | `/admin/commerce-categories` | `commerce.categories.read` |
+| Flash sales | `/admin/commerce-flash-sales` | `commerce.flash_sales.read` |
+| Vouchers | `/admin/commerce-vouchers` | `commerce.vouchers.read` |
+| Sliders | `/admin/commerce-sliders` | `commerce.sliders.read` |
+| Testimonials | `/admin/commerce-testimonials` | `commerce.testimonials.read` |
+| Popup | `/admin/commerce-popup` | `commerce.popups.read` |
+| Store settings | `/admin/commerce-settings` | `commerce.settings.read` |
+| Orders | `/admin/commerce-orders` | `commerce.orders.read` (no create form) |
+| Customers | `/admin/commerce-customers` | `commerce.customers.read` (no create form) |
+| Reviews | `/admin/commerce-reviews` | `commerce.reviews.read` |
 
-## Taxonomy: the category hierarchy, and nothing wider
+<!-- hitung:selesai -->
 
-"Taxonomy" in this module means the self-referencing `awcms_commerce_categories` tree — nothing broader (no tags, no facets, no cross-cutting classification). See [`docs/skema-basis-data.md`](skema-basis-data.md) for its shape and [`docs/routing.md`](routing.md) for why a category-browse route is not built even though the data model supports one.
+Between them, these eleven screens claim every one of the module's 39 declared permissions — verified by `apps/cms`'s `admin-screen-coverage-ledger.ts` gate (`admin:screen-coverage:check`) and two contract test files (`apps/cms/tests/admin-commerce-page-contract.test.ts`, `apps/cms/tests/admin-commerce-marketing-page-contract.test.ts`). The Orders and Customers screens have no create form by design — see "Permissions" above.
 
-## Advertising and logo management: not built
+## Media: product images, sliders, testimonials — resolved, not yet uploaded through this repo's own tooling
 
-Neither exists anywhere in this slice — no advertising placement of any kind, and no logo-management capability for a tenant's storefront branding. Named here plainly because a reader arriving at this document looking for either would otherwise have to conclude their absence from silence.
+`commerce`'s `dependencies` gained `media_library` in this increment (issue #23), and every image reference — a product's `images[]`, a variant's `imageMediaObjectId`, a size chart's `sizeChartMediaId`, a slider's/testimonial's/popup's `mediaObjectId` — resolves through `MediaLibraryPort` to a public URL. **Only a product image's `mediaObjectId` is checked live** against `MediaLibraryPort.isMediaReferenceSafe` before insert; a variant's `imageMediaObjectId` and a size chart's `sizeChartMediaId` are validated UUID-shaped only, not checked for live/verified existence — a stale or foreign id there simply resolves to no public URL at render time, and RLS still keeps it tenant-isolated (recorded in the module's own README as a known, deliberate scope trim).
+
+What this increment does **not** build: a real upload path for any of these images through this repository's own tooling. `tools/seed-borneojek-mart.ts` uses small, self-generated placeholder SVGs (`tools/seed-assets/`) rather than downloading real product photos, and the anonymous storefront's own payment-proof upload (`POST .../orders/{code}/payment-proof/upload-sessions`) always answers `503 MEDIA_UNAVAILABLE` — the existing `media_library` upload-session flow needs an authenticated `actorTenantUserId`, which no anonymous checkout caller has; designing a second, parallel anonymous auth seam bound to `(orderCode, phoneHash)` was judged out of scope for this increment (recorded in issue #29's PR as a deliberate, security-sensitive design deferred rather than rushed). `payment.proofUpload: false` on the public store-settings read model tells the storefront to hide the control when this is the case; a payment confirmation without a proof image is still fully accepted.
+
+## Logo and favicon management: still resolved as media ids, not rendered
+
+`apps/cms`'s `site-profile` module exposes `logoMediaId`/`faviconMediaId` as part of the tenant's site profile, resolvable only through a `media_library` client. `apps/storefront` reads the site profile (`GET /api/v1/site-profile/composed`, issue #24) but does not resolve either id to a URL — the storefront's brand mark is the store name in text, and `apps/storefront/public/favicon.svg` is a bundled default icon, not a CMS-managed one. This is a recorded, deliberate scope trim (see `apps/storefront/README.md`), not an oversight: building a `media_library` client in the storefront was judged out of scope for chrome/foundation work.
+
+## Taxonomy: commerce categories, plus the news IA's own hierarchy
+
+"Taxonomy" spans two, separately owned trees:
+
+- **`awcms_commerce_categories`** — the self-referencing product-category tree this module owns (see [`docs/skema-basis-data.md`](skema-basis-data.md)). `parentId` is immutable after creation, matching `awcms_offices`' own choice for the identical reason (no cycle-detection built for either).
+- **`blog_content`'s rubrik/daerah/mitra hierarchy** — `ahliweb/awcms`'s own module, carried by the subtree embed. `apps/storefront`'s `/rubrik/{slug}` walks a hierarchical rubrik (category) tree where a parent rubrik's archive includes every descendant rubrik's posts (issue #28); `/daerah/{slug}` is a region archive reached via an institution's `regionCode` (a post itself carries no region field); `/mitra/{slug}` is an institution landing page. None of these three are commerce categories — they are `blog_content`'s own taxonomy, rendered by the storefront's news surface. See [`docs/routing.md`](routing.md) for the full URL map.
+
+## Advertising: ad placements, as `blog_content` renders them
+
+`blog_content`'s `AD_PLACEMENT_KEYS` define header, in-article, and sidebar slots — there is deliberately no footer slot (verified against the actual registered key set, not assumed). `apps/storefront`'s news pages render whichever slots the CMS returns; there is no ad-placement management UI documented here because it belongs to `blog_content`, not `commerce` — see `apps/cms`'s own module documentation for the admin side.
+
+## SEO surface the CMS feeds
+
+`apps/cms` is the source for everything [`docs/seo.md`](seo.md) describes the storefront emitting: `awcms_seo_redirects` (the legacy-redirect map baked into `apps/storefront`'s build — see [`docs/routing.md`](routing.md)), the content driving each page's `Product`/`NewsArticle`/`CollectionPage`/`BreadcrumbList` JSON-LD, and the post/page data the sitemap and feeds enumerate. This document does not restate that content — see [`docs/seo.md`](seo.md) for what the storefront actually emits per page type, verified against its own source.
+
+## Accessibility and responsive: the CMS admin side only
+
+[`docs/aksesibilitas.md`](aksesibilitas.md) and [`docs/responsif.md`](responsif.md) describe `apps/storefront`'s own behaviour in depth; this section names only the admin-side facts specific to authoring commerce content. The product list (`/admin/commerce`) uses `<caption>`, `scope="col"` table headers, and `data-label` attributes for a responsive stacked layout below its own breakpoint — the same pattern every admin table in `apps/cms` uses, not something this module invented. No admin screen added by this increment changes that convention.
 
 ## Deliberately not here
 
-- **No filtering or search on the list endpoints.** `GET .../products` and `GET .../categories` accept only `cursor` — no `?categoryId=`, no `?status=`, matching the shape `GET /api/v1/offices` already uses in this codebase. See [`docs/api.md`](api.md) for why a server-side `status` filter is a reasonable, un-built follow-up rather than a gap in this slice.
-- **No restore endpoint or permission**, for either resource — a soft-deleted row is retained for referential integrity but not recoverable through the API in this slice.
-- **No runtime stock read.** `stock` is a build-time snapshot the storefront fetched once, at the last build — see [ADR-0002](adr/0002-static-output-with-build-time-fetch-for-the-storefront.md). Nothing in `apps/cms` is called again after that build finishes.
-- **No cart, checkout, payment, orders, shipping, variants, flash sales, or affiliate links** — the wider commerce surface named in [issue #1](https://github.com/ahliweb/awcms-one/issues/1) as out of scope for increment 1, in full.
+- **No customer accounts, login, or authenticated storefront endpoint** — [issue #32](https://github.com/ahliweb/awcms-one/issues/32). Wishlist stays browser-local; `awcms_commerce_wishlists` exists as a table with no API route in front of it yet.
+- **No RajaOngkir courier-rate integration or payment gateway** — both must be called through the outbox when they land ([ADR-0010](adr/0010-manual-payment-and-alternative-courier-first-gateways-via-outbox.md), [issue #33](https://github.com/ahliweb/awcms-one/issues/33)); `payment_method` already accepts a `gateway` enum value, additively, with no implementing code behind it yet.
+- **`apps/cms/tests/integration/commerce-orders.integration.test.ts` exists** (`apps/cms/tests/integration/`) and covers exactly issue #29's acceptance list — stock decrement, idempotent double-submit, wrong-phone tracking, expire-then-restock, and cross-tenant RLS isolation — against a real, migrated Postgres instance. It was committed after issue #29's own PR body was written (that PR's own text says the suite "was not written as a formal automated test" — the merged tree disagrees, and this document follows the tree; see [`docs/pengujian.md`](pengujian.md)).
+- **No full-text ranked search** on the owner product list's `q` filter — substring/trigram matching only (`pg_trgm`, `sql/159`), no `site_search` integration.
+- **No restore** for marketing tables, orders, customers, or reviews — only catalog (`categories`/`products`) has a restore endpoint and permission in this increment.

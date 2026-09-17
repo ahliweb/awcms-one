@@ -1,63 +1,88 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](kamus-data.md)
 
-<!-- i18n-source-hash: sha256:27511f92c18869d1ec1619a9255a4984d328feaaef47cb954a7f3bcc774dc90f -->
+<!-- i18n-source-hash: sha256:c921fbf1f221a6bffd089035a93d8bac4ed5c622940863d7521b513631b8e788 -->
 
 # Kamus data
 
-Setiap kolom di `awcms_commerce_categories`/`awcms_commerce_products`, maknanya, domain satuan atau enum-nya, dan kolom sumbernya di skema MySQL legacy `commerce_bj_mart`.
+Setiap kolom di sembilan belas tabel `awcms_commerce_*`, maknanya, domain unit/enum-nya, dan — jika ada — kolom sumbernya di skema MySQL lawas `commerce_bj_mart`.
 
 ## Provenans, dinyatakan sekali agar setiap baris di bawah tidak perlu mengulanginya
 
-Daftar kolom legacy **direkam dari basis data `commerce_bj_mart` yang hidup pada 2026-09-14**, satu hari sebelum dokumen ini ditulis, selama pekerjaan yang menghasilkan bagian source-schema [issue #4](https://github.com/ahliweb/awcms-one/issues/4) dan `apps/cms/sql/153_awcms_commerce_schema.sql`. **`commerce_bj_mart` tidak terjangkau dari mesin tempat dokumen ini ditulis** — tidak ada koneksi hidup untuk memverifikasi ulang pemetaan mana pun di bawah ini terhadap basis data sumber hari ini. Setiap sel "kolom sumber" karena itu dinyatakan **sebagaimana direkam pada 2026-09-14**, bukan sebagai diperiksa-ulang secara independen saat menulis dokumen ini. Jika skema legacy sudah berubah sejak tanggal itu, tabel ini belum ikut bergerak.
-
-Kedua tabel AWCMS dibangun dengan mem-porting **kolom katalog inti** skema legacy maju di bawah nama mereka sendiri — header `sql/153` sendiri dan docblock `commerce/module.ts` sama-sama mendeskripsikan ini sebagai porting langsung, dan daftar kolom-tertunda di bawah (ditarik dari sumber yang sama) sendiri adalah daftar nama kolom `commerce_bj_mart.products` legacy, yang menguatkan bahwa kolom yang dipertahankan membawa nama legacy-nya tanpa berubah alih-alih diganti nama saat porting. Setiap sel kolom-sumber di bawah adalah nama legacy yang sama kecuali dicatat sebaliknya.
+Daftar kolom lawas **dicatat dari basis data `commerce_bj_mart` yang live pada 2026-09-14**, selama pekerjaan yang menghasilkan bagian skema-sumber issue #4 dan `apps/cms/sql/153_awcms_commerce_schema.sql`. **`commerce_bj_mart` tidak bisa dijangkau dari mesin tempat dokumentasi ini ditulis** — setiap sel "kolom sumber" dinyatakan **sebagaimana dicatat pada 2026-09-14**, tidak diperiksa ulang secara independen sejak itu. Kolom inti-katalog dan paritas-BjekMart (dua tabel pertama dokumen ini) di-porting dari nama kolom skema lawas sendiri, tanpa perubahan — header `sql/153` dan `sql/156` sendiri, serta docblock `commerce/module.ts`, semuanya menjelaskan ini sebagai port langsung; dikuatkan oleh daftar kolom-yang-ditunda yang masih cocok verbatim dengan nama kolom lawas `commerce_bj_mart.products`. Tabel marketing dan order (issue #26/#29) adalah **desain baru milik platform ini sendiri**, bukan port kolom-demi-kolom — mart.borneojek.com punya pengaturan dan catatan order dengan bentuk serupa, tapi tidak ada daftar kolom lawas untuk itu yang ditangkap selama pengembangan repositori ini, jadi tidak ada "kolom sumber" yang diklaim untuk bagian itu; makna setiap kolom dinyatakan atas dasarnya sendiri sebagai gantinya.
 
 ## `awcms_commerce_categories` ← `commerce_bj_mart.categories`
 
-| Kolom AWCMS | Kolom sumber legacy | Makna | Satuan / domain |
-| --- | --- | --- | --- |
-| `id` | `id` | Primary key | `uuid` di sini; tipe kunci legacy sendiri tidak diverifikasi ulang untuk dokumen ini (lihat Provenans) |
-| `tenant_id` | *(tidak ada — baru)* | Kepemilikan baris di bawah model multi-tenant platform ini | `uuid`, FK ke `awcms_tenants`; `commerce_bj_mart` tidak punya konsep tenant, karena ia melayani satu toko |
-| `parent_id` | `parent_id` | Hierarki self-referencing — parent kategori ini, atau root jika null | `uuid`, FK ke tabel yang sama; diset sekali saat pembuatan, lihat [`docs/cms.md`](cms.md) |
-| `name` | `name` | Nama tampilan | Teks bebas |
-| `slug` | `slug` | Identifier yang menghadap URL | Teks bebas, unik per tenant di antara baris hidup |
-| `icon` | `icon` | Referensi ikon untuk kategori ini | Teks bebas |
-| `created_at` | *(timestamp)* | Waktu pembuatan baris | `timestamptz` |
-| `updated_at` | *(timestamp)* | Waktu baris terakhir diubah | `timestamptz` |
-| `deleted_at` | *(tidak ada — baru)* | Penanda soft-delete; null berarti hidup | `timestamptz`, nullable |
-
-## `awcms_commerce_products` ← `commerce_bj_mart.products`
-
-| Kolom AWCMS | Kolom sumber legacy | Makna | Satuan / domain |
+| Kolom AWCMS | Kolom sumber lawas | Makna | Unit / domain |
 | --- | --- | --- | --- |
 | `id` | `id` | Primary key | `uuid` di sini |
 | `tenant_id` | *(tidak ada — baru)* | Kepemilikan baris di bawah model multi-tenant platform ini | `uuid`, FK ke `awcms_tenants` |
-| `category_id` | `category_id` | Kategori produk | `uuid`, FK ke `awcms_commerce_categories`; referensi lintas-tenant ditolak di lapisan aplikasi, bukan oleh FK — lihat [`docs/skema-basis-data.md`](skema-basis-data.md) |
-| `type` | `type` | Jenis produk | Enum: `physical`, `digital`, `service`, `subscription` — keempatnya dibawa maju tanpa berubah; lihat `commerce/domain/product-type.ts` |
+| `parent_id` | `parent_id` | Hierarki self-referencing — parent kategori ini, atau root jika null | `uuid`, FK ke tabel yang sama ini; diset sekali saat pembuatan |
+| `name` | `name` | Nama tampilan | Teks bebas |
+| `slug` | `slug` | Identifier yang menghadap URL | Teks bebas, unik per tenant di antara baris hidup |
+| `icon` | `icon` | Referensi ikon untuk kategori ini | Teks bebas |
+| `created_at`/`updated_at` | *(timestamp)* | Timestamp siklus-hidup baris | `timestamptz` |
+| `deleted_at` | *(tidak ada — baru)* | Penanda soft-delete; null berarti hidup | `timestamptz`, nullable |
+| `restored_at` | *(tidak ada — baru)* | Kapan soft delete dibatalkan (`sql/156`) | `timestamptz`, nullable |
+
+## `awcms_commerce_products` ← `commerce_bj_mart.products`
+
+| Kolom AWCMS | Kolom sumber lawas | Makna | Unit / domain |
+| --- | --- | --- | --- |
+| `id` | `id` | Primary key | `uuid` di sini |
+| `tenant_id` | *(tidak ada — baru)* | Kepemilikan baris | `uuid`, FK `awcms_tenants` |
+| `category_id` | `category_id` | Kategori produk | `uuid`, FK; referensi lintas-tenant ditolak di lapisan aplikasi |
+| `type` | `type` | Jenis produk | `physical`, `digital`, `service`, `subscription` |
 | `sku` | `sku` | Kode stock-keeping unit | Teks bebas, unik per tenant di antara baris hidup |
 | `name` | `name` | Nama tampilan | Teks bebas |
-| `slug` | `slug` | Identifier yang menghadap URL | Teks bebas, unik per tenant di antara baris hidup — **lihat batasan migrasi di bawah** |
-| `description` | `description` | Deskripsi produk panjang | Teks bebas, nullable |
-| `digital_note` | `digital_note` | Catatan yang ditampilkan untuk produk digital menggantikan informasi pengiriman | Teks bebas, nullable |
-| `price` | `price` | Harga satuan | `numeric(14,2)`, string desimal di jaringan, tidak pernah float — lihat [ADR-0003](adr/0003-money-is-numeric-14-2-and-crosses-the-wire-as-a-string.md) |
-| `discount_percent` | `discount_percent` | Diskon yang diterapkan pada `price` | Persentase integer, 0–100 |
-| `stock` | `stock` | Unit yang tersedia saat ini | Integer non-negatif; lihat [`docs/cms.md`](cms.md) untuk mengapa storefront tidak pernah membacanya saat runtime |
-| `status` | `status` | Status siklus hidup | Enum: `draft`, `active`, `inactive`, `archived` — lihat [`docs/cms.md`](cms.md) untuk tabel transisi legal |
-| `label` | `label` | Lencana merchandising pendek, mis. "Baru" | Teks bebas, nullable |
-| `label_color` | `label_color` | Warna latar lencana | String hex sembarang, nullable; lihat [`docs/ui-ux.md`](ui-ux.md) untuk bagaimana ia divalidasi dan di-render |
-| `created_at` | *(timestamp)* | Waktu pembuatan baris | `timestamptz` |
-| `updated_at` | *(timestamp)* | Waktu baris terakhir diubah | `timestamptz` |
-| `deleted_at` | *(tidak ada — baru)* | Penanda soft-delete; null berarti hidup | `timestamptz`, nullable |
+| `slug` | `slug` | Identifier yang menghadap URL | Teks bebas, unik per tenant di antara baris hidup — lihat constraint migrasi di bawah |
+| `description` | `description` | Deskripsi panjang | Teks bebas, nullable |
+| `digital_note` | `digital_note` | Catatan yang ditampilkan untuk produk digital menggantikan info pengiriman | Teks bebas, nullable |
+| `price` | `price` | Harga satuan (level 1) | `numeric(14,2)`, string desimal di wire — [ADR-0003](adr/0003-money-is-numeric-14-2-and-crosses-the-wire-as-a-string.id.md) |
+| `price_level_2`/`_3`/`_4` | `price_level_2`/`_3`/`_4` | Harga bertingkat berdasarkan level pelanggan | `numeric(14,2)`, nullable |
+| `cost_price` | `cost_price` | Biaya satuan khusus-admin, untuk pelaporan margin | `numeric(14,2)`, nullable — tidak pernah ada di model baca publik |
+| `discount_percent` | `discount_percent` | Diskon yang diterapkan pada `price` | Integer 0–100 |
+| `stock` | `stock` | Unit yang tersedia | Integer non-negatif |
+| `status` | `status` | Status siklus-hidup | `draft`, `active`, `inactive`, `archived` — lihat [`docs/cms.md`](cms.id.md) |
+| `label`/`label_color` | `label`/`label_color` | Lencana merchandising dan warna latarnya | Teks bebas / string hex, nullable |
+| `min_purchase` | `min_purchase` | Kuantitas order minimum untuk produk ini | Integer, `>= 1` |
+| `weight_grams` | `weight_grams` | Berat pengiriman | Gram, `>= 0` |
+| `manual_rating` | `manual_rating` | Rating yang dimasukkan owner, ditampilkan sampai review sungguhan terkumpul | `numeric(2,1)`, 0.0–5.0, nullable |
+| `manual_sold_count` | `manual_sold_count` | Penghitung "terjual" yang dimasukkan owner, untuk social proof | Integer non-negatif |
+| `with_insurance`/`insurance_required`/`insurance_fee` | `with_insurance`/`insurance_required`/`insurance_fee` | Apakah asuransi pengiriman ditawarkan/diwajibkan, dan biayanya | Boolean / boolean / `numeric(14,2)` |
+| `promo_banner_show`/`_title`/`_subtitle`/`_badge`/`_icon`/`_color` | nama sama | Banner promosi opsional yang di-render di halaman detail produk | Boolean / teks bebas ×5 |
+| `size_chart_type` | `size_chart_type` | Bagaimana size chart ditampilkan, jika ada | `none`, `image`, `table` |
+| `size_chart_media_id` | `size_chart_media_id` | Gambar size-chart, saat `type = "image"` | `uuid`, FK `awcms_news_media_objects` (registry media), hanya validasi berbentuk-UUID |
+| `size_chart_details` | `size_chart_details` | Baris-baris size-chart, saat `type = "table"` | `jsonb`, nullable |
+| `service_form` | `service_form` | Definisi field formulir intake produk jasa | `jsonb`, nullable |
+| `subscription_period` | `subscription_period` | Kadensi penagihan untuk produk langganan | `day`, `week`, `month`, `year`, nullable |
+| `download_link` | `download_link` | Lokasi aset berbayar produk digital | Teks bebas, nullable; **tidak pernah ada di model baca publik** — lihat [`docs/cms.md`](cms.id.md) |
+| `allow_dp` | `allow_dp` | Apakah checkout dengan uang muka diizinkan | Boolean |
+| `allow_free_shipping` | `allow_free_shipping` | Apakah produk ini bisa dikirim gratis (mis. lewat voucher) | Boolean, default `true` |
+| `variant_attributes` | `variant_attributes` | Kumpulan atribut (mis. sumbu ukuran/warna) yang menjadi variasi varian produk ini | `jsonb`, nullable |
+| `is_featured`/`is_recommended` | `is_featured`/`is_recommended` | Flag penempatan di halaman utama | Boolean |
+| `created_at`/`updated_at`/`deleted_at`/`restored_at` | *(timestamp / baru)* | Siklus-hidup baris | `timestamptz` |
 
-## Batasan migrasi increment-2
+**Tidak di-porting dari `commerce_bj_mart.products`:** setiap kolom `affiliate_*`, dan tabel lawas `product_affiliate_links` — program afiliasi adalah bagian yang harus diadmisi [issue #32](https://github.com/ahliweb/awcms-one/issues/32), bersama akun pelanggan.
 
-**Migrasi data harus membawa setiap slug produk legacy apa adanya, termasuk akhiran keunikan 4-karakter hasil-Laravel-nya (misalnya `beras-5-kg-dbfc`, `jasa-jemput-kbj1`) — CMS tidak boleh pernah menghasilkan ulang slug dari nama produk.** [ADR-0005](adr/0005-product-urls-match-the-live-sites-shape.md) mengikat URL produk platform ini pada bentuk situs live sendiri, `/product/{slug}`, justru agar setiap tautan terindeks, bookmark, dan URL yang dibagikan tetap resolve saat cutover tanpa peta pengalihan. Kecocokan itu hanya nyata jika kolom `slug` yang dimigrasikan identik byte-demi-byte dengan yang legacy; migrasi yang menurunkan ulang slug dari `name` akan menghasilkan akhiran berbeda (atau tidak ada sama sekali), dan setiap URL yang dipertahankan ADR-0005 akan diam-diam menunjuk ke ketiadaan.
+## `awcms_commerce_product_images` / `awcms_commerce_product_variants` ← `commerce_bj_mart.product_images` / `.product_variants`
 
-## Kolom dan tabel tertunda — nama legacy, belum diporting
+Keduanya adalah tabel AWCMS baru yang meneruskan konsep milik tabel lawas: gambar adalah `{product, referensi media, sort order, alt text}`; varian adalah `{product, pasangan nama/nilai atribut seperti "Warna"/"Merah", override harga/tingkat-harga/stok/berat miliknya sendiri, gambar opsional}`. Lihat [`docs/skema-basis-data.md`](skema-basis-data.id.md) untuk kolom yang persis — kamus ini tidak mengulanginya field demi field untuk kedua kalinya, karena makna kolom kedua tabel itu tidak berbeda dari deskripsi di dokumen skema.
 
-Ini tidak punya referensi kode di mana pun di irisan ini (header `sql/153` sendiri, docblock `commerce/module.ts`), jadi kolom sumber legacy-nya dicatat di sini hanya sebagai target untuk porting increment masa depan, bukan sebagai sesuatu yang sudah dipetakan skema ini:
+## Constraint migrasi increment-2 (tidak berubah dari increment 1)
 
-- **Kolom di `commerce_bj_mart.products` yang tidak dibawa ke `awcms_commerce_products`:** `price_level_2`, `price_level_3`, `price_level_4` (tiered pricing), `cost_price`, setiap kolom `affiliate_*`, setiap kolom `size_chart_*`, setiap kolom `insurance_*`, setiap kolom `promo_banner_*`, `variant_attributes`.
-- **Tabel legacy tanpa padanan AWCMS di irisan ini:** `product_images`, `product_variants`, `flash_sale_products`, `product_affiliate_links`.
+**Migrasi data harus membawa setiap slug produk lawas secara verbatim, termasuk akhiran keunikan 4-karakter yang dihasilkan Laravel** (misalnya `beras-5-kg-dbfc`, `jasa-jemput-kbj1`) — CMS tidak boleh pernah meregenerasi slug dari nama produk. [ADR-0005](adr/0005-product-urls-match-the-live-sites-shape.id.md) mengikat URL produk platform ini ke bentuk situs live sendiri, `/product/{slug}`, secara spesifik agar setiap tautan terindeks, bookmark, dan URL yang dibagikan tetap ter-resolve saat cutover.
 
-Increment masa depan yang mengadopsi salah satu dari ini bersifat aditif — kolom baru dan migrasi untuk baris yang membutuhkannya, bukan penulisan ulang tabel yang didokumentasikan di atas.
+## Tabel marketing: desain milik platform ini sendiri, bukan port lawas
+
+`awcms_commerce_flash_sales`/`_flash_sale_products`, `_vouchers`, `_sliders`, `_testimonials`, `_popups`, `_store_settings` (issue #26) dirancang berdasarkan *perilaku teramati* mart.borneojek.com (strip flash-sale dengan countdown, field kode voucher saat checkout, slider halaman utama, bagian testimonial, popup promo, dan pengaturan seluruh-toko termasuk detail bank/QRIS) alih-alih berdasarkan daftar kolom lawas yang ditangkap — lihat "Provenans" di atas. Makna kolom didokumentasikan lengkap di [`docs/skema-basis-data.md`](skema-basis-data.id.md); kamus ini tidak menduplikasinya, karena tidak ada kolom pemetaan-lawas untuk ditambahkan di samping masing-masing.
+
+## Tabel order: desain milik platform ini sendiri, dialamatkan lewat identitas tamu
+
+`awcms_commerce_customers`/`_customer_addresses`/`_orders`/`_order_items`/`_order_events`/`_payment_confirmations`/`_reviews`/`_wishlists` (issue #29) demikian pula skema milik platform ini sendiri, dibentuk oleh [ADR-0009](adr/0009-guest-checkout-by-order-code-and-phone.id.md) (pelanggan diidentifikasi lewat telepon, bukan akun) dan [ADR-0010](adr/0010-manual-payment-and-alternative-courier-first-gateways-via-outbox.id.md) (pembayaran manual dan biaya kurir-alternatif flat, bukan integrasi gateway/kurir live). Lihat [`docs/skema-basis-data.md`](skema-basis-data.id.md) untuk setiap kolom.
+
+## Kolom dan tabel yang ditunda — tidak di-porting di increment ini
+
+- **Kolom afiliasi dan `product_affiliate_links`** — [issue #32](https://github.com/ahliweb/awcms-one/issues/32), bersama akun pelanggan.
+- **Tabel rate/tracking kurir RajaOngkir live** — [issue #33](https://github.com/ahliweb/awcms-one/issues/33); `shipping_method`/`shipping_service_name` pada order saat ini adalah label yang ditentukan merchant, tidak pernah respons kurir live.
+- **Catatan transaksi payment-gateway** — enum `payment_method` sudah menerima `gateway` (aditif), tapi belum ada integrasi provider; harus dibangun lewat outbox sesuai [ADR-0010](adr/0010-manual-payment-and-alternative-courier-first-gateways-via-outbox.id.md).
+- **Upload media sungguhan untuk gambar produk, media slider, dan gambar bukti konfirmasi pembayaran** — diselesaikan lewat mekanisme referensi/URL yang sudah ada milik `media_library`, tapi seed increment ini memakai SVG placeholder dan endpoint upload-bukti anonim adalah stub (`503 MEDIA_UNAVAILABLE`) — lihat [`docs/cms.md`](cms.id.md) dan [`docs/deployment.md`](deployment.id.md).

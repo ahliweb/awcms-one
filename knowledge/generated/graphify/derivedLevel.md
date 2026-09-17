@@ -1,12 +1,12 @@
 ---
 source_file: "tools/rilis.mjs"
 type: "code"
-community: "rilis.mjs"
+community: "Changeset Parsing"
 location: "L114"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/rilismjs
+  - community/Changeset_Parsing
 ---
 
 # derivedLevel
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[rilis.mjs]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/rilismjs
+#graphify/code #graphify/EXTRACTED #community/Changeset_Parsing

@@ -1,12 +1,12 @@
 ---
 source_file: "packages/gerbang/lib/docs-i18n-checks.mjs"
 type: "code"
-community: "docs-i18n-stamp.mjs"
+community: "Translation Mirror Audit"
 location: "L224"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/docs-i18n-stampmjs
+  - community/Translation_Mirror_Audit
 ---
 
 # checkMirrorCoverage()
@@ -18,4 +18,4 @@ tags:
 - [[docs-i18n-checks.test.mjs]] - `imports` [EXTRACTED]
 - [[runChecks()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/docs-i18n-stampmjs
+#graphify/code #graphify/EXTRACTED #community/Translation_Mirror_Audit

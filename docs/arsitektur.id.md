@@ -1,64 +1,86 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](arsitektur.md)
 
-<!-- i18n-source-hash: sha256:fc323a7cbc58947799ca88651d75eaa8d8db70e91499a75d7863f7b2fec2bfb5 -->
+<!-- i18n-source-hash: sha256:2e0ee5e4887bb23d94ca83c1afac5f197207c5fc12df0652a111ef62c8cdffaa -->
 
 # Arsitektur
 
-Apa yang benar-benar di-deploy oleh repositori ini hari ini, dan batasan yang menjaga kedua bagiannya agar tidak diam-diam saling menyusup. Dokumen ini mendeskripsikan increment 1 — fondasi plus satu irisan vertikal yang sudah ditulis (listing katalog dan detail produk), tanpa basis data hidup — sebagaimana ia ada di tree yang sudah digabung, bukan sebagaimana ia direncanakan. Lihat [`README.md`](../README.md) dan [`AGENTS.md`](../AGENTS.md) untuk tata letak workspace dan aturan kerja yang diasumsikan dokumen ini.
+Apa yang benar-benar di-deploy oleh repositori ini hari ini, dan batasan yang menjaga kedua bagiannya agar tidak diam-diam saling menyusup. Dokumen ini mendeskripsikan increment 2 — paritas penuh BjekMart/news-portal, keranjang/checkout/pelacakan-pesanan, tanpa basis data produksi hidup — sebagaimana ia ada di tree yang sudah digabung, bukan sebagaimana ia direncanakan. Lihat [`README.md`](../README.id.md) dan [`AGENTS.md`](../AGENTS.id.md) untuk tata letak workspace dan aturan kerja yang diasumsikan dokumen ini.
 
-## Dua deployable, satu arah aliran data
+## Dua deployable, satu aliran data saat-build, satu seam runtime anonim
 
 ```mermaid
 flowchart LR
   subgraph "apps/cms — system of record"
     DB[(PostgreSQL, RLS-scoped)]
-    API["/api/v1/commerce/*"]
-    DB --> API
+    OwnerAPI["/api/v1/commerce/* (owner, Bearer)"]
+    PublicAPI["/api/v1/commerce/storefront/* (anonim, Origin-bound)"]
+    DB --> OwnerAPI
+    DB --> PublicAPI
   end
 
   subgraph "apps/storefront — situs publik"
     Build["astro build\n(token Bearer read-only)"]
     Files["dist/client/*.html"]
     Penyaji["server/penyaji.mjs\n(server HTTP Bun)"]
-    Build --> Files --> Penyaji
+    Browser["browser milik pembaca"]
+    Build --> Files --> Penyaji --> Browser
   end
 
-  API -- "hanya saat build" --> Build
-  Penyaji -. "tidak pernah, saat runtime" .-> API
+  OwnerAPI -- "hanya saat build" --> Build
+  Penyaji -. "tidak pernah, saat runtime" .-> OwnerAPI
+  Browser -- "keranjang/checkout/pelacakan, CORS, tanpa kredensial" --> PublicAPI
 ```
 
 | | `apps/cms` | `apps/storefront` |
 | --- | --- | --- |
-| Apa itu | `ahliweb/awcms` v10.3.0, di-embed utuh lewat `git subtree` (lihat [ADR-0001](adr/0001-git-subtree-with-full-history-for-apps-cms.md)) | Aplikasi Astro, `output: "static"` |
-| Peran | System of record — PostgreSQL di bawah row-level security, API komersial | Situs katalog publik + detail produk |
-| Berbicara ke | Basis data PostgreSQL-nya sendiri, saat request | API publik `apps/cms`, hanya saat **build** (lihat [ADR-0002](adr/0002-static-output-with-build-time-fetch-for-the-storefront.md)) |
-| Kredensial runtime | Connection string basis data untuk `awcms_app`/`awcms_worker`/`awcms_setup` (lihat `apps/cms/.env.example`) | Tidak ada — `apps/storefront/server/penyaji.mjs` hanya membaca `PORT`/`HOST` |
+| Apa itu | `ahliweb/awcms` v10.3.0, di-embed utuh lewat `git subtree` (lihat [ADR-0001](adr/0001-git-subtree-with-full-history-for-apps-cms.id.md)) | Aplikasi Astro, `output: "static"`, tidak ada rute `prerender = false` di mana pun (lihat [ADR-0002](adr/0002-static-output-with-build-time-fetch-for-the-storefront.id.md), diamendemen oleh [ADR-0007](adr/0007-cart-and-checkout-stay-static-the-browser-calls-anonymous-commerce-endpoints.id.md)) |
+| Peran | System of record — PostgreSQL di bawah row-level security, API commerce yang menghadap owner, dan API commerce kedua yang anonim untuk pembeli tamu | Situs katalog publik, berita, dan belanja |
+| Berbicara ke | Basis data PostgreSQL-nya sendiri, saat request | API owner `apps/cms` hanya saat **build** (server-side, token read-only); API storefront anonim `apps/cms` saat **runtime**, tapi hanya dari **browser milik pembaca sendiri** — tidak pernah dari container yang berjalan |
+| Kredensial runtime | Connection string basis data untuk `awcms_app`/`awcms_worker`/`awcms_setup` (lihat `apps/cms/.env.example`) | Tidak ada — `apps/storefront/server/penyaji.mjs` hanya membaca `PORT`/`HOST`; panggilan browser ke `apps/cms` tidak membawa cookie maupun bearer token (`mode: "cors"`, `credentials: "omit"`) |
 | Dilayani oleh | Runtime Bun/Astro milik `apps/cms` sendiri | `apps/storefront/server/penyaji.mjs`, server HTTP Bun yang ditulis tangan, membungkus adapter `standalone` milik `@astrojs/node` |
 
-**Storefront mengambil katalog saat build, dengan token Bearer read-only (`AWCMS_API_TOKEN`), dan tidak pernah menjangkau `apps/cms` atau basis datanya saat runtime.** `astro build` memanggil `GET /api/v1/commerce/{products,categories}` sekali, menyusuri setiap halaman hasil keyset-paginated, lalu memanggang hasilnya menjadi berkas HTML statis di bawah `dist/client/`. Begitu build itu selesai, container yang berjalan (`bun dist/server/penyaji.mjs`) hanya melayani berkas-berkas itu — ia tidak memegang token API, tidak membuka koneksi ke `apps/cms`, dan tidak punya jalur kode yang bisa menjangkau basis data sekalipun ia mau. Kompromi pada container storefront karena itu tidak menjangkau data pelanggan apa pun, karena memang tidak ada yang bisa dijangkau dari dalamnya.
+**Container yang menjalankan `apps/storefront` tidak pernah berbicara ke `apps/cms`.** `astro build` memanggil API owner `apps/cms` sekali, dengan token Bearer read-only (`AWCMS_API_TOKEN`), untuk memanggang katalog, berita, permukaan pemasaran, dan halaman statis menjadi HTML datar di bawah `dist/client/`. Begitu build itu selesai, `bun dist/server/penyaji.mjs` hanya melayani berkas-berkas itu dan tidak lebih — ia tidak memegang token API, tidak membuka koneksi ke `apps/cms`, dan tidak punya jalur kode yang bisa menjangkau basis data sekalipun ia mau. **Yang berubah di increment 2 adalah hubungan *browser* itu sendiri dengan `apps/cms`**, bukan hubungan container: keranjang, checkout, dan pelacakan pesanan adalah halaman statis yang JavaScript sisi-kliennya memanggil `https://<cms>/api/v1/commerce/storefront/*` langsung, lintas-origin, memakai `PUBLIC_AWCMS_ORIGIN` — nilai yang dipanggang saat build, sengaja dibuat publik (sebuah origin bukan rahasia; setiap URL media sudah mengungkapkannya). Inilah keseluruhan argumen [ADR-0007](adr/0007-cart-and-checkout-stay-static-the-browser-calls-anonymous-commerce-endpoints.id.md): kredensial runtime di dalam *container* ditolak karena kredensial mesin `apps/cms` memang read-only secara konstruksi (kredensial itu tidak pernah bisa membuat pesanan); keluarga endpoint anonim dan Origin-bound yang sudah dibangun `apps/cms` untuk permukaan newsletter/site-search/comments-nya adalah pola yang dipakai ulang di sini. Kompromi pada container storefront tetap tidak menjangkau data pelanggan apa pun, karena memang tidak ada yang bisa dijangkau dari dalamnya — pesanan, nomor telepon, instruksi pembayaran semuanya berjalan browser ↔ CMS langsung dan tidak pernah dicatat log atau disimpan oleh storefront.
 
-**Trade-off dinyatakan terus terang:** harga dan stok hanya sesegar build terakhir. Untuk increment ini — listing katalog dan detail produk, tanpa keranjang, tanpa checkout — itu adalah trade-off yang tepat: tidak ada apa pun di halaman yang bisa bertindak atas harga basi. Pembacaan saat runtime menjadi perlu begitu checkout ada (untuk menghindari kelebihan jual stok atau salah kutip harga yang berubah setelah build terakhir), dan membuat perubahan itu harus menjadi keputusan yang disengaja dan diargumentasikan terpisah — dicatat sebagai ADR-nya sendiri saat itu terjadi — bukan sesuatu yang dimulai sebagai "cuma satu panggilan live" lalu diam-diam mengikis batas yang dideskripsikan dokumen ini. Lihat [ADR-0002](adr/0002-static-output-with-build-time-fetch-for-the-storefront.md) untuk penalaran lengkap dan tabel trade-off-nya.
+**Trade-off dari ADR-0002 tidak berubah untuk semua hal kecuali harga dan stok pada saat menambahkan ke keranjang:** setiap halaman katalog dan berita tetap hanya sesegar build terakhir. Halaman keranjang meng-quote ulang setiap baris terhadap `apps/cms` secara live sebelum checkout (`POST .../storefront/cart/quote`), sehingga harga statis yang basi ditampilkan dan ditandai, tidak pernah dikenakan secara diam-diam.
 
-## Arah impor: satu arah, `storefront → kontrak → cms`
+## CSP diturunkan dari konten, bukan dikonfigurasi
 
-`apps/storefront` tidak pernah mengimpor dari `apps/cms` secara langsung. `packages/kontrak` duduk di antara keduanya, meng-ekspor ulang `ProductType`/`ProductStatus` dari `apps/cms/src/modules/commerce/domain/*.ts` — lapisan murni tanpa I/O yang dijaga bersih oleh konvensi `apps/cms` sendiri — sebagai `export type` saja, tanpa nilai runtime. Arah ini dipaksakan secara mekanis: [`tests/kontrak-arah-impor.test.mjs`](../tests/kontrak-arah-impor.test.mjs) memindai setiap berkas `.ts`/`.tsx`/`.astro` di bawah `apps/cms/src/` dan gagal jika ada yang mengimpor dari `apps/storefront`, `packages/kontrak`, atau paket `@awcms-one/*`. Lihat [ADR-0004](adr/0004-a-type-only-contract-package-with-an-import-direction-gate.md) untuk alasan mengapa arah ini penting justru karena `apps/cms` adalah kode vendored, dan untuk bentuk-bentuk baris DTO (`CommerceProduct`/`CommerceCategory`) yang sengaja **tidak** diekspor-ulang oleh paket ini.
+Foto produk, gambar slider/testimoni, dan — sejak increment 2 — origin CMS itu sendiri semuanya adalah hal yang baru diketahui build lewat fetch konten; CSP yang dikelola manual akan drift sejak saat merchandiser mengunggah gambar baru. Sebagai gantinya:
 
-## Embed subtree, singkatnya
+1. `apps/storefront/src/pages/csp.json.ts` — halaman yang selalu di-prerender setiap build tanpa syarat — mengumpulkan setiap origin gambar yang benar-benar dirujuk build (`img-src`) dari fetch ter-memoized yang sama yang dipakai me-render halaman, dan memanggil `requireAwcmsOrigin()` (`apps/storefront/src/lib/awcms/toko-origin.ts`) untuk menambahkan tepat satu origin `connect-src`: `PUBLIC_AWCMS_ORIGIN`. Nilai yang tidak diset atau malformed **menggagalkan build**, menyebut nama variabelnya — bukan kejutan saat runtime.
+2. Hasilnya ditulis ke `dist/client/csp.json` (`{ version: 1, imgSrc: [...], connectSrc: [...] }`).
+3. `apps/storefront/server/penyaji.mjs` membaca berkas itu **sekali, saat server startup** (bukan per-request), dan memvalidasi ulang setiap origin secara independen dari build yang menghasilkannya — menolak apa pun yang punya path, query, kredensial, wildcard, atau karakter separator, hanya menyisakan origin `http(s)` polos. Artefak yang hilang, malformed, atau versi tak dikenal jatuh kembali ke kebijakan baseline (`img-src 'self'`, `connect-src 'self'`): gambar dan API storefront berhenti bekerja, secara terlihat, alih-alih kebijakan diam-diam melebar melampaui apa yang benar-benar diminta build mana pun.
 
-`apps/cms` adalah tree milik `ahliweb/awcms` sendiri, dibawa ke sini lengkap dengan riwayat commit lewat `git subtree`, bukan digantungkan sebagai paket — infrastruktur bersama yang dibutuhkan `commerce` (`withTenant`, `authorizeInTransaction`, `appendDomainEvent`, `recordAuditEvent`, kontrak modul, migration runner) tidak punya paket mandiri untuk digantungkan sebagai gantinya. Sinkronisasi dilakukan lewat `git subtree pull --prefix=apps/cms awcms main`, dan **PR yang menjalankannya harus digabung dengan merge commit — tidak pernah di-squash, tidak pernah di-rebase** — men-squash menghancurkan merge base yang dibutuhkan sinkronisasi berikutnya, secara tak kasatmata, sampai sinkronisasi berikutnya gagal jauh dari commit yang merusaknya. Lihat [ADR-0001](adr/0001-git-subtree-with-full-history-for-apps-cms.md) untuk perbandingan lengkap dengan `--squash` dan salinan vendored, serta [`AGENTS.md`](../AGENTS.md#the-subtree-embed) untuk mekanisme sinkronisasinya.
+Ini mekanisme yang sama untuk kedua directive — entri `PUBLIC_AWCMS_ORIGIN` milik `connect-src` (issue #30) memakai ulang derivasi `img-src` yang dibangun issue #27, alih-alih menambah permukaan konfigurasi kedua.
 
-**Mengadopsi modul `commerce` saja menyentuh 29 berkas di luar direktori modulnya sendiri** — masing-masing adalah registry yang harus diikuti modul baru (`apps/cms/src/modules/index.ts`, registry tipe-event domain, menu sidebar, buku ledger cakupan layar admin, fragmen sumber OpenAPI/AsyncAPI) atau inventori yang dihasilkan ulang dari sumber (dokumen OpenAPI yang di-bundle, `apps/cms/docs/awcms/api-reference.md`, `repo-inventory.md`, inventori komposisi modul, katalog i18n) atau kenaikan kecil jumlah-modul dalam dokumentasi prosa. **Setelah setiap sinkronisasi subtree, perbaikannya adalah menjalankan ulang generator yang disebutkan `bun run check` di dalam `apps/cms` — jangan pernah menggabung berkas hasil-generate dengan tangan.** Apakah `commerce` sebaiknya di-upstream-kan ke `ahliweb/awcms` sendiri, sehingga pengadopsian modul di masa depan tiba di sini lewat sinkronisasi biasa alih-alih sebagai perubahan lokal 29-berkas, adalah keputusan tingkat keluarga-platform yang belum diambil; lihat bagian Consequences [ADR-0001](adr/0001-git-subtree-with-full-history-for-apps-cms.md) untuk daftar berkas lengkapnya.
+## Arah impor: satu jalur, `storefront → kontrak → cms`
 
-## Apa irisan ini, dan apa yang bukan
+`apps/storefront` tidak pernah mengimpor dari `apps/cms` secara langsung. `packages/kontrak` duduk di antara keduanya, mengekspor-ulang union type-only (`ProductType`, `ProductStatus`, `SizeChartType`, `SubscriptionPeriod`, `ServiceFormFieldType`, `ProductSort`, dan union pemasaran/order yang ditambahkan issue #26/#29) dari `apps/cms/src/modules/commerce/domain/*.ts` — lapisan murni bebas-I/O yang dijaga bersih oleh konvensi `apps/cms` sendiri — sebagai `export type` saja, tanpa nilai runtime. Arahnya ditegakkan secara mekanis: [`tests/kontrak-arah-impor.test.mjs`](../tests/kontrak-arah-impor.test.mjs) memindai setiap berkas `.ts`/`.tsx`/`.astro` di bawah `apps/cms/src/` dan gagal jika ada satu pun yang mengimpor dari `apps/storefront`, `packages/kontrak`, atau paket `@awcms-one/*`. Lihat [ADR-0004](adr/0004-a-type-only-contract-package-with-an-import-direction-gate.id.md) untuk alasan mengapa arah ini penting khususnya karena `apps/cms` adalah kode vendored.
 
-Increment 1 adalah inti katalog saja: kategori hierarkis dan produk (`physical`/`digital`/`service`/`subscription`), diporting dari kolom inti `commerce_bj_mart`. **Belum dibangun di irisan ini**, disebutkan di sini karena pembaca yang menyusun gambaran utuh akan mengira sebaliknya: iklan, manajemen logo, gambar produk/media, halaman listing kategori, dan permukaan komersial yang lebih luas — keranjang, checkout, pembayaran, pesanan, pengiriman, varian, flash sale, tautan afiliasi, tiered pricing. Setiap satu di antaranya dirinci, lengkap dengan kolom atau tabel persisnya, di [`docs/kamus-data.md`](kamus-data.md) dan [`docs/cms.md`](cms.md).
+## Embed subtree, secara singkat
 
-Penyediaan PostgreSQL untuk increment 2 — memigrasikan dan men-seed basis data hidup — **belum dilakukan**: server produksi borneojek menjalankan MySQL, jadi instans PostgreSQL harus didirikan lebih dulu sebelum migrasi itu bisa dimulai. Lihat [`docs/deployment.md`](deployment.md).
+`apps/cms` adalah tree milik `ahliweb/awcms` sendiri, dibawa ke sini dengan riwayat commit lengkap lewat `git subtree`, bukan digantungkan sebagai paket — infrastruktur bersama yang dibutuhkan `commerce` (`withTenant`, `authorizeInTransaction`, `appendDomainEvent`, `recordAuditEvent`, kontrak modul, migration runner) tidak punya paket standalone untuk digantungkan sebagai gantinya. Sinkronisasi dilakukan lewat `git subtree pull --prefix=apps/cms awcms main`, dan **PR yang menjalankannya harus digabung dengan merge commit — tidak pernah di-squash, tidak pernah di-rebase** — men-squash menghancurkan merge base yang dibutuhkan sinkronisasi berikutnya, secara tak kasatmata, sampai sinkronisasi berikutnya gagal jauh dari commit yang merusaknya. Lihat [ADR-0001](adr/0001-git-subtree-with-full-history-for-apps-cms.id.md) untuk perbandingan lengkap terhadap `--squash` dan salinan vendored, serta [`AGENTS.md`](../AGENTS.id.md#penyematan-subtree) untuk mekanisme sinkronisasinya.
+
+**Mengadmisi modul `commerce` menyentuh 29 berkas di luar direktori modulnya sendiri** — masing-masing adalah registry yang harus diikuti modul baru, atau inventaris yang dihasilkan yang diturunkan ulang dari sumber, atau kenaikan kecil jumlah-modul dalam dokumentasi prosa. Increment 2 menjaga jumlah modul tetap satu, bukan tiga, khususnya untuk menghindari membayar biaya 29-berkas itu berulang kali — lihat [ADR-0008](adr/0008-one-commerce-module-carries-the-whole-store-not-three.md). **Setelah setiap sinkronisasi subtree, perbaikannya adalah menjalankan ulang generator yang disebutkan `bun run check` di dalam `apps/cms` — jangan pernah menggabung berkas hasil-generate dengan tangan.**
+
+## Modul `commerce`: satu modul, tiga area, satu dependensi pada `media_library`
+
+Per [ADR-0008](adr/0008-one-commerce-module-carries-the-whole-store-not-three.md), semua tabel, rute, izin, event, job, dan layar admin commerce hidup di bawah satu kunci modul `commerce`, dikelompokkan secara internal berdasarkan area (`domain/{catalog,marketing,orders}/…` adalah konvensi direktori, bukan batas modul):
+
+- **Catalog** (issue #23) — kategori, produk (gambar, varian, harga bertingkat, size chart, form layanan, banner promo).
+- **Marketing** (issue #26) — flash sale, voucher, slider, testimoni, popup, pengaturan toko yang di-versioning.
+- **Orders** (issue #29) — pelanggan, alamat, quote keranjang, pesanan, konfirmasi pembayaran, ulasan, wishlist, dan permukaan `/api/v1/commerce/storefront/*` yang anonim.
+
+`dependencies` milik `module.ts` adalah `tenant_admin`, `identity_access`, `domain_event_runtime`, `media_library` (gambar produk/slider/testimoni/popup di-resolve lewat `MediaLibraryPort`), dan `module_management` (pengecekan fail-closed milik tenant-resolver storefront anonim). Lihat [`docs/skema-basis-data.md`](skema-basis-data.id.md), [`docs/kamus-data.md`](kamus-data.id.md), [`docs/api.md`](api.id.md), dan [`docs/cms.md`](cms.id.md) untuk isi modul ini secara mendalam, dan [`apps/cms/src/modules/commerce/README.md`](../apps/cms/src/modules/commerce/README.id.md) untuk dokumentasinya sendiri yang berdekatan-kode.
+
+## Apa yang masih belum ada di sini
+
+Akun pelanggan (login, wishlist/alamat/ulasan yang tersinkron, program afiliasi — [issue #32](https://github.com/ahliweb/awcms-one/issues/32)); integrasi tarif kurir RajaOngkir yang live dan payment gateway (keduanya harus dipanggil lewat outbox milik `apps/cms`, tidak pernah secara sinkron di jalur pesanan, per [ADR-0010](adr/0010-manual-payment-and-alternative-courier-first-gateways-via-outbox.md) — [issue #33](https://github.com/ahliweb/awcms-one/issues/33)); POS dan pelaporan manajemen (issue #33); upload berbasis-R2 yang nyata untuk gambar produk, media slider, dan gambar bukti konfirmasi-pembayaran (skrip seed memakai SVG placeholder yang dibuat sendiri dan endpoint upload bukti-pembayaran anonim menjawab `503 MEDIA_UNAVAILABLE` — lihat [`docs/deployment.md`](deployment.id.md) dan [`docs/cms.md`](cms.id.md)); deployment PostgreSQL produksi (`postgres:18.4` milik `compose.yaml` hanya kemudahan lokal/CI — lihat [`docs/deployment.md`](deployment.id.md)).
 
 ## Bacaan lanjutan
 
-- [`docs/adr/`](adr/README.md) — enam keputusan yang menjadi dasar arsitektur ini, masing-masing dengan tabel trade-off-nya sendiri.
-- [`docs/skema-basis-data.md`](skema-basis-data.md), [`docs/kamus-data.md`](kamus-data.md) — skema dan pemetaan kolom-legacy-nya.
-- [`docs/api.md`](api.md), [`docs/cms.md`](cms.md) — API komersial dan alur kerja authoring/publikasi di baliknya.
-- [`docs/routing.md`](routing.md) — bagaimana URL storefront diturunkan.
-- [`knowledge/curated/monorepo-map.md`](../knowledge/curated/monorepo-map.md) — tata letak workspace, secara struktural, sengaja dipisah dari dokumen ini karena berkas itu menamai STRUKTUR dan dokumen ini menamai KEPUTUSAN di baliknya.
+- [`docs/adr/`](adr/README.id.md) — sepuluh keputusan yang menjadi landasan arsitektur ini, masing-masing dengan tabel trade-off-nya sendiri.
+- [`docs/skema-basis-data.md`](skema-basis-data.id.md), [`docs/kamus-data.md`](kamus-data.id.md) — skema dan pemetaan kolom legacy-nya.
+- [`docs/api.md`](api.id.md), [`docs/cms.md`](cms.id.md) — API commerce (owner dan anonim) dan alur kerja authoring/publishing di baliknya.
+- [`docs/routing.md`](routing.id.md) — peta URL publik lengkap.
+- [`knowledge/curated/monorepo-map.md`](../knowledge/curated/monorepo-map.md) — tata letak workspace, secara struktural, dijaga terpisah dari dokumen ini karena berkas itu menamai STRUKTUR dan dokumen ini menamai KEPUTUSAN di baliknya.

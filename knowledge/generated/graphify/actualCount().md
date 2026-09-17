@@ -1,12 +1,12 @@
 ---
 source_file: "packages/gerbang/audit-dokumen.mjs"
 type: "code"
-community: "audit-dokumen.mjs"
+community: "Document Audit Gate"
 location: "L741"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/audit-dokumenmjs
+  - community/Document_Audit_Gate
 ---
 
 # actualCount()
@@ -18,4 +18,4 @@ tags:
 - [[existsAt()]] - `calls` [EXTRACTED]
 - [[join()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/audit-dokumenmjs
+#graphify/code #graphify/EXTRACTED #community/Document_Audit_Gate

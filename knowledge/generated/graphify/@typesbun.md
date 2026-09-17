@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/package.json"
 type: "code"
-community: "storefront/package.json"
-location: "L23"
+community: "Storefront Package Manifest"
+location: "L26"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/storefront/packagejson
+  - community/Storefront_Package_Manifest
 ---
 
 # @types/bun
@@ -15,4 +15,4 @@ tags:
 - [[@typesbun_1]] - `imports` [EXTRACTED]
 - [[devDependencies]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/storefront/packagejson
+#graphify/code #graphify/EXTRACTED #community/Storefront_Package_Manifest

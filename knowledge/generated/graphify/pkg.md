@@ -1,17 +1,17 @@
 ---
-source_file: "tests/versi-toolchain.test.mjs"
+source_file: "tools/rilis.mjs"
 type: "code"
-community: "versi-toolchain.test.mjs"
-location: "L27"
+community: "Changeset Parsing"
+location: "L145"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/versi-toolchaintestmjs
+  - community/Changeset_Parsing
 ---
 
 # pkg
 
 ## Connections
-- [[versi-toolchain.test.mjs]] - `contains` [EXTRACTED]
+- [[rilis.mjs]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/versi-toolchaintestmjs
+#graphify/code #graphify/EXTRACTED #community/Changeset_Parsing

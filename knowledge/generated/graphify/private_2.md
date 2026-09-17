@@ -1,17 +1,17 @@
 ---
-source_file: "packages/gerbang/package.json"
+source_file: "packages/kontrak/package.json"
 type: "code"
-community: "gerbang/package.json"
+community: "Kontrak Package Manifest"
 location: "L5"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/gerbang/packagejson
+  - community/Kontrak_Package_Manifest
 ---
 
 # private
 
 ## Connections
-- [[gerbangpackage.json]] - `contains` [EXTRACTED]
+- [[kontrakpackage.json]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/gerbang/packagejson
+#graphify/code #graphify/EXTRACTED #community/Kontrak_Package_Manifest

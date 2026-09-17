@@ -1,17 +1,26 @@
 ---
-source_file: "tests/standar-skrip.test.mjs"
+source_file: "apps/storefront/package.json"
 type: "code"
-community: "audit-rilis.mjs"
-location: "L37"
+community: "Storefront Package Manifest"
+location: "L7"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/audit-rilismjs
+  - community/Storefront_Package_Manifest
 ---
 
 # scripts
 
 ## Connections
-- [[standar-skrip.test.mjs]] - `contains` [EXTRACTED]
+- [[build]] - `contains` [EXTRACTED]
+- [[buildbuild-id]] - `contains` [EXTRACTED]
+- [[buildpenyaji]] - `contains` [EXTRACTED]
+- [[check]] - `contains` [EXTRACTED]
+- [[dev]] - `contains` [EXTRACTED]
+- [[preview]] - `contains` [EXTRACTED]
+- [[serve]] - `contains` [EXTRACTED]
+- [[start]] - `contains` [EXTRACTED]
+- [[storefrontpackage.json]] - `contains` [EXTRACTED]
+- [[teste2e]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/audit-rilismjs
+#graphify/code #graphify/EXTRACTED #community/Storefront_Package_Manifest

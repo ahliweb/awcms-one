@@ -1,24 +1,24 @@
 ---
 source_file: "apps/storefront/package.json"
 type: "code"
-community: "storefront/package.json"
+community: "Storefront Package Manifest"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/storefront/packagejson
+  - community/Storefront_Package_Manifest
 ---
 
 # storefront/package.json
 
 ## Connections
-- [[dependencies]] - `contains` [EXTRACTED]
+- [[dependencies_1]] - `contains` [EXTRACTED]
 - [[description_3]] - `contains` [EXTRACTED]
 - [[devDependencies]] - `contains` [EXTRACTED]
 - [[name_3]] - `contains` [EXTRACTED]
 - [[private_3]] - `contains` [EXTRACTED]
-- [[scripts_2]] - `contains` [EXTRACTED]
-- [[type_4]] - `contains` [EXTRACTED]
-- [[version_4]] - `contains` [EXTRACTED]
+- [[scripts_1]] - `contains` [EXTRACTED]
+- [[type_3]] - `contains` [EXTRACTED]
+- [[version_3]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/storefront/packagejson
+#graphify/code #graphify/EXTRACTED #community/Storefront_Package_Manifest

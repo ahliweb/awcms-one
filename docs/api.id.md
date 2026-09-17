@@ -1,98 +1,152 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](api.md)
 
-<!-- i18n-source-hash: sha256:2b117b2b03062e9b7b7adc2e1aac8c6dd16ca7c0e7e0427b04bda7b2e68454c7 -->
+<!-- i18n-source-hash: sha256:8a1a4e500f74e1e41c30d10f79e2cfb2b2a4d3f0103f3d2be3dd21ad7a37305e -->
 
 # API
 
-Endpoint `/api/v1/commerce/*` yang diekspos `apps/cms` dan dibaca `apps/storefront` saat build. Sumber kebenaran adalah [`apps/cms/openapi/modules/commerce.openapi.yaml`](../apps/cms/openapi/modules/commerce.openapi.yaml) — fragmen sumber yang digabung `bun run openapi:bundle` (di dalam `apps/cms`) menjadi dokumen `openapi/awcms-public-api.openapi.yaml` lengkap; halaman ini menjelaskan bentuknya, bukan salinan kedua spesifikasinya.
+Dua permukaan API hidup di bawah `/api/v1/commerce/*`, pada dua tingkat kepercayaan yang berbeda. Sumber kebenaran adalah [`apps/cms/openapi/modules/commerce.openapi.yaml`](../apps/cms/openapi/modules/commerce.openapi.yaml), digabung oleh `bun run openapi:bundle` (di dalam `apps/cms`) menjadi dokumen `openapi/awcms-public-api.openapi.yaml` yang lengkap; halaman ini menjelaskan bentuknya, bukan salinan kedua spesifikasinya.
 
-## Endpoint
-
-| Method | Jalur | Tujuan |
+| | Owner API | Storefront (anonim) API |
 | --- | --- | --- |
-| `GET` | `/api/v1/commerce/categories` | Daftar kategori untuk tenant saat ini, keyset-paginated |
-| `POST` | `/api/v1/commerce/categories` | Buat kategori |
-| `GET` | `/api/v1/commerce/categories/{id}` | Ambil satu kategori |
-| `PATCH` | `/api/v1/commerce/categories/{id}` | Ubah `name`/`slug`/`icon` kategori — **tanpa `parentId`**, lihat di bawah |
-| `DELETE` | `/api/v1/commerce/categories/{id}` | Soft-delete kategori (teraudit) |
-| `GET` | `/api/v1/commerce/products` | Daftar produk untuk tenant saat ini, keyset-paginated |
-| `POST` | `/api/v1/commerce/products` | Buat produk (selalu mulai `status: draft`) |
-| `GET` | `/api/v1/commerce/products/{id}` | Ambil satu produk |
-| `PATCH` | `/api/v1/commerce/products/{id}` | Ubah produk, termasuk transisi status yang legal |
-| `DELETE` | `/api/v1/commerce/products/{id}` | Soft-delete produk (teraudit) |
+| Base path | `/api/v1/commerce/*` | `/api/v1/commerce/storefront/*` |
+| Pemanggil | Proses build `apps/storefront` (`AWCMS_API_TOKEN`); sesi browser admin | Browser pembeli, langsung, lintas-origin (`PUBLIC_AWCMS_ORIGIN`) |
+| Auth | Token Bearer / sesi, diperiksa terhadap izin `commerce.*` | Tidak ada — tenant di-resolve dari header `Origin` request terhadap `awcms_tenant_domains` |
+| Envelope | `{ success: true, data }` / `{ success: false, error: { code, message } }` — setiap respons, termasuk error | Envelope yang sama |
+| Diperkenalkan oleh | Issue #4 (inti katalog), diperluas #23/#26 | Issue #29 (pola endpoint-anonim `ahliweb/awcms` — ADR-0103/0107/0118 miliknya sendiri — diterapkan pada commerce), dikonsumsi #30 |
+| Keputusan arsitektur | — | [ADR-0007](adr/0007-cart-and-checkout-stay-static-the-browser-calls-anonymous-commerce-endpoints.id.md) |
 
-## Envelope
+## Owner API: catalog, marketing, orders/customers/reviews
 
-Setiap respons dibungkus `{ success: true, data }` atau `{ success: false, error: { code, message } }` — bentuk yang sama dipakai setiap modul `awcms`, selalu, termasuk respons error, sehingga respons non-2xx tetap ter-parse sebagai JSON. Kedua endpoint daftar meletakkan halamannya di dalam `data`: `{ success: true, data: { items: [...], nextCursor } }`.
+Dikelompokkan berdasarkan tiga area yang sama yang dideskripsikan [`docs/arsitektur.md`](arsitektur.id.md) dan [ADR-0008](adr/0008-one-commerce-module-carries-the-whole-store-not-three.md).
 
-## Paginasi: keyset, ukuran halaman tetap, tanpa filter
+### Catalog (issue #4, diperdalam #23)
 
-Kedua endpoint daftar **keyset-paginated**, terbaru lebih dulu (`ORDER BY created_at DESC, id DESC`), hanya menerima parameter query `cursor` yang opak (dari `nextCursor` respons sebelumnya, `null` di halaman terakhir). Ukuran halaman **tetap 100 di sisi server** dan bukan parameter request — mengirim `?limit=` tidak berefek, karena langkah `prepare` milik `commerce/application/{product,category}-directory.ts` hanya membaca `cursor` dari query string.
+| Method | Jalur | Catatan |
+| --- | --- | --- |
+| `GET` | `/api/v1/commerce/categories` | `?parentId=`; keyset-paginated; setiap baris membawa `productCount` terhitung |
+| `POST`/`GET`/`PATCH`/`DELETE` | `/api/v1/commerce/categories(/{id})` | `PATCH` tidak pernah menerima `parentId` — tak berubah setelah pembuatan, lihat [`docs/cms.md`](cms.id.md) |
+| `POST` | `/api/v1/commerce/categories/{id}/restore` | Membatalkan soft delete (issue #23 menambahkan `restore` untuk kedua resource) |
+| `GET` | `/api/v1/commerce/products` | `?categoryId=&status=&q=&sort=&featured=&recommended=&cursor=`; setiap baris membawa `finalPrice` terhitung-server dan `images[]`/`variants[]` yang sudah di-resolve |
+| `GET` | `/api/v1/commerce/products/by-slug/{slug}` | Tidak pernah me-resolve baris yang sudah soft-delete |
+| `POST`/`GET`/`PATCH`/`DELETE`/`.../restore` | `/api/v1/commerce/products(/{id})` | `POST` selalu mulai `status: draft`; `PATCH` memeriksa `LEGAL_TRANSITIONS` sebelum tulisan apa pun |
+| `POST`/`PATCH`/`DELETE` | `/api/v1/commerce/products/{id}/images(/{imageId})` | `mediaObjectId` diperiksa live terhadap `MediaLibraryPort.isMediaReferenceSafe` sebelum insert |
+| `POST`/`PATCH`/`DELETE` | `/api/v1/commerce/products/{id}/variants(/{variantId})` | Keunikan SKU diperiksa terhadap `awcms_commerce_products` maupun tabel varian itu sendiri |
 
-**Tidak ada filter `status` pada rute daftar produk.** `GET /api/v1/commerce/products` mengembalikan setiap produk hidup tanpa memandang status siklus hidup; pemanggil yang hanya menginginkan produk `active` memfilter di sisi klien. Ini persis yang dilakukan `getProducts()` milik `apps/storefront/src/lib/catalog.ts` — mengambil setiap halaman, lalu hanya menyimpan `status === "active"` lewat `switch` exhaustive (`isPubliclyVisible`) yang gagal compile jika `apps/cms` suatu saat menambah status kelima tanpa storefront diperbarui untuk menyatakan maknanya. Menambah filter `status` di sisi server adalah tindak lanjut yang masuk akal demi efisiensi saat build — storefront saat ini mengambil lalu membuang produk non-active — tapi belum dibangun di irisan ini, dan melakukannya adalah perubahan CMS dengan riak OpenAPI dan gate-nya sendiri, bukan celah dokumentasi.
+Paginasi: keyset, terbaru lebih dulu secara default (`sort=newest`), ukuran halaman tetap 100 di sisi server. Sort `price_asc`/`price_desc`/`name` mengembalikan satu halaman terbatas tunggal (`nextCursor: null`) alih-alih penelusuran keyset — `cursor` yang dikombinasikan dengan sort selain `newest` ditolak 400.
+
+### Marketing (issue #26)
+
+| Keluarga | Rute owner | Model baca publik |
+| --- | --- | --- |
+| Flash sale | `/flash-sales`, `/{id}`, `/{id}/products(/{rowId})` | `GET /flash-sales/active` — status **diturunkan** dari jendela waktu, dipersist oleh job `commerce:flash-sales:tick`, yang memicu `commerce.flash_sale.{started,ended}` tepat sekali per transisi |
+| Voucher | `/vouchers`, `/{id}`, `POST /vouchers/validate` | `GET /vouchers/public` — aritmetika sen-bulat eksak, cap `maxDiscount`; penebusannya sendiri terjadi pada pesanan (di bawah) |
+| Slider / testimoni / popup | `/sliders`, `/testimonials`, `/popups` (masing-masing CRUD) | `/sliders/active`, `/testimonials/active`, `/popups/active` — paling banyak satu popup aktif per tenant (partial unique index) |
+| Pengaturan toko | `GET`/`PUT`/`DELETE /store-settings` (satu dokumen `jsonb` ber-versi per tenant) | `GET /store-settings/public` — tidak pernah nomor rekening bank, pemilik rekening, atau referensi QRIS |
+
+`DELETE /store-settings` berarti "reset ke default", bukan hapus-pengaturan-tenant: ia mencap `deleted_at`, pembacaan publik dan owner lalu menjawab dengan default, dan `PUT` berikutnya menghapus cap itu.
+
+### Pesanan, pelanggan, ulasan (issue #29) — sisi owner
+
+| Method | Jalur | Catatan |
+| --- | --- | --- |
+| `GET`/`PATCH` | `/api/v1/commerce/orders(/{id})`, `.../orders/{id}/status` | Tidak ada `POST`/`DELETE` — pesanan hanya pernah dibuat lewat jalur storefront anonim (di bawah) |
+| `PATCH` | `/api/v1/commerce/orders/{id}/payment-confirmations/{cid}/review` | `{ decision: "accepted" \| "rejected" }`; menerima mengubah `paymentStatus` pesanan menjadi `paid` |
+| `GET` | `/api/v1/commerce/orders/export.csv` | |
+| `GET`/`PATCH` | `/api/v1/commerce/customers(/{id})` | Tidak ada `POST`/`DELETE` — baris pelanggan hanya dibuat oleh jalur pesanan anonim |
+| `GET`/`PATCH`/`DELETE` | `/api/v1/commerce/reviews(/{id})` | `PATCH {status}` memoderasi `pending → published/rejected` |
+
+## Storefront (anonim) API — `/api/v1/commerce/storefront/*`
+
+Setiap rute me-resolve tenant-nya dari `Origin`/`Host` request terhadap `awcms_tenant_domains` — tidak pernah dari header yang dikontrol pemanggil — menjawab preflight `OPTIONS`, meng-echo origin yang diizinkan apa adanya (tidak pernah `*`), mengirim `Vary: Origin`, tidak memberi kredensial apa pun, dan rate-limit per IP (pembuatan pesanan juga per nomor telepon ternormalisasi). Lihat [ADR-0007](adr/0007-cart-and-checkout-stay-static-the-browser-calls-anonymous-commerce-endpoints.id.md) untuk alasan ini ada alih-alih kredensial runtime.
+
+| Method | Jalur | Catatan |
+| --- | --- | --- |
+| `POST` | `cart/quote` | `{ lines[], shipping, voucherCode, insurance }` → subtotal → diskon voucher → ongkir → asuransi → pajak → total, setiap angka adalah string `numeric(14,2)`; `status` sebuah baris menandai `out_of_stock`/opsi yang tidak tersedia tanpa menggagalkan seluruh quote |
+| `POST` | `orders` | `{ idempotencyKey, customer, address\|null, lines[], shipping, payment, voucherCode, insurance, notes }` → `201` (atau `200` pada pengulangan idempoten kunci yang sama); `400 VALIDATION_ERROR` dengan `details[].{field,message}`; `409 CART_CHANGED` dengan `details.quote` baru kapan pun re-quote satu baris bukan `"ok"` |
+| `GET` | `orders/{code}?phone=` | Bentuk pesanan penuh; **`404 NOT_FOUND`, identik byte-demi-byte, untuk kode yang tidak dikenal, telepon yang salah, atau pesanan tenant lain** — satu respons netral, bukan tiga yang bisa dibedakan (lihat [ADR-0009](adr/0009-guest-checkout-by-order-code-and-phone.id.md)) |
+| `POST` | `orders/{code}/payment-confirmations` | `{phone, method, amount, bankName, accountName, transferredAt, proofMediaObjectId}`; `409 ORDER_NOT_PAYABLE` di luar `pending_payment` |
+| `POST` | `orders/{code}/payment-proof/upload-sessions(/{id}/finalize)` | Selalu `503 MEDIA_UNAVAILABLE` di increment ini — lihat [`docs/cms.md`](cms.id.md) |
+| `POST` | `orders/{code}/cancel` | `{phone, reason}`; `409 ORDER_NOT_CANCELLABLE` di luar `pending_payment` |
+| `POST` | `reviews` | Membutuhkan pesanan `completed` untuk produk itu; dibuat dengan `status: pending`, dimoderasi di sisi owner |
+| `GET` | `store-settings/public` | Juga dipakai build storefront; rute yang sama melayani pemanggil saat-build maupun (pada prinsipnya) saat-runtime |
+
+**Idempotensi:** pembuatan pesanan memakai ulang store `awcms_idempotency_keys` yang modul-agnostik (`(tenantId, requestScope, idempotencyKey)`, tidak butuh principal — ia bekerja dari wrapper tenant anonim). UUID yang dibuat klien milik keranjang sendiri dipakai ulang sebagai idempotency key, sehingga klik "Buat pesanan" yang terkirim ganda mengembalikan `orderCode` yang sama alih-alih membuat pesanan kedua.
 
 ## Bentuk request/respons
 
-`CommerceCategory`:
-
-```
-{ id: uuid, parentId: uuid | null, name: string, slug: string, icon: string | null }
-```
-
-`CommerceProduct`:
+`CommerceProduct` (pembacaan owner dan storefront berbagi bentuk yang sama; field yang ditambahkan #23 bersifat aditif):
 
 ```
 {
   id: uuid, categoryId: uuid | null, type: "physical" | "digital" | "service" | "subscription",
   sku: string, name: string, slug: string, description: string | null, digitalNote: string | null,
-  price: string,            // numeric(14,2), string desimal — lihat ADR-0003
-  discountPercent: number,  // 0-100
-  stock: number,
-  status: "draft" | "active" | "inactive" | "archived",
-  label: string | null, labelColor: string | null
+  price: string, priceLevel2/3/4: string | null,   // string numeric(14,2) — lihat ADR-0003
+  discountPercent: number, finalPrice: string,       // dihitung-server, aritmetika sen-bulat eksak
+  stock: number, status: "draft" | "active" | "inactive" | "archived",
+  label: string | null, labelColor: string | null,
+  images: [{ id, publicUrl, sortOrder, altText }], variants: [{ id, name, value, sku, price, stock, ... }],
+  isFeatured: boolean, isRecommended: boolean, manualRating: string | null, manualSoldCount: number
 }
 ```
 
-`price` adalah satu-satunya field yang layak disebut eksplisit di sini meski [`docs/skema-basis-data.md`](skema-basis-data.md) dan [ADR-0003](adr/0003-money-is-numeric-14-2-and-crosses-the-wire-as-a-string.md) membahasnya lengkap: ia **string** JSON, mis. `"19999.00"`, tidak pernah angka JSON, di setiap request dan respons.
+`price`, `priceLevel2/3/4`, `finalPrice`, dan setiap field uang pada bentuk pemasaran/pesanan di bawah adalah JSON **string**, mis. `"19999.00"`, tidak pernah angka JSON — lihat [ADR-0003](adr/0003-money-is-numeric-14-2-and-crosses-the-wire-as-a-string.id.md) dan catatan `normalizeMoney` di [`docs/pengujian.md`](pengujian.id.md).
+
+`Order` (pembacaan pelacakan storefront, `GET .../orders/{code}?phone=`):
+
+```
+{
+  orderCode: string, status: "pending_payment" | "paid" | "processing" | "shipped" | "completed" | "cancelled" | "expired",
+  paymentStatus: "unpaid" | "dp_paid" | "paid" | "refunded",
+  customer: { name, phone }, address: {...} | null,
+  items: [{ productId, variantId, name, variantName, sku, quantity, unitPrice, lineTotal }],
+  subtotal, discount, shipping, insuranceFee, tax, total: string,
+  timeline: [{ fromStatus, toStatus, actor, note, createdAt }],
+  expiresAt: string | null, paidAt/shippedAt/completedAt/cancelledAt: string | null
+}
+```
+
+## Otorisasi: 39 izin owner
+
+Modul `commerce` mendeklarasikan 39 kunci izin secara total (10 + 22 + 7 di bawah), dikelompokkan berdasarkan tiga area yang sama dengan tabelnya — jumlah yang terlalu besar untuk konvensi "angka yang dieja cocok dengan set yang dihitung" milik dokumen ini sendiri (pengecekan hitungan-tertaut milik `bun run audit:dokumen` hanya mengenali angka yang dieja satu sampai dua puluh), sehingga di sini dinyatakan sebagai angka numeral, bukan di dalam blok terjaga.
+
+| Area | Kunci izin |
+| --- | --- |
+| Catalog (10) | `commerce.categories.{read,create,update,delete,restore}`, `commerce.products.{read,create,update,delete,restore}` |
+| Marketing (22) | `commerce.{flash_sales,vouchers,sliders,testimonials,popups}.{read,create,update,delete}` (20), `commerce.settings.{read,update}` (2) |
+| Orders/customers (7) | `commerce.orders.{read,update}`, `commerce.customers.{read,update}`, `commerce.reviews.{read,update,delete}` |
+
+Sengaja **tanpa `create`/`delete` untuk `orders`/`customers`**: baris pesanan atau pelanggan hanya dibuat lewat jalur storefront anonim, tanpa pengecekan izin sama sekali (tidak ada identitas admin di jalur itu untuk diperiksa). Mendeklarasikan izin yang tidak ditegakkan persis cacat yang coba ditangkap gate `access:permissions:enforcement:check` milik `apps/cms`, jadi tidak satu pun dideklarasikan. Sengaja tidak ada `restore` untuk marketing, orders, customers, atau reviews — hanya catalog (`categories`/`products`) yang mendapat `restore` di increment ini.
+
+API storefront (anonim) sama sekali **tidak punya kunci izin** — batas kepercayaannya adalah tenant resolver yang Origin-bound, bukan RBAC/ABAC.
+
+## Domain event: dua belas
+
+Kedua belas event terdaftar di tiga tempat yang dijaga selaras `awcms` (`domain-event-runtime/domain/event-type-registry.ts`, `apps/cms/asyncapi/awcms-domain-events.asyncapi.yaml`, `events.publishes` milik `commerce/module.ts`):
+
+| Agregat | Event |
+| --- | --- |
+| `commerce.product` | `awcms.commerce.product.{created,updated,status_changed}` |
+| `commerce.flash_sale` | `awcms.commerce.flash_sale.{started,ended}` — dipicu tepat sekali per transisi oleh job tick, bukan pada setiap pembacaan |
+| `commerce.voucher` | `awcms.commerce.voucher.redeemed` — dideklarasikan lebih dulu sebagai forward reference di #26, baru benar-benar dipicu begitu jalur pesanan #29 menebus satu |
+| `commerce.order` | `awcms.commerce.order.{created,paid,status_changed,cancelled,expired}` |
+| `commerce.review` | `awcms.commerce.review.published` |
+
+`categories` masih tidak mempublikasikan domain event apa pun — pilihan yang sama diambil `tenant_admin` untuk `awcms_offices`; soft delete adalah fakta log-audit, bukan sesuatu yang perlu direaksi konsumen hilir.
 
 ## Error yang didefinisikan API ini di luar envelope generik
 
-| Status | Kapan | Kode |
+| Status | Kode | Kapan |
 | --- | --- | --- |
-| `400` | `categoryId`/`parentId` tidak resolve ke kategori hidup di tenant pemanggil sendiri | — (lihat di bawah) |
-| `400` | `status` yang diminta produk bukan transisi legal dari statusnya saat ini | — |
-| `409` | `slug` kategori sudah dipakai baris hidup di tenant ini | `CATEGORY_SLUG_ALREADY_EXISTS` |
-| `409` | `slug`/`sku` produk sudah dipakai baris hidup di tenant ini | `PRODUCT_SLUG_ALREADY_EXISTS` / `PRODUCT_SKU_ALREADY_EXISTS` |
+| `400` | `VALIDATION_ERROR` | Error input level-field, `details[].{field,message}` |
+| `400` | — | `categoryId`/`parentId` tidak resolve ke kategori hidup di tenant pemanggil sendiri; `status` yang diminta produk bukan transisi legal |
+| `409` | `CATEGORY_SLUG_ALREADY_EXISTS` / `PRODUCT_SLUG_ALREADY_EXISTS` / `PRODUCT_SKU_ALREADY_EXISTS` | Slug/SKU sudah dipakai baris hidup di tenant ini |
+| `409` | `CART_CHANGED` | Re-quote milik request pembuatan-pesanan storefront tidak sepakat dengan keranjang yang dikirim; respons membawa `details.quote` baru |
+| `409` | `ORDER_NOT_PAYABLE` / `ORDER_NOT_CANCELLABLE` | Status pesanan saat ini secara legal tidak mengizinkan aksi yang diminta |
+| `404` | `NOT_FOUND` | Resource tak dikenal, atau — pada API storefront — penolakan netral yang mencakup "pesanan tak dikenal", "telepon salah", dan "milik tenant lain" secara identik |
+| `503` | `MEDIA_UNAVAILABLE` | Rute upload-session bukti-pembayaran, selalu, di increment ini |
 
-`categoryId`/`parentId` yang tidak dikenal, sudah soft-delete, atau milik tenant lain ditolak dengan 400 yang **sama** di setiap kasus — lihat [`docs/skema-basis-data.md`](skema-basis-data.md) untuk alasan mengapa membedakan ketiga penyebab itu akan menjadi existence oracle lintas-tenant.
-
-## Otorisasi: delapan izin
-
-Modul ini mendefinisikan delapan kunci izin, masing-masing terdaftar di bawah. (Jumlah ini dijaga otomatis oleh penanda `hitung:` di [`api.md`](api.md), sumber Inggris dokumen ini — lihat berkas itu.)
-
-| Kunci izin | Memberikan |
-| --- | --- |
-| `commerce.categories.read` | Daftar/ambil kategori |
-| `commerce.categories.create` | Buat kategori |
-| `commerce.categories.update` | Ubah kategori |
-| `commerce.categories.delete` | Soft-delete kategori |
-| `commerce.products.read` | Daftar/ambil produk |
-| `commerce.products.create` | Buat produk |
-| `commerce.products.update` | Ubah produk, termasuk statusnya |
-| `commerce.products.delete` | Soft-delete produk |
-
-Dua activity code (`categories`, `products`), masing-masing dengan empat aksi CRUD yang sama — dicerminkan persis di [`apps/cms/sql/154_awcms_commerce_permissions.sql`](../apps/cms/sql/154_awcms_commerce_permissions.sql), dengan gate yang menjaga seed dan array `permissions` milik `commerce/module.ts` selaras. Tidak ada izin `restore` untuk resource mana pun — irisan ini sama sekali tidak mengirim endpoint restore (lihat [`docs/skema-basis-data.md`](skema-basis-data.md)).
-
-## Domain event: tiga, hanya produk
-
-`categories` tidak mempublikasikan domain event apa pun — pilihan yang sama diambil `tenant_admin` untuk tabel yang paling dekat secara struktural di basis kode ini (`awcms_offices`); soft delete adalah fakta log-audit, bukan sesuatu yang perlu direaksi konsumen hilir. `products` mempublikasikan tiga, semua pada agregat `commerce.product`, terdaftar di tiga tempat yang dijaga selaras `awcms` (`domain-event-runtime/domain/event-type-registry.ts`, `asyncapi/awcms-domain-events.asyncapi.yaml`, `events.publishes` milik `commerce/module.ts`):
-
-- `awcms.commerce.product.created` — produk dibuat (selalu `status: draft`).
-- `awcms.commerce.product.updated` — field apa pun selain `status` berubah.
-- `awcms.commerce.product.status_changed` — `status` bertransisi; membawa `previousStatus` dan `status`.
-
-Satu `PATCH` yang mengubah field biasa maupun `status` dalam request yang sama mempublikasikan `.updated` dan `.status_changed` sekaligus — keduanya mencatat fakta independen. Tidak ada event `product.deleted`, dengan alasan yang sama kategori tidak mempublikasikan apa-apa: konsumen yang peduli apakah produk masih bisa dijual sudah punya `.status_changed` (mis. transisi ke `archived`).
+`categoryId`/`parentId` yang tak dikenal, sudah soft-delete, atau milik tenant lain ditolak dengan 400 yang **sama** di setiap kasus — lihat [`docs/skema-basis-data.md`](skema-basis-data.id.md) untuk alasan mengapa membedakan ketiga penyebab itu akan menjadi existence oracle lintas-tenant. API storefront menerapkan prinsip identik pada 404: `GET orders/{code}?phone=` tidak pernah mengungkapkan apakah kodenya ada sama sekali.
 
 ## Belum dibangun
 
-Pembacaan runtime API ini oleh storefront — setiap panggilan terjadi hanya saat `astro build` (lihat [ADR-0002](adr/0002-static-output-with-build-time-fetch-for-the-storefront.md)). Endpoint keranjang, checkout, pembayaran, pesanan, pengiriman, varian, flash-sale, dan afiliasi — tidak satu pun ada; API ini hanya menampilkan dua resource yang disebutkan di atas. Endpoint media/gambar untuk resource mana pun — tidak ada tabel `product_images` di irisan ini (lihat [`docs/skema-basis-data.md`](skema-basis-data.md)).
+Tarif kurir RajaOngkir dan payment gateway — `payment_method` sudah menerima nilai enum `gateway` (aditif, per [ADR-0010](adr/0010-manual-payment-and-alternative-courier-first-gateways-via-outbox.md)), tapi belum ada integrasi provider; keduanya harus lewat outbox begitu mendarat ([issue #33](https://github.com/ahliweb/awcms-one/issues/33)). Akun pelanggan, login, dan endpoint storefront terautentikasi apa pun ([issue #32](https://github.com/ahliweb/awcms-one/issues/32)) — setiap rute API storefront hari ini anonim by design. Upload bukti-pembayaran yang berfungsi untuk pemanggil anonim (alur sesi `media_library` membutuhkan `actorTenantUserId` terautentikasi, yang tidak dimiliki pemanggil checkout tamu mana pun).

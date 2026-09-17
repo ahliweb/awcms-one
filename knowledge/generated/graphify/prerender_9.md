@@ -1,0 +1,17 @@
+---
+source_file: "apps/storefront/src/pages/index/wilayah-provinsi.json.ts"
+type: "code"
+community: "Checkout Region Data"
+location: "L10"
+tags:
+  - graphify/code
+  - graphify/EXTRACTED
+  - community/Checkout_Region_Data
+---
+
+# prerender
+
+## Connections
+- [[wilayah-provinsi.json.ts]] - `contains` [EXTRACTED]
+
+#graphify/code #graphify/EXTRACTED #community/Checkout_Region_Data

@@ -1,19 +1,17 @@
 ---
-source_file: "apps/storefront/tsconfig.json"
+source_file: "packages/kontrak/tsconfig.json"
 type: "code"
-community: "extends"
+community: "Kontrak TS Config"
 location: "L2"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/extends
+  - community/Kontrak_TS_Config
 ---
 
 # extends
 
 ## Connections
-- [[dot-packagesconfigtsconfig.base.json]] - `extends` [EXTRACTED]
-- [[astrotsconfigsstrict]] - `extends` [EXTRACTED]
-- [[storefronttsconfig.json]] - `contains` [EXTRACTED]
+- [[kontraktsconfig.json]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/extends
+#graphify/code #graphify/EXTRACTED #community/Kontrak_TS_Config

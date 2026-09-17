@@ -1,0 +1,20 @@
+---
+source_file: "apps/storefront/src/config/routes.ts"
+type: "code"
+community: "Site Chrome & Navigation"
+location: "L71"
+tags:
+  - graphify/code
+  - graphify/EXTRACTED
+  - community/Site_Chrome__Navigation
+---
+
+# PRIMARY_NAV
+
+## Connections
+- [[404.astro]] - `imports` [EXTRACTED]
+- [[Header.astro]] - `imports` [EXTRACTED]
+- [[routes.test.ts]] - `imports` [EXTRACTED]
+- [[routes.ts]] - `contains` [EXTRACTED]
+
+#graphify/code #graphify/EXTRACTED #community/Site_Chrome__Navigation

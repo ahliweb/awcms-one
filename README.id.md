@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:cbb9598c2cd5be10f432a1e62bc814df0d00c27c3a614004283b787d1ec9c843 -->
+<!-- i18n-source-hash: sha256:2b212f53ad117f82ee750df80b8d227d2b0312ee015ede842804a3b9945c2e5a -->
 
 [![License](https://img.shields.io/badge/License-MIT-blue)](LICENSE) [![runtime](https://img.shields.io/badge/runtime-Bun-blue?logo=bun&logoColor=white)](https://bun.sh)
 
@@ -20,42 +20,45 @@
 
 Modul commerce yang dibutuhkan platform ini tidak bisa berdiri sendiri — ia bergantung pada infrastruktur bersama `awcms` yang tidak punya paket mandiri: `withTenant` (konteks tenant RLS), `authorizeInTransaction` (RBAC/ABAC), `appendDomainEvent` (outbox), `recordAuditEvent`, `_shared/module-contract` (`defineModule`), `getDatabaseClient`, runner migrasi SQL, dan `_shared/api-response`. Jadi `awcms` disematkan utuh, lewat `git subtree`, alih-alih dijadikan dependency sebagai paket — lihat [`AGENTS.md`](AGENTS.md#the-subtree-embed) untuk mekanika sinkronisasi dan satu aturan yang melindunginya.
 
-## Pendekatan: fondasi dulu, lalu satu vertical slice tipis
+## Pendekatan: fondasi dulu, lalu satu vertical slice tipis, lalu toko lengkap
 
-Scaffold dulu, lalu **satu vertical slice tipis** — daftar katalog + detail produk — untuk membuktikan stack-nya bekerja dari ujung ke ujung sebelum pembangunan commerce penuh.
-
-**Increment 1 (epic ini): fondasi + slice yang ditulis tangan, tanpa basis data hidup.** Semuanya type-check dan setiap gerbang yang tidak butuh PostgreSQL berjalan hijau. Memigrasi dan mengisi instans PostgreSQL sungguhan lalu merender darinya adalah increment 2 — AWCMS hanya-PostgreSQL sementara server borneojek berjalan MySQL, jadi instans Postgres harus disediakan lebih dulu.
-
-Di luar cakupan increment 1: keranjang, checkout, pembayaran, pesanan, pengiriman, afiliasi, flash sale, varian, harga bertingkat, asuransi, tabel ukuran, banner promo. Slice skemanya sengaja adalah inti katalog; sisa dari tabel `products` sumber mendarat di increment berikutnya.
+Scaffold dulu (increment 1: daftar katalog + detail produk, tanpa basis data hidup), lalu **increment 2** (epic [#21](https://github.com/ahliweb/awcms-one/issues/21)): paritas penuh BjekMart/news-portal — PostgreSQL tersedia untuk pengembangan lokal dan CI, modul `commerce` yang lengkap (kedalaman katalog, marketing, pesanan), dan situs publik yang lengkap (katalog, berita, keranjang, checkout, pelacakan pesanan, wishlist).
 
 ## Yang ada hari ini, dan yang tidak
 
-Setiap issue anak dari [issue #1](https://github.com/ahliweb/awcms-one/issues/1) sudah mendarat: akar workspace dan governance-nya, `packages/config`, `packages/gerbang`, `packages/kontrak`, `tools/`, `knowledge/`, `docs/`, `apps/storefront`, dan `apps/cms` (membawa modul `commerce`). Di mana pun dokumen ini atau `AGENTS.md` perlu mendeskripsikan permukaan yang belum dibangun increment 1, ia menyatakannya terus terang alih-alih mendeskripsikan jalur yang belum ada — lihat [`docs/arsitektur.md`](docs/arsitektur.md) dan [`docs/cms.md`](docs/cms.md) untuk daftar lengkap dan terkininya (keranjang, checkout, pembayaran, pesanan, pengiriman, varian, flash sale, tautan afiliasi, harga bertingkat, iklan, manajemen logo, gambar produk).
+Setiap issue anak dari [issue #21](https://github.com/ahliweb/awcms-one/issues/21) kecuali issue dokumentasi ini sudah mendarat: akar workspace dan governance-nya, `packages/config`, `packages/gerbang`, `packages/kontrak`, `tools/`, `knowledge/`, `docs/`, situs publik `apps/storefront` yang lengkap, dan `apps/cms` (membawa satu modul `commerce` — katalog, marketing, pesanan). Di mana pun dokumen ini atau `AGENTS.md` perlu mendeskripsikan permukaan yang masih belum ada, ia menyatakannya terus terang alih-alih mendeskripsikan jalur yang belum ada — lihat [`docs/arsitektur.md`](docs/arsitektur.id.md) dan [`docs/cms.md`](docs/cms.id.md) untuk daftar lengkap dan terkininya (akun pelanggan, integrasi RajaOngkir/payment gateway, POS/pelaporan, unggah media sungguhan untuk gambar produk/slider).
 
 ```
 apps/
 ├── cms/                     ahliweb/awcms v10.3.0, disematkan lewat git subtree dengan riwayat penuh —
-│                             backend komersial dan system of record, membawa modul commerce
-│                             (domain katalog, persistensi, API — closes #2, #4)
-└── storefront/              storefront Astro publik: daftar katalog + detail produk,
-                              output: "static", mengambil API apps/cms hanya saat build (closes #5)
+│                             backend komersial dan system of record, membawa satu modul
+│                             commerce: katalog (gambar, varian, tingkatan harga), marketing
+│                             (flash sale, voucher, slider, testimoni, popup, pengaturan
+│                             toko), dan pesanan (checkout tamu, konfirmasi pembayaran,
+│                             ulasan) — plus API anonim /api/v1/commerce/storefront/*
+└── storefront/              storefront Astro publik: paritas katalog + berita lengkap,
+                              keranjang, checkout, pelacakan pesanan, wishlist — output:
+                              "static" di seluruh bagian, keranjang/checkout memanggil API
+                              anonim apps/cms langsung dari browser (ADR-0007)
 packages/
 ├── config/                  preset tsconfig bersama
 ├── gerbang/                 gerbang audit workspace ini, sebagai paket
 └── kontrak/                 kontrak DTO bertipe-saja yang diimpor apps/storefront dari apps/cms,
-                              plus gerbang arah-impornya (closes #6)
+                              plus gerbang arah-impornya
 tools/                       skrip lintas-workspace: rilis, pemeriksaan lockfile, stamp i18n docs,
-                              update/combine/export graf pengetahuan
+                              update/combine/export graf pengetahuan, data seed
 tests/                       tes gerbang tingkat akar (docs, changeset, toolchain, skrip,
                               arah impor)
 docs/                        referensi arsitektur, skema, API, CMS, routing, SEO, aksesibilitas,
                               responsif, UI/UX, pengujian, deployment, dan alur kerja,
-                              plus docs/adr/ (closes #7)
-knowledge/                   workflow graf pengetahuan Graphify + Obsidian yang terfederasi (closes #11)
+                              plus docs/adr/ (sepuluh ADR)
+knowledge/                   workflow graf pengetahuan Graphify + Obsidian yang terfederasi
+.claude/skills/               awcms-one-storefront, awcms-one-commerce — panduan cara
+                              menambah halaman storefront atau tabel/endpoint commerce
 .changesets/, .github/       tetap di akar repo — keputusan tentang repo secara keseluruhan
 ```
 
-Penyediaan PostgreSQL untuk increment 2 — memigrasi dan men-seed basis data hidup untuk dijalankan `apps/cms` — **belum dilakukan**; lihat [`docs/deployment.md`](docs/deployment.md).
+PostgreSQL hidup dan tersedia kini ada untuk pengembangan lokal dan CI (`compose.yaml`, `bun run db:up`/`db:migrate:cms`/`db:seed:cms`, job CI `check-cms`) — lihat [`docs/deployment.md`](docs/deployment.id.md) untuk urutan lengkapnya, dan untuk apa yang masih benar: **belum ada deployment PostgreSQL produksi**.
 
 ## Menjalankannya
 
@@ -80,14 +83,16 @@ Repo ini **hanya-Bun**: Bun adalah runtime sekaligus package manager, versinya d
 | `bun run knowledge:graph:combine` | Menggabungkan graf akar dengan graf milik `apps/cms` sendiri menjadi graf federasi yang di-gitignore dan sesuai permintaan — butuh `graphify` di `PATH` |
 | `bun run knowledge:obsidian:export` | Mementaskan, memvalidasi, dan menyinkronkan ekspor Obsidian yang aman dari graf akar ke `knowledge/generated/graphify/` — butuh `graphify` di `PATH` |
 | `bun run docs:i18n:stamp` | Menulis banner bahasa dan penanda hash sumber pada setiap cermin `.id.md` |
-| `bun run check:cms` | Rangkaian gerbang penuh `apps/cms` sendiri (lint, typecheck, tesnya sendiri, build-nya sendiri) |
+| `bun run check:cms` | Rangkaian gerbang penuh `apps/cms` sendiri (53 langkah — lint, docs, inventaris, spec, gerbang, typecheck, tesnya sendiri, build-nya sendiri) |
+| `bun run db:up` / `db:down` / `db:reset` | Menyalakan/mematikan/mereset `postgres:18.4` lokal sekali-pakai (`compose.yaml`, issue #25) |
 | `bun run db:migrate:cms` | Menjalankan migrasi `apps/cms` terhadap `DATABASE_URL` — lihat `apps/cms/.env.example` |
+| `bun run db:seed:cms` | Men-seed tenant `borneojek-mart`, katalog, permukaan marketing, dan contoh pesanan lewat API publik `apps/cms` sendiri — lihat [`docs/deployment.md`](docs/deployment.id.md) |
 | `bun run release` | Memotong rilis bertag dari changeset yang menunggu — lihat [`CONTRIBUTING.md`](CONTRIBUTING.md) |
-| `dev` / `build` / `check` / `serve` | Mendelegasikan ke `apps/storefront` — `bun run build` men-type-check, mengambil katalog dari `apps/cms` saat build, dan memanggang output statis; `bun run serve` menjalankan `apps/storefront/server/penyaji.mjs` yang sudah di-build — lihat [`docs/deployment.md`](docs/deployment.md) |
+| `dev` / `build` / `check` / `serve` | Mendelegasikan ke `apps/storefront` — `bun run build` men-type-check, mengambil konten katalog/marketing/berita dari `apps/cms` saat build, dan memanggang output statis termasuk CSP turunan; `bun run serve` menjalankan `apps/storefront/server/penyaji.mjs` yang sudah di-build — lihat [`docs/deployment.md`](docs/deployment.id.md) |
 
 ### Gerbang
 
-`bun test` plus empat skrip `audit:*`, semuanya diadaptasi dari `packages/gerbang` milik `ahliweb/media-lenterakalteng`. Tidak satu pun butuh build, jaringan, atau `apps/cms`, jadi semuanya berjalan tanpa syarat di setiap push.
+`bun test` plus empat skrip `audit:*` berjalan tanpa syarat di setiap push, tidak butuh build, jaringan, atau `apps/cms` — job CI `check`. Job CI kedua, `check-cms`, menjalankan rangkaian gerbang penuh `apps/cms` sendiri plus rangkaian integrasi ber-gerbang-DB-nya terhadap PostgreSQL hidup yang sekali-pakai (issue #25) — lihat [`docs/alur-kerja-pengembangan.md`](docs/alur-kerja-pengembangan.id.md). **Baik `Check` maupun `check-cms` adalah status check wajib di `main`.**
 
 `audit:graf` (kebersihan artefak graphify) dulu ada di daftar "tidak diporting" di bawah — repo ini belum punya korpus `graphify-out/` untuk dijaganya. [Issue #11](https://github.com/ahliweb/awcms-one/issues/11) membangun satu: graf Graphify milik-akar, `--code-only`, yang sengaja mengecualikan `apps/cms/**` (yang sudah punya graf dan gerbangnya sendiri), plus keluarga perintah federasi (`bun run knowledge:graph:update` / `knowledge:graph:combine` / `knowledge:obsidian:export`) yang didokumentasikan di [`knowledge/README.md`](knowledge/README.md). `audit:graf` sekarang memeriksa korpus itu sungguhan — lihat dokumen itu untuk persisnya apa.
 

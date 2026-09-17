@@ -1,12 +1,12 @@
 ---
 source_file: "tools/cek-lockfile.mjs"
 type: "code"
-community: "cek-lockfile.mjs"
+community: "Lockfile Check"
 location: "L127"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/cek-lockfilemjs
+  - community/Lockfile_Check
 ---
 
 # DEPENDENCY_BLOCKS
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[cek-lockfile.mjs]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/cek-lockfilemjs
+#graphify/code #graphify/EXTRACTED #community/Lockfile_Check

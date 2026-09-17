@@ -1,12 +1,12 @@
 ---
 source_file: "packages/gerbang/audit-rilis.mjs"
 type: "code"
-community: "audit-rilis.mjs"
+community: "Knowledge Graph Audit"
 location: "L143"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/audit-rilismjs
+  - community/Knowledge_Graph_Audit
 ---
 
 # declaredDate()
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[audit-rilis.mjs]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/audit-rilismjs
+#graphify/code #graphify/EXTRACTED #community/Knowledge_Graph_Audit

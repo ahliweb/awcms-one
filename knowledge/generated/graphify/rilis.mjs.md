@@ -1,12 +1,12 @@
 ---
 source_file: "tools/rilis.mjs"
 type: "code"
-community: "rilis.mjs"
+community: "Changeset Parsing"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/rilismjs
+  - community/Changeset_Parsing
 ---
 
 # rilis.mjs
@@ -34,7 +34,7 @@ tags:
 - [[isChangesetFile()]] - `indirect_call` [INFERRED]
 - [[next]] - `contains` [EXTRACTED]
 - [[parseChangeset()]] - `imports` [EXTRACTED]
-- [[pkg_1]] - `contains` [EXTRACTED]
+- [[pkg]] - `contains` [EXTRACTED]
 - [[requestedBumps]] - `contains` [EXTRACTED]
 - [[requestedLevel]] - `contains` [EXTRACTED]
 - [[semver.mjs]] - `imports_from` [EXTRACTED]
@@ -42,4 +42,4 @@ tags:
 - [[today]] - `contains` [EXTRACTED]
 - [[validateChangeset()]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/rilismjs
+#graphify/code #graphify/EXTRACTED #community/Changeset_Parsing

@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/awcms/client.ts"
 type: "code"
-community: "client.ts"
+community: "AWCMS Build Client"
 location: "L56"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/clientts
+  - community/AWCMS_Build_Client
 ---
 
 # baseUrl()
@@ -16,4 +16,4 @@ tags:
 - [[client.ts]] - `contains` [EXTRACTED]
 - [[readEnv()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/clientts
+#graphify/code #graphify/EXTRACTED #community/AWCMS_Build_Client

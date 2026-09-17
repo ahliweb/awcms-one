@@ -1,37 +1,17 @@
 ---
-source_file: "package.json"
+source_file: "tests/standar-skrip.test.mjs"
 type: "code"
-community: "scripts"
-location: "L21"
+community: "Knowledge Graph Audit"
+location: "L37"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/scripts
+  - community/Knowledge_Graph_Audit
 ---
 
 # scripts
 
 ## Connections
-- [[auditdokumen]] - `contains` [EXTRACTED]
-- [[auditgraf]] - `contains` [EXTRACTED]
-- [[auditrilis]] - `contains` [EXTRACTED]
-- [[audittranslation]] - `contains` [EXTRACTED]
-- [[build]] - `contains` [EXTRACTED]
-- [[check]] - `contains` [EXTRACTED]
-- [[checkcms]] - `contains` [EXTRACTED]
-- [[checklockfile]] - `contains` [EXTRACTED]
-- [[dbmigratecms]] - `contains` [EXTRACTED]
-- [[dev]] - `contains` [EXTRACTED]
-- [[docsi18nstamp]] - `contains` [EXTRACTED]
-- [[knowledgecheck]] - `contains` [EXTRACTED]
-- [[knowledgegraphcombine]] - `contains` [EXTRACTED]
-- [[knowledgegraphupdate]] - `contains` [EXTRACTED]
-- [[knowledgeobsidianexport]] - `contains` [EXTRACTED]
-- [[package.json]] - `contains` [EXTRACTED]
-- [[preview]] - `contains` [EXTRACTED]
-- [[release]] - `contains` [EXTRACTED]
-- [[serve]] - `contains` [EXTRACTED]
-- [[start]] - `contains` [EXTRACTED]
-- [[test]] - `contains` [EXTRACTED]
+- [[standar-skrip.test.mjs]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/scripts
+#graphify/code #graphify/EXTRACTED #community/Knowledge_Graph_Audit

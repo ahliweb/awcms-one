@@ -1,12 +1,12 @@
 ---
 source_file: "tests/kontrak-arah-impor.test.mjs"
 type: "code"
-community: "kontrak-arah-impor.test.mjs"
+community: "Import Direction Test"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/kontrak-arah-importestmjs
+  - community/Import_Direction_Test
 ---
 
 # kontrak-arah-impor.test.mjs
@@ -19,4 +19,4 @@ tags:
 - [[sourceFiles()]] - `contains` [EXTRACTED]
 - [[specifiersIn()]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/kontrak-arah-importestmjs
+#graphify/code #graphify/EXTRACTED #community/Import_Direction_Test

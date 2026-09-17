@@ -1,12 +1,12 @@
 ---
 source_file: "packages/gerbang/lib/docs-i18n-checks.mjs"
 type: "code"
-community: "docs-i18n-stamp.mjs"
+community: "Translation Mirror Audit"
 location: "L76"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/docs-i18n-stampmjs
+  - community/Translation_Mirror_Audit
 ---
 
 # isInScope()
@@ -18,4 +18,4 @@ tags:
 - [[isMirrorInScope()]] - `calls` [EXTRACTED]
 - [[listSources()]] - `indirect_call` [INFERRED]
 
-#graphify/code #graphify/EXTRACTED #community/docs-i18n-stampmjs
+#graphify/code #graphify/EXTRACTED #community/Translation_Mirror_Audit
