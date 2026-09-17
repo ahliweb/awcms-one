@@ -370,19 +370,20 @@ AWCMS_API_URL=http://localhost:4310 AWCMS_API_TOKEN=stub-token \
 
 The stub answers every endpoint this app calls (`/api/v1/commerce/*`,
 `/api/v1/site-profile/composed`, `/api/v1/blog/pages/public[/​{slug}]`,
-`/theming/{tenantCode}/tokens.css`, and — issue #28 — `/api/v1/blog/
-{posts,terms,institutions}`, `/api/v1/idn-regions/regions`, `/api/v1/
-news-portal/ad-placements/active`, `/api/v1/seo/redirects`) straight from
-the committed fixtures, and — issue #30 — `/api/v1/commerce/storefront/*`
-as a small in-memory STATE MACHINE (quote → create order → track → confirm
-payment → cancel) rather than a fixed fixture, since these routes are
-mutations; `STUB_ALLOWED_ORIGIN` (default `http://localhost:4321`) is the
-one `Origin` it answers, matching the anonymous cross-origin CORS contract
-these routes implement for real.
-under `apps/storefront/tests/fixtures/awcms/` — a reviewer can read the
-exact response shape this app was built against as plain JSON/CSS, not a
-shape hidden inside the script. It is not part of the production build or
-image: nothing under `apps/storefront/src/`, `apps/storefront/
+`/theming/{tenantCode}/tokens.css`, and — issue #28 —
+`/api/v1/blog/{posts,terms,institutions}`, `/api/v1/idn-regions/regions`,
+`/api/v1/news-portal/ad-placements/active`, `/api/v1/seo/redirects`)
+straight from the committed fixtures under
+`apps/storefront/tests/fixtures/awcms/` — a reviewer can read the exact
+response shape this app was built against as plain JSON/CSS, not a shape
+hidden inside the script. Since issue #30 it also answers
+`/api/v1/commerce/storefront/*` as a small in-memory state machine (quote →
+create order → track → confirm payment → cancel) rather than a fixed
+fixture, since these routes are mutations; `STUB_ALLOWED_ORIGIN` (default
+`http://localhost:4321`) is the one `Origin` it answers, matching the
+anonymous cross-origin CORS contract these routes implement for real. It
+is not part of the production build or image: nothing under
+`apps/storefront/src/`, `apps/storefront/
 astro.config.mjs`, or `apps/storefront/server/penyaji.mjs` imports it, and
 no `package.json` script wires it into `bun run build` — it is a manual,
 explicit step for local/CI verification against a build with no live CMS to

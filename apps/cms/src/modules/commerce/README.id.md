@@ -9,19 +9,25 @@ varian), tenant-scoped, di-port dari skema MySQL legacy
 `commerce_bj_mart.{categories,products}` — ditambah, sejak Issue #26,
 **permukaan pemasaran** yang menjalankan beranda dan promosi BjekMart: flash
 sale, voucher, slider, testimoni, popup promo, dan satu dokumen pengaturan
-toko per tenant. Issue #4 (bagian dari epic #1) mengirimkan inti katalog;
-Issue #23 (bagian dari epic #21) membawanya ke paritas model produk penuh
-dengan skema legacy; Issue #26 (epic yang sama) menambahkan tabel pemasaran.
+toko per tenant — dan, sejak Issue #29, **pelanggan, order, dan review**:
+guest checkout yang tak pernah mewajibkan akun, cart quote yang menghitung
+ulang harga di sisi server, pelacakan dan pembatalan order lewat `orderCode`
++ nomor telepon, konfirmasi pembayaran manual, dan review yang ditinggalkan
+dari order yang sudah selesai. Issue #4 (bagian dari epic #1) mengirimkan
+inti katalog; Issue #23 (bagian dari epic #21) membawanya ke paritas model
+produk penuh dengan skema legacy; Issue #26 (epic yang sama) menambahkan
+tabel pemasaran; Issue #29 (epic yang sama) menambahkan pelanggan, order,
+dan permukaan checkout storefront anonim.
 
-| Aspek      | Nilai                                                                                                                                                                                                                                                                                                                                                                                                             |
-| ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Key / type | `commerce` · `domain`, `isCore: false`                                                                                                                                                                                                                                                                                                                                                                            |
-| Tabel      | `awcms_commerce_categories`, `awcms_commerce_products` (`sql/153`, diperluas `sql/156`), `awcms_commerce_product_images`, `awcms_commerce_product_variants` (`sql/157`); `awcms_commerce_flash_sales`, `awcms_commerce_flash_sale_products`, `awcms_commerce_vouchers`, `awcms_commerce_sliders`, `awcms_commerce_testimonials`, `awcms_commerce_popups` (`sql/161`), `awcms_commerce_store_settings` (`sql/162`) |
-| Permission | `categories.{read,create,update,delete,restore}`, `products.{read,create,update,delete,restore}` (`sql/154`, `sql/158`); `{flash_sales,vouchers,sliders,testimonials,popups}.{read,create,update,delete}`, `settings.{read,update}` (`sql/163`) — 32 total                                                                                                                                                        |
-| API        | `/api/v1/commerce/{categories,products,flash-sales,vouchers,sliders,testimonials,popups,store-settings}` (`openapi/modules/commerce.openapi.yaml`)                                                                                                                                                                                                                                                                |
-| Event      | `commerce.product.{created,updated,status_changed}`; `commerce.flash_sale.{started,ended}` (Issue #26, dipancarkan job tick)                                                                                                                                                                                                                                                                                      |
-| Depends on | `tenant_admin`, `identity_access`, `domain_event_runtime`, `media_library` (gambar produk, slider, avatar testimoni, gambar popup, dan logo/favicon toko semuanya di-resolve lewat `MediaLibraryPort`)                                                                                                                                                                                                            |
-| Job        | `commerce:flash-sales:tick` (`scripts/commerce-flash-sales-tick.ts`, tiap 5 menit — menyimpan status turunan tiap sale dan memancarkan dua event flash sale)                                                                                                                                                                                                                                                      |
+| Aspek      | Nilai                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Key / type | `commerce` · `domain`, `isCore: false`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| Tabel      | `awcms_commerce_categories`, `awcms_commerce_products` (`sql/153`, diperluas `sql/156`), `awcms_commerce_product_images`, `awcms_commerce_product_variants` (`sql/157`); `awcms_commerce_flash_sales`, `awcms_commerce_flash_sale_products`, `awcms_commerce_vouchers`, `awcms_commerce_sliders`, `awcms_commerce_testimonials`, `awcms_commerce_popups` (`sql/161`), `awcms_commerce_store_settings` (`sql/162`); `awcms_commerce_customers`, `awcms_commerce_customer_addresses`, `awcms_commerce_orders`, `awcms_commerce_order_items`, `awcms_commerce_order_events`, `awcms_commerce_payment_confirmations`, `awcms_commerce_reviews`, `awcms_commerce_wishlists` (`sql/165`) |
+| Permission | `categories.{read,create,update,delete,restore}`, `products.{read,create,update,delete,restore}` (`sql/154`, `sql/158`); `{flash_sales,vouchers,sliders,testimonials,popups}.{read,create,update,delete}`, `settings.{read,update}` (`sql/163`); `orders.{read,update}`, `customers.{read,update}`, `reviews.{read,update,delete}` (`sql/166`, dengan sengaja tanpa create/delete untuk orders atau customers — lihat "Pelanggan, order, dan review" di bawah) — 39 total                                                                                                                                            |
+| API        | `/api/v1/commerce/{categories,products,flash-sales,vouchers,sliders,testimonials,popups,store-settings,orders,customers,reviews}` (sisi pemilik); `/api/v1/commerce/storefront/{cart/quote,orders,reviews}` (sisi anonim) (`openapi/modules/commerce.openapi.yaml`)                                                                                                                                                                                                                                                                                                                                                    |
+| Event      | `commerce.product.{created,updated,status_changed}`; `commerce.flash_sale.{started,ended}` (Issue #26, dipancarkan job tick); `commerce.order.{created,paid,status_changed,cancelled,expired}`, `commerce.voucher.redeemed`, `commerce.review.published` (Issue #29)                                                                                                                                                                                                                                                                                                                                                    |
+| Depends on | `tenant_admin`, `identity_access`, `domain_event_runtime`, `media_library` (gambar produk, slider, avatar testimoni, gambar popup, dan logo/favicon toko semuanya di-resolve lewat `MediaLibraryPort`), `module_management` (resolver tenant storefront anonim memeriksa modul ini aktif untuk tenant tersebut sebelum menjawab)                                                                                                                                                                                                                                                                                       |
+| Job        | `commerce:flash-sales:tick` (`scripts/commerce-flash-sales-tick.ts`, tiap 5 menit — menyimpan status turunan tiap sale dan memancarkan dua event flash sale); `commerce:orders:expire` (`scripts/commerce-orders-expire.ts`, tiap 5 menit — mengekspirasi order belum-bayar yang melewati jendela terkonfigurasi toko, me-restock lini pesanannya, dan memancarkan `commerce.order.expired`)                                                                                                                                                                                                                          |
 
 ## Apa yang ditambahkan Issue #23, dan apa yang masih peningkatan berikutnya
 
@@ -37,8 +43,10 @@ legacy. Issue #23 mengirimkan setiap field yang ditunda itu:
 - **Merchandising**: `isFeatured`, `isRecommended` — flag eksplisit yang
   menggantikan heuristik ad-hoc `featuredProducts`/`recommendedProducts`
   milik BjekMart; `manualRating`/`manualSoldCount`, diekspos di DTO sebagai
-  `averageRating`/`soldCount` sampai Issue #29 mengirimkan review/order
-  sungguhan.
+  `averageRating`/`soldCount` — review dan hitungan lini order sungguhan
+  milik Issue #29 TIDAK mengalir balik ke kedua kolom ini; keduanya tetap
+  nilai seed yang dimasukkan merchant, dan merekonsiliasikannya dengan
+  aktivitas sungguhan adalah peningkatan berikutnya.
 - **Asuransi**: `withInsurance`, `insuranceRequired`, `insuranceFee`.
 - **Promo banner**: `promoBannerShow` plus title/subtitle/badge/icon/color.
 - **Size chart**: `sizeChartType` (`none`/`image`/`table`),
@@ -218,9 +226,14 @@ dilihat pembeli:
 
 **Aritmetika voucher eksak** (`domain/voucher-arithmetic.ts`): sen bulat,
 pembulatan setengah ke atas, persentase dibatasi `maxDiscount`,
-`free_shipping` berupa flag bukan nominal; `POST /vouchers/validate` adalah
-BACA — penebusan milik order yang memakai kodenya (Issue #29). **Status flash
-sale diturunkan**, tidak pernah dipercaya dari kolom: editor menyetel
+`free_shipping` berupa flag bukan nominal; `POST /vouchers/validate` tetap
+BACA. Penebusan kini milik order yang memakai kodenya (Issue #29):
+`application/cart-quote-service.ts` dan `application/order-directory.ts`
+sama-sama memanggil `evaluateVoucher` YANG SAMA yang dijelaskan bagian ini,
+dan hanya pembuatan order yang menambah `used_count` — di dalam transaksi
+yang sama dengan insert order, sehingga kuota voucher tak bisa oversold oleh
+dua checkout konkuren. **Status flash sale diturunkan**, tidak pernah
+dipercaya dari kolom: editor menyetel
 `draft`/`scheduled` dan `commerce:flash-sales:tick` menyimpan apa yang
 disiratkan `now()`, memancarkan `commerce.flash_sale.{started,ended}` pada
 transisi dan tidak pernah dua kali.
@@ -243,11 +256,136 @@ milik `domain/price-calculation.ts` agar kontrak tidak bergantung pada
 protokol mana yang kebetulan melayani barisnya.
 
 **Yang keluar dari DTO produk publik di issue ini:** `downloadLink` — aset
-berbayar produk digital, kini di `ProductAdminRecord` di samping `costPrice`
-dan hanya diserahkan lewat jalur order (Issue #29). **Yang masuk:**
-`sizeChartImageUrl`, di-resolve lewat batch media yang sama dengan `images[]`.
+berbayar produk digital, kini di `ProductAdminRecord` di samping `costPrice`.
+**Yang masuk:** `sizeChartImageUrl`, di-resolve lewat batch media yang sama
+dengan `images[]`. Issue #29 pun, pada kenyataannya, tidak mengirimkan
+`downloadLink` lewat jalur order — lihat "Apa yang tidak dilakukan Issue
+#29" di bawah; ia tetap celah yang dicatat untuk #31, bukan forward
+reference yang ditutup diam-diam.
 
-## Layar admin: delapan, CRUD penuh (Issue #23 dan #26)
+## Pelanggan, order, dan review (Issue #29)
+
+Guest checkout: pembeli tak pernah membuat akun, dan baris pelanggan
+(`awcms_commerce_customers`, unik pada `(tenant_id, phone)` di antara baris
+hidup) di-cari-atau-dibuat begitu order ditempatkan. `domain/phone-normalisation.ts`
+mengubah apa pun yang dikirim form checkout menjadi E.164 atau menolaknya
+secara langsung — nomor telepon, bukan sesi, adalah kredensial yang dipakai
+storefront untuk setiap lookup berikutnya, sehingga nomor yang salah
+diperlakukan sebagai "tidak terautentikasi", bukan "validation error"
+(`maskPhone` adalah yang ditampilkan admin UI dan log, bukan nomor mentah).
+
+**Permukaan publiknya sepenuhnya anonim**, di bawah
+`/api/v1/commerce/storefront/{cart/quote,orders,reviews}`, tenant-resolved
+dari Origin/Host request dengan cara yang sama seperti `newsletter` dan
+bacaan publik pemasaran (`application/public-commerce-tenant.ts`
+mencerminkan `newsletter`'s `public-newsletter-tenant.ts` file demi file) —
+tak pernah header pemanggil, 404 netral untuk tenant yang tak bisa
+di-resolve atau modul yang nonaktif, `Vary: Origin`, origin digemakan
+kembali apa adanya dan tak pernah `*`, tanpa kredensial. Setiap POST
+di-rate-limit per IP dan membaca body-nya lewat `readJsonBody`, tak pernah
+`request.json()` mentah.
+
+- **`POST /storefront/cart/quote`** menghitung ulang harga cart dari state
+  produk/varian/flash-sale/voucher sisi tenant — tak pernah mempercayai
+  harga kiriman klien — lewat `quoteCart` milik `domain/cart-quote.ts`,
+  dipanggil dari `application/cart-quote-service.ts`. Urutan aritmetikanya
+  tetap: subtotal → diskon voucher → ongkir (dinolkan oleh flag
+  `freeShipping` milik voucher atau ambang gratis-ongkir toko, hanya saat
+  setiap lini mengizinkan gratis ongkir) → asuransi (`max(minFee, subtotal ×
+  ratePercent)`, dipaksa aktif saat ada lini yang mewajibkannya) → pajak
+  (persentase dari `subtotal − discount`) → total. `previousUnitPrice`
+  selalu `null` dan line-diff `"price_changed"` tak pernah dipancarkan —
+  tak ada harga yang diharapkan dari klien untuk dibandingkan dalam kontrak
+  ini, celah yang didokumentasikan, bukan kelalaian (header
+  `domain/cart-quote.ts`).
+- **`POST /storefront/orders`** membuat order dari input quote yang sama,
+  di dalam satu transaksi: pelanggan di-cari-atau-dibuat, alamat disimpan,
+  stok dan kuota flash-sale dikurangi, `used_count` voucher ditambah,
+  `order_code` dicetak (`domain/order-code.ts`, `BJM-YYYYMMDD-XXXX`,
+  mengecualikan `0/O/1/I`), dan `commerce.order.created` dipancarkan.
+  Idempotensinya memakai store BERSAMA (`_shared/idempotency.ts`), bukan
+  kolom khusus — dengan kunci `(tenantId, "commerce.orders.create",
+  idempotencyKey)` — sehingga submit yang diulang me-replay response
+  pertama alih-alih membuat order kedua; race antara dua submit identik
+  yang konkuren ditangkap secara terpusat (`IdempotencyRaceLostError`) dan
+  dijawab sebagai replay, bukan 500.
+- **`GET /storefront/orders/:orderCode`**, **`POST .../cancel`**, **`POST
+  .../payment-confirmations`**, **`POST /storefront/reviews`** semuanya
+  memakai `orderCode` + nomor telepon sebagai pasangan kredensial, diperiksa
+  terhadap `customer_id` milik order itu sendiri sebelum apa pun dibaca
+  atau ditulis.
+- **Upload bukti pembayaran adalah stub di peningkatan ini.** Kedua
+  endpoint `.../payment-proof/upload-sessions` selalu menjawab `503
+  MEDIA_UNAVAILABLE` (header `application/order-directory.ts` menjelaskan
+  alasannya: belum ada kontrak upload-media untuk pemanggil anonim
+  tak-terautentikasi di `media_library`) — konfirmasi pembayaran manual
+  tetap berfungsi tanpa foto; hanya jalur bukti-upload-pembeli yang
+  ditunda, dicatat untuk #31.
+- **Status order adalah state machine kecil** (`domain/order-status.ts`):
+  `LEGAL_ORDER_STATUS_TRANSITIONS` ditambah `actorMayApplyOrderStatus`
+  menentukan, per jenis aktor (customer vs. admin vs. system), transisi
+  mana yang sah — customer hanya boleh membatalkan dari state yang masih
+  bisa dibayar, admin menjalankan state pemenuhan, dan system (job expiry)
+  hanya boleh meng-expire order belum-bayar yang melewati jendela
+  terkonfigurasi toko (`store-settings.orders.expiryHours`, bawaan 24).
+  Setiap transisi menambahkan baris `awcms_commerce_order_events`
+  (append-only, tanpa `deleted_at`) alih-alih hanya memutasi kolom
+  `status` milik order itu sendiri, sehingga riwayat lengkapnya tetap
+  bertahan bahkan setelah order itu sendiri habis masa retensinya.
+- **`commerce:orders:expire`** (`scripts/commerce-orders-expire.ts`, tiap
+  5 menit) mendaftar order yang sudah melewati jendela expiry-nya,
+  mentransisikan masing-masing ke `expired`, me-restock lininya (termasuk
+  kuota flash-sale), dan memancarkan `commerce.order.expired` — jalur
+  restock yang sama yang dipakai `cancelOrderByCustomer`, sehingga
+  "cancelled" dan "expired" tak bisa berbeda dalam apa yang mereka
+  kembalikan.
+- **Review** di-gate pada keharusan punya order YANG SUDAH SELESAI untuk
+  produk tersebut: guest tak bisa me-review produk yang tak pernah
+  dibelinya. `POST /storefront/reviews` mewajibkan pasangan kredensial di
+  atas; layar admin `reviews` memoderasi (publish/reject) dan bisa
+  hard-delete sebuah review, satu-satunya permukaan hard-delete yang
+  dimiliki modul ini (`reviews.delete`, entitlement revoke-only).
+- **Pelanggan guest tak bisa direpresentasikan secara jujur dalam kosakata
+  subject-data milik `ADR-0094`** — `SubjectDataColumn.references` hanya
+  menyebut konsep identitas sisi staf (`tenant_user`/`identity`/`profile`/
+  `principal`), dan pelanggan phone-only tanpa akun bukan salah satunya.
+  Kedelapan tabel baru dideklarasikan `unreachableBySubject: true` di
+  `module.ts`, bentuk yang sama yang sudah dipakai `commerce.testimonials`
+  untuk pengirim anonim — keterbatasan kosakata yang terdokumentasi, bukan
+  keputusan privasi yang dibuat modul ini.
+
+### Apa yang tidak dilakukan Issue #29
+
+- **Tidak ada pengiriman produk digital.** `downloadLink` (Issue #23)
+  masih tak pernah dikembalikan oleh endpoint order atau storefront mana
+  pun — order berbayar untuk produk digital tidak menyerahkan asetnya.
+  Dicatat untuk #31, bukan dijatuhkan diam-diam.
+- **Tidak ada akun pelanggan, login, atau riwayat order lintas-order.**
+  Setiap lookup bersifat single-order, lewat `orderCode` + nomor telepon;
+  tak ada daftar "order saya" untuk pembeli yang kembali di peningkatan
+  ini.
+- **`awcms_commerce_wishlists` mengirimkan skemanya tapi tanpa rute API.**
+  Kata-kata issue-nya sendiri: "Wishlist tetap client-side di peningkatan
+  ini (tanpa akun) — tanpa endpoint" — belum ada identitas pelanggan untuk
+  menyimpannya. Tabelnya ada supaya peningkatan berikutnya yang membawa
+  akun tak perlu migrasi sendiri.
+- **Tidak ada permission admin `orders.create`/`orders.delete`/
+  `customers.create`/`customers.delete`.** Tak ada rute admin yang membuat
+  atau hard-delete order atau pelanggan, by design — order hanya pernah
+  datang dari `POST /storefront/orders` milik storefront sendiri, dan
+  baris pelanggan hanya dari find-or-create yang dilakukan pembuatan
+  order.
+- **Tidak ada test suite integrasi formal ber-gate `DATABASE_URL`** untuk
+  pembuatan order, replay idempotensi double-submit, pemeriksaan
+  kredensial nomor-telepon-salah, siklus expire-lalu-restock, atau
+  isolasi RLS lintas-tenant pada tabel baru. Kelima hal itu dibuktikan
+  secara manual terhadap instance Postgres sungguhan selama verifikasi
+  issue ini sendiri (lihat bagian Verification milik PR-nya) alih-alih
+  dikomit sebagai file `tests/integration/*.test.ts` — celah sungguhan
+  dalam durabilitas test suite, ditandai di sini alih-alih dibiarkan
+  implisit.
+
+## Layar admin: delapan, CRUD penuh (Issue #23 dan #26); tiga lagi (Issue #29)
 
 `/admin/commerce` (`src/pages/admin/commerce.astro`) — filter
 (`categoryId`/`status`/`q`/`featured`/`recommended`), form buat yang
@@ -264,29 +402,35 @@ status, soft delete, dan restore.
 edit inline (name/slug — `parentId` hanya-saat-buat, lihat "Hierarki" di
 atas), soft delete, restore.
 
-Kedua layar sudah keluar dari `NOT_YET_SCREENED` milik
-`scripts/admin-screen-coverage-ledger.ts` — setiap satu dari sepuluh
-permission yang dideklarasikan (lima per activity code, termasuk
-`restore`) diklaim salah satu dari dua layar.
-
 Issue #26 menambahkan `/admin/commerce-flash-sales`, `-vouchers`, `-sliders`,
-`-testimonials`, `-popup`, dan `-settings`, masing-masing daftar + form buat +
-edit/hapus per baris terhadap rute pemiliknya (layar pengaturan adalah satu
-form dengan aksi "reset ke bawaan"). Kedelapan layar lepas dari
-`NOT_YET_SCREENED` — setiap satu dari 32 permission yang dideklarasikan
-diklaim salah satunya, dan
-`tests/admin-commerce-marketing-page-contract.test.ts` menuntut enam layar
-baru itu pada tiga sifat yang sama dengan layar #23.
+`-testimonials`, `-popup`, dan `-settings`, masing-masing daftar + form buat
++ edit/hapus per baris terhadap rute pemiliknya (layar pengaturan adalah
+satu form dengan aksi "reset ke bawaan"). Issue #29 menambahkan
+`/admin/commerce-orders` (daftar + filter berdasarkan status, tampilan
+detail, transisi status, review konfirmasi-pembayaran), `-customers`
+(daftar, detail, edit), dan `-reviews` (daftar, moderasi, hapus) — tanpa
+form buat pada ketiganya, karena tak satu pun permission-nya mencakup
+`create`. Kesebelas layar sudah keluar dari `NOT_YET_SCREENED` milik
+`scripts/admin-screen-coverage-ledger.ts` — setiap satu dari 39 permission
+yang dideklarasikan diklaim salah satunya, dan
+`tests/admin-commerce-marketing-page-contract.test.ts` /
+`tests/admin-commerce-page-contract.test.ts` menuntut layar-layar baru itu
+pada sifat yang sama yang dipenuhi layar-layar sebelumnya.
 
 ## Dengan sengaja tidak ada di sini
 
-- **Tidak ada permukaan cart/checkout/payment/order/shipping/affiliate-link**
-  — Issue #29 menambahkan pelanggan, order, dan endpoint storefront anonim.
-- **Tidak ada restore untuk tabel pemasaran.** Hanya soft delete; voucher
-  atau slider yang dihapus dibuat ulang, bukan dikembalikan — jejak audit
-  menyimpan catatannya.
-- **Tidak ada penebusan voucher.** `validate` membaca; order yang memakai
-  kode menebusnya (Issue #29), dan `used_count` bergerak di sana.
+- **Tidak ada integrasi kurir pengiriman atau permukaan affiliate-link.**
+  `shippingMethod` pada sebuah order adalah label yang didefinisikan
+  merchant, bukan tarif live atau nomor resi dari API kurir — di luar
+  cakupan epic ini sejauh ini.
+- **Tidak ada restore untuk tabel pemasaran, maupun untuk
+  orders/customers/reviews.** Hanya soft delete; voucher, slider, order,
+  atau pelanggan yang dihapus dibuat ulang, bukan dikembalikan — jejak
+  audit menyimpan catatannya. `order_code` adalah satu-satunya
+  pengecualian dari "unik di antara baris hidup": indeks keunikannya TAK
+  PERNAH dibatasi pada `deleted_at IS NULL` (header `sql/165`), karena
+  kode order harus tetap unik untuk tenant itu selamanya, bukan hanya
+  selama order-nya masih hidup.
 - **Tidak ada ranking relevansi full-text pada `q`.** Pencocokan
   trigram/`ILIKE` (`sql/159`) adalah pencarian substring, bukan indeks
   pencarian ber-ranking — `site_search` adalah modul pencarian
