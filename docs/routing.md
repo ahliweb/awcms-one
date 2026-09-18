@@ -81,18 +81,20 @@ The row-based map above only ever knows a URL an operator/import explicitly reco
 
 | Source shape | Destination | Notes |
 | --- | --- | --- |
-| `/rubrik/{slug}.html` | `/rubrik/{slug}` | Lower-cased, spaces/underscores/`%20` → `-`; `Olah Raga`/`OLAHRAGA` → `olahraga` |
+| `/rubrik/{slug}.html` | `/rubrik/{slug}` | Lower-cased, spaces/underscores/`%20` → `-`; `Olah Raga`/`OLAHRAGA` → `olahraga`; `VIDEO`/`video` → `/video` (its own list page, not a rubrik archive) |
 | `/daerah/{kategori}.html`, `/DAERAH/{Kategori}.html` | `/daerah/{slug}` | The 14 daerah's own name, or an old city name (Sampit → `kotawaringin-timur`, and 9 more — see the module's own `DAERAH_ENTRIES` table), maps to its regency's slug |
 | `/mitra-borneo/{slug}.html`, `/MITRA%20BORNEO/{Nama}.html`, `/Mitra-Borneo/{Nama}.html` | `/mitra/{slug}` | Any of the 24 Mitra Borneo channels, or a future one — an institution's slug passes through unchanged, so this rule needs no table update when a 25th is seeded |
 | `/umum/{slug}.html`, `/UMUM/{Nama}.html` | `/rubrik/{slug}` | UMUM's children are ordinary rubriks here — `/rubrik/wisata.html` (the old topic) and `/umum/wisata.html` (the old UMUM child) both land on `/rubrik/wisata`, the one pair this app's own test suite proves is the ONLY collision across every name the module knows |
-| `/rubriks/?news={slug}&kt={slug}&lanjut={n}` | `/rubrik/{kt or news}/halaman/{n}` (n>1) or `/rubrik/{slug}` | `kt` wins over `news` when both are present |
-| `/video/?video={id}-{slug}.html`, `/video/?video={id}_{slug}.html` | `/video/{slug}` if a `/news/{id}-…` row exists, else `/video` | Never a guessed slug — the video rule reads the SAME row-based map, only to confirm the numeric id is one this app actually knows |
+| `/rubriks/?news={A}&kt={B}&lanjut={n}` | The SAME as `/{A}/{B}.html` above, plus `/halaman/{n}` (n>1) when that destination is a `/rubrik/…` page | Not a shape of its own — it is `.htaccess`'s own two-segment (or, with `kt` absent, one-segment `/rubrik/{news}.html`) rewrite with its captures already split into query parameters, so it is resolved by the exact same rubrik/daerah/mitra/umum dispatch, never a second one. `daerah`/`mitra` destinations have no paginated route in this app, so `lanjut` is ignored for them |
+| `/video/?video={id}-{slug}.html`, `/video/?video={id}_{slug}.html`, or the bare `/video/?video={id}` the old homepage hard-coded | `/video/{slug}` if a `/video/?video={id}-…` row exists, else `/video` | Never a guessed slug, and never the `/news/…` row map for the SAME id — `berita_vid`'s ids and `berita_red`'s (behind `/news/…`) are two independent id spaces (issue #58/B2), so a video redirect only ever looks up the row map's own `/video/?video={id}…` slice |
 | `/tentang_kami.html`, `/pedoman_media_cyber.html`, `/disclimer.html` | `/halaman/redaksi`, `/halaman/pedoman-media-siber`, `/halaman/disclaimer` | The three static pages `data/index.php` served |
 | `/pencarian/?cari_berita={q}` | `/cari-berita?q={q}` | **302**, not 301 — a search result is not a permanently-moved resource |
-| `/img/?news={id}` | The row-based `/news/{id}-…` target if known, else `/berita` | `img/index.php` itself already redirected this shape on the live site |
+| `/img/?news={id}` | The row-based `/news/{id}…` target if known, else `/berita` | `img/index.php` itself already redirected this shape on the live site; the id may be followed by `-`, `_`, or `.` — the CMS legacy importer's documented template for this site is `/news/{legacyId}_{slug}.html` (underscore), not just the hyphen form |
 | `/index.php`, `/?subscribed=1` | `/berita` | |
 
 Every one of these is a 301 except the search rule (302, above); `createServer` reads the `{ location, status }` shape `ruleBasedRedirectLocation()` returns only for that one case, and a plain string (301) for every other rule — the same return shape `legacyRedirectLocation()` already had before this module existed, so `apps/storefront/tests/berita-penyaji-legacy.test.ts` needed no change. `apps/storefront/tests/pengalihan-aturan.test.ts` covers every row of the table above (encoded and decoded input, trailing slash or not) plus a loop-guard check: no rule's destination matches any rule's own source shape, so a request can never be redirected twice.
+
+The `/news/…` and `/video/?video=…` id lookups (the img and video rules) are served from an `id -> target` index built once per row-based map object and cached (a `WeakMap` keyed on that object), not rescanned per request — load-bearing once issue #58 (B2) imports seputarborneo's ~25k articles into that same map.
 
 ## `/products` → `/` (301), unchanged from increment 1
 

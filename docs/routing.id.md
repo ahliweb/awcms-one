@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](routing.md)
 
-<!-- i18n-source-hash: sha256:a83d1d707aa5d2b64fecd40a369de59ceb36ba330981e0177803bd82bdb16b61 -->
+<!-- i18n-source-hash: sha256:dd0f7501f88ac089fca3d6a2951837a27a2c54d3513fea528809c0026cd2c609 -->
 
 # Routing
 
@@ -83,18 +83,20 @@ Peta berbasis-baris di atas hanya pernah tahu URL yang secara eksplisit dicatat 
 
 | Bentuk sumber | Tujuan | Catatan |
 | --- | --- | --- |
-| `/rubrik/{slug}.html` | `/rubrik/{slug}` | Huruf kecil semua, spasi/underscore/`%20` → `-`; `Olah Raga`/`OLAHRAGA` → `olahraga` |
+| `/rubrik/{slug}.html` | `/rubrik/{slug}` | Huruf kecil semua, spasi/underscore/`%20` → `-`; `Olah Raga`/`OLAHRAGA` → `olahraga`; `VIDEO`/`video` → `/video` (halaman daftarnya sendiri, bukan arsip rubrik) |
 | `/daerah/{kategori}.html`, `/DAERAH/{Kategori}.html` | `/daerah/{slug}` | Nama salah satu dari 14 daerah sendiri, atau nama kota lama (Sampit → `kotawaringin-timur`, dan 9 lainnya — lihat tabel `DAERAH_ENTRIES` milik modul itu sendiri), dipetakan ke slug kabupatennya |
 | `/mitra-borneo/{slug}.html`, `/MITRA%20BORNEO/{Nama}.html`, `/Mitra-Borneo/{Nama}.html` | `/mitra/{slug}` | Salah satu dari 24 kanal Mitra Borneo, atau yang akan datang — slug institusi diteruskan apa adanya, jadi aturan ini tidak perlu pembaruan tabel saat institusi ke-25 disemai |
 | `/umum/{slug}.html`, `/UMUM/{Nama}.html` | `/rubrik/{slug}` | Anak UMUM adalah rubrik biasa di sini — `/rubrik/wisata.html` (topik lama) dan `/umum/wisata.html` (anak UMUM lama) sama-sama mendarat di `/rubrik/wisata`, satu-satunya pasangan yang dibuktikan suite test aplikasi ini sebagai SATU-SATUNYA tabrakan di antara semua nama yang dikenal modul |
-| `/rubriks/?news={slug}&kt={slug}&lanjut={n}` | `/rubrik/{kt atau news}/halaman/{n}` (n>1) atau `/rubrik/{slug}` | `kt` menang atas `news` saat keduanya ada |
-| `/video/?video={id}-{slug}.html`, `/video/?video={id}_{slug}.html` | `/video/{slug}` jika ada baris `/news/{id}-…`, jika tidak `/video` | Tidak pernah slug tebakan — aturan video membaca peta berbasis-baris YANG SAMA, hanya untuk memastikan id numerik itu benar-benar dikenal aplikasi ini |
+| `/rubriks/?news={A}&kt={B}&lanjut={n}` | SAMA seperti `/{A}/{B}.html` di atas, plus `/halaman/{n}` (n>1) jika tujuannya halaman `/rubrik/…` | Bukan bentuk tersendiri — ini adalah rewrite dua-segmen (atau, saat `kt` absen, satu-segmen `/rubrik/{news}.html`) milik `.htaccess` sendiri dengan capture-nya sudah dipecah jadi parameter query, jadi diselesaikan oleh dispatch rubrik/daerah/mitra/umum yang SAMA, tidak pernah yang kedua. Tujuan `daerah`/`mitra` tidak punya rute paginasi di aplikasi ini, jadi `lanjut` diabaikan untuk keduanya |
+| `/video/?video={id}-{slug}.html`, `/video/?video={id}_{slug}.html`, atau bentuk bare `/video/?video={id}` yang dulu di-hardcode beranda | `/video/{slug}` jika ada baris `/video/?video={id}-…`, jika tidak `/video` | Tidak pernah slug tebakan, dan tidak pernah peta baris `/news/…` untuk id yang sama — id milik `berita_vid` dan `berita_red` (di balik `/news/…`) adalah dua ruang id yang independen (issue #58/B2), jadi redirect video hanya pernah mencari irisan `/video/?video={id}…` milik peta baris itu sendiri |
 | `/tentang_kami.html`, `/pedoman_media_cyber.html`, `/disclimer.html` | `/halaman/redaksi`, `/halaman/pedoman-media-siber`, `/halaman/disclaimer` | Tiga halaman statis yang dulu dilayani `data/index.php` |
 | `/pencarian/?cari_berita={q}` | `/cari-berita?q={q}` | **302**, bukan 301 — hasil pencarian bukan sumber daya yang dipindah permanen |
-| `/img/?news={id}` | Tujuan `/news/{id}-…` berbasis-baris jika dikenal, jika tidak `/berita` | `img/index.php` sendiri sudah me-redirect bentuk ini di situs live |
+| `/img/?news={id}` | Tujuan `/news/{id}…` berbasis-baris jika dikenal, jika tidak `/berita` | `img/index.php` sendiri sudah me-redirect bentuk ini di situs live; id boleh diikuti `-`, `_`, atau `.` — template baku importer legacy CMS untuk situs ini adalah `/news/{legacyId}_{slug}.html` (underscore), bukan cuma bentuk tanda hubung |
 | `/index.php`, `/?subscribed=1` | `/berita` | |
 
 Semuanya `301` kecuali aturan pencarian (302, di atas); `createServer` membaca bentuk `{ location, status }` yang dikembalikan `ruleBasedRedirectLocation()` hanya untuk kasus itu, dan sebuah string biasa (301) untuk setiap aturan lain — bentuk kembalian yang sama yang sudah dimiliki `legacyRedirectLocation()` sebelum modul ini ada, jadi `apps/storefront/tests/berita-penyaji-legacy.test.ts` tidak perlu diubah. `apps/storefront/tests/pengalihan-aturan.test.ts` mencakup setiap baris tabel di atas (input ter-encode maupun tidak, dengan atau tanpa trailing slash) plus pemeriksaan loop-guard: tujuan aturan mana pun tidak cocok dengan bentuk sumber aturan mana pun, sehingga satu request tidak akan pernah di-redirect dua kali.
+
+Pencarian id `/news/…` dan `/video/?video=…` (aturan img dan video) dilayani dari indeks `id -> tujuan` yang dibangun sekali per objek peta berbasis-baris dan di-cache (sebuah `WeakMap` berkunci objek itu), bukan dipindai ulang setiap request — krusial begitu issue #58 (B2) mengimpor ~25 ribu artikel seputarborneo ke peta yang sama.
 
 ## `/products` → `/` (301), tidak berubah dari increment 1
 

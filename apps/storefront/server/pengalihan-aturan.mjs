@@ -39,10 +39,29 @@
  * string), `include/nav_menu.php` (`seputarborneo_nav_primary()`,
  * `_nav_daerah()`, `_nav_mitra()`, `_nav_umum()`, `_rubrik_slug()`,
  * `_rubrik_resolve()`, `_rubrik_kanonik()`), `rubriks/index.php` (the
- * `?news=&kt=&lanjut=` pagination shape), `video/index.php` (the
- * `?video={id}-{slug}.html`/`{id}_{slug}.html` shape and its own 301 for a
- * stale slug), `img/index.php` (`?news={id}` → the canonical article, or
+ * `?news=&kt=&lanjut=` pagination shape — the SAME `?news={A}&kt={B}` shape
+ * `.htaccess` generates for a real two-segment `/{A}/{B}.html` request, so
+ * `resolveRubriksQuery` below delegates to the exact same
+ * `resolveTwoSegmentHtml` dispatch rather than re-deriving it), `video/
+ * index.php` (the `?video={id}-{slug}.html`/`{id}_{slug}.html` shape, the
+ * bare `?video={id}` shape the old homepage hard-coded, and its own 301 for
+ * a stale slug), `img/index.php` (`?news={id}` → the canonical article, or
  * home), and `data/index.php` (the three static pages).
+ *
+ * ## Two DIFFERENT numeric id spaces — `berita_red` vs. `berita_vid`
+ *
+ * Issue #58 (B2, the seputarborneo importer) is explicit that `berita_red`
+ * (regular articles, behind `/news/{id}-…`) and `berita_vid` (video posts,
+ * behind `/video/?video={id}-…`) are TWO SEPARATE MariaDB tables with their
+ * own, independently-assigned auto-increment ids — `id_ber` and `id_vid`.
+ * The same numeric id can (and eventually will) name a completely different
+ * post in each table. `findNewsRowTargetById`/`findVideoRowTargetById`
+ * below therefore search two DISJOINT slices of the row-based map — a
+ * `/news/{id}-…`-shaped source for the former, a
+ * `/video/?video={id}-…`-shaped source for the latter — and the video rule
+ * (`resolveVideoQuery`) never falls back to the news slice: doing so would
+ * silently redirect a reader to an unrelated article that merely happens to
+ * share the same id.
  *
  * ## The target slugs
  *
@@ -134,9 +153,17 @@ const STATIC_PAGE_REDIRECTS = new Map([
 
 // ---------------------------------------------------------------------------
 // Rubrik topics — `seputarborneo_nav_primary()`, excluding `Beranda`/`Daerah`
-// (not real rubrik pages) and `VIDEO` (its own dispatch below). Every one of
-// these already normalizes to its own canonical slug; the one alias this
-// table exists for is `OLAHRAGA`'s display spelling `Olah Raga`.
+// (not real rubrik pages). Every one of these already normalizes to its own
+// canonical slug; the one alias this table exists for is `OLAHRAGA`'s
+// display spelling `Olah Raga`.
+//
+// `VIDEO` is also in `seputarborneo_nav_primary()`, but is NOT a rubrik
+// archive in this app — it is its own top-level list page (`/video`, no
+// `/rubrik/video`). `canonicalRubrikSlug` normalizes `VIDEO`'s spelling like
+// any other topic (there is none to correct), but
+// `resolveTwoSegmentHtml`'s `rubrik` branch below special-cases the RESULT
+// — `/rubrik/VIDEO.html`/`/rubrik/video.html` both redirect to `/video`,
+// never to a `/rubrik/video` page this app does not have.
 // ---------------------------------------------------------------------------
 
 /** Normalized alias → canonical rubrik slug, for the one topic whose *display* spelling ("Olah Raga") differs from its slug ("olahraga"). Every other topic's normalized form already IS its canonical slug. */
@@ -282,28 +309,83 @@ function lastPathSegment(path) {
   return segments.length > 0 ? segments[segments.length - 1] : "";
 }
 
+/** The `rowIdIndexFor` cache — see that function's own docblock. @type {WeakMap<Record<string, string>, { news: Map<string, string>, video: Map<string, string> }>} */
+const ROW_ID_INDEX_CACHE = new WeakMap();
+
 /**
- * The row-based map's destination for a `/news/{id}-…` source (any slug),
- * or `null` when no such row exists — used by the video and img rules
- * below, both of which need to know "does the CMS know this numeric id at
- * all", never the row's own destination shape.
+ * `id -> target` indexes over a row-based map's `/news/{id}…` and
+ * `/video/?video={id}…` sources, built ONCE per distinct `rowMap` object and
+ * cached in this `WeakMap` — never rescanned per request.
  *
- * A prefix scan, not a second index: this table is, at most, a few hundred
- * rows (see the module docblock's "why this exists" section), and building
- * a reverse `id -> sourcePath` index for a lookup this rare would be a
- * second data structure to keep in sync with the first for no measurable
- * benefit.
+ * `legacyRedirectLocation` loads `rowMap` once, at server startup
+ * (`readLegacyRedirectMap`), and passes the SAME object to every request for
+ * the process's whole lifetime (a new build means a new container, per that
+ * function's own docblock) — so keying the cache on object identity is
+ * exactly "once per loaded map", not once per request. After issue #58 (B2)
+ * imports seputarborneo's ~25k `berita_red` rows, a plain per-request
+ * `Object.keys(rowMap)` scan (this function's previous shape) would run
+ * that full scan on every `/video/?video=…`, `/img/?news=…`, or
+ * `/rubrik/…` request this module resolves; a `WeakMap` never leaks either,
+ * since the entry disappears with the `rowMap` object itself once a new
+ * build's map replaces it.
+ *
+ * @param {Record<string, string>} rowMap
+ * @returns {{ news: Map<string, string>, video: Map<string, string> }}
+ */
+function rowIdIndexFor(rowMap) {
+  const cached = ROW_ID_INDEX_CACHE.get(rowMap);
+  if (cached) return cached;
+
+  const news = new Map();
+  const video = new Map();
+
+  // The id is whatever `\d+` matches right after the fixed prefix, so a
+  // lookup for id `"1"` can never accidentally match a stored `/news/15-…`
+  // row — the digits belong to the id, not to a separator character this
+  // regex could otherwise mistake for one (see issue #55 review, defect 2).
+  for (const [sourcePath, target] of Object.entries(rowMap)) {
+    const newsMatch = /^\/news\/(\d+)[-_.]/.exec(sourcePath);
+    if (newsMatch && !news.has(newsMatch[1])) news.set(newsMatch[1], target);
+
+    // `/video/?video={id}-…`/`{id}_…` — the shape issue #58 (B2)'s importer
+    // writes for every video post, per that issue's own "Redirects" bullet.
+    // A DIFFERENT id space from `/news/…` above — see the module docblock's
+    // "Two DIFFERENT numeric id spaces" section for why these are never
+    // merged into one index.
+    const videoMatch = /^\/video\/\?video=(\d+)[-_.]/.exec(sourcePath);
+    if (videoMatch && !video.has(videoMatch[1])) video.set(videoMatch[1], target);
+  }
+
+  const index = { news, video };
+  ROW_ID_INDEX_CACHE.set(rowMap, index);
+  return index;
+}
+
+/**
+ * The row-based map's destination for a `/news/{id}[-_.]…` source (any
+ * slug), or `null` when no such row exists — used by the img rule, never by
+ * `resolveVideoQuery` (see the module docblock's "Two DIFFERENT numeric id
+ * spaces" section for why a video id must never be looked up here).
  *
  * @param {Record<string, string>} rowMap
  * @param {string} id A numeric id, as a string.
  * @returns {string | null}
  */
 function findNewsRowTargetById(rowMap, id) {
-  const prefix = `/news/${id}-`;
-  for (const sourcePath of Object.keys(rowMap)) {
-    if (sourcePath.startsWith(prefix)) return rowMap[sourcePath];
-  }
-  return null;
+  return rowIdIndexFor(rowMap).news.get(id) ?? null;
+}
+
+/**
+ * The row-based map's destination for a `/video/?video={id}[-_.]…` source
+ * (any slug), or `null` when no such row exists — the video-id-space
+ * counterpart of `findNewsRowTargetById` above.
+ *
+ * @param {Record<string, string>} rowMap
+ * @param {string} id A numeric id, as a string.
+ * @returns {string | null}
+ */
+function findVideoRowTargetById(rowMap, id) {
+  return rowIdIndexFor(rowMap).video.get(id) ?? null;
 }
 
 // ---------------------------------------------------------------------------
@@ -335,7 +417,13 @@ function resolveTwoSegmentHtml(first, second) {
   if (secondSlug === "") return null;
 
   if (firstSlug === "rubrik") {
-    return `/rubrik/${canonicalRubrikSlug(secondSlug)}`;
+    const canonical = canonicalRubrikSlug(secondSlug);
+    // `VIDEO` is a top-level nav item in seputarborneo, not a rubrik archive
+    // in this app — see the module's own comment above `RUBRIK_SLUG_ALIASES`
+    // for why this is a post-canonicalization special case rather than an
+    // alias-table entry (an alias corrects a SPELLING; this redirects to an
+    // entirely different route shape).
+    return canonical === "video" ? VIDEO_LIST_PAGE : `/rubrik/${canonical}`;
   }
 
   if (firstSlug === "daerah") {
@@ -361,11 +449,25 @@ function resolveTwoSegmentHtml(first, second) {
 // ---------------------------------------------------------------------------
 
 /**
- * `rubriks/index.php`'s own pagination links (`?news=<slug>&kt=<slug>`,
- * optionally `&lanjut=<n>`) — internal, already-canonical-slug values (see
- * that file's own comment: this shape is generated by `sb_pola`, never
- * hand-typed), so no alias table is consulted here, only
- * `normalizeSlugSegment` for case/encoding safety.
+ * `rubriks/index.php?news=&kt=&lanjut=` is not a shape of its own — it is
+ * EXACTLY `.htaccess`'s generic two-segment `RewriteRule`
+ * (`^([^/]*)/([^/]*)\.html$ -> /rubriks/?news=$1&kt=$2`) with its two
+ * captures already split into query parameters, and the one-segment rule
+ * (`^rubrik/([^/]*)\.html$ -> /rubriks/?news=$1`) is the SAME shape with
+ * `kt` simply absent and `rubrik` itself implied as the first segment. So
+ * this function does not re-derive rubrik/daerah/mitra/umum dispatch a
+ * second time — it reconstructs the ORIGINAL two-segment (or one-segment)
+ * request and hands it to `resolveTwoSegmentHtml`, the single source of
+ * truth for that dispatch (issue #55 review, defect 3): `kt` present means
+ * `news` IS the first segment (`news=daerah&kt=Sampit` is
+ * `/daerah/Sampit.html`); `kt` absent means `news` is the bare rubrik value
+ * that `/rubrik/{news}.html` itself carries.
+ *
+ * Pagination (`&lanjut=<n>`, n>1) only ever lands on a real
+ * `/rubrik/{slug}/halaman/{n}` page — `daerah`/`mitra`/`umum` (via
+ * `resolveTwoSegmentHtml`) have no paginated route in this app at all, so a
+ * `&lanjut=` on one of those is ignored and the bare (page-one) destination
+ * is returned instead of a URL nothing would serve.
  *
  * @param {URLSearchParams} query
  * @returns {string | null}
@@ -373,25 +475,43 @@ function resolveTwoSegmentHtml(first, second) {
 function resolveRubriksQuery(query) {
   const kt = query.get("kt");
   const news = query.get("news");
-  const slugSource = kt && kt.trim() !== "" ? kt : news;
-  if (!slugSource || slugSource.trim() === "") return null;
 
-  const slug = normalizeSlugSegment(slugSource);
+  const destination =
+    kt && kt.trim() !== ""
+      ? resolveTwoSegmentHtml(news ?? "", kt)
+      : news && news.trim() !== ""
+        ? resolveTwoSegmentHtml("rubrik", news)
+        : null;
+
+  // `resolveTwoSegmentHtml` already returns `null` for a segment that
+  // normalizes to empty (issue #55 review, defect 4 — `?news=%21%21%21`
+  // must not answer `Location: /rubrik/`), and for a first segment it does
+  // not recognize; both cases fall straight through here with no redirect.
+  if (!destination) return null;
+  if (!destination.startsWith("/rubrik/")) return destination;
+
   const lanjut = Number(query.get("lanjut"));
-  if (Number.isInteger(lanjut) && lanjut > 1) {
-    return `/rubrik/${slug}/halaman/${lanjut}`;
-  }
-  return `/rubrik/${slug}`;
+  return Number.isInteger(lanjut) && lanjut > 1 ? `${destination}/halaman/${lanjut}` : destination;
 }
 
 /**
- * `video/index.php?video={id}-{slug}.html` or `{id}_{slug}.html` — the
+ * `video/index.php?video={id}-{slug}.html`, `{id}_{slug}.html` — the
  * hyphen/underscore both matter (that file's own comment: "Alamat lama
  * (garis bawah, tanpa slug, atau slug basi)" — an old underscore-separated
- * or stale-slug value). Resolved to `/video/{slug}` ONLY when the id is one
- * this app can already recognize as a real post (a row-based `/news/{id}-…`
- * mapping exists) — otherwise there is no known slug to redirect to, and
+ * or stale-slug value) — or the bare `?video={id}` shape (no slug at all)
+ * the old homepage's own grid hard-coded (issue #55 review, defect 1).
+ *
+ * Resolved to `/video/{slug}` ONLY when the id is one this app can already
+ * recognize as a real video post — a row-based `/video/?video={id}-…`
+ * mapping exists — otherwise there is no known slug to redirect to, and
  * `/video` (the list) is the honest destination, never a guessed one.
+ *
+ * This NEVER consults the `/news/…` slice of the row-based map:
+ * `berita_vid`'s ids (`id_vid`) are a completely different id space from
+ * `berita_red`'s (`id_ber`) behind `/news/…` — see the module docblock's
+ * "Two DIFFERENT numeric id spaces" section. Matching a video id against a
+ * news row would redirect a reader to a numerically-coincidental, otherwise
+ * unrelated article.
  *
  * @param {URLSearchParams} query
  * @param {Record<string, string>} rowMap
@@ -401,10 +521,11 @@ function resolveVideoQuery(query, rowMap) {
   const videoParam = query.get("video");
   if (!videoParam) return null;
 
-  const match = /^(\d+)[-_].*\.html$/i.exec(videoParam.trim());
-  if (!match) return null;
+  const trimmed = videoParam.trim();
+  const id = /^\d+$/.exec(trimmed)?.[0] ?? /^(\d+)[-_].*\.html$/i.exec(trimmed)?.[1];
+  if (!id) return null;
 
-  const target = findNewsRowTargetById(rowMap, match[1]);
+  const target = findVideoRowTargetById(rowMap, id);
   return target ? `/video/${lastPathSegment(target)}` : VIDEO_LIST_PAGE;
 }
 
@@ -477,7 +598,8 @@ function resolveSearchQuery(query) {
  * @param {string} url `req.url` as received.
  * @param {Record<string, string>} [rowMap] The SAME row-based map
  * `legacyRedirectLocation` already consulted — only the video/img rules
- * read it (see `findNewsRowTargetById`).
+ * read it (see `findNewsRowTargetById`/`findVideoRowTargetById` — two
+ * DIFFERENT id-space lookups, never conflated; see the module docblock).
  * @returns {string | { location: string, status: 302 } | null}
  */
 export function ruleBasedRedirectLocation(url, rowMap = {}) {
