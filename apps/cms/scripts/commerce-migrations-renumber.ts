@@ -29,9 +29,12 @@
  * This script is the one-off fix: for each of the sixteen old names still
  * present in `awcms_schema_migrations`, it updates that row's
  * `migration_name` to the new filename and its `checksum` to the checksum of
- * the NEW file on disk (the file's bytes are unchanged by the rename, so the
- * checksum is unchanged too — this is a defensive recompute, not a
- * correction). One transaction, all-or-nothing.
+ * the NEW file on disk. The recompute is load-bearing, not defensive: the
+ * rename also rewrote the `sql/1NN` cross-references in each file's header
+ * comment, so the bytes — and therefore the checksum `db-migrate.ts` would
+ * verify on its next run — DID change. One transaction, all-or-nothing, under
+ * the same advisory lock `db-migrate.ts` takes, so a deploy that runs
+ * `db:migrate` at the same moment waits rather than reading half a rename.
  *
  * ## Why the two helpers are copied, not imported
  *
@@ -54,6 +57,8 @@ import path from "node:path";
 import { redactSecretsInText } from "../src/modules/_shared/redaction";
 
 const SQL_DIR = path.resolve(process.cwd(), "sql");
+/** Same key as `db-migrate.ts`'s `MIGRATION_LOCK_KEY` — the two must never run interleaved. */
+const MIGRATION_LOCK_KEY = 8_402_017_551;
 
 /** Copied from `./db-migrate.ts`'s `computeMigrationChecksum` — see this file's own header for why. */
 function computeMigrationChecksum(sql: string): string {
@@ -245,17 +250,22 @@ async function main() {
       return;
     }
 
-    await sql.begin(async (tx) => {
-      for (const [oldName, newName] of plan.rename) {
-        const checksum = await checksumOf(newName);
+    await sql`SELECT pg_advisory_lock(${MIGRATION_LOCK_KEY})`;
+    try {
+      await sql.begin(async (tx) => {
+        for (const [oldName, newName] of plan.rename) {
+          const checksum = await checksumOf(newName);
 
-        await tx`
-          UPDATE awcms_schema_migrations
-          SET migration_name = ${newName}, checksum = ${checksum}
-          WHERE migration_name = ${oldName}
-        `;
-      }
-    });
+          await tx`
+            UPDATE awcms_schema_migrations
+            SET migration_name = ${newName}, checksum = ${checksum}
+            WHERE migration_name = ${oldName}
+          `;
+        }
+      });
+    } finally {
+      await sql`SELECT pg_advisory_unlock(${MIGRATION_LOCK_KEY})`;
+    }
 
     console.log(
       `db:commerce:renumber complete — ${plan.rename.length} renamed`
