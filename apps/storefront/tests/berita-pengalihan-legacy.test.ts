@@ -13,6 +13,15 @@ describe("lib/pengalihan-legacy: normalizeLegacyPath", () => {
   test("decodes percent-encoding", () => {
     expect(normalizeLegacyPath("/news/1-berita%20utama.html")).toBe("/news/1-berita utama.html");
   });
+
+  test("preserves the query for a /video/?video=… source — its whole identity lives in the query, unlike ?utm=fb on a real path", () => {
+    expect(normalizeLegacyPath("/video/?video=2-liputan-video-banjir.html")).toBe(
+      "/video/?video=2-liputan-video-banjir.html"
+    );
+    expect(normalizeLegacyPath("/video?video=2-liputan-video-banjir.html")).toBe(
+      "/video?video=2-liputan-video-banjir.html"
+    );
+  });
 });
 
 describe("lib/pengalihan-legacy: buildLegacyRedirectMap", () => {
@@ -76,5 +85,28 @@ describe("lib/pengalihan-legacy: buildLegacyRedirectMap", () => {
 
   test("an empty row list yields an empty map, not an error", () => {
     expect(buildLegacyRedirectMap([])).toEqual({});
+  });
+
+  test("a slug in videoSlugs resolves to /video/{slug}, not /berita/{slug} (this app never publishes a video post at both)", () => {
+    const map = buildLegacyRedirectMap(
+      [
+        { sourcePath: "/news/1-a.html", targetType: "relative_same_tenant", target: "/blog/x/a" },
+        {
+          sourcePath: "/video/?video=2-b.html",
+          targetType: "relative_same_tenant",
+          target: "/blog/x/b"
+        }
+      ],
+      new Set(["b"])
+    );
+    expect(map["/news/1-a.html"]).toBe("/berita/a");
+    expect(map["/video/?video=2-b.html"]).toBe("/video/b");
+  });
+
+  test("videoSlugs defaults to empty — every existing call site above keeps its old /berita/{slug} behavior", () => {
+    const map = buildLegacyRedirectMap([
+      { sourcePath: "/news/1-a.html", targetType: "relative_same_tenant", target: "/blog/x/a" }
+    ]);
+    expect(map["/news/1-a.html"]).toBe("/berita/a");
   });
 });
