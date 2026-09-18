@@ -32,6 +32,26 @@
  * with a message naming the variable, rather than shipping a storefront
  * that only fails once a shopper tries to check out. This is the ONE place
  * that origin is added to the CSP artifact; there is no second mechanism.
+ *
+ * ## Issue #56 (A10): the GA branch — a FLAG, not a derived origin
+ *
+ * Kept deliberately separate from everything above (which derives origins
+ * from CMS-sent DATA — see `src/lib/csp-asal-media.ts`'s own "why DERIVED,
+ * not configured"). GA's origins are the opposite: fixed, Google-owned
+ * constants, gated by one build-time boolean (`PUBLIC_GA_ID` shaped like a
+ * real GA4 id — `src/lib/ga.ts`). There is nothing to derive, so this does
+ * not extend `buildCspOriginsArtifact`/`CspOriginsArtifact` (owned by A1,
+ * issue #47, for the media-origin/`frame-src` work) — it appends one extra
+ * `ga` boolean onto that same artifact object right before it is written.
+ * `server/penyaji.mjs`'s `buildCsp` reads that flag and adds its OWN
+ * hardcoded GA origins to `script-src`/`connect-src` — never origins that
+ * flow through this file's `sanitizeOrigins`-style validation, because a
+ * literal `https://*.google-analytics.com` (GA's own documented CSP
+ * snippet, wildcard subdomain and all) is exactly the shape
+ * `server/penyaji.mjs`'s `sanitizeOrigins` deliberately refuses from
+ * anything CMS/attacker-influenced (`*` is rejected outright — see that
+ * function's own tests). A hardcoded constant controlled entirely by this
+ * app's own code does not need — and must not go through — that guard.
  */
 import { getProducts } from "../lib/catalog";
 import {
@@ -43,6 +63,7 @@ import {
 } from "../lib/awcms/pemasaran";
 import { buildCspOriginsArtifact } from "../lib/csp-asal-media";
 import { requireAwcmsOrigin } from "../lib/awcms/toko-origin";
+import { readGaMeasurementId } from "../lib/ga";
 
 export const prerender = true;
 
@@ -78,7 +99,15 @@ export async function GET(): Promise<Response> {
   // HERE, in a page every build unconditionally prerenders.
   const awcmsOrigin = requireAwcmsOrigin();
 
-  const artifact = buildCspOriginsArtifact(imageUrls, [awcmsOrigin]);
+  const derivedArtifact = buildCspOriginsArtifact(imageUrls, [awcmsOrigin]);
+
+  // GA branch (issue #56, A10) — see this file's own docblock. `ga` is
+  // simply omitted (not `false`) in the default build; `readCspOrigins`
+  // treats a missing flag the same way it treats every other missing
+  // field — as "off".
+  const artifact = readGaMeasurementId()
+    ? { ...derivedArtifact, ga: true }
+    : derivedArtifact;
 
   return new Response(JSON.stringify(artifact), {
     headers: { "Content-Type": "application/json; charset=utf-8" }

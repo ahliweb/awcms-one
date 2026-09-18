@@ -344,12 +344,72 @@ origin. Steps 2–4 are exactly what `apps/storefront/tests/checkout-build-smoke
 already automates for the build-only assertions; the e2e job would be that
 same shape with a real browser added on top.
 
+## Visitor analytics and the optional GA4 switch (issue #56)
+
+`apps/storefront/src/scripts/analitik.ts`, mounted once in `BaseLayout.astro`
+so it runs on **every page, store and news alike**, is this site's own
+first-party visitor beacon: on `DOMContentLoaded` (and on `pageshow` when a
+browser restores a page from its back/forward cache — `DOMContentLoaded`
+does not fire again for that), it reports one page view to `apps/cms`'s
+`visitor_analytics` module, `POST /api/v1/analytics/collect`, feeding the
+same rollups A3's "Terpopuler" section reads.
+
+- **`fetch`, never `navigator.sendBeacon`.** The obvious beacon API cannot
+  send this endpoint a request it accepts cross-origin — see
+  `analitik.ts`'s own docblock, and
+  `apps/cms/src/modules/visitor-analytics/domain/beacon-cors.ts`'s "## What
+  was actually broken" for why. The call actually made is `fetch` with
+  `content-type: application/json`, `credentials: "include"` (the anonymous,
+  server-set `awcms_visitor_key` cookie — never read or written by this
+  app's own code), and `keepalive: true` (the property that made
+  `sendBeacon` attractive in the first place, kept here).
+- **The payload is exactly `{ tenantCode, path, referrer? }`** — verified
+  against `apps/cms/src/pages/api/v1/analytics/collect.ts` and its module's
+  README directly. `tenantCode` is the SAME `AWCMS_TENANT_CODE` build-time
+  variable `theme.ts` already reads (see below), baked into
+  `<body data-analytics-tenant-code>` rather than read from a second env
+  variable — this app never introduces a `PUBLIC_`-prefixed alias of it.
+- **Privacy-respecting by construction.** `Do Not Track`
+  (`navigator.doNotTrack`, and the legacy `window.doNotTrack`) and Global
+  Privacy Control (`navigator.globalPrivacyControl`) both suppress the
+  request outright, checked before any network call. No cookie or
+  `localStorage` value of this script's own making; silent on any failure
+  (ad blocker, offline, an unconfigured `AWCMS_TENANT_CODE`/
+  `PUBLIC_AWCMS_ORIGIN`) — a visitor counter must never become a console
+  error.
+- **Server-side, the module is off by default** (`VISITOR_ANALYTICS_ENABLED`,
+  `apps/cms`'s own switch — see `docs/deployment.md`'s "The two switches").
+  This app's beacon fires unconditionally either way; an operator who never
+  turns that switch on simply gets `202 Accepted` responses that record
+  nothing, not an error.
+- **Known limitation, stated rather than silently missing:** `/produk`'s and
+  `/cari`'s own client-side pagination/filtering
+  (`produk-listing.ts`/`cari-listing.ts`) changes the visible grid via
+  `history.pushState`, with no full navigation — no second beacon fires for
+  it. This is a page-view counter, not a full single-page-app route tracker.
+
+**GA4 is entirely optional and OFF by default.** Setting `PUBLIC_GA_ID` to a
+real GA4 Measurement ID (`G-…`, validated by `apps/storefront/src/lib/ga.ts`) makes
+`BaseLayout.astro` load `gtag.js` from `https://www.googletagmanager.com`
+with `anonymize_ip` set, and widens the served CSP's `script-src`/
+`connect-src` for GA's own origins (`apps/storefront/src/pages/csp.json.ts`'s GA branch,
+applied by `apps/storefront/server/penyaji.mjs`'s `buildCsp`) — a build with no `PUBLIC_GA_ID`
+references no Google origin anywhere, provably (`tests/analitik-build-smoke
+.test.ts` builds both ways and asserts it). The `dataLayer`/`gtag` bootstrap
+Google's own snippet normally inlines is instead `apps/storefront/src/scripts/ga-init.ts`, an
+ordinary same-origin bundled module: an inline `<script>` body is blocked by
+this app's CSP regardless of what `script-src` allows, and a fully static
+site has no per-request value to mint a CSP nonce from.
+
 ## Environment variables
 
 See `apps/storefront/.env.example` for the full, current list with
 rationale. New in issue #24: `AWCMS_TENANT_CODE` (optional) — this tenant's
-public code, used only by the theme client above; unset is a normal state
-that falls back to BjekMart's default palette.
+public code, used only by the theme client above **and, since issue #56, the
+visitor beacon's `tenantCode`**; unset is a normal state that falls back to
+BjekMart's default palette, and — for the beacon — to sending nothing at
+all. New in issue #56: `PUBLIC_GA_ID` (optional) — see above; unset, empty,
+or not shaped like a GA4 id keeps GA off.
 
 Every variable is read at BUILD time only. `apps/storefront/server/
 penyaji.mjs` reads `PORT`/`HOST` and nothing else — a finished build never
