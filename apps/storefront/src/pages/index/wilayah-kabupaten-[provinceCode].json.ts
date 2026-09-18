@@ -4,6 +4,11 @@
  * regencies/cities — the checkout address step's second `<select>`, fetched
  * client-side (same-origin, so no CORS/CSP concern at all) once a province
  * is chosen. See `src/lib/awcms/wilayah-checkout.ts`.
+ *
+ * The `Promise.all` below fans out one `getCheckoutRegencies` per configured
+ * province; the HTTP requests behind it are bounded inside
+ * `wilayah-checkout.ts` (`MAX_IN_FLIGHT_REGION_REQUESTS`, issue #71), shared
+ * with `wilayah-kecamatan-[cityCode].json.ts`'s far larger fan-out.
  */
 import type { APIRoute, GetStaticPaths } from "astro";
 import { getCheckoutProvinces, getCheckoutRegencies, type WilayahRegion } from "../../lib/awcms/wilayah-checkout";

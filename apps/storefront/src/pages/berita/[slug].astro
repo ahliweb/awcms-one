@@ -7,28 +7,34 @@
  * post is rendered through the exact same Portable Text renderer; only the
  * URL and the breadcrumb hub differ).
  *
- * ## Two things this page deliberately does NOT render
+ * ## Two gaps issue #28 recorded here, both since closed
  *
- * - **No hero `<img>`.** `PostDetail` carries `featuredMediaId` only as a
- *   bare id (`src/lib/awcms/blog.ts`'s `RawPost` docblock) with no
- *   caption/credit field on the post itself, and this app has no
- *   media-object client to resolve it to a URL at all (the same gap issue
- *   #24 recorded for `site-profile`'s logo/favicon ids). Rendering nothing
- *   is the honest choice over inventing a caption/credit that does not
- *   exist or a URL this app cannot safely construct.
- * - **No `article:published_time` Open Graph tag.** `BaseLayout.astro`
- *   (issue #24) has no mechanism for a page to add extra `<meta>` tags, and
- *   that file is outside this issue's file ownership. The same timestamp is
- *   present, machine-readable, in this page's own `NewsArticle` JSON-LD
- *   (`datePublished`/`dateModified`) — the modern equivalent most crawlers
- *   read; only an OG-specific consumer (Facebook's own crawler) would miss
- *   the dedicated tag.
+ * - **Hero `<img>` — closed by issue #47.** `PostDetail.image` is the
+ *   post's `featuredMediaId` resolved through `src/lib/awcms/media.ts`;
+ *   `ArtikelView.astro` renders it as a sized `<figure>` with the media's
+ *   verified credit. An unresolved id renders no image, never a broken one.
+ * - **Open Graph `article:*` / `og:image` / Twitter card — closed by issue
+ *   #54 (A8).** `BaseLayout.astro` now takes `ogType` + `meta` props, and
+ *   this page passes `src/lib/meta-sosial.ts`'s `articleSocialMeta(post)`:
+ *   `og:type=article`, `og:image` (+ `og:image:width/height/alt`) when the
+ *   featured image resolved, `article:published_time`/`article:modified_time`
+ *   (the same raw ISO timestamps the `NewsArticle` JSON-LD below carries as
+ *   `datePublished`/`dateModified`), `article:section` (the rubrik),
+ *   one `article:tag` per tag, and `twitter:card` (`summary_large_image`
+ *   with an image, `summary` without) + `twitter:title/description/image`.
+ *   The head-slot alternative was rejected for these: a per-page `<meta>`
+ *   list built in markup would have re-implemented the escaping and the
+ *   type/namespace pairing in every page; a typed prop and one builder
+ *   keep both in one place. What the previous docblock said about JSON-LD
+ *   still holds — it remains the primary machine-readable source; the OG
+ *   tags are for the link-preview crawlers that read only those.
  */
 import BeritaLayout from "../../layouts/BeritaLayout.astro";
 import ArtikelView from "../../components/berita/ArtikelView.astro";
 import { ROUTES } from "../../config/routes";
 import { getPosts, getPost, getRelatedPosts, getDaerah } from "../../lib/berita";
 import { newsArticleSchema, breadcrumbListSchema, combineSchemas } from "../../lib/jsonld-berita";
+import { articleSocialMeta, postSeoText } from "../../lib/meta-sosial";
 import { getSiteIdentity } from "../../lib/awcms/profil";
 
 export async function getStaticPaths() {
@@ -81,13 +87,21 @@ const schema = combineSchemas(
   }),
   breadcrumbListSchema(breadcrumbItems)
 );
+
+// Issue #54 (A8): the SEO title/description come from the same helper the
+// social meta is built from, so `<title>`/`og:*` and `twitter:*` can never
+// name different text for the same post.
+const seo = postSeoText(post);
+const social = articleSocialMeta(post);
 ---
 
 <BeritaLayout
-  title={post.seoTitle ?? post.title}
-  description={post.metaDescription ?? post.excerpt ?? undefined}
+  title={seo.title}
+  description={seo.description ?? undefined}
   canonicalPath={canonicalPath}
   schema={schema}
+  ogType={social.ogType}
+  meta={social.meta}
 >
   <ArtikelView
     post={post}
