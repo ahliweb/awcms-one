@@ -70,3 +70,23 @@ the same branch:
    `id -> target` index built once per row-based map object and cached
    (`WeakMap`), instead of an `Object.keys` scan repeated on every request
    — load-bearing once issue #58 (B2) imports seputarborneo's ~25k rows.
+
+## One more correction: the row-based (issue #28) map itself
+
+`src/pages/index/pengalihan-legacy.json.ts`'s row-based map — the one
+`pengalihan-aturan.mjs` only ever falls through to on a miss — had two
+related bugs of its own, found while wiring the above:
+
+- It rebuilt every `legacy_blog` row's destination as `/berita/{slug}`
+  unconditionally, but `src/lib/berita.ts`'s `getPosts()` never publishes a
+  video post there (only `/video/{slug}`) — every imported video's redirect
+  would land on a page this app never builds. `buildLegacyRedirectMap()`
+  now takes an optional `videoSlugs` set (default empty — every existing
+  call/test keeps its prior behavior) and the page supplies it from one
+  `getVideo()` call at build time.
+- `normalizeLegacyPath` stripped the query string unconditionally, which
+  collapsed every `/video/?video={id}-…` row (issue #58/B2's own template
+  for a video redirect) onto the identical bare `/video` key — losing the
+  id the video fix above needs, and setting up a build-time throw the
+  moment a second, differently-targeted video row existed. It now preserves
+  the query for that one shape only.
