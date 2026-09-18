@@ -1,20 +1,38 @@
 /**
  * tools/lib/awcms-api.ts — issue #58.
  *
- * The minimal HTTP client `tools/import-seputarborneo.ts` needs, copied out
- * of `tools/seed-borneojek-mart.ts`'s own `apiCall`/`Session`/`assertOk`
- * (that file exports nothing — checked directly, `grep -n "^export "
- * tools/seed-borneojek-mart.ts` matches zero lines — so per issue #58's own
- * Scope this is a copy, not an import). "Only this script uses it" (issue
- * #58's own words): nothing else in `tools/` should import from here without
- * first checking whether the two client shapes have actually stayed
- * identical, since a fix made in one and not the other is exactly the kind
- * of drift this note exists to flag.
+ * The minimal HTTP client `tools/import-seputarborneo.ts` needs for exactly
+ * ONE thing: the `--assign-institutions` follow-up pass, run AFTER
+ * `bun run blog:legacy:import` has committed the archive. Copied out of
+ * `tools/seed-borneojek-mart.ts`'s own `apiCall`/`Session`/`assertOk` (that
+ * file exports nothing — checked directly, `grep -n "^export "
+ * tools/seed-borneojek-mart.ts` matches zero lines — so this is a copy, not
+ * an import, matching the same convention `tools/lib/mysql-dump-reader.ts`'s
+ * header set).
+ *
+ * ## Why this file still exists after the exporter rework
+ *
+ * `bun run blog:legacy:import` (the upstream operator pipeline this issue's
+ * PR now targets, per its own docblock) writes `termIds` via `--term-map`,
+ * but calls `syncPostTermAssignments` ONLY — nowhere in that script, or in
+ * `legacy-import-directory.ts`'s `importLegacyBlogPost`, is there a call to
+ * `syncPostInstitutionAssignments`. Checked directly, not assumed: neither
+ * file mentions `institutionIds` or that function at all. So a `DAERAH`/
+ * `MITRA BORNEO` article imported through that pipeline lands with ZERO
+ * institutions — which is exactly the gap that keeps it off `/daerah/{slug}`
+ * and `/mitra/{slug}` (`apps/storefront/src/pages/daerah/[slug].astro`'s own
+ * header: "posts reaching this region via an institution's regionCode... see
+ * `src/lib/awcms/wilayah.ts`'s file header for why there is no direct
+ * post→region field to filter on instead"). Since both routes are literally
+ * issue #58's own acceptance criterion, this one, small, HTTP-only follow-up
+ * pass stays — it does not create posts, does not write redirects, and does
+ * not convert HTML; it only resolves each post's institution and PATCHes
+ * `institutionIds` on it. See `assignInstitutions` in the main script.
  *
  * Same conventions as the seed script, deliberately: `AWCMS_BASE_URL`, the
  * `authorization: Bearer <token>` + `x-awcms-tenant-id` header pair, and the
  * `{ data, raw }` envelope unwrap — so an operator who already knows how to
- * run `bun run db:seed:cms` needs nothing new to run this importer.
+ * run `bun run db:seed:cms` needs nothing new to run this pass.
  */
 
 export type Session = { tenantId: string; token: string };

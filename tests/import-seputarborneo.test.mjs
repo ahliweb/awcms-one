@@ -1,20 +1,17 @@
 /**
  * tests/import-seputarborneo.test.mjs — issue #58.
  *
- * Unit coverage for the seputarborneo importer's four pure surfaces, all on
+ * Unit coverage for the seputarborneo EXPORTER's pure surfaces, all on
  * hand-authored fixtures (never the real dump, which is never committed):
  *
- *   1. `tools/lib/mysql-dump-reader.ts` — the streaming tokenizer (quotes,
- *      `\'`/`\n`/NULL escapes, multi-row `VALUES`, a 3 MB synthetic dump fed
- *      through in small chunks so it genuinely exercises the "never buffer
- *      more than one row" contract).
- *   2. `tools/import-seputarborneo.ts`'s taxonomy mapper, against every
- *      legacy spelling `migrations/2026-09-02-normalize-legacy-taxonomy.sql`
- *      names (read from the reference seputarborneo clone during this
- *      issue's development — see that migration's own comments for the
- *      counts this test's fixtures are drawn from).
- *   3. `tools/lib/html-to-portable-text.ts` — the tag set issue #58 lists.
- *   4. `newPostSlug`'s collision handling (`-{id_ber}` suffix).
+ *   1. `tools/lib/mysql-dump-reader.ts` — the streaming tokenizer.
+ *   2. The taxonomy mapper, against every legacy spelling
+ *      `migrations/2026-09-02-normalize-legacy-taxonomy.sql` names, plus all
+ *      45 real-dump combinations, plus the `legacyName`/`termMapHintFor`
+ *      shapes `blog:legacy:import`'s `--term-map`/`--section-map` expect.
+ *   3. `buildPostRecord`/`buildVideoRecord` — the exact
+ *      `legacy-import-record.ts` field shapes.
+ *   4. `buildRedirectEntry`/URL construction, and slug-collision handling.
  */
 import { describe, test } from "bun:test";
 import assert from "node:assert/strict";
@@ -25,7 +22,6 @@ import {
   tryParseValueTuple,
   readMysqlDumpRows
 } from "../tools/lib/mysql-dump-reader.ts";
-import { convertHtmlToPortableText } from "../tools/lib/html-to-portable-text.ts";
 import {
   sbSlug,
   phpRawUrlEncode,
@@ -34,10 +30,13 @@ import {
   legacyVideoUrl,
   normalizeLegacyTaxonomy,
   mapLegacyTaxonomy,
+  termMapHintFor,
   normalizeYoutubeVideoId,
   resolvePublishedAt,
   newPostSlug,
-  buildRedirectPayload,
+  buildPostRecord,
+  buildVideoRecord,
+  buildRedirectEntry,
   buildSiteProfileUpdateFromConfig
 } from "../tools/import-seputarborneo.ts";
 
@@ -59,7 +58,6 @@ describe("mysql-dump-reader: tryParseValueTuple", () => {
   });
 
   test("a doubled backslash then a quote closes the string correctly", () => {
-    // 'a\\' -> the string "a\" — a literal backslash, then the closing quote.
     const r = tryParseValueTuple("(1,'a\\\\')", 0);
     assert.ok(r.ok);
     assert.deepEqual(r.values, [1, "a\\"]);
@@ -71,7 +69,6 @@ describe("mysql-dump-reader: tryParseValueTuple", () => {
   });
 
   test("an incomplete NULL at the exact buffer boundary reports ok:false", () => {
-    // Only "NUL" buffered — must not be mistaken for a parse error.
     const r = tryParseValueTuple("(1,NUL", 0);
     assert.equal(r.ok, false);
   });
@@ -106,7 +103,6 @@ describe("mysql-dump-reader: SqlInsertTokenizer (multi-row, multi-statement, fed
 
     const tokenizer = new SqlInsertTokenizer(["t"]);
     const rows = [];
-    // Feed one CHARACTER at a time — the worst case for chunk-boundary bugs.
     for (const ch of sql) rows.push(...tokenizer.feed(ch));
 
     assert.ok(tokenizer.isAtRest());
@@ -140,10 +136,6 @@ describe("mysql-dump-reader: SqlInsertTokenizer (multi-row, multi-statement, fed
 
 describe("mysql-dump-reader: readMysqlDumpRows against a 3 MB synthetic gzip fixture", () => {
   test("streams every row without ever holding the file whole, fed in small chunks", async () => {
-    // A "3 MB synthetic file" per issue #58's own acceptance list — one row's
-    // body is padded to ~3 KB so ~1000 rows crosses 3 MB of decompressed SQL,
-    // and it is genuinely written to a temp file and read back through
-    // `Bun.file(...).stream()` (the real code path), not held as one string.
     const ROW_COUNT = 1500;
     const PADDING = "x".repeat(2500);
     let sql = "CREATE TABLE `berita_red` (`id_ber` int(11), `judul` varchar(3000));\n";
@@ -224,7 +216,6 @@ describe("normalizeLegacyTaxonomy: every pattern the 2026-09-02 migration names"
   });
 
   test("WISATA (the rubrik, all caps) is NOT captured by the UMUM leaf-label move — binary/case-sensitive comparison", () => {
-    // The migration's own point: `IN ('Wisata')` must not also catch `WISATA`.
     assert.deepEqual(normalizeLegacyTaxonomy("WISATA", ""), {
       jenisRubrik: "WISATA",
       kategori: ""
@@ -259,8 +250,8 @@ describe("normalizeLegacyTaxonomy: every pattern the 2026-09-02 migration names"
   });
 });
 
-describe("mapLegacyTaxonomy: classification after normalization", () => {
-  test("the five plain rubriks map to their committed slug (issue #57's own naming)", () => {
+describe("mapLegacyTaxonomy: classification + legacyName (the flat category-name value blog:legacy:import's --term-map keys on)", () => {
+  test("the five plain rubriks map to their committed slug, legacyName is the rubrik itself", () => {
     const expected = {
       POLITIK: "politik",
       HUKUM: "hukum",
@@ -269,31 +260,32 @@ describe("mapLegacyTaxonomy: classification after normalization", () => {
       WISATA: "wisata"
     };
     for (const [jenis, slug] of Object.entries(expected)) {
-      assert.deepEqual(mapLegacyTaxonomy(jenis, ""), {
+      const result = mapLegacyTaxonomy(jenis, "");
+      assert.deepEqual(result, {
         ok: true,
-        value: { kind: "rubrik", rubrikSlug: slug }
+        value: { kind: "rubrik", rubrikSlug: slug, legacyName: jenis }
       });
     }
   });
 
-  test("DAERAH + a region name maps to kind:daerah", () => {
+  test("DAERAH + a region name maps to kind:daerah, legacyName is the region", () => {
     assert.deepEqual(mapLegacyTaxonomy("DAERAH", "Kapuas"), {
       ok: true,
-      value: { kind: "daerah", regionName: "Kapuas" }
+      value: { kind: "daerah", regionName: "Kapuas", legacyName: "Kapuas" }
     });
   });
 
-  test("MITRA BORNEO + an institution name maps to kind:mitra", () => {
+  test("MITRA BORNEO + an institution name maps to kind:mitra, legacyName is the institution", () => {
     assert.deepEqual(mapLegacyTaxonomy("MITRA-BORNEO", "Pemkab Kapuas"), {
       ok: true,
-      value: { kind: "mitra", institutionName: "Pemkab Kapuas" }
+      value: { kind: "mitra", institutionName: "Pemkab Kapuas", legacyName: "Pemkab Kapuas" }
     });
   });
 
   test("UMUM + a valid child maps to kind:umum, including the WISATA-colliding child", () => {
     assert.deepEqual(mapLegacyTaxonomy("UMUM", "Wisata"), {
       ok: true,
-      value: { kind: "umum", childName: "Wisata" }
+      value: { kind: "umum", childName: "Wisata", legacyName: "Wisata" }
     });
   });
 
@@ -304,55 +296,22 @@ describe("mapLegacyTaxonomy: classification after normalization", () => {
   });
 
   test("every one of the 45 (jenis_rubrik, kategori) combinations observed in the real dump on 2026-09-18 maps cleanly", () => {
-    // Recorded directly from a --dry-run against the real dump this issue
-    // names — never the dump's row CONTENT, only its taxonomy label pairs
-    // (a bounded, 45-entry controlled vocabulary, not article text).
     const observed = [
-      ["HUKUM", ""],
-      ["MITRA BORNEO", "Pemkab Kotawaringin Timur"],
-      ["UMUM", "Provinsi"],
-      ["DAERAH", "Kotawaringin Timur"],
-      ["MITRA BORNEO", "DPRD Kalteng"],
-      ["MITRA BORNEO", "Pemkab Kapuas"],
-      ["MITRA BORNEO", "DPRD Kotawaringin Timur"],
-      ["NASIONAL", ""],
-      ["MITRA BORNEO", "DPRD Kapuas"],
-      ["MITRA BORNEO", "DPRD Palangka Raya"],
-      ["MITRA BORNEO", "Pemko Palangka Raya"],
-      ["MITRA BORNEO", "Pemprov Kalteng"],
-      ["MITRA BORNEO", "Pemkab Lamandau"],
-      ["MITRA BORNEO", "Pemkab Pulang Pisau"],
-      ["DAERAH", "Palangka Raya"],
-      ["MITRA BORNEO", "DPRD Murung Raya"],
-      ["POLITIK", ""],
-      ["MITRA BORNEO", "Pemkab Gunung Mas"],
-      ["MITRA BORNEO", "DPRD Seruyan"],
-      ["MITRA BORNEO", "Pemkab Barito Timur"],
-      ["DAERAH", "Lamandau"],
-      ["MITRA BORNEO", "Pemkab Murung Raya"],
-      ["DAERAH", "Kapuas"],
-      ["MITRA BORNEO", "Pemkab Katingan"],
-      ["DAERAH", "Pulang Pisau"],
-      ["MITRA BORNEO", "Pemkab Seruyan"],
-      ["OLAHRAGA", ""],
-      ["MITRA BORNEO", "DPRD Pulang Pisau"],
-      ["DAERAH", "Kotawaringin Barat"],
-      ["UMUM", "Budaya"],
-      ["DAERAH", "Murung Raya"],
-      ["DAERAH", "Barito Timur"],
-      ["UMUM", "Bisnis"],
-      ["DAERAH", "Gunung Mas"],
-      ["DAERAH", "Barito Selatan"],
-      ["WISATA", ""],
-      ["DAERAH", "Katingan"],
-      ["DAERAH", "Barito Utara"],
-      ["MITRA BORNEO", "Pemkab Barito Utara"],
-      ["UMUM", "Wisata"],
-      ["DAERAH", "Seruyan"],
-      ["UMUM", "Kuliner"],
-      ["DAERAH", "Sukamara"],
-      ["MITRA BORNEO", "DPRD Lamandau"],
-      ["MITRA BORNEO", "DPRD Barito Timur"]
+      ["HUKUM", ""], ["MITRA BORNEO", "Pemkab Kotawaringin Timur"], ["UMUM", "Provinsi"],
+      ["DAERAH", "Kotawaringin Timur"], ["MITRA BORNEO", "DPRD Kalteng"], ["MITRA BORNEO", "Pemkab Kapuas"],
+      ["MITRA BORNEO", "DPRD Kotawaringin Timur"], ["NASIONAL", ""], ["MITRA BORNEO", "DPRD Kapuas"],
+      ["MITRA BORNEO", "DPRD Palangka Raya"], ["MITRA BORNEO", "Pemko Palangka Raya"],
+      ["MITRA BORNEO", "Pemprov Kalteng"], ["MITRA BORNEO", "Pemkab Lamandau"],
+      ["MITRA BORNEO", "Pemkab Pulang Pisau"], ["DAERAH", "Palangka Raya"], ["MITRA BORNEO", "DPRD Murung Raya"],
+      ["POLITIK", ""], ["MITRA BORNEO", "Pemkab Gunung Mas"], ["MITRA BORNEO", "DPRD Seruyan"],
+      ["MITRA BORNEO", "Pemkab Barito Timur"], ["DAERAH", "Lamandau"], ["MITRA BORNEO", "Pemkab Murung Raya"],
+      ["DAERAH", "Kapuas"], ["MITRA BORNEO", "Pemkab Katingan"], ["DAERAH", "Pulang Pisau"],
+      ["MITRA BORNEO", "Pemkab Seruyan"], ["OLAHRAGA", ""], ["MITRA BORNEO", "DPRD Pulang Pisau"],
+      ["DAERAH", "Kotawaringin Barat"], ["UMUM", "Budaya"], ["DAERAH", "Murung Raya"], ["DAERAH", "Barito Timur"],
+      ["UMUM", "Bisnis"], ["DAERAH", "Gunung Mas"], ["DAERAH", "Barito Selatan"], ["WISATA", ""],
+      ["DAERAH", "Katingan"], ["DAERAH", "Barito Utara"], ["MITRA BORNEO", "Pemkab Barito Utara"],
+      ["UMUM", "Wisata"], ["DAERAH", "Seruyan"], ["UMUM", "Kuliner"], ["DAERAH", "Sukamara"],
+      ["MITRA BORNEO", "DPRD Lamandau"], ["MITRA BORNEO", "DPRD Barito Timur"]
     ];
     assert.equal(observed.length, 45);
 
@@ -361,92 +320,161 @@ describe("mapLegacyTaxonomy: classification after normalization", () => {
   });
 });
 
-// ---------------------------------------------------------------------------
-// 3. HTML -> Portable Text (the listed tag set)
-// ---------------------------------------------------------------------------
-
-describe("convertHtmlToPortableText: p, strong/em, a, ul/ol/li, h2-h4, blockquote, img", () => {
-  test("paragraph with bold, italic, and a link; <script> is dropped entirely", () => {
-    const { document } = convertHtmlToPortableText(
-      '<p>Hello <strong>world</strong> and <em>you</em>, <a href="https://example.com/x">a link</a>.<script>alert(1)</script></p>'
-    );
-    assert.equal(document.length, 1);
-    const [block] = document;
-    assert.equal(block._type, "block");
-    assert.equal(block.style, "normal");
-    const text = block.children.map((s) => s.text).join("");
-    assert.ok(text.includes("Hello"));
-    assert.ok(text.includes("world"));
-    assert.ok(text.includes("you"));
-    assert.ok(text.includes("a link"));
-    assert.ok(!text.includes("alert"));
-    assert.ok(block.children.some((s) => s.marks.includes("strong") && s.text === "world"));
-    assert.ok(block.children.some((s) => s.marks.includes("em") && s.text === "you"));
-    assert.equal(block.markDefs[0].href, "https://example.com/x");
+describe("termMapHintFor: the guidance this exporter writes to term-map-hints.json", () => {
+  test("a rubrik hint suggests the committed term slug", () => {
+    const outcome = mapLegacyTaxonomy("HUKUM", "").value;
+    assert.deepEqual(termMapHintFor(outcome), {
+      kind: "rubrik",
+      suggestedTermSlugCandidates: ["hukum"]
+    });
   });
 
-  test("headings h2-h4 and blockquote each become their own block with the right style", () => {
-    const { document } = convertHtmlToPortableText(
-      "<h2>Dua</h2><h3>Tiga</h3><h4>Empat</h4><blockquote>Kutipan</blockquote>"
-    );
-    assert.deepEqual(
-      document.map((b) => b.style),
-      ["h2", "h3", "h4", "blockquote"]
-    );
+  test("a daerah hint suggests the daerah term plus a Pemkab institution guess", () => {
+    const outcome = mapLegacyTaxonomy("DAERAH", "Kapuas").value;
+    assert.deepEqual(termMapHintFor(outcome), {
+      kind: "daerah",
+      suggestedTermSlugCandidates: ["daerah"],
+      suggestedInstitutionName: "Pemkab Kapuas"
+    });
   });
 
-  test("ul/ol/li produce listItem blocks with the right kind", () => {
-    const { document } = convertHtmlToPortableText(
-      "<ul><li>satu</li><li>dua</li></ul><ol><li>pertama</li></ol>"
-    );
-    assert.equal(document[0].listItem, "bullet");
-    assert.equal(document[1].listItem, "bullet");
-    assert.equal(document[2].listItem, "number");
-    assert.equal(document[0].children[0].text, "satu");
+  test("Palangka Raya is a Pemko, not a Pemkab", () => {
+    const outcome = mapLegacyTaxonomy("DAERAH", "Palangka Raya").value;
+    assert.equal(termMapHintFor(outcome).suggestedInstitutionName, "Pemko Palangka Raya");
   });
 
-  test("&nbsp; and CRLF are decoded/collapsed", () => {
-    const { document } = convertHtmlToPortableText("<p>A&nbsp;B\r\n&amp; C</p>");
-    const text = document[0].children.map((s) => s.text).join("");
-    assert.ok(text.includes("A B"));
-    assert.ok(text.includes("& C"));
+  test("a mitra hint's institution name is the category name itself", () => {
+    const outcome = mapLegacyTaxonomy("MITRA BORNEO", "DPRD Kalteng").value;
+    assert.deepEqual(termMapHintFor(outcome), {
+      kind: "mitra",
+      suggestedTermSlugCandidates: ["mitra-borneo"],
+      suggestedInstitutionName: "DPRD Kalteng"
+    });
   });
 
-  test("an <img> with no resolver is dropped and reported; with a resolver it becomes a gallery block", () => {
-    const dropped = convertHtmlToPortableText('<p>Before</p><img src="foto1.jpg" alt="x"><p>After</p>');
-    assert.deepEqual(dropped.droppedImages, ["foto1.jpg"]);
-    assert.ok(!dropped.document.some((n) => n._type === "gallery"));
-
-    const resolved = convertHtmlToPortableText(
-      '<p>Before</p><img src="foto1.jpg" alt="x"><p>After</p>',
-      { resolveImage: (src) => (src === "foto1.jpg" ? "11111111-1111-1111-1111-111111111111" : null) }
-    );
-    assert.equal(resolved.droppedImages.length, 0);
-    const gallery = resolved.document.find((n) => n._type === "gallery");
-    assert.equal(gallery.items[0].mediaObjectId, "11111111-1111-1111-1111-111111111111");
-    assert.equal(gallery.items[0].caption, "x");
+  test("the UMUM/Wisata collision lists both of issue #57's candidate slugs, in order", () => {
+    const outcome = mapLegacyTaxonomy("UMUM", "Wisata").value;
+    assert.deepEqual(termMapHintFor(outcome).suggestedTermSlugCandidates, ["wisata-travel", "wisata"]);
   });
 
-  test("an unrecognised tag is transparent: its markup disappears, its text still flows into the paragraph", () => {
-    const { document } = convertHtmlToPortableText('<p>Hello <font color="red">red</font> world</p>');
-    assert.equal(document[0].children.map((s) => s.text).join(""), "Hello red world");
-  });
-
-  test("a javascript: href degrades to plain text rather than being stored as a link", () => {
-    const { document } = convertHtmlToPortableText('<p><a href="javascript:alert(1)">click</a></p>');
-    assert.equal(document[0].markDefs.length, 0);
-    assert.equal(document[0].children[0].text, "click");
-  });
-
-  test("bare text with no wrapping tag becomes an implicit paragraph", () => {
-    const { document } = convertHtmlToPortableText("Teks polos tanpa tag apa pun.");
-    assert.equal(document.length, 1);
-    assert.equal(document[0].children[0].text, "Teks polos tanpa tag apa pun.");
+  test("an ordinary UMUM child suggests its own lowercase name as the slug", () => {
+    const outcome = mapLegacyTaxonomy("UMUM", "Budaya").value;
+    assert.deepEqual(termMapHintFor(outcome).suggestedTermSlugCandidates, ["budaya"]);
   });
 });
 
 // ---------------------------------------------------------------------------
-// 4. Slug collision handling
+// 3. buildPostRecord / buildVideoRecord — the exact legacy-import-record.ts shape
+// ---------------------------------------------------------------------------
+
+describe("buildPostRecord: matches legacy-import-record.ts's LegacyImportRecord field-for-field", () => {
+  const now = new Date("2026-09-18T00:00:00Z");
+
+  function row(overrides = {}) {
+    return {
+      id_ber: 25,
+      judul: "Dukung KLA, BPBD Pulpis dan DP3AP2KB Teken MoU",
+      sub_judul: "Sebuah ringkasan",
+      isi_berita: '<p style="text-align: justify;">Isi berita <strong>lengkap</strong>.</p>',
+      foto_berita: "091255-sb2.jpeg",
+      jenis_rubrik: "MITRA BORNEO",
+      kategori: "Pemkab Pulang Pisau",
+      tgl: "2026-09-04",
+      jam: "14:30:00",
+      user: "Redaksi",
+      ...overrides
+    };
+  }
+
+  test("produces every field legacy-import-record.ts's parser reads, nothing more that would confuse it", () => {
+    const built = buildPostRecord(row(), new Set(), now);
+    assert.ok(built.ok);
+    assert.deepEqual(Object.keys(built.record).sort(), [
+      "bodyHtml", "categories", "excerpt", "featuredImageSrc", "legacyId",
+      "locale", "publishedAt", "slug", "status", "title"
+    ]);
+    assert.equal(built.record.legacyId, "25");
+    assert.equal(built.record.slug, "dukung-kla-bpbd-pulpis-dan-dp3ap2kb-teken-mou");
+    assert.equal(built.record.status, "published");
+    assert.equal(built.record.publishedAt, "2026-09-04T07:30:00.000Z");
+    assert.deepEqual(built.record.categories, ["Pemkab Pulang Pisau"]);
+    assert.equal(built.record.featuredImageSrc, "091255-sb2.jpeg");
+    // bodyHtml is the RAW legacy HTML, untouched — upstream's own converter handles it.
+    assert.equal(built.record.bodyHtml, row().isi_berita);
+  });
+
+  test("bodyHtml is passed through verbatim — this exporter never converts it itself", () => {
+    const dangerous = row({ isi_berita: "<p>Hello</p><script>alert(1)</script>" });
+    const built = buildPostRecord(dangerous, new Set(), now);
+    assert.ok(built.ok);
+    assert.equal(built.record.bodyHtml, dangerous.isi_berita);
+  });
+
+  test("a future publishedAt is exported as status:draft rather than published", () => {
+    const future = row({ tgl: "2027-01-01", jam: "00:00:00" });
+    const built = buildPostRecord(future, new Set(), now);
+    assert.ok(built.ok);
+    assert.equal(built.record.status, "draft");
+  });
+
+  test("an unmapped taxonomy value is refused, not guessed at", () => {
+    const built = buildPostRecord(row({ jenis_rubrik: "UTAMA", kategori: "" }), new Set(), now);
+    assert.equal(built.ok, false);
+    assert.equal(built.table, "berita_red");
+  });
+
+  test("an implausible date (the real dump's one '0025' row) is refused", () => {
+    const built = buildPostRecord(row({ tgl: "0025-08-03" }), new Set(), now);
+    assert.equal(built.ok, false);
+  });
+
+  test("an empty foto_berita becomes null, not an empty string", () => {
+    const built = buildPostRecord(row({ foto_berita: "" }), new Set(), now);
+    assert.ok(built.ok);
+    assert.equal(built.record.featuredImageSrc, null);
+  });
+});
+
+describe("buildVideoRecord: berita_vid, with the documented link-not-embed degradation", () => {
+  const now = new Date("2026-09-18T00:00:00Z");
+
+  function row(overrides = {}) {
+    return {
+      id_vid: 5,
+      judul_vid: "Banjir Disejumlah Daerah",
+      link: "CpFjEwC0fRg",
+      text_vid: "<p>Banjir</p>",
+      tgl: "221120",
+      jam: "031607",
+      admin: "Admin",
+      ...overrides
+    };
+  }
+
+  test("bodyHtml is text_vid plus a plain link to the video, never an embed", () => {
+    const built = buildVideoRecord(row(), new Set(), now);
+    assert.ok(built.ok);
+    assert.ok(built.record.bodyHtml.startsWith(row().text_vid));
+    assert.ok(built.record.bodyHtml.includes('<a href="https://youtu.be/CpFjEwC0fRg">'));
+    assert.ok(!built.record.bodyHtml.includes("<iframe"));
+  });
+
+  test("a link that does not normalize to a YouTube id is refused", () => {
+    const built = buildVideoRecord(row({ link: "" }), new Set(), now);
+    assert.equal(built.ok, false);
+    assert.equal(built.table, "berita_vid");
+  });
+
+  test("YYMMDD/HHMMSS timestamps are reformatted and dated correctly", () => {
+    const built = buildVideoRecord(row(), new Set(), now);
+    assert.ok(built.ok);
+    // 221120 031607 -> 2022-11-20 03:16:07 WIB -> UTC (-7h)
+    assert.equal(built.record.publishedAt, "2022-11-19T20:16:07.000Z");
+  });
+});
+
+// ---------------------------------------------------------------------------
+// 4. Slug collision, redirects, URLs
 // ---------------------------------------------------------------------------
 
 describe("newPostSlug: -{id_ber} on collision", () => {
@@ -464,19 +492,15 @@ describe("newPostSlug: -{id_ber} on collision", () => {
   });
 });
 
-// ---------------------------------------------------------------------------
-// Small supporting surfaces exercised alongside the above (URLs, dates,
-// YouTube ids, redirect/site-profile payload shape) — not separately listed
-// in the acceptance criteria, but each one feeds a field the taxonomy/slug/
-// HTML tests above depend on being correct.
-// ---------------------------------------------------------------------------
-
 describe("legacy URL construction", () => {
   test("current-style URL matches seputarborneo_id_slug()/seputarborneo_news_href()", () => {
-    assert.equal(legacyNewsUrlCurrent(25, "Dukung KLA, BPBD Pulpis dan DP3AP2KB Teken MoU"), "/news/25-dukung-kla-bpbd-pulpis-dan-dp3ap2kb-teken-mou.html");
+    assert.equal(
+      legacyNewsUrlCurrent(25, "Dukung KLA, BPBD Pulpis dan DP3AP2KB Teken MoU"),
+      "/news/25-dukung-kla-bpbd-pulpis-dan-dp3ap2kb-teken-mou.html"
+    );
   });
 
-  test("pre-2.0 URL replaces spaces with underscores and rawurlencode()s the rest, case preserved", () => {
+  test("pre-2.0 URL replaces spaces with underscores and rawurlencode()s the rest, case preserved, built from the RAW title", () => {
     assert.equal(legacyNewsUrlPre2000(25, "Banjir di Sampit"), "/news/25_Banjir_di_Sampit.html");
   });
 
@@ -491,6 +515,27 @@ describe("legacy URL construction", () => {
 
   test("phpRawUrlEncode additionally escapes ! * ' ( ) that encodeURIComponent leaves bare", () => {
     assert.equal(phpRawUrlEncode("a(b)c'd!e*f"), "a%28b%29c%27d%21e%2Af");
+  });
+});
+
+describe("buildRedirectEntry: correct even for a colliding (suffixed) stored slug — the reason this exporter does not delegate to blog:legacy:redirects:import's own {slug} templating", () => {
+  test("targets the CMS's own canonical /blog/{tenantCode}/{slug} URL, origin import", () => {
+    const entry = buildRedirectEntry("/news/25-dukung-kla.html", "borneojek-mart", "dukung-kla");
+    assert.deepEqual(entry, {
+      sourcePath: "/news/25-dukung-kla.html",
+      target: "/blog/borneojek-mart/dukung-kla",
+      origin: "import",
+      statusCode: 301
+    });
+  });
+
+  test("a collision-suffixed slug still produces the CORRECT source path (built from the raw title, not the stored slug)", () => {
+    // Two articles titled "Banjir di Sampit": the second gets a suffixed
+    // stored slug, but its LEGACY current-style URL never had that suffix.
+    const source = legacyNewsUrlCurrent(200, "Banjir di Sampit");
+    const entry = buildRedirectEntry(source, "borneojek-mart", "banjir-di-sampit-200");
+    assert.equal(entry.sourcePath, "/news/200-banjir-di-sampit.html");
+    assert.equal(entry.target, "/blog/borneojek-mart/banjir-di-sampit-200");
   });
 });
 
@@ -519,17 +564,10 @@ describe("normalizeYoutubeVideoId", () => {
 describe("resolvePublishedAt", () => {
   const now = new Date("2026-09-18T00:00:00Z");
 
-  test("a well-formed past tgl/jam converts from Asia/Jakarta (UTC+7) to UTC and is not scheduled", () => {
+  test("a well-formed past tgl/jam converts from Asia/Jakarta (UTC+7) to UTC", () => {
     const result = resolvePublishedAt("2026-09-04", "14:30:00", now);
     assert.ok(result.ok);
     assert.equal(result.publishedAt.toISOString(), "2026-09-04T07:30:00.000Z");
-    assert.equal(result.willBeScheduled, false);
-  });
-
-  test("a future tgl/jam is flagged for scheduling", () => {
-    const result = resolvePublishedAt("2027-01-01", "00:00:00", now);
-    assert.ok(result.ok);
-    assert.equal(result.willBeScheduled, true);
   });
 
   test("an implausible year (the real dump's one '0025' row) is refused, never silently imported", () => {
@@ -540,18 +578,6 @@ describe("resolvePublishedAt", () => {
   test("a non-string tgl/jam (unexpected dump shape) is refused rather than throwing", () => {
     const result = resolvePublishedAt(20260904, "10:00:00", now);
     assert.equal(result.ok, false);
-  });
-});
-
-describe("buildRedirectPayload", () => {
-  test("targets the CMS's own canonical /blog/{tenantCode}/{slug} URL, origin legacy_blog", () => {
-    const payload = buildRedirectPayload("/news/25-dukung-kla.html", "borneojek-mart", "dukung-kla");
-    assert.deepEqual(payload, {
-      sourcePath: "/news/25-dukung-kla.html",
-      target: "/blog/borneojek-mart/dukung-kla",
-      origin: "legacy_blog",
-      statusCode: 301
-    });
   });
 });
 

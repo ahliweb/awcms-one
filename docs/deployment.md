@@ -121,34 +121,94 @@ Product images, slider media, and payment-confirmation proof images are resolved
 
 ## Importing seputarborneo (issue #58)
 
-`tools/import-seputarborneo.ts` (`bun run import:seputarborneo`) imports seputarborneo.com's legacy MariaDB archive — `berita_red` (articles), `berita_vid` (video posts), `ikl_online` (ad creatives), `logo` (institution logos), `config` (site profile) — into the SAME `borneojek-mart` tenant [`tools/seed-borneojek-mart.ts`](#local-database-issue-25) bootstraps, over that tenant's public `/api/v1/*` surface. `users`, `counter`, `newsletter_subscribers`, `renungan_rmd`, `tanya_jawab`, and `foto_berita` are read at most for a count (or not read at all) — never imported; see the script's own header for why each one is excluded (PII, no consent record, or a dead/unused table).
+`tools/import-seputarborneo.ts` (`bun run import:seputarborneo`) is an EXPORTER: it reads seputarborneo.com's legacy MariaDB archive and writes the input files `apps/cms`'s own operator pipeline for exactly this job expects — `bun run blog:legacy:import` (`apps/cms/scripts/blog-legacy-import.ts`, Issue #599/ADR-0114 in upstream awcms). It makes no network call and needs no `apps/cms` running at all; the actual import runs from INSIDE `apps/cms`, against the SAME `borneojek-mart` tenant [`tools/seed-borneojek-mart.ts`](#local-database-issue-25) bootstraps.
 
-**The dump is never copied into this repository, never committed, and never printed.** `tools/lib/mysql-dump-reader.ts` streams it — `Bun.file(...).stream()` through a `DecompressionStream("gzip")` — a row at a time; the 228 MB decompressed archive is never held whole in memory, and this script's own log lines print only counts, never a row's title/body/category value.
+**The dump is never copied into this repository, never committed, and never printed to the console.** `tools/lib/mysql-dump-reader.ts` streams it — `Bun.file(...).stream()` through a `DecompressionStream("gzip")` — a row at a time; the 228 MB decompressed archive is never held whole in memory, and this script's own console output prints only counts. The files it writes under `tools/out/seputarborneo/` (git-ignored) DO carry row content — that is their entire purpose, being `blog:legacy:import`'s own input format — but they stay on the machine that ran the export.
+
+### Why an exporter, not a direct API client
+
+An earlier version of this tool called `POST /api/v1/blog/posts` directly. `blog:legacy:import` gets two things right that no public route can: it accepts a caller-supplied `publishedAt` for an ALREADY-PAST date (checked directly — no `blog/posts/*` route does), and it writes `legacy_source_id`/`legacy_source_system` (`sql/138`) so a re-run is idempotent by provenance rather than by guessing from a slug. It also converts `bodyHtml` to Portable Text itself; this exporter does not duplicate that converter — every `bodyHtml` value it writes is the legacy HTML verbatim, so what the pipeline refuses is exactly what the archive contained.
+
+### The runbook
 
 ```bash
 # .env: set SEPUTARBORNEO_DUMP to the gzip-compressed dump's absolute path.
-
-# Safe on a machine with no apps/cms running at all — reads only the dump.
-bun run import:seputarborneo -- --dry-run
-
-# Against an ALREADY-SEEDED tenant (bun run db:seed:cms first, apps/cms
-# running, SEED_OWNER_PASSWORD set to that seed run's printed password):
-bun run import:seputarborneo -- --commit --limit=200
+bun run import:seputarborneo                     # writes tools/out/seputarborneo/*, no network call
+bun run import:seputarborneo -- --limit=200       # cap berita_red rows, for a first pass
 ```
 
-`--dry-run` (the default whenever `--commit` is absent) prints counts per rubrik/region-or-institution-kind, per year, and every unmapped taxonomy value — none of it row content, all of it in `tools/out/seputarborneo-import-manifest.json` too (git-ignored). `--limit=<n>` caps the number of `berita_red` rows processed; `--since=<yyyy-mm-dd>` filters by `tgl`.
+Then, from `apps/cms` (against an ALREADY-SEEDED, ALREADY-RUNNING tenant — `bun run db:seed:cms` and the seputarborneo taxonomy seed, [issue #57](https://github.com/ahliweb/awcms-one/issues/57), first):
 
-### Two real limitations of the public API, found and documented rather than worked around
+```bash
+cd apps/cms
 
-1. **No public field backdates `published_at`.** `apps/cms` carries an internal `bun run blog:legacy:import` NDJSON pipeline (`apps/cms/scripts/blog-legacy-import.ts`) that writes a real historical date directly against the database — built, per its own docblock, using this exact seputarborneo archive as its reference case. That pipeline runs INSIDE `apps/cms`, which is the workspace boundary this repository's own tools may not cross (AGENTS.md "Workspace boundaries"). `POST /api/v1/blog/posts/{id}/schedule` DOES accept a future `scheduledAt`, so a legacy article dated in the future keeps its real date; one already in the past is published at IMPORT time instead. See `tools/import-seputarborneo.ts`'s own header for the full reasoning.
-2. **No public field sets a post's rendered byline.** `authorByline` is derived from the authenticated tenant user, never a per-post input. The legacy `user`/`admin` column is written into `contentJson.legacySource.author` instead, for provenance — not rendered as the article's byline.
+# 1. Preview (the default — nothing written without --commit):
+bun run blog:legacy:import --file=../tools/out/seputarborneo/posts.ndjson \
+  --tenant=<uuid> --author=<uuid> --system=seputarborneo
 
-### What still needs a human, or a follow-up issue
+# 2. The upload set — every foto_berita lead photograph AND any inline <img>
+#    the converter refused (this is the CANONICAL list, from the converter's
+#    own refusals; this exporter does not re-scan the HTML itself, to avoid a
+#    second scanner drifting from the one whose refusals actually matter):
+bun run blog:legacy:import --file=../tools/out/seputarborneo/posts.ndjson \
+  --tenant=<uuid> --author=<uuid> --system=seputarborneo \
+  --images=upload-set.json
+# Upload every file through /admin/media, then build media-map.json:
+# { "<src>": "<media object uuid>" }
 
-- **Media.** `--media` (with `SEPUTARBORNEO_FILES` set) only NAMES what still needs uploading (`tools/out/seputarborneo-import-manifest.json`'s `mediaNeeded` list) — it does not upload anything itself, the same handoff `apps/cms`'s own `blog:legacy:import --images`/`--media-map` uses and for the same reason (`/admin/media` is the one path with MIME-sniffing and size caps; a script fetching third-party bytes server-side is a request-forgery primitive). Every `berita_red` row's `foto_berita` lead photograph needs this before that article can be created with a `featuredMediaId`.
-- **Ad placements** (`ikl_online`) and **institution logos** (`logo`, for [issue #59](https://github.com/ahliweb/awcms-one/issues/59)'s `logo_media_id`) are read into the manifest only — placements need a verified `mediaObjectId` before `POST /api/v1/news-portal/ad-placements` will accept them, and `awcms_blog_institutions.logo_media_id` does not exist in this repository's `apps/cms` yet.
-- **Three of the fourteen `daerah` regions** (Kotawaringin Barat, Sukamara, Barito Selatan) have no corresponding institution in [issue #57](https://github.com/ahliweb/awcms-one/issues/57)'s 24-institution seed, and a post reaches `/daerah/{slug}` only through an institution's `regionCode` (`apps/storefront/src/pages/daerah/[slug].astro`'s own header) — there is no `regionCode` field on a post through the public API. Articles for those three regions import correctly but will not appear on their region archive until a follow-up adds an institution (or the public API grows a post-level region field).
-- **The full production run** (all ~25,490 `berita_red` rows, every video, every ad, every logo) is deliberately deferred past this issue's own PR — see issue #58's acceptance list.
+# 3. Terms — build term-map.json from tools/out/seputarborneo/term-map-hints.json
+#    (this exporter's OWN guidance: which of B1's 8 top-level terms, or which
+#    UMUM child, each of the 45 legacy category names belongs to) plus a live
+#    GET /api/v1/blog/terms — { "<legacy category name>": "<term uuid>" }.
+
+# 4. Commit:
+bun run blog:legacy:import --file=../tools/out/seputarborneo/posts.ndjson \
+  --tenant=<uuid> --author=<uuid> --system=seputarborneo \
+  --media-map=media-map.json --term-map=term-map.json --commit
+
+# 5. Repeat 1-4 for videos.ndjson (no featuredImageSrc, so step 2 only
+#    matters if a video's description body itself has an <img>; no
+#    categories are exported for videos — see "What is NOT carried
+#    through" below).
+
+# 6. Redirects — this exporter's OWN tools/out/seputarborneo/redirects.json,
+#    NOT blog:legacy:redirects:import (see "Why this exporter builds its own
+#    redirects" below), posted directly:
+cd ..   # back to the repo root
+curl -X POST "$AWCMS_BASE_URL/api/v1/seo/redirects/import" \
+  -H "authorization: Bearer <token>" -H "x-awcms-tenant-id: <uuid>" \
+  -H "idempotency-key: seputarborneo-redirects-0" -H "content-type: application/json" \
+  -d '{"redirects": <first 200 entries of redirects.json>}'
+# repeat in batches of 200 (MAX_REDIRECT_IMPORT_ITEMS) until the array is exhausted.
+
+# 7. Institutions — blog:legacy:import has no mechanism to set institutionIds
+#    (see below). This exporter's OWN follow-up pass closes that gap, over
+#    the public API, from the repo root:
+bun run import:seputarborneo -- --assign-institutions
+
+# 8. Verify (from apps/cms, against a sitemap or URL list):
+cd apps/cms && bun run blog:legacy:cutover:verify --tenant=<uuid> --urls=<path>
+```
+
+### What `blog:legacy:import` still cannot do — and the two follow-ups this repo keeps
+
+1. **`institutionIds`.** `blog:legacy:import`'s own `main()` calls `syncPostTermAssignments` after each insert — never `syncPostInstitutionAssignments`, checked directly against `apps/cms/scripts/blog-legacy-import.ts` and `legacy-import-directory.ts`. A `DAERAH`/`MITRA BORNEO` article therefore imports with NO institution, and a post only reaches `/daerah/{slug}`/`/mitra/{slug}` through one (`apps/storefront/src/pages/daerah/[slug].astro`'s own header) — both are issue #58's own acceptance criterion. `bun run import:seputarborneo -- --assign-institutions` (step 7 above) closes this: it re-reads the dump, resolves each `DAERAH`/`MITRA BORNEO` article's institution by name, and `PATCH`es `institutionIds` on the already-imported post (found by its own exported `slug` — there is no slug-lookup route on the public API, so it pages the full post list once).
+2. **A legacy byline.** `--author=<uuid>` is ONE value for the whole run; `legacy-import-record.ts` has no per-row author/sidecar field at all. The legacy `user`/`admin` column is dropped entirely by this pipeline — a real, unavoidable gap of using the operator tool as intended, not something this exporter can invent a field for.
+
+### Why this exporter builds its own `redirects.json`, not `blog:legacy:redirects:import`
+
+That sibling script derives its source path by templating `{legacyId}`/`{slug}` — where `{slug}` is the STORED post slug (`listLegacyRedirectMappings`, checked directly). For the ~84 collision groups / ~171 rows `blog-legacy-import.ts`'s own comment names (two legacy articles sharing a title), the stored slug carries a `-{legacyId}` suffix this exporter's own `newPostSlug` adds — but the REAL legacy current-style URL was built from the plain, un-suffixed title, so the sibling script's templated redirect would be wrong for exactly those rows. `redirects.json` here is built straight from the raw `title` for both legacy URL forms (today's `/news/{id}-{slug}.html` and the pre-2.0 `/news/{id}_{title_with_underscores}.html`, the latter of which `blog:legacy:redirects:import` cannot produce AT ALL — its template has no `{title}` placeholder), targeting `/blog/{tenantCode}/{slug}` with the SAME final stored slug `blog:legacy:import` writes. `blog:legacy:redirects:import`, `blog:legacy:rubrik-redirects` (which replays the ALREADY-COMMITTED `apps/cms/data/seputarborneo-legacy/rubrik-redirects.json` category-level map — a separate, pre-existing asset this exporter does not touch), and `blog:legacy:article-paths` (built for `ahliweb/awcms-astro`'s edge-served cutover, and explicitly inert for `awcms_seo_redirects` — this repo's own mechanism, per `docs/routing.md`) remain available upstream tools; this exporter simply does not need them.
+
+### What is NOT carried through, at all
+
+- **A legacy byline** (see above).
+- **An embedded video player.** `berita_vid` has no content-block field in `legacy-import-record.ts` — only `bodyHtml`. `videos.ndjson` appends a plain `<a href="https://youtu.be/{id}">` link after the video's description text instead of an embedded `videoNews` block; the converter accepts a link (unlike an `<iframe>`, which it refuses outright), so the video imports as an article with a link to watch it, not a player.
+- **Ad placements** (`ikl_online`) and **institution logos** (`logo`, for [issue #59](https://github.com/ahliweb/awcms-one/issues/59)'s `logo_media_id`) — this exporter reads their row counts for the summary only; creating a placement needs a verified `mediaObjectId` (`POST /api/v1/news-portal/ad-placements`), and `awcms_blog_institutions.logo_media_id` does not exist in this repository's `apps/cms` yet.
+- **The full production run** (all ~25,490 `berita_red` rows, every video) is deliberately deferred past this issue's own PR — the manager runs it after issue #57 merges.
+
+### `newsletter_subscribers`, and everything else this exporter never reads
+
+`newsletter_subscribers` is counted and reported, never imported — no consent record survives the legacy signup form. `users`, `counter`, `renungan_rmd`, `tanya_jawab`, and `foto_berita` (the gallery table) are never read at all — see `docs/kamus-data.md`'s mapping table for why each one is excluded.
 
 ## Production PostgreSQL provisioning is not done
 

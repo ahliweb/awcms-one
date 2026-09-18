@@ -80,56 +80,58 @@ Both are new AWCMS tables carrying the legacy tables' own concepts forward: an i
 
 ## seputarborneo.com → `blog_content` / `seo_distribution` (issue #58)
 
-Column mapping for `tools/import-seputarborneo.ts` (`bun run import:seputarborneo`), which reads seputarborneo's legacy MariaDB archive and writes into `apps/cms`'s public `/api/v1/*` surface — never a legacy column list ported verbatim into a new table, since `blog_content`'s schema (Portable Text body, term/institution classification) already exists and predates this importer.
+Column mapping for `tools/import-seputarborneo.ts` (`bun run import:seputarborneo`), which reads seputarborneo's legacy MariaDB archive and EXPORTS it to `apps/cms`'s own operator pipeline (`bun run blog:legacy:import`, Issue #599/ADR-0114 in upstream awcms) — see `docs/deployment.md`'s "Importing seputarborneo" for the full runbook. Never a legacy column list ported verbatim into a new table: `blog_content`'s schema (Portable Text body, term/institution classification) already exists and predates this exporter.
 
-### `berita_red` → a `blog_content` post
+### `berita_red` → `tools/out/seputarborneo/posts.ndjson`, one `LegacyImportRecord` per line
 
-| Legacy column | AWCMS field | Notes |
+| Legacy column | NDJSON field (`legacy-import-record.ts`'s shape) | Notes |
 | --- | --- | --- |
-| `id_ber` | *(none — see below)* | No public field stores it; the redirect map is derived from the URL this importer builds, not a stored legacy id (see "What is NOT preserved" below) |
-| `judul` | `title`, and the slug source | `slug = sbSlug(judul)`, de-duplicated with `-{id_ber}` on collision |
+| `id_ber` | `legacyId` | `blog:legacy:import` writes this into `awcms_blog_posts.legacy_source_id` (`sql/138`) — a real, queryable provenance column, unlike this issue's first pass which had no way to write it |
+| `judul` | `title`, and the slug source | `slug = sbSlug(judul)`, de-duplicated with `-{id_ber}` on collision — written into the NDJSON `slug` field VERBATIM, and inserted verbatim by `importLegacyBlogPost` (checked directly) |
 | `sub_judul` | `excerpt` | |
-| `isi_berita` | `bodyPortableText` | CKEditor HTML → Portable Text via `tools/lib/html-to-portable-text.ts`; `<script>`/`<iframe>`/`<embed>`/`<object>` dropped entirely, an `<img>` becomes a `gallery` block only once a media object id is resolved, else dropped and reported |
-| `jenis_rubrik` + `kategori` | `termIds` / `institutionIds` | Normalized identically to `migrations/2026-09-02-normalize-legacy-taxonomy.sql`, then classified into a rubrik term, a `daerah` region, a `mitra-borneo` institution, or a `umum` child — see the importer's own `mapLegacyTaxonomy` |
-| `tgl` + `jam` | `publishedAt` (via `.../schedule`) or import time (via `.../publish`) | Asia/Jakarta (UTC+7, no DST) wall-clock → UTC instant; see `docs/deployment.md`'s "Importing seputarborneo" for why a PAST date cannot be backdated through the public API |
-| `user` | `contentJson.legacySource.author` | NOT the rendered byline — `authorByline` is derived from the authenticated tenant user on this API, not a free-text field; see the importer's own header |
-| `id_logo` | *(manifest only)* | Matched against `logo` by id; institution logos have no field on `apps/cms` yet — see [issue #59](https://github.com/ahliweb/awcms-one/issues/59) |
-| `foto_berita` | `featuredMediaId` once uploaded | Named in the import manifest's `mediaNeeded` list until then |
-| `status` | *(never read)* | The legacy site itself never read this column (`include/rubrik.php` uses the `berita_red_tayang` VIEW's own `tgl`+`jam` <= now filter instead) |
+| `isi_berita` | `bodyHtml` | The RAW legacy HTML, untouched — `blog:legacy:import` itself runs `convertLegacyHtmlToPortableText` (`<script>`/`<iframe>`/`<embed>`/`<object>` refused, an `<img>` needs `--media-map` or the whole row is refused) |
+| `jenis_rubrik` + `kategori` | `categories: [name]` | Normalized identically to `migrations/2026-09-02-normalize-legacy-taxonomy.sql`, then reduced to ONE flat legacy category name (`kategori` alone already disambiguates every non-plain-rubrik case) — resolved to a term via `--term-map`, built from this exporter's own `term-map-hints.json` |
+| `tgl` + `jam` | `publishedAt`, `status` | Asia/Jakarta (UTC+7, no DST) wall-clock → UTC instant, written straight into the NDJSON as an ISO string — `blog:legacy:import` backdates `published_at` for real, unlike the public API |
+| `user` | *(dropped)* | `legacy-import-record.ts` has no per-row author/sidecar field, and `--author=<uuid>` is one value for the whole run — a real, unavoidable gap, see `docs/deployment.md` |
+| `id_logo` | *(not in this NDJSON)* | Matched against `logo` separately, for issue #59 — see below |
+| `foto_berita` | `featuredImageSrc` | `blog:legacy:import` REFUSES the whole row if this is set and `--media-map` does not resolve it — every one of the ~25,489 rows carries one, so a media upload pass is a hard precondition of any commit, not an optional nicety |
+| `status` (the legacy column) | *(never read)* | The legacy site itself never read it (`include/rubrik.php` uses the `berita_red_tayang` VIEW's own `tgl`+`jam` <= now filter instead) — not to be confused with the NDJSON's OWN `status` field above, which this exporter computes from `tgl`/`jam` |
 | `sub_up`, `text_foto`, `uk`, `tp`, `rate_view`, `like_view`, `unlike_viuew`, `hari`, `bln` | *(not imported)* | No corresponding concept on `blog_content` |
 
-**What is NOT preserved:** `id_ber` itself. `apps/cms` DOES carry a `legacy_source_id`/`legacy_source_system` pair on `awcms_blog_posts` (`sql/138`) for exactly this purpose, but nothing on the PUBLIC API this importer is restricted to (AGENTS.md "Workspace boundaries") ever writes it — only the internal `bun run blog:legacy:import` pipeline does, from inside `apps/cms`. This importer's redirects (below) are built directly from the row at import time instead of being derived from a stored id afterwards.
+**Institutions, separately.** `blog:legacy:import` calls `syncPostTermAssignments` but never `syncPostInstitutionAssignments` (checked directly) — a `DAERAH`/`MITRA BORNEO` article imports with no institution at all. `bun run import:seputarborneo -- --assign-institutions` closes this over the public API AFTER `blog:legacy:import --commit`, `PATCH`ing `institutionIds` by looking the post up by its own exported `slug`.
 
-### `awcms_seo_redirects` (origin `legacy_blog`)
+### `awcms_seo_redirects` — `tools/out/seputarborneo/redirects.json` (origin `import`)
 
-One row per importable `berita_red`/`berita_vid` article, `target` set to the CMS's own canonical `/blog/{tenantCode}/{slug}` URL (never a guessed storefront path — `docs/routing.md`'s own documented contract for what `penyaji.mjs`'s legacy-redirect rebuild expects):
+Built directly by this exporter, not derived through `blog:legacy:redirects:import` — see `docs/deployment.md` for why that sibling script's own `{legacyId}`/`{slug}` templating is wrong for the ~171 rows with a collision-suffixed stored slug. One entry per legacy URL form, targeting `/blog/{tenantCode}/{slug}` (the SAME slug `blog:legacy:import` stores):
 
 | Source path | Built from |
 | --- | --- |
 | `/news/{id_ber}-{sbSlug(judul)}.html` | Today's (post-issue-#6) URL shape |
-| `/news/{id_ber}_{judul with spaces→underscores, rawurlencode'd}.html` | The pre-2.0 shape a search engine may still have indexed |
-| `/video/?video={id_vid}-{sbSlug(judul_vid)}.html` | `berita_vid`'s own URL shape |
+| `/news/{id_ber}_{judul with spaces→underscores, rawurlencode'd}.html` | The pre-2.0 shape a search engine may still have indexed — built from the RAW title, never the stored slug |
+| `/video/?video={id_vid}-{sbSlug(judul_vid)}.html` | `berita_vid`'s own URL shape (no pre-2.0 form — the table postdates that rewrite) |
 
-### `berita_vid` → a `blog_content` video post
+Posted via `POST /api/v1/seo/redirects/import`, chunked to `MAX_REDIRECT_IMPORT_ITEMS` (200).
 
-| Legacy column | AWCMS field | Notes |
+### `berita_vid` → `tools/out/seputarborneo/videos.ndjson`
+
+| Legacy column | NDJSON field | Notes |
 | --- | --- | --- |
 | `judul_vid` | `title`, slug source | Same `sbSlug`/collision rule as `berita_red` |
-| `link` | a `videoNews` block's `videoId` | Normalized via a YouTube-id/URL parser kept in exact step with `apps/cms`'s own `normalizeYouTubeVideoId` |
-| `text_vid` | `bodyPortableText` (description, before the video block) | Same HTML→Portable Text conversion as `isi_berita` |
-| `tgl` + `jam` | `publishedAt` | Legacy-formatted (`YYMMDD`/`HHMMSS`, per seputarborneo's own video-time-normalization migrations), reformatted before the same date logic `berita_red` uses |
-| `admin` | `contentJson.legacySource.author` | Same caveat as `berita_red`'s `user` |
-| `kategori`, `status` | *(not imported)* | No per-video taxonomy or status concept carried over |
+| `link` | a plain link inside `bodyHtml` | `legacy-import-record.ts` has NO content-block field — only `bodyHtml` — so there is nowhere to put an embedded `videoNews` block through this pipeline. Normalized via a YouTube-id/URL parser kept in exact step with `apps/cms`'s own `normalizeYouTubeVideoId`, then appended as `<a href="https://youtu.be/{id}">` — a real, documented degradation (link, not embed) |
+| `text_vid` | `bodyHtml` (prefix, before the link) | Raw HTML, untouched, same as `isi_berita` |
+| `tgl` + `jam` | `publishedAt`, `status` | Legacy-formatted (`YYMMDD`/`HHMMSS`, per seputarborneo's own video-time-normalization migrations), reformatted before the same date logic `berita_red` uses |
+| `admin` | *(dropped)* | Same caveat as `berita_red`'s `user` |
+| `kategori`, `status` (legacy column) | *(not imported)* | No per-video taxonomy or status concept carried over by this exporter |
 
 ### `ikl_online` → an ad placement (`POST /api/v1/news-portal/ad-placements`)
 
-Read into the import manifest only — creation requires a verified `mediaObjectId`, and `img_ikl` (the creative filename) is not fetched or uploaded by this importer (see `docs/deployment.md`).
+Row count read for the export summary only — this exporter writes no file for it. Creation requires a verified `mediaObjectId`, and `img_ikl` (the creative filename) is not fetched or uploaded here (see `docs/deployment.md`).
 
-### `logo` → institution logo manifest (for issue #59)
+### `logo` → institution logos (for issue #59)
 
-Read into the import manifest, matched by `nama` against [issue #57](https://github.com/ahliweb/awcms-one/issues/57)'s 24 seeded institutions — `awcms_blog_institutions` carries no `logo_media_id` column in this repository's `apps/cms` yet (that lands via [issue #59](https://github.com/ahliweb/awcms-one/issues/59)'s upstream subtree pull), so nothing here calls an API for it today.
+Row count read for the export summary only. `awcms_blog_institutions` carries no `logo_media_id` column in this repository's `apps/cms` yet (that lands via [issue #59](https://github.com/ahliweb/awcms-one/issues/59)'s upstream subtree pull); matching `nama` against [issue #57](https://github.com/ahliweb/awcms-one/issues/57)'s 24 seeded institutions is that issue's to do once the column exists.
 
-### `config` → `PUT /api/v1/site-profile` (a full-replace merge with whatever `bun run db:seed:cms` already set)
+### `config` → `tools/out/seputarborneo/site-profile.json`, merged into `PUT /api/v1/site-profile`
 
 | Legacy column | AWCMS field | Notes |
 | --- | --- | --- |
@@ -138,12 +140,14 @@ Read into the import manifest, matched by `nama` against [issue #57](https://git
 | `alamat` | `editorialAddress` | |
 | `email` | `contactEmail` | |
 | `wasupport` | `whatsappNumber` | |
-| `fb`/`tw`/`ig`/`yt`/`tt`/`th` | `socialLinks[]` | Platform labels `facebook`/`x`/`instagram`/`youtube`/`tiktok`/`threads`; only `http(s)` values pass `/api/v1/site-profile`'s own absolute-URL validator (any other value is silently omitted, never sent) |
+| `fb`/`tw`/`ig`/`yt`/`tt`/`th` | `socialLinks[]` | Platform labels `facebook`/`x`/`instagram`/`youtube`/`tiktok`/`threads`; only `http(s)` values pass `/api/v1/site-profile`'s own absolute-URL validator (any other value is silently omitted from this exporter's own output) |
 | `title`, `redaksi`, `link_coppy`, `ico`, `logo` | *(not applied)* | No field on `/api/v1/site-profile` today (checked directly against `site-profile-validation.ts`) |
+
+`PUT /api/v1/site-profile` is a full replace, so applying `site-profile.json` means `GET`ting the current profile first and merging (`bun run db:seed:cms`'s own fields like `logoMediaId` survive; the fields above overwrite).
 
 ### Not imported at all, and why
 
-- **`users`** — identities are not migrated (PII); the seputarborneo admin accounts have no equivalent AWCMS user, and the article's `user`/`admin` column becomes provenance text (above), never a login.
+- **`users`** — identities are not migrated (PII); the seputarborneo admin accounts have no equivalent AWCMS user, and the article's `user`/`admin` column is dropped entirely (above), never a login.
 - **`counter`** — visitor IP addresses; no consent record, no purpose once BjekMart/seputarborneo runs on `visitor-analytics` (issue #56/A10) instead.
 - **`newsletter_subscribers`** — counted and reported, never imported: no consent record survives from the legacy signup form, and `apps/cms`'s own newsletter is double opt-in (epic #46's own Decision 2). A later `--with-subscribers` flag may add them as `pending` after a legal decision, per issue #58's own Scope.
 - **`renungan_rmd`, `tanya_jawab`** — dead tables on the live site (nothing links to them).

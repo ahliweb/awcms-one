@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](deployment.md)
 
-<!-- i18n-source-hash: sha256:b5c7b7bfbfa56522de4094b0e741d0ee788063d6ee31f748508ea42a79c1b77e -->
+<!-- i18n-source-hash: sha256:f574bb5285bd28874844307659e75f41b775fe9ec5df8fada6686c785b17faaf -->
 
 # Deployment
 
@@ -123,34 +123,95 @@ Gambar produk, media slider, dan gambar bukti konfirmasi-pembayaran di-resolve l
 
 ## Mengimpor seputarborneo (issue #58)
 
-`tools/import-seputarborneo.ts` (`bun run import:seputarborneo`) mengimpor arsip MariaDB lama seputarborneo.com — `berita_red` (artikel), `berita_vid` (post video), `ikl_online` (materi iklan), `logo` (logo instansi), `config` (profil situs) — ke tenant `borneojek-mart` yang SAMA yang di-bootstrap [`tools/seed-borneojek-mart.ts`](#basis-data-lokal-issue-25), lewat permukaan publik `/api/v1/*` tenant itu. `users`, `counter`, `newsletter_subscribers`, `renungan_rmd`, `tanya_jawab`, dan `foto_berita` paling banter hanya dibaca untuk dihitung (atau sama sekali tidak dibaca) — tidak pernah diimpor; lihat header skrip itu sendiri untuk alasan tiap satu dikecualikan (PII, tidak ada catatan persetujuan, atau tabel mati/tak terpakai).
+`tools/import-seputarborneo.ts` (`bun run import:seputarborneo`) adalah EXPORTER: ia membaca arsip MariaDB lama seputarborneo.com dan menulis berkas input yang dibutuhkan pipeline operator milik `apps/cms` sendiri untuk pekerjaan persis ini — `bun run blog:legacy:import` (`apps/cms/scripts/blog-legacy-import.ts`, Issue #599/ADR-0114 in upstream awcms). Ia tidak pernah melakukan panggilan jaringan dan tidak butuh `apps/cms` berjalan sama sekali; impor sesungguhnya berjalan DARI DALAM `apps/cms`, terhadap tenant `borneojek-mart` yang SAMA yang di-bootstrap [`tools/seed-borneojek-mart.ts`](#basis-data-lokal-issue-25).
 
-**Dump tidak pernah disalin ke repositori ini, tidak pernah di-commit, dan tidak pernah dicetak.** `tools/lib/mysql-dump-reader.ts` men-stream-nya — `Bun.file(...).stream()` lewat `DecompressionStream("gzip")` — satu baris sekaligus; arsip 228 MB (setelah dekompresi) tidak pernah ditahan utuh di memori, dan baris log skrip ini hanya mencetak angka, tidak pernah nilai judul/isi/kategori satu baris pun.
+**Dump tidak pernah disalin ke repositori ini, tidak pernah di-commit, dan tidak pernah dicetak ke console.** `tools/lib/mysql-dump-reader.ts` men-stream-nya — `Bun.file(...).stream()` lewat `DecompressionStream("gzip")` — satu baris sekaligus; arsip 228 MB (setelah dekompresi) tidak pernah ditahan utuh di memori, dan output console skrip ini hanya mencetak angka. Berkas yang ditulisnya di bawah `tools/out/seputarborneo/` (git-ignored) MEMANG membawa isi baris — itulah seluruh tujuannya, karena itu adalah format input `blog:legacy:import` sendiri — tapi tetap tinggal di mesin yang menjalankan export.
+
+### Kenapa exporter, bukan klien API langsung
+
+Versi awal tool ini memanggil `POST /api/v1/blog/posts` langsung. `blog:legacy:import` melakukan dua hal dengan benar yang tidak bisa dilakukan route publik mana pun: ia menerima `publishedAt` yang dipasok pemanggil untuk tanggal yang SUDAH LEWAT (dicek langsung — tidak ada route `blog/posts/*` yang bisa), dan ia menulis `legacy_source_id`/`legacy_source_system` (`sql/138`) sehingga run ulang idempoten lewat provenance, bukan tebakan dari slug. Ia juga mengonversi `bodyHtml` ke Portable Text sendiri; exporter ini tidak menduplikasi converter itu — setiap nilai `bodyHtml` yang ditulisnya adalah HTML lawas apa adanya, jadi apa yang ditolak pipeline itu persis apa yang ada di arsip.
+
+### Runbook
 
 ```bash
 # .env: set SEPUTARBORNEO_DUMP ke path absolut dump yang sudah dikompresi gzip.
-
-# Aman di mesin yang sama sekali tidak menjalankan apps/cms — hanya membaca dump.
-bun run import:seputarborneo -- --dry-run
-
-# Terhadap tenant yang SUDAH di-seed (bun run db:seed:cms dulu, apps/cms
-# berjalan, SEED_OWNER_PASSWORD di-set ke password yang dicetak run seed itu):
-bun run import:seputarborneo -- --commit --limit=200
+bun run import:seputarborneo                     # menulis tools/out/seputarborneo/*, tanpa panggilan jaringan
+bun run import:seputarborneo -- --limit=200       # batasi baris berita_red, untuk run pertama
 ```
 
-`--dry-run` (default setiap kali `--commit` absen) mencetak jumlah per rubrik/wilayah-atau-jenis-mitra, per tahun, dan setiap nilai taksonomi yang tak terpetakan — semuanya bukan isi baris, dan semuanya juga ada di `tools/out/seputarborneo-import-manifest.json` (git-ignored). `--limit=<n>` membatasi jumlah baris `berita_red` yang diproses; `--since=<yyyy-mm-dd>` memfilter berdasarkan `tgl`.
+Lalu, dari `apps/cms` (terhadap tenant yang SUDAH di-seed dan SUDAH berjalan — `bun run db:seed:cms` dan seed taksonomi seputarborneo, [issue #57](https://github.com/ahliweb/awcms-one/issues/57), dulu):
 
-### Dua keterbatasan nyata API publik, ditemukan dan didokumentasikan alih-alih disiasati diam-diam
+```bash
+cd apps/cms
 
-1. **Tidak ada field publik yang mem-backdate `published_at`.** `apps/cms` punya pipeline NDJSON internal `bun run blog:legacy:import` (`apps/cms/scripts/blog-legacy-import.ts`) yang menulis tanggal historis nyata langsung ke basis data — dibangun, menurut docblock-nya sendiri, memakai arsip seputarborneo ini persis sebagai kasus acuannya. Pipeline itu berjalan DI DALAM `apps/cms`, yang merupakan batas workspace yang tidak boleh dilewati tool repositori ini (AGENTS.md "Workspace boundaries"). `POST /api/v1/blog/posts/{id}/schedule` MENERIMA `scheduledAt` di masa depan, jadi artikel lama bertanggal masa depan tetap mempertahankan tanggal aslinya; yang sudah lewat malah diterbitkan pada WAKTU IMPOR. Lihat header `tools/import-seputarborneo.ts` sendiri untuk penalaran lengkapnya.
-2. **Tidak ada field publik yang men-set byline artikel yang dirender.** `authorByline` diturunkan dari tenant user yang terautentikasi, tidak pernah dari input per-post. Kolom `user`/`admin` lama ditulis ke `contentJson.legacySource.author` sebagai gantinya, untuk provenance — tidak dirender sebagai byline artikel.
+# 1. Preview (default — tidak ada yang ditulis tanpa --commit):
+bun run blog:legacy:import --file=../tools/out/seputarborneo/posts.ndjson \
+  --tenant=<uuid> --author=<uuid> --system=seputarborneo
 
-### Apa yang masih butuh manusia, atau issue susulan
+# 2. Daftar unggah — setiap foto utama foto_berita DAN <img> inline mana pun
+#    yang ditolak converter (ini daftar KANONIK, dari penolakan converter
+#    sendiri; exporter ini tidak memindai ulang HTML-nya sendiri, supaya
+#    tidak ada scanner kedua yang menyimpang dari yang penolakannya
+#    sungguh-sungguh berarti):
+bun run blog:legacy:import --file=../tools/out/seputarborneo/posts.ndjson \
+  --tenant=<uuid> --author=<uuid> --system=seputarborneo \
+  --images=upload-set.json
+# Unggah setiap berkas lewat /admin/media, lalu bangun media-map.json:
+# { "<src>": "<media object uuid>" }
 
-- **Media.** `--media` (dengan `SEPUTARBORNEO_FILES` di-set) hanya MENYEBUTKAN apa yang masih perlu diunggah (daftar `mediaNeeded` di `tools/out/seputarborneo-import-manifest.json`) — tidak mengunggah apa pun sendiri, handoff yang sama yang dipakai `blog:legacy:import --images`/`--media-map` milik `apps/cms` sendiri dan untuk alasan yang sama (`/admin/media` adalah satu-satunya jalur dengan MIME-sniffing dan batas ukuran; skrip yang mengambil byte pihak ketiga di sisi server adalah primitif request-forgery). Setiap foto utama `foto_berita` pada baris `berita_red` butuh ini dulu sebelum artikel itu bisa dibuat dengan `featuredMediaId`.
-- **Penempatan iklan** (`ikl_online`) dan **logo instansi** (`logo`, untuk [issue #59](https://github.com/ahliweb/awcms-one/issues/59)'s `logo_media_id`) hanya dibaca ke manifest — penempatan butuh `mediaObjectId` terverifikasi sebelum `POST /api/v1/news-portal/ad-placements` menerimanya, dan `awcms_blog_institutions.logo_media_id` belum ada di `apps/cms` repositori ini.
-- **Tiga dari empat belas wilayah `daerah`** (Kotawaringin Barat, Sukamara, Barito Selatan) tidak punya instansi yang berpadanan di seed 24-instansi [issue #57](https://github.com/ahliweb/awcms-one/issues/57), dan sebuah post hanya mencapai `/daerah/{slug}` lewat `regionCode` sebuah instansi (header `apps/storefront/src/pages/daerah/[slug].astro` sendiri) — tidak ada field `regionCode` pada post lewat API publik. Artikel untuk ketiga wilayah itu tetap terimpor dengan benar tapi tidak akan muncul di arsip wilayahnya sampai ada issue susulan yang menambahkan instansi (atau API publik mendapat field wilayah tingkat-post).
-- **Run produksi penuh** (seluruh ~25.490 baris `berita_red`, setiap video, setiap iklan, setiap logo) sengaja ditunda melewati PR issue #58 sendiri — lihat daftar acceptance issue #58.
+# 3. Term — bangun term-map.json dari tools/out/seputarborneo/term-map-hints.json
+#    (panduan MILIK exporter ini sendiri: term mana dari 8 term teratas B1,
+#    atau anak UMUM mana, milik tiap 45 nama kategori lawas) plus
+#    GET /api/v1/blog/terms live — { "<nama kategori lawas>": "<term uuid>" }.
+
+# 4. Commit:
+bun run blog:legacy:import --file=../tools/out/seputarborneo/posts.ndjson \
+  --tenant=<uuid> --author=<uuid> --system=seputarborneo \
+  --media-map=media-map.json --term-map=term-map.json --commit
+
+# 5. Ulangi 1-4 untuk videos.ndjson (tidak ada featuredImageSrc, jadi langkah
+#    2 hanya penting bila isi deskripsi video punya <img>; tidak ada
+#    categories yang di-export untuk video — lihat "Apa yang TIDAK
+#    dibawa" di bawah).
+
+# 6. Redirect — redirects.json MILIK exporter ini SENDIRI, BUKAN
+#    blog:legacy:redirects:import (lihat "Kenapa exporter ini membangun
+#    redirect sendiri" di bawah), diposting langsung:
+cd ..   # kembali ke root repo
+curl -X POST "$AWCMS_BASE_URL/api/v1/seo/redirects/import" \
+  -H "authorization: Bearer <token>" -H "x-awcms-tenant-id: <uuid>" \
+  -H "idempotency-key: seputarborneo-redirects-0" -H "content-type: application/json" \
+  -d '{"redirects": <200 entri pertama redirects.json>}'
+# ulangi per batch 200 (MAX_REDIRECT_IMPORT_ITEMS) sampai array habis.
+
+# 7. Instansi — blog:legacy:import tidak punya mekanisme untuk men-set
+#    institutionIds (lihat di bawah). Pass susulan MILIK exporter ini
+#    SENDIRI menutup celah itu, lewat API publik, dari root repo:
+bun run import:seputarborneo -- --assign-institutions
+
+# 8. Verifikasi (dari apps/cms, terhadap sitemap atau daftar URL):
+cd apps/cms && bun run blog:legacy:cutover:verify --tenant=<uuid> --urls=<path>
+```
+
+### Apa yang masih TIDAK bisa dilakukan `blog:legacy:import` — dan dua susulan yang tetap dijaga repositori ini
+
+1. **`institutionIds`.** `main()` milik `blog:legacy:import` sendiri memanggil `syncPostTermAssignments` setelah tiap insert — tidak pernah `syncPostInstitutionAssignments`, dicek langsung terhadap `apps/cms/scripts/blog-legacy-import.ts` dan `legacy-import-directory.ts`. Artikel `DAERAH`/`MITRA BORNEO` karenanya terimpor TANPA instansi, dan sebuah post hanya mencapai `/daerah/{slug}`/`/mitra/{slug}` lewat satu (header `apps/storefront/src/pages/daerah/[slug].astro` sendiri) — keduanya adalah acceptance criterion issue #58 sendiri. `bun run import:seputarborneo -- --assign-institutions` (langkah 7 di atas) menutup ini: ia membaca ulang dump, me-resolve instansi tiap artikel `DAERAH`/`MITRA BORNEO` lewat nama, lalu `PATCH` `institutionIds` pada post yang sudah terimpor (ditemukan lewat `slug` hasil export-nya sendiri — tidak ada route pencarian-lewat-slug di API publik, jadi ia melakukan paging seluruh daftar post sekali).
+2. **Byline lawas.** `--author=<uuid>` adalah SATU nilai untuk seluruh run; `legacy-import-record.ts` sama sekali tidak punya field author/sidecar per-baris. Kolom `user`/`admin` lawas dibuang seluruhnya oleh pipeline ini — celah nyata dan tak terhindarkan dari memakai tool operator sesuai maksudnya, bukan sesuatu yang bisa dikarang-karang exporter ini dengan field baru.
+
+### Kenapa exporter ini membangun `redirects.json` sendiri, bukan `blog:legacy:redirects:import`
+
+Skrip sejawat itu menurunkan path sumbernya lewat templating `{legacyId}`/`{slug}` — dengan `{slug}` adalah slug post TERSIMPAN (`listLegacyRedirectMappings`, dicek langsung). Untuk ~84 grup bentrok / ~171 baris yang disebut komentar `blog-legacy-import.ts` sendiri (dua artikel lawas berbagi judul), slug tersimpan membawa akhiran `-{legacyId}` yang ditambahkan `newPostSlug` milik exporter ini sendiri — tapi URL current-style lawas yang SESUNGGUHNYA dibangun dari judul polos tanpa akhiran, jadi redirect ber-template skrip sejawat itu akan salah persis untuk baris-baris itu. `redirects.json` di sini dibangun langsung dari `title` mentah untuk kedua bentuk URL lawas (bentuk hari ini `/news/{id}-{slug}.html` dan bentuk pra-2.0 `/news/{id}_{judul_dengan_underscore}.html`, yang disebut terakhir SAMA SEKALI tidak bisa dihasilkan `blog:legacy:redirects:import` — template-nya tidak punya placeholder `{title}`), menyasar `/blog/{tenantCode}/{slug}` dengan slug tersimpan akhir yang SAMA yang ditulis `blog:legacy:import`. `blog:legacy:redirects:import`, `blog:legacy:rubrik-redirects` (yang memutar ulang peta level-kategori `apps/cms/data/seputarborneo-legacy/rubrik-redirects.json` yang SUDAH TER-COMMIT — aset terpisah yang sudah ada duluan yang tidak disentuh exporter ini), dan `blog:legacy:article-paths` (dibangun untuk cutover ber-edge-serve `ahliweb/awcms-astro`, dan secara eksplisit inert untuk `awcms_seo_redirects` — mekanisme milik repositori ini sendiri, sesuai `docs/routing.md`) tetap tersedia sebagai tool upstream; exporter ini sederhananya tidak membutuhkannya.
+
+### Apa yang SAMA SEKALI TIDAK dibawa
+
+- **Byline lawas** (lihat di atas).
+- **Pemutar video ter-embed.** `berita_vid` tidak punya field content-block di `legacy-import-record.ts` — hanya `bodyHtml`. `videos.ndjson` menambahkan link polos `<a href="https://youtu.be/{id}">` setelah teks deskripsi video, bukan blok `videoNews` ter-embed; converter menerima link (tidak seperti `<iframe>`, yang ditolaknya mentah-mentah), jadi video terimpor sebagai artikel dengan link untuk menontonnya, bukan pemutar.
+- **Penempatan iklan** (`ikl_online`) dan **logo instansi** (`logo`, untuk `logo_media_id` [issue #59](https://github.com/ahliweb/awcms-one/issues/59)) — exporter ini hanya membaca jumlah barisnya untuk ringkasan; membuat penempatan butuh `mediaObjectId` terverifikasi (`POST /api/v1/news-portal/ad-placements`), dan `awcms_blog_institutions.logo_media_id` belum ada di `apps/cms` repositori ini.
+- **Run produksi penuh** (seluruh ~25.490 baris `berita_red`, setiap video) sengaja ditunda melewati PR issue #58 sendiri — manager menjalankannya setelah issue #57 merge.
+
+### `newsletter_subscribers`, dan semua yang lain yang tidak pernah dibaca exporter ini
+
+`newsletter_subscribers` dihitung dan dilaporkan, tidak pernah diimpor — tidak ada catatan persetujuan yang bertahan dari formulir pendaftaran lawas. `users`, `counter`, `renungan_rmd`, `tanya_jawab`, dan `foto_berita` (tabel galeri) sama sekali tidak pernah dibaca — lihat tabel pemetaan `docs/kamus-data.md` untuk alasan masing-masing dikecualikan.
 
 ## Penyediaan PostgreSQL produksi belum dilakukan
 
