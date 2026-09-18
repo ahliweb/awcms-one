@@ -1245,29 +1245,15 @@ async function applySiteProfile(session: Session): Promise<void> {
 // duplicate submit mints a second credential — see
 // `access/machine-credentials/index.ts`'s own docblock), so THIS script is
 // what makes re-running it produce no duplicate: skip if a live, non-revoked
-// credential with this name already exists.
+// credential with this name already exists AND its scope matches; rotate
+// (revoke + reissue) if the name matches but the scope has drifted — see
+// `ensureMachineCredential`'s docblock for why that is the only option.
 // ---------------------------------------------------------------------------
 
-async function ensureMachineCredential(
+async function issueMachineCredentialFor(
   session: Session,
   ownerTenantUserId: string
-): Promise<void> {
-  const list = await apiCall<{
-    items: Array<{ name: string; status: "active" | "expired" | "revoked" }>;
-  }>("GET", "/api/v1/access/machine-credentials", { session });
-  assertOk("GET /api/v1/access/machine-credentials", list);
-
-  const alreadyIssued = list.data.items.some(
-    (item) => item.name === MACHINE_CREDENTIAL_NAME && item.status === "active"
-  );
-
-  if (alreadyIssued) {
-    console.log(
-      `skip machine credential "${MACHINE_CREDENTIAL_NAME}" (already exists, live)`
-    );
-    return;
-  }
-
+): Promise<{ id: string; token: string }> {
   const expiresAt = new Date(
     Date.now() + MACHINE_CREDENTIAL_LIFETIME_DAYS * 24 * 60 * 60 * 1000
   );
@@ -1289,12 +1275,118 @@ async function ensureMachineCredential(
   );
   assertOk("POST /api/v1/access/machine-credentials", result);
 
+  return { id: result.data.credential.id, token: result.data.token };
+}
+
+/**
+ * Issues (or, on a tenant seeded before this scope grew, ROTATES) the
+ * storefront build credential.
+ *
+ * ## Why rotation, not "skip because a same-named credential exists"
+ *
+ * `GET /api/v1/access/machine-credentials` / `POST .../machine-credentials`
+ * (`apps/cms/src/pages/api/v1/access/machine-credentials/index.ts`) and
+ * `POST .../{id}/revoke` (`.../[id]/revoke.ts`) are the ONLY two mutations
+ * this surface exposes — there is no PATCH that widens an existing
+ * credential's `allowedPermissionKeys` in place (verified against the route
+ * directory, not assumed). A prior version of this function skipped whenever
+ * a same-named ACTIVE credential already existed, which meant a tenant
+ * seeded before issue #57 added the 8 news-surface read keys above kept its
+ * ORIGINAL, narrower scope forever — the exact 403 this PR set out to close
+ * stayed open on every environment except a fresh `db:reset`.
+ *
+ * The fix compares the live credential's `allowedPermissionKeys` (order
+ * doesn't matter — this script's own list above changes shape as new PRs
+ * land, and both sides are worth normalizing rather than trusting either
+ * is already sorted) against `MACHINE_CREDENTIAL_PERMISSION_KEYS`. A match
+ * skips, unchanged. A mismatch revokes the stale credential
+ * (`POST .../{id}/revoke` — the only way to retire one; there is no
+ * "update scope" verb) and issues a fresh one with the current scope, then
+ * prints the new token with an explicit, impossible-to-miss instruction:
+ * the OLD token now fails every request (revocation is effective on the
+ * very next request per that route's own docblock), so whatever process
+ * reads `AWCMS_API_TOKEN` — `apps/storefront`'s build env, a CI secret, an
+ * operator's `.env` — must be updated to the new value before the next
+ * build.
+ */
+async function ensureMachineCredential(
+  session: Session,
+  ownerTenantUserId: string
+): Promise<void> {
+  const list = await apiCall<{
+    items: Array<{
+      id: string;
+      name: string;
+      status: "active" | "expired" | "revoked";
+      allowedPermissionKeys: string[];
+    }>;
+  }>("GET", "/api/v1/access/machine-credentials", { session });
+  assertOk("GET /api/v1/access/machine-credentials", list);
+
+  const existing = list.data.items.find(
+    (item) => item.name === MACHINE_CREDENTIAL_NAME && item.status === "active"
+  );
+
+  const wantedKeys = [...MACHINE_CREDENTIAL_PERMISSION_KEYS].sort();
+
+  if (existing) {
+    const liveKeys = [...existing.allowedPermissionKeys].sort();
+    const scopeMatches =
+      liveKeys.length === wantedKeys.length &&
+      liveKeys.every((key, index) => key === wantedKeys[index]);
+
+    if (scopeMatches) {
+      console.log(
+        `skip machine credential "${MACHINE_CREDENTIAL_NAME}" (already exists, scope matches)`
+      );
+      return;
+    }
+
+    console.log(
+      `rotate machine credential "${MACHINE_CREDENTIAL_NAME}" — live scope is ` +
+        `[${liveKeys.join(", ")}], this seed now wants ` +
+        `[${wantedKeys.join(", ")}]; revoking id=${existing.id} and issuing a replacement`
+    );
+
+    const revoked = await apiCall(
+      "POST",
+      `/api/v1/access/machine-credentials/${existing.id}/revoke`,
+      { session }
+    );
+    assertOk(
+      `POST /api/v1/access/machine-credentials/${existing.id}/revoke`,
+      revoked
+    );
+
+    const issued = await issueMachineCredentialFor(session, ownerTenantUserId);
+
+    console.log(
+      `apply machine credential "${MACHINE_CREDENTIAL_NAME}" — id=${issued.id} ` +
+        `scope=[${MACHINE_CREDENTIAL_PERMISSION_KEYS.join(", ")}]`
+    );
+    console.log(
+      `AWCMS_API_TOKEN ROTATED (SHOWN ONCE, not stored by this script): ${issued.token}`
+    );
+    console.log(
+      `ACTION REQUIRED: the previous token for "${MACHINE_CREDENTIAL_NAME}" ` +
+        "(id=" +
+        existing.id +
+        ") is now revoked and fails on its next use. Update every place that " +
+        "reads AWCMS_API_TOKEN for this tenant's storefront build — a local " +
+        "`.env`, a CI secret, a deployed build's environment — to the value " +
+        "printed above before the next `apps/storefront` build runs."
+    );
+    return;
+  }
+
+  const issued = await issueMachineCredentialFor(session, ownerTenantUserId);
+
   console.log(
-    `apply machine credential "${MACHINE_CREDENTIAL_NAME}" — id=${result.data.credential.id} ` +
+    `apply machine credential "${MACHINE_CREDENTIAL_NAME}" — id=${issued.id} ` +
       `scope=[${MACHINE_CREDENTIAL_PERMISSION_KEYS.join(", ")}]`
   );
   console.log(
-    `AWCMS_API_TOKEN (SHOWN ONCE, not stored by this script): ${result.data.token}`
+    `AWCMS_API_TOKEN (SHOWN ONCE, not stored by this script): ${issued.token}`
   );
 }
 
@@ -1441,12 +1533,21 @@ function namesMatchIgnoringSpaces(a: string, b: string): boolean {
   return a.toUpperCase().replace(/\s+/g, "").includes(b.toUpperCase().replace(/\s+/g, ""));
 }
 
-async function resolveRegionCode(
+/**
+ * Fetches ONE page of `GET /api/v1/idn-regions/regions` for a level/parent
+ * pair — never per-name. `limit=200` already covers the largest set this
+ * script ever asks for (Kalimantan Tengah's 14 regencies/cities, well under
+ * any province's real count), so paging further is not needed; the fix this
+ * function exists for is call COUNT, not page size (review finding on #66:
+ * `resolveKaltengRegions` used to issue 14 identical
+ * `level=2&parentCode=<same code>` requests — one per name — for a result
+ * set that fits in a single page).
+ */
+async function fetchRegionItems(
   session: Session,
   level: 1 | 2,
-  name: string,
   parentCode: string | null
-): Promise<string> {
+): Promise<RegionListResponse["items"]> {
   const params = new URLSearchParams({
     level: String(level),
     limit: "200"
@@ -1458,23 +1559,28 @@ async function resolveRegionCode(
     `/api/v1/idn-regions/regions?${params.toString()}`,
     { session }
   );
-  assertOk(`GET /api/v1/idn-regions/regions (${name})`, result);
+  assertOk(`GET /api/v1/idn-regions/regions (level=${level})`, result);
 
   if (result.data.reason) {
     throw new Error(
       `idn_admin_regions has no resolvable dataset (reason="${result.data.reason}") ` +
-        "while resolving region \"" +
-        name +
-        "\" — run `cd apps/cms && bun run idn-regions:import --commit` then " +
+        `while listing level ${level} regions — run ` +
+        "`cd apps/cms && bun run idn-regions:import --commit` then " +
         "`bun run idn-regions:activate -- --dataset <code printed above> --commit` " +
         "before seeding institutions (see docs/deployment.md's \"Local database\" " +
         "section)."
     );
   }
 
-  const matches = result.data.items.filter((item) =>
-    namesMatchIgnoringSpaces(item.name, name)
-  );
+  return result.data.items;
+}
+
+function matchRegionCode(
+  items: RegionListResponse["items"],
+  level: 1 | 2,
+  name: string
+): string {
+  const matches = items.filter((item) => namesMatchIgnoringSpaces(item.name, name));
 
   if (matches.length !== 1) {
     throw new Error(
@@ -1488,6 +1594,16 @@ async function resolveRegionCode(
   return matches[0]!.code;
 }
 
+async function resolveRegionCode(
+  session: Session,
+  level: 1 | 2,
+  name: string,
+  parentCode: string | null
+): Promise<string> {
+  const items = await fetchRegionItems(session, level, parentCode);
+  return matchRegionCode(items, level, name);
+}
+
 type KaltengRegions = {
   provinceCode: string;
   regencyCodeByName: Map<string, string>;
@@ -1497,9 +1613,13 @@ async function resolveKaltengRegions(session: Session): Promise<KaltengRegions> 
   const provinceCode = await resolveRegionCode(session, 1, "Kalimantan Tengah", null);
   console.log(`resolve region "Kalimantan Tengah" (province) -> ${provinceCode}`);
 
+  // ONE request for all 14 regencies/cities — they are all `level=2` children
+  // of the same `provinceCode`, so they are all in the SAME result page.
+  const regencyItems = await fetchRegionItems(session, 2, provinceCode);
+
   const regencyCodeByName = new Map<string, string>();
   for (const name of KALTENG_DAERAH_NAMES) {
-    const code = await resolveRegionCode(session, 2, name, provinceCode);
+    const code = matchRegionCode(regencyItems, 2, name);
     regencyCodeByName.set(name, code);
     console.log(`resolve region "${name}" (regency/city) -> ${code}`);
   }
@@ -1735,7 +1855,40 @@ type AdPlacementSeed = {
 
 type MediaAttemptResult =
   | { ok: true; mediaObjectId: string }
-  | { ok: false; reason: string };
+  // `providerDegraded` is true ONLY for the one failure mode this whole
+  // deployment cannot route around: the create-session route's own
+  // "not configured" refusal. Verified against the route source, not guessed:
+  // `apps/cms/src/pages/api/v1/media/news-images/upload-sessions/index.ts`
+  // answers `502 PROVIDER_ERROR` ("News media R2 storage is not configured
+  // for this deployment.") when `NEWS_MEDIA_R2_ENABLED` is off or any
+  // `NEWS_MEDIA_R2_*` required var is missing — and that is the ONLY 502 that
+  // route emits. Every other shape here is a real failure of THIS run, not
+  // evidence the deployment has no R2, and must never be swallowed as if it
+  // were: a 400 `VALIDATION_ERROR` from create-session (this seed's own asset
+  // violates the deployment's mime/size policy), a 403 on the presigned PUT
+  // (a signature/credential problem — R2 IS configured, we just got past
+  // create-session), a 422 from finalize (the bytes were rejected), and even
+  // finalize's own `502 PROVIDER_ERROR`
+  // (`media-library/application/media-finalize-upload-session.ts`), which
+  // means "unable to verify the uploaded object right now, try again shortly"
+  // — a transient error on a CONFIGURED provider, so it is reported and fails
+  // the step rather than pretending nothing was ever configured.
+  | { ok: false; providerDegraded: boolean; reason: string };
+
+function errorCodeOf(result: ApiResult): string | null {
+  const raw = result.raw as { error?: { code?: unknown } } | null;
+  return typeof raw?.error?.code === "string" ? raw.error.code : null;
+}
+
+/**
+ * True only for the create-session route's "R2 not configured" refusal —
+ * status AND code are checked, and the caller only asks this of the
+ * create-session response (see the `MediaAttemptResult` note for why
+ * finalize's same-looking `502 PROVIDER_ERROR` must NOT take this path).
+ */
+function isProviderNotConfigured(result: ApiResult): boolean {
+  return result.status === 502 && errorCodeOf(result) === "PROVIDER_ERROR";
+}
 
 async function attemptCreateVerifiedMediaObject(
   session: Session,
@@ -1754,6 +1907,7 @@ async function attemptCreateVerifiedMediaObject(
   if (!created.ok) {
     return {
       ok: false,
+      providerDegraded: isProviderNotConfigured(created),
       reason: `POST /api/v1/media/news-images/upload-sessions -> HTTP ${created.status}: ${JSON.stringify(created.raw)}`
     };
   }
@@ -1766,14 +1920,22 @@ async function attemptCreateVerifiedMediaObject(
       body: bytes
     });
   } catch (error) {
+    // A network-level failure reaching R2 directly (not an `apps/cms`
+    // response), so it can never carry a `502 PROVIDER_ERROR` envelope —
+    // always reported as a real failure, never silently degraded.
     return {
       ok: false,
+      providerDegraded: false,
       reason: `PUT to presigned R2 URL failed: ${error instanceof Error ? error.message : String(error)}`
     };
   }
 
   if (!putResponse.ok) {
-    return { ok: false, reason: `PUT to presigned R2 URL -> HTTP ${putResponse.status}` };
+    return {
+      ok: false,
+      providerDegraded: false,
+      reason: `PUT to presigned R2 URL -> HTTP ${putResponse.status}`
+    };
   }
 
   const finalized = await apiCall(
@@ -1783,8 +1945,13 @@ async function attemptCreateVerifiedMediaObject(
   );
 
   if (!finalized.ok) {
+    // Never `providerDegraded`: reaching finalize proves create-session
+    // accepted the request, i.e. R2 IS configured. Whatever finalize says
+    // (422 rejected bytes, 409 state, or its transient 502) is a real failure
+    // of this run.
     return {
       ok: false,
+      providerDegraded: false,
       reason: `POST .../finalize -> HTTP ${finalized.status}: ${JSON.stringify(finalized.raw)}`
     };
   }
@@ -1810,7 +1977,25 @@ async function ensureAdPlacements(session: Session): Promise<void> {
     return true;
   });
 
-  for (const placement of pending) {
+  // Two failure classes, handled differently (review finding on #66 — the
+  // previous version treated EVERY media failure as "no R2 here", printed
+  // the TOTAL pending count as the skipped count, and exited 0):
+  //   - `providerDegraded` (create-session's `502 PROVIDER_ERROR`, "R2 not
+  //     configured") means THIS deployment has no R2 at all — every remaining
+  //     placement will refuse identically, so this is the one case that
+  //     degrades to a single explained skip line (counting only what is
+  //     actually left unapplied) and, absent any other failure, a clean exit,
+  //     same as the documented product-image gap.
+  //   - anything else (a 400 mime/size refusal, a 403 on the presigned PUT, a
+  //     422 or transient 502 from finalize, a network error, a rejected
+  //     `POST .../ad-placements`) is a real failure of this run or its assets.
+  //     It is reported per placement, the loop keeps going so every OTHER
+  //     failure is reported too, and the step throws at the end — it must
+  //     never exit 0 while ad placements silently failed to apply.
+  const realFailures: string[] = [];
+
+  for (let index = 0; index < pending.length; index++) {
+    const placement = pending[index]!;
     const media = await attemptCreateVerifiedMediaObject(
       session,
       placement.assetFile,
@@ -1819,13 +2004,26 @@ async function ensureAdPlacements(session: Session): Promise<void> {
     );
 
     if (!media.ok) {
-      console.log(
-        `skip ${pending.length} pending ad placement(s) — this deployment has no ` +
-          `working media R2 storage (${media.reason}). Same documented gap as ` +
-          'product images (docs/deployment.md\'s "What this script still does not ' +
-          'seed, and why") — configure NEWS_MEDIA_R2_* and re-run to apply these.'
+      if (media.providerDegraded) {
+        // `pending.length - index`, not `pending.length`: placements before
+        // this one either applied or were already reported as real failures.
+        const remaining = pending.length - index;
+        console.log(
+          `skip ${remaining} pending ad placement(s) — this deployment has no ` +
+            `working media R2 storage (${media.reason}). Same documented gap as ` +
+            'product images (docs/deployment.md\'s "What this script still does not ' +
+            'seed, and why") — configure NEWS_MEDIA_R2_* and re-run to apply these.'
+        );
+        // Stop here (nothing further can succeed) but still fall through to
+        // the throw below if an earlier placement failed for a real reason.
+        break;
+      }
+
+      console.error(
+        `FAILED ad placement "${placement.placementKey}" — ${media.reason}`
       );
-      return;
+      realFailures.push(`${placement.placementKey}: ${media.reason}`);
+      continue;
     }
 
     const created = await apiCall("POST", "/api/v1/news-portal/ad-placements", {
@@ -1842,9 +2040,28 @@ async function ensureAdPlacements(session: Session): Promise<void> {
         contentClass: placement.contentClass
       }
     });
-    assertOk(`POST /api/v1/news-portal/ad-placements (${placement.placementKey})`, created);
+
+    if (!created.ok) {
+      console.error(
+        `FAILED ad placement "${placement.placementKey}" — POST /api/v1/news-portal/ad-placements -> ` +
+          `HTTP ${created.status}: ${JSON.stringify(created.raw)}`
+      );
+      realFailures.push(
+        `${placement.placementKey}: POST /api/v1/news-portal/ad-placements -> HTTP ${created.status}`
+      );
+      continue;
+    }
+
     console.log(
       `apply ad placement "${placement.placementKey}" (${placement.contentClass})`
+    );
+  }
+
+  if (realFailures.length > 0) {
+    throw new Error(
+      `ensureAdPlacements: ${realFailures.length} ad placement(s) failed for reasons ` +
+        `other than a missing R2 provider — this is a real failure, not a deployment ` +
+        `gap, and must not be swallowed:\n  ${realFailures.join("\n  ")}`
     );
   }
 }
