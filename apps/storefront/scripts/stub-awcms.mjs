@@ -150,6 +150,20 @@
  *     `purpose:"login"` has something real to authenticate against without
  *     a prior register step.
  *
+ * Issue #90 (S2) grows the same account object with `addresses`/`wishlist`/
+ * `reviews` arrays and adds their own bearer-only routes (`GET/POST
+ * /account/addresses`, `PATCH|DELETE|POST …/default`, `GET|PUT
+ * /account/wishlist`, `DELETE /account/wishlist/{productId}`, `GET
+ * /account/orders[?cursor=]`, `GET /account/orders/{orderCode}`, `GET
+ * /account/reviews`) — every one inside `handleAccountRequest`, below the
+ * #88 routes it already handles. `budi@example.test` is additionally seeded
+ * with two addresses (one `isDefault`) and two orders, one dated BEFORE
+ * `historyFrom` (must NOT appear in `GET /account/orders`) and one after
+ * (must) — see `seedAccountOrders`'s own docblock. `POST …/orders` and
+ * `POST …/reviews` (the pre-existing ANONYMOUS routes) now also accept an
+ * OPTIONAL Bearer, binding the created record to that account when one is
+ * present and valid — every existing anonymous caller is unaffected.
+ *
  * See `handleStorefrontRequest` below for the route table itself.
  */
 import { readFileSync } from "node:fs";
@@ -555,15 +569,146 @@ function normalizeEmail(email) {
   return String(email ?? "").trim().toLowerCase();
 }
 
+/**
+ * Issue #90 (#86 contract) — every account additionally carries its OWN
+ * addresses/wishlist/reviews arrays, mutated in place by the handlers below.
+ * `addresses` for the fixture account (`budi@example.test`) is seeded with
+ * exactly two rows, one `isDefault`, per this issue's own seed requirement;
+ * a freshly REGISTERED account starts with none of the three.
+ */
+let addressSequence = 0;
+function nextAddressId() {
+  addressSequence += 1;
+  return `addr-${addressSequence}`;
+}
+
+const SEEDED_ADDRESSES = [
+  {
+    id: nextAddressId(),
+    label: "Rumah",
+    recipientName: "Budi Santoso",
+    phone: "+6281234567890",
+    provinceCode: "62",
+    provinceName: "Kalimantan Tengah",
+    cityCode: "6202",
+    cityName: "Kotawaringin Timur",
+    districtCode: "620201",
+    districtName: "Baamang",
+    postalCode: "74311",
+    street: "Jl. Jenderal Sudirman No. 1",
+    notes: null,
+    isDefault: true
+  },
+  {
+    id: nextAddressId(),
+    label: "Kantor",
+    recipientName: "Budi Santoso",
+    phone: "+6281234567891",
+    provinceCode: "62",
+    provinceName: "Kalimantan Tengah",
+    cityCode: "6201",
+    cityName: "Kotawaringin Barat",
+    districtCode: "620101",
+    districtName: "Arut Selatan",
+    postalCode: "74111",
+    street: "Jl. Pangeran Antasari No. 10",
+    notes: "Kantor pusat",
+    isDefault: false
+  }
+];
+
 /** Accounts keyed by normalized e-mail — seeded once from the fixture, then grown by `purpose:"register"` verifies. */
 const ACCOUNTS = new Map(
-  fixture("customer-accounts.json").map((account) => [normalizeEmail(account.email), { ...account }])
+  fixture("customer-accounts.json").map((account) => [
+    normalizeEmail(account.email),
+    {
+      ...account,
+      // Only the fixture's own `budi@example.test` gets the seeded
+      // addresses/orders below — a second fixture row (if one is ever
+      // added) starts empty, same as a freshly registered account.
+      addresses: normalizeEmail(account.email) === "budi@example.test" ? SEEDED_ADDRESSES.map((a) => ({ ...a })) : [],
+      wishlist: [],
+      reviews: []
+    }
+  ])
 );
 /** `email -> {code, purpose, registration, expiresAt, consumed}` — one row per e-mail, the same "single code, replaced by the next request" shape `awcms_commerce_customer_otps` describes (#86's schema summary). */
 const OTPS = new Map();
 /** `token -> {emailNormalized, expiresAt}`. */
 const SESSIONS = new Map();
 let sessionSequence = 0;
+
+/**
+ * Issue #90's own seed requirement: TWO orders for the fixture account
+ * (`budi@example.test`), reusing the same product catalog every OTHER order
+ * on this stub is built from — one dated BEFORE `historyFrom`
+ * (2026-01-01T00:00:00.000Z, see `customer-accounts.json`) and one AFTER.
+ * `GET /account/orders` must return only the second one: this seed exists
+ * to prove the SERVER enforces the D4 history-window rule (see
+ * `handleAccountRequest`'s own `/orders` GET), not the client.
+ */
+function seedAccountOrders() {
+  const account = ACCOUNTS.get("budi@example.test");
+  if (!account) return;
+
+  const found = findProductLine("c2000000-0000-4000-8000-000000000001", null);
+  if (!found) return;
+  const { product } = found;
+
+  const image = product.images?.[0] ? { url: product.images[0].publicUrl, alt: product.images[0].altText } : null;
+
+  function buildSeedOrder(orderCode, createdAt, status) {
+    const lineTotal = fromCents(toCents(product.finalPrice) * 1);
+    return {
+      orderCode,
+      status,
+      paymentStatus: status === "completed" ? "paid" : "unpaid",
+      paymentMethod: "manual_qris",
+      shippingMethod: "self_pickup",
+      shippingServiceName: null,
+      customerName: account.name,
+      customerEmail: account.email,
+      phone: account.phone,
+      address: null,
+      lines: [
+        {
+          name: product.name,
+          variantName: null,
+          sku: product.sku,
+          quantity: 1,
+          unitPrice: product.finalPrice,
+          lineTotal,
+          image,
+          serviceFormValues: null
+        }
+      ],
+      subtotal: product.finalPrice,
+      discount: "0.00",
+      voucherCode: null,
+      shippingCost: "0.00",
+      insuranceFee: "0.00",
+      tax: "0.00",
+      total: product.finalPrice,
+      paymentConfirmations: [],
+      timeline: [{ status, at: createdAt, note: null }],
+      createdAt,
+      expiresAt: status === "pending_payment" ? new Date(new Date(createdAt).getTime() + 24 * 3600_000).toISOString() : null,
+      paidAt: status === "completed" ? createdAt : null,
+      cancelledAt: null,
+      accountEmail: "budi@example.test"
+    };
+  }
+
+  // BEFORE historyFrom (2026-01-01) — must NOT appear in the account order list.
+  const beforeHistory = buildSeedOrder("STUB-SEED-0001", "2025-11-15T03:00:00.000Z", "completed");
+  // AFTER historyFrom — must appear.
+  const afterHistory = buildSeedOrder("STUB-SEED-0002", "2026-02-01T03:00:00.000Z", "pending_payment");
+
+  ORDERS.set(beforeHistory.orderCode, beforeHistory);
+  ORDERS.set(afterHistory.orderCode, afterHistory);
+}
+
+seedAccountOrders();
 
 function issueSession(emailNormalized) {
   sessionSequence += 1;
@@ -699,6 +844,212 @@ function handleAccountRequest(request, path, body, headers) {
     return new Response(null, { status: 204, headers });
   }
 
+  // -------------------------------------------------------------------------
+  // Issue #90 — addresses, the account's own wishlist, orders, reviews.
+  // -------------------------------------------------------------------------
+
+  if (path === "/addresses" && (request.method === "GET" || request.method === "POST")) {
+    const account = findAccountByBearer(request);
+    if (!account) {
+      return envelopeError(401, "UNAUTHENTICATED", "Sesi tidak valid atau telah berakhir.", undefined, headers);
+    }
+
+    if (request.method === "GET") {
+      return envelope({ items: account.addresses }, { headers });
+    }
+
+    // POST — create. Max 10 per account, per #86's own limit; the real
+    // client (`akun-alamat.ts`) already enforces this before ever sending a
+    // request, but the stub enforces it too so a client bug shows up here,
+    // not only in a code review.
+    if (account.addresses.length >= 10) {
+      return envelopeError(
+        400,
+        "VALIDATION_ERROR",
+        "Batas maksimum 10 alamat telah tercapai.",
+        [{ field: "label", message: "Batas maksimum 10 alamat telah tercapai." }],
+        headers
+      );
+    }
+
+    const required = ["label", "recipientName", "phone", "provinceCode", "cityCode", "districtCode", "postalCode", "street"];
+    const missing = required.filter((field) => !body?.[field]);
+    if (missing.length > 0) {
+      return envelopeError(
+        400,
+        "VALIDATION_ERROR",
+        "Data alamat belum lengkap.",
+        missing.map((field) => ({ field, message: "Wajib diisi." })),
+        headers
+      );
+    }
+
+    const address = {
+      id: `addr-${Date.now()}-${Math.floor(Math.random() * 1000)}`,
+      label: body.label,
+      recipientName: body.recipientName,
+      phone: body.phone,
+      provinceCode: body.provinceCode,
+      provinceName: body.provinceName ?? "",
+      cityCode: body.cityCode,
+      cityName: body.cityName ?? "",
+      districtCode: body.districtCode,
+      districtName: body.districtName ?? "",
+      postalCode: body.postalCode,
+      street: body.street,
+      notes: body.notes ?? null,
+      isDefault: account.addresses.length === 0
+    };
+    account.addresses.push(address);
+    return envelope({ address }, { status: 201, headers });
+  }
+
+  const addressMatch = /^\/addresses\/([^/]+)(\/default)?$/.exec(path);
+  if (addressMatch) {
+    const account = findAccountByBearer(request);
+    if (!account) {
+      return envelopeError(401, "UNAUTHENTICATED", "Sesi tidak valid atau telah berakhir.", undefined, headers);
+    }
+
+    const addressId = decodeURIComponent(addressMatch[1]);
+    const isDefaultRoute = Boolean(addressMatch[2]);
+    const address = account.addresses.find((a) => a.id === addressId);
+    if (!address) {
+      return envelopeError(404, "NOT_FOUND", "Alamat tidak ditemukan.", undefined, headers);
+    }
+
+    if (isDefaultRoute && request.method === "POST") {
+      for (const a of account.addresses) a.isDefault = a.id === addressId;
+      return envelope({ address }, { headers });
+    }
+
+    if (!isDefaultRoute && request.method === "PATCH") {
+      Object.assign(address, {
+        label: body?.label ?? address.label,
+        recipientName: body?.recipientName ?? address.recipientName,
+        phone: body?.phone ?? address.phone,
+        provinceCode: body?.provinceCode ?? address.provinceCode,
+        provinceName: body?.provinceName ?? address.provinceName,
+        cityCode: body?.cityCode ?? address.cityCode,
+        cityName: body?.cityName ?? address.cityName,
+        districtCode: body?.districtCode ?? address.districtCode,
+        districtName: body?.districtName ?? address.districtName,
+        postalCode: body?.postalCode ?? address.postalCode,
+        street: body?.street ?? address.street,
+        notes: body?.notes ?? address.notes
+      });
+      return envelope({ address }, { headers });
+    }
+
+    if (!isDefaultRoute && request.method === "DELETE") {
+      account.addresses = account.addresses.filter((a) => a.id !== addressId);
+      // Deleting the default address promotes the next one, if any — never
+      // leaves the account with addresses but no default at all.
+      if (address.isDefault && account.addresses.length > 0) account.addresses[0].isDefault = true;
+      return new Response(null, { status: 204, headers });
+    }
+  }
+
+  if (path === "/wishlist" && (request.method === "GET" || request.method === "PUT")) {
+    const account = findAccountByBearer(request);
+    if (!account) {
+      return envelopeError(401, "UNAUTHENTICATED", "Sesi tidak valid atau telah berakhir.", undefined, headers);
+    }
+
+    if (request.method === "GET") {
+      return envelope({ items: account.wishlist }, { headers });
+    }
+
+    // PUT — union-merge `productIds` into whatever is already on the
+    // account, annotated with product summaries pulled from `products.json`
+    // (this issue's own requirement) — an id this stub's catalog does not
+    // know is silently skipped, the same "never invent a summary" posture
+    // `resolveMediaObjects` above takes for an unknown media id.
+    const catalog = productCatalog();
+    const requestedIds = Array.isArray(body?.productIds) ? body.productIds : [];
+    const now = new Date().toISOString();
+
+    for (const productId of requestedIds) {
+      if (account.wishlist.some((item) => item.productId === productId)) continue;
+      const product = catalog.find((p) => p.id === productId);
+      if (!product) continue;
+
+      account.wishlist.push({
+        productId: product.id,
+        slug: product.slug,
+        name: product.name,
+        price: product.finalPrice,
+        image: product.images?.[0] ? { url: product.images[0].publicUrl, alt: product.images[0].altText } : null,
+        addedAt: now
+      });
+    }
+
+    return envelope({ items: account.wishlist }, { headers });
+  }
+
+  const wishlistItemMatch = /^\/wishlist\/([^/]+)$/.exec(path);
+  if (wishlistItemMatch && request.method === "DELETE") {
+    const account = findAccountByBearer(request);
+    if (!account) {
+      return envelopeError(401, "UNAUTHENTICATED", "Sesi tidak valid atau telah berakhir.", undefined, headers);
+    }
+    const productId = decodeURIComponent(wishlistItemMatch[1]);
+    account.wishlist = account.wishlist.filter((item) => item.productId !== productId);
+    return new Response(null, { status: 204, headers });
+  }
+
+  if (path === "/orders" && request.method === "GET") {
+    const account = findAccountByBearer(request);
+    if (!account) {
+      return envelopeError(401, "UNAUTHENTICATED", "Sesi tidak valid atau telah berakhir.", undefined, headers);
+    }
+
+    // #86's own D4: only orders at/after `historyFrom`, newest first — this
+    // filtering happens HERE, server-side, on purpose (see this issue's own
+    // seed: one of the two seeded orders predates `historyFrom` specifically
+    // to prove that).
+    const owned = [...ORDERS.values()]
+      .filter((order) => order.accountEmail === normalizeEmail(account.email))
+      .filter((order) => new Date(order.createdAt).getTime() >= new Date(account.historyFrom).getTime())
+      .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+
+    const cursorParam = new URL(request.url).searchParams.get("cursor");
+    const PAGE_SIZE = 10;
+    const startIndex = cursorParam ? owned.findIndex((order) => order.orderCode === cursorParam) + 1 : 0;
+    const page = owned.slice(startIndex, startIndex + PAGE_SIZE);
+    const nextCursor = startIndex + PAGE_SIZE < owned.length ? page[page.length - 1]?.orderCode ?? null : null;
+
+    return envelope({ items: page.map(serializeOrder), nextCursor }, { headers });
+  }
+
+  const accountOrderMatch = /^\/orders\/([^/]+)$/.exec(path);
+  if (accountOrderMatch && request.method === "GET") {
+    const account = findAccountByBearer(request);
+    if (!account) {
+      return envelopeError(401, "UNAUTHENTICATED", "Sesi tidak valid atau telah berakhir.", undefined, headers);
+    }
+
+    const orderCode = decodeURIComponent(accountOrderMatch[1]);
+    const order = ORDERS.get(orderCode);
+    const owned =
+      order &&
+      order.accountEmail === normalizeEmail(account.email) &&
+      new Date(order.createdAt).getTime() >= new Date(account.historyFrom).getTime();
+
+    if (!owned) {
+      return envelopeError(404, "NOT_FOUND", "Pesanan tidak ditemukan.", undefined, headers);
+    }
+    return envelope(serializeOrder(order), { headers });
+  }
+
+  if (path === "/reviews" && request.method === "GET") {
+    const account = findAccountByBearer(request);
+    if (!account) {
+      return envelopeError(401, "UNAUTHENTICATED", "Sesi tidak valid atau telah berakhir.", undefined, headers);
+    }
+    return envelope({ items: account.reviews }, { headers });
+  }
+
   return null;
 }
 
@@ -802,7 +1153,10 @@ async function handleStorefrontRequest(request, url) {
       status: 204,
       headers: {
         ...corsHeaders(origin),
-        "Access-Control-Allow-Methods": "GET, POST, PATCH, OPTIONS",
+        // PUT/DELETE (issue #90's wishlist/address routes) join the
+        // preflight's allowed methods here — every anonymous route this
+        // stub already answered only ever needed GET/POST/PATCH.
+        "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS",
         // "authorization" (issue #88): the bearer-authenticated /account/*
         // routes below need the browser's preflight to allow this header;
         // echoing it here for every storefront route (rather than only the
@@ -825,12 +1179,12 @@ async function handleStorefrontRequest(request, url) {
 
   const headers = corsHeaders(origin);
   let body = null;
-  // PATCH (issue #88's `/account/me`) reads a JSON body the same way POST
-  // does — every other method here (GET, DELETE if one is ever added) never
-  // sends one. `POST …/account/logout` sends NO body at all (issue #88), so
+  // PATCH (issue #88's `/account/me`) and PUT (issue #90's `/account/
+  // wishlist`) read a JSON body the same way POST does — GET/DELETE never
+  // send one. `POST …/account/logout` sends NO body at all (issue #88), so
   // an empty body is read as "no body" rather than a `VALIDATION_ERROR` —
   // only a NON-empty, unparsable body is rejected.
-  if (request.method === "POST" || request.method === "PATCH") {
+  if (request.method === "POST" || request.method === "PATCH" || request.method === "PUT") {
     const text = await request.text();
     if (text.length > 0) {
       try {
@@ -852,6 +1206,8 @@ async function handleStorefrontRequest(request, url) {
   }
 
   if (path === "/orders" && request.method === "POST") {
+    const optionalAccount = findAccountByBearer(request);
+
     if (!body?.customer?.name || !body?.customer?.phone) {
       return envelopeError(
         400,
@@ -926,7 +1282,11 @@ async function handleStorefrontRequest(request, url) {
       createdAt: now.toISOString(),
       expiresAt,
       paidAt: null,
-      cancelledAt: null
+      cancelledAt: null,
+      // Issue #90 (#86's own "accept an OPTIONAL Bearer … the customer is
+      // the account's row") — an anonymous request (no/invalid token) binds
+      // to nothing, exactly as before this issue.
+      accountEmail: optionalAccount ? normalizeEmail(optionalAccount.email) : null
     };
 
     ORDERS.set(orderCode, order);
@@ -988,7 +1348,29 @@ async function handleStorefrontRequest(request, url) {
     if (order.status !== "completed") {
       return envelopeError(409, "REVIEW_NOT_ALLOWED", "This order is not eligible for a review yet.", undefined, headers);
     }
-    return envelope({ id: crypto.randomUUID(), status: "pending" }, { status: 201, headers });
+
+    const reviewId = crypto.randomUUID();
+
+    // Issue #90 — an OPTIONAL Bearer (#86's own rule, mirroring `/orders`
+    // above) additionally binds the review to that account, so it shows up
+    // on `GET /account/reviews`. An anonymous submission behaves exactly as
+    // before this issue: recorded, but invisible to any account.
+    const account = findAccountByBearer(request);
+    if (account) {
+      const product = productCatalog().find((p) => p.id === body.productId);
+      account.reviews.push({
+        id: reviewId,
+        productId: body.productId,
+        productName: product?.name ?? "Produk",
+        orderCode: order.orderCode,
+        rating: body.rating,
+        body: body.body,
+        status: "pending",
+        createdAt: new Date().toISOString()
+      });
+    }
+
+    return envelope({ id: reviewId, status: "pending" }, { status: 201, headers });
   }
 
   return Response.json(NEUTRAL_NOT_FOUND, { status: 404, headers });
