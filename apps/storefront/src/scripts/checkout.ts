@@ -507,7 +507,10 @@ if (root) {
       if (submitButton) submitButton.disabled = true;
 
       try {
-        const order = await createOrder(request, sesi?.token);
+        // Re-read at submit time: `bacaSesi()` drops an expired session, so a
+        // shopper whose 30-day token lapsed mid-checkout places a guest order
+        // instead of sending a stale Bearer the CMS would reject.
+        const order = await createOrder(request, bacaSesi()?.token);
         clearCart();
         try {
           window.sessionStorage.setItem(PESANAN_PHONE_KEY, request.customer.phone);
