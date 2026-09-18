@@ -35,6 +35,7 @@ import ArtikelCard from "./ArtikelCard.astro";
 import TagCloud from "./TagCloud.astro";
 import IklanSlot from "./IklanSlot.astro";
 import BarisBagikan from "./BarisBagikan.astro";
+import PemutarDengar from "./PemutarDengar.astro";
 import { ROUTES } from "../../config/routes";
 import { absoluteUrl } from "../../config/site";
 import { renderPortableText, type VideoRenderMode } from "../../lib/portable-text";
@@ -135,6 +136,13 @@ const breadcrumbItems = [
     </figure>
   )}
 </div>
+
+{/* Issue #52: the read-aloud player, between the header and the body exactly as seputarborneo places it. Never on a video post — there is nothing to read aloud beside a video the reader is already watching. */}
+{!post.isVideo && (
+  <div class="container">
+    <PemutarDengar judul={post.title} />
+  </div>
+)}
 
 <IklanSlot placement={AD_SLOTS.articleTop} />
 

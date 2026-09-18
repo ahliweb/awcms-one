@@ -304,6 +304,50 @@ kinds, and the distinction is the whole design:
   the video page — with the stub's fixture (Instagram + a `javascript:`
   link, no TikTok/YouTube), the follow links are correctly absent.
 
+## Read-aloud player (issue #52)
+
+`apps/storefront/src/components/berita/PemutarDengar.astro` puts a "Dengarkan berita ini"
+card between the article header and the body on every `/berita/{slug}` page
+— and on no `/video/{slug}` page, where the reader is already watching the
+thing the page is about (`ArtikelView.astro` renders both families, so the
+guard is one `!post.isVideo` in that file).
+
+**The engine is the reader's own device.** `window.speechSynthesis` with
+`lang = "id-ID"`: no API key, no audio file built or stored anywhere, no
+request leaving the page. The article text reaches the browser's own speech
+engine and nothing else. That is what makes the feature affordable here at
+all, and it is why this is not an `<audio src>` player.
+
+**It is progressive enhancement in the strict sense.** The card is always
+rendered with `hidden`; `apps/storefront/src/scripts/dengar.ts` removes that attribute only
+when `speechSynthesis` exists *and* the device actually reports an
+Indonesian voice. A browser without the API, or a reader with JavaScript
+off, gets no control at all rather than one that looks clickable and does
+nothing — asserted against the built HTML in
+`apps/storefront/tests/dengar-build-smoke.test.ts`.
+
+Three details worth knowing before editing any of the three files:
+
+- **Speech is split per sentence, the highlight is per block.** Chrome
+  silently truncates an utterance after roughly fifteen seconds, so a long
+  paragraph must be spoken as several utterances; the read-along highlight
+  nevertheless follows the whole block, because legacy article bodies have
+  sentences that run through `<strong>`/`<br>` boundaries and a per-sentence
+  highlight breaks on them.
+- **The highlight never changes the box.** `outline` + `box-shadow` only
+  (`apps/storefront/src/styles/dengar.css`) — a background or border change on a paragraph
+  mid-read shifts every paragraph below it while the reader is listening.
+- **`data-dengar-*` is a three-sided contract** between the component, the
+  stylesheet and the script. The full attribute list is in
+  `apps/storefront/src/components/berita/PemutarDengar.astro`'s docblock; renaming one without the other two
+  breaks the player silently.
+
+What is skipped inside the body: `figure`, `figcaption`, `script`, `style`,
+`iframe`, `noscript` and `.ad-slot` — a photo credit or an advertiser's name
+read out mid-article is worse than silence. Rate (0.75×–1.5×) and the chosen
+voice persist in `localStorage`, every access wrapped in `try`/`catch` so a
+private window degrades to "does not remember", never to a broken player.
+
 ## Catalog surface (issue #27)
 
 The full shopper-facing catalog: the home page, `/produk`, `/kategori/{slug}`,
@@ -723,7 +767,7 @@ this app's tests are part of the same root gate suite:
    needs one adds its OWN file rather than editing a prior issue's
    (`build-smoke.test.ts` #24, `katalog-build-smoke.test.ts` #27,
    `berita-build-smoke.test.ts` #28, `checkout-build-smoke.test.ts` #30,
-   `buletin-build-smoke.test.ts` #50, `bagikan-build-smoke.test.ts` #51).
+   `buletin-build-smoke.test.ts` #50, `bagikan-build-smoke.test.ts` #51, `dengar-build-smoke.test.ts` #52).
    Each is bounded under ~60s; if `bun` cannot be spawned in the environment
    running the suite, it reports SKIPPED with a named reason rather than a
    false pass.
