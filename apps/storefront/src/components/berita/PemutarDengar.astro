@@ -1,0 +1,103 @@
+---
+/**
+ * "Dengarkan berita ini" (issue #52, A6) — the article read-aloud player,
+ * ported from seputarborneo.com v2.4.0's `sb_pemutar_dengar()` +
+ * `initDengar()` (its own issue #70) and the contract its `AGENTS.md`
+ * records.
+ *
+ * ## The engine is the reader's own device, not a service
+ *
+ * `window.speechSynthesis` with `lang = "id-ID"`. No API key, no audio file
+ * built or stored, no request leaving the page: the article text never
+ * travels anywhere except into the browser's own speech engine. That is the
+ * whole reason this feature is affordable on a regional news site, and it
+ * is why the control is not a media player with a `<audio src>`.
+ *
+ * ## Progressive enhancement, in the strict sense
+ *
+ * The card below is ALWAYS rendered with the `hidden` attribute.
+ * `src/scripts/dengar.ts` removes it only when `speechSynthesis` exists AND
+ * the device actually has a voice to speak with. A browser without the API,
+ * or a reader with JavaScript off, therefore sees nothing at all — never a
+ * dead widget that looks clickable and does nothing. (Upstream makes the
+ * same choice for the same reason.)
+ *
+ * ## The markup contract is held by three sides at once
+ *
+ * This file, `src/styles/dengar.css` and `src/scripts/dengar.ts` all key off
+ * the same `data-dengar-*` attributes. Renaming one without the other two
+ * silently breaks the player, so the names live here, in one list, and the
+ * script looks every one of them up by attribute rather than by class:
+ *
+ * | Attribute | What it marks |
+ * | --- | --- |
+ * | `data-dengar` | the card root; also carries `data-dengar-judul` |
+ * | `data-dengar-putar` | the play/pause button |
+ * | `data-dengar-ikon` | the icon inside that button (swapped ▶/⏸) |
+ * | `data-dengar-label` | its visible label text |
+ * | `data-dengar-sebelum` / `data-dengar-berikut` | previous/next unit |
+ * | `data-dengar-henti` | stop, which also collapses the panel |
+ * | `data-dengar-panel` | the settings panel (rate, voice) |
+ * | `data-dengar-rate` / `data-dengar-suara` | the two `<select>`s |
+ * | `data-dengar-progres` | the `n / total` live region |
+ * | `data-dengar-catatan` | the status line (errors, "selesai") |
+ *
+ * The body it reads is `.article-body` — `ArtikelView.astro`'s own
+ * `set:html` container. The script skips `figure`, `figcaption`,
+ * `script`, `style`, `iframe` and the ad slots inside it, so a hero
+ * caption, a gallery credit or an advertiser's name is never read out as
+ * if it were the article.
+ */
+interface Props {
+  /** The article's own `<h1>` text — the first thing read, before the body. */
+  judul: string;
+}
+
+const { judul } = Astro.props;
+---
+
+<aside class="dengar" data-dengar data-dengar-judul={judul} hidden aria-label="Dengarkan berita ini">
+  <div class="dengar__baris">
+    <button type="button" class="dengar__putar" data-dengar-putar aria-pressed="false">
+      <span class="dengar__ikon" data-dengar-ikon aria-hidden="true">▶</span>
+      <span data-dengar-label>Dengarkan berita ini</span>
+    </button>
+
+    <div class="dengar__navigasi">
+      <button type="button" class="dengar__kecil" data-dengar-sebelum disabled aria-label="Bagian sebelumnya">
+        <span aria-hidden="true">⏮</span>
+      </button>
+      <button type="button" class="dengar__kecil" data-dengar-berikut disabled aria-label="Bagian berikutnya">
+        <span aria-hidden="true">⏭</span>
+      </button>
+      <button type="button" class="dengar__kecil" data-dengar-henti disabled aria-label="Hentikan pembacaan">
+        <span aria-hidden="true">⏹</span>
+      </button>
+    </div>
+
+    <p class="dengar__progres" data-dengar-progres role="status" aria-live="polite"></p>
+  </div>
+
+  <div class="dengar__panel" data-dengar-panel>
+    <p class="dengar__setelan">
+      <label for="dengar-rate">Kecepatan</label>
+      <select id="dengar-rate" data-dengar-rate>
+        <option value="0.75">0,75×</option>
+        <option value="1" selected>1×</option>
+        <option value="1.25">1,25×</option>
+        <option value="1.5">1,5×</option>
+      </select>
+    </p>
+
+    <p class="dengar__setelan" data-dengar-suara-wadah hidden>
+      <label for="dengar-suara">Suara</label>
+      <select id="dengar-suara" data-dengar-suara></select>
+    </p>
+  </div>
+
+  <p class="dengar__catatan" data-dengar-catatan role="status" aria-live="polite"></p>
+</aside>
+
+<script>
+  import "../../scripts/dengar";
+</script>
