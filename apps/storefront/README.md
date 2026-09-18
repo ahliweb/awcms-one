@@ -59,7 +59,7 @@ Two files exist specifically to prove this rule holds without a live CMS:
 | `/manifest.webmanifest` | Web app manifest | site identity + theme + bundled favicon |
 | `/theme-tokens.css` | Build-time-generated `--color-primary/secondary/accent` stylesheet | `GET /theming/{tenantCode}/tokens.css` |
 | `/product-labels.css` | Build-time-generated per-product badge-color stylesheet | derived from the catalog fetch |
-| `/berita`, `/berita/{slug}`, `/berita/feed.xml` | News front page, article detail, RSS 2.0 (issue #28) | `GET /api/v1/blog/posts`/`terms`/`institutions` |
+| `/berita`, `/berita/{slug}`, `/berita/feed.xml` | News front page, article detail (with the issue-#51 share row — see "Article share row" below), RSS 2.0 (issue #28) | `GET /api/v1/blog/posts`/`terms`/`institutions` |
 | `/rubrik/{slug}`, `/rubrik/{slug}/halaman/{n}`, `/rubrik/{slug}/feed.xml` | Hierarchical rubrik (category) archive + pagination + feed | same as above |
 | `/daerah/{slug}` | Region archive, reached via an institution's `regionCode` | `GET /api/v1/blog/institutions`, `/api/v1/idn-regions/regions` |
 | `/mitra/{slug}` | Institution ("Mitra") landing | `GET /api/v1/blog/institutions` |
@@ -253,6 +253,56 @@ every origin it adds. `apps/storefront/server/penyaji.mjs`'s `buildCsp`/
 already do `imgSrc`/`connectSrc` — the served `Content-Security-Policy`
 widens `frame-src` to exactly the facade's origin on a build with a video
 post, and stays `frame-src 'none'` otherwise.
+
+## Article share row (issue #51)
+
+`apps/storefront/src/components/berita/BarisBagikan.astro` replaces the
+WhatsApp+Facebook-only block issue #28 shipped at the foot of every
+`ArtikelView.astro` page (`/berita/{slug}` and `/video/{slug}` alike) with
+seputarborneo's `sb_bagikan()` row — seven controls of THREE different
+kinds, and the distinction is the whole design:
+
+| Control | Kind | Element | `rel` | Shown |
+| --- | --- | --- | --- | --- |
+| Facebook, X, WhatsApp, Threads | share — a real web intent URL | `<a target="_blank">` | `noopener nofollow` | always |
+| Instagram | share — Web Share API, clipboard fallback | `<button>` | — | always (revealed by script) |
+| TikTok, YouTube | FOLLOW this site's own account | `<a target="_blank">` | `noopener me` | only when `identity.socialLinks` has one |
+
+- **`apps/storefront/src/lib/bagikan.ts`** (build-time, pure) builds the
+  four intent URLs (`facebook.com/sharer/sharer.php?u=`,
+  `twitter.com/intent/tweet?url=&text=`, `wa.me/?text=`,
+  `threads.net/intent/post?text=`; title and URL each
+  `encodeURIComponent`-ed) and resolves the follow links from
+  `identity.socialLinks` through issue #48's `apps/storefront/src/lib/ikon-sosial.ts` —
+  the SAME hostname detection and `http(s)`-only scheme filter the utility
+  bar's icon row uses, not a second copy. A `javascript:`/`data:`/
+  schemeless URL never reaches an `href`; a URL labelled "TikTok" by an
+  editor but pointing elsewhere is not a TikTok link. WhatsApp's glyph is
+  the one SVG path this row adds (the utility bar never renders a
+  messenger); every other icon is `ikon-sosial.ts`'s.
+- **`apps/storefront/src/scripts/bagikan.ts`** (browser) drives the
+  Instagram button: `navigator.share({ title, url })` first (the OS share
+  sheet — a dismissed sheet is silent), else
+  `navigator.clipboard.writeText(url)` plus a visible "Tautan disalin…"
+  status in a `role="status"`/`aria-live="polite"` region that ships EMPTY
+  in the static HTML (a live region created and filled in the same tick is
+  skipped by some screen readers). A denied/unavailable clipboard ends in a
+  visible failure message, never a silent no-op and never `prompt()`.
+  Instagram has no web share URL at all, so the button is not a link, does
+  not read `identity.socialLinks`, and ships `hidden` until this script has
+  attached its handler — a control that does nothing without JavaScript is
+  not offered to a reader who has none. The four share links and the
+  follow links need no script.
+- Every control has a full accessible name naming the verb ("Bagikan ke
+  Facebook" vs "Ikuti kami di TikTok"), a 44×44 target
+  (`apps/storefront/src/styles/bagikan.css`, imported by the component
+  alone — no shared stylesheet is edited), and the row wraps at 360px.
+- No third-party script: no Facebook SDK, no Twitter widgets, no embed.js.
+  `apps/storefront/tests/bagikan.test.ts` greps every file under `src/` for
+  their hosts; `apps/storefront/tests/bagikan-build-smoke.test.ts` builds
+  against the stub and asserts the rendered row on a real article page and
+  the video page — with the stub's fixture (Instagram + a `javascript:`
+  link, no TikTok/YouTube), the follow links are correctly absent.
 
 ## Catalog surface (issue #27)
 
@@ -702,7 +752,7 @@ this app's tests are part of the same root gate suite:
    needs one adds its OWN file rather than editing a prior issue's
    (`build-smoke.test.ts` #24, `katalog-build-smoke.test.ts` #27,
    `berita-build-smoke.test.ts` #28, `checkout-build-smoke.test.ts` #30,
-   `buletin-build-smoke.test.ts` #50).
+   `buletin-build-smoke.test.ts` #50, `bagikan-build-smoke.test.ts` #51).
    Each is bounded under ~60s; if `bun` cannot be spawned in the environment
    running the suite, it reports SKIPPED with a named reason rather than a
    false pass.
