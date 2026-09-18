@@ -61,3 +61,18 @@ export function buildWhatsappUrl(number: string, message: string): string {
   const digitsOnly = number.replace(/\D/g, "");
   return `https://wa.me/${digitsOnly}?text=${encodeURIComponent(message)}`;
 }
+
+/**
+ * A plain-text "the CMS is unreachable" message for a page with no cart to
+ * summarise — issue #88's `/masuk`, `/daftar`, `/akun` (an OTP/profile
+ * request has no line items the way `buildWhatsappCartMessage` above
+ * describes). `context` names what the reader was trying to do
+ * ("mendapatkan kode masuk", "mendaftar akun baru", …) so the store's own
+ * reply can pick up where the page left off.
+ */
+export function buildWhatsappAccountMessage(storeName: string, context: string): string {
+  return (
+    `Halo ${storeName}, saya sedang ${context} di situs, tetapi sistemnya tidak dapat diakses. ` +
+    `Mohon bantuannya.`
+  );
+}

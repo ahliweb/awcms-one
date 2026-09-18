@@ -29,6 +29,16 @@
  * "Newsletter" section), not this app's own naming. `/buletin` itself (the
  * subscribe form) is deliberately NOT disallowed: it has real, shareable
  * content and no per-reader query string.
+ *
+ * Issue #88 adds `/masuk`, `/daftar`, and `/akun` — a sign-in form, a
+ * registration form, and a signed-in dashboard are none of them content a
+ * crawler has any business fetching, and a bare `Disallow: /akun` covers
+ * every child route (`/akun/pesanan`, `/akun/alamat`, …) as they land in
+ * S2/S3 without this file needing to grow a new line per child. Each of the
+ * three also carries `<meta name="robots" content="noindex, follow">` via
+ * `BaseLayout.astro`'s `head` slot, for the same "Disallow stops the FETCH,
+ * noindex stops the INDEX of a URL linked from elsewhere" reason this file's
+ * own comments above already give.
  */
 import { siteConfig } from "../config/site";
 
@@ -45,6 +55,9 @@ export function GET(): Response {
     "Disallow: /cari",
     "Disallow: /newsletter/confirm",
     "Disallow: /newsletter/unsubscribe",
+    "Disallow: /masuk",
+    "Disallow: /daftar",
+    "Disallow: /akun",
     "Disallow: /api/",
     "",
     `Sitemap: ${siteConfig.siteUrl}/sitemap-index.xml`,
