@@ -1,16 +1,19 @@
 ---
 /**
- * One ad placement slot (issue #28) — "render nothing when no placement" is
- * simply this component rendering nothing when `getAdSlot` answers `[]`.
+ * One ad placement slot (issue #28, `<img>` added by issue #47) —
+ * "render nothing when no placement" is simply this component rendering
+ * nothing when `getAdSlot` answers `[]`.
  *
- * No `<img>` for the creative itself: `PublicAdPlacement.mediaPublicUrl`
- * (`src/lib/awcms/blog.ts`) is a real, already-resolved absolute URL, but
- * this app's CSP (`img-src 'self'`, `server/penyaji.mjs`) has no exemption
- * for the CMS's media origin, and widening it is outside this issue's file
- * ownership (only the legacy-redirect hook there is granted). This renders
- * the creative's name/link and its editorial-disclosure label instead —
- * see `src/lib/awcms/blog.ts`'s `PublicAdPlacement` docblock for the full
- * reasoning.
+ * `PublicAdPlacement.mediaPublicUrl` (`src/lib/awcms/blog.ts`) is a real,
+ * already-resolved absolute URL — issue #28 could not render it because
+ * this app's CSP (`img-src 'self'`, `server/penyaji.mjs`) had no exemption
+ * for the CMS's media origin. Issue #47 widens `img-src` with that origin
+ * (`src/pages/csp.json.ts`, from `GET /api/v1/media/public-origin`), so the
+ * creative now renders as a real `<img>` — re-verified as an absolute
+ * `http(s)` URL here regardless (never trust a string from the network into
+ * a `src` attribute unchecked), falling back to the original name/link text
+ * for anything that does not parse. The editorial-disclosure label is
+ * unchanged either way.
  */
 import { getAdSlot } from "../../lib/awcms/iklan";
 import type { AdPlacementKey } from "../../lib/awcms/blog";
@@ -29,24 +32,61 @@ const disclosureLabel = {
   advertorial: "Advertorial",
   sponsored: "Konten Bersponsor"
 } as const;
+
+/** `mediaPublicUrl` re-checked as a real `http(s)` absolute URL — see this file's own docblock. */
+function creativeImageUrl(url: string): string | null {
+  try {
+    const parsed = new URL(url);
+    return parsed.protocol === "https:" || parsed.protocol === "http:" ? url : null;
+  } catch {
+    return null;
+  }
+}
 ---
 
 {ads.length > 0 && (
   <div class="ad-slot" data-placement={placement}>
     <p class="ad-slot-label">{label}</p>
     <ul class="ad-slot-list">
-      {ads.map((ad) => (
-        <li class="ad-slot-item">
-          {ad.linkUrl ? (
-            <a href={ad.linkUrl} rel="noopener noreferrer sponsored" target="_blank">{ad.name}</a>
-          ) : (
-            <span>{ad.name}</span>
-          )}
-          {disclosureLabel[ad.contentClass] && (
-            <span class="ad-slot-disclosure">{disclosureLabel[ad.contentClass]}</span>
-          )}
-        </li>
-      ))}
+      {ads.map((ad) => {
+        const imageUrl = creativeImageUrl(ad.mediaPublicUrl);
+        return (
+          <li class="ad-slot-item">
+            {ad.linkUrl ? (
+              <a href={ad.linkUrl} rel="noopener noreferrer sponsored" target="_blank">
+                {imageUrl ? (
+                  <img
+                    src={imageUrl}
+                    alt={ad.mediaAltText ?? ad.name}
+                    loading="lazy"
+                    decoding="async"
+                    width="300"
+                    height="250"
+                    class="ad-slot-image"
+                  />
+                ) : (
+                  ad.name
+                )}
+              </a>
+            ) : imageUrl ? (
+              <img
+                src={imageUrl}
+                alt={ad.mediaAltText ?? ad.name}
+                loading="lazy"
+                decoding="async"
+                width="300"
+                height="250"
+                class="ad-slot-image"
+              />
+            ) : (
+              <span>{ad.name}</span>
+            )}
+            {disclosureLabel[ad.contentClass] && (
+              <span class="ad-slot-disclosure">{disclosureLabel[ad.contentClass]}</span>
+            )}
+          </li>
+        );
+      })}
     </ul>
   </div>
 )}

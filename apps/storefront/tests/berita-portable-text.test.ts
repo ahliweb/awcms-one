@@ -1,5 +1,11 @@
 import { describe, expect, test } from "bun:test";
-import { renderPortableText, documentHasPlayableVideo } from "../src/lib/portable-text";
+import {
+  renderPortableText,
+  documentHasPlayableVideo,
+  extractPlayableVideoInfo,
+  collectGalleryMediaObjectIds
+} from "../src/lib/portable-text";
+import type { ResolvedMedia } from "../src/lib/awcms/media";
 
 /**
  * Issue #28's extension of `src/lib/portable-text.ts` — a NEW file rather
@@ -11,9 +17,15 @@ import { renderPortableText, documentHasPlayableVideo } from "../src/lib/portabl
  * why (their fixtures carry no `caption`/`provider`/`videoId`, which is
  * exactly the "not enough to render" case that still falls back to the
  * original placeholder).
+ *
+ * Issue #47 UPDATES the two assertions below that named the deliberate
+ * issue-#28 trim this issue explicitly lifts ("never an `<img>`"/"never an
+ * `<iframe>`" for a well-formed `videoNews` block) — see
+ * `src/lib/portable-text.ts`'s own docblock, "The public signature DOES
+ * change", for why updating rather than leaving them red is correct here.
  */
-describe("lib/portable-text: videoNews (issue #28)", () => {
-  test("a well-formed youtube videoNews block renders a real watch link, never an iframe", () => {
+describe("lib/portable-text: videoNews (issue #28, facade added by #47)", () => {
+  test("a well-formed youtube videoNews block renders a click-to-load facade — a poster <img>, never an <iframe> before activation", () => {
     const html = renderPortableText([
       {
         _type: "videoNews",
@@ -27,14 +39,17 @@ describe("lib/portable-text: videoNews (issue #28)", () => {
       }
     ]);
 
-    expect(html).toContain('href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"');
+    expect(html).toContain('data-video-id="dQw4w9WgXcQ"');
+    expect(html).toContain('src="https://i.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg"');
+    expect(html).toContain("<button");
     expect(html).toContain("Kebakaran Pasar Kobar");
     expect(html).toContain("Warga sekitar");
     expect(html).toContain("1:35"); // 95s -> 1:35
     expect(html).toContain("Api cepat menjalar.");
-    expect(html).toContain('rel="noopener noreferrer"');
+    // The watch URL survives ONLY as the <noscript> fallback — no third-party
+    // frame/script loads before a real click (`video-facade.ts`).
+    expect(html).toContain('<noscript><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"');
     expect(html).not.toContain("<iframe");
-    expect(html).not.toContain("<img");
   });
 
   test("an unrecognised provider still degrades to the original issue-#24 placeholder", () => {
@@ -111,5 +126,107 @@ describe("lib/portable-text: gallery captions (issue #28 — 'figures with credi
     ]);
     expect(html).not.toContain("<script>");
     expect(html).toContain("&lt;script&gt;");
+  });
+});
+
+describe("lib/portable-text: gallery images resolve to real <img> (issue #47)", () => {
+  const resolved: ResolvedMedia = {
+    id: "x",
+    publicUrl: "https://media.example.test/foto.jpg",
+    alt: "Warga menyeberang jembatan baru",
+    width: 1200,
+    height: 800,
+    creditLine: "Humas Pemkab",
+    sourceName: "Pemkab Kotawaringin Barat",
+    copyrightStatus: "permission_granted"
+  };
+
+  test("an item with mediaType image and a resolved mediaObjectId renders a real <img> with width/height/alt", () => {
+    const html = renderPortableText(
+      [
+        {
+          _type: "gallery",
+          _key: "g1",
+          items: [{ mediaType: "image", mediaObjectId: "x", caption: "Warga menyaksikan peresmian" }]
+        }
+      ],
+      new Map([["x", resolved]])
+    );
+
+    expect(html).toContain('<img src="https://media.example.test/foto.jpg"');
+    expect(html).toContain('width="1200" height="800"');
+    expect(html).toContain('alt="Warga menyeberang jembatan baru"');
+    // Caption AND credit both make it into the figcaption.
+    expect(html).toContain("Warga menyaksikan peresmian");
+    expect(html).toContain("Humas Pemkab");
+    expect(html).toContain("Pemkab Kotawaringin Barat");
+  });
+
+  test("an item whose mediaObjectId does NOT resolve degrades to the placeholder figure, never a broken <img>", () => {
+    const html = renderPortableText(
+      [
+        {
+          _type: "gallery",
+          _key: "g1",
+          items: [{ mediaType: "image", mediaObjectId: "missing", caption: "Ada teks" }]
+        }
+      ],
+      new Map() // "missing" never resolves.
+    );
+
+    expect(html).not.toContain("<img");
+    expect(html).toContain("content-figure-placeholder");
+    expect(html).toContain("Ada teks");
+  });
+
+  test("a mediaType: video item never renders an <img>, even with a matching resolvedMedia entry", () => {
+    const html = renderPortableText(
+      [{ _type: "gallery", _key: "g1", items: [{ mediaType: "video", mediaObjectId: "x", caption: "Video" }] }],
+      new Map([["x", resolved]])
+    );
+
+    expect(html).not.toContain("<img");
+    expect(html).toContain("Video");
+  });
+
+  test("renderPortableText defaults resolvedMedia to empty — an existing single-argument call site keeps compiling and degrading the same way", () => {
+    const html = renderPortableText([
+      { _type: "gallery", _key: "g1", items: [{ mediaType: "image", mediaObjectId: "x" }] }
+    ]);
+    expect(html).toContain("Galeri (1 gambar)");
+  });
+});
+
+describe("lib/portable-text: extractPlayableVideoInfo / collectGalleryMediaObjectIds (issue #47)", () => {
+  test("extracts provider/videoId/thumbnail from the first playable videoNews block", () => {
+    const info = extractPlayableVideoInfo([
+      { _type: "block", _key: "b1" },
+      { _type: "videoNews", _key: "v1", provider: "youtube", videoId: "dQw4w9WgXcQ" }
+    ]);
+    expect(info).toEqual({
+      provider: "youtube",
+      videoId: "dQw4w9WgXcQ",
+      thumbnail: "https://i.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg"
+    });
+  });
+
+  test("returns null when the document has no playable videoNews block", () => {
+    expect(extractPlayableVideoInfo([{ _type: "videoNews", _key: "v1" }])).toBeNull();
+    expect(extractPlayableVideoInfo([{ _type: "block", _key: "b1" }])).toBeNull();
+    expect(extractPlayableVideoInfo(null)).toBeNull();
+  });
+
+  test("collects only mediaType: image items' mediaObjectId, across every gallery block", () => {
+    const ids = collectGalleryMediaObjectIds([
+      { _type: "gallery", _key: "g1", items: [{ mediaType: "image", mediaObjectId: "a" }, { mediaType: "video", mediaObjectId: "b" }] },
+      { _type: "block", _key: "b1" },
+      { _type: "gallery", _key: "g2", items: [{ mediaType: "image", mediaObjectId: "c" }] }
+    ]);
+    expect(ids).toEqual(["a", "c"]);
+  });
+
+  test("returns [] for a non-array document or one with no gallery block", () => {
+    expect(collectGalleryMediaObjectIds(null)).toEqual([]);
+    expect(collectGalleryMediaObjectIds([{ _type: "block", _key: "b1" }])).toEqual([]);
   });
 });

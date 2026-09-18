@@ -46,19 +46,16 @@
  *
  * ## What this file deliberately does NOT call
  *
- * - `GET /api/v1/media/public-origin` — the issue's own Lib list names it.
- *   Verified against `media-public-origin.ts` and every media-bearing field
- *   above (`featuredMediaId`, a gallery item's `mediaObjectId`, a video's
- *   `thumbnailMediaObjectId`): all three are bare ids with no confirmed
- *   public path convention, and there is no route this issue's verified
- *   scope covers that resolves an id to a URL (`GET /api/v1/media/
- *   objects?ids=` exists but is a different, not-pre-verified-safe read for
- *   this issue). `{origin}/{mediaObjectId}` would be an INVENTED shape, not
- *   a verified one — exactly what this repo's own contribution rule
- *   forbids. This app still has no way to render real media, precisely the
- *   gap issue #24 recorded for `site-profile`'s logo/favicon ids
- *   (`src/lib/awcms/profil.ts`). `src/lib/portable-text.ts` and every page
- *   below degrade every image-bearing field to a stated placeholder.
+ * - `GET /api/v1/media/objects` / `GET /api/v1/media/public-origin` — issue
+ *   #28 recorded here that this app had no way to resolve `featuredMediaId`/
+ *   a gallery item's `mediaObjectId`/`thumbnailMediaObjectId` to a URL yet.
+ *   Issue #47 built that client (`src/lib/awcms/media.ts`) — a SEPARATE
+ *   file, deliberately: this one stays the raw `blog_content`/
+ *   `seo_distribution` reader, `media.ts` is the raw `media_library` reader,
+ *   and `src/lib/berita.ts` is what combines the two into a post's already-
+ *   resolved `image`/`video` fields. `RawPost.featuredMediaId` itself is
+ *   unchanged — still a bare id — this file's own job is still only to hand
+ *   that id upward, never to resolve it.
  * - `GET /api/v1/news-portal/homepage-sections/composed` — its section
  *   vocabulary (`headline`/`latest_posts`/`featured_posts`/`editor_picks`/
  *   `category_grid`/`gallery_block`) has no way to express "one section per
@@ -304,7 +301,7 @@ export const AD_PLACEMENT_KEYS = [
 
 export type AdPlacementKey = (typeof AD_PLACEMENT_KEYS)[number];
 
-/** One creative, verified against `PublicAdPlacement` (`ad-placements/active.ts`). `mediaPublicUrl` is a real, already-resolved absolute URL — but this app's CSP (`img-src 'self'`, `server/penyaji.mjs`) has no exemption for the CMS's media origin, and widening it is out of this issue's file ownership (only the legacy-redirect hook is granted there). `src/components/berita/IklanSlot.astro` therefore renders the slot's name/link/disclosure label, never an `<img>` — the same no-media-client trim `src/lib/portable-text.ts` and every gallery/hero image already carries, recorded once here rather than per call site. */
+/** One creative, verified against `PublicAdPlacement` (`ad-placements/active.ts`). `mediaPublicUrl` is a real, already-resolved absolute URL — issue #28 could not render it as this app's CSP (`img-src 'self'`, `server/penyaji.mjs`) had no exemption for the CMS's media origin. Issue #47 widens `img-src` with that origin (`src/pages/csp.json.ts`, from `GET /api/v1/media/public-origin`), so `src/components/berita/IklanSlot.astro` now renders a real `<img>` for this field, re-checked there as a genuine `http(s)` URL before use. */
 export type PublicAdPlacement = {
   id: string;
   name: string;

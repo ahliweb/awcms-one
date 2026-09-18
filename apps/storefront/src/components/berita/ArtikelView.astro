@@ -6,6 +6,17 @@
  * an ordinary article's markup. `parentLabel`/`parentPath` is the only
  * difference the two callers need to supply (the breadcrumb's hub —
  * "Berita" vs "Video").
+ *
+ * Issue #47 (hero block only — every other section of this file is
+ * unchanged): a hero `<figure>` renders right after the byline row when
+ * `post.image` resolved (`src/lib/berita.ts`, from `featuredMediaId`), with
+ * a `<figcaption>` combining the media's `alt` text and its credit
+ * (`creditLine`/`sourceName` — `null` unless the CMS has verified the
+ * rights, per `src/lib/awcms/media.ts`'s own docblock). No hero renders for
+ * a post with no `featuredMediaId`, or one whose id did not resolve — never
+ * a broken `<img>`. The article BODY's own images (a gallery block) are
+ * unrelated to this hero and are resolved by `renderPortableText` itself,
+ * via the `resolvedMedia` map this component now passes it.
  */
 import ArtikelCard from "./ArtikelCard.astro";
 import TagCloud from "./TagCloud.astro";
@@ -19,7 +30,12 @@ import {
   pernahDiperbaruiSetelahTerbit
 } from "../../lib/tanggal";
 import { AD_SLOTS } from "../../lib/awcms/iklan";
-import { estimasiWaktuBacaMenit, type PostDetail, type PostSummary } from "../../lib/berita";
+import {
+  estimasiWaktuBacaMenit,
+  getResolvedMedia,
+  type PostDetail,
+  type PostSummary
+} from "../../lib/berita";
 
 interface Props {
   post: PostDetail;
@@ -32,11 +48,23 @@ interface Props {
 
 const { post, related, daerahLainnyaPosts, canonicalPath, parentLabel, parentPath } = Astro.props;
 
-const bodyHtml = renderPortableText(post.bodyPortableText);
+const resolvedMedia = await getResolvedMedia();
+const bodyHtml = renderPortableText(post.bodyPortableText, resolvedMedia);
 const readingMinutes = estimasiWaktuBacaMenit(bodyHtml);
 const wasUpdated = pernahDiperbaruiSetelahTerbit(post.publishedAt, post.updatedAt);
 const absoluteShareUrl = absoluteUrl(canonicalPath);
 const encodedTitle = encodeURIComponent(post.title);
+
+// --- Hero block (issue #47) -------------------------------------------------
+// `alt` (the media's own description) and its credit
+// (`creditLine`/`sourceName`, joined when both exist), separated by " · " —
+// `null` pieces are simply omitted, never rendered as an empty segment.
+function joinNonEmpty(parts: Array<string | null | undefined>, separator: string): string {
+  return parts.filter((part): part is string => Boolean(part && part.length > 0)).join(separator);
+}
+
+const heroCredit = joinNonEmpty([post.image?.creditLine, post.image?.sourceName], " — ");
+const heroCaption = joinNonEmpty([post.image?.alt ?? null, heroCredit || null], " · ");
 
 const breadcrumbItems = [
   { name: "Beranda", path: ROUTES.home },
@@ -68,6 +96,21 @@ const breadcrumbItems = [
     )}
     <span>{readingMinutes} menit membaca</span>
   </p>
+
+  {post.image && (
+    <figure class="article-hero">
+      <img
+        class="article-hero-image"
+        src={post.image.publicUrl}
+        alt={post.image.alt ?? ""}
+        loading="lazy"
+        decoding="async"
+        width={post.image.width ?? 1200}
+        height={post.image.height ?? 675}
+      />
+      {heroCaption && <figcaption>{heroCaption}</figcaption>}
+    </figure>
+  )}
 </div>
 
 <IklanSlot placement={AD_SLOTS.articleTop} />

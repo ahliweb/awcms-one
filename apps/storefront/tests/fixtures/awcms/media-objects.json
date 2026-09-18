@@ -1,0 +1,24 @@
+{
+  "00000000-0000-4000-8000-000000000001": {
+    "publicUrl": "https://media.example.test/news/jembatan-kobar-hero.jpg",
+    "altText": "Bupati Kotawaringin Barat meresmikan jembatan baru didampingi jajaran Pemkab.",
+    "mimeType": "image/jpeg",
+    "width": 1600,
+    "height": 900,
+    "sizeBytes": 245678,
+    "creditLine": "Humas Pemkab Kotawaringin Barat",
+    "sourceName": null,
+    "copyrightStatus": "permission_granted"
+  },
+  "00000000-0000-4000-8000-000000000010": {
+    "publicUrl": "https://media.example.test/news/jembatan-kobar-galeri-1.jpg",
+    "altText": "Suasana peresmian jembatan baru dihadiri warga sekitar.",
+    "mimeType": "image/jpeg",
+    "width": 1200,
+    "height": 800,
+    "sizeBytes": 198765,
+    "creditLine": "Humas Pemkab Kotawaringin Barat",
+    "sourceName": "Pemkab Kotawaringin Barat",
+    "copyrightStatus": "permission_granted"
+  }
+}

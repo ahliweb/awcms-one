@@ -52,6 +52,25 @@
  * anything CMS/attacker-influenced (`*` is rejected outright — see that
  * function's own tests). A hardcoded constant controlled entirely by this
  * app's own code does not need — and must not go through — that guard.
+ *
+ * ## Issue #47: the media origin, and the two fixed YouTube origins
+ *
+ * `getMediaPublicOrigin()` (`src/lib/awcms/media.ts`) is the verified,
+ * purpose-built source for the media host every resolved `<img>` (hero
+ * figures, card thumbnails, gallery images, ad creatives) is served
+ * from — see that function's own docblock for why this reads better than
+ * deriving the origin from the resolved URLs this build happened to render
+ * (a build with zero images would then emit no `img-src` entry and the next
+ * image added would need a rebuild to show, same trade `apps/cms`'s own
+ * docblock states for that endpoint).
+ *
+ * `https://i.ytimg.com` (the poster) and `https://www.youtube-nocookie.com`
+ * (the `<iframe>` the click-to-load facade swaps in) are genuinely DERIVED,
+ * not hard-coded unconditionally: they are added only when `getVideo()`
+ * (`src/lib/berita.ts`) answers at least one post, i.e. this build actually
+ * has a page the facade can appear on — a build with no video posts widens
+ * neither directive, matching this file's own "derived from content"
+ * philosophy for every other origin here.
  */
 import { getProducts } from "../lib/catalog";
 import {
@@ -64,18 +83,28 @@ import {
 import { buildCspOriginsArtifact } from "../lib/csp-asal-media";
 import { requireAwcmsOrigin } from "../lib/awcms/toko-origin";
 import { readGaMeasurementId } from "../lib/ga";
+import { getMediaPublicOrigin } from "../lib/awcms/media";
+import { getVideo } from "../lib/berita";
+
+/** YouTube's own fixed poster CDN — see this file's own header. */
+const YOUTUBE_POSTER_ORIGIN = "https://i.ytimg.com";
+/** The `youtube-nocookie` embed origin the click-to-load facade's `<iframe>` points at. */
+const YOUTUBE_EMBED_ORIGIN = "https://www.youtube-nocookie.com";
 
 export const prerender = true;
 
 export async function GET(): Promise<Response> {
-  const [products, sliders, testimonials, popup, flashSales, storeSettings] = await Promise.all([
-    getProducts(),
-    getActiveSliders(),
-    getActiveTestimonials(),
-    getActivePopup(),
-    getActiveFlashSales(),
-    getStoreSettings()
-  ]);
+  const [products, sliders, testimonials, popup, flashSales, storeSettings, mediaOrigin, videoPosts] =
+    await Promise.all([
+      getProducts(),
+      getActiveSliders(),
+      getActiveTestimonials(),
+      getActivePopup(),
+      getActiveFlashSales(),
+      getStoreSettings(),
+      getMediaPublicOrigin(),
+      getVideo()
+    ]);
 
   const imageUrls: Array<string | null | undefined> = [];
 
@@ -94,12 +123,25 @@ export async function GET(): Promise<Response> {
   imageUrls.push(storeSettings.logo?.url);
   imageUrls.push(storeSettings.favicon?.url);
 
+  // Issue #47: the media host every resolved article/gallery/ad image and
+  // this build's news content is actually served from — see this file's
+  // own header for why the dedicated endpoint, not a derived origin.
+  if (mediaOrigin.configured && mediaOrigin.origin) {
+    imageUrls.push(mediaOrigin.origin);
+  }
+
+  const frameUrls: Array<string | null | undefined> = [];
+  if (videoPosts.length > 0) {
+    imageUrls.push(YOUTUBE_POSTER_ORIGIN);
+    frameUrls.push(YOUTUBE_EMBED_ORIGIN);
+  }
+
   // Throws (naming the variable) when `PUBLIC_AWCMS_ORIGIN` is unset or
   // malformed — see this file's own docblock for why that failure belongs
   // HERE, in a page every build unconditionally prerenders.
   const awcmsOrigin = requireAwcmsOrigin();
 
-  const derivedArtifact = buildCspOriginsArtifact(imageUrls, [awcmsOrigin]);
+  const derivedArtifact = buildCspOriginsArtifact(imageUrls, [awcmsOrigin], frameUrls);
 
   // GA branch (issue #56, A10) — see this file's own docblock. `ga` is
   // simply omitted (not `false`) in the default build; `readCspOrigins`

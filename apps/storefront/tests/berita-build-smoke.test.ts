@@ -148,18 +148,56 @@ describe("build smoke: news surface (issue #28) against the stub CMS", () => {
 
           expect(html).not.toMatch(/<style[\s>]/i);
           expect(html).not.toMatch(/\sstyle="/i);
-          // No media resolution — every image-bearing block degrades to a
-          // placeholder (src/lib/portable-text.ts) — never a real <img>.
-          expect(html).not.toMatch(/<img[\s>]/i);
+          // Issue #47: real media now resolves — see the per-page assertions
+          // below for exactly which `<img>` each page must carry, and never
+          // an `<iframe>` anywhere in server-rendered HTML (the facade only
+          // ever adds one from `video-facade.ts`, after a real click).
+          expect(html).not.toMatch(/<iframe[\s>]/i);
         }
 
-        // The video article renders a real watch link, not a placeholder —
-        // proving the well-formed-videoNews branch actually built.
+        // `/berita.html`'s card for the hero post carries a real, sized
+        // thumbnail (issue #47's card thumbnail — src/components/berita/
+        // ArtikelCard.astro).
+        const beritaIndexHtml = readFileSync(join(distClient, "berita.html"), "utf8");
+        expect(beritaIndexHtml).toContain(
+          "https://media.example.test/news/jembatan-kobar-hero.jpg"
+        );
+
+        // The article's own hero figure (src/components/berita/ArtikelView
+        // .astro) and its body's gallery image (src/lib/portable-text.ts)
+        // both resolved — proving the whole media.ts -> berita.ts ->
+        // portable-text.ts chain actually ran against the stub.
+        const articleHtml = readFileSync(
+          join(distClient, "berita", "bupati-kobar-resmikan-jembatan-baru.html"),
+          "utf8"
+        );
+        expect(articleHtml).toContain("https://media.example.test/news/jembatan-kobar-hero.jpg");
+        expect(articleHtml).toContain(
+          "https://media.example.test/news/jembatan-kobar-galeri-1.jpg"
+        );
+        expect(articleHtml).toContain("Humas Pemkab Kotawaringin Barat");
+
+        // The video article renders the click-to-load facade: a real poster
+        // <img> from the fixed YouTube CDN convention, the watch URL surviving
+        // only as the <noscript> fallback, and no <iframe> before a click.
         const videoHtml = readFileSync(
           join(distClient, "video", "detik-detik-kebakaran-pasar.html"),
           "utf8"
         );
-        expect(videoHtml).toContain("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
+        expect(videoHtml).toContain("https://i.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg");
+        expect(videoHtml).toContain(
+          '<noscript><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"'
+        );
+        expect(videoHtml).not.toContain("<iframe");
+
+        // `/csp.json` carries the media origin and the two YouTube origins
+        // (issue #47) — this build has both a resolved image and a video post.
+        const cspArtifact = JSON.parse(
+          readFileSync(join(distClient, "csp.json"), "utf8")
+        );
+        expect(cspArtifact.imgSrc).toContain("https://media.example.test");
+        expect(cspArtifact.imgSrc).toContain("https://i.ytimg.com");
+        expect(cspArtifact.frameSrc).toContain("https://www.youtube-nocookie.com");
 
         // The rubrik index renders the 3-level hierarchy: Peristiwa's own
         // page must include a post filed under its grandchild rubrik
