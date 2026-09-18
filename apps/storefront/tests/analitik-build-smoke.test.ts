@@ -39,19 +39,31 @@ async function waitForStub(url: string, deadline: number): Promise<void> {
   throw new Error(`stub-awcms did not answer ${url} in time.`);
 }
 
-function runBuild(stubPort: number, extraEnv: Record<string, string | undefined>) {
-  const env: Record<string, string | undefined> = {
-    ...process.env,
-    AWCMS_API_URL: `http://localhost:${stubPort}`,
-    AWCMS_API_TOKEN: "stub-token",
-    SITE_URL: "http://localhost:4321",
-    PUBLIC_AWCMS_ORIGIN: "https://cms.example.com",
-    ...extraEnv
-  };
+/**
+ * PR #64 review fix: the stub overrides are applied AFTER the copied
+ * `process.env`, exactly as `tests/checkout-build-smoke.test.ts` does —
+ * spreading a full `process.env` copy LAST (the original shape of this
+ * helper) let a developer's own shell `AWCMS_API_URL`/`AWCMS_API_TOKEN`/
+ * `SITE_URL`/`PUBLIC_AWCMS_ORIGIN` win over the stub, silently pointing the
+ * "default build" test at a real CMS instead of `scripts/stub-awcms.mjs`.
+ * `PUBLIC_GA_ID` is deleted from the copy first (never inherited from the
+ * shell) and re-added only when `gaId` is given, so the two tests below stay
+ * the one place that variable is set at all.
+ */
+function runBuild(stubPort: number, gaId: string | undefined) {
+  const env = { ...process.env };
+  delete env.PUBLIC_GA_ID;
 
   return Bun.spawnSync(["bun", "--bun", "astro", "build"], {
     cwd: STOREFRONT_ROOT,
-    env,
+    env: {
+      ...env,
+      AWCMS_API_URL: `http://localhost:${stubPort}`,
+      AWCMS_API_TOKEN: "stub-token",
+      SITE_URL: "http://localhost:4321",
+      PUBLIC_AWCMS_ORIGIN: "https://cms.example.com",
+      ...(gaId ? { PUBLIC_GA_ID: gaId } : {})
+    },
     stdout: "pipe",
     stderr: "pipe"
   });
@@ -92,9 +104,7 @@ describe("build smoke: the visitor beacon and the optional GA4 switch (issue #56
       try {
         await waitForStub(`http://localhost:${stubPort}/api/v1/commerce/products`, Date.now() + 5000);
 
-        const env = { ...process.env };
-        delete env.PUBLIC_GA_ID;
-        const build = runBuild(stubPort, env);
+        const build = runBuild(stubPort, undefined);
 
         if (build.exitCode !== 0) {
           throw new Error(
@@ -141,7 +151,7 @@ describe("build smoke: the visitor beacon and the optional GA4 switch (issue #56
       try {
         await waitForStub(`http://localhost:${stubPort}/api/v1/commerce/products`, Date.now() + 5000);
 
-        const build = runBuild(stubPort, { PUBLIC_GA_ID: "G-TEST" });
+        const build = runBuild(stubPort, "G-TEST");
 
         if (build.exitCode !== 0) {
           throw new Error(

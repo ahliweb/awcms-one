@@ -106,9 +106,18 @@ export const CACHE_PAGE = "public, max-age=0, must-revalidate";
  * hit-collection calls land on region-prefixed subdomains), which
  * `sanitizeOrigins` would otherwise discard as the worst possible input
  * shape. Hardcoding them here, ungated by any data this build fetched, is
- * what makes that safe: nothing external ever influences these two arrays.
+ * what makes that safe: nothing external ever influences these three
+ * arrays. `GA_IMG_SRC` covers gtag.js's own image-transport FALLBACK (a
+ * `<img>`/`Image()` beacon it falls back to when `fetch`/`sendBeacon` are
+ * unavailable) — without it, that fallback is silently blocked by
+ * `img-src` exactly the way an unwidened `connect-src` would block the
+ * primary transport.
  */
 const GA_SCRIPT_SRC = "https://www.googletagmanager.com";
+const GA_IMG_SRC = [
+  "https://*.google-analytics.com",
+  "https://*.googletagmanager.com"
+];
 const GA_CONNECT_SRC = [
   "https://*.google-analytics.com",
   "https://*.analytics.google.com",
@@ -117,8 +126,8 @@ const GA_CONNECT_SRC = [
 
 /**
  * Builds the policy string, widening `img-src`/`connect-src` with the
- * origins in `artifact`, and `script-src`/`connect-src` with GA's own fixed
- * origins when `artifact.ga` is `true`. Pure and exported so the
+ * origins in `artifact`, and `script-src`/`img-src`/`connect-src` with GA's
+ * own fixed origins when `artifact.ga` is `true`. Pure and exported so the
  * composition is tested directly rather than through a served response.
  *
  * Every derived origin is re-validated here even though the build already
@@ -138,13 +147,14 @@ export function buildCsp(artifact = {}) {
   const connect = sanitizeOrigins(artifact.connectSrc);
   const gaEnabled = artifact.ga === true;
   const gaScript = gaEnabled ? [GA_SCRIPT_SRC] : [];
+  const gaImg = gaEnabled ? GA_IMG_SRC : [];
   const gaConnect = gaEnabled ? GA_CONNECT_SRC : [];
 
   return [
     "default-src 'self'",
     ["script-src 'self'", ...gaScript].join(" "),
     "style-src 'self'",
-    ["img-src 'self'", ...img].join(" "),
+    ["img-src 'self'", ...img, ...gaImg].join(" "),
     "font-src 'self'",
     ["connect-src 'self'", ...connect, ...gaConnect].join(" "),
     "frame-src 'none'",

@@ -42,10 +42,21 @@ declare global {
  * Google's own `gtag()` shim: pushes its arguments onto `window.dataLayer`,
  * created lazily. Exported so its exact shape is unit-testable without
  * `gtag.js` itself ever loading.
+ *
+ * MUST push the real `arguments` object, never a plain array built from a
+ * rest parameter. `gtag.js` only recognises a `dataLayer` entry as a
+ * command when `Object.prototype.toString.call(entry) === "[object
+ * Arguments]"` — an `Array` (which is exactly what `[...args]`/a rest
+ * parameter produces) is silently discarded. Getting this wrong means
+ * `gtag.js` loads, the CSP is correctly widened, and nothing ever reaches
+ * GA anyway — the failure Google's own snippet avoids by never using a
+ * rest parameter in the first place. `..._args` exists purely so this
+ * function's TYPE accepts any call shape (`gtag("js", …)`,
+ * `gtag("config", …, …)`); the body never reads it.
  */
-export function gtag(...args: unknown[]): void {
+export function gtag(..._args: unknown[]): void {
   window.dataLayer ??= [];
-  window.dataLayer.push(args);
+  window.dataLayer.push(arguments);
 }
 
 /** `anonymize_ip` is set explicitly per issue #56's own Scope, even though GA4 anonymizes IPs by default (unlike Universal Analytics) — stated, not assumed. */

@@ -1,12 +1,17 @@
 /**
  * GA4's CSP widening (issue #56, A10) — `server/penyaji.mjs`'s `buildCsp`
- * gains `script-src`/`connect-src` for GA's own fixed origins ONLY when the
- * build artifact's `ga` flag is `true` (`src/pages/csp.json.ts`'s GA
- * branch, gated by `src/lib/ga.ts`'s `readGaMeasurementId`). Kept as its own
- * file rather than folded into `tests/katalog-csp-media.test.ts`
- * (issue #27/A1's own file, `csp.json.ts`'s img-src/frame-src work) — same
- * "never editing a sibling issue's file" rule
- * `tests/checkout-build-smoke.test.ts`'s own docblock names.
+ * gains `script-src`/`img-src`/`connect-src` for GA's own fixed origins
+ * ONLY when the build artifact's `ga` flag is `true`
+ * (`src/pages/csp.json.ts`'s GA branch, gated by `src/lib/ga.ts`'s
+ * `readGaMeasurementId`). `img-src` carries gtag.js's own image-transport
+ * FALLBACK origins (PR #64 review fix) — the `<img>`/`Image()` beacon it
+ * falls back to when `fetch`/`sendBeacon` are unavailable, which would
+ * otherwise be silently blocked exactly like an unwidened `connect-src`
+ * blocks the primary transport. Kept as its own file rather than folded
+ * into `tests/katalog-csp-media.test.ts` (issue #27/A1's own file,
+ * `csp.json.ts`'s img-src/frame-src work) — same "never editing a sibling
+ * issue's file" rule `tests/checkout-build-smoke.test.ts`'s own docblock
+ * names.
  */
 import { describe, expect, test } from "bun:test";
 import { buildCsp, CSP } from "../server/penyaji.mjs";
@@ -20,18 +25,20 @@ describe("buildCsp: the GA branch", () => {
     expect(CSP).not.toContain("google-analytics");
   });
 
-  test("ga: true widens script-src and connect-src with exactly GA's own origins", () => {
+  test("ga: true widens script-src, img-src, and connect-src with exactly GA's own origins", () => {
     const csp = buildCsp({ ga: true });
 
     expect(csp).toContain(
       "script-src 'self' https://www.googletagmanager.com;"
     );
     expect(csp).toContain(
+      "img-src 'self' https://*.google-analytics.com https://*.googletagmanager.com;"
+    );
+    expect(csp).toContain(
       "connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com;"
     );
 
-    // Every other directive is untouched — GA must not widen img-src/frame-src.
-    expect(csp).toContain("img-src 'self';");
+    // Every other directive is untouched — GA must not widen frame-src.
     expect(csp).toContain("frame-src 'none';");
     expect(csp).toContain("style-src 'self';");
   });
@@ -43,7 +50,9 @@ describe("buildCsp: the GA branch", () => {
       ga: true
     });
 
-    expect(csp).toContain("img-src 'self' https://media.example.com;");
+    expect(csp).toContain(
+      "img-src 'self' https://media.example.com https://*.google-analytics.com https://*.googletagmanager.com;"
+    );
     expect(csp).toContain(
       "connect-src 'self' https://cms.example.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com;"
     );
