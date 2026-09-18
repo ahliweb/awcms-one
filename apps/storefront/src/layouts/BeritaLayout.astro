@@ -36,6 +36,8 @@ import NavBerita from "../components/berita/NavBerita.astro";
 import Ticker from "../components/berita/Ticker.astro";
 import FooterBerita from "../components/berita/FooterBerita.astro";
 import { getSiteIdentity } from "../lib/awcms/profil";
+import { resolveOneMedia } from "../lib/awcms/media";
+import { listingSocialMeta, type MetaTag, type OgType } from "../lib/meta-sosial";
 import "../styles/berita.css";
 import "../styles/berita-chrome.css";
 import "../styles/iklan-popup.css";
@@ -45,14 +47,48 @@ interface Props {
   description?: string;
   canonicalPath: string;
   schema?: Record<string, unknown>;
+  /** Issue #54 (A8): forwarded to `BaseLayout.astro` unchanged — see that file's `Props`. */
+  ogType?: OgType;
+  /**
+   * Issue #54 (A8): forwarded to `BaseLayout.astro`. When a page passes
+   * NOTHING (every news LISTING page — the front page, a rubrik/daerah/
+   * mitra/tag/penulis/arsip archive, `/video`), this layout substitutes the
+   * site logo as `og:image` (`src/lib/meta-sosial.ts`'s `listingSocialMeta`)
+   * so a shared listing link previews with the brand mark. Resolved here,
+   * in the one shell every news page renders through, rather than in each
+   * listing page (and NOT in `BaseLayout.astro`, so a store page's OG block
+   * stays exactly as it was). An article/video page passes its own `meta`
+   * and never sees the fallback. An `identity.logoMediaId` that does not
+   * resolve (none configured, or an id `media_library` does not answer)
+   * emits nothing. The stub's fixture logo DOES resolve
+   * (`tests/fixtures/awcms/media-objects.json`), which is what lets
+   * `tests/meta-sosial-build-smoke.test.ts` assert this path end to end.
+   */
+  meta?: readonly MetaTag[];
 }
 
-const { title, description, canonicalPath, schema } = Astro.props;
+const { title, description, canonicalPath, schema, ogType } = Astro.props;
 
 const identity = await getSiteIdentity();
+
+// `resolveOneMedia` is memoized per id for the whole build (`src/lib/awcms/
+// media.ts`), so resolving the logo from every listing page costs one
+// request total, not one per page — the same reason `identity` above is
+// re-fetched here instead of threaded through as a prop.
+const meta: readonly MetaTag[] =
+  Astro.props.meta ?? listingSocialMeta(await resolveOneMedia(identity.logoMediaId));
 ---
 
-<BaseLayout title={title} description={description} canonicalPath={canonicalPath} schema={schema}>
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath={canonicalPath}
+  schema={schema}
+  ogType={ogType}
+  meta={meta}
+>
+  {/* Issue #54 (A8): the `head` slot transferred through to `BaseLayout.astro`'s own — a rubrik page's `rel="prev"/"next"` links ride on it (see `src/pages/rubrik/[slug]/**`). Same one-line "transferring slots" pattern the `buletin` slot below already uses. */}
+  <slot name="head" slot="head" />
   <BilahUtilitas identity={identity} slot="header" />
   <NavBerita identity={identity} currentPath={canonicalPath} slot="header" />
   <Ticker slot="header" />

@@ -761,6 +761,35 @@ no `package.json` script wires it into `bun run build` — it is a manual,
 explicit step for local/CI verification against a build with no live CMS to
 reach.
 
+### Build-time request concurrency against a real CMS (issue #71)
+
+The stub never refuses a request, so it cannot show the one way a build
+that passes here still fails against a real `apps/cms`: too many requests
+at once. `apps/cms/src/lib/database/work-class.ts` admits at most
+`WORK_CLASS_MAX.interactive` = 8 running `interactive` requests plus a
+bounded queue of 8 × `DATABASE_WORK_CLASS_QUEUE_MULTIPLIER` (default 4) =
+32 waiting — 40 in total — and rejects the 41st outright with a 503
+(`WorkClassQueueFullError`, logged as `database.pool.rejected`).
+`/index/wilayah-kecamatan-{code}.json`'s `getStaticPaths` used to fire one
+`GET /api/v1/idn-regions/regions?level=3&parentCode=…` per regency in the
+same tick — 56 with the default `PUBLIC_WILAYAH_PROVINSI`, 16 of them
+rejected, build failed. Every region request now passes through one
+module-level limiter in `apps/storefront/src/lib/awcms/wilayah-checkout.ts`
+(`MAX_IN_FLIGHT_REGION_REQUESTS` = **6**): under the 8 running slots — not
+merely under the 40 admitted — so the region walk never even queues on an
+idle CMS and leaves two running slots plus the whole queue to the rest of
+the same `astro build` (catalog, news, marketing fetches run in parallel
+with it) and to the CMS's own admin users. Fewer, bigger calls were
+considered and rejected: that route filters by `parentCode` as an exact
+match on the direct parent (no ancestor or code-prefix filter — see
+`apps/cms/src/modules/idn-admin-regions/application/region-lookup.ts`), so
+the only single-walk alternative is a whole-country `level=3` walk or
+seeding the `after` cursor as a range start, which the route does not
+document. `apps/storefront/tests/wilayah-checkout.test.ts` asserts the
+ceiling over the real 56-regency fan-out with a mocked client; the
+end-to-end proof (zero `database.pool.rejected` in the CMS log for a default
+build) is a real-CMS build per `docs/deployment.md`'s "Local database".
+
 ## Test tiers
 
 Run from the ROOT (`bun test`) — `bunfig.toml` only excludes `apps/cms`, so
