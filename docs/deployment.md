@@ -165,6 +165,113 @@ Product images, slider media, and payment-confirmation proof images are resolved
 
 **Ad placements (issue #57) are the one resource this script cannot create locally, at all**, and this is a harder gap than the placeholder-SVG one above: unlike a product image, `POST /api/v1/news-portal/ad-placements`'s `mediaObjectId` is REQUIRED and existence/status-checked against `awcms_news_media_objects` (`ad-placement-reference-validation.ts`) — only a `verified`/`attached` media object satisfies it, and reaching `verified` needs `finalizeNewsMediaUploadSession` to perform a real R2 `GET` + checksum, which needs `NEWS_MEDIA_R2_*` configured. This repo's local/CI compose stack provisions PostgreSQL only, no R2/S3-compatible object storage. `tools/seed-data/ad-placements.json` and the four correctly-sized placeholder PNGs under `tools/seed-assets/` (`ad-728x90.png`/`ad-970x250.png`/`ad-300x250.png`/`ad-300x600.png`) exist so the seed script's `ensureAdPlacements` step genuinely creates all 12 the moment a deployment DOES have `NEWS_MEDIA_R2_*` configured (`sidebar_middle` takes the 300x600 creative — seputarborneo's `kiri-tengah` slot is a half-page unit — the other two sidebar slots 300x250). Locally it prints one explanatory skip line, counting the placements actually left unapplied, instead of 12 failures, and creates nothing. **That degradation is reserved for exactly one refusal:** the create-session route's `502 PROVIDER_ERROR` ("News media R2 storage is not configured for this deployment", `apps/cms/src/pages/api/v1/media/news-images/upload-sessions/index.ts`), the only signal that the deployment has no R2 at all. Any other media failure — a `400` mime/size refusal, a `403` on the presigned PUT, a `422` or transient `502` from finalize, a network error, a rejected `POST .../ad-placements` — is a real failure of that run or its assets, is reported per placement, and makes the seed exit non-zero; it is never swallowed as "no R2 here".
 
+## Importing seputarborneo (issue #58)
+
+`tools/import-seputarborneo.ts` (`bun run import:seputarborneo`) is an EXPORTER: it reads seputarborneo.com's legacy MariaDB archive and writes the input files `apps/cms`'s own operator pipeline for exactly this job expects — `bun run blog:legacy:import` (`apps/cms/scripts/blog-legacy-import.ts`, Issue #599/ADR-0114 in upstream awcms). It makes no network call and needs no `apps/cms` running at all; the actual import runs from INSIDE `apps/cms`, against the SAME `borneojek-mart` tenant [`tools/seed-borneojek-mart.ts`](#local-database-issue-25) bootstraps.
+
+**The dump is never copied into this repository, never committed, and never printed to the console.** `tools/lib/mysql-dump-reader.ts` streams it — `Bun.file(...).stream()` through a `DecompressionStream("gzip")` — a row at a time; the 228 MB decompressed archive is never held whole in memory, and this script's own console output prints only counts. The files it writes under `tools/out/seputarborneo/` (git-ignored) DO carry row content — that is their entire purpose, being `blog:legacy:import`'s own input format — but they stay on the machine that ran the export.
+
+### Why an exporter, not a direct API client
+
+An earlier version of this tool called `POST /api/v1/blog/posts` directly. `blog:legacy:import` gets two things right that no public route can: it accepts a caller-supplied `publishedAt` for an ALREADY-PAST date (checked directly — no `blog/posts/*` route does), and it writes `legacy_source_id`/`legacy_source_system` (`sql/138`) so a re-run is idempotent by provenance rather than by guessing from a slug. It also converts `bodyHtml` to Portable Text itself; this exporter does not duplicate that converter — every `bodyHtml` value it writes is the legacy HTML verbatim, so what the pipeline refuses is exactly what the archive contained.
+
+### The runbook
+
+```bash
+# .env: set SEPUTARBORNEO_DUMP to the gzip-compressed dump's absolute path.
+bun run import:seputarborneo                     # writes tools/out/seputarborneo/*, no network call
+bun run import:seputarborneo -- --limit=200       # cap berita_red rows, for a first pass
+```
+
+Then, from `apps/cms` (against an ALREADY-SEEDED, ALREADY-RUNNING tenant — `bun run db:seed:cms` and the seputarborneo taxonomy seed, [issue #57](https://github.com/ahliweb/awcms-one/issues/57), first):
+
+```bash
+cd apps/cms
+
+# 1. Preview (the default — nothing written without --commit):
+bun run blog:legacy:import --file=../tools/out/seputarborneo/posts.ndjson \
+  --tenant=<uuid> --author=<uuid> --system=seputarborneo
+
+# 2. The upload set — every foto_berita lead photograph AND any inline <img>
+#    the converter refused (this is the CANONICAL list, from the converter's
+#    own refusals; this exporter does not re-scan the HTML itself, to avoid a
+#    second scanner drifting from the one whose refusals actually matter):
+bun run blog:legacy:import --file=../tools/out/seputarborneo/posts.ndjson \
+  --tenant=<uuid> --author=<uuid> --system=seputarborneo \
+  --images=upload-set.json
+# Upload every file through /admin/media, then build media-map.json:
+# { "<src>": "<media object uuid>" }
+
+# 3. Terms — build term-map.json from tools/out/seputarborneo/term-map-hints.json
+#    (this exporter's OWN guidance: which of B1's 8 top-level terms, or which
+#    UMUM child, each of the 45 legacy category names belongs to) plus a live
+#    GET /api/v1/blog/terms — { "<legacy category name>": "<term uuid>" }.
+
+# 4. Commit:
+bun run blog:legacy:import --file=../tools/out/seputarborneo/posts.ndjson \
+  --tenant=<uuid> --author=<uuid> --system=seputarborneo \
+  --media-map=media-map.json --term-map=term-map.json --commit
+
+# 5. Repeat 1-4 for videos.ndjson (no featuredImageSrc, so step 2 only
+#    matters if a video's description body itself has an <img>; no
+#    categories are exported for videos — see "What is NOT carried
+#    through" below).
+
+# 6. Redirects — this exporter's OWN tools/out/seputarborneo/redirects.json,
+#    NOT blog:legacy:redirects:import (see "Why this exporter builds its own
+#    redirects" below). ~51,000 entries against a route that takes 200 per
+#    all-or-nothing call is a ~256-call loop, so the exporter runs it
+#    (`tools/lib/redirect-push.ts`); it reuses AWCMS_BASE_URL/SEED_OWNER_*:
+cd ..   # back to the repo root
+bun run import:seputarborneo -- --push-redirects            # DRY RUN of the whole file: every chunk
+                                                            # is posted with dryRun: true, nothing written;
+                                                            # per-entry refusals are printed, exit 1 on any
+bun run import:seputarborneo -- --push-redirects --commit   # the real import, chunk by chunk, each under an
+                                                            # Idempotency-Key derived from the chunk's content
+#    A crash or a failed chunk mid-run is safe to rerun with the same command:
+#    the CMS replays every already-committed chunk from its idempotency record
+#    (same key + same body -> the stored 200) and imports only the rest. The
+#    commit run does NOT dry-run first for exactly that reason — a fresh dry run
+#    of a committed chunk would report every row as a CONFLICT with itself.
+#    Do NOT re-export between the dry run and the commit: a changed file means
+#    changed chunk keys, and the first chunk that overlaps an earlier import
+#    fails loudly on CONFLICT instead of replaying.
+
+# 7. Institutions — blog:legacy:import has no mechanism to set institutionIds
+#    (see below). This exporter's OWN follow-up pass closes that gap, over
+#    the public API, from the repo root:
+bun run import:seputarborneo -- --assign-institutions
+
+# 8. Verify (from apps/cms, against a sitemap or URL list):
+cd apps/cms && bun run blog:legacy:cutover:verify --tenant=<uuid> --urls=<path>
+```
+
+### What `blog:legacy:import` still cannot do — and the follow-ups this repo keeps
+
+0. **The redirect rows themselves.** No upstream script writes `awcms_seo_redirects`; the only way in is `POST /api/v1/seo/redirects/import`, capped at `MAX_REDIRECT_IMPORT_ITEMS` (200) per all-or-nothing call and requiring an `Idempotency-Key` on every call. `--push-redirects` (step 6) is that loop — verified against the route's own file (`apps/cms/src/pages/api/v1/seo/redirects/import.ts`): body `{ redirects, dryRun }`, header `idempotency-key`, per-item `results[].{index, ok, code, normalizedSourcePath, errors}` on both the 200 and the 400 `IMPORT_VALIDATION_FAILED` envelope. Before any call it also runs the route's own query-stripping source normalization over the WHOLE file and refuses on the first duplicate, because the route detects duplicates only within one chunk — a file-wide duplicate would otherwise surface as a `CONFLICT` on a later chunk, after an earlier one had already been written.
+1. **`institutionIds`.** `blog:legacy:import`'s own `main()` calls `syncPostTermAssignments` after each insert — never `syncPostInstitutionAssignments`, checked directly against `apps/cms/scripts/blog-legacy-import.ts` and `legacy-import-directory.ts`. A `DAERAH`/`MITRA BORNEO` article therefore imports with NO institution, and a post only reaches `/daerah/{slug}`/`/mitra/{slug}` through one (`apps/storefront/src/pages/daerah/[slug].astro`'s own header) — both are issue #58's own acceptance criterion. `bun run import:seputarborneo -- --assign-institutions` (step 7 above) closes this: it re-reads the dump, resolves each `DAERAH`/`MITRA BORNEO` article's institution by name, and `PATCH`es `institutionIds` on the already-imported post (found by its own exported `slug` — there is no slug-lookup route on the public API, so it pages the full post list once).
+2. **A legacy byline.** `--author=<uuid>` is ONE value for the whole run; `legacy-import-record.ts` has no per-row author/sidecar field at all. The legacy `user`/`admin` column is dropped entirely by this pipeline — a real, unavoidable gap of using the operator tool as intended, not something this exporter can invent a field for.
+
+### Why this exporter builds its own `redirects.json`, not `blog:legacy:redirects:import`
+
+That sibling script derives its source path by templating `{legacyId}`/`{slug}` — where `{slug}` is the STORED post slug (`listLegacyRedirectMappings`, checked directly). For the ~84 collision groups / ~171 rows `blog-legacy-import.ts`'s own comment names (two legacy articles sharing a title), the stored slug carries a `-{legacyId}` suffix this exporter's own `newPostSlug` adds — but the REAL legacy current-style URL was built from the plain, un-suffixed title, so the sibling script's templated redirect would be wrong for exactly those rows. `redirects.json` here is built straight from the raw `title` for both legacy URL forms (today's `/news/{id}-{slug}.html` and the pre-2.0 `/news/{id}_{title_with_underscores}.html`, the latter of which `blog:legacy:redirects:import` cannot produce AT ALL — its template has no `{title}` placeholder), targeting `/blog/{tenantCode}/{slug}` with the SAME final stored slug `blog:legacy:import` writes. `blog:legacy:redirects:import`, `blog:legacy:rubrik-redirects` (which replays the ALREADY-COMMITTED `apps/cms/data/seputarborneo-legacy/rubrik-redirects.json` category-level map — a separate, pre-existing upstream asset this exporter does not touch, and NOT a step of this runbook: `docs/routing.md`'s "Which mechanism is authoritative for category-level legacy URLs" explains why the storefront's rule-based module covers those URLs with no rows at all), and `blog:legacy:article-paths` (built for `ahliweb/awcms-astro`'s edge-served cutover, and explicitly inert for `awcms_seo_redirects` — this repo's own mechanism, per `docs/routing.md`) remain available upstream tools; this exporter simply does not need them.
+
+Two shape decisions in `redirects.json` exist only because of how the CMS and the storefront consume the rows (found in review of PR #67):
+
+- **`origin` is `legacy_blog`, not `import`.** `apps/storefront/src/lib/awcms/blog.ts`'s `getLegacyRedirectRows()` keeps ONLY `origin === "legacy_blog"` rows when it builds `/index/pengalihan-legacy.json` (`docs/routing.md`, "Legacy redirects"); an `import`-origin row is a valid CMS rule this storefront would silently never serve. The import route's `defaultOrigin: "import"` only applies to a body that omits `origin`.
+- **A video row's source is the synthetic, query-free `/video/{id}-{slug}.html`, not the real `/video/?video={id}-{slug}.html`.** The CMS strips the query string from every redirect source at write time (`validateRedirectInput` → `normalizeRedirectPath` without `keepQuery`), so the real URL of all 35 video rows would be stored as one bare `/video` — the chunk fails on `DUPLICATE_IN_BATCH`, or one surviving row redirects the storefront's `/video` list page to a single post. The storefront answers the real inbound `?video={id}` URL by id from that synthetic key (`docs/routing.md`, same section). One key per video is enough: the request-time rule matches by id only, so an underscore-separated second key would be dead weight.
+
+### What is NOT carried through, at all
+
+- **A legacy byline** (see above).
+- **An embedded video player.** `berita_vid` has no content-block field in `legacy-import-record.ts` — only `bodyHtml`. `videos.ndjson` appends a plain `<a href="https://youtu.be/{id}">` link after the video's description text instead of an embedded `videoNews` block; the converter accepts a link (unlike an `<iframe>`, which it refuses outright), so the video imports as an article with a link to watch it, not a player.
+- **Ad placements** (`ikl_online`) and **institution logos** (`logo`, for [issue #59](https://github.com/ahliweb/awcms-one/issues/59)'s `logo_media_id`) — this exporter reads their row counts for the summary only; creating a placement needs a verified `mediaObjectId` (`POST /api/v1/news-portal/ad-placements`), and `awcms_blog_institutions.logo_media_id` does not exist in this repository's `apps/cms` yet.
+- **The full production run** (all ~25,490 `berita_red` rows, every video) is deliberately deferred past this issue's own PR — the manager runs it after issue #57 merges.
+
+### `newsletter_subscribers`, and everything else this exporter never reads
+
+`newsletter_subscribers` is counted and reported, never imported — no consent record survives the legacy signup form. `users`, `counter`, `renungan_rmd`, `tanya_jawab`, and `foto_berita` (the gallery table) are never read at all — see `docs/kamus-data.md`'s mapping table for why each one is excluded.
+
 ## Production PostgreSQL provisioning is not done
 
 `apps/cms` is PostgreSQL-only. **borneojek's production server runs MySQL** — the very database this platform's catalog schema is being re-expressed from (see [`docs/kamus-data.md`](kamus-data.md)) — so a PostgreSQL instance has to be provisioned on that infrastructure, or elsewhere, before `apps/cms` can be deployed against a real, production database. `compose.yaml`'s `postgres:18.4` container is deliberately a LOCAL/CI convenience (a named volume on a developer's disk, development-grade default passwords documented in `.env.example`) and is never meant to be pointed at from a production deployment. This is why [`docs/pengujian.md`](pengujian.md) describes `apps/cms`'s DB-gated test suite as something to run against a locally provisioned, disposable PostgreSQL, never against anything borneojek currently operates.
