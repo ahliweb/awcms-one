@@ -31,5 +31,16 @@
     "creditLine": "Humas DPRD Kalimantan Tengah",
     "sourceName": null,
     "copyrightStatus": "permission_granted"
+  },
+  "3f1b6c9e-6b1a-4e9a-9c2a-1a2b3c4d5e6f": {
+    "publicUrl": "https://media.example.test/brand/logo-bjekmart.png",
+    "altText": "Logo BjekMart",
+    "mimeType": "image/png",
+    "width": 512,
+    "height": 512,
+    "sizeBytes": 20480,
+    "creditLine": null,
+    "sourceName": null,
+    "copyrightStatus": "owned"
   }
 }
