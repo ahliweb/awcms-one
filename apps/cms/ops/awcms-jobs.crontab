@@ -48,6 +48,12 @@ AWCMS_LOCK=/home/admin1/awcms-jobs/locks
 # retention).
 0 4 * * * /usr/bin/flock -n $AWCMS_LOCK/comments-retention.lock $AWCMS_RUN_JOB comments:retention >> $AWCMS_JOB_LOG/comments-retention.log 2>&1
 
+# commerce — Deletes every expired customer OTP and every expired or
+# revoked-more-than-7-days-ago customer session, across all tenants (Issue
+# #87). Idempotent and bounded — a row already deleted is simply absent from
+# the next run's scan.
+*/15 * * * * /usr/bin/flock -n $AWCMS_LOCK/commerce-customer-auth-purge.lock $AWCMS_RUN_JOB commerce:customer-auth:purge >> $AWCMS_JOB_LOG/commerce-customer-auth-purge.log 2>&1
+
 # commerce — Recompute every active tenant's non-draft, non-ended flash sales
 # against now() and persist the derived status, firing
 # commerce.flash_sale.started/.ended on the transition. Idempotent — a sale
