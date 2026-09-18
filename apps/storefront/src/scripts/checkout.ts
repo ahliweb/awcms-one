@@ -407,7 +407,7 @@ if (root) {
         }
 
         if (error.code === "CART_CHANGED") {
-          const fresh = error.freshQuote as CartQuote | null;
+          const fresh = error.freshQuote;
           if (fresh) {
             latestQuote = fresh;
             renderShippingOptions(fresh);

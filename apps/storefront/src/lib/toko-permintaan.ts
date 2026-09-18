@@ -25,6 +25,7 @@
  *   to duplicate the rest of this function's request-shaping.
  */
 import { requireAwcmsOrigin } from "./awcms/toko-origin";
+import type { CartQuote } from "./toko-klien";
 
 export type ValidationErrorDetail = { field: string; message: string };
 
@@ -61,10 +62,10 @@ export class TokoApiError extends Error {
     );
   }
 
-  /** The fresh quote a `409 CART_CHANGED` carries in `details.quote`, or `null` for any other error. Typed `unknown` here (rather than `CartQuote`) so this file has no dependency, even a type-only one, back on `toko-klien.ts`; `toko-klien.ts`'s own callers narrow it themselves. */
-  get freshQuote(): unknown {
+  /** The fresh quote a `409 CART_CHANGED` carries in `details.quote`, or `null` for any other error. The `CartQuote` import is type-only — erased at compile time — so the runtime dependency still points one way (`toko-klien.ts` → here). */
+  get freshQuote(): CartQuote | null {
     if (this.code !== "CART_CHANGED") return null;
-    const details = this.details as { quote?: unknown } | undefined;
+    const details = this.details as { quote?: CartQuote } | undefined;
     return details?.quote ?? null;
   }
 
