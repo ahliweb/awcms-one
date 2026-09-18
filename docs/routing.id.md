@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](routing.md)
 
-<!-- i18n-source-hash: sha256:37828437a1cf3f1af87a3170bf42853da0512ce837002fdf3738cf841578a185 -->
+<!-- i18n-source-hash: sha256:90881ceafe48a616d5621a2ddd1e94a8f3d97148f0a249abc031eaa79fd43e66 -->
 
 # Routing
 
@@ -101,6 +101,10 @@ Pencarian id `/news/…` dan `/video/?video=…` (aturan img dan video) dilayani
 ## `/products` → `/` (301), tidak berubah dari increment 1
 
 URL katalog lama milik situs live, `/products` — dengan atau tanpa query string — tetap redirect ke `/` dengan `301`, dicocokkan hanya pada path (`isProductsRedirect`/`PRODUCTS_REDIRECT_LOCATION` di `apps/storefront/server/penyaji.mjs`). Ini adalah aturan hardcoded terpisah, berbeda dari peta redirect-lawas yang dihasilkan di atas — lihat [ADR-0005](adr/0005-product-urls-match-the-live-sites-shape.id.md).
+
+## Halaman yang terbayangi direktori bernama sama ditulis ulang ke `.html`-nya (issue #75)
+
+Di bawah `build.format: "file"`, halaman landing yang juga punya anak dipancarkan sebagai **file sekaligus direktori** — `dist/client/berita.html` di samping `dist/client/berita/`, `video.html` di samping `video/`, dan `rubrik/{slug}.html` di samping `rubrik/{slug}/` (`feed.xml` rubrik itu dan `halaman/{n}.html`). Static handler `@astrojs/node` menguji direktori *sebelum* meminta file ke `send`: dengan `trailingSlash: "never"`, permintaan berbentuk direktori tanpa garis miring akhir ditulis ulang menjadi `{path}/index.html` — file yang tidak pernah ditulis build ini — sehingga fallback `.html` milik `send` tidak pernah berjalan, adapter jatuh ke SSR, dan `/berita`, `/video`, serta setiap `/rubrik/{slug}` menjawab **404** di situs yang disajikan padahal build-nya hijau. Karena itu `apps/storefront/server/penyaji.mjs` menelusuri `dist/client/` **sekali saat startup** (`discoverShadowedHtmlPaths`, rekursif — bayangan rubrik ada satu tingkat di bawah) untuk menemukan setiap path semacam itu, dan, sebagai langkah *terakhir* sebelum adapter — setelah `/healthz`, redirect `/products`, dan kedua lapisan redirect lawas di atas, yang semuanya tetap didahulukan — menulis ulang `req.url` untuk path-path itu saja menjadi `{path}.html` (`shadowedHtmlUrl`, query string dipertahankan). Ini penulisan ulang internal, bukan redirect: URL pembaca tetap `/berita`, dan pemanggilan `send` milik adapter sendiri tetap menyajikan file itu dengan penanganan traversal, conditional-GET, dan content-type miliknya — tidak ada bagian `penyaji.mjs` yang membaca atau men-stream halaman. Bentuk dengan garis miring akhir (`/berita/`) sengaja diserahkan ke adapter, yang me-301-kannya ke `/berita` seperti sebelumnya. Dicakup oleh `apps/storefront/tests/penyaji-bayangan-html.test.ts` (pohon `dist/` sintetis dan hook `createServer`) dan `apps/storefront/tests/penyaji-bayangan-build-smoke.test.ts` (build nyata berbasis stub yang disajikan oleh bundel `dist/server/penyaji.mjs` yang sesungguhnya).
 
 ## Belum dibangun
 
