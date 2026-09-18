@@ -1,0 +1,245 @@
+[
+  {
+    "name": "Pemprov Kalteng",
+    "slug": "pemprov-kalteng",
+    "branch": "executive",
+    "regionLevel": 1,
+    "regionName": "Kalimantan Tengah",
+    "seoTitle": "Berita Pemprov Kalteng Terbaru Hari Ini",
+    "description": "Kanal rilis resmi Pemerintah Provinsi Kalimantan Tengah."
+  },
+  {
+    "name": "DPRD Kalteng",
+    "slug": "dprd-kalteng",
+    "branch": "legislative",
+    "regionLevel": 1,
+    "regionName": "Kalimantan Tengah",
+    "seoTitle": "Berita DPRD Kalteng Terbaru Hari Ini",
+    "description": "Kanal rilis resmi DPRD Provinsi Kalimantan Tengah."
+  },
+  {
+    "name": "Pemko Palangka Raya",
+    "slug": "pemko-palangka-raya",
+    "branch": "executive",
+    "regionLevel": 2,
+    "regionName": "Palangka Raya",
+    "seoTitle": "Berita Pemko Palangka Raya Terbaru Hari Ini",
+    "description": "Kanal rilis resmi Pemerintah Kota Palangka Raya."
+  },
+  {
+    "name": "DPRD Palangka Raya",
+    "slug": "dprd-palangka-raya",
+    "branch": "legislative",
+    "regionLevel": 2,
+    "regionName": "Palangka Raya",
+    "seoTitle": "Berita DPRD Palangka Raya Terbaru Hari Ini",
+    "description": "Kanal rilis resmi DPRD Kota Palangka Raya."
+  },
+  {
+    "name": "Pemkab Kotawaringin Timur",
+    "slug": "pemkab-kotawaringin-timur",
+    "branch": "executive",
+    "regionLevel": 2,
+    "regionName": "Kotawaringin Timur",
+    "seoTitle": "Berita Pemkab Kotawaringin Timur Terbaru Hari Ini",
+    "description": "Kanal rilis resmi Pemerintah Kabupaten Kotawaringin Timur."
+  },
+  {
+    "name": "DPRD Kotawaringin Timur",
+    "slug": "dprd-kotawaringin-timur",
+    "branch": "legislative",
+    "regionLevel": 2,
+    "regionName": "Kotawaringin Timur",
+    "seoTitle": "Berita DPRD Kotawaringin Timur Terbaru Hari Ini",
+    "description": "Kanal rilis resmi DPRD Kabupaten Kotawaringin Timur."
+  },
+  {
+    "name": "Pemkab Kapuas",
+    "slug": "pemkab-kapuas",
+    "branch": "executive",
+    "regionLevel": 2,
+    "regionName": "Kapuas",
+    "seoTitle": "Berita Pemkab Kapuas Terbaru Hari Ini",
+    "description": "Kanal rilis resmi Pemerintah Kabupaten Kapuas."
+  },
+  {
+    "name": "DPRD Kapuas",
+    "slug": "dprd-kapuas",
+    "branch": "legislative",
+    "regionLevel": 2,
+    "regionName": "Kapuas",
+    "seoTitle": "Berita DPRD Kapuas Terbaru Hari Ini",
+    "description": "Kanal rilis resmi DPRD Kabupaten Kapuas."
+  },
+  {
+    "name": "Pemkab Pulang Pisau",
+    "slug": "pemkab-pulang-pisau",
+    "branch": "executive",
+    "regionLevel": 2,
+    "regionName": "Pulang Pisau",
+    "seoTitle": "Berita Pemkab Pulang Pisau Terbaru Hari Ini",
+    "description": "Kanal rilis resmi Pemerintah Kabupaten Pulang Pisau."
+  },
+  {
+    "name": "DPRD Pulang Pisau",
+    "slug": "dprd-pulang-pisau",
+    "branch": "legislative",
+    "regionLevel": 2,
+    "regionName": "Pulang Pisau",
+    "seoTitle": "Berita DPRD Pulang Pisau Terbaru Hari Ini",
+    "description": "Kanal rilis resmi DPRD Kabupaten Pulang Pisau."
+  },
+  {
+    "name": "Pemkab Seruyan",
+    "slug": "pemkab-seruyan",
+    "branch": "executive",
+    "regionLevel": 2,
+    "regionName": "Seruyan",
+    "seoTitle": "Berita Pemkab Seruyan Terbaru Hari Ini",
+    "description": "Kanal rilis resmi Pemerintah Kabupaten Seruyan."
+  },
+  {
+    "name": "DPRD Seruyan",
+    "slug": "dprd-seruyan",
+    "branch": "legislative",
+    "regionLevel": 2,
+    "regionName": "Seruyan",
+    "seoTitle": "Berita DPRD Seruyan Terbaru Hari Ini",
+    "description": "Kanal rilis resmi DPRD Kabupaten Seruyan."
+  },
+  {
+    "name": "Pemkab Gunung Mas",
+    "slug": "pemkab-gunung-mas",
+    "branch": "executive",
+    "regionLevel": 2,
+    "regionName": "Gunung Mas",
+    "seoTitle": "Berita Pemkab Gunung Mas Terbaru Hari Ini",
+    "description": "Kanal rilis resmi Pemerintah Kabupaten Gunung Mas."
+  },
+  {
+    "name": "DPRD Gunung Mas",
+    "slug": "dprd-gunung-mas",
+    "branch": "legislative",
+    "regionLevel": 2,
+    "regionName": "Gunung Mas",
+    "seoTitle": "Berita DPRD Gunung Mas Terbaru Hari Ini",
+    "description": "Kanal rilis resmi DPRD Kabupaten Gunung Mas."
+  },
+  {
+    "name": "Pemkab Barito Timur",
+    "slug": "pemkab-barito-timur",
+    "branch": "executive",
+    "regionLevel": 2,
+    "regionName": "Barito Timur",
+    "seoTitle": "Berita Pemkab Barito Timur Terbaru Hari Ini",
+    "description": "Kanal rilis resmi Pemerintah Kabupaten Barito Timur."
+  },
+  {
+    "name": "DPRD Barito Timur",
+    "slug": "dprd-barito-timur",
+    "branch": "legislative",
+    "regionLevel": 2,
+    "regionName": "Barito Timur",
+    "seoTitle": "Berita DPRD Barito Timur Terbaru Hari Ini",
+    "description": "Kanal rilis resmi DPRD Kabupaten Barito Timur."
+  },
+  {
+    "name": "Pemkab Murung Raya",
+    "slug": "pemkab-murung-raya",
+    "branch": "executive",
+    "regionLevel": 2,
+    "regionName": "Murung Raya",
+    "seoTitle": "Berita Pemkab Murung Raya Terbaru Hari Ini",
+    "description": "Kanal rilis resmi Pemerintah Kabupaten Murung Raya."
+  },
+  {
+    "name": "DPRD Murung Raya",
+    "slug": "dprd-murung-raya",
+    "branch": "legislative",
+    "regionLevel": 2,
+    "regionName": "Murung Raya",
+    "seoTitle": "Berita DPRD Murung Raya Terbaru Hari Ini",
+    "description": "Kanal rilis resmi DPRD Kabupaten Murung Raya."
+  },
+  {
+    "name": "Pemkab Lamandau",
+    "slug": "pemkab-lamandau",
+    "branch": "executive",
+    "regionLevel": 2,
+    "regionName": "Lamandau",
+    "seoTitle": "Berita Pemkab Lamandau Terbaru Hari Ini",
+    "description": "Kanal rilis resmi Pemerintah Kabupaten Lamandau."
+  },
+  {
+    "name": "DPRD Lamandau",
+    "slug": "dprd-lamandau",
+    "branch": "legislative",
+    "regionLevel": 2,
+    "regionName": "Lamandau",
+    "seoTitle": "Berita DPRD Lamandau Terbaru Hari Ini",
+    "description": "Kanal rilis resmi DPRD Kabupaten Lamandau."
+  },
+  {
+    "name": "Pemkab Katingan",
+    "slug": "pemkab-katingan",
+    "branch": "executive",
+    "regionLevel": 2,
+    "regionName": "Katingan",
+    "seoTitle": "Berita Pemkab Katingan Terbaru Hari Ini",
+    "description": "Kanal rilis resmi Pemerintah Kabupaten Katingan."
+  },
+  {
+    "name": "DPRD Katingan",
+    "slug": "dprd-katingan",
+    "branch": "legislative",
+    "regionLevel": 2,
+    "regionName": "Katingan",
+    "seoTitle": "Berita DPRD Katingan Terbaru Hari Ini",
+    "description": "Kanal rilis resmi DPRD Kabupaten Katingan."
+  },
+  {
+    "name": "Pemkab Barito Utara",
+    "slug": "pemkab-barito-utara",
+    "branch": "executive",
+    "regionLevel": 2,
+    "regionName": "Barito Utara",
+    "seoTitle": "Berita Pemkab Barito Utara Terbaru Hari Ini",
+    "description": "Kanal rilis resmi Pemerintah Kabupaten Barito Utara."
+  },
+  {
+    "name": "DPRD Barito Utara",
+    "slug": "dprd-barito-utara",
+    "branch": "legislative",
+    "regionLevel": 2,
+    "regionName": "Barito Utara",
+    "seoTitle": "Berita DPRD Barito Utara Terbaru Hari Ini",
+    "description": "Kanal rilis resmi DPRD Kabupaten Barito Utara."
+  },
+  {
+    "name": "Pemkab Kotawaringin Barat",
+    "slug": "pemkab-kotawaringin-barat",
+    "branch": "executive",
+    "regionLevel": 2,
+    "regionName": "Kotawaringin Barat",
+    "seoTitle": "Berita Pemkab Kotawaringin Barat Terbaru Hari Ini",
+    "description": "Kanal rilis resmi Pemerintah Kabupaten Kotawaringin Barat."
+  },
+  {
+    "name": "Pemkab Sukamara",
+    "slug": "pemkab-sukamara",
+    "branch": "executive",
+    "regionLevel": 2,
+    "regionName": "Sukamara",
+    "seoTitle": "Berita Pemkab Sukamara Terbaru Hari Ini",
+    "description": "Kanal rilis resmi Pemerintah Kabupaten Sukamara."
+  },
+  {
+    "name": "Pemkab Barito Selatan",
+    "slug": "pemkab-barito-selatan",
+    "branch": "executive",
+    "regionLevel": 2,
+    "regionName": "Barito Selatan",
+    "seoTitle": "Berita Pemkab Barito Selatan Terbaru Hari Ini",
+    "description": "Kanal rilis resmi Pemerintah Kabupaten Barito Selatan."
+  }
+]

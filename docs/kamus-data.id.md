@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](kamus-data.md)
 
-<!-- i18n-source-hash: sha256:2d2cd3eba35e6c94dd4e8e812970fab06cafa84657d6e288e810a837a7b914e5 -->
+<!-- i18n-source-hash: sha256:8f5e073f4dd0af690d14b826acf99b11ce0e10f09919ab979cc9ad690250adb8 -->
 
 # Kamus data
 
@@ -160,4 +160,4 @@ Jumlah baris dibaca untuk ringkasan export saja. `awcms_blog_institutions` belum
 - **Kolom afiliasi dan `product_affiliate_links`** — [issue #32](https://github.com/ahliweb/awcms-one/issues/32), bersama akun pelanggan.
 - **Tabel rate/tracking kurir RajaOngkir live** — [issue #33](https://github.com/ahliweb/awcms-one/issues/33); `shipping_method`/`shipping_service_name` pada order saat ini adalah label yang ditentukan merchant, tidak pernah respons kurir live.
 - **Catatan transaksi payment-gateway** — enum `payment_method` sudah menerima `gateway` (aditif), tapi belum ada integrasi provider; harus dibangun lewat outbox sesuai [ADR-0010](adr/0010-manual-payment-and-alternative-courier-first-gateways-via-outbox.id.md).
-- **Upload media sungguhan untuk gambar produk, media slider, dan gambar bukti konfirmasi pembayaran** — diselesaikan lewat mekanisme referensi/URL yang sudah ada milik `media_library`, tapi seed increment ini memakai SVG placeholder dan endpoint upload-bukti anonim adalah stub (`503 MEDIA_UNAVAILABLE`) — lihat [`docs/cms.md`](cms.id.md) dan [`docs/deployment.md`](deployment.id.md).
+- **Upload media sungguhan untuk gambar produk, media slider, gambar bukti konfirmasi pembayaran, dan kreatif ad placement** — diselesaikan lewat mekanisme referensi/URL yang sudah ada milik `media_library`, tapi seed increment ini memakai SVG/PNG placeholder dan endpoint upload-bukti anonim adalah stub (`503 MEDIA_UNAVAILABLE`); ad placement butuh media object ter-verifikasi-R2 SUNGGUHAN (`mediaObjectId` wajib, bukan opsional), jadi langkah seed issue #57 tidak membuat satu pun dari 12 placement secara lokal — lihat [`docs/cms.md`](cms.id.md) dan [`docs/deployment.md`](deployment.id.md).
