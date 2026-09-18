@@ -11,12 +11,24 @@
  * the docblock above), so `src/scripts/video-facade.ts` — the click-to-load
  * swap for `src/lib/portable-text.ts`'s poster/button markup — is loaded
  * from here and nowhere else.
+ *
+ * Issue #54 (A8): `og:type=video.other`, `og:image` (the post's own
+ * featured image when it resolved, else the SAME `hqdefault.jpg` YouTube
+ * poster the card and the facade render — `post.video.thumbnail`),
+ * `og:video:url` (the SAME `youtube-nocookie.com/embed/{id}` URL the facade
+ * swaps in on click), `video:release_date`/`video:tag`, and a
+ * `summary_large_image` Twitter card — all built by
+ * `src/lib/meta-sosial.ts`'s `videoSocialMeta(post)` and passed through
+ * `BeritaLayout` to `BaseLayout.astro`'s `ogType`/`meta` props. See that
+ * builder's docblock for why the poster is `hqdefault`, never
+ * `maxresdefault`.
  */
 import BeritaLayout from "../../layouts/BeritaLayout.astro";
 import ArtikelView from "../../components/berita/ArtikelView.astro";
 import { ROUTES } from "../../config/routes";
 import { getVideo, getPost, getRelatedPosts, getDaerah } from "../../lib/berita";
 import { newsArticleSchema, breadcrumbListSchema, combineSchemas } from "../../lib/jsonld-berita";
+import { videoSocialMeta, postSeoText } from "../../lib/meta-sosial";
 import { getSiteIdentity } from "../../lib/awcms/profil";
 
 export async function getStaticPaths() {
@@ -64,13 +76,20 @@ const schema = combineSchemas(
   }),
   breadcrumbListSchema(breadcrumbItems)
 );
+
+// Issue #54 (A8) — same pairing as `src/pages/berita/[slug].astro`: one
+// helper for the SEO text, one builder for the OG/Twitter tags.
+const seo = postSeoText(post);
+const social = videoSocialMeta(post);
 ---
 
 <BeritaLayout
-  title={post.seoTitle ?? post.title}
-  description={post.metaDescription ?? post.excerpt ?? undefined}
+  title={seo.title}
+  description={seo.description ?? undefined}
   canonicalPath={canonicalPath}
   schema={schema}
+  ogType={social.ogType}
+  meta={social.meta}
 >
   <ArtikelView
     post={post}
