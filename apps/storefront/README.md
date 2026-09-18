@@ -304,6 +304,63 @@ kinds, and the distinction is the whole design:
   the video page — with the stub's fixture (Instagram + a `javascript:`
   link, no TikTok/YouTube), the follow links are correctly absent.
 
+## Ad popup (issue #53)
+
+A reader who clicks an ad creative on any news-surface page opens one
+shared native `<dialog id="iklan-popup">` — the creative at its natural size
+(capped at 90vw/90vh), the advertiser's name, the disclosure label, and a
+"Buka iklan" CTA to the real destination (`rel="sponsored noopener"`,
+`target="_blank"`). A creative with no destination shows "Iklan ini belum
+memiliki tautan tujuan" and no CTA. Closes on the ✕, the backdrop, and
+`Escape`; focus returns to the trigger; `body` scroll is locked while open.
+Ported from seputarborneo's `js/main.js` `initAdPopup()`, minus jQuery and
+minus the hand-rolled modal.
+
+- **`apps/storefront/src/scripts/iklan-popup.ts`**, mounted ONCE from
+  `apps/storefront/src/layouts/BeritaLayout.astro` (an external module,
+  `script-src 'self'`), attaches a single document-level delegated `click`
+  listener for `.ad-slot [data-iklan-popup]` — so every slot, on every page
+  that renders through the news layout (article pages, `/berita`, and any
+  aside issue #49's `Sidebar.astro` places one in), is covered without the
+  page knowing the module exists. The dialog is BUILT on the first click and
+  reused; nothing is rendered server-side for it. Styles:
+  `apps/storefront/src/styles/iklan-popup.css`, imported by the same layout.
+- **`IklanSlot.astro` marks the trigger with three attributes**:
+  `data-iklan-popup`, `data-iklan-nama` (advertiser name), `data-iklan-label`
+  (the content-class disclosure label — "Advertorial"/"Konten Bersponsor" —
+  or, for `standard`, the slot's own "Iklan"). On a LINKED creative they sit
+  on the existing anchor and nothing else changes. An UNLINKED creative
+  (`linkUrl: null`) had no anchor to decorate, and the "no destination"
+  popup state is an acceptance criterion of #53, so that one branch now
+  wraps the image in a `<button type="button" class="ad-slot-trigger">` — a
+  real keyboard-operable control, never an `<img tabindex>`. A text-only ad
+  (no resolvable image) is never a trigger.
+- **Progressive enhancement, three cases.** No JavaScript: the anchor
+  navigates normally and the button is inert (as non-interactive as the bare
+  `<img>` it replaced). No `<dialog>.showModal` support: the module returns
+  before attaching anything. A modified click (Ctrl/Cmd/Shift/Alt, middle
+  button) on a linked creative is left to the browser, so "open in a new
+  tab" keeps working.
+- **The CTA's href is re-validated** (`safeHttpUrl`): anything that is not
+  an absolute `http(s)` URL is treated as no destination — this module
+  never trusts a CMS string into a new `href` unchecked, the same rule
+  `IklanSlot.astro` already applies to `mediaPublicUrl`. Every string the
+  dialog shows is set through `textContent`; no ad data passes through
+  `innerHTML`.
+- **Tests**: `apps/storefront/tests/e2e/iklan-popup.e2e.ts` (Playwright, via
+  the existing `bun run test:e2e` harness — open, `Escape`/✕/backdrop close,
+  focus restored, CTA href equals the ad link, missing link shows the
+  message, one dialog reused, modifier-click not intercepted) and
+  `apps/storefront/tests/iklan-popup.test.ts` (the DOM-free helpers plus
+  source-level guards for the one mount and the trigger attributes). The
+  e2e spec runs against an ARTICLE page rather than `/berita` — see its
+  docblock: the preview server currently answers `/berita` (and `/video`)
+  with the 404 page, because `build.format: "file"` emits `berita.html`
+  beside the `berita/` directory and `@astrojs/node`'s static handler
+  rewrites a directory-shaped URL to `berita/index.html` before `send`'s
+  `.html` fallback runs. A pre-existing serving bug, outside this issue's
+  files, tracked for follow-up.
+
 ## Catalog surface (issue #27)
 
 The full shopper-facing catalog: the home page, `/produk`, `/kategori/{slug}`,
