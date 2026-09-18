@@ -14,6 +14,21 @@
 /* --- Post cards: extends global.css's .card with what a news card needs
    beyond a product card (an excerpt, a publish date + region) ------------ */
 
+/* Issue #47: a card's thumbnail — the SAME fixed-aspect-ratio/object-fit
+   pattern `src/styles/katalog.css`'s `.card-image`/`.card-image-placeholder`
+   already established for product cards, restated here under its own name
+   because that stylesheet is imported only by catalog pages, never by the
+   news layout (see this file's own header). */
+.card-thumb,
+.card-thumb-placeholder {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  background: var(--bg-subtle);
+}
+
 .card-excerpt {
   color: var(--text-secondary);
   font-size: 0.9rem;
@@ -114,6 +129,27 @@
   color: var(--text-secondary);
 }
 
+/* --- Article hero figure (src/components/berita/ArtikelView.astro, issue
+   #47) ---------------------------------------------------------------- */
+
+.article-hero {
+  margin-block: 1rem;
+}
+
+.article-hero-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+}
+
+.article-hero figcaption {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
 /* --- Portable Text object blocks (src/lib/portable-text.ts) -------------- */
 
 .content-figure {
@@ -126,6 +162,16 @@
   justify-content: center;
   aspect-ratio: 16 / 9;
   background: var(--bg-subtle);
+  border-radius: var(--radius-md);
+}
+
+/* A resolved gallery item's real `<img>` (issue #47) — the placeholder
+   `<span>` above stays untouched for the unresolved/legacy case. */
+.content-figure img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
   border-radius: var(--radius-md);
 }
 
@@ -150,12 +196,38 @@
   background: var(--bg-surface);
 }
 
+/* Issue #47: `.content-video-link` now styles a real <button> (the
+   click-to-load facade), not an <a> — reset the browser's default button
+   chrome so it still reads as the exact same flex row `src/lib/portable-
+   text.ts`'s original semantic link rendered. */
 .content-video-link {
   display: flex;
   align-items: center;
   gap: 0.75rem;
   font-weight: 700;
   color: var(--text-primary);
+  background: none;
+  border: none;
+  padding: 0;
+  width: 100%;
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+}
+
+.content-video-poster {
+  border-radius: var(--radius-sm);
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+/* The <iframe> `src/scripts/video-facade.ts` swaps in on click. */
+.content-video-frame {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  border-radius: var(--radius-md);
 }
 
 .content-video-play {
@@ -256,9 +328,18 @@
   text-decoration: none;
 }
 
-/* --- Ad slots (issue #28) --------------------------------------------------
-   No <img> — src/components/berita/IklanSlot.astro's own docblock explains
-   why (CSP img-src 'self', no exemption granted to this issue). */
+/* --- Ad slots (issue #28; the creative <img> added by issue #47 — see
+   src/components/berita/IklanSlot.astro's own docblock) ------------------ */
+
+.ad-slot-image {
+  display: block;
+  width: 100%;
+  max-width: 300px;
+  aspect-ratio: 300 / 250;
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+  margin-block: 0.25rem;
+}
 
 .ad-slot {
   margin-block: 1.5rem;

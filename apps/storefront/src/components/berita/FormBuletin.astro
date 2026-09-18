@@ -1,0 +1,73 @@
+---
+/**
+ * The newsletter subscribe form (issue #50) — an e-mail field, a consent
+ * sentence naming double opt-in, and a status region, POSTed client-side by
+ * `src/scripts/buletin.ts` to the CMS's anonymous
+ * `POST /api/v1/newsletter/subscribe`.
+ *
+ * Not mounted anywhere by this issue — `/buletin` (this issue's own
+ * standalone page) is the only place it renders until issue #46's A3 places
+ * it in the footer/sidebar chrome. `variant` already exists so A3 can pick
+ * either without this file changing again.
+ *
+ * ## The honeypot
+ *
+ * The CMS route validates only `email`/`locale` (`apps/cms/src/modules/
+ * newsletter/domain/subscription-request.ts`) — it does not document, and
+ * would silently ignore, a THIRD field, so nothing here is ever sent to it.
+ * The honeypot below is a purely CLIENT-side trap: a field a sighted reader
+ * never sees (`hidden`) and a keyboard/screen-reader reader never reaches
+ * (`hidden` removes it from the accessibility tree; `tabindex="-1"` keeps a
+ * assistive technology that ignores `hidden` from focusing it anyway) but a
+ * naive bot that fills every field in a scraped form still will —
+ * `buletin.ts` checks it and, if filled, answers with the same neutral
+ * success message without ever calling the CMS. No CSS file is touched to
+ * hide it: the standard `hidden` attribute needs none, which matters here
+ * because this component owns no stylesheet of its own (issue #50's file
+ * list has none, and this app's CSP is `style-src 'self'` with no inline
+ * exemption — an inline `style=""`/`<style>` would not even render).
+ */
+interface Props {
+  variant: "footer" | "sidebar";
+  /** Keeps `id`/`for` pairs from colliding if this component ever renders twice on one page — same reasoning as `SearchForm.astro`'s own `idPrefix`. */
+  idPrefix?: string;
+}
+
+const { variant, idPrefix = `buletin-${variant}` } = Astro.props;
+const emailId = `${idPrefix}-email`;
+const honeypotId = `${idPrefix}-situs`;
+---
+
+<form class={`buletin-form buletin-form--${variant}`} data-buletin-form novalidate>
+  <div class="toko-field">
+    <label for={emailId}>Alamat email</label>
+    <input
+      type="email"
+      id={emailId}
+      name="email"
+      required
+      autocomplete="email"
+      placeholder="nama@email.com"
+      data-buletin-email
+    />
+  </div>
+
+  <div hidden aria-hidden="true">
+    <label for={honeypotId}>Situs web (biarkan kosong)</label>
+    <input type="text" id={honeypotId} name="website" tabindex="-1" autocomplete="off" data-buletin-honeypot />
+  </div>
+
+  <p class="toko-field-hint">
+    Dengan mendaftar, kami akan mengirim email konfirmasi (opt-in ganda) — langganan baru aktif setelah Anda
+    mengklik tautan pada email tersebut. Anda dapat berhenti berlangganan kapan saja lewat tautan di setiap
+    email.
+  </p>
+
+  <button type="submit" data-buletin-submit>Daftar Buletin</button>
+
+  <p data-buletin-status role="status" aria-live="polite" hidden></p>
+
+  <noscript>
+    <p class="toko-field-hint">Pendaftaran buletin memerlukan JavaScript aktif di peramban Anda.</p>
+  </noscript>
+</form>

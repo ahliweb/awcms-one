@@ -31,6 +31,15 @@ import {
 } from "../src/lib/csp-asal-media";
 import { CSP, buildCsp, readCspOrigins } from "../server/penyaji.mjs";
 
+/** Shared by `readCspOrigins` and the `frame-src` describe block below. */
+function fixtureDir(contents?: string): URL {
+  const dir = mkdtempSync(path.join(tmpdir(), "awcms-one-csp-"));
+  if (contents !== undefined) {
+    writeFileSync(path.join(dir, "csp.json"), contents, "utf8");
+  }
+  return pathToFileURL(`${dir}/`);
+}
+
 describe("originOf", () => {
   test("returns the origin of an absolute http(s) URL", () => {
     expect(originOf("https://media.example.com/produk/1.webp")).toBe(
@@ -142,14 +151,6 @@ describe("buildCsp", () => {
 });
 
 describe("readCspOrigins", () => {
-  function fixtureDir(contents?: string): URL {
-    const dir = mkdtempSync(path.join(tmpdir(), "awcms-one-csp-"));
-    if (contents !== undefined) {
-      writeFileSync(path.join(dir, "csp.json"), contents, "utf8");
-    }
-    return pathToFileURL(`${dir}/`);
-  }
-
   test("reads a well-formed artifact", () => {
     const dir = fixtureDir(
       JSON.stringify({ version: 1, imgSrc: ["https://media.example.com"], connectSrc: [] })
@@ -158,6 +159,7 @@ describe("readCspOrigins", () => {
     expect(readCspOrigins(dir)).toEqual({
       imgSrc: ["https://media.example.com"],
       connectSrc: [],
+      frameSrc: [],
       // Issue #56 (A10): the fixture above predates the GA flag and never
       // sets it — `false` is `readCspOrigins`'s own documented default.
       ga: false
@@ -171,14 +173,23 @@ describe("readCspOrigins", () => {
     // missing artifact costs images (visible, fixed by a rebuild); a
     // wrongly-wide default silently weakens a policy nobody asked to widen.
     // Issue #56 (A10) added the `ga` flag, always `false` in every one of
-    // these degraded/fail-closed states.
-    const EMPTY = { imgSrc: [], connectSrc: [], ga: false };
+    // these degraded/fail-closed states; issue #47 added `frameSrc`, always
+    // `[]` in the same states.
+    const EMPTY = { imgSrc: [], connectSrc: [], frameSrc: [], ga: false };
     expect(readCspOrigins(fixtureDir())).toEqual(EMPTY);
     expect(readCspOrigins(fixtureDir("{ not json"))).toEqual(EMPTY);
     expect(readCspOrigins(fixtureDir("[]"))).toEqual(EMPTY);
     expect(
       readCspOrigins(fixtureDir(JSON.stringify({ version: 2, imgSrc: ["https://x.test"] })))
     ).toEqual(EMPTY);
+  });
+
+  test("an artifact written before frameSrc/ga existed reads back frameSrc: [] and ga: false — not malformed", () => {
+    const dir = fixtureDir(
+      JSON.stringify({ version: 1, imgSrc: ["https://media.example.com"], connectSrc: [] })
+    );
+    expect(readCspOrigins(dir).frameSrc).toEqual([]);
+    expect(readCspOrigins(dir).ga).toBe(false);
   });
 
   test("the artifact the build writes is exactly what the server can read back", () => {
@@ -194,5 +205,40 @@ describe("readCspOrigins", () => {
     expect(buildCsp(readCspOrigins(dir))).toContain(
       "img-src 'self' https://media.example.com;"
     );
+  });
+});
+
+describe("frame-src (issue #47 — the click-to-load YouTube facade)", () => {
+  test("a video post's build serves frame-src widened to the youtube-nocookie origin", () => {
+    // Mirrors exactly what src/pages/csp.json.ts writes once getVideo()
+    // answers at least one post — see that file's own docblock: the poster
+    // origin goes to img-src, the embed origin to frame-src, both only when
+    // a video post exists in this build.
+    const artifact = buildCspOriginsArtifact(
+      ["https://media.example.com/berita/foto.jpg", "https://i.ytimg.com/vi/x/hqdefault.jpg"],
+      ["https://cms.example.com"],
+      ["https://www.youtube-nocookie.com"]
+    );
+
+    const dir = fixtureDir(JSON.stringify(artifact));
+    const csp = buildCsp(readCspOrigins(dir));
+
+    expect(csp).toContain("frame-src https://www.youtube-nocookie.com;");
+    // `'none'` and a real origin are not meant to combine in one directive.
+    expect(csp.split("frame-src")[1]?.split(";")[0]).not.toContain("'none'");
+  });
+
+  test("a build with no video post keeps the baseline frame-src 'none'", () => {
+    const artifact = buildCspOriginsArtifact(["https://media.example.com/produk/1.webp"]);
+    expect(buildCsp(artifact)).toContain("frame-src 'none';");
+  });
+
+  test("rejects an unsafe frameSrc origin the same way img-src/connect-src already do", () => {
+    const csp = buildCsp({
+      frameSrc: ["javascript:alert(1)", "*", "https://www.youtube-nocookie.com"]
+    });
+    expect(csp).toContain("frame-src https://www.youtube-nocookie.com;");
+    expect(csp).not.toContain("javascript:");
+    expect(csp).not.toContain("*");
   });
 });

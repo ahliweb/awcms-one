@@ -104,7 +104,13 @@ const MACHINE_CREDENTIAL_PERMISSION_KEYS = [
   "commerce.sliders.read",
   "commerce.testimonials.read",
   "commerce.popups.read",
-  "commerce.settings.read"
+  "commerce.settings.read",
+  // Issue #47 — `apps/storefront/src/lib/awcms/media.ts` resolves
+  // `featuredMediaId`/a gallery item's `mediaObjectId` to a public URL via
+  // `GET /api/v1/media/objects`, and reads `GET /api/v1/media/public-origin`
+  // for the CSP artifact — both gated on this one permission (`media-
+  // permissions.ts`'s `MEDIA_PERMISSION_ACTIVITY_CODE`, `action: "read"`).
+  "media_library.media.read"
 ] as const;
 const MACHINE_CREDENTIAL_LIFETIME_DAYS = 365;
 

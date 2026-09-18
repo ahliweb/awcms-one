@@ -23,7 +23,13 @@ import {
 } from "./awcms/blog";
 import { getResolvableRegionsByCode } from "./awcms/wilayah";
 import { getMitraList, type MitraSummary } from "./awcms/lembaga";
-import { documentHasPlayableVideo } from "./portable-text";
+import { resolveMedia, type ResolvedMedia } from "./awcms/media";
+import {
+  documentHasPlayableVideo,
+  extractPlayableVideoInfo,
+  collectGalleryMediaObjectIds,
+  type PlayableVideoInfo
+} from "./portable-text";
 import { arsipBulanWIB } from "./tanggal";
 
 // ---------------------------------------------------------------------------
@@ -63,6 +69,17 @@ export type PostSummary = {
   authorByline: string | null;
   /** Whether this post's body carries at least one renderable `videoNews` block — a video post lives at `/video/{slug}`, never `/berita/{slug}` (see `getPosts`/`getVideo` below). */
   isVideo: boolean;
+  /**
+   * The post's `featuredMediaId`, resolved (issue #47) — `null` when the
+   * post has none, or when the id did not resolve (unverified, deleted, or
+   * not yet uploaded — `src/lib/awcms/media.ts`'s own docblock). Every card
+   * and hero figure renders this when present; a video post with no
+   * `featuredMediaId` of its own falls back to `video.thumbnail` instead
+   * (see `src/components/berita/ArtikelCard.astro`).
+   */
+  image: ResolvedMedia | null;
+  /** The first playable `videoNews` block's provider/id/poster (issue #47), or `null` for a non-video post — see `src/lib/portable-text.ts`'s `extractPlayableVideoInfo`. */
+  video: PlayableVideoInfo | null;
 };
 
 export type PostDetail = PostSummary & {
@@ -150,6 +167,8 @@ type Indexed = {
   rubrikRoots: RubrikNodeInternal[];
   tagTerms: TermSummary[];
   mitraBySlug: Map<string, MitraSummary>;
+  /** Every media object this build's visible posts reference (`featuredMediaId` plus every gallery item's `mediaObjectId`), resolved ONCE — the map `src/components/berita/ArtikelView.astro` passes to `renderPortableText` (issue #47). */
+  mediaById: ReadonlyMap<string, ResolvedMedia>;
 };
 
 let indexCache: Promise<Indexed> | undefined;
@@ -238,7 +257,8 @@ async function toPostSummary(
   raw: RawPost & { publishedAt: string },
   termById: Map<string, RawTerm>,
   institutionById: Map<string, RawInstitution>,
-  regionRefsByCode: Map<string, RegionRef>
+  regionRefsByCode: Map<string, RegionRef>,
+  mediaById: ReadonlyMap<string, ResolvedMedia>
 ): Promise<PostSummary> {
   const terms = raw.termIds
     .map((id) => termById.get(id))
@@ -275,7 +295,9 @@ async function toPostSummary(
     region,
     institutions: institutions.map((i) => ({ slug: i.slug, name: i.name })),
     authorByline: raw.authorByline,
-    isVideo: documentHasPlayableVideo(raw.bodyPortableText)
+    isVideo: documentHasPlayableVideo(raw.bodyPortableText),
+    image: raw.featuredMediaId ? mediaById.get(raw.featuredMediaId) ?? null : null,
+    video: extractPlayableVideoInfo(raw.bodyPortableText)
   };
 }
 
@@ -304,9 +326,20 @@ async function buildIndex(): Promise<Indexed> {
     isPubliclyVisible(p, now)
   );
 
+  // Every media id this build's visible posts could possibly render —
+  // `featuredMediaId` plus every gallery item's `mediaObjectId` — collected
+  // up front so the whole build resolves media in ONE batched, chunked call
+  // (issue #47) rather than one request per post per image.
+  const mediaIds: string[] = [];
+  for (const raw of visible) {
+    if (raw.featuredMediaId) mediaIds.push(raw.featuredMediaId);
+    mediaIds.push(...collectGalleryMediaObjectIds(raw.bodyPortableText));
+  }
+  const mediaById = await resolveMedia(mediaIds);
+
   const posts: PostSummary[] = [];
   for (const raw of visible) {
-    posts.push(await toPostSummary(raw, termById, institutionById, regionRefsByCode));
+    posts.push(await toPostSummary(raw, termById, institutionById, regionRefsByCode, mediaById));
   }
 
   // Newest first, source-slug tiebreak — `Array#sort` is stable, but two
@@ -331,13 +364,27 @@ async function buildIndex(): Promise<Indexed> {
     rubrikNodesBySlug,
     rubrikRoots,
     tagTerms,
-    mitraBySlug: new Map(mitraList.map((m) => [m.slug, m]))
+    mitraBySlug: new Map(mitraList.map((m) => [m.slug, m])),
+    mediaById
   };
 }
 
 /** Test/build seam: drops the memoized index so a test can rebuild it against different underlying fetches. */
 export function resetBeritaIndexForTests(): void {
   indexCache = undefined;
+}
+
+/**
+ * The whole build's resolved-media lookup (issue #47) — `src/components/
+ * berita/ArtikelView.astro` passes this to `renderPortableText` so a post's
+ * body can render its own gallery images. A flat, whole-build map rather
+ * than one scoped per post: every id is a UUID (collision-free across
+ * posts), and a single map is simpler than threading a per-post subset
+ * through every render call for no observable difference.
+ */
+export async function getResolvedMedia(): Promise<ReadonlyMap<string, ResolvedMedia>> {
+  const { mediaById } = await getIndex();
+  return mediaById;
 }
 
 // ---------------------------------------------------------------------------
