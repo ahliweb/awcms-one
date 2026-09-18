@@ -74,7 +74,7 @@ This repo is **Bun-only**: Bun is both the runtime and the package manager, its 
 | `bun test` | The root gate suite. `bunfig.toml` excludes `apps/cms/**` — that suite is ~500 files and needs a live PostgreSQL; it runs under its own gate, `bun run check:cms` |
 | `bun run check:lockfile` | Proves `bun.lock` actually belongs to this repo's `package.json`, for the root and every workspace member |
 | `bun run audit:dokumen` | Dead markdown links, the `docs/adr/` index (complete in both directions, status agreement), file paths a document names, `ADR-NNNN` citations, and marked linked counts |
-| `bun run audit:rilis` | The waiting `.changesets/` backlog, bounded at 10 files and 14 days |
+| `bun run audit:rilis` | The waiting `.changesets/` backlog, bounded at 20 files and 14 days |
 | `bun run audit:translation` | Stale or missing Indonesian mirrors of the governance documents |
 | `bun run audit:graf` (alias: `knowledge:check`) | The root knowledge-graph corpus describes itself honestly — see [`knowledge/README.md`](knowledge/README.md) |
 | `bun run knowledge:graph:update` | Rebuilds the root Graphify graph (`--code-only`, no LLM) — needs `graphify` on `PATH`, not run in CI |
