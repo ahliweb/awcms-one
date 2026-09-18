@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](alur-kerja-pengembangan.md)
 
-<!-- i18n-source-hash: sha256:1a9bdcd915ed543622ccd32172ecc0626a319c776b95da2b4295503b6c415fbe -->
+<!-- i18n-source-hash: sha256:93017ad385fd0230b946c649202a682062b54ed5651e1823d5b96f8813dd2e12 -->
 
 # Alur kerja pengembangan
 
@@ -29,7 +29,7 @@ Diverifikasi langsung terhadap pengaturan GitHub repositori ini saat tulisan ini
 
 ## Changeset buatan-sendiri, bukan `@changesets/cli`
 
-Perubahan yang memengaruhi perilaku publik, struktur workspace, dependensi, atau deployment mendapat berkas di [`.changesets/`](../.changesets/README.md) dalam perubahan yang sama yang menyebabkannya: `YYYY-MM-DD-ringkasan-dalam-kebab-case.md`, dengan frontmatter `bump: major | minor | patch` dipilih saat menulis perubahan, karena itu satu-satunya momen siapa pun secara andal tahu jawabannya. `bun run audit:rilis` mengawasi backlog yang menunggu dan memerah begitu melewati 10 berkas atau 14 hari usianya — sinyal bahwa rilis sudah waktunya, bukan kesalahan.
+Perubahan yang memengaruhi perilaku publik, struktur workspace, dependensi, atau deployment mendapat berkas di [`.changesets/`](../.changesets/README.md) dalam perubahan yang sama yang menyebabkannya: `YYYY-MM-DD-ringkasan-dalam-kebab-case.md`, dengan frontmatter `bump: major | minor | patch` dipilih saat menulis perubahan, karena itu satu-satunya momen siapa pun secara andal tahu jawabannya. `bun run audit:rilis` mengawasi backlog yang menunggu dan memerah begitu melewati 20 berkas atau 14 hari usianya — sinyal bahwa rilis sudah waktunya, bukan kesalahan.
 
 ## Pengiriman berbasis wave, di epic ini
 
