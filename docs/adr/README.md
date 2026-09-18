@@ -26,6 +26,10 @@ What does **not** need an ADR: adding a field within an already-decided schema, 
 | [0008](0008-one-commerce-module-carries-the-whole-store-not-three.md) | One `commerce` module carries the whole store, not three | Accepted |
 | [0009](0009-guest-checkout-by-order-code-and-phone.md) | Guest checkout, addressed by order code + phone; customer accounts come later | Accepted |
 | [0010](0010-manual-payment-and-alternative-courier-first-gateways-via-outbox.md) | Manual payment and alternative courier first; gateways and aggregators arrive through the outbox | Accepted |
+| [0011](0011-storefront-media-resolves-through-the-media-objects-endpoint.md) | The storefront resolves media through `GET /api/v1/media/objects`, and the CSP is derived from what resolved | Accepted |
+| [0012](0012-first-party-visitor-analytics-with-an-opt-in-ga4-switch.md) | Visitor analytics is first-party by default; GA4 is an opt-in switch | Accepted |
+| [0013](0013-rule-based-legacy-redirects-beside-the-row-based-map.md) | Rule-based legacy redirects sit beside the row-based map, and a row always wins | Accepted |
+| [0014](0014-the-institution-owns-the-emblem-not-the-post.md) | An institution owns its emblem; a post never carries one | Accepted |
 
 ## Why the numbering starts at 0001
 
