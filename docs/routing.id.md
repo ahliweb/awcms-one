@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](routing.md)
 
-<!-- i18n-source-hash: sha256:20d93c7cb141548a64d4a0271de6e8cc853704ac27f7847f61ea2a40e3c1f8d8 -->
+<!-- i18n-source-hash: sha256:a83d1d707aa5d2b64fecd40a369de59ceb36ba330981e0177803bd82bdb16b61 -->
 
 # Routing
 
@@ -76,6 +76,25 @@ Keempatnya: `noindex, follow`, `aria-live="polite"` pada update quote/status, te
 `legacyRedirectLocation()` milik `apps/storefront/server/penyaji.mjs` mencari path yang masuk (dinormalisasi: URI-decoded, query/fragment dilepas, satu trailing slash dihapus) terhadap peta yang dibaca sekali saat server startup dari `dist/client/index/pengalihan-legacy.json`. Berkas itu dibangun dari baris `awcms_seo_redirects` milik `apps/cms` sendiri (`origin: "legacy_blog"`) — hanya baris dengan `targetType: "relative_same_tenant"` yang dipakai (baris `verified_external` menunjuk ke luar situs dan dilewati); kolom `target` milik CMS sendiri tidak dipakai verbatim — hanya segmen path terakhirnya (slug) yang diambil dan dibangun ulang sebagai `/berita/{slug}`, karena `target` membawa bentuk `/blog/{tenantCode}/{slug}` milik CMS sendiri. Dua baris yang menormalisasi ke path sumber yang sama tapi tidak sepakat soal tujuan menggagalkan **build**, bukan last-wins diam-diam saat request.
 
 Bentuk URL yang ditangani: `/news/{id}-{slug}.html` milik seputarborneo dan `/{yyyy}/{mm}/{dd}/{slug}/` milik beritasampit — keduanya menormalisasi dengan benar baik trailing slash ada maupun tidak, baik saat build (kunci peta) maupun saat request (lookup), termasuk regresi trailing-slash sungguhan yang ditangkap dan diperbaiki build ini (riwayat commit `legacyRedirectLocation` sendiri, `apps/storefront/tests/berita-penyaji-legacy.test.ts`).
+
+### Redirect berbasis aturan (issue #55 / A9) — sisa URL seputarborneo, tanpa baris CMS sama sekali
+
+Peta berbasis-baris di atas hanya pernah tahu URL yang secara eksplisit dicatat operator/import — tepat untuk satu artikel, boros untuk bentuk URL yang sama untuk ratusan halaman. `apps/storefront/server/pengalihan-aturan.mjs` adalah modul kedua yang MURNI dan berbasis-tabel khusus untuk bentuk-bentuk itu — taksonomi rubrik/daerah/mitra/video/statis/pencarian milik seputarborneo, dibaca dari `include/nav_menu.php` (`seputarborneo_rubrik_resolve()`/`_kanonik()`), `.htaccess`, `rubriks/index.php`, `video/index.php`, `img/index.php`, dan `data/index.php`. `legacyRedirectLocation()` memanggilnya hanya saat GAGAL cocok dengan peta berbasis-baris di atas, sehingga baris buatan operator selalu menang saat keduanya bisa tidak sepakat.
+
+| Bentuk sumber | Tujuan | Catatan |
+| --- | --- | --- |
+| `/rubrik/{slug}.html` | `/rubrik/{slug}` | Huruf kecil semua, spasi/underscore/`%20` → `-`; `Olah Raga`/`OLAHRAGA` → `olahraga` |
+| `/daerah/{kategori}.html`, `/DAERAH/{Kategori}.html` | `/daerah/{slug}` | Nama salah satu dari 14 daerah sendiri, atau nama kota lama (Sampit → `kotawaringin-timur`, dan 9 lainnya — lihat tabel `DAERAH_ENTRIES` milik modul itu sendiri), dipetakan ke slug kabupatennya |
+| `/mitra-borneo/{slug}.html`, `/MITRA%20BORNEO/{Nama}.html`, `/Mitra-Borneo/{Nama}.html` | `/mitra/{slug}` | Salah satu dari 24 kanal Mitra Borneo, atau yang akan datang — slug institusi diteruskan apa adanya, jadi aturan ini tidak perlu pembaruan tabel saat institusi ke-25 disemai |
+| `/umum/{slug}.html`, `/UMUM/{Nama}.html` | `/rubrik/{slug}` | Anak UMUM adalah rubrik biasa di sini — `/rubrik/wisata.html` (topik lama) dan `/umum/wisata.html` (anak UMUM lama) sama-sama mendarat di `/rubrik/wisata`, satu-satunya pasangan yang dibuktikan suite test aplikasi ini sebagai SATU-SATUNYA tabrakan di antara semua nama yang dikenal modul |
+| `/rubriks/?news={slug}&kt={slug}&lanjut={n}` | `/rubrik/{kt atau news}/halaman/{n}` (n>1) atau `/rubrik/{slug}` | `kt` menang atas `news` saat keduanya ada |
+| `/video/?video={id}-{slug}.html`, `/video/?video={id}_{slug}.html` | `/video/{slug}` jika ada baris `/news/{id}-…`, jika tidak `/video` | Tidak pernah slug tebakan — aturan video membaca peta berbasis-baris YANG SAMA, hanya untuk memastikan id numerik itu benar-benar dikenal aplikasi ini |
+| `/tentang_kami.html`, `/pedoman_media_cyber.html`, `/disclimer.html` | `/halaman/redaksi`, `/halaman/pedoman-media-siber`, `/halaman/disclaimer` | Tiga halaman statis yang dulu dilayani `data/index.php` |
+| `/pencarian/?cari_berita={q}` | `/cari-berita?q={q}` | **302**, bukan 301 — hasil pencarian bukan sumber daya yang dipindah permanen |
+| `/img/?news={id}` | Tujuan `/news/{id}-…` berbasis-baris jika dikenal, jika tidak `/berita` | `img/index.php` sendiri sudah me-redirect bentuk ini di situs live |
+| `/index.php`, `/?subscribed=1` | `/berita` | |
+
+Semuanya `301` kecuali aturan pencarian (302, di atas); `createServer` membaca bentuk `{ location, status }` yang dikembalikan `ruleBasedRedirectLocation()` hanya untuk kasus itu, dan sebuah string biasa (301) untuk setiap aturan lain — bentuk kembalian yang sama yang sudah dimiliki `legacyRedirectLocation()` sebelum modul ini ada, jadi `apps/storefront/tests/berita-penyaji-legacy.test.ts` tidak perlu diubah. `apps/storefront/tests/pengalihan-aturan.test.ts` mencakup setiap baris tabel di atas (input ter-encode maupun tidak, dengan atau tanpa trailing slash) plus pemeriksaan loop-guard: tujuan aturan mana pun tidak cocok dengan bentuk sumber aturan mana pun, sehingga satu request tidak akan pernah di-redirect dua kali.
 
 ## `/products` → `/` (301), tidak berubah dari increment 1
 

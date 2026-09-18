@@ -75,6 +75,25 @@ All four: `noindex, follow`, `aria-live="polite"` on quote/status updates, keybo
 
 Handled URL shapes: seputarborneo's `/news/{id}-{slug}.html` and beritasampit's `/{yyyy}/{mm}/{dd}/{slug}/` — both normalize correctly whether or not a trailing slash is present, at both build time (map key) and request time (lookup), including a real trailing-slash regression this build caught and fixed (`legacyRedirectLocation`'s own commit history, `apps/storefront/tests/berita-penyaji-legacy.test.ts`).
 
+### Rule-based redirects (issue #55 / A9) — the rest of seputarborneo's URLs, with no CMS row at all
+
+The row-based map above only ever knows a URL an operator/import explicitly recorded — right for a single article, wasteful for a URL shape that is the same for hundreds of pages. `apps/storefront/server/pengalihan-aturan.mjs` is a second, PURE, table-driven module for exactly those shapes — seputarborneo's rubrik/daerah/mitra/video/static/search taxonomy, read off `include/nav_menu.php` (`seputarborneo_rubrik_resolve()`/`_kanonik()`), `.htaccess`, `rubriks/index.php`, `video/index.php`, `img/index.php`, and `data/index.php`. `legacyRedirectLocation()` calls it only on a MISS against the row-based map above, so an operator-authored row always wins when the two could disagree.
+
+| Source shape | Destination | Notes |
+| --- | --- | --- |
+| `/rubrik/{slug}.html` | `/rubrik/{slug}` | Lower-cased, spaces/underscores/`%20` → `-`; `Olah Raga`/`OLAHRAGA` → `olahraga` |
+| `/daerah/{kategori}.html`, `/DAERAH/{Kategori}.html` | `/daerah/{slug}` | The 14 daerah's own name, or an old city name (Sampit → `kotawaringin-timur`, and 9 more — see the module's own `DAERAH_ENTRIES` table), maps to its regency's slug |
+| `/mitra-borneo/{slug}.html`, `/MITRA%20BORNEO/{Nama}.html`, `/Mitra-Borneo/{Nama}.html` | `/mitra/{slug}` | Any of the 24 Mitra Borneo channels, or a future one — an institution's slug passes through unchanged, so this rule needs no table update when a 25th is seeded |
+| `/umum/{slug}.html`, `/UMUM/{Nama}.html` | `/rubrik/{slug}` | UMUM's children are ordinary rubriks here — `/rubrik/wisata.html` (the old topic) and `/umum/wisata.html` (the old UMUM child) both land on `/rubrik/wisata`, the one pair this app's own test suite proves is the ONLY collision across every name the module knows |
+| `/rubriks/?news={slug}&kt={slug}&lanjut={n}` | `/rubrik/{kt or news}/halaman/{n}` (n>1) or `/rubrik/{slug}` | `kt` wins over `news` when both are present |
+| `/video/?video={id}-{slug}.html`, `/video/?video={id}_{slug}.html` | `/video/{slug}` if a `/news/{id}-…` row exists, else `/video` | Never a guessed slug — the video rule reads the SAME row-based map, only to confirm the numeric id is one this app actually knows |
+| `/tentang_kami.html`, `/pedoman_media_cyber.html`, `/disclimer.html` | `/halaman/redaksi`, `/halaman/pedoman-media-siber`, `/halaman/disclaimer` | The three static pages `data/index.php` served |
+| `/pencarian/?cari_berita={q}` | `/cari-berita?q={q}` | **302**, not 301 — a search result is not a permanently-moved resource |
+| `/img/?news={id}` | The row-based `/news/{id}-…` target if known, else `/berita` | `img/index.php` itself already redirected this shape on the live site |
+| `/index.php`, `/?subscribed=1` | `/berita` | |
+
+Every one of these is a 301 except the search rule (302, above); `createServer` reads the `{ location, status }` shape `ruleBasedRedirectLocation()` returns only for that one case, and a plain string (301) for every other rule — the same return shape `legacyRedirectLocation()` already had before this module existed, so `apps/storefront/tests/berita-penyaji-legacy.test.ts` needed no change. `apps/storefront/tests/pengalihan-aturan.test.ts` covers every row of the table above (encoded and decoded input, trailing slash or not) plus a loop-guard check: no rule's destination matches any rule's own source shape, so a request can never be redirected twice.
+
 ## `/products` → `/` (301), unchanged from increment 1
 
 The live site's old catalog URL, `/products` — with or without a query string — still redirects to `/` with a `301`, matched on path only (`isProductsRedirect`/`PRODUCTS_REDIRECT_LOCATION` in `apps/storefront/server/penyaji.mjs`). This is a separate, hardcoded rule, distinct from the generated legacy-redirect map above — see [ADR-0005](adr/0005-product-urls-match-the-live-sites-shape.md).
