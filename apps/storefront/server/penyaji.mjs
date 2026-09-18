@@ -43,10 +43,20 @@
  * artifact (`src/pages/index/pengalihan-legacy.json.ts`), never per
  * request, so the same "no live awcms credential at runtime" invariant
  * holds for it too.
+ *
+ * Issue #55 (A9) adds a fourth, checked only when the third one misses:
+ * `pengalihan-aturan.mjs`'s pure, table-driven rules for every OTHER
+ * seputarborneo legacy shape (rubrik/daerah/mitra/video/static/search) —
+ * see that file's own docblock for why those need no CMS row at all. Still
+ * no I/O at request time: the table lives in that module's own source, and
+ * the one thing it reads from outside itself (`context.legacyRedirects`,
+ * the SAME map issue #28 already loaded at startup) is passed in, never
+ * fetched again.
  */
 import http from "node:http";
 import { posix } from "node:path";
 import { readFileSync, readdirSync } from "node:fs";
+import { ruleBasedRedirectLocation } from "./pengalihan-aturan.mjs";
 
 /** Prefix Astro gives its content-hashed build assets (`build.assets`, default `_astro`). */
 const ASSET_PREFIX = "/_astro/";
@@ -95,32 +105,68 @@ export const CACHE_PAGE = "public, max-age=0, must-revalidate";
  */
 
 /**
+ * GA4's own CSP requirement (issue #56, A10) — fixed, Google-owned
+ * constants, added ONLY when the build artifact's `ga` flag is `true`
+ * (`src/pages/csp.json.ts`'s GA branch, gated on `PUBLIC_GA_ID`). These are
+ * deliberately NOT run through `sanitizeOrigins` below: that function exists
+ * to reject anything CMS/attacker-influenced before it reaches a CSP
+ * directive, and its `*` rejection is exactly why it must NOT see these —
+ * `https://*.google-analytics.com`/`https://*.analytics.google.com` are
+ * Google's own documented wildcard-subdomain CSP sources (gtag.js's actual
+ * hit-collection calls land on region-prefixed subdomains), which
+ * `sanitizeOrigins` would otherwise discard as the worst possible input
+ * shape. Hardcoding them here, ungated by any data this build fetched, is
+ * what makes that safe: nothing external ever influences these three
+ * arrays. `GA_IMG_SRC` covers gtag.js's own image-transport FALLBACK (a
+ * `<img>`/`Image()` beacon it falls back to when `fetch`/`sendBeacon` are
+ * unavailable) — without it, that fallback is silently blocked by
+ * `img-src` exactly the way an unwidened `connect-src` would block the
+ * primary transport.
+ */
+const GA_SCRIPT_SRC = "https://www.googletagmanager.com";
+const GA_IMG_SRC = [
+  "https://*.google-analytics.com",
+  "https://*.googletagmanager.com"
+];
+const GA_CONNECT_SRC = [
+  "https://*.google-analytics.com",
+  "https://*.analytics.google.com",
+  "https://www.googletagmanager.com"
+];
+
+/**
  * Builds the policy string, widening `img-src`/`connect-src` with the
- * origins in `artifact`. Pure and exported so the composition is tested
- * directly rather than through a served response.
+ * origins in `artifact`, and `script-src`/`img-src`/`connect-src` with GA's
+ * own fixed origins when `artifact.ga` is `true`. Pure and exported so the
+ * composition is tested directly rather than through a served response.
  *
- * Every origin is re-validated here even though the build already
+ * Every derived origin is re-validated here even though the build already
  * validated it: this file reads a JSON file off disk that a different
  * process wrote, possibly from a different (older or newer) build, and an
  * unvalidated string interpolated into a CSP directive is how a policy
  * ends up saying something nobody wrote — `*` being the worst of them.
  * Anything that is not an absolute `http(s)` origin with no path, query,
- * or fragment is dropped.
+ * or fragment is dropped. `ga`, by contrast, is a plain boolean coerced with
+ * `=== true` — there is no string to sanitize.
  *
- * @param {{ imgSrc?: string[], connectSrc?: string[] }} [artifact]
+ * @param {{ imgSrc?: string[], connectSrc?: string[], ga?: boolean }} [artifact]
  * @returns {string}
  */
 export function buildCsp(artifact = {}) {
   const img = sanitizeOrigins(artifact.imgSrc);
   const connect = sanitizeOrigins(artifact.connectSrc);
+  const gaEnabled = artifact.ga === true;
+  const gaScript = gaEnabled ? [GA_SCRIPT_SRC] : [];
+  const gaImg = gaEnabled ? GA_IMG_SRC : [];
+  const gaConnect = gaEnabled ? GA_CONNECT_SRC : [];
 
   return [
     "default-src 'self'",
-    "script-src 'self'",
+    ["script-src 'self'", ...gaScript].join(" "),
     "style-src 'self'",
-    ["img-src 'self'", ...img].join(" "),
+    ["img-src 'self'", ...img, ...gaImg].join(" "),
     "font-src 'self'",
-    ["connect-src 'self'", ...connect].join(" "),
+    ["connect-src 'self'", ...connect, ...gaConnect].join(" "),
     "frame-src 'none'",
     "object-src 'none'",
     "base-uri 'none'",
@@ -182,10 +228,10 @@ const CSP_ORIGINS_PATH = "csp.json";
  * asked for it.
  *
  * @param {URL} clientDir
- * @returns {{ imgSrc: string[], connectSrc: string[] }}
+ * @returns {{ imgSrc: string[], connectSrc: string[], ga: boolean }}
  */
 export function readCspOrigins(clientDir) {
-  const empty = { imgSrc: [], connectSrc: [] };
+  const empty = { imgSrc: [], connectSrc: [], ga: false };
 
   try {
     const parsed = JSON.parse(readFileSync(new URL(CSP_ORIGINS_PATH, clientDir), "utf8"));
@@ -194,7 +240,11 @@ export function readCspOrigins(clientDir) {
 
     return {
       imgSrc: Array.isArray(parsed.imgSrc) ? parsed.imgSrc : [],
-      connectSrc: Array.isArray(parsed.connectSrc) ? parsed.connectSrc : []
+      connectSrc: Array.isArray(parsed.connectSrc) ? parsed.connectSrc : [],
+      // Issue #56 (A10): missing (the default build never writes it) or
+      // anything but a literal `true` both mean "GA off" — the same
+      // fail-CLOSED default every other field here already uses.
+      ga: parsed.ga === true
     };
   } catch {
     return empty;
@@ -372,14 +422,29 @@ export function readLegacyRedirectMap(clientDir) {
  * unchanged path — never to `/berita/{slug}` — one hop short of where a
  * reader actually needs to land.
  *
+ * Falls through to `pengalihan-aturan.mjs`'s `ruleBasedRedirectLocation()`
+ * (issue #55 / A9) on a miss — never on a hit, so an operator-authored row
+ * always wins over a derived rule when the two could disagree. That
+ * function returns a plain string for its (near-universal) 301 case,
+ * exactly this function's own existing return shape, so every caller
+ * written before issue #55 — including
+ * `apps/storefront/tests/berita-penyaji-legacy.test.ts`, which that issue
+ * must not edit — keeps working unchanged; its one 302 case (a search
+ * redirect) returns `{ location, status }` instead, handled by
+ * `createServer` below.
+ *
  * @param {string} url
  * @param {Record<string, string>} map
- * @returns {string | null}
+ * @returns {string | { location: string, status: number } | null}
  */
 export function legacyRedirectLocation(url, map) {
   const path = normalizedPath(url);
   const key = path.length > 1 && path.endsWith("/") ? path.slice(0, -1) : path;
-  return Object.prototype.hasOwnProperty.call(map, key) ? map[key] : null;
+  if (Object.prototype.hasOwnProperty.call(map, key)) {
+    return map[key];
+  }
+
+  return ruleBasedRedirectLocation(url, map);
 }
 
 /**
@@ -534,8 +599,13 @@ export function createServer(appHandler, context = {}) {
 
     const legacyTarget = legacyRedirectLocation(req.url ?? "/", context.legacyRedirects ?? {});
     if (legacyTarget) {
-      res.statusCode = 301;
-      res.setHeader("Location", legacyTarget);
+      // A plain string (the row-based map, and almost every rule-based one)
+      // is always a 301; only `pengalihan-aturan.mjs`'s search rule returns
+      // the `{ location, status }` shape, for its one deliberately-302 case
+      // — see `legacyRedirectLocation`'s own docblock above.
+      const isObjectTarget = typeof legacyTarget === "object";
+      res.statusCode = isObjectTarget ? legacyTarget.status : 301;
+      res.setHeader("Location", isObjectTarget ? legacyTarget.location : legacyTarget);
       res.end();
       return;
     }

@@ -15,6 +15,182 @@
       "slug": "dprd-kalimantan-tengah",
       "regionCode": "62",
       "description": "Dewan Perwakilan Rakyat Daerah Provinsi Kalimantan Tengah."
+    },
+    {
+      "id": "i-pemprov-kalteng",
+      "branch": "executive",
+      "name": "Pemprov Kalimantan Tengah",
+      "slug": "pemprov-kalimantan-tengah",
+      "regionCode": "62",
+      "description": "Pemerintah Provinsi Kalimantan Tengah."
+    },
+    {
+      "id": "i-pemko-palangka-raya",
+      "branch": "executive",
+      "name": "Pemko Palangka Raya",
+      "slug": "pemko-palangka-raya",
+      "regionCode": "62.01",
+      "description": "Pemerintah Kota Palangka Raya."
+    },
+    {
+      "id": "i-dprd-palangka-raya",
+      "branch": "legislative",
+      "name": "DPRD Palangka Raya",
+      "slug": "dprd-palangka-raya",
+      "regionCode": "62.01",
+      "description": "Dewan Perwakilan Rakyat Daerah Kota Palangka Raya."
+    },
+    {
+      "id": "i-pemkab-kapuas",
+      "branch": "executive",
+      "name": "Pemkab Kapuas",
+      "slug": "pemkab-kapuas",
+      "regionCode": "62.03",
+      "description": "Pemerintah Kabupaten Kapuas."
+    },
+    {
+      "id": "i-dprd-kapuas",
+      "branch": "legislative",
+      "name": "DPRD Kapuas",
+      "slug": "dprd-kapuas",
+      "regionCode": "62.03",
+      "description": "Dewan Perwakilan Rakyat Daerah Kabupaten Kapuas."
+    },
+    {
+      "id": "i-pemkab-pulang-pisau",
+      "branch": "executive",
+      "name": "Pemkab Pulang Pisau",
+      "slug": "pemkab-pulang-pisau",
+      "regionCode": "62.04",
+      "description": "Pemerintah Kabupaten Pulang Pisau."
+    },
+    {
+      "id": "i-dprd-pulang-pisau",
+      "branch": "legislative",
+      "name": "DPRD Pulang Pisau",
+      "slug": "dprd-pulang-pisau",
+      "regionCode": "62.04",
+      "description": "Dewan Perwakilan Rakyat Daerah Kabupaten Pulang Pisau."
+    },
+    {
+      "id": "i-pemkab-katingan",
+      "branch": "executive",
+      "name": "Pemkab Katingan",
+      "slug": "pemkab-katingan",
+      "regionCode": "62.05",
+      "description": "Pemerintah Kabupaten Katingan."
+    },
+    {
+      "id": "i-dprd-katingan",
+      "branch": "legislative",
+      "name": "DPRD Katingan",
+      "slug": "dprd-katingan",
+      "regionCode": "62.05",
+      "description": "Dewan Perwakilan Rakyat Daerah Kabupaten Katingan."
+    },
+    {
+      "id": "i-pemkab-kotim",
+      "branch": "executive",
+      "name": "Pemkab Kotawaringin Timur",
+      "slug": "pemkab-kotawaringin-timur",
+      "regionCode": "62.06",
+      "description": "Pemerintah Kabupaten Kotawaringin Timur."
+    },
+    {
+      "id": "i-dprd-kotim",
+      "branch": "legislative",
+      "name": "DPRD Kotawaringin Timur",
+      "slug": "dprd-kotawaringin-timur",
+      "regionCode": "62.06",
+      "description": "Dewan Perwakilan Rakyat Daerah Kabupaten Kotawaringin Timur."
+    },
+    {
+      "id": "i-pemkab-seruyan",
+      "branch": "executive",
+      "name": "Pemkab Seruyan",
+      "slug": "pemkab-seruyan",
+      "regionCode": "62.07",
+      "description": "Pemerintah Kabupaten Seruyan."
+    },
+    {
+      "id": "i-dprd-seruyan",
+      "branch": "legislative",
+      "name": "DPRD Seruyan",
+      "slug": "dprd-seruyan",
+      "regionCode": "62.07",
+      "description": "Dewan Perwakilan Rakyat Daerah Kabupaten Seruyan."
+    },
+    {
+      "id": "i-pemkab-lamandau",
+      "branch": "executive",
+      "name": "Pemkab Lamandau",
+      "slug": "pemkab-lamandau",
+      "regionCode": "62.08",
+      "description": "Pemerintah Kabupaten Lamandau."
+    },
+    {
+      "id": "i-dprd-lamandau",
+      "branch": "legislative",
+      "name": "DPRD Lamandau",
+      "slug": "dprd-lamandau",
+      "regionCode": "62.08",
+      "description": "Dewan Perwakilan Rakyat Daerah Kabupaten Lamandau."
+    },
+    {
+      "id": "i-pemkab-sukamara",
+      "branch": "executive",
+      "name": "Pemkab Sukamara",
+      "slug": "pemkab-sukamara",
+      "regionCode": "62.09",
+      "description": "Pemerintah Kabupaten Sukamara."
+    },
+    {
+      "id": "i-pemkab-gunung-mas",
+      "branch": "executive",
+      "name": "Pemkab Gunung Mas",
+      "slug": "pemkab-gunung-mas",
+      "regionCode": "62.10",
+      "description": "Pemerintah Kabupaten Gunung Mas."
+    },
+    {
+      "id": "i-dprd-gunung-mas",
+      "branch": "legislative",
+      "name": "DPRD Gunung Mas",
+      "slug": "dprd-gunung-mas",
+      "regionCode": "62.10",
+      "description": "Dewan Perwakilan Rakyat Daerah Kabupaten Gunung Mas."
+    },
+    {
+      "id": "i-pemkab-barito-selatan",
+      "branch": "executive",
+      "name": "Pemkab Barito Selatan",
+      "slug": "pemkab-barito-selatan",
+      "regionCode": "62.11",
+      "description": "Pemerintah Kabupaten Barito Selatan."
+    },
+    {
+      "id": "i-pemkab-barito-timur",
+      "branch": "executive",
+      "name": "Pemkab Barito Timur",
+      "slug": "pemkab-barito-timur",
+      "regionCode": "62.12",
+      "description": "Pemerintah Kabupaten Barito Timur."
+    },
+    {
+      "id": "i-pemkab-barito-utara",
+      "branch": "executive",
+      "name": "Pemkab Barito Utara",
+      "slug": "pemkab-barito-utara",
+      "regionCode": "62.13",
+      "description": "Pemerintah Kabupaten Barito Utara."
+    },
+    {
+      "id": "i-pemkab-murung-raya",
+      "branch": "executive",
+      "name": "Pemkab Murung Raya",
+      "slug": "pemkab-murung-raya",
+      "regionCode": "62.14",
+      "description": "Pemerintah Kabupaten Murung Raya."
     }
   ]
 }
