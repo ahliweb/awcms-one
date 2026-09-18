@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](seo.md)
 
-<!-- i18n-source-hash: sha256:56e79bbadf4621fcf6b388c9bb9ca3e8f5899a3825d6ced0fc09a90549133512 -->
+<!-- i18n-source-hash: sha256:5364506b540645d7710a456aaa99fe922b4d5a8dd8e08a80d63c47d21a6cf0aa -->
 
 # SEO
 
@@ -48,6 +48,15 @@ Dua hal yang dipertimbangkan issue ini dan tidak dilakukan: `noindex` pada halam
 ## Sitemap dan feed
 
 `registerSitemapSource(name, source)` milik `apps/storefront/src/lib/sitemap.ts` mendaftarkan fungsi penghasil-URL bernama; dua belas sumber didaftarkan di seluruh katalog dan berita (`static-routes`, `static-pages`, `berita-front`, `berita-posts`, `berita-video`, `berita-rubrik`, `berita-daerah`, `berita-mitra`, `berita-tag`, `katalog-produk`, `katalog-kategori`, `katalog-product-detail`). `chunkSitemapEntries` membagi hasil gabungan menjadi chunk berisi maksimal 5.000 URL masing-masing; `sitemap-index.xml` mendaftar berkas `/sitemap-{n}.xml` hasilnya. `feed.xml` (produk) dan `berita/feed.xml` + `rubrik/{slug}/feed.xml` per-rubrik (berita, RSS 2.0, `content:encoded`) adalah feed terpisah yang dibangun tangan, bukan sumber sitemap.
+
+## Pengalihan lawas: dua lapis, baris lebih dulu
+
+Dua mekanisme menjawab URL lawas, dengan urutan ini ([ADR-0013](adr/0013-rule-based-legacy-redirects-beside-the-row-based-map.md)):
+
+1. **Peta berbasis baris** di bawah — satu baris `awcms_seo_redirects` per URL, untuk fakta yang tak bisa diturunkan siapa pun (id numerik lama sebuah artikel → slug barunya).
+2. **Modul aturan** (`apps/storefront/server/pengalihan-aturan.mjs`, issue #55) — arsip rubrik/daerah/mitra/UMUM seputarborneo, paginasi `/rubriks/?news=&kt=&lanjut=`-nya, bentuk `/video/?video=`-nya, tiga halaman statisnya, kotak pencariannya, dan `/img/?news=`, semuanya di-resolve dari tabel terbatas tanpa satu pun baris CMS. Ditanyai hanya ketika peta baris meleset, sehingga baris yang ditulis operator selalu menang.
+
+Pencarian dialihkan dengan `302` (itu kueri, bukan dokumen yang pindah); selebihnya `301`. Lihat [`docs/routing.id.md`](routing.id.md) untuk tabel aturan lengkapnya.
 
 ## Peta redirect-legacy
 

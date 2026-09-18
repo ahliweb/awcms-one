@@ -10,7 +10,7 @@ Needs no database, no build, and no network beyond `bun install`. Excludes `apps
 
 ## 2. `apps/storefront`: unit tests, a type-check, and two build-smoke tiers
 
-`apps/storefront/tests/` holds around 40 files (excluding `e2e/`), grouped roughly by area:
+`apps/storefront/tests/` holds around 55 files (excluding `e2e/`), grouped roughly by area:
 
 | Group | What it covers |
 | --- | --- |
@@ -18,6 +18,9 @@ Needs no database, no build, and no network beyond `bun install`. Excludes `apps
 | Catalog/`katalog-*` | Search/filter, price formatting, cart contract, CSP media-origin derivation, JSON-LD, marketing-surface tolerance |
 | Runtime/checkout | `toko-klien`/`toko-origin`/`toko-csp` (the anonymous API client, `PUBLIC_AWCMS_ORIGIN` validation, CSP `connect-src`), `checkout-guard-no-prerender` (no `apps/storefront/src/pages` file opts out of static output), `checkout-build-smoke`, `wilayah-checkout`, `wishlist-kontrak` |
 | Server/build/general | `build-smoke`, `penyaji`, `portable-text`, `profil`, `routes`, `sitemap`, `telepon`, `theme`, `wa-fallback`, `warna` (contrast) |
+| Increment 3 (issues #47–#59) | `awcms-media` (chunking, unresolvable ids, uuid filtering), `navigasi-berita`/`ikon-sosial` (nav and platform detection), `buletin-klien`, `bagikan` (share URL builders, the Web Share/clipboard decision table), `dengar` (reading units, sentence splitting, voice filtering, storage failure), `meta-sosial` (OG/Twitter builders), `analitik`/`ga`/`ga-csp` (beacon payload, DNT/GPC, the GA CSP branch), `analitik-terpopuler`, `pengalihan-aturan` (the rule table, end to end), `penyaji-bayangan-html` (the shadowed-page rewrite), `logo-instansi`, `wilayah-checkout` (the request-concurrency ceiling), `iklan-popup` |
+
+**A build-smoke test per feature, not one shared file.** Eight of them now (`build-smoke` #24, `berita-build-smoke` #28, `katalog-build-smoke` #27, `checkout-build-smoke` #30, `buletin-build-smoke` #50, `bagikan-build-smoke` #51, `dengar-build-smoke` #52, `sidebar-build-smoke` #49, `logo-instansi-build-smoke` #59, `meta-sosial-build-smoke` #54, `penyaji-bayangan-build-smoke` #75). Each starts the stub, runs a **real** `astro build`, and asserts against the HTML that actually landed in `dist/client/` — which is the only place several increment-3 defects could have shown at all: a player rendered visible instead of `hidden`, a player on a video post, an emblem on an article whose institution has none, an `og:image` that changed for store pages, a page that 404s only when served. Every one of them SKIPS with a clear message rather than passing when `bun` cannot be spawned.
 
 `bun --bun astro check` (`apps/storefront/package.json`'s `check` script) is a type-check, run as the first step of `bun run build`. A **manual, two-terminal stub-backed build** additionally proves the app builds a real site with no live `apps/cms` to reach — not wired into CI, but exercised by hand on every PR that touches this workspace:
 
