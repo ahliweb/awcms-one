@@ -97,3 +97,32 @@
   color: var(--text-muted);
   font-size: 0.9rem;
 }
+
+/* Issue #90 — the "Utama" (default address) and review-status badges. */
+.akun-badge-utama,
+.akun-badge-status {
+  display: inline-block;
+  border-radius: var(--radius-sm, 4px);
+  padding: 0.1rem 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  background: var(--bg-muted, #eee);
+  color: var(--text-primary);
+}
+
+/* Issue #90 — list views (`/akun/alamat`, `/akun/pesanan`, `/akun/ulasan`)
+   reuse `.akun-nav-grid` as a plain vertical stack of `.akun-card` rows
+   rather than the fixed-width tile grid `/akun`'s own navigation cards use
+   — the content here (an address, an order row, a review) is prose-shaped,
+   not a square tile. */
+ul.akun-nav-grid {
+  display: block;
+}
+
+ul.akun-nav-grid > li {
+  list-style: none;
+}
+
+ul.akun-nav-grid > li + li {
+  margin-top: 0.75rem;
+}
