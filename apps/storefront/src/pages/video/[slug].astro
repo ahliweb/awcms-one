@@ -13,14 +13,15 @@
  * from here and nowhere else.
  *
  * Issue #54 (A8): `og:type=video.other`, `og:image` (the post's own
- * featured image when it resolved, else YouTube's `maxresdefault.jpg`
- * poster), `og:video:url` (the SAME `youtube-nocookie.com/embed/{id}` URL
- * the facade swaps in on click), `video:release_date`/`video:tag`, and a
+ * featured image when it resolved, else the SAME `hqdefault.jpg` YouTube
+ * poster the card and the facade render — `post.video.thumbnail`),
+ * `og:video:url` (the SAME `youtube-nocookie.com/embed/{id}` URL the facade
+ * swaps in on click), `video:release_date`/`video:tag`, and a
  * `summary_large_image` Twitter card — all built by
  * `src/lib/meta-sosial.ts`'s `videoSocialMeta(post)` and passed through
  * `BeritaLayout` to `BaseLayout.astro`'s `ogType`/`meta` props. See that
- * builder's docblock for why the poster is `maxresdefault` here but
- * `hqdefault` in the facade.
+ * builder's docblock for why the poster is `hqdefault`, never
+ * `maxresdefault`.
  */
 import BeritaLayout from "../../layouts/BeritaLayout.astro";
 import ArtikelView from "../../components/berita/ArtikelView.astro";

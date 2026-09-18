@@ -34,8 +34,10 @@ never fail a build).
   `article:section`, one `article:tag` per tag, and a Twitter card
   (`summary_large_image` with an image, `summary` without).
 - `/video/{slug}`: `og:type=video.other`, `og:image` = the post's own
-  featured image or else YouTube's `maxresdefault.jpg` poster (the same
-  featured-first precedence the card thumbnail uses), `og:video:url` = the
+  featured image or else the same `hqdefault.jpg` YouTube poster the card
+  and the facade already load (featured-first, like the card thumbnail;
+  never `maxresdefault`, which YouTube 404s for SD-only uploads and would
+  leave a `summary_large_image` card empty), `og:video:url` = the
   identical `youtube-nocookie.com/embed/{id}` the click-to-load facade
   loads, `video:release_date`/`video:tag`.
 - News listing pages (`/berita`, rubrik/daerah/mitra/tag/penulis/arsip,

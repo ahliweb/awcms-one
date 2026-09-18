@@ -57,8 +57,11 @@ interface Props {
    * in the one shell every news page renders through, rather than in each
    * listing page (and NOT in `BaseLayout.astro`, so a store page's OG block
    * stays exactly as it was). An article/video page passes its own `meta`
-   * and never sees the fallback. `identity.logoMediaId` that does not
-   * resolve — the stub's own fixture is one such id — emits nothing.
+   * and never sees the fallback. An `identity.logoMediaId` that does not
+   * resolve (none configured, or an id `media_library` does not answer)
+   * emits nothing. The stub's fixture logo DOES resolve
+   * (`tests/fixtures/awcms/media-objects.json`), which is what lets
+   * `tests/meta-sosial-build-smoke.test.ts` assert this path end to end.
    */
   meta?: readonly MetaTag[];
 }

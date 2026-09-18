@@ -193,9 +193,10 @@ describe("build smoke: OG/Twitter meta (issue #54) against the stub CMS", () => 
         expect(noImage).toContain("article:section=Politik");
 
         // --- /video/{slug}: the fixture video post has no featuredMediaId,
-        // so og:image is YouTube's maxres poster; og:video:url is the SAME
-        // youtube-nocookie embed the facade loads; the `video` namespace,
-        // never `article:*`.
+        // so og:image is the SAME hqdefault poster the card and the facade
+        // load (never a maxresdefault YouTube may 404 — PR #70 review);
+        // og:video:url is the SAME youtube-nocookie embed the facade loads;
+        // the `video` namespace, never `article:*`.
         const video = socialMeta(read("video", "detik-detik-kebakaran-pasar.html"));
         expect(video).toEqual([
           "og:type=video.other",
@@ -204,13 +205,13 @@ describe("build smoke: OG/Twitter meta (issue #54) against the stub CMS", () => 
           "og:description=Video amatir merekam momen kebakaran di pasar tradisional.",
           "og:site_name=BjekMart (Stub)",
           "og:locale=id_ID",
-          "og:image=https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg",
+          "og:image=https://i.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg",
           "og:video:url=https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ",
           "video:release_date=2026-08-15T04:00:00.000Z",
           "twitter:card=summary_large_image",
           "twitter:title=Detik-Detik Kebakaran di Pasar",
           "twitter:description=Video amatir merekam momen kebakaran di pasar tradisional.",
-          "twitter:image=https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg"
+          "twitter:image=https://i.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg"
         ]);
 
         // Exactly ONE og:type per page — the prop REPLACES the fixed tag,

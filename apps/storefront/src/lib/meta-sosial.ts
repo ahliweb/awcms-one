@@ -27,18 +27,18 @@
  * A post's OWN resolved `featuredMediaId` (`post.image`, issue #47) always
  * wins — it is the editor's deliberate choice and carries real `width`/
  * `height`/`alt`. Only a VIDEO post with no featured image of its own falls
- * back to YouTube's fixed poster convention — the identical precedence
- * `src/components/berita/ArtikelCard.astro` already applies to a card's
- * thumbnail, so a link preview shows the same picture the card does. The
- * poster used HERE is `maxresdefault.jpg` (1280×720, the size link
- * previews want) rather than the card's `hqdefault.jpg` (480×360): YouTube
- * only serves `maxresdefault` for uploads that had an HD rendition, and
- * answers a 404 for the rest — an acceptable trade for a preview image
- * (the crawler simply shows no image, exactly the no-featured-image case)
- * that would NOT be acceptable for an `<img>` a reader sees broken, which
- * is why the card keeps `hqdefault`. No dimensions are emitted for the
- * poster: this app has not fetched it and must not assert a size it has
- * not seen.
+ * back to YouTube's poster — `post.video.thumbnail`, the very same
+ * `https://i.ytimg.com/vi/{id}/hqdefault.jpg` URL `src/lib/portable-text.ts`
+ * derives for the card thumbnail and the click-to-load facade, so a link
+ * preview shows the same picture the card does. `hqdefault` (480×360) is
+ * used rather than the larger `maxresdefault.jpg` on purpose: YouTube only
+ * serves `maxresdefault` for uploads that had an HD rendition and answers
+ * a 404 for the rest, and this app cannot know which it has — pairing a
+ * possibly-404 URL with a `summary_large_image` card would produce exactly
+ * the broken, empty large-image card the "`twitter:card`" section below
+ * exists to avoid (PR #70 review). `hqdefault` exists for every valid
+ * video id. No dimensions are emitted for the poster: this app has not
+ * fetched it and must not assert a size it has not seen.
  *
  * ## `twitter:card`
  *
@@ -82,13 +82,7 @@ export type SocialMeta = { ogType: OgType; meta: MetaTag[] };
 /** X's own display limit for `twitter:description`. */
 const TWITTER_DESCRIPTION_MAX_LENGTH = 200;
 
-const YOUTUBE_POSTER_ORIGIN = "https://i.ytimg.com";
 const YOUTUBE_EMBED_ORIGIN = "https://www.youtube-nocookie.com";
-
-/** `https://i.ytimg.com/vi/{id}/maxresdefault.jpg` — YouTube's fixed HD poster convention; see the file header for why this is NOT the `hqdefault.jpg` the facade/card renders. */
-export function youtubeMaxresPosterUrl(videoId: string): string {
-  return `${YOUTUBE_POSTER_ORIGIN}/vi/${videoId}/maxresdefault.jpg`;
-}
 
 /** `https://www.youtube-nocookie.com/embed/{id}` — the SAME privacy-enhanced origin `src/scripts/video-facade.ts` swaps in on click, so `og:video:url` names the player this page actually uses. */
 export function youtubeEmbedUrl(videoId: string): string {
@@ -175,8 +169,9 @@ export function articleSocialMeta(post: PostDetail): SocialMeta {
 
 /**
  * `/video/[slug]` — `og:type=video.other`, `og:image` = the post's own
- * featured image when it resolved, else YouTube's `maxresdefault.jpg`
- * poster (see the file header for the precedence and the 404 caveat),
+ * featured image when it resolved, else the post's YouTube poster
+ * (`post.video.thumbnail`, `hqdefault.jpg` — see the file header for the
+ * precedence and why not `maxresdefault`),
  * `og:video:url` = the privacy-enhanced embed URL the facade itself loads,
  * `video:release_date` and one `video:tag` per tag (the `video` namespace's
  * own equivalents of `article:published_time`/`article:tag`), and the
@@ -194,9 +189,7 @@ export function videoSocialMeta(post: PostDetail): SocialMeta {
   const { title, description } = postSeoText(post);
   const ownImage = ogImageMeta(post.image);
   const usesOwnImage = post.image !== null && ownImage.length > 0;
-  const imageUrl = usesOwnImage
-    ? (post.image as ResolvedMedia).publicUrl
-    : youtubeMaxresPosterUrl(post.video.videoId);
+  const imageUrl = usesOwnImage ? (post.image as ResolvedMedia).publicUrl : post.video.thumbnail;
   const image: MetaTag[] = usesOwnImage ? ownImage : [{ property: "og:image", content: imageUrl }];
 
   const meta: MetaTag[] = [

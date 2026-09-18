@@ -7,7 +7,6 @@ import {
   rubrikPaginationLinks,
   videoSocialMeta,
   youtubeEmbedUrl,
-  youtubeMaxresPosterUrl,
   type MetaTag
 } from "../src/lib/meta-sosial";
 import type { ResolvedMedia } from "../src/lib/awcms/media";
@@ -146,22 +145,26 @@ describe("meta-sosial: articleSocialMeta", () => {
 });
 
 describe("meta-sosial: videoSocialMeta", () => {
-  const video = { provider: "youtube" as const, videoId: "dQw4w9WgXcQ", thumbnail: "x" };
+  // The SAME hqdefault URL `src/lib/portable-text.ts` derives for the card
+  // thumbnail and the facade — `post.video.thumbnail` is used verbatim.
+  const POSTER = "https://i.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg";
+  const video = { provider: "youtube" as const, videoId: "dQw4w9WgXcQ", thumbnail: POSTER };
 
-  test("og:type=video.other, YouTube maxres poster when the post has no featured image, embed URL, video:* namespace", () => {
+  test("og:type=video.other, the post's own hqdefault poster when it has no featured image, embed URL, video:* namespace", () => {
     const { ogType, meta } = videoSocialMeta(post({ image: null, isVideo: true, video }));
 
     expect(ogType).toBe("video.other");
-    expect(find(meta, "og:image")).toEqual(["https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg"]);
+    expect(find(meta, "og:image")).toEqual([POSTER]);
+    // Never a maxresdefault URL: YouTube 404s it for SD-only uploads, and a
+    // 404 under a summary_large_image card is an empty card (PR #70 review).
+    expect(find(meta, "og:image")[0]).not.toContain("maxresdefault");
     // No dimensions asserted for a poster this app has never fetched.
     expect(find(meta, "og:image:width")).toEqual([]);
     expect(find(meta, "og:video:url")).toEqual(["https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ"]);
     expect(find(meta, "video:release_date")).toEqual(["2026-08-01T02:00:00.000Z"]);
     expect(find(meta, "video:tag")).toEqual(["Pilkada", "Ekonomi"]);
     expect(find(meta, "twitter:card")).toEqual(["summary_large_image"]);
-    expect(find(meta, "twitter:image")).toEqual([
-      "https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg"
-    ]);
+    expect(find(meta, "twitter:image")).toEqual([POSTER]);
 
     // Never the article namespace on a video.
     expect(find(meta, "article:published_time")).toEqual([]);
@@ -182,8 +185,7 @@ describe("meta-sosial: videoSocialMeta", () => {
     expect(find(meta, "og:video:url")).toEqual([]);
   });
 
-  test("URL helpers use the fixed CDN/embed conventions the facade itself uses", () => {
-    expect(youtubeMaxresPosterUrl("abc")).toBe("https://i.ytimg.com/vi/abc/maxresdefault.jpg");
+  test("the embed URL helper uses the same privacy-enhanced origin the facade itself loads", () => {
     expect(youtubeEmbedUrl("abc")).toBe("https://www.youtube-nocookie.com/embed/abc");
   });
 });
