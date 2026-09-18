@@ -1,0 +1,364 @@
+/**
+ * Styles for the news CHROME (issue #48) — the utility bar, primary nav +
+ * Daerah panel, "Terkini" ticker, and footer. A NEW file, imported only by
+ * `src/layouts/BeritaLayout.astro`, the same way `src/styles/berita.css`
+ * (issue #28) is imported only there for the news CONTENT templates —
+ * splitting chrome from content keeps each file's job to one thing.
+ *
+ * Reuses `global.css`'s tokens (`--bg-*`, `--text-*`, `--border-color`,
+ * `--radius-*` etc.) and its `.container`/`.visually-hidden`/
+ * `.mobile-nav-toggle` utility classes rather than re-declaring any of
+ * them — `BeritaLayout.astro` imports `global.css` directly (it no longer
+ * delegates to `BaseLayout.astro`; see that layout's own docblock for why).
+ */
+
+/* --- Utility bar (`BilahUtilitas.astro`) --------------------------------- */
+
+.bilah-utilitas {
+  background: var(--bg-subtle);
+  border-bottom: 1px solid var(--border-color);
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.bilah-utilitas__isi {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding-block: 0.4rem;
+}
+
+.bilah-utilitas__kiri {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.bilah-utilitas__pisah {
+  color: var(--text-muted);
+}
+
+.bilah-utilitas__kanan {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  flex-wrap: wrap;
+}
+
+.bilah-utilitas__kanan a {
+  color: var(--text-secondary);
+  min-height: 32px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.bilah-utilitas__sosial {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.bilah-utilitas__sosial a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  color: var(--text-secondary);
+}
+
+.bilah-utilitas__sosial svg {
+  width: 1rem;
+  height: 1rem;
+  fill: currentColor;
+}
+
+/* --- Primary nav + masthead (`NavBerita.astro`) -------------------------- */
+
+.nav-berita {
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.nav-berita__masthead {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding-block: 0.75rem;
+}
+
+.nav-berita__merek {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  margin-right: auto;
+}
+
+.nav-berita__cari {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.nav-berita__cari input[type="search"] {
+  min-height: 44px;
+  padding: 0.4rem 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  font: inherit;
+  color: var(--text-primary);
+  background: var(--bg-surface);
+  min-width: 8rem;
+}
+
+.nav-berita__cari button {
+  min-height: 44px;
+  padding: 0.4rem 1rem;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  cursor: pointer;
+  background: var(--color-primary, #10b981);
+  color: var(--color-primary-foreground, #000000);
+}
+
+.nav-berita__cari button:hover {
+  filter: brightness(0.92);
+}
+
+.mobile-nav-toggle nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding-inline: 0.6rem;
+  color: var(--text-secondary);
+  font-weight: 700;
+}
+
+.mobile-nav-toggle nav a[aria-current="page"] {
+  color: var(--color-primary, #10b981);
+  text-decoration: underline;
+}
+
+/* --- Daerah panel --------------------------------------------------------- */
+
+.nav-berita__rel {
+  background: var(--bg-subtle);
+  border-top: 1px solid var(--border-color);
+}
+
+.nav-berita__rel-isi {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  padding-block: 0.5rem;
+}
+
+.nav-berita__rel-label {
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+}
+
+.nav-berita__rel-tautan {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.9rem;
+}
+
+.nav-berita__rel-tautan a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+
+.nav-berita__rel-tautan a[aria-current="page"] {
+  color: var(--color-primary, #10b981);
+  font-weight: 700;
+}
+
+/* --- Ticker (`Ticker.astro`) ---------------------------------------------- */
+
+.ticker-berita {
+  background: var(--color-primary, #10b981);
+  color: var(--color-primary-foreground, #000000);
+}
+
+.ticker-berita__isi {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding-block: 0.4rem;
+  overflow-x: auto;
+}
+
+.ticker-berita__label {
+  flex-shrink: 0;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  padding-inline: 0.5rem;
+  border-radius: var(--radius-sm);
+  background: rgba(0, 0, 0, 0.12);
+}
+
+.ticker-berita__daftar {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  list-style: none;
+  white-space: nowrap;
+}
+
+.ticker-berita__daftar a {
+  color: inherit;
+  font-weight: 600;
+}
+
+.ticker-berita__semua {
+  flex-shrink: 0;
+  margin-left: auto;
+  color: inherit;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* --- Footer (`FooterBerita.astro`) ---------------------------------------- */
+
+.footer-berita {
+  margin-top: auto;
+  border-top: 1px solid var(--border-color);
+  background: var(--bg-surface);
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+.footer-berita__atas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+  gap: 1.5rem;
+  padding-block: 2rem;
+}
+
+.footer-berita__merek-teks {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 0.35rem;
+}
+
+.footer-berita__kontak {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.footer-berita__kolom {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.footer-berita__kolom h2,
+.footer-berita__subjudul,
+.footer-berita__mitra-judul {
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  margin-bottom: 0.35rem;
+}
+
+.footer-berita__subjudul,
+.footer-berita__mitra-judul {
+  margin-top: 0.75rem;
+}
+
+.footer-berita__buletin form {
+  display: flex;
+  gap: 0.4rem;
+  margin-block: 0.5rem 0.75rem;
+}
+
+.footer-berita__mitra {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(160px, 100%), 1fr));
+  gap: 0.3rem 0.75rem;
+}
+
+.footer-berita__bawah {
+  border-top: 1px solid var(--border-color);
+  padding-block: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.5rem;
+  justify-content: space-between;
+  font-size: 0.8rem;
+}
+
+.footer-berita__bawah nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+}
+
+/* --- Back-to-top ----------------------------------------------------------
+   Always in the DOM (see `FooterBerita.astro`'s own docblock): hidden by
+   opacity/pointer-events, NOT `display`/`visibility`/`hidden`, specifically
+   so a keyboard user tabbing through the page still reaches it and the
+   `:focus-visible` rule below can reveal it regardless of scroll position —
+   a `display: none` element cannot receive focus at all. */
+.kembali-ke-atas {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 30;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  background: var(--color-primary, #10b981);
+  color: var(--color-primary-foreground, #000000);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.kembali-ke-atas.is-tampil {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.kembali-ke-atas:focus-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.kembali-ke-atas svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  fill: currentColor;
+}
+
+@media (max-width: 720px) {
+  .nav-berita__cari {
+    order: 3;
+    width: 100%;
+  }
+
+  .nav-berita__cari input[type="search"] {
+    flex: 1;
+  }
+}

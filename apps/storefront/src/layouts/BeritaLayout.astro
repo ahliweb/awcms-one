@@ -1,19 +1,57 @@
 ---
 /**
- * Thin wrapper around `BaseLayout` (issue #24) for every news-surface page
- * (issue #28) — its ONLY job is importing `src/styles/berita.css` once, so
- * no individual `/berita`/`/rubrik`/`/daerah`/`/mitra`/`/video`/`/tag`/
- * `/penulis`/`/arsip`/`/cari-berita` page has to. A NEW file rather than an
- * edit to `BaseLayout.astro` itself — that file is outside this issue's
- * file ownership (shared chrome, issue #24) — and CSS lives in its own file
- * rather than a component-scoped `<style>` block because inline
- * `<style>`/`<style is:global>` output is exactly what `style-src 'self'`
- * with `inlineStylesheets: "never"` (`astro.config.mjs`) forbids; an
- * imported `.css` file is compiled to an external, same-origin stylesheet
- * the same way `src/styles/global.css` already is.
+ * The page shell for every news-surface page (issue #28's page family;
+ * issue #48 gives it real news chrome). Until this issue, this file was a
+ * thin wrapper around `BaseLayout.astro` that only added
+ * `src/styles/berita.css` — see git history for that version — which meant
+ * every `/berita`/`/rubrik`/`/daerah`/`/mitra`/`/video`/`/tag`/`/penulis`/
+ * `/arsip`/`/cari-berita` page rendered the STORE's `Header.astro`/
+ * `Footer.astro` (product nav, cart, wishlist) instead of a news nav. This
+ * issue replaces that chrome with `BilahUtilitas`/`NavBerita`/`Ticker`/
+ * `FooterBerita`.
+ *
+ * ## Why this no longer wraps `BaseLayout.astro` — a decision, not an oversight
+ *
+ * `BaseLayout.astro` hard-codes `<Header identity={identity} />` and
+ * `<Footer identity={identity} staticPages={staticPages} />` with no slot or
+ * prop to swap either for a different chrome — nesting this layout's own
+ * chrome inside `BaseLayout`'s `<main id="konten"><slot /></main>` would
+ * render BOTH the store header/footer AND the news chrome on every news
+ * page, and produce two `#konten` landmarks on one document. Fixing that
+ * from `BaseLayout.astro`'s side (e.g. a `header`/`footer` named slot) is a
+ * real, better long-term answer, but `BaseLayout.astro` is not in this
+ * issue's file ownership — increment 3 epic #46's wave-1 partition (this
+ * issue's own brief) grants exactly `BeritaLayout.astro`,
+ * `src/components/berita/{BilahUtilitas,NavBerita,Ticker,FooterBerita}
+ * .astro`, `src/lib/{navigasi-berita,ikon-sosial}.ts`, and
+ * `src/styles/berita-chrome.css` — and every sibling wave-1 issue (#47/#50/
+ * #55/#56/#57/#58) is editing OTHER files in this same tree at the same
+ * time, so touching a file nobody's issue names is exactly the risk this
+ * epic's wave ordering exists to avoid (`AGENTS.md`'s "Files owned" rule).
+ *
+ * The chosen fix instead: this layout renders its OWN `<html>`/`<head>`/
+ * `<body>`, duplicating `BaseLayout.astro`'s `<head>` assembly (site
+ * identity, canonical/OG/JSON-LD, the same stylesheets/favicon/manifest/feed
+ * link) rather than delegating to it. That duplication is real and is
+ * flagged here on purpose: a future issue with `BaseLayout.astro` in its own
+ * file ownership (recorded for the epic's D1/#60 documentation pass, or a
+ * fast-follow) should extract the shared `<head>` block — e.g. a
+ * `<PageHead>` component both layouts import — so this file and
+ * `BaseLayout.astro` stop needing to be kept in step by hand. Until then, a
+ * change to `BaseLayout.astro`'s `<head>` (a new meta tag, a changed
+ * stylesheet) must be mirrored here manually; `tests/berita-build-smoke
+ * .test.ts` (issue #28) and this issue's own build-smoke coverage are what
+ * would catch a real drift, not a compiler.
  */
-import BaseLayout from "./BaseLayout.astro";
+import { absoluteUrl } from "../config/site";
+import { getSiteIdentity } from "../lib/awcms/profil";
+import BilahUtilitas from "../components/berita/BilahUtilitas.astro";
+import NavBerita from "../components/berita/NavBerita.astro";
+import Ticker from "../components/berita/Ticker.astro";
+import FooterBerita from "../components/berita/FooterBerita.astro";
+import "../styles/global.css";
 import "../styles/berita.css";
+import "../styles/berita-chrome.css";
 
 interface Props {
   title: string;
@@ -23,8 +61,64 @@ interface Props {
 }
 
 const { title, description, canonicalPath, schema } = Astro.props;
+
+const identity = await getSiteIdentity();
+
+const canonicalUrl = absoluteUrl(canonicalPath);
+const fullTitle = title === identity.name ? title : `${title} — ${identity.name}`;
+const metaDescription = (description ?? identity.description).slice(0, 160);
+
+/** Identical to `BaseLayout.astro`'s own helper of the same name — see that file's docblock for why `<`/`>`/`&` are escaped rather than trusting the CSP alone. Duplicated, not imported, for the same reason this whole file duplicates `BaseLayout.astro`'s `<head>` — see the file header above. */
+function jsonForScript(value: unknown): string {
+  return JSON.stringify(value)
+    .replace(/</g, "\\u003c")
+    .replace(/>/g, "\\u003e")
+    .replace(/&/g, "\\u0026");
+}
 ---
 
-<BaseLayout title={title} description={description} canonicalPath={canonicalPath} schema={schema}>
-  <slot />
-</BaseLayout>
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={metaDescription} />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="stylesheet" href="/theme-tokens.css" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="alternate" type="application/rss+xml" title={identity.name} href="/feed.xml" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={metaDescription} />
+    <meta property="og:site_name" content={identity.name} />
+    <meta property="og:locale" content="id_ID" />
+
+    {schema && (
+      <script is:inline type="application/ld+json" set:html={jsonForScript({
+        "@context": "https://schema.org",
+        ...schema
+      })} />
+    )}
+
+    <slot name="head" />
+  </head>
+  <body id="atas">
+    <a class="skip-link" href="#konten">Lewati ke konten utama</a>
+
+    <BilahUtilitas identity={identity} />
+    <NavBerita identity={identity} currentPath={canonicalPath} />
+    <Ticker />
+
+    <main id="konten">
+      <slot />
+    </main>
+
+    <FooterBerita identity={identity}>
+      <slot name="buletin" slot="buletin" />
+    </FooterBerita>
+  </body>
+</html>

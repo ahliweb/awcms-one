@@ -1,0 +1,169 @@
+---
+/**
+ * The news footer (issue #48) — ported from seputarborneo.com v2.4.0's
+ * `include/layout_footer.php`: the leaderboard slot above `<footer>`, the
+ * brand/contact column, Rubrik/Umum/Daerah columns, the newsletter box (A4's
+ * form, this issue only leaves the `<slot>`), the 24-institution Mitra
+ * Borneo directory, the legal bar, and the back-to-top control.
+ *
+ * ## The leaderboard slot — decision 4 of epic #46
+ *
+ * `<IklanSlot placement="homepage_bottom">` reuses the CMS's EXISTING
+ * `homepage_bottom` placement rather than inventing a `footer_leaderboard`
+ * key — `AD_PLACEMENT_KEYS` belongs to upstream `blog_content`
+ * (`src/lib/awcms/blog.ts`), so a new key is an upstream change outside this
+ * issue's (and this wave's) file ownership. `IklanSlot.astro` (issue #47/A1)
+ * already renders nothing when the slot has nothing booked — the same
+ * "render nothing when no placement" rule this footer inherits for free by
+ * calling it directly.
+ *
+ * ## The newsletter box
+ *
+ * `<slot name="buletin" />` is the ENTIRE newsletter feature this issue
+ * ships — issue #50/A4 owns `FormBuletin.astro` and fills this slot from
+ * `BeritaLayout.astro`'s own composition (this issue's file ownership does
+ * not include either the form or the wiring; only the slot itself, per this
+ * wave's brief).
+ *
+ * ## Back-to-top
+ *
+ * Always in the DOM as a real `<a href="#atas">` (works with no JS: a
+ * reader without JavaScript can still activate it, it just does not fade in
+ * on scroll — progressive enhancement, not JS-only content). The `<script>`
+ * below only toggles a CSS class; `berita-chrome.css`'s own
+ * `:focus-visible` override keeps it reachable and visible for a
+ * keyboard user regardless of scroll position, which `js/main.js`'s own
+ * `initKeAtas()` does not need because seputarborneo's back-to-top is not
+ * meant to be keyboard-focusable before it is visible.
+ */
+import type { SiteIdentity } from "../../lib/awcms/profil";
+import IklanSlot from "./IklanSlot.astro";
+import {
+  getNavUtama,
+  getDaerahList,
+  getUmumList,
+  getMitraList,
+  getPerusahaanLinks
+} from "../../lib/navigasi-berita";
+import { ROUTES } from "../../config/routes";
+
+interface Props {
+  identity: SiteIdentity;
+}
+
+const { identity } = Astro.props;
+
+const [navUtama, daerahList, umumList, mitraList, perusahaanLinks] = await Promise.all([
+  getNavUtama(),
+  getDaerahList(),
+  getUmumList(),
+  getMitraList(),
+  getPerusahaanLinks()
+]);
+
+// The footer's own Rubrik column excludes "Beranda"/"Daerah"/"Video" — the
+// same filter `layout_footer.php` applies to `seputarborneo_nav_primary()`
+// (`if ($item['rubrik'] === '' || $item['rubrik'] === 'VIDEO') { continue; }`):
+// only the five real rubrik have their own index worth a footer link.
+const rubrikColumn = navUtama.filter((item) => item.activePathPrefix && !item.controls && item.href !== ROUTES.home && item.href !== ROUTES.video);
+
+const year = new Date().getFullYear();
+const copyright = identity.copyrightNotice ?? `© ${year} ${identity.name}`;
+---
+
+<IklanSlot placement="homepage_bottom" label="Iklan" />
+
+<footer class="footer-berita">
+  <div class="container footer-berita__atas">
+    <div class="footer-berita__merek">
+      <p class="footer-berita__merek-teks">{identity.name}</p>
+      {identity.address && <p>{identity.address}</p>}
+      <p class="footer-berita__kontak">
+        {identity.contactPhone && (
+          <a href={`tel:${identity.contactPhone.replace(/[^+\d]/g, "")}`}>{identity.contactPhone}</a>
+        )}
+        {identity.contactEmail && <a href={`mailto:${identity.contactEmail}`}>{identity.contactEmail}</a>}
+      </p>
+    </div>
+
+    <nav class="footer-berita__kolom" aria-label="Rubrik">
+      <h2>Rubrik</h2>
+      {rubrikColumn.map((item) => (
+        <a href={item.href}>{item.label}</a>
+      ))}
+
+      {umumList.length > 0 && (
+        <>
+          <h2 class="footer-berita__subjudul">Umum</h2>
+          {umumList.map((item) => (
+            <a href={item.href}>{item.name}</a>
+          ))}
+        </>
+      )}
+    </nav>
+
+    <nav class="footer-berita__kolom" aria-label="Daerah">
+      <h2>Daerah</h2>
+      {daerahList.map((daerah) => (
+        <a href={ROUTES.region(daerah.slug)}>{daerah.name}</a>
+      ))}
+    </nav>
+
+    <div class="footer-berita__kolom footer-berita__buletin">
+      <h2>Buletin Pagi</h2>
+      <p>Ringkasan berita Kalimantan Tengah langsung ke email Anda.</p>
+      <slot name="buletin" />
+
+      <h2 class="footer-berita__mitra-judul">Mitra Borneo</h2>
+      <div class="footer-berita__mitra">
+        {mitraList.map((mitra) => (
+          <a href={mitra.href}>{mitra.name}</a>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <div class="container footer-berita__bawah">
+    <p>{copyright}</p>
+    <nav aria-label="Tautan legal">
+      {perusahaanLinks.map((link) => (
+        <a href={link.href}>{link.label}</a>
+      ))}
+    </nav>
+  </div>
+</footer>
+
+<a class="kembali-ke-atas" href="#atas">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8.29 5.29 15l1.42 1.41L12 11.12l5.29 5.29L18.71 15 12 8.29Z"></path></svg>
+  <span class="visually-hidden">Kembali ke atas</span>
+</a>
+
+<script>
+  /** Ported from `js/main.js`'s `initKeAtas()` — see this file's own docblock for why focus-visibility does not depend on this script running. */
+  function initKembaliKeAtas(): void {
+    const tombol = document.querySelector<HTMLElement>(".kembali-ke-atas");
+    if (!tombol) return;
+
+    let menunggu = false;
+
+    function perbarui(): void {
+      menunggu = false;
+      tombol!.classList.toggle("is-tampil", window.pageYOffset > 400);
+    }
+
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (!menunggu) {
+          menunggu = true;
+          window.requestAnimationFrame(perbarui);
+        }
+      },
+      { passive: true }
+    );
+
+    perbarui();
+  }
+
+  initKembaliKeAtas();
+</script>
