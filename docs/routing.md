@@ -45,15 +45,21 @@ Every route `apps/storefront` publishes — 41 route files under `apps/storefron
 
 All four: `noindex, follow`, `aria-live="polite"` on quote/status updates, keyboard-reachable, a `<noscript>` fallback plus a JS-ran-but-CMS-down WhatsApp fallback (`apps/storefront/src/lib/wa-fallback.ts`).
 
-## Customer accounts (issue #88, S1 of #32)
+## Customer accounts (issue #88 S1, issue #90 S2, of #32)
 
 | Path | Source | Notes |
 | --- | --- | --- |
 | `/masuk` | `apps/storefront/src/pages/masuk.astro` | E-mail OTP sign-in; `noindex, follow` |
 | `/daftar` | `apps/storefront/src/pages/daftar.astro` | Name + phone + e-mail OTP registration; `noindex, follow` |
 | `/akun` | `apps/storefront/src/pages/akun/index.astro` | Signed-in dashboard shell (profile, "Ubah nama", "Keluar", navigation cards); `noindex, follow` |
+| `/akun/alamat` | `apps/storefront/src/pages/akun/alamat.astro` | List/add/edit/delete/set-default addresses (max 10); the province/city/district selects reuse `apps/storefront/src/lib/wilayah-region-select.ts`, the SAME module `checkout.astro`'s own saved-address autofill uses; `noindex, follow` |
+| `/akun/pesanan` | `apps/storefront/src/pages/akun/pesanan.astro` | Keyset-paginated order list ("Muat lebih banyak"); `noindex, follow` |
+| `/akun/pesanan?kode=` | same file, `?kode=` present | One owned order's detail, reusing `/pesanan`'s own renderer (`apps/storefront/src/lib/pesanan-render.ts`) — NO phone prompt, the session already proves ownership |
+| `/akun/ulasan` | `apps/storefront/src/pages/akun/ulasan.astro` | The account's own product reviews — rating as text + stars, Indonesian moderation status; `noindex, follow` |
 
-`ROUTES.accountOrders` (`/akun/pesanan`), `ROUTES.accountAddresses` (`/akun/alamat`), `ROUTES.accountReviews` (`/akun/ulasan`), and `ROUTES.accountAffiliate` (`/akun/afiliasi`) are declared in `apps/storefront/src/config/routes.ts` now, with no page behind them yet — `/akun`'s own navigation cards and any future page can link at a named constant instead of a hand-typed path. Those child routes land with S2/S3 of issue #32; until then their links resolve to a 404, by design (documented in issue #88's own PR description). `ROUTES.accountOrder(kode)` (`/akun/pesanan?kode=`) is the same "declare the shape, fill in the page later" pattern for a single order.
+`ROUTES.accountAffiliate` (`/akun/afiliasi`) is still declared with no page behind it — that lands with S3 of issue #32. `ROUTES.accountOrder(kode)` (`/akun/pesanan?kode=`) is a single order's own URL.
+
+`checkout.astro`/`checkout.ts` gained a "Pilih alamat tersimpan" `<select>`, hidden until a customer session is confirmed, that autofills the address step from `GET …/account/addresses`; the order-creation request carries the signed-in shopper's Bearer token when one exists (`apps/storefront/src/lib/toko-klien.ts`'s `createOrder` takes an OPTIONAL second `bearerToken` argument — existing anonymous callers are unaffected).
 
 ## Static
 

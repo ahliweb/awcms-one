@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](aksesibilitas.md)
 
-<!-- i18n-source-hash: sha256:c91f2020c4492fb9735af5ab6cbfb14e6350d9667db602d092be18505097fae9 -->
+<!-- i18n-source-hash: sha256:3f5499bcf4460b6469f02dd07ef75852644747fbca553648e075bd2717eb30e3 -->
 
 # Aksesibilitas
 
