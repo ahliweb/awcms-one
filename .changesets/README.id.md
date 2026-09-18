@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:d9f865621927abea748afc42c6c1aa6b48d00a652a00997f1870da71ba32d436 -->
+<!-- i18n-source-hash: sha256:b72283839a3faf5782b2e090267d0152df2c18579c93b9c6afcc2fbf13a8db3e -->
 
 # Changesets
 
@@ -55,10 +55,10 @@ Versi berbentuk `MAJOR.MINOR.PATCH`, ditandai `vX.Y.Z`. Repo ini masih `0.x`, di
 
 | Batas | Nilai |
 | --- | --- |
-| Berkas menunggu | **10** |
+| Berkas menunggu | **20** |
 | Usia yang tertua | **14 hari** |
 
-Kedua angka itu adalah asumsi awal, bukan rate yang diukur — repo ini belum punya riwayat rilis untuk diukur (lihat docblock `packages/gerbang/audit-rilis.mjs` sendiri). Tinjau ulang keduanya begitu repo ini punya kadensi rilis sungguhan.
+Batas jumlah semula 10, sampai increment 3 (PR #76): satu increment menumpuk delapan belas changeset sebelum rilisnya sendiri, sehingga 10 memerahkan setiap PR di paruh kedua tanpa ada yang bisa dilakukan kontributor. 20 adalah ukuran terukur satu rilis increment ditambah ruang lega — masih cukup rendah agar tumpukan yang tidak dirilis siapa pun tetap terlihat. Batas umur tetap 14 hari; umurlah, bukan jumlah, yang menangkap tumpukan yang tak terawasi (lihat docblock `packages/gerbang/audit-rilis.mjs` sendiri).
 
 Nama berkas adalah yang membawa usianya, jadi `YYYY-MM-DD-` **wajib, bukan sekadar didokumentasikan**: nama yang tidak bisa ditanggali gerbang ini tidak pernah menua, dan ia akan duduk di sini tak terlihat oleh satu-satunya pemeriksa yang dibangun untuk melihatnya. Tanggal yang tidak dimiliki kalender (`2026-02-31`) ditolak, begitu juga yang lebih dari satu hari di depan mesin yang memeriksanya — satu hari kelonggaran, karena penulis menamai berkasnya di zona waktunya sendiri dan CI memegang UTC.
 
