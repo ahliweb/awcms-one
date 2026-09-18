@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](kamus-data.md)
 
-<!-- i18n-source-hash: sha256:c921fbf1f221a6bffd089035a93d8bac4ed5c622940863d7521b513631b8e788 -->
+<!-- i18n-source-hash: sha256:33a0678db7ab7aa9611638f1376f1e7cd3fbdc86e72f52fa1e87a102e0c999fd -->
 
 # Kamus data
 
@@ -79,6 +79,77 @@ Keduanya adalah tabel AWCMS baru yang meneruskan konsep milik tabel lawas: gamba
 ## Tabel order: desain milik platform ini sendiri, dialamatkan lewat identitas tamu
 
 `awcms_commerce_customers`/`_customer_addresses`/`_orders`/`_order_items`/`_order_events`/`_payment_confirmations`/`_reviews`/`_wishlists` (issue #29) demikian pula skema milik platform ini sendiri, dibentuk oleh [ADR-0009](adr/0009-guest-checkout-by-order-code-and-phone.id.md) (pelanggan diidentifikasi lewat telepon, bukan akun) dan [ADR-0010](adr/0010-manual-payment-and-alternative-courier-first-gateways-via-outbox.id.md) (pembayaran manual dan biaya kurir-alternatif flat, bukan integrasi gateway/kurir live). Lihat [`docs/skema-basis-data.md`](skema-basis-data.id.md) untuk setiap kolom.
+
+## seputarborneo.com → `blog_content` / `seo_distribution` (issue #58)
+
+Pemetaan kolom untuk `tools/import-seputarborneo.ts` (`bun run import:seputarborneo`), yang membaca arsip MariaDB lama seputarborneo lalu menulis lewat permukaan publik `/api/v1/*` milik `apps/cms` — tidak pernah mem-port daftar kolom lawas apa adanya ke tabel baru, karena skema `blog_content` (isi Portable Text, klasifikasi term/instansi) sudah ada dan mendahului importer ini.
+
+### `berita_red` → post `blog_content`
+
+| Kolom lawas | Field AWCMS | Catatan |
+| --- | --- | --- |
+| `id_ber` | *(tidak ada — lihat di bawah)* | Tidak ada field publik yang menyimpannya; peta redirect diturunkan dari URL yang dibangun importer ini, bukan dari id lawas yang tersimpan (lihat "Yang TIDAK dipertahankan" di bawah) |
+| `judul` | `title`, dan sumber slug | `slug = sbSlug(judul)`, di-dedup dengan `-{id_ber}` saat bentrok |
+| `sub_judul` | `excerpt` | |
+| `isi_berita` | `bodyPortableText` | HTML CKEditor → Portable Text lewat `tools/lib/html-to-portable-text.ts`; `<script>`/`<iframe>`/`<embed>`/`<object>` dibuang seluruhnya, `<img>` jadi blok `gallery` hanya setelah id objek media ter-resolve, selebihnya dibuang dan dilaporkan |
+| `jenis_rubrik` + `kategori` | `termIds` / `institutionIds` | Dinormalisasi identik dengan `migrations/2026-09-02-normalize-legacy-taxonomy.sql`, lalu diklasifikasi jadi term rubrik, wilayah `daerah`, instansi `mitra-borneo`, atau anak `umum` — lihat `mapLegacyTaxonomy` milik importer sendiri |
+| `tgl` + `jam` | `publishedAt` (lewat `.../schedule`) atau waktu impor (lewat `.../publish`) | Waktu-dinding Asia/Jakarta (UTC+7, tanpa DST) → instan UTC; lihat bagian "Mengimpor seputarborneo" di `docs/deployment.md` untuk alasan tanggal LAMPAU tidak bisa di-backdate lewat API publik |
+| `user` | `contentJson.legacySource.author` | BUKAN byline yang dirender — `authorByline` diturunkan dari tenant user yang terautentikasi di API ini, bukan field teks bebas; lihat header importer sendiri |
+| `id_logo` | *(manifest saja)* | Dicocokkan terhadap `logo` lewat id; logo instansi belum punya field di `apps/cms` — lihat [issue #59](https://github.com/ahliweb/awcms-one/issues/59) |
+| `foto_berita` | `featuredMediaId` setelah diunggah | Disebutkan di daftar `mediaNeeded` manifest impor sampai saat itu |
+| `status` | *(tidak pernah dibaca)* | Situs lama sendiri tidak pernah membaca kolom ini (`include/rubrik.php` memakai filter `tgl`+`jam` <= sekarang milik VIEW `berita_red_tayang`) |
+| `sub_up`, `text_foto`, `uk`, `tp`, `rate_view`, `like_view`, `unlike_viuew`, `hari`, `bln` | *(tidak diimpor)* | Tidak ada konsep yang berpadanan di `blog_content` |
+
+**Yang TIDAK dipertahankan:** `id_ber` itu sendiri. `apps/cms` MEMANG punya pasangan `legacy_source_id`/`legacy_source_system` di `awcms_blog_posts` (`sql/138`) persis untuk keperluan ini, tapi tidak ada yang menulisnya lewat API PUBLIK yang jadi batasan importer ini (AGENTS.md "Workspace boundaries") — hanya pipeline internal `bun run blog:legacy:import` yang melakukannya, dari dalam `apps/cms`. Redirect importer ini (di bawah) dibangun langsung dari baris pada saat impor, bukan diturunkan dari id tersimpan belakangan.
+
+### `awcms_seo_redirects` (origin `legacy_blog`)
+
+Satu baris per artikel `berita_red`/`berita_vid` yang berhasil diimpor, `target` di-set ke URL kanonik `/blog/{tenantCode}/{slug}` milik CMS sendiri (tidak pernah path storefront yang ditebak — kontrak yang didokumentasikan `docs/routing.md` sendiri untuk apa yang diharapkan pembangunan-ulang redirect-lama `penyaji.mjs`):
+
+| Path sumber | Dibangun dari |
+| --- | --- |
+| `/news/{id_ber}-{sbSlug(judul)}.html` | Bentuk URL hari ini (pasca issue #6) |
+| `/news/{id_ber}_{judul dengan spasi→underscore, di-rawurlencode}.html` | Bentuk pra-2.0 yang mungkin masih terindeks mesin pencari |
+| `/video/?video={id_vid}-{sbSlug(judul_vid)}.html` | Bentuk URL `berita_vid` sendiri |
+
+### `berita_vid` → post video `blog_content`
+
+| Kolom lawas | Field AWCMS | Catatan |
+| --- | --- | --- |
+| `judul_vid` | `title`, sumber slug | Aturan `sbSlug`/bentrok sama seperti `berita_red` |
+| `link` | `videoId` blok `videoNews` | Dinormalisasi lewat parser id/URL YouTube yang dijaga selaras persis dengan `normalizeYouTubeVideoId` milik `apps/cms` sendiri |
+| `text_vid` | `bodyPortableText` (deskripsi, sebelum blok video) | Konversi HTML→Portable Text sama seperti `isi_berita` |
+| `tgl` + `jam` | `publishedAt` | Berformat lawas (`YYMMDD`/`HHMMSS`, sesuai migrasi normalisasi-waktu-video milik seputarborneo sendiri), diformat ulang sebelum logika tanggal yang sama dengan `berita_red` |
+| `admin` | `contentJson.legacySource.author` | Peringatan sama seperti `user` milik `berita_red` |
+| `kategori`, `status` | *(tidak diimpor)* | Tidak ada konsep taksonomi atau status per-video yang dibawa |
+
+### `ikl_online` → penempatan iklan (`POST /api/v1/news-portal/ad-placements`)
+
+Hanya dibaca ke manifest impor — pembuatannya butuh `mediaObjectId` terverifikasi, dan `img_ikl` (nama berkas materi iklan) tidak diambil atau diunggah importer ini (lihat `docs/deployment.md`).
+
+### `logo` → manifest logo instansi (untuk issue #59)
+
+Dibaca ke manifest, dicocokkan lewat `nama` terhadap 24 instansi yang di-seed [issue #57](https://github.com/ahliweb/awcms-one/issues/57) — `awcms_blog_institutions` belum punya kolom `logo_media_id` di `apps/cms` repositori ini (itu datang lewat subtree pull upstream [issue #59](https://github.com/ahliweb/awcms-one/issues/59)), jadi tidak ada yang memanggil API untuk itu hari ini.
+
+### `config` → `PUT /api/v1/site-profile` (full-replace yang di-merge dengan apa pun yang sudah di-set `bun run db:seed:cms`)
+
+| Kolom lawas | Field AWCMS | Catatan |
+| --- | --- | --- |
+| `motho` | `tagline` | |
+| `coppyright` | `copyrightNotice` | |
+| `alamat` | `editorialAddress` | |
+| `email` | `contactEmail` | |
+| `wasupport` | `whatsappNumber` | |
+| `fb`/`tw`/`ig`/`yt`/`tt`/`th` | `socialLinks[]` | Label platform `facebook`/`x`/`instagram`/`youtube`/`tiktok`/`threads`; hanya nilai `http(s)` yang lolos validator URL-absolut milik `/api/v1/site-profile` sendiri (nilai lain dilewati diam-diam, tidak pernah dikirim) |
+| `title`, `redaksi`, `link_coppy`, `ico`, `logo` | *(tidak diterapkan)* | Tidak ada field di `/api/v1/site-profile` hari ini (dicek langsung terhadap `site-profile-validation.ts`) |
+
+### Tidak diimpor sama sekali, dan mengapa
+
+- **`users`** — identitas tidak dimigrasikan (PII); akun admin seputarborneo tidak punya padanan user AWCMS, dan kolom `user`/`admin` artikel jadi teks provenans (di atas), tidak pernah jadi login.
+- **`counter`** — alamat IP pengunjung; tidak ada catatan persetujuan, tidak ada gunanya lagi begitu BjekMart/seputarborneo berjalan di atas `visitor-analytics` (issue #56/A10).
+- **`newsletter_subscribers`** — dihitung dan dilaporkan, tidak pernah diimpor: tidak ada catatan persetujuan yang bertahan dari formulir pendaftaran lawas, dan newsletter `apps/cms` sendiri double opt-in (Keputusan 2 epic #46 sendiri). Flag `--with-subscribers` di kemudian hari mungkin menambahkan mereka sebagai `pending` setelah ada keputusan legal, sesuai Scope issue #58 sendiri.
+- **`renungan_rmd`, `tanya_jawab`** — tabel mati di situs live (tidak ada yang menautkannya).
+- **`foto_berita`** (tabel galeri, berbeda dari KOLOM `berita_red.foto_berita`) — fitur galeri tak terpakai yang tidak pernah dirender situs publik.
 
 ## Kolom dan tabel yang ditunda — tidak di-porting di increment ini
 

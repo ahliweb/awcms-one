@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](deployment.md)
 
-<!-- i18n-source-hash: sha256:0dd7809de9871c1e47b53a0cb9ae3343dfca1e93598bdeea9fb129062690e10b -->
+<!-- i18n-source-hash: sha256:b5c7b7bfbfa56522de4094b0e741d0ee788063d6ee31f748508ea42a79c1b77e -->
 
 # Deployment
 
@@ -120,6 +120,37 @@ Image resmi `postgres:18` menolak volume yang di-mount langsung di `/var/lib/pos
 ### Apa yang masih TIDAK di-seed skrip ini, dan mengapa
 
 Gambar produk, media slider, dan gambar bukti konfirmasi-pembayaran di-resolve lewat mekanisme referensi `media_library` yang sudah ada (lihat [`docs/cms.md`](cms.id.md)) tapi tidak diunggah lewat sesi R2 nyata di sini — `tools/seed-assets/` membawa SVG placeholder kecil buatan-sendiri alih-alih foto nyata, dan endpoint unggah bukti-pembayaran anonim selalu menjawab `503 MEDIA_UNAVAILABLE`. Tarif kurir RajaOngkir dan payment gateway tidak punya field pada endpoint mana pun yang diekspos `apps/cms` hari ini, by design — lihat [ADR-0010](adr/0010-manual-payment-and-alternative-courier-first-gateways-via-outbox.id.md) dan [issue #33](https://github.com/ahliweb/awcms-one/issues/33). Akun pelanggan tidak di-seed — pelanggan yang di-seed tidak punya password, cocok dengan [ADR-0009](adr/0009-guest-checkout-by-order-code-and-phone.id.md) dan [issue #32](https://github.com/ahliweb/awcms-one/issues/32).
+
+## Mengimpor seputarborneo (issue #58)
+
+`tools/import-seputarborneo.ts` (`bun run import:seputarborneo`) mengimpor arsip MariaDB lama seputarborneo.com — `berita_red` (artikel), `berita_vid` (post video), `ikl_online` (materi iklan), `logo` (logo instansi), `config` (profil situs) — ke tenant `borneojek-mart` yang SAMA yang di-bootstrap [`tools/seed-borneojek-mart.ts`](#basis-data-lokal-issue-25), lewat permukaan publik `/api/v1/*` tenant itu. `users`, `counter`, `newsletter_subscribers`, `renungan_rmd`, `tanya_jawab`, dan `foto_berita` paling banter hanya dibaca untuk dihitung (atau sama sekali tidak dibaca) — tidak pernah diimpor; lihat header skrip itu sendiri untuk alasan tiap satu dikecualikan (PII, tidak ada catatan persetujuan, atau tabel mati/tak terpakai).
+
+**Dump tidak pernah disalin ke repositori ini, tidak pernah di-commit, dan tidak pernah dicetak.** `tools/lib/mysql-dump-reader.ts` men-stream-nya — `Bun.file(...).stream()` lewat `DecompressionStream("gzip")` — satu baris sekaligus; arsip 228 MB (setelah dekompresi) tidak pernah ditahan utuh di memori, dan baris log skrip ini hanya mencetak angka, tidak pernah nilai judul/isi/kategori satu baris pun.
+
+```bash
+# .env: set SEPUTARBORNEO_DUMP ke path absolut dump yang sudah dikompresi gzip.
+
+# Aman di mesin yang sama sekali tidak menjalankan apps/cms — hanya membaca dump.
+bun run import:seputarborneo -- --dry-run
+
+# Terhadap tenant yang SUDAH di-seed (bun run db:seed:cms dulu, apps/cms
+# berjalan, SEED_OWNER_PASSWORD di-set ke password yang dicetak run seed itu):
+bun run import:seputarborneo -- --commit --limit=200
+```
+
+`--dry-run` (default setiap kali `--commit` absen) mencetak jumlah per rubrik/wilayah-atau-jenis-mitra, per tahun, dan setiap nilai taksonomi yang tak terpetakan — semuanya bukan isi baris, dan semuanya juga ada di `tools/out/seputarborneo-import-manifest.json` (git-ignored). `--limit=<n>` membatasi jumlah baris `berita_red` yang diproses; `--since=<yyyy-mm-dd>` memfilter berdasarkan `tgl`.
+
+### Dua keterbatasan nyata API publik, ditemukan dan didokumentasikan alih-alih disiasati diam-diam
+
+1. **Tidak ada field publik yang mem-backdate `published_at`.** `apps/cms` punya pipeline NDJSON internal `bun run blog:legacy:import` (`apps/cms/scripts/blog-legacy-import.ts`) yang menulis tanggal historis nyata langsung ke basis data — dibangun, menurut docblock-nya sendiri, memakai arsip seputarborneo ini persis sebagai kasus acuannya. Pipeline itu berjalan DI DALAM `apps/cms`, yang merupakan batas workspace yang tidak boleh dilewati tool repositori ini (AGENTS.md "Workspace boundaries"). `POST /api/v1/blog/posts/{id}/schedule` MENERIMA `scheduledAt` di masa depan, jadi artikel lama bertanggal masa depan tetap mempertahankan tanggal aslinya; yang sudah lewat malah diterbitkan pada WAKTU IMPOR. Lihat header `tools/import-seputarborneo.ts` sendiri untuk penalaran lengkapnya.
+2. **Tidak ada field publik yang men-set byline artikel yang dirender.** `authorByline` diturunkan dari tenant user yang terautentikasi, tidak pernah dari input per-post. Kolom `user`/`admin` lama ditulis ke `contentJson.legacySource.author` sebagai gantinya, untuk provenance — tidak dirender sebagai byline artikel.
+
+### Apa yang masih butuh manusia, atau issue susulan
+
+- **Media.** `--media` (dengan `SEPUTARBORNEO_FILES` di-set) hanya MENYEBUTKAN apa yang masih perlu diunggah (daftar `mediaNeeded` di `tools/out/seputarborneo-import-manifest.json`) — tidak mengunggah apa pun sendiri, handoff yang sama yang dipakai `blog:legacy:import --images`/`--media-map` milik `apps/cms` sendiri dan untuk alasan yang sama (`/admin/media` adalah satu-satunya jalur dengan MIME-sniffing dan batas ukuran; skrip yang mengambil byte pihak ketiga di sisi server adalah primitif request-forgery). Setiap foto utama `foto_berita` pada baris `berita_red` butuh ini dulu sebelum artikel itu bisa dibuat dengan `featuredMediaId`.
+- **Penempatan iklan** (`ikl_online`) dan **logo instansi** (`logo`, untuk [issue #59](https://github.com/ahliweb/awcms-one/issues/59)'s `logo_media_id`) hanya dibaca ke manifest — penempatan butuh `mediaObjectId` terverifikasi sebelum `POST /api/v1/news-portal/ad-placements` menerimanya, dan `awcms_blog_institutions.logo_media_id` belum ada di `apps/cms` repositori ini.
+- **Tiga dari empat belas wilayah `daerah`** (Kotawaringin Barat, Sukamara, Barito Selatan) tidak punya instansi yang berpadanan di seed 24-instansi [issue #57](https://github.com/ahliweb/awcms-one/issues/57), dan sebuah post hanya mencapai `/daerah/{slug}` lewat `regionCode` sebuah instansi (header `apps/storefront/src/pages/daerah/[slug].astro` sendiri) — tidak ada field `regionCode` pada post lewat API publik. Artikel untuk ketiga wilayah itu tetap terimpor dengan benar tapi tidak akan muncul di arsip wilayahnya sampai ada issue susulan yang menambahkan instansi (atau API publik mendapat field wilayah tingkat-post).
+- **Run produksi penuh** (seluruh ~25.490 baris `berita_red`, setiap video, setiap iklan, setiap logo) sengaja ditunda melewati PR issue #58 sendiri — lihat daftar acceptance issue #58.
 
 ## Penyediaan PostgreSQL produksi belum dilakukan
 

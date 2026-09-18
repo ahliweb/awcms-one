@@ -119,6 +119,37 @@ bun run db:reset                        # drop the volume too — a clean slate
 
 Product images, slider media, and payment-confirmation proof images are resolved through `media_library`'s existing reference mechanism (see [`docs/cms.md`](cms.md)) but not uploaded through a real R2 session here — `tools/seed-assets/` carries small, self-generated placeholder SVGs instead of real photos, and the anonymous payment-proof upload endpoints always answer `503 MEDIA_UNAVAILABLE`. RajaOngkir courier rates and a payment gateway have no field on any endpoint `apps/cms` exposes today, by design — see [ADR-0010](adr/0010-manual-payment-and-alternative-courier-first-gateways-via-outbox.md) and [issue #33](https://github.com/ahliweb/awcms-one/issues/33). Customer accounts are not seeded — the seeded customer has no password, matching [ADR-0009](adr/0009-guest-checkout-by-order-code-and-phone.md) and [issue #32](https://github.com/ahliweb/awcms-one/issues/32).
 
+## Importing seputarborneo (issue #58)
+
+`tools/import-seputarborneo.ts` (`bun run import:seputarborneo`) imports seputarborneo.com's legacy MariaDB archive — `berita_red` (articles), `berita_vid` (video posts), `ikl_online` (ad creatives), `logo` (institution logos), `config` (site profile) — into the SAME `borneojek-mart` tenant [`tools/seed-borneojek-mart.ts`](#local-database-issue-25) bootstraps, over that tenant's public `/api/v1/*` surface. `users`, `counter`, `newsletter_subscribers`, `renungan_rmd`, `tanya_jawab`, and `foto_berita` are read at most for a count (or not read at all) — never imported; see the script's own header for why each one is excluded (PII, no consent record, or a dead/unused table).
+
+**The dump is never copied into this repository, never committed, and never printed.** `tools/lib/mysql-dump-reader.ts` streams it — `Bun.file(...).stream()` through a `DecompressionStream("gzip")` — a row at a time; the 228 MB decompressed archive is never held whole in memory, and this script's own log lines print only counts, never a row's title/body/category value.
+
+```bash
+# .env: set SEPUTARBORNEO_DUMP to the gzip-compressed dump's absolute path.
+
+# Safe on a machine with no apps/cms running at all — reads only the dump.
+bun run import:seputarborneo -- --dry-run
+
+# Against an ALREADY-SEEDED tenant (bun run db:seed:cms first, apps/cms
+# running, SEED_OWNER_PASSWORD set to that seed run's printed password):
+bun run import:seputarborneo -- --commit --limit=200
+```
+
+`--dry-run` (the default whenever `--commit` is absent) prints counts per rubrik/region-or-institution-kind, per year, and every unmapped taxonomy value — none of it row content, all of it in `tools/out/seputarborneo-import-manifest.json` too (git-ignored). `--limit=<n>` caps the number of `berita_red` rows processed; `--since=<yyyy-mm-dd>` filters by `tgl`.
+
+### Two real limitations of the public API, found and documented rather than worked around
+
+1. **No public field backdates `published_at`.** `apps/cms` carries an internal `bun run blog:legacy:import` NDJSON pipeline (`apps/cms/scripts/blog-legacy-import.ts`) that writes a real historical date directly against the database — built, per its own docblock, using this exact seputarborneo archive as its reference case. That pipeline runs INSIDE `apps/cms`, which is the workspace boundary this repository's own tools may not cross (AGENTS.md "Workspace boundaries"). `POST /api/v1/blog/posts/{id}/schedule` DOES accept a future `scheduledAt`, so a legacy article dated in the future keeps its real date; one already in the past is published at IMPORT time instead. See `tools/import-seputarborneo.ts`'s own header for the full reasoning.
+2. **No public field sets a post's rendered byline.** `authorByline` is derived from the authenticated tenant user, never a per-post input. The legacy `user`/`admin` column is written into `contentJson.legacySource.author` instead, for provenance — not rendered as the article's byline.
+
+### What still needs a human, or a follow-up issue
+
+- **Media.** `--media` (with `SEPUTARBORNEO_FILES` set) only NAMES what still needs uploading (`tools/out/seputarborneo-import-manifest.json`'s `mediaNeeded` list) — it does not upload anything itself, the same handoff `apps/cms`'s own `blog:legacy:import --images`/`--media-map` uses and for the same reason (`/admin/media` is the one path with MIME-sniffing and size caps; a script fetching third-party bytes server-side is a request-forgery primitive). Every `berita_red` row's `foto_berita` lead photograph needs this before that article can be created with a `featuredMediaId`.
+- **Ad placements** (`ikl_online`) and **institution logos** (`logo`, for [issue #59](https://github.com/ahliweb/awcms-one/issues/59)'s `logo_media_id`) are read into the manifest only — placements need a verified `mediaObjectId` before `POST /api/v1/news-portal/ad-placements` will accept them, and `awcms_blog_institutions.logo_media_id` does not exist in this repository's `apps/cms` yet.
+- **Three of the fourteen `daerah` regions** (Kotawaringin Barat, Sukamara, Barito Selatan) have no corresponding institution in [issue #57](https://github.com/ahliweb/awcms-one/issues/57)'s 24-institution seed, and a post reaches `/daerah/{slug}` only through an institution's `regionCode` (`apps/storefront/src/pages/daerah/[slug].astro`'s own header) — there is no `regionCode` field on a post through the public API. Articles for those three regions import correctly but will not appear on their region archive until a follow-up adds an institution (or the public API grows a post-level region field).
+- **The full production run** (all ~25,490 `berita_red` rows, every video, every ad, every logo) is deliberately deferred past this issue's own PR — see issue #58's acceptance list.
+
 ## Production PostgreSQL provisioning is not done
 
 `apps/cms` is PostgreSQL-only. **borneojek's production server runs MySQL** — the very database this platform's catalog schema is being re-expressed from (see [`docs/kamus-data.md`](kamus-data.md)) — so a PostgreSQL instance has to be provisioned on that infrastructure, or elsewhere, before `apps/cms` can be deployed against a real, production database. `compose.yaml`'s `postgres:18.4` container is deliberately a LOCAL/CI convenience (a named volume on a developer's disk, development-grade default passwords documented in `.env.example`) and is never meant to be pointed at from a production deployment. This is why [`docs/pengujian.md`](pengujian.md) describes `apps/cms`'s DB-gated test suite as something to run against a locally provisioned, disposable PostgreSQL, never against anything borneojek currently operates.
