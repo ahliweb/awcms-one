@@ -36,18 +36,25 @@
  *   the ORIGINAL issue-#24 placeholder figure — never a broken `<img>`.
  * - `videoNews` (`provider`/`videoId`/`title`/`caption`/`durationSeconds`/
  *   `sourceLabel`, verified against `video-news-block-validation.ts`) renders
- *   a click-to-load facade: a real `<button>` showing the
- *   `https://i.ytimg.com/vi/{id}/hqdefault.jpg` poster (a fixed YouTube CDN
- *   convention — no media-object resolution needed for this one), and
- *   `apps/storefront/src/scripts/video-facade.ts` (loaded only from
- *   `src/pages/video/[slug].astro`, the only route a playable `videoNews`
- *   block can ever appear on — see `src/lib/berita.ts`'s own routing rule)
- *   swaps it for a real `<iframe src="https://www.youtube-nocookie.com/
- *   embed/{id}">` on activation. No third-party script/frame loads before
- *   that click; a `<noscript>` fallback links straight to the YouTube watch
- *   page for a reader with JavaScript off. The button is a real, focusable
- *   HTML element — Enter/Space activates it with no extra keyboard-handling
- *   code needed.
+ *   ONE OF TWO shapes, chosen per render call by `renderPortableText`'s
+ *   `options.videoMode` (see that function's own docblock, "The video
+ *   facade is opt-in, per render call" — this is NOT a global switch, and
+ *   defaults to the safe one):
+ *   - `"link"` (the default) — the original issue-#28 real, semantic
+ *     outbound watch link, no script/`<img>`/`<iframe>` of any kind.
+ *   - `"facade"` — a click-to-load facade: a real `<button>` showing the
+ *     `https://i.ytimg.com/vi/{id}/hqdefault.jpg` poster (a fixed YouTube
+ *     CDN convention — no media-object resolution needed for this one), and
+ *     `apps/storefront/src/scripts/video-facade.ts` (loaded only from
+ *     `src/pages/video/[slug].astro`, the only route a playable `videoNews`
+ *     block can ever appear on — see `src/lib/berita.ts`'s own routing
+ *     rule, and the ONE call site that passes `"facade"`) swaps it for a
+ *     real `<iframe src="https://www.youtube-nocookie.com/embed/{id}">` on
+ *     activation. No third-party script/frame loads before that click; a
+ *     `<noscript>` fallback links straight to the YouTube watch page for a
+ *     reader with JavaScript off. The button is a real, focusable HTML
+ *     element — Enter/Space activates it with no extra keyboard-handling
+ *     code needed.
  *
  * A `gallery` item's `caption` field is the ONLY editorial field awcms's
  * `GalleryBlockItem` schema carries besides the image reference itself
@@ -70,22 +77,28 @@
  *
  * ## The public signature DOES change (issue #47)
  *
- * `renderPortableText` gains a second, OPTIONAL argument —
- * `resolvedMedia: ReadonlyMap<string, ResolvedMedia>`, defaulting to an
- * empty map — so every existing call site (`src/pages/halaman/[slug].astro`,
- * issue #24, which has no media to resolve) keeps compiling unchanged.
- * `src/lib/berita.ts` builds the real map once per build (every visible
- * post's `featuredMediaId` plus every gallery item's `mediaObjectId`,
- * batched through `resolveMedia`) and `src/components/berita/ArtikelView
- * .astro` passes it through when rendering a post's body. An empty map
- * (the default, and every issue-#24/#28 test fixture's real case: no
- * `mediaObjectId` resolves against nothing) falls back to the ORIGINAL
- * placeholder text — `tests/portable-text.test.ts`'s two gallery/videoNews
- * assertions still pass for exactly that reason. `tests/berita-portable-
- * text.test.ts`'s issue-#28 assertions that a well-formed `videoNews`
- * renders "never an `<img>`"/"never an `<iframe>`" are UPDATED by this issue
- * (see that file) to assert the new facade shape instead — the deliberate
- * trim they recorded is exactly what this issue lifts.
+ * `renderPortableText` gains two OPTIONAL arguments after `document`:
+ * `resolvedMedia: ReadonlyMap<string, ResolvedMedia>` (defaulting to an
+ * empty map) and `options: { videoMode?: "facade" | "link" }` (defaulting
+ * to `{}`, i.e. `videoMode: "link"`) — so every existing call site
+ * (`src/pages/halaman/[slug].astro`, issue #24; `src/pages/{berita,
+ * rubrik/[slug]}/feed.xml.ts`'s RSS `content:encoded`) keeps compiling AND
+ * keeps rendering exactly the safe, script-free shape it always did.
+ * `src/lib/berita.ts` builds the real `resolvedMedia` map once per build
+ * (every visible post's `featuredMediaId` plus every gallery item's
+ * `mediaObjectId`, batched through `resolveMedia`), and
+ * `src/components/berita/ArtikelView.astro` passes it through, along with a
+ * `videoMode` prop the PAGE decides (`"facade"` only from `src/pages/video/
+ * [slug].astro`, which alone mounts `video-facade.ts` — see
+ * `renderPortableText`'s own docblock, "The video facade is opt-in, per
+ * render call"). An empty map with `videoMode: "link"` (the default, and
+ * every issue-#24/#28 test fixture's real case: no `mediaObjectId` resolves
+ * against nothing) falls back to the ORIGINAL placeholder text —
+ * `tests/portable-text.test.ts`'s two gallery/videoNews assertions still
+ * pass for exactly that reason. `tests/berita-portable-text.test.ts`'s
+ * issue-#28 assertion that a well-formed `videoNews` renders a real link is
+ * now the `videoMode: "link"` case; a NEW assertion covers `"facade"`
+ * explicitly.
  *
  * ## The rule that does not relax
  *
@@ -386,12 +399,15 @@ export function extractPlayableVideoInfo(document: unknown): PlayableVideoInfo |
 }
 
 /**
- * `videoNews` → a click-to-load facade when `provider`/`videoId` validate,
- * else the original issue-#24 placeholder (see file header for the full
- * reasoning, including why this is a `<button>` + poster `<img>`, never an
- * `<iframe>`, until `video-facade.ts` swaps it after a real click).
+ * `videoNews` → the original issue-#28 outbound link when `mode === "link"`
+ * (the default — safe on every page, no script required), or the issue-#47
+ * click-to-load facade when `mode === "facade"` (only from a page that
+ * mounts `video-facade.ts` — see `renderPortableText`'s own docblock, "The
+ * video facade is opt-in, per render call"). Either way, `provider`/
+ * `videoId` that do not validate still fall back to the original issue-#24
+ * placeholder.
  */
-function renderVideoNewsNode(node: PortableTextNode): string {
+function renderVideoNewsNode(node: PortableTextNode, mode: VideoRenderMode): string {
   const watchUrl = youtubeWatchUrl(node.provider, node.videoId);
   if (!watchUrl) {
     return renderPlaceholder("Video — belum dapat ditampilkan di halaman ini.");
@@ -414,19 +430,41 @@ function renderVideoNewsNode(node: PortableTextNode): string {
   const metaParts = [sourceLabel, duration].filter(
     (part): part is string => typeof part === "string" && part.length > 0
   );
+  const metaHtml =
+    metaParts.length > 0
+      ? `<figcaption>${metaParts.map(escapeHtml).join(" &middot; ")}</figcaption>`
+      : "";
+  const captionHtml =
+    caption.length > 0 ? `<p class="content-video-caption">${escapeHtml(caption)}</p>` : "";
 
+  if (mode === "facade") {
+    return (
+      `<figure class="content-video" data-video-facade data-video-id="${escapeHtml(videoId)}" data-video-title="${escapeHtml(title)}">` +
+      `<button type="button" class="content-video-link" data-video-facade-button aria-label="Putar video: ${escapeHtml(title)}">` +
+      `<img class="content-video-poster" src="${escapeHtml(youtubePosterUrl(videoId))}" alt="" loading="lazy" decoding="async" width="120" height="90">` +
+      `<span class="content-video-play" aria-hidden="true">&#9654;</span>` +
+      `<span class="content-video-title">${escapeHtml(title)}</span>` +
+      `</button>` +
+      metaHtml +
+      captionHtml +
+      `<noscript><a href="${escapeHtml(watchUrl)}" rel="noopener noreferrer">Tonton di YouTube</a></noscript>` +
+      `</figure>`
+    );
+  }
+
+  // `mode === "link"` — the original issue-#28 rendering: a real, semantic
+  // outbound link, no `<img>`/`<iframe>`/script dependency of any kind. This
+  // is the SAFE-EVERYWHERE shape (see file header, "The video facade is
+  // opt-in, per render call") — every caller that has not mounted
+  // `video-facade.ts` uses this by not passing `{ videoMode: "facade" }`.
   return (
-    `<figure class="content-video" data-video-facade data-video-id="${escapeHtml(videoId)}" data-video-title="${escapeHtml(title)}">` +
-    `<button type="button" class="content-video-link" data-video-facade-button aria-label="Putar video: ${escapeHtml(title)}">` +
-    `<img class="content-video-poster" src="${escapeHtml(youtubePosterUrl(videoId))}" alt="" loading="lazy" decoding="async" width="120" height="90">` +
+    `<figure class="content-video">` +
+    `<a class="content-video-link" href="${escapeHtml(watchUrl)}" rel="noopener noreferrer" target="_blank">` +
     `<span class="content-video-play" aria-hidden="true">&#9654;</span>` +
     `<span class="content-video-title">${escapeHtml(title)}</span>` +
-    `</button>` +
-    (metaParts.length > 0
-      ? `<figcaption>${metaParts.map(escapeHtml).join(" &middot; ")}</figcaption>`
-      : "") +
-    (caption.length > 0 ? `<p class="content-video-caption">${escapeHtml(caption)}</p>` : "") +
-    `<noscript><a href="${escapeHtml(watchUrl)}" rel="noopener noreferrer">Tonton di YouTube</a></noscript>` +
+    `</a>` +
+    metaHtml +
+    captionHtml +
     `</figure>`
   );
 }
@@ -538,18 +576,46 @@ function renderGalleryNode(
 }
 
 /**
- * Render a Portable Text document to HTML. Still pure — no I/O — `resolvedMedia`
- * is a plain, already-fetched lookup the caller built ahead of time
- * (`src/lib/berita.ts`, via `src/lib/awcms/media.ts`), never fetched here.
- * That is what still lets the whole vocabulary be unit-tested with fixed
- * input (`tests/portable-text.test.ts`) — an empty map (the default) is
- * indistinguishable from "nothing resolved" and falls back to every
- * original placeholder, unchanged.
+ * `videoNews`'s two render shapes — see `renderVideoNewsNode`'s own
+ * docblock. `"link"` is the default deliberately: it is the shape that
+ * works on every page, with no script dependency, so a caller has to OPT IN
+ * to the facade rather than opt out of it.
+ */
+export type VideoRenderMode = "facade" | "link";
+
+/**
+ * Render a Portable Text document to HTML. Still pure — no I/O —
+ * `resolvedMedia` is a plain, already-fetched lookup the caller built ahead
+ * of time (`src/lib/berita.ts`, via `src/lib/awcms/media.ts`), never
+ * fetched here. That is what still lets the whole vocabulary be
+ * unit-tested with fixed input (`tests/portable-text.test.ts`) — an empty
+ * map (the default) is indistinguishable from "nothing resolved" and falls
+ * back to every original placeholder, unchanged.
+ *
+ * ## The video facade is opt-in, per render call
+ *
+ * `options.videoMode` defaults to `"link"` — the original issue-#28
+ * outbound-link rendering, which needs no script anywhere. `"facade"`
+ * (issue #47's click-to-load poster/button) is safe ONLY on a page that
+ * also mounts `apps/storefront/src/scripts/video-facade.ts`, because
+ * without it the button is inert: a reader clicks and nothing happens.
+ * Today that is `src/pages/video/[slug].astro` alone — the only route a
+ * playable `videoNews` block can ever appear on (`src/lib/berita.ts`'s own
+ * routing rule) — which is the ONE call site
+ * (`src/components/berita/ArtikelView.astro`) that passes `"facade"`
+ * through its own `videoMode` prop. Every other caller (`src/pages/halaman/
+ * [slug].astro`'s static pages, `src/pages/{berita,rubrik/[slug]}/feed.xml
+ * .ts`'s RSS `content:encoded`) calls this function without the option and
+ * gets the always-safe link — RSS in particular can never run a click
+ * handler at all, so `"facade"` there would ship a permanently-dead button
+ * into every reader's feed.
  */
 export function renderPortableText(
   document: unknown,
-  resolvedMedia: ReadonlyMap<string, ResolvedMedia> = new Map()
+  resolvedMedia: ReadonlyMap<string, ResolvedMedia> = new Map(),
+  options: { videoMode?: VideoRenderMode } = {}
 ): string {
+  const videoMode = options.videoMode ?? "link";
   if (!Array.isArray(document)) return "";
 
   const nodes = document.filter(
@@ -583,7 +649,7 @@ export function renderPortableText(
     }
 
     if (node._type === "videoNews") {
-      out.push(renderVideoNewsNode(node));
+      out.push(renderVideoNewsNode(node, videoMode));
       continue;
     }
 

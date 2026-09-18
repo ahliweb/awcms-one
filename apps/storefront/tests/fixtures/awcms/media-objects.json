@@ -20,5 +20,16 @@
     "creditLine": "Humas Pemkab Kotawaringin Barat",
     "sourceName": "Pemkab Kotawaringin Barat",
     "copyrightStatus": "permission_granted"
+  },
+  "00000000-0000-4000-8000-000000000002": {
+    "publicUrl": "https://legacy-media.example.test/dprd/rapat-paripurna.jpg",
+    "altText": "Suasana rapat paripurna DPRD Kalimantan Tengah.",
+    "mimeType": "image/jpeg",
+    "width": 1600,
+    "height": 900,
+    "sizeBytes": 210987,
+    "creditLine": "Humas DPRD Kalimantan Tengah",
+    "sourceName": null,
+    "copyrightStatus": "permission_granted"
   }
 }

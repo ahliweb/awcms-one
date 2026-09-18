@@ -190,12 +190,29 @@ describe("build smoke: news surface (issue #28) against the stub CMS", () => {
         );
         expect(videoHtml).not.toContain("<iframe");
 
-        // `/csp.json` carries the media origin and the two YouTube origins
-        // (issue #47) — this build has both a resolved image and a video post.
+        // A PR #65 review finding: a resolved image can live on a DIFFERENT
+        // origin than the CURRENTLY CONFIGURED media-public-origin (a row
+        // written before a host migration, say) — tests/fixtures/awcms/
+        // media-objects.json gives the DPRD post's hero a
+        // "legacy-media.example.test" URL while media-public-origin.json
+        // configures "media.example.test". Both the rendered page and the
+        // CSP artifact must carry the ACTUAL host, not just the configured
+        // one (src/pages/csp.json.ts's own "Review finding" docblock).
+        const dprdHtml = readFileSync(
+          join(distClient, "berita", "dprd-kalteng-gelar-rapat-paripurna.html"),
+          "utf8"
+        );
+        expect(dprdHtml).toContain("https://legacy-media.example.test/dprd/rapat-paripurna.jpg");
+
+        // `/csp.json` carries the media origin, the ACTUAL resolved-image
+        // origins (including the legacy one above), and the two YouTube
+        // origins (issue #47) — this build has resolved images on two
+        // different hosts and a video post.
         const cspArtifact = JSON.parse(
           readFileSync(join(distClient, "csp.json"), "utf8")
         );
         expect(cspArtifact.imgSrc).toContain("https://media.example.test");
+        expect(cspArtifact.imgSrc).toContain("https://legacy-media.example.test");
         expect(cspArtifact.imgSrc).toContain("https://i.ytimg.com");
         expect(cspArtifact.frameSrc).toContain("https://www.youtube-nocookie.com");
 

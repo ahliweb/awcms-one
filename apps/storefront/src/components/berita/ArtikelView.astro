@@ -7,23 +7,36 @@
  * difference the two callers need to supply (the breadcrumb's hub —
  * "Berita" vs "Video").
  *
- * Issue #47 (hero block only — every other section of this file is
- * unchanged): a hero `<figure>` renders right after the byline row when
- * `post.image` resolved (`src/lib/berita.ts`, from `featuredMediaId`), with
- * a `<figcaption>` combining the media's `alt` text and its credit
- * (`creditLine`/`sourceName` — `null` unless the CMS has verified the
- * rights, per `src/lib/awcms/media.ts`'s own docblock). No hero renders for
- * a post with no `featuredMediaId`, or one whose id did not resolve — never
- * a broken `<img>`. The article BODY's own images (a gallery block) are
- * unrelated to this hero and are resolved by `renderPortableText` itself,
- * via the `resolvedMedia` map this component now passes it.
+ * Issue #47 — two changes, both load-bearing:
+ *
+ * 1. **Hero block** (the only markup addition — every other section is
+ *    unchanged): a hero `<figure>` renders right after the byline row when
+ *    `post.image` resolved (`src/lib/berita.ts`, from `featuredMediaId`),
+ *    with a `<figcaption>` combining the media's `alt` text and its credit
+ *    (`creditLine`/`sourceName` — `null` unless the CMS has verified the
+ *    rights, per `src/lib/awcms/media.ts`'s own docblock). No hero renders
+ *    for a post with no `featuredMediaId`, or one whose id did not
+ *    resolve — never a broken `<img>`. The article BODY's own images (a
+ *    gallery block) are unrelated to this hero and are resolved by
+ *    `renderPortableText` itself, via the `resolvedMedia` map this
+ *    component now passes it.
+ * 2. **`videoMode` prop, threaded straight through to `renderPortableText`**
+ *    — a review finding, not a markup change: this component is SHARED by
+ *    `/berita/[slug]` and `/video/[slug]`, but only the latter mounts
+ *    `video-facade.ts`. Rendering the click-to-load facade unconditionally
+ *    here would ship an inert button (and, worse, an RSS feed that reuses
+ *    this same renderer would ship a dead button into `content:encoded`).
+ *    Defaults to `"link"` (`renderPortableText`'s own safe default) so a
+ *    caller that does not pass it renders exactly the pre-#47 shape;
+ *    `src/pages/video/[slug].astro` is the one caller that passes
+ *    `"facade"`.
  */
 import ArtikelCard from "./ArtikelCard.astro";
 import TagCloud from "./TagCloud.astro";
 import IklanSlot from "./IklanSlot.astro";
 import { ROUTES } from "../../config/routes";
 import { absoluteUrl } from "../../config/site";
-import { renderPortableText } from "../../lib/portable-text";
+import { renderPortableText, type VideoRenderMode } from "../../lib/portable-text";
 import {
   formatTanggalWaktuWIB,
   toDatetimeAttr,
@@ -44,12 +57,22 @@ interface Props {
   canonicalPath: string;
   parentLabel: string;
   parentPath: string;
+  /** `"facade"` only from a caller that also mounts `video-facade.ts` — see this file's own docblock. Defaults to `"link"`. */
+  videoMode?: VideoRenderMode;
 }
 
-const { post, related, daerahLainnyaPosts, canonicalPath, parentLabel, parentPath } = Astro.props;
+const {
+  post,
+  related,
+  daerahLainnyaPosts,
+  canonicalPath,
+  parentLabel,
+  parentPath,
+  videoMode = "link"
+} = Astro.props;
 
 const resolvedMedia = await getResolvedMedia();
-const bodyHtml = renderPortableText(post.bodyPortableText, resolvedMedia);
+const bodyHtml = renderPortableText(post.bodyPortableText, resolvedMedia, { videoMode });
 const readingMinutes = estimasiWaktuBacaMenit(bodyHtml);
 const wasUpdated = pernahDiperbaruiSetelahTerbit(post.publishedAt, post.updatedAt);
 const absoluteShareUrl = absoluteUrl(canonicalPath);

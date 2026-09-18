@@ -18,26 +18,34 @@ import type { ResolvedMedia } from "../src/lib/awcms/media";
  * exactly the "not enough to render" case that still falls back to the
  * original placeholder).
  *
- * Issue #47 UPDATES the two assertions below that named the deliberate
- * issue-#28 trim this issue explicitly lifts ("never an `<img>`"/"never an
- * `<iframe>`" for a well-formed `videoNews` block) — see
- * `src/lib/portable-text.ts`'s own docblock, "The public signature DOES
- * change", for why updating rather than leaving them red is correct here.
+ * Issue #47 UPDATES the assertion below that named the deliberate issue-#28
+ * trim this issue explicitly lifts ("never an `<img>`" for a well-formed
+ * `videoNews` block) — see `src/lib/portable-text.ts`'s own docblock, "The
+ * public signature DOES change", for why updating rather than leaving it
+ * red is correct here.
+ *
+ * A PR #65 review finding then split this into TWO modes rather than one
+ * unconditional facade: `renderPortableText`'s new `options.videoMode`
+ * defaults to `"link"` (the original issue-#28 rendering, safe on every
+ * page) and only renders the facade when a caller explicitly opts in with
+ * `{ videoMode: "facade" }` — because the facade's `<button>` is inert
+ * without `video-facade.ts` mounted, which only `/video/[slug].astro` does.
+ * Both modes are asserted below.
  */
-describe("lib/portable-text: videoNews (issue #28, facade added by #47)", () => {
-  test("a well-formed youtube videoNews block renders a click-to-load facade — a poster <img>, never an <iframe> before activation", () => {
-    const html = renderPortableText([
-      {
-        _type: "videoNews",
-        _key: "v1",
-        provider: "youtube",
-        videoId: "dQw4w9WgXcQ",
-        title: "Kebakaran Pasar Kobar",
-        sourceLabel: "Warga sekitar",
-        durationSeconds: 95,
-        caption: "Api cepat menjalar."
-      }
-    ]);
+describe("lib/portable-text: videoNews (issue #28 link, facade opt-in added by #47)", () => {
+  const VIDEO_NODE = {
+    _type: "videoNews",
+    _key: "v1",
+    provider: "youtube",
+    videoId: "dQw4w9WgXcQ",
+    title: "Kebakaran Pasar Kobar",
+    sourceLabel: "Warga sekitar",
+    durationSeconds: 95,
+    caption: "Api cepat menjalar."
+  };
+
+  test("videoMode: 'facade' renders a click-to-load facade — a poster <img>, never an <iframe> before activation", () => {
+    const html = renderPortableText([VIDEO_NODE], new Map(), { videoMode: "facade" });
 
     expect(html).toContain('data-video-id="dQw4w9WgXcQ"');
     expect(html).toContain('src="https://i.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg"');
@@ -50,6 +58,22 @@ describe("lib/portable-text: videoNews (issue #28, facade added by #47)", () => 
     // frame/script loads before a real click (`video-facade.ts`).
     expect(html).toContain('<noscript><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"');
     expect(html).not.toContain("<iframe");
+  });
+
+  test("the DEFAULT (no options, or videoMode: 'link') renders the original real outbound link — no <button>, no <img>, no facade markup", () => {
+    const defaulted = renderPortableText([VIDEO_NODE]);
+    const explicit = renderPortableText([VIDEO_NODE], new Map(), { videoMode: "link" });
+    expect(defaulted).toBe(explicit);
+
+    expect(defaulted).toContain('<a class="content-video-link" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"');
+    expect(defaulted).toContain("Kebakaran Pasar Kobar");
+    expect(defaulted).toContain("Warga sekitar");
+    expect(defaulted).toContain("1:35");
+    expect(defaulted).toContain("Api cepat menjalar.");
+    expect(defaulted).toContain('rel="noopener noreferrer"');
+    expect(defaulted).not.toContain("<button");
+    expect(defaulted).not.toContain("<img");
+    expect(defaulted).not.toContain("data-video-facade");
   });
 
   test("an unrecognised provider still degrades to the original issue-#24 placeholder", () => {

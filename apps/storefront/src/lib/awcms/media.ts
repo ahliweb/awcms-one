@@ -136,6 +136,17 @@ const resolvedCache = new Map<string, ResolvedMedia>();
 /** Ids the CMS has already reported unresolved, so a second reference to the same dangling id neither re-fetches nor re-logs. */
 const unresolvedIds = new Set<string>();
 
+/** `GET /api/v1/media/objects`'s own `UUID_PATTERN` (that route's file) — mirrored here so a non-uuid id is filtered out BEFORE it is ever sent. */
+const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
+/** First warning for an id, whatever the reason it will never resolve — logs once and marks it unresolved, shared by the uuid-shape check and the CMS's own `unresolved` report. */
+function markUnresolved(id: string, reason: string): void {
+  if (!unresolvedIds.has(id)) {
+    console.warn(`[media] ${reason} — rendering no image wherever it is referenced.`);
+  }
+  unresolvedIds.add(id);
+}
+
 /**
  * Batch-resolves `ids` (duplicates and empty strings dropped) to their
  * public reference. Never throws for an individual unresolved id — only a
@@ -143,6 +154,19 @@ const unresolvedIds = new Set<string>();
  * which degrades to "resolve nothing") reaches the caller as a throw, the
  * same posture `src/lib/awcms/blog.ts` already applies to its own optional
  * reads (ad placements, institutions).
+ *
+ * ## A non-uuid id is filtered out BEFORE it is ever sent
+ *
+ * `GET /api/v1/media/objects` 400s the WHOLE request when even one id in
+ * `ids=` is not uuid-shaped (verified against that route's own
+ * `UUID_PATTERN` check) — it does not report the malformed id alone and
+ * resolve the rest. Sending a non-uuid id through unfiltered would mean one
+ * legacy/garbage `mediaObjectId` (a pre-migration row, a hand-typed test
+ * fixture) aborts resolution for every OTHER id sharing its chunk, which is
+ * a batch-shaped denial of service this app can trivially avoid by checking
+ * the same shape rule client-side first. A non-uuid id is therefore treated
+ * exactly like an id the CMS reported unresolved: logged once, absent from
+ * the result, never a throw.
  */
 export async function resolveMedia(
   ids: Iterable<string | null | undefined>
@@ -153,9 +177,20 @@ export async function resolveMedia(
     )
   ];
 
-  const toFetch = distinct.filter(
-    (id) => !resolvedCache.has(id) && !unresolvedIds.has(id)
-  );
+  const toFetch: string[] = [];
+  for (const id of distinct) {
+    if (resolvedCache.has(id) || unresolvedIds.has(id)) continue;
+
+    if (!UUID_PATTERN.test(id)) {
+      markUnresolved(
+        id,
+        `media object id "${id}" is not a uuid — GET /api/v1/media/objects only accepts uuids and would reject this whole batch rather than report just this one`
+      );
+      continue;
+    }
+
+    toFetch.push(id);
+  }
 
   for (const idsChunk of chunk(toFetch, MAX_IDS_PER_CALL)) {
     try {
@@ -167,14 +202,10 @@ export async function resolveMedia(
       for (const item of items) resolvedCache.set(item.id, toResolvedMedia(item));
 
       for (const id of unresolved) {
-        if (!unresolvedIds.has(id)) {
-          console.warn(
-            `[media] media object ${id} did not resolve to a public reference ` +
-              `(unknown, cross-tenant, soft-deleted, or not yet verified) — ` +
-              `rendering no image wherever it is referenced.`
-          );
-        }
-        unresolvedIds.add(id);
+        markUnresolved(
+          id,
+          `media object ${id} did not resolve to a public reference (unknown, cross-tenant, soft-deleted, or not yet verified)`
+        );
       }
     } catch (error) {
       // A 403/404 means this tenant/deployment cannot read media_library at

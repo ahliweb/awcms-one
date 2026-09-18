@@ -185,7 +185,12 @@ own `MAX_IDS`), and reading `GET /api/v1/media/public-origin` for the media
 host `apps/storefront/src/pages/csp.json.ts` widens `img-src` with. The build credential
 needs `media_library.media.read` for both — added to the seed's storefront
 token permission set (`tools/seed-borneojek-mart.ts`'s
-`MACHINE_CREDENTIAL_PERMISSION_KEYS`).
+`MACHINE_CREDENTIAL_PERMISSION_KEYS`). A non-uuid-shaped id (a pre-migration
+or hand-authored row) is filtered out BEFORE it is ever sent: the route
+400s the WHOLE request over one malformed id rather than reporting just
+that one, so sending it unfiltered would abort resolution for every other
+id sharing its chunk — it is treated exactly like an id the CMS itself
+reported unresolved instead.
 
 `apps/storefront/src/lib/berita.ts` collects every visible post's
 `featuredMediaId` plus every gallery item's `mediaObjectId`
@@ -210,32 +215,42 @@ What actually renders now:
   `alt` text and its credit (`creditLine`/`sourceName` — `null` unless the
   CMS has verified the rights, per that DTO's own fail-closed rule).
 - **`apps/storefront/src/lib/portable-text.ts`** — a `gallery` item with `mediaType: "image"`
-  and a resolving `mediaObjectId` renders a real `<figure><img>`; a
-  `videoNews` block renders a click-to-load facade (a `<button>` showing the
+  and a resolving `mediaObjectId` renders a real `<figure><img>`. A
+  `videoNews` block renders one of TWO shapes, chosen per render call by
+  `renderPortableText`'s `options.videoMode` (default `"link"`): the
+  original issue-#28 real outbound watch link (no script, safe on every
+  page — this is what `apps/storefront/src/pages/halaman/[slug].astro`'s
+  static pages and the RSS feeds' `content:encoded` get, since neither can
+  run a click handler), or, only when a page explicitly opts in with
+  `videoMode: "facade"`, a click-to-load facade (a `<button>` showing the
   `i.ytimg.com/vi/{id}/hqdefault.jpg` poster, swapped for a real
   `youtube-nocookie.com/embed/{id}` `<iframe>` by
-  `apps/storefront/src/scripts/video-facade.ts` — loaded only from
-  `apps/storefront/src/pages/video/[slug].astro`, the only route a playable `videoNews`
-  block can ever appear on — on a real click, never before). A `<noscript>`
-  fallback links straight to the YouTube watch page.
+  `apps/storefront/src/scripts/video-facade.ts` on a real click, never
+  before). `apps/storefront/src/pages/video/[slug].astro` — the only route
+  a playable `videoNews` block can ever appear on, and the only page that
+  mounts `video-facade.ts` — is the one caller that passes `"facade"`
+  (through `ArtikelView.astro`'s own `videoMode` prop); every other caller
+  gets the always-safe link. A `<noscript>` fallback in the facade shape
+  links straight to the YouTube watch page.
 - **`IklanSlot.astro`** — a real `<img>` for `mediaPublicUrl` (re-checked as
   a genuine `http(s)` URL), keeping the editorial-disclosure label.
 
-**CSP**: `apps/storefront/src/pages/csp.json.ts` adds the resolved media origin (from `GET
-/api/v1/media/public-origin`, the verified, purpose-built source — reading
-it off an already-resolved `publicUrl` does not work for a build with zero
-images, per that route's own docblock) to `img-src`; `https://i.ytimg.com`
-to `img-src` and `https://www.youtube-nocookie.com` to `frame-src`, both
-added only when this build has at least one video post
-(`apps/storefront/src/lib/berita.ts`'s `getVideo()`), matching this file's "derived from
-content" philosophy for every origin it adds. **Known cross-PR
-dependency:** `apps/storefront/server/penyaji.mjs`'s `buildCsp` (owned by a
-sibling issue this wave, not this one) does not yet read the artifact's new
-`frameSrc` field — until it does, the served `Content-Security-Policy`
-still sends `frame-src 'none'`, and the facade's `<iframe>` will not load in
-a real deployment even though the artifact already carries the origin. The
-change is additive and non-breaking either way (see `CspOriginsArtifact`'s
-own docblock, `apps/storefront/src/lib/csp-asal-media.ts`).
+**CSP**: `apps/storefront/src/pages/csp.json.ts` pushes every ACTUAL
+resolved article/gallery image and ad creative's own `publicUrl`/
+`mediaPublicUrl` into `img-src` — the same way a product's own images
+already are — so a row on a different (e.g. pre-host-migration) origin than
+the CURRENTLY CONFIGURED one still widens the policy correctly. The
+configured media origin itself (`GET /api/v1/media/public-origin`) is
+pushed too, in addition, covering a build with zero resolved images yet.
+`https://i.ytimg.com` is added to `img-src` and
+`https://www.youtube-nocookie.com` to `frame-src`, both only when this
+build has at least one video post (`apps/storefront/src/lib/berita.ts`'s
+`getVideo()`), matching this file's "derived from content" philosophy for
+every origin it adds. `apps/storefront/server/penyaji.mjs`'s `buildCsp`/
+`readCspOrigins` consume the artifact's `frameSrc` field the same way they
+already do `imgSrc`/`connectSrc` — the served `Content-Security-Policy`
+widens `frame-src` to exactly the facade's origin on a build with a video
+post, and stays `frame-src 'none'` otherwise.
 
 ## Catalog surface (issue #27)
 

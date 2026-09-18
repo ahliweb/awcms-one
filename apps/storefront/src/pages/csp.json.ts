@@ -71,6 +71,22 @@
  * has a page the facade can appear on — a build with no video posts widens
  * neither directive, matching this file's own "derived from content"
  * philosophy for every other origin here.
+ *
+ * ## Review finding: `mediaOrigin` alone is not enough
+ *
+ * `getMediaPublicOrigin()` names the CURRENTLY CONFIGURED media host — but a
+ * resolved `publicUrl` (a post's hero, a gallery item, an ad creative) is
+ * whatever host was configured WHEN that row's object was uploaded, which a
+ * deployment that migrated media hosts since can disagree with. Relying on
+ * `mediaOrigin` alone would silently CSP-block an older row's image the
+ * exact way the pre-issue-#27 bug blocked every product photo. Every
+ * resolved media object's `publicUrl` (`getResolvedMedia()`) and every
+ * active ad creative's `mediaPublicUrl` (`getActiveAdPlacements()`) are
+ * therefore pushed into `imageUrls` the same way a product's own images
+ * already are, ABOVE and IN ADDITION TO `mediaOrigin.origin` — the latter
+ * stays too, so a build with a resolved image but a currently-unconfigured
+ * host still degrades correctly, and a build with zero resolved images yet
+ * still gets an `img-src` entry ready for the first one.
  */
 import { getProducts } from "../lib/catalog";
 import {
@@ -84,7 +100,8 @@ import { buildCspOriginsArtifact } from "../lib/csp-asal-media";
 import { requireAwcmsOrigin } from "../lib/awcms/toko-origin";
 import { readGaMeasurementId } from "../lib/ga";
 import { getMediaPublicOrigin } from "../lib/awcms/media";
-import { getVideo } from "../lib/berita";
+import { getVideo, getResolvedMedia } from "../lib/berita";
+import { getActiveAdPlacements } from "../lib/awcms/blog";
 
 /** YouTube's own fixed poster CDN — see this file's own header. */
 const YOUTUBE_POSTER_ORIGIN = "https://i.ytimg.com";
@@ -94,17 +111,29 @@ const YOUTUBE_EMBED_ORIGIN = "https://www.youtube-nocookie.com";
 export const prerender = true;
 
 export async function GET(): Promise<Response> {
-  const [products, sliders, testimonials, popup, flashSales, storeSettings, mediaOrigin, videoPosts] =
-    await Promise.all([
-      getProducts(),
-      getActiveSliders(),
-      getActiveTestimonials(),
-      getActivePopup(),
-      getActiveFlashSales(),
-      getStoreSettings(),
-      getMediaPublicOrigin(),
-      getVideo()
-    ]);
+  const [
+    products,
+    sliders,
+    testimonials,
+    popup,
+    flashSales,
+    storeSettings,
+    mediaOrigin,
+    videoPosts,
+    resolvedMedia,
+    adSlots
+  ] = await Promise.all([
+    getProducts(),
+    getActiveSliders(),
+    getActiveTestimonials(),
+    getActivePopup(),
+    getActiveFlashSales(),
+    getStoreSettings(),
+    getMediaPublicOrigin(),
+    getVideo(),
+    getResolvedMedia(),
+    getActiveAdPlacements()
+  ]);
 
   const imageUrls: Array<string | null | undefined> = [];
 
@@ -123,9 +152,18 @@ export async function GET(): Promise<Response> {
   imageUrls.push(storeSettings.logo?.url);
   imageUrls.push(storeSettings.favicon?.url);
 
-  // Issue #47: the media host every resolved article/gallery/ad image and
-  // this build's news content is actually served from — see this file's
-  // own header for why the dedicated endpoint, not a derived origin.
+  // Issue #47: every ACTUAL resolved article/gallery image and ad
+  // creative's own URL — pushed the same way a product's own images are
+  // above, so a row on a different (e.g. pre-migration) host still widens
+  // the policy correctly. See this file's own header, "Review finding:
+  // mediaOrigin alone is not enough".
+  for (const media of resolvedMedia.values()) imageUrls.push(media.publicUrl);
+  for (const creatives of Object.values(adSlots)) {
+    for (const ad of creatives ?? []) imageUrls.push(ad.mediaPublicUrl);
+  }
+
+  // The CURRENTLY CONFIGURED media host, in ADDITION to the above — covers
+  // a build with zero resolved images yet (see this file's own header).
   if (mediaOrigin.configured && mediaOrigin.origin) {
     imageUrls.push(mediaOrigin.origin);
   }
