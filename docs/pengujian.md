@@ -74,6 +74,8 @@ A `postgres:18.4` service container (`POSTGRES_USER=awcms`, `POSTGRES_DB=awcms`,
 | Question | Tier |
 | --- | --- |
 | Do the product/order/flash-sale state machines behave correctly in isolation? | `apps/cms`'s `apps/cms/tests/commerce-domain.test.ts`, `apps/cms/tests/commerce-marketing-domain.test.ts` (pure, no database) |
+| Does every commerce migration stay inside the reserved `9xx` range, and every other migration outside it (issue #72)? | `apps/cms`'s `apps/cms/tests/commerce-migrations-range.test.ts` (pure, reads `apps/cms/sql/` file names only) |
+| Does `db:commerce:renumber`'s rename plan behave correctly for a fresh, already-migrated, mixed, or already-renamed database (issue #72)? | `apps/cms`'s `apps/cms/tests/commerce-migrations-renumber.test.ts` (pure, no database) |
 | Does RLS actually isolate every `awcms_commerce_*` table by tenant? | `apps/cms`'s generic RLS integration suite, derived from every table's own `ENABLE`/`FORCE` statements (needs PostgreSQL) |
 | Does the anonymous storefront API resolve tenants correctly and refuse the rest? | `apps/cms`'s `commerce-catalog.integration.test.ts`/`commerce-marketing.integration.test.ts`/`commerce-orders.integration.test.ts` (all need PostgreSQL) |
 | Does the storefront build a real site against the real API envelope, including checkout? | `apps/storefront`'s stub-backed build, and `bun run test:e2e` |

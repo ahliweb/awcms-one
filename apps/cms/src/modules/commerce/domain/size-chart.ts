@@ -30,7 +30,7 @@ export type SizeChartFields = {
 export type SizeChartValidationError = { field: string; message: string };
 
 /**
- * Enforces the cross-field rule the `sql/156` `CHECK` constraint mirrors:
+ * Enforces the cross-field rule the `sql/904` `CHECK` constraint mirrors:
  * `image` requires `sizeChartMediaId`, `table` requires `sizeChartDetails`,
  * `none` requires neither. Called from BOTH `product-validation.ts`'s create
  * path (against the request's already-defaulted values) and

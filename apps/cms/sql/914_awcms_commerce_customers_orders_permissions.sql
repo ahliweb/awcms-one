@@ -1,6 +1,6 @@
 -- Issue #29 — permission catalog seed for the `orders`/`customers`/`reviews`
 -- activity codes, mirroring `src/modules/commerce/module.ts`'s `permissions`
--- array exactly (see `sql/154`'s header for the full reasoning this
+-- array exactly (see `sql/902`'s header for the full reasoning this
 -- migration does not repeat: global catalog, idempotent via `ON CONFLICT DO
 -- NOTHING`, existing tenants do not retroactively gain these).
 --
@@ -18,7 +18,7 @@
 -- (`DELETE /api/v1/commerce/reviews/{id}`) in this increment. No `restore`
 -- action for any of the three: reviews are moderated, not restored, and
 -- orders/customers are never soft-deleted in the traditional sense (see
--- `sql/165`'s header).
+-- `sql/913`'s header).
 INSERT INTO awcms_permissions (module_key, activity_code, action, description)
 VALUES
   ('commerce', 'orders', 'read', 'Read order records, including payment confirmations and the status timeline'),

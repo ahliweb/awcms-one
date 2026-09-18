@@ -11,7 +11,7 @@
  *
  * Every money assertion below is on a STRING: the whole point of the
  * arithmetic under test is that `"19.10"` at 10 % is `"1.91"`, never
- * `1.9100000000000001` — see ADR-0003 in awcms-one and `sql/153`'s header.
+ * `1.9100000000000001` — see ADR-0003 in awcms-one and `sql/901`'s header.
  */
 import { describe, expect, test } from "bun:test";
 

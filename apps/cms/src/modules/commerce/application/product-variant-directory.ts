@@ -18,7 +18,7 @@ export class ProductNotFoundForVariantError extends Error {
 
 /**
  * `sku` is already taken — by another LIVE variant OR a LIVE product — in
- * this tenant. One error for both sources: `sql/157`'s header explains why a
+ * this tenant. One error for both sources: `sql/905`'s header explains why a
  * single-table unique index cannot express this rule, so
  * `checkVariantSkuAvailable` below checks both tables and this is what it
  * throws when either one already holds the value.
@@ -105,7 +105,7 @@ async function productExists(
 /**
  * Checks `sku` against BOTH `awcms_commerce_products` and
  * `awcms_commerce_product_variants` (Issue #23's "shared with products via a
- * domain check" — `sql/157`'s header). `excludeVariantId` lets an update keep
+ * domain check" — `sql/905`'s header). `excludeVariantId` lets an update keep
  * its OWN sku without tripping over itself.
  */
 async function checkVariantSkuAvailable(
@@ -164,7 +164,7 @@ export async function createProductVariant(
 
   // Checked BEFORE the INSERT (load-bearing ordering, same rule as every
   // other existence/uniqueness pre-check in this module) — the DB partial
-  // unique index (`sql/157`) only ever catches the SAME-TABLE race, not a
+  // unique index (`sql/905`) only ever catches the SAME-TABLE race, not a
   // product's own sku.
   if (input.sku !== null) {
     const available = await checkVariantSkuAvailable(

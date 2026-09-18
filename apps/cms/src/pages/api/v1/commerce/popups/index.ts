@@ -45,7 +45,7 @@ export const GET = defineTenantRoute({
     ok(await listPopups(tx, tenantId, prepared.cursor))
 });
 
-/** `isActive: true` on create fails `409 POPUP_ALREADY_ACTIVE` when another live popup already is — `sql/161`'s partial unique index. */
+/** `isActive: true` on create fails `409 POPUP_ALREADY_ACTIVE` when another live popup already is — `sql/909`'s partial unique index. */
 export const POST = defineTenantRoute({
   workClass: "interactive",
   prepare: async ({ request }): Promise<CreatePopupInput | Response> => {

@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](cms.md)
 
-<!-- i18n-source-hash: sha256:cc230161e6437a9219b785568b229e8a359bf7d50fb620c1e6feba0e9823b95c -->
+<!-- i18n-source-hash: sha256:baf9ccd19b9148940a6297ad89f1f814c0ead18fc273997225ec7f8ee005d4f8 -->
 
 # CMS: authoring, publikasi, izin, audit, media, taksonomi
 
@@ -133,5 +133,5 @@ Increment 3 membuat slot-slot itu nyata, bukan sekadar nominal. Kedua belas kunc
 - **Tanpa akun pelanggan, login, atau endpoint storefront terautentikasi** — [issue #32](https://github.com/ahliweb/awcms-one/issues/32). Wishlist tetap browser-local; `awcms_commerce_wishlists` ada sebagai tabel tanpa rute API di depannya untuk saat ini.
 - **Tanpa integrasi tarif-kurir RajaOngkir atau payment gateway** — keduanya harus dipanggil lewat outbox begitu mendarat ([ADR-0010](adr/0010-manual-payment-and-alternative-courier-first-gateways-via-outbox.md), [issue #33](https://github.com/ahliweb/awcms-one/issues/33)); `payment_method` sudah menerima nilai enum `gateway`, secara aditif, tanpa kode implementasi di baliknya untuk saat ini.
 - **Tanpa test suite integrasi yang di-gate `DATABASE_URL` untuk pembuatan pesanan** — pengurangan stok, double-submit idempoten, pelacakan telepon-salah, expire-lalu-restock, dan isolasi RLS lintas-tenant semuanya dibuktikan dengan tangan terhadap instans Postgres nyata yang sudah dimigrasikan selama pengembangan issue #29 (dua bug nyata ditemukan dan diperbaiki lewat cara ini), tapi tidak dikodekan sebagai `apps/cms/tests/integration/commerce-orders.integration.test.ts` yang di-commit — celah nyata dalam durabilitas test suite, bukan yang diam-diam dijatuhkan (lihat [`docs/pengujian.md`](pengujian.id.md)).
-- **Tanpa full-text ranked search** pada filter `q` daftar produk owner — hanya pencocokan substring/trigram (`pg_trgm`, `sql/159`), tanpa integrasi `site_search`.
+- **Tanpa full-text ranked search** pada filter `q` daftar produk owner — hanya pencocokan substring/trigram (`pg_trgm`, `sql/907`), tanpa integrasi `site_search`.
 - **Tanpa `restore`** untuk tabel marketing, orders, customers, atau reviews — hanya catalog (`categories`/`products`) yang punya endpoint dan izin restore di increment ini.

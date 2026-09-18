@@ -1,4 +1,4 @@
--- Same reasoning as `sql/155`'s, `sql/160`'s and `sql/164`'s headers,
+-- Same reasoning as `sql/903`'s, `sql/908`'s and `sql/912`'s headers,
 -- extended to the eight Issue #29 tables: `commerce/module.ts`'s
 -- `dataLifecycle` descriptors for `commerce.customers`,
 -- `commerce.customer_addresses`, `commerce.orders`, `commerce.order_items`,

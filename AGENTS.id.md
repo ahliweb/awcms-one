@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](AGENTS.md)
 
-<!-- i18n-source-hash: sha256:71b549f9e8f4c923418ab6e856718c6ad83952b771265e7b748f1f797e67ea53 -->
+<!-- i18n-source-hash: sha256:16b6a5e0cdda93a828dd6e0c13d1f62a127d9a04e6155c602bc6bfa53dc13c98 -->
 
 # AGENTS.md — kontrak kerja awcms-one
 
@@ -65,6 +65,8 @@ Sumber `apps/cms` sendiri adalah pohon milik upstream, dibawa ke sini untuk alas
 - `apps/cms/tests/version-check.test.ts` — test "the committed tag namespace conforms" di dalamnya menegaskan bahwa lebih dari 20 tag git telah diperiksa, sebuah ambang non-vakuitas yang benar pada klon `ahliweb/awcms` (sekitar tiga puluh lima tag `v*`) dan salah secara konstruksi di embed ini, di mana `git tag` menjawab dengan lini `v0.x` milik repo ini sendiri dan tag upstream tidak boleh pernah diambil (lihat "Kenapa `--no-tags` bukan pilihan" di atas). Tambalan lokalnya hanya melewati ambang itu, dan hanya ketika `git rev-parse --show-toplevel` dari `apps/cms` bukan `apps/cms` itu sendiri; dua asersi yang menyatakan aturan tetap berjalan. Tanpanya `bun run check:cms` merah pada `main` yang bersih ([issue #22](https://github.com/ahliweb/awcms-one/issues/22)).
 
 Daftar ini sengaja masih sepanjang satu butir setelah sembilan PR increment-2 yang mendarat (#34–#42): setiap PR modul `commerce` adalah pekerjaan modul aditif biasa di dalam disiplin admission `apps/cms` sendiri, bukan tambalan pada infrastruktur bersama upstream, jadi tidak satu pun darinya menambah divergensi baru di sini.
+
+**Migrasi `commerce` mencadangkan `901`–`999`; upstream memiliki `001`–`899`.** `apps/cms/sql/*.sql` adalah satu urutan datar, terurut leksikal (`apps/cms/scripts/db-migrate.ts`, upstream, tidak pernah disunting secara lokal), dan modul `commerce` milik repo ini semula memberi nomor enam belas migrasinya di dalam rentang upstream sendiri — tabrakan yang menunggu penomoran upstream sendiri mencapai nomor yang sama, dan itu terjadi (issue #72; lihat [ADR-0015](docs/adr/0015-commerce-migrations-live-in-the-reserved-9xx-range.id.md)). Setiap migrasi commerce kini hidup di `901`–`916`, dengan yang berikutnya di `917`; `apps/cms/tests/commerce-migrations-range.test.ts` menegakkan pemisahan ini dua arah. **Jangan pernah beri nomor ulang berkas yang dibawa `git subtree pull` dari upstream** — hanya migrasi `commerce` milik repo ini sendiri yang pernah diberi nomor ulang, dan hanya maju, tidak pernah menyentuh ulang isi yang sudah diterapkan (checksum bersifat immutable; lihat `validateAppliedChecksums` milik `apps/cms/scripts/db-migrate.ts`). Basis data yang bermigrasi sebelum aturan ini menjalankan `bun run db:commerce:renumber` sekali, sebelum `db:migrate` berikutnya — lihat `apps/cms/scripts/commerce-migrations-renumber.ts`.
 
 ## Batas workspace
 

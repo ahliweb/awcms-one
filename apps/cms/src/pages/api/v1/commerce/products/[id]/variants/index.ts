@@ -24,7 +24,7 @@ const UPDATE_GUARD = {
   action: "update"
 } as const;
 
-/** `POST /api/v1/commerce/products/{id}/variants` (Issue #23) — add a variant. `sku`, when set, is checked against BOTH products and variants (`sql/157`'s header). */
+/** `POST /api/v1/commerce/products/{id}/variants` (Issue #23) — add a variant. `sku`, when set, is checked against BOTH products and variants (`sql/905`'s header). */
 export const POST = defineTenantRoute({
   workClass: "interactive",
   prepare: async ({

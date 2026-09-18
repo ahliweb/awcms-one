@@ -14,7 +14,7 @@
 --
 -- Two activity codes, one per resource, four CRUD actions each. No
 -- `restore` action for either: this slice ships no restore endpoint (see
--- `sql/153`'s header and `commerce/domain/commerce-permissions.ts`'s), and
+-- `sql/901`'s header and `commerce/domain/commerce-permissions.ts`'s), and
 -- seeding a permission with no enforcing code is exactly the defect class
 -- `media-library/domain/media-permissions.ts`'s header warns against (the
 -- since-revoked `attach`/`detach` keys, `sql/087`).

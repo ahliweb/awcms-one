@@ -1,13 +1,13 @@
 -- Issue #26 — permission catalog seed for the marketing-surface activity
 -- codes, mirroring `src/modules/commerce/domain/commerce-permissions.ts`'s
 -- new constants exactly, one row per entry (a gate checks the two stay in
--- step — see `sql/154`'s header for the full shape/limitation this repeats:
+-- step — see `sql/902`'s header for the full shape/limitation this repeats:
 -- global catalog only, existing tenants do not retroactively gain these,
 -- idempotent via `ON CONFLICT DO NOTHING`).
 --
 -- Five CRUD activity codes (no `restore` — issue #26's own API list never
 -- names one for these resources, and seeding an unenforced permission is
--- the same defect class `sql/154`'s header already warns against), plus
+-- the same defect class `sql/902`'s header already warns against), plus
 -- `settings.{read,update}` for the singleton store-settings row (no
 -- `create`/`delete` — a singleton is upserted, never created/deleted as a
 -- distinct action, the same two-action shape `sql/135`'s `site_profile.

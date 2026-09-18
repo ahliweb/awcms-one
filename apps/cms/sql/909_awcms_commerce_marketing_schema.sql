@@ -1,6 +1,6 @@
 -- Issue #26 (part of epic #21) — the marketing surface BjekMart's home page
 -- and promotions run on: flash sales, vouchers, sliders, testimonials, and a
--- promo popup. Five new tenant-scoped tables, all following `sql/153`'s
+-- promo popup. Five new tenant-scoped tables, all following `sql/901`'s
 -- conventions exactly (see that file's header for the full reasoning this
 -- migration does not repeat): `ENABLE` + `FORCE ROW LEVEL SECURITY`, one
 -- tenant-isolation `USING` policy, `id uuid` PK `DEFAULT gen_random_uuid()`,
@@ -8,7 +8,7 @@
 -- `deleted_at`, no per-table GRANT (`sql/019`'s `ALTER DEFAULT PRIVILEGES`
 -- already covers it), an FK index for every FK column, and no
 -- `created_by`/`updated_by`/`deleted_by` — same "WHO lives only in the audit
--- log" choice `sql/153`'s header made for this module, kept for every table
+-- log" choice `sql/901`'s header made for this module, kept for every table
 -- this module adds afterwards.
 --
 -- ## `awcms_commerce_flash_sales` / `awcms_commerce_flash_sale_products`
@@ -26,7 +26,7 @@
 -- optional variant)` triple with its own `sale_price`/`quota`/`sold`) —
 -- owned and edited through its flash sale, the same "sub-resource of editing
 -- the parent" relationship `awcms_commerce_product_images`/`_variants` have
--- to their product (`sql/157`).
+-- to their product (`sql/905`).
 --
 -- ## `awcms_commerce_vouchers`
 --
@@ -44,12 +44,12 @@
 -- ## `awcms_commerce_sliders` / `_testimonials` / `_popups`
 --
 -- `media_object_id` (sliders) is `NOT NULL` — same "the row IS the
--- reference" choice `sql/157` made for `product_images`, and for the same
+-- reference" choice `sql/905` made for `product_images`, and for the same
 -- reason: a slider with no image is not a slider. `avatar_media_object_id`
 -- (testimonials) and `media_object_id` (popups) are nullable decorations —
--- same treatment `sql/157` gives a variant's optional
+-- same treatment `sql/905` gives a variant's optional
 -- `image_media_object_id`. All three reference `awcms_news_media_objects`
--- (the media registry's real, historic table name — see `sql/157`'s header
+-- (the media registry's real, historic table name — see `sql/905`'s header
 -- for why the name does not match the module it belongs to).
 --
 -- `awcms_commerce_popups` additionally enforces "at most one ACTIVE popup per

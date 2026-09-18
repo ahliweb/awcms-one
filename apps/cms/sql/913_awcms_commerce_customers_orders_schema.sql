@@ -1,6 +1,6 @@
 -- Issue #29 (part of epic #21) — customers, addresses, orders and their
 -- lifecycle, payment confirmations, reviews, wishlists: the transactional
--- half of BjekMart. Eight new tenant-scoped tables, following `sql/153`'s
+-- half of BjekMart. Eight new tenant-scoped tables, following `sql/901`'s
 -- conventions exactly (see that file's header for the full reasoning this
 -- migration does not repeat): `ENABLE` + `FORCE ROW LEVEL SECURITY`, one
 -- tenant-isolation `USING` policy, `id uuid` PK `DEFAULT gen_random_uuid()`,
@@ -8,7 +8,7 @@
 -- FK column, no per-table GRANT (`sql/019`'s `ALTER DEFAULT PRIVILEGES`
 -- already covers `awcms_app`), and a plain single-column FK on the target's
 -- `id` (not a composite `(tenant_id, id)` FK) — the same choice
--- `sql/161`'s `awcms_commerce_flash_sale_products` already makes for
+-- `sql/909`'s `awcms_commerce_flash_sale_products` already makes for
 -- `product_id`/`variant_id`: `id` is already a globally unique PK, RLS
 -- already prevents a live cross-tenant SELECT, and the application layer
 -- checks the referenced row's `tenant_id` before every write that would
@@ -60,7 +60,7 @@
 -- because an order's shipping address must never change retroactively when a
 -- customer edits or deletes their saved address later.
 --
--- Money columns are all `numeric(14, 2)`, never a float (`sql/153`'s header
+-- Money columns are all `numeric(14, 2)`, never a float (`sql/901`'s header
 -- has the full arithmetic-drift reasoning) — every one of them is produced by
 -- `domain/cart-quote.ts`'s integer-cent arithmetic and travels as a STRING on
 -- the wire (ADR-0003).

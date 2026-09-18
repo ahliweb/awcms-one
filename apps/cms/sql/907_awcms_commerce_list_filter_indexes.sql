@@ -50,7 +50,7 @@ CREATE INDEX IF NOT EXISTS awcms_commerce_products_tenant_name_idx
 
 -- `?parentId=` on `GET /api/v1/commerce/categories` — filters live categories
 -- by their parent within a tenant (the FK index `awcms_commerce_categories_
--- parent_idx` already exists from `sql/153`, but it is not tenant-scoped nor
+-- parent_idx` already exists from `sql/901`, but it is not tenant-scoped nor
 -- deleted-filtered, so a dedicated composite serves the actual query shape).
 CREATE INDEX IF NOT EXISTS awcms_commerce_categories_tenant_parent_idx
   ON awcms_commerce_categories (tenant_id, parent_id)

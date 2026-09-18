@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:314519ee70e9c644a7c6d5641ed77ec9b1ffc0eada1cbb7659a034ba3421092e -->
+<!-- i18n-source-hash: sha256:ee6e4e0f130d6bcc23558614c5ec63122db0ebec7247b9d3f0466298856590f6 -->
 
 # Architecture Decision Records
 
@@ -32,6 +32,7 @@ Yang **tidak** butuh ADR: menambah field dalam skema yang sudah diputuskan, kena
 | [0012](0012-first-party-visitor-analytics-with-an-opt-in-ga4-switch.md) | Analitik pengunjung bersifat first-party secara bawaan; GA4 adalah sakelar opt-in | Diterima |
 | [0013](0013-rule-based-legacy-redirects-beside-the-row-based-map.md) | Pengalihan lawas berbasis aturan berdampingan dengan peta berbasis baris, dan baris selalu menang | Diterima |
 | [0014](0014-the-institution-owns-the-emblem-not-the-post.md) | Lembaga yang memiliki lambangnya; sebuah pos tidak pernah membawa satu pun | Diterima |
+| [0015](0015-commerce-migrations-live-in-the-reserved-9xx-range.md) | Migrasi commerce hidup di rentang cadangan `9xx` | Diterima |
 
 ## Mengapa penomoran dimulai dari 0001
 

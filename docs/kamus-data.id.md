@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](kamus-data.md)
 
-<!-- i18n-source-hash: sha256:8f5e073f4dd0af690d14b826acf99b11ce0e10f09919ab979cc9ad690250adb8 -->
+<!-- i18n-source-hash: sha256:9d713b6a4357cedf10d20630b5350a53390164633261de852094e8928c3f7940 -->
 
 # Kamus data
 
@@ -8,7 +8,7 @@ Setiap kolom di sembilan belas tabel `awcms_commerce_*`, maknanya, domain unit/e
 
 ## Provenans, dinyatakan sekali agar setiap baris di bawah tidak perlu mengulanginya
 
-Daftar kolom lawas **dicatat dari basis data `commerce_bj_mart` yang live pada 2026-09-14**, selama pekerjaan yang menghasilkan bagian skema-sumber issue #4 dan `apps/cms/sql/153_awcms_commerce_schema.sql`. **`commerce_bj_mart` tidak bisa dijangkau dari mesin tempat dokumentasi ini ditulis** — setiap sel "kolom sumber" dinyatakan **sebagaimana dicatat pada 2026-09-14**, tidak diperiksa ulang secara independen sejak itu. Kolom inti-katalog dan paritas-BjekMart (dua tabel pertama dokumen ini) di-porting dari nama kolom skema lawas sendiri, tanpa perubahan — header `sql/153` dan `sql/156` sendiri, serta docblock `commerce/module.ts`, semuanya menjelaskan ini sebagai port langsung; dikuatkan oleh daftar kolom-yang-ditunda yang masih cocok verbatim dengan nama kolom lawas `commerce_bj_mart.products`. Tabel marketing dan order (issue #26/#29) adalah **desain baru milik platform ini sendiri**, bukan port kolom-demi-kolom — mart.borneojek.com punya pengaturan dan catatan order dengan bentuk serupa, tapi tidak ada daftar kolom lawas untuk itu yang ditangkap selama pengembangan repositori ini, jadi tidak ada "kolom sumber" yang diklaim untuk bagian itu; makna setiap kolom dinyatakan atas dasarnya sendiri sebagai gantinya.
+Daftar kolom lawas **dicatat dari basis data `commerce_bj_mart` yang live pada 2026-09-14**, selama pekerjaan yang menghasilkan bagian skema-sumber issue #4 dan `apps/cms/sql/901_awcms_commerce_schema.sql`. **`commerce_bj_mart` tidak bisa dijangkau dari mesin tempat dokumentasi ini ditulis** — setiap sel "kolom sumber" dinyatakan **sebagaimana dicatat pada 2026-09-14**, tidak diperiksa ulang secara independen sejak itu. Kolom inti-katalog dan paritas-BjekMart (dua tabel pertama dokumen ini) di-porting dari nama kolom skema lawas sendiri, tanpa perubahan — header `sql/901` dan `sql/904` sendiri, serta docblock `commerce/module.ts`, semuanya menjelaskan ini sebagai port langsung; dikuatkan oleh daftar kolom-yang-ditunda yang masih cocok verbatim dengan nama kolom lawas `commerce_bj_mart.products`. Tabel marketing dan order (issue #26/#29) adalah **desain baru milik platform ini sendiri**, bukan port kolom-demi-kolom — mart.borneojek.com punya pengaturan dan catatan order dengan bentuk serupa, tapi tidak ada daftar kolom lawas untuk itu yang ditangkap selama pengembangan repositori ini, jadi tidak ada "kolom sumber" yang diklaim untuk bagian itu; makna setiap kolom dinyatakan atas dasarnya sendiri sebagai gantinya.
 
 ## `awcms_commerce_categories` ← `commerce_bj_mart.categories`
 
@@ -22,7 +22,7 @@ Daftar kolom lawas **dicatat dari basis data `commerce_bj_mart` yang live pada 2
 | `icon` | `icon` | Referensi ikon untuk kategori ini | Teks bebas |
 | `created_at`/`updated_at` | *(timestamp)* | Timestamp siklus-hidup baris | `timestamptz` |
 | `deleted_at` | *(tidak ada — baru)* | Penanda soft-delete; null berarti hidup | `timestamptz`, nullable |
-| `restored_at` | *(tidak ada — baru)* | Kapan soft delete dibatalkan (`sql/156`) | `timestamptz`, nullable |
+| `restored_at` | *(tidak ada — baru)* | Kapan soft delete dibatalkan (`sql/904`) | `timestamptz`, nullable |
 
 ## `awcms_commerce_products` ← `commerce_bj_mart.products`
 

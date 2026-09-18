@@ -1,7 +1,7 @@
 ---
 /**
  * Commerce promo-popup CRUD screen (Issue #26). At most one ACTIVE popup per
- * tenant (`sql/161`'s partial unique index) — the create form's `isActive`
+ * tenant (`sql/909`'s partial unique index) — the create form's `isActive`
  * checkbox is left UNCHECKED by default so a merchant drafting a second
  * popup while one is already live gets a normal save first, not a surprise
  * 409 on the very first field they touch.

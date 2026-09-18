@@ -12,7 +12,7 @@
 | `awcms_*` tables                    | 171   |
 | Tables with `FORCE` RLS             | 153   |
 | RLS-free tables (global, by design) | 18    |
-| Test files                          | 524   |
+| Test files                          | 526   |
 | Route files                         | 447   |
 | ADR                                 | 244   |
 
@@ -203,22 +203,22 @@
 | 151 | `sql/151_awcms_ad_placement_content_class.sql`                              |
 | 152 | `sql/152_awcms_media_rights_adjudication_permission.sql`                    |
 | 153 | `sql/153_awcms_blog_institution_logo.sql`                                   |
-| 154 | `sql/153_awcms_commerce_schema.sql`                                         |
-| 155 | `sql/154_awcms_commerce_permissions.sql`                                    |
-| 156 | `sql/155_awcms_commerce_worker_lifecycle_purge_grants.sql`                  |
-| 157 | `sql/156_awcms_commerce_product_columns.sql`                                |
-| 158 | `sql/157_awcms_commerce_product_images_variants.sql`                        |
-| 159 | `sql/158_awcms_commerce_restore_permissions.sql`                            |
-| 160 | `sql/159_awcms_commerce_list_filter_indexes.sql`                            |
-| 161 | `sql/160_awcms_commerce_relations_worker_lifecycle_purge_grants.sql`        |
-| 162 | `sql/161_awcms_commerce_marketing_schema.sql`                               |
-| 163 | `sql/162_awcms_commerce_store_settings.sql`                                 |
-| 164 | `sql/163_awcms_commerce_marketing_permissions.sql`                          |
-| 165 | `sql/164_awcms_commerce_marketing_worker_lifecycle_purge_grants.sql`        |
-| 166 | `sql/165_awcms_commerce_customers_orders_schema.sql`                        |
-| 167 | `sql/166_awcms_commerce_customers_orders_permissions.sql`                   |
-| 168 | `sql/167_awcms_commerce_customers_orders_worker_lifecycle_purge_grants.sql` |
-| 169 | `sql/168_awcms_commerce_orders_expire_worker_write_grants.sql`              |
+| 154 | `sql/901_awcms_commerce_schema.sql`                                         |
+| 155 | `sql/902_awcms_commerce_permissions.sql`                                    |
+| 156 | `sql/903_awcms_commerce_worker_lifecycle_purge_grants.sql`                  |
+| 157 | `sql/904_awcms_commerce_product_columns.sql`                                |
+| 158 | `sql/905_awcms_commerce_product_images_variants.sql`                        |
+| 159 | `sql/906_awcms_commerce_restore_permissions.sql`                            |
+| 160 | `sql/907_awcms_commerce_list_filter_indexes.sql`                            |
+| 161 | `sql/908_awcms_commerce_relations_worker_lifecycle_purge_grants.sql`        |
+| 162 | `sql/909_awcms_commerce_marketing_schema.sql`                               |
+| 163 | `sql/910_awcms_commerce_store_settings.sql`                                 |
+| 164 | `sql/911_awcms_commerce_marketing_permissions.sql`                          |
+| 165 | `sql/912_awcms_commerce_marketing_worker_lifecycle_purge_grants.sql`        |
+| 166 | `sql/913_awcms_commerce_customers_orders_schema.sql`                        |
+| 167 | `sql/914_awcms_commerce_customers_orders_permissions.sql`                   |
+| 168 | `sql/915_awcms_commerce_customers_orders_worker_lifecycle_purge_grants.sql` |
+| 169 | `sql/916_awcms_commerce_orders_expire_worker_write_grants.sql`              |
 
 ### Tables & Row-Level Security
 
@@ -258,25 +258,25 @@
 | `awcms_comments_reports`                 | `sql/066_awcms_comments_schema.sql`                        | yes | yes   |
 | `awcms_comments_settings`                | `sql/066_awcms_comments_schema.sql`                        | yes | yes   |
 | `awcms_comments_threads`                 | `sql/066_awcms_comments_schema.sql`                        | yes | yes   |
-| `awcms_commerce_categories`              | `sql/153_awcms_commerce_schema.sql`                        | yes | yes   |
-| `awcms_commerce_customer_addresses`      | `sql/165_awcms_commerce_customers_orders_schema.sql`       | yes | yes   |
-| `awcms_commerce_customers`               | `sql/165_awcms_commerce_customers_orders_schema.sql`       | yes | yes   |
-| `awcms_commerce_flash_sale_products`     | `sql/161_awcms_commerce_marketing_schema.sql`              | yes | yes   |
-| `awcms_commerce_flash_sales`             | `sql/161_awcms_commerce_marketing_schema.sql`              | yes | yes   |
-| `awcms_commerce_order_events`            | `sql/165_awcms_commerce_customers_orders_schema.sql`       | yes | yes   |
-| `awcms_commerce_order_items`             | `sql/165_awcms_commerce_customers_orders_schema.sql`       | yes | yes   |
-| `awcms_commerce_orders`                  | `sql/165_awcms_commerce_customers_orders_schema.sql`       | yes | yes   |
-| `awcms_commerce_payment_confirmations`   | `sql/165_awcms_commerce_customers_orders_schema.sql`       | yes | yes   |
-| `awcms_commerce_popups`                  | `sql/161_awcms_commerce_marketing_schema.sql`              | yes | yes   |
-| `awcms_commerce_product_images`          | `sql/157_awcms_commerce_product_images_variants.sql`       | yes | yes   |
-| `awcms_commerce_product_variants`        | `sql/157_awcms_commerce_product_images_variants.sql`       | yes | yes   |
-| `awcms_commerce_products`                | `sql/153_awcms_commerce_schema.sql`                        | yes | yes   |
-| `awcms_commerce_reviews`                 | `sql/165_awcms_commerce_customers_orders_schema.sql`       | yes | yes   |
-| `awcms_commerce_sliders`                 | `sql/161_awcms_commerce_marketing_schema.sql`              | yes | yes   |
-| `awcms_commerce_store_settings`          | `sql/162_awcms_commerce_store_settings.sql`                | yes | yes   |
-| `awcms_commerce_testimonials`            | `sql/161_awcms_commerce_marketing_schema.sql`              | yes | yes   |
-| `awcms_commerce_vouchers`                | `sql/161_awcms_commerce_marketing_schema.sql`              | yes | yes   |
-| `awcms_commerce_wishlists`               | `sql/165_awcms_commerce_customers_orders_schema.sql`       | yes | yes   |
+| `awcms_commerce_categories`              | `sql/901_awcms_commerce_schema.sql`                        | yes | yes   |
+| `awcms_commerce_customer_addresses`      | `sql/913_awcms_commerce_customers_orders_schema.sql`       | yes | yes   |
+| `awcms_commerce_customers`               | `sql/913_awcms_commerce_customers_orders_schema.sql`       | yes | yes   |
+| `awcms_commerce_flash_sale_products`     | `sql/909_awcms_commerce_marketing_schema.sql`              | yes | yes   |
+| `awcms_commerce_flash_sales`             | `sql/909_awcms_commerce_marketing_schema.sql`              | yes | yes   |
+| `awcms_commerce_order_events`            | `sql/913_awcms_commerce_customers_orders_schema.sql`       | yes | yes   |
+| `awcms_commerce_order_items`             | `sql/913_awcms_commerce_customers_orders_schema.sql`       | yes | yes   |
+| `awcms_commerce_orders`                  | `sql/913_awcms_commerce_customers_orders_schema.sql`       | yes | yes   |
+| `awcms_commerce_payment_confirmations`   | `sql/913_awcms_commerce_customers_orders_schema.sql`       | yes | yes   |
+| `awcms_commerce_popups`                  | `sql/909_awcms_commerce_marketing_schema.sql`              | yes | yes   |
+| `awcms_commerce_product_images`          | `sql/905_awcms_commerce_product_images_variants.sql`       | yes | yes   |
+| `awcms_commerce_product_variants`        | `sql/905_awcms_commerce_product_images_variants.sql`       | yes | yes   |
+| `awcms_commerce_products`                | `sql/901_awcms_commerce_schema.sql`                        | yes | yes   |
+| `awcms_commerce_reviews`                 | `sql/913_awcms_commerce_customers_orders_schema.sql`       | yes | yes   |
+| `awcms_commerce_sliders`                 | `sql/909_awcms_commerce_marketing_schema.sql`              | yes | yes   |
+| `awcms_commerce_store_settings`          | `sql/910_awcms_commerce_store_settings.sql`                | yes | yes   |
+| `awcms_commerce_testimonials`            | `sql/909_awcms_commerce_marketing_schema.sql`              | yes | yes   |
+| `awcms_commerce_vouchers`                | `sql/909_awcms_commerce_marketing_schema.sql`              | yes | yes   |
+| `awcms_commerce_wishlists`               | `sql/913_awcms_commerce_customers_orders_schema.sql`       | yes | yes   |
 | `awcms_data_lifecycle_archive_manifests` | `sql/055_awcms_data_lifecycle_schema.sql`                  | yes | yes   |
 | `awcms_data_lifecycle_cursors`           | `sql/055_awcms_data_lifecycle_schema.sql`                  | yes | yes   |
 | `awcms_data_lifecycle_legal_holds`       | `sql/055_awcms_data_lifecycle_schema.sql`                  | yes | yes   |
@@ -400,7 +400,7 @@
 
 | Directory     | Test files |
 | ------------- | ---------- |
-| `(root)`      | 422        |
+| `(root)`      | 424        |
 | `e2e`         | 19         |
 | `integration` | 82         |
 | `unit`        | 1          |

@@ -5,7 +5,7 @@
 - **Status:** Accepted
 - **Date:** 15 September 2026
 - **Decision maker:** ahliweb
-- **Related:** [issue #4](https://github.com/ahliweb/awcms-one/issues/4) (the `commerce` module, where this decision was made); [`apps/cms/sql/153_awcms_commerce_schema.sql`](../../apps/cms/sql/153_awcms_commerce_schema.sql); [`docs/skema-basis-data.md`](../skema-basis-data.md); [`docs/kamus-data.md`](../kamus-data.md)
+- **Related:** [issue #4](https://github.com/ahliweb/awcms-one/issues/4) (the `commerce` module, where this decision was made); [`apps/cms/sql/901_awcms_commerce_schema.sql`](../../apps/cms/sql/901_awcms_commerce_schema.sql); [`docs/skema-basis-data.md`](../skema-basis-data.md); [`docs/kamus-data.md`](../kamus-data.md)
 
 ## Context
 
@@ -15,7 +15,7 @@ The legacy `commerce_bj_mart.products.price` column arrives from a MySQL/Laravel
 
 ## Decision
 
-`price` is `numeric(14,2)` in PostgreSQL (`sql/153`) — 12 integer digits and 2 fractional, exact fixed-point, comfortably covering a Rupiah price into the hundreds of billions. `Bun.SQL` hands a `numeric` column back as a **string**, never a JS `number`, and `commerce/application/product-directory.ts`'s `toRecord()` — the one place the wire shape is assembled — never parses it. The `CommerceProduct` DTO (`openapi/modules/commerce.openapi.yaml`, mirrored in `packages/kontrak`'s scope discussion even though the DTO itself lives in `application/`, not `domain/` — see [ADR-0004](0004-a-type-only-contract-package-with-an-import-direction-gate.md)) declares `price` as a `string`, all the way to the storefront, which formats it for display with `Intl.NumberFormat` (`apps/storefront/src/lib/catalog.ts`'s `formatPrice`) and performs no arithmetic on it at all — it shows the price and the `discountPercent` **percentage** `apps/cms` sends, never a computed discounted amount, so it never has to invent a rounding rule that might disagree with whatever a future checkout computes.
+`price` is `numeric(14,2)` in PostgreSQL (`sql/901`) — 12 integer digits and 2 fractional, exact fixed-point, comfortably covering a Rupiah price into the hundreds of billions. `Bun.SQL` hands a `numeric` column back as a **string**, never a JS `number`, and `commerce/application/product-directory.ts`'s `toRecord()` — the one place the wire shape is assembled — never parses it. The `CommerceProduct` DTO (`openapi/modules/commerce.openapi.yaml`, mirrored in `packages/kontrak`'s scope discussion even though the DTO itself lives in `application/`, not `domain/` — see [ADR-0004](0004-a-type-only-contract-package-with-an-import-direction-gate.md)) declares `price` as a `string`, all the way to the storefront, which formats it for display with `Intl.NumberFormat` (`apps/storefront/src/lib/catalog.ts`'s `formatPrice`) and performs no arithmetic on it at all — it shows the price and the `discountPercent` **percentage** `apps/cms` sends, never a computed discounted amount, so it never has to invent a rounding rule that might disagree with whatever a future checkout computes.
 
 `discount_percent` and `stock` are plain PostgreSQL `integer`, deliberately not `numeric`: neither is money, and both are exact in floating point anyway (a 0–100 percentage and a unit count), so `numeric` there would add ceremony without closing any real gap.
 

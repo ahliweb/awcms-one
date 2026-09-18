@@ -2,7 +2,7 @@
  * Shipping address shape validation — Issue #29. Pure — no database, no I/O;
  * existence checks against `idn_admin_regions` are deliberately NOT done
  * here (this module snapshots the address text/codes the customer submits,
- * `sql/165`'s header — it does not join a live region dataset).
+ * `sql/913`'s header — it does not join a live region dataset).
  */
 export type ValidationError = { field: string; message: string };
 export type ValidationResult<T> =

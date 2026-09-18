@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:1e2a78bca31b387b52b5a40d3b350421bcaa5683b44d78d99ea16883ff6268b6 -->
+<!-- i18n-source-hash: sha256:547ee2755f4b0c321f16d8ed82954f04c3b3843088eb75a111ae50106e8943a8 -->
 
 # `commerce`
 
@@ -23,12 +23,14 @@ ulang harga di sisi server, pelacakan dan pembatalan order lewat `orderCode`
 | Aspek      | Nilai                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 | ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Key / type | `commerce` · `domain`, `isCore: false`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| Tabel      | `awcms_commerce_categories`, `awcms_commerce_products` (`sql/153`, diperluas `sql/156`), `awcms_commerce_product_images`, `awcms_commerce_product_variants` (`sql/157`); `awcms_commerce_flash_sales`, `awcms_commerce_flash_sale_products`, `awcms_commerce_vouchers`, `awcms_commerce_sliders`, `awcms_commerce_testimonials`, `awcms_commerce_popups` (`sql/161`), `awcms_commerce_store_settings` (`sql/162`); `awcms_commerce_customers`, `awcms_commerce_customer_addresses`, `awcms_commerce_orders`, `awcms_commerce_order_items`, `awcms_commerce_order_events`, `awcms_commerce_payment_confirmations`, `awcms_commerce_reviews`, `awcms_commerce_wishlists` (`sql/165`) |
-| Permission | `categories.{read,create,update,delete,restore}`, `products.{read,create,update,delete,restore}` (`sql/154`, `sql/158`); `{flash_sales,vouchers,sliders,testimonials,popups}.{read,create,update,delete}`, `settings.{read,update}` (`sql/163`); `orders.{read,update}`, `customers.{read,update}`, `reviews.{read,update,delete}` (`sql/166`, dengan sengaja tanpa create/delete untuk orders atau customers — lihat "Pelanggan, order, dan review" di bawah) — 39 total                                                                                                                                                                                                          |
+| Tabel      | `awcms_commerce_categories`, `awcms_commerce_products` (`sql/901`, diperluas `sql/904`), `awcms_commerce_product_images`, `awcms_commerce_product_variants` (`sql/905`); `awcms_commerce_flash_sales`, `awcms_commerce_flash_sale_products`, `awcms_commerce_vouchers`, `awcms_commerce_sliders`, `awcms_commerce_testimonials`, `awcms_commerce_popups` (`sql/909`), `awcms_commerce_store_settings` (`sql/910`); `awcms_commerce_customers`, `awcms_commerce_customer_addresses`, `awcms_commerce_orders`, `awcms_commerce_order_items`, `awcms_commerce_order_events`, `awcms_commerce_payment_confirmations`, `awcms_commerce_reviews`, `awcms_commerce_wishlists` (`sql/913`) |
+| Permission | `categories.{read,create,update,delete,restore}`, `products.{read,create,update,delete,restore}` (`sql/902`, `sql/906`); `{flash_sales,vouchers,sliders,testimonials,popups}.{read,create,update,delete}`, `settings.{read,update}` (`sql/911`); `orders.{read,update}`, `customers.{read,update}`, `reviews.{read,update,delete}` (`sql/914`, dengan sengaja tanpa create/delete untuk orders atau customers — lihat "Pelanggan, order, dan review" di bawah) — 39 total                                                                                                                                                                                                          |
 | API        | `/api/v1/commerce/{categories,products,flash-sales,vouchers,sliders,testimonials,popups,store-settings,orders,customers,reviews}` (sisi pemilik); `/api/v1/commerce/storefront/{cart/quote,orders,reviews}` (sisi anonim) (`openapi/modules/commerce.openapi.yaml`)                                                                                                                                                                                                                                                                                                                                                                                                                |
 | Event      | `commerce.product.{created,updated,status_changed}`; `commerce.flash_sale.{started,ended}` (Issue #26, dipancarkan job tick); `commerce.order.{created,paid,status_changed,cancelled,expired}`, `commerce.voucher.redeemed`, `commerce.review.published` (Issue #29)                                                                                                                                                                                                                                                                                                                                                                                                               |
 | Depends on | `tenant_admin`, `identity_access`, `domain_event_runtime`, `media_library` (gambar produk, slider, avatar testimoni, gambar popup, dan logo/favicon toko semuanya di-resolve lewat `MediaLibraryPort`), `module_management` (resolver tenant storefront anonim memeriksa modul ini aktif untuk tenant tersebut sebelum menjawab)                                                                                                                                                                                                                                                                                                                                                   |
 | Job        | `commerce:flash-sales:tick` (`scripts/commerce-flash-sales-tick.ts`, tiap 5 menit — menyimpan status turunan tiap sale dan memancarkan dua event flash sale); `commerce:orders:expire` (`scripts/commerce-orders-expire.ts`, tiap 5 menit — mengekspirasi order belum-bayar yang melewati jendela terkonfigurasi toko, me-restock lini pesanannya, dan memancarkan `commerce.order.expired`)                                                                                                                                                                                                                                                                                       |
+
+**Migrasi hidup di rentang cadangan `901`–`999`, bukan `001`–`899` milik upstream (issue #72, [ADR-0015](../../../../../docs/adr/0015-commerce-migrations-live-in-the-reserved-9xx-range.id.md) di awcms-one).** Enam belas migrasi asli modul ini, bernomor 153 sampai 168, bertabrakan dengan penomoran `ahliweb/awcms` upstream sendiri begitu ia mulai memakai nomor yang sama untuk migrasinya sendiri (`sql/153_awcms_blog_institution_logo.sql`, issue #59). Keenam belasnya diberi nomor ulang jadi `sql/901_awcms_commerce_schema.sql` sampai `sql/916_awcms_commerce_orders_expire_worker_write_grants.sql` (offset +748); migrasi commerce berikutnya adalah `917`. `tests/commerce-migrations-range.test.ts` menegakkan pemisahan ini dua arah. Basis data yang bermigrasi sebelum rename ini menjalankan `bun run db:commerce:renumber` sekali, sebelum `bun run db:migrate` berikutnya (`scripts/commerce-migrations-renumber.ts`).
 
 ## Apa yang ditambahkan Issue #23, dan apa yang masih peningkatan berikutnya
 
@@ -56,7 +58,7 @@ legacy. Issue #23 mengirimkan setiap field yang ditunda itu:
   `domain/size-chart.ts`, dipanggil dari validator create (terhadap nilai
   yang sudah di-default) maupun `updateProduct` (terhadap baris yang
   DIGABUNG dengan patch), dan dicerminkan sebagai `CHECK` kasar di
-  `sql/156`. `sizeChartMediaId` hanya divalidasi bentuk UUID-nya, tidak
+  `sql/904`. `sizeChartMediaId` hanya divalidasi bentuk UUID-nya, tidak
   diperiksa keberadaannya — lihat "Apa yang masih TIDAK diperiksa" di bawah.
 - **Form intake service**: `serviceForm` (`jsonb`,
   `domain/service-form-validation.ts`) — array deskriptor field
@@ -222,7 +224,7 @@ dilihat pembeli:
 | Voucher         | `/vouchers`, `/{id}`, `POST /vouchers/validate`                     | `GET /vouchers/public`                  | kode non-publik, yang nonaktif, kuota habis — kode privat tetap BERLAKU bila diketik                 |
 | Slider          | `/sliders`, `/{id}`                                                 | `GET /sliders/active`                   | baris nonaktif, baris di luar jendelanya; id media menjadi URL ter-resolve                           |
 | Testimoni       | `/testimonials`, `/{id}`                                            | `GET /testimonials/active`              | baris nonaktif                                                                                       |
-| Popup           | `/popups`, `/{id}`                                                  | `GET /popups/active` (satu atau `null`) | paling banyak SATU aktif per tenant — partial unique index (`sql/161`), bukan konvensi               |
+| Popup           | `/popups`, `/{id}`                                                  | `GET /popups/active` (satu atau `null`) | paling banyak SATU aktif per tenant — partial unique index (`sql/909`), bukan konvensi               |
 | Pengaturan toko | `GET`/`PUT`/`DELETE /store-settings`                                | `GET /store-settings/public`            | nomor dan pemilik rekening bank, id media QRIS, aturan diskon level pelanggan                        |
 
 **Aritmetika voucher eksak** (`domain/voucher-arithmetic.ts`): sen bulat,
@@ -242,7 +244,7 @@ transisi dan tidak pernah dua kali.
 **Pengaturan toko adalah satu dokumen `jsonb` berversi per tenant**
 (`domain/store-settings-validation.ts`, kunci tak dikenal ditolak, `PUT`
 adalah penggantian penuh). `DELETE` berarti "reset ke bawaan": ia mencap
-`deleted_at` alih-alih menghapus singleton (header `sql/162`), setiap pembaca
+`deleted_at` alih-alih menghapus singleton (header `sql/910`), setiap pembaca
 lalu menjawab dengan bawaan, dan `PUT` berikutnya menghapus capnya — itu pula
 yang membuat baris ini menjawab pertanyaan retensi dengan kolom sungguhan,
 bukan pengecualian. Proyeksi publik (`toPublicRecord` di
@@ -430,11 +432,11 @@ Issue #26 menambahkan `/admin/commerce-flash-sales`, `-vouchers`, `-sliders`,
   atau pelanggan yang dihapus dibuat ulang, bukan dikembalikan — jejak
   audit menyimpan catatannya. `order_code` adalah satu-satunya
   pengecualian dari "unik di antara baris hidup": indeks keunikannya TAK
-  PERNAH dibatasi pada `deleted_at IS NULL` (header `sql/165`), karena
+  PERNAH dibatasi pada `deleted_at IS NULL` (header `sql/913`), karena
   kode order harus tetap unik untuk tenant itu selamanya, bukan hanya
   selama order-nya masih hidup.
 - **Tidak ada ranking relevansi full-text pada `q`.** Pencocokan
-  trigram/`ILIKE` (`sql/159`) adalah pencarian substring, bukan indeks
+  trigram/`ILIKE` (`sql/907`) adalah pencarian substring, bukan indeks
   pencarian ber-ranking — `site_search` adalah modul pencarian
   lintas-konten base ini, dan `commerce` tidak berintegrasi dengannya di
   peningkatan ini.

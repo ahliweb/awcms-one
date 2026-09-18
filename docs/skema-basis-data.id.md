@@ -1,14 +1,14 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](skema-basis-data.md)
 
-<!-- i18n-source-hash: sha256:feaa4050fd0bc2115235ac09f85d3799069aeb56df3e157d5cb4d9722d2dd13a -->
+<!-- i18n-source-hash: sha256:5034f49312442a35dc289c1da675dd6fd1bffbae62d7b92f7ba16867cd8c12eb -->
 
 # Skema basis data
 
-Setiap tabel `awcms_commerce_*`: kolom, tipe, constraint, indeks, dan row-level security yang membatasi setiap query ke satu tenant. Sumber kebenaran adalah `apps/cms/sql/153_awcms_commerce_schema.sql` sampai `apps/cms/sql/168_awcms_commerce_orders_expire_worker_write_grants.sql` — enam belas migrasi, satu modul `commerce` (lihat [ADR-0008](adr/0008-one-commerce-module-carries-the-whole-store-not-three.id.md)) — plus [`apps/cms/src/modules/commerce/README.md`](../apps/cms/src/modules/commerce/README.id.md); dokumen ini menjelaskannya, tidak menggantikan membacanya.
+Setiap tabel `awcms_commerce_*`: kolom, tipe, constraint, indeks, dan row-level security yang membatasi setiap query ke satu tenant. Sumber kebenaran adalah `apps/cms/sql/901_awcms_commerce_schema.sql` sampai `apps/cms/sql/916_awcms_commerce_orders_expire_worker_write_grants.sql` — enam belas migrasi, satu modul `commerce` (lihat [ADR-0008](adr/0008-one-commerce-module-carries-the-whole-store-not-three.id.md)) — plus [`apps/cms/src/modules/commerce/README.md`](../apps/cms/src/modules/commerce/README.id.md); dokumen ini menjelaskannya, tidak menggantikan membacanya.
 
 ## Katalog: `awcms_commerce_categories`, `awcms_commerce_products`, `_product_images`, `_product_variants`
 
-### `awcms_commerce_categories` (`sql/153`, `+restored_at` di `sql/156`)
+### `awcms_commerce_categories` (`sql/901`, `+restored_at` di `sql/904`)
 
 Hierarkis, self-referencing.
 
@@ -22,11 +22,11 @@ Hierarkis, self-referencing.
 | `icon` | `text` | Nullable |
 | `created_at`/`updated_at` | `timestamptz NOT NULL DEFAULT now()` | |
 | `deleted_at` | `timestamptz` | Nullable — soft delete |
-| `restored_at` | `timestamptz` | Nullable, ditambahkan di `sql/156` — fakta "kapan" yang dibutuhkan `restore`, mengikuti preseden yang sudah dipakai `awcms_offices` |
+| `restored_at` | `timestamptz` | Nullable, ditambahkan di `sql/904` — fakta "kapan" yang dibutuhkan `restore`, mengikuti preseden yang sudah dipakai `awcms_offices` |
 
-**Indeks:** unik `(tenant_id, slug) WHERE deleted_at IS NULL`; `(tenant_id)`; `(tenant_id, deleted_at)`; `(parent_id)`; `(tenant_id, parent_id) WHERE deleted_at IS NULL` (`sql/159`).
+**Indeks:** unik `(tenant_id, slug) WHERE deleted_at IS NULL`; `(tenant_id)`; `(tenant_id, deleted_at)`; `(parent_id)`; `(tenant_id, parent_id) WHERE deleted_at IS NULL` (`sql/907`).
 
-### `awcms_commerce_products` (inti `sql/153` + kolom paritas BjekMart `sql/156`)
+### `awcms_commerce_products` (inti `sql/901` + kolom paritas BjekMart `sql/904`)
 
 | Kolom | Tipe | Catatan |
 | --- | --- | --- |
@@ -38,7 +38,7 @@ Hierarkis, self-referencing.
 | `name`, `slug` | `text NOT NULL` | `slug` unik per tenant di antara baris hidup |
 | `description`, `digital_note` | `text` | Nullable |
 | `price` | `numeric(14,2) NOT NULL` | `CHECK (price >= 0)` — lihat [ADR-0003](adr/0003-money-is-numeric-14-2-and-crosses-the-wire-as-a-string.id.md) |
-| `price_level_2`, `price_level_3`, `price_level_4` | `numeric(14,2)` | Nullable — harga bertingkat berdasarkan level pelanggan (`sql/156`) |
+| `price_level_2`, `price_level_3`, `price_level_4` | `numeric(14,2)` | Nullable — harga bertingkat berdasarkan level pelanggan (`sql/904`) |
 | `cost_price` | `numeric(14,2)` | Nullable, khusus admin — tidak pernah ada di model baca publik |
 | `discount_percent` | `integer NOT NULL DEFAULT 0` | `CHECK BETWEEN 0 AND 100` |
 | `stock` | `integer NOT NULL DEFAULT 0` | `CHECK (stock >= 0)` |
@@ -65,9 +65,9 @@ Hierarkis, self-referencing.
 | `created_at`/`updated_at` | `timestamptz NOT NULL DEFAULT now()` | |
 | `deleted_at`, `restored_at` | `timestamptz` | Nullable |
 
-**Indeks:** unik `(tenant_id, slug)`/`(tenant_id, sku)` keduanya `WHERE deleted_at IS NULL`; `(tenant_id)`; `(tenant_id, deleted_at)`; `(category_id)`; `(size_chart_media_id)`; indeks GIN trigram pada `name`/`sku` (`pg_trgm`, `sql/159`, mendukung filter substring `q` milik daftar owner); parsial `(tenant_id) WHERE deleted_at IS NULL AND is_featured/is_recommended = true`; `(tenant_id, price)`/`(tenant_id, name)` keduanya `WHERE deleted_at IS NULL`; `(tenant_id, status) WHERE deleted_at IS NULL`.
+**Indeks:** unik `(tenant_id, slug)`/`(tenant_id, sku)` keduanya `WHERE deleted_at IS NULL`; `(tenant_id)`; `(tenant_id, deleted_at)`; `(category_id)`; `(size_chart_media_id)`; indeks GIN trigram pada `name`/`sku` (`pg_trgm`, `sql/907`, mendukung filter substring `q` milik daftar owner); parsial `(tenant_id) WHERE deleted_at IS NULL AND is_featured/is_recommended = true`; `(tenant_id, price)`/`(tenant_id, name)` keduanya `WHERE deleted_at IS NULL`; `(tenant_id, status) WHERE deleted_at IS NULL`.
 
-### `awcms_commerce_product_images` / `awcms_commerce_product_variants` (`sql/157`)
+### `awcms_commerce_product_images` / `awcms_commerce_product_variants` (`sql/905`)
 
 | Tabel | Kolom kunci |
 | --- | --- |
@@ -76,7 +76,7 @@ Hierarkis, self-referencing.
 
 Keduanya: `id`/`tenant_id`/`created_at`/`updated_at`/`deleted_at` seperti biasa; RLS `ENABLE`+`FORCE`, kebijakan isolasi-tenant; indeks FK pada setiap kolom referensi.
 
-## Marketing: lima keluarga, plus pengaturan toko (`sql/161`–`162`)
+## Marketing: lima keluarga, plus pengaturan toko (`sql/909`–`sql/910`)
 
 | Tabel | Kolom kunci |
 | --- | --- |
@@ -90,7 +90,7 @@ Keduanya: `id`/`tenant_id`/`created_at`/`updated_at`/`deleted_at` seperti biasa;
 
 Keenamnya: `id`/`created_at`/`updated_at`/`deleted_at` standar, RLS `ENABLE`+`FORCE`, kebijakan isolasi-tenant, indeks FK.
 
-## Orders: delapan tabel (`sql/165`)
+## Orders: delapan tabel (`sql/913`)
 
 | Tabel | Kolom kunci | Catatan |
 | --- | --- | --- |
@@ -133,9 +133,9 @@ Kesembilan belas tabel commerce, masing-masing, opt-in ke mesin purge data-lifec
 
 Kesembilan belas tabel itu juga `unreachableBySubject: true` dalam deskriptor `subjectData` milik modul, `exportable: false`, `erasure: "retain_under_obligation"` — **termasuk tabel customer/address/order yang memegang PII tamu sungguhan.** Ini adalah pembacaan yang disengaja atas kosakata subject-data milik `apps/cms` (`SubjectDataColumn.references` adalah `"tenant_user" | "identity" | "profile" | "principal"` — semuanya konsep identitas sisi-staf), bukan kelalaian: tamu yang diidentifikasi hanya lewat nomor telepon yang diketik ke formulir checkout tidak punya satu pun dari itu. Permintaan erasure/export yang sungguhan ditangani sebagai lookup admin biasa (`GET`/`PATCH /api/v1/commerce/customers/{id}`), di luar cakupan mesin otomatis itu by construction — lihat [ADR-0009](adr/0009-guest-checkout-by-order-code-and-phone.id.md).
 
-## Izin (`sql/154`, `158`, `163`, `166`)
+## Izin (`sql/902`, `sql/906`, `sql/911`, `sql/914`)
 
-39 kunci total di empat area — lihat [`docs/cms.md`](cms.id.md) dan [`docs/api.md`](api.id.md) untuk tabel lengkapnya. Grant worker untuk `SELECT, DELETE` generik milik mesin purge data-lifecycle di-seed per tabel di `sql/155`/`160`/`164`/`167`; `sql/168` memberi privilese tulis tambahan yang lebih sempit (`UPDATE`/`INSERT` pada tabel tertentu) yang dibutuhkan `commerce:orders:expire` dan `commerce:flash-sales:tick` agar bisa berjalan sama sekali sebagai role `awcms_worker` yang least-privilege.
+39 kunci total di empat area — lihat [`docs/cms.md`](cms.id.md) dan [`docs/api.md`](api.id.md) untuk tabel lengkapnya. Grant worker untuk `SELECT, DELETE` generik milik mesin purge data-lifecycle di-seed per tabel di `sql/903`/`908`/`912`/`915`; `sql/916` memberi privilese tulis tambahan yang lebih sempit (`UPDATE`/`INSERT` pada tabel tertentu) yang dibutuhkan `commerce:orders:expire` dan `commerce:flash-sales:tick` agar bisa berjalan sama sekali sebagai role `awcms_worker` yang least-privilege.
 
 ## Sengaja tidak ada di skema ini
 

@@ -51,7 +51,7 @@ export const PRODUCT_LIST_LIMIT = 100;
 
 /**
  * `(tenant_id, slug)` is unique among LIVE products
- * (`awcms_commerce_products_tenant_slug_key`, `sql/153`).
+ * (`awcms_commerce_products_tenant_slug_key`, `sql/901`).
  */
 export class DuplicateProductSlugError extends Error {
   constructor(slug: string) {
@@ -62,7 +62,7 @@ export class DuplicateProductSlugError extends Error {
 
 /**
  * `(tenant_id, sku)` is unique among LIVE products
- * (`awcms_commerce_products_tenant_sku_key`, `sql/153`). A separate error type
+ * (`awcms_commerce_products_tenant_sku_key`, `sql/901`). A separate error type
  * from the slug collision above because they name different fields to the
  * caller — both are 409s, but a client needs to know WHICH value to change.
  */
@@ -193,7 +193,7 @@ type ProductRow = {
  * parity by Issue #23). `price`/`priceLevel2/3/4`/`finalPrice`/`insuranceFee`
  * stay the STRING `Bun.SQL` hands back for a `numeric` column — never
  * `Number(...)`'d (ADR-0003). `costPrice` is deliberately ABSENT — see
- * `ProductAdminRecord` below and `sql/156`'s header. No
+ * `ProductAdminRecord` below and `sql/904`'s header. No
  * `createdAt`/`updatedAt`/`deletedAt`/`restoredAt`: on the row for
  * auditing/soft-delete, deliberately outside the contract.
  */
@@ -882,7 +882,7 @@ export async function listDeletedProductsForAdmin(
  * Restores a soft-deleted product (Issue #23) — `office-directory.ts`'s
  * `restoreOffice` shape, adapted to this module's columns: no
  * `deleted_by`/`delete_reason`/`restored_by` (this module carries no
- * actor-stamp columns at all, `sql/153`'s header), so this only clears
+ * actor-stamp columns at all, `sql/901`'s header), so this only clears
  * `deleted_at` and stamps `restored_at`. Returns `null` when the id is
  * absent, in another tenant, or NOT currently soft-deleted (idempotent-safe:
  * a repeat restore is a "not found", never a silent no-op success).

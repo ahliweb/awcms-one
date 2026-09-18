@@ -15,7 +15,7 @@
  * form." Every anonymous route that accepts a phone number calls this before
  * storing or comparing it. Masking (`maskPhone`) is a separate, later step
  * applied only at the read/audit/log layer — never here, and never in
- * storage (`sql/165`'s header explains why `awcms_commerce_customers.phone`
+ * storage (`sql/913`'s header explains why `awcms_commerce_customers.phone`
  * itself is kept in the clear).
  */
 export type PhoneNormalisationResult =
