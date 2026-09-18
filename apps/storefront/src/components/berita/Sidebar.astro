@@ -1,0 +1,444 @@
+---
+/**
+ * The shared news sidebar (issue #49) — ported from seputarborneo.com's
+ * `include/sidebar.php`, which exists there for the same reason this file
+ * does: before it, the sidebar was copy-pasted across four detail pages and
+ * the home page and had already drifted. Here it replaces the one inline
+ * `<aside>` `/berita` had (issue #28) and gives every other news page —
+ * article, video, rubrik, tag, penulis, arsip, search — the SAME sidebar,
+ * in seputarborneo's own order:
+ *
+ *   1. the tabbed list, **Terbaru / Mitra Borneo**
+ *   2. `sidebar_top` (seputarborneo's `kiri-atas`, the MPU)
+ *   3. **Terpopuler** — this app's addition, see below
+ *   4. the Mitra Borneo directory box (`getMitraList()`, the same 24-item
+ *      list the footer renders, `src/lib/navigasi-berita.ts`)
+ *   5. `sidebar_middle` (`kiri-tengah`, the half-page)
+ *   6. the newsletter box (`FormBuletin variant="sidebar"`, issue #50)
+ *   7. `sidebar_bottom` (`kiri-bawah`)
+ *   8. the tag cloud, kept from issue #28's aside so `/tag/{slug}` stays
+ *      reachable from the front page (seputarborneo has no tag archive to
+ *      link to; this app does)
+ *
+ * Every ad slot is `IklanSlot.astro`, which renders NOTHING when the CMS
+ * has nothing booked for that key — "no empty box" (issue #49's acceptance)
+ * is inherited, not re-implemented here. The three sidebar keys are passed
+ * as literals rather than added to `src/lib/awcms/iklan.ts`'s `AD_SLOTS`
+ * (that file is issue #28's, outside this issue's ownership) — the same
+ * choice `FooterBerita.astro` made for `homepage_bottom`; every literal is
+ * still type-checked against `AdPlacementKey`.
+ *
+ * ## The tabs — both panels in the HTML, first shown without JS
+ *
+ * The real WAI-ARIA tabs pattern (`role="tablist"`/`tab`/`tabpanel`,
+ * `aria-selected`, `aria-controls`, roving `tabindex`, Left/Right/Home/End
+ * keys), with BOTH panels server-rendered and the second merely `hidden`.
+ * Without JavaScript the "Terbaru" panel shows and the buttons are inert —
+ * exactly seputarborneo's own no-JS behaviour — and the Mitra Borneo
+ * content is still reachable: the directory box below the first ad slot
+ * links every institution's own `/mitra/{slug}` page, which lists the same
+ * posts. The `<script>` below is an ordinary Astro-bundled external module
+ * (never inline — `script-src 'self'`, `server/penyaji.mjs`) and touches
+ * only `aria-selected`/`tabindex`/`hidden`; `tests/sidebar-build-smoke.test.ts`
+ * asserts the built HTML carries both panels.
+ *
+ * ## "Terpopuler" is REAL now — with a silent fallback
+ *
+ * `getTopPaths()` (`src/lib/awcms/analitik.ts`, `GET /api/v1/analytics/
+ * pages?range=7d`) ranks every post by the last seven days' human
+ * pageviews; `pilihTerpopuler` tops the list up with the newest posts, and
+ * degrades to exactly issue #28's "latest" list when the module is off, the
+ * credential lacks `visitor_analytics.dashboard.read`, or there is no
+ * traffic yet — with no caveat in the UI, on purpose (that file's own
+ * header explains why). It sits AFTER the first ad slot, not stacked
+ * directly under the Terbaru tab: two news lists back-to-back read as one
+ * long list, and seputarborneo's own design puts the MPU right after the
+ * tabbed list for the same reason. The ranking sees only the tenant-wide
+ * top 50 paths the route returns — `src/lib/awcms/analitik.ts`'s header
+ * spells out what that means for a post ranked 51st overall.
+ *
+ * ## The newsletter box is the SECOND form on most pages
+ *
+ * `BeritaLayout.astro` mounts `FormBuletin variant="footer"` in the footer
+ * of every news page, so a page with this sidebar carries two subscribe
+ * forms — as seputarborneo does. `src/scripts/buletin.ts`'s
+ * `wireBuletinForms` (mounted once by that layout) wires every
+ * `[data-buletin-form]` with its own state, so both work; `FormBuletin`'s
+ * own `idPrefix` (`buletin-sidebar` here, `buletin-footer` there) keeps
+ * their `id`/`for` pairs distinct. The section's own `id` is a plain
+ * in-page anchor.
+ *
+ * ## Styles are component-scoped, and that is safe under this app's CSP
+ *
+ * `src/styles/berita.css`/`berita-chrome.css` are issue #28's/#48's files,
+ * outside this issue's ownership, so the sidebar's own rules live in the
+ * `<style>` block below. `astro.config.mjs`'s `inlineStylesheets: "never"`
+ * writes a component-scoped style out as an external file exactly like a
+ * global one (that option's own docblock names component styles
+ * explicitly), so the served `style-src 'self'` policy is unaffected — the
+ * build smoke tests' "no inline `<style>`" assertion covers this page family
+ * either way. Children this component renders (`IklanSlot`, `FormBuletin`,
+ * `TagCloud`) keep their own global classes; only `:global()` reaches into
+ * `FormBuletin`'s root, to stack the form vertically in a 300px column.
+ */
+import IklanSlot from "./IklanSlot.astro";
+import FormBuletin from "./FormBuletin.astro";
+import TagCloud from "./TagCloud.astro";
+import { ROUTES } from "../../config/routes";
+import { formatTanggalPanjangWIB, toDatetimeAttr } from "../../lib/tanggal";
+import { getPosts, getVideo, getTags, type PostSummary } from "../../lib/berita";
+import { getMitraList } from "../../lib/navigasi-berita";
+import { getTopPaths, hitungTayangPerSlug, pilihTerpopuler } from "../../lib/awcms/analitik";
+
+/** seputarborneo's own sizes: `seputarborneo_fetch_news_latest($db, 8, …)` / `…_by_rubrik($db, 'MITRA BORNEO', 6)`. */
+const TERBARU_LIMIT = 8;
+const MITRA_LIMIT = 6;
+const TERPOPULER_LIMIT = 5;
+
+interface Props {
+  /**
+   * How many of the newest posts the "Terbaru" tab skips — seputarborneo's
+   * `$sb_sidebar_offset`, which its home page sets so the sidebar does not
+   * repeat the headline already on screen. `/berita` passes `1` (its
+   * headline block is the single newest post); every other page keeps `0`.
+   */
+  terbaruOffset?: number;
+}
+
+const { terbaruOffset = 0 } = Astro.props;
+
+const [posts, video, tags, mitraList, topPaths] = await Promise.all([
+  getPosts(),
+  getVideo(),
+  getTags(),
+  getMitraList(),
+  getTopPaths()
+]);
+
+// Newest-first across both routes — `getPosts()`/`getVideo()` are each
+// already newest-first, so this is a merge, not a re-derivation of order.
+const semuaPost: PostSummary[] = [...posts, ...video].sort((a, b) =>
+  b.publishedAt.localeCompare(a.publishedAt)
+);
+
+const terbaru = posts.slice(Math.max(0, terbaruOffset), Math.max(0, terbaruOffset) + TERBARU_LIMIT);
+
+// "Mitra Borneo" here is a post carrying at least one institution —
+// `src/lib/berita.ts`'s file header: a post reaches an institution only
+// through `institutionIds`, and seputarborneo's own `MITRA BORNEO` rubrik is
+// that same classification (`src/lib/navigasi-berita.ts`'s RUBRIK_UTAMA
+// note: Daerah/Mitra Borneo/Umum are a separate classification, never one of
+// the five editorial rubrik).
+const mitraPosts = semuaPost.filter((post) => post.institutions.length > 0).slice(0, MITRA_LIMIT);
+
+// Ranked over every post (a video post's own `/video/{slug}` counts too);
+// the top-up/fallback list is `posts` — the exact list the pre-#49
+// `getTerpopuler()` rendered.
+const terpopuler = pilihTerpopuler(semuaPost, posts, hitungTayangPerSlug(topPaths), TERPOPULER_LIMIT);
+
+const hrefFor = (post: PostSummary): string =>
+  post.isVideo ? ROUTES.videoArticle(post.slug) : ROUTES.article(post.slug);
+---
+
+<aside class="sidebar sisi" aria-label="Bilah samping berita">
+  <section class="sisi-widget" data-sisi-tab aria-label="Daftar berita">
+    <div class="sisi-tab" role="tablist" aria-label="Daftar berita bilah samping">
+      <button
+        class="sisi-tab__tombol"
+        type="button"
+        role="tab"
+        id="sisi-tab-terbaru"
+        aria-controls="sisi-panel-terbaru"
+        aria-selected="true"
+        tabindex="0"
+      >
+        Terbaru
+      </button>
+      <button
+        class="sisi-tab__tombol"
+        type="button"
+        role="tab"
+        id="sisi-tab-mitra"
+        aria-controls="sisi-panel-mitra"
+        aria-selected="false"
+        tabindex="-1"
+      >
+        Mitra Borneo
+      </button>
+    </div>
+
+    <div class="sisi-panel" id="sisi-panel-terbaru" role="tabpanel" aria-labelledby="sisi-tab-terbaru" tabindex="0">
+      {terbaru.length === 0 ? (
+        <p class="sisi-kosong">Belum ada berita untuk ditampilkan.</p>
+      ) : (
+        <ol class="sisi-daftar">
+          {terbaru.map((post) => (
+            <li>
+              <a href={hrefFor(post)}>
+                {post.rubric && <span class="sisi-daftar__rubrik">{post.rubric.name}</span>}
+                <span class="sisi-daftar__judul">{post.title}{post.isVideo && <span class="visually-hidden"> (video)</span>}</span>
+                <time class="sisi-daftar__waktu" datetime={toDatetimeAttr(post.publishedAt)}>{formatTanggalPanjangWIB(post.publishedAt)}</time>
+              </a>
+            </li>
+          ))}
+        </ol>
+      )}
+    </div>
+
+    <div class="sisi-panel" id="sisi-panel-mitra" role="tabpanel" aria-labelledby="sisi-tab-mitra" tabindex="0" hidden>
+      {mitraPosts.length === 0 ? (
+        <p class="sisi-kosong">Belum ada rilis dari Mitra Borneo.</p>
+      ) : (
+        <ol class="sisi-daftar">
+          {mitraPosts.map((post) => (
+            <li>
+              <a href={hrefFor(post)}>
+                {post.institutions[0] && <span class="sisi-daftar__rubrik">{post.institutions[0].name}</span>}
+                <span class="sisi-daftar__judul">{post.title}{post.isVideo && <span class="visually-hidden"> (video)</span>}</span>
+                <time class="sisi-daftar__waktu" datetime={toDatetimeAttr(post.publishedAt)}>{formatTanggalPanjangWIB(post.publishedAt)}</time>
+              </a>
+            </li>
+          ))}
+        </ol>
+      )}
+    </div>
+  </section>
+
+  <IklanSlot placement="sidebar_top" />
+
+  {terpopuler.length > 0 && (
+    <section class="sisi-widget" aria-labelledby="sisi-terpopuler-judul">
+      <h2 id="sisi-terpopuler-judul" class="sisi-judul">Terpopuler</h2>
+      <ol class="sisi-daftar sisi-daftar--bernomor">
+        {terpopuler.map((post) => (
+          <li>
+            <a href={hrefFor(post)}>
+              <span class="sisi-daftar__judul">{post.title}{post.isVideo && <span class="visually-hidden"> (video)</span>}</span>
+              <time class="sisi-daftar__waktu" datetime={toDatetimeAttr(post.publishedAt)}>{formatTanggalPanjangWIB(post.publishedAt)}</time>
+            </a>
+          </li>
+        ))}
+      </ol>
+    </section>
+  )}
+
+  {mitraList.length > 0 && (
+    <section class="sisi-widget sisi-mitra" aria-labelledby="sisi-mitra-judul">
+      <h2 id="sisi-mitra-judul" class="sisi-judul">Mitra Borneo</h2>
+      <p class="sisi-teks">Rilis resmi dan agenda dari pemerintah kabupaten/kota serta DPRD di Kalimantan Tengah, terpisah dari alur redaksi.</p>
+      <ul class="sisi-mitra__daftar">
+        {mitraList.map((mitra) => (
+          <li><a href={mitra.href}>{mitra.name}</a></li>
+        ))}
+      </ul>
+    </section>
+  )}
+
+  <IklanSlot placement="sidebar_middle" />
+
+  <section class="sisi-widget sisi-buletin" id="buletin-sidebar" aria-labelledby="sisi-buletin-judul">
+    <h2 id="sisi-buletin-judul" class="sisi-judul">Buletin Pagi</h2>
+    <p class="sisi-teks">Ringkasan berita Kalimantan Tengah setiap pagi, langsung ke email Anda.</p>
+    <FormBuletin variant="sidebar" />
+  </section>
+
+  <IklanSlot placement="sidebar_bottom" />
+
+  {tags.length > 0 && (
+    <section class="sisi-widget" aria-labelledby="sisi-tag-judul">
+      <h2 id="sisi-tag-judul" class="sisi-judul">Tag</h2>
+      <TagCloud tags={tags} ariaLabel="Tag populer" />
+    </section>
+  )}
+</aside>
+
+<style>
+  .sisi-widget {
+    margin-bottom: 2rem;
+  }
+
+  .sisi-judul {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .sisi-teks {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .sisi-kosong {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    padding-block: 0.75rem;
+  }
+
+  /* --- Tabs ------------------------------------------------------------- */
+
+  .sisi-tab {
+    display: flex;
+    border-bottom: 2px solid var(--border-color);
+    margin-bottom: 0.5rem;
+  }
+
+  .sisi-tab__tombol {
+    flex: 1 1 auto;
+    min-height: 44px;
+    padding: 0.5rem 0.75rem;
+    border: 0;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    background: none;
+    color: var(--text-secondary);
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  .sisi-tab__tombol[aria-selected="true"] {
+    color: var(--text-primary);
+    border-bottom-color: var(--color-primary, #10b981);
+  }
+
+  /* --- Compact post lists (Terbaru / Mitra Borneo / Terpopuler) --------- */
+
+  .sisi-daftar {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    counter-reset: sisi-nomor;
+  }
+
+  .sisi-daftar > li {
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .sisi-daftar > li:last-child {
+    border-bottom: 0;
+  }
+
+  .sisi-daftar a {
+    display: grid;
+    gap: 0.15rem;
+    padding-block: 0.6rem;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .sisi-daftar a:hover .sisi-daftar__judul {
+    text-decoration: underline;
+  }
+
+  .sisi-daftar--bernomor > li {
+    counter-increment: sisi-nomor;
+  }
+
+  .sisi-daftar--bernomor a {
+    grid-template-columns: 2rem minmax(0, 1fr);
+  }
+
+  .sisi-daftar--bernomor a::before {
+    content: counter(sisi-nomor);
+    grid-row: 1 / span 2;
+    font-size: 1.5rem;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--color-primary, #10b981);
+  }
+
+  .sisi-daftar__rubrik {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-primary, #10b981);
+  }
+
+  .sisi-daftar__judul {
+    font-weight: 600;
+    line-height: 1.35;
+  }
+
+  .sisi-daftar__waktu {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+
+  /* --- Mitra Borneo directory ------------------------------------------ */
+
+  .sisi-mitra {
+    padding: 1rem;
+    border-radius: var(--radius-md);
+    background: var(--bg-subtle);
+  }
+
+  .sisi-mitra__daftar {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(140px, 100%), 1fr));
+    gap: 0.3rem 0.75rem;
+    font-size: 0.9rem;
+  }
+
+  /* --- Newsletter box --------------------------------------------------- */
+
+  .sisi-buletin {
+    padding: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+  }
+
+  .sisi-buletin :global(.buletin-form--sidebar) {
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  .sisi-buletin :global(.buletin-form--sidebar .toko-field) {
+    margin-bottom: 0;
+  }
+</style>
+
+<script>
+  /**
+   * Ported from `js/main.js`'s tab block in seputarborneo, extended with the
+   * WAI-ARIA tabs keyboard contract (Left/Right cycle, Home/End jump, roving
+   * `tabindex`) — see this file's docblock for why both panels are already
+   * in the HTML and nothing here creates content.
+   */
+  function initSisiTab(): void {
+    for (const grup of document.querySelectorAll<HTMLElement>("[data-sisi-tab]")) {
+      const tombol = [...grup.querySelectorAll<HTMLButtonElement>('[role="tab"]')];
+      if (tombol.length === 0) continue;
+
+      function pilih(aktif: HTMLButtonElement, fokus: boolean): void {
+        for (const btn of tombol) {
+          const panel = document.getElementById(btn.getAttribute("aria-controls") ?? "");
+          const terpilih = btn === aktif;
+          btn.setAttribute("aria-selected", terpilih ? "true" : "false");
+          btn.tabIndex = terpilih ? 0 : -1;
+          if (panel) panel.hidden = !terpilih;
+        }
+        if (fokus) aktif.focus();
+      }
+
+      tombol.forEach((btn, index) => {
+        btn.addEventListener("click", () => pilih(btn, false));
+        btn.addEventListener("keydown", (event) => {
+          let tujuan: number | null = null;
+          if (event.key === "ArrowRight") tujuan = (index + 1) % tombol.length;
+          else if (event.key === "ArrowLeft") tujuan = (index - 1 + tombol.length) % tombol.length;
+          else if (event.key === "Home") tujuan = 0;
+          else if (event.key === "End") tujuan = tombol.length - 1;
+          if (tujuan === null) return;
+          event.preventDefault();
+          pilih(tombol[tujuan]!, true);
+        });
+      });
+    }
+  }
+
+  initSisiTab();
+</script>

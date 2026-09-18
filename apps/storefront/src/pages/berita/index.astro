@@ -3,36 +3,76 @@
  * `/berita` — the news front page (issue #28): a headline block (latest
  * post), one section per top-level rubrik with its 4 latest posts and an
  * "Indeks →" link, a video strip, a "Mitra" strip (institutions with posts
- * this month), and a sidebar (terpopuler, tags cloud).
+ * this month), and the shared sidebar (`Sidebar.astro`, issue #49 —
+ * Terbaru/Mitra Borneo tabs, Terpopuler, the three sidebar ad slots, the
+ * newsletter box, the tag cloud; this page's own inline `<aside>` is gone).
  *
  * Composed directly from `getPosts()`/`getRubrikTree()`/`getVideo()`/
- * `getMitraStripBulanIni()`/`getTerpopuler()`/`getTags()` rather than the
- * CMS's `news-portal/homepage-sections/composed` endpoint — see
+ * `getMitraStripBulanIni()` rather than the CMS's
+ * `news-portal/homepage-sections/composed` endpoint — see
  * `src/lib/awcms/blog.ts`'s file header for why that endpoint's section
  * vocabulary cannot express this page's actual shape.
+ *
+ * ## Homepage ad slots — seputarborneo's own order (issue #49)
+ *
+ * seputarborneo `index.php` (v2.3.3+) renders its banners `atas` →
+ * pilihan → `tengah-tengah` → feature → `bawah-tengah` → Liputan Video →
+ * footer. Mapped onto the CMS's verified `AD_PLACEMENT_KEYS`
+ * (`src/lib/awcms/blog.ts`), in the main column:
+ *
+ *   - `below_headline` (`atas`) right after the headline block;
+ *   - `homepage_middle` (`tengah-tengah`) after the FIRST THREE rubrik
+ *     sections (seputarborneo's `pilihan` block is its first grid of
+ *     sections; three is where its `tengah-tengah` banner falls);
+ *   - `homepage_bottom` (`bawah-tengah`) after the remaining sections and
+ *     BEFORE the video strip.
+ *
+ * `homepage_bottom` is ALSO the key `FooterBerita.astro` (issue #48,
+ * decision 4 of epic #46) reuses for the leaderboard above the footer,
+ * rather than inventing a footer key upstream does not have — so on this
+ * page a `homepage_bottom` creative renders twice, once before the video
+ * strip and once above the footer. That is issue #49's explicit mapping,
+ * not an accident; a dedicated footer key is an upstream change, tracked
+ * there. The keys are passed as literals here (`IklanSlot`'s `placement`
+ * prop type-checks them against `AdPlacementKey`) because
+ * `src/lib/awcms/iklan.ts`'s `AD_SLOTS` is issue #28's file — the same
+ * choice `FooterBerita.astro` made.
  */
 import BeritaLayout from "../../layouts/BeritaLayout.astro";
 import ArtikelCard from "../../components/berita/ArtikelCard.astro";
-import TagCloud from "../../components/berita/TagCloud.astro";
 import IklanSlot from "../../components/berita/IklanSlot.astro";
+import Sidebar from "../../components/berita/Sidebar.astro";
 import { ROUTES } from "../../config/routes";
-import { getPosts, getRubrikTree, getVideo, getMitraStripBulanIni, getTerpopuler, getTags } from "../../lib/berita";
+import { getPosts, getRubrikTree, getVideo, getMitraStripBulanIni, flattenRubrikTree } from "../../lib/berita";
 import { AD_SLOTS } from "../../lib/awcms/iklan";
+
+/** How many rubrik sections render above `homepage_middle` — see this file's docblock. */
+const SECTIONS_BEFORE_MIDDLE = 3;
 
 const posts = await getPosts();
 const [headline, ...rest] = posts;
 const rubrikTree = await getRubrikTree();
 const video = await getVideo({ limit: 4 });
 const mitraAktif = await getMitraStripBulanIni();
-const terpopuler = await getTerpopuler(5);
-const tags = await getTags();
 
+// A top-level rubrik's section includes posts filed under ANY of its
+// descendants (issue #49) — the same walk `/rubrik/{slug}` already does
+// (`getRubrik()`'s "the parent index includes every child rubrik's posts").
+// Before this, a post filed straight into a grandchild rubrik (Hukum >
+// Pidana, say) reached the front page only through the old aside's
+// "Terpopuler" cards, never through its own rubrik's section.
 const rubrikSections = rubrikTree
-  .map((rubrik) => ({
-    rubrik,
-    posts: rest.filter((p) => p.rubric?.slug === rubrik.slug).slice(0, 4)
-  }))
+  .map((rubrik) => {
+    const slugs = new Set(flattenRubrikTree([rubrik]).map((node) => node.slug));
+    return {
+      rubrik,
+      posts: rest.filter((p) => p.rubric !== null && slugs.has(p.rubric.slug)).slice(0, 4)
+    };
+  })
   .filter((section) => section.posts.length > 0);
+
+const sectionsAtas = rubrikSections.slice(0, SECTIONS_BEFORE_MIDDLE);
+const sectionsBawah = rubrikSections.slice(SECTIONS_BEFORE_MIDDLE);
 ---
 
 <BeritaLayout title="Berita" description="Berita terbaru." canonicalPath={ROUTES.news}>
@@ -58,7 +98,7 @@ const rubrikSections = rubrikTree
 
           <IklanSlot placement={AD_SLOTS.belowHeadline} />
 
-          {rubrikSections.map((section) => (
+          {sectionsAtas.map((section) => (
             <section class="rubrik-section" aria-labelledby={`rubrik-${section.rubrik.slug}`}>
               <div class="rubrik-section-header">
                 <h2 id={`rubrik-${section.rubrik.slug}`}>{section.rubrik.name}</h2>
@@ -69,6 +109,22 @@ const rubrikSections = rubrikTree
               </ul>
             </section>
           ))}
+
+          <IklanSlot placement="homepage_middle" />
+
+          {sectionsBawah.map((section) => (
+            <section class="rubrik-section" aria-labelledby={`rubrik-${section.rubrik.slug}`}>
+              <div class="rubrik-section-header">
+                <h2 id={`rubrik-${section.rubrik.slug}`}>{section.rubrik.name}</h2>
+                <a class="rubrik-index-link" href={ROUTES.rubric(section.rubrik.slug)}>Indeks &rarr;</a>
+              </div>
+              <ul class="grid-cards">
+                {section.posts.map((post) => <ArtikelCard post={post} />)}
+              </ul>
+            </section>
+          ))}
+
+          <IklanSlot placement="homepage_bottom" />
 
           {video.length > 0 && (
             <section class="rubrik-section" aria-labelledby="rubrik-video">
@@ -99,25 +155,8 @@ const rubrikSections = rubrikTree
           )}
         </div>
 
-        <aside class="sidebar">
-          {terpopuler.length > 0 && (
-            <section>
-              <h2>Terpopuler</h2>
-              <ul class="archive-list">
-                {terpopuler.map((post) => <ArtikelCard post={post} />)}
-              </ul>
-            </section>
-          )}
-
-          {tags.length > 0 && (
-            <section>
-              <h2>Tag</h2>
-              <TagCloud tags={tags} ariaLabel="Tag populer" />
-            </section>
-          )}
-
-          <IklanSlot placement={AD_SLOTS.sidebar} />
-        </aside>
+        {/* `terbaruOffset={1}`: the headline block above is the single newest post — seputarborneo's `$sb_sidebar_offset`. */}
+        <Sidebar terbaruOffset={1} />
       </div>
     )}
   </div>

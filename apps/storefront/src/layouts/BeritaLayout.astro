@@ -29,17 +29,40 @@
  * (`identityCache`), so this costs no second network request, the same way
  * `Ticker.astro`/`BilahUtilitas.astro`/`FooterBerita.astro` already fetch
  * their own data independently rather than receiving it from a parent.
+ *
+ * ## The footer newsletter box (issue #49)
+ *
+ * `FooterBerita.astro`'s `<slot name="buletin" />` is filled from HERE, for
+ * every news page, with issue #50's `<FormBuletin variant="footer" />` —
+ * and its script, `src/scripts/buletin.ts`, is mounted from here too, once,
+ * so the footer form works on every news page without each page importing
+ * it. On a page that also renders `src/components/berita/Sidebar.astro`
+ * the form therefore appears TWICE — the sidebar's box and the footer's —
+ * exactly as seputarborneo renders it (`sidebar.php` and
+ * `layout_footer.php` each carry one). That is safe only because
+ * `buletin.ts`'s `wireBuletinForms` wires EVERY `[data-buletin-form]` on
+ * the page with its own state (an earlier `document.querySelector` version
+ * wired the first form only, which would have left the footer's form
+ * submitting nowhere — see that function's own docblock, and
+ * `tests/buletin-forms.test.ts`).
+ *
+ * `toko.css` is imported here for the form's `.toko-field`/`.toko-field-
+ * hint`/`.toko-banner` classes — the same stylesheet `/buletin` and the
+ * two token pages already import for the identical markup; 3 kB, every
+ * selector class-scoped, no effect on anything else on a news page.
  */
 import BaseLayout from "./BaseLayout.astro";
 import BilahUtilitas from "../components/berita/BilahUtilitas.astro";
 import NavBerita from "../components/berita/NavBerita.astro";
 import Ticker from "../components/berita/Ticker.astro";
 import FooterBerita from "../components/berita/FooterBerita.astro";
+import FormBuletin from "../components/berita/FormBuletin.astro";
 import { getSiteIdentity } from "../lib/awcms/profil";
 import { resolveOneMedia } from "../lib/awcms/media";
 import { listingSocialMeta, type MetaTag, type OgType } from "../lib/meta-sosial";
 import "../styles/berita.css";
 import "../styles/berita-chrome.css";
+import "../styles/toko.css";
 import "../styles/iklan-popup.css";
 
 interface Props {
@@ -96,14 +119,27 @@ const meta: readonly MetaTag[] =
   <slot />
 
   {/*
+    Issue #50's newsletter script, mounted once for every news page — placed
+    INSIDE the default slot (not after `</BaseLayout>`, which would render
+    the module tag after `</html>`); Astro bundles it as an external module
+    wherever the tag sits, and it wires every subscribe form on the page.
+  */}
+  <script>
+    import "../scripts/buletin";
+  </script>
+
+  {/*
     Transferring a slot: `<slot name="buletin" />` receives whatever this
-    layout's OWN caller passed as `<Fragment slot="buletin">` (issue #50's
-    form), and `slot="buletin"` on that same element re-targets it into
+    layout's OWN caller passed as `<Fragment slot="buletin">`, and
+    `slot="buletin"` on that same element re-targets it into
     `FooterBerita.astro`'s own `<slot name="buletin" />` — Astro's documented
-    "transferring slots" pattern, one line, no extra prop needed.
+    "transferring slots" pattern. Its FALLBACK content (issue #49) is what
+    every page actually gets today: the footer form.
   */}
   <FooterBerita identity={identity} slot="footer">
-    <slot name="buletin" slot="buletin" />
+    <slot name="buletin" slot="buletin">
+      <FormBuletin variant="footer" />
+    </slot>
   </FooterBerita>
 </BaseLayout>
 

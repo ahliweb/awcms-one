@@ -59,7 +59,7 @@ Two files exist specifically to prove this rule holds without a live CMS:
 | `/manifest.webmanifest` | Web app manifest | site identity + theme + bundled favicon |
 | `/theme-tokens.css` | Build-time-generated `--color-primary/secondary/accent` stylesheet | `GET /theming/{tenantCode}/tokens.css` |
 | `/product-labels.css` | Build-time-generated per-product badge-color stylesheet | derived from the catalog fetch |
-| `/berita`, `/berita/{slug}`, `/berita/feed.xml` | News front page, article detail (with the issue-#51 share row — see "Article share row" below), RSS 2.0 (issue #28) | `GET /api/v1/blog/posts`/`terms`/`institutions` |
+| `/berita`, `/berita/{slug}`, `/berita/feed.xml` | News front page, article detail (with the issue-#51 share row — see "Article share row" below), RSS 2.0 (issue #28); shared sidebar with a real "Terpopuler" (issue #49) | `GET /api/v1/blog/posts`/`terms`/`institutions` |
 | `/rubrik/{slug}`, `/rubrik/{slug}/halaman/{n}`, `/rubrik/{slug}/feed.xml` | Hierarchical rubrik (category) archive + pagination + feed | same as above |
 | `/daerah/{slug}` | Region archive, reached via an institution's `regionCode` | `GET /api/v1/blog/institutions`, `/api/v1/idn-regions/regions` |
 | `/mitra/{slug}` | Institution ("Mitra") landing | `GET /api/v1/blog/institutions` |
@@ -156,8 +156,12 @@ issue was implemented under asks:
    issue's file ownership) has no mechanism for a page to add extra
    `<meta>`/`<link>` tags. The same publish/update timestamps are present,
    machine-readable, in every article's `NewsArticle` JSON-LD.
-3. **"Terpopuler" is always "latest", never a `visitor_analytics` rollup.**
-   No such endpoint was part of this issue's verified-safe read scope.
+3. **RESOLVED by issue #49** — see "News sidebar and homepage ad slots
+   (issue #49)" below: "Terpopuler" is now ranked from `visitor_analytics`'s
+   own `GET /api/v1/analytics/pages` and degrades to "latest" only when that
+   module answers nothing. Issue #28's original reason (no such endpoint was
+   in its verified-safe read scope) is kept here as the honest explanation
+   of why increment 2 shipped it as "latest".
 4. **No footer ad slot.** The verified `AD_PLACEMENT_KEYS`
    (`apps/storefront/src/lib/awcms/blog.ts`) has header/in-article/sidebar
    slots and no footer one at all.
@@ -253,6 +257,84 @@ every origin it adds. `apps/storefront/server/penyaji.mjs`'s `buildCsp`/
 already do `imgSrc`/`connectSrc` — the served `Content-Security-Policy`
 widens `frame-src` to exactly the facade's origin on a build with a video
 post, and stays `frame-src 'none'` otherwise.
+
+## News sidebar and homepage ad slots (issue #49)
+
+`apps/storefront/src/components/berita/Sidebar.astro` is the ONE sidebar every
+news page with a side column renders — `/berita`, `/berita/{slug}`,
+`/video`, `/video/{slug}`, `/rubrik/**`, `/tag/{slug}`, `/penulis/{slug}`,
+`/arsip/{yyyy}/{mm}`, `/cari-berita` — replacing the inline `<aside>` only
+`/berita` used to have. Ported from seputarborneo's `include/sidebar.php`
+and in its order: the tabbed **Terbaru / Mitra Borneo** list, `sidebar_top`,
+**Terpopuler** (this app's own addition, below), the Mitra Borneo directory
+box (the same 24-institution list the footer renders), `sidebar_middle`,
+the newsletter box (`FormBuletin variant="sidebar"`, issue #50),
+`sidebar_bottom`, then the tag cloud kept from issue #28 so `/tag/{slug}`
+stays reachable from the front page. `/daerah/{slug}` and `/mitra/{slug}`
+keep their full-width layout and have no sidebar.
+
+- **The tabs are the real WAI-ARIA pattern, and both panels are in the
+  HTML.** `role="tablist"`/`tab`/`tabpanel`, `aria-selected`, roving
+  `tabindex`, Left/Right/Home/End keys; the Mitra Borneo panel ships
+  server-rendered with `hidden`. Without JavaScript the Terbaru panel shows
+  and the buttons are inert — seputarborneo's own no-JS behaviour — and the
+  Mitra content stays reachable through the directory box's `/mitra/{slug}`
+  links. The tab script is an ordinary Astro-bundled external module.
+- **Every sidebar slot, and every homepage slot, is `IklanSlot.astro`** —
+  nothing renders for a key with nothing booked (no empty box). The
+  homepage's slots follow seputarborneo `index.php`'s order, mapped onto the
+  CMS's verified keys: `below_headline` right after the headline block,
+  `homepage_middle` after the first three rubrik sections, `homepage_bottom`
+  after the remaining sections and BEFORE the video strip. `homepage_bottom`
+  is also the key `FooterBerita.astro` (issue #48) reuses for its
+  leaderboard, so on `/berita` that creative renders twice — issue #49's
+  explicit mapping, recorded rather than hidden; a dedicated footer key is
+  an upstream `blog_content` change.
+- **"Terpopuler" is real.** `apps/storefront/src/lib/awcms/analitik.ts` reads
+  `GET /api/v1/analytics/pages?range=7d` (`apps/cms/src/pages/api/v1/analytics/pages.ts`,
+  permission `visitor_analytics.dashboard.read` — added by name to the
+  seed's storefront token permission set, `tools/seed-borneojek-mart.ts`'s
+  `MACHINE_CREDENTIAL_PERMISSION_KEYS`; **that changes the credential's
+  scope, so the seed's scope-reconcile (issue #57) revokes and reissues the
+  live storefront credential on its next run against an already-seeded
+  tenant — a build still holding the previous `AWCMS_API_TOKEN` gets `401`
+  from then on and must be given the newly printed token**), folds every `path_sanitized`
+  variant of one post (`/berita/x` and `/berita/x?utm_source=…` are separate
+  rows in that route's answer — `sanitizePath` strips only SENSITIVE query
+  parameters) into one count per slug, ranks every post by it and tops the
+  list up with the newest posts. The route returns the tenant-wide top 50
+  paths with no limit parameter — store pages and indexes included — so a
+  post ranked 51st or lower overall is invisible to the ranking and loses
+  its place to a zero-view post the top-up reaches first. A `403`/`404` (module off — it is off by
+  default, see `docs/deployment.md`'s "The two switches" — credential
+  minted before the permission existed, older CMS) or an empty answer
+  degrades, SILENTLY, to exactly the "latest" list issue #28 rendered: the
+  issue asks for that fallback to be stated in code (that file's own
+  header), never as a caveat in the UI. Anything else (5xx, timeout) still
+  fails the build, the rule every fetch in `src/lib/awcms/` follows.
+- **The newsletter form renders twice on a sidebar page — and both work.**
+  `BeritaLayout.astro` mounts `FormBuletin variant="footer"` in the footer's
+  box of every news page and `apps/storefront/src/scripts/buletin.ts` once;
+  `Sidebar.astro` renders its own `variant="sidebar"` copy, as seputarborneo
+  does (`sidebar.php` and `layout_footer.php` each carry one). That needed a
+  fix in `buletin.ts`: its `wireBuletinForm` used `document.querySelector`
+  and wired the FIRST `[data-buletin-form]` only, so the footer form (second
+  in DOM order) would have submitted nowhere — a bare `<form>` with no
+  `action` GETs the reader's e-mail onto the page's own URL.
+  `wireBuletinForms(root)` now wires every form, each with its own closure
+  (own in-flight flag, status region, button — no shared mutable state), and
+  takes its root as a parameter so `apps/storefront/tests/buletin-forms.test.ts`
+  can drive two fake forms under plain `bun test` (this workspace has no DOM
+  shim). `FormBuletin`'s `idPrefix` keeps the two forms' `id`/`for` pairs
+  distinct (`buletin-sidebar-*`/`buletin-footer-*`).
+- **Stub + fixture:** `GET /api/v1/analytics/pages` answers
+  `apps/storefront/tests/fixtures/awcms/analytics-pages.json`, with the real
+  route's `range` validation in front of it; `ad-placements-active.json`
+  now books every sidebar and homepage slot so the build proves each one
+  renders, and leaves `article_top`/`article_bottom` empty so it also proves
+  "no empty box". `apps/storefront/tests/sidebar-build-smoke.test.ts`
+  asserts all of the above on the built HTML, including that the sidebar is
+  byte-identical across the article/video/rubrik/tag/search pages.
 
 ## Article share row (issue #51)
 
@@ -600,11 +682,14 @@ it, this module's included. Verified by re-reading `dist/client/csp.json`
 after a build in this issue's own review, not asserted by a new test — a
 `connect-src` entry keyed by ORIGIN, not by path, cannot regress per-route.
 
-- **Not mounted anywhere yet.** `FormBuletin.astro` (`variant: "footer" |
-  "sidebar"`) exists and is unit/build-tested from its own standalone page,
-  `/buletin`, but no other page links to it or renders it — placing it in
-  the site chrome is issue #46's A3, a separate, parallel change, so that
-  neither change conflicts with the other's edits to shared chrome files.
+- **Mounted by issue #49.** `FormBuletin.astro` (`variant: "footer" |
+  "sidebar"`) was built here unmounted (placing it in the chrome was a
+  separate, parallel change so the two never edited the same shared file
+  at once); it now renders in the news sidebar on every page that has one
+  and in the footer's box on every news page — two forms on a sidebar page,
+  both wired, see "News sidebar and homepage ad slots (issue #49)" above.
+  `/buletin` remains the standalone page for links from an e-mail/social
+  post.
 - **The three CMS routes answer one neutral body for every outcome** — a
   new address, an already-active one, a suppressed one, all read alike, by
   design (`apps/cms/src/pages/api/v1/newsletter/subscribe.ts`'s own
@@ -744,7 +829,8 @@ The stub answers every endpoint this app calls (`/api/v1/commerce/*`,
 `/api/v1/site-profile/composed`, `/api/v1/blog/pages/public[/​{slug}]`,
 `/theming/{tenantCode}/tokens.css`, and — issue #28 —
 `/api/v1/blog/{posts,terms,institutions}`, `/api/v1/idn-regions/regions`,
-`/api/v1/news-portal/ad-placements/active`, `/api/v1/seo/redirects`)
+`/api/v1/news-portal/ad-placements/active`, `/api/v1/seo/redirects`, and —
+issue #49 — `/api/v1/analytics/pages`)
 straight from the committed fixtures under
 `apps/storefront/tests/fixtures/awcms/` — a reviewer can read the exact
 response shape this app was built against as plain JSON/CSS, not a shape
@@ -809,7 +895,7 @@ this app's tests are part of the same root gate suite:
    needs one adds its OWN file rather than editing a prior issue's
    (`build-smoke.test.ts` #24, `katalog-build-smoke.test.ts` #27,
    `berita-build-smoke.test.ts` #28, `checkout-build-smoke.test.ts` #30,
-   `buletin-build-smoke.test.ts` #50, `bagikan-build-smoke.test.ts` #51).
+   `buletin-build-smoke.test.ts` #50, `bagikan-build-smoke.test.ts` #51, `sidebar-build-smoke.test.ts` #49).
    Each is bounded under ~60s; if `bun` cannot be spawned in the environment
    running the suite, it reports SKIPPED with a named reason rather than a
    false pass.
