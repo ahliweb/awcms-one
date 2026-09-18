@@ -45,6 +45,16 @@ Every route `apps/storefront` publishes — 41 route files under `apps/storefron
 
 All four: `noindex, follow`, `aria-live="polite"` on quote/status updates, keyboard-reachable, a `<noscript>` fallback plus a JS-ran-but-CMS-down WhatsApp fallback (`apps/storefront/src/lib/wa-fallback.ts`).
 
+## Customer accounts (issue #88, S1 of #32)
+
+| Path | Source | Notes |
+| --- | --- | --- |
+| `/masuk` | `apps/storefront/src/pages/masuk.astro` | E-mail OTP sign-in; `noindex, follow` |
+| `/daftar` | `apps/storefront/src/pages/daftar.astro` | Name + phone + e-mail OTP registration; `noindex, follow` |
+| `/akun` | `apps/storefront/src/pages/akun/index.astro` | Signed-in dashboard shell (profile, "Ubah nama", "Keluar", navigation cards); `noindex, follow` |
+
+`ROUTES.accountOrders` (`/akun/pesanan`), `ROUTES.accountAddresses` (`/akun/alamat`), `ROUTES.accountReviews` (`/akun/ulasan`), and `ROUTES.accountAffiliate` (`/akun/afiliasi`) are declared in `apps/storefront/src/config/routes.ts` now, with no page behind them yet — `/akun`'s own navigation cards and any future page can link at a named constant instead of a hand-typed path. Those child routes land with S2/S3 of issue #32; until then their links resolve to a 404, by design (documented in issue #88's own PR description). `ROUTES.accountOrder(kode)` (`/akun/pesanan?kode=`) is the same "declare the shape, fill in the page later" pattern for a single order.
+
 ## Static
 
 | Path | Source |

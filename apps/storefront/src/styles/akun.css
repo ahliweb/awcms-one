@@ -1,0 +1,99 @@
+/**
+ * Issue #88 — `/masuk`, `/daftar`, `/akun`. A dedicated, feature-scoped
+ * stylesheet imported only by those three pages, the same pattern
+ * `toko.css` (#30) already established — never a `<style>` block
+ * (`style-src 'self'`, `astro.config.mjs`'s `inlineStylesheets: "never"`).
+ *
+ * Reuses `toko.css`'s own class names where the shape is identical
+ * (`.toko-field`, `.toko-field-error`, `.toko-banner`, `.toko-actions`,
+ * `.toko-wa-fallback`) — every account page imports both stylesheets — so
+ * this file only adds what `/masuk`/`/daftar`/`/akun` need that `toko.css`
+ * does not already have: the OTP code input, the account/nav cards, and the
+ * 44px control-size rule this issue's own acceptance criteria name
+ * explicitly (`docs/aksesibilitas.md`).
+ */
+
+.akun-card {
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  margin-bottom: 1.25rem;
+  background: var(--bg-surface);
+}
+
+.akun-nav-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1rem;
+}
+
+.akun-nav-card {
+  display: block;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  text-decoration: none;
+  color: var(--text-primary);
+  min-height: 44px;
+}
+
+.akun-nav-card:hover,
+.akun-nav-card:focus-visible {
+  border-color: var(--accent-primary);
+}
+
+.akun-nav-card-label {
+  font-weight: 600;
+  display: block;
+}
+
+.akun-otp-input {
+  font-size: 1.5rem;
+  letter-spacing: 0.4em;
+  text-align: center;
+  max-width: 12rem;
+}
+
+.akun-profile-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: 0.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.akun-profile-row:last-child {
+  border-bottom: none;
+}
+
+.akun-profile-row dt {
+  color: var(--text-muted);
+}
+
+.akun-profile-row dd {
+  font-weight: 600;
+  text-align: right;
+}
+
+/* Every control on these pages meets the 44px target size named in
+   `docs/aksesibilitas.md` — inputs, selects, and buttons alike. */
+.akun-card input[type="text"],
+.akun-card input[type="tel"],
+.akun-card input[type="email"],
+.akun-card button,
+.akun-card select {
+  min-height: 44px;
+}
+
+.akun-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+  align-items: center;
+}
+
+.akun-countdown {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}

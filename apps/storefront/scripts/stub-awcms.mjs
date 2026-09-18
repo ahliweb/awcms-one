@@ -128,6 +128,28 @@
  *     is no database here, on purpose; this script's whole job is proving
  *     the BROWSER-side contract, not simulating persistence.
  *
+ * Issue #88 adds `/account/*` to that same state machine, per the #86
+ * contract:
+ *
+ *   - `POST …/account/otp/request` — always `202 {sent:true,
+ *     expiresInSeconds:600}` (anti-enumeration); remembers `purpose` and, for
+ *     `purpose:"register"`, the `{name, phone}` given at request time,
+ *     keyed by the normalized e-mail — applied at verify, never re-asked.
+ *   - `POST …/account/otp/verify` — the code is always `123456`; anything
+ *     else is `401 OTP_INVALID`. `purpose:"login"` for an e-mail with no
+ *     seeded/registered account is `404 ACCOUNT_NOT_FOUND`.
+ *     `purpose:"register"` whose remembered phone already belongs to a
+ *     DIFFERENT account is `409 PHONE_ALREADY_REGISTERED`. A successful
+ *     verify returns `{token: "cs_stub_"+n, expiresAt, account}` and starts
+ *     a session.
+ *   - `GET`/`PATCH …/account/me`, `POST …/account/logout` — bearer-only;
+ *     missing/unknown/expired token is `401 UNAUTHENTICATED`, matching #86's
+ *     own rule.
+ *   - One account is seeded from `tests/fixtures/awcms/
+ *     customer-accounts.json` (`budi@example.test`, `+6281234567890`) so
+ *     `purpose:"login"` has something real to authenticate against without
+ *     a prior register step.
+ *
  * See `handleStorefrontRequest` below for the route table itself.
  */
 import { readFileSync } from "node:fs";
@@ -521,6 +543,165 @@ const ORDERS = new Map();
 const IDEMPOTENCY_KEYS = new Map();
 let orderSequence = 0;
 
+// ---------------------------------------------------------------------------
+// Issue #88: the /account/* customer-account state machine (#86 contract)
+// ---------------------------------------------------------------------------
+
+const OTP_CODE = "123456";
+const OTP_TTL_SECONDS = 600;
+const SESSION_TTL_DAYS = 30;
+
+function normalizeEmail(email) {
+  return String(email ?? "").trim().toLowerCase();
+}
+
+/** Accounts keyed by normalized e-mail — seeded once from the fixture, then grown by `purpose:"register"` verifies. */
+const ACCOUNTS = new Map(
+  fixture("customer-accounts.json").map((account) => [normalizeEmail(account.email), { ...account }])
+);
+/** `email -> {code, purpose, registration, expiresAt, consumed}` — one row per e-mail, the same "single code, replaced by the next request" shape `awcms_commerce_customer_otps` describes (#86's schema summary). */
+const OTPS = new Map();
+/** `token -> {emailNormalized, expiresAt}`. */
+const SESSIONS = new Map();
+let sessionSequence = 0;
+
+function issueSession(emailNormalized) {
+  sessionSequence += 1;
+  const token = `cs_stub_${sessionSequence}`;
+  const expiresAt = new Date(Date.now() + SESSION_TTL_DAYS * 24 * 3600_000).toISOString();
+  SESSIONS.set(token, { emailNormalized, expiresAt });
+  return { token, expiresAt };
+}
+
+function serializeAccount(account) {
+  return {
+    id: account.id,
+    name: account.name,
+    email: account.email,
+    phone: account.phone,
+    level: account.level,
+    createdAt: account.createdAt,
+    historyFrom: account.historyFrom
+  };
+}
+
+/** Reads `Authorization: Bearer <token>`, resolving it to a live (unexpired) account — or `null`, the caller's cue to answer `401 UNAUTHENTICATED`. */
+function findAccountByBearer(request) {
+  const authorization = request.headers.get("authorization") ?? "";
+  const match = /^Bearer (.+)$/.exec(authorization);
+  if (!match) return null;
+
+  const session = SESSIONS.get(match[1]);
+  if (!session) return null;
+  if (new Date(session.expiresAt).getTime() <= Date.now()) {
+    SESSIONS.delete(match[1]);
+    return null;
+  }
+
+  return ACCOUNTS.get(session.emailNormalized) ?? null;
+}
+
+function handleAccountRequest(request, path, body, headers) {
+  if (path === "/otp/request" && request.method === "POST") {
+    const emailNormalized = normalizeEmail(body?.email);
+    const purpose = body?.purpose === "register" ? "register" : "login";
+
+    OTPS.set(emailNormalized, {
+      code: OTP_CODE,
+      purpose,
+      registration:
+        purpose === "register" ? { name: body?.name ?? "", phone: body?.phone ?? "" } : null,
+      expiresAt: new Date(Date.now() + OTP_TTL_SECONDS * 1000).toISOString(),
+      consumed: false
+    });
+
+    // Always 202, regardless of whether the e-mail is known — #86's own
+    // anti-enumeration rule, kept true even in this stub.
+    return envelope({ sent: true, expiresInSeconds: OTP_TTL_SECONDS }, { status: 202, headers });
+  }
+
+  if (path === "/otp/verify" && request.method === "POST") {
+    const emailNormalized = normalizeEmail(body?.email);
+    const purpose = body?.purpose === "register" ? "register" : "login";
+    const otp = OTPS.get(emailNormalized);
+
+    if (!otp || otp.consumed || otp.purpose !== purpose || otp.code !== body?.code) {
+      return envelopeError(401, "OTP_INVALID", "Kode salah atau kedaluwarsa.", undefined, headers);
+    }
+    if (new Date(otp.expiresAt).getTime() <= Date.now()) {
+      return envelopeError(401, "OTP_INVALID", "Kode salah atau kedaluwarsa.", undefined, headers);
+    }
+
+    if (purpose === "login") {
+      const account = ACCOUNTS.get(emailNormalized);
+      if (!account) {
+        return envelopeError(404, "ACCOUNT_NOT_FOUND", "Akun tidak ditemukan.", undefined, headers);
+      }
+      otp.consumed = true;
+      const session = issueSession(emailNormalized);
+      return envelope({ ...session, account: serializeAccount(account) }, { headers });
+    }
+
+    // purpose === "register"
+    const registration = otp.registration ?? { name: "", phone: "" };
+    const phoneAlreadyBound = [...ACCOUNTS.values()].some(
+      (account) => account.phone === registration.phone && normalizeEmail(account.email) !== emailNormalized
+    );
+    if (phoneAlreadyBound) {
+      return envelopeError(
+        409,
+        "PHONE_ALREADY_REGISTERED",
+        "Nomor telepon sudah terdaftar pada akun lain.",
+        undefined,
+        headers
+      );
+    }
+
+    otp.consumed = true;
+    const now = new Date().toISOString();
+    const existing = ACCOUNTS.get(emailNormalized);
+    const account = existing ?? {
+      id: `acc-${emailNormalized}`,
+      name: registration.name,
+      email: body.email,
+      phone: registration.phone,
+      level: 0,
+      createdAt: now,
+      historyFrom: now
+    };
+    ACCOUNTS.set(emailNormalized, account);
+
+    const session = issueSession(emailNormalized);
+    return envelope({ ...session, account: serializeAccount(account) }, { headers });
+  }
+
+  if (path === "/me" && (request.method === "GET" || request.method === "PATCH")) {
+    const account = findAccountByBearer(request);
+    if (!account) {
+      return envelopeError(401, "UNAUTHENTICATED", "Sesi tidak valid atau telah berakhir.", undefined, headers);
+    }
+
+    if (request.method === "PATCH" && typeof body?.name === "string" && body.name.trim()) {
+      account.name = body.name.trim();
+    }
+
+    return envelope({ account: serializeAccount(account) }, { headers });
+  }
+
+  if (path === "/logout" && request.method === "POST") {
+    const authorization = request.headers.get("authorization") ?? "";
+    const match = /^Bearer (.+)$/.exec(authorization);
+    const account = findAccountByBearer(request);
+    if (!account) {
+      return envelopeError(401, "UNAUTHENTICATED", "Sesi tidak valid atau telah berakhir.", undefined, headers);
+    }
+    if (match) SESSIONS.delete(match[1]);
+    return new Response(null, { status: 204, headers });
+  }
+
+  return null;
+}
+
 function maskPhone(phone) {
   const digits = phone.replace(/\D/g, "");
   const normalized = digits.startsWith("62") ? `+${digits}` : digits.startsWith("0") ? `+62${digits.slice(1)}` : `+${digits}`;
@@ -621,8 +802,13 @@ async function handleStorefrontRequest(request, url) {
       status: 204,
       headers: {
         ...corsHeaders(origin),
-        "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type",
+        "Access-Control-Allow-Methods": "GET, POST, PATCH, OPTIONS",
+        // "authorization" (issue #88): the bearer-authenticated /account/*
+        // routes below need the browser's preflight to allow this header;
+        // echoing it here for every storefront route (rather than only the
+        // /account/* ones) keeps this one OPTIONS handler simple, and is
+        // harmless for the anonymous routes, which never send it.
+        "Access-Control-Allow-Headers": "Content-Type, Authorization",
         "Access-Control-Max-Age": "600"
       }
     });
@@ -639,12 +825,26 @@ async function handleStorefrontRequest(request, url) {
 
   const headers = corsHeaders(origin);
   let body = null;
-  if (request.method === "POST") {
-    try {
-      body = await request.json();
-    } catch {
-      return envelopeError(400, "VALIDATION_ERROR", "Request body must be JSON.", [], headers);
+  // PATCH (issue #88's `/account/me`) reads a JSON body the same way POST
+  // does — every other method here (GET, DELETE if one is ever added) never
+  // sends one. `POST …/account/logout` sends NO body at all (issue #88), so
+  // an empty body is read as "no body" rather than a `VALIDATION_ERROR` —
+  // only a NON-empty, unparsable body is rejected.
+  if (request.method === "POST" || request.method === "PATCH") {
+    const text = await request.text();
+    if (text.length > 0) {
+      try {
+        body = JSON.parse(text);
+      } catch {
+        return envelopeError(400, "VALIDATION_ERROR", "Request body must be JSON.", [], headers);
+      }
     }
+  }
+
+  if (path.startsWith("/account/")) {
+    const accountResult = handleAccountRequest(request, path.slice("/account".length), body, headers);
+    if (accountResult) return accountResult;
+    return Response.json(NEUTRAL_NOT_FOUND, { status: 404, headers });
   }
 
   if (path === "/cart/quote" && request.method === "POST") {
