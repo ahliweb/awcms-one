@@ -6,6 +6,15 @@
  * (issue #28). Reuses `global.css`'s existing `.card`/`.card-title`/
  * `.card-eyebrow` classes (issue #5/#24, generic — not product-specific
  * despite their first use there) rather than inventing parallel ones.
+ *
+ * Issue #47: a thumbnail renders when `post.image` resolved (its own
+ * `featuredMediaId`) — a video post with none of its own falls back to
+ * `post.video.thumbnail` (the YouTube poster, always derivable from a
+ * playable `videoNews` block with no media resolution needed — see
+ * `src/lib/portable-text.ts`'s `extractPlayableVideoInfo`), so a video card
+ * is never blank just because an editor did not also set a featured image.
+ * `.card-thumb`/`.card-thumb-placeholder` (`src/styles/berita.css`) fix the
+ * aspect ratio so no image ever shifts the card's layout on load (no CLS).
  */
 import { ROUTES } from "../../config/routes";
 import { formatTanggalPanjangWIB, toDatetimeAttr } from "../../lib/tanggal";
@@ -17,10 +26,28 @@ interface Props {
 
 const { post } = Astro.props;
 const href = post.isVideo ? ROUTES.videoArticle(post.slug) : ROUTES.article(post.slug);
+
+const thumbUrl = post.image?.publicUrl ?? post.video?.thumbnail ?? null;
+// The YouTube poster is decorative (the card already shows the title as
+// text) — only a real, editor-provided `alt` ever describes the image.
+const thumbAlt = post.image?.alt ?? (post.image ? post.title : "");
 ---
 
 <li>
   <a href={href} class="card">
+    {thumbUrl ? (
+      <img
+        src={thumbUrl}
+        alt={thumbAlt}
+        loading="lazy"
+        decoding="async"
+        width="480"
+        height="270"
+        class="card-thumb"
+      />
+    ) : (
+      <span class="card-thumb-placeholder" aria-hidden="true" />
+    )}
     {post.rubric && <span class="card-eyebrow">{post.rubric.name}</span>}
     <h3 class="card-title">{post.title}{post.isVideo && <span class="visually-hidden"> (video)</span>}</h3>
     {post.excerpt && <p class="card-excerpt">{post.excerpt}</p>}

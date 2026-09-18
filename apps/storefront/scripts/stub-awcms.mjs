@@ -74,6 +74,18 @@
  *   - `/api/v1/commerce/popups/active` — `popups-active.json` (a single
  *     object or `null`, matching what `src/lib/awcms/pemasaran.ts` expects).
  *
+ * Issue #47 adds two more, the `media_library` read surface
+ * `src/lib/awcms/media.ts` calls:
+ *
+ *   - `GET /api/v1/media/objects?ids=` — filters `media-objects.json` (an
+ *     object keyed by media id, verified field-for-field against
+ *     `ResolvedMediaReferenceDTO`) by the requested `ids`, answering
+ *     `{ items, unresolved }` exactly like the real route
+ *     (`apps/cms/src/pages/api/v1/media/objects/index.ts`): a requested id
+ *     not in the fixture comes back in `unresolved`, never dropped silently.
+ *   - `GET /api/v1/media/public-origin` — `media-public-origin.json`
+ *     (`{ configured, origin, baseUrl }`), read by `src/pages/csp.json.ts`.
+ *
  * Issue #30 adds a DIFFERENT kind of route: `/api/v1/commerce/storefront/*`,
  * the ANONYMOUS cross-origin endpoints `src/lib/toko-klien.ts` calls
  * straight from the BROWSER, per the #29⇄#30 contract
@@ -165,8 +177,33 @@ const ROUTES = {
   "/api/v1/commerce/flash-sales/active": () => fixture("flash-sales-active.json"),
   "/api/v1/commerce/vouchers/public": () => fixture("vouchers-public.json"),
   "/api/v1/commerce/testimonials/active": () => fixture("testimonials-active.json"),
-  "/api/v1/commerce/popups/active": () => fixture("popups-active.json")
+  "/api/v1/commerce/popups/active": () => fixture("popups-active.json"),
+  // #47 media
+  "/api/v1/media/objects": (url) => resolveMediaObjects(url),
+  "/api/v1/media/public-origin": () => fixture("media-public-origin.json")
 };
+
+/**
+ * `GET /api/v1/media/objects?ids=` — mirrors the real route's `{ items,
+ * unresolved }` shape (see this file's own header): an id present in
+ * `media-objects.json` comes back as `{ id, ...entry }`, one absent from it
+ * comes back in `unresolved` rather than being silently dropped.
+ */
+function resolveMediaObjects(url) {
+  const idsParam = url.searchParams.get("ids") ?? "";
+  const ids = idsParam.split(",").map((value) => value.trim()).filter((value) => value.length > 0);
+  const registry = fixture("media-objects.json");
+
+  const items = [];
+  const unresolved = [];
+  for (const id of ids) {
+    const entry = registry[id];
+    if (entry) items.push({ id, ...entry });
+    else unresolved.push(id);
+  }
+
+  return { items, unresolved };
+}
 
 const TOKENS_CSS_PATTERN = /^\/theming\/[^/]+\/tokens\.css$/;
 const BLOG_PAGE_DETAIL_PATTERN = /^\/api\/v1\/blog\/pages\/public\/([^/]+)$/;

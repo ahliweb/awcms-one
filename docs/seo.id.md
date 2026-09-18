@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](seo.md)
 
-<!-- i18n-source-hash: sha256:dbbac55f12b5dbd45dfdcda8e2eb169c9f0d3be45e6dec821490267fb9d053f1 -->
+<!-- i18n-source-hash: sha256:5d560391c526cf63545b36986080ad034b870d6e996b9a17e6aacbdc5202a1c5 -->
 
 # SEO
 
@@ -8,7 +8,7 @@ Apa yang dipancarkan `apps/storefront` untuk mesin pencari dan pratinjau tautan 
 
 ## Metadata per-halaman — mekanisme tak berubah dari increment 1
 
-Setiap halaman di-render lewat `BaseLayout`, yang mengatur `<title>`, `<meta name="description">` yang dipotong, `<link rel="canonical">`, dan tag Open Graph (`og:type` tetap `"website"` bahkan di halaman produk — data harga/ketersediaan terstruktur lewat JSON-LD sebagai gantinya, bukan meta `product:price:*`, yang tidak dideklarasikan aplikasi ini). Masih belum ada `og:image` di halaman mana pun.
+Setiap halaman di-render lewat `BaseLayout`, yang mengatur `<title>`, `<meta name="description">` yang dipotong, `<link rel="canonical">`, dan tag Open Graph (`og:type` tetap `"website"` bahkan di halaman produk — data harga/ketersediaan terstruktur lewat JSON-LD sebagai gantinya, bukan meta `product:price:*`, yang tidak dideklarasikan aplikasi ini). `BaseLayout` sendiri masih belum memancarkan tag `og:image` di halaman mana pun — issue #47 (`apps/storefront/src/lib/awcms/media.ts`) memberi `PostDetail` berita sebuah `image.publicUrl` yang sudah ter-resolve yang bisa dipakai tag `og:image`, tapi menambahkan tag itu sendiri adalah perubahan terpisah dan menyusul ke head slot `BaseLayout`.
 
 ## JSON-LD berdasarkan jenis halaman
 
@@ -43,4 +43,4 @@ Setiap URL kanonik masih absolut, dibangun dari `SITE_URL`, sesuai bentuk URL si
 
 ## Belum dibangun
 
-Data terstruktur untuk halaman listing katalog (`/produk`) itu sendiri — hanya halaman kategori dan halaman detail produk yang membawa JSON-LD. `og:image` di halaman mana pun (belum ada klien CMS-media untuknya di aplikasi ini — lihat [`docs/cms.md`](cms.id.md)). Namespace Open Graph `product:price:*` (node `Offer` JSON-LD membawa ini sebagai gantinya, secara sengaja, sesuai "Metadata per-halaman" di atas).
+Data terstruktur untuk halaman listing katalog (`/produk`) itu sendiri — hanya halaman kategori dan halaman detail produk yang membawa JSON-LD. TAG `og:image` di halaman mana pun — aplikasi ini sekarang punya klien CMS-media (`apps/storefront/src/lib/awcms/media.ts`, issue #47) dan gambar berita yang sudah ter-resolve untuk dituju, tapi memancarkan tag itu sendiri adalah perubahan `BaseLayout` terpisah yang tidak dilakukan issue ini. Namespace Open Graph `product:price:*` (node `Offer` JSON-LD membawa ini sebagai gantinya, secara sengaja, sesuai "Metadata per-halaman" di atas).

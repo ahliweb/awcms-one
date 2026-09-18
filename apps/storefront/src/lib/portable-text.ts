@@ -14,28 +14,55 @@
  * against `apps/cms/src/modules/blog-content/domain/portable-text-
  * validation.ts`, which enforces one closed schema for both content types.
  *
- * ## `videoNews` and captioned `gallery` items render real content now
- * (issue #28) — everything else is UNCHANGED from issue #24
+ * ## `videoNews` and `gallery` images render REAL media now (issue #47)
  *
- * `videoNews` (`provider`/`videoId`/`title`/`caption`/`durationSeconds`/
- * `sourceLabel`, verified against `video-news-block-validation.ts`) renders
- * a semantic video card with a real outbound link — NEVER an `<iframe>`
- * embed, even though the issue's own text asks for a "lite-youtube-style
- * facade": an actual embed needs `img-src`/`frame-src` widened past `'self'`
- * (`server/penyaji.mjs`), and this issue's file ownership grants it only
- * the legacy-redirect hook there, not a CSP change. This is the SAME
- * conclusion the sibling `media-lenterakalteng` app reached independently,
- * for its own reasons (ADR-0046 there refuses embeds outright) — recorded
- * here as a deliberate, documented deviation from the issue's literal ask,
- * the same way issue #24 recorded its own two.
+ * Issue #28 rendered `videoNews` as a real outbound watch link (never an
+ * `<iframe>`) and a captioned `gallery` item as a `<figure>`/`<figcaption>`
+ * with no `<img>` at all — both deliberate deviations, recorded there,
+ * because this app had no media-object client yet and no CSP exemption for
+ * a third-party frame origin. Issue #47 lifts both trims now that a client
+ * exists (`src/lib/awcms/media.ts`) and the CSP is widened for the two
+ * origins this needs (`src/pages/csp.json.ts`):
  *
- * A `gallery` item's `caption` field is the ONLY field awcms's
+ * - `gallery` item `mediaType: "image"` with a `mediaObjectId` that resolves
+ *   (via the `resolvedMedia` map every caller now passes as this function's
+ *   second argument — see `renderPortableText` below) renders a real
+ *   `<figure><img loading="lazy" decoding="async" width height alt>
+ *   <figcaption>` — the item's own `caption` and the resolved object's
+ *   credit (`creditLine`/`sourceName`) joined with " · " when both exist.
+ *   An item whose `mediaObjectId` does NOT resolve (unverified/deleted/not
+ *   yet uploaded), that carries the legacy `url`-only shape (no id this
+ *   client can resolve), or that is not an image at all still degrades to
+ *   the ORIGINAL issue-#24 placeholder figure — never a broken `<img>`.
+ * - `videoNews` (`provider`/`videoId`/`title`/`caption`/`durationSeconds`/
+ *   `sourceLabel`, verified against `video-news-block-validation.ts`) renders
+ *   ONE OF TWO shapes, chosen per render call by `renderPortableText`'s
+ *   `options.videoMode` (see that function's own docblock, "The video
+ *   facade is opt-in, per render call" — this is NOT a global switch, and
+ *   defaults to the safe one):
+ *   - `"link"` (the default) — the original issue-#28 real, semantic
+ *     outbound watch link, no script/`<img>`/`<iframe>` of any kind.
+ *   - `"facade"` — a click-to-load facade: a real `<button>` showing the
+ *     `https://i.ytimg.com/vi/{id}/hqdefault.jpg` poster (a fixed YouTube
+ *     CDN convention — no media-object resolution needed for this one), and
+ *     `apps/storefront/src/scripts/video-facade.ts` (loaded only from
+ *     `src/pages/video/[slug].astro`, the only route a playable `videoNews`
+ *     block can ever appear on — see `src/lib/berita.ts`'s own routing
+ *     rule, and the ONE call site that passes `"facade"`) swaps it for a
+ *     real `<iframe src="https://www.youtube-nocookie.com/embed/{id}">` on
+ *     activation. No third-party script/frame loads before that click; a
+ *     `<noscript>` fallback links straight to the YouTube watch page for a
+ *     reader with JavaScript off. The button is a real, focusable HTML
+ *     element — Enter/Space activates it with no extra keyboard-handling
+ *     code needed.
+ *
+ * A `gallery` item's `caption` field is the ONLY editorial field awcms's
  * `GalleryBlockItem` schema carries besides the image reference itself
  * (verified against `gallery-block-renderer.ts`) — there is no separate
- * "credit" field to distinguish from it. This renderer treats a photo
- * credit, when an editor writes one, as part of that single `caption`
- * string (e.g. "Foto: Antara/Budi"), exactly as awcms itself stores it,
- * rather than inventing a second field the schema does not have.
+ * "credit" field on the ITEM to distinguish from it; the credit rendered
+ * alongside it comes from the resolved media OBJECT's own
+ * `creditLine`/`sourceName` (Issue #782's rights fields, `src/lib/awcms/
+ * media.ts`), not from anything the gallery block itself carries.
  *
  * "Internal tag links" (also named in issue #28's spec) needed NO renderer
  * change at all: verified against `internal-tag-linking.ts`, awcms's own
@@ -48,14 +75,30 @@
  * (`src/lib/berita.ts`), which is more reliably useful to a reader than an
  * incidental in-body auto-link would be.
  *
- * Neither change touches this file's PUBLIC signature: `renderPortableText`
- * still takes exactly one argument, so `src/pages/halaman/[slug].astro`
- * (issue #24) is untouched, and every one of issue #24's own assertions in
- * `tests/portable-text.test.ts` — including the two that name `gallery`/
- * `videoNews` — still passes unmodified: both tests' fixtures carry no
- * `caption`/`provider`/`videoId` fields, which is exactly the "not enough
- * to render" case that still falls back to the ORIGINAL placeholder text
- * below.
+ * ## The public signature DOES change (issue #47)
+ *
+ * `renderPortableText` gains two OPTIONAL arguments after `document`:
+ * `resolvedMedia: ReadonlyMap<string, ResolvedMedia>` (defaulting to an
+ * empty map) and `options: { videoMode?: "facade" | "link" }` (defaulting
+ * to `{}`, i.e. `videoMode: "link"`) — so every existing call site
+ * (`src/pages/halaman/[slug].astro`, issue #24; `src/pages/{berita,
+ * rubrik/[slug]}/feed.xml.ts`'s RSS `content:encoded`) keeps compiling AND
+ * keeps rendering exactly the safe, script-free shape it always did.
+ * `src/lib/berita.ts` builds the real `resolvedMedia` map once per build
+ * (every visible post's `featuredMediaId` plus every gallery item's
+ * `mediaObjectId`, batched through `resolveMedia`), and
+ * `src/components/berita/ArtikelView.astro` passes it through, along with a
+ * `videoMode` prop the PAGE decides (`"facade"` only from `src/pages/video/
+ * [slug].astro`, which alone mounts `video-facade.ts` — see
+ * `renderPortableText`'s own docblock, "The video facade is opt-in, per
+ * render call"). An empty map with `videoMode: "link"` (the default, and
+ * every issue-#24/#28 test fixture's real case: no `mediaObjectId` resolves
+ * against nothing) falls back to the ORIGINAL placeholder text —
+ * `tests/portable-text.test.ts`'s two gallery/videoNews assertions still
+ * pass for exactly that reason. `tests/berita-portable-text.test.ts`'s
+ * issue-#28 assertion that a well-formed `videoNews` renders a real link is
+ * now the `videoMode: "link"` case; a NEW assertion covers `"facade"`
+ * explicitly.
  *
  * ## The rule that does not relax
  *
@@ -73,6 +116,7 @@
  * trusting the stored value, because a row written before that write-time
  * validator existed is still a row this endpoint will serve.
  */
+import type { ResolvedMedia } from "./awcms/media";
 
 /** awcms `PORTABLE_TEXT_BLOCK_STYLES`. */
 const BLOCK_STYLES = [
@@ -329,16 +373,51 @@ export function documentHasPlayableVideo(document: unknown): boolean {
   });
 }
 
+/** `https://i.ytimg.com/vi/{id}/hqdefault.jpg` — YouTube's own fixed, public poster convention for any valid 11-character video id. No media-object resolution needed for this one (see file header). */
+function youtubePosterUrl(videoId: string): string {
+  return `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
+}
+
+/** `PostSummary`/`PostDetail`'s own `video` field shape (`src/lib/berita.ts`) — the first playable `videoNews` block's provider/id/poster, or `null` when `documentHasPlayableVideo` would also answer `false`. A video post's CARD thumbnail falls back to this when it has no `featuredMediaId` of its own — see `src/components/berita/ArtikelCard.astro`. */
+export type PlayableVideoInfo = { provider: "youtube"; videoId: string; thumbnail: string };
+
+/** The first playable `videoNews` block in `document`, extracted for `src/lib/berita.ts` — never a second, independent validity check: this reuses `youtubeWatchUrl`'s own gate, the exact same one `documentHasPlayableVideo`/`renderVideoNewsNode` already use. */
+export function extractPlayableVideoInfo(document: unknown): PlayableVideoInfo | null {
+  if (!Array.isArray(document)) return null;
+
+  for (const node of document) {
+    if (!node || typeof node !== "object") continue;
+    const record = node as PortableTextNode;
+    if (record._type !== "videoNews") continue;
+    if (youtubeWatchUrl(record.provider, record.videoId) === null) continue;
+
+    const videoId = record.videoId as string;
+    return { provider: "youtube", videoId, thumbnail: youtubePosterUrl(videoId) };
+  }
+
+  return null;
+}
+
 /**
- * `videoNews` → a real, semantic video card when `provider`/`videoId`
- * validate, else the original issue-#24 placeholder — see file header for
- * why this is a link, never an embed.
+ * `videoNews` → the original issue-#28 outbound link when `mode === "link"`
+ * (the default — safe on every page, no script required), or the issue-#47
+ * click-to-load facade when `mode === "facade"` (only from a page that
+ * mounts `video-facade.ts` — see `renderPortableText`'s own docblock, "The
+ * video facade is opt-in, per render call"). Either way, `provider`/
+ * `videoId` that do not validate still fall back to the original issue-#24
+ * placeholder.
  */
-function renderVideoNewsNode(node: PortableTextNode): string {
+function renderVideoNewsNode(node: PortableTextNode, mode: VideoRenderMode): string {
   const watchUrl = youtubeWatchUrl(node.provider, node.videoId);
   if (!watchUrl) {
     return renderPlaceholder("Video — belum dapat ditampilkan di halaman ini.");
   }
+
+  // `youtubeWatchUrl` only returns non-null once `videoId` already matched
+  // `YOUTUBE_VIDEO_ID_PATTERN`, so this re-read is always the same, safe,
+  // 11-character string — never re-validated here, on purpose: one place
+  // decides validity.
+  const videoId = node.videoId as string;
 
   const title =
     typeof node.title === "string" && node.title.trim().length > 0
@@ -351,64 +430,192 @@ function renderVideoNewsNode(node: PortableTextNode): string {
   const metaParts = [sourceLabel, duration].filter(
     (part): part is string => typeof part === "string" && part.length > 0
   );
+  const metaHtml =
+    metaParts.length > 0
+      ? `<figcaption>${metaParts.map(escapeHtml).join(" &middot; ")}</figcaption>`
+      : "";
+  const captionHtml =
+    caption.length > 0 ? `<p class="content-video-caption">${escapeHtml(caption)}</p>` : "";
 
+  if (mode === "facade") {
+    return (
+      `<figure class="content-video" data-video-facade data-video-id="${escapeHtml(videoId)}" data-video-title="${escapeHtml(title)}">` +
+      `<button type="button" class="content-video-link" data-video-facade-button aria-label="Putar video: ${escapeHtml(title)}">` +
+      `<img class="content-video-poster" src="${escapeHtml(youtubePosterUrl(videoId))}" alt="" loading="lazy" decoding="async" width="120" height="90">` +
+      `<span class="content-video-play" aria-hidden="true">&#9654;</span>` +
+      `<span class="content-video-title">${escapeHtml(title)}</span>` +
+      `</button>` +
+      metaHtml +
+      captionHtml +
+      `<noscript><a href="${escapeHtml(watchUrl)}" rel="noopener noreferrer">Tonton di YouTube</a></noscript>` +
+      `</figure>`
+    );
+  }
+
+  // `mode === "link"` — the original issue-#28 rendering: a real, semantic
+  // outbound link, no `<img>`/`<iframe>`/script dependency of any kind. This
+  // is the SAFE-EVERYWHERE shape (see file header, "The video facade is
+  // opt-in, per render call") — every caller that has not mounted
+  // `video-facade.ts` uses this by not passing `{ videoMode: "facade" }`.
   return (
     `<figure class="content-video">` +
     `<a class="content-video-link" href="${escapeHtml(watchUrl)}" rel="noopener noreferrer" target="_blank">` +
     `<span class="content-video-play" aria-hidden="true">&#9654;</span>` +
     `<span class="content-video-title">${escapeHtml(title)}</span>` +
     `</a>` +
-    (metaParts.length > 0
-      ? `<figcaption>${metaParts.map(escapeHtml).join(" &middot; ")}</figcaption>`
-      : "") +
-    (caption.length > 0 ? `<p class="content-video-caption">${escapeHtml(caption)}</p>` : "") +
+    metaHtml +
+    captionHtml +
     `</figure>`
   );
 }
 
-type GalleryItemLike = { caption?: unknown };
+type GalleryItemLike = { caption?: unknown; mediaType?: unknown; mediaObjectId?: unknown };
+
+/** Every `gallery` item's `mediaObjectId` in `document` whose `mediaType` is `"image"` — exported so `src/lib/berita.ts` can collect every id a post's body references, up front, for one batched `resolveMedia` call per build (see `src/lib/awcms/media.ts`). Ignores the legacy `url`-only item shape (nothing to resolve, see file header) and `mediaType: "video"` items (out of this issue's scope). */
+export function collectGalleryMediaObjectIds(document: unknown): string[] {
+  if (!Array.isArray(document)) return [];
+
+  const ids: string[] = [];
+  for (const node of document) {
+    if (!node || typeof node !== "object") continue;
+    const record = node as PortableTextNode;
+    if (record._type !== "gallery") continue;
+
+    const items = Array.isArray(record.items) ? (record.items as GalleryItemLike[]) : [];
+    for (const item of items) {
+      if (item.mediaType === "image" && typeof item.mediaObjectId === "string") {
+        ids.push(item.mediaObjectId);
+      }
+    }
+  }
+  return ids;
+}
+
+/** `creditLine`/`sourceName` joined for display — `creditLine` first (the more specific, "who to credit" field), `sourceName` appended only when both exist. `null` when the resolved object carries neither (unverified rights — see `src/lib/awcms/media.ts`). */
+function formatMediaCredit(media: Pick<ResolvedMedia, "creditLine" | "sourceName">): string | null {
+  const parts = [media.creditLine, media.sourceName].filter(
+    (part): part is string => typeof part === "string" && part.trim().length > 0
+  );
+  return parts.length > 0 ? parts.join(" — ") : null;
+}
+
+/** One gallery item — a real `<figure><img>` when it is `mediaType: "image"` and its `mediaObjectId` resolves in `resolvedMedia`, else the original issue-#24 placeholder figure (never a broken `<img>`). */
+function renderGalleryItem(
+  item: GalleryItemLike,
+  resolvedMedia: ReadonlyMap<string, ResolvedMedia>
+): string {
+  const caption = typeof item.caption === "string" ? item.caption.trim() : "";
+  const media =
+    item.mediaType === "image" && typeof item.mediaObjectId === "string"
+      ? resolvedMedia.get(item.mediaObjectId)
+      : undefined;
+
+  if (media) {
+    const credit = formatMediaCredit(media);
+    // Escaped BEFORE joining — the separator itself is a fixed, already-safe
+    // HTML entity, never re-escaped, but `caption`/`credit` are CMS-authored
+    // strings and must not reach the output un-escaped (the same rule every
+    // other string in this file follows — see file header, "The rule that
+    // does not relax").
+    const figcaptionText = [caption, credit]
+      .filter((part): part is string => Boolean(part && part.length > 0))
+      .map(escapeHtml)
+      .join(" &middot; ");
+    const alt = media.alt ?? caption;
+
+    return (
+      `<figure class="content-figure">` +
+      `<img src="${escapeHtml(media.publicUrl)}" alt="${escapeHtml(alt)}" loading="lazy" decoding="async"` +
+      (media.width && media.height ? ` width="${media.width}" height="${media.height}"` : "") +
+      `>` +
+      (figcaptionText.length > 0 ? `<figcaption>${figcaptionText}</figcaption>` : "") +
+      `</figure>`
+    );
+  }
+
+  return (
+    `<figure class="content-figure">` +
+    `<span class="content-figure-placeholder" aria-hidden="true"></span>` +
+    (caption.length > 0 ? `<figcaption>${escapeHtml(caption)}</figcaption>` : "") +
+    `</figure>`
+  );
+}
 
 /**
- * `gallery` → a real `<figure>` per item, with its `caption` (awcms's only
- * such field — see file header) rendered as a `<figcaption>`, WHEN at least
- * one item in the block actually carries one. When none do, this renders
- * the exact original issue-#24 placeholder text — never an `<img>` either
- * way (no media-object client — see file header).
+ * `gallery` → one `<figure>` per item (real `<img>` where `resolvedMedia`
+ * resolves it, a placeholder figure otherwise), WHEN at least one item
+ * either resolves to a real image or carries a `caption` — the same
+ * "not enough to render at all" gate issue #24/#28 established, extended
+ * rather than replaced: a gallery block with neither still renders the
+ * exact original single, stated placeholder line instead of a row of empty
+ * boxes.
  */
-function renderGalleryNode(node: PortableTextNode): string {
+function renderGalleryNode(
+  node: PortableTextNode,
+  resolvedMedia: ReadonlyMap<string, ResolvedMedia>
+): string {
   const items = Array.isArray(node.items) ? (node.items as GalleryItemLike[]) : [];
 
-  const hasAnyCaption = items.some(
-    (item) => typeof item.caption === "string" && item.caption.trim().length > 0
-  );
+  const hasAnythingToRender = items.some((item) => {
+    const hasCaption = typeof item.caption === "string" && item.caption.trim().length > 0;
+    const hasImage =
+      item.mediaType === "image" &&
+      typeof item.mediaObjectId === "string" &&
+      resolvedMedia.has(item.mediaObjectId);
+    return hasCaption || hasImage;
+  });
 
-  if (!hasAnyCaption) {
+  if (!hasAnythingToRender) {
     return renderPlaceholder(
       `Galeri (${items.length} gambar) — belum dapat ditampilkan di halaman ini.`
     );
   }
 
-  const figures = items
-    .map((item) => {
-      const caption = typeof item.caption === "string" ? item.caption.trim() : "";
-      return (
-        `<figure class="content-figure">` +
-        `<span class="content-figure-placeholder" aria-hidden="true"></span>` +
-        (caption.length > 0 ? `<figcaption>${escapeHtml(caption)}</figcaption>` : "") +
-        `</figure>`
-      );
-    })
-    .join("");
-
+  const figures = items.map((item) => renderGalleryItem(item, resolvedMedia)).join("");
   return `<div class="content-gallery">${figures}</div>`;
 }
 
 /**
- * Render a Portable Text document to HTML. Pure — no I/O, no media
- * resolution — which is what lets the whole vocabulary be unit-tested with
- * fixed input (`tests/portable-text.test.ts`).
+ * `videoNews`'s two render shapes — see `renderVideoNewsNode`'s own
+ * docblock. `"link"` is the default deliberately: it is the shape that
+ * works on every page, with no script dependency, so a caller has to OPT IN
+ * to the facade rather than opt out of it.
  */
-export function renderPortableText(document: unknown): string {
+export type VideoRenderMode = "facade" | "link";
+
+/**
+ * Render a Portable Text document to HTML. Still pure — no I/O —
+ * `resolvedMedia` is a plain, already-fetched lookup the caller built ahead
+ * of time (`src/lib/berita.ts`, via `src/lib/awcms/media.ts`), never
+ * fetched here. That is what still lets the whole vocabulary be
+ * unit-tested with fixed input (`tests/portable-text.test.ts`) — an empty
+ * map (the default) is indistinguishable from "nothing resolved" and falls
+ * back to every original placeholder, unchanged.
+ *
+ * ## The video facade is opt-in, per render call
+ *
+ * `options.videoMode` defaults to `"link"` — the original issue-#28
+ * outbound-link rendering, which needs no script anywhere. `"facade"`
+ * (issue #47's click-to-load poster/button) is safe ONLY on a page that
+ * also mounts `apps/storefront/src/scripts/video-facade.ts`, because
+ * without it the button is inert: a reader clicks and nothing happens.
+ * Today that is `src/pages/video/[slug].astro` alone — the only route a
+ * playable `videoNews` block can ever appear on (`src/lib/berita.ts`'s own
+ * routing rule) — which is the ONE call site
+ * (`src/components/berita/ArtikelView.astro`) that passes `"facade"`
+ * through its own `videoMode` prop. Every other caller (`src/pages/halaman/
+ * [slug].astro`'s static pages, `src/pages/{berita,rubrik/[slug]}/feed.xml
+ * .ts`'s RSS `content:encoded`) calls this function without the option and
+ * gets the always-safe link — RSS in particular can never run a click
+ * handler at all, so `"facade"` there would ship a permanently-dead button
+ * into every reader's feed.
+ */
+export function renderPortableText(
+  document: unknown,
+  resolvedMedia: ReadonlyMap<string, ResolvedMedia> = new Map(),
+  options: { videoMode?: VideoRenderMode } = {}
+): string {
+  const videoMode = options.videoMode ?? "link";
   if (!Array.isArray(document)) return "";
 
   const nodes = document.filter(
@@ -437,12 +644,12 @@ export function renderPortableText(document: unknown): string {
     }
 
     if (node._type === "gallery") {
-      out.push(renderGalleryNode(node));
+      out.push(renderGalleryNode(node, resolvedMedia));
       continue;
     }
 
     if (node._type === "videoNews") {
-      out.push(renderVideoNewsNode(node));
+      out.push(renderVideoNewsNode(node, videoMode));
       continue;
     }
 

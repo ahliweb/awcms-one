@@ -67,7 +67,7 @@ Two files exist specifically to prove this rule holds without a live CMS:
 | `/tag/{slug}`, `/penulis/{slug}`, `/arsip/{yyyy}/{mm}` | Tag, author (byline-based), and monthly archives | `GET /api/v1/blog/posts`/`terms` |
 | `/cari-berita` | Client-side search over `/index/berita.json` | `/index/berita.json` (build-time index) |
 | `/index/produk.json` | The product search/listing index every client-side catalog surface reads | derived from the catalog fetch |
-| `/csp.json` | The external origins this build references, read at startup by `apps/storefront/server/penyaji.mjs` to widen `img-src`/`connect-src` — see "Content-Security-Policy" below | derived from every image URL the CMS sent, plus `PUBLIC_AWCMS_ORIGIN` |
+| `/csp.json` | The external origins this build references, read at startup by `apps/storefront/server/penyaji.mjs` to widen `img-src`/`connect-src`/`frame-src` — see "Content-Security-Policy" below | derived from every image URL the CMS sent, the resolved media origin, `PUBLIC_AWCMS_ORIGIN`, and (issue #47) the two YouTube origins when this build has a video post |
 | `/index/berita.json`, `/index/pengalihan-legacy.json` | The search index, and the legacy-URL redirect map `apps/storefront/server/penyaji.mjs` reads at startup | `GET /api/v1/blog/posts`, `/api/v1/seo/redirects` |
 | `/keranjang` | Cart — renders `localStorage`, re-quotes live, voucher/quantity/remove, "Lanjut ke checkout" (issue #30) | `POST <PUBLIC_AWCMS_ORIGIN>/api/v1/commerce/storefront/cart/quote` |
 | `/checkout` | One-page, five-step checkout: contact → address → shipping → payment → review → place order | the same quote endpoint, plus `POST …/orders` |
@@ -143,19 +143,12 @@ field-verified fetchers.
 Deliberate deviations from the issue text, recorded here as the brief this
 issue was implemented under asks:
 
-1. **No hero `<img>`, no real gallery/ad-creative image, no YouTube
-   `<iframe>` embed.** This app still has no media-object client (the same
-   gap issue #24 recorded) — a post's `featuredMediaId`/a gallery item's
-   `mediaObjectId`/an ad's `mediaPublicUrl` are either bare ids this app
-   cannot resolve to a URL, or (the ad case) a real URL this app's CSP
-   (`img-src 'self'`, `apps/storefront/server/penyaji.mjs`) has no exemption
-   for, and widening that CSP is outside this issue's file ownership (only
-   the legacy-redirect hook there is granted).
-   `apps/storefront/src/lib/portable-text.ts` renders `videoNews` as a real, semantic outbound link (never an
-   `<iframe>`) and a captioned `gallery` item as a real `<figure>`/
-   `<figcaption>` with no `<img>` — see that file's own docblock for the
-   full reasoning, including why this independently reaches the same
-   conclusion the sibling `media-lenterakalteng` app's own ADR-0046 does.
+1. **RESOLVED by issue #47** — see "Media (issue #47)" below for the hero
+   `<img>`, real gallery/ad-creative images, and the click-to-load YouTube
+   facade this deviation used to record as missing. Kept here, struck
+   through in spirit rather than deleted, because issue #28's own reasoning
+   (no media-object client existed yet) is still the correct explanation for
+   why increment 2 shipped without them.
 2. **No `article:published_time` Open Graph tag, no `rel=prev/next`, no
    `noindex` beyond page 1.** `BaseLayout.astro` (issue #24, outside this
    issue's file ownership) has no mechanism for a page to add extra
@@ -181,6 +174,83 @@ issue was implemented under asks:
    schema (`provider`/`videoId`/`title`/`caption`/`thumbnailMediaObjectId`/
    `durationSeconds`/`sourceLabel`) has no transcript field of any kind —
    there is nothing for this app to link to without inventing one.
+
+## Media (issue #47)
+
+`apps/storefront/src/lib/awcms/media.ts` is this app's `media_library` read
+client — batch-resolving a media object id to `{ id, publicUrl, alt, width,
+height, creditLine, sourceName, copyrightStatus }` via `GET /api/v1/media/
+objects?ids=` (chunked at 100 ids per call, verified against that route's
+own `MAX_IDS`), and reading `GET /api/v1/media/public-origin` for the media
+host `apps/storefront/src/pages/csp.json.ts` widens `img-src` with. The build credential
+needs `media_library.media.read` for both — added to the seed's storefront
+token permission set (`tools/seed-borneojek-mart.ts`'s
+`MACHINE_CREDENTIAL_PERMISSION_KEYS`). A non-uuid-shaped id (a pre-migration
+or hand-authored row) is filtered out BEFORE it is ever sent: the route
+400s the WHOLE request over one malformed id rather than reporting just
+that one, so sending it unfiltered would abort resolution for every other
+id sharing its chunk — it is treated exactly like an id the CMS itself
+reported unresolved instead.
+
+`apps/storefront/src/lib/berita.ts` collects every visible post's
+`featuredMediaId` plus every gallery item's `mediaObjectId`
+(`apps/storefront/src/lib/portable-text.ts`'s `collectGalleryMediaObjectIds`) up front, once
+per build, and resolves them in one batched `resolveMedia` call — `image:
+ResolvedMedia | null` on `PostSummary`/`PostDetail`, and `getResolvedMedia()`
+for `ArtikelView.astro` to pass into `renderPortableText` so a post's own
+gallery images resolve too. An unresolved id (unverified, deleted, or not
+yet uploaded) is logged ONCE (`console.warn`) and renders as no image —
+never a broken `<img>`.
+
+What actually renders now:
+
+- **`ArtikelCard.astro`** — a fixed-aspect-ratio thumbnail
+  (`.card-thumb`/`.card-thumb-placeholder`, `apps/storefront/src/styles/berita.css`) from
+  `post.image`, falling back to a video post's own YouTube poster
+  (`post.video.thumbnail`, no media resolution needed — a fixed CDN
+  convention derived from `videoId`) when it has no `featuredMediaId` of its
+  own.
+- **`ArtikelView.astro`'s hero block** — a `<figure>` after the byline row
+  when `post.image` resolved, with a `<figcaption>` joining the media's
+  `alt` text and its credit (`creditLine`/`sourceName` — `null` unless the
+  CMS has verified the rights, per that DTO's own fail-closed rule).
+- **`apps/storefront/src/lib/portable-text.ts`** — a `gallery` item with `mediaType: "image"`
+  and a resolving `mediaObjectId` renders a real `<figure><img>`. A
+  `videoNews` block renders one of TWO shapes, chosen per render call by
+  `renderPortableText`'s `options.videoMode` (default `"link"`): the
+  original issue-#28 real outbound watch link (no script, safe on every
+  page — this is what `apps/storefront/src/pages/halaman/[slug].astro`'s
+  static pages and the RSS feeds' `content:encoded` get, since neither can
+  run a click handler), or, only when a page explicitly opts in with
+  `videoMode: "facade"`, a click-to-load facade (a `<button>` showing the
+  `i.ytimg.com/vi/{id}/hqdefault.jpg` poster, swapped for a real
+  `youtube-nocookie.com/embed/{id}` `<iframe>` by
+  `apps/storefront/src/scripts/video-facade.ts` on a real click, never
+  before). `apps/storefront/src/pages/video/[slug].astro` — the only route
+  a playable `videoNews` block can ever appear on, and the only page that
+  mounts `video-facade.ts` — is the one caller that passes `"facade"`
+  (through `ArtikelView.astro`'s own `videoMode` prop); every other caller
+  gets the always-safe link. A `<noscript>` fallback in the facade shape
+  links straight to the YouTube watch page.
+- **`IklanSlot.astro`** — a real `<img>` for `mediaPublicUrl` (re-checked as
+  a genuine `http(s)` URL), keeping the editorial-disclosure label.
+
+**CSP**: `apps/storefront/src/pages/csp.json.ts` pushes every ACTUAL
+resolved article/gallery image and ad creative's own `publicUrl`/
+`mediaPublicUrl` into `img-src` — the same way a product's own images
+already are — so a row on a different (e.g. pre-host-migration) origin than
+the CURRENTLY CONFIGURED one still widens the policy correctly. The
+configured media origin itself (`GET /api/v1/media/public-origin`) is
+pushed too, in addition, covering a build with zero resolved images yet.
+`https://i.ytimg.com` is added to `img-src` and
+`https://www.youtube-nocookie.com` to `frame-src`, both only when this
+build has at least one video post (`apps/storefront/src/lib/berita.ts`'s
+`getVideo()`), matching this file's "derived from content" philosophy for
+every origin it adds. `apps/storefront/server/penyaji.mjs`'s `buildCsp`/
+`readCspOrigins` consume the artifact's `frameSrc` field the same way they
+already do `imgSrc`/`connectSrc` — the served `Content-Security-Policy`
+widens `frame-src` to exactly the facade's origin on a build with a video
+post, and stays `frame-src 'none'` otherwise.
 
 ## Catalog surface (issue #27)
 
@@ -219,7 +289,9 @@ references and no others:
 
 - `apps/storefront/src/pages/csp.json.ts` collects every image URL from the same memoized
   fetches the pages rendered from, and writes `dist/client/csp.json`
-  (`{version, imgSrc, connectSrc}`) via `apps/storefront/src/lib/csp-asal-media.ts`.
+  (`{version, imgSrc, connectSrc, frameSrc}` — `frameSrc` added by issue #47
+  for the click-to-load YouTube facade, see "Media (issue #47)" above) via
+  `apps/storefront/src/lib/csp-asal-media.ts`.
 - `apps/storefront/server/penyaji.mjs` reads that file **once at startup**
   (`readCspOrigins`), re-validates every origin (`sanitizeOrigins` — an
   absolute `http(s)` origin with no path, credential, wildcard or separator
