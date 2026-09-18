@@ -125,10 +125,11 @@ const GA_CONNECT_SRC = [
 ];
 
 /**
- * Builds the policy string, widening `img-src`/`connect-src` with the
- * origins in `artifact`, and `script-src`/`img-src`/`connect-src` with GA's
- * own fixed origins when `artifact.ga` is `true`. Pure and exported so the
- * composition is tested directly rather than through a served response.
+ * Builds the policy string, widening `img-src`/`connect-src`/`frame-src`
+ * with the origins in `artifact`, and `script-src`/`img-src`/`connect-src`
+ * with GA's own fixed origins when `artifact.ga` is `true`. Pure and
+ * exported so the composition is tested directly rather than through a
+ * served response.
  *
  * Every derived origin is re-validated here even though the build already
  * validated it: this file reads a JSON file off disk that a different
@@ -139,12 +140,19 @@ const GA_CONNECT_SRC = [
  * or fragment is dropped. `ga`, by contrast, is a plain boolean coerced with
  * `=== true` — there is no string to sanitize.
  *
- * @param {{ imgSrc?: string[], connectSrc?: string[], ga?: boolean }} [artifact]
+ * `frame-src` (issue #47, the click-to-load YouTube facade) has no `'self'`
+ * baseline the way `img-src`/`connect-src` do — this app embeds no frame of
+ * its own — so it is `'none'` when the artifact lists nothing, and ONLY the
+ * listed origins (no `'none'` alongside them: the two are not meant to
+ * combine) once it lists at least one. GA never touches `frame-src`.
+ *
+ * @param {{ imgSrc?: string[], connectSrc?: string[], frameSrc?: string[], ga?: boolean }} [artifact]
  * @returns {string}
  */
 export function buildCsp(artifact = {}) {
   const img = sanitizeOrigins(artifact.imgSrc);
   const connect = sanitizeOrigins(artifact.connectSrc);
+  const frame = sanitizeOrigins(artifact.frameSrc);
   const gaEnabled = artifact.ga === true;
   const gaScript = gaEnabled ? [GA_SCRIPT_SRC] : [];
   const gaImg = gaEnabled ? GA_IMG_SRC : [];
@@ -157,7 +165,7 @@ export function buildCsp(artifact = {}) {
     ["img-src 'self'", ...img, ...gaImg].join(" "),
     "font-src 'self'",
     ["connect-src 'self'", ...connect, ...gaConnect].join(" "),
-    "frame-src 'none'",
+    frame.length > 0 ? ["frame-src", ...frame].join(" ") : "frame-src 'none'",
     "object-src 'none'",
     "base-uri 'none'",
     "form-action 'self'",
@@ -218,10 +226,10 @@ const CSP_ORIGINS_PATH = "csp.json";
  * asked for it.
  *
  * @param {URL} clientDir
- * @returns {{ imgSrc: string[], connectSrc: string[], ga: boolean }}
+ * @returns {{ imgSrc: string[], connectSrc: string[], frameSrc: string[], ga: boolean }}
  */
 export function readCspOrigins(clientDir) {
-  const empty = { imgSrc: [], connectSrc: [], ga: false };
+  const empty = { imgSrc: [], connectSrc: [], frameSrc: [], ga: false };
 
   try {
     const parsed = JSON.parse(readFileSync(new URL(CSP_ORIGINS_PATH, clientDir), "utf8"));
@@ -231,6 +239,11 @@ export function readCspOrigins(clientDir) {
     return {
       imgSrc: Array.isArray(parsed.imgSrc) ? parsed.imgSrc : [],
       connectSrc: Array.isArray(parsed.connectSrc) ? parsed.connectSrc : [],
+      // Issue #47 — added after `version: 1` was already in use elsewhere,
+      // so an OLDER artifact (no `frameSrc` key at all) degrades to `[]`
+      // here exactly like a missing `imgSrc`/`connectSrc` would, rather than
+      // being treated as a malformed/unknown-version file.
+      frameSrc: Array.isArray(parsed.frameSrc) ? parsed.frameSrc : [],
       // Issue #56 (A10): missing (the default build never writes it) or
       // anything but a literal `true` both mean "GA off" — the same
       // fail-CLOSED default every other field here already uses.
