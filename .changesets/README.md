@@ -53,10 +53,10 @@ Versions are `MAJOR.MINOR.PATCH`, tagged `vX.Y.Z`. This repo is still `0.x`, whe
 
 | Bound | Value |
 | --- | --- |
-| Files waiting | **10** |
+| Files waiting | **20** |
 | Age of the oldest | **14 days** |
 
-Both numbers are starting assumptions rather than a measured rate — this repo has no release history yet to measure one from (see `packages/gerbang/audit-rilis.mjs`'s own docblock). Revisit them once an actual cadence exists.
+The count was 10 until increment 3 (PR #76): one increment accumulated eighteen changesets before its own release, so 10 reddened every PR in the second half with nothing for the contributor to do about it. 20 is the measured size of one increment's release plus headroom — still low enough that a backlog nobody is releasing gets noticed. The age bound stays at 14 days; it is the age, not the count, that catches an unwatched backlog (see `packages/gerbang/audit-rilis.mjs`'s own docblock).
 
 The file name is what carries the age, so `YYYY-MM-DD-` is **required rather than merely documented**: a name the gate cannot date never ages, and it would sit here invisible to the one check built to see it. A date the calendar does not have (`2026-02-31`) is refused, and so is one more than a day ahead of the machine checking it — one day of slack, because the author names the file in their own timezone and CI keeps UTC.
 
