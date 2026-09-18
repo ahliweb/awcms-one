@@ -146,12 +146,13 @@ function jsonForScript(value: unknown): string {
   <body>
     <a class="skip-link" href="#konten">Lewati ke konten utama</a>
 
-    <Header identity={identity} />
+    {/* Named slots, store chrome as the DEFAULT content — issue #48 fills these with the news chrome on every `/berita/**` page while every other page keeps this fallback, with no change to its own rendered HTML (a named slot with no filler renders its default verbatim). */}
+    <slot name="header"><Header identity={identity} /></slot>
 
     <main id="konten">
       <slot />
     </main>
 
-    <Footer identity={identity} staticPages={staticPages} />
+    <slot name="footer"><Footer identity={identity} staticPages={staticPages} /></slot>
   </body>
 </html>
