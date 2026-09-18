@@ -28,7 +28,8 @@ Every child issue of [issue #21](https://github.com/ahliweb/awcms-one/issues/21)
 | | |
 | --- | --- |
 | Upstream remote | `awcms` → `https://github.com/ahliweb/awcms.git`, fetch refspec narrowed to `+refs/heads/main:refs/remotes/awcms/main`, and `tagOpt` set to `--no-tags` |
-| Embed point | `ahliweb/awcms` v10.3.0, commit `749404d4963af1dfaf8a5cf8b229299b29556ce2` |
+| Embed point | `ahliweb/awcms` v10.3.0, commit `749404d4963af1dfaf8a5cf8b229299b29556ce2` (initial `git subtree add`) |
+| Last sync | upstream `main` at commit `4e049743f53b8490a95d579a0abc53cd1eb7fff7` (awcms PR #807 — institution logo, SVG safety scan), pulled by awcms-one PR for issue #59 with a merge commit |
 | Sync command | `git subtree pull --prefix=apps/cms awcms main` |
 
 Set both when adding the remote:
