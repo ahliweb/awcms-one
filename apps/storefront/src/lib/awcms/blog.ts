@@ -240,6 +240,20 @@ export type RawInstitution = {
   slug: string;
   regionCode: string | null;
   description: string | null;
+  /**
+   * The institution's emblem, as a bare `media_library` id — resolved to a
+   * URL through `resolveMedia` like every other media reference in this app
+   * (issue #59 / C1; upstream awcms#806 added the column and the two DTO
+   * fields, and this repo received them through the `apps/cms` subtree
+   * pull). `null` for an institution whose emblem nobody has uploaded.
+   *
+   * Optional on this type, not required: an `apps/cms` older than that
+   * subtree pull answers without the field at all, and a build against one
+   * must render no logo rather than crash.
+   */
+  logoMediaId?: string | null;
+  /** Alt text authored beside the emblem. `null`/absent → the logo is decorative beside the institution's own name, and renders with an empty `alt`. */
+  logoAlt?: string | null;
 };
 
 let institutionsCache: Promise<RawInstitution[]> | undefined;

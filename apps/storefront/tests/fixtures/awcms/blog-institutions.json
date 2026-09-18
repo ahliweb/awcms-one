@@ -6,7 +6,9 @@
       "name": "Pemkab Kotawaringin Barat",
       "slug": "pemkab-kotawaringin-barat",
       "regionCode": "62.02",
-      "description": "Pemerintah Kabupaten Kotawaringin Barat."
+      "description": "Pemerintah Kabupaten Kotawaringin Barat.",
+      "logoMediaId": "00000000-0000-4000-8000-000000000099",
+      "logoAlt": "Lambang Kabupaten Kotawaringin Barat"
     },
     {
       "id": "i-dprd-kalteng",

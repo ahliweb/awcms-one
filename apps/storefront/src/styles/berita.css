@@ -414,3 +414,40 @@
 .search-hint {
   color: var(--text-muted);
 }
+
+/* --- Institution emblem beside the opening paragraph (issue #59) ---------
+   No background, border or padding: an emblem is nearly always a
+   transparent PNG/SVG, and upstream's own 2.3.2 release removed exactly
+   those decorations for that reason. Floated so the first paragraph wraps
+   beside it (`sb_artikel_logo()`'s placement), and dropped to a block on a
+   narrow screen where a 96px float leaves too little room for the text. */
+.logo-instansi {
+  float: left;
+  margin: 0 1rem 0.5rem 0;
+  max-width: 112px;
+}
+
+.logo-instansi img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (max-width: 480px) {
+  .logo-instansi {
+    float: none;
+    margin: 0 0 1rem;
+    max-width: 88px;
+  }
+}
+
+/* The same emblem on the institution's own landing page (issue #59) —
+   block-level and larger there: it is the page's own subject, not a mark
+   beside someone else's paragraph. */
+.mitra-logo {
+  display: block;
+  width: auto;
+  max-width: 140px;
+  height: auto;
+  margin: 0 0 0.75rem;
+}

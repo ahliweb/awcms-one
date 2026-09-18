@@ -133,7 +133,12 @@ describe("lib/awcms/lembaga: toMitraSummary — institution slug mapping", () =>
       name: "Pemkab Kotawaringin Barat",
       branch: "executive",
       description: "Pemerintah Kabupaten Kotawaringin Barat.",
-      regionName: "KOTAWARINGIN BARAT"
+      regionName: "KOTAWARINGIN BARAT",
+      // Issue #59: an institution with no emblem carries neither field —
+      // the summary says "none", it does not omit them (`tests/
+      // logo-instansi.test.ts` covers the emblem itself).
+      logo: null,
+      logoAlt: null
     });
   });
 
