@@ -30,10 +30,25 @@
  *    caller that does not pass it renders exactly the pre-#47 shape;
  *    `src/pages/video/[slug].astro` is the one caller that passes
  *    `"facade"`.
+ *
+ * Issue #49 — the layout column: the whole article (header, hero, body,
+ * tags, share, related, the three in-article ad slots) now sits in the
+ * main column of ONE `.container > .layout-with-sidebar` grid
+ * (`src/styles/berita.css`), with `Sidebar.astro` beside it — the same
+ * shape seputarborneo's `berita/berita.php` uses (`<h1>` inside
+ * `.sb-utama`, `sidebar.php` a sibling), and the same grid `/berita` and
+ * every archive page render. The former per-block `.container` wrappers
+ * became plain blocks: a `.container` nested inside a grid column would
+ * re-apply its own horizontal padding and inset the article against the
+ * sidebar. The inner blocks are deliberately NOT re-indented in this
+ * change — issue #51 (A5) is rewriting the share block of this same file
+ * in parallel, and a whole-file re-indent would conflict with every line
+ * of it.
  */
 import ArtikelCard from "./ArtikelCard.astro";
 import TagCloud from "./TagCloud.astro";
 import IklanSlot from "./IklanSlot.astro";
+import Sidebar from "./Sidebar.astro";
 import BarisBagikan from "./BarisBagikan.astro";
 import PemutarDengar from "./PemutarDengar.astro";
 import { ROUTES } from "../../config/routes";
@@ -97,7 +112,10 @@ const breadcrumbItems = [
 ];
 ---
 
-<div class="container article-header">
+<div class="container">
+<div class="layout-with-sidebar">
+<article class="article-column">
+<div class="article-header">
   <nav class="breadcrumb" aria-label="Remah roti">
     {breadcrumbItems.map((item) => (
       <>
@@ -146,9 +164,9 @@ const breadcrumbItems = [
 
 <IklanSlot placement={AD_SLOTS.articleTop} />
 
-<div class="container article-body" set:html={bodyHtml} />
+<div class="article-body" set:html={bodyHtml} />
 
-<div class="container">
+<div>
   <IklanSlot placement={AD_SLOTS.articleMiddle} />
 
   {post.tags.length > 0 && (
@@ -180,4 +198,9 @@ const breadcrumbItems = [
   )}
 
   <IklanSlot placement={AD_SLOTS.articleBottom} />
+</div>
+</article>
+
+<Sidebar />
+</div>
 </div>

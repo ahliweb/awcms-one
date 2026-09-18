@@ -13,9 +13,15 @@
  * constraint recorded on `src/pages/berita/[slug].astro` for
  * `article:published_time`. A future issue that adds a head-extension slot
  * to `BaseLayout.astro` can wire both in without touching this file.
+ *
+ * Issue #49: the archive grid now sits in the main column of the shared
+ * `.layout-with-sidebar` grid (`src/styles/berita.css`, issue #28) next to
+ * `Sidebar.astro` — the same sidebar every other news page renders. The
+ * breadcrumb, `<h1>` and sub-rubrik nav stay full-width above it.
  */
 import ArtikelCard from "./ArtikelCard.astro";
 import Pagination from "./Pagination.astro";
+import Sidebar from "./Sidebar.astro";
 import { ROUTES } from "../../config/routes";
 import type { RubrikArchive, PagedResult, PostSummary } from "../../lib/berita";
 
@@ -56,13 +62,19 @@ const hrefFor = (page: number): string => (page === 1 ? ROUTES.rubric(slug) : RO
     </nav>
   )}
 
-  {paged.items.length === 0 ? (
-    <p class="empty-state">Belum ada berita di rubrik ini.</p>
-  ) : (
-    <ul class="grid-cards">
-      {paged.items.map((post) => <ArtikelCard post={post} />)}
-    </ul>
-  )}
+  <div class="layout-with-sidebar">
+    <div>
+      {paged.items.length === 0 ? (
+        <p class="empty-state">Belum ada berita di rubrik ini.</p>
+      ) : (
+        <ul class="grid-cards">
+          {paged.items.map((post) => <ArtikelCard post={post} />)}
+        </ul>
+      )}
 
-  <Pagination paged={paged} hrefFor={hrefFor} />
+      <Pagination paged={paged} hrefFor={hrefFor} />
+    </div>
+
+    <Sidebar />
+  </div>
 </div>

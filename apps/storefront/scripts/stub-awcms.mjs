@@ -86,6 +86,21 @@
  *   - `GET /api/v1/media/public-origin` — `media-public-origin.json`
  *     (`{ configured, origin, baseUrl }`), read by `src/pages/csp.json.ts`.
  *
+ * Issue #49 adds the `visitor_analytics` read `src/lib/awcms/analitik.ts`
+ * calls for the sidebar's "Terpopuler":
+ *
+ *   - `GET /api/v1/analytics/pages?range=7d` — `analytics-pages.json`
+ *     (`{ range, pages: [{ name, count }] }`, verified against
+ *     `apps/cms/src/pages/api/v1/analytics/pages.ts`'s `ok({ range, pages })`
+ *     and `fetchTopPaths`'s `NamedCount`). Like the real route, a `range`
+ *     outside `24h|7d|30d|12m` is a `400 VALIDATION_ERROR`, so a client
+ *     that sent the wrong parameter fails here rather than passing on a
+ *     stub more lenient than the CMS. The fixture deliberately mixes
+ *     post paths with the home page, a store path, a rubrik page, a
+ *     query-string variant of an already-listed post, and a post slug no
+ *     fixture post has — every shape `hitungTayangPerSlug` must ignore or
+ *     fold, so the build proves the mapping, not just the fetch.
+ *
  * Issue #30 adds a DIFFERENT kind of route: `/api/v1/commerce/storefront/*`,
  * the ANONYMOUS cross-origin endpoints `src/lib/toko-klien.ts` calls
  * straight from the BROWSER, per the #29⇄#30 contract
@@ -180,8 +195,28 @@ const ROUTES = {
   "/api/v1/commerce/popups/active": () => fixture("popups-active.json"),
   // #47 media
   "/api/v1/media/objects": (url) => resolveMediaObjects(url),
-  "/api/v1/media/public-origin": () => fixture("media-public-origin.json")
+  "/api/v1/media/public-origin": () => fixture("media-public-origin.json"),
+  // #49 visitor analytics — src/lib/awcms/analitik.ts (see file header).
+  "/api/v1/analytics/pages": (url) => analyticsPages(url)
 };
+
+/** `range` values `GET /api/v1/analytics/pages` accepts — `ANALYTICS_RANGES` (`apps/cms`'s `domain/analytics-range.ts`), mirrored so this stub rejects exactly what the real route rejects. */
+const ANALYTICS_RANGES = new Set(["24h", "7d", "30d", "12m"]);
+
+/**
+ * `GET /api/v1/analytics/pages?range=` — the fixture whole, with the real
+ * route's own `range` validation in front of it (a handler may return a
+ * `Response` to short-circuit the success envelope; see the dispatch at the
+ * bottom of this file). The `range` echoed back is the one requested, as the
+ * real route does — the fixture's own `range` field is just its default.
+ */
+function analyticsPages(url) {
+  const range = url.searchParams.get("range") ?? "7d";
+  if (!ANALYTICS_RANGES.has(range)) {
+    return envelopeError(400, "VALIDATION_ERROR", "range must be one of 24h, 7d, 30d, 12m.");
+  }
+  return { ...fixture("analytics-pages.json"), range };
+}
 
 /**
  * `GET /api/v1/media/objects?ids=` — mirrors the real route's `{ items,
@@ -814,7 +849,12 @@ const server = Bun.serve({
       );
     }
 
-    return Response.json({ success: true, data: handler(url) });
+    const data = handler(url);
+    // A handler that already built a full `Response` (issue #49's analytics
+    // route, for its `400`) is passed through; everything else is wrapped in
+    // the success envelope exactly as before.
+    if (data instanceof Response) return data;
+    return Response.json({ success: true, data });
   }
 });
 

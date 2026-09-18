@@ -434,19 +434,15 @@ export async function getVideo(opts: { limit?: number } = {}): Promise<PostSumma
   return typeof opts.limit === "number" ? video.slice(0, opts.limit) : video;
 }
 
-/**
- * "Terpopuler" sidebar (issue #28: "by `visitor_analytics` rollup when
- * available, else latest"). This build implements ONLY the "else latest"
- * branch: no `visitor_analytics` read endpoint was part of this issue's
- * verified-safe scope (the manager's own fact list names none), and
- * querying an unverified module would be exactly the "invent a shape the
- * code does not hand you" this repo's contribution rule forbids. Recorded
- * for issue #31's documentation as a deliberate scope trim — the same kind
- * issue #24 recorded for its own two.
- */
-export async function getTerpopuler(limit = 5): Promise<PostSummary[]> {
-  return getPosts({ limit });
-}
+// "Terpopuler" (issue #28: "by `visitor_analytics` rollup when available,
+// else latest") used to be a `getTerpopuler(limit)` here that only ever
+// implemented the "else latest" branch — no `visitor_analytics` read
+// endpoint was in that issue's verified-safe scope. Issue #49 superseded it:
+// `src/lib/awcms/analitik.ts` reads the real `GET /api/v1/analytics/pages`
+// rollup and `src/components/berita/Sidebar.astro` ranks `getPosts()`/
+// `getVideo()` with it, falling back to `getPosts({ limit })` — the exact
+// list the removed function returned. Nothing imported it any more, so it
+// is gone rather than kept as a misleading second entry point.
 
 /** Up to `limit` OTHER posts sharing `post`'s rubrik, newest first — `[]` for an uncategorised post (nothing to relate it by). */
 export async function getRelatedPosts(post: PostSummary, limit = 3): Promise<PostSummary[]> {

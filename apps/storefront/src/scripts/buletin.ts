@@ -1,10 +1,13 @@
 /**
- * Newsletter double opt-in (issue #50) — `/buletin`'s subscribe form and the
- * two token pages (`/newsletter/confirm`, `/newsletter/unsubscribe` — a fixed apps/cms contract, not this app's own naming; see the README) it links to
- * from an e-mail. Wires up whichever `[data-buletin-*]` root the current
- * page actually has — the same one-script-many-guarded-roots shape
- * `checkout.ts`/`keranjang.ts` use, so this file can be imported unchanged
- * from all three pages.
+ * Newsletter double opt-in (issue #50) — the subscribe form (`/buletin`,
+ * and since issue #49 the news sidebar's and footer's boxes on every news
+ * page) and the two token pages (`/newsletter/confirm`,
+ * `/newsletter/unsubscribe` — a fixed apps/cms contract, not this app's own
+ * naming; see the README) it links to from an e-mail. Wires up whichever
+ * `[data-buletin-*]` roots the current page actually has — EVERY subscribe
+ * form, not just the first (see `wireBuletinForms`) — the same
+ * one-script-many-guarded-roots shape `checkout.ts`/`keranjang.ts` use, so
+ * this file can be imported unchanged from every page that mounts it.
  *
  * ## Why this does not extend `src/lib/toko-klien.ts`
  *
@@ -201,12 +204,38 @@ function showStatus(el: HTMLElement, tone: "info" | "danger", message: string): 
   el.className = `toko-banner toko-banner--${tone}`;
 }
 
-// --- `/buletin`'s subscribe form -------------------------------------------
+// --- The subscribe form(s) --------------------------------------------------
 
-function wireBuletinForm(): void {
-  const formRoot = document.querySelector<HTMLFormElement>("[data-buletin-form]");
-  if (!formRoot) return;
+/**
+ * The slice of `Document`/`ParentNode` `wireBuletinForms` needs — a
+ * parameter rather than a bare `document` so `tests/buletin-forms.test.ts`
+ * can hand it a two-form fake root under plain `bun test`, which has no DOM
+ * (no shim is registered anywhere in this workspace — see the entry point
+ * below). Production passes `document`.
+ */
+export type BuletinFormRoot = {
+  querySelectorAll(selector: string): ArrayLike<HTMLFormElement> & Iterable<HTMLFormElement>;
+};
 
+/**
+ * Wires EVERY `[data-buletin-form]` under `root` — not just the first.
+ * Issue #49 renders the form twice on most news pages (the sidebar's box AND
+ * the footer's, as seputarborneo does); an earlier version of this file
+ * used `document.querySelector` and would have left the second form dead:
+ * a bare `<form>` with no `action`/`method` whose submit nothing intercepts
+ * GETs its fields onto the page's own URL, putting the reader's e-mail
+ * address in the address bar and the server log. Each form gets its own
+ * closure via `wireBuletinForm` — its own `submitting` flag, its own
+ * status region, its own button — so nothing is shared between them.
+ */
+export function wireBuletinForms(root: BuletinFormRoot): void {
+  for (const formRoot of root.querySelectorAll("[data-buletin-form]")) {
+    wireBuletinForm(formRoot);
+  }
+}
+
+/** One form's own wiring — every piece of state below is local to this call. Exported for `tests/buletin-forms.test.ts`; production only ever reaches it through `wireBuletinForms`. */
+export function wireBuletinForm(formRoot: HTMLFormElement): void {
   const emailInput = formRoot.querySelector<HTMLInputElement>("[data-buletin-email]");
   const honeypotInput = formRoot.querySelector<HTMLInputElement>("[data-buletin-honeypot]");
   const submitButton = formRoot.querySelector<HTMLButtonElement>("[data-buletin-submit]");
@@ -366,7 +395,7 @@ function wireTokenPage(
 // gets to call `subscribeToNewsletter` and friends. Everything above stays
 // pure and importable; only the wiring below needs an actual browser.
 if (typeof document !== "undefined") {
-  wireBuletinForm();
+  wireBuletinForms(document);
   wireTokenPage(
     "[data-buletin-confirm]",
     confirmNewsletterSubscription,
