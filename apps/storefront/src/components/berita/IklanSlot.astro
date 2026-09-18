@@ -14,6 +14,23 @@
  * a `src` attribute unchecked), falling back to the original name/link text
  * for anything that does not parse. The editorial-disclosure label is
  * unchanged either way.
+ *
+ * ## The popup trigger attributes (issue #53, A7)
+ *
+ * A creative that rendered as an `<img>` is also a popup trigger for
+ * `src/scripts/iklan-popup.ts` (mounted once by `BeritaLayout.astro`):
+ * `data-iklan-popup` marks it, `data-iklan-nama` carries the advertiser's
+ * name and `data-iklan-label` the disclosure label the popup shows (the
+ * content-class label when there is one, else this slot's own `label` —
+ * "Iklan"). On a LINKED creative these are attributes on the existing
+ * anchor and nothing else changes: with no JavaScript the anchor navigates
+ * exactly as before. An UNLINKED creative has no anchor to decorate, and
+ * the popup's own "no destination" state ("Iklan ini belum memiliki tautan
+ * tujuan") is an acceptance criterion of #53 — so that one branch wraps the
+ * image in a `<button type="button">` (a real, keyboard-operable control,
+ * never an `<img tabindex>`), which with no JavaScript is as inert as the
+ * bare image it replaces. A text-only ad (no resolvable image) is never a
+ * trigger — there is no creative to enlarge.
  */
 import { getAdSlot } from "../../lib/awcms/iklan";
 import type { AdPlacementKey } from "../../lib/awcms/blog";
@@ -50,10 +67,18 @@ function creativeImageUrl(url: string): string | null {
     <ul class="ad-slot-list">
       {ads.map((ad) => {
         const imageUrl = creativeImageUrl(ad.mediaPublicUrl);
+        const popupLabel = disclosureLabel[ad.contentClass] ?? label;
         return (
           <li class="ad-slot-item">
             {ad.linkUrl ? (
-              <a href={ad.linkUrl} rel="noopener noreferrer sponsored" target="_blank">
+              <a
+                href={ad.linkUrl}
+                rel="noopener noreferrer sponsored"
+                target="_blank"
+                data-iklan-popup={imageUrl ? "" : undefined}
+                data-iklan-nama={imageUrl ? ad.name : undefined}
+                data-iklan-label={imageUrl ? popupLabel : undefined}
+              >
                 {imageUrl ? (
                   <img
                     src={imageUrl}
@@ -69,15 +94,23 @@ function creativeImageUrl(url: string): string | null {
                 )}
               </a>
             ) : imageUrl ? (
-              <img
-                src={imageUrl}
-                alt={ad.mediaAltText ?? ad.name}
-                loading="lazy"
-                decoding="async"
-                width="300"
-                height="250"
-                class="ad-slot-image"
-              />
+              <button
+                type="button"
+                class="ad-slot-trigger"
+                data-iklan-popup
+                data-iklan-nama={ad.name}
+                data-iklan-label={popupLabel}
+              >
+                <img
+                  src={imageUrl}
+                  alt={ad.mediaAltText ?? ad.name}
+                  loading="lazy"
+                  decoding="async"
+                  width="300"
+                  height="250"
+                  class="ad-slot-image"
+                />
+              </button>
             ) : (
               <span>{ad.name}</span>
             )}
