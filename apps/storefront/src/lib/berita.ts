@@ -40,7 +40,23 @@ export type TermSummary = { slug: string; name: string };
 
 export type RegionRef = { code: string; slug: string; name: string; level: number };
 
-export type InstitutionRef = { slug: string; name: string };
+export type InstitutionRef = {
+  slug: string;
+  name: string;
+  /**
+   * The institution's emblem, already resolved to a public URL (issue #59 /
+   * C1). seputarborneo attaches a regency's emblem to an ARTICLE; here it
+   * lives on the institution the article is filed under, so one upload
+   * serves every article of that institution and changing it updates them
+   * all — the property seputarborneo's own "satu logo dipakai berulang"
+   * rule was after, with one source of truth instead of a per-post picker.
+   * `null` when the institution has no emblem, or when its id does not
+   * resolve (a stale reference renders nothing, never a broken image).
+   */
+  logo: ResolvedMedia | null;
+  /** Alt text for that emblem. `null` → decorative beside the institution's own name (`alt=""`). */
+  logoAlt: string | null;
+};
 
 /**
  * One published post, as every listing page (front page, rubrik/daerah/
@@ -293,7 +309,12 @@ async function toPostSummary(
     rubric: rubricTerm ? { slug: rubricTerm.slug, name: rubricTerm.name } : null,
     tags,
     region,
-    institutions: institutions.map((i) => ({ slug: i.slug, name: i.name })),
+    institutions: institutions.map((i) => ({
+      slug: i.slug,
+      name: i.name,
+      logo: i.logoMediaId ? mediaById.get(i.logoMediaId) ?? null : null,
+      logoAlt: i.logoAlt ?? null
+    })),
     authorByline: raw.authorByline,
     isVideo: documentHasPlayableVideo(raw.bodyPortableText),
     image: raw.featuredMediaId ? mediaById.get(raw.featuredMediaId) ?? null : null,
@@ -334,6 +355,13 @@ async function buildIndex(): Promise<Indexed> {
   for (const raw of visible) {
     if (raw.featuredMediaId) mediaIds.push(raw.featuredMediaId);
     mediaIds.push(...collectGalleryMediaObjectIds(raw.bodyPortableText));
+  }
+  // …plus every institution's emblem (issue #59). Collected here, in the
+  // same batch, rather than resolved per article: the 24 institutions of a
+  // regional news portal are a handful of ids shared by thousands of posts,
+  // and `resolveMedia` de-duplicates them into the same chunked call.
+  for (const institution of rawInstitutions) {
+    if (institution.logoMediaId) mediaIds.push(institution.logoMediaId);
   }
   const mediaById = await resolveMedia(mediaIds);
 

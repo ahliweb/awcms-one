@@ -42,5 +42,16 @@
     "creditLine": null,
     "sourceName": null,
     "copyrightStatus": "owned"
+  },
+  "00000000-0000-4000-8000-000000000099": {
+    "publicUrl": "https://media.example.test/news/lambang-pemkab-kobar.png",
+    "altText": "Lambang Kabupaten Kotawaringin Barat",
+    "mimeType": "image/png",
+    "width": 240,
+    "height": 240,
+    "sizeBytes": 18342,
+    "creditLine": null,
+    "sourceName": null,
+    "copyrightStatus": "own_work"
   }
 }

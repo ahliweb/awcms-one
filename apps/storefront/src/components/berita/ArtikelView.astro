@@ -35,6 +35,7 @@ import ArtikelCard from "./ArtikelCard.astro";
 import TagCloud from "./TagCloud.astro";
 import IklanSlot from "./IklanSlot.astro";
 import BarisBagikan from "./BarisBagikan.astro";
+import LogoInstansi from "./LogoInstansi.astro";
 import { ROUTES } from "../../config/routes";
 import { absoluteUrl } from "../../config/site";
 import { renderPortableText, type VideoRenderMode } from "../../lib/portable-text";
@@ -138,7 +139,11 @@ const breadcrumbItems = [
 
 <IklanSlot placement={AD_SLOTS.articleTop} />
 
-<div class="container article-body" set:html={bodyHtml} />
+<div class="container article-body">
+  {/* Issue #59: the institution's emblem, floated beside the opening paragraph — `LogoInstansi.astro` renders nothing at all when the post's institutions have none. */}
+  <LogoInstansi institutions={post.institutions} />
+  <Fragment set:html={bodyHtml} />
+</div>
 
 <div class="container">
   <IklanSlot placement={AD_SLOTS.articleMiddle} />

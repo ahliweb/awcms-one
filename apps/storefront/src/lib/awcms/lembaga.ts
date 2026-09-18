@@ -4,15 +4,20 @@
  * adds the one thing that file deliberately does not: a region NAME, via
  * `src/lib/awcms/wilayah.ts`.
  *
- * ## No logo — verified, not assumed
+ * ## The logo, as of issue #59
  *
- * The issue's mitra bullet asks for "logo, description, latest posts".
- * `RawInstitution` (`src/lib/awcms/blog.ts`, verified against
- * `InstitutionView`/the `sql/131` migration) carries no logo/media field at
- * all. `src/pages/mitra/[slug].astro` renders name/description/posts and
- * omits the logo, the same "render every field that actually exists"
- * choice `src/pages/kontak.astro` already made for a maps iframe/FAQ list
- * neither exists on `site_profile`.
+ * Issue #28 recorded here that `RawInstitution` carried no logo field at
+ * all, so `/mitra/[slug]` rendered name/description/posts and no emblem.
+ * That is no longer true: upstream awcms#806 added `logo_media_id`/
+ * `logo_alt` to `awcms_blog_institutions` and exposed them on
+ * `/api/v1/blog/institutions`, and this repo received them through the
+ * `apps/cms` subtree pull (#59 step 2). `MitraSummary` therefore carries a
+ * RESOLVED emblem (`logoMediaId` → `resolveMedia`, issue #47's client), and
+ * both `/mitra/[slug]` and the article page render it.
+ *
+ * Both fields stay OPTIONAL on `RawInstitution`: a build pointed at an
+ * `apps/cms` older than that pull gets no field at all and must render no
+ * emblem rather than crash.
  *
  * ## No Pemprov/DPRD/Pemkab/Pemko field
  *
@@ -25,6 +30,7 @@
  * verbatim for the rest.
  */
 import { getAllInstitutions, type RawInstitution } from "./blog";
+import { resolveMedia, type ResolvedMedia } from "./media";
 import { resolveRegion } from "./wilayah";
 
 export type MitraSummary = {
@@ -33,6 +39,10 @@ export type MitraSummary = {
   branch: "legislative" | "executive";
   description: string | null;
   regionName: string | null;
+  /** The institution's emblem, resolved to a public URL — `null` when it has none, or when a stale id resolves to nothing. */
+  logo: ResolvedMedia | null;
+  /** Alt text for the emblem; `null` means decorative beside the name it sits next to. */
+  logoAlt: string | null;
 };
 
 let mitraCache: Promise<MitraSummary[]> | undefined;
@@ -46,10 +56,21 @@ export function getMitraList(): Promise<MitraSummary[]> {
 async function buildMitraList(): Promise<MitraSummary[]> {
   const institutions = await getAllInstitutions();
 
+  // One batched resolve for every emblem in the list — the same posture
+  // `src/lib/berita.ts` takes for post images, and the reason this is not
+  // done inside the per-institution map below.
+  const logoById = await resolveMedia(
+    institutions.map((i) => i.logoMediaId).filter((id): id is string => Boolean(id))
+  );
+
   return Promise.all(
     institutions.map(async (institution) => {
       const region = institution.regionCode ? await resolveRegion(institution.regionCode) : null;
-      return toMitraSummary(institution, region?.name ?? null);
+      return toMitraSummary(
+        institution,
+        region?.name ?? null,
+        institution.logoMediaId ? logoById.get(institution.logoMediaId) ?? null : null
+      );
     })
   );
 }
@@ -63,13 +84,19 @@ async function buildMitraList(): Promise<MitraSummary[]> {
  * slug from a name because the CMS issues none), an institution's `slug`
  * passes through completely unchanged — verified here rather than assumed.
  */
-export function toMitraSummary(institution: RawInstitution, regionName: string | null): MitraSummary {
+export function toMitraSummary(
+  institution: RawInstitution,
+  regionName: string | null,
+  logo: ResolvedMedia | null = null
+): MitraSummary {
   return {
     slug: institution.slug,
     name: institution.name,
     branch: institution.branch,
     description: institution.description,
-    regionName
+    regionName,
+    logo,
+    logoAlt: institution.logoAlt ?? null
   };
 }
 
