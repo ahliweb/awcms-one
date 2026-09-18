@@ -73,12 +73,12 @@ the same branch:
 
 ## One more correction: the row-based (issue #28) map itself
 
-`src/pages/index/pengalihan-legacy.json.ts`'s row-based map — the one
+`apps/storefront/src/pages/index/pengalihan-legacy.json.ts`'s row-based map — the one
 `pengalihan-aturan.mjs` only ever falls through to on a miss — had two
 related bugs of its own, found while wiring the above:
 
 - It rebuilt every `legacy_blog` row's destination as `/berita/{slug}`
-  unconditionally, but `src/lib/berita.ts`'s `getPosts()` never publishes a
+  unconditionally, but `apps/storefront/src/lib/berita.ts`'s `getPosts()` never publishes a
   video post there (only `/video/{slug}`) — every imported video's redirect
   would land on a page this app never builds. `buildLegacyRedirectMap()`
   now takes an optional `videoSlugs` set (default empty — every existing
