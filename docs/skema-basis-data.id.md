@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](skema-basis-data.md)
 
-<!-- i18n-source-hash: sha256:5034f49312442a35dc289c1da675dd6fd1bffbae62d7b92f7ba16867cd8c12eb -->
+<!-- i18n-source-hash: sha256:4f5a9b8da318a462e6fc3db494f939174fe1f3158ac7d0ba399b486c6f418adc -->
 
 # Skema basis data
 
@@ -104,6 +104,18 @@ Keenamnya: `id`/`created_at`/`updated_at`/`deleted_at` standar, RLS `ENABLE`+`FO
 | `awcms_commerce_wishlists` | `customer_id`, `product_id` (keduanya FK `NOT NULL`) | Unik `(customer_id, product_id) WHERE deleted_at IS NULL`; **hanya-skema — belum ada rute API di depannya**, dikirim mendahului sistem akun yang dibutuhkannya |
 
 Kedelapannya: RLS `ENABLE`+`FORCE`, kebijakan isolasi-tenant. `deleted_at` ada pada tujuh dari delapan (setiap tabel kecuali `order_events`) murni sebagai kursor purge data-lifecycle yang seragam — order, item order, pelanggan, dan konfirmasi pembayaran tidak pernah benar-benar di-soft-delete oleh kode modul ini sendiri.
+
+## Akun pelanggan, OTP, sesi: tiga tabel (`sql/917`-`918`)
+
+Issue #87 (C1, kontrak #86/ADR-0016 — ADR milik repo awcms ini sendiri, belum ditulis pada saat tabel ini dibuat). Tanpa kata sandi sama sekali — autentikasi adalah OTP e-mail 6 digit; sesi adalah token bearer opak, hanya hash `sha256:`-nya yang disimpan.
+
+| Tabel | Kolom kunci | Catatan |
+| --- | --- | --- |
+| `awcms_commerce_customer_accounts` | `customer_id` (FK, `UNIQUE (tenant_id, customer_id)` — 1:1 dengan `awcms_commerce_customers`), `email_normalized` (`UNIQUE (tenant_id, email_normalized)`), `status` (`CHECK IN ('active','blocked')`), `email_verified_at`, `history_from timestamptz NOT NULL`, `last_login_at` | Tanpa `password_hash`, tanpa `identity_id`/`principal_id` — ADR-0016 D1 (kontrak issue #86; dokumen ADR-nya sendiri adalah deliverable issue itu, belum ditulis). Membawa kolom `deleted_at` yang tidak pernah diset oleh kode modul ini sendiri — diblokir berarti `status = 'blocked'`, tidak pernah dihapus; kolom ini ada hanya sebagai kursor yang selalu-`NULL` dan jujur untuk deskriptor `dataLifecycle` (`module.ts`), trik yang sama yang sudah dipakai `awcms_commerce_orders`. `history_from` adalah titik-awal riwayat order hasil resolusi ADR-0016 D4, dihitung sekali saat registrasi oleh fungsi murni `resolveHistoryFrom` |
+| `awcms_commerce_customer_otps` | `email_normalized NOT NULL`, `purpose` (`CHECK IN ('login','register')`), `code_hash NOT NULL` (bukan kode mentah), `registration jsonb` (name/phone tertunda untuk `register`), `attempts integer NOT NULL DEFAULT 0`, `expires_at NOT NULL`, `consumed_at` | TTL 10 menit, 5 percobaan, sekali pakai — ADR-0016 D2. `consumeOtp` memverifikasi + mengonsumsi dalam satu `UPDATE ... RETURNING`, tidak pernah read-then-write |
+| `awcms_commerce_customer_sessions` | `account_id` (FK), `token_hash text NOT NULL UNIQUE` (berawalan `sha256:` — namespace BARU, bukan hash sesi admin milik `apps/cms/src/lib/auth`), `issued_at`, `expires_at`, `last_seen_at`, `revoked_at`, `client_ip_hash`, `user_agent_summary` | TTL sliding 30 hari (`touchSession` hanya menulis saat `last_seen_at` sudah basi 5+ menit); token bearer `cs_` + 32 byte acak base64url — ADR-0016 D3 |
+
+Ketiganya: RLS `ENABLE`+`FORCE`, kebijakan isolasi-tenant, indeks FK. `commerce:customer-auth:purge` (role worker, hibah `sql/918`) menghapus OTP kedaluwarsa dan sesi kedaluwarsa/dicabut-7-hari-lalu secara terjadwal; tabel akun tidak punya perilaku purge sama sekali (lihat komentar `dataLifecycle` di `module.ts`).
 
 ## Row-level security: `ENABLE` dan `FORCE`, terbukti di bawah role tak-berhak-istimewa
 
