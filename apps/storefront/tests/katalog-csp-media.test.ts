@@ -157,7 +157,10 @@ describe("readCspOrigins", () => {
 
     expect(readCspOrigins(dir)).toEqual({
       imgSrc: ["https://media.example.com"],
-      connectSrc: []
+      connectSrc: [],
+      // Issue #56 (A10): the fixture above predates the GA flag and never
+      // sets it — `false` is `readCspOrigins`'s own documented default.
+      ga: false
     });
   });
 
@@ -167,12 +170,15 @@ describe("readCspOrigins", () => {
     // against a newer client bundle. All three must fail CLOSED — a
     // missing artifact costs images (visible, fixed by a rebuild); a
     // wrongly-wide default silently weakens a policy nobody asked to widen.
-    expect(readCspOrigins(fixtureDir())).toEqual({ imgSrc: [], connectSrc: [] });
-    expect(readCspOrigins(fixtureDir("{ not json"))).toEqual({ imgSrc: [], connectSrc: [] });
-    expect(readCspOrigins(fixtureDir("[]"))).toEqual({ imgSrc: [], connectSrc: [] });
+    // Issue #56 (A10) added the `ga` flag, always `false` in every one of
+    // these degraded/fail-closed states.
+    const EMPTY = { imgSrc: [], connectSrc: [], ga: false };
+    expect(readCspOrigins(fixtureDir())).toEqual(EMPTY);
+    expect(readCspOrigins(fixtureDir("{ not json"))).toEqual(EMPTY);
+    expect(readCspOrigins(fixtureDir("[]"))).toEqual(EMPTY);
     expect(
       readCspOrigins(fixtureDir(JSON.stringify({ version: 2, imgSrc: ["https://x.test"] })))
-    ).toEqual({ imgSrc: [], connectSrc: [] });
+    ).toEqual(EMPTY);
   });
 
   test("the artifact the build writes is exactly what the server can read back", () => {

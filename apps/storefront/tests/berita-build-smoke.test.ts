@@ -166,6 +166,39 @@ describe("build smoke: news surface (issue #28) against the stub CMS", () => {
         // (Pidana) — "the parent index includes children's posts".
         const peristiwaHtml = readFileSync(join(distClient, "rubrik", "peristiwa.html"), "utf8");
         expect(peristiwaHtml).toContain("Bupati Kobar Resmikan Jembatan Baru");
+
+        // Issue #48's news chrome (BilahUtilitas/NavBerita/Ticker/FooterBerita,
+        // via BaseLayout.astro's `header`/`footer` named slots): exactly one
+        // `<head>`/one `<main id="konten">` per page — the chrome fills
+        // BaseLayout.astro's slots rather than nesting a second shell inside
+        // it — and no leftover store chrome (Header.astro/Footer.astro's own
+        // classes) on a news page.
+        const beritaHtml = readFileSync(join(distClient, "berita.html"), "utf8");
+        expect(beritaHtml.match(/<head[\s>]/g)?.length).toBe(1);
+        expect(beritaHtml.match(/<main id="konten"/g)?.length).toBe(1);
+        expect(beritaHtml).not.toMatch(/class="site-header/);
+        expect(beritaHtml).not.toMatch(/class="site-footer/);
+        expect(beritaHtml).not.toMatch(/cart-link|wishlist-link/);
+        expect(beritaHtml).toContain('class="nav-berita"');
+        expect(beritaHtml).toContain('class="footer-berita"');
+
+        // The Daerah panel carries all 14 Kalteng regencies-with-an-
+        // institution (tests/fixtures/awcms/{blog-institutions,
+        // regions-kalteng}.json) — extracted from its own wrapper so this
+        // count is not polluted by the footer's OWN Daerah column, which
+        // lists the same 14 a second time.
+        const daerahPanel = beritaHtml.match(/<div class="nav-berita__rel-tautan">([\s\S]*?)<\/div>/);
+        expect(daerahPanel).not.toBeNull();
+        expect(daerahPanel![1]!.match(/href="\/daerah\//g)?.length).toBe(14);
+
+        // The footer's Mitra Borneo directory carries all 24 institution
+        // fixtures — extracted from its own wrapper so this count is not
+        // polluted by `/berita`'s own "Mitra" strip (this month's active
+        // institutions, a DIFFERENT, smaller list from `src/lib/berita.ts`'s
+        // `getMitraStripBulanIni()`).
+        const mitraDirectory = beritaHtml.match(/<div class="footer-berita__mitra">([\s\S]*?)<\/div>/);
+        expect(mitraDirectory).not.toBeNull();
+        expect(mitraDirectory![1]!.match(/href="\/mitra\//g)?.length).toBe(24);
       } finally {
         stub.kill();
         await stub.exited;

@@ -1,5 +1,6 @@
 /**
- * Legacy URL → `/berita/{slug}` redirect map (issue #28) — turns
+ * Legacy URL → `/berita/{slug}` (or `/video/{slug}`, for a video post — see
+ * `buildLegacyRedirectMap`'s own docblock) redirect map (issue #28) — turns
  * `awcms_seo_redirects` rows with `origin: "legacy_blog"`
  * (`src/lib/awcms/blog.ts`'s `getLegacyRedirectRows()`) into a static
  * `sourcePath -> targetPath` map, baked into the build by
@@ -14,10 +15,11 @@
  * eventual destination for a `relative_same_tenant` rule — most plausibly
  * this CMS's OWN themed `/blog/{tenantCode}/{slug}` page (ADR-0071's
  * permanent vocabulary for `apps/cms` itself), which has no reason to know
- * this storefront's `/berita/{slug}` shape exists. The one fact both sides
- * agree on is the post's SLUG, not the path shape around it — so this file
- * reads only the trailing path segment of `target` and rebuilds the
- * destination in this app's own URL vocabulary (`ROUTES.article`).
+ * this storefront's `/berita/{slug}` (or `/video/{slug}`) shape exists. The
+ * one fact both sides agree on is the post's SLUG, not the path shape
+ * around it — so this file reads only the trailing path segment of `target`
+ * and rebuilds the destination in this app's own URL vocabulary
+ * (`ROUTES.article`/`ROUTES.videoArticle`).
  *
  * `verified_external` rows are skipped outright: they point somewhere this
  * storefront does not serve, and sending a reader through this app to an
@@ -46,6 +48,20 @@ function lastPathSegment(path: string): string | null {
  * mismatch) still compare equal. An undecodable path is left as-is rather
  * than thrown on — it simply will not match anything real, which is the
  * correct outcome for a malformed URL nobody could have followed anyway.
+ *
+ * ONE shape is exempt from the query strip: `/video/?video={id}-…` (issue
+ * #58/B2's own template for a video row) carries its whole identity in the
+ * query — unlike `?utm=fb` on an otherwise-complete path, there is no path
+ * left once it is removed. Stripping it here the same way would collapse
+ * every video row onto the identical bare `/video` key, which
+ * `buildLegacyRedirectMap`'s own conflict guard would then reject the
+ * moment a second, differently-targeted video row exists (the throw two
+ * DIFFERENT sources are supposed to trigger, misfiring on what are really
+ * DIFFERENT sources). This function still has no reason to know which
+ * table's row it is looking at, so it recognizes the shape by prefix, not
+ * by a caller-supplied flag — `apps/storefront/server/pengalihan-
+ * aturan.mjs`'s `findVideoRowTargetById` (issue #55/A9) is what actually
+ * reads this preserved key at request time, by the same prefix.
  */
 export function normalizeLegacyPath(path: string): string {
   let decoded = path;
@@ -55,7 +71,13 @@ export function normalizeLegacyPath(path: string): string {
     // Left as `path` — see docblock.
   }
 
-  const withoutQuery = decoded.split(/[?#]/)[0] ?? "";
+  const withoutFragment = decoded.split("#")[0] ?? "";
+
+  if (/^\/video\/?\?video=/.test(withoutFragment)) {
+    return withoutFragment;
+  }
+
+  const withoutQuery = withoutFragment.split("?")[0] ?? "";
 
   if (withoutQuery.length > 1 && withoutQuery.endsWith("/")) {
     return withoutQuery.slice(0, -1);
@@ -70,13 +92,27 @@ export function normalizeLegacyPath(path: string): string {
  * (`tests/berita-pengalihan-legacy.test.ts`), the same seam
  * `src/lib/sitemap.ts`'s XML renderers already use.
  *
+ * `videoSlugs` — every video post's slug (`getVideo()`, this app's own
+ * `isVideo: true` partition) — decides which of this app's two article
+ * route shapes a resolved slug actually lives at: `getPosts()`'s own
+ * docblock is explicit that a video post is NEVER also published at
+ * `/berita/{slug}` (one canonical URL per post), so a `legacy_blog` row
+ * whose slug belongs to a video post must resolve to `/video/{slug}`, not
+ * `/berita/{slug}` — the latter is a page this app never builds for that
+ * slug, so every redirect for that video's `/news/{id}-…`/`/video/
+ * ?video={id}-…` legacy URL would otherwise 404. Optional, defaulting to
+ * an empty set, so every call site (and every existing test) predating this
+ * distinction keeps its old, correct-for-a-non-video-post behavior with no
+ * change.
+ *
  * Refuses (throws) rather than silently picking a winner: two rows
  * normalizing to the same source path but disagreeing on the destination
  * is a build defect worth seeing, not a "last one wins" a reader would
  * never notice went wrong.
  */
 export function buildLegacyRedirectMap(
-  rows: readonly LegacyRedirectRow[]
+  rows: readonly LegacyRedirectRow[],
+  videoSlugs: ReadonlySet<string> = new Set()
 ): Record<string, string> {
   const map: Record<string, string> = {};
 
@@ -87,7 +123,7 @@ export function buildLegacyRedirectMap(
     if (!slug) continue;
 
     const source = normalizeLegacyPath(row.sourcePath);
-    const destination = ROUTES.article(slug);
+    const destination = videoSlugs.has(slug) ? ROUTES.videoArticle(slug) : ROUTES.article(slug);
 
     const existing = map[source];
     if (existing !== undefined && existing !== destination) {

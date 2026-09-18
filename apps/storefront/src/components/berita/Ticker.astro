@@ -1,0 +1,50 @@
+---
+/**
+ * The "Terkini" strip (issue #48) — ported from seputarborneo.com v2.4.0's
+ * `include/layout_header.php` `.sb-ticker` block: the 3 latest post titles.
+ *
+ * ## No marquee — a static list IS the reduced-motion state
+ *
+ * The issue's own acceptance names `prefers-reduced-motion`; the simplest
+ * way to genuinely respect it is to have no motion to reduce in the first
+ * place. seputarborneo's own `.sb-ticker__jalur` is CSS `overflow-x: auto`
+ * with no animation (verified against `css/style.css` — no `@keyframes`
+ * touches `.sb-ticker`), so "no marquee; static list" is not a trim from the
+ * reference, it is what the reference already does; WCAG 2.2.2 (Pause, Stop,
+ * Hide) is the reason an auto-scrolling ticker would need a visible pause
+ * control this app would then also have to build, test, and keep
+ * accessible — a real cost this component does not need to take on for a
+ * "latest headlines" strip three items long.
+ *
+ * Self-contained (fetches its own 3 posts via `getPosts()`, already
+ * memoized per build by `src/lib/berita.ts`) rather than a prop from
+ * `BeritaLayout.astro`, the same "no page/layout needs to know this
+ * component's own data need" independence `IklanSlot.astro` already has.
+ */
+import { ROUTES } from "../../config/routes";
+import { formatTanggalPanjangWIB, toDatetimeAttr } from "../../lib/tanggal";
+import { getPosts } from "../../lib/berita";
+
+const posts = await getPosts({ limit: 3 });
+---
+
+{posts.length > 0 && (
+  <div class="ticker-berita">
+    <div class="container ticker-berita__isi">
+      <span class="ticker-berita__label">Terkini</span>
+      <ul class="ticker-berita__daftar">
+        {posts.map((post) => (
+          <li>
+            <a href={post.isVideo ? ROUTES.videoArticle(post.slug) : ROUTES.article(post.slug)}>
+              {post.title}
+            </a>
+            <time datetime={toDatetimeAttr(post.publishedAt)} class="visually-hidden">
+              {formatTanggalPanjangWIB(post.publishedAt)}
+            </time>
+          </li>
+        ))}
+      </ul>
+      <a class="ticker-berita__semua" href={ROUTES.news}>Indeks &rarr;</a>
+    </div>
+  </div>
+)}

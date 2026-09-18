@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](deployment.md)
 
-<!-- i18n-source-hash: sha256:e52279df8bd77c8bca074214802351a8c13cf2cfc76d46505b37688f98e68228 -->
+<!-- i18n-source-hash: sha256:93a82233865de0af672e1eb8535eb879a781b0987f6823d076c338fb619fb253 -->
 
 # Deployment
 
@@ -30,6 +30,7 @@ Dua berkas `.env.example` terpisah, satu per workspace, sengaja tidak digabung �
 | `AWCMS_API_TIMEOUT_MS` | Hanya saat build, opsional | Berapa lama satu request ke `apps/cms` boleh berlangsung sebelum build menyerah (default 30000 ms) — nilai yang bukan angka positif ditolak langsung, termasuk `0`, yang jika tidak berarti "tanpa batas" dan mengembalikan persis hang yang ingin dicegah deadline ini |
 | `PUBLIC_AWCMS_ORIGIN` | Saat build, dan dipanggang ke CSP yang dilayani | **Baru di issue #30.** Origin `apps/cms` yang dipanggil *browser* saat runtime untuk keranjang/checkout/pelacakan-pesanan — sengaja diprefiks `PUBLIC_`, karena ia origin, bukan rahasia (nilai yang sama yang sudah diungkap setiap URL media). Divalidasi oleh `apps/storefront/src/lib/awcms/toko-origin.ts`; nilai yang tidak diset atau malformed menggagalkan build langsung, menyebut nama variabelnya, karena `apps/storefront/src/pages/csp.json.ts` — halaman yang di-prerender tanpa syarat oleh setiap build — memanggil validator itu tanpa syarat. Lihat [ADR-0007](adr/0007-cart-and-checkout-stay-static-the-browser-calls-anonymous-commerce-endpoints.id.md) dan [`docs/arsitektur.md`](arsitektur.id.md) |
 | `PUBLIC_WILAYAH_PROVINSI` | Saat build, opsional | Provinsi Indonesia mana yang data wilayah-alamatnya (`idn_admin_regions`) dipanggang ke `/index/wilayah-*.json` untuk form alamat checkout — default semua provinsi Kalimantan, sengaja bukan dataset nasional penuh ~90.000 desa |
+| `PUBLIC_GA_ID` | Saat build, dan dipanggang ke CSP yang disajikan | **Baru di issue #56.** Measurement ID GA4 miliknya sendiri (`G-…`). Tidak diset, kosong, atau tidak berbentuk seperti itu (`apps/storefront/src/lib/ga.ts`) dan build tersebut sama sekali tidak membawa origin Google mana pun — lihat "Dua sakelar" di bawah |
 | `PORT`, `HOST` | Runtime, hanya oleh `apps/storefront/server/penyaji.mjs` | Default `8080`/`0.0.0.0` — `0.0.0.0` karena proses ini biasanya berjalan di dalam container di belakang reverse proxy, di mana listener khusus-`localhost` tidak terjangkau dari luar container dan muncul sebagai health check yang gagal tanpa alasan yang dinyatakan |
 
 ### `apps/cms/.env.example`
@@ -42,9 +43,38 @@ Berkas yang jauh lebih besar, dimiliki sepenuhnya oleh `apps/cms` sebagai kode `
 | --- | --- |
 | Proses build (`astro build`) | API publik `apps/cms`, lewat HTTPS, dengan token build read-only |
 | Container yang berjalan (`bun dist/server/penyaji.mjs`) | Tidak ada apa pun di luar dirinya sendiri — tidak ada `apps/cms`, tidak ada basis data, tidak ada panggilan jaringan eksternal jenis apa pun. Ini tidak berubah sejak increment 1 |
-| Browser pembaca sendiri | API anonim `apps/cms` `/api/v1/commerce/storefront/*`, di `PUBLIC_AWCMS_ORIGIN`, `mode: "cors"` / `credentials: "omit"` — tidak ada cookie, tidak ada bearer token, tidak pernah |
+| Browser pembaca sendiri | API anonim `apps/cms` `/api/v1/commerce/storefront/*`, di `PUBLIC_AWCMS_ORIGIN`, `mode: "cors"` / `credentials: "omit"` — tidak ada cookie, tidak ada bearer token, tidak pernah; dan, sejak issue #56, `POST /api/v1/analytics/collect` di origin yang sama, kali ini `credentials: "include"` (cookie kunci-pengunjung anonim, `httpOnly`, milik modul itu sendiri — lihat di bawah) |
 
-CSP milik `apps/storefront/server/penyaji.mjs` sendiri kini diturunkan, bukan dikonfigurasi tangan — `img-src` dan `connect-src` membawa persis origin yang benar-benar dirujuk suatu build tertentu (gambar produk/media, dan `PUBLIC_AWCMS_ORIGIN`), divalidasi ulang saat server startup dan jatuh kembali ke `'self'`-saja pada artefak yang hilang/malformed mana pun; lihat [`docs/arsitektur.md`](arsitektur.id.md) untuk mekanisme lengkapnya. Setiap direktif CSP lain tetap `'self'`/`'none'` — tidak ada skrip atau embed pihak-ketiga yang diizinkan aplikasi ini.
+CSP milik `apps/storefront/server/penyaji.mjs` sendiri kini diturunkan, bukan dikonfigurasi tangan — `img-src` dan `connect-src` membawa persis origin yang benar-benar dirujuk suatu build tertentu (gambar produk/media, dan `PUBLIC_AWCMS_ORIGIN`), divalidasi ulang saat server startup dan jatuh kembali ke `'self'`-saja pada artefak yang hilang/malformed mana pun; lihat [`docs/arsitektur.md`](arsitektur.id.md) untuk mekanisme lengkapnya. Setiap direktif CSP lain tetap `'self'`/`'none'` — tidak ada skrip atau embed pihak-ketiga yang diizinkan aplikasi ini, kecuali (issue #56) dua origin milik GA4 sendiri, dan hanya ketika `PUBLIC_GA_ID` dikonfigurasi — lihat "Dua sakelar" tepat di bawah ini.
+
+## Analitik pengunjung: dua sakelar (issue #56)
+
+`apps/storefront` selalu memasang beacon pengunjung first-party miliknya
+sendiri (`apps/storefront/src/scripts/analitik.ts`, bagian "Visitor analytics and the
+optional GA4 switch" di `apps/storefront/README.md`) di setiap halaman. Apakah
+beacon itu benar-benar melakukan sesuatu yang teramati adalah dua sakelar
+independen, di dua sisi berbeda repositori ini, dan seorang deployer yang
+hanya menyetel satu akan mendapati kondisi setengah-jalan yang nyata namun
+mudah terlewat:
+
+1. **`VISITOR_ANALYTICS_ENABLED` milik `apps/cms`** (`apps/cms/.env.example`,
+   `apps/cms/src/modules/visitor-analytics/README.md`) — mati secara default.
+   Beacon storefront tetap terpicu apa pun keadaannya
+   (`POST /api/v1/analytics/collect` selalu menjawab `202`, memang demikian
+   desainnya — lihat docblock route itu sendiri), tetapi dengan sakelar ini
+   mati, tidak ada yang dicatat: tidak ada session, tidak ada event, tidak
+   ada rollup untuk dibaca bagian "Terpopuler" A3. Menyalakan sakelar
+   teknis ini bukanlah keputusan basis-hukum/persetujuan yang disyaratkan UU
+   PDP itu sendiri — lihat bagian "Privacy posture" modul tersebut.
+2. **`PUBLIC_GA_ID` milik `apps/storefront`** (`apps/storefront/.env.example`)
+   — tidak diset secara default. Murni aditif dan independen dari sakelar 1:
+   GA4 adalah produk analitik Google sendiri yang terpisah, sehingga suatu
+   deployment bisa menjalankan beacon first-party saja, GA4 saja (dengan
+   hanya menyetel variabel ini — beacon tetap terpicu apa pun keadaannya, ia
+   hanya tidak mencatat apa pun tanpa sakelar 1), atau keduanya bersamaan.
+
+Tidak satu pun sakelar diwajibkan agar build berhasil; keduanya default ke
+"mati", yang merupakan keadaan deployment baru repositori ini apa adanya.
 
 ## Origin storefront tenant yang di-seed harus didaftarkan di `awcms_tenant_domains`
 

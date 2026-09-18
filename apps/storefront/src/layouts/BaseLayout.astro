@@ -26,6 +26,8 @@
 import { absoluteUrl } from "../config/site";
 import { getSiteIdentity } from "../lib/awcms/profil";
 import { listStaticPages } from "../lib/awcms/pages";
+import { readEnv } from "../lib/env";
+import { readGaMeasurementId } from "../lib/ga";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import "../styles/global.css";
@@ -47,6 +49,28 @@ const staticPages = await listStaticPages();
 const canonicalUrl = absoluteUrl(canonicalPath);
 const fullTitle = title === identity.name ? title : `${title} — ${identity.name}`;
 const metaDescription = (description ?? identity.description).slice(0, 160);
+
+/**
+ * Issue #56 (A10): the same `AWCMS_TENANT_CODE` `src/lib/awcms/theme.ts`
+ * already reads for brand colors, baked into `<body data-analytics-tenant-
+ * code>` below so `src/scripts/analitik.ts` (a browser bundle, which cannot
+ * read a non-`PUBLIC_` variable — see `src/lib/env.ts`) has the one value
+ * `POST /api/v1/analytics/collect` needs without this app introducing a
+ * second, redundant `PUBLIC_`-prefixed tenant variable an operator would
+ * have to keep in sync with the first. Unset renders an empty attribute;
+ * `analitik.ts` treats that as "nothing configured" and sends nothing —
+ * the same degrade-not-fail posture `theme.ts` already uses for the same
+ * variable.
+ */
+const analyticsTenantCode = readEnv("AWCMS_TENANT_CODE") ?? "";
+
+/**
+ * GA4 (issue #56, A10) — entirely OFF unless `PUBLIC_GA_ID` is configured
+ * and shaped like a real GA4 Measurement ID (`src/lib/ga.ts`). `gaId` is
+ * `undefined` in the default build, so the whole block below renders
+ * nothing and this app ships with no Google origin anywhere.
+ */
+const gaId = readGaMeasurementId();
 
 /**
  * JSON that is safe to write inside a `<script>` element.
@@ -83,6 +107,28 @@ function jsonForScript(value: unknown): string {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{fullTitle}</title>
     <meta name="description" content={metaDescription} />
+
+    {/* GA4 (issue #56, A10) — the ONLY third-party script this app ever
+        loads, and only when `gaId` is configured (`src/lib/ga.ts`); the
+        default build renders nothing here at all.
+        Only THIS tag is `is:inline`: it has no body, just a `src=`, so it
+        does exactly one thing — load Google's own `gtag.js` from an origin
+        `src/pages/csp.json.ts`'s GA branch widens `script-src` for
+        (`server/penyaji.mjs`'s `buildCsp`). The standard `dataLayer`/`gtag`
+        bootstrap Google's own snippet normally inlines right after this tag
+        is deliberately NOT inlined here — an inline `<script>` body is
+        blocked by THIS app's CSP regardless of what `script-src` allows
+        (widening a directive with a host-source never grants
+        `'unsafe-inline'`, and this static site has no per-request nonce to
+        offer instead). `src/scripts/ga-init.ts`, mounted with the beacon
+        near `</body>`, is that bootstrap as an ordinary same-origin bundled
+        module instead — reading the id back from
+        `data-ga-measurement-id` below, the same pattern
+        `data-analytics-tenant-code` already uses. */}
+    {gaId && (
+      <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}></script>
+    )}
+
     <link rel="canonical" href={canonicalUrl} />
     <link rel="stylesheet" href="/product-labels.css" />
     <link rel="stylesheet" href="/theme-tokens.css" />
@@ -143,15 +189,32 @@ function jsonForScript(value: unknown): string {
         this slot; `src/pages/*.astro` use it for meta/link tags only. */}
     <slot name="head" />
   </head>
-  <body>
+  <body data-analytics-tenant-code={analyticsTenantCode} data-ga-measurement-id={gaId ?? ""}>
     <a class="skip-link" href="#konten">Lewati ke konten utama</a>
 
-    <Header identity={identity} />
+    {/* Named slots, store chrome as the DEFAULT content — issue #48 fills these with the news chrome on every `/berita/**` page while every other page keeps this fallback, with no change to its own rendered HTML (a named slot with no filler renders its default verbatim). */}
+    <slot name="header"><Header identity={identity} /></slot>
 
     <main id="konten">
       <slot />
     </main>
 
-    <Footer identity={identity} staticPages={staticPages} />
+    <slot name="footer"><Footer identity={identity} staticPages={staticPages} /></slot>
+
+    {/* The first-party visitor beacon (issue #56, A10) — every page, store
+        and news alike, an external module (`script-src 'self'`) exactly
+        like every other client script in this app. See
+        `src/scripts/analitik.ts`'s own docblock for the payload, the
+        privacy posture, and why this reads the `data-analytics-tenant-code`
+        attribute above rather than an env variable of its own. */}
+    <script>import "../scripts/analitik";</script>
+
+    {/* GA4's `dataLayer`/`gtag` bootstrap (issue #56, A10) — see the
+        `<head>` block above for why this is a same-origin bundled module
+        rather than the inline `<script>` Google's own snippet normally
+        uses. A no-op (imports, checks `data-ga-measurement-id`, finds it
+        empty, returns) whenever GA is off, so it is always mounted rather
+        than conditioned on `gaId` here too. */}
+    <script>import "../scripts/ga-init";</script>
   </body>
 </html>
