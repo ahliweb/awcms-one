@@ -74,6 +74,8 @@ Two files exist specifically to prove this rule holds without a live CMS:
 | `/pesanan` | Order tracking by `?kode=`; phone from `sessionStorage`/a form, never the URL | `GET …/orders/{code}`, `POST …/orders/{code}/{payment-confirmations,cancel}` |
 | `/wishlist` | `localStorage`-only saved-products list; heart button on `ProductCard.astro` | none (client-side only) |
 | `/index/wilayah-provinsi.json`, `/index/wilayah-kabupaten-{code}.json`, `/index/wilayah-kecamatan-{code}.json` | Checkout address region indexes, scoped to `PUBLIC_WILAYAH_PROVINSI` | `GET /api/v1/idn-regions/regions` |
+| `/buletin` | Newsletter subscribe form (issue #50); not linked from anywhere yet — see "Newsletter" below | `POST <PUBLIC_AWCMS_ORIGIN>/api/v1/newsletter/subscribe` |
+| `/newsletter/confirm`, `/newsletter/unsubscribe` | Double opt-in confirm/unsubscribe, token from `?token=`; `noindex, follow`; path is a fixed `apps/cms` contract, not this app's naming — see "Newsletter" below | `POST …/newsletter/{confirm,unsubscribe}` |
 
 Every non-static-asset route above is prerendered — there is no
 `prerender = false` anywhere in this app, and none should be added without
@@ -473,6 +475,137 @@ ordinary same-origin bundled module: an inline `<script>` body is blocked by
 this app's CSP regardless of what `script-src` allows, and a fully static
 site has no per-request value to mint a CSP nonce from.
 
+## Newsletter (issue #50)
+
+The same anonymous, cross-origin, browser-calls-`apps/cms`-directly pattern
+as cart/checkout above, applied to `apps/cms`'s `newsletter` module — an
+`awcms` ADR (ADR-0103, in `ahliweb/awcms`'s own decision log, not this
+repo's `docs/adr/`): `apps/storefront/src/scripts/buletin.ts` re-implements
+`toko-klien.ts`'s own request contract (`mode: "cors"`, `credentials:
+"omit"`, one `Content-Type` header, one error type) against a DIFFERENT
+base path, `/api/v1/newsletter/*`, rather than widening `toko-klien.ts` past
+the base path its own docblock commits it to. `PUBLIC_AWCMS_ORIGIN` is the
+same variable, reused unchanged — the newsletter routes live on the same
+CMS origin cart/checkout already call, so **no new `connect-src` entry is
+needed**: `apps/storefront/src/pages/csp.json.ts` already widens `connect-src` to
+`PUBLIC_AWCMS_ORIGIN` for issue #30, and that origin covers every path on
+it, this module's included. Verified by re-reading `dist/client/csp.json`
+after a build in this issue's own review, not asserted by a new test — a
+`connect-src` entry keyed by ORIGIN, not by path, cannot regress per-route.
+
+- **Not mounted anywhere yet.** `FormBuletin.astro` (`variant: "footer" |
+  "sidebar"`) exists and is unit/build-tested from its own standalone page,
+  `/buletin`, but no other page links to it or renders it — placing it in
+  the site chrome is issue #46's A3, a separate, parallel change, so that
+  neither change conflicts with the other's edits to shared chrome files.
+- **The three CMS routes answer one neutral body for every outcome** — a
+  new address, an already-active one, a suppressed one, all read alike, by
+  design (`apps/cms/src/pages/api/v1/newsletter/subscribe.ts`'s own
+  docblock: a distinguishing response would let this endpoint be used to ask
+  whether a named person subscribes to this newsroom's list). That body is
+  also in English; this storefront's own copy is Indonesian throughout, so
+  `buletin.ts` never renders the CMS's `data.message` verbatim — every
+  string a reader sees is written by `buletin.ts` itself, mapped from the
+  response's `success`/`error.code`, never its `message`.
+- **The subscribe form validates the address BEFORE ever calling `fetch()`.**
+  `FormBuletin.astro`'s `<form novalidate>` and `buletin.ts`'s
+  `emailInput.checkValidity()`/`reportValidity()` (the same pattern
+  `checkout.ts` already uses for its own required fields) stop a malformed
+  address from ever reaching the network. This matters more here than it
+  would on a same-origin form: a cross-origin `400 VALIDATION_ERROR` from
+  these routes carries no CORS grant at all (see the next bullet), so
+  without this check a typo would surface to the reader as "could not reach
+  the server" — the wrong cause entirely.
+- **`VALIDATION_ERROR`/`RATE_LIMITED` are real route behaviour that this
+  app's ACTUAL, cross-origin deployment can never actually observe.** All
+  three CMS routes answer their own `400`/`429` BEFORE classifying the
+  request's `Origin`, and that response carries only `vary: "Origin"` —
+  never `access-control-allow-origin`. For a cross-origin `fetch()` (what
+  every real deployment of this storefront makes — ADR-0007 (revised, issue
+  #30) puts the CMS on a different origin from this app, same as the
+  `awcms`-side ADR-0070 already cited below), a response with no CORS
+  grant is invisible to JS entirely: the `fetch()` promise itself rejects,
+  landing in `buletin.ts`'s own `NETWORK_ERROR` handling, not in a readable
+  `400`/`429` body. `buletinErrorMessage`'s `NETWORK_ERROR` copy is worded
+  to fit both causes — a genuine dropped connection AND a CORS-hidden
+  validation/rate-limit failure — rather than asserting "check your
+  connection" for what is very often really a bad e-mail address.
+- **`RATE_LIMITED`'s wait comes from the `Retry-After` response HEADER, not
+  the JSON body.** The CMS's own `fail(429, "RATE_LIMITED", "...", {},
+  undefined, { "retry-after": "<seconds>", vary: "Origin" })` call
+  (`apps/cms/src/modules/_shared/api-response.ts`'s `fail` signature is
+  `(status, code, message, meta, details, headers)`) never puts the wait in
+  `error.details` — an earlier version of this file read `details.retryAfter`
+  and would have always gotten `null` in production. `buletin.ts`'s
+  `request()` reads `response.headers.get("retry-after")` directly.
+- **The honeypot is client-side only.** The CMS route validates exactly
+  `email`/`locale` and nothing else, so a third form field would never
+  reach it either way; `FormBuletin.astro`'s hidden `website` field is
+  checked by `buletin.ts` BEFORE any request is sent — a bot that fills it
+  sees the same neutral success message and no request is made at all. Kept
+  invisible with the plain HTML `hidden` attribute (removes it from the
+  accessibility tree, needs no CSS), not a scoped `<style>`/inline
+  `style=""` — this app's CSP is `style-src 'self'` with no inline
+  exemption, and neither would even render.
+- **`/newsletter/confirm`/`/newsletter/unsubscribe` read `?token=` from the
+  URL the reader actually arrived at**, never a form, never storage — the
+  token IS the credential the e-mail link carries. A missing or malformed
+  token (checked against the same shape the CMS itself validates,
+  `apps/cms/src/modules/newsletter/domain/subscription-token.ts`'s
+  `isWellFormedSubscriptionToken`) never reaches the network at all, and
+  never reveals a button there is nothing correct for it to do.
+- **The state-changing POST fires only on a deliberate click, never on page
+  load.** A mail gateway's inbound link-scanner (Outlook Safe Links,
+  Google's/Microsoft's own scanners, many corporate proxies) routinely
+  fetches and fully renders — executes JS on — every link in an incoming
+  e-mail before the recipient ever sees it. An eager POST as soon as the
+  token parses would let the SCANNER confirm the subscription or unsubscribe
+  the reader, not a choice the reader made. Both token pages therefore ship
+  an inert, `hidden` button in their static HTML; `buletin.ts`'s
+  `wireTokenPage` unhides it once a well-formed token is confirmed present
+  and wires the request to its `click` event — see that function's own
+  docblock for the full reasoning.
+  `apps/storefront/tests/buletin-build-smoke.test.ts` asserts the button
+  ships `hidden` in the built HTML.
+- **The two token pages live at a CMS-imposed path, not this app's own
+  naming.** `apps/cms/src/modules/newsletter/domain/newsletter-mail.ts`
+  bakes every confirmation/unsubscribe e-mail's link from two FIXED, non-
+  configurable constants:
+
+  ```
+  NEWSLETTER_CONFIRM_PATH = "/newsletter/confirm"
+  NEWSLETTER_UNSUBSCRIBE_PATH = "/newsletter/unsubscribe"
+  ```
+
+  `subscribe.ts`'s own docblock says explicitly that the public site in
+  front of this CMS (this storefront, per ADR-0070) is expected to serve
+  exactly these two paths — so this app serves `src/pages/newsletter/
+  {confirm,unsubscribe}.astro` at those literal paths rather than at a
+  storefront-chosen URL with a redirect layered in front of it: a redirect
+  would be a workaround for a contract this app can simply honour.
+  `apps/storefront/tests/newsletter-path-contract.test.ts` asserts, by file existence at
+  those exact strings (importing nothing from `apps/cms`, which this repo
+  does not own), that a future upstream rename of either constant fails
+  loudly here rather than silently 404ing a real subscriber's e-mail link.
+  `/buletin` (the form itself) keeps its own `/buletin` naming — only the
+  two CMS-linked pages are pinned to the CMS's path.
+- **The link only ever points at THIS storefront if its origin is a
+  verified, active tenant domain.** `withPublicNewsletterTenant`
+  (`apps/cms/src/modules/newsletter/application/public-newsletter-tenant.ts`)
+  resolves a cross-origin subscribe/confirm/unsubscribe call's tenant from
+  its `Origin` header via `resolvePublicTenantByHost` — which only ever
+  answers a hostname registered in `awcms_tenant_domains` with `status:
+  "active"`. An unregistered/unverified origin gets **no CORS grant at
+  all** (the browser's `fetch` fails before this app's own error handling
+  ever runs) and — for a request that does reach the CMS same-origin —
+  falls back to the CMS's OWN host, where `/newsletter/confirm` does not
+  exist. **An operator must register this storefront's origin** with `POST
+  /api/v1/tenant/domains` and activate it with `POST /api/v1/tenant/domains/
+  {id}/verify` (manual-first, no outbound DNS check — see
+  `apps/cms/src/modules/tenant-domain/README.md`) before the newsletter
+  form works at all, cross-origin subscribe included, not only before the
+  e-mailed links resolve correctly.
+
 ## Environment variables
 
 See `apps/storefront/.env.example` for the full, current list with
@@ -539,7 +672,8 @@ this app's tests are part of the same root gate suite:
    above and inspect the actual `dist/client/*` output; each issue that
    needs one adds its OWN file rather than editing a prior issue's
    (`build-smoke.test.ts` #24, `katalog-build-smoke.test.ts` #27,
-   `berita-build-smoke.test.ts` #28, `checkout-build-smoke.test.ts` #30).
+   `berita-build-smoke.test.ts` #28, `checkout-build-smoke.test.ts` #30,
+   `buletin-build-smoke.test.ts` #50).
    Each is bounded under ~60s; if `bun` cannot be spawned in the environment
    running the suite, it reports SKIPPED with a named reason rather than a
    false pass.
