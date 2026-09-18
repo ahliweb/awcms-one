@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:c411137cc27f3a0ade7cafd61c9f51df693f95156dbcae93b312b39fcee1272e -->
+<!-- i18n-source-hash: sha256:5a049a58d4c1c67832fcb0822ad1473f1df7eb71f90cf698f13035f3d5c91c70 -->
 
 [![License](https://img.shields.io/badge/License-MIT-blue)](LICENSE) [![runtime](https://img.shields.io/badge/runtime-Bun-blue?logo=bun&logoColor=white)](https://bun.sh)
 
@@ -22,7 +22,7 @@ Modul commerce yang dibutuhkan platform ini tidak bisa berdiri sendiri — ia be
 
 ## Pendekatan: fondasi dulu, lalu satu vertical slice tipis, lalu toko lengkap
 
-Scaffold dulu (increment 1: daftar katalog + detail produk, tanpa basis data hidup), lalu **increment 2** (epic [#21](https://github.com/ahliweb/awcms-one/issues/21)): paritas penuh BjekMart/news-portal — PostgreSQL tersedia untuk pengembangan lokal dan CI, modul `commerce` yang lengkap (kedalaman katalog, marketing, pesanan), dan situs publik yang lengkap (katalog, berita, keranjang, checkout, pelacakan pesanan, wishlist).
+Scaffold dulu (increment 1: daftar katalog + detail produk, tanpa basis data hidup), lalu **increment 2** (epic [#21](https://github.com/ahliweb/awcms-one/issues/21)): paritas penuh BjekMart/news-portal — PostgreSQL tersedia untuk pengembangan lokal dan CI, modul `commerce` yang lengkap (kedalaman katalog, marketing, pesanan), dan situs publik yang lengkap (katalog, berita, keranjang, checkout, pelacakan pesanan, wishlist). Lalu **increment 3** (epic [#46](https://github.com/ahliweb/awcms-one/issues/46)): paritas fungsional dengan seputarborneo.com v2.4.0 — gambar sungguhan di setiap permukaan, chrome berita dan sidebar bersama, form buletin, baris bagikan, pemutar "Dengarkan berita ini", popup iklan, metadata sosial lengkap, pengalihan lawas berbasis aturan, analitik pengunjung first-party dengan sakelar GA4 opt-in, seed berbentuk seputarborneo dan exporter dump lawas, serta lambang lembaga.
 
 ## Yang ada hari ini, dan yang tidak
 
