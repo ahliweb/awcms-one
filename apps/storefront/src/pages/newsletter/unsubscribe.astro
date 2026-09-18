@@ -1,17 +1,15 @@
 ---
 /**
- * `/buletin/berhenti` — where the unsubscribe link in every newsletter
- * e-mail's footer lands (issue #50). Same shell/shape as `konfirmasi.astro`
- * — see that file's own docblock for the `noindex`/token/script reasoning,
- * all identical here — but the CMS route needs nothing but the token
- * (PRD §30: no session, no address).
+ * `/newsletter/unsubscribe` — where the unsubscribe link in every newsletter
+ * e-mail's footer lands (issue #50). Same shell/shape as `confirm.astro` —
+ * see that file's own docblock for the `noindex`/token/script/contract
+ * reasoning, all identical here — but the CMS route needs nothing but the
+ * token (PRD §30: no session, no address).
  *
- * ## Path note (flagged in the PR, not fixed here)
- *
- * Same caveat as `konfirmasi.astro`: the CMS bakes this link from the fixed
+ * The path is the same CMS contract as `confirm.astro`'s:
  * `NEWSLETTER_UNSUBSCRIBE_PATH = "/newsletter/unsubscribe"`
- * (`apps/cms/src/modules/newsletter/domain/newsletter-mail.ts`), not this
- * URL. See the PR body.
+ * (`apps/cms/src/modules/newsletter/domain/newsletter-mail.ts`), fixed and
+ * not configurable. `tests/newsletter-path-contract.test.ts` guards it.
  */
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import "../../styles/toko.css";
@@ -20,7 +18,7 @@ import "../../styles/toko.css";
 <BaseLayout
   title="Berhenti Berlangganan Buletin"
   description="Berhenti berlangganan buletin email."
-  canonicalPath="/buletin/berhenti"
+  canonicalPath="/newsletter/unsubscribe"
 >
   <meta slot="head" name="robots" content="noindex, follow" />
 

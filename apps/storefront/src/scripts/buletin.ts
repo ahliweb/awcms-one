@@ -1,6 +1,6 @@
 /**
  * Newsletter double opt-in (issue #50) — `/buletin`'s subscribe form and the
- * two token pages (`/buletin/konfirmasi`, `/buletin/berhenti`) it links to
+ * two token pages (`/newsletter/confirm`, `/newsletter/unsubscribe` — a fixed apps/cms contract, not this app's own naming; see the README) it links to
  * from an e-mail. Wires up whichever `[data-buletin-*]` root the current
  * page actually has — the same one-script-many-guarded-roots shape
  * `checkout.ts`/`keranjang.ts` use, so this file can be imported unchanged
@@ -222,7 +222,7 @@ function wireBuletinForm(): void {
   });
 }
 
-// --- `/buletin/konfirmasi` and `/buletin/berhenti` --------------------------
+// --- `/newsletter/confirm` and `/newsletter/unsubscribe` --------------------
 
 /**
  * Shared wiring for both token pages: read `?token=` from the URL the reader

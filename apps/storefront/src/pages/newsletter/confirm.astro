@@ -1,6 +1,6 @@
 ---
 /**
- * `/buletin/konfirmasi` — where the confirmation link in a subscriber's
+ * `/newsletter/confirm` — where the confirmation link in a subscriber's
  * inbox lands (issue #50). `?token=` is read and POSTed client-side by
  * `src/scripts/buletin.ts`; this file renders only the shell and the status
  * region the script fills in.
@@ -11,15 +11,20 @@
  * own docblocks) — and `robots.txt.ts`'s `Disallow` stops a crawler
  * FETCHING it at all, belt and suspenders for the same reason.
  *
- * ## Path note (flagged in the PR, not fixed here)
+ * ## The path is a CMS CONTRACT, not this app's naming choice
  *
- * The CMS bakes the confirmation link from a FIXED constant,
- * `NEWSLETTER_CONFIRM_PATH = "/newsletter/confirm"`
- * (`apps/cms/src/modules/newsletter/domain/newsletter-mail.ts`) — not
- * configurable, and not this URL. This page exists at the path issue #50's
- * own Scope names; making the two agree is follow-up work outside this
- * issue's file ownership (`apps/cms` is the upstream subtree). See the PR
- * body for the options.
+ * `apps/cms/src/modules/newsletter/domain/newsletter-mail.ts` bakes the
+ * confirmation link from a FIXED constant, `NEWSLETTER_CONFIRM_PATH =
+ * "/newsletter/confirm"` — not configurable, and not the storefront's own
+ * `/buletin/*` naming convention. `subscribe.ts`'s own docblock says
+ * explicitly that "the family's public surface" (this storefront, per
+ * ADR-0070) is expected to serve exactly this path. This file exists at
+ * `/newsletter/confirm`, honouring that contract, rather than at a
+ * storefront-chosen path with a redirect layered in front of it — see
+ * `apps/storefront/README.md`'s "Newsletter" section for the rest of what
+ * makes an e-mailed link actually resolve to THIS storefront's origin.
+ * `tests/newsletter-path-contract.test.ts` guards this path string against a
+ * future upstream rename.
  */
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import "../../styles/toko.css";
@@ -28,7 +33,7 @@ import "../../styles/toko.css";
 <BaseLayout
   title="Konfirmasi Buletin"
   description="Konfirmasi pendaftaran buletin email Anda."
-  canonicalPath="/buletin/konfirmasi"
+  canonicalPath="/newsletter/confirm"
 >
   <meta slot="head" name="robots" content="noindex, follow" />
 

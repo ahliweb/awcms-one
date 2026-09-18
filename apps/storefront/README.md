@@ -75,7 +75,7 @@ Two files exist specifically to prove this rule holds without a live CMS:
 | `/wishlist` | `localStorage`-only saved-products list; heart button on `ProductCard.astro` | none (client-side only) |
 | `/index/wilayah-provinsi.json`, `/index/wilayah-kabupaten-{code}.json`, `/index/wilayah-kecamatan-{code}.json` | Checkout address region indexes, scoped to `PUBLIC_WILAYAH_PROVINSI` | `GET /api/v1/idn-regions/regions` |
 | `/buletin` | Newsletter subscribe form (issue #50); not linked from anywhere yet — see "Newsletter" below | `POST <PUBLIC_AWCMS_ORIGIN>/api/v1/newsletter/subscribe` |
-| `/buletin/konfirmasi`, `/buletin/berhenti` | Double opt-in confirm/unsubscribe, token from `?token=`; `noindex, follow` | `POST …/newsletter/{confirm,unsubscribe}` |
+| `/newsletter/confirm`, `/newsletter/unsubscribe` | Double opt-in confirm/unsubscribe, token from `?token=`; `noindex, follow`; path is a fixed `apps/cms` contract, not this app's naming — see "Newsletter" below | `POST …/newsletter/{confirm,unsubscribe}` |
 
 Every non-static-asset route above is prerendered — there is no
 `prerender = false` anywhere in this app, and none should be added without
@@ -444,25 +444,50 @@ after a build in this issue's own review, not asserted by a new test — a
   accessibility tree, needs no CSS), not a scoped `<style>`/inline
   `style=""` — this app's CSP is `style-src 'self'` with no inline
   exemption, and neither would even render.
-- **`/buletin/konfirmasi`/`/buletin/berhenti` read `?token=` from the URL
-  the reader actually arrived at**, never a form, never storage — the token
-  IS the credential the e-mail link carries. A missing or malformed token
-  (checked against the same shape the CMS itself validates,
+- **`/newsletter/confirm`/`/newsletter/unsubscribe` read `?token=` from the
+  URL the reader actually arrived at**, never a form, never storage — the
+  token IS the credential the e-mail link carries. A missing or malformed
+  token (checked against the same shape the CMS itself validates,
   `apps/cms/src/modules/newsletter/domain/subscription-token.ts`'s
   `isWellFormedSubscriptionToken`) never reaches the network at all.
-- **Known path mismatch, flagged rather than worked around.** `apps/cms`
-  bakes the confirmation/unsubscribe links it e-mails from FIXED constants —
-  `NEWSLETTER_CONFIRM_PATH = "/newsletter/confirm"` and
-  `NEWSLETTER_UNSUBSCRIBE_PATH = "/newsletter/unsubscribe"`
-  (`apps/cms/src/modules/newsletter/domain/newsletter-mail.ts`), not
-  configurable per storefront — while this issue's own Scope names
-  `/buletin/konfirmasi`/`/buletin/berhenti`. Until the two agree, a real
-  subscriber's e-mail link 404s on this storefront. Fixing the mismatch
-  needs either an `apps/cms` change (outside this workspace's own subtree
-  boundary — see the root `AGENTS.md`'s "What is, and is not, this repo's
-  to edit") or this app adding thin redirect pages at the fixed paths — both
-  outside this issue's own file ownership, so this is reported as follow-up
-  work rather than patched here.
+- **The two token pages live at a CMS-imposed path, not this app's own
+  naming.** `apps/cms/src/modules/newsletter/domain/newsletter-mail.ts`
+  bakes every confirmation/unsubscribe e-mail's link from two FIXED, non-
+  configurable constants:
+
+  ```
+  NEWSLETTER_CONFIRM_PATH = "/newsletter/confirm"
+  NEWSLETTER_UNSUBSCRIBE_PATH = "/newsletter/unsubscribe"
+  ```
+
+  `subscribe.ts`'s own docblock says explicitly that the public site in
+  front of this CMS (this storefront, per ADR-0070) is expected to serve
+  exactly these two paths — so this app serves `src/pages/newsletter/
+  {confirm,unsubscribe}.astro` at those literal paths rather than at a
+  storefront-chosen URL with a redirect layered in front of it: a redirect
+  would be a workaround for a contract this app can simply honour.
+  `apps/storefront/tests/newsletter-path-contract.test.ts` asserts, by file existence at
+  those exact strings (importing nothing from `apps/cms`, which this repo
+  does not own), that a future upstream rename of either constant fails
+  loudly here rather than silently 404ing a real subscriber's e-mail link.
+  `/buletin` (the form itself) keeps its own `/buletin` naming — only the
+  two CMS-linked pages are pinned to the CMS's path.
+- **The link only ever points at THIS storefront if its origin is a
+  verified, active tenant domain.** `withPublicNewsletterTenant`
+  (`apps/cms/src/modules/newsletter/application/public-newsletter-tenant.ts`)
+  resolves a cross-origin subscribe/confirm/unsubscribe call's tenant from
+  its `Origin` header via `resolvePublicTenantByHost` — which only ever
+  answers a hostname registered in `awcms_tenant_domains` with `status:
+  "active"`. An unregistered/unverified origin gets **no CORS grant at
+  all** (the browser's `fetch` fails before this app's own error handling
+  ever runs) and — for a request that does reach the CMS same-origin —
+  falls back to the CMS's OWN host, where `/newsletter/confirm` does not
+  exist. **An operator must register this storefront's origin** with `POST
+  /api/v1/tenant/domains` and activate it with `POST /api/v1/tenant/domains/
+  {id}/verify` (manual-first, no outbound DNS check — see
+  `apps/cms/src/modules/tenant-domain/README.md`) before the newsletter
+  form works at all, cross-origin subscribe included, not only before the
+  e-mailed links resolve correctly.
 
 ## Environment variables
 

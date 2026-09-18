@@ -8,11 +8,19 @@ import { join } from "node:path";
  * `astro build` against the stub CMS, asserting every page this issue adds
  * lands in `dist/client/`, carries no inline `<script>`/`<style>`, and that
  * the two token pages carry `noindex`. No newsletter endpoint needs stubbing
- * — unlike cart/checkout, nothing on `/buletin`, `/buletin/konfirmasi`, or
- * `/buletin/berhenti` is fetched at BUILD time; the form/token pages only
- * ever call the CMS from the BROWSER (`src/scripts/buletin.ts`). The stub is
- * still required because `BaseLayout.astro` itself fetches site identity and
- * static pages for every page in this app, this issue's three included.
+ * — unlike cart/checkout, nothing on `/buletin`, `/newsletter/confirm`, or
+ * `/newsletter/unsubscribe` is fetched at BUILD time; the form/token pages
+ * only ever call the CMS from the BROWSER (`src/scripts/buletin.ts`). The
+ * stub is still required because `BaseLayout.astro` itself fetches site
+ * identity and static pages for every page in this app, this issue's three
+ * included.
+ *
+ * `/newsletter/confirm` and `/newsletter/unsubscribe` are a CMS-imposed path
+ * contract (`NEWSLETTER_CONFIRM_PATH`/`NEWSLETTER_UNSUBSCRIBE_PATH`,
+ * `apps/cms/src/modules/newsletter/domain/newsletter-mail.ts`), not this
+ * app's own `/buletin/*` naming — see `tests/newsletter-path-contract.test.ts`
+ * for the string-literal guard and `apps/storefront/README.md`'s
+ * "Newsletter" section for the rest of the story.
  *
  * Never a false pass: SKIPPED with a clear message if `bun` cannot be
  * spawned at all.
@@ -49,7 +57,7 @@ describe("build smoke: astro build against the stub CMS (issue #50's own pages)"
   }
 
   test(
-    "produces /buletin, /buletin/konfirmasi, /buletin/berhenti, with no inline <script>/<style> and noindex on the two token pages",
+    "produces /buletin, /newsletter/confirm, /newsletter/unsubscribe, with no inline <script>/<style> and noindex on the two token pages",
     async () => {
       const stubPort = 51000 + Math.floor(Math.random() * 4000);
       const distClient = join(STOREFRONT_ROOT, "dist", "client");
@@ -84,19 +92,27 @@ describe("build smoke: astro build against the stub CMS (issue #50's own pages)"
           );
         }
 
-        for (const file of ["buletin.html", join("buletin", "konfirmasi.html"), join("buletin", "berhenti.html")]) {
+        for (const file of [
+          "buletin.html",
+          join("newsletter", "confirm.html"),
+          join("newsletter", "unsubscribe.html")
+        ]) {
           expect(existsSync(join(distClient, file))).toBe(true);
         }
 
         const buletinHtml = readFileSync(join(distClient, "buletin.html"), "utf8");
         expect(buletinHtml).not.toContain('name="robots"');
 
-        for (const page of [join("buletin", "konfirmasi.html"), join("buletin", "berhenti.html")]) {
+        for (const page of [join("newsletter", "confirm.html"), join("newsletter", "unsubscribe.html")]) {
           const html = readFileSync(join(distClient, page), "utf8");
           expect(html).toContain('<meta name="robots" content="noindex, follow">');
         }
 
-        for (const page of ["buletin.html", join("buletin", "konfirmasi.html"), join("buletin", "berhenti.html")]) {
+        for (const page of [
+          "buletin.html",
+          join("newsletter", "confirm.html"),
+          join("newsletter", "unsubscribe.html")
+        ]) {
           const html = readFileSync(join(distClient, page), "utf8");
 
           for (const match of html.matchAll(/<script\b([^>]*)>/gi)) {
@@ -111,8 +127,8 @@ describe("build smoke: astro build against the stub CMS (issue #50's own pages)"
         }
 
         const robotsTxt = readFileSync(join(distClient, "robots.txt"), "utf8");
-        expect(robotsTxt).toContain("Disallow: /buletin/konfirmasi");
-        expect(robotsTxt).toContain("Disallow: /buletin/berhenti");
+        expect(robotsTxt).toContain("Disallow: /newsletter/confirm");
+        expect(robotsTxt).toContain("Disallow: /newsletter/unsubscribe");
         expect(robotsTxt).not.toContain("Disallow: /buletin\n");
       } finally {
         stub.kill();
