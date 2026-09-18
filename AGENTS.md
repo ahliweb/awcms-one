@@ -79,7 +79,7 @@ This is a Bun workspace (`workspaces: ["apps/*", "packages/*"]`); each directory
 | Gate | What it catches |
 | --- | --- |
 | `bun run audit:dokumen` | Dead relative links in markdown; an ADR index incomplete in either direction or carrying a duplicate row; a file path named in backticks that does not exist in this repo; an `ADR-NNNN` citation that resolves to nothing; a spelled-out number that disagrees with the set it claims to count, inside an explicitly marked block |
-| `bun run audit:rilis` | The waiting `.changesets/` backlog crossing its bound — 10 files or 14 days old, both starting assumptions pending real release history (see that gate's own docblock) |
+| `bun run audit:rilis` | The waiting `.changesets/` backlog crossing its bound — 20 files or 14 days old; the count was 10 until increment 3 measured a real per-increment rate (see that gate's own docblock) |
 | `bun run audit:translation` | An Indonesian mirror (`<name>.id.md`) whose recorded source hash no longer matches its English source, or a governance document with no mirror at all |
 | `bun run audit:graf` (alias: `bun run knowledge:check`) | The root knowledge-graph corpus (`graphify-out/`) describing itself honestly — only the tracked artefacts are tracked, the report agrees with `graph.json`, every community has a chosen name, `.graphifyignore` still excludes `apps/cms`, no node was duplicate-extracted from it, the federated graph is never accidentally committed, and `apps/cms/graphify-out/` is untouched by this repo's own tooling. See [`knowledge/README.md`](knowledge/README.md) |
 | `bun test` | The root gate test suite — `tests/*.test.mjs` — plus `apps/storefront`'s own unit/build-smoke/route tests. `apps/cms/**` is excluded via `bunfig.toml`'s `pathIgnorePatterns`, not via a flag on the `test` script (see that file's own comment for why the distinction is load-bearing: CI invokes `bun test` bare, and a flag on `bun run test` would silently not apply) |
@@ -123,7 +123,7 @@ Enforced by `tests/standar-skrip.test.mjs`, and worth stating here because they 
 
 A change affecting public behaviour, workspace structure, dependencies, or deployment gets a file in `.changesets/` in the same change that causes it — see [`.changesets/README.md`](.changesets/README.md) for the format. `bump` is the field that matters: the next release's version is the **largest** `bump` among the changesets waiting when `bun run release --apply` runs, so the size of a release is a consequence of what went into it rather than a judgement made at release time from a list of file names.
 
-`bun run audit:rilis` watches the waiting backlog and reddens once it crosses 10 files or 14 days old — a signal that a release is due, not a fault to apologise for. A maintainer then runs `bun run release`, which folds the waiting changesets into `CHANGELOG.md`, bumps `package.json`, and (with `--commit`) tags `vX.Y.Z`.
+`bun run audit:rilis` watches the waiting backlog and reddens once it crosses 20 files or 14 days old — a signal that a release is due, not a fault to apologise for. A maintainer then runs `bun run release`, which folds the waiting changesets into `CHANGELOG.md`, bumps `package.json`, and (with `--commit`) tags `vX.Y.Z`.
 
 ## Definition of Done
 

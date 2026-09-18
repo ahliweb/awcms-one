@@ -57,11 +57,22 @@
  * The same numeric id can (and eventually will) name a completely different
  * post in each table. `findNewsRowTargetById`/`findVideoRowTargetById`
  * below therefore search two DISJOINT slices of the row-based map — a
- * `/news/{id}-…`-shaped source for the former, a
- * `/video/?video={id}-…`-shaped source for the latter — and the video rule
- * (`resolveVideoQuery`) never falls back to the news slice: doing so would
- * silently redirect a reader to an unrelated article that merely happens to
- * share the same id.
+ * `/news/{id}-…`-shaped source for the former, a `/video/{id}-…`-shaped
+ * source for the latter — and the video rule (`resolveVideoQuery`) never
+ * falls back to the news slice: doing so would silently redirect a reader to
+ * an unrelated article that merely happens to share the same id.
+ *
+ * The video slice's key is a SYNTHETIC, query-free path
+ * (`/video/{id}-{slug}.html`) that never existed as a public URL — the
+ * exporter (`tools/import-seputarborneo.ts`, issue #58 review round 2)
+ * writes it because the CMS strips the query string from every redirect
+ * source at write time (`validateRedirectInput` → `normalizeRedirectPath`
+ * without `keepQuery`), so the REAL `/video/?video={id}-{slug}.html` URL of
+ * every video row would have been stored as one and the same bare `/video`.
+ * The real inbound URL is still what a reader follows; it reaches this
+ * module as a query-string request against `/video` and is answered by id
+ * from that index, exactly the way `video/index.php` read only
+ * `(int) $_GET['video']`.
  *
  * ## The target slugs
  *
@@ -314,8 +325,9 @@ const ROW_ID_INDEX_CACHE = new WeakMap();
 
 /**
  * `id -> target` indexes over a row-based map's `/news/{id}…` and
- * `/video/?video={id}…` sources, built ONCE per distinct `rowMap` object and
- * cached in this `WeakMap` — never rescanned per request.
+ * `/video/{id}…` (or, for a row that somehow kept it, `/video/?video={id}…`)
+ * sources, built ONCE per distinct `rowMap` object and cached in this
+ * `WeakMap` — never rescanned per request.
  *
  * `legacyRedirectLocation` loads `rowMap` once, at server startup
  * (`readLegacyRedirectMap`), and passes the SAME object to every request for
@@ -347,12 +359,21 @@ function rowIdIndexFor(rowMap) {
     const newsMatch = /^\/news\/(\d+)[-_.]/.exec(sourcePath);
     if (newsMatch && !news.has(newsMatch[1])) news.set(newsMatch[1], target);
 
-    // `/video/?video={id}-…`/`{id}_…` — the shape issue #58 (B2)'s importer
-    // writes for every video post, per that issue's own "Redirects" bullet.
-    // A DIFFERENT id space from `/news/…` above — see the module docblock's
+    // `/video/{id}-{slug}.html` (also `{id}_…`, `{id}.html`) — the QUERY-FREE
+    // synthetic key issue #58 (B2)'s exporter writes for every video post
+    // (`videoRedirectSourcePath` in `tools/import-seputarborneo.ts`). It is
+    // the real contract: the CMS strips the query string from every redirect
+    // source at write time (`validateRedirectInput` → `normalizeRedirectPath`
+    // without `keepQuery`), so a `/video/?video={id}-…` source can never be
+    // STORED — every such row would collapse onto the bare key `/video`. The
+    // second alternative below still accepts that form for a row that reached
+    // this map some other way (a hand-authored fixture, a future CMS that
+    // keeps the query), so the two shapes index identically by id. A
+    // DIFFERENT id space from `/news/…` above — see the module docblock's
     // "Two DIFFERENT numeric id spaces" section for why these are never
     // merged into one index.
-    const videoMatch = /^\/video\/\?video=(\d+)[-_.]/.exec(sourcePath);
+    const videoMatch =
+      /^\/video\/(\d+)[-_.]/.exec(sourcePath) ?? /^\/video\/\?video=(\d+)[-_.]/.exec(sourcePath);
     if (videoMatch && !video.has(videoMatch[1])) video.set(videoMatch[1], target);
   }
 
@@ -376,9 +397,10 @@ function findNewsRowTargetById(rowMap, id) {
 }
 
 /**
- * The row-based map's destination for a `/video/?video={id}[-_.]…` source
- * (any slug), or `null` when no such row exists — the video-id-space
- * counterpart of `findNewsRowTargetById` above.
+ * The row-based map's destination for a `/video/{id}[-_.]…` source (the
+ * exporter's synthetic key — any slug; a `/video/?video={id}[-_.]…` key is
+ * indexed the same way, see `rowIdIndexFor`), or `null` when no such row
+ * exists — the video-id-space counterpart of `findNewsRowTargetById` above.
  *
  * @param {Record<string, string>} rowMap
  * @param {string} id A numeric id, as a string.
@@ -502,9 +524,10 @@ function resolveRubriksQuery(query) {
  * the old homepage's own grid hard-coded (issue #55 review, defect 1).
  *
  * Resolved to `/video/{slug}` ONLY when the id is one this app can already
- * recognize as a real video post — a row-based `/video/?video={id}-…`
- * mapping exists — otherwise there is no known slug to redirect to, and
- * `/video` (the list) is the honest destination, never a guessed one.
+ * recognize as a real video post — a row-based `/video/{id}-…` mapping (the
+ * exporter's query-free synthetic key, see `rowIdIndexFor`) exists —
+ * otherwise there is no known slug to redirect to, and `/video` (the list)
+ * is the honest destination, never a guessed one.
  *
  * This NEVER consults the `/news/…` slice of the row-based map:
  * `berita_vid`'s ids (`id_vid`) are a completely different id space from

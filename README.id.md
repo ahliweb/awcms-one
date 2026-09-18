@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:2b212f53ad117f82ee750df80b8d227d2b0312ee015ede842804a3b9945c2e5a -->
+<!-- i18n-source-hash: sha256:c411137cc27f3a0ade7cafd61c9f51df693f95156dbcae93b312b39fcee1272e -->
 
 [![License](https://img.shields.io/badge/License-MIT-blue)](LICENSE) [![runtime](https://img.shields.io/badge/runtime-Bun-blue?logo=bun&logoColor=white)](https://bun.sh)
 
@@ -76,7 +76,7 @@ Repo ini **hanya-Bun**: Bun adalah runtime sekaligus package manager, versinya d
 | `bun test` | Rangkaian gerbang akar. `bunfig.toml` mengecualikan `apps/cms/**` — rangkaian itu ~500 berkas dan butuh PostgreSQL hidup; ia berjalan di bawah gerbangnya sendiri, `bun run check:cms` |
 | `bun run check:lockfile` | Membuktikan `bun.lock` benar-benar milik `package.json` repo ini, untuk akar dan setiap anggota workspace |
 | `bun run audit:dokumen` | Tautan markdown mati, indeks `docs/adr/` (lengkap di dua arah, kesepakatan status), jalur berkas yang disebut sebuah dokumen, kutipan `ADR-NNNN`, dan hitungan tertaut bertanda |
-| `bun run audit:rilis` | Backlog `.changesets/` yang menunggu, dibatasi 10 berkas dan 14 hari |
+| `bun run audit:rilis` | Backlog `.changesets/` yang menunggu, dibatasi 20 berkas dan 14 hari |
 | `bun run audit:translation` | Cermin Indonesia dokumen governance yang basi atau hilang |
 | `bun run audit:graf` (alias: `knowledge:check`) | Korpus graf pengetahuan akar menggambarkan dirinya sendiri secara jujur — lihat [`knowledge/README.md`](knowledge/README.md) |
 | `bun run knowledge:graph:update` | Membangun ulang graf Graphify akar (`--code-only`, tanpa LLM) — butuh `graphify` di `PATH`, tidak dijalankan di CI |
