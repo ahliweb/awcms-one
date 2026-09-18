@@ -386,6 +386,63 @@ kinds, and the distinction is the whole design:
   the video page — with the stub's fixture (Instagram + a `javascript:`
   link, no TikTok/YouTube), the follow links are correctly absent.
 
+## Ad popup (issue #53)
+
+A reader who clicks an ad creative on any news-surface page opens one
+shared native `<dialog id="iklan-popup">` — the creative at its natural size
+(capped at 90vw/90vh), the advertiser's name, the disclosure label, and a
+"Buka iklan" CTA to the real destination (`rel="sponsored noopener"`,
+`target="_blank"`). A creative with no destination shows "Iklan ini belum
+memiliki tautan tujuan" and no CTA. Closes on the ✕, the backdrop, and
+`Escape`; focus returns to the trigger; `body` scroll is locked while open.
+Ported from seputarborneo's `js/main.js` `initAdPopup()`, minus jQuery and
+minus the hand-rolled modal.
+
+- **`apps/storefront/src/scripts/iklan-popup.ts`**, mounted ONCE from
+  `apps/storefront/src/layouts/BeritaLayout.astro` (an external module,
+  `script-src 'self'`), attaches a single document-level delegated `click`
+  listener for `.ad-slot [data-iklan-popup]` — so every slot, on every page
+  that renders through the news layout (article pages, `/berita`, and any
+  aside issue #49's `Sidebar.astro` places one in), is covered without the
+  page knowing the module exists. The dialog is BUILT on the first click and
+  reused; nothing is rendered server-side for it. Styles:
+  `apps/storefront/src/styles/iklan-popup.css`, imported by the same layout.
+- **`IklanSlot.astro` marks the trigger with three attributes**:
+  `data-iklan-popup`, `data-iklan-nama` (advertiser name), `data-iklan-label`
+  (the content-class disclosure label — "Advertorial"/"Konten Bersponsor" —
+  or, for `standard`, the slot's own "Iklan"). On a LINKED creative they sit
+  on the existing anchor and nothing else changes. An UNLINKED creative
+  (`linkUrl: null`) had no anchor to decorate, and the "no destination"
+  popup state is an acceptance criterion of #53, so that one branch now
+  wraps the image in a `<button type="button" class="ad-slot-trigger">` — a
+  real keyboard-operable control, never an `<img tabindex>`. A text-only ad
+  (no resolvable image) is never a trigger.
+- **Progressive enhancement, three cases.** No JavaScript: the anchor
+  navigates normally and the button is inert (as non-interactive as the bare
+  `<img>` it replaced). No `<dialog>.showModal` support: the module returns
+  before attaching anything. A modified click (Ctrl/Cmd/Shift/Alt, middle
+  button) on a linked creative is left to the browser, so "open in a new
+  tab" keeps working.
+- **The CTA's href is re-validated** (`safeHttpUrl`): anything that is not
+  an absolute `http(s)` URL is treated as no destination — this module
+  never trusts a CMS string into a new `href` unchecked, the same rule
+  `IklanSlot.astro` already applies to `mediaPublicUrl`. Every string the
+  dialog shows is set through `textContent`; no ad data passes through
+  `innerHTML`.
+- **Tests**: `apps/storefront/tests/e2e/iklan-popup.e2e.ts` (Playwright, via
+  the existing `bun run test:e2e` harness — open, `Escape`/✕/backdrop close,
+  focus restored, CTA href equals the ad link, missing link shows the
+  message, one dialog reused, modifier-click not intercepted) and
+  `apps/storefront/tests/iklan-popup.test.ts` (the DOM-free helpers plus
+  source-level guards for the one mount and the trigger attributes). The
+  e2e spec runs against an ARTICLE page rather than `/berita` — see its
+  docblock: the preview server currently answers `/berita` (and `/video`)
+  with the 404 page, because `build.format: "file"` emits `berita.html`
+  beside the `berita/` directory and `@astrojs/node`'s static handler
+  rewrites a directory-shaped URL to `berita/index.html` before `send`'s
+  `.html` fallback runs. A pre-existing serving bug, outside this issue's
+  files, tracked for follow-up.
+
 ## Catalog surface (issue #27)
 
 The full shopper-facing catalog: the home page, `/produk`, `/kategori/{slug}`,
@@ -789,6 +846,35 @@ astro.config.mjs`, or `apps/storefront/server/penyaji.mjs` imports it, and
 no `package.json` script wires it into `bun run build` — it is a manual,
 explicit step for local/CI verification against a build with no live CMS to
 reach.
+
+### Build-time request concurrency against a real CMS (issue #71)
+
+The stub never refuses a request, so it cannot show the one way a build
+that passes here still fails against a real `apps/cms`: too many requests
+at once. `apps/cms/src/lib/database/work-class.ts` admits at most
+`WORK_CLASS_MAX.interactive` = 8 running `interactive` requests plus a
+bounded queue of 8 × `DATABASE_WORK_CLASS_QUEUE_MULTIPLIER` (default 4) =
+32 waiting — 40 in total — and rejects the 41st outright with a 503
+(`WorkClassQueueFullError`, logged as `database.pool.rejected`).
+`/index/wilayah-kecamatan-{code}.json`'s `getStaticPaths` used to fire one
+`GET /api/v1/idn-regions/regions?level=3&parentCode=…` per regency in the
+same tick — 56 with the default `PUBLIC_WILAYAH_PROVINSI`, 16 of them
+rejected, build failed. Every region request now passes through one
+module-level limiter in `apps/storefront/src/lib/awcms/wilayah-checkout.ts`
+(`MAX_IN_FLIGHT_REGION_REQUESTS` = **6**): under the 8 running slots — not
+merely under the 40 admitted — so the region walk never even queues on an
+idle CMS and leaves two running slots plus the whole queue to the rest of
+the same `astro build` (catalog, news, marketing fetches run in parallel
+with it) and to the CMS's own admin users. Fewer, bigger calls were
+considered and rejected: that route filters by `parentCode` as an exact
+match on the direct parent (no ancestor or code-prefix filter — see
+`apps/cms/src/modules/idn-admin-regions/application/region-lookup.ts`), so
+the only single-walk alternative is a whole-country `level=3` walk or
+seeding the `after` cursor as a range start, which the route does not
+document. `apps/storefront/tests/wilayah-checkout.test.ts` asserts the
+ceiling over the real 56-regency fan-out with a mocked client; the
+end-to-end proof (zero `database.pool.rejected` in the CMS log for a default
+build) is a real-CMS build per `docs/deployment.md`'s "Local database".
 
 ## Test tiers
 

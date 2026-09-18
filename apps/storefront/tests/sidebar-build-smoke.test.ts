@@ -193,10 +193,17 @@ describe("build smoke: shared news sidebar, homepage ad slots, real Terpopuler (
 
         // --- No empty box: a slot with nothing booked renders nothing ------
         const articleHtml = read(join("berita", "bupati-kobar-resmikan-jembatan-baru.html"));
+        // `article_top`, `category_archive_top` and `search_result_top` are
+        // the fixture's deliberately UNBOOKED slots, so an article page
+        // renders neither their markup nor an empty placeholder box.
+        // (`article_bottom` books one creative — issue #53's own unlinked
+        // ad, added to this same fixture so its popup has a no-target case
+        // to exercise — so it is a booked slot here, not an empty one.)
         expect(articleHtml).toContain('data-placement="article_middle"');
+        expect(articleHtml).toContain('data-placement="article_bottom"');
         expect(articleHtml).not.toContain('data-placement="article_top"');
-        expect(articleHtml).not.toContain('data-placement="article_bottom"');
         expect(articleHtml).not.toContain('data-placement="category_archive_top"');
+        expect(articleHtml).not.toContain('data-placement="search_result_top"');
 
         // --- Terpopuler: ranked by the analytics fixture -------------------
         // dprd = 73 + 22 (a `?utm_source=` variant folded in) beats bupati
@@ -225,7 +232,14 @@ describe("build smoke: shared news sidebar, homepage ad slots, real Terpopuler (
           expect(html).toContain('id="buletin-sidebar-email"');
           expect(html).toContain('id="buletin-footer-email"');
           expect(html.indexOf("buletin-form--sidebar")).toBeLessThan(html.indexOf("buletin-form--footer"));
-          expect(html.match(/<script[^>]*src="\/_astro\/BeritaLayout\.astro[^"]*"/g)?.length).toBe(1);
+          // The buletin script is mounted ONCE for the whole page, however
+          // many forms it carries — `BeritaLayout.astro`'s first `<script>`
+          // block (`index_0`). Its second block (`index_1`) is issue #53's
+          // ad-popup mount, which is why this counts that one bundle rather
+          // than every script the layout emits.
+          expect(
+            html.match(/<script[^>]*src="\/_astro\/BeritaLayout\.astro_astro_type_script_index_0[^"]*"/g)?.length
+          ).toBe(1);
         }
         for (const page of [join("daerah", "kotawaringin-barat.html"), join("mitra", "dprd-kalimantan-tengah.html")]) {
           const html = read(page);

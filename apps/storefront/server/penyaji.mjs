@@ -52,6 +52,14 @@
  * the one thing it reads from outside itself (`context.legacyRedirects`,
  * the SAME map issue #28 already loaded at startup) is passed in, never
  * fetched again.
+ *
+ * Issue #75 adds a fifth, the LAST step before the adapter and the only
+ * one that does not answer the request itself: an internal URL rewrite for
+ * a page whose `.html` file the adapter cannot reach because a directory
+ * of the same name sits beside it (`/berita` → `berita.html` next to
+ * `berita/`) — `discoverShadowedHtmlPaths`/`shadowedHtmlUrl` below. Same
+ * discipline as the other four: the set of such paths is read from
+ * `dist/client/` once at startup, never per request.
  */
 import http from "node:http";
 import { posix } from "node:path";
@@ -515,6 +523,125 @@ export function preloadLinkHeaderValue(paths) {
   return paths.map((path) => `<${path}>; rel=preload; as=style`).join(", ");
 }
 
+// --- issue #75: a page shadowed by a directory of the same name ------------
+//
+// `astro.config.mjs` builds with `build.format: "file"` and `trailingSlash:
+// "never"`, so a landing page that also has children is emitted as BOTH a
+// file and a directory: `dist/client/berita.html` beside `dist/client/
+// berita/` (the articles), `video.html` beside `video/`, and `rubrik/
+// <slug>.html` beside `rubrik/<slug>/` (the rubrik's `feed.xml` and
+// `halaman/<n>.html`). `@astrojs/node`'s static handler
+// (`node_modules/@astrojs/node/dist/serve-static.js`, v11.1.5) decides what
+// to hand `send` from the DIRECTORY test first: for a directory-shaped
+// request with no trailing slash under `trailingSlash: "never"` it rewrites
+// the pathname to `<path>/index.html` — a file this build never writes —
+// and only then calls `send`, whose `extensions: ["html"]` fallback (the
+// thing that resolves `/kontak` to `kontak.html`) does not apply to a
+// pathname that already ends in `.html`. `send` errors, the adapter falls
+// through to SSR, and SSR has nothing prerendered at `/berita` either: 404,
+// on a page whose file exists, with the build green.
+//
+// The fix is the smallest one that leaves the adapter's file serving
+// untouched: when the request path is exactly one of those shadowed pages,
+// rewrite `req.url` to `<path>.html` (query string preserved) BEFORE the
+// adapter sees it. The rewritten path is no longer a directory, so the
+// adapter's own `send` call serves the file with its own traversal,
+// conditional-GET and content-type handling — nothing here reads or streams
+// a file, exactly the boundary this file's opening docblock draws.
+//
+// Which paths are shadowed is a fact about the build, not the request, so
+// it is computed ONCE at startup by walking `dist/client/`
+// (`discoverShadowedHtmlPaths`) and the per-request check is a `Set`
+// lookup (`shadowedHtmlUrl`) — no `stat` per request, and no request-
+// derived string ever touches the filesystem from this file. A path with a
+// trailing slash (`/berita/`) is deliberately NOT rewritten: the adapter
+// already 301s it to `/berita` (its own `trailingSlash: "never"` branch),
+// and the redirected request is then rewritten here — one hop, as before.
+//
+// Not fixed at the source in `astro.config.mjs` because there is no
+// setting that does it: `build.format: "directory"` would emit
+// `berita/index.html` and cure the shadow, but also move EVERY page to
+// `<slug>/index.html` and hand `trailingSlash: "never"` a directory-index
+// rewrite on every request — the exact pairing that config's own `format`
+// comment was written to avoid.
+
+/**
+ * Every URL path under `clientDir` whose `.html` file has a same-named
+ * directory beside it — `/berita`, `/video`, `/rubrik/<slug>` in the
+ * current build — as a `Set` of decoded, leading-slash, no-trailing-slash
+ * paths, the same shape `normalizedPath` produces for a request.
+ *
+ * One `readdir` per directory, recursing into every subdirectory: nested
+ * shadows are real (`rubrik/<slug>.html` beside `rubrik/<slug>/`), and a
+ * top-level-only scan would have fixed the two paths the issue names while
+ * leaving every rubrik landing page 404ing the same way.
+ *
+ * An unreadable/missing directory (a fresh checkout with no `dist/` yet)
+ * degrades to an empty set — no rewrite ever fires, not a crash — the same
+ * posture `discoverCssPreloadPaths` takes for `_astro/`.
+ *
+ * @param {URL} clientDir
+ * @returns {Set<string>}
+ */
+export function discoverShadowedHtmlPaths(clientDir) {
+  /** @type {Set<string>} */
+  const shadowed = new Set();
+
+  /** @param {URL} dir @param {string} urlPrefix */
+  function walk(dir, urlPrefix) {
+    let entries;
+    try {
+      entries = readdirSync(dir, { withFileTypes: true });
+    } catch {
+      return;
+    }
+
+    const files = new Set(entries.filter((entry) => entry.isFile()).map((entry) => entry.name));
+
+    for (const entry of entries) {
+      if (!entry.isDirectory()) continue;
+      const urlPath = `${urlPrefix}/${entry.name}`;
+      if (files.has(`${entry.name}.html`)) shadowed.add(urlPath);
+      walk(new URL(`${encodeURIComponent(entry.name)}/`, dir), urlPath);
+    }
+  }
+
+  walk(clientDir, "");
+  return shadowed;
+}
+
+/**
+ * `url` with its path rewritten to `<path>.html` when that path is one of
+ * `shadowed` (see `discoverShadowedHtmlPaths`), or `null` when the request
+ * is to be handed to the adapter unchanged — which is every request but
+ * those, including the trailing-slash form the adapter itself redirects.
+ *
+ * The comparison runs on `normalizedPath` (decoded, `.`/`..`/`//`
+ * collapsed) so it agrees with the directory test the adapter would have
+ * made, and the rewritten path is that NORMALIZED path re-encoded with
+ * `encodeURI` — the exact inverse of the `decodeURI` the adapter applies —
+ * rather than the raw one, so `//berita` or `/x/../berita` reach the
+ * adapter as `/berita.html` and not as a spelling `send` would have to
+ * normalize a second time. The query string is carried over untouched.
+ *
+ * @param {string} url `req.url` as received.
+ * @param {ReadonlySet<string>} shadowed
+ * @returns {string | null}
+ */
+export function shadowedHtmlUrl(url, shadowed) {
+  if (shadowed.size === 0) return null;
+  const path = normalizedPath(url);
+  if (!shadowed.has(path)) return null;
+
+  const withoutFragment = url.includes("#") ? url.slice(0, url.indexOf("#")) : url;
+  const queryStart = withoutFragment.indexOf("?");
+  const query = queryStart === -1 ? "" : withoutFragment.slice(queryStart);
+  return `${encodeURI(path)}.html${query}`;
+}
+
+/** The no-shadowed-pages default for `createServer`'s context — one shared, never-mutated instance rather than a fresh `Set` per request. */
+const EMPTY_SET = new Set();
+
 /**
  * Writes the `/healthz` response directly — this is a plain `node:http`
  * handler, not the Fetch-API adapter, so `res.end()` is how a response
@@ -583,16 +710,25 @@ export function applyHeaders(req, res, context = {}) {
 }
 
 /**
- * Wraps an application handler with the header logic above, plus the two
+ * Wraps an application handler with the header logic above, plus the
  * routes that answer before the adapter ever sees the request: the
- * `/products` redirect (unchanged from before issue #24) and `/healthz`.
+ * `/products` redirect (unchanged from before issue #24), `/healthz`, the
+ * legacy redirects (issues #28/#55) — and one rewrite that does NOT answer
+ * but changes what the adapter is asked for (issue #75).
  *
  * `appHandler` is injected so this file's header behaviour is testable
  * without a real `dist/` build present; so is `context` — see
- * `applyHeaders`/`readBuildId`/`discoverCssPreloadPaths`.
+ * `applyHeaders`/`readBuildId`/`discoverCssPreloadPaths`/
+ * `discoverShadowedHtmlPaths`.
+ *
+ * Order is load-bearing (issue #75): `/healthz`, the `/products` redirect,
+ * and the legacy-redirect map/rules all answer BEFORE the shadowed-page
+ * rewrite, so a redirect rule for a path that happens to also be a
+ * shadowed page still wins, and the rewrite is only ever applied to a
+ * request that is about to reach the adapter.
  *
  * @param {(req: import("node:http").IncomingMessage, res: import("node:http").ServerResponse) => unknown} appHandler
- * @param {{ buildId?: string, cssPreloadLinks?: string[], legacyRedirects?: Record<string, string>, csp?: string }} [context]
+ * @param {{ buildId?: string, cssPreloadLinks?: string[], legacyRedirects?: Record<string, string>, csp?: string, shadowedHtmlPaths?: ReadonlySet<string> }} [context]
  */
 export function createServer(appHandler, context = {}) {
   return http.createServer((req, res) => {
@@ -621,6 +757,16 @@ export function createServer(appHandler, context = {}) {
       res.setHeader("Location", isObjectTarget ? legacyTarget.location : legacyTarget);
       res.end();
       return;
+    }
+
+    // Issue #75: an internal rewrite, not a redirect — the reader's URL
+    // stays `/berita`; only the path the adapter resolves changes, to the
+    // `.html` file a same-named directory would otherwise hide from it.
+    // `applyHeaders` above already ran on the ORIGINAL url; the rewritten
+    // one is a page path too, so its Cache-Control decision is unchanged.
+    const rewritten = shadowedHtmlUrl(req.url ?? "/", context.shadowedHtmlPaths ?? EMPTY_SET);
+    if (rewritten !== null) {
+      req.url = rewritten;
     }
 
     appHandler(req, res);
@@ -666,10 +812,19 @@ export async function run() {
   // per-request file read would put a disk hit in front of every response
   // to answer a question whose answer is fixed.
   const csp = buildCsp(readCspOrigins(clientDir));
+  // Issue #75 — the same once-at-startup rule: which pages a same-named
+  // directory shadows is fixed for the life of this build.
+  const shadowedHtmlPaths = discoverShadowedHtmlPaths(clientDir);
 
   const port = Number(process.env.PORT ?? 8080);
   const host = process.env.HOST ?? "0.0.0.0";
-  const server = createServer(handler, { buildId, cssPreloadLinks, legacyRedirects, csp });
+  const server = createServer(handler, {
+    buildId,
+    cssPreloadLinks,
+    legacyRedirects,
+    csp,
+    shadowedHtmlPaths
+  });
 
   server.listen(port, host, () => {
     console.log(`storefront served by Bun at http://${host}:${port}`);
