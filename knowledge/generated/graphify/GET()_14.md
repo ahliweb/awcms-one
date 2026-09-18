@@ -1,21 +1,17 @@
 ---
-source_file: "apps/storefront/src/pages/sitemap-index.xml.ts"
+source_file: "apps/storefront/src/pages/index/wilayah-kecamatan-[cityCode].json.ts"
 type: "code"
-community: "Sitemap Generation"
-location: "L13"
+community: "wilayah-checkout.ts"
+location: "L37"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Sitemap_Generation
+  - community/wilayah-checkoutts
 ---
 
 # GET()
 
 ## Connections
-- [[absoluteUrl()]] - `calls` [EXTRACTED]
-- [[chunkSitemapEntries()]] - `calls` [EXTRACTED]
-- [[getAllSitemapEntries()]] - `calls` [EXTRACTED]
-- [[renderSitemapIndexXml()]] - `calls` [EXTRACTED]
-- [[sitemap-index.xml.ts]] - `contains` [EXTRACTED]
+- [[wilayah-kecamatan-cityCode.json.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Sitemap_Generation
+#graphify/code #graphify/EXTRACTED #community/wilayah-checkoutts

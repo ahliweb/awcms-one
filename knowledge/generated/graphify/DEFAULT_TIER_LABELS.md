@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/catalog.ts"
 type: "code"
-community: "Catalog Fetch Client"
+community: "catalog.ts"
 location: "L478"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Catalog_Fetch_Client
+  - community/catalogts
 ---
 
 # DEFAULT_TIER_LABELS
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[catalog.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Catalog_Fetch_Client
+#graphify/code #graphify/EXTRACTED #community/catalogts

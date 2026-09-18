@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/tanggal.ts"
 type: "code"
-community: "Article Card & View"
+community: "Sidebar.astro"
 location: "L88"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Article_Card__View
+  - community/Sidebarastro
 ---
 
 # formatBulanArsipWIB()
@@ -16,4 +16,4 @@ tags:
 - [[berita-tanggal.test.ts]] - `imports` [EXTRACTED]
 - [[tanggal.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Article_Card__View
+#graphify/code #graphify/EXTRACTED #community/Sidebarastro

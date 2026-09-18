@@ -1,12 +1,12 @@
 ---
 source_file: "packages/gerbang/audit-dokumen.mjs"
 type: "code"
-community: "Document Audit Gate"
+community: "audit-dokumen.mjs"
 location: "L415"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Document_Audit_Gate
+  - community/audit-dokumenmjs
 ---
 
 # auditAdrIndex()
@@ -15,7 +15,7 @@ tags:
 - [[adrStatus()]] - `calls` [EXTRACTED]
 - [[audit-dokumen.mjs]] - `contains` [EXTRACTED]
 - [[auditOneIndex()]] - `calls` [EXTRACTED]
-- [[join()]] - `calls` [EXTRACTED]
+- [[join()_1]] - `calls` [EXTRACTED]
 - [[note()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Document_Audit_Gate
+#graphify/code #graphify/EXTRACTED #community/audit-dokumenmjs

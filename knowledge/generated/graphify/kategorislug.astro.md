@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/pages/kategori/[slug].astro"
 type: "code"
-community: "Catalog Contract Types"
+community: "catalog.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Catalog_Contract_Types
+  - community/catalogts
 ---
 
 # kategori/[slug].astro
@@ -18,7 +18,7 @@ tags:
 - [[CategoryTree.astro]] - `imports_from` [EXTRACTED]
 - [[CommerceCategory]] - `imports` [EXTRACTED]
 - [[ProductCard.astro]] - `imports_from` [EXTRACTED]
-- [[ROUTES_1]] - `imports` [EXTRACTED]
+- [[ROUTES]] - `imports` [EXTRACTED]
 - [[absoluteUrl()]] - `imports` [EXTRACTED]
 - [[buildCategoryPageSchema()]] - `imports` [EXTRACTED]
 - [[buildCategoryTree()]] - `imports` [EXTRACTED]
@@ -26,10 +26,10 @@ tags:
 - [[collectCategorySubtreeIds()]] - `imports` [EXTRACTED]
 - [[getCategories()]] - `imports` [EXTRACTED]
 - [[getProducts()]] - `imports` [EXTRACTED]
-- [[getStaticPaths()_6]] - `contains` [EXTRACTED]
+- [[getStaticPaths()_2]] - `contains` [EXTRACTED]
 - [[jsonld-produk.ts]] - `imports_from` [EXTRACTED]
 - [[productsInCategory()]] - `imports` [EXTRACTED]
 - [[routes.ts]] - `imports_from` [EXTRACTED]
 - [[site.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Catalog_Contract_Types
+#graphify/code #graphify/EXTRACTED #community/catalogts

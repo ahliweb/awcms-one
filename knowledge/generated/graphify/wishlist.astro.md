@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/pages/wishlist.astro"
 type: "code"
-community: "Base Layout & Site Identity"
+community: "profil.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Base_Layout__Site_Identity
+  - community/profilts
 ---
 
 # wishlist.astro
@@ -15,4 +15,4 @@ tags:
 - [[BaseLayout.astro]] - `imports_from` [EXTRACTED]
 - [[wishlist.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Base_Layout__Site_Identity
+#graphify/code #graphify/EXTRACTED #community/profilts

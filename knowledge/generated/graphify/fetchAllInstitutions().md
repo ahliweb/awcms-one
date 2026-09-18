@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/awcms/blog.ts"
 type: "code"
-community: "Ad Placements & Blog Client"
-location: "L262"
+community: "blog.ts"
+location: "L259"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Ad_Placements__Blog_Client
+  - community/blogts
 ---
 
 # fetchAllInstitutions()
@@ -14,6 +14,6 @@ tags:
 ## Connections
 - [[blog.ts]] - `contains` [EXTRACTED]
 - [[getAllInstitutions()]] - `calls` [EXTRACTED]
-- [[isExpectedRefusal()]] - `calls` [EXTRACTED]
+- [[isExpectedRefusal()_3]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Ad_Placements__Blog_Client
+#graphify/code #graphify/EXTRACTED #community/blogts

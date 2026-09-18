@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/keranjang-klien.ts"
 type: "code"
-community: "Cart Client Storage"
+community: "keranjang.ts"
 location: "L45"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Cart_Client_Storage
+  - community/keranjangts
 ---
 
 # saveCart()
@@ -18,4 +18,4 @@ tags:
 - [[removeCartLine()]] - `calls` [EXTRACTED]
 - [[updateCartLineQuantity()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Cart_Client_Storage
+#graphify/code #graphify/EXTRACTED #community/keranjangts

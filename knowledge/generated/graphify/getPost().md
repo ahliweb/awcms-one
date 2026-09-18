@@ -1,19 +1,19 @@
 ---
 source_file: "apps/storefront/src/lib/berita.ts"
 type: "code"
-community: "News RSS Feed"
-location: "L365"
+community: "[slug]/feed.xml.ts"
+location: "L412"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/News_RSS_Feed
+  - community/slug/feedxmlts
 ---
 
 # getPost()
 
 ## Connections
 - [[GET()_1]] - `calls` [EXTRACTED]
-- [[GET()_12]] - `calls` [EXTRACTED]
+- [[GET()_7]] - `calls` [EXTRACTED]
 - [[slugfeed.xml.ts]] - `imports` [EXTRACTED]
 - [[berita.ts]] - `contains` [EXTRACTED]
 - [[beritaslug.astro]] - `imports` [EXTRACTED]
@@ -21,4 +21,4 @@ tags:
 - [[getIndex()]] - `calls` [EXTRACTED]
 - [[videoslug.astro]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/News_RSS_Feed
+#graphify/code #graphify/EXTRACTED #community/slug/feedxmlts

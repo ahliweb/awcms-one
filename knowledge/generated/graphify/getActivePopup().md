@@ -1,18 +1,18 @@
 ---
 source_file: "apps/storefront/src/lib/awcms/pemasaran.ts"
 type: "code"
-community: "Marketing Read Models"
+community: "pemasaran.ts"
 location: "L362"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Marketing_Read_Models
+  - community/pemasarants
 ---
 
 # getActivePopup()
 
 ## Connections
-- [[GET()_2]] - `calls` [EXTRACTED]
+- [[GET()_11]] - `calls` [EXTRACTED]
 - [[csp.json.ts]] - `imports` [EXTRACTED]
 - [[isMissingEndpoint()]] - `calls` [EXTRACTED]
 - [[katalog-pemasaran.test.ts]] - `imports` [EXTRACTED]
@@ -20,4 +20,4 @@ tags:
 - [[pemasaran.ts]] - `contains` [EXTRACTED]
 - [[warnMissing()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Marketing_Read_Models
+#graphify/code #graphify/EXTRACTED #community/pemasarants

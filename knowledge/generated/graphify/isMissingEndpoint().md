@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/awcms/pemasaran.ts"
 type: "code"
-community: "Marketing Read Models"
+community: "pemasaran.ts"
 location: "L256"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Marketing_Read_Models
+  - community/pemasarants
 ---
 
 # isMissingEndpoint()
@@ -20,4 +20,4 @@ tags:
 - [[getStoreSettings()]] - `calls` [EXTRACTED]
 - [[pemasaran.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Marketing_Read_Models
+#graphify/code #graphify/EXTRACTED #community/pemasarants

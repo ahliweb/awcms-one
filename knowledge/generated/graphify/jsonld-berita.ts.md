@@ -1,18 +1,18 @@
 ---
 source_file: "apps/storefront/src/lib/jsonld-berita.ts"
 type: "code"
-community: "News JSON-LD"
+community: "video/[slug].astro"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/News_JSON-LD
+  - community/video/slugastro
 ---
 
 # jsonld-berita.ts
 
 ## Connections
-- [[ADR-0109_2]] - `cites` [EXTRACTED]
+- [[ADR-0109]] - `cites` [EXTRACTED]
 - [[BreadcrumbItem]] - `contains` [EXTRACTED]
 - [[NewsArticleSchemaInput]] - `contains` [EXTRACTED]
 - [[absoluteUrl()]] - `imports` [EXTRACTED]
@@ -24,4 +24,4 @@ tags:
 - [[site.ts]] - `imports_from` [EXTRACTED]
 - [[videoslug.astro]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/News_JSON-LD
+#graphify/code #graphify/EXTRACTED #community/video/slugastro

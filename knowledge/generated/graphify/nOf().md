@@ -1,12 +1,12 @@
 ---
 source_file: "tests/audit-rilis.test.mjs"
 type: "code"
-community: "Build & E2E Tooling"
+community: "audit-rilis.test.mjs"
 location: "L59"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Build__E2E_Tooling
+  - community/audit-rilistestmjs
 ---
 
 # nOf()
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[audit-rilis.test.mjs]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Build__E2E_Tooling
+#graphify/code #graphify/EXTRACTED #community/audit-rilistestmjs

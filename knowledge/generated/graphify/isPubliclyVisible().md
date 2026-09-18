@@ -1,18 +1,19 @@
 ---
-source_file: "apps/storefront/src/lib/berita.ts"
+source_file: "apps/storefront/src/lib/catalog.ts"
 type: "code"
-community: "Rubrik & Region Rendering"
-location: "L173"
+community: "catalog.ts"
+location: "L276"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Rubrik__Region_Rendering
+  - community/catalogts
 ---
 
 # isPubliclyVisible()
 
 ## Connections
-- [[berita.ts]] - `contains` [EXTRACTED]
-- [[buildIndex()]] - `calls` [EXTRACTED]
+- [[assertNeverProductStatus()]] - `calls` [EXTRACTED]
+- [[catalog.ts]] - `contains` [EXTRACTED]
+- [[getProducts()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Rubrik__Region_Rendering
+#graphify/code #graphify/EXTRACTED #community/catalogts

@@ -1,26 +1,29 @@
 ---
 source_file: "apps/storefront/src/lib/env.ts"
 type: "code"
-community: "AWCMS Build Client"
+community: "readEnv"
 location: "L36"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AWCMS_Build_Client
+  - community/readEnv
 ---
 
 # readEnv()
 
 ## Connections
+- [[BaseLayout.astro]] - `imports` [EXTRACTED]
 - [[apiOrigin()]] - `calls` [EXTRACTED]
 - [[awcmsGet()]] - `calls` [EXTRACTED]
 - [[baseUrl()]] - `calls` [EXTRACTED]
 - [[client.ts]] - `imports` [EXTRACTED]
 - [[configuredProvinceCodes()]] - `calls` [EXTRACTED]
 - [[env.ts]] - `contains` [EXTRACTED]
+- [[ga.ts]] - `imports` [EXTRACTED]
 - [[mergeSiteIdentity()]] - `calls` [EXTRACTED]
 - [[profil.ts]] - `imports` [EXTRACTED]
 - [[readEnvOr()]] - `calls` [EXTRACTED]
+- [[readGaMeasurementId()]] - `calls` [EXTRACTED]
 - [[requireAwcmsOrigin()]] - `calls` [EXTRACTED]
 - [[tenantCode()]] - `calls` [EXTRACTED]
 - [[theme.ts]] - `imports` [EXTRACTED]
@@ -28,4 +31,4 @@ tags:
 - [[toko-origin.ts]] - `imports` [EXTRACTED]
 - [[wilayah-checkout.ts]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AWCMS_Build_Client
+#graphify/code #graphify/EXTRACTED #community/readEnv

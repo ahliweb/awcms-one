@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/awcms/wilayah.ts"
 type: "code"
-community: "Rubrik & Region Rendering"
+community: "navigasi-berita.ts"
 location: "L143"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Rubrik__Region_Rendering
+  - community/navigasi-beritats
 ---
 
 # getResolvableRegionsByCode()
@@ -16,8 +16,11 @@ tags:
 - [[buildIndex()]] - `calls` [EXTRACTED]
 - [[buildRegionIndex()]] - `calls` [EXTRACTED]
 - [[getDaerah()]] - `calls` [EXTRACTED]
+- [[getDaerahList()]] - `calls` [EXTRACTED]
+- [[getMitraList()_1]] - `calls` [EXTRACTED]
 - [[listDaerahLinks()]] - `calls` [EXTRACTED]
+- [[navigasi-berita.ts]] - `imports` [EXTRACTED]
 - [[resolveRegion()]] - `calls` [EXTRACTED]
 - [[wilayah.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Rubrik__Region_Rendering
+#graphify/code #graphify/EXTRACTED #community/navigasi-beritats

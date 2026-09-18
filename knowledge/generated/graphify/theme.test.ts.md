@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/theme.test.ts"
 type: "code"
-community: "Theme Token Fetch"
+community: "theme.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Theme_Token_Fetch
+  - community/themets
 ---
 
 # theme.test.ts
@@ -16,4 +16,4 @@ tags:
 - [[extractThemeToken()]] - `imports` [EXTRACTED]
 - [[theme.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Theme_Token_Fetch
+#graphify/code #graphify/EXTRACTED #community/themets

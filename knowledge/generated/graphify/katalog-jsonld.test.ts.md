@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/katalog-jsonld.test.ts"
 type: "code"
-community: "Catalog Contract Types"
+community: "catalog.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Catalog_Contract_Types
+  - community/catalogts
 ---
 
 # katalog-jsonld.test.ts
@@ -21,4 +21,4 @@ tags:
 - [[jsonld-produk.ts]] - `imports_from` [EXTRACTED]
 - [[product()_1]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Catalog_Contract_Types
+#graphify/code #graphify/EXTRACTED #community/catalogts

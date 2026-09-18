@@ -1,18 +1,18 @@
 ---
 source_file: "apps/storefront/src/lib/awcms/pages.ts"
 type: "code"
-community: "Footer & Static Pages"
+community: "portable-text.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Footer__Static_Pages
+  - community/portable-textts
 ---
 
 # pages.ts
 
 ## Connections
-- [[ADR-0100_1]] - `cites` [EXTRACTED]
+- [[ADR-0100]] - `cites` [EXTRACTED]
 - [[AwcmsApiError]] - `imports` [EXTRACTED]
 - [[BaseLayout.astro]] - `imports_from` [EXTRACTED]
 - [[Footer.astro]] - `imports_from` [EXTRACTED]
@@ -25,9 +25,10 @@ tags:
 - [[fetchStaticPageList()]] - `contains` [EXTRACTED]
 - [[getStaticPage()]] - `contains` [EXTRACTED]
 - [[halamanslug.astro]] - `imports_from` [EXTRACTED]
-- [[isExpectedRefusal()_1]] - `contains` [EXTRACTED]
+- [[isExpectedRefusal()]] - `contains` [EXTRACTED]
 - [[listStaticPages()]] - `contains` [EXTRACTED]
+- [[navigasi-berita.ts]] - `imports_from` [EXTRACTED]
 - [[resetStaticPagesCacheForTests()]] - `contains` [EXTRACTED]
 - [[sitemap-sources.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Footer__Static_Pages
+#graphify/code #graphify/EXTRACTED #community/portable-textts

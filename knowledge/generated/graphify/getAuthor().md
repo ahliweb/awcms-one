@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/berita.ts"
 type: "code"
-community: "News Layout & Archive"
-location: "L596"
+community: "berita.ts"
+location: "L639"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/News_Layout__Archive
+  - community/beritats
 ---
 
 # getAuthor()
@@ -17,4 +17,4 @@ tags:
 - [[penulisslug.astro]] - `imports` [EXTRACTED]
 - [[slugifyName()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/News_Layout__Archive
+#graphify/code #graphify/EXTRACTED #community/beritats

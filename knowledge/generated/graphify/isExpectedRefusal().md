@@ -1,21 +1,19 @@
 ---
-source_file: "apps/storefront/src/lib/awcms/blog.ts"
+source_file: "apps/storefront/src/lib/awcms/pages.ts"
 type: "code"
-community: "Ad Placements & Blog Client"
-location: "L74"
+community: "portable-text.ts"
+location: "L51"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Ad_Placements__Blog_Client
+  - community/portable-textts
 ---
 
 # isExpectedRefusal()
 
 ## Connections
-- [[blog.ts]] - `contains` [EXTRACTED]
-- [[fetchActiveAdPlacements()]] - `calls` [EXTRACTED]
-- [[fetchAllInstitutions()]] - `calls` [EXTRACTED]
-- [[fetchAllTerms()]] - `calls` [EXTRACTED]
-- [[fetchLegacyRedirectRows()]] - `calls` [EXTRACTED]
+- [[fetchStaticPage()]] - `calls` [EXTRACTED]
+- [[fetchStaticPageList()]] - `calls` [EXTRACTED]
+- [[pages.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Ad_Placements__Blog_Client
+#graphify/code #graphify/EXTRACTED #community/portable-textts

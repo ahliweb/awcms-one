@@ -1,19 +1,19 @@
 ---
-source_file: "apps/storefront/src/pages/index/wilayah-kecamatan-[cityCode].json.ts"
+source_file: "apps/storefront/src/pages/rubrik/[slug]/feed.xml.ts"
 type: "code"
-community: "Checkout Region Data"
-location: "L16"
+community: "[n].astro"
+location: "L13"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Checkout_Region_Data
+  - community/nastro
 ---
 
 # getStaticPaths()
 
 ## Connections
-- [[getAllCheckoutRegencies()]] - `calls` [EXTRACTED]
-- [[getCheckoutDistricts()]] - `calls` [EXTRACTED]
-- [[wilayah-kecamatan-cityCode.json.ts]] - `contains` [EXTRACTED]
+- [[slugfeed.xml.ts]] - `contains` [EXTRACTED]
+- [[flattenRubrikTree()]] - `calls` [EXTRACTED]
+- [[getRubrikTree()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Checkout_Region_Data
+#graphify/code #graphify/EXTRACTED #community/nastro

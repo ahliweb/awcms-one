@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/harga.ts"
 type: "code"
-community: "Catalog Fetch Client"
+community: "formatPrice"
 location: "L65"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Catalog_Fetch_Client
+  - community/formatPrice
 ---
 
 # comparePrices()
@@ -18,4 +18,4 @@ tags:
 - [[katalog-harga.test.ts]] - `imports` [EXTRACTED]
 - [[priceToNumber()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Catalog_Fetch_Client
+#graphify/code #graphify/EXTRACTED #community/formatPrice

@@ -1,12 +1,12 @@
 ---
 source_file: "tools/seed-borneojek-mart.ts"
 type: "code"
-community: "Tenant Seed Script"
+community: "seed-borneojek-mart.ts"
 location: "L71"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Tenant_Seed_Script
+  - community/seed-borneojek-martts
 ---
 
 # SEED_DATA_DIR
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[seed-borneojek-mart.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Tenant_Seed_Script
+#graphify/code #graphify/EXTRACTED #community/seed-borneojek-martts

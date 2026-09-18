@@ -1,12 +1,12 @@
 ---
 source_file: "packages/config/tsconfig.base.json"
 type: "code"
-community: "Base TS Config"
+community: "compilerOptions"
 location: "L4"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Base_TS_Config
+  - community/compilerOptions
 ---
 
 # jsx
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[compilerOptions]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Base_TS_Config
+#graphify/code #graphify/EXTRACTED #community/compilerOptions

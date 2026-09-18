@@ -1,12 +1,12 @@
 ---
 source_file: "packages/gerbang/lib/docs-i18n-checks.mjs"
 type: "code"
-community: "Translation Mirror Audit"
+community: "docs-i18n-stamp.mjs"
 location: "L167"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Translation_Mirror_Audit
+  - community/docs-i18n-stampmjs
 ---
 
 # checkTranslationPair()
@@ -19,4 +19,4 @@ tags:
 - [[extractRecordedHash()]] - `calls` [EXTRACTED]
 - [[runChecks()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Translation_Mirror_Audit
+#graphify/code #graphify/EXTRACTED #community/docs-i18n-stampmjs

@@ -1,18 +1,18 @@
 ---
 source_file: "apps/storefront/src/lib/berita.ts"
 type: "code"
-community: "Rubrik & Region Rendering"
+community: "berita.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Rubrik__Region_Rendering
+  - community/beritats
 ---
 
 # berita.ts
 
 ## Connections
-- [[ADR-0109_1]] - `cites` [EXTRACTED]
+- [[ADR-0109_2]] - `cites` [EXTRACTED]
 - [[ArtikelCard.astro]] - `imports_from` [EXTRACTED]
 - [[ArtikelView.astro]] - `imports_from` [EXTRACTED]
 - [[AuthorArchive]] - `contains` [EXTRACTED]
@@ -25,6 +25,7 @@ tags:
 - [[MitraSummary]] - `imports` [EXTRACTED]
 - [[PagedResult]] - `contains` [EXTRACTED]
 - [[Pagination.astro]] - `imports_from` [EXTRACTED]
+- [[PlayableVideoInfo]] - `imports` [EXTRACTED]
 - [[PostDetail]] - `contains` [EXTRACTED]
 - [[PostSummary]] - `contains` [EXTRACTED]
 - [[RFC-822]] - `cites` [EXTRACTED]
@@ -33,13 +34,16 @@ tags:
 - [[RawPost]] - `imports` [EXTRACTED]
 - [[RawTerm]] - `imports` [EXTRACTED]
 - [[RegionRef]] - `contains` [EXTRACTED]
+- [[ResolvedMedia]] - `imports` [EXTRACTED]
 - [[RubrikArchive]] - `contains` [EXTRACTED]
 - [[RubrikBody.astro]] - `imports_from` [EXTRACTED]
 - [[RubrikNode]] - `contains` [EXTRACTED]
 - [[RubrikNodeInternal]] - `contains` [EXTRACTED]
+- [[Sidebar.astro]] - `imports_from` [EXTRACTED]
 - [[TagArchive]] - `contains` [EXTRACTED]
 - [[TagCloud.astro]] - `imports_from` [EXTRACTED]
 - [[TermSummary]] - `contains` [EXTRACTED]
+- [[Ticker.astro]] - `imports_from` [EXTRACTED]
 - [[mm.astro]] - `imports_from` [EXTRACTED]
 - [[n.astro]] - `imports_from` [EXTRACTED]
 - [[slugfeed.xml.ts]] - `imports_from` [EXTRACTED]
@@ -56,12 +60,15 @@ tags:
 - [[buildRubrikForest()]] - `contains` [EXTRACTED]
 - [[collectAncestors()]] - `contains` [EXTRACTED]
 - [[collectDescendantSlugs()]] - `contains` [EXTRACTED]
+- [[collectGalleryMediaObjectIds()]] - `imports` [EXTRACTED]
+- [[csp.json.ts]] - `imports_from` [EXTRACTED]
 - [[daerahslug.astro]] - `imports_from` [EXTRACTED]
 - [[defaultLoader()]] - `imports_from` [EXTRACTED]
 - [[documentHasPlayableVideo()]] - `imports` [EXTRACTED]
 - [[escapeCdata()]] - `contains` [EXTRACTED]
-- [[escapeXml()]] - `contains` [EXTRACTED]
+- [[escapeXml()_2]] - `contains` [EXTRACTED]
 - [[estimasiWaktuBacaMenit()]] - `contains` [EXTRACTED]
+- [[extractPlayableVideoInfo()]] - `imports` [EXTRACTED]
 - [[flattenRubrikTree()]] - `contains` [EXTRACTED]
 - [[getAllInstitutions()]] - `imports` [EXTRACTED]
 - [[getAllPosts()]] - `imports` [EXTRACTED]
@@ -77,23 +84,30 @@ tags:
 - [[getPosts()]] - `contains` [EXTRACTED]
 - [[getRelatedPosts()]] - `contains` [EXTRACTED]
 - [[getResolvableRegionsByCode()]] - `imports` [EXTRACTED]
+- [[getResolvedMedia()]] - `contains` [EXTRACTED]
 - [[getRubrik()]] - `contains` [EXTRACTED]
 - [[getRubrikTree()]] - `contains` [EXTRACTED]
 - [[getTag()]] - `contains` [EXTRACTED]
 - [[getTags()]] - `contains` [EXTRACTED]
-- [[getTerpopuler()]] - `contains` [EXTRACTED]
 - [[getVideo()]] - `contains` [EXTRACTED]
-- [[isPubliclyVisible()]] - `contains` [EXTRACTED]
+- [[isPubliclyVisible()_1]] - `contains` [EXTRACTED]
 - [[lembaga.ts]] - `imports_from` [EXTRACTED]
 - [[listArsipBulan()]] - `contains` [EXTRACTED]
 - [[listAuthors()]] - `contains` [EXTRACTED]
 - [[listDaerahLinks()]] - `contains` [EXTRACTED]
+- [[media.ts]] - `imports_from` [EXTRACTED]
+- [[meta-sosial.test.ts]] - `imports_from` [EXTRACTED]
+- [[meta-sosial.ts]] - `imports_from` [EXTRACTED]
 - [[mitraslug.astro]] - `imports_from` [EXTRACTED]
+- [[navigasi-berita.test.ts]] - `imports_from` [EXTRACTED]
+- [[navigasi-berita.ts]] - `imports_from` [EXTRACTED]
 - [[paginate()]] - `contains` [EXTRACTED]
+- [[pengalihan-legacy.json.ts]] - `imports_from` [EXTRACTED]
 - [[penulisslug.astro]] - `imports_from` [EXTRACTED]
 - [[portable-text.ts]] - `imports_from` [EXTRACTED]
 - [[renderBeritaRssXml()]] - `contains` [EXTRACTED]
 - [[resetBeritaIndexForTests()]] - `contains` [EXTRACTED]
+- [[resolveMedia()]] - `imports` [EXTRACTED]
 - [[sitemap-sources.ts]] - `imports_from` [EXTRACTED]
 - [[slugifyCache]] - `contains` [EXTRACTED]
 - [[slugifyName()]] - `contains` [EXTRACTED]
@@ -106,4 +120,4 @@ tags:
 - [[videoindex.astro]] - `imports_from` [EXTRACTED]
 - [[wilayah.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Rubrik__Region_Rendering
+#graphify/code #graphify/EXTRACTED #community/beritats

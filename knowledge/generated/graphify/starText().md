@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/pages/index.astro"
 type: "code"
-community: "Marketing Read Models"
+community: "pemasaran.ts"
 location: "L54"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Marketing_Read_Models
+  - community/pemasarants
 ---
 
 # starText()
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[pagesindex.astro]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Marketing_Read_Models
+#graphify/code #graphify/EXTRACTED #community/pemasarants

@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/package.json"
 type: "code"
-community: "Storefront Package Manifest"
+community: "scripts"
 location: "L19"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Storefront_Package_Manifest
+  - community/scripts
 ---
 
 # @astrojs/node
@@ -15,4 +15,4 @@ tags:
 - [[@astrojsnode_1]] - `imports` [EXTRACTED]
 - [[dependencies_1]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Storefront_Package_Manifest
+#graphify/code #graphify/EXTRACTED #community/scripts

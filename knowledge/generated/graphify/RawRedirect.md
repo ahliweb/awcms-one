@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/awcms/blog.ts"
 type: "code"
-community: "Ad Placements & Blog Client"
-location: "L359"
+community: "blog.ts"
+location: "L356"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Ad_Placements__Blog_Client
+  - community/blogts
 ---
 
 # RawRedirect
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[blog.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Ad_Placements__Blog_Client
+#graphify/code #graphify/EXTRACTED #community/blogts

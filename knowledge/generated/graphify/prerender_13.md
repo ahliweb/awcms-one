@@ -1,17 +1,17 @@
 ---
-source_file: "apps/storefront/src/pages/sitemap-[n].xml.ts"
+source_file: "apps/storefront/src/pages/index/wilayah-kabupaten-[provinceCode].json.ts"
 type: "code"
-community: "Sitemap Generation"
-location: "L10"
+community: "wilayah-checkout.ts"
+location: "L16"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Sitemap_Generation
+  - community/wilayah-checkoutts
 ---
 
 # prerender
 
 ## Connections
-- [[sitemap-n.xml.ts]] - `contains` [EXTRACTED]
+- [[wilayah-kabupaten-provinceCode.json.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Sitemap_Generation
+#graphify/code #graphify/EXTRACTED #community/wilayah-checkoutts

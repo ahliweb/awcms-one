@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/server/penyaji.mjs"
 type: "code"
-community: "Storefront Server & CSP"
-location: "L274"
+community: "penyaji.mjs"
+location: "L345"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Storefront_Server__CSP
+  - community/penyajimjs
 ---
 
 # normalizedPath()
@@ -18,5 +18,6 @@ tags:
 - [[isProductsRedirect()]] - `calls` [EXTRACTED]
 - [[legacyRedirectLocation()]] - `calls` [EXTRACTED]
 - [[penyaji.mjs]] - `contains` [EXTRACTED]
+- [[shadowedHtmlUrl()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Storefront_Server__CSP
+#graphify/code #graphify/EXTRACTED #community/penyajimjs

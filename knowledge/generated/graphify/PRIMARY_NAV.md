@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/config/routes.ts"
 type: "code"
-community: "Site Chrome & Navigation"
+community: "routes.ts"
 location: "L71"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Site_Chrome__Navigation
+  - community/routests
 ---
 
 # PRIMARY_NAV
@@ -17,4 +17,4 @@ tags:
 - [[routes.test.ts]] - `imports` [EXTRACTED]
 - [[routes.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Site_Chrome__Navigation
+#graphify/code #graphify/EXTRACTED #community/routests

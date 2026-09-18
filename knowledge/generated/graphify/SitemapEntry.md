@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/sitemap.ts"
 type: "code"
-community: "Site Chrome & Navigation"
+community: "site.ts"
 location: "L16"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Site_Chrome__Navigation
+  - community/sitets
 ---
 
 # SitemapEntry
@@ -16,4 +16,4 @@ tags:
 - [[sitemap-sources.ts]] - `imports` [EXTRACTED]
 - [[sitemap.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Site_Chrome__Navigation
+#graphify/code #graphify/EXTRACTED #community/sitets

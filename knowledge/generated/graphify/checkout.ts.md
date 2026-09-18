@@ -1,18 +1,18 @@
 ---
 source_file: "apps/storefront/src/scripts/checkout.ts"
 type: "code"
-community: "Order Session & Phone"
+community: "checkout.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Order_Session__Phone
+  - community/checkoutts
 ---
 
 # checkout.ts
 
 ## Connections
-- [[ADR-0007_5]] - `cites` [EXTRACTED]
+- [[ADR-0007_3]] - `cites` [EXTRACTED]
 - [[Cart]] - `imports` [EXTRACTED]
 - [[CartLineRequest]] - `imports` [EXTRACTED]
 - [[CartQuote]] - `imports` [EXTRACTED]
@@ -42,4 +42,4 @@ tags:
 - [[toko-klien.ts]] - `imports_from` [EXTRACTED]
 - [[wa-fallback.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Order_Session__Phone
+#graphify/code #graphify/EXTRACTED #community/checkoutts

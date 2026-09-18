@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/berita.ts"
 type: "code"
-community: "Rubrik & Region Rendering"
-location: "L109"
+community: "berita.ts"
+location: "L126"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Rubrik__Region_Rendering
+  - community/beritats
 ---
 
 # slugifyName()
@@ -18,4 +18,4 @@ tags:
 - [[listAuthors()]] - `calls` [EXTRACTED]
 - [[toRegionRef()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Rubrik__Region_Rendering
+#graphify/code #graphify/EXTRACTED #community/beritats

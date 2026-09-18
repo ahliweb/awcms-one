@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/scripts/stub-awcms.mjs"
 type: "code"
-community: "AWCMS Stub Server"
-location: "L109"
+community: "stub-awcms.mjs"
+location: "L136"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AWCMS_Stub_Server
+  - community/stub-awcmsmjs
 ---
 
 # FIXTURES
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[stub-awcms.mjs]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AWCMS_Stub_Server
+#graphify/code #graphify/EXTRACTED #community/stub-awcmsmjs

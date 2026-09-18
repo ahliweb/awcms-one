@@ -1,21 +1,18 @@
 ---
-source_file: "apps/storefront/src/pages/rubrik/[slug]/halaman/[n].astro"
+source_file: "apps/storefront/src/pages/penulis/[slug].astro"
 type: "code"
-community: "Rubrik Hierarchy"
-location: "L13"
+community: "berita.ts"
+location: "L16"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Rubrik_Hierarchy
+  - community/beritats
 ---
 
 # getStaticPaths()
 
 ## Connections
-- [[n.astro]] - `contains` [EXTRACTED]
-- [[flattenRubrikTree()]] - `calls` [EXTRACTED]
-- [[getRubrik()]] - `calls` [EXTRACTED]
-- [[getRubrikTree()]] - `calls` [EXTRACTED]
-- [[paginate()]] - `calls` [EXTRACTED]
+- [[listAuthors()]] - `calls` [EXTRACTED]
+- [[penulisslug.astro]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Rubrik_Hierarchy
+#graphify/code #graphify/EXTRACTED #community/beritats

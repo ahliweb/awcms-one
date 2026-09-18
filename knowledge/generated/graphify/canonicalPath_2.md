@@ -1,17 +1,17 @@
 ---
-source_file: "apps/storefront/src/pages/daerah/[slug].astro"
+source_file: "apps/storefront/src/pages/arsip/[yyyy]/[mm].astro"
 type: "code"
-community: "Rubrik & Region Rendering"
-location: "L29"
+community: "Sidebar.astro"
+location: "L18"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Rubrik__Region_Rendering
+  - community/Sidebarastro
 ---
 
 # canonicalPath
 
 ## Connections
-- [[daerahslug.astro]] - `contains` [EXTRACTED]
+- [[mm.astro]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Rubrik__Region_Rendering
+#graphify/code #graphify/EXTRACTED #community/Sidebarastro

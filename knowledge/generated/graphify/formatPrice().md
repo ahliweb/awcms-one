@@ -1,18 +1,18 @@
 ---
 source_file: "apps/storefront/src/lib/harga.ts"
 type: "code"
-community: "Order Tracking Script"
+community: "formatPrice"
 location: "L35"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Order_Tracking_Script
+  - community/formatPrice
 ---
 
 # formatPrice()
 
 ## Connections
-- [[GET()_3]] - `calls` [EXTRACTED]
+- [[GET()_2]] - `calls` [EXTRACTED]
 - [[PRICE_FORMATTER]] - `references` [EXTRACTED]
 - [[ProductCard.astro]] - `imports` [EXTRACTED]
 - [[buildWhatsappCartMessage()]] - `calls` [EXTRACTED]
@@ -40,4 +40,4 @@ tags:
 - [[wa-fallback.ts]] - `imports` [EXTRACTED]
 - [[wishlist.ts]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Order_Tracking_Script
+#graphify/code #graphify/EXTRACTED #community/formatPrice

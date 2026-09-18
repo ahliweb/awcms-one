@@ -1,12 +1,12 @@
 ---
 source_file: "packages/gerbang/lib/graf-checks.mjs"
 type: "code"
-community: "Knowledge Graph Audit"
+community: "audit-graf.mjs"
 location: "L71"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Knowledge_Graph_Audit
+  - community/audit-grafmjs
 ---
 
 # graphCounts()
@@ -16,4 +16,4 @@ tags:
 - [[checkReportAgreesWithGraph()]] - `calls` [EXTRACTED]
 - [[graf-checks.mjs]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Knowledge_Graph_Audit
+#graphify/code #graphify/EXTRACTED #community/audit-grafmjs

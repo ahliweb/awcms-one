@@ -1,27 +1,20 @@
 ---
-source_file: "tools/seed-borneojek-mart.ts"
+source_file: "tools/lib/awcms-api.ts"
 type: "code"
-community: "Tenant Seed Script"
-location: "L170"
+community: "runExport"
+location: "L69"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Tenant_Seed_Script
+  - community/runExport
 ---
 
 # assertOk()
 
 ## Connections
-- [[applySiteProfile()]] - `calls` [EXTRACTED]
-- [[ensureBlogPages()]] - `calls` [EXTRACTED]
-- [[ensureBlogPosts()]] - `calls` [EXTRACTED]
-- [[ensureBlogTerms()]] - `calls` [EXTRACTED]
-- [[ensureCategories()]] - `calls` [EXTRACTED]
-- [[ensureMachineCredential()]] - `calls` [EXTRACTED]
-- [[ensureMarketing()]] - `calls` [EXTRACTED]
-- [[ensureOrders()]] - `calls` [EXTRACTED]
-- [[ensureProducts()]] - `calls` [EXTRACTED]
-- [[ensureTenantAndSession()]] - `calls` [EXTRACTED]
-- [[seed-borneojek-mart.ts]] - `contains` [EXTRACTED]
+- [[awcms-api.ts]] - `contains` [EXTRACTED]
+- [[import-seputarborneo.ts]] - `imports` [EXTRACTED]
+- [[resolveExistingTenantSession()]] - `calls` [EXTRACTED]
+- [[runAssignInstitutions()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Tenant_Seed_Script
+#graphify/code #graphify/EXTRACTED #community/runExport

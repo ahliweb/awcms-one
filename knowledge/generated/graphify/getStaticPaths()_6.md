@@ -1,18 +1,19 @@
 ---
-source_file: "apps/storefront/src/pages/kategori/[slug].astro"
+source_file: "apps/storefront/src/pages/sitemap-[n].xml.ts"
 type: "code"
-community: "Catalog Contract Types"
-location: "L26"
+community: "site.ts"
+location: "L12"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Catalog_Contract_Types
+  - community/sitets
 ---
 
 # getStaticPaths()
 
 ## Connections
-- [[getCategories()]] - `calls` [EXTRACTED]
-- [[kategorislug.astro]] - `contains` [EXTRACTED]
+- [[chunkSitemapEntries()]] - `calls` [EXTRACTED]
+- [[getAllSitemapEntries()]] - `calls` [EXTRACTED]
+- [[sitemap-n.xml.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Catalog_Contract_Types
+#graphify/code #graphify/EXTRACTED #community/sitets

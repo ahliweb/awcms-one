@@ -1,17 +1,17 @@
 ---
-source_file: "tools/seed-borneojek-mart.ts"
+source_file: "tools/import-seputarborneo.ts"
 type: "code"
-community: "Tenant Seed Script"
-location: "L79"
+community: "import-seputarborneo.ts"
+location: "L99"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Tenant_Seed_Script
+  - community/import-seputarborneots
 ---
 
 # BASE_URL
 
 ## Connections
-- [[seed-borneojek-mart.ts]] - `contains` [EXTRACTED]
+- [[import-seputarborneo.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Tenant_Seed_Script
+#graphify/code #graphify/EXTRACTED #community/import-seputarborneots

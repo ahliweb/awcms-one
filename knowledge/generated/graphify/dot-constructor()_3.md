@@ -1,17 +1,17 @@
 ---
-source_file: "tools/seed-borneojek-mart.ts"
+source_file: "apps/storefront/src/scripts/buletin.ts"
 type: "code"
-community: "Tenant Seed Script"
-location: "L162"
+community: "buletin.ts"
+location: "L57"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Tenant_Seed_Script
+  - community/buletints
 ---
 
 # .constructor()
 
 ## Connections
-- [[SeedApiError]] - `method` [EXTRACTED]
+- [[BuletinApiError]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Tenant_Seed_Script
+#graphify/code #graphify/EXTRACTED #community/buletints

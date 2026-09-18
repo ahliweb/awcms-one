@@ -1,17 +1,17 @@
 ---
-source_file: "packages/gerbang/audit-rilis.mjs"
+source_file: "packages/gerbang/audit-graf.mjs"
 type: "code"
-community: "Knowledge Graph Audit"
+community: "audit-graf.mjs"
 location: "L98"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Knowledge_Graph_Audit
+  - community/audit-grafmjs
 ---
 
 # reporter
 
 ## Connections
-- [[audit-rilis.mjs]] - `contains` [EXTRACTED]
+- [[audit-graf.mjs]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Knowledge_Graph_Audit
+#graphify/code #graphify/EXTRACTED #community/audit-grafmjs

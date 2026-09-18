@@ -1,19 +1,20 @@
 ---
 source_file: "apps/storefront/src/pages/cari-berita.astro"
 type: "code"
-community: "News Layout & Archive"
+community: "routes.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/News_Layout__Archive
+  - community/routests
 ---
 
 # cari-berita.astro
 
 ## Connections
 - [[BeritaLayout.astro]] - `imports_from` [EXTRACTED]
-- [[ROUTES_1]] - `imports` [EXTRACTED]
+- [[ROUTES]] - `imports` [EXTRACTED]
+- [[Sidebar.astro]] - `imports_from` [EXTRACTED]
 - [[input]] - `contains` [EXTRACTED]
 - [[matches]] - `contains` [EXTRACTED]
 - [[needle]] - `contains` [EXTRACTED]
@@ -22,4 +23,4 @@ tags:
 - [[routes.ts]] - `imports_from` [EXTRACTED]
 - [[status]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/News_Layout__Archive
+#graphify/code #graphify/EXTRACTED #community/routests

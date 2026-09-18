@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/pengalihan-legacy.ts"
 type: "code"
-community: "Legacy Redirect Map"
-location: "L28"
+community: "getVideo"
+location: "L30"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Legacy_Redirect_Map
+  - community/getVideo
 ---
 
 # LegacyRedirectRow
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[pengalihan-legacy.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Legacy_Redirect_Map
+#graphify/code #graphify/EXTRACTED #community/getVideo

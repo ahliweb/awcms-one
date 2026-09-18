@@ -1,0 +1,20 @@
+---
+source_file: "apps/storefront/src/scripts/buletin.ts"
+type: "code"
+community: "buletin.ts"
+location: "L216"
+tags:
+  - graphify/code
+  - graphify/EXTRACTED
+  - community/buletints
+---
+
+# BuletinFormRoot
+
+## Connections
+- [[buletin-forms.test.ts]] - `imports` [EXTRACTED]
+- [[buletin.ts]] - `contains` [EXTRACTED]
+- [[wireBuletinForms()]] - `references` [EXTRACTED]
+- [[wireTokenPage()]] - `references` [EXTRACTED]
+
+#graphify/code #graphify/EXTRACTED #community/buletints

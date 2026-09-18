@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/berita.ts"
 type: "code"
-community: "Rubrik & Region Rendering"
-location: "L191"
+community: "berita.ts"
+location: "L210"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Rubrik__Region_Rendering
+  - community/beritats
 ---
 
 # buildRubrikForest()
@@ -16,4 +16,4 @@ tags:
 - [[berita.ts]] - `contains` [EXTRACTED]
 - [[buildIndex()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Rubrik__Region_Rendering
+#graphify/code #graphify/EXTRACTED #community/beritats

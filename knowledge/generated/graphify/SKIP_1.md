@@ -1,17 +1,17 @@
 ---
-source_file: "tests/kontrak-arah-impor.test.mjs"
+source_file: "packages/gerbang/audit-dokumen.mjs"
 type: "code"
-community: "Import Direction Test"
-location: "L49"
+community: "audit-dokumen.mjs"
+location: "L109"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Import_Direction_Test
+  - community/audit-dokumenmjs
 ---
 
 # SKIP
 
 ## Connections
-- [[kontrak-arah-impor.test.mjs]] - `contains` [EXTRACTED]
+- [[audit-dokumen.mjs]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Import_Direction_Test
+#graphify/code #graphify/EXTRACTED #community/audit-dokumenmjs

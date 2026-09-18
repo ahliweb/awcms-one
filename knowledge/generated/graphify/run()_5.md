@@ -1,22 +1,18 @@
 ---
-source_file: "apps/storefront/src/scripts/cari-listing.ts"
+source_file: "tests/audit-rilis.test.mjs"
 type: "code"
-community: "Client Product Search"
-location: "L40"
+community: "audit-rilis.test.mjs"
+location: "L63"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Client_Product_Search
+  - community/audit-rilistestmjs
 ---
 
 # run()
 
 ## Connections
-- [[cari-listing.ts]] - `contains` [EXTRACTED]
-- [[fetchProdukIndex()]] - `calls` [EXTRACTED]
-- [[filterProdukIndex()]] - `calls` [EXTRACTED]
-- [[paginateProdukIndex()]] - `calls` [EXTRACTED]
-- [[renderPagination()]] - `calls` [EXTRACTED]
-- [[renderProdukGrid()]] - `calls` [EXTRACTED]
+- [[audit-rilis.test.mjs]] - `contains` [EXTRACTED]
+- [[bun_1]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Client_Product_Search
+#graphify/code #graphify/EXTRACTED #community/audit-rilistestmjs

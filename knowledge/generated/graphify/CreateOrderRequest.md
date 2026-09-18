@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/toko-klien.ts"
 type: "code"
-community: "Order Session & Phone"
+community: "toko-klien.ts"
 location: "L162"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Order_Session__Phone
+  - community/toko-klients
 ---
 
 # CreateOrderRequest
@@ -16,4 +16,4 @@ tags:
 - [[toko-klien.test.ts]] - `imports` [EXTRACTED]
 - [[toko-klien.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Order_Session__Phone
+#graphify/code #graphify/EXTRACTED #community/toko-klients

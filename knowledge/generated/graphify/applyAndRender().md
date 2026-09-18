@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/scripts/produk-listing.ts"
 type: "code"
-community: "Client Product Search"
+community: "produk-listing.ts"
 location: "L148"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Client_Product_Search
+  - community/produk-listingts
 ---
 
 # applyAndRender()
@@ -17,4 +17,4 @@ tags:
 - [[syncControlsToState()]] - `calls` [EXTRACTED]
 - [[writeStateToUrl()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Client_Product_Search
+#graphify/code #graphify/EXTRACTED #community/produk-listingts

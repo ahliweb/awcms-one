@@ -1,22 +1,23 @@
 ---
 source_file: "apps/storefront/src/lib/awcms/profil.ts"
 type: "code"
-community: "Base Layout & Site Identity"
+community: "profil.ts"
 location: "L210"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Base_Layout__Site_Identity
+  - community/profilts
 ---
 
 # getSiteIdentity()
 
 ## Connections
 - [[BaseLayout.astro]] - `imports` [EXTRACTED]
+- [[BeritaLayout.astro]] - `imports` [EXTRACTED]
 - [[GET()_1]] - `calls` [EXTRACTED]
-- [[GET()_3]] - `calls` [EXTRACTED]
-- [[GET()_10]] - `calls` [EXTRACTED]
-- [[GET()_12]] - `calls` [EXTRACTED]
+- [[GET()_2]] - `calls` [EXTRACTED]
+- [[GET()_6]] - `calls` [EXTRACTED]
+- [[GET()_7]] - `calls` [EXTRACTED]
 - [[slugfeed.xml.ts]] - `imports` [EXTRACTED]
 - [[beritaslug.astro]] - `imports` [EXTRACTED]
 - [[beritafeed.xml.ts]] - `imports` [EXTRACTED]
@@ -33,4 +34,4 @@ tags:
 - [[profil.ts]] - `contains` [EXTRACTED]
 - [[videoslug.astro]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Base_Layout__Site_Identity
+#graphify/code #graphify/EXTRACTED #community/profilts

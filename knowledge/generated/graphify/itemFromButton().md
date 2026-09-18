@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/scripts/wishlist-tombol.ts"
 type: "code"
-community: "Wishlist Client Storage"
+community: "wishlist-kontrak.ts"
 location: "L32"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Wishlist_Client_Storage
+  - community/wishlist-kontrakts
 ---
 
 # itemFromButton()
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[wishlist-tombol.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Wishlist_Client_Storage
+#graphify/code #graphify/EXTRACTED #community/wishlist-kontrakts

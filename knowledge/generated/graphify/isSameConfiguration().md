@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/keranjang-kontrak.ts"
 type: "code"
-community: "Cart Client Storage"
+community: "keranjang-kontrak.ts"
 location: "L187"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Cart_Client_Storage
+  - community/keranjang-kontrakts
 ---
 
 # isSameConfiguration()
@@ -15,4 +15,4 @@ tags:
 - [[addOrMergeLine()]] - `calls` [EXTRACTED]
 - [[keranjang-kontrak.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Cart_Client_Storage
+#graphify/code #graphify/EXTRACTED #community/keranjang-kontrakts

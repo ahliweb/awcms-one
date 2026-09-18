@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/warna.ts"
 type: "code"
-community: "Theme Token Fetch"
+community: "warna.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Theme_Token_Fetch
+  - community/warnats
 ---
 
 # warna.ts
@@ -21,4 +21,4 @@ tags:
 - [[theme-tokens.css.ts]] - `imports_from` [EXTRACTED]
 - [[warna.test.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Theme_Token_Fetch
+#graphify/code #graphify/EXTRACTED #community/warnats

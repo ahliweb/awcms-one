@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/berita.ts"
 type: "code"
-community: "Rubrik Hierarchy"
-location: "L643"
+community: "[n].astro"
+location: "L686"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Rubrik_Hierarchy
+  - community/nastro
 ---
 
 # paginate()
@@ -16,6 +16,6 @@ tags:
 - [[slugindex.astro]] - `imports` [EXTRACTED]
 - [[berita-rubrik.test.ts]] - `imports` [EXTRACTED]
 - [[berita.ts]] - `contains` [EXTRACTED]
-- [[getStaticPaths()_11]] - `calls` [EXTRACTED]
+- [[getStaticPaths()_12]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Rubrik_Hierarchy
+#graphify/code #graphify/EXTRACTED #community/nastro

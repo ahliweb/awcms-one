@@ -1,17 +1,17 @@
 ---
-source_file: "apps/storefront/src/pages/berita/[slug].astro"
+source_file: "apps/storefront/src/pages/daerah/[slug].astro"
 type: "code"
-community: "News JSON-LD"
-location: "L39"
+community: "navigasi-berita.ts"
+location: "L18"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/News_JSON-LD
+  - community/navigasi-beritats
 ---
 
 # { slug }
 
 ## Connections
-- [[beritaslug.astro]] - `contains` [EXTRACTED]
+- [[daerahslug.astro]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/News_JSON-LD
+#graphify/code #graphify/EXTRACTED #community/navigasi-beritats

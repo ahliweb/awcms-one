@@ -1,0 +1,90 @@
+---
+type: community
+cohesion: 0.08
+members: 46
+---
+
+# pemasaran.ts
+
+**Cohesion:** 0.08 - loosely connected
+**Members:** 46 nodes
+
+## Members
+- [[ADR-0007_7]] - concept - apps/storefront/src/pages/csp.json.ts
+- [[CustomerLevel]] - code - apps/storefront/src/lib/awcms/pemasaran.ts
+- [[DEFAULT_CUSTOMER_LEVELS]] - code - apps/storefront/src/lib/awcms/pemasaran.ts
+- [[EMPTY_STORE_SETTINGS]] - code - apps/storefront/src/lib/awcms/pemasaran.ts
+- [[FlashSale]] - code - apps/storefront/src/lib/awcms/pemasaran.ts
+- [[FlashSaleProductEntry]] - code - apps/storefront/src/lib/awcms/pemasaran.ts
+- [[FlashSaleStatus]] - code - apps/storefront/src/lib/awcms/pemasaran.ts
+- [[GET()_11]] - code - apps/storefront/src/pages/csp.json.ts
+- [[NOT_FOUND_BODY]] - code - apps/storefront/tests/katalog-pemasaran.test.ts
+- [[PaymentSettings]] - code - apps/storefront/src/lib/awcms/pemasaran.ts
+- [[Popup]] - code - apps/storefront/src/lib/awcms/pemasaran.ts
+- [[PopupFrequency]] - code - apps/storefront/src/lib/awcms/pemasaran.ts
+- [[PromoSection]] - code - apps/storefront/src/lib/awcms/pemasaran.ts
+- [[PromoSectionItem]] - code - apps/storefront/src/lib/awcms/pemasaran.ts
+- [[ShippingAlternativeService]] - code - apps/storefront/src/lib/awcms/pemasaran.ts
+- [[ShippingSettings]] - code - apps/storefront/src/lib/awcms/pemasaran.ts
+- [[Slider]] - code - apps/storefront/src/lib/awcms/pemasaran.ts
+- [[StoreFaq]] - code - apps/storefront/src/lib/awcms/pemasaran.ts
+- [[StoreFavicon]] - code - apps/storefront/src/lib/awcms/pemasaran.ts
+- [[StoreLogo]] - code - apps/storefront/src/lib/awcms/pemasaran.ts
+- [[StoreSettings]] - code - apps/storefront/src/lib/awcms/pemasaran.ts
+- [[Testimonial]] - code - apps/storefront/src/lib/awcms/pemasaran.ts
+- [[Voucher]] - code - apps/storefront/src/lib/awcms/pemasaran.ts
+- [[VoucherType]] - code - apps/storefront/src/lib/awcms/pemasaran.ts
+- [[csp.json.ts]] - code - apps/storefront/src/pages/csp.json.ts
+- [[findFlashSaleForProduct()]] - code - apps/storefront/src/lib/awcms/pemasaran.ts
+- [[getActiveFlashSales()]] - code - apps/storefront/src/lib/awcms/pemasaran.ts
+- [[getActivePopup()]] - code - apps/storefront/src/lib/awcms/pemasaran.ts
+- [[getActiveSliders()]] - code - apps/storefront/src/lib/awcms/pemasaran.ts
+- [[getActiveTestimonials()]] - code - apps/storefront/src/lib/awcms/pemasaran.ts
+- [[getMediaPublicOrigin()]] - code - apps/storefront/src/lib/awcms/media.ts
+- [[getPublicVouchers()]] - code - apps/storefront/src/lib/awcms/pemasaran.ts
+- [[getResolvedMedia()]] - code - apps/storefront/src/lib/berita.ts
+- [[getStoreSettings()]] - code - apps/storefront/src/lib/awcms/pemasaran.ts
+- [[isGoogleMapsEmbedUrl()]] - code - apps/storefront/src/lib/awcms/pemasaran.ts
+- [[isMissingEndpoint()]] - code - apps/storefront/src/lib/awcms/pemasaran.ts
+- [[katalog-pemasaran.test.ts]] - code - apps/storefront/tests/katalog-pemasaran.test.ts
+- [[mockFetch()]] - code - apps/storefront/tests/katalog-pemasaran.test.ts
+- [[mockFetchCounting()]] - code - apps/storefront/tests/katalog-pemasaran.test.ts
+- [[pagesindex.astro]] - code - apps/storefront/src/pages/index.astro
+- [[pemasaran.ts]] - code - apps/storefront/src/lib/awcms/pemasaran.ts
+- [[prerender_11]] - code - apps/storefront/src/pages/csp.json.ts
+- [[resetPemasaranCacheForTests()]] - code - apps/storefront/src/lib/awcms/pemasaran.ts
+- [[starText()]] - code - apps/storefront/src/pages/index.astro
+- [[voucher-copy.ts]] - code - apps/storefront/src/scripts/voucher-copy.ts
+- [[warnMissing()]] - code - apps/storefront/src/lib/awcms/pemasaran.ts
+
+## Live Query (requires Dataview plugin)
+
+```dataview
+TABLE source_file, type FROM #community/pemasarants
+SORT file.name ASC
+```
+
+## Connections to other communities
+- 16 edges to [[_COMMUNITY_profil.ts]]
+- 15 edges to [[_COMMUNITY_catalog.ts]]
+- 6 edges to [[_COMMUNITY_penyaji.mjs]]
+- 4 edges to [[_COMMUNITY_BeritaLayout.astro]]
+- 3 edges to [[_COMMUNITY_buletin.ts]]
+- 3 edges to [[_COMMUNITY_blog.ts]]
+- 3 edges to [[_COMMUNITY_berita.ts]]
+- 2 edges to [[_COMMUNITY_readEnv]]
+- 2 edges to [[_COMMUNITY_routes.ts]]
+- 2 edges to [[_COMMUNITY_berita-terkini.ts]]
+- 2 edges to [[_COMMUNITY_formatPrice]]
+- 2 edges to [[_COMMUNITY_getVideo]]
+- 1 edge to [[_COMMUNITY_awcmsanalitik.ts]]
+- 1 edge to [[_COMMUNITY_promo-popup.ts]]
+- 1 edge to [[_COMMUNITY_wishlist-kontrak.ts]]
+- 1 edge to [[_COMMUNITY_Sidebar.astro]]
+
+## Top bridge nodes
+- [[pagesindex.astro]] - degree 27, connects to 7 communities
+- [[csp.json.ts]] - degree 24, connects to 7 communities
+- [[GET()_11]] - degree 14, connects to 5 communities
+- [[pemasaran.ts]] - degree 45, connects to 4 communities
+- [[getStoreSettings()]] - degree 12, connects to 2 communities

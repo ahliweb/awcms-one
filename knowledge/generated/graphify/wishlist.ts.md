@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/scripts/wishlist.ts"
 type: "code"
-community: "Wishlist Client Storage"
+community: "wishlist-kontrak.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Wishlist_Client_Storage
+  - community/wishlist-kontrakts
 ---
 
 # wishlist.ts
@@ -26,4 +26,4 @@ tags:
 - [[wishlist-kontrak.ts]] - `imports_from` [EXTRACTED]
 - [[wishlist.astro]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Wishlist_Client_Storage
+#graphify/code #graphify/EXTRACTED #community/wishlist-kontrakts

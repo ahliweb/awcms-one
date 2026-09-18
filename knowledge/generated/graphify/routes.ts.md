@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/config/routes.ts"
 type: "code"
-community: "Site Chrome & Navigation"
+community: "routes.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Site_Chrome__Navigation
+  - community/routests
 ---
 
 # routes.ts
@@ -18,13 +18,17 @@ tags:
 - [[CategoryTree.astro]] - `imports_from` [EXTRACTED]
 - [[FOOTER_PAGE_LINKS]] - `contains` [EXTRACTED]
 - [[Footer.astro]] - `imports_from` [EXTRACTED]
+- [[FooterBerita.astro]] - `imports_from` [EXTRACTED]
 - [[Header.astro]] - `imports_from` [EXTRACTED]
+- [[NavBerita.astro]] - `imports_from` [EXTRACTED]
 - [[PRIMARY_NAV]] - `contains` [EXTRACTED]
-- [[ROUTES_1]] - `contains` [EXTRACTED]
+- [[ROUTES]] - `contains` [EXTRACTED]
 - [[RubrikBody.astro]] - `imports_from` [EXTRACTED]
 - [[STATIC_PAGE_SLUGS]] - `contains` [EXTRACTED]
 - [[SearchForm.astro]] - `imports_from` [EXTRACTED]
+- [[Sidebar.astro]] - `imports_from` [EXTRACTED]
 - [[TagCloud.astro]] - `imports_from` [EXTRACTED]
+- [[Ticker.astro]] - `imports_from` [EXTRACTED]
 - [[mm.astro]] - `imports_from` [EXTRACTED]
 - [[n.astro]] - `imports_from` [EXTRACTED]
 - [[slugfeed.xml.ts]] - `imports_from` [EXTRACTED]
@@ -37,7 +41,10 @@ tags:
 - [[cari-berita.astro]] - `imports_from` [EXTRACTED]
 - [[daerahslug.astro]] - `imports_from` [EXTRACTED]
 - [[kategorislug.astro]] - `imports_from` [EXTRACTED]
+- [[meta-sosial.ts]] - `imports_from` [EXTRACTED]
 - [[mitraslug.astro]] - `imports_from` [EXTRACTED]
+- [[navigasi-berita.test.ts]] - `imports_from` [EXTRACTED]
+- [[navigasi-berita.ts]] - `imports_from` [EXTRACTED]
 - [[pagesindex.astro]] - `imports_from` [EXTRACTED]
 - [[pengalihan-legacy.ts]] - `imports_from` [EXTRACTED]
 - [[penulisslug.astro]] - `imports_from` [EXTRACTED]
@@ -49,4 +56,4 @@ tags:
 - [[videoslug.astro]] - `imports_from` [EXTRACTED]
 - [[videoindex.astro]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Site_Chrome__Navigation
+#graphify/code #graphify/EXTRACTED #community/routests

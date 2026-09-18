@@ -1,18 +1,18 @@
 ---
-source_file: "apps/storefront/src/pages/mitra/[slug].astro"
+source_file: "apps/storefront/src/pages/arsip/[yyyy]/[mm].astro"
 type: "code"
-community: "Mitra Institutions"
-location: "L15"
+community: "Sidebar.astro"
+location: "L10"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Mitra_Institutions
+  - community/Sidebarastro
 ---
 
 # getStaticPaths()
 
 ## Connections
-- [[getMitraList()]] - `calls` [EXTRACTED]
-- [[mitraslug.astro]] - `contains` [EXTRACTED]
+- [[mm.astro]] - `contains` [EXTRACTED]
+- [[listArsipBulan()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Mitra_Institutions
+#graphify/code #graphify/EXTRACTED #community/Sidebarastro

@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/berita-tanggal.test.ts"
 type: "code"
-community: "Article Card & View"
+community: "Sidebar.astro"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Article_Card__View
+  - community/Sidebarastro
 ---
 
 # berita-tanggal.test.ts
@@ -21,4 +21,4 @@ tags:
 - [[tanggal.ts]] - `imports_from` [EXTRACTED]
 - [[toDatetimeAttr()]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Article_Card__View
+#graphify/code #graphify/EXTRACTED #community/Sidebarastro

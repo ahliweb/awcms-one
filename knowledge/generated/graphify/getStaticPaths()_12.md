@@ -1,19 +1,21 @@
 ---
-source_file: "apps/storefront/src/pages/rubrik/[slug]/index.astro"
+source_file: "apps/storefront/src/pages/rubrik/[slug]/halaman/[n].astro"
 type: "code"
-community: "Rubrik Hierarchy"
-location: "L13"
+community: "[n].astro"
+location: "L19"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Rubrik_Hierarchy
+  - community/nastro
 ---
 
 # getStaticPaths()
 
 ## Connections
-- [[slugindex.astro]] - `contains` [EXTRACTED]
+- [[n.astro]] - `contains` [EXTRACTED]
 - [[flattenRubrikTree()]] - `calls` [EXTRACTED]
+- [[getRubrik()]] - `calls` [EXTRACTED]
 - [[getRubrikTree()]] - `calls` [EXTRACTED]
+- [[paginate()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Rubrik_Hierarchy
+#graphify/code #graphify/EXTRACTED #community/nastro

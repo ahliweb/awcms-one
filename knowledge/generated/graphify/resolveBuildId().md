@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/scripts/write-build-id.mjs"
 type: "code"
-community: "Build & E2E Tooling"
+community: "write-build-id.mjs"
 location: "L27"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Build__E2E_Tooling
+  - community/write-build-idmjs
 ---
 
 # resolveBuildId()
@@ -15,4 +15,4 @@ tags:
 - [[bun_1]] - `references` [EXTRACTED]
 - [[write-build-id.mjs]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Build__E2E_Tooling
+#graphify/code #graphify/EXTRACTED #community/write-build-idmjs

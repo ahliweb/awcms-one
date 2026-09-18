@@ -1,18 +1,22 @@
 ---
-source_file: "tests/audit-dokumen.test.mjs"
+source_file: "apps/storefront/src/scripts/cari-listing.ts"
 type: "code"
-community: "Build & E2E Tooling"
-location: "L47"
+community: "produk-listing.ts"
+location: "L40"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Build__E2E_Tooling
+  - community/produk-listingts
 ---
 
 # run()
 
 ## Connections
-- [[audit-dokumen.test.mjs]] - `contains` [EXTRACTED]
-- [[bun_1]] - `references` [EXTRACTED]
+- [[cari-listing.ts]] - `contains` [EXTRACTED]
+- [[fetchProdukIndex()]] - `calls` [EXTRACTED]
+- [[filterProdukIndex()]] - `calls` [EXTRACTED]
+- [[paginateProdukIndex()]] - `calls` [EXTRACTED]
+- [[renderPagination()]] - `calls` [EXTRACTED]
+- [[renderProdukGrid()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Build__E2E_Tooling
+#graphify/code #graphify/EXTRACTED #community/produk-listingts

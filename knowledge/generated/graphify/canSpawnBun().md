@@ -1,18 +1,18 @@
 ---
-source_file: "apps/storefront/tests/berita-build-smoke.test.ts"
+source_file: "apps/storefront/tests/build-smoke.test.ts"
 type: "code"
-community: "Build & E2E Tooling"
-location: "L23"
+community: "build-smoke.test.ts"
+location: "L22"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Build__E2E_Tooling
+  - community/build-smoketestts
 ---
 
 # canSpawnBun()
 
 ## Connections
-- [[berita-build-smoke.test.ts]] - `contains` [EXTRACTED]
+- [[build-smoke.test.ts]] - `contains` [EXTRACTED]
 - [[bun_1]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Build__E2E_Tooling
+#graphify/code #graphify/EXTRACTED #community/build-smoketestts

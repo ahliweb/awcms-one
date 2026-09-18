@@ -1,17 +1,17 @@
 ---
-source_file: "apps/storefront/src/lib/awcms/wilayah-checkout.ts"
+source_file: "apps/storefront/src/lib/awcms/wilayah.ts"
 type: "code"
-community: "Checkout Region Data"
-location: "L147"
+community: "wilayah.ts"
+location: "L102"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Checkout_Region_Data
+  - community/wilayahts
 ---
 
 # regenciesCache
 
 ## Connections
-- [[wilayah-checkout.ts]] - `contains` [EXTRACTED]
+- [[wilayah.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Checkout_Region_Data
+#graphify/code #graphify/EXTRACTED #community/wilayahts

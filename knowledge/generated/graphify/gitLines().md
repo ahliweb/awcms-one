@@ -1,12 +1,12 @@
 ---
 source_file: "packages/gerbang/lib/git.mjs"
 type: "code"
-community: "Translation Mirror Audit"
+community: "docs-i18n-stamp.mjs"
 location: "L140"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Translation_Mirror_Audit
+  - community/docs-i18n-stampmjs
 ---
 
 # gitLines()
@@ -19,4 +19,4 @@ tags:
 - [[gitList()]] - `calls` [EXTRACTED]
 - [[listMirrors()_1]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Translation_Mirror_Audit
+#graphify/code #graphify/EXTRACTED #community/docs-i18n-stampmjs

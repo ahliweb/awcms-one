@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/pesanan-sesi.ts"
 type: "code"
-community: "Order Session & Phone"
+community: "scripts/pesanan.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Order_Session__Phone
+  - community/scripts/pesanants
 ---
 
 # pesanan-sesi.ts
@@ -16,4 +16,4 @@ tags:
 - [[checkout.ts]] - `imports_from` [EXTRACTED]
 - [[scriptspesanan.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Order_Session__Phone
+#graphify/code #graphify/EXTRACTED #community/scripts/pesanants

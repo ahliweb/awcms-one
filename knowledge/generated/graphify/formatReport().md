@@ -1,12 +1,12 @@
 ---
 source_file: "packages/gerbang/lib/reporter.mjs"
 type: "code"
-community: "Knowledge Graph Audit"
+community: "audit-graf.mjs"
 location: "L46"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Knowledge_Graph_Audit
+  - community/audit-grafmjs
 ---
 
 # formatReport()
@@ -15,4 +15,4 @@ tags:
 - [[reporter.mjs]] - `contains` [EXTRACTED]
 - [[standar-skrip.test.mjs]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Knowledge_Graph_Audit
+#graphify/code #graphify/EXTRACTED #community/audit-grafmjs

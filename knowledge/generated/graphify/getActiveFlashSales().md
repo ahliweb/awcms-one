@@ -1,19 +1,19 @@
 ---
 source_file: "apps/storefront/src/lib/awcms/pemasaran.ts"
 type: "code"
-community: "Marketing Read Models"
+community: "pemasaran.ts"
 location: "L307"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Marketing_Read_Models
+  - community/pemasarants
 ---
 
 # getActiveFlashSales()
 
 ## Connections
-- [[GET()_2]] - `calls` [EXTRACTED]
-- [[GET()_6]] - `calls` [EXTRACTED]
+- [[GET()_4]] - `calls` [EXTRACTED]
+- [[GET()_11]] - `calls` [EXTRACTED]
 - [[csp.json.ts]] - `imports` [EXTRACTED]
 - [[flash-sale.astro]] - `imports` [EXTRACTED]
 - [[isMissingEndpoint()]] - `calls` [EXTRACTED]
@@ -24,4 +24,4 @@ tags:
 - [[produk.json.ts]] - `imports` [EXTRACTED]
 - [[warnMissing()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Marketing_Read_Models
+#graphify/code #graphify/EXTRACTED #community/pemasarants

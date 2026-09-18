@@ -1,18 +1,18 @@
 ---
 source_file: "apps/storefront/src/lib/toko-klien.ts"
 type: "code"
-community: "Storefront Commerce Client"
+community: "toko-klien.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Storefront_Commerce_Client
+  - community/toko-klients
 ---
 
 # toko-klien.ts
 
 ## Connections
-- [[ADR-0007_2]] - `cites` [EXTRACTED]
+- [[ADR-0007_1]] - `cites` [EXTRACTED]
 - [[CartLineRequest]] - `contains` [EXTRACTED]
 - [[CartLineStatus]] - `contains` [EXTRACTED]
 - [[CartQuote]] - `contains` [EXTRACTED]
@@ -53,4 +53,4 @@ tags:
 - [[toko-klien.test.ts]] - `imports_from` [EXTRACTED]
 - [[toko-origin.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Storefront_Commerce_Client
+#graphify/code #graphify/EXTRACTED #community/toko-klients

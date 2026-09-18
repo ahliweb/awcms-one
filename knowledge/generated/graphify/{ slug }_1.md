@@ -1,17 +1,17 @@
 ---
-source_file: "apps/storefront/src/pages/daerah/[slug].astro"
+source_file: "apps/storefront/src/pages/halaman/[slug].astro"
 type: "code"
-community: "Rubrik & Region Rendering"
-location: "L18"
+community: "portable-text.ts"
+location: "L21"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Rubrik__Region_Rendering
+  - community/portable-textts
 ---
 
 # { slug }
 
 ## Connections
-- [[daerahslug.astro]] - `contains` [EXTRACTED]
+- [[halamanslug.astro]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Rubrik__Region_Rendering
+#graphify/code #graphify/EXTRACTED #community/portable-textts

@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/pages/product/[slug].astro"
 type: "code"
-community: "Flash Sale Countdown"
+community: "catalog.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Flash_Sale_Countdown
+  - community/catalogts
 ---
 
 # product/[slug].astro
@@ -18,7 +18,7 @@ tags:
 - [[CommerceProduct]] - `imports` [EXTRACTED]
 - [[Countdown.astro]] - `imports_from` [EXTRACTED]
 - [[ProductCard.astro]] - `imports_from` [EXTRACTED]
-- [[ROUTES_1]] - `imports` [EXTRACTED]
+- [[ROUTES]] - `imports` [EXTRACTED]
 - [[absoluteUrl()]] - `imports` [EXTRACTED]
 - [[buildPriceTiers()]] - `imports` [EXTRACTED]
 - [[buildProductPageSchema()]] - `imports` [EXTRACTED]
@@ -30,7 +30,7 @@ tags:
 - [[getActiveFlashSales()]] - `imports` [EXTRACTED]
 - [[getCategories()]] - `imports` [EXTRACTED]
 - [[getProducts()]] - `imports` [EXTRACTED]
-- [[getStaticPaths()_9]] - `contains` [EXTRACTED]
+- [[getStaticPaths()_4]] - `contains` [EXTRACTED]
 - [[getStoreSettings()]] - `imports` [EXTRACTED]
 - [[harga.ts]] - `imports_from` [EXTRACTED]
 - [[isFirstGroupOptionDisabled()]] - `contains` [EXTRACTED]
@@ -43,4 +43,4 @@ tags:
 - [[routes.ts]] - `imports_from` [EXTRACTED]
 - [[site.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Flash_Sale_Countdown
+#graphify/code #graphify/EXTRACTED #community/catalogts

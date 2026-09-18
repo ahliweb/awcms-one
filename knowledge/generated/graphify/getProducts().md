@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/catalog.ts"
 type: "code"
-community: "Flash Sale Countdown"
+community: "catalog.ts"
 location: "L299"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Flash_Sale_Countdown
+  - community/catalogts
 ---
 
 # getProducts()
@@ -14,13 +14,13 @@ tags:
 ## Connections
 - [[GET()]] - `calls` [EXTRACTED]
 - [[GET()_2]] - `calls` [EXTRACTED]
-- [[GET()_3]] - `calls` [EXTRACTED]
-- [[GET()_6]] - `calls` [EXTRACTED]
+- [[GET()_4]] - `calls` [EXTRACTED]
+- [[GET()_11]] - `calls` [EXTRACTED]
 - [[catalog.ts]] - `contains` [EXTRACTED]
 - [[csp.json.ts]] - `imports` [EXTRACTED]
 - [[getProduct()]] - `calls` [EXTRACTED]
-- [[getStaticPaths()_9]] - `calls` [EXTRACTED]
-- [[isPubliclyVisible()_1]] - `calls` [EXTRACTED]
+- [[getStaticPaths()_4]] - `calls` [EXTRACTED]
+- [[isPubliclyVisible()]] - `calls` [EXTRACTED]
 - [[kategorislug.astro]] - `imports` [EXTRACTED]
 - [[listAllProducts()]] - `calls` [EXTRACTED]
 - [[pagesfeed.xml.ts]] - `imports` [EXTRACTED]
@@ -31,4 +31,4 @@ tags:
 - [[produk.json.ts]] - `imports` [EXTRACTED]
 - [[sitemap-katalog.ts]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Flash_Sale_Countdown
+#graphify/code #graphify/EXTRACTED #community/catalogts

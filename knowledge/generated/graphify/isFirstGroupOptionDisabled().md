@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/pages/product/[slug].astro"
 type: "code"
-community: "Flash Sale Countdown"
+community: "catalog.ts"
 location: "L143"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Flash_Sale_Countdown
+  - community/catalogts
 ---
 
 # isFirstGroupOptionDisabled()
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[productslug.astro]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Flash_Sale_Countdown
+#graphify/code #graphify/EXTRACTED #community/catalogts

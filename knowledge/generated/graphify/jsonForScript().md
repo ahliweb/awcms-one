@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/layouts/BaseLayout.astro"
 type: "code"
-community: "Base Layout & Site Identity"
-location: "L71"
+community: "profil.ts"
+location: "L125"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Base_Layout__Site_Identity
+  - community/profilts
 ---
 
 # jsonForScript()
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[BaseLayout.astro]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Base_Layout__Site_Identity
+#graphify/code #graphify/EXTRACTED #community/profilts

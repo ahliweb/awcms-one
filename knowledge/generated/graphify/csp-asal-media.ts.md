@@ -1,18 +1,18 @@
 ---
 source_file: "apps/storefront/src/lib/csp-asal-media.ts"
 type: "code"
-community: "Storefront Server & CSP"
+community: "penyaji.mjs"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Storefront_Server__CSP
+  - community/penyajimjs
 ---
 
 # csp-asal-media.ts
 
 ## Connections
-- [[ADR-0002_1]] - `cites` [EXTRACTED]
+- [[ADR-0002_2]] - `cites` [EXTRACTED]
 - [[CspOriginsArtifact]] - `contains` [EXTRACTED]
 - [[buildCspOriginsArtifact()]] - `contains` [EXTRACTED]
 - [[collectOrigins()]] - `contains` [EXTRACTED]
@@ -21,4 +21,4 @@ tags:
 - [[originOf()]] - `contains` [EXTRACTED]
 - [[toko-csp.test.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Storefront_Server__CSP
+#graphify/code #graphify/EXTRACTED #community/penyajimjs

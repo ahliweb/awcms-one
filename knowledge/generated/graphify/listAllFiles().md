@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/berita-guard-no-news-route.test.ts"
 type: "code"
-community: "Site Chrome & Navigation"
+community: "routes.ts"
 location: "L17"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Site_Chrome__Navigation
+  - community/routests
 ---
 
 # listAllFiles()
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[berita-guard-no-news-route.test.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Site_Chrome__Navigation
+#graphify/code #graphify/EXTRACTED #community/routests

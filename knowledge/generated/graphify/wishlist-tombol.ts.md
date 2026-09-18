@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/scripts/wishlist-tombol.ts"
 type: "code"
-community: "Wishlist Client Storage"
+community: "wishlist-kontrak.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Wishlist_Client_Storage
+  - community/wishlist-kontrakts
 ---
 
 # wishlist-tombol.ts
@@ -25,4 +25,4 @@ tags:
 - [[wishlist-klien.ts]] - `imports_from` [EXTRACTED]
 - [[wishlist-kontrak.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Wishlist_Client_Storage
+#graphify/code #graphify/EXTRACTED #community/wishlist-kontrakts

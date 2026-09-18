@@ -1,17 +1,19 @@
 ---
 source_file: "apps/storefront/src/lib/berita.ts"
 type: "code"
-community: "Rubrik & Region Rendering"
-location: "L75"
+community: "navigasi-berita.ts"
+location: "L92"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Rubrik__Region_Rendering
+  - community/navigasi-beritats
 ---
 
 # RubrikNode
 
 ## Connections
 - [[berita.ts]] - `contains` [EXTRACTED]
+- [[navigasi-berita.test.ts]] - `imports` [EXTRACTED]
+- [[navigasi-berita.ts]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Rubrik__Region_Rendering
+#graphify/code #graphify/EXTRACTED #community/navigasi-beritats

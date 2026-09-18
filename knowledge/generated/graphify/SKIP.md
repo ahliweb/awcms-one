@@ -1,17 +1,17 @@
 ---
-source_file: "packages/gerbang/audit-dokumen.mjs"
+source_file: "tests/kontrak-arah-impor.test.mjs"
 type: "code"
-community: "Document Audit Gate"
-location: "L109"
+community: "kontrak-arah-impor.test.mjs"
+location: "L49"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Document_Audit_Gate
+  - community/kontrak-arah-importestmjs
 ---
 
 # SKIP
 
 ## Connections
-- [[audit-dokumen.mjs]] - `contains` [EXTRACTED]
+- [[kontrak-arah-impor.test.mjs]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Document_Audit_Gate
+#graphify/code #graphify/EXTRACTED #community/kontrak-arah-importestmjs

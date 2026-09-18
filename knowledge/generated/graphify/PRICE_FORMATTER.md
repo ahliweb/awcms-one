@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/harga.ts"
 type: "code"
-community: "Price Formatting"
+community: "formatPrice"
 location: "L19"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Price_Formatting
+  - community/formatPrice
 ---
 
 # PRICE_FORMATTER
@@ -15,4 +15,4 @@ tags:
 - [[formatPrice()]] - `references` [EXTRACTED]
 - [[harga.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Price_Formatting
+#graphify/code #graphify/EXTRACTED #community/formatPrice

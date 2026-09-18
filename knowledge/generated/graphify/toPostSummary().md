@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/berita.ts"
 type: "code"
-community: "Portable Text Rendering"
-location: "L237"
+community: "portable-text.ts"
+location: "L256"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Portable_Text_Rendering
+  - community/portable-textts
 ---
 
 # toPostSummary()
@@ -15,5 +15,6 @@ tags:
 - [[berita.ts]] - `contains` [EXTRACTED]
 - [[buildIndex()]] - `calls` [EXTRACTED]
 - [[documentHasPlayableVideo()]] - `calls` [EXTRACTED]
+- [[extractPlayableVideoInfo()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Portable_Text_Rendering
+#graphify/code #graphify/EXTRACTED #community/portable-textts

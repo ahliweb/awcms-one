@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/berita.ts"
 type: "code"
-community: "Rubrik & Region Rendering"
-location: "L496"
+community: "navigasi-berita.ts"
+location: "L539"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Rubrik__Region_Rendering
+  - community/navigasi-beritats
 ---
 
 # getDaerah()
@@ -20,4 +20,4 @@ tags:
 - [[toRegionRef()]] - `indirect_call` [INFERRED]
 - [[videoslug.astro]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Rubrik__Region_Rendering
+#graphify/code #graphify/EXTRACTED #community/navigasi-beritats

@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/components/berita/ArtikelView.astro"
 type: "code"
-community: "Article Card & View"
+community: "Sidebar.astro"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Article_Card__View
+  - community/Sidebarastro
 ---
 
 # ArtikelView.astro
@@ -14,30 +14,30 @@ tags:
 ## Connections
 - [[AD_SLOTS]] - `imports` [EXTRACTED]
 - [[ArtikelCard.astro]] - `imports_from` [EXTRACTED]
+- [[BarisBagikan.astro]] - `imports_from` [EXTRACTED]
 - [[IklanSlot.astro]] - `imports_from` [EXTRACTED]
+- [[PemutarDengar.astro]] - `imports_from` [EXTRACTED]
 - [[PostDetail]] - `imports` [EXTRACTED]
 - [[PostSummary]] - `imports` [EXTRACTED]
-- [[ROUTES_1]] - `imports` [EXTRACTED]
+- [[ROUTES]] - `imports` [EXTRACTED]
+- [[Sidebar.astro]] - `imports_from` [EXTRACTED]
 - [[TagCloud.astro]] - `imports_from` [EXTRACTED]
-- [[absoluteShareUrl]] - `contains` [EXTRACTED]
+- [[VideoRenderMode]] - `imports` [EXTRACTED]
 - [[absoluteUrl()]] - `imports` [EXTRACTED]
 - [[berita.ts]] - `imports_from` [EXTRACTED]
 - [[beritaslug.astro]] - `imports_from` [EXTRACTED]
-- [[bodyHtml]] - `contains` [EXTRACTED]
-- [[breadcrumbItems]] - `contains` [EXTRACTED]
-- [[encodedTitle]] - `contains` [EXTRACTED]
 - [[estimasiWaktuBacaMenit()]] - `imports` [EXTRACTED]
 - [[formatTanggalWaktuWIB()]] - `imports` [EXTRACTED]
+- [[getResolvedMedia()]] - `imports` [EXTRACTED]
 - [[iklan.ts]] - `imports_from` [EXTRACTED]
+- [[joinNonEmpty()]] - `contains` [EXTRACTED]
 - [[pernahDiperbaruiSetelahTerbit()]] - `imports` [EXTRACTED]
 - [[portable-text.ts]] - `imports_from` [EXTRACTED]
-- [[readingMinutes]] - `contains` [EXTRACTED]
 - [[renderPortableText()]] - `imports` [EXTRACTED]
 - [[routes.ts]] - `imports_from` [EXTRACTED]
 - [[site.ts]] - `imports_from` [EXTRACTED]
 - [[tanggal.ts]] - `imports_from` [EXTRACTED]
 - [[toDatetimeAttr()]] - `imports` [EXTRACTED]
 - [[videoslug.astro]] - `imports_from` [EXTRACTED]
-- [[wasUpdated]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Article_Card__View
+#graphify/code #graphify/EXTRACTED #community/Sidebarastro

@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/awcms/blog.ts"
 type: "code"
-community: "Ad Placements & Blog Client"
-location: "L397"
+community: "blog.ts"
+location: "L394"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Ad_Placements__Blog_Client
+  - community/blogts
 ---
 
 # resetBlogCachesForTests()
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[blog.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Ad_Placements__Blog_Client
+#graphify/code #graphify/EXTRACTED #community/blogts

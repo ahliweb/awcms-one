@@ -1,18 +1,18 @@
 ---
 source_file: "apps/storefront/src/lib/awcms/pemasaran.ts"
 type: "code"
-community: "Marketing Read Models"
+community: "pemasaran.ts"
 location: "L271"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Marketing_Read_Models
+  - community/pemasarants
 ---
 
 # getStoreSettings()
 
 ## Connections
-- [[GET()_2]] - `calls` [EXTRACTED]
+- [[GET()_11]] - `calls` [EXTRACTED]
 - [[checkout.astro]] - `imports` [EXTRACTED]
 - [[csp.json.ts]] - `imports` [EXTRACTED]
 - [[isMissingEndpoint()]] - `calls` [EXTRACTED]
@@ -25,4 +25,4 @@ tags:
 - [[productslug.astro]] - `imports` [EXTRACTED]
 - [[warnMissing()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Marketing_Read_Models
+#graphify/code #graphify/EXTRACTED #community/pemasarants

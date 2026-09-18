@@ -1,17 +1,17 @@
 ---
-source_file: "apps/storefront/src/pages/robots.txt.ts"
+source_file: "apps/storefront/src/pages/csp.json.ts"
 type: "code"
-community: "Site Config & Env"
-location: "L26"
+community: "pemasaran.ts"
+location: "L111"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Site_Config__Env
+  - community/pemasarants
 ---
 
 # prerender
 
 ## Connections
-- [[robots.txt.ts]] - `contains` [EXTRACTED]
+- [[csp.json.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Site_Config__Env
+#graphify/code #graphify/EXTRACTED #community/pemasarants

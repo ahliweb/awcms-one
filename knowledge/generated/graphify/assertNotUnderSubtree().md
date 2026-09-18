@@ -1,12 +1,12 @@
 ---
 source_file: "packages/gerbang/lib/subtree-guard.mjs"
 type: "code"
-community: "Knowledge Graph Combine"
+community: "docs-i18n-stamp.mjs"
 location: "L65"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Knowledge_Graph_Combine
+  - community/docs-i18n-stampmjs
 ---
 
 # assertNotUnderSubtree()
@@ -17,4 +17,4 @@ tags:
 - [[subtree-guard.mjs]] - `contains` [EXTRACTED]
 - [[subtree-guard.test.mjs]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Knowledge_Graph_Combine
+#graphify/code #graphify/EXTRACTED #community/docs-i18n-stampmjs

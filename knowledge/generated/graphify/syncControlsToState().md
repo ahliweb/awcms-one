@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/scripts/produk-listing.ts"
 type: "code"
-community: "Client Product Search"
+community: "produk-listing.ts"
 location: "L94"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Client_Product_Search
+  - community/produk-listingts
 ---
 
 # syncControlsToState()
@@ -15,4 +15,4 @@ tags:
 - [[applyAndRender()]] - `calls` [EXTRACTED]
 - [[produk-listing.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Client_Product_Search
+#graphify/code #graphify/EXTRACTED #community/produk-listingts

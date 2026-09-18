@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/e2e/global-setup.ts"
 type: "code"
-community: "Build & E2E Tooling"
+community: "global-setup.ts"
 location: "L19"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Build__E2E_Tooling
+  - community/global-setupts
 ---
 
 # waitForHttp()
@@ -15,4 +15,4 @@ tags:
 - [[global-setup.ts]] - `contains` [EXTRACTED]
 - [[globalSetup()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Build__E2E_Tooling
+#graphify/code #graphify/EXTRACTED #community/global-setupts

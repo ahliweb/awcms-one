@@ -1,18 +1,19 @@
 ---
-source_file: "apps/storefront/src/pages/product/[slug].astro"
+source_file: "apps/storefront/src/pages/index/wilayah-kabupaten-[provinceCode].json.ts"
 type: "code"
-community: "Flash Sale Countdown"
-location: "L48"
+community: "wilayah-checkout.ts"
+location: "L18"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Flash_Sale_Countdown
+  - community/wilayah-checkoutts
 ---
 
 # getStaticPaths()
 
 ## Connections
-- [[getProducts()]] - `calls` [EXTRACTED]
-- [[productslug.astro]] - `contains` [EXTRACTED]
+- [[getCheckoutProvinces()]] - `calls` [EXTRACTED]
+- [[getCheckoutRegencies()]] - `calls` [EXTRACTED]
+- [[wilayah-kabupaten-provinceCode.json.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Flash_Sale_Countdown
+#graphify/code #graphify/EXTRACTED #community/wilayah-checkoutts

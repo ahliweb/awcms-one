@@ -1,17 +1,17 @@
 ---
-source_file: "apps/storefront/src/pages/manifest.webmanifest.ts"
+source_file: "apps/storefront/src/pages/theme-tokens.css.ts"
 type: "code"
-community: "Base Layout & Site Identity"
-location: "L12"
+community: "warna.ts"
+location: "L21"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Base_Layout__Site_Identity
+  - community/warnats
 ---
 
 # prerender
 
 ## Connections
-- [[manifest.webmanifest.ts]] - `contains` [EXTRACTED]
+- [[theme-tokens.css.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Base_Layout__Site_Identity
+#graphify/code #graphify/EXTRACTED #community/warnats

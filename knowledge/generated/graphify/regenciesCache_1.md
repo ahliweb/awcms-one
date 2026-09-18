@@ -1,17 +1,17 @@
 ---
-source_file: "apps/storefront/src/lib/awcms/wilayah.ts"
+source_file: "apps/storefront/src/lib/awcms/wilayah-checkout.ts"
 type: "code"
-community: "Region Index Builder"
-location: "L102"
+community: "wilayah-checkout.ts"
+location: "L267"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Region_Index_Builder
+  - community/wilayah-checkoutts
 ---
 
 # regenciesCache
 
 ## Connections
-- [[wilayah.ts]] - `contains` [EXTRACTED]
+- [[wilayah-checkout.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Region_Index_Builder
+#graphify/code #graphify/EXTRACTED #community/wilayah-checkoutts

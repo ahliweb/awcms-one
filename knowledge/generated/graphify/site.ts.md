@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/config/site.ts"
 type: "code"
-community: "Site Config & Env"
+community: "site.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Site_Config__Env
+  - community/sitets
 ---
 
 # site.ts
@@ -22,6 +22,7 @@ tags:
 - [[env.ts]] - `imports_from` [EXTRACTED]
 - [[jsonld-berita.ts]] - `imports_from` [EXTRACTED]
 - [[kategorislug.astro]] - `imports_from` [EXTRACTED]
+- [[meta-sosial.ts]] - `imports_from` [EXTRACTED]
 - [[pagesfeed.xml.ts]] - `imports_from` [EXTRACTED]
 - [[productslug.astro]] - `imports_from` [EXTRACTED]
 - [[profil.test.ts]] - `imports_from` [EXTRACTED]
@@ -36,4 +37,4 @@ tags:
 - [[theme.ts]] - `imports_from` [EXTRACTED]
 - [[warna.test.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Site_Config__Env
+#graphify/code #graphify/EXTRACTED #community/sitets

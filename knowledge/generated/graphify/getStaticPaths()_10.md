@@ -1,19 +1,19 @@
 ---
-source_file: "apps/storefront/src/pages/rubrik/[slug]/feed.xml.ts"
+source_file: "apps/storefront/src/pages/index/wilayah-kecamatan-[cityCode].json.ts"
 type: "code"
-community: "Rubrik Hierarchy"
-location: "L13"
+community: "wilayah-checkout.ts"
+location: "L26"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Rubrik_Hierarchy
+  - community/wilayah-checkoutts
 ---
 
 # getStaticPaths()
 
 ## Connections
-- [[slugfeed.xml.ts]] - `contains` [EXTRACTED]
-- [[flattenRubrikTree()]] - `calls` [EXTRACTED]
-- [[getRubrikTree()]] - `calls` [EXTRACTED]
+- [[getAllCheckoutRegencies()]] - `calls` [EXTRACTED]
+- [[getCheckoutDistricts()]] - `calls` [EXTRACTED]
+- [[wilayah-kecamatan-cityCode.json.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Rubrik_Hierarchy
+#graphify/code #graphify/EXTRACTED #community/wilayah-checkoutts

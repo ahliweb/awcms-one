@@ -1,17 +1,17 @@
 ---
-source_file: "tests/audit-rilis.test.mjs"
+source_file: "tests/audit-graf.test.mjs"
 type: "code"
-community: "Build & E2E Tooling"
-location: "L30"
+community: "audit-graf.test.mjs"
+location: "L24"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Build__E2E_Tooling
+  - community/audit-graftestmjs
 ---
 
 # cleanup
 
 ## Connections
-- [[audit-rilis.test.mjs]] - `contains` [EXTRACTED]
+- [[audit-graf.test.mjs]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Build__E2E_Tooling
+#graphify/code #graphify/EXTRACTED #community/audit-graftestmjs

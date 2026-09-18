@@ -1,12 +1,12 @@
 ---
 source_file: "tests/versi-changeset.test.mjs"
 type: "code"
-community: "Changeset Parsing"
+community: "rilis.mjs"
 location: "L42"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Changeset_Parsing
+  - community/rilismjs
 ---
 
 # changesets
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[versi-changeset.test.mjs]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Changeset_Parsing
+#graphify/code #graphify/EXTRACTED #community/rilismjs

@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/scripts/cari-listing.ts"
 type: "code"
-community: "Client Product Search"
+community: "produk-listing.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Client_Product_Search
+  - community/produk-listingts
 ---
 
 # cari-listing.ts
@@ -20,12 +20,12 @@ tags:
 - [[fetchProdukIndex()]] - `imports` [EXTRACTED]
 - [[filterProdukIndex()]] - `imports` [EXTRACTED]
 - [[grid]] - `contains` [EXTRACTED]
-- [[heading_1]] - `contains` [EXTRACTED]
+- [[heading]] - `contains` [EXTRACTED]
 - [[paginateProdukIndex()]] - `imports` [EXTRACTED]
 - [[paginationEl]] - `contains` [EXTRACTED]
 - [[produk-index-klien.ts]] - `imports_from` [EXTRACTED]
 - [[renderPagination()]] - `imports` [EXTRACTED]
 - [[renderProdukGrid()]] - `imports` [EXTRACTED]
-- [[run()_5]] - `contains` [EXTRACTED]
+- [[run()_3]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Client_Product_Search
+#graphify/code #graphify/EXTRACTED #community/produk-listingts

@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/wishlist-klien.ts"
 type: "code"
-community: "Wishlist Client Storage"
+community: "wishlist-kontrak.ts"
 location: "L44"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Wishlist_Client_Storage
+  - community/wishlist-kontrakts
 ---
 
 # toggleWishlist()
@@ -18,4 +18,4 @@ tags:
 - [[wishlist-klien.ts]] - `contains` [EXTRACTED]
 - [[wishlist-tombol.ts]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Wishlist_Client_Storage
+#graphify/code #graphify/EXTRACTED #community/wishlist-kontrakts

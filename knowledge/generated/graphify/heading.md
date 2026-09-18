@@ -1,17 +1,17 @@
 ---
-source_file: "apps/storefront/src/pages/arsip/[yyyy]/[mm].astro"
+source_file: "apps/storefront/src/scripts/cari-listing.ts"
 type: "code"
-community: "News Layout & Archive"
-location: "L16"
+community: "produk-listing.ts"
+location: "L18"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/News_Layout__Archive
+  - community/produk-listingts
 ---
 
 # heading
 
 ## Connections
-- [[mm.astro]] - `contains` [EXTRACTED]
+- [[cari-listing.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/News_Layout__Archive
+#graphify/code #graphify/EXTRACTED #community/produk-listingts

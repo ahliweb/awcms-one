@@ -1,19 +1,23 @@
 ---
-source_file: "apps/storefront/src/lib/awcms/wilayah.ts"
+source_file: "apps/storefront/src/lib/awcms/wilayah-checkout.ts"
 type: "code"
-community: "Region Index Builder"
-location: "L59"
+community: "wilayah-checkout.ts"
+location: "L200"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Region_Index_Builder
+  - community/wilayah-checkoutts
 ---
 
 # listRegions()
 
 ## Connections
-- [[getProvinces()]] - `calls` [EXTRACTED]
-- [[getRegenciesOf()]] - `calls` [EXTRACTED]
-- [[wilayah.ts]] - `contains` [EXTRACTED]
+- [[awcmsGet()]] - `calls` [EXTRACTED]
+- [[getCheckoutDistricts()]] - `calls` [EXTRACTED]
+- [[getCheckoutProvinces()]] - `calls` [EXTRACTED]
+- [[getCheckoutRegencies()]] - `calls` [EXTRACTED]
+- [[matchesQuery()]] - `calls` [EXTRACTED]
+- [[regionRequestLimiter]] - `calls` [EXTRACTED]
+- [[wilayah-checkout.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Region_Index_Builder
+#graphify/code #graphify/EXTRACTED #community/wilayah-checkoutts

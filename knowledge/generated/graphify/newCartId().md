@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/keranjang-klien.ts"
 type: "code"
-community: "Cart Client Storage"
+community: "checkout.ts"
 location: "L26"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Cart_Client_Storage
+  - community/checkoutts
 ---
 
 # newCartId()
@@ -16,4 +16,4 @@ tags:
 - [[keranjang-klien.ts]] - `contains` [EXTRACTED]
 - [[loadCart()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Cart_Client_Storage
+#graphify/code #graphify/EXTRACTED #community/checkoutts

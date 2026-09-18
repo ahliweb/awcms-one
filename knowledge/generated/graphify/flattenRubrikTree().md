@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/berita.ts"
 type: "code"
-community: "Rubrik Hierarchy"
-location: "L435"
+community: "[n].astro"
+location: "L478"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Rubrik_Hierarchy
+  - community/nastro
 ---
 
 # flattenRubrikTree()
@@ -16,9 +16,13 @@ tags:
 - [[slugfeed.xml.ts]] - `imports` [EXTRACTED]
 - [[slugindex.astro]] - `imports` [EXTRACTED]
 - [[berita.ts]] - `contains` [EXTRACTED]
-- [[getStaticPaths()_10]] - `calls` [EXTRACTED]
-- [[getStaticPaths()_11]] - `calls` [EXTRACTED]
+- [[beritaindex.astro]] - `imports` [EXTRACTED]
+- [[getNavUtama()]] - `calls` [EXTRACTED]
+- [[getStaticPaths()_5]] - `calls` [EXTRACTED]
 - [[getStaticPaths()_12]] - `calls` [EXTRACTED]
+- [[getStaticPaths()_13]] - `calls` [EXTRACTED]
+- [[getUmumList()]] - `calls` [EXTRACTED]
+- [[navigasi-berita.ts]] - `imports` [EXTRACTED]
 - [[sitemap-sources.ts]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Rubrik_Hierarchy
+#graphify/code #graphify/EXTRACTED #community/nastro

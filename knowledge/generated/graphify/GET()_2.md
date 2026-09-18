@@ -1,25 +1,22 @@
 ---
-source_file: "apps/storefront/src/pages/csp.json.ts"
+source_file: "apps/storefront/src/pages/feed.xml.ts"
 type: "code"
-community: "Marketing Read Models"
-location: "L49"
+community: "formatPrice"
+location: "L38"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Marketing_Read_Models
+  - community/formatPrice
 ---
 
 # GET()
 
 ## Connections
-- [[buildCspOriginsArtifact()]] - `calls` [EXTRACTED]
-- [[csp.json.ts]] - `contains` [EXTRACTED]
-- [[getActiveFlashSales()]] - `calls` [EXTRACTED]
-- [[getActivePopup()]] - `calls` [EXTRACTED]
-- [[getActiveSliders()]] - `calls` [EXTRACTED]
-- [[getActiveTestimonials()]] - `calls` [EXTRACTED]
+- [[absoluteUrl()]] - `calls` [EXTRACTED]
+- [[escapeXml()_1]] - `calls` [EXTRACTED]
+- [[formatPrice()]] - `calls` [EXTRACTED]
 - [[getProducts()]] - `calls` [EXTRACTED]
-- [[getStoreSettings()]] - `calls` [EXTRACTED]
-- [[requireAwcmsOrigin()]] - `calls` [EXTRACTED]
+- [[getSiteIdentity()]] - `calls` [EXTRACTED]
+- [[pagesfeed.xml.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Marketing_Read_Models
+#graphify/code #graphify/EXTRACTED #community/formatPrice

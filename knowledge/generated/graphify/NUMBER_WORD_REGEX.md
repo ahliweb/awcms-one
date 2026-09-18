@@ -1,12 +1,12 @@
 ---
 source_file: "packages/gerbang/audit-dokumen.mjs"
 type: "code"
-community: "Document Audit Gate"
-location: "L797"
+community: "audit-dokumen.mjs"
+location: "L828"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Document_Audit_Gate
+  - community/audit-dokumenmjs
 ---
 
 # NUMBER_WORD_REGEX
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[audit-dokumen.mjs]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Document_Audit_Gate
+#graphify/code #graphify/EXTRACTED #community/audit-dokumenmjs

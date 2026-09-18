@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/pages/produk.astro"
 type: "code"
-community: "Product Index Build"
+community: "catalog.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Product_Index_Build
+  - community/catalogts
 ---
 
 # produk.astro
@@ -26,4 +26,4 @@ tags:
 - [[produk-listing.ts]] - `imports_from` [EXTRACTED]
 - [[profil.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Product_Index_Build
+#graphify/code #graphify/EXTRACTED #community/catalogts

@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/berita-feed.test.ts"
 type: "code"
-community: "News RSS Feed"
+community: "[slug]/feed.xml.ts"
 location: "L27"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/News_RSS_Feed
+  - community/slug/feedxmlts
 ---
 
 # extractItems()
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[berita-feed.test.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/News_RSS_Feed
+#graphify/code #graphify/EXTRACTED #community/slug/feedxmlts

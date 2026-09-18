@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/scripts/promo-popup.ts"
 type: "code"
-community: "Promo Popup Client"
+community: "promo-popup.ts"
 location: "L49"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Promo_Popup_Client
+  - community/promo-popupts
 ---
 
 # markShown()
@@ -15,4 +15,4 @@ tags:
 - [[promo-popup.ts]] - `contains` [EXTRACTED]
 - [[storageKey()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Promo_Popup_Client
+#graphify/code #graphify/EXTRACTED #community/promo-popupts

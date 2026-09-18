@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/berita.ts"
 type: "code"
-community: "News RSS Feed"
-location: "L690"
+community: "[slug]/feed.xml.ts"
+location: "L733"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/News_RSS_Feed
+  - community/slug/feedxmlts
 ---
 
 # escapeCdata()
@@ -15,4 +15,4 @@ tags:
 - [[berita.ts]] - `contains` [EXTRACTED]
 - [[renderBeritaRssXml()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/News_RSS_Feed
+#graphify/code #graphify/EXTRACTED #community/slug/feedxmlts

@@ -1,18 +1,18 @@
 ---
-source_file: "apps/storefront/src/pages/halaman/[slug].astro"
+source_file: "apps/storefront/src/pages/mitra/[slug].astro"
 type: "code"
-community: "Footer & Static Pages"
-location: "L13"
+community: "lembaga.ts"
+location: "L15"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Footer__Static_Pages
+  - community/lembagats
 ---
 
 # getStaticPaths()
 
 ## Connections
-- [[halamanslug.astro]] - `contains` [EXTRACTED]
-- [[listStaticPages()]] - `calls` [EXTRACTED]
+- [[getMitraList()]] - `calls` [EXTRACTED]
+- [[mitraslug.astro]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Footer__Static_Pages
+#graphify/code #graphify/EXTRACTED #community/lembagats

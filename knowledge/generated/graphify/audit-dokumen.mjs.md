@@ -1,23 +1,23 @@
 ---
 source_file: "packages/gerbang/audit-dokumen.mjs"
 type: "code"
-community: "Document Audit Gate"
+community: "audit-dokumen.mjs"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Document_Audit_Gate
+  - community/audit-dokumenmjs
 ---
 
 # audit-dokumen.mjs
 
 ## Connections
-- [[ADR-0042]] - `cites` [EXTRACTED]
+- [[ADR-0042_1]] - `cites` [EXTRACTED]
 - [[EXCLUDED_PATHS]] - `contains` [EXTRACTED]
 - [[NUMBER_WORDS]] - `contains` [EXTRACTED]
 - [[NUMBER_WORD_REGEX]] - `contains` [EXTRACTED]
 - [[PATH_PREFIXES]] - `contains` [EXTRACTED]
-- [[SKIP]] - `contains` [EXTRACTED]
+- [[SKIP_1]] - `contains` [EXTRACTED]
 - [[SKIP_PATHS]] - `contains` [EXTRACTED]
 - [[STATUS_EQUIVALENTS]] - `contains` [EXTRACTED]
 - [[actualCount()]] - `contains` [EXTRACTED]
@@ -34,7 +34,7 @@ tags:
 - [[documents]] - `contains` [EXTRACTED]
 - [[existsAt()]] - `contains` [EXTRACTED]
 - [[isExternal()]] - `contains` [EXTRACTED]
-- [[join()]] - `contains` [EXTRACTED]
+- [[join()_1]] - `contains` [EXTRACTED]
 - [[linksIn()]] - `contains` [EXTRACTED]
 - [[markdownFiles()]] - `contains` [EXTRACTED]
 - [[marksAnotherRepo()]] - `contains` [EXTRACTED]
@@ -42,8 +42,8 @@ tags:
 - [[numbersIn()]] - `contains` [EXTRACTED]
 - [[parseSource()]] - `contains` [EXTRACTED]
 - [[proseFromBlock()]] - `contains` [EXTRACTED]
-- [[reporter_2]] - `contains` [EXTRACTED]
+- [[reporter_1]] - `contains` [EXTRACTED]
 - [[reporter.mjs]] - `imports_from` [EXTRACTED]
 - [[violation()]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Document_Audit_Gate
+#graphify/code #graphify/EXTRACTED #community/audit-dokumenmjs

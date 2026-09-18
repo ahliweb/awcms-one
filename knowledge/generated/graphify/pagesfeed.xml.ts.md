@@ -1,27 +1,27 @@
 ---
 source_file: "apps/storefront/src/pages/feed.xml.ts"
 type: "code"
-community: "Site Config & Env"
+community: "formatPrice"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Site_Config__Env
+  - community/formatPrice
 ---
 
 # pages/feed.xml.ts
 
 ## Connections
-- [[GET()_3]] - `contains` [EXTRACTED]
+- [[GET()_2]] - `contains` [EXTRACTED]
 - [[absoluteUrl()]] - `imports` [EXTRACTED]
 - [[catalog.ts]] - `imports_from` [EXTRACTED]
-- [[escapeXml()_2]] - `contains` [EXTRACTED]
+- [[escapeXml()_1]] - `contains` [EXTRACTED]
 - [[formatPrice()]] - `imports` [EXTRACTED]
 - [[getProducts()]] - `imports` [EXTRACTED]
 - [[getSiteIdentity()]] - `imports` [EXTRACTED]
-- [[prerender_3]] - `contains` [EXTRACTED]
+- [[prerender_2]] - `contains` [EXTRACTED]
 - [[profil.ts]] - `imports_from` [EXTRACTED]
 - [[site.ts]] - `imports_from` [EXTRACTED]
 - [[siteConfig]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Site_Config__Env
+#graphify/code #graphify/EXTRACTED #community/formatPrice

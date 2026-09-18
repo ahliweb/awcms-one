@@ -1,18 +1,27 @@
 ---
-source_file: "tests/kontrak-arah-impor.test.mjs"
+source_file: "packages/gerbang/audit-dokumen.mjs"
 type: "code"
-community: "Import Direction Test"
-location: "L51"
+community: "audit-dokumen.mjs"
+location: "L164"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Import_Direction_Test
+  - community/audit-dokumenmjs
 ---
 
 # join()
 
 ## Connections
-- [[kontrak-arah-impor.test.mjs]] - `contains` [EXTRACTED]
-- [[sourceFiles()]] - `calls` [EXTRACTED]
+- [[actualCount()]] - `calls` [EXTRACTED]
+- [[audit-dokumen.mjs]] - `contains` [EXTRACTED]
+- [[auditAdrCitations()]] - `calls` [EXTRACTED]
+- [[auditAdrIndex()]] - `calls` [EXTRACTED]
+- [[auditLinkedCounts()]] - `calls` [EXTRACTED]
+- [[auditLinks()]] - `calls` [EXTRACTED]
+- [[auditNamedPaths()]] - `calls` [EXTRACTED]
+- [[auditOneIndex()]] - `calls` [EXTRACTED]
+- [[existsAt()]] - `calls` [EXTRACTED]
+- [[markdownFiles()]] - `calls` [EXTRACTED]
+- [[proseFromBlock()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Import_Direction_Test
+#graphify/code #graphify/EXTRACTED #community/audit-dokumenmjs

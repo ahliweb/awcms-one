@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/package.json"
 type: "concept"
-community: "Storefront Package Manifest"
+community: "scripts"
 location: "L19"
 tags:
   - graphify/concept
   - graphify/EXTRACTED
-  - community/Storefront_Package_Manifest
+  - community/scripts
 ---
 
 # @astrojs/node
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[@astrojsnode]] - `imports` [EXTRACTED]
 
-#graphify/concept #graphify/EXTRACTED #community/Storefront_Package_Manifest
+#graphify/concept #graphify/EXTRACTED #community/scripts

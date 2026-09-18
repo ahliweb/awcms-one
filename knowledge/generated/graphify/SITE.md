@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/astro.config.mjs"
 type: "code"
-community: "Astro Config"
+community: "astro.config.mjs"
 location: "L14"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Astro_Config
+  - community/astroconfigmjs
 ---
 
 # SITE
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[astro.config.mjs]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Astro_Config
+#graphify/code #graphify/EXTRACTED #community/astroconfigmjs

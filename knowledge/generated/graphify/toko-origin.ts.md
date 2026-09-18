@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/awcms/toko-origin.ts"
 type: "code"
-community: "Storefront Server & CSP"
+community: "buletin.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Storefront_Server__CSP
+  - community/buletints
 ---
 
 # toko-origin.ts
@@ -14,12 +14,14 @@ tags:
 ## Connections
 - [[ADR-0007]] - `cites` [EXTRACTED]
 - [[AwcmsOriginConfigError]] - `contains` [EXTRACTED]
+- [[buletin.ts]] - `imports_from` [EXTRACTED]
 - [[csp.json.ts]] - `imports_from` [EXTRACTED]
 - [[env.ts]] - `imports_from` [EXTRACTED]
 - [[readEnv()]] - `imports` [EXTRACTED]
 - [[requireAwcmsOrigin()]] - `contains` [EXTRACTED]
+- [[scriptsanalitik.ts]] - `imports_from` [EXTRACTED]
 - [[toko-csp.test.ts]] - `imports_from` [EXTRACTED]
 - [[toko-klien.ts]] - `imports_from` [EXTRACTED]
 - [[toko-origin.test.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Storefront_Server__CSP
+#graphify/code #graphify/EXTRACTED #community/buletints

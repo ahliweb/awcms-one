@@ -1,17 +1,19 @@
 ---
-source_file: "tools/seed-borneojek-mart.ts"
+source_file: "tools/lib/awcms-api.ts"
 type: "code"
-community: "Tenant Seed Script"
-location: "L125"
+community: "redirect-push.ts"
+location: "L48"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Tenant_Seed_Script
+  - community/redirect-pushts
 ---
 
 # Session
 
 ## Connections
-- [[seed-borneojek-mart.ts]] - `contains` [EXTRACTED]
+- [[awcms-api.ts]] - `contains` [EXTRACTED]
+- [[import-seputarborneo.ts]] - `imports` [EXTRACTED]
+- [[redirect-push.ts]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Tenant_Seed_Script
+#graphify/code #graphify/EXTRACTED #community/redirect-pushts

@@ -1,12 +1,12 @@
 ---
 source_file: "packages/gerbang/lib/files.mjs"
 type: "code"
-community: "Translation Mirror Audit"
+community: "docs-i18n-stamp.mjs"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Translation_Mirror_Audit
+  - community/docs-i18n-stampmjs
 ---
 
 # files.mjs
@@ -17,4 +17,4 @@ tags:
 - [[knowledge-graph-combine.mjs]] - `imports_from` [EXTRACTED]
 - [[readFileIfPresent()]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Translation_Mirror_Audit
+#graphify/code #graphify/EXTRACTED #community/docs-i18n-stampmjs

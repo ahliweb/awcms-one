@@ -1,19 +1,19 @@
 ---
-source_file: "apps/storefront/src/pages/sitemap-[n].xml.ts"
+source_file: "apps/storefront/src/pages/rubrik/[slug]/index.astro"
 type: "code"
-community: "Sitemap Generation"
-location: "L12"
+community: "[n].astro"
+location: "L21"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Sitemap_Generation
+  - community/nastro
 ---
 
 # getStaticPaths()
 
 ## Connections
-- [[chunkSitemapEntries()]] - `calls` [EXTRACTED]
-- [[getAllSitemapEntries()]] - `calls` [EXTRACTED]
-- [[sitemap-n.xml.ts]] - `contains` [EXTRACTED]
+- [[slugindex.astro]] - `contains` [EXTRACTED]
+- [[flattenRubrikTree()]] - `calls` [EXTRACTED]
+- [[getRubrikTree()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Sitemap_Generation
+#graphify/code #graphify/EXTRACTED #community/nastro

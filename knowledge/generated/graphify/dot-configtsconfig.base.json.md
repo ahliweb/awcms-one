@@ -1,12 +1,12 @@
 ---
 source_file: "packages/kontrak/tsconfig.json"
 type: "concept"
-community: "Kontrak TS Config"
+community: "compilerOptions"
 location: "L2"
 tags:
   - graphify/concept
   - graphify/EXTRACTED
-  - community/Kontrak_TS_Config
+  - community/compilerOptions
 ---
 
 # ../config/tsconfig.base.json
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[kontraktsconfig.json]] - `extends` [EXTRACTED]
 
-#graphify/concept #graphify/EXTRACTED #community/Kontrak_TS_Config
+#graphify/concept #graphify/EXTRACTED #community/compilerOptions

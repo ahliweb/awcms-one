@@ -1,17 +1,17 @@
 ---
-source_file: "apps/storefront/src/components/berita/ArtikelView.astro"
+source_file: "apps/storefront/src/pages/halaman/[slug].astro"
 type: "code"
-community: "Article Card & View"
-location: "L35"
+community: "portable-text.ts"
+location: "L41"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Article_Card__View
+  - community/portable-textts
 ---
 
 # bodyHtml
 
 ## Connections
-- [[ArtikelView.astro]] - `contains` [EXTRACTED]
+- [[halamanslug.astro]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Article_Card__View
+#graphify/code #graphify/EXTRACTED #community/portable-textts

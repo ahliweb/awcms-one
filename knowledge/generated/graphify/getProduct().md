@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/catalog.ts"
 type: "code"
-community: "Flash Sale Countdown"
+community: "catalog.ts"
 location: "L321"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Flash_Sale_Countdown
+  - community/catalogts
 ---
 
 # getProduct()
@@ -15,4 +15,4 @@ tags:
 - [[catalog.ts]] - `contains` [EXTRACTED]
 - [[getProducts()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Flash_Sale_Countdown
+#graphify/code #graphify/EXTRACTED #community/catalogts

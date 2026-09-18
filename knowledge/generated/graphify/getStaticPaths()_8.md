@@ -1,18 +1,18 @@
 ---
-source_file: "apps/storefront/src/pages/penulis/[slug].astro"
+source_file: "apps/storefront/src/pages/berita/[slug].astro"
 type: "code"
-community: "News Layout & Archive"
-location: "L15"
+community: "[slug]/feed.xml.ts"
+location: "L40"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/News_Layout__Archive
+  - community/slug/feedxmlts
 ---
 
 # getStaticPaths()
 
 ## Connections
-- [[listAuthors()]] - `calls` [EXTRACTED]
-- [[penulisslug.astro]] - `contains` [EXTRACTED]
+- [[beritaslug.astro]] - `contains` [EXTRACTED]
+- [[getPosts()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/News_Layout__Archive
+#graphify/code #graphify/EXTRACTED #community/slug/feedxmlts

@@ -1,17 +1,17 @@
 ---
-source_file: "apps/storefront/src/pages/berita/[slug].astro"
+source_file: "apps/storefront/src/pages/mitra/[slug].astro"
 type: "code"
-community: "News JSON-LD"
-location: "L57"
+community: "lembaga.ts"
+location: "L31"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/News_JSON-LD
+  - community/lembagats
 ---
 
 # canonicalPath
 
 ## Connections
-- [[beritaslug.astro]] - `contains` [EXTRACTED]
+- [[mitraslug.astro]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/News_JSON-LD
+#graphify/code #graphify/EXTRACTED #community/lembagats

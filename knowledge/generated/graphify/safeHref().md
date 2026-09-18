@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/portable-text.ts"
 type: "code"
-community: "Portable Text Rendering"
-location: "L137"
+community: "portable-text.ts"
+location: "L181"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Portable_Text_Rendering
+  - community/portable-textts
 ---
 
 # safeHref()
@@ -16,4 +16,4 @@ tags:
 - [[annotationMap()]] - `calls` [EXTRACTED]
 - [[portable-text.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Portable_Text_Rendering
+#graphify/code #graphify/EXTRACTED #community/portable-textts
