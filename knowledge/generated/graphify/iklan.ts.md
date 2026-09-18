@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/awcms/iklan.ts"
 type: "code"
-community: "Ad Placements & Blog Client"
+community: "blog.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Ad_Placements__Blog_Client
+  - community/blogts
 ---
 
 # iklan.ts
@@ -23,4 +23,4 @@ tags:
 - [[getActiveAdPlacements()]] - `imports` [EXTRACTED]
 - [[getAdSlot()]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Ad_Placements__Blog_Client
+#graphify/code #graphify/EXTRACTED #community/blogts

@@ -1,17 +1,17 @@
 ---
-source_file: "apps/storefront/src/pages/penulis/[slug].astro"
+source_file: "apps/storefront/src/pages/rubrik/[slug]/index.astro"
 type: "code"
-community: "News Layout & Archive"
-location: "L20"
+community: "[n].astro"
+location: "L26"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/News_Layout__Archive
+  - community/nastro
 ---
 
 # { slug }
 
 ## Connections
-- [[penulisslug.astro]] - `contains` [EXTRACTED]
+- [[slugindex.astro]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/News_Layout__Archive
+#graphify/code #graphify/EXTRACTED #community/nastro

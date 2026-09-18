@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/pages/checkout.astro"
 type: "code"
-community: "Base Layout & Site Identity"
+community: "BaseLayout.astro"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Base_Layout__Site_Identity
+  - community/BaseLayoutastro
 ---
 
 # checkout.astro
@@ -19,4 +19,4 @@ tags:
 - [[pemasaran.ts]] - `imports_from` [EXTRACTED]
 - [[profil.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Base_Layout__Site_Identity
+#graphify/code #graphify/EXTRACTED #community/BaseLayoutastro

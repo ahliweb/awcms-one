@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/catalog.ts"
 type: "code"
-community: "Product Detail Variant Picker"
+community: "produk-detail.ts"
 location: "L452"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Product_Detail_Variant_Picker
+  - community/produk-detailts
 ---
 
 # findVariantForSelection()
@@ -17,4 +17,4 @@ tags:
 - [[katalog-catalog.test.ts]] - `imports` [EXTRACTED]
 - [[produk-detail.ts]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Product_Detail_Variant_Picker
+#graphify/code #graphify/EXTRACTED #community/produk-detailts

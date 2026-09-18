@@ -1,22 +1,22 @@
 ---
 source_file: "apps/storefront/src/pages/theme-tokens.css.ts"
 type: "code"
-community: "Theme Token Fetch"
+community: "warna.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Theme_Token_Fetch
+  - community/warnats
 ---
 
 # theme-tokens.css.ts
 
 ## Connections
-- [[GET()_15]] - `contains` [EXTRACTED]
+- [[GET()_10]] - `contains` [EXTRACTED]
 - [[contrastingForeground()]] - `imports` [EXTRACTED]
 - [[getSiteTheme()]] - `imports` [EXTRACTED]
-- [[prerender_15]] - `contains` [EXTRACTED]
+- [[prerender_10]] - `contains` [EXTRACTED]
 - [[theme.ts]] - `imports_from` [EXTRACTED]
 - [[warna.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Theme_Token_Fetch
+#graphify/code #graphify/EXTRACTED #community/warnats

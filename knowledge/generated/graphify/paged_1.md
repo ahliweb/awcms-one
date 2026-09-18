@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/pages/rubrik/[slug]/index.astro"
 type: "code"
-community: "Rubrik Hierarchy"
-location: "L29"
+community: "[n].astro"
+location: "L37"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Rubrik_Hierarchy
+  - community/nastro
 ---
 
 # paged
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[slugindex.astro]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Rubrik_Hierarchy
+#graphify/code #graphify/EXTRACTED #community/nastro

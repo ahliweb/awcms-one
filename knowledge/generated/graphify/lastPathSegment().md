@@ -1,18 +1,18 @@
 ---
-source_file: "apps/storefront/src/lib/pengalihan-legacy.ts"
+source_file: "apps/storefront/server/pengalihan-aturan.mjs"
 type: "code"
-community: "Legacy Redirect Map"
-location: "L35"
+community: "pengalihan-aturan.mjs"
+location: "L318"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Legacy_Redirect_Map
+  - community/pengalihan-aturanmjs
 ---
 
 # lastPathSegment()
 
 ## Connections
-- [[buildLegacyRedirectMap()]] - `calls` [EXTRACTED]
-- [[pengalihan-legacy.ts]] - `contains` [EXTRACTED]
+- [[pengalihan-aturan.mjs]] - `contains` [EXTRACTED]
+- [[resolveVideoQuery()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Legacy_Redirect_Map
+#graphify/code #graphify/EXTRACTED #community/pengalihan-aturanmjs

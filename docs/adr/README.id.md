@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:1f937b69a3437456778face64a175e834c37af01a437ef422ccd0b6762e1e821 -->
+<!-- i18n-source-hash: sha256:314519ee70e9c644a7c6d5641ed77ec9b1ffc0eada1cbb7659a034ba3421092e -->
 
 # Architecture Decision Records
 
@@ -28,6 +28,10 @@ Yang **tidak** butuh ADR: menambah field dalam skema yang sudah diputuskan, kena
 | [0008](0008-one-commerce-module-carries-the-whole-store-not-three.md) | Satu modul `commerce` membawa seluruh toko, bukan tiga | Diterima |
 | [0009](0009-guest-checkout-by-order-code-and-phone.md) | Checkout tamu, dialamatkan lewat kode pesanan + telepon; akun pelanggan menyusul kemudian | Diterima |
 | [0010](0010-manual-payment-and-alternative-courier-first-gateways-via-outbox.md) | Pembayaran manual dan kurir alternatif lebih dulu; gateway dan agregator datang lewat outbox | Diterima |
+| [0011](0011-storefront-media-resolves-through-the-media-objects-endpoint.md) | Storefront me-resolve media lewat `GET /api/v1/media/objects`, dan CSP-nya diturunkan dari apa yang benar-benar ter-resolve | Diterima |
+| [0012](0012-first-party-visitor-analytics-with-an-opt-in-ga4-switch.md) | Analitik pengunjung bersifat first-party secara bawaan; GA4 adalah sakelar opt-in | Diterima |
+| [0013](0013-rule-based-legacy-redirects-beside-the-row-based-map.md) | Pengalihan lawas berbasis aturan berdampingan dengan peta berbasis baris, dan baris selalu menang | Diterima |
+| [0014](0014-the-institution-owns-the-emblem-not-the-post.md) | Lembaga yang memiliki lambangnya; sebuah pos tidak pernah membawa satu pun | Diterima |
 
 ## Mengapa penomoran dimulai dari 0001
 

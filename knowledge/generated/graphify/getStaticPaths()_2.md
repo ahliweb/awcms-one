@@ -1,18 +1,18 @@
 ---
-source_file: "apps/storefront/src/pages/daerah/[slug].astro"
+source_file: "apps/storefront/src/pages/kategori/[slug].astro"
 type: "code"
-community: "Rubrik & Region Rendering"
-location: "L13"
+community: "kategori/[slug].astro"
+location: "L26"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Rubrik__Region_Rendering
+  - community/kategori/slugastro
 ---
 
 # getStaticPaths()
 
 ## Connections
-- [[daerahslug.astro]] - `contains` [EXTRACTED]
-- [[listDaerahLinks()]] - `calls` [EXTRACTED]
+- [[getCategories()]] - `calls` [EXTRACTED]
+- [[kategorislug.astro]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Rubrik__Region_Rendering
+#graphify/code #graphify/EXTRACTED #community/kategori/slugastro

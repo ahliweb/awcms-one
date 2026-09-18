@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/berita.ts"
 type: "code"
-community: "News Layout & Archive"
-location: "L609"
+community: "Sidebar.astro"
+location: "L680"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/News_Layout__Archive
+  - community/Sidebarastro
 ---
 
 # listArsipBulan()
@@ -16,6 +16,6 @@ tags:
 - [[arsipBulanWIB()]] - `calls` [EXTRACTED]
 - [[berita.ts]] - `contains` [EXTRACTED]
 - [[getIndex()]] - `calls` [EXTRACTED]
-- [[getStaticPaths()]] - `calls` [EXTRACTED]
+- [[getStaticPaths()_6]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/News_Layout__Archive
+#graphify/code #graphify/EXTRACTED #community/Sidebarastro

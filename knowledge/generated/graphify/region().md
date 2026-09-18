@@ -1,17 +1,18 @@
 ---
 source_file: "apps/storefront/tests/wilayah-checkout.test.ts"
 type: "code"
-community: "Checkout Region Data"
-location: "L25"
+community: "wilayah-checkout.ts"
+location: "L29"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Checkout_Region_Data
+  - community/wilayah-checkoutts
 ---
 
 # region()
 
 ## Connections
+- [[buildKalimantan()]] - `calls` [EXTRACTED]
 - [[wilayah-checkout.test.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Checkout_Region_Data
+#graphify/code #graphify/EXTRACTED #community/wilayah-checkoutts

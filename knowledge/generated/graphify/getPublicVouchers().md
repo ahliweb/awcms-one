@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/awcms/pemasaran.ts"
 type: "code"
-community: "Marketing Read Models"
+community: "csp.json.ts"
 location: "L325"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Marketing_Read_Models
+  - community/cspjsonts
 ---
 
 # getPublicVouchers()
@@ -18,4 +18,4 @@ tags:
 - [[pemasaran.ts]] - `contains` [EXTRACTED]
 - [[warnMissing()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Marketing_Read_Models
+#graphify/code #graphify/EXTRACTED #community/cspjsonts

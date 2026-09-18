@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/wishlist-kontrak.ts"
 type: "code"
-community: "Wishlist Client Storage"
+community: "wishlist-kontrak.ts"
 location: "L26"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Wishlist_Client_Storage
+  - community/wishlist-kontrakts
 ---
 
 # WISHLIST_EVENT_NAME
@@ -18,4 +18,4 @@ tags:
 - [[wishlist-tombol.ts]] - `imports` [EXTRACTED]
 - [[wishlist.ts]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Wishlist_Client_Storage
+#graphify/code #graphify/EXTRACTED #community/wishlist-kontrakts

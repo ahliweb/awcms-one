@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/playwright.config.ts"
 type: "code"
-community: "Build & E2E Tooling"
+community: "global-setup.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Build__E2E_Tooling
+  - community/global-setupts
 ---
 
 # playwright.config.ts
@@ -15,4 +15,4 @@ tags:
 - [[PREVIEW_PORT]] - `imports` [EXTRACTED]
 - [[ports.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Build__E2E_Tooling
+#graphify/code #graphify/EXTRACTED #community/global-setupts

@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/scripts/keranjang.ts"
 type: "code"
-community: "Cart Contract & WhatsApp Fallback"
+community: "keranjang.ts"
 location: "L71"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Cart_Contract__WhatsApp_Fallback
+  - community/keranjangts
 ---
 
 # renderLines()
@@ -19,4 +19,4 @@ tags:
 - [[statusLabel()]] - `calls` [EXTRACTED]
 - [[updateCartLineQuantity()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Cart_Contract__WhatsApp_Fallback
+#graphify/code #graphify/EXTRACTED #community/keranjangts

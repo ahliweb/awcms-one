@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/pages/video/[slug].astro"
 type: "code"
-community: "News JSON-LD"
-location: "L48"
+community: "BeritaLayout.astro"
+location: "L66"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/News_JSON-LD
+  - community/BeritaLayoutastro
 ---
 
 # schema
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[videoslug.astro]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/News_JSON-LD
+#graphify/code #graphify/EXTRACTED #community/BeritaLayoutastro

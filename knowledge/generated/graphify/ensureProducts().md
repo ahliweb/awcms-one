@@ -1,21 +1,21 @@
 ---
 source_file: "tools/seed-borneojek-mart.ts"
 type: "code"
-community: "Tenant Seed Script"
-location: "L459"
+community: "seed-borneojek-mart.ts"
+location: "L512"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Tenant_Seed_Script
+  - community/seed-borneojek-martts
 ---
 
 # ensureProducts()
 
 ## Connections
-- [[apiCall()]] - `calls` [EXTRACTED]
-- [[assertOk()]] - `calls` [EXTRACTED]
-- [[main()]] - `calls` [EXTRACTED]
+- [[apiCall()_1]] - `calls` [EXTRACTED]
+- [[assertOk()_1]] - `calls` [EXTRACTED]
+- [[main()_1]] - `calls` [EXTRACTED]
 - [[readSeedJson()]] - `calls` [EXTRACTED]
 - [[seed-borneojek-mart.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Tenant_Seed_Script
+#graphify/code #graphify/EXTRACTED #community/seed-borneojek-martts

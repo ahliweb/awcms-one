@@ -1,12 +1,12 @@
 ---
 source_file: "package.json"
 type: "code"
-community: "Root Package Manifest"
+community: "scripts"
 location: "L21"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Root_Package_Manifest
+  - community/scripts
 ---
 
 # scripts
@@ -27,6 +27,7 @@ tags:
 - [[dbup]] - `contains` [EXTRACTED]
 - [[dev_1]] - `contains` [EXTRACTED]
 - [[docsi18nstamp]] - `contains` [EXTRACTED]
+- [[importseputarborneo]] - `contains` [EXTRACTED]
 - [[knowledgecheck]] - `contains` [EXTRACTED]
 - [[knowledgegraphcombine]] - `contains` [EXTRACTED]
 - [[knowledgegraphupdate]] - `contains` [EXTRACTED]
@@ -38,4 +39,4 @@ tags:
 - [[start_1]] - `contains` [EXTRACTED]
 - [[test]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Root_Package_Manifest
+#graphify/code #graphify/EXTRACTED #community/scripts

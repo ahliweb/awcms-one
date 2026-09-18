@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/pages/rubrik/[slug]/index.astro"
 type: "code"
-community: "Rubrik Hierarchy"
-location: "L13"
+community: "[n].astro"
+location: "L21"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Rubrik_Hierarchy
+  - community/nastro
 ---
 
 # getStaticPaths()
@@ -16,4 +16,4 @@ tags:
 - [[flattenRubrikTree()]] - `calls` [EXTRACTED]
 - [[getRubrikTree()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Rubrik_Hierarchy
+#graphify/code #graphify/EXTRACTED #community/nastro

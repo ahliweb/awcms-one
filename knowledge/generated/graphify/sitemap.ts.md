@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/sitemap.ts"
 type: "code"
-community: "Sitemap Generation"
+community: "sitemap-sources.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Sitemap_Generation
+  - community/sitemap-sourcests
 ---
 
 # sitemap.ts
@@ -17,7 +17,7 @@ tags:
 - [[SitemapSource]] - `contains` [EXTRACTED]
 - [[chunkSitemapEntries()]] - `contains` [EXTRACTED]
 - [[collectSitemapEntries()]] - `contains` [EXTRACTED]
-- [[escapeXml()_1]] - `contains` [EXTRACTED]
+- [[escapeXml()]] - `contains` [EXTRACTED]
 - [[getAllSitemapEntries()]] - `contains` [EXTRACTED]
 - [[registerSitemapSource()]] - `contains` [EXTRACTED]
 - [[renderSitemapIndexXml()]] - `contains` [EXTRACTED]
@@ -31,4 +31,4 @@ tags:
 - [[sitemap.test.ts]] - `imports_from` [EXTRACTED]
 - [[sources]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Sitemap_Generation
+#graphify/code #graphify/EXTRACTED #community/sitemap-sourcests

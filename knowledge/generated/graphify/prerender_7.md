@@ -1,17 +1,17 @@
 ---
-source_file: "apps/storefront/src/pages/index/wilayah-kabupaten-[provinceCode].json.ts"
+source_file: "apps/storefront/src/pages/rubrik/[slug]/feed.xml.ts"
 type: "code"
-community: "Checkout Region Data"
-location: "L11"
+community: "site.ts"
+location: "L9"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Checkout_Region_Data
+  - community/sitets
 ---
 
 # prerender
 
 ## Connections
-- [[wilayah-kabupaten-provinceCode.json.ts]] - `contains` [EXTRACTED]
+- [[slugfeed.xml.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Checkout_Region_Data
+#graphify/code #graphify/EXTRACTED #community/sitets

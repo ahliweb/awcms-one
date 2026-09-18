@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/catalog.ts"
 type: "code"
-community: "Catalog Fetch Client"
+community: "product/[slug].astro"
 location: "L589"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Catalog_Fetch_Client
+  - community/product/slugastro
 ---
 
 # normalizeSearchTerm()
@@ -15,4 +15,4 @@ tags:
 - [[catalog.ts]] - `contains` [EXTRACTED]
 - [[filterProdukIndex()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Catalog_Fetch_Client
+#graphify/code #graphify/EXTRACTED #community/product/slugastro

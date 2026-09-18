@@ -1,19 +1,18 @@
 ---
-source_file: "apps/storefront/src/lib/sitemap.ts"
+source_file: "apps/storefront/src/pages/feed.xml.ts"
 type: "code"
-community: "Sitemap Generation"
-location: "L108"
+community: "getProducts"
+location: "L29"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Sitemap_Generation
+  - community/getProducts
 ---
 
 # escapeXml()
 
 ## Connections
-- [[renderSitemapIndexXml()]] - `calls` [EXTRACTED]
-- [[renderUrlsetXml()]] - `calls` [EXTRACTED]
-- [[sitemap.ts]] - `contains` [EXTRACTED]
+- [[GET()_2]] - `calls` [EXTRACTED]
+- [[pagesfeed.xml.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Sitemap_Generation
+#graphify/code #graphify/EXTRACTED #community/getProducts

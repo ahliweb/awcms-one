@@ -1,21 +1,21 @@
 ---
 source_file: "apps/storefront/src/pages/index/berita.json.ts"
 type: "code"
-community: "News Front Page"
+community: "Sidebar.astro"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/News_Front_Page
+  - community/Sidebarastro
 ---
 
 # berita.json.ts
 
 ## Connections
 - [[BeritaIndexEntry]] - `contains` [EXTRACTED]
-- [[GET()_4]] - `contains` [EXTRACTED]
+- [[GET()_3]] - `contains` [EXTRACTED]
 - [[berita.ts]] - `imports_from` [EXTRACTED]
 - [[getPosts()]] - `imports` [EXTRACTED]
-- [[prerender_4]] - `contains` [EXTRACTED]
+- [[prerender_3]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/News_Front_Page
+#graphify/code #graphify/EXTRACTED #community/Sidebarastro

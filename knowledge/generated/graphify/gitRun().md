@@ -1,12 +1,12 @@
 ---
 source_file: "packages/gerbang/lib/git.mjs"
 type: "code"
-community: "Translation Mirror Audit"
+community: "audit-graf.mjs"
 location: "L62"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Translation_Mirror_Audit
+  - community/audit-grafmjs
 ---
 
 # gitRun()
@@ -20,4 +20,4 @@ tags:
 - [[gitList()]] - `calls` [EXTRACTED]
 - [[listMirrors()_1]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Translation_Mirror_Audit
+#graphify/code #graphify/EXTRACTED #community/audit-grafmjs

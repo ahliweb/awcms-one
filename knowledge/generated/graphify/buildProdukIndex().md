@@ -1,21 +1,21 @@
 ---
 source_file: "apps/storefront/src/lib/catalog.ts"
 type: "code"
-community: "Product Index Build"
+community: "catalog.ts"
 location: "L550"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Product_Index_Build
+  - community/catalogts
 ---
 
 # buildProdukIndex()
 
 ## Connections
-- [[GET()_6]] - `calls` [EXTRACTED]
+- [[GET()_4]] - `calls` [EXTRACTED]
 - [[catalog.ts]] - `contains` [EXTRACTED]
 - [[katalog-catalog.test.ts]] - `imports` [EXTRACTED]
 - [[primaryProductImage()]] - `calls` [EXTRACTED]
 - [[produk.json.ts]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Product_Index_Build
+#graphify/code #graphify/EXTRACTED #community/catalogts

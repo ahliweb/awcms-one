@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/pages/product-labels.css.ts"
 type: "code"
-community: "Flash Sale Countdown"
+community: "getProducts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Flash_Sale_Countdown
+  - community/getProducts
 ---
 
 # product-labels.css.ts
@@ -18,4 +18,4 @@ tags:
 - [[labelClassName()]] - `imports` [EXTRACTED]
 - [[prerender]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Flash_Sale_Countdown
+#graphify/code #graphify/EXTRACTED #community/getProducts

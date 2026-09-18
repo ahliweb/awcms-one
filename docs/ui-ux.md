@@ -32,6 +32,17 @@ Stock is still shown as a binary badge — "Stok tersedia" / "Stok habis" — de
 
 Every user-facing string is written directly in Indonesian (`<html lang="id">`) — there is no i18n framework, no locale switcher, and no English copy anywhere in the rendered output, including every new cart/checkout/order-tracking/wishlist string added in increment 2.
 
+## The news surface, as increment 3 shaped it
+
+The news pages are no longer the catalog's chrome with articles in it. They carry their own header (a utility bar with the WIB date, contact and official-account icons; an eight-item nav; the **Daerah panel**, which is always fully server-rendered with all fourteen regencies and only *collapsed* by script, so a reader without JavaScript sees every link; a "Terkini" ticker), their own footer (Rubrik/Umum/Daerah columns, the 24-institution Mitra directory, a leaderboard above the footer, a back-to-top link), and **one shared sidebar** across every news page with a side column — tabbed Terbaru/Mitra Borneo lists, three ad slots, a newsletter box, a tag cloud.
+
+Four decisions inside that surface are worth carrying forward:
+
+- **An ad slot with nothing booked renders nothing.** Not an empty frame, not a placeholder — the reference site's own placeholder boxes were a symptom of its inventory, not a design goal.
+- **"Terpopuler" is either real or absent.** It ranks from `visitor_analytics`' own rollups and falls back to "latest" silently in code, never announcing a ranking the data cannot support.
+- **The read-aloud player is offered only where it works.** The card ships `hidden` and is revealed only when the browser really has `speechSynthesis` and a voice; the highlight it draws while reading is an outline, so the article never reflows under someone who is listening.
+- **The institution emblem belongs to the institution.** One upload serves every article of that channel, and an article whose institution has none simply has none ([ADR-0014](adr/0014-the-institution-owns-the-emblem-not-the-post.md)).
+
 ## Not built
 
 A locale switcher; any product-imagery decision tied to dark mode (the colour-scheme media query governs this app's own chrome, not CMS-supplied imagery or `labelColor`); a live carrier-rate comparison at checkout (courier options render as "segera" — disabled — pending [issue #33](https://github.com/ahliweb/awcms-one/issues/33), see [ADR-0010](adr/0010-manual-payment-and-alternative-courier-first-gateways-via-outbox.md)).

@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](ui-ux.md)
 
-<!-- i18n-source-hash: sha256:3fff5bbb927fed83589c4f06da3b8d4b862f4face4359c01389b052cee98fbca -->
+<!-- i18n-source-hash: sha256:5c020e1b1425fc1c456dc250dc18e875e3fc0571248718c891b6883e1c90d2cf -->
 
 # UI / UX
 
@@ -33,6 +33,17 @@ Stok masih ditampilkan sebagai lencana biner — "Stok tersedia" / "Stok habis" 
 ## Bahasa: Indonesia, tanpa syarat — tak berubah
 
 Setiap string yang menghadap pengguna ditulis langsung dalam Bahasa Indonesia (`<html lang="id">`) — tidak ada framework i18n, tidak ada pengalih locale, dan tidak ada salinan berbahasa Inggris di mana pun pada output yang di-render, termasuk setiap string keranjang/checkout/pelacakan-pesanan/wishlist baru yang ditambahkan di increment 2.
+
+## Permukaan berita, sebagaimana dibentuk increment 3
+
+Halaman berita bukan lagi chrome katalog yang diisi artikel. Keduanya kini punya header sendiri (bilah utilitas berisi tanggal WIB, kontak, dan ikon akun resmi; nav delapan item; **panel Daerah**, yang selalu dirender penuh oleh server dengan keempat belas kabupaten/kota dan hanya *dilipat* oleh skrip, sehingga pembaca tanpa JavaScript tetap melihat semua tautannya; ticker "Terkini"), footer sendiri (kolom Rubrik/Umum/Daerah, direktori 24 Mitra, leaderboard di atas footer, tautan ke atas), serta **satu sidebar bersama** di setiap halaman berita berkolom samping — daftar bertab Terbaru/Mitra Borneo, tiga slot iklan, kotak buletin, awan tag.
+
+Empat keputusan di dalam permukaan itu layak dibawa terus:
+
+- **Slot iklan yang tidak terisi tidak merender apa pun.** Bukan bingkai kosong, bukan placeholder — kotak placeholder di situs rujukan adalah gejala inventarisnya, bukan tujuan desain.
+- **"Terpopuler" nyata atau tidak ada sama sekali.** Ia memeringkat dari rollup milik `visitor_analytics` dan jatuh ke "terbaru" secara diam-diam di kode, tidak pernah mengumumkan peringkat yang tak didukung datanya.
+- **Pemutar baca-nyaring hanya ditawarkan di tempat ia berfungsi.** Kartunya dikirim `hidden` dan baru dibuka ketika peramban benar-benar punya `speechSynthesis` beserta suaranya; sorotan yang digambarnya saat membaca berupa outline, sehingga artikel tidak pernah bergeser di bawah orang yang sedang mendengarkan.
+- **Lambang lembaga milik lembaga itu.** Satu unggahan melayani seluruh artikel kanal tersebut, dan artikel yang lembaganya tak punya lambang memang tidak punya ([ADR-0014](adr/0014-the-institution-owns-the-emblem-not-the-post.md)).
 
 ## Belum dibangun
 

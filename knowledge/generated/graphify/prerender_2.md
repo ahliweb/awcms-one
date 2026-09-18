@@ -1,17 +1,17 @@
 ---
-source_file: "apps/storefront/src/pages/csp.json.ts"
+source_file: "apps/storefront/src/pages/feed.xml.ts"
 type: "code"
-community: "Marketing Read Models"
-location: "L47"
+community: "getProducts"
+location: "L25"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Marketing_Read_Models
+  - community/getProducts
 ---
 
 # prerender
 
 ## Connections
-- [[csp.json.ts]] - `contains` [EXTRACTED]
+- [[pagesfeed.xml.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Marketing_Read_Models
+#graphify/code #graphify/EXTRACTED #community/getProducts

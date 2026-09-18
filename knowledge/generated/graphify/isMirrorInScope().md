@@ -1,12 +1,12 @@
 ---
 source_file: "packages/gerbang/lib/docs-i18n-checks.mjs"
 type: "code"
-community: "Translation Mirror Audit"
+community: "audit-graf.mjs"
 location: "L153"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Translation_Mirror_Audit
+  - community/audit-grafmjs
 ---
 
 # isMirrorInScope()
@@ -21,4 +21,4 @@ tags:
 - [[listMirrors()]] - `indirect_call` [INFERRED]
 - [[listMirrors()_1]] - `indirect_call` [INFERRED]
 
-#graphify/code #graphify/EXTRACTED #community/Translation_Mirror_Audit
+#graphify/code #graphify/EXTRACTED #community/audit-grafmjs

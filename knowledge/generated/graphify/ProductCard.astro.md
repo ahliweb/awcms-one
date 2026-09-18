@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/components/katalog/ProductCard.astro"
 type: "code"
-community: "Price Formatting"
+community: "product/[slug].astro"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Price_Formatting
+  - community/product/slugastro
 ---
 
 # ProductCard.astro
@@ -20,4 +20,4 @@ tags:
 - [[productslug.astro]] - `imports_from` [EXTRACTED]
 - [[produk.astro]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Price_Formatting
+#graphify/code #graphify/EXTRACTED #community/product/slugastro

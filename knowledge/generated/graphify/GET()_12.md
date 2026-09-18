@@ -1,23 +1,20 @@
 ---
-source_file: "apps/storefront/src/pages/rubrik/[slug]/feed.xml.ts"
+source_file: "apps/storefront/src/pages/index/pengalihan-legacy.json.ts"
 type: "code"
-community: "News RSS Feed"
-location: "L18"
+community: "getVideo"
+location: "L20"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/News_RSS_Feed
+  - community/getVideo
 ---
 
 # GET()
 
 ## Connections
-- [[slugfeed.xml.ts]] - `contains` [EXTRACTED]
-- [[absoluteUrl()]] - `calls` [EXTRACTED]
-- [[getPost()]] - `calls` [EXTRACTED]
-- [[getRubrik()]] - `calls` [EXTRACTED]
-- [[getSiteIdentity()]] - `calls` [EXTRACTED]
-- [[renderBeritaRssXml()]] - `calls` [EXTRACTED]
-- [[renderPortableText()]] - `calls` [EXTRACTED]
+- [[buildLegacyRedirectMap()]] - `calls` [EXTRACTED]
+- [[getLegacyRedirectRows()]] - `calls` [EXTRACTED]
+- [[getVideo()]] - `calls` [EXTRACTED]
+- [[pengalihan-legacy.json.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/News_RSS_Feed
+#graphify/code #graphify/EXTRACTED #community/getVideo

@@ -1,12 +1,12 @@
 ---
 source_file: "packages/gerbang/lib/docs-i18n-checks.mjs"
 type: "code"
-community: "Translation Mirror Audit"
+community: "audit-graf.mjs"
 location: "L129"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Translation_Mirror_Audit
+  - community/audit-grafmjs
 ---
 
 # deriveSourcePath()
@@ -19,4 +19,4 @@ tags:
 - [[isMirrorInScope()]] - `calls` [EXTRACTED]
 - [[runChecks()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Translation_Mirror_Audit
+#graphify/code #graphify/EXTRACTED #community/audit-grafmjs

@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/csp-asal-media.ts"
 type: "code"
-community: "Storefront Server & CSP"
+community: "katalog-csp-media.test.ts"
 location: "L68"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Storefront_Server__CSP
+  - community/katalog-csp-mediatestts
 ---
 
 # collectOrigins()
@@ -17,4 +17,4 @@ tags:
 - [[katalog-csp-media.test.ts]] - `imports` [EXTRACTED]
 - [[originOf()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Storefront_Server__CSP
+#graphify/code #graphify/EXTRACTED #community/katalog-csp-mediatestts

@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/berita.ts"
 type: "code"
-community: "Rubrik Hierarchy"
-location: "L228"
+community: "berita.ts"
+location: "L263"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Rubrik_Hierarchy
+  - community/beritats
 ---
 
 # toPublicRubrikNode()
@@ -17,4 +17,4 @@ tags:
 - [[getRubrik()]] - `calls` [EXTRACTED]
 - [[getRubrikTree()]] - `indirect_call` [INFERRED]
 
-#graphify/code #graphify/EXTRACTED #community/Rubrik_Hierarchy
+#graphify/code #graphify/EXTRACTED #community/beritats

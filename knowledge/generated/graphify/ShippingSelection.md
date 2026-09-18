@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/toko-klien.ts"
 type: "code"
-community: "Order Session & Phone"
+community: "checkout.ts"
 location: "L57"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Order_Session__Phone
+  - community/checkoutts
 ---
 
 # ShippingSelection
@@ -15,4 +15,4 @@ tags:
 - [[checkout.ts]] - `imports` [EXTRACTED]
 - [[toko-klien.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Order_Session__Phone
+#graphify/code #graphify/EXTRACTED #community/checkoutts

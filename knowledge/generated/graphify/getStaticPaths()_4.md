@@ -1,19 +1,19 @@
 ---
-source_file: "apps/storefront/src/pages/index/wilayah-kabupaten-[provinceCode].json.ts"
+source_file: "apps/storefront/src/pages/rubrik/[slug]/feed.xml.ts"
 type: "code"
-community: "Checkout Region Data"
+community: "[n].astro"
 location: "L13"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Checkout_Region_Data
+  - community/nastro
 ---
 
 # getStaticPaths()
 
 ## Connections
-- [[getCheckoutProvinces()]] - `calls` [EXTRACTED]
-- [[getCheckoutRegencies()]] - `calls` [EXTRACTED]
-- [[wilayah-kabupaten-provinceCode.json.ts]] - `contains` [EXTRACTED]
+- [[slugfeed.xml.ts]] - `contains` [EXTRACTED]
+- [[flattenRubrikTree()]] - `calls` [EXTRACTED]
+- [[getRubrikTree()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Checkout_Region_Data
+#graphify/code #graphify/EXTRACTED #community/nastro

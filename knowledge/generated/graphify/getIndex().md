@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/berita.ts"
 type: "code"
-community: "News Layout & Archive"
-location: "L157"
+community: "Sidebar.astro"
+location: "L192"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/News_Layout__Archive
+  - community/Sidebarastro
 ---
 
 # getIndex()
@@ -22,6 +22,7 @@ tags:
 - [[getPost()]] - `calls` [EXTRACTED]
 - [[getPosts()]] - `calls` [EXTRACTED]
 - [[getRelatedPosts()]] - `calls` [EXTRACTED]
+- [[getResolvedMedia()]] - `calls` [EXTRACTED]
 - [[getRubrik()]] - `calls` [EXTRACTED]
 - [[getRubrikTree()]] - `calls` [EXTRACTED]
 - [[getTag()]] - `calls` [EXTRACTED]
@@ -30,4 +31,4 @@ tags:
 - [[listArsipBulan()]] - `calls` [EXTRACTED]
 - [[listAuthors()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/News_Layout__Archive
+#graphify/code #graphify/EXTRACTED #community/Sidebarastro

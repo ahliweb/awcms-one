@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/awcms/blog.ts"
 type: "code"
-community: "Ad Placements & Blog Client"
-location: "L257"
+community: "lembaga.ts"
+location: "L268"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Ad_Placements__Blog_Client
+  - community/lembagats
 ---
 
 # getAllInstitutions()
@@ -17,6 +17,9 @@ tags:
 - [[buildIndex()]] - `calls` [EXTRACTED]
 - [[buildMitraList()]] - `calls` [EXTRACTED]
 - [[fetchAllInstitutions()]] - `calls` [EXTRACTED]
+- [[getDaerahList()]] - `calls` [EXTRACTED]
+- [[getMitraList()]] - `calls` [EXTRACTED]
 - [[lembaga.ts]] - `imports` [EXTRACTED]
+- [[navigasi-berita.ts]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Ad_Placements__Blog_Client
+#graphify/code #graphify/EXTRACTED #community/lembagats

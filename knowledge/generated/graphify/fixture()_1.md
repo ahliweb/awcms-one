@@ -1,20 +1,22 @@
 ---
 source_file: "apps/storefront/scripts/stub-awcms.mjs"
 type: "code"
-community: "AWCMS Stub Server"
-location: "L111"
+community: "stub-awcms.mjs"
+location: "L138"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/AWCMS_Stub_Server
+  - community/stub-awcmsmjs
 ---
 
 # fixture()
 
 ## Connections
+- [[analyticsPages()]] - `calls` [EXTRACTED]
 - [[findVoucher()]] - `calls` [EXTRACTED]
 - [[productCatalog()]] - `calls` [EXTRACTED]
+- [[resolveMediaObjects()]] - `calls` [EXTRACTED]
 - [[storeSettings()]] - `calls` [EXTRACTED]
 - [[stub-awcms.mjs]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/AWCMS_Stub_Server
+#graphify/code #graphify/EXTRACTED #community/stub-awcmsmjs

@@ -1,18 +1,18 @@
 ---
-source_file: "apps/storefront/tests/katalog-build-smoke.test.ts"
+source_file: "apps/storefront/tests/analitik-build-smoke.test.ts"
 type: "code"
-community: "Build & E2E Tooling"
+community: "bun"
 location: "L21"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Build__E2E_Tooling
+  - community/bun
 ---
 
 # canSpawnBun()
 
 ## Connections
+- [[analitik-build-smoke.test.ts]] - `contains` [EXTRACTED]
 - [[bun_1]] - `references` [EXTRACTED]
-- [[katalog-build-smoke.test.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Build__E2E_Tooling
+#graphify/code #graphify/EXTRACTED #community/bun

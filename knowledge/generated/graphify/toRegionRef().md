@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/berita.ts"
 type: "code"
-community: "Rubrik & Region Rendering"
-location: "L283"
+community: "berita.ts"
+location: "L326"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Rubrik__Region_Rendering
+  - community/beritats
 ---
 
 # toRegionRef()
@@ -16,7 +16,9 @@ tags:
 - [[berita.ts]] - `contains` [EXTRACTED]
 - [[buildIndex()]] - `calls` [EXTRACTED]
 - [[getDaerah()]] - `indirect_call` [INFERRED]
+- [[getDaerahList()]] - `indirect_call` [INFERRED]
 - [[listDaerahLinks()]] - `indirect_call` [INFERRED]
+- [[navigasi-berita.ts]] - `imports` [EXTRACTED]
 - [[slugifyName()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Rubrik__Region_Rendering
+#graphify/code #graphify/EXTRACTED #community/beritats

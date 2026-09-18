@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/portable-text.ts"
 type: "code"
-community: "Portable Text Rendering"
-location: "L463"
+community: "portable-text.ts"
+location: "L670"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Portable_Text_Rendering
+  - community/portable-textts
 ---
 
 # PORTABLE_TEXT_BLOCK_STYLES
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[portable-text.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Portable_Text_Rendering
+#graphify/code #graphify/EXTRACTED #community/portable-textts

@@ -1,17 +1,17 @@
 ---
-source_file: "apps/storefront/src/pages/rubrik/[slug]/index.astro"
+source_file: "apps/storefront/src/pages/tag/[slug].astro"
 type: "code"
-community: "Rubrik Hierarchy"
-location: "L30"
+community: "Sidebar.astro"
+location: "L25"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Rubrik_Hierarchy
+  - community/Sidebarastro
 ---
 
 # canonicalPath
 
 ## Connections
-- [[slugindex.astro]] - `contains` [EXTRACTED]
+- [[tagslug.astro]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Rubrik_Hierarchy
+#graphify/code #graphify/EXTRACTED #community/Sidebarastro

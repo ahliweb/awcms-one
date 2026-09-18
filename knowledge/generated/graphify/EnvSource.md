@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/env.ts"
 type: "code"
-community: "Site Config & Env"
+community: "readEnv"
 location: "L23"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Site_Config__Env
+  - community/readEnv
 ---
 
 # EnvSource
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[env.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Site_Config__Env
+#graphify/code #graphify/EXTRACTED #community/readEnv

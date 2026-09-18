@@ -1,12 +1,12 @@
 ---
 source_file: "packages/kontrak/src/promosi.ts"
 type: "code"
-community: "Kontrak Type Re-exports"
+community: "index.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Kontrak_Type_Re-exports
+  - community/indexts
 ---
 
 # promosi.ts
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[index.ts]] - `re_exports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Kontrak_Type_Re-exports
+#graphify/code #graphify/EXTRACTED #community/indexts

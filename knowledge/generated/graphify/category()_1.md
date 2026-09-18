@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/katalog-jsonld.test.ts"
 type: "code"
-community: "Catalog Contract Types"
+community: "kategori/[slug].astro"
 location: "L57"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Catalog_Contract_Types
+  - community/kategori/slugastro
 ---
 
 # category()
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[katalog-jsonld.test.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Catalog_Contract_Types
+#graphify/code #graphify/EXTRACTED #community/kategori/slugastro

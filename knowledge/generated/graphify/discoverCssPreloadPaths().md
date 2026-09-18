@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/server/penyaji.mjs"
 type: "code"
-community: "Storefront Server & CSP"
-location: "L423"
+community: "penyaji.mjs"
+location: "L509"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Storefront_Server__CSP
+  - community/penyajimjs
 ---
 
 # discoverCssPreloadPaths()
@@ -16,4 +16,4 @@ tags:
 - [[penyaji.test.ts]] - `imports` [EXTRACTED]
 - [[run()_4]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Storefront_Server__CSP
+#graphify/code #graphify/EXTRACTED #community/penyajimjs

@@ -1,19 +1,17 @@
 ---
-source_file: "apps/storefront/src/pages/theme-tokens.css.ts"
+source_file: "apps/storefront/src/pages/robots.txt.ts"
 type: "code"
-community: "Theme Token Fetch"
-location: "L23"
+community: "site.ts"
+location: "L37"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Theme_Token_Fetch
+  - community/sitets
 ---
 
 # GET()
 
 ## Connections
-- [[contrastingForeground()]] - `calls` [EXTRACTED]
-- [[getSiteTheme()]] - `calls` [EXTRACTED]
-- [[theme-tokens.css.ts]] - `contains` [EXTRACTED]
+- [[robots.txt.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Theme_Token_Fetch
+#graphify/code #graphify/EXTRACTED #community/sitets

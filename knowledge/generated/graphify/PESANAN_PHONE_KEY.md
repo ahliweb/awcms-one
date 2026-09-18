@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/pesanan-sesi.ts"
 type: "code"
-community: "Order Session & Phone"
+community: "scripts/pesanan.ts"
 location: "L16"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Order_Session__Phone
+  - community/scripts/pesanants
 ---
 
 # PESANAN_PHONE_KEY
@@ -16,4 +16,4 @@ tags:
 - [[pesanan-sesi.ts]] - `contains` [EXTRACTED]
 - [[scriptspesanan.ts]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Order_Session__Phone
+#graphify/code #graphify/EXTRACTED #community/scripts/pesanants

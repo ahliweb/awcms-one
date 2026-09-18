@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/berita-terkini.ts"
 type: "code"
-community: "Recent News Loader"
+community: "pages/index.astro"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Recent_News_Loader
+  - community/pages/indexastro
 ---
 
 # berita-terkini.ts
@@ -20,4 +20,4 @@ tags:
 - [[katalog-berita-terkini.test.ts]] - `imports_from` [EXTRACTED]
 - [[pagesindex.astro]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Recent_News_Loader
+#graphify/code #graphify/EXTRACTED #community/pages/indexastro

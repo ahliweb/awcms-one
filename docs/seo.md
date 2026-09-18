@@ -47,6 +47,15 @@ Two things this issue considered and did not do: `noindex` on rubrik pages beyon
 
 `apps/storefront/src/lib/sitemap.ts`'s `registerSitemapSource(name, source)` registers a named URL-producing function; twelve sources are registered across catalog and news (`static-routes`, `static-pages`, `berita-front`, `berita-posts`, `berita-video`, `berita-rubrik`, `berita-daerah`, `berita-mitra`, `berita-tag`, `katalog-produk`, `katalog-kategori`, `katalog-product-detail`). `chunkSitemapEntries` splits the combined result into chunks of at most 5,000 URLs each; `sitemap-index.xml` enumerates the resulting `/sitemap-{n}.xml` files. `feed.xml` (products) and `berita/feed.xml` + per-rubrik `rubrik/{slug}/feed.xml` (news, RSS 2.0, `content:encoded`) are separate, hand-built feeds, not sitemap sources.
 
+## Legacy redirects: two layers, rows first
+
+Two mechanisms answer a legacy URL, in this order ([ADR-0013](adr/0013-rule-based-legacy-redirects-beside-the-row-based-map.md)):
+
+1. **The row-based map** below — one `awcms_seo_redirects` row per URL, for facts nobody can derive (an article's old numeric id → its new slug).
+2. **The rule module** (`apps/storefront/server/pengalihan-aturan.mjs`, issue #55) — seputarborneo's rubrik/daerah/mitra/UMUM archives, its `/rubriks/?news=&kt=&lanjut=` pagination, its `/video/?video=` shape, its three static pages, its search box and `/img/?news=`, all resolved from a finite table with no CMS row at all. Consulted only when the row map misses, so an operator-authored row always wins.
+
+Search redirects with `302` (it is a query, not a moved document); everything else `301`. See [`docs/routing.md`](routing.md) for the full rule table.
+
 ## The legacy-redirect map
 
 Every incoming seputarborneo (`/news/{id}-{slug}.html`) or beritasampit (`/{yyyy}/{mm}/{dd}/{slug}/`) URL is resolved against a map built from `apps/cms`'s own `awcms_seo_redirects` rows and served with a real `301` by `apps/storefront/server/penyaji.mjs` — see [`docs/routing.md`](routing.md) for the exact mechanism. This is the increment-2 answer to increment 1's "not built: sitemap, feed, robots.txt" line — all three now exist, and this redirect map is what makes cutover from either legacy platform not cost every indexed link and bookmark.

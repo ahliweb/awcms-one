@@ -1,12 +1,12 @@
 ---
 source_file: "packages/gerbang/audit-dokumen.mjs"
 type: "code"
-community: "Document Audit Gate"
+community: "audit-dokumen.mjs"
 location: "L154"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Document_Audit_Gate
+  - community/audit-dokumenmjs
 ---
 
 # SKIP_PATHS
@@ -15,4 +15,4 @@ tags:
 - [[audit-dokumen.mjs]] - `contains` [EXTRACTED]
 - [[markdownFiles()]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Document_Audit_Gate
+#graphify/code #graphify/EXTRACTED #community/audit-dokumenmjs

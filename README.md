@@ -20,7 +20,7 @@ The commerce module this platform needs cannot stand on its own — it depends o
 
 ## Approach: foundation first, then one thin vertical slice, then the full store
 
-Scaffold-first (increment 1: catalog listing + product detail, no live database), then **increment 2** (epic [#21](https://github.com/ahliweb/awcms-one/issues/21)): full BjekMart/news-portal parity — a provisioned PostgreSQL for local development and CI, the complete `commerce` module (catalog depth, marketing, orders), and the complete public site (catalog, news, cart, checkout, order tracking, wishlist).
+Scaffold-first (increment 1: catalog listing + product detail, no live database), then **increment 2** (epic [#21](https://github.com/ahliweb/awcms-one/issues/21)): full BjekMart/news-portal parity — a provisioned PostgreSQL for local development and CI, the complete `commerce` module (catalog depth, marketing, orders), and the complete public site (catalog, news, cart, checkout, order tracking, wishlist). Then **increment 3** (epic [#46](https://github.com/ahliweb/awcms-one/issues/46)): functional parity with seputarborneo.com v2.4.0 — real images on every surface, the news chrome and shared sidebar, the newsletter form, the share row, the "Dengarkan berita ini" read-aloud player, the ad popup, complete social metadata, rule-based legacy redirects, first-party visitor analytics with an opt-in GA4 switch, a seputarborneo-shaped seed and a legacy-dump exporter, and the institution emblem.
 
 ## What is here today, and what is not
 

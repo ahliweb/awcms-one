@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/awcms/profil.ts"
 type: "code"
-community: "Base Layout & Site Identity"
+community: "profil.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Base_Layout__Site_Identity
+  - community/profilts
 ---
 
 # profil.ts
@@ -14,12 +14,17 @@ tags:
 ## Connections
 - [[ADR-0102]] - `cites` [EXTRACTED]
 - [[AwcmsApiError]] - `imports` [EXTRACTED]
+- [[BarisBagikan.astro]] - `imports_from` [EXTRACTED]
 - [[BaseLayout.astro]] - `imports_from` [EXTRACTED]
+- [[BeritaLayout.astro]] - `imports_from` [EXTRACTED]
+- [[BilahUtilitas.astro]] - `imports_from` [EXTRACTED]
 - [[ComposedSiteIdentity]] - `contains` [EXTRACTED]
 - [[DEFAULT_IDENTITY]] - `imports` [EXTRACTED]
 - [[EMPTY_PAYLOAD]] - `contains` [EXTRACTED]
 - [[Footer.astro]] - `imports_from` [EXTRACTED]
+- [[FooterBerita.astro]] - `imports_from` [EXTRACTED]
 - [[Header.astro]] - `imports_from` [EXTRACTED]
+- [[NavBerita.astro]] - `imports_from` [EXTRACTED]
 - [[SiteIdentity]] - `contains` [EXTRACTED]
 - [[SocialLink]] - `contains` [EXTRACTED]
 - [[slugfeed.xml.ts]] - `imports_from` [EXTRACTED]
@@ -32,7 +37,7 @@ tags:
 - [[fetchSiteIdentity()]] - `contains` [EXTRACTED]
 - [[flash-sale.astro]] - `imports_from` [EXTRACTED]
 - [[getSiteIdentity()]] - `contains` [EXTRACTED]
-- [[isExpectedRefusal()_2]] - `contains` [EXTRACTED]
+- [[isExpectedRefusal()_1]] - `contains` [EXTRACTED]
 - [[keranjang.astro]] - `imports_from` [EXTRACTED]
 - [[kontak.astro]] - `imports_from` [EXTRACTED]
 - [[manifest.webmanifest.ts]] - `imports_from` [EXTRACTED]
@@ -49,4 +54,4 @@ tags:
 - [[videoslug.astro]] - `imports_from` [EXTRACTED]
 - [[warnDegraded()]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Base_Layout__Site_Identity
+#graphify/code #graphify/EXTRACTED #community/profilts

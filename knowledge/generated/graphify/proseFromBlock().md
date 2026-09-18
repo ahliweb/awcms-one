@@ -1,12 +1,12 @@
 ---
 source_file: "packages/gerbang/audit-dokumen.mjs"
 type: "code"
-community: "Document Audit Gate"
-location: "L776"
+community: "audit-dokumen.mjs"
+location: "L807"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Document_Audit_Gate
+  - community/audit-dokumenmjs
 ---
 
 # proseFromBlock()
@@ -14,6 +14,6 @@ tags:
 ## Connections
 - [[audit-dokumen.mjs]] - `contains` [EXTRACTED]
 - [[auditLinkedCounts()]] - `calls` [EXTRACTED]
-- [[join()]] - `calls` [EXTRACTED]
+- [[join()_1]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Document_Audit_Gate
+#graphify/code #graphify/EXTRACTED #community/audit-dokumenmjs

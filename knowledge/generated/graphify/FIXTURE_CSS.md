@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/theme.test.ts"
 type: "code"
-community: "Theme Token Fetch"
+community: "theme.ts"
 location: "L5"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Theme_Token_Fetch
+  - community/themets
 ---
 
 # FIXTURE_CSS
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[theme.test.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Theme_Token_Fetch
+#graphify/code #graphify/EXTRACTED #community/themets

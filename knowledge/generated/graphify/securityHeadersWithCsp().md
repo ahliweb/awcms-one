@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/server/penyaji.mjs"
 type: "code"
-community: "Storefront Server & CSP"
-location: "L243"
+community: "penyaji.mjs"
+location: "L314"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Storefront_Server__CSP
+  - community/penyajimjs
 ---
 
 # securityHeadersWithCsp()
@@ -16,4 +16,4 @@ tags:
 - [[penyaji.mjs]] - `contains` [EXTRACTED]
 - [[securityHeaders()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Storefront_Server__CSP
+#graphify/code #graphify/EXTRACTED #community/penyajimjs

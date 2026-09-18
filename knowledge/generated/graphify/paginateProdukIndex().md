@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/catalog.ts"
 type: "code"
-community: "Client Product Search"
+community: "produk-listing.ts"
 location: "L657"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Client_Product_Search
+  - community/produk-listingts
 ---
 
 # paginateProdukIndex()
@@ -17,6 +17,6 @@ tags:
 - [[katalog-catalog.test.ts]] - `imports` [EXTRACTED]
 - [[produk-listing.ts]] - `imports` [EXTRACTED]
 - [[render()_1]] - `calls` [EXTRACTED]
-- [[run()_5]] - `calls` [EXTRACTED]
+- [[run()_3]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Client_Product_Search
+#graphify/code #graphify/EXTRACTED #community/produk-listingts

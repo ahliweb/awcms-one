@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/sitemap.test.ts"
 type: "code"
-community: "Sitemap Generation"
+community: "sitemap-sources.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Sitemap_Generation
+  - community/sitemap-sourcests
 ---
 
 # sitemap.test.ts
@@ -22,4 +22,4 @@ tags:
 - [[resetSitemapSourcesForTests()]] - `imports` [EXTRACTED]
 - [[sitemap.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Sitemap_Generation
+#graphify/code #graphify/EXTRACTED #community/sitemap-sourcests

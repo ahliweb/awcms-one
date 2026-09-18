@@ -1,12 +1,12 @@
 ---
 source_file: "packages/gerbang/lib/changeset.mjs"
 type: "code"
-community: "Changeset Parsing"
+community: "rilis.mjs"
 location: "L45"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Changeset_Parsing
+  - community/rilismjs
 ---
 
 # CHANGESET_TYPES
@@ -16,4 +16,4 @@ tags:
 - [[validateChangeset()]] - `references` [EXTRACTED]
 - [[versi-changeset.test.mjs]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Changeset_Parsing
+#graphify/code #graphify/EXTRACTED #community/rilismjs

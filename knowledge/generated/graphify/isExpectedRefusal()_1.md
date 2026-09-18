@@ -1,19 +1,18 @@
 ---
-source_file: "apps/storefront/src/lib/awcms/pages.ts"
+source_file: "apps/storefront/src/lib/awcms/profil.ts"
 type: "code"
-community: "Footer & Static Pages"
-location: "L51"
+community: "profil.ts"
+location: "L137"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Footer__Static_Pages
+  - community/profilts
 ---
 
 # isExpectedRefusal()
 
 ## Connections
-- [[fetchStaticPage()]] - `calls` [EXTRACTED]
-- [[fetchStaticPageList()]] - `calls` [EXTRACTED]
-- [[pages.ts]] - `contains` [EXTRACTED]
+- [[fetchSiteIdentity()]] - `calls` [EXTRACTED]
+- [[profil.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Footer__Static_Pages
+#graphify/code #graphify/EXTRACTED #community/profilts

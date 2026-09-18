@@ -1,12 +1,12 @@
 ---
 source_file: "tests/root-env-example-coverage.test.mjs"
 type: "code"
-community: "Env Example Coverage Test"
+community: "root-env-example-coverage.test.mjs"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Env_Example_Coverage_Test
+  - community/root-env-example-coveragetestmjs
 ---
 
 # root-env-example-coverage.test.mjs
@@ -17,4 +17,4 @@ tags:
 - [[namesFromComposeInterpolation()]] - `contains` [EXTRACTED]
 - [[namesFromProcessEnv()]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Env_Example_Coverage_Test
+#graphify/code #graphify/EXTRACTED #community/root-env-example-coveragetestmjs

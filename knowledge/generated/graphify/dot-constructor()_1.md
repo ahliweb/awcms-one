@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/awcms/toko-origin.ts"
 type: "code"
-community: "Storefront Server & CSP"
+community: "requireAwcmsOrigin"
 location: "L41"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Storefront_Server__CSP
+  - community/requireAwcmsOrigin
 ---
 
 # .constructor()
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[AwcmsOriginConfigError]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Storefront_Server__CSP
+#graphify/code #graphify/EXTRACTED #community/requireAwcmsOrigin

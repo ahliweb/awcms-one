@@ -1,18 +1,18 @@
 ---
-source_file: "apps/storefront/src/pages/berita/[slug].astro"
+source_file: "apps/storefront/src/pages/halaman/[slug].astro"
 type: "code"
-community: "News Front Page"
-location: "L34"
+community: "pages.ts"
+location: "L13"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/News_Front_Page
+  - community/pagests
 ---
 
 # getStaticPaths()
 
 ## Connections
-- [[beritaslug.astro]] - `contains` [EXTRACTED]
-- [[getPosts()]] - `calls` [EXTRACTED]
+- [[halamanslug.astro]] - `contains` [EXTRACTED]
+- [[listStaticPages()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/News_Front_Page
+#graphify/code #graphify/EXTRACTED #community/pagests

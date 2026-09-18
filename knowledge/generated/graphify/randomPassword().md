@@ -1,12 +1,12 @@
 ---
 source_file: "tools/seed-borneojek-mart.ts"
 type: "code"
-community: "Tenant Seed Script"
-location: "L111"
+community: "seed-borneojek-mart.ts"
+location: "L164"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Tenant_Seed_Script
+  - community/seed-borneojek-martts
 ---
 
 # randomPassword()
@@ -15,4 +15,4 @@ tags:
 - [[ensureTenantAndSession()]] - `calls` [EXTRACTED]
 - [[seed-borneojek-mart.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Tenant_Seed_Script
+#graphify/code #graphify/EXTRACTED #community/seed-borneojek-martts

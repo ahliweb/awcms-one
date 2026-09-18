@@ -1,12 +1,12 @@
 ---
 source_file: "packages/gerbang/audit-dokumen.mjs"
 type: "code"
-community: "Document Audit Gate"
+community: "audit-dokumen.mjs"
 location: "L224"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Document_Audit_Gate
+  - community/audit-dokumenmjs
 ---
 
 # existsAt()
@@ -16,6 +16,6 @@ tags:
 - [[audit-dokumen.mjs]] - `contains` [EXTRACTED]
 - [[auditLinks()]] - `calls` [EXTRACTED]
 - [[auditNamedPaths()]] - `calls` [EXTRACTED]
-- [[join()]] - `calls` [EXTRACTED]
+- [[join()_1]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Document_Audit_Gate
+#graphify/code #graphify/EXTRACTED #community/audit-dokumenmjs

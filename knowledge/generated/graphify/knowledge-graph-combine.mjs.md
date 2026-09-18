@@ -1,12 +1,12 @@
 ---
 source_file: "tools/knowledge-graph-combine.mjs"
 type: "code"
-community: "Knowledge Graph Combine"
+community: "knowledge-graph-combine.mjs"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Knowledge_Graph_Combine
+  - community/knowledge-graph-combinemjs
 ---
 
 # knowledge-graph-combine.mjs
@@ -33,4 +33,4 @@ tags:
 - [[subtree-guard.mjs]] - `imports_from` [EXTRACTED]
 - [[validateGraphFile()]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Knowledge_Graph_Combine
+#graphify/code #graphify/EXTRACTED #community/knowledge-graph-combinemjs

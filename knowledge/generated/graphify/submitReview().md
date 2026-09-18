@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/toko-klien.ts"
 type: "code"
-community: "Storefront Commerce Client"
+community: "toko-klien.ts"
 location: "L442"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Storefront_Commerce_Client
+  - community/toko-klients
 ---
 
 # submitReview()
@@ -16,4 +16,4 @@ tags:
 - [[toko-klien.test.ts]] - `imports` [EXTRACTED]
 - [[toko-klien.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Storefront_Commerce_Client
+#graphify/code #graphify/EXTRACTED #community/toko-klients

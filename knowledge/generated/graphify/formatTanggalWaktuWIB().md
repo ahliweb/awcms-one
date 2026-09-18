@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/tanggal.ts"
 type: "code"
-community: "Article Card & View"
+community: "Sidebar.astro"
 location: "L58"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Article_Card__View
+  - community/Sidebarastro
 ---
 
 # formatTanggalWaktuWIB()
@@ -18,4 +18,4 @@ tags:
 - [[formatWaktuWIB()]] - `calls` [EXTRACTED]
 - [[tanggal.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Article_Card__View
+#graphify/code #graphify/EXTRACTED #community/Sidebarastro

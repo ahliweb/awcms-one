@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/server/penyaji.mjs"
 type: "code"
-community: "Storefront Server & CSP"
-location: "L379"
+community: "penyaji.mjs"
+location: "L461"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Storefront_Server__CSP
+  - community/penyajimjs
 ---
 
 # legacyRedirectLocation()
@@ -15,6 +15,8 @@ tags:
 - [[berita-penyaji-legacy.test.ts]] - `imports` [EXTRACTED]
 - [[createServer()]] - `calls` [EXTRACTED]
 - [[normalizedPath()]] - `calls` [EXTRACTED]
+- [[pengalihan-aturan.test.ts]] - `imports` [EXTRACTED]
 - [[penyaji.mjs]] - `contains` [EXTRACTED]
+- [[ruleBasedRedirectLocation()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Storefront_Server__CSP
+#graphify/code #graphify/EXTRACTED #community/penyajimjs

@@ -1,12 +1,12 @@
 ---
 source_file: "tools/knowledge-graph-combine.mjs"
 type: "code"
-community: "Knowledge Graph Combine"
+community: "knowledge-graph-combine.mjs"
 location: "L88"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Knowledge_Graph_Combine
+  - community/knowledge-graph-combinemjs
 ---
 
 # cmsResult
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[knowledge-graph-combine.mjs]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Knowledge_Graph_Combine
+#graphify/code #graphify/EXTRACTED #community/knowledge-graph-combinemjs

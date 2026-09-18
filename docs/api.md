@@ -2,7 +2,7 @@
 
 # API
 
-Two API surfaces live under `/api/v1/commerce/*`, at two different trust levels. Source of truth is [`apps/cms/openapi/modules/commerce.openapi.yaml`](../apps/cms/openapi/modules/commerce.openapi.yaml), merged by `bun run openapi:bundle` (inside `apps/cms`) into the full `openapi/awcms-public-api.openapi.yaml` document; this page explains the shape, it is not a second copy of the spec.
+Two API surfaces live under `/api/v1/commerce/*`, at two different trust levels. **Beyond commerce, `apps/storefront` calls seven more `apps/cms` surfaces** — the news content itself and everything increment 3 added around it; they are listed in "What the storefront calls outside commerce" below. Source of truth is [`apps/cms/openapi/modules/commerce.openapi.yaml`](../apps/cms/openapi/modules/commerce.openapi.yaml), merged by `bun run openapi:bundle` (inside `apps/cms`) into the full `openapi/awcms-public-api.openapi.yaml` document; this page explains the shape, it is not a second copy of the spec.
 
 | | Owner API | Storefront (anonymous) API |
 | --- | --- | --- |
@@ -144,6 +144,24 @@ All twelve are registered in the three places `awcms` keeps in sync (`domain-eve
 | `503` | `MEDIA_UNAVAILABLE` | The payment-proof upload-session routes, always, in this increment |
 
 A `categoryId`/`parentId` that is unknown, soft-deleted, or belongs to another tenant is rejected with the **same** 400 in every case — see [`docs/skema-basis-data.md`](skema-basis-data.md) for why telling those three causes apart would be a cross-tenant existence oracle. The storefront API applies the identical principle at 404: `GET orders/{code}?phone=` never reveals whether the code exists at all.
+
+## What the storefront calls outside commerce
+
+Everything here is `apps/cms`'s own, owned by modules the subtree carries; this repo consumes them and documents which, so a reader looking for "where does the storefront get X" does not have to grep.
+
+| Surface | Caller | Trust level |
+| --- | --- | --- |
+| `GET /api/v1/blog/{posts,terms,institutions,pages/public}` | build (`AWCMS_API_TOKEN`) | owner, read-only |
+| `GET /api/v1/media/objects?ids=` | build | owner, read-only — `media_library.media.read`, added in increment 3 ([ADR-0011](adr/0011-storefront-media-resolves-through-the-media-objects-endpoint.md)) |
+| `GET /api/v1/news-portal/ad-placements/active` | build | owner, read-only |
+| `GET /api/v1/seo/redirects?state=active` | build | owner, read-only |
+| `GET /api/v1/site-profile/composed` | build | owner, read-only |
+| `GET /api/v1/idn-regions/regions` | build | owner, read-only — bounded to 6 concurrent requests since [issue #71](https://github.com/ahliweb/awcms-one/issues/71), under the CMS's 8 running `interactive` slots |
+| `GET /api/v1/analytics/pages?range=7d` | build | owner, read-only — `visitor_analytics.dashboard.read`, feeds "Terpopuler" |
+| `POST /api/v1/analytics/collect` | **the reader's browser** | anonymous, Origin-bound ([ADR-0012](adr/0012-first-party-visitor-analytics-with-an-opt-in-ga4-switch.md)) |
+| `POST /api/v1/newsletter/{subscribe,confirm,unsubscribe}` | **the reader's browser** | anonymous, Origin-bound; the confirm/unsubscribe **paths are a CMS contract** (`NEWSLETTER_CONFIRM_PATH`/`NEWSLETTER_UNSUBSCRIBE_PATH` in `apps/cms/src/modules/newsletter/domain/newsletter-mail.ts`), which is why this app serves `/newsletter/confirm` and `/newsletter/unsubscribe` under exactly those names |
+
+The build credential's permission set is seeded by `tools/seed-borneojek-mart.ts`; changing it there **rotates** the credential on the next seed run, so an `AWCMS_API_TOKEN` still holding the old secret starts failing with 401 (issue #57's own reconciliation step prints the replacement).
 
 ## Not built
 

@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/catalog.ts"
 type: "code"
-community: "Catalog Contract Types"
+community: "product/[slug].astro"
 location: "L497"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Catalog_Contract_Types
+  - community/product/slugastro
 ---
 
 # buildPriceTiers()
@@ -16,4 +16,4 @@ tags:
 - [[katalog-catalog.test.ts]] - `imports` [EXTRACTED]
 - [[productslug.astro]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Catalog_Contract_Types
+#graphify/code #graphify/EXTRACTED #community/product/slugastro

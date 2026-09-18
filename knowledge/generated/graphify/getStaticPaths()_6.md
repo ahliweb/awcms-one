@@ -1,18 +1,18 @@
 ---
-source_file: "apps/storefront/src/pages/kategori/[slug].astro"
+source_file: "apps/storefront/src/pages/arsip/[yyyy]/[mm].astro"
 type: "code"
-community: "Catalog Contract Types"
-location: "L26"
+community: "Sidebar.astro"
+location: "L10"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Catalog_Contract_Types
+  - community/Sidebarastro
 ---
 
 # getStaticPaths()
 
 ## Connections
-- [[getCategories()]] - `calls` [EXTRACTED]
-- [[kategorislug.astro]] - `contains` [EXTRACTED]
+- [[mm.astro]] - `contains` [EXTRACTED]
+- [[listArsipBulan()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Catalog_Contract_Types
+#graphify/code #graphify/EXTRACTED #community/Sidebarastro

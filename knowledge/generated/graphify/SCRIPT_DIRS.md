@@ -1,12 +1,12 @@
 ---
 source_file: "tests/standar-skrip.test.mjs"
 type: "code"
-community: "Knowledge Graph Audit"
+community: "audit-dokumen.mjs"
 location: "L34"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Knowledge_Graph_Audit
+  - community/audit-dokumenmjs
 ---
 
 # SCRIPT_DIRS
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[standar-skrip.test.mjs]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Knowledge_Graph_Audit
+#graphify/code #graphify/EXTRACTED #community/audit-dokumenmjs

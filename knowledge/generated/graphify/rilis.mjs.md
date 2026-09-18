@@ -1,12 +1,12 @@
 ---
 source_file: "tools/rilis.mjs"
 type: "code"
-community: "Changeset Parsing"
+community: "rilis.mjs"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Changeset_Parsing
+  - community/rilismjs
 ---
 
 # rilis.mjs
@@ -42,4 +42,4 @@ tags:
 - [[today]] - `contains` [EXTRACTED]
 - [[validateChangeset()]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Changeset_Parsing
+#graphify/code #graphify/EXTRACTED #community/rilismjs

@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/scripts/checkout.ts"
 type: "code"
-community: "Order Session & Phone"
+community: "checkout.ts"
 location: "L57"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Order_Session__Phone
+  - community/checkoutts
 ---
 
 # runCheckout()
@@ -19,4 +19,4 @@ tags:
 - [[previewIndonesianPhone()]] - `calls` [EXTRACTED]
 - [[toLineRequests()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Order_Session__Phone
+#graphify/code #graphify/EXTRACTED #community/checkoutts

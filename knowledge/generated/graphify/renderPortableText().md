@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/portable-text.ts"
 type: "code"
-community: "Portable Text Rendering"
-location: "L411"
+community: "portable-text.ts"
+location: "L613"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Portable_Text_Rendering
+  - community/portable-textts
 ---
 
 # renderPortableText()
@@ -14,7 +14,7 @@ tags:
 ## Connections
 - [[ArtikelView.astro]] - `imports` [EXTRACTED]
 - [[GET()_1]] - `calls` [EXTRACTED]
-- [[GET()_12]] - `calls` [EXTRACTED]
+- [[GET()_7]] - `calls` [EXTRACTED]
 - [[slugfeed.xml.ts]] - `imports` [EXTRACTED]
 - [[berita-portable-text.test.ts]] - `imports` [EXTRACTED]
 - [[beritafeed.xml.ts]] - `imports` [EXTRACTED]
@@ -28,4 +28,4 @@ tags:
 - [[renderProseBlock()]] - `calls` [EXTRACTED]
 - [[renderVideoNewsNode()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Portable_Text_Rendering
+#graphify/code #graphify/EXTRACTED #community/portable-textts

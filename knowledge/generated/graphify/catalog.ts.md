@@ -1,18 +1,18 @@
 ---
 source_file: "apps/storefront/src/lib/catalog.ts"
 type: "code"
-community: "Catalog Fetch Client"
+community: "catalog.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Catalog_Fetch_Client
+  - community/catalogts
 ---
 
 # catalog.ts
 
 ## Connections
-- [[ADR-0003_1]] - `cites` [EXTRACTED]
+- [[ADR-0003]] - `cites` [EXTRACTED]
 - [[CategoryNode]] - `contains` [EXTRACTED]
 - [[CategoryTree.astro]] - `imports_from` [EXTRACTED]
 - [[CommerceCategory]] - `contains` [EXTRACTED]
@@ -54,7 +54,7 @@ tags:
 - [[getProducts()]] - `contains` [EXTRACTED]
 - [[harga.ts]] - `re_exports` [EXTRACTED]
 - [[index.ts]] - `re_exports` [EXTRACTED]
-- [[isPubliclyVisible()_1]] - `contains` [EXTRACTED]
+- [[isPubliclyVisible()]] - `contains` [EXTRACTED]
 - [[isValidHexColor()]] - `imports` [EXTRACTED]
 - [[jsonld-produk.ts]] - `imports_from` [EXTRACTED]
 - [[katalog-catalog.test.ts]] - `imports_from` [EXTRACTED]
@@ -82,4 +82,4 @@ tags:
 - [[warna.test.ts]] - `imports_from` [EXTRACTED]
 - [[warna.ts]] - `re_exports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Catalog_Fetch_Client
+#graphify/code #graphify/EXTRACTED #community/catalogts

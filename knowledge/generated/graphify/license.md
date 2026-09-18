@@ -1,12 +1,12 @@
 ---
 source_file: "package.json"
 type: "code"
-community: "Root Package Manifest"
+community: "scripts"
 location: "L12"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Root_Package_Manifest
+  - community/scripts
 ---
 
 # license
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[package.json]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Root_Package_Manifest
+#graphify/code #graphify/EXTRACTED #community/scripts

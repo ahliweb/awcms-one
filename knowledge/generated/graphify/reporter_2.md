@@ -1,17 +1,17 @@
 ---
-source_file: "packages/gerbang/audit-dokumen.mjs"
+source_file: "packages/gerbang/audit-rilis.mjs"
 type: "code"
-community: "Document Audit Gate"
-location: "L106"
+community: "rilis.mjs"
+location: "L104"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Document_Audit_Gate
+  - community/rilismjs
 ---
 
 # reporter
 
 ## Connections
-- [[audit-dokumen.mjs]] - `contains` [EXTRACTED]
+- [[audit-rilis.mjs]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Document_Audit_Gate
+#graphify/code #graphify/EXTRACTED #community/rilismjs

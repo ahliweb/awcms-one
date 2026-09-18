@@ -1,10 +1,10 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](arsitektur.md)
 
-<!-- i18n-source-hash: sha256:2e0ee5e4887bb23d94ca83c1afac5f197207c5fc12df0652a111ef62c8cdffaa -->
+<!-- i18n-source-hash: sha256:2c9a07c0b4b1f8c2b0b46adc8e92988ffa5e33293f46c283bb6b27a375375a50 -->
 
 # Arsitektur
 
-Apa yang benar-benar di-deploy oleh repositori ini hari ini, dan batasan yang menjaga kedua bagiannya agar tidak diam-diam saling menyusup. Dokumen ini mendeskripsikan increment 2 — paritas penuh BjekMart/news-portal, keranjang/checkout/pelacakan-pesanan, tanpa basis data produksi hidup — sebagaimana ia ada di tree yang sudah digabung, bukan sebagaimana ia direncanakan. Lihat [`README.md`](../README.id.md) dan [`AGENTS.md`](../AGENTS.id.md) untuk tata letak workspace dan aturan kerja yang diasumsikan dokumen ini.
+Apa yang benar-benar di-deploy oleh repositori ini hari ini, dan batasan yang menjaga kedua bagiannya agar tidak diam-diam saling menyusup. Dokumen ini mendeskripsikan increment 3 — paritas BjekMart/portal-berita milik increment 2 ditambah paritas fungsional dengan seputarborneo.com v2.4.0 yang ditambahkan epic [#46](https://github.com/ahliweb/awcms-one/issues/46) (media sungguhan, chrome berita, pemutar baca-nyaring, pengalihan lawas berbasis aturan, analitik first-party, lambang lembaga), tetap tanpa basis data produksi yang hidup — sebagaimana adanya di tree yang sudah digabung, bukan sebagaimana direncanakan. Lihat [`README.md`](../README.id.md) dan [`AGENTS.md`](../AGENTS.id.md) untuk tata letak workspace dan aturan kerja yang diasumsikan dokumen ini.
 
 ## Dua deployable, satu aliran data saat-build, satu seam runtime anonim
 
@@ -53,6 +53,8 @@ Foto produk, gambar slider/testimoni, dan — sejak increment 2 — origin CMS i
 
 Ini mekanisme yang sama untuk kedua directive — entri `PUBLIC_AWCMS_ORIGIN` milik `connect-src` (issue #30) memakai ulang derivasi `img-src` yang dibangun issue #27, alih-alih menambah permukaan konfigurasi kedua.
 
+Increment 3 memperluas penurunan yang sama alih-alih menggantinya ([ADR-0011](adr/0011-storefront-media-resolves-through-the-media-objects-endpoint.md)): `img-src` kini juga membawa origin setiap URL media yang benar-benar **ter-resolve** build lewat `GET /api/v1/media/objects` — sehingga baris yang masih menunjuk host media sebelumnya tetap tampil alih-alih diblokir — ditambah `https://i.ytimg.com`, dan `frame-src https://www.youtube-nocookie.com`, tetapi hanya ketika build itu memang memuat pos video. Origin milik GA4 sendiri (`script-src`/`connect-src`/`img-src`) muncul hanya ketika `PUBLIC_GA_ID` diisi; build bawaan sama sekali tidak punya origin pihak ketiga di kebijakannya ([ADR-0012](adr/0012-first-party-visitor-analytics-with-an-opt-in-ga4-switch.md)).
+
 ## Arah impor: satu jalur, `storefront → kontrak → cms`
 
 `apps/storefront` tidak pernah mengimpor dari `apps/cms` secara langsung. `packages/kontrak` duduk di antara keduanya, mengekspor-ulang union type-only (`ProductType`, `ProductStatus`, `SizeChartType`, `SubscriptionPeriod`, `ServiceFormFieldType`, `ProductSort`, dan union pemasaran/order yang ditambahkan issue #26/#29) dari `apps/cms/src/modules/commerce/domain/*.ts` — lapisan murni bebas-I/O yang dijaga bersih oleh konvensi `apps/cms` sendiri — sebagai `export type` saja, tanpa nilai runtime. Arahnya ditegakkan secara mekanis: [`tests/kontrak-arah-impor.test.mjs`](../tests/kontrak-arah-impor.test.mjs) memindai setiap berkas `.ts`/`.tsx`/`.astro` di bawah `apps/cms/src/` dan gagal jika ada satu pun yang mengimpor dari `apps/storefront`, `packages/kontrak`, atau paket `@awcms-one/*`. Lihat [ADR-0004](adr/0004-a-type-only-contract-package-with-an-import-direction-gate.id.md) untuk alasan mengapa arah ini penting khususnya karena `apps/cms` adalah kode vendored.
@@ -72,6 +74,10 @@ Per [ADR-0008](adr/0008-one-commerce-module-carries-the-whole-store-not-three.md
 - **Orders** (issue #29) — pelanggan, alamat, quote keranjang, pesanan, konfirmasi pembayaran, ulasan, wishlist, dan permukaan `/api/v1/commerce/storefront/*` yang anonim.
 
 `dependencies` milik `module.ts` adalah `tenant_admin`, `identity_access`, `domain_event_runtime`, `media_library` (gambar produk/slider/testimoni/popup di-resolve lewat `MediaLibraryPort`), dan `module_management` (pengecekan fail-closed milik tenant-resolver storefront anonim). Lihat [`docs/skema-basis-data.md`](skema-basis-data.id.md), [`docs/kamus-data.md`](kamus-data.id.md), [`docs/api.md`](api.id.md), dan [`docs/cms.md`](cms.id.md) untuk isi modul ini secara mendalam, dan [`apps/cms/src/modules/commerce/README.md`](../apps/cms/src/modules/commerce/README.id.md) untuk dokumentasinya sendiri yang berdekatan-kode.
+
+## Satu hal lagi yang dilakukan server: memperbaiki halaman yang terbayangi
+
+`apps/storefront/server/penyaji.mjs` tetap server berkas statis tanpa token API, tetapi kini melakukan satu penulisan ulang internal di luar dua lapisan pengalihan: di bawah `build.format: "file"`, halaman landing yang juga punya anak dipancarkan sebagai berkas **di samping** direktori bernama sama (`berita.html` di sebelah `berita/`), dan static handler `@astrojs/node` menulis ulang permintaan berbentuk direktori menjadi `index.html` yang tidak pernah ditulis build ini — sehingga `/berita`, `/video`, dan setiap `/rubrik/{slug}` menjawab 404 di situs yang disajikan padahal semua gerbang build hijau ([issue #75](https://github.com/ahliweb/awcms-one/issues/75)). Server menemukan halaman terbayangi itu sekali saat startup dan menulis ulang `req.url` menjadi `{path}.html` sebagai langkah **terakhir** sebelum adapter, setelah `/healthz`, redirect `/products`, dan kedua lapisan pengalihan lawas, sehingga tidak ada yang dilakukannya bisa membayangi sebuah pengalihan. Lihat [`docs/routing.id.md`](routing.id.md) dan [ADR-0013](adr/0013-rule-based-legacy-redirects-beside-the-row-based-map.md).
 
 ## Apa yang masih belum ada di sini
 

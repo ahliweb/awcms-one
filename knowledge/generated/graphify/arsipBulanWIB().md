@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/tanggal.ts"
 type: "code"
-community: "News Layout & Archive"
+community: "Sidebar.astro"
 location: "L111"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/News_Layout__Archive
+  - community/Sidebarastro
 ---
 
 # arsipBulanWIB()
@@ -19,4 +19,4 @@ tags:
 - [[listArsipBulan()]] - `calls` [EXTRACTED]
 - [[tanggal.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/News_Layout__Archive
+#graphify/code #graphify/EXTRACTED #community/Sidebarastro

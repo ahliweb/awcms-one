@@ -1,18 +1,19 @@
 ---
-source_file: "apps/storefront/src/pages/penulis/[slug].astro"
+source_file: "apps/storefront/src/pages/index/wilayah-kabupaten-[provinceCode].json.ts"
 type: "code"
-community: "News Layout & Archive"
-location: "L15"
+community: "wilayah-checkout.ts"
+location: "L18"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/News_Layout__Archive
+  - community/wilayah-checkoutts
 ---
 
 # getStaticPaths()
 
 ## Connections
-- [[listAuthors()]] - `calls` [EXTRACTED]
-- [[penulisslug.astro]] - `contains` [EXTRACTED]
+- [[getCheckoutProvinces()]] - `calls` [EXTRACTED]
+- [[getCheckoutRegencies()]] - `calls` [EXTRACTED]
+- [[wilayah-kabupaten-provinceCode.json.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/News_Layout__Archive
+#graphify/code #graphify/EXTRACTED #community/wilayah-checkoutts

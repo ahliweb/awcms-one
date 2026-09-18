@@ -1,12 +1,12 @@
 ---
 source_file: "packages/gerbang/audit-rilis.mjs"
 type: "code"
-community: "Knowledge Graph Audit"
+community: "rilis.mjs"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Knowledge_Graph_Audit
+  - community/rilismjs
 ---
 
 # audit-rilis.mjs
@@ -19,10 +19,10 @@ tags:
 - [[declaredDate()]] - `contains` [EXTRACTED]
 - [[isChangesetFile()]] - `indirect_call` [INFERRED]
 - [[oldest]] - `contains` [EXTRACTED]
-- [[pending]] - `contains` [EXTRACTED]
-- [[reporter]] - `contains` [EXTRACTED]
+- [[pending_1]] - `contains` [EXTRACTED]
+- [[reporter_2]] - `contains` [EXTRACTED]
 - [[reporter.mjs]] - `imports_from` [EXTRACTED]
 - [[today()]] - `contains` [EXTRACTED]
 - [[todayIso]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Knowledge_Graph_Audit
+#graphify/code #graphify/EXTRACTED #community/rilismjs

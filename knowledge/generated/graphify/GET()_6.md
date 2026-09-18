@@ -1,21 +1,19 @@
 ---
-source_file: "apps/storefront/src/pages/index/produk.json.ts"
+source_file: "apps/storefront/src/pages/manifest.webmanifest.ts"
 type: "code"
-community: "Product Index Build"
+community: "theme.ts"
 location: "L14"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Product_Index_Build
+  - community/themets
 ---
 
 # GET()
 
 ## Connections
-- [[buildProdukIndex()]] - `calls` [EXTRACTED]
-- [[getActiveFlashSales()]] - `calls` [EXTRACTED]
-- [[getCategories()]] - `calls` [EXTRACTED]
-- [[getProducts()]] - `calls` [EXTRACTED]
-- [[produk.json.ts]] - `contains` [EXTRACTED]
+- [[getSiteIdentity()]] - `calls` [EXTRACTED]
+- [[getSiteTheme()]] - `calls` [EXTRACTED]
+- [[manifest.webmanifest.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Product_Index_Build
+#graphify/code #graphify/EXTRACTED #community/themets

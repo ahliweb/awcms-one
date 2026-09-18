@@ -1,17 +1,17 @@
 ---
-source_file: "apps/storefront/src/components/berita/ArtikelView.astro"
+source_file: "apps/storefront/src/pages/berita/[slug].astro"
 type: "code"
-community: "Article Card & View"
-location: "L41"
+community: "BeritaLayout.astro"
+location: "L70"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Article_Card__View
+  - community/BeritaLayoutastro
 ---
 
 # breadcrumbItems
 
 ## Connections
-- [[ArtikelView.astro]] - `contains` [EXTRACTED]
+- [[beritaslug.astro]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Article_Card__View
+#graphify/code #graphify/EXTRACTED #community/BeritaLayoutastro

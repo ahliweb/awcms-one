@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/awcms/theme.ts"
 type: "code"
-community: "Theme Token Fetch"
+community: "theme.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Theme_Token_Fetch
+  - community/themets
 ---
 
 # theme.ts
@@ -28,4 +28,4 @@ tags:
 - [[theme-tokens.css.ts]] - `imports_from` [EXTRACTED]
 - [[theme.test.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Theme_Token_Fetch
+#graphify/code #graphify/EXTRACTED #community/themets

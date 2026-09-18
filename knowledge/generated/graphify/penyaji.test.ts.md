@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/penyaji.test.ts"
 type: "code"
-community: "Storefront Server & CSP"
+community: "penyaji.mjs"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Storefront_Server__CSP
+  - community/penyajimjs
 ---
 
 # penyaji.test.ts
@@ -25,4 +25,4 @@ tags:
 - [[readBuildId()]] - `imports` [EXTRACTED]
 - [[withServer()_1]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Storefront_Server__CSP
+#graphify/code #graphify/EXTRACTED #community/penyajimjs

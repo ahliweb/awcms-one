@@ -1,17 +1,17 @@
 ---
-source_file: "tests/knowledge-obsidian-export.test.mjs"
+source_file: "tests/audit-dokumen.test.mjs"
 type: "code"
-community: "Obsidian Export Test"
-location: "L21"
+community: "audit-dokumen.test.mjs"
+location: "L22"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Obsidian_Export_Test
+  - community/audit-dokumentestmjs
 ---
 
 # cleanup
 
 ## Connections
-- [[knowledge-obsidian-export.test.mjs]] - `contains` [EXTRACTED]
+- [[audit-dokumen.test.mjs]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Obsidian_Export_Test
+#graphify/code #graphify/EXTRACTED #community/audit-dokumentestmjs

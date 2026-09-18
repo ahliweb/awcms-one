@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/components/Footer.astro"
 type: "code"
-community: "Footer & Static Pages"
+community: "routes.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Footer__Static_Pages
+  - community/routests
 ---
 
 # Footer.astro
@@ -14,7 +14,7 @@ tags:
 ## Connections
 - [[BaseLayout.astro]] - `imports_from` [EXTRACTED]
 - [[FOOTER_PAGE_LINKS]] - `imports` [EXTRACTED]
-- [[ROUTES_1]] - `imports` [EXTRACTED]
+- [[ROUTES]] - `imports` [EXTRACTED]
 - [[StaticPageSummary]] - `imports` [EXTRACTED]
 - [[footerLinks]] - `contains` [EXTRACTED]
 - [[pages.ts]] - `imports_from` [EXTRACTED]
@@ -23,4 +23,4 @@ tags:
 - [[routes.ts]] - `imports_from` [EXTRACTED]
 - [[year]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Footer__Static_Pages
+#graphify/code #graphify/EXTRACTED #community/routests

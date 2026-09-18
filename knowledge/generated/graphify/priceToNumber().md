@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/harga.ts"
 type: "code"
-community: "Catalog Fetch Client"
+community: "product/[slug].astro"
 location: "L50"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Catalog_Fetch_Client
+  - community/product/slugastro
 ---
 
 # priceToNumber()
@@ -19,4 +19,4 @@ tags:
 - [[harga.ts]] - `contains` [EXTRACTED]
 - [[katalog-harga.test.ts]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Catalog_Fetch_Client
+#graphify/code #graphify/EXTRACTED #community/product/slugastro

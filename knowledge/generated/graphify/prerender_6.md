@@ -1,17 +1,17 @@
 ---
-source_file: "apps/storefront/src/pages/index/produk.json.ts"
+source_file: "apps/storefront/src/pages/manifest.webmanifest.ts"
 type: "code"
-community: "Product Index Build"
+community: "theme.ts"
 location: "L12"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Product_Index_Build
+  - community/themets
 ---
 
 # prerender
 
 ## Connections
-- [[produk.json.ts]] - `contains` [EXTRACTED]
+- [[manifest.webmanifest.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Product_Index_Build
+#graphify/code #graphify/EXTRACTED #community/themets

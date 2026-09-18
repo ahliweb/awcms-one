@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/berita.ts"
 type: "code"
-community: "Mitra Institutions"
-location: "L512"
+community: "lembaga.ts"
+location: "L583"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Mitra_Institutions
+  - community/lembagats
 ---
 
 # getMitra()
@@ -16,4 +16,4 @@ tags:
 - [[getIndex()]] - `calls` [EXTRACTED]
 - [[mitraslug.astro]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Mitra_Institutions
+#graphify/code #graphify/EXTRACTED #community/lembagats

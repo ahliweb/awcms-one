@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/telepon.ts"
 type: "code"
-community: "Order Session & Phone"
+community: "checkout.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Order_Session__Phone
+  - community/checkoutts
 ---
 
 # telepon.ts
@@ -17,4 +17,4 @@ tags:
 - [[previewIndonesianPhone()]] - `contains` [EXTRACTED]
 - [[telepon.test.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Order_Session__Phone
+#graphify/code #graphify/EXTRACTED #community/checkoutts

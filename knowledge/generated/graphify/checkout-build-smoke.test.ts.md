@@ -1,18 +1,18 @@
 ---
 source_file: "apps/storefront/tests/checkout-build-smoke.test.ts"
 type: "code"
-community: "Build & E2E Tooling"
+community: "checkout-build-smoke.test.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Build__E2E_Tooling
+  - community/checkout-build-smoketestts
 ---
 
 # checkout-build-smoke.test.ts
 
 ## Connections
-- [[canSpawnBun()_2]] - `contains` [EXTRACTED]
-- [[waitForStub()_2]] - `contains` [EXTRACTED]
+- [[canSpawnBun()_1]] - `contains` [EXTRACTED]
+- [[waitForStub()_1]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Build__E2E_Tooling
+#graphify/code #graphify/EXTRACTED #community/checkout-build-smoketestts

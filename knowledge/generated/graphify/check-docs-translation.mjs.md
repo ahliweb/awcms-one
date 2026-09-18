@@ -1,12 +1,12 @@
 ---
 source_file: "packages/gerbang/check-docs-translation.mjs"
 type: "code"
-community: "Translation Mirror Audit"
+community: "audit-graf.mjs"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Translation_Mirror_Audit
+  - community/audit-grafmjs
 ---
 
 # check-docs-translation.mjs
@@ -31,4 +31,4 @@ tags:
 - [[readFileIfPresent()]] - `imports` [EXTRACTED]
 - [[runChecks()]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Translation_Mirror_Audit
+#graphify/code #graphify/EXTRACTED #community/audit-grafmjs

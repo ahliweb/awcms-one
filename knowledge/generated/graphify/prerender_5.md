@@ -1,17 +1,17 @@
 ---
-source_file: "apps/storefront/src/pages/index/pengalihan-legacy.json.ts"
+source_file: "apps/storefront/src/pages/index/wilayah-provinsi.json.ts"
 type: "code"
-community: "Legacy Redirect Map"
+community: "wilayah-checkout.ts"
 location: "L10"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Legacy_Redirect_Map
+  - community/wilayah-checkoutts
 ---
 
 # prerender
 
 ## Connections
-- [[pengalihan-legacy.json.ts]] - `contains` [EXTRACTED]
+- [[wilayah-provinsi.json.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Legacy_Redirect_Map
+#graphify/code #graphify/EXTRACTED #community/wilayah-checkoutts

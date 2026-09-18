@@ -1,12 +1,12 @@
 ---
 source_file: "tools/knowledge-obsidian-export.mjs"
 type: "code"
-community: "Obsidian Export Safety"
+community: "knowledge-obsidian-export.mjs"
 location: "L136"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Obsidian_Export_Safety
+  - community/knowledge-obsidian-exportmjs
 ---
 
 # syncable
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[knowledge-obsidian-export.mjs]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Obsidian_Export_Safety
+#graphify/code #graphify/EXTRACTED #community/knowledge-obsidian-exportmjs

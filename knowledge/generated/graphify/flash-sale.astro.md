@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/pages/flash-sale.astro"
 type: "code"
-community: "Flash Sale Countdown"
+community: "product/[slug].astro"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Flash_Sale_Countdown
+  - community/product/slugastro
 ---
 
 # flash-sale.astro
@@ -22,4 +22,4 @@ tags:
 - [[pemasaran.ts]] - `imports_from` [EXTRACTED]
 - [[profil.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Flash_Sale_Countdown
+#graphify/code #graphify/EXTRACTED #community/product/slugastro

@@ -1,18 +1,22 @@
 ---
-source_file: "apps/storefront/src/scripts/produk-index-klien.ts"
+source_file: "apps/storefront/src/lib/portable-text.ts"
 type: "code"
-community: "Client Product Search"
-location: "L39"
+community: "portable-text.ts"
+location: "L158"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Client_Product_Search
+  - community/portable-textts
 ---
 
 # escapeHtml()
 
 ## Connections
-- [[cardHtml()]] - `calls` [EXTRACTED]
-- [[produk-index-klien.ts]] - `contains` [EXTRACTED]
+- [[portable-text.test.ts]] - `imports` [EXTRACTED]
+- [[portable-text.ts]] - `contains` [EXTRACTED]
+- [[renderGalleryItem()]] - `indirect_call` [INFERRED]
+- [[renderPlaceholder()]] - `calls` [EXTRACTED]
+- [[renderSpan()]] - `calls` [EXTRACTED]
+- [[renderVideoNewsNode()]] - `indirect_call` [INFERRED]
 
-#graphify/code #graphify/EXTRACTED #community/Client_Product_Search
+#graphify/code #graphify/EXTRACTED #community/portable-textts

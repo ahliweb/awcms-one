@@ -1,22 +1,24 @@
 ---
 source_file: "apps/storefront/src/pages/index/pengalihan-legacy.json.ts"
 type: "code"
-community: "Legacy Redirect Map"
+community: "getVideo"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Legacy_Redirect_Map
+  - community/getVideo
 ---
 
 # pengalihan-legacy.json.ts
 
 ## Connections
-- [[GET()_5]] - `contains` [EXTRACTED]
+- [[GET()_12]] - `contains` [EXTRACTED]
+- [[berita.ts]] - `imports_from` [EXTRACTED]
 - [[blog.ts]] - `imports_from` [EXTRACTED]
 - [[buildLegacyRedirectMap()]] - `imports` [EXTRACTED]
 - [[getLegacyRedirectRows()]] - `imports` [EXTRACTED]
+- [[getVideo()]] - `imports` [EXTRACTED]
 - [[pengalihan-legacy.ts]] - `imports_from` [EXTRACTED]
-- [[prerender_5]] - `contains` [EXTRACTED]
+- [[prerender_12]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Legacy_Redirect_Map
+#graphify/code #graphify/EXTRACTED #community/getVideo

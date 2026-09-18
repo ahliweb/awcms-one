@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/scripts/pesanan.ts"
 type: "code"
-community: "Order Tracking Script"
+community: "scripts/pesanan.ts"
 location: "L63"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Order_Tracking_Script
+  - community/scripts/pesanants
 ---
 
 # storePhone()
@@ -15,4 +15,4 @@ tags:
 - [[loadOrder()]] - `calls` [EXTRACTED]
 - [[scriptspesanan.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Order_Tracking_Script
+#graphify/code #graphify/EXTRACTED #community/scripts/pesanants

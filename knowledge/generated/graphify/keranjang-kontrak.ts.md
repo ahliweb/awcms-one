@@ -1,18 +1,18 @@
 ---
 source_file: "apps/storefront/src/lib/keranjang-kontrak.ts"
 type: "code"
-community: "Cart Client Storage"
+community: "keranjang-kontrak.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Cart_Client_Storage
+  - community/keranjang-kontrakts
 ---
 
 # keranjang-kontrak.ts
 
 ## Connections
-- [[ADR-0003_3]] - `cites` [EXTRACTED]
+- [[ADR-0003_2]] - `cites` [EXTRACTED]
 - [[Cart]] - `contains` [EXTRACTED]
 - [[CartLine]] - `contains` [EXTRACTED]
 - [[KERANJANG_EVENT_NAME]] - `contains` [EXTRACTED]
@@ -34,4 +34,4 @@ tags:
 - [[wa-fallback.test.ts]] - `imports_from` [EXTRACTED]
 - [[wa-fallback.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Cart_Client_Storage
+#graphify/code #graphify/EXTRACTED #community/keranjang-kontrakts

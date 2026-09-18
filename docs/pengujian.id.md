@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](pengujian.md)
 
-<!-- i18n-source-hash: sha256:34cf701aa0a2cc9f5dc8875b4b0a3dc743890acd0612c1b2733907a23481b838 -->
+<!-- i18n-source-hash: sha256:b7a95987a6b7c7106e24adec6cd1433918a7021264e43345c2d3b0c3dd467230 -->
 
 # Pengujian
 
@@ -12,7 +12,7 @@ Tidak butuh basis data, tidak butuh build, dan tidak butuh jaringan di luar `bun
 
 ## 2. `apps/storefront`: tes unit, type-check, dan dua tingkat build-smoke
 
-`apps/storefront/tests/` menyimpan sekitar 40 berkas (tidak termasuk `e2e/`), dikelompokkan kira-kira per area:
+`apps/storefront/tests/` menyimpan sekitar 55 berkas (tidak termasuk `e2e/`), dikelompokkan kira-kira per area:
 
 | Kelompok | Yang dicakup |
 | --- | --- |
@@ -20,6 +20,9 @@ Tidak butuh basis data, tidak butuh build, dan tidak butuh jaringan di luar `bun
 | Catalog/`katalog-*` | Pencarian/filter, pemformatan harga, kontrak keranjang, penurunan origin-media CSP, JSON-LD, toleransi permukaan marketing |
 | Runtime/checkout | `toko-klien`/`toko-origin`/`toko-csp` (klien API anonim, validasi `PUBLIC_AWCMS_ORIGIN`, `connect-src` CSP), `checkout-guard-no-prerender` (tidak ada berkas `apps/storefront/src/pages` yang keluar dari output statis), `checkout-build-smoke`, `wilayah-checkout`, `wishlist-kontrak` |
 | Server/build/umum | `build-smoke`, `penyaji`, `portable-text`, `profil`, `routes`, `sitemap`, `telepon`, `theme`, `wa-fallback`, `warna` (kontras) |
+| Increment 3 (issue #47–#59) | `awcms-media` (chunking, id tak ter-resolve, saringan uuid), `navigasi-berita`/`ikon-sosial` (nav dan deteksi platform), `buletin-klien`, `bagikan` (pembangun URL bagikan, tabel keputusan Web Share/clipboard), `dengar` (unit baca, pemecahan kalimat, saringan suara, kegagalan penyimpanan), `meta-sosial` (pembangun OG/Twitter), `analitik`/`ga`/`ga-csp` (muatan beacon, DNT/GPC, cabang CSP GA), `analitik-terpopuler`, `pengalihan-aturan` (tabel aturan, ujung ke ujung), `penyaji-bayangan-html` (penulisan ulang halaman terbayangi), `logo-instansi`, `wilayah-checkout` (batas konkurensi permintaan), `iklan-popup` |
+
+**Satu build-smoke per fitur, bukan satu berkas bersama.** Kini ada sebelas (`build-smoke` #24, `berita-build-smoke` #28, `katalog-build-smoke` #27, `checkout-build-smoke` #30, `buletin-build-smoke` #50, `bagikan-build-smoke` #51, `dengar-build-smoke` #52, `sidebar-build-smoke` #49, `logo-instansi-build-smoke` #59, `meta-sosial-build-smoke` #54, `penyaji-bayangan-build-smoke` #75). Masing-masing menyalakan stub, menjalankan `astro build` **sungguhan**, lalu memeriksa HTML yang benar-benar mendarat di `dist/client/` — satu-satunya tempat beberapa cacat increment 3 bisa terlihat sama sekali: pemutar yang dirender tampak alih-alih `hidden`, pemutar di pos video, lambang di artikel yang lembaganya tak punya, `og:image` yang berubah untuk halaman toko, halaman yang 404 hanya ketika disajikan. Setiap satunya SKIP dengan pesan jelas alih-alih lulus ketika `bun` tidak bisa dijalankan.
 
 `bun --bun astro check` (skrip `check` milik `apps/storefront/package.json`) adalah type-check, dijalankan sebagai langkah pertama `bun run build`. **Build manual dua-terminal berbasis stub** tambahan membuktikan aplikasi benar-benar membangun situs nyata tanpa `apps/cms` hidup untuk dijangkau — tidak tersambung ke CI, tapi dijalankan tangan pada setiap PR yang menyentuh workspace ini:
 

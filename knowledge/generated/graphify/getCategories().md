@@ -1,20 +1,20 @@
 ---
 source_file: "apps/storefront/src/lib/catalog.ts"
 type: "code"
-community: "Product Index Build"
+community: "catalog.ts"
 location: "L340"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Product_Index_Build
+  - community/catalogts
 ---
 
 # getCategories()
 
 ## Connections
-- [[GET()_6]] - `calls` [EXTRACTED]
+- [[GET()_4]] - `calls` [EXTRACTED]
 - [[catalog.ts]] - `contains` [EXTRACTED]
-- [[getStaticPaths()_6]] - `calls` [EXTRACTED]
+- [[getStaticPaths()_2]] - `calls` [EXTRACTED]
 - [[kategorislug.astro]] - `imports` [EXTRACTED]
 - [[listAllCategories()]] - `calls` [EXTRACTED]
 - [[pagesindex.astro]] - `imports` [EXTRACTED]
@@ -23,4 +23,4 @@ tags:
 - [[produk.json.ts]] - `imports` [EXTRACTED]
 - [[sitemap-katalog.ts]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Product_Index_Build
+#graphify/code #graphify/EXTRACTED #community/catalogts

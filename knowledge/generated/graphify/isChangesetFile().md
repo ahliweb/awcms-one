@@ -1,12 +1,12 @@
 ---
 source_file: "packages/gerbang/lib/changeset.mjs"
 type: "code"
-community: "Changeset Parsing"
+community: "rilis.mjs"
 location: "L118"
 tags:
   - graphify/code
   - graphify/INFERRED
-  - community/Changeset_Parsing
+  - community/rilismjs
 ---
 
 # isChangesetFile()
@@ -17,4 +17,4 @@ tags:
 - [[rilis.mjs]] - `indirect_call` [INFERRED]
 - [[versi-changeset.test.mjs]] - `indirect_call` [INFERRED]
 
-#graphify/code #graphify/INFERRED #community/Changeset_Parsing
+#graphify/code #graphify/INFERRED #community/rilismjs

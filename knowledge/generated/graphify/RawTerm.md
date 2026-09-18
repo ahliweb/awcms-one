@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/awcms/blog.ts"
 type: "code"
-community: "Rubrik & Region Rendering"
-location: "L195"
+community: "berita.ts"
+location: "L192"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Rubrik__Region_Rendering
+  - community/beritats
 ---
 
 # RawTerm
@@ -16,4 +16,4 @@ tags:
 - [[berita.ts]] - `imports` [EXTRACTED]
 - [[blog.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Rubrik__Region_Rendering
+#graphify/code #graphify/EXTRACTED #community/beritats

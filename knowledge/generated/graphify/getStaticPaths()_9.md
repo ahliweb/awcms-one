@@ -1,18 +1,19 @@
 ---
-source_file: "apps/storefront/src/pages/product/[slug].astro"
+source_file: "apps/storefront/src/pages/index/wilayah-kecamatan-[cityCode].json.ts"
 type: "code"
-community: "Flash Sale Countdown"
-location: "L48"
+community: "wilayah-checkout.ts"
+location: "L26"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Flash_Sale_Countdown
+  - community/wilayah-checkoutts
 ---
 
 # getStaticPaths()
 
 ## Connections
-- [[getProducts()]] - `calls` [EXTRACTED]
-- [[productslug.astro]] - `contains` [EXTRACTED]
+- [[getAllCheckoutRegencies()]] - `calls` [EXTRACTED]
+- [[getCheckoutDistricts()]] - `calls` [EXTRACTED]
+- [[wilayah-kecamatan-cityCode.json.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Flash_Sale_Countdown
+#graphify/code #graphify/EXTRACTED #community/wilayah-checkoutts

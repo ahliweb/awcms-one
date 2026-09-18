@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/awcms/pages.ts"
 type: "code"
-community: "Footer & Static Pages"
+community: "pages.ts"
 location: "L66"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Footer__Static_Pages
+  - community/pagests
 ---
 
 # listStaticPages()
@@ -14,9 +14,11 @@ tags:
 ## Connections
 - [[BaseLayout.astro]] - `imports` [EXTRACTED]
 - [[fetchStaticPageList()]] - `calls` [EXTRACTED]
-- [[getStaticPaths()_3]] - `calls` [EXTRACTED]
+- [[getPerusahaanLinks()]] - `calls` [EXTRACTED]
+- [[getStaticPaths()_1]] - `calls` [EXTRACTED]
 - [[halamanslug.astro]] - `imports` [EXTRACTED]
+- [[navigasi-berita.ts]] - `imports` [EXTRACTED]
 - [[pages.ts]] - `contains` [EXTRACTED]
 - [[sitemap-sources.ts]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Footer__Static_Pages
+#graphify/code #graphify/EXTRACTED #community/pagests

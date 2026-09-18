@@ -39,6 +39,12 @@ Ini pola keranjang/checkout/pelacakan-pesanan/wishlist — pakai hanya saat data
 4. Sediakan tiga fallback, sama seperti setiap halaman runtime yang sudah ada: pesan `<noscript>`, fallback WhatsApp untuk kondisi JS-jalan-tapi-CMS-tak-terjangkau (`apps/storefront/src/lib/wa-fallback.ts`), dan `aria-live="polite"` pada region yang berubah (lihat [`docs/aksesibilitas.md`](../../../docs/aksesibilitas.id.md)).
 5. Jangan pernah mempercayakan angka harga/stok saat build ke sebuah penulisan. Keranjang mengutip ulang secara live sebelum checkout justru karena alasan ini — angka milik halaman statis hanyalah tampilan, tidak pernah menjadi input ke sebuah pesanan.
 
+## Tiga hal yang ditambahkan increment 3 dan wajib dihormati halaman baru
+
+1. **Media di-resolve, tidak pernah disusun.** Field CMS yang membawa gambar adalah id telanjang; resolve dengan `resolveMedia` (`apps/storefront/src/lib/awcms/media.ts`) dan jangan render apa pun ketika tidak ter-resolve. Jangan pernah menyusun URL dari id dan origin — [ADR-0011](../../../docs/adr/0011-storefront-media-resolves-through-the-media-objects-endpoint.md) ada justru karena tebakan itulah jawaban salah yang kelihatan paling wajar. Kalau halaman Anda memperkenalkan origin gambar baru, ia masuk ke CSP turunan secara otomatis **hanya** karena halaman itu me-resolve-nya lewat klien tersebut; origin yang ditambahkan tangan di `csp.json.ts` adalah bau busuk.
+2. **Skrip sisi-klien adalah modul eksternal, dipasang sekali dari layout.** Badan `<script>` inline tidak akan pernah berjalan di bawah CSP aplikasi ini (`script-src 'self'`, tanpa nonce di situs statis). Taruh kodenya di `apps/storefront/src/scripts/`, `import` dari satu blok `<script>` di layout yang memiliki permukaan itu, dan pastikan markup-nya tetap berfungsi tanpanya — pemutar baca-nyaring (`hidden` sampai terbukti didukung) dan panel Daerah (dirender penuh, hanya dilipat skrip) adalah dua pola untuk ditiru.
+3. **Halaman baru yang sekaligus landing dan induk anak tidak butuh penanganan khusus — tapi ketahui alasannya.** Di bawah `build.format: "file"` ia dipancarkan sebagai `name.html` di samping `name/`, dan `apps/storefront/server/penyaji.mjs` menulis ulang path terbayangi itu saat startup ([issue #75](https://github.com/ahliweb/awcms-one/issues/75)). Kalau Anda menambah halaman semacam itu, tambahkan ke daftar `apps/storefront/tests/penyaji-bayangan-build-smoke.test.ts` alih-alih menganggap penemuannya menutupinya diam-diam.
+
 ## Memverifikasi perubahan Anda
 
 ```bash

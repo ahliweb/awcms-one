@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/pages/kontak.astro"
 type: "code"
-community: "Marketing Read Models"
+community: "BaseLayout.astro"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Marketing_Read_Models
+  - community/BaseLayoutastro
 ---
 
 # kontak.astro
@@ -19,4 +19,4 @@ tags:
 - [[pemasaran.ts]] - `imports_from` [EXTRACTED]
 - [[profil.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Marketing_Read_Models
+#graphify/code #graphify/EXTRACTED #community/BaseLayoutastro

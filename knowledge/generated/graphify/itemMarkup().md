@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/scripts/wishlist.ts"
 type: "code"
-community: "Wishlist Client Storage"
+community: "wishlist-kontrak.ts"
 location: "L17"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Wishlist_Client_Storage
+  - community/wishlist-kontrakts
 ---
 
 # itemMarkup()
@@ -17,4 +17,4 @@ tags:
 - [[render()_2]] - `calls` [EXTRACTED]
 - [[wishlist.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Wishlist_Client_Storage
+#graphify/code #graphify/EXTRACTED #community/wishlist-kontrakts

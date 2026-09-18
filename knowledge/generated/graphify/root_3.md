@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/scripts/checkout.ts"
 type: "code"
-community: "Order Session & Phone"
+community: "checkout.ts"
 location: "L27"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Order_Session__Phone
+  - community/checkoutts
 ---
 
 # root
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[checkout.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Order_Session__Phone
+#graphify/code #graphify/EXTRACTED #community/checkoutts

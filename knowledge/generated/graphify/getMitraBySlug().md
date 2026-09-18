@@ -1,18 +1,18 @@
 ---
 source_file: "apps/storefront/src/lib/awcms/lembaga.ts"
 type: "code"
-community: "Mitra Institutions"
-location: "L77"
+community: "lembaga.ts"
+location: "L104"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Mitra_Institutions
+  - community/lembagats
 ---
 
 # getMitraBySlug()
 
 ## Connections
-- [[getMitraList()]] - `calls` [EXTRACTED]
+- [[getMitraList()_1]] - `calls` [EXTRACTED]
 - [[lembaga.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Mitra_Institutions
+#graphify/code #graphify/EXTRACTED #community/lembagats

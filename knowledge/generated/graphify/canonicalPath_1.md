@@ -1,17 +1,17 @@
 ---
-source_file: "apps/storefront/src/pages/berita/[slug].astro"
+source_file: "apps/storefront/src/pages/arsip/[yyyy]/[mm].astro"
 type: "code"
-community: "News JSON-LD"
-location: "L57"
+community: "Sidebar.astro"
+location: "L18"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/News_JSON-LD
+  - community/Sidebarastro
 ---
 
 # canonicalPath
 
 ## Connections
-- [[beritaslug.astro]] - `contains` [EXTRACTED]
+- [[mm.astro]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/News_JSON-LD
+#graphify/code #graphify/EXTRACTED #community/Sidebarastro

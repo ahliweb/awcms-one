@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](api.md)
 
-<!-- i18n-source-hash: sha256:8a1a4e500f74e1e41c30d10f79e2cfb2b2a4d3f0103f3d2be3dd21ad7a37305e -->
+<!-- i18n-source-hash: sha256:8105f4c1728a3ab5f8e198e58f94df26342380ca7074a5bfe60b508d79963f33 -->
 
 # API
 
@@ -146,6 +146,24 @@ Kedua belas event terdaftar di tiga tempat yang dijaga selaras `awcms` (`domain-
 | `503` | `MEDIA_UNAVAILABLE` | Rute upload-session bukti-pembayaran, selalu, di increment ini |
 
 `categoryId`/`parentId` yang tak dikenal, sudah soft-delete, atau milik tenant lain ditolak dengan 400 yang **sama** di setiap kasus — lihat [`docs/skema-basis-data.md`](skema-basis-data.id.md) untuk alasan mengapa membedakan ketiga penyebab itu akan menjadi existence oracle lintas-tenant. API storefront menerapkan prinsip identik pada 404: `GET orders/{code}?phone=` tidak pernah mengungkapkan apakah kodenya ada sama sekali.
+
+## Apa yang dipanggil storefront di luar commerce
+
+Semua di sini milik `apps/cms` sendiri, dimiliki modul-modul yang dibawa subtree; repositori ini mengonsumsinya dan mencatat yang mana, supaya pembaca yang mencari "dari mana storefront mendapat X" tidak perlu grep.
+
+| Permukaan | Pemanggil | Tingkat kepercayaan |
+| --- | --- | --- |
+| `GET /api/v1/blog/{posts,terms,institutions,pages/public}` | build (`AWCMS_API_TOKEN`) | owner, hanya-baca |
+| `GET /api/v1/media/objects?ids=` | build | owner, hanya-baca — `media_library.media.read`, ditambahkan di increment 3 ([ADR-0011](adr/0011-storefront-media-resolves-through-the-media-objects-endpoint.md)) |
+| `GET /api/v1/news-portal/ad-placements/active` | build | owner, hanya-baca |
+| `GET /api/v1/seo/redirects?state=active` | build | owner, hanya-baca |
+| `GET /api/v1/site-profile/composed` | build | owner, hanya-baca |
+| `GET /api/v1/idn-regions/regions` | build | owner, hanya-baca — dibatasi 6 permintaan serentak sejak [issue #71](https://github.com/ahliweb/awcms-one/issues/71), di bawah 8 slot `interactive` yang berjalan di CMS |
+| `GET /api/v1/analytics/pages?range=7d` | build | owner, hanya-baca — `visitor_analytics.dashboard.read`, memberi makan "Terpopuler" |
+| `POST /api/v1/analytics/collect` | **peramban pembaca** | anonim, terikat Origin ([ADR-0012](adr/0012-first-party-visitor-analytics-with-an-opt-in-ga4-switch.md)) |
+| `POST /api/v1/newsletter/{subscribe,confirm,unsubscribe}` | **peramban pembaca** | anonim, terikat Origin; path konfirmasi/berhenti adalah **kontrak CMS** (`NEWSLETTER_CONFIRM_PATH`/`NEWSLETTER_UNSUBSCRIBE_PATH` di `apps/cms/src/modules/newsletter/domain/newsletter-mail.ts`), itulah sebabnya aplikasi ini menyajikan `/newsletter/confirm` dan `/newsletter/unsubscribe` persis dengan nama itu |
+
+Himpunan permission kredensial build di-seed oleh `tools/seed-borneojek-mart.ts`; mengubahnya di sana **merotasi** kredensial pada seed run berikutnya, sehingga `AWCMS_API_TOKEN` yang masih memegang rahasia lama mulai gagal dengan 401 (langkah rekonsiliasi issue #57 mencetak penggantinya).
 
 ## Belum dibangun
 

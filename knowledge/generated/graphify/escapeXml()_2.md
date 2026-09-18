@@ -1,18 +1,18 @@
 ---
-source_file: "apps/storefront/src/pages/feed.xml.ts"
+source_file: "apps/storefront/src/lib/berita.ts"
 type: "code"
-community: "Site Config & Env"
-location: "L29"
+community: "site.ts"
+location: "L751"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Site_Config__Env
+  - community/sitets
 ---
 
 # escapeXml()
 
 ## Connections
-- [[GET()_3]] - `calls` [EXTRACTED]
-- [[pagesfeed.xml.ts]] - `contains` [EXTRACTED]
+- [[berita.ts]] - `contains` [EXTRACTED]
+- [[renderBeritaRssXml()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Site_Config__Env
+#graphify/code #graphify/EXTRACTED #community/sitets

@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/components/berita/IklanSlot.astro"
 type: "code"
-community: "Ad Placements & Blog Client"
+community: "blog.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Ad_Placements__Blog_Client
+  - community/blogts
 ---
 
 # IklanSlot.astro
@@ -14,9 +14,11 @@ tags:
 ## Connections
 - [[AdPlacementKey]] - `imports` [EXTRACTED]
 - [[ArtikelView.astro]] - `imports_from` [EXTRACTED]
+- [[FooterBerita.astro]] - `imports_from` [EXTRACTED]
+- [[Sidebar.astro]] - `imports_from` [EXTRACTED]
 - [[beritaindex.astro]] - `imports_from` [EXTRACTED]
 - [[blog.ts]] - `imports_from` [EXTRACTED]
-- [[disclosureLabel]] - `contains` [EXTRACTED]
+- [[creativeImageUrl()]] - `contains` [EXTRACTED]
 - [[iklan.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Ad_Placements__Blog_Client
+#graphify/code #graphify/EXTRACTED #community/blogts

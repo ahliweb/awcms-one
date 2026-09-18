@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/scripts/produk-detail.ts"
 type: "code"
-community: "Product Detail Variant Picker"
+community: "produk-detail.ts"
 location: "L80"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Product_Detail_Variant_Picker
+  - community/produk-detailts
 ---
 
 # currentVariant()
@@ -17,4 +17,4 @@ tags:
 - [[refresh()_1]] - `calls` [EXTRACTED]
 - [[selectedOptionNames()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Product_Detail_Variant_Picker
+#graphify/code #graphify/EXTRACTED #community/produk-detailts

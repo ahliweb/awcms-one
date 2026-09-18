@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/katalog-catalog.test.ts"
 type: "code"
-community: "Catalog Contract Types"
+community: "kategori/[slug].astro"
 location: "L20"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Catalog_Contract_Types
+  - community/kategori/slugastro
 ---
 
 # category()
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[katalog-catalog.test.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Catalog_Contract_Types
+#graphify/code #graphify/EXTRACTED #community/kategori/slugastro

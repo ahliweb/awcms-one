@@ -1,18 +1,19 @@
 ---
-source_file: "apps/storefront/src/lib/berita.ts"
+source_file: "apps/storefront/src/lib/sitemap.ts"
 type: "code"
-community: "News RSS Feed"
-location: "L680"
+community: "sitemap-sources.ts"
+location: "L108"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/News_RSS_Feed
+  - community/sitemap-sourcests
 ---
 
 # escapeXml()
 
 ## Connections
-- [[berita.ts]] - `contains` [EXTRACTED]
-- [[renderBeritaRssXml()]] - `calls` [EXTRACTED]
+- [[renderSitemapIndexXml()]] - `calls` [EXTRACTED]
+- [[renderUrlsetXml()]] - `calls` [EXTRACTED]
+- [[sitemap.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/News_RSS_Feed
+#graphify/code #graphify/EXTRACTED #community/sitemap-sourcests

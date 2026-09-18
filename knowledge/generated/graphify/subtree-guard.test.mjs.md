@@ -1,12 +1,12 @@
 ---
 source_file: "tests/subtree-guard.test.mjs"
 type: "code"
-community: "Knowledge Graph Combine"
+community: "knowledge-graph-combine.mjs"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Knowledge_Graph_Combine
+  - community/knowledge-graph-combinemjs
 ---
 
 # subtree-guard.test.mjs
@@ -16,4 +16,4 @@ tags:
 - [[isUnderSubtree()]] - `imports` [EXTRACTED]
 - [[subtree-guard.mjs]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Knowledge_Graph_Combine
+#graphify/code #graphify/EXTRACTED #community/knowledge-graph-combinemjs

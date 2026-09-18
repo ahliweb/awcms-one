@@ -1,17 +1,17 @@
 ---
-source_file: "apps/storefront/tests/katalog-build-smoke.test.ts"
+source_file: "apps/storefront/tests/analitik-build-smoke.test.ts"
 type: "code"
-community: "Build & E2E Tooling"
-location: "L30"
+community: "bun"
+location: "L29"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Build__E2E_Tooling
+  - community/bun
 ---
 
 # waitForStub()
 
 ## Connections
-- [[katalog-build-smoke.test.ts]] - `contains` [EXTRACTED]
+- [[analitik-build-smoke.test.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Build__E2E_Tooling
+#graphify/code #graphify/EXTRACTED #community/bun

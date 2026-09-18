@@ -1,18 +1,21 @@
 ---
-source_file: "apps/storefront/src/pages/index/wilayah-provinsi.json.ts"
+source_file: "apps/storefront/src/pages/sitemap-index.xml.ts"
 type: "code"
-community: "Checkout Region Data"
-location: "L12"
+community: "sitemap-sources.ts"
+location: "L13"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Checkout_Region_Data
+  - community/sitemap-sourcests
 ---
 
 # GET()
 
 ## Connections
-- [[getCheckoutProvinces()]] - `calls` [EXTRACTED]
-- [[wilayah-provinsi.json.ts]] - `contains` [EXTRACTED]
+- [[absoluteUrl()]] - `calls` [EXTRACTED]
+- [[chunkSitemapEntries()]] - `calls` [EXTRACTED]
+- [[getAllSitemapEntries()]] - `calls` [EXTRACTED]
+- [[renderSitemapIndexXml()]] - `calls` [EXTRACTED]
+- [[sitemap-index.xml.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Checkout_Region_Data
+#graphify/code #graphify/EXTRACTED #community/sitemap-sourcests

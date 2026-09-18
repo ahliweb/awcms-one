@@ -1,18 +1,18 @@
 ---
 source_file: "apps/storefront/src/lib/harga.ts"
 type: "code"
-community: "Price Formatting"
+community: "product/[slug].astro"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Price_Formatting
+  - community/product/slugastro
 ---
 
 # harga.ts
 
 ## Connections
-- [[ADR-0003_2]] - `cites` [EXTRACTED]
+- [[ADR-0003_1]] - `cites` [EXTRACTED]
 - [[PRICE_FORMATTER]] - `contains` [EXTRACTED]
 - [[ProductCard.astro]] - `imports_from` [EXTRACTED]
 - [[catalog.ts]] - `re_exports` [EXTRACTED]
@@ -32,4 +32,4 @@ tags:
 - [[wa-fallback.ts]] - `imports_from` [EXTRACTED]
 - [[wishlist.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Price_Formatting
+#graphify/code #graphify/EXTRACTED #community/product/slugastro

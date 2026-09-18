@@ -1,18 +1,18 @@
 ---
-source_file: "apps/storefront/src/pages/arsip/[yyyy]/[mm].astro"
+source_file: "apps/storefront/src/pages/daerah/[slug].astro"
 type: "code"
-community: "News Layout & Archive"
-location: "L9"
+community: "berita.ts"
+location: "L13"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/News_Layout__Archive
+  - community/beritats
 ---
 
 # getStaticPaths()
 
 ## Connections
-- [[mm.astro]] - `contains` [EXTRACTED]
-- [[listArsipBulan()]] - `calls` [EXTRACTED]
+- [[daerahslug.astro]] - `contains` [EXTRACTED]
+- [[listDaerahLinks()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/News_Layout__Archive
+#graphify/code #graphify/EXTRACTED #community/beritats

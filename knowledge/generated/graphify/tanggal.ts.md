@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/tanggal.ts"
 type: "code"
-community: "Article Card & View"
+community: "Sidebar.astro"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Article_Card__View
+  - community/Sidebarastro
 ---
 
 # tanggal.ts
@@ -14,6 +14,8 @@ tags:
 ## Connections
 - [[ArtikelCard.astro]] - `imports_from` [EXTRACTED]
 - [[ArtikelView.astro]] - `imports_from` [EXTRACTED]
+- [[Sidebar.astro]] - `imports_from` [EXTRACTED]
+- [[Ticker.astro]] - `imports_from` [EXTRACTED]
 - [[mm.astro]] - `imports_from` [EXTRACTED]
 - [[arsipBulanWIB()]] - `contains` [EXTRACTED]
 - [[berita-tanggal.test.ts]] - `imports_from` [EXTRACTED]
@@ -25,4 +27,4 @@ tags:
 - [[pernahDiperbaruiSetelahTerbit()]] - `contains` [EXTRACTED]
 - [[toDatetimeAttr()]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Article_Card__View
+#graphify/code #graphify/EXTRACTED #community/Sidebarastro

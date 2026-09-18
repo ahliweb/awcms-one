@@ -1,23 +1,23 @@
 ---
 source_file: "apps/storefront/src/pages/index/wilayah-kabupaten-[provinceCode].json.ts"
 type: "code"
-community: "Checkout Region Data"
+community: "wilayah-checkout.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Checkout_Region_Data
+  - community/wilayah-checkoutts
 ---
 
 # wilayah-kabupaten-[provinceCode].json.ts
 
 ## Connections
-- [[GET()_7]] - `contains` [EXTRACTED]
+- [[GET()_13]] - `contains` [EXTRACTED]
 - [[WilayahRegion]] - `imports` [EXTRACTED]
 - [[getCheckoutProvinces()]] - `imports` [EXTRACTED]
 - [[getCheckoutRegencies()]] - `imports` [EXTRACTED]
-- [[getStaticPaths()_4]] - `contains` [EXTRACTED]
-- [[prerender_7]] - `contains` [EXTRACTED]
+- [[getStaticPaths()_8]] - `contains` [EXTRACTED]
+- [[prerender_13]] - `contains` [EXTRACTED]
 - [[wilayah-checkout.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Checkout_Region_Data
+#graphify/code #graphify/EXTRACTED #community/wilayah-checkoutts

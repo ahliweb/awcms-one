@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/portable-text.ts"
 type: "code"
-community: "Portable Text Rendering"
-location: "L322"
+community: "portable-text.ts"
+location: "L366"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Portable_Text_Rendering
+  - community/portable-textts
 ---
 
 # documentHasPlayableVideo()
@@ -18,4 +18,4 @@ tags:
 - [[toPostSummary()]] - `calls` [EXTRACTED]
 - [[youtubeWatchUrl()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Portable_Text_Rendering
+#graphify/code #graphify/EXTRACTED #community/portable-textts

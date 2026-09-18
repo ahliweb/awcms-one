@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/berita.ts"
 type: "code"
-community: "Article Card & View"
-location: "L68"
+community: "BeritaLayout.astro"
+location: "L101"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Article_Card__View
+  - community/BeritaLayoutastro
 ---
 
 # PostDetail
@@ -14,5 +14,7 @@ tags:
 ## Connections
 - [[ArtikelView.astro]] - `imports` [EXTRACTED]
 - [[berita.ts]] - `contains` [EXTRACTED]
+- [[meta-sosial.test.ts]] - `imports` [EXTRACTED]
+- [[meta-sosial.ts]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Article_Card__View
+#graphify/code #graphify/EXTRACTED #community/BeritaLayoutastro

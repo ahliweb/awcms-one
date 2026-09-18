@@ -1,20 +1,20 @@
 ---
 source_file: "apps/storefront/src/lib/awcms/blog.ts"
 type: "code"
-community: "Legacy Redirect Map"
-location: "L376"
+community: "getVideo"
+location: "L387"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Legacy_Redirect_Map
+  - community/getVideo
 ---
 
 # getLegacyRedirectRows()
 
 ## Connections
-- [[GET()_5]] - `calls` [EXTRACTED]
+- [[GET()_12]] - `calls` [EXTRACTED]
 - [[blog.ts]] - `contains` [EXTRACTED]
 - [[fetchLegacyRedirectRows()]] - `calls` [EXTRACTED]
 - [[pengalihan-legacy.json.ts]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Legacy_Redirect_Map
+#graphify/code #graphify/EXTRACTED #community/getVideo

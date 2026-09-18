@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/pages/cari.astro"
 type: "code"
-community: "Base Layout & Site Identity"
+community: "produk-listing.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Base_Layout__Site_Identity
+  - community/produk-listingts
 ---
 
 # cari.astro
@@ -16,4 +16,4 @@ tags:
 - [[SearchForm.astro]] - `imports_from` [EXTRACTED]
 - [[cari-listing.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Base_Layout__Site_Identity
+#graphify/code #graphify/EXTRACTED #community/produk-listingts

@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/berita.ts"
 type: "code"
-community: "News JSON-LD"
-location: "L405"
+community: "BeritaLayout.astro"
+location: "L476"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/News_JSON-LD
+  - community/BeritaLayoutastro
 ---
 
 # getRelatedPosts()
@@ -17,4 +17,4 @@ tags:
 - [[getIndex()]] - `calls` [EXTRACTED]
 - [[videoslug.astro]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/News_JSON-LD
+#graphify/code #graphify/EXTRACTED #community/BeritaLayoutastro

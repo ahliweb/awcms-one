@@ -1,17 +1,17 @@
 ---
-source_file: "apps/storefront/src/pages/index/berita.json.ts"
+source_file: "apps/storefront/src/pages/index/produk.json.ts"
 type: "code"
-community: "News Front Page"
-location: "L11"
+community: "catalog.ts"
+location: "L12"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/News_Front_Page
+  - community/catalogts
 ---
 
 # prerender
 
 ## Connections
-- [[berita.json.ts]] - `contains` [EXTRACTED]
+- [[produk.json.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/News_Front_Page
+#graphify/code #graphify/EXTRACTED #community/catalogts

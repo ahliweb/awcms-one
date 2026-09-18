@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/wishlist-kontrak.ts"
 type: "code"
-community: "Wishlist Client Storage"
+community: "wishlist-kontrak.ts"
 location: "L31"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Wishlist_Client_Storage
+  - community/wishlist-kontrakts
 ---
 
 # isIsoDateString()
@@ -15,4 +15,4 @@ tags:
 - [[validateWishlistItem()]] - `calls` [EXTRACTED]
 - [[wishlist-kontrak.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Wishlist_Client_Storage
+#graphify/code #graphify/EXTRACTED #community/wishlist-kontrakts

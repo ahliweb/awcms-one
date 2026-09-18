@@ -1,17 +1,17 @@
 ---
-source_file: "apps/storefront/src/scripts/cari-listing.ts"
+source_file: "apps/storefront/src/pages/arsip/[yyyy]/[mm].astro"
 type: "code"
-community: "Client Product Search"
-location: "L18"
+community: "Sidebar.astro"
+location: "L17"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Client_Product_Search
+  - community/Sidebarastro
 ---
 
 # heading
 
 ## Connections
-- [[cari-listing.ts]] - `contains` [EXTRACTED]
+- [[mm.astro]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Client_Product_Search
+#graphify/code #graphify/EXTRACTED #community/Sidebarastro

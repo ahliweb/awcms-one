@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/pages/index.astro"
 type: "code"
-community: "Marketing Read Models"
+community: "pages/index.astro"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Marketing_Read_Models
+  - community/pages/indexastro
 ---
 
 # pages/index.astro
@@ -15,7 +15,7 @@ tags:
 - [[BaseLayout.astro]] - `imports_from` [EXTRACTED]
 - [[Countdown.astro]] - `imports_from` [EXTRACTED]
 - [[ProductCard.astro]] - `imports_from` [EXTRACTED]
-- [[ROUTES_1]] - `imports` [EXTRACTED]
+- [[ROUTES]] - `imports` [EXTRACTED]
 - [[berita-terkini.ts]] - `imports_from` [EXTRACTED]
 - [[buildCategoryTree()]] - `imports` [EXTRACTED]
 - [[catalog.ts]] - `imports_from` [EXTRACTED]
@@ -40,4 +40,4 @@ tags:
 - [[starText()]] - `contains` [EXTRACTED]
 - [[voucher-copy.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Marketing_Read_Models
+#graphify/code #graphify/EXTRACTED #community/pages/indexastro
