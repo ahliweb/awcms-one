@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](aksesibilitas.md)
 
-<!-- i18n-source-hash: sha256:3807bbd7de9ecee9d6d4ce4edffa1fa13e9aea883f15b868092b71fbe17177f8 -->
+<!-- i18n-source-hash: sha256:4b7b176e547cdb2a801ecfec90b6cfa8ae73693471ba0ad591d6fe32325a411d -->
 
 # Aksesibilitas
 
@@ -18,6 +18,7 @@ Apa yang dilakukan `apps/storefront` untuk aksesibilitas, dan bagaimana itu dipe
 - **Setiap halaman keranjang/checkout/wishlist/pelacakan-pesanan membawa fallback `<noscript>` dan fallback WhatsApp untuk kasus JS-berjalan-tapi-CMS-mati** (`apps/storefront/src/lib/wa-fallback.ts`) — pembaca dengan JavaScript nonaktif, atau yang mencapai halaman saat `apps/cms` tak terjangkau, tidak pernah ditinggalkan dengan halaman yang diam-diam tidak melakukan apa pun.
 - **`prefers-reduced-motion: reduce` dihormati** di `global.css`.
 - **Semantik tabel pada daftar produk admin milik `apps/cms` sendiri** (`<caption>`, `scope="col"`, `data-label` untuk layout stacked responsif) — bagian dari `apps/cms`, bukan storefront ini; disebutkan di sini karena pembaca yang mencarinya jika tidak begitu akan menyimpulkan ketiadaannya dari keheningan. Lihat [`docs/cms.md`](cms.id.md).
+- **Pemutar baca-nyaring bersifat tambahan, bukan pengganti teksnya** (issue #52, `apps/storefront/src/components/berita/PemutarDengar.astro`). Kontrolnya berbasis `<button>` dengan `aria-pressed` pada putar/jeda, nama aksesibel berupa kalimat penuh pada setiap tombol, target 44px, baris progres `role="status" aria-live="polite"`, dan kartunya dirender `hidden` sampai peramban terbukti punya `speechSynthesis` beserta suaranya — sehingga pembaca di peramban tanpa API itu, atau tanpa JavaScript, tidak pernah ditawari kontrol yang tidak melakukan apa-apa. Sorotan baca-bersama memakai `outline`/`box-shadow` justru supaya artikel tidak pernah bergeser di bawah pembaca yang sedang mendengarkan, dan `prefers-reduced-motion: reduce` melepas cahaya di sekelilingnya. Ini bukan pengganti aksesibilitas bagi artikelnya sendiri: teks itulah artikelnya, dan pemutar membacakan teks yang sama dengan suara bawaan perangkat pembaca.
 - **Kontras warna diuji unit**, bukan sekadar dihitung dan dipercaya — `apps/storefront/tests/warna.test.ts` menegaskan setiap warna brand default melewati ambang kontras-teks WCAG AA terhadap foreground hasil hitungnya sendiri; lihat [`docs/ui-ux.md`](ui-ux.id.md) untuk `contrastingForeground()` itu sendiri.
 
 ## Yang tidak diperiksa
