@@ -214,5 +214,32 @@
     "regionName": "Barito Utara",
     "seoTitle": "Berita DPRD Barito Utara Terbaru Hari Ini",
     "description": "Kanal rilis resmi DPRD Kabupaten Barito Utara."
+  },
+  {
+    "name": "Pemkab Kotawaringin Barat",
+    "slug": "pemkab-kotawaringin-barat",
+    "branch": "executive",
+    "regionLevel": 2,
+    "regionName": "Kotawaringin Barat",
+    "seoTitle": "Berita Pemkab Kotawaringin Barat Terbaru Hari Ini",
+    "description": "Kanal rilis resmi Pemerintah Kabupaten Kotawaringin Barat."
+  },
+  {
+    "name": "Pemkab Sukamara",
+    "slug": "pemkab-sukamara",
+    "branch": "executive",
+    "regionLevel": 2,
+    "regionName": "Sukamara",
+    "seoTitle": "Berita Pemkab Sukamara Terbaru Hari Ini",
+    "description": "Kanal rilis resmi Pemerintah Kabupaten Sukamara."
+  },
+  {
+    "name": "Pemkab Barito Selatan",
+    "slug": "pemkab-barito-selatan",
+    "branch": "executive",
+    "regionLevel": 2,
+    "regionName": "Barito Selatan",
+    "seoTitle": "Berita Pemkab Barito Selatan Terbaru Hari Ini",
+    "description": "Kanal rilis resmi Pemerintah Kabupaten Barito Selatan."
   }
 ]

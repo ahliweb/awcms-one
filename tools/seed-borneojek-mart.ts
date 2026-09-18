@@ -104,7 +104,46 @@ const MACHINE_CREDENTIAL_PERMISSION_KEYS = [
   "commerce.sliders.read",
   "commerce.testimonials.read",
   "commerce.popups.read",
-  "commerce.settings.read"
+  "commerce.settings.read",
+  // Issue #57 — the news surface (`apps/storefront/src/lib/awcms/{blog,
+  // pages,profil,wilayah,wilayah-checkout}.ts`) 403s at build time without
+  // these: `permissionKey(moduleKey, activityCode, action)`
+  // (`identity-access/domain/access-control.ts`) is `${moduleKey}.
+  // ${activityCode}.${action}`, and each key below is copied verbatim from
+  // the `authorize`/`READ_GUARD` block of the ROUTE FILE that endpoint's
+  // `awcmsGet()` call actually hits — never guessed:
+  //   - blog.ts's POSTS_PATH          -> blog/posts/index.ts
+  "blog_content.posts.read",
+  //   - blog.ts's TERMS_PATH          -> blog/terms/index.ts (activityCode
+  //     is "taxonomies", not "terms")
+  "blog_content.taxonomies.read",
+  //   - blog.ts's INSTITUTIONS_PATH   -> blog/institutions/index.ts
+  "blog_content.institutions.read",
+  //   - pages.ts's public page(s) fetch -> blog/pages/public.ts and
+  //     blog/pages/public/[slug].ts (both guarded identically)
+  "blog_content.pages.read",
+  //   - blog.ts's AD_PLACEMENTS_ACTIVE_PATH -> news-portal/ad-placements/
+  //     active.ts
+  "blog_content.ad_placements.read",
+  //   - blog.ts's REDIRECTS_PATH      -> seo/redirects/index.ts
+  //     (SEO_MODULE_KEY/SEO_REDIRECT_ACTIVITY_CODE, seo-permissions.ts)
+  "seo_distribution.redirect.read",
+  //   - profil.ts's site-profile fetch -> site-profile/composed.ts
+  //     (SITE_PROFILE_MODULE_KEY/SITE_PROFILE_ACTIVITY_CODE,
+  //     site-profile-permissions.ts — activityCode is "profile")
+  "site_profile.profile.read",
+  //   - wilayah.ts's/wilayah-checkout.ts's REGIONS_PATH -> idn-regions/
+  //     regions/index.ts (IDN_ADMIN_REGIONS_MODULE_KEY/
+  //     IDN_REGION_ACTIVITY_CODE, idn-admin-regions-permissions.ts —
+  //     activityCode is "region", singular)
+  "idn_admin_regions.region.read"
+  // theme.ts's `/theming/{tenantCode}/tokens.css` is PUBLIC (no auth at
+  // all — see that file's own docblock), so it needs no key here.
+  // Deliberately NOT added: `media_library.media.read` (PR #65 adds this
+  // line; rebase after it merges) and the visitor-analytics read key (A3
+  // adds it in wave 2) — per the coordinator's own scope split, so this
+  // list stays a clean append for whichever of those three PRs merges
+  // last.
 ] as const;
 const MACHINE_CREDENTIAL_LIFETIME_DAYS = 365;
 
@@ -997,21 +1036,80 @@ type PageSeed = {
   bodyParagraphs: string[];
 };
 
+/**
+ * Issue #57 finding, fixed for every page/post this script has ever seeded
+ * (not narrowly scoped to this issue's own new rows — a half-fix would leave
+ * the OLD rows silently stuck forever): `createBlogPage`/`createBlogPost`
+ * always write `status: 'draft'`
+ * (`blog-page-directory.ts`/`blog-post-directory.ts`), and nothing in this
+ * script ever transitioned either past it. `apps/storefront`'s build reads
+ * `blog/pages/public.ts`'s own predicate (`published`, reachable visibility,
+ * not soft-deleted) and `blog.ts`'s `getAllPosts()`
+ * (`?status=published&...`, walked WITHOUT catching a refusal — "the primary
+ * content type the whole issue exists to publish"), so every page/post
+ * seeded before this fix was, and would have stayed, invisible to the
+ * storefront regardless of how much taxonomy/institution data surrounded it.
+ * Found while verifying this issue's own "renders /halaman/redaksi" and
+ * "renders /berita" acceptance criteria against a REAL seeded local CMS — a
+ * stub-backed storefront build never exercises this path, since the stub's
+ * fixtures are canned, already-published data, not the output of this
+ * script's own create call.
+ *
+ * `POST .../{id}/publish` (Issue #538/`pages/{id}/publish.ts`) is the only
+ * code path that can ever move either row past `draft`; the content quality
+ * checklist it runs is a documented no-op unless full-online R2-only mode is
+ * active for the tenant (`content-quality-checklist.ts`'s own header), which
+ * this seed's tenant never turns on, so it never blocks these calls.
+ * `INVALID_STATUS_TRANSITION` (already published, or a re-run of this
+ * script) is treated as success, not an error to fail the run over.
+ */
+async function publishBlogContent(
+  session: Session,
+  kind: "pages" | "posts",
+  id: string,
+  label: string
+): Promise<void> {
+  const noun = kind === "pages" ? "page" : "post";
+  const result = await apiCall(
+    "POST",
+    `/api/v1/blog/${kind}/${id}/publish`,
+    { session, idempotencyKey: crypto.randomUUID() }
+  );
+
+  if (result.ok) {
+    console.log(`  apply ${noun} "${label}" status -> published`);
+    return;
+  }
+
+  const raw = result.raw as { error?: { code?: string } } | null;
+  if (raw?.error?.code === "INVALID_STATUS_TRANSITION") {
+    console.log(
+      `  skip publish for ${noun} "${label}" (already published, or not publishable from its current status)`
+    );
+    return;
+  }
+
+  throw new SeedApiError(`POST /api/v1/blog/${kind}/${id}/publish (${label})`, result);
+}
+
 async function ensureBlogPages(session: Session): Promise<void> {
   // Response key is `pages` — `blog/pages/index.ts`'s `GET` returns `ok({ pages })`.
-  const list = await apiCall<{ pages: Array<{ id: string; slug: string }> }>(
-    "GET",
-    "/api/v1/blog/pages?limit=100",
-    { session }
-  );
+  const list = await apiCall<{
+    pages: Array<{ id: string; slug: string; status: string }>;
+  }>("GET", "/api/v1/blog/pages?limit=100", { session });
   assertOk("GET /api/v1/blog/pages", list);
 
-  const existingSlugs = new Set(list.data.pages.map((item) => item.slug));
+  const existingBySlug = new Map(list.data.pages.map((item) => [item.slug, item]));
   const pages = readSeedJson<PageSeed[]>("pages.json");
 
   for (const page of pages) {
-    if (existingSlugs.has(page.slug)) {
+    const existing = existingBySlug.get(page.slug);
+
+    if (existing) {
       console.log(`skip page "${page.slug}" (already exists)`);
+      if (existing.status !== "published") {
+        await publishBlogContent(session, "pages", existing.id, page.slug);
+      }
       continue;
     }
 
@@ -1031,6 +1129,7 @@ async function ensureBlogPages(session: Session): Promise<void> {
     });
     assertOk(`POST /api/v1/blog/pages (${page.slug})`, created);
     console.log(`apply page "${page.slug}" (${page.pageType})`);
+    await publishBlogContent(session, "pages", created.data.id, page.slug);
   }
 }
 
@@ -1054,19 +1153,22 @@ async function ensureBlogPosts(
   termIdBySlug: Map<string, string>
 ): Promise<void> {
   // Response key is `posts` — `blog/posts/index.ts`'s `GET` returns `ok({ posts })`.
-  const list = await apiCall<{ posts: Array<{ id: string; slug: string }> }>(
-    "GET",
-    "/api/v1/blog/posts?limit=100",
-    { session }
-  );
+  const list = await apiCall<{
+    posts: Array<{ id: string; slug: string; status: string }>;
+  }>("GET", "/api/v1/blog/posts?limit=100", { session });
   assertOk("GET /api/v1/blog/posts", list);
 
-  const existingSlugs = new Set(list.data.posts.map((item) => item.slug));
+  const existingBySlug = new Map(list.data.posts.map((item) => [item.slug, item]));
   const posts = readSeedJson<PostSeed[]>("posts.json");
 
   for (const post of posts) {
-    if (existingSlugs.has(post.slug)) {
+    const existing = existingBySlug.get(post.slug);
+
+    if (existing) {
       console.log(`skip post "${post.slug}" (already exists)`);
+      if (existing.status !== "published") {
+        await publishBlogContent(session, "posts", existing.id, post.slug);
+      }
       continue;
     }
 
@@ -1097,6 +1199,7 @@ async function ensureBlogPosts(
     });
     assertOk(`POST /api/v1/blog/posts (${post.slug})`, created);
     console.log(`apply post "${post.slug}"`);
+    await publishBlogContent(session, "posts", created.data.id, post.slug);
   }
 }
 
@@ -1524,20 +1627,23 @@ async function ensureNewsPosts(
   rubrikIdBySlug: Map<string, string>,
   institutionIdBySlug: Map<string, string>
 ): Promise<void> {
-  const list = await apiCall<{ posts: Array<{ id: string; slug: string }> }>(
-    "GET",
-    "/api/v1/blog/posts?limit=100",
-    { session }
-  );
+  const list = await apiCall<{
+    posts: Array<{ id: string; slug: string; status: string }>;
+  }>("GET", "/api/v1/blog/posts?limit=100", { session });
   assertOk("GET /api/v1/blog/posts", list);
 
-  const existingSlugs = new Set(list.data.posts.map((item) => item.slug));
+  const existingBySlug = new Map(list.data.posts.map((item) => [item.slug, item]));
   const posts = readSeedJson<NewsPostSeed[]>("posts-berita.json");
   let anyCreated = false;
 
   for (const post of posts) {
-    if (existingSlugs.has(post.slug)) {
+    const existing = existingBySlug.get(post.slug);
+
+    if (existing) {
       console.log(`skip news post "${post.slug}" (already exists)`);
+      if (existing.status !== "published") {
+        await publishBlogContent(session, "posts", existing.id, post.slug);
+      }
       continue;
     }
 
@@ -1581,6 +1687,7 @@ async function ensureNewsPosts(
         `${institutionIds.length > 0 ? `, institutions=${post.institutionSlugs!.join(",")}` : ""}` +
         `${post.video ? ", video" : ""})`
     );
+    await publishBlogContent(session, "posts", created.data.id, post.slug);
   }
 
   if (anyCreated) {
