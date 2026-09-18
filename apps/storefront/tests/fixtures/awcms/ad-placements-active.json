@@ -10,9 +10,36 @@
         "contentClass": "standard"
       }
     ],
-    "below_headline": [],
-    "homepage_middle": [],
-    "homepage_bottom": [],
+    "below_headline": [
+      {
+        "id": "ad-below-headline-1",
+        "name": "Pemprov Kalteng — Festival Budaya Isen Mulang",
+        "linkUrl": "https://example.test/festival-isen-mulang",
+        "mediaPublicUrl": "https://media.example.test/ads/isen-mulang.jpg",
+        "mediaAltText": "Festival Budaya Isen Mulang",
+        "contentClass": "standard"
+      }
+    ],
+    "homepage_middle": [
+      {
+        "id": "ad-homepage-middle-1",
+        "name": "Bank Kalteng — Tabungan Pelajar",
+        "linkUrl": "https://example.test/tabungan-pelajar",
+        "mediaPublicUrl": "https://media.example.test/ads/tabungan-pelajar.jpg",
+        "mediaAltText": "Tabungan Pelajar Bank Kalteng",
+        "contentClass": "standard"
+      }
+    ],
+    "homepage_bottom": [
+      {
+        "id": "ad-homepage-bottom-1",
+        "name": "Borneojek — Unduh Aplikasi",
+        "linkUrl": "https://example.test/unduh-borneojek",
+        "mediaPublicUrl": "https://media.example.test/ads/borneojek-app.jpg",
+        "mediaAltText": "Unduh aplikasi Borneojek",
+        "contentClass": "standard"
+      }
+    ],
     "article_top": [],
     "article_middle": [
       {
@@ -35,8 +62,26 @@
         "contentClass": "sponsored"
       }
     ],
-    "sidebar_middle": [],
-    "sidebar_bottom": [],
+    "sidebar_middle": [
+      {
+        "id": "ad-sidebar-middle-1",
+        "name": "RSUD Doris Sylvanus — Layanan Poli Baru",
+        "linkUrl": "https://example.test/poli-baru",
+        "mediaPublicUrl": "https://media.example.test/ads/rsud-doris.jpg",
+        "mediaAltText": "Layanan poli baru RSUD Doris Sylvanus",
+        "contentClass": "advertorial"
+      }
+    ],
+    "sidebar_bottom": [
+      {
+        "id": "ad-sidebar-bottom-1",
+        "name": "Dinas Pariwisata Kalteng — Tanjung Puting",
+        "linkUrl": "https://example.test/tanjung-puting",
+        "mediaPublicUrl": "https://media.example.test/ads/tanjung-puting.jpg",
+        "mediaAltText": "Wisata Tanjung Puting",
+        "contentClass": "standard"
+      }
+    ],
     "category_archive_top": [],
     "search_result_top": []
   }

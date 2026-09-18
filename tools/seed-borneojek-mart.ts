@@ -105,6 +105,7 @@ const MACHINE_CREDENTIAL_PERMISSION_KEYS = [
   "commerce.testimonials.read",
   "commerce.popups.read",
   "commerce.settings.read",
+  "visitor_analytics.dashboard.read", // Issue #49 — `apps/storefront/src/lib/awcms/analitik.ts` reads `GET /api/v1/analytics/pages` ("Terpopuler"); `DASHBOARD_GUARD` in that route file, same key for `/summary|pages|devices|locations|security` per the module README.
   // Issue #47 — `apps/storefront/src/lib/awcms/media.ts` resolves
   // `featuredMediaId`/a gallery item's `mediaObjectId` to a public URL via
   // `GET /api/v1/media/objects`, and reads `GET /api/v1/media/public-origin`

@@ -1,7 +1,8 @@
 ---
-/** `/arsip/[yyyy]/[mm]` — monthly archive (issue #28), keyed to a post's WIB publish month (`src/lib/tanggal.ts`'s `arsipBulanWIB`). */
+/** `/arsip/[yyyy]/[mm]` — monthly archive (issue #28), keyed to a post's WIB publish month (`src/lib/tanggal.ts`'s `arsipBulanWIB`). Issue #49: the grid sits beside the shared `Sidebar.astro` in `.layout-with-sidebar`. */
 import BeritaLayout from "../../../layouts/BeritaLayout.astro";
 import ArtikelCard from "../../../components/berita/ArtikelCard.astro";
+import Sidebar from "../../../components/berita/Sidebar.astro";
 import { ROUTES } from "../../../config/routes";
 import { listArsipBulan, getArsipBulan } from "../../../lib/berita";
 import { formatBulanArsipWIB } from "../../../lib/tanggal";
@@ -29,12 +30,18 @@ const canonicalPath = ROUTES.archive(yyyy, mm);
 
     <h1>Arsip {heading}</h1>
 
-    {posts.length === 0 ? (
-      <p class="empty-state">Tidak ada berita di bulan ini.</p>
-    ) : (
-      <ul class="grid-cards">
-        {posts.map((post) => <ArtikelCard post={post} />)}
-      </ul>
-    )}
+    <div class="layout-with-sidebar">
+      <div>
+        {posts.length === 0 ? (
+          <p class="empty-state">Tidak ada berita di bulan ini.</p>
+        ) : (
+          <ul class="grid-cards">
+            {posts.map((post) => <ArtikelCard post={post} />)}
+          </ul>
+        )}
+      </div>
+
+      <Sidebar />
+    </div>
   </div>
 </BeritaLayout>
