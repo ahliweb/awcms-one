@@ -27,7 +27,7 @@ Verified directly against this repository's GitHub settings at the time of writi
 
 ## Homegrown changesets, not `@changesets/cli`
 
-A change affecting public behaviour, workspace structure, dependencies, or deployment gets a file in [`.changesets/`](../.changesets/README.md) in the same change that causes it: `YYYY-MM-DD-summary-in-kebab-case.md`, with `bump: major | minor | patch` frontmatter chosen while writing the change, because that is the only moment anyone reliably knows the answer. `bun run audit:rilis` watches the waiting backlog and reddens once it crosses 10 files or 14 days old — a signal a release is due, not a fault.
+A change affecting public behaviour, workspace structure, dependencies, or deployment gets a file in [`.changesets/`](../.changesets/README.md) in the same change that causes it: `YYYY-MM-DD-summary-in-kebab-case.md`, with `bump: major | minor | patch` frontmatter chosen while writing the change, because that is the only moment anyone reliably knows the answer. `bun run audit:rilis` watches the waiting backlog and reddens once it crosses 20 files or 14 days old — a signal a release is due, not a fault.
 
 ## Wave-based delivery, in this epic
 

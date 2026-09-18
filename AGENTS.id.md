@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](AGENTS.md)
 
-<!-- i18n-source-hash: sha256:771391bef39ba1521e4e745a8504891547454ec2320c4c74d87242e1b0f29482 -->
+<!-- i18n-source-hash: sha256:99922df7043c4e26e2d2af040350547f22f224425d219bb4983472c6bb6fa798 -->
 
 # AGENTS.md — kontrak kerja awcms-one
 
@@ -81,7 +81,7 @@ Ini adalah workspace Bun (`workspaces: ["apps/*", "packages/*"]`); setiap direkt
 | Gerbang | Apa yang ditangkapnya |
 | --- | --- |
 | `bun run audit:dokumen` | Tautan relatif mati di markdown; indeks ADR yang tidak lengkap di salah satu arah atau memuat baris ganda; jalur berkas yang disebut dalam backtick yang tidak ada di repo ini; kutipan `ADR-NNNN` yang tidak resolve ke mana pun; angka yang dieja yang tidak sesuai dengan himpunan yang diklaimnya dihitung, di dalam blok yang ditandai eksplisit |
-| `bun run audit:rilis` | Backlog `.changesets/` yang menunggu melewati batasnya — 10 berkas atau 14 hari, keduanya asumsi awal sampai ada riwayat rilis sungguhan (lihat docblock gerbang itu sendiri) |
+| `bun run audit:rilis` | Backlog `.changesets/` yang menunggu melewati batasnya — 20 berkas atau 14 hari; batas jumlahnya 10 sampai increment 3 mengukur laju nyata per increment (lihat docblock gerbang itu sendiri) |
 | `bun run audit:translation` | Cermin Indonesia (`<nama>.id.md`) yang hash sumber tercatatnya sudah tidak cocok lagi dengan sumber Inggrisnya, atau dokumen governance tanpa cermin sama sekali |
 | `bun run audit:graf` (alias: `bun run knowledge:check`) | Korpus graf pengetahuan akar (`graphify-out/`) menggambarkan dirinya sendiri secara jujur — hanya artefak yang dilacak yang dilacak, laporan sesuai dengan `graph.json`, setiap komunitas punya nama yang dipilih, `.graphifyignore` masih mengecualikan `apps/cms`, tidak ada node yang diekstraksi ganda darinya, graf federasi tidak pernah tanpa sengaja ter-commit, dan `apps/cms/graphify-out/` tidak tersentuh oleh perkakas repo ini sendiri. Lihat [`knowledge/README.md`](knowledge/README.md) |
 | `bun test` | Rangkaian tes gerbang akar — `tests/*.test.mjs` — plus tes unit/build-smoke/route milik `apps/storefront` sendiri. `apps/cms/**` dikecualikan lewat `pathIgnorePatterns` di `bunfig.toml`, bukan lewat flag di skrip `test` (lihat komentar berkas itu sendiri untuk kenapa perbedaannya krusial: CI memanggil `bun test` telanjang, dan flag di `bun run test` akan diam-diam tidak berlaku) |
@@ -125,7 +125,7 @@ Ditegakkan oleh `tests/standar-skrip.test.mjs`, dan layak dinyatakan di sini kar
 
 Perubahan yang memengaruhi perilaku publik, struktur workspace, dependency, atau deployment mendapat berkas di `.changesets/` di perubahan yang sama yang menyebabkannya — lihat [`.changesets/README.md`](.changesets/README.md) untuk formatnya. `bump` adalah field yang penting: versi rilis berikutnya adalah `bump` **terbesar** di antara changeset yang menunggu saat `bun run release --apply` berjalan, jadi besar sebuah rilis adalah konsekuensi dari apa yang masuk ke dalamnya, bukan penilaian yang dibuat saat rilis dari daftar nama berkas.
 
-`bun run audit:rilis` mengawasi backlog yang menunggu dan memerah begitu melewati 10 berkas atau 14 hari — sinyal bahwa rilis sudah jatuh tempo, bukan kesalahan yang perlu diminta maaf. Seorang maintainer lalu menjalankan `bun run release`, yang melipat changeset yang menunggu ke `CHANGELOG.md`, menaikkan `package.json`, dan (dengan `--commit`) menandai tag `vX.Y.Z`.
+`bun run audit:rilis` mengawasi backlog yang menunggu dan memerah begitu melewati 20 berkas atau 14 hari — sinyal bahwa rilis sudah jatuh tempo, bukan kesalahan yang perlu diminta maaf. Seorang maintainer lalu menjalankan `bun run release`, yang melipat changeset yang menunggu ke `CHANGELOG.md`, menaikkan `package.json`, dan (dengan `--commit`) menandai tag `vX.Y.Z`.
 
 ## Definition of Done
 

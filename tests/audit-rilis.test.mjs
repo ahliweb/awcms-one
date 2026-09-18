@@ -78,16 +78,16 @@ async function run(root, env = {}) {
 
 describe("count waiting", () => {
   test("ten changesets — exactly at the bound — is green", async () => {
-    const { code, output } = await run(tree(nOf(10)));
+    const { code, output } = await run(tree(nOf(20)));
 
     expect(output).toContain("OK — no violations.");
     expect(code).toBe(0);
   });
 
-  test("eleven is red, and the count plus the bound are named", async () => {
-    const { code, output } = await run(tree(nOf(11)));
+  test("twenty-one is red, and the count plus the bound are named", async () => {
+    const { code, output } = await run(tree(nOf(21)));
 
-    expect(output).toContain("11 changeset(s) waiting, bound is 10");
+    expect(output).toContain("21 changeset(s) waiting, bound is 20");
     expect(output).toContain("bun run release --apply");
     expect(code).toBe(1);
   });
@@ -96,10 +96,10 @@ describe("count waiting", () => {
     // The defect this guards against: a filter comparing against one exact
     // name would count README.id.md as a waiting changeset — two phantom
     // files shifting the count with nothing ever written.
-    const root = tree([...nOf(10), "README.md", "README.id.md"]);
+    const root = tree([...nOf(20), "README.md", "README.id.md"]);
     const { code, output } = await run(root);
 
-    expect(output).toContain("10 changeset(s) waiting");
+    expect(output).toContain("20 changeset(s) waiting");
     expect(code).toBe(0);
   });
 });
@@ -181,7 +181,7 @@ describe("empty states", () => {
     const { code, output } = await run(tree([]));
 
     expect(output).toContain("No changesets waiting.");
-    expect(output).toContain("10 file(s)");
+    expect(output).toContain("20 file(s)");
     expect(output).toContain("14 day(s)");
     expect(code).toBe(0);
   });
