@@ -22,7 +22,16 @@
  * `ok({ range, pages })`, where `pages` is `fetchTopPaths`'s `NamedCount[]`
  * (`application/analytics-queries.ts`): `{ name: string; count: number }`,
  * `name` being the event's `path_sanitized` column — human pageviews only
- * (`human_status = 'human'`), top 50 by count. The build credential needs
+ * (`human_status = 'human'`), top 50 by count. **That 50 is the route's own
+ * fixed `limit` (`fetchTopPaths`'s default) and the route takes no limit
+ * parameter, and it counts EVERY path on the tenant — the store's product
+ * pages, `/`, `/produk`, rubrik indexes — so a post ranked 51st or lower
+ * tenant-wide is simply invisible to this ranking and loses the sidebar to
+ * a zero-view post the top-up reaches first.** Widening that window is an
+ * upstream `visitor_analytics` change, not something this file can ask
+ * for; on a store-heavy tenant the practical effect is that "Terpopuler"
+ * ranks only the handful of posts that make the overall top 50, topped up
+ * with the newest. The build credential needs
  * `visitor_analytics.dashboard.read` — added by name to the seed's
  * storefront token permission set (`tools/seed-borneojek-mart.ts`'s
  * `MACHINE_CREDENTIAL_PERMISSION_KEYS`), the same rule issue #47 followed for

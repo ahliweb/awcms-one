@@ -20,9 +20,10 @@ import { join } from "node:path";
  * - "Terpopuler" is ranked by `tests/fixtures/awcms/analytics-pages.json`,
  *   query-string variants folded, an unknown slug ignored, topped up with
  *   the newest posts;
- * - exactly ONE `[data-buletin-form]` per page — the sidebar's on a
- *   sidebar page (the footer then links to it), the footer's on a page with
- *   no sidebar — see `BeritaLayout.astro`'s docblock for why never both;
+ * - the newsletter form renders in BOTH the sidebar's box and the footer's
+ *   on a sidebar page (as seputarborneo does), with distinct `id`s, and in
+ *   the footer alone on a page with no sidebar — `buletin.ts`'s
+ *   `wireBuletinForms` wires every one of them (`tests/buletin-forms.test.ts`);
  * - the CSP invariant every page family in this app keeps: no inline
  *   `<script>`/`<style>` (the sidebar's component-scoped styles are written
  *   out as an external file by `inlineStylesheets: "never"`).
@@ -82,7 +83,7 @@ describe("build smoke: shared news sidebar, homepage ad slots, real Terpopuler (
   }
 
   test(
-    "renders one identical sidebar per news page, every booked slot and no empty box, a ranked Terpopuler, and one newsletter form per page",
+    "renders one identical sidebar per news page, every booked slot and no empty box, a ranked Terpopuler, and the newsletter form in sidebar and footer",
     async () => {
       const stubPort = 55000 + Math.floor(Math.random() * 4000);
       const distClient = join(STOREFRONT_ROOT, "dist", "client");
@@ -212,21 +213,25 @@ describe("build smoke: shared news sidebar, homepage ad slots, real Terpopuler (
         ]);
         expect(sidebar).not.toContain("tidak-pernah-terbit");
 
-        // --- One newsletter form per page --------------------------------
+        // --- Newsletter form: sidebar AND footer on a sidebar page ---------
+        // Two forms, two distinct `id` prefixes (FormBuletin's own
+        // `idPrefix`), the sidebar's first in DOM order — and the one
+        // BeritaLayout-mounted script that wires both of them.
         for (const page of [...sidebarPages, "berita.html"]) {
           const html = read(page);
-          expect(html.match(/data-buletin-form/g)?.length).toBe(1);
+          expect(html.match(/data-buletin-form/g)?.length).toBe(2);
           expect(html).toContain('class="buletin-form buletin-form--sidebar"');
-          expect(html).toContain('id="buletin-sidebar"');
-          expect(html).toContain('href="#buletin-sidebar"');
-          expect(html).not.toContain("buletin-form--footer");
+          expect(html).toContain('class="buletin-form buletin-form--footer"');
+          expect(html).toContain('id="buletin-sidebar-email"');
+          expect(html).toContain('id="buletin-footer-email"');
+          expect(html.indexOf("buletin-form--sidebar")).toBeLessThan(html.indexOf("buletin-form--footer"));
+          expect(html.match(/<script[^>]*src="\/_astro\/BeritaLayout\.astro[^"]*"/g)?.length).toBe(1);
         }
         for (const page of [join("daerah", "kotawaringin-barat.html"), join("mitra", "dprd-kalimantan-tengah.html")]) {
           const html = read(page);
           expect(extractSidebar(html)).toBeNull();
           expect(html.match(/data-buletin-form/g)?.length).toBe(1);
           expect(html).toContain('class="buletin-form buletin-form--footer"');
-          expect(html).not.toContain('href="#buletin-sidebar"');
         }
 
         // --- CSP invariant, including the sidebar's own scoped styles -----

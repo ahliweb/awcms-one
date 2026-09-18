@@ -294,32 +294,39 @@ keep their full-width layout and have no sidebar.
   `GET /api/v1/analytics/pages?range=7d` (`apps/cms/src/pages/api/v1/analytics/pages.ts`,
   permission `visitor_analytics.dashboard.read` — added by name to the
   seed's storefront token permission set, `tools/seed-borneojek-mart.ts`'s
-  `MACHINE_CREDENTIAL_PERMISSION_KEYS`), folds every `path_sanitized`
+  `MACHINE_CREDENTIAL_PERMISSION_KEYS`; **that changes the credential's
+  scope, so the seed's scope-reconcile (issue #57) revokes and reissues the
+  live storefront credential on its next run against an already-seeded
+  tenant — a build still holding the previous `AWCMS_API_TOKEN` gets `401`
+  from then on and must be given the newly printed token**), folds every `path_sanitized`
   variant of one post (`/berita/x` and `/berita/x?utm_source=…` are separate
   rows in that route's answer — `sanitizePath` strips only SENSITIVE query
   parameters) into one count per slug, ranks every post by it and tops the
-  list up with the newest posts. A `403`/`404` (module off — it is off by
+  list up with the newest posts. The route returns the tenant-wide top 50
+  paths with no limit parameter — store pages and indexes included — so a
+  post ranked 51st or lower overall is invisible to the ranking and loses
+  its place to a zero-view post the top-up reaches first. A `403`/`404` (module off — it is off by
   default, see `docs/deployment.md`'s "The two switches" — credential
   minted before the permission existed, older CMS) or an empty answer
   degrades, SILENTLY, to exactly the "latest" list issue #28 rendered: the
   issue asks for that fallback to be stated in code (that file's own
   header), never as a caveat in the UI. Anything else (5xx, timeout) still
   fails the build, the rule every fetch in `src/lib/awcms/` follows.
-- **One newsletter form per page, by construction.** `BeritaLayout.astro`
-  now mounts `FormBuletin variant="footer"` in the footer's box (and
-  `apps/storefront/src/scripts/buletin.ts` once, for every news page) — but that script
-  wires the FIRST `[data-buletin-form]` on the page and no other, and the
-  sidebar's own form comes before the footer in DOM order, so a page with
-  both would ship a footer form that submits nowhere (a bare `<form>` with
-  no `action` GETs the reader's e-mail onto the page's own URL). The layout
-  therefore renders the page's default slot to a string first
-  (`Astro.slots.render`) and, when the sidebar's newsletter box
-  (`id="buletin-sidebar"`, `Sidebar.astro`'s exported
-  `BULETIN_SIDEBAR_ID`) is present, fills the footer box with a link to it
-  instead of a second form. Detected rather than declared by a prop so a
-  future sidebar page cannot forget it. The permanent fix — `buletin.ts`
-  wiring every form — is a one-line change to issue #50's file and is
-  tracked as a follow-up; when it lands, this detection can go.
+- **The newsletter form renders twice on a sidebar page — and both work.**
+  `BeritaLayout.astro` mounts `FormBuletin variant="footer"` in the footer's
+  box of every news page and `apps/storefront/src/scripts/buletin.ts` once;
+  `Sidebar.astro` renders its own `variant="sidebar"` copy, as seputarborneo
+  does (`sidebar.php` and `layout_footer.php` each carry one). That needed a
+  fix in `buletin.ts`: its `wireBuletinForm` used `document.querySelector`
+  and wired the FIRST `[data-buletin-form]` only, so the footer form (second
+  in DOM order) would have submitted nowhere — a bare `<form>` with no
+  `action` GETs the reader's e-mail onto the page's own URL.
+  `wireBuletinForms(root)` now wires every form, each with its own closure
+  (own in-flight flag, status region, button — no shared mutable state), and
+  takes its root as a parameter so `apps/storefront/tests/buletin-forms.test.ts`
+  can drive two fake forms under plain `bun test` (this workspace has no DOM
+  shim). `FormBuletin`'s `idPrefix` keeps the two forms' `id`/`for` pairs
+  distinct (`buletin-sidebar-*`/`buletin-footer-*`).
 - **Stub + fixture:** `GET /api/v1/analytics/pages` answers
   `apps/storefront/tests/fixtures/awcms/analytics-pages.json`, with the real
   route's `range` validation in front of it; `ad-placements-active.json`
@@ -572,10 +579,10 @@ after a build in this issue's own review, not asserted by a new test — a
   "sidebar"`) was built here unmounted (placing it in the chrome was a
   separate, parallel change so the two never edited the same shared file
   at once); it now renders in the news sidebar on every page that has one
-  and in the footer's box on every other news page — exactly one form per
-  page, for the reason "News sidebar and homepage ad slots (issue #49)"
-  above explains. `/buletin` remains the standalone page for links from an
-  e-mail/social post.
+  and in the footer's box on every news page — two forms on a sidebar page,
+  both wired, see "News sidebar and homepage ad slots (issue #49)" above.
+  `/buletin` remains the standalone page for links from an e-mail/social
+  post.
 - **The three CMS routes answer one neutral body for every outcome** — a
   new address, an already-active one, a suppressed one, all read alike, by
   design (`apps/cms/src/pages/api/v1/newsletter/subscribe.ts`'s own

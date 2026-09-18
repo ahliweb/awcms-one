@@ -30,35 +30,21 @@
  * `Ticker.astro`/`BilahUtilitas.astro`/`FooterBerita.astro` already fetch
  * their own data independently rather than receiving it from a parent.
  *
- * ## The footer newsletter box (issue #49) — one form per page, by construction
+ * ## The footer newsletter box (issue #49)
  *
  * `FooterBerita.astro`'s `<slot name="buletin" />` is filled from HERE, for
  * every news page, with issue #50's `<FormBuletin variant="footer" />` —
  * and its script, `src/scripts/buletin.ts`, is mounted from here too, once,
  * so the footer form works on every news page without each page importing
- * it. But that script wires the FIRST `[data-buletin-form]` on the page and
- * no other (`document.querySelector`, its own design for a page with one
- * form), and `src/components/berita/Sidebar.astro` renders its OWN
- * `FormBuletin variant="sidebar"` on every page that has the sidebar —
- * which comes before the footer in DOM order. Mounting the footer form
- * unconditionally would therefore ship, on every sidebar page, a footer
- * form whose submit is never intercepted: a bare `<form>` with no
- * `action`/`method` GETs its fields onto the page's own URL, putting the
- * reader's e-mail address into the address bar and the server log.
- *
- * So this layout renders the page's default slot to a string first
- * (`Astro.slots.render("default")` — the same HTML `<slot />` would have
- * emitted, re-inserted with `set:html`) and looks for the sidebar's
- * newsletter box by its exported id (`BULETIN_SIDEBAR_ID`). Present: the
- * footer box gets a link to that box instead of a second form. Absent
- * (`/daerah/{slug}`, `/mitra/{slug}`, any future sidebar-less page): the
- * footer gets the form. Detected rather than declared by a prop because a
- * prop is one more thing every sidebar page must remember to pass, and the
- * failure mode of forgetting it is the e-mail-in-URL bug above, silently.
- * The permanent fix — `buletin.ts` wiring every `[data-buletin-form]` —
- * is a one-line change to issue #50's file, outside this issue's
- * ownership; once it lands this detection can go and both forms can
- * render.
+ * it. On a page that also renders `src/components/berita/Sidebar.astro`
+ * the form therefore appears TWICE — the sidebar's box and the footer's —
+ * exactly as seputarborneo renders it (`sidebar.php` and
+ * `layout_footer.php` each carry one). That is safe only because
+ * `buletin.ts`'s `wireBuletinForms` wires EVERY `[data-buletin-form]` on
+ * the page with its own state (an earlier `document.querySelector` version
+ * wired the first form only, which would have left the footer's form
+ * submitting nowhere — see that function's own docblock, and
+ * `tests/buletin-forms.test.ts`).
  *
  * `toko.css` is imported here for the form's `.toko-field`/`.toko-field-
  * hint`/`.toko-banner` classes — the same stylesheet `/buletin` and the
@@ -71,7 +57,6 @@ import NavBerita from "../components/berita/NavBerita.astro";
 import Ticker from "../components/berita/Ticker.astro";
 import FooterBerita from "../components/berita/FooterBerita.astro";
 import FormBuletin from "../components/berita/FormBuletin.astro";
-import { BULETIN_SIDEBAR_ID } from "../components/berita/Sidebar.astro";
 import { getSiteIdentity } from "../lib/awcms/profil";
 import "../styles/berita.css";
 import "../styles/berita-chrome.css";
@@ -87,12 +72,6 @@ interface Props {
 const { title, description, canonicalPath, schema } = Astro.props;
 
 const identity = await getSiteIdentity();
-
-// See "The footer newsletter box" in this file's docblock. The id is
-// matched as a whole attribute so a longer id that merely starts with the
-// same string can never count.
-const konten = await Astro.slots.render("default");
-const buletinDiSidebar = konten.includes(`id="${BULETIN_SIDEBAR_ID}"`);
 ---
 
 <BaseLayout title={title} description={description} canonicalPath={canonicalPath} schema={schema}>
@@ -100,13 +79,13 @@ const buletinDiSidebar = konten.includes(`id="${BULETIN_SIDEBAR_ID}"`);
   <NavBerita identity={identity} currentPath={canonicalPath} slot="header" />
   <Ticker slot="header" />
 
-  <Fragment set:html={konten} />
+  <slot />
 
   {/*
     Issue #50's newsletter script, mounted once for every news page — placed
     INSIDE the default slot (not after `</BaseLayout>`, which would render
     the module tag after `</html>`); Astro bundles it as an external module
-    wherever the tag sits.
+    wherever the tag sits, and it wires every subscribe form on the page.
   */}
   <script>
     import "../scripts/buletin";
@@ -118,19 +97,11 @@ const buletinDiSidebar = konten.includes(`id="${BULETIN_SIDEBAR_ID}"`);
     `slot="buletin"` on that same element re-targets it into
     `FooterBerita.astro`'s own `<slot name="buletin" />` — Astro's documented
     "transferring slots" pattern. Its FALLBACK content (issue #49) is what
-    every page actually gets today: the footer form, or — on a page whose
-    sidebar already carries the form — a link to that box instead (see this
-    file's docblock for why never both).
+    every page actually gets today: the footer form.
   */}
   <FooterBerita identity={identity} slot="footer">
     <slot name="buletin" slot="buletin">
-      {buletinDiSidebar ? (
-        <p class="footer-berita__buletin-tautan">
-          <a href={`#${BULETIN_SIDEBAR_ID}`}>Isi formulir buletin di bilah samping &uarr;</a>
-        </p>
-      ) : (
-        <FormBuletin variant="footer" />
-      )}
+      <FormBuletin variant="footer" />
     </slot>
   </FooterBerita>
 </BaseLayout>

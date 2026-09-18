@@ -39,7 +39,7 @@
  * links every institution's own `/mitra/{slug}` page, which lists the same
  * posts. The `<script>` below is an ordinary Astro-bundled external module
  * (never inline — `script-src 'self'`, `server/penyaji.mjs`) and touches
- * only `aria-selected`/`tabindex`/`hidden`; `tests/sidebar-berita.test.ts`
+ * only `aria-selected`/`tabindex`/`hidden`; `tests/sidebar-build-smoke.test.ts`
  * asserts the built HTML carries both panels.
  *
  * ## "Terpopuler" is REAL now — with a silent fallback
@@ -53,18 +53,20 @@
  * header explains why). It sits AFTER the first ad slot, not stacked
  * directly under the Terbaru tab: two news lists back-to-back read as one
  * long list, and seputarborneo's own design puts the MPU right after the
- * tabbed list for the same reason.
+ * tabbed list for the same reason. The ranking sees only the tenant-wide
+ * top 50 paths the route returns — `src/lib/awcms/analitik.ts`'s header
+ * spells out what that means for a post ranked 51st overall.
  *
- * ## Why the newsletter box carries `id={BULETIN_SIDEBAR_ID}`
+ * ## The newsletter box is the SECOND form on most pages
  *
- * `src/scripts/buletin.ts` (issue #50) wires the FIRST `[data-buletin-form]`
- * on a page and no other (`document.querySelector`, not `…All`) — a page
- * that rendered this sidebar's form AND `FooterBerita.astro`'s footer form
- * would ship a footer form that submits nowhere. `BeritaLayout.astro`
- * therefore looks for this exact id in the page it is about to wrap and,
- * when it is present, fills the footer's box with a link to it instead of a
- * second form — see that file's own docblock. The constant is exported from
- * here so the two files can never disagree on the string.
+ * `BeritaLayout.astro` mounts `FormBuletin variant="footer"` in the footer
+ * of every news page, so a page with this sidebar carries two subscribe
+ * forms — as seputarborneo does. `src/scripts/buletin.ts`'s
+ * `wireBuletinForms` (mounted once by that layout) wires every
+ * `[data-buletin-form]` with its own state, so both work; `FormBuletin`'s
+ * own `idPrefix` (`buletin-sidebar` here, `buletin-footer` there) keeps
+ * their `id`/`for` pairs distinct. The section's own `id` is a plain
+ * in-page anchor.
  *
  * ## Styles are component-scoped, and that is safe under this app's CSP
  *
@@ -87,9 +89,6 @@ import { formatTanggalPanjangWIB, toDatetimeAttr } from "../../lib/tanggal";
 import { getPosts, getVideo, getTags, type PostSummary } from "../../lib/berita";
 import { getMitraList } from "../../lib/navigasi-berita";
 import { getTopPaths, hitungTayangPerSlug, pilihTerpopuler } from "../../lib/awcms/analitik";
-
-/** The newsletter box's `id` — `BeritaLayout.astro` keys its footer decision on this exact string; see this file's docblock. */
-export const BULETIN_SIDEBAR_ID = "buletin-sidebar";
 
 /** seputarborneo's own sizes: `seputarborneo_fetch_news_latest($db, 8, …)` / `…_by_rubrik($db, 'MITRA BORNEO', 6)`. */
 const TERBARU_LIMIT = 8;
@@ -237,7 +236,7 @@ const hrefFor = (post: PostSummary): string =>
 
   <IklanSlot placement="sidebar_middle" />
 
-  <section class="sisi-widget sisi-buletin" id={BULETIN_SIDEBAR_ID} aria-labelledby="sisi-buletin-judul">
+  <section class="sisi-widget sisi-buletin" id="buletin-sidebar" aria-labelledby="sisi-buletin-judul">
     <h2 id="sisi-buletin-judul" class="sisi-judul">Buletin Pagi</h2>
     <p class="sisi-teks">Ringkasan berita Kalimantan Tengah setiap pagi, langsung ke email Anda.</p>
     <FormBuletin variant="sidebar" />
