@@ -8,11 +8,11 @@
 | Aspect                              | Value |
 | ----------------------------------- | ----- |
 | Registered modules                  | 25    |
-| Migrations                          | 168   |
+| Migrations                          | 169   |
 | `awcms_*` tables                    | 171   |
 | Tables with `FORCE` RLS             | 153   |
 | RLS-free tables (global, by design) | 18    |
-| Test files                          | 522   |
+| Test files                          | 524   |
 | Route files                         | 447   |
 | ADR                                 | 244   |
 
@@ -202,22 +202,23 @@
 | 150 | `sql/150_awcms_idn_admin_regions_dataset_diff_indexes.sql`                  |
 | 151 | `sql/151_awcms_ad_placement_content_class.sql`                              |
 | 152 | `sql/152_awcms_media_rights_adjudication_permission.sql`                    |
-| 153 | `sql/153_awcms_commerce_schema.sql`                                         |
-| 154 | `sql/154_awcms_commerce_permissions.sql`                                    |
-| 155 | `sql/155_awcms_commerce_worker_lifecycle_purge_grants.sql`                  |
-| 156 | `sql/156_awcms_commerce_product_columns.sql`                                |
-| 157 | `sql/157_awcms_commerce_product_images_variants.sql`                        |
-| 158 | `sql/158_awcms_commerce_restore_permissions.sql`                            |
-| 159 | `sql/159_awcms_commerce_list_filter_indexes.sql`                            |
-| 160 | `sql/160_awcms_commerce_relations_worker_lifecycle_purge_grants.sql`        |
-| 161 | `sql/161_awcms_commerce_marketing_schema.sql`                               |
-| 162 | `sql/162_awcms_commerce_store_settings.sql`                                 |
-| 163 | `sql/163_awcms_commerce_marketing_permissions.sql`                          |
-| 164 | `sql/164_awcms_commerce_marketing_worker_lifecycle_purge_grants.sql`        |
-| 165 | `sql/165_awcms_commerce_customers_orders_schema.sql`                        |
-| 166 | `sql/166_awcms_commerce_customers_orders_permissions.sql`                   |
-| 167 | `sql/167_awcms_commerce_customers_orders_worker_lifecycle_purge_grants.sql` |
-| 168 | `sql/168_awcms_commerce_orders_expire_worker_write_grants.sql`              |
+| 153 | `sql/153_awcms_blog_institution_logo.sql`                                   |
+| 154 | `sql/153_awcms_commerce_schema.sql`                                         |
+| 155 | `sql/154_awcms_commerce_permissions.sql`                                    |
+| 156 | `sql/155_awcms_commerce_worker_lifecycle_purge_grants.sql`                  |
+| 157 | `sql/156_awcms_commerce_product_columns.sql`                                |
+| 158 | `sql/157_awcms_commerce_product_images_variants.sql`                        |
+| 159 | `sql/158_awcms_commerce_restore_permissions.sql`                            |
+| 160 | `sql/159_awcms_commerce_list_filter_indexes.sql`                            |
+| 161 | `sql/160_awcms_commerce_relations_worker_lifecycle_purge_grants.sql`        |
+| 162 | `sql/161_awcms_commerce_marketing_schema.sql`                               |
+| 163 | `sql/162_awcms_commerce_store_settings.sql`                                 |
+| 164 | `sql/163_awcms_commerce_marketing_permissions.sql`                          |
+| 165 | `sql/164_awcms_commerce_marketing_worker_lifecycle_purge_grants.sql`        |
+| 166 | `sql/165_awcms_commerce_customers_orders_schema.sql`                        |
+| 167 | `sql/166_awcms_commerce_customers_orders_permissions.sql`                   |
+| 168 | `sql/167_awcms_commerce_customers_orders_worker_lifecycle_purge_grants.sql` |
+| 169 | `sql/168_awcms_commerce_orders_expire_worker_write_grants.sql`              |
 
 ### Tables & Row-Level Security
 
@@ -399,7 +400,7 @@
 
 | Directory     | Test files |
 | ------------- | ---------- |
-| `(root)`      | 420        |
+| `(root)`      | 422        |
 | `e2e`         | 19         |
 | `integration` | 82         |
 | `unit`        | 1          |

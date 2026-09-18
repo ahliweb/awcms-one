@@ -7,8 +7,15 @@
     "editorialAddress": "Jl. Ahmad Wongso RT 19 Kelurahan Madurejo, Pangkalan Bun, Kotawaringin Barat",
     "contactEmail": "borneojekpangkalanbun@gmail.com",
     "contactPhone": "0851-2868-8885",
-    "whatsappNumber": null,
-    "socialLinks": []
+    "whatsappNumber": "0851-2868-8885",
+    "socialLinks": [
+      { "platform": "facebook", "url": "https://facebook.com/bjekmart" },
+      { "platform": "x", "url": "https://x.com/bjekmart" },
+      { "platform": "instagram", "url": "https://instagram.com/bjekmart" },
+      { "platform": "youtube", "url": "https://youtube.com/@bjekmart" },
+      { "platform": "tiktok", "url": "https://tiktok.com/@bjekmart" },
+      { "platform": "threads", "url": "https://threads.net/@bjekmart" }
+    ]
   },
   "future": {
     "note": "Legacy commerce_bj_mart site_settings with no home in the CMS API today (verified against /api/v1/site-profile, /api/v1/commerce/{categories,products}, and apps/cms's registered modules — none owns a customer-level, shipping-method, payment-method, or store-name field yet). Not applied by this script; a decision for #26/#29 (or a new admission) to record, not something this seed script invents an endpoint for.",
