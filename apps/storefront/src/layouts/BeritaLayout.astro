@@ -38,6 +38,7 @@ import FooterBerita from "../components/berita/FooterBerita.astro";
 import { getSiteIdentity } from "../lib/awcms/profil";
 import "../styles/berita.css";
 import "../styles/berita-chrome.css";
+import "../styles/iklan-popup.css";
 
 interface Props {
   title: string;
@@ -69,3 +70,15 @@ const identity = await getSiteIdentity();
     <slot name="buletin" slot="buletin" />
   </FooterBerita>
 </BaseLayout>
+
+{/*
+  The ad popup (issue #53, A7) — mounted ONCE here, the shell every
+  news-surface page renders through, because ad slots appear on article
+  pages, `/berita`'s header/sidebar, and any page aside (issue #49's
+  `Sidebar.astro`): one document-level delegated listener covers every
+  slot, present or future, and no page needs to know the module exists. An
+  ordinary Astro-bundled external module (`script-src 'self'`), the same
+  pattern as `BaseLayout.astro`'s `analitik.ts` mount. Its stylesheet is
+  `src/styles/iklan-popup.css`, imported above with the other two.
+*/}
+<script>import "../scripts/iklan-popup";</script>

@@ -24,7 +24,16 @@
         "contentClass": "advertorial"
       }
     ],
-    "article_bottom": [],
+    "article_bottom": [
+      {
+        "id": "ad-article-bottom-1",
+        "name": "Koperasi Sampit — Tanpa Tautan",
+        "linkUrl": null,
+        "mediaPublicUrl": "https://media.example.test/ads/koperasi-sampit.jpg",
+        "mediaAltText": "Koperasi Sampit",
+        "contentClass": "standard"
+      }
+    ],
     "sidebar_top": [
       {
         "id": "ad-sidebar-1",
