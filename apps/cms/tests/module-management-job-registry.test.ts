@@ -95,6 +95,8 @@ describe("fetchModuleJobs", () => {
         "bun run blog:portable-text:backfill",
         "bun run blog:publish:scheduled",
         "bun run comments:retention",
+        // Issue #87 (awcms-one epic #32): OTP/session purge.
+        "bun run commerce:customer-auth:purge",
         // Issue #26 (awcms-one epic #21): the flash-sale status tick.
         "bun run commerce:flash-sales:tick",
         // Issue #29 (awcms-one epic #21): the pending-order expiry sweep.
