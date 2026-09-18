@@ -26,6 +26,7 @@ import {
   type WishlistItem
 } from "../lib/wishlist-kontrak";
 import { loadWishlist, toggleWishlist } from "../lib/wishlist-klien";
+import { pasangSinkronisasiWishlist, tulisKeAkunJikaMasuk } from "../lib/wishlist-akun-sync";
 
 const BUTTON_SELECTOR = "[data-wishlist]";
 
@@ -80,7 +81,12 @@ document.addEventListener("click", (event) => {
   if (!item) return;
 
   const next = toggleWishlist(item);
-  renderButtonState(button, isWishlisted(next, item.productId));
+  const wishlisted = isWishlisted(next, item.productId);
+  renderButtonState(button, wishlisted);
+  // Write-through (issue #90) — a no-op when signed out; a failure degrades
+  // to local-only and reports itself via the shared aria-live region, never
+  // by throwing back into this click handler.
+  void tulisKeAkunJikaMasuk(item.productId, wishlisted);
 });
 
 window.addEventListener(WISHLIST_EVENT_NAME, refreshAllButtons);
@@ -89,3 +95,6 @@ window.addEventListener("storage", (event) => {
 });
 
 refreshAllButtons();
+// Mounted from Header.astro on every page (see this file's own docblock) —
+// the one place that can run the login-time wishlist sync unconditionally.
+pasangSinkronisasiWishlist();
