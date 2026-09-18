@@ -43,10 +43,20 @@
  * artifact (`src/pages/index/pengalihan-legacy.json.ts`), never per
  * request, so the same "no live awcms credential at runtime" invariant
  * holds for it too.
+ *
+ * Issue #55 (A9) adds a fourth, checked only when the third one misses:
+ * `pengalihan-aturan.mjs`'s pure, table-driven rules for every OTHER
+ * seputarborneo legacy shape (rubrik/daerah/mitra/video/static/search) —
+ * see that file's own docblock for why those need no CMS row at all. Still
+ * no I/O at request time: the table lives in that module's own source, and
+ * the one thing it reads from outside itself (`context.legacyRedirects`,
+ * the SAME map issue #28 already loaded at startup) is passed in, never
+ * fetched again.
  */
 import http from "node:http";
 import { posix } from "node:path";
 import { readFileSync, readdirSync } from "node:fs";
+import { ruleBasedRedirectLocation } from "./pengalihan-aturan.mjs";
 
 /** Prefix Astro gives its content-hashed build assets (`build.assets`, default `_astro`). */
 const ASSET_PREFIX = "/_astro/";
@@ -425,14 +435,29 @@ export function readLegacyRedirectMap(clientDir) {
  * unchanged path — never to `/berita/{slug}` — one hop short of where a
  * reader actually needs to land.
  *
+ * Falls through to `pengalihan-aturan.mjs`'s `ruleBasedRedirectLocation()`
+ * (issue #55 / A9) on a miss — never on a hit, so an operator-authored row
+ * always wins over a derived rule when the two could disagree. That
+ * function returns a plain string for its (near-universal) 301 case,
+ * exactly this function's own existing return shape, so every caller
+ * written before issue #55 — including
+ * `apps/storefront/tests/berita-penyaji-legacy.test.ts`, which that issue
+ * must not edit — keeps working unchanged; its one 302 case (a search
+ * redirect) returns `{ location, status }` instead, handled by
+ * `createServer` below.
+ *
  * @param {string} url
  * @param {Record<string, string>} map
- * @returns {string | null}
+ * @returns {string | { location: string, status: number } | null}
  */
 export function legacyRedirectLocation(url, map) {
   const path = normalizedPath(url);
   const key = path.length > 1 && path.endsWith("/") ? path.slice(0, -1) : path;
-  return Object.prototype.hasOwnProperty.call(map, key) ? map[key] : null;
+  if (Object.prototype.hasOwnProperty.call(map, key)) {
+    return map[key];
+  }
+
+  return ruleBasedRedirectLocation(url, map);
 }
 
 /**
@@ -587,8 +612,13 @@ export function createServer(appHandler, context = {}) {
 
     const legacyTarget = legacyRedirectLocation(req.url ?? "/", context.legacyRedirects ?? {});
     if (legacyTarget) {
-      res.statusCode = 301;
-      res.setHeader("Location", legacyTarget);
+      // A plain string (the row-based map, and almost every rule-based one)
+      // is always a 301; only `pengalihan-aturan.mjs`'s search rule returns
+      // the `{ location, status }` shape, for its one deliberately-302 case
+      // — see `legacyRedirectLocation`'s own docblock above.
+      const isObjectTarget = typeof legacyTarget === "object";
+      res.statusCode = isObjectTarget ? legacyTarget.status : 301;
+      res.setHeader("Location", isObjectTarget ? legacyTarget.location : legacyTarget);
       res.end();
       return;
     }
