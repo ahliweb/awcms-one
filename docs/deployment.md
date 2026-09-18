@@ -28,6 +28,7 @@ Two separate `.env.example` files, one per workspace, deliberately not merged �
 | `AWCMS_API_TIMEOUT_MS` | Build time only, optional | How long one request to `apps/cms` may take before the build gives up (default 30000 ms) — a value that is not a positive number is refused outright, including `0`, which would otherwise mean "no limit" and restore the exact hang this deadline exists to prevent |
 | `PUBLIC_AWCMS_ORIGIN` | Build time, and baked into the served CSP | **New in issue #30.** The `apps/cms` origin the *browser* calls at runtime for cart/checkout/order-tracking — deliberately `PUBLIC_`-prefixed, since it is an origin, not a secret (the same value every media URL already reveals). Validated by `apps/storefront/src/lib/awcms/toko-origin.ts`; an unset or malformed value fails the build outright, naming the variable, because `apps/storefront/src/pages/csp.json.ts` — a page every build unconditionally prerenders — calls the validator unconditionally. See [ADR-0007](adr/0007-cart-and-checkout-stay-static-the-browser-calls-anonymous-commerce-endpoints.md) and [`docs/arsitektur.md`](arsitektur.md) |
 | `PUBLIC_WILAYAH_PROVINSI` | Build time, optional | Which Indonesian provinces' address-region data (`idn_admin_regions`) to bake into `/index/wilayah-*.json` for the checkout address form — default every Kalimantan province, deliberately not the full ~90,000-village national dataset |
+| `PUBLIC_GA_ID` | Build time, and baked into the served CSP | **New in issue #56.** GA4's own Measurement ID (`G-…`). Unset, empty, or not shaped like one (`apps/storefront/src/lib/ga.ts`) and the build ships with no Google origin anywhere at all — see "The two switches" below |
 | `PORT`, `HOST` | Runtime, by `apps/storefront/server/penyaji.mjs` only | Defaults `8080`/`0.0.0.0` — `0.0.0.0` because this process normally runs inside a container behind a reverse proxy, where a `localhost`-only listener is unreachable from outside the container and shows up as a health check failing for no stated reason |
 
 ### `apps/cms/.env.example`
@@ -40,9 +41,36 @@ A much larger file, owned entirely by `apps/cms` as embedded `ahliweb/awcms` cod
 | --- | --- |
 | Build process (`astro build`) | `apps/cms`'s public owner API, over HTTPS, with the read-only build token |
 | Running container (`bun dist/server/penyaji.mjs`) | Nothing outside itself — no `apps/cms`, no database, no external network call of any kind. This is unchanged since increment 1 |
-| The reader's own browser | `apps/cms`'s anonymous `/api/v1/commerce/storefront/*` API, at `PUBLIC_AWCMS_ORIGIN`, `mode: "cors"` / `credentials: "omit"` — no cookie, no bearer token, ever |
+| The reader's own browser | `apps/cms`'s anonymous `/api/v1/commerce/storefront/*` API, at `PUBLIC_AWCMS_ORIGIN`, `mode: "cors"` / `credentials: "omit"` — no cookie, no bearer token, ever; and, since issue #56, `POST /api/v1/analytics/collect` on the same origin, `credentials: "include"` this time (the module's own anonymous, `httpOnly` visitor-key cookie — see below) |
 
-`apps/storefront/server/penyaji.mjs`'s own CSP is now derived rather than hand-configured — `img-src` and `connect-src` carry exactly the origins a given build actually referenced (product/media images, and `PUBLIC_AWCMS_ORIGIN`), re-validated at server startup and falling back to `'self'`-only on any missing/malformed artifact; see [`docs/arsitektur.md`](arsitektur.md) for the full mechanism. Every other CSP directive stays `'self'`/`'none'` — there is no third-party script or embed this app allows.
+`apps/storefront/server/penyaji.mjs`'s own CSP is now derived rather than hand-configured — `img-src` and `connect-src` carry exactly the origins a given build actually referenced (product/media images, and `PUBLIC_AWCMS_ORIGIN`), re-validated at server startup and falling back to `'self'`-only on any missing/malformed artifact; see [`docs/arsitektur.md`](arsitektur.md) for the full mechanism. Every other CSP directive stays `'self'`/`'none'` — there is no third-party script or embed this app allows, except (issue #56) GA4's own two origins, and only when `PUBLIC_GA_ID` is configured — see "The two switches" immediately below.
+
+## Visitor analytics: the two switches (issue #56)
+
+`apps/storefront` always mounts its first-party visitor beacon
+(`apps/storefront/src/scripts/analitik.ts`, `apps/storefront/README.md`'s "Visitor analytics
+and the optional GA4 switch") on every page. Whether that beacon does
+anything observable is two independent switches, on two different sides of
+this repository, and a deployer who sets only one gets a real but
+easy-to-miss half-state:
+
+1. **`apps/cms`'s `VISITOR_ANALYTICS_ENABLED`** (`apps/cms/.env.example`,
+   `apps/cms/src/modules/visitor-analytics/README.md`) — off by default. The
+   storefront's beacon fires either way (`POST /api/v1/analytics/collect`
+   always answers `202`, by design — see that route's own docblock), but
+   with this switch off, nothing is recorded: no session, no event, no
+   rollup for A3's "Terpopuler" to read. Turning the software switch on is
+   not itself the lawful-basis/consent decision UU PDP requires — see that
+   module's own "Privacy posture" section.
+2. **`apps/storefront`'s `PUBLIC_GA_ID`** (`apps/storefront/.env.example`) —
+   unset by default. Purely additive and independent of switch 1: GA4 is
+   Google's own, separate analytics product, so a deployment can run the
+   first-party beacon alone, GA4 alone (by setting only this variable — the
+   beacon still fires either way, it just records nothing without switch 1),
+   or both together.
+
+Neither switch is required for a build to succeed; both default to "off",
+which is what a fresh deployment of this repository ships with.
 
 ## The seeded tenant's storefront origins must be registered in `awcms_tenant_domains`
 
