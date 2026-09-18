@@ -42,11 +42,12 @@ limit; a body over the limit is rejected with `413 Payload Too Large` /
 
 ### Authentication model
 
-| Scheme         | Kind                                 | Description                                                                                                                         |
-| -------------- | ------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- |
-| `bearerAuth`   | http (bearer)                        | Opaque session token issued by POST /auth/login.                                                                                    |
-| `tenantHeader` | apiKey (header: `X-AWCMS-Tenant-ID`) | Active tenant context for tenant-scoped API.                                                                                        |
-| `syncHmac`     | apiKey (header: `X-AWCMS-Signature`) | HMAC-SHA256 signature over "<timestamp>.<body>" for machine-to-machine sync endpoints (with X-AWCMS-Node-ID and X-AWCMS-Timestamp). |
+| Scheme           | Kind                                 | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| ---------------- | ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `bearerAuth`     | http (bearer)                        | Opaque session token issued by POST /auth/login.                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| `tenantHeader`   | apiKey (header: `X-AWCMS-Tenant-ID`) | Active tenant context for tenant-scoped API.                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| `syncHmac`       | apiKey (header: `X-AWCMS-Signature`) | HMAC-SHA256 signature over "<timestamp>.<body>" for machine-to-machine sync endpoints (with X-AWCMS-Node-ID and X-AWCMS-Timestamp).                                                                                                                                                                                                                                                                                                                                |
+| `customerBearer` | http (bearer)                        | Issue #86 (ADR-0016, epic #32 wave 0) — CONTRACT ONLY, no route file yet. Opaque customer-session token (`cs_` + 32 random bytes base64url) minted by `POST /api/v1/commerce/storefront/account/otp/verify`; only its `sha256:` digest is ever stored (D3). Deliberately a SEPARATE scheme from `bearerAuth`: this token authenticates a `commerce` customer, never a staff principal, and is refused outright wherever `bearerAuth` is required (and vice versa). |
 
 Every operation below states its own security requirement explicitly — either a
 real requirement (usually `bearerAuth` + `tenantHeader` together) or
@@ -10548,10 +10549,12 @@ Sets deleted_at; the sku and slug are freed for reuse. Restore it with POST /api
 | 404    | Unresolvable tenant, disabled module, or a rate-limited caller — the same neutral body (contract's own anti-oracle rule). | [`ApiError`](#standard-error-envelope) |
 | 429    | Rate limited.                                                                                                             | [`ApiError`](#standard-error-envelope) |
 
-### `POST /api/v1/commerce/storefront/orders` — Anonymous order creation (Issue 29). Idempotent by the client-supplied idempotencyKey; re-quotes the cart inside the write transaction. No bearer, no permission check.
+### `POST /api/v1/commerce/storefront/orders` — Anonymous order creation (Issue 29). Idempotent by the client-supplied idempotencyKey; re-quotes the cart inside the write transaction. No permission check.
 
 - **operationId**: `createCommerceStorefrontOrder`
 - **Security**: none (public endpoint)
+
+Issue #86 (design only — implemented by C2–C4): an OPTIONAL `Authorization: Bearer <customer session token>` (see `customerBearer`) is accepted alongside the existing anonymous path. When present and valid, the order is attributed to that account's customer row instead of the guest find-or-create by phone; when absent, invalid, or expired, the request proceeds exactly as it does today — the bearer never turns this into a required credential. `affiliateCode` is likewise optional and, when it matches an active `awcms_commerce_affiliates.code` other than the ordering customer's own, records the referral that a completed order later turns into a commission (D5).
 
 **Request body** (required): [`CommerceCreateOrderRequest`](#schema-commercecreateorderrequest)
 
@@ -10670,6 +10673,8 @@ Sets deleted_at; the sku and slug are freed for reuse. Restore it with POST /api
 
 - **operationId**: `createCommerceStorefrontReview`
 - **Security**: none (public endpoint)
+
+Issue #86 (design only — implemented by C2–C4): an OPTIONAL `Authorization: Bearer <customer session token>` is accepted here too, attributing the review to the signed-in account instead of the orderCode+phone credential when present and valid; absent or invalid, the anonymous path is unchanged.
 
 **Request body** (required): object
 
@@ -10925,6 +10930,430 @@ Arithmetic is exact (integer cents) — a percentage discount is capped by maxDi
 | 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
 | 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
 | 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+## Commerce Accounts
+
+Issue #86 (ADR-0016, epic #32 wave 0) — CONTRACT ONLY, no route file yet (handlers land in C2–C4, issues #87–#93). Customer accounts are OTP-verified, password-free `commerce` rows (D1), authenticated by a 6-digit e-mail OTP (D2) and a `customerBearer` opaque session token (D3) — a security surface deliberately separate from the staff `bearerAuth`/session schemes, so a customer credential can never reach a staff-only endpoint and vice versa. Registration binds to an existing guest checkout customer by phone when the e-mail also matches (D4). Covers OTP request/verify, the account profile, saved addresses, wishlist, the account's own order history and reviews, and the account's own affiliate enrolment/commissions.
+
+### `GET /api/v1/commerce/storefront/account/addresses` — Issue #86 (design only). The account's saved addresses (`awcms_commerce_customer_addresses`, max 10).
+
+- **operationId**: `listCommerceStorefrontAccountAddresses`
+- **Security**: customerBearer
+
+**Responses**
+
+| Status | Description              | Schema                                 |
+| ------ | ------------------------ | -------------------------------------- |
+| 200    | The account's addresses. | object                                 |
+| 401    | UNAUTHENTICATED.         | [`ApiError`](#standard-error-envelope) |
+| 403    | ACCOUNT_BLOCKED.         | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/storefront/account/addresses` — Issue #86 (design only). Add a saved address. Refused past 10 per account.
+
+- **operationId**: `createCommerceStorefrontAccountAddress`
+- **Security**: customerBearer
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                         | Schema                                 |
+| ------ | --------------------------------------------------- | -------------------------------------- |
+| 201    | Created.                                            | object                                 |
+| 400    | Validation error.                                   | [`ApiError`](#standard-error-envelope) |
+| 401    | UNAUTHENTICATED.                                    | [`ApiError`](#standard-error-envelope) |
+| 409    | ADDRESS_LIMIT_REACHED — already 10 saved addresses. | [`ApiError`](#standard-error-envelope) |
+
+### `PATCH /api/v1/commerce/storefront/account/addresses/{id}` — Issue #86 (design only). Update a saved address.
+
+- **operationId**: `updateCommerceStorefrontAccountAddress`
+- **Security**: customerBearer
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description         | Schema                                 |
+| ------ | ------------------- | -------------------------------------- |
+| 200    | Updated.            | object                                 |
+| 400    | Validation error.   | [`ApiError`](#standard-error-envelope) |
+| 401    | UNAUTHENTICATED.    | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found. | [`ApiError`](#standard-error-envelope) |
+
+### `DELETE /api/v1/commerce/storefront/account/addresses/{id}` — Issue #86 (design only). Remove a saved address.
+
+- **operationId**: `deleteCommerceStorefrontAccountAddress`
+- **Security**: customerBearer
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description         | Schema                                 |
+| ------ | ------------------- | -------------------------------------- |
+| 204    | Removed.            |                                        |
+| 401    | UNAUTHENTICATED.    | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/storefront/account/addresses/{id}/default` — Issue #86 (design only). Mark a saved address as the account's default.
+
+- **operationId**: `setDefaultCommerceStorefrontAccountAddress`
+- **Security**: customerBearer
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description              | Schema                                 |
+| ------ | ------------------------ | -------------------------------------- |
+| 200    | Now the default address. | object                                 |
+| 401    | UNAUTHENTICATED.         | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.      | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/storefront/account/affiliate` — Issue #86 (design only). This account's affiliate enrolment and stats, or null if not enrolled (D5).
+
+- **operationId**: `getCommerceStorefrontAccountAffiliate`
+- **Security**: customerBearer
+
+**Responses**
+
+| Status | Description                    | Schema                                 |
+| ------ | ------------------------------ | -------------------------------------- |
+| 200    | The account's affiliate state. | object                                 |
+| 401    | UNAUTHENTICATED.               | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/storefront/account/affiliate` — Issue #86 (design only). Enrol the account in the affiliate program (D5). Requires the program enabled tenant-wide.
+
+- **operationId**: `enrolCommerceStorefrontAccountAffiliate`
+- **Security**: customerBearer
+
+**Responses**
+
+| Status | Description                                                                                                       | Schema                                 |
+| ------ | ----------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 201    | Enrolled.                                                                                                         | object                                 |
+| 401    | UNAUTHENTICATED.                                                                                                  | [`ApiError`](#standard-error-envelope) |
+| 409    | AFFILIATE_PROGRAM_DISABLED — `storeSettings.affiliateCommissionRate` is null, or the account is already enrolled. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/storefront/account/affiliate/commissions` — Issue #86 (design only). This account's own commission ledger, keyset-paginated.
+
+- **operationId**: `listCommerceStorefrontAccountAffiliateCommissions`
+- **Security**: customerBearer
+
+**Parameters**
+
+| Name     | In    | Required | Type   | Description |
+| -------- | ----- | -------- | ------ | ----------- |
+| `cursor` | query | no       | string |             |
+
+**Responses**
+
+| Status | Description                            | Schema                                 |
+| ------ | -------------------------------------- | -------------------------------------- |
+| 200    | One page of the account's commissions. | object                                 |
+| 401    | UNAUTHENTICATED.                       | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/storefront/account/logout` — Issue #86 (design only). Revoke the presented bearer session (D3).
+
+- **operationId**: `logoutCommerceStorefrontAccount`
+- **Security**: customerBearer
+
+**Responses**
+
+| Status | Description      | Schema                                 |
+| ------ | ---------------- | -------------------------------------- |
+| 204    | Revoked.         |                                        |
+| 401    | UNAUTHENTICATED. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/storefront/account/me` — Issue #86 (design only). The signed-in customer account (D1).
+
+- **operationId**: `getCommerceStorefrontAccountMe`
+- **Security**: customerBearer
+
+**Responses**
+
+| Status | Description                                            | Schema                                 |
+| ------ | ------------------------------------------------------ | -------------------------------------- |
+| 200    | The account.                                           | object                                 |
+| 401    | UNAUTHENTICATED — missing, invalid, or expired bearer. | [`ApiError`](#standard-error-envelope) |
+| 403    | ACCOUNT_BLOCKED.                                       | [`ApiError`](#standard-error-envelope) |
+
+### `PATCH /api/v1/commerce/storefront/account/me` — Issue #86 (design only). Update the account's display name. No e-mail/phone change in this increment (D6).
+
+- **operationId**: `updateCommerceStorefrontAccountMe`
+- **Security**: customerBearer
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description       | Schema                                 |
+| ------ | ----------------- | -------------------------------------- |
+| 200    | Updated.          | object                                 |
+| 400    | Validation error. | [`ApiError`](#standard-error-envelope) |
+| 401    | UNAUTHENTICATED.  | [`ApiError`](#standard-error-envelope) |
+| 403    | ACCOUNT_BLOCKED.  | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/storefront/account/orders` — Issue #86 (design only). Keyset-paginated order history, bounded to `created_at >= account.historyFrom` (D4).
+
+- **operationId**: `listCommerceStorefrontAccountOrders`
+- **Security**: customerBearer
+
+**Parameters**
+
+| Name     | In    | Required | Type   | Description |
+| -------- | ----- | -------- | ------ | ----------- |
+| `cursor` | query | no       | string |             |
+
+**Responses**
+
+| Status | Description                       | Schema                                 |
+| ------ | --------------------------------- | -------------------------------------- |
+| 200    | One page of the account's orders. | object                                 |
+| 401    | UNAUTHENTICATED.                  | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/storefront/account/orders/{orderCode}` — Issue #86 (design only). Order detail for an account-owned order — no phone needed (ownership is the bearer, D3), same shape as the anonymous tracking endpoint.
+
+- **operationId**: `getCommerceStorefrontAccountOrder`
+- **Security**: customerBearer
+
+**Parameters**
+
+| Name        | In   | Required | Type   | Description |
+| ----------- | ---- | -------- | ------ | ----------- |
+| `orderCode` | path | yes      | string |             |
+
+**Responses**
+
+| Status | Description                                                                                                         | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The order.                                                                                                          | object                                 |
+| 401    | UNAUTHENTICATED.                                                                                                    | [`ApiError`](#standard-error-envelope) |
+| 404    | Unknown order code, or one not owned by this account — the same neutral 404 (contract's existing anti-oracle rule). | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/storefront/account/otp/request` — Issue #86 (design only). Request a 6-digit e-mail OTP for login or registration (D2). Always answers 202 — anti-enumeration (ADR-0016).
+
+- **operationId**: `requestCommerceStorefrontAccountOtp`
+- **Security**: none (public endpoint)
+
+Anonymous, per-IP and per-e-mail rate limited (10/IP/h, 5/e-mail/h). For `purpose: "register"`, `name`/`phone` are stored on the OTP row (`customer_otps.registration`) and applied only when the code is verified — a request alone creates nothing. Always answers `202 {sent:true, ...}` regardless of whether the address has an account, whether the phone is already registered, or whether the tenant's `email` outbox is reachable, so this endpoint is never an account-existence oracle.
+
+**Request body** (required): [`OtpRequest`](#schema-otprequest)
+
+**Responses**
+
+| Status | Description                                                                                                                            | Schema                                 |
+| ------ | -------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 202    | Always — the OTP was queued (or the request was silently absorbed by a rate limit/tenant resolution failure that answers identically). | object                                 |
+| 400    | Validation error.                                                                                                                      | [`ApiError`](#standard-error-envelope) |
+| 429    | Too many OTP requests from this source (RATE_LIMITED). Carries `Retry-After`.                                                          | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/storefront/account/otp/verify` — Issue #86 (design only). Verify a 6-digit e-mail OTP and mint a bearer session (D2/D3).
+
+- **operationId**: `verifyCommerceStorefrontAccountOtp`
+- **Security**: none (public endpoint)
+
+Anonymous, per-IP and per-e-mail rate limited. The code is hashed, 10 minute TTL, 5 attempts, single use — any of wrong/expired/consumed/ attempts-exhausted answers the SAME `401 OTP_INVALID` so a guess cannot distinguish why it failed. On success, mints an opaque `cs_` bearer token (only its `sha256:` digest is stored, D3) and — for `purpose: "register"` — applies the registration data captured at request time, binding to an existing guest `awcms_commerce_customers` row by phone when one exists (history_from rule, D4).
+
+**Request body** (required): [`OtpVerify`](#schema-otpverify)
+
+**Responses**
+
+| Status | Description                                                                                                                                                                  | Schema                                 |
+| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | Verified — a new bearer session.                                                                                                                                             | object                                 |
+| 400    | Validation error.                                                                                                                                                            | [`ApiError`](#standard-error-envelope) |
+| 401    | OTP_INVALID — wrong, expired, consumed, or attempts exhausted (one code for all four, D2's anti-guess rule).                                                                 | [`ApiError`](#standard-error-envelope) |
+| 404    | ACCOUNT_NOT_FOUND — `purpose: "login"` for an e-mail with no account. Acceptable per ADR-0016 D2 — the mailbox owner already received the code, so this is not a new oracle. | [`ApiError`](#standard-error-envelope) |
+| 409    | PHONE_ALREADY_REGISTERED — `purpose: "register"` and the phone is bound to another account.                                                                                  | [`ApiError`](#standard-error-envelope) |
+| 429    | Too many verification attempts from this source (RATE_LIMITED). Carries `Retry-After`.                                                                                       | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/storefront/account/reviews` — Issue #86 (design only). The account's own submitted reviews, any moderation status.
+
+- **operationId**: `listCommerceStorefrontAccountReviews`
+- **Security**: customerBearer
+
+**Responses**
+
+| Status | Description            | Schema                                 |
+| ------ | ---------------------- | -------------------------------------- |
+| 200    | The account's reviews. | object                                 |
+| 401    | UNAUTHENTICATED.       | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/storefront/account/wishlist` — Issue #86 (design only). The account's saved products.
+
+- **operationId**: `listCommerceStorefrontAccountWishlist`
+- **Security**: customerBearer
+
+**Responses**
+
+| Status | Description      | Schema                                 |
+| ------ | ---------------- | -------------------------------------- |
+| 200    | The wishlist.    | object                                 |
+| 401    | UNAUTHENTICATED. | [`ApiError`](#standard-error-envelope) |
+
+### `PUT /api/v1/commerce/storefront/account/wishlist` — Issue #86 (design only). Union-merge a set of product ids into the wishlist (never removes existing entries — a client wanting removal calls DELETE per item).
+
+- **operationId**: `replaceCommerceStorefrontAccountWishlist`
+- **Security**: customerBearer
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                   | Schema                                 |
+| ------ | ----------------------------- | -------------------------------------- |
+| 200    | The wishlist after the merge. | object                                 |
+| 400    | Validation error.             | [`ApiError`](#standard-error-envelope) |
+| 401    | UNAUTHENTICATED.              | [`ApiError`](#standard-error-envelope) |
+
+### `DELETE /api/v1/commerce/storefront/account/wishlist/{productId}` — Issue #86 (design only). Remove one product from the wishlist.
+
+- **operationId**: `removeCommerceStorefrontAccountWishlistItem`
+- **Security**: customerBearer
+
+**Parameters**
+
+| Name        | In   | Required | Type          | Description |
+| ----------- | ---- | -------- | ------------- | ----------- |
+| `productId` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                               | Schema                                 |
+| ------ | ----------------------------------------- | -------------------------------------- |
+| 204    | Removed (or already absent — idempotent). |                                        |
+| 401    | UNAUTHENTICATED.                          | [`ApiError`](#standard-error-envelope) |
+
+## Commerce Affiliates
+
+Issue #86 (ADR-0016, epic #32 wave 0) — CONTRACT ONLY, no route file yet (handler lands in C4). The staff side of the affiliate program designed fresh by D5 (no legacy column carried over): review/approve/pay/void a referred order's commission, and edit an affiliate's status or commission rate. Gated on `commerce.affiliates.{read,update}` and `commerce.affiliate_commissions.{read,update}`.
+
+### `GET /api/v1/commerce/affiliate-commissions` — Issue #86 (design only). Staff list of affiliate commissions. Gated on `commerce.affiliate_commissions.read`.
+
+- **operationId**: `listCommerceAffiliateCommissions`
+- **Security**: bearerAuth + tenantHeader
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | One page of commissions.    | object                                 |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/affiliate-commissions/{id}/approve` — Issue #86 (design only). Staff approves a pending commission. Gated on `commerce.affiliate_commissions.update`.
+
+- **operationId**: `approveCommerceAffiliateCommission`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                                          | Schema                                 |
+| ------ | ---------------------------------------------------- | -------------------------------------- |
+| 200    | Approved.                                            | object                                 |
+| 401    | Missing or invalid session.                          | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                          | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                  | [`ApiError`](#standard-error-envelope) |
+| 409    | COMMISSION_NOT_APPROVABLE — not in `pending` status. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/affiliate-commissions/{id}/pay` — Issue #86 (design only). Staff marks an approved commission paid. Gated on `commerce.affiliate_commissions.update`.
+
+- **operationId**: `payCommerceAffiliateCommission`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                                        | Schema                                 |
+| ------ | -------------------------------------------------- | -------------------------------------- |
+| 200    | Paid.                                              | object                                 |
+| 401    | Missing or invalid session.                        | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                        | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                | [`ApiError`](#standard-error-envelope) |
+| 409    | COMMISSION_NOT_PAYABLE — not in `approved` status. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/affiliate-commissions/{id}/void` — Issue #86 (design only). Staff voids a commission (e.g. the order was refunded). Gated on `commerce.affiliate_commissions.update`.
+
+- **operationId**: `voidCommerceAffiliateCommission`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                                          | Schema                                 |
+| ------ | ---------------------------------------------------- | -------------------------------------- |
+| 200    | Voided.                                              | object                                 |
+| 401    | Missing or invalid session.                          | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                          | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                  | [`ApiError`](#standard-error-envelope) |
+| 409    | COMMISSION_ALREADY_FINAL — already `paid` or `void`. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/affiliates` — Issue #86 (design only). Staff list of affiliates. Gated on `commerce.affiliates.read`.
+
+- **operationId**: `listCommerceAffiliates`
+- **Security**: bearerAuth + tenantHeader
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | One page of affiliates.     | object                                 |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `PATCH /api/v1/commerce/affiliates/{id}` — Issue #86 (design only). Staff edit of an affiliate's status/commission rate. Gated on `commerce.affiliates.update`.
+
+- **operationId**: `updateCommerceAffiliate`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | Updated.                    | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
 
 ## Schema appendix
 
@@ -11494,17 +11923,18 @@ Issue 29 — a resolved cart line, request or response shape depending on contex
 
 ### Schema: CommerceCreateOrderRequest
 
-| Field            | Type                                                              | Required | Nullable | Description |
-| ---------------- | ----------------------------------------------------------------- | -------- | -------- | ----------- |
-| `idempotencyKey` | string                                                            | yes      | no       |             |
-| `customer`       | object                                                            | yes      | no       |             |
-| `address`        | object                                                            | no       | yes      |             |
-| `lines`          | array of [`CommerceCartQuoteLine`](#schema-commercecartquoteline) | yes      | no       |             |
-| `shipping`       | object                                                            | yes      | no       |             |
-| `payment`        | object                                                            | yes      | no       |             |
-| `voucherCode`    | string                                                            | no       | yes      |             |
-| `insurance`      | boolean                                                           | no       | no       |             |
-| `notes`          | string                                                            | no       | yes      |             |
+| Field            | Type                                                              | Required | Nullable | Description                                                                                                                                                                                     |
+| ---------------- | ----------------------------------------------------------------- | -------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `idempotencyKey` | string                                                            | yes      | no       |                                                                                                                                                                                                 |
+| `customer`       | object                                                            | yes      | no       |                                                                                                                                                                                                 |
+| `address`        | object                                                            | no       | yes      |                                                                                                                                                                                                 |
+| `lines`          | array of [`CommerceCartQuoteLine`](#schema-commercecartquoteline) | yes      | no       |                                                                                                                                                                                                 |
+| `shipping`       | object                                                            | yes      | no       |                                                                                                                                                                                                 |
+| `payment`        | object                                                            | yes      | no       |                                                                                                                                                                                                 |
+| `voucherCode`    | string                                                            | no       | yes      |                                                                                                                                                                                                 |
+| `insurance`      | boolean                                                           | no       | no       |                                                                                                                                                                                                 |
+| `notes`          | string                                                            | no       | yes      |                                                                                                                                                                                                 |
+| `affiliateCode`  | string                                                            | no       | yes      | Issue #86 (design only). Optional `?ref=` referral code captured by the storefront; ignored if it matches the ordering customer's own affiliate code (self-referral yields no commission — D5). |
 
 **Example**
 
@@ -11531,7 +11961,8 @@ Issue 29 — a resolved cart line, request or response shape depending on contex
   },
   "voucherCode": "string",
   "insurance": false,
-  "notes": "string"
+  "notes": "string",
+  "affiliateCode": "string"
 }
 ```
 
@@ -12635,6 +13066,48 @@ There is deliberately no consent field. PRD §30 forbids a pre-ticked consent, a
 ```json
 {
   "token": "string"
+}
+```
+
+### Schema: OtpRequest
+
+Issue #86 (design only). Body of `POST /account/otp/request`.
+
+| Field     | Type                      | Required | Nullable | Description                                                 |
+| --------- | ------------------------- | -------- | -------- | ----------------------------------------------------------- |
+| `email`   | string (email)            | yes      | no       |                                                             |
+| `purpose` | enum(`login`, `register`) | yes      | no       |                                                             |
+| `name`    | string                    | no       | no       | Required when `purpose` is `register`; ignored for `login`. |
+| `phone`   | string                    | no       | no       | Required when `purpose` is `register`; ignored for `login`. |
+
+**Example**
+
+```json
+{
+  "email": "user@example.com",
+  "purpose": "login",
+  "name": "string",
+  "phone": "string"
+}
+```
+
+### Schema: OtpVerify
+
+Issue #86 (design only). Body of `POST /account/otp/verify`.
+
+| Field     | Type                      | Required | Nullable | Description |
+| --------- | ------------------------- | -------- | -------- | ----------- |
+| `email`   | string (email)            | yes      | no       |             |
+| `code`    | string                    | yes      | no       | 6 digits.   |
+| `purpose` | enum(`login`, `register`) | yes      | no       |             |
+
+**Example**
+
+```json
+{
+  "email": "user@example.com",
+  "code": "string",
+  "purpose": "login"
 }
 ```
 

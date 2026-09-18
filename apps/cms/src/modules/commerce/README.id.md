@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:547ee2755f4b0c321f16d8ed82954f04c3b3843088eb75a111ae50106e8943a8 -->
+<!-- i18n-source-hash: sha256:782f719864866ae3df5e60c6bcabacb5aac639abcaf739a07f29eb55b1997511 -->
 
 # `commerce`
 
@@ -420,6 +420,25 @@ Issue #26 menambahkan `/admin/commerce-flash-sales`, `-vouchers`, `-sliders`,
   `tests/admin-commerce-marketing-page-contract.test.ts` /
   `tests/admin-commerce-page-contract.test.ts` menuntut layar-layar baru itu
   pada sifat yang sama yang dipenuhi layar-layar sebelumnya.
+
+## Akun pelanggan — kontrak saja (Issue #86, epic #32 gelombang 0)
+
+`openapi/modules/commerce.openapi.yaml` mendokumentasikan seluruh permukaan
+`/api/v1/commerce/storefront/account/*` (login/registrasi OTP, profil, alamat
+tersimpan, wishlist, riwayat pesanan, ulasan, pendaftaran afiliasi) plus rute
+sisi staf `/api/v1/commerce/affiliates*` — **belum ada berkas rute untuk satu
+pun dari itu**. Setiap jalur didaftar berdasarkan nama di
+`ROUTE_PARITY_EXEMPTIONS` (`scripts/api-spec-check.ts`) persis supaya
+kontraknya bisa dikirim sebelum handler-nya tanpa menggagalkan gerbang
+paritas rute↔kontrak; sebuah entri dihapus begitu handler-nya sendiri
+mendarat. Empat keputusan arsitektur di balik bentuknya — identitas tetap
+baris `commerce` yang tidak pernah ditautkan ke `awcms_principals`, OTP
+e-mail sekarang dengan WhatsApp ditunda ke #33, token sesi `customerBearer`
+opaque yang disimpan di `localStorage`, dan aturan binding baris tamu saat
+registrasi — tercatat di
+[ADR-0016](../../../../../docs/adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md)
+di awcms-one. Handler mendarat lintas C2 (akun/OTP/sesi), C3
+(alamat/wishlist/pesanan/ulasan) dan C4 (afiliasi) — issue #87–#93.
 
 ## Dengan sengaja tidak ada di sini
 
