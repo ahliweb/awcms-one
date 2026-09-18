@@ -1,0 +1,116 @@
+---
+/**
+ * The article share row (issue #51) — seputarborneo.com's `sb_bagikan()`
+ * (`include/view_helpers.php`, issues #61/#67 there), replacing the
+ * WhatsApp+Facebook-only block `ArtikelView.astro` shipped in issue #28.
+ * Seven controls, of THREE different kinds — the distinction that
+ * seputarborneo's own `AGENTS.md` paragraph on this row insists on, and
+ * that decides every attribute below:
+ *
+ * | Control | Kind | Element | `rel` | Shown |
+ * | --- | --- | --- | --- | --- |
+ * | Facebook, X, WhatsApp, Threads | share (real intent URL) | `<a>` | `noopener nofollow` | always |
+ * | Instagram | share (Web Share API → clipboard) | `<button>` | — | always (JS reveals) |
+ * | TikTok, YouTube | FOLLOW our own account | `<a>` | `noopener me` | only when configured |
+ *
+ * - A share intent URL is not a page worth crawling — `nofollow`. A follow
+ *   link is this site's OWN official account — `me` (not `nofollow`), so
+ *   the site↔account relationship is machine-readable, exactly as
+ *   `BilahUtilitas.astro`'s icon row already declares it.
+ * - Every control's accessible name is a full sentence naming the VERB
+ *   ("Bagikan ke Facebook" vs "Ikuti kami di TikTok"), so a screen-reader
+ *   user tabbing through seven identical-looking circles hears which ones
+ *   share this article and which ones leave it. The icons are
+ *   `aria-hidden` — pure decoration next to that name.
+ * - The Instagram `<button>` ships `hidden` and `src/scripts/bagikan.ts`
+ *   reveals it once its click handler exists: it does nothing without
+ *   JavaScript (no share URL exists to fall back to — see that file's
+ *   docblock), and a control that does nothing must not be offered. The
+ *   four share `<a>`s and the follow links work with no script at all.
+ * - `[data-bagikan-status]` is rendered EMPTY, in the static HTML, as a
+ *   `role="status"`/`aria-live="polite"` region — present before any text
+ *   is injected, which is what makes an announcement reliable (see
+ *   `bagikan.ts`'s own docblock). `bagikan.css` gives it no height while
+ *   empty, so a reader who never clicks Instagram never sees a gap.
+ *
+ * ## Identity is fetched here, not passed in
+ *
+ * TikTok/YouTube come from `identity.socialLinks`; this component calls
+ * `getSiteIdentity()` itself rather than adding a prop `ArtikelView.astro`'s
+ * two callers (`/berita/[slug]`, `/video/[slug]` — both outside this issue's
+ * file ownership) would have to thread through. `getSiteIdentity()` is
+ * memoized per build, so this costs no second request — the same reasoning
+ * `BeritaLayout.astro`'s own docblock gives for fetching independently.
+ * `resolveFollowLinks` (`src/lib/bagikan.ts`) applies A2's `http(s)`-only
+ * scheme filter and hostname detection (`src/lib/ikon-sosial.ts`) to every
+ * URL before it reaches an `href`.
+ */
+import { getSiteIdentity } from "../../lib/awcms/profil";
+import { buildShareLinks, resolveFollowLinks } from "../../lib/bagikan";
+import { SOCIAL_ICON_PATHS } from "../../lib/ikon-sosial";
+import "../../styles/bagikan.css";
+
+interface Props {
+  /** The ABSOLUTE canonical URL of the article — every share intent needs a full URL, never a path. */
+  url: string;
+  title: string;
+}
+
+const { url, title } = Astro.props;
+
+const identity = await getSiteIdentity();
+const shareLinks = buildShareLinks(url, title);
+const followLinks = resolveFollowLinks(identity.socialLinks);
+---
+
+<div class="baris-bagikan" role="group" aria-label="Bagikan berita ini dan ikuti kami" data-bagikan>
+  <span class="baris-bagikan__label" aria-hidden="true">Bagikan</span>
+
+  {shareLinks.map((link) => (
+    <a
+      class="baris-bagikan__tombol"
+      href={link.href}
+      target="_blank"
+      rel="noopener nofollow"
+      aria-label={link.label}
+      title={link.label}
+      data-bagikan-platform={link.platform}
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d={link.pathData}></path></svg>
+    </a>
+  ))}
+
+  <button
+    type="button"
+    class="baris-bagikan__tombol"
+    aria-label="Bagikan ke Instagram"
+    title="Bagikan ke Instagram"
+    data-bagikan-instagram
+    data-bagikan-platform="instagram"
+    data-url={url}
+    data-judul={title}
+    hidden
+  >
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d={SOCIAL_ICON_PATHS.instagram}></path></svg>
+  </button>
+
+  {followLinks.map((link) => (
+    <a
+      class="baris-bagikan__tombol baris-bagikan__tombol--ikuti"
+      href={link.href}
+      target="_blank"
+      rel="noopener me"
+      aria-label={link.label}
+      title={link.label}
+      data-bagikan-platform={link.platform}
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d={link.pathData}></path></svg>
+    </a>
+  ))}
+
+  <p class="baris-bagikan__status" role="status" aria-live="polite" data-bagikan-status></p>
+</div>
+
+<script>
+  import "../../scripts/bagikan";
+</script>

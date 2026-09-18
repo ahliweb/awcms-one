@@ -18,5 +18,47 @@
       "Dengan menggunakan BjekMart, pelanggan menyetujui syarat dan ketentuan yang berlaku atas transaksi, pengiriman, dan layanan berlangganan di platform ini.",
       "PLACEHOLDER — konten seed awal. Operator BjekMart menggantikan paragraf ini dengan syarat dan ketentuan resmi sebelum tenant ini melayani pelanggan sungguhan."
     ]
+  },
+  {
+    "slug": "redaksi",
+    "title": "Redaksi",
+    "pageType": "legal",
+    "excerpt": "Susunan dan kontak redaksi berita BjekMart.",
+    "bodyParagraphs": [
+      "Halaman ini menjelaskan struktur redaksi dan kanal kontak redaksi untuk konten berita yang ditayangkan di platform ini.",
+      "PLACEHOLDER — konten seed awal (issue #57). Operator BjekMart mengisi susunan redaksi sungguhan (penanggung jawab redaksi, pemimpin redaksi, kontak redaksi) sebelum tenant ini menayangkan berita produksi. Data pada halaman ini SENGAJA tidak memuat nama personel atau identitas badan hukum media eksternal mana pun — lihat tools/seed-borneojek-mart.ts's own note on this decision."
+    ]
+  },
+  {
+    "slug": "pedoman-media-siber",
+    "title": "Pedoman Pemberitaan Media Siber",
+    "pageType": "legal",
+    "excerpt": "Pedoman Pemberitaan Media Siber, ditetapkan Dewan Pers bersama organisasi pers dan pengelola media siber pada 3 Februari 2012.",
+    "bodyParagraphs": [
+      "Kemerdekaan berpendapat, kemerdekaan berekspresi, dan kemerdekaan pers adalah hak asasi manusia yang dilindungi Pancasila, Undang-Undang Dasar 1945, dan Deklarasi Universal Hak Asasi Manusia PBB. Keberadaan media siber di Indonesia juga merupakan bagian dari kemerdekaan berpendapat, kemerdekaan berekspresi, dan kemerdekaan pers.",
+      "Media siber memiliki karakter khusus sehingga memerlukan pedoman agar pengelolaannya dapat dilaksanakan secara profesional, memenuhi fungsi, hak, dan kewajibannya sesuai Undang-Undang Nomor 40 Tahun 1999 tentang Pers dan Kode Etik Jurnalistik. Untuk itu Dewan Pers bersama organisasi pers, pengelola media siber, dan masyarakat menyusun Pedoman Pemberitaan Media Siber sebagai berikut.",
+      "1. Ruang Lingkup. (a) Media Siber adalah segala bentuk media yang menggunakan wahana internet dan melaksanakan kegiatan jurnalistik, serta memenuhi persyaratan Undang-Undang Pers dan Standar Perusahaan Pers yang ditetapkan Dewan Pers. (b) Isi Buatan Pengguna (User Generated Content) adalah segala isi yang dibuat dan/atau dipublikasikan oleh pengguna media siber, antara lain artikel, gambar, komentar, suara, video, dan berbagai bentuk unggahan yang melekat pada media siber, seperti blog, forum, komentar pembaca atau pemirsa, dan bentuk lain.",
+      "2. Verifikasi dan Keberimbangan Berita. (a) Pada prinsipnya setiap berita harus melalui verifikasi. (b) Berita yang dapat merugikan pihak lain memerlukan verifikasi pada berita yang sama untuk memenuhi prinsip akurasi dan keberimbangan. (c) Ketentuan pada butir (a) dikecualikan dengan syarat: berita benar-benar mengandung kepentingan publik yang mendesak; sumber berita pertama jelas identitasnya, kredibel, dan kompeten; subjek berita yang harus dikonfirmasi tidak diketahui keberadaannya atau tidak dapat diwawancarai; dan media menjelaskan kepada pembaca bahwa berita tersebut masih memerlukan verifikasi lebih lanjut, dengan penjelasan dimuat pada bagian akhir berita dalam kurung dan huruf miring. (d) Setelah memuat berita sesuai butir (c), media wajib meneruskan upaya verifikasi, dan hasil verifikasi dicantumkan pada berita pemutakhiran (update) dengan tautan pada berita yang belum terverifikasi.",
+      "3. Isi Buatan Pengguna (User Generated Content). Media siber wajib mencantumkan syarat dan ketentuan mengenai Isi Buatan Pengguna yang tidak bertentangan dengan Undang-Undang Nomor 40 Tahun 1999 tentang Pers dan Kode Etik Jurnalistik, ditempatkan secara terang dan jelas; mewajibkan registrasi keanggotaan dan proses log-in sebelum mempublikasikan Isi Buatan Pengguna; meminta persetujuan tertulis pengguna bahwa isi yang dipublikasikan tidak memuat kebohongan, fitnah, kesadisan, atau kecabulan, tidak memuat prasangka dan kebencian terkait suku, agama, ras, dan antargolongan (SARA) serta anjuran kekerasan, dan tidak diskriminatif atas dasar jenis kelamin dan bahasa serta tidak merendahkan martabat orang lemah, miskin, sakit, cacat jiwa, atau cacat jasmani. Media siber berwenang mengedit atau menghapus Isi Buatan Pengguna yang melanggar ketentuan tersebut, wajib menyediakan mekanisme pengaduan yang mudah diakses, dan wajib menyunting, menghapus, atau mengoreksi Isi Buatan Pengguna yang dilaporkan melanggar selambat-lambatnya 2x24 jam setelah pengaduan diterima. Media siber yang telah memenuhi seluruh ketentuan di atas tidak dibebani tanggung jawab atas masalah yang timbul akibat pemuatan isi yang melanggar, namun bertanggung jawab bila tidak mengambil tindakan koreksi setelah batas waktu tersebut.",
+      "4. Ralat, Koreksi, dan Hak Jawab. Ralat, koreksi, dan hak jawab mengacu pada Undang-Undang Pers, Kode Etik Jurnalistik, dan Pedoman Hak Jawab yang ditetapkan Dewan Pers, wajib ditautkan pada berita yang diralat/dikoreksi/diberi hak jawab, dan wajib mencantumkan waktu pemuatannya. Bila suatu berita disebarluaskan media siber lain: tanggung jawab media siber pembuat berita terbatas pada berita yang dipublikasikan di medianya sendiri atau media di bawah otoritas teknisnya; koreksi yang dilakukan media siber pembuat berita juga harus dilakukan media siber lain yang mengutipnya; dan media yang menyebarluaskan berita namun tidak melakukan koreksi sesuai media pemilik/pembuat berita bertanggung jawab penuh atas akibat hukum dari berita yang tidak dikoreksinya. Media siber yang tidak melayani hak jawab dapat dijatuhi sanksi pidana denda paling banyak Rp500.000.000 (lima ratus juta rupiah) sesuai Undang-Undang Pers.",
+      "5. Pencabutan Berita. Berita yang sudah dipublikasikan tidak dapat dicabut karena alasan penyensoran dari pihak luar redaksi, kecuali terkait masalah SARA, kesusilaan, masa depan anak, pengalaman traumatik korban, atau pertimbangan khusus lain yang ditetapkan Dewan Pers. Media siber lain wajib mengikuti pencabutan kutipan berita dari media asal yang telah dicabut, dan pencabutan berita wajib disertai alasan pencabutan serta diumumkan kepada publik.",
+      "6. Iklan. Media siber wajib membedakan dengan tegas antara produk berita dan iklan; setiap berita/artikel/isi yang merupakan iklan atau isi berbayar wajib mencantumkan keterangan 'advertorial', 'iklan', 'ads', 'sponsored', atau kata lain yang menjelaskan bahwa isi tersebut adalah iklan. 7. Hak Cipta. Media siber wajib menghormati hak cipta sebagaimana diatur dalam peraturan perundang-undangan yang berlaku. 8. Pencantuman. Media siber wajib mencantumkan Pedoman Pemberitaan Media Siber ini di medianya secara terang dan jelas. 9. Sengketa. Penilaian akhir atas sengketa mengenai pelaksanaan Pedoman Pemberitaan Media Siber ini diselesaikan oleh Dewan Pers.",
+      "Jakarta, 3 Februari 2012. Pedoman ini ditetapkan dan ditandatangani oleh Dewan Pers bersama komunitas pers, ditandatangani oleh Ketua Dewan Pers, Bagir Manan.",
+      "Diporting apa adanya dari teks publik Dewan Pers (issue #57) — bukan konten milik atau identitas seputarborneo.com."
+    ]
+  },
+  {
+    "slug": "disclaimer",
+    "title": "Disclaimer",
+    "pageType": "legal",
+    "excerpt": "Batasan tanggung jawab konten berita pada platform ini.",
+    "bodyParagraphs": [
+      "Seluruh layanan pemberitaan pada platform ini mengikuti aturan main yang ditetapkan oleh operator tenant ini. Dengan mengakses dan menggunakan situs ini, pembaca dianggap memahami dan menyetujui ketentuan berikut.",
+      "Seluruh isi berupa teks, gambar, suara, video, dan bentuk grafis lain pada rubrik berita di situs ini hanya berfungsi sebagai informasi dan tidak dimaksudkan untuk tujuan transaksi seperti saham, perdagangan, atau sejenisnya.",
+      "Operator situs berupaya menampilkan isi seakurat mungkin, namun operator dan mitra penyedia isi tidak bertanggung jawab atas kesalahan, keterlambatan pembaruan data, atau kerugian yang timbul dari penggunaan informasi yang disajikan.",
+      "Operator situs tidak bertanggung jawab atas akibat langsung maupun tidak langsung dari isi yang dihasilkan dan disampaikan pembaca atau pengguna pada rubrik publik, komentar, atau forum — namun berhak menyunting atau menghapus isi tersebut agar tidak merugikan pihak lain serta menjauhi muatan pornografi dan sentimen suku, agama, dan ras.",
+      "Tautan ke situs lain yang muncul pada berita di situs ini tidak berarti operator menyetujui isi situs pihak lain tersebut; operator tidak bertanggung jawab atas isi atau materi apa pun pada situs pihak lain itu.",
+      "PLACEHOLDER — konten seed awal (issue #57), diadaptasi sebagai disclaimer generik untuk tenant ini tanpa menyalin identitas badan hukum atau personel media eksternal mana pun. Operator tenant ini menggantikan paragraf ini dengan disclaimer resmi sebelum menayangkan berita produksi."
+    ]
   }
 ]

@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](AGENTS.md)
 
-<!-- i18n-source-hash: sha256:54e684971ca42ec20cf6b263f518f798efb4826544adc08f22a958bcae30e6c6 -->
+<!-- i18n-source-hash: sha256:771391bef39ba1521e4e745a8504891547454ec2320c4c74d87242e1b0f29482 -->
 
 # AGENTS.md — kontrak kerja awcms-one
 
@@ -30,7 +30,8 @@ Setiap issue anak dari [issue #21](https://github.com/ahliweb/awcms-one/issues/2
 | | |
 | --- | --- |
 | Remote upstream | `awcms` → `https://github.com/ahliweb/awcms.git`, fetch refspec dipersempit ke `+refs/heads/main:refs/remotes/awcms/main`, dan `tagOpt` diset `--no-tags` |
-| Titik sematan | `ahliweb/awcms` v10.3.0, commit `749404d4963af1dfaf8a5cf8b229299b29556ce2` |
+| Titik sematan | `ahliweb/awcms` v10.3.0, commit `749404d4963af1dfaf8a5cf8b229299b29556ce2` (`git subtree add` awal) |
+| Sinkronisasi terakhir | `main` upstream pada commit `4e049743f53b8490a95d579a0abc53cd1eb7fff7` (awcms PR #807 — logo institusi, pemindai keamanan SVG), ditarik oleh PR awcms-one untuk issue #59 dengan merge commit |
 | Perintah sinkron | `git subtree pull --prefix=apps/cms awcms main` |
 
 Set keduanya saat menambahkan remote:

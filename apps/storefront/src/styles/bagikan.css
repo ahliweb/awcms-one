@@ -1,0 +1,110 @@
+/**
+ * Styles for the article share row (`src/components/berita/
+ * BarisBagikan.astro`, issue #51). A NEW file imported by that component
+ * alone rather than a block appended to `src/styles/berita.css`: that
+ * file's `.article-share` rules (issue #28's two-link block) belong to the
+ * article template other, concurrent changes edit, and a component-owned
+ * stylesheet keeps this change's footprint to files no one else is
+ * touching. Astro bundles a component-imported stylesheet into the page's
+ * external CSS exactly like a layout-imported one — `astro.config.mjs`'s
+ * `inlineStylesheets: "never"` guarantees it is never an inline `<style>`
+ * (`style-src 'self'`, `server/penyaji.mjs`).
+ *
+ * Reuses `global.css`'s tokens throughout; every colour pair below is one
+ * `global.css` already ships at >= 4.5:1 in both its light and dark
+ * palettes (`--text-secondary` on `--bg-surface`, `--bg-surface` on
+ * `--text-primary`).
+ */
+
+.baris-bagikan {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap; /* seven 44px controls + label do not fit 360px in one line — they wrap, never shrink or overflow */
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.baris-bagikan__label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-right: 0.25rem;
+}
+
+/* One rule for `<a>` and `<button>` alike — a reader must not be able to
+   tell the Instagram button from the links beside it by look. 44x44 is the
+   WCAG 2.5.5 / 2.5.8 target size; the icon inside is 1.25rem so the target
+   is the circle, not the glyph. */
+.baris-bagikan__tombol {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  background: var(--bg-surface);
+  color: var(--text-secondary);
+  font: inherit;
+  cursor: pointer;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.baris-bagikan__tombol:hover {
+  background: var(--text-primary);
+  border-color: var(--text-primary);
+  color: var(--bg-surface);
+}
+
+/* `[hidden]` normally loses to a `display` declaration — the Instagram
+   button ships `hidden` in the static HTML and must actually be invisible
+   until `src/scripts/bagikan.ts` reveals it. */
+.baris-bagikan__tombol[hidden] {
+  display: none;
+}
+
+.baris-bagikan__tombol svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  fill: currentColor;
+}
+
+/* The `role="status"` region: always in the DOM (see the component's
+   docblock for why), but takes the row's full width on its own line and no
+   space at all while empty. */
+.baris-bagikan__status {
+  flex-basis: 100%;
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--success-text);
+}
+
+/* NOT `display: none` while empty: a live region hidden that way leaves the
+   accessibility tree, and text added as it reappears is announced by some
+   screen readers and skipped by others. Taking it out of flex flow keeps
+   it in the tree and removes the wrap gap it would otherwise open. */
+.baris-bagikan__status:empty {
+  position: absolute;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .baris-bagikan__tombol {
+    transition: none;
+  }
+}
+
+@media print {
+  /* A share row is meaningless on paper; `global.css` has no print block
+     of its own for the news templates, so this component hides itself. */
+  .baris-bagikan {
+    display: none;
+  }
+}
