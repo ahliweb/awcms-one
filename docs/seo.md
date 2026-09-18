@@ -6,7 +6,7 @@ What `apps/storefront` emits for search engines and link previews — metadata, 
 
 ## Per-page metadata — unchanged mechanism from increment 1
 
-Every page renders through `BaseLayout`, which sets a `<title>`, a truncated `<meta name="description">`, a `<link rel="canonical">`, and Open Graph tags (`og:type` fixed to `"website"` even on a product page — the structured price/availability data goes through JSON-LD instead, not `product:price:*` meta, which this app does not declare). There is still no `og:image` on any page.
+Every page renders through `BaseLayout`, which sets a `<title>`, a truncated `<meta name="description">`, a `<link rel="canonical">`, and Open Graph tags (`og:type` fixed to `"website"` even on a product page — the structured price/availability data goes through JSON-LD instead, not `product:price:*` meta, which this app does not declare). There is still no `og:image` tag emitted by `BaseLayout` itself on any page — issue #47 (`apps/storefront/src/lib/awcms/media.ts`) gives a news `PostDetail` a resolved `image.publicUrl` an `og:image` tag could use, but adding the tag itself is a separate, later change to `BaseLayout`'s head slot.
 
 ## JSON-LD by page type
 
@@ -41,4 +41,4 @@ Every canonical URL is still absolute, built from `SITE_URL`, matching the live 
 
 ## Not built
 
-Structured data for the catalog listing page (`/produk`) itself — only category pages and product detail pages carry JSON-LD. An `og:image` on any page (no CMS-media client for it yet in this app — see [`docs/cms.md`](cms.md)). A `product:price:*` Open Graph namespace (the JSON-LD `Offer` node carries this instead, deliberately, per "Per-page metadata" above).
+Structured data for the catalog listing page (`/produk`) itself — only category pages and product detail pages carry JSON-LD. An `og:image` TAG on any page — this app now has a CMS-media client (`apps/storefront/src/lib/awcms/media.ts`, issue #47) and a news post's resolved image to point one at, but emitting the tag itself is a separate `BaseLayout` change this issue does not make. A `product:price:*` Open Graph namespace (the JSON-LD `Offer` node carries this instead, deliberately, per "Per-page metadata" above).

@@ -173,7 +173,9 @@ describe("lib/portable-text", () => {
     expect(html).toBe("<ul><li>induk<ul><li>anak</li></ul></li></ul>");
   });
 
-  test("a gallery block degrades to a stated, visible placeholder — never an <img>", () => {
+  test("a gallery block with no resolvable image and no caption degrades to a stated placeholder — never an <img>", () => {
+    // No `mediaType`/`resolvedMedia` at all — the "nothing to render" case
+    // issue #47's extension still falls back to, unchanged from issue #24.
     const html = renderPortableText([
       { _type: "gallery", _key: "g1", items: [{ mediaObjectId: "x" }, { mediaObjectId: "y" }] }
     ]);
@@ -181,7 +183,7 @@ describe("lib/portable-text", () => {
     expect(html).not.toContain("<img");
   });
 
-  test("a videoNews block degrades to a stated placeholder", () => {
+  test("a videoNews block with no provider/videoId degrades to a stated placeholder", () => {
     const html = renderPortableText([{ _type: "videoNews", _key: "v1" }]);
     expect(html).toContain("Video");
     expect(html).toContain("content-placeholder");

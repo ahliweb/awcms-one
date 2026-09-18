@@ -91,15 +91,28 @@ export type CspOriginsArtifact = {
   imgSrc: string[];
   /** Origins to add to `connect-src`. Empty in this increment — no page here makes a browser-side request to another origin yet (issue #30 adds the first). */
   connectSrc: string[];
+  /**
+   * Origins to add to `frame-src` (issue #47: `https://www.youtube-nocookie.com`,
+   * added only when this build has at least one playable `videoNews` block
+   * for its click-to-load facade to embed — `src/pages/csp.json.ts`).
+   * Additive, not a version bump: an OLDER `server/penyaji.mjs` (built
+   * before this field existed) simply ignores it and `frame-src` stays
+   * `'none'` until that side is updated too — `readCspOrigins` there already
+   * degrades an unknown key to nothing, never a crash. Empty by default, the
+   * same "no page needed this yet" state `connectSrc` started in.
+   */
+  frameSrc: string[];
 };
 
 export function buildCspOriginsArtifact(
   imageUrls: Iterable<string | null | undefined>,
-  connectOrigins: Iterable<string | null | undefined> = []
+  connectOrigins: Iterable<string | null | undefined> = [],
+  frameOrigins: Iterable<string | null | undefined> = []
 ): CspOriginsArtifact {
   return {
     version: 1,
     imgSrc: collectOrigins(imageUrls),
-    connectSrc: collectOrigins(connectOrigins)
+    connectSrc: collectOrigins(connectOrigins),
+    frameSrc: collectOrigins(frameOrigins)
   };
 }

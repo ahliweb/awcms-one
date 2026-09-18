@@ -5,6 +5,12 @@
  * `src/components/berita/ArtikelView.astro` `/berita/[slug]` uses — the
  * only difference is which posts land on which route (`isVideo`, see
  * `src/lib/berita.ts`'s `getPosts()`/`getVideo()`).
+ *
+ * Issue #47: this is the ONLY route a playable `videoNews` block can ever
+ * render on (a video post never gets a plain `/berita/{slug}` page — see
+ * the docblock above), so `src/scripts/video-facade.ts` — the click-to-load
+ * swap for `src/lib/portable-text.ts`'s poster/button markup — is loaded
+ * from here and nowhere else.
  */
 import BeritaLayout from "../../layouts/BeritaLayout.astro";
 import ArtikelView from "../../components/berita/ArtikelView.astro";
@@ -73,5 +79,10 @@ const schema = combineSchemas(
     canonicalPath={canonicalPath}
     parentLabel="Video"
     parentPath={ROUTES.video}
+    videoMode="facade"
   />
 </BeritaLayout>
+
+<script>
+  import "../../scripts/video-facade";
+</script>

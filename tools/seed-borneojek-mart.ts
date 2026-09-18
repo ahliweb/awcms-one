@@ -136,14 +136,20 @@ const MACHINE_CREDENTIAL_PERMISSION_KEYS = [
   //     regions/index.ts (IDN_ADMIN_REGIONS_MODULE_KEY/
   //     IDN_REGION_ACTIVITY_CODE, idn-admin-regions-permissions.ts —
   //     activityCode is "region", singular)
-  "idn_admin_regions.region.read"
+  "idn_admin_regions.region.read",
   // theme.ts's `/theming/{tenantCode}/tokens.css` is PUBLIC (no auth at
   // all — see that file's own docblock), so it needs no key here.
-  // Deliberately NOT added: `media_library.media.read` (PR #65 adds this
-  // line; rebase after it merges) and the visitor-analytics read key (A3
-  // adds it in wave 2) — per the coordinator's own scope split, so this
-  // list stays a clean append for whichever of those three PRs merges
-  // last.
+  // Issue #47 (merged ahead of this one) — `apps/storefront/src/lib/awcms/
+  // media.ts` resolves `featuredMediaId`/a gallery item's `mediaObjectId` to
+  // a public URL via `GET /api/v1/media/objects`, and reads
+  // `GET /api/v1/media/public-origin` for the CSP artifact — both gated on
+  // this one permission (`media-permissions.ts`'s
+  // `MEDIA_PERMISSION_ACTIVITY_CODE`, `action: "read"`).
+  "media_library.media.read"
+  // Deliberately NOT added: the visitor-analytics read key — the GA4/
+  // visitor-beacon work (issue #56, merged) turned out to need no CMS read
+  // at all (`apps/storefront/src/scripts/analitik.ts` posts anonymously,
+  // it never calls `awcmsGet`), so there is nothing to append here for it.
 ] as const;
 const MACHINE_CREDENTIAL_LIFETIME_DAYS = 365;
 
