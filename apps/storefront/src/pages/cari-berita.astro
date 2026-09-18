@@ -11,8 +11,13 @@
  * BROWSER, after load. The script here does real work (fetch the index,
  * filter, render results) rather than `cari.astro`'s placeholder echo,
  * because this issue actually has a searchable index to search.
+ *
+ * Issue #49: the status line and results grid sit in the main column of
+ * `.layout-with-sidebar` beside the shared `Sidebar.astro`; the search form
+ * itself stays full-width in the page heading above.
  */
 import BeritaLayout from "../layouts/BeritaLayout.astro";
+import Sidebar from "../components/berita/Sidebar.astro";
 import { ROUTES } from "../config/routes";
 ---
 
@@ -34,8 +39,14 @@ import { ROUTES } from "../config/routes";
       </form>
     </div>
 
-    <p data-search-status class="search-hint">Ketik kata kunci untuk mencari berita.</p>
-    <ul class="grid-cards" data-search-results hidden></ul>
+    <div class="layout-with-sidebar">
+      <div>
+        <p data-search-status class="search-hint" aria-live="polite">Ketik kata kunci untuk mencari berita.</p>
+        <ul class="grid-cards" data-search-results hidden></ul>
+      </div>
+
+      <Sidebar />
+    </div>
   </div>
 </BeritaLayout>
 

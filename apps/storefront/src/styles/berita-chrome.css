@@ -303,10 +303,22 @@
   margin-top: 0.75rem;
 }
 
+/*
+ * Written (issue #48) before the form existed as a single e-mail-plus-button
+ * row; issue #50's `FormBuletin.astro` is a labelled field, a consent
+ * paragraph, the button and a status region, so a one-line flex row laid
+ * the consent sentence out beside the input. Stacked instead (issue #49) —
+ * the footer column is narrow, and the same vertical layout the sidebar's
+ * box uses keeps the two copies of the form reading alike.
+ */
 .footer-berita__buletin form {
-  display: flex;
-  gap: 0.4rem;
+  display: grid;
+  gap: 0.5rem;
   margin-block: 0.5rem 0.75rem;
+}
+
+.footer-berita__buletin .toko-field {
+  margin-bottom: 0;
 }
 
 .footer-berita__mitra {

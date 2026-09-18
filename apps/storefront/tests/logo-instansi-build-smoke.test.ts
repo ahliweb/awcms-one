@@ -109,7 +109,10 @@ describe("build smoke: institution emblem (issue #59) against the stub CMS", () 
         expect(figure).toMatch(/width="240"/);
         expect(figure).toMatch(/height="240"/);
         // Inside the body column, before the article's own text.
-        const bodyStart = article.indexOf('class="container article-body"');
+        // `class="article-body"` since issue #49 — that column sits inside
+        // `.container > .layout-with-sidebar`, so it carries no `container`
+        // of its own any more.
+        const bodyStart = article.indexOf('class="article-body"');
         expect(bodyStart).toBeGreaterThan(-1);
         expect(article.indexOf('class="logo-instansi"')).toBeGreaterThan(bodyStart);
 

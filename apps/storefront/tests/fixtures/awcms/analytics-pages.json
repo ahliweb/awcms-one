@@ -1,0 +1,14 @@
+{
+  "range": "7d",
+  "pages": [
+    { "name": "/", "count": 412 },
+    { "name": "/berita/tidak-pernah-terbit", "count": 180 },
+    { "name": "/produk", "count": 96 },
+    { "name": "/berita/dprd-kalteng-gelar-rapat-paripurna", "count": 73 },
+    { "name": "/berita/bupati-kobar-resmikan-jembatan-baru", "count": 58 },
+    { "name": "/video/detik-detik-kebakaran-pasar", "count": 41 },
+    { "name": "/berita/dprd-kalteng-gelar-rapat-paripurna?utm_source=whatsapp", "count": 22 },
+    { "name": "/berita", "count": 19 },
+    { "name": "/rubrik/politik", "count": 11 }
+  ]
+}

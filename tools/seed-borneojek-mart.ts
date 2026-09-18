@@ -145,11 +145,19 @@ const MACHINE_CREDENTIAL_PERMISSION_KEYS = [
   // `GET /api/v1/media/public-origin` for the CSP artifact — both gated on
   // this one permission (`media-permissions.ts`'s
   // `MEDIA_PERMISSION_ACTIVITY_CODE`, `action: "read"`).
-  "media_library.media.read"
-  // Deliberately NOT added: the visitor-analytics read key — the GA4/
-  // visitor-beacon work (issue #56, merged) turned out to need no CMS read
-  // at all (`apps/storefront/src/scripts/analitik.ts` posts anonymously,
-  // it never calls `awcmsGet`), so there is nothing to append here for it.
+  "media_library.media.read",
+  // Issue #49 — `apps/storefront/src/lib/awcms/analitik.ts` reads
+  // `GET /api/v1/analytics/pages` for the sidebar's "Terpopuler" —
+  // `DASHBOARD_GUARD` in `analytics/pages.ts` (the same key gates
+  // `/summary|pages|devices|locations|security`, per the module README).
+  // Issue #56's beacon (`apps/storefront/src/scripts/analitik.ts`) still
+  // needs nothing here: it POSTs anonymously and never calls `awcmsGet`.
+  // Appending this key CHANGES the scope, so `ensureMachineCredential`
+  // below rotates (revokes + reissues) the live storefront credential on
+  // the next seed run against an already-seeded tenant — a build still
+  // holding the previous `AWCMS_API_TOKEN` gets 401 from then on and must
+  // take the newly printed token.
+  "visitor_analytics.dashboard.read"
 ] as const;
 const MACHINE_CREDENTIAL_LIFETIME_DAYS = 365;
 
