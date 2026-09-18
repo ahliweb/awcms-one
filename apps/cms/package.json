@@ -43,6 +43,7 @@
     "preview": "bun --bun astro preview",
     "start": "bun ./dist/standalone-entry.mjs",
     "db:migrate": "bun scripts/db-migrate.ts",
+    "db:commerce:renumber": "bun scripts/commerce-migrations-renumber.ts",
     "domain-events:deliveries:purge": "bun scripts/domain-event-deliveries-purge.ts",
     "domain-events:dispatch": "bun scripts/domain-events-dispatch.ts",
     "sync:objects:purge": "bun scripts/object-queue-purge.ts",
