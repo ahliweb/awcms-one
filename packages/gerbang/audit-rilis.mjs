@@ -36,12 +36,18 @@
  * ## Why the bounds below are starting assumptions, not measured ones
  *
  * `media-lenterakalteng` derived its bound from its own measured rate
- * (thirty changesets in twenty days). This repo has no release history yet
- * to measure a rate from, so {@link MAX_WAITING} and {@link MAX_AGE_DAYS}
- * below are deliberately conservative round numbers rather than a
- * calculation — reasonable enough to catch a backlog that has clearly gone
- * unwatched, without claiming a precision this repo has not earned. Revisit
- * both once this repo has an actual release cadence to measure.
+ * (thirty changesets in twenty days). This repo started with no release
+ * history to measure from, so {@link MAX_WAITING} and {@link MAX_AGE_DAYS}
+ * were conservative round numbers (10 files, 14 days). Two increments later
+ * there is a rate: v0.3.0 folded ten changesets from nine PRs merged inside
+ * one week, and increment 3 (epic #46) lands one changeset per atomic PR —
+ * fourteen children plus follow-ups — before its own release, so a bound of
+ * 10 reddened every PR in the second half of the increment with nothing for
+ * the contributor to do about it. {@link MAX_WAITING} is therefore 20: the
+ * measured size of one increment's release plus headroom, still low enough
+ * that a backlog nobody is releasing gets noticed. {@link MAX_AGE_DAYS}
+ * stays at 14 — it is the age bound, not the count, that catches an
+ * unwatched backlog, and an increment has never taken longer than that.
  *
  * ## Why the age bound is allowed to redden a run nobody caused
  *
@@ -71,7 +77,7 @@ const DIRECTORY = ".changesets";
  * At most this many changesets may wait for a release. See "Why the bounds
  * below are starting assumptions" above.
  */
-const MAX_WAITING = 10;
+const MAX_WAITING = 20;
 
 /**
  * The oldest waiting changeset may be at most this many days old. See "Why
