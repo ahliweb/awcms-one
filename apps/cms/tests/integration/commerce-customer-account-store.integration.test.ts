@@ -40,6 +40,7 @@ import {
   touchSession
 } from "../../src/modules/commerce/application/customer-account-store";
 import { hashCustomerSessionToken } from "../../src/modules/commerce/domain/customer-session-token";
+import { OTP_MAX_ATTEMPTS } from "../../src/modules/commerce/domain/customer-otp";
 import {
   getAdminSql,
   getRuntimeSql,
@@ -176,6 +177,32 @@ suite("commerce customer account store integration (Issue #87)", () => {
     if (!lastResult!.ok) {
       expect(lastResult!.reason).toBe("exhausted");
     }
+  });
+
+  test("the last allowed attempt still succeeds when it matches (attempt count read BEFORE the increment)", async () => {
+    // Regression: RETURNING o.attempts yields the post-increment value, so an
+    // implementation that reads it as the pre-attempt count rejects the fifth
+    // and last permitted try as "exhausted" — and, worse, has already stamped
+    // consumed_at, burning a code the shopper typed correctly.
+    const email = "otp-last-try@example.com";
+    let code = "";
+
+    await inTenant(TENANT_A, async (tx) => {
+      const issued = await issueOtp(tx, TENANT_A, email, "login", null, NOW);
+      code = issued.code;
+    });
+
+    for (let i = 0; i < OTP_MAX_ATTEMPTS - 1; i++) {
+      const wrong = await inTenant(TENANT_A, (tx) =>
+        consumeOtp(tx, TENANT_A, email, "login", "000000", NOW)
+      );
+      expect(wrong.ok).toBe(false);
+    }
+
+    const last = await inTenant(TENANT_A, (tx) =>
+      consumeOtp(tx, TENANT_A, email, "login", code, NOW)
+    );
+    expect(last.ok).toBe(true);
   });
 
   test("consumeOtp rejects an expired code even with the correct value", async () => {

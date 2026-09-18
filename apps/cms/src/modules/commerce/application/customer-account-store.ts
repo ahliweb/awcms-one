@@ -303,7 +303,7 @@ export async function consumeOtp(
 
   const rows = (await tx`
     WITH target AS (
-      SELECT id FROM awcms_commerce_customer_otps
+      SELECT id, attempts AS attempts_before FROM awcms_commerce_customer_otps
       WHERE tenant_id = ${tenantId}
         AND email_normalized = ${emailNormalized}
         AND purpose = ${purpose}
@@ -328,7 +328,10 @@ export async function consumeOtp(
       o.registration,
       o.code_hash = ${candidateHash} AS code_matched,
       o.expires_at > ${now} AS not_expired,
-      (o.attempts) AS attempts_before_this_try,
+      -- o.attempts in RETURNING is the NEW value (already incremented); the
+      -- pre-update count must come from the CTE, or the fifth and last allowed
+      -- attempt reads as already exhausted even when it matched.
+      target.attempts_before AS attempts_before_this_try,
       o.consumed_at IS NOT NULL AS is_consumed
   `) as {
     id: string;
