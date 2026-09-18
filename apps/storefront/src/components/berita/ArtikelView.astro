@@ -34,6 +34,7 @@
 import ArtikelCard from "./ArtikelCard.astro";
 import TagCloud from "./TagCloud.astro";
 import IklanSlot from "./IklanSlot.astro";
+import BarisBagikan from "./BarisBagikan.astro";
 import { ROUTES } from "../../config/routes";
 import { absoluteUrl } from "../../config/site";
 import { renderPortableText, type VideoRenderMode } from "../../lib/portable-text";
@@ -76,7 +77,6 @@ const bodyHtml = renderPortableText(post.bodyPortableText, resolvedMedia, { vide
 const readingMinutes = estimasiWaktuBacaMenit(bodyHtml);
 const wasUpdated = pernahDiperbaruiSetelahTerbit(post.publishedAt, post.updatedAt);
 const absoluteShareUrl = absoluteUrl(canonicalPath);
-const encodedTitle = encodeURIComponent(post.title);
 
 // --- Hero block (issue #47) -------------------------------------------------
 // `alt` (the media's own description) and its credit
@@ -150,22 +150,8 @@ const breadcrumbItems = [
     </div>
   )}
 
-  <div class="article-share">
-    <a
-      href={`https://wa.me/?text=${encodedTitle}%20${encodeURIComponent(absoluteShareUrl)}`}
-      rel="noopener noreferrer"
-      target="_blank"
-    >
-      Bagikan ke WhatsApp
-    </a>
-    <a
-      href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(absoluteShareUrl)}`}
-      rel="noopener noreferrer"
-      target="_blank"
-    >
-      Bagikan ke Facebook
-    </a>
-  </div>
+  {/* Issue #51: FB/X/WA/Threads share links, Instagram via Web Share API, TikTok/YouTube follow links — see `BarisBagikan.astro`. */}
+  <BarisBagikan url={absoluteShareUrl} title={post.title} />
 
   {related.length > 0 && (
     <div class="article-related">

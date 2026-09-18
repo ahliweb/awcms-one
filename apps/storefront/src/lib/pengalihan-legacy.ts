@@ -49,19 +49,29 @@ function lastPathSegment(path: string): string | null {
  * than thrown on — it simply will not match anything real, which is the
  * correct outcome for a malformed URL nobody could have followed anyway.
  *
- * ONE shape is exempt from the query strip: `/video/?video={id}-…` (issue
- * #58/B2's own template for a video row) carries its whole identity in the
- * query — unlike `?utm=fb` on an otherwise-complete path, there is no path
- * left once it is removed. Stripping it here the same way would collapse
- * every video row onto the identical bare `/video` key, which
- * `buildLegacyRedirectMap`'s own conflict guard would then reject the
- * moment a second, differently-targeted video row exists (the throw two
- * DIFFERENT sources are supposed to trigger, misfiring on what are really
- * DIFFERENT sources). This function still has no reason to know which
- * table's row it is looking at, so it recognizes the shape by prefix, not
- * by a caller-supplied flag — `apps/storefront/server/pengalihan-
- * aturan.mjs`'s `findVideoRowTargetById` (issue #55/A9) is what actually
- * reads this preserved key at request time, by the same prefix.
+ * ONE shape is exempt from the query strip: `/video/?video={id}-…` carries
+ * its whole identity in the query — unlike `?utm=fb` on an otherwise-
+ * complete path, there is no path left once it is removed. Stripping it
+ * here would collapse every such row onto the identical bare `/video` key,
+ * which `buildLegacyRedirectMap`'s own conflict guard would then reject the
+ * moment a second, differently-targeted video row exists.
+ *
+ * That exemption is defensive, NOT the contract. The CMS itself can never
+ * STORE that form: `validateRedirectInput` runs every redirect source
+ * through `normalizeRedirectPath` WITHOUT `keepQuery` (`apps/cms/src/
+ * modules/seo-distribution/domain/redirect-rule.ts`, `redirect-path.ts` —
+ * checked directly), so a `/video/?video=…` source posted to the import
+ * route is written as `/video`, and `GET /api/v1/seo/redirects` can never
+ * hand this function the query-carrying form. The real contract (issue #58
+ * review round 2) is therefore the QUERY-FREE synthetic key the exporter
+ * writes instead — `/video/{id}-{slug}.html` (`videoRedirectSourcePath` in
+ * `tools/import-seputarborneo.ts`), a path that never existed publicly and
+ * passes through this function like any other. `apps/storefront/server/
+ * pengalihan-aturan.mjs`'s `rowIdIndexFor` (issue #55/A9) indexes BOTH
+ * shapes by their numeric id, and answers the real inbound `/video/?video=
+ * {id}-…` request from that index. The branch below stays only so a row
+ * that reaches this map some other way (a hand-authored fixture, a future
+ * CMS that keeps the query) is not silently destroyed.
  */
 export function normalizeLegacyPath(path: string): string {
   let decoded = path;
