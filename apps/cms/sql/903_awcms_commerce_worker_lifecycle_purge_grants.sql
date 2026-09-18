@@ -4,7 +4,7 @@
 --   SELECT * FROM <table> WHERE tenant_id = $1 AND <cursor> < $2 …   -- candidates
 --   DELETE FROM <table> WHERE id IN (SELECT id FROM <table> …)       -- hard_delete
 --
--- `sql/153`'s two `dataLifecycle` descriptors (`commerce/module.ts`) declare
+-- `sql/901`'s two `dataLifecycle` descriptors (`commerce/module.ts`) declare
 -- exactly this shape (`cursorColumn: "deleted_at"`, `deletion.mode:
 -- "hard_delete"`), so the worker needs SELECT + DELETE on both tables — the
 -- same grant `sql/129`'s header describes finding missing by actually running

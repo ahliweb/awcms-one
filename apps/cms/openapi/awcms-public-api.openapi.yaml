@@ -24775,7 +24775,7 @@ components:
           nullable: true
         price:
           type: string
-          description: numeric(14,2) as a decimal string — never a JSON number (money is never a float; see sql/153's header).
+          description: numeric(14,2) as a decimal string — never a JSON number (money is never a float; see sql/901's header).
         discountPercent:
           type: integer
         stock:

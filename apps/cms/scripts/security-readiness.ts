@@ -1509,8 +1509,8 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   // INSERT here could fabricate a replay that pins a delivery against retention
   // forever.
   awcms_domain_event_replays: ["SELECT"],
-  // commerce (Issue #4, sql/155; extended to product_images/product_variants
-  // by Issue #23, sql/160) — the generic purge of already soft-deleted
+  // commerce (Issue #4, sql/903; extended to product_images/product_variants
+  // by Issue #23, sql/908) — the generic purge of already soft-deleted
   // categories/products/images/variants (`cursorColumn: "deleted_at"`,
   // `deletion.mode: "hard_delete"`). SELECT for the bounded cursor scan and
   // the DELETE's own subquery, DELETE for the purge; no INSERT/UPDATE,
@@ -1518,40 +1518,40 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   // catalog rather than merely sweeping ones the merchant already deleted.
   awcms_commerce_categories: ["SELECT", "DELETE"],
   // `awcms_commerce_products`/`_product_variants` also carry an Issue #29
-  // `UPDATE` (`sql/168`) — see that migration's own header: the
+  // `UPDATE` (`sql/916`) — see that migration's own header: the
   // `commerce:orders:expire` job restocks a cancelled/expired order's line
   // items, the same write an admin's own cancel already performs as
   // `awcms_app`.
   awcms_commerce_products: ["SELECT", "DELETE", "UPDATE"],
   awcms_commerce_product_images: ["SELECT", "DELETE"],
   awcms_commerce_product_variants: ["SELECT", "DELETE", "UPDATE"],
-  // Issue #26 (`sql/164`): the marketing tables plus the store-settings
+  // Issue #26 (`sql/912`): the marketing tables plus the store-settings
   // singleton, on the same `deleted_at`-cursor reasoning — a live slider,
   // voucher or settings row is unreachable by the purge predicate.
-  // `UPDATE` (`sql/168`): `commerce:flash-sales:tick` persists the derived status.
+  // `UPDATE` (`sql/916`): `commerce:flash-sales:tick` persists the derived status.
   awcms_commerce_flash_sales: ["SELECT", "DELETE", "UPDATE"],
-  // `UPDATE` (`sql/168`, Issue #29): the expiry job restocks a flash sale's
+  // `UPDATE` (`sql/916`, Issue #29): the expiry job restocks a flash sale's
   // `sold` counter for an order line that was on one.
   awcms_commerce_flash_sale_products: ["SELECT", "DELETE", "UPDATE"],
-  // `UPDATE` (`sql/168`, Issue #29): the expiry job un-redeems (`used_count
+  // `UPDATE` (`sql/916`, Issue #29): the expiry job un-redeems (`used_count
   // -1`) a voucher an expired order had applied.
   awcms_commerce_vouchers: ["SELECT", "DELETE", "UPDATE"],
   awcms_commerce_sliders: ["SELECT", "DELETE"],
   awcms_commerce_testimonials: ["SELECT", "DELETE"],
   awcms_commerce_popups: ["SELECT", "DELETE"],
   awcms_commerce_store_settings: ["SELECT", "DELETE"],
-  // Issue #29 (`sql/167`): the transactional-surface tables, same
+  // Issue #29 (`sql/915`): the transactional-surface tables, same
   // `deleted_at`/`created_at`-cursor reasoning — see `module.ts`'s
   // `dataLifecycle` array header for why `commerce.orders` stays practically
   // unreachable (it is never actually soft-deleted) while still declaring
   // the grant the descriptor's `executionMode: "generic"` requires.
   //
   // `awcms_commerce_orders` also carries `UPDATE` and
-  // `awcms_commerce_order_events` also carries `INSERT` (`sql/168`): the
+  // `awcms_commerce_order_events` also carries `INSERT` (`sql/916`): the
   // `commerce:orders:expire` job itself — not the generic purge engine —
   // moves an order to `expired` and appends its own timeline row, found by
   // actually running the job as `awcms_worker` while proving Issue #29 end
-  // to end (`awcms_worker` gets nothing by default, `sql/155`'s header).
+  // to end (`awcms_worker` gets nothing by default, `sql/903`'s header).
   awcms_commerce_customers: ["SELECT", "DELETE"],
   awcms_commerce_customer_addresses: ["SELECT", "DELETE"],
   awcms_commerce_orders: ["SELECT", "DELETE", "UPDATE"],

@@ -5,7 +5,7 @@
  * (`findOrCreateCustomerByPhone`) — there is no login/password yet
  * (accounts are Issue #32), so "the customer" is entirely defined by having
  * placed at least one order under a given phone number. `phone` is stored
- * in the clear (`sql/165`'s header) since it is also the tracking
+ * in the clear (`sql/913`'s header) since it is also the tracking
  * CREDENTIAL; every place this module hands a customer record to a caller
  * outside the transaction that authenticated the phone (the admin screens)
  * masks it first via `domain/phone-normalisation.ts`'s `maskPhone`.

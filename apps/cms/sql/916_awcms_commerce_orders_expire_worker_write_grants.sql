@@ -3,15 +3,15 @@
 -- `getWorkerDatabaseClient` header) when a deployment actually configures
 -- the least-privilege worker role, rather than falling back to `awcms_app`.
 --
--- Unlike `data-lifecycle:archive-purge` (SELECT + DELETE only, `sql/155`/
--- `sql/164`/`sql/167`), this job does real business-logic WRITES: it moves
+-- Unlike `data-lifecycle:archive-purge` (SELECT + DELETE only, `sql/903`/
+-- `sql/912`/`sql/915`), this job does real business-logic WRITES: it moves
 -- an order to `expired`, records the transition, and restocks the order's
 -- line items and any redeemed voucher — the exact same
 -- `transitionOrderStatus`/`restockCancelledOrRefreshedOrder` code path a
 -- customer's own cancel or an admin's status change already runs (as
 -- `awcms_app`, which already holds these grants by default —
 -- `sql/019`'s `ALTER DEFAULT PRIVILEGES`). `awcms_worker` gets nothing by
--- default (`sql/155`'s header) and needs its own, narrower grant for
+-- default (`sql/903`'s header) and needs its own, narrower grant for
 -- exactly the columns/tables this ONE job writes — found by actually
 -- running `commerce:orders:expire` against a database connected as
 -- `awcms_worker` while proving Issue #29 end to end, not by inspection.
@@ -31,7 +31,7 @@ GRANT UPDATE ON awcms_commerce_vouchers TO awcms_worker;
 
 -- Same gap, one job earlier: `commerce:flash-sales:tick` (Issue #26,
 -- `scripts/commerce-flash-sales-tick.ts`) persists a sale's derived status
--- with an UPDATE on `awcms_commerce_flash_sales`, and `sql/164` granted the
+-- with an UPDATE on `awcms_commerce_flash_sales`, and `sql/912` granted the
 -- worker only the purge engine's SELECT + DELETE. Found while proving
 -- `commerce:orders:expire` as `awcms_worker` (PR #42); granted here rather
 -- than in a fifth migration because it is the same concern — the worker

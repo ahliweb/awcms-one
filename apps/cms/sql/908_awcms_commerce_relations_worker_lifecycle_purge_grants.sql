@@ -1,4 +1,4 @@
--- Same reasoning as `sql/155`'s header, extended to the two Issue #23 tables:
+-- Same reasoning as `sql/903`'s header, extended to the two Issue #23 tables:
 -- `commerce/module.ts`'s `dataLifecycle` descriptors for
 -- `commerce.product_images`/`commerce.product_variants` declare
 -- `cursorColumn: "deleted_at"` + `deletion.mode: "hard_delete"`

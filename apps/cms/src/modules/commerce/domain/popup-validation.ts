@@ -1,7 +1,7 @@
 /**
  * `awcms_commerce_popups` create/update validation (Issue #26). Pure — no
  * database, no I/O. "At most one ACTIVE popup per tenant" is enforced by
- * `sql/161`'s partial unique index, not here — this file only validates one
+ * `sql/909`'s partial unique index, not here — this file only validates one
  * row's own shape; `application/popup-directory.ts` maps the resulting
  * unique-violation to `409 POPUP_ALREADY_ACTIVE`.
  */

@@ -87,7 +87,7 @@ export type VoucherFields = {
 };
 
 /**
- * Enforces the shape `sql/161`'s CHECKs cannot: `percentage` needs `value`
+ * Enforces the shape `sql/909`'s CHECKs cannot: `percentage` needs `value`
  * in `0..100`; `nominal` accepts any non-negative amount and never a
  * `maxDiscount` (there is nothing to cap — the whole `value` IS the
  * discount); `free_shipping` ignores whatever `value`/`maxDiscount` a

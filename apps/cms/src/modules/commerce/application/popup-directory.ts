@@ -19,7 +19,7 @@ const POPUPS_ONE_ACTIVE_CONSTRAINT =
 
 export const POPUP_LIST_LIMIT = 100;
 
-/** Another live popup already holds `is_active = true` for this tenant — `sql/161`'s partial unique index (`awcms_commerce_popups_one_active_per_tenant`) is the actual invariant; this is its 409 mapping. */
+/** Another live popup already holds `is_active = true` for this tenant — `sql/909`'s partial unique index (`awcms_commerce_popups_one_active_per_tenant`) is the actual invariant; this is its 409 mapping. */
 export class PopupAlreadyActiveError extends Error {
   constructor() {
     super(

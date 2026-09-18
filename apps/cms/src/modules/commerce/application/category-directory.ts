@@ -17,7 +17,7 @@ export const CATEGORY_LIST_LIMIT = 100;
 
 /**
  * `(tenant_id, slug)` is unique among LIVE categories
- * (`awcms_commerce_categories_tenant_slug_key`, `sql/153`). A collision is
+ * (`awcms_commerce_categories_tenant_slug_key`, `sql/901`). A collision is
  * caller-actionable (pick another slug), so it surfaces as 409, not an
  * unhandled `PostgresError` (500).
  */

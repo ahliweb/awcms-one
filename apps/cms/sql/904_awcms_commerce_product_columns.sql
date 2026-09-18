@@ -1,6 +1,6 @@
 -- Issue #23 (part of #21) — brings `awcms_commerce_products` from Issue #4's
 -- 13-column catalog slice to full BjekMart product-model parity: every
--- deferred column `sql/153`'s header named as "deliberately deferred" lands
+-- deferred column `sql/901`'s header named as "deliberately deferred" lands
 -- here, plus two merchandising flags (`is_featured`/`is_recommended`) that
 -- replace BjekMart's ad-hoc `featuredProducts`/`recommendedProducts` heuristics
 -- with explicit columns, plus `restored_at` for the restore endpoint below.
@@ -8,7 +8,7 @@
 -- ## Still `numeric(14,2)` as a STRING, still never a float
 --
 -- `price_level_2/3/4`, `cost_price`, `insurance_fee` are every bit as much
--- money as `price` — `sql/153`'s header's arithmetic-drift reasoning applies
+-- money as `price` — `sql/901`'s header's arithmetic-drift reasoning applies
 -- unchanged. `manual_rating` is `numeric(2,1)` (0.0-5.0): not money, but the
 -- same "PostgreSQL owns the exact value, `Bun.SQL` hands it back as a string"
 -- reasoning holds for any fixed-point column read through this driver.

@@ -2,11 +2,11 @@
 
 # Database schema
 
-Every `awcms_commerce_*` table: columns, types, constraints, indexes, and the row-level security that scopes each query to one tenant. Source of truth is `apps/cms/sql/153_awcms_commerce_schema.sql` through `apps/cms/sql/168_awcms_commerce_orders_expire_worker_write_grants.sql` — sixteen migrations, one `commerce` module (see [ADR-0008](adr/0008-one-commerce-module-carries-the-whole-store-not-three.md)) — plus [`apps/cms/src/modules/commerce/README.md`](../apps/cms/src/modules/commerce/README.md); this document explains them, it does not replace reading them.
+Every `awcms_commerce_*` table: columns, types, constraints, indexes, and the row-level security that scopes each query to one tenant. Source of truth is `apps/cms/sql/901_awcms_commerce_schema.sql` through `apps/cms/sql/916_awcms_commerce_orders_expire_worker_write_grants.sql` — sixteen migrations, one `commerce` module (see [ADR-0008](adr/0008-one-commerce-module-carries-the-whole-store-not-three.md)) — plus [`apps/cms/src/modules/commerce/README.md`](../apps/cms/src/modules/commerce/README.md); this document explains them, it does not replace reading them.
 
 ## Catalog: `awcms_commerce_categories`, `awcms_commerce_products`, `_product_images`, `_product_variants`
 
-### `awcms_commerce_categories` (`sql/153`, `+restored_at` in `sql/156`)
+### `awcms_commerce_categories` (`sql/901`, `+restored_at` in `sql/904`)
 
 Hierarchical, self-referencing.
 
@@ -20,11 +20,11 @@ Hierarchical, self-referencing.
 | `icon` | `text` | Nullable |
 | `created_at`/`updated_at` | `timestamptz NOT NULL DEFAULT now()` | |
 | `deleted_at` | `timestamptz` | Nullable — soft delete |
-| `restored_at` | `timestamptz` | Nullable, added `sql/156` — the "when" fact `restore` needs, on the same precedent `awcms_offices` already uses |
+| `restored_at` | `timestamptz` | Nullable, added `sql/904` — the "when" fact `restore` needs, on the same precedent `awcms_offices` already uses |
 
-**Indexes:** unique `(tenant_id, slug) WHERE deleted_at IS NULL`; `(tenant_id)`; `(tenant_id, deleted_at)`; `(parent_id)`; `(tenant_id, parent_id) WHERE deleted_at IS NULL` (`sql/159`).
+**Indexes:** unique `(tenant_id, slug) WHERE deleted_at IS NULL`; `(tenant_id)`; `(tenant_id, deleted_at)`; `(parent_id)`; `(tenant_id, parent_id) WHERE deleted_at IS NULL` (`sql/907`).
 
-### `awcms_commerce_products` (`sql/153` core + `sql/156` BjekMart parity columns)
+### `awcms_commerce_products` (`sql/901` core + `sql/904` BjekMart parity columns)
 
 | Column | Type | Notes |
 | --- | --- | --- |
@@ -36,7 +36,7 @@ Hierarchical, self-referencing.
 | `name`, `slug` | `text NOT NULL` | `slug` unique per tenant among live rows |
 | `description`, `digital_note` | `text` | Nullable |
 | `price` | `numeric(14,2) NOT NULL` | `CHECK (price >= 0)` — see [ADR-0003](adr/0003-money-is-numeric-14-2-and-crosses-the-wire-as-a-string.md) |
-| `price_level_2`, `price_level_3`, `price_level_4` | `numeric(14,2)` | Nullable — tiered pricing by customer level (`sql/156`) |
+| `price_level_2`, `price_level_3`, `price_level_4` | `numeric(14,2)` | Nullable — tiered pricing by customer level (`sql/904`) |
 | `cost_price` | `numeric(14,2)` | Nullable, admin-only — never on a public read model |
 | `discount_percent` | `integer NOT NULL DEFAULT 0` | `CHECK BETWEEN 0 AND 100` |
 | `stock` | `integer NOT NULL DEFAULT 0` | `CHECK (stock >= 0)` |
@@ -63,9 +63,9 @@ Hierarchical, self-referencing.
 | `created_at`/`updated_at` | `timestamptz NOT NULL DEFAULT now()` | |
 | `deleted_at`, `restored_at` | `timestamptz` | Nullable |
 
-**Indexes:** unique `(tenant_id, slug)`/`(tenant_id, sku)` both `WHERE deleted_at IS NULL`; `(tenant_id)`; `(tenant_id, deleted_at)`; `(category_id)`; `(size_chart_media_id)`; GIN trigram indexes on `name`/`sku` (`pg_trgm`, `sql/159`, backing the owner list's `q` substring filter); partial `(tenant_id) WHERE deleted_at IS NULL AND is_featured/is_recommended = true`; `(tenant_id, price)`/`(tenant_id, name)` both `WHERE deleted_at IS NULL`; `(tenant_id, status) WHERE deleted_at IS NULL`.
+**Indexes:** unique `(tenant_id, slug)`/`(tenant_id, sku)` both `WHERE deleted_at IS NULL`; `(tenant_id)`; `(tenant_id, deleted_at)`; `(category_id)`; `(size_chart_media_id)`; GIN trigram indexes on `name`/`sku` (`pg_trgm`, `sql/907`, backing the owner list's `q` substring filter); partial `(tenant_id) WHERE deleted_at IS NULL AND is_featured/is_recommended = true`; `(tenant_id, price)`/`(tenant_id, name)` both `WHERE deleted_at IS NULL`; `(tenant_id, status) WHERE deleted_at IS NULL`.
 
-### `awcms_commerce_product_images` / `awcms_commerce_product_variants` (`sql/157`)
+### `awcms_commerce_product_images` / `awcms_commerce_product_variants` (`sql/905`)
 
 | Table | Key columns |
 | --- | --- |
@@ -74,7 +74,7 @@ Hierarchical, self-referencing.
 
 Both: `id`/`tenant_id`/`created_at`/`updated_at`/`deleted_at` as usual; RLS `ENABLE`+`FORCE`, tenant-isolation policy; FK indexes on every reference column.
 
-## Marketing: five families, plus store settings (`sql/161`–`162`)
+## Marketing: five families, plus store settings (`sql/909`–`sql/910`)
 
 | Table | Key columns |
 | --- | --- |
@@ -88,7 +88,7 @@ Both: `id`/`tenant_id`/`created_at`/`updated_at`/`deleted_at` as usual; RLS `ENA
 
 All six: standard `id`/`created_at`/`updated_at`/`deleted_at`, RLS `ENABLE`+`FORCE`, tenant-isolation policy, FK indexes.
 
-## Orders: eight tables (`sql/165`)
+## Orders: eight tables (`sql/913`)
 
 | Table | Key columns | Notes |
 | --- | --- | --- |
@@ -131,9 +131,9 @@ Every one of the nineteen commerce tables opts into `apps/cms`'s generic data-li
 
 Every one of the nineteen tables is also `unreachableBySubject: true` in the module's `subjectData` descriptors, `exportable: false`, `erasure: "retain_under_obligation"` — **including the customer/address/order tables that hold real guest PII.** This is a deliberate reading of `apps/cms`'s subject-data vocabulary (`SubjectDataColumn.references` is `"tenant_user" | "identity" | "profile" | "principal"` — every one a staff-side identity concept), not an oversight: a guest identified only by a phone number typed into a checkout form has none of those. A genuine erasure/export request is handled as an ordinary admin lookup (`GET`/`PATCH /api/v1/commerce/customers/{id}`), outside the automated engine's scope by construction — see [ADR-0009](adr/0009-guest-checkout-by-order-code-and-phone.md).
 
-## Permissions (`sql/154`, `158`, `163`, `166`)
+## Permissions (`sql/902`, `sql/906`, `sql/911`, `sql/914`)
 
-39 keys in total across four areas — see [`docs/cms.md`](cms.md) and [`docs/api.md`](api.md) for the full table. Worker grants for the data-lifecycle purge engine's generic `SELECT, DELETE` are seeded per table in `sql/155`/`160`/`164`/`167`; `sql/168` grants the additional, narrower write privileges (`UPDATE`/`INSERT` on specific tables) that `commerce:orders:expire` and `commerce:flash-sales:tick` need to run at all as the least-privilege `awcms_worker` role.
+39 keys in total across four areas — see [`docs/cms.md`](cms.md) and [`docs/api.md`](api.md) for the full table. Worker grants for the data-lifecycle purge engine's generic `SELECT, DELETE` are seeded per table in `sql/903`/`908`/`912`/`915`; `sql/916` grants the additional, narrower write privileges (`UPDATE`/`INSERT` on specific tables) that `commerce:orders:expire` and `commerce:flash-sales:tick` need to run at all as the least-privilege `awcms_worker` role.
 
 ## Deliberately not in this schema
 

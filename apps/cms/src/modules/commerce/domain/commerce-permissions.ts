@@ -3,7 +3,7 @@
  * extended to full product-model parity by Issue #23), shaped after
  * `media-library/domain/media-permissions.ts`: this file is the single
  * source for the key strings, and `module.ts`, the API routes, and
- * `sql/154`/`sql/158`'s seeds all derive from — or are checked against — it,
+ * `sql/902`/`sql/906`'s seeds all derive from — or are checked against — it,
  * so a key can never drift between the descriptor, the code that checks it,
  * and the database row that grants it.
  *

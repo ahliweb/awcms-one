@@ -84,7 +84,7 @@ export async function fetchStoreSettings(
   tx: Bun.SQL,
   tenantId: string
 ): Promise<StoreSettingsData> {
-  // A RESET row (`deleted_at IS NOT NULL`, sql/162's header) reads as "no
+  // A RESET row (`deleted_at IS NOT NULL`, sql/910's header) reads as "no
   // settings saved" — the same answer a tenant that never saved any gets —
   // rather than as the stale blob it still carries until the retention
   // engine purges it.
@@ -101,7 +101,7 @@ export async function fetchStoreSettings(
 
 /**
  * `DELETE /api/v1/commerce/store-settings` — "reset to defaults". Stamps
- * `deleted_at` rather than removing the row (sql/162's header): the
+ * `deleted_at` rather than removing the row (sql/910's header): the
  * singleton keeps its primary key, the next `PUT` clears the stamp, and the
  * stamped row is what `commerce/module.ts`'s `dataLifecycle` descriptor
  * eventually purges. Answers `true` when a live row was reset and `false`

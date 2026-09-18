@@ -40,7 +40,7 @@
 -- projection, the same boundary every other jsonb-column module in this base
 -- draws.
 --
--- ## RLS, GRANTs — same conventions as `sql/153`/`sql/161`
+-- ## RLS, GRANTs — same conventions as `sql/901`/`sql/909`
 --
 -- `ENABLE` + `FORCE ROW LEVEL SECURITY`, one tenant-isolation `USING`
 -- policy, no per-table GRANT (`sql/019`'s `ALTER DEFAULT PRIVILEGES` already
@@ -53,7 +53,7 @@
 -- stamped row as "this tenant has the defaults" while the next `PUT`
 -- clears the stamp and replaces the blob. That keeps the singleton shape
 -- (`tenant_id` stays the primary key, the upsert still has one conflict
--- target) and gives the row the same two-axis story `sql/153` gives products:
+-- target) and gives the row the same two-axis story `sql/901` gives products:
 -- a LIVE settings row is `deleted_at IS NULL` and has no natural age limit —
 -- a store that set its courier fee two years ago and has been selling under
 -- it since is the healthy case, not a stale one — so `commerce/module.ts`'s

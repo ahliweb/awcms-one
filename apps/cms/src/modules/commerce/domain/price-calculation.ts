@@ -1,7 +1,7 @@
 /**
  * `finalPrice` — `price` after `discountPercent`, computed server-side so the
  * storefront never has to (and never could, without risking the exact float
- * drift ADR-0003/`sql/153`'s header exists to rule out). Pure — no database,
+ * drift ADR-0003/`sql/901`'s header exists to rule out). Pure — no database,
  * no I/O.
  *
  * `price` and the result are both `numeric(14,2)` STRINGS (never a JS

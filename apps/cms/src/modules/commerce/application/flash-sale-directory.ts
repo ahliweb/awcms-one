@@ -286,7 +286,7 @@ export async function deleteFlashSale(
 // ---------------------------------------------------------------------------
 // Flash-sale products — a sub-resource of editing a flash sale, the same
 // "owned by, edited through" relationship product images/variants have to a
-// product (`sql/157`).
+// product (`sql/905`).
 // ---------------------------------------------------------------------------
 
 type FlashSaleProductRow = {

@@ -6,7 +6,7 @@ Every column across the nineteen `awcms_commerce_*` tables, its meaning, its uni
 
 ## Provenance, stated once so every row below does not have to repeat it
 
-The legacy column list was **recorded from the live `commerce_bj_mart` database on 2026-09-14**, during the work that produced issue #4's source-schema section and `apps/cms/sql/153_awcms_commerce_schema.sql`. **`commerce_bj_mart` is not reachable from the machine any of this documentation was written on** — every "source column" cell is stated **as recorded on 2026-09-14**, not independently re-checked since. The catalog-core and BjekMart-parity columns (this document's first two tables) were ported from the legacy schema's own column names, unchanged — `sql/153`'s and `sql/156`'s own headers, and `commerce/module.ts`'s docblock, all describe this as a direct port; corroborated by the deferred-column list still matching legacy `commerce_bj_mart.products` column names verbatim. The marketing and orders tables (issues #26/#29) are this platform's **own new design**, not a column-for-column port — mart.borneojek.com has settings and order records with a similar shape, but no legacy column list for them was captured during this repository's development, so no "source column" is claimed for that section; each column's meaning is stated on its own terms instead.
+The legacy column list was **recorded from the live `commerce_bj_mart` database on 2026-09-14**, during the work that produced issue #4's source-schema section and `apps/cms/sql/901_awcms_commerce_schema.sql`. **`commerce_bj_mart` is not reachable from the machine any of this documentation was written on** — every "source column" cell is stated **as recorded on 2026-09-14**, not independently re-checked since. The catalog-core and BjekMart-parity columns (this document's first two tables) were ported from the legacy schema's own column names, unchanged — `sql/901`'s and `sql/904`'s own headers, and `commerce/module.ts`'s docblock, all describe this as a direct port; corroborated by the deferred-column list still matching legacy `commerce_bj_mart.products` column names verbatim. The marketing and orders tables (issues #26/#29) are this platform's **own new design**, not a column-for-column port — mart.borneojek.com has settings and order records with a similar shape, but no legacy column list for them was captured during this repository's development, so no "source column" is claimed for that section; each column's meaning is stated on its own terms instead.
 
 ## `awcms_commerce_categories` ← `commerce_bj_mart.categories`
 
@@ -20,7 +20,7 @@ The legacy column list was **recorded from the live `commerce_bj_mart` database 
 | `icon` | `icon` | An icon reference for this category | Free text |
 | `created_at`/`updated_at` | *(timestamps)* | Row lifecycle timestamps | `timestamptz` |
 | `deleted_at` | *(none — new)* | Soft-delete marker; null means live | `timestamptz`, nullable |
-| `restored_at` | *(none — new)* | When a soft delete was undone (`sql/156`) | `timestamptz`, nullable |
+| `restored_at` | *(none — new)* | When a soft delete was undone (`sql/904`) | `timestamptz`, nullable |
 
 ## `awcms_commerce_products` ← `commerce_bj_mart.products`
 

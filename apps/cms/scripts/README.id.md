@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:51d7063f87f4b6d26d2ea427317f98b7ef7ff473446b0b0d58b1419834c951a0 -->
+<!-- i18n-source-hash: sha256:b9643f3c4983fff899a8a456448ed4286ddf65ef6307529459e5ee356654e2d1 -->
 
 # Scripts AWCMS
 
@@ -27,7 +27,7 @@ lalu membangun duplikatnya.
 
 <!-- Dihasilkan `bun run scripts:inventory:generate`. JANGAN diedit tangan. -->
 
-126 target menjalankan berkas di `scripts/`; 56 di antaranya
+127 target menjalankan berkas di `scripts/`; 56 di antaranya
 ada di rantai `bun run check` (kolom **Gate**), sisanya dijalankan manual,
 terjadwal, atau oleh workflow CI tertentu.
 
@@ -77,6 +77,7 @@ terjadwal, atau oleh workflow CI tertentu.
 | `data-lifecycle:registry:check`           | `data-lifecycle-registry-check.ts`             | ✅   |
 | `data-lifecycle:table-coverage:check`     | `data-lifecycle-table-coverage-check.ts`       | ✅   |
 | `data-lifecycle:worker-grants:check`      | `data-lifecycle-worker-grants-check.ts`        | ✅   |
+| `db:commerce:renumber`                    | `commerce-migrations-renumber.ts`              | —    |
 | `db:fk-index:check`                       | `db-fk-index-check.ts`                         | ✅   |
 | `db:jsonb-binding:check`                  | `jsonb-binding-check.ts`                       | ✅   |
 | `db:migrate`                              | `db-migrate.ts`                                | —    |

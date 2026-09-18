@@ -16,8 +16,8 @@
  *     actually created — a `CHECK` or a partial index the unit tests cannot
  *     see is exercised here;
  *   - the single-active-popup invariant is a PARTIAL UNIQUE INDEX
- *     (`sql/161`), so it can only be proven by a second insert;
- *   - the store-settings "reset" path stamps `deleted_at` (`sql/162`) and
+ *     (`sql/909`), so it can only be proven by a second insert;
+ *   - the store-settings "reset" path stamps `deleted_at` (`sql/910`) and
  *     every reader then answers with the defaults;
  *   - RLS: tenant B sees none of tenant A's marketing rows.
  */

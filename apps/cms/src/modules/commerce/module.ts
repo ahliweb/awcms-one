@@ -52,7 +52,7 @@ import {
  * `product_variants`.
  *
  * `price`/`priceLevel2/3/4`/`costPrice`/`insuranceFee`/`finalPrice` are all
- * `numeric(14,2)`, never a float (`sql/153`'s header has the full
+ * `numeric(14,2)`, never a float (`sql/901`'s header has the full
  * arithmetic-drift reasoning) — `Bun.SQL` hands each back as a STRING, and
  * this module never parses one to a number; `finalPrice` is computed in
  * integer cents (`domain/price-calculation.ts`).
@@ -64,7 +64,7 @@ import {
  *
  * `costPrice` is admin-only — `application/product-directory.ts`'s public
  * `toRecord()` never puts it on the DTO a public route/storefront reads;
- * `toAdminRecord()` (the admin screen's own fetch) does. See `sql/156`'s
+ * `toAdminRecord()` (the admin screen's own fetch) does. See `sql/904`'s
  * header for the column-level reasoning.
  */
 export const commerceModule = defineModule({
@@ -266,7 +266,7 @@ export const commerceModule = defineModule({
         {
           columns: ["tenant_id", "deleted_at"],
           purpose:
-            "awcms_commerce_categories_tenant_deleted_idx (sql/153) — the (tenant, cursor) composite the generic purge engine filters + orders by."
+            "awcms_commerce_categories_tenant_deleted_idx (sql/901) — the (tenant, cursor) composite the generic purge engine filters + orders by."
         }
       ],
       batchLimit: 5000,
@@ -306,7 +306,7 @@ export const commerceModule = defineModule({
         {
           columns: ["tenant_id", "deleted_at"],
           purpose:
-            "awcms_commerce_products_tenant_deleted_idx (sql/153) — the (tenant, cursor) composite the generic purge engine filters + orders by."
+            "awcms_commerce_products_tenant_deleted_idx (sql/901) — the (tenant, cursor) composite the generic purge engine filters + orders by."
         }
       ],
       batchLimit: 5000,
@@ -347,7 +347,7 @@ export const commerceModule = defineModule({
         {
           columns: ["tenant_id", "deleted_at"],
           purpose:
-            "awcms_commerce_product_images_tenant_deleted_idx (sql/157) — the (tenant, cursor) composite the generic purge engine filters + orders by."
+            "awcms_commerce_product_images_tenant_deleted_idx (sql/905) — the (tenant, cursor) composite the generic purge engine filters + orders by."
         }
       ],
       batchLimit: 5000,
@@ -385,7 +385,7 @@ export const commerceModule = defineModule({
         {
           columns: ["tenant_id", "deleted_at"],
           purpose:
-            "awcms_commerce_product_variants_tenant_deleted_idx (sql/157) — the (tenant, cursor) composite the generic purge engine filters + orders by."
+            "awcms_commerce_product_variants_tenant_deleted_idx (sql/905) — the (tenant, cursor) composite the generic purge engine filters + orders by."
         }
       ],
       batchLimit: 5000,
@@ -423,7 +423,7 @@ export const commerceModule = defineModule({
         {
           columns: ["tenant_id", "deleted_at"],
           purpose:
-            "awcms_commerce_flash_sales_tenant_deleted_idx (sql/161) — the (tenant, cursor) composite the generic purge engine filters + orders by."
+            "awcms_commerce_flash_sales_tenant_deleted_idx (sql/909) — the (tenant, cursor) composite the generic purge engine filters + orders by."
         }
       ],
       batchLimit: 5000,
@@ -461,7 +461,7 @@ export const commerceModule = defineModule({
         {
           columns: ["tenant_id", "deleted_at"],
           purpose:
-            "awcms_commerce_flash_sale_products_tenant_deleted_idx (sql/161) — the (tenant, cursor) composite the generic purge engine filters + orders by."
+            "awcms_commerce_flash_sale_products_tenant_deleted_idx (sql/909) — the (tenant, cursor) composite the generic purge engine filters + orders by."
         }
       ],
       batchLimit: 5000,
@@ -499,7 +499,7 @@ export const commerceModule = defineModule({
         {
           columns: ["tenant_id", "deleted_at"],
           purpose:
-            "awcms_commerce_vouchers_tenant_deleted_idx (sql/161) — the (tenant, cursor) composite the generic purge engine filters + orders by."
+            "awcms_commerce_vouchers_tenant_deleted_idx (sql/909) — the (tenant, cursor) composite the generic purge engine filters + orders by."
         }
       ],
       batchLimit: 5000,
@@ -537,7 +537,7 @@ export const commerceModule = defineModule({
         {
           columns: ["tenant_id", "deleted_at"],
           purpose:
-            "awcms_commerce_sliders_tenant_deleted_idx (sql/161) — the (tenant, cursor) composite the generic purge engine filters + orders by."
+            "awcms_commerce_sliders_tenant_deleted_idx (sql/909) — the (tenant, cursor) composite the generic purge engine filters + orders by."
         }
       ],
       batchLimit: 5000,
@@ -575,7 +575,7 @@ export const commerceModule = defineModule({
         {
           columns: ["tenant_id", "deleted_at"],
           purpose:
-            "awcms_commerce_testimonials_tenant_deleted_idx (sql/161) — the (tenant, cursor) composite the generic purge engine filters + orders by."
+            "awcms_commerce_testimonials_tenant_deleted_idx (sql/909) — the (tenant, cursor) composite the generic purge engine filters + orders by."
         }
       ],
       batchLimit: 5000,
@@ -596,7 +596,7 @@ export const commerceModule = defineModule({
       partition: {
         eligible: false,
         rationale:
-          "At most one ACTIVE popup per tenant by construction (sql/161's own partial unique index); even the full history of past popups stays tiny."
+          "At most one ACTIVE popup per tenant by construction (sql/909's own partial unique index); even the full history of past popups stays tiny."
       },
       archive: {
         archivable: false,
@@ -613,7 +613,7 @@ export const commerceModule = defineModule({
         {
           columns: ["tenant_id", "deleted_at"],
           purpose:
-            "awcms_commerce_popups_tenant_deleted_idx (sql/161) — the (tenant, cursor) composite the generic purge engine filters + orders by."
+            "awcms_commerce_popups_tenant_deleted_idx (sql/909) — the (tenant, cursor) composite the generic purge engine filters + orders by."
         }
       ],
       batchLimit: 5000,
@@ -623,7 +623,7 @@ export const commerceModule = defineModule({
     },
     {
       // One row per tenant, and `deleted_at` means "an owner reset the store to
-      // defaults" (sql/162's header) — NOT that the tenant is gone. A live
+      // defaults" (sql/910's header) — NOT that the tenant is gone. A live
       // settings row has no natural age limit (a courier fee set two years ago
       // and still charged is the healthy case), which is exactly why the cursor
       // is `deleted_at` and never `updated_at`: the engine's own `deleted_at <
@@ -660,7 +660,7 @@ export const commerceModule = defineModule({
         {
           columns: ["tenant_id", "deleted_at"],
           purpose:
-            "awcms_commerce_store_settings_tenant_deleted_idx (sql/162) — the (tenant, cursor) composite the generic purge engine filters + orders by."
+            "awcms_commerce_store_settings_tenant_deleted_idx (sql/910) — the (tenant, cursor) composite the generic purge engine filters + orders by."
         }
       ],
       batchLimit: 100,
@@ -671,7 +671,7 @@ export const commerceModule = defineModule({
     /**
      * Issue #29's eight transactional tables. `commerce.orders` is the one
      * genuinely different shape in this array: an order is never
-     * soft-deleted by this module's own code (`sql/165`'s header — the
+     * soft-deleted by this module's own code (`sql/913`'s header — the
      * `deleted_at` column exists only as a uniform cursor, always NULL), so
      * the "purge already-soft-deleted rows" story every OTHER descriptor
      * here tells does not apply to it at all. Its `retentionMaxDays` is
@@ -717,7 +717,7 @@ export const commerceModule = defineModule({
         {
           columns: ["tenant_id", "deleted_at"],
           purpose:
-            "awcms_commerce_customers_tenant_deleted_idx (sql/165) — the (tenant, cursor) composite the generic purge engine filters + orders by."
+            "awcms_commerce_customers_tenant_deleted_idx (sql/913) — the (tenant, cursor) composite the generic purge engine filters + orders by."
         }
       ],
       batchLimit: 5000,
@@ -755,7 +755,7 @@ export const commerceModule = defineModule({
         {
           columns: ["tenant_id", "deleted_at"],
           purpose:
-            "awcms_commerce_customer_addresses_tenant_deleted_idx (sql/165) — the (tenant, cursor) composite the generic purge engine filters + orders by."
+            "awcms_commerce_customer_addresses_tenant_deleted_idx (sql/913) — the (tenant, cursor) composite the generic purge engine filters + orders by."
         }
       ],
       batchLimit: 5000,
@@ -789,14 +789,14 @@ export const commerceModule = defineModule({
       deletion: {
         mode: "hard_delete",
         rationale:
-          "Technically the generic engine's only mode, but practically UNREACHABLE: this module never soft-deletes an order (deleted_at stays NULL forever, sql/165's header) — the fiscal retention this descriptor exists to document is enforced by never matching the purge predicate, not by the predicate itself."
+          "Technically the generic engine's only mode, but practically UNREACHABLE: this module never soft-deletes an order (deleted_at stays NULL forever, sql/913's header) — the fiscal retention this descriptor exists to document is enforced by never matching the purge predicate, not by the predicate itself."
       },
       legalHold: { applicable: false, precedence: "not_applicable" },
       requiredIndexes: [
         {
           columns: ["tenant_id", "deleted_at"],
           purpose:
-            "awcms_commerce_orders_tenant_deleted_idx (sql/165) — the (tenant, cursor) composite the generic purge engine filters + orders by."
+            "awcms_commerce_orders_tenant_deleted_idx (sql/913) — the (tenant, cursor) composite the generic purge engine filters + orders by."
         }
       ],
       batchLimit: 5000,
@@ -833,7 +833,7 @@ export const commerceModule = defineModule({
         {
           columns: ["tenant_id", "deleted_at"],
           purpose:
-            "awcms_commerce_order_items_tenant_deleted_idx (sql/165) — the (tenant, cursor) composite the generic purge engine filters + orders by."
+            "awcms_commerce_order_items_tenant_deleted_idx (sql/913) — the (tenant, cursor) composite the generic purge engine filters + orders by."
         }
       ],
       batchLimit: 5000,
@@ -847,7 +847,7 @@ export const commerceModule = defineModule({
       ownerModuleKey: "commerce",
       scope: "tenant",
       // Append-only audit trail — no `deleted_at` column exists on this
-      // table at all (sql/165's header), so the cursor is `created_at`
+      // table at all (sql/913's header), so the cursor is `created_at`
       // instead, the one exception to this array's usual `deleted_at`
       // convention (see this array's own header comment).
       cursorColumn: "created_at",
@@ -875,12 +875,12 @@ export const commerceModule = defineModule({
         {
           columns: ["tenant_id", "created_at"],
           purpose:
-            "awcms_commerce_order_events_tenant_created_idx (sql/165) — the (tenant, cursor) composite the generic purge engine filters + orders by, keyed on created_at since this append-only table has no deleted_at."
+            "awcms_commerce_order_events_tenant_created_idx (sql/913) — the (tenant, cursor) composite the generic purge engine filters + orders by, keyed on created_at since this append-only table has no deleted_at."
         },
         {
           columns: ["order_id", "created_at"],
           purpose:
-            "awcms_commerce_order_events_order_idx (sql/165) — this table's own timeline read."
+            "awcms_commerce_order_events_order_idx (sql/913) — this table's own timeline read."
         }
       ],
       batchLimit: 5000,
@@ -918,7 +918,7 @@ export const commerceModule = defineModule({
         {
           columns: ["tenant_id", "deleted_at"],
           purpose:
-            "awcms_commerce_payment_confirmations_tenant_deleted_idx (sql/165) — the (tenant, cursor) composite the generic purge engine filters + orders by."
+            "awcms_commerce_payment_confirmations_tenant_deleted_idx (sql/913) — the (tenant, cursor) composite the generic purge engine filters + orders by."
         }
       ],
       batchLimit: 5000,
@@ -955,7 +955,7 @@ export const commerceModule = defineModule({
         {
           columns: ["tenant_id", "deleted_at"],
           purpose:
-            "awcms_commerce_reviews_tenant_deleted_idx (sql/165) — the (tenant, cursor) composite the generic purge engine filters + orders by."
+            "awcms_commerce_reviews_tenant_deleted_idx (sql/913) — the (tenant, cursor) composite the generic purge engine filters + orders by."
         }
       ],
       batchLimit: 5000,
@@ -993,7 +993,7 @@ export const commerceModule = defineModule({
         {
           columns: ["tenant_id", "deleted_at"],
           purpose:
-            "awcms_commerce_wishlists_tenant_deleted_idx (sql/165) — the (tenant, cursor) composite the generic purge engine filters + orders by."
+            "awcms_commerce_wishlists_tenant_deleted_idx (sql/913) — the (tenant, cursor) composite the generic purge engine filters + orders by."
         }
       ],
       batchLimit: 5000,

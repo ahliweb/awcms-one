@@ -831,7 +831,7 @@ async function ensureMarketing(
     console.log(`skip popup "${seed.popup.title}" (already exists)`);
   } else if (popups.data.items.length > 0) {
     console.log(
-      `skip popup "${seed.popup.title}" (another popup exists — one active per tenant, see sql/161)`
+      `skip popup "${seed.popup.title}" (another popup exists — one active per tenant, see sql/909)`
     );
   } else {
     const created = await apiCall("POST", "/api/v1/commerce/popups", {

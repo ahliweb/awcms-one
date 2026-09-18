@@ -18,7 +18,7 @@ const AUDIT_RESOURCE_TYPE = "slider";
 
 export const SLIDER_LIST_LIMIT = 100;
 
-/** `mediaObjectId` does not resolve to a live, verified, same-tenant media object — same reasoning as `product-image-directory.ts`'s `ProductImageMediaReferenceInvalidError`, since a slider's `media_object_id` is `NOT NULL` — the row IS the reference (`sql/161`'s header). */
+/** `mediaObjectId` does not resolve to a live, verified, same-tenant media object — same reasoning as `product-image-directory.ts`'s `ProductImageMediaReferenceInvalidError`, since a slider's `media_object_id` is `NOT NULL` — the row IS the reference (`sql/909`'s header). */
 export class SliderMediaReferenceInvalidError extends Error {
   constructor() {
     super(

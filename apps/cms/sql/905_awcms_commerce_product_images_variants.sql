@@ -1,6 +1,6 @@
 -- Issue #23 (part of #21) — the two related tables the storefront cannot
 -- render a real product without: `product_images` and `product_variants`.
--- Both `sql/153`'s header named as deferred; this is the "additive, not a
+-- Both `sql/901`'s header named as deferred; this is the "additive, not a
 -- rewrite" the header predicted.
 --
 -- ## `media_object_id` references `awcms_news_media_objects`, not a table
@@ -30,7 +30,7 @@
 -- products via a domain check"). This index is the same-table race-safety net
 -- for exactly that check, not a substitute for it.
 --
--- ## RLS, GRANTs, indexes — same conventions as `sql/153`
+-- ## RLS, GRANTs, indexes — same conventions as `sql/901`
 --
 -- `ENABLE` + `FORCE ROW LEVEL SECURITY`, one tenant-isolation `USING` policy,
 -- no per-table GRANT (`awcms_app` already holds table privileges via

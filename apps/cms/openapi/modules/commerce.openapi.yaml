@@ -17,7 +17,7 @@
 # their field lists from `commerce/application/category-directory.ts` /
 # `product-directory.ts`'s `toRecord` functions. `costPrice` AND `downloadLink` are intentionally
 # ABSENT from `CommerceProduct` — neither leaves the admin-only fetch path
-# (`sql/156`'s header; a digital product's download link is what a customer
+# (`sql/904`'s header; a digital product's download link is what a customer
 # pays for, delivered through the order path of Issue 29, never the catalog).
 paths:
   /api/v1/commerce/categories:
@@ -3565,7 +3565,7 @@ components:
               nullable: true
     # NOT built on `CommerceProductParityFields` via `allOf` — that schema's
     # `costPrice` is exactly the field this response must never carry
-    # (`sql/156`'s header, this file's own header), and OpenAPI/JSON Schema
+    # (`sql/904`'s header, this file's own header), and OpenAPI/JSON Schema
     # composition has no "allOf minus one property". So every parity field
     # OTHER than `costPrice` is repeated here by hand; keep the two lists in
     # sync when a parity field is added or renamed.
@@ -3600,7 +3600,7 @@ components:
           nullable: true
         price:
           type: string
-          description: numeric(14,2) as a decimal string — never a JSON number (money is never a float; see sql/153's header).
+          description: numeric(14,2) as a decimal string — never a JSON number (money is never a float; see sql/901's header).
         discountPercent:
           type: integer
         stock:

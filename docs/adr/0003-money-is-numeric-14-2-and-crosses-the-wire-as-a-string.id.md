@@ -1,13 +1,13 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](0003-money-is-numeric-14-2-and-crosses-the-wire-as-a-string.md)
 
-<!-- i18n-source-hash: sha256:e4e657b19837f64ff31a082836e4eff403f4f96f07663692db18ff2c54deb86f -->
+<!-- i18n-source-hash: sha256:d8a94edf61af42dce346d0f655a0fdba7d0f1bb0e3423f5b9d79846139eb90da -->
 
 # ADR-0003 — Uang adalah `numeric(14,2)`, dan melintasi jaringan sebagai string
 
 - **Status:** Diterima
 - **Tanggal:** 15 September 2026
 - **Pengambil keputusan:** ahliweb
-- **Terkait:** [issue #4](https://github.com/ahliweb/awcms-one/issues/4) (modul `commerce`, tempat keputusan ini dibuat); [`apps/cms/sql/153_awcms_commerce_schema.sql`](../../apps/cms/sql/153_awcms_commerce_schema.sql); [`docs/skema-basis-data.md`](../skema-basis-data.md); [`docs/kamus-data.md`](../kamus-data.md)
+- **Terkait:** [issue #4](https://github.com/ahliweb/awcms-one/issues/4) (modul `commerce`, tempat keputusan ini dibuat); [`apps/cms/sql/901_awcms_commerce_schema.sql`](../../apps/cms/sql/901_awcms_commerce_schema.sql); [`docs/skema-basis-data.md`](../skema-basis-data.md); [`docs/kamus-data.md`](../kamus-data.md)
 
 ## Konteks
 
@@ -17,7 +17,7 @@ Kolom `commerce_bj_mart.products.price` legacy datang dari stack MySQL/Laravel d
 
 ## Keputusan
 
-`price` adalah `numeric(14,2)` di PostgreSQL (`sql/153`) — 12 digit bulat dan 2 desimal, fixed-point eksak, nyaman mencakup harga Rupiah hingga ratusan miliar. `Bun.SQL` mengembalikan kolom `numeric` sebagai **string**, tidak pernah `number` JS, dan `toRecord()` milik `commerce/application/product-directory.ts` — satu-satunya tempat bentuk-jaringan dirakit — tidak pernah mem-parse-nya. DTO `CommerceProduct` (`openapi/modules/commerce.openapi.yaml`, disebut juga dalam diskusi cakupan `packages/kontrak` meski DTO itu sendiri hidup di `application/`, bukan `domain/` — lihat [ADR-0004](0004-a-type-only-contract-package-with-an-import-direction-gate.md)) mendeklarasikan `price` sebagai `string`, sampai ke storefront, yang memformatnya untuk tampilan dengan `Intl.NumberFormat` (`formatPrice` milik `apps/storefront/src/lib/catalog.ts`) dan tidak pernah melakukan aritmetika apa pun atasnya — ia menampilkan harga dan **persentase** `discountPercent` yang dikirim `apps/cms`, tidak pernah jumlah diskon yang dihitung, sehingga ia tidak pernah harus menciptakan aturan pembulatan yang mungkin berbeda dari apa pun yang dihitung checkout di masa depan.
+`price` adalah `numeric(14,2)` di PostgreSQL (`sql/901`) — 12 digit bulat dan 2 desimal, fixed-point eksak, nyaman mencakup harga Rupiah hingga ratusan miliar. `Bun.SQL` mengembalikan kolom `numeric` sebagai **string**, tidak pernah `number` JS, dan `toRecord()` milik `commerce/application/product-directory.ts` — satu-satunya tempat bentuk-jaringan dirakit — tidak pernah mem-parse-nya. DTO `CommerceProduct` (`openapi/modules/commerce.openapi.yaml`, disebut juga dalam diskusi cakupan `packages/kontrak` meski DTO itu sendiri hidup di `application/`, bukan `domain/` — lihat [ADR-0004](0004-a-type-only-contract-package-with-an-import-direction-gate.md)) mendeklarasikan `price` sebagai `string`, sampai ke storefront, yang memformatnya untuk tampilan dengan `Intl.NumberFormat` (`formatPrice` milik `apps/storefront/src/lib/catalog.ts`) dan tidak pernah melakukan aritmetika apa pun atasnya — ia menampilkan harga dan **persentase** `discountPercent` yang dikirim `apps/cms`, tidak pernah jumlah diskon yang dihitung, sehingga ia tidak pernah harus menciptakan aturan pembulatan yang mungkin berbeda dari apa pun yang dihitung checkout di masa depan.
 
 `discount_percent` dan `stock` adalah `integer` biasa di PostgreSQL, sengaja bukan `numeric`: keduanya bukan uang, dan keduanya eksak dalam floating point (persentase 0–100 dan hitungan unit), sehingga `numeric` di sana hanya menambah seremoni tanpa menutup celah nyata.
 

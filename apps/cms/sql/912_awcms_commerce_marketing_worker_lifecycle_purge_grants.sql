@@ -1,4 +1,4 @@
--- Same reasoning as `sql/155`'s and `sql/160`'s headers, extended to the six
+-- Same reasoning as `sql/903`'s and `sql/908`'s headers, extended to the six
 -- Issue #26 marketing tables: `commerce/module.ts`'s `dataLifecycle`
 -- descriptors for `commerce.flash_sales`, `commerce.flash_sale_products`,
 -- `commerce.vouchers`, `commerce.sliders`, `commerce.testimonials` and
@@ -11,7 +11,7 @@
 -- retention the worker role cannot enforce.
 --
 -- `awcms_commerce_store_settings` is here too, on the strength of its
--- `deleted_at` ("reset to defaults", `sql/162`'s header): a live settings
+-- `deleted_at` ("reset to defaults", `sql/910`'s header): a live settings
 -- row is `deleted_at IS NULL` and unreachable by the engine's predicate; only
 -- a row an owner reset and then left reset for the retention window is ever
 -- selected.
