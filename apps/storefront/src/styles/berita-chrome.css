@@ -41,6 +41,16 @@
   color: var(--text-muted);
 }
 
+/* `#bilah-tanggal` (`BilahUtilitas.astro`) starts empty and is filled by
+   client script — see that file's own docblock for why. Hides the
+   separator dot for the reader with JavaScript disabled, so "no date yet"
+   never reads as a stray "· " leading the e-mail address. A live pseudo-
+   class: once the script sets `textContent`, `:empty` stops matching and
+   the dot reappears with no script involvement on this side. */
+.bilah-utilitas__tanggal:empty + .bilah-utilitas__pisah {
+  display: none;
+}
+
 .bilah-utilitas__kanan {
   display: flex;
   align-items: center;
@@ -84,6 +94,15 @@
 }
 
 .nav-berita__masthead {
+  /* `global.css`'s `.mobile-nav-toggle nav` is `position: absolute` at
+     <=720px, positioned against the nearest positioned ancestor —
+     `.site-header-inner` supplies that for the store header (see
+     `global.css`'s own `@media (max-width: 720px)` block). This wrapper is
+     `NavBerita.astro`'s equivalent anchor; without this, the dropdown
+     positions against the next ancestor that IS positioned (or the
+     initial containing block), rendering roughly a viewport-height below
+     the masthead instead of directly under it. */
+  position: relative;
   display: flex;
   align-items: center;
   gap: 1rem;

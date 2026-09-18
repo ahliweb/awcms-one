@@ -167,10 +167,26 @@ const DAERAH_URUTAN: readonly string[] = [
   "Murung Raya"
 ];
 
-/** A name's position in `DAERAH_URUTAN` (case-insensitive), or past the end for anything not on that list — never a lookup failure, just "sorts last". */
+/**
+ * Strips a leading administrative term ("Kota "/"Kabupaten ", case-
+ * insensitive) before a `DAERAH_URUTAN` comparison. The live
+ * `idn_admin_regions` dataset's own `name` column embeds this term
+ * ("KOTA PALANGKA RAYA", "KABUPATEN KAPUAS" — verified against a real
+ * export, not assumed), while `DAERAH_URUTAN` above (ported from
+ * `nav_menu.php`) never carries one, the same way seputarborneo's own menu
+ * names a regency by its common name only. Without this, a bare
+ * case-insensitive match never matches "Palangka Raya" against
+ * "KOTA PALANGKA RAYA" — sorting it (and, via `selectMitraOrder`, every
+ * Palangka Raya institution) LAST instead of first.
+ */
+function stripRegionTerm(name: string): string {
+  return name.trim().toLowerCase().replace(/^(kota|kabupaten)\s+/, "");
+}
+
+/** A name's position in `DAERAH_URUTAN` (term-stripped, case-insensitive), or past the end for anything not on that list — never a lookup failure, just "sorts last". */
 function daerahOrderIndex(name: string): number {
-  const normalized = name.trim().toLowerCase();
-  const index = DAERAH_URUTAN.findIndex((d) => d.toLowerCase() === normalized);
+  const normalized = stripRegionTerm(name);
+  const index = DAERAH_URUTAN.findIndex((d) => stripRegionTerm(d) === normalized);
   return index === -1 ? DAERAH_URUTAN.length : index;
 }
 

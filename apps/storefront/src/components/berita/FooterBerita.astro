@@ -29,7 +29,10 @@
  *
  * Always in the DOM as a real `<a href="#atas">` (works with no JS: a
  * reader without JavaScript can still activate it, it just does not fade in
- * on scroll — progressive enhancement, not JS-only content). The `<script>`
+ * on scroll — progressive enhancement, not JS-only content) — the `#atas`
+ * target itself is `BilahUtilitas.astro`'s own outermost element (this
+ * issue's chrome renders above `BaseLayout.astro`'s `<main>`, so the utility
+ * bar is genuinely the top of the page on every news route). The `<script>`
  * below only toggles a CSS class; `berita-chrome.css`'s own
  * `:focus-visible` override keeps it reachable and visible for a
  * keyboard user regardless of scroll position, which `js/main.js`'s own

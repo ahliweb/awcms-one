@@ -86,6 +86,24 @@ describe("navigasi-berita: selectDaerahList", () => {
     // DAERAH_URUTAN in the source file, ported from nav_menu.php.
     expect(result.map((r) => r.name)).toEqual(["Palangka Raya", "Kapuas", "Kotawaringin Barat"]);
   });
+
+  test("sorts correctly against the REAL dataset's own naming — the local term ('KOTA '/'KABUPATEN ') embedded in `name`, upper-case, exactly as idn_admin_regions actually exports it (not the bare display names the other tests above use)", () => {
+    const realNamedRegions: RegionRef[] = [
+      { code: "62.09", slug: "kabupaten-sukamara", name: "KABUPATEN SUKAMARA", level: 2 },
+      { code: "62.03", slug: "kabupaten-kapuas", name: "KABUPATEN KAPUAS", level: 2 },
+      { code: "62.01", slug: "kota-palangka-raya", name: "KOTA PALANGKA RAYA", level: 2 }
+    ];
+    const codes = new Set(["62.09", "62.03", "62.01"]);
+    const result = selectDaerahList(realNamedRegions, codes);
+    // Without stripping "KOTA "/"KABUPATEN ", "KOTA PALANGKA RAYA" cannot
+    // match "Palangka Raya" in DAERAH_URUTAN at all and sorts LAST — this
+    // asserts it sorts FIRST, per seputarborneo's own canonical order.
+    expect(result.map((r) => r.name)).toEqual([
+      "KOTA PALANGKA RAYA",
+      "KABUPATEN KAPUAS",
+      "KABUPATEN SUKAMARA"
+    ]);
+  });
 });
 
 describe("navigasi-berita: selectMitraOrder", () => {
@@ -119,6 +137,24 @@ describe("navigasi-berita: selectMitraOrder", () => {
       "Pemko Palangka Raya",
       "Pemkab Kotawaringin Barat"
     ]);
+  });
+
+  test("sorts Pemko/DPRD Palangka Raya BEFORE every other regency even when `regionByCode` uses the REAL dataset's 'KOTA '/'KABUPATEN '-prefixed names", () => {
+    const regionByCode = new Map([
+      ["62.01", { level: 2, name: "KOTA PALANGKA RAYA" }],
+      ["62.03", { level: 2, name: "KABUPATEN KAPUAS" }],
+      ["62", { level: 1, name: "KALIMANTAN TENGAH" }]
+    ]);
+    const institutions: RawInstitution[] = [
+      institution({ id: "1", slug: "pemkab-kapuas", name: "Pemkab Kapuas", regionCode: "62.03" }),
+      institution({ id: "2", slug: "pemko-palangka-raya", name: "Pemko Palangka Raya", regionCode: "62.01" })
+    ];
+    // Before the fix, "KOTA PALANGKA RAYA" never matches "Palangka Raya" in
+    // DAERAH_URUTAN at all, so `daerahOrderIndex` answers "past the end" for
+    // BOTH regencies and this test would see them in input order (Kapuas
+    // first) rather than seputarborneo's own Palangka-Raya-first order.
+    const result = selectMitraOrder(institutions, regionByCode, "62");
+    expect(result.map((m) => m.name)).toEqual(["Pemko Palangka Raya", "Pemkab Kapuas"]);
   });
 
   test("an institution with no resolvable regionCode is APPENDED, never dropped", () => {

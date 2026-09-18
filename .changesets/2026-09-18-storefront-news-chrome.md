@@ -16,13 +16,13 @@ taxonomy. This closes issue #48 (increment 3, epic #46), porting
 seputarborneo.com v2.4.0's own header/nav/footer patterns — not its PHP —
 onto this app's real, live CMS data.
 
-- `BeritaLayout.astro` now renders its own page shell (`BilahUtilitas` →
-  `NavBerita` + the Daerah panel → `Ticker` → `<main id="konten">` →
-  `FooterBerita`) instead of delegating to `BaseLayout.astro`'s commerce
-  `Header`/`Footer` — a deliberate, documented trade-off (see that file's own
-  docblock): `BaseLayout.astro` has no extension point to swap its chrome,
-  and is outside this issue's file ownership this wave. A follow-up should
-  extract the shared `<head>` assembly both layouts now duplicate.
+- `BaseLayout.astro` gained two named slots (`header`/`footer`, defaulting to
+  the store's `Header`/`Footer` — every non-news page's rendered HTML is
+  unaffected) so `BeritaLayout.astro` can keep wrapping it and fill those
+  slots with the news chrome instead, while `<head>` and `<main id="konten">`
+  stay the ONE shared implementation every page gets — no duplicated
+  `<head>`, so issue #54's OG/Twitter meta and issue #56's analytics beacon
+  (both landing in `BaseLayout.astro`) reach news pages automatically.
 - The utility bar (`BilahUtilitas.astro`): today's WIB date, the editorial
   e-mail, the Redaksi/Pedoman Media Siber/Disclaimer links (rendered only
   when actually published), and official-account social icons — Facebook, X,
@@ -53,7 +53,19 @@ onto this app's real, live CMS data.
   media-object client yet (issue #47 adds one for article images only); a
   `TODO` in `NavBerita.astro` marks where a future issue resolves
   `identity.logoMediaId` to an `<img>`.
+- Today's date in the utility bar is rendered CLIENT-SIDE (a `<script>` fills
+  `#bilah-tanggal` on load), never at build time — `apps/storefront` is a
+  static build, so a value read from `new Date()` in frontmatter would freeze
+  at whatever moment `astro build` ran and mislabel every later day as
+  "today" until the next deploy.
+- `daerahOrderIndex` (`apps/storefront/src/lib/navigasi-berita.ts`) strips a
+  leading "Kota "/"Kabupaten " before comparing a region's name against the
+  canonical order — the live `idn_admin_regions` dataset's own `name` column
+  carries that term ("KOTA PALANGKA RAYA"), which a bare match against
+  `DAERAH_URUTAN`'s un-prefixed names would never match, sorting Palangka
+  Raya (and its institutions) last instead of first.
 
-No page outside `apps/storefront` changed, and no `apps/cms` endpoint shape
-is new — every field this issue reads was already verified against a route
-file by earlier issues (`src/lib/awcms/{blog,wilayah,pages,profil}.ts`).
+No page outside `apps/storefront` changed except `BaseLayout.astro`'s
+two-line slot addition above, and no `apps/cms` endpoint shape is new —
+every field this issue reads was already verified against a route file by
+earlier issues (`src/lib/awcms/{blog,wilayah,pages,profil}.ts`).

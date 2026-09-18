@@ -68,6 +68,149 @@
       "name": "MARTAPURA",
       "shortName": null,
       "fullPathName": "MARTAPURA, BANJAR, KALIMANTAN SELATAN"
+    },
+    {
+      "code": "62.01",
+      "codeCompact": "6201",
+      "parentCode": "62",
+      "level": 2,
+      "regionType": "city",
+      "localTerm": "Kota",
+      "name": "KOTA PALANGKA RAYA",
+      "shortName": null,
+      "fullPathName": "KOTA PALANGKA RAYA, KALIMANTAN TENGAH"
+    },
+    {
+      "code": "62.03",
+      "codeCompact": "6203",
+      "parentCode": "62",
+      "level": 2,
+      "regionType": "regency",
+      "localTerm": "Kabupaten",
+      "name": "KABUPATEN KAPUAS",
+      "shortName": null,
+      "fullPathName": "KABUPATEN KAPUAS, KALIMANTAN TENGAH"
+    },
+    {
+      "code": "62.04",
+      "codeCompact": "6204",
+      "parentCode": "62",
+      "level": 2,
+      "regionType": "regency",
+      "localTerm": "Kabupaten",
+      "name": "KABUPATEN PULANG PISAU",
+      "shortName": null,
+      "fullPathName": "KABUPATEN PULANG PISAU, KALIMANTAN TENGAH"
+    },
+    {
+      "code": "62.05",
+      "codeCompact": "6205",
+      "parentCode": "62",
+      "level": 2,
+      "regionType": "regency",
+      "localTerm": "Kabupaten",
+      "name": "KABUPATEN KATINGAN",
+      "shortName": null,
+      "fullPathName": "KABUPATEN KATINGAN, KALIMANTAN TENGAH"
+    },
+    {
+      "code": "62.06",
+      "codeCompact": "6206",
+      "parentCode": "62",
+      "level": 2,
+      "regionType": "regency",
+      "localTerm": "Kabupaten",
+      "name": "KABUPATEN KOTAWARINGIN TIMUR",
+      "shortName": null,
+      "fullPathName": "KABUPATEN KOTAWARINGIN TIMUR, KALIMANTAN TENGAH"
+    },
+    {
+      "code": "62.07",
+      "codeCompact": "6207",
+      "parentCode": "62",
+      "level": 2,
+      "regionType": "regency",
+      "localTerm": "Kabupaten",
+      "name": "KABUPATEN SERUYAN",
+      "shortName": null,
+      "fullPathName": "KABUPATEN SERUYAN, KALIMANTAN TENGAH"
+    },
+    {
+      "code": "62.08",
+      "codeCompact": "6208",
+      "parentCode": "62",
+      "level": 2,
+      "regionType": "regency",
+      "localTerm": "Kabupaten",
+      "name": "KABUPATEN LAMANDAU",
+      "shortName": null,
+      "fullPathName": "KABUPATEN LAMANDAU, KALIMANTAN TENGAH"
+    },
+    {
+      "code": "62.09",
+      "codeCompact": "6209",
+      "parentCode": "62",
+      "level": 2,
+      "regionType": "regency",
+      "localTerm": "Kabupaten",
+      "name": "KABUPATEN SUKAMARA",
+      "shortName": null,
+      "fullPathName": "KABUPATEN SUKAMARA, KALIMANTAN TENGAH"
+    },
+    {
+      "code": "62.10",
+      "codeCompact": "6210",
+      "parentCode": "62",
+      "level": 2,
+      "regionType": "regency",
+      "localTerm": "Kabupaten",
+      "name": "KABUPATEN GUNUNG MAS",
+      "shortName": null,
+      "fullPathName": "KABUPATEN GUNUNG MAS, KALIMANTAN TENGAH"
+    },
+    {
+      "code": "62.11",
+      "codeCompact": "6211",
+      "parentCode": "62",
+      "level": 2,
+      "regionType": "regency",
+      "localTerm": "Kabupaten",
+      "name": "KABUPATEN BARITO SELATAN",
+      "shortName": null,
+      "fullPathName": "KABUPATEN BARITO SELATAN, KALIMANTAN TENGAH"
+    },
+    {
+      "code": "62.12",
+      "codeCompact": "6212",
+      "parentCode": "62",
+      "level": 2,
+      "regionType": "regency",
+      "localTerm": "Kabupaten",
+      "name": "KABUPATEN BARITO TIMUR",
+      "shortName": null,
+      "fullPathName": "KABUPATEN BARITO TIMUR, KALIMANTAN TENGAH"
+    },
+    {
+      "code": "62.13",
+      "codeCompact": "6213",
+      "parentCode": "62",
+      "level": 2,
+      "regionType": "regency",
+      "localTerm": "Kabupaten",
+      "name": "KABUPATEN BARITO UTARA",
+      "shortName": null,
+      "fullPathName": "KABUPATEN BARITO UTARA, KALIMANTAN TENGAH"
+    },
+    {
+      "code": "62.14",
+      "codeCompact": "6214",
+      "parentCode": "62",
+      "level": 2,
+      "regionType": "regency",
+      "localTerm": "Kabupaten",
+      "name": "KABUPATEN MURUNG RAYA",
+      "shortName": null,
+      "fullPathName": "KABUPATEN MURUNG RAYA, KALIMANTAN TENGAH"
     }
   ]
 }

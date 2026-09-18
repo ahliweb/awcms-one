@@ -1,55 +1,41 @@
 ---
 /**
  * The page shell for every news-surface page (issue #28's page family;
- * issue #48 gives it real news chrome). Until this issue, this file was a
- * thin wrapper around `BaseLayout.astro` that only added
- * `src/styles/berita.css` — see git history for that version — which meant
- * every `/berita`/`/rubrik`/`/daerah`/`/mitra`/`/video`/`/tag`/`/penulis`/
- * `/arsip`/`/cari-berita` page rendered the STORE's `Header.astro`/
- * `Footer.astro` (product nav, cart, wishlist) instead of a news nav. This
- * issue replaces that chrome with `BilahUtilitas`/`NavBerita`/`Ticker`/
- * `FooterBerita`.
+ * issue #48 gives it real news chrome). Wraps `BaseLayout.astro` — which
+ * owns `<head>`, `<main id="konten">`, and every other page's SEO/
+ * accessibility surface — and fills its `header`/`footer` named slots with
+ * the news chrome instead of the store's `Header`/`Footer`.
  *
- * ## Why this no longer wraps `BaseLayout.astro` — a decision, not an oversight
+ * ## Why named slots, not a duplicated `<head>`
  *
- * `BaseLayout.astro` hard-codes `<Header identity={identity} />` and
- * `<Footer identity={identity} staticPages={staticPages} />` with no slot or
- * prop to swap either for a different chrome — nesting this layout's own
- * chrome inside `BaseLayout`'s `<main id="konten"><slot /></main>` would
- * render BOTH the store header/footer AND the news chrome on every news
- * page, and produce two `#konten` landmarks on one document. Fixing that
- * from `BaseLayout.astro`'s side (e.g. a `header`/`footer` named slot) is a
- * real, better long-term answer, but `BaseLayout.astro` is not in this
- * issue's file ownership — increment 3 epic #46's wave-1 partition (this
- * issue's own brief) grants exactly `BeritaLayout.astro`,
- * `src/components/berita/{BilahUtilitas,NavBerita,Ticker,FooterBerita}
- * .astro`, `src/lib/{navigasi-berita,ikon-sosial}.ts`, and
- * `src/styles/berita-chrome.css` — and every sibling wave-1 issue (#47/#50/
- * #55/#56/#57/#58) is editing OTHER files in this same tree at the same
- * time, so touching a file nobody's issue names is exactly the risk this
- * epic's wave ordering exists to avoid (`AGENTS.md`'s "Files owned" rule).
+ * An earlier version of this file stopped wrapping `BaseLayout.astro`
+ * entirely and re-implemented `<html>/<head>/<body>` itself, because
+ * `BaseLayout.astro` hard-coded `<Header>`/`<Footer>` with nothing to swap
+ * either. That traded one real problem for a worse one: issue #54 (A8) adds
+ * OG/Twitter meta to `BaseLayout.astro`'s `<head>` and issue #56 (A10) mounts
+ * the visitor-analytics beacon there, and a second, hand-duplicated `<head>`
+ * in this file would silently never receive either — exactly the
+ * "two copies to keep in sync by hand" trap this repo's docblock culture
+ * warns about. `BaseLayout.astro`'s `header`/`footer` named slots (added by
+ * this issue, see that file's own two-line change) default to the store
+ * `Header`/`Footer` when a caller fills nothing — every non-news page's
+ * rendered HTML is unaffected — and this file fills them with the news
+ * chrome instead, while `<head>`/`<main id="konten">` stay the single,
+ * shared implementation every page gets.
  *
- * The chosen fix instead: this layout renders its OWN `<html>`/`<head>`/
- * `<body>`, duplicating `BaseLayout.astro`'s `<head>` assembly (site
- * identity, canonical/OG/JSON-LD, the same stylesheets/favicon/manifest/feed
- * link) rather than delegating to it. That duplication is real and is
- * flagged here on purpose: a future issue with `BaseLayout.astro` in its own
- * file ownership (recorded for the epic's D1/#60 documentation pass, or a
- * fast-follow) should extract the shared `<head>` block — e.g. a
- * `<PageHead>` component both layouts import — so this file and
- * `BaseLayout.astro` stop needing to be kept in step by hand. Until then, a
- * change to `BaseLayout.astro`'s `<head>` (a new meta tag, a changed
- * stylesheet) must be mirrored here manually; `tests/berita-build-smoke
- * .test.ts` (issue #28) and this issue's own build-smoke coverage are what
- * would catch a real drift, not a compiler.
+ * `identity` is fetched here independently of `BaseLayout.astro`'s own copy
+ * (`getSiteIdentity()`, `src/lib/awcms/profil.ts`) rather than threaded
+ * through as a prop — that function is memoized per build
+ * (`identityCache`), so this costs no second network request, the same way
+ * `Ticker.astro`/`BilahUtilitas.astro`/`FooterBerita.astro` already fetch
+ * their own data independently rather than receiving it from a parent.
  */
-import { absoluteUrl } from "../config/site";
-import { getSiteIdentity } from "../lib/awcms/profil";
+import BaseLayout from "./BaseLayout.astro";
 import BilahUtilitas from "../components/berita/BilahUtilitas.astro";
 import NavBerita from "../components/berita/NavBerita.astro";
 import Ticker from "../components/berita/Ticker.astro";
 import FooterBerita from "../components/berita/FooterBerita.astro";
-import "../styles/global.css";
+import { getSiteIdentity } from "../lib/awcms/profil";
 import "../styles/berita.css";
 import "../styles/berita-chrome.css";
 
@@ -63,62 +49,23 @@ interface Props {
 const { title, description, canonicalPath, schema } = Astro.props;
 
 const identity = await getSiteIdentity();
-
-const canonicalUrl = absoluteUrl(canonicalPath);
-const fullTitle = title === identity.name ? title : `${title} — ${identity.name}`;
-const metaDescription = (description ?? identity.description).slice(0, 160);
-
-/** Identical to `BaseLayout.astro`'s own helper of the same name — see that file's docblock for why `<`/`>`/`&` are escaped rather than trusting the CSP alone. Duplicated, not imported, for the same reason this whole file duplicates `BaseLayout.astro`'s `<head>` — see the file header above. */
-function jsonForScript(value: unknown): string {
-  return JSON.stringify(value)
-    .replace(/</g, "\\u003c")
-    .replace(/>/g, "\\u003e")
-    .replace(/&/g, "\\u0026");
-}
 ---
 
-<!doctype html>
-<html lang="id">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{fullTitle}</title>
-    <meta name="description" content={metaDescription} />
-    <link rel="canonical" href={canonicalUrl} />
-    <link rel="stylesheet" href="/theme-tokens.css" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="manifest" href="/manifest.webmanifest" />
-    <link rel="alternate" type="application/rss+xml" title={identity.name} href="/feed.xml" />
+<BaseLayout title={title} description={description} canonicalPath={canonicalPath} schema={schema}>
+  <BilahUtilitas identity={identity} slot="header" />
+  <NavBerita identity={identity} currentPath={canonicalPath} slot="header" />
+  <Ticker slot="header" />
 
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={canonicalUrl} />
-    <meta property="og:title" content={fullTitle} />
-    <meta property="og:description" content={metaDescription} />
-    <meta property="og:site_name" content={identity.name} />
-    <meta property="og:locale" content="id_ID" />
+  <slot />
 
-    {schema && (
-      <script is:inline type="application/ld+json" set:html={jsonForScript({
-        "@context": "https://schema.org",
-        ...schema
-      })} />
-    )}
-
-    <slot name="head" />
-  </head>
-  <body id="atas">
-    <a class="skip-link" href="#konten">Lewati ke konten utama</a>
-
-    <BilahUtilitas identity={identity} />
-    <NavBerita identity={identity} currentPath={canonicalPath} />
-    <Ticker />
-
-    <main id="konten">
-      <slot />
-    </main>
-
-    <FooterBerita identity={identity}>
-      <slot name="buletin" slot="buletin" />
-    </FooterBerita>
-  </body>
-</html>
+  {/*
+    Transferring a slot: `<slot name="buletin" />` receives whatever this
+    layout's OWN caller passed as `<Fragment slot="buletin">` (issue #50's
+    form), and `slot="buletin"` on that same element re-targets it into
+    `FooterBerita.astro`'s own `<slot name="buletin" />` — Astro's documented
+    "transferring slots" pattern, one line, no extra prop needed.
+  */}
+  <FooterBerita identity={identity} slot="footer">
+    <slot name="buletin" slot="buletin" />
+  </FooterBerita>
+</BaseLayout>
