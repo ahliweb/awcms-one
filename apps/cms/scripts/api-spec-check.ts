@@ -169,15 +169,56 @@ const ALLOWED_PUBLIC_OPERATIONS = new Set([
   // policy, its SSO-only policy and the login rate limit all still stand
   // between the new account and a signed-in browser.
   "getAuthInvitationPreview",
-  "postAuthInvitationAccept"
+  "postAuthInvitationAccept",
+  // commerce accounts (Issue #86, ADR-0016, awcms-one epic #32 wave 0) —
+  // CONTRACT ONLY today (see ROUTE_PARITY_EXEMPTIONS below); these two are
+  // the OTP request/verify pair and are anonymous for the same structural
+  // reason `postAuthPasswordForgot`/self-registration above are: the caller
+  // has no account or no session yet, which is the entire premise of the
+  // flow. `requestCommerceStorefrontAccountOtp` answers the SAME 202 for
+  // every outcome (D2's anti-enumeration rule), and
+  // `verifyCommerceStorefrontAccountOtp` answers the SAME 401 OTP_INVALID
+  // for wrong/expired/consumed/attempts-exhausted. Both are tenant-resolved
+  // from the request Origin/Host and per-IP/per-e-mail rate limited, matching
+  // the rest of the anonymous commerce storefront surface just above.
+  "requestCommerceStorefrontAccountOtp",
+  "verifyCommerceStorefrontAccountOtp"
 ]);
 
 /**
  * Bundle paths deliberately NOT backed by a route file under
- * `src/pages/api/v1` (internal/feature-flag-gated, reviewed) — empty today.
+ * `src/pages/api/v1` (internal/feature-flag-gated, reviewed).
  * Every entry is an explicit, reviewed exception to route↔contract parity.
+ *
+ * Issue #86 (ADR-0016, awcms-one epic #32 wave 0) — the customer-accounts
+ * contract is deliberately documented AHEAD of its handlers, so every later
+ * wave (C2 accounts/OTP/sessions, C3 addresses/wishlist/orders/reviews, C4
+ * affiliates — issues #87–#93) codes against a contract already reviewed and
+ * settled instead of re-deciding it. Each path here is removed the moment
+ * its own route file lands; none is a permanent exemption.
  */
-const ROUTE_PARITY_EXEMPTIONS = new Set<string>([]);
+const ROUTE_PARITY_EXEMPTIONS = new Set<string>([
+  "/api/v1/commerce/storefront/account/otp/request",
+  "/api/v1/commerce/storefront/account/otp/verify",
+  "/api/v1/commerce/storefront/account/me",
+  "/api/v1/commerce/storefront/account/logout",
+  "/api/v1/commerce/storefront/account/addresses",
+  "/api/v1/commerce/storefront/account/addresses/{id}",
+  "/api/v1/commerce/storefront/account/addresses/{id}/default",
+  "/api/v1/commerce/storefront/account/wishlist",
+  "/api/v1/commerce/storefront/account/wishlist/{productId}",
+  "/api/v1/commerce/storefront/account/orders",
+  "/api/v1/commerce/storefront/account/orders/{orderCode}",
+  "/api/v1/commerce/storefront/account/reviews",
+  "/api/v1/commerce/storefront/account/affiliate",
+  "/api/v1/commerce/storefront/account/affiliate/commissions",
+  "/api/v1/commerce/affiliates",
+  "/api/v1/commerce/affiliates/{id}",
+  "/api/v1/commerce/affiliate-commissions",
+  "/api/v1/commerce/affiliate-commissions/{id}/approve",
+  "/api/v1/commerce/affiliate-commissions/{id}/pay",
+  "/api/v1/commerce/affiliate-commissions/{id}/void"
+]);
 
 type OpenApiDocument = {
   security?: unknown[];
