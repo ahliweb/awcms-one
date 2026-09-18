@@ -58,7 +58,7 @@ export const PESAN_GAGAL_SALIN =
   "Tautan tidak dapat disalin otomatis — salin alamat halaman ini dari bilah alamat peramban Anda.";
 
 /** How long the status stays before it is cleared (see file docblock for why it is cleared at all). */
-const STATUS_TAMPIL_MS = 5000;
+export const STATUS_TAMPIL_MS = 5000;
 
 /**
  * The two browser capabilities this flow depends on, as an injectable
@@ -127,29 +127,60 @@ export async function bagikanKeInstagram(
   return salinTautan(data.url, kemampuan, tampilkanStatus);
 }
 
+/** The one thing a status region needs to be: `textContent` writable — a real element in the browser, a plain object under `bun test`. */
+export type ElemenStatus = { textContent: string | null };
+
+/** Injectable timer pair so the clear-after-delay behaviour is testable without real time passing. */
+export type PenjadwalStatus = {
+  setTimeout: (fn: () => void, ms: number) => unknown;
+  clearTimeout: (handle: unknown) => void;
+};
+
+/**
+ * Builds the `tampilkanStatus` callback for ONE status region, owning ONE
+ * clear-timer. The timer lives inside this closure — per region, never
+ * shared across regions (PR #69 review): with a single page-wide timer,
+ * two rows on one page (should a future template ever render the row
+ * above AND below an article) would cancel each other's clear when
+ * clicked within `STATUS_TAMPIL_MS` of each other — row A's "Tautan
+ * disalin…" would stick, and an identical string set later would not be
+ * re-announced by `aria-live`. Each region clearing itself is also what
+ * makes a repeat click on the SAME row re-announce (see file docblock).
+ */
+export function buatPenampilStatus(
+  status: ElemenStatus | null,
+  penjadwal: PenjadwalStatus = {
+    setTimeout: (fn, ms) => setTimeout(fn, ms),
+    clearTimeout: (handle) => clearTimeout(handle as ReturnType<typeof setTimeout>)
+  }
+): (teks: string) => void {
+  let timer: unknown = null;
+
+  return (teks: string): void => {
+    if (!status) return;
+    status.textContent = teks;
+    if (timer !== null) penjadwal.clearTimeout(timer);
+    timer = penjadwal.setTimeout(() => {
+      status.textContent = "";
+      timer = null;
+    }, STATUS_TAMPIL_MS);
+  };
+}
+
 function initBagikan(): void {
   const tombolSemua = document.querySelectorAll<HTMLButtonElement>("[data-bagikan-instagram]");
   if (tombolSemua.length === 0) return;
 
   const kemampuan = kemampuanDariNavigator(navigator);
-  let statusTimer: ReturnType<typeof setTimeout> | null = null;
 
   for (const tombol of tombolSemua) {
     // The status element is the button's OWN row's — `closest()` rather
-    // than a page-wide `querySelector`, so two rows on one page (should a
-    // future template ever render the row above AND below an article)
-    // each announce into their own region.
+    // than a page-wide `querySelector`, so two rows on one page each
+    // announce into their own region, each with its own clear-timer
+    // (`buatPenampilStatus`).
     const baris = tombol.closest<HTMLElement>("[data-bagikan]");
     const status = baris?.querySelector<HTMLElement>("[data-bagikan-status]") ?? null;
-
-    const tampilkanStatus = (teks: string): void => {
-      if (!status) return;
-      status.textContent = teks;
-      if (statusTimer) clearTimeout(statusTimer);
-      statusTimer = setTimeout(() => {
-        status.textContent = "";
-      }, STATUS_TAMPIL_MS);
-    };
+    const tampilkanStatus = buatPenampilStatus(status);
 
     // Shipped `hidden` in the static HTML (see `BarisBagikan.astro`): a
     // button whose only behaviour is JavaScript must not be shown to a

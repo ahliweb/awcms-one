@@ -5,9 +5,13 @@ import { buildShareLinks, resolveFollowLinks, WHATSAPP_ICON_PATH } from "../src/
 import { SOCIAL_ICON_PATHS } from "../src/lib/ikon-sosial";
 import {
   bagikanKeInstagram,
+  buatPenampilStatus,
   PESAN_GAGAL_SALIN,
   PESAN_TERSALIN,
-  type KemampuanBagikan
+  STATUS_TAMPIL_MS,
+  type ElemenStatus,
+  type KemampuanBagikan,
+  type PenjadwalStatus
 } from "../src/scripts/bagikan";
 
 /**
@@ -227,6 +231,87 @@ describe("bagikan: bagikanKeInstagram (Web Share → clipboard → visible failu
     const missing = statusRecorder();
     expect(await bagikanKeInstagram(data, {}, missing.tampilkan)).toBe("gagal");
     expect(missing.pesan).toEqual([PESAN_GAGAL_SALIN]);
+  });
+});
+
+describe("bagikan: buatPenampilStatus (one clear-timer PER status region — PR #69 review)", () => {
+  /** A manual scheduler: timers fire only when the test advances the clock. */
+  function penjadwalManual(): PenjadwalStatus & { maju: (ms: number) => void } {
+    let now = 0;
+    let nextId = 1;
+    const pending = new Map<number, { at: number; fn: () => void }>();
+    return {
+      setTimeout: (fn, ms) => {
+        const id = nextId++;
+        pending.set(id, { at: now + ms, fn });
+        return id;
+      },
+      clearTimeout: (handle) => {
+        pending.delete(handle as number);
+      },
+      maju: (ms) => {
+        now += ms;
+        for (const [id, entry] of [...pending.entries()].sort((a, b) => a[1].at - b[1].at)) {
+          if (entry.at > now) break;
+          pending.delete(id);
+          entry.fn();
+        }
+      }
+    };
+  }
+
+  test("shows the text, then clears it after STATUS_TAMPIL_MS", () => {
+    const jadwal = penjadwalManual();
+    const status: ElemenStatus = { textContent: "" };
+    const tampilkan = buatPenampilStatus(status, jadwal);
+
+    tampilkan(PESAN_TERSALIN);
+    expect(status.textContent).toBe(PESAN_TERSALIN);
+    jadwal.maju(STATUS_TAMPIL_MS - 1);
+    expect(status.textContent).toBe(PESAN_TERSALIN);
+    jadwal.maju(1);
+    expect(status.textContent).toBe("");
+  });
+
+  test("a repeat click on the SAME row restarts its timer rather than clearing early", () => {
+    const jadwal = penjadwalManual();
+    const status: ElemenStatus = { textContent: "" };
+    const tampilkan = buatPenampilStatus(status, jadwal);
+
+    tampilkan(PESAN_TERSALIN);
+    jadwal.maju(STATUS_TAMPIL_MS - 1000);
+    tampilkan(PESAN_TERSALIN);
+    jadwal.maju(1000); // the FIRST timer would have fired here — it was cancelled
+    expect(status.textContent).toBe(PESAN_TERSALIN);
+    jadwal.maju(STATUS_TAMPIL_MS - 1000);
+    expect(status.textContent).toBe("");
+  });
+
+  test("two rows on one page: clicking A then B within the window still clears A on time (the review's bug)", () => {
+    const jadwal = penjadwalManual();
+    const statusA: ElemenStatus = { textContent: "" };
+    const statusB: ElemenStatus = { textContent: "" };
+    // Exactly what initBagikan() does per row: one penampil per status element.
+    const tampilkanA = buatPenampilStatus(statusA, jadwal);
+    const tampilkanB = buatPenampilStatus(statusB, jadwal);
+
+    tampilkanA(PESAN_TERSALIN);
+    jadwal.maju(1000);
+    tampilkanB(PESAN_TERSALIN);
+
+    // A's own timer must fire at A's own deadline — B's click must not have cancelled it.
+    jadwal.maju(STATUS_TAMPIL_MS - 1000);
+    expect(statusA.textContent).toBe("");
+    expect(statusB.textContent).toBe(PESAN_TERSALIN);
+
+    // And B clears at B's own deadline, 1 s later.
+    jadwal.maju(1000);
+    expect(statusB.textContent).toBe("");
+  });
+
+  test("a row with no status element is a no-op, never a throw", () => {
+    const jadwal = penjadwalManual();
+    expect(() => buatPenampilStatus(null, jadwal)(PESAN_TERSALIN)).not.toThrow();
   });
 });
 
