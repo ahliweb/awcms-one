@@ -201,13 +201,23 @@ bun run blog:legacy:import --file=../tools/out/seputarborneo/posts.ndjson \
 
 # 6. Redirects — this exporter's OWN tools/out/seputarborneo/redirects.json,
 #    NOT blog:legacy:redirects:import (see "Why this exporter builds its own
-#    redirects" below), posted directly:
+#    redirects" below). ~51,000 entries against a route that takes 200 per
+#    all-or-nothing call is a ~256-call loop, so the exporter runs it
+#    (`tools/lib/redirect-push.ts`); it reuses AWCMS_BASE_URL/SEED_OWNER_*:
 cd ..   # back to the repo root
-curl -X POST "$AWCMS_BASE_URL/api/v1/seo/redirects/import" \
-  -H "authorization: Bearer <token>" -H "x-awcms-tenant-id: <uuid>" \
-  -H "idempotency-key: seputarborneo-redirects-0" -H "content-type: application/json" \
-  -d '{"redirects": <first 200 entries of redirects.json>}'
-# repeat in batches of 200 (MAX_REDIRECT_IMPORT_ITEMS) until the array is exhausted.
+bun run import:seputarborneo -- --push-redirects            # DRY RUN of the whole file: every chunk
+                                                            # is posted with dryRun: true, nothing written;
+                                                            # per-entry refusals are printed, exit 1 on any
+bun run import:seputarborneo -- --push-redirects --commit   # the real import, chunk by chunk, each under an
+                                                            # Idempotency-Key derived from the chunk's content
+#    A crash or a failed chunk mid-run is safe to rerun with the same command:
+#    the CMS replays every already-committed chunk from its idempotency record
+#    (same key + same body -> the stored 200) and imports only the rest. The
+#    commit run does NOT dry-run first for exactly that reason — a fresh dry run
+#    of a committed chunk would report every row as a CONFLICT with itself.
+#    Do NOT re-export between the dry run and the commit: a changed file means
+#    changed chunk keys, and the first chunk that overlaps an earlier import
+#    fails loudly on CONFLICT instead of replaying.
 
 # 7. Institutions — blog:legacy:import has no mechanism to set institutionIds
 #    (see below). This exporter's OWN follow-up pass closes that gap, over
@@ -218,14 +228,20 @@ bun run import:seputarborneo -- --assign-institutions
 cd apps/cms && bun run blog:legacy:cutover:verify --tenant=<uuid> --urls=<path>
 ```
 
-### What `blog:legacy:import` still cannot do — and the two follow-ups this repo keeps
+### What `blog:legacy:import` still cannot do — and the follow-ups this repo keeps
 
+0. **The redirect rows themselves.** No upstream script writes `awcms_seo_redirects`; the only way in is `POST /api/v1/seo/redirects/import`, capped at `MAX_REDIRECT_IMPORT_ITEMS` (200) per all-or-nothing call and requiring an `Idempotency-Key` on every call. `--push-redirects` (step 6) is that loop — verified against the route's own file (`apps/cms/src/pages/api/v1/seo/redirects/import.ts`): body `{ redirects, dryRun }`, header `idempotency-key`, per-item `results[].{index, ok, code, normalizedSourcePath, errors}` on both the 200 and the 400 `IMPORT_VALIDATION_FAILED` envelope. Before any call it also runs the route's own query-stripping source normalization over the WHOLE file and refuses on the first duplicate, because the route detects duplicates only within one chunk — a file-wide duplicate would otherwise surface as a `CONFLICT` on a later chunk, after an earlier one had already been written.
 1. **`institutionIds`.** `blog:legacy:import`'s own `main()` calls `syncPostTermAssignments` after each insert — never `syncPostInstitutionAssignments`, checked directly against `apps/cms/scripts/blog-legacy-import.ts` and `legacy-import-directory.ts`. A `DAERAH`/`MITRA BORNEO` article therefore imports with NO institution, and a post only reaches `/daerah/{slug}`/`/mitra/{slug}` through one (`apps/storefront/src/pages/daerah/[slug].astro`'s own header) — both are issue #58's own acceptance criterion. `bun run import:seputarborneo -- --assign-institutions` (step 7 above) closes this: it re-reads the dump, resolves each `DAERAH`/`MITRA BORNEO` article's institution by name, and `PATCH`es `institutionIds` on the already-imported post (found by its own exported `slug` — there is no slug-lookup route on the public API, so it pages the full post list once).
 2. **A legacy byline.** `--author=<uuid>` is ONE value for the whole run; `legacy-import-record.ts` has no per-row author/sidecar field at all. The legacy `user`/`admin` column is dropped entirely by this pipeline — a real, unavoidable gap of using the operator tool as intended, not something this exporter can invent a field for.
 
 ### Why this exporter builds its own `redirects.json`, not `blog:legacy:redirects:import`
 
-That sibling script derives its source path by templating `{legacyId}`/`{slug}` — where `{slug}` is the STORED post slug (`listLegacyRedirectMappings`, checked directly). For the ~84 collision groups / ~171 rows `blog-legacy-import.ts`'s own comment names (two legacy articles sharing a title), the stored slug carries a `-{legacyId}` suffix this exporter's own `newPostSlug` adds — but the REAL legacy current-style URL was built from the plain, un-suffixed title, so the sibling script's templated redirect would be wrong for exactly those rows. `redirects.json` here is built straight from the raw `title` for both legacy URL forms (today's `/news/{id}-{slug}.html` and the pre-2.0 `/news/{id}_{title_with_underscores}.html`, the latter of which `blog:legacy:redirects:import` cannot produce AT ALL — its template has no `{title}` placeholder), targeting `/blog/{tenantCode}/{slug}` with the SAME final stored slug `blog:legacy:import` writes. `blog:legacy:redirects:import`, `blog:legacy:rubrik-redirects` (which replays the ALREADY-COMMITTED `apps/cms/data/seputarborneo-legacy/rubrik-redirects.json` category-level map — a separate, pre-existing asset this exporter does not touch), and `blog:legacy:article-paths` (built for `ahliweb/awcms-astro`'s edge-served cutover, and explicitly inert for `awcms_seo_redirects` — this repo's own mechanism, per `docs/routing.md`) remain available upstream tools; this exporter simply does not need them.
+That sibling script derives its source path by templating `{legacyId}`/`{slug}` — where `{slug}` is the STORED post slug (`listLegacyRedirectMappings`, checked directly). For the ~84 collision groups / ~171 rows `blog-legacy-import.ts`'s own comment names (two legacy articles sharing a title), the stored slug carries a `-{legacyId}` suffix this exporter's own `newPostSlug` adds — but the REAL legacy current-style URL was built from the plain, un-suffixed title, so the sibling script's templated redirect would be wrong for exactly those rows. `redirects.json` here is built straight from the raw `title` for both legacy URL forms (today's `/news/{id}-{slug}.html` and the pre-2.0 `/news/{id}_{title_with_underscores}.html`, the latter of which `blog:legacy:redirects:import` cannot produce AT ALL — its template has no `{title}` placeholder), targeting `/blog/{tenantCode}/{slug}` with the SAME final stored slug `blog:legacy:import` writes. `blog:legacy:redirects:import`, `blog:legacy:rubrik-redirects` (which replays the ALREADY-COMMITTED `apps/cms/data/seputarborneo-legacy/rubrik-redirects.json` category-level map — a separate, pre-existing upstream asset this exporter does not touch, and NOT a step of this runbook: `docs/routing.md`'s "Which mechanism is authoritative for category-level legacy URLs" explains why the storefront's rule-based module covers those URLs with no rows at all), and `blog:legacy:article-paths` (built for `ahliweb/awcms-astro`'s edge-served cutover, and explicitly inert for `awcms_seo_redirects` — this repo's own mechanism, per `docs/routing.md`) remain available upstream tools; this exporter simply does not need them.
+
+Two shape decisions in `redirects.json` exist only because of how the CMS and the storefront consume the rows (found in review of PR #67):
+
+- **`origin` is `legacy_blog`, not `import`.** `apps/storefront/src/lib/awcms/blog.ts`'s `getLegacyRedirectRows()` keeps ONLY `origin === "legacy_blog"` rows when it builds `/index/pengalihan-legacy.json` (`docs/routing.md`, "Legacy redirects"); an `import`-origin row is a valid CMS rule this storefront would silently never serve. The import route's `defaultOrigin: "import"` only applies to a body that omits `origin`.
+- **A video row's source is the synthetic, query-free `/video/{id}-{slug}.html`, not the real `/video/?video={id}-{slug}.html`.** The CMS strips the query string from every redirect source at write time (`validateRedirectInput` → `normalizeRedirectPath` without `keepQuery`), so the real URL of all 35 video rows would be stored as one bare `/video` — the chunk fails on `DUPLICATE_IN_BATCH`, or one surviving row redirects the storefront's `/video` list page to a single post. The storefront answers the real inbound `?video={id}` URL by id from that synthetic key (`docs/routing.md`, same section). One key per video is enough: the request-time rule matches by id only, so an underscore-separated second key would be dead weight.
 
 ### What is NOT carried through, at all
 

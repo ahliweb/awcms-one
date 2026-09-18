@@ -100,17 +100,17 @@ Column mapping for `tools/import-seputarborneo.ts` (`bun run import:seputarborne
 
 **Institutions, separately.** `blog:legacy:import` calls `syncPostTermAssignments` but never `syncPostInstitutionAssignments` (checked directly) — a `DAERAH`/`MITRA BORNEO` article imports with no institution at all. `bun run import:seputarborneo -- --assign-institutions` closes this over the public API AFTER `blog:legacy:import --commit`, `PATCH`ing `institutionIds` by looking the post up by its own exported `slug`.
 
-### `awcms_seo_redirects` — `tools/out/seputarborneo/redirects.json` (origin `import`)
+### `awcms_seo_redirects` — `tools/out/seputarborneo/redirects.json` (origin `legacy_blog`)
 
-Built directly by this exporter, not derived through `blog:legacy:redirects:import` — see `docs/deployment.md` for why that sibling script's own `{legacyId}`/`{slug}` templating is wrong for the ~171 rows with a collision-suffixed stored slug. One entry per legacy URL form, targeting `/blog/{tenantCode}/{slug}` (the SAME slug `blog:legacy:import` stores):
+Built directly by this exporter, not derived through `blog:legacy:redirects:import` — see `docs/deployment.md` for why that sibling script's own `{legacyId}`/`{slug}` templating is wrong for the ~171 rows with a collision-suffixed stored slug. One entry per legacy URL form, targeting `/blog/{tenantCode}/{slug}` (the SAME slug `blog:legacy:import` stores), with `origin: "legacy_blog"` — the ONLY origin `apps/storefront`'s `getLegacyRedirectRows()` serves (an `import`-origin row is ignored by the storefront's build):
 
 | Source path | Built from |
 | --- | --- |
 | `/news/{id_ber}-{sbSlug(judul)}.html` | Today's (post-issue-#6) URL shape |
 | `/news/{id_ber}_{judul with spaces→underscores, rawurlencode'd}.html` | The pre-2.0 shape a search engine may still have indexed — built from the RAW title, never the stored slug |
-| `/video/?video={id_vid}-{sbSlug(judul_vid)}.html` | `berita_vid`'s own URL shape (no pre-2.0 form — the table postdates that rewrite) |
+| `/video/{id_vid}-{sbSlug(judul_vid)}.html` | A SYNTHETIC, query-free key — never a public URL. `berita_vid`'s real URL was `/video/?video={id_vid}-{slug}.html`, but the CMS strips a redirect source's query string at write time, so that form would collapse every video row onto the bare `/video`. The storefront answers the real `?video={id}` URL by id from this key (`docs/routing.md`, "Legacy redirects"). One key per video: the request-time rule matches by id only |
 
-Posted via `POST /api/v1/seo/redirects/import`, chunked to `MAX_REDIRECT_IMPORT_ITEMS` (200).
+Posted via `POST /api/v1/seo/redirects/import` by `bun run import:seputarborneo -- --push-redirects [--commit]`, chunked to `MAX_REDIRECT_IMPORT_ITEMS` (200), each chunk under an `Idempotency-Key` derived from its content (`tools/lib/redirect-push.ts`).
 
 ### `berita_vid` → `tools/out/seputarborneo/videos.ndjson`
 

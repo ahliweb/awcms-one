@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](deployment.md)
 
-<!-- i18n-source-hash: sha256:19c500010ec42da64bd0a98110a061ef31124d41b2c8e93ef7fd72c0c4c1f8a6 -->
+<!-- i18n-source-hash: sha256:f9f0225c35a8d7ba6c9ca0a5ae158bb16467c2c3dfa9b53122473178feeeac60 -->
 
 # Deployment
 
@@ -206,13 +206,25 @@ bun run blog:legacy:import --file=../tools/out/seputarborneo/posts.ndjson \
 
 # 6. Redirect — redirects.json MILIK exporter ini SENDIRI, BUKAN
 #    blog:legacy:redirects:import (lihat "Kenapa exporter ini membangun
-#    redirect sendiri" di bawah), diposting langsung:
+#    redirect sendiri" di bawah). ~51.000 entri terhadap route yang menerima
+#    200 per panggilan all-or-nothing berarti loop ~256 panggilan, jadi
+#    exporter yang menjalankannya (`tools/lib/redirect-push.ts`); ia memakai
+#    ulang AWCMS_BASE_URL/SEED_OWNER_*:
 cd ..   # kembali ke root repo
-curl -X POST "$AWCMS_BASE_URL/api/v1/seo/redirects/import" \
-  -H "authorization: Bearer <token>" -H "x-awcms-tenant-id: <uuid>" \
-  -H "idempotency-key: seputarborneo-redirects-0" -H "content-type: application/json" \
-  -d '{"redirects": <200 entri pertama redirects.json>}'
-# ulangi per batch 200 (MAX_REDIRECT_IMPORT_ITEMS) sampai array habis.
+bun run import:seputarborneo -- --push-redirects            # DRY RUN seluruh berkas: setiap chunk diposting
+                                                            # dengan dryRun: true, tidak ada yang ditulis;
+                                                            # penolakan per-entri dicetak, exit 1 jika ada
+bun run import:seputarborneo -- --push-redirects --commit   # impor sungguhan, chunk demi chunk, masing-masing
+                                                            # dengan Idempotency-Key turunan isi chunk itu
+#    Crash atau chunk gagal di tengah run aman diulang dengan perintah yang sama:
+#    CMS memutar ulang setiap chunk yang sudah ter-commit dari rekaman
+#    idempotensinya (kunci sama + body sama -> 200 yang tersimpan) dan hanya
+#    mengimpor sisanya. Run commit TIDAK dry-run dulu persis karena alasan itu —
+#    dry run segar atas chunk yang sudah ter-commit akan melaporkan setiap baris
+#    sebagai CONFLICT dengan dirinya sendiri.
+#    JANGAN export ulang di antara dry run dan commit: berkas yang berubah berarti
+#    kunci chunk berubah, dan chunk pertama yang tumpang tindih dengan impor
+#    sebelumnya gagal keras dengan CONFLICT alih-alih diputar ulang.
 
 # 7. Instansi — blog:legacy:import tidak punya mekanisme untuk men-set
 #    institutionIds (lihat di bawah). Pass susulan MILIK exporter ini
@@ -223,14 +235,20 @@ bun run import:seputarborneo -- --assign-institutions
 cd apps/cms && bun run blog:legacy:cutover:verify --tenant=<uuid> --urls=<path>
 ```
 
-### Apa yang masih TIDAK bisa dilakukan `blog:legacy:import` — dan dua susulan yang tetap dijaga repositori ini
+### Apa yang masih TIDAK bisa dilakukan `blog:legacy:import` — dan susulan yang tetap dijaga repositori ini
 
+0. **Baris redirect itu sendiri.** Tidak ada skrip upstream yang menulis `awcms_seo_redirects`; satu-satunya jalan masuk adalah `POST /api/v1/seo/redirects/import`, dibatasi `MAX_REDIRECT_IMPORT_ITEMS` (200) per panggilan all-or-nothing dan mewajibkan `Idempotency-Key` di setiap panggilan. `--push-redirects` (langkah 6) adalah loop itu — diverifikasi terhadap berkas route-nya sendiri (`apps/cms/src/pages/api/v1/seo/redirects/import.ts`): body `{ redirects, dryRun }`, header `idempotency-key`, `results[].{index, ok, code, normalizedSourcePath, errors}` per-item pada envelope 200 maupun 400 `IMPORT_VALIDATION_FAILED`. Sebelum panggilan apa pun ia juga menjalankan normalisasi sumber (pelucutan query) milik route itu sendiri atas SELURUH berkas dan menolak pada duplikat pertama, karena route hanya mendeteksi duplikat di dalam satu chunk — duplikat lintas-berkas kalau tidak baru muncul sebagai `CONFLICT` di chunk berikutnya, setelah chunk sebelumnya sudah ditulis.
 1. **`institutionIds`.** `main()` milik `blog:legacy:import` sendiri memanggil `syncPostTermAssignments` setelah tiap insert — tidak pernah `syncPostInstitutionAssignments`, dicek langsung terhadap `apps/cms/scripts/blog-legacy-import.ts` dan `legacy-import-directory.ts`. Artikel `DAERAH`/`MITRA BORNEO` karenanya terimpor TANPA instansi, dan sebuah post hanya mencapai `/daerah/{slug}`/`/mitra/{slug}` lewat satu (header `apps/storefront/src/pages/daerah/[slug].astro` sendiri) — keduanya adalah acceptance criterion issue #58 sendiri. `bun run import:seputarborneo -- --assign-institutions` (langkah 7 di atas) menutup ini: ia membaca ulang dump, me-resolve instansi tiap artikel `DAERAH`/`MITRA BORNEO` lewat nama, lalu `PATCH` `institutionIds` pada post yang sudah terimpor (ditemukan lewat `slug` hasil export-nya sendiri — tidak ada route pencarian-lewat-slug di API publik, jadi ia melakukan paging seluruh daftar post sekali).
 2. **Byline lawas.** `--author=<uuid>` adalah SATU nilai untuk seluruh run; `legacy-import-record.ts` sama sekali tidak punya field author/sidecar per-baris. Kolom `user`/`admin` lawas dibuang seluruhnya oleh pipeline ini — celah nyata dan tak terhindarkan dari memakai tool operator sesuai maksudnya, bukan sesuatu yang bisa dikarang-karang exporter ini dengan field baru.
 
 ### Kenapa exporter ini membangun `redirects.json` sendiri, bukan `blog:legacy:redirects:import`
 
-Skrip sejawat itu menurunkan path sumbernya lewat templating `{legacyId}`/`{slug}` — dengan `{slug}` adalah slug post TERSIMPAN (`listLegacyRedirectMappings`, dicek langsung). Untuk ~84 grup bentrok / ~171 baris yang disebut komentar `blog-legacy-import.ts` sendiri (dua artikel lawas berbagi judul), slug tersimpan membawa akhiran `-{legacyId}` yang ditambahkan `newPostSlug` milik exporter ini sendiri — tapi URL current-style lawas yang SESUNGGUHNYA dibangun dari judul polos tanpa akhiran, jadi redirect ber-template skrip sejawat itu akan salah persis untuk baris-baris itu. `redirects.json` di sini dibangun langsung dari `title` mentah untuk kedua bentuk URL lawas (bentuk hari ini `/news/{id}-{slug}.html` dan bentuk pra-2.0 `/news/{id}_{judul_dengan_underscore}.html`, yang disebut terakhir SAMA SEKALI tidak bisa dihasilkan `blog:legacy:redirects:import` — template-nya tidak punya placeholder `{title}`), menyasar `/blog/{tenantCode}/{slug}` dengan slug tersimpan akhir yang SAMA yang ditulis `blog:legacy:import`. `blog:legacy:redirects:import`, `blog:legacy:rubrik-redirects` (yang memutar ulang peta level-kategori `apps/cms/data/seputarborneo-legacy/rubrik-redirects.json` yang SUDAH TER-COMMIT — aset terpisah yang sudah ada duluan yang tidak disentuh exporter ini), dan `blog:legacy:article-paths` (dibangun untuk cutover ber-edge-serve `ahliweb/awcms-astro`, dan secara eksplisit inert untuk `awcms_seo_redirects` — mekanisme milik repositori ini sendiri, sesuai `docs/routing.md`) tetap tersedia sebagai tool upstream; exporter ini sederhananya tidak membutuhkannya.
+Skrip sejawat itu menurunkan path sumbernya lewat templating `{legacyId}`/`{slug}` — dengan `{slug}` adalah slug post TERSIMPAN (`listLegacyRedirectMappings`, dicek langsung). Untuk ~84 grup bentrok / ~171 baris yang disebut komentar `blog-legacy-import.ts` sendiri (dua artikel lawas berbagi judul), slug tersimpan membawa akhiran `-{legacyId}` yang ditambahkan `newPostSlug` milik exporter ini sendiri — tapi URL current-style lawas yang SESUNGGUHNYA dibangun dari judul polos tanpa akhiran, jadi redirect ber-template skrip sejawat itu akan salah persis untuk baris-baris itu. `redirects.json` di sini dibangun langsung dari `title` mentah untuk kedua bentuk URL lawas (bentuk hari ini `/news/{id}-{slug}.html` dan bentuk pra-2.0 `/news/{id}_{judul_dengan_underscore}.html`, yang disebut terakhir SAMA SEKALI tidak bisa dihasilkan `blog:legacy:redirects:import` — template-nya tidak punya placeholder `{title}`), menyasar `/blog/{tenantCode}/{slug}` dengan slug tersimpan akhir yang SAMA yang ditulis `blog:legacy:import`. `blog:legacy:redirects:import`, `blog:legacy:rubrik-redirects` (yang memutar ulang peta level-kategori `apps/cms/data/seputarborneo-legacy/rubrik-redirects.json` yang SUDAH TER-COMMIT — aset upstream terpisah yang sudah ada duluan yang tidak disentuh exporter ini, dan BUKAN langkah runbook ini: "Mekanisme mana yang otoritatif untuk URL lawas tingkat kategori" di `docs/routing.md` menjelaskan kenapa modul berbasis aturan milik storefront mencakup URL-URL itu tanpa baris sama sekali), dan `blog:legacy:article-paths` (dibangun untuk cutover ber-edge-serve `ahliweb/awcms-astro`, dan secara eksplisit inert untuk `awcms_seo_redirects` — mekanisme milik repositori ini sendiri, sesuai `docs/routing.md`) tetap tersedia sebagai tool upstream; exporter ini sederhananya tidak membutuhkannya.
+
+Dua keputusan bentuk di `redirects.json` ada semata karena cara CMS dan storefront mengonsumsi barisnya (ditemukan saat review PR #67):
+
+- **`origin` adalah `legacy_blog`, bukan `import`.** `getLegacyRedirectRows()` milik `apps/storefront/src/lib/awcms/blog.ts` HANYA menyimpan baris `origin === "legacy_blog"` saat membangun `/index/pengalihan-legacy.json` (`docs/routing.md`, "Redirect lawas"); baris ber-origin `import` adalah aturan CMS yang sah tapi diam-diam tidak akan pernah dilayani storefront ini. `defaultOrigin: "import"` milik route impor hanya berlaku untuk body yang menghilangkan `origin`.
+- **Sumber baris video adalah `/video/{id}-{slug}.html` sintetis tanpa query, bukan `/video/?video={id}-{slug}.html` yang sebenarnya.** CMS melucuti query string dari setiap sumber redirect saat menulis (`validateRedirectInput` → `normalizeRedirectPath` tanpa `keepQuery`), jadi URL sebenarnya dari ke-35 baris video akan tersimpan sebagai satu `/video` telanjang — chunk gagal dengan `DUPLICATE_IN_BATCH`, atau satu baris yang selamat me-redirect halaman daftar `/video` storefront ke satu post. Storefront menjawab URL masuk `?video={id}` yang sebenarnya berdasarkan id dari kunci sintetis itu (`docs/routing.md`, bagian yang sama). Satu kunci per video sudah cukup: aturan saat request mencocokkan berdasarkan id saja, jadi kunci kedua berpemisah garis bawah hanya akan jadi beban mati.
 
 ### Apa yang SAMA SEKALI TIDAK dibawa
 

@@ -2,8 +2,11 @@
  * tools/lib/awcms-api.ts — issue #58.
  *
  * The minimal HTTP client `tools/import-seputarborneo.ts` needs for exactly
- * ONE thing: the `--assign-institutions` follow-up pass, run AFTER
- * `bun run blog:legacy:import` has committed the archive. Copied out of
+ * TWO things: the `--assign-institutions` follow-up pass, run AFTER
+ * `bun run blog:legacy:import` has committed the archive, and the
+ * `--push-redirects` loop (`tools/lib/redirect-push.ts`, review round 2 of
+ * PR #67) that posts `redirects.json` to `POST /api/v1/seo/redirects/import`
+ * in 200-item, idempotency-keyed chunks. Copied out of
  * `tools/seed-borneojek-mart.ts`'s own `apiCall`/`Session`/`assertOk` (that
  * file exports nothing — checked directly, `grep -n "^export "
  * tools/seed-borneojek-mart.ts` matches zero lines — so this is a copy, not
@@ -25,9 +28,16 @@
  * `src/lib/awcms/wilayah.ts`'s file header for why there is no direct
  * post→region field to filter on instead"). Since both routes are literally
  * issue #58's own acceptance criterion, this one, small, HTTP-only follow-up
- * pass stays — it does not create posts, does not write redirects, and does
- * not convert HTML; it only resolves each post's institution and PATCHes
- * `institutionIds` on it. See `assignInstitutions` in the main script.
+ * pass stays — it does not create posts and does not convert HTML; it only
+ * resolves each post's institution and PATCHes `institutionIds` on it. See
+ * `runAssignInstitutions` in the main script.
+ *
+ * The redirect push is the other legitimate HTTP surface: the CMS's import
+ * route is the ONLY way into `awcms_seo_redirects` (no upstream script
+ * writes it — `blog:legacy:rubrik-redirects` prints payloads for exactly
+ * this route), it is capped at 200 items per all-or-nothing call, and the
+ * exporter writes ~51,000 of them. A ~256-call loop with a deterministic
+ * `Idempotency-Key` per chunk is a script's job, not an operator's.
  *
  * Same conventions as the seed script, deliberately: `AWCMS_BASE_URL`, the
  * `authorization: Bearer <token>` + `x-awcms-tenant-id` header pair, and the

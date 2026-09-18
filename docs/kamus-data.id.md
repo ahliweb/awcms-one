@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](kamus-data.md)
 
-<!-- i18n-source-hash: sha256:8b34bab6aed1d96e301d527c0f3c889d66d98cbe0667af9310d898cbbf86fa85 -->
+<!-- i18n-source-hash: sha256:2d2cd3eba35e6c94dd4e8e812970fab06cafa84657d6e288e810a837a7b914e5 -->
 
 # Kamus data
 
@@ -102,17 +102,17 @@ Pemetaan kolom untuk `tools/import-seputarborneo.ts` (`bun run import:seputarbor
 
 **Instansi, secara terpisah.** `blog:legacy:import` memanggil `syncPostTermAssignments` tapi tidak pernah `syncPostInstitutionAssignments` (dicek langsung) — artikel `DAERAH`/`MITRA BORNEO` terimpor tanpa instansi sama sekali. `bun run import:seputarborneo -- --assign-institutions` menutup ini lewat API publik SETELAH `blog:legacy:import --commit`, mem-`PATCH` `institutionIds` dengan mencari post lewat `slug` hasil export-nya sendiri.
 
-### `awcms_seo_redirects` — `tools/out/seputarborneo/redirects.json` (origin `import`)
+### `awcms_seo_redirects` — `tools/out/seputarborneo/redirects.json` (origin `legacy_blog`)
 
-Dibangun langsung oleh exporter ini, bukan diturunkan lewat `blog:legacy:redirects:import` — lihat `docs/deployment.md` untuk alasan templating `{legacyId}`/`{slug}` milik skrip sejawat itu salah untuk ~171 baris dengan slug tersimpan ber-akhiran bentrok. Satu entri per bentuk URL lawas, menyasar `/blog/{tenantCode}/{slug}` (slug SAMA yang disimpan `blog:legacy:import`):
+Dibangun langsung oleh exporter ini, bukan diturunkan lewat `blog:legacy:redirects:import` — lihat `docs/deployment.md` untuk alasan templating `{legacyId}`/`{slug}` milik skrip sejawat itu salah untuk ~171 baris dengan slug tersimpan ber-akhiran bentrok. Satu entri per bentuk URL lawas, menyasar `/blog/{tenantCode}/{slug}` (slug SAMA yang disimpan `blog:legacy:import`), dengan `origin: "legacy_blog"` — SATU-SATUNYA origin yang dilayani `getLegacyRedirectRows()` milik `apps/storefront` (baris ber-origin `import` diabaikan build storefront):
 
 | Path sumber | Dibangun dari |
 | --- | --- |
 | `/news/{id_ber}-{sbSlug(judul)}.html` | Bentuk URL hari ini (pasca issue #6) |
 | `/news/{id_ber}_{judul dengan spasi→underscore, di-rawurlencode}.html` | Bentuk pra-2.0 yang mungkin masih terindeks mesin pencari — dibangun dari judul MENTAH, tidak pernah dari slug tersimpan |
-| `/video/?video={id_vid}-{sbSlug(judul_vid)}.html` | Bentuk URL `berita_vid` sendiri (tidak ada bentuk pra-2.0 — tabelnya lebih baru dari rewrite itu) |
+| `/video/{id_vid}-{sbSlug(judul_vid)}.html` | Kunci SINTETIS tanpa query — tidak pernah jadi URL publik. URL `berita_vid` yang sebenarnya adalah `/video/?video={id_vid}-{slug}.html`, tapi CMS melucuti query string sumber redirect saat menulis, jadi bentuk itu akan meruntuhkan setiap baris video ke `/video` telanjang. Storefront menjawab URL `?video={id}` yang sebenarnya berdasarkan id dari kunci ini (`docs/routing.md`, "Redirect lawas"). Satu kunci per video: aturan saat request mencocokkan berdasarkan id saja |
 
-Diposting lewat `POST /api/v1/seo/redirects/import`, dipotong per `MAX_REDIRECT_IMPORT_ITEMS` (200).
+Diposting lewat `POST /api/v1/seo/redirects/import` oleh `bun run import:seputarborneo -- --push-redirects [--commit]`, dipotong per `MAX_REDIRECT_IMPORT_ITEMS` (200), tiap chunk dengan `Idempotency-Key` turunan isinya (`tools/lib/redirect-push.ts`).
 
 ### `berita_vid` → `tools/out/seputarborneo/videos.ndjson`
 

@@ -45,9 +45,16 @@
  * `regionCode`/identity (`apps/storefront/src/pages/daerah/[slug].astro`'s
  * own header). Since both routes are issue #58's own acceptance criterion,
  * `--assign-institutions` (this file, run AFTER `blog:legacy:import
- * --commit`) closes that one gap over the public API — the ONLY write this
- * file still performs itself, and the reason `tools/lib/awcms-api.ts`
- * survives this rework (see its own header).
+ * --commit`) closes that one gap over the public API — one of the two
+ * writes this file still performs itself, and one of the two reasons
+ * `tools/lib/awcms-api.ts` survives this rework (see its own header).
+ *
+ * The other is `--push-redirects` (review round 2): `redirects.json` is
+ * ~51,000 entries and `POST /api/v1/seo/redirects/import` takes 200 per
+ * all-or-nothing call, so posting it is a ~256-call loop with a
+ * deterministic `Idempotency-Key` per chunk — `tools/lib/redirect-push.ts`,
+ * driven from here. It is a dry run of the WHOLE file by default and writes
+ * only under `--commit`.
  *
  * The pipeline also has no field for a legacy byline (`user`/`admin`) at
  * all — `--author=<uuid>` is one value for the whole run, and
@@ -78,6 +85,12 @@ import {
   resolveExistingTenantSession,
   type Session
 } from "./lib/awcms-api";
+import {
+  createRedirectImportPoster,
+  formatPushSummary,
+  parseRedirectFile,
+  pushRedirects
+} from "./lib/redirect-push";
 
 // ---------------------------------------------------------------------------
 // Configuration
@@ -138,10 +151,52 @@ export function legacyNewsUrlPre2000(id: number, title: string): string {
   return `/news/${id}_${segment}.html`;
 }
 
-export function legacyVideoUrl(id: number, title: string): string {
+/** `sb_video_url()`'s `{id}-{sb_slug(title)}.html` value — the ONE token both the real legacy URL and this exporter's synthetic redirect key below are built around. */
+function legacyVideoIdSlug(id: number, title: string): string {
   const slug = sbSlug(title);
-  const idSlug = slug === "" ? String(id) : `${id}-${phpRawUrlEncode(slug)}`;
-  return `/video/?video=${idSlug}.html`;
+  return slug === "" ? String(id) : `${id}-${phpRawUrlEncode(slug)}`;
+}
+
+/**
+ * The REAL public URL a video post had: `/video/?video={id}-{slug}.html`
+ * (`include/view_helpers.php`'s `sb_video_url()`; `video/index.php` reads
+ * only `(int) $_GET['video']`, so the slug never mattered to it). Kept as
+ * documentation of that shape and for the test that ties
+ * `videoRedirectSourcePath` to it — it is NOT what `redirects.json` stores,
+ * see that function.
+ */
+export function legacyVideoUrl(id: number, title: string): string {
+  return `/video/?video=${legacyVideoIdSlug(id, title)}.html`;
+}
+
+/**
+ * The redirect SOURCE key this exporter writes for a video post:
+ * `/video/{id}-{slug}.html` — a synthetic, query-free path that never
+ * existed as a public URL, chosen deliberately (review round 2 of PR #67).
+ *
+ * The CMS strips the query string from every redirect source at write time
+ * (`validateRedirectInput` → `normalizeRedirectPath(rawSource)` WITHOUT
+ * `keepQuery`, `apps/cms/src/modules/seo-distribution/domain/redirect-
+ * rule.ts` / `redirect-path.ts` — checked directly), so the real
+ * `/video/?video={id}-{slug}.html` URL of every one of the 35 video rows
+ * would have been stored as the SAME bare key `/video`: either the
+ * all-or-nothing import chunk fails on `DUPLICATE_IN_BATCH`, or a lone
+ * surviving row makes the storefront's `/video` LIST page redirect to one
+ * post. The CMS can never hold the `?video=` form — so the query-free key
+ * is the real contract between this exporter and the storefront.
+ *
+ * What consumes it: `apps/storefront/server/pengalihan-aturan.mjs`'s
+ * `rowIdIndexFor` indexes every row-map key matching `^/video/(\d+)[-_.]`
+ * by its numeric id, and `resolveVideoQuery` answers a real inbound
+ * `/video/?video={id}-…`, `{id}_…` or bare `{id}` request from that index —
+ * by ID ONLY, exactly the way `video/index.php` itself did. That is also
+ * why ONE key per video is enough: a second, underscore-separated key for
+ * the same id would be dead weight (the index keeps the first key per id),
+ * unlike `berita_red`'s two keys, which are two genuinely different public
+ * URLs matched by exact path.
+ */
+export function videoRedirectSourcePath(id: number, title: string): string {
+  return `/video/${legacyVideoIdSlug(id, title)}.html`;
 }
 
 // ---------------------------------------------------------------------------
@@ -423,7 +478,13 @@ export type LegacyImportRecordJson = {
 };
 
 export type BuildResult<T> =
-  | { ok: true; record: T; taxonomy: TaxonomyMapResult; legacyUrls: { current: string; pre2000?: string } }
+  | {
+      ok: true;
+      record: T;
+      taxonomy: TaxonomyMapResult;
+      /** The redirect SOURCE keys for this row — real legacy URLs for `berita_red` (both forms), the synthetic query-free key for `berita_vid` (see `videoRedirectSourcePath`). */
+      redirectSources: { current: string; pre2000?: string };
+    }
   | { ok: false; legacyId: string; table: string; reason: string };
 
 /** Builds one `berita_red` row into `blog:legacy:import`'s NDJSON shape — pure, no I/O. */
@@ -467,7 +528,7 @@ export function buildPostRecord(
     ok: true,
     record,
     taxonomy,
-    legacyUrls: {
+    redirectSources: {
       current: legacyNewsUrlCurrent(Number(row.id_ber), title),
       pre2000: legacyNewsUrlPre2000(Number(row.id_ber), title)
     }
@@ -548,7 +609,7 @@ export function buildVideoRecord(
     ok: true,
     record,
     taxonomy: { ok: false, reason: "berita_vid carries no rubrik/kategori mapping in this exporter" },
-    legacyUrls: { current: legacyVideoUrl(Number(row.id_vid), title) }
+    redirectSources: { current: videoRedirectSourcePath(Number(row.id_vid), title) }
   };
 }
 
@@ -566,17 +627,28 @@ export function buildVideoRecord(
 // :import`/`blog:legacy:rubrik-redirects`/`blog:legacy:cutover:verify`
 // remain available upstream tools (documented in the runbook) but are not
 // used by this exporter for that reason.
+//
+// `origin` is `legacy_blog`, NOT `import` (review round 2 of PR #67): the
+// storefront's `getLegacyRedirectRows()` (`apps/storefront/src/lib/awcms/
+// blog.ts`) keeps ONLY rows whose `origin === "legacy_blog"` when it builds
+// `/index/pengalihan-legacy.json` (`docs/routing.md`, "Legacy redirects") —
+// an `import`-origin row is a valid CMS rule that this storefront would
+// silently never serve. `legacy_blog` is in the route's
+// `ALLOWED_REDIRECT_ORIGINS` (`redirect-rule.ts`, checked directly); the
+// route's `defaultOrigin: "import"` only applies when a body OMITS `origin`.
 // ---------------------------------------------------------------------------
+
+export const REDIRECT_ORIGIN = "legacy_blog" as const;
 
 export type RedirectEntry = {
   sourcePath: string;
   target: string;
-  origin: "import";
+  origin: typeof REDIRECT_ORIGIN;
   statusCode: 301;
 };
 
 export function buildRedirectEntry(sourcePath: string, tenantCode: string, slug: string): RedirectEntry {
-  return { sourcePath, target: `/blog/${tenantCode}/${slug}`, origin: "import", statusCode: 301 };
+  return { sourcePath, target: `/blog/${tenantCode}/${slug}`, origin: REDIRECT_ORIGIN, statusCode: 301 };
 }
 
 // ---------------------------------------------------------------------------
@@ -666,7 +738,11 @@ function usage(message: string): void {
       "  --limit=<n>            cap the number of berita_red rows exported\n" +
       "  --since=<yyyy-mm-dd>   only berita_red rows with tgl on or after this date\n" +
       "  --assign-institutions  a follow-up pass over the public API, run AFTER blog:legacy:import\n" +
-      "                         --commit — see this file's header for why it exists\n"
+      "                         --commit — see this file's header for why it exists\n" +
+      "  --push-redirects       post tools/out/seputarborneo/redirects.json to POST /api/v1/seo/\n" +
+      "                         redirects/import in chunks of 200 — a DRY RUN of the whole file\n" +
+      "                         unless --commit is also given (see tools/lib/redirect-push.ts)\n" +
+      "  --commit               with --push-redirects only: perform the real, idempotency-keyed import\n"
   );
   process.exitCode = 1;
 }
@@ -732,7 +808,7 @@ async function runExport(options: ExportOptions): Promise<void> {
       }
       takenVideoSlugs.add(built.record.slug);
       videoLines.push(JSON.stringify(built.record));
-      redirects.push(buildRedirectEntry(built.legacyUrls.current, TENANT_CODE, built.record.slug));
+      redirects.push(buildRedirectEntry(built.redirectSources.current, TENANT_CODE, built.record.slug));
       continue;
     }
 
@@ -768,9 +844,9 @@ async function runExport(options: ExportOptions): Promise<void> {
 
     if (built.record.featuredImageSrc) postsNeedingFeaturedImage++;
 
-    redirects.push(buildRedirectEntry(built.legacyUrls.current, TENANT_CODE, built.record.slug));
-    if (built.legacyUrls.pre2000) {
-      redirects.push(buildRedirectEntry(built.legacyUrls.pre2000, TENANT_CODE, built.record.slug));
+    redirects.push(buildRedirectEntry(built.redirectSources.current, TENANT_CODE, built.record.slug));
+    if (built.redirectSources.pre2000) {
+      redirects.push(buildRedirectEntry(built.redirectSources.pre2000, TENANT_CODE, built.record.slug));
     }
   }
 
@@ -947,9 +1023,46 @@ async function runAssignInstitutions(): Promise<void> {
   );
 }
 
+// ---------------------------------------------------------------------------
+// --push-redirects — see `tools/lib/redirect-push.ts`'s header for the route
+// contract it was written against and why `--commit` skips the dry run. Reads
+// the file the default export mode wrote; does NOT re-read the dump.
+// ---------------------------------------------------------------------------
+
+const REDIRECTS_FILE = `${OUT_DIR}/redirects.json`;
+
+async function runPushRedirects(commit: boolean): Promise<void> {
+  const file = Bun.file(REDIRECTS_FILE);
+  if (!(await file.exists())) {
+    return usage(`${REDIRECTS_FILE} does not exist — run the default export mode first.`);
+  }
+  const entries = parseRedirectFile(await file.json());
+
+  const session: Session = await resolveExistingTenantSession(BASE_URL, OWNER_EMAIL, OWNER_PASSWORD);
+  console.log(
+    `import-seputarborneo --push-redirects — authenticated against tenant ${session.tenantId}` +
+      `${commit ? "" : " (DRY RUN — add --commit to import)"}.`
+  );
+
+  const summary = await pushRedirects(entries, {
+    commit,
+    post: createRedirectImportPoster(BASE_URL, session),
+    log: (line) => console.log(line)
+  });
+
+  console.log(`\n${formatPushSummary(summary)}\n`);
+  if (summary.failed > 0) process.exitCode = 1;
+}
+
 async function main(): Promise<void> {
   if (process.argv.includes("--assign-institutions")) {
     return runAssignInstitutions();
+  }
+  if (process.argv.includes("--push-redirects")) {
+    return runPushRedirects(process.argv.includes("--commit"));
+  }
+  if (process.argv.includes("--commit")) {
+    return usage("--commit only applies together with --push-redirects.");
   }
 
   const limitFlag = flag("limit");
