@@ -1190,6 +1190,597 @@ async function ensureMachineCredential(
 }
 
 // ---------------------------------------------------------------------------
+// Step 9 — seputarborneo reference taxonomy, institutions, sample news
+// posts, legal pages, ad placements, and legacy redirects (issue #57).
+//
+// Appended after every increment-2 step above rather than interleaved with
+// them, so a rebase against A1/A3's own additive changes to
+// `MACHINE_CREDENTIAL_PERMISSION_KEYS` (the one shared piece of this file)
+// stays a clean append on both sides. None of the endpoints below are used
+// by `apps/storefront`'s BUILD-TIME machine credential (they are all called
+// from THIS script under the owner session), so that permission list is
+// untouched here.
+//
+// Reference: seputarborneo `include/nav_menu.php`'s
+// `seputarborneo_taksonomi()`/`seputarborneo_nav_mitra()`/
+// `seputarborneo_nav_umum()` (verified 2026-09-18) — the rubrik tree,
+// 24-institution directory, and 14-regency/city list this step seeds mirror
+// that reference's real structure, translated into this platform's own
+// `blog_content` taxonomy/institution/region model (doc `docs/cms.md`'s
+// "Taxonomy: commerce categories, plus the news IA's own hierarchy").
+// ---------------------------------------------------------------------------
+
+// -- 9a. Rubrik tree (`taxonomy_type=category`) -----------------------------
+//
+// `awcms_blog_terms_slug_dedup` (apps/cms/sql/035) is UNIQUE on
+// `(tenant_id, taxonomy_type, slug)` with NO `parent_id` component — verified
+// directly against that migration, not assumed — so this one category tree
+// cannot hold both seputarborneo's top-level `WISATA` rubrik and its UMUM
+// child also spelled `Wisata` the way two separate MySQL columns
+// (`jenis_rubrik`, `kategori`) could. `tools/seed-data/rubrik.json` resolves
+// this the way the issue's own text allows: the UMUM child is named
+// "Wisata & Travel" / slug `wisata-travel` instead of colliding with the
+// top-level `wisata` rubrik.
+
+type RubrikSeed = {
+  name: string;
+  slug: string;
+  parentSlug: string | null;
+  description: string | null;
+};
+
+async function ensureRubrikTerms(session: Session): Promise<Map<string, string>> {
+  const list = await apiCall<{ terms: Array<{ id: string; slug: string }> }>(
+    "GET",
+    "/api/v1/blog/terms",
+    { session }
+  );
+  assertOk("GET /api/v1/blog/terms", list);
+
+  const idBySlug = new Map(list.data.terms.map((item) => [item.slug, item.id]));
+  const rubrikList = readSeedJson<RubrikSeed[]>("rubrik.json");
+
+  for (const rubrik of rubrikList) {
+    if (idBySlug.has(rubrik.slug)) {
+      console.log(`skip rubrik "${rubrik.slug}" (already exists)`);
+      continue;
+    }
+
+    let parentId: string | null = null;
+    if (rubrik.parentSlug) {
+      const resolved = idBySlug.get(rubrik.parentSlug);
+      if (!resolved) {
+        throw new Error(
+          `rubrik "${rubrik.slug}" names parentSlug "${rubrik.parentSlug}", which ` +
+            "was not created yet — check tools/seed-data/rubrik.json's ordering " +
+            "(a parent must be listed before its children)."
+        );
+      }
+      parentId = resolved;
+    }
+
+    const created = await apiCall<{ id: string }>("POST", "/api/v1/blog/terms", {
+      session,
+      body: {
+        taxonomyType: "category",
+        parentId,
+        name: rubrik.name,
+        slug: rubrik.slug,
+        description: rubrik.description
+      }
+    });
+    assertOk(`POST /api/v1/blog/terms (${rubrik.slug})`, created);
+    idBySlug.set(rubrik.slug, created.data.id);
+    console.log(
+      `apply rubrik "${rubrik.slug}"${rubrik.parentSlug ? ` (child of "${rubrik.parentSlug}")` : ""}`
+    );
+  }
+
+  return idBySlug;
+}
+
+// -- 9b. Kalimantan Tengah region codes (`idn_admin_regions`) ---------------
+//
+// Resolved by NAME against `GET /api/v1/idn-regions/regions` at seed time —
+// never hard-coded — per the issue's own instruction: a Kepmendagri update
+// could renumber any of these codes, and this script has no business
+// guessing one. Requires an ACTIVE `idn_admin_regions` dataset; see
+// docs/deployment.md's "Local database" section for the
+// `idn-regions:import`/`idn-regions:activate` sequence this depends on.
+//
+// The 14 names are seputarborneo's own "Daerah" list
+// (`seputarborneo_nav_daerah()`), by REGENCY/CITY name (not the legacy city
+// names `nav_menu.php` itself maps away from, e.g. "Sampit" ->
+// "Kotawaringin Timur").
+const KALTENG_DAERAH_NAMES: readonly string[] = [
+  "Palangka Raya",
+  "Kapuas",
+  "Pulang Pisau",
+  "Katingan",
+  "Kotawaringin Timur",
+  "Kotawaringin Barat",
+  "Seruyan",
+  "Lamandau",
+  "Sukamara",
+  "Gunung Mas",
+  "Barito Selatan",
+  "Barito Timur",
+  "Barito Utara",
+  "Murung Raya"
+];
+
+type RegionListResponse = {
+  items: Array<{ code: string; name: string }>;
+  reason: "no_active_dataset" | "dataset_not_found" | null;
+};
+
+/**
+ * Strips whitespace before comparing — the active `idn_admin_regions`
+ * dataset spells some names WITHOUT the space seputarborneo's own reference
+ * taxonomy uses (`Kota Palangkaraya`, not `Kota Palangka Raya`; verified
+ * against a real import of `cahyadsn/wilayah`, dataset
+ * `wilayah-cae306278e5b-c4c3396d`, Kepmendagri No 300.2.2-2138/2025). Not
+ * sent as the API's own `?search=` query param for the same reason: that
+ * filter is a literal `LIKE` against `normalized_name`, so a caller-side
+ * space the dataset does not have would return zero rows server-side before
+ * this function ever gets a chance to normalize anything. Fetching the
+ * whole level+parent set instead (at most a few hundred provinces or one
+ * province's regencies) and filtering here client-side sidesteps that
+ * mismatch entirely.
+ */
+function namesMatchIgnoringSpaces(a: string, b: string): boolean {
+  return a.toUpperCase().replace(/\s+/g, "").includes(b.toUpperCase().replace(/\s+/g, ""));
+}
+
+async function resolveRegionCode(
+  session: Session,
+  level: 1 | 2,
+  name: string,
+  parentCode: string | null
+): Promise<string> {
+  const params = new URLSearchParams({
+    level: String(level),
+    limit: "200"
+  });
+  if (parentCode) params.set("parentCode", parentCode);
+
+  const result = await apiCall<RegionListResponse>(
+    "GET",
+    `/api/v1/idn-regions/regions?${params.toString()}`,
+    { session }
+  );
+  assertOk(`GET /api/v1/idn-regions/regions (${name})`, result);
+
+  if (result.data.reason) {
+    throw new Error(
+      `idn_admin_regions has no resolvable dataset (reason="${result.data.reason}") ` +
+        "while resolving region \"" +
+        name +
+        "\" — run `cd apps/cms && bun run idn-regions:import --commit` then " +
+        "`bun run idn-regions:activate -- --dataset <code printed above> --commit` " +
+        "before seeding institutions (see docs/deployment.md's \"Local database\" " +
+        "section)."
+    );
+  }
+
+  const matches = result.data.items.filter((item) =>
+    namesMatchIgnoringSpaces(item.name, name)
+  );
+
+  if (matches.length !== 1) {
+    throw new Error(
+      `Region lookup for "${name}" (level ${level}) returned ${matches.length} ` +
+        "match(es) from GET /api/v1/idn-regions/regions — expected exactly 1. " +
+        "Check tools/seed-data/institutions.json's regionName spelling against " +
+        "the active idn_admin_regions dataset."
+    );
+  }
+
+  return matches[0]!.code;
+}
+
+type KaltengRegions = {
+  provinceCode: string;
+  regencyCodeByName: Map<string, string>;
+};
+
+async function resolveKaltengRegions(session: Session): Promise<KaltengRegions> {
+  const provinceCode = await resolveRegionCode(session, 1, "Kalimantan Tengah", null);
+  console.log(`resolve region "Kalimantan Tengah" (province) -> ${provinceCode}`);
+
+  const regencyCodeByName = new Map<string, string>();
+  for (const name of KALTENG_DAERAH_NAMES) {
+    const code = await resolveRegionCode(session, 2, name, provinceCode);
+    regencyCodeByName.set(name, code);
+    console.log(`resolve region "${name}" (regency/city) -> ${code}`);
+  }
+
+  return { provinceCode, regencyCodeByName };
+}
+
+// -- 9c. Institutions (`POST /api/v1/blog/institutions`) --------------------
+
+type InstitutionSeed = {
+  name: string;
+  slug: string;
+  branch: "legislative" | "executive";
+  regionLevel: 1 | 2;
+  regionName: string;
+  seoTitle: string;
+  description: string;
+};
+
+async function ensureInstitutions(
+  session: Session,
+  regions: KaltengRegions
+): Promise<Map<string, string>> {
+  const list = await apiCall<{ institutions: Array<{ id: string; slug: string }> }>(
+    "GET",
+    "/api/v1/blog/institutions",
+    { session }
+  );
+  assertOk("GET /api/v1/blog/institutions", list);
+
+  const idBySlug = new Map(list.data.institutions.map((item) => [item.slug, item.id]));
+  const institutions = readSeedJson<InstitutionSeed[]>("institutions.json");
+
+  for (const institution of institutions) {
+    if (idBySlug.has(institution.slug)) {
+      console.log(`skip institution "${institution.slug}" (already exists)`);
+      continue;
+    }
+
+    const regionCode =
+      institution.regionLevel === 1
+        ? regions.provinceCode
+        : regions.regencyCodeByName.get(institution.regionName);
+
+    if (!regionCode) {
+      throw new Error(
+        `institution "${institution.slug}" names regionName "${institution.regionName}" ` +
+          "at level " +
+          institution.regionLevel +
+          ", which was not resolved — check tools/seed-data/institutions.json " +
+          "against KALTENG_DAERAH_NAMES."
+      );
+    }
+
+    const created = await apiCall<{ id: string }>("POST", "/api/v1/blog/institutions", {
+      session,
+      body: {
+        branch: institution.branch,
+        name: institution.name,
+        slug: institution.slug,
+        regionCode,
+        description: institution.description,
+        seoTitle: institution.seoTitle,
+        seoDescription: null
+      }
+    });
+    assertOk(`POST /api/v1/blog/institutions (${institution.slug})`, created);
+    idBySlug.set(institution.slug, created.data.id);
+    console.log(`apply institution "${institution.slug}" (${institution.branch})`);
+  }
+
+  return idBySlug;
+}
+
+// -- 9d. Sample news posts (`POST /api/v1/blog/posts`) ----------------------
+//
+// `regionCode` lives on `awcms_blog_institutions`, not on
+// `awcms_blog_posts` — `apps/cms/src/modules/blog-content/domain/blog-post-
+// validation.ts` has no `regionCode` field, and `docs/cms.md`/
+// `apps/storefront/src/lib/awcms/wilayah.ts` both document this as
+// DELIBERATE: "a post itself carries no region field", reached only via an
+// institution's own `regionCode`. So a "daerah"/"mitra-borneo" post below is
+// filed with `institutionSlugs`, never a region field of its own — exactly
+// how `apps/storefront`'s `/daerah/{slug}` archive is documented to resolve
+// membership.
+//
+// Video posts carry a Portable Text `videoNews` node (verified against
+// `portable-text.ts`'s closed `PortableTextNodeType` union and
+// `apps/storefront/src/lib/portable-text.ts`'s `documentHasPlayableVideo` —
+// NOT the separate `contentJson.blocks[].type === "video_news"` mechanism
+// `blog-post-validation.ts` also has, which is a different, storefront-
+// unused field). `videoId`s are clearly-marked, format-valid-but-fake
+// placeholders (`SEED000000{n}`) — no real seputarborneo channel id was
+// available to verify, so this follows the issue's own "else placeholder
+// ids clearly marked" instruction rather than guessing a real one.
+
+type NewsPostVideoSeed = { videoId: string; title: string; caption: string };
+
+type NewsPostSeed = {
+  slug: string;
+  title: string;
+  excerpt: string;
+  rubrikSlug: string;
+  institutionSlugs?: string[];
+  video?: NewsPostVideoSeed;
+  bodyParagraphs: string[];
+};
+
+function newsPostBodyPortableText(post: NewsPostSeed): unknown[] {
+  const blocks = paragraphsToPortableText(post.bodyParagraphs);
+
+  if (!post.video) {
+    return blocks;
+  }
+
+  return [
+    ...blocks,
+    {
+      _type: "videoNews",
+      _key: "seed-video-0",
+      provider: "youtube",
+      videoId: post.video.videoId,
+      title: post.video.title,
+      caption: post.video.caption
+    }
+  ];
+}
+
+async function ensureNewsPosts(
+  session: Session,
+  rubrikIdBySlug: Map<string, string>,
+  institutionIdBySlug: Map<string, string>
+): Promise<void> {
+  const list = await apiCall<{ posts: Array<{ id: string; slug: string }> }>(
+    "GET",
+    "/api/v1/blog/posts?limit=100",
+    { session }
+  );
+  assertOk("GET /api/v1/blog/posts", list);
+
+  const existingSlugs = new Set(list.data.posts.map((item) => item.slug));
+  const posts = readSeedJson<NewsPostSeed[]>("posts-berita.json");
+  let anyCreated = false;
+
+  for (const post of posts) {
+    if (existingSlugs.has(post.slug)) {
+      console.log(`skip news post "${post.slug}" (already exists)`);
+      continue;
+    }
+
+    const rubrikId = rubrikIdBySlug.get(post.rubrikSlug);
+    if (!rubrikId) {
+      throw new Error(
+        `news post "${post.slug}" names rubrikSlug "${post.rubrikSlug}", which was ` +
+          "not created — check tools/seed-data/rubrik.json."
+      );
+    }
+
+    const institutionIds = (post.institutionSlugs ?? []).map((slug) => {
+      const id = institutionIdBySlug.get(slug);
+      if (!id) {
+        throw new Error(
+          `news post "${post.slug}" names institutionSlugs entry "${slug}", which ` +
+            "was not created — check tools/seed-data/institutions.json."
+        );
+      }
+      return id;
+    });
+
+    const created = await apiCall<{ id: string }>("POST", "/api/v1/blog/posts", {
+      session,
+      body: {
+        title: post.title,
+        slug: post.slug,
+        excerpt: post.excerpt,
+        bodyPortableText: newsPostBodyPortableText(post),
+        locale: "id",
+        visibility: "public",
+        termIds: [rubrikId],
+        institutionIds,
+        autoInternalTagLinksDisabled: false
+      }
+    });
+    assertOk(`POST /api/v1/blog/posts (${post.slug})`, created);
+    anyCreated = true;
+    console.log(
+      `apply news post "${post.slug}" (rubrik=${post.rubrikSlug}` +
+        `${institutionIds.length > 0 ? `, institutions=${post.institutionSlugs!.join(",")}` : ""}` +
+        `${post.video ? ", video" : ""})`
+    );
+  }
+
+  if (anyCreated) {
+    console.log(
+      "  news posts created with featuredMediaId=null — this local/CI deployment " +
+        "has no NEWS_MEDIA_R2_* configured to upload a real featured image through " +
+        "(same documented gap as tools/seed-data/products.json's own images, see " +
+        'docs/deployment.md\'s "What this script still does not seed, and why").'
+    );
+  }
+}
+
+// -- 9e. Ad placements (`POST /api/v1/news-portal/ad-placements`) -----------
+//
+// Unlike every resource above, `mediaObjectId` here is REQUIRED and
+// existence/verified-status-checked against `awcms_news_media_objects`
+// (`ad-placement-reference-validation.ts`) — there is no way to create a
+// real ad placement without a media object whose `status` is `verified` or
+// `attached`, and reaching `verified` needs `finalizeNewsMediaUploadSession`
+// to perform a REAL R2 `GET` + checksum, which needs `NEWS_MEDIA_R2_*`
+// configured. This repo's local/CI compose stack provisions PostgreSQL only
+// — no R2/S3-compatible object storage — so this step ATTEMPTS the real
+// upload-session -> PUT -> finalize flow (so it works unattended the moment
+// a deployment DOES have R2 configured) and degrades to a single explained
+// skip line the moment that flow's first step refuses, rather than either
+// fabricating a `status='verified'` row (unlike `ensureTenantDomains`'s
+// `verification_method='manual'`, media verification has no reserved
+// operator-attested value — `verified` means the bytes were actually
+// checked) or failing the whole seed run over infrastructure this script
+// does not own.
+
+type AdPlacementSeed = {
+  placementKey: string;
+  name: string;
+  contentClass: "standard" | "advertorial" | "sponsored";
+  assetFile: string;
+  mimeType: string;
+};
+
+type MediaAttemptResult =
+  | { ok: true; mediaObjectId: string }
+  | { ok: false; reason: string };
+
+async function attemptCreateVerifiedMediaObject(
+  session: Session,
+  assetFile: string,
+  mimeType: string,
+  altText: string
+): Promise<MediaAttemptResult> {
+  const bytes = readFileSync(path.join(SCRIPT_DIR, "..", assetFile));
+
+  const created = await apiCall<{ objectId: string; presignedUrl: string }>(
+    "POST",
+    "/api/v1/media/news-images/upload-sessions",
+    { session, body: { mimeType, altText } }
+  );
+
+  if (!created.ok) {
+    return {
+      ok: false,
+      reason: `POST /api/v1/media/news-images/upload-sessions -> HTTP ${created.status}: ${JSON.stringify(created.raw)}`
+    };
+  }
+
+  let putResponse: Response;
+  try {
+    putResponse = await fetch(created.data.presignedUrl, {
+      method: "PUT",
+      headers: { "content-type": mimeType },
+      body: bytes
+    });
+  } catch (error) {
+    return {
+      ok: false,
+      reason: `PUT to presigned R2 URL failed: ${error instanceof Error ? error.message : String(error)}`
+    };
+  }
+
+  if (!putResponse.ok) {
+    return { ok: false, reason: `PUT to presigned R2 URL -> HTTP ${putResponse.status}` };
+  }
+
+  const finalized = await apiCall(
+    "POST",
+    `/api/v1/media/news-images/upload-sessions/${created.data.objectId}/finalize`,
+    { session, body: {}, idempotencyKey: crypto.randomUUID() }
+  );
+
+  if (!finalized.ok) {
+    return {
+      ok: false,
+      reason: `POST .../finalize -> HTTP ${finalized.status}: ${JSON.stringify(finalized.raw)}`
+    };
+  }
+
+  return { ok: true, mediaObjectId: created.data.objectId };
+}
+
+async function ensureAdPlacements(session: Session): Promise<void> {
+  const list = await apiCall<{ placements: Array<{ placementKey: string }> }>(
+    "GET",
+    "/api/v1/news-portal/ad-placements",
+    { session }
+  );
+  assertOk("GET /api/v1/news-portal/ad-placements", list);
+
+  const existingKeys = new Set(list.data.placements.map((item) => item.placementKey));
+  const placements = readSeedJson<AdPlacementSeed[]>("ad-placements.json");
+  const pending = placements.filter((placement) => {
+    if (existingKeys.has(placement.placementKey)) {
+      console.log(`skip ad placement "${placement.placementKey}" (already exists)`);
+      return false;
+    }
+    return true;
+  });
+
+  for (const placement of pending) {
+    const media = await attemptCreateVerifiedMediaObject(
+      session,
+      placement.assetFile,
+      placement.mimeType,
+      `${placement.name} creative (seed, issue #57)`
+    );
+
+    if (!media.ok) {
+      console.log(
+        `skip ${pending.length} pending ad placement(s) — this deployment has no ` +
+          `working media R2 storage (${media.reason}). Same documented gap as ` +
+          'product images (docs/deployment.md\'s "What this script still does not ' +
+          'seed, and why") — configure NEWS_MEDIA_R2_* and re-run to apply these.'
+      );
+      return;
+    }
+
+    const created = await apiCall("POST", "/api/v1/news-portal/ad-placements", {
+      session,
+      body: {
+        placementKey: placement.placementKey,
+        name: placement.name,
+        mediaObjectId: media.mediaObjectId,
+        linkUrl: null,
+        rotationMode: "latest",
+        priority: 0,
+        isActive: true,
+        targetType: "global",
+        contentClass: placement.contentClass
+      }
+    });
+    assertOk(`POST /api/v1/news-portal/ad-placements (${placement.placementKey})`, created);
+    console.log(
+      `apply ad placement "${placement.placementKey}" (${placement.contentClass})`
+    );
+  }
+}
+
+// -- 9f. Legacy redirects (`POST /api/v1/seo/redirects`) --------------------
+//
+// `target` is this CMS's OWN `/blog/{tenantCode}/{slug}` shape
+// (`blog-content/module.ts`'s `urlTemplate`), never `apps/storefront`'s
+// `/berita/{slug}` — `apps/storefront/src/lib/pengalihan-legacy.ts`'s own
+// header explains why: the two sides only agree on the post's SLUG, and the
+// storefront's build rebuilds the destination in its own URL vocabulary
+// from that slug alone.
+
+type RedirectSeed = { sourcePath: string; postSlug: string; reason: string };
+
+async function ensureRedirects(session: Session): Promise<void> {
+  const list = await apiCall<{ redirects: Array<{ sourcePath: string }> }>(
+    "GET",
+    "/api/v1/seo/redirects?limit=100",
+    { session }
+  );
+  assertOk("GET /api/v1/seo/redirects", list);
+
+  const existingSourcePaths = new Set(list.data.redirects.map((item) => item.sourcePath));
+  const redirects = readSeedJson<RedirectSeed[]>("redirects.json");
+
+  for (const redirect of redirects) {
+    if (existingSourcePaths.has(redirect.sourcePath)) {
+      console.log(`skip redirect "${redirect.sourcePath}" (already exists)`);
+      continue;
+    }
+
+    const target = `/blog/${TENANT_CODE}/${redirect.postSlug}`;
+    const created = await apiCall("POST", "/api/v1/seo/redirects", {
+      session,
+      body: {
+        sourcePath: redirect.sourcePath,
+        target,
+        origin: "legacy_blog",
+        reason: redirect.reason
+      },
+      idempotencyKey: crypto.randomUUID()
+    });
+    assertOk(`POST /api/v1/seo/redirects (${redirect.sourcePath})`, created);
+    console.log(`apply redirect "${redirect.sourcePath}" -> "${target}"`);
+  }
+}
+
+// ---------------------------------------------------------------------------
 // Entry point
 // ---------------------------------------------------------------------------
 
@@ -1207,6 +1798,17 @@ async function main(): Promise<void> {
   await ensureBlogPosts(session, termIdBySlug);
   await applySiteProfile(session);
   await ensureMachineCredential(session, ownerTenantUserId);
+
+  // Issue #57 — seputarborneo reference taxonomy, institutions, sample news
+  // posts, legal pages (via ensureBlogPages/pages.json above), ad
+  // placements, and legacy redirects. Appended last, deliberately: every
+  // step here depends on nothing before it except the session/tenant.
+  const rubrikIdBySlug = await ensureRubrikTerms(session);
+  const kaltengRegions = await resolveKaltengRegions(session);
+  const institutionIdBySlug = await ensureInstitutions(session, kaltengRegions);
+  await ensureNewsPosts(session, rubrikIdBySlug, institutionIdBySlug);
+  await ensureAdPlacements(session);
+  await ensureRedirects(session);
 
   console.log("");
   console.log(`db:seed:cms complete — tenantId=${session.tenantId}`);

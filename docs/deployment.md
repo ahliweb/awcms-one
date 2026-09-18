@@ -66,6 +66,19 @@ bun run db:up                           # postgres:18.4, project "awcms-one", ho
 DATABASE_URL=postgres://awcms:awcms_dev_password@localhost:5433/awcms \
   bun run db:migrate:cms
 
+# Issue #57 — the news taxonomy's "Daerah" institutions and /daerah/{slug}
+# archive resolve their region codes/names against `idn_admin_regions`
+# (ADR-0046), which migrations only SCHEMA — the actual region rows are a
+# separate, explicit import + activate step, apps/cms's own commands (still
+# the OWNER connection above; `awcms_worker`'s grants are enough, but the
+# owner connection this sequence already has open works too):
+cd apps/cms
+DATABASE_URL=postgres://awcms:awcms_dev_password@localhost:5433/awcms \
+  bun run idn-regions:import --commit          # lands `validated`, prints a dataset code
+DATABASE_URL=postgres://awcms:awcms_dev_password@localhost:5433/awcms \
+  bun run idn-regions:activate -- --dataset <code printed above> --commit
+cd ..
+
 # Edit apps/cms/.env's DATABASE_URL to the LEAST-PRIVILEGE runtime role
 # instead, matching root .env.example's documented defaults:
 #   DATABASE_URL=postgres://awcms_app:awcms_app_dev_password@localhost:5433/awcms
@@ -83,9 +96,10 @@ bun run db:seed:cms
 - The `borneojek-mart` tenant and owner (`POST /api/v1/setup/initialize`), and its storefront origins in `awcms_tenant_domains` (see above).
 - The 8-category catalog and one product per commerce `type` (physical/service/subscription/digital, the last a clearly-marked synthetic placeholder), with full BjekMart parity fields (images, variants, size charts, service forms) from `tools/seed-data/*.json`.
 - The marketing surface: one flash sale with a product, two vouchers, three testimonials, a popup, and store settings.
-- A handful of blog terms/pages/posts and the site profile.
+- A handful of blog terms/pages/posts and the site profile, including six social links and a WhatsApp number.
 - One customer with two orders in different states (`pending_payment`, `paid`), created through the anonymous order-creation path itself — not a backdoor — so the seed doubles as a proof that path works.
 - A read-only machine credential scoped to every commerce `read` permission (catalog, marketing, and order/customer/review reads) — the same credential shape `apps/storefront`'s build token needs.
+- **Issue #57** — the news IA's own reference taxonomy, modelled on seputarborneo's real structure (`include/nav_menu.php`'s `seputarborneo_taksonomi()`, verified 2026-09-18): an 8-rubrik `category` tree (politik, hukum, nasional, olahraga, wisata, daerah, mitra-borneo, umum) with umum's 5 topical children plus a `wisata-travel` child (seputarborneo's own `Wisata`/`WISATA` slug collision resolved this way — `awcms_blog_terms_slug_dedup`, `apps/cms/sql/035_awcms_blog_content_schema.sql`, is unique on `(tenant_id, taxonomy_type, slug)` with no `parent_id` component, so one tree cannot hold two `wisata` slugs); the 24-institution legislative/executive directory (`POST /api/v1/blog/institutions`), each `regionCode` resolved by NAME against `GET /api/v1/idn-regions/regions` at seed time (never hard-coded — this is why the `idn-regions:import`/`idn-regions:activate` step above is now part of this sequence); 19 sample news posts across every rubrik (three carrying a Portable Text `videoNews` node with a clearly-marked placeholder YouTube id, since no real seputarborneo channel id was available to verify); three additional legal pages (`redaksi` — generic placeholders, deliberately NOT seputarborneo's own company/personnel data; `pedoman-media-siber` — Dewan Pers's public text, ported; `disclaimer` — genericized to this tenant); and 5 sample `legacy_blog`-origin redirects (`/news/{id}-{slug}.html` → this CMS's own `/blog/borneojek-mart/{slug}`) exercising `docs/routing.md`'s row-based legacy-redirect path. **Ad placements are the one part of this step that does not create anything in this local/CI deployment** — see "What this script still does not seed, and why" below.
 
 It prints the owner password and the machine credential token exactly once, on the run that creates them — neither is stored anywhere by the script.
 
@@ -118,6 +132,8 @@ bun run db:reset                        # drop the volume too — a clean slate
 ### What this script still does not seed, and why
 
 Product images, slider media, and payment-confirmation proof images are resolved through `media_library`'s existing reference mechanism (see [`docs/cms.md`](cms.md)) but not uploaded through a real R2 session here — `tools/seed-assets/` carries small, self-generated placeholder SVGs instead of real photos, and the anonymous payment-proof upload endpoints always answer `503 MEDIA_UNAVAILABLE`. RajaOngkir courier rates and a payment gateway have no field on any endpoint `apps/cms` exposes today, by design — see [ADR-0010](adr/0010-manual-payment-and-alternative-courier-first-gateways-via-outbox.md) and [issue #33](https://github.com/ahliweb/awcms-one/issues/33). Customer accounts are not seeded — the seeded customer has no password, matching [ADR-0009](adr/0009-guest-checkout-by-order-code-and-phone.md) and [issue #32](https://github.com/ahliweb/awcms-one/issues/32).
+
+**Ad placements (issue #57) are the one resource this script cannot create locally, at all**, and this is a harder gap than the placeholder-SVG one above: unlike a product image, `POST /api/v1/news-portal/ad-placements`'s `mediaObjectId` is REQUIRED and existence/status-checked against `awcms_news_media_objects` (`ad-placement-reference-validation.ts`) — only a `verified`/`attached` media object satisfies it, and reaching `verified` needs `finalizeNewsMediaUploadSession` to perform a real R2 `GET` + checksum, which needs `NEWS_MEDIA_R2_*` configured. This repo's local/CI compose stack provisions PostgreSQL only, no R2/S3-compatible object storage. `tools/seed-data/ad-placements.json` and the four correctly-sized placeholder PNGs under `tools/seed-assets/` (`ad-728x90.png`/`ad-970x250.png`/`ad-300x250.png`/`ad-300x600.png`) exist so the seed script's `ensureAdPlacements` step genuinely creates all 12 the moment a deployment DOES have `NEWS_MEDIA_R2_*` configured — locally it prints one explanatory skip line instead of 12 failures, and creates nothing.
 
 ## Production PostgreSQL provisioning is not done
 

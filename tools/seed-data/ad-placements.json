@@ -1,0 +1,86 @@
+[
+  {
+    "placementKey": "header_banner",
+    "name": "Header Banner",
+    "contentClass": "standard",
+    "assetFile": "tools/seed-assets/ad-728x90.png",
+    "mimeType": "image/png"
+  },
+  {
+    "placementKey": "below_headline",
+    "name": "Below Headline",
+    "contentClass": "advertorial",
+    "assetFile": "tools/seed-assets/ad-970x250.png",
+    "mimeType": "image/png"
+  },
+  {
+    "placementKey": "homepage_middle",
+    "name": "Homepage Middle",
+    "contentClass": "standard",
+    "assetFile": "tools/seed-assets/ad-300x250.png",
+    "mimeType": "image/png"
+  },
+  {
+    "placementKey": "homepage_bottom",
+    "name": "Homepage Bottom",
+    "contentClass": "sponsored",
+    "assetFile": "tools/seed-assets/ad-728x90.png",
+    "mimeType": "image/png"
+  },
+  {
+    "placementKey": "sidebar_top",
+    "name": "Sidebar Top",
+    "contentClass": "sponsored",
+    "assetFile": "tools/seed-assets/ad-300x250.png",
+    "mimeType": "image/png"
+  },
+  {
+    "placementKey": "sidebar_middle",
+    "name": "Sidebar Middle",
+    "contentClass": "standard",
+    "assetFile": "tools/seed-assets/ad-300x250.png",
+    "mimeType": "image/png"
+  },
+  {
+    "placementKey": "sidebar_bottom",
+    "name": "Sidebar Bottom",
+    "contentClass": "advertorial",
+    "assetFile": "tools/seed-assets/ad-300x250.png",
+    "mimeType": "image/png"
+  },
+  {
+    "placementKey": "article_top",
+    "name": "Article Top",
+    "contentClass": "standard",
+    "assetFile": "tools/seed-assets/ad-728x90.png",
+    "mimeType": "image/png"
+  },
+  {
+    "placementKey": "article_middle",
+    "name": "Article Middle",
+    "contentClass": "advertorial",
+    "assetFile": "tools/seed-assets/ad-300x250.png",
+    "mimeType": "image/png"
+  },
+  {
+    "placementKey": "article_bottom",
+    "name": "Article Bottom",
+    "contentClass": "standard",
+    "assetFile": "tools/seed-assets/ad-728x90.png",
+    "mimeType": "image/png"
+  },
+  {
+    "placementKey": "category_archive_top",
+    "name": "Category Archive Top",
+    "contentClass": "standard",
+    "assetFile": "tools/seed-assets/ad-728x90.png",
+    "mimeType": "image/png"
+  },
+  {
+    "placementKey": "search_result_top",
+    "name": "Search Result Top",
+    "contentClass": "sponsored",
+    "assetFile": "tools/seed-assets/ad-728x90.png",
+    "mimeType": "image/png"
+  }
+]

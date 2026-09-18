@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](deployment.md)
 
-<!-- i18n-source-hash: sha256:0dd7809de9871c1e47b53a0cb9ae3343dfca1e93598bdeea9fb129062690e10b -->
+<!-- i18n-source-hash: sha256:c66aace6bc4ff2fe8a39fe7ebc3b0141a0351ddeaa76412f01574f5225cae5b1 -->
 
 # Deployment
 
@@ -68,6 +68,19 @@ bun run db:up                           # postgres:18.4, project "awcms-one", ho
 DATABASE_URL=postgres://awcms:awcms_dev_password@localhost:5433/awcms \
   bun run db:migrate:cms
 
+# Issue #57 — institusi "Daerah" pada taksonomi berita dan arsip
+# /daerah/{slug} me-resolve kode/nama wilayahnya terhadap `idn_admin_regions`
+# (ADR-0046), yang migrasinya hanya membuat SKEMA — baris wilayah
+# sesungguhnya adalah langkah import + activate terpisah, perintah apps/cms
+# sendiri (masih koneksi OWNER di atas; grant `awcms_worker` cukup, tapi
+# koneksi owner yang sudah terbuka dari urutan ini juga bekerja):
+cd apps/cms
+DATABASE_URL=postgres://awcms:awcms_dev_password@localhost:5433/awcms \
+  bun run idn-regions:import --commit          # mendarat `validated`, mencetak kode dataset
+DATABASE_URL=postgres://awcms:awcms_dev_password@localhost:5433/awcms \
+  bun run idn-regions:activate -- --dataset <kode yang dicetak di atas> --commit
+cd ..
+
 # Edit apps/cms/.env's DATABASE_URL to the LEAST-PRIVILEGE runtime role
 # instead, matching root .env.example's documented defaults:
 #   DATABASE_URL=postgres://awcms_app:awcms_app_dev_password@localhost:5433/awcms
@@ -85,9 +98,10 @@ bun run db:seed:cms
 - Tenant dan owner `borneojek-mart` (`POST /api/v1/setup/initialize`), dan origin storefront-nya di `awcms_tenant_domains` (lihat di atas).
 - Katalog 8 kategori dan satu produk per `type` commerce (physical/service/subscription/digital, yang terakhir placeholder sintetis yang ditandai jelas), dengan field paritas BjekMart lengkap (gambar, varian, size chart, service form) dari `tools/seed-data/*.json`.
 - Permukaan marketing: satu flash sale dengan satu produk, dua voucher, tiga testimoni, satu popup, dan store settings.
-- Segelintir term/halaman/post blog dan profil situs.
+- Segelintir term/halaman/post blog dan profil situs, termasuk enam tautan sosial dan satu nomor WhatsApp.
 - Satu pelanggan dengan dua pesanan pada state berbeda (`pending_payment`, `paid`), dibuat lewat jalur pembuatan-pesanan anonim itu sendiri — bukan backdoor — sehingga seed sekaligus membuktikan jalur itu bekerja.
 - Kredensial mesin baca-saja bercakupan setiap permission `read` commerce (pembacaan katalog, marketing, dan order/customer/review) — bentuk kredensial yang sama yang dibutuhkan token build `apps/storefront`.
+- **Issue #57** — taksonomi referensi milik IA berita sendiri, dimodelkan dari struktur nyata seputarborneo (`include/nav_menu.php`'s `seputarborneo_taksonomi()`, diverifikasi 2026-09-18): pohon `category` 8-rubrik (politik, hukum, nasional, olahraga, wisata, daerah, mitra-borneo, umum) dengan 5 anak tematik milik umum plus satu anak `wisata-travel` (tabrakan slug `Wisata`/`WISATA` milik seputarborneo sendiri diselesaikan dengan cara ini — `awcms_blog_terms_slug_dedup`, `apps/cms/sql/035_awcms_blog_content_schema.sql`, unik pada `(tenant_id, taxonomy_type, slug)` tanpa komponen `parent_id`, sehingga satu pohon tidak bisa menampung dua slug `wisata`); direktori 24-institusi legislatif/eksekutif (`POST /api/v1/blog/institutions`), setiap `regionCode`-nya di-resolve lewat NAMA terhadap `GET /api/v1/idn-regions/regions` pada saat seed (tidak pernah hard-code — inilah mengapa langkah `idn-regions:import`/`idn-regions:activate` di atas kini bagian dari urutan ini); 19 sample post berita di seluruh rubrik (tiga di antaranya membawa node Portable Text `videoNews` dengan id YouTube placeholder yang ditandai jelas, karena tidak ada id kanal seputarborneo nyata yang bisa diverifikasi); tiga halaman legal tambahan (`redaksi` — placeholder generik, SENGAJA bukan data perusahaan/personel seputarborneo sendiri; `pedoman-media-siber` — teks publik Dewan Pers, diporting; `disclaimer` — digenerikkan untuk tenant ini); dan 5 sample redirect ber-origin `legacy_blog` (`/news/{id}-{slug}.html` → bentuk `/blog/borneojek-mart/{slug}` milik CMS ini sendiri) yang menjalankan jalur legacy-redirect berbasis-baris `docs/routing.md`. **Ad placement adalah satu-satunya bagian dari langkah ini yang tidak membuat apa pun di deployment lokal/CI ini** — lihat "Apa yang masih TIDAK di-seed skrip ini, dan mengapa" di bawah.
 
 Ia mencetak password owner dan token kredensial mesin persis sekali, pada run yang membuatnya — tidak ada yang disimpan skrip ini di mana pun.
 
@@ -120,6 +134,8 @@ Image resmi `postgres:18` menolak volume yang di-mount langsung di `/var/lib/pos
 ### Apa yang masih TIDAK di-seed skrip ini, dan mengapa
 
 Gambar produk, media slider, dan gambar bukti konfirmasi-pembayaran di-resolve lewat mekanisme referensi `media_library` yang sudah ada (lihat [`docs/cms.md`](cms.id.md)) tapi tidak diunggah lewat sesi R2 nyata di sini — `tools/seed-assets/` membawa SVG placeholder kecil buatan-sendiri alih-alih foto nyata, dan endpoint unggah bukti-pembayaran anonim selalu menjawab `503 MEDIA_UNAVAILABLE`. Tarif kurir RajaOngkir dan payment gateway tidak punya field pada endpoint mana pun yang diekspos `apps/cms` hari ini, by design — lihat [ADR-0010](adr/0010-manual-payment-and-alternative-courier-first-gateways-via-outbox.id.md) dan [issue #33](https://github.com/ahliweb/awcms-one/issues/33). Akun pelanggan tidak di-seed — pelanggan yang di-seed tidak punya password, cocok dengan [ADR-0009](adr/0009-guest-checkout-by-order-code-and-phone.id.md) dan [issue #32](https://github.com/ahliweb/awcms-one/issues/32).
+
+**Ad placement (issue #57) adalah satu-satunya resource yang sama sekali tidak bisa dibuat skrip ini secara lokal**, dan ini celah yang lebih berat dari SVG-placeholder di atas: tidak seperti gambar produk, `mediaObjectId` pada `POST /api/v1/news-portal/ad-placements` WAJIB diisi dan diperiksa keberadaan/statusnya terhadap `awcms_news_media_objects` (`ad-placement-reference-validation.ts`) — hanya media object berstatus `verified`/`attached` yang memenuhinya, dan mencapai `verified` butuh `finalizeNewsMediaUploadSession` melakukan `GET` R2 sungguhan + checksum, yang butuh `NEWS_MEDIA_R2_*` dikonfigurasi. Stack compose lokal/CI repositori ini hanya menyediakan PostgreSQL, tidak ada penyimpanan objek kompatibel-R2/S3. `tools/seed-data/ad-placements.json` dan empat PNG placeholder berukuran-benar di bawah `tools/seed-assets/` (`ad-728x90.png`/`ad-970x250.png`/`ad-300x250.png`/`ad-300x600.png`) ada supaya langkah `ensureAdPlacements` skrip seed benar-benar membuat ke-12nya begitu satu deployment SUDAH mengonfigurasi `NEWS_MEDIA_R2_*` — secara lokal ia mencetak satu baris skip yang menjelaskan alih-alih 12 kegagalan, dan tidak membuat apa pun.
 
 ## Penyediaan PostgreSQL produksi belum dilakukan
 
