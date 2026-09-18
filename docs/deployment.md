@@ -94,6 +94,14 @@ bun run db:up                           # postgres:18.4, project "awcms-one", ho
 DATABASE_URL=postgres://awcms:awcms_dev_password@localhost:5433/awcms \
   bun run db:migrate:cms
 
+# One-off, only for a database that ran `db:migrate` against the `commerce`
+# module's OLD sql/153-sql/168 file names (issue #72, ADR-0015): before its
+# NEXT db:migrate, run
+#   cd apps/cms && DATABASE_URL=<url> bun run db:commerce:renumber
+# once. It updates the sixteen already-applied rows' recorded names/checksums
+# to the new sql/901-sql/916 names; a fresh database (this one) needs it not
+# at all, since it applies the new file names directly.
+
 # Issue #57 — the news taxonomy's "Daerah" institutions and /daerah/{slug}
 # archive resolve their region codes/names against `idn_admin_regions`
 # (ADR-0046), which migrations only SCHEMA — the actual region rows are a

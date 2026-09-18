@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](pengujian.md)
 
-<!-- i18n-source-hash: sha256:b7a95987a6b7c7106e24adec6cd1433918a7021264e43345c2d3b0c3dd467230 -->
+<!-- i18n-source-hash: sha256:8d5c4278b9d2782f87a6f58954b47f26589d5e8712ad7375ddaeaeaa3de0b24e -->
 
 # Pengujian
 
@@ -76,6 +76,8 @@ Container layanan `postgres:18.4` (`POSTGRES_USER=awcms`, `POSTGRES_DB=awcms`, h
 | Pertanyaan | Tingkat |
 | --- | --- |
 | Apakah state machine produk/pesanan/flash-sale berperilaku benar secara terisolasi? | `apps/cms/tests/commerce-domain.test.ts`, `apps/cms/tests/commerce-marketing-domain.test.ts` milik `apps/cms` (murni, tanpa basis data) |
+| Apakah setiap migrasi commerce tetap di dalam rentang cadangan `9xx`, dan setiap migrasi lain di luarnya (issue #72)? | `apps/cms/tests/commerce-migrations-range.test.ts` milik `apps/cms` (murni, hanya membaca nama berkas `apps/cms/sql/`) |
+| Apakah rencana rename `db:commerce:renumber` berperilaku benar untuk basis data baru, sudah-bermigrasi, campuran, atau sudah-diberi-nomor-ulang (issue #72)? | `apps/cms/tests/commerce-migrations-renumber.test.ts` milik `apps/cms` (murni, tanpa basis data) |
 | Apakah RLS benar-benar mengisolasi setiap tabel `awcms_commerce_*` per tenant? | Suite integrasi RLS generik milik `apps/cms`, diturunkan dari pernyataan `ENABLE`/`FORCE` masing-masing tabel (butuh PostgreSQL) |
 | Apakah API storefront anonim me-resolve tenant dengan benar dan menolak sisanya? | `commerce-catalog.integration.test.ts`/`commerce-marketing.integration.test.ts` milik `apps/cms` (butuh PostgreSQL); orders/customers hanya dibuktikan dengan tangan, lihat di atas |
 | Apakah storefront membangun situs nyata terhadap envelope API nyata, termasuk checkout? | Build berbasis stub milik `apps/storefront`, dan `bun run test:e2e` |

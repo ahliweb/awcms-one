@@ -64,6 +64,8 @@ Every other PR in this repo may be merged however the reviewer prefers; `delete_
 
 This list is deliberately still one item long after increment 2's nine merged PRs (#34–#42): every one of the `commerce` module's PRs was ordinary additive module work inside `apps/cms`'s own admission discipline, not a patch to upstream's shared infrastructure, so none of them added a new divergence here.
 
+**`commerce` migrations reserve `901`–`999`; upstream owns `001`–`899`.** `apps/cms/sql/*.sql` is one flat, lexically-ordered sequence (`apps/cms/scripts/db-migrate.ts`, upstream, never edited locally), and this repo's own `commerce` module originally numbered its sixteen migrations inside upstream's own range — a collision waiting for upstream's own numbering to reach the same numbers, which it did (issue #72; see [ADR-0015](docs/adr/0015-commerce-migrations-live-in-the-reserved-9xx-range.md)). Every commerce migration now lives at `901`–`916`, with the next one at `917`; `apps/cms/tests/commerce-migrations-range.test.ts` enforces the split both ways. **Never renumber a file `git subtree pull` brought in from upstream** — only this repo's own `commerce` migrations are ever renumbered, and only forward, never re-touching an already-applied one's contents (checksums are immutable; see `apps/cms/scripts/db-migrate.ts`'s `validateAppliedChecksums`). A database migrated before this rule ran `bun run db:commerce:renumber` once, before its next `db:migrate` — see `apps/cms/scripts/commerce-migrations-renumber.ts`.
+
 ## Workspace boundaries
 
 This is a Bun workspace (`workspaces: ["apps/*", "packages/*"]`); each directory under `apps/` and `packages/` is a separate concern, and a change should stay inside the workspace(s) it is actually about. Concretely:

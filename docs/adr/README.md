@@ -30,6 +30,7 @@ What does **not** need an ADR: adding a field within an already-decided schema, 
 | [0012](0012-first-party-visitor-analytics-with-an-opt-in-ga4-switch.md) | Visitor analytics is first-party by default; GA4 is an opt-in switch | Accepted |
 | [0013](0013-rule-based-legacy-redirects-beside-the-row-based-map.md) | Rule-based legacy redirects sit beside the row-based map, and a row always wins | Accepted |
 | [0014](0014-the-institution-owns-the-emblem-not-the-post.md) | An institution owns its emblem; a post never carries one | Accepted |
+| [0015](0015-commerce-migrations-live-in-the-reserved-9xx-range.md) | Commerce migrations live in the reserved `9xx` range | Accepted |
 
 ## Why the numbering starts at 0001
 
