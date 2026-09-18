@@ -12,22 +12,23 @@ sale, voucher, slider, testimoni, popup promo, dan satu dokumen pengaturan
 toko per tenant — dan, sejak Issue #29, **pelanggan, order, dan review**:
 guest checkout yang tak pernah mewajibkan akun, cart quote yang menghitung
 ulang harga di sisi server, pelacakan dan pembatalan order lewat `orderCode`
-+ nomor telepon, konfirmasi pembayaran manual, dan review yang ditinggalkan
-dari order yang sudah selesai. Issue #4 (bagian dari epic #1) mengirimkan
-inti katalog; Issue #23 (bagian dari epic #21) membawanya ke paritas model
-produk penuh dengan skema legacy; Issue #26 (epic yang sama) menambahkan
-tabel pemasaran; Issue #29 (epic yang sama) menambahkan pelanggan, order,
-dan permukaan checkout storefront anonim.
 
-| Aspek      | Nilai                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Key / type | `commerce` · `domain`, `isCore: false`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+- nomor telepon, konfirmasi pembayaran manual, dan review yang ditinggalkan
+  dari order yang sudah selesai. Issue #4 (bagian dari epic #1) mengirimkan
+  inti katalog; Issue #23 (bagian dari epic #21) membawanya ke paritas model
+  produk penuh dengan skema legacy; Issue #26 (epic yang sama) menambahkan
+  tabel pemasaran; Issue #29 (epic yang sama) menambahkan pelanggan, order,
+  dan permukaan checkout storefront anonim.
+
+| Aspek      | Nilai                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Key / type | `commerce` · `domain`, `isCore: false`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 | Tabel      | `awcms_commerce_categories`, `awcms_commerce_products` (`sql/153`, diperluas `sql/156`), `awcms_commerce_product_images`, `awcms_commerce_product_variants` (`sql/157`); `awcms_commerce_flash_sales`, `awcms_commerce_flash_sale_products`, `awcms_commerce_vouchers`, `awcms_commerce_sliders`, `awcms_commerce_testimonials`, `awcms_commerce_popups` (`sql/161`), `awcms_commerce_store_settings` (`sql/162`); `awcms_commerce_customers`, `awcms_commerce_customer_addresses`, `awcms_commerce_orders`, `awcms_commerce_order_items`, `awcms_commerce_order_events`, `awcms_commerce_payment_confirmations`, `awcms_commerce_reviews`, `awcms_commerce_wishlists` (`sql/165`) |
-| Permission | `categories.{read,create,update,delete,restore}`, `products.{read,create,update,delete,restore}` (`sql/154`, `sql/158`); `{flash_sales,vouchers,sliders,testimonials,popups}.{read,create,update,delete}`, `settings.{read,update}` (`sql/163`); `orders.{read,update}`, `customers.{read,update}`, `reviews.{read,update,delete}` (`sql/166`, dengan sengaja tanpa create/delete untuk orders atau customers — lihat "Pelanggan, order, dan review" di bawah) — 39 total                                                                                                                                            |
-| API        | `/api/v1/commerce/{categories,products,flash-sales,vouchers,sliders,testimonials,popups,store-settings,orders,customers,reviews}` (sisi pemilik); `/api/v1/commerce/storefront/{cart/quote,orders,reviews}` (sisi anonim) (`openapi/modules/commerce.openapi.yaml`)                                                                                                                                                                                                                                                                                                                                                    |
-| Event      | `commerce.product.{created,updated,status_changed}`; `commerce.flash_sale.{started,ended}` (Issue #26, dipancarkan job tick); `commerce.order.{created,paid,status_changed,cancelled,expired}`, `commerce.voucher.redeemed`, `commerce.review.published` (Issue #29)                                                                                                                                                                                                                                                                                                                                                    |
-| Depends on | `tenant_admin`, `identity_access`, `domain_event_runtime`, `media_library` (gambar produk, slider, avatar testimoni, gambar popup, dan logo/favicon toko semuanya di-resolve lewat `MediaLibraryPort`), `module_management` (resolver tenant storefront anonim memeriksa modul ini aktif untuk tenant tersebut sebelum menjawab)                                                                                                                                                                                                                                                                                       |
-| Job        | `commerce:flash-sales:tick` (`scripts/commerce-flash-sales-tick.ts`, tiap 5 menit — menyimpan status turunan tiap sale dan memancarkan dua event flash sale); `commerce:orders:expire` (`scripts/commerce-orders-expire.ts`, tiap 5 menit — mengekspirasi order belum-bayar yang melewati jendela terkonfigurasi toko, me-restock lini pesanannya, dan memancarkan `commerce.order.expired`)                                                                                                                                                                                                                          |
+| Permission | `categories.{read,create,update,delete,restore}`, `products.{read,create,update,delete,restore}` (`sql/154`, `sql/158`); `{flash_sales,vouchers,sliders,testimonials,popups}.{read,create,update,delete}`, `settings.{read,update}` (`sql/163`); `orders.{read,update}`, `customers.{read,update}`, `reviews.{read,update,delete}` (`sql/166`, dengan sengaja tanpa create/delete untuk orders atau customers — lihat "Pelanggan, order, dan review" di bawah) — 39 total                                                                                                                                                                                                          |
+| API        | `/api/v1/commerce/{categories,products,flash-sales,vouchers,sliders,testimonials,popups,store-settings,orders,customers,reviews}` (sisi pemilik); `/api/v1/commerce/storefront/{cart/quote,orders,reviews}` (sisi anonim) (`openapi/modules/commerce.openapi.yaml`)                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Event      | `commerce.product.{created,updated,status_changed}`; `commerce.flash_sale.{started,ended}` (Issue #26, dipancarkan job tick); `commerce.order.{created,paid,status_changed,cancelled,expired}`, `commerce.voucher.redeemed`, `commerce.review.published` (Issue #29)                                                                                                                                                                                                                                                                                                                                                                                                               |
+| Depends on | `tenant_admin`, `identity_access`, `domain_event_runtime`, `media_library` (gambar produk, slider, avatar testimoni, gambar popup, dan logo/favicon toko semuanya di-resolve lewat `MediaLibraryPort`), `module_management` (resolver tenant storefront anonim memeriksa modul ini aktif untuk tenant tersebut sebelum menjawab)                                                                                                                                                                                                                                                                                                                                                   |
+| Job        | `commerce:flash-sales:tick` (`scripts/commerce-flash-sales-tick.ts`, tiap 5 menit — menyimpan status turunan tiap sale dan memancarkan dua event flash sale); `commerce:orders:expire` (`scripts/commerce-orders-expire.ts`, tiap 5 menit — mengekspirasi order belum-bayar yang melewati jendela terkonfigurasi toko, me-restock lini pesanannya, dan memancarkan `commerce.order.expired`)                                                                                                                                                                                                                                                                                       |
 
 ## Apa yang ditambahkan Issue #23, dan apa yang masih peningkatan berikutnya
 
@@ -292,7 +293,7 @@ di-rate-limit per IP dan membaca body-nya lewat `readJsonBody`, tak pernah
   tetap: subtotal → diskon voucher → ongkir (dinolkan oleh flag
   `freeShipping` milik voucher atau ambang gratis-ongkir toko, hanya saat
   setiap lini mengizinkan gratis ongkir) → asuransi (`max(minFee, subtotal ×
-  ratePercent)`, dipaksa aktif saat ada lini yang mewajibkannya) → pajak
+ratePercent)`, dipaksa aktif saat ada lini yang mewajibkannya) → pajak
   (persentase dari `subtotal − discount`) → total. `previousUnitPrice`
   selalu `null` dan line-diff `"price_changed"` tak pernah dipancarkan —
   tak ada harga yang diharapkan dari klien untuk dibandingkan dalam kontrak
@@ -305,18 +306,18 @@ di-rate-limit per IP dan membaca body-nya lewat `readJsonBody`, tak pernah
   mengecualikan `0/O/1/I`), dan `commerce.order.created` dipancarkan.
   Idempotensinya memakai store BERSAMA (`_shared/idempotency.ts`), bukan
   kolom khusus — dengan kunci `(tenantId, "commerce.orders.create",
-  idempotencyKey)` — sehingga submit yang diulang me-replay response
+idempotencyKey)` — sehingga submit yang diulang me-replay response
   pertama alih-alih membuat order kedua; race antara dua submit identik
   yang konkuren ditangkap secara terpusat (`IdempotencyRaceLostError`) dan
   dijawab sebagai replay, bukan 500.
 - **`GET /storefront/orders/:orderCode`**, **`POST .../cancel`**, **`POST
-  .../payment-confirmations`**, **`POST /storefront/reviews`** semuanya
+.../payment-confirmations`**, **`POST /storefront/reviews`** semuanya
   memakai `orderCode` + nomor telepon sebagai pasangan kredensial, diperiksa
   terhadap `customer_id` milik order itu sendiri sebelum apa pun dibaca
   atau ditulis.
 - **Upload bukti pembayaran adalah stub di peningkatan ini.** Kedua
   endpoint `.../payment-proof/upload-sessions` selalu menjawab `503
-  MEDIA_UNAVAILABLE` (header `application/order-directory.ts` menjelaskan
+MEDIA_UNAVAILABLE` (header `application/order-directory.ts` menjelaskan
   alasannya: belum ada kontrak upload-media untuk pemanggil anonim
   tak-terautentikasi di `media_library`) — konfirmasi pembayaran manual
   tetap berfungsi tanpa foto; hanya jalur bukti-upload-pembeli yang
@@ -404,18 +405,19 @@ atas), soft delete, restore.
 
 Issue #26 menambahkan `/admin/commerce-flash-sales`, `-vouchers`, `-sliders`,
 `-testimonials`, `-popup`, dan `-settings`, masing-masing daftar + form buat
-+ edit/hapus per baris terhadap rute pemiliknya (layar pengaturan adalah
-satu form dengan aksi "reset ke bawaan"). Issue #29 menambahkan
-`/admin/commerce-orders` (daftar + filter berdasarkan status, tampilan
-detail, transisi status, review konfirmasi-pembayaran), `-customers`
-(daftar, detail, edit), dan `-reviews` (daftar, moderasi, hapus) — tanpa
-form buat pada ketiganya, karena tak satu pun permission-nya mencakup
-`create`. Kesebelas layar sudah keluar dari `NOT_YET_SCREENED` milik
-`scripts/admin-screen-coverage-ledger.ts` — setiap satu dari 39 permission
-yang dideklarasikan diklaim salah satunya, dan
-`tests/admin-commerce-marketing-page-contract.test.ts` /
-`tests/admin-commerce-page-contract.test.ts` menuntut layar-layar baru itu
-pada sifat yang sama yang dipenuhi layar-layar sebelumnya.
+
+- edit/hapus per baris terhadap rute pemiliknya (layar pengaturan adalah
+  satu form dengan aksi "reset ke bawaan"). Issue #29 menambahkan
+  `/admin/commerce-orders` (daftar + filter berdasarkan status, tampilan
+  detail, transisi status, review konfirmasi-pembayaran), `-customers`
+  (daftar, detail, edit), dan `-reviews` (daftar, moderasi, hapus) — tanpa
+  form buat pada ketiganya, karena tak satu pun permission-nya mencakup
+  `create`. Kesebelas layar sudah keluar dari `NOT_YET_SCREENED` milik
+  `scripts/admin-screen-coverage-ledger.ts` — setiap satu dari 39 permission
+  yang dideklarasikan diklaim salah satunya, dan
+  `tests/admin-commerce-marketing-page-contract.test.ts` /
+  `tests/admin-commerce-page-contract.test.ts` menuntut layar-layar baru itu
+  pada sifat yang sama yang dipenuhi layar-layar sebelumnya.
 
 ## Dengan sengaja tidak ada di sini
 
