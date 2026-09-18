@@ -41,7 +41,7 @@ Two things this issue considered and did not do: `noindex` on rubrik pages beyon
 
 ## `noindex` pages
 
-`checkout`, `pesanan`, `cari`, `wishlist`, and `keranjang` all carry `<meta name="robots" content="noindex, follow">` via `BaseLayout`'s `head` slot — none of them is a page a search result should ever land a reader on directly. `robots.txt` additionally `Disallow`s the fetch for the same five paths plus `/api/`.
+`checkout`, `pesanan`, `cari`, `wishlist`, `keranjang`, `masuk`, `daftar`, and `akun` (issue #88) all carry `<meta name="robots" content="noindex, follow">` via `BaseLayout`'s `head` slot — none of them is a page a search result should ever land a reader on directly. `robots.txt` additionally `Disallow`s the fetch for the same paths (a bare `Disallow: /akun` covers every child account route as S2/S3 add them) plus `/api/`.
 
 ## Sitemaps and feeds
 
