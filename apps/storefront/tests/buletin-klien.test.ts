@@ -25,13 +25,13 @@ const ORIGINAL_ORIGIN = process.env.PUBLIC_AWCMS_ORIGIN;
 
 let lastRequest: { url: string; init: RequestInit } | null = null;
 
-function mockFetch(status: number, body: unknown): void {
+function mockFetch(status: number, body: unknown, headers: Record<string, string> = {}): void {
   lastRequest = null;
   globalThis.fetch = (async (url: string, init: RequestInit) => {
     lastRequest = { url: String(url), init };
     return new Response(JSON.stringify(body), {
       status,
-      headers: { "content-type": "application/json" }
+      headers: { "content-type": "application/json", ...headers }
     });
   }) as unknown as typeof fetch;
 }
@@ -112,11 +112,15 @@ describe("buletin: the four acceptance paths", () => {
     }
   });
 
-  test("rate-limited: a 429 RATE_LIMITED carries retryAfterSeconds and maps to Indonesian copy naming the wait", async () => {
-    mockFetch(429, {
-      success: false,
-      error: { code: "RATE_LIMITED", message: "Too many subscription requests from this source. Try again later.", details: { retryAfter: 42 } }
-    });
+  test("rate-limited: a 429 RATE_LIMITED reads its wait from the Retry-After HEADER, and maps to Indonesian copy naming it", async () => {
+    // The real CMS routes call `fail(429, "RATE_LIMITED", "...", {}, undefined, { "retry-after": "42", vary: "Origin" })`
+    // (apps/cms/src/modules/_shared/api-response.ts's `fail(status, code, message, meta, details, headers)`)
+    // — `details` is `undefined`, never `{ retryAfter }`; the wait travels as a response HEADER.
+    mockFetch(
+      429,
+      { success: false, error: { code: "RATE_LIMITED", message: "Too many subscription requests from this source. Try again later." } },
+      { "retry-after": "42" }
+    );
 
     try {
       await subscribeToNewsletter("cepat@example.com");
@@ -127,10 +131,29 @@ describe("buletin: the four acceptance paths", () => {
       expect(buletinErrorMessage(error)).toBe("Terlalu banyak percobaan. Coba lagi dalam 42 detik.");
     }
   });
+
+  test("a 429 with no Retry-After header still maps to a generic 'try again' Indonesian message", async () => {
+    mockFetch(429, { success: false, error: { code: "RATE_LIMITED", message: "Too many requests." } });
+
+    try {
+      await subscribeToNewsletter("cepat@example.com");
+      throw new Error("should have thrown");
+    } catch (error) {
+      expect((error as BuletinApiError).retryAfterSeconds).toBeNull();
+      expect(buletinErrorMessage(error)).toBe("Terlalu banyak percobaan. Coba lagi sebentar lagi.");
+    }
+  });
 });
 
 describe("buletin: errors", () => {
-  test("a network failure becomes a NETWORK_ERROR BuletinApiError, not a raw rejection", async () => {
+  test("a network failure becomes a NETWORK_ERROR BuletinApiError, not a raw rejection — and its copy never asserts a connectivity cause", async () => {
+    // NETWORK_ERROR is not only a real dropped connection: a cross-origin
+    // 400/429 from these routes carries NO CORS grant (see
+    // `buletinErrorMessage`'s own docblock), so the browser's `fetch()`
+    // rejects before the JSON body is ever read — the SAME rejection this
+    // mock produces. The copy therefore must not claim "check your
+    // connection", because the real cause is usually a bad address, not a
+    // dead network.
     globalThis.fetch = (async () => {
       throw new TypeError("fetch failed");
     }) as unknown as typeof fetch;
@@ -141,7 +164,24 @@ describe("buletin: errors", () => {
     } catch (error) {
       expect(error).toBeInstanceOf(BuletinApiError);
       expect((error as BuletinApiError).code).toBe("NETWORK_ERROR");
-      expect(buletinErrorMessage(error)).toBe("Tidak dapat menghubungi server. Periksa koneksi internet Anda dan coba lagi.");
+      const message = buletinErrorMessage(error);
+      expect(message).toBe("Pendaftaran belum berhasil. Periksa alamat e-mail Anda atau coba lagi beberapa menit lagi.");
+      expect(message).not.toMatch(/koneksi|internet|connection/i);
+    }
+  });
+
+  test("NETWORK_ERROR in the 'token' context (confirm/unsubscribe) points at the link, not an e-mail field that page has none of", async () => {
+    globalThis.fetch = (async () => {
+      throw new TypeError("fetch failed");
+    }) as unknown as typeof fetch;
+
+    try {
+      await confirmNewsletterSubscription("tok123");
+      throw new Error("should have thrown");
+    } catch (error) {
+      const message = buletinErrorMessage(error, "token");
+      expect(message).toBe("Permintaan belum berhasil. Periksa kembali tautan dari email Anda atau coba lagi beberapa menit lagi.");
+      expect(message).not.toMatch(/koneksi|internet|connection|alamat e-mail/i);
     }
   });
 
@@ -181,7 +221,7 @@ describe("buletin: errors", () => {
 describe("buletinErrorMessage", () => {
   test("every string it returns is Indonesian — never the server's raw English message", () => {
     const validation = new BuletinApiError("A valid email address is required.", 400, "VALIDATION_ERROR");
-    const rateLimited = new BuletinApiError("Too many requests.", 429, "RATE_LIMITED", { retryAfter: 5 });
+    const rateLimited = new BuletinApiError("Too many requests.", 429, "RATE_LIMITED", undefined, 5);
     const network = new BuletinApiError("network down", 0, "NETWORK_ERROR");
     const unknownCode = new BuletinApiError("some server text", 500, "SOME_UNDOCUMENTED_CODE");
 

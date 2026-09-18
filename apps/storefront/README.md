@@ -435,6 +435,37 @@ after a build in this issue's own review, not asserted by a new test — a
   `buletin.ts` never renders the CMS's `data.message` verbatim — every
   string a reader sees is written by `buletin.ts` itself, mapped from the
   response's `success`/`error.code`, never its `message`.
+- **The subscribe form validates the address BEFORE ever calling `fetch()`.**
+  `FormBuletin.astro`'s `<form novalidate>` and `buletin.ts`'s
+  `emailInput.checkValidity()`/`reportValidity()` (the same pattern
+  `checkout.ts` already uses for its own required fields) stop a malformed
+  address from ever reaching the network. This matters more here than it
+  would on a same-origin form: a cross-origin `400 VALIDATION_ERROR` from
+  these routes carries no CORS grant at all (see the next bullet), so
+  without this check a typo would surface to the reader as "could not reach
+  the server" — the wrong cause entirely.
+- **`VALIDATION_ERROR`/`RATE_LIMITED` are real route behaviour that this
+  app's ACTUAL, cross-origin deployment can never actually observe.** All
+  three CMS routes answer their own `400`/`429` BEFORE classifying the
+  request's `Origin`, and that response carries only `vary: "Origin"` —
+  never `access-control-allow-origin`. For a cross-origin `fetch()` (what
+  every real deployment of this storefront makes — ADR-0007 (revised, issue
+  #30) puts the CMS on a different origin from this app, same as the
+  `awcms`-side ADR-0070 already cited below), a response with no CORS
+  grant is invisible to JS entirely: the `fetch()` promise itself rejects,
+  landing in `buletin.ts`'s own `NETWORK_ERROR` handling, not in a readable
+  `400`/`429` body. `buletinErrorMessage`'s `NETWORK_ERROR` copy is worded
+  to fit both causes — a genuine dropped connection AND a CORS-hidden
+  validation/rate-limit failure — rather than asserting "check your
+  connection" for what is very often really a bad e-mail address.
+- **`RATE_LIMITED`'s wait comes from the `Retry-After` response HEADER, not
+  the JSON body.** The CMS's own `fail(429, "RATE_LIMITED", "...", {},
+  undefined, { "retry-after": "<seconds>", vary: "Origin" })` call
+  (`apps/cms/src/modules/_shared/api-response.ts`'s `fail` signature is
+  `(status, code, message, meta, details, headers)`) never puts the wait in
+  `error.details` — an earlier version of this file read `details.retryAfter`
+  and would have always gotten `null` in production. `buletin.ts`'s
+  `request()` reads `response.headers.get("retry-after")` directly.
 - **The honeypot is client-side only.** The CMS route validates exactly
   `email`/`locale` and nothing else, so a third form field would never
   reach it either way; `FormBuletin.astro`'s hidden `website` field is
@@ -449,7 +480,21 @@ after a build in this issue's own review, not asserted by a new test — a
   token IS the credential the e-mail link carries. A missing or malformed
   token (checked against the same shape the CMS itself validates,
   `apps/cms/src/modules/newsletter/domain/subscription-token.ts`'s
-  `isWellFormedSubscriptionToken`) never reaches the network at all.
+  `isWellFormedSubscriptionToken`) never reaches the network at all, and
+  never reveals a button there is nothing correct for it to do.
+- **The state-changing POST fires only on a deliberate click, never on page
+  load.** A mail gateway's inbound link-scanner (Outlook Safe Links,
+  Google's/Microsoft's own scanners, many corporate proxies) routinely
+  fetches and fully renders — executes JS on — every link in an incoming
+  e-mail before the recipient ever sees it. An eager POST as soon as the
+  token parses would let the SCANNER confirm the subscription or unsubscribe
+  the reader, not a choice the reader made. Both token pages therefore ship
+  an inert, `hidden` button in their static HTML; `buletin.ts`'s
+  `wireTokenPage` unhides it once a well-formed token is confirmed present
+  and wires the request to its `click` event — see that function's own
+  docblock for the full reasoning.
+  `apps/storefront/tests/buletin-build-smoke.test.ts` asserts the button
+  ships `hidden` in the built HTML.
 - **The two token pages live at a CMS-imposed path, not this app's own
   naming.** `apps/cms/src/modules/newsletter/domain/newsletter-mail.ts`
   bakes every confirmation/unsubscribe e-mail's link from two FIXED, non-

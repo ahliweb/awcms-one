@@ -106,6 +106,16 @@ describe("build smoke: astro build against the stub CMS (issue #50's own pages)"
         for (const page of [join("newsletter", "confirm.html"), join("newsletter", "unsubscribe.html")]) {
           const html = readFileSync(join(distClient, page), "utf8");
           expect(html).toContain('<meta name="robots" content="noindex, follow">');
+
+          // The state-changing action must NOT fire on page load (a mail
+          // gateway's link-scanner fetches and often fully renders/executes
+          // JS on every e-mail link before the reader sees it — an eager
+          // POST would let the SCANNER confirm/unsubscribe, not the reader;
+          // see buletin.ts's own `wireTokenPage` docblock). The static HTML
+          // must therefore ship the action as an inert, `hidden` button —
+          // `buletin.ts` only unhides and wires it once a well-formed token
+          // is found client-side, and only a real click sends the request.
+          expect(html).toContain('data-buletin-action hidden');
         }
 
         for (const page of [

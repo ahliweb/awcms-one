@@ -1,9 +1,13 @@
 ---
 /**
  * `/newsletter/confirm` — where the confirmation link in a subscriber's
- * inbox lands (issue #50). `?token=` is read and POSTed client-side by
- * `src/scripts/buletin.ts`; this file renders only the shell and the status
- * region the script fills in.
+ * inbox lands (issue #50). `?token=` is read client-side by
+ * `src/scripts/buletin.ts`, which reveals the button below and POSTS only
+ * when it is actually CLICKED — never on page load. A mail gateway's
+ * link-scanner routinely fetches and fully renders (executes JS on) every
+ * link in an incoming e-mail before the recipient sees it; an eager POST on
+ * load would let the SCANNER confirm the subscription, not the reader. See
+ * `buletin.ts`'s own `wireTokenPage` docblock for the full reasoning.
  *
  * `noindex, follow`: a URL that only makes sense carrying one specific
  * reader's own token has no content of its own to index, the same reasoning
@@ -43,6 +47,8 @@ import "../../styles/toko.css";
     </div>
 
     <p data-buletin-status role="status" aria-live="polite" hidden></p>
+
+    <button type="button" data-buletin-action hidden>Konfirmasi Langganan</button>
 
     <noscript>
       <p class="toko-field-hint">Mengonfirmasi langganan memerlukan JavaScript aktif di peramban Anda.</p>

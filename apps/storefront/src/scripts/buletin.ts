@@ -37,23 +37,29 @@ import { requireAwcmsOrigin } from "../lib/awcms/toko-origin";
 
 const NEWSLETTER_PATH_PREFIX = "/api/v1/newsletter";
 
-/** One error for every failure this file can produce — a failure envelope, a network failure, or an unreadable response. Mirrors `TokoApiError`'s shape (`src/lib/toko-klien.ts`) so a caller reasons about it the same way. */
+/**
+ * One error for every failure this file can produce — a failure envelope, a
+ * network failure, or an unreadable response. Mirrors `TokoApiError`'s shape
+ * (`src/lib/toko-klien.ts`) so a caller reasons about it the same way.
+ *
+ * `retryAfterSeconds` is read from the response's `Retry-After` HEADER, not
+ * from `error.details` — the three CMS routes' own `429` calls
+ * `fail(429, "RATE_LIMITED", "...", {}, undefined, { "retry-after": String(...), vary: "Origin" })`
+ * (`apps/cms/src/modules/_shared/api-response.ts`'s `fail` signature is
+ * `(status, code, message, meta, details, headers)`), so `details` is
+ * `undefined` on every `429` this family sends and a wait time read from it
+ * would always be `null`.
+ */
 export class BuletinApiError extends Error {
   constructor(
     message: string,
     readonly status: number,
     readonly code: string,
-    readonly details?: unknown
+    readonly details?: unknown,
+    readonly retryAfterSeconds: number | null = null
   ) {
     super(message);
     this.name = "BuletinApiError";
-  }
-
-  /** `Retry-After` seconds for a `429 RATE_LIMITED`, or `null`. */
-  get retryAfterSeconds(): number | null {
-    if (this.code !== "RATE_LIMITED") return null;
-    const details = this.details as { retryAfter?: number } | undefined;
-    return typeof details?.retryAfter === "number" ? details.retryAfter : null;
   }
 }
 
@@ -106,7 +112,16 @@ async function request(
   }
 
   if (!payload.success) {
-    throw new BuletinApiError(payload.error.message, response.status, payload.error.code, payload.error.details);
+    const retryAfterHeader = response.headers.get("retry-after");
+    const retryAfterSeconds =
+      retryAfterHeader !== null && /^\d+$/.test(retryAfterHeader) ? Number(retryAfterHeader) : null;
+    throw new BuletinApiError(
+      payload.error.message,
+      response.status,
+      payload.error.code,
+      payload.error.details,
+      retryAfterSeconds
+    );
   }
 
   return payload.data;
@@ -128,13 +143,37 @@ export function unsubscribeFromNewsletter(token: string): Promise<{ message: str
 }
 
 /**
- * Every documented failure this endpoint family can answer, mapped to
- * Indonesian copy — `VALIDATION_ERROR`/`RATE_LIMITED` are the only codes the
- * three CMS routes themselves ever return (their own route files), and
- * `NETWORK_ERROR`/`INVALID_RESPONSE` are this file's own. No other code is
- * possible, so there is no "raw server text" fallback to reach for.
+ * Every code this endpoint family's routes CAN send, mapped to Indonesian
+ * copy — `NETWORK_ERROR`/`INVALID_RESPONSE` are this file's own, for a
+ * `fetch()` that never got a response at all or answered with unreadable
+ * JSON.
+ *
+ * ## `VALIDATION_ERROR`/`RATE_LIMITED` are same-origin-only in practice
+ *
+ * The three CMS routes answer a `400`/`429` BEFORE classifying the
+ * request's `Origin` (`subscribe.ts`/`confirm.ts`/`unsubscribe.ts`: the
+ * rate-limit and body-validation checks run first, and each such response
+ * carries only `vary: "Origin"` — never `access-control-allow-origin`). A
+ * response with no CORS grant is not just unreadable to this file's own
+ * JSON parsing: for a CROSS-ORIGIN request (`mode: "cors"`, which every
+ * real deployment of this storefront is — ADR-0007/ADR-0070 put the CMS on
+ * a different origin from this app), the browser refuses to let ANY script
+ * observe that response at all, and `fetch()` itself rejects — landing in
+ * this file's own `NETWORK_ERROR` branch above, not here. These two `case`s
+ * are kept because they are real, documented route behaviour and because a
+ * SAME-origin deployment (this app served from the CMS's own origin — not
+ * how this repo runs it, but not forbidden by anything here either) would
+ * reach them normally; a reader on this app's actual, cross-origin
+ * deployment will never see either message in practice.
+ *
+ * `context` disambiguates `NETWORK_ERROR`'s copy: it covers a REAL network
+ * failure and both "hidden by CORS" cases above alike, and none of those are
+ * a connectivity problem the copy should assert — see this function's own
+ * git history/PR review for why an earlier version claiming one was wrong.
+ * `"subscribe"` (the default) can reasonably suggest checking the address
+ * just typed; `"token"` (confirm/unsubscribe) has no such field to point at.
  */
-export function buletinErrorMessage(error: unknown): string {
+export function buletinErrorMessage(error: unknown, context: "subscribe" | "token" = "subscribe"): string {
   if (error instanceof BuletinApiError) {
     switch (error.code) {
       case "VALIDATION_ERROR":
@@ -146,7 +185,9 @@ export function buletinErrorMessage(error: unknown): string {
           : "Terlalu banyak percobaan. Coba lagi sebentar lagi.";
       }
       case "NETWORK_ERROR":
-        return "Tidak dapat menghubungi server. Periksa koneksi internet Anda dan coba lagi.";
+        return context === "subscribe"
+          ? "Pendaftaran belum berhasil. Periksa alamat e-mail Anda atau coba lagi beberapa menit lagi."
+          : "Permintaan belum berhasil. Periksa kembali tautan dari email Anda atau coba lagi beberapa menit lagi.";
       default:
         return "Terjadi kesalahan yang tidak terduga. Coba lagi nanti.";
     }
@@ -177,7 +218,21 @@ function wireBuletinForm(): void {
     event.preventDefault();
     if (submitting) return;
 
-    const email = emailInput?.value.trim() ?? "";
+    // The form itself is `novalidate` (this app never lets the browser's
+    // own bubble UI silently swallow a submit elsewhere either — see
+    // `checkout.ts`'s identical `[required]`/`checkValidity()` loop) so a
+    // malformed address is never sent to `fetch()` at all: the CMS's own
+    // `400 VALIDATION_ERROR` for one carries no CORS grant (see
+    // `buletinErrorMessage`'s own docblock), so without this check every
+    // typo would read to the reader as "could not reach the server" —
+    // exactly the confusing, wrong-cause message this check exists to make
+    // unreachable.
+    if (!emailInput || !emailInput.checkValidity()) {
+      emailInput?.reportValidity();
+      return;
+    }
+
+    const email = emailInput.value.trim();
     if (!email) return;
 
     // A field a real reader never sees or reaches (see the component's own
@@ -227,10 +282,30 @@ function wireBuletinForm(): void {
 /**
  * Shared wiring for both token pages: read `?token=` from the URL the reader
  * arrived at (never from `sessionStorage`/a form — the token IS the whole
- * point of the link), call `action`, and render one of three states. A
- * missing/malformed token never reaches the network — that is a statement
- * about the LINK, not about any subscription, and answering it locally saves
- * the per-IP budget for a token that could actually be real.
+ * point of the link), then wait for an explicit click on `[data-buletin-
+ * action]` before calling `action` — never on page load.
+ *
+ * ## Why not just call `action(token)` as soon as the token parses
+ *
+ * That was this file's own first shape, and it is a real vulnerability: a
+ * mail gateway's link-scanner (Outlook Safe Links, Google's/Microsoft's
+ * inbound scanners, many corporate proxies) fetches and often fully RENDERS
+ * — executes JS on — every link in an incoming e-mail before the recipient
+ * ever sees it, specifically to check where it leads. A confirm/unsubscribe
+ * link that fires its state change on load, rather than on a deliberate
+ * click, gets confirmed or unsubscribed by the SCANNER, not the reader —
+ * consent recorded from (or a subscription ended by) an IP address that
+ * never made the choice. Requiring a click the token page renders is the
+ * same mitigation e-mail-triggered state changes use everywhere (a
+ * `GET`-only unsubscribe link is the textbook version of this exact bug);
+ * a scanner that also simulates a real user click is not a threat model
+ * anything short of CAPTCHA defends against, and this module's own PRD
+ * (§30: unsubscribing must not require a login) does not ask for that.
+ *
+ * A missing/malformed token still never reaches the network and never shows
+ * the button at all — that is a statement about the LINK, not about any
+ * subscription, and answering it locally saves the per-IP budget for a
+ * token that could actually be real.
  */
 function wireTokenPage(
   rootSelector: string,
@@ -241,7 +316,8 @@ function wireTokenPage(
   if (!root) return;
 
   const statusEl = root.querySelector<HTMLElement>("[data-buletin-status]");
-  if (!statusEl) return;
+  const actionButton = root.querySelector<HTMLButtonElement>("[data-buletin-action]");
+  if (!statusEl || !actionButton) return;
 
   const token = new URLSearchParams(window.location.search).get("token");
 
@@ -250,9 +326,33 @@ function wireTokenPage(
     return;
   }
 
-  action(token)
-    .then(() => showStatus(statusEl, "info", successMessage))
-    .catch((error: unknown) => showStatus(statusEl, "danger", buletinErrorMessage(error)));
+  // Only revealed once a well-formed token is confirmed present — a reader
+  // (or scanner) with no token, or a malformed one, never sees a button:
+  // there is nothing correct for it to do.
+  actionButton.hidden = false;
+
+  let submitting = false;
+  actionButton.addEventListener("click", () => {
+    if (submitting) return;
+    submitting = true;
+    actionButton.disabled = true;
+    statusEl.hidden = true;
+
+    action(token)
+      .then(() => {
+        showStatus(statusEl, "info", successMessage);
+        // The token is spent server-side on first use (both routes clear
+        // their own token hash on success); hiding the button stops a
+        // reader re-clicking into a second, pointless request rather than
+        // relying on the per-IP limiter to make that harmless.
+        actionButton.hidden = true;
+      })
+      .catch((error: unknown) => {
+        showStatus(statusEl, "danger", buletinErrorMessage(error, "token"));
+        submitting = false;
+        actionButton.disabled = false;
+      });
+  });
 }
 
 // --- Entry point ------------------------------------------------------------

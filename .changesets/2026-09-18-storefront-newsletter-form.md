@@ -53,3 +53,33 @@ nice-to-have.
   once that origin is registered and verified in `awcms_tenant_domains`
   (`POST /api/v1/tenant/domains` + `POST .../{id}/verify`). See
   `apps/storefront/README.md`'s "Newsletter" section.
+
+Four fixes from review, all in `apps/storefront/src/scripts/buletin.ts`:
+
+- The subscribe form now runs `checkValidity()`/`reportValidity()` before
+  ever calling `fetch()` (the same pattern `checkout.ts` already uses) — a
+  malformed address used to reach the network and come back as a CORS-
+  opaque failure the reader saw as "could not reach the server".
+- `VALIDATION_ERROR`/`RATE_LIMITED` are real route behaviour but effectively
+  unreachable from this app's actual, cross-origin deployment (the CMS
+  answers both BEFORE classifying `Origin`, with no CORS grant on either —
+  the browser's `fetch()` rejects before the body is ever read, landing in
+  `NETWORK_ERROR` instead). `NETWORK_ERROR`'s copy no longer asserts a
+  connectivity cause, is worded differently for the subscribe form (an
+  e-mail address to check) vs. the two token pages (a link to check, no
+  address field to point at), and the two now-corrected docblocks say
+  plainly that a reader on this app's real deployment will see
+  `NETWORK_ERROR`'s message for what is very often really a bad address, not
+  a dropped connection.
+- `/newsletter/confirm` and `/newsletter/unsubscribe` no longer fire their
+  state-changing `POST` on page load. A mail gateway's inbound link-scanner
+  routinely fetches and fully renders — executes JS on — every link in an
+  incoming e-mail before the reader sees it; an eager POST let the SCANNER
+  confirm the subscription or unsubscribe the reader, not a choice the
+  reader made. Both pages now ship an inert, `hidden` button in their static
+  HTML that `buletin.ts` unhides and wires to a `click` handler only once a
+  well-formed token is confirmed present.
+- `RATE_LIMITED`'s wait is now read from the response's `Retry-After`
+  HEADER. The CMS's own `fail(429, ...)` call never populates
+  `error.details` — the wait travels as a header — so the previous
+  `details.retryAfter` read always evaluated to `null` in production.
