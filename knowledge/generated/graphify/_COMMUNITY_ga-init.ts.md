@@ -25,7 +25,7 @@ SORT file.name ASC
 ```
 
 ## Connections to other communities
-- 1 edge to [[_COMMUNITY_profil.ts]]
+- 1 edge to [[_COMMUNITY_BaseLayout.astro]]
 
 ## Top bridge nodes
 - [[ga-init.ts]] - degree 5, connects to 1 community

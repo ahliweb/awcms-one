@@ -13,7 +13,7 @@ tags:
 
 ## Connections
 - [[getAllCheckoutRegencies()]] - `calls` [EXTRACTED]
-- [[getStaticPaths()_9]] - `calls` [EXTRACTED]
+- [[getStaticPaths()_8]] - `calls` [EXTRACTED]
 - [[listRegions()_1]] - `calls` [EXTRACTED]
 - [[wilayah-checkout.test.ts]] - `imports` [EXTRACTED]
 - [[wilayah-checkout.ts]] - `contains` [EXTRACTED]

@@ -43,11 +43,11 @@ SORT file.name ASC
 ## Connections to other communities
 - 18 edges to [[_COMMUNITY_keranjang-kontrak.ts]]
 - 9 edges to [[_COMMUNITY_checkout.ts]]
-- 7 edges to [[_COMMUNITY_formatPrice]]
+- 7 edges to [[_COMMUNITY_productslug.astro]]
 - 5 edges to [[_COMMUNITY_toko-klien.ts]]
 - 1 edge to [[_COMMUNITY_produk-detail.ts]]
 - 1 edge to [[_COMMUNITY_TokoApiError]]
-- 1 edge to [[_COMMUNITY_profil.ts]]
+- 1 edge to [[_COMMUNITY_BaseLayout.astro]]
 
 ## Top bridge nodes
 - [[keranjang.ts]] - degree 27, connects to 6 communities

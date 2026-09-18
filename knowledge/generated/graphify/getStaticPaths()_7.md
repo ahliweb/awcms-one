@@ -1,8 +1,8 @@
 ---
-source_file: "apps/storefront/src/pages/arsip/[yyyy]/[mm].astro"
+source_file: "apps/storefront/src/pages/berita/[slug].astro"
 type: "code"
 community: "Sidebar.astro"
-location: "L10"
+location: "L40"
 tags:
   - graphify/code
   - graphify/EXTRACTED
@@ -12,7 +12,7 @@ tags:
 # getStaticPaths()
 
 ## Connections
-- [[mm.astro]] - `contains` [EXTRACTED]
-- [[listArsipBulan()]] - `calls` [EXTRACTED]
+- [[beritaslug.astro]] - `contains` [EXTRACTED]
+- [[getPosts()]] - `calls` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/Sidebarastro

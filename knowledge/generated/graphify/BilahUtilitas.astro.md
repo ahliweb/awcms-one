@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/components/berita/BilahUtilitas.astro"
 type: "code"
-community: "bagikan.test.ts"
+community: "navigasi-berita.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/bagikantestts
+  - community/navigasi-beritats
 ---
 
 # BilahUtilitas.astro
@@ -20,4 +20,4 @@ tags:
 - [[resolveSocialIcons()]] - `imports` [EXTRACTED]
 - [[socialIcons]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/bagikantestts
+#graphify/code #graphify/EXTRACTED #community/navigasi-beritats

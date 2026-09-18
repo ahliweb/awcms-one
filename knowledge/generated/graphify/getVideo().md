@@ -2,7 +2,7 @@
 source_file: "apps/storefront/src/lib/berita.ts"
 type: "code"
 community: "getVideo"
-location: "L431"
+location: "L459"
 tags:
   - graphify/code
   - graphify/EXTRACTED
@@ -19,7 +19,7 @@ tags:
 - [[beritaindex.astro]] - `imports` [EXTRACTED]
 - [[csp.json.ts]] - `imports` [EXTRACTED]
 - [[getIndex()]] - `calls` [EXTRACTED]
-- [[getStaticPaths()_15]] - `calls` [EXTRACTED]
+- [[getStaticPaths()_14]] - `calls` [EXTRACTED]
 - [[pengalihan-legacy.json.ts]] - `imports` [EXTRACTED]
 - [[sitemap-sources.ts]] - `imports` [EXTRACTED]
 - [[videoslug.astro]] - `imports` [EXTRACTED]

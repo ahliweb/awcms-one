@@ -1,12 +1,12 @@
 ---
 type: community
-cohesion: 0.21
+cohesion: 0.20
 members: 28
 ---
 
 # wishlist-kontrak.ts
 
-**Cohesion:** 0.21 - loosely connected
+**Cohesion:** 0.20 - loosely connected
 **Members:** 28 nodes
 
 ## Members
@@ -18,7 +18,6 @@ members: 28
 - [[createEmptyWishlist()]] - code - apps/storefront/src/lib/wishlist-kontrak.ts
 - [[isIsoDateString()_1]] - code - apps/storefront/src/lib/wishlist-kontrak.ts
 - [[isWishlisted()]] - code - apps/storefront/src/lib/wishlist-kontrak.ts
-- [[item()]] - code - apps/storefront/tests/wishlist-kontrak.test.ts
 - [[itemFromButton()]] - code - apps/storefront/src/scripts/wishlist-tombol.ts
 - [[itemMarkup()]] - code - apps/storefront/src/scripts/wishlist.ts
 - [[loadWishlist()]] - code - apps/storefront/src/lib/wishlist-klien.ts
@@ -37,6 +36,7 @@ members: 28
 - [[wishlist-kontrak.test.ts]] - code - apps/storefront/tests/wishlist-kontrak.test.ts
 - [[wishlist-kontrak.ts]] - code - apps/storefront/src/lib/wishlist-kontrak.ts
 - [[wishlist-tombol.ts]] - code - apps/storefront/src/scripts/wishlist-tombol.ts
+- [[wishlist.astro]] - code - apps/storefront/src/pages/wishlist.astro
 - [[wishlist.ts]] - code - apps/storefront/src/scripts/wishlist.ts
 
 ## Live Query (requires Dataview plugin)
@@ -47,15 +47,14 @@ SORT file.name ASC
 ```
 
 ## Connections to other communities
-- 3 edges to [[_COMMUNITY_formatPrice]]
+- 3 edges to [[_COMMUNITY_productslug.astro]]
+- 2 edges to [[_COMMUNITY_BeritaLayout.astro]]
 - 1 edge to [[_COMMUNITY_routes.ts]]
-- 1 edge to [[_COMMUNITY_pemasaran.ts]]
-- 1 edge to [[_COMMUNITY_profil.ts]]
-- 1 edge to [[_COMMUNITY_BeritaLayout.astro]]
-- 1 edge to [[_COMMUNITY_audit-dokumen.mjs]]
+- 1 edge to [[_COMMUNITY_BaseLayout.astro]]
 
 ## Top bridge nodes
-- [[item()]] - degree 5, connects to 3 communities
-- [[wishlist.ts]] - degree 13, connects to 2 communities
+- [[wishlist.ts]] - degree 13, connects to 1 community
 - [[wishlist-tombol.ts]] - degree 12, connects to 1 community
+- [[wishlist-kontrak.test.ts]] - degree 12, connects to 1 community
 - [[itemMarkup()]] - degree 4, connects to 1 community
+- [[render()_2]] - degree 4, connects to 1 community

@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/berita-terkini.ts"
 type: "code"
-community: "berita-terkini.ts"
+community: "pages/index.astro"
 location: "L41"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/berita-terkinits
+  - community/pages/indexastro
 ---
 
 # defaultLoader()
@@ -15,4 +15,4 @@ tags:
 - [[berita-terkini.ts]] - `contains` [EXTRACTED]
 - [[berita.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/berita-terkinits
+#graphify/code #graphify/EXTRACTED #community/pages/indexastro

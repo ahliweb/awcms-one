@@ -2,7 +2,7 @@
 source_file: "apps/storefront/src/lib/awcms/blog.ts"
 type: "code"
 community: "blog.ts"
-location: "L356"
+location: "L370"
 tags:
   - graphify/code
   - graphify/EXTRACTED

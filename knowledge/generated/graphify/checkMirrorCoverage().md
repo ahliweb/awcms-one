@@ -1,12 +1,12 @@
 ---
 source_file: "packages/gerbang/lib/docs-i18n-checks.mjs"
 type: "code"
-community: "docs-i18n-stamp.mjs"
+community: "audit-graf.mjs"
 location: "L224"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/docs-i18n-stampmjs
+  - community/audit-grafmjs
 ---
 
 # checkMirrorCoverage()
@@ -18,4 +18,4 @@ tags:
 - [[docs-i18n-checks.test.mjs]] - `imports` [EXTRACTED]
 - [[runChecks()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/docs-i18n-stampmjs
+#graphify/code #graphify/EXTRACTED #community/audit-grafmjs

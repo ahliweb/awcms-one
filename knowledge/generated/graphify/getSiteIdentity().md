@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/awcms/profil.ts"
 type: "code"
-community: "profil.ts"
+community: "BaseLayout.astro"
 location: "L210"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/profilts
+  - community/BaseLayoutastro
 ---
 
 # getSiteIdentity()
@@ -34,4 +34,4 @@ tags:
 - [[profil.ts]] - `contains` [EXTRACTED]
 - [[videoslug.astro]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/profilts
+#graphify/code #graphify/EXTRACTED #community/BaseLayoutastro

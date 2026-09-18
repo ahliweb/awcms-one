@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/pages/product-labels.css.ts"
 type: "code"
-community: "catalog.ts"
+community: "getProducts"
 location: "L32"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/catalogts
+  - community/getProducts
 ---
 
 # prerender
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[product-labels.css.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/catalogts
+#graphify/code #graphify/EXTRACTED #community/getProducts

@@ -1,17 +1,17 @@
 ---
-source_file: "apps/storefront/src/pages/berita/[slug].astro"
+source_file: "apps/storefront/src/pages/penulis/[slug].astro"
 type: "code"
-community: "video/[slug].astro"
-location: "L45"
+community: "berita.ts"
+location: "L21"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/video/slugastro
+  - community/beritats
 ---
 
 # { slug }
 
 ## Connections
-- [[beritaslug.astro]] - `contains` [EXTRACTED]
+- [[penulisslug.astro]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/video/slugastro
+#graphify/code #graphify/EXTRACTED #community/beritats

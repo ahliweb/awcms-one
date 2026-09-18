@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/pengalihan-aturan.test.ts"
 type: "code"
-community: "penyaji.mjs"
+community: "pengalihan-aturan.mjs"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/penyajimjs
+  - community/pengalihan-aturanmjs
 ---
 
 # pengalihan-aturan.test.ts
@@ -24,4 +24,4 @@ tags:
 - [[penyaji.mjs]] - `imports_from` [EXTRACTED]
 - [[ruleBasedRedirectLocation()]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/penyajimjs
+#graphify/code #graphify/EXTRACTED #community/pengalihan-aturanmjs

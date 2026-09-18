@@ -1,19 +1,19 @@
 ---
-source_file: "apps/storefront/src/pages/rubrik/[slug]/feed.xml.ts"
+source_file: "apps/storefront/src/pages/sitemap-[n].xml.ts"
 type: "code"
-community: "[n].astro"
-location: "L13"
+community: "sitemap-sources.ts"
+location: "L12"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/nastro
+  - community/sitemap-sourcests
 ---
 
 # getStaticPaths()
 
 ## Connections
-- [[slugfeed.xml.ts]] - `contains` [EXTRACTED]
-- [[flattenRubrikTree()]] - `calls` [EXTRACTED]
-- [[getRubrikTree()]] - `calls` [EXTRACTED]
+- [[chunkSitemapEntries()]] - `calls` [EXTRACTED]
+- [[getAllSitemapEntries()]] - `calls` [EXTRACTED]
+- [[sitemap-n.xml.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/nastro
+#graphify/code #graphify/EXTRACTED #community/sitemap-sourcests

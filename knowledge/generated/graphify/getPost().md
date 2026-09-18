@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/berita.ts"
 type: "code"
-community: "[slug]/feed.xml.ts"
-location: "L412"
+community: "site.ts"
+location: "L440"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/slug/feedxmlts
+  - community/sitets
 ---
 
 # getPost()
@@ -21,4 +21,4 @@ tags:
 - [[getIndex()]] - `calls` [EXTRACTED]
 - [[videoslug.astro]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/slug/feedxmlts
+#graphify/code #graphify/EXTRACTED #community/sitets

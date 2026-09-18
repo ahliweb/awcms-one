@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/analitik-build-smoke.test.ts"
 type: "code"
-community: "analitik-build-smoke.test.ts"
+community: "bun"
 location: "L72"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/analitik-build-smoketestts
+  - community/bun
 ---
 
 # readIndexHtml()
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[analitik-build-smoke.test.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/analitik-build-smoketestts
+#graphify/code #graphify/EXTRACTED #community/bun

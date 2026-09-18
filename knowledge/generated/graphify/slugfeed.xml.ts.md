@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/pages/rubrik/[slug]/feed.xml.ts"
 type: "code"
-community: "[slug]/feed.xml.ts"
+community: "site.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/slug/feedxmlts
+  - community/sitets
 ---
 
 # [slug]/feed.xml.ts
@@ -22,7 +22,7 @@ tags:
 - [[getRubrik()]] - `imports` [EXTRACTED]
 - [[getRubrikTree()]] - `imports` [EXTRACTED]
 - [[getSiteIdentity()]] - `imports` [EXTRACTED]
-- [[getStaticPaths()_5]] - `contains` [EXTRACTED]
+- [[getStaticPaths()_4]] - `contains` [EXTRACTED]
 - [[portable-text.ts]] - `imports_from` [EXTRACTED]
 - [[prerender_7]] - `contains` [EXTRACTED]
 - [[profil.ts]] - `imports_from` [EXTRACTED]
@@ -31,4 +31,4 @@ tags:
 - [[routes.ts]] - `imports_from` [EXTRACTED]
 - [[site.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/slug/feedxmlts
+#graphify/code #graphify/EXTRACTED #community/sitets

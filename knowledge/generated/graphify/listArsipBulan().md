@@ -2,7 +2,7 @@
 source_file: "apps/storefront/src/lib/berita.ts"
 type: "code"
 community: "Sidebar.astro"
-location: "L652"
+location: "L680"
 tags:
   - graphify/code
   - graphify/EXTRACTED
@@ -16,6 +16,6 @@ tags:
 - [[arsipBulanWIB()]] - `calls` [EXTRACTED]
 - [[berita.ts]] - `contains` [EXTRACTED]
 - [[getIndex()]] - `calls` [EXTRACTED]
-- [[getStaticPaths()_7]] - `calls` [EXTRACTED]
+- [[getStaticPaths()_6]] - `calls` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/Sidebarastro

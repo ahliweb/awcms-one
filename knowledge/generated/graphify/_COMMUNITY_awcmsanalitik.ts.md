@@ -39,7 +39,7 @@ SORT file.name ASC
 - 4 edges to [[_COMMUNITY_readEnv]]
 - 4 edges to [[_COMMUNITY_Sidebar.astro]]
 - 1 edge to [[_COMMUNITY_blog.ts]]
-- 1 edge to [[_COMMUNITY_portable-text.ts]]
+- 1 edge to [[_COMMUNITY_pages.ts]]
 - 1 edge to [[_COMMUNITY_pemasaran.ts]]
 - 1 edge to [[_COMMUNITY_profil.ts]]
 - 1 edge to [[_COMMUNITY_BeritaLayout.astro]]

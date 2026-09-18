@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/katalog-csp-media.test.ts"
 type: "code"
-community: "penyaji.mjs"
+community: "katalog-csp-media.test.ts"
 location: "L35"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/penyajimjs
+  - community/katalog-csp-mediatestts
 ---
 
 # fixtureDir()
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[katalog-csp-media.test.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/penyajimjs
+#graphify/code #graphify/EXTRACTED #community/katalog-csp-mediatestts

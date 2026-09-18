@@ -1,23 +1,24 @@
 ---
-source_file: "apps/storefront/src/lib/navigasi-berita.ts"
+source_file: "apps/storefront/src/lib/awcms/lembaga.ts"
 type: "code"
-community: "navigasi-berita.ts"
-location: "L286"
+community: "lembaga.ts"
+location: "L51"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/navigasi-beritats
+  - community/lembagats
 ---
 
 # getMitraList()
 
 ## Connections
-- [[FooterBerita.astro]] - `imports` [EXTRACTED]
-- [[Sidebar.astro]] - `imports` [EXTRACTED]
-- [[findKaltengProvince()]] - `calls` [EXTRACTED]
-- [[getAllInstitutions()]] - `calls` [EXTRACTED]
-- [[getResolvableRegionsByCode()]] - `calls` [EXTRACTED]
-- [[navigasi-berita.ts]] - `contains` [EXTRACTED]
-- [[selectMitraOrder()]] - `calls` [EXTRACTED]
+- [[berita.ts]] - `imports` [EXTRACTED]
+- [[buildIndex()]] - `calls` [EXTRACTED]
+- [[buildMitraList()]] - `calls` [EXTRACTED]
+- [[getMitraBySlug()]] - `calls` [EXTRACTED]
+- [[getStaticPaths()_15]] - `calls` [EXTRACTED]
+- [[lembaga.ts]] - `contains` [EXTRACTED]
+- [[mitraslug.astro]] - `imports` [EXTRACTED]
+- [[sitemap-sources.ts]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/navigasi-beritats
+#graphify/code #graphify/EXTRACTED #community/lembagats

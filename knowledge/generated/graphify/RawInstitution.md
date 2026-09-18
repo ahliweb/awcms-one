@@ -15,6 +15,7 @@ tags:
 - [[berita.ts]] - `imports` [EXTRACTED]
 - [[blog.ts]] - `contains` [EXTRACTED]
 - [[lembaga.ts]] - `imports` [EXTRACTED]
+- [[logo-instansi.test.ts]] - `imports` [EXTRACTED]
 - [[navigasi-berita.test.ts]] - `imports` [EXTRACTED]
 - [[navigasi-berita.ts]] - `imports` [EXTRACTED]
 

@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/pages/kategori/[slug].astro"
 type: "code"
-community: "catalog.ts"
+community: "kategori/[slug].astro"
 location: "L26"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/catalogts
+  - community/kategori/slugastro
 ---
 
 # getStaticPaths()
@@ -15,4 +15,4 @@ tags:
 - [[getCategories()]] - `calls` [EXTRACTED]
 - [[kategorislug.astro]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/catalogts
+#graphify/code #graphify/EXTRACTED #community/kategori/slugastro

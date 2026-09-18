@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/pages/halaman/[slug].astro"
 type: "code"
-community: "portable-text.ts"
+community: "pages.ts"
 location: "L21"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/portable-textts
+  - community/pagests
 ---
 
 # { slug }
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[halamanslug.astro]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/portable-textts
+#graphify/code #graphify/EXTRACTED #community/pagests

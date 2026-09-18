@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/ga-csp.test.ts"
 type: "code"
-community: "penyaji.mjs"
+community: "ga.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/penyajimjs
+  - community/gats
 ---
 
 # ga-csp.test.ts
@@ -18,4 +18,4 @@ tags:
 - [[isValidGaMeasurementId()]] - `imports` [EXTRACTED]
 - [[penyaji.mjs]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/penyajimjs
+#graphify/code #graphify/EXTRACTED #community/gats

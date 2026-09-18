@@ -1,17 +1,17 @@
 ---
-source_file: "apps/storefront/src/pages/rubrik/[slug]/index.astro"
+source_file: "apps/storefront/src/pages/tag/[slug].astro"
 type: "code"
-community: "[n].astro"
-location: "L26"
+community: "Sidebar.astro"
+location: "L14"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/nastro
+  - community/Sidebarastro
 ---
 
 # { slug }
 
 ## Connections
-- [[slugindex.astro]] - `contains` [EXTRACTED]
+- [[tagslug.astro]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/nastro
+#graphify/code #graphify/EXTRACTED #community/Sidebarastro

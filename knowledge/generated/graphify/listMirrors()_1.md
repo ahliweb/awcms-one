@@ -1,12 +1,12 @@
 ---
 source_file: "tools/docs-i18n-stamp.mjs"
 type: "code"
-community: "docs-i18n-stamp.mjs"
+community: "audit-graf.mjs"
 location: "L148"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/docs-i18n-stampmjs
+  - community/audit-grafmjs
 ---
 
 # listMirrors()
@@ -17,4 +17,4 @@ tags:
 - [[gitRun()]] - `calls` [EXTRACTED]
 - [[isMirrorInScope()]] - `indirect_call` [INFERRED]
 
-#graphify/code #graphify/EXTRACTED #community/docs-i18n-stampmjs
+#graphify/code #graphify/EXTRACTED #community/audit-grafmjs

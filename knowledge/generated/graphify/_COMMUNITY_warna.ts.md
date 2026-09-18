@@ -29,13 +29,14 @@ SORT file.name ASC
 ```
 
 ## Connections to other communities
-- 5 edges to [[_COMMUNITY_catalog.ts]]
 - 4 edges to [[_COMMUNITY_theme.ts]]
+- 4 edges to [[_COMMUNITY_catalog.ts]]
 - 1 edge to [[_COMMUNITY_site.ts]]
+- 1 edge to [[_COMMUNITY_getProducts]]
 
 ## Top bridge nodes
 - [[warna.test.ts]] - degree 8, connects to 3 communities
+- [[isValidHexColor()]] - degree 5, connects to 2 communities
 - [[warna.ts]] - degree 8, connects to 1 community
 - [[contrastingForeground()]] - degree 7, connects to 1 community
 - [[theme-tokens.css.ts]] - degree 6, connects to 1 community
-- [[isValidHexColor()]] - degree 5, connects to 1 community

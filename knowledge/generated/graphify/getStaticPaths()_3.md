@@ -1,18 +1,18 @@
 ---
-source_file: "apps/storefront/src/pages/mitra/[slug].astro"
+source_file: "apps/storefront/src/pages/product/[slug].astro"
 type: "code"
-community: "lembaga.ts"
-location: "L15"
+community: "getProducts"
+location: "L48"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/lembagats
+  - community/getProducts
 ---
 
 # getStaticPaths()
 
 ## Connections
-- [[getMitraList()]] - `calls` [EXTRACTED]
-- [[mitraslug.astro]] - `contains` [EXTRACTED]
+- [[getProducts()]] - `calls` [EXTRACTED]
+- [[productslug.astro]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/lembagats
+#graphify/code #graphify/EXTRACTED #community/getProducts

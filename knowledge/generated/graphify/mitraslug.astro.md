@@ -16,12 +16,12 @@ tags:
 - [[BeritaLayout.astro]] - `imports_from` [EXTRACTED]
 - [[ROUTES]] - `imports` [EXTRACTED]
 - [[berita.ts]] - `imports_from` [EXTRACTED]
-- [[canonicalPath_1]] - `contains` [EXTRACTED]
+- [[canonicalPath_8]] - `contains` [EXTRACTED]
 - [[getMitra()]] - `imports` [EXTRACTED]
-- [[getMitraList()]] - `imports` [EXTRACTED]
-- [[getStaticPaths()_3]] - `contains` [EXTRACTED]
+- [[getMitraList()_1]] - `imports` [EXTRACTED]
+- [[getStaticPaths()_15]] - `contains` [EXTRACTED]
 - [[lembaga.ts]] - `imports_from` [EXTRACTED]
 - [[routes.ts]] - `imports_from` [EXTRACTED]
-- [[{ slug }_2]] - `contains` [EXTRACTED]
+- [[{ slug }_7]] - `contains` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/lembagats

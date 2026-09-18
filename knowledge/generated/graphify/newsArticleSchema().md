@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/jsonld-berita.ts"
 type: "code"
-community: "video/[slug].astro"
+community: "BeritaLayout.astro"
 location: "L40"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/video/slugastro
+  - community/BeritaLayoutastro
 ---
 
 # newsArticleSchema()
@@ -18,4 +18,4 @@ tags:
 - [[jsonld-berita.ts]] - `contains` [EXTRACTED]
 - [[videoslug.astro]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/video/slugastro
+#graphify/code #graphify/EXTRACTED #community/BeritaLayoutastro

@@ -1,18 +1,19 @@
 ---
-source_file: "apps/storefront/src/pages/product/[slug].astro"
+source_file: "apps/storefront/src/pages/rubrik/[slug]/feed.xml.ts"
 type: "code"
-community: "catalog.ts"
-location: "L48"
+community: "[n].astro"
+location: "L13"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/catalogts
+  - community/nastro
 ---
 
 # getStaticPaths()
 
 ## Connections
-- [[getProducts()]] - `calls` [EXTRACTED]
-- [[productslug.astro]] - `contains` [EXTRACTED]
+- [[slugfeed.xml.ts]] - `contains` [EXTRACTED]
+- [[flattenRubrikTree()]] - `calls` [EXTRACTED]
+- [[getRubrikTree()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/catalogts
+#graphify/code #graphify/EXTRACTED #community/nastro

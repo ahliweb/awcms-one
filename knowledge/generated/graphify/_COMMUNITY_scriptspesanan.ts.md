@@ -36,10 +36,10 @@ SORT file.name ASC
 
 ## Connections to other communities
 - 7 edges to [[_COMMUNITY_toko-klien.ts]]
-- 5 edges to [[_COMMUNITY_formatPrice]]
+- 6 edges to [[_COMMUNITY_productslug.astro]]
 - 2 edges to [[_COMMUNITY_checkout.ts]]
-- 2 edges to [[_COMMUNITY_profil.ts]]
 - 1 edge to [[_COMMUNITY_TokoApiError]]
+- 1 edge to [[_COMMUNITY_BaseLayout.astro]]
 
 ## Top bridge nodes
 - [[scriptspesanan.ts]] - degree 22, connects to 4 communities

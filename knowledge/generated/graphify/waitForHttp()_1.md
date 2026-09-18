@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/penyaji-bayangan-build-smoke.test.ts"
 type: "code"
-community: "bun"
+community: "penyaji-bayangan-build-smoke.test.ts"
 location: "L37"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/bun
+  - community/penyaji-bayangan-build-smoketestts
 ---
 
 # waitForHttp()
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[penyaji-bayangan-build-smoke.test.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/bun
+#graphify/code #graphify/EXTRACTED #community/penyaji-bayangan-build-smoketestts

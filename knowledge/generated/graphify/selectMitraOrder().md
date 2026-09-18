@@ -14,7 +14,7 @@ tags:
 ## Connections
 - [[branchOrder()]] - `calls` [EXTRACTED]
 - [[daerahOrderIndex()]] - `calls` [EXTRACTED]
-- [[getMitraList()_1]] - `calls` [EXTRACTED]
+- [[getMitraList()]] - `calls` [EXTRACTED]
 - [[navigasi-berita.test.ts]] - `imports` [EXTRACTED]
 - [[navigasi-berita.ts]] - `contains` [EXTRACTED]
 

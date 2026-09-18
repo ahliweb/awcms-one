@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/analitik-build-smoke.test.ts"
 type: "code"
-community: "analitik-build-smoke.test.ts"
+community: "bun"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/analitik-build-smoketestts
+  - community/bun
 ---
 
 # analitik-build-smoke.test.ts
@@ -18,4 +18,4 @@ tags:
 - [[runBuild()]] - `contains` [EXTRACTED]
 - [[waitForStub()_3]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/analitik-build-smoketestts
+#graphify/code #graphify/EXTRACTED #community/bun

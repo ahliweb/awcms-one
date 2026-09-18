@@ -2,7 +2,7 @@
 source_file: "apps/storefront/src/lib/berita.ts"
 type: "code"
 community: "berita.ts"
-location: "L309"
+location: "L330"
 tags:
   - graphify/code
   - graphify/EXTRACTED
@@ -19,7 +19,7 @@ tags:
 - [[getAllPosts()]] - `calls` [EXTRACTED]
 - [[getAllTerms()]] - `calls` [EXTRACTED]
 - [[getIndex()]] - `calls` [EXTRACTED]
-- [[getMitraList()]] - `calls` [EXTRACTED]
+- [[getMitraList()_1]] - `calls` [EXTRACTED]
 - [[getResolvableRegionsByCode()]] - `calls` [EXTRACTED]
 - [[isPubliclyVisible()_1]] - `calls` [EXTRACTED]
 - [[resolveMedia()]] - `calls` [EXTRACTED]

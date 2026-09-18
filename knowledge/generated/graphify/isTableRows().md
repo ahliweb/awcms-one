@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/pages/product/[slug].astro"
 type: "code"
-community: "catalog.ts"
+community: "product/[slug].astro"
 location: "L124"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/catalogts
+  - community/product/slugastro
 ---
 
 # isTableRows()
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[productslug.astro]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/catalogts
+#graphify/code #graphify/EXTRACTED #community/product/slugastro

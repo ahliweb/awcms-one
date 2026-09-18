@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/katalog-csp-media.test.ts"
 type: "code"
-community: "penyaji.mjs"
+community: "katalog-csp-media.test.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/penyajimjs
+  - community/katalog-csp-mediatestts
 ---
 
 # katalog-csp-media.test.ts
@@ -22,4 +22,4 @@ tags:
 - [[penyaji.mjs]] - `imports_from` [EXTRACTED]
 - [[readCspOrigins()]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/penyajimjs
+#graphify/code #graphify/EXTRACTED #community/katalog-csp-mediatestts

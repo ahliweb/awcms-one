@@ -12,7 +12,7 @@ members: 68
 ## Members
 - [[dot-constructor()_6]] - code - tools/seed-borneojek-mart.ts
 - [[ADR-0049]] - concept - tools/seed-borneojek-mart.ts
-- [[ADR-0100_3]] - concept - tools/seed-borneojek-mart.ts
+- [[ADR-0100_2]] - concept - tools/seed-borneojek-mart.ts
 - [[AdPlacementSeed]] - code - tools/seed-borneojek-mart.ts
 - [[ApiResult_1]] - code - tools/seed-borneojek-mart.ts
 - [[BASE_URL_1]] - code - tools/seed-borneojek-mart.ts

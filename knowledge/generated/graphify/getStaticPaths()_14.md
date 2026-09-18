@@ -1,18 +1,18 @@
 ---
-source_file: "apps/storefront/src/pages/tag/[slug].astro"
+source_file: "apps/storefront/src/pages/video/[slug].astro"
 type: "code"
-community: "berita.ts"
-location: "L9"
+community: "getVideo"
+location: "L34"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/beritats
+  - community/getVideo
 ---
 
 # getStaticPaths()
 
 ## Connections
-- [[getTags()]] - `calls` [EXTRACTED]
-- [[tagslug.astro]] - `contains` [EXTRACTED]
+- [[getVideo()]] - `calls` [EXTRACTED]
+- [[videoslug.astro]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/beritats
+#graphify/code #graphify/EXTRACTED #community/getVideo

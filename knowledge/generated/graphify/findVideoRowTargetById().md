@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/server/pengalihan-aturan.mjs"
 type: "code"
-community: "penyaji.mjs"
+community: "pengalihan-aturan.mjs"
 location: "L409"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/penyajimjs
+  - community/pengalihan-aturanmjs
 ---
 
 # findVideoRowTargetById()
@@ -16,4 +16,4 @@ tags:
 - [[resolveVideoQuery()]] - `calls` [EXTRACTED]
 - [[rowIdIndexFor()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/penyajimjs
+#graphify/code #graphify/EXTRACTED #community/pengalihan-aturanmjs

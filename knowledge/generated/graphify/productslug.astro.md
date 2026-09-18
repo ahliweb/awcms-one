@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/pages/product/[slug].astro"
 type: "code"
-community: "catalog.ts"
+community: "product/[slug].astro"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/catalogts
+  - community/product/slugastro
 ---
 
 # product/[slug].astro
@@ -30,7 +30,7 @@ tags:
 - [[getActiveFlashSales()]] - `imports` [EXTRACTED]
 - [[getCategories()]] - `imports` [EXTRACTED]
 - [[getProducts()]] - `imports` [EXTRACTED]
-- [[getStaticPaths()_4]] - `contains` [EXTRACTED]
+- [[getStaticPaths()_3]] - `contains` [EXTRACTED]
 - [[getStoreSettings()]] - `imports` [EXTRACTED]
 - [[harga.ts]] - `imports_from` [EXTRACTED]
 - [[isFirstGroupOptionDisabled()]] - `contains` [EXTRACTED]
@@ -43,4 +43,4 @@ tags:
 - [[routes.ts]] - `imports_from` [EXTRACTED]
 - [[site.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/catalogts
+#graphify/code #graphify/EXTRACTED #community/product/slugastro

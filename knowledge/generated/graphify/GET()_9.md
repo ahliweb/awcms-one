@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/pages/sitemap-index.xml.ts"
 type: "code"
-community: "site.ts"
+community: "sitemap-sources.ts"
 location: "L13"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/sitets
+  - community/sitemap-sourcests
 ---
 
 # GET()
@@ -18,4 +18,4 @@ tags:
 - [[renderSitemapIndexXml()]] - `calls` [EXTRACTED]
 - [[sitemap-index.xml.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/sitets
+#graphify/code #graphify/EXTRACTED #community/sitemap-sourcests

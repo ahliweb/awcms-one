@@ -13,7 +13,7 @@ tags:
 
 ## Connections
 - [[ADR-0049]] - `cites` [EXTRACTED]
-- [[ADR-0100_3]] - `cites` [EXTRACTED]
+- [[ADR-0100_2]] - `cites` [EXTRACTED]
 - [[AdPlacementSeed]] - `contains` [EXTRACTED]
 - [[ApiResult_1]] - `contains` [EXTRACTED]
 - [[BASE_URL_1]] - `contains` [EXTRACTED]

@@ -12,7 +12,7 @@ tags:
 # audit-dokumen.mjs
 
 ## Connections
-- [[ADR-0042_1]] - `cites` [EXTRACTED]
+- [[ADR-0042]] - `cites` [EXTRACTED]
 - [[EXCLUDED_PATHS]] - `contains` [EXTRACTED]
 - [[NUMBER_WORDS]] - `contains` [EXTRACTED]
 - [[NUMBER_WORD_REGEX]] - `contains` [EXTRACTED]

@@ -16,7 +16,7 @@ tags:
 - [[WilayahRegion]] - `imports` [EXTRACTED]
 - [[getAllCheckoutRegencies()]] - `imports` [EXTRACTED]
 - [[getCheckoutDistricts()]] - `imports` [EXTRACTED]
-- [[getStaticPaths()_10]] - `contains` [EXTRACTED]
+- [[getStaticPaths()_9]] - `contains` [EXTRACTED]
 - [[prerender_14]] - `contains` [EXTRACTED]
 - [[wilayah-checkout.ts]] - `imports_from` [EXTRACTED]
 

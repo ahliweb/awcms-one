@@ -12,7 +12,7 @@ tags:
 # getCheckoutDistricts()
 
 ## Connections
-- [[getStaticPaths()_10]] - `calls` [EXTRACTED]
+- [[getStaticPaths()_9]] - `calls` [EXTRACTED]
 - [[listRegions()_1]] - `calls` [EXTRACTED]
 - [[wilayah-checkout.test.ts]] - `imports` [EXTRACTED]
 - [[wilayah-checkout.ts]] - `contains` [EXTRACTED]

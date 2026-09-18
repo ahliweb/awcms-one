@@ -1,12 +1,12 @@
 ---
 source_file: "tools/knowledge-graph-combine.mjs"
 type: "code"
-community: "docs-i18n-stamp.mjs"
+community: "knowledge-graph-combine.mjs"
 location: "L74"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/docs-i18n-stampmjs
+  - community/knowledge-graph-combinemjs
 ---
 
 # OUT_DIR
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[knowledge-graph-combine.mjs]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/docs-i18n-stampmjs
+#graphify/code #graphify/EXTRACTED #community/knowledge-graph-combinemjs

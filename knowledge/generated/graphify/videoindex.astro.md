@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/pages/video/index.astro"
 type: "code"
-community: "Sidebar.astro"
+community: "routes.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Sidebarastro
+  - community/routests
 ---
 
 # video/index.astro
@@ -20,4 +20,4 @@ tags:
 - [[getVideo()]] - `imports` [EXTRACTED]
 - [[routes.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Sidebarastro
+#graphify/code #graphify/EXTRACTED #community/routests

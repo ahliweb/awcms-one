@@ -36,12 +36,13 @@ SORT file.name ASC
 ## Connections to other communities
 - 4 edges to [[_COMMUNITY_readEnv]]
 - 4 edges to [[_COMMUNITY_warna.ts]]
-- 3 edges to [[_COMMUNITY_profil.ts]]
 - 2 edges to [[_COMMUNITY_site.ts]]
+- 2 edges to [[_COMMUNITY_BaseLayout.astro]]
+- 1 edge to [[_COMMUNITY_profil.ts]]
 
 ## Top bridge nodes
 - [[theme.ts]] - degree 15, connects to 3 communities
+- [[manifest.webmanifest.ts]] - degree 6, connects to 2 communities
 - [[DEFAULT_THEME_COLORS]] - degree 3, connects to 2 communities
 - [[getSiteTheme()]] - degree 6, connects to 1 community
-- [[manifest.webmanifest.ts]] - degree 6, connects to 1 community
 - [[apiOrigin()]] - degree 3, connects to 1 community

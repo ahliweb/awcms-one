@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/pages/csp.json.ts"
 type: "code"
-community: "pemasaran.ts"
+community: "csp.json.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/pemasarants
+  - community/cspjsonts
 ---
 
 # csp.json.ts
@@ -37,4 +37,4 @@ tags:
 - [[requireAwcmsOrigin()]] - `imports` [EXTRACTED]
 - [[toko-origin.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/pemasarants
+#graphify/code #graphify/EXTRACTED #community/cspjsonts

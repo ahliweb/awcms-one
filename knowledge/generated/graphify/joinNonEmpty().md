@@ -2,7 +2,7 @@
 source_file: "apps/storefront/src/components/berita/ArtikelView.astro"
 type: "code"
 community: "Sidebar.astro"
-location: "L101"
+location: "L102"
 tags:
   - graphify/code
   - graphify/EXTRACTED

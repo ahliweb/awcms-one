@@ -1,16 +1,15 @@
 ---
 type: community
-cohesion: 0.23
-members: 13
+cohesion: 0.26
+members: 12
 ---
 
 # produk-detail.ts
 
-**Cohesion:** 0.23 - loosely connected
-**Members:** 13 nodes
+**Cohesion:** 0.26 - loosely connected
+**Members:** 12 nodes
 
 ## Members
-- [[CommerceProductVariant]] - code - apps/storefront/src/lib/catalog.ts
 - [[FlashSalePayload]] - code - apps/storefront/src/scripts/produk-detail.ts
 - [[ProdukDetailPayload]] - code - apps/storefront/src/scripts/produk-detail.ts
 - [[ServiceFormFieldPayload]] - code - apps/storefront/src/scripts/produk-detail.ts
@@ -32,13 +31,13 @@ SORT file.name ASC
 ```
 
 ## Connections to other communities
-- 7 edges to [[_COMMUNITY_catalog.ts]]
-- 3 edges to [[_COMMUNITY_formatPrice]]
+- 4 edges to [[_COMMUNITY_productslug.astro]]
+- 2 edges to [[_COMMUNITY_catalog.ts]]
+- 2 edges to [[_COMMUNITY_kategorislug.astro]]
 - 1 edge to [[_COMMUNITY_keranjang-kontrak.ts]]
 - 1 edge to [[_COMMUNITY_keranjang.ts]]
 
 ## Top bridge nodes
-- [[produk-detail.ts]] - degree 18, connects to 4 communities
+- [[produk-detail.ts]] - degree 18, connects to 5 communities
+- [[findVariantForSelection()]] - degree 4, connects to 2 communities
 - [[refresh()_1]] - degree 6, connects to 1 community
-- [[CommerceProductVariant]] - degree 4, connects to 1 community
-- [[findVariantForSelection()]] - degree 4, connects to 1 community

@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/awcms/pemasaran.ts"
 type: "code"
-community: "pemasaran.ts"
+community: "csp.json.ts"
 location: "L256"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/pemasarants
+  - community/cspjsonts
 ---
 
 # isMissingEndpoint()
@@ -20,4 +20,4 @@ tags:
 - [[getStoreSettings()]] - `calls` [EXTRACTED]
 - [[pemasaran.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/pemasarants
+#graphify/code #graphify/EXTRACTED #community/cspjsonts

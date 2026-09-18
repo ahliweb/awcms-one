@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/server/pengalihan-aturan.mjs"
 type: "code"
-community: "penyaji.mjs"
+community: "pengalihan-aturan.mjs"
 location: "L181"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/penyajimjs
+  - community/pengalihan-aturanmjs
 ---
 
 # RUBRIK_SLUG_ALIASES
@@ -15,4 +15,4 @@ tags:
 - [[canonicalRubrikSlug()]] - `references` [EXTRACTED]
 - [[pengalihan-aturan.mjs]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/penyajimjs
+#graphify/code #graphify/EXTRACTED #community/pengalihan-aturanmjs

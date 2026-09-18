@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/catalog.ts"
 type: "code"
-community: "produk-listing.ts"
+community: "kategori/[slug].astro"
 location: "L531"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/produk-listingts
+  - community/kategori/slugastro
 ---
 
 # ProdukIndexEntry
@@ -16,4 +16,4 @@ tags:
 - [[katalog-catalog.test.ts]] - `imports` [EXTRACTED]
 - [[produk-index-klien.ts]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/produk-listingts
+#graphify/code #graphify/EXTRACTED #community/kategori/slugastro

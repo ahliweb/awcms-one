@@ -1,18 +1,21 @@
 ---
-source_file: "apps/storefront/src/pages/penulis/[slug].astro"
+source_file: "apps/storefront/src/pages/rubrik/[slug]/halaman/[n].astro"
 type: "code"
-community: "berita.ts"
-location: "L16"
+community: "[n].astro"
+location: "L19"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/beritats
+  - community/nastro
 ---
 
 # getStaticPaths()
 
 ## Connections
-- [[listAuthors()]] - `calls` [EXTRACTED]
-- [[penulisslug.astro]] - `contains` [EXTRACTED]
+- [[n.astro]] - `contains` [EXTRACTED]
+- [[flattenRubrikTree()]] - `calls` [EXTRACTED]
+- [[getRubrik()]] - `calls` [EXTRACTED]
+- [[getRubrikTree()]] - `calls` [EXTRACTED]
+- [[paginate()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/beritats
+#graphify/code #graphify/EXTRACTED #community/nastro

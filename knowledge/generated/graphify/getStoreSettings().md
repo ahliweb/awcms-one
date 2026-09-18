@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/awcms/pemasaran.ts"
 type: "code"
-community: "pemasaran.ts"
+community: "BaseLayout.astro"
 location: "L271"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/pemasarants
+  - community/BaseLayoutastro
 ---
 
 # getStoreSettings()
@@ -25,4 +25,4 @@ tags:
 - [[productslug.astro]] - `imports` [EXTRACTED]
 - [[warnMissing()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/pemasarants
+#graphify/code #graphify/EXTRACTED #community/BaseLayoutastro

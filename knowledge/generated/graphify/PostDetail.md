@@ -2,7 +2,7 @@
 source_file: "apps/storefront/src/lib/berita.ts"
 type: "code"
 community: "BeritaLayout.astro"
-location: "L85"
+location: "L101"
 tags:
   - graphify/code
   - graphify/EXTRACTED

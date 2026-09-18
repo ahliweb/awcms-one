@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/pages/berita/[slug].astro"
 type: "code"
-community: "video/[slug].astro"
+community: "BeritaLayout.astro"
 location: "L70"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/video/slugastro
+  - community/BeritaLayoutastro
 ---
 
 # breadcrumbItems
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[beritaslug.astro]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/video/slugastro
+#graphify/code #graphify/EXTRACTED #community/BeritaLayoutastro

@@ -12,7 +12,7 @@ tags:
 # pengalihan-legacy.ts
 
 ## Connections
-- [[ADR-0071_1]] - `cites` [EXTRACTED]
+- [[ADR-0071]] - `cites` [EXTRACTED]
 - [[LegacyRedirectRow]] - `contains` [EXTRACTED]
 - [[ROUTES]] - `imports` [EXTRACTED]
 - [[berita-pengalihan-legacy.test.ts]] - `imports_from` [EXTRACTED]

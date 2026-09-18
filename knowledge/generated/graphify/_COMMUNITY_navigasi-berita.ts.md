@@ -1,15 +1,16 @@
 ---
 type: community
-cohesion: 0.09
-members: 41
+cohesion: 0.10
+members: 35
 ---
 
 # navigasi-berita.ts
 
-**Cohesion:** 0.09 - loosely connected
-**Members:** 41 nodes
+**Cohesion:** 0.10 - loosely connected
+**Members:** 35 nodes
 
 ## Members
+- [[BilahUtilitas.astro]] - code - apps/storefront/src/components/berita/BilahUtilitas.astro
 - [[DAERAH_PANEL_ID]] - code - apps/storefront/src/lib/navigasi-berita.ts
 - [[DAERAH_URUTAN]] - code - apps/storefront/src/lib/navigasi-berita.ts
 - [[FooterBerita.astro]] - code - apps/storefront/src/components/berita/FooterBerita.astro
@@ -23,20 +24,14 @@ members: 41
 - [[RubrikNode]] - code - apps/storefront/src/lib/berita.ts
 - [[UmumItem]] - code - apps/storefront/src/lib/navigasi-berita.ts
 - [[branchOrder()]] - code - apps/storefront/src/lib/navigasi-berita.ts
-- [[canonicalPath]] - code - apps/storefront/src/pages/daerah/[slug].astro
-- [[daerahslug.astro]] - code - apps/storefront/src/pages/daerah/[slug].astro
 - [[daerahActive]] - code - apps/storefront/src/components/berita/NavBerita.astro
 - [[daerahOrderIndex()]] - code - apps/storefront/src/lib/navigasi-berita.ts
-- [[getAllInstitutions()]] - code - apps/storefront/src/lib/awcms/blog.ts
-- [[getDaerah()]] - code - apps/storefront/src/lib/berita.ts
 - [[getDaerahList()]] - code - apps/storefront/src/lib/navigasi-berita.ts
-- [[getMitraList()_1]] - code - apps/storefront/src/lib/navigasi-berita.ts
+- [[getMitraList()]] - code - apps/storefront/src/lib/navigasi-berita.ts
 - [[getPerusahaanLinks()]] - code - apps/storefront/src/lib/navigasi-berita.ts
 - [[getResolvableRegionsByCode()]] - code - apps/storefront/src/lib/awcms/wilayah.ts
-- [[getStaticPaths()]] - code - apps/storefront/src/pages/daerah/[slug].astro
 - [[institution()]] - code - apps/storefront/tests/navigasi-berita.test.ts
 - [[isActive()]] - code - apps/storefront/src/components/berita/NavBerita.astro
-- [[listDaerahLinks()]] - code - apps/storefront/src/lib/berita.ts
 - [[navigasi-berita.test.ts]] - code - apps/storefront/tests/navigasi-berita.test.ts
 - [[navigasi-berita.ts]] - code - apps/storefront/src/lib/navigasi-berita.ts
 - [[normalizeForMatch()]] - code - apps/storefront/src/lib/navigasi-berita.ts
@@ -47,10 +42,9 @@ members: 41
 - [[selectNavUtamaRubrik()]] - code - apps/storefront/src/lib/navigasi-berita.ts
 - [[selectPerusahaanLinks()]] - code - apps/storefront/src/lib/navigasi-berita.ts
 - [[selectUmumChildren()]] - code - apps/storefront/src/lib/navigasi-berita.ts
+- [[socialIcons]] - code - apps/storefront/src/components/berita/BilahUtilitas.astro
 - [[stripRegionTerm()]] - code - apps/storefront/src/lib/navigasi-berita.ts
-- [[toRegionRef()]] - code - apps/storefront/src/lib/berita.ts
 - [[year_1]] - code - apps/storefront/src/components/berita/FooterBerita.astro
-- [[{ slug }]] - code - apps/storefront/src/pages/daerah/[slug].astro
 
 ## Live Query (requires Dataview plugin)
 
@@ -60,23 +54,21 @@ SORT file.name ASC
 ```
 
 ## Connections to other communities
-- 16 edges to [[_COMMUNITY_berita.ts]]
-- 11 edges to [[_COMMUNITY_routes.ts]]
+- 10 edges to [[_COMMUNITY_berita.ts]]
+- 9 edges to [[_COMMUNITY_routes.ts]]
 - 9 edges to [[_COMMUNITY_n.astro]]
 - 6 edges to [[_COMMUNITY_wilayah.ts]]
-- 5 edges to [[_COMMUNITY_lembaga.ts]]
-- 5 edges to [[_COMMUNITY_blog.ts]]
-- 3 edges to [[_COMMUNITY_portable-text.ts]]
-- 3 edges to [[_COMMUNITY_Sidebar.astro]]
+- 6 edges to [[_COMMUNITY_lembaga.ts]]
+- 3 edges to [[_COMMUNITY_pages.ts]]
+- 3 edges to [[_COMMUNITY_profil.ts]]
 - 3 edges to [[_COMMUNITY_BeritaLayout.astro]]
-- 2 edges to [[_COMMUNITY_profil.ts]]
+- 3 edges to [[_COMMUNITY_blog.ts]]
 - 2 edges to [[_COMMUNITY_bagikan.test.ts]]
-- 2 edges to [[_COMMUNITY_videoslug.astro]]
-- 1 edge to [[_COMMUNITY_site.ts]]
+- 2 edges to [[_COMMUNITY_Sidebar.astro]]
 
 ## Top bridge nodes
-- [[navigasi-berita.ts]] - degree 45, connects to 9 communities
+- [[navigasi-berita.ts]] - degree 45, connects to 8 communities
 - [[FooterBerita.astro]] - degree 13, connects to 5 communities
 - [[navigasi-berita.test.ts]] - degree 16, connects to 4 communities
 - [[NavBerita.astro]] - degree 11, connects to 4 communities
-- [[daerahslug.astro]] - degree 10, connects to 4 communities
+- [[getResolvableRegionsByCode()]] - degree 10, connects to 3 communities

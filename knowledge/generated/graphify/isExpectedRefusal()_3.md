@@ -1,21 +1,19 @@
 ---
-source_file: "apps/storefront/src/lib/awcms/blog.ts"
+source_file: "apps/storefront/src/lib/awcms/media.ts"
 type: "code"
-community: "blog.ts"
-location: "L71"
+community: "BeritaLayout.astro"
+location: "L119"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/blogts
+  - community/BeritaLayoutastro
 ---
 
 # isExpectedRefusal()
 
 ## Connections
-- [[blog.ts]] - `contains` [EXTRACTED]
-- [[fetchActiveAdPlacements()]] - `calls` [EXTRACTED]
-- [[fetchAllInstitutions()]] - `calls` [EXTRACTED]
-- [[fetchAllTerms()]] - `calls` [EXTRACTED]
-- [[fetchLegacyRedirectRows()]] - `calls` [EXTRACTED]
+- [[fetchMediaPublicOrigin()]] - `calls` [EXTRACTED]
+- [[media.ts]] - `contains` [EXTRACTED]
+- [[resolveMedia()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/blogts
+#graphify/code #graphify/EXTRACTED #community/BeritaLayoutastro

@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/server/penyaji.mjs"
 type: "code"
-community: "penyaji.mjs"
+community: "katalog-csp-media.test.ts"
 location: "L205"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/penyajimjs
+  - community/katalog-csp-mediatestts
 ---
 
 # sanitizeOrigins()
@@ -15,4 +15,4 @@ tags:
 - [[buildCsp()]] - `calls` [EXTRACTED]
 - [[penyaji.mjs]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/penyajimjs
+#graphify/code #graphify/EXTRACTED #community/katalog-csp-mediatestts

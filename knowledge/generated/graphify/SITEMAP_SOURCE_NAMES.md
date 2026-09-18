@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/sitemap-sources.ts"
 type: "code"
-community: "site.ts"
+community: "sitemap-sources.ts"
 location: "L112"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/sitets
+  - community/sitemap-sourcests
 ---
 
 # SITEMAP_SOURCE_NAMES
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[sitemap-sources.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/sitets
+#graphify/code #graphify/EXTRACTED #community/sitemap-sourcests

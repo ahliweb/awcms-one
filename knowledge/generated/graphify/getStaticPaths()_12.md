@@ -1,8 +1,8 @@
 ---
-source_file: "apps/storefront/src/pages/rubrik/[slug]/halaman/[n].astro"
+source_file: "apps/storefront/src/pages/rubrik/[slug]/index.astro"
 type: "code"
 community: "[n].astro"
-location: "L19"
+location: "L21"
 tags:
   - graphify/code
   - graphify/EXTRACTED
@@ -12,10 +12,8 @@ tags:
 # getStaticPaths()
 
 ## Connections
-- [[n.astro]] - `contains` [EXTRACTED]
+- [[slugindex.astro]] - `contains` [EXTRACTED]
 - [[flattenRubrikTree()]] - `calls` [EXTRACTED]
-- [[getRubrik()]] - `calls` [EXTRACTED]
 - [[getRubrikTree()]] - `calls` [EXTRACTED]
-- [[paginate()]] - `calls` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/nastro

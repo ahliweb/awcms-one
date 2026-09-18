@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/server/pengalihan-aturan.mjs"
 type: "code"
-community: "penyaji.mjs"
+community: "pengalihan-aturan.mjs"
 location: "L324"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/penyajimjs
+  - community/pengalihan-aturanmjs
 ---
 
 # ROW_ID_INDEX_CACHE
@@ -15,4 +15,4 @@ tags:
 - [[pengalihan-aturan.mjs]] - `contains` [EXTRACTED]
 - [[rowIdIndexFor()]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/penyajimjs
+#graphify/code #graphify/EXTRACTED #community/pengalihan-aturanmjs

@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/pages/sitemap-index.xml.ts"
 type: "code"
-community: "site.ts"
+community: "sitemap-sources.ts"
 location: "L11"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/sitets
+  - community/sitemap-sourcests
 ---
 
 # prerender
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[sitemap-index.xml.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/sitets
+#graphify/code #graphify/EXTRACTED #community/sitemap-sourcests

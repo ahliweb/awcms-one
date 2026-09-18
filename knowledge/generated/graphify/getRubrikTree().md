@@ -2,7 +2,7 @@
 source_file: "apps/storefront/src/lib/berita.ts"
 type: "code"
 community: "[n].astro"
-location: "L460"
+location: "L488"
 tags:
   - graphify/code
   - graphify/EXTRACTED
@@ -19,9 +19,9 @@ tags:
 - [[beritaindex.astro]] - `imports` [EXTRACTED]
 - [[getIndex()]] - `calls` [EXTRACTED]
 - [[getNavUtama()]] - `calls` [EXTRACTED]
-- [[getStaticPaths()_5]] - `calls` [EXTRACTED]
+- [[getStaticPaths()_4]] - `calls` [EXTRACTED]
+- [[getStaticPaths()_11]] - `calls` [EXTRACTED]
 - [[getStaticPaths()_12]] - `calls` [EXTRACTED]
-- [[getStaticPaths()_13]] - `calls` [EXTRACTED]
 - [[getUmumList()]] - `calls` [EXTRACTED]
 - [[navigasi-berita.ts]] - `imports` [EXTRACTED]
 - [[sitemap-sources.ts]] - `imports` [EXTRACTED]

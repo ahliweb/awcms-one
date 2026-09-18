@@ -17,11 +17,11 @@ tags:
 - [[ROUTES]] - `imports` [EXTRACTED]
 - [[Sidebar.astro]] - `imports_from` [EXTRACTED]
 - [[berita.ts]] - `imports_from` [EXTRACTED]
-- [[canonicalPath_4]] - `contains` [EXTRACTED]
+- [[canonicalPath_3]] - `contains` [EXTRACTED]
 - [[getAuthor()]] - `imports` [EXTRACTED]
-- [[getStaticPaths()_11]] - `contains` [EXTRACTED]
+- [[getStaticPaths()_10]] - `contains` [EXTRACTED]
 - [[listAuthors()]] - `imports` [EXTRACTED]
 - [[routes.ts]] - `imports_from` [EXTRACTED]
-- [[{ slug }_4]] - `contains` [EXTRACTED]
+- [[{ slug }_3]] - `contains` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/beritats

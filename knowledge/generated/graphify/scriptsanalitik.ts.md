@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/scripts/analitik.ts"
 type: "code"
-community: "buletin.ts"
+community: "requireAwcmsOrigin"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/buletints
+  - community/requireAwcmsOrigin
 ---
 
 # scripts/analitik.ts
@@ -24,4 +24,4 @@ tags:
 - [[sendAnalyticsBeacon()]] - `contains` [EXTRACTED]
 - [[toko-origin.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/buletints
+#graphify/code #graphify/EXTRACTED #community/requireAwcmsOrigin

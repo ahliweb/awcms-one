@@ -1,19 +1,18 @@
 ---
-source_file: "apps/storefront/src/pages/index/wilayah-kecamatan-[cityCode].json.ts"
+source_file: "apps/storefront/src/pages/penulis/[slug].astro"
 type: "code"
-community: "wilayah-checkout.ts"
-location: "L26"
+community: "berita.ts"
+location: "L16"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/wilayah-checkoutts
+  - community/beritats
 ---
 
 # getStaticPaths()
 
 ## Connections
-- [[getAllCheckoutRegencies()]] - `calls` [EXTRACTED]
-- [[getCheckoutDistricts()]] - `calls` [EXTRACTED]
-- [[wilayah-kecamatan-cityCode.json.ts]] - `contains` [EXTRACTED]
+- [[listAuthors()]] - `calls` [EXTRACTED]
+- [[penulisslug.astro]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/wilayah-checkoutts
+#graphify/code #graphify/EXTRACTED #community/beritats

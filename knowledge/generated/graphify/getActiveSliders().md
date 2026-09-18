@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/awcms/pemasaran.ts"
 type: "code"
-community: "pemasaran.ts"
+community: "csp.json.ts"
 location: "L289"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/pemasarants
+  - community/cspjsonts
 ---
 
 # getActiveSliders()
@@ -20,4 +20,4 @@ tags:
 - [[pemasaran.ts]] - `contains` [EXTRACTED]
 - [[warnMissing()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/pemasarants
+#graphify/code #graphify/EXTRACTED #community/cspjsonts

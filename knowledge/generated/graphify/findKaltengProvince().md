@@ -13,7 +13,7 @@ tags:
 
 ## Connections
 - [[buildRegionIndex()]] - `calls` [EXTRACTED]
-- [[getMitraList()_1]] - `calls` [EXTRACTED]
+- [[getMitraList()]] - `calls` [EXTRACTED]
 - [[getProvinces()]] - `calls` [EXTRACTED]
 - [[matchesProvinceName()]] - `calls` [EXTRACTED]
 - [[navigasi-berita.ts]] - `imports` [EXTRACTED]

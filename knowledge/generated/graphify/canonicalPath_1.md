@@ -1,17 +1,17 @@
 ---
-source_file: "apps/storefront/src/pages/mitra/[slug].astro"
+source_file: "apps/storefront/src/pages/arsip/[yyyy]/[mm].astro"
 type: "code"
-community: "lembaga.ts"
-location: "L31"
+community: "Sidebar.astro"
+location: "L18"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/lembagats
+  - community/Sidebarastro
 ---
 
 # canonicalPath
 
 ## Connections
-- [[mitraslug.astro]] - `contains` [EXTRACTED]
+- [[mm.astro]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/lembagats
+#graphify/code #graphify/EXTRACTED #community/Sidebarastro

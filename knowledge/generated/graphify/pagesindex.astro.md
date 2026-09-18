@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/pages/index.astro"
 type: "code"
-community: "pemasaran.ts"
+community: "pages/index.astro"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/pemasarants
+  - community/pages/indexastro
 ---
 
 # pages/index.astro
@@ -40,4 +40,4 @@ tags:
 - [[starText()]] - `contains` [EXTRACTED]
 - [[voucher-copy.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/pemasarants
+#graphify/code #graphify/EXTRACTED #community/pages/indexastro

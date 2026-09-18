@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/pages/feed.xml.ts"
 type: "code"
-community: "formatPrice"
+community: "getProducts"
 location: "L29"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/formatPrice
+  - community/getProducts
 ---
 
 # escapeXml()
@@ -15,4 +15,4 @@ tags:
 - [[GET()_2]] - `calls` [EXTRACTED]
 - [[pagesfeed.xml.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/formatPrice
+#graphify/code #graphify/EXTRACTED #community/getProducts

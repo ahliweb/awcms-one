@@ -2,7 +2,7 @@
 source_file: "apps/storefront/src/lib/awcms/lembaga.ts"
 type: "code"
 community: "lembaga.ts"
-location: "L83"
+location: "L110"
 tags:
   - graphify/code
   - graphify/EXTRACTED

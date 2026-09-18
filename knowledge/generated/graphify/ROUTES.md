@@ -17,6 +17,7 @@ tags:
 - [[Footer.astro]] - `imports` [EXTRACTED]
 - [[FooterBerita.astro]] - `imports` [EXTRACTED]
 - [[Header.astro]] - `imports` [EXTRACTED]
+- [[LogoInstansi.astro]] - `imports` [EXTRACTED]
 - [[NavBerita.astro]] - `imports` [EXTRACTED]
 - [[RubrikBody.astro]] - `imports` [EXTRACTED]
 - [[Sidebar.astro]] - `imports` [EXTRACTED]

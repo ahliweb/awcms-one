@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/pages/berita/index.astro"
 type: "code"
-community: "blog.ts"
+community: "[n].astro"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/blogts
+  - community/nastro
 ---
 
 # berita/index.astro
@@ -27,4 +27,4 @@ tags:
 - [[iklan.ts]] - `imports_from` [EXTRACTED]
 - [[routes.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/blogts
+#graphify/code #graphify/EXTRACTED #community/nastro

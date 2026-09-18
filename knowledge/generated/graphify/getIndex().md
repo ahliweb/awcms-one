@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/berita.ts"
 type: "code"
-community: "berita.ts"
-location: "L176"
+community: "Sidebar.astro"
+location: "L192"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/beritats
+  - community/Sidebarastro
 ---
 
 # getIndex()
@@ -31,4 +31,4 @@ tags:
 - [[listArsipBulan()]] - `calls` [EXTRACTED]
 - [[listAuthors()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/beritats
+#graphify/code #graphify/EXTRACTED #community/Sidebarastro

@@ -52,7 +52,7 @@ SORT file.name ASC
 - 8 edges to [[_COMMUNITY_checkout.ts]]
 - 7 edges to [[_COMMUNITY_scriptspesanan.ts]]
 - 5 edges to [[_COMMUNITY_keranjang.ts]]
-- 3 edges to [[_COMMUNITY_buletin.ts]]
+- 3 edges to [[_COMMUNITY_requireAwcmsOrigin]]
 - 2 edges to [[_COMMUNITY_TokoApiError]]
 
 ## Top bridge nodes

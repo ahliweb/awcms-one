@@ -2,7 +2,7 @@
 source_file: "apps/storefront/src/lib/berita.ts"
 type: "code"
 community: "berita.ts"
-location: "L626"
+location: "L654"
 tags:
   - graphify/code
   - graphify/EXTRACTED
@@ -14,7 +14,7 @@ tags:
 ## Connections
 - [[berita.ts]] - `contains` [EXTRACTED]
 - [[getIndex()]] - `calls` [EXTRACTED]
-- [[getStaticPaths()_11]] - `calls` [EXTRACTED]
+- [[getStaticPaths()_10]] - `calls` [EXTRACTED]
 - [[penulisslug.astro]] - `imports` [EXTRACTED]
 - [[slugifyName()]] - `calls` [EXTRACTED]
 

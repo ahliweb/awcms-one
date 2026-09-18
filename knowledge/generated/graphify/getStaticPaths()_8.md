@@ -1,18 +1,19 @@
 ---
-source_file: "apps/storefront/src/pages/berita/[slug].astro"
+source_file: "apps/storefront/src/pages/index/wilayah-kabupaten-[provinceCode].json.ts"
 type: "code"
-community: "[slug]/feed.xml.ts"
-location: "L40"
+community: "wilayah-checkout.ts"
+location: "L18"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/slug/feedxmlts
+  - community/wilayah-checkoutts
 ---
 
 # getStaticPaths()
 
 ## Connections
-- [[beritaslug.astro]] - `contains` [EXTRACTED]
-- [[getPosts()]] - `calls` [EXTRACTED]
+- [[getCheckoutProvinces()]] - `calls` [EXTRACTED]
+- [[getCheckoutRegencies()]] - `calls` [EXTRACTED]
+- [[wilayah-kabupaten-provinceCode.json.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/slug/feedxmlts
+#graphify/code #graphify/EXTRACTED #community/wilayah-checkoutts

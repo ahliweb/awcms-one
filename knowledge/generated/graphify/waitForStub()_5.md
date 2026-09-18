@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/berita-build-smoke.test.ts"
 type: "code"
-community: "bun"
+community: "berita-build-smoke.test.ts"
 location: "L32"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/bun
+  - community/berita-build-smoketestts
 ---
 
 # waitForStub()
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[berita-build-smoke.test.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/bun
+#graphify/code #graphify/EXTRACTED #community/berita-build-smoketestts

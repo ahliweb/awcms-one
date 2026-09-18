@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/scripts/flash-sale-countdown.ts"
 type: "code"
-community: "profil.ts"
+community: "product/[slug].astro"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/profilts
+  - community/product/slugastro
 ---
 
 # flash-sale-countdown.ts
@@ -18,4 +18,4 @@ tags:
 - [[productslug.astro]] - `imports_from` [EXTRACTED]
 - [[tick()]] - `indirect_call` [INFERRED]
 
-#graphify/code #graphify/EXTRACTED #community/profilts
+#graphify/code #graphify/EXTRACTED #community/product/slugastro

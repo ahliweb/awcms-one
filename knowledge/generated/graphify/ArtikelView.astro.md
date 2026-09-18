@@ -16,6 +16,7 @@ tags:
 - [[ArtikelCard.astro]] - `imports_from` [EXTRACTED]
 - [[BarisBagikan.astro]] - `imports_from` [EXTRACTED]
 - [[IklanSlot.astro]] - `imports_from` [EXTRACTED]
+- [[LogoInstansi.astro]] - `imports_from` [EXTRACTED]
 - [[PemutarDengar.astro]] - `imports_from` [EXTRACTED]
 - [[PostDetail]] - `imports` [EXTRACTED]
 - [[PostSummary]] - `imports` [EXTRACTED]

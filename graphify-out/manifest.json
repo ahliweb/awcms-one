@@ -320,9 +320,9 @@
     "semantic_hash": "825beb0306d8cc389ee721b43df773cd"
   },
   "apps/storefront/src/components/berita/ArtikelView.astro": {
-    "mtime": 1789732078.4098039,
-    "ast_hash": "cdce501f613af99c2ece6b6efc5177b5",
-    "semantic_hash": "cdce501f613af99c2ece6b6efc5177b5"
+    "mtime": 1789741592.4329343,
+    "ast_hash": "65c3ff023fead8e4b152a06e264c314f",
+    "semantic_hash": "65c3ff023fead8e4b152a06e264c314f"
   },
   "apps/storefront/src/components/berita/IklanSlot.astro": {
     "mtime": 1789730384.22846,
@@ -375,9 +375,9 @@
     "semantic_hash": "9f92d4e07fd00d783e8040d597c86f26"
   },
   "apps/storefront/src/lib/awcms/blog.ts": {
-    "mtime": 1789730968.2207642,
-    "ast_hash": "be890a119fb777813e1cc24c95eb3865",
-    "semantic_hash": "be890a119fb777813e1cc24c95eb3865"
+    "mtime": 1789741592.4329343,
+    "ast_hash": "3b71ec2f367cd25513bc41b936fa3e98",
+    "semantic_hash": "3b71ec2f367cd25513bc41b936fa3e98"
   },
   "apps/storefront/src/lib/awcms/iklan.ts": {
     "mtime": 1789535442.1556149,
@@ -385,9 +385,9 @@
     "semantic_hash": "9f75ec551a4df27e594f61d7ce39c445"
   },
   "apps/storefront/src/lib/awcms/lembaga.ts": {
-    "mtime": 1789730968.2207642,
-    "ast_hash": "bbac700d9ff0b690a348c086973981bc",
-    "semantic_hash": "bbac700d9ff0b690a348c086973981bc"
+    "mtime": 1789741592.4329343,
+    "ast_hash": "d6fb01e137cd24e4baebc52c5206f841",
+    "semantic_hash": "d6fb01e137cd24e4baebc52c5206f841"
   },
   "apps/storefront/src/lib/awcms/pages.ts": {
     "mtime": 1789534291.2479272,
@@ -430,9 +430,9 @@
     "semantic_hash": "a07416c42c7086ca8d84d41dd56d73f6"
   },
   "apps/storefront/src/lib/berita.ts": {
-    "mtime": 1789731102.6673894,
-    "ast_hash": "9b14a83047d39c1d853927fa85ff37d7",
-    "semantic_hash": "9b14a83047d39c1d853927fa85ff37d7"
+    "mtime": 1789741592.4339345,
+    "ast_hash": "b43eea6791e3bb5b4c1e9de93d5ed20f",
+    "semantic_hash": "b43eea6791e3bb5b4c1e9de93d5ed20f"
   },
   "apps/storefront/src/lib/csp-asal-media.ts": {
     "mtime": 1789708227.934925,
@@ -645,9 +645,9 @@
     "semantic_hash": "01dc72be61eecd6130949122afe96ba4"
   },
   "apps/storefront/src/pages/mitra/[slug].astro": {
-    "mtime": 1789730968.221764,
-    "ast_hash": "d5a179e8abea7a30e8d106cee6e5a391",
-    "semantic_hash": "d5a179e8abea7a30e8d106cee6e5a391"
+    "mtime": 1789741592.4339345,
+    "ast_hash": "d6b5f3d0eeca52e6415412ab66d53490",
+    "semantic_hash": "d6b5f3d0eeca52e6415412ab66d53490"
   },
   "apps/storefront/src/pages/penulis/[slug].astro": {
     "mtime": 1789731102.6673894,
@@ -825,9 +825,9 @@
     "semantic_hash": "a59aeb6926b7757850ab51e7eb983463"
   },
   "apps/storefront/tests/berita-rubrik.test.ts": {
-    "mtime": 1789730968.221764,
-    "ast_hash": "ab6dab64169bcde5fe226eac1e017948",
-    "semantic_hash": "ab6dab64169bcde5fe226eac1e017948"
+    "mtime": 1789741592.4339345,
+    "ast_hash": "3f94ce2b1bde26aacaf160fc0c31c152",
+    "semantic_hash": "3f94ce2b1bde26aacaf160fc0c31c152"
   },
   "apps/storefront/tests/berita-tanggal.test.ts": {
     "mtime": 1789535442.157615,
@@ -870,9 +870,9 @@
     "semantic_hash": "41b07567d852adab8a4204ce661ec701"
   },
   "apps/storefront/tests/fixtures/awcms/blog-institutions.json": {
-    "mtime": 1789730968.221764,
-    "ast_hash": "619e61e6a7eff057b87d2883d783972a",
-    "semantic_hash": "619e61e6a7eff057b87d2883d783972a"
+    "mtime": 1789741592.4339345,
+    "ast_hash": "388befe86ed07c2ffa0fd14e587de737",
+    "semantic_hash": "388befe86ed07c2ffa0fd14e587de737"
   },
   "apps/storefront/tests/fixtures/awcms/blog-pages-public-detail.json": {
     "mtime": 1789534291.248927,
@@ -1310,9 +1310,9 @@
     "semantic_hash": "db0e6538855e8f4454affec03ffa9d11"
   },
   "apps/storefront/tests/fixtures/awcms/media-objects.json": {
-    "mtime": 1789730968.221764,
-    "ast_hash": "389fc74f252f44c1eb76c96169e4e892",
-    "semantic_hash": "389fc74f252f44c1eb76c96169e4e892"
+    "mtime": 1789741592.4339345,
+    "ast_hash": "0499edf6989a56dcedba2e37b4248218",
+    "semantic_hash": "0499edf6989a56dcedba2e37b4248218"
   },
   "apps/storefront/tests/fixtures/awcms/media-public-origin.json": {
     "mtime": 1789708227.9359252,
@@ -1433,5 +1433,20 @@
     "mtime": 1789723118.927842,
     "ast_hash": "a1ef7250c5341bd1a9055ee37dac7edf",
     "semantic_hash": "a1ef7250c5341bd1a9055ee37dac7edf"
+  },
+  "apps/storefront/src/components/berita/LogoInstansi.astro": {
+    "mtime": 1789741592.4329343,
+    "ast_hash": "be1a8e79e3ac318a79edf13878308c80",
+    "semantic_hash": "be1a8e79e3ac318a79edf13878308c80"
+  },
+  "apps/storefront/tests/logo-instansi-build-smoke.test.ts": {
+    "mtime": 1789741592.4339345,
+    "ast_hash": "1cd04e9e881b592103465cdfb8e633f6",
+    "semantic_hash": "1cd04e9e881b592103465cdfb8e633f6"
+  },
+  "apps/storefront/tests/logo-instansi.test.ts": {
+    "mtime": 1789741592.4339345,
+    "ast_hash": "95cead23c883cd17347c17ea78c01ddf",
+    "semantic_hash": "95cead23c883cd17347c17ea78c01ddf"
   }
 }

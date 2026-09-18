@@ -1,17 +1,16 @@
 ---
 type: community
 cohesion: 0.09
-members: 43
+members: 41
 ---
 
 # bagikan.test.ts
 
 **Cohesion:** 0.09 - loosely connected
-**Members:** 43 nodes
+**Members:** 41 nodes
 
 ## Members
 - [[BarisBagikan.astro]] - code - apps/storefront/src/components/berita/BarisBagikan.astro
-- [[BilahUtilitas.astro]] - code - apps/storefront/src/components/berita/BilahUtilitas.astro
 - [[ElemenStatus]] - code - apps/storefront/src/scripts/bagikan.ts
 - [[FOLLOW_LABEL]] - code - apps/storefront/src/lib/bagikan.ts
 - [[FOLLOW_ORDER]] - code - apps/storefront/src/lib/bagikan.ts
@@ -51,7 +50,6 @@ members: 43
 - [[salinTautan()]] - code - apps/storefront/src/scripts/bagikan.ts
 - [[scriptsbagikan.ts]] - code - apps/storefront/src/scripts/bagikan.ts
 - [[shareLinks]] - code - apps/storefront/src/components/berita/BarisBagikan.astro
-- [[socialIcons]] - code - apps/storefront/src/components/berita/BilahUtilitas.astro
 - [[statusRecorder()]] - code - apps/storefront/tests/bagikan.test.ts
 
 ## Live Query (requires Dataview plugin)
@@ -62,11 +60,11 @@ SORT file.name ASC
 ```
 
 ## Connections to other communities
-- 2 edges to [[_COMMUNITY_profil.ts]]
 - 2 edges to [[_COMMUNITY_navigasi-berita.ts]]
+- 1 edge to [[_COMMUNITY_profil.ts]]
 - 1 edge to [[_COMMUNITY_Sidebar.astro]]
-- 1 edge to [[_COMMUNITY_BeritaLayout.astro]]
 
 ## Top bridge nodes
-- [[BilahUtilitas.astro]] - degree 7, connects to 3 communities
 - [[BarisBagikan.astro]] - degree 10, connects to 2 communities
+- [[ikon-sosial.ts]] - degree 14, connects to 1 community
+- [[resolveSocialIcons()]] - degree 7, connects to 1 community

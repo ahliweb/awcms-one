@@ -2,7 +2,7 @@
 source_file: "apps/storefront/src/lib/awcms/blog.ts"
 type: "code"
 community: "getVideo"
-location: "L373"
+location: "L387"
 tags:
   - graphify/code
   - graphify/EXTRACTED

@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/ga.ts"
 type: "code"
-community: "penyaji.mjs"
+community: "ga.ts"
 location: "L39"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/penyajimjs
+  - community/gats
 ---
 
 # isValidGaMeasurementId()
@@ -17,4 +17,4 @@ tags:
 - [[ga.ts]] - `contains` [EXTRACTED]
 - [[readGaMeasurementId()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/penyajimjs
+#graphify/code #graphify/EXTRACTED #community/gats

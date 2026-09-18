@@ -1,0 +1,67 @@
+---
+/**
+ * The institution emblem beside an article's opening paragraph (issue #59 /
+ * C1) — seputarborneo.com v2.3.0's "Logo Instansi", rebuilt on this
+ * platform's own model.
+ *
+ * ## Why the emblem lives on the INSTITUTION, not on the post
+ *
+ * seputarborneo attaches a regency's emblem to an ARTICLE: a `logo` table,
+ * `berita_red.id_logo`, and a picker in every news form. Here every such
+ * article is already filed under that regency's institution
+ * (`awcms_blog_institutions`, the "Mitra" of `/mitra/{slug}`), so the
+ * emblem hangs off the institution instead — upstream awcms#806's
+ * `logo_media_id`/`logo_alt`, carried into this repo by the `apps/cms`
+ * subtree pull. One upload serves every article of that institution and
+ * changing it updates them all, which is exactly the property
+ * seputarborneo's own "satu logo dipakai berulang" rule was after, with one
+ * source of truth instead of a per-post picker that can disagree with the
+ * channel the article is filed under.
+ *
+ * ## What it renders, and when it renders nothing
+ *
+ * A float-left `<figure>` as the first thing inside the article body
+ * column, so the opening paragraph wraps beside it — the placement
+ * upstream's `sb_artikel_logo()` uses. It renders ONLY when the post's
+ * first institution has an emblem that actually resolved
+ * (`InstitutionRef.logo`, `src/lib/awcms/media.ts`); a post with no
+ * institution, an institution with no emblem, or a stale media id renders
+ * nothing at all — never a broken image and never an empty frame.
+ *
+ * No background, no border, no padding: an emblem is almost always a
+ * transparent PNG or SVG, and upstream's 2.3.2 release removed exactly
+ * those decorations for that reason.
+ *
+ * The `alt` is the CMS-authored `logoAlt` when there is one. When there is
+ * not, the emblem is DECORATIVE (`alt=""`, `aria-hidden` on the link's own
+ * text alternative is unnecessary) — the institution's name is already
+ * beside it in the byline and, when linked, in the link's accessible name,
+ * so announcing "logo" twice adds nothing for a screen-reader user.
+ */
+import type { InstitutionRef } from "../../lib/berita";
+import { ROUTES } from "../../config/routes";
+
+interface Props {
+  /** The article's institutions; only the first one with a resolved emblem is rendered. */
+  institutions: readonly InstitutionRef[];
+}
+
+const { institutions } = Astro.props;
+const instansi = institutions.find((i) => i.logo !== null) ?? null;
+const logo = instansi?.logo ?? null;
+---
+
+{logo && instansi && (
+  <figure class="logo-instansi">
+    <a href={ROUTES.partner(instansi.slug)} aria-label={`Berita ${instansi.name}`}>
+      <img
+        src={logo.publicUrl}
+        alt={instansi.logoAlt ?? ""}
+        width={logo.width ?? 96}
+        height={logo.height ?? 96}
+        loading="lazy"
+        decoding="async"
+      />
+    </a>
+  </figure>
+)}

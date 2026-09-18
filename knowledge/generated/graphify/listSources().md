@@ -1,12 +1,12 @@
 ---
 source_file: "packages/gerbang/check-docs-translation.mjs"
 type: "code"
-community: "docs-i18n-stamp.mjs"
+community: "audit-graf.mjs"
 location: "L81"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/docs-i18n-stampmjs
+  - community/audit-grafmjs
 ---
 
 # listSources()
@@ -17,4 +17,4 @@ tags:
 - [[isInScope()]] - `indirect_call` [INFERRED]
 - [[runChecks()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/docs-i18n-stampmjs
+#graphify/code #graphify/EXTRACTED #community/audit-grafmjs

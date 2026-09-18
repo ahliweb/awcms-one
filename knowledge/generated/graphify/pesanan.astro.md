@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/pages/pesanan.astro"
 type: "code"
-community: "profil.ts"
+community: "BaseLayout.astro"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/profilts
+  - community/BaseLayoutastro
 ---
 
 # pesanan.astro
@@ -19,4 +19,4 @@ tags:
 - [[profil.ts]] - `imports_from` [EXTRACTED]
 - [[scriptspesanan.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/profilts
+#graphify/code #graphify/EXTRACTED #community/BaseLayoutastro

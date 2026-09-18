@@ -13,7 +13,7 @@ tags:
 
 ## Connections
 - [[getMediaPublicOrigin()]] - `calls` [EXTRACTED]
-- [[isExpectedRefusal()_4]] - `calls` [EXTRACTED]
+- [[isExpectedRefusal()_3]] - `calls` [EXTRACTED]
 - [[media.ts]] - `contains` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/BeritaLayoutastro

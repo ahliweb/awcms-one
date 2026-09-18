@@ -20,6 +20,7 @@ tags:
 - [[Footer.astro]] - `imports_from` [EXTRACTED]
 - [[FooterBerita.astro]] - `imports_from` [EXTRACTED]
 - [[Header.astro]] - `imports_from` [EXTRACTED]
+- [[LogoInstansi.astro]] - `imports_from` [EXTRACTED]
 - [[NavBerita.astro]] - `imports_from` [EXTRACTED]
 - [[PRIMARY_NAV]] - `contains` [EXTRACTED]
 - [[ROUTES]] - `contains` [EXTRACTED]

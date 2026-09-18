@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/awcms/pemasaran.ts"
 type: "code"
-community: "pemasaran.ts"
+community: "csp.json.ts"
 location: "L307"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/pemasarants
+  - community/cspjsonts
 ---
 
 # getActiveFlashSales()
@@ -24,4 +24,4 @@ tags:
 - [[produk.json.ts]] - `imports` [EXTRACTED]
 - [[warnMissing()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/pemasarants
+#graphify/code #graphify/EXTRACTED #community/cspjsonts

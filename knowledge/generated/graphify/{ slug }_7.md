@@ -1,17 +1,17 @@
 ---
-source_file: "apps/storefront/src/pages/video/[slug].astro"
+source_file: "apps/storefront/src/pages/mitra/[slug].astro"
 type: "code"
-community: "video/[slug].astro"
-location: "L39"
+community: "lembaga.ts"
+location: "L24"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/video/slugastro
+  - community/lembagats
 ---
 
 # { slug }
 
 ## Connections
-- [[videoslug.astro]] - `contains` [EXTRACTED]
+- [[mitraslug.astro]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/video/slugastro
+#graphify/code #graphify/EXTRACTED #community/lembagats

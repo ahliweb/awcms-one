@@ -2,7 +2,7 @@
 source_file: "apps/storefront/src/lib/berita.ts"
 type: "code"
 community: "berita.ts"
-location: "L105"
+location: "L121"
 tags:
   - graphify/code
   - graphify/EXTRACTED

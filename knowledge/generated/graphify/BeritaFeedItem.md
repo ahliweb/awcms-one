@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/berita.ts"
 type: "code"
-community: "[slug]/feed.xml.ts"
-location: "L737"
+community: "site.ts"
+location: "L765"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/slug/feedxmlts
+  - community/sitets
 ---
 
 # BeritaFeedItem
@@ -17,4 +17,4 @@ tags:
 - [[berita.ts]] - `contains` [EXTRACTED]
 - [[beritafeed.xml.ts]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/slug/feedxmlts
+#graphify/code #graphify/EXTRACTED #community/sitets

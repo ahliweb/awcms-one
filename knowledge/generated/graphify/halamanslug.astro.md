@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/pages/halaman/[slug].astro"
 type: "code"
-community: "portable-text.ts"
+community: "pages.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/portable-textts
+  - community/pagests
 ---
 
 # halaman/[slug].astro
@@ -22,4 +22,4 @@ tags:
 - [[renderPortableText()]] - `imports` [EXTRACTED]
 - [[{ slug }_1]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/portable-textts
+#graphify/code #graphify/EXTRACTED #community/pagests

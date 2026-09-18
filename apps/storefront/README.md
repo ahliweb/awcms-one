@@ -487,6 +487,42 @@ read out mid-article is worse than silence. Rate (0.75×–1.5×) and the chosen
 voice persist in `localStorage`, every access wrapped in `try`/`catch` so a
 private window degrades to "does not remember", never to a broken player.
 
+## Institution emblem — "Logo Instansi" (issue #59)
+
+`apps/storefront/src/components/berita/LogoInstansi.astro` renders a
+regency's (or council's) emblem as a float beside an article's opening
+paragraph, and `/mitra/{slug}` shows the same emblem on that institution's
+own page.
+
+**The emblem belongs to the INSTITUTION, not to the post.** seputarborneo
+attaches it per article (a `logo` table plus `berita_red.id_logo` and a
+picker in every news form); here every such article is already filed under
+that institution, so one upload serves all of them and changing it updates
+all of them — the property upstream's own "satu logo dipakai berulang" rule
+was after, with one source of truth instead of a per-post picker that can
+disagree with the channel the article is filed under. The field itself is
+`logo_media_id`/`logo_alt` on `awcms_blog_institutions`, added by upstream
+awcms#806 and received here through the `apps/cms` subtree pull.
+
+- It resolves through the same batched `resolveMedia` call as post images
+  (`apps/storefront/src/lib/awcms/media.ts`); the handful of ids shared by
+  thousands of posts are de-duplicated into one chunked request.
+- An article with no institution, an institution with no emblem, or a stale
+  media id renders **nothing** — no empty frame, no broken `<img>`.
+- `alt` is the CMS-authored `logoAlt` when there is one; with none the
+  emblem is decorative (`alt=""`), because the institution's name is
+  already beside it in the byline and in the link's accessible name.
+- No background, border or padding: an emblem is nearly always a
+  transparent PNG/SVG, and upstream's 2.3.2 release removed exactly those
+  decorations for that reason.
+
+`RawInstitution.logoMediaId`/`logoAlt` are optional on purpose — a build
+pointed at an `apps/cms` older than that subtree pull renders no emblem
+rather than crashing on a missing property
+(`apps/storefront/tests/logo-instansi.test.ts` covers that case, and
+`apps/storefront/tests/logo-instansi-build-smoke.test.ts` proves both the
+present and the absent case on real built pages).
+
 ## Catalog surface (issue #27)
 
 The full shopper-facing catalog: the home page, `/produk`, `/kategori/{slug}`,

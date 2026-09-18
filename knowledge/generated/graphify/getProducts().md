@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/catalog.ts"
 type: "code"
-community: "catalog.ts"
+community: "getProducts"
 location: "L299"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/catalogts
+  - community/getProducts
 ---
 
 # getProducts()
@@ -19,7 +19,7 @@ tags:
 - [[catalog.ts]] - `contains` [EXTRACTED]
 - [[csp.json.ts]] - `imports` [EXTRACTED]
 - [[getProduct()]] - `calls` [EXTRACTED]
-- [[getStaticPaths()_4]] - `calls` [EXTRACTED]
+- [[getStaticPaths()_3]] - `calls` [EXTRACTED]
 - [[isPubliclyVisible()]] - `calls` [EXTRACTED]
 - [[kategorislug.astro]] - `imports` [EXTRACTED]
 - [[listAllProducts()]] - `calls` [EXTRACTED]
@@ -31,4 +31,4 @@ tags:
 - [[produk.json.ts]] - `imports` [EXTRACTED]
 - [[sitemap-katalog.ts]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/catalogts
+#graphify/code #graphify/EXTRACTED #community/getProducts

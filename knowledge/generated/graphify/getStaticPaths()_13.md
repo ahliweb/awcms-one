@@ -1,19 +1,18 @@
 ---
-source_file: "apps/storefront/src/pages/rubrik/[slug]/index.astro"
+source_file: "apps/storefront/src/pages/tag/[slug].astro"
 type: "code"
-community: "[n].astro"
-location: "L21"
+community: "Sidebar.astro"
+location: "L9"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/nastro
+  - community/Sidebarastro
 ---
 
 # getStaticPaths()
 
 ## Connections
-- [[slugindex.astro]] - `contains` [EXTRACTED]
-- [[flattenRubrikTree()]] - `calls` [EXTRACTED]
-- [[getRubrikTree()]] - `calls` [EXTRACTED]
+- [[getTags()]] - `calls` [EXTRACTED]
+- [[tagslug.astro]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/nastro
+#graphify/code #graphify/EXTRACTED #community/Sidebarastro

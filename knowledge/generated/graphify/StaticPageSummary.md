@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/awcms/pages.ts"
 type: "code"
-community: "portable-text.ts"
+community: "routes.ts"
 location: "L27"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/portable-textts
+  - community/routests
 ---
 
 # StaticPageSummary
@@ -15,4 +15,4 @@ tags:
 - [[Footer.astro]] - `imports` [EXTRACTED]
 - [[pages.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/portable-textts
+#graphify/code #graphify/EXTRACTED #community/routests

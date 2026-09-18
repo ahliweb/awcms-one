@@ -1,8 +1,8 @@
 ---
-source_file: "apps/storefront/src/pages/index/wilayah-kabupaten-[provinceCode].json.ts"
+source_file: "apps/storefront/src/pages/index/wilayah-kecamatan-[cityCode].json.ts"
 type: "code"
 community: "wilayah-checkout.ts"
-location: "L18"
+location: "L26"
 tags:
   - graphify/code
   - graphify/EXTRACTED
@@ -12,8 +12,8 @@ tags:
 # getStaticPaths()
 
 ## Connections
-- [[getCheckoutProvinces()]] - `calls` [EXTRACTED]
-- [[getCheckoutRegencies()]] - `calls` [EXTRACTED]
-- [[wilayah-kabupaten-provinceCode.json.ts]] - `contains` [EXTRACTED]
+- [[getAllCheckoutRegencies()]] - `calls` [EXTRACTED]
+- [[getCheckoutDistricts()]] - `calls` [EXTRACTED]
+- [[wilayah-kecamatan-cityCode.json.ts]] - `contains` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/wilayah-checkoutts

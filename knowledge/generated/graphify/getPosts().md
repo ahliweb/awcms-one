@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/berita.ts"
 type: "code"
-community: "[slug]/feed.xml.ts"
-location: "L405"
+community: "Sidebar.astro"
+location: "L433"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/slug/feedxmlts
+  - community/Sidebarastro
 ---
 
 # getPosts()
@@ -22,7 +22,7 @@ tags:
 - [[beritafeed.xml.ts]] - `imports` [EXTRACTED]
 - [[beritaindex.astro]] - `imports` [EXTRACTED]
 - [[getIndex()]] - `calls` [EXTRACTED]
-- [[getStaticPaths()_8]] - `calls` [EXTRACTED]
+- [[getStaticPaths()_7]] - `calls` [EXTRACTED]
 - [[sitemap-sources.ts]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/slug/feedxmlts
+#graphify/code #graphify/EXTRACTED #community/Sidebarastro

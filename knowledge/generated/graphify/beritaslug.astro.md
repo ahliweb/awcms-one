@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/pages/berita/[slug].astro"
 type: "code"
-community: "video/[slug].astro"
+community: "BeritaLayout.astro"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/video/slugastro
+  - community/BeritaLayoutastro
 ---
 
 # berita/[slug].astro
@@ -19,14 +19,14 @@ tags:
 - [[berita.ts]] - `imports_from` [EXTRACTED]
 - [[breadcrumbItems]] - `contains` [EXTRACTED]
 - [[breadcrumbListSchema()]] - `imports` [EXTRACTED]
-- [[canonicalPath_3]] - `contains` [EXTRACTED]
+- [[canonicalPath_2]] - `contains` [EXTRACTED]
 - [[combineSchemas()]] - `imports` [EXTRACTED]
 - [[getDaerah()]] - `imports` [EXTRACTED]
 - [[getPost()]] - `imports` [EXTRACTED]
 - [[getPosts()]] - `imports` [EXTRACTED]
 - [[getRelatedPosts()]] - `imports` [EXTRACTED]
 - [[getSiteIdentity()]] - `imports` [EXTRACTED]
-- [[getStaticPaths()_8]] - `contains` [EXTRACTED]
+- [[getStaticPaths()_7]] - `contains` [EXTRACTED]
 - [[jsonld-berita.ts]] - `imports_from` [EXTRACTED]
 - [[meta-sosial.ts]] - `imports_from` [EXTRACTED]
 - [[newsArticleSchema()]] - `imports` [EXTRACTED]
@@ -36,6 +36,6 @@ tags:
 - [[schema]] - `contains` [EXTRACTED]
 - [[seo]] - `contains` [EXTRACTED]
 - [[social]] - `contains` [EXTRACTED]
-- [[{ slug }_3]] - `contains` [EXTRACTED]
+- [[{ slug }_2]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/video/slugastro
+#graphify/code #graphify/EXTRACTED #community/BeritaLayoutastro

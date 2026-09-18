@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/components/Footer.astro"
 type: "code"
-community: "portable-text.ts"
+community: "routes.ts"
 location: "L30"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/portable-textts
+  - community/routests
 ---
 
 # footerLinks
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[Footer.astro]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/portable-textts
+#graphify/code #graphify/EXTRACTED #community/routests

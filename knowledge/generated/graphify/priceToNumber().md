@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/harga.ts"
 type: "code"
-community: "formatPrice"
+community: "product/[slug].astro"
 location: "L50"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/formatPrice
+  - community/product/slugastro
 ---
 
 # priceToNumber()
@@ -19,4 +19,4 @@ tags:
 - [[harga.ts]] - `contains` [EXTRACTED]
 - [[katalog-harga.test.ts]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/formatPrice
+#graphify/code #graphify/EXTRACTED #community/product/slugastro

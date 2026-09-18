@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/wishlist-kontrak.test.ts"
 type: "code"
-community: "wishlist-kontrak.ts"
+community: "BeritaLayout.astro"
 location: "L15"
 tags:
   - graphify/code
   - graphify/INFERRED
-  - community/wishlist-kontrakts
+  - community/BeritaLayoutastro
 ---
 
 # item()
@@ -18,4 +18,4 @@ tags:
 - [[resolveMedia()]] - `indirect_call` [INFERRED]
 - [[wishlist-kontrak.test.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/INFERRED #community/wishlist-kontrakts
+#graphify/code #graphify/INFERRED #community/BeritaLayoutastro

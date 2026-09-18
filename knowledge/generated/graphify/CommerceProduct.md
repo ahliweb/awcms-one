@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/catalog.ts"
 type: "code"
-community: "catalog.ts"
+community: "kategori/[slug].astro"
 location: "L153"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/catalogts
+  - community/kategori/slugastro
 ---
 
 # CommerceProduct
@@ -18,4 +18,4 @@ tags:
 - [[katalog-jsonld.test.ts]] - `imports` [EXTRACTED]
 - [[productslug.astro]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/catalogts
+#graphify/code #graphify/EXTRACTED #community/kategori/slugastro

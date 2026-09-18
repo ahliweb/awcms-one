@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/scripts/voucher-copy.ts"
 type: "code"
-community: "pemasaran.ts"
+community: "pages/index.astro"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/pemasarants
+  - community/pages/indexastro
 ---
 
 # voucher-copy.ts
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[pagesindex.astro]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/pemasarants
+#graphify/code #graphify/EXTRACTED #community/pages/indexastro

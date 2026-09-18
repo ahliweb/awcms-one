@@ -1,12 +1,12 @@
 ---
 source_file: "packages/gerbang/lib/graph-combine.mjs"
 type: "code"
-community: "docs-i18n-stamp.mjs"
+community: "knowledge-graph-combine.mjs"
 location: "L85"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/docs-i18n-stampmjs
+  - community/knowledge-graph-combinemjs
 ---
 
 # checkMergeInputsCompatible()
@@ -16,4 +16,4 @@ tags:
 - [[graph-combine.test.mjs]] - `imports` [EXTRACTED]
 - [[knowledge-graph-combine.mjs]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/docs-i18n-stampmjs
+#graphify/code #graphify/EXTRACTED #community/knowledge-graph-combinemjs

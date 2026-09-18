@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/berita.ts"
 type: "code"
-community: "pemasaran.ts"
-location: "L385"
+community: "csp.json.ts"
+location: "L413"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/pemasarants
+  - community/cspjsonts
 ---
 
 # getResolvedMedia()
@@ -18,4 +18,4 @@ tags:
 - [[csp.json.ts]] - `imports` [EXTRACTED]
 - [[getIndex()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/pemasarants
+#graphify/code #graphify/EXTRACTED #community/cspjsonts
