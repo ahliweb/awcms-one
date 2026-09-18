@@ -1,0 +1,86 @@
+[
+  {
+    "name": "Politik",
+    "slug": "politik",
+    "parentSlug": null,
+    "description": "Berita seputar politik dan pemerintahan."
+  },
+  {
+    "name": "Hukum",
+    "slug": "hukum",
+    "parentSlug": null,
+    "description": "Berita seputar hukum, kriminal, dan peradilan."
+  },
+  {
+    "name": "Nasional",
+    "slug": "nasional",
+    "parentSlug": null,
+    "description": "Berita berskala nasional."
+  },
+  {
+    "name": "Olah Raga",
+    "slug": "olahraga",
+    "parentSlug": null,
+    "description": "Berita seputar olahraga."
+  },
+  {
+    "name": "Wisata",
+    "slug": "wisata",
+    "parentSlug": null,
+    "description": "Berita seputar pariwisata."
+  },
+  {
+    "name": "Daerah",
+    "slug": "daerah",
+    "parentSlug": null,
+    "description": "Berita per kabupaten/kota — lihat juga institusi pemerintah daerah untuk pengelompokan wilayah (regionCode)."
+  },
+  {
+    "name": "Mitra Borneo",
+    "slug": "mitra-borneo",
+    "parentSlug": null,
+    "description": "Rilis resmi pemerintah provinsi/kabupaten/kota dan DPRD — lihat juga direktori institusi."
+  },
+  {
+    "name": "Umum",
+    "slug": "umum",
+    "parentSlug": null,
+    "description": "Rubrik umum, dengan sub-kategori tematik di bawahnya."
+  },
+  {
+    "name": "Budaya",
+    "slug": "budaya",
+    "parentSlug": "umum",
+    "description": "Berita seputar budaya dan adat."
+  },
+  {
+    "name": "Provinsi",
+    "slug": "provinsi",
+    "parentSlug": "umum",
+    "description": "Berita berskala provinsi di luar rubrik utama."
+  },
+  {
+    "name": "Kuliner",
+    "slug": "kuliner",
+    "parentSlug": "umum",
+    "description": "Berita seputar kuliner khas daerah."
+  },
+  {
+    "name": "Travel",
+    "slug": "travel",
+    "parentSlug": "umum",
+    "description": "Tips dan informasi perjalanan."
+  },
+  {
+    "name": "Bisnis",
+    "slug": "bisnis",
+    "parentSlug": "umum",
+    "description": "Berita seputar bisnis dan ekonomi lokal."
+  },
+  {
+    "name": "Wisata & Travel",
+    "slug": "wisata-travel",
+    "parentSlug": "umum",
+    "description": "Berita seputar wisata dan perjalanan dalam rubrik Umum. Issue #57: nama/slug ini adalah keputusan sengaja untuk menghindari tabrakan slug dengan rubrik utama WISATA — lihat docblock `ensureRubrikTerms` di tools/seed-borneojek-mart.ts."
+  }
+]

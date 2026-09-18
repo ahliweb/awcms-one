@@ -110,3 +110,62 @@ describe("lib/pengalihan-legacy: buildLegacyRedirectMap", () => {
     expect(map["/news/1-a.html"]).toBe("/berita/a");
   });
 });
+
+describe("lib/pengalihan-legacy: the exporter's QUERY-FREE video key (issue #58 review round 2) — the shape the CMS can actually store", () => {
+  test("normalizeLegacyPath passes /video/{id}-{slug}.html through like any other path (nothing to strip, nothing exempt)", () => {
+    expect(normalizeLegacyPath("/video/5-banjir-disejumlah-daerah.html")).toBe("/video/5-banjir-disejumlah-daerah.html");
+    expect(normalizeLegacyPath("/video/5-banjir-disejumlah-daerah.html?utm=fb")).toBe(
+      "/video/5-banjir-disejumlah-daerah.html"
+    );
+    expect(normalizeLegacyPath("/video/7.html")).toBe("/video/7.html");
+  });
+
+  test("buildLegacyRedirectMap keys the synthetic path verbatim and resolves a video slug to /video/{slug}", () => {
+    const map = buildLegacyRedirectMap(
+      [
+        {
+          sourcePath: "/video/5-banjir-disejumlah-daerah.html",
+          targetType: "relative_same_tenant",
+          target: "/blog/borneojek-mart/banjir-disejumlah-daerah"
+        },
+        {
+          sourcePath: "/video/6-video-kedua.html",
+          targetType: "relative_same_tenant",
+          target: "/blog/borneojek-mart/video-kedua"
+        }
+      ],
+      new Set(["banjir-disejumlah-daerah", "video-kedua"])
+    );
+    expect(map).toEqual({
+      "/video/5-banjir-disejumlah-daerah.html": "/video/banjir-disejumlah-daerah",
+      "/video/6-video-kedua.html": "/video/video-kedua"
+    });
+  });
+
+  test("two video rows never collide on a bare /video key any more — each synthetic key is its own entry, no conflict throw", () => {
+    expect(() =>
+      buildLegacyRedirectMap(
+        [
+          { sourcePath: "/video/1-satu.html", targetType: "relative_same_tenant", target: "/blog/x/satu" },
+          { sourcePath: "/video/2-dua.html", targetType: "relative_same_tenant", target: "/blog/x/dua" }
+        ],
+        new Set(["satu", "dua"])
+      )
+    ).not.toThrow();
+  });
+
+  test("what the CMS would have stored for the OLD ?video= form — a bare /video — IS the conflict this key avoids", () => {
+    // `normalizeRedirectPath` (apps/cms, without keepQuery) turns every
+    // `/video/?video=…` source into `/video`; two such rows with different
+    // targets are exactly the throw below.
+    expect(() =>
+      buildLegacyRedirectMap(
+        [
+          { sourcePath: "/video", targetType: "relative_same_tenant", target: "/blog/x/satu" },
+          { sourcePath: "/video", targetType: "relative_same_tenant", target: "/blog/x/dua" }
+        ],
+        new Set(["satu", "dua"])
+      )
+    ).toThrow(/two different destinations/);
+  });
+});

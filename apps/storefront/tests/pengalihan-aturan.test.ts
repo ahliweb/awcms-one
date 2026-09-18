@@ -448,3 +448,106 @@ describe("legacyRedirectLocation: the row-based map still wins on overlap (issue
     expect(legacyRedirectLocation("/produk/whatever.html", {})).toBeNull();
   });
 });
+
+// ---------------------------------------------------------------------------
+// Issue #58 review round 2 — the QUERY-FREE synthetic video key.
+//
+// The CMS strips the query string from every redirect source at write time
+// (`validateRedirectInput` → `normalizeRedirectPath` without `keepQuery`),
+// so the `/video/?video={id}-…` keys `ROW_MAP` above carries can never come
+// out of `GET /api/v1/seo/redirects`. What the exporter writes — and what
+// `pengalihan-legacy.json` therefore really holds after the import — is
+// `/video/{id}-{slug}.html` (`videoRedirectSourcePath` in
+// `tools/import-seputarborneo.ts`). The tests below are the contract for
+// that shape; the `?video=` tests above stay as the defensive path.
+// ---------------------------------------------------------------------------
+
+const ROW_MAP_SYNTHETIC_VIDEO_KEYS = {
+  // News id 123 and video id 123 are still two different posts (defect 1).
+  "/news/123-panduan-pemilu-2024.html": "/berita/panduan-pemilu-2024",
+  "/video/123-liputan-video-banjir.html": "/video/liputan-video-banjir",
+  // An underscore-separated key (accepted, though the exporter never emits it).
+  "/video/456_video-lama-underscore.html": "/video/video-lama-underscore",
+  // A title that slugified to nothing — the exporter's `/video/{id}.html` fallback.
+  "/video/789.html": "/video/video-tanpa-judul"
+};
+
+describe("pengalihan-aturan: the exporter's query-free /video/{id}-{slug}.html key answers the REAL /video/?video= inbound URL (issue #58 review round 2)", () => {
+  test("/video/?video={id}-{slug}.html resolves through a /video/{id}-… row, by id only", () => {
+    expect(ruleBasedRedirectLocation("/video/?video=123-liputan-video-banjir.html", ROW_MAP_SYNTHETIC_VIDEO_KEYS)).toBe(
+      "/video/liputan-video-banjir"
+    );
+    // A stale slug in the request — the legacy page itself only read the id.
+    expect(ruleBasedRedirectLocation("/video/?video=123-judul-basi.html", ROW_MAP_SYNTHETIC_VIDEO_KEYS)).toBe(
+      "/video/liputan-video-banjir"
+    );
+  });
+
+  test("the underscore and bare ?video={id} request shapes resolve through the same key", () => {
+    expect(ruleBasedRedirectLocation("/video/?video=123_judul_lama.html", ROW_MAP_SYNTHETIC_VIDEO_KEYS)).toBe(
+      "/video/liputan-video-banjir"
+    );
+    expect(ruleBasedRedirectLocation("/video/?video=123", ROW_MAP_SYNTHETIC_VIDEO_KEYS)).toBe(
+      "/video/liputan-video-banjir"
+    );
+  });
+
+  test("every separator the exporter (or an operator) can put after the id is indexed: -, _ and .", () => {
+    expect(ruleBasedRedirectLocation("/video/?video=456", ROW_MAP_SYNTHETIC_VIDEO_KEYS)).toBe(
+      "/video/video-lama-underscore"
+    );
+    expect(ruleBasedRedirectLocation("/video/?video=789-x.html", ROW_MAP_SYNTHETIC_VIDEO_KEYS)).toBe(
+      "/video/video-tanpa-judul"
+    );
+  });
+
+  test("the id spaces stay disjoint under the new key: video id 123 never resolves through news row 123, and vice versa", () => {
+    expect(ruleBasedRedirectLocation("/video/?video=123-x.html", ROW_MAP_SYNTHETIC_VIDEO_KEYS)).not.toBe(
+      "/berita/panduan-pemilu-2024"
+    );
+    expect(ruleBasedRedirectLocation("/img/?news=456", ROW_MAP_SYNTHETIC_VIDEO_KEYS)).toBe("/berita");
+    expect(ruleBasedRedirectLocation("/img/?news=123", ROW_MAP_SYNTHETIC_VIDEO_KEYS)).toBe(
+      "/berita/panduan-pemilu-2024"
+    );
+  });
+
+  test("a /video/{id}-… key is a prefix match on the digits, never a substring one — id 12 does not hit the 123 row", () => {
+    expect(ruleBasedRedirectLocation("/video/?video=12-x.html", ROW_MAP_SYNTHETIC_VIDEO_KEYS)).toBe("/video");
+    expect(ruleBasedRedirectLocation("/video/?video=1", ROW_MAP_SYNTHETIC_VIDEO_KEYS)).toBe("/video");
+  });
+
+  test("a map holding BOTH shapes for different ids indexes each once, first key per id wins", () => {
+    const mixed = {
+      "/video/1-a.html": "/video/a",
+      "/video/?video=2-b.html": "/video/b",
+      // A second key for id 1 (the shape the exporter does not emit) is ignored — not a conflict.
+      "/video/1_a-lama.html": "/video/a-lama"
+    };
+    expect(ruleBasedRedirectLocation("/video/?video=1-x.html", mixed)).toBe("/video/a");
+    expect(ruleBasedRedirectLocation("/video/?video=2-x.html", mixed)).toBe("/video/b");
+  });
+
+  test("the bare /video list page is still untouched when the map only has synthetic keys", () => {
+    expect(ruleBasedRedirectLocation("/video", ROW_MAP_SYNTHETIC_VIDEO_KEYS)).toBeNull();
+    expect(ruleBasedRedirectLocation("/video/", ROW_MAP_SYNTHETIC_VIDEO_KEYS)).toBeNull();
+  });
+
+  test("through legacyRedirectLocation: the synthetic key itself is an ordinary row hit, and the real URL falls through to the rule", () => {
+    // Nobody ever linked to this path, but if they do, the row map answers it directly.
+    expect(legacyRedirectLocation("/video/123-liputan-video-banjir.html", ROW_MAP_SYNTHETIC_VIDEO_KEYS)).toBe(
+      "/video/liputan-video-banjir"
+    );
+    // The real legacy URL: path `/video` misses the map, the rule answers by id.
+    expect(legacyRedirectLocation("/video/?video=123-liputan-video-banjir.html", ROW_MAP_SYNTHETIC_VIDEO_KEYS)).toBe(
+      "/video/liputan-video-banjir"
+    );
+    // And the list page itself is never redirected — the defect the synthetic key exists to prevent.
+    expect(legacyRedirectLocation("/video", ROW_MAP_SYNTHETIC_VIDEO_KEYS)).toBeNull();
+  });
+
+  test("loop guard holds for the new key's destinations: /video/{slug} matches no rule and no row", () => {
+    for (const destination of Object.values(ROW_MAP_SYNTHETIC_VIDEO_KEYS)) {
+      expect(legacyRedirectLocation(destination, ROW_MAP_SYNTHETIC_VIDEO_KEYS)).toBeNull();
+    }
+  });
+});

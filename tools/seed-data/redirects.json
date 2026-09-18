@@ -1,0 +1,27 @@
+[
+  {
+    "sourcePath": "/news/1001-sidang-paripurna-dprd-kalteng-bahas-apbd.html",
+    "postSlug": "sidang-paripurna-dprd-kalteng-bahas-apbd",
+    "reason": "Legacy seputarborneo-style URL (issue #57) — exercises docs/routing.md's row-based legacy-redirect path."
+  },
+  {
+    "sourcePath": "/news/1002-polda-kalteng-ungkap-kasus-illegal-logging.html",
+    "postSlug": "polda-kalteng-ungkap-kasus-illegal-logging",
+    "reason": "Legacy seputarborneo-style URL (issue #57) — exercises docs/routing.md's row-based legacy-redirect path."
+  },
+  {
+    "sourcePath": "/news/1003-porprov-kalteng-resmi-dibuka.html",
+    "postSlug": "porprov-kalteng-resmi-dibuka",
+    "reason": "Legacy seputarborneo-style URL (issue #57) — exercises docs/routing.md's row-based legacy-redirect path."
+  },
+  {
+    "sourcePath": "/news/1004-pemko-palangka-raya-resmikan-pasar-rakyat.html",
+    "postSlug": "pemko-palangka-raya-resmikan-pasar-rakyat",
+    "reason": "Legacy seputarborneo-style URL (issue #57) — exercises docs/routing.md's row-based legacy-redirect path."
+  },
+  {
+    "sourcePath": "/news/1005-pemkab-kapuas-gelar-musrenbang-tahunan.html",
+    "postSlug": "pemkab-kapuas-gelar-musrenbang-tahunan",
+    "reason": "Legacy seputarborneo-style URL (issue #57) — exercises docs/routing.md's row-based legacy-redirect path."
+  }
+]

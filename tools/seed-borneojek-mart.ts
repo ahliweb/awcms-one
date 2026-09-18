@@ -105,12 +105,51 @@ const MACHINE_CREDENTIAL_PERMISSION_KEYS = [
   "commerce.testimonials.read",
   "commerce.popups.read",
   "commerce.settings.read",
-  // Issue #47 — `apps/storefront/src/lib/awcms/media.ts` resolves
-  // `featuredMediaId`/a gallery item's `mediaObjectId` to a public URL via
-  // `GET /api/v1/media/objects`, and reads `GET /api/v1/media/public-origin`
-  // for the CSP artifact — both gated on this one permission (`media-
-  // permissions.ts`'s `MEDIA_PERMISSION_ACTIVITY_CODE`, `action: "read"`).
+  // Issue #57 — the news surface (`apps/storefront/src/lib/awcms/{blog,
+  // pages,profil,wilayah,wilayah-checkout}.ts`) 403s at build time without
+  // these: `permissionKey(moduleKey, activityCode, action)`
+  // (`identity-access/domain/access-control.ts`) is `${moduleKey}.
+  // ${activityCode}.${action}`, and each key below is copied verbatim from
+  // the `authorize`/`READ_GUARD` block of the ROUTE FILE that endpoint's
+  // `awcmsGet()` call actually hits — never guessed:
+  //   - blog.ts's POSTS_PATH          -> blog/posts/index.ts
+  "blog_content.posts.read",
+  //   - blog.ts's TERMS_PATH          -> blog/terms/index.ts (activityCode
+  //     is "taxonomies", not "terms")
+  "blog_content.taxonomies.read",
+  //   - blog.ts's INSTITUTIONS_PATH   -> blog/institutions/index.ts
+  "blog_content.institutions.read",
+  //   - pages.ts's public page(s) fetch -> blog/pages/public.ts and
+  //     blog/pages/public/[slug].ts (both guarded identically)
+  "blog_content.pages.read",
+  //   - blog.ts's AD_PLACEMENTS_ACTIVE_PATH -> news-portal/ad-placements/
+  //     active.ts
+  "blog_content.ad_placements.read",
+  //   - blog.ts's REDIRECTS_PATH      -> seo/redirects/index.ts
+  //     (SEO_MODULE_KEY/SEO_REDIRECT_ACTIVITY_CODE, seo-permissions.ts)
+  "seo_distribution.redirect.read",
+  //   - profil.ts's site-profile fetch -> site-profile/composed.ts
+  //     (SITE_PROFILE_MODULE_KEY/SITE_PROFILE_ACTIVITY_CODE,
+  //     site-profile-permissions.ts — activityCode is "profile")
+  "site_profile.profile.read",
+  //   - wilayah.ts's/wilayah-checkout.ts's REGIONS_PATH -> idn-regions/
+  //     regions/index.ts (IDN_ADMIN_REGIONS_MODULE_KEY/
+  //     IDN_REGION_ACTIVITY_CODE, idn-admin-regions-permissions.ts —
+  //     activityCode is "region", singular)
+  "idn_admin_regions.region.read",
+  // theme.ts's `/theming/{tenantCode}/tokens.css` is PUBLIC (no auth at
+  // all — see that file's own docblock), so it needs no key here.
+  // Issue #47 (merged ahead of this one) — `apps/storefront/src/lib/awcms/
+  // media.ts` resolves `featuredMediaId`/a gallery item's `mediaObjectId` to
+  // a public URL via `GET /api/v1/media/objects`, and reads
+  // `GET /api/v1/media/public-origin` for the CSP artifact — both gated on
+  // this one permission (`media-permissions.ts`'s
+  // `MEDIA_PERMISSION_ACTIVITY_CODE`, `action: "read"`).
   "media_library.media.read"
+  // Deliberately NOT added: the visitor-analytics read key — the GA4/
+  // visitor-beacon work (issue #56, merged) turned out to need no CMS read
+  // at all (`apps/storefront/src/scripts/analitik.ts` posts anonymously,
+  // it never calls `awcmsGet`), so there is nothing to append here for it.
 ] as const;
 const MACHINE_CREDENTIAL_LIFETIME_DAYS = 365;
 
@@ -1003,21 +1042,80 @@ type PageSeed = {
   bodyParagraphs: string[];
 };
 
+/**
+ * Issue #57 finding, fixed for every page/post this script has ever seeded
+ * (not narrowly scoped to this issue's own new rows — a half-fix would leave
+ * the OLD rows silently stuck forever): `createBlogPage`/`createBlogPost`
+ * always write `status: 'draft'`
+ * (`blog-page-directory.ts`/`blog-post-directory.ts`), and nothing in this
+ * script ever transitioned either past it. `apps/storefront`'s build reads
+ * `blog/pages/public.ts`'s own predicate (`published`, reachable visibility,
+ * not soft-deleted) and `blog.ts`'s `getAllPosts()`
+ * (`?status=published&...`, walked WITHOUT catching a refusal — "the primary
+ * content type the whole issue exists to publish"), so every page/post
+ * seeded before this fix was, and would have stayed, invisible to the
+ * storefront regardless of how much taxonomy/institution data surrounded it.
+ * Found while verifying this issue's own "renders /halaman/redaksi" and
+ * "renders /berita" acceptance criteria against a REAL seeded local CMS — a
+ * stub-backed storefront build never exercises this path, since the stub's
+ * fixtures are canned, already-published data, not the output of this
+ * script's own create call.
+ *
+ * `POST .../{id}/publish` (Issue #538/`pages/{id}/publish.ts`) is the only
+ * code path that can ever move either row past `draft`; the content quality
+ * checklist it runs is a documented no-op unless full-online R2-only mode is
+ * active for the tenant (`content-quality-checklist.ts`'s own header), which
+ * this seed's tenant never turns on, so it never blocks these calls.
+ * `INVALID_STATUS_TRANSITION` (already published, or a re-run of this
+ * script) is treated as success, not an error to fail the run over.
+ */
+async function publishBlogContent(
+  session: Session,
+  kind: "pages" | "posts",
+  id: string,
+  label: string
+): Promise<void> {
+  const noun = kind === "pages" ? "page" : "post";
+  const result = await apiCall(
+    "POST",
+    `/api/v1/blog/${kind}/${id}/publish`,
+    { session, idempotencyKey: crypto.randomUUID() }
+  );
+
+  if (result.ok) {
+    console.log(`  apply ${noun} "${label}" status -> published`);
+    return;
+  }
+
+  const raw = result.raw as { error?: { code?: string } } | null;
+  if (raw?.error?.code === "INVALID_STATUS_TRANSITION") {
+    console.log(
+      `  skip publish for ${noun} "${label}" (already published, or not publishable from its current status)`
+    );
+    return;
+  }
+
+  throw new SeedApiError(`POST /api/v1/blog/${kind}/${id}/publish (${label})`, result);
+}
+
 async function ensureBlogPages(session: Session): Promise<void> {
   // Response key is `pages` — `blog/pages/index.ts`'s `GET` returns `ok({ pages })`.
-  const list = await apiCall<{ pages: Array<{ id: string; slug: string }> }>(
-    "GET",
-    "/api/v1/blog/pages?limit=100",
-    { session }
-  );
+  const list = await apiCall<{
+    pages: Array<{ id: string; slug: string; status: string }>;
+  }>("GET", "/api/v1/blog/pages?limit=100", { session });
   assertOk("GET /api/v1/blog/pages", list);
 
-  const existingSlugs = new Set(list.data.pages.map((item) => item.slug));
+  const existingBySlug = new Map(list.data.pages.map((item) => [item.slug, item]));
   const pages = readSeedJson<PageSeed[]>("pages.json");
 
   for (const page of pages) {
-    if (existingSlugs.has(page.slug)) {
+    const existing = existingBySlug.get(page.slug);
+
+    if (existing) {
       console.log(`skip page "${page.slug}" (already exists)`);
+      if (existing.status !== "published") {
+        await publishBlogContent(session, "pages", existing.id, page.slug);
+      }
       continue;
     }
 
@@ -1037,6 +1135,7 @@ async function ensureBlogPages(session: Session): Promise<void> {
     });
     assertOk(`POST /api/v1/blog/pages (${page.slug})`, created);
     console.log(`apply page "${page.slug}" (${page.pageType})`);
+    await publishBlogContent(session, "pages", created.data.id, page.slug);
   }
 }
 
@@ -1060,19 +1159,22 @@ async function ensureBlogPosts(
   termIdBySlug: Map<string, string>
 ): Promise<void> {
   // Response key is `posts` — `blog/posts/index.ts`'s `GET` returns `ok({ posts })`.
-  const list = await apiCall<{ posts: Array<{ id: string; slug: string }> }>(
-    "GET",
-    "/api/v1/blog/posts?limit=100",
-    { session }
-  );
+  const list = await apiCall<{
+    posts: Array<{ id: string; slug: string; status: string }>;
+  }>("GET", "/api/v1/blog/posts?limit=100", { session });
   assertOk("GET /api/v1/blog/posts", list);
 
-  const existingSlugs = new Set(list.data.posts.map((item) => item.slug));
+  const existingBySlug = new Map(list.data.posts.map((item) => [item.slug, item]));
   const posts = readSeedJson<PostSeed[]>("posts.json");
 
   for (const post of posts) {
-    if (existingSlugs.has(post.slug)) {
+    const existing = existingBySlug.get(post.slug);
+
+    if (existing) {
       console.log(`skip post "${post.slug}" (already exists)`);
+      if (existing.status !== "published") {
+        await publishBlogContent(session, "posts", existing.id, post.slug);
+      }
       continue;
     }
 
@@ -1103,6 +1205,7 @@ async function ensureBlogPosts(
     });
     assertOk(`POST /api/v1/blog/posts (${post.slug})`, created);
     console.log(`apply post "${post.slug}"`);
+    await publishBlogContent(session, "posts", created.data.id, post.slug);
   }
 }
 
@@ -1142,29 +1245,15 @@ async function applySiteProfile(session: Session): Promise<void> {
 // duplicate submit mints a second credential — see
 // `access/machine-credentials/index.ts`'s own docblock), so THIS script is
 // what makes re-running it produce no duplicate: skip if a live, non-revoked
-// credential with this name already exists.
+// credential with this name already exists AND its scope matches; rotate
+// (revoke + reissue) if the name matches but the scope has drifted — see
+// `ensureMachineCredential`'s docblock for why that is the only option.
 // ---------------------------------------------------------------------------
 
-async function ensureMachineCredential(
+async function issueMachineCredentialFor(
   session: Session,
   ownerTenantUserId: string
-): Promise<void> {
-  const list = await apiCall<{
-    items: Array<{ name: string; status: "active" | "expired" | "revoked" }>;
-  }>("GET", "/api/v1/access/machine-credentials", { session });
-  assertOk("GET /api/v1/access/machine-credentials", list);
-
-  const alreadyIssued = list.data.items.some(
-    (item) => item.name === MACHINE_CREDENTIAL_NAME && item.status === "active"
-  );
-
-  if (alreadyIssued) {
-    console.log(
-      `skip machine credential "${MACHINE_CREDENTIAL_NAME}" (already exists, live)`
-    );
-    return;
-  }
-
+): Promise<{ id: string; token: string }> {
   const expiresAt = new Date(
     Date.now() + MACHINE_CREDENTIAL_LIFETIME_DAYS * 24 * 60 * 60 * 1000
   );
@@ -1186,13 +1275,839 @@ async function ensureMachineCredential(
   );
   assertOk("POST /api/v1/access/machine-credentials", result);
 
+  return { id: result.data.credential.id, token: result.data.token };
+}
+
+/**
+ * Issues (or, on a tenant seeded before this scope grew, ROTATES) the
+ * storefront build credential.
+ *
+ * ## Why rotation, not "skip because a same-named credential exists"
+ *
+ * `GET /api/v1/access/machine-credentials` / `POST .../machine-credentials`
+ * (`apps/cms/src/pages/api/v1/access/machine-credentials/index.ts`) and
+ * `POST .../{id}/revoke` (`.../[id]/revoke.ts`) are the ONLY two mutations
+ * this surface exposes — there is no PATCH that widens an existing
+ * credential's `allowedPermissionKeys` in place (verified against the route
+ * directory, not assumed). A prior version of this function skipped whenever
+ * a same-named ACTIVE credential already existed, which meant a tenant
+ * seeded before issue #57 added the 8 news-surface read keys above kept its
+ * ORIGINAL, narrower scope forever — the exact 403 this PR set out to close
+ * stayed open on every environment except a fresh `db:reset`.
+ *
+ * The fix compares the live credential's `allowedPermissionKeys` (order
+ * doesn't matter — this script's own list above changes shape as new PRs
+ * land, and both sides are worth normalizing rather than trusting either
+ * is already sorted) against `MACHINE_CREDENTIAL_PERMISSION_KEYS`. A match
+ * skips, unchanged. A mismatch revokes the stale credential
+ * (`POST .../{id}/revoke` — the only way to retire one; there is no
+ * "update scope" verb) and issues a fresh one with the current scope, then
+ * prints the new token with an explicit, impossible-to-miss instruction:
+ * the OLD token now fails every request (revocation is effective on the
+ * very next request per that route's own docblock), so whatever process
+ * reads `AWCMS_API_TOKEN` — `apps/storefront`'s build env, a CI secret, an
+ * operator's `.env` — must be updated to the new value before the next
+ * build.
+ */
+async function ensureMachineCredential(
+  session: Session,
+  ownerTenantUserId: string
+): Promise<void> {
+  const list = await apiCall<{
+    items: Array<{
+      id: string;
+      name: string;
+      status: "active" | "expired" | "revoked";
+      allowedPermissionKeys: string[];
+    }>;
+  }>("GET", "/api/v1/access/machine-credentials", { session });
+  assertOk("GET /api/v1/access/machine-credentials", list);
+
+  const existing = list.data.items.find(
+    (item) => item.name === MACHINE_CREDENTIAL_NAME && item.status === "active"
+  );
+
+  const wantedKeys = [...MACHINE_CREDENTIAL_PERMISSION_KEYS].sort();
+
+  if (existing) {
+    const liveKeys = [...existing.allowedPermissionKeys].sort();
+    const scopeMatches =
+      liveKeys.length === wantedKeys.length &&
+      liveKeys.every((key, index) => key === wantedKeys[index]);
+
+    if (scopeMatches) {
+      console.log(
+        `skip machine credential "${MACHINE_CREDENTIAL_NAME}" (already exists, scope matches)`
+      );
+      return;
+    }
+
+    console.log(
+      `rotate machine credential "${MACHINE_CREDENTIAL_NAME}" — live scope is ` +
+        `[${liveKeys.join(", ")}], this seed now wants ` +
+        `[${wantedKeys.join(", ")}]; revoking id=${existing.id} and issuing a replacement`
+    );
+
+    const revoked = await apiCall(
+      "POST",
+      `/api/v1/access/machine-credentials/${existing.id}/revoke`,
+      { session }
+    );
+    assertOk(
+      `POST /api/v1/access/machine-credentials/${existing.id}/revoke`,
+      revoked
+    );
+
+    const issued = await issueMachineCredentialFor(session, ownerTenantUserId);
+
+    console.log(
+      `apply machine credential "${MACHINE_CREDENTIAL_NAME}" — id=${issued.id} ` +
+        `scope=[${MACHINE_CREDENTIAL_PERMISSION_KEYS.join(", ")}]`
+    );
+    console.log(
+      `AWCMS_API_TOKEN ROTATED (SHOWN ONCE, not stored by this script): ${issued.token}`
+    );
+    console.log(
+      `ACTION REQUIRED: the previous token for "${MACHINE_CREDENTIAL_NAME}" ` +
+        "(id=" +
+        existing.id +
+        ") is now revoked and fails on its next use. Update every place that " +
+        "reads AWCMS_API_TOKEN for this tenant's storefront build — a local " +
+        "`.env`, a CI secret, a deployed build's environment — to the value " +
+        "printed above before the next `apps/storefront` build runs."
+    );
+    return;
+  }
+
+  const issued = await issueMachineCredentialFor(session, ownerTenantUserId);
+
   console.log(
-    `apply machine credential "${MACHINE_CREDENTIAL_NAME}" — id=${result.data.credential.id} ` +
+    `apply machine credential "${MACHINE_CREDENTIAL_NAME}" — id=${issued.id} ` +
       `scope=[${MACHINE_CREDENTIAL_PERMISSION_KEYS.join(", ")}]`
   );
   console.log(
-    `AWCMS_API_TOKEN (SHOWN ONCE, not stored by this script): ${result.data.token}`
+    `AWCMS_API_TOKEN (SHOWN ONCE, not stored by this script): ${issued.token}`
   );
+}
+
+// ---------------------------------------------------------------------------
+// Step 9 — seputarborneo reference taxonomy, institutions, sample news
+// posts, legal pages, ad placements, and legacy redirects (issue #57).
+//
+// Appended after every increment-2 step above rather than interleaved with
+// them, so a rebase against A1/A3's own additive changes to
+// `MACHINE_CREDENTIAL_PERMISSION_KEYS` (the one shared piece of this file)
+// stays a clean append on both sides. None of the endpoints below are used
+// by `apps/storefront`'s BUILD-TIME machine credential (they are all called
+// from THIS script under the owner session), so that permission list is
+// untouched here.
+//
+// Reference: seputarborneo `include/nav_menu.php`'s
+// `seputarborneo_taksonomi()`/`seputarborneo_nav_mitra()`/
+// `seputarborneo_nav_umum()` (verified 2026-09-18) — the rubrik tree,
+// 24-institution directory, and 14-regency/city list this step seeds mirror
+// that reference's real structure, translated into this platform's own
+// `blog_content` taxonomy/institution/region model (doc `docs/cms.md`'s
+// "Taxonomy: commerce categories, plus the news IA's own hierarchy").
+// ---------------------------------------------------------------------------
+
+// -- 9a. Rubrik tree (`taxonomy_type=category`) -----------------------------
+//
+// `awcms_blog_terms_slug_dedup` (apps/cms/sql/035) is UNIQUE on
+// `(tenant_id, taxonomy_type, slug)` with NO `parent_id` component — verified
+// directly against that migration, not assumed — so this one category tree
+// cannot hold both seputarborneo's top-level `WISATA` rubrik and its UMUM
+// child also spelled `Wisata` the way two separate MySQL columns
+// (`jenis_rubrik`, `kategori`) could. `tools/seed-data/rubrik.json` resolves
+// this the way the issue's own text allows: the UMUM child is named
+// "Wisata & Travel" / slug `wisata-travel` instead of colliding with the
+// top-level `wisata` rubrik.
+
+type RubrikSeed = {
+  name: string;
+  slug: string;
+  parentSlug: string | null;
+  description: string | null;
+};
+
+async function ensureRubrikTerms(session: Session): Promise<Map<string, string>> {
+  const list = await apiCall<{ terms: Array<{ id: string; slug: string }> }>(
+    "GET",
+    "/api/v1/blog/terms",
+    { session }
+  );
+  assertOk("GET /api/v1/blog/terms", list);
+
+  const idBySlug = new Map(list.data.terms.map((item) => [item.slug, item.id]));
+  const rubrikList = readSeedJson<RubrikSeed[]>("rubrik.json");
+
+  for (const rubrik of rubrikList) {
+    if (idBySlug.has(rubrik.slug)) {
+      console.log(`skip rubrik "${rubrik.slug}" (already exists)`);
+      continue;
+    }
+
+    let parentId: string | null = null;
+    if (rubrik.parentSlug) {
+      const resolved = idBySlug.get(rubrik.parentSlug);
+      if (!resolved) {
+        throw new Error(
+          `rubrik "${rubrik.slug}" names parentSlug "${rubrik.parentSlug}", which ` +
+            "was not created yet — check tools/seed-data/rubrik.json's ordering " +
+            "(a parent must be listed before its children)."
+        );
+      }
+      parentId = resolved;
+    }
+
+    const created = await apiCall<{ id: string }>("POST", "/api/v1/blog/terms", {
+      session,
+      body: {
+        taxonomyType: "category",
+        parentId,
+        name: rubrik.name,
+        slug: rubrik.slug,
+        description: rubrik.description
+      }
+    });
+    assertOk(`POST /api/v1/blog/terms (${rubrik.slug})`, created);
+    idBySlug.set(rubrik.slug, created.data.id);
+    console.log(
+      `apply rubrik "${rubrik.slug}"${rubrik.parentSlug ? ` (child of "${rubrik.parentSlug}")` : ""}`
+    );
+  }
+
+  return idBySlug;
+}
+
+// -- 9b. Kalimantan Tengah region codes (`idn_admin_regions`) ---------------
+//
+// Resolved by NAME against `GET /api/v1/idn-regions/regions` at seed time —
+// never hard-coded — per the issue's own instruction: a Kepmendagri update
+// could renumber any of these codes, and this script has no business
+// guessing one. Requires an ACTIVE `idn_admin_regions` dataset; see
+// docs/deployment.md's "Local database" section for the
+// `idn-regions:import`/`idn-regions:activate` sequence this depends on.
+//
+// The 14 names are seputarborneo's own "Daerah" list
+// (`seputarborneo_nav_daerah()`), by REGENCY/CITY name (not the legacy city
+// names `nav_menu.php` itself maps away from, e.g. "Sampit" ->
+// "Kotawaringin Timur").
+const KALTENG_DAERAH_NAMES: readonly string[] = [
+  "Palangka Raya",
+  "Kapuas",
+  "Pulang Pisau",
+  "Katingan",
+  "Kotawaringin Timur",
+  "Kotawaringin Barat",
+  "Seruyan",
+  "Lamandau",
+  "Sukamara",
+  "Gunung Mas",
+  "Barito Selatan",
+  "Barito Timur",
+  "Barito Utara",
+  "Murung Raya"
+];
+
+type RegionListResponse = {
+  items: Array<{ code: string; name: string }>;
+  reason: "no_active_dataset" | "dataset_not_found" | null;
+};
+
+/**
+ * Strips whitespace before comparing — the active `idn_admin_regions`
+ * dataset spells some names WITHOUT the space seputarborneo's own reference
+ * taxonomy uses (`Kota Palangkaraya`, not `Kota Palangka Raya`; verified
+ * against a real import of `cahyadsn/wilayah`, dataset
+ * `wilayah-cae306278e5b-c4c3396d`, Kepmendagri No 300.2.2-2138/2025). Not
+ * sent as the API's own `?search=` query param for the same reason: that
+ * filter is a literal `LIKE` against `normalized_name`, so a caller-side
+ * space the dataset does not have would return zero rows server-side before
+ * this function ever gets a chance to normalize anything. Fetching the
+ * whole level+parent set instead (at most a few hundred provinces or one
+ * province's regencies) and filtering here client-side sidesteps that
+ * mismatch entirely.
+ */
+function namesMatchIgnoringSpaces(a: string, b: string): boolean {
+  return a.toUpperCase().replace(/\s+/g, "").includes(b.toUpperCase().replace(/\s+/g, ""));
+}
+
+/**
+ * Fetches ONE page of `GET /api/v1/idn-regions/regions` for a level/parent
+ * pair — never per-name. `limit=200` already covers the largest set this
+ * script ever asks for (Kalimantan Tengah's 14 regencies/cities, well under
+ * any province's real count), so paging further is not needed; the fix this
+ * function exists for is call COUNT, not page size (review finding on #66:
+ * `resolveKaltengRegions` used to issue 14 identical
+ * `level=2&parentCode=<same code>` requests — one per name — for a result
+ * set that fits in a single page).
+ */
+async function fetchRegionItems(
+  session: Session,
+  level: 1 | 2,
+  parentCode: string | null
+): Promise<RegionListResponse["items"]> {
+  const params = new URLSearchParams({
+    level: String(level),
+    limit: "200"
+  });
+  if (parentCode) params.set("parentCode", parentCode);
+
+  const result = await apiCall<RegionListResponse>(
+    "GET",
+    `/api/v1/idn-regions/regions?${params.toString()}`,
+    { session }
+  );
+  assertOk(`GET /api/v1/idn-regions/regions (level=${level})`, result);
+
+  if (result.data.reason) {
+    throw new Error(
+      `idn_admin_regions has no resolvable dataset (reason="${result.data.reason}") ` +
+        `while listing level ${level} regions — run ` +
+        "`cd apps/cms && bun run idn-regions:import --commit` then " +
+        "`bun run idn-regions:activate -- --dataset <code printed above> --commit` " +
+        "before seeding institutions (see docs/deployment.md's \"Local database\" " +
+        "section)."
+    );
+  }
+
+  return result.data.items;
+}
+
+function matchRegionCode(
+  items: RegionListResponse["items"],
+  level: 1 | 2,
+  name: string
+): string {
+  const matches = items.filter((item) => namesMatchIgnoringSpaces(item.name, name));
+
+  if (matches.length !== 1) {
+    throw new Error(
+      `Region lookup for "${name}" (level ${level}) returned ${matches.length} ` +
+        "match(es) from GET /api/v1/idn-regions/regions — expected exactly 1. " +
+        "Check tools/seed-data/institutions.json's regionName spelling against " +
+        "the active idn_admin_regions dataset."
+    );
+  }
+
+  return matches[0]!.code;
+}
+
+async function resolveRegionCode(
+  session: Session,
+  level: 1 | 2,
+  name: string,
+  parentCode: string | null
+): Promise<string> {
+  const items = await fetchRegionItems(session, level, parentCode);
+  return matchRegionCode(items, level, name);
+}
+
+type KaltengRegions = {
+  provinceCode: string;
+  regencyCodeByName: Map<string, string>;
+};
+
+async function resolveKaltengRegions(session: Session): Promise<KaltengRegions> {
+  const provinceCode = await resolveRegionCode(session, 1, "Kalimantan Tengah", null);
+  console.log(`resolve region "Kalimantan Tengah" (province) -> ${provinceCode}`);
+
+  // ONE request for all 14 regencies/cities — they are all `level=2` children
+  // of the same `provinceCode`, so they are all in the SAME result page.
+  const regencyItems = await fetchRegionItems(session, 2, provinceCode);
+
+  const regencyCodeByName = new Map<string, string>();
+  for (const name of KALTENG_DAERAH_NAMES) {
+    const code = matchRegionCode(regencyItems, 2, name);
+    regencyCodeByName.set(name, code);
+    console.log(`resolve region "${name}" (regency/city) -> ${code}`);
+  }
+
+  return { provinceCode, regencyCodeByName };
+}
+
+// -- 9c. Institutions (`POST /api/v1/blog/institutions`) --------------------
+
+type InstitutionSeed = {
+  name: string;
+  slug: string;
+  branch: "legislative" | "executive";
+  regionLevel: 1 | 2;
+  regionName: string;
+  seoTitle: string;
+  description: string;
+};
+
+async function ensureInstitutions(
+  session: Session,
+  regions: KaltengRegions
+): Promise<Map<string, string>> {
+  const list = await apiCall<{ institutions: Array<{ id: string; slug: string }> }>(
+    "GET",
+    "/api/v1/blog/institutions",
+    { session }
+  );
+  assertOk("GET /api/v1/blog/institutions", list);
+
+  const idBySlug = new Map(list.data.institutions.map((item) => [item.slug, item.id]));
+  const institutions = readSeedJson<InstitutionSeed[]>("institutions.json");
+
+  for (const institution of institutions) {
+    if (idBySlug.has(institution.slug)) {
+      console.log(`skip institution "${institution.slug}" (already exists)`);
+      continue;
+    }
+
+    const regionCode =
+      institution.regionLevel === 1
+        ? regions.provinceCode
+        : regions.regencyCodeByName.get(institution.regionName);
+
+    if (!regionCode) {
+      throw new Error(
+        `institution "${institution.slug}" names regionName "${institution.regionName}" ` +
+          "at level " +
+          institution.regionLevel +
+          ", which was not resolved — check tools/seed-data/institutions.json " +
+          "against KALTENG_DAERAH_NAMES."
+      );
+    }
+
+    const created = await apiCall<{ id: string }>("POST", "/api/v1/blog/institutions", {
+      session,
+      body: {
+        branch: institution.branch,
+        name: institution.name,
+        slug: institution.slug,
+        regionCode,
+        description: institution.description,
+        seoTitle: institution.seoTitle,
+        seoDescription: null
+      }
+    });
+    assertOk(`POST /api/v1/blog/institutions (${institution.slug})`, created);
+    idBySlug.set(institution.slug, created.data.id);
+    console.log(`apply institution "${institution.slug}" (${institution.branch})`);
+  }
+
+  return idBySlug;
+}
+
+// -- 9d. Sample news posts (`POST /api/v1/blog/posts`) ----------------------
+//
+// `regionCode` lives on `awcms_blog_institutions`, not on
+// `awcms_blog_posts` — `apps/cms/src/modules/blog-content/domain/blog-post-
+// validation.ts` has no `regionCode` field, and `docs/cms.md`/
+// `apps/storefront/src/lib/awcms/wilayah.ts` both document this as
+// DELIBERATE: "a post itself carries no region field", reached only via an
+// institution's own `regionCode`. So a "daerah"/"mitra-borneo" post below is
+// filed with `institutionSlugs`, never a region field of its own — exactly
+// how `apps/storefront`'s `/daerah/{slug}` archive is documented to resolve
+// membership.
+//
+// Video posts carry a Portable Text `videoNews` node (verified against
+// `portable-text.ts`'s closed `PortableTextNodeType` union and
+// `apps/storefront/src/lib/portable-text.ts`'s `documentHasPlayableVideo` —
+// NOT the separate `contentJson.blocks[].type === "video_news"` mechanism
+// `blog-post-validation.ts` also has, which is a different, storefront-
+// unused field). `videoId`s are clearly-marked, format-valid-but-fake
+// placeholders (`SEED000000{n}`) — no real seputarborneo channel id was
+// available to verify, so this follows the issue's own "else placeholder
+// ids clearly marked" instruction rather than guessing a real one.
+
+type NewsPostVideoSeed = { videoId: string; title: string; caption: string };
+
+type NewsPostSeed = {
+  slug: string;
+  title: string;
+  excerpt: string;
+  rubrikSlug: string;
+  institutionSlugs?: string[];
+  video?: NewsPostVideoSeed;
+  bodyParagraphs: string[];
+};
+
+function newsPostBodyPortableText(post: NewsPostSeed): unknown[] {
+  const blocks = paragraphsToPortableText(post.bodyParagraphs);
+
+  if (!post.video) {
+    return blocks;
+  }
+
+  return [
+    ...blocks,
+    {
+      _type: "videoNews",
+      _key: "seed-video-0",
+      provider: "youtube",
+      videoId: post.video.videoId,
+      title: post.video.title,
+      caption: post.video.caption
+    }
+  ];
+}
+
+async function ensureNewsPosts(
+  session: Session,
+  rubrikIdBySlug: Map<string, string>,
+  institutionIdBySlug: Map<string, string>
+): Promise<void> {
+  const list = await apiCall<{
+    posts: Array<{ id: string; slug: string; status: string }>;
+  }>("GET", "/api/v1/blog/posts?limit=100", { session });
+  assertOk("GET /api/v1/blog/posts", list);
+
+  const existingBySlug = new Map(list.data.posts.map((item) => [item.slug, item]));
+  const posts = readSeedJson<NewsPostSeed[]>("posts-berita.json");
+  let anyCreated = false;
+
+  for (const post of posts) {
+    const existing = existingBySlug.get(post.slug);
+
+    if (existing) {
+      console.log(`skip news post "${post.slug}" (already exists)`);
+      if (existing.status !== "published") {
+        await publishBlogContent(session, "posts", existing.id, post.slug);
+      }
+      continue;
+    }
+
+    const rubrikId = rubrikIdBySlug.get(post.rubrikSlug);
+    if (!rubrikId) {
+      throw new Error(
+        `news post "${post.slug}" names rubrikSlug "${post.rubrikSlug}", which was ` +
+          "not created — check tools/seed-data/rubrik.json."
+      );
+    }
+
+    const institutionIds = (post.institutionSlugs ?? []).map((slug) => {
+      const id = institutionIdBySlug.get(slug);
+      if (!id) {
+        throw new Error(
+          `news post "${post.slug}" names institutionSlugs entry "${slug}", which ` +
+            "was not created — check tools/seed-data/institutions.json."
+        );
+      }
+      return id;
+    });
+
+    const created = await apiCall<{ id: string }>("POST", "/api/v1/blog/posts", {
+      session,
+      body: {
+        title: post.title,
+        slug: post.slug,
+        excerpt: post.excerpt,
+        bodyPortableText: newsPostBodyPortableText(post),
+        locale: "id",
+        visibility: "public",
+        termIds: [rubrikId],
+        institutionIds,
+        autoInternalTagLinksDisabled: false
+      }
+    });
+    assertOk(`POST /api/v1/blog/posts (${post.slug})`, created);
+    anyCreated = true;
+    console.log(
+      `apply news post "${post.slug}" (rubrik=${post.rubrikSlug}` +
+        `${institutionIds.length > 0 ? `, institutions=${post.institutionSlugs!.join(",")}` : ""}` +
+        `${post.video ? ", video" : ""})`
+    );
+    await publishBlogContent(session, "posts", created.data.id, post.slug);
+  }
+
+  if (anyCreated) {
+    console.log(
+      "  news posts created with featuredMediaId=null — this local/CI deployment " +
+        "has no NEWS_MEDIA_R2_* configured to upload a real featured image through " +
+        "(same documented gap as tools/seed-data/products.json's own images, see " +
+        'docs/deployment.md\'s "What this script still does not seed, and why").'
+    );
+  }
+}
+
+// -- 9e. Ad placements (`POST /api/v1/news-portal/ad-placements`) -----------
+//
+// Unlike every resource above, `mediaObjectId` here is REQUIRED and
+// existence/verified-status-checked against `awcms_news_media_objects`
+// (`ad-placement-reference-validation.ts`) — there is no way to create a
+// real ad placement without a media object whose `status` is `verified` or
+// `attached`, and reaching `verified` needs `finalizeNewsMediaUploadSession`
+// to perform a REAL R2 `GET` + checksum, which needs `NEWS_MEDIA_R2_*`
+// configured. This repo's local/CI compose stack provisions PostgreSQL only
+// — no R2/S3-compatible object storage — so this step ATTEMPTS the real
+// upload-session -> PUT -> finalize flow (so it works unattended the moment
+// a deployment DOES have R2 configured) and degrades to a single explained
+// skip line the moment that flow's first step refuses, rather than either
+// fabricating a `status='verified'` row (unlike `ensureTenantDomains`'s
+// `verification_method='manual'`, media verification has no reserved
+// operator-attested value — `verified` means the bytes were actually
+// checked) or failing the whole seed run over infrastructure this script
+// does not own.
+
+type AdPlacementSeed = {
+  placementKey: string;
+  name: string;
+  contentClass: "standard" | "advertorial" | "sponsored";
+  assetFile: string;
+  mimeType: string;
+};
+
+type MediaAttemptResult =
+  | { ok: true; mediaObjectId: string }
+  // `providerDegraded` is true ONLY for the one failure mode this whole
+  // deployment cannot route around: the create-session route's own
+  // "not configured" refusal. Verified against the route source, not guessed:
+  // `apps/cms/src/pages/api/v1/media/news-images/upload-sessions/index.ts`
+  // answers `502 PROVIDER_ERROR` ("News media R2 storage is not configured
+  // for this deployment.") when `NEWS_MEDIA_R2_ENABLED` is off or any
+  // `NEWS_MEDIA_R2_*` required var is missing — and that is the ONLY 502 that
+  // route emits. Every other shape here is a real failure of THIS run, not
+  // evidence the deployment has no R2, and must never be swallowed as if it
+  // were: a 400 `VALIDATION_ERROR` from create-session (this seed's own asset
+  // violates the deployment's mime/size policy), a 403 on the presigned PUT
+  // (a signature/credential problem — R2 IS configured, we just got past
+  // create-session), a 422 from finalize (the bytes were rejected), and even
+  // finalize's own `502 PROVIDER_ERROR`
+  // (`media-library/application/media-finalize-upload-session.ts`), which
+  // means "unable to verify the uploaded object right now, try again shortly"
+  // — a transient error on a CONFIGURED provider, so it is reported and fails
+  // the step rather than pretending nothing was ever configured.
+  | { ok: false; providerDegraded: boolean; reason: string };
+
+function errorCodeOf(result: ApiResult): string | null {
+  const raw = result.raw as { error?: { code?: unknown } } | null;
+  return typeof raw?.error?.code === "string" ? raw.error.code : null;
+}
+
+/**
+ * True only for the create-session route's "R2 not configured" refusal —
+ * status AND code are checked, and the caller only asks this of the
+ * create-session response (see the `MediaAttemptResult` note for why
+ * finalize's same-looking `502 PROVIDER_ERROR` must NOT take this path).
+ */
+function isProviderNotConfigured(result: ApiResult): boolean {
+  return result.status === 502 && errorCodeOf(result) === "PROVIDER_ERROR";
+}
+
+async function attemptCreateVerifiedMediaObject(
+  session: Session,
+  assetFile: string,
+  mimeType: string,
+  altText: string
+): Promise<MediaAttemptResult> {
+  const bytes = readFileSync(path.join(SCRIPT_DIR, "..", assetFile));
+
+  const created = await apiCall<{ objectId: string; presignedUrl: string }>(
+    "POST",
+    "/api/v1/media/news-images/upload-sessions",
+    { session, body: { mimeType, altText } }
+  );
+
+  if (!created.ok) {
+    return {
+      ok: false,
+      providerDegraded: isProviderNotConfigured(created),
+      reason: `POST /api/v1/media/news-images/upload-sessions -> HTTP ${created.status}: ${JSON.stringify(created.raw)}`
+    };
+  }
+
+  let putResponse: Response;
+  try {
+    putResponse = await fetch(created.data.presignedUrl, {
+      method: "PUT",
+      headers: { "content-type": mimeType },
+      body: bytes
+    });
+  } catch (error) {
+    // A network-level failure reaching R2 directly (not an `apps/cms`
+    // response), so it can never carry a `502 PROVIDER_ERROR` envelope —
+    // always reported as a real failure, never silently degraded.
+    return {
+      ok: false,
+      providerDegraded: false,
+      reason: `PUT to presigned R2 URL failed: ${error instanceof Error ? error.message : String(error)}`
+    };
+  }
+
+  if (!putResponse.ok) {
+    return {
+      ok: false,
+      providerDegraded: false,
+      reason: `PUT to presigned R2 URL -> HTTP ${putResponse.status}`
+    };
+  }
+
+  const finalized = await apiCall(
+    "POST",
+    `/api/v1/media/news-images/upload-sessions/${created.data.objectId}/finalize`,
+    { session, body: {}, idempotencyKey: crypto.randomUUID() }
+  );
+
+  if (!finalized.ok) {
+    // Never `providerDegraded`: reaching finalize proves create-session
+    // accepted the request, i.e. R2 IS configured. Whatever finalize says
+    // (422 rejected bytes, 409 state, or its transient 502) is a real failure
+    // of this run.
+    return {
+      ok: false,
+      providerDegraded: false,
+      reason: `POST .../finalize -> HTTP ${finalized.status}: ${JSON.stringify(finalized.raw)}`
+    };
+  }
+
+  return { ok: true, mediaObjectId: created.data.objectId };
+}
+
+async function ensureAdPlacements(session: Session): Promise<void> {
+  const list = await apiCall<{ placements: Array<{ placementKey: string }> }>(
+    "GET",
+    "/api/v1/news-portal/ad-placements",
+    { session }
+  );
+  assertOk("GET /api/v1/news-portal/ad-placements", list);
+
+  const existingKeys = new Set(list.data.placements.map((item) => item.placementKey));
+  const placements = readSeedJson<AdPlacementSeed[]>("ad-placements.json");
+  const pending = placements.filter((placement) => {
+    if (existingKeys.has(placement.placementKey)) {
+      console.log(`skip ad placement "${placement.placementKey}" (already exists)`);
+      return false;
+    }
+    return true;
+  });
+
+  // Two failure classes, handled differently (review finding on #66 — the
+  // previous version treated EVERY media failure as "no R2 here", printed
+  // the TOTAL pending count as the skipped count, and exited 0):
+  //   - `providerDegraded` (create-session's `502 PROVIDER_ERROR`, "R2 not
+  //     configured") means THIS deployment has no R2 at all — every remaining
+  //     placement will refuse identically, so this is the one case that
+  //     degrades to a single explained skip line (counting only what is
+  //     actually left unapplied) and, absent any other failure, a clean exit,
+  //     same as the documented product-image gap.
+  //   - anything else (a 400 mime/size refusal, a 403 on the presigned PUT, a
+  //     422 or transient 502 from finalize, a network error, a rejected
+  //     `POST .../ad-placements`) is a real failure of this run or its assets.
+  //     It is reported per placement, the loop keeps going so every OTHER
+  //     failure is reported too, and the step throws at the end — it must
+  //     never exit 0 while ad placements silently failed to apply.
+  const realFailures: string[] = [];
+
+  for (let index = 0; index < pending.length; index++) {
+    const placement = pending[index]!;
+    const media = await attemptCreateVerifiedMediaObject(
+      session,
+      placement.assetFile,
+      placement.mimeType,
+      `${placement.name} creative (seed, issue #57)`
+    );
+
+    if (!media.ok) {
+      if (media.providerDegraded) {
+        // `pending.length - index`, not `pending.length`: placements before
+        // this one either applied or were already reported as real failures.
+        const remaining = pending.length - index;
+        console.log(
+          `skip ${remaining} pending ad placement(s) — this deployment has no ` +
+            `working media R2 storage (${media.reason}). Same documented gap as ` +
+            'product images (docs/deployment.md\'s "What this script still does not ' +
+            'seed, and why") — configure NEWS_MEDIA_R2_* and re-run to apply these.'
+        );
+        // Stop here (nothing further can succeed) but still fall through to
+        // the throw below if an earlier placement failed for a real reason.
+        break;
+      }
+
+      console.error(
+        `FAILED ad placement "${placement.placementKey}" — ${media.reason}`
+      );
+      realFailures.push(`${placement.placementKey}: ${media.reason}`);
+      continue;
+    }
+
+    const created = await apiCall("POST", "/api/v1/news-portal/ad-placements", {
+      session,
+      body: {
+        placementKey: placement.placementKey,
+        name: placement.name,
+        mediaObjectId: media.mediaObjectId,
+        linkUrl: null,
+        rotationMode: "latest",
+        priority: 0,
+        isActive: true,
+        targetType: "global",
+        contentClass: placement.contentClass
+      }
+    });
+
+    if (!created.ok) {
+      console.error(
+        `FAILED ad placement "${placement.placementKey}" — POST /api/v1/news-portal/ad-placements -> ` +
+          `HTTP ${created.status}: ${JSON.stringify(created.raw)}`
+      );
+      realFailures.push(
+        `${placement.placementKey}: POST /api/v1/news-portal/ad-placements -> HTTP ${created.status}`
+      );
+      continue;
+    }
+
+    console.log(
+      `apply ad placement "${placement.placementKey}" (${placement.contentClass})`
+    );
+  }
+
+  if (realFailures.length > 0) {
+    throw new Error(
+      `ensureAdPlacements: ${realFailures.length} ad placement(s) failed for reasons ` +
+        `other than a missing R2 provider — this is a real failure, not a deployment ` +
+        `gap, and must not be swallowed:\n  ${realFailures.join("\n  ")}`
+    );
+  }
+}
+
+// -- 9f. Legacy redirects (`POST /api/v1/seo/redirects`) --------------------
+//
+// `target` is this CMS's OWN `/blog/{tenantCode}/{slug}` shape
+// (`blog-content/module.ts`'s `urlTemplate`), never `apps/storefront`'s
+// `/berita/{slug}` — `apps/storefront/src/lib/pengalihan-legacy.ts`'s own
+// header explains why: the two sides only agree on the post's SLUG, and the
+// storefront's build rebuilds the destination in its own URL vocabulary
+// from that slug alone.
+
+type RedirectSeed = { sourcePath: string; postSlug: string; reason: string };
+
+async function ensureRedirects(session: Session): Promise<void> {
+  const list = await apiCall<{ redirects: Array<{ sourcePath: string }> }>(
+    "GET",
+    "/api/v1/seo/redirects?limit=100",
+    { session }
+  );
+  assertOk("GET /api/v1/seo/redirects", list);
+
+  const existingSourcePaths = new Set(list.data.redirects.map((item) => item.sourcePath));
+  const redirects = readSeedJson<RedirectSeed[]>("redirects.json");
+
+  for (const redirect of redirects) {
+    if (existingSourcePaths.has(redirect.sourcePath)) {
+      console.log(`skip redirect "${redirect.sourcePath}" (already exists)`);
+      continue;
+    }
+
+    const target = `/blog/${TENANT_CODE}/${redirect.postSlug}`;
+    const created = await apiCall("POST", "/api/v1/seo/redirects", {
+      session,
+      body: {
+        sourcePath: redirect.sourcePath,
+        target,
+        origin: "legacy_blog",
+        reason: redirect.reason
+      },
+      idempotencyKey: crypto.randomUUID()
+    });
+    assertOk(`POST /api/v1/seo/redirects (${redirect.sourcePath})`, created);
+    console.log(`apply redirect "${redirect.sourcePath}" -> "${target}"`);
+  }
 }
 
 // ---------------------------------------------------------------------------
@@ -1213,6 +2128,17 @@ async function main(): Promise<void> {
   await ensureBlogPosts(session, termIdBySlug);
   await applySiteProfile(session);
   await ensureMachineCredential(session, ownerTenantUserId);
+
+  // Issue #57 — seputarborneo reference taxonomy, institutions, sample news
+  // posts, legal pages (via ensureBlogPages/pages.json above), ad
+  // placements, and legacy redirects. Appended last, deliberately: every
+  // step here depends on nothing before it except the session/tenant.
+  const rubrikIdBySlug = await ensureRubrikTerms(session);
+  const kaltengRegions = await resolveKaltengRegions(session);
+  const institutionIdBySlug = await ensureInstitutions(session, kaltengRegions);
+  await ensureNewsPosts(session, rubrikIdBySlug, institutionIdBySlug);
+  await ensureAdPlacements(session);
+  await ensureRedirects(session);
 
   console.log("");
   console.log(`db:seed:cms complete — tenantId=${session.tenantId}`);
