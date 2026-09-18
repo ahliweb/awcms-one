@@ -4,11 +4,19 @@
  * child rubrik lists under its parent's breadcrumb, and the parent index
  * INCLUDES every child rubrik's posts (`getRubrik()`'s own `posts` field
  * already does this walk — see `src/lib/berita.ts`).
+ *
+ * Issue #54 (A8): `<link rel="next">` to page 2 when the archive has one,
+ * through `BaseLayout.astro`'s `head` slot (transferred by `BeritaLayout`)
+ * — `src/lib/meta-sosial.ts`'s `rubrikPaginationLinks` decides which links
+ * exist, so this page and `halaman/[n].astro` cannot disagree about the
+ * page-1 URL. `og:image` (the site logo, when it resolves) is
+ * `BeritaLayout`'s own listing-page default; nothing to pass here.
  */
 import BeritaLayout from "../../../layouts/BeritaLayout.astro";
 import RubrikBody from "../../../components/berita/RubrikBody.astro";
 import { ROUTES } from "../../../config/routes";
 import { getRubrikTree, getRubrik, paginate, flattenRubrikTree } from "../../../lib/berita";
+import { rubrikPaginationLinks } from "../../../lib/meta-sosial";
 
 export async function getStaticPaths() {
   const tree = await getRubrikTree();
@@ -28,6 +36,7 @@ if (!archive) {
 
 const paged = paginate(archive.posts, 1);
 const canonicalPath = ROUTES.rubric(slug);
+const paginationLinks = rubrikPaginationLinks(slug, 1, paged.totalPages);
 ---
 
 <BeritaLayout
@@ -35,5 +44,8 @@ const canonicalPath = ROUTES.rubric(slug);
   description={`Berita rubrik ${archive.term.name}.`}
   canonicalPath={canonicalPath}
 >
+  <Fragment slot="head">
+    {paginationLinks.map((link) => <link rel={link.rel} href={link.href} />)}
+  </Fragment>
   <RubrikBody archive={archive} paged={paged} slug={slug} />
 </BeritaLayout>

@@ -22,12 +22,21 @@
  *   accessibility naming; the skip link below points at the same id.
  * - `theme-tokens.css` (CMS-driven `--color-primary/secondary/accent`) and
  *   `favicon.svg` are linked here, once, for every page.
+ *
+ * ## Issue #54 (A8) additions
+ *
+ * - `ogType` and `meta` props — see their own docblocks on `Props` below
+ *   and the render block after the fixed Open Graph tags. Both are
+ *   optional and default to "render exactly what this layout rendered
+ *   before", so every store page's `<head>` is unchanged; the news pages
+ *   pass what `src/lib/meta-sosial.ts` builds for them.
  */
 import { absoluteUrl } from "../config/site";
 import { getSiteIdentity } from "../lib/awcms/profil";
 import { listStaticPages } from "../lib/awcms/pages";
 import { readEnv } from "../lib/env";
 import { readGaMeasurementId } from "../lib/ga";
+import type { MetaTag, OgType } from "../lib/meta-sosial";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import "../styles/global.css";
@@ -39,9 +48,30 @@ interface Props {
   canonicalPath: string;
   /** Page-specific JSON-LD (e.g. `Product`). Omitted entirely means no `<script type="application/ld+json">` at all. */
   schema?: Record<string, unknown>;
+  /**
+   * Issue #54 (A8): the value of the `og:type` tag below — `website` (the
+   * default, and what every store page keeps), `article` (`/berita/[slug]`)
+   * or `video.other` (`/video/[slug]`). Only these three: Open Graph's
+   * structured properties are namespaced by type, and a page that sets one
+   * of the non-default values is expected to pass that namespace's tags via
+   * `meta` (`src/lib/meta-sosial.ts` builds both together so they cannot
+   * disagree).
+   */
+  ogType?: OgType;
+  /**
+   * Issue #54 (A8): page-specific `<meta>` tags rendered AFTER the fixed
+   * Open Graph block below — `og:image` (+ width/height/alt), `article:*`,
+   * `video:*`, `twitter:*` — each entry keyed by EITHER `property` (RDFa,
+   * Open Graph) or `name` (Twitter cards). Omitted or empty renders
+   * nothing, so a page that passes nothing (every store page) produces the
+   * exact `<head>` it produced before this prop existed. A `<link>` (e.g.
+   * `rel="prev"/"next"`) is NOT modelled here — that is what the `head`
+   * slot at the end of `<head>` is for.
+   */
+  meta?: readonly MetaTag[];
 }
 
-const { title, description, canonicalPath, schema } = Astro.props;
+const { title, description, canonicalPath, schema, ogType = "website", meta = [] } = Astro.props;
 
 const identity = await getSiteIdentity();
 const staticPages = await listStaticPages();
@@ -136,21 +166,44 @@ function jsonForScript(value: unknown): string {
     <link rel="manifest" href="/manifest.webmanifest" />
     <link rel="alternate" type="application/rss+xml" title={identity.name} href="/feed.xml" />
 
-    {/* Open Graph. `og:type` stays "website" even on a product page: Open
+    {/* Open Graph. `og:type` stays "website" on a product page: Open
         Graph's "product" type is only valid alongside the product
         namespace prefix and `product:price:*` meta tags, neither of which
         this app declares — issue #5 asks for the structured price/
         availability data as `Product` JSON-LD (below), not as OG meta, so
         adding a half-implemented product type here would be less correct,
-        not more. No og:image either: the DTO this app renders carries no
-        product photo field, so the honest choice is no image tag rather
-        than one pointing at a file that does not exist. */}
-    <meta property="og:type" content="website" />
+        not more. Issue #54 (A8) makes the type a prop so `/berita/[slug]`
+        (`article`) and `/video/[slug]` (`video.other`) can declare theirs;
+        no store page passes one. No og:image in THIS block either: a
+        product DTO carries no photo field this block could point at, and a
+        news page's image arrives through `meta` below instead. */}
+    <meta property="og:type" content={ogType} />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={metaDescription} />
     <meta property="og:site_name" content={identity.name} />
     <meta property="og:locale" content="id_ID" />
+
+    {/* Page-specific meta (issue #54, A8): `og:image` and its dimensions,
+        `article:*`/`video:*`, `twitter:*` — built by
+        `src/lib/meta-sosial.ts`, passed by the page, rendered here one tag
+        per entry. Every `content` value is CMS text (an alt text, a rubrik
+        or tag name, a description) and reaches the page ONLY through
+        Astro's attribute rendering — the same HTML attribute escaping the
+        six OG tags above already rely on for `og:title`/`og:description`
+        (`"`, `&`, `<`, `>` become entities before the HTML parser sees
+        them). Nothing here uses `set:html`, so no value can close the
+        attribute or the tag it sits in. `jsonForScript` below is the
+        separate, script-context escaping for the JSON-LD block and is
+        deliberately NOT applied to attribute text: `<`-style JSON
+        escapes are not HTML escapes and would render literally here. */}
+    {meta.map((tag) =>
+      "property" in tag ? (
+        <meta property={tag.property} content={tag.content} />
+      ) : (
+        <meta name={tag.name} content={tag.content} />
+      )
+    )}
 
     {/* JSON-LD is a DATA block, not a script: `type="application/ld+json"` is
         not a JavaScript MIME type, so the browser never executes this as
