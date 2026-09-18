@@ -74,6 +74,8 @@ Two files exist specifically to prove this rule holds without a live CMS:
 | `/pesanan` | Order tracking by `?kode=`; phone from `sessionStorage`/a form, never the URL | `GET …/orders/{code}`, `POST …/orders/{code}/{payment-confirmations,cancel}` |
 | `/wishlist` | `localStorage`-only saved-products list; heart button on `ProductCard.astro` | none (client-side only) |
 | `/index/wilayah-provinsi.json`, `/index/wilayah-kabupaten-{code}.json`, `/index/wilayah-kecamatan-{code}.json` | Checkout address region indexes, scoped to `PUBLIC_WILAYAH_PROVINSI` | `GET /api/v1/idn-regions/regions` |
+| `/buletin` | Newsletter subscribe form (issue #50); not linked from anywhere yet — see "Newsletter" below | `POST <PUBLIC_AWCMS_ORIGIN>/api/v1/newsletter/subscribe` |
+| `/buletin/konfirmasi`, `/buletin/berhenti` | Double opt-in confirm/unsubscribe, token from `?token=`; `noindex, follow` | `POST …/newsletter/{confirm,unsubscribe}` |
 
 Every non-static-asset route above is prerendered — there is no
 `prerender = false` anywhere in this app, and none should be added without
@@ -401,6 +403,67 @@ ordinary same-origin bundled module: an inline `<script>` body is blocked by
 this app's CSP regardless of what `script-src` allows, and a fully static
 site has no per-request value to mint a CSP nonce from.
 
+## Newsletter (issue #50)
+
+The same anonymous, cross-origin, browser-calls-`apps/cms`-directly pattern
+as cart/checkout above, applied to `apps/cms`'s `newsletter` module — an
+`awcms` ADR (ADR-0103, in `ahliweb/awcms`'s own decision log, not this
+repo's `docs/adr/`): `apps/storefront/src/scripts/buletin.ts` re-implements
+`toko-klien.ts`'s own request contract (`mode: "cors"`, `credentials:
+"omit"`, one `Content-Type` header, one error type) against a DIFFERENT
+base path, `/api/v1/newsletter/*`, rather than widening `toko-klien.ts` past
+the base path its own docblock commits it to. `PUBLIC_AWCMS_ORIGIN` is the
+same variable, reused unchanged — the newsletter routes live on the same
+CMS origin cart/checkout already call, so **no new `connect-src` entry is
+needed**: `apps/storefront/src/pages/csp.json.ts` already widens `connect-src` to
+`PUBLIC_AWCMS_ORIGIN` for issue #30, and that origin covers every path on
+it, this module's included. Verified by re-reading `dist/client/csp.json`
+after a build in this issue's own review, not asserted by a new test — a
+`connect-src` entry keyed by ORIGIN, not by path, cannot regress per-route.
+
+- **Not mounted anywhere yet.** `FormBuletin.astro` (`variant: "footer" |
+  "sidebar"`) exists and is unit/build-tested from its own standalone page,
+  `/buletin`, but no other page links to it or renders it — placing it in
+  the site chrome is issue #46's A3, a separate, parallel change, so that
+  neither change conflicts with the other's edits to shared chrome files.
+- **The three CMS routes answer one neutral body for every outcome** — a
+  new address, an already-active one, a suppressed one, all read alike, by
+  design (`apps/cms/src/pages/api/v1/newsletter/subscribe.ts`'s own
+  docblock: a distinguishing response would let this endpoint be used to ask
+  whether a named person subscribes to this newsroom's list). That body is
+  also in English; this storefront's own copy is Indonesian throughout, so
+  `buletin.ts` never renders the CMS's `data.message` verbatim — every
+  string a reader sees is written by `buletin.ts` itself, mapped from the
+  response's `success`/`error.code`, never its `message`.
+- **The honeypot is client-side only.** The CMS route validates exactly
+  `email`/`locale` and nothing else, so a third form field would never
+  reach it either way; `FormBuletin.astro`'s hidden `website` field is
+  checked by `buletin.ts` BEFORE any request is sent — a bot that fills it
+  sees the same neutral success message and no request is made at all. Kept
+  invisible with the plain HTML `hidden` attribute (removes it from the
+  accessibility tree, needs no CSS), not a scoped `<style>`/inline
+  `style=""` — this app's CSP is `style-src 'self'` with no inline
+  exemption, and neither would even render.
+- **`/buletin/konfirmasi`/`/buletin/berhenti` read `?token=` from the URL
+  the reader actually arrived at**, never a form, never storage — the token
+  IS the credential the e-mail link carries. A missing or malformed token
+  (checked against the same shape the CMS itself validates,
+  `apps/cms/src/modules/newsletter/domain/subscription-token.ts`'s
+  `isWellFormedSubscriptionToken`) never reaches the network at all.
+- **Known path mismatch, flagged rather than worked around.** `apps/cms`
+  bakes the confirmation/unsubscribe links it e-mails from FIXED constants —
+  `NEWSLETTER_CONFIRM_PATH = "/newsletter/confirm"` and
+  `NEWSLETTER_UNSUBSCRIBE_PATH = "/newsletter/unsubscribe"`
+  (`apps/cms/src/modules/newsletter/domain/newsletter-mail.ts`), not
+  configurable per storefront — while this issue's own Scope names
+  `/buletin/konfirmasi`/`/buletin/berhenti`. Until the two agree, a real
+  subscriber's e-mail link 404s on this storefront. Fixing the mismatch
+  needs either an `apps/cms` change (outside this workspace's own subtree
+  boundary — see the root `AGENTS.md`'s "What is, and is not, this repo's
+  to edit") or this app adding thin redirect pages at the fixed paths — both
+  outside this issue's own file ownership, so this is reported as follow-up
+  work rather than patched here.
+
 ## Environment variables
 
 See `apps/storefront/.env.example` for the full, current list with
@@ -467,7 +530,8 @@ this app's tests are part of the same root gate suite:
    above and inspect the actual `dist/client/*` output; each issue that
    needs one adds its OWN file rather than editing a prior issue's
    (`build-smoke.test.ts` #24, `katalog-build-smoke.test.ts` #27,
-   `berita-build-smoke.test.ts` #28, `checkout-build-smoke.test.ts` #30).
+   `berita-build-smoke.test.ts` #28, `checkout-build-smoke.test.ts` #30,
+   `buletin-build-smoke.test.ts` #50).
    Each is bounded under ~60s; if `bun` cannot be spawned in the environment
    running the suite, it reports SKIPPED with a named reason rather than a
    false pass.

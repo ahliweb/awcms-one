@@ -20,6 +20,12 @@
  * slot (issue #27), for the same "Disallow stops the FETCH, noindex stops
  * the INDEX of a URL linked from elsewhere" reason `/cari`'s own comment
  * above already gives.
+ *
+ * Issue #50 adds `/buletin/konfirmasi` and `/buletin/berhenti` — both carry
+ * a one-time reader-specific `?token=`, so both get the same
+ * Disallow+noindex pair for the same reason as `/pesanan` above. `/buletin`
+ * itself (the subscribe form) is deliberately NOT disallowed: it has real,
+ * shareable content and no per-reader query string.
  */
 import { siteConfig } from "../config/site";
 
@@ -34,6 +40,8 @@ export function GET(): Response {
     "Disallow: /pesanan",
     "Disallow: /wishlist",
     "Disallow: /cari",
+    "Disallow: /buletin/konfirmasi",
+    "Disallow: /buletin/berhenti",
     "Disallow: /api/",
     "",
     `Sitemap: ${siteConfig.siteUrl}/sitemap-index.xml`,

@@ -1,0 +1,50 @@
+---
+/**
+ * `/buletin/konfirmasi` — where the confirmation link in a subscriber's
+ * inbox lands (issue #50). `?token=` is read and POSTed client-side by
+ * `src/scripts/buletin.ts`; this file renders only the shell and the status
+ * region the script fills in.
+ *
+ * `noindex, follow`: a URL that only makes sense carrying one specific
+ * reader's own token has no content of its own to index, the same reasoning
+ * `/cari`/`/pesanan` already give for the identical tag (see those pages'
+ * own docblocks) — and `robots.txt.ts`'s `Disallow` stops a crawler
+ * FETCHING it at all, belt and suspenders for the same reason.
+ *
+ * ## Path note (flagged in the PR, not fixed here)
+ *
+ * The CMS bakes the confirmation link from a FIXED constant,
+ * `NEWSLETTER_CONFIRM_PATH = "/newsletter/confirm"`
+ * (`apps/cms/src/modules/newsletter/domain/newsletter-mail.ts`) — not
+ * configurable, and not this URL. This page exists at the path issue #50's
+ * own Scope names; making the two agree is follow-up work outside this
+ * issue's file ownership (`apps/cms` is the upstream subtree). See the PR
+ * body for the options.
+ */
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import "../../styles/toko.css";
+---
+
+<BaseLayout
+  title="Konfirmasi Buletin"
+  description="Konfirmasi pendaftaran buletin email Anda."
+  canonicalPath="/buletin/konfirmasi"
+>
+  <meta slot="head" name="robots" content="noindex, follow" />
+
+  <div class="container" data-buletin-confirm>
+    <div class="page-heading">
+      <h1>Konfirmasi Buletin</h1>
+    </div>
+
+    <p data-buletin-status role="status" aria-live="polite" hidden></p>
+
+    <noscript>
+      <p class="toko-field-hint">Mengonfirmasi langganan memerlukan JavaScript aktif di peramban Anda.</p>
+    </noscript>
+  </div>
+</BaseLayout>
+
+<script>
+  import "../../scripts/buletin";
+</script>
