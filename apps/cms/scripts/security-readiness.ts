@@ -1559,7 +1559,19 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   awcms_commerce_order_events: ["SELECT", "DELETE", "INSERT"],
   awcms_commerce_payment_confirmations: ["SELECT", "DELETE"],
   awcms_commerce_reviews: ["SELECT", "DELETE"],
-  awcms_commerce_wishlists: ["SELECT", "DELETE"]
+  awcms_commerce_wishlists: ["SELECT", "DELETE"],
+  // Issue #87 — `commerce:customer-auth:purge` (`sql/918`): expired OTPs and
+  // expired/revoked sessions older than 7 days, SELECT + DELETE only, never
+  // UPDATE (this job never rewrites a row, only removes ones already past
+  // their own useful life).
+  awcms_commerce_customer_otps: ["SELECT", "DELETE"],
+  awcms_commerce_customer_sessions: ["SELECT", "DELETE"],
+  // `awcms_commerce_customer_accounts` carries a `dataLifecycle` descriptor
+  // with `executionMode: 'generic'` (module.ts) purely so the table answers
+  // `data-lifecycle:table-coverage:check` — `deleted_at` stays NULL forever
+  // (sql/917's header), so the generic engine's SELECT + DELETE is granted
+  // but never actually matches a row in practice.
+  awcms_commerce_customer_accounts: ["SELECT", "DELETE"]
 };
 
 /**
