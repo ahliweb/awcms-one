@@ -1,19 +1,43 @@
 ---
 /**
- * Thin wrapper around `BaseLayout` (issue #24) for every news-surface page
- * (issue #28) — its ONLY job is importing `src/styles/berita.css` once, so
- * no individual `/berita`/`/rubrik`/`/daerah`/`/mitra`/`/video`/`/tag`/
- * `/penulis`/`/arsip`/`/cari-berita` page has to. A NEW file rather than an
- * edit to `BaseLayout.astro` itself — that file is outside this issue's
- * file ownership (shared chrome, issue #24) — and CSS lives in its own file
- * rather than a component-scoped `<style>` block because inline
- * `<style>`/`<style is:global>` output is exactly what `style-src 'self'`
- * with `inlineStylesheets: "never"` (`astro.config.mjs`) forbids; an
- * imported `.css` file is compiled to an external, same-origin stylesheet
- * the same way `src/styles/global.css` already is.
+ * The page shell for every news-surface page (issue #28's page family;
+ * issue #48 gives it real news chrome). Wraps `BaseLayout.astro` — which
+ * owns `<head>`, `<main id="konten">`, and every other page's SEO/
+ * accessibility surface — and fills its `header`/`footer` named slots with
+ * the news chrome instead of the store's `Header`/`Footer`.
+ *
+ * ## Why named slots, not a duplicated `<head>`
+ *
+ * An earlier version of this file stopped wrapping `BaseLayout.astro`
+ * entirely and re-implemented `<html>/<head>/<body>` itself, because
+ * `BaseLayout.astro` hard-coded `<Header>`/`<Footer>` with nothing to swap
+ * either. That traded one real problem for a worse one: issue #54 (A8) adds
+ * OG/Twitter meta to `BaseLayout.astro`'s `<head>` and issue #56 (A10) mounts
+ * the visitor-analytics beacon there, and a second, hand-duplicated `<head>`
+ * in this file would silently never receive either — exactly the
+ * "two copies to keep in sync by hand" trap this repo's docblock culture
+ * warns about. `BaseLayout.astro`'s `header`/`footer` named slots (added by
+ * this issue, see that file's own two-line change) default to the store
+ * `Header`/`Footer` when a caller fills nothing — every non-news page's
+ * rendered HTML is unaffected — and this file fills them with the news
+ * chrome instead, while `<head>`/`<main id="konten">` stay the single,
+ * shared implementation every page gets.
+ *
+ * `identity` is fetched here independently of `BaseLayout.astro`'s own copy
+ * (`getSiteIdentity()`, `src/lib/awcms/profil.ts`) rather than threaded
+ * through as a prop — that function is memoized per build
+ * (`identityCache`), so this costs no second network request, the same way
+ * `Ticker.astro`/`BilahUtilitas.astro`/`FooterBerita.astro` already fetch
+ * their own data independently rather than receiving it from a parent.
  */
 import BaseLayout from "./BaseLayout.astro";
+import BilahUtilitas from "../components/berita/BilahUtilitas.astro";
+import NavBerita from "../components/berita/NavBerita.astro";
+import Ticker from "../components/berita/Ticker.astro";
+import FooterBerita from "../components/berita/FooterBerita.astro";
+import { getSiteIdentity } from "../lib/awcms/profil";
 import "../styles/berita.css";
+import "../styles/berita-chrome.css";
 
 interface Props {
   title: string;
@@ -23,8 +47,25 @@ interface Props {
 }
 
 const { title, description, canonicalPath, schema } = Astro.props;
+
+const identity = await getSiteIdentity();
 ---
 
 <BaseLayout title={title} description={description} canonicalPath={canonicalPath} schema={schema}>
+  <BilahUtilitas identity={identity} slot="header" />
+  <NavBerita identity={identity} currentPath={canonicalPath} slot="header" />
+  <Ticker slot="header" />
+
   <slot />
+
+  {/*
+    Transferring a slot: `<slot name="buletin" />` receives whatever this
+    layout's OWN caller passed as `<Fragment slot="buletin">` (issue #50's
+    form), and `slot="buletin"` on that same element re-targets it into
+    `FooterBerita.astro`'s own `<slot name="buletin" />` — Astro's documented
+    "transferring slots" pattern, one line, no extra prop needed.
+  */}
+  <FooterBerita identity={identity} slot="footer">
+    <slot name="buletin" slot="buletin" />
+  </FooterBerita>
 </BaseLayout>

@@ -1,0 +1,117 @@
+---
+/**
+ * The utility bar (issue #48) — ported from seputarborneo.com v2.4.0's
+ * `include/layout_header.php` `.sb-utilitas` block: today's WIB date, the
+ * editorial contact e-mail, the "Redaksi/Pedoman Media Siber/Disclaimer"
+ * links, and official-account social icons.
+ *
+ * ## Today's date is rendered CLIENT-SIDE, never at build time
+ *
+ * `apps/storefront` is a STATIC build (`output: "static"`,
+ * `astro.config.mjs`) — a value computed in this component's frontmatter
+ * (`new Date()`) is fixed at whatever moment `astro build` ran and then
+ * served unchanged to every reader for as long as that build is live, which
+ * for a "today's date" badge in a NEWS masthead is actively misleading: a
+ * reader visiting days after the last deploy would see the DEPLOY date
+ * labelled "today". The `<span id="bilah-tanggal">` below therefore starts
+ * EMPTY and is filled by the `<script>` at the bottom of this file, which
+ * runs in the reader's own browser at the moment they load the page — a
+ * normal ES module Astro compiles to an external, content-hashed file (not
+ * `is:inline`), the same CSP-satisfying pattern `Header.astro`'s own
+ * cart-count script already uses. `berita-chrome.css`'s
+ * `.bilah-utilitas__tanggal:empty + .bilah-utilitas__pisah` rule hides the
+ * separator dot for the (now vanishingly rare) reader with JavaScript
+ * disabled, so "no date" never reads as "· stray dot before the e-mail".
+ *
+ * ## Why the date logic is duplicated here, not imported from `src/lib/tanggal.ts`
+ *
+ * That file is outside this issue's file ownership this wave (increment 3
+ * epic #46's wave-1 partition names it nowhere), its existing exports
+ * (`formatTanggalPanjangWIB` etc.) do not include a weekday, and — more
+ * fundamentally — it is a build-time-only module (imported by
+ * `ArtikelCard.astro`/`Ticker.astro` from Astro frontmatter, never bundled
+ * for the browser), so this component could not call it from browser script
+ * even if it exported a weekday-including function. The `<script>` block's
+ * own `Intl.DateTimeFormat` call mirrors `tanggal.ts`'s `Asia/Jakarta`/
+ * `id-ID` reasoning without executing any of that file's code.
+ *
+ * ## Social icons — two independent guards
+ *
+ * `resolveSocialIcons` (`src/lib/ikon-sosial.ts`) already re-checks every
+ * URL's scheme even though `identity.socialLinks`
+ * (`src/lib/awcms/profil.ts`'s `parseSocialLinks`) already filtered to
+ * `http(s)` — see that file's own docblock for why the second check is not
+ * redundant defence.
+ *
+ * ## `id="atas"` on this component's own outermost element
+ *
+ * `FooterBerita.astro`'s back-to-top link is `<a href="#atas">` — this is
+ * the genuine top of every news page (this chrome renders first, above
+ * `BaseLayout.astro`'s `<main>`), so the anchor lives here rather than on
+ * `<body>`, which stays untouched for every non-news page.
+ */
+import type { SiteIdentity } from "../../lib/awcms/profil";
+import { getPerusahaanLinks } from "../../lib/navigasi-berita";
+import { resolveSocialIcons } from "../../lib/ikon-sosial";
+
+interface Props {
+  identity: SiteIdentity;
+}
+
+const { identity } = Astro.props;
+
+const perusahaanLinks = await getPerusahaanLinks();
+const socialIcons = resolveSocialIcons(identity.socialLinks);
+---
+
+<div class="bilah-utilitas" id="atas">
+  <div class="container bilah-utilitas__isi">
+    <div class="bilah-utilitas__kiri">
+      <span class="bilah-utilitas__tanggal" id="bilah-tanggal"></span>
+      {identity.contactEmail && (
+        <>
+          <span class="bilah-utilitas__pisah" aria-hidden="true">&middot;</span>
+          <a href={`mailto:${identity.contactEmail}`}>{identity.contactEmail}</a>
+        </>
+      )}
+    </div>
+
+    <nav class="bilah-utilitas__kanan" aria-label="Tautan redaksi">
+      {perusahaanLinks.map((link) => (
+        <a href={link.href}>{link.label}</a>
+      ))}
+
+      {socialIcons.length > 0 && (
+        <span class="bilah-utilitas__sosial">
+          {socialIcons.map((icon) => (
+            <a href={icon.url} aria-label={icon.label} title={icon.label} rel="noopener noreferrer me" target="_blank">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d={icon.pathData}></path></svg>
+            </a>
+          ))}
+        </span>
+      )}
+    </nav>
+  </div>
+</div>
+
+<script>
+  /**
+   * Fills `#bilah-tanggal` with TODAY's WIB date, in the reader's own
+   * browser — see this file's own docblock ("Today's date is rendered
+   * CLIENT-SIDE") for why a static build must not print this at build time.
+   */
+  function initTanggalUtilitas(): void {
+    const el = document.getElementById("bilah-tanggal");
+    if (!el) return;
+
+    el.textContent = new Intl.DateTimeFormat("id-ID", {
+      timeZone: "Asia/Jakarta",
+      weekday: "long",
+      day: "numeric",
+      month: "long",
+      year: "numeric"
+    }).format(new Date());
+  }
+
+  initTanggalUtilitas();
+</script>
