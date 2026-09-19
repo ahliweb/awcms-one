@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:e60034cb69a7f0a2c7abb2adae69f24f255462210330aad7cb3ddde1987eaf50 -->
+<!-- i18n-source-hash: sha256:231b4cb690057a83b097caccbf1e34839a917a46ea540c53b49a46a23eeedddc -->
 
 # `commerce`
 
@@ -648,6 +648,12 @@ pelanggan, tarif dengan kontrol edit inline, status, suspend/aktifkan) dan
 tabel komisi (afiliasi, pesanan, jumlah, status, dapat difilter berdasarkan
 status, tombol approve/pay/void), i18n `en`+`id`.
 `/admin/commerce-settings` mendapat field tarif komisi.
+
+## Provider eksternal — kontrak saja (epic #33 wave 0 — ADR-0017, issue #106)
+
+`openapi/modules/commerce.openapi.yaml` kini juga mendokumentasikan, SEBELUM ADA HANDLER APA PUN, seluruh permukaan provider-eksternal increment 5: endpoint sesi payment-gateway dan intake webhook publik (D2/D3, Midtrans Snap), field tarif kurir pada path cart-quote/order yang sudah ada (D4, RajaOngkir), opsi `via` WhatsApp pada request OTP (D5, Fonnte/Meta), pembuatan order POS (D6), tiga proyeksi penjualan yang ditampung `reporting` (D7), kotak masuk pelanggan — sisi bearer maupun owner (D8), kampanye bergerbang consent (D9), dan flag pengaturan modul plus harga bertingkat saat quote (D10). Setiap satu dari sepuluh keputusan D1–D10 — mengapa port hidup di dalam `commerce` alih-alih `integration_hub`, mengapa tenant webhook diresolusi dari token opak alih-alih payload-nya, mengapa alur gateway adalah redirect alih-alih embed, dan seterusnya — dicatat di [ADR-0017](../../../../../docs/adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.md) di awcms-one.
+
+Setiap path baru dinamai di `ROUTE_PARITY_EXEMPTIONS` (`scripts/api-spec-check.ts`), masing-masing entri mengutip issue ANAK yang menghapusnya: tarif kurir dan pengaturan (#107), WhatsApp (#108), payment gateway + token endpoint webhook (#110), kotak masuk (#111), POS (#116), laporan penjualan (#117), kampanye (#114), dan intake webhook gateway + rekonsiliasi (#113) — set itu wajib KOSONG lagi begitu increment 5 selesai, disiplin yang sama yang sudah dibuktikan #86/ADR-0016 untuk akun. ADR-0017 menamai setiap variabel lingkungan baru yang akan dibaca permukaan ini (`COMMERCE_PAYMENT_GATEWAY`, `COMMERCE_MIDTRANS_SERVER_KEY`, `COMMERCE_MIDTRANS_IS_PRODUCTION`, `COMMERCE_RAJAONGKIR_API_KEY`, `COMMERCE_WHATSAPP_PROVIDER`, `COMMERCE_FONNTE_TOKEN`, `COMMERCE_META_WA_TOKEN`, `COMMERCE_META_WA_PHONE_NUMBER_ID`) — belum satu pun dibaca, dideklarasikan di `env.example`, atau diperiksa `scripts/validate-env.ts`; masing-masing ditambahkan oleh issue adapter-nya sendiri, bukan oleh perubahan kontrak-saja ini.
 
 ## Dengan sengaja tidak ada di sini
 
