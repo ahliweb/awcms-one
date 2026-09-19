@@ -17,6 +17,7 @@ import {
 import { createReview } from "../../../../../../modules/commerce/application/review-directory";
 import { commercePreflightResponse } from "../../../../../../modules/commerce/application/public-commerce-preflight";
 import { withPublicCommerceTenant } from "../../../../../../modules/commerce/application/public-commerce-tenant";
+import { requireCustomerSession } from "../../../../../../modules/commerce/application/customer-session-auth";
 import { normalizePhoneNumber } from "../../../../../../modules/commerce/domain/phone-normalisation";
 import { validateCreateReviewInput } from "../../../../../../modules/commerce/domain/public-request-validation";
 
@@ -90,22 +91,58 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     });
   }
 
+  // Issue #91 — an OPTIONAL bearer, same posture `storefront/orders/index.ts`
+  // takes: present but invalid/expired -> `401 UNAUTHENTICATED`; absent ->
+  // unchanged guest path; present and valid -> ownership is checked against
+  // the account's OWN customer row, ignoring any phone-based lookup for the
+  // customer identity (`createReview`'s `accountCustomerId`) — `phone` is
+  // still validated for shape and still the per-phone rate limit's key.
+  const hasAuthorizationHeader = request.headers.get("authorization") !== null;
+
   const sql = getDatabaseClient();
 
   const { result, corsHeaders } = await withPublicCommerceTenant(
     sql,
     request,
-    async (tx, tenant) =>
-      createReview(
+    async (tx, tenant) => {
+      let accountCustomerId: string | undefined;
+
+      if (hasAuthorizationHeader) {
+        const authOutcome = await requireCustomerSession(
+          request,
+          tx,
+          tenant.tenantId
+        );
+        if (!authOutcome.ok) {
+          return { kind: "unauthenticated" } as const;
+        }
+        accountCustomerId = authOutcome.account.customerId;
+      }
+
+      return createReview(
         tx,
         tenant.tenantId,
         validation.value.orderCode,
         phoneResult.value,
         validation.value.productId,
         validation.value.rating,
-        validation.value.body
-      )
+        validation.value.body,
+        undefined,
+        accountCustomerId
+      );
+    }
   );
+
+  if (result && result.kind === "unauthenticated") {
+    return fail(
+      401,
+      "UNAUTHENTICATED",
+      "Missing, invalid, or expired session.",
+      {},
+      undefined,
+      corsHeaders
+    );
+  }
 
   if (!result || result.kind === "not_found") {
     return fail(
@@ -141,5 +178,8 @@ export const OPTIONS: APIRoute = async ({ request, clientAddress }) =>
     request,
     clientAddress,
     "commerce:reviews:create",
-    { maxAttempts: RATE_LIMIT_MAX, windowMs: RATE_LIMIT_WINDOW_SEC * 1000 }
+    { maxAttempts: RATE_LIMIT_MAX, windowMs: RATE_LIMIT_WINDOW_SEC * 1000 },
+    // Issue #91 — `authorization` joins `content-type` since this route now
+    // accepts an OPTIONAL bearer.
+    ["content-type", "authorization"]
   );

@@ -46,6 +46,14 @@ export function commerceCorsHeaders(
  * `Access-Control-Allow-Credentials` anywhere in this family (see this
  * file's own header) — a bearer token is a capability the browser attaches
  * explicitly, never a cookie the browser would send automatically.
+ *
+ * `PUT`/`DELETE` joined `GET, POST, PATCH, OPTIONS` with Issue #91's account
+ * resource routes (`PUT .../account/wishlist`,
+ * `DELETE .../account/addresses/{id}`/`.../wishlist/{productId}`) — listed
+ * for every route in this family rather than varying per route, since the
+ * method list is a preflight-level policy, not a per-endpoint one, and a
+ * wider allow-list here costs nothing: an actual route still answers
+ * `405`/404 on a method it does not implement.
  */
 export function commercePreflightHeaders(
   decision: CommerceOriginDecision,
@@ -56,7 +64,7 @@ export function commercePreflightHeaders(
 
   return {
     ...granted,
-    "access-control-allow-methods": "GET, POST, PATCH, OPTIONS",
+    "access-control-allow-methods": "GET, POST, PUT, PATCH, DELETE, OPTIONS",
     "access-control-allow-headers": allowedHeaders.join(", "),
     "access-control-max-age": String(COMMERCE_PREFLIGHT_MAX_AGE_SECONDS)
   };

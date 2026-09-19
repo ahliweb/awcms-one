@@ -22,6 +22,7 @@ import {
 import { mediaLibraryPortAdapter } from "../../../../../../modules/media-library/application/media-library-port-adapter";
 import { commercePreflightResponse } from "../../../../../../modules/commerce/application/public-commerce-preflight";
 import { withPublicCommerceTenant } from "../../../../../../modules/commerce/application/public-commerce-tenant";
+import { requireCustomerSession } from "../../../../../../modules/commerce/application/customer-session-auth";
 import { validateCreateOrderInput } from "../../../../../../modules/commerce/domain/order-request-validation";
 import { normalizePhoneNumber } from "../../../../../../modules/commerce/domain/phone-normalisation";
 
@@ -131,25 +132,67 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     );
   }
 
+  // Issue #91 — an OPTIONAL bearer. Present but invalid/expired ->
+  // `401 UNAUTHENTICATED` explicitly (the storefront re-reads its own
+  // session right before submit and expects to be told plainly that it
+  // needs to sign the shopper out); absent entirely -> unchanged guest path;
+  // present and valid -> the order's customer is the account's OWN customer
+  // row (`createOrderFromCart`'s `accountCustomerId`), never a
+  // `findOrCreateCustomerByPhone` lookup on whatever phone was typed at
+  // checkout.
+  const hasAuthorizationHeader = request.headers.get("authorization") !== null;
+
   const sql = getDatabaseClient();
 
   try {
     const { result, corsHeaders } = await withPublicCommerceTenant(
       sql,
       request,
-      async (tx, tenant) =>
-        createOrderFromCart(
+      async (tx, tenant) => {
+        let accountCustomerId: string | undefined;
+
+        if (hasAuthorizationHeader) {
+          const authOutcome = await requireCustomerSession(
+            request,
+            tx,
+            tenant.tenantId
+          );
+          if (!authOutcome.ok) {
+            return { kind: "unauthenticated" } as const;
+          }
+          accountCustomerId = authOutcome.account.customerId;
+        }
+
+        // `validation.value.affiliateCode` (Issue #91) is shape-validated
+        // only and deliberately NOT passed to `createOrderFromCart` — #92
+        // is what wires affiliate attribution to a commission record.
+        return createOrderFromCart(
           tx,
           tenant.tenantId,
           mediaLibraryPortAdapter,
-          validation.value
-        )
+          validation.value,
+          undefined,
+          undefined,
+          accountCustomerId
+        );
+      }
     );
 
     if (!result) {
       return fail(404, "NOT_FOUND", "Not found.", {}, undefined, {
         vary: "Origin"
       });
+    }
+
+    if (result.kind === "unauthenticated") {
+      return fail(
+        401,
+        "UNAUTHENTICATED",
+        "Missing, invalid, or expired session.",
+        {},
+        undefined,
+        corsHeaders
+      );
     }
 
     if (result.kind === "invalid_phone") {
@@ -219,5 +262,8 @@ export const OPTIONS: APIRoute = async ({ request, clientAddress }) =>
     {
       maxAttempts: RATE_LIMIT_MAX_PER_IP,
       windowMs: RATE_LIMIT_WINDOW_SEC * 1000
-    }
+    },
+    // Issue #91 — `authorization` joins `content-type` since this route now
+    // accepts an OPTIONAL bearer.
+    ["content-type", "authorization"]
   );

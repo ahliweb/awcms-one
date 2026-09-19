@@ -200,14 +200,8 @@ const ALLOWED_PUBLIC_OPERATIONS = new Set([
 const ROUTE_PARITY_EXEMPTIONS = new Set<string>([
   // otp/request, otp/verify, me, logout — implemented by Issue #89, route
   // files now exist under src/pages/api/v1/commerce/storefront/account/.
-  "/api/v1/commerce/storefront/account/addresses",
-  "/api/v1/commerce/storefront/account/addresses/{id}",
-  "/api/v1/commerce/storefront/account/addresses/{id}/default",
-  "/api/v1/commerce/storefront/account/wishlist",
-  "/api/v1/commerce/storefront/account/wishlist/{productId}",
-  "/api/v1/commerce/storefront/account/orders",
-  "/api/v1/commerce/storefront/account/orders/{orderCode}",
-  "/api/v1/commerce/storefront/account/reviews",
+  // addresses/wishlist/orders/reviews — implemented by Issue #91, route
+  // files now exist under the same directory.
   "/api/v1/commerce/storefront/account/affiliate",
   "/api/v1/commerce/storefront/account/affiliate/commissions",
   "/api/v1/commerce/affiliates",

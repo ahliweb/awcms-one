@@ -10549,12 +10549,12 @@ Sets deleted_at; the sku and slug are freed for reuse. Restore it with POST /api
 | 404    | Unresolvable tenant, disabled module, or a rate-limited caller — the same neutral body (contract's own anti-oracle rule). | [`ApiError`](#standard-error-envelope) |
 | 429    | Rate limited.                                                                                                             | [`ApiError`](#standard-error-envelope) |
 
-### `POST /api/v1/commerce/storefront/orders` — Anonymous order creation (Issue 29). Idempotent by the client-supplied idempotencyKey; re-quotes the cart inside the write transaction. No permission check.
+### `POST /api/v1/commerce/storefront/orders` — Anonymous order creation (Issue 29), with an optional customer bearer (Issue #91). Idempotent by the client-supplied idempotencyKey; re-quotes the cart inside the write transaction. No permission check required — a valid bearer is accepted, never required.
 
 - **operationId**: `createCommerceStorefrontOrder`
 - **Security**: none (public endpoint)
 
-Issue #86 (design only — implemented by C2–C4): an OPTIONAL `Authorization: Bearer <customer session token>` (see `customerBearer`) is accepted alongside the existing anonymous path. When present and valid, the order is attributed to that account's customer row instead of the guest find-or-create by phone; when absent, invalid, or expired, the request proceeds exactly as it does today — the bearer never turns this into a required credential. `affiliateCode` is likewise optional and, when it matches an active `awcms_commerce_affiliates.code` other than the ordering customer's own, records the referral that a completed order later turns into a commission (D5).
+Issue #91 (implemented, contract #86): an OPTIONAL `Authorization: Bearer <customer session token>` (see `customerBearer`) is accepted alongside the existing anonymous path. Present and valid → the order is attributed to that account's OWN customer row instead of the guest find-or-create by phone (the typed phone is still validated for shape, but ignored for identity); present and invalid/expired → `401 UNAUTHENTICATED` (explicit — the storefront re-reads its own session right before submit); absent entirely → the request proceeds exactly as it did before this issue. `affiliateCode` is likewise optional and shape-validated (a string, at most 50 characters) but otherwise IGNORED in this issue — Issue #92 is what actually resolves it against `awcms_commerce_affiliates.code` and records a referral.
 
 **Request body** (required): [`CommerceCreateOrderRequest`](#schema-commercecreateorderrequest)
 
@@ -10565,6 +10565,7 @@ Issue #86 (design only — implemented by C2–C4): an OPTIONAL `Authorization: 
 | 200    | The idempotency key was seen before; the same order is returned.                                                                           | object                                 |
 | 201    | Order created.                                                                                                                             | object                                 |
 | 400    | Validation error.                                                                                                                          | [`ApiError`](#standard-error-envelope) |
+| 401    | UNAUTHENTICATED — an Authorization header was present but not a live session (Issue #91).                                                  | [`ApiError`](#standard-error-envelope) |
 | 404    | Unresolvable tenant, disabled module, or a rate-limited caller.                                                                            | [`ApiError`](#standard-error-envelope) |
 | 409    | CART_CHANGED — a line's price/stock/shipping/payment method changed since it was last quoted; `error.details.quote` carries a fresh quote. | [`ApiError`](#standard-error-envelope) |
 | 429    | Rate limited (per IP and per normalised phone).                                                                                            | [`ApiError`](#standard-error-envelope) |
@@ -10669,23 +10670,24 @@ Issue #86 (design only — implemented by C2–C4): an OPTIONAL `Authorization: 
 | 404    | Resource not found.                               | [`ApiError`](#standard-error-envelope) |
 | 503    | Media upload is not available on this deployment. | [`ApiError`](#standard-error-envelope) |
 
-### `POST /api/v1/commerce/storefront/reviews` — Anonymous review submission (Issue 29). Requires a completed order containing the product; lands pending for moderation.
+### `POST /api/v1/commerce/storefront/reviews` — Anonymous review submission (Issue 29), with an optional customer bearer (Issue #91). Requires a completed order containing the product; lands pending for moderation.
 
 - **operationId**: `createCommerceStorefrontReview`
 - **Security**: none (public endpoint)
 
-Issue #86 (design only — implemented by C2–C4): an OPTIONAL `Authorization: Bearer <customer session token>` is accepted here too, attributing the review to the signed-in account instead of the orderCode+phone credential when present and valid; absent or invalid, the anonymous path is unchanged.
+Issue #91 (implemented, contract #86): an OPTIONAL `Authorization: Bearer <customer session token>` is accepted here too. Present and valid → ownership is checked against the signed-in account's OWN customer row instead of the orderCode+phone credential (`phone` is still validated for shape and still the per-phone rate limit's key); present and invalid/expired → `401 UNAUTHENTICATED`; absent entirely → the anonymous path is unchanged.
 
 **Request body** (required): object
 
 **Responses**
 
-| Status | Description                           | Schema                                 |
-| ------ | ------------------------------------- | -------------------------------------- |
-| 201    | Review submitted, pending moderation. | object                                 |
-| 400    | Validation error.                     | [`ApiError`](#standard-error-envelope) |
-| 404    | Resource not found.                   | [`ApiError`](#standard-error-envelope) |
-| 409    | REVIEW_NOT_ALLOWED.                   | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                               | Schema                                 |
+| ------ | ----------------------------------------------------------------------------------------- | -------------------------------------- |
+| 201    | Review submitted, pending moderation.                                                     | object                                 |
+| 400    | Validation error.                                                                         | [`ApiError`](#standard-error-envelope) |
+| 401    | UNAUTHENTICATED — an Authorization header was present but not a live session (Issue #91). | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                       | [`ApiError`](#standard-error-envelope) |
+| 409    | REVIEW_NOT_ALLOWED.                                                                       | [`ApiError`](#standard-error-envelope) |
 
 ### `GET /api/v1/commerce/testimonials` — List testimonials (Issue 26). Keyset-paginated, newest first. Gated on testimonials.read.
 
@@ -10935,7 +10937,7 @@ Arithmetic is exact (integer cents) — a percentage discount is capped by maxDi
 
 Issue #86 (ADR-0016, epic #32 wave 0) — CONTRACT ONLY, no route file yet (handlers land in C2–C4, issues #87–#93). Customer accounts are OTP-verified, password-free `commerce` rows (D1), authenticated by a 6-digit e-mail OTP (D2) and a `customerBearer` opaque session token (D3) — a security surface deliberately separate from the staff `bearerAuth`/session schemes, so a customer credential can never reach a staff-only endpoint and vice versa. Registration binds to an existing guest checkout customer by phone when the e-mail also matches (D4). Covers OTP request/verify, the account profile, saved addresses, wishlist, the account's own order history and reviews, and the account's own affiliate enrolment/commissions.
 
-### `GET /api/v1/commerce/storefront/account/addresses` — Issue #86 (design only). The account's saved addresses (`awcms_commerce_customer_addresses`, max 10).
+### `GET /api/v1/commerce/storefront/account/addresses` — Issue #91 (implemented, contract #86). The account's saved addresses (`awcms_commerce_customer_addresses`, max 10), default first.
 
 - **operationId**: `listCommerceStorefrontAccountAddresses`
 - **Security**: customerBearer
@@ -10948,7 +10950,7 @@ Issue #86 (ADR-0016, epic #32 wave 0) — CONTRACT ONLY, no route file yet (hand
 | 401    | UNAUTHENTICATED.         | [`ApiError`](#standard-error-envelope) |
 | 403    | ACCOUNT_BLOCKED.         | [`ApiError`](#standard-error-envelope) |
 
-### `POST /api/v1/commerce/storefront/account/addresses` — Issue #86 (design only). Add a saved address. Refused past 10 per account.
+### `POST /api/v1/commerce/storefront/account/addresses` — Issue #91 (implemented, contract #86). Add a saved address. Refused past 10 per account; the FIRST address ever saved becomes the default automatically.
 
 - **operationId**: `createCommerceStorefrontAccountAddress`
 - **Security**: customerBearer
@@ -10964,7 +10966,7 @@ Issue #86 (ADR-0016, epic #32 wave 0) — CONTRACT ONLY, no route file yet (hand
 | 401    | UNAUTHENTICATED.                                    | [`ApiError`](#standard-error-envelope) |
 | 409    | ADDRESS_LIMIT_REACHED — already 10 saved addresses. | [`ApiError`](#standard-error-envelope) |
 
-### `PATCH /api/v1/commerce/storefront/account/addresses/{id}` — Issue #86 (design only). Update a saved address.
+### `PATCH /api/v1/commerce/storefront/account/addresses/{id}` — Issue #91 (implemented, contract #86). Update a saved address. Never touches isDefault (see the /default sub-route).
 
 - **operationId**: `updateCommerceStorefrontAccountAddress`
 - **Security**: customerBearer
@@ -10986,7 +10988,7 @@ Issue #86 (ADR-0016, epic #32 wave 0) — CONTRACT ONLY, no route file yet (hand
 | 401    | UNAUTHENTICATED.    | [`ApiError`](#standard-error-envelope) |
 | 404    | Resource not found. | [`ApiError`](#standard-error-envelope) |
 
-### `DELETE /api/v1/commerce/storefront/account/addresses/{id}` — Issue #86 (design only). Remove a saved address.
+### `DELETE /api/v1/commerce/storefront/account/addresses/{id}` — Issue #91 (implemented, contract #86). Remove a saved address. Deleting the default promotes the most-recently-created remaining one.
 
 - **operationId**: `deleteCommerceStorefrontAccountAddress`
 - **Security**: customerBearer
@@ -11005,7 +11007,7 @@ Issue #86 (ADR-0016, epic #32 wave 0) — CONTRACT ONLY, no route file yet (hand
 | 401    | UNAUTHENTICATED.    | [`ApiError`](#standard-error-envelope) |
 | 404    | Resource not found. | [`ApiError`](#standard-error-envelope) |
 
-### `POST /api/v1/commerce/storefront/account/addresses/{id}/default` — Issue #86 (design only). Mark a saved address as the account's default.
+### `POST /api/v1/commerce/storefront/account/addresses/{id}/default` — Issue #91 (implemented, contract #86). Mark a saved address as the account's default.
 
 - **operationId**: `setDefaultCommerceStorefrontAccountAddress`
 - **Security**: customerBearer
@@ -11108,16 +11110,17 @@ Issue #86 (ADR-0016, epic #32 wave 0) — CONTRACT ONLY, no route file yet (hand
 | 401    | UNAUTHENTICATED.  | [`ApiError`](#standard-error-envelope) |
 | 403    | ACCOUNT_BLOCKED.  | [`ApiError`](#standard-error-envelope) |
 
-### `GET /api/v1/commerce/storefront/account/orders` — Issue #86 (design only). Keyset-paginated order history, bounded to `created_at >= account.historyFrom` (D4).
+### `GET /api/v1/commerce/storefront/account/orders` — Issue #91 (implemented, contract #86). Keyset-paginated order history, bounded to `created_at >= account.historyFrom` (D4), enforced inside the query.
 
 - **operationId**: `listCommerceStorefrontAccountOrders`
 - **Security**: customerBearer
 
 **Parameters**
 
-| Name     | In    | Required | Type   | Description |
-| -------- | ----- | -------- | ------ | ----------- |
-| `cursor` | query | no       | string |             |
+| Name     | In    | Required | Type    | Description |
+| -------- | ----- | -------- | ------- | ----------- |
+| `cursor` | query | no       | string  |             |
+| `limit`  | query | no       | integer |             |
 
 **Responses**
 
@@ -11126,7 +11129,7 @@ Issue #86 (ADR-0016, epic #32 wave 0) — CONTRACT ONLY, no route file yet (hand
 | 200    | One page of the account's orders. | object                                 |
 | 401    | UNAUTHENTICATED.                  | [`ApiError`](#standard-error-envelope) |
 
-### `GET /api/v1/commerce/storefront/account/orders/{orderCode}` — Issue #86 (design only). Order detail for an account-owned order — no phone needed (ownership is the bearer, D3), same shape as the anonymous tracking endpoint.
+### `GET /api/v1/commerce/storefront/account/orders/{orderCode}` — Issue #91 (implemented, contract #86). Order detail for an account-owned order — no phone needed (ownership is the bearer, D3); ownership and historyFrom are both enforced inside the query. Same shape as the anonymous tracking endpoint.
 
 - **operationId**: `getCommerceStorefrontAccountOrder`
 - **Security**: customerBearer
@@ -11139,11 +11142,11 @@ Issue #86 (ADR-0016, epic #32 wave 0) — CONTRACT ONLY, no route file yet (hand
 
 **Responses**
 
-| Status | Description                                                                                                         | Schema                                 |
-| ------ | ------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
-| 200    | The order.                                                                                                          | object                                 |
-| 401    | UNAUTHENTICATED.                                                                                                    | [`ApiError`](#standard-error-envelope) |
-| 404    | Unknown order code, or one not owned by this account — the same neutral 404 (contract's existing anti-oracle rule). | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                                                        | Schema                                 |
+| ------ | -------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The order.                                                                                                                                         | object                                 |
+| 401    | UNAUTHENTICATED.                                                                                                                                   | [`ApiError`](#standard-error-envelope) |
+| 404    | Unknown order code, one not owned by this account, or one that predates historyFrom — the same neutral 404 (contract's existing anti-oracle rule). | [`ApiError`](#standard-error-envelope) |
 
 ### `POST /api/v1/commerce/storefront/account/otp/request` — Issue #89 (implemented, contract #86). Request a 6-digit e-mail OTP for login or registration (D2). Always answers 202 — anti-enumeration (ADR-0016).
 
@@ -11182,7 +11185,7 @@ Anonymous, per-IP and per-e-mail rate limited. The code is hashed, 10 minute TTL
 | 409    | PHONE_ALREADY_REGISTERED — `purpose: "register"` and the phone is bound to another account.                                                                                  | [`ApiError`](#standard-error-envelope) |
 | 429    | Too many verification attempts from this source (RATE_LIMITED). Carries `Retry-After`.                                                                                       | [`ApiError`](#standard-error-envelope) |
 
-### `GET /api/v1/commerce/storefront/account/reviews` — Issue #86 (design only). The account's own submitted reviews, any moderation status.
+### `GET /api/v1/commerce/storefront/account/reviews` — Issue #91 (implemented, contract #86). The account's own submitted reviews, any moderation status, with the product name and order code inlined.
 
 - **operationId**: `listCommerceStorefrontAccountReviews`
 - **Security**: customerBearer
@@ -11194,7 +11197,7 @@ Anonymous, per-IP and per-e-mail rate limited. The code is hashed, 10 minute TTL
 | 200    | The account's reviews. | object                                 |
 | 401    | UNAUTHENTICATED.       | [`ApiError`](#standard-error-envelope) |
 
-### `GET /api/v1/commerce/storefront/account/wishlist` — Issue #86 (design only). The account's saved products.
+### `GET /api/v1/commerce/storefront/account/wishlist` — Issue #91 (implemented, contract #86). The account's saved products — published, non-deleted products only.
 
 - **operationId**: `listCommerceStorefrontAccountWishlist`
 - **Security**: customerBearer
@@ -11206,7 +11209,7 @@ Anonymous, per-IP and per-e-mail rate limited. The code is hashed, 10 minute TTL
 | 200    | The wishlist.    | object                                 |
 | 401    | UNAUTHENTICATED. | [`ApiError`](#standard-error-envelope) |
 
-### `PUT /api/v1/commerce/storefront/account/wishlist` — Issue #86 (design only). Union-merge a set of product ids into the wishlist (never removes existing entries — a client wanting removal calls DELETE per item).
+### `PUT /api/v1/commerce/storefront/account/wishlist` — Issue #91 (implemented, contract #86). Union-merge a set of product ids into the wishlist, max 200 (never removes existing entries — a client wanting removal calls DELETE per item). Returns the merged, authoritative list.
 
 - **operationId**: `replaceCommerceStorefrontAccountWishlist`
 - **Security**: customerBearer
@@ -11215,13 +11218,14 @@ Anonymous, per-IP and per-e-mail rate limited. The code is hashed, 10 minute TTL
 
 **Responses**
 
-| Status | Description                   | Schema                                 |
-| ------ | ----------------------------- | -------------------------------------- |
-| 200    | The wishlist after the merge. | object                                 |
-| 400    | Validation error.             | [`ApiError`](#standard-error-envelope) |
-| 401    | UNAUTHENTICATED.              | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                       | Schema                                 |
+| ------ | ------------------------------------------------- | -------------------------------------- |
+| 200    | The wishlist after the merge.                     | object                                 |
+| 400    | Validation error.                                 | [`ApiError`](#standard-error-envelope) |
+| 401    | UNAUTHENTICATED.                                  | [`ApiError`](#standard-error-envelope) |
+| 409    | WISHLIST_LIMIT_REACHED — already 200 saved items. | [`ApiError`](#standard-error-envelope) |
 
-### `DELETE /api/v1/commerce/storefront/account/wishlist/{productId}` — Issue #86 (design only). Remove one product from the wishlist.
+### `DELETE /api/v1/commerce/storefront/account/wishlist/{productId}` — Issue #91 (implemented, contract #86). Remove one product from the wishlist.
 
 - **operationId**: `removeCommerceStorefrontAccountWishlistItem`
 - **Security**: customerBearer

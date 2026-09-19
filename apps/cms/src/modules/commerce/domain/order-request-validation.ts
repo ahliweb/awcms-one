@@ -39,6 +39,15 @@ export type CreateOrderInput = {
   voucherCode: string | null;
   insurance: boolean;
   notes: string | null;
+  /**
+   * Issue #91 — shape-validated ONLY (a string, at most 50 characters, or
+   * `null`) and otherwise ignored by every application-layer function that
+   * accepts a `CreateOrderInput`: Issue #92 (affiliate attribution) is what
+   * actually wires this to a commission record. Accepting-but-not-using it
+   * now means the storefront client (`toko-klien.ts`) can start sending it
+   * today without a 400, and #92 does not have to touch this validator.
+   */
+  affiliateCode: string | null;
 };
 
 const PAYMENT_METHODS: readonly PaymentMethod[] = [
@@ -270,6 +279,18 @@ export function validateCreateOrderInput(
   const insurance = record.insurance === true;
   const notes = optionalText(record.notes, 1000);
 
+  let affiliateCode: string | null = null;
+  if (record.affiliateCode !== undefined && record.affiliateCode !== null) {
+    if (typeof record.affiliateCode !== "string") {
+      errors.push({
+        field: "affiliateCode",
+        message: "affiliateCode must be a string, or null."
+      });
+    } else {
+      affiliateCode = record.affiliateCode.trim().slice(0, 50);
+    }
+  }
+
   if (errors.length > 0) return { valid: false, errors };
 
   return {
@@ -283,7 +304,8 @@ export function validateCreateOrderInput(
       payment,
       voucherCode,
       insurance,
-      notes
+      notes,
+      affiliateCode
     }
   };
 }

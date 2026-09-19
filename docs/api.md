@@ -68,9 +68,11 @@ Every route resolves its tenant from the request's `Origin`/`Host` against `awcm
 | `POST` | `reviews` | Requires a `completed` order for that product; created `status: pending`, moderated on the owner side |
 | `GET` | `store-settings/public` | Also used by the storefront build; the same route serves both build-time and (in principle) runtime callers |
 
+**`orders`/`reviews` now also accept an OPTIONAL `customerBearer` (#91):** present and valid → the order/review is attributed to that account's own customer row instead of the guest phone credential (the phone is still validated for shape and still the per-phone rate limit's key); present but invalid/expired → `401 UNAUTHENTICATED`; absent entirely → unchanged. `POST orders` also accepts `affiliateCode` in the body now — shape-validated (a string, at most 50 characters) and otherwise ignored until #92 wires actual attribution.
+
 **Idempotency:** order creation reuses the module-agnostic `awcms_idempotency_keys` store (`(tenantId, requestScope, idempotencyKey)`, no principal needed — it works from the anonymous tenant wrapper). The cart's own client-generated UUID is reused as the idempotency key, so a double-submitted "Place order" click returns the same `orderCode` rather than creating a second order.
 
-### Customer accounts — auth implemented (#89), rest planned — #90–#93
+### Customer accounts — auth + resources implemented (#89, #91), affiliates planned — #92/#93
 
 [ADR-0016](adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md) records the four decisions (identity, OTP channel, bearer session, registration binding) the whole surface was designed against, and [issue #86](https://github.com/ahliweb/awcms-one/issues/86) is where the OpenAPI shape lives (`apps/cms/openapi/modules/commerce.openapi.yaml`). A new `customerBearer` security scheme — deliberately separate from the staff `bearerAuth`/session schemes — authenticates every route below except the two OTP ones, which are anonymous by the same anti-enumeration logic as the rest of this API.
 
@@ -83,21 +85,26 @@ Every route resolves its tenant from the request's `Origin`/`Host` against `awcm
 | `GET`/`PATCH` | `account/me` | `customerBearer` | The account; `PATCH` accepts `{name}` only — no e-mail/phone change yet |
 | `POST` | `account/logout` | `customerBearer` | `204`, revokes the presented session |
 
-**Planned — contract without a handler yet (#90–#93)**, still exempted from the route↔contract parity gate by name in `apps/cms/scripts/api-spec-check.ts`:
+**Implemented (#91):**
 
 | Method | Path | Auth | Notes |
 | --- | --- | --- | --- |
-| `GET`/`POST` | `account/addresses` | `customerBearer` | Max 10 per account |
-| `PATCH`/`DELETE` | `account/addresses/{id}` | `customerBearer` | |
-| `POST` | `account/addresses/{id}/default` | `customerBearer` | |
-| `GET`/`PUT` | `account/wishlist` | `customerBearer` | `PUT {productIds:[]}` is a union merge, never a removal |
-| `DELETE` | `account/wishlist/{productId}` | `customerBearer` | |
-| `GET` | `account/orders(/{orderCode})` | `customerBearer` | Keyset, bounded to `created_at >= account.historyFrom` |
-| `GET` | `account/reviews` | `customerBearer` | |
+| `GET`/`POST` | `account/addresses` | `customerBearer` | Max 10 per account (`409 ADDRESS_LIMIT_REACHED`); the first address ever saved becomes the default automatically; list returns default first |
+| `PATCH`/`DELETE` | `account/addresses/{id}` | `customerBearer` | `PATCH` never touches `isDefault`; deleting the default promotes the most-recently-created remaining one |
+| `POST` | `account/addresses/{id}/default` | `customerBearer` | Exactly one default per customer is enforced by `sql/920`'s partial unique index, not merely trusted to application code |
+| `GET`/`PUT` | `account/wishlist` | `customerBearer` | `PUT {productIds:[]}` is a union merge (never a removal), max 200, returns the merged list; an id that is not a live product in this tenant is silently skipped; `GET` shows published, non-deleted products only |
+| `DELETE` | `account/wishlist/{productId}` | `customerBearer` | Soft-delete, idempotent — always `204` |
+| `GET` | `account/orders(/{orderCode})` | `customerBearer` | Keyset (`cursor`, `limit` ≤ 50), bounded to `created_at >= account.historyFrom`, enforced INSIDE the query; the detail route needs no phone (ownership + `historyFrom` both checked inside that same query — a neutral `404` for an unknown code, another account's order, or one before `historyFrom`) |
+| `GET` | `account/reviews` | `customerBearer` | Own reviews, any moderation status, product name + order code inlined |
+
+**Planned — contract without a handler yet (#92/#93)**, still exempted from the route↔contract parity gate by name in `apps/cms/scripts/api-spec-check.ts`:
+
+| Method | Path | Auth | Notes |
+| --- | --- | --- | --- |
 | `GET`/`POST` | `account/affiliate` | `customerBearer` | `POST` enrols; `409 AFFILIATE_PROGRAM_DISABLED` when `storeSettings.affiliateCommissionRate` is null |
 | `GET` | `account/affiliate/commissions` | `customerBearer` | |
 
-The existing anonymous `POST orders` and `POST reviews` above each gain an *optional* `customerBearer`: present and valid, the order/review is attributed to that account instead of the guest phone credential; absent, both endpoints behave exactly as documented above. `POST orders` also gains an optional `affiliateCode` (self-referral yields no commission).
+The existing anonymous `POST orders` and `POST reviews` (#91) each now accept an *optional* `customerBearer`: present and valid, the order/review is attributed to that account's own customer row instead of the guest phone credential; present but invalid/expired, `401 UNAUTHENTICATED`; absent, both endpoints behave exactly as documented above. `POST orders` also accepts an optional `affiliateCode` — shape-validated only in #91 (self-referral yielding no commission is #92's own job once it resolves the code at all).
 
 Owner-side staff routes for the affiliate program itself — `GET`/`PATCH /api/v1/commerce/affiliates(/{id})`, `GET /api/v1/commerce/affiliate-commissions`, `POST /api/v1/commerce/affiliate-commissions/{id}/{approve,pay,void}` — are the same contract-only status, gated on `commerce.affiliates.{read,update}` and `commerce.affiliate_commissions.{read,update}`.
 
@@ -196,4 +203,4 @@ The build credential's permission set is seeded by `tools/seed-borneojek-mart.ts
 
 ## Not built
 
-RajaOngkir courier rates and a payment gateway — `payment_method` accepts a `gateway` enum value already (additive, per [ADR-0010](adr/0010-manual-payment-and-alternative-courier-first-gateways-via-outbox.md)), but no provider integration exists; both must go through the outbox when they land ([issue #33](https://github.com/ahliweb/awcms-one/issues/33)). Customer accounts, login, and any authenticated storefront endpoint ([issue #32](https://github.com/ahliweb/awcms-one/issues/32)) are **in progress**: the contract is settled ([ADR-0016](adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md), issue #86, the "Customer accounts" table above); OTP login/registration, `me`, and `logout` are implemented ([issue #89](https://github.com/ahliweb/awcms-one/issues/89)), and the `customerBearer`-secured addresses/wishlist/order-history/review/affiliate surface still has no handler. A working payment-proof upload for an anonymous caller (`media_library`'s session flow needs an authenticated `actorTenantUserId`, which no guest checkout caller has).
+RajaOngkir courier rates and a payment gateway — `payment_method` accepts a `gateway` enum value already (additive, per [ADR-0010](adr/0010-manual-payment-and-alternative-courier-first-gateways-via-outbox.md)), but no provider integration exists; both must go through the outbox when they land ([issue #33](https://github.com/ahliweb/awcms-one/issues/33)). Customer accounts, login, and any authenticated storefront endpoint ([issue #32](https://github.com/ahliweb/awcms-one/issues/32)) are **in progress**: the contract is settled ([ADR-0016](adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md), issue #86, the "Customer accounts" table above); OTP login/registration, `me`, `logout` ([issue #89](https://github.com/ahliweb/awcms-one/issues/89)), and addresses/wishlist/order-history/review are all implemented now ([issue #91](https://github.com/ahliweb/awcms-one/issues/91)) — only the `customerBearer`-secured affiliate surface still has no handler. A working payment-proof upload for an anonymous caller (`media_library`'s session flow needs an authenticated `actorTenantUserId`, which no guest checkout caller has).

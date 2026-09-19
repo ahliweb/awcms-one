@@ -67,11 +67,18 @@ function optionalCoordinate(
   return value;
 }
 
+/** `path ? `${path}.${field}` : field` — lets a caller with no natural prefix (Issue #91's account address resource, whose fields are top-level, not nested under `address.*`) pass `path: ""` and get a bare field name rather than a leading dot. */
+function fieldName(path: string, field: string): string {
+  return path ? `${path}.${field}` : field;
+}
+
 /**
  * `path` prefixes every field name (`address.street`, etc.) so this can be
  * embedded inside a larger request body's error list — the order-creation
  * contract's `details: [{field, message}]` shape uses full paths like
- * `address.districtCode`.
+ * `address.districtCode`. Pass `path: ""` for a caller whose own request body
+ * has no such wrapper object (Issue #91's `validateAccountAddressInput`
+ * below) — see {@link fieldName}.
  */
 export function validateAddressInput(
   body: unknown,
@@ -83,43 +90,62 @@ export function validateAddressInput(
   const value: AddressInput = {
     recipientName: requiredText(
       record.recipientName,
-      `${path}.recipientName`,
+      fieldName(path, "recipientName"),
       200,
       errors
     ),
-    phone: requiredText(record.phone, `${path}.phone`, 30, errors),
+    phone: requiredText(record.phone, fieldName(path, "phone"), 30, errors),
     provinceCode: requiredText(
       record.provinceCode,
-      `${path}.provinceCode`,
+      fieldName(path, "provinceCode"),
       20,
       errors
     ),
     provinceName: requiredText(
       record.provinceName,
-      `${path}.provinceName`,
+      fieldName(path, "provinceName"),
       200,
       errors
     ),
-    cityCode: requiredText(record.cityCode, `${path}.cityCode`, 20, errors),
-    cityName: requiredText(record.cityName, `${path}.cityName`, 200, errors),
+    cityCode: requiredText(
+      record.cityCode,
+      fieldName(path, "cityCode"),
+      20,
+      errors
+    ),
+    cityName: requiredText(
+      record.cityName,
+      fieldName(path, "cityName"),
+      200,
+      errors
+    ),
     districtCode: requiredText(
       record.districtCode,
-      `${path}.districtCode`,
+      fieldName(path, "districtCode"),
       20,
       errors
     ),
     districtName: requiredText(
       record.districtName,
-      `${path}.districtName`,
+      fieldName(path, "districtName"),
       200,
       errors
     ),
     postalCode: optionalText(record.postalCode, 10),
-    street: requiredText(record.street, `${path}.street`, 1000, errors),
-    latitude: optionalCoordinate(record.latitude, `${path}.latitude`, errors),
+    street: requiredText(
+      record.street,
+      fieldName(path, "street"),
+      1000,
+      errors
+    ),
+    latitude: optionalCoordinate(
+      record.latitude,
+      fieldName(path, "latitude"),
+      errors
+    ),
     longitude: optionalCoordinate(
       record.longitude,
-      `${path}.longitude`,
+      fieldName(path, "longitude"),
       errors
     ),
     notes: optionalText(record.notes, 1000)
@@ -127,4 +153,48 @@ export function validateAddressInput(
 
   if (errors.length > 0) return { valid: false, errors };
   return { valid: true, value };
+}
+
+const MAX_LABEL_LENGTH = 100;
+
+/**
+ * The `awcms_commerce_customer_addresses` RESOURCE shape (Issue #91,
+ * `GET/POST /account/addresses`, `PATCH /account/addresses/{id}`) — the same
+ * shipping-address shape {@link validateAddressInput} already validates,
+ * PLUS a shopper-chosen `label` (required — this is a saved, named address,
+ * not a one-off order snapshot) and a REQUIRED `postalCode` (the storefront's
+ * own `Alamat` contract, `apps/storefront/src/lib/akun-klien.ts`, declares
+ * `postalCode: string`, never `string | null` — a SAVED address always
+ * carries one, unlike an order's address snapshot where it stays optional).
+ * Reuses {@link validateAddressInput} with `path: ""` for every field the two
+ * shapes share, rather than a second copy of the same eleven checks.
+ */
+export type AccountAddressInput = Omit<AddressInput, "postalCode"> & {
+  label: string;
+  postalCode: string;
+};
+
+export function validateAccountAddressInput(
+  body: unknown
+): ValidationResult<AccountAddressInput> {
+  const record = isRecord(body) ? body : {};
+  const errors: ValidationError[] = [];
+
+  const label = requiredText(record.label, "label", MAX_LABEL_LENGTH, errors);
+
+  const base = validateAddressInput(body, "");
+  if (!base.valid) errors.push(...base.errors);
+
+  const postalCode = requiredText(record.postalCode, "postalCode", 10, errors);
+
+  if (errors.length > 0) return { valid: false, errors };
+
+  return {
+    valid: true,
+    value: {
+      ...(base as { valid: true; value: AddressInput }).value,
+      label,
+      postalCode
+    }
+  };
 }

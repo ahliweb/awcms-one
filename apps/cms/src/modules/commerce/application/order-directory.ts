@@ -86,6 +86,7 @@ import {
 } from "../domain/commerce-events";
 import { buildCartQuote } from "./cart-quote-service";
 import {
+  fetchCustomerById,
   findOrCreateCustomerByPhone,
   saveCustomerAddress
 } from "./customer-directory";
@@ -709,7 +710,19 @@ export async function createOrderFromCart(
   mediaPort: MediaLibraryPort,
   input: CreateOrderInput,
   now: Date = new Date(),
-  correlationId?: string
+  correlationId?: string,
+  /**
+   * Issue #91 — set by the route ONLY after a valid bearer session was
+   * presented (`requireCustomerSession`). When present, the order's
+   * customer is that account's OWN customer row — the phone the shopper
+   * typed at checkout is still validated for shape (the route already did
+   * that before calling here) but is otherwise IGNORED for identity
+   * purposes, per the contract's own "ignore any phone-based lookup for the
+   * customer identity" rule; `findOrCreateCustomerByPhone` (which would
+   * create a SECOND, unrelated guest row for the same phone if it differs
+   * from the account's own) is never called in this branch.
+   */
+  accountCustomerId?: string
 ): Promise<CreateOrderOutcome> {
   const requestHash = computeRequestHash({
     action: IDEMPOTENCY_SCOPE,
@@ -770,14 +783,16 @@ export async function createOrderFromCart(
     now.getTime() + settings.orders.expiryHours * 60 * 60 * 1000
   );
 
-  const customer = await findOrCreateCustomerByPhone(
-    tx,
-    tenantId,
-    input.customer.name,
-    normalizedPhone,
-    input.customer.email,
-    correlationId
-  );
+  const customer = accountCustomerId
+    ? (await fetchCustomerById(tx, tenantId, accountCustomerId))!
+    : await findOrCreateCustomerByPhone(
+        tx,
+        tenantId,
+        input.customer.name,
+        normalizedPhone,
+        input.customer.email,
+        correlationId
+      );
 
   const header = await insertOrderWithRetryableCode(
     tx,
@@ -1480,4 +1495,100 @@ export async function expireOrdersForTenant(
 /** Stable, non-reversible hash used only to correlate log lines about the same phone without printing it — never sent to a client. */
 export function hashPhoneForLogs(phone: string): string {
   return createHash("sha256").update(phone).digest("hex").slice(0, 16);
+}
+
+// ---------------------------------------------------------------------------
+// Issue #91 (C3) — the account's OWN order history, bearer-secured
+// (`account/orders/index.ts`, `account/orders/{orderCode}.ts`). Ownership
+// AND the `history_from` window are both enforced INSIDE the query below
+// (contract's own requirement) — never merely in the route's `prepare` — so
+// an order that predates the account's own history window, or belongs to a
+// different customer entirely, is indistinguishable from one that does not
+// exist at all.
+// ---------------------------------------------------------------------------
+
+export type AccountOrderListPage = {
+  items: PublicOrderRecord[];
+  nextCursor: string | null;
+};
+
+export const ACCOUNT_ORDER_LIST_MAX_LIMIT = 50;
+export const ACCOUNT_ORDER_LIST_DEFAULT_LIMIT = 20;
+
+/** `GET /account/orders` — keyset, newest first, `created_at >= historyFrom`. Reuses `toPublicOrderRecord` per row (same shape `GET .../orders/{code}?phone=` returns) rather than a lighter admin-style summary — the contract's own "same list item shape as the tracking endpoint minus nothing sensitive". */
+export async function listOrdersForAccount(
+  tx: Bun.SQL,
+  tenantId: string,
+  mediaPort: MediaLibraryPort,
+  customerId: string,
+  historyFrom: Date,
+  cursor: KeysetCursor | null,
+  limit: number = ACCOUNT_ORDER_LIST_DEFAULT_LIMIT
+): Promise<AccountOrderListPage> {
+  const boundedLimit = Math.min(
+    Math.max(1, Math.trunc(limit)),
+    ACCOUNT_ORDER_LIST_MAX_LIMIT
+  );
+  const cursorCreatedAt = cursor?.createdAt ?? null;
+  const cursorId = cursor?.id ?? null;
+
+  const rows = (await tx`
+    SELECT o.id, ${tx.unsafe(keysetCursorCreatedAtSql("o"))} AS created_at_cursor
+    FROM awcms_commerce_orders o
+    WHERE o.tenant_id = ${tenantId}
+      AND o.customer_id = ${customerId}
+      AND o.deleted_at IS NULL
+      AND o.created_at >= ${historyFrom}
+      AND (
+        ${cursorCreatedAt}::timestamptz IS NULL
+        OR (o.created_at, o.id) < (${cursorCreatedAt}, ${cursorId})
+      )
+    ORDER BY o.created_at DESC, o.id DESC
+    LIMIT ${boundedLimit}
+  `) as { id: string; created_at_cursor: string }[];
+
+  const items: PublicOrderRecord[] = [];
+  for (const row of rows) {
+    const detail = await fetchOrderDetailByWhere(tx, tenantId, mediaPort, {
+      id: row.id
+    });
+    if (detail) items.push(await toPublicOrderRecord(tx, tenantId, detail));
+  }
+
+  const last = rows[rows.length - 1];
+  const nextCursor =
+    rows.length === boundedLimit && last
+      ? encodeKeysetCursor(last.created_at_cursor, last.id)
+      : null;
+
+  return { items, nextCursor };
+}
+
+/** `GET /account/orders/{orderCode}` — `null` for an unknown code, another customer's order, or one that predates `historyFrom` (all indistinguishable, the route's own neutral `404`). */
+export async function fetchOrderForAccount(
+  tx: Bun.SQL,
+  tenantId: string,
+  mediaPort: MediaLibraryPort,
+  customerId: string,
+  historyFrom: Date,
+  orderCode: string
+): Promise<PublicOrderRecord | null> {
+  const rows = (await tx`
+    SELECT id FROM awcms_commerce_orders
+    WHERE tenant_id = ${tenantId}
+      AND order_code = ${orderCode}
+      AND customer_id = ${customerId}
+      AND created_at >= ${historyFrom}
+      AND deleted_at IS NULL
+  `) as { id: string }[];
+
+  const row = rows[0];
+  if (!row) return null;
+
+  const detail = await fetchOrderDetailByWhere(tx, tenantId, mediaPort, {
+    id: row.id
+  });
+  if (!detail) return null;
+
+  return toPublicOrderRecord(tx, tenantId, detail);
 }
