@@ -2,7 +2,7 @@
 
 # Using awcms-one as a template
 
-This document is the skeleton [ADR-0018](adr/0018-awcms-one-is-a-template-with-build-profiles-and-an-idempotent-init.md) commits this repository to filling in: how a new application starts from `awcms-one`, what `bun run template:init` does to make a derived repository its own, the build-profile matrix that decides which pages a deployment ships, and where BjekMart itself fits once this repository is also a template. **As of this document's writing (wave 0, issue #136), none of the mechanism below exists in code yet** — no `src/profil/**` layout, no `template:init` script, no per-profile seed data. This page describes the target #137, #138, and #139 build against, and is updated to match the tree as each one lands (see "Status" at the bottom).
+This document is the skeleton [ADR-0018](adr/0018-awcms-one-is-a-template-with-build-profiles-and-an-idempotent-init.md) commits this repository to filling in: how a new application starts from `awcms-one`, what `bun run template:init` does to make a derived repository its own, the build-profile matrix that decides which pages a deployment ships, and where BjekMart itself fits once this repository is also a template. **As of this document's writing (wave 0, issue #136), none of the mechanism below exists in code yet** — no `src/profil/**` layout, no `template:init` script, no per-profile seed data. This page describes the target #137, #138, and #139 build against, and is updated to match the tree as each one lands (see "Status" at the bottom). **Update, wave 1 (#139):** the "Sample seeds" section below is now real — `tools/seed-cms.ts` and the neutral per-profile seed sets exist; `src/profil/**` and `template:init` (#137/#138) do not yet.
 
 ## Memulai dari template (starting from the template)
 
@@ -11,7 +11,7 @@ This document is the skeleton [ADR-0018](adr/0018-awcms-one-is-a-template-with-b
 3. **`.env`** — `cp .env.example .env` at root, and `cp apps/cms/.env.example apps/cms/.env` for the backend; fill in what `template:init` did not already set for you (database credentials, any provider keys you intend to use — see [ADR-0017](adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.md) for what each provider needs).
 4. **`bun run db:up`** — a local PostgreSQL via `docker compose`.
 5. **`bun run db:migrate:cms`** — runs `apps/cms`'s own migration chain against that database.
-6. **`bun run db:seed:cms --profil <toko|berita|landing>`** — seeds the neutral sample content matching your chosen profile (D6, #139), or `--profil contoh:borneojek-mart` if you want to see BjekMart's own full reference content instead.
+6. **`bun run db:seed:cms:profil <toko|berita|landing>`** — seeds the neutral sample content matching your chosen profile (D6, #139); `bun run db:seed:cms` (no argument) still seeds BjekMart's own full reference content (`contoh:borneojek-mart`, the unchanged default).
 7. **`bun run dev`** — starts `apps/cms` and `apps/storefront` for local development, storefront built against `SITE_PROFILE` from step 2.
 8. **Deploy** per [`docs/deployment.md`](deployment.md) — build, then serve, exactly as this repository's own reference deployment does; nothing about being "a derived repo" changes that mechanism.
 
@@ -168,10 +168,12 @@ Every file under `apps/storefront/src/pages/**` belongs to exactly one group. Th
 
 ## Sample seeds
 
-`bun run db:seed:cms --profil <toko|berita|landing|contoh:borneojek-mart>` (once [#139](https://github.com/ahliweb/awcms-one/issues/139) lands) seeds one of:
+`bun run db:seed:cms:profil <toko|berita|landing|contoh:borneojek-mart>` (equivalently, `bun run db:seed:cms -- --profil <name>`; [#139](https://github.com/ahliweb/awcms-one/issues/139), `tools/seed-cms.ts`) seeds one of:
 
-- **`toko`, `berita`, `landing`** — small, neutral, fictional sample content under `tools/seed-data/profil/<profile>/*`: no real people, phone numbers, e-mails, or brand names; `toko` ships ≤ 20 products, ≤ 15 posts, ≤ 6 pages plus categories/marketing/terms; `berita` ships rubrics/posts/authors/pages/regions at the same caps; `landing` ships a site profile, pages, and contact details only. Every seed is re-runnable (upsert by slug) and validates against the same CMS OpenAPI shapes the existing seeder already uses.
-- **`contoh:borneojek-mart`** — the full BjekMart reference content, moved from its original location to `tools/seed-data/contoh/borneojek-mart/**`. `db:seed:cms` with no `--profil` flag still targets this by default, so the live reference deployment's own workflow does not change.
+- **`toko`, `berita`, `landing`** — small, neutral, fictional sample content under `tools/seed-data/profil/<profile>/*`: no real people, phone numbers, e-mails, or brand names — placeholder contacts use `example.com`/`example.id` and `+62 800 0000 0000`-style numbers. `toko` ships ≤ 20 products across ≤ 6 categories plus marketing/pages/terms; `berita` ships ≤ 15 posts across ≤ 5 rubrics, ≤ 3 informational author bylines, ≤ 4 pages, and the region/institution rows a `/daerah/{slug}` archive needs; `landing` ships a site profile, ≤ 4 pages, and contact details only. Placeholder images are generated SVGs under `tools/seed-assets/profil/<profile>/`. Every seed is idempotent (upsert by slug, safe to re-run) and validates against the shapes `apps/cms/openapi/awcms-public-api.openapi.yaml` already documents for the endpoints the seeder calls.
+- **`contoh:borneojek-mart`** — the full BjekMart reference content, moved from its original location to `tools/seed-data/contoh/borneojek-mart/**`. `bun run db:seed:cms` with no `--profil` flag still targets this by default, so the live reference deployment's own workflow does not change; `tools/seed-borneojek-mart.ts` (the file that used to BE the seeder) is now a one-release deprecation shim that prints a notice and delegates to `tools/seed-cms.ts --profil contoh:borneojek-mart`.
+
+`--dry-run` validates the chosen profile's seed JSON and prints an inventory summary without making any network call at all — safe to run against a database that already holds real content (see `docs/alur-kerja-pengembangan.md`'s "Seeding a profile locally" for the full runbook and why the shared local dev database is never seeded with a neutral profile).
 
 ## BjekMart as the reference example
 
@@ -180,3 +182,5 @@ BjekMart is not deleted when this repository becomes a template — it is **kept
 ## Status
 
 **20 September 2026 — wave 0 (issue #136):** this document is the skeleton ADR-0018 commits to. No `apps/storefront/src/profil/**` layout, no `template:init` script, and no per-profile seed data exist in the tree yet. This page is updated to describe the actual mechanism as [#137](https://github.com/ahliweb/awcms-one/issues/137) (storefront profiles + CI matrix), [#138](https://github.com/ahliweb/awcms-one/issues/138) (`template:init`), and [#139](https://github.com/ahliweb/awcms-one/issues/139) (profile seeds) land, and the GitHub *template repository* flag itself is set in [#140](https://github.com/ahliweb/awcms-one/issues/140).
+
+**20 September 2026 — wave 1 (issue #139):** `tools/seed-cms.ts` lands, with `--profil toko|berita|landing|contoh:borneojek-mart` and `--dry-run`, plus the small neutral seed sets under `tools/seed-data/profil/{toko,berita,landing}/*` and placeholder SVGs under `tools/seed-assets/profil/**` this section describes above. `tools/seed-data/*.json` moved to `tools/seed-data/contoh/borneojek-mart/**`, unchanged in shape; `tools/seed-borneojek-mart.ts` is now a one-release deprecation shim. `#137` (storefront profiles + CI matrix) and `#138` (`template:init`) remain outstanding — this page's `template:init` CLI reference and build-profile matrix above still describe the TARGET those two issues build, not code that exists yet.

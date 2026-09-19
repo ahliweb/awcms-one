@@ -1,10 +1,10 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](template.md)
 
-<!-- i18n-source-hash: sha256:7dad67b3f468edd54e89c5f7be9170e959b203eefb6310f51f70789d5b483066 -->
+<!-- i18n-source-hash: sha256:971fcfd0b173ed6490c941bbf12a1eb33ce5c575bd77166f6663729092f9ab0b -->
 
 # Menggunakan awcms-one sebagai template
 
-Dokumen ini adalah kerangka yang dijanjikan [ADR-0018](adr/0018-awcms-one-is-a-template-with-build-profiles-and-an-idempotent-init.id.md) untuk diisi: bagaimana aplikasi baru dimulai dari `awcms-one`, apa yang dilakukan `bun run template:init` untuk menjadikan repo turunan miliknya sendiri, matriks profil build yang memutuskan halaman mana yang dikirim sebuah deployment, dan di mana BjekMart sendiri berada begitu repo ini juga menjadi template. **Per penulisan dokumen ini (wave 0, issue #136), tidak satu pun mekanisme di bawah ada di kode** — tidak ada tata letak `src/profil/**`, tidak ada skrip `template:init`, tidak ada data seed per profil. Halaman ini menjelaskan target yang menjadi dasar pembangunan #137, #138, dan #139, dan diperbarui seiring pohonnya seperti yang dijelaskan di "Status" di bagian bawah.
+Dokumen ini adalah kerangka yang dijanjikan [ADR-0018](adr/0018-awcms-one-is-a-template-with-build-profiles-and-an-idempotent-init.id.md) untuk diisi: bagaimana aplikasi baru dimulai dari `awcms-one`, apa yang dilakukan `bun run template:init` untuk menjadikan repo turunan miliknya sendiri, matriks profil build yang memutuskan halaman mana yang dikirim sebuah deployment, dan di mana BjekMart sendiri berada begitu repo ini juga menjadi template. **Per penulisan dokumen ini (wave 0, issue #136), tidak satu pun mekanisme di bawah ada di kode** — tidak ada tata letak `src/profil/**`, tidak ada skrip `template:init`, tidak ada data seed per profil. Halaman ini menjelaskan target yang menjadi dasar pembangunan #137, #138, dan #139, dan diperbarui seiring pohonnya seperti yang dijelaskan di "Status" di bagian bawah. **Pembaruan, wave 1 (#139):** bagian "Seed contoh" di bawah kini sungguhan — `tools/seed-cms.ts` dan set seed netral per profil sudah ada; `src/profil/**` dan `template:init` (#137/#138) belum.
 
 ## Memulai dari template
 
@@ -13,7 +13,7 @@ Dokumen ini adalah kerangka yang dijanjikan [ADR-0018](adr/0018-awcms-one-is-a-t
 3. **`.env`** — `cp .env.example .env` di root, dan `cp apps/cms/.env.example apps/cms/.env` untuk backend; isi apa yang belum diatur `template:init` (kredensial database, kunci provider mana pun yang ingin Anda pakai — lihat [ADR-0017](adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.id.md) untuk kebutuhan setiap provider).
 4. **`bun run db:up`** — PostgreSQL lokal lewat `docker compose`.
 5. **`bun run db:migrate:cms`** — menjalankan rantai migrasi `apps/cms` sendiri terhadap database itu.
-6. **`bun run db:seed:cms --profil <toko|berita|landing>`** — menyemai konten contoh netral yang sesuai profil pilihan Anda (D6, #139), atau `--profil contoh:borneojek-mart` jika Anda ingin melihat konten referensi BjekMart yang lengkap.
+6. **`bun run db:seed:cms:profil <toko|berita|landing>`** — menyemai konten contoh netral yang sesuai profil pilihan Anda (D6, #139); `bun run db:seed:cms` (tanpa argumen) tetap menyemai konten referensi BjekMart yang lengkap (`contoh:borneojek-mart`, default yang tidak berubah).
 7. **`bun run dev`** — menjalankan `apps/cms` dan `apps/storefront` untuk pengembangan lokal, storefront dibangun sesuai `SITE_PROFILE` dari langkah 2.
 8. **Deploy** sesuai [`docs/deployment.md`](deployment.id.md) — build, lalu serve, persis seperti deployment referensi repo ini sendiri; tidak ada yang berubah dari mekanisme itu hanya karena "menjadi repo turunan."
 
@@ -170,10 +170,12 @@ Setiap file di bawah `apps/storefront/src/pages/**` termasuk tepat satu kelompok
 
 ## Seed contoh
 
-`bun run db:seed:cms --profil <toko|berita|landing|contoh:borneojek-mart>` (setelah [#139](https://github.com/ahliweb/awcms-one/issues/139) landing) menyemai salah satu dari:
+`bun run db:seed:cms:profil <toko|berita|landing|contoh:borneojek-mart>` (setara dengan `bun run db:seed:cms -- --profil <nama>`; [#139](https://github.com/ahliweb/awcms-one/issues/139), `tools/seed-cms.ts`) menyemai salah satu dari:
 
-- **`toko`, `berita`, `landing`** — konten contoh kecil, netral, dan fiktif di bawah `tools/seed-data/profil/<profile>/*`: tanpa orang nyata, nomor telepon, e-mail, atau nama merek; `toko` mengirim ≤ 20 produk, ≤ 15 pos, ≤ 6 halaman ditambah kategori/pemasaran/syarat; `berita` mengirim rubrik/pos/penulis/halaman/region dengan batas yang sama; `landing` mengirim profil situs, halaman, dan detail kontak saja. Setiap seed bisa dijalankan ulang (upsert berdasarkan slug) dan memvalidasi terhadap bentuk OpenAPI CMS yang sama yang sudah dipakai seeder yang ada.
-- **`contoh:borneojek-mart`** — konten referensi BjekMart yang lengkap, dipindah dari lokasi aslinya ke `tools/seed-data/contoh/borneojek-mart/**`. `db:seed:cms` tanpa flag `--profil` tetap menargetkan ini secara default, sehingga alur kerja deployment referensi yang hidup tidak berubah.
+- **`toko`, `berita`, `landing`** — konten contoh kecil, netral, dan fiktif di bawah `tools/seed-data/profil/<profile>/*`: tanpa orang nyata, nomor telepon, e-mail, atau nama merek — kontak placeholder memakai `example.com`/`example.id` dan nomor bergaya `+62 800 0000 0000`. `toko` mengirim ≤ 20 produk di ≤ 6 kategori ditambah pemasaran/halaman/syarat; `berita` mengirim ≤ 15 pos di ≤ 5 rubrik, ≤ 3 byline penulis informasional, ≤ 4 halaman, dan baris region/instansi yang dibutuhkan arsip `/daerah/{slug}`; `landing` mengirim profil situs, ≤ 4 halaman, dan detail kontak saja. Gambar placeholder adalah SVG yang dibuat sendiri di bawah `tools/seed-assets/profil/<profile>/`. Setiap seed idempoten (upsert berdasarkan slug, aman dijalankan ulang) dan memvalidasi terhadap bentuk yang sudah didokumentasikan `apps/cms/openapi/awcms-public-api.openapi.yaml` untuk endpoint yang dipanggil seeder.
+- **`contoh:borneojek-mart`** — konten referensi BjekMart yang lengkap, dipindah dari lokasi aslinya ke `tools/seed-data/contoh/borneojek-mart/**`. `bun run db:seed:cms` tanpa flag `--profil` tetap menargetkan ini secara default, sehingga alur kerja deployment referensi yang hidup tidak berubah; `tools/seed-borneojek-mart.ts` (berkas yang dulu MENJADI seeder-nya) kini adalah shim deprecation satu-rilis yang mencetak peringatan lalu mendelegasikan ke `tools/seed-cms.ts --profil contoh:borneojek-mart`.
+
+`--dry-run` memvalidasi JSON seed profil pilihan dan mencetak ringkasan inventaris tanpa membuat panggilan jaringan sama sekali — aman dijalankan terhadap basis data yang sudah berisi konten sungguhan (lihat "Seeding a profile locally" di `docs/alur-kerja-pengembangan.md` untuk runbook lengkap dan alasan basis data dev lokal bersama tidak pernah diisi dengan profil netral).
 
 ## BjekMart sebagai contoh referensi
 
@@ -182,3 +184,5 @@ BjekMart tidak dihapus begitu repo ini menjadi template — ia **dipertahankan, 
 ## Status
 
 **20 September 2026 — wave 0 (issue #136):** dokumen ini adalah kerangka yang dijanjikan ADR-0018. Belum ada tata letak `apps/storefront/src/profil/**`, belum ada skrip `template:init`, dan belum ada data seed per profil di pohonnya. Halaman ini diperbarui untuk menjelaskan mekanisme sebenarnya seiring [#137](https://github.com/ahliweb/awcms-one/issues/137) (profil storefront + matriks CI), [#138](https://github.com/ahliweb/awcms-one/issues/138) (`template:init`), dan [#139](https://github.com/ahliweb/awcms-one/issues/139) (seed profil) landing, dan flag GitHub *template repository* sendiri diatur di [#140](https://github.com/ahliweb/awcms-one/issues/140).
+
+**20 September 2026 — wave 1 (issue #139):** `tools/seed-cms.ts` landing, dengan `--profil toko|berita|landing|contoh:borneojek-mart` dan `--dry-run`, ditambah set seed netral kecil di bawah `tools/seed-data/profil/{toko,berita,landing}/*` dan SVG placeholder di bawah `tools/seed-assets/profil/**` yang dijelaskan bagian di atas. `tools/seed-data/*.json` dipindah ke `tools/seed-data/contoh/borneojek-mart/**`, tidak berubah bentuknya; `tools/seed-borneojek-mart.ts` kini adalah shim deprecation satu-rilis. `#137` (profil storefront + matriks CI) dan `#138` (`template:init`) masih tertunda — referensi CLI `template:init` dan matriks profil build di halaman ini masih menjelaskan TARGET yang dibangun kedua issue itu, bukan kode yang sudah ada.
