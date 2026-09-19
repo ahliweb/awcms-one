@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:ee6e4e0f130d6bcc23558614c5ec63122db0ebec7247b9d3f0466298856590f6 -->
+<!-- i18n-source-hash: sha256:557d1815364d4ea1a63097ac8ddb434107f42a58f5bfafcaf78bfbee415d0829 -->
 
 # Architecture Decision Records
 
@@ -33,6 +33,7 @@ Yang **tidak** butuh ADR: menambah field dalam skema yang sudah diputuskan, kena
 | [0013](0013-rule-based-legacy-redirects-beside-the-row-based-map.md) | Pengalihan lawas berbasis aturan berdampingan dengan peta berbasis baris, dan baris selalu menang | Diterima |
 | [0014](0014-the-institution-owns-the-emblem-not-the-post.md) | Lembaga yang memiliki lambangnya; sebuah pos tidak pernah membawa satu pun | Diterima |
 | [0015](0015-commerce-migrations-live-in-the-reserved-9xx-range.md) | Migrasi commerce hidup di rentang cadangan `9xx` | Diterima |
+| [0016](0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md) | Akun pelanggan adalah akun `commerce` terverifikasi OTP dengan sesi bearer | Diterima |
 
 ## Mengapa penomoran dimulai dari 0001
 

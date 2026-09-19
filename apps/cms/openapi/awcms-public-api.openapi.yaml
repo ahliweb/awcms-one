@@ -77,6 +77,10 @@ tags:
     description: "Transactional outbox for device push notifications (push_delivery module, ADR-0074) — the caller's own device registration/revocation plus the operator's queue diagnostics, message cancel, and end-to-end delivery probe. It is a SECOND outbox on purpose: domain-event-runtime calls its consumers INSIDE the claim transaction by design, and ADR-0006 forbids the external HTTP call a push provider needs from inside a transaction. Two transports, neither of which costs a client byte or a CSP origin: Web Push (RFC 8030/8291/8292, VAPID) to browsers — chosen over the FCM Web SDK, which is 2.1x the per-file asset budget and demands three third-party origins the CSP does not have — and FCM HTTP v1 server-to-Google for native clients. Managing one's own device is self-service (the subject is the caller and no recipient is accepted); everything that touches another person's rows or makes the deployment emit traffic goes through the ABAC chokepoint. Endpoints are credential-grade and are stored hashed/masked, projected raw by exactly one function immediately before a provider call."
   - name: Commerce
     description: "Catalog slice of the re-platformed storefront (commerce module, Issue #4, epic #1) — tenant-scoped product categories (hierarchical, self-referencing parent) and products (physical/digital/service/subscription), ported from the legacy MySQL commerce_bj_mart schema's core catalog columns. price is numeric(14,2) and crosses the wire as a string, never a JSON number, so money arithmetic never drifts through binary floating point. A product's lifecycle status (draft/active/inactive/archived) travels through the same PATCH as every other field and is checked against a legal-transition table before any write. Categories have no status and no re-parenting via update — a hierarchy position is set once, at creation. This slice ships no restore endpoint: a soft-deleted row is retained (for the FK integrity of anything still referencing it) but not exposed for recovery here."
+  - name: Commerce Accounts
+    description: "Issue #86 (ADR-0016, epic #32 wave 0) — CONTRACT ONLY, no route file yet (handlers land in C2–C4, issues #87–#93). Customer accounts are OTP-verified, password-free `commerce` rows (D1), authenticated by a 6-digit e-mail OTP (D2) and a `customerBearer` opaque session token (D3) — a security surface deliberately separate from the staff `bearerAuth`/session schemes, so a customer credential can never reach a staff-only endpoint and vice versa. Registration binds to an existing guest checkout customer by phone when the e-mail also matches (D4). Covers OTP request/verify, the account profile, saved addresses, wishlist, the account's own order history and reviews, and the account's own affiliate enrolment/commissions."
+  - name: Commerce Affiliates
+    description: "Issue #86 (ADR-0016, epic #32 wave 0) — CONTRACT ONLY, no route file yet (handler lands in C4). The staff side of the affiliate program designed fresh by D5 (no legacy column carried over): review/approve/pay/void a referred order's commission, and edit an affiliate's status or commission rate. Gated on `commerce.affiliates.{read,update}` and `commerce.affiliate_commissions.{read,update}`."
 paths:
   /api/v1/abac/policies:
     get:
@@ -7374,6 +7378,225 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/affiliate-commissions:
+    get:
+      operationId: listCommerceAffiliateCommissions
+      tags:
+        - Commerce Affiliates
+      summary: "Issue #86 (design only). Staff list of affiliate commissions. Gated on `commerce.affiliate_commissions.read`."
+      responses:
+        "200":
+          description: One page of commissions.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/AffiliateCommission"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+  /api/v1/commerce/affiliate-commissions/{id}/approve:
+    post:
+      operationId: approveCommerceAffiliateCommission
+      tags:
+        - Commerce Affiliates
+      summary: "Issue #86 (design only). Staff approves a pending commission. Gated on `commerce.affiliate_commissions.update`."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Approved.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/AffiliateCommission"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: COMMISSION_NOT_APPROVABLE — not in `pending` status.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/affiliate-commissions/{id}/pay:
+    post:
+      operationId: payCommerceAffiliateCommission
+      tags:
+        - Commerce Affiliates
+      summary: "Issue #86 (design only). Staff marks an approved commission paid. Gated on `commerce.affiliate_commissions.update`."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Paid.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/AffiliateCommission"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: COMMISSION_NOT_PAYABLE — not in `approved` status.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/affiliate-commissions/{id}/void:
+    post:
+      operationId: voidCommerceAffiliateCommission
+      tags:
+        - Commerce Affiliates
+      summary: "Issue #86 (design only). Staff voids a commission (e.g. the order was refunded). Gated on `commerce.affiliate_commissions.update`."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Voided.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/AffiliateCommission"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: COMMISSION_ALREADY_FINAL — already `paid` or `void`.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/affiliates:
+    get:
+      operationId: listCommerceAffiliates
+      tags:
+        - Commerce Affiliates
+      summary: "Issue #86 (design only). Staff list of affiliates. Gated on `commerce.affiliates.read`."
+      responses:
+        "200":
+          description: One page of affiliates.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Affiliate"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+  /api/v1/commerce/affiliates/{id}:
+    patch:
+      operationId: updateCommerceAffiliate
+      tags:
+        - Commerce Affiliates
+      summary: "Issue #86 (design only). Staff edit of an affiliate's status/commission rate. Gated on `commerce.affiliates.update`."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum:
+                    - active
+                    - suspended
+                commissionRate:
+                  type: string
+                  description: numeric(5,2) as a string.
+      responses:
+        "200":
+          description: Updated.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/Affiliate"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
   /api/v1/commerce/categories:
     get:
       operationId: listCommerceCategories
@@ -9674,6 +9897,708 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "403":
           $ref: "#/components/responses/Forbidden"
+  /api/v1/commerce/storefront/account/addresses:
+    get:
+      operationId: listCommerceStorefrontAccountAddresses
+      tags:
+        - Commerce Accounts
+      summary: "Issue #86 (design only). The account's saved addresses (`awcms_commerce_customer_addresses`, max 10)."
+      security:
+        - customerBearer: []
+      responses:
+        "200":
+          description: The account's addresses.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      description: One row of `awcms_commerce_customer_addresses` — same shape as `CommerceCreateOrderRequest.address`, plus `id`/`label`/`isDefault`.
+        "401":
+          description: UNAUTHENTICATED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "403":
+          description: ACCOUNT_BLOCKED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+    post:
+      operationId: createCommerceStorefrontAccountAddress
+      tags:
+        - Commerce Accounts
+      summary: "Issue #86 (design only). Add a saved address. Refused past 10 per account."
+      security:
+        - customerBearer: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: Same shape as `CommerceCreateOrderRequest.address`, plus an optional `label`.
+      responses:
+        "201":
+          description: Created.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          description: UNAUTHENTICATED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "409":
+          description: ADDRESS_LIMIT_REACHED — already 10 saved addresses.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/storefront/account/addresses/{id}:
+    patch:
+      operationId: updateCommerceStorefrontAccountAddress
+      tags:
+        - Commerce Accounts
+      summary: "Issue #86 (design only). Update a saved address."
+      security:
+        - customerBearer: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        "200":
+          description: Updated.
+          content:
+            application/json:
+              schema:
+                type: object
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          description: UNAUTHENTICATED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "404":
+          $ref: "#/components/responses/NotFound"
+    delete:
+      operationId: deleteCommerceStorefrontAccountAddress
+      tags:
+        - Commerce Accounts
+      summary: "Issue #86 (design only). Remove a saved address."
+      security:
+        - customerBearer: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "204":
+          description: Removed.
+        "401":
+          description: UNAUTHENTICATED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "404":
+          $ref: "#/components/responses/NotFound"
+  /api/v1/commerce/storefront/account/addresses/{id}/default:
+    post:
+      operationId: setDefaultCommerceStorefrontAccountAddress
+      tags:
+        - Commerce Accounts
+      summary: "Issue #86 (design only). Mark a saved address as the account's default."
+      security:
+        - customerBearer: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Now the default address.
+          content:
+            application/json:
+              schema:
+                type: object
+        "401":
+          description: UNAUTHENTICATED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "404":
+          $ref: "#/components/responses/NotFound"
+  /api/v1/commerce/storefront/account/affiliate:
+    get:
+      operationId: getCommerceStorefrontAccountAffiliate
+      tags:
+        - Commerce Accounts
+      summary: "Issue #86 (design only). This account's affiliate enrolment and stats, or null if not enrolled (D5)."
+      security:
+        - customerBearer: []
+      responses:
+        "200":
+          description: The account's affiliate state.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      affiliate:
+                        nullable: true
+                        allOf:
+                          - $ref: "#/components/schemas/Affiliate"
+                        description: Extends `Affiliate` with a `link` and a `stats` object of `{referredOrders, pendingAmount, approvedAmount, paidAmount}`.
+        "401":
+          description: UNAUTHENTICATED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+    post:
+      operationId: enrolCommerceStorefrontAccountAffiliate
+      tags:
+        - Commerce Accounts
+      summary: "Issue #86 (design only). Enrol the account in the affiliate program (D5). Requires the program enabled tenant-wide."
+      security:
+        - customerBearer: []
+      responses:
+        "201":
+          description: Enrolled.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/Affiliate"
+        "401":
+          description: UNAUTHENTICATED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "409":
+          description: AFFILIATE_PROGRAM_DISABLED — `storeSettings.affiliateCommissionRate` is null, or the account is already enrolled.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/storefront/account/affiliate/commissions:
+    get:
+      operationId: listCommerceStorefrontAccountAffiliateCommissions
+      tags:
+        - Commerce Accounts
+      summary: "Issue #86 (design only). This account's own commission ledger, keyset-paginated."
+      security:
+        - customerBearer: []
+      parameters:
+        - name: cursor
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: One page of the account's commissions.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/AffiliateCommission"
+        "401":
+          description: UNAUTHENTICATED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/storefront/account/logout:
+    post:
+      operationId: logoutCommerceStorefrontAccount
+      tags:
+        - Commerce Accounts
+      summary: "Issue #86 (design only). Revoke the presented bearer session (D3)."
+      security:
+        - customerBearer: []
+      responses:
+        "204":
+          description: Revoked.
+        "401":
+          description: UNAUTHENTICATED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/storefront/account/me:
+    get:
+      operationId: getCommerceStorefrontAccountMe
+      tags:
+        - Commerce Accounts
+      summary: "Issue #86 (design only). The signed-in customer account (D1)."
+      security:
+        - customerBearer: []
+      responses:
+        "200":
+          description: The account.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      account:
+                        $ref: "#/components/schemas/CustomerAccount"
+        "401":
+          description: UNAUTHENTICATED — missing, invalid, or expired bearer.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "403":
+          description: ACCOUNT_BLOCKED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+    patch:
+      operationId: updateCommerceStorefrontAccountMe
+      tags:
+        - Commerce Accounts
+      summary: "Issue #86 (design only). Update the account's display name. No e-mail/phone change in this increment (D6)."
+      security:
+        - customerBearer: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - name
+              properties:
+                name:
+                  type: string
+      responses:
+        "200":
+          description: Updated.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      account:
+                        $ref: "#/components/schemas/CustomerAccount"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          description: UNAUTHENTICATED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "403":
+          description: ACCOUNT_BLOCKED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/storefront/account/orders:
+    get:
+      operationId: listCommerceStorefrontAccountOrders
+      tags:
+        - Commerce Accounts
+      summary: "Issue #86 (design only). Keyset-paginated order history, bounded to `created_at >= account.historyFrom` (D4)."
+      security:
+        - customerBearer: []
+      parameters:
+        - name: cursor
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: One page of the account's orders.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/CommerceOrderSummary"
+                  meta:
+                    type: object
+                    properties:
+                      nextCursor:
+                        type: string
+                        nullable: true
+        "401":
+          description: UNAUTHENTICATED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/storefront/account/orders/{orderCode}:
+    get:
+      operationId: getCommerceStorefrontAccountOrder
+      tags:
+        - Commerce Accounts
+      summary: "Issue #86 (design only). Order detail for an account-owned order — no phone needed (ownership is the bearer, D3), same shape as the anonymous tracking endpoint."
+      security:
+        - customerBearer: []
+      parameters:
+        - name: orderCode
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: The order.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceOrder"
+        "401":
+          description: UNAUTHENTICATED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "404":
+          description: Unknown order code, or one not owned by this account — the same neutral 404 (contract's existing anti-oracle rule).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/storefront/account/otp/request:
+    post:
+      operationId: requestCommerceStorefrontAccountOtp
+      tags:
+        - Commerce Accounts
+      summary: "Issue #86 (design only). Request a 6-digit e-mail OTP for login or registration (D2). Always answers 202 — anti-enumeration (ADR-0016)."
+      description: 'Anonymous, per-IP and per-e-mail rate limited (10/IP/h, 5/e-mail/h). For `purpose: "register"`, `name`/`phone` are stored on the OTP row (`customer_otps.registration`) and applied only when the code is verified — a request alone creates nothing. Always answers `202 {sent:true, ...}` regardless of whether the address has an account, whether the phone is already registered, or whether the tenant''s `email` outbox is reachable, so this endpoint is never an account-existence oracle.'
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/OtpRequest"
+      responses:
+        "202":
+          description: Always — the OTP was queued (or the request was silently absorbed by a rate limit/tenant resolution failure that answers identically).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      sent:
+                        type: boolean
+                        enum:
+                          - true
+                      expiresInSeconds:
+                        type: integer
+                        enum:
+                          - 600
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "429":
+          description: Too many OTP requests from this source (RATE_LIMITED). Carries `Retry-After`.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/storefront/account/otp/verify:
+    post:
+      operationId: verifyCommerceStorefrontAccountOtp
+      tags:
+        - Commerce Accounts
+      summary: "Issue #86 (design only). Verify a 6-digit e-mail OTP and mint a bearer session (D2/D3)."
+      description: 'Anonymous, per-IP and per-e-mail rate limited. The code is hashed, 10 minute TTL, 5 attempts, single use — any of wrong/expired/consumed/ attempts-exhausted answers the SAME `401 OTP_INVALID` so a guess cannot distinguish why it failed. On success, mints an opaque `cs_` bearer token (only its `sha256:` digest is stored, D3) and — for `purpose: "register"` — applies the registration data captured at request time, binding to an existing guest `awcms_commerce_customers` row by phone when one exists (history_from rule, D4).'
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/OtpVerify"
+      responses:
+        "200":
+          description: Verified — a new bearer session.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      token:
+                        type: string
+                      expiresAt:
+                        type: string
+                        format: date-time
+                      account:
+                        $ref: "#/components/schemas/CustomerAccount"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          description: OTP_INVALID — wrong, expired, consumed, or attempts exhausted (one code for all four, D2's anti-guess rule).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "404":
+          description: 'ACCOUNT_NOT_FOUND — `purpose: "login"` for an e-mail with no account. Acceptable per ADR-0016 D2 — the mailbox owner already received the code, so this is not a new oracle.'
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "409":
+          description: 'PHONE_ALREADY_REGISTERED — `purpose: "register"` and the phone is bound to another account.'
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "429":
+          description: Too many verification attempts from this source (RATE_LIMITED). Carries `Retry-After`.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/storefront/account/reviews:
+    get:
+      operationId: listCommerceStorefrontAccountReviews
+      tags:
+        - Commerce Accounts
+      summary: "Issue #86 (design only). The account's own submitted reviews, any moderation status."
+      security:
+        - customerBearer: []
+      responses:
+        "200":
+          description: The account's reviews.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/CommerceReview"
+        "401":
+          description: UNAUTHENTICATED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/storefront/account/wishlist:
+    get:
+      operationId: listCommerceStorefrontAccountWishlist
+      tags:
+        - Commerce Accounts
+      summary: "Issue #86 (design only). The account's saved products."
+      security:
+        - customerBearer: []
+      responses:
+        "200":
+          description: The wishlist.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/WishlistItem"
+        "401":
+          description: UNAUTHENTICATED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+    put:
+      operationId: replaceCommerceStorefrontAccountWishlist
+      tags:
+        - Commerce Accounts
+      summary: "Issue #86 (design only). Union-merge a set of product ids into the wishlist (never removes existing entries — a client wanting removal calls DELETE per item)."
+      security:
+        - customerBearer: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - productIds
+              properties:
+                productIds:
+                  type: array
+                  items:
+                    type: string
+                    format: uuid
+      responses:
+        "200":
+          description: The wishlist after the merge.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/WishlistItem"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          description: UNAUTHENTICATED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/storefront/account/wishlist/{productId}:
+    delete:
+      operationId: removeCommerceStorefrontAccountWishlistItem
+      tags:
+        - Commerce Accounts
+      summary: "Issue #86 (design only). Remove one product from the wishlist."
+      security:
+        - customerBearer: []
+      parameters:
+        - name: productId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "204":
+          description: Removed (or already absent — idempotent).
+        "401":
+          description: UNAUTHENTICATED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
   /api/v1/commerce/storefront/cart/quote:
     post:
       operationId: quoteCommerceStorefrontCart
@@ -9720,7 +10645,8 @@ paths:
       operationId: createCommerceStorefrontOrder
       tags:
         - Commerce
-      summary: Anonymous order creation (Issue 29). Idempotent by the client-supplied idempotencyKey; re-quotes the cart inside the write transaction. No bearer, no permission check.
+      summary: Anonymous order creation (Issue 29). Idempotent by the client-supplied idempotencyKey; re-quotes the cart inside the write transaction. No permission check.
+      description: "Issue #86 (design only — implemented by C2–C4): an OPTIONAL `Authorization: Bearer <customer session token>` (see `customerBearer`) is accepted alongside the existing anonymous path. When present and valid, the order is attributed to that account's customer row instead of the guest find-or-create by phone; when absent, invalid, or expired, the request proceeds exactly as it does today — the bearer never turns this into a required credential. `affiliateCode` is likewise optional and, when it matches an active `awcms_commerce_affiliates.code` other than the ordering customer's own, records the referral that a completed order later turns into a commission (D5)."
       security: []
       requestBody:
         required: true
@@ -9990,6 +10916,7 @@ paths:
       tags:
         - Commerce
       summary: Anonymous review submission (Issue 29). Requires a completed order containing the product; lands pending for moderation.
+      description: "Issue #86 (design only — implemented by C2–C4): an OPTIONAL `Authorization: Bearer <customer session token>` is accepted here too, attributing the review to the signed-in account instead of the orderCode+phone credential when present and valid; absent or invalid, the anonymous path is unchanged."
       security: []
       requestBody:
         required: true
@@ -22179,6 +23106,10 @@ components:
       in: header
       name: X-AWCMS-Signature
       description: HMAC-SHA256 signature over "<timestamp>.<body>" for machine-to-machine sync endpoints (with X-AWCMS-Node-ID and X-AWCMS-Timestamp).
+    customerBearer:
+      type: http
+      scheme: bearer
+      description: "Issue #86 (ADR-0016, epic #32 wave 0) — CONTRACT ONLY, no route file yet. Opaque customer-session token (`cs_` + 32 random bytes base64url) minted by `POST /api/v1/commerce/storefront/account/otp/verify`; only its `sha256:` digest is ever stored (D3). Deliberately a SEPARATE scheme from `bearerAuth`: this token authenticates a `commerce` customer, never a staff principal, and is refused outright wherever `bearerAuth` is required (and vice versa)."
   parameters:
     CorrelationId:
       name: X-Correlation-ID
@@ -22720,6 +23651,59 @@ components:
             - standard
             - advertorial
             - sponsored
+    Affiliate:
+      type: object
+      description: "Issue #86 (design only). A row of `awcms_commerce_affiliates`, 1:1 with a customer (D5) — designed fresh, no legacy column carried over."
+      properties:
+        id:
+          type: string
+          format: uuid
+        code:
+          type: string
+          description: Unique per tenant; captured by the storefront as `?ref=` and sent at order creation.
+        commissionRate:
+          type: string
+          description: numeric(5,2) as a string.
+        status:
+          type: string
+          enum:
+            - active
+            - suspended
+        createdAt:
+          type: string
+          format: date-time
+    AffiliateCommission:
+      type: object
+      description: "Issue #86 (design only). A row of `awcms_commerce_affiliate_commissions` — created when the referenced order reaches `completed`; self-referral yields none (D5)."
+      properties:
+        id:
+          type: string
+          format: uuid
+        affiliateId:
+          type: string
+          format: uuid
+        orderId:
+          type: string
+          format: uuid
+        baseAmount:
+          type: string
+          description: numeric(14,2) as a string.
+        rate:
+          type: string
+          description: numeric(5,2) as a string, copied from the affiliate's rate at commission-creation time (a later rate change never reprices an existing commission).
+        amount:
+          type: string
+          description: numeric(14,2) as a string.
+        status:
+          type: string
+          enum:
+            - pending
+            - approved
+            - paid
+            - void
+        createdAt:
+          type: string
+          format: date-time
     AnalyticsSummary:
       type: object
       properties:
@@ -24229,6 +25213,10 @@ components:
         notes:
           type: string
           nullable: true
+        affiliateCode:
+          type: string
+          nullable: true
+          description: "Issue #86 (design only). Optional `?ref=` referral code captured by the storefront; ignored if it matches the ordering customer's own affiliate code (self-referral yields no commission — D5)."
     CommerceCustomer:
       type: object
       description: Issue 29 — admin customer record.
@@ -26146,6 +27134,51 @@ components:
         redirectToPrimary:
           type: boolean
           default: false
+    CustomerAccount:
+      type: object
+      description: "Issue #86 (design only). A row of `awcms_commerce_customer_accounts`, 1:1 with `awcms_commerce_customers` (D1) — no password, ever."
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+        level:
+          type: integer
+          description: Mirrors `awcms_commerce_customers.level` — tiered pricing at quote time is out of scope for this contract (D6).
+        createdAt:
+          type: string
+          format: date-time
+        historyFrom:
+          type: string
+          format: date-time
+          description: Order-history floor (D4) — the guest row's own `created_at` when the phone/e-mail match at bind time, otherwise the moment this account was created.
+    CustomerSession:
+      type: object
+      description: "Issue #86 (design only). A row of `awcms_commerce_customer_sessions` — never returned with its token; the token is minted once, at verify, and only its `sha256:` digest is ever stored (D3)."
+      properties:
+        id:
+          type: string
+          format: uuid
+        issuedAt:
+          type: string
+          format: date-time
+        expiresAt:
+          type: string
+          format: date-time
+          description: 30-day sliding TTL (D3) — refreshed on use, not fixed at issue.
+        lastSeenAt:
+          type: string
+          format: date-time
+          nullable: true
+        revokedAt:
+          type: string
+          format: date-time
+          nullable: true
     DataLifecycleCreateLegalHoldRequest:
       type: object
       required:
@@ -27789,6 +28822,46 @@ components:
         updatedAt:
           type: string
           format: date-time
+    OtpRequest:
+      type: object
+      description: "Issue #86 (design only). Body of `POST /account/otp/request`."
+      required:
+        - email
+        - purpose
+      properties:
+        email:
+          type: string
+          format: email
+        purpose:
+          type: string
+          enum:
+            - login
+            - register
+        name:
+          type: string
+          description: Required when `purpose` is `register`; ignored for `login`.
+        phone:
+          type: string
+          description: Required when `purpose` is `register`; ignored for `login`.
+    OtpVerify:
+      type: object
+      description: "Issue #86 (design only). Body of `POST /account/otp/verify`."
+      required:
+        - email
+        - code
+        - purpose
+      properties:
+        email:
+          type: string
+          format: email
+        code:
+          type: string
+          description: 6 digits.
+        purpose:
+          type: string
+          enum:
+            - login
+            - register
     OwnSessionSummary:
       type: object
       description: One live session belonging to the caller. Carries no token, no raw IP and no raw User-Agent.
@@ -30277,6 +31350,26 @@ components:
           type: string
           nullable: true
           description: base64url VAPID public key, passed straight to PushManager.subscribe(). Public by definition — it is the value the browser hands the push service to identify this application server. Rotating it does NOT re-key existing subscriptions; it makes every one of them permanently undeliverable until the user subscribes again.
+    WishlistItem:
+      type: object
+      description: "Issue #86 (design only). One entry of the account's wishlist, projected from the referenced product at read time."
+      properties:
+        productId:
+          type: string
+          format: uuid
+        slug:
+          type: string
+        name:
+          type: string
+        price:
+          type: string
+          description: numeric(14,2) as a string (ADR-0003).
+        image:
+          type: string
+          nullable: true
+        addedAt:
+          type: string
+          format: date-time
 security:
   - bearerAuth: []
     tenantHeader: []

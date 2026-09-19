@@ -81,6 +81,10 @@ tags:
     description: "Transactional outbox for device push notifications (push_delivery module, ADR-0074) — the caller's own device registration/revocation plus the operator's queue diagnostics, message cancel, and end-to-end delivery probe. It is a SECOND outbox on purpose: domain-event-runtime calls its consumers INSIDE the claim transaction by design, and ADR-0006 forbids the external HTTP call a push provider needs from inside a transaction. Two transports, neither of which costs a client byte or a CSP origin: Web Push (RFC 8030/8291/8292, VAPID) to browsers — chosen over the FCM Web SDK, which is 2.1x the per-file asset budget and demands three third-party origins the CSP does not have — and FCM HTTP v1 server-to-Google for native clients. Managing one's own device is self-service (the subject is the caller and no recipient is accepted); everything that touches another person's rows or makes the deployment emit traffic goes through the ABAC chokepoint. Endpoints are credential-grade and are stored hashed/masked, projected raw by exactly one function immediately before a provider call."
   - name: Commerce
     description: "Catalog slice of the re-platformed storefront (commerce module, Issue #4, epic #1) — tenant-scoped product categories (hierarchical, self-referencing parent) and products (physical/digital/service/subscription), ported from the legacy MySQL commerce_bj_mart schema's core catalog columns. price is numeric(14,2) and crosses the wire as a string, never a JSON number, so money arithmetic never drifts through binary floating point. A product's lifecycle status (draft/active/inactive/archived) travels through the same PATCH as every other field and is checked against a legal-transition table before any write. Categories have no status and no re-parenting via update — a hierarchy position is set once, at creation. This slice ships no restore endpoint: a soft-deleted row is retained (for the FK integrity of anything still referencing it) but not exposed for recovery here."
+  - name: Commerce Accounts
+    description: "Issue #86 (ADR-0016, epic #32 wave 0) — CONTRACT ONLY, no route file yet (handlers land in C2–C4, issues #87–#93). Customer accounts are OTP-verified, password-free `commerce` rows (D1), authenticated by a 6-digit e-mail OTP (D2) and a `customerBearer` opaque session token (D3) — a security surface deliberately separate from the staff `bearerAuth`/session schemes, so a customer credential can never reach a staff-only endpoint and vice versa. Registration binds to an existing guest checkout customer by phone when the e-mail also matches (D4). Covers OTP request/verify, the account profile, saved addresses, wishlist, the account's own order history and reviews, and the account's own affiliate enrolment/commissions."
+  - name: Commerce Affiliates
+    description: "Issue #86 (ADR-0016, epic #32 wave 0) — CONTRACT ONLY, no route file yet (handler lands in C4). The staff side of the affiliate program designed fresh by D5 (no legacy column carried over): review/approve/pay/void a referred order's commission, and edit an affiliate's status or commission rate. Gated on `commerce.affiliates.{read,update}` and `commerce.affiliate_commissions.{read,update}`."
 security:
   - bearerAuth: []
     tenantHeader: []
@@ -100,6 +104,10 @@ components:
       in: header
       name: X-AWCMS-Signature
       description: HMAC-SHA256 signature over "<timestamp>.<body>" for machine-to-machine sync endpoints (with X-AWCMS-Node-ID and X-AWCMS-Timestamp).
+    customerBearer:
+      type: http
+      scheme: bearer
+      description: "Issue #86 (ADR-0016, epic #32 wave 0) — CONTRACT ONLY, no route file yet. Opaque customer-session token (`cs_` + 32 random bytes base64url) minted by `POST /api/v1/commerce/storefront/account/otp/verify`; only its `sha256:` digest is ever stored (D3). Deliberately a SEPARATE scheme from `bearerAuth`: this token authenticates a `commerce` customer, never a staff principal, and is refused outright wherever `bearerAuth` is required (and vice versa)."
   parameters:
     CorrelationId:
       name: X-Correlation-ID
