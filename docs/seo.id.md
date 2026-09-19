@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](seo.md)
 
-<!-- i18n-source-hash: sha256:5364506b540645d7710a456aaa99fe922b4d5a8dd8e08a80d63c47d21a6cf0aa -->
+<!-- i18n-source-hash: sha256:b2f334462f5ccbfa15367daf6c95025ae3c6535746ff4b54f2cd935d64bc2fb4 -->
 
 # SEO
 
@@ -43,7 +43,7 @@ Dua hal yang dipertimbangkan issue ini dan tidak dilakukan: `noindex` pada halam
 
 ## Halaman `noindex`
 
-`checkout`, `pesanan`, `cari`, `wishlist`, dan `keranjang` semuanya membawa `<meta name="robots" content="noindex, follow">` lewat slot `head` milik `BaseLayout` — tidak satu pun dari halaman ini seharusnya menjadi tempat hasil pencarian mendaratkan pembaca secara langsung. `robots.txt` juga men-`Disallow` fetch untuk kelima path yang sama plus `/api/`.
+`checkout`, `pesanan`, `cari`, `wishlist`, `keranjang`, `masuk`, `daftar`, dan `akun` (issue #88) semuanya membawa `<meta name="robots" content="noindex, follow">` lewat slot `head` milik `BaseLayout` — tidak satu pun dari halaman ini seharusnya menjadi tempat hasil pencarian mendaratkan pembaca secara langsung. `robots.txt` juga men-`Disallow` fetch untuk path yang sama (`Disallow: /akun` yang bertelanjang juga mencakup setiap rute anak akun seiring S2/S3 menambahkannya) plus `/api/`.
 
 ## Sitemap dan feed
 

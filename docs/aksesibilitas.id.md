@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](aksesibilitas.md)
 
-<!-- i18n-source-hash: sha256:4b7b176e547cdb2a801ecfec90b6cfa8ae73693471ba0ad591d6fe32325a411d -->
+<!-- i18n-source-hash: sha256:3f5499bcf4460b6469f02dd07ef75852644747fbca553648e075bd2717eb30e3 -->
 
 # Aksesibilitas
 
@@ -20,6 +20,7 @@ Apa yang dilakukan `apps/storefront` untuk aksesibilitas, dan bagaimana itu dipe
 - **Semantik tabel pada daftar produk admin milik `apps/cms` sendiri** (`<caption>`, `scope="col"`, `data-label` untuk layout stacked responsif) — bagian dari `apps/cms`, bukan storefront ini; disebutkan di sini karena pembaca yang mencarinya jika tidak begitu akan menyimpulkan ketiadaannya dari keheningan. Lihat [`docs/cms.md`](cms.id.md).
 - **Pemutar baca-nyaring bersifat tambahan, bukan pengganti teksnya** (issue #52, `apps/storefront/src/components/berita/PemutarDengar.astro`). Kontrolnya berbasis `<button>` dengan `aria-pressed` pada putar/jeda, nama aksesibel berupa kalimat penuh pada setiap tombol, target 44px, baris progres `role="status" aria-live="polite"`, dan kartunya dirender `hidden` sampai peramban terbukti punya `speechSynthesis` beserta suaranya — sehingga pembaca di peramban tanpa API itu, atau tanpa JavaScript, tidak pernah ditawari kontrol yang tidak melakukan apa-apa. Sorotan baca-bersama memakai `outline`/`box-shadow` justru supaya artikel tidak pernah bergeser di bawah pembaca yang sedang mendengarkan, dan `prefers-reduced-motion: reduce` melepas cahaya di sekelilingnya. Ini bukan pengganti aksesibilitas bagi artikelnya sendiri: teks itulah artikelnya, dan pemutar membacakan teks yang sama dengan suara bawaan perangkat pembaca.
 - **Kontras warna diuji unit**, bukan sekadar dihitung dan dipercaya — `apps/storefront/tests/warna.test.ts` menegaskan setiap warna brand default melewati ambang kontras-teks WCAG AA terhadap foreground hasil hitungnya sendiri; lihat [`docs/ui-ux.md`](ui-ux.id.md) untuk `contrastingForeground()` itu sendiri.
+- **Formulir OTP `/masuk` dan `/daftar`** (issue #88) memindahkan fokus ke kolom kode 6 digit begitu kolom itu muncul (`codeInput?.focus()` di `apps/storefront/src/scripts/masuk.ts`/`daftar.ts`, tepat setelah langkah itu ditampilkan) alih-alih membiarkan pengguna keyboard/pembaca layar mencari sendiri kolom yang baru terungkap. Input kode membawa `inputmode="numeric"` dan `autocomplete="one-time-code"` — keypad numerik di perangkat mobile, dan petunjuk bagi fitur autofill OTP platform (saran kode SMS iOS/Android, isi-otomatis TOTP pengelola kata sandi) bahwa kolom inilah tempat kode sekali pakai berada, meski belum ada kanal SMS (D2 milik issue #86; OTP dikirim lewat e-mail). Kedua halaman membawa region `role="status" aria-live="polite"` yang mengumumkan "kode terkirim"/error per kolom tanpa navigasi halaman, mengikuti pola keranjang/checkout di atas; jeda 60 detik tombol "Kirim ulang" hanyalah atribut `disabled` biasa plus teks hitung mundur yang terlihat, tidak pernah berupa keadaan yang tak bisa ditemukan pembaca layar.
 
 ## Yang tidak diperiksa
 

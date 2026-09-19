@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](routing.md)
 
-<!-- i18n-source-hash: sha256:e6226b6d8cdb62e9b3fa2dddc9763222a91349ab448e598596d6c7be9b860597 -->
+<!-- i18n-source-hash: sha256:83d6090293fbe9ce5813e06c532146369ed7111f4f9ef519ead1f3f9686a89c3 -->
 
 # Routing
 
@@ -46,6 +46,16 @@ Setiap rute yang dipublikasikan `apps/storefront` — 41 berkas rute di bawah `a
 | `/wishlist` | `apps/storefront/src/pages/wishlist.astro` | Hanya-`localStorage` |
 
 Keempatnya: `noindex, follow`, `aria-live="polite"` pada update quote/status, terjangkau keyboard, fallback `<noscript>` plus fallback WhatsApp untuk kondisi JS-berjalan-tapi-CMS-down (`apps/storefront/src/lib/wa-fallback.ts`).
+
+## Akun pelanggan (issue #88, S1 dari #32)
+
+| Path | Sumber | Catatan |
+| --- | --- | --- |
+| `/masuk` | `apps/storefront/src/pages/masuk.astro` | Masuk dengan OTP e-mail; `noindex, follow` |
+| `/daftar` | `apps/storefront/src/pages/daftar.astro` | Pendaftaran dengan nama + telepon + OTP e-mail; `noindex, follow` |
+| `/akun` | `apps/storefront/src/pages/akun/index.astro` | Shell dashboard setelah masuk (profil, "Ubah nama", "Keluar", kartu navigasi); `noindex, follow` |
+
+`ROUTES.accountOrders` (`/akun/pesanan`), `ROUTES.accountAddresses` (`/akun/alamat`), `ROUTES.accountReviews` (`/akun/ulasan`), dan `ROUTES.accountAffiliate` (`/akun/afiliasi`) dideklarasikan di `apps/storefront/src/config/routes.ts` sekarang, belum ada halaman di baliknya — kartu navigasi `/akun` sendiri dan halaman mana pun di masa depan bisa merujuk ke konstanta bernama alih-alih path yang diketik manual. Rute anak tersebut hadir bersama S2/S3 dari issue #32; sampai saat itu, tautannya sengaja mengarah ke 404 (didokumentasikan dalam deskripsi PR issue #88 sendiri). `ROUTES.accountOrder(kode)` (`/akun/pesanan?kode=`) adalah pola "deklarasikan bentuknya, isi halamannya nanti" yang sama untuk satu pesanan.
 
 ## Statis
 

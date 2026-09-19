@@ -40,8 +40,16 @@
  * `Response` or a raw `fetch` rejection, so every caller (`src/scripts/
  * keranjang.ts`, `checkout.ts`, `pesanan.ts`) can `catch` one shape and
  * switch on `.code`.
+ *
+ * The request/envelope plumbing itself (`kirimPermintaan`, `TokoApiError`)
+ * now lives in `src/lib/toko-permintaan.ts` (issue #88), extracted so
+ * `src/lib/akun-klien.ts`'s bearer-authenticated `/account/*` calls reuse it
+ * rather than duplicating it. This file's own public exports and behaviour
+ * are unchanged by that split — see `toko-permintaan.ts`'s own docblock.
  */
-import { requireAwcmsOrigin } from "./awcms/toko-origin";
+import { kirimPermintaan } from "./toko-permintaan";
+export { TokoApiError } from "./toko-permintaan";
+export type { ValidationErrorDetail } from "./toko-permintaan";
 
 // ---------------------------------------------------------------------------
 // Shared shapes — copied field-for-field from commerce-storefront-endpoints.md
@@ -269,135 +277,38 @@ export type ReviewRequest = {
 };
 
 // ---------------------------------------------------------------------------
-// Errors
-// ---------------------------------------------------------------------------
-
-export type ValidationErrorDetail = { field: string; message: string };
-
-/**
- * One typed error for every failure this file can produce — a non-2xx
- * envelope, a network failure, or a non-JSON response. `code` is the
- * envelope's own `error.code` (`VALIDATION_ERROR`, `CART_CHANGED`,
- * `NOT_FOUND`, `RATE_LIMITED`, `ORDER_NOT_PAYABLE`,
- * `ORDER_NOT_CANCELLABLE`, `REVIEW_NOT_ALLOWED`, `MEDIA_UNAVAILABLE`, …) or
- * `"NETWORK_ERROR"` when the request never got an HTTP response at all —
- * every caller switches on this field, never on `status` alone, because the
- * contract itself is defined in terms of `code`.
- */
-export class TokoApiError extends Error {
-  constructor(
-    message: string,
-    readonly status: number,
-    readonly code: string,
-    readonly details?: unknown
-  ) {
-    super(message);
-    this.name = "TokoApiError";
-  }
-
-  /** `details.field`-shaped array from a `400 VALIDATION_ERROR` — `[]` for anything else, so a caller can always iterate without a type guard. */
-  get fieldErrors(): ValidationErrorDetail[] {
-    if (this.code !== "VALIDATION_ERROR" || !Array.isArray(this.details)) return [];
-    return this.details.filter(
-      (entry): entry is ValidationErrorDetail =>
-        typeof entry === "object" &&
-        entry !== null &&
-        typeof (entry as ValidationErrorDetail).field === "string" &&
-        typeof (entry as ValidationErrorDetail).message === "string"
-    );
-  }
-
-  /** The fresh quote a `409 CART_CHANGED` carries in `details.quote`, or `null` for any other error. */
-  get freshQuote(): CartQuote | null {
-    if (this.code !== "CART_CHANGED") return null;
-    const details = this.details as { quote?: CartQuote } | undefined;
-    return details?.quote ?? null;
-  }
-
-  /** `Retry-After` seconds for a `429 RATE_LIMITED`, or `null`. */
-  get retryAfterSeconds(): number | null {
-    if (this.code !== "RATE_LIMITED") return null;
-    const details = this.details as { retryAfter?: number } | undefined;
-    return typeof details?.retryAfter === "number" ? details.retryAfter : null;
-  }
-}
-
-type Envelope<T> =
-  | { success: true; data: T }
-  | { success: false; error: { code: string; message: string; details?: unknown } };
-
-const STOREFRONT_PATH_PREFIX = "/api/v1/commerce/storefront";
-
-/**
- * One request against the CMS's anonymous storefront commerce API, built
- * and answered exactly the way this file's own header describes. Never
- * retried — a shopper's own retry button is the correct UI for a failed
- * mutation, not a hidden one that could double-submit an order (the
- * idempotency key is what makes a DELIBERATE retry safe, not this
- * function).
- */
-async function request<T>(path: string, method: "GET" | "POST", body?: unknown): Promise<T> {
-  const origin = requireAwcmsOrigin();
-  const url = `${origin}${STOREFRONT_PATH_PREFIX}${path}`;
-
-  const init: RequestInit = {
-    method,
-    mode: "cors",
-    credentials: "omit"
-  };
-
-  if (body !== undefined) {
-    init.headers = { "Content-Type": "application/json" };
-    init.body = JSON.stringify(body);
-  }
-
-  let response: Response;
-  try {
-    response = await fetch(url, init);
-  } catch (cause) {
-    throw new TokoApiError(
-      `Could not reach the store (${cause instanceof Error ? cause.message : String(cause)}). ` +
-        `Check your connection and try again.`,
-      0,
-      "NETWORK_ERROR"
-    );
-  }
-
-  let payload: Envelope<T>;
-  try {
-    payload = (await response.json()) as Envelope<T>;
-  } catch {
-    throw new TokoApiError(
-      `The store returned an unreadable response (HTTP ${response.status}).`,
-      response.status,
-      "INVALID_RESPONSE"
-    );
-  }
-
-  if (!payload.success) {
-    throw new TokoApiError(payload.error.message, response.status, payload.error.code, payload.error.details);
-  }
-
-  return payload.data;
-}
-
-// ---------------------------------------------------------------------------
 // One function per endpoint (commerce-storefront-endpoints.md)
 // ---------------------------------------------------------------------------
 
 /** `POST …/cart/quote` — re-prices/re-validates the cart against live stock, vouchers, and shipping. */
 export function quoteCart(input: QuoteRequest): Promise<CartQuote> {
-  return request<CartQuote>("/cart/quote", "POST", input);
+  return kirimPermintaan<CartQuote>("/cart/quote", "POST", input);
 }
 
-/** `POST …/orders` — places the order. `201`, or `200` for a REPEATED `idempotencyKey` on the same tenant (the same order comes back, not a duplicate). */
-export function createOrder(input: CreateOrderRequest): Promise<Order> {
-  return request<Order>("/orders", "POST", input);
+/**
+ * `POST …/orders` — places the order. `201`, or `200` for a REPEATED
+ * `idempotencyKey` on the same tenant (the same order comes back, not a
+ * duplicate).
+ *
+ * `bearerToken` is OPTIONAL and additive (issue #90, #86's own "existing
+ * `POST /storefront/orders` … accept an optional Bearer"): every existing
+ * caller that omits it keeps calling this exactly as before (anonymous
+ * guest checkout, unchanged). `checkout.ts` passes the signed-in shopper's
+ * session token (`akun-sesi.ts`'s `bacaSesi()?.token`) when one exists, so
+ * the created order is bound to that account.
+ */
+export function createOrder(input: CreateOrderRequest, bearerToken?: string): Promise<Order> {
+  return kirimPermintaan<Order>(
+    "/orders",
+    "POST",
+    input,
+    bearerToken ? { Authorization: `Bearer ${bearerToken}` } : undefined
+  );
 }
 
 /** `GET …/orders/{orderCode}?phone=` — order tracking. `404 NOT_FOUND` (the same neutral body as an unresolvable tenant) for an unknown code, a wrong phone, or another tenant's order — this function does not, and cannot, tell those apart, by design. */
 export function getOrder(orderCode: string, phone: string): Promise<Order> {
-  return request<Order>(`/orders/${encodeURIComponent(orderCode)}?phone=${encodeURIComponent(phone)}`, "GET");
+  return kirimPermintaan<Order>(`/orders/${encodeURIComponent(orderCode)}?phone=${encodeURIComponent(phone)}`, "GET");
 }
 
 /** `POST …/orders/{orderCode}/payment-confirmations` — reports a manual transfer/QRIS payment. `409 ORDER_NOT_PAYABLE` when the order left `pending_payment` before this reached the CMS. */
@@ -405,7 +316,7 @@ export function submitPaymentConfirmation(
   orderCode: string,
   input: PaymentConfirmationRequest
 ): Promise<Order> {
-  return request<Order>(`/orders/${encodeURIComponent(orderCode)}/payment-confirmations`, "POST", input);
+  return kirimPermintaan<Order>(`/orders/${encodeURIComponent(orderCode)}/payment-confirmations`, "POST", input);
 }
 
 /** `POST …/orders/{orderCode}/payment-proof/upload-sessions` — step 1 of the proof-of-payment upload. `503 MEDIA_UNAVAILABLE` when R2 is not configured on this deployment (also reflected in the public store settings' `payment.proofUpload`). */
@@ -413,7 +324,7 @@ export function createPaymentProofUploadSession(
   orderCode: string,
   input: { phone: string; contentType: string; byteLength: number }
 ): Promise<UploadSession> {
-  return request<UploadSession>(
+  return kirimPermintaan<UploadSession>(
     `/orders/${encodeURIComponent(orderCode)}/payment-proof/upload-sessions`,
     "POST",
     input
@@ -426,7 +337,7 @@ export function finalizePaymentProofUpload(
   sessionId: string,
   input: { phone: string; sha256: string }
 ): Promise<{ mediaObjectId: string }> {
-  return request<{ mediaObjectId: string }>(
+  return kirimPermintaan<{ mediaObjectId: string }>(
     `/orders/${encodeURIComponent(orderCode)}/payment-proof/upload-sessions/${encodeURIComponent(sessionId)}/finalize`,
     "POST",
     input
@@ -435,10 +346,24 @@ export function finalizePaymentProofUpload(
 
 /** `POST …/orders/{orderCode}/cancel` — `409 ORDER_NOT_CANCELLABLE` once the order has left a cancellable state. */
 export function cancelOrder(orderCode: string, input: { phone: string; reason: string | null }): Promise<Order> {
-  return request<Order>(`/orders/${encodeURIComponent(orderCode)}/cancel`, "POST", input);
+  return kirimPermintaan<Order>(`/orders/${encodeURIComponent(orderCode)}/cancel`, "POST", input);
 }
 
-/** `POST …/reviews` — `409 REVIEW_NOT_ALLOWED` when the order is not `completed`, the product is not on it, or a review already exists. */
-export function submitReview(input: ReviewRequest): Promise<{ id: string; status: string }> {
-  return request<{ id: string; status: string }>("/reviews", "POST", input);
+/**
+ * `POST …/reviews` — `409 REVIEW_NOT_ALLOWED` when the order is not
+ * `completed`, the product is not on it, or a review already exists.
+ *
+ * `bearerToken` is OPTIONAL, the SAME additive pattern `createOrder` above
+ * uses (issue #90) — a review submitted with no session behaves exactly as
+ * before (matched to the order by `orderCode`+`phone` alone); one submitted
+ * with a session is additionally bound to that account, so it appears on
+ * `/akun/ulasan`.
+ */
+export function submitReview(input: ReviewRequest, bearerToken?: string): Promise<{ id: string; status: string }> {
+  return kirimPermintaan<{ id: string; status: string }>(
+    "/reviews",
+    "POST",
+    input,
+    bearerToken ? { Authorization: `Bearer ${bearerToken}` } : undefined
+  );
 }

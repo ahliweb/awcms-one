@@ -1,0 +1,104 @@
+---
+/**
+ * `/masuk` — sign in with an e-mail OTP (issue #88, S1). Two
+ * progressively-disclosed steps, same pattern `checkout.astro` already
+ * established: step 1 (e-mail) → "Kirim kode" → step 2 (6-digit code,
+ * hidden until a code was sent) → verify → `simpanSesi` → redirect.
+ *
+ * `noindex, follow`; degrades to a `<noscript>` WhatsApp fallback — this
+ * page's own JS is what talks to the CMS, there is no server-rendered
+ * sign-in to fall back to (ADR-0007).
+ */
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getSiteIdentity } from "../lib/awcms/profil";
+import { getStoreSettings } from "../lib/awcms/pemasaran";
+import { ROUTES } from "../config/routes";
+import "../styles/toko.css";
+import "../styles/akun.css";
+
+const identity = await getSiteIdentity();
+const storeSettings = await getStoreSettings();
+const whatsappNumber = storeSettings.whatsapp ?? identity.whatsappNumber ?? "";
+---
+
+<BaseLayout title="Masuk" description="Masuk ke akun Anda." canonicalPath="/masuk">
+  <meta slot="head" name="robots" content="noindex, follow" />
+
+  <noscript>
+    <div class="container">
+      <div class="toko-banner toko-banner--info">
+        Masuk memerlukan JavaScript aktif di peramban Anda. Anda tetap bisa menghubungi kami langsung
+        melalui WhatsApp:
+        {whatsappNumber && (
+          <a class="toko-wa-fallback" href={`https://wa.me/${whatsappNumber.replace(/\D/g, "")}`}>
+            Hubungi WhatsApp
+          </a>
+        )}
+      </div>
+    </div>
+  </noscript>
+
+  <div
+    class="container"
+    data-masuk-root
+    data-whatsapp-number={whatsappNumber}
+    data-store-name={identity.name}
+    data-register-href={ROUTES.register}
+  >
+    <div class="page-heading">
+      <h1>Masuk</h1>
+    </div>
+
+    <div data-status class="toko-banner toko-banner--info" role="status" aria-live="polite" hidden></div>
+
+    <div data-submit-error class="toko-banner toko-banner--danger" hidden>
+      <p data-submit-error-message></p>
+      <p data-submit-error-link></p>
+      <div class="toko-actions">
+        <a data-wa-fallback-link class="toko-wa-fallback" hidden>Hubungi via WhatsApp</a>
+      </div>
+    </div>
+
+    <form data-masuk-form novalidate class="akun-card">
+      <section data-step="email">
+        <div class="toko-field">
+          <label for="masuk-email">Alamat e-mail</label>
+          <input type="email" id="masuk-email" name="email" required autocomplete="email" />
+          <p class="toko-field-error" data-error-for="email"></p>
+        </div>
+
+        <div class="akun-actions">
+          <button type="button" data-kirim-kode>Kirim kode</button>
+        </div>
+      </section>
+
+      <section data-step="code" hidden>
+        <p>Kode telah dikirim ke e-mail Anda.</p>
+
+        <div class="toko-field">
+          <label for="masuk-code">Kode 6 digit</label>
+          <input
+            type="text"
+            id="masuk-code"
+            name="code"
+            required
+            inputmode="numeric"
+            autocomplete="one-time-code"
+            pattern="[0-9]{6}"
+            maxlength="6"
+          />
+          <p class="toko-field-error" data-error-for="code"></p>
+        </div>
+
+        <div class="akun-actions">
+          <button type="submit" data-verifikasi>Masuk</button>
+          <button type="button" data-kirim-ulang disabled>Kirim ulang (<span data-countdown>60</span> detik)</button>
+        </div>
+      </section>
+    </form>
+  </div>
+
+  <script>
+    import "../scripts/masuk";
+  </script>
+</BaseLayout>

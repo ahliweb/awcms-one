@@ -385,6 +385,24 @@ the 39 declared permissions is claimed by one of them, and
 `tests/admin-commerce-page-contract.test.ts` hold the new screens to the same
 properties the earlier ones satisfy.
 
+## Customer accounts — contract only (Issue #86, epic #32 wave 0)
+
+`openapi/modules/commerce.openapi.yaml` documents the full
+`/api/v1/commerce/storefront/account/*` surface (OTP login/registration,
+profile, saved addresses, wishlist, order history, reviews, affiliate
+enrolment) plus the staff-side `/api/v1/commerce/affiliates*` routes — **no
+route file exists for any of them yet**. Each path is listed by name in
+`ROUTE_PARITY_EXEMPTIONS` (`scripts/api-spec-check.ts`) precisely so the
+contract can ship ahead of its handlers without failing the route↔contract
+parity gate; an entry is removed the moment its own handler lands. The four
+architectural decisions behind the shape — identity stays a `commerce` row
+never linked to `awcms_principals`, e-mail OTP now with WhatsApp deferred to
+#33, an opaque `customerBearer` session token kept in `localStorage`, and
+the guest-row binding rule at registration — are recorded in
+[ADR-0016](../../../../../docs/adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md)
+in awcms-one. Handlers land across C2 (accounts/OTP/sessions), C3
+(addresses/wishlist/orders/reviews) and C4 (affiliates) — issues #87–#93.
+
 ## Deliberately not here
 
 - **No shipping-carrier integration or affiliate-link surface.**

@@ -7,25 +7,9 @@
  * The phone NEVER touches the URL — see `checkout.ts`'s `PESANAN_PHONE_KEY`
  * and this file's own read of it below.
  */
-import {
-  cancelOrder,
-  getOrder,
-  submitPaymentConfirmation,
-  TokoApiError,
-  type Order
-} from "../lib/toko-klien";
-import { formatPrice } from "../lib/harga";
+import { cancelOrder, getOrder, submitPaymentConfirmation, TokoApiError } from "../lib/toko-klien";
 import { PESANAN_PHONE_KEY } from "../lib/pesanan-sesi";
-
-const STATUS_LABELS: Record<string, string> = {
-  pending_payment: "Menunggu pembayaran",
-  paid: "Sudah dibayar",
-  processing: "Sedang diproses",
-  shipped: "Sedang dikirim",
-  completed: "Selesai",
-  cancelled: "Dibatalkan",
-  expired: "Kedaluwarsa"
-};
+import { createPesananRenderer } from "../lib/pesanan-render";
 
 const root = document.querySelector<HTMLElement>("[data-pesanan-root]");
 if (root) {
@@ -50,8 +34,6 @@ if (root) {
   const params = new URLSearchParams(window.location.search);
   const orderCode = params.get("kode");
 
-  let countdownTimer: ReturnType<typeof setInterval> | undefined;
-
   function readStoredPhone(): string | null {
     try {
       return window.sessionStorage.getItem(PESANAN_PHONE_KEY);
@@ -69,141 +51,24 @@ if (root) {
     }
   }
 
-  function renderCountdown(expiresAt: string | null): void {
-    if (countdownTimer) clearInterval(countdownTimer);
-    if (!countdownEl) return;
+  const { renderOrder: renderOrderBody } = createPesananRenderer({
+    statusEl,
+    orderCodeEl,
+    countdownEl,
+    timelineEl,
+    paymentSection,
+    paymentInstructionsEl,
+    linesEl,
+    summaryEl,
+    confirmSection,
+    cancelButton,
+    contactWaLink
+  });
 
-    if (!expiresAt) {
-      countdownEl.textContent = "";
-      return;
-    }
-
-    const deadline = new Date(expiresAt).getTime();
-
-    function tick(): void {
-      const remainingMs = deadline - Date.now();
-      if (remainingMs <= 0) {
-        countdownEl!.textContent = "Batas waktu pembayaran telah lewat.";
-        if (countdownTimer) clearInterval(countdownTimer);
-        return;
-      }
-      const minutes = Math.floor(remainingMs / 60000);
-      const hours = Math.floor(minutes / 60);
-      const remMinutes = minutes % 60;
-      countdownEl!.textContent =
-        hours > 0
-          ? `Bayar dalam ${hours} jam ${remMinutes} menit.`
-          : `Bayar dalam ${remMinutes} menit.`;
-    }
-
-    tick();
-    countdownTimer = setInterval(tick, 30_000);
-  }
-
-  function renderTimeline(order: Order): void {
-    if (!timelineEl) return;
-    timelineEl.innerHTML = "";
-    for (const entry of order.timeline) {
-      const li = document.createElement("li");
-      const date = new Date(entry.at);
-      li.textContent = `${STATUS_LABELS[entry.status] ?? entry.status} — ${date.toLocaleString("id-ID")}${
-        entry.note ? ` (${entry.note})` : ""
-      }`;
-      timelineEl.appendChild(li);
-    }
-  }
-
-  function renderLines(order: Order): void {
-    if (!linesEl) return;
-    linesEl.innerHTML = "";
-    for (const line of order.lines) {
-      const li = document.createElement("li");
-      li.className = "toko-line";
-      if (line.image) {
-        const img = document.createElement("img");
-        img.className = "toko-line-image";
-        img.src = line.image.url;
-        img.alt = line.image.alt;
-        li.appendChild(img);
-      }
-      const info = document.createElement("div");
-      info.className = "toko-line-info";
-      const title = document.createElement("p");
-      title.textContent = `${line.quantity}x ${line.variantName ? `${line.name} (${line.variantName})` : line.name}`;
-      const price = document.createElement("p");
-      price.textContent = formatPrice(line.lineTotal);
-      info.append(title, price);
-      li.appendChild(info);
-      linesEl.appendChild(li);
-    }
-  }
-
-  function renderSummary(order: Order): void {
-    if (!summaryEl) return;
-    summaryEl.innerHTML = "";
-    const rows: [string, string][] = [
-      ["Subtotal", formatPrice(order.subtotal)],
-      ["Diskon", `-${formatPrice(order.discount)}`],
-      ["Ongkos kirim", formatPrice(order.shippingCost)],
-      ["Asuransi", formatPrice(order.insuranceFee)],
-      ["Total", formatPrice(order.total)]
-    ];
-    for (const [label, value] of rows) {
-      const row = document.createElement("div");
-      row.className = "toko-summary-row";
-      const l = document.createElement("span");
-      l.textContent = label;
-      const v = document.createElement("span");
-      v.textContent = value;
-      row.append(l, v);
-      summaryEl.appendChild(row);
-    }
-  }
-
-  function renderPaymentInstructions(order: Order): void {
-    if (!paymentSection || !paymentInstructionsEl) return;
-    const instructions = order.paymentInstructions;
-    paymentSection.hidden = !instructions;
-    paymentInstructionsEl.innerHTML = "";
-    if (!instructions) return;
-
-    if (instructions.qrisImage) {
-      const img = document.createElement("img");
-      img.src = instructions.qrisImage.url;
-      img.alt = "Kode QRIS";
-      img.className = "toko-line-image";
-      paymentInstructionsEl.appendChild(img);
-    }
-
-    for (const bank of instructions.banks) {
-      const p = document.createElement("p");
-      p.textContent = `${bank.bankName} — ${bank.accountNumber} a.n. ${bank.accountName}`;
-      paymentInstructionsEl.appendChild(p);
-    }
-
-    const due = document.createElement("p");
-    due.textContent = `Jumlah yang harus dibayar: ${formatPrice(instructions.amountDue)}`;
-    paymentInstructionsEl.appendChild(due);
-  }
-
-  function renderOrder(order: Order): void {
+  function renderOrder(order: Parameters<typeof renderOrderBody>[0]): void {
     if (orderBodyEl) orderBodyEl.hidden = false;
     if (orderErrorEl) orderErrorEl.hidden = true;
-    if (statusEl) statusEl.textContent = STATUS_LABELS[order.status] ?? order.status;
-    if (orderCodeEl) orderCodeEl.textContent = `Kode Pesanan: ${order.orderCode}`;
-
-    renderCountdown(order.status === "pending_payment" ? order.expiresAt : null);
-    renderTimeline(order);
-    renderLines(order);
-    renderSummary(order);
-    renderPaymentInstructions(order);
-
-    if (confirmSection) confirmSection.hidden = !order.canConfirmPayment;
-    if (cancelButton) cancelButton.hidden = !order.canCancel;
-
-    if (contactWaLink) {
-      contactWaLink.href = `https://wa.me/${order.whatsapp.number}?text=${encodeURIComponent(order.whatsapp.text)}`;
-    }
+    renderOrderBody(order);
   }
 
   async function loadOrder(phone: string): Promise<void> {

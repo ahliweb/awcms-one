@@ -1,0 +1,70 @@
+---
+/**
+ * `/akun/ulasan` — the signed-in account's own product reviews (issue #90,
+ * S2 of #32): product name, rating as text + stars (`aria-label`), and the
+ * Indonesian moderation status label. `noindex, follow`.
+ */
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getSiteIdentity } from "../../lib/awcms/profil";
+import { getStoreSettings } from "../../lib/awcms/pemasaran";
+import { ROUTES } from "../../config/routes";
+import "../../styles/toko.css";
+import "../../styles/akun.css";
+
+const identity = await getSiteIdentity();
+const storeSettings = await getStoreSettings();
+const whatsappNumber = storeSettings.whatsapp ?? identity.whatsappNumber ?? "";
+---
+
+<BaseLayout title="Ulasan Saya" description="Ulasan produk yang Anda kirimkan." canonicalPath="/akun/ulasan">
+  <meta slot="head" name="robots" content="noindex, follow" />
+
+  <noscript>
+    <div class="container">
+      <div class="toko-banner toko-banner--info">
+        Halaman ulasan memerlukan JavaScript aktif di peramban Anda. Anda tetap bisa menghubungi kami
+        langsung melalui WhatsApp:
+        {whatsappNumber && (
+          <a class="toko-wa-fallback" href={`https://wa.me/${whatsappNumber.replace(/\D/g, "")}`}>
+            Hubungi WhatsApp
+          </a>
+        )}
+      </div>
+    </div>
+  </noscript>
+
+  <div
+    class="container"
+    data-akun-ulasan-root
+    data-whatsapp-number={whatsappNumber}
+    data-store-name={identity.name}
+  >
+    <div class="page-heading">
+      <h1>Ulasan Saya</h1>
+      <p><a href={ROUTES.account}>&larr; Kembali ke Akun Saya</a></p>
+    </div>
+
+    <div data-submit-error class="toko-banner toko-banner--danger" hidden>
+      <p data-submit-error-message></p>
+      <div class="toko-actions">
+        <a data-wa-fallback-link class="toko-wa-fallback" hidden>Hubungi via WhatsApp</a>
+      </div>
+    </div>
+
+    <div data-guest-view class="akun-card" hidden>
+      <p>Anda belum masuk.</p>
+      <div class="akun-actions">
+        <a href={ROUTES.login}>Masuk</a>
+      </div>
+    </div>
+
+    <div data-account-view hidden>
+      <p class="toko-empty" data-ulasan-empty hidden>Anda belum mengirimkan ulasan apa pun.</p>
+      <ul class="akun-nav-grid" data-ulasan-list aria-live="polite"></ul>
+    </div>
+  </div>
+
+  <script>
+    import "../../scripts/akun-ulasan";
+  </script>
+</BaseLayout>

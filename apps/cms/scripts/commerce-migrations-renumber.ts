@@ -210,8 +210,9 @@ async function main() {
 
     const appliedRows = await sql<{ migration_name: string }[]>`
       SELECT migration_name FROM awcms_schema_migrations
-      WHERE migration_name = ANY(${Object.keys(OLD_TO_NEW).concat(
-        Object.values(OLD_TO_NEW)
+      WHERE migration_name = ANY(${sql.array(
+        Object.keys(OLD_TO_NEW).concat(Object.values(OLD_TO_NEW)),
+        "text"
       )})
     `;
 

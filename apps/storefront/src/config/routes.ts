@@ -55,7 +55,34 @@ export const ROUTES = {
   wishlist: "/wishlist",
   search: "/cari",
   page: (slug: string): string => `/halaman/${slug}`,
-  contact: "/kontak"
+  contact: "/kontak",
+  // --- issue #88 (S1, part of #32): customer accounts. Only `login`,
+  // `register`, and `account` get a PAGE in this issue — `Header.astro`'s
+  // "Masuk"/account link is the one place `login`/`account` are read today.
+  // `accountOrders`/`accountOrder`/`accountAddresses`/`accountReviews`/
+  // `accountAffiliate` are declared now, with no page behind them yet, so
+  // `/akun`'s own navigation cards (S2/S3) and any other page that wants to
+  // link there can point at a named constant instead of a hand-typed path —
+  // the same "declare the shape now, fill the page in later" precedent
+  // `routes.ts`'s own top-of-file docblock already set for #27/#28/#30.
+  // `accountWishlist` is deliberately NOT a new constant: it is the
+  // already-existing `ROUTES.wishlist` (`/wishlist`), unchanged.
+  /** `/masuk` — e-mail OTP sign-in. */
+  login: "/masuk",
+  /** `/daftar` — name + phone + e-mail OTP registration. */
+  register: "/daftar",
+  /** `/akun` — the signed-in dashboard shell. */
+  account: "/akun",
+  /** Lands in S2 — declared now so the account dashboard's nav card and the header can link at it. */
+  accountOrders: "/akun/pesanan",
+  /** A single account order — `kode` is percent-encoded, mirroring `toko-klien.ts`'s own `getOrder`. Lands in S2. */
+  accountOrder: (kode: string): string => `/akun/pesanan?kode=${encodeURIComponent(kode)}`,
+  /** Lands in S2. */
+  accountAddresses: "/akun/alamat",
+  /** Lands in S3. */
+  accountReviews: "/akun/ulasan",
+  /** Lands in S3 (issue #86's affiliate program). */
+  accountAffiliate: "/akun/afiliasi"
 } as const;
 
 /**

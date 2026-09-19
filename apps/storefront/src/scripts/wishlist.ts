@@ -8,6 +8,7 @@
 import { loadWishlist, removeFromWishlist } from "../lib/wishlist-klien";
 import { WISHLIST_EVENT_NAME, WISHLIST_STORAGE_KEY, type WishlistItem } from "../lib/wishlist-kontrak";
 import { formatPrice } from "../lib/harga";
+import { pasangSinkronisasiWishlist, tulisKeAkunJikaMasuk } from "../lib/wishlist-akun-sync";
 
 const root = document.querySelector<HTMLElement>("[data-wishlist-root]");
 if (root) {
@@ -26,6 +27,7 @@ if (root) {
     removeButton.addEventListener("click", () => {
       removeFromWishlist(item.productId);
       render();
+      void tulisKeAkunJikaMasuk(item.productId, false);
     });
     li.appendChild(removeButton);
 
@@ -81,4 +83,9 @@ if (root) {
   window.addEventListener("storage", (event) => {
     if (event.key === WISHLIST_STORAGE_KEY) render();
   });
+  // Header.astro's wishlist-tombol.ts already wires this on every page, but
+  // `/wishlist` renders this list even for a shopper who arrived here with
+  // JavaScript that has not yet re-run that mount (e.g. a bfcache restore) —
+  // idempotent, see `pasangSinkronisasiWishlist`'s own docblock.
+  pasangSinkronisasiWishlist();
 }

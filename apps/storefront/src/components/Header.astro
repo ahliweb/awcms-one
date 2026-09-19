@@ -39,6 +39,15 @@
  * pattern, so every `[data-wishlist]` heart button anywhere in the site
  * (`ProductCard.astro`) works without every page that renders one having to
  * remember to import a script for it.
+ *
+ * Issue #88 adds the account link the same way again:
+ * `[data-akun-tautan]` renders "Masuk" → `ROUTES.login` server-side (works
+ * with no JavaScript at all — a visitor with JS off simply sees the sign-in
+ * link), and `src/scripts/akun-header.ts` swaps its text to the account's
+ * first name and its `href` to `ROUTES.account` when `bacaSesi()`
+ * (`src/lib/akun-sesi.ts`) finds a session, re-checking on `akun:berubah`
+ * (login/logout/profile-edit, this tab) and the native `storage` event
+ * (another tab).
  */
 import type { SiteIdentity } from "../lib/awcms/profil";
 import { PRIMARY_NAV, ROUTES } from "../config/routes";
@@ -81,6 +90,11 @@ const { identity } = Astro.props;
         Keranjang
         <span class="cart-count" data-cart-count aria-live="polite">0</span>
       </a>
+
+      <a href={ROUTES.login} class="akun-link" data-akun-tautan>
+        <span aria-hidden="true">👤</span>
+        <span data-akun-label>Masuk</span>
+      </a>
     </div>
   </div>
 </header>
@@ -88,4 +102,5 @@ const { identity } = Astro.props;
 <script>
   import "../scripts/keranjang-hitung";
   import "../scripts/wishlist-tombol";
+  import "../scripts/akun-header";
 </script>
