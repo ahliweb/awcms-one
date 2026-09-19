@@ -274,11 +274,32 @@ describe("openapi bundle — contract equivalence to pre-migration monolith", ()
     for (const key of ["security", "info", "servers"] as const) {
       expect(sortDeep(after[key])).toEqual(sortDeep(before[key]));
     }
-    for (const key of ["securitySchemes", "parameters", "responses"] as const) {
+    for (const key of ["parameters", "responses"] as const) {
       expect(sortDeep((after.components as AnyRecord)[key])).toEqual(
         sortDeep((before.components as AnyRecord)[key])
       );
     }
+
+    // `securitySchemes` gets the same additive-only treatment as tags below,
+    // not byte equality — Issue #89 (contract #86/ADR-0016) adds
+    // `customerBearer`, a genuinely NEW scheme authenticating a `commerce`
+    // customer, deliberately separate from staff `bearerAuth` (see the
+    // scheme's own `description`). Every PRE-MIGRATION scheme must still be
+    // present and byte-identical; only a new, named key may be added.
+    const ADDED_SECURITY_SCHEMES = new Set(["customerBearer"]);
+    const beforeSchemes = (before.components as AnyRecord)
+      .securitySchemes as AnyRecord;
+    const afterSchemes = (after.components as AnyRecord)
+      .securitySchemes as AnyRecord;
+    for (const schemeName of Object.keys(beforeSchemes)) {
+      expect(sortDeep(afterSchemes[schemeName])).toEqual(
+        sortDeep(beforeSchemes[schemeName])
+      );
+    }
+    const addedSchemes = Object.keys(afterSchemes).filter(
+      (name) => !(name in beforeSchemes)
+    );
+    expect(addedSchemes.sort()).toEqual([...ADDED_SECURITY_SCHEMES].sort());
 
     // Documented, reviewed BACKWARD-COMPATIBLE evolutions of a pre-migration
     // endpoint (like the tags test's single allowed `Domain Event Runtime`
@@ -393,6 +414,16 @@ describe("openapi bundle — contract equivalence to pre-migration monolith", ()
       // catalog slice (categories + products) of the re-platformed
       // storefront. Nothing here is anonymous.
       "Commerce",
+      // Issue #86/ADR-0016 (epic #32 wave 0) — the customer-accounts/OTP/
+      // bearer-session/address/wishlist/order-history/review surface under
+      // `/api/v1/commerce/storefront/account/*`. Anonymous only for the two
+      // OTP operations (ALLOWED_PUBLIC_OPERATIONS); everything else requires
+      // `customerBearer`.
+      "Commerce Accounts",
+      // Issue #86/ADR-0016 — the affiliate program: the storefront's own
+      // `customerBearer`-secured enrol/stats surface plus the staff-side
+      // approve/pay/void routes under `commerce.affiliates.*` permissions.
+      "Commerce Affiliates",
       "Data Lifecycle",
       "Domain Event Runtime",
       "Form Drafts",

@@ -69,6 +69,7 @@
         "domain_event_runtime",
         "media_library",
         "module_management",
+        "email",
         "profile_identity"
       ],
       "capabilitiesProvided": [],

@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:fdc2beec087a27765a7daae295b4e8bba3b89d6e47e5a3cd931a593c98d576e7 -->
+<!-- i18n-source-hash: sha256:4150df6daaea0fcf9492ee3c5588695b2ea9517c9fc643a02a925794194f39d8 -->
 
 # `commerce`
 
@@ -20,15 +20,15 @@ ulang harga di sisi server, pelacakan dan pembatalan order lewat `orderCode`
   tabel pemasaran; Issue #29 (epic yang sama) menambahkan pelanggan, order,
   dan permukaan checkout storefront anonim.
 
-| Aspek      | Nilai                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Key / type | `commerce` · `domain`, `isCore: false`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| Tabel      | `awcms_commerce_categories`, `awcms_commerce_products` (`sql/901`, diperluas `sql/904`), `awcms_commerce_product_images`, `awcms_commerce_product_variants` (`sql/905`); `awcms_commerce_flash_sales`, `awcms_commerce_flash_sale_products`, `awcms_commerce_vouchers`, `awcms_commerce_sliders`, `awcms_commerce_testimonials`, `awcms_commerce_popups` (`sql/909`), `awcms_commerce_store_settings` (`sql/910`); `awcms_commerce_customers`, `awcms_commerce_customer_addresses`, `awcms_commerce_orders`, `awcms_commerce_order_items`, `awcms_commerce_order_events`, `awcms_commerce_payment_confirmations`, `awcms_commerce_reviews`, `awcms_commerce_wishlists` (`sql/913`); `awcms_commerce_customer_accounts`, `awcms_commerce_customer_otps`, `awcms_commerce_customer_sessions` (`sql/917`-`918`) |
-| Permission | `categories.{read,create,update,delete,restore}`, `products.{read,create,update,delete,restore}` (`sql/902`, `sql/906`); `{flash_sales,vouchers,sliders,testimonials,popups}.{read,create,update,delete}`, `settings.{read,update}` (`sql/911`); `orders.{read,update}`, `customers.{read,update}`, `reviews.{read,update,delete}` (`sql/914`, dengan sengaja tanpa create/delete untuk orders atau customers — lihat "Pelanggan, order, dan review" di bawah) — 39 total                                                                                                                                                                                                                                                                                                                                    |
-| API        | `/api/v1/commerce/{categories,products,flash-sales,vouchers,sliders,testimonials,popups,store-settings,orders,customers,reviews}` (sisi pemilik); `/api/v1/commerce/storefront/{cart/quote,orders,reviews}` (sisi anonim) (`openapi/modules/commerce.openapi.yaml`)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| Event      | `commerce.product.{created,updated,status_changed}`; `commerce.flash_sale.{started,ended}` (Issue #26, dipancarkan job tick); `commerce.order.{created,paid,status_changed,cancelled,expired}`, `commerce.voucher.redeemed`, `commerce.review.published` (Issue #29)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| Depends on | `tenant_admin`, `identity_access`, `domain_event_runtime`, `media_library` (gambar produk, slider, avatar testimoni, gambar popup, dan logo/favicon toko semuanya di-resolve lewat `MediaLibraryPort`), `module_management` (resolver tenant storefront anonim memeriksa modul ini aktif untuk tenant tersebut sebelum menjawab)                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| Job        | `commerce:flash-sales:tick` (`scripts/commerce-flash-sales-tick.ts`, tiap 5 menit — menyimpan status turunan tiap sale dan memancarkan dua event flash sale); `commerce:orders:expire` (`scripts/commerce-orders-expire.ts`, tiap 5 menit — mengekspirasi order belum-bayar yang melewati jendela terkonfigurasi toko, me-restock lini pesanannya, dan memancarkan `commerce.order.expired`)                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| Aspek      | Nilai                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Key / type | `commerce` · `domain`, `isCore: false`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| Tabel      | `awcms_commerce_categories`, `awcms_commerce_products` (`sql/901`, diperluas `sql/904`), `awcms_commerce_product_images`, `awcms_commerce_product_variants` (`sql/905`); `awcms_commerce_flash_sales`, `awcms_commerce_flash_sale_products`, `awcms_commerce_vouchers`, `awcms_commerce_sliders`, `awcms_commerce_testimonials`, `awcms_commerce_popups` (`sql/909`), `awcms_commerce_store_settings` (`sql/910`); `awcms_commerce_customers`, `awcms_commerce_customer_addresses`, `awcms_commerce_orders`, `awcms_commerce_order_items`, `awcms_commerce_order_events`, `awcms_commerce_payment_confirmations`, `awcms_commerce_reviews`, `awcms_commerce_wishlists` (`sql/913`); `awcms_commerce_customer_accounts`, `awcms_commerce_customer_otps`, `awcms_commerce_customer_sessions` (`sql/917`-`918`); baris `derived.commerce_customer_otp` di `awcms_email_templates`, di-seed per tenant yang ada (`sql/919`) |
+| Permission | `categories.{read,create,update,delete,restore}`, `products.{read,create,update,delete,restore}` (`sql/902`, `sql/906`); `{flash_sales,vouchers,sliders,testimonials,popups}.{read,create,update,delete}`, `settings.{read,update}` (`sql/911`); `orders.{read,update}`, `customers.{read,update}`, `reviews.{read,update,delete}` (`sql/914`, dengan sengaja tanpa create/delete untuk orders atau customers — lihat "Pelanggan, order, dan review" di bawah) — 39 total                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| API        | `/api/v1/commerce/{categories,products,flash-sales,vouchers,sliders,testimonials,popups,store-settings,orders,customers,reviews}` (sisi pemilik); `/api/v1/commerce/storefront/{cart/quote,orders,reviews}` (sisi anonim); `/api/v1/commerce/storefront/account/{otp/request,otp/verify,me,logout}` (OTP anonim + `customerBearer`, Issue #89) (`openapi/modules/commerce.openapi.yaml`)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Event      | `commerce.product.{created,updated,status_changed}`; `commerce.flash_sale.{started,ended}` (Issue #26, dipancarkan job tick); `commerce.order.{created,paid,status_changed,cancelled,expired}`, `commerce.voucher.redeemed`, `commerce.review.published` (Issue #29)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| Depends on | `tenant_admin`, `identity_access`, `domain_event_runtime`, `media_library` (gambar produk, slider, avatar testimoni, gambar popup, dan logo/favicon toko semuanya di-resolve lewat `MediaLibraryPort`), `module_management` (resolver tenant storefront anonim memeriksa modul ini aktif untuk tenant tersebut sebelum menjawab), `profile_identity` (penyamaran e-mail/telepon), `email` (Issue #89 — adapter `email` pada channel OTP pelanggan mengantre ke outbox `email` sendiri)                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| Job        | `commerce:flash-sales:tick` (`scripts/commerce-flash-sales-tick.ts`, tiap 5 menit — menyimpan status turunan tiap sale dan memancarkan dua event flash sale); `commerce:orders:expire` (`scripts/commerce-orders-expire.ts`, tiap 5 menit — mengekspirasi order belum-bayar yang melewati jendela terkonfigurasi toko, me-restock lini pesanannya, dan memancarkan `commerce.order.expired`)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 
 **Migrasi hidup di rentang cadangan `901`–`999`, bukan `001`–`899` milik upstream (issue #72, [ADR-0015](../../../../../docs/adr/0015-commerce-migrations-live-in-the-reserved-9xx-range.id.md) di awcms-one).** Enam belas migrasi asli modul ini, bernomor 153 sampai 168, bertabrakan dengan penomoran `ahliweb/awcms` upstream sendiri begitu ia mulai memakai nomor yang sama untuk migrasinya sendiri (`sql/153_awcms_blog_institution_logo.sql`, issue #59). Keenam belasnya diberi nomor ulang jadi `sql/901_awcms_commerce_schema.sql` sampai `sql/916_awcms_commerce_orders_expire_worker_write_grants.sql` (offset +748); migrasi commerce berikutnya adalah `917`. `tests/commerce-migrations-range.test.ts` menegakkan pemisahan ini dua arah. Basis data yang bermigrasi sebelum rename ini menjalankan `bun run db:commerce:renumber` sekali, sebelum `bun run db:migrate` berikutnya (`scripts/commerce-migrations-renumber.ts`).
 
@@ -421,24 +421,70 @@ Issue #26 menambahkan `/admin/commerce-flash-sales`, `-vouchers`, `-sliders`,
   `tests/admin-commerce-page-contract.test.ts` menuntut layar-layar baru itu
   pada sifat yang sama yang dipenuhi layar-layar sebelumnya.
 
-## Akun pelanggan — kontrak saja (Issue #86, epic #32 gelombang 0)
+## Akun pelanggan — auth (Issue #89, epic #32 gelombang 2 — C2)
 
 `openapi/modules/commerce.openapi.yaml` mendokumentasikan seluruh permukaan
 `/api/v1/commerce/storefront/account/*` (login/registrasi OTP, profil, alamat
 tersimpan, wishlist, riwayat pesanan, ulasan, pendaftaran afiliasi) plus rute
-sisi staf `/api/v1/commerce/affiliates*` — **belum ada berkas rute untuk satu
-pun dari itu**. Setiap jalur didaftar berdasarkan nama di
-`ROUTE_PARITY_EXEMPTIONS` (`scripts/api-spec-check.ts`) persis supaya
-kontraknya bisa dikirim sebelum handler-nya tanpa menggagalkan gerbang
-paritas rute↔kontrak; sebuah entri dihapus begitu handler-nya sendiri
-mendarat. Empat keputusan arsitektur di balik bentuknya — identitas tetap
-baris `commerce` yang tidak pernah ditautkan ke `awcms_principals`, OTP
-e-mail sekarang dengan WhatsApp ditunda ke #33, token sesi `customerBearer`
-opaque yang disimpan di `localStorage`, dan aturan binding baris tamu saat
-registrasi — tercatat di
+sisi staf `/api/v1/commerce/affiliates*`. **Empat dari jalur itu sudah
+diimplementasikan sejak Issue #89** — `otp/request`, `otp/verify`, `me`
+(`GET`/`PATCH`), dan `logout` — dan dihapus dari `ROUTE_PARITY_EXEMPTIONS`
+(`scripts/api-spec-check.ts`) sesuai itu; jalur yang tersisa (alamat,
+wishlist, riwayat pesanan, ulasan, afiliasi) masih hanya kontrak, mendarat
+lintas C3/C4 (issue #90–#93). Empat keputusan arsitektur di balik bentuknya —
+identitas tetap baris `commerce` yang tidak pernah ditautkan ke
+`awcms_principals`, OTP e-mail sekarang dengan WhatsApp ditunda ke #33, token
+sesi `customerBearer` opaque yang disimpan di `localStorage`, dan aturan
+binding baris tamu saat registrasi — tercatat di
 [ADR-0016](../../../../../docs/adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md)
-di awcms-one. Handler mendarat lintas C2 (akun/OTP/sesi), C3
-(alamat/wishlist/pesanan/ulasan) dan C4 (afiliasi) — issue #87–#93.
+di awcms-one.
+
+**Lapisan aplikasi** (`application/customer-auth.ts`): `requestCustomerOtp`
+memvalidasi `{email, purpose, name?, phone?}` — `purpose: "register"`
+menjalankan validator registrasi PENUH (`domain/
+customer-account-validation.ts`) sebelum menerbitkan apa pun, sehingga
+nama/telepon yang salah bentuk menjawab `400` sebelum e-mail pernah
+terkirim — lalu selalu menerbitkan kode dan selalu meminta port
+`CustomerOtpChannel` mengirimkannya, sehingga sebuah permintaan selalu
+menjawab `202 {sent:true, expiresInSeconds:600}` yang sama apa pun yang
+terjadi (aturan anti-enumerasi D2; tenant yang tak teresolusi membayar
+latensi yang sama lewat `padUnresolvedCommerceTenantLatency`).
+`verifyCustomerOtp` meruntuhkan SETIAP alasan kegagalan `consumeOtp`
+(salah/kedaluwarsa/terpakai/habis) menjadi satu `401 OTP_INVALID`;
+`purpose: "login"` tanpa akun yang cocok menjawab `404 ACCOUNT_NOT_FOUND`
+(pengecualian yang diterima dan terdokumentasi — pemilik kotak surat sudah
+menerima kodenya); `purpose: "register"` memeriksa nomor telepon terhadap
+SETIAP akun yang SUDAH ADA (`findAccountByPhone`) sebelum memanggil
+`createAccountForCustomer` yang sudah dikirim (#87), menjawab
+`409 PHONE_ALREADY_REGISTERED` pada konflik. Akun yang diblokir tidak
+pernah bisa verifikasi menjadi sesi (`403 ACCOUNT_BLOCKED`) tetapi TETAP
+bisa logout — lihat header `application/customer-session-auth.ts` sendiri
+untuk alasan keduanya sengaja berbeda.
+
+**Pengiriman** (`domain/customer-otp-channel.ts` + `application/
+customer-otp-channel-adapters.ts`): port `CustomerOtpChannel` dengan
+adapter `email` (mengantre ke outbox `email`, di dalam transaksi YANG SAMA
+dengan baris OTP, di bawah kategori turunan baru
+`derived.commerce_customer_otp` — lihat dokumen deployment cms.md di root awcms-one)
+dan adapter `log` (menulis baris log terstruktur YANG MENYERTAKAN kodenya —
+satu-satunya tempat di basis kode ini yang melakukan itu — dipilih setiap
+kali `EMAIL_PROVIDER=log` atau `EMAIL_ENABLED` bukan `"true"`, sehingga
+dev/CI bekerja tanpa kredensial e-mail). `commerce` mendapat dependensi ke
+`email` untuk ini (lihat `module.ts`), sama seperti `newsletter` yang sudah
+bergantung padanya untuk e-mail konfirmasinya sendiri.
+
+**Sesi** (`application/customer-session-auth.ts`): `requireCustomerSession`
+mem-parsing `Authorization: Bearer cs_…`, mencari baris hidup di
+`awcms_commerce_customer_sessions` (`findSessionByTokenHash`), dan
+menggeser TTL-nya (`touchSession`, paling banyak sekali per 5 menit) —
+namespace sesi kelima yang independen dari `awcms_sessions` (lihat
+`domain/customer-session-token.ts`), sehingga
+`identity:session-readers:check` tidak punya urusan dengannya.
+
+**Audit** (e-mail/telepon tersamar saja, tak pernah kode/token):
+`commerce.customer.otp_requested`, `otp_verified`, `login_failed` (setiap
+kegagalan verifikasi, apa pun alasannya — alasannya hanya ada di
+`attributes.reason`), `account_registered`, `logout`.
 
 ## Dengan sengaja tidak ada di sini
 

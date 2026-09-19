@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](api.md)
 
-<!-- i18n-source-hash: sha256:d9d6eb10b6f3d4f9790a6d5be0c61602587c4891eed1f2b8f10d819cffdd4140 -->
+<!-- i18n-source-hash: sha256:b38120ba80d341254b0acff159b43b16324ec020e097115456022d2055e904ea -->
 
 # API
 
@@ -72,9 +72,11 @@ Setiap rute me-resolve tenant-nya dari `Origin`/`Host` request terhadap `awcms_t
 
 **Idempotensi:** pembuatan pesanan memakai ulang store `awcms_idempotency_keys` yang modul-agnostik (`(tenantId, requestScope, idempotencyKey)`, tidak butuh principal — ia bekerja dari wrapper tenant anonim). UUID yang dibuat klien milik keranjang sendiri dipakai ulang sebagai idempotency key, sehingga klik "Buat pesanan" yang terkirim ganda mengembalikan `orderCode` yang sama alih-alih membuat pesanan kedua.
 
-### Akun pelanggan — direncanakan — #87–#93
+### Akun pelanggan — auth sudah diimplementasi (#89), sisanya direncanakan — #90–#93
 
-Semua di bawah `account/*` adalah kontrak **tanpa handler dulu** — [ADR-0016](adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md) mencatat empat keputusan (identitas, kanal OTP, sesi bearer, binding registrasi) yang menjadi dasar rancangannya, dan [issue #86](https://github.com/ahliweb/awcms-one/issues/86) adalah tempat bentuk OpenAPI di bawah ini benar-benar hidup (`apps/cms/openapi/modules/commerce.openapi.yaml`, dikecualikan dari gerbang paritas rute↔kontrak berdasarkan nama di `apps/cms/scripts/api-spec-check.ts` sampai setiap handler mendarat). Skema keamanan baru `customerBearer` — sengaja terpisah dari skema `bearerAuth`/sesi milik staf — mengautentikasi setiap rute di bawah kecuali dua rute OTP, yang anonim dengan logika anti-enumerasi yang sama seperti API ini lainnya.
+[ADR-0016](adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md) mencatat empat keputusan (identitas, kanal OTP, sesi bearer, binding registrasi) yang menjadi dasar rancangan seluruh permukaan ini, dan [issue #86](https://github.com/ahliweb/awcms-one/issues/86) adalah tempat bentuk OpenAPI-nya hidup (`apps/cms/openapi/modules/commerce.openapi.yaml`). Skema keamanan baru `customerBearer` — sengaja terpisah dari skema `bearerAuth`/sesi milik staf — mengautentikasi setiap rute di bawah kecuali dua rute OTP, yang anonim dengan logika anti-enumerasi yang sama seperti API ini lainnya.
+
+**Sudah diimplementasi (#89):**
 
 | Method | Jalur | Auth | Catatan |
 | --- | --- | --- | --- |
@@ -82,6 +84,11 @@ Semua di bawah `account/*` adalah kontrak **tanpa handler dulu** — [ADR-0016](
 | `POST` | `account/otp/verify` | tidak ada | `{email, code, purpose}` → `200 {token, expiresAt, account}`; `401 OTP_INVALID`, `404 ACCOUNT_NOT_FOUND` (login), `409 PHONE_ALREADY_REGISTERED` (register) |
 | `GET`/`PATCH` | `account/me` | `customerBearer` | Akun itu sendiri; `PATCH` hanya menerima `{name}` — belum ada ubah e-mail/telepon |
 | `POST` | `account/logout` | `customerBearer` | `204`, mencabut sesi yang disajikan |
+
+**Direncanakan — kontrak tanpa handler dulu (#90–#93)**, masih dikecualikan dari gerbang paritas rute↔kontrak berdasarkan nama di `apps/cms/scripts/api-spec-check.ts`:
+
+| Method | Jalur | Auth | Catatan |
+| --- | --- | --- | --- |
 | `GET`/`POST` | `account/addresses` | `customerBearer` | Maksimal 10 per akun |
 | `PATCH`/`DELETE` | `account/addresses/{id}` | `customerBearer` | |
 | `POST` | `account/addresses/{id}/default` | `customerBearer` | |
@@ -191,4 +198,4 @@ Himpunan permission kredensial build di-seed oleh `tools/seed-borneojek-mart.ts`
 
 ## Belum dibangun
 
-Tarif kurir RajaOngkir dan payment gateway — `payment_method` sudah menerima nilai enum `gateway` (aditif, per [ADR-0010](adr/0010-manual-payment-and-alternative-courier-first-gateways-via-outbox.md)), tapi belum ada integrasi provider; keduanya harus lewat outbox begitu mendarat ([issue #33](https://github.com/ahliweb/awcms-one/issues/33)). Akun pelanggan, login, dan endpoint storefront terautentikasi apa pun ([issue #32](https://github.com/ahliweb/awcms-one/issues/32)) **sedang dikerjakan**: kontraknya sudah disepakati ([ADR-0016](adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md), issue #86, tabel "Akun pelanggan" di atas) tapi belum ada handler — setiap rute API storefront yang benar-benar berjalan hari ini masih anonim by design. Upload bukti-pembayaran yang berfungsi untuk pemanggil anonim (alur sesi `media_library` membutuhkan `actorTenantUserId` terautentikasi, yang tidak dimiliki pemanggil checkout tamu mana pun).
+Tarif kurir RajaOngkir dan payment gateway — `payment_method` sudah menerima nilai enum `gateway` (aditif, per [ADR-0010](adr/0010-manual-payment-and-alternative-courier-first-gateways-via-outbox.md)), tapi belum ada integrasi provider; keduanya harus lewat outbox begitu mendarat ([issue #33](https://github.com/ahliweb/awcms-one/issues/33)). Akun pelanggan, login, dan endpoint storefront terautentikasi apa pun ([issue #32](https://github.com/ahliweb/awcms-one/issues/32)) **sedang dikerjakan**: kontraknya sudah disepakati ([ADR-0016](adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md), issue #86, tabel "Akun pelanggan" di atas); login/registrasi OTP, `me`, dan `logout` sudah diimplementasi ([issue #89](https://github.com/ahliweb/awcms-one/issues/89)), dan permukaan alamat/wishlist/riwayat-pesanan/ulasan/afiliasi yang dijaga `customerBearer` masih belum ada handler-nya. Upload bukti-pembayaran yang berfungsi untuk pemanggil anonim (alur sesi `media_library` membutuhkan `actorTenantUserId` terautentikasi, yang tidak dimiliki pemanggil checkout tamu mana pun).

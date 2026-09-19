@@ -35,16 +35,29 @@ export function commerceCorsHeaders(
   return { vary: "Origin" };
 }
 
+/**
+ * `allowedHeaders` defaults to the family's original single header —
+ * `content-type` is all any `/storefront/*` route needed until Issue #89.
+ * The account routes (`otp/request`, `otp/verify`, `me`, `logout`) pass
+ * `["content-type", "authorization"]` so a bearer request's preflight is
+ * actually answered — omitting `authorization` here would make every
+ * cross-origin `Authorization: Bearer …` call fail the preflight before the
+ * browser ever sends it, no matter what the route itself accepts. Still no
+ * `Access-Control-Allow-Credentials` anywhere in this family (see this
+ * file's own header) — a bearer token is a capability the browser attaches
+ * explicitly, never a cookie the browser would send automatically.
+ */
 export function commercePreflightHeaders(
-  decision: CommerceOriginDecision
+  decision: CommerceOriginDecision,
+  allowedHeaders: readonly string[] = ["content-type"]
 ): Record<string, string> {
   const granted = commerceCorsHeaders(decision);
   if (decision.kind !== "granted") return granted;
 
   return {
     ...granted,
-    "access-control-allow-methods": "GET, POST, OPTIONS",
-    "access-control-allow-headers": "content-type",
+    "access-control-allow-methods": "GET, POST, PATCH, OPTIONS",
+    "access-control-allow-headers": allowedHeaders.join(", "),
     "access-control-max-age": String(COMMERCE_PREFLIGHT_MAX_AGE_SECONDS)
   };
 }

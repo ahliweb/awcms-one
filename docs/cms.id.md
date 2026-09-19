@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](cms.md)
 
-<!-- i18n-source-hash: sha256:4c718b7b9e88ec81323b32eb5e0c553495738dc6c5a2db60eb87d2c89809c575 -->
+<!-- i18n-source-hash: sha256:d3d79818e8acbc0bafa1ec48c006eb6cb7d7453350c33a09dc00e741aaad9ca7 -->
 
 # CMS: authoring, publikasi, izin, audit, media, taksonomi
 
@@ -68,6 +68,12 @@ Setiap rute commerce dijaga pada satu kunci izin `commerce.*`, dikelompokkan ke 
 | Pengaturan toko | `settings` | `read`, `update` |
 
 Orders, customers, dan reviews adalah area keempat yang lebih sempit: `commerce.orders.{read,update}`, `commerce.customers.{read,update}`, `commerce.reviews.{read,update,delete}` — **sengaja tanpa `create`/`delete`** untuk orders atau customers, karena keduanya hanya dibuat lewat jalur storefront anonim, yang tidak punya identitas admin untuk diperiksa izinnya. Lihat [`docs/api.md`](api.id.md) untuk daftar 39-kunci lengkap dan [ADR-0009](adr/0009-guest-checkout-by-order-code-and-phone.id.md) untuk alasan jalur itu anonim sama sekali. Row-level security menguatkan batas yang sama di lapisan basis data — lihat [`docs/skema-basis-data.md`](skema-basis-data.id.md).
+
+## E-mail OTP akun pelanggan (Issue #89, kontrak #86/ADR-0016 D2)
+
+`POST /account/otp/request` mengirim kode 6 digitnya lewat outbox milik modul `email` sendiri (`awcms_email_messages`), diantre di dalam transaksi yang sama dengan baris OTP, di bawah kategori template turunan baru `derived.commerce_customer_otp` (`registerDerivedEmailTemplateCategory`, tiga variabel: `code`, `expiresInMinutes`, `storeName`). Migrasi `sql/919` men-seed salinan EN+ID template itu untuk setiap tenant yang sudah ada saat migrasi berjalan; tenant yang dibuat setelahnya butuh salinannya sendiri di-seed (alur provisioning-nya, atau operator, sama seperti `email:templates:seed-defaults` milik kategori dasar yang per-tenant dan eksplisit). Ketika `EMAIL_PROVIDER=log` atau `EMAIL_ENABLED` bukan `"true"`, pengiriman lewat adapter `log` sebagai gantinya — satu-satunya tempat di basis kode ini yang menulis kode OTP ke baris log, sehingga pengembangan lokal dan CI bisa menjalankan seluruh alurnya tanpa kredensial e-mail.
+
+Dua pasangan batas laju yang bisa diatur lewat env mengatur permukaan ini: `COMMERCE_ACCOUNT_OTP_RATE_LIMIT_{MAX_PER_IP,WINDOW_SEC,MAX_PER_EMAIL}` (default 10/IP/jam, 5/e-mail/jam) untuk `otp/request`, dan `COMMERCE_ACCOUNT_OTP_VERIFY_RATE_LIMIT_{MAX_PER_IP,WINDOW_SEC}` (default 20/IP/jam) untuk `otp/verify` — lihat `.env.example` di `apps/cms`.
 
 ## Log audit
 
