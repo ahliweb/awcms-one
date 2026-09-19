@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:e60034cb69a7f0a2c7abb2adae69f24f255462210330aad7cb3ddde1987eaf50 -->
+<!-- i18n-source-hash: sha256:366a7ff42596960b4d92767e3c6b866eefa011c25b06740eed36b4d297505482 -->
 
 # `commerce`
 
@@ -649,11 +649,61 @@ tabel komisi (afiliasi, pesanan, jumlah, status, dapat difilter berdasarkan
 status, tombol approve/pay/void), i18n `en`+`id`.
 `/admin/commerce-settings` mendapat field tarif komisi.
 
+## Tarif kurir: RajaOngkir, ter-cache (Issue #107, contract #106 D4)
+
+`ShippingRateProvider` (`domain/shipping-rate-provider.ts`) adalah sebuah
+port — `searchDestination(query)`, `getRates({originId, destinationId,
+weightGrams, couriers})` — dibentuk seperti kontrak provider `email`:
+`infrastructure/rajaongkir-provider.ts` (API v2 Komerce, `withTimeout` +
+`getProviderCircuitBreaker("commerce-rajaongkir")`) dan
+`infrastructure/log-shipping-rate-provider.ts` (fixture deterministik)
+sama-sama mengimplementasikannya, di-resolve oleh
+`infrastructure/shipping-rate-provider-resolver.ts` dari
+`COMMERCE_SHIPPING_RATE_PROVIDER`.
+
+**Cache** (`sql/924`, `application/shipping-rate-directory.ts`):
+`awcms_commerce_courier_destinations` memetakan kode kecamatan
+`idn_admin_regions` milik tenant ke id tujuan milik provider (di-resolve
+sekali lewat pencarian nama, tanpa TTL); `awcms_commerce_shipping_rates`
+meng-cache tarif per `(tenant, provider, asal, tujuan, bucket berat,
+kurir, layanan)`, TTL 6 jam, dihapus setiap jam oleh
+`commerce:shipping-rates:purge`. `computeWeightBucketGrams` milik
+`domain/weight-bucket.ts` membulatkan total berat keranjang ke atas ke
+kelipatan 100 g berikutnya, dilantaikan di 1000 g (berat minimum
+tertagih RajaOngkir sendiri).
+
+**Provider tidak pernah dipanggil di dalam transaksi database**
+(ADR-0006/0010): `getCourierRates`/`resolveDestination` membaca cache
+dalam satu transaksi pendek, memanggil provider tanpa transaksi terbuka
+sama sekali, lalu menulis-balik dalam transaksi pendek kedua
+(`ON CONFLICT ... DO UPDATE` — cache miss yang bersamaan hanya berarti
+penulis terakhir yang menang).
+
+**Quote**: `POST .../cart/quote` menerima `destination: {districtCode}`
+opsional; dengan `shipping.courier.enabled`, provider yang dikonfigurasi,
+dan sebuah destination, entri kurir pada `shippingOptions[]` adalah tarif
+langsung per layanan (`{method:"courier", serviceId:"jne:REG", name,
+cost, etd, available:true}`); jika tidak, satu placeholder
+`available:false` dengan `note`. **Pembuatan pesanan** memvalidasi
+pilihan `{method:"courier", serviceId}` terhadap tarif ter-cache yang
+belum kedaluwarsa, dikunci dari `districtCode` milik alamat pengiriman
+sendiri — tidak pernah panggilan provider langsung kedua di dalam
+transaksi tulis `createOrderFromCart`; pilihan yang basi/tidak dikenal
+menjawab `409 CART_CHANGED` yang sama seperti ketidakcocokan lainnya.
+
+**Pengaturan**: `shipping.courier = {enabled, originDestinationId,
+couriers[]}` (owner, `PUT /store-settings`) adalah sakelar on/off-nya,
+asal RajaOngkir milik tenant sendiri, dan kode kurir mana yang di-quote.
+`GET /api/v1/commerce/shipping/destinations?search=` (hanya owner,
+`settings.update`) mendukung pemilih asal admin. `shipping.courierEnabled`
+publik adalah turunan — `true` hanya saat `courier.enabled` DAN provider
+dikonfigurasi, tidak pernah salinan mentah dari flag yang tersimpan.
+
 ## Dengan sengaja tidak ada di sini
 
-- **Tidak ada integrasi kurir pengiriman.** `shippingMethod` pada sebuah
-  order adalah label yang didefinisikan merchant, bukan tarif live atau
-  nomor resi dari API kurir — di luar cakupan epic ini sejauh ini.
+- **Tidak ada payment gateway.** `payment_method` sudah menerima nilai
+  enum `gateway`, secara aditif, tanpa kode implementasi di baliknya
+  untuk saat ini (ADR-0010, issue #33).
 - **Tidak ada restore untuk tabel pemasaran, maupun untuk
   orders/customers/reviews.** Hanya soft delete; voucher, slider, order,
   atau pelanggan yang dihapus dibuat ulang, bukan dikembalikan — jejak

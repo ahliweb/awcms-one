@@ -7,6 +7,7 @@ import {
   toPublicRecord
 } from "../../../../../modules/commerce/application/store-settings-directory";
 import { COMMERCE_SETTINGS_ACTIVITY_CODE } from "../../../../../modules/commerce/domain/commerce-permissions";
+import { isShippingRateProviderConfigured } from "../../../../../modules/commerce/infrastructure/shipping-rate-provider-resolver";
 
 const READ_GUARD = {
   moduleKey: "commerce",
@@ -35,7 +36,8 @@ export const GET = defineTenantRoute({
         tenantId,
         settings,
         mediaLibraryPortAdapter,
-        affiliateCommissionRate !== null
+        affiliateCommissionRate !== null,
+        isShippingRateProviderConfigured()
       )
     );
   }

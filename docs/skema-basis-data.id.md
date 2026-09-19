@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](skema-basis-data.md)
 
-<!-- i18n-source-hash: sha256:b110dfaa9e638e836a578efeeb2f78073f371b06832e4567dc68a20f133a3389 -->
+<!-- i18n-source-hash: sha256:040e1b9cc86a51f0712589c4c2d6739c0cd876e4373176a373a7178954fa191c -->
 
 # Skema basis data
 
@@ -127,6 +127,17 @@ Issue #92, keputusan D5 kontrak #86 — rancangan baru, tidak ada kolom lawas `a
 | `awcms_commerce_affiliate_commissions` | `affiliate_id NOT NULL` (FK), `order_id NOT NULL` (FK, `UNIQUE` — **tidak dibatasi ke baris hidup**, satu komisi per pesanan selamanya, bentuk "unik untuk seumur hidup target FK" yang sama dengan `awcms_commerce_orders.order_code`), `base_amount numeric(14,2) NOT NULL`, `rate numeric(5,2) NOT NULL`, `amount numeric(14,2) NOT NULL`, `status` (`CHECK IN ('pending','approved','paid','void')`, default `pending`), `approved_at`/`paid_at`/`voided_at` | `base_amount`/`rate`/`amount` semuanya SNAPSHOT yang diambil saat pesanan yang direferensikan mencapai `completed` (`domain/affiliate-commission.ts`); `base = subtotal − discount − voucher_discount` dibatasi minimum nol, `amount = round(base × rate / 100, 2)` |
 
 Ditambah satu kolom pada masing-masing dari dua tabel yang sudah ada: `awcms_commerce_orders.affiliate_id` (FK nullable, terindeks `WHERE affiliate_id IS NOT NULL`) — diatur sekali saat pesanan dibuat oleh `resolveAffiliateForOrder` (kode tak dikenal/ditangguhkan → `NULL`, tidak pernah error validasi) dan tidak pernah diubah setelahnya; `awcms_commerce_store_settings.affiliate_commission_rate numeric(5,2)` (nullable, `CHECK BETWEEN 0 AND 100` saat diisi) — kolom nyata di luar blob jsonb `settings` (lihat entri tabel itu sendiri di atas untuk alasan jsonb menjadi pilihan default; kolom ini dibaca oleh jalur panas `resolveAffiliateForOrder`/pemeriksaan pendaftaran dan tidak pernah membutuhkan versi skema jsonb itu sendiri), `NULL` berarti program afiliasi MATI untuk tenant tersebut.
+
+## Tarif kurir: dua tabel cache (`sql/924`)
+
+Issue #107, D4 kontrak #106 — cache kode-kecamatan→id-tujuan-provider dan cache tarif per (asal, tujuan, bucket berat, kurir, layanan), keduanya murni cache aditif tanpa `deleted_at` (baris basi dihapus langsung, tidak pernah dihapus lunak — tidak ada apa pun untuk dipulihkan dari harga ter-cache).
+
+| Tabel | Kolom kunci | Catatan |
+| --- | --- | --- |
+| `awcms_commerce_courier_destinations` | `district_code NOT NULL`, `provider NOT NULL`, `destination_id NOT NULL`, `label NOT NULL`, `resolved_at NOT NULL DEFAULT now()`, `UNIQUE (tenant_id, provider, district_code)` | Tanpa TTL — id tujuan provider milik sebuah kecamatan nyaris tidak pernah berubah. Di-resolve sekali per (tenant, provider, kecamatan) lewat pencarian nama terhadap `idn_admin_regions`, lalu di-cache selamanya (kecuali sapuan penyegaran di masa depan) |
+| `awcms_commerce_shipping_rates` | `provider NOT NULL`, `origin_id NOT NULL`, `destination_id NOT NULL`, `weight_bucket integer NOT NULL` (`CHECK >= 1000`), `courier NOT NULL`, `service NOT NULL`, `name NOT NULL`, `cost numeric(14,2) NOT NULL`, `etd`, `fetched_at NOT NULL DEFAULT now()`, `expires_at NOT NULL`, `UNIQUE (tenant_id, provider, origin_id, destination_id, weight_bucket, courier, service)` | TTL 6 jam (`expires_at`); `weight_bucket` selalu keluaran `computeWeightBucketGrams` milik `domain/weight-bucket.ts` (dibulatkan ke atas ke kelipatan 100 g berikutnya, dilantaikan di 1000 g — berat minimum tertagih RajaOngkir sendiri), tidak pernah berat mentah keranjang, sehingga dua keranjang dalam pita 100 g yang sama berbagi satu baris. `commerce:shipping-rates:purge` (setiap jam) meng-`DELETE` setiap baris yang lewat `expires_at`, lintas tenant, di-GRANT ke `awcms_worker` seperti job purge lain di modul ini |
+
+Kedua tabel mengikuti konvensi `sql/901` (`ENABLE`/`FORCE ROW LEVEL SECURITY`, satu kebijakan isolasi tenant, indeks FK pada `tenant_id`) tapi tidak pernah ditulis langsung oleh transaksi tulis `application/order-directory.ts` untuk tarif BARU — `getCourierRates`/`resolveDestination` milik `application/shipping-rate-directory.ts` selalu membaca cache dalam satu transaksi pendek, memanggil `ShippingRateProvider` (API v2 RajaOngkir Komerce, atau adapter fixture `log`) tanpa transaksi terbuka sama sekali, lalu menulis-balik hasilnya dalam transaksi pendek kedua (aturan "jangan pernah memanggil provider di dalam transaksi database" ADR-0006/0010, diterapkan di sini sama seperti outbox `email` sudah menerapkannya). Pembuatan pesanan memvalidasi `{courier, service, cost}` yang dipilih HANYA terhadap `awcms_commerce_shipping_rates` — `SELECT ... WHERE expires_at > now()` biasa yang aman-transaksi, tidak pernah panggilan provider langsung kedua dari dalam transaksi tulis pesanan itu sendiri.
 
 Kedua tabel baru: RLS `ENABLE`+`FORCE`, kebijakan isolasi-tenant, indeks FK. Tak satu pun pernah di-soft-delete oleh kode modul ini sendiri dalam praktiknya — `deleted_at` ada murni sebagai kursor purge data-lifecycle yang seragam, bentuk "kursor selalu-`NULL`" yang sama dengan yang sudah dipakai `awcms_commerce_orders` dan `awcms_commerce_customer_accounts`.
 

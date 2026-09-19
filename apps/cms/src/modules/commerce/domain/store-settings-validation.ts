@@ -315,6 +315,26 @@ function validateAlternativeServices(
   });
 }
 
+/**
+ * Issue #107 (contract #106 D4) — the courier-rate integration's own on/off
+ * switch and configuration, separate from the pre-existing (and, until now,
+ * entirely decorative — `domain/cart-quote.ts`'s `buildShippingOptions`
+ * always listed a courier option as `available: false` regardless of it)
+ * `shipping.courierEnabled` flag: that flag is now purely a stored input
+ * this schema still accepts for backward compatibility with any settings
+ * blob written before this issue, but neither `cart-quote.ts` nor the public
+ * read model gates on it any longer — `shipping.courier.enabled` is the ONE
+ * flag that turns live courier rates on, and the public projection's own
+ * `shipping.courierEnabled` (`application/store-settings-directory.ts`'s
+ * `toPublicRecord`) is now DERIVED from `courier.enabled && a provider is
+ * configured`, never read back from this stored field.
+ */
+export type StoreSettingsCourier = {
+  enabled: boolean;
+  originDestinationId: string | null;
+  couriers: string[];
+};
+
 export type StoreSettingsShipping = {
   alternativeServices: StoreSettingsAlternativeService[];
   selfPickup: boolean;
@@ -323,6 +343,7 @@ export type StoreSettingsShipping = {
   freeShipping: { active: boolean; minOrder: string; maxDiscount: string };
   originCityName: string | null;
   originSubdistrictName: string | null;
+  courier: StoreSettingsCourier;
 };
 
 const SHIPPING_KEYS = [
@@ -332,9 +353,57 @@ const SHIPPING_KEYS = [
   "pinpointEnabled",
   "freeShipping",
   "originCityName",
-  "originSubdistrictName"
+  "originSubdistrictName",
+  "courier"
 ] as const;
 const FREE_SHIPPING_KEYS = ["active", "minOrder", "maxDiscount"] as const;
+const COURIER_KEYS = ["enabled", "originDestinationId", "couriers"] as const;
+const COURIER_CODE_PATTERN = /^[a-z0-9_-]{1,30}$/;
+
+function validateCourierCodes(
+  value: unknown,
+  errors: ValidationError[]
+): string[] {
+  if (value === undefined || value === null) return [];
+  if (!Array.isArray(value)) {
+    errors.push({
+      field: "shipping.courier.couriers",
+      message: "shipping.courier.couriers must be an array."
+    });
+    return [];
+  }
+  if (value.length > 20) {
+    errors.push({
+      field: "shipping.courier.couriers",
+      message: "shipping.courier.couriers must contain at most 20 entries."
+    });
+  }
+  const codes: string[] = [];
+  value.slice(0, 20).forEach((entry, index) => {
+    if (typeof entry !== "string" || !COURIER_CODE_PATTERN.test(entry)) {
+      errors.push({
+        field: `shipping.courier.couriers[${index}]`,
+        message: `shipping.courier.couriers[${index}] must be a lowercase courier code.`
+      });
+      return;
+    }
+    codes.push(entry);
+  });
+  return codes;
+}
+
+function validateCourier(
+  value: unknown,
+  errors: ValidationError[]
+): StoreSettingsCourier {
+  rejectUnknownKeys(value, COURIER_KEYS, "shipping.courier", errors);
+  const record = isRecord(value) ? value : {};
+  return {
+    enabled: bool(record.enabled, false),
+    originDestinationId: text(record.originDestinationId, 100),
+    couriers: validateCourierCodes(record.couriers, errors)
+  };
+}
 
 function validateShipping(
   value: unknown,
@@ -374,7 +443,8 @@ function validateShipping(
       )
     },
     originCityName: text(record.originCityName, 200),
-    originSubdistrictName: text(record.originSubdistrictName, 200)
+    originSubdistrictName: text(record.originSubdistrictName, 200),
+    courier: validateCourier(record.courier, errors)
   };
 }
 

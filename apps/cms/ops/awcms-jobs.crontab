@@ -68,6 +68,11 @@ AWCMS_LOCK=/home/admin1/awcms-jobs/locks
 # SKIP LOCKED, bounded batch).
 */5 * * * * /usr/bin/flock -n $AWCMS_LOCK/commerce-orders-expire.lock $AWCMS_RUN_JOB commerce:orders:expire >> $AWCMS_JOB_LOG/commerce-orders-expire.log 2>&1
 
+# commerce — Deletes every expired awcms_commerce_shipping_rates row across
+# all active tenants (Issue #107). Idempotent and bounded — a row already
+# deleted is simply absent from the next run's scan.
+0 * * * * /usr/bin/flock -n $AWCMS_LOCK/commerce-shipping-rates-purge.lock $AWCMS_RUN_JOB commerce:shipping-rates:purge >> $AWCMS_JOB_LOG/commerce-shipping-rates-purge.log 2>&1
+
 # data_lifecycle — Archive (where applicable) and purge rows past retention
 # for every registered generic-execution descriptor; record a dry-run backlog
 # snapshot for every delegated (existing-adopter) descriptor.

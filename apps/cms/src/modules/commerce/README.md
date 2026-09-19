@@ -599,11 +599,57 @@ suspend/activate) and a commissions table (affiliate, order, amount,
 status, filterable by status, approve/pay/void buttons), i18n `en`+`id`.
 `/admin/commerce-settings` gains the commission-rate field.
 
+## Courier rates: RajaOngkir, cached (Issue #107, contract #106 D4)
+
+`ShippingRateProvider` (`domain/shipping-rate-provider.ts`) is a port —
+`searchDestination(query)`, `getRates({originId, destinationId,
+weightGrams, couriers})` — modelled on `email`'s provider contract:
+`infrastructure/rajaongkir-provider.ts` (Komerce API v2, `withTimeout` +
+`getProviderCircuitBreaker("commerce-rajaongkir")`) and
+`infrastructure/log-shipping-rate-provider.ts` (deterministic fixtures)
+both implement it, resolved by `infrastructure/shipping-rate-provider-
+resolver.ts` from `COMMERCE_SHIPPING_RATE_PROVIDER`.
+
+**Caching** (`sql/924`, `application/shipping-rate-directory.ts`):
+`awcms_commerce_courier_destinations` maps a tenant's own
+`idn_admin_regions` district code to the provider's own destination id
+(resolved once by a name search, no TTL); `awcms_commerce_shipping_rates`
+caches a rate per `(tenant, provider, origin, destination, weight bucket,
+courier, service)`, TTL 6 hours, purged hourly by
+`commerce:shipping-rates:purge`. `domain/weight-bucket.ts`'s
+`computeWeightBucketGrams` rounds a cart's total weight up to the next
+100 g, floored at 1000 g (RajaOngkir's own minimum billable weight).
+
+**The provider is never called inside a DB transaction** (ADR-0006/0010):
+`getCourierRates`/`resolveDestination` read the cache in one short
+transaction, call the provider with none open at all, then write back in a
+second short transaction (`ON CONFLICT ... DO UPDATE` — a concurrent miss
+just means the last writer wins).
+
+**Quote**: `POST .../cart/quote` accepts an optional `destination:
+{districtCode}`; with `shipping.courier.enabled`, a configured provider,
+and a destination, `shippingOptions[]`'s courier entries are live per-
+service rates (`{method:"courier", serviceId:"jne:REG", name, cost, etd,
+available:true}`); otherwise a single `available:false` placeholder with a
+`note`. **Order creation** validates a `{method:"courier", serviceId}`
+selection against a non-expired cached rate keyed off the delivery
+address's own `districtCode` — never a second live provider call inside
+`createOrderFromCart`'s write transaction; a stale/unknown selection
+answers the same `409 CART_CHANGED` every other mismatch does.
+
+**Settings**: `shipping.courier = {enabled, originDestinationId,
+couriers[]}` (owner, `PUT /store-settings`) is the on/off switch, this
+tenant's own RajaOngkir origin, and which courier codes to quote.
+`GET /api/v1/commerce/shipping/destinations?search=` (owner-only,
+`settings.update`) backs the admin origin picker. The public
+`shipping.courierEnabled` is derived — `true` only when `courier.enabled`
+AND a provider is configured, never a raw copy of the stored flag.
+
 ## Deliberately not here
 
-- **No shipping-carrier integration.** `shippingMethod` on an order is a
-  merchant-defined label, not a live rate or tracking number from a
-  carrier API — out of scope for this epic so far.
+- **No payment gateway.** `payment_method` already accepts a `gateway`
+  enum value, additively, with no implementing code behind it yet
+  (ADR-0010, issue #33).
 - **No restore for the marketing tables, nor for orders/customers/reviews.**
   Soft delete only; a deleted voucher, slider, order or customer is
   recreated, not brought back — the audit trail keeps the record. `order_code`

@@ -9610,6 +9610,67 @@ paths:
           $ref: "#/components/responses/Forbidden"
         "404":
           $ref: "#/components/responses/NotFound"
+  /api/v1/commerce/shipping/destinations:
+    get:
+      operationId: searchCommerceShippingDestinations
+      tags:
+        - Commerce
+      summary: "Issue #107 (contract #106 D4) — owner-only courier-provider destination name search, backing the admin origin-destination picker in the courier settings screen. Gated on settings.update (the same permission store-settings PUT requires)."
+      parameters:
+        - name: search
+          in: query
+          required: true
+          schema:
+            type: string
+          description: A city/subdistrict name fragment to search the configured ShippingRateProvider's own destination directory.
+      responses:
+        "200":
+          description: Candidate destinations from the configured provider (empty when nothing matched).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                            label:
+                              type: string
+                            provinceName:
+                              type: string
+                            cityName:
+                              type: string
+                            districtName:
+                              type: string
+                            subdistrictName:
+                              type: string
+                              nullable: true
+                            zipCode:
+                              type: string
+                              nullable: true
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "503":
+          description: No courier rate provider is configured for this deployment.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
   /api/v1/commerce/sliders:
     get:
       operationId: listCommerceSliders
@@ -25221,6 +25282,14 @@ components:
           nullable: true
         insurance:
           type: boolean
+        destination:
+          type: object
+          nullable: true
+          description: "Issue #107 (contract #106 D4) — optional. When present AND `shipping.courier.enabled` AND a courier rate provider is configured, `shippingOptions[]`'s courier entries carry live RajaOngkir rates instead of the disabled placeholder."
+          properties:
+            districtCode:
+              type: string
+              description: An `idn_admin_regions` level-3 (district/kecamatan) dotted code, e.g. "62.02.01".
     CommerceCartQuoteResult:
       type: object
       description: Issue 29 — arithmetic order documented in `commerce-storefront-endpoints.md`. subtotal, discount, shippingCost, insuranceFee, tax and total are all numeric(14,2) strings.
@@ -25275,6 +25344,34 @@ components:
           type: string
         weightGrams:
           type: integer
+        shippingOptions:
+          type: array
+          description: 'Issue #107 — one entry per alternative service, one for self_pickup, and either one available:false courier placeholder (with a note) or one available:true entry per resolved courier service ({method:"courier", serviceId:"jne:REG", name, cost, etd, available:true}).'
+          items:
+            type: object
+            properties:
+              method:
+                type: string
+                enum:
+                  - alternative
+                  - self_pickup
+                  - courier
+              serviceId:
+                type: string
+                nullable: true
+              name:
+                type: string
+              cost:
+                type: string
+                nullable: true
+              available:
+                type: boolean
+              etd:
+                type: string
+                nullable: true
+              note:
+                type: string
+                nullable: true
         shipping:
           type: object
           nullable: true
@@ -26632,7 +26729,7 @@ components:
                 type: boolean
         shipping:
           type: object
-          description: alternativeServices[] {id,name,cost}, selfPickup, courierEnabled, pinpointEnabled, freeShipping {active,minOrder,maxDiscount}, originCityName, originSubdistrictName.
+          description: "alternativeServices[] {id,name,cost}, selfPickup, courierEnabled, pinpointEnabled, freeShipping {active,minOrder,maxDiscount}, originCityName, originSubdistrictName, courier {enabled, originDestinationId, couriers[]} (Issue #107, contract #106 D4 — the courier-rate integration's own on/off switch and RajaOngkir origin/courier selection)."
         payment:
           type: object
           description: manualBank {active, accounts[] {bankName, accountNumber, accountHolder}}, manualQris {active, mediaObjectId}, downPayment {active, percent}, tax {active, percent}, insurance {active, ratePercent, minFee}.

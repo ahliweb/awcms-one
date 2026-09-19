@@ -43,6 +43,14 @@ Pagination: keyset, newest-first by default (`sort=newest`), page size fixed at 
 
 `DELETE /store-settings` means "reset to defaults", not delete-the-tenant's-settings: it stamps `deleted_at`, the public and owner reads then answer with defaults, and the next `PUT` clears the stamp.
 
+### Courier rates (issue #107, contract #106 D4)
+
+| Method | Path | Notes |
+| --- | --- | --- |
+| `GET` | `/api/v1/commerce/shipping/destinations?search=` | Owner-only (`settings.update`, same permission as `PUT /store-settings`); searches the configured `ShippingRateProvider`'s own destination directory, backing the admin origin-destination picker in the courier settings screen; `503` when no provider is configured |
+
+`store-settings`'s own `shipping.courier = {enabled, originDestinationId, couriers[]}` (owner) and `shipping.courierEnabled` (public, `true` only when `courier.enabled` AND a provider is configured) are the on/off switches — see [`docs/cms.md`](cms.md) for the caching/weight-bucket details.
+
 ### Orders, customers, reviews (issue #29) — owner side
 
 | Method | Path | Notes |
@@ -59,8 +67,8 @@ Every route resolves its tenant from the request's `Origin`/`Host` against `awcm
 
 | Method | Path | Notes |
 | --- | --- | --- |
-| `POST` | `cart/quote` | `{ lines[], shipping, voucherCode, insurance }` → subtotal → voucher discount → shipping → insurance → tax → total, every figure a `numeric(14,2)` string; a line's `status` flags `out_of_stock`/an unavailable option without failing the whole quote |
-| `POST` | `orders` | `{ idempotencyKey, customer, address\|null, lines[], shipping, payment, voucherCode, insurance, notes }` → `201` (or `200` on an idempotent repeat of the same key); `400 VALIDATION_ERROR` with `details[].{field,message}`; `409 CART_CHANGED` with a fresh `details.quote` whenever any line's re-quote is not `"ok"` |
+| `POST` | `cart/quote` | `{ lines[], shipping, voucherCode, insurance, destination? }` → subtotal → voucher discount → shipping → insurance → tax → total, every figure a `numeric(14,2)` string; a line's `status` flags `out_of_stock`/an unavailable option without failing the whole quote. `destination: {districtCode}` (issue #107) is optional; when present AND the tenant's `shipping.courier.enabled` AND a `ShippingRateProvider` is configured, `shippingOptions[]`'s courier entries are live RajaOngkir rates (`{method:"courier", serviceId:"jne:REG", name, cost, etd, available:true}` per service); otherwise a single `{method:"courier", serviceId:null, cost:null, available:false, note}` placeholder |
+| `POST` | `orders` | `{ idempotencyKey, customer, address\|null, lines[], shipping, payment, voucherCode, insurance, notes }` → `201` (or `200` on an idempotent repeat of the same key); `400 VALIDATION_ERROR` with `details[].{field,message}`; `409 CART_CHANGED` with a fresh `details.quote` whenever any line's re-quote is not `"ok"` — including a `shipping.method: "courier"` selection whose `{serviceId, cost}` no longer matches a non-expired cached rate (issue #107; the destination is `address.districtCode`, never a separate field on this request) |
 | `GET` | `orders/{code}?phone=` | Full order shape; **`404 NOT_FOUND`, byte-identical, for an unknown code, a wrong phone, or another tenant's order** — a neutral response, not three distinguishable ones (see [ADR-0009](adr/0009-guest-checkout-by-order-code-and-phone.md)) |
 | `POST` | `orders/{code}/payment-confirmations` | `{phone, method, amount, bankName, accountName, transferredAt, proofMediaObjectId}`; `409 ORDER_NOT_PAYABLE` outside `pending_payment` |
 | `POST` | `orders/{code}/payment-proof/upload-sessions(/{id}/finalize)` | Always `503 MEDIA_UNAVAILABLE` in this increment — see [`docs/cms.md`](cms.md) |

@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](deployment.md)
 
-<!-- i18n-source-hash: sha256:7e1a4d10ce5a4daa940ea4764c99652a2d0631d2652c530306ddb81c534aed04 -->
+<!-- i18n-source-hash: sha256:ac809e1c6a0d9e73c09e365d2cdefa088bf491a102b0bcd121dd7a814895f77d -->
 
 # Deployment
 
@@ -46,6 +46,10 @@ Berkas yang jauh lebih besar, dimiliki sepenuhnya oleh `apps/cms` sebagai kode `
 | `COMMERCE_ACCOUNT_OTP_RATE_LIMIT_MAX_PER_IP` / `_WINDOW_SEC` / `_MAX_PER_EMAIL` | 10 / 3600 / 5 | Batas dua-sumbu `account/otp/request` (issue #89) — batas per-IP saja tidak bisa melindungi kotak surat tujuan OTP |
 | `COMMERCE_ACCOUNT_OTP_VERIFY_RATE_LIMIT_MAX_PER_IP` / `_WINDOW_SEC` | 20 / 3600 | Budget per-IP `account/otp/verify` sendiri yang lebih longgar — tanpa sumbu per-e-mail, karena kode ter-hash dengan 5 percobaan sudah membatasi tebakan satu alamat |
 | `COMMERCE_STOREFRONT_PUBLIC_URL` | tidak diset | Origin storefront publik deployment ini, dipakai hanya untuk membangun tautan referral afiliasi yang terdaftar (issue #92, `"${COMMERCE_STOREFRONT_PUBLIC_URL}/?ref=CODE"`); tidak diset jatuh kembali ke `/?ref=CODE` relatif alih-alih mengarang origin |
+| `COMMERCE_SHIPPING_RATE_PROVIDER` | tidak diset | Issue #107 (contract #106 D4) — `rajaongkir` (adapter nyata) atau `log` (aman untuk lokal/dev, tanpa jaringan); tidak diset berarti tidak ada tarif kurir langsung sama sekali, terlepas dari `shipping.courier.enabled` pada pengaturan milik tenant sendiri |
+| `COMMERCE_RAJAONGKIR_API_KEY` | tidak diset | Wajib saat `COMMERCE_SHIPPING_RATE_PROVIDER=rajaongkir` — nilai header `key` API v2 Komerce |
+| `COMMERCE_RAJAONGKIR_BASE_URL` | `https://rajaongkir.komerce.id/api/v1` | Override hanya untuk pengujian/dev — tidak pernah dari input permintaan |
+| `COMMERCE_RAJAONGKIR_TIMEOUT_MS` | `10000` | Timeout per panggilan (`withTimeout`) untuk kedua panggilan RajaOngkir, pencarian tujuan dan hitung ongkos |
 
 Variabel storefront `PUBLIC_*` tidak berubah oleh increment 4 — sesi bearer hidup sepenuhnya di `localStorage` browser sendiri, sehingga tidak ada env var build-time atau runtime baru yang dibutuhkan di sisi `apps/storefront` untuk akun atau afiliasi.
 

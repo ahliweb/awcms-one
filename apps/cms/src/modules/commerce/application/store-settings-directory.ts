@@ -55,7 +55,8 @@ function buildDefaultStoreSettings(storeName: string): StoreSettingsData {
       pinpointEnabled: false,
       freeShipping: { active: false, minOrder: "0.00", maxDiscount: "0.00" },
       originCityName: null,
-      originSubdistrictName: null
+      originSubdistrictName: null,
+      courier: { enabled: false, originDestinationId: null, couriers: [] }
     },
     payment: {
       manualBank: { active: false, accounts: [] },
@@ -272,6 +273,13 @@ export type StoreSettingsPublicRecord = {
     originCityName: string | null;
     originSubdistrictName: string | null;
   };
+  /**
+   * Issue #107 — never re-derives `couriers`/`originDestinationId` on the
+   * public read model: those are owner-configuration, not something an
+   * anonymous shopper needs to see. `courierEnabled` above is the ONE public
+   * signal, and it is `true` only when the owner turned courier rates on
+   * AND this deployment has a configured `ShippingRateProvider`.
+   */
   payment: {
     manualBank: { active: boolean; banks: { bankName: string }[] };
     manualQris: { active: boolean };
@@ -327,7 +335,15 @@ export async function toPublicRecord(
    * `Bun.SQL`, as `tests/commerce-marketing-domain.test.ts` does, must keep
    * working without a live database handle).
    */
-  affiliateProgramEnabled: boolean = false
+  affiliateProgramEnabled: boolean = false,
+  /**
+   * Issue #107 — `resolveShippingRateProvider(...) !== null`, passed in
+   * rather than resolved here for the same reason `affiliateProgramEnabled`
+   * is a boolean parameter: provider resolution reads `process.env`, and
+   * this function must keep working against a fake `MediaLibraryPort` and
+   * no live environment in tests.
+   */
+  courierProviderConfigured: boolean = false
 ): Promise<StoreSettingsPublicRecord> {
   const mediaIds = [
     settings.logoMediaObjectId,
@@ -379,7 +395,8 @@ export async function toPublicRecord(
     shipping: {
       alternativeServices: settings.shipping.alternativeServices,
       selfPickup: settings.shipping.selfPickup,
-      courierEnabled: settings.shipping.courierEnabled,
+      courierEnabled:
+        settings.shipping.courier.enabled && courierProviderConfigured,
       pinpointEnabled: settings.shipping.pinpointEnabled,
       freeShipping: settings.shipping.freeShipping,
       originCityName: settings.shipping.originCityName,

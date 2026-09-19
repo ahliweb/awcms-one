@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](api.md)
 
-<!-- i18n-source-hash: sha256:755170ba2a1be2d70f7aad9e6e4bb3f8ebf215a4ba964e6eb4d3d02eb8844867 -->
+<!-- i18n-source-hash: sha256:07fb7302d62a2c3c3f3067fd282aec6090b50d6871cc967885cf9e6bcafbbeee -->
 
 # API
 
@@ -45,6 +45,14 @@ Paginasi: keyset, terbaru lebih dulu secara default (`sort=newest`), ukuran hala
 
 `DELETE /store-settings` berarti "reset ke default", bukan hapus-pengaturan-tenant: ia mencap `deleted_at`, pembacaan publik dan owner lalu menjawab dengan default, dan `PUT` berikutnya menghapus cap itu.
 
+### Tarif kurir (issue #107, contract #106 D4)
+
+| Method | Jalur | Catatan |
+| --- | --- | --- |
+| `GET` | `/api/v1/commerce/shipping/destinations?search=` | Hanya owner (`settings.update`, izin yang sama dengan `PUT /store-settings`); mencari direktori tujuan milik `ShippingRateProvider` yang dikonfigurasi, mendukung pemilih asal-tujuan admin di layar pengaturan kurir; `503` saat tidak ada provider yang dikonfigurasi |
+
+`shipping.courier = {enabled, originDestinationId, couriers[]}` (owner) milik `store-settings` sendiri dan `shipping.courierEnabled` (publik, `true` hanya saat `courier.enabled` DAN provider dikonfigurasi) adalah sakelar on/off-nya — lihat [`docs/cms.md`](cms.id.md) untuk detail cache/pembulatan berat.
+
 ### Pesanan, pelanggan, ulasan (issue #29) — sisi owner
 
 | Method | Jalur | Catatan |
@@ -61,8 +69,8 @@ Setiap rute me-resolve tenant-nya dari `Origin`/`Host` request terhadap `awcms_t
 
 | Method | Jalur | Catatan |
 | --- | --- | --- |
-| `POST` | `cart/quote` | `{ lines[], shipping, voucherCode, insurance }` → subtotal → diskon voucher → ongkir → asuransi → pajak → total, setiap angka adalah string `numeric(14,2)`; `status` sebuah baris menandai `out_of_stock`/opsi yang tidak tersedia tanpa menggagalkan seluruh quote |
-| `POST` | `orders` | `{ idempotencyKey, customer, address\|null, lines[], shipping, payment, voucherCode, insurance, notes }` → `201` (atau `200` pada pengulangan idempoten kunci yang sama); `400 VALIDATION_ERROR` dengan `details[].{field,message}`; `409 CART_CHANGED` dengan `details.quote` baru kapan pun re-quote satu baris bukan `"ok"` |
+| `POST` | `cart/quote` | `{ lines[], shipping, voucherCode, insurance, destination? }` → subtotal → diskon voucher → ongkir → asuransi → pajak → total, setiap angka adalah string `numeric(14,2)`; `status` sebuah baris menandai `out_of_stock`/opsi yang tidak tersedia tanpa menggagalkan seluruh quote. `destination: {districtCode}` (issue #107) opsional; saat ada DAN `shipping.courier.enabled` milik tenant DAN `ShippingRateProvider` dikonfigurasi, entri kurir pada `shippingOptions[]` adalah tarif RajaOngkir langsung (`{method:"courier", serviceId:"jne:REG", name, cost, etd, available:true}` per layanan); jika tidak, satu placeholder `{method:"courier", serviceId:null, cost:null, available:false, note}` |
+| `POST` | `orders` | `{ idempotencyKey, customer, address\|null, lines[], shipping, payment, voucherCode, insurance, notes }` → `201` (atau `200` pada pengulangan idempoten kunci yang sama); `400 VALIDATION_ERROR` dengan `details[].{field,message}`; `409 CART_CHANGED` dengan `details.quote` baru kapan pun re-quote satu baris bukan `"ok"` — termasuk pilihan `shipping.method: "courier"` yang `{serviceId, cost}`-nya sudah tidak cocok dengan tarif ter-cache yang belum kedaluwarsa (issue #107; tujuannya adalah `address.districtCode`, tidak pernah field terpisah pada permintaan ini) |
 | `GET` | `orders/{code}?phone=` | Bentuk pesanan penuh; **`404 NOT_FOUND`, identik byte-demi-byte, untuk kode yang tidak dikenal, telepon yang salah, atau pesanan tenant lain** — satu respons netral, bukan tiga yang bisa dibedakan (lihat [ADR-0009](adr/0009-guest-checkout-by-order-code-and-phone.id.md)) |
 | `POST` | `orders/{code}/payment-confirmations` | `{phone, method, amount, bankName, accountName, transferredAt, proofMediaObjectId}`; `409 ORDER_NOT_PAYABLE` di luar `pending_payment` |
 | `POST` | `orders/{code}/payment-proof/upload-sessions(/{id}/finalize)` | Selalu `503 MEDIA_UNAVAILABLE` di increment ini — lihat [`docs/cms.md`](cms.id.md) |
