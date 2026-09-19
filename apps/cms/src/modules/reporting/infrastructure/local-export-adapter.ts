@@ -61,6 +61,31 @@ function serializeJson(rows: readonly ExportRow[]): string {
   return JSON.stringify({ rows }, null, 2);
 }
 
+/**
+ * Tabular variant (Issue #117) — a dimensional projection exports its own
+ * rows (one per day/product/category) under the column names its
+ * `ProjectionDimensionalContract.exportRows` declares. Column names are
+ * code-declared; every cell value still goes through `csvEscape`
+ * (formula-injection neutralization matters MORE here: a product name is
+ * tenant-typed text, not a code-declared label).
+ */
+export type TabularExport = {
+  columns: readonly string[];
+  rows: readonly Readonly<Record<string, unknown>>[];
+};
+
+function serializeTabularCsv(table: TabularExport): string {
+  const header = table.columns.map(csvEscape).join(",");
+  const lines = table.rows.map((row) =>
+    table.columns.map((column) => csvEscape(row[column])).join(",")
+  );
+  return [header, ...lines].join("\n");
+}
+
+function serializeTabularJson(table: TabularExport): string {
+  return JSON.stringify({ columns: table.columns, rows: table.rows }, null, 2);
+}
+
 function buildArtifactPath(
   rootPath: string,
   tenantId: string,
@@ -102,6 +127,31 @@ export async function writeLocalExportArtifact(
   const checksumSha256 = createHash("sha256").update(content).digest("hex");
 
   return { storagePath: filePath, checksumSha256, rowCount: rows.length };
+}
+
+/** Same artifact layout, checksum and manifest shape as `writeLocalExportArtifact`, for a tabular (dimensional) export — Issue #117. */
+export async function writeLocalTabularExportArtifact(
+  rootPath: string,
+  tenantId: string,
+  projectionKey: string,
+  format: "csv" | "json",
+  table: TabularExport
+): Promise<LocalExportWriteResult> {
+  const { dir, filePath } = buildArtifactPath(
+    rootPath,
+    tenantId,
+    projectionKey,
+    format
+  );
+  await mkdir(dir, { recursive: true });
+
+  const content =
+    format === "csv" ? serializeTabularCsv(table) : serializeTabularJson(table);
+  await Bun.write(filePath, content);
+
+  const checksumSha256 = createHash("sha256").update(content).digest("hex");
+
+  return { storagePath: filePath, checksumSha256, rowCount: table.rows.length };
 }
 
 export async function readLocalExportArtifact(

@@ -17,7 +17,10 @@ import { getProjectionMetrics } from "./projection-metric-store";
 import { recordExportRun, type ExportRunRow } from "./export-run-store";
 import {
   writeLocalExportArtifact,
-  type ExportRow
+  writeLocalTabularExportArtifact,
+  type ExportRow,
+  type LocalExportWriteResult,
+  type TabularExport
 } from "../infrastructure/local-export-adapter";
 
 const DEFAULT_EXPORT_RETENTION_DAYS = 7;
@@ -48,29 +51,52 @@ export async function generateProjectionExport(
   input: GenerateExportInput,
   env: NodeJS.ProcessEnv = process.env
 ): Promise<ExportRunRow> {
-  const metrics = await withTenantOrThrow(sql, input.tenantId, (tx) =>
-    getProjectionMetrics(tx, input.tenantId, input.descriptor.key)
-  );
-
-  const rows: ExportRow[] = Object.entries(input.descriptor.metricLabels).map(
-    ([metricKey, label]) => ({
-      metricKey,
-      label,
-      value: metrics[metricKey] ?? 0
-    })
-  );
+  // Issue #117 — a dimensional projection exports its OWN rows (one per
+  // day/product/category, the figures an operator actually wants in a
+  // spreadsheet) instead of the scalar metric snapshot; read inside one
+  // short transaction, written outside it exactly like the scalar path.
+  const dimensional = input.descriptor.dimensional;
+  const snapshot: { table: TabularExport } | { rows: ExportRow[] } = dimensional
+    ? {
+        table: await withTenantOrThrow(sql, input.tenantId, (tx) =>
+          dimensional.exportRows(tx, input.tenantId)
+        )
+      }
+    : await (async () => {
+        const metrics = await withTenantOrThrow(sql, input.tenantId, (tx) =>
+          getProjectionMetrics(tx, input.tenantId, input.descriptor.key)
+        );
+        return {
+          rows: Object.entries(input.descriptor.metricLabels).map(
+            ([metricKey, label]) => ({
+              metricKey,
+              label,
+              value: metrics[metricKey] ?? 0
+            })
+          )
+        };
+      })();
 
   const rootPath = resolveExportRootPath(env);
   const retentionDays = resolveRetentionDays(env);
 
   try {
-    const written = await writeLocalExportArtifact(
-      rootPath,
-      input.tenantId,
-      input.descriptor.key,
-      input.format,
-      rows
-    );
+    const written: LocalExportWriteResult =
+      "table" in snapshot
+        ? await writeLocalTabularExportArtifact(
+            rootPath,
+            input.tenantId,
+            input.descriptor.key,
+            input.format,
+            snapshot.table
+          )
+        : await writeLocalExportArtifact(
+            rootPath,
+            input.tenantId,
+            input.descriptor.key,
+            input.format,
+            snapshot.rows
+          );
 
     const expiresAt = new Date(
       Date.now() + retentionDays * 24 * 60 * 60 * 1000

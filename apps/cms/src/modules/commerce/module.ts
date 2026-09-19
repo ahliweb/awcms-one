@@ -49,6 +49,100 @@ import {
   COMMERCE_VOUCHER_REDEEMED_EVENT_TYPE,
   COMMERCE_REVIEW_PUBLISHED_EVENT_TYPE
 } from "./domain/commerce-events";
+import {
+  SALES_BY_CATEGORY_PROJECTION_KEY,
+  SALES_BY_PRODUCT_PROJECTION_KEY,
+  SALES_DAILY_PROJECTION_KEY,
+  SALES_ORDER_EVENTS_STREAM_KEY,
+  SALES_REPORT_METRIC_KEYS
+} from "./domain/sales-report-keys";
+import {
+  SALES_BY_CATEGORY_DIMENSIONAL,
+  SALES_BY_CATEGORY_SINK,
+  SALES_BY_PRODUCT_DIMENSIONAL,
+  SALES_BY_PRODUCT_SINK,
+  SALES_DAILY_DIMENSIONAL,
+  SALES_DAILY_SINK
+} from "./application/sales-report-projection";
+import type {
+  ProjectionCursorStream,
+  ProjectionDescriptor
+} from "../_shared/module-contract";
+
+/**
+ * Issue #117 (epic #33 C8, contract #106 / ADR-0017 D7) — the one source
+ * stream all three sales-report projections read: `awcms_commerce_order_events`,
+ * an append-only status-transition log (the ONLY kind of source the
+ * `cursor_table` strategy is correct for — `reporting/README.md`
+ * §Projections). The scalar `metrics` rule counts consumed `-> paid` events
+ * (the figure the generic projection card and the engine's own `COUNT(*)`
+ * reconciliation see); the dimensional `sink` is where the money goes. One
+ * factory, three descriptors: each projection keeps its OWN cursor row under
+ * the same stream key, so a rebuild of one never disturbs the other two.
+ */
+function salesOrderEventsStream(
+  sink: ProjectionCursorStream["dimensional"]
+): ProjectionCursorStream {
+  return {
+    streamKey: SALES_ORDER_EVENTS_STREAM_KEY,
+    tableName: "awcms_commerce_order_events",
+    cursorColumn: "created_at",
+    metrics: [
+      {
+        metricKey: SALES_REPORT_METRIC_KEYS.paidEvents,
+        effect: "increment",
+        matchColumn: "to_status",
+        matchValue: "paid"
+      }
+    ],
+    dimensional: sink
+  };
+}
+
+const SALES_REPORT_FRESHNESS = {
+  // Same policy as `reporting`'s own cursor_table projections: the refresh
+  // job runs every 2 minutes, so 5 minutes is one missed tick and 30 is a
+  // worker that has stopped.
+  targetSeconds: 300,
+  staleAfterSeconds: 1800,
+  errorAfterConsecutiveFailures: 3
+} as const;
+
+const SALES_REPORT_RETENTION_CLASS =
+  "commerce.sales_daily / commerce.sales_by_product / commerce.sales_by_category (this module's own dataLifecycle descriptors, cursor `day`, same 3650-day ceiling as commerce.order_events): derived, fully rebuildable aggregates — a rebuild after the source's own retention purge recomputes from surviving events only, the same coupling reporting.access_audit_summary documents.";
+
+function salesReportProjection(
+  input: Pick<ProjectionDescriptor, "key" | "description" | "dimensional"> & {
+    sink: NonNullable<ProjectionCursorStream["dimensional"]>;
+    drillDownPath: string;
+  }
+): ProjectionDescriptor {
+  return {
+    key: input.key,
+    version: 1,
+    ownerModuleKey: "commerce",
+    scope: "tenant",
+    description: input.description,
+    source: {
+      strategy: "cursor_table",
+      streams: [salesOrderEventsStream(input.sink)]
+    },
+    rebuildSource: { streams: [salesOrderEventsStream(input.sink)] },
+    metricLabels: {
+      [SALES_REPORT_METRIC_KEYS.paidEvents]: "Paid order events consumed"
+    },
+    // The generic projection surface (`GET /api/v1/reports/projections`,
+    // rebuild/reconcile, `/admin/reporting`) is gated like every other
+    // projection; the three business read routes and the reports screen sit
+    // behind `reporting.dashboard.read` instead (contract #106).
+    requiredPermission: "reporting.projections.read",
+    freshness: SALES_REPORT_FRESHNESS,
+    drillDownPath: input.drillDownPath,
+    retentionClass: SALES_REPORT_RETENTION_CLASS,
+    batchLimit: 500,
+    dimensional: input.dimensional
+  };
+}
 
 /**
  * `commerce` (Issue #4, part of epic #1; brought to full product-model parity
@@ -120,8 +214,52 @@ export const commerceModule = defineModule({
   isCore: false,
   api: {
     openApiPath: "openapi/modules/commerce.openapi.yaml",
-    basePath: "/api/v1/commerce"
+    basePath: "/api/v1/commerce",
+    // Issue #117 — the three sales-report read routes live under the
+    // `reporting` module's `/api/v1/reports` family by contract (#106: "read
+    // through the reporting module's projection read path", gated on
+    // `reporting.dashboard.read`), but their handlers read THIS module's
+    // projection tables through this module's own application code, so this
+    // module owns them (longest prefix wins over `reporting`'s claim).
+    routes: ["/api/v1/commerce", "/api/v1/reports/commerce"]
   },
+  /**
+   * Issue #117 (C8, contract #106 / ADR-0017 D7) — three `cursor_table`
+   * projections over the append-only order-event log, maintained by the
+   * `reporting` engine (`bun run reporting:projections:refresh`) into this
+   * module's own `awcms_commerce_sales_*` tables (sql/933). Delta rules:
+   * `-> paid` adds the order's totals/items, `-> cancelled|refunded` after a
+   * paid state subtracts them (`domain/sales-report-deltas.ts`, pure);
+   * sinks/reset/reconcile/export hooks in
+   * `application/sales-report-projection.ts`; read routes under
+   * `/api/v1/reports/commerce/*`; screen `/admin/commerce-reports`.
+   */
+  reportingProjections: [
+    salesReportProjection({
+      key: SALES_DAILY_PROJECTION_KEY,
+      description:
+        "Per-day sales: paid order count, gross (sum of order subtotals), discount (order + voucher discounts), shipping and net (order totals), attributed to the day of each order's paid_at in the report time zone. A cancellation or refund of a paid order subtracts from the same day it was added to, so net is a true per-day net.",
+      sink: SALES_DAILY_SINK,
+      dimensional: SALES_DAILY_DIMENSIONAL,
+      drillDownPath: "/api/v1/reports/commerce/sales-daily"
+    }),
+    salesReportProjection({
+      key: SALES_BY_PRODUCT_PROJECTION_KEY,
+      description:
+        "Per-day, per-product quantity and gross (sum of line totals) from paid orders, with the product name as snapshotted on the order line; reversals subtract. The read route groups a date range by product.",
+      sink: SALES_BY_PRODUCT_SINK,
+      dimensional: SALES_BY_PRODUCT_DIMENSIONAL,
+      drillDownPath: "/api/v1/reports/commerce/sales-by-product"
+    }),
+    salesReportProjection({
+      key: SALES_BY_CATEGORY_PROJECTION_KEY,
+      description:
+        "Per-day, per-category quantity and gross from paid orders, attributed through the product's category at processing time (a product without a category lands in the uncategorised bucket); reversals subtract. The read route groups a date range by category.",
+      sink: SALES_BY_CATEGORY_SINK,
+      dimensional: SALES_BY_CATEGORY_DIMENSIONAL,
+      drillDownPath: "/api/v1/reports/commerce/sales-by-category"
+    })
+  ],
   events: {
     asyncApiPath: "asyncapi/awcms-domain-events.asyncapi.yaml",
     publishes: [
@@ -341,6 +479,15 @@ export const commerceModule = defineModule({
       path: "/admin/commerce-campaigns",
       order: 15,
       requiredPermission: "commerce.campaigns.read"
+    },
+    // Issue #117 — the sales reports screen sits under Commerce but is gated
+    // on `reporting.dashboard.read`, the same permission its three read
+    // routes and the generic `/api/v1/reports/*` views use (contract #106).
+    {
+      labelKey: "admin.layout.nav_commerce_reports",
+      path: "/admin/commerce-reports",
+      order: 16,
+      requiredPermission: "reporting.dashboard.read"
     }
   ],
   /**
@@ -1817,6 +1964,151 @@ export const commerceModule = defineModule({
       batchLimit: 5000,
       backupRestoreNotes:
         "Included in ordinary full-database backup/restore; no standalone archive artifact.",
+      executionMode: "generic"
+    },
+    {
+      key: "commerce.sales_daily",
+      tableName: "awcms_commerce_sales_daily",
+      ownerModuleKey: "commerce",
+      scope: "tenant",
+      // Issue #117 — a DERIVED reporting projection (sql/933): one row per
+      // (tenant, day), maintained by the `reporting` engine from
+      // `awcms_commerce_order_events` and fully rebuildable from it. The
+      // cursor is the report `day` itself: a row older than the retention
+      // window is unrecoverable by a rebuild anyway once `commerce.order_events`
+      // (same ceiling, 3650 days) has purged the events behind it, so the
+      // two windows are kept identical on purpose.
+      cursorColumn: "day",
+      retentionClass: "system_event",
+      retentionMinDays: 365,
+      retentionMaxDays: 3650,
+      defaultRetentionDays: 3650,
+      partition: {
+        eligible: false,
+        rationale:
+          "Bounded by the calendar times the catalogue — a few rows per trading day per tenant."
+      },
+      archive: {
+        archivable: false,
+        rationale:
+          "A derived aggregate; the evidence is the order-event log it is computed from, which has its own descriptor."
+      },
+      deletion: {
+        mode: "hard_delete",
+        rationale:
+          "The generic engine's only implemented mode; a projection row older than its own source's retention can never be rebuilt and is safe to purge."
+      },
+      legalHold: { applicable: false, precedence: "not_applicable" },
+      requiredIndexes: [
+        {
+          columns: ["tenant_id", "day"],
+          purpose:
+            "The primary key's own leading columns (sql/933) — the (tenant, cursor) composite the generic purge engine filters + orders by."
+        }
+      ],
+      batchLimit: 5000,
+      backupRestoreNotes:
+        "Included in ordinary full-database backup/restore; no standalone archive artifact — a rebuild from the order-event log is the restore path.",
+      executionMode: "generic"
+    },
+    {
+      key: "commerce.sales_by_product",
+      tableName: "awcms_commerce_sales_by_product",
+      ownerModuleKey: "commerce",
+      scope: "tenant",
+      // Issue #117 — a DERIVED reporting projection (sql/933): one row per
+      // (tenant, day, product), maintained by the `reporting` engine from
+      // `awcms_commerce_order_events` and fully rebuildable from it. The
+      // cursor is the report `day` itself: a row older than the retention
+      // window is unrecoverable by a rebuild anyway once `commerce.order_events`
+      // (same ceiling, 3650 days) has purged the events behind it, so the
+      // two windows are kept identical on purpose.
+      cursorColumn: "day",
+      retentionClass: "system_event",
+      retentionMinDays: 365,
+      retentionMaxDays: 3650,
+      defaultRetentionDays: 3650,
+      partition: {
+        eligible: false,
+        rationale:
+          "Bounded by the calendar times the catalogue — a few rows per trading day per tenant."
+      },
+      archive: {
+        archivable: false,
+        rationale:
+          "A derived aggregate; the evidence is the order-event log it is computed from, which has its own descriptor."
+      },
+      deletion: {
+        mode: "hard_delete",
+        rationale:
+          "The generic engine's only implemented mode; a projection row older than its own source's retention can never be rebuilt and is safe to purge."
+      },
+      legalHold: { applicable: false, precedence: "not_applicable" },
+      requiredIndexes: [
+        {
+          columns: ["tenant_id", "day"],
+          purpose:
+            "The primary key's own leading columns (sql/933) — the (tenant, cursor) composite the generic purge engine filters + orders by."
+        },
+        {
+          columns: ["tenant_id", "product_id"],
+          purpose:
+            "awcms_commerce_sales_by_product_product_idx (sql/933) — the grouped by-product read over a date range."
+        }
+      ],
+      batchLimit: 5000,
+      backupRestoreNotes:
+        "Included in ordinary full-database backup/restore; no standalone archive artifact — a rebuild from the order-event log is the restore path.",
+      executionMode: "generic"
+    },
+    {
+      key: "commerce.sales_by_category",
+      tableName: "awcms_commerce_sales_by_category",
+      ownerModuleKey: "commerce",
+      scope: "tenant",
+      // Issue #117 — a DERIVED reporting projection (sql/933): one row per
+      // (tenant, day, category), maintained by the `reporting` engine from
+      // `awcms_commerce_order_events` and fully rebuildable from it. The
+      // cursor is the report `day` itself: a row older than the retention
+      // window is unrecoverable by a rebuild anyway once `commerce.order_events`
+      // (same ceiling, 3650 days) has purged the events behind it, so the
+      // two windows are kept identical on purpose.
+      cursorColumn: "day",
+      retentionClass: "system_event",
+      retentionMinDays: 365,
+      retentionMaxDays: 3650,
+      defaultRetentionDays: 3650,
+      partition: {
+        eligible: false,
+        rationale:
+          "Bounded by the calendar times the catalogue — a few rows per trading day per tenant."
+      },
+      archive: {
+        archivable: false,
+        rationale:
+          "A derived aggregate; the evidence is the order-event log it is computed from, which has its own descriptor."
+      },
+      deletion: {
+        mode: "hard_delete",
+        rationale:
+          "The generic engine's only implemented mode; a projection row older than its own source's retention can never be rebuilt and is safe to purge."
+      },
+      legalHold: { applicable: false, precedence: "not_applicable" },
+      requiredIndexes: [
+        {
+          columns: ["tenant_id", "day"],
+          purpose:
+            "The primary key's own leading columns (sql/933) — the (tenant, cursor) composite the generic purge engine filters + orders by."
+        },
+        {
+          columns: ["tenant_id", "category_id"],
+          purpose:
+            "awcms_commerce_sales_by_category_category_idx (sql/933) — the grouped by-category read over a date range."
+        }
+      ],
+      batchLimit: 5000,
+      backupRestoreNotes:
+        "Included in ordinary full-database backup/restore; no standalone archive artifact — a rebuild from the order-event log is the restore path.",
       executionMode: "generic"
     }
   ],

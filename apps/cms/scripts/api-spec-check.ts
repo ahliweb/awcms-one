@@ -233,12 +233,7 @@ const ALLOWED_PUBLIC_OPERATIONS = new Set([
  */
 const ROUTE_PARITY_EXEMPTIONS = new Set<string>([
   // #116 — POS: cash orders, channel, permission, POS screen + history.
-  "/api/v1/commerce/pos/orders",
-  // #117 — sales reports: three reporting projections over order events +
-  // reports screen.
-  "/api/v1/reports/commerce/sales-daily",
-  "/api/v1/reports/commerce/sales-by-product",
-  "/api/v1/reports/commerce/sales-by-category"
+  "/api/v1/commerce/pos/orders"
 ]);
 
 type OpenApiDocument = {

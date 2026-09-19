@@ -11345,65 +11345,69 @@ Anonymous by definition — a provider callback carries no session. Replay-prote
 | 401    | Bad or missing provider signature.                                           | [`ApiError`](#standard-error-envelope) |
 | 404    | Unknown `endpointToken`, or a `provider` value the token was not minted for. | [`ApiError`](#standard-error-envelope) |
 
-### `GET /api/v1/reports/commerce/sales-by-category` — Issue #106 (ADR-0017 D7; not yet implemented, lands in #117). The `commerce.sales_by_category` projection. Gated on `reporting.dashboard.read`.
+### `GET /api/v1/reports/commerce/sales-by-category` — Issue #117 (contract #106, ADR-0017 D7). The `commerce.sales_by_category` projection grouped over the inclusive day range — quantity and gross per product category from paid orders, reversals subtracted, attributed through the product's category at processing time; lines whose product has no category are returned as one bucket with `categoryId: null`. Gated on `reporting.dashboard.read`.
 
 - **operationId**: `getReportsCommerceSalesByCategory`
 - **Security**: bearerAuth + tenantHeader
 
 **Parameters**
 
-| Name   | In    | Required | Type          | Description |
-| ------ | ----- | -------- | ------------- | ----------- |
-| `from` | query | no       | string (date) |             |
-| `to`   | query | no       | string (date) |             |
+| Name   | In    | Required | Type          | Description                                                                                                                              |
+| ------ | ----- | -------- | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `from` | query | no       | string (date) | Inclusive first projection day (`YYYY-MM-DD`, in the report time zone). Defaults to 29 days before `to`. A range spans at most 366 days. |
+| `to`   | query | no       | string (date) | Inclusive last projection day (`YYYY-MM-DD`). Defaults to today in the report time zone.                                                 |
 
 **Responses**
 
-| Status | Description                    | Schema                                 |
-| ------ | ------------------------------ | -------------------------------------- |
-| 200    | One row per category in range. | object                                 |
-| 401    | Missing or invalid session.    | [`ApiError`](#standard-error-envelope) |
-| 403    | Access denied by RBAC/ABAC.    | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                         | Schema                                 |
+| ------ | --------------------------------------------------- | -------------------------------------- |
+| 200    | One row per category in range, largest gross first. | object                                 |
+| 400    | Validation error.                                   | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                         | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                         | [`ApiError`](#standard-error-envelope) |
 
-### `GET /api/v1/reports/commerce/sales-by-product` — Issue #106 (ADR-0017 D7; not yet implemented, lands in #117). The `commerce.sales_by_product` projection. Gated on `reporting.dashboard.read`.
+### `GET /api/v1/reports/commerce/sales-by-product` — Issue #117 (contract #106, ADR-0017 D7). The `commerce.sales_by_product` projection grouped over the inclusive day range — quantity and gross (sum of line totals) per product from paid orders, reversals subtracted — best-selling by gross first, at most `limit` rows. Gated on `reporting.dashboard.read`.
 
 - **operationId**: `getReportsCommerceSalesByProduct`
 - **Security**: bearerAuth + tenantHeader
 
 **Parameters**
 
-| Name   | In    | Required | Type          | Description |
-| ------ | ----- | -------- | ------------- | ----------- |
-| `from` | query | no       | string (date) |             |
-| `to`   | query | no       | string (date) |             |
+| Name    | In    | Required | Type          | Description                                                                                                                              |
+| ------- | ----- | -------- | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `from`  | query | no       | string (date) | Inclusive first projection day (`YYYY-MM-DD`, in the report time zone). Defaults to 29 days before `to`. A range spans at most 366 days. |
+| `to`    | query | no       | string (date) | Inclusive last projection day (`YYYY-MM-DD`). Defaults to today in the report time zone.                                                 |
+| `limit` | query | no       | integer       | Maximum number of products returned (1–200, default 20).                                                                                 |
 
 **Responses**
 
-| Status | Description                   | Schema                                 |
-| ------ | ----------------------------- | -------------------------------------- |
-| 200    | One row per product in range. | object                                 |
-| 401    | Missing or invalid session.   | [`ApiError`](#standard-error-envelope) |
-| 403    | Access denied by RBAC/ABAC.   | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                        | Schema                                 |
+| ------ | -------------------------------------------------- | -------------------------------------- |
+| 200    | One row per product in range, largest gross first. | object                                 |
+| 400    | Validation error.                                  | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                        | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                        | [`ApiError`](#standard-error-envelope) |
 
-### `GET /api/v1/reports/commerce/sales-daily` — Issue #106 (ADR-0017 D7; not yet implemented, lands in #117). The `commerce.sales_daily` reporting projection, read through the `reporting` module's own projection read path. Gated on `reporting.dashboard.read`.
+### `GET /api/v1/reports/commerce/sales-daily` — Issue #117 (contract #106, ADR-0017 D7). Per-day sales from the `commerce.sales_daily` reporting projection over the append-only order-event log: `-> paid` adds an order's figures, `-> cancelled|refunded` after a paid state subtracts them on the same day. One row per projection day that has any figure in the inclusive range. Gated on `reporting.dashboard.read`; the projection's freshness, rebuild and reconciliation live on `GET /api/v1/reports/projections/commerce.sales_daily`.
 
 - **operationId**: `getReportsCommerceSalesDaily`
 - **Security**: bearerAuth + tenantHeader
 
 **Parameters**
 
-| Name   | In    | Required | Type          | Description |
-| ------ | ----- | -------- | ------------- | ----------- |
-| `from` | query | no       | string (date) |             |
-| `to`   | query | no       | string (date) |             |
+| Name   | In    | Required | Type          | Description                                                                                                                              |
+| ------ | ----- | -------- | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `from` | query | no       | string (date) | Inclusive first projection day (`YYYY-MM-DD`, in the report time zone). Defaults to 29 days before `to`. A range spans at most 366 days. |
+| `to`   | query | no       | string (date) | Inclusive last projection day (`YYYY-MM-DD`). Defaults to today in the report time zone.                                                 |
 
 **Responses**
 
-| Status | Description                 | Schema                                 |
-| ------ | --------------------------- | -------------------------------------- |
-| 200    | One row per day in range.   | object                                 |
-| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
-| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| Status | Description                          | Schema                                 |
+| ------ | ------------------------------------ | -------------------------------------- |
+| 200    | One row per day in range, ascending. | object                                 |
+| 400    | Validation error.                    | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.          | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.          | [`ApiError`](#standard-error-envelope) |
 
 ## Commerce Accounts
 

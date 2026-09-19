@@ -1202,6 +1202,21 @@
       "source": "factory"
     },
     {
+      "path": "src/pages/api/v1/reports/commerce/sales-by-category.ts",
+      "workClass": "reporting",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/reports/commerce/sales-by-product.ts",
+      "workClass": "reporting",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/reports/commerce/sales-daily.ts",
+      "workClass": "reporting",
+      "source": "factory"
+    },
+    {
       "path": "src/pages/api/v1/reports/email-health.ts",
       "workClass": "reporting",
       "source": "explicit"

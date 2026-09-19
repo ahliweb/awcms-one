@@ -1615,6 +1615,18 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   // #113's), granted the same way for the generic archive/purge engine
   // per `commerce/module.ts`'s own descriptors for these three tables.
   awcms_commerce_payment_gateway_sessions: ["SELECT", "DELETE"],
+  // Issue #117 (sql/933) — the three sales-report projection tables the
+  // `reporting` engine maintains for `commerce` on `bun run
+  // reporting:projections:refresh` (incremental passes AND continuation of
+  // an in-progress rebuild): SELECT + INSERT + UPDATE for the additive
+  // `INSERT ... ON CONFLICT DO UPDATE` upsert (DO UPDATE needs UPDATE,
+  // sql/022's header), plus DELETE for the generic data-lifecycle purge the
+  // tables' own `dataLifecycle` descriptors register them for (cursor
+  // `day`). The rebuild RESET's own delete runs as `awcms_app` in the API
+  // route's transaction, not in the worker.
+  awcms_commerce_sales_daily: ["SELECT", "INSERT", "UPDATE", "DELETE"],
+  awcms_commerce_sales_by_product: ["SELECT", "INSERT", "UPDATE", "DELETE"],
+  awcms_commerce_sales_by_category: ["SELECT", "INSERT", "UPDATE", "DELETE"],
   awcms_commerce_payment_events: ["SELECT", "DELETE"],
   awcms_commerce_webhook_endpoints: ["SELECT", "DELETE"]
 };

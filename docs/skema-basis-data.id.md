@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](skema-basis-data.md)
 
-<!-- i18n-source-hash: sha256:f26094b7260fb736eb4e37ef2f103f16cf839a67547618c09455dced758382b9 -->
+<!-- i18n-source-hash: sha256:923f20ff964a6a544f390682b48a2534d9a95fcd5d193df2ee868b4f237e7ae2 -->
 
 # Skema basis data
 
@@ -177,6 +177,18 @@ Issue #110, D2/D3 kontrak #106 — tabel sesi hosted-checkout, buku besar anti-r
 Plus dua kolom nullable pada `awcms_commerce_orders` yang sudah ada: `gateway_provider text`, `gateway_ref text` — gateway/referensi mana yang membayar pesanan ini, jika ada (ditambahkan `ADD COLUMN IF NOT EXISTS`, sehingga migration tetap aditif terhadap tabel `orders` yang sudah terisi).
 
 Ketiga tabel baru: RLS `ENABLE`+`FORCE`, kebijakan isolasi-tenant, indeks FK (termasuk indeks komposit `(tenant_id, <kolom kursor>)` di masing-masing, mengikuti konvensi `data-lifecycle:table-coverage:check` milik repo ini sendiri). Satu objek keempat, `awcms_resolve_commerce_webhook_endpoint(token_hash)`, adalah fungsi `SECURITY DEFINER` yang meniru pola bootstrap-read `awcms_resolve_tenant_domain_lookup` milik `sql/048` persis — peran pemilik `NOLOGIN` khusus (`awcms_webhook_endpoint_bootstrap`), kebijakan `FOR SELECT` eksplisit yang dibatasi hanya untuk peran itu, bentuk balikan tetap yang tidak sensitif (`tenant_id`, `provider` — tidak pernah `token_hash`/`label`/`created_by`), dan `EXECUTE` dibatasi ke `awcms_app`. Fungsi ini me-resolve `(tenant_id, provider)` dari token opak yang di-hash sebelum konteks tenant apa pun ada, celah bootstrap yang sama yang ditutup fungsi tenant-domain untuk sebuah hostname.
+
+## Proyeksi laporan penjualan: tiga tabel turunan (`sql/933`)
+
+Issue #117, D7 kontrak #106 — read model dari tiga proyeksi reporting `cursor_table` yang disumbangkan `commerce` (`commerce.sales_daily`, `commerce.sales_by_product`, `commerce.sales_by_category`), dipelihara oleh worker milik mesin `reporting` dari `awcms_commerce_order_events` (lihat [`docs/cms.md`](cms.id.md) "Laporan penjualan" untuk aturan deltanya). Turunan dan sepenuhnya dapat dibangun ulang — tidak pernah ditulis jalur request, tidak pernah menjadi sumber kebenaran.
+
+| Tabel | Kolom kunci | Catatan |
+| --- | --- | --- |
+| `awcms_commerce_sales_daily` | `PRIMARY KEY (tenant_id, day)`, `day date`, `orders_paid integer`, `gross`/`discount`/`shipping`/`net numeric(14,2)` | Satu baris per hari zona-laporan (`Asia/Jakarta`) yang memiliki pesanan terbayar. `orders_paid` dan empat kolom uang adalah delta aditif: `+` saat `-> paid`, `-` saat `-> cancelled|refunded` setelah status terbayar, pada baris hari yang SAMA (diatribusikan ke `paid_at` pesanan). Hari yang terjual lalu di-refund penuh terbaca `0`, bukan hilang |
+| `awcms_commerce_sales_by_product` | `PRIMARY KEY (tenant_id, day, product_id)`, `product_name text` (snapshot), `qty integer`, `gross numeric(14,2)` | Per hari dan produk; `gross` adalah jumlah total baris. Sengaja tanpa FK ke `awcms_commerce_products` — namanya snapshot (sikap yang sama dengan `awcms_commerce_order_items.name`) dan produk yang sudah dipurge tidak boleh membuat riwayat penjualannya tak bisa dibangun ulang. Indeks `(tenant_id, product_id)` untuk pembacaan tergabung |
+| `awcms_commerce_sales_by_category` | `PRIMARY KEY (tenant_id, day, category_id)`, `category_name text` (snapshot), `qty integer`, `gross numeric(14,2)` | Per hari dan kategori produk, diatribusikan lewat `products.category_id` saat pemrosesan. `category_id` `NOT NULL` karena bagian dari kunci: produk tanpa kategori mendarat di uuid sentinel serba-nol, yang oleh rute baca dipetakan kembali menjadi `categoryId: null`. Indeks `(tenant_id, category_id)` |
+
+Ketiganya: RLS `ENABLE`+`FORCE`, policy isolasi tenant, `updated_at`, uang sebagai `numeric(14,2)` yang ditulis dari sen bilangan bulat sebagai string desimal (tak pernah float). Baris di-upsert menurut primary key dengan `INSERT ... ON CONFLICT DO UPDATE SET x = x + EXCLUDED.x` di dalam transaksi pass terbatas milik mesin, setelah advisory lock (tenant, proyeksi) dan sebelum kursor maju; rebuild men-`DELETE` baris tenant dalam transaksi yang sama dengan reset kursor. `awcms_worker` diberi `SELECT, INSERT, UPDATE, DELETE` (`bun run reporting:projections:refresh` meng-upsert; purge data-lifecycle generik menghapus; delete milik reset rebuild sendiri berjalan sebagai `awcms_app` dalam transaksi rute API) — dicerminkan di `WORKER_ROLE_GRANTS`. Retensi: tiga deskriptor `dataLifecycle` di `commerce/module.ts` (`commerce.sales_daily`/`_by_product`/`_by_category`, kursor `day`, jendela 365–3650 hari yang sama dengan `commerce.order_events` — baris yang lebih tua dari retensi sumbernya tak pernah bisa dibangun ulang dan aman dipurge). Data subjek: `NO_SUBJECT_DATA` di ledger skrip (angka per hari/produk/kategori adalah fakta tentang tidak seorang pun).
 
 ## Row-level security: `ENABLE` dan `FORCE`, terbukti di bawah role tak-berhak-istimewa
 
