@@ -171,6 +171,7 @@ function orderInput(
     voucherCode: null,
     insurance: false,
     notes: null,
+    affiliateCode: null,
     ...overrides
   };
 }
