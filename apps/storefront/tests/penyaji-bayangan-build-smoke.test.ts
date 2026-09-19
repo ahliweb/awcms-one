@@ -1,4 +1,5 @@
 import { describe, expect, test } from "bun:test";
+import { STUB_START_DEADLINE_MS } from "./stub-deadline";
 import { existsSync, rmSync, statSync } from "node:fs";
 import { join } from "node:path";
 
@@ -70,7 +71,7 @@ describe("build smoke: the bundled server serves directory-shadowed pages (issue
       let served: ReturnType<typeof Bun.spawn> | undefined;
 
       try {
-        await waitForHttp(`http://localhost:${stubPort}/api/v1/blog/posts`, Date.now() + 5000, "stub-awcms");
+        await waitForHttp(`http://localhost:${stubPort}/api/v1/blog/posts`, Date.now() + STUB_START_DEADLINE_MS, "stub-awcms");
 
         const buildEnv = {
           ...process.env,
