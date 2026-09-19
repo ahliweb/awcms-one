@@ -14,7 +14,7 @@
     ]
   },
   "future": {
-    "note": "Placeholder company data — no field on /api/v1/site-profile today accepts a legal entity name or a plain asset path for the logo (logoMediaId needs a real media object, same R2-upload gap as tools/seed-data/contoh/borneojek-mart/products.json's own images), so this stays informational.",
+    "note": "Placeholder company data — no field on /api/v1/site-profile today accepts a legal entity name or a plain asset path for the logo (logoMediaId needs a real media object, same R2-upload gap as the reference-example seed (`tools/seed-data/contoh/`)'s own images), so this stays informational.",
     "companyName": "PT Contoh Karya",
     "logoAsset": "tools/seed-assets/profil/landing/logo-pt-contoh-karya.svg"
   }
