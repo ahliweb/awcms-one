@@ -5,6 +5,13 @@
  * (`PATCH …/account/me`) and "Keluar" (`POST …/account/logout`, ALWAYS
  * clearing the local session afterwards — issue #88's own rule — even when
  * the request itself failed over the network).
+ *
+ * Issue #115 adds the marketing-consent toggle: a real checkbox that saves
+ * on `change` (`PATCH …/account/me {marketingConsent}`), confirms through
+ * the SAME `aria-live` region `renderProfile` already updates for a name
+ * change, and reverts its own checked state (without a page reload) if the
+ * save fails — the checkbox is never left showing a state the server does
+ * not actually hold.
  */
 import { ambilProfil, keluar, ubahProfil } from "../lib/akun-klien";
 import { bacaSesi, hapusSesi } from "../lib/akun-sesi";
@@ -33,6 +40,8 @@ if (root) {
   const ubahNamaForm = root.querySelector<HTMLFormElement>("[data-ubah-nama-form]");
   const ubahNamaInput = ubahNamaForm?.querySelector<HTMLInputElement>('[name="name"]');
   const keluarButton = root.querySelector<HTMLButtonElement>("[data-keluar]");
+  const consentCheckbox = root.querySelector<HTMLInputElement>("[data-consent-checkbox]");
+  const consentStatusEl = root.querySelector<HTMLElement>("[data-consent-status]");
 
   const whatsappNumber = root.dataset.whatsappNumber ?? "";
   const storeName = root.dataset.storeName ?? "toko";
@@ -62,12 +71,19 @@ if (root) {
     if (accountView) accountView.hidden = true;
   }
 
-  function renderProfile(account: { name: string; email: string; phone: string; level: number }): void {
+  function renderProfile(account: {
+    name: string;
+    email: string;
+    phone: string;
+    level: number;
+    marketingConsent: boolean;
+  }): void {
     if (profileNameEl) profileNameEl.textContent = account.name;
     if (profileEmailEl) profileEmailEl.textContent = account.email;
     if (profilePhoneEl) profilePhoneEl.textContent = account.phone;
     if (profileLevelEl) profileLevelEl.textContent = levelLabel(account.level);
     if (ubahNamaInput) ubahNamaInput.value = account.name;
+    if (consentCheckbox) consentCheckbox.checked = account.marketingConsent;
   }
 
   async function showAccountView(): Promise<void> {
@@ -130,6 +146,35 @@ if (root) {
         return;
       }
       showSubmitError(error, "mengubah nama akun");
+    }
+  });
+
+  consentCheckbox?.addEventListener("change", async () => {
+    const desired = consentCheckbox.checked;
+    hideSubmitError();
+    if (consentStatusEl) consentStatusEl.textContent = "";
+
+    try {
+      const { account } = await ubahProfil({ marketingConsent: desired });
+      consentCheckbox.checked = account.marketingConsent;
+      if (consentStatusEl) {
+        consentStatusEl.textContent = account.marketingConsent
+          ? "Anda akan menerima promo lewat e-mail/WhatsApp."
+          : "Anda tidak akan menerima promo lewat e-mail/WhatsApp.";
+      }
+    } catch (error) {
+      // Revert the checkbox to what the server actually holds — never leave
+      // it showing a state the save did not confirm.
+      consentCheckbox.checked = !desired;
+      if (error instanceof TokoApiError && error.code === "UNAUTHENTICATED") {
+        showGuestView();
+        return;
+      }
+      if (consentStatusEl) {
+        consentStatusEl.textContent =
+          error instanceof TokoApiError ? error.message : "Gagal menyimpan preferensi. Coba lagi.";
+      }
+      showWaFallback("mengubah preferensi promo");
     }
   });
 

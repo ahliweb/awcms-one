@@ -16,6 +16,7 @@ import "../styles/akun.css";
 const identity = await getSiteIdentity();
 const storeSettings = await getStoreSettings();
 const whatsappNumber = storeSettings.whatsapp ?? identity.whatsappNumber ?? "";
+const whatsappOtpEnabled = storeSettings.whatsappOtpEnabled ?? false;
 ---
 
 <BaseLayout title="Daftar" description="Buat akun baru." canonicalPath="/daftar">
@@ -58,6 +59,19 @@ const whatsappNumber = storeSettings.whatsapp ?? identity.whatsappNumber ?? "";
 
     <form data-daftar-form novalidate class="akun-card">
       <section data-step="data">
+        <p class="toko-field-hint" data-email-only-note>
+          {
+            whatsappOtpEnabled
+              ? (
+                <>
+                  Pendaftaran akun baru menggunakan kode OTP lewat e-mail. Sudah punya akun? Anda bisa masuk lewat
+                  WhatsApp di halaman <a href={ROUTES.login}>Masuk</a>.
+                </>
+              )
+              : "Pendaftaran akun baru menggunakan kode OTP lewat e-mail."
+          }
+        </p>
+
         <div class="toko-field">
           <label for="daftar-name">Nama lengkap</label>
           <input type="text" id="daftar-name" name="name" required autocomplete="name" />

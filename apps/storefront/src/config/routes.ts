@@ -82,7 +82,11 @@ export const ROUTES = {
   /** Lands in S3. */
   accountReviews: "/akun/ulasan",
   /** Lands in S3 (issue #86's affiliate program). */
-  accountAffiliate: "/akun/afiliasi"
+  accountAffiliate: "/akun/afiliasi",
+  /** Issue #115 (S3 of #33, contract #106 D8) — the signed-in shopper's own message inbox with the store. */
+  accountMessages: "/akun/pesan",
+  /** A single thread — `id` is percent-encoded, mirroring `accountOrder`'s own `?kode=` shape. */
+  accountMessage: (id: string): string => `/akun/pesan?id=${encodeURIComponent(id)}`
 } as const;
 
 /**

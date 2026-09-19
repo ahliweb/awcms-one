@@ -188,6 +188,34 @@
  * `paid` or leaves it, then `302`s back to the storefront's own `/pesanan?
  * kode=`.
  *
+ * Issue #115 (S3 of #33, contract: #106 D5/D8/D9) adds:
+ *
+ *   - `via?: "email"|"whatsapp"` on `POST …/account/otp/request` (default
+ *     `"email"`); `via:"whatsapp"` is LOGIN-only, keyed by `phone` rather
+ *     than `email`, and answers `409 CHANNEL_UNAVAILABLE` when
+ *     `store-settings-public.json`'s own `whatsappOtpEnabled` is not `true`
+ *     — the same field this app's build reads to decide whether to render
+ *     the channel choice at all. `POST …/otp/verify` accepts `{phone, code,
+ *     purpose:"login"}` for that path, resolving the account by phone
+ *     instead of e-mail. The fixture account (`budi@example.test`,
+ *     `+6281234567890`) is what a WhatsApp login authenticates against —
+ *     the same OTP code (`123456`) as the e-mail path.
+ *   - `marketingConsent: boolean` on every account (default `false`,
+ *     `true` for the seeded fixture account), read/written by
+ *     `GET`/`PATCH …/account/me`.
+ *   - `awcms_commerce_conversations`/`…_messages`'s own bearer routes:
+ *     `GET/POST …/account/conversations`, `GET …/account/conversations/
+ *     {id}` (marks the thread read), `POST …/account/conversations/{id}/
+ *     messages` (`409 CONVERSATION_CLOSED` once `status` is `"closed"`,
+ *     `400 VALIDATION_ERROR` over 4000 characters). The fixture account is
+ *     seeded with one OPEN thread carrying an unread store reply and one
+ *     CLOSED thread, so `/akun/pesan`'s unread badge and "closed thread
+ *     shows a note" behaviour are both exercised with no manual message
+ *     first; every new customer message additionally schedules a
+ *     SIMULATED store auto-reply 2 seconds later (this issue's own "so
+ *     unread flags are exercised" requirement) — a `setTimeout` against
+ *     this process's own in-memory state, never persisted.
+ *
  * See `handleStorefrontRequest` below for the route table itself.
  */
 import { readFileSync } from "node:fs";
@@ -825,6 +853,38 @@ function sumKomisi(commissions, status) {
   return total.toFixed(2);
 }
 
+/**
+ * Issue #115 — the fixture account's (`budi@example.test`) two seeded
+ * conversations: one OPEN with an unread store reply already sitting on it
+ * (so `/akun/pesan`'s unread badge is exercised without a manual message
+ * first), one CLOSED (so the "closed thread shows a note instead of the
+ * reply form" behaviour is exercised too). A freshly registered account
+ * starts with `conversations: []`, same as it starts with no addresses/
+ * orders/reviews.
+ */
+const SEEDED_CONVERSATIONS = [
+  {
+    id: "conv-seed-1",
+    subject: "Pertanyaan tentang pengiriman",
+    status: "open",
+    unreadForCustomer: 1,
+    messages: [
+      { id: "msg-seed-1", sender: "customer", body: "Kapan pesanan saya dikirim?", createdAt: "2026-02-01T01:00:00.000Z" },
+      { id: "msg-seed-2", sender: "store", body: "Pesanan Anda akan dikirim besok pagi.", createdAt: "2026-02-01T02:00:00.000Z" }
+    ]
+  },
+  {
+    id: "conv-seed-2",
+    subject: "Komplain produk rusak",
+    status: "closed",
+    unreadForCustomer: 0,
+    messages: [
+      { id: "msg-seed-3", sender: "customer", body: "Produk yang saya terima rusak.", createdAt: "2026-01-05T01:00:00.000Z" },
+      { id: "msg-seed-4", sender: "store", body: "Mohon maaf, kami akan proses pengembalian.", createdAt: "2026-01-05T05:00:00.000Z" }
+    ]
+  }
+];
+
 /** Accounts keyed by normalized e-mail — seeded once from the fixture, then grown by `purpose:"register"` verifies. */
 const ACCOUNTS = new Map(
   fixture("customer-accounts.json").map((account) => {
@@ -834,16 +894,22 @@ const ACCOUNTS = new Map(
       {
         ...account,
         // Only the fixture's own `budi@example.test` gets the seeded
-        // addresses/orders/affiliate state below — a second fixture row (if
-        // one is ever added) starts empty, same as a freshly registered
-        // account.
+        // addresses/orders/affiliate/conversations state below — a second
+        // fixture row (if one is ever added) starts empty, same as a
+        // freshly registered account.
         addresses: isSeeded ? SEEDED_ADDRESSES.map((a) => ({ ...a })) : [],
         wishlist: [],
         reviews: [],
         affiliate: isSeeded
           ? { code: deterministicAffiliateCode(account), commissionRate: "10.00", status: "active" }
           : null,
-        commissions: isSeeded ? SEEDED_KOMISI.map((k) => ({ ...k })) : []
+        commissions: isSeeded ? SEEDED_KOMISI.map((k) => ({ ...k })) : [],
+        // Issue #115 — the seeded account already opted in, so `/akun`'s
+        // consent toggle has something real to show ON by default.
+        marketingConsent: isSeeded ? true : false,
+        conversations: isSeeded
+          ? SEEDED_CONVERSATIONS.map((c) => ({ ...c, messages: c.messages.map((m) => ({ ...m })) }))
+          : []
       }
     ];
   })
@@ -942,7 +1008,8 @@ function serializeAccount(account) {
     phone: account.phone,
     level: account.level,
     createdAt: account.createdAt,
-    historyFrom: account.historyFrom
+    historyFrom: account.historyFrom,
+    marketingConsent: Boolean(account.marketingConsent)
   };
 }
 
@@ -962,11 +1029,48 @@ function findAccountByBearer(request) {
   return ACCOUNTS.get(session.emailNormalized) ?? null;
 }
 
+/** The `via:"whatsapp"` OTP request/verify path keys `OTPS` by NORMALIZED phone rather than e-mail — this key format keeps the two channels from ever colliding in the same `Map`. */
+function otpKeyForPhone(phone) {
+  return `wa:${normalizePhoneForComparison(String(phone ?? ""))}`;
+}
+
+function findAccountByPhone(phone) {
+  const target = normalizePhoneForComparison(String(phone ?? ""));
+  if (!target) return null;
+  return [...ACCOUNTS.values()].find((account) => normalizePhoneForComparison(account.phone) === target) ?? null;
+}
+
 function handleAccountRequest(request, path, body, headers) {
   if (path === "/otp/request" && request.method === "POST") {
-    const emailNormalized = normalizeEmail(body?.email);
     const purpose = body?.purpose === "register" ? "register" : "login";
+    // Issue #115 (contract #106 D5) — `via` defaults to `"email"`; WhatsApp
+    // is LOGIN-only (registration always goes out over e-mail regardless of
+    // what a caller sends here, matching `/daftar`'s own "registration
+    // stays e-mail OTP" rule).
+    const via = body?.via === "whatsapp" && purpose === "login" ? "whatsapp" : "email";
 
+    if (via === "whatsapp") {
+      if (!(storeSettings().whatsappOtpEnabled ?? false)) {
+        return envelopeError(
+          409,
+          "CHANNEL_UNAVAILABLE",
+          "Kode via WhatsApp sedang tidak tersedia di toko ini.",
+          undefined,
+          headers
+        );
+      }
+
+      OTPS.set(otpKeyForPhone(body?.phone), {
+        code: OTP_CODE,
+        purpose: "login",
+        registration: null,
+        expiresAt: new Date(Date.now() + OTP_TTL_SECONDS * 1000).toISOString(),
+        consumed: false
+      });
+      return envelope({ sent: true, expiresInSeconds: OTP_TTL_SECONDS }, { status: 202, headers });
+    }
+
+    const emailNormalized = normalizeEmail(body?.email);
     OTPS.set(emailNormalized, {
       code: OTP_CODE,
       purpose,
@@ -982,8 +1086,25 @@ function handleAccountRequest(request, path, body, headers) {
   }
 
   if (path === "/otp/verify" && request.method === "POST") {
-    const emailNormalized = normalizeEmail(body?.email);
     const purpose = body?.purpose === "register" ? "register" : "login";
+
+    // Issue #115 — `{phone, code, purpose:"login"}` verifies the WhatsApp
+    // path, resolving the account by phone instead of e-mail.
+    if (purpose === "login" && typeof body?.phone === "string" && body.phone.length > 0) {
+      const otp = OTPS.get(otpKeyForPhone(body.phone));
+      if (!otp || otp.consumed || otp.code !== body?.code || new Date(otp.expiresAt).getTime() <= Date.now()) {
+        return envelopeError(401, "OTP_INVALID", "Kode salah atau kedaluwarsa.", undefined, headers);
+      }
+      const account = findAccountByPhone(body.phone);
+      if (!account) {
+        return envelopeError(404, "ACCOUNT_NOT_FOUND", "Akun tidak ditemukan.", undefined, headers);
+      }
+      otp.consumed = true;
+      const session = issueSession(normalizeEmail(account.email));
+      return envelope({ ...session, account: serializeAccount(account) }, { headers });
+    }
+
+    const emailNormalized = normalizeEmail(body?.email);
     const otp = OTPS.get(emailNormalized);
 
     if (!otp || otp.consumed || otp.purpose !== purpose || otp.code !== body?.code) {
@@ -1028,7 +1149,14 @@ function handleAccountRequest(request, path, body, headers) {
       phone: registration.phone,
       level: 0,
       createdAt: now,
-      historyFrom: now
+      historyFrom: now,
+      addresses: [],
+      wishlist: [],
+      reviews: [],
+      affiliate: null,
+      commissions: [],
+      marketingConsent: false,
+      conversations: []
     };
     ACCOUNTS.set(emailNormalized, account);
 
@@ -1044,6 +1172,9 @@ function handleAccountRequest(request, path, body, headers) {
 
     if (request.method === "PATCH" && typeof body?.name === "string" && body.name.trim()) {
       account.name = body.name.trim();
+    }
+    if (request.method === "PATCH" && typeof body?.marketingConsent === "boolean") {
+      account.marketingConsent = body.marketingConsent;
     }
 
     return envelope({ account: serializeAccount(account) }, { headers });
@@ -1319,6 +1450,120 @@ function handleAccountRequest(request, path, body, headers) {
     return envelope({ items: page, nextCursor }, { headers });
   }
 
+  // Issue #115 (S3, #106 D8) — the account's own inbox with the store.
+
+  if (path === "/conversations" && request.method === "GET") {
+    const account = findAccountByBearer(request);
+    if (!account) {
+      return envelopeError(401, "UNAUTHENTICATED", "Sesi tidak valid atau telah berakhir.", undefined, headers);
+    }
+
+    const owned = [...account.conversations].sort(
+      (a, b) => new Date(lastMessageAt(b)).getTime() - new Date(lastMessageAt(a)).getTime()
+    );
+
+    const cursorParam = new URL(request.url).searchParams.get("cursor");
+    const PAGE_SIZE = 10;
+    const startIndex = cursorParam ? owned.findIndex((c) => c.id === cursorParam) + 1 : 0;
+    const page = owned.slice(startIndex, startIndex + PAGE_SIZE);
+    const nextCursor = startIndex + PAGE_SIZE < owned.length ? page[page.length - 1]?.id ?? null : null;
+
+    return envelope({ items: page.map(serializeConversation), nextCursor }, { headers });
+  }
+
+  if (path === "/conversations" && request.method === "POST") {
+    const account = findAccountByBearer(request);
+    if (!account) {
+      return envelopeError(401, "UNAUTHENTICATED", "Sesi tidak valid atau telah berakhir.", undefined, headers);
+    }
+
+    const subject = typeof body?.subject === "string" ? body.subject.trim() : "";
+    const messageBody = typeof body?.body === "string" ? body.body.trim() : "";
+    const fieldErrors = [];
+    if (!subject) fieldErrors.push({ field: "subject", message: "Subjek wajib diisi." });
+    if (!messageBody) fieldErrors.push({ field: "body", message: "Pesan wajib diisi." });
+    else if (messageBody.length > 4000) {
+      fieldErrors.push({ field: "body", message: "Pesan maksimum 4000 karakter." });
+    }
+    if (fieldErrors.length > 0) {
+      return envelopeError(400, "VALIDATION_ERROR", "Data pesan belum lengkap.", fieldErrors, headers);
+    }
+
+    const now = new Date().toISOString();
+    const message = { id: nextMessageId(), sender: "customer", body: messageBody, createdAt: now };
+    const conversation = { id: nextConversationId(), subject, status: "open", unreadForCustomer: 0, messages: [message] };
+    account.conversations.push(conversation);
+    scheduleAutoReply(conversation);
+
+    return envelope(
+      { conversation: serializeConversation(conversation), message },
+      { status: 201, headers }
+    );
+  }
+
+  const conversationMatch = /^\/conversations\/([^/]+)$/.exec(path);
+  if (conversationMatch && request.method === "GET") {
+    const account = findAccountByBearer(request);
+    if (!account) {
+      return envelopeError(401, "UNAUTHENTICATED", "Sesi tidak valid atau telah berakhir.", undefined, headers);
+    }
+
+    const conversation = account.conversations.find((c) => c.id === conversationMatch[1]);
+    if (!conversation) {
+      return envelopeError(404, "NOT_FOUND", "Percakapan tidak ditemukan.", undefined, headers);
+    }
+
+    // #106's own contract: reading a thread marks it read.
+    conversation.unreadForCustomer = 0;
+
+    return envelope(
+      { conversation: serializeConversation(conversation), messages: conversation.messages },
+      { headers }
+    );
+  }
+
+  const conversationMessagesMatch = /^\/conversations\/([^/]+)\/messages$/.exec(path);
+  if (conversationMessagesMatch && request.method === "POST") {
+    const account = findAccountByBearer(request);
+    if (!account) {
+      return envelopeError(401, "UNAUTHENTICATED", "Sesi tidak valid atau telah berakhir.", undefined, headers);
+    }
+
+    const conversation = account.conversations.find((c) => c.id === conversationMessagesMatch[1]);
+    if (!conversation) {
+      return envelopeError(404, "NOT_FOUND", "Percakapan tidak ditemukan.", undefined, headers);
+    }
+    if (conversation.status === "closed") {
+      return envelopeError(409, "CONVERSATION_CLOSED", "Percakapan ini telah ditutup.", undefined, headers);
+    }
+
+    const messageBody = typeof body?.body === "string" ? body.body.trim() : "";
+    if (!messageBody) {
+      return envelopeError(
+        400,
+        "VALIDATION_ERROR",
+        "Pesan wajib diisi.",
+        [{ field: "body", message: "Pesan wajib diisi." }],
+        headers
+      );
+    }
+    if (messageBody.length > 4000) {
+      return envelopeError(
+        400,
+        "VALIDATION_ERROR",
+        "Pesan maksimum 4000 karakter.",
+        [{ field: "body", message: "Pesan maksimum 4000 karakter." }],
+        headers
+      );
+    }
+
+    const message = { id: nextMessageId(), sender: "customer", body: messageBody, createdAt: new Date().toISOString() };
+    conversation.messages.push(message);
+    scheduleAutoReply(conversation);
+
+    return envelope({ message }, { status: 201, headers });
+  }
+
   return null;
 }
 
@@ -1338,6 +1583,59 @@ function serializeAffiliate(account) {
       paidAmount: sumKomisi(account.commissions, "paid")
     }
   };
+}
+
+// ---------------------------------------------------------------------------
+// Issue #115 — conversations helpers.
+// ---------------------------------------------------------------------------
+
+let conversationSequence = 100;
+function nextConversationId() {
+  conversationSequence += 1;
+  return `conv-${conversationSequence}`;
+}
+
+let messageSequence = 100;
+function nextMessageId() {
+  messageSequence += 1;
+  return `msg-${messageSequence}`;
+}
+
+/** The `createdAt` of `conversation`'s last message — `lastMessageAt` is never stored separately, always derived, so it can never drift from the messages it summarises. */
+function lastMessageAt(conversation) {
+  const last = conversation.messages[conversation.messages.length - 1];
+  return last ? last.createdAt : new Date(0).toISOString();
+}
+
+function serializeConversation(conversation) {
+  return {
+    id: conversation.id,
+    subject: conversation.subject,
+    status: conversation.status,
+    lastMessageAt: lastMessageAt(conversation),
+    unreadForCustomer: conversation.unreadForCustomer
+  };
+}
+
+/**
+ * This issue's own "so unread flags are exercised" requirement: 2 seconds
+ * after a customer message, a SIMULATED store reply lands on the same
+ * thread (unless it was closed in the meantime) and the thread's own
+ * `unreadForCustomer` counter increments — the same signal a real reply
+ * from staff would produce. Purely in-memory; a process restart forgets any
+ * reply still pending.
+ */
+function scheduleAutoReply(conversation) {
+  setTimeout(() => {
+    if (conversation.status !== "open") return;
+    conversation.messages.push({
+      id: nextMessageId(),
+      sender: "store",
+      body: "Terima kasih, tim kami akan segera membalas pesan Anda.",
+      createdAt: new Date().toISOString()
+    });
+    conversation.unreadForCustomer += 1;
+  }, 2000);
 }
 
 function maskPhone(phone) {
