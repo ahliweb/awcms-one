@@ -4,7 +4,7 @@
 
 # Menggunakan awcms-one sebagai template
 
-Dokumen ini adalah kerangka yang dijanjikan [ADR-0018](adr/0018-awcms-one-is-a-template-with-build-profiles-and-an-idempotent-init.id.md) untuk diisi: bagaimana aplikasi baru dimulai dari `awcms-one`, apa yang dilakukan `bun run template:init` untuk menjadikan repo turunan miliknya sendiri, matriks profil build yang memutuskan halaman mana yang dikirim sebuah deployment, dan di mana BjekMart sendiri berada begitu repo ini juga menjadi template. **Per penulisan dokumen ini (wave 0, issue #136), tidak satu pun mekanisme di bawah ada di kode** — tidak ada tata letak `src/profil/**`, tidak ada skrip `template:init`, tidak ada data seed per profil. Halaman ini menjelaskan target yang menjadi dasar pembangunan #137, #138, dan #139, dan diperbarui seiring pohonnya seperti yang dijelaskan di "Status" di bagian bawah.
+Dokumen ini adalah kerangka yang dijanjikan [ADR-0018](adr/0018-awcms-one-is-a-template-with-build-profiles-and-an-idempotent-init.id.md) untuk diisi: bagaimana aplikasi baru dimulai dari `awcms-one`, apa yang dilakukan `bun run template:init` untuk menjadikan repo turunan miliknya sendiri, matriks profil build yang memutuskan halaman mana yang dikirim sebuah deployment, dan di mana BjekMart sendiri berada begitu repo ini juga menjadi template. **Per issue #138, `bun run template:init` adalah kode nyata yang berjalan** (`tools/template-init.ts` + `tools/template-init/**`, diuji oleh `tests/template-init.test.mjs`, dimatriks di CI oleh `.github/workflows/template-init-smoke.yml`). Tata letak `src/profil/**` dan perilaku penyaringan halaman `SITE_PROFILE` yang sebenarnya (#137) serta data seed per profil (#139) **belum** landing — lihat "Status" di bagian bawah untuk artinya bagi `template:init` hari ini.
 
 ## Memulai dari template
 
@@ -60,11 +60,28 @@ bun run template:init \
 
 Persis permukaan merek yang dinamai [ADR-0018 D4](adr/0018-awcms-one-is-a-template-with-build-profiles-and-an-idempotent-init.id.md#d4--merek-hidup-di-env--sitets-ditambah-daftar-pendek-dan-bernama-file-yang-ditulis-ulang-templateinit):
 
-- `apps/storefront/src/config/site.ts` — `DEFAULT_IDENTITY`, `DEFAULT_THEME_COLORS`
+- `apps/storefront/src/config/site.ts` — `DEFAULT_IDENTITY` (`name`, `description`, `contactEmail`, dan `contactPhone`/`address` bila diberikan), `DEFAULT_THEME_COLORS`, dan fallback `readEnvOr` `SITE_NAME`/`SITE_DESCRIPTION`
 - Root `package.json` — `name`, `description`, `homepage`, `repository`, dan field `awcmsOne.templateVersion` baru yang mencatat versi awcms-one asal repo turunan ini dibuat
 - `compose.yaml` — nama proyek Docker Compose
 - `README.md`/`README.id.md` — bagian hero
-- `SUPPORT.md`/`SUPPORT.id.md`, `SECURITY.md`/`SECURITY.id.md` — baris kontak
+- `SUPPORT.md`/`SUPPORT.id.md` — kalimat hero
+- `.env.example` — default tenant skrip seed (`SEED_TENANT_CODE`/`SEED_TENANT_NAME`/`SEED_OFFICE_CODE`/`SEED_OFFICE_NAME`/`SEED_OWNER_EMAIL`)
+- `apps/storefront/.env.example` — `SITE_URL`, `SITE_NAME`, `SITE_DESCRIPTION`, dan baris baru `SITE_PROFILE`
+
+**Tiga koreksi pada susunan kata asli bagian ini, dibuat dalam perubahan yang sama yang mengimplementasikan alat ini (issue #138), karena dokumen dan pohonnya tidak sejalan:**
+
+- `DEFAULT_IDENTITY.description` tidak ada dalam daftar aslinya (hanya `name`/`contactEmail`/`contactPhone`/`address` yang disebut) — ditambahkan di sini karena membiarkannya tidak tersentuh mengirim kalimat khas BjekMart sendiri ("...di BjekMart") ke setiap deployment turunan selamanya, persis cacat yang dijelaskan paragraf "Ditolak (c)" milik D4 sendiri.
+
+- `SECURITY.md`/`SECURITY.id.md` **tidak** membawa baris kontak spesifik-BjekMart apa pun sebagaimana pohonnya berdiri hari ini — setiap alamat di file itu adalah URL GitHub ke `ahliweb/awcms-one`, yang `template:init` sengaja **tidak** tulis ulang (lihat "Apa yang tidak diketahuinya" di bawah). `rewriteSecurity()` (`tools/template-init/rewriters.mjs`) adalah no-op terdokumentasi yang dipertahankan demi simetri dengan `SUPPORT.md`.
+- `SITE_NAME`/`SITE_URL`/`SITE_DESCRIPTION` (dan `SITE_PROFILE` yang baru) hidup di `apps/storefront/.env.example`, bukan `.env.example` root — file root hanya mendokumentasikan variabel milik skrip root (lihat header file itu sendiri), dan `SITE_PROFILE` sendiri belum ada di mana pun di pohonnya: issue #137, mekanisme yang membacanya, belum landing di branch tempat issue #138 dibangun. `template:init` tetap menulis baris itu ke `apps/storefront/.env.example`, kompatibel ke depan begitu #137 landing dan membacanya, alih-alih menunggu.
+
+### Apa arti "tidak ada string BjekMart tersisa" sesungguhnya
+
+Pengujian `template:init` sendiri (`tests/template-init.test.mjs`) memindai string spesifik-BjekMart hanya di dalam permukaan merek bernama milik D4 (`package.json`, `compose.yaml`, `.env.example`, `apps/storefront/.env.example`, `apps/storefront/src/config/site.ts`, `README*.md`, `SUPPORT*.md`) ditambah memastikan target penghapusan sudah tidak ada — **bukan** seluruh pohon. `docs/*`, `apps/storefront/**` (termasuk tes dan fixture-nya), dan `AGENTS.md`/riwayat `CHANGELOG.md` milik repositori ini sendiri secara sah menggambarkan BjekMart sebagai deployment referensi nyata lima-increment milik repositori ini sendiri (ADR-0018 D6) dan berada di luar cakupan `template:init`, oleh paragraf D4 yang sama yang menolak "berburu seluruh pohon tanpa daftar tertutup untuk diperiksa" sebagai opsi. Repo turunan karenanya tetap membaca nama BjekMart sendiri di seluruh dokumentasi dan fixture tes yang diwariskannya sampai ia mengeditnya sendiri — `template:init` hanya menjamin permukaan bernama miliknya SENDIRI yang bersih.
+
+### Apa yang tidak diketahuinya
+
+`template:init` tidak memiliki flag `--org`/`--repo`, sehingga tidak bisa mengetahui pemilik/nama GitHub milik repo turunan. `repository.url` milik `package.json` ditulis ulang menjadi `git+https://github.com/GANTI-ORG/<slug>.git` — placeholder yang jelas terlihat, bukan tebakan — dan setiap URL GitHub di dalam `README*.md`/`SUPPORT*.md`/`SECURITY*.md` yang masih menunjuk ke `ahliweb/awcms-one` (tautan issue, tautan Security Advisory, tautan ADR) dibiarkan persis apa adanya: itu adalah tautan fungsional, bukan teks merek, dan repo yang baru dibuat dari template belum tentu sudah diganti nama atau dipindahkan. Melengkapi `GANTI-ORG` dan tautan GitHub mana pun yang ingin diarahkan pemilik repo turunan ke fork miliknya sendiri tetap menjadi langkah manual setelah `template:init` berjalan.
 - `.env.example` — `SITE_NAME`, `SITE_URL`, `SITE_PROFILE`, dan default terkait
 - `CHANGELOG.md` — direset ke satu entri `## [0.1.0]` berbunyi "Created from awcms-one vX.Y.Z (\<sha\>)"
 - `.changesets/*.md` — dibersihkan (README dipertahankan)
@@ -73,9 +90,9 @@ Persis permukaan merek yang dinamai [ADR-0018 D4](adr/0018-awcms-one-is-a-templa
 
 Artefak khusus BjekMart yang tidak dibutuhkan deployment turunan dan tidak seharusnya dibawa sebagai beban mati atau konten contoh yang menyesatkan:
 
-- `tools/seed-borneojek-mart.ts` (atau, setelah [#139](https://github.com/ahliweb/awcms-one/issues/139) landing, titik masuk `contoh:borneojek-mart` milik `tools/seed-cms.ts` sendiri dan `tools/seed-data/contoh/borneojek-mart/**`)
-- `tools/import-seputarborneo.ts` dan `tests/import-seputarborneo.test.mjs`
-- `graphify-out/` dan `knowledge/generated/` — direset ke keadaan kosong terdokumentasi, siap untuk `bun run knowledge:graph:update` pertama milik repo turunan sendiri
+- `tools/seed-borneojek-mart.ts` beserta setiap file spesifik-BjekMart di bawah `tools/seed-data/*.json` dan seluruh `tools/seed-assets/` (tata letak hari ini) — **atau**, setelah [#139](https://github.com/ahliweb/awcms-one/issues/139) landing, `tools/seed-data/contoh/borneojek-mart/**` (tata letak targetnya). `template:init` memeriksa kedua tata letak dan menghapus mana pun yang ada; yang lain sudah tidak ada dan dilewati. Skrip `db:seed:cms` sendiri dihapus dari `package.json` hanya ketika seeder LAMA yang benar-benar ada di disk dan belum ada `tools/seed-cms.ts` (pengganti milik #139) — setelah #139 landing, skrip itu menjadi miliknya dan `template:init` tidak menyentuhnya.
+- `tools/import-seputarborneo.ts`, `tests/import-seputarborneo.test.mjs`, dan entri skrip `import:seputarborneo`
+- `graphify-out/` dan `knowledge/generated/` — dihapus sepenuhnya, bukan dikosongkan. **Inilah "keadaan kosong terdokumentasi" yang diterima `audit:graf`**: pemeriksaan pertama gerbang itu sendiri (`packages/gerbang/audit-graf.mjs`) adalah `!existsSync(outputDir)`, yang lulus dengan catatan ("graphify-out/ absent — no root graph artefacts to check") alih-alih gagal — direktori yang tidak ada adalah keadaan yang valid dan lulus gerbang menurut desain gerbang itu sendiri, sehingga menghapusnya lebih sederhana dan sama benarnya dengan menulis `graph.json` yang kosong-tapi-valid-skema. `bun run knowledge:graph:update` pertama milik repo turunan membuatnya kembali.
 
 ### Apa yang tidak pernah disentuh
 
@@ -181,4 +198,9 @@ BjekMart tidak dihapus begitu repo ini menjadi template — ia **dipertahankan, 
 
 ## Status
 
-**20 September 2026 — wave 0 (issue #136):** dokumen ini adalah kerangka yang dijanjikan ADR-0018. Belum ada tata letak `apps/storefront/src/profil/**`, belum ada skrip `template:init`, dan belum ada data seed per profil di pohonnya. Halaman ini diperbarui untuk menjelaskan mekanisme sebenarnya seiring [#137](https://github.com/ahliweb/awcms-one/issues/137) (profil storefront + matriks CI), [#138](https://github.com/ahliweb/awcms-one/issues/138) (`template:init`), dan [#139](https://github.com/ahliweb/awcms-one/issues/139) (seed profil) landing, dan flag GitHub *template repository* sendiri diatur di [#140](https://github.com/ahliweb/awcms-one/issues/140).
+**20 September 2026 — issue #138 melandingkan `template:init`.** `tools/template-init.ts` + `tools/template-init/**` adalah kode nyata dan teruji (`tests/template-init.test.mjs`), dimatriks di CI oleh `.github/workflows/template-init-smoke.yml`. Dua hal yang digambarkan halaman ini sebagai target masih belum benar, dan `template:init` ditulis untuk gagal secara jujur terhadap keduanya:
+
+- **`SITE_PROFILE` belum berefek saat build.** Issue #137 (tata letak `src/profil/**`, integrasi `injectRoute`, `apps/storefront/src/config/profil.ts`) belum landing. `template:init --profil <p>` tetap mencatat pilihannya (baris baru `SITE_PROFILE` di `apps/storefront/.env.example`) dan tetap memilih default `SITE_DESCRIPTION` yang tepat untuknya, tetapi setiap profil tetap membangun situs LENGKAP berbentuk `toko` yang sama hingga #137 landing — leg build per-profil milik `template-init-smoke.yml` sendiri membuktikan BUILD berhasil, belum bahwa halaman profil tersaring.
+- **Belum ada data seed netral per profil** (issue #139). `template:init` tetap menghapus artefak seed milik BjekMart (memeriksa tata letak datar hari ini maupun tata letak bersarang rencana #139), dan tetap menyesuaikan default tenant `SEED_*` generik di `.env.example`, tetapi repo yang baru diinisialisasi tidak punya apa pun untuk di-seed dengan `bun run db:seed:cms` sampai #139 landing atau operator menulis kontennya sendiri.
+
+Halaman ini diperbarui lagi seiring [#139](https://github.com/ahliweb/awcms-one/issues/139) (seed profil) dan [#140](https://github.com/ahliweb/awcms-one/issues/140) (flag GitHub *template repository*, sapuan dokumentasi, rilisnya) landing.

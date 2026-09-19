@@ -55,6 +55,10 @@ Increment 2 (epic #21) dikirimkan sebagai rangkaian PR atomik satu-issue, bukan 
 
 Kedua job adalah status check wajib di `main` (lihat "Branch protection pada `main`" di atas) — ini menutup celah yang dideskripsikan draf dokumen ini sebelumnya: rantai gate `apps/cms` sendiri, dan cakupan RLS/basis datanya, berjalan di CI repositori INI sendiri pada setiap PR, tidak hanya lokal.
 
+## CI: workflow ketiga, belum wajib — `template-init-smoke`
+
+`.github/workflows/template-init-smoke.yml` (issue #138) adalah berkas workflow TERPISAH, bukan job ketiga di `ci.yml` — berkas itu dimiliki oleh perubahan lain yang landing bersamaan (issue #137), dan cakupan workflow ini sendiri meminta berkas baru alih-alih job yang ditempelkan ke sana. Ia mematriks `toko`/`berita`/`landing` (ADR-0018 D2): untuk setiap profil, ia menjalankan `bun run template:init --profil <profile> --yes` terhadap checkout-nya sendiri (termasuk rantai gate akhir milik alat itu sendiri), memulai stub CMS milik storefront, menjalankan `SITE_PROFILE=<profile> bun run build` dari `apps/storefront`, lalu `bun test` root. Ia **belum menjadi status check wajib** — mengikuti pola promosi yang sama yang dilalui `check-cms` sendiri (lihat "Branch protection pada `main`" di atas): ditambahkan ke daftar wajib hanya setelah berjalan hijau di `main` untuk sementara waktu.
+
 ## Belum ditegakkan hari ini
 
 Pembatasan strategi-merge yang terikat khusus pada PR yang menyentuh `apps/cms` (aturan honour-system di [`AGENTS.md`](../AGENTS.md#the-one-rule-that-protects-every-future-sync)). Jumlah review wajib atau syarat code-owner — branch protection di sini menamai dua status check wajib dan tidak ada apa pun soal reviewer. Langkah CI yang membangun atau mempublikasikan image container, atau men-deploy ke mana pun — lihat [`docs/deployment.md`](deployment.id.md) untuk apa arti "men-deploy repositori ini" hari ini.

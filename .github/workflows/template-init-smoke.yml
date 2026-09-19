@@ -1,0 +1,108 @@
+name: template-init-smoke
+
+# Issue #138 — proves `bun run template:init` actually leaves a derived
+# repository green, for all three build profiles (ADR-0018 D2/D7), on every
+# push/PR. A separate workflow from `.github/workflows/ci.yml` on purpose:
+# `ci.yml` is owned by a different, concurrently-landing change (issue #137)
+# and this job's own scope line asks for a NEW workflow file rather than a
+# new job bolted onto that one.
+#
+# Not a required status check yet — see docs/alur-kerja-pengembangan.md for
+# the protection-settings update once this job has run green for a while,
+# matching how `check`/`check-cms` themselves were promoted.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  template-init-smoke:
+    name: template-init-smoke (${{ matrix.profil }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    strategy:
+      fail-fast: false
+      matrix:
+        profil: [toko, berita, landing]
+
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      # Must equal packageManager/engines.bun in the root package.json — see
+      # AGENTS.md's "Configuration and toolchain".
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2.2.0
+        with:
+          bun-version: "1.4.0"
+
+      - name: Cache Bun install cache
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ~/.bun/install/cache
+          key: bun-${{ runner.os }}-${{ hashFiles('bun.lock') }}
+          restore-keys: |
+            bun-${{ runner.os }}-
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      # Runs the WHOLE tool, including its own trailing gate chain
+      # (docs:i18n:stamp, bun install, audit:dokumen, audit:translation,
+      # audit:rilis, bun test — docs/template.md's "After it runs"). This
+      # runner's checkout is ephemeral, so mutating it here (rather than a
+      # copy) is fine — this job's only purpose is proving the tool leaves
+      # ITS OWN checkout green for each profile, one matrix leg at a time.
+      - name: bun run template:init --profil ${{ matrix.profil }}
+        run: |
+          bun run template:init \
+            --nama "Toko Contoh ${{ matrix.profil }}" \
+            --slug "toko-contoh-${{ matrix.profil }}" \
+            --domain "toko-contoh-${{ matrix.profil }}.id" \
+            --profil "${{ matrix.profil }}" \
+            --warna-primer "#0ea5e9" \
+            --kontak-email "owner@toko-contoh.id" \
+            --yes
+
+      # The storefront's own stub CMS (apps/storefront/scripts/stub-awcms.mjs),
+      # on a fixed port for this job only — see
+      # apps/storefront/tests/berita-build-smoke.test.ts for the identical
+      # start/wait pattern this step follows.
+      - name: Start the stub CMS
+        run: |
+          cd apps/storefront
+          STUB_PORT=4310 nohup bun scripts/stub-awcms.mjs > /tmp/stub-awcms.log 2>&1 &
+          for _ in $(seq 1 100); do
+            if curl -sf http://localhost:4310/api/v1/blog/posts -o /dev/null; then exit 0; fi
+            sleep 0.2
+          done
+          echo "stub-awcms did not answer in time" >&2
+          cat /tmp/stub-awcms.log >&2
+          exit 1
+
+      # SITE_PROFILE has no effect on which pages build yet (issue #137, the
+      # SITE_PROFILE mechanism itself, has not landed as of this workflow) —
+      # this step proves the initialised repo BUILDS under each profile
+      # value, which is what #138's own scope covers; the route-exclusion
+      # assertion (`profil-build-smoke.test.ts`) is #137's own test to add.
+      - name: SITE_PROFILE=${{ matrix.profil }} bun run build
+        env:
+          SITE_PROFILE: ${{ matrix.profil }}
+          AWCMS_API_URL: http://localhost:4310
+          AWCMS_API_TOKEN: stub-token
+          SITE_URL: http://localhost:4321
+          PUBLIC_AWCMS_ORIGIN: https://cms.example.com
+        run: |
+          cd apps/storefront
+          bun run build
+
+      - name: Root bun test
+        run: bun test

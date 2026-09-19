@@ -53,6 +53,10 @@ Increment 2 (epic #21) was delivered as a sequence of atomic, single-issue PRs r
 
 Both jobs are required status checks on `main` (see "Branch protection on `main`" above) — this closes the gap earlier drafts of this document described: `apps/cms`'s own gate chain, and its RLS/DB coverage, run in THIS repository's CI on every PR, not only locally.
 
+## CI: a third, not-yet-required workflow — `template-init-smoke`
+
+`.github/workflows/template-init-smoke.yml` (issue #138) is a SEPARATE workflow file, not a third job on `ci.yml` — that file is owned by a different, concurrently-landing change (issue #137), and this workflow's own scope asked for a new file rather than a job bolted onto it. It matrices over `toko`/`berita`/`landing` (ADR-0018 D2): for each profile, it runs `bun run template:init --profil <profile> --yes` against its own checkout (including that tool's own trailing gate chain), starts the storefront's stub CMS, runs `SITE_PROFILE=<profile> bun run build` from `apps/storefront`, then a root `bun test`. It is **not yet a required status check** — following the same promotion pattern `check-cms` itself went through (see "Branch protection on `main`" above): added to the required list only after it has run green on `main` for a while.
+
 ## Not enforced today
 
 A merge-strategy restriction tied specifically to `apps/cms`-touching PRs (the honour-system rule in [`AGENTS.md`](../AGENTS.md#the-one-rule-that-protects-every-future-sync)). A required review count or code-owner requirement — branch protection here names two required checks and nothing about reviewers. A CI step that builds or publishes a container image, or deploys anywhere — see [`docs/deployment.md`](deployment.md) for what "deploying this repository" means today.

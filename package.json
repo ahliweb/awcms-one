@@ -39,6 +39,7 @@
     "db:migrate:cms": "cd apps/cms && bun run db:migrate",
     "db:seed:cms": "bun tools/seed-borneojek-mart.ts",
     "import:seputarborneo": "bun tools/import-seputarborneo.ts",
+    "template:init": "bun tools/template-init.ts",
     "test": "bun test",
     "serve": "cd apps/storefront && bun run serve",
     "start": "bun run serve",
