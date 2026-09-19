@@ -5,7 +5,7 @@
 - **Status:** Accepted
 - **Date:** 16 September 2026
 - **Decision maker:** ahliweb
-- **Related:** `apps/cms/AGENTS.md` ("Outbox/queue untuk integrasi eksternal"); issues #26, #29, #30, #33
+- **Related:** `apps/cms/AGENTS.md` ("Outbox/queue untuk integrasi eksternal"); issues #26, #29, #30, #33, #106, #109
 
 ## Context
 
@@ -26,4 +26,4 @@ Increment 2 implements exactly what is active: manual bank transfer and manual Q
 
 - Unpaid orders expire (`commerce:orders:expire` job, every 1–5 minutes) and restock their line items, un-redeeming any voucher through the same code path a customer's own cancel already runs; the expiry window is a store setting (`orders.expiryHours`).
 - The payment-proof upload path (`POST .../orders/{code}/payment-proof/upload-sessions`) answers `503 MEDIA_UNAVAILABLE` in this increment — the existing `media_library` upload-session flow needs an authenticated `actorTenantUserId`, which an anonymous storefront caller does not have; `payment.proofUpload: false` on the public store-settings read model tells the storefront to hide the control, and a payment confirmation without a proof image is still fully accepted.
-- Checkout shows courier options as "segera" (disabled) until #33 lands, so the UI shape does not change when RajaOngkir integration does.
+- Checkout showed courier options as "segera" (disabled) until [issue #109](https://github.com/ahliweb/awcms-one/issues/109) (S1 of #33) gave the storefront real, per-destination courier rates against a stub-backed fixture — the same UI shape this ADR anticipated, now filled in: real rates once a district is chosen, the same single disabled placeholder (now carrying a `note`) when courier is off, no destination yet, or the provider cannot price it. `apps/cms`'s own RajaOngkir provider adapter — the contract [issue #106](https://github.com/ahliweb/awcms-one/issues/106) (D4) names — is still the remaining, undone half of #33; this storefront change is coded against that contract's shapes so wiring the real provider in needs no UI change.

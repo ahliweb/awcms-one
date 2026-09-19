@@ -64,7 +64,11 @@
       }
     ],
     "selfPickup": true,
-    "courierEnabled": false,
+    "courierEnabled": true,
+    "courier": {
+      "enabled": true,
+      "couriers": ["jne", "jnt", "sicepat"]
+    },
     "pinpointEnabled": false,
     "freeShipping": {
       "active": false,

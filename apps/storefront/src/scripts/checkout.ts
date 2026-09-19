@@ -17,6 +17,7 @@ import {
   type ShippingSelection
 } from "../lib/toko-klien";
 import { formatPrice } from "../lib/harga";
+import { describeShippingOption, isShippingOptionSelected } from "../lib/kurir-opsi";
 import { previewIndonesianPhone } from "../lib/telepon";
 import { buildWhatsappCartMessage, buildWhatsappUrl } from "../lib/wa-fallback";
 import { PESANAN_PHONE_KEY } from "../lib/pesanan-sesi";
@@ -148,6 +149,24 @@ if (root) {
       wireCascadingRegionSelects({ province: provinceSelect, city: citySelect, district: districtSelect });
     }
 
+    // --- shipping destination (issue #109, contract: #106 D4) -----------------
+    //
+    // As soon as the district `<select>` carries a value, every quote from
+    // here on sends it as `destination` — the CMS (and this repo's own stub)
+    // then prices real courier services for it instead of the single
+    // disabled placeholder. A district CHANGE (a shopper picking a different
+    // kecamatan, or clearing it by re-picking a province/city) re-quotes
+    // immediately so the shipping step's rates never silently go stale.
+
+    function currentDestination(): { districtCode: string } | null {
+      const code = districtSelect?.value.trim();
+      return code ? { districtCode: code } : null;
+    }
+
+    districtSelect?.addEventListener("change", () => {
+      void refreshQuote();
+    });
+
     // --- address: saved-address autofill (issue #90) — only offered once a
     // customer session is confirmed, per this issue's own "hidden by default
     // until session is confirmed" rule. A network failure here degrades to
@@ -193,16 +212,22 @@ if (root) {
         if (streetInput) streetInput.value = alamat.street;
         if (addressNotesInput) addressNotesInput.value = alamat.notes ?? "";
 
+        // `applyRegionSelection` sets `districtSelect.value` PROGRAMMATICALLY
+        // — it never fires the select's own `change` event — so the district
+        // listener above would otherwise never see this autofill. Re-quoting
+        // here explicitly keeps "the district select has a value → send
+        // destination" true regardless of how that value got there.
         void applyRegionSelection(
           { province: provinceSelect, city: citySelect, district: districtSelect },
           { provinceCode: alamat.provinceCode, cityCode: alamat.cityCode, districtCode: alamat.districtCode }
-        );
+        ).then(() => refreshQuote());
       });
     }
 
     // --- shipping / insurance -------------------------------------------------
 
     const shippingOptionsEl = formEl.querySelector<HTMLElement>("[data-shipping-options]");
+    const shippingStatusEl = formEl.querySelector<HTMLElement>("[data-shipping-status]");
     const insuranceField = formEl.querySelector<HTMLElement>("[data-insurance-field]");
     const insuranceCheckbox = formEl.querySelector<HTMLInputElement>("[data-insurance-checkbox]");
     const insuranceFeeEl = formEl.querySelector<HTMLElement>("[data-insurance-fee]");
@@ -212,31 +237,47 @@ if (root) {
       shippingOptionsEl.innerHTML = "";
 
       quote.shippingOptions.forEach((option, index) => {
+        const view = describeShippingOption(option);
         const id = `shipping-option-${index}`;
+        const noteId = `${id}-note`;
+
         const label = document.createElement("label");
-        label.className = "toko-field";
+        label.className = "toko-field toko-shipping-option";
 
         const input = document.createElement("input");
         input.type = "radio";
         input.name = "shippingOption";
         input.id = id;
-        input.disabled = !option.available;
-        input.value = JSON.stringify({ method: option.method, serviceId: option.serviceId });
+        input.disabled = view.disabled;
+        input.value = view.key;
+        if (view.noteText) input.setAttribute("aria-describedby", noteId);
 
-        const isSelected =
-          selectedShipping !== null &&
-          selectedShipping.method === option.method &&
-          (selectedShipping.method !== "alternative" || selectedShipping.serviceId === option.serviceId);
-        input.checked = isSelected;
+        input.checked = isShippingOptionSelected(selectedShipping, option);
 
         input.addEventListener("change", () => {
           selectedShipping = JSON.parse(input.value) as ShippingSelection;
           void refreshQuote();
         });
 
-        const costText = option.available ? (option.cost ? formatPrice(option.cost) : "Gratis") : "Segera hadir";
-        label.append(input, document.createTextNode(` ${option.name} — ${costText}`));
+        const text = document.createElement("span");
+        text.className = "toko-shipping-option-text";
+        const nameText = view.etdText ? `${view.name} (${view.etdText})` : view.name;
+        text.textContent = `${nameText} — ${view.priceText}`;
+
+        label.append(input, text);
         shippingOptionsEl.appendChild(label);
+
+        // The disabled placeholder's own reason (courier not enabled, no
+        // destination chosen yet, or the provider could not price this
+        // destination) stays visible next to the row, not just hidden inside
+        // `aria-describedby` — a11y and a sighted shopper both see it.
+        if (view.noteText) {
+          const note = document.createElement("p");
+          note.id = noteId;
+          note.className = "toko-field-hint";
+          note.textContent = view.noteText;
+          shippingOptionsEl.appendChild(note);
+        }
       });
 
       if (insuranceField) insuranceField.hidden = !quote.insurance.available;
@@ -304,19 +345,24 @@ if (root) {
     async function refreshQuote(): Promise<void> {
       const voucherInput = formEl.querySelector<HTMLInputElement>('[name="voucherCode"]');
 
+      if (shippingStatusEl) shippingStatusEl.textContent = "Menghitung ongkir…";
+
       try {
         const quote = await quoteCart({
           lines: toLineRequests(currentCart),
           shipping: selectedShipping,
           voucherCode: voucherInput?.value.trim() || null,
-          insurance: insuranceSelected
+          insurance: insuranceSelected,
+          destination: currentDestination()
         });
 
         latestQuote = quote;
         renderShippingOptions(quote);
         renderPaymentOptions(quote);
         hideSubmitError();
+        if (shippingStatusEl) shippingStatusEl.textContent = "";
       } catch (error) {
+        if (shippingStatusEl) shippingStatusEl.textContent = "Gagal menghitung ongkir. Silakan coba lagi.";
         showSubmitError(error);
       }
     }

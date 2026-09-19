@@ -65,7 +65,7 @@ export type CartLineRequest = {
 export type ShippingSelection =
   | { method: "alternative"; serviceId: string }
   | { method: "self_pickup" }
-  | { method: "courier" }
+  | { method: "courier"; serviceId: string | null }
   | null;
 
 export type QuoteRequest = {
@@ -73,6 +73,15 @@ export type QuoteRequest = {
   shipping: ShippingSelection;
   voucherCode: string | null;
   insurance: boolean;
+  /**
+   * Issue #109 (contract: #106 D4) — the shopper's chosen district, sent as
+   * soon as the checkout address step's district `<select>` has a value.
+   * `undefined`/`null`/absent means "no destination known yet" — the CMS
+   * (and this repo's own stub) then answers with the single disabled
+   * `{available:false}` courier placeholder rather than real rates, exactly
+   * as it does when `shipping.courier.enabled` is off.
+   */
+  destination?: { districtCode: string } | null;
 };
 
 export type CartLineStatus =
@@ -114,6 +123,20 @@ export type ShippingOption = {
   name: string;
   cost: string | null;
   available: boolean;
+  /**
+   * Issue #109 (contract: #106 D4) — the courier's estimated delivery time
+   * (e.g. `"2-3 hari"`), shown beside the price. `null`/absent for a
+   * non-courier option, or for the disabled placeholder row.
+   */
+  etd?: string | null;
+  /**
+   * Issue #109 — a human-readable reason the SINGLE disabled courier
+   * placeholder row is unavailable (courier disabled, no destination yet, or
+   * the provider could not price this destination) — shown as the row's own
+   * visible help text, not just a "Segera hadir" label with no explanation.
+   * `null`/absent on every other option.
+   */
+  note?: string | null;
 };
 
 export type QuoteVoucher = {
