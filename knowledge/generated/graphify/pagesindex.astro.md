@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/pages/index.astro"
 type: "code"
-community: "pages/index.astro"
+community: "Homepage & Derived CSP Artifact"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/pages/indexastro
+  - community/Homepage__Derived_CSP_Artifact
 ---
 
 # pages/index.astro
@@ -15,7 +15,7 @@ tags:
 - [[BaseLayout.astro]] - `imports_from` [EXTRACTED]
 - [[Countdown.astro]] - `imports_from` [EXTRACTED]
 - [[ProductCard.astro]] - `imports_from` [EXTRACTED]
-- [[ROUTES]] - `imports` [EXTRACTED]
+- [[ROUTES_1]] - `imports` [EXTRACTED]
 - [[berita-terkini.ts]] - `imports_from` [EXTRACTED]
 - [[buildCategoryTree()]] - `imports` [EXTRACTED]
 - [[catalog.ts]] - `imports_from` [EXTRACTED]
@@ -40,4 +40,4 @@ tags:
 - [[starText()]] - `contains` [EXTRACTED]
 - [[voucher-copy.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/pages/indexastro
+#graphify/code #graphify/EXTRACTED #community/Homepage__Derived_CSP_Artifact

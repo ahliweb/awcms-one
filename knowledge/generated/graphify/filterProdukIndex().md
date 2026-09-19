@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/catalog.ts"
 type: "code"
-community: "product/[slug].astro"
+community: "Price Formatting & Product Cards"
 location: "L602"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/product/slugastro
+  - community/Price_Formatting__Product_Cards
 ---
 
 # filterProdukIndex()
@@ -22,4 +22,4 @@ tags:
 - [[render()_1]] - `calls` [EXTRACTED]
 - [[run()_3]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/product/slugastro
+#graphify/code #graphify/EXTRACTED #community/Price_Formatting__Product_Cards

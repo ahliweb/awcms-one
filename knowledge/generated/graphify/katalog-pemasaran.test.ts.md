@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/katalog-pemasaran.test.ts"
 type: "code"
-community: "pemasaran.ts"
+community: "Marketing Data (Flash Sales, Vouchers, Settings)"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/pemasarants
+  - community/Marketing_Data_Flash_Sales_Vouchers_Settings
 ---
 
 # katalog-pemasaran.test.ts
@@ -27,4 +27,4 @@ tags:
 - [[pemasaran.ts]] - `imports_from` [EXTRACTED]
 - [[resetPemasaranCacheForTests()]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/pemasarants
+#graphify/code #graphify/EXTRACTED #community/Marketing_Data_Flash_Sales_Vouchers_Settings

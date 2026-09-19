@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/jsonld-berita.ts"
 type: "code"
-community: "BeritaLayout.astro"
+community: "Article Pages & News JSON-LD"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/BeritaLayoutastro
+  - community/Article_Pages__News_JSON-LD
 ---
 
 # jsonld-berita.ts
@@ -24,4 +24,4 @@ tags:
 - [[site.ts]] - `imports_from` [EXTRACTED]
 - [[videoslug.astro]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/BeritaLayoutastro
+#graphify/code #graphify/EXTRACTED #community/Article_Pages__News_JSON-LD

@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/pages/index/wilayah-kecamatan-[cityCode].json.ts"
 type: "code"
-community: "wilayah-checkout.ts"
+community: "Build-Time CMS Client & Region Data"
 location: "L26"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/wilayah-checkoutts
+  - community/Build-Time_CMS_Client__Region_Data
 ---
 
 # getStaticPaths()
@@ -16,4 +16,4 @@ tags:
 - [[getCheckoutDistricts()]] - `calls` [EXTRACTED]
 - [[wilayah-kecamatan-cityCode.json.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/wilayah-checkoutts
+#graphify/code #graphify/EXTRACTED #community/Build-Time_CMS_Client__Region_Data

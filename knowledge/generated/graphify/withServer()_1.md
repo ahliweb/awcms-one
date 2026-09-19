@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/penyaji.test.ts"
 type: "code"
-community: "penyaji.mjs"
+community: "Static Server & Legacy Redirect Rules"
 location: "L83"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/penyajimjs
+  - community/Static_Server__Legacy_Redirect_Rules
 ---
 
 # withServer()
@@ -16,4 +16,4 @@ tags:
 - [[penyaji.test.ts]] - `contains` [EXTRACTED]
 - [[run()_4]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/penyajimjs
+#graphify/code #graphify/EXTRACTED #community/Static_Server__Legacy_Redirect_Rules

@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/pages/kategori/[slug].astro"
 type: "code"
-community: "kategori/[slug].astro"
+community: "Product & Category Pages, Product JSON-LD"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/kategori/slugastro
+  - community/Product__Category_Pages_Product_JSON-LD
 ---
 
 # kategori/[slug].astro
@@ -18,7 +18,7 @@ tags:
 - [[CategoryTree.astro]] - `imports_from` [EXTRACTED]
 - [[CommerceCategory]] - `imports` [EXTRACTED]
 - [[ProductCard.astro]] - `imports_from` [EXTRACTED]
-- [[ROUTES]] - `imports` [EXTRACTED]
+- [[ROUTES_1]] - `imports` [EXTRACTED]
 - [[absoluteUrl()]] - `imports` [EXTRACTED]
 - [[buildCategoryPageSchema()]] - `imports` [EXTRACTED]
 - [[buildCategoryTree()]] - `imports` [EXTRACTED]
@@ -32,4 +32,4 @@ tags:
 - [[routes.ts]] - `imports_from` [EXTRACTED]
 - [[site.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/kategori/slugastro
+#graphify/code #graphify/EXTRACTED #community/Product__Category_Pages_Product_JSON-LD

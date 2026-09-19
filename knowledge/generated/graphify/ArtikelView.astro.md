@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/components/berita/ArtikelView.astro"
 type: "code"
-community: "Sidebar.astro"
+community: "berita.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Sidebarastro
+  - community/beritats
 ---
 
 # ArtikelView.astro
@@ -20,7 +20,7 @@ tags:
 - [[PemutarDengar.astro]] - `imports_from` [EXTRACTED]
 - [[PostDetail]] - `imports` [EXTRACTED]
 - [[PostSummary]] - `imports` [EXTRACTED]
-- [[ROUTES]] - `imports` [EXTRACTED]
+- [[ROUTES_1]] - `imports` [EXTRACTED]
 - [[Sidebar.astro]] - `imports_from` [EXTRACTED]
 - [[TagCloud.astro]] - `imports_from` [EXTRACTED]
 - [[VideoRenderMode]] - `imports` [EXTRACTED]
@@ -41,4 +41,4 @@ tags:
 - [[toDatetimeAttr()]] - `imports` [EXTRACTED]
 - [[videoslug.astro]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Sidebarastro
+#graphify/code #graphify/EXTRACTED #community/beritats

@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/scripts/stub-awcms.mjs"
 type: "code"
-community: "stub-awcms.mjs"
-location: "L295"
+community: "Stub CMS State Machine"
+location: "L344"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/stub-awcmsmjs
+  - community/Stub_CMS_State_Machine
 ---
 
 # storeSettings()
@@ -14,8 +14,9 @@ tags:
 ## Connections
 - [[computeQuote()]] - `calls` [EXTRACTED]
 - [[fixture()_1]] - `calls` [EXTRACTED]
+- [[handleAccountRequest()]] - `calls` [EXTRACTED]
 - [[handleStorefrontRequest()]] - `calls` [EXTRACTED]
 - [[serializeOrder()]] - `calls` [EXTRACTED]
 - [[stub-awcms.mjs]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/stub-awcmsmjs
+#graphify/code #graphify/EXTRACTED #community/Stub_CMS_State_Machine

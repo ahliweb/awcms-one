@@ -1,12 +1,12 @@
 ---
 source_file: "tools/lib/mysql-dump-reader.ts"
 type: "code"
-community: "mysql-dump-reader.ts"
+community: "MySQL Dump Reader"
 location: "L510"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/mysql-dump-readerts
+  - community/MySQL_Dump_Reader
 ---
 
 # readMysqlDumpRows()
@@ -21,4 +21,4 @@ tags:
 - [[mysql-dump-reader.ts]] - `contains` [EXTRACTED]
 - [[runExport()_1]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/mysql-dump-readerts
+#graphify/code #graphify/EXTRACTED #community/MySQL_Dump_Reader

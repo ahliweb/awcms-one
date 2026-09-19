@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/components/berita/Ticker.astro"
 type: "code"
-community: "Sidebar.astro"
+community: "berita.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Sidebarastro
+  - community/beritats
 ---
 
 # Ticker.astro
@@ -20,4 +20,4 @@ tags:
 - [[tanggal.ts]] - `imports_from` [EXTRACTED]
 - [[toDatetimeAttr()]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Sidebarastro
+#graphify/code #graphify/EXTRACTED #community/beritats

@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/scripts/ga-init.ts"
 type: "code"
-community: "ga-init.ts"
+community: "GA4 Init"
 location: "L36"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/ga-initts
+  - community/GA4_Init
 ---
 
 # Window
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[ga-init.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/ga-initts
+#graphify/code #graphify/EXTRACTED #community/GA4_Init

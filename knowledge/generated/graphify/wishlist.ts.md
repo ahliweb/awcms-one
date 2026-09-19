@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/scripts/wishlist.ts"
 type: "code"
-community: "wishlist-kontrak.ts"
+community: "Wishlist Storage & Account Sync"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/wishlist-kontrakts
+  - community/Wishlist_Storage__Account_Sync
 ---
 
 # wishlist.ts
@@ -19,11 +19,14 @@ tags:
 - [[harga.ts]] - `imports_from` [EXTRACTED]
 - [[itemMarkup()]] - `contains` [EXTRACTED]
 - [[loadWishlist()]] - `imports` [EXTRACTED]
+- [[pasangSinkronisasiWishlist()]] - `imports` [EXTRACTED]
 - [[removeFromWishlist()]] - `imports` [EXTRACTED]
-- [[render()_2]] - `indirect_call` [INFERRED]
-- [[root_7]] - `contains` [EXTRACTED]
+- [[render()_7]] - `indirect_call` [INFERRED]
+- [[root_14]] - `contains` [EXTRACTED]
+- [[tulisKeAkunJikaMasuk()]] - `imports` [EXTRACTED]
+- [[wishlist-akun-sync.ts]] - `imports_from` [EXTRACTED]
 - [[wishlist-klien.ts]] - `imports_from` [EXTRACTED]
 - [[wishlist-kontrak.ts]] - `imports_from` [EXTRACTED]
 - [[wishlist.astro]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/wishlist-kontrakts
+#graphify/code #graphify/EXTRACTED #community/Wishlist_Storage__Account_Sync

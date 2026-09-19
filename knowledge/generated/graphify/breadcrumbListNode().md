@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/jsonld-produk.ts"
 type: "code"
-community: "kategori/[slug].astro"
+community: "Product & Category Pages, Product JSON-LD"
 location: "L20"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/kategori/slugastro
+  - community/Product__Category_Pages_Product_JSON-LD
 ---
 
 # breadcrumbListNode()
@@ -16,4 +16,4 @@ tags:
 - [[buildProductPageSchema()]] - `calls` [EXTRACTED]
 - [[jsonld-produk.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/kategori/slugastro
+#graphify/code #graphify/EXTRACTED #community/Product__Category_Pages_Product_JSON-LD

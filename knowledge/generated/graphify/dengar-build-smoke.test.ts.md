@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/dengar-build-smoke.test.ts"
 type: "code"
-community: "dengar-build-smoke.test.ts"
+community: "Read-Aloud Build Smoke"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/dengar-build-smoketestts
+  - community/Read-Aloud_Build_Smoke
 ---
 
 # dengar-build-smoke.test.ts
@@ -17,4 +17,4 @@ tags:
 - [[canSpawnBun()_7]] - `contains` [EXTRACTED]
 - [[waitForStub()_7]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/dengar-build-smoketestts
+#graphify/code #graphify/EXTRACTED #community/Read-Aloud_Build_Smoke

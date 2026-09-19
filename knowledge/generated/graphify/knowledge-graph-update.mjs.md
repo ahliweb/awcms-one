@@ -1,12 +1,12 @@
 ---
 source_file: "tools/knowledge-graph-update.mjs"
 type: "code"
-community: "knowledge-graph-update.mjs"
+community: "Knowledge Graph Update Tool"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/knowledge-graph-updatemjs
+  - community/Knowledge_Graph_Update_Tool
 ---
 
 # knowledge-graph-update.mjs
@@ -16,4 +16,4 @@ tags:
 - [[ROOT_2]] - `contains` [EXTRACTED]
 - [[run()_1]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/knowledge-graph-updatemjs
+#graphify/code #graphify/EXTRACTED #community/Knowledge_Graph_Update_Tool

@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/scripts/bagikan.ts"
 type: "code"
-community: "bagikan.test.ts"
+community: "Share Row & Social Icons"
 location: "L110"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/bagikantestts
+  - community/Share_Row__Social_Icons
 ---
 
 # bagikanKeInstagram()
@@ -18,4 +18,4 @@ tags:
 - [[salinTautan()]] - `calls` [EXTRACTED]
 - [[scriptsbagikan.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/bagikantestts
+#graphify/code #graphify/EXTRACTED #community/Share_Row__Social_Icons

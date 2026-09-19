@@ -1,18 +1,18 @@
 ---
 source_file: "apps/storefront/src/pages/csp.json.ts"
 type: "code"
-community: "csp.json.ts"
+community: "Homepage & Derived CSP Artifact"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/cspjsonts
+  - community/Homepage__Derived_CSP_Artifact
 ---
 
 # csp.json.ts
 
 ## Connections
-- [[ADR-0007_7]] - `cites` [EXTRACTED]
+- [[ADR-0007_4]] - `cites` [EXTRACTED]
 - [[GET()_11]] - `contains` [EXTRACTED]
 - [[berita.ts]] - `imports_from` [EXTRACTED]
 - [[blog.ts]] - `imports_from` [EXTRACTED]
@@ -37,4 +37,4 @@ tags:
 - [[requireAwcmsOrigin()]] - `imports` [EXTRACTED]
 - [[toko-origin.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/cspjsonts
+#graphify/code #graphify/EXTRACTED #community/Homepage__Derived_CSP_Artifact

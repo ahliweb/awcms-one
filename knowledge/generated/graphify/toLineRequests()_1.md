@@ -1,18 +1,18 @@
 ---
-source_file: "apps/storefront/src/scripts/keranjang.ts"
+source_file: "apps/storefront/src/scripts/checkout.ts"
 type: "code"
-community: "keranjang.ts"
-location: "L41"
+community: "Checkout Flow & Phone Preview"
+location: "L52"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/keranjangts
+  - community/Checkout_Flow__Phone_Preview
 ---
 
 # toLineRequests()
 
 ## Connections
-- [[keranjang.ts]] - `contains` [EXTRACTED]
-- [[refresh()]] - `calls` [EXTRACTED]
+- [[checkout.ts]] - `contains` [EXTRACTED]
+- [[runCheckout()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/keranjangts
+#graphify/code #graphify/EXTRACTED #community/Checkout_Flow__Phone_Preview

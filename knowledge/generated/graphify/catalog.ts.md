@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/catalog.ts"
 type: "code"
-community: "catalog.ts"
+community: "Catalog Data & Product Index"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/catalogts
+  - community/Catalog_Data__Product_Index
 ---
 
 # catalog.ts
@@ -82,4 +82,4 @@ tags:
 - [[warna.test.ts]] - `imports_from` [EXTRACTED]
 - [[warna.ts]] - `re_exports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/catalogts
+#graphify/code #graphify/EXTRACTED #community/Catalog_Data__Product_Index

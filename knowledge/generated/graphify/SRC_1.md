@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/iklan-popup.test.ts"
 type: "code"
-community: "iklan-popup.ts"
+community: "Ad Popup"
 location: "L31"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/iklan-popupts
+  - community/Ad_Popup
 ---
 
 # SRC
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[iklan-popup.test.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/iklan-popupts
+#graphify/code #graphify/EXTRACTED #community/Ad_Popup

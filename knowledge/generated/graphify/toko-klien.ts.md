@@ -1,23 +1,22 @@
 ---
 source_file: "apps/storefront/src/lib/toko-klien.ts"
 type: "code"
-community: "toko-klien.ts"
+community: "Commerce Storefront Client & Order Tracking"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/toko-klients
+  - community/Commerce_Storefront_Client__Order_Tracking
 ---
 
 # toko-klien.ts
 
 ## Connections
-- [[ADR-0007_1]] - `cites` [EXTRACTED]
+- [[ADR-0007_8]] - `cites` [EXTRACTED]
 - [[CartLineRequest]] - `contains` [EXTRACTED]
 - [[CartLineStatus]] - `contains` [EXTRACTED]
 - [[CartQuote]] - `contains` [EXTRACTED]
 - [[CreateOrderRequest]] - `contains` [EXTRACTED]
-- [[Envelope_1]] - `contains` [EXTRACTED]
 - [[Order]] - `contains` [EXTRACTED]
 - [[OrderAddressInput]] - `contains` [EXTRACTED]
 - [[OrderCustomerInput]] - `contains` [EXTRACTED]
@@ -34,9 +33,10 @@ tags:
 - [[ReviewRequest]] - `contains` [EXTRACTED]
 - [[ShippingOption]] - `contains` [EXTRACTED]
 - [[ShippingSelection]] - `contains` [EXTRACTED]
-- [[TokoApiError]] - `contains` [EXTRACTED]
+- [[TokoApiError]] - `re_exports` [EXTRACTED]
 - [[UploadSession]] - `contains` [EXTRACTED]
-- [[ValidationErrorDetail]] - `contains` [EXTRACTED]
+- [[ValidationErrorDetail]] - `re_exports` [EXTRACTED]
+- [[akun-klien.ts]] - `imports_from` [EXTRACTED]
 - [[cancelOrder()]] - `contains` [EXTRACTED]
 - [[checkout.ts]] - `imports_from` [EXTRACTED]
 - [[createOrder()]] - `contains` [EXTRACTED]
@@ -44,13 +44,13 @@ tags:
 - [[finalizePaymentProofUpload()]] - `contains` [EXTRACTED]
 - [[getOrder()]] - `contains` [EXTRACTED]
 - [[keranjang.ts]] - `imports_from` [EXTRACTED]
+- [[kirimPermintaan()]] - `imports` [EXTRACTED]
+- [[pesanan-render.ts]] - `imports_from` [EXTRACTED]
 - [[quoteCart()]] - `contains` [EXTRACTED]
-- [[request()]] - `contains` [EXTRACTED]
-- [[requireAwcmsOrigin()]] - `imports` [EXTRACTED]
 - [[scriptspesanan.ts]] - `imports_from` [EXTRACTED]
 - [[submitPaymentConfirmation()]] - `contains` [EXTRACTED]
 - [[submitReview()]] - `contains` [EXTRACTED]
 - [[toko-klien.test.ts]] - `imports_from` [EXTRACTED]
-- [[toko-origin.ts]] - `imports_from` [EXTRACTED]
+- [[toko-permintaan.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/toko-klients
+#graphify/code #graphify/EXTRACTED #community/Commerce_Storefront_Client__Order_Tracking

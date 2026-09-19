@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/pages/video/[slug].astro"
 type: "code"
-community: "BeritaLayout.astro"
+community: "Article Pages & News JSON-LD"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/BeritaLayoutastro
+  - community/Article_Pages__News_JSON-LD
 ---
 
 # video/[slug].astro
@@ -14,7 +14,7 @@ tags:
 ## Connections
 - [[ArtikelView.astro]] - `imports_from` [EXTRACTED]
 - [[BeritaLayout.astro]] - `imports_from` [EXTRACTED]
-- [[ROUTES]] - `imports` [EXTRACTED]
+- [[ROUTES_1]] - `imports` [EXTRACTED]
 - [[berita.ts]] - `imports_from` [EXTRACTED]
 - [[breadcrumbItems_1]] - `contains` [EXTRACTED]
 - [[breadcrumbListSchema()]] - `imports` [EXTRACTED]
@@ -39,4 +39,4 @@ tags:
 - [[videoSocialMeta()]] - `imports` [EXTRACTED]
 - [[{ slug }_6]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/BeritaLayoutastro
+#graphify/code #graphify/EXTRACTED #community/Article_Pages__News_JSON-LD

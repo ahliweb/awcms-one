@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/berita.ts"
 type: "code"
-community: "[n].astro"
+community: "[slug]/feed.xml.ts"
 location: "L488"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/nastro
+  - community/slug/feedxmlts
 ---
 
 # getRubrikTree()
@@ -27,4 +27,4 @@ tags:
 - [[sitemap-sources.ts]] - `imports` [EXTRACTED]
 - [[toPublicRubrikNode()]] - `indirect_call` [INFERRED]
 
-#graphify/code #graphify/EXTRACTED #community/nastro
+#graphify/code #graphify/EXTRACTED #community/slug/feedxmlts

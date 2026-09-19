@@ -1,12 +1,12 @@
 ---
 source_file: "tools/seed-borneojek-mart.ts"
 type: "code"
-community: "seed-borneojek-mart.ts"
+community: "BjekMart Seed Tool"
 location: "L391"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/seed-borneojek-martts
+  - community/BjekMart_Seed_Tool
 ---
 
 # ensureTenantDomains()
@@ -15,4 +15,4 @@ tags:
 - [[main()_1]] - `calls` [EXTRACTED]
 - [[seed-borneojek-mart.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/seed-borneojek-martts
+#graphify/code #graphify/EXTRACTED #community/BjekMart_Seed_Tool

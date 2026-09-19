@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/katalog-jsonld.test.ts"
 type: "code"
-community: "kategori/[slug].astro"
+community: "Product & Category Pages, Product JSON-LD"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/kategori/slugastro
+  - community/Product__Category_Pages_Product_JSON-LD
 ---
 
 # katalog-jsonld.test.ts
@@ -21,4 +21,4 @@ tags:
 - [[jsonld-produk.ts]] - `imports_from` [EXTRACTED]
 - [[product()_1]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/kategori/slugastro
+#graphify/code #graphify/EXTRACTED #community/Product__Category_Pages_Product_JSON-LD

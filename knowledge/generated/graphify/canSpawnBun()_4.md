@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/bagikan-build-smoke.test.ts"
 type: "code"
-community: "bagikan-build-smoke.test.ts"
+community: "Share Row Build Smoke"
 location: "L33"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/bagikan-build-smoketestts
+  - community/Share_Row_Build_Smoke
 ---
 
 # canSpawnBun()
@@ -15,4 +15,4 @@ tags:
 - [[bagikan-build-smoke.test.ts]] - `contains` [EXTRACTED]
 - [[bun_1]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/bagikan-build-smoketestts
+#graphify/code #graphify/EXTRACTED #community/Share_Row_Build_Smoke

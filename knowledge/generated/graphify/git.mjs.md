@@ -1,12 +1,12 @@
 ---
 source_file: "packages/gerbang/lib/git.mjs"
 type: "code"
-community: "audit-graf.mjs"
+community: "Documentation & Graph Audit Gates"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/audit-grafmjs
+  - community/Documentation__Graph_Audit_Gates
 ---
 
 # git.mjs
@@ -21,4 +21,4 @@ tags:
 - [[gitRunOrThrow()]] - `contains` [EXTRACTED]
 - [[rilis.mjs]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/audit-grafmjs
+#graphify/code #graphify/EXTRACTED #community/Documentation__Graph_Audit_Gates

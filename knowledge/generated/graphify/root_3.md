@@ -1,17 +1,17 @@
 ---
-source_file: "apps/storefront/src/scripts/checkout.ts"
+source_file: "apps/storefront/src/scripts/keranjang.ts"
 type: "code"
-community: "checkout.ts"
-location: "L27"
+community: "Cart Page & WhatsApp Fallback"
+location: "L21"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/checkoutts
+  - community/Cart_Page__WhatsApp_Fallback
 ---
 
 # root
 
 ## Connections
-- [[checkout.ts]] - `contains` [EXTRACTED]
+- [[keranjang.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/checkoutts
+#graphify/code #graphify/EXTRACTED #community/Cart_Page__WhatsApp_Fallback

@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/pages/kategori/[slug].astro"
 type: "code"
-community: "kategori/[slug].astro"
+community: "Product & Category Pages, Product JSON-LD"
 location: "L26"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/kategori/slugastro
+  - community/Product__Category_Pages_Product_JSON-LD
 ---
 
 # getStaticPaths()
@@ -15,4 +15,4 @@ tags:
 - [[getCategories()]] - `calls` [EXTRACTED]
 - [[kategorislug.astro]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/kategori/slugastro
+#graphify/code #graphify/EXTRACTED #community/Product__Category_Pages_Product_JSON-LD

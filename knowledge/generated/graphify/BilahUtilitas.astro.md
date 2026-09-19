@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/components/berita/BilahUtilitas.astro"
 type: "code"
-community: "navigasi-berita.ts"
+community: "Share Row & Social Icons"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/navigasi-beritats
+  - community/Share_Row__Social_Icons
 ---
 
 # BilahUtilitas.astro
@@ -20,4 +20,4 @@ tags:
 - [[resolveSocialIcons()]] - `imports` [EXTRACTED]
 - [[socialIcons]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/navigasi-beritats
+#graphify/code #graphify/EXTRACTED #community/Share_Row__Social_Icons

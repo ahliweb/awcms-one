@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/dengar.test.ts"
 type: "code"
-community: "dengar.ts"
+community: "Read-Aloud Player"
 location: "L34"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/dengarts
+  - community/Read-Aloud_Player
 ---
 
 # badanDengan()
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[dengar.test.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/dengarts
+#graphify/code #graphify/EXTRACTED #community/Read-Aloud_Player

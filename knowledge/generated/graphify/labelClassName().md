@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/catalog.ts"
 type: "code"
-community: "getProducts"
+community: "Client-Side Search & Listing Renderer"
 location: "L677"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/getProducts
+  - community/Client-Side_Search__Listing_Renderer
 ---
 
 # labelClassName()
@@ -21,4 +21,4 @@ tags:
 - [[productslug.astro]] - `imports` [EXTRACTED]
 - [[produk-index-klien.ts]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/getProducts
+#graphify/code #graphify/EXTRACTED #community/Client-Side_Search__Listing_Renderer

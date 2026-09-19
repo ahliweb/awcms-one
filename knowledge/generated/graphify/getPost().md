@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/berita.ts"
 type: "code"
-community: "site.ts"
+community: "Portable Text & Static Pages"
 location: "L440"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/sitets
+  - community/Portable_Text__Static_Pages
 ---
 
 # getPost()
@@ -21,4 +21,4 @@ tags:
 - [[getIndex()]] - `calls` [EXTRACTED]
 - [[videoslug.astro]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/sitets
+#graphify/code #graphify/EXTRACTED #community/Portable_Text__Static_Pages

@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/pages/cari.astro"
 type: "code"
-community: "produk-listing.ts"
+community: "Client-Side Search & Listing Renderer"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/produk-listingts
+  - community/Client-Side_Search__Listing_Renderer
 ---
 
 # cari.astro
@@ -16,4 +16,4 @@ tags:
 - [[SearchForm.astro]] - `imports_from` [EXTRACTED]
 - [[cari-listing.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/produk-listingts
+#graphify/code #graphify/EXTRACTED #community/Client-Side_Search__Listing_Renderer

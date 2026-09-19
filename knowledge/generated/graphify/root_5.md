@@ -1,17 +1,17 @@
 ---
-source_file: "apps/storefront/src/scripts/pesanan.ts"
+source_file: "apps/storefront/src/scripts/akun-afiliasi.ts"
 type: "code"
-community: "scripts/pesanan.ts"
-location: "L30"
+community: "Account Affiliate Page Script"
+location: "L46"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/scripts/pesanants
+  - community/Account_Affiliate_Page_Script
 ---
 
 # root
 
 ## Connections
-- [[scriptspesanan.ts]] - `contains` [EXTRACTED]
+- [[akun-afiliasi.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/scripts/pesanants
+#graphify/code #graphify/EXTRACTED #community/Account_Affiliate_Page_Script

@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/awcms-media.test.ts"
 type: "code"
-community: "BeritaLayout.astro"
+community: "media.ts"
 location: "L51"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/BeritaLayoutastro
+  - community/mediats
 ---
 
 # rawItem()
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[awcms-media.test.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/BeritaLayoutastro
+#graphify/code #graphify/EXTRACTED #community/mediats

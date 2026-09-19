@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/awcms/client.ts"
 type: "code"
-community: "awcms/analitik.ts"
+community: "Build-Time CMS Client & Region Data"
 location: "L41"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/awcms/analitikts
+  - community/Build-Time_CMS_Client__Region_Data
 ---
 
 # .constructor()
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[AwcmsApiError]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/awcms/analitikts
+#graphify/code #graphify/EXTRACTED #community/Build-Time_CMS_Client__Region_Data

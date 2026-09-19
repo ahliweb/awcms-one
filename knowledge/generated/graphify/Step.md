@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/scripts/checkout.ts"
 type: "code"
-community: "checkout.ts"
-location: "L25"
+community: "Checkout Flow & Phone Preview"
+location: "L29"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/checkoutts
+  - community/Checkout_Flow__Phone_Preview
 ---
 
 # Step
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[checkout.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/checkoutts
+#graphify/code #graphify/EXTRACTED #community/Checkout_Flow__Phone_Preview

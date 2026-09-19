@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/pages/rubrik/[slug]/feed.xml.ts"
 type: "code"
-community: "site.ts"
+community: "[slug]/feed.xml.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/sitets
+  - community/slug/feedxmlts
 ---
 
 # [slug]/feed.xml.ts
@@ -14,7 +14,7 @@ tags:
 ## Connections
 - [[BeritaFeedItem]] - `imports` [EXTRACTED]
 - [[GET()_7]] - `contains` [EXTRACTED]
-- [[ROUTES]] - `imports` [EXTRACTED]
+- [[ROUTES_1]] - `imports` [EXTRACTED]
 - [[absoluteUrl()]] - `imports` [EXTRACTED]
 - [[berita.ts]] - `imports_from` [EXTRACTED]
 - [[flattenRubrikTree()]] - `imports` [EXTRACTED]
@@ -31,4 +31,4 @@ tags:
 - [[routes.ts]] - `imports_from` [EXTRACTED]
 - [[site.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/sitets
+#graphify/code #graphify/EXTRACTED #community/slug/feedxmlts

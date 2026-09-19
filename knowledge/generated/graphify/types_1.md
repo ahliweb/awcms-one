@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tsconfig.json"
 type: "code"
-community: "extends"
+community: "Storefront TypeScript Config"
 location: "L15"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/extends
+  - community/Storefront_TypeScript_Config
 ---
 
 # types
@@ -15,4 +15,4 @@ tags:
 - [[bun]] - `extends` [EXTRACTED]
 - [[compilerOptions_2]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/extends
+#graphify/code #graphify/EXTRACTED #community/Storefront_TypeScript_Config

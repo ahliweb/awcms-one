@@ -1,19 +1,19 @@
 ---
 source_file: "apps/storefront/src/lib/awcms/wilayah-checkout.ts"
 type: "code"
-community: "wilayah-checkout.ts"
+community: "Build-Time CMS Client & Region Data"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/wilayah-checkoutts
+  - community/Build-Time_CMS_Client__Region_Data
 ---
 
 # wilayah-checkout.ts
 
 ## Connections
 - [[ADR-0002_1]] - `cites` [EXTRACTED]
-- [[ADR-0007_6]] - `cites` [EXTRACTED]
+- [[ADR-0007_3]] - `cites` [EXTRACTED]
 - [[ConcurrencyLimiter]] - `contains` [EXTRACTED]
 - [[DEFAULT_PROVINCE_CODES]] - `contains` [EXTRACTED]
 - [[MAX_IN_FLIGHT_REGION_REQUESTS]] - `contains` [EXTRACTED]
@@ -40,4 +40,4 @@ tags:
 - [[wilayah-kecamatan-cityCode.json.ts]] - `imports_from` [EXTRACTED]
 - [[wilayah-provinsi.json.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/wilayah-checkoutts
+#graphify/code #graphify/EXTRACTED #community/Build-Time_CMS_Client__Region_Data

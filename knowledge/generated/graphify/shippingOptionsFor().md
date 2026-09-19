@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/scripts/stub-awcms.mjs"
 type: "code"
-community: "stub-awcms.mjs"
-location: "L299"
+community: "Stub CMS State Machine"
+location: "L348"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/stub-awcmsmjs
+  - community/Stub_CMS_State_Machine
 ---
 
 # shippingOptionsFor()
@@ -15,4 +15,4 @@ tags:
 - [[computeQuote()]] - `calls` [EXTRACTED]
 - [[stub-awcms.mjs]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/stub-awcmsmjs
+#graphify/code #graphify/EXTRACTED #community/Stub_CMS_State_Machine

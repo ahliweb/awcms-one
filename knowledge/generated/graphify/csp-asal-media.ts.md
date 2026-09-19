@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/csp-asal-media.ts"
 type: "code"
-community: "katalog-csp-media.test.ts"
+community: "Static Server & Legacy Redirect Rules"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/katalog-csp-mediatestts
+  - community/Static_Server__Legacy_Redirect_Rules
 ---
 
 # csp-asal-media.ts
@@ -21,4 +21,4 @@ tags:
 - [[originOf()]] - `contains` [EXTRACTED]
 - [[toko-csp.test.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/katalog-csp-mediatestts
+#graphify/code #graphify/EXTRACTED #community/Static_Server__Legacy_Redirect_Rules

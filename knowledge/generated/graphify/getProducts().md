@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/catalog.ts"
 type: "code"
-community: "getProducts"
+community: "Homepage & Derived CSP Artifact"
 location: "L299"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/getProducts
+  - community/Homepage__Derived_CSP_Artifact
 ---
 
 # getProducts()
@@ -31,4 +31,4 @@ tags:
 - [[produk.json.ts]] - `imports` [EXTRACTED]
 - [[sitemap-katalog.ts]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/getProducts
+#graphify/code #graphify/EXTRACTED #community/Homepage__Derived_CSP_Artifact

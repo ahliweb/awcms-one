@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/awcms/lembaga.ts"
 type: "code"
-community: "lembaga.ts"
+community: "media.ts"
 location: "L36"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/lembagats
+  - community/mediats
 ---
 
 # MitraSummary
@@ -15,4 +15,4 @@ tags:
 - [[berita.ts]] - `imports` [EXTRACTED]
 - [[lembaga.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/lembagats
+#graphify/code #graphify/EXTRACTED #community/mediats

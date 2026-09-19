@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/scripts/wishlist.ts"
 type: "code"
-community: "wishlist-kontrak.ts"
-location: "L17"
+community: "Wishlist Storage & Account Sync"
+location: "L18"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/wishlist-kontrakts
+  - community/Wishlist_Storage__Account_Sync
 ---
 
 # itemMarkup()
@@ -14,7 +14,8 @@ tags:
 ## Connections
 - [[formatPrice()]] - `calls` [EXTRACTED]
 - [[removeFromWishlist()]] - `calls` [EXTRACTED]
-- [[render()_2]] - `calls` [EXTRACTED]
+- [[render()_7]] - `calls` [EXTRACTED]
+- [[tulisKeAkunJikaMasuk()]] - `calls` [EXTRACTED]
 - [[wishlist.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/wishlist-kontrakts
+#graphify/code #graphify/EXTRACTED #community/Wishlist_Storage__Account_Sync

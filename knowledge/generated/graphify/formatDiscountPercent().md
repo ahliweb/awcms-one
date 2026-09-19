@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/harga.ts"
 type: "code"
-community: "product/[slug].astro"
+community: "Price Formatting & Product Cards"
 location: "L70"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/product/slugastro
+  - community/Price_Formatting__Product_Cards
 ---
 
 # formatDiscountPercent()
@@ -16,4 +16,4 @@ tags:
 - [[katalog-harga.test.ts]] - `imports` [EXTRACTED]
 - [[productslug.astro]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/product/slugastro
+#graphify/code #graphify/EXTRACTED #community/Price_Formatting__Product_Cards

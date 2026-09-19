@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/awcms/pemasaran.ts"
 type: "code"
-community: "pemasaran.ts"
+community: "Marketing Data (Flash Sales, Vouchers, Settings)"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/pemasarants
+  - community/Marketing_Data_Flash_Sales_Vouchers_Settings
 ---
 
 # pemasaran.ts
@@ -34,10 +34,15 @@ tags:
 - [[Testimonial]] - `contains` [EXTRACTED]
 - [[Voucher]] - `contains` [EXTRACTED]
 - [[VoucherType]] - `contains` [EXTRACTED]
+- [[afiliasi.astro]] - `imports_from` [EXTRACTED]
+- [[akunindex.astro]] - `imports_from` [EXTRACTED]
+- [[akunpesanan.astro]] - `imports_from` [EXTRACTED]
+- [[alamat.astro]] - `imports_from` [EXTRACTED]
 - [[awcmsGet()]] - `imports` [EXTRACTED]
 - [[checkout.astro]] - `imports_from` [EXTRACTED]
 - [[client.ts]] - `imports_from` [EXTRACTED]
 - [[csp.json.ts]] - `imports_from` [EXTRACTED]
+- [[daftar.astro]] - `imports_from` [EXTRACTED]
 - [[findFlashSaleForProduct()]] - `contains` [EXTRACTED]
 - [[flash-sale.astro]] - `imports_from` [EXTRACTED]
 - [[getActiveFlashSales()]] - `contains` [EXTRACTED]
@@ -51,11 +56,13 @@ tags:
 - [[katalog-pemasaran.test.ts]] - `imports_from` [EXTRACTED]
 - [[keranjang.astro]] - `imports_from` [EXTRACTED]
 - [[kontak.astro]] - `imports_from` [EXTRACTED]
+- [[masuk.astro]] - `imports_from` [EXTRACTED]
 - [[pagesindex.astro]] - `imports_from` [EXTRACTED]
-- [[pesanan.astro]] - `imports_from` [EXTRACTED]
+- [[pagespesanan.astro]] - `imports_from` [EXTRACTED]
 - [[productslug.astro]] - `imports_from` [EXTRACTED]
 - [[produk.json.ts]] - `imports_from` [EXTRACTED]
 - [[resetPemasaranCacheForTests()]] - `contains` [EXTRACTED]
+- [[ulasan.astro]] - `imports_from` [EXTRACTED]
 - [[warnMissing()]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/pemasarants
+#graphify/code #graphify/EXTRACTED #community/Marketing_Data_Flash_Sales_Vouchers_Settings

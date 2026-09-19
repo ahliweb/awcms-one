@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/scripts/dengar.ts"
 type: "code"
-community: "dengar.ts"
+community: "Read-Aloud Player"
 location: "L144"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/dengarts
+  - community/Read-Aloud_Player
 ---
 
 # suaraIndonesia()
@@ -16,4 +16,4 @@ tags:
 - [[dengar.ts]] - `contains` [EXTRACTED]
 - [[pasangPemutar()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/dengarts
+#graphify/code #graphify/EXTRACTED #community/Read-Aloud_Player

@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/katalog-keranjang.test.ts"
 type: "code"
-community: "keranjang-kontrak.ts"
+community: "Cart Storage & Cart Contract"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/keranjang-kontrakts
+  - community/Cart_Storage__Cart_Contract
 ---
 
 # katalog-keranjang.test.ts
@@ -25,4 +25,4 @@ tags:
 - [[setLineQuantity()]] - `imports` [EXTRACTED]
 - [[validateCartLine()]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/keranjang-kontrakts
+#graphify/code #graphify/EXTRACTED #community/Cart_Storage__Cart_Contract

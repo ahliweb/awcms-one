@@ -10,7 +10,7 @@ members: 24
 **Members:** 24 nodes
 
 ## Members
-- [[dot-constructor()_4]] - code - tools/lib/awcms-api.ts
+- [[dot-constructor()_3]] - code - tools/lib/awcms-api.ts
 - [[ApiResult]] - code - tools/lib/awcms-api.ts
 - [[AwcmsApiError_1]] - code - tools/lib/awcms-api.ts
 - [[ChunkOutcome]] - code - tools/lib/redirect-push.ts
@@ -43,9 +43,9 @@ SORT file.name ASC
 ```
 
 ## Connections to other communities
-- 11 edges to [[_COMMUNITY_import-seputarborneo.test.mjs]]
+- 11 edges to [[_COMMUNITY_Importer Record Builders & Legacy URLs]]
 - 7 edges to [[_COMMUNITY_runExport]]
-- 6 edges to [[_COMMUNITY_import-seputarborneo.ts]]
+- 6 edges to [[_COMMUNITY_Legacy Taxonomy Mapping (Importer)]]
 
 ## Top bridge nodes
 - [[redirect-push.ts]] - degree 27, connects to 3 communities

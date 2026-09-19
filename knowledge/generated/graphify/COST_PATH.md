@@ -1,12 +1,12 @@
 ---
 source_file: "tools/knowledge-graph-update.mjs"
 type: "code"
-community: "knowledge-graph-update.mjs"
+community: "Knowledge Graph Update Tool"
 location: "L41"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/knowledge-graph-updatemjs
+  - community/Knowledge_Graph_Update_Tool
 ---
 
 # COST_PATH
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[knowledge-graph-update.mjs]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/knowledge-graph-updatemjs
+#graphify/code #graphify/EXTRACTED #community/Knowledge_Graph_Update_Tool

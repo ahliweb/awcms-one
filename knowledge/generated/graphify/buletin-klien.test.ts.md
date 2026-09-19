@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/buletin-klien.test.ts"
 type: "code"
-community: "buletin.ts"
+community: "Newsletter Forms & Visitor Beacon"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/buletints
+  - community/Newsletter_Forms__Visitor_Beacon
 ---
 
 # buletin-klien.test.ts
@@ -20,4 +20,4 @@ tags:
 - [[subscribeToNewsletter()]] - `imports` [EXTRACTED]
 - [[unsubscribeFromNewsletter()]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/buletints
+#graphify/code #graphify/EXTRACTED #community/Newsletter_Forms__Visitor_Beacon

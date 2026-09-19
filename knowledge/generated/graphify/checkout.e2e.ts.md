@@ -1,14 +1,14 @@
 ---
 source_file: "apps/storefront/tests/e2e/checkout.e2e.ts"
 type: "code"
-community: "checkout.e2e.ts"
+community: "Checkout E2E"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/checkoute2ets
+  - community/Checkout_E2E
 ---
 
 # checkout.e2e.ts
 
-#graphify/code #graphify/EXTRACTED #community/checkoute2ets
+#graphify/code #graphify/EXTRACTED #community/Checkout_E2E

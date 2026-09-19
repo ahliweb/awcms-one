@@ -1,18 +1,18 @@
 ---
-source_file: "apps/storefront/src/scripts/checkout.ts"
+source_file: "apps/storefront/src/scripts/keranjang.ts"
 type: "code"
-community: "checkout.ts"
-location: "L48"
+community: "Cart Page & WhatsApp Fallback"
+location: "L41"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/checkoutts
+  - community/Cart_Page__WhatsApp_Fallback
 ---
 
 # toLineRequests()
 
 ## Connections
-- [[checkout.ts]] - `contains` [EXTRACTED]
-- [[runCheckout()]] - `calls` [EXTRACTED]
+- [[keranjang.ts]] - `contains` [EXTRACTED]
+- [[refresh()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/checkoutts
+#graphify/code #graphify/EXTRACTED #community/Cart_Page__WhatsApp_Fallback

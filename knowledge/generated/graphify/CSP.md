@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/server/penyaji.mjs"
 type: "code"
-community: "katalog-csp-media.test.ts"
+community: "Static Server & Legacy Redirect Rules"
 location: "L231"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/katalog-csp-mediatestts
+  - community/Static_Server__Legacy_Redirect_Rules
 ---
 
 # CSP
@@ -17,4 +17,4 @@ tags:
 - [[penyaji.mjs]] - `contains` [EXTRACTED]
 - [[penyaji.test.ts]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/katalog-csp-mediatestts
+#graphify/code #graphify/EXTRACTED #community/Static_Server__Legacy_Redirect_Rules

@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/wilayah-checkout.test.ts"
 type: "code"
-community: "wilayah-checkout.ts"
+community: "Build-Time CMS Client & Region Data"
 location: "L229"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/wilayah-checkoutts
+  - community/Build-Time_CMS_Client__Region_Data
 ---
 
 # mockCountingFetch()
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[wilayah-checkout.test.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/wilayah-checkoutts
+#graphify/code #graphify/EXTRACTED #community/Build-Time_CMS_Client__Region_Data

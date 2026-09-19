@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/pages/index/berita.json.ts"
 type: "code"
-community: "Sidebar.astro"
+community: "Article Pages & News JSON-LD"
 location: "L22"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Sidebarastro
+  - community/Article_Pages__News_JSON-LD
 ---
 
 # GET()
@@ -15,4 +15,4 @@ tags:
 - [[berita.json.ts]] - `contains` [EXTRACTED]
 - [[getPosts()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Sidebarastro
+#graphify/code #graphify/EXTRACTED #community/Article_Pages__News_JSON-LD

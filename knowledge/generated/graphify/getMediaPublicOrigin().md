@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/awcms/media.ts"
 type: "code"
-community: "csp.json.ts"
+community: "media.ts"
 location: "L259"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/cspjsonts
+  - community/mediats
 ---
 
 # getMediaPublicOrigin()
@@ -18,4 +18,4 @@ tags:
 - [[fetchMediaPublicOrigin()]] - `calls` [EXTRACTED]
 - [[media.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/cspjsonts
+#graphify/code #graphify/EXTRACTED #community/mediats

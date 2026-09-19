@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/portable-text.ts"
 type: "code"
-community: "portable-text.ts"
+community: "Portable Text & Static Pages"
 location: "L158"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/portable-textts
+  - community/Portable_Text__Static_Pages
 ---
 
 # escapeHtml()
@@ -19,4 +19,4 @@ tags:
 - [[renderSpan()]] - `calls` [EXTRACTED]
 - [[renderVideoNewsNode()]] - `indirect_call` [INFERRED]
 
-#graphify/code #graphify/EXTRACTED #community/portable-textts
+#graphify/code #graphify/EXTRACTED #community/Portable_Text__Static_Pages

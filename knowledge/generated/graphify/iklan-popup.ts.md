@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/scripts/iklan-popup.ts"
 type: "code"
-community: "iklan-popup.ts"
+community: "Ad Popup"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/iklan-popupts
+  - community/Ad_Popup
 ---
 
 # iklan-popup.ts
@@ -30,4 +30,4 @@ tags:
 - [[safeHttpUrl()]] - `contains` [EXTRACTED]
 - [[supportsDialog()]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/iklan-popupts
+#graphify/code #graphify/EXTRACTED #community/Ad_Popup

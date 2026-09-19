@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/pages/berita/[slug].astro"
 type: "code"
-community: "BeritaLayout.astro"
+community: "Article Pages & News JSON-LD"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/BeritaLayoutastro
+  - community/Article_Pages__News_JSON-LD
 ---
 
 # berita/[slug].astro
@@ -14,7 +14,7 @@ tags:
 ## Connections
 - [[ArtikelView.astro]] - `imports_from` [EXTRACTED]
 - [[BeritaLayout.astro]] - `imports_from` [EXTRACTED]
-- [[ROUTES]] - `imports` [EXTRACTED]
+- [[ROUTES_1]] - `imports` [EXTRACTED]
 - [[articleSocialMeta()]] - `imports` [EXTRACTED]
 - [[berita.ts]] - `imports_from` [EXTRACTED]
 - [[breadcrumbItems]] - `contains` [EXTRACTED]
@@ -38,4 +38,4 @@ tags:
 - [[social]] - `contains` [EXTRACTED]
 - [[{ slug }_2]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/BeritaLayoutastro
+#graphify/code #graphify/EXTRACTED #community/Article_Pages__News_JSON-LD

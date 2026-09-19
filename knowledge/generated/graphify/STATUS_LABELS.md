@@ -1,17 +1,18 @@
 ---
-source_file: "apps/storefront/src/scripts/pesanan.ts"
+source_file: "apps/storefront/src/lib/pesanan-render.ts"
 type: "code"
-community: "scripts/pesanan.ts"
-location: "L20"
+community: "Commerce Storefront Client & Order Tracking"
+location: "L17"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/scripts/pesanants
+  - community/Commerce_Storefront_Client__Order_Tracking
 ---
 
 # STATUS_LABELS
 
 ## Connections
-- [[scriptspesanan.ts]] - `contains` [EXTRACTED]
+- [[akun-pesanan.ts]] - `imports` [EXTRACTED]
+- [[pesanan-render.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/scripts/pesanants
+#graphify/code #graphify/EXTRACTED #community/Commerce_Storefront_Client__Order_Tracking

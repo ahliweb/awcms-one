@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/catalog.ts"
 type: "code"
-community: "catalog.ts"
+community: "Catalog Data & Product Index"
 location: "L276"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/catalogts
+  - community/Catalog_Data__Product_Index
 ---
 
 # isPubliclyVisible()
@@ -16,4 +16,4 @@ tags:
 - [[catalog.ts]] - `contains` [EXTRACTED]
 - [[getProducts()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/catalogts
+#graphify/code #graphify/EXTRACTED #community/Catalog_Data__Product_Index

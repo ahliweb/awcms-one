@@ -14,8 +14,9 @@ tags:
 ## Connections
 - [[BaseLayout.astro]] - `imports_from` [EXTRACTED]
 - [[PRIMARY_NAV]] - `imports` [EXTRACTED]
-- [[ROUTES]] - `imports` [EXTRACTED]
+- [[ROUTES_1]] - `imports` [EXTRACTED]
 - [[SearchForm.astro]] - `imports_from` [EXTRACTED]
+- [[akun-header.ts]] - `imports_from` [EXTRACTED]
 - [[keranjang-hitung.ts]] - `imports_from` [EXTRACTED]
 - [[profil.ts]] - `imports_from` [EXTRACTED]
 - [[routes.ts]] - `imports_from` [EXTRACTED]

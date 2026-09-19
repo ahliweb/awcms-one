@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/pages/feed.xml.ts"
 type: "code"
-community: "getProducts"
+community: "Root RSS Feed"
 location: "L38"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/getProducts
+  - community/Root_RSS_Feed
 ---
 
 # GET()
@@ -19,4 +19,4 @@ tags:
 - [[getSiteIdentity()]] - `calls` [EXTRACTED]
 - [[pagesfeed.xml.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/getProducts
+#graphify/code #graphify/EXTRACTED #community/Root_RSS_Feed

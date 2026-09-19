@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/scripts/ga-init.ts"
 type: "code"
-community: "ga-init.ts"
+community: "GA4 Init"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/ga-initts
+  - community/GA4_Init
 ---
 
 # ga-init.ts
@@ -18,4 +18,4 @@ tags:
 - [[gtag()]] - `contains` [EXTRACTED]
 - [[initGa()]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/ga-initts
+#graphify/code #graphify/EXTRACTED #community/GA4_Init

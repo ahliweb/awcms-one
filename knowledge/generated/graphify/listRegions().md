@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/awcms/wilayah.ts"
 type: "code"
-community: "wilayah.ts"
+community: "navigasi-berita.ts"
 location: "L59"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/wilayahts
+  - community/navigasi-beritats
 ---
 
 # listRegions()
@@ -16,4 +16,4 @@ tags:
 - [[getRegenciesOf()]] - `calls` [EXTRACTED]
 - [[wilayah.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/wilayahts
+#graphify/code #graphify/EXTRACTED #community/navigasi-beritats

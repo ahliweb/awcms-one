@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/pages/product/[slug].astro"
 type: "code"
-community: "product/[slug].astro"
+community: "Product & Category Pages, Product JSON-LD"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/product/slugastro
+  - community/Product__Category_Pages_Product_JSON-LD
 ---
 
 # product/[slug].astro
@@ -18,7 +18,7 @@ tags:
 - [[CommerceProduct]] - `imports` [EXTRACTED]
 - [[Countdown.astro]] - `imports_from` [EXTRACTED]
 - [[ProductCard.astro]] - `imports_from` [EXTRACTED]
-- [[ROUTES]] - `imports` [EXTRACTED]
+- [[ROUTES_1]] - `imports` [EXTRACTED]
 - [[absoluteUrl()]] - `imports` [EXTRACTED]
 - [[buildPriceTiers()]] - `imports` [EXTRACTED]
 - [[buildProductPageSchema()]] - `imports` [EXTRACTED]
@@ -43,4 +43,4 @@ tags:
 - [[routes.ts]] - `imports_from` [EXTRACTED]
 - [[site.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/product/slugastro
+#graphify/code #graphify/EXTRACTED #community/Product__Category_Pages_Product_JSON-LD

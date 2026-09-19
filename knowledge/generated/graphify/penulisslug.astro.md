@@ -14,7 +14,7 @@ tags:
 ## Connections
 - [[ArtikelCard.astro]] - `imports_from` [EXTRACTED]
 - [[BeritaLayout.astro]] - `imports_from` [EXTRACTED]
-- [[ROUTES]] - `imports` [EXTRACTED]
+- [[ROUTES_1]] - `imports` [EXTRACTED]
 - [[Sidebar.astro]] - `imports_from` [EXTRACTED]
 - [[berita.ts]] - `imports_from` [EXTRACTED]
 - [[canonicalPath_3]] - `contains` [EXTRACTED]

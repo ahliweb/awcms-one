@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/pages/daerah/[slug].astro"
 type: "code"
-community: "berita.ts"
+community: "navigasi-berita.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/beritats
+  - community/navigasi-beritats
 ---
 
 # daerah/[slug].astro
@@ -14,7 +14,7 @@ tags:
 ## Connections
 - [[ArtikelCard.astro]] - `imports_from` [EXTRACTED]
 - [[BeritaLayout.astro]] - `imports_from` [EXTRACTED]
-- [[ROUTES]] - `imports` [EXTRACTED]
+- [[ROUTES_1]] - `imports` [EXTRACTED]
 - [[berita.ts]] - `imports_from` [EXTRACTED]
 - [[canonicalPath]] - `contains` [EXTRACTED]
 - [[getDaerah()]] - `imports` [EXTRACTED]
@@ -23,4 +23,4 @@ tags:
 - [[routes.ts]] - `imports_from` [EXTRACTED]
 - [[{ slug }]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/beritats
+#graphify/code #graphify/EXTRACTED #community/navigasi-beritats

@@ -1,17 +1,17 @@
 ---
-source_file: "tools/lib/mysql-dump-reader.ts"
+source_file: "apps/storefront/src/lib/toko-permintaan.ts"
 type: "code"
-community: "mysql-dump-reader.ts"
-location: "L358"
+community: "Login (OTP) Page Script & Request Plumbing"
+location: "L43"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/mysql-dump-readerts
+  - community/Login_OTP_Page_Script__Request_Plumbing
 ---
 
 # .constructor()
 
 ## Connections
-- [[SqlInsertTokenizer]] - `method` [EXTRACTED]
+- [[TokoApiError]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/mysql-dump-readerts
+#graphify/code #graphify/EXTRACTED #community/Login_OTP_Page_Script__Request_Plumbing

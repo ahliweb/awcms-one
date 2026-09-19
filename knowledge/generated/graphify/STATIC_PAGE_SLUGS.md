@@ -2,7 +2,7 @@
 source_file: "apps/storefront/src/config/routes.ts"
 type: "code"
 community: "routes.ts"
-location: "L95"
+location: "L122"
 tags:
   - graphify/code
   - graphify/EXTRACTED

@@ -14,7 +14,7 @@ tags:
 ## Connections
 - [[FOOTER_PAGE_LINKS]] - `imports` [EXTRACTED]
 - [[PRIMARY_NAV]] - `imports` [EXTRACTED]
-- [[ROUTES]] - `imports` [EXTRACTED]
+- [[ROUTES_1]] - `imports` [EXTRACTED]
 - [[STATIC_PAGE_SLUGS]] - `imports` [EXTRACTED]
 - [[routes.ts]] - `imports_from` [EXTRACTED]
 

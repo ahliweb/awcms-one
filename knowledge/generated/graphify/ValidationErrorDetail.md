@@ -1,17 +1,18 @@
 ---
-source_file: "apps/storefront/src/lib/toko-klien.ts"
+source_file: "apps/storefront/src/lib/toko-permintaan.ts"
 type: "code"
-community: "toko-klien.ts"
-location: "L275"
+community: "Login (OTP) Page Script & Request Plumbing"
+location: "L30"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/toko-klients
+  - community/Login_OTP_Page_Script__Request_Plumbing
 ---
 
 # ValidationErrorDetail
 
 ## Connections
-- [[toko-klien.ts]] - `contains` [EXTRACTED]
+- [[toko-klien.ts]] - `re_exports` [EXTRACTED]
+- [[toko-permintaan.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/toko-klients
+#graphify/code #graphify/EXTRACTED #community/Login_OTP_Page_Script__Request_Plumbing

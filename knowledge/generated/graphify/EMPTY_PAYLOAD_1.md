@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/profil.test.ts"
 type: "code"
-community: "profil.ts"
+community: "Site Profile Merge Test"
 location: "L5"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/profilts
+  - community/Site_Profile_Merge_Test
 ---
 
 # EMPTY_PAYLOAD
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[profil.test.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/profilts
+#graphify/code #graphify/EXTRACTED #community/Site_Profile_Merge_Test

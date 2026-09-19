@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/scripts/produk-detail.ts"
 type: "code"
-community: "produk-detail.ts"
+community: "Product Detail Variants Script"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/produk-detailts
+  - community/Product_Detail_Variants_Script
 ---
 
 # produk-detail.ts
@@ -28,7 +28,7 @@ tags:
 - [[keranjang-klien.ts]] - `imports_from` [EXTRACTED]
 - [[productslug.astro]] - `imports_from` [EXTRACTED]
 - [[refresh()_1]] - `indirect_call` [INFERRED]
-- [[root_6]] - `contains` [EXTRACTED]
+- [[root_4]] - `contains` [EXTRACTED]
 - [[selectedOptionNames()]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/produk-detailts
+#graphify/code #graphify/EXTRACTED #community/Product_Detail_Variants_Script

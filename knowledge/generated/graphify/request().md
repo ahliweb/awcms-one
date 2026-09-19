@@ -1,26 +1,21 @@
 ---
-source_file: "apps/storefront/src/lib/toko-klien.ts"
+source_file: "apps/storefront/src/scripts/buletin.ts"
 type: "code"
-community: "toko-klien.ts"
-location: "L339"
+community: "Newsletter Forms & Visitor Beacon"
+location: "L82"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/toko-klients
+  - community/Newsletter_Forms__Visitor_Beacon
 ---
 
 # request()
 
 ## Connections
-- [[cancelOrder()]] - `calls` [EXTRACTED]
-- [[createOrder()]] - `calls` [EXTRACTED]
-- [[createPaymentProofUploadSession()]] - `calls` [EXTRACTED]
-- [[finalizePaymentProofUpload()]] - `calls` [EXTRACTED]
-- [[getOrder()]] - `calls` [EXTRACTED]
-- [[quoteCart()]] - `calls` [EXTRACTED]
+- [[buletin.ts]] - `contains` [EXTRACTED]
+- [[confirmNewsletterSubscription()]] - `calls` [EXTRACTED]
 - [[requireAwcmsOrigin()]] - `calls` [EXTRACTED]
-- [[submitPaymentConfirmation()]] - `calls` [EXTRACTED]
-- [[submitReview()]] - `calls` [EXTRACTED]
-- [[toko-klien.ts]] - `contains` [EXTRACTED]
+- [[subscribeToNewsletter()]] - `calls` [EXTRACTED]
+- [[unsubscribeFromNewsletter()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/toko-klients
+#graphify/code #graphify/EXTRACTED #community/Newsletter_Forms__Visitor_Beacon

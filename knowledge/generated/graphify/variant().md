@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/katalog-catalog.test.ts"
 type: "code"
-community: "kategori/[slug].astro"
+community: "Product & Category Pages, Product JSON-LD"
 location: "L84"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/kategori/slugastro
+  - community/Product__Category_Pages_Product_JSON-LD
 ---
 
 # variant()
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[katalog-catalog.test.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/kategori/slugastro
+#graphify/code #graphify/EXTRACTED #community/Product__Category_Pages_Product_JSON-LD

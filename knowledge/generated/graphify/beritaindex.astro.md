@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/pages/berita/index.astro"
 type: "code"
-community: "[n].astro"
+community: "[slug]/feed.xml.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/nastro
+  - community/slug/feedxmlts
 ---
 
 # berita/index.astro
@@ -16,7 +16,7 @@ tags:
 - [[ArtikelCard.astro]] - `imports_from` [EXTRACTED]
 - [[BeritaLayout.astro]] - `imports_from` [EXTRACTED]
 - [[IklanSlot.astro]] - `imports_from` [EXTRACTED]
-- [[ROUTES]] - `imports` [EXTRACTED]
+- [[ROUTES_1]] - `imports` [EXTRACTED]
 - [[Sidebar.astro]] - `imports_from` [EXTRACTED]
 - [[berita.ts]] - `imports_from` [EXTRACTED]
 - [[flattenRubrikTree()]] - `imports` [EXTRACTED]
@@ -27,4 +27,4 @@ tags:
 - [[iklan.ts]] - `imports_from` [EXTRACTED]
 - [[routes.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/nastro
+#graphify/code #graphify/EXTRACTED #community/slug/feedxmlts

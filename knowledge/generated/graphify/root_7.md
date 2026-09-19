@@ -1,17 +1,17 @@
 ---
-source_file: "apps/storefront/src/scripts/wishlist.ts"
+source_file: "apps/storefront/src/scripts/akun-pesanan.ts"
 type: "code"
-community: "wishlist-kontrak.ts"
-location: "L12"
+community: "akun-pesanan.ts"
+location: "L33"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/wishlist-kontrakts
+  - community/akun-pesanants
 ---
 
 # root
 
 ## Connections
-- [[wishlist.ts]] - `contains` [EXTRACTED]
+- [[akun-pesanan.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/wishlist-kontrakts
+#graphify/code #graphify/EXTRACTED #community/akun-pesanants

@@ -1,23 +1,22 @@
 ---
 source_file: "apps/storefront/src/scripts/keranjang.ts"
 type: "code"
-community: "keranjang.ts"
+community: "Cart Page & WhatsApp Fallback"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/keranjangts
+  - community/Cart_Page__WhatsApp_Fallback
 ---
 
 # keranjang.ts
 
 ## Connections
-- [[ADR-0003_4]] - `cites` [EXTRACTED]
+- [[ADR-0003_3]] - `cites` [EXTRACTED]
 - [[Cart]] - `imports` [EXTRACTED]
 - [[CartLineRequest]] - `imports` [EXTRACTED]
 - [[CartQuote]] - `imports` [EXTRACTED]
 - [[QuoteLine]] - `imports` [EXTRACTED]
-- [[TokoApiError]] - `imports` [EXTRACTED]
 - [[buildWhatsappCartMessage()]] - `imports` [EXTRACTED]
 - [[buildWhatsappUrl()]] - `imports` [EXTRACTED]
 - [[formatPrice()]] - `imports` [EXTRACTED]
@@ -32,12 +31,12 @@ tags:
 - [[removeCartLine()]] - `imports` [EXTRACTED]
 - [[renderLines()]] - `contains` [EXTRACTED]
 - [[renderSummary()]] - `contains` [EXTRACTED]
-- [[root_4]] - `contains` [EXTRACTED]
+- [[root_3]] - `contains` [EXTRACTED]
 - [[showQuoteError()]] - `contains` [EXTRACTED]
 - [[statusLabel()]] - `contains` [EXTRACTED]
-- [[toLineRequests()_1]] - `contains` [EXTRACTED]
+- [[toLineRequests()]] - `contains` [EXTRACTED]
 - [[toko-klien.ts]] - `imports_from` [EXTRACTED]
 - [[updateCartLineQuantity()]] - `imports` [EXTRACTED]
 - [[wa-fallback.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/keranjangts
+#graphify/code #graphify/EXTRACTED #community/Cart_Page__WhatsApp_Fallback

@@ -1,18 +1,19 @@
 ---
 source_file: "apps/storefront/src/lib/toko-klien.ts"
 type: "code"
-community: "scripts/pesanan.ts"
-location: "L204"
+community: "Commerce Storefront Client & Order Tracking"
+location: "L222"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/scripts/pesanants
+  - community/Commerce_Storefront_Client__Order_Tracking
 ---
 
 # Order
 
 ## Connections
-- [[scriptspesanan.ts]] - `imports` [EXTRACTED]
+- [[akun-klien.ts]] - `imports` [EXTRACTED]
+- [[pesanan-render.ts]] - `imports` [EXTRACTED]
 - [[toko-klien.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/scripts/pesanants
+#graphify/code #graphify/EXTRACTED #community/Commerce_Storefront_Client__Order_Tracking
