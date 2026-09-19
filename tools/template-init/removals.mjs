@@ -21,24 +21,23 @@
  * checked out before #139 landed.
  */
 
-/** Files removed unconditionally, regardless of layout. */
+/**
+ * Files removed unconditionally, regardless of layout.
+ *
+ * `tests/seed-profil.test.mjs` (#139) is deliberately NOT in this list —
+ * it validates the neutral `tools/seed-data/profil/**` seeds every derived
+ * repo KEEPS, not only the BjekMart reference example this run removes.
+ * That file guards its own `contoh:borneojek-mart`/deprecation-shim-specific
+ * coverage with an existence check (`HAS_CONTOH_SEED`/
+ * `HAS_DEPRECATION_SHIM`, skipping cleanly when this tool has already
+ * removed what they describe) rather than being removed itself.
+ */
 export const ALWAYS_REMOVE_FILES = [
   "tools/import-seputarborneo.ts",
   "tests/import-seputarborneo.test.mjs",
   // #139's own one-release deprecation shim — a derived repo has no
   // reference deployment to keep it running for.
-  "tools/seed-borneojek-mart.ts",
-  // #139's own test file asserts BjekMart's reference example
-  // (`tools/seed-data/contoh/borneojek-mart/**`) and the deprecation shim
-  // above both exist and validate — both removed by THIS run, so those
-  // assertions would fail on a tree they were never written to describe.
-  // Its OTHER coverage (the `toko`/`berita`/`landing` seed schemas,
-  // `tools/seed-cms.ts --dry-run`) is `tools/seed-data`'s own CI upkeep for
-  // the TEMPLATE, not something a derived deployment's own contributions
-  // depend on keeping green — removed as a whole file rather than surgically
-  // split, matching this tool's own "template:init removes an entire
-  // artefact its own removals invalidate" pattern elsewhere.
-  "tests/seed-profil.test.mjs"
+  "tools/seed-borneojek-mart.ts"
 ];
 
 /** Directories reset to absent — ADR-0018 D5's "documented empty state" for the knowledge-graph corpus (see `docs/template.md`'s own note on why absence, not an emptied file, is what `audit:graf` treats as valid). */

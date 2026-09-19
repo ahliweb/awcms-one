@@ -64,8 +64,19 @@ function hasFile(dir, fileName) {
 const NEUTRAL_PROFILES = ["toko", "berita", "landing"];
 const ALL_PROFILES = [...NEUTRAL_PROFILES, "contoh:borneojek-mart"];
 
+// `bun run template:init` (issue #138) removes BOTH `tools/seed-data/contoh/
+// borneojek-mart/**` and `tools/seed-borneojek-mart.ts` (the deprecation
+// shim) from a derived repository — this file's own reference-example and
+// shim coverage is guarded to skip cleanly when either is absent, rather
+// than deleted outright, so the NEUTRAL `toko`/`berita`/`landing` coverage
+// below (the seeds a derived repo actually keeps) still runs there. See
+// `docs/template.md`'s "What it removes" for the full reasoning.
+const HAS_CONTOH_SEED = existsSync(seedDirFor("contoh:borneojek-mart"));
+const HAS_DEPRECATION_SHIM = existsSync(join(ROOT, "tools", "seed-borneojek-mart.ts"));
+const PROFILES_TO_TEST = HAS_CONTOH_SEED ? ALL_PROFILES : NEUTRAL_PROFILES;
+
 describe("tools/seed-data — every profile directory exists", () => {
-  for (const profil of ALL_PROFILES) {
+  for (const profil of PROFILES_TO_TEST) {
     test(`"${profil}" has a seed directory`, () => {
       assert.ok(existsSync(seedDirFor(profil)), `missing seed directory for profile "${profil}"`);
     });
@@ -165,6 +176,11 @@ describe("tools/seed-data/profil/landing — schema", () => {
 });
 
 describe("tools/seed-data/contoh/borneojek-mart — still validates against the shared schema", () => {
+  if (!HAS_CONTOH_SEED) {
+    test.skip("SKIPPED — tools/seed-data/contoh/borneojek-mart/** is absent (removed by template:init in a derived repo)", () => {});
+    return;
+  }
+
   const dir = seedDirFor("contoh:borneojek-mart");
 
   test("categories.json validates", () => {
@@ -222,7 +238,7 @@ function collectAssetPaths(value, out) {
 }
 
 describe("every asset reference in a profile's seed JSON resolves to a committed file", () => {
-  for (const profil of ALL_PROFILES) {
+  for (const profil of PROFILES_TO_TEST) {
     const dir = seedDirFor(profil);
     const files = readdirSync(dir).filter((name) => name.endsWith(".json"));
 
@@ -259,7 +275,7 @@ describe("tools/seed-assets/profil — every neutral profile shipped at least on
 // ---------------------------------------------------------------------------
 
 describe("tools/seed-cms.ts --dry-run", () => {
-  for (const profil of ALL_PROFILES) {
+  for (const profil of PROFILES_TO_TEST) {
     test(`--profil "${profil}" exits 0 and makes no network call`, () => {
       const result = spawnSync("bun", ["tools/seed-cms.ts", "--dry-run", "--profil", profil], {
         cwd: ROOT,
@@ -289,6 +305,11 @@ describe("tools/seed-cms.ts --dry-run", () => {
 });
 
 describe("tools/seed-borneojek-mart.ts — deprecation shim delegates to seed-cms.ts", () => {
+  if (!HAS_DEPRECATION_SHIM) {
+    test.skip("SKIPPED — tools/seed-borneojek-mart.ts is absent (removed by template:init in a derived repo)", () => {});
+    return;
+  }
+
   test("running it with --dry-run prints the deprecation notice and the contoh:borneojek-mart inventory", () => {
     const result = spawnSync("bun", ["tools/seed-borneojek-mart.ts", "--dry-run"], {
       cwd: ROOT,

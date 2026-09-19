@@ -26,13 +26,16 @@ derived repo's first commit is already green.
 - Removes BjekMart-only artefacts — `tools/seed-borneojek-mart.ts` (issue
   #139's own deprecation shim) and `tools/seed-data/contoh/borneojek-mart/**`
   (its reference-example layout, checking the pre-#139 flat layout too,
-  defensively), `tools/import-seputarborneo.ts` and its test, and #139's own
-  `tests/seed-profil.test.mjs` (which otherwise asserts the just-removed
-  content still exists) — and resets `graphify-out/`/`knowledge/generated/`
-  to absent, which `packages/gerbang/audit-graf.mjs` already treats as a
-  valid, gate-passing state. Rewrites `tools/seed-cms.ts`'s `--profil`
-  default and `package.json`'s `db:seed:cms` script from BjekMart's
-  reference example to the deployment's own chosen profile.
+  defensively), `tools/import-seputarborneo.ts` and its test — and resets
+  `graphify-out/`/`knowledge/generated/` to absent, which
+  `packages/gerbang/audit-graf.mjs` already treats as a valid, gate-passing
+  state. Rewrites `tools/seed-cms.ts`'s `--profil` default and
+  `package.json`'s `db:seed:cms` script from BjekMart's reference example
+  to the deployment's own chosen profile. `tests/seed-profil.test.mjs`
+  (#139) is kept, not removed — it validates the neutral profile seeds a
+  derived repo keeps; its own `contoh:borneojek-mart`/deprecation-shim
+  coverage now guards itself with an existence check and skips once
+  `template:init` has removed what it describes.
 - New CI workflow `.github/workflows/template-init-smoke.yml`, matrixed over
   `toko`/`berita`/`landing`, not yet a required status check.
 - Two corrections to `docs/template.md`'s wave-0 draft, made in this same

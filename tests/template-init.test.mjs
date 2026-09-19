@@ -314,6 +314,13 @@ describe("template:init — full run in a temp copy", () => {
 
           const seedCmsTs = readFileSync(join(dir, "tools/seed-cms.ts"), "utf8");
           expect(seedCmsTs).toContain(`let profil = ${JSON.stringify(profil)};`);
+
+          // tests/seed-profil.test.mjs (#139) is KEPT, not removed — it
+          // validates the neutral profile seeds a derived repo still has;
+          // only its own contoh:borneojek-mart/shim-specific coverage
+          // guards itself and skips (see that file's own HAS_CONTOH_SEED/
+          // HAS_DEPRECATION_SHIM).
+          expect(existsSync(join(dir, "tests/seed-profil.test.mjs"))).toBe(true);
         },
         90_000
       );
