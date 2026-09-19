@@ -7,9 +7,19 @@
  * The phone NEVER touches the URL — see `checkout.ts`'s `PESANAN_PHONE_KEY`
  * and this file's own read of it below.
  */
-import { cancelOrder, getOrder, submitPaymentConfirmation, TokoApiError } from "../lib/toko-klien";
+import {
+  cancelOrder,
+  createGatewaySession,
+  getOrder,
+  submitPaymentConfirmation,
+  TokoApiError,
+  type Order,
+  type OrderStatus
+} from "../lib/toko-klien";
 import { PESANAN_PHONE_KEY } from "../lib/pesanan-sesi";
 import { createPesananRenderer } from "../lib/pesanan-render";
+import { isValidGatewayRedirectUrl } from "../lib/gateway-redirect";
+import { wirePesananPolling, type PesananPoller } from "../lib/pesanan-poll";
 
 const root = document.querySelector<HTMLElement>("[data-pesanan-root]");
 if (root) {
@@ -23,6 +33,8 @@ if (root) {
   const timelineEl = root.querySelector<HTMLOListElement>("[data-order-timeline]");
   const paymentSection = root.querySelector<HTMLElement>("[data-payment-section]");
   const paymentInstructionsEl = root.querySelector<HTMLElement>("[data-payment-instructions]");
+  const gatewayPayButton = root.querySelector<HTMLButtonElement>("[data-gateway-pay]");
+  const gatewayStatusEl = root.querySelector<HTMLElement>("[data-gateway-status]");
   const linesEl = root.querySelector<HTMLElement>("[data-order-lines]");
   const summaryEl = root.querySelector<HTMLElement>("[data-order-summary]");
   const confirmSection = root.querySelector<HTMLElement>("[data-confirm-payment-section]");
@@ -58,6 +70,8 @@ if (root) {
     timelineEl,
     paymentSection,
     paymentInstructionsEl,
+    gatewayPayButton,
+    gatewayStatusEl,
     linesEl,
     summaryEl,
     confirmSection,
@@ -71,6 +85,63 @@ if (root) {
     renderOrderBody(order);
   }
 
+  // --- gateway payment: "Bayar sekarang" + live polling (issue #112) --------
+
+  let poller: PesananPoller | undefined;
+
+  function stopPolling(): void {
+    poller?.stop();
+    poller = undefined;
+  }
+
+  /** Starts (or, on a re-render, leaves running) the 5 s poller for a `gateway` order still `pending_payment` — a no-op for every other order. */
+  function maybeStartPolling(order: Order, phone: string): void {
+    stopPolling();
+    if (order.paymentMethod !== "gateway" || order.status !== "pending_payment") return;
+
+    let trackedStatus: OrderStatus = order.status;
+    let trackedExpiresAt = order.expiresAt;
+
+    poller = wirePesananPolling({
+      getOrderState: () => ({ status: trackedStatus, expiresAt: trackedExpiresAt }),
+      fetchAndRender: async () => {
+        try {
+          if (!orderCode) return;
+          const fresh = await getOrder(orderCode, phone);
+          trackedStatus = fresh.status;
+          trackedExpiresAt = fresh.expiresAt;
+          renderOrder(fresh);
+        } catch {
+          // A transient fetch failure is not a stop condition — the
+          // scheduler's own next tick tries again, and the last
+          // successfully rendered state stays on screen meanwhile.
+        }
+      }
+    });
+  }
+
+  gatewayPayButton?.addEventListener("click", async () => {
+    const phone = readStoredPhone();
+    if (!orderCode || !phone) return;
+
+    gatewayPayButton.disabled = true;
+    if (gatewayStatusEl) gatewayStatusEl.textContent = "Membuka halaman pembayaran…";
+
+    try {
+      const session = await createGatewaySession(orderCode, phone);
+      if (!isValidGatewayRedirectUrl(session.redirectUrl)) {
+        throw new Error(`Gateway returned an unusable redirectUrl: ${session.redirectUrl}`);
+      }
+      window.location.assign(session.redirectUrl);
+    } catch (error) {
+      gatewayPayButton.disabled = false;
+      if (gatewayStatusEl) {
+        gatewayStatusEl.textContent =
+          error instanceof TokoApiError ? error.message : "Gagal membuka halaman pembayaran. Coba lagi.";
+      }
+    }
+  });
+
   async function loadOrder(phone: string): Promise<void> {
     if (!orderCode) return;
     try {
@@ -78,6 +149,7 @@ if (root) {
       storePhone(phone);
       if (phoneForm) phoneForm.hidden = true;
       renderOrder(order);
+      maybeStartPolling(order, phone);
     } catch (error) {
       if (orderErrorEl) orderErrorEl.hidden = false;
       if (orderBodyEl) orderBodyEl.hidden = true;

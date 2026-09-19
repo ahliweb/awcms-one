@@ -116,6 +116,22 @@
   font-size: 0.85rem;
 }
 
+/**
+ * Issue #109 — a shipping-option row (`kurir-opsi.ts`'s
+ * `describeShippingOption`, rendered by `checkout.ts`) is a radio plus its
+ * name/etd/price on one line, not stacked like a labelled text input — the
+ * one place `.toko-field`'s default `flex-direction: column` is overridden.
+ */
+.toko-shipping-option {
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.toko-shipping-option-text {
+  font-weight: 400;
+}
+
 .toko-banner {
   padding: 0.85rem 1rem;
   border-radius: var(--radius-sm);
