@@ -11067,7 +11067,7 @@ Issue #86 (ADR-0016, epic #32 wave 0) — CONTRACT ONLY, no route file yet (hand
 | 200    | One page of the account's commissions. | object                                 |
 | 401    | UNAUTHENTICATED.                       | [`ApiError`](#standard-error-envelope) |
 
-### `POST /api/v1/commerce/storefront/account/logout` — Issue #86 (design only). Revoke the presented bearer session (D3).
+### `POST /api/v1/commerce/storefront/account/logout` — Issue #89 (implemented, contract #86). Revoke the presented bearer session (D3).
 
 - **operationId**: `logoutCommerceStorefrontAccount`
 - **Security**: customerBearer
@@ -11079,7 +11079,7 @@ Issue #86 (ADR-0016, epic #32 wave 0) — CONTRACT ONLY, no route file yet (hand
 | 204    | Revoked.         |                                        |
 | 401    | UNAUTHENTICATED. | [`ApiError`](#standard-error-envelope) |
 
-### `GET /api/v1/commerce/storefront/account/me` — Issue #86 (design only). The signed-in customer account (D1).
+### `GET /api/v1/commerce/storefront/account/me` — Issue #89 (implemented, contract #86). The signed-in customer account (D1).
 
 - **operationId**: `getCommerceStorefrontAccountMe`
 - **Security**: customerBearer
@@ -11092,7 +11092,7 @@ Issue #86 (ADR-0016, epic #32 wave 0) — CONTRACT ONLY, no route file yet (hand
 | 401    | UNAUTHENTICATED — missing, invalid, or expired bearer. | [`ApiError`](#standard-error-envelope) |
 | 403    | ACCOUNT_BLOCKED.                                       | [`ApiError`](#standard-error-envelope) |
 
-### `PATCH /api/v1/commerce/storefront/account/me` — Issue #86 (design only). Update the account's display name. No e-mail/phone change in this increment (D6).
+### `PATCH /api/v1/commerce/storefront/account/me` — Issue #89 (implemented, contract #86). Update the account's display name. No e-mail/phone change in this increment (D6).
 
 - **operationId**: `updateCommerceStorefrontAccountMe`
 - **Security**: customerBearer
@@ -11145,7 +11145,7 @@ Issue #86 (ADR-0016, epic #32 wave 0) — CONTRACT ONLY, no route file yet (hand
 | 401    | UNAUTHENTICATED.                                                                                                    | [`ApiError`](#standard-error-envelope) |
 | 404    | Unknown order code, or one not owned by this account — the same neutral 404 (contract's existing anti-oracle rule). | [`ApiError`](#standard-error-envelope) |
 
-### `POST /api/v1/commerce/storefront/account/otp/request` — Issue #86 (design only). Request a 6-digit e-mail OTP for login or registration (D2). Always answers 202 — anti-enumeration (ADR-0016).
+### `POST /api/v1/commerce/storefront/account/otp/request` — Issue #89 (implemented, contract #86). Request a 6-digit e-mail OTP for login or registration (D2). Always answers 202 — anti-enumeration (ADR-0016).
 
 - **operationId**: `requestCommerceStorefrontAccountOtp`
 - **Security**: none (public endpoint)
@@ -11162,7 +11162,7 @@ Anonymous, per-IP and per-e-mail rate limited (10/IP/h, 5/e-mail/h). For `purpos
 | 400    | Validation error.                                                                                                                      | [`ApiError`](#standard-error-envelope) |
 | 429    | Too many OTP requests from this source (RATE_LIMITED). Carries `Retry-After`.                                                          | [`ApiError`](#standard-error-envelope) |
 
-### `POST /api/v1/commerce/storefront/account/otp/verify` — Issue #86 (design only). Verify a 6-digit e-mail OTP and mint a bearer session (D2/D3).
+### `POST /api/v1/commerce/storefront/account/otp/verify` — Issue #89 (implemented, contract #86). Verify a 6-digit e-mail OTP and mint a bearer session (D2/D3).
 
 - **operationId**: `verifyCommerceStorefrontAccountOtp`
 - **Security**: none (public endpoint)

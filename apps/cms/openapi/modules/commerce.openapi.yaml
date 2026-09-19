@@ -3204,7 +3204,7 @@ paths:
       operationId: requestCommerceStorefrontAccountOtp
       tags:
         - Commerce Accounts
-      summary: "Issue #86 (design only). Request a 6-digit e-mail OTP for login or registration (D2). Always answers 202 — anti-enumeration (ADR-0016)."
+      summary: "Issue #89 (implemented, contract #86). Request a 6-digit e-mail OTP for login or registration (D2). Always answers 202 — anti-enumeration (ADR-0016)."
       description: >-
         Anonymous, per-IP and per-e-mail rate limited (10/IP/h, 5/e-mail/h).
         For `purpose: "register"`, `name`/`phone` are stored on the OTP row
@@ -3257,7 +3257,7 @@ paths:
       operationId: verifyCommerceStorefrontAccountOtp
       tags:
         - Commerce Accounts
-      summary: "Issue #86 (design only). Verify a 6-digit e-mail OTP and mint a bearer session (D2/D3)."
+      summary: "Issue #89 (implemented, contract #86). Verify a 6-digit e-mail OTP and mint a bearer session (D2/D3)."
       description: >-
         Anonymous, per-IP and per-e-mail rate limited. The code is hashed, 10
         minute TTL, 5 attempts, single use — any of wrong/expired/consumed/
@@ -3327,7 +3327,7 @@ paths:
       operationId: getCommerceStorefrontAccountMe
       tags:
         - Commerce Accounts
-      summary: "Issue #86 (design only). The signed-in customer account (D1)."
+      summary: "Issue #89 (implemented, contract #86). The signed-in customer account (D1)."
       security:
         - customerBearer: []
       responses:
@@ -3363,7 +3363,7 @@ paths:
       operationId: updateCommerceStorefrontAccountMe
       tags:
         - Commerce Accounts
-      summary: "Issue #86 (design only). Update the account's display name. No e-mail/phone change in this increment (D6)."
+      summary: "Issue #89 (implemented, contract #86). Update the account's display name. No e-mail/phone change in this increment (D6)."
       security:
         - customerBearer: []
       requestBody:
@@ -3413,7 +3413,7 @@ paths:
       operationId: logoutCommerceStorefrontAccount
       tags:
         - Commerce Accounts
-      summary: "Issue #86 (design only). Revoke the presented bearer session (D3)."
+      summary: "Issue #89 (implemented, contract #86). Revoke the presented bearer session (D3)."
       security:
         - customerBearer: []
       responses:

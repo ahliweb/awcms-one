@@ -198,10 +198,8 @@ const ALLOWED_PUBLIC_OPERATIONS = new Set([
  * its own route file lands; none is a permanent exemption.
  */
 const ROUTE_PARITY_EXEMPTIONS = new Set<string>([
-  "/api/v1/commerce/storefront/account/otp/request",
-  "/api/v1/commerce/storefront/account/otp/verify",
-  "/api/v1/commerce/storefront/account/me",
-  "/api/v1/commerce/storefront/account/logout",
+  // otp/request, otp/verify, me, logout — implemented by Issue #89, route
+  // files now exist under src/pages/api/v1/commerce/storefront/account/.
   "/api/v1/commerce/storefront/account/addresses",
   "/api/v1/commerce/storefront/account/addresses/{id}",
   "/api/v1/commerce/storefront/account/addresses/{id}/default",
