@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](aksesibilitas.md)
 
-<!-- i18n-source-hash: sha256:5bd27089ff693721a6ce8cbe97bb00cb08edb08d6211dd73d9489d9b67f6d77c -->
+<!-- i18n-source-hash: sha256:e16315b295b7f1d323fefb0b29abb155a5fe925334a903b52e9c84b155c2ee9d -->
 
 # Aksesibilitas
 
@@ -24,6 +24,7 @@ Apa yang dilakukan `apps/storefront` untuk aksesibilitas, dan bagaimana itu dipe
 - **`/akun/alamat`, `/akun/pesanan`, `/akun/ulasan`** (issue #90) mengikuti konvensi S1 yang sama di seluruh halaman: tepat satu `<h1>` per halaman, elemen `<form>`/`<label>` sungguhan untuk setiap input (termasuk sepuluh kolom formulir alamat), kontrol ≥44px (aturan `akun.css` sendiri, diperluas alih-alih diduplikasi), region status `aria-live="polite"` untuk sukses/gagal async, blok `<noscript>` yang menyebut kontak fallback WhatsApp, dan fallback WhatsApp untuk kondisi JS-berjalan-tapi-CMS-tak-terjangkau pada setiap aksi submit. Rating bintang `/akun/ulasan` diumumkan lewat `aria-label="{n} dari 5 bintang"` pada seluruh rating, dengan glyph bintangnya sendiri `aria-hidden` — pembaca layar mendengar rating numerik sekali, bukan lima glyph yang ambigu.
 - **`/akun/afiliasi`** (issue #93) mengikuti konvensi yang sama: satu `<h1>`, kontrol ≥44px, region `role="status" aria-live="polite"` untuk aksi gabung dan kasus `409 AFFILIATE_PROGRAM_DISABLED`, blok `<noscript>` plus fallback WhatsApp JS-berjalan-tapi-CMS-mati, dan setiap statistik dirender lewat `formatPrice` (tidak pernah aritmetika sisi-klien yang harus diturunkan ulang pembaca layar). Tombol "salin" tautan referral memakai ulang pola salin-aksesibel yang sama yang sudah didokumentasikan `docs/ui-ux.md` untuk kode voucher.
 - **Sinkronisasi akun wishlist tidak pernah terdegradasi diam-diam.** Kegagalan `PUT`/`DELETE …/account/wishlist` (`apps/storefront/src/lib/wishlist-akun-sync.ts`) melaporkan dirinya lewat satu region `role="status" aria-live="polite"` bersama, seluruh-halaman (tersembunyi visual, dibuat sekali dan dipakai ulang setiap tombol hati) alih-alih melempar ke dalam click handler — keadaan visual tombol hati sendiri selalu mencerminkan tulisan LOKAL yang berhasil, bahkan saat sinkronisasi akun di baliknya gagal.
+- **Penantian pembayaran gateway di `/pesanan` dan `/akun/pesanan` punya region live sendiri** (issue #112). Selagi pesanan `gateway` berstatus `pending_payment`, baris `aria-live="polite"` di samping tombol "Bayar sekarang" membaca "Menunggu konfirmasi pembayaran…" dan diperbarui menjadi "Pembayaran diterima." begitu poller 5 detik (`apps/storefront/src/lib/pesanan-poll.ts`) melihat pesanan berubah `paid` — pengguna pembaca layar diberi tahu bahwa halaman sedang menunggu, dan diberi tahu lagi begitu selesai menunggu, tanpa perlu menyadari sendiri perubahan judul status. Poller berjeda (tidak pernah mengumumkan) selagi tab tersembunyi, sehingga tidak pernah menarasikan progres yang tidak bisa dilihat pembaca.
 
 ## Yang tidak diperiksa
 

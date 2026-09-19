@@ -103,7 +103,8 @@
       "ratePercent": "0.2",
       "minFee": "500.00"
     },
-    "proofUpload": false
+    "proofUpload": false,
+    "gatewayEnabled": true
   },
   "orders": {
     "expiryHours": 24

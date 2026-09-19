@@ -37,6 +37,10 @@ export type PesananRenderRefs = {
   timelineEl?: HTMLOListElement | null;
   paymentSection?: HTMLElement | null;
   paymentInstructionsEl?: HTMLElement | null;
+  /** Issue #112 — the "Bayar sekarang" button, shown ONLY for a `gateway` order still `pending_payment`, in place of the manual-transfer instructions above. Click wiring is the PAGE script's job (`pesanan.ts`/`akun-pesanan.ts`), not this renderer's — this module only decides whether it is visible. */
+  gatewayPayButton?: HTMLButtonElement | null;
+  /** Issue #112 — the `aria-live` status line beside the button, "Menunggu konfirmasi pembayaran…" while pending, the paid confirmation once the poller's next fetch sees `status: "paid"`. */
+  gatewayStatusEl?: HTMLElement | null;
   linesEl?: HTMLElement | null;
   summaryEl?: HTMLElement | null;
   confirmSection?: HTMLElement | null;
@@ -139,30 +143,57 @@ export function createPesananRenderer(refs: PesananRenderRefs): PesananRenderer 
     }
   }
 
-  function renderPaymentInstructions(order: Order): void {
-    if (!refs.paymentSection || !refs.paymentInstructionsEl) return;
+  /**
+   * Issue #112 — a `gateway` order still `pending_payment` renders the
+   * "Bayar sekarang" button INSTEAD of manual-transfer instructions (this
+   * repo's own `paymentInstructions` is `null` for a gateway order in the
+   * first place — the CMS never sends bank/QRIS instructions for one — but
+   * this function does not rely on that alone; it decides from
+   * `paymentMethod`/`status` directly, which is what actually governs the
+   * button's own visibility too).
+   */
+  function renderPaymentSection(order: Order): void {
+    const isGatewayPending = order.paymentMethod === "gateway" && order.status === "pending_payment";
     const instructions = order.paymentInstructions;
-    refs.paymentSection.hidden = !instructions;
-    refs.paymentInstructionsEl.innerHTML = "";
-    if (!instructions) return;
 
-    if (instructions.qrisImage) {
-      const img = document.createElement("img");
-      img.src = instructions.qrisImage.url;
-      img.alt = "Kode QRIS";
-      img.className = "toko-line-image";
-      refs.paymentInstructionsEl.appendChild(img);
+    if (refs.paymentSection) refs.paymentSection.hidden = !instructions && !isGatewayPending;
+
+    if (refs.paymentInstructionsEl) {
+      refs.paymentInstructionsEl.innerHTML = "";
+      refs.paymentInstructionsEl.hidden = isGatewayPending;
+
+      if (!isGatewayPending && instructions) {
+        if (instructions.qrisImage) {
+          const img = document.createElement("img");
+          img.src = instructions.qrisImage.url;
+          img.alt = "Kode QRIS";
+          img.className = "toko-line-image";
+          refs.paymentInstructionsEl.appendChild(img);
+        }
+
+        for (const bank of instructions.banks) {
+          const p = document.createElement("p");
+          p.textContent = `${bank.bankName} — ${bank.accountNumber} a.n. ${bank.accountName}`;
+          refs.paymentInstructionsEl.appendChild(p);
+        }
+
+        const due = document.createElement("p");
+        due.textContent = `Jumlah yang harus dibayar: ${formatPrice(instructions.amountDue)}`;
+        refs.paymentInstructionsEl.appendChild(due);
+      }
     }
 
-    for (const bank of instructions.banks) {
-      const p = document.createElement("p");
-      p.textContent = `${bank.bankName} — ${bank.accountNumber} a.n. ${bank.accountName}`;
-      refs.paymentInstructionsEl.appendChild(p);
-    }
+    if (refs.gatewayPayButton) refs.gatewayPayButton.hidden = !isGatewayPending;
 
-    const due = document.createElement("p");
-    due.textContent = `Jumlah yang harus dibayar: ${formatPrice(instructions.amountDue)}`;
-    refs.paymentInstructionsEl.appendChild(due);
+    if (refs.gatewayStatusEl) {
+      if (isGatewayPending) {
+        refs.gatewayStatusEl.textContent = "Menunggu konfirmasi pembayaran…";
+      } else if (order.paymentMethod === "gateway" && order.status === "paid") {
+        refs.gatewayStatusEl.textContent = "Pembayaran diterima.";
+      } else {
+        refs.gatewayStatusEl.textContent = "";
+      }
+    }
   }
 
   function renderOrder(order: Order): void {
@@ -173,7 +204,7 @@ export function createPesananRenderer(refs: PesananRenderRefs): PesananRenderer 
     renderTimeline(order);
     renderLines(order);
     renderSummary(order);
-    renderPaymentInstructions(order);
+    renderPaymentSection(order);
 
     if (refs.confirmSection) refs.confirmSection.hidden = !order.canConfirmPayment;
     if (refs.cancelButton) refs.cancelButton.hidden = !order.canCancel;
