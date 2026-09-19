@@ -2846,19 +2846,21 @@ paths:
       operationId: createCommerceStorefrontOrder
       tags:
         - Commerce
-      summary: Anonymous order creation (Issue 29). Idempotent by the client-supplied idempotencyKey; re-quotes the cart inside the write transaction. No permission check.
+      summary: "Anonymous order creation (Issue 29), with an optional customer bearer (Issue #91). Idempotent by the client-supplied idempotencyKey; re-quotes the cart inside the write transaction. No permission check required — a valid bearer is accepted, never required."
       description: >-
-        Issue #86 (design only — implemented by C2–C4): an OPTIONAL
+        Issue #91 (implemented, contract #86): an OPTIONAL
         `Authorization: Bearer <customer session token>` (see `customerBearer`)
-        is accepted alongside the existing anonymous path. When present and
-        valid, the order is attributed to that account's customer row instead
-        of the guest find-or-create by phone; when absent, invalid, or
-        expired, the request proceeds exactly as it does today — the bearer
-        never turns this into a required credential. `affiliateCode` is
-        likewise optional and, when it matches an active
-        `awcms_commerce_affiliates.code` other than the ordering customer's
-        own, records the referral that a completed order later turns into a
-        commission (D5).
+        is accepted alongside the existing anonymous path. Present and valid
+        → the order is attributed to that account's OWN customer row instead
+        of the guest find-or-create by phone (the typed phone is still
+        validated for shape, but ignored for identity); present and
+        invalid/expired → `401 UNAUTHENTICATED` (explicit — the storefront
+        re-reads its own session right before submit); absent entirely → the
+        request proceeds exactly as it did before this issue. `affiliateCode`
+        is likewise optional and shape-validated (a string, at most 50
+        characters) but otherwise IGNORED in this issue — Issue #92 is what
+        actually resolves it against `awcms_commerce_affiliates.code` and
+        records a referral.
       security: []
       requestBody:
         required: true
@@ -2895,6 +2897,12 @@ paths:
                     $ref: "#/components/schemas/CommerceOrder"
         "400":
           $ref: "#/components/responses/BadRequest"
+        "401":
+          description: "UNAUTHENTICATED — an Authorization header was present but not a live session (Issue #91)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
         "404":
           description: Unresolvable tenant, disabled module, or a rate-limited caller.
           content:
@@ -3127,13 +3135,15 @@ paths:
       operationId: createCommerceStorefrontReview
       tags:
         - Commerce
-      summary: Anonymous review submission (Issue 29). Requires a completed order containing the product; lands pending for moderation.
+      summary: "Anonymous review submission (Issue 29), with an optional customer bearer (Issue #91). Requires a completed order containing the product; lands pending for moderation."
       description: >-
-        Issue #86 (design only — implemented by C2–C4): an OPTIONAL
-        `Authorization: Bearer <customer session token>` is accepted here too,
-        attributing the review to the signed-in account instead of the
-        orderCode+phone credential when present and valid; absent or invalid,
-        the anonymous path is unchanged.
+        Issue #91 (implemented, contract #86): an OPTIONAL
+        `Authorization: Bearer <customer session token>` is accepted here too.
+        Present and valid → ownership is checked against the signed-in
+        account's OWN customer row instead of the orderCode+phone credential
+        (`phone` is still validated for shape and still the per-phone rate
+        limit's key); present and invalid/expired → `401 UNAUTHENTICATED`;
+        absent entirely → the anonymous path is unchanged.
       security: []
       requestBody:
         required: true
@@ -3184,6 +3194,12 @@ paths:
                           - pending
         "400":
           $ref: "#/components/responses/BadRequest"
+        "401":
+          description: "UNAUTHENTICATED — an Authorization header was present but not a live session (Issue #91)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
         "404":
           $ref: "#/components/responses/NotFound"
         "409":
@@ -3192,12 +3208,13 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ApiError"
-  # --- Issue #86 (ADR-0016, epic #32 wave 0) — CONTRACT ONLY. -----------------
-  # None of the paths below has a route file yet (see
-  # `ROUTE_PARITY_EXEMPTIONS` in `scripts/api-spec-check.ts`); handlers land in
-  # C2 (accounts/OTP/sessions), C3 (addresses/wishlist/orders/reviews) and C4
-  # (affiliates), the issues #87–#93 track. Documenting the shape now, ahead of
-  # the handlers, is the point of wave 0: every later wave codes AGAINST this
+  # --- Issue #86 (ADR-0016, epic #32 wave 0) — CONTRACT. ----------------------
+  # C2 (accounts/OTP/sessions, Issue #89) and C3 (addresses/wishlist/orders/
+  # reviews, Issue #91) are now IMPLEMENTED — every path below carries a real
+  # route file. Only C4 (affiliates, issues #92/#93) remains contract-only and
+  # still has an explicit `ROUTE_PARITY_EXEMPTIONS` entry in
+  # `scripts/api-spec-check.ts`. Documenting each wave's shape ahead of its own
+  # handlers was the point of wave 0: every later wave codes AGAINST this
   # contract instead of re-deciding it.
   /api/v1/commerce/storefront/account/otp/request:
     post:
@@ -3430,7 +3447,7 @@ paths:
       operationId: listCommerceStorefrontAccountAddresses
       tags:
         - Commerce Accounts
-      summary: "Issue #86 (design only). The account's saved addresses (`awcms_commerce_customer_addresses`, max 10)."
+      summary: "Issue #91 (implemented, contract #86). The account's saved addresses (`awcms_commerce_customer_addresses`, max 10), default first."
       security:
         - customerBearer: []
       responses:
@@ -3446,10 +3463,12 @@ paths:
                     enum:
                       - true
                   data:
-                    type: array
-                    items:
-                      type: object
-                      description: One row of `awcms_commerce_customer_addresses` — same shape as `CommerceCreateOrderRequest.address`, plus `id`/`label`/`isDefault`.
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/CommerceAccountAddress"
         "401":
           description: UNAUTHENTICATED.
           content:
@@ -3466,7 +3485,7 @@ paths:
       operationId: createCommerceStorefrontAccountAddress
       tags:
         - Commerce Accounts
-      summary: "Issue #86 (design only). Add a saved address. Refused past 10 per account."
+      summary: "Issue #91 (implemented, contract #86). Add a saved address. Refused past 10 per account; the FIRST address ever saved becomes the default automatically."
       security:
         - customerBearer: []
       requestBody:
@@ -3475,7 +3494,7 @@ paths:
           application/json:
             schema:
               type: object
-              description: Same shape as `CommerceCreateOrderRequest.address`, plus an optional `label`.
+              description: Same shape as `CommerceCreateOrderRequest.address`, plus a required `label` and a required (not optional) `postalCode`.
       responses:
         "201":
           description: Created.
@@ -3490,6 +3509,9 @@ paths:
                       - true
                   data:
                     type: object
+                    properties:
+                      address:
+                        $ref: "#/components/schemas/CommerceAccountAddress"
         "400":
           $ref: "#/components/responses/BadRequest"
         "401":
@@ -3509,7 +3531,7 @@ paths:
       operationId: updateCommerceStorefrontAccountAddress
       tags:
         - Commerce Accounts
-      summary: "Issue #86 (design only). Update a saved address."
+      summary: "Issue #91 (implemented, contract #86). Update a saved address. Never touches isDefault (see the /default sub-route)."
       security:
         - customerBearer: []
       parameters:
@@ -3532,6 +3554,16 @@ paths:
             application/json:
               schema:
                 type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      address:
+                        $ref: "#/components/schemas/CommerceAccountAddress"
         "400":
           $ref: "#/components/responses/BadRequest"
         "401":
@@ -3546,7 +3578,7 @@ paths:
       operationId: deleteCommerceStorefrontAccountAddress
       tags:
         - Commerce Accounts
-      summary: "Issue #86 (design only). Remove a saved address."
+      summary: "Issue #91 (implemented, contract #86). Remove a saved address. Deleting the default promotes the most-recently-created remaining one."
       security:
         - customerBearer: []
       parameters:
@@ -3572,7 +3604,7 @@ paths:
       operationId: setDefaultCommerceStorefrontAccountAddress
       tags:
         - Commerce Accounts
-      summary: "Issue #86 (design only). Mark a saved address as the account's default."
+      summary: "Issue #91 (implemented, contract #86). Mark a saved address as the account's default."
       security:
         - customerBearer: []
       parameters:
@@ -3589,6 +3621,16 @@ paths:
             application/json:
               schema:
                 type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      address:
+                        $ref: "#/components/schemas/CommerceAccountAddress"
         "401":
           description: UNAUTHENTICATED.
           content:
@@ -3602,7 +3644,7 @@ paths:
       operationId: listCommerceStorefrontAccountWishlist
       tags:
         - Commerce Accounts
-      summary: "Issue #86 (design only). The account's saved products."
+      summary: "Issue #91 (implemented, contract #86). The account's saved products — published, non-deleted products only."
       security:
         - customerBearer: []
       responses:
@@ -3634,7 +3676,7 @@ paths:
       operationId: replaceCommerceStorefrontAccountWishlist
       tags:
         - Commerce Accounts
-      summary: "Issue #86 (design only). Union-merge a set of product ids into the wishlist (never removes existing entries — a client wanting removal calls DELETE per item)."
+      summary: "Issue #91 (implemented, contract #86). Union-merge a set of product ids into the wishlist, max 200 (never removes existing entries — a client wanting removal calls DELETE per item). Returns the merged, authoritative list."
       security:
         - customerBearer: []
       requestBody:
@@ -3678,12 +3720,18 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ApiError"
+        "409":
+          description: WISHLIST_LIMIT_REACHED — already 200 saved items.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
   /api/v1/commerce/storefront/account/wishlist/{productId}:
     delete:
       operationId: removeCommerceStorefrontAccountWishlistItem
       tags:
         - Commerce Accounts
-      summary: "Issue #86 (design only). Remove one product from the wishlist."
+      summary: "Issue #91 (implemented, contract #86). Remove one product from the wishlist."
       security:
         - customerBearer: []
       parameters:
@@ -3707,7 +3755,7 @@ paths:
       operationId: listCommerceStorefrontAccountOrders
       tags:
         - Commerce Accounts
-      summary: "Issue #86 (design only). Keyset-paginated order history, bounded to `created_at >= account.historyFrom` (D4)."
+      summary: "Issue #91 (implemented, contract #86). Keyset-paginated order history, bounded to `created_at >= account.historyFrom` (D4), enforced inside the query."
       security:
         - customerBearer: []
       parameters:
@@ -3716,6 +3764,12 @@ paths:
           required: false
           schema:
             type: string
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            maximum: 50
       responses:
         "200":
           description: One page of the account's orders.
@@ -3729,12 +3783,12 @@ paths:
                     enum:
                       - true
                   data:
-                    type: array
-                    items:
-                      $ref: "#/components/schemas/CommerceOrderSummary"
-                  meta:
                     type: object
                     properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/CommerceOrder"
                       nextCursor:
                         type: string
                         nullable: true
@@ -3749,7 +3803,7 @@ paths:
       operationId: getCommerceStorefrontAccountOrder
       tags:
         - Commerce Accounts
-      summary: "Issue #86 (design only). Order detail for an account-owned order — no phone needed (ownership is the bearer, D3), same shape as the anonymous tracking endpoint."
+      summary: "Issue #91 (implemented, contract #86). Order detail for an account-owned order — no phone needed (ownership is the bearer, D3); ownership and historyFrom are both enforced inside the query. Same shape as the anonymous tracking endpoint."
       security:
         - customerBearer: []
       parameters:
@@ -3779,7 +3833,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/ApiError"
         "404":
-          description: Unknown order code, or one not owned by this account — the same neutral 404 (contract's existing anti-oracle rule).
+          description: Unknown order code, one not owned by this account, or one that predates historyFrom — the same neutral 404 (contract's existing anti-oracle rule).
           content:
             application/json:
               schema:
@@ -3789,7 +3843,7 @@ paths:
       operationId: listCommerceStorefrontAccountReviews
       tags:
         - Commerce Accounts
-      summary: "Issue #86 (design only). The account's own submitted reviews, any moderation status."
+      summary: "Issue #91 (implemented, contract #86). The account's own submitted reviews, any moderation status, with the product name and order code inlined."
       security:
         - customerBearer: []
       responses:
@@ -3805,9 +3859,12 @@ paths:
                     enum:
                       - true
                   data:
-                    type: array
-                    items:
-                      $ref: "#/components/schemas/CommerceReview"
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/AccountReview"
         "401":
           description: UNAUTHENTICATED.
           content:
@@ -6157,7 +6214,7 @@ components:
             - register
     WishlistItem:
       type: object
-      description: "Issue #86 (design only). One entry of the account's wishlist, projected from the referenced product at read time."
+      description: "Issue #91 (implemented, contract #86). One entry of the account's wishlist, projected from the referenced product at read time — published, non-deleted products only."
       properties:
         productId:
           type: string
@@ -6168,11 +6225,77 @@ components:
           type: string
         price:
           type: string
-          description: numeric(14,2) as a string (ADR-0003).
+          description: numeric(14,2) as a string (ADR-0003), after discountPercent (finalPrice).
         image:
+          type: object
+          nullable: true
+          properties:
+            url:
+              type: string
+            alt:
+              type: string
+        addedAt:
+          type: string
+          format: date-time
+    CommerceAccountAddress:
+      type: object
+      description: "Issue #91 (implemented, contract #86). One row of `awcms_commerce_customer_addresses`, reached through the account (bearer) rather than a one-off order snapshot — `label`/`postalCode` are always present (never null), unlike the order-creation `address` shape."
+      properties:
+        id:
+          type: string
+          format: uuid
+        label:
+          type: string
+        recipientName:
+          type: string
+        phone:
+          type: string
+        provinceCode:
+          type: string
+        provinceName:
+          type: string
+        cityCode:
+          type: string
+        cityName:
+          type: string
+        districtCode:
+          type: string
+        districtName:
+          type: string
+        postalCode:
+          type: string
+        street:
+          type: string
+        notes:
           type: string
           nullable: true
-        addedAt:
+        isDefault:
+          type: boolean
+    AccountReview:
+      type: object
+      description: "Issue #91 (implemented, contract #86). One review this account itself submitted, with the product name and order code inlined so the account screen never has to look either up separately — distinct from `CommerceReview` (the admin moderation shape, which carries customerId/orderId ids instead)."
+      properties:
+        id:
+          type: string
+          format: uuid
+        productId:
+          type: string
+          format: uuid
+        productName:
+          type: string
+        orderCode:
+          type: string
+        rating:
+          type: integer
+        body:
+          type: string
+        status:
+          type: string
+          enum:
+            - pending
+            - published
+            - rejected
+        createdAt:
           type: string
           format: date-time
     Affiliate:

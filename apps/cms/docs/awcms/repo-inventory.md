@@ -8,12 +8,12 @@
 | Aspect                              | Value |
 | ----------------------------------- | ----- |
 | Registered modules                  | 25    |
-| Migrations                          | 172   |
+| Migrations                          | 173   |
 | `awcms_*` tables                    | 174   |
 | Tables with `FORCE` RLS             | 156   |
 | RLS-free tables (global, by design) | 18    |
-| Test files                          | 533   |
-| Route files                         | 451   |
+| Test files                          | 537   |
+| Route files                         | 459   |
 | ADR                                 | 244   |
 
 ### Modules
@@ -222,6 +222,7 @@
 | 170 | `sql/917_awcms_commerce_customer_accounts_schema.sql`                       |
 | 171 | `sql/918_awcms_commerce_customer_auth_worker_lifecycle_purge_grants.sql`    |
 | 172 | `sql/919_awcms_commerce_customer_otp_email_template.sql`                    |
+| 173 | `sql/920_awcms_commerce_customer_addresses_default_index.sql`               |
 
 ### Tables & Row-Level Security
 
@@ -406,16 +407,16 @@
 
 | Directory     | Test files |
 | ------------- | ---------- |
-| `(root)`      | 429        |
+| `(root)`      | 432        |
 | `e2e`         | 19         |
-| `integration` | 84         |
+| `integration` | 85         |
 | `unit`        | 1          |
 
 ### Routes
 
 | Surface         | Files |
 | --------------- | ----- |
-| `/api/v1/**`    | 360   |
+| `/api/v1/**`    | 368   |
 | `/admin/**`     | 61    |
 | publik / anonim | 30    |
 

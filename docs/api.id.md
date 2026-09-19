@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](api.md)
 
-<!-- i18n-source-hash: sha256:b38120ba80d341254b0acff159b43b16324ec020e097115456022d2055e904ea -->
+<!-- i18n-source-hash: sha256:77f85076034e7554f265851965aa57a17edc69b0cdf91b3e7fa3790db52f9c8e -->
 
 # API
 
@@ -70,9 +70,11 @@ Setiap rute me-resolve tenant-nya dari `Origin`/`Host` request terhadap `awcms_t
 | `POST` | `reviews` | Membutuhkan pesanan `completed` untuk produk itu; dibuat dengan `status: pending`, dimoderasi di sisi owner |
 | `GET` | `store-settings/public` | Juga dipakai build storefront; rute yang sama melayani pemanggil saat-build maupun (pada prinsipnya) saat-runtime |
 
+**`orders`/`reviews` kini juga menerima `customerBearer` OPSIONAL (#91):** hadir dan valid → pesanan/ulasan diatribusikan ke baris pelanggan milik akun itu sendiri alih-alih kredensial telepon tamu (telepon tetap divalidasi bentuknya dan tetap menjadi kunci rate limit per telepon); hadir tapi tidak valid/kedaluwarsa → `401 UNAUTHENTICATED`; tidak hadir sama sekali → tidak berubah. `POST orders` juga menerima `affiliateCode` di body sekarang — divalidasi bentuknya (string, maksimal 50 karakter) dan selain itu diabaikan sampai #92 memasang atribusi sungguhan.
+
 **Idempotensi:** pembuatan pesanan memakai ulang store `awcms_idempotency_keys` yang modul-agnostik (`(tenantId, requestScope, idempotencyKey)`, tidak butuh principal — ia bekerja dari wrapper tenant anonim). UUID yang dibuat klien milik keranjang sendiri dipakai ulang sebagai idempotency key, sehingga klik "Buat pesanan" yang terkirim ganda mengembalikan `orderCode` yang sama alih-alih membuat pesanan kedua.
 
-### Akun pelanggan — auth sudah diimplementasi (#89), sisanya direncanakan — #90–#93
+### Akun pelanggan — auth + sumber daya sudah diimplementasi (#89, #91), afiliasi direncanakan — #92/#93
 
 [ADR-0016](adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md) mencatat empat keputusan (identitas, kanal OTP, sesi bearer, binding registrasi) yang menjadi dasar rancangan seluruh permukaan ini, dan [issue #86](https://github.com/ahliweb/awcms-one/issues/86) adalah tempat bentuk OpenAPI-nya hidup (`apps/cms/openapi/modules/commerce.openapi.yaml`). Skema keamanan baru `customerBearer` — sengaja terpisah dari skema `bearerAuth`/sesi milik staf — mengautentikasi setiap rute di bawah kecuali dua rute OTP, yang anonim dengan logika anti-enumerasi yang sama seperti API ini lainnya.
 
@@ -85,21 +87,26 @@ Setiap rute me-resolve tenant-nya dari `Origin`/`Host` request terhadap `awcms_t
 | `GET`/`PATCH` | `account/me` | `customerBearer` | Akun itu sendiri; `PATCH` hanya menerima `{name}` — belum ada ubah e-mail/telepon |
 | `POST` | `account/logout` | `customerBearer` | `204`, mencabut sesi yang disajikan |
 
-**Direncanakan — kontrak tanpa handler dulu (#90–#93)**, masih dikecualikan dari gerbang paritas rute↔kontrak berdasarkan nama di `apps/cms/scripts/api-spec-check.ts`:
+**Sudah diimplementasi (#91):**
 
 | Method | Jalur | Auth | Catatan |
 | --- | --- | --- | --- |
-| `GET`/`POST` | `account/addresses` | `customerBearer` | Maksimal 10 per akun |
-| `PATCH`/`DELETE` | `account/addresses/{id}` | `customerBearer` | |
-| `POST` | `account/addresses/{id}/default` | `customerBearer` | |
-| `GET`/`PUT` | `account/wishlist` | `customerBearer` | `PUT {productIds:[]}` adalah union merge, tidak pernah penghapusan |
-| `DELETE` | `account/wishlist/{productId}` | `customerBearer` | |
-| `GET` | `account/orders(/{orderCode})` | `customerBearer` | Keyset, dibatasi ke `created_at >= account.historyFrom` |
-| `GET` | `account/reviews` | `customerBearer` | |
+| `GET`/`POST` | `account/addresses` | `customerBearer` | Maksimal 10 per akun (`409 ADDRESS_LIMIT_REACHED`); alamat pertama yang disimpan otomatis jadi default; daftar mengembalikan default lebih dulu |
+| `PATCH`/`DELETE` | `account/addresses/{id}` | `customerBearer` | `PATCH` tidak pernah menyentuh `isDefault`; menghapus default mempromosikan yang paling baru dibuat di antara sisanya |
+| `POST` | `account/addresses/{id}/default` | `customerBearer` | Persis satu default per pelanggan ditegakkan oleh indeks unik parsial `sql/920`, bukan sekadar dipercayakan ke kode aplikasi |
+| `GET`/`PUT` | `account/wishlist` | `customerBearer` | `PUT {productIds:[]}` adalah union merge (tidak pernah penghapusan), maksimal 200, mengembalikan daftar gabungan; id yang bukan produk hidup di tenant ini dilewati diam-diam; `GET` hanya menampilkan produk yang dipublikasikan, belum dihapus |
+| `DELETE` | `account/wishlist/{productId}` | `customerBearer` | Hapus lunak, idempoten — selalu `204` |
+| `GET` | `account/orders(/{orderCode})` | `customerBearer` | Keyset (`cursor`, `limit` ≤ 50), dibatasi ke `created_at >= account.historyFrom`, ditegakkan DI DALAM query; rute detail tidak perlu telepon (kepemilikan + `historyFrom` sama-sama diperiksa di dalam query yang sama — `404` netral untuk kode tak dikenal, order akun lain, atau yang lebih lama dari `historyFrom`) |
+| `GET` | `account/reviews` | `customerBearer` | Ulasan sendiri, status moderasi apa pun, nama produk + kode order disematkan |
+
+**Direncanakan — kontrak tanpa handler dulu (#92/#93)**, masih dikecualikan dari gerbang paritas rute↔kontrak berdasarkan nama di `apps/cms/scripts/api-spec-check.ts`:
+
+| Method | Jalur | Auth | Catatan |
+| --- | --- | --- | --- |
 | `GET`/`POST` | `account/affiliate` | `customerBearer` | `POST` mendaftarkan; `409 AFFILIATE_PROGRAM_DISABLED` saat `storeSettings.affiliateCommissionRate` null |
 | `GET` | `account/affiliate/commissions` | `customerBearer` | |
 
-`POST orders` dan `POST reviews` anonim yang sudah ada di atas masing-masing mendapat `customerBearer` *opsional*: jika hadir dan valid, pesanan/ulasan diatribusikan ke akun itu alih-alih kredensial telepon tamu; jika tidak ada, kedua endpoint berperilaku persis seperti yang didokumentasikan di atas. `POST orders` juga mendapat `affiliateCode` opsional (referral diri sendiri tidak menghasilkan komisi).
+`POST orders` dan `POST reviews` anonim yang sudah ada (#91) masing-masing kini menerima `customerBearer` *opsional*: jika hadir dan valid, pesanan/ulasan diatribusikan ke baris pelanggan milik akun itu sendiri alih-alih kredensial telepon tamu; jika hadir tapi tidak valid/kedaluwarsa, `401 UNAUTHENTICATED`; jika tidak ada, kedua endpoint berperilaku persis seperti yang didokumentasikan di atas. `POST orders` juga menerima `affiliateCode` opsional — divalidasi bentuknya saja di #91 (referral diri sendiri tidak menghasilkan komisi adalah urusan #92 sendiri begitu ia benar-benar meresolusi kodenya).
 
 Rute sisi staf pemilik untuk program afiliasi itu sendiri — `GET`/`PATCH /api/v1/commerce/affiliates(/{id})`, `GET /api/v1/commerce/affiliate-commissions`, `POST /api/v1/commerce/affiliate-commissions/{id}/{approve,pay,void}` — berstatus kontrak-saja yang sama, digerbangi `commerce.affiliates.{read,update}` dan `commerce.affiliate_commissions.{read,update}`.
 
@@ -198,4 +205,4 @@ Himpunan permission kredensial build di-seed oleh `tools/seed-borneojek-mart.ts`
 
 ## Belum dibangun
 
-Tarif kurir RajaOngkir dan payment gateway — `payment_method` sudah menerima nilai enum `gateway` (aditif, per [ADR-0010](adr/0010-manual-payment-and-alternative-courier-first-gateways-via-outbox.md)), tapi belum ada integrasi provider; keduanya harus lewat outbox begitu mendarat ([issue #33](https://github.com/ahliweb/awcms-one/issues/33)). Akun pelanggan, login, dan endpoint storefront terautentikasi apa pun ([issue #32](https://github.com/ahliweb/awcms-one/issues/32)) **sedang dikerjakan**: kontraknya sudah disepakati ([ADR-0016](adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md), issue #86, tabel "Akun pelanggan" di atas); login/registrasi OTP, `me`, dan `logout` sudah diimplementasi ([issue #89](https://github.com/ahliweb/awcms-one/issues/89)), dan permukaan alamat/wishlist/riwayat-pesanan/ulasan/afiliasi yang dijaga `customerBearer` masih belum ada handler-nya. Upload bukti-pembayaran yang berfungsi untuk pemanggil anonim (alur sesi `media_library` membutuhkan `actorTenantUserId` terautentikasi, yang tidak dimiliki pemanggil checkout tamu mana pun).
+Tarif kurir RajaOngkir dan payment gateway — `payment_method` sudah menerima nilai enum `gateway` (aditif, per [ADR-0010](adr/0010-manual-payment-and-alternative-courier-first-gateways-via-outbox.md)), tapi belum ada integrasi provider; keduanya harus lewat outbox begitu mendarat ([issue #33](https://github.com/ahliweb/awcms-one/issues/33)). Akun pelanggan, login, dan endpoint storefront terautentikasi apa pun ([issue #32](https://github.com/ahliweb/awcms-one/issues/32)) **sedang dikerjakan**: kontraknya sudah disepakati ([ADR-0016](adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md), issue #86, tabel "Akun pelanggan" di atas); login/registrasi OTP, `me`, `logout` ([issue #89](https://github.com/ahliweb/awcms-one/issues/89)), dan alamat/wishlist/riwayat-pesanan/ulasan kini semuanya sudah diimplementasi ([issue #91](https://github.com/ahliweb/awcms-one/issues/91)) — hanya permukaan afiliasi yang dijaga `customerBearer` yang masih belum ada handler-nya. Upload bukti-pembayaran yang berfungsi untuk pemanggil anonim (alur sesi `media_library` membutuhkan `actorTenantUserId` terautentikasi, yang tidak dimiliki pemanggil checkout tamu mana pun).

@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](PROJECT_STATE.md)
 
-<!-- i18n-source-hash: sha256:77866e4a88e594f29dcafe2e3123132bd246a6487ecaf70e077486433be368bb -->
+<!-- i18n-source-hash: sha256:774140a0a93f8a2c466f10a2ba92e79def3f04a02d5871d5fa093dea288ae50d -->
 
 # AWCMS — Project State & Continuation
 
@@ -120,7 +120,7 @@ Model tata kelola dipakai-langsung/tanpa-repo-turunan (ADR-0034 §2/§3) **tidak
 | Changeset menunggu (per tipe bump) | _jalankan perintah di kolom kanan_                                                    | `grep -h '^"awcms":' .changeset/*.md \| sort \| uniq -c`                                |
 | Commit sejak rilis terakhir        | _jalankan perintah di kolom kanan_                                                    | `git rev-list --count v10.3.0..HEAD`                                                    |
 | Modul base                         | **25** (lihat daftar di ARCHITECTURE.md)                                              | `src/modules/index.ts`                                                                  |
-| Migrasi                            | **172** (`sql/001`–`919`)                                                             | `ls sql/`                                                                               |
+| Migrasi                            | **173** (`sql/001`–`920`)                                                             | `ls sql/`                                                                               |
 | ADR                                | **0000**–**0121** (`0000` = template; status ADR tertinggi: **Accepted**)             | `ls docs/adr/`                                                                          |
 | Layar admin                        | **60** berkas `.astro` di `src/pages/admin/`; **0 dari 25** modul tanpa `navigation:` | `find src/pages/admin -name '*.astro'`, `grep -L 'navigation:' src/modules/*/module.ts` |
 | Berkas `.astro`                    | **74** (40.782 baris) — soal typecheck lihat §6                                       | `find src -name '*.astro'`                                                              |

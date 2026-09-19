@@ -21,7 +21,7 @@ customers, orders and the anonymous storefront checkout surface.
 | Key / type  | `commerce` · `domain`, `isCore: false`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 | Tables      | `awcms_commerce_categories`, `awcms_commerce_products` (`sql/901`, extended `sql/904`), `awcms_commerce_product_images`, `awcms_commerce_product_variants` (`sql/905`); `awcms_commerce_flash_sales`, `awcms_commerce_flash_sale_products`, `awcms_commerce_vouchers`, `awcms_commerce_sliders`, `awcms_commerce_testimonials`, `awcms_commerce_popups` (`sql/909`), `awcms_commerce_store_settings` (`sql/910`); `awcms_commerce_customers`, `awcms_commerce_customer_addresses`, `awcms_commerce_orders`, `awcms_commerce_order_items`, `awcms_commerce_order_events`, `awcms_commerce_payment_confirmations`, `awcms_commerce_reviews`, `awcms_commerce_wishlists` (`sql/913`); `awcms_commerce_customer_accounts`, `awcms_commerce_customer_otps`, `awcms_commerce_customer_sessions` (`sql/917`-`918`); the `derived.commerce_customer_otp` `awcms_email_templates` row, seeded per existing tenant (`sql/919`) |
 | Permissions | `categories.{read,create,update,delete,restore}`, `products.{read,create,update,delete,restore}` (`sql/902`, `sql/906`); `{flash_sales,vouchers,sliders,testimonials,popups}.{read,create,update,delete}`, `settings.{read,update}` (`sql/911`); `orders.{read,update}`, `customers.{read,update}`, `reviews.{read,update,delete}` (`sql/914`, deliberately no create/delete for orders or customers — see "Customers, orders and reviews" below) — 39 in all                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| API         | `/api/v1/commerce/{categories,products,flash-sales,vouchers,sliders,testimonials,popups,store-settings,orders,customers,reviews}` (owner side); `/api/v1/commerce/storefront/{cart/quote,orders,reviews}` (anonymous side); `/api/v1/commerce/storefront/account/{otp/request,otp/verify,me,logout}` (anonymous OTP + `customerBearer`, Issue #89) (`openapi/modules/commerce.openapi.yaml`)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| API         | `/api/v1/commerce/{categories,products,flash-sales,vouchers,sliders,testimonials,popups,store-settings,orders,customers,reviews}` (owner side); `/api/v1/commerce/storefront/{cart/quote,orders,reviews}` (anonymous side, `orders`/`reviews` also accept an OPTIONAL `customerBearer`, Issue #91); `/api/v1/commerce/storefront/account/{otp/request,otp/verify,me,logout}` (anonymous OTP + `customerBearer`, Issue #89); `/api/v1/commerce/storefront/account/{addresses,addresses/{id},addresses/{id}/default,wishlist,wishlist/{productId},orders,orders/{orderCode},reviews}` (`customerBearer`, Issue #91) (`openapi/modules/commerce.openapi.yaml`)                                                                                                                                                                                                                                                          |
 | Events      | `commerce.product.{created,updated,status_changed}`; `commerce.flash_sale.{started,ended}` (Issue #26, emitted by the tick job); `commerce.order.{created,paid,status_changed,cancelled,expired}`, `commerce.voucher.redeemed`, `commerce.review.published` (Issue #29)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 | Depends on  | `tenant_admin`, `identity_access`, `domain_event_runtime`, `media_library` (product images, sliders, testimonial avatars, the popup image and the store logo/favicon all resolve through `MediaLibraryPort`), `module_management` (the anonymous storefront tenant resolver checks the module is enabled for the tenant before answering), `profile_identity` (e-mail/phone masking), `email` (Issue #89 — the customer OTP channel's `email` adapter enqueues into `email`'s own outbox)                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | Jobs        | `commerce:flash-sales:tick` (`scripts/commerce-flash-sales-tick.ts`, every 5 minutes — persists each sale's derived status and fires the two flash-sale events); `commerce:orders:expire` (`scripts/commerce-orders-expire.ts`, every 5 minutes — expires unpaid orders past the store's configured window, restocks their lines, and fires `commerce.order.expired`)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
@@ -446,6 +446,80 @@ to say about it.
 otp_requested`, `otp_verified`, `login_failed` (every verify failure,
 whatever the reason — the reason lives only in `attributes.reason`),
 `account_registered`, `logout`.
+
+## Customer accounts — resources (Issue #91, epic #32 wave 3 — C3)
+
+Six more `/api/v1/commerce/storefront/account/*` paths land: `addresses`
+(`GET`/`POST`), `addresses/{id}` (`PATCH`/`DELETE`),
+`addresses/{id}/default` (`POST`), `wishlist` (`GET`/`PUT`),
+`wishlist/{productId}` (`DELETE`), `orders` (`GET`, keyset), `orders/
+{orderCode}` (`GET`), and `reviews` (`GET`) — every one removed from
+`ROUTE_PARITY_EXEMPTIONS` accordingly; only the affiliate paths (C4, issues
+#92/#93) remain contract-only.
+
+**Addresses** (`application/customer-account-resources.ts`,
+`domain/address-validation.ts`'s `validateAccountAddressInput`): the same
+shipping-address shape order creation validates, PLUS a required `label`
+and a required (not optional) `postalCode` — a SAVED address always carries
+both, unlike a one-off order snapshot. Max 10 live addresses per account
+(`409 ADDRESS_LIMIT_REACHED`); the FIRST address ever saved becomes the
+default automatically; deleting the default promotes the
+most-recently-created remaining one. Exactly one default per customer is
+enforced by the DATABASE, not merely trusted to this application code —
+`sql/920`'s partial unique index on `(tenant_id, customer_id) WHERE
+is_default AND deleted_at IS NULL` (any duplicate the guest-checkout era
+may have left is demoted to a single survivor by that same migration,
+before the index is created).
+
+**Wishlist** (same file): `PUT` union-merges `{productIds}` into whatever
+the account already has, max 200 live rows, and returns the merged,
+authoritative list; an id that is not a live product IN THIS TENANT is
+silently skipped (never a `400`) — the `awcms-one-commerce` skill's own
+"a bare FK cannot isolate by tenant" guard, checked here in the application
+layer inside the same RLS-scoped transaction. `GET` shows published
+(`status = 'active'`), non-deleted products only — a product moderated back
+out of that status, or soft-deleted, simply stops appearing; the wishlist
+row itself is untouched. `DELETE /wishlist/{productId}` soft-deletes and is
+idempotent (always `204`, even for a product never wishlisted or a
+malformed id).
+
+**Orders** (`application/order-directory.ts`'s `listOrdersForAccount`/
+`fetchOrderForAccount`): keyset-paginated (`cursor`, `limit` ≤ 50, default
+20), newest first, `created_at >= account.historyFrom` (ADR-0016 D4)
+enforced INSIDE the query — never merely in the route. `GET /orders/
+{orderCode}` needs no phone (the bearer already proves ownership); ownership
+and `historyFrom` are BOTH checked inside that same query, so an unknown
+code, another account's order, and one that predates `historyFrom` all
+answer the identical neutral `404`. Both reuse `toPublicOrderRecord` per
+row — the SAME shape `GET .../orders/{code}?phone=` returns, per the
+contract's own "same list item shape as the tracking endpoint minus nothing
+sensitive".
+
+**Reviews** (`application/review-directory.ts`'s `listReviewsForAccount`):
+every review this account itself submitted, any moderation status, with the
+product name and order code inlined.
+
+**The two existing anonymous routes now accept an OPTIONAL bearer** —
+`POST /storefront/orders` and `POST /storefront/reviews`. Present and valid:
+the order/review's customer is the account's OWN customer row
+(`createOrderFromCart`'s/`createReview`'s `accountCustomerId`), never a
+`findOrCreateCustomerByPhone`/phone-matched lookup — the typed phone is
+still validated for shape and is still the per-phone rate limit's key.
+Present but invalid/expired: `401 UNAUTHENTICATED`, explicit — the
+storefront re-reads its own session right before submit and needs to be
+told plainly. Absent entirely: unchanged guest path. `POST .../orders` also
+accepts `affiliateCode` in the body now — shape-validated (a string, at
+most 50 characters) and otherwise IGNORED; Issue #92 is what actually
+resolves it against `awcms_commerce_affiliates.code`.
+
+**Data lifecycle / subject data**: `commerce.customer_addresses` and
+`commerce.wishlists` (`module.ts`'s `subjectData` array) stay
+`unreachableBySubject: true` — this registry's subject vocabulary is
+`tenant_user_id`/`identity_id`/`profile_id`/`principal_id`, and a customer
+account (ADR-0016 D1) deliberately carries none of those — but their
+rationale now records that Issue #91 gives the account holder a genuine
+SELF-SERVICE path to their own rows (the bearer-secured routes above),
+where before this issue there was none.
 
 ## Deliberately not here
 

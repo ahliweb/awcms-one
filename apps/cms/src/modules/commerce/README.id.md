@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:4150df6daaea0fcf9492ee3c5588695b2ea9517c9fc643a02a925794194f39d8 -->
+<!-- i18n-source-hash: sha256:60c286e0d0bfc0534c60e46b42684345cf1cbfe42c0738d52971ea793f596094 -->
 
 # `commerce`
 
@@ -25,7 +25,7 @@ ulang harga di sisi server, pelacakan dan pembatalan order lewat `orderCode`
 | Key / type | `commerce` · `domain`, `isCore: false`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | Tabel      | `awcms_commerce_categories`, `awcms_commerce_products` (`sql/901`, diperluas `sql/904`), `awcms_commerce_product_images`, `awcms_commerce_product_variants` (`sql/905`); `awcms_commerce_flash_sales`, `awcms_commerce_flash_sale_products`, `awcms_commerce_vouchers`, `awcms_commerce_sliders`, `awcms_commerce_testimonials`, `awcms_commerce_popups` (`sql/909`), `awcms_commerce_store_settings` (`sql/910`); `awcms_commerce_customers`, `awcms_commerce_customer_addresses`, `awcms_commerce_orders`, `awcms_commerce_order_items`, `awcms_commerce_order_events`, `awcms_commerce_payment_confirmations`, `awcms_commerce_reviews`, `awcms_commerce_wishlists` (`sql/913`); `awcms_commerce_customer_accounts`, `awcms_commerce_customer_otps`, `awcms_commerce_customer_sessions` (`sql/917`-`918`); baris `derived.commerce_customer_otp` di `awcms_email_templates`, di-seed per tenant yang ada (`sql/919`) |
 | Permission | `categories.{read,create,update,delete,restore}`, `products.{read,create,update,delete,restore}` (`sql/902`, `sql/906`); `{flash_sales,vouchers,sliders,testimonials,popups}.{read,create,update,delete}`, `settings.{read,update}` (`sql/911`); `orders.{read,update}`, `customers.{read,update}`, `reviews.{read,update,delete}` (`sql/914`, dengan sengaja tanpa create/delete untuk orders atau customers — lihat "Pelanggan, order, dan review" di bawah) — 39 total                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| API        | `/api/v1/commerce/{categories,products,flash-sales,vouchers,sliders,testimonials,popups,store-settings,orders,customers,reviews}` (sisi pemilik); `/api/v1/commerce/storefront/{cart/quote,orders,reviews}` (sisi anonim); `/api/v1/commerce/storefront/account/{otp/request,otp/verify,me,logout}` (OTP anonim + `customerBearer`, Issue #89) (`openapi/modules/commerce.openapi.yaml`)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| API        | `/api/v1/commerce/{categories,products,flash-sales,vouchers,sliders,testimonials,popups,store-settings,orders,customers,reviews}` (sisi pemilik); `/api/v1/commerce/storefront/{cart/quote,orders,reviews}` (sisi anonim, `orders`/`reviews` juga menerima `customerBearer` OPSIONAL, Issue #91); `/api/v1/commerce/storefront/account/{otp/request,otp/verify,me,logout}` (OTP anonim + `customerBearer`, Issue #89); `/api/v1/commerce/storefront/account/{addresses,addresses/{id},addresses/{id}/default,wishlist,wishlist/{productId},orders,orders/{orderCode},reviews}` (`customerBearer`, Issue #91) (`openapi/modules/commerce.openapi.yaml`)                                                                                                                                                                                                                                                                  |
 | Event      | `commerce.product.{created,updated,status_changed}`; `commerce.flash_sale.{started,ended}` (Issue #26, dipancarkan job tick); `commerce.order.{created,paid,status_changed,cancelled,expired}`, `commerce.voucher.redeemed`, `commerce.review.published` (Issue #29)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 | Depends on | `tenant_admin`, `identity_access`, `domain_event_runtime`, `media_library` (gambar produk, slider, avatar testimoni, gambar popup, dan logo/favicon toko semuanya di-resolve lewat `MediaLibraryPort`), `module_management` (resolver tenant storefront anonim memeriksa modul ini aktif untuk tenant tersebut sebelum menjawab), `profile_identity` (penyamaran e-mail/telepon), `email` (Issue #89 — adapter `email` pada channel OTP pelanggan mengantre ke outbox `email` sendiri)                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | Job        | `commerce:flash-sales:tick` (`scripts/commerce-flash-sales-tick.ts`, tiap 5 menit — menyimpan status turunan tiap sale dan memancarkan dua event flash sale); `commerce:orders:expire` (`scripts/commerce-orders-expire.ts`, tiap 5 menit — mengekspirasi order belum-bayar yang melewati jendela terkonfigurasi toko, me-restock lini pesanannya, dan memancarkan `commerce.order.expired`)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
@@ -485,6 +485,85 @@ namespace sesi kelima yang independen dari `awcms_sessions` (lihat
 `commerce.customer.otp_requested`, `otp_verified`, `login_failed` (setiap
 kegagalan verifikasi, apa pun alasannya — alasannya hanya ada di
 `attributes.reason`), `account_registered`, `logout`.
+
+## Akun pelanggan — sumber daya (Issue #91, epic #32 gelombang 3 — C3)
+
+Enam jalur `/api/v1/commerce/storefront/account/*` lagi mendarat:
+`addresses` (`GET`/`POST`), `addresses/{id}` (`PATCH`/`DELETE`),
+`addresses/{id}/default` (`POST`), `wishlist` (`GET`/`PUT`),
+`wishlist/{productId}` (`DELETE`), `orders` (`GET`, keyset), `orders/
+{orderCode}` (`GET`), dan `reviews` (`GET`) — semuanya dihapus dari
+`ROUTE_PARITY_EXEMPTIONS` sesuai itu; hanya jalur afiliasi (C4, issue
+#92/#93) yang masih hanya kontrak.
+
+**Alamat** (`application/customer-account-resources.ts`,
+`domain/address-validation.ts`'s `validateAccountAddressInput`): bentuk
+alamat pengiriman yang sama yang divalidasi pembuatan order, DITAMBAH
+`label` yang wajib dan `postalCode` yang wajib (bukan opsional) — alamat
+YANG DISIMPAN selalu membawa keduanya, tidak seperti snapshot order
+sekali pakai. Maksimal 10 alamat hidup per akun (`409
+ADDRESS_LIMIT_REACHED`); alamat PERTAMA yang pernah disimpan otomatis
+menjadi default; menghapus default mempromosikan yang paling baru dibuat
+di antara yang tersisa. Persis satu default per pelanggan ditegakkan oleh
+DATABASE, bukan sekadar dipercayakan ke kode aplikasi ini — indeks unik
+parsial `sql/920` pada `(tenant_id, customer_id) WHERE is_default AND
+deleted_at IS NULL` (duplikat mana pun yang mungkin ditinggalkan era
+checkout tamu diturunkan menjadi satu penyintas oleh migrasi yang sama,
+sebelum indeks dibuat).
+
+**Wishlist** (berkas yang sama): `PUT` menggabung-union `{productIds}` ke
+apa pun yang sudah dimiliki akun, maksimal 200 baris hidup, dan
+mengembalikan daftar gabungan yang otoritatif; id yang bukan produk hidup
+DI TENANT INI dilewati secara diam-diam (tidak pernah `400`) — penjagaan
+skill `awcms-one-commerce` sendiri "FK telanjang tidak bisa mengisolasi
+per tenant", diperiksa di sini pada lapisan aplikasi di dalam transaksi
+yang sama yang berlingkup RLS. `GET` hanya menampilkan produk yang
+dipublikasikan (`status = 'active'`), belum dihapus — produk yang
+dimoderasi keluar dari status itu, atau dihapus lunak, langsung berhenti
+muncul; baris wishlist-nya sendiri tidak tersentuh. `DELETE
+/wishlist/{productId}` menghapus lunak dan idempoten (selalu `204`,
+bahkan untuk produk yang belum pernah di-wishlist atau id yang salah
+bentuk).
+
+**Order** (`application/order-directory.ts`'s `listOrdersForAccount`/
+`fetchOrderForAccount`): berpaginasi keyset (`cursor`, `limit` ≤ 50,
+default 20), terbaru dulu, `created_at >= account.historyFrom` (ADR-0016
+D4) ditegakkan DI DALAM query — tidak pernah sekadar di rute. `GET
+/orders/{orderCode}` tidak perlu nomor telepon (bearer sudah membuktikan
+kepemilikan); kepemilikan dan `historyFrom` KEDUANYA diperiksa di dalam
+query yang sama, sehingga kode yang tidak dikenal, order akun lain, dan
+yang lebih lama dari `historyFrom` semuanya menjawab `404` netral yang
+identik. Keduanya memakai ulang `toPublicOrderRecord` per baris — bentuk
+YANG SAMA yang dikembalikan `GET .../orders/{code}?phone=`, sesuai aturan
+kontrak sendiri "bentuk item daftar yang sama dengan endpoint pelacakan
+minus apa pun yang sensitif".
+
+**Ulasan** (`application/review-directory.ts`'s `listReviewsForAccount`):
+setiap ulasan yang akun ini sendiri kirimkan, status moderasi apa pun,
+dengan nama produk dan kode order disematkan.
+
+**Kedua rute anonim yang sudah ada kini menerima bearer OPSIONAL** —
+`POST /storefront/orders` dan `POST /storefront/reviews`. Hadir dan valid:
+pelanggan order/ulasan adalah baris pelanggan MILIK akun itu SENDIRI
+(`accountCustomerId` milik `createOrderFromCart`/`createReview`), tidak
+pernah pencarian `findOrCreateCustomerByPhone`/kecocokan telepon — nomor
+telepon yang diketik tetap divalidasi bentuknya dan tetap menjadi kunci
+rate limit per telepon. Hadir tetapi tidak valid/kedaluwarsa: `401
+UNAUTHENTICATED`, eksplisit — storefront membaca ulang sesinya sendiri
+tepat sebelum submit dan perlu diberi tahu secara jelas. Tidak hadir sama
+sekali: jalur tamu tidak berubah. `POST .../orders` juga sekarang
+menerima `affiliateCode` di body — divalidasi bentuknya (string, maksimal
+50 karakter) dan selain itu DIABAIKAN; Issue #92 yang benar-benar
+meresolusinya terhadap `awcms_commerce_affiliates.code`.
+
+**Siklus hidup data / data subjek**: `commerce.customer_addresses` dan
+`commerce.wishlists` (array `subjectData` milik `module.ts`) tetap
+`unreachableBySubject: true` — kosakata subjek registry ini adalah
+`tenant_user_id`/`identity_id`/`profile_id`/`principal_id`, dan akun
+pelanggan (ADR-0016 D1) dengan sengaja tidak membawa satu pun itu — tetapi
+rationale-nya kini mencatat bahwa Issue #91 memberi pemilik akun jalur
+SWALAYAN sungguhan ke baris miliknya sendiri (rute bearer di atas), yang
+sebelum issue ini tidak ada.
 
 ## Dengan sengaja tidak ada di sini
 
