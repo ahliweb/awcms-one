@@ -42,6 +42,14 @@ export type CreateReviewOutcome =
  * `POST …/storefront/reviews`. `orderCode` + `phone` is the credential
  * (same discipline `order-directory.ts`'s tracking lookup uses); an unknown
  * pair reads as `not_found`, indistinguishable from a wrong `orderCode`.
+ *
+ * `accountCustomerId` (Issue #91) — set by the route ONLY after a valid
+ * bearer session was presented. When present, ownership is checked against
+ * THAT customer row instead of the phone (contract's own "ignore any
+ * phone-based lookup for the customer identity"); `phone` is still passed
+ * (the route already validated its shape and applied the per-phone rate
+ * limit before calling here) but is not used in the lookup's `WHERE` clause
+ * in this branch.
  */
 export async function createReview(
   tx: Bun.SQL,
@@ -51,15 +59,23 @@ export async function createReview(
   productId: string,
   rating: number,
   body: string,
-  correlationId?: string
+  correlationId?: string,
+  accountCustomerId?: string
 ): Promise<CreateReviewOutcome> {
-  const orderRows = (await tx`
-    SELECT o.id, o.status, o.customer_id
-    FROM awcms_commerce_orders o
-    JOIN awcms_commerce_customers c ON c.id = o.customer_id
-    WHERE o.tenant_id = ${tenantId} AND o.order_code = ${orderCode}
-      AND c.phone = ${phone} AND o.deleted_at IS NULL
-  `) as { id: string; status: string; customer_id: string }[];
+  const orderRows = accountCustomerId
+    ? ((await tx`
+        SELECT o.id, o.status, o.customer_id
+        FROM awcms_commerce_orders o
+        WHERE o.tenant_id = ${tenantId} AND o.order_code = ${orderCode}
+          AND o.customer_id = ${accountCustomerId} AND o.deleted_at IS NULL
+      `) as { id: string; status: string; customer_id: string }[])
+    : ((await tx`
+        SELECT o.id, o.status, o.customer_id
+        FROM awcms_commerce_orders o
+        JOIN awcms_commerce_customers c ON c.id = o.customer_id
+        WHERE o.tenant_id = ${tenantId} AND o.order_code = ${orderCode}
+          AND c.phone = ${phone} AND o.deleted_at IS NULL
+      `) as { id: string; status: string; customer_id: string }[]);
 
   const order = orderRows[0];
   if (!order) return { kind: "not_found" };
@@ -229,6 +245,59 @@ export async function moderateReview(
   }
 
   return record;
+}
+
+// ---------------------------------------------------------------------------
+// Issue #91 (C3) — the account's OWN reviews, bearer-secured
+// (`account/reviews/index.ts`).
+// ---------------------------------------------------------------------------
+
+export type AccountReviewRecord = {
+  id: string;
+  productId: string;
+  productName: string;
+  orderCode: string;
+  rating: number;
+  body: string;
+  status: ReviewStatus;
+  createdAt: string;
+};
+
+/** `GET /account/reviews` — every review this customer submitted, across every order/product, newest first, with the product name and order code (the storefront's own `UlasanAkun` contract, `apps/storefront/src/lib/akun-klien.ts`) so the account screen never has to look either up separately. */
+export async function listReviewsForAccount(
+  tx: Bun.SQL,
+  tenantId: string,
+  customerId: string
+): Promise<AccountReviewRecord[]> {
+  const rows = (await tx`
+    SELECT r.id, r.product_id, p.name AS product_name, o.order_code,
+           r.rating, r.body, r.status, r.created_at
+    FROM awcms_commerce_reviews r
+    JOIN awcms_commerce_products p ON p.id = r.product_id AND p.tenant_id = r.tenant_id
+    JOIN awcms_commerce_orders o ON o.id = r.order_id AND o.tenant_id = r.tenant_id
+    WHERE r.tenant_id = ${tenantId} AND r.customer_id = ${customerId} AND r.deleted_at IS NULL
+    ORDER BY r.created_at DESC
+  `) as {
+    id: string;
+    product_id: string;
+    product_name: string;
+    order_code: string;
+    rating: number;
+    body: string;
+    status: string;
+    created_at: Date;
+  }[];
+
+  return rows.map((row) => ({
+    id: row.id,
+    productId: row.product_id,
+    productName: row.product_name,
+    orderCode: row.order_code,
+    rating: row.rating,
+    body: row.body,
+    status: row.status as ReviewStatus,
+    createdAt: row.created_at.toISOString()
+  }));
 }
 
 export async function deleteReview(

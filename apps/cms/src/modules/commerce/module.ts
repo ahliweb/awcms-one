@@ -1370,7 +1370,7 @@ export const commerceModule = defineModule({
       exportable: false,
       erasure: "retain_under_obligation",
       rationale:
-        "A saved shipping address — recipient name, phone, street — real personal data, same unreachable-by-this-engine's-vocabulary shape as commerce.customers above."
+        "A saved shipping address — recipient name, phone, street — real personal data, same unreachable-by-this-engine's-vocabulary shape as commerce.customers above (a row is keyed by customer_id, never a tenant_user/identity/profile/principal id this registry can name). Since Issue #91, an account holder reaches this table directly through their own bearer-secured GET/POST/PATCH/DELETE /account/addresses routes — the honest self-service path this table's phone-only vocabulary gap made impossible before an account existed — the same way commerce.customer_accounts below is addressed today by an ordinary admin lookup; this automated engine still cannot walk it by id."
     },
     {
       key: "commerce.orders",
@@ -1436,7 +1436,7 @@ export const commerceModule = defineModule({
       exportable: false,
       erasure: "retain_under_obligation",
       rationale:
-        "A bare (customer, product) saved-item pair — no route reads or writes it in this increment (see this module's README); same unreachable-by-this-engine's-vocabulary shape as commerce.customers above."
+        "A bare (customer, product) saved-item pair — same unreachable-by-this-engine's-vocabulary shape as commerce.customers above (a row is keyed by customer_id, never a tenant_user/identity/profile/principal id this registry can name). Since Issue #91, an account holder reaches this table directly through their own bearer-secured GET/PUT /account/wishlist and DELETE /account/wishlist/{productId} routes (see this module's README) — the same self-service resolution commerce.customer_addresses above now has; this automated engine still cannot walk it by id."
     },
     /**
      * Issue #87 (C1, contract #86/ADR-0016) — a customer ACCOUNT is real
