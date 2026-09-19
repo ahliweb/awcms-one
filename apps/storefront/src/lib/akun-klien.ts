@@ -253,3 +253,76 @@ export function ambilUlasanAkun(): Promise<{ items: UlasanAkun[] }> {
     kirimPermintaan<{ items: UlasanAkun[] }>("/account/reviews", "GET", undefined, authHeader())
   );
 }
+
+// ---------------------------------------------------------------------------
+// Issue #93 (S3 of #32) — the affiliate program, #86's own D5. Every
+// function below is bearer-only, wrapped in the same `denganPembersihanSesi`
+// every other function in this file already uses.
+// ---------------------------------------------------------------------------
+
+/**
+ * `GET/POST …/account/affiliate`'s own affiliate shape (#86's contract):
+ * `code` is this file's own `validasiKodeAfiliasi` shape (8-char
+ * unambiguous base32), `commissionRate` a `numeric(5,2)` STRING (the same
+ * "a numeric column travels as a string" convention `harga.ts`'s own
+ * docblock and `StoreSettings.payment.insurance.ratePercent` already
+ * follow), `status` the two states staff can put an affiliate in, `link`
+ * the CMS's own precomputed referral URL (`/akun/afiliasi` renders this
+ * value directly rather than re-deriving it from `code` and `siteConfig`,
+ * so a CMS-side change to the link shape needs no storefront change to
+ * match).
+ */
+export type Afiliasi = {
+  code: string;
+  commissionRate: string;
+  status: "active" | "suspended";
+  link: string;
+  stats: {
+    referredOrders: number;
+    pendingAmount: string;
+    approvedAmount: string;
+    paidAmount: string;
+  };
+};
+
+/** `GET …/account/affiliate` — `{affiliate: null}` for a signed-in shopper who has not enrolled yet. */
+export function ambilAfiliasi(): Promise<{ affiliate: Afiliasi | null }> {
+  return denganPembersihanSesi(() =>
+    kirimPermintaan<{ affiliate: Afiliasi | null }>("/account/affiliate", "GET", undefined, authHeader())
+  );
+}
+
+/**
+ * `POST …/account/affiliate` — `201` enrol. `409 AFFILIATE_PROGRAM_DISABLED`
+ * when the tenant's program is off (#86's own "program must be enabled…
+ * else `409`") — an ordinary `TokoApiError` this function does not treat
+ * specially; `/akun/afiliasi`'s own script decides how to explain it (in
+ * practice this should not be reachable at all when `affiliateProgramEnabled`
+ * is `false` at BUILD time, since that page renders no enrol button then —
+ * this is the belt-and-suspenders case of a program disabled AFTER this
+ * static build shipped).
+ */
+export function gabungAfiliasi(): Promise<{ affiliate: Afiliasi }> {
+  return denganPembersihanSesi(() =>
+    kirimPermintaan<{ affiliate: Afiliasi }>("/account/affiliate", "POST", undefined, authHeader())
+  );
+}
+
+/** One row of `GET …/account/affiliate/commissions` — `status` mirrors `awcms_commerce_affiliate_commissions`'s own four states (#86's schema summary); `/akun/afiliasi` labels them Menunggu/Disetujui/Dibayar/Dibatalkan. */
+export type AfiliasiKomisi = {
+  id: string;
+  orderCode: string;
+  amount: string;
+  status: "pending" | "approved" | "paid" | "void";
+  createdAt: string;
+};
+
+export type AfiliasiKomisiHalaman = { items: AfiliasiKomisi[]; nextCursor: string | null };
+
+/** `GET …/account/affiliate/commissions?cursor=` — keyset-paginated, newest first (the CMS's own order, this function imposes none), for `/akun/afiliasi`'s own "Muat lebih banyak" list. */
+export function ambilKomisiAfiliasi(cursor?: string | null): Promise<AfiliasiKomisiHalaman> {
+  const query = cursor ? `?cursor=${encodeURIComponent(cursor)}` : "";
+  return denganPembersihanSesi(() =>
+    kirimPermintaan<AfiliasiKomisiHalaman>(`/account/affiliate/commissions${query}`, "GET", undefined, authHeader())
+  );
+}

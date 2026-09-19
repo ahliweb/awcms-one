@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](routing.md)
 
-<!-- i18n-source-hash: sha256:83d6090293fbe9ce5813e06c532146369ed7111f4f9ef519ead1f3f9686a89c3 -->
+<!-- i18n-source-hash: sha256:0047a584db5be85f48ed868fa07c4da4189a993800dcf8d511b7475d81c8bd9b -->
 
 # Routing
 
@@ -47,15 +47,18 @@ Setiap rute yang dipublikasikan `apps/storefront` — 41 berkas rute di bawah `a
 
 Keempatnya: `noindex, follow`, `aria-live="polite"` pada update quote/status, terjangkau keyboard, fallback `<noscript>` plus fallback WhatsApp untuk kondisi JS-berjalan-tapi-CMS-down (`apps/storefront/src/lib/wa-fallback.ts`).
 
-## Akun pelanggan (issue #88, S1 dari #32)
+## Akun pelanggan (issue #88 S1, issue #90 S2, issue #93 S3, dari #32)
 
 | Path | Sumber | Catatan |
 | --- | --- | --- |
 | `/masuk` | `apps/storefront/src/pages/masuk.astro` | Masuk dengan OTP e-mail; `noindex, follow` |
 | `/daftar` | `apps/storefront/src/pages/daftar.astro` | Pendaftaran dengan nama + telepon + OTP e-mail; `noindex, follow` |
 | `/akun` | `apps/storefront/src/pages/akun/index.astro` | Shell dashboard setelah masuk (profil, "Ubah nama", "Keluar", kartu navigasi); `noindex, follow` |
+| `/akun/afiliasi` | `apps/storefront/src/pages/akun/afiliasi.astro` | Program afiliasi (issue #93, S3 dari #32; sisi CMS/staf adalah issue #92): penjelasan tertutup saat `affiliateProgramEnabled` bernilai `false` pada saat build, jika tidak maka gabung/tautan-referral/statistik/komisi; `noindex, follow` |
 
-`ROUTES.accountOrders` (`/akun/pesanan`), `ROUTES.accountAddresses` (`/akun/alamat`), `ROUTES.accountReviews` (`/akun/ulasan`), dan `ROUTES.accountAffiliate` (`/akun/afiliasi`) dideklarasikan di `apps/storefront/src/config/routes.ts` sekarang, belum ada halaman di baliknya — kartu navigasi `/akun` sendiri dan halaman mana pun di masa depan bisa merujuk ke konstanta bernama alih-alih path yang diketik manual. Rute anak tersebut hadir bersama S2/S3 dari issue #32; sampai saat itu, tautannya sengaja mengarah ke 404 (didokumentasikan dalam deskripsi PR issue #88 sendiri). `ROUTES.accountOrder(kode)` (`/akun/pesanan?kode=`) adalah pola "deklarasikan bentuknya, isi halamannya nanti" yang sama untuk satu pesanan.
+`ROUTES.accountOrder(kode)` (`/akun/pesanan?kode=`) adalah pola "deklarasikan bentuknya, isi halamannya nanti" yang sama untuk satu pesanan.
+
+`?ref={code}` pada HALAMAN MANA PUN (bukan hanya `/`) adalah referral yang ditangkap, bukan rute tersendiri — `apps/storefront/src/scripts/afiliasi-tangkap.ts`, dipasang dari `BaseLayout.astro` di setiap halaman, menyimpan kode yang valid dan menghapus HANYA parameter kueri itu lewat `history.replaceState`; lihat [`docs/seo.md`](seo.id.md) untuk alasan mengapa tautan kanonik tidak terpengaruh oleh penangkapan ini.
 
 ## Statis
 

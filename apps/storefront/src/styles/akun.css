@@ -126,3 +126,17 @@ ul.akun-nav-grid > li {
 ul.akun-nav-grid > li + li {
   margin-top: 0.75rem;
 }
+
+/* Issue #93 — `/akun/afiliasi`'s referral-link row: a read-only input plus
+   a copy button, side by side on a wide viewport, stacked on a narrow one
+   (the same wrap behaviour `.akun-actions` already uses) so neither control
+   ever drops below the 44px target this stylesheet's own header names. */
+.akun-afiliasi-link-row {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.akun-afiliasi-link-row input[type="text"] {
+  flex: 1 1 16rem;
+}
