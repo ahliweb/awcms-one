@@ -2,7 +2,7 @@
 
 # Using awcms-one as a template
 
-This document is the skeleton [ADR-0018](adr/0018-awcms-one-is-a-template-with-build-profiles-and-an-idempotent-init.md) commits this repository to filling in: how a new application starts from `awcms-one`, what `bun run template:init` does to make a derived repository its own, the build-profile matrix that decides which pages a deployment ships, and where BjekMart itself fits once this repository is also a template. **As of issue #138, `bun run template:init` is real, running code** (`tools/template-init.ts` + `tools/template-init/**`, tested by `tests/template-init.test.mjs`, matrixed in CI by `.github/workflows/template-init-smoke.yml`), and, from issue #139, the "Sample seeds" section below is also real (`tools/seed-cms.ts`, the neutral per-profile seed sets). The `src/profil/**` layout and `SITE_PROFILE`'s actual page-filtering behaviour (#137) have **not** landed yet — see "Status" at the bottom for what that means for `template:init` today.
+This document is the skeleton [ADR-0018](adr/0018-awcms-one-is-a-template-with-build-profiles-and-an-idempotent-init.md) commits this repository to filling in: how a new application starts from `awcms-one`, what `bun run template:init` does to make a derived repository its own, the build-profile matrix that decides which pages a deployment ships, and where BjekMart itself fits once this repository is also a template. **All three of #137/#138/#139 have now landed**: `SITE_PROFILE`'s real page-filtering behaviour (`apps/storefront/src/config/profil.ts`, `src/profil/**`), `bun run template:init` (`tools/template-init.ts` + `tools/template-init/**`, tested by `tests/template-init.test.mjs`, matrixed in CI by `.github/workflows/template-init-smoke.yml`), and the neutral per-profile seed sets (`tools/seed-cms.ts`). See "Status" at the bottom for what remains ([#140](https://github.com/ahliweb/awcms-one/issues/140)'s own docs sweep and release).
 
 ## Memulai dari template (starting from the template)
 
@@ -64,7 +64,7 @@ Exactly the brand surface [ADR-0018 D4](adr/0018-awcms-one-is-a-template-with-bu
 - `README.md`/`README.id.md` — the hero section
 - `SUPPORT.md`/`SUPPORT.id.md` — the hero sentence
 - `.env.example` — the seed-script tenant defaults (`SEED_TENANT_CODE`/`SEED_TENANT_NAME`/`SEED_OFFICE_CODE`/`SEED_OFFICE_NAME`/`SEED_OWNER_EMAIL`)
-- `apps/storefront/.env.example` — `SITE_URL`, `SITE_NAME`, `SITE_DESCRIPTION`, and a new `SITE_PROFILE` line
+- `apps/storefront/.env.example` — `SITE_URL`, `SITE_NAME`, `SITE_DESCRIPTION`, and #137's own `SITE_PROFILE` line (uncommented and set to the chosen profile)
 - `tools/seed-cms.ts` (issue #139) — its `--profil` default, from `contoh:borneojek-mart` to the deployment's own chosen profile; `package.json`'s `db:seed:cms` script is rewritten the same way, from `bun tools/seed-cms.ts` to `bun tools/seed-cms.ts --profil <chosen profile>`
 - `CHANGELOG.md` — reset to a single `## [0.1.0]` entry reading "Dibuat dari template awcms-one vX.Y.Z (\<sha\>)" (once only)
 - `.changesets/*.md` — cleared (the README is kept; once only)
@@ -72,7 +72,7 @@ Exactly the brand surface [ADR-0018 D4](adr/0018-awcms-one-is-a-template-with-bu
 **Two corrections to this section's original wording, made in the same change that implements the tool (issue #138), since the doc and the tree disagreed:**
 
 - `SECURITY.md`/`SECURITY.id.md` carry **no** BjekMart-specific contact line as the tree actually stands — every address in those files is a GitHub URL to `ahliweb/awcms-one`, which `template:init` deliberately does **not** rewrite (see "What it does not know" below). `rewriteSecurity()` (`tools/template-init/rewriters.mjs`) is a documented no-op kept for symmetry with `SUPPORT.md`.
-- `SITE_NAME`/`SITE_URL`/`SITE_DESCRIPTION` (and the new `SITE_PROFILE`) live in `apps/storefront/.env.example`, not the root `.env.example` — the root file documents only root-owned-script variables (see that file's own header), and `SITE_PROFILE` itself does not exist anywhere in the tree yet: issue #137, the mechanism that reads it, has not landed on the branch issue #138 was built from. `template:init` writes the line into `apps/storefront/.env.example` anyway, forward-compatible with #137 reading it once it lands, rather than waiting.
+- `SITE_NAME`/`SITE_URL`/`SITE_DESCRIPTION`/`SITE_PROFILE` all live in `apps/storefront/.env.example`, not the root `.env.example` — the root file documents only root-owned-script variables (see that file's own header). `SITE_PROFILE` itself is [#137](https://github.com/ahliweb/awcms-one/issues/137)'s own addition to that file (a commented-out `# SITE_PROFILE=toko` default); `template:init` uncomments it and sets it to the deployment's own chosen profile.
 
 ### What "no BjekMart string left" actually means
 
@@ -102,7 +102,7 @@ BjekMart-only artefacts that a derived deployment does not need and should not c
 
 ## Build profiles
 
-`SITE_PROFILE` (read at build time by `apps/storefront/src/config/profil.ts`, once #137 lands) selects which page groups a build includes. Full reasoning: [ADR-0018 D2/D3](adr/0018-awcms-one-is-a-template-with-build-profiles-and-an-idempotent-init.md).
+`SITE_PROFILE` (read at build time by `apps/storefront/src/config/profil.ts`, [#137](https://github.com/ahliweb/awcms-one/issues/137)) selects which page groups a build includes. Full reasoning: [ADR-0018 D2/D3](adr/0018-awcms-one-is-a-template-with-build-profiles-and-an-idempotent-init.md).
 
 | Profile | Composition | What it is |
 | --- | --- | --- |
@@ -200,8 +200,8 @@ BjekMart is not deleted when this repository becomes a template — it is **kept
 
 **20 September 2026 — wave 1 (issue #139):** `tools/seed-cms.ts` landed, with `--profil toko|berita|landing|contoh:borneojek-mart` and `--dry-run`, plus the small neutral seed sets under `tools/seed-data/profil/{toko,berita,landing}/*` and placeholder SVGs under `tools/seed-assets/profil/**`. `tools/seed-data/*.json` moved to `tools/seed-data/contoh/borneojek-mart/**`, unchanged in shape; `tools/seed-borneojek-mart.ts` is now a one-release deprecation shim.
 
-**20 September 2026 — issue #138 lands `template:init`.** `tools/template-init.ts` + `tools/template-init/**` are real, tested code (`tests/template-init.test.mjs`), matrixed in CI by `.github/workflows/template-init-smoke.yml`, and its removal step targets #139's own landed layout (`tools/seed-data/contoh/borneojek-mart/**`, `tools/seed-cms.ts`'s BjekMart default) directly rather than a still-planned one. One thing this page described as the target is still not true, and `template:init` is written to degrade honestly against it:
+**20 September 2026 — wave 1 (issue #137):** the `SITE_PROFILE` mechanism itself landed — `apps/storefront/src/config/profil.ts`, the `injectRoute` integration, pages moved into `src/profil/<group>/pages/**`, `apps/storefront/.env.example`'s own commented-out `# SITE_PROFILE=toko` default, and `ci.yml`'s 3-leg build matrix. `SITE_PROFILE` now genuinely decides which pages a build includes, exactly as the profile matrix above describes.
 
-- **`SITE_PROFILE` has no build-time effect yet.** Issue #137 (the `src/profil/**` layout, the `injectRoute` integration, `apps/storefront/src/config/profil.ts`) has not landed. `template:init --profil <p>` still records the choice (`apps/storefront/.env.example`'s new `SITE_PROFILE` line) and still picks the right `SITE_DESCRIPTION` default for it, and rewrites `db:seed:cms` to seed the chosen profile by default, but every profile builds the SAME, full `toko`-shaped site until #137 lands — `template-init-smoke.yml`'s own per-profile build leg proves the BUILD succeeds, not yet that the profile's pages are filtered.
+**20 September 2026 — issue #138 lands `template:init`.** `tools/template-init.ts` + `tools/template-init/**` are real, tested code (`tests/template-init.test.mjs`), matrixed in CI by `.github/workflows/template-init-smoke.yml`, and both its removal step and its `apps/storefront/.env.example` rewrite target #137's and #139's own landed layouts directly rather than still-planned ones: `template:init --profil <p>` uncomments and sets the real `SITE_PROFILE` line #137 added, so a derived repository's build genuinely filters pages by the chosen profile from its very first build, not merely records the choice for later. Every one of #136–#139's own targets this page described is now real, running code.
 
 This page is updated again as [#140](https://github.com/ahliweb/awcms-one/issues/140) (the GitHub *template repository* flag, the docs sweep, the release) lands.

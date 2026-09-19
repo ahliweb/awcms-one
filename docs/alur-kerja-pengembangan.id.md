@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](alur-kerja-pengembangan.md)
 
-<!-- i18n-source-hash: sha256:a26b044d896e9e1dd2dff81248f25923c86a6370f98cda64567a3cfb0ab04116 -->
+<!-- i18n-source-hash: sha256:3f92e75e5c849e255d791384341e660a20c14fd2c003e759206956e03422ff58 -->
 
 # Alur kerja pengembangan
 
@@ -57,7 +57,7 @@ Kedua job adalah status check wajib di `main` (lihat "Branch protection pada `ma
 
 ## CI: workflow ketiga, belum wajib — `template-init-smoke`
 
-`.github/workflows/template-init-smoke.yml` (issue #138) adalah berkas workflow TERPISAH, bukan job ketiga di `ci.yml` — berkas itu dimiliki oleh perubahan lain yang landing bersamaan (issue #137), dan cakupan workflow ini sendiri meminta berkas baru alih-alih job yang ditempelkan ke sana. Ia mematriks `toko`/`berita`/`landing` (ADR-0018 D2): untuk setiap profil, ia menjalankan `bun run template:init --profil <profile> --yes` terhadap checkout-nya sendiri (termasuk rantai gate akhir milik alat itu sendiri), memulai stub CMS milik storefront, menjalankan `SITE_PROFILE=<profile> bun run build` dari `apps/storefront`, lalu `bun test` root. Ia **belum menjadi status check wajib** — mengikuti pola promosi yang sama yang dilalui `check-cms` sendiri (lihat "Branch protection pada `main`" di atas): ditambahkan ke daftar wajib hanya setelah berjalan hijau di `main` untuk sementara waktu.
+`.github/workflows/template-init-smoke.yml` (issue #138) adalah berkas workflow TERPISAH, bukan job ketiga di `ci.yml` — berkas itu dimiliki oleh perubahan lain yang sejak itu landing (issue #137), dan cakupan workflow ini sendiri meminta berkas baru alih-alih job yang ditempelkan ke sana. Ia mematriks `toko`/`berita`/`landing` (ADR-0018 D2): untuk setiap profil, ia menjalankan `bun run template:init --profil <profile> --yes` terhadap checkout-nya sendiri (termasuk rantai gate akhir milik alat itu sendiri), memulai stub CMS milik storefront, menjalankan `SITE_PROFILE=<profile> bun run build` dari `apps/storefront`, lalu `bun test` root. Ia **belum menjadi status check wajib** — mengikuti pola promosi yang sama yang dilalui `check-cms` sendiri (lihat "Branch protection pada `main`" di atas): ditambahkan ke daftar wajib hanya setelah berjalan hijau di `main` untuk sementara waktu.
 
 ## Seeding profil secara lokal
 

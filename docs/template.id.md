@@ -1,10 +1,10 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](template.md)
 
-<!-- i18n-source-hash: sha256:f4cd95e0413b7a475e7304c8a2206f87d568ab9b7c05187e0caf80b6968cc39c -->
+<!-- i18n-source-hash: sha256:df921b70c4507065e6810238e13a2ea0f4711f81df4b213bffe278b68525b246 -->
 
 # Menggunakan awcms-one sebagai template
 
-Dokumen ini adalah kerangka yang dijanjikan [ADR-0018](adr/0018-awcms-one-is-a-template-with-build-profiles-and-an-idempotent-init.id.md) untuk diisi: bagaimana aplikasi baru dimulai dari `awcms-one`, apa yang dilakukan `bun run template:init` untuk menjadikan repo turunan miliknya sendiri, matriks profil build yang memutuskan halaman mana yang dikirim sebuah deployment, dan di mana BjekMart sendiri berada begitu repo ini juga menjadi template. **Per issue #138, `bun run template:init` adalah kode nyata yang berjalan** (`tools/template-init.ts` + `tools/template-init/**`, diuji oleh `tests/template-init.test.mjs`, dimatriks di CI oleh `.github/workflows/template-init-smoke.yml`), dan sejak issue #139 bagian "Seed contoh" di bawah juga sungguhan (`tools/seed-cms.ts`, set seed netral per profil). Tata letak `src/profil/**` dan perilaku penyaringan halaman `SITE_PROFILE` yang sebenarnya (#137) **belum** landing — lihat "Status" di bagian bawah untuk artinya bagi `template:init` hari ini.
+Dokumen ini adalah kerangka yang dijanjikan [ADR-0018](adr/0018-awcms-one-is-a-template-with-build-profiles-and-an-idempotent-init.id.md) untuk diisi: bagaimana aplikasi baru dimulai dari `awcms-one`, apa yang dilakukan `bun run template:init` untuk menjadikan repo turunan miliknya sendiri, matriks profil build yang memutuskan halaman mana yang dikirim sebuah deployment, dan di mana BjekMart sendiri berada begitu repo ini juga menjadi template. **Ketiganya, #137/#138/#139, kini sudah landing**: perilaku penyaringan halaman `SITE_PROFILE` yang sebenarnya (`apps/storefront/src/config/profil.ts`, `src/profil/**`), `bun run template:init` (`tools/template-init.ts` + `tools/template-init/**`, diuji oleh `tests/template-init.test.mjs`, dimatriks di CI oleh `.github/workflows/template-init-smoke.yml`), dan set seed netral per profil (`tools/seed-cms.ts`). Lihat "Status" di bagian bawah untuk apa yang tersisa (sapuan dokumentasi dan rilis milik [#140](https://github.com/ahliweb/awcms-one/issues/140) sendiri).
 
 ## Memulai dari template
 
@@ -66,7 +66,7 @@ Persis permukaan merek yang dinamai [ADR-0018 D4](adr/0018-awcms-one-is-a-templa
 - `README.md`/`README.id.md` — bagian hero
 - `SUPPORT.md`/`SUPPORT.id.md` — kalimat hero
 - `.env.example` — default tenant skrip seed (`SEED_TENANT_CODE`/`SEED_TENANT_NAME`/`SEED_OFFICE_CODE`/`SEED_OFFICE_NAME`/`SEED_OWNER_EMAIL`)
-- `apps/storefront/.env.example` — `SITE_URL`, `SITE_NAME`, `SITE_DESCRIPTION`, dan baris baru `SITE_PROFILE`
+- `apps/storefront/.env.example` — `SITE_URL`, `SITE_NAME`, `SITE_DESCRIPTION`, dan baris `SITE_PROFILE` milik #137 sendiri (dihapus komentarnya dan diatur ke profil pilihan)
 - `tools/seed-cms.ts` (issue #139) — default `--profil`-nya, dari `contoh:borneojek-mart` menjadi profil pilihan deployment; skrip `db:seed:cms` milik `package.json` ditulis ulang dengan cara yang sama, dari `bun tools/seed-cms.ts` menjadi `bun tools/seed-cms.ts --profil <profil pilihan>`
 
 **Tiga koreksi pada susunan kata asli bagian ini, dibuat dalam perubahan yang sama yang mengimplementasikan alat ini (issue #138), karena dokumen dan pohonnya tidak sejalan:**
@@ -74,7 +74,7 @@ Persis permukaan merek yang dinamai [ADR-0018 D4](adr/0018-awcms-one-is-a-templa
 - `DEFAULT_IDENTITY.description` tidak ada dalam daftar aslinya (hanya `name`/`contactEmail`/`contactPhone`/`address` yang disebut) — ditambahkan di sini karena membiarkannya tidak tersentuh mengirim kalimat khas BjekMart sendiri ("...di BjekMart") ke setiap deployment turunan selamanya, persis cacat yang dijelaskan paragraf "Ditolak (c)" milik D4 sendiri.
 
 - `SECURITY.md`/`SECURITY.id.md` **tidak** membawa baris kontak spesifik-BjekMart apa pun sebagaimana pohonnya berdiri hari ini — setiap alamat di file itu adalah URL GitHub ke `ahliweb/awcms-one`, yang `template:init` sengaja **tidak** tulis ulang (lihat "Apa yang tidak diketahuinya" di bawah). `rewriteSecurity()` (`tools/template-init/rewriters.mjs`) adalah no-op terdokumentasi yang dipertahankan demi simetri dengan `SUPPORT.md`.
-- `SITE_NAME`/`SITE_URL`/`SITE_DESCRIPTION` (dan `SITE_PROFILE` yang baru) hidup di `apps/storefront/.env.example`, bukan `.env.example` root — file root hanya mendokumentasikan variabel milik skrip root (lihat header file itu sendiri), dan `SITE_PROFILE` sendiri belum ada di mana pun di pohonnya: issue #137, mekanisme yang membacanya, belum landing di branch tempat issue #138 dibangun. `template:init` tetap menulis baris itu ke `apps/storefront/.env.example`, kompatibel ke depan begitu #137 landing dan membacanya, alih-alih menunggu.
+- `SITE_NAME`/`SITE_URL`/`SITE_DESCRIPTION`/`SITE_PROFILE` semuanya hidup di `apps/storefront/.env.example`, bukan `.env.example` root — file root hanya mendokumentasikan variabel milik skrip root (lihat header file itu sendiri). `SITE_PROFILE` sendiri adalah tambahan milik [#137](https://github.com/ahliweb/awcms-one/issues/137) sendiri ke file itu (default `# SITE_PROFILE=toko` yang dikomentari); `template:init` menghapus komentarnya dan mengaturnya ke profil pilihan deployment.
 
 ### Apa arti "tidak ada string BjekMart tersisa" sesungguhnya
 
@@ -107,7 +107,7 @@ Artefak khusus BjekMart yang tidak dibutuhkan deployment turunan dan tidak sehar
 
 ## Profil build
 
-`SITE_PROFILE` (dibaca saat build oleh `apps/storefront/src/config/profil.ts`, setelah #137 landing) memilih kelompok halaman mana yang disertakan sebuah build. Penalaran lengkap: [ADR-0018 D2/D3](adr/0018-awcms-one-is-a-template-with-build-profiles-and-an-idempotent-init.id.md).
+`SITE_PROFILE` (dibaca saat build oleh `apps/storefront/src/config/profil.ts`, [#137](https://github.com/ahliweb/awcms-one/issues/137)) memilih kelompok halaman mana yang disertakan sebuah build. Penalaran lengkap: [ADR-0018 D2/D3](adr/0018-awcms-one-is-a-template-with-build-profiles-and-an-idempotent-init.id.md).
 
 | Profil | Komposisi | Apa itu |
 | --- | --- | --- |
@@ -205,8 +205,8 @@ BjekMart tidak dihapus begitu repo ini menjadi template — ia **dipertahankan, 
 
 **20 September 2026 — wave 1 (issue #139):** `tools/seed-cms.ts` landing, dengan `--profil toko|berita|landing|contoh:borneojek-mart` dan `--dry-run`, ditambah set seed netral kecil di bawah `tools/seed-data/profil/{toko,berita,landing}/*` dan SVG placeholder di bawah `tools/seed-assets/profil/**`. `tools/seed-data/*.json` dipindah ke `tools/seed-data/contoh/borneojek-mart/**`, tidak berubah bentuknya; `tools/seed-borneojek-mart.ts` kini adalah shim deprecation satu-rilis.
 
-**20 September 2026 — issue #138 melandingkan `template:init`.** `tools/template-init.ts` + `tools/template-init/**` adalah kode nyata dan teruji (`tests/template-init.test.mjs`), dimatriks di CI oleh `.github/workflows/template-init-smoke.yml`, dan langkah penghapusannya menyasar langsung tata letak yang sudah landing dari #139 (`tools/seed-data/contoh/borneojek-mart/**`, default BjekMart milik `tools/seed-cms.ts`) alih-alih yang masih direncanakan. Satu hal yang digambarkan halaman ini sebagai target masih belum benar, dan `template:init` ditulis untuk gagal secara jujur terhadapnya:
+**20 September 2026 — wave 1 (issue #137):** mekanisme `SITE_PROFILE` sendiri landing — `apps/storefront/src/config/profil.ts`, integrasi `injectRoute`, halaman dipindah ke `src/profil/<group>/pages/**`, default `# SITE_PROFILE=toko` yang dikomentari milik `apps/storefront/.env.example` sendiri, dan matriks build 3-leg milik `ci.yml`. `SITE_PROFILE` kini sungguh-sungguh memutuskan halaman mana yang disertakan sebuah build, persis seperti yang digambarkan matriks profil di atas.
 
-- **`SITE_PROFILE` belum berefek saat build.** Issue #137 (tata letak `src/profil/**`, integrasi `injectRoute`, `apps/storefront/src/config/profil.ts`) belum landing. `template:init --profil <p>` tetap mencatat pilihannya (baris baru `SITE_PROFILE` di `apps/storefront/.env.example`) dan tetap memilih default `SITE_DESCRIPTION` yang tepat untuknya, serta menulis ulang `db:seed:cms` agar menyemai profil pilihan secara default, tetapi setiap profil tetap membangun situs LENGKAP berbentuk `toko` yang sama hingga #137 landing — leg build per-profil milik `template-init-smoke.yml` sendiri membuktikan BUILD berhasil, belum bahwa halaman profil tersaring.
+**20 September 2026 — issue #138 melandingkan `template:init`.** `tools/template-init.ts` + `tools/template-init/**` adalah kode nyata dan teruji (`tests/template-init.test.mjs`), dimatriks di CI oleh `.github/workflows/template-init-smoke.yml`, dan baik langkah penghapusannya maupun penulisan-ulang `apps/storefront/.env.example`-nya menyasar langsung tata letak yang sudah landing dari #137 dan #139, bukan yang masih direncanakan: `template:init --profil <p>` menghapus komentar dan mengatur baris `SITE_PROFILE` nyata yang ditambahkan #137, sehingga build repo turunan sungguh-sungguh menyaring halaman menurut profil pilihan sejak build pertamanya, bukan sekadar mencatat pilihannya untuk nanti. Setiap target yang digambarkan halaman ini dari #136–#139 kini adalah kode nyata yang berjalan.
 
 Halaman ini diperbarui lagi seiring [#140](https://github.com/ahliweb/awcms-one/issues/140) (flag GitHub *template repository*, sapuan dokumentasi, rilisnya) landing.

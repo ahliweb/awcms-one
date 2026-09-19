@@ -88,11 +88,16 @@ jobs:
           cat /tmp/stub-awcms.log >&2
           exit 1
 
-      # SITE_PROFILE has no effect on which pages build yet (issue #137, the
-      # SITE_PROFILE mechanism itself, has not landed as of this workflow) —
-      # this step proves the initialised repo BUILDS under each profile
-      # value, which is what #138's own scope covers; the route-exclusion
-      # assertion (`profil-build-smoke.test.ts`) is #137's own test to add.
+      # Issue #137 landed the SITE_PROFILE mechanism itself
+      # (`apps/storefront/src/config/profil.ts`, the `injectRoute`
+      # integration): this build genuinely filters pages now, not merely
+      # succeeds under a value with no effect. The route-exclusion
+      # assertion itself (excluded groups absent from `dist/`/
+      # `sitemap-*.xml`) is `apps/storefront/tests/profil-build-smoke.test.ts`
+      # / `profil-routes.test.ts`'s own coverage, run by `ci.yml`'s own
+      # 3-leg matrix on every push — this step's own job is proving a
+      # `template:init`-initialised repo still builds cleanly under each
+      # profile, which is #138's own scope.
       - name: SITE_PROFILE=${{ matrix.profil }} bun run build
         env:
           SITE_PROFILE: ${{ matrix.profil }}

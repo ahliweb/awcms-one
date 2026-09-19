@@ -13,7 +13,6 @@
 import {
   extractBlock,
   replaceBetweenAnchors,
-  replaceExactlyOnce,
   replaceLineOnce,
   setEnvValue,
   setStringField,
@@ -207,23 +206,22 @@ export function rewriteRootEnvExample(content, flags) {
  * @returns {string}
  */
 export function rewriteStorefrontEnvExample(content, flags) {
+  // Issue #137 landed while this issue was in flight and added its own
+  // `# SITE_PROFILE=toko` line (commented out, documented, right after
+  // `SITE_NAME`/`SITE_DESCRIPTION`) — this function no longer needs to
+  // INSERT the line itself (an earlier version of it did, defensively,
+  // back when #137 had not landed yet). It only needs to UNCOMMENT it and
+  // set it to the deployment's own chosen profile, matching whether the
+  // line is already active (a second `template:init` run) or still
+  // commented out (the very first run, or #137's own untouched default).
   let next = content;
+  next = setEnvValue(next, "SITE_URL", `https://${flags.domain}`, "apps/storefront/.env.example SITE_URL");
 
-  // SITE_PROFILE does not exist in this file at all on the FIRST run (see
-  // this function's own docblock) — it is inserted, once, right after
-  // SITE_URL. Every run after that just updates its value like any other
-  // key, via `setEnvValue`, rather than re-inserting the block.
-  if (/^SITE_PROFILE=/m.test(next)) {
-    next = setEnvValue(next, "SITE_URL", `https://${flags.domain}`, "apps/storefront/.env.example SITE_URL");
-    next = setEnvValue(next, "SITE_PROFILE", flags.profil, "apps/storefront/.env.example SITE_PROFILE");
-  } else {
-    next = replaceExactlyOnce(
-      next,
-      "SITE_URL=https://mart.borneojek.com",
-      `SITE_URL=https://${flags.domain}\n\n# The active build profile (ADR-0018 D2) — toko | berita | landing. Read by\n# apps/storefront/src/config/profil.ts once issue #137 lands; harmless and\n# unread until then.\nSITE_PROFILE=${flags.profil}`,
-      "apps/storefront/.env.example SITE_URL + SITE_PROFILE (first run)"
-    );
+  const siteProfileRe = /^#?\s*SITE_PROFILE=\w*$/m;
+  if (!siteProfileRe.test(next)) {
+    throw new Error("apps/storefront/.env.example: SITE_PROFILE line not found");
   }
+  next = next.replace(siteProfileRe, `SITE_PROFILE=${flags.profil}`);
 
   next = setEnvValue(next, "SITE_NAME", flags.nama, "apps/storefront/.env.example SITE_NAME");
   const describe = SITE_DESCRIPTION_BY_PROFILE[flags.profil] ?? SITE_DESCRIPTION_BY_PROFILE.toko;
