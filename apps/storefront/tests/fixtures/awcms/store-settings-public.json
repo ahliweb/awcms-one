@@ -104,6 +104,7 @@
   "orders": {
     "expiryHours": 24
   },
+  "affiliateProgramEnabled": true,
   "promoSection": {
     "active": true,
     "items": [
