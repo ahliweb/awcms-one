@@ -10263,16 +10263,19 @@ Calls `provider.fetchStatus` for this order's most recent payment-gateway sessio
 | 401    | Missing or invalid session.          | [`ApiError`](#standard-error-envelope) |
 | 403    | Access denied by RBAC/ABAC.          | [`ApiError`](#standard-error-envelope) |
 
-### `GET /api/v1/commerce/pos/orders` — Issue #106 (ADR-0017 D6; not yet implemented, lands in #116). POS order history — the existing owner order list, filtered `channel=pos`. Gated on `commerce.orders.read`.
+### `GET /api/v1/commerce/pos/orders` — Issue #116 (ADR-0017 D6). POS order history — the existing owner order list, filtered `channel=pos`, with optional date/cashier filters. Gated on `commerce.orders.read`.
 
 - **operationId**: `listCommercePosOrders`
 - **Security**: bearerAuth + tenantHeader
 
 **Parameters**
 
-| Name     | In    | Required | Type   | Description |
-| -------- | ----- | -------- | ------ | ----------- |
-| `cursor` | query | no       | string |             |
+| Name       | In    | Required | Type               | Description                                                                                                |
+| ---------- | ----- | -------- | ------------------ | ---------------------------------------------------------------------------------------------------------- |
+| `cursor`   | query | no       | string             |                                                                                                            |
+| `dateFrom` | query | no       | string (date-time) |                                                                                                            |
+| `dateTo`   | query | no       | string (date-time) |                                                                                                            |
+| `cashier`  | query | no       | string (uuid)      | A `tenant_users.id` — filters to sales rung up by this staff member (`orders.pos_cashier_tenant_user_id`). |
 
 **Responses**
 
@@ -10282,23 +10285,30 @@ Calls `provider.fetchStatus` for this order's most recent payment-gateway sessio
 | 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
 | 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
 
-### `POST /api/v1/commerce/pos/orders` — Issue #106 (ADR-0017 D6; not yet implemented, lands in #116). Staff creates a `paid`, `self_pickup` order at the counter for a walk-in or phone-identified customer. Gated on `commerce.pos.create` — the ONLY order-creation path that needs a permission at all, since every other one is anonymous or provider-driven.
+### `POST /api/v1/commerce/pos/orders` — Issue #116 (ADR-0017 D6). Staff creates a `paid`, `self_pickup` order at the counter for a walk-in or phone-identified customer. Gated on `commerce.pos.create` — the ONLY order-creation path that needs a permission at all, since every other one is anonymous or provider-driven.
 
 - **operationId**: `createCommercePosOrder`
 - **Security**: bearerAuth + tenantHeader
 
-`orders.channel` is set `pos`; `order_events` records the acting STAFF member (`admin`), never `system` and never `customer`. Payment is `cash` and the order is created already `paid` — there is no `pending_payment` step for a counter sale.
+Requires `Idempotency-Key`. `orders.channel` is set `pos`; `order_events` records the acting STAFF member (`admin`), never `system` and never `customer` — `pos_cashier_tenant_user_id` on the order row carries WHICH staff member. Payment is `cash` or `manual_qris` and the order is created already `paid` — there is no `pending_payment` step visible to the caller for a counter sale. `customer` is optional in full: an omitted/blank `phone` attaches the sale to this tenant's single WALK-IN customer row (a documented sentinel phone, `docs/kamus-data.md`); a given `phone` finds or creates a customer by that (normalised) phone, same as a storefront guest checkout. `payment.amountTendered` (cash only) is a `numeric(14,2)` string; the response's `change` is computed server-side, also as a string (ADR-0003 — never a float).
+
+**Parameters**
+
+| Name              | In     | Required | Type   | Description |
+| ----------------- | ------ | -------- | ------ | ----------- |
+| `Idempotency-Key` | header | yes      | string |             |
 
 **Request body** (required): object
 
 **Responses**
 
-| Status | Description                    | Schema                                 |
-| ------ | ------------------------------ | -------------------------------------- |
-| 201    | Order created, already `paid`. | object                                 |
-| 400    | Validation error.              | [`ApiError`](#standard-error-envelope) |
-| 401    | Missing or invalid session.    | [`ApiError`](#standard-error-envelope) |
-| 403    | Access denied by RBAC/ABAC.    | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                                             | Schema                                 |
+| ------ | --------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 201    | Order created, already `paid`.                                                                                                          | object                                 |
+| 400    | Validation error.                                                                                                                       | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                             | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                             | [`ApiError`](#standard-error-envelope) |
+| 409    | `CART_CHANGED` (a line's price/stock changed since it was priced) or `INSUFFICIENT_TENDER` (cash `amountTendered` less than the total). | [`ApiError`](#standard-error-envelope) |
 
 ### `GET /api/v1/commerce/products` — List products for the current tenant — filterable, sortable, keyset-paginated.
 

@@ -89,7 +89,7 @@ async function enforcedTriples(
 }
 
 describe("commerce module descriptor — restore is declared for both activity codes", () => {
-  test("forty-five permissions total — five per catalog activity code (incl. restore), four per marketing code, two for settings, two each for orders/customers/affiliates/affiliate_commissions, three for reviews, one for whatsapp, one for webhook_endpoints", () => {
+  test("forty-six permissions total — five per catalog activity code (incl. restore), four per marketing code, two for settings, two each for orders/customers/affiliates/affiliate_commissions, three for reviews, one for whatsapp, one for webhook_endpoints, one for pos", () => {
     // Issue #23: categories/products carry read/create/update/delete/restore.
     // Issue #26: flash_sales/vouchers/sliders/testimonials/popups carry
     // read/create/update/delete (soft delete only, no restore — the marketing
@@ -108,8 +108,13 @@ describe("commerce module descriptor — restore is declared for both activity c
     // gates list (masked)/create (token shown once)/revoke alike, per
     // contract #106's own OpenAPI note (see `commerce-permissions.ts`'s
     // header for the "nothing distinct to enforce" reasoning).
+    // Issue #116: pos carries create only — the ONLY order-creation path
+    // gated by a permission at all (every other one is anonymous or
+    // provider/system-driven), per `commerce-permissions.ts`'s own header.
     const declared = declaredTriples();
-    expect(declared.size).toBe(2 * 5 + 5 * 4 + 2 + 2 + 2 + 3 + 2 + 2 + 1 + 1);
+    expect(declared.size).toBe(
+      2 * 5 + 5 * 4 + 2 + 2 + 2 + 3 + 2 + 2 + 1 + 1 + 1
+    );
 
     for (const activityCode of ["categories", "products"]) {
       for (const action of ["read", "create", "update", "delete", "restore"]) {
@@ -180,6 +185,11 @@ describe("commerce module descriptor — restore is declared for both activity c
       expect(
         declared.has(`commerce.webhook_endpoints.${action}` as Triple)
       ).toBe(false);
+    }
+
+    expect(declared.has("commerce.pos.create" as Triple)).toBe(true);
+    for (const action of ["read", "update", "delete", "restore"]) {
+      expect(declared.has(`commerce.pos.${action}` as Triple)).toBe(false);
     }
   });
 

@@ -18,6 +18,25 @@
  * storage (`sql/913`'s header explains why `awcms_commerce_customers.phone`
  * itself is kept in the clear).
  */
+/**
+ * Issue #116 (contract #106 D6) — the per-tenant WALK-IN customer's sentinel
+ * phone. `awcms_commerce_customers.phone` is `NOT NULL` (`sql/913`'s own
+ * schema) and IS the tracking credential for a real phone-identified
+ * customer, so a POS sale rung up with no phone at all still needs a real
+ * row to attach to. `application/pos-directory.ts`'s `createPosOrder` calls
+ * `findOrCreateCustomerByPhone` with EXACTLY this value whenever the
+ * cashier leaves `customer.phone` blank — the SAME dedup-by-phone path a
+ * real phone-identified walk-in uses, so every tenant gets exactly ONE
+ * walk-in row, reused across every no-phone counter sale. Deliberately an
+ * already-normalised E.164-SHAPED string (`+62` + 10 zero digits) so it
+ * round-trips through `normalizePhoneNumber` unchanged and is never
+ * confused with a real subscriber number (Indonesian mobile numbers never
+ * start `62 0`). Documented again in `docs/kamus-data.md`'s "channel" /
+ * "cash" / walk-in sentinel entry — this constant is the single source of
+ * truth for the literal value.
+ */
+export const POS_WALK_IN_CUSTOMER_SENTINEL_PHONE = "+620000000000";
+
 export type PhoneNormalisationResult =
   | { valid: true; value: string }
   | { valid: false; reason: "empty" | "invalid_format" | "invalid_length" };

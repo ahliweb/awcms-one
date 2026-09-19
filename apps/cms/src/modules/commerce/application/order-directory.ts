@@ -149,6 +149,8 @@ type OrderHeaderRow = {
   status: string;
   payment_method: string;
   payment_status: string;
+  /** Issue #116 (contract #106 D6) — `"storefront"` for every order created before #116 landed. */
+  channel: string;
   shipping_method: string;
   shipping_service_name: string | null;
   shipping_cost: string;
@@ -225,6 +227,8 @@ export type OrderDetail = {
   status: OrderStatus;
   paymentMethod: string;
   paymentStatus: string;
+  /** Issue #116 (contract #106 D6) — `"storefront"` for every order created before #116 landed. */
+  channel: string;
   shippingMethod: string;
   shippingServiceName: string | null;
   shippingCost: string;
@@ -279,7 +283,7 @@ async function fetchOrderDetailByWhere(
     "id" in where
       ? ((await tx`
           SELECT o.id, o.order_code, o.customer_id, o.status, o.payment_method, o.payment_status,
-                 o.shipping_method, o.shipping_service_name, o.shipping_cost, o.address,
+                 o.channel, o.shipping_method, o.shipping_service_name, o.shipping_cost, o.address,
                  o.subtotal, o.discount, o.voucher_code, o.voucher_discount, o.insurance_fee,
                  o.tax, o.total, o.dp_amount, o.notes, o.paid_at, o.shipped_at, o.completed_at,
                  o.cancelled_at, o.expires_at, o.created_at,
@@ -290,7 +294,7 @@ async function fetchOrderDetailByWhere(
         `) as OrderHeaderRow[])
       : ((await tx`
           SELECT o.id, o.order_code, o.customer_id, o.status, o.payment_method, o.payment_status,
-                 o.shipping_method, o.shipping_service_name, o.shipping_cost, o.address,
+                 o.channel, o.shipping_method, o.shipping_service_name, o.shipping_cost, o.address,
                  o.subtotal, o.discount, o.voucher_code, o.voucher_discount, o.insurance_fee,
                  o.tax, o.total, o.dp_amount, o.notes, o.paid_at, o.shipped_at, o.completed_at,
                  o.cancelled_at, o.expires_at, o.created_at,
@@ -349,6 +353,7 @@ async function fetchOrderDetailByWhere(
     status: header.status as OrderStatus,
     paymentMethod: header.payment_method,
     paymentStatus: header.payment_status,
+    channel: header.channel,
     shippingMethod: header.shipping_method,
     shippingServiceName: header.shipping_service_name,
     shippingCost: normalizeMoney(header.shipping_cost),
@@ -420,6 +425,8 @@ export type PublicOrderRecord = {
   status: OrderStatus;
   paymentStatus: string;
   paymentMethod: string;
+  /** Issue #116 (contract #106 D6) — `"storefront"` for every order created before #116 landed. */
+  channel: string;
   shippingMethod: string;
   shippingServiceName: string | null;
   customer: { name: string; phoneMasked: string; email: string | null };
@@ -519,6 +526,7 @@ export async function toPublicOrderRecord(
     status: detail.status,
     paymentStatus: detail.paymentStatus,
     paymentMethod: detail.paymentMethod,
+    channel: detail.channel,
     shippingMethod: detail.shippingMethod,
     shippingServiceName: detail.shippingServiceName,
     customer: {
@@ -699,6 +707,11 @@ async function insertOrderWithRetryableCode(
 
       return {
         ...rows[0]!,
+        // Every order `createOrderFromCart` inserts is `channel: "storefront"`
+        // (the column's own DEFAULT, Issue #116/sql/931) — never re-selected
+        // here since nothing downstream in THIS function reads it; the real
+        // stored value is what `fetchOrderDetailByWhere` returns later.
+        channel: "storefront",
         customer_name: "",
         customer_phone: "",
         customer_email: null
@@ -1346,6 +1359,37 @@ export async function updateOrderStatusByAdmin(
     correlationId
   );
   return result !== null;
+}
+
+/**
+ * `createPosOrder` (Issue #116, `application/pos-directory.ts`)'s own call
+ * to move its freshly-inserted `pending_payment` counter sale straight to
+ * `paid` — reuses the SAME `transitionOrderStatus` every other admin status
+ * change goes through (status timestamp, `order_events` row, audit event,
+ * `COMMERCE_ORDER_PAID_EVENT_TYPE`/`COMMERCE_ORDER_STATUS_CHANGED_EVENT_TYPE`
+ * domain events), rather than `pos-directory.ts` hand-rolling a second copy
+ * of that bookkeeping. Actor is always `"admin"` — a POS sale is staff-rung,
+ * never `"customer"`/`"system"` — with `actorTenantUserId` carrying WHICH
+ * staff member (the audit trail's own actor column; `order_events.actor`
+ * itself only ever records the role, see `sql/913`'s own table header).
+ */
+export async function applyPosOrderPaidTransition(
+  tx: Bun.SQL,
+  tenantId: string,
+  actorTenantUserId: string,
+  orderId: string,
+  correlationId?: string
+): Promise<void> {
+  await transitionOrderStatus(
+    tx,
+    tenantId,
+    actorTenantUserId,
+    "admin",
+    orderId,
+    "paid",
+    "POS counter sale — paid at the register.",
+    correlationId
+  );
 }
 
 /** `commerce:orders:expire` job's own per-order call — see `scripts/commerce-orders-expire.ts`. */

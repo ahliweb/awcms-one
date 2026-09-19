@@ -29,7 +29,9 @@ import {
   COMMERCE_WHATSAPP_ACTIVITY_CODE,
   COMMERCE_WHATSAPP_PERMISSIONS,
   COMMERCE_WEBHOOK_ENDPOINTS_ACTIVITY_CODE,
-  COMMERCE_WEBHOOK_ENDPOINT_PERMISSIONS
+  COMMERCE_WEBHOOK_ENDPOINT_PERMISSIONS,
+  COMMERCE_POS_ACTIVITY_CODE,
+  COMMERCE_POS_PERMISSIONS
 } from "./domain/commerce-permissions";
 import {
   COMMERCE_FLASH_SALE_ENDED_EVENT_TYPE,
@@ -315,6 +317,12 @@ export const commerceModule = defineModule({
       path: "/admin/commerce-whatsapp",
       order: 13,
       requiredPermission: "commerce.whatsapp.read"
+    },
+    {
+      labelKey: "admin.layout.nav_commerce_pos",
+      path: "/admin/commerce-pos",
+      order: 14,
+      requiredPermission: "commerce.pos.create"
     }
   ],
   /**
@@ -2275,6 +2283,12 @@ export const commerceModule = defineModule({
       action: "update",
       description:
         "List, create, and revoke this tenant's commerce webhook-endpoint tokens"
+    },
+    {
+      activityCode: COMMERCE_POS_ACTIVITY_CODE,
+      action: "create",
+      description:
+        "Create a counter (POS) sale — the only order-creation path gated by a permission at all"
     }
   ]
 });
@@ -2297,5 +2311,6 @@ export {
   COMMERCE_AFFILIATE_PERMISSIONS,
   COMMERCE_AFFILIATE_COMMISSION_PERMISSIONS,
   COMMERCE_WHATSAPP_PERMISSIONS,
-  COMMERCE_WEBHOOK_ENDPOINT_PERMISSIONS
+  COMMERCE_WEBHOOK_ENDPOINT_PERMISSIONS,
+  COMMERCE_POS_PERMISSIONS
 };

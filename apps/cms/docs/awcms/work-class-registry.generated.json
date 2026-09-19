@@ -587,6 +587,11 @@
       "source": "factory"
     },
     {
+      "path": "src/pages/api/v1/commerce/pos/orders/index.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
       "path": "src/pages/api/v1/commerce/products/[id].ts",
       "workClass": "interactive",
       "source": "factory"

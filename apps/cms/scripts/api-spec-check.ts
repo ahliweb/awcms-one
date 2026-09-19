@@ -239,8 +239,6 @@ const ROUTE_PARITY_EXEMPTIONS = new Set<string>([
   "/api/v1/commerce/conversations",
   "/api/v1/commerce/conversations/{id}",
   "/api/v1/commerce/conversations/{id}/messages",
-  // #116 — POS: cash orders, channel, permission, POS screen + history.
-  "/api/v1/commerce/pos/orders",
   // #114 — customer campaigns: consent, e-mail/WhatsApp mass notification,
   // dispatcher, admin screen.
   "/api/v1/commerce/campaigns",

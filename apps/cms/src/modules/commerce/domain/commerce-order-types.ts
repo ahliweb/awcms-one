@@ -22,7 +22,17 @@ export type OrderStatus =
   | "cancelled"
   | "expired";
 
-export type PaymentMethod = "manual_bank" | "manual_qris" | "dp" | "gateway";
+/**
+ * `"cash"` (Issue #116, contract #106 D6) is a POS-only method — a counter
+ * sale rung up by staff and paid on the spot. `domain/order-request-
+ * validation.ts`'s own `PAYMENT_METHODS` allow-list for the ANONYMOUS
+ * storefront checkout deliberately does not widen to include it (see that
+ * file's own comment); only `domain/pos-order-validation.ts`'s
+ * `POS_PAYMENT_METHODS` accepts it, alongside `"manual_qris"` (a QRIS
+ * sticker at the counter, same method the storefront already knows).
+ */
+export type PaymentMethod =
+  "manual_bank" | "manual_qris" | "dp" | "gateway" | "cash";
 
 export type PaymentStatus = "unpaid" | "dp_paid" | "paid" | "refunded";
 

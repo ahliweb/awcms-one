@@ -5420,3 +5420,75 @@ msgstr ""
 
 msgid "Payment gateway"
 msgstr ""
+
+msgid "POS"
+msgstr ""
+
+msgid "Point of Sale"
+msgstr ""
+
+msgid "Ring up a counter sale — cash or QRIS, paid immediately — and browse past POS sales."
+msgstr ""
+
+msgid "You do not have permission to use the POS screen."
+msgstr ""
+
+msgid "Could not load the POS history. Please try again."
+msgstr ""
+
+msgid "New sale"
+msgstr ""
+
+msgid "Product search"
+msgstr ""
+
+msgid "Search by name or SKU…"
+msgstr ""
+
+msgid "Cart is empty."
+msgstr ""
+
+msgid "Subtotal"
+msgstr ""
+
+msgid "Walk-in customer"
+msgstr ""
+
+msgid "Payment method"
+msgstr ""
+
+msgid "Cash"
+msgstr ""
+
+msgid "QRIS"
+msgstr ""
+
+msgid "Amount tendered"
+msgstr ""
+
+msgid "Change"
+msgstr ""
+
+msgid "Notes"
+msgstr ""
+
+msgid "Complete sale"
+msgstr ""
+
+msgid "Print receipt"
+msgstr ""
+
+msgid "Date from"
+msgstr ""
+
+msgid "Date to"
+msgstr ""
+
+msgid "Cashier"
+msgstr ""
+
+msgid "No POS sales match this filter."
+msgstr ""
+
+msgid "Quantity"
+msgstr ""

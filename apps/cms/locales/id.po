@@ -5396,3 +5396,75 @@ msgstr "Belum ada peristiwa pembayaran yang tercatat."
 
 msgid "Payment gateway"
 msgstr "Gateway pembayaran"
+
+msgid "POS"
+msgstr "POS"
+
+msgid "Point of Sale"
+msgstr "Kasir (POS)"
+
+msgid "Ring up a counter sale — cash or QRIS, paid immediately — and browse past POS sales."
+msgstr "Catat penjualan di kasir — tunai atau QRIS, langsung lunas — dan lihat riwayat penjualan POS."
+
+msgid "You do not have permission to use the POS screen."
+msgstr "Anda tidak memiliki izin untuk menggunakan layar POS."
+
+msgid "Could not load the POS history. Please try again."
+msgstr "Riwayat POS tidak dapat dimuat. Silakan coba lagi."
+
+msgid "New sale"
+msgstr "Penjualan baru"
+
+msgid "Product search"
+msgstr "Cari produk"
+
+msgid "Search by name or SKU…"
+msgstr "Cari berdasarkan nama atau SKU…"
+
+msgid "Cart is empty."
+msgstr "Keranjang masih kosong."
+
+msgid "Subtotal"
+msgstr "Subtotal"
+
+msgid "Walk-in customer"
+msgstr "Pelanggan walk-in"
+
+msgid "Payment method"
+msgstr "Metode pembayaran"
+
+msgid "Cash"
+msgstr "Tunai"
+
+msgid "QRIS"
+msgstr "QRIS"
+
+msgid "Amount tendered"
+msgstr "Jumlah dibayar"
+
+msgid "Change"
+msgstr "Kembalian"
+
+msgid "Notes"
+msgstr "Catatan"
+
+msgid "Complete sale"
+msgstr "Selesaikan penjualan"
+
+msgid "Print receipt"
+msgstr "Cetak struk"
+
+msgid "Date from"
+msgstr "Tanggal dari"
+
+msgid "Date to"
+msgstr "Tanggal sampai"
+
+msgid "Cashier"
+msgstr "Kasir"
+
+msgid "No POS sales match this filter."
+msgstr "Tidak ada penjualan POS yang sesuai dengan filter ini."
+
+msgid "Quantity"
+msgstr "Kuantitas"

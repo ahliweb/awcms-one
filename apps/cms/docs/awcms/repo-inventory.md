@@ -8,12 +8,12 @@
 | Aspect                              | Value |
 | ----------------------------------- | ----- |
 | Registered modules                  | 25    |
-| Migrations                          | 179   |
+| Migrations                          | 181   |
 | `awcms_*` tables                    | 183   |
 | Tables with `FORCE` RLS             | 165   |
 | RLS-free tables (global, by design) | 18    |
 | Test files                          | 552   |
-| Route files                         | 476   |
+| Route files                         | 478   |
 | ADR                                 | 244   |
 
 ### Modules
@@ -229,6 +229,8 @@
 | 177 | `sql/924_awcms_commerce_shipping_rates_schema.sql`                          |
 | 178 | `sql/925_awcms_commerce_whatsapp_outbox_otp_channel.sql`                    |
 | 179 | `sql/926_awcms_commerce_payment_gateway_schema.sql`                         |
+| 180 | `sql/931_awcms_commerce_pos_schema.sql`                                     |
+| 181 | `sql/932_awcms_commerce_pos_permissions.sql`                                |
 
 ### Tables & Row-Level Security
 
@@ -431,8 +433,8 @@
 
 | Surface         | Files |
 | --------------- | ----- |
-| `/api/v1/**`    | 383   |
-| `/admin/**`     | 63    |
+| `/api/v1/**`    | 384   |
+| `/admin/**`     | 64    |
 | publik / anonim | 30    |
 
 <!-- END GENERATED: repo-inventory -->

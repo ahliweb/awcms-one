@@ -9403,13 +9403,32 @@ paths:
       operationId: listCommercePosOrders
       tags:
         - Commerce
-      summary: "Issue #106 (ADR-0017 D6; not yet implemented, lands in #116). POS order history — the existing owner order list, filtered `channel=pos`. Gated on `commerce.orders.read`."
+      summary: "Issue #116 (ADR-0017 D6). POS order history — the existing owner order list, filtered `channel=pos`, with optional date/cashier filters. Gated on `commerce.orders.read`."
       parameters:
         - name: cursor
           in: query
           required: false
           schema:
             type: string
+        - name: dateFrom
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: dateTo
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: cashier
+          in: query
+          required: false
+          description: A `tenant_users.id` — filters to sales rung up by this staff member (`orders.pos_cashier_tenant_user_id`).
+          schema:
+            type: string
+            format: uuid
       responses:
         "200":
           description: One page of POS orders.
@@ -9440,8 +9459,14 @@ paths:
       operationId: createCommercePosOrder
       tags:
         - Commerce
-      summary: "Issue #106 (ADR-0017 D6; not yet implemented, lands in #116). Staff creates a `paid`, `self_pickup` order at the counter for a walk-in or phone-identified customer. Gated on `commerce.pos.create` — the ONLY order-creation path that needs a permission at all, since every other one is anonymous or provider-driven."
-      description: "`orders.channel` is set `pos`; `order_events` records the acting STAFF member (`admin`), never `system` and never `customer`. Payment is `cash` and the order is created already `paid` — there is no `pending_payment` step for a counter sale."
+      summary: "Issue #116 (ADR-0017 D6). Staff creates a `paid`, `self_pickup` order at the counter for a walk-in or phone-identified customer. Gated on `commerce.pos.create` — the ONLY order-creation path that needs a permission at all, since every other one is anonymous or provider-driven."
+      description: "Requires `Idempotency-Key`. `orders.channel` is set `pos`; `order_events` records the acting STAFF member (`admin`), never `system` and never `customer` — `pos_cashier_tenant_user_id` on the order row carries WHICH staff member. Payment is `cash` or `manual_qris` and the order is created already `paid` — there is no `pending_payment` step visible to the caller for a counter sale. `customer` is optional in full: an omitted/blank `phone` attaches the sale to this tenant's single WALK-IN customer row (a documented sentinel phone, `docs/kamus-data.md`); a given `phone` finds or creates a customer by that (normalised) phone, same as a storefront guest checkout. `payment.amountTendered` (cash only) is a `numeric(14,2)` string; the response's `change` is computed server-side, also as a string (ADR-0003 — never a float)."
+      parameters:
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
       requestBody:
         required: true
         content:
@@ -9449,23 +9474,52 @@ paths:
             schema:
               type: object
               required:
-                - customer
+                - idempotencyKey
                 - lines
+                - payment
               properties:
+                idempotencyKey:
+                  type: string
                 customer:
                   type: object
-                  required:
-                    - name
-                    - phone
+                  nullable: true
                   properties:
                     name:
                       type: string
+                      nullable: true
                     phone:
                       type: string
+                      nullable: true
+                      description: Omitted/blank attaches the sale to this tenant's walk-in customer row.
                 lines:
                   type: array
                   items:
-                    $ref: "#/components/schemas/CommerceCartQuoteLine"
+                    type: object
+                    required:
+                      - productId
+                      - quantity
+                    properties:
+                      productId:
+                        type: string
+                      variantId:
+                        type: string
+                        nullable: true
+                      quantity:
+                        type: integer
+                payment:
+                  type: object
+                  required:
+                    - method
+                  properties:
+                    method:
+                      type: string
+                      enum:
+                        - cash
+                        - manual_qris
+                    amountTendered:
+                      type: string
+                      nullable: true
+                      description: "`numeric(14,2)` string — cash only."
                 notes:
                   type: string
                   nullable: true
@@ -9482,13 +9536,26 @@ paths:
                     enum:
                       - true
                   data:
-                    $ref: "#/components/schemas/CommerceOrderAdmin"
+                    allOf:
+                      - $ref: "#/components/schemas/CommerceOrderAdmin"
+                      - type: object
+                        properties:
+                          change:
+                            type: string
+                            nullable: true
+                            description: "`amountTendered - total`, `numeric(14,2)` string; `null` when no `amountTendered` was given (e.g. QRIS)."
         "400":
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
           $ref: "#/components/responses/Forbidden"
+        "409":
+          description: "`CART_CHANGED` (a line's price/stock changed since it was priced) or `INSUFFICIENT_TENDER` (cash `amountTendered` less than the total)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
   /api/v1/commerce/products:
     get:
       operationId: listCommerceProducts
@@ -27091,7 +27158,7 @@ components:
           enum:
             - storefront
             - pos
-          description: "Issue #106 (ADR-0017 D6; not yet implemented, lands in #116). `pos` for a walk-in/phone-identified order created through `POST /api/v1/commerce/pos/orders`; `storefront` for every existing anonymous/bearer order-creation path. Every order created before #116 lands is `storefront`."
+          description: "Issue #116 (contract #106 D6). `pos` for a walk-in/phone-identified order created through `POST /api/v1/commerce/pos/orders`; `storefront` for every other anonymous/bearer order-creation path. Every order created before #116 landed is `storefront`."
         shippingMethod:
           type: string
         shippingServiceName:
