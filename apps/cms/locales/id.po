@@ -5467,3 +5467,140 @@ msgstr "Pratinjau audiens"
 
 msgid "Send now"
 msgstr "Kirim sekarang"
+
+# --- /admin/commerce-reports laporan penjualan (Issue #117) ---
+
+msgid "Sales reports"
+msgstr "Laporan penjualan"
+
+msgid "Paid sales by day, product and category, from the reporting projections over the order event log. A cancellation or refund of a paid order is subtracted from the day it was paid on."
+msgstr "Penjualan terbayar per hari, produk, dan kategori, dari proyeksi reporting di atas log peristiwa pesanan. Pembatalan atau refund pesanan yang sudah dibayar dikurangkan dari hari pesanan itu dibayar."
+
+msgid "You do not have permission to view sales reports."
+msgstr "Anda tidak memiliki izin untuk melihat laporan penjualan."
+
+msgid "Sales reports could not be loaded right now. Please try again later."
+msgstr "Laporan penjualan tidak dapat dimuat saat ini. Silakan coba lagi nanti."
+
+msgid "Date range"
+msgstr "Rentang tanggal"
+
+msgid "The requested range was invalid — showing the default range instead."
+msgstr "Rentang yang diminta tidak valid — menampilkan rentang bawaan sebagai gantinya."
+
+msgid "Apply range"
+msgstr "Terapkan rentang"
+
+msgid "Days are counted in {timeZone}."
+msgstr "Hari dihitung dalam zona waktu {timeZone}."
+
+msgid "Projection freshness"
+msgstr "Kesegaran proyeksi"
+
+msgid "Sales by day"
+msgstr "Penjualan per hari"
+
+msgid "Sales by product"
+msgstr "Penjualan per produk"
+
+msgid "Sales by category"
+msgstr "Penjualan per kategori"
+
+msgid "never updated"
+msgstr "belum pernah diperbarui"
+
+msgid "{n}s ago"
+msgstr "{n} dtk lalu"
+
+msgid "{n}m ago"
+msgstr "{n} mnt lalu"
+
+msgid "{n}h ago"
+msgstr "{n} jam lalu"
+
+msgid "{n}d ago"
+msgstr "{n} hari lalu"
+
+msgid "Last updated {age}."
+msgstr "Terakhir diperbarui {age}."
+
+msgid "Rebuild or reconcile"
+msgstr "Bangun ulang atau rekonsiliasi"
+
+msgid "Export CSV"
+msgstr "Ekspor CSV"
+
+msgid "Paid orders per day, {from} to {to}."
+msgstr "Pesanan terbayar per hari, {from} sampai {to}."
+
+msgid "Day"
+msgstr "Hari"
+
+msgid "Paid orders"
+msgstr "Pesanan terbayar"
+
+msgid "Gross"
+msgstr "Bruto"
+
+msgid "Discount"
+msgstr "Diskon"
+
+msgid "Shipping"
+msgstr "Ongkir"
+
+msgid "Net"
+msgstr "Neto"
+
+msgid "No paid sales in this range"
+msgstr "Tidak ada penjualan terbayar pada rentang ini"
+
+msgid "Figures appear a few minutes after an order is paid, once the projection worker has run."
+msgstr "Angka muncul beberapa menit setelah pesanan dibayar, begitu worker proyeksi berjalan."
+
+msgid "Top {limit} products by gross, {from} to {to}."
+msgstr "{limit} produk teratas menurut bruto, {from} sampai {to}."
+
+msgid "Quantity"
+msgstr "Jumlah"
+
+msgid "No products sold in this range"
+msgstr "Tidak ada produk terjual pada rentang ini"
+
+msgid "Categories by gross, {from} to {to}."
+msgstr "Kategori menurut bruto, {from} sampai {to}."
+
+msgid "No categories sold in this range"
+msgstr "Tidak ada kategori terjual pada rentang ini"
+
+msgid "Uncategorised"
+msgstr "Tanpa kategori"
+
+msgid "Recent CSV exports"
+msgstr "Ekspor CSV terbaru"
+
+msgid "Each export is the full projection (every day, not just the range shown), written and checksummed by the reporting export mechanism. Downloads re-check your permission and refuse an expired file."
+msgstr "Setiap ekspor berisi proyeksi lengkap (semua hari, bukan hanya rentang yang ditampilkan), ditulis dan diberi checksum oleh mekanisme ekspor reporting. Unduhan memeriksa ulang izin Anda dan menolak berkas yang sudah kedaluwarsa."
+
+msgid "Schedule recurring exports"
+msgstr "Jadwalkan ekspor berkala"
+
+msgid "Export runs of the three sales projections."
+msgstr "Riwayat ekspor ketiga proyeksi penjualan."
+
+msgid "Report"
+msgstr "Laporan"
+
+msgid "Generated"
+msgstr "Dibuat"
+
+msgid "No exports yet"
+msgstr "Belum ada ekspor"
+
+msgid "Use an Export CSV button above to generate one."
+msgstr "Gunakan tombol Ekspor CSV di atas untuk membuatnya."
+
+msgid "expired"
+msgstr "kedaluwarsa"
+
+msgid "unavailable"
+msgstr "tidak tersedia"

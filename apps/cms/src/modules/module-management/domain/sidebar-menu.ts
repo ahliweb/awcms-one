@@ -271,7 +271,8 @@ export const SIDEBAR_LABELS: Readonly<Record<string, string>> = {
   "admin.layout.nav_commerce_affiliates": "Affiliates",
   "admin.layout.nav_commerce_whatsapp": "WhatsApp",
   "admin.layout.nav_commerce_inbox": "Inbox",
-  "admin.layout.nav_commerce_campaigns": "Campaigns"
+  "admin.layout.nav_commerce_campaigns": "Campaigns",
+  "admin.layout.nav_commerce_reports": "Sales reports"
 };
 
 /**
@@ -373,7 +374,8 @@ export const DEFAULT_SIDEBAR_ICONS: Readonly<Record<string, string>> = {
   "admin.layout.nav_commerce_affiliates": "link",
   "admin.layout.nav_commerce_whatsapp": "chat",
   "admin.layout.nav_commerce_inbox": "chat",
-  "admin.layout.nav_commerce_campaigns": "send"
+  "admin.layout.nav_commerce_campaigns": "send",
+  "admin.layout.nav_commerce_reports": "chart"
 };
 
 /** Display name for the synthetic core group. Rendered as a module sub-label. */

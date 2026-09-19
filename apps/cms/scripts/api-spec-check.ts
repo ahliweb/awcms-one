@@ -235,12 +235,7 @@ const ROUTE_PARITY_EXEMPTIONS = new Set<string>([
   // #113 — gateway webhook intake, system actor paid, payments reconcile job.
   "/api/v1/commerce/webhooks/{provider}/{endpointToken}",
   // #116 — POS: cash orders, channel, permission, POS screen + history.
-  "/api/v1/commerce/pos/orders",
-  // #117 — sales reports: three reporting projections over order events +
-  // reports screen.
-  "/api/v1/reports/commerce/sales-daily",
-  "/api/v1/reports/commerce/sales-by-product",
-  "/api/v1/reports/commerce/sales-by-category"
+  "/api/v1/commerce/pos/orders"
 ]);
 
 type OpenApiDocument = {

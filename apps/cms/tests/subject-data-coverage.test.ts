@@ -410,7 +410,9 @@ describe("the contract version records the addition", () => {
     // both MAJOR because the consumers that matter are exhaustive switches.
     // 4.1.0 adds an OPTIONAL field, so MINOR by this contract's own rule; the
     // behaviour change it carries is in the erasure executor, and every
-    // `anonymize` descriptor was updated in the same change.
-    expect(MODULE_CONTRACT_VERSION).toBe("4.1.0");
+    // `anonymize` descriptor was updated in the same change. 4.2.0 (Issue
+    // #117) added the optional dimensional-projection fields — MINOR again,
+    // and unrelated to subject data; this pin only records the floor.
+    expect(MODULE_CONTRACT_VERSION).toBe("4.2.0");
   });
 });

@@ -545,8 +545,19 @@ export const READER_BUDGET_BYTES = 24_000;
  * independent additions whose costs add, plus each screen's own i18n
  * catalogue entries sharing one compiled catalogue. 234,800 keeps the
  * same small margin above the measured total this constant's history uses.
+ *
+ * **Raised to 235,000 B after Issue #117** (contract #106 ADR-0017 D7) —
+ * one more admin screen, `commerce-reports.astro` (a GET date-range form,
+ * three SSR tables, and a per-projection "Export CSV" button whose only
+ * client code is one `onAction` + `mutateAndReload` + `sendJson` call from
+ * the shared `admin-form-client.ts` — no new lifecycle code). Its own
+ * script bundles to a few hundred bytes; the rest of the growth is the
+ * screen's 45 i18n catalogue entries in the shared compiled catalogue.
+ * Measured at 234,889 B total (up from 234,521 B, +368 B — this screen's
+ * own cost, no other surface changed), so this constant keeps the same
+ * small margin above the measured total this constant's history uses.
  */
-export const APP_BUDGET_BYTES = 234_800;
+export const APP_BUDGET_BYTES = 235_000;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.

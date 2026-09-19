@@ -8,12 +8,12 @@
 | Aspect                              | Value |
 | ----------------------------------- | ----- |
 | Registered modules                  | 25    |
-| Migrations                          | 183   |
-| `awcms_*` tables                    | 187   |
-| Tables with `FORCE` RLS             | 169   |
+| Migrations                          | 184   |
+| `awcms_*` tables                    | 190   |
+| Tables with `FORCE` RLS             | 172   |
 | RLS-free tables (global, by design) | 18    |
-| Test files                          | 552   |
-| Route files                         | 487   |
+| Test files                          | 554   |
+| Route files                         | 491   |
 | ADR                                 | 244   |
 
 ### Modules
@@ -233,6 +233,7 @@
 | 181 | `sql/928_awcms_commerce_conversations_permissions.sql`                      |
 | 182 | `sql/929_awcms_commerce_campaigns_schema.sql`                               |
 | 183 | `sql/930_awcms_commerce_campaigns_permissions.sql`                          |
+| 184 | `sql/933_awcms_commerce_reporting_projections_schema.sql`                   |
 
 ### Tables & Row-Level Security
 
@@ -298,6 +299,9 @@
 | `awcms_commerce_product_variants`           | `sql/905_awcms_commerce_product_images_variants.sql`       | yes | yes   |
 | `awcms_commerce_products`                   | `sql/901_awcms_commerce_schema.sql`                        | yes | yes   |
 | `awcms_commerce_reviews`                    | `sql/913_awcms_commerce_customers_orders_schema.sql`       | yes | yes   |
+| `awcms_commerce_sales_by_category`          | `sql/933_awcms_commerce_reporting_projections_schema.sql`  | yes | yes   |
+| `awcms_commerce_sales_by_product`           | `sql/933_awcms_commerce_reporting_projections_schema.sql`  | yes | yes   |
+| `awcms_commerce_sales_daily`                | `sql/933_awcms_commerce_reporting_projections_schema.sql`  | yes | yes   |
 | `awcms_commerce_shipping_rates`             | `sql/924_awcms_commerce_shipping_rates_schema.sql`         | yes | yes   |
 | `awcms_commerce_sliders`                    | `sql/909_awcms_commerce_marketing_schema.sql`              | yes | yes   |
 | `awcms_commerce_store_settings`             | `sql/910_awcms_commerce_store_settings.sql`                | yes | yes   |
@@ -430,17 +434,17 @@
 
 | Directory     | Test files |
 | ------------- | ---------- |
-| `(root)`      | 441        |
+| `(root)`      | 442        |
 | `e2e`         | 19         |
-| `integration` | 91         |
+| `integration` | 92         |
 | `unit`        | 1          |
 
 ### Routes
 
 | Surface         | Files |
 | --------------- | ----- |
-| `/api/v1/**`    | 392   |
-| `/admin/**`     | 65    |
+| `/api/v1/**`    | 395   |
+| `/admin/**`     | 66    |
 | publik / anonim | 30    |
 
 <!-- END GENERATED: repo-inventory -->

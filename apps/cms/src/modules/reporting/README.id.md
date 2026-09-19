@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:810f8d7a3df364c9692465245ab83dd648436a5b6c6bad7ba14fbb8c4d7a7de2 -->
+<!-- i18n-source-hash: sha256:7487369ee80376b56045141041ce7f9ed3d98761636d5d2c09c80c6836df54e1 -->
 
 # Management Reporting
 
@@ -86,6 +86,28 @@ REBUILT via the exact same bounded `cursor_table` re-scan mechanism
 (`rebuildSource`, always present), reading the authoritative source
 table directly (for `event_activity_summary`, that's
 `awcms_domain_events` itself, never by re-triggering delivery).
+
+### Proyeksi berdimensi (Issue #117 — laporan penjualan `commerce`)
+
+Aturan `metrics` skalar hanya bisa MENGHITUNG baris. Proyeksi yang read
+model-nya berupa angka uang dan kuantitas per hari/produk/kategori
+mendeklarasikan, pada tiap stream kursornya, sebuah sink `dimensional`
+(`ProjectionDimensionalSink`: `selectColumns` tambahan + fungsi
+`applyBatch`) dan, pada deskriptornya, kontrak `dimensional`
+(`ProjectionDimensionalContract`: `resetForTenant`, `readProjectionTotals`,
+`computeSourceTotals`, `exportRows`) — `_shared/module-contract.ts`,
+`MODULE_CONTRACT_VERSION` 4.2.0. Mesin ini tetap generik: ia menyerahkan
+setiap batch yang diambil ke sink (worker inkremental DAN pass rebuild) di
+dalam transaksi terbatas yang sama, setelah advisory lock dan sebelum
+kursor maju; memanggil `resetForTenant` dari reset rebuild dalam transaksi
+yang sama dengan reset kursor/metrik; menggabungkan dua set total kontrol
+berdimensi ke baris detail rekonsiliasi; dan, saat ekspor, menulis baris
+berdimensi (`writeLocalTabularExportArtifact`) alih-alih snapshot metrik.
+Ia tidak pernah tahu nama atau bentuk tabel tujuan — modul pemilik menulis
+tabelnya sendiri lewat `tx` milik mesin. Gerbang registri menolak sink
+tanpa kontrak dan sebaliknya. Satu-satunya instance terdaftar saat ini
+adalah tiga proyeksi `commerce.sales_*` milik `commerce`
+(`commerce/application/sales-report-projection.ts`).
 
 ### Idempotent rebuild — the correctness-critical part
 

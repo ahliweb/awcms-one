@@ -85,6 +85,28 @@ REBUILT via the exact same bounded `cursor_table` re-scan mechanism
 table directly (for `event_activity_summary`, that's
 `awcms_domain_events` itself, never by re-triggering delivery).
 
+### Dimensional projections (Issue #117 — `commerce`'s sales reports)
+
+The scalar `metrics` rules can only COUNT rows. A projection whose read
+model is per-day/per-product/per-category money and quantity figures
+declares, on each of its cursor streams, a `dimensional` sink
+(`ProjectionDimensionalSink`: extra `selectColumns` + an `applyBatch`
+function) and, on the descriptor, a `dimensional` contract
+(`ProjectionDimensionalContract`: `resetForTenant`, `readProjectionTotals`,
+`computeSourceTotals`, `exportRows`) — `_shared/module-contract.ts`,
+`MODULE_CONTRACT_VERSION` 4.2.0. This engine stays generic: it hands the
+sink every fetched batch (incremental worker AND rebuild pass) inside the
+same bounded transaction, after the advisory lock and before the cursor
+advance; calls `resetForTenant` from the rebuild reset in the same
+transaction as the cursor/metric reset; merges the two dimensional
+control-total sets into reconciliation's detail rows; and, on export,
+writes the dimensional rows (`writeLocalTabularExportArtifact`) instead of
+the metric snapshot. It never learns the target table's name or shape —
+the owning module writes its own tables through the engine's `tx`. The
+registry gate refuses a sink without the contract and vice versa. The only
+registered instance today is `commerce`'s three `commerce.sales_*`
+projections (`commerce/application/sales-report-projection.ts`).
+
 ### Idempotent rebuild — the correctness-critical part
 
 `application/projection-rebuild.ts`'s own header comment is the primary

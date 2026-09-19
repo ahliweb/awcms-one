@@ -170,7 +170,14 @@ export async function runCursorStreamPass(
         .map((column) => assertSafeIdentifier(column, "column"))
     )
   );
-  const selectColumns = Array.from(new Set([cursorColumn, ...matchColumns]));
+  // Issue #117 — a dimensional sink may need more of the row than the
+  // match columns (order id, statuses, ...); same identifier allow-list.
+  const sinkColumns = (stream.dimensional?.selectColumns ?? []).map((column) =>
+    assertSafeIdentifier(column, "column")
+  );
+  const selectColumns = Array.from(
+    new Set([cursorColumn, ...matchColumns, ...sinkColumns])
+  );
 
   return withTenantOrThrow(
     sql,
@@ -228,6 +235,13 @@ export async function runCursorStreamPass(
 
       const deltas = computeMetricDeltas(rows, stream.metrics);
       await applyMetricDeltas(tx, tenantId, projectionKey, deltas);
+
+      // Issue #117 — the dimensional sink sees the SAME batch, in the SAME
+      // transaction, before the cursor advances: a crash here rolls back the
+      // metric deltas, the sink's rows and the cursor together.
+      if (stream.dimensional) {
+        await stream.dimensional.applyBatch(tx, tenantId, rows);
+      }
 
       const newCursorValue = toDate(rows[rows.length - 1]![cursorColumn]);
       await upsertStreamCursor(
