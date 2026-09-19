@@ -5670,3 +5670,177 @@ msgstr ""
 
 msgid "unavailable"
 msgstr ""
+
+msgid "POS"
+msgstr ""
+
+msgid "Point of Sale"
+msgstr ""
+
+msgid "Ring up a counter sale — cash or QRIS, paid immediately — and browse past POS sales."
+msgstr ""
+
+msgid "You do not have permission to use the POS screen."
+msgstr ""
+
+msgid "New sale"
+msgstr ""
+
+msgid "Product search"
+msgstr ""
+
+msgid "Search by name or SKU…"
+msgstr ""
+
+msgid "Cart is empty."
+msgstr ""
+
+msgid "Subtotal"
+msgstr ""
+
+msgid "Walk-in customer"
+msgstr ""
+
+msgid "Payment method"
+msgstr ""
+
+msgid "Cash"
+msgstr ""
+
+msgid "QRIS"
+msgstr ""
+
+msgid "Amount tendered"
+msgstr ""
+
+msgid "Change"
+msgstr ""
+
+msgid "Notes"
+msgstr ""
+
+msgid "Complete sale"
+msgstr ""
+
+msgid "Print receipt"
+msgstr ""
+
+msgid "Date from"
+msgstr ""
+
+msgid "Date to"
+msgstr ""
+
+msgid "Cashier"
+msgstr ""
+
+msgid "No POS sales match this filter."
+msgstr ""
+
+#. Admin screen — POS counter sales (Issue #116), continued
+msgid "Add at least one product to the cart."
+msgstr ""
+
+msgid "Cart"
+msgstr ""
+
+msgid "Clear cart"
+msgstr ""
+
+msgid "Completing…"
+msgstr ""
+
+msgid "Could not complete the sale. Please try again."
+msgstr ""
+
+msgid "Counter sales completed on the New sale tab appear here."
+msgstr ""
+
+msgid "Customer (optional)"
+msgstr ""
+
+msgid "Date"
+msgstr ""
+
+msgid "Filter POS sales"
+msgstr ""
+
+msgid "Item"
+msgstr ""
+
+msgid "Leave the phone blank for a walk-in customer. A phone finds or creates the customer and applies their price level."
+msgstr ""
+
+msgid "Line total"
+msgstr ""
+
+msgid "Me"
+msgstr ""
+
+msgid "No products match."
+msgstr ""
+
+msgid "One or more items changed price or stock. Search for them again and retry."
+msgstr ""
+
+msgid "out of stock"
+msgstr ""
+
+msgid "Point of sale is turned off for this store."
+msgstr ""
+
+msgid "POS sections"
+msgstr ""
+
+msgid "Product search failed. Please try again."
+msgstr ""
+
+msgid "Qty"
+msgstr ""
+
+msgid "Receipt"
+msgstr ""
+
+msgid "Search results"
+msgstr ""
+
+msgid "Start another sale"
+msgstr ""
+
+msgid "Tax"
+msgstr ""
+
+msgid "Thank you for your purchase."
+msgstr ""
+
+msgid "The amount tendered is less than the total."
+msgstr ""
+
+msgid "The customer phone number is not valid."
+msgstr ""
+
+msgid "The POS screen could not be loaded right now. Please try again later."
+msgstr ""
+
+msgid "The server re-prices every line when the sale is completed; tax from the store settings is added to the total there."
+msgstr ""
+
+msgid "Turn it on under Features in the store settings."
+msgstr ""
+
+msgid "Type at least two characters. Pick a product to add one unit; products with variants list each variant."
+msgstr ""
+
+msgid "Unit price"
+msgstr ""
+
+msgid "You can browse POS history but do not have permission to ring up a sale."
+msgstr ""
+
+msgid "You do not have permission to view POS history."
+msgstr ""
+
+msgid "{count} POS sale"
+msgid_plural "{count} POS sales"
+msgstr[0] ""
+msgstr[1] ""

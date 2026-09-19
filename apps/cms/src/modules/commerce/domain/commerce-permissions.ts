@@ -275,3 +275,19 @@ export const COMMERCE_WEBHOOK_ENDPOINT_PERMISSIONS = {
   /** Also gates list (masked) and create (token shown once). */
   update: "commerce.webhook_endpoints.update"
 } as const;
+
+/**
+ * POS counter sales (Issue #116, contract #106's D6). ONE new permission —
+ * `create` — is all this surface needs: the history read
+ * (`GET /api/v1/commerce/pos/orders`) is gated on the EXISTING
+ * `COMMERCE_ORDER_PERMISSIONS.read` (`commerce.orders.read`), since a POS
+ * order is still an order and this increment does not need a narrower
+ * "read POS orders only" audience than "read orders" already grants — see
+ * `sql/932`'s own seed comment for the same reasoning.
+ */
+export const COMMERCE_POS_ACTIVITY_CODE = "pos";
+
+export const COMMERCE_POS_PERMISSIONS = {
+  /** The only order-creation path in this module gated by a permission at all — every other one is anonymous (storefront) or provider/system-driven (gateway webhook). */
+  create: "commerce.pos.create"
+} as const;

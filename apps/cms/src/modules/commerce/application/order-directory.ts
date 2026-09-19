@@ -61,7 +61,11 @@ import type {
   ResolvedMediaReferenceDTO
 } from "../../_shared/ports/media-library-port";
 import { normalizeMoney } from "../domain/price-calculation";
-import { normalizePhoneNumber, maskPhone } from "../domain/phone-normalisation";
+import {
+  normalizePhoneNumber,
+  maskPhone,
+  POS_WALK_IN_CUSTOMER_SENTINEL_PHONE
+} from "../domain/phone-normalisation";
 import { generateOrderCode } from "../domain/order-code";
 import {
   applyOrderStatusTransition,
@@ -149,6 +153,8 @@ type OrderHeaderRow = {
   status: string;
   payment_method: string;
   payment_status: string;
+  /** Issue #116 (contract #106 D6) — `"storefront"` for every order created before #116 landed. */
+  channel: string;
   shipping_method: string;
   shipping_service_name: string | null;
   shipping_cost: string;
@@ -225,6 +231,8 @@ export type OrderDetail = {
   status: OrderStatus;
   paymentMethod: string;
   paymentStatus: string;
+  /** Issue #116 (contract #106 D6) — `"storefront"` for every order created before #116 landed. */
+  channel: string;
   shippingMethod: string;
   shippingServiceName: string | null;
   shippingCost: string;
@@ -279,7 +287,7 @@ async function fetchOrderDetailByWhere(
     "id" in where
       ? ((await tx`
           SELECT o.id, o.order_code, o.customer_id, o.status, o.payment_method, o.payment_status,
-                 o.shipping_method, o.shipping_service_name, o.shipping_cost, o.address,
+                 o.channel, o.shipping_method, o.shipping_service_name, o.shipping_cost, o.address,
                  o.subtotal, o.discount, o.voucher_code, o.voucher_discount, o.insurance_fee,
                  o.tax, o.total, o.dp_amount, o.notes, o.paid_at, o.shipped_at, o.completed_at,
                  o.cancelled_at, o.expires_at, o.created_at,
@@ -290,7 +298,7 @@ async function fetchOrderDetailByWhere(
         `) as OrderHeaderRow[])
       : ((await tx`
           SELECT o.id, o.order_code, o.customer_id, o.status, o.payment_method, o.payment_status,
-                 o.shipping_method, o.shipping_service_name, o.shipping_cost, o.address,
+                 o.channel, o.shipping_method, o.shipping_service_name, o.shipping_cost, o.address,
                  o.subtotal, o.discount, o.voucher_code, o.voucher_discount, o.insurance_fee,
                  o.tax, o.total, o.dp_amount, o.notes, o.paid_at, o.shipped_at, o.completed_at,
                  o.cancelled_at, o.expires_at, o.created_at,
@@ -349,6 +357,7 @@ async function fetchOrderDetailByWhere(
     status: header.status as OrderStatus,
     paymentMethod: header.payment_method,
     paymentStatus: header.payment_status,
+    channel: header.channel,
     shippingMethod: header.shipping_method,
     shippingServiceName: header.shipping_service_name,
     shippingCost: normalizeMoney(header.shipping_cost),
@@ -420,6 +429,8 @@ export type PublicOrderRecord = {
   status: OrderStatus;
   paymentStatus: string;
   paymentMethod: string;
+  /** Issue #116 (contract #106 D6) — `"storefront"` for every order created before #116 landed. */
+  channel: string;
   shippingMethod: string;
   shippingServiceName: string | null;
   customer: { name: string; phoneMasked: string; email: string | null };
@@ -519,6 +530,7 @@ export async function toPublicOrderRecord(
     status: detail.status,
     paymentStatus: detail.paymentStatus,
     paymentMethod: detail.paymentMethod,
+    channel: detail.channel,
     shippingMethod: detail.shippingMethod,
     shippingServiceName: detail.shippingServiceName,
     customer: {
@@ -596,10 +608,23 @@ export async function toPublicOrderRecord(
 }
 
 /**
+ * Issue #116 (contract #106 D6) — the storefront surface serves STOREFRONT
+ * orders only. A `channel = 'pos'` counter sale never appears through the
+ * anonymous tracking lookup or the bearer account history: the walk-in
+ * customer's sentinel phone is documented (`docs/kamus-data.md`), so a
+ * tracking lookup that honoured it would let anyone holding an order code
+ * read every walk-in receipt of the tenant; and a POS receipt is the
+ * cashier's record (`GET /api/v1/commerce/pos/orders`), not a storefront
+ * order a shopper can cancel, confirm payment on, or review.
+ */
+const STOREFRONT_CHANNEL = "storefront";
+
+/**
  * The tracking lookup — `orderCode` + `phone` is the credential, and the
  * check happens INSIDE this query (not merely in the route's `prepare`):
- * unknown code, wrong phone, and another tenant's order all fall through to
- * the same `null`, which the route maps to one neutral `404`.
+ * unknown code, wrong phone, a POS counter sale, and another tenant's order
+ * all fall through to the same `null`, which the route maps to one neutral
+ * `404`.
  */
 export async function fetchOrderForTracking(
   tx: Bun.SQL,
@@ -611,7 +636,13 @@ export async function fetchOrderForTracking(
   const detail = await fetchOrderDetailByWhere(tx, tenantId, mediaPort, {
     orderCode
   });
-  if (!detail || detail.customer.phone !== phone) return null;
+  if (
+    !detail ||
+    detail.customer.phone !== phone ||
+    detail.channel !== STOREFRONT_CHANNEL
+  ) {
+    return null;
+  }
   return toPublicOrderRecord(tx, tenantId, detail);
 }
 
@@ -699,6 +730,11 @@ async function insertOrderWithRetryableCode(
 
       return {
         ...rows[0]!,
+        // Every order `createOrderFromCart` inserts is `channel: "storefront"`
+        // (the column's own DEFAULT, Issue #116/sql/931) — never re-selected
+        // here since nothing downstream in THIS function reads it; the real
+        // stored value is what `fetchOrderDetailByWhere` returns later.
+        channel: "storefront",
         customer_name: "",
         customer_phone: "",
         customer_email: null
@@ -771,6 +807,12 @@ export async function createOrderFromCart(
 
   const phoneResult = normalizePhoneNumber(input.customer.phone);
   if (!phoneResult.valid) return { kind: "invalid_phone" };
+  // Issue #116 — the POS walk-in sentinel is not a subscriber number; a
+  // storefront guest "using" it would attach their order to the tenant's
+  // walk-in row. Refused exactly like a malformed phone.
+  if (phoneResult.value === POS_WALK_IN_CUSTOMER_SENTINEL_PHONE) {
+    return { kind: "invalid_phone" };
+  }
   const normalizedPhone = phoneResult.value;
 
   // Issue #118 — the level lookup happens BEFORE the re-quote (not after,
@@ -1365,6 +1407,37 @@ export async function updateOrderStatusByAdmin(
   return result !== null;
 }
 
+/**
+ * `createPosOrder` (Issue #116, `application/pos-directory.ts`)'s own call
+ * to move its freshly-inserted `pending_payment` counter sale straight to
+ * `paid` — reuses the SAME `transitionOrderStatus` every other admin status
+ * change goes through (status timestamp, `order_events` row, audit event,
+ * `COMMERCE_ORDER_PAID_EVENT_TYPE`/`COMMERCE_ORDER_STATUS_CHANGED_EVENT_TYPE`
+ * domain events), rather than `pos-directory.ts` hand-rolling a second copy
+ * of that bookkeeping. Actor is always `"admin"` — a POS sale is staff-rung,
+ * never `"customer"`/`"system"` — with `actorTenantUserId` carrying WHICH
+ * staff member (the audit trail's own actor column; `order_events.actor`
+ * itself only ever records the role, see `sql/913`'s own table header).
+ */
+export async function applyPosOrderPaidTransition(
+  tx: Bun.SQL,
+  tenantId: string,
+  actorTenantUserId: string,
+  orderId: string,
+  correlationId?: string
+): Promise<void> {
+  await transitionOrderStatus(
+    tx,
+    tenantId,
+    actorTenantUserId,
+    "admin",
+    orderId,
+    "paid",
+    "POS counter sale — paid at the register.",
+    correlationId
+  );
+}
+
 /** `commerce:orders:expire` job's own per-order call — see `scripts/commerce-orders-expire.ts`. */
 export async function expireOrderBySystem(
   tx: Bun.SQL,
@@ -1691,6 +1764,7 @@ export async function listOrdersForAccount(
     FROM awcms_commerce_orders o
     WHERE o.tenant_id = ${tenantId}
       AND o.customer_id = ${customerId}
+      AND o.channel = ${STOREFRONT_CHANNEL}
       AND o.deleted_at IS NULL
       AND o.created_at >= ${historyFrom}
       AND (
@@ -1732,6 +1806,7 @@ export async function fetchOrderForAccount(
     WHERE tenant_id = ${tenantId}
       AND order_code = ${orderCode}
       AND customer_id = ${customerId}
+      AND channel = ${STOREFRONT_CHANNEL}
       AND created_at >= ${historyFrom}
       AND deleted_at IS NULL
   `) as { id: string }[];

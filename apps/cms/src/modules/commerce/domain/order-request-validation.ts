@@ -50,6 +50,15 @@ export type CreateOrderInput = {
   affiliateCode: string | null;
 };
 
+/**
+ * Issue #116 (contract #106 D6) — `PaymentMethod` widened to include
+ * `"cash"` for the POS counter-sale path, but this allow-list, guarding the
+ * ANONYMOUS storefront checkout, deliberately does NOT: a shopper checking
+ * out online never hands over physical cash to this platform, so
+ * `"cash"` here would accept an order this codebase has no way to actually
+ * collect payment for. `domain/pos-order-validation.ts`'s own
+ * `POS_PAYMENT_METHODS` is the ONLY allow-list `"cash"` is ever a member of.
+ */
 const PAYMENT_METHODS: readonly PaymentMethod[] = [
   "manual_bank",
   "manual_qris",

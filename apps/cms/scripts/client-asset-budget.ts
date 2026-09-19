@@ -572,7 +572,25 @@ export const READER_BUDGET_BYTES = 24_000;
 // plus its seven new i18n catalogue entries in the shared compiled
 // catalogue), so this constant keeps the same small margin above the
 // measured total this constant's history uses.
-export const APP_BUDGET_BYTES = 237_800;
+//
+// **Raised to 246,500 B after Issue #116** (contract #106 ADR-0017 D6) —
+// `/admin/commerce-pos.astro`, the POS counter-sale screen. Unlike every
+// entry above, this one IS a genuine client island rather than a form
+// handler: a debounced product search over the owner products endpoint, an
+// in-memory cart with editable quantities and a `bigint`-cents subtotal
+// preview, a cash/QRIS tendered-amount + live-change control, a receipt
+// rendered from the server's 201 body, and the submit itself — the one
+// place `awcms-ui-screen` §5 names ("interactivity only inside islands
+// (POS, forms, chat)"). Measured on the merged tree: 246,276 B (up from
+// 237,558 B, +8,718 B — exactly this screen's own two assets: its bundled
+// script 5,854 B and its scoped stylesheet 2,864 B, of which ~800 B is the
+// `@media print` receipt block; no other surface changed, and the 35 new
+// i18n catalogue entries are SSR-only). The script reuses
+// `admin-form-client.ts` (`sendJsonForData`/`lockElement`/`messageBox`)
+// and builds rows from `<template>` clones, so none of the growth is a
+// hand-copied lifecycle. 246,500 keeps the same small margin above the
+// measured total this constant's history uses.
+export const APP_BUDGET_BYTES = 246_500;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.

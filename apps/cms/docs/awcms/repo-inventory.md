@@ -8,12 +8,12 @@
 | Aspect                              | Value |
 | ----------------------------------- | ----- |
 | Registered modules                  | 25    |
-| Migrations                          | 185   |
+| Migrations                          | 187   |
 | `awcms_*` tables                    | 190   |
 | Tables with `FORCE` RLS             | 172   |
 | RLS-free tables (global, by design) | 18    |
-| Test files                          | 559   |
-| Route files                         | 493   |
+| Test files                          | 561   |
+| Route files                         | 495   |
 | ADR                                 | 244   |
 
 ### Modules
@@ -233,8 +233,10 @@
 | 181 | `sql/928_awcms_commerce_conversations_permissions.sql`                      |
 | 182 | `sql/929_awcms_commerce_campaigns_schema.sql`                               |
 | 183 | `sql/930_awcms_commerce_campaigns_permissions.sql`                          |
-| 184 | `sql/933_awcms_commerce_reporting_projections_schema.sql`                   |
-| 185 | `sql/934_awcms_commerce_payment_events_amount_mismatch.sql`                 |
+| 184 | `sql/931_awcms_commerce_pos_schema.sql`                                     |
+| 185 | `sql/932_awcms_commerce_pos_permissions.sql`                                |
+| 186 | `sql/933_awcms_commerce_reporting_projections_schema.sql`                   |
+| 187 | `sql/934_awcms_commerce_payment_events_amount_mismatch.sql`                 |
 
 ### Tables & Row-Level Security
 
@@ -435,17 +437,17 @@
 
 | Directory     | Test files |
 | ------------- | ---------- |
-| `(root)`      | 445        |
+| `(root)`      | 446        |
 | `e2e`         | 19         |
-| `integration` | 94         |
+| `integration` | 95         |
 | `unit`        | 1          |
 
 ### Routes
 
 | Surface         | Files |
 | --------------- | ----- |
-| `/api/v1/**`    | 397   |
-| `/admin/**`     | 66    |
+| `/api/v1/**`    | 398   |
+| `/admin/**`     | 67    |
 | publik / anonim | 30    |
 
 <!-- END GENERATED: repo-inventory -->
