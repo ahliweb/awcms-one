@@ -2,6 +2,10 @@ import type { APIRoute } from "astro";
 
 import { getDatabaseClient } from "../../../../../../../lib/database/client";
 import {
+  otpEmailRateLimitKey,
+  otpPhoneRateLimitKey
+} from "../../../../../../../modules/commerce/domain/otp-rate-limit-key";
+import {
   checkSharedRateLimit,
   resolveClientIp
 } from "../../../../../../../lib/security/rate-limit";
@@ -74,26 +78,29 @@ export const POST: APIRoute = async ({ request, clientAddress, locals }) => {
   if (bodyRead.tooLarge) return bodyTooLargeResponse(bodyRead.limitBytes);
 
   const body = (bodyRead.value ?? {}) as Record<string, unknown>;
-  const emailForRateLimit =
-    typeof body.email === "string" ? body.email.trim().toLowerCase() : "";
-
-  if (emailForRateLimit) {
-    const emailLimit = await checkSharedRateLimit(
-      `commerce:account:otp:request:email:${emailForRateLimit}`,
-      {
-        maxAttempts: RATE_LIMIT_MAX_PER_EMAIL,
-        windowMs: RATE_LIMIT_WINDOW_SEC * 1000
-      }
-    );
-    if (!emailLimit.allowed) {
-      return fail(
-        429,
-        "RATE_LIMITED",
-        "Too many requests for this e-mail address. Try again later.",
-        {},
-        undefined,
-        { "retry-after": String(emailLimit.retryAfterSec), vary: "Origin" }
-      );
+  // Per-identifier ceilings beside the per-IP one: an attacker who rotates
+  // IPs must still not be able to flood one mailbox, or — costlier for the
+  // store and worse for the victim — one WhatsApp number (OTP bombing).
+  for (const [key, message] of [
+    [
+      otpEmailRateLimitKey(body.email),
+      "Too many requests for this e-mail address. Try again later."
+    ],
+    [
+      otpPhoneRateLimitKey(body.phone),
+      "Too many requests for this phone number. Try again later."
+    ]
+  ] as const) {
+    if (!key) continue;
+    const limit = await checkSharedRateLimit(key, {
+      maxAttempts: RATE_LIMIT_MAX_PER_EMAIL,
+      windowMs: RATE_LIMIT_WINDOW_SEC * 1000
+    });
+    if (!limit.allowed) {
+      return fail(429, "RATE_LIMITED", message, {}, undefined, {
+        "retry-after": String(limit.retryAfterSec),
+        vary: "Origin"
+      });
     }
   }
 

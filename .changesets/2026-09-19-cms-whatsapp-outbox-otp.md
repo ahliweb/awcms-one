@@ -1,8 +1,10 @@
 ---
-"awcms": minor
+bump: minor
+type: structure
+impact: public
 ---
 
-feat(commerce): WhatsApp outbox + Fonnte/Meta adapters, OTP via WhatsApp, login by phone (Issue #108, contract #106/ADR-0017 D5)
+# WhatsApp outbox, Fonnte/Meta adapters, OTP via WhatsApp, login by phone
 
 `commerce` gains a second provider outbox modelled on `email` (ADR-0017 D1): `awcms_commerce_whatsapp_messages`/`awcms_commerce_whatsapp_delivery_attempts` (`sql/925`), a claim/send/finalize dispatcher (`bun run commerce:whatsapp:dispatch`) with the same lease/retry/circuit-breaker shape as `email-dispatch.ts`, and a retention purge (`bun run commerce:whatsapp:purge`). Two real adapters — Fonnte (`COMMERCE_WHATSAPP_PROVIDER=fonnte`) and the Meta WhatsApp Cloud API (`meta`) — plus a `log` adapter for dev/CI, resolved by `COMMERCE_WHATSAPP_PROVIDER`/gated by `COMMERCE_WHATSAPP_ENABLED`.
 
