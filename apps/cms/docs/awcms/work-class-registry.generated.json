@@ -697,6 +697,11 @@
       "source": "factory"
     },
     {
+      "path": "src/pages/api/v1/commerce/whatsapp/messages/index.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
       "path": "src/pages/api/v1/data-lifecycle/dry-run.ts",
       "workClass": "interactive",
       "source": "default"
@@ -1652,6 +1657,18 @@
       "workClass": "background_sync",
       "source": "registry",
       "rationale": "Scheduled courier-rate cache purge sweep (commerce:shipping-rates:purge, Issue #107), hourly — same recurring-but-not-latency-sensitive profile as commerce:orders:expire; purgeExpiredShippingRatesForTenant passes workClass: \"background_sync\" explicitly."
+    },
+    {
+      "path": "scripts/commerce-whatsapp-dispatch.ts",
+      "workClass": "background_sync",
+      "source": "registry",
+      "rationale": "Scheduled WhatsApp delivery-queue drain (commerce:whatsapp:dispatch, Issue #108), every 1-2 minutes — same claim/send/finalize profile as email:dispatch; dispatchWhatsappQueue passes workClass: \"background_sync\" explicitly on every transaction."
+    },
+    {
+      "path": "scripts/commerce-whatsapp-purge.ts",
+      "workClass": "maintenance",
+      "source": "registry",
+      "rationale": "One-shot-per-run retention sweep (commerce:whatsapp:purge, Issue #108), every 5-15 minutes, delay-tolerant like email:queue:purge; purgeWhatsappQueue passes workClass: \"maintenance\" explicitly."
     },
     {
       "path": "scripts/data-lifecycle-archive-purge.ts",

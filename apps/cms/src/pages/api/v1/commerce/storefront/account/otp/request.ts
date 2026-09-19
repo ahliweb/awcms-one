@@ -2,6 +2,10 @@ import type { APIRoute } from "astro";
 
 import { getDatabaseClient } from "../../../../../../../lib/database/client";
 import {
+  otpEmailRateLimitKey,
+  otpPhoneRateLimitKey
+} from "../../../../../../../modules/commerce/domain/otp-rate-limit-key";
+import {
   checkSharedRateLimit,
   resolveClientIp
 } from "../../../../../../../lib/security/rate-limit";
@@ -13,6 +17,7 @@ import {
 import { fail, ok } from "../../../../../../../modules/_shared/api-response";
 import { requestCustomerOtp } from "../../../../../../../modules/commerce/application/customer-auth";
 import { resolveCustomerOtpChannel } from "../../../../../../../modules/commerce/application/customer-otp-channel-adapters";
+import { resolveWhatsappCustomerOtpChannel } from "../../../../../../../modules/commerce/application/whatsapp-otp-channel-adapter";
 import { commercePreflightResponse } from "../../../../../../../modules/commerce/application/public-commerce-preflight";
 import { withPublicCommerceTenant } from "../../../../../../../modules/commerce/application/public-commerce-tenant";
 
@@ -73,31 +78,38 @@ export const POST: APIRoute = async ({ request, clientAddress, locals }) => {
   if (bodyRead.tooLarge) return bodyTooLargeResponse(bodyRead.limitBytes);
 
   const body = (bodyRead.value ?? {}) as Record<string, unknown>;
-  const emailForRateLimit =
-    typeof body.email === "string" ? body.email.trim().toLowerCase() : "";
-
-  if (emailForRateLimit) {
-    const emailLimit = await checkSharedRateLimit(
-      `commerce:account:otp:request:email:${emailForRateLimit}`,
-      {
-        maxAttempts: RATE_LIMIT_MAX_PER_EMAIL,
-        windowMs: RATE_LIMIT_WINDOW_SEC * 1000
-      }
-    );
-    if (!emailLimit.allowed) {
-      return fail(
-        429,
-        "RATE_LIMITED",
-        "Too many requests for this e-mail address. Try again later.",
-        {},
-        undefined,
-        { "retry-after": String(emailLimit.retryAfterSec), vary: "Origin" }
-      );
+  // Per-identifier ceilings beside the per-IP one: an attacker who rotates
+  // IPs must still not be able to flood one mailbox, or — costlier for the
+  // store and worse for the victim — one WhatsApp number (OTP bombing).
+  for (const [key, message] of [
+    [
+      otpEmailRateLimitKey(body.email),
+      "Too many requests for this e-mail address. Try again later."
+    ],
+    [
+      otpPhoneRateLimitKey(body.phone),
+      "Too many requests for this phone number. Try again later."
+    ]
+  ] as const) {
+    if (!key) continue;
+    const limit = await checkSharedRateLimit(key, {
+      maxAttempts: RATE_LIMIT_MAX_PER_EMAIL,
+      windowMs: RATE_LIMIT_WINDOW_SEC * 1000
+    });
+    if (!limit.allowed) {
+      return fail(429, "RATE_LIMITED", message, {}, undefined, {
+        "retry-after": String(limit.retryAfterSec),
+        vary: "Origin"
+      });
     }
   }
 
   const sql = getDatabaseClient();
-  const channel = resolveCustomerOtpChannel();
+  const via = body.via === "whatsapp" ? "whatsapp" : "email";
+  const channel =
+    via === "whatsapp"
+      ? resolveWhatsappCustomerOtpChannel()
+      : resolveCustomerOtpChannel();
 
   const { result, corsHeaders } = await withPublicCommerceTenant(
     sql,
@@ -112,6 +124,7 @@ export const POST: APIRoute = async ({ request, clientAddress, locals }) => {
           purpose: unknown;
           name?: unknown;
           phone?: unknown;
+          via?: unknown;
         },
         channel,
         locals.correlationId
@@ -134,6 +147,20 @@ export const POST: APIRoute = async ({ request, clientAddress, locals }) => {
       "Invalid OTP request.",
       {},
       result.errors,
+      corsHeaders
+    );
+  }
+
+  if (result.kind === "channel_unavailable") {
+    // Configuration, not enumeration (ADR-0017 D5) — WhatsApp is not
+    // enabled/configured for this deployment, independent of whether the
+    // phone supplied has an account.
+    return fail(
+      409,
+      "CHANNEL_UNAVAILABLE",
+      "The WhatsApp channel is not available for this store.",
+      {},
+      undefined,
       corsHeaders
     );
   }

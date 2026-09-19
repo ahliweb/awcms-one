@@ -1565,6 +1565,14 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   // UPDATE (this job never rewrites a row, only removes ones already past
   // their own useful life).
   awcms_commerce_customer_otps: ["SELECT", "DELETE"],
+  // Issue #108 (contract #106/ADR-0017 D5) — commerce:whatsapp:dispatch
+  // (SELECT/UPDATE, the claim/finalize lease) and commerce:whatsapp:purge
+  // (DELETE, terminal rows past retention) both run as awcms_worker,
+  // mirroring the email outbox's own split (sql/022/sql/127).
+  awcms_commerce_whatsapp_messages: ["SELECT", "UPDATE", "DELETE"],
+  // SELECT needed for the same ON CONFLICT arbiter read sql/127's header
+  // documents for awcms_email_delivery_attempts.
+  awcms_commerce_whatsapp_delivery_attempts: ["SELECT", "INSERT", "DELETE"],
   awcms_commerce_customer_sessions: ["SELECT", "DELETE"],
   // `awcms_commerce_customer_accounts` carries a `dataLifecycle` descriptor
   // with `executionMode: 'generic'` (module.ts) purely so the table answers

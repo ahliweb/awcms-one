@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:c4b32f5f265d5b8d6913466b255155940d71df6fe138009d568767a9e1b7a807 -->
+<!-- i18n-source-hash: sha256:cf8c50ccad97ce24d3489b1488f7f7680db272b7c12d0492be7bac1559014f21 -->
 
 # Scripts AWCMS
 
@@ -27,7 +27,7 @@ lalu membangun duplikatnya.
 
 <!-- Dihasilkan `bun run scripts:inventory:generate`. JANGAN diedit tangan. -->
 
-129 target menjalankan berkas di `scripts/`; 56 di antaranya
+131 target menjalankan berkas di `scripts/`; 56 di antaranya
 ada di rantai `bun run check` (kolom **Gate**), sisanya dijalankan manual,
 terjadwal, atau oleh workflow CI tertentu.
 
@@ -73,6 +73,8 @@ terjadwal, atau oleh workflow CI tertentu.
 | `commerce:flash-sales:tick`               | `commerce-flash-sales-tick.ts`                 | —    |
 | `commerce:orders:expire`                  | `commerce-orders-expire.ts`                    | —    |
 | `commerce:shipping-rates:purge`           | `commerce-shipping-rates-purge.ts`             | —    |
+| `commerce:whatsapp:dispatch`              | `commerce-whatsapp-dispatch.ts`                | —    |
+| `commerce:whatsapp:purge`                 | `commerce-whatsapp-purge.ts`                   | —    |
 | `config:env:coverage:check`               | `env-contract-coverage-check.ts`               | ✅   |
 | `config:validate`                         | `validate-env.ts`                              | —    |
 | `data-lifecycle:archive-purge`            | `data-lifecycle-archive-purge.ts`              | —    |

@@ -3400,7 +3400,7 @@ paths:
         "400":
           $ref: "#/components/responses/BadRequest"
         "409":
-          description: 'CHANNEL_UNAVAILABLE — `via:"whatsapp"` on a tenant with no WhatsApp provider configured (Issue #106 ADR-0017 D5; not yet implemented, lands in #108). Not an anti-enumeration exception: this reveals a per-TENANT configuration fact, never anything about the e-mail/account itself.'
+          description: 'CHANNEL_UNAVAILABLE — `via: "whatsapp"` and the tenant has no WhatsApp channel configured/enabled (Issue #108, contract #106/ADR-0017 D5). Configuration, not enumeration — answered before an OTP is ever issued, and reveals only a per-tenant configuration fact, never anything about the e-mail/phone/account itself.'
           content:
             application/json:
               schema:
@@ -4317,6 +4317,58 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/whatsapp/messages:
+    get:
+      operationId: listCommerceWhatsappMessages
+      tags:
+        - Commerce WhatsApp
+      summary: "Issue #108 (contract #106/ADR-0017 D5). Read-only WhatsApp outbox diagnostics, keyset-paginated. Gated on `commerce.whatsapp.read`."
+      description: >-
+        Masked phone only (`toPhoneMasked`) — never the raw `to_phone`.
+      parameters:
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - queued
+              - sending
+              - sent
+              - failed
+        - name: cursor
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: One page of WhatsApp outbox messages.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      messages:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/CommerceWhatsappMessage"
+                      nextCursor:
+                        type: string
+                        nullable: true
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
   /api/v1/commerce/affiliates:
     get:
       operationId: listCommerceAffiliates
@@ -7491,14 +7543,14 @@ components:
           nullable: true
     OtpRequest:
       type: object
-      description: "Issue #86 (design only). Body of `POST /account/otp/request`."
+      description: 'Issue #86/#108 (implemented, contract #86/#106 D2/D5). Body of `POST /account/otp/request`. `email` is required unless `via` is `"whatsapp"`, in which case `phone` is required instead and `purpose` must be `"login"` (registration stays e-mail OTP only).'
       required:
-        - email
         - purpose
       properties:
         email:
           type: string
           format: email
+          description: Required unless `via` is `"whatsapp"`.
         purpose:
           type: string
           enum:
@@ -7509,24 +7561,27 @@ components:
           description: Required when `purpose` is `register`; ignored for `login`.
         phone:
           type: string
-          description: Required when `purpose` is `register`; ignored for `login`.
+          description: Required when `purpose` is `register` (via e-mail), or when `via` is `"whatsapp"` (E.164 or a locally-typed Indonesian number, normalised server-side).
         via:
           type: string
           enum:
             - email
             - whatsapp
-          description: "Issue #106 (ADR-0017 D5; not yet implemented, lands in #108). Default `email`. `whatsapp` requires `phone` on this same request (for `login`, the phone is looked up through the account's linked customer row); `409 CHANNEL_UNAVAILABLE` when the tenant has no WhatsApp provider configured (`COMMERCE_WHATSAPP_PROVIDER` unset)."
+          default: email
+          description: 'Issue #108 (implemented, contract #106/ADR-0017 D5). `"whatsapp"` only supports `purpose: "login"` (the phone is looked up through the account''s linked customer row) and answers `409 CHANNEL_UNAVAILABLE` when the tenant has no WhatsApp channel configured (`COMMERCE_WHATSAPP_PROVIDER` unset).'
     OtpVerify:
       type: object
-      description: "Issue #86 (design only). Body of `POST /account/otp/verify`."
+      description: 'Issue #86/#108 (implemented, contract #86/#106 D2/D5). Body of `POST /account/otp/verify`. Exactly one of `email`/`phone` is required — `phone` proves a `via: "whatsapp"` login OTP and only ever supports `purpose: "login"`.'
       required:
-        - email
         - code
         - purpose
       properties:
         email:
           type: string
           format: email
+        phone:
+          type: string
+          description: 'Issue #108 — alternative to `email` when the OTP was requested with `via: "whatsapp"`. Mutually exclusive with `email`.'
         code:
           type: string
           description: 6 digits.
@@ -7621,6 +7676,43 @@ components:
         createdAt:
           type: string
           format: date-time
+    CommerceWhatsappMessage:
+      type: object
+      description: "Issue #108 (contract #106/ADR-0017 D5). A row of `awcms_commerce_whatsapp_messages` (`GET /api/v1/commerce/whatsapp/messages` diagnostics). Never carries `to_phone`/the rendered body/the OTP code — masked phone only."
+      properties:
+        id:
+          type: string
+          format: uuid
+        correlationId:
+          type: string
+          nullable: true
+        templateKey:
+          type: string
+          enum:
+            - commerce.customer_otp
+            - commerce.order_paid
+            - commerce.campaign
+        status:
+          type: string
+          enum:
+            - queued
+            - sending
+            - sent
+            - failed
+        toPhoneMasked:
+          type: string
+        attempts:
+          type: integer
+        lastError:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+        sentAt:
+          type: string
+          format: date-time
+          nullable: true
     Affiliate:
       type: object
       description: "Issue #92 (contract #86 D5). A row of `awcms_commerce_affiliates`, 1:1 with a customer — designed fresh, no legacy column carried over. `customerId`/`customerName` are populated on the STAFF list (`GET /api/v1/commerce/affiliates`) only; the storefront's own `GET/POST .../account/affiliate` never needs them (the account already knows who it is) and instead extends this shape with `link`/`stats`."

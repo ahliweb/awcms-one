@@ -5339,3 +5339,27 @@ msgstr ""
 
 msgid "FAQs, social links, customer levels, shipping (except courier rates, above), payment (including bank accounts — never shown publicly), promo section, and per-page meta titles."
 msgstr ""
+
+msgid "WhatsApp outbox"
+msgstr ""
+
+msgid "Every WhatsApp message this tenant has queued or sent — OTP codes, order notifications, campaigns — with its delivery status. Phone numbers are shown masked."
+msgstr ""
+
+msgid "You do not have permission to view the WhatsApp outbox."
+msgstr ""
+
+msgid "Could not load the WhatsApp outbox. Please try again."
+msgstr ""
+
+msgid "Messages"
+msgstr ""
+
+msgid "No WhatsApp messages match this filter."
+msgstr ""
+
+msgid "Template"
+msgstr ""
+
+msgid "Newest 100 for the selected filter. Codes and message bodies are never shown here."
+msgstr ""

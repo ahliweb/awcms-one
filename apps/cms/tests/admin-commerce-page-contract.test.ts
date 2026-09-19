@@ -89,7 +89,7 @@ async function enforcedTriples(
 }
 
 describe("commerce module descriptor — restore is declared for both activity codes", () => {
-  test("forty-three permissions total — five per catalog activity code (incl. restore), four per marketing code, two for settings, two each for orders/customers/affiliates/affiliate_commissions, three for reviews", () => {
+  test("forty-four permissions total — five per catalog activity code (incl. restore), four per marketing code, two for settings, two each for orders/customers/affiliates/affiliate_commissions, three for reviews, one for whatsapp", () => {
     // Issue #23: categories/products carry read/create/update/delete/restore.
     // Issue #26: flash_sales/vouchers/sliders/testimonials/popups carry
     // read/create/update/delete (soft delete only, no restore — the marketing
@@ -102,8 +102,10 @@ describe("commerce module descriptor — restore is declared for both activity c
     // directly or hard-deletes one, see `commerce-permissions.ts`'s header),
     // reviews carries read/update/delete (moderation + soft delete, created
     // only through the anonymous storefront path).
+    // Issue #108: whatsapp carries read only — diagnostics, no admin
+    // create/update/delete over the outbox.
     const declared = declaredTriples();
-    expect(declared.size).toBe(2 * 5 + 5 * 4 + 2 + 2 + 2 + 3 + 2 + 2);
+    expect(declared.size).toBe(2 * 5 + 5 * 4 + 2 + 2 + 2 + 3 + 2 + 2 + 1);
 
     for (const activityCode of ["categories", "products"]) {
       for (const action of ["read", "create", "update", "delete", "restore"]) {

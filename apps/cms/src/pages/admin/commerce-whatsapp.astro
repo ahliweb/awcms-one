@@ -1,0 +1,158 @@
+---
+/**
+ * WhatsApp outbox diagnostics admin screen (Issue #108, contract
+ * #106/ADR-0017 D5) — read-only, mirrors `email-suppression.astro`'s
+ * minimal single-table shape (no forms — this issue ships no admin
+ * create/update/delete action over the outbox). Shows the FIRST page only
+ * ({@link import("../../modules/commerce/application/whatsapp-message-directory").WHATSAPP_MESSAGE_LIST_LIMIT},
+ * 100 rows) — no "load more" control in this increment, same scope
+ * `commerce-affiliates.astro`'s own admin-screen-coverage entry accepts for
+ * a first cut. Never renders `to_phone` — only `to_phone_masked`.
+ */
+import AdminLayout from "../../layouts/AdminLayout.astro";
+import "../../styles/admin-screens.css";
+import { loadAdminScreen } from "../../lib/auth/admin-screen";
+import { logAdminPageError } from "../../lib/logging/error-log";
+import { getTranslatorFor } from "../../lib/i18n";
+import {
+  fetchWhatsappMessageEntries,
+  type WhatsappMessageStatus
+} from "../../modules/commerce/application/whatsapp-message-directory";
+
+const ssr = Astro.locals.ssrContext!;
+const { t } = getTranslatorFor(Astro.locals.locale);
+
+const statusParam = Astro.url.searchParams.get("status") ?? "";
+const statusFilter: WhatsappMessageStatus | undefined =
+  statusParam === "queued" ||
+  statusParam === "sending" ||
+  statusParam === "sent" ||
+  statusParam === "failed"
+    ? statusParam
+    : undefined;
+
+const screen = await loadAdminScreen({
+  ssr,
+  workClass: "interactive",
+  authorize: {
+    moduleKey: "commerce",
+    activityCode: "whatsapp",
+    action: "read"
+  },
+  load: async ({ tx }) =>
+    fetchWhatsappMessageEntries(tx, ssr.tenantId, statusFilter),
+  onError: (error) => {
+    logAdminPageError(
+      "admin/commerce-whatsapp.astro: failed to list WhatsApp messages",
+      error,
+      { correlationId: Astro.locals.correlationId }
+    );
+  }
+});
+
+const canRead = screen.state !== "denied";
+const loadError = screen.state === "error";
+const entries = screen.state === "allowed" ? screen.data.messages : [];
+
+const statusOptions: WhatsappMessageStatus[] = [
+  "queued",
+  "sending",
+  "sent",
+  "failed"
+];
+---
+
+<AdminLayout
+  title={t("WhatsApp outbox")}
+  description={t(
+    "Every WhatsApp message this tenant has queued or sent — OTP codes, order notifications, campaigns — with its delivery status. Phone numbers are shown masked."
+  )}
+>
+  {
+    !canRead && (
+      <p class="state-notice fade-in-up" id="commerce-whatsapp-denied">
+        {t("You do not have permission to view the WhatsApp outbox.")}
+      </p>
+    )
+  }
+
+  {
+    canRead && loadError && (
+      <p class="state-notice fade-in-up" id="commerce-whatsapp-load-error">
+        {t("Could not load the WhatsApp outbox. Please try again.")}
+      </p>
+    )
+  }
+
+  {
+    canRead && !loadError && (
+      <section
+        class="fade-in-up"
+        aria-labelledby="commerce-whatsapp-list-heading"
+      >
+        <h2 id="commerce-whatsapp-list-heading">{t("Messages")}</h2>
+
+        <form method="get" class="admin-form">
+          <label for="commerce-whatsapp-status-filter">{t("Status")}</label>
+          <select
+            id="commerce-whatsapp-status-filter"
+            name="status"
+            onchange="this.form.submit()"
+          >
+            <option value="" selected={!statusFilter}>
+              {t("All")}
+            </option>
+            {statusOptions.map((status) => (
+              <option value={status} selected={statusFilter === status}>
+                {status}
+              </option>
+            ))}
+          </select>
+        </form>
+
+        {entries.length === 0 ? (
+          <div class="empty-state">
+            <p id="commerce-whatsapp-empty">
+              {t("No WhatsApp messages match this filter.")}
+            </p>
+          </div>
+        ) : (
+          <div class="data-table-scroll">
+            <table class="data-table data-table--stack">
+              <thead>
+                <tr>
+                  <th scope="col">{t("Phone")}</th>
+                  <th scope="col">{t("Template")}</th>
+                  <th scope="col">{t("Status")}</th>
+                  <th scope="col">{t("Attempts")}</th>
+                  <th scope="col">{t("Last error")}</th>
+                  <th scope="col">{t("Created")}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {entries.map((entry) => (
+                  <tr>
+                    <th scope="row" data-label="Phone">
+                      {entry.toPhoneMasked}
+                    </th>
+                    <td data-label="Template">{entry.templateKey}</td>
+                    <td data-label="Status">{entry.status}</td>
+                    <td data-label="Attempts">{entry.attempts}</td>
+                    <td data-label="Last error">{entry.lastError ?? ""}</td>
+                    <td data-label="Created">{entry.createdAt.slice(0, 16)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+
+        <p class="page-description">
+          {t(
+            "Newest 100 for the selected filter. Codes and message bodies are never shown here."
+          )}
+        </p>
+      </section>
+    )
+  }
+</AdminLayout>
