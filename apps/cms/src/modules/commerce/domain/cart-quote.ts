@@ -109,12 +109,19 @@ export type CartQuoteCourierContext = {
   unavailableReason: string | null;
 };
 
+/** 1 = ordinary retail price (no tier), 2–4 = `price_level_{n}`. Issue #118 (epic #33 C9, contract #106 D10, ADR-0016 D6). */
+export type CustomerLevel = 1 | 2 | 3 | 4;
+
 export type CartQuoteProductSnapshot = {
   id: string;
   slug: string;
   name: string;
   sku: string;
   price: string;
+  /** Issue #118 — `null` when the merchant never set a tier price for this level; `resolveTierPrice` below falls back to `price` in that case. */
+  priceLevel2: string | null;
+  priceLevel3: string | null;
+  priceLevel4: string | null;
   discountPercent: number;
   stock: number;
   status: ProductStatus;
@@ -250,6 +257,36 @@ function flashSaleKey(productId: string, variantId: string | null): string {
   return `${productId}:${variantId ?? ""}`;
 }
 
+/**
+ * Issue #118 — the product-level tiered price a customer of `level` pays,
+ * BEFORE `computeFinalPrice`'s own `discountPercent` is applied (a tier
+ * price is an alternate BASE price, not a second discount layered on top of
+ * the first — the same discount still applies afterwards, uniformly,
+ * whichever base price won). `level` `1`/absent, or a `null` tier column
+ * (the merchant never set one for this level), both fall back to the
+ * product's ordinary `price` — the contract's own "falls back to price when
+ * null" rule. Never consulted when a variant overrides the price, or when a
+ * flash sale is active — both already take precedence over the ordinary
+ * price in `resolveLine`, and this module has never asked "does a flash
+ * sale/variant override coexist with a distributor tier" (out of scope,
+ * same "not second-guessed" posture `commerce/README.md`'s "What is still
+ * NOT checked" section already takes for `price_level_n <= price`).
+ */
+function resolveTierPrice(
+  product: CartQuoteProductSnapshot,
+  customerLevel: CustomerLevel | null | undefined
+): string {
+  const tierPrice =
+    customerLevel === 2
+      ? product.priceLevel2
+      : customerLevel === 3
+        ? product.priceLevel3
+        : customerLevel === 4
+          ? product.priceLevel4
+          : null;
+  return tierPrice ?? product.price;
+}
+
 function validateServiceFormAnswers(
   fields: ServiceFormField[] | null,
   values: Record<string, string> | null
@@ -287,7 +324,8 @@ function validateServiceFormAnswers(
 
 function resolveLine(
   input: CartQuoteLineInput,
-  context: CartQuoteContext
+  context: CartQuoteContext,
+  customerLevel: CustomerLevel | null | undefined
 ): CartQuoteLineResult {
   const product = context.products.get(input.productId);
 
@@ -370,7 +408,10 @@ function resolveLine(
     ? normalizeMoney(flashSale.salePrice)
     : variant && variant.price !== null
       ? normalizeMoney(variant.price)
-      : computeFinalPrice(product.price, product.discountPercent);
+      : computeFinalPrice(
+          resolveTierPrice(product, customerLevel),
+          product.discountPercent
+        );
 
   const serviceFormErrors = validateServiceFormAnswers(
     product.serviceForm,
@@ -559,10 +600,20 @@ export function quoteCart(
     lines: CartQuoteLineInput[];
     shipping: CartQuoteShippingInput;
     insurance: boolean;
+    /**
+     * Issue #118 — the calling customer's tier, resolved by the caller
+     * (`cart-quote-service.ts`) from an OPTIONAL Bearer session; `null`/
+     * absent for an anonymous quote or a level-1 (ordinary retail) customer
+     * — both price identically, since `resolveTierPrice` already falls back
+     * to `product.price` for anything other than 2/3/4.
+     */
+    customerLevel?: CustomerLevel | null;
   },
   context: CartQuoteContext
 ): CartQuoteResult {
-  const lines = input.lines.map((line) => resolveLine(line, context));
+  const lines = input.lines.map((line) =>
+    resolveLine(line, context, input.customerLevel)
+  );
 
   const subtotalCents = lines.reduce(
     (sum, line) => sum + toCents(line.lineTotal),

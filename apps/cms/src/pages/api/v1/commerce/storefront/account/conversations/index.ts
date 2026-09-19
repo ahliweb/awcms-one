@@ -21,6 +21,7 @@ import {
   openConversation
 } from "../../../../../../../modules/commerce/application/conversation-directory";
 import { requireCustomerSession } from "../../../../../../../modules/commerce/application/customer-session-auth";
+import { fetchCommerceFeatures } from "../../../../../../../modules/commerce/application/commerce-feature-gate";
 import { validateOpenConversationInput } from "../../../../../../../modules/commerce/domain/conversation-validation";
 import { commercePreflightResponse } from "../../../../../../../modules/commerce/application/public-commerce-preflight";
 import { withPublicCommerceTenant } from "../../../../../../../modules/commerce/application/public-commerce-tenant";
@@ -52,6 +53,7 @@ const CONVERSATION_POST_RATE_LIMIT_WINDOW_SEC = 60 * 60;
 const PREFLIGHT_ALLOWED_HEADERS = ["content-type", "authorization"] as const;
 
 type ListOutcome =
+  | { kind: "feature_disabled" }
   | { kind: "unauthenticated" }
   | { kind: "blocked" }
   | { kind: "validation_error"; errors: { field: string; message: string }[] }
@@ -61,11 +63,16 @@ type ListOutcome =
     };
 
 type CreateOutcome =
+  | { kind: "feature_disabled" }
   | { kind: "unauthenticated" }
   | { kind: "blocked" }
   | { kind: "validation_error"; errors: { field: string; message: string }[] }
   | { kind: "rate_limited"; retryAfterSec: number }
   | { kind: "created"; result: Awaited<ReturnType<typeof openConversation>> };
+
+/** Issue #118 — a disabled `inbox` feature answers the SAME neutral 404 shape an unresolvable tenant does; `withPublicCommerceTenant` already collapses those two together (its own header), so a disabled feature must too, never a 409 that would tell an anonymous caller the route exists. */
+const NEUTRAL_NOT_FOUND = (corsHeaders: Record<string, string>) =>
+  fail(404, "NOT_FOUND", "Not found.", {}, undefined, corsHeaders);
 
 async function rateLimited(
   request: Request,
@@ -111,6 +118,9 @@ export const GET: APIRoute = async ({ request, clientAddress, url }) => {
     sql,
     request,
     async (tx, tenant): Promise<ListOutcome> => {
+      const features = await fetchCommerceFeatures(tx, tenant.tenantId);
+      if (!features.inbox) return { kind: "feature_disabled" };
+
       const authOutcome = await requireCustomerSession(
         request,
         tx,
@@ -151,6 +161,9 @@ export const POST: APIRoute = async ({ request, clientAddress, locals }) => {
     sql,
     request,
     async (tx, tenant): Promise<CreateOutcome> => {
+      const features = await fetchCommerceFeatures(tx, tenant.tenantId);
+      if (!features.inbox) return { kind: "feature_disabled" };
+
       const authOutcome = await requireCustomerSession(
         request,
         tx,
@@ -192,6 +205,9 @@ function respondList(
   result: ListOutcome | null,
   corsHeaders: Record<string, string>
 ): Response {
+  if (result && result.kind === "feature_disabled") {
+    return NEUTRAL_NOT_FOUND(corsHeaders);
+  }
   if (!result || result.kind === "unauthenticated") {
     return fail(
       401,
@@ -233,6 +249,9 @@ function respondCreate(
   result: CreateOutcome | null,
   corsHeaders: Record<string, string>
 ): Response {
+  if (result && result.kind === "feature_disabled") {
+    return NEUTRAL_NOT_FOUND(corsHeaders);
+  }
   if (!result || result.kind === "unauthenticated") {
     return fail(
       401,

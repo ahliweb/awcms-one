@@ -13,6 +13,7 @@ import {
   type UpdateCampaignInput
 } from "../../../../../../modules/commerce/domain/campaign-validation";
 import { COMMERCE_CAMPAIGNS_ACTIVITY_CODE } from "../../../../../../modules/commerce/domain/commerce-permissions";
+import { requireCommerceFeatureForOwnerRoute } from "../../../../../../modules/commerce/application/commerce-feature-gate";
 
 /** `GET /api/v1/commerce/campaigns/{id}` (Issue #114, contract #106 D9). */
 const READ_GUARD = {
@@ -25,6 +26,13 @@ export const GET = defineTenantRoute({
   workClass: "interactive",
   authorize: READ_GUARD,
   handler: async ({ tx, tenantId, params }) => {
+    const gate = await requireCommerceFeatureForOwnerRoute(
+      tx,
+      tenantId,
+      "campaigns"
+    );
+    if (gate) return gate;
+
     const campaignId = params.id;
     if (!campaignId) return fail(400, "VALIDATION_ERROR", "id is required.");
 
@@ -62,6 +70,13 @@ export const PATCH = defineTenantRoute<UpdateCampaignInput>({
   },
   authorize: UPDATE_GUARD,
   handler: async ({ tx, tenantId, auth, params, prepared, locals }) => {
+    const gate = await requireCommerceFeatureForOwnerRoute(
+      tx,
+      tenantId,
+      "campaigns"
+    );
+    if (gate) return gate;
+
     const campaignId = params.id;
     if (!campaignId) return fail(400, "VALIDATION_ERROR", "id is required.");
 

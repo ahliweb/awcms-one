@@ -600,15 +600,14 @@ suspend/activate) and a commissions table (affiliate, order, amount,
 status, filterable by status, approve/pay/void buttons), i18n `en`+`id`.
 `/admin/commerce-settings` gains the commission-rate field.
 
-## External providers — contract only, except D4, D5, D7, D8, D9, and D2/D3's session half (epic #33 wave 0 — ADR-0017, issue #106)
+## External providers — contract only, except D4, D5, D7, D8, D9, D10, and D2/D3's session half (epic #33 wave 0 — ADR-0017, issue #106)
 
 `openapi/modules/commerce.openapi.yaml` also now documents, AHEAD OF ANY
-HANDLER, most of the increment-5 external-providers surface: the gateway
-POS order creation (D6), three
-`reporting`-hosted sales projections (D7), and the module-settings feature
-flags plus tiered pricing at quote (D10). **D4 (courier rates), D5
+HANDLER, the increment-5 external-providers surface still pending: POS
+order creation (D6). **D4 (courier rates), D5
 (WhatsApp), D7 (sales reports), D8 (the inbox), D9 (consent-gated
-campaigns), and the FULL payment gateway (D2/D3 — session creation,
+campaigns), D10 (BjekMart Features flags + tiered pricing at quote, issue
+#118), and the FULL payment gateway (D2/D3 — session creation,
 webhook-endpoint tokens, webhook intake, reconcile) are IMPLEMENTED, not
 contract-only; see their own sections below.** Every one of
 D1–D10's ten decisions — why a port lives inside `commerce` rather than
@@ -625,7 +624,11 @@ EMPTY again once increment 5 finishes, the same discipline #86/ADR-0016
 already proved for accounts. Courier rates', WhatsApp's, the inbox's,
 campaigns', the sales reports', and the full payment gateway's (session
 half AND webhook intake/reconcile) own exemption entries are already
-removed (#107, #108, #111, #114, #117, #110, #113). The RajaOngkir env vars
+removed (#107, #108, #111, #114, #117, #110, #113) — D10 (#118) never added
+one at all: every path it touches (`store-settings/public`, `cart/quote`,
+`orders`) already existed, and its one new write surface (the "Fitur"
+section) reuses `module_management`'s own generic, already-documented
+`PATCH /api/v1/tenant/modules/{moduleKey}/settings`. The RajaOngkir env vars
 (`COMMERCE_SHIPPING_RATE_PROVIDER`, `COMMERCE_RAJAONGKIR_API_KEY`, …), the
 WhatsApp env vars (`COMMERCE_WHATSAPP_PROVIDER`, `COMMERCE_FONNTE_TOKEN`,
 `COMMERCE_META_WA_TOKEN`, `COMMERCE_META_WA_PHONE_NUMBER_ID`, …), and the
@@ -991,6 +994,96 @@ no-op, all with a mocked provider; an integration test against a real,
 migrated Postgres covers the full webhook-paid path, replay-is-a-no-op,
 the reconcile job with the `log` provider, and cross-tenant RLS isolation
 of a webhook-endpoint token.
+
+## Feature toggles & tiered pricing — IMPLEMENTED (Issue #118, epic #33 C9 — contract #106/ADR-0017 D10, ADR-0016 D6)
+
+BjekMart's "Features" screen is `module.ts`'s own `settings.defaults.features`
+— `{pos, inbox, campaigns, gateway, courier}`, every flag `true` by default
+(`domain/commerce-features.ts`'s `DEFAULT_COMMERCE_FEATURES`) — read/written
+through `module_management`'s GENERIC tenant-settings service
+(`fetchModuleSettingsView`/`updateModuleSettings`, `awcms_module_settings`),
+the first time `commerce` declares a `settings` contract at all.
+`resolveCommerceFeatures` resolves each flag INDEPENDENTLY against the
+defaults (never assumes the whole `features` object exists), which is what
+makes a future sixth flag migration-free for a tenant who already saved a
+settings row — the same reasoning `module-settings.ts`'s own shallow
+top-level merge already gives for the module as a whole, one level deeper.
+
+**The 409-vs-404 rule** (`domain/commerce-features.ts`'s own header,
+`application/commerce-feature-gate.ts`'s `requireCommerceFeatureForOwnerRoute`/
+`requireCommerceFeatureForPublicRoute`): a disabled feature answers
+`409 FEATURE_DISABLED` on every AUTHENTICATED owner route (the caller already
+proved who they are — the tenant's own configuration is what blocks them, and
+they need to see why) and a neutral `404` — or, on the ONE route that already
+had a dedicated "not usable right now" code, the pre-existing
+`503 GATEWAY_UNAVAILABLE` — on every ANONYMOUS/public route (never `409`,
+which would tell a prober a route exists at all, the same anti-oracle rule
+`public-commerce-tenant.ts` already enforces for an unresolved tenant).
+
+**Gated**: inbox (owner `/conversations*`, storefront
+`/storefront/account/conversations*`), campaigns (owner `/campaigns*`),
+gateway (owner `/webhook-endpoints*`; storefront `.../payment-gateway/sessions`
+folded into its existing 503; the PUBLIC `/webhooks/{provider}/{endpointToken}`
+intake answers the SAME neutral 404 an unknown token does), courier (owner
+`GET /shipping/destinations`). `pos` has no enforcing route yet — issue #116
+lands that gate on its own branch, in parallel; the flag exists now so the
+settings document's shape does not change again when it does.
+
+**Admin navigation** hides the Inbox/Campaigns sidebar entries the instant
+their feature is off (`ModuleNavigationEntry.requiredFeature`, a new,
+additive field on the shared nav-entry contract; resolved per-request in
+`AdminLayout.astro` from the same `fetchCommerceFeatures` call the routes
+use — `module_management`'s own `sidebar-menu.ts`/`sidebar-menu-config.ts`
+never import `commerce`, keeping the existing one-way module dependency
+direction).
+
+**Public store settings** (`GET .../store-settings/public`) — `toPublicRecord`
+now takes two more parameters, both defaulted so every pre-#118 call site
+(including test literals) keeps compiling and computing the SAME answer it
+always did: `shipping.courierEnabled`/`payment.gatewayEnabled` gain an
+ADDITIONAL `features.courier`/`features.gateway` AND-term (unchanged names,
+same masking discipline), and two new top-level booleans join them —
+`inboxEnabled`/`campaignsEnabled` (the raw flag; neither has its own
+store-setting toggle to AND against) and `whatsappOtpEnabled`
+(`infrastructure/whatsapp-provider-resolver.ts`'s new
+`isWhatsappProviderConfigured` — NOT a `features.*` flag, since Issue #108
+never gained one; `apps/storefront`'s `masuk.astro`/`daftar.astro` already
+read this exact key).
+
+**Settings form**: `/admin/commerce-settings` gains a "Fitur" section that
+writes through the GENERIC `PATCH /api/v1/tenant/modules/commerce/settings`
+route — i.e. `updateModuleSettings`, audited under
+`module_management.settings_updated` with a safe key-names-only diff — gated
+on `module_management.settings.update`, a DIFFERENT permission from this
+screen's own `commerce.settings.update` (the same distinction the
+webhook-endpoints section already draws against
+`commerce.webhook_endpoints.update`). The client always submits the WHOLE
+`features` object: `updateModuleSettings`'s merge is shallow and top-level,
+so a partial patch would silently disable every flag the tenant did not just
+touch.
+
+**Tiered pricing** (closing [ADR-0016](../../../../../docs/adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md)
+D6's own deferred note): `domain/cart-quote.ts`'s `quoteCart` accepts an
+optional `customerLevel` (1–4); `resolveTierPrice` picks `price_level_{n}`
+for a line with no active flash sale and no variant price override, falling
+back to `price` when the merchant never set that tier or the level is
+1/absent — applied BEFORE `computeFinalPrice`'s own `discountPercent`, so
+the same discount rule still governs whichever base price won.
+`POST .../storefront/cart/quote` resolves the level from an OPTIONAL
+`Authorization: Bearer` (`requireCustomerSession`; missing/invalid never
+fails the quote — it just means level 1). `application/order-directory.ts`'s
+`createOrderFromCart` now fetches the account's own customer row (when
+`accountCustomerId` is present) BEFORE its internal re-quote, not after, so
+the SAME level prices both the quote the shopper already saw and the order
+it becomes — quote and order can never disagree. **The level is snapshotted
+on the order only IMPLICITLY**, through the unit price baked into
+`order_items.unit_price` at creation time; there is no separate
+`orders.customer_level` column (this issue needs no migration), and a later
+change to the customer's own level never retroactively re-prices a past
+order. The customers admin screen's `level` edit (`/admin/commerce-customers`,
+`commerce.customers.update`, audited) already existed since Issue #29 —
+#118 adds no new customer-editing surface, only this quote/order-side
+consumer of that same column.
 
 ## Sales reports — IMPLEMENTED (Issue #117, epic #33 — contract #106/ADR-0017 D7)
 

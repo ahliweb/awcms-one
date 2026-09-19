@@ -5325,6 +5325,21 @@ msgstr "Aktifkan checkout tergerbong (Midtrans Snap) untuk toko ini. Memerlukan 
 msgid "Enable payment gateway"
 msgstr "Aktifkan gerbang pembayaran"
 
+msgid "Fitur"
+msgstr "Fitur"
+
+msgid "Turn a whole feature off for this tenant. A disabled feature's owner routes answer 409, its public/storefront routes answer 404, and its admin screen is hidden from the sidebar."
+msgstr "Matikan seluruh fitur untuk tenant ini. Rute pemilik pada fitur yang nonaktif akan menjawab 409, rute publik/etalasenya menjawab 404, dan layar adminnya disembunyikan dari sidebar."
+
+msgid "Point of sale (POS)"
+msgstr "Kasir (POS)"
+
+msgid "Inbox (customer messages)"
+msgstr "Kotak masuk (pesan pelanggan)"
+
+msgid "Save features"
+msgstr "Simpan fitur"
+
 msgid "Payment gateway webhook endpoints"
 msgstr "Endpoint webhook gerbang pembayaran"
 

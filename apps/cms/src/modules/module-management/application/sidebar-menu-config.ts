@@ -169,6 +169,15 @@ export async function fetchRenderedSidebar(
   options: {
     grantedPermissionKeys: ReadonlySet<string>;
     currentPath?: string;
+    /**
+     * Issue #118 — `${moduleKey}:${feature}` keys for features this tenant
+     * has turned OFF, pre-computed by the CALLER (`AdminLayout.astro`).
+     * Deliberately not resolved in here: `module-management` must not import
+     * `commerce`'s own feature-flag shape (or any other module's), the same
+     * dependency direction `descriptor.dependsOn` already enforces one way
+     * — modules may depend on `module_management`, never the reverse.
+     */
+    disabledFeatureKeys?: ReadonlySet<string>;
   }
 ): Promise<ComposedType[]> {
   const arrangement = await fetchSidebarArrangement(tx, tenantId);
@@ -183,6 +192,7 @@ export async function fetchRenderedSidebar(
     {
       grantedPermissionKeys: options.grantedPermissionKeys,
       tenantDisabledModuleKeys: disabledModuleKeys,
+      disabledFeatureKeys: options.disabledFeatureKeys,
       currentPath: options.currentPath
     }
   );

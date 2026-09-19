@@ -16,6 +16,7 @@ import { parseMidtransWebhookBody } from "../../../../../../modules/commerce/dom
 import { resolvePaymentGatewayProvider } from "../../../../../../modules/commerce/infrastructure/payment-gateway-provider-resolver";
 import {
   applyVerifiedWebhookEvent,
+  isGatewayFeatureEnabledForTenant,
   resolveWebhookEndpoint
 } from "../../../../../../modules/commerce/application/payment-webhook-intake";
 
@@ -113,6 +114,14 @@ export const POST: APIRoute = async ({ params, request, clientAddress }) => {
 
   const providerKey = resolved.provider;
   if (providerKey !== "midtrans" && providerKey !== "log") {
+    return neutralNotFound(startedAtMs);
+  }
+
+  // Issue #118 — a tenant that turned `features.gateway` off answers the
+  // SAME neutral 404 as an unknown token: an anonymous caller (Midtrans's
+  // own server, here, but the rule is general) must never be able to
+  // distinguish "wrong token" from "this tenant disabled the gateway".
+  if (!(await isGatewayFeatureEnabledForTenant(sql, resolved.tenantId))) {
     return neutralNotFound(startedAtMs);
   }
 

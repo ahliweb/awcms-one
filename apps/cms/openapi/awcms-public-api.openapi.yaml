@@ -11629,7 +11629,7 @@ paths:
       operationId: quoteCommerceStorefrontCart
       tags:
         - Commerce
-      summary: Anonymous, cross-origin cart quote (Issue 29, `commerce-storefront-endpoints.md`). Tenant resolved from the request Origin/Host — no bearer, no permission check. Read-only.
+      summary: "Anonymous, cross-origin cart quote (Issue 29, `commerce-storefront-endpoints.md`). Tenant resolved from the request Origin/Host — no bearer, no permission check. Read-only. Issue #118 (ADR-0016 D6): an OPTIONAL `Authorization: Bearer <customer session token>` is accepted (never required) — when present and valid, and the account's own `commerce.customers.level` is 2, 3, or 4, every line is priced at that tier's `price_level_{n}` (falling back to `price` when the merchant never set that tier), so the price shown here always matches the price `POST .../orders` charges the same account moments later."
       security: []
       requestBody:
         required: true
@@ -28380,6 +28380,7 @@ components:
               type: boolean
             courierEnabled:
               type: boolean
+              description: "Issue #106 (ADR-0017 D4, #107, #118). `true` only when `shipping.courier.enabled`, the tenant's `commerce` module `features.courier` flag (Issue #118), AND a configured courier-rate provider are ALL true."
             pinpointEnabled:
               type: boolean
             freeShipping:
@@ -28445,7 +28446,7 @@ components:
               description: Issue 29 — whether the public payment-proof upload path is usable on this deployment. Always false in this increment; a payment confirmation without a proof image is still accepted.
             gatewayEnabled:
               type: boolean
-              description: 'Issue #106 (ADR-0017 D3/D10; the #110 half — schema, provider, session route, webhook-endpoint tokens — implemented; #118 (BjekMart Features flag) still pending). Whether the storefront should offer `payment.method: "gateway"` at all — both the store-level `payment.gateway.enabled` toggle AND a configured `COMMERCE_PAYMENT_GATEWAY` must be true; the rate/provider details themselves never cross into this public shape.'
+              description: 'Issue #106 (ADR-0017 D3/D10, #110, #118). Whether the storefront should offer `payment.method: "gateway"` at all — the store-level `payment.gateway.enabled` toggle, the tenant''s `commerce` module `features.gateway` flag (Issue #118), AND a configured `COMMERCE_PAYMENT_GATEWAY` must ALL be true; the rate/provider details themselves never cross into this public shape.'
         orders:
           type: object
           description: Issue 29.
@@ -28486,6 +28487,15 @@ components:
         affiliateProgramEnabled:
           type: boolean
           description: "Issue #92 — whether the affiliate program is on at all. The rate itself never crosses into this public shape (same masking discipline as payment.manualBank/manualQris)."
+        inboxEnabled:
+          type: boolean
+          description: "Issue #118 (contract #106 D10) — the tenant's `commerce` module `features.inbox` flag, verbatim. Storefront `apps/storefront` reads this to decide whether to offer the account conversations UI."
+        campaignsEnabled:
+          type: boolean
+          description: "Issue #118 (contract #106 D10) — the tenant's `commerce` module `features.campaigns` flag, verbatim."
+        whatsappOtpEnabled:
+          type: boolean
+          description: "Issue #108/#118 — whether OTP-via-WhatsApp is usable on this deployment (a configured `WhatsappProvider`, `COMMERCE_WHATSAPP_PROVIDER`/its credentials) — not a `features.*` flag. `apps/storefront`'s `masuk.astro`/`daftar.astro` already read this exact top-level key."
     CommerceTestimonial:
       type: object
       properties:

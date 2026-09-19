@@ -16,6 +16,9 @@ import { mediaLibraryPortAdapter } from "../../../../../../modules/media-library
 import { commercePreflightResponse } from "../../../../../../modules/commerce/application/public-commerce-preflight";
 import { withPublicCommerceTenant } from "../../../../../../modules/commerce/application/public-commerce-tenant";
 import { validateCartQuoteRequest } from "../../../../../../modules/commerce/domain/public-request-validation";
+import { requireCustomerSession } from "../../../../../../modules/commerce/application/customer-session-auth";
+import { fetchCustomerById } from "../../../../../../modules/commerce/application/customer-directory";
+import type { CustomerLevel } from "../../../../../../modules/commerce/domain/cart-quote";
 
 /**
  * `POST /api/v1/commerce/storefront/cart/quote` (Issue #29) — anonymous,
@@ -90,18 +93,41 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
   const { result, corsHeaders } = await withPublicCommerceTenant(
     sql,
     request,
-    async (tx, tenant) =>
-      buildCartQuote(
+    async (tx, tenant) => {
+      // Issue #118 (contract #106 D10, ADR-0016 D6) — an OPTIONAL Bearer:
+      // a missing/invalid/expired session is never a failure for an
+      // otherwise-anonymous quote (`requireCustomerSession`'s own
+      // `{ok: false}` case), it just means "quote at level 1". Mirrors
+      // `POST .../orders`'s own optional-bearer pattern (Issue #91).
+      const authOutcome = await requireCustomerSession(
+        request,
+        tx,
+        tenant.tenantId
+      );
+      let customerLevel: CustomerLevel | null = null;
+      if (authOutcome.ok) {
+        const customer = await fetchCustomerById(
+          tx,
+          tenant.tenantId,
+          authOutcome.account.customerId
+        );
+        if (customer && customer.level >= 1 && customer.level <= 4) {
+          customerLevel = customer.level as CustomerLevel;
+        }
+      }
+
+      return buildCartQuote(
         tx,
         tenant.tenantId,
         mediaLibraryPortAdapter,
-        validation.value,
+        { ...validation.value, customerLevel },
         undefined,
         // Issue #107 — the only call site allowed to fetch LIVE courier
         // rates (a provider call): `getCourierRates` opens its own short
         // transactions off this raw pool client, never off `tx` above.
         sql
-      )
+      );
+    }
   );
 
   if (!result) return NEUTRAL_NOT_FOUND();

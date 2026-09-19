@@ -9,6 +9,7 @@ import { parsePositiveIntSetting } from "../../../../../../../../lib/security/en
 import { fail, ok } from "../../../../../../../../modules/_shared/api-response";
 import { fetchConversationForAccount } from "../../../../../../../../modules/commerce/application/conversation-directory";
 import { requireCustomerSession } from "../../../../../../../../modules/commerce/application/customer-session-auth";
+import { fetchCommerceFeatures } from "../../../../../../../../modules/commerce/application/commerce-feature-gate";
 import { commercePreflightResponse } from "../../../../../../../../modules/commerce/application/public-commerce-preflight";
 import { withPublicCommerceTenant } from "../../../../../../../../modules/commerce/application/public-commerce-tenant";
 
@@ -67,6 +68,9 @@ export const GET: APIRoute = async ({ request, clientAddress, params }) => {
       | "not_found"
       | Awaited<ReturnType<typeof fetchConversationForAccount>>
     > => {
+      const features = await fetchCommerceFeatures(tx, tenant.tenantId);
+      if (!features.inbox) return "not_found";
+
       const authOutcome = await requireCustomerSession(
         request,
         tx,

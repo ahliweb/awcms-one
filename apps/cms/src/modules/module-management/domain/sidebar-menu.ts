@@ -411,12 +411,24 @@ export type SidebarDefaultEntry = {
   order: number;
   /** Exact permission key required to see the link, if any. */
   requiredPermission?: string;
+  /** Issue #118 — carried straight from `ModuleNavigationEntry.requiredFeature`; see that type's own header. */
+  requiredFeature?: { moduleKey: string; feature: string };
 };
 
 export type SidebarComposeOptions = {
   grantedPermissionKeys: ReadonlySet<string>;
   /** Modules the tenant switched off (`awcms_tenant_modules.enabled = false`). Absent = enabled, matching the tenant module lifecycle service. */
   tenantDisabledModuleKeys: ReadonlySet<string>;
+  /**
+   * Issue #118 — feature flags DISABLED for this tenant, keyed
+   * `${moduleKey}:${feature}` (e.g. `"commerce:inbox"`). An entry whose
+   * `requiredFeature` names a key in this set is dropped, the same way a
+   * missing `requiredPermission` drops one — computed once per request by
+   * `sidebar-menu-config.ts`'s `fetchRenderedSidebar` from
+   * `commerce-feature-gate.ts`'s `fetchCommerceFeatures`, never here (this
+   * module stays free of any other module's settings shape).
+   */
+  disabledFeatureKeys?: ReadonlySet<string>;
   /** Used to mark `aria-current`; compared exactly. */
   currentPath?: string;
 };
@@ -484,7 +496,8 @@ export function buildDefaultSidebarModel(
         // takes effect, and every module that does not still gets an icon.
         icon: nav.icon ?? resolveSidebarIcon(nav.labelKey),
         order: nav.order ?? 0,
-        requiredPermission: nav.requiredPermission
+        requiredPermission: nav.requiredPermission,
+        requiredFeature: nav.requiredFeature
       });
     }
   }
@@ -519,6 +532,15 @@ export function composeSidebarSections(
     if (
       entry.moduleKey !== CORE_MODULE_KEY &&
       options.tenantDisabledModuleKeys.has(entry.moduleKey)
+    ) {
+      return false;
+    }
+
+    if (
+      entry.requiredFeature &&
+      options.disabledFeatureKeys?.has(
+        `${entry.requiredFeature.moduleKey}:${entry.requiredFeature.feature}`
+      )
     ) {
       return false;
     }

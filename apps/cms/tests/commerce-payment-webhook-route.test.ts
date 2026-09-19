@@ -122,6 +122,10 @@ describe("payment-gateway webhook intake route — gate ordering (Issue #113)", 
       "../src/modules/commerce/application/payment-webhook-intake",
       () => ({
         ...ORIGINAL_INTAKE,
+        // Issue #118 — this suite mocks every dependency; the real
+        // implementation would open a genuine `withTenantOrThrow` transaction
+        // this file's `FAKE_SQL`/`"tenant-1"` fixtures cannot satisfy.
+        isGatewayFeatureEnabledForTenant: async () => true,
         resolveWebhookEndpoint: async () => null,
         applyVerifiedWebhookEvent: async () => {
           applyCalled = true;
@@ -165,6 +169,10 @@ describe("payment-gateway webhook intake route — gate ordering (Issue #113)", 
       "../src/modules/commerce/application/payment-webhook-intake",
       () => ({
         ...ORIGINAL_INTAKE,
+        // Issue #118 — this suite mocks every dependency; the real
+        // implementation would open a genuine `withTenantOrThrow` transaction
+        // this file's `FAKE_SQL`/`"tenant-1"` fixtures cannot satisfy.
+        isGatewayFeatureEnabledForTenant: async () => true,
         resolveWebhookEndpoint: async () => ({
           tenantId: "tenant-1",
           provider: "midtrans"
@@ -190,6 +198,10 @@ describe("payment-gateway webhook intake route — gate ordering (Issue #113)", 
       "../src/modules/commerce/application/payment-webhook-intake",
       () => ({
         ...ORIGINAL_INTAKE,
+        // Issue #118 — this suite mocks every dependency; the real
+        // implementation would open a genuine `withTenantOrThrow` transaction
+        // this file's `FAKE_SQL`/`"tenant-1"` fixtures cannot satisfy.
+        isGatewayFeatureEnabledForTenant: async () => true,
         resolveWebhookEndpoint: async () => ({
           tenantId: "tenant-1",
           provider: "midtrans"
@@ -232,6 +244,10 @@ describe("payment-gateway webhook intake route — gate ordering (Issue #113)", 
       "../src/modules/commerce/application/payment-webhook-intake",
       () => ({
         ...ORIGINAL_INTAKE,
+        // Issue #118 — this suite mocks every dependency; the real
+        // implementation would open a genuine `withTenantOrThrow` transaction
+        // this file's `FAKE_SQL`/`"tenant-1"` fixtures cannot satisfy.
+        isGatewayFeatureEnabledForTenant: async () => true,
         resolveWebhookEndpoint: async () => ({
           tenantId: "tenant-1",
           provider: "midtrans"
@@ -268,6 +284,10 @@ describe("payment-gateway webhook intake route — gate ordering (Issue #113)", 
       "../src/modules/commerce/application/payment-webhook-intake",
       () => ({
         ...ORIGINAL_INTAKE,
+        // Issue #118 — this suite mocks every dependency; the real
+        // implementation would open a genuine `withTenantOrThrow` transaction
+        // this file's `FAKE_SQL`/`"tenant-1"` fixtures cannot satisfy.
+        isGatewayFeatureEnabledForTenant: async () => true,
         resolveWebhookEndpoint: async () => ({
           tenantId: "tenant-1",
           provider: "midtrans"
@@ -301,6 +321,10 @@ describe("payment-gateway webhook intake route — gate ordering (Issue #113)", 
       "../src/modules/commerce/application/payment-webhook-intake",
       () => ({
         ...ORIGINAL_INTAKE,
+        // Issue #118 — this suite mocks every dependency; the real
+        // implementation would open a genuine `withTenantOrThrow` transaction
+        // this file's `FAKE_SQL`/`"tenant-1"` fixtures cannot satisfy.
+        isGatewayFeatureEnabledForTenant: async () => true,
         resolveWebhookEndpoint: async () => ({
           tenantId: "tenant-1",
           provider: "midtrans"
@@ -323,5 +347,55 @@ describe("payment-gateway webhook intake route — gate ordering (Issue #113)", 
     } as unknown as Parameters<APIRoute>[0]);
 
     expect(response.status).toBe(404);
+  });
+
+  test("Issue #118 — a tenant with features.gateway disabled answers the same neutral 404, never calling verifyWebhook or applyVerifiedWebhookEvent", async () => {
+    let verifyWebhookCalled = false;
+    let applyCalled = false;
+
+    mock.module(
+      "../src/modules/commerce/application/payment-webhook-intake",
+      () => ({
+        ...ORIGINAL_INTAKE,
+        isGatewayFeatureEnabledForTenant: async () => false,
+        resolveWebhookEndpoint: async () => ({
+          tenantId: "tenant-1",
+          provider: "midtrans"
+        }),
+        applyVerifiedWebhookEvent: async () => {
+          applyCalled = true;
+          return { kind: "applied", orderAffected: true };
+        }
+      })
+    );
+    mock.module(
+      "../src/modules/commerce/infrastructure/payment-gateway-provider-resolver",
+      () => ({
+        ...ORIGINAL_RESOLVER,
+        resolvePaymentGatewayProvider: () =>
+          mockProvider({
+            verifyWebhook: async () => {
+              verifyWebhookCalled = true;
+              return {
+                ok: true,
+                eventKey: "x",
+                providerRef: "x",
+                status: "paid" as const
+              };
+            }
+          })
+      })
+    );
+
+    const { POST } = await loadRoute();
+    const response = await POST({
+      params: { provider: "midtrans", endpointToken: VALID_TOKEN },
+      request: makeRequest(VALID_MIDTRANS_BODY, freshIp()),
+      clientAddress: "203.0.113.5"
+    } as unknown as Parameters<APIRoute>[0]);
+
+    expect(response.status).toBe(404);
+    expect(verifyWebhookCalled).toBe(false);
+    expect(applyCalled).toBe(false);
   });
 });

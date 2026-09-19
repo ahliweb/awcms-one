@@ -55,11 +55,34 @@ import {
   isTerminalFailureStatus
 } from "../domain/payment-amount-guard";
 import type { PaymentGatewayStatus } from "../domain/payment-gateway-provider";
+import { fetchCommerceFeatures } from "./commerce-feature-gate";
 
 export type ResolvedWebhookEndpoint = {
   tenantId: string;
   provider: string;
 };
+
+/**
+ * Issue #118 — a tenant that turned `features.gateway` off answers the SAME
+ * neutral 404 an unknown/revoked token does (the route's own gate ordering
+ * calls this right after `resolveWebhookEndpoint` succeeds, before ever
+ * touching `provider.verifyWebhook`). Lives here, alongside
+ * `resolveWebhookEndpoint`/`applyVerifiedWebhookEvent`, rather than as a raw
+ * `withTenantOrThrow` call inlined in the route file, for the same "thin
+ * routes, testable application layer" reason this file's own header states
+ * — `tests/commerce-payment-webhook-route.test.ts` mocks this whole module
+ * to drive the route's gate ordering without a real database.
+ */
+export async function isGatewayFeatureEnabledForTenant(
+  sql: Bun.SQL,
+  tenantId: string
+): Promise<boolean> {
+  return withTenantOrThrow(
+    sql,
+    tenantId,
+    async (tx) => (await fetchCommerceFeatures(tx, tenantId)).gateway
+  );
+}
 
 /**
  * Step 1 — called on the PLAIN `Bun.SQL` client, no tenant context. Returns
