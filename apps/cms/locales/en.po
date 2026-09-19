@@ -5248,3 +5248,70 @@ msgstr ""
 
 msgid "Reviews submitted for completed orders will appear here."
 msgstr ""
+
+msgid "Affiliates"
+msgstr ""
+
+msgid "Affiliate enrolments and their commission ledger for this store."
+msgstr ""
+
+msgid "You do not have permission to view affiliates."
+msgstr ""
+
+msgid "Affiliates could not be loaded right now. Please try again later."
+msgstr ""
+
+msgid "{count} affiliate"
+msgid_plural "{count} affiliates"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Rate (%)"
+msgstr ""
+
+msgid "No affiliates yet"
+msgstr ""
+
+msgid "Shoppers who enrol in the affiliate program will appear here."
+msgstr ""
+
+msgid "Update rate"
+msgstr ""
+
+msgid "{count} commission"
+msgid_plural "{count} commissions"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Filter by status"
+msgstr ""
+
+msgid "Approved"
+msgstr ""
+
+msgid "Paid"
+msgstr ""
+
+msgid "Void"
+msgstr ""
+
+msgid "Amount"
+msgstr ""
+
+msgid "No commissions yet"
+msgstr ""
+
+msgid "Commissions appear once a referred order reaches completed."
+msgstr ""
+
+msgid "Mark paid"
+msgstr ""
+
+msgid "Affiliate program"
+msgstr ""
+
+msgid "Leave blank to keep the affiliate program off for this store. Set a rate (0-100, two decimals) to turn it on — new enrolments copy this rate."
+msgstr ""
+
+msgid "Affiliate commission rate (%)"
+msgstr ""

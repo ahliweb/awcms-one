@@ -1,0 +1,489 @@
+---
+/**
+ * Affiliate program admin screen (Issue #92, contract #86's D5) — two
+ * tables on one screen, the same "one screen per module surface" shape
+ * `commerce-reviews.astro` uses: affiliates (code, customer, rate, status,
+ * suspend/activate/edit-rate) and their commissions (filter by status,
+ * approve/pay/void). Both lists show their FIRST page only
+ * ({@link import("../../modules/commerce/application/affiliate-directory").AFFILIATE_LIST_LIMIT},
+ * 100 rows) — no "load more" control in this increment, the same scope this
+ * screen's own admin-screen-coverage entry accepts for a first cut.
+ */
+import AdminLayout from "../../layouts/AdminLayout.astro";
+import "../../styles/admin-screens.css";
+import { loadAdminScreen } from "../../lib/auth/admin-screen";
+import { logAdminPageError } from "../../lib/logging/error-log";
+import { getTranslatorFor } from "../../lib/i18n";
+import {
+  listAffiliateCommissionsForAdmin,
+  listAffiliatesForAdmin
+} from "../../modules/commerce/application/affiliate-directory";
+
+const ssr = Astro.locals.ssrContext!;
+const { t, tn } = getTranslatorFor(Astro.locals.locale);
+
+const statusFilter = Astro.url.searchParams.get("commissionStatus") ?? "";
+
+const screen = await loadAdminScreen({
+  ssr,
+  workClass: "interactive",
+  authorize: {
+    moduleKey: "commerce",
+    activityCode: "affiliates",
+    action: "read"
+  },
+  load: async ({ tx, can }) => {
+    const affiliatesPage = await listAffiliatesForAdmin(tx, ssr.tenantId, null);
+    const commissionsPage = await listAffiliateCommissionsForAdmin(
+      tx,
+      ssr.tenantId,
+      null,
+      {
+        status:
+          statusFilter === "pending" ||
+          statusFilter === "approved" ||
+          statusFilter === "paid" ||
+          statusFilter === "void"
+            ? statusFilter
+            : undefined
+      }
+    );
+    const canUpdateAffiliates = await can({
+      moduleKey: "commerce",
+      activityCode: "affiliates",
+      action: "update"
+    });
+    const canReadCommissions = await can({
+      moduleKey: "commerce",
+      activityCode: "affiliate_commissions",
+      action: "read"
+    });
+    const canUpdateCommissions = await can({
+      moduleKey: "commerce",
+      activityCode: "affiliate_commissions",
+      action: "update"
+    });
+
+    return {
+      affiliates: affiliatesPage.items,
+      commissions: canReadCommissions ? commissionsPage.items : [],
+      canUpdateAffiliates,
+      canReadCommissions,
+      canUpdateCommissions
+    };
+  },
+  onError: (error) => {
+    logAdminPageError(
+      "admin/commerce-affiliates.astro: failed to load affiliates",
+      error,
+      { correlationId: Astro.locals.correlationId }
+    );
+  }
+});
+
+const canRead = screen.state !== "denied";
+const loadError = screen.state === "error";
+const affiliates = screen.state === "allowed" ? screen.data.affiliates : [];
+const commissions = screen.state === "allowed" ? screen.data.commissions : [];
+const canUpdateAffiliates =
+  screen.state === "allowed" && screen.data.canUpdateAffiliates;
+const canReadCommissions =
+  screen.state === "allowed" && screen.data.canReadCommissions;
+const canUpdateCommissions =
+  screen.state === "allowed" && screen.data.canUpdateCommissions;
+---
+
+<AdminLayout
+  title={t("Affiliates")}
+  description={t(
+    "Affiliate enrolments and their commission ledger for this store."
+  )}
+>
+  {
+    !canRead && (
+      <p class="state-notice fade-in-up" id="affiliates-denied">
+        {t("You do not have permission to view affiliates.")}
+      </p>
+    )
+  }
+  {
+    canRead && loadError && (
+      <p class="state-notice fade-in-up" id="affiliates-error">
+        {t("Affiliates could not be loaded right now. Please try again later.")}
+      </p>
+    )
+  }
+
+  {
+    canRead && !loadError && (
+      <p
+        id="affiliate-action-error"
+        class="admin-create-error"
+        role="alert"
+        hidden
+      />
+    )
+  }
+
+  {
+    canRead && !loadError && (
+      <div class="data-table-scroll fade-in-up">
+        <table
+          class="data-table data-table--stack"
+          id="commerce-affiliates-table"
+        >
+          <caption>
+            {tn("{count} affiliate", "{count} affiliates", affiliates.length, {
+              count: affiliates.length
+            })}
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">{t("Code")}</th>
+              <th scope="col">{t("Customer")}</th>
+              <th scope="col">{t("Rate (%)")}</th>
+              <th scope="col">{t("Status")}</th>
+              {canUpdateAffiliates && <th scope="col">{t("Actions")}</th>}
+            </tr>
+          </thead>
+          <tbody>
+            {affiliates.length === 0 ? (
+              <tr>
+                <td
+                  class="data-table-empty"
+                  colspan={canUpdateAffiliates ? 5 : 4}
+                >
+                  <div class="empty-state">
+                    <span class="empty-state-icon" aria-hidden="true">
+                      ◇
+                    </span>
+                    <span class="empty-state-title">
+                      {t("No affiliates yet")}
+                    </span>
+                    <span class="empty-state-text">
+                      {t(
+                        "Shoppers who enrol in the affiliate program will appear here."
+                      )}
+                    </span>
+                  </div>
+                </td>
+              </tr>
+            ) : (
+              affiliates.map((affiliate) => (
+                <tr data-affiliate-row={affiliate.id}>
+                  <td data-label="Code">
+                    <span class="cell-code">{affiliate.code}</span>
+                  </td>
+                  <td data-label="Customer">{affiliate.customerName}</td>
+                  <td data-label="Rate">
+                    <span class="stacked-block">
+                      <span>{affiliate.commissionRate}</span>
+                      {canUpdateAffiliates && (
+                        <span class="row-actions">
+                          <input
+                            type="text"
+                            inputmode="decimal"
+                            class="affiliate-rate-input"
+                            data-affiliate-id={affiliate.id}
+                            placeholder={affiliate.commissionRate}
+                          />
+                          <button
+                            type="button"
+                            class="module-toggle affiliate-rate-btn"
+                            data-affiliate-id={affiliate.id}
+                          >
+                            {t("Update rate")}
+                          </button>
+                        </span>
+                      )}
+                    </span>
+                  </td>
+                  <td data-label="Status">{affiliate.status}</td>
+                  {canUpdateAffiliates && (
+                    <td data-label="Actions" class="stacked-block">
+                      <div class="row-actions">
+                        {affiliate.status === "active" ? (
+                          <button
+                            type="button"
+                            class="module-toggle affiliate-suspend-btn"
+                            data-affiliate-id={affiliate.id}
+                          >
+                            {t("Suspend")}
+                          </button>
+                        ) : (
+                          <button
+                            type="button"
+                            class="module-toggle affiliate-activate-btn"
+                            data-affiliate-id={affiliate.id}
+                          >
+                            {t("Activate")}
+                          </button>
+                        )}
+                      </div>
+                    </td>
+                  )}
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
+    )
+  }
+
+  {
+    canRead && canReadCommissions && !loadError && (
+      <div class="data-table-scroll fade-in-up">
+        <table
+          class="data-table data-table--stack"
+          id="commerce-affiliate-commissions-table"
+        >
+          <caption>
+            {tn(
+              "{count} commission",
+              "{count} commissions",
+              commissions.length,
+              { count: commissions.length }
+            )}
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">
+                {t("Filter by status")}
+                <form method="get" id="commission-filter-form">
+                  <select name="commissionStatus" id="commission-status-select">
+                    <option value="" selected={statusFilter === ""}>
+                      {t("All")}
+                    </option>
+                    <option
+                      value="pending"
+                      selected={statusFilter === "pending"}
+                    >
+                      {t("Pending")}
+                    </option>
+                    <option
+                      value="approved"
+                      selected={statusFilter === "approved"}
+                    >
+                      {t("Approved")}
+                    </option>
+                    <option value="paid" selected={statusFilter === "paid"}>
+                      {t("Paid")}
+                    </option>
+                    <option value="void" selected={statusFilter === "void"}>
+                      {t("Void")}
+                    </option>
+                  </select>
+                </form>
+              </th>
+              <th scope="col">{t("Order")}</th>
+              <th scope="col">{t("Amount")}</th>
+              <th scope="col">{t("Status")}</th>
+              <th scope="col">{t("Created")}</th>
+              {canUpdateCommissions && <th scope="col">{t("Actions")}</th>}
+            </tr>
+          </thead>
+          <tbody>
+            {commissions.length === 0 ? (
+              <tr>
+                <td
+                  class="data-table-empty"
+                  colspan={canUpdateCommissions ? 6 : 5}
+                >
+                  <div class="empty-state">
+                    <span class="empty-state-icon" aria-hidden="true">
+                      ◇
+                    </span>
+                    <span class="empty-state-title">
+                      {t("No commissions yet")}
+                    </span>
+                    <span class="empty-state-text">
+                      {t(
+                        "Commissions appear once a referred order reaches completed."
+                      )}
+                    </span>
+                  </div>
+                </td>
+              </tr>
+            ) : (
+              commissions.map((commission) => (
+                <tr data-commission-row={commission.id}>
+                  <td data-label="Affiliate">
+                    <span class="cell-code">{commission.affiliateCode}</span>
+                  </td>
+                  <td data-label="Order">
+                    <span class="cell-code">{commission.orderCode}</span>
+                  </td>
+                  <td data-label="Amount">{commission.amount}</td>
+                  <td data-label="Status">{commission.status}</td>
+                  <td data-label="Created">{commission.createdAt}</td>
+                  {canUpdateCommissions && (
+                    <td data-label="Actions" class="stacked-block">
+                      <div class="row-actions">
+                        {commission.status === "pending" && (
+                          <>
+                            <button
+                              type="button"
+                              class="module-toggle commission-approve-btn"
+                              data-commission-id={commission.id}
+                            >
+                              {t("Approve")}
+                            </button>
+                            <button
+                              type="button"
+                              class="module-toggle commission-void-btn"
+                              data-commission-id={commission.id}
+                            >
+                              {t("Void")}
+                            </button>
+                          </>
+                        )}
+                        {commission.status === "approved" && (
+                          <>
+                            <button
+                              type="button"
+                              class="module-toggle commission-pay-btn"
+                              data-commission-id={commission.id}
+                            >
+                              {t("Mark paid")}
+                            </button>
+                            <button
+                              type="button"
+                              class="module-toggle commission-void-btn"
+                              data-commission-id={commission.id}
+                            >
+                              {t("Void")}
+                            </button>
+                          </>
+                        )}
+                      </div>
+                    </td>
+                  )}
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
+    )
+  }
+</AdminLayout>
+
+<script>
+  import {
+    messageBox,
+    mutateAndReload,
+    onAction,
+    sendJson
+  } from "../../lib/ui/admin-form-client";
+
+  const actionError = messageBox("affiliate-action-error");
+
+  /** One PATCH-affiliate wiring for all three field edits — no `Idempotency-Key` (a plain field edit, replay-safe by construction). */
+  function patchAffiliate(
+    selector: string,
+    body: (id: string) => Record<string, unknown> | null,
+    failMessage: string,
+    busyLabel: string
+  ): void {
+    onAction(selector, async (button) => {
+      const id = button.dataset.affiliateId;
+      if (!id) return;
+      const payload = body(id);
+      if (!payload) return;
+      await mutateAndReload(
+        button,
+        actionError,
+        () => sendJson("PATCH", `/api/v1/commerce/affiliates/${id}`, payload),
+        failMessage,
+        busyLabel
+      );
+    });
+  }
+
+  /** One POST-transition wiring for approve/pay/void — all three require `Idempotency-Key` (skill `awcms-idempotency`). */
+  function commissionTransition(
+    selector: string,
+    action: "approve" | "pay" | "void",
+    failMessage: string,
+    busyLabel: string,
+    confirmMessage?: string
+  ): void {
+    onAction(selector, async (button) => {
+      const id = button.dataset.commissionId;
+      if (!id) return;
+      if (confirmMessage && !window.confirm(confirmMessage)) return;
+      await mutateAndReload(
+        button,
+        actionError,
+        () =>
+          sendJson(
+            "POST",
+            `/api/v1/commerce/affiliate-commissions/${id}/${action}`,
+            undefined,
+            { "Idempotency-Key": crypto.randomUUID() }
+          ),
+        failMessage,
+        busyLabel
+      );
+    });
+  }
+
+  patchAffiliate(
+    ".affiliate-suspend-btn",
+    () => ({ status: "suspended" }),
+    "Could not suspend the affiliate. Please try again.",
+    "Suspending…"
+  );
+  patchAffiliate(
+    ".affiliate-activate-btn",
+    () => ({ status: "active" }),
+    "Could not activate the affiliate. Please try again.",
+    "Activating…"
+  );
+  patchAffiliate(
+    ".affiliate-rate-btn",
+    (id) => {
+      const input = document.querySelector<HTMLInputElement>(
+        `.affiliate-rate-input[data-affiliate-id="${id}"]`
+      );
+      const rate = input?.value.trim();
+      return rate ? { commissionRate: rate } : null;
+    },
+    "Could not update the commission rate. Please try again.",
+    "Saving…"
+  );
+
+  commissionTransition(
+    ".commission-approve-btn",
+    "approve",
+    "Could not approve the commission. Please try again.",
+    "Approving…"
+  );
+  commissionTransition(
+    ".commission-pay-btn",
+    "pay",
+    "Could not mark the commission paid. Please try again.",
+    "Saving…"
+  );
+  commissionTransition(
+    ".commission-void-btn",
+    "void",
+    "Could not void the commission. Please try again.",
+    "Voiding…",
+    "Void this commission?"
+  );
+
+  document
+    .getElementById("commission-status-select")
+    ?.addEventListener("change", (event) => {
+      const select = event.currentTarget as HTMLSelectElement;
+      const url = new URL(window.location.href);
+      if (select.value) {
+        url.searchParams.set("commissionStatus", select.value);
+      } else {
+        url.searchParams.delete("commissionStatus");
+      }
+      window.location.href = url.toString();
+    });
+</script>

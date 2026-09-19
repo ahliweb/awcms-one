@@ -5,14 +5,17 @@ import {
   readJsonBody
 } from "../../../../../lib/security/request-body-limit";
 import {
+  fetchAffiliateCommissionRate,
   fetchStoreSettings,
   resetStoreSettings,
+  saveAffiliateCommissionRate,
   saveStoreSettings
 } from "../../../../../modules/commerce/application/store-settings-directory";
 import {
   validateStoreSettingsInput,
   type StoreSettingsData
 } from "../../../../../modules/commerce/domain/store-settings-validation";
+import { validateCommissionRateInput } from "../../../../../modules/commerce/domain/affiliate-commission";
 import { COMMERCE_SETTINGS_ACTIVITY_CODE } from "../../../../../modules/commerce/domain/commerce-permissions";
 
 const READ_GUARD = {
@@ -30,14 +33,24 @@ const UPDATE_GUARD = {
 export const GET = defineTenantRoute({
   workClass: "interactive",
   authorize: READ_GUARD,
-  handler: async ({ tx, tenantId }) =>
-    ok(await fetchStoreSettings(tx, tenantId))
+  handler: async ({ tx, tenantId }) => {
+    const [settings, affiliateCommissionRate] = await Promise.all([
+      fetchStoreSettings(tx, tenantId),
+      fetchAffiliateCommissionRate(tx, tenantId)
+    ]);
+    return ok({ ...settings, affiliateCommissionRate });
+  }
 });
 
-/** `PUT /api/v1/commerce/store-settings` — full replace, never a partial merge (see `domain/store-settings-validation.ts`'s header). */
+type PreparedSettingsUpdate = {
+  settings: StoreSettingsData;
+  affiliateCommissionRate: string | null;
+};
+
+/** `PUT /api/v1/commerce/store-settings` — full replace, never a partial merge (see `domain/store-settings-validation.ts`'s header). `affiliateCommissionRate` (Issue #92) is validated/saved separately from the jsonb blob — see `sql/921`'s header for why it is a real column. */
 export const PUT = defineTenantRoute({
   workClass: "interactive",
-  prepare: async ({ request }): Promise<StoreSettingsData | Response> => {
+  prepare: async ({ request }): Promise<PreparedSettingsUpdate | Response> => {
     const bodyRead = await readJsonBody(request);
     if (bodyRead.tooLarge) return bodyTooLargeResponse(bodyRead.limitBytes);
 
@@ -52,7 +65,28 @@ export const PUT = defineTenantRoute({
       );
     }
 
-    return validation.value;
+    const record =
+      bodyRead.value && typeof bodyRead.value === "object"
+        ? (bodyRead.value as Record<string, unknown>)
+        : {};
+    const rateValidation = validateCommissionRateInput(
+      record.affiliateCommissionRate,
+      "affiliateCommissionRate"
+    );
+    if (!rateValidation.valid) {
+      return fail(
+        400,
+        "VALIDATION_ERROR",
+        "Store settings input is invalid.",
+        {},
+        rateValidation.errors
+      );
+    }
+
+    return {
+      settings: validation.value,
+      affiliateCommissionRate: rateValidation.value
+    };
   },
   authorize: UPDATE_GUARD,
   handler: async ({ tx, tenantId, auth, prepared, locals }) => {
@@ -60,10 +94,18 @@ export const PUT = defineTenantRoute({
       tx,
       tenantId,
       auth.context.tenantUserId,
-      prepared,
+      prepared.settings,
       locals.correlationId
     );
-    return ok(saved);
+    await saveAffiliateCommissionRate(
+      tx,
+      tenantId,
+      prepared.affiliateCommissionRate
+    );
+    return ok({
+      ...saved,
+      affiliateCommissionRate: prepared.affiliateCommissionRate
+    });
   }
 });
 

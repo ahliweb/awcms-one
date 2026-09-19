@@ -3909,12 +3909,12 @@ paths:
       operationId: enrolCommerceStorefrontAccountAffiliate
       tags:
         - Commerce Accounts
-      summary: "Issue #86 (design only). Enrol the account in the affiliate program (D5). Requires the program enabled tenant-wide."
+      summary: "Issue #92 (contract #86 D5). Enrol the account in the affiliate program. Requires the program enabled tenant-wide. Idempotent — a second call returns the same row."
       security:
         - customerBearer: []
       responses:
         "201":
-          description: Enrolled.
+          description: Enrolled (or already enrolled — idempotent).
           content:
             application/json:
               schema:
@@ -3925,7 +3925,11 @@ paths:
                     enum:
                       - true
                   data:
-                    $ref: "#/components/schemas/Affiliate"
+                    type: object
+                    properties:
+                      affiliate:
+                        $ref: "#/components/schemas/Affiliate"
+                    description: Matches `apps/storefront/src/lib/akun-klien.ts`'s `gabungAfiliasi` contract — `{affiliate}`, extended with `link` and `stats` same as the GET response.
         "401":
           description: UNAUTHENTICATED.
           content:
@@ -3943,7 +3947,7 @@ paths:
       operationId: listCommerceStorefrontAccountAffiliateCommissions
       tags:
         - Commerce Accounts
-      summary: "Issue #86 (design only). This account's own commission ledger, keyset-paginated."
+      summary: "Issue #92 (contract #86 D5). This account's own commission ledger, keyset-paginated."
       security:
         - customerBearer: []
       parameters:
@@ -3965,9 +3969,16 @@ paths:
                     enum:
                       - true
                   data:
-                    type: array
-                    items:
-                      $ref: "#/components/schemas/AffiliateCommission"
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/AffiliateCommission"
+                      nextCursor:
+                        type: string
+                        nullable: true
+                    description: Matches `apps/storefront/src/lib/akun-klien.ts`'s `ambilKomisiAfiliasi` contract — `{items, nextCursor}`.
         "401":
           description: UNAUTHENTICATED.
           content:
@@ -3979,7 +3990,13 @@ paths:
       operationId: listCommerceAffiliates
       tags:
         - Commerce Affiliates
-      summary: "Issue #86 (design only). Staff list of affiliates. Gated on `commerce.affiliates.read`."
+      summary: "Issue #92 (contract #86 D5). Staff list of affiliates, keyset-paginated. Gated on `commerce.affiliates.read`."
+      parameters:
+        - name: cursor
+          in: query
+          required: false
+          schema:
+            type: string
       responses:
         "200":
           description: One page of affiliates.
@@ -3993,9 +4010,15 @@ paths:
                     enum:
                       - true
                   data:
-                    type: array
-                    items:
-                      $ref: "#/components/schemas/Affiliate"
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/Affiliate"
+                      nextCursor:
+                        type: string
+                        nullable: true
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
@@ -4055,7 +4078,23 @@ paths:
       operationId: listCommerceAffiliateCommissions
       tags:
         - Commerce Affiliates
-      summary: "Issue #86 (design only). Staff list of affiliate commissions. Gated on `commerce.affiliate_commissions.read`."
+      summary: "Issue #92 (contract #86 D5). Staff list of affiliate commissions, keyset-paginated. Gated on `commerce.affiliate_commissions.read`."
+      parameters:
+        - name: cursor
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - pending
+              - approved
+              - paid
+              - void
       responses:
         "200":
           description: One page of commissions.
@@ -4069,9 +4108,15 @@ paths:
                     enum:
                       - true
                   data:
-                    type: array
-                    items:
-                      $ref: "#/components/schemas/AffiliateCommission"
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/AffiliateCommission"
+                      nextCursor:
+                        type: string
+                        nullable: true
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
@@ -5554,6 +5599,10 @@ components:
         meta:
           type: object
           description: home/contact, each {title, description} (nullable).
+        affiliateCommissionRate:
+          type: string
+          nullable: true
+          description: "Issue #92 — numeric(5,2) as a string, 0-100, two decimals. A real column, not part of this jsonb document (sql/921's header) — included here on the wire only. null means the affiliate program is OFF for this tenant; a non-null value both turns it on and is the rate a NEW enrolment copies."
     CommerceStoreSettingsPublic:
       type: object
       description: The subset a storefront may publish — the contract awcms-one's storefront builds against. Never carries an account number, account holder or QRIS payload.
@@ -5739,6 +5788,9 @@ components:
                     nullable: true
         meta:
           type: object
+        affiliateProgramEnabled:
+          type: boolean
+          description: "Issue #92 — whether the affiliate program is on at all. The rate itself never crosses into this public shape (same masking discipline as payment.manualBank/manualQris)."
     CommerceCartQuoteLine:
       type: object
       description: Issue 29 — a resolved cart line, request or response shape depending on context.
@@ -6300,7 +6352,7 @@ components:
           format: date-time
     Affiliate:
       type: object
-      description: "Issue #86 (design only). A row of `awcms_commerce_affiliates`, 1:1 with a customer (D5) — designed fresh, no legacy column carried over."
+      description: "Issue #92 (contract #86 D5). A row of `awcms_commerce_affiliates`, 1:1 with a customer — designed fresh, no legacy column carried over. `customerId`/`customerName` are populated on the STAFF list (`GET /api/v1/commerce/affiliates`) only; the storefront's own `GET/POST .../account/affiliate` never needs them (the account already knows who it is) and instead extends this shape with `link`/`stats`."
       properties:
         id:
           type: string
@@ -6308,6 +6360,11 @@ components:
         code:
           type: string
           description: Unique per tenant; captured by the storefront as `?ref=` and sent at order creation.
+        customerId:
+          type: string
+          format: uuid
+        customerName:
+          type: string
         commissionRate:
           type: string
           description: numeric(5,2) as a string.
@@ -6321,7 +6378,7 @@ components:
           format: date-time
     AffiliateCommission:
       type: object
-      description: "Issue #86 (design only). A row of `awcms_commerce_affiliate_commissions` — created when the referenced order reaches `completed`; self-referral yields none (D5)."
+      description: "Issue #92 (contract #86 D5). A row of `awcms_commerce_affiliate_commissions` — created when the referenced order reaches `completed`; self-referral yields none. `affiliateCode`/`orderCode` are the STAFF list's own convenience denormalisations (never re-derived by the client); the storefront's own `AfiliasiKomisi` (`apps/storefront/src/lib/akun-klien.ts`) only reads `id`/`orderCode`/`amount`/`status`/`createdAt`."
       properties:
         id:
           type: string
@@ -6329,9 +6386,13 @@ components:
         affiliateId:
           type: string
           format: uuid
+        affiliateCode:
+          type: string
         orderId:
           type: string
           format: uuid
+        orderCode:
+          type: string
         baseAmount:
           type: string
           description: numeric(14,2) as a string.

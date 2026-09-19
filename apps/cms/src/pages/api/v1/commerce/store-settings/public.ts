@@ -2,6 +2,7 @@ import { ok } from "../../../../../modules/_shared/api-response";
 import { defineTenantRoute } from "../../../../../modules/_shared/tenant-route";
 import { mediaLibraryPortAdapter } from "../../../../../modules/media-library/application/media-library-port-adapter";
 import {
+  fetchAffiliateCommissionRate,
   fetchStoreSettings,
   toPublicRecord
 } from "../../../../../modules/commerce/application/store-settings-directory";
@@ -24,9 +25,18 @@ export const GET = defineTenantRoute({
   workClass: "interactive",
   authorize: READ_GUARD,
   handler: async ({ tx, tenantId }) => {
-    const settings = await fetchStoreSettings(tx, tenantId);
+    const [settings, affiliateCommissionRate] = await Promise.all([
+      fetchStoreSettings(tx, tenantId),
+      fetchAffiliateCommissionRate(tx, tenantId)
+    ]);
     return ok(
-      await toPublicRecord(tx, tenantId, settings, mediaLibraryPortAdapter)
+      await toPublicRecord(
+        tx,
+        tenantId,
+        settings,
+        mediaLibraryPortAdapter,
+        affiliateCommissionRate !== null
+      )
     );
   }
 });

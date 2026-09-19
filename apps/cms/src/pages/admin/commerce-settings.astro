@@ -20,7 +20,10 @@ import "../../styles/admin-screens.css";
 import { loadAdminScreen } from "../../lib/auth/admin-screen";
 import { logAdminPageError } from "../../lib/logging/error-log";
 import { getTranslatorFor } from "../../lib/i18n";
-import { fetchStoreSettings } from "../../modules/commerce/application/store-settings-directory";
+import {
+  fetchAffiliateCommissionRate,
+  fetchStoreSettings
+} from "../../modules/commerce/application/store-settings-directory";
 
 const ssr = Astro.locals.ssrContext!;
 const { t } = getTranslatorFor(Astro.locals.locale);
@@ -34,13 +37,16 @@ const screen = await loadAdminScreen({
     action: "read"
   },
   load: async ({ tx, can }) => {
-    const settings = await fetchStoreSettings(tx, ssr.tenantId);
+    const [settings, affiliateCommissionRate] = await Promise.all([
+      fetchStoreSettings(tx, ssr.tenantId),
+      fetchAffiliateCommissionRate(tx, ssr.tenantId)
+    ]);
     const canUpdate = await can({
       moduleKey: "commerce",
       activityCode: "settings",
       action: "update"
     });
-    return { settings, canUpdate };
+    return { settings, affiliateCommissionRate, canUpdate };
   },
   onError: (error) => {
     logAdminPageError(
@@ -56,6 +62,8 @@ const screen = await loadAdminScreen({
 const canRead = screen.state !== "denied";
 const loadError = screen.state === "error";
 const settings = screen.state === "allowed" ? screen.data.settings : null;
+const affiliateCommissionRate =
+  screen.state === "allowed" ? screen.data.affiliateCommissionRate : null;
 const canUpdate = screen.state === "allowed" && screen.data.canUpdate;
 
 const advancedJson = settings
@@ -172,6 +180,23 @@ const advancedJson = settings
           value={settings.mapsEmbedUrl ?? ""}
         />
 
+        <p class="form-legend">{t("Affiliate program")}</p>
+        <p class="cell-muted">
+          {t(
+            "Leave blank to keep the affiliate program off for this store. Set a rate (0-100, two decimals) to turn it on — new enrolments copy this rate."
+          )}
+        </p>
+        <label for="settings-affiliateCommissionRate">
+          {t("Affiliate commission rate (%)")}
+        </label>
+        <input
+          id="settings-affiliateCommissionRate"
+          type="text"
+          inputmode="decimal"
+          placeholder="e.g. 10.00"
+          value={affiliateCommissionRate ?? ""}
+        />
+
         <p class="form-legend">{t("Advanced settings (JSON)")}</p>
         <p class="cell-muted">
           {t(
@@ -244,6 +269,9 @@ const advancedJson = settings
       whatsapp: blankToNull(value("settings-whatsapp")),
       email: blankToNull(value("settings-email")),
       mapsEmbedUrl: blankToNull(value("settings-mapsEmbedUrl")),
+      affiliateCommissionRate: blankToNull(
+        value("settings-affiliateCommissionRate")
+      ),
       ...advanced
     });
 

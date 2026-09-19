@@ -479,8 +479,20 @@ export const READER_BUDGET_BYTES = 24_000;
  * possible number, since a seventh call site here is still one honest
  * `sendJson` handler per screen, not yet the duplication Issue #552's
  * consolidation lesson warns about.
+ *
+ * 230,682 B measured after Issue #92 (awcms-one epic #32, C4) — one more
+ * admin screen, `commerce-affiliates.astro` (two tables: affiliates with
+ * suspend/activate/edit-rate, commissions with approve/pay/void), client
+ * script `commerce-affiliates.astro_..._lang.js` 1,563 B. This IS past the
+ * "seventh call site" mark the #29 comment above already flagged as the
+ * point a shared `admin-commerce-crud.ts` module becomes the honest next
+ * step rather than another raise — noted here rather than silently ignored,
+ * but out of scope for #92 to build; the script itself already factors its
+ * own three-way PATCH/POST duplication into two small local helpers rather
+ * than one `sendJson` call per button, the same consolidation instinct at
+ * screen scale. 231,000 keeps a small margin above the measured total.
  */
-export const APP_BUDGET_BYTES = 230_000;
+export const APP_BUDGET_BYTES = 231_000;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.

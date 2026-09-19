@@ -5226,3 +5226,68 @@ msgstr "Belum ada ulasan"
 
 msgid "Reviews submitted for completed orders will appear here."
 msgstr "Ulasan yang dikirim untuk pesanan selesai akan muncul di sini."
+
+msgid "Affiliates"
+msgstr "Afiliasi"
+
+msgid "Affiliate enrolments and their commission ledger for this store."
+msgstr "Pendaftaran afiliasi dan buku besar komisi untuk toko ini."
+
+msgid "You do not have permission to view affiliates."
+msgstr "Anda tidak memiliki izin untuk melihat afiliasi."
+
+msgid "Affiliates could not be loaded right now. Please try again later."
+msgstr "Afiliasi tidak dapat dimuat saat ini. Silakan coba lagi nanti."
+
+msgid "{count} affiliate"
+msgid_plural "{count} affiliates"
+msgstr[0] "{count} afiliasi"
+
+msgid "Rate (%)"
+msgstr "Tarif (%)"
+
+msgid "No affiliates yet"
+msgstr "Belum ada afiliasi"
+
+msgid "Shoppers who enrol in the affiliate program will appear here."
+msgstr "Pembeli yang mendaftar program afiliasi akan muncul di sini."
+
+msgid "Update rate"
+msgstr "Perbarui tarif"
+
+msgid "{count} commission"
+msgid_plural "{count} commissions"
+msgstr[0] "{count} komisi"
+
+msgid "Filter by status"
+msgstr "Filter berdasarkan status"
+
+msgid "Approved"
+msgstr "Disetujui"
+
+msgid "Paid"
+msgstr "Dibayar"
+
+msgid "Void"
+msgstr "Dibatalkan"
+
+msgid "Amount"
+msgstr "Jumlah"
+
+msgid "No commissions yet"
+msgstr "Belum ada komisi"
+
+msgid "Commissions appear once a referred order reaches completed."
+msgstr "Komisi muncul setelah pesanan yang dirujuk mencapai status selesai."
+
+msgid "Mark paid"
+msgstr "Tandai dibayar"
+
+msgid "Affiliate program"
+msgstr "Program afiliasi"
+
+msgid "Leave blank to keep the affiliate program off for this store. Set a rate (0-100, two decimals) to turn it on — new enrolments copy this rate."
+msgstr "Biarkan kosong untuk menonaktifkan program afiliasi toko ini. Atur tarif (0-100, dua desimal) untuk mengaktifkannya — pendaftaran baru menyalin tarif ini."
+
+msgid "Affiliate commission rate (%)"
+msgstr "Tarif komisi afiliasi (%)"

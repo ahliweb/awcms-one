@@ -92,6 +92,11 @@ import {
 } from "./customer-directory";
 import { fetchStoreSettings } from "./store-settings-directory";
 import { listLiveProductImagesByProductIds } from "./product-image-directory";
+import {
+  recordAffiliateCommissionOnOrderCompleted,
+  resolveAffiliateForOrder,
+  voidAffiliateCommissionForOrder
+} from "./affiliate-directory";
 
 const AUDIT_MODULE_KEY = "commerce";
 const AUDIT_RESOURCE_TYPE = "order";
@@ -627,7 +632,8 @@ async function insertOrderWithRetryableCode(
   input: CreateOrderInput,
   quote: CartQuoteResult,
   now: Date,
-  expiresAt: Date
+  expiresAt: Date,
+  affiliateId: string | null
 ): Promise<OrderHeaderRow> {
   const addressJson = input.address
     ? {
@@ -660,7 +666,7 @@ async function insertOrderWithRetryableCode(
           tenant_id, order_code, customer_id, status, payment_method, payment_status,
           shipping_method, shipping_service_name, shipping_cost, address,
           subtotal, discount, voucher_code, voucher_discount, insurance_fee, tax, total,
-          dp_amount, notes, expires_at
+          dp_amount, notes, expires_at, affiliate_id
         )
         VALUES (
           ${tenantId}, ${orderCode}, ${customerId}, 'pending_payment', ${input.payment.method}, 'unpaid',
@@ -669,7 +675,7 @@ async function insertOrderWithRetryableCode(
           ${quote.subtotal}, ${quote.discount}, ${quote.voucher?.code ?? null},
           ${quote.voucher?.valid ? quote.voucher.discount : "0.00"},
           ${quote.insurance.fee}, ${quote.tax.amount}, ${quote.total},
-          ${dpAmount}, ${input.notes}, ${expiresAt}
+          ${dpAmount}, ${input.notes}, ${expiresAt}, ${affiliateId}
         )
         RETURNING id, order_code, customer_id, status, payment_method, payment_status,
                   shipping_method, shipping_service_name, shipping_cost, address,
@@ -794,6 +800,14 @@ export async function createOrderFromCart(
         correlationId
       );
 
+  // Issue #92 — unknown/suspended `?ref=` code resolves to `null`, never an
+  // error: a bad referral code must never block a checkout.
+  const affiliateId = await resolveAffiliateForOrder(
+    tx,
+    tenantId,
+    input.affiliateCode
+  );
+
   const header = await insertOrderWithRetryableCode(
     tx,
     tenantId,
@@ -801,7 +815,8 @@ export async function createOrderFromCart(
     input,
     quote,
     now,
-    expiresAt
+    expiresAt,
+    affiliateId
   );
 
   // Sequential — one reserved `tx` connection (`tenant-route.ts`'s header).
@@ -1153,6 +1168,22 @@ async function transitionOrderStatus(
       payload: eventPayload
     });
     await restockCancelledOrRefreshedOrder(tx, tenantId, orderId);
+    // Issue #92 — a defensive no-op under the current order-status graph
+    // (`completed` has no outgoing edge), kept for a future
+    // refund/cancel-after-completion path. See `affiliate-directory.ts`'s
+    // `voidAffiliateCommissionForOrder` header.
+    await voidAffiliateCommissionForOrder(tx, tenantId, orderId, correlationId);
+  } else if (to === "completed") {
+    // Issue #92 (contract #86's D5) — the ONE place a commission is ever
+    // created: the moment the referenced order reaches `completed`. No-op
+    // when the order carries no affiliate, or on self-referral/a suspended
+    // affiliate (`affiliate-directory.ts`'s own gates).
+    await recordAffiliateCommissionOnOrderCompleted(
+      tx,
+      tenantId,
+      orderId,
+      correlationId
+    );
   } else if (to === "expired") {
     await appendDomainEvent(tx, tenantId, {
       eventType: COMMERCE_ORDER_EXPIRED_EVENT_TYPE,
