@@ -197,6 +197,13 @@ export async function triggerOrResumeRebuild(
     descriptor.key,
     collectRebuildMetricKeys(descriptor)
   );
+  // Issue #117 — a dimensional projection's own table(s) are emptied for
+  // this tenant in the SAME transaction as the cursor/metric reset, under
+  // the same lock: the first rebuild pass must start from nothing, exactly
+  // as the scalar counters do.
+  if (descriptor.dimensional) {
+    await descriptor.dimensional.resetForTenant(tx, tenantId);
+  }
 
   return { run: created, resumed: false };
 }
@@ -232,7 +239,12 @@ async function runRebuildStreamPass(
         .map((column) => assertSafeIdentifier(column, "column"))
     )
   );
-  const selectColumns = Array.from(new Set([cursorColumn, ...matchColumns]));
+  const sinkColumns = (stream.dimensional?.selectColumns ?? []).map((column) =>
+    assertSafeIdentifier(column, "column")
+  );
+  const selectColumns = Array.from(
+    new Set([cursorColumn, ...matchColumns, ...sinkColumns])
+  );
 
   return withTenantOrThrow(
     sql,
@@ -296,6 +308,13 @@ async function runRebuildStreamPass(
       });
 
       await applyMetricDeltas(tx, tenantId, descriptor.key, deltas);
+
+      // Issue #117 — identical sink call to the incremental pass (see
+      // `projection-incremental-worker.ts`): a rebuild re-derives the
+      // dimensional rows through exactly the function the steady state uses.
+      if (stream.dimensional) {
+        await stream.dimensional.applyBatch(tx, tenantId, rows);
+      }
 
       const newCursorValue = toDate(rows[rows.length - 1]![cursorColumn]);
       await upsertStreamCursor(
