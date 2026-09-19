@@ -238,6 +238,14 @@ export const SESSION_FREE_BODY_ENDPOINTS: readonly SessionFreeBodyEndpoint[] = [
       "The guest customer reviews a product from their own completed order, holding orderCode + phone as the credential."
   },
 
+  // ---- Payment-gateway webhooks (Issue #113): opaque per-tenant token, not sessioned ----
+  {
+    method: "POST",
+    pattern: "/api/v1/commerce/webhooks/:provider/:endpointToken",
+    reason:
+      "Server-to-server callback from the payment gateway (contract #106 D2). Authenticated by the opaque per-tenant webhook-endpoint token in the path plus the provider's own signature (verifyWebhook), never a session — there is no admin/customer caller to hold one."
+  },
+
   // ---- Node-to-node: signed, not sessioned ----
   {
     method: "POST",

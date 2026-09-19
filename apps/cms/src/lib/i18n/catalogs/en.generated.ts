@@ -9,5 +9,5 @@
 import type { CompiledCatalog } from "../catalog";
 
 export const EN_CATALOG: CompiledCatalog = {
-
+  "Cek status": ["Check status"]
 };

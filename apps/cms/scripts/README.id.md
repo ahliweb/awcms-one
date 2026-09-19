@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:de9869ce7539afe8873a2f1870bec92ea46ac44ae46893679aa3545083d05eda -->
+<!-- i18n-source-hash: sha256:024585b133e0f86346f87c864c0ca30ca76861905da8117a74536801047941f6 -->
 
 # Scripts AWCMS
 
@@ -27,7 +27,7 @@ lalu membangun duplikatnya.
 
 <!-- Dihasilkan `bun run scripts:inventory:generate`. JANGAN diedit tangan. -->
 
-132 target menjalankan berkas di `scripts/`; 56 di antaranya
+133 target menjalankan berkas di `scripts/`; 56 di antaranya
 ada di rantai `bun run check` (kolom **Gate**), sisanya dijalankan manual,
 terjadwal, atau oleh workflow CI tertentu.
 
@@ -73,6 +73,7 @@ terjadwal, atau oleh workflow CI tertentu.
 | `commerce:customer-auth:purge`            | `commerce-customer-auth-purge.ts`              | —    |
 | `commerce:flash-sales:tick`               | `commerce-flash-sales-tick.ts`                 | —    |
 | `commerce:orders:expire`                  | `commerce-orders-expire.ts`                    | —    |
+| `commerce:payments:reconcile`             | `commerce-payments-reconcile.ts`               | —    |
 | `commerce:shipping-rates:purge`           | `commerce-shipping-rates-purge.ts`             | —    |
 | `commerce:whatsapp:dispatch`              | `commerce-whatsapp-dispatch.ts`                | —    |
 | `commerce:whatsapp:purge`                 | `commerce-whatsapp-purge.ts`                   | —    |

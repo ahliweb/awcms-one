@@ -5370,6 +5370,32 @@ msgstr "Templat"
 msgid "Newest 100 for the selected filter. Codes and message bodies are never shown here."
 msgstr "100 terbaru untuk filter yang dipilih. Kode dan isi pesan tidak pernah ditampilkan di sini."
 
+msgid "View gateway status"
+msgstr "Lihat status gateway"
+
+msgid "Loading…"
+msgstr "Memuat…"
+
+msgid "Gateway payment session"
+msgstr "Sesi pembayaran gateway"
+
+msgid "This order has no gateway payment session."
+msgstr "Pesanan ini tidak memiliki sesi pembayaran gateway."
+
+msgid "Expires at"
+msgstr "Kedaluwarsa pada"
+
+msgid "Cek status"
+msgstr "Cek status"
+
+msgid "Payment events"
+msgstr "Riwayat peristiwa pembayaran"
+
+msgid "No payment events recorded yet."
+msgstr "Belum ada peristiwa pembayaran yang tercatat."
+
+msgid "Payment gateway"
+msgstr "Gateway pembayaran"
 msgid "Inbox"
 msgstr "Kotak Masuk"
 

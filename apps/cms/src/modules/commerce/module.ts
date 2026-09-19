@@ -361,6 +361,16 @@ export const commerceModule = defineModule({
       safeInOfflineLan: true
     },
     {
+      command: "bun run commerce:payments:reconcile",
+      schedule: { mode: "cron", expression: "*/2 * * * *", backlog: "bounded" },
+      purpose:
+        "Polls every payment-gateway session still pending more than 2 minutes across every active tenant (provider.fetchStatus, outside any DB transaction, timeout + circuit breaker), applying the same paid/expired transition path the webhook intake route uses; also expires every session past expires_at regardless of fetchStatus (Issue #113, contract #106 D2 — 'webhooks get lost'). Idempotent — a session already moved out of pending is simply absent from the next scan.",
+      recommendedSchedule: "Every 1-2 minutes via cron/systemd timer.",
+      environmentNotes:
+        "No-op when COMMERCE_PAYMENT_GATEWAY does not resolve to a configured provider — safe to schedule regardless of deployment profile (e.g. offline/LAN).",
+      safeInOfflineLan: true
+    },
+    {
       command: "bun run commerce:campaigns:dispatch",
       schedule: { mode: "cron", expression: "*/2 * * * *", backlog: "bounded" },
       purpose:

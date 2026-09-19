@@ -5394,6 +5394,31 @@ msgstr ""
 msgid "Newest 100 for the selected filter. Codes and message bodies are never shown here."
 msgstr ""
 
+msgid "View gateway status"
+msgstr ""
+
+msgid "Loading…"
+msgstr ""
+
+msgid "Gateway payment session"
+msgstr ""
+
+msgid "This order has no gateway payment session."
+msgstr ""
+
+msgid "Expires at"
+msgstr ""
+
+msgid "Cek status"
+msgstr "Check status"
+
+msgid "Payment events"
+msgstr ""
+
+msgid "No payment events recorded yet."
+msgstr ""
+
+msgid "Payment gateway"
 msgid "Inbox"
 msgstr ""
 

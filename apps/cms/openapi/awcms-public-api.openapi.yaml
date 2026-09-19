@@ -9069,6 +9069,57 @@ paths:
           $ref: "#/components/responses/Forbidden"
         "404":
           $ref: "#/components/responses/NotFound"
+  /api/v1/commerce/orders/{id}/payment-gateway/reconcile:
+    post:
+      operationId: reconcileCommerceOrderPaymentGateway
+      tags:
+        - Commerce
+      summary: 'Issue #113 (contract #106''s D2). The order detail admin screen''s "Cek status" action — a SCOPED, single-order reconcile (never the full `commerce:payments:reconcile` batch). Gated on `commerce.orders.update`; `Idempotency-Key` required.'
+      description: Calls `provider.fetchStatus` for this order's most recent payment-gateway session, outside any open database transaction, and applies the same `markOrderPaidBySystem`/`expireOrderBySystem` transition path the webhook route and the reconcile job use.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Checked (the session may or may not have changed status).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      status:
+                        type: string
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: NO_PAYMENT_SESSION — this order has no gateway payment session at all.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "503":
+          description: GATEWAY_UNAVAILABLE — no payment-gateway provider is configured for this deployment.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
   /api/v1/commerce/orders/{id}/status:
     patch:
       operationId: updateCommerceOrderStatus
@@ -12626,8 +12677,8 @@ paths:
       operationId: receiveCommercePaymentWebhook
       tags:
         - Commerce
-      summary: "Issue #106 (ADR-0017 D2/D3; not yet implemented, lands in #113). Public inbound payment-gateway callback. Tenant resolved from `endpointToken` via a SECURITY DEFINER bootstrap function; the provider's own signature is verified timing-safe before anything else happens."
-      description: "Anonymous by definition — a provider callback carries no session. Replay-protected by a UNIQUE `(tenant_id, provider, event_key)` constraint on `awcms_commerce_payment_events`: a duplicate or replayed event is deduplicated and still answers `200`, exactly like a freshly verified one, so the provider's own retry behaviour never needs special-casing. A verified `paid` event calls `markOrderPaidBySystem` (the new `system` edge on `pending_payment -> paid`, `order-status.ts`). Body size is bounded; an oversized or malformed body is rejected before signature verification runs."
+      summary: "Issue #113 (contract #106's D2/D3). Public inbound payment-gateway callback. Tenant resolved from `endpointToken` via the SECURITY DEFINER `awcms_resolve_commerce_webhook_endpoint`; the provider's own signature (`verifyWebhook`) is verified timing-safe before anything else happens."
+      description: "Anonymous by definition — a provider callback carries no session. Replay-protected by a UNIQUE `(tenant_id, provider, event_key)` constraint on `awcms_commerce_payment_events`: a duplicate or replayed event is deduplicated and still answers `200`, exactly like a freshly verified one, so the provider's own retry behaviour never needs special-casing. A verified `paid` event calls `markOrderPaidBySystem` (the new `system` edge on `pending_payment -> paid`, `order-status.ts`); `expired` calls the existing `expireOrderBySystem`; `failed`/`refunded` only update the gateway session row — the order is deliberately never auto-transitioned to a refunded state (there is no such state; see `order-status.ts`'s header). Body size is bounded; an oversized or malformed body is rejected before signature verification runs. This route never calls the provider itself (no `fetchStatus`) — `commerce:payments:reconcile` is the only caller of that method."
       security: []
       parameters:
         - name: provider
@@ -12642,6 +12693,33 @@ paths:
           required: true
           schema:
             type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: Midtrans's own HTTP notification body (snake_case, as documented by Midtrans — not translated here).
+              required:
+                - order_id
+                - status_code
+                - gross_amount
+                - transaction_status
+                - signature_key
+              properties:
+                order_id:
+                  type: string
+                status_code:
+                  type: string
+                gross_amount:
+                  type: string
+                transaction_status:
+                  type: string
+                fraud_status:
+                  type: string
+                  nullable: true
+                signature_key:
+                  type: string
       responses:
         "200":
           description: Always, for a verified event — new, deduplicated, or replayed alike.
@@ -27199,11 +27277,53 @@ components:
       allOf:
         - $ref: "#/components/schemas/CommerceOrder"
         - type: object
-          description: Issue 29 — admin detail adds customerId and unmasked customer/address phone.
+          description: "Issue 29 — admin detail adds customerId and unmasked customer/address phone; Issue #113 adds the read-only gateway session/payment-events panel."
           properties:
             customerId:
               type: string
               format: uuid
+            gateway:
+              type: object
+              description: "Issue #113 — read-only payment-gateway panel. `session` is `null` for an order that was never a gateway order."
+              properties:
+                session:
+                  type: object
+                  nullable: true
+                  properties:
+                    id:
+                      type: string
+                      format: uuid
+                    orderId:
+                      type: string
+                      format: uuid
+                    provider:
+                      type: string
+                    providerRef:
+                      type: string
+                    redirectUrl:
+                      type: string
+                    status:
+                      type: string
+                    expiresAt:
+                      type: string
+                      format: date-time
+                events:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        format: uuid
+                      provider:
+                        type: string
+                      eventKey:
+                        type: string
+                      outcome:
+                        type: string
+                      receivedAt:
+                        type: string
+                        format: date-time
     CommerceOrderSummary:
       type: object
       description: Issue 29 — one row of the admin order list.

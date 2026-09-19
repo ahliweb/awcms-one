@@ -8,12 +8,12 @@
 | Aspect                              | Value |
 | ----------------------------------- | ----- |
 | Registered modules                  | 25    |
-| Migrations                          | 184   |
+| Migrations                          | 185   |
 | `awcms_*` tables                    | 190   |
 | Tables with `FORCE` RLS             | 172   |
 | RLS-free tables (global, by design) | 18    |
-| Test files                          | 554   |
-| Route files                         | 491   |
+| Test files                          | 557   |
+| Route files                         | 493   |
 | ADR                                 | 244   |
 
 ### Modules
@@ -234,6 +234,7 @@
 | 182 | `sql/929_awcms_commerce_campaigns_schema.sql`                               |
 | 183 | `sql/930_awcms_commerce_campaigns_permissions.sql`                          |
 | 184 | `sql/933_awcms_commerce_reporting_projections_schema.sql`                   |
+| 185 | `sql/934_awcms_commerce_payment_events_amount_mismatch.sql`                 |
 
 ### Tables & Row-Level Security
 
@@ -434,16 +435,16 @@
 
 | Directory     | Test files |
 | ------------- | ---------- |
-| `(root)`      | 442        |
+| `(root)`      | 444        |
 | `e2e`         | 19         |
-| `integration` | 92         |
+| `integration` | 93         |
 | `unit`        | 1          |
 
 ### Routes
 
 | Surface         | Files |
 | --------------- | ----- |
-| `/api/v1/**`    | 395   |
+| `/api/v1/**`    | 397   |
 | `/admin/**`     | 66    |
 | publik / anonim | 30    |
 

@@ -557,7 +557,11 @@ export const READER_BUDGET_BYTES = 24_000;
  * own cost, no other surface changed), so this constant keeps the same
  * small margin above the measured total this constant's history uses.
  */
-export const APP_BUDGET_BYTES = 235_000;
+// Issue #113 (merged on top of #117 sales reports' 235,000): the order list
+// screen's gateway-session/payment-events panel and "Cek status" action
+// (`/admin/commerce-orders.astro`, CSS/markup growth, no new script asset).
+// Measured on the merged tree: 236,985 B.
+export const APP_BUDGET_BYTES = 237_200;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.

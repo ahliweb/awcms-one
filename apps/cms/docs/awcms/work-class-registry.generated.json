@@ -592,6 +592,11 @@
       "source": "factory"
     },
     {
+      "path": "src/pages/api/v1/commerce/orders/[id]/payment-gateway/reconcile.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
       "path": "src/pages/api/v1/commerce/orders/[id]/status.ts",
       "workClass": "interactive",
       "source": "factory"
@@ -1722,6 +1727,12 @@
       "workClass": "background_sync",
       "source": "registry",
       "rationale": "Scheduled pending-order expiry sweep (commerce:orders:expire, Issue #29), every 1-5 minutes — same recurring-but-not-latency-sensitive profile as commerce:flash-sales:tick; expireOrdersForTenant passes workClass: \"background_sync\" explicitly."
+    },
+    {
+      "path": "scripts/commerce-payments-reconcile.ts",
+      "workClass": "background_sync",
+      "source": "registry",
+      "rationale": "Scheduled payment-gateway session reconcile sweep (commerce:payments:reconcile, Issue #113), every 1-2 minutes — same recurring-but-not-latency-sensitive profile as commerce:orders:expire; reconcilePendingSessionsForTenant passes workClass: \"background_sync\" explicitly on every transaction (the provider.fetchStatus call itself happens with no transaction open at all)."
     },
     {
       "path": "scripts/commerce-shipping-rates-purge.ts",

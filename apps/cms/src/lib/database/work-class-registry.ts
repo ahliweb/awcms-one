@@ -165,6 +165,11 @@ export const JOB_WORK_CLASS_REGISTRY: Readonly<
     rationale:
       'One-shot-per-run retention sweep (commerce:whatsapp:purge, Issue #108), every 5-15 minutes, delay-tolerant like email:queue:purge; purgeWhatsappQueue passes workClass: "maintenance" explicitly.'
   },
+  "scripts/commerce-payments-reconcile.ts": {
+    workClass: "background_sync",
+    rationale:
+      'Scheduled payment-gateway session reconcile sweep (commerce:payments:reconcile, Issue #113), every 1-2 minutes — same recurring-but-not-latency-sensitive profile as commerce:orders:expire; reconcilePendingSessionsForTenant passes workClass: "background_sync" explicitly on every transaction (the provider.fetchStatus call itself happens with no transaction open at all).'
+  },
   "scripts/commerce-campaigns-dispatch.ts": {
     workClass: "background_sync",
     rationale:
