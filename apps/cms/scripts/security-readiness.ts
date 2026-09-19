@@ -1572,6 +1572,14 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   // reasoning `sql/915`'s header already gives for `commerce.orders`.
   awcms_commerce_conversations: ["SELECT", "DELETE"],
   awcms_commerce_messages: ["SELECT", "DELETE"],
+  // Issue #114 (contract #106 D9, `sql/929`) — commerce:campaigns:dispatch
+  // runs as awcms_worker: SELECT to claim (FOR UPDATE SKIP LOCKED) + UPDATE
+  // to flip scheduled->sending->sent on awcms_commerce_campaigns, and
+  // SELECT+INSERT on awcms_commerce_campaign_recipients for the per-page
+  // resolve/insert. DELETE on both for the same `dataLifecycle`
+  // `executionMode: "generic"` reasoning `sql/928`'s own tail gives.
+  awcms_commerce_campaigns: ["SELECT", "UPDATE", "DELETE"],
+  awcms_commerce_campaign_recipients: ["SELECT", "INSERT", "DELETE"],
   // Issue #108 (contract #106/ADR-0017 D5) — commerce:whatsapp:dispatch
   // (SELECT/UPDATE, the claim/finalize lease) and commerce:whatsapp:purge
   // (DELETE, terminal rows past retention) both run as awcms_worker,

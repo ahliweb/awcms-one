@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](skema-basis-data.md)
 
-<!-- i18n-source-hash: sha256:f5cbef36be0be158db722933b785b4e5ef4d4556de3d204a3af71bd0c1ff70ae -->
+<!-- i18n-source-hash: sha256:66d8bcd34657b4aee1b3172df0083c7c015223eff29299d0c6a5ef6f3bc4a983 -->
 
 # Skema basis data
 
@@ -140,6 +140,18 @@ Issue #107, D4 kontrak #106 — cache kode-kecamatan→id-tujuan-provider dan ca
 Kedua tabel mengikuti konvensi `sql/901` (`ENABLE`/`FORCE ROW LEVEL SECURITY`, satu kebijakan isolasi tenant, indeks FK pada `tenant_id`) tapi tidak pernah ditulis langsung oleh transaksi tulis `application/order-directory.ts` untuk tarif BARU — `getCourierRates`/`resolveDestination` milik `application/shipping-rate-directory.ts` selalu membaca cache dalam satu transaksi pendek, memanggil `ShippingRateProvider` (API v2 RajaOngkir Komerce, atau adapter fixture `log`) tanpa transaksi terbuka sama sekali, lalu menulis-balik hasilnya dalam transaksi pendek kedua (aturan "jangan pernah memanggil provider di dalam transaksi database" ADR-0006/0010, diterapkan di sini sama seperti outbox `email` sudah menerapkannya). Pembuatan pesanan memvalidasi `{courier, service, cost}` yang dipilih HANYA terhadap `awcms_commerce_shipping_rates` — `SELECT ... WHERE expires_at > now()` biasa yang aman-transaksi, tidak pernah panggilan provider langsung kedua dari dalam transaksi tulis pesanan itu sendiri.
 
 Kedua tabel baru: RLS `ENABLE`+`FORCE`, kebijakan isolasi-tenant, indeks FK. Tak satu pun pernah di-soft-delete oleh kode modul ini sendiri dalam praktiknya — `deleted_at` ada murni sebagai kursor purge data-lifecycle yang seragam, bentuk "kursor selalu-`NULL`" yang sama dengan yang sudah dipakai `awcms_commerce_orders` dan `awcms_commerce_customer_accounts`.
+
+## Kampanye pelanggan: dua tabel + satu kolom (`sql/929`)
+
+Issue #114, D9 kontrak #106 — pengiriman massal e-mail/WhatsApp bergerbang consent.
+
+| Tabel | Kolom kunci | Catatan |
+| --- | --- | --- |
+| `awcms_commerce_customer_accounts.marketing_consent_at` (kolom baru, bukan tabel baru) | `timestamptz`, nullable | Non-null berarti akun setuju menerima komunikasi pemasaran pada saat itu; `NULL` berarti tidak pernah setuju (atau sudah dicabut). Hanya diubah oleh akun itu sendiri lewat `PATCH .../account/me {marketingConsent}` — tidak pernah oleh staf |
+| `awcms_commerce_campaigns` | `channel NOT NULL` (`CHECK IN ('email','whatsapp')`), `subject` (nullable — wajib untuk `email`, diabaikan untuk `whatsapp` di batas aplikasi), `body NOT NULL` (`CHECK char_length BETWEEN 1 AND 4000`), `audience jsonb NOT NULL DEFAULT '{}'` (divalidasi di batas aplikasi, bukan oleh CHECK database — bentuk filter kecil yang terus berevolusi), `status NOT NULL` (`CHECK IN ('draft','scheduled','sending','sent','cancelled')`, default `draft`), `scheduled_at`/`sent_at timestamptz`, `recipient_count integer` | `recipient_count`/`sent_at` dimulai `NULL` pada `draft` baru, terisi hanya setelah kampanye benar-benar dikirim (fase FINALIZE milik `commerce:campaigns:dispatch`) |
+| `awcms_commerce_campaign_recipients` | `campaign_id NOT NULL` (FK), `customer_id NOT NULL` (FK), `address_masked NOT NULL` (alamat e-mail/telepon tersamar SAJA, tidak pernah alamat mentah), `status NOT NULL` (`CHECK IN ('queued','enqueued','skipped')`, default `queued`), `outbox_ref` (nullable), `UNIQUE (campaign_id, customer_id)` | Satu baris per penerima yang terselesaikan — buku besar keteresumeannya/audit yang diandalkan pengiriman parsial. Constraint `UNIQUE` plus `ON CONFLICT DO NOTHING` saat penyisipan inilah yang membuat pemulihan-dari-crash dispatcher aman diulang; `NOT EXISTS` milik `resolveCampaignAudiencePage` sendiri terhadap tabel ini yang membuat cursor lanjutannya benar tanpa kolom cursor terpisah pada baris kampanye |
+
+Kedua tabel baru: RLS `ENABLE`+`FORCE`, kebijakan isolasi-tenant, indeks FK. Deskriptor `dataLifecycle` milik `commerce.campaigns` memakai kursor `deleted_at` yang biasa; `commerce.campaign_recipients`, karena append-only per kampanye, memakai `created_at` — bentuk yang sama dengan `commerce.messages` di atas. Seed katalog permission: `sql/930` (`commerce.campaigns.{read,update,send}`).
 
 ## Row-level security: `ENABLE` dan `FORCE`, terbukti di bawah role tak-berhak-istimewa
 

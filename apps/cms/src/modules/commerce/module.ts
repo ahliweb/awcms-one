@@ -29,7 +29,9 @@ import {
   COMMERCE_WHATSAPP_ACTIVITY_CODE,
   COMMERCE_WHATSAPP_PERMISSIONS,
   COMMERCE_CONVERSATIONS_ACTIVITY_CODE,
-  COMMERCE_CONVERSATION_PERMISSIONS
+  COMMERCE_CONVERSATION_PERMISSIONS,
+  COMMERCE_CAMPAIGNS_ACTIVITY_CODE,
+  COMMERCE_CAMPAIGN_PERMISSIONS
 } from "./domain/commerce-permissions";
 import {
   COMMERCE_FLASH_SALE_ENDED_EVENT_TYPE,
@@ -217,6 +219,16 @@ export const commerceModule = defineModule({
       environmentNotes:
         "No external provider call — pure database DELETE, safe to run in any deployment profile.",
       safeInOfflineLan: true
+    },
+    {
+      command: "bun run commerce:campaigns:dispatch",
+      schedule: { mode: "cron", expression: "*/2 * * * *", backlog: "bounded" },
+      purpose:
+        "Fans a scheduled/sending campaign out into the same e-mail/WhatsApp outboxes D5/D7 already dispatch from, in pages of 200 (Issue #114). Resumable: a crash mid-dispatch is picked back up on the next tick from wherever awcms_commerce_campaign_recipients left off.",
+      recommendedSchedule: "Every 1-2 minutes via cron/systemd timer.",
+      environmentNotes:
+        "No external provider call itself — only inserts into the e-mail/WhatsApp outbox tables; safe to schedule regardless of deployment profile (e.g. offline/LAN).",
+      safeInOfflineLan: true
     }
   ],
   // Full CRUD screens: two as of Issue #23 (`src/pages/admin/commerce.astro`,
@@ -311,6 +323,12 @@ export const commerceModule = defineModule({
       path: "/admin/commerce-inbox",
       order: 14,
       requiredPermission: "commerce.conversations.read"
+    },
+    {
+      labelKey: "admin.layout.nav_commerce_campaigns",
+      path: "/admin/commerce-campaigns",
+      order: 15,
+      requiredPermission: "commerce.campaigns.read"
     }
   ],
   /**
@@ -1579,6 +1597,94 @@ export const commerceModule = defineModule({
       backupRestoreNotes:
         "Included in ordinary full-database backup/restore; no standalone archive artifact.",
       executionMode: "generic"
+    },
+    // Issue #114, contract #106 D9 — customer campaigns. `campaigns` follows
+    // the usual `deleted_at`-cursor convention (no admin route ever sets it
+    // in this increment, same "declared, unreachable in practice" shape
+    // `commerce.categories`/`commerce.conversations` above already have);
+    // `campaign_recipients` is append-only per campaign (a recipient row is
+    // never edited once inserted), so its cursor is `created_at`, mirroring
+    // `commerce.messages`' own choice just above.
+    {
+      key: "commerce.campaigns",
+      tableName: "awcms_commerce_campaigns",
+      ownerModuleKey: "commerce",
+      scope: "tenant",
+      cursorColumn: "deleted_at",
+      retentionClass: "system_event",
+      retentionMinDays: 30,
+      retentionMaxDays: 3650,
+      defaultRetentionDays: 730,
+      partition: {
+        eligible: false,
+        rationale:
+          "Bounded by a tenant's own campaign cadence — nowhere near partition-worthy volume for a single storefront."
+      },
+      archive: {
+        archivable: false,
+        rationale:
+          "A campaign's own subject/body/audience filter — the tenant's own record of what it sent, reconstructible from its own drafting history and not evidence of anything beyond that."
+      },
+      deletion: {
+        mode: "hard_delete",
+        rationale:
+          "The generic engine's only implemented mode. Safe here specifically because the cursor column (deleted_at) is NULL for every live row — see this array's header comment."
+      },
+      legalHold: { applicable: false, precedence: "not_applicable" },
+      requiredIndexes: [
+        {
+          columns: ["tenant_id", "deleted_at"],
+          purpose:
+            "awcms_commerce_campaigns_tenant_deleted_idx (sql/929) — the (tenant, cursor) composite the generic purge engine filters + orders by."
+        }
+      ],
+      batchLimit: 5000,
+      backupRestoreNotes:
+        "Included in ordinary full-database backup/restore; no standalone archive artifact (archive.archivable is false above).",
+      executionMode: "generic"
+    },
+    {
+      key: "commerce.campaign_recipients",
+      tableName: "awcms_commerce_campaign_recipients",
+      ownerModuleKey: "commerce",
+      scope: "tenant",
+      cursorColumn: "created_at",
+      retentionClass: "system_event",
+      retentionMinDays: 365,
+      retentionMaxDays: 3650,
+      defaultRetentionDays: 730,
+      partition: {
+        eligible: false,
+        rationale:
+          "Bounded by a tenant's own consented-audience size times campaign count — nowhere near partition-worthy volume for a single storefront."
+      },
+      archive: {
+        archivable: false,
+        rationale:
+          "A masked address plus a dispatch status — the resumability/audit ledger a partial send relies on, not evidence of anything once the campaign it belongs to has aged out."
+      },
+      deletion: {
+        mode: "hard_delete",
+        rationale:
+          "The generic engine's only implemented mode; a genuinely old row (older than the parent campaign's own retention) is safe to purge."
+      },
+      legalHold: { applicable: false, precedence: "not_applicable" },
+      requiredIndexes: [
+        {
+          columns: ["tenant_id", "created_at"],
+          purpose:
+            "The (tenant, cursor) composite the generic purge engine filters + orders by, keyed on created_at since this append-only table has no deleted_at."
+        },
+        {
+          columns: ["campaign_id"],
+          purpose:
+            "awcms_commerce_campaign_recipients_campaign_idx (sql/929) — the dispatcher's own per-campaign resolve/resume scan."
+        }
+      ],
+      batchLimit: 5000,
+      backupRestoreNotes:
+        "Included in ordinary full-database backup/restore; no standalone archive artifact.",
+      executionMode: "generic"
     }
   ],
   /**
@@ -1994,6 +2100,34 @@ export const commerceModule = defineModule({
       erasure: "retain_under_obligation",
       rationale:
         "A conversation's own transcript — the message body may be real personal content a customer wrote, but the link is conversation_id, not any tenant_user/identity/profile/principal id, inheriting commerce.conversations' own unreachable-by-this-engine's-vocabulary shape one level down. A store-sent row's sender_tenant_user_id names STAFF, not a data subject of this table."
+    },
+    // Issue #114, contract #106 D9 — customer campaigns. `campaign_recipients`
+    // names `customer_id`, but that is the SAME `awcms_commerce_customers`
+    // vocabulary gap `commerce.orders`/`commerce.order_items` above already
+    // document: a customer row carries no tenant_user/identity/profile/
+    // principal id (ADR-0016 D1), so this automated per-id engine cannot
+    // walk either table by one even though a customer column exists.
+    {
+      key: "commerce.campaigns",
+      tableName: "awcms_commerce_campaigns",
+      ownerModuleKey: "commerce",
+      unreachableBySubject: true,
+      subjectColumns: [],
+      exportable: false,
+      erasure: "retain_under_obligation",
+      rationale:
+        "A campaign's own subject/body/audience filter — addressed to a FILTER, not to any one customer, and carries no per-tenant subject id at all."
+    },
+    {
+      key: "commerce.campaign_recipients",
+      tableName: "awcms_commerce_campaign_recipients",
+      ownerModuleKey: "commerce",
+      unreachableBySubject: true,
+      subjectColumns: [],
+      exportable: false,
+      erasure: "retain_under_obligation",
+      rationale:
+        "customer_id names a row in commerce.customers, which itself carries no tenant_user/identity/profile/principal id (ADR-0016 D1, same gap commerce.orders' own entry above documents) — this engine's subject vocabulary still cannot reach it. address_masked is already masked at write time (never a raw e-mail/phone), so there is nothing further to redact on export even if it were reachable."
     }
   ],
   permissions: [
@@ -2237,6 +2371,21 @@ export const commerceModule = defineModule({
       activityCode: COMMERCE_CONVERSATIONS_ACTIVITY_CODE,
       action: "update",
       description: "Reply on a conversation and close/reopen it"
+    },
+    {
+      activityCode: COMMERCE_CAMPAIGNS_ACTIVITY_CODE,
+      action: "read",
+      description: "Read campaigns and preview their audience count"
+    },
+    {
+      activityCode: COMMERCE_CAMPAIGNS_ACTIVITY_CODE,
+      action: "update",
+      description: "Create and edit a draft campaign"
+    },
+    {
+      activityCode: COMMERCE_CAMPAIGNS_ACTIVITY_CODE,
+      action: "send",
+      description: "Send or cancel a campaign"
     }
   ]
 });
@@ -2259,5 +2408,6 @@ export {
   COMMERCE_AFFILIATE_PERMISSIONS,
   COMMERCE_AFFILIATE_COMMISSION_PERMISSIONS,
   COMMERCE_WHATSAPP_PERMISSIONS,
-  COMMERCE_CONVERSATION_PERMISSIONS
+  COMMERCE_CONVERSATION_PERMISSIONS,
+  COMMERCE_CAMPAIGN_PERMISSIONS
 };

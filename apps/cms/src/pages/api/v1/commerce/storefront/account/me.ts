@@ -8,7 +8,8 @@ import {
 import { fail, ok } from "../../../../../../modules/_shared/api-response";
 import {
   fetchCustomerAccountView,
-  updateCustomerName
+  updateCustomerName,
+  updateMarketingConsent
 } from "../../../../../../modules/commerce/application/customer-auth";
 import { requireCustomerSession } from "../../../../../../modules/commerce/application/customer-session-auth";
 import { commercePreflightResponse } from "../../../../../../modules/commerce/application/public-commerce-preflight";
@@ -59,7 +60,7 @@ export const GET: APIRoute = async ({ request }) => {
   return respond(result, corsHeaders);
 };
 
-export const PATCH: APIRoute = async ({ request, clientAddress }) => {
+export const PATCH: APIRoute = async ({ request, clientAddress, locals }) => {
   void clientAddress;
   const bodyRead = await readJsonBody(request);
   if (bodyRead.tooLarge) return bodyTooLargeResponse(bodyRead.limitBytes);
@@ -79,18 +80,56 @@ export const PATCH: APIRoute = async ({ request, clientAddress }) => {
       if (authOutcome.account.status === "blocked") return { kind: "blocked" };
 
       const body = (bodyRead.value ?? {}) as Record<string, unknown>;
-      const updated = await updateCustomerName(
-        tx,
-        tenant.tenantId,
-        authOutcome.account,
-        body.name
-      );
+      const correlationId = (locals as { correlationId?: string } | undefined)
+        ?.correlationId;
 
-      if (updated.kind === "validation_error") {
-        return { kind: "validation_error", errors: updated.errors };
+      let account = authOutcome.account
+        ? await fetchCustomerAccountView(
+            tx,
+            tenant.tenantId,
+            authOutcome.account.id
+          )
+        : null;
+
+      if (body.name !== undefined) {
+        const updated = await updateCustomerName(
+          tx,
+          tenant.tenantId,
+          authOutcome.account,
+          body.name
+        );
+        if (updated.kind === "validation_error") {
+          return { kind: "validation_error", errors: updated.errors };
+        }
+        account = updated.account;
       }
 
-      return { kind: "ok", account: updated.account };
+      // Issue #114 (contract #106 ADR-0017 D9) — `marketingConsent` is
+      // independent of `name`: either field, both, or neither may be
+      // present on a given PATCH.
+      if (body.marketingConsent !== undefined) {
+        if (typeof body.marketingConsent !== "boolean") {
+          return {
+            kind: "validation_error",
+            errors: [
+              {
+                field: "marketingConsent",
+                message: "marketingConsent must be a boolean."
+              }
+            ]
+          };
+        }
+        const updated = await updateMarketingConsent(
+          tx,
+          tenant.tenantId,
+          authOutcome.account,
+          body.marketingConsent,
+          correlationId
+        );
+        account = updated.account;
+      }
+
+      return { kind: "ok", account };
     }
   );
 
