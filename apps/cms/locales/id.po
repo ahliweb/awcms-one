@@ -5291,3 +5291,27 @@ msgstr "Biarkan kosong untuk menonaktifkan program afiliasi toko ini. Atur tarif
 
 msgid "Affiliate commission rate (%)"
 msgstr "Tarif komisi afiliasi (%)"
+
+msgid "WhatsApp outbox"
+msgstr "Kotak keluar WhatsApp"
+
+msgid "Every WhatsApp message this tenant has queued or sent — OTP codes, order notifications, campaigns — with its delivery status. Phone numbers are shown masked."
+msgstr "Setiap pesan WhatsApp yang diantrekan atau dikirim oleh tenant ini — kode OTP, notifikasi pesanan, kampanye — beserta status pengirimannya. Nomor telepon ditampilkan tersamar."
+
+msgid "You do not have permission to view the WhatsApp outbox."
+msgstr "Anda tidak memiliki izin untuk melihat kotak keluar WhatsApp."
+
+msgid "Could not load the WhatsApp outbox. Please try again."
+msgstr "Tidak dapat memuat kotak keluar WhatsApp. Silakan coba lagi."
+
+msgid "Messages"
+msgstr "Pesan"
+
+msgid "No WhatsApp messages match this filter."
+msgstr "Tidak ada pesan WhatsApp yang cocok dengan filter ini."
+
+msgid "Template"
+msgstr "Templat"
+
+msgid "Newest 100 for the selected filter. Codes and message bodies are never shown here."
+msgstr "100 terbaru untuk filter yang dipilih. Kode dan isi pesan tidak pernah ditampilkan di sini."

@@ -205,3 +205,17 @@ export const COMMERCE_AFFILIATE_COMMISSION_PERMISSIONS = {
   /** Also gates the approve/pay/void state-machine transitions. */
   update: "commerce.affiliate_commissions.update"
 } as const;
+
+/**
+ * WhatsApp outbox diagnostics (Issue #108, contract #106/ADR-0017 D5).
+ * `read`-only — this issue ships one owner route
+ * (`GET /api/v1/commerce/whatsapp/messages`), no admin create/update/delete
+ * surface (a message is only ever created by the enqueue application
+ * functions, never directly by an operator — same "no permission with
+ * nothing to enforce it" reasoning `COMMERCE_ORDER_PERMISSIONS` states).
+ */
+export const COMMERCE_WHATSAPP_ACTIVITY_CODE = "whatsapp";
+
+export const COMMERCE_WHATSAPP_PERMISSIONS = {
+  read: "commerce.whatsapp.read"
+} as const;

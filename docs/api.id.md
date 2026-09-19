@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](api.md)
 
-<!-- i18n-source-hash: sha256:755170ba2a1be2d70f7aad9e6e4bb3f8ebf215a4ba964e6eb4d3d02eb8844867 -->
+<!-- i18n-source-hash: sha256:afc08d36fa071a5810637ace1093b4842272b42b5fef0691d04097a485bd7c32 -->
 
 # API
 
@@ -82,8 +82,8 @@ Setiap rute me-resolve tenant-nya dari `Origin`/`Host` request terhadap `awcms_t
 
 | Method | Jalur | Auth | Catatan |
 | --- | --- | --- | --- |
-| `POST` | `account/otp/request` | tidak ada | `{email, purpose: "login"\|"register", name?, phone?}` → **selalu** `202 {sent:true, expiresInSeconds:600}` |
-| `POST` | `account/otp/verify` | tidak ada | `{email, code, purpose}` → `200 {token, expiresAt, account}`; `401 OTP_INVALID`, `404 ACCOUNT_NOT_FOUND` (login), `409 PHONE_ALREADY_REGISTERED` (register) |
+| `POST` | `account/otp/request` | tidak ada | `{email, purpose: "login"\|"register", name?, phone?, via?: "email"\|"whatsapp"}` → **selalu** `202 {sent:true, expiresInSeconds:600}`, kecuali `409 CHANNEL_UNAVAILABLE` untuk `via: "whatsapp"` saat kanal belum dikonfigurasi (#108, lihat di bawah) |
+| `POST` | `account/otp/verify` | tidak ada | `{email, code, purpose}` atau `{phone, code, purpose: "login"}` (#108) → `200 {token, expiresAt, account}`; `401 OTP_INVALID`, `404 ACCOUNT_NOT_FOUND` (login), `409 PHONE_ALREADY_REGISTERED` (register) |
 | `GET`/`PATCH` | `account/me` | `customerBearer` | Akun itu sendiri; `PATCH` hanya menerima `{name}` — belum ada ubah e-mail/telepon |
 | `POST` | `account/logout` | `customerBearer` | `204`, mencabut sesi yang disajikan |
 
@@ -120,6 +120,16 @@ Rute sisi staf pemilik untuk program afiliasi itu sendiri, digerbangi `commerce.
 | `POST` | `commerce/affiliate-commissions/{id}/void` | `pending\|approved -> void`; `Idempotency-Key` wajib; `409 COMMISSION_ALREADY_FINAL` |
 
 Sebuah komisi dibuat `pending` tepat saat status pesanan yang direferensikan mencapai `completed` (tidak pernah untuk referral diri sendiri, tidak pernah untuk afiliasi yang sejak itu ditangguhkan); `base = subtotal − discount − voucher_discount` (dibatasi minimum nol), `amount = round(base × rate / 100, 2)`, keduanya string `numeric` (ADR-0003). Boolean `affiliateProgramEnabled` pada `store-settings/public` adalah satu-satunya fakta afiliasi yang diekspos ke publik — tarifnya sendiri hanya untuk owner (`GET /api/v1/commerce/store-settings`).
+
+### Outbox WhatsApp — tindak lanjut D2, telah diimplementasikan (#108, kontrak #106 D5)
+
+`CustomerOtpChannel` mendapat adapter ketiga, `whatsapp` (provider Fonnte dan Meta Cloud API, plus adapter `log` untuk dev/CI), didukung outbox provider kedua yang dimodelkan seperti `email` (`awcms_commerce_whatsapp_messages`/`_delivery_attempts`, `apps/cms/sql/925_awcms_commerce_whatsapp_outbox_otp_channel.sql`). `via: "whatsapp"` pada `account/otp/request` (lihat baris di atas) hanya pernah mendukung `purpose: "login"` — pendaftaran tetap hanya OTP e-mail — dan mewajibkan `phone`; `account/otp/verify` menerima `phone` sebagai alternatif `email`, menyelesaikan akun lewat telepon baris pelanggannya. `COMMERCE_WHATSAPP_ENABLED` menggerbangi baik klaim di dispatcher maupun apakah `via: "whatsapp"` tersedia sama sekali.
+
+Diagnostik sisi pemilik, digerbangi `commerce.whatsapp.read`:
+
+| Method | Path | Catatan |
+| --- | --- | --- |
+| `GET` | `commerce/whatsapp/messages?status=` | Keyset, terbaru dulu; telepon tersamar (`toPhoneMasked`) saja — tidak pernah nomor asli, isi pesan yang dirender, atau kode OTP |
 
 ## Bentuk request/respons
 
@@ -216,4 +226,4 @@ Himpunan permission kredensial build di-seed oleh `tools/seed-borneojek-mart.ts`
 
 ## Belum dibangun
 
-Tarif kurir RajaOngkir dan payment gateway — `payment_method` sudah menerima nilai enum `gateway` (aditif, per [ADR-0010](adr/0010-manual-payment-and-alternative-courier-first-gateways-via-outbox.md)), tapi belum ada integrasi provider; keduanya harus lewat outbox begitu mendarat ([issue #33](https://github.com/ahliweb/awcms-one/issues/33)). Akun pelanggan, login, dan setiap endpoint storefront terautentikasi ([issue #32](https://github.com/ahliweb/awcms-one/issues/32)) **sudah selesai**: kontraknya ([ADR-0016](adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md), issue #86, tabel "Akun pelanggan" di atas) sudah sepenuhnya diimplementasi — login/registrasi OTP, `me`, `logout` ([issue #89](https://github.com/ahliweb/awcms-one/issues/89)), alamat/wishlist/riwayat-pesanan/ulasan ([issue #91](https://github.com/ahliweb/awcms-one/issues/91)), dan program afiliasi, baik permukaan bearer milik pembeli maupun API moderasi milik owner ([issue #92](https://github.com/ahliweb/awcms-one/issues/92)). Yang secara eksplisit ditangguhkan D6 milik ADR-0016, masih belum ada di sini: OTP WhatsApp/SMS (tindak lanjut D2), ubah e-mail/telepon pada akun yang sudah ada, harga bertingkat (`priceLevel2/3/4`) yang diterapkan saat quote, dan verifikasi telepon. Upload bukti-pembayaran yang berfungsi untuk pemanggil anonim (alur sesi `media_library` membutuhkan `actorTenantUserId` terautentikasi, yang tidak dimiliki pemanggil checkout tamu mana pun).
+Tarif kurir RajaOngkir dan payment gateway — `payment_method` sudah menerima nilai enum `gateway` (aditif, per [ADR-0010](adr/0010-manual-payment-and-alternative-courier-first-gateways-via-outbox.md)), tapi belum ada integrasi provider; keduanya harus lewat outbox begitu mendarat ([issue #33](https://github.com/ahliweb/awcms-one/issues/33)). Akun pelanggan, login, dan setiap endpoint storefront terautentikasi ([issue #32](https://github.com/ahliweb/awcms-one/issues/32)) **sudah selesai**: kontraknya ([ADR-0016](adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md), issue #86, tabel "Akun pelanggan" di atas) sudah sepenuhnya diimplementasi — login/registrasi OTP, `me`, `logout` ([issue #89](https://github.com/ahliweb/awcms-one/issues/89)), alamat/wishlist/riwayat-pesanan/ulasan ([issue #91](https://github.com/ahliweb/awcms-one/issues/91)), dan program afiliasi, baik permukaan bearer milik pembeli maupun API moderasi milik owner ([issue #92](https://github.com/ahliweb/awcms-one/issues/92)). OTP/login WhatsApp (tindak lanjut D2) sekarang juga **sudah selesai** ([issue #108](https://github.com/ahliweb/awcms-one/issues/108), bagian "Outbox WhatsApp" di atas) — kanal login-saja untuk akun yang SUDAH ADA, diselesaikan lewat telepon; pendaftaran tetap hanya OTP e-mail, sehingga akun yang benar-benar hanya-telepon (tanpa e-mail sama sekali) tetap terbuka, dicatat di catatan tindak lanjut ADR-0016 sendiri. Yang secara eksplisit ditangguhkan D6 milik ADR-0016, masih belum ada di sini: ubah e-mail/telepon pada akun yang sudah ada, harga bertingkat (`priceLevel2/3/4`) yang diterapkan saat quote, dan verifikasi telepon. Upload bukti-pembayaran yang berfungsi untuk pemanggil anonim (alur sesi `media_library` membutuhkan `actorTenantUserId` terautentikasi, yang tidak dimiliki pemanggil checkout tamu mana pun).

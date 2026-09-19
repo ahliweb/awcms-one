@@ -13,6 +13,7 @@ import {
 import { fail, ok } from "../../../../../../../modules/_shared/api-response";
 import { requestCustomerOtp } from "../../../../../../../modules/commerce/application/customer-auth";
 import { resolveCustomerOtpChannel } from "../../../../../../../modules/commerce/application/customer-otp-channel-adapters";
+import { resolveWhatsappCustomerOtpChannel } from "../../../../../../../modules/commerce/application/whatsapp-otp-channel-adapter";
 import { commercePreflightResponse } from "../../../../../../../modules/commerce/application/public-commerce-preflight";
 import { withPublicCommerceTenant } from "../../../../../../../modules/commerce/application/public-commerce-tenant";
 
@@ -97,7 +98,11 @@ export const POST: APIRoute = async ({ request, clientAddress, locals }) => {
   }
 
   const sql = getDatabaseClient();
-  const channel = resolveCustomerOtpChannel();
+  const via = body.via === "whatsapp" ? "whatsapp" : "email";
+  const channel =
+    via === "whatsapp"
+      ? resolveWhatsappCustomerOtpChannel()
+      : resolveCustomerOtpChannel();
 
   const { result, corsHeaders } = await withPublicCommerceTenant(
     sql,
@@ -112,6 +117,7 @@ export const POST: APIRoute = async ({ request, clientAddress, locals }) => {
           purpose: unknown;
           name?: unknown;
           phone?: unknown;
+          via?: unknown;
         },
         channel,
         locals.correlationId
@@ -134,6 +140,20 @@ export const POST: APIRoute = async ({ request, clientAddress, locals }) => {
       "Invalid OTP request.",
       {},
       result.errors,
+      corsHeaders
+    );
+  }
+
+  if (result.kind === "channel_unavailable") {
+    // Configuration, not enumeration (ADR-0017 D5) — WhatsApp is not
+    // enabled/configured for this deployment, independent of whether the
+    // phone supplied has an account.
+    return fail(
+      409,
+      "CHANNEL_UNAVAILABLE",
+      "The WhatsApp channel is not available for this store.",
+      {},
+      undefined,
       corsHeaders
     );
   }

@@ -81,6 +81,8 @@ tags:
     description: "Issue #86 (ADR-0016, epic #32 wave 0) — CONTRACT ONLY, no route file yet (handlers land in C2–C4, issues #87–#93). Customer accounts are OTP-verified, password-free `commerce` rows (D1), authenticated by a 6-digit e-mail OTP (D2) and a `customerBearer` opaque session token (D3) — a security surface deliberately separate from the staff `bearerAuth`/session schemes, so a customer credential can never reach a staff-only endpoint and vice versa. Registration binds to an existing guest checkout customer by phone when the e-mail also matches (D4). Covers OTP request/verify, the account profile, saved addresses, wishlist, the account's own order history and reviews, and the account's own affiliate enrolment/commissions."
   - name: Commerce Affiliates
     description: "Issue #86 (ADR-0016, epic #32 wave 0) — CONTRACT ONLY, no route file yet (handler lands in C4). The staff side of the affiliate program designed fresh by D5 (no legacy column carried over): review/approve/pay/void a referred order's commission, and edit an affiliate's status or commission rate. Gated on `commerce.affiliates.{read,update}` and `commerce.affiliate_commissions.{read,update}`."
+  - name: Commerce WhatsApp
+    description: 'Issue #108 (contract #106/ADR-0017 D5). Read-only owner diagnostics over the WhatsApp outbox (`awcms_commerce_whatsapp_messages`) — a message''s masked phone, template key, delivery status and attempt count, never the raw phone/rendered body/OTP code. Gated on `commerce.whatsapp.read`. WhatsApp itself is the third `CustomerOtpChannel` (Fonnte/Meta Cloud API adapters, `log` for dev/CI) and a second login identifier: `POST .../account/otp/request` accepts `via: "whatsapp"` (login only, phone required) and `.../otp/verify` accepts `phone` as an alternative to `email`.'
 paths:
   /api/v1/abac/policies:
     get:
@@ -10472,6 +10474,12 @@ paths:
                           - 600
         "400":
           $ref: "#/components/responses/BadRequest"
+        "409":
+          description: 'CHANNEL_UNAVAILABLE — `via: "whatsapp"` and the tenant has no WhatsApp channel configured/enabled (Issue #108). Configuration, not enumeration — answered before an OTP is ever issued.'
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
         "429":
           description: Too many OTP requests from this source (RATE_LIMITED). Carries `Retry-After`.
           content:
@@ -11546,6 +11554,57 @@ paths:
                       - true
                   data:
                     $ref: "#/components/schemas/CommerceVoucherValidation"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+  /api/v1/commerce/whatsapp/messages:
+    get:
+      operationId: listCommerceWhatsappMessages
+      tags:
+        - Commerce WhatsApp
+      summary: "Issue #108 (contract #106/ADR-0017 D5). Read-only WhatsApp outbox diagnostics, keyset-paginated. Gated on `commerce.whatsapp.read`."
+      description: Masked phone only (`toPhoneMasked`) — never the raw `to_phone`.
+      parameters:
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - queued
+              - sending
+              - sent
+              - failed
+        - name: cursor
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: One page of WhatsApp outbox messages.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      messages:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/CommerceWhatsappMessage"
+                      nextCursor:
+                        type: string
+                        nullable: true
         "400":
           $ref: "#/components/responses/BadRequest"
         "401":
@@ -27111,6 +27170,43 @@ components:
             - quota_exhausted
             - min_order
             - null
+    CommerceWhatsappMessage:
+      type: object
+      description: "Issue #108 (contract #106/ADR-0017 D5). A row of `awcms_commerce_whatsapp_messages` (`GET /api/v1/commerce/whatsapp/messages` diagnostics). Never carries `to_phone`/the rendered body/the OTP code — masked phone only."
+      properties:
+        id:
+          type: string
+          format: uuid
+        correlationId:
+          type: string
+          nullable: true
+        templateKey:
+          type: string
+          enum:
+            - commerce.customer_otp
+            - commerce.order_paid
+            - commerce.campaign
+        status:
+          type: string
+          enum:
+            - queued
+            - sending
+            - sent
+            - failed
+        toPhoneMasked:
+          type: string
+        attempts:
+          type: integer
+        lastError:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+        sentAt:
+          type: string
+          format: date-time
+          nullable: true
     ComposedHomepageGroup:
       type: object
       properties:
@@ -28998,14 +29094,14 @@ components:
           format: date-time
     OtpRequest:
       type: object
-      description: "Issue #86 (design only). Body of `POST /account/otp/request`."
+      description: 'Issue #86/#108 (implemented, contract #86/#106 D2/D5). Body of `POST /account/otp/request`. `email` is required unless `via` is `"whatsapp"`, in which case `phone` is required instead and `purpose` must be `"login"` (registration stays e-mail OTP only).'
       required:
-        - email
         - purpose
       properties:
         email:
           type: string
           format: email
+          description: Required unless `via` is `"whatsapp"`.
         purpose:
           type: string
           enum:
@@ -29016,18 +29112,27 @@ components:
           description: Required when `purpose` is `register`; ignored for `login`.
         phone:
           type: string
-          description: Required when `purpose` is `register`; ignored for `login`.
+          description: Required when `purpose` is `register` (via e-mail), or when `via` is `"whatsapp"` (E.164 or a locally-typed Indonesian number, normalised server-side).
+        via:
+          type: string
+          enum:
+            - email
+            - whatsapp
+          default: email
+          description: 'Issue #108 (contract #106/ADR-0017 D5). `"whatsapp"` only supports `purpose: "login"` and answers `409 CHANNEL_UNAVAILABLE` when the tenant has no WhatsApp channel configured.'
     OtpVerify:
       type: object
-      description: "Issue #86 (design only). Body of `POST /account/otp/verify`."
+      description: 'Issue #86/#108 (implemented, contract #86/#106 D2/D5). Body of `POST /account/otp/verify`. Exactly one of `email`/`phone` is required — `phone` proves a `via: "whatsapp"` login OTP and only ever supports `purpose: "login"`.'
       required:
-        - email
         - code
         - purpose
       properties:
         email:
           type: string
           format: email
+        phone:
+          type: string
+          description: 'Issue #108 — alternative to `email` when the OTP was requested with `via: "whatsapp"`. Mutually exclusive with `email`.'
         code:
           type: string
           description: 6 digits.

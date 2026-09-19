@@ -80,8 +80,8 @@ Every route resolves its tenant from the request's `Origin`/`Host` against `awcm
 
 | Method | Path | Auth | Notes |
 | --- | --- | --- | --- |
-| `POST` | `account/otp/request` | none | `{email, purpose: "login"\|"register", name?, phone?}` → **always** `202 {sent:true, expiresInSeconds:600}` |
-| `POST` | `account/otp/verify` | none | `{email, code, purpose}` → `200 {token, expiresAt, account}`; `401 OTP_INVALID`, `404 ACCOUNT_NOT_FOUND` (login), `409 PHONE_ALREADY_REGISTERED` (register) |
+| `POST` | `account/otp/request` | none | `{email, purpose: "login"\|"register", name?, phone?, via?: "email"\|"whatsapp"}` → **always** `202 {sent:true, expiresInSeconds:600}`, except `409 CHANNEL_UNAVAILABLE` for `via: "whatsapp"` when the channel is not configured (#108, see below) |
+| `POST` | `account/otp/verify` | none | `{email, code, purpose}` or `{phone, code, purpose: "login"}` (#108) → `200 {token, expiresAt, account}`; `401 OTP_INVALID`, `404 ACCOUNT_NOT_FOUND` (login), `409 PHONE_ALREADY_REGISTERED` (register) |
 | `GET`/`PATCH` | `account/me` | `customerBearer` | The account; `PATCH` accepts `{name}` only — no e-mail/phone change yet |
 | `POST` | `account/logout` | `customerBearer` | `204`, revokes the presented session |
 
@@ -118,6 +118,16 @@ Owner-side staff routes for the affiliate program itself, gated on `commerce.aff
 | `POST` | `commerce/affiliate-commissions/{id}/void` | `pending\|approved -> void`; `Idempotency-Key` required; `409 COMMISSION_ALREADY_FINAL` |
 
 A commission is created `pending` the moment the referenced order's status reaches `completed` (never on self-referral, never for a since-suspended affiliate); `base = subtotal − discount − voucher_discount` (floored at zero), `amount = round(base × rate / 100, 2)`, both `numeric` strings (ADR-0003). `store-settings/public`'s `affiliateProgramEnabled` boolean is the only affiliate fact exposed publicly — the rate itself is owner-only (`GET /api/v1/commerce/store-settings`).
+
+### WhatsApp outbox — D2's follow-up, implemented (#108, contract #106 D5)
+
+`CustomerOtpChannel` gains a third adapter, `whatsapp` (Fonnte and Meta Cloud API providers, plus a `log` adapter for dev/CI), backed by a second provider outbox modelled on `email` (`awcms_commerce_whatsapp_messages`/`_delivery_attempts`, `apps/cms/sql/925_awcms_commerce_whatsapp_outbox_otp_channel.sql`). `via: "whatsapp"` on `account/otp/request` (see the row above) only ever supports `purpose: "login"` — registration stays e-mail OTP only — and requires `phone`; `account/otp/verify` accepts `phone` as an alternative to `email`, resolving the account via its customer row's phone. `COMMERCE_WHATSAPP_ENABLED` gates both claiming in the dispatcher and whether `via: "whatsapp"` is available at all.
+
+Owner-side diagnostics, gated on `commerce.whatsapp.read`:
+
+| Method | Path | Notes |
+| --- | --- | --- |
+| `GET` | `commerce/whatsapp/messages?status=` | Keyset, newest first; masked phone (`toPhoneMasked`) only — never the raw number, rendered body, or OTP code |
 
 ## Request/response shapes
 
@@ -214,4 +224,4 @@ The build credential's permission set is seeded by `tools/seed-borneojek-mart.ts
 
 ## Not built
 
-RajaOngkir courier rates and a payment gateway — `payment_method` accepts a `gateway` enum value already (additive, per [ADR-0010](adr/0010-manual-payment-and-alternative-courier-first-gateways-via-outbox.md)), but no provider integration exists; both must go through the outbox when they land ([issue #33](https://github.com/ahliweb/awcms-one/issues/33)). Customer accounts, login, and every authenticated storefront endpoint ([issue #32](https://github.com/ahliweb/awcms-one/issues/32)) are **done**: the contract ([ADR-0016](adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md), issue #86, the "Customer accounts" table above) is fully implemented — OTP login/registration, `me`, `logout` ([issue #89](https://github.com/ahliweb/awcms-one/issues/89)), addresses/wishlist/order-history/review ([issue #91](https://github.com/ahliweb/awcms-one/issues/91)), and the affiliate program, both the shopper's own bearer-secured surface and the owner's moderation API ([issue #92](https://github.com/ahliweb/awcms-one/issues/92)). What ADR-0016's D6 explicitly deferred, still not here: WhatsApp/SMS OTP (D2's follow-up), e-mail/phone change on an existing account, tiered pricing (`priceLevel2/3/4`) applied at quote time, and phone verification. A working payment-proof upload for an anonymous caller (`media_library`'s session flow needs an authenticated `actorTenantUserId`, which no guest checkout caller has).
+RajaOngkir courier rates and a payment gateway — `payment_method` accepts a `gateway` enum value already (additive, per [ADR-0010](adr/0010-manual-payment-and-alternative-courier-first-gateways-via-outbox.md)), but no provider integration exists; both must go through the outbox when they land ([issue #33](https://github.com/ahliweb/awcms-one/issues/33)). Customer accounts, login, and every authenticated storefront endpoint ([issue #32](https://github.com/ahliweb/awcms-one/issues/32)) are **done**: the contract ([ADR-0016](adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md), issue #86, the "Customer accounts" table above) is fully implemented — OTP login/registration, `me`, `logout` ([issue #89](https://github.com/ahliweb/awcms-one/issues/89)), addresses/wishlist/order-history/review ([issue #91](https://github.com/ahliweb/awcms-one/issues/91)), and the affiliate program, both the shopper's own bearer-secured surface and the owner's moderation API ([issue #92](https://github.com/ahliweb/awcms-one/issues/92)). WhatsApp OTP/login (D2's follow-up) is now also **done** ([issue #108](https://github.com/ahliweb/awcms-one/issues/108), the "WhatsApp outbox" section above) — a login-only channel for an EXISTING account, resolved by phone; registration stays e-mail OTP only, so a genuinely phone-only account (no e-mail at all) remains open, tracked in ADR-0016's own follow-up note. What ADR-0016's D6 explicitly deferred, still not here: e-mail/phone change on an existing account, tiered pricing (`priceLevel2/3/4`) applied at quote time, and phone verification. A working payment-proof upload for an anonymous caller (`media_library`'s session flow needs an authenticated `actorTenantUserId`, which no guest checkout caller has).

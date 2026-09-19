@@ -45,6 +45,15 @@ A much larger file, owned entirely by `apps/cms` as embedded `ahliweb/awcms` cod
 | `COMMERCE_ACCOUNT_OTP_VERIFY_RATE_LIMIT_MAX_PER_IP` / `_WINDOW_SEC` | 20 / 3600 | `account/otp/verify`'s own, looser per-IP budget — no per-e-mail axis, since the hashed code with 5 attempts already limits guessing one address |
 | `COMMERCE_STOREFRONT_PUBLIC_URL` | unset | This deployment's public storefront origin, used only to build an enrolled affiliate's referral link (issue #92, `"${COMMERCE_STOREFRONT_PUBLIC_URL}/?ref=CODE"`); unset falls back to a relative `/?ref=CODE` rather than fabricating an origin |
 
+**`COMMERCE_WHATSAPP_ENABLED`/`COMMERCE_WHATSAPP_PROVIDER` are the same kind of deployment gate for WhatsApp login (issue #108, contract #106 D5).** `POST account/otp/request` with `via: "whatsapp"` answers `409 CHANNEL_UNAVAILABLE` until `COMMERCE_WHATSAPP_ENABLED=true`; the code then goes to a `log` adapter (dev/CI) unless `COMMERCE_WHATSAPP_PROVIDER` also names a real provider (`fonnte` or `meta`, each with its own credential variables below). WhatsApp is a login-only channel for an account that already exists — registration is unaffected and stays e-mail OTP only.
+
+| Variable | Default | Purpose |
+| --- | --- | --- |
+| `COMMERCE_WHATSAPP_ENABLED` | `false` | Gates BOTH claiming in `commerce:whatsapp:dispatch` and whether `via: "whatsapp"` is available on `otp/request` at all |
+| `COMMERCE_WHATSAPP_PROVIDER` | unset (`log` when `COMMERCE_WHATSAPP_ENABLED=false`) | `fonnte`, `meta`, or `log` (safe local/dev, no network) |
+| `COMMERCE_FONNTE_TOKEN` / `COMMERCE_FONNTE_API_BASE_URL` | unset / `https://api.fonnte.com` | Fonnte adapter credential/base URL |
+| `COMMERCE_META_WA_TOKEN` / `COMMERCE_META_WA_PHONE_NUMBER_ID` / `COMMERCE_META_WA_OTP_TEMPLATE` / `COMMERCE_META_WA_API_BASE_URL` | all unset / `https://graph.facebook.com/v20.0` | Meta WhatsApp Cloud API adapter — `COMMERCE_META_WA_OTP_TEMPLATE` names the operator-approved template Meta requires for a template (OTP) message |
+
 `PUBLIC_*` storefront variables are unchanged by increment 4 — the bearer session lives entirely in the browser's own `localStorage`, so no new build-time or runtime env var was needed on the `apps/storefront` side for accounts or affiliates.
 
 ## What may reach `apps/cms`: the build process, and — since issue #30 — the reader's browser

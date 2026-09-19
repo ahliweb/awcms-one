@@ -150,6 +150,16 @@ export const JOB_WORK_CLASS_REGISTRY: Readonly<
     rationale:
       'Scheduled OTP/session purge sweep (commerce:customer-auth:purge, Issue #87), every 5-15 minutes — same recurring-but-not-latency-sensitive profile as commerce:orders:expire; purgeCustomerAuthForTenant passes workClass: "background_sync" explicitly.'
   },
+  "scripts/commerce-whatsapp-dispatch.ts": {
+    workClass: "background_sync",
+    rationale:
+      'Scheduled WhatsApp delivery-queue drain (commerce:whatsapp:dispatch, Issue #108), every 1-2 minutes — same claim/send/finalize profile as email:dispatch; dispatchWhatsappQueue passes workClass: "background_sync" explicitly on every transaction.'
+  },
+  "scripts/commerce-whatsapp-purge.ts": {
+    workClass: "maintenance",
+    rationale:
+      'One-shot-per-run retention sweep (commerce:whatsapp:purge, Issue #108), every 5-15 minutes, delay-tolerant like email:queue:purge; purgeWhatsappQueue passes workClass: "maintenance" explicitly.'
+  },
   "scripts/blog-portable-text-backfill.ts": {
     workClass: "maintenance",
     rationale:

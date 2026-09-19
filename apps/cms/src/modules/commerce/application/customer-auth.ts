@@ -44,8 +44,10 @@ import {
   findAccountByPhone,
   issueOtp,
   issueSession,
-  type CustomerAccountRecord
+  type CustomerAccountRecord,
+  type OtpIdentifierColumn
 } from "./customer-account-store";
+import { isWhatsappOtpChannelAvailable } from "./whatsapp-otp-channel-adapter";
 
 const AUDIT_MODULE_KEY = "commerce";
 const AUDIT_RESOURCE_TYPE_OTP = "customer_otp";
@@ -108,16 +110,21 @@ export async function fetchCustomerAccountView(
 }
 
 export type OtpPurpose = "login" | "register";
+export type OtpVia = "email" | "whatsapp";
 
 export type RequestCustomerOtpInput = {
   email: unknown;
   purpose: unknown;
   name?: unknown;
   phone?: unknown;
+  /** Issue #108, contract #106/ADR-0017 D5. Defaults to `"email"` when absent — a caller from before this issue never sent it and keeps getting the e-mail path. */
+  via?: unknown;
 };
 
 export type RequestCustomerOtpOutcome =
   | { kind: "validation_error"; errors: ValidationError[] }
+  /** `via: "whatsapp"` and the channel is not enabled/configured — a CONFIGURATION fact, not an identifier-existence oracle (ADR-0017 D5). */
+  | { kind: "channel_unavailable" }
   | { kind: "sent"; expiresInSeconds: number };
 
 function validatePurpose(value: unknown): value is OtpPurpose {
@@ -131,7 +138,20 @@ function validatePurpose(value: unknown): value is OtpPurpose {
  * the enumeration oracle ADR-0016 rules out; the account-existence question
  * is answered only at VERIFY, and even there `purpose: "login"` with no
  * account is a deliberate, documented exception (D2 — "the mailbox owner
- * already received the code").
+ * already received the code"). The ONE exception to "never decide anything
+ * before issuing a code" is `channel_unavailable` (Issue #108): whether
+ * WhatsApp is enabled/configured for this tenant's deployment is public
+ * configuration, not a fact about any one shopper's identifier, so
+ * answering it truthfully before touching the database is not a new
+ * oracle.
+ *
+ * ## Why WhatsApp only ever supports `purpose: "login"`
+ *
+ * ADR-0017 D5 keeps registration e-mail-OTP only in this issue — the
+ * account KEY stays the e-mail address (`awcms_commerce_customer_accounts.
+ * email_normalized`), and `via: "whatsapp"` is a second LOGIN channel for an
+ * account that already exists, resolved by phone
+ * (`findAccountByPhone`) rather than by e-mail.
  */
 export async function requestCustomerOtp(
   tx: Bun.SQL,
@@ -140,7 +160,8 @@ export async function requestCustomerOtp(
   input: RequestCustomerOtpInput,
   channel: CustomerOtpChannel,
   correlationId?: string,
-  now: Date = new Date()
+  now: Date = new Date(),
+  env: NodeJS.ProcessEnv = process.env
 ): Promise<RequestCustomerOtpOutcome> {
   const errors: ValidationError[] = [];
 
@@ -151,19 +172,62 @@ export async function requestCustomerOtp(
     });
   }
 
-  const rawEmail = typeof input.email === "string" ? input.email : "";
+  if (
+    input.via !== undefined &&
+    input.via !== "email" &&
+    input.via !== "whatsapp"
+  ) {
+    errors.push({
+      field: "via",
+      message: 'via must be "email" or "whatsapp".'
+    });
+  }
+
+  const via: OtpVia = input.via === "whatsapp" ? "whatsapp" : "email";
+
+  if (via === "whatsapp" && input.purpose === "register") {
+    errors.push({
+      field: "via",
+      message:
+        'via "whatsapp" only supports purpose "login" in this release; registration is e-mail OTP only.'
+    });
+  }
+
   let emailNormalized = "";
-  if (rawEmail.trim().length === 0) {
-    errors.push({ field: "email", message: "email is required." });
-  } else {
-    const candidate = normalizeEmail(rawEmail);
-    if (!isWellFormedEmail(candidate)) {
+  let phoneNormalizedForVia: string | null = null;
+
+  if (via === "whatsapp") {
+    const rawPhone = typeof input.phone === "string" ? input.phone : "";
+    if (rawPhone.trim().length === 0) {
       errors.push({
-        field: "email",
-        message: "email is not a valid e-mail address."
+        field: "phone",
+        message: 'phone is required when via is "whatsapp".'
       });
     } else {
-      emailNormalized = candidate;
+      const phoneResult = normalizePhoneNumber(rawPhone);
+      if (!phoneResult.valid) {
+        errors.push({
+          field: "phone",
+          message: "phone is not a valid Indonesian phone number."
+        });
+      } else {
+        phoneNormalizedForVia = phoneResult.value;
+      }
+    }
+  } else {
+    const rawEmail = typeof input.email === "string" ? input.email : "";
+    if (rawEmail.trim().length === 0) {
+      errors.push({ field: "email", message: "email is required." });
+    } else {
+      const candidate = normalizeEmail(rawEmail);
+      if (!isWellFormedEmail(candidate)) {
+        errors.push({
+          field: "email",
+          message: "email is not a valid e-mail address."
+        });
+      } else {
+        emailNormalized = candidate;
+      }
     }
   }
 
@@ -173,8 +237,11 @@ export async function requestCustomerOtp(
   // validator now so the shopper gets field errors before the e-mail goes
   // out" — the same shape check `validateRegistration` already runs at
   // `createAccountForCustomer` time, just moved earlier so a malformed
-  // phone/name never causes a code to be issued and mailed at all.
-  if (input.purpose === "register") {
+  // phone/name never causes a code to be issued and mailed at all. Only
+  // reachable when `via === "email"` (a `whatsapp`+`register` combination
+  // already failed validation above).
+  if (input.purpose === "register" && via === "email") {
+    const rawEmail = typeof input.email === "string" ? input.email : "";
     const registrationResult = validateRegistration({
       name: input.name,
       phone: input.phone,
@@ -201,18 +268,30 @@ export async function requestCustomerOtp(
 
   const purpose = input.purpose as OtpPurpose;
 
+  if (via === "whatsapp" && !isWhatsappOtpChannelAvailable(env)) {
+    return { kind: "channel_unavailable" };
+  }
+
+  const identifierColumn: OtpIdentifierColumn =
+    via === "whatsapp" ? "phone_normalized" : "email_normalized";
+  const identifierValue =
+    via === "whatsapp" ? phoneNormalizedForVia! : emailNormalized;
+
   const issued = await issueOtp(
     tx,
     tenantId,
-    emailNormalized,
+    identifierValue,
     purpose,
     registration,
-    now
+    now,
+    identifierColumn
   );
 
   const channelRequest: CustomerOtpChannelRequest = {
     tenantId,
-    emailNormalized,
+    via,
+    emailNormalized: via === "email" ? emailNormalized : null,
+    phoneNormalized: via === "whatsapp" ? phoneNormalizedForVia : null,
     code: issued.code,
     purpose,
     expiresInMinutes: Math.round(OTP_TTL_SECONDS / 60),
@@ -227,9 +306,13 @@ export async function requestCustomerOtp(
     moduleKey: AUDIT_MODULE_KEY,
     action: "commerce.customer.otp_requested",
     resourceType: AUDIT_RESOURCE_TYPE_OTP,
-    message: `Customer OTP requested for ${purpose}.`,
+    message: `Customer OTP requested for ${purpose} via ${via}.`,
     attributes: {
-      emailMasked: maskIdentifierValue(emailNormalized, "email"),
+      identifierMasked:
+        via === "whatsapp"
+          ? maskPhone(identifierValue)
+          : maskIdentifierValue(identifierValue, "email"),
+      via,
       purpose,
       sent: delivery.sent
     },
@@ -241,6 +324,8 @@ export async function requestCustomerOtp(
 
 export type VerifyCustomerOtpInput = {
   email: unknown;
+  /** Issue #108, contract #106/ADR-0017 D5 — the alternative identifier for a `via: "whatsapp"` login OTP. Exactly one of `email`/`phone` must be present. */
+  phone?: unknown;
   code: unknown;
   purpose: unknown;
 };
@@ -281,10 +366,49 @@ export async function verifyCustomerOtp(
   }
 
   const rawEmail = typeof input.email === "string" ? input.email : "";
+  const rawPhone = typeof input.phone === "string" ? input.phone : "";
+  const hasEmail = rawEmail.trim().length > 0;
+  const hasPhone = rawPhone.trim().length > 0;
+
+  if (!hasEmail && !hasPhone) {
+    errors.push({
+      field: "email",
+      message: "email or phone is required."
+    });
+  } else if (hasEmail && hasPhone) {
+    errors.push({
+      field: "phone",
+      message: "provide either email or phone, not both."
+    });
+  }
+
+  // Phone verification only ever proves a WhatsApp LOGIN OTP (ADR-0017 D5 —
+  // registration stays e-mail OTP only, so a phone-keyed row issued by
+  // `requestCustomerOtp` never has `purpose: "register"` in the first
+  // place).
+  if (hasPhone && !hasEmail && input.purpose === "register") {
+    errors.push({
+      field: "phone",
+      message: 'phone verification only supports purpose "login".'
+    });
+  }
+
   let emailNormalized = "";
-  if (rawEmail.trim().length === 0) {
-    errors.push({ field: "email", message: "email is required." });
-  } else {
+  let phoneNormalized = "";
+  const identifierColumn: OtpIdentifierColumn =
+    hasPhone && !hasEmail ? "phone_normalized" : "email_normalized";
+
+  if (identifierColumn === "phone_normalized") {
+    const phoneResult = normalizePhoneNumber(rawPhone);
+    if (!phoneResult.valid) {
+      errors.push({
+        field: "phone",
+        message: "phone is not a valid Indonesian phone number."
+      });
+    } else {
+      phoneNormalized = phoneResult.value;
+    }
+  } else if (hasEmail) {
     const candidate = normalizeEmail(rawEmail);
     if (!isWellFormedEmail(candidate)) {
       errors.push({
@@ -306,7 +430,16 @@ export async function verifyCustomerOtp(
   }
 
   const purpose = input.purpose as OtpPurpose;
-  const emailMasked = maskIdentifierValue(emailNormalized, "email");
+  const identifierValue =
+    identifierColumn === "phone_normalized" ? phoneNormalized : emailNormalized;
+  const identifierMasked =
+    identifierColumn === "phone_normalized"
+      ? maskPhone(identifierValue)
+      : maskIdentifierValue(identifierValue, "email");
+  // Retained for the `register` branch below, which is only ever reached
+  // for `identifierColumn === "email_normalized"` (phone verification never
+  // allows `purpose: "register"`, validated above).
+  const emailMasked = identifierMasked;
 
   async function auditFailure(reason: string): Promise<void> {
     await recordAuditEvent(tx, {
@@ -315,7 +448,7 @@ export async function verifyCustomerOtp(
       action: "commerce.customer.login_failed",
       resourceType: AUDIT_RESOURCE_TYPE_OTP,
       message: `Customer OTP verification failed for ${purpose}.`,
-      attributes: { emailMasked, purpose, reason },
+      attributes: { identifierMasked, purpose, reason },
       correlationId
     });
   }
@@ -323,15 +456,57 @@ export async function verifyCustomerOtp(
   const consumed = await consumeOtp(
     tx,
     tenantId,
-    emailNormalized,
+    identifierValue,
     purpose,
     code,
-    now
+    now,
+    identifierColumn
   );
 
   if (!consumed.ok) {
     await auditFailure(consumed.reason);
     return { kind: "otp_invalid" };
+  }
+
+  if (identifierColumn === "phone_normalized") {
+    // `via: "whatsapp"` login — the account is the one whose CUSTOMER row
+    // has this phone (`findAccountByPhone`), never `findAccountByEmail`.
+    const account = await findAccountByPhone(tx, tenantId, identifierValue);
+
+    if (!account) {
+      await auditFailure("account_not_found");
+      return { kind: "account_not_found" };
+    }
+
+    if (account.status === "blocked") {
+      await auditFailure("blocked");
+      return { kind: "blocked" };
+    }
+
+    await recordAuditEvent(tx, {
+      tenantId,
+      moduleKey: AUDIT_MODULE_KEY,
+      action: "commerce.customer.otp_verified",
+      resourceType: AUDIT_RESOURCE_TYPE_OTP,
+      message: "Customer OTP verified (login via whatsapp).",
+      attributes: { identifierMasked, purpose },
+      correlationId
+    });
+
+    const session = await issueSession(
+      tx,
+      tenantId,
+      account.id,
+      sessionMeta,
+      now
+    );
+
+    return {
+      kind: "success",
+      token: session.token,
+      expiresAt: session.expiresAt,
+      account: (await fetchCustomerAccountView(tx, tenantId, account.id))!
+    };
   }
 
   if (purpose === "login") {

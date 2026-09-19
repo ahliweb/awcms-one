@@ -22,7 +22,9 @@ describe("resolveCustomerOtpChannel — env-driven selection (Issue #89)", () =>
 
     const result = await channel.sendOtp({} as Bun.SQL, {
       tenantId: "t1",
+      via: "email",
       emailNormalized: "shopper@example.com",
+      phoneNormalized: null,
       code: "123456",
       purpose: "login",
       expiresInMinutes: 10,
@@ -40,7 +42,9 @@ describe("resolveCustomerOtpChannel — env-driven selection (Issue #89)", () =>
 
     const result = await channel.sendOtp({} as Bun.SQL, {
       tenantId: "t1",
+      via: "email",
       emailNormalized: "shopper@example.com",
+      phoneNormalized: null,
       code: "654321",
       purpose: "register",
       expiresInMinutes: 10,
@@ -77,7 +81,9 @@ describe("createLogCustomerOtpChannel — always reports sent", () => {
 
     const result = await channel.sendOtp(explodingTx, {
       tenantId: "t1",
+      via: "email",
       emailNormalized: "shopper@example.com",
+      phoneNormalized: null,
       code: "111111",
       purpose: "login",
       expiresInMinutes: 10,

@@ -225,3 +225,252 @@ describe("verifyCustomerOtp — branching against a mocked store (Issue #89)", (
     expect(outcome.kind).toBe("phone_already_registered");
   });
 });
+
+/**
+ * Issue #108, contract #106/ADR-0017 D5 — `via: "whatsapp"` request-side
+ * branching. No database: validation and `channel_unavailable` both return
+ * before any store call.
+ */
+describe("requestCustomerOtp — via: whatsapp (Issue #108)", () => {
+  const explodingTx = new Proxy(
+    {},
+    {
+      get: () => () => {
+        throw new Error("must not query");
+      }
+    }
+  ) as unknown as Bun.SQL;
+  const explodingChannel: CustomerOtpChannel = {
+    sendOtp: () => {
+      throw new Error("must not send");
+    }
+  };
+
+  test("via: whatsapp with purpose: register is a validation error — registration stays e-mail OTP only", async () => {
+    const { requestCustomerOtp } =
+      await import("../src/modules/commerce/application/customer-auth");
+
+    const outcome = await requestCustomerOtp(
+      explodingTx,
+      "tenant-1",
+      "Toko Uji",
+      {
+        email: "",
+        purpose: "register",
+        via: "whatsapp",
+        phone: "081234567890"
+      },
+      explodingChannel,
+      undefined,
+      new Date(),
+      { COMMERCE_WHATSAPP_ENABLED: "true" } as NodeJS.ProcessEnv
+    );
+
+    expect(outcome.kind).toBe("validation_error");
+    if (outcome.kind === "validation_error") {
+      expect(outcome.errors.map((error) => error.field)).toContain("via");
+    }
+  });
+
+  test("via: whatsapp with no phone is a validation error", async () => {
+    const { requestCustomerOtp } =
+      await import("../src/modules/commerce/application/customer-auth");
+
+    const outcome = await requestCustomerOtp(
+      explodingTx,
+      "tenant-1",
+      "Toko Uji",
+      { email: "", purpose: "login", via: "whatsapp" },
+      explodingChannel,
+      undefined,
+      new Date(),
+      { COMMERCE_WHATSAPP_ENABLED: "true" } as NodeJS.ProcessEnv
+    );
+
+    expect(outcome.kind).toBe("validation_error");
+    if (outcome.kind === "validation_error") {
+      expect(outcome.errors.map((error) => error.field)).toContain("phone");
+    }
+  });
+
+  test("via: whatsapp answers channel_unavailable when COMMERCE_WHATSAPP_ENABLED is not true, without issuing a code", async () => {
+    const { requestCustomerOtp } =
+      await import("../src/modules/commerce/application/customer-auth");
+
+    const outcome = await requestCustomerOtp(
+      explodingTx,
+      "tenant-1",
+      "Toko Uji",
+      {
+        email: "",
+        purpose: "login",
+        via: "whatsapp",
+        phone: "081234567890"
+      },
+      explodingChannel,
+      undefined,
+      new Date(),
+      { COMMERCE_WHATSAPP_ENABLED: "false" } as NodeJS.ProcessEnv
+    );
+
+    expect(outcome.kind).toBe("channel_unavailable");
+  });
+
+  test("via: whatsapp, enabled, issues an OTP keyed by phone_normalized and hands it to the channel", async () => {
+    let issuedIdentifier: string | undefined;
+    let issuedColumn: string | undefined;
+    let channelRequestVia: string | undefined;
+
+    mock.module(
+      "../src/modules/commerce/application/customer-account-store",
+      () => ({
+        ...ORIGINAL,
+        issueOtp: async (
+          _tx: Bun.SQL,
+          _tenantId: string,
+          identifierValue: string,
+          _purpose: string,
+          _registration: unknown,
+          _now: Date,
+          identifierColumn: string
+        ) => {
+          issuedIdentifier = identifierValue;
+          issuedColumn = identifierColumn;
+          return { code: "123456", expiresAt: new Date().toISOString() };
+        }
+      })
+    );
+
+    const { requestCustomerOtp } =
+      await import("../src/modules/commerce/application/customer-auth");
+
+    const channel: CustomerOtpChannel = {
+      sendOtp: async (_tx, request) => {
+        channelRequestVia = request.via;
+        return { sent: true };
+      }
+    };
+
+    const outcome = await requestCustomerOtp(
+      fakeTx,
+      "tenant-1",
+      "Toko Uji",
+      {
+        email: "",
+        purpose: "login",
+        via: "whatsapp",
+        phone: "081234567890"
+      },
+      channel,
+      undefined,
+      new Date(),
+      { COMMERCE_WHATSAPP_ENABLED: "true" } as NodeJS.ProcessEnv
+    );
+
+    expect(outcome.kind).toBe("sent");
+    expect(issuedColumn).toBe("phone_normalized");
+    expect(issuedIdentifier).toBe("+6281234567890");
+    expect(channelRequestVia).toBe("whatsapp");
+
+    mock.module(
+      "../src/modules/commerce/application/customer-account-store",
+      () => ORIGINAL
+    );
+  });
+});
+
+/** Issue #108 — `verifyCustomerOtp` accepting `phone` as the identifier. */
+describe("verifyCustomerOtp — phone identifier (Issue #108)", () => {
+  afterAll(() => {
+    mock.module(
+      "../src/modules/commerce/application/customer-account-store",
+      () => ORIGINAL
+    );
+  });
+
+  test("phone + purpose: register is a validation error (phone verification is login-only)", async () => {
+    const { verifyCustomerOtp } =
+      await import("../src/modules/commerce/application/customer-auth");
+
+    const outcome = await verifyCustomerOtp(
+      fakeTx,
+      "tenant-1",
+      { email: "", phone: "081234567890", code: "123456", purpose: "register" },
+      { clientIpHash: null, userAgentSummary: null }
+    );
+
+    expect(outcome.kind).toBe("validation_error");
+  });
+
+  test("both email and phone supplied is a validation error", async () => {
+    const { verifyCustomerOtp } =
+      await import("../src/modules/commerce/application/customer-auth");
+
+    const outcome = await verifyCustomerOtp(
+      fakeTx,
+      "tenant-1",
+      {
+        email: "shopper@example.com",
+        phone: "081234567890",
+        code: "123456",
+        purpose: "login"
+      },
+      { clientIpHash: null, userAgentSummary: null }
+    );
+
+    expect(outcome.kind).toBe("validation_error");
+  });
+
+  test("phone login resolves the account via findAccountByPhone, not findAccountByEmail", async () => {
+    let findAccountByPhoneCalledWith: string | undefined;
+
+    mock.module(
+      "../src/modules/commerce/application/customer-account-store",
+      () => ({
+        ...ORIGINAL,
+        consumeOtp: async () => ({
+          ok: true as const,
+          otp: { id: "otp-1", purpose: "login" as const, registration: null }
+        }),
+        findAccountByEmail: async () => {
+          throw new Error("must not be called for phone verification");
+        },
+        findAccountByPhone: async (
+          _tx: Bun.SQL,
+          _tenantId: string,
+          phone: string
+        ) => {
+          findAccountByPhoneCalledWith = phone;
+          return {
+            id: "acct-1",
+            customerId: "cust-1",
+            emailMasked: "s***@example.com",
+            status: "active" as const,
+            emailVerifiedAt: null,
+            historyFrom: new Date().toISOString(),
+            lastLoginAt: null,
+            createdAt: new Date().toISOString()
+          };
+        },
+        issueSession: async () => ({
+          token: "cs_test",
+          sessionId: "sess-1",
+          expiresAt: new Date().toISOString()
+        })
+      })
+    );
+
+    const { verifyCustomerOtp } =
+      await import("../src/modules/commerce/application/customer-auth");
+
+    const outcome = await verifyCustomerOtp(
+      fakeTx,
+      "tenant-1",
+      { email: "", phone: "081234567890", code: "123456", purpose: "login" },
+      { clientIpHash: null, userAgentSummary: null }
+    );
+
+    expect(outcome.kind).toBe("success");
+    expect(findAccountByPhoneCalledWith).toBe("+6281234567890");
+  });
+});

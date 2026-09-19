@@ -25,7 +25,9 @@ import {
   COMMERCE_AFFILIATES_ACTIVITY_CODE,
   COMMERCE_AFFILIATE_PERMISSIONS,
   COMMERCE_AFFILIATE_COMMISSIONS_ACTIVITY_CODE,
-  COMMERCE_AFFILIATE_COMMISSION_PERMISSIONS
+  COMMERCE_AFFILIATE_COMMISSION_PERMISSIONS,
+  COMMERCE_WHATSAPP_ACTIVITY_CODE,
+  COMMERCE_WHATSAPP_PERMISSIONS
 } from "./domain/commerce-permissions";
 import {
   COMMERCE_FLASH_SALE_ENDED_EVENT_TYPE,
@@ -169,6 +171,30 @@ export const commerceModule = defineModule({
       environmentNotes:
         "No external provider call — pure database DELETE, safe to run in any deployment profile.",
       safeInOfflineLan: true
+    },
+    {
+      command: "bun run commerce:whatsapp:dispatch",
+      schedule: { mode: "cron", expression: "*/2 * * * *", backlog: "bounded" },
+      purpose:
+        "Drain the due WhatsApp delivery queue (claim-lease, retry/backoff, circuit breaker) for every active tenant (Issue #108).",
+      recommendedSchedule: "Every 1-2 minutes via cron/systemd timer.",
+      environmentNotes:
+        'No-op when COMMERCE_WHATSAPP_ENABLED is not "true" — safe to schedule regardless of deployment profile (e.g. offline/LAN).',
+      safeInOfflineLan: true
+    },
+    {
+      command: "bun run commerce:whatsapp:purge",
+      schedule: {
+        mode: "cron",
+        expression: "*/15 * * * *",
+        backlog: "bounded"
+      },
+      purpose:
+        "Deletes terminal (sent/failed) WhatsApp outbox messages and delivery attempts past their retention window, across all tenants (Issue #108). Idempotent and bounded.",
+      recommendedSchedule: "Every 5-15 minutes via cron/systemd timer.",
+      environmentNotes:
+        "No external provider call — pure database DELETE, safe to run in any deployment profile.",
+      safeInOfflineLan: true
     }
   ],
   // Full CRUD screens: two as of Issue #23 (`src/pages/admin/commerce.astro`,
@@ -251,6 +277,12 @@ export const commerceModule = defineModule({
       path: "/admin/commerce-affiliates",
       order: 12,
       requiredPermission: "commerce.affiliates.read"
+    },
+    {
+      labelKey: "admin.layout.nav_commerce_whatsapp",
+      path: "/admin/commerce-whatsapp",
+      order: 13,
+      requiredPermission: "commerce.whatsapp.read"
     }
   ],
   /**
@@ -1250,6 +1282,100 @@ export const commerceModule = defineModule({
         description:
           "Deletes every session whose expires_at has elapsed, and every revoked session older than 7 days, across all tenants, in bounded batches, as awcms_worker (sql/918)."
       }
+    },
+    // Issue #108, contract #106/ADR-0017 D5 — the WhatsApp outbox, same
+    // "queue-shaped, purge-only, legalHold not applicable" treatment
+    // `commerce.customer_otps`/`commerce.customer_sessions` above already
+    // get: a spent delivery record carries no evidentiary value once dead.
+    {
+      key: "commerce.whatsapp_messages",
+      tableName: "awcms_commerce_whatsapp_messages",
+      ownerModuleKey: "commerce",
+      scope: "tenant",
+      cursorColumn: "updated_at",
+      retentionClass: "operational_queue",
+      retentionMinDays: 7,
+      retentionMaxDays: 365,
+      defaultRetentionDays: 90,
+      partition: {
+        eligible: false,
+        rationale:
+          "Bounded by a single storefront's own WhatsApp send volume, drained continuously — the live set stays small."
+      },
+      archive: {
+        archivable: false,
+        rationale:
+          "The row carries to_phone in the clear (same reasoning customers.phone and awcms_email_messages.to_address already document) — archiving would copy exactly that column into a second, longer-lived artefact."
+      },
+      deletion: {
+        mode: "hard_delete",
+        rationale:
+          "Only terminal rows (sent/failed) are eligible; queued/sending rows are pending work, not history."
+      },
+      legalHold: { applicable: false, precedence: "not_applicable" },
+      requiredIndexes: [
+        {
+          columns: ["tenant_id", "status", "updated_at"],
+          purpose:
+            "awcms_commerce_whatsapp_messages_retention_idx (sql/925) — the purge's own path."
+        }
+      ],
+      batchLimit: 5000,
+      backupRestoreNotes:
+        "Included in ordinary full-database backup/restore; no standalone archive artifact.",
+      executionMode: "delegated",
+      existingAdopter: {
+        jobCommand: "bun run commerce:whatsapp:purge",
+        purgeFunctionRef:
+          "src/modules/commerce/application/whatsapp-queue-purge.ts#purgeWhatsappQueue",
+        description:
+          "Deletes terminal (sent/failed) messages older than the cutoff in bounded batches, skipping any that still have attempt rows, as awcms_worker (sql/925)."
+      }
+    },
+    {
+      key: "commerce.whatsapp_delivery_attempts",
+      tableName: "awcms_commerce_whatsapp_delivery_attempts",
+      ownerModuleKey: "commerce",
+      scope: "tenant",
+      cursorColumn: "attempted_at",
+      retentionClass: "operational_queue",
+      retentionMinDays: 7,
+      retentionMaxDays: 365,
+      defaultRetentionDays: 30,
+      partition: {
+        eligible: false,
+        rationale:
+          "One row per ATTEMPT — drained continuously, short retention window, never range-scanned for history."
+      },
+      archive: {
+        archivable: false,
+        rationale:
+          "A truncated, pre-redacted provider reply with a half-life of days — never contains the phone number or message body."
+      },
+      deletion: {
+        mode: "hard_delete",
+        rationale:
+          "Append-only diagnostic rows with no status to transition to and no identifying column — the recipient never appears here, only a message FK."
+      },
+      legalHold: { applicable: false, precedence: "not_applicable" },
+      requiredIndexes: [
+        {
+          columns: ["tenant_id", "attempted_at"],
+          purpose:
+            "awcms_commerce_whatsapp_delivery_attempts_tenant_idx (sql/925) — the purge's own ascending scan path."
+        }
+      ],
+      batchLimit: 5000,
+      backupRestoreNotes:
+        "Included in ordinary full-database backup/restore; no standalone archive artifact. The unique (message_id, attempt_no) constraint means a restore cannot produce duplicate attempt records for a message re-dispatched afterwards.",
+      executionMode: "delegated",
+      existingAdopter: {
+        jobCommand: "bun run commerce:whatsapp:purge",
+        purgeFunctionRef:
+          "src/modules/commerce/application/whatsapp-queue-purge.ts#purgeWhatsappQueue",
+        description:
+          "Deletes attempt rows older than the cutoff in bounded batches, BEFORE the messages step so the foreign key ordering holds, as awcms_worker (sql/925)."
+      }
     }
   ],
   /**
@@ -1602,6 +1728,34 @@ export const commerceModule = defineModule({
       rationale:
         "A bearer session's diagnostic metadata (hashed IP, UA summary) — the account it belongs to has no subject-vocabulary id (see commerce.customer_accounts above), so this table has the same gap one level down. Purge-only: commerce:customer-auth:purge deletes expired sessions and revoked sessions older than 7 days (module.ts's dataLifecycle entry); a session an account holder wants gone today is ended via logout (revokeSession), which is immediate and does not wait for this table's descriptor.",
       redactedColumns: ["token_hash", "client_ip_hash"]
+    },
+    // Issue #108, contract #106/ADR-0017 D5 — a message is addressed to a
+    // PHONE, matched the same way email.email_messages (module.ts, `email`
+    // module) is matched by ADDRESS rather than by account: neither table
+    // can be reached from a per-tenant subject id, both say so outright.
+    {
+      key: "commerce.whatsapp_messages",
+      tableName: "awcms_commerce_whatsapp_messages",
+      ownerModuleKey: "commerce",
+      unreachableBySubject: true,
+      subjectColumns: [],
+      exportable: false,
+      erasure: "retain_under_obligation",
+      rationale:
+        "A message SENT to a phone number, including the rendered body (which may carry an OTP code or an order total). Unlike email.email_messages this table has no created_by (no sender tracked, only the recipient phone) and no per-tenant subject id reaches it, so — unlike that table's reachable anonymize — a table nothing can find cannot honour any subject request; commerce:whatsapp:purge (module.ts's dataLifecycle entry) is what eventually removes a terminal row.",
+      redactedColumns: ["to_phone", "to_phone_hash", "variables"]
+    },
+    {
+      key: "commerce.whatsapp_delivery_attempts",
+      tableName: "awcms_commerce_whatsapp_delivery_attempts",
+      ownerModuleKey: "commerce",
+      unreachableBySubject: true,
+      subjectColumns: [],
+      exportable: false,
+      erasure: "retain_under_obligation",
+      rationale:
+        "Per-attempt provider outcomes hanging off a message row. No column names a person — the link is the message, which answers for itself — and the provider snippet is operational telemetry kept under this module's own retention.",
+      redactedColumns: ["provider_response_snippet"]
     }
   ],
   permissions: [
@@ -1829,6 +1983,12 @@ export const commerceModule = defineModule({
       activityCode: COMMERCE_AFFILIATE_COMMISSIONS_ACTIVITY_CODE,
       action: "update",
       description: "Moderate a commission (approve/pay/void)"
+    },
+    {
+      activityCode: COMMERCE_WHATSAPP_ACTIVITY_CODE,
+      action: "read",
+      description:
+        "Read WhatsApp outbox message diagnostics (masked phone only)"
     }
   ]
 });
@@ -1849,5 +2009,6 @@ export {
   COMMERCE_CUSTOMER_PERMISSIONS,
   COMMERCE_REVIEW_PERMISSIONS,
   COMMERCE_AFFILIATE_PERMISSIONS,
-  COMMERCE_AFFILIATE_COMMISSION_PERMISSIONS
+  COMMERCE_AFFILIATE_COMMISSION_PERMISSIONS,
+  COMMERCE_WHATSAPP_PERMISSIONS
 };

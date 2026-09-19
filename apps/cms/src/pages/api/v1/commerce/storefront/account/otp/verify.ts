@@ -88,7 +88,12 @@ export const POST: APIRoute = async ({ request, clientAddress, locals }) => {
       verifyCustomerOtp(
         tx,
         tenant.tenantId,
-        body as { email: unknown; code: unknown; purpose: unknown },
+        body as {
+          email: unknown;
+          phone?: unknown;
+          code: unknown;
+          purpose: unknown;
+        },
         {
           clientIpHash: hashClientIp(clientIp),
           userAgentSummary: summarizeUserAgent(

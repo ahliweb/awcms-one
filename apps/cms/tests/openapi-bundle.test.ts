@@ -424,6 +424,10 @@ describe("openapi bundle — contract equivalence to pre-migration monolith", ()
       // `customerBearer`-secured enrol/stats surface plus the staff-side
       // approve/pay/void routes under `commerce.affiliates.*` permissions.
       "Commerce Affiliates",
+      // Issue #108 (contract #106/ADR-0017 D5) — read-only owner diagnostics
+      // over the WhatsApp outbox, plus WhatsApp as a third CustomerOtpChannel
+      // and second login identifier (`via: "whatsapp"`/`phone`).
+      "Commerce WhatsApp",
       "Data Lifecycle",
       "Domain Event Runtime",
       "Form Drafts",
