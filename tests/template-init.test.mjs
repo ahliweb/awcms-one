@@ -291,6 +291,7 @@ describe("template:init — full run in a temp copy", () => {
 
           for (const removed of [
             "tools/seed-borneojek-mart.ts",
+            "tools/seed-data/contoh/borneojek-mart",
             "tools/import-seputarborneo.ts",
             "tests/import-seputarborneo.test.mjs",
             "graphify-out",
@@ -298,6 +299,21 @@ describe("template:init — full run in a temp copy", () => {
           ]) {
             expect(existsSync(join(dir, removed))).toBe(false);
           }
+
+          // #139's own neutral per-profile placeholder art must survive —
+          // only the pre-existing BjekMart-specific files directly under
+          // tools/seed-assets/ are removal targets (see removals.mjs).
+          expect(existsSync(join(dir, "tools/seed-assets/profil"))).toBe(true);
+          expect(existsSync(join(dir, "tools/seed-assets/product-bjekmikro.svg"))).toBe(false);
+
+          // db:seed:cms now seeds the deployment's OWN chosen profile by
+          // default, not BjekMart's reference example.
+          const pkgAfter = JSON.parse(readFileSync(join(dir, "package.json"), "utf8"));
+          expect(pkgAfter.scripts["db:seed:cms"]).toBe(`bun tools/seed-cms.ts --profil ${profil}`);
+          expect(pkgAfter.scripts["import:seputarborneo"]).toBeUndefined();
+
+          const seedCmsTs = readFileSync(join(dir, "tools/seed-cms.ts"), "utf8");
+          expect(seedCmsTs).toContain(`let profil = ${JSON.stringify(profil)};`);
         },
         90_000
       );

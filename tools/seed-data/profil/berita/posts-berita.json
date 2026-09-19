@@ -1,0 +1,120 @@
+[
+  {
+    "slug": "pemerintah-luncurkan-program-contoh-nasional",
+    "title": "Pemerintah Luncurkan Program Contoh Tingkat Nasional",
+    "excerpt": "Contoh berita nasional untuk profil build 'berita' — bukan berita sungguhan.",
+    "rubrikSlug": "nasional",
+    "authorName": "Redaksi Nasional & Ekonomi",
+    "institutionSlugs": ["pemprov-jawa-barat"],
+    "bodyParagraphs": [
+      "Oleh: Redaksi Nasional & Ekonomi",
+      "PLACEHOLDER — konten contoh (issue #139) untuk mendemonstrasikan profil build 'berita'. Ganti dengan berita sungguhan sebelum tenant ini menayangkan konten produksi.",
+      "Paragraf ini sengaja generik dan tidak memuat nama pejabat, lembaga swasta, atau merek dagang mana pun."
+    ]
+  },
+  {
+    "slug": "kebijakan-baru-tingkat-provinsi-contoh",
+    "title": "Kebijakan Baru Tingkat Provinsi Menjadi Sorotan",
+    "excerpt": "Contoh berita nasional kedua untuk profil build 'berita'.",
+    "rubrikSlug": "nasional",
+    "authorName": "Redaksi Nasional & Ekonomi",
+    "bodyParagraphs": [
+      "Oleh: Redaksi Nasional & Ekonomi",
+      "PLACEHOLDER — konten contoh. Paragraf ini digunakan hanya untuk menguji alur penerbitan berita pada profil ini."
+    ]
+  },
+  {
+    "slug": "harga-kebutuhan-pokok-contoh-stabil",
+    "title": "Harga Kebutuhan Pokok Contoh Dilaporkan Stabil",
+    "excerpt": "Contoh berita ekonomi untuk profil build 'berita'.",
+    "rubrikSlug": "ekonomi",
+    "authorName": "Redaksi Nasional & Ekonomi",
+    "bodyParagraphs": [
+      "Oleh: Redaksi Nasional & Ekonomi",
+      "PLACEHOLDER — konten contoh. Data harga pada paragraf ini fiktif dan tidak merujuk pasar sungguhan mana pun."
+    ]
+  },
+  {
+    "slug": "umkm-contoh-catat-pertumbuhan",
+    "title": "UMKM Contoh Catat Pertumbuhan pada Kuartal Ini",
+    "excerpt": "Contoh berita ekonomi kedua untuk profil build 'berita'.",
+    "rubrikSlug": "ekonomi",
+    "authorName": "Redaksi Nasional & Ekonomi",
+    "institutionSlugs": ["dprd-kota-bandung"],
+    "bodyParagraphs": [
+      "Oleh: Redaksi Nasional & Ekonomi",
+      "PLACEHOLDER — konten contoh. Nama usaha dan angka pada paragraf ini fiktif."
+    ]
+  },
+  {
+    "slug": "aplikasi-contoh-permudah-layanan-publik",
+    "title": "Aplikasi Contoh Dikembangkan untuk Permudah Layanan Publik",
+    "excerpt": "Contoh berita teknologi untuk profil build 'berita'.",
+    "rubrikSlug": "teknologi",
+    "authorName": "Redaksi Teknologi & Gaya Hidup",
+    "video": {
+      "videoId": "SEED0000001",
+      "title": "Cuplikan Demo Aplikasi Contoh",
+      "caption": "Placeholder video (id fiktif, format valid) — lihat catatan tools/seed-cms.ts."
+    },
+    "bodyParagraphs": [
+      "Oleh: Redaksi Teknologi & Gaya Hidup",
+      "PLACEHOLDER — konten contoh. Nama aplikasi pada paragraf ini fiktif dan tidak merujuk produk komersial mana pun."
+    ]
+  },
+  {
+    "slug": "jaringan-internet-contoh-diperluas",
+    "title": "Jaringan Internet Contoh Diperluas ke Wilayah Baru",
+    "excerpt": "Contoh berita teknologi kedua untuk profil build 'berita'.",
+    "rubrikSlug": "teknologi",
+    "authorName": "Redaksi Teknologi & Gaya Hidup",
+    "bodyParagraphs": [
+      "Oleh: Redaksi Teknologi & Gaya Hidup",
+      "PLACEHOLDER — konten contoh."
+    ]
+  },
+  {
+    "slug": "tren-kuliner-contoh-musim-ini",
+    "title": "Tren Kuliner Contoh yang Digemari Musim Ini",
+    "excerpt": "Contoh berita gaya hidup untuk profil build 'berita'.",
+    "rubrikSlug": "gaya-hidup",
+    "authorName": "Redaksi Teknologi & Gaya Hidup",
+    "bodyParagraphs": [
+      "Oleh: Redaksi Teknologi & Gaya Hidup",
+      "PLACEHOLDER — konten contoh. Nama tempat dan hidangan pada paragraf ini fiktif."
+    ]
+  },
+  {
+    "slug": "wisata-akhir-pekan-contoh",
+    "title": "Rekomendasi Wisata Akhir Pekan Contoh",
+    "excerpt": "Contoh berita gaya hidup kedua untuk profil build 'berita'.",
+    "rubrikSlug": "gaya-hidup",
+    "authorName": "Redaksi Teknologi & Gaya Hidup",
+    "bodyParagraphs": [
+      "Oleh: Redaksi Teknologi & Gaya Hidup",
+      "PLACEHOLDER — konten contoh. Nama lokasi pada paragraf ini fiktif."
+    ]
+  },
+  {
+    "slug": "tim-contoh-menang-turnamen-daerah",
+    "title": "Tim Contoh Menang di Turnamen Daerah",
+    "excerpt": "Contoh berita olahraga untuk profil build 'berita'.",
+    "rubrikSlug": "olahraga",
+    "authorName": "Redaksi Olahraga",
+    "bodyParagraphs": [
+      "Oleh: Redaksi Olahraga",
+      "PLACEHOLDER — konten contoh. Nama tim dan skor pada paragraf ini fiktif."
+    ]
+  },
+  {
+    "slug": "atlet-muda-contoh-raih-prestasi",
+    "title": "Atlet Muda Contoh Raih Prestasi di Ajang Latihan",
+    "excerpt": "Contoh berita olahraga kedua untuk profil build 'berita'.",
+    "rubrikSlug": "olahraga",
+    "authorName": "Redaksi Olahraga",
+    "bodyParagraphs": [
+      "Oleh: Redaksi Olahraga",
+      "PLACEHOLDER — konten contoh."
+    ]
+  }
+]

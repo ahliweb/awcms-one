@@ -4,28 +4,41 @@
  * file's own test can agree on exactly what "removed" means.
  *
  * Every entry is checked for EXISTENCE before being scheduled — a derived
- * repo's second run (or a repo where #139 already relocated the BjekMart
- * seed before this tool ever ran) finds nothing to remove and that step is
- * simply absent from the plan, which is what makes removal idempotent with
- * no extra bookkeeping.
+ * repo's second run (or a repo already past whichever removal it needs)
+ * finds nothing to remove and that step is simply absent from the plan,
+ * which is what makes removal idempotent with no extra bookkeeping.
  *
- * **Both layouts, per the issue's own instruction**: #139 (issue, a
- * sibling of this one) is expected to replace `tools/seed-borneojek-mart.ts`
- * with `tools/seed-cms.ts` and move BjekMart's own seed data from
- * `tools/seed-data/*.json` (flat, today's layout) to
- * `tools/seed-data/contoh/borneojek-mart/**` (nested, #139's target layout).
- * Whichever one is on disk when `template:init` runs is removed; the other
- * is simply absent and skipped.
+ * **Both layouts, handled**: issue #139 landed on `main` while this issue
+ * was in flight — `tools/seed-borneojek-mart.ts` is now a one-release
+ * DEPRECATION SHIM (not deleted outright), `tools/seed-cms.ts` is the real
+ * seeder, and BjekMart's own reference content moved to
+ * `tools/seed-data/contoh/borneojek-mart/**`/`tools/seed-assets/`'s
+ * top-level files (`tools/seed-assets/profil/**`, #139's OWN neutral
+ * per-profile placeholder art, is never touched — only the pre-#139
+ * BjekMart-specific files directly under `tools/seed-assets/`). The
+ * PRE-#139 flat layout (`tools/seed-data/*.json`) is also still checked and
+ * removed, purely defensively, in case this tool ever runs against a tree
+ * checked out before #139 landed.
  */
 
 /** Files removed unconditionally, regardless of layout. */
-export const ALWAYS_REMOVE_FILES = ["tools/import-seputarborneo.ts", "tests/import-seputarborneo.test.mjs"];
+export const ALWAYS_REMOVE_FILES = [
+  "tools/import-seputarborneo.ts",
+  "tests/import-seputarborneo.test.mjs",
+  // #139's own one-release deprecation shim — a derived repo has no
+  // reference deployment to keep it running for.
+  "tools/seed-borneojek-mart.ts"
+];
 
 /** Directories reset to absent — ADR-0018 D5's "documented empty state" for the knowledge-graph corpus (see `docs/template.md`'s own note on why absence, not an emptied file, is what `audit:graf` treats as valid). */
-export const ALWAYS_REMOVE_DIRS = ["graphify-out", "knowledge/generated"];
+export const ALWAYS_REMOVE_DIRS = [
+  "graphify-out",
+  "knowledge/generated",
+  // #139's target layout — the full BjekMart reference example.
+  "tools/seed-data/contoh/borneojek-mart"
+];
 
-/** Today's flat layout: the seeder script plus every BjekMart-specific fixture under `tools/seed-data/*.json`. */
-export const OLD_LAYOUT_SEED_SCRIPT = "tools/seed-borneojek-mart.ts";
+/** The PRE-#139 flat layout: every BjekMart-specific fixture directly under `tools/seed-data/*.json` (defensive only — see this file's own docblock). */
 export const OLD_LAYOUT_SEED_DATA_FILES = [
   "tools/seed-data/categories.json",
   "tools/seed-data/posts-berita.json",
@@ -41,8 +54,22 @@ export const OLD_LAYOUT_SEED_DATA_FILES = [
   "tools/seed-data/orders.json",
   "tools/seed-data/products.json"
 ];
-/** Every asset under here is BjekMart product/ad art (verified by listing the directory; none is generic). */
-export const OLD_LAYOUT_SEED_ASSETS_DIR = "tools/seed-assets";
 
-/** #139's target layout, once it lands. */
-export const NEW_LAYOUT_SEED_DIR = "tools/seed-data/contoh/borneojek-mart";
+/**
+ * The BjekMart product/ad art directly under `tools/seed-assets/` (verified
+ * by listing the directory) — named individually, NOT the whole directory,
+ * because `tools/seed-assets/profil/**` (#139's own neutral per-profile
+ * placeholder SVGs) lives one level down in the SAME directory and must
+ * never be removed.
+ */
+export const BJEKMART_SEED_ASSET_FILES = [
+  "tools/seed-assets/product-bjekmikro.svg",
+  "tools/seed-assets/product-voucher-digital.svg",
+  "tools/seed-assets/product-saldo-driver.svg",
+  "tools/seed-assets/product-mie-gacoan.svg",
+  "tools/seed-assets/product-rutinride.svg",
+  "tools/seed-assets/ad-970x250.png",
+  "tools/seed-assets/ad-728x90.png",
+  "tools/seed-assets/ad-300x250.png",
+  "tools/seed-assets/ad-300x600.png"
+];

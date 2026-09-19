@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](alur-kerja-pengembangan.md)
 
-<!-- i18n-source-hash: sha256:93017ad385fd0230b946c649202a682062b54ed5651e1823d5b96f8813dd2e12 -->
+<!-- i18n-source-hash: sha256:d4eac2d2c020aa6bc71f57e758bba72ff285c6098e24f95737e2a5f849f6397a -->
 
 # Alur kerja pengembangan
 
@@ -58,6 +58,12 @@ Kedua job adalah status check wajib di `main` (lihat "Branch protection pada `ma
 ## CI: workflow ketiga, belum wajib — `template-init-smoke`
 
 `.github/workflows/template-init-smoke.yml` (issue #138) adalah berkas workflow TERPISAH, bukan job ketiga di `ci.yml` — berkas itu dimiliki oleh perubahan lain yang landing bersamaan (issue #137), dan cakupan workflow ini sendiri meminta berkas baru alih-alih job yang ditempelkan ke sana. Ia mematriks `toko`/`berita`/`landing` (ADR-0018 D2): untuk setiap profil, ia menjalankan `bun run template:init --profil <profile> --yes` terhadap checkout-nya sendiri (termasuk rantai gate akhir milik alat itu sendiri), memulai stub CMS milik storefront, menjalankan `SITE_PROFILE=<profile> bun run build` dari `apps/storefront`, lalu `bun test` root. Ia **belum menjadi status check wajib** — mengikuti pola promosi yang sama yang dilalui `check-cms` sendiri (lihat "Branch protection pada `main`" di atas): ditambahkan ke daftar wajib hanya setelah berjalan hijau di `main` untuk sementara waktu.
+
+## Seeding profil secara lokal
+
+`tools/seed-cms.ts` (`bun run db:seed:cms` / `bun run db:seed:cms:profil <nama>`, issue #139) menyemai `apps/cms` yang sudah dimigrasi dengan salah satu dari empat profil: set contoh netral dan fiktif `toko`/`berita`/`landing` di bawah `tools/seed-data/profil/**`, atau `contoh:borneojek-mart` (default di repositori INI — `template:init`, issue #138, menulis ulang default itu menjadi profil pilihan deployment di repo turunan, lihat [`docs/template.md`](template.md)) — konten lengkap deployment referensi yang hidup di bawah `tools/seed-data/contoh/borneojek-mart/**`. Lihat bagian "Seed contoh" di [`docs/template.md`](template.md) untuk isi tiap profil.
+
+**Jangan pernah menyemai profil netral ke basis data dev lokal bersama milik repositori ini** (`postgres://awcms:awcms_dev_password@localhost:5433/awcms`, default `bun run db:up`) — basis data itu sudah berisi tenant BjekMart milik repositori ini, dan `POST /api/v1/setup/initialize` adalah kunci singleton sekali-per-basis-data (lihat `ensureTenantAndSession` milik `tools/seed-cms.ts` sendiri): run `--profil` kedua terhadap basis data yang sama akan gagal di langkah bootstrap, bukan membuat tenant kedua. Pakai `--dry-run` untuk melihat apa yang AKAN disemai suatu profil (ia memvalidasi JSON profil dan mencetak ringkasan inventaris, tanpa panggilan jaringan sama sekali, sehingga tidak butuh `apps/cms` yang berjalan dan selalu aman dijalankan), atau arahkan `AWCMS_BASE_URL`/`POSTGRES_*` ke basis data sekali-pakai saat run sungguhan terhadap suatu profil memang dibutuhkan.
 
 ## Belum ditegakkan hari ini
 

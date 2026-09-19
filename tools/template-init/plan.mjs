@@ -39,10 +39,8 @@ import {
 import {
   ALWAYS_REMOVE_DIRS,
   ALWAYS_REMOVE_FILES,
-  NEW_LAYOUT_SEED_DIR,
-  OLD_LAYOUT_SEED_ASSETS_DIR,
-  OLD_LAYOUT_SEED_DATA_FILES,
-  OLD_LAYOUT_SEED_SCRIPT
+  BJEKMART_SEED_ASSET_FILES,
+  OLD_LAYOUT_SEED_DATA_FILES
 } from "./removals.mjs";
 
 /**
@@ -104,10 +102,8 @@ export function buildPlan({ root, flags, today, originSha }) {
   const removalCandidates = [
     ...ALWAYS_REMOVE_FILES.map((path) => ({ path, kind: "file" })),
     ...ALWAYS_REMOVE_DIRS.map((path) => ({ path, kind: "dir" })),
-    { path: OLD_LAYOUT_SEED_SCRIPT, kind: "file" },
     ...OLD_LAYOUT_SEED_DATA_FILES.map((path) => ({ path, kind: "file" })),
-    { path: OLD_LAYOUT_SEED_ASSETS_DIR, kind: "dir" },
-    { path: NEW_LAYOUT_SEED_DIR, kind: "dir" }
+    ...BJEKMART_SEED_ASSET_FILES.map((path) => ({ path, kind: "file" }))
   ];
   const removals = removalCandidates.map(({ path, kind }) => {
     const full = join(root, path);
@@ -115,16 +111,26 @@ export function buildPlan({ root, flags, today, originSha }) {
     return { path, kind, existed };
   });
 
-  // package.json scripts orphaned by a removal (only once the removal has
-  // actually happened somewhere — checked against what IS on disk today,
-  // not against this plan's own removals, so this stays correct even if
-  // called twice).
-  const oldSeedScriptOnDisk = existsSync(join(root, OLD_LAYOUT_SEED_SCRIPT));
-  const newSeedScriptOnDisk = existsSync(join(root, "tools/seed-cms.ts"));
+  // `import:seputarborneo` is orphaned the moment its own script is
+  // removed — checked against what IS on disk today, not against this
+  // plan's own removals, so this stays correct even if called twice.
   const importerOnDisk = existsSync(join(root, "tools/import-seputarborneo.ts"));
-  const scriptsToRemove = [];
-  if (oldSeedScriptOnDisk && !newSeedScriptOnDisk) scriptsToRemove.push("db:seed:cms");
-  if (importerOnDisk) scriptsToRemove.push("import:seputarborneo");
+  const scriptsToRemove = importerOnDisk ? ["import:seputarborneo"] : [];
+
+  // `tools/seed-cms.ts` (issue #139) exists in every tree this version of
+  // `template:init` runs against — its own `--profil` default is rewritten
+  // separately, below, as a REWRITE target, not a removal.
+  const seedCmsPath = "tools/seed-cms.ts";
+  const seedCmsOnDisk = existsSync(join(root, seedCmsPath));
+  if (seedCmsOnDisk) {
+    const before = readFileIfPresent(join(root, seedCmsPath));
+    const seedCmsDefaultRe = /(let profil = )"[\w:-]+"(;)/;
+    if (!seedCmsDefaultRe.test(before)) {
+      throw new Error(`${seedCmsPath}: expected default --profil assignment not found`);
+    }
+    const after = before.replace(seedCmsDefaultRe, `$1${JSON.stringify(flags.profil)}$2`);
+    rewrites.push({ path: seedCmsPath, before, after, changed: after !== before });
+  }
 
   // -- package.json (name/description/homepage/repository + once-only reset) --
   const nextPkg = JSON.parse(JSON.stringify(pkg));
@@ -142,6 +148,20 @@ export function buildPlan({ root, flags, today, originSha }) {
   }
   for (const name of scriptsToRemove) {
     if (nextPkg.scripts) delete nextPkg.scripts[name];
+  }
+  // `db:seed:cms` (issue #139's `tools/seed-cms.ts`) defaults to
+  // `contoh:borneojek-mart` — the reference example, correct for THIS
+  // repo's own live deployment, wrong for a derived one that just removed
+  // that content. Rewritten to seed the deployment's OWN chosen profile by
+  // default, matched by the seeder's own flag SHAPE (`--profil <anything>`)
+  // rather than the literal current value, so a later run with a different
+  // `--profil` still finds and replaces it (see `text.mjs`'s
+  // `replaceBetweenAnchors` docblock for why that distinction matters).
+  if (nextPkg.scripts && typeof nextPkg.scripts["db:seed:cms"] === "string") {
+    const seedScriptRe = /^bun tools\/seed-cms\.ts(?: --profil [\S]+)?$/;
+    if (seedScriptRe.test(nextPkg.scripts["db:seed:cms"])) {
+      nextPkg.scripts["db:seed:cms"] = `bun tools/seed-cms.ts --profil ${flags.profil}`;
+    }
   }
 
   let changelog = null;

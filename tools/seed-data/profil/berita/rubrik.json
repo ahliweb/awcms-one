@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Nasional",
+    "slug": "nasional",
+    "parentSlug": null,
+    "description": "Berita nasional contoh untuk profil build 'berita'."
+  },
+  {
+    "name": "Ekonomi",
+    "slug": "ekonomi",
+    "parentSlug": null,
+    "description": "Berita ekonomi dan bisnis contoh."
+  },
+  {
+    "name": "Teknologi",
+    "slug": "teknologi",
+    "parentSlug": null,
+    "description": "Berita teknologi contoh."
+  },
+  {
+    "name": "Gaya Hidup",
+    "slug": "gaya-hidup",
+    "parentSlug": null,
+    "description": "Berita gaya hidup contoh."
+  },
+  {
+    "name": "Olahraga",
+    "slug": "olahraga",
+    "parentSlug": null,
+    "description": "Berita olahraga contoh."
+  }
+]

@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Redaksi Nasional & Ekonomi",
+    "role": "Redaktur",
+    "note": "Byline generik (bukan nama pribadi) — blog_content belum punya entitas 'author' terpisah dari tenant user pembuat konten; lihat tools/seed-cms.ts's docblock."
+  },
+  {
+    "name": "Redaksi Teknologi & Gaya Hidup",
+    "role": "Redaktur",
+    "note": "Byline generik (bukan nama pribadi)."
+  },
+  {
+    "name": "Redaksi Olahraga",
+    "role": "Redaktur",
+    "note": "Byline generik (bukan nama pribadi)."
+  }
+]
