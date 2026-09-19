@@ -104,6 +104,16 @@ export const NO_SUBJECT_DATA: readonly { table: string; reason: string }[] = [
     table: "awcms_idempotency_keys",
     reason:
       "The replay guard for high-risk mutations: a scope, a key, a request hash and the response that was returned. It holds no column linking a row to a person — the key is chosen by the CALLER and the tenant is the only identity on it — so no subject request can find its rows. The cached `response_body` can echo personal data from the mutation it replays, which is why this table carries a short retention of its own rather than a subject answer it cannot honour."
+  },
+  {
+    table: "awcms_commerce_courier_destinations",
+    reason:
+      "Issue #107. A tenant-scoped cache mapping an idn_admin_regions district code to a courier provider's own opaque destination id and label — geography, not a person. No column names or references a customer/account/staff member."
+  },
+  {
+    table: "awcms_commerce_shipping_rates",
+    reason:
+      "Issue #107. A tenant-scoped cache of courier prices keyed by (provider, origin, destination, weight bucket, courier, service) — pricing data about a ROUTE, never about the shopper who happened to trigger the quote. No column names or references a customer/account/staff member."
   }
 ];
 

@@ -102,7 +102,13 @@ export const commerceModule = defineModule({
     // masking `newsletter`/`comments`/`email` already depend on
     // `profile_identity` for, and for the same reason: one masking rule,
     // not a second copy that eventually disagrees with the first.
-    "profile_identity"
+    "profile_identity",
+    // Issue #107 — `application/shipping-rate-directory.ts`'s
+    // `resolveDestination` calls `getRegionByCode`
+    // (`idn_admin_regions/application/region-lookup.ts`) to turn a
+    // tenant's own district code into the district/city name pair a
+    // courier provider's destination search needs.
+    "idn_admin_regions"
   ],
   type: "domain",
   isCore: false,
@@ -168,6 +174,20 @@ export const commerceModule = defineModule({
       purpose:
         "Deletes every expired customer OTP and every expired or revoked-more-than-7-days-ago customer session, across all tenants (Issue #87). Idempotent and bounded — a row already deleted is simply absent from the next run's scan.",
       recommendedSchedule: "Every 5-15 minutes via cron/systemd timer.",
+      environmentNotes:
+        "No external provider call — pure database DELETE, safe to run in any deployment profile.",
+      safeInOfflineLan: true
+    },
+    {
+      command: "bun run commerce:shipping-rates:purge",
+      schedule: {
+        mode: "cron",
+        expression: "0 * * * *",
+        backlog: "bounded"
+      },
+      purpose:
+        "Deletes every expired awcms_commerce_shipping_rates row across all active tenants (Issue #107). Idempotent and bounded — a row already deleted is simply absent from the next run's scan.",
+      recommendedSchedule: "Hourly via cron/systemd timer.",
       environmentNotes:
         "No external provider call — pure database DELETE, safe to run in any deployment profile.",
       safeInOfflineLan: true
@@ -1281,6 +1301,94 @@ export const commerceModule = defineModule({
         purgeFunctionRef: "scripts/commerce-customer-auth-purge.ts",
         description:
           "Deletes every session whose expires_at has elapsed, and every revoked session older than 7 days, across all tenants, in bounded batches, as awcms_worker (sql/918)."
+      }
+    },
+    {
+      key: "commerce.courier_destinations",
+      tableName: "awcms_commerce_courier_destinations",
+      ownerModuleKey: "commerce",
+      scope: "tenant",
+      cursorColumn: "resolved_at",
+      retentionClass: "operational_queue",
+      retentionMinDays: 30,
+      retentionMaxDays: 365,
+      defaultRetentionDays: 180,
+      partition: {
+        eligible: false,
+        rationale:
+          "Bounded by the number of distinct districts a tenant ever ships to — nowhere near partition-worthy."
+      },
+      archive: {
+        archivable: false,
+        rationale:
+          "A district-code-to-provider-destination-id mapping — re-derivable at any time by a fresh provider name search, nothing lost by hard delete."
+      },
+      deletion: {
+        mode: "hard_delete",
+        rationale:
+          "No cascading FK children; a stale row is simply re-resolved on its next cache miss (application/shipping-rate-directory.ts's resolveDestination)."
+      },
+      legalHold: { applicable: false, precedence: "not_applicable" },
+      requiredIndexes: [
+        {
+          columns: ["tenant_id"],
+          purpose:
+            "awcms_commerce_courier_destinations_tenant_idx (sql/924) — the tenant scan every purge/report over this table uses."
+        },
+        {
+          columns: ["tenant_id", "resolved_at"],
+          purpose:
+            "awcms_commerce_courier_destinations_tenant_resolved_idx (sql/924) — the (tenant, cursor) composite the generic purge engine filters + orders by."
+        }
+      ],
+      batchLimit: 5000,
+      backupRestoreNotes:
+        "Included in ordinary full-database backup/restore; no standalone archive artifact. This table has no dedicated purge job today — resolved_at is retained for a future staleness sweep, and rows are otherwise only ever upserted, never deleted, by application code.",
+      executionMode: "generic"
+    },
+    {
+      key: "commerce.shipping_rates",
+      tableName: "awcms_commerce_shipping_rates",
+      ownerModuleKey: "commerce",
+      scope: "tenant",
+      cursorColumn: "expires_at",
+      retentionClass: "operational_queue",
+      retentionMinDays: 1,
+      retentionMaxDays: 30,
+      defaultRetentionDays: 1,
+      partition: {
+        eligible: false,
+        rationale:
+          "Bounded by a tenant's own (origin, destination, weight bucket, courier, service) combinations actually quoted — nowhere near partition-worthy."
+      },
+      archive: {
+        archivable: false,
+        rationale:
+          "A cached courier rate quote, valid for 6 hours — no evidentiary value once expired, nothing worth archiving."
+      },
+      deletion: {
+        mode: "hard_delete",
+        rationale:
+          "Matches commerce:shipping-rates:purge's own behaviour exactly — a straight DELETE of rows past expires_at, no cascading FK children."
+      },
+      legalHold: { applicable: false, precedence: "not_applicable" },
+      requiredIndexes: [
+        {
+          columns: ["expires_at"],
+          purpose:
+            "awcms_commerce_shipping_rates_expires_at_idx (sql/924) — the cursor commerce:shipping-rates:purge's own DELETE filters on."
+        }
+      ],
+      batchLimit: 5000,
+      backupRestoreNotes:
+        "Included in ordinary full-database backup/restore; no standalone archive artifact.",
+      executionMode: "delegated",
+      existingAdopter: {
+        jobCommand: "bun run commerce:shipping-rates:purge",
+        purgeFunctionRef:
+          "src/modules/commerce/application/shipping-rate-directory.ts#purgeExpiredShippingRatesForTenant and scripts/commerce-shipping-rates-purge.ts",
+        description:
+          "Deletes every cached rate whose expires_at has elapsed, across all tenants, in bounded batches, as awcms_worker (sql/924)."
       }
     },
     // Issue #108, contract #106/ADR-0017 D5 — the WhatsApp outbox, same

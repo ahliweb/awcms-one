@@ -632,6 +632,11 @@
       "source": "factory"
     },
     {
+      "path": "src/pages/api/v1/commerce/shipping/destinations.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
       "path": "src/pages/api/v1/commerce/sliders/[id].ts",
       "workClass": "interactive",
       "source": "factory"
@@ -1646,6 +1651,12 @@
       "workClass": "background_sync",
       "source": "registry",
       "rationale": "Scheduled pending-order expiry sweep (commerce:orders:expire, Issue #29), every 1-5 minutes — same recurring-but-not-latency-sensitive profile as commerce:flash-sales:tick; expireOrdersForTenant passes workClass: \"background_sync\" explicitly."
+    },
+    {
+      "path": "scripts/commerce-shipping-rates-purge.ts",
+      "workClass": "background_sync",
+      "source": "registry",
+      "rationale": "Scheduled courier-rate cache purge sweep (commerce:shipping-rates:purge, Issue #107), hourly — same recurring-but-not-latency-sensitive profile as commerce:orders:expire; purgeExpiredShippingRatesForTenant passes workClass: \"background_sync\" explicitly."
     },
     {
       "path": "scripts/commerce-whatsapp-dispatch.ts",

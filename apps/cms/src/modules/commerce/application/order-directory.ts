@@ -622,6 +622,17 @@ export async function fetchOrderForTracking(
 export type CreateOrderOutcome =
   | { kind: "replayed"; order: PublicOrderRecord }
   | { kind: "created"; order: PublicOrderRecord }
+  /**
+   * Issue #107 — also covers a `shipping.method: "courier"` selection whose
+   * `{serviceId, cost}` does not match a non-expired
+   * `awcms_commerce_shipping_rates` cache row (unknown service, rate
+   * expired since the quote that offered it, or no cache row at all):
+   * `quote.shipping` stays `null`, exactly like any other stale
+   * price/stock/shipping mismatch, and the route answers the SAME
+   * `409 CART_CHANGED` with a fresh quote — never a bespoke `400` (contract
+   * alignment with `apps/storefront`'s #109, which only ever handles
+   * `CART_CHANGED` for a stale shipping selection).
+   */
   | { kind: "cart_changed"; quote: CartQuoteResult }
   | { kind: "invalid_phone" };
 
@@ -770,7 +781,14 @@ export async function createOrderFromCart(
       lines: input.lines,
       shipping: input.shipping,
       voucherCode: input.voucherCode,
-      insurance: input.insurance
+      insurance: input.insurance,
+      // Issue #107 — the re-quote inside THIS write transaction never calls
+      // a live provider (no `providerSql` argument below): a chosen
+      // courier option is only ever honoured against an ALREADY-cached
+      // rate, keyed off the delivery address's own district code.
+      destination: input.address
+        ? { districtCode: input.address.districtCode }
+        : null
     },
     now
   );

@@ -95,7 +95,12 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
         tx,
         tenant.tenantId,
         mediaLibraryPortAdapter,
-        validation.value
+        validation.value,
+        undefined,
+        // Issue #107 — the only call site allowed to fetch LIVE courier
+        // rates (a provider call): `getCourierRates` opens its own short
+        // transactions off this raw pool client, never off `tx` above.
+        sql
       )
   );
 

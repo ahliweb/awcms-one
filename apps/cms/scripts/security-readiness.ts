@@ -1587,7 +1587,14 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   // `deleted_at`), so the grant is what `dataLifecycle`'s
   // `executionMode: "generic"` requires without ever matching a live row.
   awcms_commerce_affiliates: ["SELECT", "DELETE"],
-  awcms_commerce_affiliate_commissions: ["SELECT", "DELETE"]
+  awcms_commerce_affiliate_commissions: ["SELECT", "DELETE"],
+  // Issue #107 (`sql/924`): the courier-rate cache tables —
+  // `commerce:shipping-rates:purge` deletes expired
+  // `awcms_commerce_shipping_rates` rows directly; `awcms_commerce_
+  // courier_destinations` has no dedicated purge job yet but is granted
+  // the same way for a future staleness sweep (see `sql/924`'s header).
+  awcms_commerce_courier_destinations: ["SELECT", "DELETE"],
+  awcms_commerce_shipping_rates: ["SELECT", "DELETE"]
 };
 
 /**

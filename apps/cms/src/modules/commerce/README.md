@@ -600,11 +600,90 @@ suspend/activate) and a commissions table (affiliate, order, amount,
 status, filterable by status, approve/pay/void buttons), i18n `en`+`id`.
 `/admin/commerce-settings` gains the commission-rate field.
 
-## External providers — contract only, except D5 (epic #33 wave 0 — ADR-0017, issue #106)
+## External providers — contract only, except D4 and D5 (epic #33 wave 0 — ADR-0017, issue #106)
 
-`openapi/modules/commerce.openapi.yaml` also now documents, AHEAD OF ANY HANDLER, most of the increment-5 external-providers surface: a payment-gateway session endpoint and public webhook intake (D2/D3, Midtrans Snap), the courier-rate fields on the existing cart-quote/order paths (D4, RajaOngkir), POS order creation (D6), three `reporting`-hosted sales projections (D7), a customer inbox — both the bearer and owner sides (D8), consent-gated campaigns (D9), and the module-settings feature flags plus tiered pricing at quote (D10). **D5 (WhatsApp) is the one exception — it is IMPLEMENTED, not contract-only; see its own section immediately below.** Every one of D1–D10's ten decisions — why a port lives inside `commerce` rather than `integration_hub`, why a webhook's tenant is resolved from an opaque token rather than its payload, why the gateway flow is a redirect rather than an embed, and so on — is recorded in [ADR-0017](../../../../../docs/adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.md) in awcms-one.
+`openapi/modules/commerce.openapi.yaml` also now documents, AHEAD OF ANY
+HANDLER, most of the increment-5 external-providers surface: a
+payment-gateway session endpoint and public webhook intake (D2/D3,
+Midtrans Snap), POS order creation (D6), three `reporting`-hosted sales
+projections (D7), a customer inbox — both the bearer and owner sides
+(D8), consent-gated campaigns (D9), and the module-settings feature flags
+plus tiered pricing at quote (D10). **D4 (courier rates) and D5
+(WhatsApp) are the two exceptions — both are IMPLEMENTED, not
+contract-only; see their own sections immediately below.** Every one of
+D1–D10's ten decisions — why a port lives inside `commerce` rather than
+`integration_hub`, why a webhook's tenant is resolved from an opaque
+token rather than its payload, why the gateway flow is a redirect rather
+than an embed, and so on — is recorded in
+[ADR-0017](../../../../../docs/adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.md)
+in awcms-one.
 
-Every new path still pending a handler is named in `ROUTE_PARITY_EXEMPTIONS` (`scripts/api-spec-check.ts`), each entry citing the CHILD issue that removes it: courier rates and settings (#107), payment gateway + webhook endpoint tokens (#110), the inbox (#111), POS (#116), sales reports (#117), campaigns (#114), and gateway webhook intake + reconciliation (#113) — the set is required to be EMPTY again once increment 5 finishes, the same discipline #86/ADR-0016 already proved for accounts. WhatsApp's own exemption entries are already removed (#108). ADR-0017 names every new environment variable this surface will read (`COMMERCE_PAYMENT_GATEWAY`, `COMMERCE_MIDTRANS_SERVER_KEY`, `COMMERCE_MIDTRANS_IS_PRODUCTION`, `COMMERCE_RAJAONGKIR_API_KEY`) — none of those is read, declared in `.env.example`, or checked by `scripts/validate-env.ts` yet; each is added by its own adapter's issue, not by this contract-only change. The WhatsApp env vars (`COMMERCE_WHATSAPP_PROVIDER`, `COMMERCE_FONNTE_TOKEN`, `COMMERCE_META_WA_TOKEN`, `COMMERCE_META_WA_PHONE_NUMBER_ID`, …) ARE already read/declared/checked — see the WhatsApp section below.
+Every new path still pending a handler is named in
+`ROUTE_PARITY_EXEMPTIONS` (`scripts/api-spec-check.ts`), each entry citing
+the child issue that removes it: payment gateway + webhook endpoint
+tokens (#110), the inbox (#111), POS (#116), sales reports (#117), and
+campaigns (#114) plus gateway webhook intake + reconciliation (#113) —
+the set is required to be EMPTY again once increment 5 finishes, the same
+discipline #86/ADR-0016 already proved for accounts. Courier rates' and
+WhatsApp's own exemption entries are already removed (#107, #108). ADR-0017
+names every new environment variable this surface will read
+(`COMMERCE_PAYMENT_GATEWAY`, `COMMERCE_MIDTRANS_SERVER_KEY`,
+`COMMERCE_MIDTRANS_IS_PRODUCTION`) — none of those is read, declared in
+`.env.example`, or checked by `scripts/validate-env.ts` yet; each is
+added by its own adapter's issue, not by this contract-only change. The
+RajaOngkir env vars (`COMMERCE_SHIPPING_RATE_PROVIDER`,
+`COMMERCE_RAJAONGKIR_API_KEY`, …) and the WhatsApp env vars
+(`COMMERCE_WHATSAPP_PROVIDER`, `COMMERCE_FONNTE_TOKEN`,
+`COMMERCE_META_WA_TOKEN`, `COMMERCE_META_WA_PHONE_NUMBER_ID`, …) ARE
+already read/declared/checked, and documented in the
+[awcms-one deployment guide](../../../../../docs/deployment.md) — see
+the "Courier rates"/"WhatsApp outbox" sections below.
+
+## Courier rates: RajaOngkir, cached (Issue #107, contract #106 D4)
+
+`ShippingRateProvider` (`domain/shipping-rate-provider.ts`) is a port —
+`searchDestination(query)`, `getRates({originId, destinationId,
+weightGrams, couriers})` — modelled on `email`'s provider contract:
+`infrastructure/rajaongkir-provider.ts` (Komerce API v2, `withTimeout` +
+`getProviderCircuitBreaker("commerce-rajaongkir")`) and
+`infrastructure/log-shipping-rate-provider.ts` (deterministic fixtures)
+both implement it, resolved by `infrastructure/shipping-rate-provider-
+resolver.ts` from `COMMERCE_SHIPPING_RATE_PROVIDER`.
+
+**Caching** (`sql/924`, `application/shipping-rate-directory.ts`):
+`awcms_commerce_courier_destinations` maps a tenant's own
+`idn_admin_regions` district code to the provider's own destination id
+(resolved once by a name search, no TTL); `awcms_commerce_shipping_rates`
+caches a rate per `(tenant, provider, origin, destination, weight bucket,
+courier, service)`, TTL 6 hours, purged hourly by
+`commerce:shipping-rates:purge`. `domain/weight-bucket.ts`'s
+`computeWeightBucketGrams` rounds a cart's total weight up to the next
+100 g, floored at 1000 g (RajaOngkir's own minimum billable weight).
+
+**The provider is never called inside a DB transaction** (ADR-0006/0010):
+`getCourierRates`/`resolveDestination` read the cache in one short
+transaction, call the provider with none open at all, then write back in a
+second short transaction (`ON CONFLICT ... DO UPDATE` — a concurrent miss
+just means the last writer wins).
+
+**Quote**: `POST .../cart/quote` accepts an optional `destination:
+{districtCode}`; with `shipping.courier.enabled`, a configured provider,
+and a destination, `shippingOptions[]`'s courier entries are live per-
+service rates (`{method:"courier", serviceId:"jne:REG", name, cost, etd,
+available:true}`); otherwise a single `available:false` placeholder with a
+`note`. **Order creation** validates a `{method:"courier", serviceId}`
+selection against a non-expired cached rate keyed off the delivery
+address's own `districtCode` — never a second live provider call inside
+`createOrderFromCart`'s write transaction; a stale/unknown selection
+answers the same `409 CART_CHANGED` every other mismatch does.
+
+**Settings**: `shipping.courier = {enabled, originDestinationId,
+couriers[]}` (owner, `PUT /store-settings`) is the on/off switch, this
+tenant's own RajaOngkir origin, and which courier codes to quote.
+`GET /api/v1/commerce/shipping/destinations?search=` (owner-only,
+`settings.update`) backs the admin origin picker. The public
+`shipping.courierEnabled` is derived — `true` only when `courier.enabled`
+AND a provider is configured, never a raw copy of the stored flag.
 
 ## WhatsApp outbox & OTP — IMPLEMENTED (Issue #108, epic #33 — contract #106/ADR-0017 D5)
 
@@ -686,9 +765,9 @@ delete action over the outbox in this issue).
 
 ## Deliberately not here
 
-- **No shipping-carrier integration.** `shippingMethod` on an order is a
-  merchant-defined label, not a live rate or tracking number from a
-  carrier API — out of scope for this epic so far.
+- **No payment gateway.** `payment_method` already accepts a `gateway`
+  enum value, additively, with no implementing code behind it yet
+  (ADR-0010, issue #33).
 - **No restore for the marketing tables, nor for orders/customers/reviews.**
   Soft delete only; a deleted voucher, slider, order or customer is
   recreated, not brought back — the audit trail keeps the record. `order_code`

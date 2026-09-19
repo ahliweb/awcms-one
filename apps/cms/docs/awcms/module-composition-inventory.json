@@ -70,13 +70,14 @@
         "media_library",
         "module_management",
         "email",
-        "profile_identity"
+        "profile_identity",
+        "idn_admin_regions"
       ],
       "capabilitiesProvided": [],
       "capabilitiesConsumed": [],
       "permissionCount": 44,
       "navigationCount": 13,
-      "jobCount": 5,
+      "jobCount": 6,
       "hasHealthCheck": false,
       "hasReadinessCheck": false,
       "deploymentProfiles": null

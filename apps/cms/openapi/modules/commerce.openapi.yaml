@@ -2302,6 +2302,67 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "403":
           $ref: "#/components/responses/Forbidden"
+  /api/v1/commerce/shipping/destinations:
+    get:
+      operationId: searchCommerceShippingDestinations
+      tags:
+        - Commerce
+      summary: "Issue #107 (contract #106 D4) — owner-only courier-provider destination name search, backing the admin origin-destination picker in the courier settings screen. Gated on settings.update (the same permission store-settings PUT requires)."
+      parameters:
+        - name: search
+          in: query
+          required: true
+          schema:
+            type: string
+          description: A city/subdistrict name fragment to search the configured ShippingRateProvider's own destination directory.
+      responses:
+        "200":
+          description: Candidate destinations from the configured provider (empty when nothing matched).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                            label:
+                              type: string
+                            provinceName:
+                              type: string
+                            cityName:
+                              type: string
+                            districtName:
+                              type: string
+                            subdistrictName:
+                              type: string
+                              nullable: true
+                            zipCode:
+                              type: string
+                              nullable: true
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "503":
+          description: No courier rate provider is configured for this deployment.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
   /api/v1/commerce/store-settings/public:
     get:
       operationId: getPublicCommerceStoreSettings
@@ -6782,7 +6843,7 @@ components:
                 type: boolean
         shipping:
           type: object
-          description: "alternativeServices[] {id,name,cost}, selfPickup, courierEnabled, pinpointEnabled, freeShipping {active,minOrder,maxDiscount}, originCityName, originSubdistrictName. Gains `courier: {enabled, originDestinationId, couriers: string[]}` (Issue #106 ADR-0017 D4/D10; not yet implemented, lands in #107/#118) — `originDestinationId` is the RajaOngkir destination id resolved once for the store's own shipping origin; `couriers` names which provider courier codes (e.g. `jne`, `sicepat`) are offered."
+          description: "alternativeServices[] {id,name,cost}, selfPickup, courierEnabled, pinpointEnabled, freeShipping {active,minOrder,maxDiscount}, originCityName, originSubdistrictName, courier: {enabled, originDestinationId, couriers: string[]} (Issue #106 ADR-0017 D4, implemented by #107) — `originDestinationId` is the RajaOngkir destination id resolved once for the store's own shipping origin; `couriers` names which provider courier codes (e.g. `jne`, `sicepat`) are offered; `enabled` is the courier-rate integration's own on/off switch."
         payment:
           type: object
           description: "manualBank {active, accounts[] {bankName, accountNumber, accountHolder}}, manualQris {active, mediaObjectId}, downPayment {active, percent}, tax {active, percent}, insurance {active, ratePercent, minFee}. Gains `gateway: {enabled}` (Issue #106 ADR-0017 D3/D10; not yet implemented, lands in #110/#118) — the store-level ON/OFF switch; `COMMERCE_PAYMENT_GATEWAY` (env, per deployment) must ALSO be a real gateway for the method to actually appear, per D1's env-only-credentials rule."
@@ -7033,7 +7094,7 @@ components:
         destination:
           type: object
           nullable: true
-          description: "Issue #106 (ADR-0017 D4; not yet implemented, lands in #107). `{districtCode}` — an `idn_admin_regions` district code, resolved server-side against `awcms_commerce_courier_destinations` to a RajaOngkir destination id. Required for a `courier` shipping option to be quoted at all; absent, every `courier` option answers `available:false`."
+          description: 'Issue #106 (ADR-0017 D4), implemented by #107. `{districtCode}` — an `idn_admin_regions` level-3 (district/kecamatan) dotted code (e.g. "62.02.01"), resolved server-side against `awcms_commerce_courier_destinations` to a RajaOngkir destination id. Required for a `courier` shipping option to be quoted at all; absent, or when `shipping.courier.enabled` is off or no provider is configured, every `courier` option answers `available:false`.'
           properties:
             districtCode:
               type: string
@@ -7098,7 +7159,7 @@ components:
           type: integer
         shippingOptions:
           type: array
-          description: 'Issue #106 (ADR-0017 D4; not yet implemented, lands in #107). Every offered method, available or not. A `courier` entry becomes `{method:"courier", serviceId:"jne:REG", name:"JNE REG (2-3 hari)", cost, etd, available:true}` once `destination` is supplied and RajaOngkir answers; without a `destination`, or on a provider failure, every `courier` entry keeps `available:false` and `cost:null` — the cart is never blocked on the provider being reachable.'
+          description: 'Issue #106 (ADR-0017 D4), implemented by #107. Every offered method, available or not — one entry per alternative service, one for self_pickup, and either one available:false courier placeholder (cost:null, with a note) or one available:true entry per resolved courier service. A `courier` entry becomes `{method:"courier", serviceId:"jne:REG", name:"JNE REG (2-3 hari)", cost, etd, available:true}` once `destination` is supplied and the provider answers; without a `destination`, or on a provider failure, every `courier` entry keeps `available:false` and `cost:null` — the cart is never blocked on the provider being reachable.'
           items:
             type: object
             properties:
@@ -7116,12 +7177,16 @@ components:
               cost:
                 type: string
                 nullable: true
+              available:
+                type: boolean
               etd:
                 type: string
                 nullable: true
                 description: Estimated delivery duration as the provider phrases it (e.g. "2-3 hari") — courier options only.
-              available:
-                type: boolean
+              note:
+                type: string
+                nullable: true
+                description: Set on an unavailable courier placeholder to explain why (e.g. "Tujuan belum dikenali kurir"); null/absent otherwise.
         shipping:
           type: object
           nullable: true
@@ -7193,7 +7258,7 @@ components:
             $ref: "#/components/schemas/CommerceCartQuoteLine"
         shipping:
           type: object
-          description: '`{method:"courier", serviceId}` (Issue #106 ADR-0017 D4; not yet implemented, lands in #107) joins the existing `{method:"alternative", serviceId}` and `{method:"self_pickup"}` shapes; `serviceId` is validated against the SAME cached rate `POST cart/quote` most recently returned for this cart — the provider is never called a second time on the write path.'
+          description: '`{method:"courier", serviceId}` (Issue #106 ADR-0017 D4, implemented by #107) joins the existing `{method:"alternative", serviceId}` and `{method:"self_pickup"}` shapes; `serviceId`+cost are validated against a non-expired `awcms_commerce_shipping_rates` cache row keyed off `address.districtCode` — the provider is never called a second time on the write path. A stale/unknown selection answers the same `409 CART_CHANGED` (with a fresh quote) every other price/stock/shipping mismatch does.'
         payment:
           type: object
           required:

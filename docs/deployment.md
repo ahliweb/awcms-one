@@ -44,6 +44,10 @@ A much larger file, owned entirely by `apps/cms` as embedded `ahliweb/awcms` cod
 | `COMMERCE_ACCOUNT_OTP_RATE_LIMIT_MAX_PER_IP` / `_WINDOW_SEC` / `_MAX_PER_EMAIL` | 10 / 3600 / 5 | `account/otp/request`'s two-axis limit (issue #89) — an IP-only limit cannot protect the mailbox an OTP is sent to |
 | `COMMERCE_ACCOUNT_OTP_VERIFY_RATE_LIMIT_MAX_PER_IP` / `_WINDOW_SEC` | 20 / 3600 | `account/otp/verify`'s own, looser per-IP budget — no per-e-mail axis, since the hashed code with 5 attempts already limits guessing one address |
 | `COMMERCE_STOREFRONT_PUBLIC_URL` | unset | This deployment's public storefront origin, used only to build an enrolled affiliate's referral link (issue #92, `"${COMMERCE_STOREFRONT_PUBLIC_URL}/?ref=CODE"`); unset falls back to a relative `/?ref=CODE` rather than fabricating an origin |
+| `COMMERCE_SHIPPING_RATE_PROVIDER` | unset | Issue #107 (contract #106 D4) — `rajaongkir` (real adapter) or `log` (safe local/dev, no network); unset means no live courier rates at all, regardless of `shipping.courier.enabled` on a tenant's own settings |
+| `COMMERCE_RAJAONGKIR_API_KEY` | unset | Required when `COMMERCE_SHIPPING_RATE_PROVIDER=rajaongkir` — the Komerce API v2 `key` header value |
+| `COMMERCE_RAJAONGKIR_BASE_URL` | `https://rajaongkir.komerce.id/api/v1` | Override for tests/dev only — never request input |
+| `COMMERCE_RAJAONGKIR_TIMEOUT_MS` | `10000` | Per-call timeout (`withTimeout`) for both the destination-search and calculate-cost RajaOngkir calls |
 
 **`COMMERCE_WHATSAPP_ENABLED`/`COMMERCE_WHATSAPP_PROVIDER` are the same kind of deployment gate for WhatsApp login (issue #108, contract #106 D5).** `POST account/otp/request` with `via: "whatsapp"` answers `409 CHANNEL_UNAVAILABLE` until `COMMERCE_WHATSAPP_ENABLED=true`; the code then goes to a `log` adapter (dev/CI) unless `COMMERCE_WHATSAPP_PROVIDER` also names a real provider (`fonnte` or `meta`, each with its own credential variables below). WhatsApp is a login-only channel for an account that already exists — registration is unaffected and stays e-mail OTP only.
 

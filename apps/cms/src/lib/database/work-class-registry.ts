@@ -150,6 +150,11 @@ export const JOB_WORK_CLASS_REGISTRY: Readonly<
     rationale:
       'Scheduled OTP/session purge sweep (commerce:customer-auth:purge, Issue #87), every 5-15 minutes — same recurring-but-not-latency-sensitive profile as commerce:orders:expire; purgeCustomerAuthForTenant passes workClass: "background_sync" explicitly.'
   },
+  "scripts/commerce-shipping-rates-purge.ts": {
+    workClass: "background_sync",
+    rationale:
+      'Scheduled courier-rate cache purge sweep (commerce:shipping-rates:purge, Issue #107), hourly — same recurring-but-not-latency-sensitive profile as commerce:orders:expire; purgeExpiredShippingRatesForTenant passes workClass: "background_sync" explicitly.'
+  },
   "scripts/commerce-whatsapp-dispatch.ts": {
     workClass: "background_sync",
     rationale:

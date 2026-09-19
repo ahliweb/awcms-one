@@ -113,7 +113,11 @@ const SCREENS: readonly Screen[] = [
     activityCodeConstant: "COMMERCE_SETTINGS_ACTIVITY_CODE",
     routes: [
       "src/pages/api/v1/commerce/store-settings/index.ts",
-      "src/pages/api/v1/commerce/store-settings/public.ts"
+      "src/pages/api/v1/commerce/store-settings/public.ts",
+      // Issue #107 — the courier-settings section's origin-destination
+      // search calls this route; gated on the same `settings.update` key
+      // the store-settings `PUT` already requires.
+      "src/pages/api/v1/commerce/shipping/destinations.ts"
     ],
     actions: ["read", "update"],
     endpoint: '"/api/v1/commerce/store-settings"'
@@ -233,5 +237,24 @@ describe("commerce marketing screens (Issue #26)", () => {
     );
     const templateHalf = page.slice(page.lastIndexOf("---") + 3);
     expect(templateHalf).not.toMatch(/\{[^}]*accountNumber[^}]*\}/);
+  });
+
+  test("Issue #107 — the settings page renders the courier section and searches the real destinations route", async () => {
+    const page = await readFile(
+      "src/pages/admin/commerce-settings.astro",
+      "utf8"
+    );
+
+    // The three dedicated controls this section owns (enabled toggle,
+    // origin-destination search box, couriers multi-select) — see
+    // `domain/store-settings-validation.ts`'s `shipping.courier` shape.
+    expect(page).toContain('id="cr-enabled"');
+    expect(page).toContain('id="cr-search"');
+    expect(page).toContain('id="cr-couriers"');
+
+    // The client script calls the OWNER-only search endpoint by its real
+    // path, never a hand-typed one that could silently drift from the
+    // route file's own.
+    expect(page).toContain("/api/v1/commerce/shipping/destinations?search=");
   });
 });

@@ -101,6 +101,8 @@ describe("fetchModuleJobs", () => {
         "bun run commerce:flash-sales:tick",
         // Issue #29 (awcms-one epic #21): the pending-order expiry sweep.
         "bun run commerce:orders:expire",
+        // Issue #107 (awcms-one epic #33): the courier-rate cache purge sweep.
+        "bun run commerce:shipping-rates:purge",
         // Issue #108 (awcms-one epic #33): the WhatsApp delivery-queue drain.
         "bun run commerce:whatsapp:dispatch",
         // Issue #108 (awcms-one epic #33): the WhatsApp outbox retention sweep.

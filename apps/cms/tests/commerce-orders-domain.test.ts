@@ -310,7 +310,8 @@ function defaultSettings(
       pinpointEnabled: false,
       freeShipping: { active: false, minOrder: "0.00", maxDiscount: "0.00" },
       originCityName: null,
-      originSubdistrictName: null
+      originSubdistrictName: null,
+      courier: { enabled: false, originDestinationId: null, couriers: [] }
     },
     payment: {
       manualBank: { active: true, accounts: [] },
@@ -760,7 +761,8 @@ describe("cart-quote — arithmetic order (subtotal -> voucher -> shipping -> in
           maxDiscount: "0.00"
         },
         originCityName: null,
-        originSubdistrictName: null
+        originSubdistrictName: null,
+        courier: { enabled: false, originDestinationId: null, couriers: [] }
       }
     });
     const result = quoteCart(

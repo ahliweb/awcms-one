@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:062431911453e53654edda1de987a06cc5406ce30f1a6656b702e0a375bc1168 -->
+<!-- i18n-source-hash: sha256:723a8a4d3a69cdf437fce7a514deff97ea717913306cb457afc983bee51eaa43 -->
 
 # `commerce`
 
@@ -649,11 +649,95 @@ tabel komisi (afiliasi, pesanan, jumlah, status, dapat difilter berdasarkan
 status, tombol approve/pay/void), i18n `en`+`id`.
 `/admin/commerce-settings` mendapat field tarif komisi.
 
-## Provider eksternal — kontrak saja, kecuali D5 (epic #33 wave 0 — ADR-0017, issue #106)
+## Provider eksternal — kontrak saja, kecuali D4 dan D5 (epic #33 wave 0 — ADR-0017, issue #106)
 
-`openapi/modules/commerce.openapi.yaml` kini juga mendokumentasikan, SEBELUM ADA HANDLER APA PUN, sebagian besar permukaan provider-eksternal increment 5: endpoint sesi payment-gateway dan intake webhook publik (D2/D3, Midtrans Snap), field tarif kurir pada path cart-quote/order yang sudah ada (D4, RajaOngkir), pembuatan order POS (D6), tiga proyeksi penjualan yang ditampung `reporting` (D7), kotak masuk pelanggan — sisi bearer maupun owner (D8), kampanye bergerbang consent (D9), dan flag pengaturan modul plus harga bertingkat saat quote (D10). **D5 (WhatsApp) adalah satu-satunya pengecualian — sudah DIIMPLEMENTASIKAN, bukan kontrak-saja; lihat bagiannya sendiri persis di bawah ini.** Setiap satu dari sepuluh keputusan D1–D10 — mengapa port hidup di dalam `commerce` alih-alih `integration_hub`, mengapa tenant webhook diresolusi dari token opak alih-alih payload-nya, mengapa alur gateway adalah redirect alih-alih embed, dan seterusnya — dicatat di [ADR-0017](../../../../../docs/adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.md) di awcms-one.
+`openapi/modules/commerce.openapi.yaml` kini juga mendokumentasikan,
+SEBELUM ADA HANDLER APA PUN, sebagian besar permukaan provider-eksternal
+increment 5: endpoint sesi payment-gateway dan intake webhook publik
+(D2/D3, Midtrans Snap), pembuatan order POS (D6), tiga proyeksi penjualan
+yang ditampung `reporting` (D7), kotak masuk pelanggan — sisi bearer
+maupun owner (D8), kampanye bergerbang consent (D9), dan flag pengaturan
+modul plus harga bertingkat saat quote (D10). **D4 (tarif kurir) dan D5
+(WhatsApp) adalah dua pengecualiannya — keduanya sudah
+DIIMPLEMENTASIKAN, bukan kontrak-saja; lihat bagiannya sendiri persis di
+bawah ini.** Setiap satu dari sepuluh keputusan D1–D10 — mengapa port
+hidup di dalam `commerce` alih-alih `integration_hub`, mengapa tenant
+webhook diresolusi dari token opak alih-alih payload-nya, mengapa alur
+gateway adalah redirect alih-alih embed, dan seterusnya — dicatat di
+[ADR-0017](../../../../../docs/adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.md)
+di awcms-one.
 
-Setiap path baru yang masih menunggu handler dinamai di `ROUTE_PARITY_EXEMPTIONS` (`scripts/api-spec-check.ts`), masing-masing entri mengutip issue ANAK yang menghapusnya: tarif kurir dan pengaturan (#107), payment gateway + token endpoint webhook (#110), kotak masuk (#111), POS (#116), laporan penjualan (#117), kampanye (#114), dan intake webhook gateway + rekonsiliasi (#113) — set itu wajib KOSONG lagi begitu increment 5 selesai, disiplin yang sama yang sudah dibuktikan #86/ADR-0016 untuk akun. Entri pengecualian milik WhatsApp sendiri sudah dihapus (#108). ADR-0017 menamai setiap variabel lingkungan baru yang akan dibaca permukaan ini (`COMMERCE_PAYMENT_GATEWAY`, `COMMERCE_MIDTRANS_SERVER_KEY`, `COMMERCE_MIDTRANS_IS_PRODUCTION`, `COMMERCE_RAJAONGKIR_API_KEY`) — belum satu pun dibaca, dideklarasikan di `.env.example`, atau diperiksa `scripts/validate-env.ts`; masing-masing ditambahkan oleh issue adapter-nya sendiri, bukan oleh perubahan kontrak-saja ini. Variabel env WhatsApp (`COMMERCE_WHATSAPP_PROVIDER`, `COMMERCE_FONNTE_TOKEN`, `COMMERCE_META_WA_TOKEN`, `COMMERCE_META_WA_PHONE_NUMBER_ID`, …) SUDAH dibaca/dideklarasikan/diperiksa — lihat bagian WhatsApp di bawah.
+Setiap path baru yang masih menunggu handler dinamai di
+`ROUTE_PARITY_EXEMPTIONS` (`scripts/api-spec-check.ts`), masing-masing
+entri mengutip issue anak yang menghapusnya: payment gateway + token
+endpoint webhook (#110), kotak masuk (#111), POS (#116), laporan
+penjualan (#117), dan kampanye (#114) plus intake webhook gateway +
+rekonsiliasi (#113) — set itu wajib KOSONG lagi begitu increment 5
+selesai, disiplin yang sama yang sudah dibuktikan #86/ADR-0016 untuk
+akun. Entri pengecualian milik tarif kurir dan WhatsApp sendiri sudah
+dihapus (#107, #108). ADR-0017 menamai setiap variabel lingkungan baru
+yang akan dibaca permukaan ini (`COMMERCE_PAYMENT_GATEWAY`,
+`COMMERCE_MIDTRANS_SERVER_KEY`, `COMMERCE_MIDTRANS_IS_PRODUCTION`) —
+belum satu pun dibaca, dideklarasikan di `.env.example`, atau diperiksa
+`scripts/validate-env.ts`; masing-masing ditambahkan oleh issue
+adapter-nya sendiri, bukan oleh perubahan kontrak-saja ini. Variabel env
+RajaOngkir (`COMMERCE_SHIPPING_RATE_PROVIDER`,
+`COMMERCE_RAJAONGKIR_API_KEY`, …) dan variabel env WhatsApp
+(`COMMERCE_WHATSAPP_PROVIDER`, `COMMERCE_FONNTE_TOKEN`,
+`COMMERCE_META_WA_TOKEN`, `COMMERCE_META_WA_PHONE_NUMBER_ID`, …) SUDAH
+dibaca/dideklarasikan/diperiksa, dan didokumentasikan di [panduan
+deployment awcms-one](../../../../../docs/deployment.md) — lihat bagian
+"Tarif kurir"/"Outbox WhatsApp" di bawah.
+
+## Tarif kurir: RajaOngkir, ter-cache (Issue #107, contract #106 D4)
+
+`ShippingRateProvider` (`domain/shipping-rate-provider.ts`) adalah sebuah
+port — `searchDestination(query)`, `getRates({originId, destinationId,
+weightGrams, couriers})` — dibentuk seperti kontrak provider `email`:
+`infrastructure/rajaongkir-provider.ts` (API v2 Komerce, `withTimeout` +
+`getProviderCircuitBreaker("commerce-rajaongkir")`) dan
+`infrastructure/log-shipping-rate-provider.ts` (fixture deterministik)
+sama-sama mengimplementasikannya, di-resolve oleh
+`infrastructure/shipping-rate-provider-resolver.ts` dari
+`COMMERCE_SHIPPING_RATE_PROVIDER`.
+
+**Cache** (`sql/924`, `application/shipping-rate-directory.ts`):
+`awcms_commerce_courier_destinations` memetakan kode kecamatan
+`idn_admin_regions` milik tenant ke id tujuan milik provider (di-resolve
+sekali lewat pencarian nama, tanpa TTL); `awcms_commerce_shipping_rates`
+meng-cache tarif per `(tenant, provider, asal, tujuan, bucket berat,
+kurir, layanan)`, TTL 6 jam, dihapus setiap jam oleh
+`commerce:shipping-rates:purge`. `computeWeightBucketGrams` milik
+`domain/weight-bucket.ts` membulatkan total berat keranjang ke atas ke
+kelipatan 100 g berikutnya, dilantaikan di 1000 g (berat minimum
+tertagih RajaOngkir sendiri).
+
+**Provider tidak pernah dipanggil di dalam transaksi database**
+(ADR-0006/0010): `getCourierRates`/`resolveDestination` membaca cache
+dalam satu transaksi pendek, memanggil provider tanpa transaksi terbuka
+sama sekali, lalu menulis-balik dalam transaksi pendek kedua
+(`ON CONFLICT ... DO UPDATE` — cache miss yang bersamaan hanya berarti
+penulis terakhir yang menang).
+
+**Quote**: `POST .../cart/quote` menerima `destination: {districtCode}`
+opsional; dengan `shipping.courier.enabled`, provider yang dikonfigurasi,
+dan sebuah destination, entri kurir pada `shippingOptions[]` adalah tarif
+langsung per layanan (`{method:"courier", serviceId:"jne:REG", name,
+cost, etd, available:true}`); jika tidak, satu placeholder
+`available:false` dengan `note`. **Pembuatan pesanan** memvalidasi
+pilihan `{method:"courier", serviceId}` terhadap tarif ter-cache yang
+belum kedaluwarsa, dikunci dari `districtCode` milik alamat pengiriman
+sendiri — tidak pernah panggilan provider langsung kedua di dalam
+transaksi tulis `createOrderFromCart`; pilihan yang basi/tidak dikenal
+menjawab `409 CART_CHANGED` yang sama seperti ketidakcocokan lainnya.
+
+**Pengaturan**: `shipping.courier = {enabled, originDestinationId,
+couriers[]}` (owner, `PUT /store-settings`) adalah sakelar on/off-nya,
+asal RajaOngkir milik tenant sendiri, dan kode kurir mana yang di-quote.
+`GET /api/v1/commerce/shipping/destinations?search=` (hanya owner,
+`settings.update`) mendukung pemilih asal admin. `shipping.courierEnabled`
+publik adalah turunan — `true` hanya saat `courier.enabled` DAN provider
+dikonfigurasi, tidak pernah salinan mentah dari flag yang tersimpan.
 
 ## Outbox & OTP WhatsApp — SUDAH DIIMPLEMENTASIKAN (Issue #108, epic #33 — kontrak #106/ADR-0017 D5)
 
@@ -737,9 +821,9 @@ create/update/delete atas outbox di issue ini).
 
 ## Dengan sengaja tidak ada di sini
 
-- **Tidak ada integrasi kurir pengiriman.** `shippingMethod` pada sebuah
-  order adalah label yang didefinisikan merchant, bukan tarif live atau
-  nomor resi dari API kurir — di luar cakupan epic ini sejauh ini.
+- **Tidak ada payment gateway.** `payment_method` sudah menerima nilai
+  enum `gateway`, secara aditif, tanpa kode implementasi di baliknya
+  untuk saat ini (ADR-0010, issue #33).
 - **Tidak ada restore untuk tabel pemasaran, maupun untuk
   orders/customers/reviews.** Hanya soft delete; voucher, slider, order,
   atau pelanggan yang dihapus dibuat ulang, bukan dikembalikan — jejak
