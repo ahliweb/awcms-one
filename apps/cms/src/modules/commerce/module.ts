@@ -85,6 +85,12 @@ export const commerceModule = defineModule({
     // dependency `newsletter`'s own public tenant resolver already declares
     // for the identical call.
     "module_management",
+    // Issue #89 — `application/customer-otp-channel-adapters.ts` calls
+    // `enqueueDirectAddressEmail` directly, the same way `newsletter`'s own
+    // `subscribe.ts` calls it for its confirmation mail, rather than a port
+    // owned by `email` (unlike `identity_access`'s `AuthNotificationPort`,
+    // which exists because THAT module cannot depend on `email` at all).
+    "email",
     // Issue #87 — `application/customer-account-store.ts` calls
     // `maskIdentifierValue` for the customer account e-mail, the SAME
     // masking `newsletter`/`comments`/`email` already depend on

@@ -23,14 +23,16 @@ export async function commercePreflightResponse(
   request: Request,
   clientAddress: string,
   limiterKey: string,
-  limits: CommercePreflightLimits
+  limits: CommercePreflightLimits,
+  /** `["content-type", "authorization"]` for the bearer-secured account routes (Issue #89) — see `commercePreflightHeaders`'s own header. */
+  allowedHeaders?: readonly string[]
 ): Promise<Response> {
   const parsed = parseRequestOrigin(request.headers.get("origin"));
 
   if (!parsed || !isCrossOriginRequest(parsed, request.url)) {
     return new Response(null, {
       status: 204,
-      headers: commercePreflightHeaders({ kind: "same_origin" })
+      headers: commercePreflightHeaders({ kind: "same_origin" }, allowedHeaders)
     });
   }
 
@@ -43,7 +45,7 @@ export async function commercePreflightResponse(
     return new Response(null, {
       status: 429,
       headers: {
-        ...commercePreflightHeaders({ kind: "refused" }),
+        ...commercePreflightHeaders({ kind: "refused" }, allowedHeaders),
         "retry-after": String(budget.retryAfterSec)
       }
     });
@@ -53,6 +55,6 @@ export async function commercePreflightResponse(
 
   return new Response(null, {
     status: 204,
-    headers: commercePreflightHeaders(decision)
+    headers: commercePreflightHeaders(decision, allowedHeaders)
   });
 }
