@@ -2,6 +2,229 @@
 
 Every entry below is folded from `.changesets/` by `bun run release`, which also tags the release. The version is `MAJOR.MINOR.PATCH`, tagged `vX.Y.Z`; the next version is the largest `bump` declared among the changesets a release folds (see [`.changesets/README.md`](.changesets/README.md)) — never a level chosen at release time from a list of file names.
 
+## [0.6.0] — 2026-09-19
+
+### ADR-0016 + OpenAPI contract for customer accounts, OTP, bearer sessions, affiliates
+
+Epic #32 (customer accounts) needed its four architectural decisions settled and its
+API contract argued through review **before** any handler exists, so C2–C4 (issues
+#87–#93) code against a contract already reviewed and settled instead of re-deciding
+it wave by wave.
+
+- [ADR-0016](docs/adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md)
+  records identity (a `commerce` row, never `awcms_principals`), the OTP channel
+  (e-mail now, WhatsApp deferred to #33), the bearer session transport (opaque
+  token, `localStorage`, 30-day sliding TTL), the guest-row registration binding
+  rule, the affiliate program's fresh design, and what stays explicitly out of scope.
+- `apps/cms/openapi/modules/commerce.openapi.yaml` gains the full
+  `/api/v1/commerce/storefront/account/*` surface plus the staff-side
+  `/api/v1/commerce/affiliates*` routes, a new `customerBearer` security scheme kept
+  deliberately separate from the staff `bearerAuth`/session schemes, and an optional
+  bearer + `affiliateCode` on the existing anonymous order/review endpoints.
+  Every new path is listed by name in `ROUTE_PARITY_EXEMPTIONS`
+  (`apps/cms/scripts/api-spec-check.ts`) because no route file exists yet — each
+  entry is removed the moment its own handler lands.
+- `docs/api.md` documents the new "Customer accounts — planned — #87–#93" table and
+  updates the "Not built" line to say the contract now exists (ADR-0016, issue #86)
+  even though no handler does yet.
+
+### Customer account auth endpoints — OTP request/verify, me, logout (C2)
+
+Issue #89 (part of #32; contract #86/ADR-0016): the storefront's first four
+`/api/v1/commerce/storefront/account/*` routes actually run. Built on #87's
+schema/domain/store.
+
+- `POST otp/request` — validates `{email, purpose, name?, phone?}` (register
+  runs the full registration validator before an e-mail ever goes out), then
+  always issues a code and always asks a new `CustomerOtpChannel` port to
+  deliver it, answering `202 {sent:true, expiresInSeconds}` for every outcome
+  (ADR-0016 D2's anti-enumeration rule); rate-limited 10/IP/h + 5/e-mail/h,
+  env-tunable (`COMMERCE_ACCOUNT_OTP_RATE_LIMIT_*`).
+- `POST otp/verify` — collapses every OTP failure reason into one
+  `401 OTP_INVALID`; `purpose: "login"` with no account answers
+  `404 ACCOUNT_NOT_FOUND`; `purpose: "register"` checks the phone against
+  every existing account before binding (D4), answering
+  `409 PHONE_ALREADY_REGISTERED` on conflict; a blocked account cannot
+  verify into a session (`403 ACCOUNT_BLOCKED`). Success mints an opaque
+  `cs_…` bearer session (D3) and answers `200 {token, expiresAt, account}`.
+  Rate-limited 20/IP/h.
+- `GET`/`PATCH me`, `POST logout` — bearer-secured via a new
+  `application/customer-session-auth.ts` guard; a blocked account can still
+  log out.
+- `CustomerOtpChannel` (`domain/customer-otp-channel.ts`): an `email`
+  adapter enqueues into `email`'s outbox, inside the same transaction as the
+  OTP row, under a new derived category `derived.commerce_customer_otp`
+  (`sql/919` seeds an EN+ID template per existing tenant); a `log` adapter
+  (selected when `EMAIL_PROVIDER=log`/`EMAIL_ENABLED` isn't `"true"`) keeps
+  dev/CI working without mail credentials. `commerce` gains a dependency on
+  `email` for this.
+- Commerce CORS preflight (`domain/commerce-cors.ts`) now accepts an
+  `allowedHeaders` list, so the bearer routes' `OPTIONS` grants
+  `authorization` alongside `content-type` — still no
+  `Access-Control-Allow-Credentials` anywhere in the family.
+- Audit events (masked e-mail/phone, never a code/token):
+  `commerce.customer.otp_requested`, `otp_verified`, `login_failed`,
+  `account_registered`, `logout`.
+- The four implemented paths are removed from `ROUTE_PARITY_EXEMPTIONS`
+  (`apps/cms/scripts/api-spec-check.ts`); OpenAPI/docs regenerated.
+- Fixes a latent bug in #87's `consumeOtp`: the `registration` jsonb column
+  round-tripped through `Bun.SQL`'s `UPDATE … RETURNING` as a raw JSON
+  string rather than a parsed object, which #87's own tests never exercised
+  far enough to notice — caught by this issue's integration suite.
+
+### Customer account resource endpoints — addresses, wishlist, orders, reviews (C3)
+
+Issue #91 (part of epic #32, C3; contract #86/ADR-0016). Built on #87's schema and
+#89's bearer sessions, the storefront's account holders can now manage their own
+data through eight `/api/v1/commerce/storefront/account/*` routes, all
+`requireCustomerSession`-secured:
+
+- `addresses` (`GET`/`POST`), `addresses/{id}` (`PATCH`/`DELETE`),
+  `addresses/{id}/default` (`POST`) — max 10 live addresses, the first ever saved
+  becomes the default automatically, and exactly one default per customer is now a
+  DATABASE invariant (`apps/cms/sql/920_awcms_commerce_customer_addresses_default_index.sql`'s
+  partial unique index), not merely an application one.
+- `wishlist` (`GET`/`PUT`), `wishlist/{productId}` (`DELETE`) — `PUT` union-merges
+  up to 200 product ids and returns the merged list; an id that is not a live
+  product in the caller's own tenant is silently skipped, never a 400.
+- `orders` (`GET`, keyset) and `orders/{orderCode}` (`GET`) — bounded to
+  `created_at >= account.historyFrom` (ADR-0016 D4) and, for the detail route,
+  ownership, both enforced INSIDE the query.
+- `reviews` (`GET`) — the account's own submitted reviews.
+
+The two existing anonymous routes, `POST .../storefront/orders` and
+`POST .../storefront/reviews`, now accept an OPTIONAL bearer: present and valid,
+the order/review is attributed to that account's own customer row instead of the
+guest phone lookup; present but invalid/expired, `401 UNAUTHENTICATED` explicitly;
+absent, unchanged. `POST .../orders` also accepts `affiliateCode` in the body —
+shape-validated only in this issue, ignored until #92 wires attribution.
+
+Removed from `ROUTE_PARITY_EXEMPTIONS` (`apps/cms/scripts/api-spec-check.ts`)
+accordingly; only the C4 affiliate paths remain contract-only.
+
+### Affiliate program — schema, commissions on completed orders, storefront + owner API, admin screen (C4)
+
+Issue #92 (part of epic #32, C4; contract #86's D5). Built on #87–#91's customer
+accounts, a customer can now enrol as an affiliate, refer other shoppers with an
+`?ref=` code, and earn a commission staff can approve/pay/void.
+
+**Schema** (`apps/cms/sql/921_awcms_commerce_affiliates_schema.sql`,
+`922_awcms_commerce_affiliates_permissions.sql`,
+`923_awcms_commerce_affiliates_worker_lifecycle_purge_grants.sql`):
+`awcms_commerce_affiliates` (one row per
+enrolled customer — an 8-char unambiguous-alphabet `code` unique per tenant, a
+`commission_rate` snapshot copied from the store's own rate at enrolment time,
+`status` `active`/`suspended`) and `awcms_commerce_affiliate_commissions` (one row
+per order that ever earned a commission — `order_id` unique per tenant forever,
+`base_amount`/`rate`/`amount` snapshots, `status` `pending → approved/void →
+paid`). Plus `awcms_commerce_orders.affiliate_id` and
+`awcms_commerce_store_settings.affiliate_commission_rate` (a real column, `null` =
+program off). Permissions `commerce.affiliates.{read,update}`,
+`commerce.affiliate_commissions.{read,update}` (`sql/922`); worker purge grants
+(`sql/923`).
+
+**Storefront** (bearer-secured, `requireCustomerSession`): `GET`/`POST
+account/affiliate` (`POST` is idempotent — a second call returns the same row;
+`409 AFFILIATE_PROGRAM_DISABLED` when the tenant's rate is unset) and `GET
+account/affiliate/commissions` (keyset). `POST .../storefront/orders`'s
+`affiliateCode` (shape-validated since #91) is now resolved against
+`awcms_commerce_affiliates.code` — an unknown or suspended code links nothing and
+never fails the checkout; a valid, active code sets `orders.affiliate_id`.
+
+**Commission lifecycle**: the ONE place a commission is created is
+`order-directory.ts`'s status-transition function, on the transition to
+`completed` — `base = subtotal − discount − voucher_discount` (floored at zero),
+`amount = round(base × rate / 100, 2)`, both via the module's existing
+integer-cent string-decimal arithmetic (ADR-0003). No commission on self-referral,
+and none if the affiliate has been suspended since the order was placed
+(`shouldEarnCommission` re-checks both at completion time, independently of the
+order-creation-time check).
+
+**Owner API**, gated on the new permissions: `GET`/`PATCH
+commerce/affiliates(/{id})` (list, edit status/rate), `GET
+commerce/affiliate-commissions?status=` (list), `POST
+commerce/affiliate-commissions/{id}/{approve,pay,void}` (state machine
+`pending → approved → paid`, `pending|approved → void`, each transition requiring
+an `Idempotency-Key`). `GET /commerce/store-settings/public` now exposes
+`affiliateProgramEnabled: boolean` only — never the rate; the owner
+`GET`/`PUT /commerce/store-settings` carry `affiliateCommissionRate` (0–100, two
+decimals, nullable).
+
+**Admin screen**: `/admin/commerce-affiliates.astro` — affiliates table
+(code/customer/rate/status, suspend/activate/edit-rate) and a commissions table
+(filterable by status, approve/pay/void), i18n `en`+`id`;
+`/admin/commerce-settings.astro` gains the commission-rate field.
+
+Removed from `ROUTE_PARITY_EXEMPTIONS` (`apps/cms/scripts/api-spec-check.ts`),
+which is now empty — every path #86 documented ahead of its handler has one.
+
+### Customer account, OTP and session schema (C1)
+
+Issue #87 (part of #32; contract #86/ADR-0016 — this awcms repo's own ADR,
+not yet written): the first slice of storefront customer accounts — schema,
+domain and application layer only, no HTTP routes yet (those are Issue
+#89's).
+
+- `apps/cms/sql/917_awcms_commerce_customer_accounts_schema.sql` and
+  `apps/cms/sql/918_awcms_commerce_customer_auth_worker_lifecycle_purge_grants.sql`:
+  three new tenant-scoped, FORCE-RLS tables —
+  `awcms_commerce_customer_accounts` (1:1 with an existing guest
+  `awcms_commerce_customers` row, no password, ever), `awcms_commerce_customer_otps`
+  (6-digit e-mail OTP, hashed, 10-minute TTL, 5 attempts) and
+  `awcms_commerce_customer_sessions` (opaque `cs_` bearer token, only its
+  hash stored, 30-day sliding TTL).
+- New pure domain functions (`customer-otp.ts`, `customer-session-token.ts`,
+  `customer-account-validation.ts`) and an application store
+  (`customer-account-store.ts`) implementing ADR-0016 D4's `history_from`
+  rule and a race-free, single-`UPDATE` OTP attempt counter.
+- A new scheduled job, `commerce:customer-auth:purge`, deleting expired
+  OTPs and expired/long-revoked sessions.
+- Why now, separately from the HTTP layer: the schema/domain/store are the
+  part every later slice (login, registration, session guard) depends on,
+  and landing them first keeps each later PR small and independently
+  reviewable.
+
+### `db:commerce:renumber` could not run: the name list was bound as a malformed array
+
+The one-off script from #72 passed a plain JavaScript array into `= ANY(${…})`, which Bun.SQL serialises as a comma-joined string rather than a PostgreSQL array, so the very first query failed with `malformed array literal` on every database. It now binds through `sql.array(names, "text")`, the way `data-lifecycle`'s executor already does.
+
+- Verified against the local development database: `--dry-run` lists sixteen renames, the real run renames them, a second run reports nothing to do, and `db:migrate` then skips all 169 migrations instead of re-applying `901`.
+
+### Affiliate program, from the shopper's side: `?ref=` capture, checkout attribution, `/akun/afiliasi` (issue #93, S3 of #32)
+
+`apps/storefront` gains the shopper-facing half of #86's freshly designed affiliate program (D5) — the CMS/staff side is issue #92, tracked separately.
+
+- `apps/storefront/src/lib/afiliasi-kontrak.ts` is a new pure-plus-storage contract: `validasiKodeAfiliasi` accepts exactly the contract's 8-character unambiguous-base32 code shape (`A`–`Z` without `I`/`O`, digits `2`–`9`), lenient on case; `bacaKodeAfiliasi`/`simpanKodeAfiliasi` read/write `localStorage` key `awcms-one:afiliasi:v1` (`{code, capturedAt}`), with a 30-day TTL an expired read drops and cleans up. Every storage access is guarded — a private window or blocked storage reads as "no referral captured", never throws.
+- `apps/storefront/src/scripts/afiliasi-tangkap.ts`, mounted once from `BaseLayout.astro`'s existing script block (every page, not just the home page — a `?ref=` link can land a shopper anywhere), captures a valid `?ref=` on load and removes ONLY that parameter with `history.replaceState`, so canonical URLs stay clean without touching any other query string.
+- `checkout.ts` sends `affiliateCode: bacaKodeAfiliasi()?.code ?? null` with every order — `toko-klien.ts`'s `CreateOrderRequest` gains the field additively. The CMS ignores an unknown/suspended code entirely (#86's D5): a bad or expired capture never blocks checkout.
+- `apps/storefront/src/lib/awcms/pemasaran.ts`'s `StoreSettings` gains an optional `affiliateProgramEnabled` boolean, read from the public store-settings fetch at build time and defaulting to `false` when an older awcms does not send it — the same additive pattern `payment.proofUpload` already established.
+- `/akun/afiliasi` (`afiliasi.astro` + `akun-afiliasi.ts`): when the program is disabled at build time, a short explanation and no controls at all; otherwise guest → link to `/masuk`; signed in with no affiliate row → "Gabung program afiliasi" (handles `409 AFFILIATE_PROGRAM_DISABLED`); enrolled → the referral link in a read-only input with a copy button (the same clipboard-API-plus-silent-fallback shape as `voucher-copy.ts`), commission rate, an Indonesian status label (Aktif/Ditangguhkan), stats formatted with `harga.ts`'s `formatPrice` (never computed client-side), and a keyset-paginated commissions list ("Muat lebih banyak") with per-row status labels (Menunggu/Disetujui/Dibayar/Dibatalkan). `aria-live`, `<noscript>`, a WhatsApp fallback, 44px controls, one `<h1>`, `noindex, follow` (the `/akun` `Disallow` prefix already covers the fetch).
+- `apps/storefront/src/lib/akun-klien.ts` gains `ambilAfiliasi`, `gabungAfiliasi`, `ambilKomisiAfiliasi(cursor)` — bearer-only, wrapped in the same session-clearing behaviour every other function in that file already uses.
+- `/akun`'s dashboard already links its "Afiliasi" card at `ROUTES.accountAffiliate` (declared since issue #88) — this issue is what makes that link resolve to a real page instead of a 404.
+- `apps/storefront/scripts/stub-awcms.mjs` grows per-account `affiliate`/`commissions` state and `GET/POST /account/affiliate` + `GET /account/affiliate/commissions`; the fixture account (`budi@example.test`) is seeded already enrolled with a deterministic code and three commissions, one per status; a freshly registered account starts unenrolled. `POST /orders` records `affiliateCode` on the created order when present. `apps/storefront/tests/fixtures/awcms/store-settings-public.json` sets `affiliateProgramEnabled: true`.
+
+### Customer accounts: addresses, order history, synced wishlist, reviews (issue #90, S2 of #32)
+
+`apps/storefront` gains the rest of the customer-account surface #86 contracted: `/akun/alamat` (addresses), `/akun/pesanan` (order history and an owned-order detail view), `/akun/ulasan` (reviews), and an account-synced wishlist — all static (`output: "static"`, no `prerender = false`), calling `apps/cms`'s bearer-authenticated `/api/v1/commerce/storefront/account/*` routes directly from the browser, continuing S1's pattern (issue #88).
+
+- `apps/storefront/src/lib/akun-klien.ts` gains one function per remaining #86 endpoint: addresses (list/create/update/delete/set-default), the account wishlist (get/union-merge `PUT`/remove), orders (keyset list/detail-by-code), and reviews (list) — every one bearer-only, clearing the local session on `401 UNAUTHENTICATED` like every existing function in that file.
+- `apps/storefront/src/lib/wilayah-region-select.ts` is the province/city/district cascading-select wiring extracted out of `checkout.ts`'s original inline code, so `/akun/alamat`'s own form and `checkout.astro`'s new "Pilih alamat tersimpan" saved-address autofill share one region-selection module instead of two drifting copies.
+- `apps/storefront/src/lib/pesanan-render.ts` extracts `/pesanan`'s (issue #30) own order-detail rendering out of `pesanan.ts` so `/akun/pesanan?kode=` renders an `Order` identically — `/pesanan`'s own behaviour and tests are unchanged.
+- `apps/storefront/src/lib/wishlist-sinkron.ts` is a PURE wishlist-merge function (union by `productId`, earliest `addedAt` wins, capped at 200 items), wired in by `wishlist-akun-sync.ts`: on login the local wishlist is pushed to the account and replaced by the merge of local and server state; while signed in, every heart-button toggle and the `/wishlist` page's own remove action write through to the account; logging out leaves the local copy untouched; a network failure degrades to local-only operation with a shared `aria-live` status region.
+- `toko-klien.ts`'s `createOrder` and `submitReview` each gain an OPTIONAL second `bearerToken` argument — every existing anonymous caller is unaffected; `checkout.ts` passes the signed-in shopper's session token so a placed order is bound to their account.
+- `apps/storefront/scripts/stub-awcms.mjs` grows per-account addresses/wishlist/orders/reviews storage, seeding the fixture account with two addresses (one default) and two orders — one dated before `historyFrom` to prove the server, not the client, enforces #86's D4 history-window rule.
+
+### Customer accounts: `/masuk`, `/daftar`, `/akun`, and a bearer client (issue #88, S1 of #32)
+
+`apps/storefront` gains its first customer-facing authentication surface — an e-mail OTP sign-in (`/masuk`), registration (`/daftar`), and a signed-in account shell (`/akun`) — all static (`output: "static"`, no `prerender = false`), calling `apps/cms`'s `/api/v1/commerce/storefront/account/*` routes directly from the browser, per issue #86's contract. No password is ever collected, sent, or stored — matching ADR-0007's "the storefront holds no runtime credential" posture and #86's own D1/D2/D3 decisions (bearer session, no link to the staff `awcms_principals` table).
+
+- A new customer-session store (`apps/storefront/src/lib/akun-sesi.ts`, pure logic in `apps/storefront/src/lib/akun-kontrak.ts`) keeps `{token, expiresAt, account}` in `localStorage` (`awcms-one:akun:v1`), expiring itself on read and dispatching `akun:berubah` on every write.
+- A new bearer-aware client (`apps/storefront/src/lib/akun-klien.ts`) reuses the request/envelope plumbing extracted from `toko-klien.ts` into `apps/storefront/src/lib/toko-permintaan.ts` — `toko-klien.ts`'s own public API and behaviour are unchanged.
+- `Header.astro` gained a `[data-akun-tautan]` link that swaps to the signed-in shopper's name once a session exists (`apps/storefront/src/scripts/akun-header.ts`).
+- `apps/storefront/src/config/routes.ts` gained `login`, `register`, `account`, and four more constants (`accountOrders`, `accountOrder`, `accountAddresses`, `accountReviews`, `accountAffiliate`) for pages S2/S3 build later — their links resolve to a 404 until then, by design.
+- `robots.txt.ts` disallows `/masuk`, `/daftar`, `/akun` (the bare `/akun` prefix also covers its future children); all three pages carry `<meta name="robots" content="noindex, follow">`.
+- `apps/storefront/scripts/stub-awcms.mjs` implements the `/account/*` OTP/session state machine (fixed code `123456`, a seeded `budi@example.test` account) so this app's own build-smoke and future e2e tests exercise the real request/response shapes rather than a hand-rolled fixture.
+
 ## [0.5.0] — 2026-09-18
 
 ### Commerce migrations renumbered into a reserved `9xx` range
