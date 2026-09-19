@@ -7638,7 +7638,7 @@ paths:
       operationId: listCommerceCampaigns
       tags:
         - Commerce
-      summary: "Issue #106 (ADR-0017 D9; not yet implemented, lands in #114). Staff list of campaigns, newest first. Gated on `commerce.campaigns.read`."
+      summary: "Issue #114 (contract #106 ADR-0017 D9). Staff list of campaigns, newest first. Gated on `commerce.campaigns.read`."
       parameters:
         - name: cursor
           in: query
@@ -7675,7 +7675,7 @@ paths:
       operationId: createCommerceCampaign
       tags:
         - Commerce
-      summary: "Issue #106 (ADR-0017 D9; not yet implemented, lands in #114). Create a `draft` campaign. Gated on `commerce.campaigns.update`."
+      summary: "Issue #114 (contract #106 ADR-0017 D9). Create a `draft` campaign. Gated on `commerce.campaigns.update`."
       requestBody:
         required: true
         content:
@@ -7685,7 +7685,6 @@ paths:
               required:
                 - channel
                 - audience
-                - subject
                 - body
               properties:
                 channel:
@@ -7709,7 +7708,8 @@ paths:
                       nullable: true
                 subject:
                   type: string
-                  description: Ignored for `channel:"whatsapp"`.
+                  nullable: true
+                  description: Required for `channel:"email"`; ignored (optional) for `channel:"whatsapp"`.
                 body:
                   type: string
       responses:
@@ -7737,7 +7737,7 @@ paths:
       operationId: getCommerceCampaign
       tags:
         - Commerce
-      summary: "Issue #106 (ADR-0017 D9; not yet implemented, lands in #114). One campaign. Gated on `commerce.campaigns.read`."
+      summary: "Issue #114 (contract #106 ADR-0017 D9). One campaign. Gated on `commerce.campaigns.read`."
       parameters:
         - name: id
           in: path
@@ -7769,7 +7769,7 @@ paths:
       operationId: updateCommerceCampaign
       tags:
         - Commerce
-      summary: "Issue #106 (ADR-0017 D9; not yet implemented, lands in #114). Edit a campaign still in `draft`. Gated on `commerce.campaigns.update`."
+      summary: "Issue #114 (contract #106 ADR-0017 D9). Edit a campaign still in `draft`. Gated on `commerce.campaigns.update`."
       parameters:
         - name: id
           in: path
@@ -7823,7 +7823,7 @@ paths:
       operationId: cancelCommerceCampaign
       tags:
         - Commerce
-      summary: "Issue #106 (ADR-0017 D9; not yet implemented, lands in #114). Cancel a campaign before (or while) it sends; already-dispatched recipient rows are not un-sent. Gated on `commerce.campaigns.send`."
+      summary: "Issue #114 (contract #106 ADR-0017 D9). Cancel a campaign before (or while) it sends; already-dispatched recipient rows are not un-sent. Gated on `commerce.campaigns.send`."
       parameters:
         - name: id
           in: path
@@ -7862,7 +7862,7 @@ paths:
       operationId: previewCommerceCampaign
       tags:
         - Commerce
-      summary: "Issue #106 (ADR-0017 D9; not yet implemented, lands in #114). Resolve the audience filter into a recipient COUNT, without sending anything. Gated on `commerce.campaigns.read`."
+      summary: "Issue #114 (contract #106 ADR-0017 D9). Resolve the audience filter into a recipient COUNT, without sending anything. Gated on `commerce.campaigns.read`."
       parameters:
         - name: id
           in: path
@@ -7898,7 +7898,7 @@ paths:
       operationId: sendCommerceCampaign
       tags:
         - Commerce
-      summary: "Issue #106 (ADR-0017 D9; not yet implemented, lands in #114). Resolve the audience, create one `awcms_commerce_campaign_recipients` row per recipient, and move the campaign to `sending` — the `commerce:campaigns:dispatch` job fans the rows out into the e-mail/WhatsApp outboxes from there. Gated on `commerce.campaigns.send`; `Idempotency-Key` required."
+      summary: "Issue #114 (contract #106 ADR-0017 D9). Moves the campaign to `scheduled` (scheduled_at = now); the `commerce:campaigns:dispatch` job then resolves the audience, creates one `awcms_commerce_campaign_recipients` row per recipient, and fans the rows out into the e-mail/WhatsApp outboxes. Gated on `commerce.campaigns.send`; `Idempotency-Key` required."
       parameters:
         - name: id
           in: path
@@ -8208,7 +8208,7 @@ paths:
       operationId: listCommerceConversations
       tags:
         - Commerce
-      summary: "Issue #106 (ADR-0017 D8; not yet implemented, lands in #111). Staff list of every customer conversation, newest first. Gated on `commerce.conversations.read`."
+      summary: "Issue #111 (contract #106 D8). Staff list of every customer conversation, newest-activity-first, keyset-paginated. Gated on `commerce.conversations.read`."
       parameters:
         - name: status
           in: query
@@ -8218,6 +8218,15 @@ paths:
             enum:
               - open
               - closed
+        - name: unread
+          in: query
+          required: false
+          description: "`true` to only show conversations unread FOR THE STORE."
+          schema:
+            type: string
+            enum:
+              - "true"
+              - "false"
         - name: cursor
           in: query
           required: false
@@ -8254,7 +8263,7 @@ paths:
       operationId: getCommerceConversation
       tags:
         - Commerce
-      summary: "Issue #106 (ADR-0017 D8; not yet implemented, lands in #111). One conversation with its messages. Gated on `commerce.conversations.read`."
+      summary: "Issue #111 (contract #106 D8). One conversation with its messages, oldest first. Marks the thread read for the STORE. Gated on `commerce.conversations.read`."
       parameters:
         - name: id
           in: path
@@ -8293,7 +8302,7 @@ paths:
       operationId: updateCommerceConversation
       tags:
         - Commerce
-      summary: "Issue #106 (ADR-0017 D8; not yet implemented, lands in #111). Close or reopen a conversation. Gated on `commerce.conversations.update`."
+      summary: "Issue #111 (contract #106 D8). Explicit close/reopen by staff (a store REPLY also implicitly reopens a closed thread — this is the explicit path with no message attached). Gated on `commerce.conversations.update`."
       parameters:
         - name: id
           in: path
@@ -8328,7 +8337,10 @@ paths:
                     enum:
                       - true
                   data:
-                    $ref: "#/components/schemas/CommerceConversation"
+                    type: object
+                    properties:
+                      conversation:
+                        $ref: "#/components/schemas/CommerceConversation"
         "400":
           $ref: "#/components/responses/BadRequest"
         "401":
@@ -8342,7 +8354,7 @@ paths:
       operationId: createCommerceConversationMessage
       tags:
         - Commerce
-      summary: "Issue #106 (ADR-0017 D8; not yet implemented, lands in #111). Staff reply. Triggers an e-mail notification to the customer through the existing `email` outbox (no new delivery channel). Gated on `commerce.conversations.update`."
+      summary: "Issue #111 (contract #106 D8). Staff reply — implicitly reopens a closed conversation. Enqueues one `derived.commerce_conversation_reply` e-mail through the existing `email` module outbox (no new delivery channel), auto-seeding its template on first miss. `Idempotency-Key` header required (high-risk mutation). Gated on `commerce.conversations.update`."
       parameters:
         - name: id
           in: path
@@ -8350,6 +8362,11 @@ paths:
           schema:
             type: string
             format: uuid
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
       requestBody:
         required: true
         content:
@@ -8361,6 +8378,8 @@ paths:
               properties:
                 body:
                   type: string
+                  minLength: 1
+                  maxLength: 4000
       responses:
         "201":
           description: Message added.
@@ -8374,7 +8393,10 @@ paths:
                     enum:
                       - true
                   data:
-                    $ref: "#/components/schemas/CommerceConversationMessage"
+                    type: object
+                    properties:
+                      message:
+                        $ref: "#/components/schemas/CommerceConversationMessage"
         "400":
           $ref: "#/components/responses/BadRequest"
         "401":
@@ -8383,6 +8405,12 @@ paths:
           $ref: "#/components/responses/Forbidden"
         "404":
           $ref: "#/components/responses/NotFound"
+        "409":
+          description: IDEMPOTENCY_CONFLICT — the Idempotency-Key was already used with a different request body.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
   /api/v1/commerce/customers:
     get:
       operationId: listCommerceCustomers
@@ -10998,7 +11026,7 @@ paths:
       operationId: listCommerceStorefrontAccountConversations
       tags:
         - Commerce Accounts
-      summary: "Issue #106 (ADR-0017 D8; not yet implemented, lands in #111). The account's own conversations with the store, newest first."
+      summary: "Issue #111 (contract #106 D8). The account's own conversations with the store, newest first."
       security:
         - customerBearer: []
       parameters:
@@ -11039,7 +11067,7 @@ paths:
       operationId: createCommerceStorefrontAccountConversation
       tags:
         - Commerce Accounts
-      summary: "Issue #106 (ADR-0017 D8; not yet implemented, lands in #111). Start a new conversation with the store, with its opening message."
+      summary: "Issue #111 (contract #106 D8). Start a new conversation with the store, with its opening message. Subject 1-150 chars, message body 1-4000 chars."
       security:
         - customerBearer: []
       requestBody:
@@ -11054,11 +11082,15 @@ paths:
               properties:
                 subject:
                   type: string
+                  minLength: 1
+                  maxLength: 150
                 body:
                   type: string
+                  minLength: 1
+                  maxLength: 4000
       responses:
         "201":
-          description: Conversation created.
+          description: Conversation opened, with its first (customer) message.
           content:
             application/json:
               schema:
@@ -11069,11 +11101,22 @@ paths:
                     enum:
                       - true
                   data:
-                    $ref: "#/components/schemas/CommerceConversation"
+                    type: object
+                    properties:
+                      conversation:
+                        $ref: "#/components/schemas/CommerceConversation"
+                      message:
+                        $ref: "#/components/schemas/CommerceConversationMessage"
         "400":
           $ref: "#/components/responses/BadRequest"
         "401":
           description: UNAUTHENTICATED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "429":
+          description: RATE_LIMITED — either the IP-scoped preflight limiter, or COMMERCE_CONVERSATION_POST_RATE_LIMIT_MAX (default 10) posts per hour for this account.
           content:
             application/json:
               schema:
@@ -11083,7 +11126,7 @@ paths:
       operationId: getCommerceStorefrontAccountConversation
       tags:
         - Commerce Accounts
-      summary: "Issue #106 (ADR-0017 D8; not yet implemented, lands in #111). One conversation the account owns, with its messages."
+      summary: "Issue #111 (contract #106 D8). One conversation the account owns, with its messages, oldest first. Marks the thread read for the customer."
       security:
         - customerBearer: []
       parameters:
@@ -11131,7 +11174,7 @@ paths:
       operationId: createCommerceStorefrontAccountConversationMessage
       tags:
         - Commerce Accounts
-      summary: "Issue #106 (ADR-0017 D8; not yet implemented, lands in #111). Reply on the account's own conversation. Reopens a `closed` conversation."
+      summary: "Issue #111 (contract #106 D8). Post a message on the account's own conversation. 409 CONVERSATION_CLOSED once the thread is closed — a customer never reopens their own thread (only a store reply does)."
       security:
         - customerBearer: []
       parameters:
@@ -11152,6 +11195,8 @@ paths:
               properties:
                 body:
                   type: string
+                  minLength: 1
+                  maxLength: 4000
       responses:
         "201":
           description: Message added.
@@ -11165,7 +11210,10 @@ paths:
                     enum:
                       - true
                   data:
-                    $ref: "#/components/schemas/CommerceConversationMessage"
+                    type: object
+                    properties:
+                      message:
+                        $ref: "#/components/schemas/CommerceConversationMessage"
         "400":
           $ref: "#/components/responses/BadRequest"
         "401":
@@ -11176,6 +11224,18 @@ paths:
                 $ref: "#/components/schemas/ApiError"
         "404":
           description: Unknown conversation, or one belonging to another account.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "409":
+          description: CONVERSATION_CLOSED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "429":
+          description: RATE_LIMITED — either the IP-scoped preflight limiter, or COMMERCE_CONVERSATION_POST_RATE_LIMIT_MAX (default 10) posts per hour for this account.
           content:
             application/json:
               schema:
@@ -11238,7 +11298,7 @@ paths:
       operationId: updateCommerceStorefrontAccountMe
       tags:
         - Commerce Accounts
-      summary: "Issue #89 (implemented, contract #86). Update the account's display name. No e-mail/phone change in this increment (D6). `marketingConsent` (Issue #106 ADR-0017 D9; not yet implemented, lands in #115) is the ONLY field a campaign's audience resolution ever reads to decide reachability."
+      summary: "Issue #89 (implemented, contract #86). Update the account's display name. No e-mail/phone change in this increment (D6). `marketingConsent` (Issue #114, contract #106 ADR-0017 D9) is the ONLY field a campaign's audience resolution ever reads to decide reachability."
       security:
         - customerBearer: []
       requestBody:
@@ -11254,7 +11314,7 @@ paths:
                   type: string
                 marketingConsent:
                   type: boolean
-                  description: "Issue #106 (ADR-0017 D9; not yet implemented, lands in #115). `true` sets `customer_accounts.marketing_consent_at` to now; `false` clears it to null. Toggled by the account itself in `/akun` — never set by staff."
+                  description: "Issue #114 (contract #106 ADR-0017 D9). `true` sets `customer_accounts.marketing_consent_at` to now; `false` clears it to null. Toggled by the account itself in `/akun` — never set by staff."
       responses:
         "200":
           description: Updated.
@@ -11636,7 +11696,7 @@ paths:
       operationId: quoteCommerceStorefrontCart
       tags:
         - Commerce
-      summary: Anonymous, cross-origin cart quote (Issue 29, `commerce-storefront-endpoints.md`). Tenant resolved from the request Origin/Host — no bearer, no permission check. Read-only.
+      summary: "Anonymous, cross-origin cart quote (Issue 29, `commerce-storefront-endpoints.md`). Tenant resolved from the request Origin/Host — no bearer, no permission check. Read-only. Issue #118 (ADR-0016 D6): an OPTIONAL `Authorization: Bearer <customer session token>` is accepted (never required) — when present and valid, and the account's own `commerce.customers.level` is 2, 3, or 4, every line is priced at that tier's `price_level_{n}` (falling back to `price` when the merchant never set that tier), so the price shown here always matches the price `POST .../orders` charges the same account moments later."
       security: []
       requestBody:
         required: true
@@ -18658,23 +18718,25 @@ paths:
       operationId: getReportsCommerceSalesByCategory
       tags:
         - Commerce
-      summary: "Issue #106 (ADR-0017 D7; not yet implemented, lands in #117). The `commerce.sales_by_category` projection. Gated on `reporting.dashboard.read`."
+      summary: "Issue #117 (contract #106, ADR-0017 D7). The `commerce.sales_by_category` projection grouped over the inclusive day range — quantity and gross per product category from paid orders, reversals subtracted, attributed through the product's category at processing time; lines whose product has no category are returned as one bucket with `categoryId: null`. Gated on `reporting.dashboard.read`."
       parameters:
         - name: from
           in: query
           required: false
+          description: Inclusive first projection day (`YYYY-MM-DD`, in the report time zone). Defaults to 29 days before `to`. A range spans at most 366 days.
           schema:
             type: string
             format: date
         - name: to
           in: query
           required: false
+          description: Inclusive last projection day (`YYYY-MM-DD`). Defaults to today in the report time zone.
           schema:
             type: string
             format: date
       responses:
         "200":
-          description: One row per category in range.
+          description: One row per category in range, largest gross first.
           content:
             application/json:
               schema:
@@ -18687,20 +18749,18 @@ paths:
                   data:
                     type: object
                     properties:
+                      from:
+                        type: string
+                        format: date
+                      to:
+                        type: string
+                        format: date
                       items:
                         type: array
                         items:
-                          type: object
-                          properties:
-                            categoryId:
-                              type: string
-                              format: uuid
-                            categoryName:
-                              type: string
-                            quantitySold:
-                              type: integer
-                            grossSales:
-                              type: string
+                          $ref: "#/components/schemas/CommerceSalesByCategoryRow"
+        "400":
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
@@ -18710,23 +18770,34 @@ paths:
       operationId: getReportsCommerceSalesByProduct
       tags:
         - Commerce
-      summary: "Issue #106 (ADR-0017 D7; not yet implemented, lands in #117). The `commerce.sales_by_product` projection. Gated on `reporting.dashboard.read`."
+      summary: "Issue #117 (contract #106, ADR-0017 D7). The `commerce.sales_by_product` projection grouped over the inclusive day range — quantity and gross (sum of line totals) per product from paid orders, reversals subtracted — best-selling by gross first, at most `limit` rows. Gated on `reporting.dashboard.read`."
       parameters:
         - name: from
           in: query
           required: false
+          description: Inclusive first projection day (`YYYY-MM-DD`, in the report time zone). Defaults to 29 days before `to`. A range spans at most 366 days.
           schema:
             type: string
             format: date
         - name: to
           in: query
           required: false
+          description: Inclusive last projection day (`YYYY-MM-DD`). Defaults to today in the report time zone.
           schema:
             type: string
             format: date
+        - name: limit
+          in: query
+          required: false
+          description: Maximum number of products returned (1–200, default 20).
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 200
+            default: 20
       responses:
         "200":
-          description: One row per product in range.
+          description: One row per product in range, largest gross first.
           content:
             application/json:
               schema:
@@ -18739,20 +18810,20 @@ paths:
                   data:
                     type: object
                     properties:
+                      from:
+                        type: string
+                        format: date
+                      to:
+                        type: string
+                        format: date
+                      limit:
+                        type: integer
                       items:
                         type: array
                         items:
-                          type: object
-                          properties:
-                            productId:
-                              type: string
-                              format: uuid
-                            productName:
-                              type: string
-                            quantitySold:
-                              type: integer
-                            grossSales:
-                              type: string
+                          $ref: "#/components/schemas/CommerceSalesByProductRow"
+        "400":
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
@@ -18762,23 +18833,25 @@ paths:
       operationId: getReportsCommerceSalesDaily
       tags:
         - Commerce
-      summary: "Issue #106 (ADR-0017 D7; not yet implemented, lands in #117). The `commerce.sales_daily` reporting projection, read through the `reporting` module's own projection read path. Gated on `reporting.dashboard.read`."
+      summary: "Issue #117 (contract #106, ADR-0017 D7). Per-day sales from the `commerce.sales_daily` reporting projection over the append-only order-event log: `-> paid` adds an order's figures, `-> cancelled|refunded` after a paid state subtracts them on the same day. One row per projection day that has any figure in the inclusive range. Gated on `reporting.dashboard.read`; the projection's freshness, rebuild and reconciliation live on `GET /api/v1/reports/projections/commerce.sales_daily`."
       parameters:
         - name: from
           in: query
           required: false
+          description: Inclusive first projection day (`YYYY-MM-DD`, in the report time zone). Defaults to 29 days before `to`. A range spans at most 366 days.
           schema:
             type: string
             format: date
         - name: to
           in: query
           required: false
+          description: Inclusive last projection day (`YYYY-MM-DD`). Defaults to today in the report time zone.
           schema:
             type: string
             format: date
       responses:
         "200":
-          description: One row per day in range.
+          description: One row per day in range, ascending.
           content:
             application/json:
               schema:
@@ -18791,18 +18864,18 @@ paths:
                   data:
                     type: object
                     properties:
+                      from:
+                        type: string
+                        format: date
+                      to:
+                        type: string
+                        format: date
                       items:
                         type: array
                         items:
-                          type: object
-                          properties:
-                            date:
-                              type: string
-                              format: date
-                            orderCount:
-                              type: integer
-                            grossSales:
-                              type: string
+                          $ref: "#/components/schemas/CommerceSalesDailyRow"
+        "400":
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
@@ -26585,7 +26658,7 @@ components:
           type: boolean
     CommerceCampaign:
       type: object
-      description: "Issue #106 (ADR-0017 D9; not yet implemented, lands in #114). A row of `awcms_commerce_campaigns` — a consent-gated mass e-mail/WhatsApp send. `recipientCount`/`sentCount` are populated once the campaign has been previewed/sent at least once; both are `null` on a fresh `draft`."
+      description: "Issue #114 (contract #106 ADR-0017 D9). A row of `awcms_commerce_campaigns` — a consent-gated mass e-mail/WhatsApp send. `recipientCount`/`sentCount` are populated once the campaign has actually been dispatched; both are `null` on a fresh `draft`."
       properties:
         id:
           type: string
@@ -26814,46 +26887,58 @@ components:
           description: Computed — the tenant's LIVE products currently in this category (Issue 23).
     CommerceConversation:
       type: object
-      description: "Issue #106 (ADR-0017 D8; not yet implemented, lands in #111). A row of `awcms_commerce_conversations` — one customer account's private thread with the store. The staff list additionally carries `customerName`/`customerId`; the account's own list never needs them."
+      description: "Issue #111 (contract #106 D8). A row of `awcms_commerce_conversations` — one customer account's private thread with the store. The account's own list/detail (`GET .../account/conversations*`) carries only `id`/`subject`/`status`/`lastMessageAt`/`unreadForCustomer` (unreadForCustomer travels as 0|1, never a genuine count); the staff list/detail additionally carries `customerId`/`customerName`/`unreadForStore`."
       properties:
         id:
           type: string
           format: uuid
         subject:
           type: string
+          minLength: 1
+          maxLength: 150
         status:
           type: string
           enum:
             - open
             - closed
-        customerId:
-          type: string
-          format: uuid
-        customerName:
-          type: string
         lastMessageAt:
           type: string
           format: date-time
-        createdAt:
+        unreadForCustomer:
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 0|1, not a genuine multi-message count — see this schema's own description.
+        unreadForStore:
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: Staff-facing only. 0|1, same shape as unreadForCustomer.
+        customerId:
           type: string
-          format: date-time
+          format: uuid
+          description: Staff-facing only.
+        customerName:
+          type: string
+          description: Staff-facing only.
     CommerceConversationMessage:
       type: object
-      description: "Issue #106 (ADR-0017 D8; not yet implemented, lands in #111). A row of `awcms_commerce_messages` — one turn of a conversation, from either side."
+      description: "Issue #111 (contract #106 D8). A row of `awcms_commerce_messages` — one turn of a conversation, from either side."
       properties:
         id:
           type: string
           format: uuid
-        conversationId:
-          type: string
-          format: uuid
-        author:
+        sender:
           type: string
           enum:
             - customer
-            - staff
+            - store
         body:
           type: string
+          minLength: 1
+          maxLength: 4000
         createdAt:
           type: string
           format: date-time
@@ -27979,6 +28064,51 @@ components:
         createdAt:
           type: string
           format: date-time
+    CommerceSalesByCategoryRow:
+      type: object
+      properties:
+        categoryId:
+          type: string
+          format: uuid
+          nullable: true
+          description: "`null` for the uncategorised bucket."
+        categoryName:
+          type: string
+        qty:
+          type: integer
+        gross:
+          type: string
+    CommerceSalesByProductRow:
+      type: object
+      properties:
+        productId:
+          type: string
+          format: uuid
+        productName:
+          type: string
+          description: The product name as snapshotted on the most recent order line in the range.
+        qty:
+          type: integer
+        gross:
+          type: string
+          description: Sum of line totals (`numeric(14,2)` decimal string).
+    CommerceSalesDailyRow:
+      type: object
+      description: One projection day of `commerce.sales_daily`. Money is a `numeric(14,2)` decimal string (ADR-0003); `gross` is the sum of order subtotals, `discount` the sum of order + voucher discounts, `shipping` the sum of shipping costs, `net` the sum of order totals.
+      properties:
+        day:
+          type: string
+          format: date
+        ordersPaid:
+          type: integer
+        gross:
+          type: string
+        discount:
+          type: string
+        shipping:
+          type: string
+        net:
+          type: string
     CommerceServiceFormField:
       type: object
       required:
@@ -28317,6 +28447,7 @@ components:
               type: boolean
             courierEnabled:
               type: boolean
+              description: "Issue #106 (ADR-0017 D4, #107, #118). `true` only when `shipping.courier.enabled`, the tenant's `commerce` module `features.courier` flag (Issue #118), AND a configured courier-rate provider are ALL true."
             pinpointEnabled:
               type: boolean
             freeShipping:
@@ -28382,7 +28513,7 @@ components:
               description: Issue 29 — whether the public payment-proof upload path is usable on this deployment. Always false in this increment; a payment confirmation without a proof image is still accepted.
             gatewayEnabled:
               type: boolean
-              description: 'Issue #106 (ADR-0017 D3/D10; the #110 half — schema, provider, session route, webhook-endpoint tokens — implemented; #118 (BjekMart Features flag) still pending). Whether the storefront should offer `payment.method: "gateway"` at all — both the store-level `payment.gateway.enabled` toggle AND a configured `COMMERCE_PAYMENT_GATEWAY` must be true; the rate/provider details themselves never cross into this public shape.'
+              description: 'Issue #106 (ADR-0017 D3/D10, #110, #118). Whether the storefront should offer `payment.method: "gateway"` at all — the store-level `payment.gateway.enabled` toggle, the tenant''s `commerce` module `features.gateway` flag (Issue #118), AND a configured `COMMERCE_PAYMENT_GATEWAY` must ALL be true; the rate/provider details themselves never cross into this public shape.'
         orders:
           type: object
           description: Issue 29.
@@ -28423,6 +28554,15 @@ components:
         affiliateProgramEnabled:
           type: boolean
           description: "Issue #92 — whether the affiliate program is on at all. The rate itself never crosses into this public shape (same masking discipline as payment.manualBank/manualQris)."
+        inboxEnabled:
+          type: boolean
+          description: "Issue #118 (contract #106 D10) — the tenant's `commerce` module `features.inbox` flag, verbatim. Storefront `apps/storefront` reads this to decide whether to offer the account conversations UI."
+        campaignsEnabled:
+          type: boolean
+          description: "Issue #118 (contract #106 D10) — the tenant's `commerce` module `features.campaigns` flag, verbatim."
+        whatsappOtpEnabled:
+          type: boolean
+          description: "Issue #108/#118 — whether OTP-via-WhatsApp is usable on this deployment (a configured `WhatsappProvider`, `COMMERCE_WHATSAPP_PROVIDER`/its credentials) — not a `features.*` flag. `apps/storefront`'s `masuk.astro`/`daftar.astro` already read this exact top-level key."
     CommerceTestimonial:
       type: object
       properties:
@@ -28974,7 +29114,7 @@ components:
           description: Order-history floor (D4) — the guest row's own `created_at` when the phone/e-mail match at bind time, otherwise the moment this account was created.
         marketingConsent:
           type: boolean
-          description: "Issue #106 (ADR-0017 D9; not yet implemented, lands in #115). `true` when `marketing_consent_at` is non-null. A campaign's audience resolution only ever includes accounts where this is `true` — an account that never opts in is structurally unreachable, not merely filtered by convention."
+          description: "Issue #114 (contract #106 ADR-0017 D9). `true` when `marketing_consent_at` is non-null. A campaign's audience resolution only ever includes accounts where this is `true` — an account that never opts in is structurally unreachable, not merely filtered by convention."
     CustomerSession:
       type: object
       description: "Issue #86 (design only). A row of `awcms_commerce_customer_sessions` — never returned with its token; the token is minted once, at verify, and only its `sha256:` digest is ever stored (D3)."

@@ -14,6 +14,7 @@ import {
 } from "../../../../../../modules/identity-access/application/access-guard";
 import { recordAuditEvent } from "../../../../../../modules/logging/application/audit-log";
 import {
+  MODULE_SETTINGS_UPDATE_GUARD,
   fetchModuleSettingsView,
   updateModuleSettings
 } from "../../../../../../modules/module-management/application/module-settings";
@@ -25,11 +26,7 @@ const READ_GUARD = {
   action: "read" as const
 };
 
-const UPDATE_GUARD = {
-  moduleKey: "module_management",
-  activityCode: "settings",
-  action: "update" as const
-};
+const UPDATE_GUARD = MODULE_SETTINGS_UPDATE_GUARD;
 
 /**
  * `GET /api/v1/tenant/modules/{moduleKey}/settings` — effective settings =

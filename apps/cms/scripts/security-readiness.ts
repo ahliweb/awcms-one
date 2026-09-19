@@ -1565,6 +1565,21 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   // UPDATE (this job never rewrites a row, only removes ones already past
   // their own useful life).
   awcms_commerce_customer_otps: ["SELECT", "DELETE"],
+  // Issue #111 (contract #106 D8, `sql/927`) — the commerce inbox.
+  // `commerce.conversations`/`commerce.messages` (`module.ts`'s
+  // `dataLifecycle`) both declare `executionMode: "generic"`, same
+  // "generic engine could in principle run, in practice never matches"
+  // reasoning `sql/915`'s header already gives for `commerce.orders`.
+  awcms_commerce_conversations: ["SELECT", "DELETE"],
+  awcms_commerce_messages: ["SELECT", "DELETE"],
+  // Issue #114 (contract #106 D9, `sql/929`) — commerce:campaigns:dispatch
+  // runs as awcms_worker: SELECT to claim (FOR UPDATE SKIP LOCKED) + UPDATE
+  // to flip scheduled->sending->sent on awcms_commerce_campaigns, and
+  // SELECT+INSERT on awcms_commerce_campaign_recipients for the per-page
+  // resolve/insert. DELETE on both for the same `dataLifecycle`
+  // `executionMode: "generic"` reasoning `sql/928`'s own tail gives.
+  awcms_commerce_campaigns: ["SELECT", "UPDATE", "DELETE"],
+  awcms_commerce_campaign_recipients: ["SELECT", "INSERT", "DELETE"],
   // Issue #108 (contract #106/ADR-0017 D5) — commerce:whatsapp:dispatch
   // (SELECT/UPDATE, the claim/finalize lease) and commerce:whatsapp:purge
   // (DELETE, terminal rows past retention) both run as awcms_worker,
@@ -1600,6 +1615,18 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   // #113's), granted the same way for the generic archive/purge engine
   // per `commerce/module.ts`'s own descriptors for these three tables.
   awcms_commerce_payment_gateway_sessions: ["SELECT", "DELETE"],
+  // Issue #117 (sql/933) — the three sales-report projection tables the
+  // `reporting` engine maintains for `commerce` on `bun run
+  // reporting:projections:refresh` (incremental passes AND continuation of
+  // an in-progress rebuild): SELECT + INSERT + UPDATE for the additive
+  // `INSERT ... ON CONFLICT DO UPDATE` upsert (DO UPDATE needs UPDATE,
+  // sql/022's header), plus DELETE for the generic data-lifecycle purge the
+  // tables' own `dataLifecycle` descriptors register them for (cursor
+  // `day`). The rebuild RESET's own delete runs as `awcms_app` in the API
+  // route's transaction, not in the worker.
+  awcms_commerce_sales_daily: ["SELECT", "INSERT", "UPDATE", "DELETE"],
+  awcms_commerce_sales_by_product: ["SELECT", "INSERT", "UPDATE", "DELETE"],
+  awcms_commerce_sales_by_category: ["SELECT", "INSERT", "UPDATE", "DELETE"],
   awcms_commerce_payment_events: ["SELECT", "DELETE"],
   awcms_commerce_webhook_endpoints: ["SELECT", "DELETE"]
 };

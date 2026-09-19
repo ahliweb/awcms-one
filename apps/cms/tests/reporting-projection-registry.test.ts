@@ -218,6 +218,12 @@ describe("validateProjectionRegistry (Issue #753)", () => {
     const result = validateProjectionRegistry(listModules());
     expect(result.valid).toBe(true);
     expect(result.issues).toEqual([]);
-    expect(result.descriptors.length).toBe(3);
+    // `reporting`'s own three plus `commerce`'s three sales-report projections
+    // (Issue #117) — the first descriptors contributed by a module OTHER than
+    // `reporting`, which is the shape this registry exists for.
+    expect(result.descriptors.length).toBe(6);
+    expect(
+      result.descriptors.filter((d) => d.ownerModuleKey === "commerce").length
+    ).toBe(3);
   });
 });

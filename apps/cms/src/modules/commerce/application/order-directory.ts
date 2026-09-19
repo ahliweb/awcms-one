@@ -786,6 +786,22 @@ export async function createOrderFromCart(
   if (!phoneResult.valid) return { kind: "invalid_phone" };
   const normalizedPhone = phoneResult.value;
 
+  // Issue #118 — the level lookup happens BEFORE the re-quote (not after,
+  // as `customer` used to be fetched) so `buildCartQuote` can price this
+  // line the SAME `price_level_{n}` the shopper's own earlier
+  // `POST .../cart/quote` call already showed them — a bearer customer's
+  // quote and their order must never disagree on price. Guest checkouts
+  // (`accountCustomerId` absent) always price at level 1 (ordinary retail):
+  // there is no account yet to carry a level, and `findOrCreateCustomerByPhone`
+  // below always creates one at the schema default (`level = 1`, `sql/913`).
+  const accountCustomer = accountCustomerId
+    ? await fetchCustomerById(tx, tenantId, accountCustomerId)
+    : null;
+  const customerLevel =
+    accountCustomer && accountCustomer.level >= 1 && accountCustomer.level <= 4
+      ? (accountCustomer.level as 1 | 2 | 3 | 4)
+      : null;
+
   const quote = await buildCartQuote(
     tx,
     tenantId,
@@ -801,7 +817,8 @@ export async function createOrderFromCart(
       // rate, keyed off the delivery address's own district code.
       destination: input.address
         ? { districtCode: input.address.districtCode }
-        : null
+        : null,
+      customerLevel
     },
     now
   );
@@ -820,8 +837,8 @@ export async function createOrderFromCart(
     now.getTime() + settings.orders.expiryHours * 60 * 60 * 1000
   );
 
-  const customer = accountCustomerId
-    ? (await fetchCustomerById(tx, tenantId, accountCustomerId))!
+  const customer = accountCustomer
+    ? accountCustomer
     : await findOrCreateCustomerByPhone(
         tx,
         tenantId,

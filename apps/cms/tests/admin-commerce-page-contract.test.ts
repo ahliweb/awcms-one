@@ -89,7 +89,7 @@ async function enforcedTriples(
 }
 
 describe("commerce module descriptor — restore is declared for both activity codes", () => {
-  test("forty-six permissions total — five per catalog activity code (incl. restore), four per marketing code, two for settings, two each for orders/customers/affiliates/affiliate_commissions, three for reviews, one for whatsapp, one for webhook_endpoints, one for pos", () => {
+  test("fifty-one permissions total — five per catalog activity code (incl. restore), four per marketing code, two for settings, two each for orders/customers/affiliates/affiliate_commissions/conversations, three for reviews, one for whatsapp, three for campaigns, one for webhook_endpoints, one for pos", () => {
     // Issue #23: categories/products carry read/create/update/delete/restore.
     // Issue #26: flash_sales/vouchers/sliders/testimonials/popups carry
     // read/create/update/delete (soft delete only, no restore — the marketing
@@ -104,6 +104,13 @@ describe("commerce module descriptor — restore is declared for both activity c
     // only through the anonymous storefront path).
     // Issue #108: whatsapp carries read only — diagnostics, no admin
     // create/update/delete over the outbox.
+    // Issue #111: conversations carries read/update only — no create/delete
+    // (a conversation is created only through the shopper's own
+    // bearer-secured route, no hard-delete route exists), same reasoning as
+    // orders/customers/affiliates above.
+    // Issue #114: campaigns carries read/update/send — `send` is split from
+    // `update` because it is the one action that actually reaches a real
+    // inbox/phone (also gates cancel).
     // Issue #110: webhook_endpoints carries update only — one permission
     // gates list (masked)/create (token shown once)/revoke alike, per
     // contract #106's own OpenAPI note (see `commerce-permissions.ts`'s
@@ -113,7 +120,7 @@ describe("commerce module descriptor — restore is declared for both activity c
     // provider/system-driven), per `commerce-permissions.ts`'s own header.
     const declared = declaredTriples();
     expect(declared.size).toBe(
-      2 * 5 + 5 * 4 + 2 + 2 + 2 + 3 + 2 + 2 + 1 + 1 + 1
+      2 * 5 + 5 * 4 + 2 + 2 + 2 + 3 + 2 + 2 + 1 + 2 + 3 + 1 + 1
     );
 
     for (const activityCode of ["categories", "products"]) {

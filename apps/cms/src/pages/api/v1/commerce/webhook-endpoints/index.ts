@@ -15,6 +15,7 @@ import {
   type WebhookEndpointProvider
 } from "../../../../../modules/commerce/application/webhook-endpoint-directory";
 import { COMMERCE_WEBHOOK_ENDPOINTS_ACTIVITY_CODE } from "../../../../../modules/commerce/domain/commerce-permissions";
+import { requireCommerceFeatureForOwnerRoute } from "../../../../../modules/commerce/application/commerce-feature-gate";
 
 const GUARD = {
   moduleKey: "commerce",
@@ -28,8 +29,15 @@ const KNOWN_PROVIDERS = new Set<WebhookEndpointProvider>(["midtrans"]);
 export const GET = defineTenantRoute({
   workClass: "interactive",
   authorize: GUARD,
-  handler: async ({ tx, tenantId }) =>
-    ok({ items: await listWebhookEndpoints(tx, tenantId) })
+  handler: async ({ tx, tenantId }) => {
+    const gate = await requireCommerceFeatureForOwnerRoute(
+      tx,
+      tenantId,
+      "gateway"
+    );
+    if (gate) return gate;
+    return ok({ items: await listWebhookEndpoints(tx, tenantId) });
+  }
 });
 
 type CreateWebhookEndpointBody = {
@@ -75,6 +83,13 @@ export const POST = defineTenantRoute<CreateWebhookEndpointBody>({
     return { provider: body.provider as WebhookEndpointProvider, label };
   },
   handler: async ({ tx, tenantId, auth, prepared }) => {
+    const gate = await requireCommerceFeatureForOwnerRoute(
+      tx,
+      tenantId,
+      "gateway"
+    );
+    if (gate) return gate;
+
     const { endpoint, token } = await createWebhookEndpoint(
       tx,
       tenantId,

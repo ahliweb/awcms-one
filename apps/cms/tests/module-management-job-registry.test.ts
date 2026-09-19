@@ -95,6 +95,8 @@ describe("fetchModuleJobs", () => {
         "bun run blog:portable-text:backfill",
         "bun run blog:publish:scheduled",
         "bun run comments:retention",
+        // Issue #114 (awcms-one epic #33): the campaign claim/page/finalize drain.
+        "bun run commerce:campaigns:dispatch",
         // Issue #87 (awcms-one epic #32): OTP/session purge.
         "bun run commerce:customer-auth:purge",
         // Issue #26 (awcms-one epic #21): the flash-sale status tick.

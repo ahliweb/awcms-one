@@ -9,6 +9,8 @@ import {
 import { COMMERCE_SETTINGS_ACTIVITY_CODE } from "../../../../../modules/commerce/domain/commerce-permissions";
 import { isShippingRateProviderConfigured } from "../../../../../modules/commerce/infrastructure/shipping-rate-provider-resolver";
 import { isPaymentGatewayProviderConfigured } from "../../../../../modules/commerce/infrastructure/payment-gateway-provider-resolver";
+import { isWhatsappProviderConfigured } from "../../../../../modules/commerce/infrastructure/whatsapp-provider-resolver";
+import { fetchCommerceFeatures } from "../../../../../modules/commerce/application/commerce-feature-gate";
 
 const READ_GUARD = {
   moduleKey: "commerce",
@@ -27,9 +29,10 @@ export const GET = defineTenantRoute({
   workClass: "interactive",
   authorize: READ_GUARD,
   handler: async ({ tx, tenantId }) => {
-    const [settings, affiliateCommissionRate] = await Promise.all([
+    const [settings, affiliateCommissionRate, features] = await Promise.all([
       fetchStoreSettings(tx, tenantId),
-      fetchAffiliateCommissionRate(tx, tenantId)
+      fetchAffiliateCommissionRate(tx, tenantId),
+      fetchCommerceFeatures(tx, tenantId)
     ]);
     return ok(
       await toPublicRecord(
@@ -39,7 +42,9 @@ export const GET = defineTenantRoute({
         mediaLibraryPortAdapter,
         affiliateCommissionRate !== null,
         isShippingRateProviderConfigured(),
-        isPaymentGatewayProviderConfigured()
+        isPaymentGatewayProviderConfigured(),
+        features,
+        isWhatsappProviderConfigured()
       )
     );
   }

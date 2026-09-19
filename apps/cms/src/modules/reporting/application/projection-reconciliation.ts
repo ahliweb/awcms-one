@@ -92,12 +92,32 @@ export async function reconcileProjection(
   // real hang in this repo (confirmed empirically while writing this
   // issue's own integration test — the hang left a stuck connection that
   // then broke every SUBSEQUENT test's `resetDatabase()` TRUNCATE too).
-  const projectionTotals = await getProjectionMetrics(
+  const projectionTotals: Record<string, number> = await getProjectionMetrics(
     tx,
     tenantId,
     descriptor.key
   );
-  const sourceTotals = await computeSourceTotals(tx, tenantId, descriptor);
+  const sourceTotals: Record<string, number> = await computeSourceTotals(
+    tx,
+    tenantId,
+    descriptor
+  );
+
+  // Issue #117 — a dimensional projection contributes a second set of
+  // control totals (money/quantity sums over its own table vs. the same
+  // figures recomputed from the source through its own delta rules). Keys
+  // are the projection's private metric keys; still sequential (same
+  // single-connection reason as above).
+  if (descriptor.dimensional) {
+    Object.assign(
+      projectionTotals,
+      await descriptor.dimensional.readProjectionTotals(tx, tenantId)
+    );
+    Object.assign(
+      sourceTotals,
+      await descriptor.dimensional.computeSourceTotals(tx, tenantId)
+    );
+  }
 
   const metricKeys = new Set([
     ...Object.keys(projectionTotals),

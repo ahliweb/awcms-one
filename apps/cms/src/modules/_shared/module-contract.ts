@@ -98,6 +98,17 @@ export type ModuleNavigationEntry = {
   order?: number;
   group?: string;
   requiredPermission?: string;
+  /**
+   * Issue #118 — a `commerce`-style feature toggle (`settings.defaults
+   * .features`) this entry additionally requires, on top of
+   * `requiredPermission`. `moduleKey` is carried alongside `feature` (rather
+   * than assuming the OWNING module) so a future cross-module nav entry
+   * gated on another module's feature flag needs no shape change; today only
+   * `commerce` declares any. Same "a hidden link protects nothing, a real
+   * server-side guard already runs regardless" caveat as
+   * `requiredPermission` — see `sidebar-menu.ts`'s own header.
+   */
+  requiredFeature?: { moduleKey: string; feature: string };
 };
 
 export type ModuleSettingsContract = {
@@ -406,6 +417,70 @@ export type ProjectionCursorStream = {
   tenantColumn?: string;
   cursorColumn: string;
   metrics: readonly ProjectionCursorMetricRule[];
+  /**
+   * Optional DIMENSIONAL sink (Issue #117, `commerce`'s sales reports). The
+   * scalar `metrics` rules above can only count rows; a projection that
+   * needs per-day/per-product money and quantity figures declares one of
+   * these and the engine hands every fetched, cursor-ordered batch to
+   * `applyBatch` — inside the SAME bounded pass transaction, after the
+   * (tenant, projection) advisory lock and before the cursor advance — for
+   * BOTH the steady-state incremental worker and a rebuild. The owning
+   * module supplies the function; the engine never learns the target
+   * table's name or shape. Must be paired with
+   * `ProjectionDescriptor.dimensional` (reset + reconcile + export hooks).
+   */
+  dimensional?: ProjectionDimensionalSink;
+};
+
+/**
+ * Batch sink of a dimensional cursor stream (Issue #117). TRUSTED CODE-ONLY
+ * like every other descriptor field — declared by the owning module, never
+ * request/tenant-controlled. `applyBatch` receives `tx`, the engine's own
+ * transaction, and must write only the owning module's own projection
+ * table(s) through it, additively and idempotently per row (an upsert of a
+ * delta keyed by the row's natural dimensions).
+ */
+export type ProjectionDimensionalSink = {
+  /** Extra source columns the engine must SELECT (snake_case identifiers, validated by the registry gate) and hand to `applyBatch` alongside the cursor column. */
+  selectColumns: readonly string[];
+  applyBatch: (
+    tx: Bun.SQL,
+    tenantId: string,
+    rows: readonly Record<string, unknown>[]
+  ) => Promise<void>;
+};
+
+/** Control totals keyed by a projection-private metric key — integers (counts, or money in integer cents), so a comparison is exact. */
+export type ProjectionDimensionalTotals = Readonly<Record<string, number>>;
+
+/**
+ * Descriptor-level hooks of a dimensional projection (Issue #117), each taking
+ * the CALLER's own transaction. The engine calls them at exactly the points
+ * its scalar path already has: `resetForTenant` from the rebuild reset (same
+ * transaction as the cursor/metric reset), `readProjectionTotals` and
+ * `computeSourceTotals` from reconciliation, `exportRows` from export
+ * generation. `computeSourceTotals` MUST be built from the same pure delta
+ * rules `applyBatch` applies — that equivalence is what makes "reconcile"
+ * and "rebuild" agree, and it is the module's responsibility, not the
+ * engine's.
+ */
+export type ProjectionDimensionalContract = {
+  resetForTenant: (tx: Bun.SQL, tenantId: string) => Promise<void>;
+  readProjectionTotals: (
+    tx: Bun.SQL,
+    tenantId: string
+  ) => Promise<ProjectionDimensionalTotals>;
+  computeSourceTotals: (
+    tx: Bun.SQL,
+    tenantId: string
+  ) => Promise<ProjectionDimensionalTotals>;
+  exportRows: (
+    tx: Bun.SQL,
+    tenantId: string
+  ) => Promise<{
+    columns: readonly string[];
+    rows: readonly Readonly<Record<string, unknown>>[];
+  }>;
 };
 
 export type ProjectionSourceContract =
@@ -449,6 +524,8 @@ export type ProjectionDescriptor = {
   retentionClass: string;
   /** Bounded per-pass row limit for both incremental and rebuild cursor scans. */
   batchLimit: number;
+  /** Present iff at least one stream declares a `dimensional` sink (Issue #117) — the registry gate enforces the pairing both ways. */
+  dimensional?: ProjectionDimensionalContract;
 };
 
 /**
@@ -1221,8 +1298,18 @@ export type SubjectDataDescriptor = {
  * rather than what `redactedColumns` named, so every `anonymize` descriptor was
  * updated in the same change, and `subject-data:registry:check` refuses an
  * `anonymize` that names nothing so the omission cannot be silent.
+ *
+ * `4.2.0` (Issue #117, contract #106 / ADR-0017 D7) — added the optional
+ * `ProjectionCursorStream.dimensional` (`ProjectionDimensionalSink`) and
+ * `ProjectionDescriptor.dimensional` (`ProjectionDimensionalContract`,
+ * `ProjectionDimensionalTotals`) fields, so a module can contribute a
+ * projection whose read model is per-day/per-product/per-category figures in
+ * its OWN table(s) rather than the engine's scalar counters. MINOR: purely
+ * additive — every existing descriptor omits both and behaves exactly as
+ * before; `reporting:projections:registry:check` enforces that the two new
+ * fields are declared together or not at all.
  */
-export const MODULE_CONTRACT_VERSION = "4.1.0";
+export const MODULE_CONTRACT_VERSION = "4.2.0";
 
 export function defineModule(descriptor: ModuleDescriptor): ModuleDescriptor {
   return descriptor;

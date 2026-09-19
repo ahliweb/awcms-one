@@ -139,6 +139,29 @@ Both tables follow `sql/901`'s conventions (`ENABLE`/`FORCE ROW LEVEL SECURITY`,
 
 Both new tables: RLS `ENABLE`+`FORCE`, tenant-isolation policy, FK indexes. Neither is ever soft-deleted by this module's own code in practice — `deleted_at` exists purely as the uniform data-lifecycle purge cursor, the same "always-`NULL` cursor" shape `awcms_commerce_orders` and `awcms_commerce_customer_accounts` already use.
 
+## Commerce inbox: two tables (`sql/927`)
+
+Issue #111, contract #106's D8 — a customer account's own thread with the store.
+
+| Table | Key columns | Notes |
+| --- | --- | --- |
+| `awcms_commerce_conversations` | `account_id NOT NULL` (FK to `awcms_commerce_customer_accounts` — an inbox thread requires a verified account, unlike guest checkout), `subject NOT NULL` (`CHECK char_length BETWEEN 1 AND 150`), `status` (`CHECK IN ('open','closed')`, default `open`), `last_message_at timestamptz NOT NULL DEFAULT now()`, `unread_for_store boolean NOT NULL DEFAULT true`, `unread_for_customer boolean NOT NULL DEFAULT false` | `last_message_at`/both `unread_for_*` flags are DENORMALIZED and kept in step with `awcms_commerce_messages` inside the SAME transaction as every message insert — never a join-derived value at read time. `deleted_at` exists purely as the uniform data-lifecycle purge cursor (this module's own code never sets it), the same "always-`NULL` cursor" shape `awcms_commerce_orders`/`awcms_commerce_customer_accounts` already use |
+| `awcms_commerce_messages` | `conversation_id NOT NULL` (FK), `sender NOT NULL` (`CHECK IN ('customer','store')`), `sender_tenant_user_id` (nullable; a `CHECK` requires it set for `sender='store'` and NULL for `sender='customer'`), `body NOT NULL` (`CHECK char_length BETWEEN 1 AND 4000`) | Append-only, like `awcms_commerce_order_events` — no `deleted_at`, no `updated_at`; a sent message is never edited or retracted |
+
+Both new tables: RLS `ENABLE`+`FORCE`, tenant-isolation policy, FK indexes. `commerce.conversations`'s `dataLifecycle` descriptor uses the usual `deleted_at` cursor; `commerce.messages`, being append-only, uses `created_at` instead — the one exception `commerce.order_events` already established for exactly this shape.
+
+## Customer campaigns: two tables + one column (`sql/929`)
+
+Issue #114, contract #106's D9 — a consent-gated mass e-mail/WhatsApp send.
+
+| Table | Key columns | Notes |
+| --- | --- | --- |
+| `awcms_commerce_customer_accounts.marketing_consent_at` (new column, not a new table) | `timestamptz`, nullable | Non-null means the account opted into marketing communication at that instant; `NULL` means never opted in (or withdrawn). Toggled ONLY by the account itself via `PATCH .../account/me {marketingConsent}` — never by staff |
+| `awcms_commerce_campaigns` | `channel NOT NULL` (`CHECK IN ('email','whatsapp')`), `subject` (nullable — required for `email`, ignored for `whatsapp` at the application boundary), `body NOT NULL` (`CHECK char_length BETWEEN 1 AND 4000`), `audience jsonb NOT NULL DEFAULT '{}'` (validated at the application boundary, not by a database CHECK — a small, evolving filter shape), `status NOT NULL` (`CHECK IN ('draft','scheduled','sending','sent','cancelled')`, default `draft`), `scheduled_at`/`sent_at timestamptz`, `recipient_count integer` | `recipient_count`/`sent_at` start `NULL` on a fresh `draft`, populated only once the campaign has actually been dispatched (`commerce:campaigns:dispatch`'s FINALIZE phase) |
+| `awcms_commerce_campaign_recipients` | `campaign_id NOT NULL` (FK), `customer_id NOT NULL` (FK), `address_masked NOT NULL` (masked e-mail/phone ONLY, never a raw address), `status NOT NULL` (`CHECK IN ('queued','enqueued','skipped')`, default `queued`), `outbox_ref` (nullable), `UNIQUE (campaign_id, customer_id)` | One row per resolved recipient — the resumability/audit ledger a partial send relies on. The `UNIQUE` constraint plus `ON CONFLICT DO NOTHING` at insert time is what makes the dispatcher's crash-recovery safe to retry; `resolveCampaignAudiencePage`'s own `NOT EXISTS` against this table is what makes its resume cursor correct without a separate cursor column on the campaign row |
+
+Both new tables: RLS `ENABLE`+`FORCE`, tenant-isolation policy, FK indexes. `commerce.campaigns`'s `dataLifecycle` descriptor uses the usual `deleted_at` cursor; `commerce.campaign_recipients`, being append-only per campaign, uses `created_at` instead — the same `commerce.messages` shape just above. Permission catalog seed: `sql/930` (`commerce.campaigns.{read,update,send}`).
+
 ## Payment gateway: sessions, event ledger, webhook-endpoint tokens (`sql/926`)
 
 Issue #110, contract #106's D2/D3 — a hosted-checkout session table, a replay-protection ledger for inbound provider webhooks (no writer yet; the webhook INTAKE route is issue #113's own scope), and the tenant-scoped webhook-endpoint tokens D2's bootstrap lookup resolves.
@@ -152,6 +175,18 @@ Issue #110, contract #106's D2/D3 — a hosted-checkout session table, a replay-
 Plus two nullable columns on the existing `awcms_commerce_orders`: `gateway_provider text`, `gateway_ref text` — which gateway/reference paid this order, if any (added `ADD COLUMN IF NOT EXISTS`, so the migration stays additive against an already-populated `orders` table).
 
 All three new tables: RLS `ENABLE`+`FORCE`, tenant-isolation policy, FK indexes (including a composite `(tenant_id, <cursor column>)` index on each, per this repo's own `data-lifecycle:table-coverage:check` convention). A fourth object, `awcms_resolve_commerce_webhook_endpoint(token_hash)`, is a `SECURITY DEFINER` function mirroring `sql/048`'s `awcms_resolve_tenant_domain_lookup` bootstrap-read pattern exactly — a dedicated `NOLOGIN` owner role (`awcms_webhook_endpoint_bootstrap`), an explicit `FOR SELECT` policy scoped to that role only, a fixed non-sensitive return shape (`tenant_id`, `provider` — never `token_hash`/`label`/`created_by`), and `EXECUTE` restricted to `awcms_app`. It resolves `(tenant_id, provider)` from a hashed, opaque token before any tenant context exists, the same bootstrap gap the tenant-domain function closes for a hostname.
+
+## Sales-report projections: three derived tables (`sql/933`)
+
+Issue #117, contract #106's D7 — the read models of the three `cursor_table` reporting projections `commerce` contributes (`commerce.sales_daily`, `commerce.sales_by_product`, `commerce.sales_by_category`), maintained by the `reporting` engine's own worker from `awcms_commerce_order_events` (see [`docs/cms.md`](cms.md) "Sales reports" for the delta rules). Derived and fully rebuildable — never written by a request path, never a source of truth.
+
+| Table | Key columns | Notes |
+| --- | --- | --- |
+| `awcms_commerce_sales_daily` | `PRIMARY KEY (tenant_id, day)`, `day date`, `orders_paid integer`, `gross`/`discount`/`shipping`/`net numeric(14,2)` | One row per report-zone day (`Asia/Jakarta`) that had a paid order. `orders_paid` and the four money columns are additive deltas: `+` on `-> paid`, `-` on `-> cancelled|refunded` after a paid state, on the SAME day row (attributed to the order's `paid_at`). A day that sold and fully refunded reads `0`, not absent |
+| `awcms_commerce_sales_by_product` | `PRIMARY KEY (tenant_id, day, product_id)`, `product_name text` (snapshot), `qty integer`, `gross numeric(14,2)` | Per day and product; `gross` is the sum of line totals. No FK to `awcms_commerce_products` on purpose — the name is a snapshot (the same posture `awcms_commerce_order_items.name` takes) and a purged product must not make its sales history unrebuildable. `(tenant_id, product_id)` index for the grouped read |
+| `awcms_commerce_sales_by_category` | `PRIMARY KEY (tenant_id, day, category_id)`, `category_name text` (snapshot), `qty integer`, `gross numeric(14,2)` | Per day and product category, attributed through `products.category_id` at processing time. `category_id` is `NOT NULL` because it is part of the key: a product without a category lands on the all-zero sentinel uuid, which the read routes map back to `categoryId: null`. `(tenant_id, category_id)` index |
+
+All three: RLS `ENABLE`+`FORCE`, tenant-isolation policy, `updated_at`, money as `numeric(14,2)` written from integer cents as decimal strings (never a float). Rows are upserted by primary key with `INSERT ... ON CONFLICT DO UPDATE SET x = x + EXCLUDED.x` inside the engine's bounded pass transaction, after the (tenant, projection) advisory lock and before the cursor advance; a rebuild `DELETE`s the tenant's rows in the same transaction that resets the cursor. `awcms_worker` is granted `SELECT, INSERT, UPDATE, DELETE` (`bun run reporting:projections:refresh` upserts; the generic data-lifecycle purge deletes; the rebuild reset's own delete runs as `awcms_app` in the API route's transaction) — mirrored in `WORKER_ROLE_GRANTS`. Retention: three `dataLifecycle` descriptors in `commerce/module.ts` (`commerce.sales_daily`/`_by_product`/`_by_category`, cursor `day`, the same 365–3650-day window as `commerce.order_events` — a row older than its source's retention can never be rebuilt and is safe to purge). Subject data: `NO_SUBJECT_DATA` in the script ledger (a day/product/category figure is a fact about nobody).
 
 ## Row-level security: `ENABLE` and `FORCE`, proven under the unprivileged role
 

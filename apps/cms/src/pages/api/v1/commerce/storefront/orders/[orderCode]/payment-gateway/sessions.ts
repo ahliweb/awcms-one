@@ -21,6 +21,7 @@ import {
   resolvePaymentGatewayProvider,
   resolvePaymentGatewayProviderKey
 } from "../../../../../../../../modules/commerce/infrastructure/payment-gateway-provider-resolver";
+import { fetchCommerceFeatures } from "../../../../../../../../modules/commerce/application/commerce-feature-gate";
 
 /**
  * `POST /api/v1/commerce/storefront/orders/{orderCode}/payment-gateway/sessions`
@@ -104,8 +105,14 @@ export const POST: APIRoute = async ({ request, params, clientAddress }) => {
   const { result, corsHeaders } = await withPublicCommerceTenant(
     sql,
     request,
-    async (_tx, tenant) => {
-      if (!provider || !providerKey) {
+    async (tx, tenant) => {
+      // Issue #118 — a tenant that turned `features.gateway` off is
+      // reported the SAME `503 GATEWAY_UNAVAILABLE` as "no provider
+      // configured for this deployment": both are "the gateway is not
+      // usable right now" from this caller's point of view, and the
+      // contract (#106 D3) already reserves 503 for exactly that.
+      const features = await fetchCommerceFeatures(tx, tenant.tenantId);
+      if (!provider || !providerKey || !features.gateway) {
         return { kind: "gateway_unavailable" as const };
       }
 

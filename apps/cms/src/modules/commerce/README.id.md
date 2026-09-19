@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:5fb69f41c01941353a23dbc450bc14a2fdf30ea018db4969388699222fe6d620 -->
+<!-- i18n-source-hash: sha256:778e86010f98ce6ad1cad38bda54fe6b136e2058084cf9651aec858b1aafc650 -->
 
 # `commerce`
 
@@ -26,15 +26,15 @@ ulang harga di sisi server, pelacakan dan pembatalan order lewat `orderCode`
   dan permukaan checkout storefront anonim; epic #32 menambahkan akun
   pelanggan dan afiliasi di atas baris pelanggan yang sama itu.
 
-| Aspek      | Nilai                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Key / type | `commerce` · `domain`, `isCore: false`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| Tabel      | `awcms_commerce_categories`, `awcms_commerce_products` (`sql/901`, diperluas `sql/904`), `awcms_commerce_product_images`, `awcms_commerce_product_variants` (`sql/905`); `awcms_commerce_flash_sales`, `awcms_commerce_flash_sale_products`, `awcms_commerce_vouchers`, `awcms_commerce_sliders`, `awcms_commerce_testimonials`, `awcms_commerce_popups` (`sql/909`), `awcms_commerce_store_settings` (`sql/910`); `awcms_commerce_customers`, `awcms_commerce_customer_addresses`, `awcms_commerce_orders`, `awcms_commerce_order_items`, `awcms_commerce_order_events`, `awcms_commerce_payment_confirmations`, `awcms_commerce_reviews`, `awcms_commerce_wishlists` (`sql/913`); `awcms_commerce_customer_accounts`, `awcms_commerce_customer_otps`, `awcms_commerce_customer_sessions` (`sql/917`-`918`); baris `derived.commerce_customer_otp` di `awcms_email_templates`, di-seed per tenant yang ada (`sql/919`); `awcms_commerce_affiliates`, `awcms_commerce_affiliate_commissions`, plus `orders.affiliate_id`/`store_settings.affiliate_commission_rate` (`sql/921`); `awcms_commerce_whatsapp_messages`, `awcms_commerce_whatsapp_delivery_attempts`, plus `awcms_commerce_customer_otps.phone_normalized` (`sql/925`); `awcms_commerce_payment_gateway_sessions`, `awcms_commerce_payment_events`, `awcms_commerce_webhook_endpoints`, plus `orders.gateway_provider`/`orders.gateway_ref` (`sql/926`) |
-| Permission | `categories.{read,create,update,delete,restore}`, `products.{read,create,update,delete,restore}` (`sql/902`, `sql/906`); `{flash_sales,vouchers,sliders,testimonials,popups}.{read,create,update,delete}`, `settings.{read,update}` (`sql/911`); `orders.{read,update}`, `customers.{read,update}`, `reviews.{read,update,delete}` (`sql/914`, dengan sengaja tanpa create/delete untuk orders atau customers — lihat "Pelanggan, order, dan review" di bawah); `affiliates.{read,update}`, `affiliate_commissions.{read,update}` (`sql/922`, alasan sama tanpa create/delete); `whatsapp.read` (`sql/925`, hanya diagnostik); `webhook_endpoints.update` (`sql/926`, menggerbangi list/create/revoke sekaligus) — 45 total                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| API        | `/api/v1/commerce/{categories,products,flash-sales,vouchers,sliders,testimonials,popups,store-settings,orders,customers,reviews,affiliates,affiliates/{id},affiliate-commissions,affiliate-commissions/{id}/{approve,pay,void},whatsapp/messages}` (sisi pemilik); `/api/v1/commerce/storefront/{cart/quote,orders,reviews}` (sisi anonim, `orders`/`reviews` juga menerima `customerBearer` OPSIONAL, Issue #91); `/api/v1/commerce/storefront/account/{otp/request,otp/verify,me,logout}` (OTP anonim + `customerBearer`, Issue #89; `otp/request`/`otp/verify` mendapat `via`/`phone`, Issue #108); `/api/v1/commerce/storefront/account/{addresses,addresses/{id},addresses/{id}/default,wishlist,wishlist/{productId},orders,orders/{orderCode},reviews,affiliate,affiliate/commissions}` (`customerBearer`, Issue #91/#92) (`openapi/modules/commerce.openapi.yaml`)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| Event      | `commerce.product.{created,updated,status_changed}`; `commerce.flash_sale.{started,ended}` (Issue #26, dipancarkan job tick); `commerce.order.{created,paid,status_changed,cancelled,expired}`, `commerce.voucher.redeemed`, `commerce.review.published` (Issue #29)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| Depends on | `tenant_admin`, `identity_access`, `domain_event_runtime`, `media_library` (gambar produk, slider, avatar testimoni, gambar popup, dan logo/favicon toko semuanya di-resolve lewat `MediaLibraryPort`), `module_management` (resolver tenant storefront anonim memeriksa modul ini aktif untuk tenant tersebut sebelum menjawab), `profile_identity` (penyamaran e-mail/telepon), `email` (Issue #89 — adapter `email` pada channel OTP pelanggan mengantre ke outbox `email` sendiri; dispatcher WhatsApp Issue #108 juga memakai ulang fungsi backoff murni `email/domain/email-retry.ts`)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| Job        | `commerce:flash-sales:tick` (`scripts/commerce-flash-sales-tick.ts`, tiap 5 menit — menyimpan status turunan tiap sale dan memancarkan dua event flash sale); `commerce:orders:expire` (`scripts/commerce-orders-expire.ts`, tiap 5 menit — mengekspirasi order belum-bayar yang melewati jendela terkonfigurasi toko, me-restock lini pesanannya, dan memancarkan `commerce.order.expired`); `commerce:whatsapp:dispatch`/`commerce:whatsapp:purge` (Issue #108 — job drain/retensi milik outbox WhatsApp sendiri)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| Aspek      | Nilai                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Key / type | `commerce` · `domain`, `isCore: false`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Tabel      | `awcms_commerce_categories`, `awcms_commerce_products` (`sql/901`, diperluas `sql/904`), `awcms_commerce_product_images`, `awcms_commerce_product_variants` (`sql/905`); `awcms_commerce_flash_sales`, `awcms_commerce_flash_sale_products`, `awcms_commerce_vouchers`, `awcms_commerce_sliders`, `awcms_commerce_testimonials`, `awcms_commerce_popups` (`sql/909`), `awcms_commerce_store_settings` (`sql/910`); `awcms_commerce_customers`, `awcms_commerce_customer_addresses`, `awcms_commerce_orders`, `awcms_commerce_order_items`, `awcms_commerce_order_events`, `awcms_commerce_payment_confirmations`, `awcms_commerce_reviews`, `awcms_commerce_wishlists` (`sql/913`); `awcms_commerce_customer_accounts`, `awcms_commerce_customer_otps`, `awcms_commerce_customer_sessions` (`sql/917`-`918`); baris `derived.commerce_customer_otp` di `awcms_email_templates`, di-seed per tenant yang ada (`sql/919`); `awcms_commerce_affiliates`, `awcms_commerce_affiliate_commissions`, plus `orders.affiliate_id`/`store_settings.affiliate_commission_rate` (`sql/921`); `awcms_commerce_whatsapp_messages`, `awcms_commerce_whatsapp_delivery_attempts`, plus `awcms_commerce_customer_otps.phone_normalized` (`sql/925`); `awcms_commerce_conversations`, `awcms_commerce_messages` (`sql/927`); `awcms_commerce_customer_accounts.marketing_consent_at`, `awcms_commerce_campaigns`, `awcms_commerce_campaign_recipients` (`sql/929`); `awcms_commerce_payment_gateway_sessions`, `awcms_commerce_payment_events`, `awcms_commerce_webhook_endpoints`, plus `orders.gateway_provider`/`orders.gateway_ref` (`sql/926`); `payment_events.outcome` diperlebar dengan `amount_mismatch` (`sql/934`); `awcms_commerce_sales_daily`, `awcms_commerce_sales_by_product`, `awcms_commerce_sales_by_category` (`sql/933`, Issue #117 — proyeksi reporting turunan) |
+| Permission | `categories.{read,create,update,delete,restore}`, `products.{read,create,update,delete,restore}` (`sql/902`, `sql/906`); `{flash_sales,vouchers,sliders,testimonials,popups}.{read,create,update,delete}`, `settings.{read,update}` (`sql/911`); `orders.{read,update}`, `customers.{read,update}`, `reviews.{read,update,delete}` (`sql/914`, dengan sengaja tanpa create/delete untuk orders atau customers — lihat "Pelanggan, order, dan review" di bawah); `affiliates.{read,update}`, `affiliate_commissions.{read,update}` (`sql/922`, alasan sama tanpa create/delete); `whatsapp.read` (`sql/925`, hanya diagnostik); `conversations.{read,update}` (`sql/928`, alasan sama tanpa create/delete); `campaigns.{read,update,send}` (`sql/930` — `send` dipisah dari `update`, satu-satunya aksi yang benar-benar menjangkau inbox/telepon nyata); `webhook_endpoints.update` (`sql/926`, menggerbangi list/create/revoke sekaligus) — 50 total                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| API        | `/api/v1/commerce/{categories,products,flash-sales,vouchers,sliders,testimonials,popups,store-settings,orders,customers,reviews,affiliates,affiliates/{id},affiliate-commissions,affiliate-commissions/{id}/{approve,pay,void},whatsapp/messages}` (sisi pemilik); `/api/v1/commerce/storefront/{cart/quote,orders,reviews}` (sisi anonim, `orders`/`reviews` juga menerima `customerBearer` OPSIONAL, Issue #91); `/api/v1/commerce/storefront/account/{otp/request,otp/verify,me,logout}` (OTP anonim + `customerBearer`, Issue #89; `otp/request`/`otp/verify` mendapat `via`/`phone`, Issue #108; `me` mendapat `marketingConsent`, Issue #114); `/api/v1/commerce/storefront/account/{addresses,addresses/{id},addresses/{id}/default,wishlist,wishlist/{productId},orders,orders/{orderCode},reviews,affiliate,affiliate/commissions,conversations,conversations/{id},conversations/{id}/messages}` (`customerBearer`, Issue #91/#92/#111); `/api/v1/commerce/{conversations,conversations/{id},conversations/{id}/messages}` (sisi pemilik, Issue #111); `/api/v1/commerce/{campaigns,campaigns/{id},campaigns/{id}/{preview,send,cancel}}` (sisi pemilik, Issue #114); `/api/v1/reports/commerce/{sales-daily,sales-by-product,sales-by-category}` (`reporting.dashboard.read`, Issue #117) (`openapi/modules/commerce.openapi.yaml`)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| Event      | `commerce.product.{created,updated,status_changed}`; `commerce.flash_sale.{started,ended}` (Issue #26, dipancarkan job tick); `commerce.order.{created,paid,status_changed,cancelled,expired}`, `commerce.voucher.redeemed`, `commerce.review.published` (Issue #29)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| Depends on | `tenant_admin`, `identity_access`, `domain_event_runtime`, `media_library` (gambar produk, slider, avatar testimoni, gambar popup, dan logo/favicon toko semuanya di-resolve lewat `MediaLibraryPort`), `module_management` (resolver tenant storefront anonim memeriksa modul ini aktif untuk tenant tersebut sebelum menjawab), `profile_identity` (penyamaran e-mail/telepon), `email` (Issue #89 — adapter `email` pada channel OTP pelanggan mengantre ke outbox `email` sendiri; dispatcher WhatsApp Issue #108 juga memakai ulang fungsi backoff murni `email/domain/email-retry.ts`)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| Job        | `commerce:flash-sales:tick` (`scripts/commerce-flash-sales-tick.ts`, tiap 5 menit — menyimpan status turunan tiap sale dan memancarkan dua event flash sale); `commerce:orders:expire` (`scripts/commerce-orders-expire.ts`, tiap 5 menit — mengekspirasi order belum-bayar yang melewati jendela terkonfigurasi toko, me-restock lini pesanannya, dan memancarkan `commerce.order.expired`); `commerce:whatsapp:dispatch`/`commerce:whatsapp:purge` (Issue #108 — job drain/retensi milik outbox WhatsApp sendiri)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 
 **Migrasi hidup di rentang cadangan `901`–`999`, bukan `001`–`899` milik upstream (issue #72, [ADR-0015](../../../../../docs/adr/0015-commerce-migrations-live-in-the-reserved-9xx-range.id.md) di awcms-one).** Enam belas migrasi asli modul ini, bernomor 153 sampai 168, bertabrakan dengan penomoran `ahliweb/awcms` upstream sendiri begitu ia mulai memakai nomor yang sama untuk migrasinya sendiri (`sql/153_awcms_blog_institution_logo.sql`, issue #59). Keenam belasnya diberi nomor ulang jadi `sql/901_awcms_commerce_schema.sql` sampai `sql/916_awcms_commerce_orders_expire_worker_write_grants.sql` (offset +748); migrasi commerce berikutnya adalah `917`. `tests/commerce-migrations-range.test.ts` menegakkan pemisahan ini dua arah. Basis data yang bermigrasi sebelum rename ini menjalankan `bun run db:commerce:renumber` sekali, sebelum `bun run db:migrate` berikutnya (`scripts/commerce-migrations-renumber.ts`).
 
@@ -649,18 +649,18 @@ tabel komisi (afiliasi, pesanan, jumlah, status, dapat difilter berdasarkan
 status, tombol approve/pay/void), i18n `en`+`id`.
 `/admin/commerce-settings` mendapat field tarif komisi.
 
-## Provider eksternal — kontrak saja, kecuali D4, D5, dan payment gateway secara penuh (D2/D3) (epic #33 wave 0 — ADR-0017, issue #106)
+## Provider eksternal — kontrak saja, kecuali D4, D5, D7, D8, D9, D10, dan payment gateway secara penuh (D2/D3) (epic #33 wave 0 — ADR-0017, issue #106)
 
 `openapi/modules/commerce.openapi.yaml` kini juga mendokumentasikan,
-SEBELUM ADA HANDLER APA PUN, sebagian besar permukaan provider-eksternal
-increment 5: pembuatan order POS (D6),
-tiga proyeksi penjualan yang ditampung `reporting` (D7), kotak masuk
-pelanggan — sisi bearer maupun owner (D8), kampanye bergerbang consent
-(D9), dan flag pengaturan modul plus harga bertingkat saat quote (D10).
-**D4 (tarif kurir), D5 (WhatsApp), dan payment gateway secara PENUH (D2/D3
-— pembuatan sesi, token webhook-endpoint, intake webhook, rekonsiliasi)
-sudah DIIMPLEMENTASIKAN, bukan kontrak-saja; lihat bagiannya sendiri
-persis di bawah ini.** Setiap satu dari sepuluh keputusan D1–D10 — mengapa port
+SEBELUM ADA HANDLER APA PUN, permukaan provider-eksternal increment 5
+yang masih tersisa: pembuatan order POS (D6). **D4 (tarif
+kurir), D5 (WhatsApp), D7 (laporan penjualan), D8 (kotak masuk), D9
+(kampanye bergerbang consent), D10 (flag Fitur BjekMart + harga bertingkat
+saat quote, issue #118), dan payment gateway secara PENUH (D2/D3 —
+pembuatan sesi, token webhook-endpoint, intake webhook, rekonsiliasi) sudah
+DIIMPLEMENTASIKAN, bukan kontrak-saja; lihat bagian masing-masing di
+bawah.** Setiap satu dari
+sepuluh keputusan D1–D10 — mengapa port
 hidup di dalam `commerce` alih-alih `integration_hub`, mengapa tenant
 webhook diresolusi dari token opak alih-alih payload-nya, mengapa alur
 gateway adalah redirect alih-alih embed, dan seterusnya — dicatat di
@@ -669,12 +669,17 @@ di awcms-one.
 
 Setiap path baru yang masih menunggu handler dinamai di
 `ROUTE_PARITY_EXEMPTIONS` (`scripts/api-spec-check.ts`), masing-masing
-entri mengutip issue anak yang menghapusnya: kotak masuk (#111), POS
-(#116), laporan penjualan (#117), dan kampanye (#114) — set itu wajib
+entri mengutip issue anak yang menghapusnya: POS (#116) — set itu wajib
 KOSONG lagi begitu increment 5 selesai, disiplin yang sama yang sudah
 dibuktikan #86/ADR-0016 untuk akun. Entri pengecualian milik tarif kurir,
-WhatsApp, dan payment gateway secara penuh (sesi maupun intake
-webhook/rekonsiliasi) sendiri sudah dihapus (#107, #108, #110, #113).
+WhatsApp, kotak masuk, kampanye, laporan penjualan, dan payment gateway
+secara penuh (sesi maupun intake webhook/rekonsiliasi) sendiri sudah
+dihapus (#107, #108, #111, #114, #117, #110, #113) — D10 (#118) tidak
+pernah menambah satu pun: setiap path yang disentuhnya
+(`store-settings/public`, `cart/quote`, `orders`) sudah ada sebelumnya, dan
+satu-satunya permukaan tulis barunya (bagian "Fitur") memakai ulang rute
+generik `module_management` sendiri yang sudah terdokumentasi,
+`PATCH /api/v1/tenant/modules/{moduleKey}/settings`.
 Variabel env RajaOngkir (`COMMERCE_SHIPPING_RATE_PROVIDER`,
 `COMMERCE_RAJAONGKIR_API_KEY`, …), variabel env WhatsApp
 (`COMMERCE_WHATSAPP_PROVIDER`, `COMMERCE_FONNTE_TOKEN`,
@@ -815,6 +820,125 @@ telepon" berarti akun yang baris PELANGGANnya membawa telepon itu.
 layar minimal `/admin/commerce-whatsapp` (filter status, tanpa aksi
 create/update/delete atas outbox di issue ini).
 
+## Kotak masuk komersial — SUDAH DIIMPLEMENTASIKAN (Issue #111, epic #33 — kontrak #106/ADR-0017 D8)
+
+Percakapan milik akun pelanggan terverifikasi dengan toko — bukan
+pelanggan guest checkout, yang tidak punya baris akun untuk digantungi
+percakapan.
+
+**Skema** (`sql/927`): `awcms_commerce_conversations` (`account_id NOT
+NULL` FK ke `awcms_commerce_customer_accounts`, `subject` 1-150 karakter,
+`status` `open|closed`, `last_message_at`, boolean `unread_for_store`/
+`unread_for_customer`) dan `awcms_commerce_messages` (append-only, seperti
+`awcms_commerce_order_events` — tanpa `deleted_at`/`updated_at`; `sender`
+`customer|store`, `sender_tenant_user_id` diisi hanya untuk pesan toko,
+`body` 1-4000 karakter). `last_message_at`/kedua flag `unread_for_*`
+adalah DENORMALIZED, dijaga selaras dengan setiap penyisipan pesan di
+dalam TRANSAKSI YANG SAMA — tidak pernah nilai turunan join saat baca.
+
+**Aplikasi** (`application/conversation-directory.ts`): sisi pelanggan
+(`listConversationsForAccount`, `openConversation`,
+`fetchConversationForAccount` — menandai percakapan terbaca untuk
+pelanggan, `postCustomerMessage` — berbentuk `409` `{kind:"closed"}`
+begitu percakapan ditutup) dan sisi toko (`listConversationsForAdmin` —
+bisa difilter `status`/`unreadForStore`, `fetchConversationForAdmin` —
+menandai terbaca untuk toko, `postStoreReply` — secara implisit membuka
+kembali percakapan yang tertutup DAN mengantre e-mail balasan dalam
+transaksi yang sama, `setConversationStatus` — tutup/buka eksplisit tanpa
+pesan). `ensureConversationReplyTemplate` men-seed templat e-mail
+`derived.commerce_conversation_reply` otomatis saat pertama kali tak
+ditemukan, pola identik yang sudah ditetapkan
+`ensureCustomerOtpTemplate` milik `application/
+customer-otp-channel-adapters.ts`.
+
+**Rute**: `GET`/`POST /api/v1/commerce/storefront/account/conversations`,
+`GET .../{id}` (bearer), `POST .../{id}/messages` (bearer, dibatasi laju
+10/jam per akun lewat `COMMERCE_CONVERSATION_POST_RATE_LIMIT_MAX`); pemilik
+`GET`/`PATCH /api/v1/commerce/conversations(/{id})`,
+`POST .../{id}/messages` (`commerce.conversations.read|update`,
+`Idempotency-Key` wajib pada balasan — satu-satunya mutasi berisiko tinggi
+di permukaan ini, karena mengantre e-mail).
+
+**Layar admin**: `/admin/commerce-inbox` — daftar percakapan dengan filter
+status/belum-dibaca dan lencana belum-dibaca, tampilan percakapan (`?id=`),
+formulir balasan (skrip klien mengirim `Idempotency-Key`), dan tombol
+tutup/buka kembali.
+
+**Data subjek**: kedua tabel `unreachableBySubject: true` di `module.ts`
+— akun pelanggan pemilik tidak membawa id `tenant_user`/`identity`/
+`profile`/`principal` (ADR-0016 D1), celah identik yang sudah didokumentasi
+`commerce.customer_addresses`/`commerce.wishlists`; pemilik akun mencapai
+percakapan miliknya sendiri lewat rute bearer di atas, di luar cakupan
+mesin otomatis per-subjek repo ini menurut konstruksinya.
+
+## Kampanye pelanggan — SUDAH DIIMPLEMENTASIKAN (Issue #114, epic #33 — kontrak #106/ADR-0017 D9)
+
+Pengiriman massal e-mail/WhatsApp yang bergerbang consent, memakai KEMBALI
+outbox yang sama yang sudah dipakai D5/D8 — tanpa mekanisme pengiriman
+ketiga.
+
+**Skema** (`sql/929`): `awcms_commerce_customer_accounts` mendapat kolom
+`marketing_consent_at timestamptz` (nullable — non-null berarti setuju
+pada saat itu); `awcms_commerce_campaigns` (`channel` `email|whatsapp`,
+`subject`/`body`, `audience jsonb`, `status`
+`draft|scheduled|sending|sent|cancelled`, `scheduled_at`/`sent_at`,
+`recipient_count`) dan `awcms_commerce_campaign_recipients` (satu baris
+per penerima yang terselesaikan, `UNIQUE (campaign_id, customer_id)`,
+`address_masked` tidak pernah alamat mentah, `status`
+`queued|enqueued|skipped`) — buku besar keteresumeannya/audit yang
+diandalkan pengiriman parsial. Seed permission `sql/930`
+(`commerce.campaigns.{read,update,send}`).
+
+**Domain** (`domain/campaign-validation.ts`, `domain/campaign-content.ts`):
+validasi bentuk audiens (`{levels[], hasAccount, lastOrderSince}`),
+kewajiban `subject` bersyarat kanal (wajib untuk `email`, diabaikan untuk
+`whatsapp`), dan rendering `{{name}}`/`{{storeName}}` yang di-allowlist —
+placeholder yang tak dikenal dibiarkan sebagai literal, fail-closed.
+
+**Aplikasi** (`application/campaign-directory.ts`): CRUD (`create` selalu
+`draft`, `update` hanya selagi `draft`), `resolveCampaignAudiencePage`/
+`countCampaignAudience` — SATU-SATUNYA tempat consent
+(`marketing_consent_at IS NOT NULL`) dan syarat alamat-per-kanal
+ditegakkan, keduanya dipanggang ke dalam klausa WHERE itu sendiri, tidak
+pernah difilter belakangan; `sendCampaign` (pindah ke `scheduled`,
+`scheduled_at = now()` untuk kirim seketika — penyebaran sesungguhnya
+terjadi kemudian, pada giliran dispatcher sendiri) dan `cancelCampaign`
+(menghentikan pengiriman lebih lanjut; penerima yang sudah dienqueue tidak
+dibatalkan-kirim).
+
+**Dispatcher** (`application/campaign-dispatch.ts`, skrip
+`commerce:campaigns:dispatch`, tiap 1-2 menit sebagai `awcms_worker`):
+CLAIM (satu transaksi singkat, `FOR UPDATE SKIP LOCKED` atas kampanye yang
+jatuh tempo/dilanjutkan) → PAGE (loop halaman 200 pelanggan yang belum
+tercatat — `NOT EXISTS` milik resolver terhadap
+`awcms_commerce_campaign_recipients` inilah yang membuatnya bisa
+dilanjutkan tanpa kolom cursor terpisah; memeriksa ulang `status` hidup
+kampanye sebelum tiap halaman, jadi `cancel` menghentikan pengiriman lebih
+lanjut seketika) → FINALIZE (halaman kosong menandai kampanye `sent`,
+`recipient_count` = total baris penerima). Penyebaran e-mail memanggil
+`enqueueDirectAddressEmail` milik modul `email` sendiri terhadap templat
+pass-through `derived.commerce_campaign` (di-seed otomatis saat pertama
+tak ditemukan, pola sama yang ditetapkan
+`ensureConversationReplyTemplate`) — `commerce` tidak pernah menulis
+`awcms_email_messages` langsung (`modules:table-writes:check`). Penyebaran
+WhatsApp memakai kunci templat `commerce.campaign` yang sudah dicadangkan
+(`domain/whatsapp-templates.ts`).
+
+**Rute**: pemilik `GET`/`POST /api/v1/commerce/campaigns`,
+`GET`/`PATCH .../{id}`, `POST .../{id}/preview` (hanya hitungan, tidak
+pernah daftar yang terselesaikan), `POST .../{id}/{send,cancel}`
+(`Idempotency-Key` wajib, digerbang permission terpisah
+`commerce.campaigns.send` — peran yang dipercaya menyusun/mengedit tidak
+otomatis dipercaya mengirim/membatalkan). `GET`/`PATCH
+/api/v1/commerce/storefront/account/me` mendapat `marketingConsent:
+boolean` — hanya diubah oleh akun itu sendiri, diaudit pada pemberian
+maupun pencabutan.
+
+**Layar admin**: `/admin/commerce-campaigns` — daftar kampanye, formulir
+buat-draf (kanal, subjek, pesan, centang level pelanggan), dan panel
+detail/editor (`?id=`) dengan tombol pratinjau-audiens (hanya hitungan)
+serta aksi kirim/batalkan (keduanya digerbang `window.confirm`).
+
 ## Payment gateway — pembuatan sesi (Issue #110, epic #33 — kontrak #106/ADR-0017 D2/D3)
 
 `PaymentGatewayProvider` (`domain/payment-gateway-provider.ts`) adalah
@@ -897,6 +1021,15 @@ samping) → penerapan sesuai pemetaan status. Rute ini TIDAK PERNAH
 memanggil `fetchStatus` milik provider — itu tetap urusan eksklusif job
 reconcile.
 
+**Penjaga nominal** (`domain/payment-amount-guard.ts`, `sql/934`):
+`gross_amount` yang dilaporkan provider harus sama dengan `total` pesanan
+dalam sen bulat sebelum transisi pesanan APA PUN. Ketidakcocokan/nominal
+tak terbaca mencatat peristiwa sebagai `outcome = 'amount_mismatch'`,
+menulis entri audit, memindah sesi ke `failed` hanya pada kegagalan
+terminal provider (selain itu dibiarkan `pending`), tidak pernah menandai
+pesanan lunas, dan tetap menjawab `200`. Job reconcile menerapkan penjaga
+yang sama pada `gross_amount` dari `fetchStatus`.
+
 **`markOrderPaidBySystem`** (`application/order-directory.ts`) — aktor
 `system`, menyetel `paid_at`/`payment_status`/`gateway_provider`/
 `gateway_ref`, satu baris `order_events`, dan satu entri audit-log;
@@ -935,6 +1068,168 @@ replay → 200 no-op, semuanya dengan provider tiruan; sebuah integration
 test terhadap Postgres nyata yang sudah dimigrasikan mencakup jalur penuh
 webhook-`paid`, replay-adalah-no-op, job reconcile dengan provider `log`,
 dan isolasi RLS lintas-tenant milik token webhook-endpoint.
+
+## Toggle fitur & harga bertingkat — SUDAH DIIMPLEMENTASIKAN (Issue #118, epic #33 C9 — kontrak #106/ADR-0017 D10, ADR-0016 D6)
+
+Layar "Fitur" BjekMart adalah `settings.defaults.features` milik `module.ts`
+sendiri — `{pos, inbox, campaigns, gateway, courier}`, setiap flag `true`
+secara default (`DEFAULT_COMMERCE_FEATURES` milik
+`domain/commerce-features.ts`) — dibaca/ditulis lewat layanan
+pengaturan-tenant GENERIK milik `module_management`
+(`fetchModuleSettingsView`/`updateModuleSettings`, `awcms_module_settings`),
+kali pertama `commerce` mendeklarasikan kontrak `settings` sama sekali.
+`resolveCommerceFeatures` me-resolve setiap flag secara INDEPENDEN terhadap
+default (tidak pernah mengasumsikan seluruh objek `features` ada), yang
+membuat flag keenam di masa depan bebas-migrasi untuk tenant yang sudah
+menyimpan baris pengaturan — alasan yang sama yang sudah diberikan merge
+dangkal tingkat-atas milik `module-settings.ts` sendiri untuk modul secara
+keseluruhan, satu tingkat lebih dalam.
+
+**Aturan 409-vs-404** (header `domain/commerce-features.ts` sendiri,
+`requireCommerceFeatureForOwnerRoute`/`requireCommerceFeatureForPublicRoute`
+milik `application/commerce-feature-gate.ts`): fitur nonaktif menjawab
+`409 FEATURE_DISABLED` pada setiap rute pemilik yang TERAUTENTIKASI
+(pemanggil sudah membuktikan siapa dirinya — konfigurasi tenant sendirilah
+yang menghalanginya, dan mereka perlu melihat alasannya) dan `404` netral —
+atau, pada satu-satunya rute yang sudah punya kode "tidak dapat dipakai
+sekarang" tersendiri, `503 GATEWAY_UNAVAILABLE` yang sudah ada — pada
+setiap rute PUBLIK/anonim (tidak pernah `409`, yang akan memberitahu
+prober bahwa sebuah rute memang ada, aturan anti-oracle yang sama yang
+sudah ditegakkan `public-commerce-tenant.ts` untuk tenant yang tak
+ter-resolve).
+
+**Yang di-gate**: kotak masuk (pemilik `/conversations*`, etalase
+`/storefront/account/conversations*`), kampanye (pemilik `/campaigns*`),
+gerbang (pemilik `/webhook-endpoints*`; etalase
+`.../payment-gateway/sessions` dilipat ke 503 yang sudah ada; intake
+PUBLIK `/webhooks/{provider}/{endpointToken}` menjawab 404 netral yang
+sama seperti token tak dikenal), kurir (pemilik
+`GET /shipping/destinations`). `pos` belum punya rute penegak — issue #116
+memasang gate itu di cabangnya sendiri, secara paralel; flag-nya sudah ada
+sekarang agar bentuk dokumen pengaturan tidak berubah lagi saat itu tiba.
+
+**Navigasi admin** menyembunyikan entri sidebar Kotak Masuk/Kampanye begitu
+fiturnya nonaktif (`ModuleNavigationEntry.requiredFeature`, field baru dan
+aditif pada kontrak entri-nav bersama; di-resolve per-request di
+`AdminLayout.astro` dari panggilan `fetchCommerceFeatures` yang SAMA yang
+dipakai rute — `sidebar-menu.ts`/`sidebar-menu-config.ts` milik
+`module_management` sendiri tidak pernah mengimpor `commerce`, menjaga arah
+ketergantungan modul satu-arah yang sudah ada).
+
+**Pengaturan toko publik** (`GET .../store-settings/public`) —
+`toPublicRecord` kini menerima dua parameter lagi, keduanya berdefault
+sehingga setiap titik panggil sebelum-#118 (termasuk literal test) tetap
+kompilasi dan menghitung jawaban yang SAMA seperti sebelumnya:
+`shipping.courierEnabled`/`payment.gatewayEnabled` mendapat suku-DAN
+TAMBAHAN `features.courier`/`features.gateway` (nama tak berubah, disiplin
+masking yang sama), dan dua boolean tingkat-atas baru bergabung —
+`inboxEnabled`/`campaignsEnabled` (flag mentah; keduanya tak punya toggle
+pengaturan-toko sendiri untuk di-AND-kan) dan `whatsappOtpEnabled`
+(`isWhatsappProviderConfigured` baru milik
+`infrastructure/whatsapp-provider-resolver.ts` — BUKAN flag `features.*`,
+karena Issue #108 tak pernah mendapat satu; `masuk.astro`/`daftar.astro`
+milik `apps/storefront` sudah membaca kunci persis ini).
+
+**Formulir pengaturan**: `/admin/commerce-settings` mendapat bagian "Fitur"
+yang menulis lewat rute GENERIK `PATCH /api/v1/tenant/modules/commerce/settings`
+— yaitu `updateModuleSettings`, diaudit di bawah
+`module_management.settings_updated` dengan diff aman berupa nama-kunci
+saja — di-gate pada `module_management.settings.update`, izin yang BERBEDA
+dari `commerce.settings.update` milik layar ini sendiri (perbedaan yang
+sama yang sudah ditarik bagian webhook-endpoints terhadap
+`commerce.webhook_endpoints.update`). Klien selalu mengirim SELURUH objek
+`features`: merge `updateModuleSettings` bersifat dangkal dan tingkat-atas,
+sehingga patch parsial akan diam-diam menonaktifkan setiap flag yang belum
+baru saja disentuh tenant.
+
+**Harga bertingkat** (menutup catatan tertangguh
+[ADR-0016](../../../../../docs/adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md)
+D6 sendiri): `quoteCart` milik `domain/cart-quote.ts` menerima
+`customerLevel` opsional (1–4); `resolveTierPrice` memilih `price_level_{n}`
+untuk baris tanpa flash sale aktif dan tanpa override harga varian, jatuh
+kembali ke `price` saat merchant tak pernah mengatur tingkat itu atau
+levelnya 1/tidak ada — diterapkan SEBELUM `discountPercent` milik
+`computeFinalPrice` sendiri, sehingga aturan diskon yang sama tetap berlaku
+apa pun harga dasar yang menang. `POST .../storefront/cart/quote`
+me-resolve level dari `Authorization: Bearer` OPSIONAL
+(`requireCustomerSession`; hilang/tak valid tak pernah menggagalkan quote —
+itu hanya berarti level 1). `createOrderFromCart` milik
+`application/order-directory.ts` kini mengambil baris pelanggan milik akun
+(saat `accountCustomerId` ada) SEBELUM re-quote internalnya, bukan sesudah,
+sehingga level yang SAMA memberi harga pada quote yang sudah dilihat
+pembeli maupun pesanan yang menjadi hasilnya — quote dan pesanan tak pernah
+bisa berselisih. **Level di-snapshot pada pesanan hanya secara IMPLISIT**,
+lewat harga satuan yang dipanggang ke `order_items.unit_price` saat
+pembuatan; tidak ada kolom `orders.customer_level` terpisah (issue ini tak
+perlu migrasi), dan perubahan level pelanggan di kemudian hari tak pernah
+mengubah harga pesanan lampau secara retroaktif. Edit `level` di layar
+admin pelanggan (`/admin/commerce-customers`, `commerce.customers.update`,
+diaudit) sudah ada sejak Issue #29 — #118 tidak menambah permukaan
+pengeditan pelanggan baru, hanya konsumen sisi quote/pesanan atas kolom
+yang sama itu.
+
+## Laporan penjualan — SUDAH DIIMPLEMENTASIKAN (Issue #117, epic #33 — kontrak #106/ADR-0017 D7)
+
+Tiga proyeksi `cursor_table` yang disumbangkan modul ini ke mesin
+`reporting` (Issue #753) dari `module.ts`-nya sendiri
+(`reportingProjections`) — `commerce.sales_daily`,
+`commerce.sales_by_product`, `commerce.sales_by_category` — di atas
+`awcms_commerce_order_events`, log transisi status yang append-only. Mesin
+tetap memegang kursor, kesegaran, run rebuild, rekonsiliasi, dan mesin
+ekspornya; modul ini memasok deskriptor, aturan delta murni, dan sink yang
+menulis tiga tabel miliknya sendiri (`sql/933`).
+
+| Bagian         | Di mana                                                                                                      | Apa yang dilakukan                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| -------------- | ------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Aturan delta   | `domain/sales-report-deltas.ts` (murni)                                                                      | `resolveSalesDeltaDirection`: `-> paid` dari status yang belum terbayar adalah `+1`; `-> cancelled                                                                                                                                                                                                                                                                                                                                                                                                                                 | refunded` dari status terbayar (`paid | processing | shipped | completed`) adalah `-1`; selainnya `0`(pembuatan, langkah pemenuhan, pembatalan/kedaluwarsa yang belum pernah dibayar, refund setelah pembatalan).`computeSales{Daily,ByProduct,ByCategory}Delta(s)` mengubah satu snapshot pesanan + tanda + hari menjadi delta aditif dalam sen bilangan bulat (`bigint`, `toCents`); `formatCentsDelta`merender string`numeric(14,2)`BERTANDA. Hari =`paid_at`pesanan dalam`SALES_REPORT_TIME_ZONE` (`Asia/Jakarta`), sehingga pembalikan mendarat di baris hari yang sama dengan pembayarannya |
+| Kunci          | `domain/sales-report-keys.ts`                                                                                | Kunci proyeksi, kunci stream bersama, kunci metrik skalar (`paid_events`), dan kunci kontrol rekonsiliasi                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| Sink + hook    | `application/sales-report-projection.ts`                                                                     | `applySales{Daily,ByProduct,ByCategory}Batch` (para `ProjectionDimensionalSink`): buang baris `0`, muat satu snapshot per pesanan (header + item hidup + kategori produk tiap item, LEFT JOIN), jalankan fungsi delta, upsert `ON CONFLICT DO UPDATE SET x = x + EXCLUDED.x`. Para `ProjectionDimensionalContract`: `resetForTenant` (reset rebuild), `readProjectionTotals` (`SUM()` atas tabel), `computeSourceTotals` (menyusuri seluruh aliran peristiwa lewat fungsi delta yang sama), `exportRows` (ekspor CSV/JSON tabular) |
+| Validasi query | `domain/sales-report-query.ts` (murni)                                                                       | `from`/`to` hari zona-laporan `YYYY-MM-DD` inklusif, bawaan 30 hari terakhir, paling banyak 366; `limit` 1–200, bawaan 20                                                                                                                                                                                                                                                                                                                                                                                                          |
+| Pembacaan      | `application/sales-report-directory.ts`                                                                      | `listSalesDaily`, `listSalesByProduct` (tergabung, terlaris menurut bruto lebih dulu), `listSalesByCategory` (sentinel → `categoryId: null`) — dipakai rute dan layar sekaligus                                                                                                                                                                                                                                                                                                                                                    |
+| Rute           | `src/pages/api/v1/reports/commerce/{sales-daily,sales-by-product,sales-by-category}.ts`                      | `defineTenantRoute`, `reporting.dashboard.read`, work class `reporting`; dimiliki modul ini lewat `api.routes: ["/api/v1/reports/commerce"]`                                                                                                                                                                                                                                                                                                                                                                                       |
+| Layar          | `src/pages/admin/commerce-reports.astro`                                                                     | Rentang tanggal (formulir GET), tiga tabel, panel kesegaran (`reporting.projections.read`), **Ekspor CSV** per proyeksi lewat `POST /api/v1/reports/exports/trigger` (`reporting.exports.export`), riwayat ekspor terbaru dengan tautan unduh (`reporting.exports.read`). Entri nav urutan 16, digerbangi `reporting.dashboard.read`                                                                                                                                                                                               |
+| Uji            | `tests/commerce-sales-report-domain.test.ts`, `tests/integration/commerce-sales-reports.integration.test.ts` | Aturan murni + pasangan registri; terhadap Postgres nyata: paid → baris, batal-setelah-bayar → dikurangkan di hari yang sama, rebuild identik byte-per-byte dengan live, rekonsiliasi tanpa selisih (dan tabel yang diutak-atik MEMANG ditandai), ekspor tabular, RLS                                                                                                                                                                                                                                                              |
+
+**Satu-satunya perubahan mesin** (`MODULE_CONTRACT_VERSION` 4.1.0 → 4.2.0,
+aditif): `ProjectionCursorStream.dimensional` (`selectColumns` +
+`applyBatch`) dan `ProjectionDescriptor.dimensional` (empat hook). Worker
+inkremental dan pass rebuild memanggil sink pada setiap batch yang diambil
+di dalam transaksi yang sama, setelah advisory lock (tenant, proyeksi) dan
+sebelum kursor maju; reset rebuild memanggil `resetForTenant` dalam
+transaksi yang sama dengan reset kursor/metrik; rekonsiliasi menggabungkan
+total kontrol berdimensi ke baris detailnya; pembuatan ekspor menulis baris
+berdimensi alih-alih snapshot metrik skalar.
+`reporting:projections:registry:check` memaksa pasangan itu dua arah. Tidak
+ada deskriptor lama yang berubah.
+
+**Mengapa `from_status` yang memutuskan "setelah peristiwa paid".** Graf
+status (`domain/order-status.ts`) hanya membiarkan pesanan mencapai status
+terbayar lewat `paid`, sehingga peristiwa yang MENINGGALKAN status terbayar,
+secara konstruksi, adalah peristiwa setelah peristiwa paid — dapat diputuskan
+dari satu baris yang ada di tangan, tanpa state per pesanan yang harus dibawa
+antar-pass. `refunded` bukan status yang dipancarkan graf saat ini (refund
+datang lewat `payment_status`), tetapi kontrak menamainya dan notifikasi
+refund gateway mungkin mencatatnya, jadi ditangani persis seperti
+`cancelled`; `cancelled -> refunded` tidak berkontribusi apa pun, sehingga
+sebuah pesanan tak pernah dikurangkan dua kali.
+
+**Keterbatasan yang diketahui — kategori adalah join hidup.**
+`awcms_commerce_order_items` menyimpan snapshot nama produk tetapi bukan
+kategorinya, sehingga atribusi per kategori membaca `products.category_id`
+saat pemrosesan; mengubah kategori produk tidak memindahkan penjualan
+lampau, dan rebuild mengatribusikannya ulang di bawah kategori baru. Total
+kontrol rekonsiliasi tidak bergantung kategori, jadi ini perbedaan antara
+dua rebuild, bukan selisih rekonsiliasi.
+
+**Grant worker, retensi.** `awcms_worker` mendapat `SELECT, INSERT, UPDATE,
+DELETE` pada ketiga tabel (`sql/933`, dicerminkan di `WORKER_ROLE_GRANTS`) —
+upsert butuh UPDATE, purge data-lifecycle generik butuh DELETE; delete milik
+reset rebuild sendiri berjalan sebagai `awcms_app` dalam transaksi rute API.
+Retensi dijawab tiga deskriptor `dataLifecycle` di `module.ts` (kursor
+`day`, 365–3650 hari, jendela yang sama dengan `commerce.order_events`:
+baris yang lebih tua dari retensi sumbernya tak pernah bisa dibangun ulang
+dan aman dipurge); data subjek oleh `NO_SUBJECT_DATA` di ledger skrip —
+agregat turunan yang dapat dibangun ulang, tentang tidak seorang pun.
 
 ## Dengan sengaja tidak ada di sini
 

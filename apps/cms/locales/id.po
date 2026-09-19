@@ -5325,6 +5325,21 @@ msgstr "Aktifkan checkout tergerbong (Midtrans Snap) untuk toko ini. Memerlukan 
 msgid "Enable payment gateway"
 msgstr "Aktifkan gerbang pembayaran"
 
+msgid "Fitur"
+msgstr "Fitur"
+
+msgid "Turn a whole feature off for this tenant. A disabled feature's owner routes answer 409, its public/storefront routes answer 404, and its admin screen is hidden from the sidebar."
+msgstr "Matikan seluruh fitur untuk tenant ini. Rute pemilik pada fitur yang nonaktif akan menjawab 409, rute publik/etalasenya menjawab 404, dan layar adminnya disembunyikan dari sidebar."
+
+msgid "Point of sale (POS)"
+msgstr "Kasir (POS)"
+
+msgid "Inbox (customer messages)"
+msgstr "Kotak masuk (pesan pelanggan)"
+
+msgid "Save features"
+msgstr "Simpan fitur"
+
 msgid "Payment gateway webhook endpoints"
 msgstr "Endpoint webhook gerbang pembayaran"
 
@@ -5466,5 +5481,237 @@ msgstr "Kasir"
 msgid "No POS sales match this filter."
 msgstr "Tidak ada penjualan POS yang sesuai dengan filter ini."
 
+msgid "Inbox"
+msgstr "Kotak Masuk"
+
+msgid "Customer conversations with the store — reply, close, and reopen threads."
+msgstr "Percakapan pelanggan dengan toko — balas, tutup, dan buka kembali percakapan."
+
+msgid "You do not have permission to view the inbox."
+msgstr "Anda tidak memiliki izin untuk melihat kotak masuk."
+
+msgid "The inbox could not be loaded right now. Please try again later."
+msgstr "Kotak masuk tidak dapat dimuat saat ini. Silakan coba lagi nanti."
+
+msgid "Filter conversations"
+msgstr "Filter percakapan"
+
+msgid "Open"
+msgstr "Terbuka"
+
+msgid "Closed"
+msgstr "Ditutup"
+
+msgid "Unread"
+msgstr "Belum dibaca"
+
+msgid "{count} conversation"
+msgid_plural "{count} conversations"
+msgstr[0] "{count} percakapan"
+
+msgid "Last message"
+msgstr "Pesan terakhir"
+
+msgid "No conversations yet"
+msgstr "Belum ada percakapan"
+
+msgid "Conversations customers start from the storefront will appear here."
+msgstr "Percakapan yang dimulai pelanggan dari etalase akan muncul di sini."
+
+msgid "Store"
+msgstr "Toko"
+
+msgid "Send reply"
+msgstr "Kirim balasan"
+
+msgid "Reopen"
+msgstr "Buka kembali"
+
+msgid "Campaigns"
+msgstr "Kampanye"
+
+msgid "Consent-gated mass e-mail/WhatsApp campaigns to your customers."
+msgstr "Kampanye massal e-mail/WhatsApp ke pelanggan Anda, hanya untuk yang menyetujui (consent)."
+
+msgid "You do not have permission to view campaigns."
+msgstr "Anda tidak memiliki izin untuk melihat kampanye."
+
+msgid "Campaigns could not be loaded right now. Please try again later."
+msgstr "Kampanye tidak dapat dimuat saat ini. Silakan coba lagi nanti."
+
+msgid "New campaign"
+msgstr "Kampanye baru"
+
+msgid "Channel"
+msgstr "Saluran"
+
+msgid "Subject (e-mail only)"
+msgstr "Subjek (khusus e-mail)"
+
+msgid "Use {{name}} and {{storeName}} — the only variables the message may interpolate."
+msgstr "Gunakan {{name}} dan {{storeName}} — satu-satunya variabel yang dapat disisipkan ke dalam pesan."
+
+msgid "Audience: customer levels (all if none checked)"
+msgstr "Audiens: level pelanggan (semua jika tidak ada yang dicentang)"
+
+msgid "Recipients"
+msgstr "Penerima"
+
+msgid "Sent"
+msgstr "Terkirim"
+
+msgid "{count} campaign"
+msgid_plural "{count} campaigns"
+msgstr[0] "{count} kampanye"
+
+msgid "No campaigns yet"
+msgstr "Belum ada kampanye"
+
+msgid "Create a draft above to get started."
+msgstr "Buat draf di atas untuk memulai."
+
+msgid "(none)"
+msgstr "(tidak ada)"
+
+msgid "Preview audience"
+msgstr "Pratinjau audiens"
+
+msgid "Send now"
+msgstr "Kirim sekarang"
+
+# --- /admin/commerce-reports laporan penjualan (Issue #117) ---
+
+msgid "Sales reports"
+msgstr "Laporan penjualan"
+
+msgid "Paid sales by day, product and category, from the reporting projections over the order event log. A cancellation or refund of a paid order is subtracted from the day it was paid on."
+msgstr "Penjualan terbayar per hari, produk, dan kategori, dari proyeksi reporting di atas log peristiwa pesanan. Pembatalan atau refund pesanan yang sudah dibayar dikurangkan dari hari pesanan itu dibayar."
+
+msgid "You do not have permission to view sales reports."
+msgstr "Anda tidak memiliki izin untuk melihat laporan penjualan."
+
+msgid "Sales reports could not be loaded right now. Please try again later."
+msgstr "Laporan penjualan tidak dapat dimuat saat ini. Silakan coba lagi nanti."
+
+msgid "Date range"
+msgstr "Rentang tanggal"
+
+msgid "The requested range was invalid — showing the default range instead."
+msgstr "Rentang yang diminta tidak valid — menampilkan rentang bawaan sebagai gantinya."
+
+msgid "Apply range"
+msgstr "Terapkan rentang"
+
+msgid "Days are counted in {timeZone}."
+msgstr "Hari dihitung dalam zona waktu {timeZone}."
+
+msgid "Projection freshness"
+msgstr "Kesegaran proyeksi"
+
+msgid "Sales by day"
+msgstr "Penjualan per hari"
+
+msgid "Sales by product"
+msgstr "Penjualan per produk"
+
+msgid "Sales by category"
+msgstr "Penjualan per kategori"
+
+msgid "never updated"
+msgstr "belum pernah diperbarui"
+
+msgid "{n}s ago"
+msgstr "{n} dtk lalu"
+
+msgid "{n}m ago"
+msgstr "{n} mnt lalu"
+
+msgid "{n}h ago"
+msgstr "{n} jam lalu"
+
+msgid "{n}d ago"
+msgstr "{n} hari lalu"
+
+msgid "Last updated {age}."
+msgstr "Terakhir diperbarui {age}."
+
+msgid "Rebuild or reconcile"
+msgstr "Bangun ulang atau rekonsiliasi"
+
+msgid "Export CSV"
+msgstr "Ekspor CSV"
+
+msgid "Paid orders per day, {from} to {to}."
+msgstr "Pesanan terbayar per hari, {from} sampai {to}."
+
+msgid "Day"
+msgstr "Hari"
+
+msgid "Paid orders"
+msgstr "Pesanan terbayar"
+
+msgid "Gross"
+msgstr "Bruto"
+
+msgid "Discount"
+msgstr "Diskon"
+
+msgid "Shipping"
+msgstr "Ongkir"
+
+msgid "Net"
+msgstr "Neto"
+
+msgid "No paid sales in this range"
+msgstr "Tidak ada penjualan terbayar pada rentang ini"
+
+msgid "Figures appear a few minutes after an order is paid, once the projection worker has run."
+msgstr "Angka muncul beberapa menit setelah pesanan dibayar, begitu worker proyeksi berjalan."
+
+msgid "Top {limit} products by gross, {from} to {to}."
+msgstr "{limit} produk teratas menurut bruto, {from} sampai {to}."
+
 msgid "Quantity"
-msgstr "Kuantitas"
+msgstr "Jumlah"
+
+msgid "No products sold in this range"
+msgstr "Tidak ada produk terjual pada rentang ini"
+
+msgid "Categories by gross, {from} to {to}."
+msgstr "Kategori menurut bruto, {from} sampai {to}."
+
+msgid "No categories sold in this range"
+msgstr "Tidak ada kategori terjual pada rentang ini"
+
+msgid "Uncategorised"
+msgstr "Tanpa kategori"
+
+msgid "Recent CSV exports"
+msgstr "Ekspor CSV terbaru"
+
+msgid "Each export is the full projection (every day, not just the range shown), written and checksummed by the reporting export mechanism. Downloads re-check your permission and refuse an expired file."
+msgstr "Setiap ekspor berisi proyeksi lengkap (semua hari, bukan hanya rentang yang ditampilkan), ditulis dan diberi checksum oleh mekanisme ekspor reporting. Unduhan memeriksa ulang izin Anda dan menolak berkas yang sudah kedaluwarsa."
+
+msgid "Schedule recurring exports"
+msgstr "Jadwalkan ekspor berkala"
+
+msgid "Export runs of the three sales projections."
+msgstr "Riwayat ekspor ketiga proyeksi penjualan."
+
+msgid "Report"
+msgstr "Laporan"
+
+msgid "Generated"
+msgstr "Dibuat"
+
+msgid "No exports yet"
+msgstr "Belum ada ekspor"
+
+msgid "Use an Export CSV button above to generate one."
+msgstr "Gunakan tombol Ekspor CSV di atas untuk membuatnya."
+
+msgid "expired"
+msgstr "kedaluwarsa"
+
+msgid "unavailable"
+msgstr "tidak tersedia"

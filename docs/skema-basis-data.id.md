@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](skema-basis-data.md)
 
-<!-- i18n-source-hash: sha256:f31c478fb4030f9d907d46709c0b591d4e942602fc08c05c95fe6bada3d8df27 -->
+<!-- i18n-source-hash: sha256:923f20ff964a6a544f390682b48a2534d9a95fcd5d193df2ee868b4f237e7ae2 -->
 
 # Skema basis data
 
@@ -141,6 +141,29 @@ Kedua tabel mengikuti konvensi `sql/901` (`ENABLE`/`FORCE ROW LEVEL SECURITY`, s
 
 Kedua tabel baru: RLS `ENABLE`+`FORCE`, kebijakan isolasi-tenant, indeks FK. Tak satu pun pernah di-soft-delete oleh kode modul ini sendiri dalam praktiknya — `deleted_at` ada murni sebagai kursor purge data-lifecycle yang seragam, bentuk "kursor selalu-`NULL`" yang sama dengan yang sudah dipakai `awcms_commerce_orders` dan `awcms_commerce_customer_accounts`.
 
+## Kotak masuk komersial: dua tabel (`sql/927`)
+
+Issue #111, D8 kontrak #106 — thread milik akun pelanggan sendiri dengan toko.
+
+| Tabel | Kolom kunci | Catatan |
+| --- | --- | --- |
+| `awcms_commerce_conversations` | `account_id NOT NULL` (FK ke `awcms_commerce_customer_accounts` — thread kotak masuk mensyaratkan akun terverifikasi, tidak seperti checkout tamu), `subject NOT NULL` (`CHECK char_length BETWEEN 1 AND 150`), `status` (`CHECK IN ('open','closed')`, default `open`), `last_message_at timestamptz NOT NULL DEFAULT now()`, `unread_for_store boolean NOT NULL DEFAULT true`, `unread_for_customer boolean NOT NULL DEFAULT false` | `last_message_at`/kedua flag `unread_for_*` DIDENORMALISASI dan dijaga selaras dengan `awcms_commerce_messages` di dalam transaksi yang SAMA dengan setiap insert pesan — tidak pernah nilai turunan join saat baca. `deleted_at` ada murni sebagai kursor purge data-lifecycle yang seragam (kode modul ini sendiri tidak pernah men-set-nya), bentuk "kursor selalu-`NULL`" yang sama dengan `awcms_commerce_orders`/`awcms_commerce_customer_accounts` |
+| `awcms_commerce_messages` | `conversation_id NOT NULL` (FK), `sender NOT NULL` (`CHECK IN ('customer','store')`), `sender_tenant_user_id` (nullable; sebuah `CHECK` mewajibkannya terisi untuk `sender='store'` dan NULL untuk `sender='customer'`), `body NOT NULL` (`CHECK char_length BETWEEN 1 AND 4000`) | Append-only, seperti `awcms_commerce_order_events` — tanpa `deleted_at`, tanpa `updated_at`; pesan yang terkirim tidak pernah diedit atau ditarik |
+
+Kedua tabel baru: RLS `ENABLE`+`FORCE`, kebijakan isolasi-tenant, indeks FK. Deskriptor `dataLifecycle` milik `commerce.conversations` memakai kursor `deleted_at` biasa; `commerce.messages`, karena append-only, memakai `created_at` — satu pengecualian yang sudah ditetapkan `commerce.order_events` untuk bentuk persis ini.
+
+## Kampanye pelanggan: dua tabel + satu kolom (`sql/929`)
+
+Issue #114, D9 kontrak #106 — pengiriman massal e-mail/WhatsApp bergerbang consent.
+
+| Tabel | Kolom kunci | Catatan |
+| --- | --- | --- |
+| `awcms_commerce_customer_accounts.marketing_consent_at` (kolom baru, bukan tabel baru) | `timestamptz`, nullable | Non-null berarti akun setuju menerima komunikasi pemasaran pada saat itu; `NULL` berarti tidak pernah setuju (atau sudah dicabut). Hanya diubah oleh akun itu sendiri lewat `PATCH .../account/me {marketingConsent}` — tidak pernah oleh staf |
+| `awcms_commerce_campaigns` | `channel NOT NULL` (`CHECK IN ('email','whatsapp')`), `subject` (nullable — wajib untuk `email`, diabaikan untuk `whatsapp` di batas aplikasi), `body NOT NULL` (`CHECK char_length BETWEEN 1 AND 4000`), `audience jsonb NOT NULL DEFAULT '{}'` (divalidasi di batas aplikasi, bukan oleh CHECK database — bentuk filter kecil yang terus berevolusi), `status NOT NULL` (`CHECK IN ('draft','scheduled','sending','sent','cancelled')`, default `draft`), `scheduled_at`/`sent_at timestamptz`, `recipient_count integer` | `recipient_count`/`sent_at` dimulai `NULL` pada `draft` baru, terisi hanya setelah kampanye benar-benar dikirim (fase FINALIZE milik `commerce:campaigns:dispatch`) |
+| `awcms_commerce_campaign_recipients` | `campaign_id NOT NULL` (FK), `customer_id NOT NULL` (FK), `address_masked NOT NULL` (alamat e-mail/telepon tersamar SAJA, tidak pernah alamat mentah), `status NOT NULL` (`CHECK IN ('queued','enqueued','skipped')`, default `queued`), `outbox_ref` (nullable), `UNIQUE (campaign_id, customer_id)` | Satu baris per penerima yang terselesaikan — buku besar keteresumeannya/audit yang diandalkan pengiriman parsial. Constraint `UNIQUE` plus `ON CONFLICT DO NOTHING` saat penyisipan inilah yang membuat pemulihan-dari-crash dispatcher aman diulang; `NOT EXISTS` milik `resolveCampaignAudiencePage` sendiri terhadap tabel ini yang membuat cursor lanjutannya benar tanpa kolom cursor terpisah pada baris kampanye |
+
+Kedua tabel baru: RLS `ENABLE`+`FORCE`, kebijakan isolasi-tenant, indeks FK. Deskriptor `dataLifecycle` milik `commerce.campaigns` memakai kursor `deleted_at` yang biasa; `commerce.campaign_recipients`, karena append-only per kampanye, memakai `created_at` — bentuk yang sama dengan `commerce.messages` di atas. Seed katalog permission: `sql/930` (`commerce.campaigns.{read,update,send}`).
+
 ## Payment gateway: sesi, buku besar event, token webhook-endpoint (`sql/926`)
 
 Issue #110, D2/D3 kontrak #106 — tabel sesi hosted-checkout, buku besar anti-replay untuk webhook provider masuk (belum ada penulisnya; rute INTAKE webhook adalah cakupan issue #113 sendiri), dan token webhook-endpoint milik tenant yang di-resolve lookup bootstrap D2.
@@ -154,6 +177,18 @@ Issue #110, D2/D3 kontrak #106 — tabel sesi hosted-checkout, buku besar anti-r
 Plus dua kolom nullable pada `awcms_commerce_orders` yang sudah ada: `gateway_provider text`, `gateway_ref text` — gateway/referensi mana yang membayar pesanan ini, jika ada (ditambahkan `ADD COLUMN IF NOT EXISTS`, sehingga migration tetap aditif terhadap tabel `orders` yang sudah terisi).
 
 Ketiga tabel baru: RLS `ENABLE`+`FORCE`, kebijakan isolasi-tenant, indeks FK (termasuk indeks komposit `(tenant_id, <kolom kursor>)` di masing-masing, mengikuti konvensi `data-lifecycle:table-coverage:check` milik repo ini sendiri). Satu objek keempat, `awcms_resolve_commerce_webhook_endpoint(token_hash)`, adalah fungsi `SECURITY DEFINER` yang meniru pola bootstrap-read `awcms_resolve_tenant_domain_lookup` milik `sql/048` persis — peran pemilik `NOLOGIN` khusus (`awcms_webhook_endpoint_bootstrap`), kebijakan `FOR SELECT` eksplisit yang dibatasi hanya untuk peran itu, bentuk balikan tetap yang tidak sensitif (`tenant_id`, `provider` — tidak pernah `token_hash`/`label`/`created_by`), dan `EXECUTE` dibatasi ke `awcms_app`. Fungsi ini me-resolve `(tenant_id, provider)` dari token opak yang di-hash sebelum konteks tenant apa pun ada, celah bootstrap yang sama yang ditutup fungsi tenant-domain untuk sebuah hostname.
+
+## Proyeksi laporan penjualan: tiga tabel turunan (`sql/933`)
+
+Issue #117, D7 kontrak #106 — read model dari tiga proyeksi reporting `cursor_table` yang disumbangkan `commerce` (`commerce.sales_daily`, `commerce.sales_by_product`, `commerce.sales_by_category`), dipelihara oleh worker milik mesin `reporting` dari `awcms_commerce_order_events` (lihat [`docs/cms.md`](cms.id.md) "Laporan penjualan" untuk aturan deltanya). Turunan dan sepenuhnya dapat dibangun ulang — tidak pernah ditulis jalur request, tidak pernah menjadi sumber kebenaran.
+
+| Tabel | Kolom kunci | Catatan |
+| --- | --- | --- |
+| `awcms_commerce_sales_daily` | `PRIMARY KEY (tenant_id, day)`, `day date`, `orders_paid integer`, `gross`/`discount`/`shipping`/`net numeric(14,2)` | Satu baris per hari zona-laporan (`Asia/Jakarta`) yang memiliki pesanan terbayar. `orders_paid` dan empat kolom uang adalah delta aditif: `+` saat `-> paid`, `-` saat `-> cancelled|refunded` setelah status terbayar, pada baris hari yang SAMA (diatribusikan ke `paid_at` pesanan). Hari yang terjual lalu di-refund penuh terbaca `0`, bukan hilang |
+| `awcms_commerce_sales_by_product` | `PRIMARY KEY (tenant_id, day, product_id)`, `product_name text` (snapshot), `qty integer`, `gross numeric(14,2)` | Per hari dan produk; `gross` adalah jumlah total baris. Sengaja tanpa FK ke `awcms_commerce_products` — namanya snapshot (sikap yang sama dengan `awcms_commerce_order_items.name`) dan produk yang sudah dipurge tidak boleh membuat riwayat penjualannya tak bisa dibangun ulang. Indeks `(tenant_id, product_id)` untuk pembacaan tergabung |
+| `awcms_commerce_sales_by_category` | `PRIMARY KEY (tenant_id, day, category_id)`, `category_name text` (snapshot), `qty integer`, `gross numeric(14,2)` | Per hari dan kategori produk, diatribusikan lewat `products.category_id` saat pemrosesan. `category_id` `NOT NULL` karena bagian dari kunci: produk tanpa kategori mendarat di uuid sentinel serba-nol, yang oleh rute baca dipetakan kembali menjadi `categoryId: null`. Indeks `(tenant_id, category_id)` |
+
+Ketiganya: RLS `ENABLE`+`FORCE`, policy isolasi tenant, `updated_at`, uang sebagai `numeric(14,2)` yang ditulis dari sen bilangan bulat sebagai string desimal (tak pernah float). Baris di-upsert menurut primary key dengan `INSERT ... ON CONFLICT DO UPDATE SET x = x + EXCLUDED.x` di dalam transaksi pass terbatas milik mesin, setelah advisory lock (tenant, proyeksi) dan sebelum kursor maju; rebuild men-`DELETE` baris tenant dalam transaksi yang sama dengan reset kursor. `awcms_worker` diberi `SELECT, INSERT, UPDATE, DELETE` (`bun run reporting:projections:refresh` meng-upsert; purge data-lifecycle generik menghapus; delete milik reset rebuild sendiri berjalan sebagai `awcms_app` dalam transaksi rute API) — dicerminkan di `WORKER_ROLE_GRANTS`. Retensi: tiga deskriptor `dataLifecycle` di `commerce/module.ts` (`commerce.sales_daily`/`_by_product`/`_by_category`, kursor `day`, jendela 365–3650 hari yang sama dengan `commerce.order_events` — baris yang lebih tua dari retensi sumbernya tak pernah bisa dibangun ulang dan aman dipurge). Data subjek: `NO_SUBJECT_DATA` di ledger skrip (angka per hari/produk/kategori adalah fakta tentang tidak seorang pun).
 
 ## Row-level security: `ENABLE` dan `FORCE`, terbukti di bawah role tak-berhak-istimewa
 

@@ -14,6 +14,23 @@ import {
   type ModuleSettingsDiff
 } from "../domain/module-settings";
 
+/**
+ * The exact ABAC guard `PATCH /api/v1/tenant/modules/{moduleKey}/settings`
+ * enforces, exported so another caller checking for the SAME permission
+ * (Issue #118 — `commerce-settings.astro`'s own "Fitur" section, which
+ * writes through this generic route rather than a `commerce`-specific one)
+ * imports one shared constant rather than repeating the literal object —
+ * repeating it INSIDE a `commerce` admin screen's own source would also be
+ * a false positive for `admin-commerce-marketing-page-contract.test.ts`'s
+ * page-scan, which treats every inline `{moduleKey, activityCode, action}`
+ * object literal on a commerce screen as a commerce permission.
+ */
+export const MODULE_SETTINGS_UPDATE_GUARD = {
+  moduleKey: "module_management",
+  activityCode: "settings",
+  action: "update"
+} as const;
+
 export type ModuleSettingsView = {
   moduleKey: string;
   schemaVersion: number;

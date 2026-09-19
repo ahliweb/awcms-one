@@ -21,15 +21,15 @@ Issue #26 (same epic) added the marketing tables; Issue #29 (same epic) added
 customers, orders and the anonymous storefront checkout surface; epic #32
 added customer accounts and affiliates on top of that same customer row.
 
-| Aspect      | Value                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Key / type  | `commerce` · `domain`, `isCore: false`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| Tables      | `awcms_commerce_categories`, `awcms_commerce_products` (`sql/901`, extended `sql/904`), `awcms_commerce_product_images`, `awcms_commerce_product_variants` (`sql/905`); `awcms_commerce_flash_sales`, `awcms_commerce_flash_sale_products`, `awcms_commerce_vouchers`, `awcms_commerce_sliders`, `awcms_commerce_testimonials`, `awcms_commerce_popups` (`sql/909`), `awcms_commerce_store_settings` (`sql/910`); `awcms_commerce_customers`, `awcms_commerce_customer_addresses`, `awcms_commerce_orders`, `awcms_commerce_order_items`, `awcms_commerce_order_events`, `awcms_commerce_payment_confirmations`, `awcms_commerce_reviews`, `awcms_commerce_wishlists` (`sql/913`); `awcms_commerce_customer_accounts`, `awcms_commerce_customer_otps`, `awcms_commerce_customer_sessions` (`sql/917`-`918`); the `derived.commerce_customer_otp` `awcms_email_templates` row, seeded per existing tenant (`sql/919`); `awcms_commerce_affiliates`, `awcms_commerce_affiliate_commissions`, plus `orders.affiliate_id`/`store_settings.affiliate_commission_rate` (`sql/921`); `awcms_commerce_whatsapp_messages`, `awcms_commerce_whatsapp_delivery_attempts`, plus `awcms_commerce_customer_otps.phone_normalized` (`sql/925`); `awcms_commerce_payment_gateway_sessions`, `awcms_commerce_payment_events`, `awcms_commerce_webhook_endpoints`, plus `orders.gateway_provider`/`orders.gateway_ref` (`sql/926`) |
-| Permissions | `categories.{read,create,update,delete,restore}`, `products.{read,create,update,delete,restore}` (`sql/902`, `sql/906`); `{flash_sales,vouchers,sliders,testimonials,popups}.{read,create,update,delete}`, `settings.{read,update}` (`sql/911`); `orders.{read,update}`, `customers.{read,update}`, `reviews.{read,update,delete}` (`sql/914`, deliberately no create/delete for orders or customers — see "Customers, orders and reviews" below); `affiliates.{read,update}`, `affiliate_commissions.{read,update}` (`sql/922`, same no-create/delete reasoning); `whatsapp.read` (`sql/925`, diagnostics only); `webhook_endpoints.update` (`sql/926`, gates list/create/revoke alike) — 45 in all                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| API         | `/api/v1/commerce/{categories,products,flash-sales,vouchers,sliders,testimonials,popups,store-settings,orders,customers,reviews,affiliates,affiliates/{id},affiliate-commissions,affiliate-commissions/{id}/{approve,pay,void},whatsapp/messages}` (owner side); `/api/v1/commerce/storefront/{cart/quote,orders,reviews}` (anonymous side, `orders`/`reviews` also accept an OPTIONAL `customerBearer`, Issue #91); `/api/v1/commerce/storefront/account/{otp/request,otp/verify,me,logout}` (anonymous OTP + `customerBearer`, Issue #89; `otp/request`/`otp/verify` gain `via`/`phone`, Issue #108); `/api/v1/commerce/storefront/account/{addresses,addresses/{id},addresses/{id}/default,wishlist,wishlist/{productId},orders,orders/{orderCode},reviews,affiliate,affiliate/commissions}` (`customerBearer`, Issues #91/#92) (`openapi/modules/commerce.openapi.yaml`)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| Events      | `commerce.product.{created,updated,status_changed}`; `commerce.flash_sale.{started,ended}` (Issue #26, emitted by the tick job); `commerce.order.{created,paid,status_changed,cancelled,expired}`, `commerce.voucher.redeemed`, `commerce.review.published` (Issue #29)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| Depends on  | `tenant_admin`, `identity_access`, `domain_event_runtime`, `media_library` (product images, sliders, testimonial avatars, the popup image and the store logo/favicon all resolve through `MediaLibraryPort`), `module_management` (the anonymous storefront tenant resolver checks the module is enabled for the tenant before answering), `profile_identity` (e-mail/phone masking), `email` (Issue #89 — the customer OTP channel's `email` adapter enqueues into `email`'s own outbox; Issue #108's WhatsApp dispatcher also reuses `email/domain/email-retry.ts`'s pure backoff function)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| Jobs        | `commerce:flash-sales:tick` (`scripts/commerce-flash-sales-tick.ts`, every 5 minutes — persists each sale's derived status and fires the two flash-sale events); `commerce:orders:expire` (`scripts/commerce-orders-expire.ts`, every 5 minutes — expires unpaid orders past the store's configured window, restocks their lines, and fires `commerce.order.expired`); `commerce:whatsapp:dispatch`/`commerce:whatsapp:purge` (Issue #108 — the WhatsApp outbox's own drain/retention jobs)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| Aspect      | Value                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Key / type  | `commerce` · `domain`, `isCore: false`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| Tables      | `awcms_commerce_categories`, `awcms_commerce_products` (`sql/901`, extended `sql/904`), `awcms_commerce_product_images`, `awcms_commerce_product_variants` (`sql/905`); `awcms_commerce_flash_sales`, `awcms_commerce_flash_sale_products`, `awcms_commerce_vouchers`, `awcms_commerce_sliders`, `awcms_commerce_testimonials`, `awcms_commerce_popups` (`sql/909`), `awcms_commerce_store_settings` (`sql/910`); `awcms_commerce_customers`, `awcms_commerce_customer_addresses`, `awcms_commerce_orders`, `awcms_commerce_order_items`, `awcms_commerce_order_events`, `awcms_commerce_payment_confirmations`, `awcms_commerce_reviews`, `awcms_commerce_wishlists` (`sql/913`); `awcms_commerce_customer_accounts`, `awcms_commerce_customer_otps`, `awcms_commerce_customer_sessions` (`sql/917`-`918`); the `derived.commerce_customer_otp` `awcms_email_templates` row, seeded per existing tenant (`sql/919`); `awcms_commerce_affiliates`, `awcms_commerce_affiliate_commissions`, plus `orders.affiliate_id`/`store_settings.affiliate_commission_rate` (`sql/921`); `awcms_commerce_whatsapp_messages`, `awcms_commerce_whatsapp_delivery_attempts`, plus `awcms_commerce_customer_otps.phone_normalized` (`sql/925`); `awcms_commerce_conversations`, `awcms_commerce_messages` (`sql/927`); `awcms_commerce_customer_accounts.marketing_consent_at`, `awcms_commerce_campaigns`, `awcms_commerce_campaign_recipients` (`sql/929`); `awcms_commerce_payment_gateway_sessions`, `awcms_commerce_payment_events`, `awcms_commerce_webhook_endpoints`, plus `orders.gateway_provider`/`orders.gateway_ref` (`sql/926`); `payment_events.outcome` widened with `amount_mismatch` (`sql/934`); `awcms_commerce_sales_daily`, `awcms_commerce_sales_by_product`, `awcms_commerce_sales_by_category` (`sql/933`, Issue #117 — derived reporting projections) |
+| Permissions | `categories.{read,create,update,delete,restore}`, `products.{read,create,update,delete,restore}` (`sql/902`, `sql/906`); `{flash_sales,vouchers,sliders,testimonials,popups}.{read,create,update,delete}`, `settings.{read,update}` (`sql/911`); `orders.{read,update}`, `customers.{read,update}`, `reviews.{read,update,delete}` (`sql/914`, deliberately no create/delete for orders or customers — see "Customers, orders and reviews" below); `affiliates.{read,update}`, `affiliate_commissions.{read,update}` (`sql/922`, same no-create/delete reasoning); `whatsapp.read` (`sql/925`, diagnostics only); `conversations.{read,update}` (`sql/928`, same no-create/delete reasoning); `campaigns.{read,update,send}` (`sql/930` — `send` split from `update`, the one action that reaches a real inbox/phone); `webhook_endpoints.update` (`sql/926`, gates list/create/revoke alike) — 50 in all                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| API         | `/api/v1/commerce/{categories,products,flash-sales,vouchers,sliders,testimonials,popups,store-settings,orders,customers,reviews,affiliates,affiliates/{id},affiliate-commissions,affiliate-commissions/{id}/{approve,pay,void},whatsapp/messages}` (owner side); `/api/v1/commerce/storefront/{cart/quote,orders,reviews}` (anonymous side, `orders`/`reviews` also accept an OPTIONAL `customerBearer`, Issue #91); `/api/v1/commerce/storefront/account/{otp/request,otp/verify,me,logout}` (anonymous OTP + `customerBearer`, Issue #89; `otp/request`/`otp/verify` gain `via`/`phone`, Issue #108; `me` gains `marketingConsent`, Issue #114); `/api/v1/commerce/storefront/account/{addresses,addresses/{id},addresses/{id}/default,wishlist,wishlist/{productId},orders,orders/{orderCode},reviews,affiliate,affiliate/commissions,conversations,conversations/{id},conversations/{id}/messages}` (`customerBearer`, Issues #91/#92/#111); `/api/v1/commerce/{conversations,conversations/{id},conversations/{id}/messages}` (owner side, Issue #111); `/api/v1/commerce/{campaigns,campaigns/{id},campaigns/{id}/{preview,send,cancel}}` (owner side, Issue #114); `/api/v1/reports/commerce/{sales-daily,sales-by-product,sales-by-category}` (`reporting.dashboard.read`, Issue #117) (`openapi/modules/commerce.openapi.yaml`)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| Events      | `commerce.product.{created,updated,status_changed}`; `commerce.flash_sale.{started,ended}` (Issue #26, emitted by the tick job); `commerce.order.{created,paid,status_changed,cancelled,expired}`, `commerce.voucher.redeemed`, `commerce.review.published` (Issue #29)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| Depends on  | `tenant_admin`, `identity_access`, `domain_event_runtime`, `media_library` (product images, sliders, testimonial avatars, the popup image and the store logo/favicon all resolve through `MediaLibraryPort`), `module_management` (the anonymous storefront tenant resolver checks the module is enabled for the tenant before answering), `profile_identity` (e-mail/phone masking), `email` (Issue #89 — the customer OTP channel's `email` adapter enqueues into `email`'s own outbox; Issue #108's WhatsApp dispatcher also reuses `email/domain/email-retry.ts`'s pure backoff function)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| Jobs        | `commerce:flash-sales:tick` (`scripts/commerce-flash-sales-tick.ts`, every 5 minutes — persists each sale's derived status and fires the two flash-sale events); `commerce:orders:expire` (`scripts/commerce-orders-expire.ts`, every 5 minutes — expires unpaid orders past the store's configured window, restocks their lines, and fires `commerce.order.expired`); `commerce:whatsapp:dispatch`/`commerce:whatsapp:purge` (Issue #108 — the WhatsApp outbox's own drain/retention jobs)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 
 **Migrations live in the reserved `901`–`999` range, not upstream's `001`–`899` (issue #72, [ADR-0015](../../../../../docs/adr/0015-commerce-migrations-live-in-the-reserved-9xx-range.md) in awcms-one).** This module's original sixteen migrations, numbered 153 through 168, collided with upstream `ahliweb/awcms`'s own numbering the moment it started using the same numbers for its own migrations (`sql/153_awcms_blog_institution_logo.sql`, issue #59). All sixteen were renumbered to `sql/901_awcms_commerce_schema.sql` through `sql/916_awcms_commerce_orders_expire_worker_write_grants.sql` (offset +748); the next commerce migration is `917`. `tests/commerce-migrations-range.test.ts` enforces the split both ways. A database migrated before this rename runs `bun run db:commerce:renumber` once, before its next `bun run db:migrate` (`scripts/commerce-migrations-renumber.ts`).
 
@@ -600,18 +600,16 @@ suspend/activate) and a commissions table (affiliate, order, amount,
 status, filterable by status, approve/pay/void buttons), i18n `en`+`id`.
 `/admin/commerce-settings` gains the commission-rate field.
 
-## External providers — contract only, except D4, D5, and D2/D3's session half (epic #33 wave 0 — ADR-0017, issue #106)
+## External providers — contract only, except D4, D5, D7, D8, D9, D10, and D2/D3's session half (epic #33 wave 0 — ADR-0017, issue #106)
 
 `openapi/modules/commerce.openapi.yaml` also now documents, AHEAD OF ANY
-HANDLER, most of the increment-5 external-providers surface: the gateway
-POS order creation (D6), three
-`reporting`-hosted sales projections (D7), a customer inbox — both the
-bearer and owner sides (D8), consent-gated campaigns (D9), and the
-module-settings feature flags plus tiered pricing at quote (D10). **D4
-(courier rates), D5 (WhatsApp), and the FULL payment gateway (D2/D3 —
-session creation, webhook-endpoint tokens, webhook intake, reconcile) are
-IMPLEMENTED, not contract-only; see their own sections immediately below.**
-Every one of
+HANDLER, the increment-5 external-providers surface still pending: POS
+order creation (D6). **D4 (courier rates), D5
+(WhatsApp), D7 (sales reports), D8 (the inbox), D9 (consent-gated
+campaigns), D10 (BjekMart Features flags + tiered pricing at quote, issue
+#118), and the FULL payment gateway (D2/D3 — session creation,
+webhook-endpoint tokens, webhook intake, reconcile) are IMPLEMENTED, not
+contract-only; see their own sections below.** Every one of
 D1–D10's ten decisions — why a port lives inside `commerce` rather than
 `integration_hub`, why a webhook's tenant is resolved from an opaque
 token rather than its payload, why the gateway flow is a redirect rather
@@ -621,12 +619,16 @@ in awcms-one.
 
 Every new path still pending a handler is named in
 `ROUTE_PARITY_EXEMPTIONS` (`scripts/api-spec-check.ts`), each entry citing
-the child issue that removes it: the inbox (#111), POS (#116), sales
-reports (#117), and campaigns (#114) — the set is required to be EMPTY
-again once increment 5 finishes, the same discipline #86/ADR-0016 already
-proved for accounts. Courier rates', WhatsApp's, and the full payment
-gateway's (session half AND webhook intake/reconcile) own exemption
-entries are already removed (#107, #108, #110, #113). The RajaOngkir env vars
+the child issue that removes it: POS (#116) — the set is required to be
+EMPTY again once increment 5 finishes, the same discipline #86/ADR-0016
+already proved for accounts. Courier rates', WhatsApp's, the inbox's,
+campaigns', the sales reports', and the full payment gateway's (session
+half AND webhook intake/reconcile) own exemption entries are already
+removed (#107, #108, #111, #114, #117, #110, #113) — D10 (#118) never added
+one at all: every path it touches (`store-settings/public`, `cart/quote`,
+`orders`) already existed, and its one new write surface (the "Fitur"
+section) reuses `module_management`'s own generic, already-documented
+`PATCH /api/v1/tenant/modules/{moduleKey}/settings`. The RajaOngkir env vars
 (`COMMERCE_SHIPPING_RATE_PROVIDER`, `COMMERCE_RAJAONGKIR_API_KEY`, …), the
 WhatsApp env vars (`COMMERCE_WHATSAPP_PROVIDER`, `COMMERCE_FONNTE_TOKEN`,
 `COMMERCE_META_WA_TOKEN`, `COMMERCE_META_WA_PHONE_NUMBER_ID`, …), and the
@@ -760,6 +762,117 @@ CUSTOMER row carries that phone.
 minimal `/admin/commerce-whatsapp` screen (status filter, no create/update/
 delete action over the outbox in this issue).
 
+## Commerce inbox — IMPLEMENTED (Issue #111, epic #33 — contract #106/ADR-0017 D8)
+
+A verified customer account's own thread with the store — never a guest
+checkout customer, who has no account row to hang a thread off of.
+
+**Schema** (`sql/927`): `awcms_commerce_conversations` (`account_id NOT
+NULL` FK to `awcms_commerce_customer_accounts`, `subject` 1-150 chars,
+`status` `open|closed`, `last_message_at`, `unread_for_store`/
+`unread_for_customer` booleans) and `awcms_commerce_messages` (append-only,
+like `awcms_commerce_order_events` — no `deleted_at`/`updated_at`; `sender`
+`customer|store`, `sender_tenant_user_id` set for a store message only,
+`body` 1-4000 chars). `last_message_at`/both `unread_for_*` flags are
+DENORMALIZED, kept in step with every message insert inside the SAME
+transaction — never a join-derived value at read time.
+
+**Application** (`application/conversation-directory.ts`): customer-side
+(`listConversationsForAccount`, `openConversation`,
+`fetchConversationForAccount` — marks the thread read for the customer,
+`postCustomerMessage` — `409`-shaped `{kind:"closed"}` once the thread is
+closed) and store-side (`listConversationsForAdmin` — filterable by
+`status`/`unreadForStore`, `fetchConversationForAdmin` — marks it read for
+the store, `postStoreReply` — implicitly reopens a closed thread AND
+enqueues the reply e-mail in the same transaction, `setConversationStatus`
+— the explicit close/reopen with no message attached).
+`ensureConversationReplyTemplate` auto-seeds the
+`derived.commerce_conversation_reply` e-mail template on first miss, the
+identical pattern `application/customer-otp-channel-adapters.ts`'s
+`ensureCustomerOtpTemplate` already established.
+
+**Routes**: `GET`/`POST /api/v1/commerce/storefront/account/conversations`,
+`GET .../{id}` (bearer), `POST .../{id}/messages` (bearer, rate-limited
+10/h per account via `COMMERCE_CONVERSATION_POST_RATE_LIMIT_MAX`); owner
+`GET`/`PATCH /api/v1/commerce/conversations(/{id})`,
+`POST .../{id}/messages` (`commerce.conversations.read|update`,
+`Idempotency-Key` required on the reply — the one high-risk mutation in
+this surface, since it enqueues an e-mail).
+
+**Admin screen**: `/admin/commerce-inbox` — a conversation list with
+status/unread filters and an unread badge, a thread view (`?id=`), a reply
+form (client script sends `Idempotency-Key`), and close/reopen buttons.
+
+## Customer campaigns — IMPLEMENTED (Issue #114, epic #33 — contract #106/ADR-0017 D9)
+
+A consent-gated mass e-mail/WhatsApp send, reusing the SAME outboxes D5/D8
+already dispatch from — no third delivery mechanism.
+
+**Schema** (`sql/929`): `awcms_commerce_customer_accounts` gains
+`marketing_consent_at timestamptz` (nullable — non-null means opted in at
+that instant); `awcms_commerce_campaigns` (`channel` `email|whatsapp`,
+`subject`/`body`, `audience jsonb`, `status`
+`draft|scheduled|sending|sent|cancelled`, `scheduled_at`/`sent_at`,
+`recipient_count`) and `awcms_commerce_campaign_recipients` (one row per
+resolved recipient, `UNIQUE (campaign_id, customer_id)`, `address_masked`
+never a raw address, `status` `queued|enqueued|skipped`) — the
+resumability/audit ledger a partial send relies on. Permission seed
+`sql/930` (`commerce.campaigns.{read,update,send}`).
+
+**Domain** (`domain/campaign-validation.ts`, `domain/campaign-content.ts`):
+audience shape validation (`{levels[], hasAccount, lastOrderSince}`),
+channel-conditional `subject` requirement (required for `email`, ignored
+for `whatsapp`), and allowlisted `{{name}}`/`{{storeName}}` rendering — an
+unknown placeholder is left as a literal, fail-closed.
+
+**Application** (`application/campaign-directory.ts`): CRUD (`create`
+always `draft`, `update` only while `draft`), `resolveCampaignAudiencePage`/
+`countCampaignAudience` — the ONE place consent (`marketing_consent_at IS
+NOT NULL`) and the channel-address requirement are enforced, both baked
+into the WHERE clause itself, never filtered afterwards; `sendCampaign`
+(moves to `scheduled`, `scheduled_at = now()` for an immediate send —
+actual fan-out happens later, on the dispatcher's own tick) and
+`cancelCampaign` (stops further dispatch; already-enqueued recipients are
+not un-sent).
+
+**Dispatcher** (`application/campaign-dispatch.ts`, script
+`commerce:campaigns:dispatch`, every 1-2 minutes as `awcms_worker`):
+CLAIM (one short transaction, `FOR UPDATE SKIP LOCKED` over
+due/resumed campaigns) → PAGE (loop pages of 200 not-yet-recorded
+customers — the resolver's own `NOT EXISTS` against
+`awcms_commerce_campaign_recipients` is what makes this resumable without
+a separate cursor column; re-checks the campaign's live `status` before
+every page, so a `cancel` stops further dispatch immediately) → FINALIZE
+(an empty page marks the campaign `sent`, `recipient_count` = the total
+recipient rows). E-mail fan-out calls the `email` module's own
+`enqueueDirectAddressEmail` against a pass-through `derived.commerce_campaign`
+template (auto-seeded on first miss, same pattern
+`ensureConversationReplyTemplate` established) — `commerce` never writes
+`awcms_email_messages` directly (`modules:table-writes:check`). WhatsApp
+fan-out uses the pre-reserved `commerce.campaign` template key
+(`domain/whatsapp-templates.ts`).
+
+**Routes**: owner `GET`/`POST /api/v1/commerce/campaigns`,
+`GET`/`PATCH .../{id}`, `POST .../{id}/preview` (count only, never a
+resolved list), `POST .../{id}/{send,cancel}` (`Idempotency-Key` required,
+gated on the separate `commerce.campaigns.send` permission — a role
+trusted to draft/edit is not automatically trusted to fire/cancel).
+`GET`/`PATCH /api/v1/commerce/storefront/account/me` gains
+`marketingConsent: boolean` — toggled only by the account itself, audited
+on both grant and revoke.
+
+**Admin screen**: `/admin/commerce-campaigns` — a campaign list, a
+create-draft form (channel, subject, message, customer-level checkboxes),
+and a detail/editor panel (`?id=`) with an audience-preview button
+(count only) and send/cancel actions (both `window.confirm`-gated).
+
+**Subject data**: both tables are `unreachableBySubject: true` in
+`module.ts` — the owning customer account carries no `tenant_user`/
+`identity`/`profile`/`principal` id (ADR-0016 D1), the identical gap
+`commerce.customer_addresses`/`commerce.wishlists` already document; an
+account holder reaches their own threads through the bearer routes above,
+outside this repo's automated per-subject engine by construction.
+
 ## Payment gateway — session creation (Issue #110, epic #33 — contract #106/ADR-0017 D2/D3)
 
 `PaymentGatewayProvider` (`domain/payment-gateway-provider.ts`) is a
@@ -837,6 +950,14 @@ provider, event_key) DO NOTHING` (0 rows → `{kind: "replay"}`, `200`, no
 side effect) → status-mapped apply. This route NEVER calls the provider's
 `fetchStatus` — that stays the reconcile job's own exclusive concern.
 
+**Amount guard** (`domain/payment-amount-guard.ts`, `sql/934`): the
+provider-reported `gross_amount` must equal the order's `total` in integer
+cents before ANY order transition. A mismatch/unparseable amount records
+the event as `outcome = 'amount_mismatch'`, writes an audit entry, moves
+the session to `failed` only on a terminal provider failure (otherwise
+leaves it `pending`), never marks the order paid, and still answers `200`.
+The reconcile job applies the same guard to `fetchStatus`'s `gross_amount`.
+
 **`markOrderPaidBySystem`** (`application/order-directory.ts`) — actor
 `system`, sets `paid_at`/`payment_status`/`gateway_provider`/`gateway_ref`,
 an `order_events` row, and an audit-log entry; idempotent (already-`paid`
@@ -873,6 +994,157 @@ no-op, all with a mocked provider; an integration test against a real,
 migrated Postgres covers the full webhook-paid path, replay-is-a-no-op,
 the reconcile job with the `log` provider, and cross-tenant RLS isolation
 of a webhook-endpoint token.
+
+## Feature toggles & tiered pricing — IMPLEMENTED (Issue #118, epic #33 C9 — contract #106/ADR-0017 D10, ADR-0016 D6)
+
+BjekMart's "Features" screen is `module.ts`'s own `settings.defaults.features`
+— `{pos, inbox, campaigns, gateway, courier}`, every flag `true` by default
+(`domain/commerce-features.ts`'s `DEFAULT_COMMERCE_FEATURES`) — read/written
+through `module_management`'s GENERIC tenant-settings service
+(`fetchModuleSettingsView`/`updateModuleSettings`, `awcms_module_settings`),
+the first time `commerce` declares a `settings` contract at all.
+`resolveCommerceFeatures` resolves each flag INDEPENDENTLY against the
+defaults (never assumes the whole `features` object exists), which is what
+makes a future sixth flag migration-free for a tenant who already saved a
+settings row — the same reasoning `module-settings.ts`'s own shallow
+top-level merge already gives for the module as a whole, one level deeper.
+
+**The 409-vs-404 rule** (`domain/commerce-features.ts`'s own header,
+`application/commerce-feature-gate.ts`'s `requireCommerceFeatureForOwnerRoute`/
+`requireCommerceFeatureForPublicRoute`): a disabled feature answers
+`409 FEATURE_DISABLED` on every AUTHENTICATED owner route (the caller already
+proved who they are — the tenant's own configuration is what blocks them, and
+they need to see why) and a neutral `404` — or, on the ONE route that already
+had a dedicated "not usable right now" code, the pre-existing
+`503 GATEWAY_UNAVAILABLE` — on every ANONYMOUS/public route (never `409`,
+which would tell a prober a route exists at all, the same anti-oracle rule
+`public-commerce-tenant.ts` already enforces for an unresolved tenant).
+
+**Gated**: inbox (owner `/conversations*`, storefront
+`/storefront/account/conversations*`), campaigns (owner `/campaigns*`),
+gateway (owner `/webhook-endpoints*`; storefront `.../payment-gateway/sessions`
+folded into its existing 503; the PUBLIC `/webhooks/{provider}/{endpointToken}`
+intake answers the SAME neutral 404 an unknown token does), courier (owner
+`GET /shipping/destinations`). `pos` has no enforcing route yet — issue #116
+lands that gate on its own branch, in parallel; the flag exists now so the
+settings document's shape does not change again when it does.
+
+**Admin navigation** hides the Inbox/Campaigns sidebar entries the instant
+their feature is off (`ModuleNavigationEntry.requiredFeature`, a new,
+additive field on the shared nav-entry contract; resolved per-request in
+`AdminLayout.astro` from the same `fetchCommerceFeatures` call the routes
+use — `module_management`'s own `sidebar-menu.ts`/`sidebar-menu-config.ts`
+never import `commerce`, keeping the existing one-way module dependency
+direction).
+
+**Public store settings** (`GET .../store-settings/public`) — `toPublicRecord`
+now takes two more parameters, both defaulted so every pre-#118 call site
+(including test literals) keeps compiling and computing the SAME answer it
+always did: `shipping.courierEnabled`/`payment.gatewayEnabled` gain an
+ADDITIONAL `features.courier`/`features.gateway` AND-term (unchanged names,
+same masking discipline), and two new top-level booleans join them —
+`inboxEnabled`/`campaignsEnabled` (the raw flag; neither has its own
+store-setting toggle to AND against) and `whatsappOtpEnabled`
+(`infrastructure/whatsapp-provider-resolver.ts`'s new
+`isWhatsappProviderConfigured` — NOT a `features.*` flag, since Issue #108
+never gained one; `apps/storefront`'s `masuk.astro`/`daftar.astro` already
+read this exact key).
+
+**Settings form**: `/admin/commerce-settings` gains a "Fitur" section that
+writes through the GENERIC `PATCH /api/v1/tenant/modules/commerce/settings`
+route — i.e. `updateModuleSettings`, audited under
+`module_management.settings_updated` with a safe key-names-only diff — gated
+on `module_management.settings.update`, a DIFFERENT permission from this
+screen's own `commerce.settings.update` (the same distinction the
+webhook-endpoints section already draws against
+`commerce.webhook_endpoints.update`). The client always submits the WHOLE
+`features` object: `updateModuleSettings`'s merge is shallow and top-level,
+so a partial patch would silently disable every flag the tenant did not just
+touch.
+
+**Tiered pricing** (closing [ADR-0016](../../../../../docs/adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md)
+D6's own deferred note): `domain/cart-quote.ts`'s `quoteCart` accepts an
+optional `customerLevel` (1–4); `resolveTierPrice` picks `price_level_{n}`
+for a line with no active flash sale and no variant price override, falling
+back to `price` when the merchant never set that tier or the level is
+1/absent — applied BEFORE `computeFinalPrice`'s own `discountPercent`, so
+the same discount rule still governs whichever base price won.
+`POST .../storefront/cart/quote` resolves the level from an OPTIONAL
+`Authorization: Bearer` (`requireCustomerSession`; missing/invalid never
+fails the quote — it just means level 1). `application/order-directory.ts`'s
+`createOrderFromCart` now fetches the account's own customer row (when
+`accountCustomerId` is present) BEFORE its internal re-quote, not after, so
+the SAME level prices both the quote the shopper already saw and the order
+it becomes — quote and order can never disagree. **The level is snapshotted
+on the order only IMPLICITLY**, through the unit price baked into
+`order_items.unit_price` at creation time; there is no separate
+`orders.customer_level` column (this issue needs no migration), and a later
+change to the customer's own level never retroactively re-prices a past
+order. The customers admin screen's `level` edit (`/admin/commerce-customers`,
+`commerce.customers.update`, audited) already existed since Issue #29 —
+#118 adds no new customer-editing surface, only this quote/order-side
+consumer of that same column.
+
+## Sales reports — IMPLEMENTED (Issue #117, epic #33 — contract #106/ADR-0017 D7)
+
+Three `cursor_table` projections this module contributes to the `reporting`
+engine (Issue #753) from its own `module.ts` (`reportingProjections`) —
+`commerce.sales_daily`, `commerce.sales_by_product`,
+`commerce.sales_by_category` — over `awcms_commerce_order_events`, the
+append-only status-transition log. The engine keeps its cursor, freshness,
+rebuild-run, reconciliation and export machinery; this module supplies the
+descriptor, the pure delta rules and the sinks that write its own three
+tables (`sql/933`).
+
+| Piece            | Where                                                                                                        | What it does                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| ---------------- | ------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Delta rules      | `domain/sales-report-deltas.ts` (pure)                                                                       | `resolveSalesDeltaDirection`: `-> paid` from a not-yet-paid state is `+1`; `-> cancelled                                                                                                                                                                                                                                                                                                                                                                                                                                                      | refunded` from a paid state (`paid | processing | shipped | completed`) is `-1`; everything else is `0`(creation, fulfilment steps, a never-paid cancellation/expiry, a refund after a cancellation).`computeSales{Daily,ByProduct,ByCategory}Delta(s)` turn one order snapshot + a sign + a day into additive deltas in integer cents (`bigint`, `toCents`); `formatCentsDelta`renders a SIGNED`numeric(14,2)`string. Day = the order's`paid_at`in`SALES_REPORT_TIME_ZONE` (`Asia/Jakarta`), so a reversal lands on the same day row as its payment |
+| Keys             | `domain/sales-report-keys.ts`                                                                                | Projection keys, the shared stream key, the scalar metric key (`paid_events`) and the reconciliation control keys                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| Sinks + hooks    | `application/sales-report-projection.ts`                                                                     | `applySales{Daily,ByProduct,ByCategory}Batch` (the `ProjectionDimensionalSink`s): drop the `0` rows, load one snapshot per order (header + live items + each item's product category, LEFT JOINs), run the delta functions, upsert `ON CONFLICT DO UPDATE SET x = x + EXCLUDED.x`. The `ProjectionDimensionalContract`s: `resetForTenant` (rebuild reset), `readProjectionTotals` (`SUM()` over the table), `computeSourceTotals` (walks the whole event stream through the same delta functions), `exportRows` (the tabular CSV/JSON export) |
+| Query validation | `domain/sales-report-query.ts` (pure)                                                                        | `from`/`to` inclusive `YYYY-MM-DD` report-zone days, default the last 30 days, at most 366; `limit` 1–200, default 20                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| Reads            | `application/sales-report-directory.ts`                                                                      | `listSalesDaily`, `listSalesByProduct` (grouped, best-selling by gross first), `listSalesByCategory` (sentinel → `categoryId: null`) — used by the routes and the screen alike                                                                                                                                                                                                                                                                                                                                                                |
+| Routes           | `src/pages/api/v1/reports/commerce/{sales-daily,sales-by-product,sales-by-category}.ts`                      | `defineTenantRoute`, `reporting.dashboard.read`, `reporting` work class; owned by this module via `api.routes: ["/api/v1/reports/commerce"]`                                                                                                                                                                                                                                                                                                                                                                                                  |
+| Screen           | `src/pages/admin/commerce-reports.astro`                                                                     | Date range (GET form), three tables, freshness panel (`reporting.projections.read`), **Export CSV** per projection through `POST /api/v1/reports/exports/trigger` (`reporting.exports.export`), recent export runs with download links (`reporting.exports.read`). Nav entry order 16, gated on `reporting.dashboard.read`                                                                                                                                                                                                                    |
+| Tests            | `tests/commerce-sales-report-domain.test.ts`, `tests/integration/commerce-sales-reports.integration.test.ts` | Pure rules + registry pairing; against a real Postgres: paid → rows, cancel-after-paid → subtracted on the same day, rebuild byte-equal to live, reconcile with no mismatch (and a tampered table IS flagged), tabular export, RLS                                                                                                                                                                                                                                                                                                            |
+
+**The one engine change** (`MODULE_CONTRACT_VERSION` 4.1.0 → 4.2.0,
+additive): `ProjectionCursorStream.dimensional` (`selectColumns` +
+`applyBatch`) and `ProjectionDescriptor.dimensional` (the four hooks). The
+incremental worker and the rebuild pass call the sink on every fetched batch
+inside the same transaction, after the (tenant, projection) advisory lock
+and before the cursor advance; the rebuild reset calls `resetForTenant` in
+the same transaction as the cursor/metric reset; reconciliation merges the
+dimensional control totals into its detail rows; export generation writes
+the dimensional rows instead of the scalar metric snapshot.
+`reporting:projections:registry:check` enforces the pairing both ways. No
+existing descriptor changes.
+
+**Why `from_status` decides "after a paid event".** The status graph
+(`domain/order-status.ts`) only lets an order reach a paid state through
+`paid`, so an event LEAVING a paid state is, by construction, an event after
+a paid event — decidable from the one row in hand, no per-order state to
+carry between passes. `refunded` is not a status the current graph emits
+(refunds arrive through `payment_status`), but the contract names it and a
+gateway's refund notification may log it, so it is handled exactly like
+`cancelled`; `cancelled -> refunded` contributes nothing, so an order is
+never subtracted twice.
+
+**Known limitation — category is a live join.** `awcms_commerce_order_items`
+snapshots the product name but not its category, so by-category attribution
+reads `products.category_id` at processing time; recategorising a product
+does not move past sales, and a rebuild re-attributes them under the new
+category. The reconciliation control totals are category-agnostic, so this
+is a difference between two rebuilds, never a reconcile mismatch.
+
+**Worker grants, retention.** `awcms_worker` gets `SELECT, INSERT, UPDATE,
+DELETE` on the three tables (`sql/933`, mirrored in `WORKER_ROLE_GRANTS`) —
+the upsert needs UPDATE, the generic data-lifecycle purge needs DELETE; the
+rebuild reset's own delete runs as `awcms_app` in the API route's
+transaction. Retention is answered by three `dataLifecycle` descriptors in
+`module.ts` (cursor `day`, 365–3650 days, the same window as
+`commerce.order_events`: a row older than its source's retention can never
+be rebuilt and is safe to purge); subject data by `NO_SUBJECT_DATA` in the
+script ledger — derived, rebuildable aggregates about nobody.
 
 ## Deliberately not here
 

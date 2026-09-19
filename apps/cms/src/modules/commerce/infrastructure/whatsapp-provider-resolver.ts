@@ -77,3 +77,39 @@ export function resolveWhatsappProvider(
     timeoutMs
   });
 }
+
+/**
+ * Issue #118 — `store-settings-directory.ts`'s `toPublicRecord`'s own
+ * `whatsappOtpEnabled` derivation, mirroring
+ * `payment-gateway-provider-resolver.ts`'s `isPaymentGatewayProviderConfigured`
+ * exactly: `true` only for a genuinely USABLE provider (Fonnte with its
+ * token, or Meta with both its token and phone-number id) — never merely
+ * "a `COMMERCE_WHATSAPP_PROVIDER` value is set". `log` counts as configured
+ * OUTSIDE production only, the same "an operator's forgotten dev setting
+ * must never look live in production" rule the payment-gateway resolver's
+ * own header states for its own `log` adapter. This does NOT change
+ * `resolveWhatsappProvider`'s own dispatch behaviour (which never refused
+ * `log` in production) — the WhatsApp OTP channel already had its own `log`
+ * fallback selection rule (`customer-otp-channel-adapters.ts`, keyed on
+ * `EMAIL_PROVIDER`/`EMAIL_ENABLED`, not on this function) before this issue;
+ * this function is ONLY the public-facing "is OTP-via-WhatsApp usable at
+ * all" signal.
+ */
+export function isWhatsappProviderConfigured(
+  env: NodeJS.ProcessEnv = process.env
+): boolean {
+  const provider = env.COMMERCE_WHATSAPP_PROVIDER;
+
+  if (provider === "log") {
+    return env.NODE_ENV !== "production";
+  }
+  if (provider === "fonnte") {
+    return Boolean(env.COMMERCE_FONNTE_TOKEN);
+  }
+  if (provider === "meta") {
+    return Boolean(
+      env.COMMERCE_META_WA_TOKEN && env.COMMERCE_META_WA_PHONE_NUMBER_ID
+    );
+  }
+  return false;
+}

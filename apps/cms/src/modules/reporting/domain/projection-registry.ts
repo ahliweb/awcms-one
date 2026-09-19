@@ -72,6 +72,23 @@ function validateCursorStream(
       `${context}: cursorColumn must be a valid column name (got ${JSON.stringify(stream.cursorColumn)}).`
     );
   }
+  if (stream.dimensional !== undefined) {
+    const sink = stream.dimensional;
+    if (!Array.isArray(sink.selectColumns)) {
+      push(`${context}: dimensional.selectColumns must be an array.`);
+    } else {
+      for (const column of sink.selectColumns) {
+        if (!COLUMN_NAME_PATTERN.test(column)) {
+          push(
+            `${context}: dimensional.selectColumns contains an invalid column name (${JSON.stringify(column)}).`
+          );
+        }
+      }
+    }
+    if (typeof sink.applyBatch !== "function") {
+      push(`${context}: dimensional.applyBatch must be a function.`);
+    }
+  }
   if (!stream.metrics || stream.metrics.length === 0) {
     push(`${context}: metrics must declare at least one rule.`);
     return;
@@ -227,6 +244,54 @@ function validateSingleDescriptor(
     descriptor.rebuildSource.streams.forEach((stream, index) =>
       validateCursorStream(push, stream, `rebuildSource.streams[${index}]`)
     );
+  }
+
+  // Issue #117 — a dimensional sink on any stream and the descriptor-level
+  // dimensional contract must come together: a sink without reset/reconcile
+  // hooks would rebuild on top of stale rows and reconcile against nothing,
+  // and hooks without a sink would never be fed.
+  const streamsWithSink = [
+    ...(descriptor.source?.strategy === "cursor_table"
+      ? descriptor.source.streams
+      : []),
+    ...(descriptor.rebuildSource?.streams ?? [])
+  ].filter((stream) => stream.dimensional !== undefined);
+  if (streamsWithSink.length > 0 && !descriptor.dimensional) {
+    push(
+      "a stream declares a dimensional sink, so the descriptor must also declare `dimensional` (resetForTenant/readProjectionTotals/computeSourceTotals/exportRows)."
+    );
+  }
+  if (descriptor.dimensional) {
+    if (streamsWithSink.length === 0) {
+      push(
+        "descriptor declares `dimensional` but no source/rebuildSource stream declares a dimensional sink — the hooks would never be fed."
+      );
+    }
+    for (const hook of [
+      "resetForTenant",
+      "readProjectionTotals",
+      "computeSourceTotals",
+      "exportRows"
+    ] as const) {
+      if (typeof descriptor.dimensional[hook] !== "function") {
+        push(`dimensional.${hook} must be a function.`);
+      }
+    }
+    if (
+      descriptor.source?.strategy === "cursor_table" &&
+      descriptor.source.streams.some((stream) => !stream.dimensional)
+    ) {
+      push(
+        "every source stream of a dimensional projection must declare a dimensional sink — a stream without one would advance the shared cursor past rows the sink never saw."
+      );
+    }
+    if (
+      descriptor.rebuildSource?.streams.some((stream) => !stream.dimensional)
+    ) {
+      push(
+        "every rebuildSource stream of a dimensional projection must declare a dimensional sink — a rebuild would otherwise leave the dimensional table(s) empty."
+      );
+    }
   }
 
   const declaredMetricKeys = new Set<string>();

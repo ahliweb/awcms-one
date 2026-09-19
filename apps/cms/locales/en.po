@@ -5349,6 +5349,21 @@ msgstr ""
 msgid "Enable payment gateway"
 msgstr ""
 
+msgid "Fitur"
+msgstr ""
+
+msgid "Turn a whole feature off for this tenant. A disabled feature's owner routes answer 409, its public/storefront routes answer 404, and its admin screen is hidden from the sidebar."
+msgstr ""
+
+msgid "Point of sale (POS)"
+msgstr ""
+
+msgid "Inbox (customer messages)"
+msgstr ""
+
+msgid "Save features"
+msgstr ""
+
 msgid "Payment gateway webhook endpoints"
 msgstr ""
 
@@ -5419,6 +5434,241 @@ msgid "No payment events recorded yet."
 msgstr ""
 
 msgid "Payment gateway"
+msgid "Inbox"
+msgstr ""
+
+msgid "Customer conversations with the store — reply, close, and reopen threads."
+msgstr ""
+
+msgid "You do not have permission to view the inbox."
+msgstr ""
+
+msgid "The inbox could not be loaded right now. Please try again later."
+msgstr ""
+
+msgid "Filter conversations"
+msgstr ""
+
+msgid "Open"
+msgstr ""
+
+msgid "Closed"
+msgstr ""
+
+msgid "Unread"
+msgstr ""
+
+msgid "{count} conversation"
+msgid_plural "{count} conversations"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Last message"
+msgstr ""
+
+msgid "No conversations yet"
+msgstr ""
+
+msgid "Conversations customers start from the storefront will appear here."
+msgstr ""
+
+msgid "Store"
+msgstr ""
+
+msgid "Send reply"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
+
+msgid "Campaigns"
+msgstr ""
+
+msgid "Consent-gated mass e-mail/WhatsApp campaigns to your customers."
+msgstr ""
+
+msgid "You do not have permission to view campaigns."
+msgstr ""
+
+msgid "Campaigns could not be loaded right now. Please try again later."
+msgstr ""
+
+msgid "New campaign"
+msgstr ""
+
+msgid "Channel"
+msgstr ""
+
+msgid "Subject (e-mail only)"
+msgstr ""
+
+msgid "Use {{name}} and {{storeName}} — the only variables the message may interpolate."
+msgstr ""
+
+msgid "Audience: customer levels (all if none checked)"
+msgstr ""
+
+msgid "Recipients"
+msgstr ""
+
+msgid "Sent"
+msgstr ""
+
+msgid "{count} campaign"
+msgid_plural "{count} campaigns"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "No campaigns yet"
+msgstr ""
+
+msgid "Create a draft above to get started."
+msgstr ""
+
+msgid "(none)"
+msgstr ""
+
+msgid "Preview audience"
+msgstr ""
+
+msgid "Send now"
+msgstr ""
+
+# --- /admin/commerce-reports sales reports (Issue #117) ---
+
+msgid "Sales reports"
+msgstr ""
+
+msgid "Paid sales by day, product and category, from the reporting projections over the order event log. A cancellation or refund of a paid order is subtracted from the day it was paid on."
+msgstr ""
+
+msgid "You do not have permission to view sales reports."
+msgstr ""
+
+msgid "Sales reports could not be loaded right now. Please try again later."
+msgstr ""
+
+msgid "Date range"
+msgstr ""
+
+msgid "The requested range was invalid — showing the default range instead."
+msgstr ""
+
+msgid "Apply range"
+msgstr ""
+
+msgid "Days are counted in {timeZone}."
+msgstr ""
+
+msgid "Projection freshness"
+msgstr ""
+
+msgid "Sales by day"
+msgstr ""
+
+msgid "Sales by product"
+msgstr ""
+
+msgid "Sales by category"
+msgstr ""
+
+msgid "never updated"
+msgstr ""
+
+msgid "{n}s ago"
+msgstr ""
+
+msgid "{n}m ago"
+msgstr ""
+
+msgid "{n}h ago"
+msgstr ""
+
+msgid "{n}d ago"
+msgstr ""
+
+msgid "Last updated {age}."
+msgstr ""
+
+msgid "Rebuild or reconcile"
+msgstr ""
+
+msgid "Export CSV"
+msgstr ""
+
+msgid "Paid orders per day, {from} to {to}."
+msgstr ""
+
+msgid "Day"
+msgstr ""
+
+msgid "Paid orders"
+msgstr ""
+
+msgid "Gross"
+msgstr ""
+
+msgid "Discount"
+msgstr ""
+
+msgid "Shipping"
+msgstr ""
+
+msgid "Net"
+msgstr ""
+
+msgid "No paid sales in this range"
+msgstr ""
+
+msgid "Figures appear a few minutes after an order is paid, once the projection worker has run."
+msgstr ""
+
+msgid "Top {limit} products by gross, {from} to {to}."
+msgstr ""
+
+msgid "Quantity"
+msgstr ""
+
+msgid "No products sold in this range"
+msgstr ""
+
+msgid "Categories by gross, {from} to {to}."
+msgstr ""
+
+msgid "No categories sold in this range"
+msgstr ""
+
+msgid "Uncategorised"
+msgstr ""
+
+msgid "Recent CSV exports"
+msgstr ""
+
+msgid "Each export is the full projection (every day, not just the range shown), written and checksummed by the reporting export mechanism. Downloads re-check your permission and refuse an expired file."
+msgstr ""
+
+msgid "Schedule recurring exports"
+msgstr ""
+
+msgid "Export runs of the three sales projections."
+msgstr ""
+
+msgid "Report"
+msgstr ""
+
+msgid "Generated"
+msgstr ""
+
+msgid "No exports yet"
+msgstr ""
+
+msgid "Use an Export CSV button above to generate one."
+msgstr ""
+
+msgid "expired"
+msgstr ""
+
+msgid "unavailable"
 msgstr ""
 
 msgid "POS"
@@ -5488,7 +5738,4 @@ msgid "Cashier"
 msgstr ""
 
 msgid "No POS sales match this filter."
-msgstr ""
-
-msgid "Quantity"
 msgstr ""

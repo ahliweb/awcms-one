@@ -1,4 +1,5 @@
 import { defineModule } from "../_shared/module-contract";
+import { DEFAULT_COMMERCE_FEATURES } from "./domain/commerce-features";
 import {
   COMMERCE_CATEGORIES_ACTIVITY_CODE,
   COMMERCE_CATEGORY_PERMISSIONS,
@@ -28,6 +29,10 @@ import {
   COMMERCE_AFFILIATE_COMMISSION_PERMISSIONS,
   COMMERCE_WHATSAPP_ACTIVITY_CODE,
   COMMERCE_WHATSAPP_PERMISSIONS,
+  COMMERCE_CONVERSATIONS_ACTIVITY_CODE,
+  COMMERCE_CONVERSATION_PERMISSIONS,
+  COMMERCE_CAMPAIGNS_ACTIVITY_CODE,
+  COMMERCE_CAMPAIGN_PERMISSIONS,
   COMMERCE_WEBHOOK_ENDPOINTS_ACTIVITY_CODE,
   COMMERCE_WEBHOOK_ENDPOINT_PERMISSIONS,
   COMMERCE_POS_ACTIVITY_CODE,
@@ -47,6 +52,100 @@ import {
   COMMERCE_VOUCHER_REDEEMED_EVENT_TYPE,
   COMMERCE_REVIEW_PUBLISHED_EVENT_TYPE
 } from "./domain/commerce-events";
+import {
+  SALES_BY_CATEGORY_PROJECTION_KEY,
+  SALES_BY_PRODUCT_PROJECTION_KEY,
+  SALES_DAILY_PROJECTION_KEY,
+  SALES_ORDER_EVENTS_STREAM_KEY,
+  SALES_REPORT_METRIC_KEYS
+} from "./domain/sales-report-keys";
+import {
+  SALES_BY_CATEGORY_DIMENSIONAL,
+  SALES_BY_CATEGORY_SINK,
+  SALES_BY_PRODUCT_DIMENSIONAL,
+  SALES_BY_PRODUCT_SINK,
+  SALES_DAILY_DIMENSIONAL,
+  SALES_DAILY_SINK
+} from "./application/sales-report-projection";
+import type {
+  ProjectionCursorStream,
+  ProjectionDescriptor
+} from "../_shared/module-contract";
+
+/**
+ * Issue #117 (epic #33 C8, contract #106 / ADR-0017 D7) — the one source
+ * stream all three sales-report projections read: `awcms_commerce_order_events`,
+ * an append-only status-transition log (the ONLY kind of source the
+ * `cursor_table` strategy is correct for — `reporting/README.md`
+ * §Projections). The scalar `metrics` rule counts consumed `-> paid` events
+ * (the figure the generic projection card and the engine's own `COUNT(*)`
+ * reconciliation see); the dimensional `sink` is where the money goes. One
+ * factory, three descriptors: each projection keeps its OWN cursor row under
+ * the same stream key, so a rebuild of one never disturbs the other two.
+ */
+function salesOrderEventsStream(
+  sink: ProjectionCursorStream["dimensional"]
+): ProjectionCursorStream {
+  return {
+    streamKey: SALES_ORDER_EVENTS_STREAM_KEY,
+    tableName: "awcms_commerce_order_events",
+    cursorColumn: "created_at",
+    metrics: [
+      {
+        metricKey: SALES_REPORT_METRIC_KEYS.paidEvents,
+        effect: "increment",
+        matchColumn: "to_status",
+        matchValue: "paid"
+      }
+    ],
+    dimensional: sink
+  };
+}
+
+const SALES_REPORT_FRESHNESS = {
+  // Same policy as `reporting`'s own cursor_table projections: the refresh
+  // job runs every 2 minutes, so 5 minutes is one missed tick and 30 is a
+  // worker that has stopped.
+  targetSeconds: 300,
+  staleAfterSeconds: 1800,
+  errorAfterConsecutiveFailures: 3
+} as const;
+
+const SALES_REPORT_RETENTION_CLASS =
+  "commerce.sales_daily / commerce.sales_by_product / commerce.sales_by_category (this module's own dataLifecycle descriptors, cursor `day`, same 3650-day ceiling as commerce.order_events): derived, fully rebuildable aggregates — a rebuild after the source's own retention purge recomputes from surviving events only, the same coupling reporting.access_audit_summary documents.";
+
+function salesReportProjection(
+  input: Pick<ProjectionDescriptor, "key" | "description" | "dimensional"> & {
+    sink: NonNullable<ProjectionCursorStream["dimensional"]>;
+    drillDownPath: string;
+  }
+): ProjectionDescriptor {
+  return {
+    key: input.key,
+    version: 1,
+    ownerModuleKey: "commerce",
+    scope: "tenant",
+    description: input.description,
+    source: {
+      strategy: "cursor_table",
+      streams: [salesOrderEventsStream(input.sink)]
+    },
+    rebuildSource: { streams: [salesOrderEventsStream(input.sink)] },
+    metricLabels: {
+      [SALES_REPORT_METRIC_KEYS.paidEvents]: "Paid order events consumed"
+    },
+    // The generic projection surface (`GET /api/v1/reports/projections`,
+    // rebuild/reconcile, `/admin/reporting`) is gated like every other
+    // projection; the three business read routes and the reports screen sit
+    // behind `reporting.dashboard.read` instead (contract #106).
+    requiredPermission: "reporting.projections.read",
+    freshness: SALES_REPORT_FRESHNESS,
+    drillDownPath: input.drillDownPath,
+    retentionClass: SALES_REPORT_RETENTION_CLASS,
+    batchLimit: 500,
+    dimensional: input.dimensional
+  };
+}
 
 /**
  * `commerce` (Issue #4, part of epic #1; brought to full product-model parity
@@ -118,8 +217,52 @@ export const commerceModule = defineModule({
   isCore: false,
   api: {
     openApiPath: "openapi/modules/commerce.openapi.yaml",
-    basePath: "/api/v1/commerce"
+    basePath: "/api/v1/commerce",
+    // Issue #117 — the three sales-report read routes live under the
+    // `reporting` module's `/api/v1/reports` family by contract (#106: "read
+    // through the reporting module's projection read path", gated on
+    // `reporting.dashboard.read`), but their handlers read THIS module's
+    // projection tables through this module's own application code, so this
+    // module owns them (longest prefix wins over `reporting`'s claim).
+    routes: ["/api/v1/commerce", "/api/v1/reports/commerce"]
   },
+  /**
+   * Issue #117 (C8, contract #106 / ADR-0017 D7) — three `cursor_table`
+   * projections over the append-only order-event log, maintained by the
+   * `reporting` engine (`bun run reporting:projections:refresh`) into this
+   * module's own `awcms_commerce_sales_*` tables (sql/933). Delta rules:
+   * `-> paid` adds the order's totals/items, `-> cancelled|refunded` after a
+   * paid state subtracts them (`domain/sales-report-deltas.ts`, pure);
+   * sinks/reset/reconcile/export hooks in
+   * `application/sales-report-projection.ts`; read routes under
+   * `/api/v1/reports/commerce/*`; screen `/admin/commerce-reports`.
+   */
+  reportingProjections: [
+    salesReportProjection({
+      key: SALES_DAILY_PROJECTION_KEY,
+      description:
+        "Per-day sales: paid order count, gross (sum of order subtotals), discount (order + voucher discounts), shipping and net (order totals), attributed to the day of each order's paid_at in the report time zone. A cancellation or refund of a paid order subtracts from the same day it was added to, so net is a true per-day net.",
+      sink: SALES_DAILY_SINK,
+      dimensional: SALES_DAILY_DIMENSIONAL,
+      drillDownPath: "/api/v1/reports/commerce/sales-daily"
+    }),
+    salesReportProjection({
+      key: SALES_BY_PRODUCT_PROJECTION_KEY,
+      description:
+        "Per-day, per-product quantity and gross (sum of line totals) from paid orders, with the product name as snapshotted on the order line; reversals subtract. The read route groups a date range by product.",
+      sink: SALES_BY_PRODUCT_SINK,
+      dimensional: SALES_BY_PRODUCT_DIMENSIONAL,
+      drillDownPath: "/api/v1/reports/commerce/sales-by-product"
+    }),
+    salesReportProjection({
+      key: SALES_BY_CATEGORY_PROJECTION_KEY,
+      description:
+        "Per-day, per-category quantity and gross from paid orders, attributed through the product's category at processing time (a product without a category lands in the uncategorised bucket); reversals subtract. The read route groups a date range by category.",
+      sink: SALES_BY_CATEGORY_SINK,
+      dimensional: SALES_BY_CATEGORY_DIMENSIONAL,
+      drillDownPath: "/api/v1/reports/commerce/sales-by-category"
+    })
+  ],
   events: {
     asyncApiPath: "asyncapi/awcms-domain-events.asyncapi.yaml",
     publishes: [
@@ -229,8 +372,54 @@ export const commerceModule = defineModule({
       environmentNotes:
         "No-op when COMMERCE_PAYMENT_GATEWAY does not resolve to a configured provider — safe to schedule regardless of deployment profile (e.g. offline/LAN).",
       safeInOfflineLan: true
+    },
+    {
+      command: "bun run commerce:campaigns:dispatch",
+      schedule: { mode: "cron", expression: "*/2 * * * *", backlog: "bounded" },
+      purpose:
+        "Fans a scheduled/sending campaign out into the same e-mail/WhatsApp outboxes D5/D7 already dispatch from, in pages of 200 (Issue #114). Resumable: a crash mid-dispatch is picked back up on the next tick from wherever awcms_commerce_campaign_recipients left off.",
+      recommendedSchedule: "Every 1-2 minutes via cron/systemd timer.",
+      environmentNotes:
+        "No external provider call itself — only inserts into the e-mail/WhatsApp outbox tables; safe to schedule regardless of deployment profile (e.g. offline/LAN).",
+      safeInOfflineLan: true
     }
   ],
+  /**
+   * Issue #118 (epic #33 C9, contract #106 D10) — BjekMart's "Features"
+   * screen. `schemaVersion: 1` because `commerce` never declared a
+   * `settings` contract before this issue — there is no PRIOR commerce
+   * settings row anywhere to migrate away from (`updateModuleSettings`'s own
+   * `INSERT ... ON CONFLICT` always writes the descriptor's CURRENT
+   * `schemaVersion`, and no `awcms_module_settings` row with
+   * `module_key = 'commerce'` exists in any deployed database yet — grep the
+   * `sql/9xx` range). The "schemaVersion bump" the issue names is this
+   * declaration's very first version, not a bump away from an earlier one.
+   *
+   * The migration-free upgrade path for a tenant that saved a `commerce`
+   * settings row BEFORE this issue does not exist YET either (same reason);
+   * it is the FUTURE-FACING half of the design that matters here — a later
+   * issue adding a sixth feature flag needs no migration and no schema
+   * bump, because `domain/commerce-features.ts`'s `resolveCommerceFeatures`
+   * resolves each flag independently against
+   * `DEFAULT_COMMERCE_FEATURES`, never assumes the whole `features` object
+   * exists, and `module-settings.ts`'s own shallow top-level merge already
+   * guarantees a tenant who has never opened "Fitur" gets these defaults
+   * verbatim (`mergeEffectiveSettings(defaults, {})` is the empty override
+   * case; `defaults` — including `features` — passes straight through).
+   *
+   * Every flag defaults `true`: shipping this settings document changes
+   * NOTHING for an existing tenant that never opens the new "Fitur"
+   * section (see `commerce-features.ts`'s own header for the full
+   * reasoning). `pos` is enforced by issue #116's owner routes
+   * (`pages/api/v1/commerce/pos/orders/index.ts`, 409 `FEATURE_DISABLED`
+   * when off) and by the `/admin/commerce-pos` navigation entry below.
+   */
+  settings: {
+    schemaVersion: 1,
+    defaults: {
+      features: { ...DEFAULT_COMMERCE_FEATURES }
+    }
+  },
   // Full CRUD screens: two as of Issue #23 (`src/pages/admin/commerce.astro`,
   // `commerce-categories.astro`), six more added by Issue #26 for the
   // marketing surface — every ACTIVE module must have at least one screen
@@ -319,10 +508,39 @@ export const commerceModule = defineModule({
       requiredPermission: "commerce.whatsapp.read"
     },
     {
+      labelKey: "admin.layout.nav_commerce_inbox",
+      path: "/admin/commerce-inbox",
+      order: 14,
+      requiredPermission: "commerce.conversations.read",
+      // Issue #118 — hidden the moment the tenant turns `features.inbox`
+      // off, on top of the existing permission gate.
+      requiredFeature: { moduleKey: "commerce", feature: "inbox" }
+    },
+    {
+      labelKey: "admin.layout.nav_commerce_campaigns",
+      path: "/admin/commerce-campaigns",
+      order: 15,
+      requiredPermission: "commerce.campaigns.read",
+      requiredFeature: { moduleKey: "commerce", feature: "campaigns" }
+    },
+    // Issue #117 — the sales reports screen sits under Commerce but is gated
+    // on `reporting.dashboard.read`, the same permission its three read
+    // routes and the generic `/api/v1/reports/*` views use (contract #106).
+    {
+      labelKey: "admin.layout.nav_commerce_reports",
+      path: "/admin/commerce-reports",
+      order: 16,
+      requiredPermission: "reporting.dashboard.read"
+    },
+    // Issue #116 — point of sale. Gated on the POS create permission (the
+    // only permission-gated order-creation path) and hidden the moment the
+    // tenant turns `features.pos` off (#118).
+    {
       labelKey: "admin.layout.nav_commerce_pos",
       path: "/admin/commerce-pos",
-      order: 14,
-      requiredPermission: "commerce.pos.create"
+      order: 17,
+      requiredPermission: "commerce.pos.create",
+      requiredFeature: { moduleKey: "commerce", feature: "pos" }
     }
   ],
   /**
@@ -1625,6 +1843,326 @@ export const commerceModule = defineModule({
         description:
           "Deletes attempt rows older than the cutoff in bounded batches, BEFORE the messages step so the foreign key ordering holds, as awcms_worker (sql/925)."
       }
+    },
+    // Issue #111, contract #106 D8 — the commerce inbox. `conversations`
+    // follows the usual `deleted_at`-cursor convention (this increment ships
+    // no route that ever sets it, the same "declared, unreachable in
+    // practice" shape `commerce.categories`/`commerce.products` already have
+    // — see this array's header comment); `messages` is append-only, like
+    // `commerce.order_events` above, so its cursor is `created_at` instead.
+    {
+      key: "commerce.conversations",
+      tableName: "awcms_commerce_conversations",
+      ownerModuleKey: "commerce",
+      scope: "tenant",
+      cursorColumn: "deleted_at",
+      retentionClass: "system_event",
+      retentionMinDays: 30,
+      retentionMaxDays: 3650,
+      defaultRetentionDays: 730,
+      partition: {
+        eligible: false,
+        rationale:
+          "Bounded by a tenant's own customer-account count and support volume — nowhere near partition-worthy volume for a single storefront."
+      },
+      archive: {
+        archivable: false,
+        rationale:
+          "A thread's own subject/status/unread flags — reconstructible from its own messages and not evidence of anything on its own."
+      },
+      deletion: {
+        mode: "hard_delete",
+        rationale:
+          "The generic engine's only implemented mode. Safe here specifically because the cursor column (deleted_at) is NULL for every live row — see this array's header comment."
+      },
+      legalHold: { applicable: false, precedence: "not_applicable" },
+      requiredIndexes: [
+        {
+          columns: ["tenant_id", "deleted_at"],
+          purpose:
+            "awcms_commerce_conversations_tenant_deleted_idx (sql/927) — the (tenant, cursor) composite the generic purge engine filters + orders by."
+        }
+      ],
+      batchLimit: 5000,
+      backupRestoreNotes:
+        "Included in ordinary full-database backup/restore; no standalone archive artifact (archive.archivable is false above).",
+      executionMode: "generic"
+    },
+    {
+      key: "commerce.messages",
+      tableName: "awcms_commerce_messages",
+      ownerModuleKey: "commerce",
+      scope: "tenant",
+      cursorColumn: "created_at",
+      retentionClass: "system_event",
+      retentionMinDays: 365,
+      retentionMaxDays: 3650,
+      defaultRetentionDays: 730,
+      partition: {
+        eligible: false,
+        rationale:
+          "Bounded by its parent conversation's own message count — a handful to a few dozen rows per thread."
+      },
+      archive: {
+        archivable: false,
+        rationale:
+          "A message's own body — the conversation transcript the tenant's own support record already retains."
+      },
+      deletion: {
+        mode: "hard_delete",
+        rationale:
+          "The generic engine's only implemented mode; a genuinely old row (older than the parent conversation's own retention) is safe to purge."
+      },
+      legalHold: { applicable: false, precedence: "not_applicable" },
+      requiredIndexes: [
+        {
+          columns: ["tenant_id", "created_at"],
+          purpose:
+            "awcms_commerce_messages_tenant_created_idx (sql/927) — the (tenant, cursor) composite the generic purge engine filters + orders by, keyed on created_at since this append-only table has no deleted_at."
+        },
+        {
+          columns: ["conversation_id", "created_at"],
+          purpose:
+            "awcms_commerce_messages_conversation_idx (sql/927) — this table's own thread transcript read."
+        }
+      ],
+      batchLimit: 5000,
+      backupRestoreNotes:
+        "Included in ordinary full-database backup/restore; no standalone archive artifact.",
+      executionMode: "generic"
+    },
+    // Issue #114, contract #106 D9 — customer campaigns. `campaigns` follows
+    // the usual `deleted_at`-cursor convention (no admin route ever sets it
+    // in this increment, same "declared, unreachable in practice" shape
+    // `commerce.categories`/`commerce.conversations` above already have);
+    // `campaign_recipients` is append-only per campaign (a recipient row is
+    // never edited once inserted), so its cursor is `created_at`, mirroring
+    // `commerce.messages`' own choice just above.
+    {
+      key: "commerce.campaigns",
+      tableName: "awcms_commerce_campaigns",
+      ownerModuleKey: "commerce",
+      scope: "tenant",
+      cursorColumn: "deleted_at",
+      retentionClass: "system_event",
+      retentionMinDays: 30,
+      retentionMaxDays: 3650,
+      defaultRetentionDays: 730,
+      partition: {
+        eligible: false,
+        rationale:
+          "Bounded by a tenant's own campaign cadence — nowhere near partition-worthy volume for a single storefront."
+      },
+      archive: {
+        archivable: false,
+        rationale:
+          "A campaign's own subject/body/audience filter — the tenant's own record of what it sent, reconstructible from its own drafting history and not evidence of anything beyond that."
+      },
+      deletion: {
+        mode: "hard_delete",
+        rationale:
+          "The generic engine's only implemented mode. Safe here specifically because the cursor column (deleted_at) is NULL for every live row — see this array's header comment."
+      },
+      legalHold: { applicable: false, precedence: "not_applicable" },
+      requiredIndexes: [
+        {
+          columns: ["tenant_id", "deleted_at"],
+          purpose:
+            "awcms_commerce_campaigns_tenant_deleted_idx (sql/929) — the (tenant, cursor) composite the generic purge engine filters + orders by."
+        }
+      ],
+      batchLimit: 5000,
+      backupRestoreNotes:
+        "Included in ordinary full-database backup/restore; no standalone archive artifact (archive.archivable is false above).",
+      executionMode: "generic"
+    },
+    {
+      key: "commerce.campaign_recipients",
+      tableName: "awcms_commerce_campaign_recipients",
+      ownerModuleKey: "commerce",
+      scope: "tenant",
+      cursorColumn: "created_at",
+      retentionClass: "system_event",
+      retentionMinDays: 365,
+      retentionMaxDays: 3650,
+      defaultRetentionDays: 730,
+      partition: {
+        eligible: false,
+        rationale:
+          "Bounded by a tenant's own consented-audience size times campaign count — nowhere near partition-worthy volume for a single storefront."
+      },
+      archive: {
+        archivable: false,
+        rationale:
+          "A masked address plus a dispatch status — the resumability/audit ledger a partial send relies on, not evidence of anything once the campaign it belongs to has aged out."
+      },
+      deletion: {
+        mode: "hard_delete",
+        rationale:
+          "The generic engine's only implemented mode; a genuinely old row (older than the parent campaign's own retention) is safe to purge."
+      },
+      legalHold: { applicable: false, precedence: "not_applicable" },
+      requiredIndexes: [
+        {
+          columns: ["tenant_id", "created_at"],
+          purpose:
+            "The (tenant, cursor) composite the generic purge engine filters + orders by, keyed on created_at since this append-only table has no deleted_at."
+        },
+        {
+          columns: ["campaign_id"],
+          purpose:
+            "awcms_commerce_campaign_recipients_campaign_idx (sql/929) — the dispatcher's own per-campaign resolve/resume scan."
+        }
+      ],
+      batchLimit: 5000,
+      backupRestoreNotes:
+        "Included in ordinary full-database backup/restore; no standalone archive artifact.",
+      executionMode: "generic"
+    },
+    {
+      key: "commerce.sales_daily",
+      tableName: "awcms_commerce_sales_daily",
+      ownerModuleKey: "commerce",
+      scope: "tenant",
+      // Issue #117 — a DERIVED reporting projection (sql/933): one row per
+      // (tenant, day), maintained by the `reporting` engine from
+      // `awcms_commerce_order_events` and fully rebuildable from it. The
+      // cursor is the report `day` itself: a row older than the retention
+      // window is unrecoverable by a rebuild anyway once `commerce.order_events`
+      // (same ceiling, 3650 days) has purged the events behind it, so the
+      // two windows are kept identical on purpose.
+      cursorColumn: "day",
+      retentionClass: "system_event",
+      retentionMinDays: 365,
+      retentionMaxDays: 3650,
+      defaultRetentionDays: 3650,
+      partition: {
+        eligible: false,
+        rationale:
+          "Bounded by the calendar times the catalogue — a few rows per trading day per tenant."
+      },
+      archive: {
+        archivable: false,
+        rationale:
+          "A derived aggregate; the evidence is the order-event log it is computed from, which has its own descriptor."
+      },
+      deletion: {
+        mode: "hard_delete",
+        rationale:
+          "The generic engine's only implemented mode; a projection row older than its own source's retention can never be rebuilt and is safe to purge."
+      },
+      legalHold: { applicable: false, precedence: "not_applicable" },
+      requiredIndexes: [
+        {
+          columns: ["tenant_id", "day"],
+          purpose:
+            "The primary key's own leading columns (sql/933) — the (tenant, cursor) composite the generic purge engine filters + orders by."
+        }
+      ],
+      batchLimit: 5000,
+      backupRestoreNotes:
+        "Included in ordinary full-database backup/restore; no standalone archive artifact — a rebuild from the order-event log is the restore path.",
+      executionMode: "generic"
+    },
+    {
+      key: "commerce.sales_by_product",
+      tableName: "awcms_commerce_sales_by_product",
+      ownerModuleKey: "commerce",
+      scope: "tenant",
+      // Issue #117 — a DERIVED reporting projection (sql/933): one row per
+      // (tenant, day, product), maintained by the `reporting` engine from
+      // `awcms_commerce_order_events` and fully rebuildable from it. The
+      // cursor is the report `day` itself: a row older than the retention
+      // window is unrecoverable by a rebuild anyway once `commerce.order_events`
+      // (same ceiling, 3650 days) has purged the events behind it, so the
+      // two windows are kept identical on purpose.
+      cursorColumn: "day",
+      retentionClass: "system_event",
+      retentionMinDays: 365,
+      retentionMaxDays: 3650,
+      defaultRetentionDays: 3650,
+      partition: {
+        eligible: false,
+        rationale:
+          "Bounded by the calendar times the catalogue — a few rows per trading day per tenant."
+      },
+      archive: {
+        archivable: false,
+        rationale:
+          "A derived aggregate; the evidence is the order-event log it is computed from, which has its own descriptor."
+      },
+      deletion: {
+        mode: "hard_delete",
+        rationale:
+          "The generic engine's only implemented mode; a projection row older than its own source's retention can never be rebuilt and is safe to purge."
+      },
+      legalHold: { applicable: false, precedence: "not_applicable" },
+      requiredIndexes: [
+        {
+          columns: ["tenant_id", "day"],
+          purpose:
+            "The primary key's own leading columns (sql/933) — the (tenant, cursor) composite the generic purge engine filters + orders by."
+        },
+        {
+          columns: ["tenant_id", "product_id"],
+          purpose:
+            "awcms_commerce_sales_by_product_product_idx (sql/933) — the grouped by-product read over a date range."
+        }
+      ],
+      batchLimit: 5000,
+      backupRestoreNotes:
+        "Included in ordinary full-database backup/restore; no standalone archive artifact — a rebuild from the order-event log is the restore path.",
+      executionMode: "generic"
+    },
+    {
+      key: "commerce.sales_by_category",
+      tableName: "awcms_commerce_sales_by_category",
+      ownerModuleKey: "commerce",
+      scope: "tenant",
+      // Issue #117 — a DERIVED reporting projection (sql/933): one row per
+      // (tenant, day, category), maintained by the `reporting` engine from
+      // `awcms_commerce_order_events` and fully rebuildable from it. The
+      // cursor is the report `day` itself: a row older than the retention
+      // window is unrecoverable by a rebuild anyway once `commerce.order_events`
+      // (same ceiling, 3650 days) has purged the events behind it, so the
+      // two windows are kept identical on purpose.
+      cursorColumn: "day",
+      retentionClass: "system_event",
+      retentionMinDays: 365,
+      retentionMaxDays: 3650,
+      defaultRetentionDays: 3650,
+      partition: {
+        eligible: false,
+        rationale:
+          "Bounded by the calendar times the catalogue — a few rows per trading day per tenant."
+      },
+      archive: {
+        archivable: false,
+        rationale:
+          "A derived aggregate; the evidence is the order-event log it is computed from, which has its own descriptor."
+      },
+      deletion: {
+        mode: "hard_delete",
+        rationale:
+          "The generic engine's only implemented mode; a projection row older than its own source's retention can never be rebuilt and is safe to purge."
+      },
+      legalHold: { applicable: false, precedence: "not_applicable" },
+      requiredIndexes: [
+        {
+          columns: ["tenant_id", "day"],
+          purpose:
+            "The primary key's own leading columns (sql/933) — the (tenant, cursor) composite the generic purge engine filters + orders by."
+        },
+        {
+          columns: ["tenant_id", "category_id"],
+          purpose:
+            "awcms_commerce_sales_by_category_category_idx (sql/933) — the grouped by-category read over a date range."
+        }
+      ],
+      batchLimit: 5000,
+      backupRestoreNotes:
+        "Included in ordinary full-database backup/restore; no standalone archive artifact — a rebuild from the order-event log is the restore path.",
+      executionMode: "generic"
     }
   ],
   /**
@@ -2044,6 +2582,69 @@ export const commerceModule = defineModule({
       rationale:
         "Per-attempt provider outcomes hanging off a message row. No column names a person — the link is the message, which answers for itself — and the provider snippet is operational telemetry kept under this module's own retention.",
       redactedColumns: ["provider_response_snippet"]
+    },
+    // Issue #111, contract #106 D8 — the commerce inbox. Both tables are
+    // reachable only through the owning `awcms_commerce_customer_accounts`
+    // row, which itself carries no tenant_user/identity/profile/principal
+    // id (ADR-0016 D1) — the SAME "no such column to point at" shape
+    // `commerce.customer_addresses`/`commerce.wishlists` above already
+    // document for a table an account holder reaches through their own
+    // bearer-secured routes: since Issue #111, an account holder reaches
+    // their own threads directly through GET/POST .../account/conversations
+    // and GET/POST .../account/conversations/{id}[/messages] — the honest
+    // self-service path this account's own vocabulary gap allows — but this
+    // AUTOMATED per-id engine still cannot walk either table by a
+    // tenant_user/identity/profile/principal id, because none exists on the
+    // owning account to begin with.
+    {
+      key: "commerce.conversations",
+      tableName: "awcms_commerce_conversations",
+      ownerModuleKey: "commerce",
+      unreachableBySubject: true,
+      subjectColumns: [],
+      exportable: false,
+      erasure: "retain_under_obligation",
+      rationale:
+        "A thread's own subject/status/unread flags, keyed by account_id — same unreachable-by-this-engine's-vocabulary shape as commerce.customer_accounts above (ADR-0016 D1: no tenant_user/identity/profile/principal id on the account this table hangs off of). An account holder reaches their OWN threads through the bearer-secured GET/POST /account/conversations routes; this automated engine still cannot walk it by id."
+    },
+    {
+      key: "commerce.messages",
+      tableName: "awcms_commerce_messages",
+      ownerModuleKey: "commerce",
+      unreachableBySubject: true,
+      subjectColumns: [],
+      exportable: false,
+      erasure: "retain_under_obligation",
+      rationale:
+        "A conversation's own transcript — the message body may be real personal content a customer wrote, but the link is conversation_id, not any tenant_user/identity/profile/principal id, inheriting commerce.conversations' own unreachable-by-this-engine's-vocabulary shape one level down. A store-sent row's sender_tenant_user_id names STAFF, not a data subject of this table."
+    },
+    // Issue #114, contract #106 D9 — customer campaigns. `campaign_recipients`
+    // names `customer_id`, but that is the SAME `awcms_commerce_customers`
+    // vocabulary gap `commerce.orders`/`commerce.order_items` above already
+    // document: a customer row carries no tenant_user/identity/profile/
+    // principal id (ADR-0016 D1), so this automated per-id engine cannot
+    // walk either table by one even though a customer column exists.
+    {
+      key: "commerce.campaigns",
+      tableName: "awcms_commerce_campaigns",
+      ownerModuleKey: "commerce",
+      unreachableBySubject: true,
+      subjectColumns: [],
+      exportable: false,
+      erasure: "retain_under_obligation",
+      rationale:
+        "A campaign's own subject/body/audience filter — addressed to a FILTER, not to any one customer, and carries no per-tenant subject id at all."
+    },
+    {
+      key: "commerce.campaign_recipients",
+      tableName: "awcms_commerce_campaign_recipients",
+      ownerModuleKey: "commerce",
+      unreachableBySubject: true,
+      subjectColumns: [],
+      exportable: false,
+      erasure: "retain_under_obligation",
+      rationale:
+        "customer_id names a row in commerce.customers, which itself carries no tenant_user/identity/profile/principal id (ADR-0016 D1, same gap commerce.orders' own entry above documents) — this engine's subject vocabulary still cannot reach it. address_masked is already masked at write time (never a raw e-mail/phone), so there is nothing further to redact on export even if it were reachable."
     }
   ],
   permissions: [
@@ -2279,6 +2880,31 @@ export const commerceModule = defineModule({
         "Read WhatsApp outbox message diagnostics (masked phone only)"
     },
     {
+      activityCode: COMMERCE_CONVERSATIONS_ACTIVITY_CODE,
+      action: "read",
+      description: "Read customer conversations and their messages"
+    },
+    {
+      activityCode: COMMERCE_CONVERSATIONS_ACTIVITY_CODE,
+      action: "update",
+      description: "Reply on a conversation and close/reopen it"
+    },
+    {
+      activityCode: COMMERCE_CAMPAIGNS_ACTIVITY_CODE,
+      action: "read",
+      description: "Read campaigns and preview their audience count"
+    },
+    {
+      activityCode: COMMERCE_CAMPAIGNS_ACTIVITY_CODE,
+      action: "update",
+      description: "Create and edit a draft campaign"
+    },
+    {
+      activityCode: COMMERCE_CAMPAIGNS_ACTIVITY_CODE,
+      action: "send",
+      description: "Send or cancel a campaign"
+    },
+    {
       activityCode: COMMERCE_WEBHOOK_ENDPOINTS_ACTIVITY_CODE,
       action: "update",
       description:
@@ -2311,6 +2937,8 @@ export {
   COMMERCE_AFFILIATE_PERMISSIONS,
   COMMERCE_AFFILIATE_COMMISSION_PERMISSIONS,
   COMMERCE_WHATSAPP_PERMISSIONS,
+  COMMERCE_CONVERSATION_PERMISSIONS,
+  COMMERCE_CAMPAIGN_PERMISSIONS,
   COMMERCE_WEBHOOK_ENDPOINT_PERMISSIONS,
   COMMERCE_POS_PERMISSIONS
 };

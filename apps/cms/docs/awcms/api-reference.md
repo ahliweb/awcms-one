@@ -9399,7 +9399,7 @@ Proves the parts of the chain nothing else can see — that the VAPID key pair m
 
 Catalog slice of the re-platformed storefront (commerce module, Issue #4, epic #1) — tenant-scoped product categories (hierarchical, self-referencing parent) and products (physical/digital/service/subscription), ported from the legacy MySQL commerce_bj_mart schema's core catalog columns. price is numeric(14,2) and crosses the wire as a string, never a JSON number, so money arithmetic never drifts through binary floating point. A product's lifecycle status (draft/active/inactive/archived) travels through the same PATCH as every other field and is checked against a legal-transition table before any write. Categories have no status and no re-parenting via update — a hierarchy position is set once, at creation. This slice ships no restore endpoint: a soft-deleted row is retained (for the FK integrity of anything still referencing it) but not exposed for recovery here.
 
-### `GET /api/v1/commerce/campaigns` — Issue #106 (ADR-0017 D9; not yet implemented, lands in #114). Staff list of campaigns, newest first. Gated on `commerce.campaigns.read`.
+### `GET /api/v1/commerce/campaigns` — Issue #114 (contract #106 ADR-0017 D9). Staff list of campaigns, newest first. Gated on `commerce.campaigns.read`.
 
 - **operationId**: `listCommerceCampaigns`
 - **Security**: bearerAuth + tenantHeader
@@ -9418,7 +9418,7 @@ Catalog slice of the re-platformed storefront (commerce module, Issue #4, epic #
 | 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
 | 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
 
-### `POST /api/v1/commerce/campaigns` — Issue #106 (ADR-0017 D9; not yet implemented, lands in #114). Create a `draft` campaign. Gated on `commerce.campaigns.update`.
+### `POST /api/v1/commerce/campaigns` — Issue #114 (contract #106 ADR-0017 D9). Create a `draft` campaign. Gated on `commerce.campaigns.update`.
 
 - **operationId**: `createCommerceCampaign`
 - **Security**: bearerAuth + tenantHeader
@@ -9434,7 +9434,7 @@ Catalog slice of the re-platformed storefront (commerce module, Issue #4, epic #
 | 401    | Missing or invalid session.        | [`ApiError`](#standard-error-envelope) |
 | 403    | Access denied by RBAC/ABAC.        | [`ApiError`](#standard-error-envelope) |
 
-### `GET /api/v1/commerce/campaigns/{id}` — Issue #106 (ADR-0017 D9; not yet implemented, lands in #114). One campaign. Gated on `commerce.campaigns.read`.
+### `GET /api/v1/commerce/campaigns/{id}` — Issue #114 (contract #106 ADR-0017 D9). One campaign. Gated on `commerce.campaigns.read`.
 
 - **operationId**: `getCommerceCampaign`
 - **Security**: bearerAuth + tenantHeader
@@ -9454,7 +9454,7 @@ Catalog slice of the re-platformed storefront (commerce module, Issue #4, epic #
 | 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
 | 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
 
-### `PATCH /api/v1/commerce/campaigns/{id}` — Issue #106 (ADR-0017 D9; not yet implemented, lands in #114). Edit a campaign still in `draft`. Gated on `commerce.campaigns.update`.
+### `PATCH /api/v1/commerce/campaigns/{id}` — Issue #114 (contract #106 ADR-0017 D9). Edit a campaign still in `draft`. Gated on `commerce.campaigns.update`.
 
 - **operationId**: `updateCommerceCampaign`
 - **Security**: bearerAuth + tenantHeader
@@ -9478,7 +9478,7 @@ Catalog slice of the re-platformed storefront (commerce module, Issue #4, epic #
 | 404    | Resource not found.                  | [`ApiError`](#standard-error-envelope) |
 | 409    | CAMPAIGN_NOT_EDITABLE — not `draft`. | [`ApiError`](#standard-error-envelope) |
 
-### `POST /api/v1/commerce/campaigns/{id}/cancel` — Issue #106 (ADR-0017 D9; not yet implemented, lands in #114). Cancel a campaign before (or while) it sends; already-dispatched recipient rows are not un-sent. Gated on `commerce.campaigns.send`.
+### `POST /api/v1/commerce/campaigns/{id}/cancel` — Issue #114 (contract #106 ADR-0017 D9). Cancel a campaign before (or while) it sends; already-dispatched recipient rows are not un-sent. Gated on `commerce.campaigns.send`.
 
 - **operationId**: `cancelCommerceCampaign`
 - **Security**: bearerAuth + tenantHeader
@@ -9499,7 +9499,7 @@ Catalog slice of the re-platformed storefront (commerce module, Issue #4, epic #
 | 404    | Resource not found.                                  | [`ApiError`](#standard-error-envelope) |
 | 409    | CAMPAIGN_ALREADY_FINAL — already `sent`/`cancelled`. | [`ApiError`](#standard-error-envelope) |
 
-### `POST /api/v1/commerce/campaigns/{id}/preview` — Issue #106 (ADR-0017 D9; not yet implemented, lands in #114). Resolve the audience filter into a recipient COUNT, without sending anything. Gated on `commerce.campaigns.read`.
+### `POST /api/v1/commerce/campaigns/{id}/preview` — Issue #114 (contract #106 ADR-0017 D9). Resolve the audience filter into a recipient COUNT, without sending anything. Gated on `commerce.campaigns.read`.
 
 - **operationId**: `previewCommerceCampaign`
 - **Security**: bearerAuth + tenantHeader
@@ -9519,7 +9519,7 @@ Catalog slice of the re-platformed storefront (commerce module, Issue #4, epic #
 | 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
 | 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
 
-### `POST /api/v1/commerce/campaigns/{id}/send` — Issue #106 (ADR-0017 D9; not yet implemented, lands in #114). Resolve the audience, create one `awcms_commerce_campaign_recipients` row per recipient, and move the campaign to `sending` — the `commerce:campaigns:dispatch` job fans the rows out into the e-mail/WhatsApp outboxes from there. Gated on `commerce.campaigns.send`; `Idempotency-Key` required.
+### `POST /api/v1/commerce/campaigns/{id}/send` — Issue #114 (contract #106 ADR-0017 D9). Moves the campaign to `scheduled` (scheduled_at = now); the `commerce:campaigns:dispatch` job then resolves the audience, creates one `awcms_commerce_campaign_recipients` row per recipient, and fans the rows out into the e-mail/WhatsApp outboxes. Gated on `commerce.campaigns.send`; `Idempotency-Key` required.
 
 - **operationId**: `sendCommerceCampaign`
 - **Security**: bearerAuth + tenantHeader
@@ -9669,17 +9669,18 @@ Sets deleted_at; the slug is freed for reuse. Restore it with POST /api/v1/comme
 | 404    | Resource not found.                                                                     | [`ApiError`](#standard-error-envelope) |
 | 409    | slug is already taken by a live category in this tenant (CATEGORY_SLUG_ALREADY_EXISTS). | [`ApiError`](#standard-error-envelope) |
 
-### `GET /api/v1/commerce/conversations` — Issue #106 (ADR-0017 D8; not yet implemented, lands in #111). Staff list of every customer conversation, newest first. Gated on `commerce.conversations.read`.
+### `GET /api/v1/commerce/conversations` — Issue #111 (contract #106 D8). Staff list of every customer conversation, newest-activity-first, keyset-paginated. Gated on `commerce.conversations.read`.
 
 - **operationId**: `listCommerceConversations`
 - **Security**: bearerAuth + tenantHeader
 
 **Parameters**
 
-| Name     | In    | Required | Type                   | Description |
-| -------- | ----- | -------- | ---------------------- | ----------- |
-| `status` | query | no       | enum(`open`, `closed`) |             |
-| `cursor` | query | no       | string                 |             |
+| Name     | In    | Required | Type                   | Description                                             |
+| -------- | ----- | -------- | ---------------------- | ------------------------------------------------------- |
+| `status` | query | no       | enum(`open`, `closed`) |                                                         |
+| `unread` | query | no       | enum(`true`, `false`)  | `true` to only show conversations unread FOR THE STORE. |
+| `cursor` | query | no       | string                 |                                                         |
 
 **Responses**
 
@@ -9689,7 +9690,7 @@ Sets deleted_at; the slug is freed for reuse. Restore it with POST /api/v1/comme
 | 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
 | 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
 
-### `GET /api/v1/commerce/conversations/{id}` — Issue #106 (ADR-0017 D8; not yet implemented, lands in #111). One conversation with its messages. Gated on `commerce.conversations.read`.
+### `GET /api/v1/commerce/conversations/{id}` — Issue #111 (contract #106 D8). One conversation with its messages, oldest first. Marks the thread read for the STORE. Gated on `commerce.conversations.read`.
 
 - **operationId**: `getCommerceConversation`
 - **Security**: bearerAuth + tenantHeader
@@ -9709,7 +9710,7 @@ Sets deleted_at; the slug is freed for reuse. Restore it with POST /api/v1/comme
 | 403    | Access denied by RBAC/ABAC.        | [`ApiError`](#standard-error-envelope) |
 | 404    | Resource not found.                | [`ApiError`](#standard-error-envelope) |
 
-### `PATCH /api/v1/commerce/conversations/{id}` — Issue #106 (ADR-0017 D8; not yet implemented, lands in #111). Close or reopen a conversation. Gated on `commerce.conversations.update`.
+### `PATCH /api/v1/commerce/conversations/{id}` — Issue #111 (contract #106 D8). Explicit close/reopen by staff (a store REPLY also implicitly reopens a closed thread — this is the explicit path with no message attached). Gated on `commerce.conversations.update`.
 
 - **operationId**: `updateCommerceConversation`
 - **Security**: bearerAuth + tenantHeader
@@ -9732,28 +9733,30 @@ Sets deleted_at; the slug is freed for reuse. Restore it with POST /api/v1/comme
 | 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
 | 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
 
-### `POST /api/v1/commerce/conversations/{id}/messages` — Issue #106 (ADR-0017 D8; not yet implemented, lands in #111). Staff reply. Triggers an e-mail notification to the customer through the existing `email` outbox (no new delivery channel). Gated on `commerce.conversations.update`.
+### `POST /api/v1/commerce/conversations/{id}/messages` — Issue #111 (contract #106 D8). Staff reply — implicitly reopens a closed conversation. Enqueues one `derived.commerce_conversation_reply` e-mail through the existing `email` module outbox (no new delivery channel), auto-seeding its template on first miss. `Idempotency-Key` header required (high-risk mutation). Gated on `commerce.conversations.update`.
 
 - **operationId**: `createCommerceConversationMessage`
 - **Security**: bearerAuth + tenantHeader
 
 **Parameters**
 
-| Name | In   | Required | Type          | Description |
-| ---- | ---- | -------- | ------------- | ----------- |
-| `id` | path | yes      | string (uuid) |             |
+| Name              | In     | Required | Type          | Description |
+| ----------------- | ------ | -------- | ------------- | ----------- |
+| `id`              | path   | yes      | string (uuid) |             |
+| `Idempotency-Key` | header | yes      | string        |             |
 
 **Request body** (required): object
 
 **Responses**
 
-| Status | Description                 | Schema                                 |
-| ------ | --------------------------- | -------------------------------------- |
-| 201    | Message added.              | object                                 |
-| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
-| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
-| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
-| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------------ | -------------------------------------- |
+| 201    | Message added.                                                                             | object                                 |
+| 400    | Validation error.                                                                          | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                        | [`ApiError`](#standard-error-envelope) |
+| 409    | IDEMPOTENCY_CONFLICT — the Idempotency-Key was already used with a different request body. | [`ApiError`](#standard-error-envelope) |
 
 ### `GET /api/v1/commerce/customers` — Admin customer list (Issue 29). Keyset-paginated, newest first. Gated on customers.read.
 
@@ -10853,7 +10856,7 @@ Sets deleted_at; the sku and slug are freed for reuse. Restore it with POST /api
 | 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
 | 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
 
-### `POST /api/v1/commerce/storefront/cart/quote` — Anonymous, cross-origin cart quote (Issue 29, `commerce-storefront-endpoints.md`). Tenant resolved from the request Origin/Host — no bearer, no permission check. Read-only.
+### `POST /api/v1/commerce/storefront/cart/quote` — Anonymous, cross-origin cart quote (Issue 29, `commerce-storefront-endpoints.md`). Tenant resolved from the request Origin/Host — no bearer, no permission check. Read-only. Issue #118 (ADR-0016 D6): an OPTIONAL `Authorization: Bearer <customer session token>` is accepted (never required) — when present and valid, and the account's own `commerce.customers.level` is 2, 3, or 4, every line is priced at that tier's `price_level_{n}` (falling back to `price` when the merchant never set that tier), so the price shown here always matches the price `POST .../orders` charges the same account moments later.
 
 - **operationId**: `quoteCommerceStorefrontCart`
 - **Security**: none (public endpoint)
@@ -11352,65 +11355,69 @@ Anonymous by definition — a provider callback carries no session. Replay-prote
 | 401    | Bad or missing provider signature.                                           | [`ApiError`](#standard-error-envelope) |
 | 404    | Unknown `endpointToken`, or a `provider` value the token was not minted for. | [`ApiError`](#standard-error-envelope) |
 
-### `GET /api/v1/reports/commerce/sales-by-category` — Issue #106 (ADR-0017 D7; not yet implemented, lands in #117). The `commerce.sales_by_category` projection. Gated on `reporting.dashboard.read`.
+### `GET /api/v1/reports/commerce/sales-by-category` — Issue #117 (contract #106, ADR-0017 D7). The `commerce.sales_by_category` projection grouped over the inclusive day range — quantity and gross per product category from paid orders, reversals subtracted, attributed through the product's category at processing time; lines whose product has no category are returned as one bucket with `categoryId: null`. Gated on `reporting.dashboard.read`.
 
 - **operationId**: `getReportsCommerceSalesByCategory`
 - **Security**: bearerAuth + tenantHeader
 
 **Parameters**
 
-| Name   | In    | Required | Type          | Description |
-| ------ | ----- | -------- | ------------- | ----------- |
-| `from` | query | no       | string (date) |             |
-| `to`   | query | no       | string (date) |             |
+| Name   | In    | Required | Type          | Description                                                                                                                              |
+| ------ | ----- | -------- | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `from` | query | no       | string (date) | Inclusive first projection day (`YYYY-MM-DD`, in the report time zone). Defaults to 29 days before `to`. A range spans at most 366 days. |
+| `to`   | query | no       | string (date) | Inclusive last projection day (`YYYY-MM-DD`). Defaults to today in the report time zone.                                                 |
 
 **Responses**
 
-| Status | Description                    | Schema                                 |
-| ------ | ------------------------------ | -------------------------------------- |
-| 200    | One row per category in range. | object                                 |
-| 401    | Missing or invalid session.    | [`ApiError`](#standard-error-envelope) |
-| 403    | Access denied by RBAC/ABAC.    | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                         | Schema                                 |
+| ------ | --------------------------------------------------- | -------------------------------------- |
+| 200    | One row per category in range, largest gross first. | object                                 |
+| 400    | Validation error.                                   | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                         | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                         | [`ApiError`](#standard-error-envelope) |
 
-### `GET /api/v1/reports/commerce/sales-by-product` — Issue #106 (ADR-0017 D7; not yet implemented, lands in #117). The `commerce.sales_by_product` projection. Gated on `reporting.dashboard.read`.
+### `GET /api/v1/reports/commerce/sales-by-product` — Issue #117 (contract #106, ADR-0017 D7). The `commerce.sales_by_product` projection grouped over the inclusive day range — quantity and gross (sum of line totals) per product from paid orders, reversals subtracted — best-selling by gross first, at most `limit` rows. Gated on `reporting.dashboard.read`.
 
 - **operationId**: `getReportsCommerceSalesByProduct`
 - **Security**: bearerAuth + tenantHeader
 
 **Parameters**
 
-| Name   | In    | Required | Type          | Description |
-| ------ | ----- | -------- | ------------- | ----------- |
-| `from` | query | no       | string (date) |             |
-| `to`   | query | no       | string (date) |             |
+| Name    | In    | Required | Type          | Description                                                                                                                              |
+| ------- | ----- | -------- | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `from`  | query | no       | string (date) | Inclusive first projection day (`YYYY-MM-DD`, in the report time zone). Defaults to 29 days before `to`. A range spans at most 366 days. |
+| `to`    | query | no       | string (date) | Inclusive last projection day (`YYYY-MM-DD`). Defaults to today in the report time zone.                                                 |
+| `limit` | query | no       | integer       | Maximum number of products returned (1–200, default 20).                                                                                 |
 
 **Responses**
 
-| Status | Description                   | Schema                                 |
-| ------ | ----------------------------- | -------------------------------------- |
-| 200    | One row per product in range. | object                                 |
-| 401    | Missing or invalid session.   | [`ApiError`](#standard-error-envelope) |
-| 403    | Access denied by RBAC/ABAC.   | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                        | Schema                                 |
+| ------ | -------------------------------------------------- | -------------------------------------- |
+| 200    | One row per product in range, largest gross first. | object                                 |
+| 400    | Validation error.                                  | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                        | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                        | [`ApiError`](#standard-error-envelope) |
 
-### `GET /api/v1/reports/commerce/sales-daily` — Issue #106 (ADR-0017 D7; not yet implemented, lands in #117). The `commerce.sales_daily` reporting projection, read through the `reporting` module's own projection read path. Gated on `reporting.dashboard.read`.
+### `GET /api/v1/reports/commerce/sales-daily` — Issue #117 (contract #106, ADR-0017 D7). Per-day sales from the `commerce.sales_daily` reporting projection over the append-only order-event log: `-> paid` adds an order's figures, `-> cancelled|refunded` after a paid state subtracts them on the same day. One row per projection day that has any figure in the inclusive range. Gated on `reporting.dashboard.read`; the projection's freshness, rebuild and reconciliation live on `GET /api/v1/reports/projections/commerce.sales_daily`.
 
 - **operationId**: `getReportsCommerceSalesDaily`
 - **Security**: bearerAuth + tenantHeader
 
 **Parameters**
 
-| Name   | In    | Required | Type          | Description |
-| ------ | ----- | -------- | ------------- | ----------- |
-| `from` | query | no       | string (date) |             |
-| `to`   | query | no       | string (date) |             |
+| Name   | In    | Required | Type          | Description                                                                                                                              |
+| ------ | ----- | -------- | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `from` | query | no       | string (date) | Inclusive first projection day (`YYYY-MM-DD`, in the report time zone). Defaults to 29 days before `to`. A range spans at most 366 days. |
+| `to`   | query | no       | string (date) | Inclusive last projection day (`YYYY-MM-DD`). Defaults to today in the report time zone.                                                 |
 
 **Responses**
 
-| Status | Description                 | Schema                                 |
-| ------ | --------------------------- | -------------------------------------- |
-| 200    | One row per day in range.   | object                                 |
-| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
-| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| Status | Description                          | Schema                                 |
+| ------ | ------------------------------------ | -------------------------------------- |
+| 200    | One row per day in range, ascending. | object                                 |
+| 400    | Validation error.                    | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.          | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.          | [`ApiError`](#standard-error-envelope) |
 
 ## Commerce Accounts
 
@@ -11548,7 +11555,7 @@ Issue #86 (ADR-0016, epic #32 wave 0) — CONTRACT ONLY, no route file yet (hand
 | 200    | One page of the account's commissions. | object                                 |
 | 401    | UNAUTHENTICATED.                       | [`ApiError`](#standard-error-envelope) |
 
-### `GET /api/v1/commerce/storefront/account/conversations` — Issue #106 (ADR-0017 D8; not yet implemented, lands in #111). The account's own conversations with the store, newest first.
+### `GET /api/v1/commerce/storefront/account/conversations` — Issue #111 (contract #106 D8). The account's own conversations with the store, newest first.
 
 - **operationId**: `listCommerceStorefrontAccountConversations`
 - **Security**: customerBearer
@@ -11566,7 +11573,7 @@ Issue #86 (ADR-0016, epic #32 wave 0) — CONTRACT ONLY, no route file yet (hand
 | 200    | One page of conversations. | object                                 |
 | 401    | UNAUTHENTICATED.           | [`ApiError`](#standard-error-envelope) |
 
-### `POST /api/v1/commerce/storefront/account/conversations` — Issue #106 (ADR-0017 D8; not yet implemented, lands in #111). Start a new conversation with the store, with its opening message.
+### `POST /api/v1/commerce/storefront/account/conversations` — Issue #111 (contract #106 D8). Start a new conversation with the store, with its opening message. Subject 1-150 chars, message body 1-4000 chars.
 
 - **operationId**: `createCommerceStorefrontAccountConversation`
 - **Security**: customerBearer
@@ -11575,13 +11582,14 @@ Issue #86 (ADR-0016, epic #32 wave 0) — CONTRACT ONLY, no route file yet (hand
 
 **Responses**
 
-| Status | Description           | Schema                                 |
-| ------ | --------------------- | -------------------------------------- |
-| 201    | Conversation created. | object                                 |
-| 400    | Validation error.     | [`ApiError`](#standard-error-envelope) |
-| 401    | UNAUTHENTICATED.      | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                                                       | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 201    | Conversation opened, with its first (customer) message.                                                                                           | object                                 |
+| 400    | Validation error.                                                                                                                                 | [`ApiError`](#standard-error-envelope) |
+| 401    | UNAUTHENTICATED.                                                                                                                                  | [`ApiError`](#standard-error-envelope) |
+| 429    | RATE_LIMITED — either the IP-scoped preflight limiter, or COMMERCE_CONVERSATION_POST_RATE_LIMIT_MAX (default 10) posts per hour for this account. | [`ApiError`](#standard-error-envelope) |
 
-### `GET /api/v1/commerce/storefront/account/conversations/{id}` — Issue #106 (ADR-0017 D8; not yet implemented, lands in #111). One conversation the account owns, with its messages.
+### `GET /api/v1/commerce/storefront/account/conversations/{id}` — Issue #111 (contract #106 D8). One conversation the account owns, with its messages, oldest first. Marks the thread read for the customer.
 
 - **operationId**: `getCommerceStorefrontAccountConversation`
 - **Security**: customerBearer
@@ -11600,7 +11608,7 @@ Issue #86 (ADR-0016, epic #32 wave 0) — CONTRACT ONLY, no route file yet (hand
 | 401    | UNAUTHENTICATED.                                                                             | [`ApiError`](#standard-error-envelope) |
 | 404    | Unknown conversation, or one belonging to another account — the same neutral 404 either way. | [`ApiError`](#standard-error-envelope) |
 
-### `POST /api/v1/commerce/storefront/account/conversations/{id}/messages` — Issue #106 (ADR-0017 D8; not yet implemented, lands in #111). Reply on the account's own conversation. Reopens a `closed` conversation.
+### `POST /api/v1/commerce/storefront/account/conversations/{id}/messages` — Issue #111 (contract #106 D8). Post a message on the account's own conversation. 409 CONVERSATION_CLOSED once the thread is closed — a customer never reopens their own thread (only a store reply does).
 
 - **operationId**: `createCommerceStorefrontAccountConversationMessage`
 - **Security**: customerBearer
@@ -11615,12 +11623,14 @@ Issue #86 (ADR-0016, epic #32 wave 0) — CONTRACT ONLY, no route file yet (hand
 
 **Responses**
 
-| Status | Description                                                | Schema                                 |
-| ------ | ---------------------------------------------------------- | -------------------------------------- |
-| 201    | Message added.                                             | object                                 |
-| 400    | Validation error.                                          | [`ApiError`](#standard-error-envelope) |
-| 401    | UNAUTHENTICATED.                                           | [`ApiError`](#standard-error-envelope) |
-| 404    | Unknown conversation, or one belonging to another account. | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                                                       | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 201    | Message added.                                                                                                                                    | object                                 |
+| 400    | Validation error.                                                                                                                                 | [`ApiError`](#standard-error-envelope) |
+| 401    | UNAUTHENTICATED.                                                                                                                                  | [`ApiError`](#standard-error-envelope) |
+| 404    | Unknown conversation, or one belonging to another account.                                                                                        | [`ApiError`](#standard-error-envelope) |
+| 409    | CONVERSATION_CLOSED.                                                                                                                              | [`ApiError`](#standard-error-envelope) |
+| 429    | RATE_LIMITED — either the IP-scoped preflight limiter, or COMMERCE_CONVERSATION_POST_RATE_LIMIT_MAX (default 10) posts per hour for this account. | [`ApiError`](#standard-error-envelope) |
 
 ### `POST /api/v1/commerce/storefront/account/logout` — Issue #89 (implemented, contract #86). Revoke the presented bearer session (D3).
 
@@ -11647,7 +11657,7 @@ Issue #86 (ADR-0016, epic #32 wave 0) — CONTRACT ONLY, no route file yet (hand
 | 401    | UNAUTHENTICATED — missing, invalid, or expired bearer. | [`ApiError`](#standard-error-envelope) |
 | 403    | ACCOUNT_BLOCKED.                                       | [`ApiError`](#standard-error-envelope) |
 
-### `PATCH /api/v1/commerce/storefront/account/me` — Issue #89 (implemented, contract #86). Update the account's display name. No e-mail/phone change in this increment (D6). `marketingConsent` (Issue #106 ADR-0017 D9; not yet implemented, lands in #115) is the ONLY field a campaign's audience resolution ever reads to decide reachability.
+### `PATCH /api/v1/commerce/storefront/account/me` — Issue #89 (implemented, contract #86). Update the account's display name. No e-mail/phone change in this increment (D6). `marketingConsent` (Issue #114, contract #106 ADR-0017 D9) is the ONLY field a campaign's audience resolution ever reads to decide reachability.
 
 - **operationId**: `updateCommerceStorefrontAccountMe`
 - **Security**: customerBearer

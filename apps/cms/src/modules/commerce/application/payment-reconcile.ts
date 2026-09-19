@@ -35,6 +35,8 @@ import {
   type PendingGatewaySessionForReconcile
 } from "./payment-gateway-directory";
 import { expireOrderBySystem, markOrderPaidBySystem } from "./order-directory";
+import { guardPaymentAmount } from "./payment-webhook-intake";
+import { isTerminalFailureStatus } from "../domain/payment-amount-guard";
 import type { PaymentGatewayProvider } from "../domain/payment-gateway-provider";
 
 /** Sessions younger than this are left alone — the webhook is still the expected path; only a session stuck `pending` longer than this is worth a provider round trip. */
@@ -47,6 +49,13 @@ export type ReconcileTickResult = {
   expiredOrders: number;
   fetchFailures: number;
 };
+
+/** Midtrans's own status response carries `gross_amount`; the `log` adapter's does not. Read it when present so the reconcile path runs the SAME amount guard the webhook route does. */
+function readReportedGrossAmount(raw: unknown): string | undefined {
+  if (typeof raw !== "object" || raw === null) return undefined;
+  const value = (raw as Record<string, unknown>).gross_amount;
+  return typeof value === "string" && value.length > 0 ? value : undefined;
+}
 
 async function applyFetchedStatus(
   sql: Bun.SQL,
@@ -61,6 +70,48 @@ async function applyFetchedStatus(
     sql,
     tenantId,
     async (tx) => {
+      // Same defense-in-depth amount guard the webhook route applies
+      // (`payment-webhook-intake.ts`'s `guardPaymentAmount`): a mismatch is
+      // recorded as an `amount_mismatch` payment event + audit entry, never
+      // marks the order paid, and moves the session only on a terminal
+      // provider failure.
+      const eventKey = `reconcile:${session.providerRef}:${status}`;
+      const mismatch = await guardPaymentAmount(
+        tx,
+        tenantId,
+        session.orderId,
+        readReportedGrossAmount(raw),
+        {
+          provider: providerKey,
+          providerRef: session.providerRef,
+          eventKey,
+          status,
+          correlationId
+        }
+      );
+      if (mismatch) {
+        await tx`
+          INSERT INTO awcms_commerce_payment_events (
+            tenant_id, provider, event_key, provider_ref, order_id, payload, outcome
+          )
+          VALUES (
+            ${tenantId}, ${providerKey}, ${eventKey}, ${session.providerRef},
+            ${session.orderId}, ${JSON.stringify(raw ?? null)}, 'amount_mismatch'
+          )
+          ON CONFLICT (tenant_id, provider, event_key) DO NOTHING
+        `;
+        if (isTerminalFailureStatus(status)) {
+          await updateGatewaySessionStatus(
+            tx,
+            tenantId,
+            session.id,
+            "failed",
+            raw
+          );
+        }
+        return { markedPaid: false, expiredOrder: false };
+      }
+
       await updateGatewaySessionStatus(tx, tenantId, session.id, status, raw);
 
       if (status === "paid") {

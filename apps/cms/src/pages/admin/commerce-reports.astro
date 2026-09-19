@@ -1,0 +1,694 @@
+---
+/**
+ * `/admin/commerce-reports` — sales reports (Issue #117, epic #33 C8,
+ * contract #106 / ADR-0017 D7). Three tables over one date range, read
+ * straight from the `commerce.sales_*` projection tables the `reporting`
+ * engine maintains (sql/933): sales by day, by product, by category.
+ *
+ * Entry is `reporting.dashboard.read` — the same permission the three
+ * `GET /api/v1/reports/commerce/*` routes gate on. Three OPTIONAL panels ride
+ * on the reporting module's own permissions and appear only when held:
+ *
+ *   - freshness of each projection (`reporting.projections.read`), read
+ *     through the same `projection-directory.ts` `/admin/reporting` uses;
+ *   - "Export CSV" per projection (`reporting.exports.export`) — a POST to the
+ *     REAL `/api/v1/reports/exports/trigger` endpoint with a fresh
+ *     `Idempotency-Key`, exactly as `/admin/reporting`'s on-demand export
+ *     does, never a bespoke download route: the artifact is written by the
+ *     same generator, checksummed, and served by the same download endpoint
+ *     that re-checks RBAC/ABAC and refuses an expired file;
+ *   - the most recent export runs of the three projections with their
+ *     download links (`reporting.exports.read`).
+ *
+ * The date range is a plain GET form (works without JavaScript, ships no
+ * bundle for the filter itself) validated by the same
+ * `validateSalesReportRange` the API routes use, so the screen and the API
+ * can never disagree about defaults or bounds. Money renders through
+ * `formatCurrency` in IDR: the projection stores `numeric(14,2)` strings and
+ * the wire keeps them as strings (ADR-0003); only the presentation formats.
+ */
+import AdminLayout from "../../layouts/AdminLayout.astro";
+import "../../styles/admin-screens.css";
+import { loadAdminScreen } from "../../lib/auth/admin-screen";
+import { logAdminPageError } from "../../lib/logging/error-log";
+import { getTranslatorFor } from "../../lib/i18n";
+import { formatCurrency, formatNumber } from "../../lib/i18n/format";
+import {
+  listSalesByCategory,
+  listSalesByProduct,
+  listSalesDaily
+} from "../../modules/commerce/application/sales-report-directory";
+import {
+  MAX_SALES_BY_PRODUCT_LIMIT,
+  validateSalesReportRange
+} from "../../modules/commerce/domain/sales-report-query";
+import {
+  SALES_BY_CATEGORY_PROJECTION_KEY,
+  SALES_BY_PRODUCT_PROJECTION_KEY,
+  SALES_DAILY_PROJECTION_KEY,
+  SALES_REPORT_PROJECTION_KEYS
+} from "../../modules/commerce/domain/sales-report-keys";
+import { SALES_REPORT_TIME_ZONE } from "../../modules/commerce/domain/sales-report-deltas";
+import { listProjectionSummariesForTenant } from "../../modules/reporting/application/projection-directory";
+import type { ProjectionSummaryView } from "../../modules/reporting/application/projection-directory";
+import {
+  listExportRuns,
+  type ExportRunRow
+} from "../../modules/reporting/application/export-run-store";
+
+const ssr = Astro.locals.ssrContext!;
+const locale = Astro.locals.locale;
+const { t } = getTranslatorFor(locale);
+
+const rangeInput = {
+  from: Astro.url.searchParams.get("from"),
+  to: Astro.url.searchParams.get("to")
+};
+const rangeValidation = validateSalesReportRange(rangeInput);
+// An invalid query falls back to the default window (and says so below)
+// rather than rendering an error page — the same range the API defaults to.
+const defaultRange = validateSalesReportRange({});
+const range = rangeValidation.valid
+  ? rangeValidation.value
+  : defaultRange.valid
+    ? defaultRange.value
+    : { from: "", to: "" };
+const rangeErrors = rangeValidation.valid ? [] : rangeValidation.errors;
+
+const PRODUCT_LIMIT = 50;
+
+const screen = await loadAdminScreen({
+  ssr,
+  workClass: "reporting",
+  authorize: {
+    moduleKey: "reporting",
+    activityCode: "dashboard",
+    action: "read"
+  },
+  load: async ({ tx, auth, can }) => {
+    const [daily, byProduct, byCategory] = [
+      await listSalesDaily(tx, ssr.tenantId, range),
+      await listSalesByProduct(tx, ssr.tenantId, range, PRODUCT_LIMIT),
+      await listSalesByCategory(tx, ssr.tenantId, range)
+    ];
+
+    const canReadProjections = await can({
+      moduleKey: "reporting",
+      activityCode: "projections",
+      action: "read"
+    });
+    const canReadExports = await can({
+      moduleKey: "reporting",
+      activityCode: "exports",
+      action: "read"
+    });
+    const canTriggerExport = await can({
+      moduleKey: "reporting",
+      activityCode: "exports",
+      action: "export"
+    });
+
+    const projections = canReadProjections
+      ? (
+          await listProjectionSummariesForTenant(
+            tx,
+            ssr.tenantId,
+            auth.grantedPermissionKeys
+          )
+        ).filter((projection) =>
+          (SALES_REPORT_PROJECTION_KEYS as readonly string[]).includes(
+            projection.key
+          )
+        )
+      : [];
+
+    const exportRuns = canReadExports
+      ? (await listExportRuns(tx, ssr.tenantId))
+          .filter((run) =>
+            (SALES_REPORT_PROJECTION_KEYS as readonly string[]).includes(
+              run.projectionKey
+            )
+          )
+          .slice(0, 10)
+      : [];
+
+    return {
+      daily,
+      byProduct,
+      byCategory,
+      projections,
+      exportRuns,
+      canTriggerExport,
+      canReadExports
+    };
+  },
+  onError: (error) => {
+    logAdminPageError(
+      "admin/commerce-reports.astro: failed to load sales reports",
+      error,
+      { correlationId: Astro.locals.correlationId }
+    );
+  }
+});
+
+const canRead = screen.state !== "denied";
+const loadError = screen.state === "error";
+const daily = screen.state === "allowed" ? screen.data.daily : [];
+const byProduct = screen.state === "allowed" ? screen.data.byProduct : [];
+const byCategory = screen.state === "allowed" ? screen.data.byCategory : [];
+const projections: ProjectionSummaryView[] =
+  screen.state === "allowed" ? screen.data.projections : [];
+const exportRuns: ExportRunRow[] =
+  screen.state === "allowed" ? screen.data.exportRuns : [];
+const canTriggerExport =
+  screen.state === "allowed" && screen.data.canTriggerExport;
+const canReadExports = screen.state === "allowed" && screen.data.canReadExports;
+
+const CURRENCY = "IDR";
+const money = (value: string) =>
+  formatCurrency(locale, value, CURRENCY, { maximumFractionDigits: 0 });
+const count = (value: number) => formatNumber(locale, value);
+
+const totals = daily.reduce(
+  (sum, row) => ({
+    ordersPaid: sum.ordersPaid + row.ordersPaid,
+    gross: sum.gross + Number(row.gross),
+    discount: sum.discount + Number(row.discount),
+    shipping: sum.shipping + Number(row.shipping),
+    net: sum.net + Number(row.net)
+  }),
+  { ordersPaid: 0, gross: 0, discount: 0, shipping: 0, net: 0 }
+);
+
+/** Freshness status -> `status-badge` variant — same mapping `/admin/reporting` uses. */
+const FRESHNESS_VARIANT: Record<string, string> = {
+  current: "success",
+  delayed: "warning",
+  stale: "warning",
+  rebuilding: "info",
+  failed: "danger"
+};
+
+const PROJECTION_LABELS: Record<string, string> = {
+  [SALES_DAILY_PROJECTION_KEY]: t("Sales by day"),
+  [SALES_BY_PRODUCT_PROJECTION_KEY]: t("Sales by product"),
+  [SALES_BY_CATEGORY_PROJECTION_KEY]: t("Sales by category")
+};
+
+function formatAge(ageSeconds: number | null): string {
+  if (ageSeconds === null) return t("never updated");
+  if (ageSeconds < 90) return t("{n}s ago", { n: Math.round(ageSeconds) });
+  if (ageSeconds < 5400)
+    return t("{n}m ago", { n: Math.round(ageSeconds / 60) });
+  if (ageSeconds < 172800)
+    return t("{n}h ago", { n: Math.round(ageSeconds / 3600) });
+  return t("{n}d ago", { n: Math.round(ageSeconds / 86400) });
+}
+
+function isExpired(run: ExportRunRow): boolean {
+  return run.expiresAt !== null && run.expiresAt.getTime() <= Date.now();
+}
+
+function formatTimestamp(value: Date | string | null): string {
+  if (value === null) return "—";
+  return typeof value === "string" ? value : value.toISOString();
+}
+---
+
+<AdminLayout
+  title={t("Sales reports")}
+  description={t(
+    "Paid sales by day, product and category, from the reporting projections over the order event log. A cancellation or refund of a paid order is subtracted from the day it was paid on."
+  )}
+>
+  {
+    !canRead && (
+      <p class="state-notice fade-in-up" id="commerce-reports-denied">
+        {t("You do not have permission to view sales reports.")}
+      </p>
+    )
+  }
+  {
+    canRead && loadError && (
+      <p class="state-notice fade-in-up" id="commerce-reports-error">
+        {t(
+          "Sales reports could not be loaded right now. Please try again later."
+        )}
+      </p>
+    )
+  }
+
+  {
+    canRead && !loadError && (
+      <>
+        <form
+          class="admin-create-form fade-in-up"
+          method="get"
+          role="search"
+          id="sales-range-form"
+        >
+          <p class="form-legend">{t("Date range")}</p>
+          {rangeErrors.length > 0 && (
+            <p class="admin-create-error" role="alert" id="sales-range-error">
+              {t(
+                "The requested range was invalid — showing the default range instead."
+              )}
+            </p>
+          )}
+
+          <label for="sales-from">
+            {t("From")}
+            <input type="date" id="sales-from" name="from" value={range.from} />
+          </label>
+
+          <label for="sales-to">
+            {t("To")}
+            <input type="date" id="sales-to" name="to" value={range.to} />
+          </label>
+
+          <button type="submit" class="module-toggle">
+            {t("Apply range")}
+          </button>
+          <span class="cell-muted">
+            {t("Days are counted in {timeZone}.", {
+              timeZone: SALES_REPORT_TIME_ZONE
+            })}
+          </span>
+        </form>
+
+        <p
+          id="sales-export-error"
+          class="admin-create-error"
+          role="alert"
+          hidden
+        />
+
+        {projections.length > 0 && (
+          <section
+            class="admin-section fade-in-up"
+            id="sales-projection-freshness"
+            aria-labelledby="sales-freshness-title"
+          >
+            <h2 class="admin-section-title" id="sales-freshness-title">
+              {t("Projection freshness")}
+            </h2>
+            <div class="stat-grid">
+              {projections.map((projection) => (
+                <article
+                  class="admin-panel"
+                  data-projection-key={projection.key}
+                >
+                  <h3>
+                    {PROJECTION_LABELS[projection.key] ?? projection.key}
+                    <span
+                      class="status-badge"
+                      data-variant={
+                        FRESHNESS_VARIANT[projection.freshness.status] ??
+                        "neutral"
+                      }
+                    >
+                      <span class="status-dot" aria-hidden="true" />
+                      {projection.freshness.status}
+                    </span>
+                  </h3>
+                  <p class="cell-muted">
+                    {t("Last updated {age}.", {
+                      age: formatAge(projection.freshness.ageSeconds)
+                    })}{" "}
+                    <a class="quick-link" href="/admin/reporting">
+                      {t("Rebuild or reconcile")}
+                    </a>
+                  </p>
+                </article>
+              ))}
+            </div>
+          </section>
+        )}
+
+        <section
+          class="admin-section fade-in-up"
+          id="sales-daily"
+          aria-labelledby="sales-daily-title"
+        >
+          <h2 class="admin-section-title" id="sales-daily-title">
+            {t("Sales by day")}
+            <span class="count-pill">{daily.length}</span>
+            {canTriggerExport && (
+              <button
+                type="button"
+                class="btn-inline sales-export-btn"
+                data-projection-key={SALES_DAILY_PROJECTION_KEY}
+              >
+                {t("Export CSV")}
+              </button>
+            )}
+          </h2>
+          <div class="data-table-scroll">
+            <table class="data-table data-table--stack" id="sales-daily-table">
+              <caption>
+                {t("Paid orders per day, {from} to {to}.", {
+                  from: range.from,
+                  to: range.to
+                })}
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col">{t("Day")}</th>
+                  <th scope="col">{t("Paid orders")}</th>
+                  <th scope="col">{t("Gross")}</th>
+                  <th scope="col">{t("Discount")}</th>
+                  <th scope="col">{t("Shipping")}</th>
+                  <th scope="col">{t("Net")}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {daily.length === 0 ? (
+                  <tr>
+                    <td class="data-table-empty" colspan="6">
+                      <div class="empty-state">
+                        <span class="empty-state-icon" aria-hidden="true">
+                          ◇
+                        </span>
+                        <span class="empty-state-title">
+                          {t("No paid sales in this range")}
+                        </span>
+                        <span class="empty-state-text">
+                          {t(
+                            "Figures appear a few minutes after an order is paid, once the projection worker has run."
+                          )}
+                        </span>
+                      </div>
+                    </td>
+                  </tr>
+                ) : (
+                  daily.map((row) => (
+                    <tr data-sales-day={row.day}>
+                      <td data-label="Day">
+                        <span class="cell-code">{row.day}</span>
+                      </td>
+                      <td data-label="Paid orders">{count(row.ordersPaid)}</td>
+                      <td data-label="Gross">{money(row.gross)}</td>
+                      <td data-label="Discount">{money(row.discount)}</td>
+                      <td data-label="Shipping">{money(row.shipping)}</td>
+                      <td data-label="Net">{money(row.net)}</td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+              {daily.length > 0 && (
+                <tfoot>
+                  <tr>
+                    <th scope="row">{t("Total")}</th>
+                    <td data-label="Paid orders">{count(totals.ordersPaid)}</td>
+                    <td data-label="Gross">{money(String(totals.gross))}</td>
+                    <td data-label="Discount">
+                      {money(String(totals.discount))}
+                    </td>
+                    <td data-label="Shipping">
+                      {money(String(totals.shipping))}
+                    </td>
+                    <td data-label="Net">{money(String(totals.net))}</td>
+                  </tr>
+                </tfoot>
+              )}
+            </table>
+          </div>
+        </section>
+
+        <section
+          class="admin-section fade-in-up"
+          id="sales-by-product"
+          aria-labelledby="sales-by-product-title"
+        >
+          <h2 class="admin-section-title" id="sales-by-product-title">
+            {t("Sales by product")}
+            <span class="count-pill">{byProduct.length}</span>
+            {canTriggerExport && (
+              <button
+                type="button"
+                class="btn-inline sales-export-btn"
+                data-projection-key={SALES_BY_PRODUCT_PROJECTION_KEY}
+              >
+                {t("Export CSV")}
+              </button>
+            )}
+          </h2>
+          <div class="data-table-scroll">
+            <table
+              class="data-table data-table--stack"
+              id="sales-by-product-table"
+            >
+              <caption>
+                {t("Top {limit} products by gross, {from} to {to}.", {
+                  limit: Math.min(PRODUCT_LIMIT, MAX_SALES_BY_PRODUCT_LIMIT),
+                  from: range.from,
+                  to: range.to
+                })}
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col">{t("Product")}</th>
+                  <th scope="col">{t("Quantity")}</th>
+                  <th scope="col">{t("Gross")}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {byProduct.length === 0 ? (
+                  <tr>
+                    <td class="data-table-empty" colspan="3">
+                      <div class="empty-state">
+                        <span class="empty-state-icon" aria-hidden="true">
+                          ◇
+                        </span>
+                        <span class="empty-state-title">
+                          {t("No products sold in this range")}
+                        </span>
+                      </div>
+                    </td>
+                  </tr>
+                ) : (
+                  byProduct.map((row) => (
+                    <tr data-sales-product={row.productId}>
+                      <td data-label="Product">{row.productName}</td>
+                      <td data-label="Quantity">{count(row.qty)}</td>
+                      <td data-label="Gross">{money(row.gross)}</td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section
+          class="admin-section fade-in-up"
+          id="sales-by-category"
+          aria-labelledby="sales-by-category-title"
+        >
+          <h2 class="admin-section-title" id="sales-by-category-title">
+            {t("Sales by category")}
+            <span class="count-pill">{byCategory.length}</span>
+            {canTriggerExport && (
+              <button
+                type="button"
+                class="btn-inline sales-export-btn"
+                data-projection-key={SALES_BY_CATEGORY_PROJECTION_KEY}
+              >
+                {t("Export CSV")}
+              </button>
+            )}
+          </h2>
+          <div class="data-table-scroll">
+            <table
+              class="data-table data-table--stack"
+              id="sales-by-category-table"
+            >
+              <caption>
+                {t("Categories by gross, {from} to {to}.", {
+                  from: range.from,
+                  to: range.to
+                })}
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col">{t("Category")}</th>
+                  <th scope="col">{t("Quantity")}</th>
+                  <th scope="col">{t("Gross")}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {byCategory.length === 0 ? (
+                  <tr>
+                    <td class="data-table-empty" colspan="3">
+                      <div class="empty-state">
+                        <span class="empty-state-icon" aria-hidden="true">
+                          ◇
+                        </span>
+                        <span class="empty-state-title">
+                          {t("No categories sold in this range")}
+                        </span>
+                      </div>
+                    </td>
+                  </tr>
+                ) : (
+                  byCategory.map((row) => (
+                    <tr data-sales-category={row.categoryId ?? "uncategorised"}>
+                      <td data-label="Category">
+                        {row.categoryId === null
+                          ? t("Uncategorised")
+                          : row.categoryName}
+                      </td>
+                      <td data-label="Quantity">{count(row.qty)}</td>
+                      <td data-label="Gross">{money(row.gross)}</td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        {canReadExports && (
+          <section
+            class="admin-section fade-in-up"
+            id="sales-export-runs"
+            aria-labelledby="sales-export-runs-title"
+          >
+            <h2 class="admin-section-title" id="sales-export-runs-title">
+              {t("Recent CSV exports")}
+              <span class="count-pill">{exportRuns.length}</span>
+            </h2>
+            <p class="page-description">
+              {t(
+                "Each export is the full projection (every day, not just the range shown), written and checksummed by the reporting export mechanism. Downloads re-check your permission and refuse an expired file."
+              )}{" "}
+              <a class="quick-link" href="/admin/reporting">
+                {t("Schedule recurring exports")}
+              </a>
+            </p>
+            <div class="data-table-scroll">
+              <table
+                class="data-table data-table--stack"
+                id="sales-export-runs-table"
+              >
+                <caption>
+                  {t("Export runs of the three sales projections.")}
+                </caption>
+                <thead>
+                  <tr>
+                    <th scope="col">{t("Report")}</th>
+                    <th scope="col">{t("Format")}</th>
+                    <th scope="col">{t("Status")}</th>
+                    <th scope="col">{t("Rows")}</th>
+                    <th scope="col">{t("Generated")}</th>
+                    <th scope="col">{t("Artifact")}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {exportRuns.length === 0 ? (
+                    <tr>
+                      <td class="data-table-empty" colspan="6">
+                        <div class="empty-state">
+                          <span class="empty-state-icon" aria-hidden="true">
+                            ◇
+                          </span>
+                          <span class="empty-state-title">
+                            {t("No exports yet")}
+                          </span>
+                          <span class="empty-state-text">
+                            {t(
+                              "Use an Export CSV button above to generate one."
+                            )}
+                          </span>
+                        </div>
+                      </td>
+                    </tr>
+                  ) : (
+                    exportRuns.map((run) => (
+                      <tr data-export-run={run.id}>
+                        <td data-label="Report">
+                          {PROJECTION_LABELS[run.projectionKey] ??
+                            run.projectionKey}
+                        </td>
+                        <td data-label="Format">
+                          <span class="cell-code">{run.format}</span>
+                        </td>
+                        <td data-label="Status">
+                          <span
+                            class="status-badge"
+                            data-variant={
+                              run.status === "completed" ? "success" : "danger"
+                            }
+                          >
+                            <span class="status-dot" aria-hidden="true" />
+                            {run.status}
+                          </span>
+                        </td>
+                        <td data-label="Rows">{count(run.rowCount)}</td>
+                        <td data-label="Generated">
+                          <span class="cell-muted">
+                            {formatTimestamp(run.createdAt)}
+                          </span>
+                        </td>
+                        <td data-label="Artifact">
+                          {run.status === "completed" && !isExpired(run) ? (
+                            <a
+                              class="quick-link"
+                              href={`/api/v1/reports/exports/runs/${run.id}/download`}
+                            >
+                              {t("Download")}
+                              <span class="quick-link-arrow" aria-hidden="true">
+                                →
+                              </span>
+                            </a>
+                          ) : (
+                            <span class="cell-muted">
+                              {isExpired(run) ? t("expired") : t("unavailable")}
+                            </span>
+                          )}
+                        </td>
+                      </tr>
+                    ))
+                  )}
+                </tbody>
+              </table>
+            </div>
+          </section>
+        )}
+      </>
+    )
+  }
+</AdminLayout>
+
+<script>
+  // The import is load-bearing for CSP (`default-src 'self'`, no
+  // `'unsafe-inline'`): it forces an external `/_astro/*.js` bundle.
+  import {
+    messageBox,
+    mutateAndReload,
+    onAction,
+    sendJson
+  } from "../../lib/ui/admin-form-client";
+
+  const exportError = messageBox("sales-export-error");
+
+  onAction(".sales-export-btn", async (button) => {
+    const projectionKey = button.dataset.projectionKey;
+    if (!projectionKey) return;
+
+    await mutateAndReload(
+      button,
+      exportError,
+      () =>
+        sendJson(
+          "POST",
+          "/api/v1/reports/exports/trigger",
+          { projectionKey, format: "csv" },
+          // Fresh per click: reusing one key would replay the first response.
+          { "Idempotency-Key": crypto.randomUUID() }
+        ),
+      "Could not generate the export. Please try again.",
+      "Exporting…"
+    );
+  });
+</script>

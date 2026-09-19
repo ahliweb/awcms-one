@@ -232,25 +232,6 @@ const ALLOWED_PUBLIC_OPERATIONS = new Set([
  * again once that issue's route file lands.
  */
 const ROUTE_PARITY_EXEMPTIONS = new Set<string>([
-  // #111 — customer inbox: conversations/messages, bearer + owner endpoints.
-  "/api/v1/commerce/storefront/account/conversations",
-  "/api/v1/commerce/storefront/account/conversations/{id}",
-  "/api/v1/commerce/storefront/account/conversations/{id}/messages",
-  "/api/v1/commerce/conversations",
-  "/api/v1/commerce/conversations/{id}",
-  "/api/v1/commerce/conversations/{id}/messages",
-  // #114 — customer campaigns: consent, e-mail/WhatsApp mass notification,
-  // dispatcher, admin screen.
-  "/api/v1/commerce/campaigns",
-  "/api/v1/commerce/campaigns/{id}",
-  "/api/v1/commerce/campaigns/{id}/preview",
-  "/api/v1/commerce/campaigns/{id}/send",
-  "/api/v1/commerce/campaigns/{id}/cancel",
-  // #117 — sales reports: three reporting projections over order events +
-  // reports screen.
-  "/api/v1/reports/commerce/sales-daily",
-  "/api/v1/reports/commerce/sales-by-product",
-  "/api/v1/reports/commerce/sales-by-category"
 ]);
 
 type OpenApiDocument = {
