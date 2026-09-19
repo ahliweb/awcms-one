@@ -77,6 +77,17 @@ export type PaymentSettings = {
    * offering an upload the CMS has nowhere to receive.
    */
   proofUpload?: boolean;
+  /**
+   * Issue #112 (contract: #106 D3) — whether this tenant's payment gateway
+   * (Midtrans Snap, `apps/cms`'s own `COMMERCE_PAYMENT_GATEWAY` env) is
+   * turned on. This app itself never branches on this field directly —
+   * `/checkout` always renders whatever `quoteCart`'s own `paymentMethods[]`
+   * lists, the same posture every other payment method here already takes —
+   * it is modelled here, `?? false`-checked wherever read, only so
+   * `PaymentSettings` stays a faithful mirror of the public read model, per
+   * this file's own `proofUpload`/`affiliateProgramEnabled` convention.
+   */
+  gatewayEnabled?: boolean;
 };
 
 export type StoreSettings = {

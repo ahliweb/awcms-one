@@ -131,6 +131,53 @@ test("picking a district prices real courier options, and choosing one carries i
   await expect(page.locator("[data-order-status]")).toContainText("Menunggu pembayaran");
 });
 
+test("a gateway order redirects to the stub's own hosted page, and paying there shows the tracking page as paid (issue #112)", async ({
+  page
+}) => {
+  await page.goto("/product/kopi-arabika-kalteng-250g");
+  await page.locator("[data-add-to-cart]").click();
+  await expect(page.locator("[data-cart-feedback]")).toBeVisible();
+
+  await page.goto("/checkout");
+
+  // Step 1: contact.
+  await page.locator("#customer-name").fill("Rina Wulandari");
+  await page.locator("#customer-phone").fill("081234567892");
+  await page.locator('[data-step-next="contact"]').click();
+
+  // Step 2: address — self-pickup, skipped.
+  await expect(page.locator('[data-step="address"]')).toBeVisible();
+  await page.locator('[data-step-next="address"]').click();
+
+  // Step 3: shipping — self-pickup.
+  await expect(page.locator('[data-step="shipping"]')).toBeVisible();
+  await page.getByLabel(/Ambil di toko/).check();
+  await page.locator('[data-step-next="shipping"]').click();
+
+  // Step 4: payment — the gateway option, listed because the stub's own
+  // `store-settings-public.json` carries `payment.gatewayEnabled: true`.
+  await expect(page.locator('[data-step="payment"]')).toBeVisible();
+  await page.getByLabel(/Bayar online/).check();
+  await page.locator('[data-step-next="payment"]').click();
+
+  // Step 5: review and submit — this whole tab navigates to the stub's own
+  // hosted payment page (a DIFFERENT origin, the stub's own port), never
+  // `/pesanan` directly, matching ADR-0010's "redirect-based" flow.
+  await expect(page.locator('[data-step="review"]')).toBeVisible();
+  await page.locator("[data-submit-order]").click();
+
+  await page.waitForURL(/\/stub\/gateway\//);
+  await expect(page.getByRole("button", { name: "Bayar (simulasi)" })).toBeVisible();
+
+  // "Bayar (simulasi)" flips the order to paid on the stub, then redirects
+  // this SAME tab back to `/pesanan?kode=…` on the storefront's own origin.
+  await page.getByRole("button", { name: "Bayar (simulasi)" }).click();
+
+  await page.waitForURL(/\/pesanan\?kode=/);
+  await expect(page.locator("[data-order-status]")).toContainText("Sudah dibayar");
+  await expect(page.locator("[data-gateway-pay]")).toBeHidden();
+});
+
 test("a wrong phone shows the neutral not-found state, never a hint about which part was wrong", async ({
   page
 }) => {

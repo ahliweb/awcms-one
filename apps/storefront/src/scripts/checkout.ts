@@ -8,6 +8,7 @@
 import { loadCart, clearCart } from "../lib/keranjang-klien";
 import type { Cart } from "../lib/keranjang-kontrak";
 import {
+  createGatewaySession,
   createOrder,
   quoteCart,
   TokoApiError,
@@ -16,6 +17,7 @@ import {
   type CreateOrderRequest,
   type ShippingSelection
 } from "../lib/toko-klien";
+import { isValidGatewayRedirectUrl } from "../lib/gateway-redirect";
 import { formatPrice } from "../lib/harga";
 import { describeShippingOption, isShippingOptionSelected } from "../lib/kurir-opsi";
 import { previewIndonesianPhone } from "../lib/telepon";
@@ -300,7 +302,12 @@ if (root) {
     const PAYMENT_LABELS: Record<string, string> = {
       manual_qris: "QRIS",
       manual_bank: "Transfer Bank",
-      dp: "Bayar DP"
+      dp: "Bayar DP",
+      // Issue #112 (contract: #106 D3) — listed only when the quote's own
+      // `paymentMethods[]` includes `gateway` at all (this loop below never
+      // renders a method the quote did not list), so this label never
+      // appears on a tenant whose gateway is off.
+      gateway: "Bayar online (kartu, VA, e-wallet)"
     };
 
     function renderPaymentOptions(quote: CartQuote): void {
@@ -563,7 +570,8 @@ if (root) {
         // Re-read at submit time: `bacaSesi()` drops an expired session, so a
         // shopper whose 30-day token lapsed mid-checkout places a guest order
         // instead of sending a stale Bearer the CMS would reject.
-        const order = await createOrder(request, bacaSesi()?.token);
+        const bearerToken = bacaSesi()?.token;
+        const order = await createOrder(request, bearerToken);
         clearCart();
         try {
           window.sessionStorage.setItem(PESANAN_PHONE_KEY, request.customer.phone);
@@ -571,7 +579,32 @@ if (root) {
           // A blocked sessionStorage means `/pesanan` will ask for the
           // phone again — not ideal, but not a lost order either.
         }
-        window.location.href = `/pesanan?kode=${encodeURIComponent(order.orderCode)}`;
+
+        const trackingUrl = `/pesanan?kode=${encodeURIComponent(order.orderCode)}`;
+
+        // Issue #112 (contract: #106 D3) — the order itself is placed
+        // exactly as before regardless of payment method; a `gateway` order
+        // additionally needs its OWN session, created right after, whose
+        // `redirectUrl` this whole tab navigates to. Any failure here — the
+        // session call itself, or an invalid `redirectUrl` — still falls
+        // through to `/pesanan`, which offers "Bayar sekarang" to retry: the
+        // order was already placed successfully, so this is never treated
+        // as a checkout failure.
+        if (request.payment.method === "gateway") {
+          try {
+            const session = await createGatewaySession(order.orderCode, request.customer.phone, bearerToken);
+            if (!isValidGatewayRedirectUrl(session.redirectUrl)) {
+              throw new Error(`Gateway returned an unusable redirectUrl: ${session.redirectUrl}`);
+            }
+            window.location.assign(session.redirectUrl);
+            return;
+          } catch {
+            window.location.href = trackingUrl;
+            return;
+          }
+        }
+
+        window.location.href = trackingUrl;
       } catch (error) {
         showSubmitError(error);
       } finally {

@@ -8,6 +8,7 @@
 import { afterEach, beforeEach, describe, expect, test } from "bun:test";
 import {
   cancelOrder,
+  createGatewaySession,
   createOrder,
   getOrder,
   quoteCart,
@@ -121,6 +122,41 @@ describe("toko-klien: request builder", () => {
     mockFetch(200, { success: true, data: {} });
     await getOrder("BJM 1/2", "0812");
     expect(lastRequest?.url).toContain("/orders/BJM%201%2F2");
+  });
+
+  test("createGatewaySession POSTs to the documented path with {phone} when given a phone, no Authorization", async () => {
+    mockFetch(201, {
+      success: true,
+      data: { redirectUrl: "https://gateway.example/pay/1", expiresAt: "2026-09-19T00:00:00.000Z", providerRef: "ref-1" }
+    });
+
+    const session = await createGatewaySession("BJM-1", "0812");
+
+    expect(lastRequest?.url).toContain("/orders/BJM-1/payment-gateway/sessions");
+    expect(lastRequest?.init.method).toBe("POST");
+    expect(JSON.parse(String(lastRequest?.init.body))).toEqual({ phone: "0812" });
+    expect((lastRequest?.init.headers as Record<string, string>).Authorization).toBeUndefined();
+    expect(session.redirectUrl).toBe("https://gateway.example/pay/1");
+  });
+
+  test("createGatewaySession sends no phone field, and Authorization: Bearer, when a bearer token is given instead", async () => {
+    mockFetch(201, {
+      success: true,
+      data: { redirectUrl: "https://gateway.example/pay/2", expiresAt: "2026-09-19T00:00:00.000Z", providerRef: "ref-2" }
+    });
+
+    await createGatewaySession("BJM-2", null, "cs_stub_1");
+
+    expect(JSON.parse(String(lastRequest?.init.body))).toEqual({});
+    expect((lastRequest?.init.headers as Record<string, string>).Authorization).toBe("Bearer cs_stub_1");
+  });
+
+  test("a 409 PAYMENT_NOT_APPLICABLE / 503 GATEWAY_UNAVAILABLE from the session endpoint surface as TokoApiError", async () => {
+    mockFetch(409, { success: false, error: { code: "PAYMENT_NOT_APPLICABLE", message: "not a gateway order" } });
+    await expect(createGatewaySession("BJM-3", "0812")).rejects.toMatchObject({ code: "PAYMENT_NOT_APPLICABLE" });
+
+    mockFetch(503, { success: false, error: { code: "GATEWAY_UNAVAILABLE", message: "gateway down" } });
+    await expect(createGatewaySession("BJM-3", "0812")).rejects.toMatchObject({ code: "GATEWAY_UNAVAILABLE" });
   });
 });
 

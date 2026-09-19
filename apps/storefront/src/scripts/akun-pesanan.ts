@@ -22,13 +22,16 @@
  * SERVER does the filtering, not this client.
  */
 import { ambilPesananAkunByKode, ambilPesananAkun, type AkunPesananHalaman } from "../lib/akun-klien";
-import { bacaSesi } from "../lib/akun-sesi";
+import { bacaSesi, hapusSesi } from "../lib/akun-sesi";
 import { AKUN_EVENT_NAME } from "../lib/akun-kontrak";
 import { createPesananRenderer, STATUS_LABELS } from "../lib/pesanan-render";
 import { formatPrice } from "../lib/harga";
+import { createGatewaySession, type Order, type OrderStatus } from "../lib/toko-klien";
 import { TokoApiError } from "../lib/toko-permintaan";
 import { ROUTES } from "../config/routes";
 import { buildWhatsappAccountMessage, buildWhatsappUrl } from "../lib/wa-fallback";
+import { isValidGatewayRedirectUrl } from "../lib/gateway-redirect";
+import { wirePesananPolling, type PesananPoller } from "../lib/pesanan-poll";
 
 const root = document.querySelector<HTMLElement>("[data-akun-pesanan-root]");
 if (root) {
@@ -113,6 +116,8 @@ if (root) {
   const detailTimelineEl = detailView?.querySelector<HTMLOListElement>("[data-order-timeline]") ?? null;
   const detailPaymentSection = detailView?.querySelector<HTMLElement>("[data-payment-section]") ?? null;
   const detailPaymentInstructionsEl = detailView?.querySelector<HTMLElement>("[data-payment-instructions]") ?? null;
+  const detailGatewayPayButton = detailView?.querySelector<HTMLButtonElement>("[data-gateway-pay]") ?? null;
+  const detailGatewayStatusEl = detailView?.querySelector<HTMLElement>("[data-gateway-status]") ?? null;
   const detailLinesEl = detailView?.querySelector<HTMLElement>("[data-order-lines]") ?? null;
   const detailSummaryEl = detailView?.querySelector<HTMLElement>("[data-order-summary]") ?? null;
   const detailErrorEl = detailView?.querySelector<HTMLElement>("[data-order-error]") ?? null;
@@ -126,9 +131,79 @@ if (root) {
     timelineEl: detailTimelineEl,
     paymentSection: detailPaymentSection,
     paymentInstructionsEl: detailPaymentInstructionsEl,
+    gatewayPayButton: detailGatewayPayButton,
+    gatewayStatusEl: detailGatewayStatusEl,
     linesEl: detailLinesEl,
     summaryEl: detailSummaryEl
     // No confirmSection/cancelButton/contactWaLink — see this file's own docblock.
+  });
+
+  // --- gateway payment: "Bayar sekarang" + live polling (issue #112) --------
+  //
+  // Unlike `/pesanan`, this view already knows the shopper is signed in
+  // (`render()` below never reaches `loadDetail` otherwise) — `bacaSesi()`'s
+  // own token is passed as the Bearer, no phone prompt, matching this file's
+  // own "no phone prompt at all" rule for the whole detail view.
+
+  let poller: PesananPoller | undefined;
+
+  function stopPolling(): void {
+    poller?.stop();
+    poller = undefined;
+  }
+
+  function maybeStartPolling(kode: string, order: Order): void {
+    stopPolling();
+    if (order.paymentMethod !== "gateway" || order.status !== "pending_payment") return;
+
+    let trackedStatus: OrderStatus = order.status;
+    let trackedExpiresAt = order.expiresAt;
+
+    poller = wirePesananPolling({
+      getOrderState: () => ({ status: trackedStatus, expiresAt: trackedExpiresAt }),
+      fetchAndRender: async () => {
+        try {
+          const fresh = await ambilPesananAkunByKode(kode);
+          trackedStatus = fresh.status;
+          trackedExpiresAt = fresh.expiresAt;
+          renderOrder(fresh);
+        } catch {
+          // A transient fetch failure is not a stop condition — see
+          // `pesanan.ts`'s own identical comment.
+        }
+      }
+    });
+  }
+
+  detailGatewayPayButton?.addEventListener("click", async () => {
+    if (!orderCode) return;
+    const sesi = bacaSesi();
+    if (!sesi) {
+      render();
+      return;
+    }
+
+    detailGatewayPayButton.disabled = true;
+    if (detailGatewayStatusEl) detailGatewayStatusEl.textContent = "Membuka halaman pembayaran…";
+
+    try {
+      const session = await createGatewaySession(orderCode, null, sesi.token);
+      if (!isValidGatewayRedirectUrl(session.redirectUrl)) {
+        throw new Error(`Gateway returned an unusable redirectUrl: ${session.redirectUrl}`);
+      }
+      window.location.assign(session.redirectUrl);
+    } catch (error) {
+      detailGatewayPayButton.disabled = false;
+      if (error instanceof TokoApiError && error.code === "UNAUTHENTICATED") {
+        hapusSesi();
+        render();
+        return;
+      }
+      if (detailGatewayStatusEl) {
+        detailGatewayStatusEl.textContent =
+          error instanceof TokoApiError ? error.message : "Gagal membuka halaman pembayaran. Coba lagi.";
+      }
+    }
   });
 
   async function loadDetail(kode: string): Promise<void> {
@@ -137,6 +212,7 @@ if (root) {
       if (detailBodyEl) detailBodyEl.hidden = false;
       if (detailErrorEl) detailErrorEl.hidden = true;
       renderOrder(order);
+      maybeStartPolling(kode, order);
     } catch (error) {
       if (detailErrorEl) detailErrorEl.hidden = false;
       if (detailBodyEl) detailBodyEl.hidden = true;

@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](api.md)
 
-<!-- i18n-source-hash: sha256:4f25bf54f8365ae4a3e414ab8a6cd921601294b570cfe1508ea45ace8e9bf343 -->
+<!-- i18n-source-hash: sha256:fbde9f8fb1e2da933a981a71026da335106b7d5b0ea5d83909990f07982acc52 -->
 
 # API
 
@@ -65,10 +65,11 @@ Setiap rute me-resolve tenant-nya dari `Origin`/`Host` request terhadap `awcms_t
 | `POST` | `orders` | `{ idempotencyKey, customer, address\|null, lines[], shipping, payment, voucherCode, insurance, notes }` → `201` (atau `200` pada pengulangan idempoten kunci yang sama); `400 VALIDATION_ERROR` dengan `details[].{field,message}`; `409 CART_CHANGED` dengan `details.quote` baru kapan pun re-quote satu baris bukan `"ok"` |
 | `GET` | `orders/{code}?phone=` | Bentuk pesanan penuh; **`404 NOT_FOUND`, identik byte-demi-byte, untuk kode yang tidak dikenal, telepon yang salah, atau pesanan tenant lain** — satu respons netral, bukan tiga yang bisa dibedakan (lihat [ADR-0009](adr/0009-guest-checkout-by-order-code-and-phone.id.md)) |
 | `POST` | `orders/{code}/payment-confirmations` | `{phone, method, amount, bankName, accountName, transferredAt, proofMediaObjectId}`; `409 ORDER_NOT_PAYABLE` di luar `pending_payment` |
+| `POST` | `orders/{code}/payment-gateway/sessions` | Issue #112, kontrak: #106 D3. `{phone}` atau `Authorization: Bearer` → `201 {redirectUrl, expiresAt, providerRef}`; idempoten per pesanan (panggilan ulang menjawab sesi yang SAMA, tidak pernah yang kedua); `409 PAYMENT_NOT_APPLICABLE` ketika pesanan bukan pesanan `pending_payment`, `paymentMethod: "gateway"`; `503 GATEWAY_UNAVAILABLE` ketika provider milik deployment ini tidak terjangkau/salah konfigurasi |
 | `POST` | `orders/{code}/payment-proof/upload-sessions(/{id}/finalize)` | Selalu `503 MEDIA_UNAVAILABLE` di increment ini — lihat [`docs/cms.md`](cms.id.md) |
 | `POST` | `orders/{code}/cancel` | `{phone, reason}`; `409 ORDER_NOT_CANCELLABLE` di luar `pending_payment` |
 | `POST` | `reviews` | Membutuhkan pesanan `completed` untuk produk itu; dibuat dengan `status: pending`, dimoderasi di sisi owner |
-| `GET` | `store-settings/public` | Juga dipakai build storefront; rute yang sama melayani pemanggil saat-build maupun (pada prinsipnya) saat-runtime |
+| `GET` | `store-settings/public` | Juga dipakai build storefront; rute yang sama melayani pemanggil saat-build maupun (pada prinsipnya) saat-runtime. Mendapat `payment.gatewayEnabled` (issue #112) — saat `true`, `paymentMethods[]` milik `cart/quote` dapat mencantumkan `{method:"gateway", available:true}` |
 
 **`orders`/`reviews` kini juga menerima `customerBearer` OPSIONAL (#91):** hadir dan valid → pesanan/ulasan diatribusikan ke baris pelanggan milik akun itu sendiri alih-alih kredensial telepon tamu (telepon tetap divalidasi bentuknya dan tetap menjadi kunci rate limit per telepon); hadir tapi tidak valid/kedaluwarsa → `401 UNAUTHENTICATED`; tidak hadir sama sekali → tidak berubah. `POST orders` juga menerima `affiliateCode` di body — divalidasi bentuknya (string, maksimal 50 karakter) dan, sejak #92, diresolusi terhadap `awcms_commerce_affiliates.code`: kode yang tidak dikenal atau ditangguhkan tidak menautkan apa pun dan tidak pernah menggagalkan checkout; kode yang valid dan aktif mengatur `orders.affiliate_id`.
 
