@@ -507,6 +507,21 @@
       "source": "factory"
     },
     {
+      "path": "src/pages/api/v1/commerce/conversations/[id]/index.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/conversations/[id]/messages.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/conversations/index.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
       "path": "src/pages/api/v1/commerce/customers/[id].ts",
       "workClass": "interactive",
       "source": "factory"

@@ -8,12 +8,12 @@
 | Aspect                              | Value |
 | ----------------------------------- | ----- |
 | Registered modules                  | 25    |
-| Migrations                          | 178   |
-| `awcms_*` tables                    | 180   |
-| Tables with `FORCE` RLS             | 162   |
+| Migrations                          | 180   |
+| `awcms_*` tables                    | 182   |
+| Tables with `FORCE` RLS             | 164   |
 | RLS-free tables (global, by design) | 18    |
-| Test files                          | 545   |
-| Route files                         | 471   |
+| Test files                          | 546   |
+| Route files                         | 478   |
 | ADR                                 | 244   |
 
 ### Modules
@@ -228,6 +228,8 @@
 | 176 | `sql/923_awcms_commerce_affiliates_worker_lifecycle_purge_grants.sql`       |
 | 177 | `sql/924_awcms_commerce_shipping_rates_schema.sql`                          |
 | 178 | `sql/925_awcms_commerce_whatsapp_outbox_otp_channel.sql`                    |
+| 179 | `sql/927_awcms_commerce_conversations_schema.sql`                           |
+| 180 | `sql/928_awcms_commerce_conversations_permissions.sql`                      |
 
 ### Tables & Row-Level Security
 
@@ -270,6 +272,7 @@
 | `awcms_commerce_affiliate_commissions`      | `sql/921_awcms_commerce_affiliates_schema.sql`             | yes | yes   |
 | `awcms_commerce_affiliates`                 | `sql/921_awcms_commerce_affiliates_schema.sql`             | yes | yes   |
 | `awcms_commerce_categories`                 | `sql/901_awcms_commerce_schema.sql`                        | yes | yes   |
+| `awcms_commerce_conversations`              | `sql/927_awcms_commerce_conversations_schema.sql`          | yes | yes   |
 | `awcms_commerce_courier_destinations`       | `sql/924_awcms_commerce_shipping_rates_schema.sql`         | yes | yes   |
 | `awcms_commerce_customer_accounts`          | `sql/917_awcms_commerce_customer_accounts_schema.sql`      | yes | yes   |
 | `awcms_commerce_customer_addresses`         | `sql/913_awcms_commerce_customers_orders_schema.sql`       | yes | yes   |
@@ -278,6 +281,7 @@
 | `awcms_commerce_customers`                  | `sql/913_awcms_commerce_customers_orders_schema.sql`       | yes | yes   |
 | `awcms_commerce_flash_sale_products`        | `sql/909_awcms_commerce_marketing_schema.sql`              | yes | yes   |
 | `awcms_commerce_flash_sales`                | `sql/909_awcms_commerce_marketing_schema.sql`              | yes | yes   |
+| `awcms_commerce_messages`                   | `sql/927_awcms_commerce_conversations_schema.sql`          | yes | yes   |
 | `awcms_commerce_order_events`               | `sql/913_awcms_commerce_customers_orders_schema.sql`       | yes | yes   |
 | `awcms_commerce_order_items`                | `sql/913_awcms_commerce_customers_orders_schema.sql`       | yes | yes   |
 | `awcms_commerce_orders`                     | `sql/913_awcms_commerce_customers_orders_schema.sql`       | yes | yes   |
@@ -420,15 +424,15 @@
 | ------------- | ---------- |
 | `(root)`      | 437        |
 | `e2e`         | 19         |
-| `integration` | 88         |
+| `integration` | 89         |
 | `unit`        | 1          |
 
 ### Routes
 
 | Surface         | Files |
 | --------------- | ----- |
-| `/api/v1/**`    | 378   |
-| `/admin/**`     | 63    |
+| `/api/v1/**`    | 384   |
+| `/admin/**`     | 64    |
 | publik / anonim | 30    |
 
 <!-- END GENERATED: repo-inventory -->

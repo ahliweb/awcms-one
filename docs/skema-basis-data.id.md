@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](skema-basis-data.md)
 
-<!-- i18n-source-hash: sha256:040e1b9cc86a51f0712589c4c2d6739c0cd876e4373176a373a7178954fa191c -->
+<!-- i18n-source-hash: sha256:f5cbef36be0be158db722933b785b4e5ef4d4556de3d204a3af71bd0c1ff70ae -->
 
 # Skema basis data
 
