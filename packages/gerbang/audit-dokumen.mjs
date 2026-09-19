@@ -478,6 +478,56 @@ const EXCLUDED_PATHS = new Map([
     }
   ],
   [
+    "apps/examples",
+    {
+      reason:
+        "ADR-0018's own rejected alternative (c) — a full-generalisation shape considered and NOT taken for increment 6 (issue #136). Named only to describe the option that was turned down; never built.",
+      onlyIn: [
+        "docs/adr/0018-awcms-one-is-a-template-with-build-profiles-and-an-idempotent-init.md",
+        "docs/adr/0018-awcms-one-is-a-template-with-build-profiles-and-an-idempotent-init.id.md"
+      ]
+    }
+  ],
+  [
+    "apps/examples/bjekmart",
+    {
+      reason:
+        "ADR-0018's own rejected alternative (c), same as apps/examples above — never built.",
+      onlyIn: [
+        "docs/adr/0018-awcms-one-is-a-template-with-build-profiles-and-an-idempotent-init.md",
+        "docs/adr/0018-awcms-one-is-a-template-with-build-profiles-and-an-idempotent-init.id.md"
+      ]
+    }
+  ],
+  [
+    "apps/storefront/integrations/profil.mjs",
+    {
+      reason:
+        "not built yet — issue #137 (the injectRoute Astro integration ADR-0018 D3 specifies). Named here to describe the planned mechanism."
+    }
+  ],
+  [
+    "apps/storefront/src/config/profil.ts",
+    {
+      reason:
+        "not built yet — issue #137 (the SITE_PROFILE config module ADR-0018 D2/D3 specifies). Named here to describe the planned mechanism."
+    }
+  ],
+  [
+    "tests/template-init.test.mjs",
+    {
+      reason:
+        "not built yet — issue #138 (bun run template:init's own idempotency/dry-run/exit-code test suite). Named here to describe the planned mechanism."
+    }
+  ],
+  [
+    "tools/seed-cms.ts",
+    {
+      reason:
+        "not built yet — issue #139 (the profile-aware seeder replacing tools/seed-borneojek-mart.ts). Named here to describe the planned mechanism."
+    }
+  ],
+  [
     "packages/kontrak",
     {
       reason:

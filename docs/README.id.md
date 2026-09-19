@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:feb4d876f288898ae2e8f8229df8dc1360f246cf992d7bbb8148a0c9901f2774 -->
+<!-- i18n-source-hash: sha256:28f5c499934c2c5d1a2dbfab6393a4bac36a84fb9de2537939b3c3af01352317 -->
 
 # Dokumentasi
 
@@ -9,7 +9,7 @@ Dokumentasi arsitektur, skema, API, alur kerja CMS, perilaku storefront, penguji
 | Dokumen | Isi |
 | --- | --- |
 | [`arsitektur.md`](arsitektur.id.md) | Topologi dua-deployable, arah impor satu-jalur, embed subtree, jalur runtime anonim (ADR-0007), tingkat kepercayaan ketiga pelanggan-terautentikasi (ADR-0016), port penyedia/outbox/intake webhook (ADR-0017), CSP turunan |
-| [`adr/`](adr/README.id.md) | Tujuh belas Architecture Decision Record — trade-off di balik setiap keputusan struktural di atas |
+| [`adr/`](adr/README.id.md) | Delapan belas Architecture Decision Record — trade-off di balik setiap keputusan struktural di atas |
 | [`skema-basis-data.md`](skema-basis-data.id.md) | Setiap tabel `awcms_commerce_*`: kolom, tipe, constraint, indeks, RLS |
 | [`kamus-data.md`](kamus-data.id.md) | Kamus data: setiap kolom, maknanya, dan kolom sumber legacy `commerce_bj_mart`-nya |
 | [`api.md`](api.id.md) | API owner dan storefront anonim, envelope, paginasi, izin, domain event |
@@ -22,6 +22,7 @@ Dokumentasi arsitektur, skema, API, alur kerja CMS, perilaku storefront, penguji
 | [`pengujian.md`](pengujian.id.md) | Empat tingkat tes, mana yang butuh PostgreSQL, dan mana yang tidak |
 | [`deployment.md`](deployment.id.md) | Build vs. serve, variabel environment, apa yang boleh dan tidak boleh dijangkau container dan browser |
 | [`alur-kerja-pengembangan.md`](alur-kerja-pengembangan.id.md) | Branching, pengaturan branch protection nyata, changeset, pemotongan rilis, dua job CI |
+| [`template.md`](template.id.md) | Menggunakan awcms-one sebagai template: `template:init`, matriks profil build, seed per profil, BjekMart sebagai contoh referensi |
 
 ## Apa yang tidak diduplikasi direktori ini
 
