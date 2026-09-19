@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](deployment.md)
 
-<!-- i18n-source-hash: sha256:542c71cbe471ae48f007fadffa5387108d9ed8878de1e97d64ff040e1e691371 -->
+<!-- i18n-source-hash: sha256:7e1a4d10ce5a4daa940ea4764c99652a2d0631d2652c530306ddb81c534aed04 -->
 
 # Deployment
 
@@ -36,6 +36,18 @@ Dua berkas `.env.example` terpisah, satu per workspace, sengaja tidak digabung �
 ### `apps/cms/.env.example`
 
 Berkas yang jauh lebih besar, dimiliki sepenuhnya oleh `apps/cms` sebagai kode `ahliweb/awcms` yang di-embed — root repositori ini tidak menduplikasinya ("Configuration and toolchain" milik `AGENTS.md`: "setiap variabel env yang dibaca skrip level-root harus ada di `.env.example`... `apps/cms` menjaga `.env.example`-nya sendiri untuk konfigurasi runtime-nya sendiri; berkas root repo ini tidak menduplikasinya"). Variabel yang penting untuk memahami apa yang dibutuhkan `apps/cms` yang berjalan: `DATABASE_URL` (role aplikasi `awcms_app` — tidak pernah role pemilik basis data, yang adalah superuser Postgres yang melewati `FORCE ROW LEVEL SECURITY` sama sekali, mengalahkan persis isolasi yang didokumentasikan [`docs/skema-basis-data.md`](skema-basis-data.md)), `APP_ENV`/`APP_URL`, dan variabel HTTP listener (`PORT`, `HOST`, dan jalur sertifikat TLS in-process opsional) yang dibaca entrypoint standalone-nya sendiri.
+
+**`EMAIL_ENABLED`/`EMAIL_PROVIDER` menjadi load-bearing untuk login pelanggan, tidak sekadar untuk e-mail keluar secara umum, sejak increment 4.** `POST account/otp/request` (issue #89) mengantre kode 6 digitnya lewat outbox modul `email` yang sama yang dipakai setiap e-mail transaksional lain. Dengan `EMAIL_ENABLED=false` (default) atau `EMAIL_PROVIDER=log`, kodenya pergi ke adapter `log` alih-alih ke kotak masuk — deployment yang dibiarkan di default ini tetap bisa menjalankan seluruh alur OTP di pengembangan/CI, tapi pelanggan "produksi" sungguhan tidak bisa benar-benar menerima kode login-nya sampai keduanya diset (`EMAIL_ENABLED=true` dan `EMAIL_PROVIDER` nyata, mis. `mailketing`). Ini gerbang deployment, bukan sekadar flag fitur: menyalakannya belakangan adalah beda antara permukaan akun bekerja ujung ke ujung dan setiap login diam-diam hanya sampai ke log server.
+
+| Variabel | Default | Tujuan |
+| --- | --- | --- |
+| `EMAIL_ENABLED` | `false` | Apakah modul `email` benar-benar mengirim — `false` mengarahkan setiap pesan, termasuk OTP, ke adapter `log` |
+| `EMAIL_PROVIDER` | tidak diset (`log` saat `EMAIL_ENABLED=false`) | `mailketing` (adapter nyata) atau `log` (aman untuk lokal/dev, tanpa jaringan) |
+| `COMMERCE_ACCOUNT_OTP_RATE_LIMIT_MAX_PER_IP` / `_WINDOW_SEC` / `_MAX_PER_EMAIL` | 10 / 3600 / 5 | Batas dua-sumbu `account/otp/request` (issue #89) — batas per-IP saja tidak bisa melindungi kotak surat tujuan OTP |
+| `COMMERCE_ACCOUNT_OTP_VERIFY_RATE_LIMIT_MAX_PER_IP` / `_WINDOW_SEC` | 20 / 3600 | Budget per-IP `account/otp/verify` sendiri yang lebih longgar — tanpa sumbu per-e-mail, karena kode ter-hash dengan 5 percobaan sudah membatasi tebakan satu alamat |
+| `COMMERCE_STOREFRONT_PUBLIC_URL` | tidak diset | Origin storefront publik deployment ini, dipakai hanya untuk membangun tautan referral afiliasi yang terdaftar (issue #92, `"${COMMERCE_STOREFRONT_PUBLIC_URL}/?ref=CODE"`); tidak diset jatuh kembali ke `/?ref=CODE` relatif alih-alih mengarang origin |
+
+Variabel storefront `PUBLIC_*` tidak berubah oleh increment 4 — sesi bearer hidup sepenuhnya di `localStorage` browser sendiri, sehingga tidak ada env var build-time atau runtime baru yang dibutuhkan di sisi `apps/storefront` untuk akun atau afiliasi.
 
 ## Apa yang boleh menjangkau `apps/cms`: proses build, dan — sejak issue #30 — browser pembaca
 
@@ -105,6 +117,15 @@ DATABASE_URL=postgres://awcms:awcms_dev_password@localhost:5433/awcms \
 # once. It updates the sixteen already-applied rows' recorded names/checksums
 # to the new sql/901-sql/916 names; a fresh database (this one) needs it not
 # at all, since it applies the new file names directly.
+
+# db:migrate:cms kini juga menerapkan sql/917-sql/923 (increment 4, epic
+# #32): skema akun/OTP/sesi pelanggan (917) plus grant purge worker-nya
+# (918), seed template e-mail OTP turunan untuk tenant yang sudah ada (919),
+# indeks unik parsial alamat-default-per-pelanggan (920), dan skema program
+# afiliasi — termasuk orders.affiliate_id dan
+# store_settings.affiliate_commission_rate (921), seed izinnya (922), serta
+# grant purge worker-nya (923). Tidak ada yang dibutuhkan di luar langkah
+# `db:migrate:cms` biasa di atas untuk menerapkan semua ini.
 
 # Issue #57 — institusi "Daerah" pada taksonomi berita dan arsip
 # /daerah/{slug} me-resolve kode/nama wilayahnya terhadap `idn_admin_regions`

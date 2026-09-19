@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](cms.md)
 
-<!-- i18n-source-hash: sha256:5c27c13c5b393b34c30cbe108710b95465ea512a68c1af86aeb5cd9f8f104b96 -->
+<!-- i18n-source-hash: sha256:3a2b793fa61c4f95c205ccf4eb14d1fb25a1fc8f0f898d8305370f1d309626ff -->
 
 # CMS: authoring, publikasi, izin, audit, media, taksonomi
 
@@ -155,8 +155,8 @@ Increment 3 membuat slot-slot itu nyata, bukan sekadar nominal. Kedua belas kunc
 
 ## Sengaja tidak ada di sini
 
-- **Tanpa akun pelanggan, login, atau endpoint storefront terautentikasi** — [issue #32](https://github.com/ahliweb/awcms-one/issues/32). Wishlist tetap browser-local; `awcms_commerce_wishlists` ada sebagai tabel tanpa rute API di depannya untuk saat ini.
+- **Tanpa OTP WhatsApp/SMS, ubah e-mail/telepon pada akun yang sudah ada, verifikasi telepon, atau harga bertingkat yang diterapkan saat quote** — [ADR-0016](adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.id.md) D6, semuanya ditangguhkan sebagai tambahan ketat atas kontrak wave-0 [issue #32](https://github.com/ahliweb/awcms-one/issues/32). Akun pelanggan, login OTP, sesi bearer, dashboard akun (alamat/wishlist/pesanan/ulasan), dan program afiliasi sudah selesai — lihat bagian "Akun pelanggan …" di atas.
 - **Tanpa integrasi tarif-kurir RajaOngkir atau payment gateway** — keduanya harus dipanggil lewat outbox begitu mendarat ([ADR-0010](adr/0010-manual-payment-and-alternative-courier-first-gateways-via-outbox.md), [issue #33](https://github.com/ahliweb/awcms-one/issues/33)); `payment_method` sudah menerima nilai enum `gateway`, secara aditif, tanpa kode implementasi di baliknya untuk saat ini.
-- **Tanpa test suite integrasi yang di-gate `DATABASE_URL` untuk pembuatan pesanan** — pengurangan stok, double-submit idempoten, pelacakan telepon-salah, expire-lalu-restock, dan isolasi RLS lintas-tenant semuanya dibuktikan dengan tangan terhadap instans Postgres nyata yang sudah dimigrasikan selama pengembangan issue #29 (dua bug nyata ditemukan dan diperbaiki lewat cara ini), tapi tidak dikodekan sebagai `apps/cms/tests/integration/commerce-orders.integration.test.ts` yang di-commit — celah nyata dalam durabilitas test suite, bukan yang diam-diam dijatuhkan (lihat [`docs/pengujian.md`](pengujian.id.md)).
+- **`apps/cms/tests/integration/commerce-orders.integration.test.ts` ada** (`apps/cms/tests/integration/`) dan mencakup persis daftar penerimaan issue #29 — pengurangan stok, double-submit idempoten, pelacakan telepon-salah, expire-lalu-restock, dan isolasi RLS lintas-tenant — terhadap instans Postgres nyata yang sudah dimigrasikan. Suite itu di-commit setelah teks PR issue #29 sendiri ditulis (teks PR itu sendiri berkata suite "was not written as a formal automated test" — pohon yang sudah digabung tidak sependapat, dan dokumen ini mengikuti pohon itu; lihat [`docs/pengujian.md`](pengujian.id.md)).
 - **Tanpa full-text ranked search** pada filter `q` daftar produk owner — hanya pencocokan substring/trigram (`pg_trgm`, `sql/907`), tanpa integrasi `site_search`.
 - **Tanpa `restore`** untuk tabel marketing, orders, customers, atau reviews — hanya catalog (`categories`/`products`) yang punya endpoint dan izin restore di increment ini.

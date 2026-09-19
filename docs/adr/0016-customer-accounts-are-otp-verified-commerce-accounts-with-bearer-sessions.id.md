@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md)
 
-<!-- i18n-source-hash: sha256:c4321a0d2cf4cfbf6ed375906f63cdea5fbd3f44a91075723f8cd11a92655a24 -->
+<!-- i18n-source-hash: sha256:4da362f292f14dddce117b55f53f865f81c6648d6fef461698b744a2f39eb30c -->
 
 # ADR-0016 — Akun pelanggan adalah akun `commerce` terverifikasi OTP dengan sesi bearer
 
@@ -104,3 +104,5 @@ Lihat tiga tabel di bawah D1–D3 di atas untuk perbandingan dimensi-demi-dimens
 - Tamu yang tidak pernah mendaftar tidak kehilangan apa pun: setiap jalur anonim yang dikirim ADR-0009 tidak berubah, dan aturan binding D4 hanya pernah menambah kesinambungan, tidak pernah menghapus akses ke pesanan yang sudah bisa dijangkau tamu lewat kode + telepon.
 - `store_settings.affiliate_commission_rate` bernilai `null` adalah saklar mati program afiliasi sendiri (`409 AFFILIATE_PROGRAM_DISABLED` saat pendaftaran) — tenant yang tidak pernah mengaturnya tidak pernah membuka permukaan afiliasi ke pembeli, sejalan dengan cara permukaan pemasaran `commerce` opsional lain (voucher, flash sale) sudah bisa dikonfigurasi per tenant.
 - Belum ada handler untuk salah satu endpoint D1–D5; ADR ini dan kontrak OpenAPI-nya adalah target yang sudah ditinjau tempat C2 (akun/OTP/sesi), C3 (alamat/wishlist/pesanan/ulasan) dan C4 (afiliasi) membangun, bukan deskripsi kode yang sudah berjalan.
+
+**Sebagaimana dibangun (C2–C4, issue #87/#89/#91/#92 — setiap entri `ROUTE_PARITY_EXEMPTIONS` yang dibutuhkan kontrak ini kini dihapus):** dua tempat di mana perilaku yang dikirim adalah keputusan nyata yang tidak dijelaskan rinci teks kontrak di atas. Pertama, `POST account/otp/verify` dengan `purpose: "register"` untuk e-mail yang sudah memiliki akun tidak gagal — pemilik kotak surat sudah membuktikan kendalinya dengan menerima dan memasukkan kode, sehingga pemanggil di-login ke akun yang sudah ada (menjaga nama/telepon aslinya) alih-alih membentur indeks unik `awcms_commerce_customer_accounts.email_normalized` yang jika tidak begitu akan memicu `500`. Kedua, template e-mail turunan `derived.commerce_customer_otp` men-seed dirinya sendiri secara otomatis begitu pertama kali tenant ditemukan tanpa satu pun — `sql/919` men-seed setiap tenant yang ada saat migrasi berjalan, tapi tenant yang di-provision setelahnya jika tidak begitu akan membuat setiap OTP diam-diam ditelan ke `202` netral tanpa apa pun di outbox; adapter `email` kini memanggil `seedDefaultEmailTemplates` yang sama yang dipakai seeding per-tenant milik modul `email` sendiri, saat pertama kali hilang, dan mencoba ulang sekali.

@@ -20,11 +20,11 @@ The commerce module this platform needs cannot stand on its own — it depends o
 
 ## Approach: foundation first, then one thin vertical slice, then the full store
 
-Scaffold-first (increment 1: catalog listing + product detail, no live database), then **increment 2** (epic [#21](https://github.com/ahliweb/awcms-one/issues/21)): full BjekMart/news-portal parity — a provisioned PostgreSQL for local development and CI, the complete `commerce` module (catalog depth, marketing, orders), and the complete public site (catalog, news, cart, checkout, order tracking, wishlist). Then **increment 3** (epic [#46](https://github.com/ahliweb/awcms-one/issues/46)): functional parity with seputarborneo.com v2.4.0 — real images on every surface, the news chrome and shared sidebar, the newsletter form, the share row, the "Dengarkan berita ini" read-aloud player, the ad popup, complete social metadata, rule-based legacy redirects, first-party visitor analytics with an opt-in GA4 switch, a seputarborneo-shaped seed and a legacy-dump exporter, and the institution emblem.
+Scaffold-first (increment 1: catalog listing + product detail, no live database), then **increment 2** (epic [#21](https://github.com/ahliweb/awcms-one/issues/21)): full BjekMart/news-portal parity — a provisioned PostgreSQL for local development and CI, the complete `commerce` module (catalog depth, marketing, orders), and the complete public site (catalog, news, cart, checkout, order tracking, wishlist). Then **increment 3** (epic [#46](https://github.com/ahliweb/awcms-one/issues/46)): functional parity with seputarborneo.com v2.4.0 — real images on every surface, the news chrome and shared sidebar, the newsletter form, the share row, the "Dengarkan berita ini" read-aloud player, the ad popup, complete social metadata, rule-based legacy redirects, first-party visitor analytics with an opt-in GA4 switch, a seputarborneo-shaped seed and a legacy-dump exporter, and the institution emblem. Then **increment 4** (epic [#32](https://github.com/ahliweb/awcms-one/issues/32)): a real customer identity ([ADR-0016](docs/adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md)) — e-mail OTP login/registration, opaque bearer sessions, an account dashboard (addresses, order history, reviews, a synced wishlist), and an affiliate program with `?ref=` capture, checkout attribution, and an owner moderation screen.
 
 ## What is here today, and what is not
 
-Every child issue of [issue #21](https://github.com/ahliweb/awcms-one/issues/21) except this documentation issue has landed: the workspace root and its governance, `packages/config`, `packages/gerbang`, `packages/kontrak`, `tools/`, `knowledge/`, `docs/`, the full `apps/storefront` public site, and `apps/cms` (carrying the one `commerce` module — catalog, marketing, orders). Where this document or `AGENTS.md` needs to describe a surface that still does not exist, it says so plainly rather than describing a path that is not there — see [`docs/arsitektur.md`](docs/arsitektur.md) and [`docs/cms.md`](docs/cms.md) for that full, current list (customer accounts, RajaOngkir/payment-gateway integration, POS/reporting, a real media upload for product/slider images).
+Every child issue of [issue #21](https://github.com/ahliweb/awcms-one/issues/21), [issue #46](https://github.com/ahliweb/awcms-one/issues/46), and [issue #32](https://github.com/ahliweb/awcms-one/issues/32) has landed: the workspace root and its governance, `packages/config`, `packages/gerbang`, `packages/kontrak`, `tools/`, `knowledge/`, `docs/`, the full `apps/storefront` public site — now including a customer-account dashboard and the affiliate surface — and `apps/cms` (carrying the one `commerce` module — catalog, marketing, orders, customer accounts/OTP/sessions, and affiliates). Where this document or `AGENTS.md` needs to describe a surface that still does not exist, it says so plainly rather than describing a path that is not there — see [`docs/arsitektur.md`](docs/arsitektur.md) and [`docs/cms.md`](docs/cms.md) for that full, current list (WhatsApp/SMS OTP, e-mail/phone change, phone verification, tiered pricing at quote — [ADR-0016](docs/adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md) D6; RajaOngkir/payment-gateway integration; POS/reporting; a real media upload for product/slider images).
 
 ```
 apps/
@@ -32,12 +32,16 @@ apps/
 │                             the commerce backend and system of record, carrying the one
 │                             commerce module: catalog (images, variants, tiers), marketing
 │                             (flash sales, vouchers, sliders, testimonials, popup, store
-│                             settings), and orders (guest checkout, payment confirmations,
-│                             reviews) — plus the anonymous /api/v1/commerce/storefront/* API
+│                             settings), orders (guest checkout, payment confirmations,
+│                             reviews), customer accounts/OTP/bearer sessions, and the
+│                             affiliate program — plus the anonymous and bearer-secured
+│                             /api/v1/commerce/storefront/* API
 └── storefront/              the public Astro storefront: full catalog + news parity, cart,
-                              checkout, order tracking, wishlist — output: "static" throughout,
-                              cart/checkout call apps/cms's anonymous API directly from the
-                              browser (ADR-0007)
+                              checkout, order tracking, wishlist, and a customer-account
+                              dashboard (/masuk, /daftar, /akun*) with a synced wishlist and
+                              an affiliate surface — output: "static" throughout, cart/checkout
+                              and the account surface call apps/cms's storefront API directly
+                              from the browser (ADR-0007, ADR-0016)
 packages/
 ├── config/                  shared tsconfig preset
 ├── gerbang/                 this workspace's audit gates, as a package
@@ -49,7 +53,7 @@ tests/                       the root-level gate tests (docs, changesets, toolch
                               import direction)
 docs/                        architecture, schema, API, CMS, routing, SEO, accessibility,
                               responsive, UI/UX, testing, deployment, and workflow reference,
-                              plus docs/adr/ (ten ADRs)
+                              plus docs/adr/ (sixteen ADRs)
 knowledge/                   the federated Graphify + Obsidian knowledge-graph workflow
 .claude/skills/               awcms-one-storefront, awcms-one-commerce — how-to guides for
                               adding a storefront page or a commerce table/endpoint

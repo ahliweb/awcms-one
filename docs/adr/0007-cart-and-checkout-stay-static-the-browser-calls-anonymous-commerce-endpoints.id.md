@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](0007-cart-and-checkout-stay-static-the-browser-calls-anonymous-commerce-endpoints.md)
 
-<!-- i18n-source-hash: sha256:339860b92bdd5763f4c2df0f6cf39663a49a30072c57f29dad37af00750e2c00 -->
+<!-- i18n-source-hash: sha256:9ca8f4b81b43439fef05d9da1357e83f07cded8190d25a4220c8d63e9d31f2c0 -->
 
 # ADR-0007 — Keranjang, checkout, dan pelacakan pesanan tetap statis; browser memanggil endpoint commerce anonim milik CMS langsung
 
@@ -40,4 +40,4 @@ Origin CMS adalah satu-satunya konfigurasi baru: `PUBLIC_AWCMS_ORIGIN`, sengaja 
 - Harga dan stok pada halaman statis tetap sesegar build terakhir (trade-off yang dinyatakan ADR-0002). Halaman keranjang meng-quote ulang setiap baris terhadap CMS sebelum checkout, sehingga harga statis yang basi tidak pernah menjadi baris pesanan; harga yang berubah ditampilkan, tidak pernah dikoreksi secara diam-diam.
 - Container storefront tidak pernah melihat pesanan, nomor telepon, atau instruksi pembayaran — semuanya berjalan browser ↔ CMS langsung, `mode: "cors"` / `credentials: "omit"`. Tidak ada apa pun yang terkait pelanggan disimpan di storefront, dan log-nya tidak bisa memuat PII secara konstruksi.
 - Tenant yang di-seed harus punya origin storefront-nya terdaftar di `awcms_tenant_domains` (`mart.borneojek.com` dan `http://localhost:4321` untuk development, per `tools/seed-borneojek-mart.ts`); origin yang tidak terdaftar mendapat penolakan netral, yang merupakan mode kegagalan yang dimaksud.
-- Akun pelanggan (#32) akan menambahkan endpoint terautentikasi di samping yang anonim ini; itu akan membutuhkan strategi sesi untuk klien browser lintas-origin (ADR-0050 milik `apps/cms` sendiri, pola BFF handoff, adalah titik awalnya) dan ADR-nya sendiri.
+- Akun pelanggan (#32) menambahkan endpoint terautentikasi di samping yang anonim ini, di atas rel halaman-statis-plus-panggilan-browser yang sama yang sudah ditetapkan ADR ini — **sebagaimana dibangun**, strategi sesinya adalah token bearer opak di `localStorage` (`customerBearer`), bukan pola BFF handoff yang pernah ditandai ADR ini sebagai titik awal; lihat [ADR-0016](0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.id.md) D3 untuk argumennya dan alasan pendekatan berbasis-cookie ditolak justru karena komitmen lintas-origin ADR ini sendiri.
