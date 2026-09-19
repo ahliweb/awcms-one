@@ -1,0 +1,42 @@
+[
+  {
+    "slug": "beranda-tentang",
+    "title": "Tentang PT Contoh Karya",
+    "pageType": "landing",
+    "excerpt": "Profil singkat PT Contoh Karya, perusahaan contoh untuk profil build 'landing'.",
+    "bodyParagraphs": [
+      "PT Contoh Karya adalah perusahaan fiktif yang digunakan sebagai contoh isi (sample content) untuk profil build 'landing' pada template awcms-one.",
+      "PLACEHOLDER — konten contoh. Ganti paragraf ini dengan profil perusahaan sungguhan sebelum situs ini dipublikasikan."
+    ]
+  },
+  {
+    "slug": "layanan",
+    "title": "Layanan Kami",
+    "pageType": "standard",
+    "excerpt": "Ringkasan layanan contoh PT Contoh Karya.",
+    "bodyParagraphs": [
+      "Halaman ini merangkum layanan contoh yang ditawarkan PT Contoh Karya — isi dengan layanan sungguhan perusahaan Anda.",
+      "PLACEHOLDER — konten contoh untuk demonstrasi profil build 'landing'."
+    ]
+  },
+  {
+    "slug": "kontak",
+    "title": "Kontak",
+    "pageType": "standard",
+    "excerpt": "Informasi kontak contoh PT Contoh Karya.",
+    "bodyParagraphs": [
+      "Hubungi kami melalui alamat surel kontak@example.com atau telepon +62 800 0000 0000 (nomor dan alamat surel placeholder, tidak aktif).",
+      "PLACEHOLDER — ganti dengan informasi kontak sungguhan sebelum situs ini dipublikasikan."
+    ]
+  },
+  {
+    "slug": "kebijakan-privasi",
+    "title": "Kebijakan Privasi",
+    "pageType": "legal",
+    "excerpt": "Bagaimana PT Contoh Karya mengumpulkan dan menggunakan data pengunjung.",
+    "bodyParagraphs": [
+      "Kebijakan ini menjelaskan bagaimana PT Contoh Karya mengumpulkan, menggunakan, dan melindungi data pengunjung situs ini.",
+      "PLACEHOLDER — konten seed awal. Operator menggantikan paragraf ini dengan kebijakan privasi resmi sebelum situs ini dipublikasikan."
+    ]
+  }
+]

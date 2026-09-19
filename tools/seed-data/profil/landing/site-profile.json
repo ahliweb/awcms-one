@@ -1,0 +1,21 @@
+{
+  "current": {
+    "tagline": "Contoh perusahaan untuk demonstrasi profil build 'landing' pada template awcms-one.",
+    "copyrightNotice": "© 2026 PT Contoh Karya. Hak cipta dilindungi undang-undang.",
+    "logoMediaId": null,
+    "faviconMediaId": null,
+    "editorialAddress": "Jl. Contoh Sejahtera No. 1, Kel. Contoh, Kota Contoh",
+    "contactEmail": "kontak@example.com",
+    "contactPhone": "+62 800 0000 0000",
+    "whatsappNumber": "+62 800 0000 0000",
+    "socialLinks": [
+      { "platform": "instagram", "url": "https://instagram.com/example" },
+      { "platform": "linkedin", "url": "https://linkedin.com/company/example" }
+    ]
+  },
+  "future": {
+    "note": "Placeholder company data — no field on /api/v1/site-profile today accepts a legal entity name or a plain asset path for the logo (logoMediaId needs a real media object, same R2-upload gap as tools/seed-data/contoh/borneojek-mart/products.json's own images), so this stays informational.",
+    "companyName": "PT Contoh Karya",
+    "logoAsset": "tools/seed-assets/profil/landing/logo-pt-contoh-karya.svg"
+  }
+}

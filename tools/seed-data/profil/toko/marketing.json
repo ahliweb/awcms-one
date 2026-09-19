@@ -1,0 +1,142 @@
+{
+  "_note": "Neutral `toko` profile sample marketing content (issue #139) — fictional store 'Toko Nusantara', no real people/phone/e-mail/brand. Applied through the same ensureMarketing step tools/seed-cms.ts shares with the contoh:borneojek-mart profile.",
+  "flashSales": [
+    {
+      "slug": "flash-sale-akhir-pekan",
+      "name": "Flash Sale Akhir Pekan",
+      "startsInHours": -1,
+      "endsInHours": 72,
+      "status": "scheduled",
+      "products": [
+        {
+          "productSlug": "serum-wajah-nusantara",
+          "salePrice": "45000.00",
+          "quota": 30,
+          "sortOrder": 1
+        }
+      ]
+    }
+  ],
+  "vouchers": [
+    {
+      "code": "COBA10",
+      "name": "Hemat 10%",
+      "description": "Diskon 10% untuk belanja minimal Rp100.000, maksimal potongan Rp25.000.",
+      "type": "percentage",
+      "value": "10.00",
+      "minOrder": "100000.00",
+      "maxDiscount": "25000.00",
+      "quota": 100,
+      "isPublic": true,
+      "startsInHours": -24,
+      "endsInHours": 720
+    }
+  ],
+  "testimonials": [
+    {
+      "authorName": "Pelanggan Contoh Satu",
+      "authorRole": "Pelanggan",
+      "body": "Barang sampai sesuai deskripsi dan pengemasan rapi.",
+      "rating": 5,
+      "sortOrder": 1
+    },
+    {
+      "authorName": "Pelanggan Contoh Dua",
+      "authorRole": "Pelanggan",
+      "body": "Proses pesanan mudah dan status pengiriman jelas.",
+      "rating": 4,
+      "sortOrder": 2
+    }
+  ],
+  "popup": {
+    "title": "Promo Contoh Minggu Ini",
+    "body": "Gunakan kode COBA10 untuk potongan 10% — data contoh, ganti sebelum go-live.",
+    "linkUrl": "/flash-sale",
+    "buttonText": "Lihat promo",
+    "frequency": "once_per_day",
+    "isActive": true
+  },
+  "storeSettings": {
+    "storeName": "Toko Nusantara",
+    "tagline": "Contoh toko daring untuk demonstrasi template awcms-one",
+    "address": "Jl. Contoh Sejahtera No. 1, Kel. Contoh, Kota Contoh",
+    "phone": "+62 800 0000 0000",
+    "whatsapp": "628000000000",
+    "email": "toko@example.id",
+    "mapsEmbedUrl": null,
+    "faqs": [
+      {
+        "question": "Bagaimana cara memesan?",
+        "answer": "Pilih produk, tambahkan ke keranjang, lalu isi alamat dan pilih metode pengiriman."
+      },
+      {
+        "question": "Metode pembayaran apa yang tersedia?",
+        "answer": "QRIS manual — unggah bukti setelah pembayaran."
+      }
+    ],
+    "social": {
+      "facebook": null,
+      "instagram": null,
+      "tiktok": null,
+      "x": null,
+      "youtube": null,
+      "linkedin": null
+    },
+    "customerLevels": [
+      { "level": 1, "name": "Pelanggan Umum", "type": "percentage", "value": "0.00" },
+      { "level": 2, "name": "Reseller", "type": "percentage", "value": "5.00" },
+      { "level": 3, "name": "Agen", "type": "percentage", "value": "10.00" },
+      { "level": 4, "name": "Distributor", "type": "nominal", "value": "15000.00" }
+    ],
+    "shipping": {
+      "alternativeServices": [],
+      "selfPickup": true,
+      "courierEnabled": false,
+      "pinpointEnabled": false,
+      "freeShipping": {
+        "active": false,
+        "minOrder": "100000.00",
+        "maxDiscount": "25000.00"
+      },
+      "originCityName": "Kota Contoh",
+      "originSubdistrictName": "Contoh"
+    },
+    "payment": {
+      "manualBank": {
+        "active": false,
+        "accounts": [
+          {
+            "bankName": "BANK CONTOH",
+            "accountNumber": "0000000000",
+            "accountHolder": "PLACEHOLDER — ganti di /admin/commerce-settings"
+          }
+        ]
+      },
+      "manualQris": {
+        "active": true,
+        "mediaObjectId": null
+      },
+      "downPayment": {
+        "active": false,
+        "percent": 50
+      },
+      "tax": {
+        "active": false,
+        "percent": 11
+      },
+      "insurance": {
+        "active": false,
+        "ratePercent": "0.20",
+        "minFee": "500.00"
+      }
+    },
+    "promoSection": {
+      "active": false,
+      "items": []
+    },
+    "meta": {
+      "home": { "title": null, "description": null },
+      "contact": { "title": null, "description": null }
+    }
+  }
+}
