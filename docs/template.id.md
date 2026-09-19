@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](template.md)
 
-<!-- i18n-source-hash: sha256:df921b70c4507065e6810238e13a2ea0f4711f81df4b213bffe278b68525b246 -->
+<!-- i18n-source-hash: sha256:700284c8ebf825d05f94bef99e5ae97ce130b1f2d42abf5c4d82f6132c3c896b -->
 
 # Menggunakan awcms-one sebagai template
 
@@ -104,6 +104,8 @@ Artefak khusus BjekMart yang tidak dibutuhkan deployment turunan dan tidak sehar
 ### Setelah ia berjalan
 
 `template:init` selesai dengan menjalankan, secara berurutan: `docs:i18n:stamp`, `bun install`, `audit:dokumen`, `audit:translation`, `audit:rilis`, dan root `bun test` — sehingga commit pertama repo turunan sudah hijau, titik awal "gerbang lulus sebelum Anda menyentuh apa pun" yang sama yang diharapkan `AGENTS.md` repo ini sendiri dari setiap perubahan di sini.
+
+**`tests/template-init.test.mjs` melewati dirinya sendiri begitu mendeteksi ia tidak lagi berjalan di dalam `awcms-one` sendiri** (`package.json.name !== "awcms-one"`, dicetak sebagai satu baris SKIPPED yang jelas). Tanpa ini, `bun test` akhir ini akan menemukan dan menjalankan ulang berkas tesnya sendiri di dalam repositori yang baru saja diinisialisasinya — tes full-run milik berkas itu kemudian mencoba membangun SALINAN sementara lain dari `git ls-files`, yang masih mendaftar path yang sudah dihapus langkah penghapusan run ini sendiri (`unlinkSync` sungguhan, tidak pernah `git rm`), melempar `ENOENT` pada setiap satu darinya. Guard ini bukan solusi sementara untuk kegagalan penyalinan itu (`makeTempCopy` juga menyaring `git ls-files` lewat `existsSync`, secara defensif, sebagai lapisan pertahanan kedua yang independen) — ia adalah perbaikan sesungguhnya: pengujian ini ada untuk menguji template, dan tidak boleh pernah berjalan kedua kalinya terhadap repositori yang sudah bukan template lagi.
 
 ## Profil build
 

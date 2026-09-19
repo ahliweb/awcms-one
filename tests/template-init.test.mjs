@@ -35,6 +35,43 @@ import { main } from "../tools/template-init/run.mjs";
 
 const REPO_ROOT = new URL("..", import.meta.url).pathname;
 
+/**
+ * This file's own guard against re-running ITSELF, recursively, inside a
+ * repository `template:init` has already initialised.
+ *
+ * `bun run template:init`'s own trailing gate chain (`docs/template.md`'s
+ * "After it runs") ends with a bare `bun test` against whatever tree it
+ * just rewrote — including, in CI (`.github/workflows/
+ * template-init-smoke.yml`), the checked-out `awcms-one` repository
+ * itself. That `bun test` naturally discovers and runs THIS file, which
+ * then tries to build its own temp copies from `git ls-files` — but by
+ * then `template:init` has already `unlinkSync`'d files this run removed
+ * (`.changesets/*.md` among them) WITHOUT a matching `git rm`, so `git
+ * ls-files --cached` still lists paths that no longer exist on disk, and
+ * `copyFileSync` throws `ENOENT` copying them. This is not a copying bug
+ * to work around (see `makeTempCopy`'s own `existsSync` filter below for
+ * that, kept as a second, independent layer of defence) — it is this file
+ * testing `template:init` a SECOND time, on a repository that has already
+ * been initialised and is therefore no longer the template `--yes`'s own
+ * self-guard (`run.mjs`) exists to protect. A derived repository's `bun
+ * test` should never re-run these tests at all.
+ */
+const PKG_NAME = JSON.parse(readFileSync(join(REPO_ROOT, "package.json"), "utf8")).name;
+if (PKG_NAME !== "awcms-one") {
+  console.log(
+    `tests/template-init.test.mjs — SKIPPED: package.json name is ${JSON.stringify(PKG_NAME)}, not "awcms-one". ` +
+      "This looks like a repository template:init has already initialised (or template:init's own trailing " +
+      "`bun test` running inside one) — these tests exist to test the TEMPLATE, not a derived repo, and must " +
+      "not re-run there."
+  );
+  test.skip("SKIPPED — not running inside the awcms-one template itself", () => {});
+} else {
+  runTemplateInitTests();
+}
+
+/** Everything below only ever runs against the actual `awcms-one` template. */
+function runTemplateInitTests() {
+
 const BASE_FLAGS = [
   "--nama",
   "Toko Contoh",
@@ -91,7 +128,18 @@ function listTrackedFiles() {
       // means the copy's `bun test` exercises every OTHER root gate test
       // for real, without also re-running (and re-breaking) itself.
       (file) => file !== "tests/template-init.test.mjs"
-    );
+    )
+    .filter((file) => {
+      // A second, independent layer of defence, kept even with the guard
+      // above: `git ls-files --cached` answers from the INDEX, not the
+      // working tree, so a path a prior step `unlinkSync`'d without a
+      // matching `git rm` (exactly what `template:init`'s own removal
+      // step does — see `tools/template-init/apply.mjs`) is still listed
+      // here even though `copyFileSync` would throw `ENOENT` on it. Any
+      // such path is simply not copied, the same as if it had never been
+      // tracked — there is nothing to copy.
+      return existsSync(join(REPO_ROOT, file));
+    });
 }
 
 const tempDirs = [];
@@ -411,3 +459,4 @@ describe("template:init — dirty working tree", () => {
     }, 30_000);
   }
 });
+} // end runTemplateInitTests
