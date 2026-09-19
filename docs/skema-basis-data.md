@@ -103,6 +103,18 @@ All six: standard `id`/`created_at`/`updated_at`/`deleted_at`, RLS `ENABLE`+`FOR
 
 All eight: RLS `ENABLE`+`FORCE`, tenant-isolation policy. `deleted_at` exists on seven of eight (every table but `order_events`) purely as a uniform data-lifecycle purge cursor — orders, order items, customers, and payment confirmations are never actually soft-deleted by this module's own code.
 
+## Customer accounts, OTP, sessions: three tables (`sql/917`-`918`)
+
+Issue #87 (C1, contract #86/ADR-0016 — this awcms repo's own ADR, not yet written as of this table). No password anywhere — authentication is a 6-digit e-mail OTP; a session is an opaque bearer token, only its `sha256:` hash stored.
+
+| Table | Key columns | Notes |
+| --- | --- | --- |
+| `awcms_commerce_customer_accounts` | `customer_id` (FK, `UNIQUE (tenant_id, customer_id)` — 1:1 with `awcms_commerce_customers`), `email_normalized` (`UNIQUE (tenant_id, email_normalized)`), `status` (`CHECK IN ('active','blocked')`), `email_verified_at`, `history_from timestamptz NOT NULL`, `last_login_at` | No `password_hash`, no `identity_id`/`principal_id` — ADR-0016 D1 (contract issue #86; the ADR document itself is that issue's own deliverable, not yet written). Carries a `deleted_at` column that this module's own code never actually sets — blocked is `status = 'blocked'`, never deleted; the column exists only as an honest, always-`NULL` cursor for the `dataLifecycle` descriptor (`module.ts`), the same trick `awcms_commerce_orders` already uses. `history_from` is ADR-0016 D4's resolved starting point for order history, computed once at registration by the pure `resolveHistoryFrom` function |
+| `awcms_commerce_customer_otps` | `email_normalized NOT NULL`, `purpose` (`CHECK IN ('login','register')`), `code_hash NOT NULL` (never the raw code), `registration jsonb` (pending name/phone for `register`), `attempts integer NOT NULL DEFAULT 0`, `expires_at NOT NULL`, `consumed_at` | 10-minute TTL, 5 attempts, single use — ADR-0016 D2. `consumeOtp` verifies + consumes in one `UPDATE ... RETURNING`, never read-then-write |
+| `awcms_commerce_customer_sessions` | `account_id` (FK), `token_hash text NOT NULL UNIQUE` (`sha256:` prefixed — a FRESH namespace, not `apps/cms/src/lib/auth`'s admin session hash), `issued_at`, `expires_at`, `last_seen_at`, `revoked_at`, `client_ip_hash`, `user_agent_summary` | 30-day sliding TTL (`touchSession` only writes when `last_seen_at` is 5+ minutes stale); `cs_` + 32 random bytes base64url bearer token — ADR-0016 D3 |
+
+All three: RLS `ENABLE`+`FORCE`, tenant-isolation policy, FK indexes. `commerce:customer-auth:purge` (worker role, `sql/918`'s grants) deletes expired OTPs and expired/revoked-7-days-ago sessions on a schedule; the accounts table has no purge behaviour at all (see `module.ts`'s `dataLifecycle` comment).
+
 ## Row-level security: `ENABLE` and `FORCE`, proven under the unprivileged role
 
 Every table above carries `ALTER TABLE ... ENABLE ROW LEVEL SECURITY` **and** `ALTER TABLE ... FORCE ROW LEVEL SECURITY`, with one tenant-isolation policy each:

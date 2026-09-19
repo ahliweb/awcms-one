@@ -1595,6 +1595,12 @@
       "rationale": "Scheduled retention sweep (comments:retention, ADR-0041) — tolerant of delay, never latency-sensitive; same profile as audit-log-purge/form-draft-purge."
     },
     {
+      "path": "scripts/commerce-customer-auth-purge.ts",
+      "workClass": "background_sync",
+      "source": "registry",
+      "rationale": "Scheduled OTP/session purge sweep (commerce:customer-auth:purge, Issue #87), every 5-15 minutes — same recurring-but-not-latency-sensitive profile as commerce:orders:expire; purgeCustomerAuthForTenant passes workClass: \"background_sync\" explicitly."
+    },
+    {
       "path": "scripts/commerce-flash-sales-tick.ts",
       "workClass": "background_sync",
       "source": "registry",
