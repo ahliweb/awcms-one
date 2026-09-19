@@ -73,8 +73,41 @@ export type CartQuoteLineInput = {
 export type CartQuoteShippingInput =
   | { method: "alternative"; serviceId: string }
   | { method: "self_pickup" }
-  | { method: "courier" }
+  | { method: "courier"; serviceId: string }
   | null;
+
+/**
+ * Issue #107 (contract #106 D4) — one available courier rate, already
+ * resolved by `application/shipping-rate-directory.ts`'s `getCourierRates`
+ * (a provider call, so it can never happen inside this pure function).
+ * `quoteCart`'s caller (`application/cart-quote-service.ts`) fetches these
+ * BEFORE calling `quoteCart`, the same "fetch first, compute after" split
+ * this file's own header describes for the voucher row.
+ */
+export type CartQuoteCourierOption = {
+  serviceId: string;
+  courier: string;
+  service: string;
+  name: string;
+  cost: string;
+  etd: string | null;
+};
+
+/**
+ * `null` when courier rates were never attempted for this quote (the
+ * feature is off, or no provider is configured) — `buildShippingOptions`
+ * then falls back to the pre-Issue-#107 single disabled placeholder.
+ */
+export type CartQuoteCourierContext = {
+  /** `settings.shipping.courier.enabled && a provider is configured`. */
+  enabled: boolean;
+  /** Whether the caller's request carried a `destination`. */
+  destinationProvided: boolean;
+  /** Resolved rates — empty when `destinationProvided` but nothing resolved. */
+  options: CartQuoteCourierOption[];
+  /** Set whenever `options` is empty but courier rates WERE attempted — the reason the single disabled placeholder should show. */
+  unavailableReason: string | null;
+};
 
 export type CartQuoteProductSnapshot = {
   id: string;
@@ -126,6 +159,8 @@ export type CartQuoteContext = {
   storeSettings: StoreSettingsData;
   voucher: { code: string; lookup: CartQuoteVoucherRowLookup } | null;
   now: Date;
+  /** Issue #107 — `null`/absent when courier rates were never attempted (see {@link CartQuoteCourierContext}'s own header); optional so every pre-#107 `CartQuoteContext` literal keeps compiling unchanged. */
+  courier?: CartQuoteCourierContext | null;
 };
 
 export type CartQuoteLineResult = {
@@ -159,6 +194,10 @@ export type CartQuoteShippingOption = {
   name: string;
   cost: string | null;
   available: boolean;
+  /** Issue #107 — the courier's own estimated delivery time (provider text, e.g. "2-3"), `null` for every non-courier method. */
+  etd?: string | null;
+  /** Issue #107 — set on an UNAVAILABLE courier placeholder to explain why (e.g. "Tujuan belum dikenali kurir"); `null`/absent otherwise. */
+  note?: string | null;
 };
 
 export type CartQuoteVoucherResult = {
@@ -377,8 +416,17 @@ function resolveLine(
   };
 }
 
-function buildShippingOptions(
-  settings: StoreSettingsData
+/**
+ * Issue #107 — courier options now come from `context.courier` (fetched by
+ * `application/cart-quote-service.ts` BEFORE this pure function ever runs).
+ * `context.courier === null` (feature off / no provider configured) falls
+ * back to the pre-#107 single disabled placeholder; a caller who never sent
+ * a `destination` gets a disabled placeholder explaining that; a resolved
+ * destination with no rates gets the resolver's own `unavailableReason`.
+ */
+export function buildShippingOptions(
+  settings: StoreSettingsData,
+  courier: CartQuoteCourierContext | null
 ): CartQuoteShippingOption[] {
   const options: CartQuoteShippingOption[] =
     settings.shipping.alternativeServices.map((service) => ({
@@ -397,17 +445,46 @@ function buildShippingOptions(
     available: settings.shipping.selfPickup
   });
 
-  // No live carrier integration in this increment — always listed,
-  // always unavailable ("segera"/"coming soon"), regardless of
-  // `courierEnabled` (reserved for a future increment that actually wires
-  // one up).
-  options.push({
-    method: "courier",
-    serviceId: null,
-    name: "Kurir (segera)",
-    cost: null,
-    available: false
-  });
+  if (!courier || !courier.enabled) {
+    options.push({
+      method: "courier",
+      serviceId: null,
+      name: "Kurir (segera)",
+      cost: null,
+      available: false,
+      note: null
+    });
+  } else if (!courier.destinationProvided) {
+    options.push({
+      method: "courier",
+      serviceId: null,
+      name: "Kurir",
+      cost: null,
+      available: false,
+      note: "Pilih tujuan pengiriman untuk melihat opsi kurir."
+    });
+  } else if (courier.options.length === 0) {
+    options.push({
+      method: "courier",
+      serviceId: null,
+      name: "Kurir",
+      cost: null,
+      available: false,
+      note: courier.unavailableReason ?? "Kurir tidak tersedia."
+    });
+  } else {
+    for (const option of courier.options) {
+      options.push({
+        method: "courier",
+        serviceId: option.serviceId,
+        name: option.name,
+        cost: normalizeMoney(option.cost),
+        available: true,
+        etd: option.etd,
+        note: null
+      });
+    }
+  }
 
   return options;
 }
@@ -449,6 +526,21 @@ function resolveSelectedShipping(
     };
   }
 
+  if (shippingInput.method === "courier") {
+    const option = options.find(
+      (entry) =>
+        entry.method === "courier" &&
+        entry.serviceId === shippingInput.serviceId
+    );
+    if (!option || !option.available || option.cost === null) return null;
+    return {
+      method: "courier",
+      serviceId: option.serviceId,
+      name: option.name,
+      cost: option.cost
+    };
+  }
+
   return null;
 }
 
@@ -469,7 +561,10 @@ export function quoteCart(
   const subtotal = fromCents(subtotalCents);
   const weightGrams = lines.reduce((sum, line) => sum + line.weightGrams, 0);
 
-  const shippingOptions = buildShippingOptions(context.storeSettings);
+  const shippingOptions = buildShippingOptions(
+    context.storeSettings,
+    context.courier ?? null
+  );
   const selectedShipping = resolveSelectedShipping(
     input.shipping,
     shippingOptions

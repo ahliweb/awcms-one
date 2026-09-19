@@ -1,4 +1,5 @@
 import { describe, expect, test } from "bun:test";
+import { STUB_START_DEADLINE_MS } from "./stub-deadline";
 import { existsSync, readFileSync, readdirSync, rmSync } from "node:fs";
 import { join } from "node:path";
 
@@ -102,7 +103,7 @@ describe("build smoke: the visitor beacon and the optional GA4 switch (issue #56
       });
 
       try {
-        await waitForStub(`http://localhost:${stubPort}/api/v1/commerce/products`, Date.now() + 5000);
+        await waitForStub(`http://localhost:${stubPort}/api/v1/commerce/products`, Date.now() + STUB_START_DEADLINE_MS);
 
         const build = runBuild(stubPort, undefined);
 
@@ -149,7 +150,7 @@ describe("build smoke: the visitor beacon and the optional GA4 switch (issue #56
       });
 
       try {
-        await waitForStub(`http://localhost:${stubPort}/api/v1/commerce/products`, Date.now() + 5000);
+        await waitForStub(`http://localhost:${stubPort}/api/v1/commerce/products`, Date.now() + STUB_START_DEADLINE_MS);
 
         const build = runBuild(stubPort, "G-TEST");
 

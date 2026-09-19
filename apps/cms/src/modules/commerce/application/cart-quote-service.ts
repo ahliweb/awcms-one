@@ -19,6 +19,7 @@ import { listLiveProductImagesByProductIds } from "./product-image-directory";
 import {
   quoteCart,
   type CartQuoteContext,
+  type CartQuoteCourierContext,
   type CartQuoteFlashSaleSnapshot,
   type CartQuoteLineInput,
   type CartQuoteProductSnapshot,
@@ -29,6 +30,20 @@ import {
 } from "../domain/cart-quote";
 import type { ProductStatus } from "../domain/product-status";
 import type { ServiceFormField } from "../domain/service-form-validation";
+import { resolveShippingRateProvider } from "../infrastructure/shipping-rate-provider-resolver";
+import {
+  findCachedDestinationId,
+  findCachedRatesForCouriers,
+  getCourierRates
+} from "./shipping-rate-directory";
+
+/** `shipping-rate-provider-resolver.ts` resolves the concrete provider from `COMMERCE_SHIPPING_RATE_PROVIDER`; this is the same value used as the cache's own `provider` column. */
+function resolveShippingRateProviderKey(
+  env: NodeJS.ProcessEnv = process.env
+): string | null {
+  const provider = env.COMMERCE_SHIPPING_RATE_PROVIDER;
+  return provider === "rajaongkir" || provider === "log" ? provider : null;
+}
 
 type ProductSnapshotRow = {
   id: string;
@@ -180,11 +195,146 @@ async function fetchVoucherRow(
   };
 }
 
+/** Cart weight BEFORE `quoteCart` resolves lines — needed to fetch courier rates (bucketed by weight), which must happen before the pure `quoteCart` call. Uses the same "variant weight if present, else product weight" rule `resolveLine` uses; does not apply status/stock filtering (an estimate, not a priced line). */
+function estimateWeightGrams(
+  lines: CartQuoteLineInput[],
+  products: Map<string, ProductSnapshotRow>,
+  variants: Map<string, VariantSnapshotRow>
+): number {
+  return lines.reduce((sum, line) => {
+    const variant = line.variantId ? variants.get(line.variantId) : undefined;
+    const product = products.get(line.productId);
+    const weightGrams = variant
+      ? variant.weight_grams
+      : (product?.weight_grams ?? 0);
+    return sum + weightGrams * Math.max(line.quantity, 0);
+  }, 0);
+}
+
+/**
+ * Issue #107 — resolves `context.courier` for `quoteCart`. `providerSql`,
+ * when present, means the caller may call the provider (the public quote
+ * route only); when absent (`order-directory.ts`'s re-quote, running inside
+ * its own write transaction), only ALREADY-cached rates are considered —
+ * never a live provider call from inside a DB transaction (ADR-0006/0010).
+ */
+async function resolveCourierContext(
+  tx: Bun.SQL,
+  tenantId: string,
+  settings: Awaited<ReturnType<typeof fetchStoreSettings>>,
+  destination: { districtCode: string } | null | undefined,
+  weightGrams: number,
+  providerSql?: Bun.SQL
+): Promise<CartQuoteCourierContext | null> {
+  if (!settings.shipping.courier.enabled) return null;
+
+  const provider = resolveShippingRateProvider();
+  const providerKey = resolveShippingRateProviderKey();
+  if (!provider || !providerKey) return null;
+
+  if (!destination) {
+    return {
+      enabled: true,
+      destinationProvided: false,
+      options: [],
+      unavailableReason: null
+    };
+  }
+
+  const originId = settings.shipping.courier.originDestinationId;
+  const couriers = settings.shipping.courier.couriers;
+  if (!originId || couriers.length === 0) {
+    return {
+      enabled: true,
+      destinationProvided: true,
+      options: [],
+      unavailableReason: "Kurir belum dikonfigurasi."
+    };
+  }
+
+  if (providerSql) {
+    const result = await getCourierRates(
+      providerSql,
+      tenantId,
+      {
+        districtCode: destination.districtCode,
+        weightGrams,
+        originId,
+        couriers
+      },
+      provider,
+      providerKey
+    );
+    return {
+      enabled: true,
+      destinationProvided: true,
+      options: result.available
+        ? result.options.map((option) => ({
+            serviceId: option.serviceId,
+            courier: option.courier,
+            service: option.service,
+            name: option.name,
+            cost: option.cost,
+            etd: option.etd
+          }))
+        : [],
+      unavailableReason: result.available ? null : result.reason
+    };
+  }
+
+  const destinationId = await findCachedDestinationId(
+    tx,
+    tenantId,
+    providerKey,
+    destination.districtCode
+  );
+  if (!destinationId) {
+    return {
+      enabled: true,
+      destinationProvided: true,
+      options: [],
+      unavailableReason: "Tujuan belum dikenali kurir"
+    };
+  }
+
+  const cachedOptions = await findCachedRatesForCouriers(
+    tx,
+    tenantId,
+    providerKey,
+    originId,
+    destinationId,
+    weightGrams,
+    couriers
+  );
+
+  return {
+    enabled: true,
+    destinationProvided: true,
+    options: cachedOptions.map((option) => ({
+      serviceId: option.serviceId,
+      courier: option.courier,
+      service: option.service,
+      name: option.name,
+      cost: option.cost,
+      etd: option.etd
+    })),
+    unavailableReason:
+      cachedOptions.length === 0 ? "Kurir tidak tersedia." : null
+  };
+}
+
 /**
  * Builds a {@link CartQuoteContext} for exactly the products/variants named
  * in `lines`, then runs the pure `quoteCart`. Exported so
  * `order-directory.ts` can call it a second time, inside its own write
  * transaction, for the authoritative pre-write re-quote.
+ *
+ * `providerSql`, when present (the public quote route only), is the raw
+ * pool client `getCourierRates` uses to open its OWN short transactions for
+ * cache read/write around its provider call — deliberately NOT the `tx`
+ * this function otherwise runs its own queries on, since a provider call
+ * must never run while `tx`'s transaction is what the caller intends to
+ * hold open (`order-directory.ts` never passes this).
  */
 export async function buildCartQuote(
   tx: Bun.SQL,
@@ -195,8 +345,10 @@ export async function buildCartQuote(
     shipping: CartQuoteShippingInput;
     voucherCode: string | null;
     insurance: boolean;
+    destination?: { districtCode: string } | null;
   },
-  now: Date = new Date()
+  now: Date = new Date(),
+  providerSql?: Bun.SQL
 ): Promise<CartQuoteResult> {
   const productIds = input.lines.map((line) => line.productId);
   const variantIds = input.lines
@@ -290,13 +442,28 @@ export async function buildCartQuote(
       }
     : null;
 
+  const weightEstimateGrams = estimateWeightGrams(
+    input.lines,
+    productRows,
+    variantRows
+  );
+  const courier = await resolveCourierContext(
+    tx,
+    tenantId,
+    storeSettings,
+    input.destination,
+    weightEstimateGrams,
+    providerSql
+  );
+
   const context: CartQuoteContext = {
     products,
     variants,
     flashSales,
     storeSettings,
     voucher,
-    now
+    now,
+    courier
   };
 
   return quoteCart(

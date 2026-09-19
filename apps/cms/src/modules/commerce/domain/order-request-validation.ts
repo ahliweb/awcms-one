@@ -196,7 +196,15 @@ function validateShipping(
   }
 
   if (value.method === "self_pickup") return { method: "self_pickup" };
-  if (value.method === "courier") return { method: "courier" };
+  if (value.method === "courier") {
+    const serviceId = requiredText(
+      value.serviceId,
+      "shipping.serviceId",
+      50,
+      errors
+    );
+    return { method: "courier", serviceId };
+  }
   if (value.method === "alternative") {
     const serviceId = requiredText(
       value.serviceId,

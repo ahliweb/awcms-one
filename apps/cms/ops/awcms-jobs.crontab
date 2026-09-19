@@ -68,6 +68,11 @@ AWCMS_LOCK=/home/admin1/awcms-jobs/locks
 # SKIP LOCKED, bounded batch).
 */5 * * * * /usr/bin/flock -n $AWCMS_LOCK/commerce-orders-expire.lock $AWCMS_RUN_JOB commerce:orders:expire >> $AWCMS_JOB_LOG/commerce-orders-expire.log 2>&1
 
+# commerce — Deletes every expired awcms_commerce_shipping_rates row across
+# all active tenants (Issue #107). Idempotent and bounded — a row already
+# deleted is simply absent from the next run's scan.
+0 * * * * /usr/bin/flock -n $AWCMS_LOCK/commerce-shipping-rates-purge.lock $AWCMS_RUN_JOB commerce:shipping-rates:purge >> $AWCMS_JOB_LOG/commerce-shipping-rates-purge.log 2>&1
+
 # commerce — Drain the due WhatsApp delivery queue (claim-lease,
 # retry/backoff, circuit breaker) for every active tenant (Issue #108).
 */2 * * * * /usr/bin/flock -n $AWCMS_LOCK/commerce-whatsapp-dispatch.lock $AWCMS_RUN_JOB commerce:whatsapp:dispatch >> $AWCMS_JOB_LOG/commerce-whatsapp-dispatch.log 2>&1

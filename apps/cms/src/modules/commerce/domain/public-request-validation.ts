@@ -98,7 +98,19 @@ function validateShipping(
     return null;
   }
   if (value.method === "self_pickup") return { method: "self_pickup" };
-  if (value.method === "courier") return { method: "courier" };
+  if (value.method === "courier") {
+    if (
+      typeof value.serviceId !== "string" ||
+      value.serviceId.trim().length === 0
+    ) {
+      errors.push({
+        field: "shipping.serviceId",
+        message: 'shipping.serviceId is required when method is "courier".'
+      });
+      return { method: "courier", serviceId: "" };
+    }
+    return { method: "courier", serviceId: value.serviceId };
+  }
   if (value.method === "alternative") {
     if (
       typeof value.serviceId !== "string" ||
@@ -125,7 +137,34 @@ export type CartQuoteRequestInput = {
   shipping: CartQuoteShippingInput;
   voucherCode: string | null;
   insurance: boolean;
+  /** Issue #107 — optional; when present AND `shipping.courier.enabled` AND a provider is configured, `shippingOptions[]` carries live courier rates instead of the disabled placeholder. */
+  destination: { districtCode: string } | null;
 };
+
+function validateDestination(
+  value: unknown,
+  errors: ValidationError[]
+): { districtCode: string } | null {
+  if (value === undefined || value === null) return null;
+  if (!isRecord(value)) {
+    errors.push({
+      field: "destination",
+      message: "destination must be an object, or null."
+    });
+    return null;
+  }
+  if (
+    typeof value.districtCode !== "string" ||
+    value.districtCode.trim().length === 0
+  ) {
+    errors.push({
+      field: "destination.districtCode",
+      message: "destination.districtCode is required."
+    });
+    return null;
+  }
+  return { districtCode: value.districtCode.trim().slice(0, 50) };
+}
 
 export function validateCartQuoteRequest(
   body: unknown
@@ -161,9 +200,13 @@ export function validateCartQuoteRequest(
   }
 
   const insurance = record.insurance === true;
+  const destination = validateDestination(record.destination, errors);
 
   if (errors.length > 0) return { valid: false, errors };
-  return { valid: true, value: { lines, shipping, voucherCode, insurance } };
+  return {
+    valid: true,
+    value: { lines, shipping, voucherCode, insurance, destination }
+  };
 }
 
 export type PaymentConfirmationRequestInput = {

@@ -492,6 +492,21 @@ export const READER_BUDGET_BYTES = 24_000;
  * than one `sendJson` call per button, the same consolidation instinct at
  * screen scale. 231,000 keeps a small margin above the measured total.
  *
+ * **Raised to 231,500 B after Issue #107** (awcms-one epic #33, C1) — the
+ * courier-settings section added to `commerce-settings.astro` (an enabled
+ * toggle, a debounced origin-destination search against `GET .../commerce/
+ * shipping/destinations` rendered through a native `<datalist>` rather than
+ * custom list markup, and a couriers multi-select), measured at 1,748 B for
+ * the whole screen's script chunk. The new logic itself is ~620 B: it
+ * reuses this same screen's own `el`/`val`/`orNull` one-line helpers rather
+ * than adding a second copy, asserts elements that render under the exact
+ * same permission gate as every other field on the form instead of
+ * re-guarding them, and resolves the picked destination through the search
+ * box's OWN value (the browser fills it in on pick) rather than a second
+ * mirrored field to keep in sync — the Issue #552 "one shared lifecycle,
+ * not one per screen" lesson, applied to a genuinely new control this repo
+ * had none of yet, not per-screen duplication of one that already existed.
+ *
  * 231,405 B measured after Issue #111 (contract #106 D8) — one more admin
  * screen, `commerce-inbox.astro` (conversation list with status/unread
  * filters, a thread view, a reply form, close/reopen). Its own client
@@ -499,10 +514,14 @@ export const READER_BUDGET_BYTES = 24_000;
  * exact consolidation Issue #552 introduced) rather than a hand-rolled
  * lock/send/reload lifecycle — no per-screen duplication to fix here, only
  * the unavoidable cost of a genuinely new screen plus its own i18n
- * catalogue entries. 231,500 keeps the same small margin above the
- * measured total this constant's own history already establishes.
+ * catalogue entries. Measured on its own branch point at 231,405 B; measured
+ * again after merging #107's courier-settings section above, the combined
+ * total is 231,919 B — the two additions are independent (a new screen and a
+ * new control on an existing screen), so their costs simply add. 232,000
+ * keeps the same small margin above the measured total this constant's own
+ * history already establishes.
  */
-export const APP_BUDGET_BYTES = 231_500;
+export const APP_BUDGET_BYTES = 232_000;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.

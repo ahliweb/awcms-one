@@ -8,43 +8,43 @@
 | Aspect                              | Value |
 | ----------------------------------- | ----- |
 | Registered modules                  | 25    |
-| Migrations                          | 179   |
-| `awcms_*` tables                    | 180   |
-| Tables with `FORCE` RLS             | 162   |
+| Migrations                          | 180   |
+| `awcms_*` tables                    | 182   |
+| Tables with `FORCE` RLS             | 164   |
 | RLS-free tables (global, by design) | 18    |
-| Test files                          | 544   |
-| Route files                         | 477   |
+| Test files                          | 546   |
+| Route files                         | 478   |
 | ADR                                 | 244   |
 
 ### Modules
 
-| Key                    | Version | Status | Type   | Core | Dependencies                                                                                                                 |
-| ---------------------- | ------- | ------ | ------ | ---- | ---------------------------------------------------------------------------------------------------------------------------- |
-| `logging`              | 1.0.0   | active | —      | no   | `tenant_admin`                                                                                                               |
-| `tenant_admin`         | 1.0.0   | active | —      | no   | —                                                                                                                            |
-| `profile_identity`     | 1.0.0   | active | —      | no   | `tenant_admin`                                                                                                               |
-| `identity_access`      | 1.0.0   | active | —      | no   | `tenant_admin`, `profile_identity`                                                                                           |
-| `module_management`    | 0.1.0   | active | system | yes  | `tenant_admin`, `identity_access`                                                                                            |
-| `domain_event_runtime` | 0.1.0   | active | system | no   | `tenant_admin`, `identity_access`, `logging`                                                                                 |
-| `sync_storage`         | 1.0.0   | active | system | no   | `tenant_admin`                                                                                                               |
-| `workflow`             | 2.0.0   | active | system | no   | `tenant_admin`, `identity_access`, `domain_event_runtime`                                                                    |
-| `email`                | 0.5.0   | active | —      | no   | `tenant_admin`, `profile_identity`, `identity_access`                                                                        |
-| `reporting`            | 1.2.0   | active | —      | no   | `tenant_admin`, `identity_access`, `sync_storage`, `email`, `domain_event_runtime`                                           |
-| `theming`              | 1.0.0   | active | domain | no   | `tenant_admin`, `identity_access`, `module_management`                                                                       |
-| `media_library`        | 0.1.0   | active | system | no   | `tenant_admin`, `identity_access`                                                                                            |
-| `blog_content`         | 0.12.0  | active | domain | no   | `tenant_admin`, `identity_access`, `module_management`, `logging`                                                            |
-| `tenant_domain`        | 0.1.0   | active | domain | no   | `tenant_admin`, `identity_access`                                                                                            |
-| `visitor_analytics`    | 0.1.0   | active | system | no   | `tenant_admin`, `identity_access`, `logging`, `data_lifecycle`, `module_management`                                          |
-| `data_lifecycle`       | 0.1.0   | active | system | no   | `tenant_admin`, `identity_access`, `logging`                                                                                 |
-| `seo_distribution`     | 0.2.0   | active | domain | no   | `tenant_admin`, `identity_access`, `module_management`                                                                       |
-| `form_drafts`          | 0.1.0   | active | system | no   | `identity_access`                                                                                                            |
-| `site_search`          | 0.1.0   | active | domain | no   | `tenant_admin`, `identity_access`, `module_management`                                                                       |
-| `newsletter`           | 0.1.0   | active | domain | no   | `tenant_admin`, `identity_access`, `module_management`, `email`, `profile_identity`                                          |
-| `site_profile`         | 0.1.0   | active | domain | no   | `tenant_admin`, `identity_access`, `media_library`, `seo_distribution`                                                       |
-| `comments`             | 0.1.0   | active | domain | no   | `tenant_admin`, `identity_access`, `module_management`, `profile_identity`, `domain_event_runtime`                           |
-| `idn_admin_regions`    | 0.1.0   | active | system | no   | `tenant_admin`, `identity_access`                                                                                            |
-| `push_delivery`        | 0.1.0   | active | —      | no   | `tenant_admin`, `logging`                                                                                                    |
-| `commerce`             | 0.2.0   | active | domain | no   | `tenant_admin`, `identity_access`, `domain_event_runtime`, `media_library`, `module_management`, `email`, `profile_identity` |
+| Key                    | Version | Status | Type   | Core | Dependencies                                                                                                                                      |
+| ---------------------- | ------- | ------ | ------ | ---- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `logging`              | 1.0.0   | active | —      | no   | `tenant_admin`                                                                                                                                    |
+| `tenant_admin`         | 1.0.0   | active | —      | no   | —                                                                                                                                                 |
+| `profile_identity`     | 1.0.0   | active | —      | no   | `tenant_admin`                                                                                                                                    |
+| `identity_access`      | 1.0.0   | active | —      | no   | `tenant_admin`, `profile_identity`                                                                                                                |
+| `module_management`    | 0.1.0   | active | system | yes  | `tenant_admin`, `identity_access`                                                                                                                 |
+| `domain_event_runtime` | 0.1.0   | active | system | no   | `tenant_admin`, `identity_access`, `logging`                                                                                                      |
+| `sync_storage`         | 1.0.0   | active | system | no   | `tenant_admin`                                                                                                                                    |
+| `workflow`             | 2.0.0   | active | system | no   | `tenant_admin`, `identity_access`, `domain_event_runtime`                                                                                         |
+| `email`                | 0.5.0   | active | —      | no   | `tenant_admin`, `profile_identity`, `identity_access`                                                                                             |
+| `reporting`            | 1.2.0   | active | —      | no   | `tenant_admin`, `identity_access`, `sync_storage`, `email`, `domain_event_runtime`                                                                |
+| `theming`              | 1.0.0   | active | domain | no   | `tenant_admin`, `identity_access`, `module_management`                                                                                            |
+| `media_library`        | 0.1.0   | active | system | no   | `tenant_admin`, `identity_access`                                                                                                                 |
+| `blog_content`         | 0.12.0  | active | domain | no   | `tenant_admin`, `identity_access`, `module_management`, `logging`                                                                                 |
+| `tenant_domain`        | 0.1.0   | active | domain | no   | `tenant_admin`, `identity_access`                                                                                                                 |
+| `visitor_analytics`    | 0.1.0   | active | system | no   | `tenant_admin`, `identity_access`, `logging`, `data_lifecycle`, `module_management`                                                               |
+| `data_lifecycle`       | 0.1.0   | active | system | no   | `tenant_admin`, `identity_access`, `logging`                                                                                                      |
+| `seo_distribution`     | 0.2.0   | active | domain | no   | `tenant_admin`, `identity_access`, `module_management`                                                                                            |
+| `form_drafts`          | 0.1.0   | active | system | no   | `identity_access`                                                                                                                                 |
+| `site_search`          | 0.1.0   | active | domain | no   | `tenant_admin`, `identity_access`, `module_management`                                                                                            |
+| `newsletter`           | 0.1.0   | active | domain | no   | `tenant_admin`, `identity_access`, `module_management`, `email`, `profile_identity`                                                               |
+| `site_profile`         | 0.1.0   | active | domain | no   | `tenant_admin`, `identity_access`, `media_library`, `seo_distribution`                                                                            |
+| `comments`             | 0.1.0   | active | domain | no   | `tenant_admin`, `identity_access`, `module_management`, `profile_identity`, `domain_event_runtime`                                                |
+| `idn_admin_regions`    | 0.1.0   | active | system | no   | `tenant_admin`, `identity_access`                                                                                                                 |
+| `push_delivery`        | 0.1.0   | active | —      | no   | `tenant_admin`, `logging`                                                                                                                         |
+| `commerce`             | 0.2.0   | active | domain | no   | `tenant_admin`, `identity_access`, `domain_event_runtime`, `media_library`, `module_management`, `email`, `profile_identity`, `idn_admin_regions` |
 
 ### Migrations
 
@@ -226,9 +226,10 @@
 | 174 | `sql/921_awcms_commerce_affiliates_schema.sql`                              |
 | 175 | `sql/922_awcms_commerce_affiliates_permissions.sql`                         |
 | 176 | `sql/923_awcms_commerce_affiliates_worker_lifecycle_purge_grants.sql`       |
-| 177 | `sql/925_awcms_commerce_whatsapp_outbox_otp_channel.sql`                    |
-| 178 | `sql/927_awcms_commerce_conversations_schema.sql`                           |
-| 179 | `sql/928_awcms_commerce_conversations_permissions.sql`                      |
+| 177 | `sql/924_awcms_commerce_shipping_rates_schema.sql`                          |
+| 178 | `sql/925_awcms_commerce_whatsapp_outbox_otp_channel.sql`                    |
+| 179 | `sql/927_awcms_commerce_conversations_schema.sql`                           |
+| 180 | `sql/928_awcms_commerce_conversations_permissions.sql`                      |
 
 ### Tables & Row-Level Security
 
@@ -272,6 +273,7 @@
 | `awcms_commerce_affiliates`                 | `sql/921_awcms_commerce_affiliates_schema.sql`             | yes | yes   |
 | `awcms_commerce_categories`                 | `sql/901_awcms_commerce_schema.sql`                        | yes | yes   |
 | `awcms_commerce_conversations`              | `sql/927_awcms_commerce_conversations_schema.sql`          | yes | yes   |
+| `awcms_commerce_courier_destinations`       | `sql/924_awcms_commerce_shipping_rates_schema.sql`         | yes | yes   |
 | `awcms_commerce_customer_accounts`          | `sql/917_awcms_commerce_customer_accounts_schema.sql`      | yes | yes   |
 | `awcms_commerce_customer_addresses`         | `sql/913_awcms_commerce_customers_orders_schema.sql`       | yes | yes   |
 | `awcms_commerce_customer_otps`              | `sql/917_awcms_commerce_customer_accounts_schema.sql`      | yes | yes   |
@@ -289,6 +291,7 @@
 | `awcms_commerce_product_variants`           | `sql/905_awcms_commerce_product_images_variants.sql`       | yes | yes   |
 | `awcms_commerce_products`                   | `sql/901_awcms_commerce_schema.sql`                        | yes | yes   |
 | `awcms_commerce_reviews`                    | `sql/913_awcms_commerce_customers_orders_schema.sql`       | yes | yes   |
+| `awcms_commerce_shipping_rates`             | `sql/924_awcms_commerce_shipping_rates_schema.sql`         | yes | yes   |
 | `awcms_commerce_sliders`                    | `sql/909_awcms_commerce_marketing_schema.sql`              | yes | yes   |
 | `awcms_commerce_store_settings`             | `sql/910_awcms_commerce_store_settings.sql`                | yes | yes   |
 | `awcms_commerce_testimonials`               | `sql/909_awcms_commerce_marketing_schema.sql`              | yes | yes   |
@@ -419,16 +422,16 @@
 
 | Directory     | Test files |
 | ------------- | ---------- |
-| `(root)`      | 436        |
+| `(root)`      | 437        |
 | `e2e`         | 19         |
-| `integration` | 88         |
+| `integration` | 89         |
 | `unit`        | 1          |
 
 ### Routes
 
 | Surface         | Files |
 | --------------- | ----- |
-| `/api/v1/**`    | 383   |
+| `/api/v1/**`    | 384   |
 | `/admin/**`     | 64    |
 | publik / anonim | 30    |
 
