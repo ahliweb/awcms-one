@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](seo.md)
 
-<!-- i18n-source-hash: sha256:b2f334462f5ccbfa15367daf6c95025ae3c6535746ff4b54f2cd935d64bc2fb4 -->
+<!-- i18n-source-hash: sha256:45a71c1273cec4ed2d53f30f4022048cd924f5c409ac8033d3f80697d31258c4 -->
 
 # SEO
 
@@ -43,7 +43,16 @@ Dua hal yang dipertimbangkan issue ini dan tidak dilakukan: `noindex` pada halam
 
 ## Halaman `noindex`
 
-`checkout`, `pesanan`, `cari`, `wishlist`, `keranjang`, `masuk`, `daftar`, dan `akun` (issue #88) semuanya membawa `<meta name="robots" content="noindex, follow">` lewat slot `head` milik `BaseLayout` — tidak satu pun dari halaman ini seharusnya menjadi tempat hasil pencarian mendaratkan pembaca secara langsung. `robots.txt` juga men-`Disallow` fetch untuk path yang sama (`Disallow: /akun` yang bertelanjang juga mencakup setiap rute anak akun seiring S2/S3 menambahkannya) plus `/api/`.
+`checkout`, `pesanan`, `cari`, `wishlist`, `keranjang`, `masuk`, `daftar`, dan `akun` (issue #88) semuanya membawa `<meta name="robots" content="noindex, follow">` lewat slot `head` milik `BaseLayout` — tidak satu pun dari halaman ini seharusnya menjadi tempat hasil pencarian mendaratkan pembaca secara langsung. `robots.txt` juga men-`Disallow` fetch untuk path yang sama (`Disallow: /akun` yang bertelanjang juga mencakup setiap rute anak akun, termasuk `/akun/afiliasi` yang ditambahkan issue #93, S3 dari #32) plus `/api/`.
+
+## Penangkapan referral (`?ref=`) tidak pernah menjadi bagian dari URL kanonik (issue #93)
+
+Setiap halaman bisa dijangkau dengan string kueri `?ref={code}` yang ditambahkan — tautan referral milik seorang pembeli. `apps/storefront/src/scripts/afiliasi-tangkap.ts`, dipasang dari `BaseLayout.astro` di SETIAP halaman (bukan satu rute saja), membaca dan menangkap nilai `ref` yang valid ke `localStorage` saat halaman dimuat, lalu memanggil `history.replaceState` untuk menghapus HANYA satu parameter itu dari URL yang terlihat. Ada dua alasan ini terjadi di sisi klien, setelah halaman sudah selesai dirender, bukan sebagai redirect saat build atau di sisi server:
+
+- **Referral harus ditangkap sebelum string kuerinya bisa hilang.** Redirect sisi server yang menghapus `?ref=` sebelum halaman dimuat tidak akan punya tempat untuk menyimpan kodenya terlebih dahulu — server situs statis ini (`apps/storefront/server/penyaji.mjs`) sama sekali tidak menyimpan state per-pengunjung ([ADR-0007](adr/0007-cart-and-checkout-stay-static-the-browser-calls-anonymous-commerce-endpoints.id.md)), sehingga SATU-SATUNYA tempat referral bisa diingat adalah `localStorage` milik peramban sendiri, yang hanya bisa ditulis oleh JavaScript.
+- **`<link rel="canonical">` milik `BaseLayout` sendiri sudah mengabaikan `?ref=` dari sononya** — prop `canonicalPath` setiap halaman adalah rute polos (`/produk`, `/product/{slug}`, …), bukan salinan `window.location.search`, sehingga URL yang membawa `?ref=` memang tidak pernah dikanonikalisasi ke dirinya sendiri sejak awal. `history.replaceState` yang membersihkan BILAH ALAMAT (bukan tag canonical, yang tidak perlu berubah) adalah yang mencegah bookmark milik pembeli atau pembagian ulang URL tab yang sama melanggengkan string kueri yang memang tidak pernah dilihat crawler sebagai sesuatu yang dikanonikalisasi.
+
+Penghapusan hanya menyentuh `ref` — setiap parameter kueri lain pada URL (`?q=` milik halaman pencarian, string kueri arsip berpaginasi, apa pun yang lain) dibiarkan sepenuhnya tidak tersentuh, sejalan dengan sikap "Disallow menghentikan fetch, noindex menghentikan index" yang sudah dipegang dokumen ini untuk halaman-halaman lain yang membawa string kueri: `/akun/afiliasi` sendiri (tempat tautan referral `SITE_URL/?ref={code}` dibuat untuk dibagikan seorang pembeli) adalah `noindex, follow` dengan alasan yang sama seperti setiap halaman akun lainnya, bukan karena string kueri yang ditautkannya keluar.
 
 ## Sitemap dan feed
 

@@ -41,7 +41,16 @@ Two things this issue considered and did not do: `noindex` on rubrik pages beyon
 
 ## `noindex` pages
 
-`checkout`, `pesanan`, `cari`, `wishlist`, `keranjang`, `masuk`, `daftar`, and `akun` (issue #88) all carry `<meta name="robots" content="noindex, follow">` via `BaseLayout`'s `head` slot — none of them is a page a search result should ever land a reader on directly. `robots.txt` additionally `Disallow`s the fetch for the same paths (a bare `Disallow: /akun` covers every child account route as S2/S3 add them) plus `/api/`.
+`checkout`, `pesanan`, `cari`, `wishlist`, `keranjang`, `masuk`, `daftar`, and `akun` (issue #88) all carry `<meta name="robots" content="noindex, follow">` via `BaseLayout`'s `head` slot — none of them is a page a search result should ever land a reader on directly. `robots.txt` additionally `Disallow`s the fetch for the same paths (a bare `Disallow: /akun` covers every child account route, including `/akun/afiliasi` added by issue #93, S3 of #32) plus `/api/`.
+
+## Referral capture (`?ref=`) never becomes part of a canonical URL (issue #93)
+
+Every page can be reached with a `?ref={code}` query string appended — a shopper's own referral link. `apps/storefront/src/scripts/afiliasi-tangkap.ts`, mounted from `BaseLayout.astro` on every page (not a single route), reads and captures a valid `ref` value into `localStorage` on load, then calls `history.replaceState` to remove ONLY that one parameter from the visible URL. Two reasons this happens client-side, after the page has already rendered, rather than as a build-time or server-side redirect:
+
+- **The referral must be captured before the query string can disappear.** A server-side redirect that strips `?ref=` before the page ever loads would have nowhere to persist the code first — this static site's server (`apps/storefront/server/penyaji.mjs`) holds no per-visitor state at all ([ADR-0007](adr/0007-cart-and-checkout-stay-static-the-browser-calls-anonymous-commerce-endpoints.md)), so the ONLY place a referral can be remembered is the browser's own `localStorage`, which only JavaScript can write to.
+- **`BaseLayout`'s own `<link rel="canonical">` already omits `?ref=` by construction** — every page's `canonicalPath` prop is the plain route (`/produk`, `/product/{slug}`, …), never a copy of `window.location.search`, so a `?ref=`-carrying URL was never going to be canonicalised to itself in the first place. `history.replaceState` cleaning the ADDRESS BAR (not the canonical tag, which needed no change) is what keeps a shopper's own bookmark or a later share of that same tab's URL from perpetuating the query string a crawler never saw canonicalised to begin with.
+
+The removal touches `ref` only — every other query parameter on the URL (a search page's `?q=`, a paginated archive's own query string, anything else) is left completely untouched, matching this file's own "Disallow stops the fetch, noindex stops the index" posture for query-string-bearing pages elsewhere in this document: `/akun/afiliasi` itself (where the referral link `SITE_URL/?ref={code}` is generated for a shopper to share) is `noindex, follow` for the same reason every other account page is, not because of the query string it links out to.
 
 ## Sitemaps and feeds
 
