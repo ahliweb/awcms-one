@@ -5440,3 +5440,56 @@ msgstr ""
 
 msgid "Reopen"
 msgstr ""
+
+msgid "Campaigns"
+msgstr ""
+
+msgid "Consent-gated mass e-mail/WhatsApp campaigns to your customers."
+msgstr ""
+
+msgid "You do not have permission to view campaigns."
+msgstr ""
+
+msgid "Campaigns could not be loaded right now. Please try again later."
+msgstr ""
+
+msgid "New campaign"
+msgstr ""
+
+msgid "Channel"
+msgstr ""
+
+msgid "Subject (e-mail only)"
+msgstr ""
+
+msgid "Use {{name}} and {{storeName}} — the only variables the message may interpolate."
+msgstr ""
+
+msgid "Audience: customer levels (all if none checked)"
+msgstr ""
+
+msgid "Recipients"
+msgstr ""
+
+msgid "Sent"
+msgstr ""
+
+msgid "{count} campaign"
+msgid_plural "{count} campaigns"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "No campaigns yet"
+msgstr ""
+
+msgid "Create a draft above to get started."
+msgstr ""
+
+msgid "(none)"
+msgstr ""
+
+msgid "Preview audience"
+msgstr ""
+
+msgid "Send now"
+msgstr ""

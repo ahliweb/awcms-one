@@ -236,13 +236,6 @@ const ROUTE_PARITY_EXEMPTIONS = new Set<string>([
   "/api/v1/commerce/webhooks/{provider}/{endpointToken}",
   // #116 — POS: cash orders, channel, permission, POS screen + history.
   "/api/v1/commerce/pos/orders",
-  // #114 — customer campaigns: consent, e-mail/WhatsApp mass notification,
-  // dispatcher, admin screen.
-  "/api/v1/commerce/campaigns",
-  "/api/v1/commerce/campaigns/{id}",
-  "/api/v1/commerce/campaigns/{id}/preview",
-  "/api/v1/commerce/campaigns/{id}/send",
-  "/api/v1/commerce/campaigns/{id}/cancel",
   // #117 — sales reports: three reporting projections over order events +
   // reports screen.
   "/api/v1/reports/commerce/sales-daily",

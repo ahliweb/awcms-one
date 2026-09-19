@@ -1,0 +1,455 @@
+---
+/**
+ * Customer campaigns admin screen (Issue #114, contract #106 ADR-0017 D9) —
+ * a campaign list, a create form (always a `draft`), and a detail/editor
+ * panel (`?id=`) with an audience preview count and send/cancel actions.
+ * Follows `commerce-inbox.astro`'s "list + detail on one page via a query
+ * param" shape and `commerce-vouchers.astro`'s create-form-above-the-list
+ * convention.
+ */
+import AdminLayout from "../../layouts/AdminLayout.astro";
+import "../../styles/admin-screens.css";
+import { loadAdminScreen } from "../../lib/auth/admin-screen";
+import { logAdminPageError } from "../../lib/logging/error-log";
+import { getTranslatorFor } from "../../lib/i18n";
+import {
+  fetchCampaign,
+  listCampaigns
+} from "../../modules/commerce/application/campaign-directory";
+
+const ssr = Astro.locals.ssrContext!;
+const { t, tn } = getTranslatorFor(Astro.locals.locale);
+
+const selectedId = Astro.url.searchParams.get("id");
+
+const screen = await loadAdminScreen({
+  ssr,
+  workClass: "interactive",
+  authorize: {
+    moduleKey: "commerce",
+    activityCode: "campaigns",
+    action: "read"
+  },
+  load: async ({ tx, can }) => {
+    const page = await listCampaigns(tx, ssr.tenantId, null);
+    const canUpdate = await can({
+      moduleKey: "commerce",
+      activityCode: "campaigns",
+      action: "update"
+    });
+    const canSend = await can({
+      moduleKey: "commerce",
+      activityCode: "campaigns",
+      action: "send"
+    });
+
+    const selected =
+      selectedId != null
+        ? await fetchCampaign(tx, ssr.tenantId, selectedId)
+        : null;
+
+    return { campaigns: page.items, canUpdate, canSend, selected };
+  },
+  onError: (error) => {
+    logAdminPageError(
+      "admin/commerce-campaigns.astro: failed to load campaigns",
+      error,
+      { correlationId: Astro.locals.correlationId }
+    );
+  }
+});
+
+const canRead = screen.state !== "denied";
+const loadError = screen.state === "error";
+const campaigns = screen.state === "allowed" ? screen.data.campaigns : [];
+const canUpdate = screen.state === "allowed" && screen.data.canUpdate;
+const canSend = screen.state === "allowed" && screen.data.canSend;
+const selected = screen.state === "allowed" ? screen.data.selected : null;
+---
+
+<AdminLayout
+  title={t("Campaigns")}
+  description={t(
+    "Consent-gated mass e-mail/WhatsApp campaigns to your customers."
+  )}
+>
+  {
+    !canRead && (
+      <p class="state-notice fade-in-up" id="campaigns-denied">
+        {t("You do not have permission to view campaigns.")}
+      </p>
+    )
+  }
+  {
+    canRead && loadError && (
+      <p class="state-notice fade-in-up" id="campaigns-error">
+        {t("Campaigns could not be loaded right now. Please try again later.")}
+      </p>
+    )
+  }
+
+  {
+    canRead && !loadError && (
+      <p
+        id="campaigns-action-error"
+        class="admin-create-error"
+        role="alert"
+        hidden
+      />
+    )
+  }
+
+  {
+    canRead && !loadError && canUpdate && (
+      <form id="campaign-create-form" class="admin-panel fade-in-up">
+        <h2>{t("New campaign")}</h2>
+        <label for="campaign-create-channel">{t("Channel")}</label>
+        <select id="campaign-create-channel" name="channel" required>
+          <option value="email">{t("E-mail")}</option>
+          <option value="whatsapp">{t("WhatsApp")}</option>
+        </select>
+
+        <label for="campaign-create-subject">
+          {t("Subject (e-mail only)")}
+        </label>
+        <input
+          type="text"
+          id="campaign-create-subject"
+          name="subject"
+          maxlength={200}
+        />
+
+        <label for="campaign-create-body">{t("Message")}</label>
+        <textarea
+          id="campaign-create-body"
+          name="body"
+          rows={5}
+          maxlength={4000}
+          required
+          placeholder={t(
+            "Use {{name}} and {{storeName}} — the only variables the message may interpolate."
+          )}
+        />
+
+        <fieldset>
+          <legend>
+            {t("Audience: customer levels (all if none checked)")}
+          </legend>
+          {[1, 2, 3, 4].map((level) => (
+            <label class="inline-checkbox">
+              <input
+                type="checkbox"
+                name="level"
+                value={level}
+                class="campaign-audience-level"
+              />
+              {level}
+            </label>
+          ))}
+        </fieldset>
+
+        <div class="row-actions">
+          <button
+            type="submit"
+            class="module-toggle"
+            id="campaign-create-submit"
+          >
+            {t("Create draft")}
+          </button>
+        </div>
+      </form>
+    )
+  }
+
+  {
+    canRead && !loadError && (
+      <div class="fade-in-up">
+        <div class="data-table-scroll">
+          <table
+            class="data-table data-table--stack"
+            id="commerce-campaigns-table"
+          >
+            <caption>
+              {tn("{count} campaign", "{count} campaigns", campaigns.length, {
+                count: campaigns.length
+              })}
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">{t("Channel")}</th>
+                <th scope="col">{t("Status")}</th>
+                <th scope="col">{t("Recipients")}</th>
+                <th scope="col">{t("Sent")}</th>
+                <th scope="col">{t("Created")}</th>
+                <th scope="col">{t("Open")}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {campaigns.length === 0 ? (
+                <tr>
+                  <td class="data-table-empty" colspan={6}>
+                    <div class="empty-state">
+                      <span class="empty-state-icon" aria-hidden="true">
+                        ◇
+                      </span>
+                      <span class="empty-state-title">
+                        {t("No campaigns yet")}
+                      </span>
+                      <span class="empty-state-text">
+                        {t("Create a draft above to get started.")}
+                      </span>
+                    </div>
+                  </td>
+                </tr>
+              ) : (
+                campaigns.map((campaign) => (
+                  <tr data-campaign-row={campaign.id}>
+                    <td data-label="Channel">{campaign.channel}</td>
+                    <td data-label="Status">
+                      <span class="status-badge">{campaign.status}</span>
+                    </td>
+                    <td data-label="Recipients">
+                      {campaign.recipientCount ?? "—"}
+                    </td>
+                    <td data-label="Sent">{campaign.sentCount ?? "—"}</td>
+                    <td data-label="Created">{campaign.createdAt}</td>
+                    <td data-label="Open">
+                      <a href={`/admin/commerce-campaigns?id=${campaign.id}`}>
+                        {t("View")}
+                      </a>
+                    </td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
+
+        {selected && (
+          <section
+            class="admin-panel fade-in-up"
+            aria-labelledby="campaign-detail-heading"
+            id="campaign-detail"
+            data-campaign-id={selected.id}
+          >
+            <h2 id="campaign-detail-heading">
+              {selected.channel} ·{" "}
+              <span class="status-badge">{selected.status}</span>
+            </h2>
+
+            {canUpdate && selected.status === "draft" ? (
+              <form id="campaign-edit-form" data-campaign-id={selected.id}>
+                <label for="campaign-edit-subject">
+                  {t("Subject (e-mail only)")}
+                </label>
+                <input
+                  type="text"
+                  id="campaign-edit-subject"
+                  name="subject"
+                  maxlength={200}
+                  value={selected.subject ?? ""}
+                />
+                <label for="campaign-edit-body">{t("Message")}</label>
+                <textarea
+                  id="campaign-edit-body"
+                  name="body"
+                  rows={5}
+                  maxlength={4000}
+                  required
+                >
+                  {selected.body}
+                </textarea>
+                <div class="row-actions">
+                  <button
+                    type="submit"
+                    class="module-toggle"
+                    id="campaign-edit-submit"
+                  >
+                    {t("Save draft")}
+                  </button>
+                </div>
+              </form>
+            ) : (
+              <div>
+                <p>
+                  <strong>{t("Subject")}:</strong>{" "}
+                  {selected.subject ?? t("(none)")}
+                </p>
+                <p>
+                  <strong>{t("Message")}:</strong> {selected.body}
+                </p>
+              </div>
+            )}
+
+            <div class="row-actions">
+              <button
+                type="button"
+                class="module-toggle"
+                id="campaign-preview-btn"
+                data-campaign-id={selected.id}
+              >
+                {t("Preview audience")}
+              </button>
+              <span id="campaign-preview-result" class="cell-muted" />
+            </div>
+
+            {canSend &&
+              (selected.status === "draft" ||
+                selected.status === "scheduled") && (
+                <div class="row-actions">
+                  <button
+                    type="button"
+                    class="module-toggle"
+                    id="campaign-send-btn"
+                    data-campaign-id={selected.id}
+                  >
+                    {t("Send now")}
+                  </button>
+                </div>
+              )}
+
+            {canSend &&
+              (selected.status === "draft" ||
+                selected.status === "scheduled" ||
+                selected.status === "sending") && (
+                <div class="row-actions">
+                  <button
+                    type="button"
+                    class="module-toggle campaign-cancel-btn"
+                    id="campaign-cancel-btn"
+                    data-campaign-id={selected.id}
+                  >
+                    {t("Cancel")}
+                  </button>
+                </div>
+              )}
+          </section>
+        )}
+      </div>
+    )
+  }
+</AdminLayout>
+
+<script>
+  import {
+    field,
+    messageBox,
+    mutateAndReload,
+    onAction,
+    onSubmit,
+    sendJson,
+    sendJsonForData
+  } from "../../lib/ui/admin-form-client";
+
+  const actionError = messageBox("campaigns-action-error");
+
+  function collectLevels(form: HTMLFormElement): number[] {
+    return Array.from(
+      form.querySelectorAll<HTMLInputElement>(
+        ".campaign-audience-level:checked"
+      )
+    ).map((input) => Number(input.value));
+  }
+
+  onSubmit("campaign-create-form", ({ form, data, submit }) => {
+    const channel = field(data, "channel");
+    const subjectRaw = field(data, "subject");
+    const levels = collectLevels(form);
+
+    return mutateAndReload(
+      submit,
+      actionError,
+      () =>
+        sendJson("POST", "/api/v1/commerce/campaigns", {
+          channel,
+          subject: subjectRaw.length > 0 ? subjectRaw : null,
+          body: field(data, "body"),
+          audience: { levels, hasAccount: null, lastOrderSince: null }
+        }),
+      "Could not create the campaign. Please try again.",
+      "Creating…"
+    );
+  });
+
+  onSubmit("campaign-edit-form", ({ form, data, submit }) => {
+    const id = form.dataset.campaignId;
+    if (!id) return Promise.resolve();
+    const subjectRaw = field(data, "subject");
+
+    return mutateAndReload(
+      submit,
+      actionError,
+      () =>
+        sendJson("PATCH", `/api/v1/commerce/campaigns/${id}`, {
+          subject: subjectRaw.length > 0 ? subjectRaw : null,
+          body: field(data, "body")
+        }),
+      "Could not save the campaign. Please try again.",
+      "Saving…"
+    );
+  });
+
+  onAction("#campaign-preview-btn", async (button) => {
+    const id = button.dataset.campaignId;
+    if (!id) return;
+    const result = document.getElementById("campaign-preview-result");
+    if (result) result.textContent = "…";
+
+    const response = await sendJsonForData<{ recipientCount: number }>(
+      "POST",
+      `/api/v1/commerce/campaigns/${id}/preview`
+    );
+
+    if (result) {
+      result.textContent = response.ok
+        ? `${response.data?.recipientCount ?? 0} recipient(s)`
+        : "Could not preview the audience.";
+    }
+  });
+
+  onAction("#campaign-send-btn", (button) => {
+    const id = button.dataset.campaignId;
+    if (!id) return;
+    if (
+      !window.confirm(
+        "Send this campaign now? This cannot be undone once dispatched."
+      )
+    ) {
+      return;
+    }
+
+    return mutateAndReload(
+      button,
+      actionError,
+      () =>
+        sendJson("POST", `/api/v1/commerce/campaigns/${id}/send`, undefined, {
+          "Idempotency-Key": crypto.randomUUID()
+        }),
+      "Could not send the campaign. Please try again.",
+      "Sending…"
+    );
+  });
+
+  onAction(".campaign-cancel-btn", (button) => {
+    const id = button.dataset.campaignId;
+    if (!id) return;
+    if (
+      !window.confirm(
+        "Cancel this campaign? Already-dispatched recipients will not be un-sent."
+      )
+    ) {
+      return;
+    }
+
+    return mutateAndReload(
+      button,
+      actionError,
+      () =>
+        sendJson("POST", `/api/v1/commerce/campaigns/${id}/cancel`, undefined, {
+          "Idempotency-Key": crypto.randomUUID()
+        }),
+      "Could not cancel the campaign. Please try again.",
+      "Cancelling…"
+    );
+  });
+</script>

@@ -8,12 +8,12 @@
 | Aspect                              | Value |
 | ----------------------------------- | ----- |
 | Registered modules                  | 25    |
-| Migrations                          | 181   |
-| `awcms_*` tables                    | 185   |
-| Tables with `FORCE` RLS             | 167   |
+| Migrations                          | 183   |
+| `awcms_*` tables                    | 187   |
+| Tables with `FORCE` RLS             | 169   |
 | RLS-free tables (global, by design) | 18    |
-| Test files                          | 551   |
-| Route files                         | 481   |
+| Test files                          | 552   |
+| Route files                         | 487   |
 | ADR                                 | 244   |
 
 ### Modules
@@ -231,6 +231,8 @@
 | 179 | `sql/926_awcms_commerce_payment_gateway_schema.sql`                         |
 | 180 | `sql/927_awcms_commerce_conversations_schema.sql`                           |
 | 181 | `sql/928_awcms_commerce_conversations_permissions.sql`                      |
+| 182 | `sql/929_awcms_commerce_campaigns_schema.sql`                               |
+| 183 | `sql/930_awcms_commerce_campaigns_permissions.sql`                          |
 
 ### Tables & Row-Level Security
 
@@ -272,6 +274,8 @@
 | `awcms_comments_threads`                    | `sql/066_awcms_comments_schema.sql`                        | yes | yes   |
 | `awcms_commerce_affiliate_commissions`      | `sql/921_awcms_commerce_affiliates_schema.sql`             | yes | yes   |
 | `awcms_commerce_affiliates`                 | `sql/921_awcms_commerce_affiliates_schema.sql`             | yes | yes   |
+| `awcms_commerce_campaign_recipients`        | `sql/929_awcms_commerce_campaigns_schema.sql`              | yes | yes   |
+| `awcms_commerce_campaigns`                  | `sql/929_awcms_commerce_campaigns_schema.sql`              | yes | yes   |
 | `awcms_commerce_categories`                 | `sql/901_awcms_commerce_schema.sql`                        | yes | yes   |
 | `awcms_commerce_conversations`              | `sql/927_awcms_commerce_conversations_schema.sql`          | yes | yes   |
 | `awcms_commerce_courier_destinations`       | `sql/924_awcms_commerce_shipping_rates_schema.sql`         | yes | yes   |
@@ -428,15 +432,15 @@
 | ------------- | ---------- |
 | `(root)`      | 441        |
 | `e2e`         | 19         |
-| `integration` | 90         |
+| `integration` | 91         |
 | `unit`        | 1          |
 
 ### Routes
 
 | Surface         | Files |
 | --------------- | ----- |
-| `/api/v1/**`    | 387   |
-| `/admin/**`     | 64    |
+| `/api/v1/**`    | 392   |
+| `/admin/**`     | 65    |
 | publik / anonim | 30    |
 
 <!-- END GENERATED: repo-inventory -->

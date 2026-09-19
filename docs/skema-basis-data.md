@@ -150,6 +150,18 @@ Issue #111, contract #106's D8 — a customer account's own thread with the stor
 
 Both new tables: RLS `ENABLE`+`FORCE`, tenant-isolation policy, FK indexes. `commerce.conversations`'s `dataLifecycle` descriptor uses the usual `deleted_at` cursor; `commerce.messages`, being append-only, uses `created_at` instead — the one exception `commerce.order_events` already established for exactly this shape.
 
+## Customer campaigns: two tables + one column (`sql/929`)
+
+Issue #114, contract #106's D9 — a consent-gated mass e-mail/WhatsApp send.
+
+| Table | Key columns | Notes |
+| --- | --- | --- |
+| `awcms_commerce_customer_accounts.marketing_consent_at` (new column, not a new table) | `timestamptz`, nullable | Non-null means the account opted into marketing communication at that instant; `NULL` means never opted in (or withdrawn). Toggled ONLY by the account itself via `PATCH .../account/me {marketingConsent}` — never by staff |
+| `awcms_commerce_campaigns` | `channel NOT NULL` (`CHECK IN ('email','whatsapp')`), `subject` (nullable — required for `email`, ignored for `whatsapp` at the application boundary), `body NOT NULL` (`CHECK char_length BETWEEN 1 AND 4000`), `audience jsonb NOT NULL DEFAULT '{}'` (validated at the application boundary, not by a database CHECK — a small, evolving filter shape), `status NOT NULL` (`CHECK IN ('draft','scheduled','sending','sent','cancelled')`, default `draft`), `scheduled_at`/`sent_at timestamptz`, `recipient_count integer` | `recipient_count`/`sent_at` start `NULL` on a fresh `draft`, populated only once the campaign has actually been dispatched (`commerce:campaigns:dispatch`'s FINALIZE phase) |
+| `awcms_commerce_campaign_recipients` | `campaign_id NOT NULL` (FK), `customer_id NOT NULL` (FK), `address_masked NOT NULL` (masked e-mail/phone ONLY, never a raw address), `status NOT NULL` (`CHECK IN ('queued','enqueued','skipped')`, default `queued`), `outbox_ref` (nullable), `UNIQUE (campaign_id, customer_id)` | One row per resolved recipient — the resumability/audit ledger a partial send relies on. The `UNIQUE` constraint plus `ON CONFLICT DO NOTHING` at insert time is what makes the dispatcher's crash-recovery safe to retry; `resolveCampaignAudiencePage`'s own `NOT EXISTS` against this table is what makes its resume cursor correct without a separate cursor column on the campaign row |
+
+Both new tables: RLS `ENABLE`+`FORCE`, tenant-isolation policy, FK indexes. `commerce.campaigns`'s `dataLifecycle` descriptor uses the usual `deleted_at` cursor; `commerce.campaign_recipients`, being append-only per campaign, uses `created_at` instead — the same `commerce.messages` shape just above. Permission catalog seed: `sql/930` (`commerce.campaigns.{read,update,send}`).
+
 ## Payment gateway: sessions, event ledger, webhook-endpoint tokens (`sql/926`)
 
 Issue #110, contract #106's D2/D3 — a hosted-checkout session table, a replay-protection ledger for inbound provider webhooks (no writer yet; the webhook INTAKE route is issue #113's own scope), and the tenant-scoped webhook-endpoint tokens D2's bootstrap lookup resolves.

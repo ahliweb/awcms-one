@@ -9399,7 +9399,7 @@ Proves the parts of the chain nothing else can see — that the VAPID key pair m
 
 Catalog slice of the re-platformed storefront (commerce module, Issue #4, epic #1) — tenant-scoped product categories (hierarchical, self-referencing parent) and products (physical/digital/service/subscription), ported from the legacy MySQL commerce_bj_mart schema's core catalog columns. price is numeric(14,2) and crosses the wire as a string, never a JSON number, so money arithmetic never drifts through binary floating point. A product's lifecycle status (draft/active/inactive/archived) travels through the same PATCH as every other field and is checked against a legal-transition table before any write. Categories have no status and no re-parenting via update — a hierarchy position is set once, at creation. This slice ships no restore endpoint: a soft-deleted row is retained (for the FK integrity of anything still referencing it) but not exposed for recovery here.
 
-### `GET /api/v1/commerce/campaigns` — Issue #106 (ADR-0017 D9; not yet implemented, lands in #114). Staff list of campaigns, newest first. Gated on `commerce.campaigns.read`.
+### `GET /api/v1/commerce/campaigns` — Issue #114 (contract #106 ADR-0017 D9). Staff list of campaigns, newest first. Gated on `commerce.campaigns.read`.
 
 - **operationId**: `listCommerceCampaigns`
 - **Security**: bearerAuth + tenantHeader
@@ -9418,7 +9418,7 @@ Catalog slice of the re-platformed storefront (commerce module, Issue #4, epic #
 | 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
 | 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
 
-### `POST /api/v1/commerce/campaigns` — Issue #106 (ADR-0017 D9; not yet implemented, lands in #114). Create a `draft` campaign. Gated on `commerce.campaigns.update`.
+### `POST /api/v1/commerce/campaigns` — Issue #114 (contract #106 ADR-0017 D9). Create a `draft` campaign. Gated on `commerce.campaigns.update`.
 
 - **operationId**: `createCommerceCampaign`
 - **Security**: bearerAuth + tenantHeader
@@ -9434,7 +9434,7 @@ Catalog slice of the re-platformed storefront (commerce module, Issue #4, epic #
 | 401    | Missing or invalid session.        | [`ApiError`](#standard-error-envelope) |
 | 403    | Access denied by RBAC/ABAC.        | [`ApiError`](#standard-error-envelope) |
 
-### `GET /api/v1/commerce/campaigns/{id}` — Issue #106 (ADR-0017 D9; not yet implemented, lands in #114). One campaign. Gated on `commerce.campaigns.read`.
+### `GET /api/v1/commerce/campaigns/{id}` — Issue #114 (contract #106 ADR-0017 D9). One campaign. Gated on `commerce.campaigns.read`.
 
 - **operationId**: `getCommerceCampaign`
 - **Security**: bearerAuth + tenantHeader
@@ -9454,7 +9454,7 @@ Catalog slice of the re-platformed storefront (commerce module, Issue #4, epic #
 | 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
 | 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
 
-### `PATCH /api/v1/commerce/campaigns/{id}` — Issue #106 (ADR-0017 D9; not yet implemented, lands in #114). Edit a campaign still in `draft`. Gated on `commerce.campaigns.update`.
+### `PATCH /api/v1/commerce/campaigns/{id}` — Issue #114 (contract #106 ADR-0017 D9). Edit a campaign still in `draft`. Gated on `commerce.campaigns.update`.
 
 - **operationId**: `updateCommerceCampaign`
 - **Security**: bearerAuth + tenantHeader
@@ -9478,7 +9478,7 @@ Catalog slice of the re-platformed storefront (commerce module, Issue #4, epic #
 | 404    | Resource not found.                  | [`ApiError`](#standard-error-envelope) |
 | 409    | CAMPAIGN_NOT_EDITABLE — not `draft`. | [`ApiError`](#standard-error-envelope) |
 
-### `POST /api/v1/commerce/campaigns/{id}/cancel` — Issue #106 (ADR-0017 D9; not yet implemented, lands in #114). Cancel a campaign before (or while) it sends; already-dispatched recipient rows are not un-sent. Gated on `commerce.campaigns.send`.
+### `POST /api/v1/commerce/campaigns/{id}/cancel` — Issue #114 (contract #106 ADR-0017 D9). Cancel a campaign before (or while) it sends; already-dispatched recipient rows are not un-sent. Gated on `commerce.campaigns.send`.
 
 - **operationId**: `cancelCommerceCampaign`
 - **Security**: bearerAuth + tenantHeader
@@ -9499,7 +9499,7 @@ Catalog slice of the re-platformed storefront (commerce module, Issue #4, epic #
 | 404    | Resource not found.                                  | [`ApiError`](#standard-error-envelope) |
 | 409    | CAMPAIGN_ALREADY_FINAL — already `sent`/`cancelled`. | [`ApiError`](#standard-error-envelope) |
 
-### `POST /api/v1/commerce/campaigns/{id}/preview` — Issue #106 (ADR-0017 D9; not yet implemented, lands in #114). Resolve the audience filter into a recipient COUNT, without sending anything. Gated on `commerce.campaigns.read`.
+### `POST /api/v1/commerce/campaigns/{id}/preview` — Issue #114 (contract #106 ADR-0017 D9). Resolve the audience filter into a recipient COUNT, without sending anything. Gated on `commerce.campaigns.read`.
 
 - **operationId**: `previewCommerceCampaign`
 - **Security**: bearerAuth + tenantHeader
@@ -9519,7 +9519,7 @@ Catalog slice of the re-platformed storefront (commerce module, Issue #4, epic #
 | 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
 | 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
 
-### `POST /api/v1/commerce/campaigns/{id}/send` — Issue #106 (ADR-0017 D9; not yet implemented, lands in #114). Resolve the audience, create one `awcms_commerce_campaign_recipients` row per recipient, and move the campaign to `sending` — the `commerce:campaigns:dispatch` job fans the rows out into the e-mail/WhatsApp outboxes from there. Gated on `commerce.campaigns.send`; `Idempotency-Key` required.
+### `POST /api/v1/commerce/campaigns/{id}/send` — Issue #114 (contract #106 ADR-0017 D9). Moves the campaign to `scheduled` (scheduled_at = now); the `commerce:campaigns:dispatch` job then resolves the audience, creates one `awcms_commerce_campaign_recipients` row per recipient, and fans the rows out into the e-mail/WhatsApp outboxes. Gated on `commerce.campaigns.send`; `Idempotency-Key` required.
 
 - **operationId**: `sendCommerceCampaign`
 - **Security**: bearerAuth + tenantHeader
@@ -11616,7 +11616,7 @@ Issue #86 (ADR-0016, epic #32 wave 0) — CONTRACT ONLY, no route file yet (hand
 | 401    | UNAUTHENTICATED — missing, invalid, or expired bearer. | [`ApiError`](#standard-error-envelope) |
 | 403    | ACCOUNT_BLOCKED.                                       | [`ApiError`](#standard-error-envelope) |
 
-### `PATCH /api/v1/commerce/storefront/account/me` — Issue #89 (implemented, contract #86). Update the account's display name. No e-mail/phone change in this increment (D6). `marketingConsent` (Issue #106 ADR-0017 D9; not yet implemented, lands in #115) is the ONLY field a campaign's audience resolution ever reads to decide reachability.
+### `PATCH /api/v1/commerce/storefront/account/me` — Issue #89 (implemented, contract #86). Update the account's display name. No e-mail/phone change in this increment (D6). `marketingConsent` (Issue #114, contract #106 ADR-0017 D9) is the ONLY field a campaign's audience resolution ever reads to decide reachability.
 
 - **operationId**: `updateCommerceStorefrontAccountMe`
 - **Security**: customerBearer

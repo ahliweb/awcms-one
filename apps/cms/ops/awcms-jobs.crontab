@@ -48,6 +48,12 @@ AWCMS_LOCK=/home/admin1/awcms-jobs/locks
 # retention).
 0 4 * * * /usr/bin/flock -n $AWCMS_LOCK/comments-retention.lock $AWCMS_RUN_JOB comments:retention >> $AWCMS_JOB_LOG/comments-retention.log 2>&1
 
+# commerce — Fans a scheduled/sending campaign out into the same
+# e-mail/WhatsApp outboxes D5/D7 already dispatch from, in pages of 200 (Issue
+# #114). Resumable: a crash mid-dispatch is picked back up on the next tick
+# from wherever awcms_commerce_campaign_recipients left off.
+*/2 * * * * /usr/bin/flock -n $AWCMS_LOCK/commerce-campaigns-dispatch.lock $AWCMS_RUN_JOB commerce:campaigns:dispatch >> $AWCMS_JOB_LOG/commerce-campaigns-dispatch.log 2>&1
+
 # commerce — Deletes every expired customer OTP and every expired or
 # revoked-more-than-7-days-ago customer session, across all tenants (Issue
 # #87). Idempotent and bounded — a row already deleted is simply absent from
