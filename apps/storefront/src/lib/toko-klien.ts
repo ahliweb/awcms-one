@@ -177,6 +177,16 @@ export type CreateOrderRequest = {
   voucherCode: string | null;
   insurance: boolean;
   notes: string | null;
+  /**
+   * Issue #93 (S3 of #32) — the referral code captured by `afiliasi-
+   * tangkap.ts`, per #86's own "existing `POST /storefront/orders` … also
+   * accepts an optional `affiliateCode`". `null` when no (valid, unexpired)
+   * referral was captured — the same as never having clicked a referral
+   * link. The CMS ignores an unknown/suspended code entirely (#86's D5): a
+   * bad code here never blocks or changes checkout, only whether a
+   * commission is later attributed.
+   */
+  affiliateCode: string | null;
 };
 
 export type OrderStatus =

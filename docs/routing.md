@@ -45,7 +45,7 @@ Every route `apps/storefront` publishes — 41 route files under `apps/storefron
 
 All four: `noindex, follow`, `aria-live="polite"` on quote/status updates, keyboard-reachable, a `<noscript>` fallback plus a JS-ran-but-CMS-down WhatsApp fallback (`apps/storefront/src/lib/wa-fallback.ts`).
 
-## Customer accounts (issue #88 S1, issue #90 S2, of #32)
+## Customer accounts (issue #88 S1, issue #90 S2, issue #93 S3, of #32)
 
 | Path | Source | Notes |
 | --- | --- | --- |
@@ -56,8 +56,11 @@ All four: `noindex, follow`, `aria-live="polite"` on quote/status updates, keybo
 | `/akun/pesanan` | `apps/storefront/src/pages/akun/pesanan.astro` | Keyset-paginated order list ("Muat lebih banyak"); `noindex, follow` |
 | `/akun/pesanan?kode=` | same file, `?kode=` present | One owned order's detail, reusing `/pesanan`'s own renderer (`apps/storefront/src/lib/pesanan-render.ts`) — NO phone prompt, the session already proves ownership |
 | `/akun/ulasan` | `apps/storefront/src/pages/akun/ulasan.astro` | The account's own product reviews — rating as text + stars, Indonesian moderation status; `noindex, follow` |
+| `/akun/afiliasi` | `apps/storefront/src/pages/akun/afiliasi.astro` | The affiliate program (issue #93, S3 of #32; the CMS/staff side is issue #92): closed explanation when `affiliateProgramEnabled` is `false` at build time, otherwise enrol/referral-link/stats/commissions; `noindex, follow` |
 
-`ROUTES.accountAffiliate` (`/akun/afiliasi`) is still declared with no page behind it — that lands with S3 of issue #32. `ROUTES.accountOrder(kode)` (`/akun/pesanan?kode=`) is a single order's own URL.
+`ROUTES.accountOrder(kode)` (`/akun/pesanan?kode=`) is a single order's own URL.
+
+`?ref={code}` on ANY page (not just `/`) is a captured referral, not a distinct route — `apps/storefront/src/scripts/afiliasi-tangkap.ts`, mounted from `BaseLayout.astro` on every page, stores a valid code and strips ONLY that query parameter via `history.replaceState`; see [`docs/seo.md`](seo.md) for why the canonical link is unaffected by the capture.
 
 `checkout.astro`/`checkout.ts` gained a "Pilih alamat tersimpan" `<select>`, hidden until a customer session is confirmed, that autofills the address step from `GET …/account/addresses`; the order-creation request carries the signed-in shopper's Bearer token when one exists (`apps/storefront/src/lib/toko-klien.ts`'s `createOrder` takes an OPTIONAL second `bearerToken` argument — existing anonymous callers are unaffected).
 

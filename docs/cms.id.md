@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](cms.md)
 
-<!-- i18n-source-hash: sha256:929637523b07568a950e5dd6e68ff9dc11e127bc1e53e20c6d1463693f986f2d -->
+<!-- i18n-source-hash: sha256:0e4cfadf04add56afbb39bc5dd0418748d5f4a4a7ef030aa949054ac6a88dee9 -->
 
 # CMS: authoring, publikasi, izin, audit, media, taksonomi
 
@@ -136,6 +136,14 @@ Modul `site-profile` milik `apps/cms` mengekspos `logoMediaId`/`faviconMediaId` 
 `AD_PLACEMENT_KEYS` milik `blog_content` mendefinisikan slot header, in-article, dan sidebar — sengaja tidak ada slot footer (diverifikasi terhadap set kunci yang benar-benar terdaftar, bukan asumsi). Halaman berita `apps/storefront` merender slot mana pun yang dikembalikan CMS; tidak ada UI manajemen penempatan-iklan yang didokumentasikan di sini karena itu milik `blog_content`, bukan `commerce` — lihat dokumentasi modul `apps/cms` sendiri untuk sisi admin.
 
 Increment 3 membuat slot-slot itu nyata, bukan sekadar nominal. Kedua belas kunci kini dikonsumsi (`header_banner`, `below_headline`, `homepage_middle`, `homepage_bottom`, `article_top`/`_middle`/`_bottom`, `sidebar_top`/`_middle`/`_bottom`, `category_archive_top`, `search_result_top`), materinya dirender sebagai `<img>` sungguhan lewat klien media ([ADR-0011](adr/0011-storefront-media-resolves-through-the-media-objects-endpoint.md)), dan mengkliknya membuka `<dialog>` native — perilaku popup milik seputarborneo sendiri (issue #53). **Masih tidak ada kunci footer**: leaderboard yang dirender seputarborneo di atas footer-nya adalah `homepage_bottom` aplikasi ini, ditempatkan di sana oleh `FooterBerita.astro` (keputusan 4 epic #46); menambahkan kunci `footer_leaderboard` tersendiri tetap perubahan upstream yang belum dibutuhkan siapa pun. Slot yang tidak terisi tidak merender apa pun — tidak pernah kotak placeholder kosong.
+
+## Program afiliasi: sisi pembeli (issue #93); sisi admin/staf adalah issue #92
+
+ADR-0016 milik `apps/cms` sendiri ("Akun pelanggan adalah akun commerce terverifikasi-OTP dengan sesi bearer", hadir bersama branch issue #89 sendiri — belum menjadi berkas di `docs/adr/` branch INI, sehingga tidak ada tautan di sini alih-alih tautan mati) merancang program afiliasi dari nol, sesuai keputusan D5-nya: `awcms_commerce_affiliates` (satu baris per pelanggan yang bergabung, `code` unik per tenant, `commission_rate`, `status`) dan `awcms_commerce_affiliate_commissions` (satu baris per pesanan yang direferensikan, dibuat saat pesanan itu mencapai `completed`; `status` berkembang `pending` → `approved`/`void` → `paid`, digerakkan staf). Referral diri sendiri tidak menghasilkan komisi. Cakupan dokumen ini adalah apa yang dilakukan `apps/storefront` dengan kontrak itu, bukan layar admin yang mengelolanya (`commerce.affiliates.read|update`, `commerce.affiliate_commissions.read|update` — issue #92, tidak dibangun oleh issue ini):
+
+- Sebuah tenant menyalakan program dengan mengatur tarif komisi; storefront tidak pernah melihat tarif itu secara langsung — hanya boolean turunan `affiliateProgramEnabled` pada model baca store-settings PUBLIK, dibaca saat build. Instance awcms yang lebih lama dari fitur ini cukup mengabaikan field tersebut, dan storefront meng-default-kannya ke `false` alih-alih mengasumsikan program yang belum ada entah bagaimana sedang aktif.
+- Penangkapan `?ref={code}`, `affiliateCode` saat checkout, dan UI gabung/tautan/statistik/komisi milik `/akun/afiliasi` sepenuhnya menjadi urusan `apps/storefront` — lihat README aplikasi itu sendiri dan [`docs/routing.md`](routing.id.md)/[`docs/seo.md`](seo.id.md) untuk mekanisme sisi-pembelinya. Kontrak CMS sendiri sengaja permisif di sini: `affiliateCode` yang tidak dikenal atau ditangguhkan yang dikirim bersama pesanan diabaikan begitu saja, tidak pernah ditolak — checkout seorang pembeli tidak boleh gagal hanya karena tautan referral basi atau salah ketik milik orang lain.
+- `GET/POST /account/affiliate` dan `GET /account/affiliate/commissions` adalah rute berorientasi-pelanggan yang diautentikasi bearer (`/api/v1/commerce/storefront/account/affiliate*`) — permukaan autentikasi yang SAMA dengan `/account/me`/`/account/orders`, bukan owner API yang dipakai layar admin.
 
 ## Permukaan SEO yang diumpankan CMS
 

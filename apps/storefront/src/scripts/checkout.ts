@@ -22,6 +22,7 @@ import { buildWhatsappCartMessage, buildWhatsappUrl } from "../lib/wa-fallback";
 import { PESANAN_PHONE_KEY } from "../lib/pesanan-sesi";
 import { bacaSesi } from "../lib/akun-sesi";
 import { ambilAlamat, type Alamat } from "../lib/akun-klien";
+import { bacaKodeAfiliasi } from "../lib/afiliasi-kontrak";
 import { applyRegionSelection, wireCascadingRegionSelects } from "../lib/wilayah-region-select";
 
 const STEP_ORDER = ["contact", "address", "shipping", "payment", "review"] as const;
@@ -499,7 +500,13 @@ if (root) {
         payment: { method: selectedPaymentMethod },
         voucherCode: voucherCode || null,
         insurance: insuranceSelected,
-        notes: notes || null
+        notes: notes || null,
+        // Issue #93: re-read at submit time, same as `bacaSesi()` above —
+        // an expired (>30-day) capture must not attribute a sale, and
+        // `bacaKodeAfiliasi` already drops one that has aged out. The CMS
+        // ignores an unknown/suspended code (#86's D5), so this never
+        // blocks checkout regardless of what it resolves to.
+        affiliateCode: bacaKodeAfiliasi()?.code ?? null
       };
 
       submitting = true;

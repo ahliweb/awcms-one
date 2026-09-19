@@ -164,6 +164,19 @@
  * OPTIONAL Bearer, binding the created record to that account when one is
  * present and valid — every existing anonymous caller is unaffected.
  *
+ * Issue #93 (S3, #86's own D5) grows the same account object with
+ * `affiliate`/`commissions`, and adds `GET/POST /account/affiliate` and
+ * `GET /account/affiliate/commissions[?cursor=]`. `budi@example.test` is
+ * seeded ALREADY ENROLLED with three commissions, one per status
+ * (pending/approved/paid) — see `SEEDED_KOMISI`'s own docblock; a freshly
+ * registered account starts with `affiliate: null` so `POST …/account/
+ * affiliate` itself is exercised by enrolling a NEW account, not the seeded
+ * one. `POST …/orders` records `body.affiliateCode` on the created order
+ * (`order.affiliateCode`) when present — this stub does not go further and
+ * simulate a commission being created when an order reaches `completed`
+ * (#86's own D5 describes that as the CMS's job, not this storefront-only
+ * stub's).
+ *
  * See `handleStorefrontRequest` below for the route table itself.
  */
 import { readFileSync } from "node:fs";
@@ -617,20 +630,91 @@ const SEEDED_ADDRESSES = [
   }
 ];
 
+/**
+ * Issue #93 (S3 of #32, #86's own D5) — the fixture account
+ * (`budi@example.test`) is seeded ALREADY ENROLLED, with three commissions
+ * (one per status the storefront's own `KOMISI_STATUS_LABELS` names:
+ * pending/approved/paid), so `/akun/afiliasi` can be exercised end-to-end
+ * against this stub with no manual "Gabung" click first. A freshly
+ * registered account starts with `affiliate: null`/`commissions: []`,
+ * exactly like it starts with no addresses/orders/reviews — enrolling THAT
+ * account is what exercises `POST …/account/affiliate` itself.
+ */
+const AFFILIATE_ALPHABET = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+
+/**
+ * A deterministic (not random) 8-char code per account — same shape
+ * `src/lib/afiliasi-kontrak.ts`'s own `KODE_PATTERN` requires (unambiguous
+ * base32, no `I`/`O`/`0`/`1`), so a code THIS stub mints always round-trips
+ * through the storefront's own `validasiKodeAfiliasi` — INCLUDING the name
+ * part: "Budi" contains an `I`, so each of its letters is only kept when it
+ * is itself in {@link AFFILIATE_ALPHABET}, substituting `X` otherwise,
+ * rather than copying the name's own letters verbatim and risking an
+ * ambiguous character the storefront would then reject as an incoming
+ * `?ref=`.
+ */
+function deterministicAffiliateCode(account) {
+  const rawLetters = account.name.replace(/[^A-Za-z]/g, "").toUpperCase();
+
+  let namePart = "";
+  for (const ch of rawLetters) {
+    if (namePart.length >= 4) break;
+    namePart += AFFILIATE_ALPHABET.includes(ch) ? ch : "X";
+  }
+  namePart = (namePart + "XXXX").slice(0, 4);
+
+  let hash = 0;
+  for (const ch of account.email) hash = (hash * 31 + ch.charCodeAt(0)) >>> 0;
+
+  let rest = "";
+  for (let i = 0; i < 4; i += 1) {
+    rest += AFFILIATE_ALPHABET[(hash >>> (i * 5)) % AFFILIATE_ALPHABET.length];
+    hash = (hash * 31 + i) >>> 0;
+  }
+
+  return `${namePart}${rest}`;
+}
+
+/** `"${SITE_URL}/?ref=${code}"` — the storefront's own `SITE_URL` is not something this CMS stub is configured with (it is a STOREFRONT build variable), so this falls back to the storefront's own dev default when unset; a real awcms builds this from its own configured storefront origin. */
+function buildAffiliateLink(code) {
+  const site = (process.env.SITE_URL ?? "http://localhost:4321").replace(/\/+$/, "");
+  return `${site}/?ref=${code}`;
+}
+
+const SEEDED_KOMISI = [
+  { id: "komisi-1", orderCode: "STUB-20260201-0001", amount: "15000.00", status: "pending", createdAt: "2026-02-01T00:00:00.000Z" },
+  { id: "komisi-2", orderCode: "STUB-20260202-0002", amount: "22000.00", status: "approved", createdAt: "2026-02-02T00:00:00.000Z" },
+  { id: "komisi-3", orderCode: "STUB-20260203-0003", amount: "9000.00", status: "paid", createdAt: "2026-02-03T00:00:00.000Z" }
+];
+
+/** Sums `amount` across `commissions` whose `status === status`, formatted the same `numeric(14,2)` string shape every other money field in this stub already uses. */
+function sumKomisi(commissions, status) {
+  const total = commissions.filter((k) => k.status === status).reduce((sum, k) => sum + Number(k.amount), 0);
+  return total.toFixed(2);
+}
+
 /** Accounts keyed by normalized e-mail — seeded once from the fixture, then grown by `purpose:"register"` verifies. */
 const ACCOUNTS = new Map(
-  fixture("customer-accounts.json").map((account) => [
-    normalizeEmail(account.email),
-    {
-      ...account,
-      // Only the fixture's own `budi@example.test` gets the seeded
-      // addresses/orders below — a second fixture row (if one is ever
-      // added) starts empty, same as a freshly registered account.
-      addresses: normalizeEmail(account.email) === "budi@example.test" ? SEEDED_ADDRESSES.map((a) => ({ ...a })) : [],
-      wishlist: [],
-      reviews: []
-    }
-  ])
+  fixture("customer-accounts.json").map((account) => {
+    const isSeeded = normalizeEmail(account.email) === "budi@example.test";
+    return [
+      normalizeEmail(account.email),
+      {
+        ...account,
+        // Only the fixture's own `budi@example.test` gets the seeded
+        // addresses/orders/affiliate state below — a second fixture row (if
+        // one is ever added) starts empty, same as a freshly registered
+        // account.
+        addresses: isSeeded ? SEEDED_ADDRESSES.map((a) => ({ ...a })) : [],
+        wishlist: [],
+        reviews: [],
+        affiliate: isSeeded
+          ? { code: deterministicAffiliateCode(account), commissionRate: "10.00", status: "active" }
+          : null,
+        commissions: isSeeded ? SEEDED_KOMISI.map((k) => ({ ...k })) : []
+      }
+    ];
+  })
 );
 /** `email -> {code, purpose, registration, expiresAt, consumed}` — one row per e-mail, the same "single code, replaced by the next request" shape `awcms_commerce_customer_otps` describes (#86's schema summary). */
 const OTPS = new Map();
@@ -1050,7 +1134,78 @@ function handleAccountRequest(request, path, body, headers) {
     return envelope({ items: account.reviews }, { headers });
   }
 
+  // Issue #93 (S3, #86's own D5) — the affiliate program.
+
+  if (path === "/affiliate" && request.method === "GET") {
+    const account = findAccountByBearer(request);
+    if (!account) {
+      return envelopeError(401, "UNAUTHENTICATED", "Sesi tidak valid atau telah berakhir.", undefined, headers);
+    }
+    return envelope({ affiliate: serializeAffiliate(account) }, { headers });
+  }
+
+  if (path === "/affiliate" && request.method === "POST") {
+    const account = findAccountByBearer(request);
+    if (!account) {
+      return envelopeError(401, "UNAUTHENTICATED", "Sesi tidak valid atau telah berakhir.", undefined, headers);
+    }
+
+    const settings = storeSettings();
+    if (!(settings.affiliateProgramEnabled ?? false)) {
+      return envelopeError(
+        409,
+        "AFFILIATE_PROGRAM_DISABLED",
+        "Program afiliasi sedang tidak aktif di toko ini.",
+        undefined,
+        headers
+      );
+    }
+
+    if (!account.affiliate) {
+      account.affiliate = { code: deterministicAffiliateCode(account), commissionRate: "10.00", status: "active" };
+    }
+
+    return envelope({ affiliate: serializeAffiliate(account) }, { status: 201, headers });
+  }
+
+  if (path === "/affiliate/commissions" && request.method === "GET") {
+    const account = findAccountByBearer(request);
+    if (!account) {
+      return envelopeError(401, "UNAUTHENTICATED", "Sesi tidak valid atau telah berakhir.", undefined, headers);
+    }
+
+    const owned = [...account.commissions].sort(
+      (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    );
+
+    const cursorParam = new URL(request.url).searchParams.get("cursor");
+    const PAGE_SIZE = 10;
+    const startIndex = cursorParam ? owned.findIndex((komisi) => komisi.id === cursorParam) + 1 : 0;
+    const page = owned.slice(startIndex, startIndex + PAGE_SIZE);
+    const nextCursor = startIndex + PAGE_SIZE < owned.length ? page[page.length - 1]?.id ?? null : null;
+
+    return envelope({ items: page, nextCursor }, { headers });
+  }
+
   return null;
+}
+
+/** `null` for an account that has not enrolled; otherwise the `{code, commissionRate, status, link, stats}` shape #86's contract names, `stats` computed fresh from `account.commissions` every call (never cached), so a status change to one commission is reflected immediately. */
+function serializeAffiliate(account) {
+  if (!account.affiliate) return null;
+
+  return {
+    code: account.affiliate.code,
+    commissionRate: account.affiliate.commissionRate,
+    status: account.affiliate.status,
+    link: buildAffiliateLink(account.affiliate.code),
+    stats: {
+      referredOrders: account.commissions.length,
+      pendingAmount: sumKomisi(account.commissions, "pending"),
+      approvedAmount: sumKomisi(account.commissions, "approved"),
+      paidAmount: sumKomisi(account.commissions, "paid")
+    }
+  };
 }
 
 function maskPhone(phone) {
@@ -1286,7 +1441,12 @@ async function handleStorefrontRequest(request, url) {
       // Issue #90 (#86's own "accept an OPTIONAL Bearer … the customer is
       // the account's row") — an anonymous request (no/invalid token) binds
       // to nothing, exactly as before this issue.
-      accountEmail: optionalAccount ? normalizeEmail(optionalAccount.email) : null
+      accountEmail: optionalAccount ? normalizeEmail(optionalAccount.email) : null,
+      // Issue #93 (#86's own D5) — recorded verbatim, `null` when absent.
+      // This stub never validates the code against a real affiliate (an
+      // unknown/suspended code is IGNORED per D5, never rejected) and never
+      // creates a commission itself — see this file's own header for why.
+      affiliateCode: body.affiliateCode ?? null
     };
 
     ORDERS.set(orderCode, order);

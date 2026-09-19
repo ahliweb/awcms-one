@@ -254,6 +254,15 @@ function jsonForScript(value: unknown): string {
 
     <slot name="footer"><Footer identity={identity} staticPages={staticPages} /></slot>
 
+    {/* Referral capture (issue #93, S3 of #32) — mounted on EVERY page, the
+        same "external module, mounted once from a layout" rule the read-
+        aloud player and the Daerah panel already established (see
+        `src/scripts/afiliasi-tangkap.ts`'s own docblock): a `?ref=CODE`
+        link can land a shopper on any page of this site, not just `/`, so
+        this cannot be scoped to a single page the way `checkout.ts`'s
+        affiliate READ is. A no-op on a page with no `?ref=` at all. */}
+    <script>import "../scripts/afiliasi-tangkap";</script>
+
     {/* The first-party visitor beacon (issue #56, A10) — every page, store
         and news alike, an external module (`script-src 'self'`) exactly
         like every other client script in this app. See
