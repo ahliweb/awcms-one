@@ -24,6 +24,8 @@ import {
   fetchAffiliateCommissionRate,
   fetchStoreSettings
 } from "../../modules/commerce/application/store-settings-directory";
+import { listWebhookEndpoints } from "../../modules/commerce/application/webhook-endpoint-directory";
+import { resolveRequestOrigin } from "../../lib/http/site-origin";
 
 const ssr = Astro.locals.ssrContext!;
 const { t } = getTranslatorFor(Astro.locals.locale);
@@ -46,7 +48,24 @@ const screen = await loadAdminScreen({
       activityCode: "settings",
       action: "update"
     });
-    return { settings, affiliateCommissionRate, canUpdate };
+    // Issue #110 — a SEPARATE permission from `settings.update`: an owner
+    // who may edit store settings may not necessarily mint/revoke webhook
+    // tokens (`commerce.webhook_endpoints.update`), and vice versa.
+    const canManageWebhookEndpoints = await can({
+      moduleKey: "commerce",
+      activityCode: "webhook_endpoints",
+      action: "update"
+    });
+    const webhookEndpoints = canManageWebhookEndpoints
+      ? await listWebhookEndpoints(tx, ssr.tenantId)
+      : [];
+    return {
+      settings,
+      affiliateCommissionRate,
+      canUpdate,
+      canManageWebhookEndpoints,
+      webhookEndpoints
+    };
   },
   onError: (error) => {
     logAdminPageError(
@@ -65,6 +84,12 @@ const settings = screen.state === "allowed" ? screen.data.settings : null;
 const affiliateCommissionRate =
   screen.state === "allowed" ? screen.data.affiliateCommissionRate : null;
 const canUpdate = screen.state === "allowed" && screen.data.canUpdate;
+const canManageWebhookEndpoints =
+  screen.state === "allowed" && screen.data.canManageWebhookEndpoints;
+const webhookEndpoints =
+  screen.state === "allowed" ? screen.data.webhookEndpoints : [];
+/** `${public CMS origin}/api/v1/commerce/webhooks/midtrans/{token}` — the URL shape to paste into Midtrans, per contract #106 D2. The token itself is filled in client-side, once, right after creation. */
+const webhookUrlBase = `${resolveRequestOrigin(Astro.url, Astro.request)}/api/v1/commerce/webhooks/midtrans`;
 
 // Issue #107 — `shipping.courier` gets its own explicit section below (an
 // enabled toggle, an origin-destination picker, a couriers multi-select),
@@ -80,6 +105,17 @@ const shippingWithoutCourier = settings
     })()
   : null;
 
+// Issue #110 — `payment.gateway` gets its own explicit enable toggle below,
+// same "pull the field out of the JSON blob" treatment `shipping.courier`
+// already got (see that comment above): excluded from the advanced JSON so
+// there is exactly one place to edit it.
+const paymentWithoutGateway = settings
+  ? (() => {
+      const { gateway: _gateway, ...rest } = settings.payment;
+      return rest;
+    })()
+  : null;
+
 const advancedJson = settings
   ? JSON.stringify(
       {
@@ -87,7 +123,7 @@ const advancedJson = settings
         social: settings.social,
         customerLevels: settings.customerLevels,
         shipping: shippingWithoutCourier,
-        payment: settings.payment,
+        payment: paymentWithoutGateway,
         promoSection: settings.promoSection,
         meta: settings.meta
       },
@@ -95,6 +131,8 @@ const advancedJson = settings
       2
     )
   : "{}";
+
+const gateway = settings?.payment.gateway ?? { enabled: false };
 
 const courier = settings?.shipping.courier ?? {
   enabled: false,
@@ -273,6 +311,17 @@ const COURIER_OPTIONS = [
           {t("Hold Ctrl/Cmd (or Shift) to select more than one courier.")}
         </p>
 
+        <p class="form-legend">{t("Payment gateway (Midtrans)")}</p>
+        <p class="cell-muted">
+          {t(
+            "Turn on hosted checkout (Midtrans Snap) for this store. Requires COMMERCE_PAYMENT_GATEWAY and COMMERCE_MIDTRANS_SERVER_KEY configured for this deployment (see the deployment guide) — otherwise shoppers still see a disabled gateway option."
+          )}
+        </p>
+        <label>
+          <input id="gw-enabled" type="checkbox" checked={gateway.enabled} />{" "}
+          {t("Enable payment gateway")}
+        </label>
+
         <p class="form-legend">{t("Advanced settings (JSON)")}</p>
         <p class="cell-muted">
           {t(
@@ -294,10 +343,97 @@ const COURIER_OPTIONS = [
       </form>
     )
   }
+
+  {
+    canManageWebhookEndpoints && (
+      <section
+        id="webhook-endpoints-section"
+        class="admin-create-form fade-in-up"
+      >
+        <p class="form-legend">{t("Payment gateway webhook endpoints")}</p>
+        <p class="cell-muted">
+          {t(
+            "Mint a token, paste the resulting URL into Midtrans's own webhook settings. The token is shown exactly once — it is never retrievable again after this."
+          )}
+        </p>
+
+        <p
+          id="webhook-endpoint-error"
+          class="admin-create-error"
+          role="alert"
+          hidden
+        />
+        <p
+          id="webhook-endpoint-created"
+          class="state-notice"
+          hidden
+          data-url-base={webhookUrlBase}
+        />
+
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>{t("Provider")}</th>
+              <th>{t("Label")}</th>
+              <th>{t("Created")}</th>
+              <th>{t("Status")}</th>
+              <th>{t("Action")}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {webhookEndpoints.map((endpoint) => (
+              <tr>
+                <td>{endpoint.provider}</td>
+                <td>{endpoint.label ?? "—"}</td>
+                <td>{new Date(endpoint.createdAt).toLocaleString()}</td>
+                <td>{endpoint.revokedAt ? t("Revoked") : t("Active")}</td>
+                <td>
+                  {!endpoint.revokedAt && (
+                    <button
+                      type="button"
+                      class="js-revoke-webhook-endpoint"
+                      data-endpoint-id={endpoint.id}
+                    >
+                      {t("Revoke")}
+                    </button>
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+
+        <form id="webhook-endpoint-create-form">
+          <label for="webhook-endpoint-provider">{t("Provider")}</label>
+          <select id="webhook-endpoint-provider" name="provider">
+            <option value="midtrans">{t("Midtrans")}</option>
+          </select>
+
+          <label for="webhook-endpoint-label">{t("Label (optional)")}</label>
+          <input
+            id="webhook-endpoint-label"
+            name="label"
+            type="text"
+            placeholder="e.g. production"
+          />
+
+          <button type="submit">{t("Create webhook endpoint")}</button>
+        </form>
+      </section>
+    )
+  }
 </AdminLayout>
 
 <script>
-  import { messageBox, sendJson } from "../../lib/ui/admin-form-client";
+  import {
+    field,
+    messageBox,
+    mutateAndReload,
+    onAction,
+    onSubmit,
+    sendJson,
+    sendJsonForData
+  } from "../../lib/ui/admin-form-client";
 
   const el = (id: string) => document.getElementById(id);
   const val = (id: string) =>
@@ -336,6 +472,16 @@ const COURIER_OPTIONS = [
         couriers: [
           ...(el("cr-couriers") as HTMLSelectElement).selectedOptions
         ].map((option) => option.value)
+      }
+    };
+
+    // Issue #110 — re-attach `payment.gateway` from its own dedicated
+    // toggle (excluded from the advanced JSON, see the frontmatter's own
+    // comment).
+    advanced.payment = {
+      ...(advanced.payment as Record<string, unknown> | undefined),
+      gateway: {
+        enabled: (el("gw-enabled") as HTMLInputElement).checked
       }
     };
 
@@ -414,5 +560,39 @@ const COURIER_OPTIONS = [
         dl.appendChild(option);
       }
     }, 300);
+  });
+
+  // Issue #110 — webhook-endpoint create/revoke, same onSubmit/onAction/
+  // mutateAndReload idiom machine-credentials.astro uses. The token is
+  // rendered ONCE from this response (textContent, never innerHTML); the
+  // server never stores it, so a reload never shows it again.
+  const whError = messageBox("webhook-endpoint-error");
+  const createdBox = el("webhook-endpoint-created") as HTMLElement | null;
+
+  onSubmit("webhook-endpoint-create-form", async ({ data }) => {
+    const result = await sendJsonForData<{ token?: string }>(
+      "POST",
+      "/api/v1/commerce/webhook-endpoints",
+      { provider: field(data, "provider"), label: orNull(field(data, "label")) }
+    );
+
+    if (!result.ok || !result.data?.token || !createdBox) {
+      whError.show("Could not create the webhook endpoint. Try again.");
+      return;
+    }
+
+    createdBox.hidden = false;
+    createdBox.textContent = `Copy this now — it will not be shown again: ${createdBox.dataset.urlBase}/${result.data.token}`;
+  });
+
+  onAction(".js-revoke-webhook-endpoint", (button) => {
+    const id = button.dataset.endpointId;
+    if (!id) return;
+    return mutateAndReload(
+      button,
+      whError,
+      () => sendJson("DELETE", `/api/v1/commerce/webhook-endpoints/${id}`),
+      () => "Could not revoke that webhook endpoint. Please try again."
+    );
   });
 </script>

@@ -3196,7 +3196,7 @@ paths:
       operationId: createCommerceStorefrontPaymentGatewaySession
       tags:
         - Commerce
-      summary: "Issue #106 (ADR-0017 D3; not yet implemented, lands in #110). Create a hosted payment-gateway session (Midtrans Snap) for a `pending_payment` order whose `paymentMethod` is `gateway`. Anonymous, identified by `phone` — or an optional `customerBearer`, matching the rest of this anonymous surface (Issue #91's own optional-bearer pattern)."
+      summary: "Issue #106 (ADR-0017 D3; implemented by #110). Create a hosted payment-gateway session (Midtrans Snap) for a `pending_payment` order whose `paymentMethod` is `gateway`. Anonymous, identified by `phone` — or an optional `customerBearer`, matching the rest of this anonymous surface (Issue #91's own optional-bearer pattern)."
       description: >-
         `createSession` (the `PaymentGatewayProvider` port) is called OUTSIDE
         any DB transaction (ADR-0006/ADR-0017 D1); the returned `providerRef`
@@ -5262,7 +5262,7 @@ paths:
       operationId: listCommerceWebhookEndpoints
       tags:
         - Commerce
-      summary: "Issue #106 (ADR-0017 D2/D3; not yet implemented, lands in #110). Staff list of this tenant's inbound webhook endpoints — the token itself is NEVER re-shown after creation. Gated on `commerce.webhook_endpoints.update`."
+      summary: "Issue #106 (ADR-0017 D2/D3; implemented by #110). Staff list of this tenant's inbound webhook endpoints — the token itself is NEVER re-shown after creation. Gated on `commerce.webhook_endpoints.update`."
       responses:
         "200":
           description: The endpoints.
@@ -5290,7 +5290,7 @@ paths:
       operationId: createCommerceWebhookEndpoint
       tags:
         - Commerce
-      summary: "Issue #106 (ADR-0017 D2/D3; not yet implemented, lands in #110). Mint a new opaque endpoint token for a provider. The RAW token is returned exactly once, in this response, and never again — only its hash is stored (`awcms_commerce_webhook_endpoints`, D2). Gated on `commerce.webhook_endpoints.update`."
+      summary: "Issue #106 (ADR-0017 D2/D3; implemented by #110). Mint a new opaque endpoint token for a provider. The RAW token is returned exactly once, in this response, and never again — only its hash is stored (`awcms_commerce_webhook_endpoints`, D2). Gated on `commerce.webhook_endpoints.update`."
       requestBody:
         required: true
         content:
@@ -5304,6 +5304,9 @@ paths:
                   type: string
                   enum:
                     - midtrans
+                label:
+                  type: string
+                  nullable: true
       responses:
         "201":
           description: Endpoint created; `data.token` is shown exactly once.
@@ -5335,7 +5338,7 @@ paths:
       operationId: deleteCommerceWebhookEndpoint
       tags:
         - Commerce
-      summary: "Issue #106 (ADR-0017 D2/D3; not yet implemented, lands in #110). Revoke a webhook endpoint token — the fastest available rotation path if a URL leaks. Gated on `commerce.webhook_endpoints.update`."
+      summary: "Issue #106 (ADR-0017 D2/D3; implemented by #110). Revoke a webhook endpoint token — the fastest available rotation path if a URL leaks. Gated on `commerce.webhook_endpoints.update`."
       parameters:
         - name: id
           in: path
@@ -5344,12 +5347,28 @@ paths:
             type: string
             format: uuid
       responses:
-        "204":
-          description: Revoked. Idempotent — deleting an already-deleted endpoint still answers 204.
+        "200":
+          description: Revoked. Idempotent — revoking an already-revoked endpoint still answers 200 with the same row.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      endpoint:
+                        $ref: "#/components/schemas/CommerceWebhookEndpoint"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
           $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
   /api/v1/commerce/webhooks/{provider}/{endpointToken}:
     post:
       operationId: receiveCommercePaymentWebhook
@@ -6906,7 +6925,7 @@ components:
           description: "alternativeServices[] {id,name,cost}, selfPickup, courierEnabled, pinpointEnabled, freeShipping {active,minOrder,maxDiscount}, originCityName, originSubdistrictName, courier: {enabled, originDestinationId, couriers: string[]} (Issue #106 ADR-0017 D4, implemented by #107) — `originDestinationId` is the RajaOngkir destination id resolved once for the store's own shipping origin; `couriers` names which provider courier codes (e.g. `jne`, `sicepat`) are offered; `enabled` is the courier-rate integration's own on/off switch."
         payment:
           type: object
-          description: "manualBank {active, accounts[] {bankName, accountNumber, accountHolder}}, manualQris {active, mediaObjectId}, downPayment {active, percent}, tax {active, percent}, insurance {active, ratePercent, minFee}. Gains `gateway: {enabled}` (Issue #106 ADR-0017 D3/D10; not yet implemented, lands in #110/#118) — the store-level ON/OFF switch; `COMMERCE_PAYMENT_GATEWAY` (env, per deployment) must ALSO be a real gateway for the method to actually appear, per D1's env-only-credentials rule."
+          description: "manualBank {active, accounts[] {bankName, accountNumber, accountHolder}}, manualQris {active, mediaObjectId}, downPayment {active, percent}, tax {active, percent}, insurance {active, ratePercent, minFee}. Gains `gateway: {enabled}` (Issue #106 ADR-0017 D3/D10; the #110 half — schema, provider, session route, webhook-endpoint tokens — implemented; #118 (BjekMart Features flag) still pending) — the store-level ON/OFF switch; `COMMERCE_PAYMENT_GATEWAY` (env, per deployment) must ALSO be a real gateway for the method to actually appear, per D1's env-only-credentials rule."
         promoSection:
           type: object
           properties:
@@ -7073,7 +7092,7 @@ components:
               description: Issue 29 — whether the public payment-proof upload path is usable on this deployment. Always false in this increment; a payment confirmation without a proof image is still accepted.
             gatewayEnabled:
               type: boolean
-              description: 'Issue #106 (ADR-0017 D3/D10; not yet implemented, lands in #110/#118). Whether the storefront should offer `payment.method: "gateway"` at all — both the store-level `payment.gateway.enabled` toggle AND a configured `COMMERCE_PAYMENT_GATEWAY` must be true; the rate/provider details themselves never cross into this public shape.'
+              description: 'Issue #106 (ADR-0017 D3/D10; the #110 half — schema, provider, session route, webhook-endpoint tokens — implemented; #118 (BjekMart Features flag) still pending). Whether the storefront should offer `payment.method: "gateway"` at all — both the store-level `payment.gateway.enabled` toggle AND a configured `COMMERCE_PAYMENT_GATEWAY` must be true; the rate/provider details themselves never cross into this public shape.'
         orders:
           type: object
           description: Issue 29.
@@ -7267,7 +7286,7 @@ components:
           type: object
         paymentMethods:
           type: array
-          description: "`gateway` (Issue #106 ADR-0017 D3; not yet implemented, lands in #110) joins the existing `manual_bank`/`manual_qris`/`dp` entries once `COMMERCE_PAYMENT_GATEWAY` is not `none`; `available` still reflects the tenant's own store-settings toggle (`payment.gateway.enabled`, D10)."
+          description: "`gateway` (Issue #106 ADR-0017 D3; implemented by #110) joins the existing `manual_bank`/`manual_qris`/`dp` entries once `COMMERCE_PAYMENT_GATEWAY` is not `none`; `available` still reflects the tenant's own store-settings toggle (`payment.gateway.enabled`, D10)."
           items:
             type: object
             properties:
@@ -7331,7 +7350,7 @@ components:
                 - manual_qris
                 - dp
                 - gateway
-              description: "`gateway` (Issue #106 ADR-0017 D3; not yet implemented, lands in #110) creates the order `pending_payment` exactly like every other method; the shopper is redirected to the gateway's hosted page only via the separate `POST .../payment-gateway/sessions` call below, never as a side effect of order creation itself."
+              description: "`gateway` (Issue #106 ADR-0017 D3; implemented by #110) creates the order `pending_payment` exactly like every other method; the shopper is redirected to the gateway's hosted page only via the separate `POST .../payment-gateway/sessions` call below, never as a side effect of order creation itself."
         voucherCode:
           type: string
           nullable: true
@@ -7933,7 +7952,7 @@ components:
           format: date-time
     CommerceWebhookEndpoint:
       type: object
-      description: "Issue #106 (ADR-0017 D2/D3; not yet implemented, lands in #110). A row of `awcms_commerce_webhook_endpoints`. The raw token is NEVER part of this shape — only `createCommerceWebhookEndpoint`'s own `201` response carries it, once."
+      description: "Issue #106 (ADR-0017 D2/D3; implemented by #110). A row of `awcms_commerce_webhook_endpoints`. The raw token is NEVER part of this shape — only `createCommerceWebhookEndpoint`'s own `201` response carries it, once."
       properties:
         id:
           type: string
@@ -7942,10 +7961,13 @@ components:
           type: string
           enum:
             - midtrans
+        label:
+          type: string
+          nullable: true
         createdAt:
           type: string
           format: date-time
-        lastUsedAt:
+        revokedAt:
           type: string
           format: date-time
           nullable: true

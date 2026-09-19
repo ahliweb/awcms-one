@@ -63,7 +63,8 @@ function buildDefaultStoreSettings(storeName: string): StoreSettingsData {
       manualQris: { active: false, mediaObjectId: null },
       downPayment: { active: false, percent: 0 },
       tax: { active: false, percent: 0 },
-      insurance: { active: false, ratePercent: "0.0", minFee: "0.00" }
+      insurance: { active: false, ratePercent: "0.0", minFee: "0.00" },
+      gateway: { enabled: false }
     },
     orders: { expiryHours: 24 },
     promoSection: { active: false, items: [] },
@@ -297,6 +298,14 @@ export type StoreSettingsPublicRecord = {
      * simply hides the "attach proof" control when this is `false`.
      */
     proofUpload: boolean;
+    /**
+     * Issue #110 (contract #106 D3) — whether hosted-checkout (Midtrans
+     * Snap) is usable on this deployment: `true` only when the owner turned
+     * it on AND a `PaymentGatewayProvider` is actually configured
+     * (`isPaymentGatewayProviderConfigured()`), mirroring
+     * `shipping.courierEnabled`'s own derivation exactly.
+     */
+    gatewayEnabled: boolean;
   };
   orders: StoreSettingsData["orders"];
   promoSection: StoreSettingsData["promoSection"];
@@ -343,7 +352,9 @@ export async function toPublicRecord(
    * this function must keep working against a fake `MediaLibraryPort` and
    * no live environment in tests.
    */
-  courierProviderConfigured: boolean = false
+  courierProviderConfigured: boolean = false,
+  /** Issue #110 — `isPaymentGatewayProviderConfigured() !== null`, passed in for the same reason `courierProviderConfigured` is. */
+  gatewayProviderConfigured: boolean = false
 ): Promise<StoreSettingsPublicRecord> {
   const mediaIds = [
     settings.logoMediaObjectId,
@@ -413,7 +424,9 @@ export async function toPublicRecord(
       downPayment: settings.payment.downPayment,
       tax: settings.payment.tax,
       insurance: settings.payment.insurance,
-      proofUpload: false
+      proofUpload: false,
+      gatewayEnabled:
+        settings.payment.gateway.enabled && gatewayProviderConfigured
     },
     orders: settings.orders,
     promoSection: settings.promoSection,

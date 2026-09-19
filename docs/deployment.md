@@ -48,6 +48,14 @@ A much larger file, owned entirely by `apps/cms` as embedded `ahliweb/awcms` cod
 | `COMMERCE_RAJAONGKIR_API_KEY` | unset | Required when `COMMERCE_SHIPPING_RATE_PROVIDER=rajaongkir` — the Komerce API v2 `key` header value |
 | `COMMERCE_RAJAONGKIR_BASE_URL` | `https://rajaongkir.komerce.id/api/v1` | Override for tests/dev only — never request input |
 | `COMMERCE_RAJAONGKIR_TIMEOUT_MS` | `10000` | Per-call timeout (`withTimeout`) for both the destination-search and calculate-cost RajaOngkir calls |
+| `COMMERCE_PAYMENT_GATEWAY` | unset | Issue #110 (contract #106 D3) — `midtrans` (real adapter) or `log` (deterministic, no network; refused when `NODE_ENV=production`); unset means `payment.method: "gateway"` is never `available`, regardless of `payment.gateway.enabled` on a tenant's own settings |
+| `COMMERCE_MIDTRANS_SERVER_KEY` | unset | Required when `COMMERCE_PAYMENT_GATEWAY=midtrans` — the Basic-auth server key sent as `Authorization: Basic base64(ServerKey + ":")` |
+| `COMMERCE_MIDTRANS_IS_PRODUCTION` | `false` | Selects the Snap/status API base URL (sandbox vs production) when the override below is unset |
+| `COMMERCE_MIDTRANS_SNAP_BASE_URL` | `https://app.sandbox.midtrans.com` (sandbox) / `https://app.midtrans.com` (production) | Override for tests/dev only — never request input |
+| `COMMERCE_MIDTRANS_STATUS_BASE_URL` | `https://api.sandbox.midtrans.com` (sandbox) / `https://api.midtrans.com` (production) | Override for tests/dev only — never request input |
+| `COMMERCE_MIDTRANS_TIMEOUT_MS` | `15000` | Per-call timeout (`withTimeout`) for both `createSession` and `fetchStatus` |
+
+**`COMMERCE_STOREFRONT_PUBLIC_URL` (already documented above for affiliate referral links) also builds the `log` payment-gateway provider's own `redirectUrl` (`"${COMMERCE_STOREFRONT_PUBLIC_URL}/pesanan?kode=...&gateway=log"`) and, when set, the Midtrans adapter's `callbacks.finish` URL.**
 
 **`COMMERCE_WHATSAPP_ENABLED`/`COMMERCE_WHATSAPP_PROVIDER` are the same kind of deployment gate for WhatsApp login (issue #108, contract #106 D5).** `POST account/otp/request` with `via: "whatsapp"` answers `409 CHANNEL_UNAVAILABLE` until `COMMERCE_WHATSAPP_ENABLED=true`; the code then goes to a `log` adapter (dev/CI) unless `COMMERCE_WHATSAPP_PROVIDER` also names a real provider (`fonnte` or `meta`, each with its own credential variables below). WhatsApp is a login-only channel for an account that already exists — registration is unaffected and stays e-mail OTP only.
 

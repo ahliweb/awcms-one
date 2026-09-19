@@ -529,8 +529,24 @@ export const READER_BUDGET_BYTES = 24_000;
  * this screen's own cost, no other surface changed), so this constant keeps
  * the same small margin above the measured total this constant's own
  * history already establishes.
+ *
+ * **Raised to 234,800 B after merging Issue #110 on top of #111 and #114** (awcms-one
+ * epic #33, C3) — the payment-gateway section added to the same
+ * `commerce-settings.astro` screen: a `payment.gateway.enabled` toggle
+ * (reusing the exact courier toggle's re-attach shape above) plus a
+ * webhook-endpoint create/revoke panel built entirely from the shared
+ * `onSubmit`/`onAction`/`mutateAndReload`/`sendJson`/`sendJsonForData`/
+ * `field`/`messageBox` helpers `machine-credentials.astro` already
+ * established — no new lifecycle code, no hand-rolled DOM row
+ * construction. Measured at 231,939 B on its own branch point (231,500 +
+ * ~440 B for this genuinely new control); measured again after merging
+ * #111's inbox screen the total was 232,662 B; measured once more after
+ * merging #114's campaigns screen above, the combined total is 234,521 B —
+ * independent additions whose costs add, plus each screen's own i18n
+ * catalogue entries sharing one compiled catalogue. 234,800 keeps the
+ * same small margin above the measured total this constant's history uses.
  */
-export const APP_BUDGET_BYTES = 234_200;
+export const APP_BUDGET_BYTES = 234_800;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.

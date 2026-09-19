@@ -5337,6 +5337,36 @@ msgstr ""
 msgid "Hold Ctrl/Cmd (or Shift) to select more than one courier."
 msgstr ""
 
+msgid "Payment gateway (Midtrans)"
+msgstr ""
+
+msgid "Midtrans"
+msgstr ""
+
+msgid "Turn on hosted checkout (Midtrans Snap) for this store. Requires COMMERCE_PAYMENT_GATEWAY and COMMERCE_MIDTRANS_SERVER_KEY configured for this deployment (see the deployment guide) — otherwise shoppers still see a disabled gateway option."
+msgstr ""
+
+msgid "Enable payment gateway"
+msgstr ""
+
+msgid "Payment gateway webhook endpoints"
+msgstr ""
+
+msgid "Mint a token, paste the resulting URL into Midtrans's own webhook settings. The token is shown exactly once — it is never retrievable again after this."
+msgstr ""
+
+msgid "Label"
+msgstr ""
+
+msgid "Revoked"
+msgstr ""
+
+msgid "Label (optional)"
+msgstr ""
+
+msgid "Create webhook endpoint"
+msgstr ""
+
 msgid "FAQs, social links, customer levels, shipping (except courier rates, above), payment (including bank accounts — never shown publicly), promo section, and per-page meta titles."
 msgstr ""
 

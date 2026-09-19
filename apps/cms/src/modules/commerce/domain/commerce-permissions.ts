@@ -260,3 +260,18 @@ export const COMMERCE_CAMPAIGN_PERMISSIONS = {
   /** Send (and cancel) a campaign — the one action that reaches a real inbox/phone. */
   send: "commerce.campaigns.send"
 } as const;
+
+/**
+ * Payment-gateway webhook-endpoint tokens (Issue #110, contract #106's
+ * D2/D3 OpenAPI note). ONE permission key gates the whole owner surface —
+ * list (masked), create (plaintext token shown once), and revoke alike —
+ * since the token itself never appears in the list either way, mirroring
+ * `COMMERCE_AFFILIATE_PERMISSIONS`'s own "no distinct `create`/`delete`
+ * action with nothing different to enforce" reasoning.
+ */
+export const COMMERCE_WEBHOOK_ENDPOINTS_ACTIVITY_CODE = "webhook_endpoints";
+
+export const COMMERCE_WEBHOOK_ENDPOINT_PERMISSIONS = {
+  /** Also gates list (masked) and create (token shown once). */
+  update: "commerce.webhook_endpoints.update"
+} as const;

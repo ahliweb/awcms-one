@@ -1609,7 +1609,14 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   // courier_destinations` has no dedicated purge job yet but is granted
   // the same way for a future staleness sweep (see `sql/924`'s header).
   awcms_commerce_courier_destinations: ["SELECT", "DELETE"],
-  awcms_commerce_shipping_rates: ["SELECT", "DELETE"]
+  awcms_commerce_shipping_rates: ["SELECT", "DELETE"],
+  // Issue #110 (`sql/926`): the payment-gateway schema — none has a
+  // dedicated purge job in this issue's own scope (the reconcile job is
+  // #113's), granted the same way for the generic archive/purge engine
+  // per `commerce/module.ts`'s own descriptors for these three tables.
+  awcms_commerce_payment_gateway_sessions: ["SELECT", "DELETE"],
+  awcms_commerce_payment_events: ["SELECT", "DELETE"],
+  awcms_commerce_webhook_endpoints: ["SELECT", "DELETE"]
 };
 
 /**

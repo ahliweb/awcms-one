@@ -638,7 +638,8 @@ const LIVE_SETTINGS = {
     manualQris: { active: true, mediaObjectId: UUID },
     downPayment: { active: false, percent: 50 },
     tax: { active: false, percent: 11 },
-    insurance: { active: false, ratePercent: "0.20", minFee: "500.00" }
+    insurance: { active: false, ratePercent: "0.20", minFee: "500.00" },
+    gateway: { enabled: false }
   },
   promoSection: { active: false, items: [] },
   meta: {

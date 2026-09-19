@@ -232,11 +232,6 @@ const ALLOWED_PUBLIC_OPERATIONS = new Set([
  * again once that issue's route file lands.
  */
 const ROUTE_PARITY_EXEMPTIONS = new Set<string>([
-  // #110 — payment gateway (schema, Midtrans Snap adapter, session endpoint,
-  // webhook endpoint tokens).
-  "/api/v1/commerce/storefront/orders/{orderCode}/payment-gateway/sessions",
-  "/api/v1/commerce/webhook-endpoints",
-  "/api/v1/commerce/webhook-endpoints/{id}",
   // #113 — gateway webhook intake, system actor paid, payments reconcile job.
   "/api/v1/commerce/webhooks/{provider}/{endpointToken}",
   // #116 — POS: cash orders, channel, permission, POS screen + history.

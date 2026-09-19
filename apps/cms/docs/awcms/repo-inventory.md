@@ -8,12 +8,12 @@
 | Aspect                              | Value |
 | ----------------------------------- | ----- |
 | Registered modules                  | 25    |
-| Migrations                          | 182   |
-| `awcms_*` tables                    | 184   |
-| Tables with `FORCE` RLS             | 166   |
+| Migrations                          | 183   |
+| `awcms_*` tables                    | 187   |
+| Tables with `FORCE` RLS             | 169   |
 | RLS-free tables (global, by design) | 18    |
-| Test files                          | 547   |
-| Route files                         | 484   |
+| Test files                          | 552   |
+| Route files                         | 487   |
 | ADR                                 | 244   |
 
 ### Modules
@@ -228,10 +228,11 @@
 | 176 | `sql/923_awcms_commerce_affiliates_worker_lifecycle_purge_grants.sql`       |
 | 177 | `sql/924_awcms_commerce_shipping_rates_schema.sql`                          |
 | 178 | `sql/925_awcms_commerce_whatsapp_outbox_otp_channel.sql`                    |
-| 179 | `sql/927_awcms_commerce_conversations_schema.sql`                           |
-| 180 | `sql/928_awcms_commerce_conversations_permissions.sql`                      |
-| 181 | `sql/929_awcms_commerce_campaigns_schema.sql`                               |
-| 182 | `sql/930_awcms_commerce_campaigns_permissions.sql`                          |
+| 179 | `sql/926_awcms_commerce_payment_gateway_schema.sql`                         |
+| 180 | `sql/927_awcms_commerce_conversations_schema.sql`                           |
+| 181 | `sql/928_awcms_commerce_conversations_permissions.sql`                      |
+| 182 | `sql/929_awcms_commerce_campaigns_schema.sql`                               |
+| 183 | `sql/930_awcms_commerce_campaigns_permissions.sql`                          |
 
 ### Tables & Row-Level Security
 
@@ -290,6 +291,8 @@
 | `awcms_commerce_order_items`                | `sql/913_awcms_commerce_customers_orders_schema.sql`       | yes | yes   |
 | `awcms_commerce_orders`                     | `sql/913_awcms_commerce_customers_orders_schema.sql`       | yes | yes   |
 | `awcms_commerce_payment_confirmations`      | `sql/913_awcms_commerce_customers_orders_schema.sql`       | yes | yes   |
+| `awcms_commerce_payment_events`             | `sql/926_awcms_commerce_payment_gateway_schema.sql`        | yes | yes   |
+| `awcms_commerce_payment_gateway_sessions`   | `sql/926_awcms_commerce_payment_gateway_schema.sql`        | yes | yes   |
 | `awcms_commerce_popups`                     | `sql/909_awcms_commerce_marketing_schema.sql`              | yes | yes   |
 | `awcms_commerce_product_images`             | `sql/905_awcms_commerce_product_images_variants.sql`       | yes | yes   |
 | `awcms_commerce_product_variants`           | `sql/905_awcms_commerce_product_images_variants.sql`       | yes | yes   |
@@ -300,6 +303,7 @@
 | `awcms_commerce_store_settings`             | `sql/910_awcms_commerce_store_settings.sql`                | yes | yes   |
 | `awcms_commerce_testimonials`               | `sql/909_awcms_commerce_marketing_schema.sql`              | yes | yes   |
 | `awcms_commerce_vouchers`                   | `sql/909_awcms_commerce_marketing_schema.sql`              | yes | yes   |
+| `awcms_commerce_webhook_endpoints`          | `sql/926_awcms_commerce_payment_gateway_schema.sql`        | yes | yes   |
 | `awcms_commerce_whatsapp_delivery_attempts` | `sql/925_awcms_commerce_whatsapp_outbox_otp_channel.sql`   | yes | yes   |
 | `awcms_commerce_whatsapp_messages`          | `sql/925_awcms_commerce_whatsapp_outbox_otp_channel.sql`   | yes | yes   |
 | `awcms_commerce_wishlists`                  | `sql/913_awcms_commerce_customers_orders_schema.sql`       | yes | yes   |
@@ -426,16 +430,16 @@
 
 | Directory     | Test files |
 | ------------- | ---------- |
-| `(root)`      | 437        |
+| `(root)`      | 441        |
 | `e2e`         | 19         |
-| `integration` | 90         |
+| `integration` | 91         |
 | `unit`        | 1          |
 
 ### Routes
 
 | Surface         | Files |
 | --------------- | ----- |
-| `/api/v1/**`    | 389   |
+| `/api/v1/**`    | 392   |
 | `/admin/**`     | 65    |
 | publik / anonim | 30    |
 

@@ -89,7 +89,7 @@ async function enforcedTriples(
 }
 
 describe("commerce module descriptor — restore is declared for both activity codes", () => {
-  test("forty-nine permissions total — five per catalog activity code (incl. restore), four per marketing code, two for settings, two each for orders/customers/affiliates/affiliate_commissions/conversations, three for reviews, one for whatsapp, three for campaigns", () => {
+  test("fifty permissions total — five per catalog activity code (incl. restore), four per marketing code, two for settings, two each for orders/customers/affiliates/affiliate_commissions/conversations, three for reviews, one for whatsapp, three for campaigns, one for webhook_endpoints", () => {
     // Issue #23: categories/products carry read/create/update/delete/restore.
     // Issue #26: flash_sales/vouchers/sliders/testimonials/popups carry
     // read/create/update/delete (soft delete only, no restore — the marketing
@@ -111,9 +111,13 @@ describe("commerce module descriptor — restore is declared for both activity c
     // Issue #114: campaigns carries read/update/send — `send` is split from
     // `update` because it is the one action that actually reaches a real
     // inbox/phone (also gates cancel).
+    // Issue #110: webhook_endpoints carries update only — one permission
+    // gates list (masked)/create (token shown once)/revoke alike, per
+    // contract #106's own OpenAPI note (see `commerce-permissions.ts`'s
+    // header for the "nothing distinct to enforce" reasoning).
     const declared = declaredTriples();
     expect(declared.size).toBe(
-      2 * 5 + 5 * 4 + 2 + 2 + 2 + 3 + 2 + 2 + 1 + 2 + 3
+      2 * 5 + 5 * 4 + 2 + 2 + 2 + 3 + 2 + 2 + 1 + 2 + 3 + 1
     );
 
     for (const activityCode of ["categories", "products"]) {
@@ -176,6 +180,15 @@ describe("commerce module descriptor — restore is declared for both activity c
           declared.has(`commerce.${activityCode}.${action}` as Triple)
         ).toBe(false);
       }
+    }
+
+    expect(declared.has("commerce.webhook_endpoints.update" as Triple)).toBe(
+      true
+    );
+    for (const action of ["read", "create", "delete", "restore"]) {
+      expect(
+        declared.has(`commerce.webhook_endpoints.${action}` as Triple)
+      ).toBe(false);
     }
   });
 
