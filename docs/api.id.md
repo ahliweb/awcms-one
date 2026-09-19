@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](api.md)
 
-<!-- i18n-source-hash: sha256:755170ba2a1be2d70f7aad9e6e4bb3f8ebf215a4ba964e6eb4d3d02eb8844867 -->
+<!-- i18n-source-hash: sha256:704235c0814a1b2300901bb8e2a961f50f9da7b692512672a70bd4e6f34e93e8 -->
 
 # API
 
@@ -121,6 +121,23 @@ Rute sisi staf pemilik untuk program afiliasi itu sendiri, digerbangi `commerce.
 
 Sebuah komisi dibuat `pending` tepat saat status pesanan yang direferensikan mencapai `completed` (tidak pernah untuk referral diri sendiri, tidak pernah untuk afiliasi yang sejak itu ditangguhkan); `base = subtotal − discount − voucher_discount` (dibatasi minimum nol), `amount = round(base × rate / 100, 2)`, keduanya string `numeric` (ADR-0003). Boolean `affiliateProgramEnabled` pada `store-settings/public` adalah satu-satunya fakta afiliasi yang diekspos ke publik — tarifnya sendiri hanya untuk owner (`GET /api/v1/commerce/store-settings`).
 
+### Provider eksternal — payment gateway, kurir, WhatsApp, POS, laporan, kotak masuk, kampanye (increment 5 — direncanakan — #107–#118)
+
+[ADR-0017](adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.md) mencatat sepuluh keputusan (D1–D10) yang menjadi dasar rancangan permukaan ini, dan [issue #106](https://github.com/ahliweb/awcms-one/issues/106) adalah tempat bentuk OpenAPI-nya hidup, persis seperti ADR-0016/#86 untuk akun. Belum ada handler untuk baris mana pun di bawah ini — masing-masing dinamai di `ROUTE_PARITY_EXEMPTIONS` (`apps/cms/scripts/api-spec-check.ts`) dengan issue anak yang menghapusnya.
+
+| Method | Path | Auth | Catatan |
+| --- | --- | --- | --- |
+| `POST` | `storefront/orders/{orderCode}/payment-gateway/sessions` | tanpa (telepon) atau `customerBearer` | `201 {redirectUrl, expiresAt, providerRef}` (Midtrans Snap, D3); `409 PAYMENT_NOT_APPLICABLE`; `503 GATEWAY_UNAVAILABLE` — #110 |
+| `POST` | `webhooks/midtrans/{endpointToken}` | tanpa (publik) | Tenant diresolusi dari token opak (D2); selalu `200` untuk event terverifikasi/terduplikasi/replay, `401` tanda tangan salah, `404` token tidak dikenal — #113 |
+| `GET`/`POST` | `storefront/account/conversations`, `GET .../{id}`, `POST .../{id}/messages` | `customerBearer` | Thread kotak masuk milik pembeli sendiri (D8) — #111 |
+| `GET`/`POST` | `commerce/pos/orders` | `commerce.orders.read` / `commerce.pos.create` | Penjualan kasir, `channel:"pos"`, dibuat langsung `paid` (D6) — #116 |
+| `GET`/`PATCH` | `commerce/conversations(/{id})`, `POST .../{id}/messages` | `commerce.conversations.{read,update}` | Sisi owner kotak masuk (D8) — #111 |
+| `GET`/`POST`/`PATCH` | `commerce/campaigns(/{id})`, `POST .../{id}/{preview,send,cancel}` | `commerce.campaigns.{read,update,send}` | E-mail/WhatsApp massal bergerbang consent (D9) — #114 |
+| `GET`/`POST`/`DELETE` | `commerce/webhook-endpoints(/{id})` | `commerce.webhook_endpoints.update` | Membuat/mencabut token opak yang menjadi dasar resolusi tenant webhook D2; token mentah ditampilkan tepat sekali — #110 |
+| `GET` | `/api/v1/reports/commerce/sales-{daily,by-product,by-category}` | `reporting.dashboard.read` | Tiga proyeksi yang ditampung `reporting`, disumbang `commerce` (D7) — #117 |
+
+Juga direncanakan pada path YANG SUDAH ADA dan sudah diimplementasi (field aditif, tidak butuh exemption baru): `POST cart/quote`/`POST orders` mendapat `destination`/`shipping.serviceId` untuk tarif kurir sungguhan (D4, RajaOngkir — #107) dan `payment.method: "gateway"` (D3 — #110); `POST account/otp/request` mendapat `via?: "email"|"whatsapp"` (D5 — #108); `GET`/`PATCH account/me` mendapat `marketingConsent` (D9 — #115); `store-settings` mendapat `shipping.courier`/`payment.gateway`, dan `store-settings/public` mendapat `payment.gatewayEnabled` (D10 — #118).
+
 ## Bentuk request/respons
 
 `CommerceProduct` (pembacaan owner dan storefront berbagi bentuk yang sama; field yang ditambahkan #23 bersifat aditif):
@@ -216,4 +233,4 @@ Himpunan permission kredensial build di-seed oleh `tools/seed-borneojek-mart.ts`
 
 ## Belum dibangun
 
-Tarif kurir RajaOngkir dan payment gateway — `payment_method` sudah menerima nilai enum `gateway` (aditif, per [ADR-0010](adr/0010-manual-payment-and-alternative-courier-first-gateways-via-outbox.md)), tapi belum ada integrasi provider; keduanya harus lewat outbox begitu mendarat ([issue #33](https://github.com/ahliweb/awcms-one/issues/33)). Akun pelanggan, login, dan setiap endpoint storefront terautentikasi ([issue #32](https://github.com/ahliweb/awcms-one/issues/32)) **sudah selesai**: kontraknya ([ADR-0016](adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md), issue #86, tabel "Akun pelanggan" di atas) sudah sepenuhnya diimplementasi — login/registrasi OTP, `me`, `logout` ([issue #89](https://github.com/ahliweb/awcms-one/issues/89)), alamat/wishlist/riwayat-pesanan/ulasan ([issue #91](https://github.com/ahliweb/awcms-one/issues/91)), dan program afiliasi, baik permukaan bearer milik pembeli maupun API moderasi milik owner ([issue #92](https://github.com/ahliweb/awcms-one/issues/92)). Yang secara eksplisit ditangguhkan D6 milik ADR-0016, masih belum ada di sini: OTP WhatsApp/SMS (tindak lanjut D2), ubah e-mail/telepon pada akun yang sudah ada, harga bertingkat (`priceLevel2/3/4`) yang diterapkan saat quote, dan verifikasi telepon. Upload bukti-pembayaran yang berfungsi untuk pemanggil anonim (alur sesi `media_library` membutuhkan `actorTenantUserId` terautentikasi, yang tidak dimiliki pemanggil checkout tamu mana pun).
+Tarif kurir RajaOngkir dan payment gateway — `payment_method` sudah menerima nilai enum `gateway` (aditif, per [ADR-0010](adr/0010-manual-payment-and-alternative-courier-first-gateways-via-outbox.md)), tapi belum ada integrasi provider; keduanya, plus WhatsApp, POS, laporan, kotak masuk, dan kampanye, kini punya kontrak yang sudah disepakati ([ADR-0017](adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.md), issue #106, tabel "Provider eksternal" di atas) dan lewat pola outbox begitu mendarat, issue demi issue, di bawah [issue #33](https://github.com/ahliweb/awcms-one/issues/33) (#107–#118). Akun pelanggan, login, dan setiap endpoint storefront terautentikasi ([issue #32](https://github.com/ahliweb/awcms-one/issues/32)) **sudah selesai**: kontraknya ([ADR-0016](adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md), issue #86, tabel "Akun pelanggan" di atas) sudah sepenuhnya diimplementasi — login/registrasi OTP, `me`, `logout` ([issue #89](https://github.com/ahliweb/awcms-one/issues/89)), alamat/wishlist/riwayat-pesanan/ulasan ([issue #91](https://github.com/ahliweb/awcms-one/issues/91)), dan program afiliasi, baik permukaan bearer milik pembeli maupun API moderasi milik owner ([issue #92](https://github.com/ahliweb/awcms-one/issues/92)). Yang secara eksplisit ditangguhkan D6 milik ADR-0016 kini sudah punya kontrak, bukan lagi sekadar terbuka: OTP WhatsApp (ADR-0017 D5, #108) dan harga bertingkat saat quote (ADR-0017 D10, #118). Masih belum ada di sini: ubah e-mail/telepon pada akun yang sudah ada, dan verifikasi telepon. Upload bukti-pembayaran yang berfungsi untuk pemanggil anonim (alur sesi `media_library` membutuhkan `actorTenantUserId` terautentikasi, yang tidak dimiliki pemanggil checkout tamu mana pun).
