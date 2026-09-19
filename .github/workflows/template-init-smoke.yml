@@ -80,8 +80,11 @@ jobs:
         run: |
           cd apps/storefront
           STUB_PORT=4310 nohup bun scripts/stub-awcms.mjs > /tmp/stub-awcms.log 2>&1 &
+          # The stub answers 401 to a request without a bearer token (on
+          # purpose — see scripts/stub-awcms.mjs), so probe WITH one; `-f`
+          # would otherwise treat that 401 as "not up yet" forever.
           for _ in $(seq 1 100); do
-            if curl -sf http://localhost:4310/api/v1/blog/posts -o /dev/null; then exit 0; fi
+            if curl -sf -H "Authorization: Bearer stub" http://localhost:4310/api/v1/commerce/products -o /dev/null; then exit 0; fi
             sleep 0.2
           done
           echo "stub-awcms did not answer in time" >&2
