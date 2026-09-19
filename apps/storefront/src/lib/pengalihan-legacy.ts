@@ -4,7 +4,7 @@
  * `awcms_seo_redirects` rows with `origin: "legacy_blog"`
  * (`src/lib/awcms/blog.ts`'s `getLegacyRedirectRows()`) into a static
  * `sourcePath -> targetPath` map, baked into the build by
- * `src/pages/index/pengalihan-legacy.json.ts` and read once, at startup, by
+ * `src/profil/berita/pages/index/pengalihan-legacy.json.ts` and read once, at startup, by
  * `server/penyaji.mjs`'s additive redirect hook — never at request time, so
  * a finished build still never contacts awcms again.
  *

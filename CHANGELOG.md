@@ -958,7 +958,7 @@ the same branch:
 
 #### One more correction: the row-based (issue #28) map itself
 
-`apps/storefront/src/pages/index/pengalihan-legacy.json.ts`'s row-based map — the one
+`apps/storefront/src/profil/berita/pages/index/pengalihan-legacy.json.ts`'s row-based map — the one
 `pengalihan-aturan.mjs` only ever falls through to on a miss — had two
 related bugs of its own, found while wiring the above:
 
@@ -1914,7 +1914,7 @@ build-time index) — issue #28.
 - A static legacy-URL redirect map (seputarborneo's `/news/{id}-{slug}.html`,
   beritasampit's `/{yyyy}/{mm}/{dd}/{slug}/`) is baked at build time
   (`apps/storefront/src/lib/pengalihan-legacy.ts`,
-  `apps/storefront/src/pages/index/pengalihan-legacy.json.ts`) from
+  `apps/storefront/src/profil/berita/pages/index/pengalihan-legacy.json.ts`) from
   `apps/cms`'s own `awcms_seo_redirects` (`origin: "legacy_blog"`) and
   applied by a new, additive hook in `apps/storefront/server/penyaji.mjs`
   — read once at server startup, never at request time.

@@ -50,8 +50,22 @@ export const ROUTES = {
   /** `mm` defaults for the same arity reason `rubricPage`'s `page` does — see its docblock. Every real caller passes both segments explicitly. */
   archive: (yyyy: string, mm = "01"): string => `/arsip/${yyyy}/${mm}`,
   newsSearch: "/cari-berita",
+  // --- issue #137: the newsletter trio, named here so `src/config/profil.ts`
+  // can derive the `berita` group's navigation ("Buletin") and robots rules
+  // from `ROUTES` like every other group's. `/newsletter/confirm` and
+  // `/newsletter/unsubscribe` are fixed by an `apps/cms` contract
+  // (`NEWSLETTER_CONFIRM_PATH`/`NEWSLETTER_UNSUBSCRIBE_PATH`, see
+  // `tests/newsletter-path-contract.test.ts`), not chosen here.
+  /** `/buletin` — the newsletter subscribe page (issue #50). */
+  newsletter: "/buletin",
+  /** `/newsletter/confirm` — double opt-in landing, `?token=` (issue #50). */
+  newsletterConfirm: "/newsletter/confirm",
+  /** `/newsletter/unsubscribe` — `?token=` (issue #50). */
+  newsletterUnsubscribe: "/newsletter/unsubscribe",
   cart: "/keranjang",
   checkout: "/checkout",
+  /** `/pesanan` — anonymous order tracking by code + phone (issue #30); named here (issue #137) so `robots.txt` and the profile tests read it from `ROUTES` like every other path. */
+  orderTracking: "/pesanan",
   wishlist: "/wishlist",
   search: "/cari",
   page: (slug: string): string => `/halaman/${slug}`,
@@ -90,24 +104,6 @@ export const ROUTES = {
 } as const;
 
 /**
- * Primary navigation, in the order the header renders it. `label` is the
- * copy a reader sees; `href` is resolved from `ROUTES` so a route rename
- * only ever happens in one place.
- *
- * Every target but `/` and `/kontak` (this issue's own pages) is a 404 until
- * #27/#28 land — that is expected, not a bug this issue introduces: the nav
- * itself is what those issues need already in place to "only add pages",
- * per the issue's own framing.
- */
-export const PRIMARY_NAV: ReadonlyArray<{ label: string; href: string }> = [
-  { label: "Beranda", href: ROUTES.home },
-  { label: "Produk", href: ROUTES.products },
-  { label: "Flash Sale", href: ROUTES.flashSale },
-  { label: "Berita", href: ROUTES.news },
-  { label: "Kontak", href: ROUTES.contact }
-];
-
-/**
  * Reserved slugs for the six static/legal pages a commerce storefront and an
  * online-news press-council registration both expect — matching the CMS's
  * own reserved-slug convention (`blog_content` pages, see
@@ -132,15 +128,62 @@ export const STATIC_PAGE_SLUGS = {
   disclaimer: "disclaimer"
 } as const;
 
-/** Footer link labels for each reserved slug above, in the order the footer renders them. */
-export const FOOTER_PAGE_LINKS: ReadonlyArray<{
-  slug: string;
-  label: string;
-}> = [
-  { slug: STATIC_PAGE_SLUGS.shoppingGuide, label: "Panduan Belanja" },
-  { slug: STATIC_PAGE_SLUGS.privacyPolicy, label: "Kebijakan Privasi" },
-  { slug: STATIC_PAGE_SLUGS.termsOfService, label: "Syarat & Ketentuan" },
-  { slug: STATIC_PAGE_SLUGS.editorial, label: "Redaksi" },
-  { slug: STATIC_PAGE_SLUGS.mediaGuidelines, label: "Pedoman Media Siber" },
-  { slug: STATIC_PAGE_SLUGS.disclaimer, label: "Disclaimer" }
-];
+/**
+ * The page group a route belongs to (issue #137, ADR-0018 D2/D3).
+ *
+ * `shared` is present in every build profile; `toko` and `berita` are
+ * included only when `SITE_PROFILE` (`src/config/profil.ts`) composes them
+ * in — `toko` = shared + toko + berita, `berita` = shared + berita,
+ * `landing` = shared only. The page FILES for a non-shared group live under
+ * `src/profil/<group>/pages/**` and are injected by
+ * `integrations/profil.mjs`; this map is the ROUTE-level mirror of that
+ * layout, so navigation, sitemap, robots and the `profil-routes` test can
+ * ask "does this route exist in this build?" without reading the file
+ * system.
+ */
+export type RouteGroup = "shared" | "toko" | "berita";
+
+/**
+ * Every `ROUTES` key, annotated once. `satisfies` makes forgetting a new key
+ * a type error rather than a silent "shared".
+ */
+export const ROUTE_GROUPS = {
+  home: "shared",
+  products: "toko",
+  category: "toko",
+  flashSale: "toko",
+  news: "berita",
+  article: "berita",
+  rubric: "berita",
+  rubricPage: "berita",
+  region: "berita",
+  partner: "berita",
+  video: "berita",
+  videoArticle: "berita",
+  tag: "berita",
+  author: "berita",
+  archive: "berita",
+  newsSearch: "berita",
+  newsletter: "berita",
+  newsletterConfirm: "berita",
+  newsletterUnsubscribe: "berita",
+  cart: "toko",
+  checkout: "toko",
+  orderTracking: "toko",
+  wishlist: "toko",
+  search: "toko",
+  page: "shared",
+  contact: "shared",
+  login: "toko",
+  register: "toko",
+  account: "toko",
+  accountOrders: "toko",
+  accountOrder: "toko",
+  accountAddresses: "toko",
+  accountReviews: "toko",
+  accountAffiliate: "toko",
+  accountMessages: "toko",
+  accountMessage: "toko"
+} as const satisfies Record<keyof typeof ROUTES, RouteGroup>;
+
+export type RouteKey = keyof typeof ROUTES;

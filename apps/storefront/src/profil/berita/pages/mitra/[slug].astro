@@ -1,0 +1,78 @@
+---
+/**
+ * `/mitra/[slug]` — institution landing (issue #28): description, latest
+ * posts, and — since issue #59 — the institution's own emblem when it has
+ * one (upstream awcms#806's `logo_media_id`, resolved through issue #47's
+ * media client). The sentence this docblock used to carry, that no logo
+ * field exists on the endpoint, was true when issue #28 verified it and is
+ * no longer; see
+ * `src/lib/awcms/lembaga.ts`'s file header for the full reasoning (the same
+ * "render every field that actually exists" choice `src/pages/kontak.astro`
+ * already made for a maps iframe/FAQ list `site_profile` does not carry).
+ */
+import BeritaLayout from "../../../../layouts/BeritaLayout.astro";
+import ArtikelCard from "../../../../components/berita/ArtikelCard.astro";
+import { ROUTES } from "../../../../config/routes";
+import { getMitraList } from "../../../../lib/awcms/lembaga";
+import { getMitra } from "../../../../lib/berita";
+
+export async function getStaticPaths() {
+  const mitraList = await getMitraList();
+  return mitraList.map((mitra) => ({ params: { slug: mitra.slug } }));
+}
+
+const { slug } = Astro.params as { slug: string };
+const archive = await getMitra(slug);
+
+if (!archive) {
+  throw new Error(
+    `No institution with slug "${slug}". getStaticPaths() only ever ` +
+      `requests a slug getMitraList() just returned, so this can only ` +
+      `happen if this route is reached with a slug from somewhere else.`
+  );
+}
+
+const canonicalPath = ROUTES.partner(slug);
+const branchLabel = archive.mitra.branch === "legislative" ? "Legislatif" : "Eksekutif";
+---
+
+<BeritaLayout
+  title={archive.mitra.name}
+  description={archive.mitra.description ?? `Berita dari ${archive.mitra.name}.`}
+  canonicalPath={canonicalPath}
+>
+  <div class="container mitra-header">
+    <nav class="breadcrumb" aria-label="Remah roti">
+      <a href={ROUTES.home}>Beranda</a>
+      <span aria-hidden="true">/</span>
+      <a href={ROUTES.news}>Berita</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">{archive.mitra.name}</span>
+    </nav>
+
+    <p class="card-eyebrow">{branchLabel}{archive.mitra.regionName && ` — ${archive.mitra.regionName}`}</p>
+    {archive.mitra.logo && (
+      <img
+        class="mitra-logo"
+        src={archive.mitra.logo.publicUrl}
+        alt={archive.mitra.logoAlt ?? ""}
+        width={archive.mitra.logo.width ?? 96}
+        height={archive.mitra.logo.height ?? 96}
+        loading="lazy"
+        decoding="async"
+      />
+    )}
+    <h1>{archive.mitra.name}</h1>
+    {archive.mitra.description && <p>{archive.mitra.description}</p>}
+  </div>
+
+  <div class="container">
+    {archive.posts.length === 0 ? (
+      <p class="empty-state">Belum ada berita dari mitra ini.</p>
+    ) : (
+      <ul class="grid-cards">
+        {archive.posts.map((post) => <ArtikelCard post={post} />)}
+      </ul>
+    )}
+  </div>
+</BeritaLayout>

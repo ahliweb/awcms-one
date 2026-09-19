@@ -1,5 +1,9 @@
 import { describe, expect, test } from "bun:test";
-import { ROUTES, PRIMARY_NAV, STATIC_PAGE_SLUGS, FOOTER_PAGE_LINKS } from "../src/config/routes";
+import { ROUTES, ROUTE_GROUPS, STATIC_PAGE_SLUGS } from "../src/config/routes";
+// Issue #137: `PRIMARY_NAV`/`FOOTER_PAGE_LINKS` moved to `src/config/profil.ts`
+// (the active profile's own lists); `routes.ts` keeps the routes and their
+// group annotation.
+import { PRIMARY_NAV, FOOTER_PAGE_LINKS } from "../src/config/profil";
 
 describe("config/routes", () => {
   test("every ROUTES entry is a leading-slash path or a function returning one", () => {
@@ -36,6 +40,13 @@ describe("config/routes", () => {
       expect(reservedSlugs.has(link.slug)).toBe(true);
       expect(seen.has(link.slug)).toBe(false);
       seen.add(link.slug);
+    }
+  });
+
+  test("every ROUTES key is annotated with a page group in ROUTE_GROUPS (issue #137)", () => {
+    expect(Object.keys(ROUTE_GROUPS).sort()).toEqual(Object.keys(ROUTES).sort());
+    for (const group of Object.values(ROUTE_GROUPS)) {
+      expect(["shared", "toko", "berita"]).toContain(group);
     }
   });
 

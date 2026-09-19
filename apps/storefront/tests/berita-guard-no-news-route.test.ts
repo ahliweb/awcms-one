@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { readdirSync } from "node:fs";
+import { existsSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import { ROUTES } from "../src/config/routes";
 
@@ -12,7 +12,12 @@ import { ROUTES } from "../src/config/routes";
  * guarded by a unit test over `src/pages`." This is that test.
  */
 
-const PAGES_ROOT = join(new URL("../src/pages/", import.meta.url).pathname);
+const SRC_ROOT = join(new URL("../src/", import.meta.url).pathname);
+const PAGES_ROOT = join(SRC_ROOT, "pages/");
+// Issue #137: the non-shared page groups live under `src/profil/<group>/pages/**`
+// and are injected as routes — a `news/` directory there would be a route
+// family too, so the walk covers both roots.
+const PROFIL_ROOT = join(SRC_ROOT, "profil/");
 
 function listAllFiles(dir: string): string[] {
   const entries = readdirSync(dir, { withFileTypes: true });
@@ -34,9 +39,10 @@ describe("guard: no /news/** route family (ADR-0071)", () => {
     }
   });
 
-  test("src/pages has no news/ directory or news*.astro/.ts file at any level", () => {
-    const files = listAllFiles(PAGES_ROOT);
-    const relative = files.map((f) => f.slice(PAGES_ROOT.length));
+  test("src/pages and src/profil/*/pages have no news/ directory or news*.astro/.ts file at any level", () => {
+    const files = [...listAllFiles(PAGES_ROOT), ...(existsSync(PROFIL_ROOT) ? listAllFiles(PROFIL_ROOT) : [])];
+    const relative = files.map((f) => f.slice(SRC_ROOT.length));
+    expect(relative.length).toBeGreaterThan(40);
 
     for (const path of relative) {
       // Every path SEGMENT (not a substring match, so "newsletter" or a

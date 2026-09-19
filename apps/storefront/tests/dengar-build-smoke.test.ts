@@ -87,7 +87,10 @@ describe("build smoke: read-aloud player (issue #52) against the stub CMS", () =
             AWCMS_API_URL: `http://localhost:${stubPort}`,
             AWCMS_API_TOKEN: "stub-token",
             SITE_URL: "http://localhost:4321",
-            PUBLIC_AWCMS_ORIGIN: "https://cms.example.com"
+            PUBLIC_AWCMS_ORIGIN: "https://cms.example.com",
+            // Issue #137: this test asserts the hybrid (toko) site; pin the profile so a
+            // `SITE_PROFILE` in the caller's shell cannot change what it builds.
+            SITE_PROFILE: "toko"
           },
           stdout: "pipe",
           stderr: "pipe"

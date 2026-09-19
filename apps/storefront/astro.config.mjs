@@ -1,5 +1,6 @@
 import { defineConfig } from "astro/config";
 import node from "@astrojs/node";
+import profil from "./integrations/profil.mjs";
 
 /**
  * `SITE_URL` is the canonical origin and must be absolute. Astro needs it at
@@ -18,6 +19,19 @@ const SITE = (process.env.SITE_URL ?? "http://localhost:4321").replace(
 
 export default defineConfig({
   site: SITE,
+
+  /**
+   * The build profile (issue #137, ADR-0018 D2/D3). `SITE_PROFILE` (`toko`
+   * default | `berita` | `landing`) is read by `src/config/profil.ts`; this
+   * integration injects the routes of every page group that profile
+   * composes from `src/profil/<group>/pages/**` and points
+   * `src/pages/index.astro`'s `@profil/beranda` import at the profile's own
+   * home variant. It is the only integration, and it runs in
+   * `astro:config:setup` — before Astro scans `src/pages/`, so an injected
+   * route and a file-based one are resolved together and a collision
+   * would fail the build rather than shadow a page silently.
+   */
+  integrations: [profil()],
 
   /**
    * Static output is the whole premise of this app (issue #5). The catalog

@@ -1,0 +1,47 @@
+---
+/** `/arsip/[yyyy]/[mm]` — monthly archive (issue #28), keyed to a post's WIB publish month (`src/lib/tanggal.ts`'s `arsipBulanWIB`). Issue #49: the grid sits beside the shared `Sidebar.astro` in `.layout-with-sidebar`. */
+import BeritaLayout from "../../../../../layouts/BeritaLayout.astro";
+import ArtikelCard from "../../../../../components/berita/ArtikelCard.astro";
+import Sidebar from "../../../../../components/berita/Sidebar.astro";
+import { ROUTES } from "../../../../../config/routes";
+import { listArsipBulan, getArsipBulan } from "../../../../../lib/berita";
+import { formatBulanArsipWIB } from "../../../../../lib/tanggal";
+
+export async function getStaticPaths() {
+  const months = await listArsipBulan();
+  return months.map(({ yyyy, mm }) => ({ params: { yyyy, mm } }));
+}
+
+const { yyyy, mm } = Astro.params as { yyyy: string; mm: string };
+const posts = await getArsipBulan(yyyy, mm);
+const heading = formatBulanArsipWIB(yyyy, mm);
+const canonicalPath = ROUTES.archive(yyyy, mm);
+---
+
+<BeritaLayout title={`Arsip ${heading}`} description={`Berita bulan ${heading}.`} canonicalPath={canonicalPath}>
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Remah roti">
+      <a href={ROUTES.home}>Beranda</a>
+      <span aria-hidden="true">/</span>
+      <a href={ROUTES.news}>Berita</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Arsip {heading}</span>
+    </nav>
+
+    <h1>Arsip {heading}</h1>
+
+    <div class="layout-with-sidebar">
+      <div>
+        {posts.length === 0 ? (
+          <p class="empty-state">Tidak ada berita di bulan ini.</p>
+        ) : (
+          <ul class="grid-cards">
+            {posts.map((post) => <ArtikelCard post={post} />)}
+          </ul>
+        )}
+      </div>
+
+      <Sidebar />
+    </div>
+  </div>
+</BeritaLayout>

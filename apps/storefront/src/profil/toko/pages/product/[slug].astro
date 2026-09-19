@@ -1,0 +1,420 @@
+---
+/**
+ * `/product/[slug]` — full parity detail page: image gallery, price block
+ * (normal/discount/final/flash-sale/tiered), rating+sold, stock/min
+ * purchase/weight, variant picker, quantity stepper, insurance note, size
+ * chart, promo banner, service-form fields, subscription period, digital
+ * note, description, "Tambah ke keranjang", share buttons, related
+ * products, and `Product`+`Offer`+`AggregateRating`+`BreadcrumbList`
+ * JSON-LD.
+ *
+ * ## Two documented deviations from the issue's literal wording
+ *
+ * - **OG image**: `BaseLayout.astro` has no per-page `<meta property="og:
+ *   image">` slot (it renders a fixed OG block with none — a decision from
+ *   increment 1, when no product carried an image field at all) and is
+ *   outside this issue's file ownership. The product's primary image is
+ *   still exposed to crawlers via `Product` JSON-LD's `image` array below,
+ *   which is what a rich-results reader (Google et al.) actually looks at
+ *   for a product page.
+ * - **"description (sanitised HTML from the CMS)"**: `ProductRecord.
+ *   description` is a plain `string | null` — `product-directory.ts` runs
+ *   it through no portable-text/HTML pipeline the way `blog_content`'s
+ *   article body gets one, and this app's own fixture deliberately carries
+ *   a `</script><script>…` payload IN THE NAME field specifically to prove
+ *   plain-text rendering stays safe. Rendering `description` as HTML would
+ *   be introducing an XSS surface the CMS contract does not actually ask
+ *   for; it is rendered as plain text, the same way increment 1 already did.
+ */
+import BaseLayout from "../../../../layouts/BaseLayout.astro";
+import { absoluteUrl } from "../../../../config/site";
+import { ROUTES } from "../../../../config/routes";
+import {
+  getProducts,
+  getCategories,
+  labelClassName,
+  primaryProductImage,
+  buildPriceTiers,
+  type CommerceProduct
+} from "../../../../lib/catalog";
+import { getActiveFlashSales, getStoreSettings, findFlashSaleForProduct } from "../../../../lib/awcms/pemasaran";
+import { formatPrice, formatDiscountPercent } from "../../../../lib/harga";
+import { buildProductPageSchema, type BreadcrumbItem } from "../../../../lib/jsonld-produk";
+import ProductCard from "../../../../components/katalog/ProductCard.astro";
+import Breadcrumb from "../../../../components/katalog/Breadcrumb.astro";
+import Countdown from "../../../../components/katalog/Countdown.astro";
+import "../../../../styles/katalog.css";
+
+export async function getStaticPaths() {
+  const products = await getProducts();
+
+  return products.map((product) => ({
+    params: { slug: product.slug },
+    props: { product }
+  }));
+}
+
+interface Props {
+  product: CommerceProduct;
+}
+
+const { product } = Astro.props;
+
+const [categories, allProducts, flashSales, storeSettings] = await Promise.all([
+  getCategories(),
+  getProducts(),
+  getActiveFlashSales(),
+  getStoreSettings()
+]);
+
+const category = product.categoryId ? categories.find((c) => c.id === product.categoryId) : undefined;
+
+const flashSaleMatch = findFlashSaleForProduct(
+  flashSales.filter((sale) => sale.status === "active"),
+  product.id,
+  null
+);
+
+const inStock = product.stock > 0;
+const canonicalPath = `/product/${product.slug}`;
+const canonicalUrl = absoluteUrl(canonicalPath);
+const badgeClass = labelClassName(product.labelColor);
+
+const galleryImages = product.images
+  .filter((image) => image.publicUrl !== null)
+  .sort((a, b) => a.sortOrder - b.sortOrder);
+const primaryImage = primaryProductImage(product);
+
+const priceTiers = buildPriceTiers(product, null, storeSettings.customerLevels);
+
+const relatedProducts = allProducts
+  .filter((candidate) => candidate.id !== product.id && candidate.categoryId === product.categoryId && product.categoryId !== null)
+  .slice(0, 4);
+
+const pageBreadcrumb = [
+  { label: "Beranda", href: ROUTES.home },
+  { label: "Produk", href: ROUTES.products },
+  ...(category ? [{ label: category.name, href: ROUTES.category(category.slug) }] : []),
+  { label: product.name }
+];
+
+const jsonLdBreadcrumb: BreadcrumbItem[] = [
+  { name: "Beranda", url: absoluteUrl(ROUTES.home) },
+  { name: "Produk", url: absoluteUrl(ROUTES.products) },
+  ...(category ? [{ name: category.name, url: absoluteUrl(ROUTES.category(category.slug)) }] : []),
+  { name: product.name, url: canonicalUrl }
+];
+
+const schema = buildProductPageSchema({
+  product,
+  variant: null,
+  category: category ?? null,
+  canonicalUrl,
+  imageUrls: galleryImages.map((image) => image.publicUrl as string),
+  breadcrumb: jsonLdBreadcrumb
+});
+
+const SUBSCRIPTION_LABELS: Record<string, string> = {
+  day: "Harian",
+  week: "Mingguan",
+  month: "Bulanan",
+  year: "Tahunan"
+};
+
+function isTableRows(value: unknown): value is Record<string, string | number>[] {
+  return (
+    Array.isArray(value) &&
+    value.length > 0 &&
+    value.every((row) => typeof row === "object" && row !== null && !Array.isArray(row))
+  );
+}
+
+const sizeChartRows = isTableRows(product.sizeChartDetails) ? product.sizeChartDetails : null;
+const sizeChartColumns = sizeChartRows ? Object.keys(sizeChartRows[0] as object) : [];
+
+/**
+ * Whether the option named `optionName` in the FIRST variant-attribute
+ * group has a matching, out-of-stock variant row — see `findVariantForSelection`'s
+ * own docblock (`src/lib/catalog.ts`) for why only the single-group shape
+ * can be resolved this way. Pulled out of the template's own `.map()` (a
+ * block-bodied arrow returning JSX confuses Astro's compiler when nested
+ * this deeply) rather than for any other reason.
+ */
+function isFirstGroupOptionDisabled(groupIndex: number, optionName: string): boolean {
+  if (groupIndex !== 0) return false;
+  const matchingVariant = product.variants.find((variant) => variant.name === optionName);
+  return matchingVariant ? matchingVariant.stock <= 0 : false;
+}
+
+const waShareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(`${product.name} — ${canonicalUrl}`)}`;
+const fbShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(canonicalUrl)}`;
+const xShareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(canonicalUrl)}&text=${encodeURIComponent(product.name)}`;
+
+const detailPayload = {
+  productId: product.id,
+  slug: product.slug,
+  name: product.name,
+  sku: product.sku,
+  finalPrice: product.finalPrice,
+  minPurchase: product.minPurchase,
+  weightGrams: product.weightGrams,
+  stock: product.stock,
+  variants: product.variants,
+  serviceFormFields: (product.serviceForm ?? []).map((field) => ({ id: field.id, label: field.label })),
+  flashSale: flashSaleMatch
+    ? { id: flashSaleMatch.sale.id, salePrice: flashSaleMatch.entry.salePrice, endsAt: flashSaleMatch.sale.endsAt }
+    : null,
+  image: primaryImage
+};
+---
+
+<BaseLayout
+  title={product.name}
+  description={product.description ?? `${product.name} — SKU ${product.sku}.`}
+  canonicalPath={canonicalPath}
+  schema={schema}
+>
+  <div class="container">
+    <Breadcrumb items={pageBreadcrumb} />
+
+    <div class="detail-layout" data-produk-detail={JSON.stringify(detailPayload)}>
+      <div class="gallery">
+        <div class="gallery-main">
+          {primaryImage ? (
+            <img id="gallery-main-image" src={primaryImage.url} alt={primaryImage.alt} width="600" height="600" />
+          ) : (
+            <span class="card-image-placeholder" aria-hidden="true" />
+          )}
+        </div>
+        {galleryImages.length > 1 && (
+          <div class="gallery-thumbs">
+            {galleryImages.map((image, index) => (
+              <a href={`#${image.id}`} aria-current={index === 0 ? "true" : "false"}>
+                <img src={image.publicUrl as string} alt={image.altText ?? product.name} loading="lazy" width="72" height="72" />
+              </a>
+            ))}
+          </div>
+        )}
+      </div>
+
+      <div class="detail-info">
+        {category && <p class="card-eyebrow">{category.name}</p>}
+        <h1>{product.name}</h1>
+        <p class="sku" data-variant-sku>SKU: {product.sku}</p>
+
+        <div class="product-meta">
+          {product.label && <span class={`label-badge ${badgeClass ?? ""}`}>{product.label}</span>}
+          <span
+            class={`stock-badge ${inStock ? "stock-badge--in" : "stock-badge--out"}`}
+            data-variant-stock
+          >
+            {inStock ? "Stok tersedia" : "Stok habis"}
+          </span>
+          {product.manualRating && (
+            <span aria-label={`Rating ${product.manualRating} dari 5`}>★ {product.manualRating}</span>
+          )}
+          <span>{product.soldCount} terjual</span>
+        </div>
+
+        {flashSaleMatch && (
+          <p>
+            Flash sale berakhir dalam <Countdown endsAt={flashSaleMatch.sale.endsAt} />
+          </p>
+        )}
+
+        <p class="card-price" data-variant-price>
+          {formatPrice(flashSaleMatch ? flashSaleMatch.entry.salePrice : product.finalPrice)}
+        </p>
+        {!flashSaleMatch && product.discountPercent > 0 && (
+          <p>
+            <span class="price-original">{formatPrice(product.price)}</span>{" "}
+            <span class="price-discount">-{formatDiscountPercent(product.discountPercent)}</span>
+          </p>
+        )}
+
+        {priceTiers.length > 1 && (
+          <table class="tier-table">
+            <caption class="visually-hidden">Harga berdasarkan level pelanggan</caption>
+            <thead>
+              <tr>
+                <th>Level</th>
+                <th>Harga</th>
+              </tr>
+            </thead>
+            <tbody>
+              {priceTiers.map((tier) => (
+                <tr>
+                  <td>{tier.label}</td>
+                  <td>{formatPrice(tier.price)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
+
+        <p>Min. pembelian: {product.minPurchase} · Berat: {product.weightGrams}g</p>
+
+        {product.withInsurance && (
+          <p class="content-placeholder">
+            Produk ini dilindungi asuransi pengiriman{product.insuranceRequired ? " (wajib)" : ""}
+            {product.insuranceFee ? ` — biaya ${formatPrice(product.insuranceFee)}` : ""}.
+          </p>
+        )}
+
+        {product.subscriptionPeriod && (
+          <p>Periode langganan: {SUBSCRIPTION_LABELS[product.subscriptionPeriod] ?? product.subscriptionPeriod}</p>
+        )}
+
+        {product.type === "digital" && product.digitalNote && (
+          <div class="product-note">
+            <h2>Catatan Produk Digital</h2>
+            <p>{product.digitalNote}</p>
+          </div>
+        )}
+
+        {product.promoBannerShow && (product.promoBannerTitle || product.promoBannerSubtitle) && (
+          <div class="promo-card">
+            {product.promoBannerBadge && <span class="card-eyebrow">{product.promoBannerBadge}</span>}
+            {product.promoBannerTitle && <h2>{product.promoBannerTitle}</h2>}
+            {product.promoBannerSubtitle && <p>{product.promoBannerSubtitle}</p>}
+          </div>
+        )}
+
+        {product.variantAttributes && product.variantAttributes.length > 0 && (
+          <div>
+            {product.variantAttributes.map((group, groupIndex) => (
+              <fieldset class="variant-group" data-variant-group data-group-index={groupIndex}>
+                <legend>{group.name}</legend>
+                <div class="variant-options">
+                  {group.options.map((option, optionIndex) => (
+                    <label>
+                      <input
+                        type="radio"
+                        name={`variant-group-${groupIndex}`}
+                        value={option.name}
+                        data-variant-option
+                        checked={optionIndex === 0}
+                        disabled={isFirstGroupOptionDisabled(groupIndex, option.name)}
+                      />
+                      <span>{option.name}</span>
+                    </label>
+                  ))}
+                </div>
+              </fieldset>
+            ))}
+          </div>
+        )}
+
+        {product.serviceForm && product.serviceForm.length > 0 && (
+          <div>
+            <h2>Detail Pesanan</h2>
+            {product.serviceForm.map((field) => (
+              <div class="service-form-field">
+                <label for={`service-field-${field.id}`}>
+                  {field.label}
+                  {field.required && " *"}
+                </label>
+                {field.type === "textarea" ? (
+                  <textarea id={`service-field-${field.id}`} data-service-field={field.id} required={field.required} />
+                ) : field.type === "select" ? (
+                  <select id={`service-field-${field.id}`} data-service-field={field.id} required={field.required}>
+                    {(field.options ?? []).map((option) => (
+                      <option value={option}>{option}</option>
+                    ))}
+                  </select>
+                ) : (
+                  <input
+                    id={`service-field-${field.id}`}
+                    type={field.type === "number" ? "number" : field.type === "date" ? "date" : "text"}
+                    data-service-field={field.id}
+                    required={field.required}
+                  />
+                )}
+              </div>
+            ))}
+          </div>
+        )}
+
+        <div class="purchase-bar">
+          <div class="qty-stepper">
+            <button type="button" data-qty-decrement aria-label="Kurangi jumlah">−</button>
+            <input
+              type="number"
+              data-qty-input
+              value={product.minPurchase}
+              min={product.minPurchase}
+              max={product.stock}
+              aria-label="Jumlah"
+            />
+            <button type="button" data-qty-increment aria-label="Tambah jumlah">+</button>
+          </div>
+          <button type="button" class="button-primary" data-add-to-cart disabled={!inStock}>
+            Tambah ke Keranjang
+          </button>
+        </div>
+        <p role="status" aria-live="polite" data-cart-feedback hidden></p>
+
+        {product.sizeChartType !== "none" && (
+          <div>
+            <h2>Tabel Ukuran</h2>
+            {product.sizeChartType === "image" && (
+              <p class="content-placeholder">
+                Tabel ukuran (gambar) tersedia untuk produk ini.
+              </p>
+            )}
+            {product.sizeChartType === "table" &&
+              (sizeChartRows ? (
+                <table class="tier-table">
+                  <thead>
+                    <tr>
+                      {sizeChartColumns.map((column) => (
+                        <th>{column}</th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {sizeChartRows.map((row) => (
+                      <tr>
+                        {sizeChartColumns.map((column) => (
+                          <td>{String(row[column] ?? "")}</td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              ) : (
+                <p class="content-placeholder">Detail tabel ukuran tidak dapat ditampilkan.</p>
+              ))}
+          </div>
+        )}
+
+        {product.description && <p class="product-description">{product.description}</p>}
+
+        <div class="share-buttons">
+          <a href={waShareUrl} target="_blank" rel="noopener noreferrer">Bagikan ke WhatsApp</a>
+          <a href={fbShareUrl} target="_blank" rel="noopener noreferrer">Bagikan ke Facebook</a>
+          <a href={xShareUrl} target="_blank" rel="noopener noreferrer">Bagikan ke X</a>
+          <button type="button" data-copy-link data-share-url={canonicalUrl}>Salin Tautan</button>
+        </div>
+      </div>
+    </div>
+
+    {relatedProducts.length > 0 && (
+      <section class="home-section" aria-labelledby="related-heading">
+        <div class="home-section-heading">
+          <h2 id="related-heading">Produk Terkait</h2>
+        </div>
+        <ul class="grid-cards">
+          {relatedProducts.map((related) => (
+            <ProductCard product={related} categoryName={category?.name ?? null} />
+          ))}
+        </ul>
+      </section>
+    )}
+  </div>
+</BaseLayout>
+
+<script>
+  import "../../../../scripts/produk-detail";
+  import "../../../../scripts/flash-sale-countdown";
+</script>

@@ -17,6 +17,7 @@
 import { registerSitemapSource, type SitemapEntry } from "./sitemap";
 import { absoluteUrl } from "../config/site";
 import { ROUTES } from "../config/routes";
+import { isGroupActive, SITEMAP_SOURCES } from "../config/profil";
 import { listStaticPages } from "./awcms/pages";
 import {
   getPosts,
@@ -45,7 +46,14 @@ registerSitemapSource("static-pages", async (): Promise<SitemapEntry[]> => {
 
 // --- issue #28: news surface — each source below registers under its own
 // name, so a textual merge with #27's own additions to this file succeeds.
+//
+// Issue #137: registered only when the `berita` group is in this build
+// (`src/config/profil.ts`) — a `landing` build has no `/berita` to list, and
+// its `getPosts()` fetch never even runs. The registration ORDER inside
+// this file is unchanged, so a `toko` build's sitemap is byte-for-byte what
+// it was.
 
+if (isGroupActive("berita")) {
 registerSitemapSource("berita-front", async (): Promise<SitemapEntry[]> => [
   { loc: absoluteUrl(ROUTES.news), changefreq: "hourly", priority: 0.9 },
   { loc: absoluteUrl(ROUTES.video), changefreq: "daily", priority: 0.6 },
@@ -107,19 +115,16 @@ registerSitemapSource("berita-tag", async (): Promise<SitemapEntry[]> => {
     priority: 0.3
   }));
 });
+}
 
-/** The names this file registers, exported so a test can assert against them without re-typing the list. */
-export const SITEMAP_SOURCE_NAMES = [
-  "static-routes",
-  "static-pages",
-  "berita-front",
-  "berita-posts",
-  "berita-video",
-  "berita-rubrik",
-  "berita-daerah",
-  "berita-mitra",
-  "berita-tag"
-] as const;
+/**
+ * The names this file registers, exported so a test can assert against
+ * them without re-typing the list. Issue #137: derived from the active
+ * profile (`src/config/profil.ts`'s `SITEMAP_SOURCES`) — the `katalog-*`
+ * names belong to `sitemap-katalog.ts` and are listed by
+ * `KATALOG_SITEMAP_SOURCE_NAMES` there, as before.
+ */
+export const SITEMAP_SOURCE_NAMES = SITEMAP_SOURCES.filter((name) => !name.startsWith("katalog-"));
 
 // #27 katalog: one import, for its side effect — `sitemap-katalog.ts` itself
 // registers "katalog-produk"/"katalog-kategori"/"katalog-product-detail"

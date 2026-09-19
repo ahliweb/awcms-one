@@ -2,7 +2,7 @@
  * The click-to-load YouTube facade (issue #47) — swaps
  * `src/lib/portable-text.ts`'s `renderVideoNewsNode` poster/button markup
  * for a real `<iframe>` on activation, and only on activation. Loaded ONLY
- * from `src/pages/video/[slug].astro` — the only route a playable
+ * from `src/profil/berita/pages/video/[slug].astro` — the only route a playable
  * `videoNews` block can ever render on (`src/lib/berita.ts`'s own
  * `getPosts()`/`getVideo()` routing rule keeps a video post off
  * `/berita/{slug}` entirely), so this module never runs on a page that

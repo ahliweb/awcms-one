@@ -56,6 +56,22 @@ The removal touches `ref` only — every other query parameter on the URL (a sea
 
 `apps/storefront/src/lib/sitemap.ts`'s `registerSitemapSource(name, source)` registers a named URL-producing function; twelve sources are registered across catalog and news (`static-routes`, `static-pages`, `berita-front`, `berita-posts`, `berita-video`, `berita-rubrik`, `berita-daerah`, `berita-mitra`, `berita-tag`, `katalog-produk`, `katalog-kategori`, `katalog-product-detail`). `chunkSitemapEntries` splits the combined result into chunks of at most 5,000 URLs each; `sitemap-index.xml` enumerates the resulting `/sitemap-{n}.xml` files. `feed.xml` (products) and `berita/feed.xml` + per-rubrik `rubrik/{slug}/feed.xml` (news, RSS 2.0, `content:encoded`) are separate, hand-built feeds, not sitemap sources.
 
+## Build profiles: the discovery surface shrinks with the profile (issue #137)
+
+Since issue #137 a build ships only the page groups its `SITE_PROFILE` composes ([`docs/routing.md`](routing.md), "Build profiles"; [ADR-0018](adr/0018-awcms-one-is-a-template-with-build-profiles-and-an-idempotent-init.md) D2/D3), and every SEO surface above follows [`apps/storefront/src/config/profil.ts`](../apps/storefront/src/config/profil.ts) rather than a hardcoded list, so a crawler never discovers a URL a deployment does not serve:
+
+| | `toko` (default) | `berita` | `landing` |
+| --- | --- | --- | --- |
+| Sitemap sources registered | all twelve (unchanged) | `static-routes`, `static-pages`, `berita-front`, `berita-posts`, `berita-video`, `berita-rubrik`, `berita-daerah`, `berita-mitra`, `berita-tag` | `static-routes`, `static-pages` |
+| Feeds built | `/feed.xml` (products), `/berita/feed.xml`, `/rubrik/{slug}/feed.xml` | `/berita/feed.xml`, `/rubrik/{slug}/feed.xml` | none |
+| `<link rel="alternate" type="application/rss+xml">` in every `<head>` | `/feed.xml` (unchanged) | `/berita/feed.xml` | none |
+| `robots.txt` `Disallow` | the eleven paths listed under "`noindex` pages" (unchanged) | `/newsletter/confirm`, `/newsletter/unsubscribe`, `/api/` | `/api/` |
+| Legacy news redirects (`pengalihan-aturan.mjs` rules + the row map) | active | active | inactive — the server sees no `berita.html` in `dist/` and applies no rule; the row map's artifact is not built |
+
+The registrations themselves are conditional at the source: `apps/storefront/src/lib/sitemap-sources.ts` registers its `berita-*` sources inside `if (isGroupActive("berita"))`, `sitemap-katalog.ts` its `katalog-*` sources inside `if (isGroupActive("toko"))`, and neither `getPosts()` nor `getProducts()` is ever called for a group the build does not have. Two tests hold this: [`apps/storefront/tests/profil-build-smoke.test.ts`](../apps/storefront/tests/profil-build-smoke.test.ts) builds each profile against the stub CMS and asserts no excluded route appears in `dist/` or in any `sitemap-*.xml`, that `robots.txt` is exactly the profile's list, and that only the profile's feeds exist; [`apps/storefront/tests/profil-routes.test.ts`](../apps/storefront/tests/profil-routes.test.ts) asserts no built page links to a route outside the profile and that every internal link resolves in `dist/`. The `toko` profile's output is byte-for-byte what it was before #137 (checked file by file against the pre-#137 build while landing it), so BjekMart's own canonical URLs, sitemap and feed are untouched.
+
+One correction to ADR-0018's own matrix, decided from the code: `connect-src` is widened to `PUBLIC_AWCMS_ORIGIN` on **every** profile, not only `toko`. The first-party visitor beacon (`apps/storefront/src/scripts/analitik.ts`, mounted by `BaseLayout` on every page) posts to that origin from the browser on every profile, and `berita`'s newsletter form does too; a `berita`/`landing` CSP without it would silently drop every beacon. What varies is what the `img-src`/`frame-src` derivation READS — product and marketing images only with the `toko` group, article media and the YouTube facade origins only with `berita`.
+
 ## Legacy redirects: two layers, rows first
 
 Two mechanisms answer a legacy URL, in this order ([ADR-0013](adr/0013-rule-based-legacy-redirects-beside-the-row-based-map.md)):
