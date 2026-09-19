@@ -81,6 +81,17 @@
       "fullPathName": "KOTA PALANGKA RAYA, KALIMANTAN TENGAH"
     },
     {
+      "code": "62.01.01",
+      "codeCompact": "620101",
+      "parentCode": "62.01",
+      "level": 3,
+      "regionType": "district",
+      "localTerm": "Kecamatan",
+      "name": "PAHANDUT",
+      "shortName": null,
+      "fullPathName": "PAHANDUT, KOTA PALANGKA RAYA, KALIMANTAN TENGAH"
+    },
+    {
       "code": "62.03",
       "codeCompact": "6203",
       "parentCode": "62",

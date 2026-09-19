@@ -345,7 +345,85 @@ function storeSettings() {
   return fixture("store-settings-public.json");
 }
 
-function shippingOptionsFor(storeSettingsValue) {
+/** `tests/fixtures/awcms/shipping-rates.json`, read fresh every call (see this file's own header — no persistence, no caching layer here). */
+function shippingRatesFixture() {
+  return fixture("shipping-rates.json");
+}
+
+/**
+ * The real courier toggle (issue #109, contract: #106 D4) — `shipping.
+ * courier.enabled`/`.couriers` when present, falling back to the older
+ * `shipping.courierEnabled` boolean (with no per-courier allow-list) for a
+ * settings fixture that predates this issue, exactly as `store-settings-
+ * public.json`'s own comment for this app's read side (`pemasaran.ts`)
+ * describes.
+ */
+function courierSettings(storeSettingsValue) {
+  const courier = storeSettingsValue.shipping?.courier;
+  if (courier) return { enabled: Boolean(courier.enabled), couriers: courier.couriers ?? [] };
+  return { enabled: Boolean(storeSettingsValue.shipping?.courierEnabled), couriers: [] };
+}
+
+/** The single disabled placeholder row (contract's own shape) — one per "why", never several at once. */
+function unavailableCourierOption(note) {
+  return [{ method: "courier", serviceId: null, name: "Kurir", cost: null, etd: null, available: false, note }];
+}
+
+/**
+ * Real, priced courier options for `destination` (issue #109, contract:
+ * #106 D4) — one row per `{courier, service}` in `shipping-rates.json`,
+ * priced for `weightGrams` in whole-kilogram buckets (the fixture's own
+ * `baseCost` covers the first kg, `perExtraKg` each kg after it — the same
+ * "round UP, never down" a real courier's own weight bucketing uses, so a
+ * 100 g order is never quoted as if it weighed nothing). Falls back to the
+ * single disabled placeholder — courier off, no destination yet, or this
+ * destination has no rate row at all (an "unreachable for this provider"
+ * outcome, not a bug) — exactly per the contract's own "failure →
+ * `available:false` with a note".
+ */
+function buildCourierOptions(storeSettingsValue, destination, weightGrams) {
+  const settings = courierSettings(storeSettingsValue);
+
+  if (!settings.enabled) {
+    return unavailableCourierOption("Pengiriman kurir belum diaktifkan oleh toko ini.");
+  }
+
+  const districtCode = destination?.districtCode;
+  if (!districtCode) {
+    return unavailableCourierOption("Pilih kecamatan tujuan pada langkah alamat untuk melihat ongkir kurir.");
+  }
+
+  const ratesForDistrict = shippingRatesFixture()[districtCode];
+  if (!ratesForDistrict) {
+    return unavailableCourierOption("Kurir tidak tersedia untuk tujuan ini.");
+  }
+
+  const weightKg = Math.max(1, Math.ceil((weightGrams || 0) / 1000));
+  const extraKg = weightKg - 1;
+  const couriers = settings.couriers.length > 0 ? settings.couriers : Object.keys(ratesForDistrict);
+
+  const options = [];
+  for (const courier of couriers) {
+    const services = ratesForDistrict[courier];
+    if (!services) continue;
+
+    for (const [serviceCode, service] of Object.entries(services)) {
+      const costCents = toCents(service.baseCost) + extraKg * toCents(service.perExtraKg);
+      options.push({
+        method: "courier",
+        serviceId: `${courier}:${serviceCode}`,
+        name: service.name,
+        etd: service.etd,
+        cost: fromCents(costCents),
+        available: true
+      });
+    }
+  }
+
+  return options.length > 0 ? options : unavailableCourierOption("Kurir tidak tersedia untuk tujuan ini.");
+}
+
+function shippingOptionsFor(storeSettingsValue, destination, weightGrams) {
   const options = [];
   for (const service of storeSettingsValue.shipping?.alternativeServices ?? []) {
     options.push({ method: "alternative", serviceId: service.id, name: service.name, cost: service.cost, available: true });
@@ -353,14 +431,15 @@ function shippingOptionsFor(storeSettingsValue) {
   if (storeSettingsValue.shipping?.selfPickup) {
     options.push({ method: "self_pickup", serviceId: null, name: "Ambil di toko", cost: "0.00", available: true });
   }
-  options.push({
-    method: "courier",
-    serviceId: null,
-    name: "Kurir (segera)",
-    cost: null,
-    available: Boolean(storeSettingsValue.shipping?.courierEnabled)
-  });
+  options.push(...buildCourierOptions(storeSettingsValue, destination, weightGrams));
   return options;
+}
+
+/** `option.method === "courier"` or `"alternative"` both carry a `serviceId` that must match exactly; `self_pickup` never does — the one equality rule both `computeQuote`'s own shipping match and `/orders`' order-time re-validation share. */
+function shippingSelectionMatches(option, selection) {
+  if (option.method !== selection.method) return false;
+  if (option.method === "self_pickup") return true;
+  return option.serviceId === selection.serviceId;
 }
 
 function findVoucher(code) {
@@ -492,14 +571,10 @@ function computeQuote(body) {
     }
   }
 
-  const shippingOptions = shippingOptionsFor(settings);
+  const shippingOptions = shippingOptionsFor(settings, body.destination ?? null, weightGrams);
   let shipping = null;
   if (body.shipping) {
-    const match = shippingOptions.find(
-      (option) =>
-        option.method === body.shipping.method &&
-        (option.method !== "alternative" || option.serviceId === body.shipping.serviceId)
-    );
+    const match = shippingOptions.find((option) => shippingSelectionMatches(option, body.shipping));
     if (match && match.available) {
       shipping = { method: match.method, serviceId: match.serviceId, name: match.name, cost: match.cost ?? "0.00" };
     }
@@ -1387,9 +1462,31 @@ async function handleStorefrontRequest(request, url) {
       return envelope(serializeOrder(ORDERS.get(existingCode)), { status: 200, headers });
     }
 
-    const quote = computeQuote(body);
+    // Issue #109 (contract: #106 D4) — `CreateOrderRequest` carries no
+    // separate `destination` field (unlike `QuoteRequest`): the shopper's
+    // address, when one is given, already names the district the order
+    // ships to, so order-time re-validation derives `destination` from
+    // `body.address.districtCode` rather than trusting a second, possibly
+    // stale copy of it. `self_pickup`/no-address orders pass `null`, same
+    // as a quote taken before a district was ever chosen.
+    const quote = computeQuote({
+      ...body,
+      destination: body.address?.districtCode ? { districtCode: body.address.districtCode } : null
+    });
     if (!quote.canCheckout) {
       return envelopeError(409, "CART_CHANGED", "Cart changed since the quote was made.", { quote }, headers);
+    }
+
+    // The chosen `{method, serviceId}` (and, for a courier, its cost) is
+    // re-validated against a FRESH quote at order time, never trusted from
+    // the request alone: a rate this stub priced a minute ago may have gone
+    // stale (a district's rates changed, courier got disabled) by the time
+    // the shopper submits. A mismatch answers the SAME `409 CART_CHANGED` +
+    // fresh quote a stock/price change would, matching this contract's own
+    // "on mismatch at order time" rule.
+    const shippingOption = quote.shippingOptions.find((option) => shippingSelectionMatches(option, body.shipping));
+    if (!shippingOption || !shippingOption.available) {
+      return envelopeError(409, "CART_CHANGED", "Shipping option changed since the quote was made.", { quote }, headers);
     }
 
     const settings = storeSettings();
@@ -1397,10 +1494,6 @@ async function handleStorefrontRequest(request, url) {
     const now = new Date();
     const expiryHours = settings.orders?.expiryHours ?? 24;
     const expiresAt = new Date(now.getTime() + expiryHours * 3600_000).toISOString();
-
-    const shippingOption = quote.shippingOptions.find(
-      (option) => option.method === body.shipping.method && (option.method !== "alternative" || option.serviceId === body.shipping.serviceId)
-    );
 
     const order = {
       orderCode,

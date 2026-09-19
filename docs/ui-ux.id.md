@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](ui-ux.md)
 
-<!-- i18n-source-hash: sha256:f43db0111d23fc9a95357d887c344df83466517f990fa4893d1d6d3424cfe40d -->
+<!-- i18n-source-hash: sha256:ccc3dc3c5f6d01504086055f3373196cad1561600bcf9d5f3d051fa7698fc82c -->
 
 # UI / UX
 
@@ -65,4 +65,8 @@ Setiap status moderasi/siklus-hidup yang dirender aplikasi ini diterjemahkan ke 
 
 ## Belum dibangun
 
-Pengalih locale; keputusan gambar-produk apa pun yang terkait dark mode (media query color-scheme mengatur chrome aplikasi ini sendiri, bukan gambar pasokan-CMS atau `labelColor`); perbandingan tarif kurir live saat checkout (opsi kurir di-render sebagai "segera" — dinonaktifkan — menunggu [issue #33](https://github.com/ahliweb/awcms-one/issues/33), lihat [ADR-0010](adr/0010-manual-payment-and-alternative-courier-first-gateways-via-outbox.id.md)).
+Pengalih locale; keputusan gambar-produk apa pun yang terkait dark mode (media query color-scheme mengatur chrome aplikasi ini sendiri, bukan gambar pasokan-CMS atau `labelColor`).
+
+## Checkout: tarif kurir nyata, dihitung per tujuan (issue #109, kontrak: #106 D4)
+
+Baris kurir pada langkah pengiriman checkout bukan lagi placeholder "segera" permanen — kini merender satu radio per layanan yang sudah dihitung harganya (`{nama} ({etd}) — {harga}`, mis. "JNE REG (2-3 hari) — Rp15.000") begitu `<select>` kecamatan pada langkah alamat memiliki nilai, dan otomatis meng-quote ulang setiap kali kecamatan berubah (termasuk saat alamat tersimpan diisi otomatis, yang mengisi select secara terprogram, bukan lewat event `change` pengguna). Sebelum kecamatan dipilih, saat toko menonaktifkan kurir, atau saat penyedia tidak bisa menghitung tujuan yang dipilih, placeholder tunggal yang dinonaktifkan tetap tampil seperti sebelumnya — `available:false`, `serviceId:null` — namun kini membawa `note` yang menjelaskan salah satu dari tiga alasan itu, ditampilkan sebagai teks bantuan yang terlihat pada baris itu sendiri (`aria-describedby`, bukan sekadar atribut title). Baris status `aria-live="polite"` di atas daftar opsi mengumumkan "Menghitung ongkir…" selagi quote sedang diminta dan pesan kegagalan singkat bila gagal, sehingga pengguna pembaca layar tidak dibiarkan menebak-nebak mengapa daftarnya kosong. `apps/storefront/src/lib/kurir-opsi.ts` adalah satu-satunya tempat sebuah opsi diubah menjadi teks ini — `checkout.ts` hanya mengulang apa yang sudah diputuskan di sana.

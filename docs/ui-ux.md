@@ -63,4 +63,8 @@ Every moderation/lifecycle status this app renders is translated to Indonesian t
 
 ## Not built
 
-A locale switcher; any product-imagery decision tied to dark mode (the colour-scheme media query governs this app's own chrome, not CMS-supplied imagery or `labelColor`); a live carrier-rate comparison at checkout (courier options render as "segera" — disabled — pending [issue #33](https://github.com/ahliweb/awcms-one/issues/33), see [ADR-0010](adr/0010-manual-payment-and-alternative-courier-first-gateways-via-outbox.md)).
+A locale switcher; any product-imagery decision tied to dark mode (the colour-scheme media query governs this app's own chrome, not CMS-supplied imagery or `labelColor`).
+
+## Checkout: real courier rates, priced per destination (issue #109, contract: #106 D4)
+
+The checkout shipping step's courier row is no longer a permanent "segera" placeholder — it renders one radio per priced service (`{name} ({etd}) — {price}`, e.g. "JNE REG (2-3 hari) — Rp15.000") once the address step's kecamatan `<select>` carries a value, and re-quotes automatically on every district change (including a saved-address autofill, which sets the select programmatically rather than through a user `change` event). Before a district is chosen, when the store has courier disabled, or when the provider cannot price the chosen destination, the SAME single disabled placeholder as before renders — `available:false`, `serviceId:null` — but now carries a `note` explaining which of the three it is, shown as the row's own visible help text (`aria-describedby`, not just a title attribute). An `aria-live="polite"` status line above the options announces "Menghitung ongkir…" while a quote is in flight and a short failure message if it errors, so a screen-reader user is not left guessing why the list is empty. `apps/storefront/src/lib/kurir-opsi.ts` is the one place an option becomes this text — `checkout.ts` only loops over what it decides.
