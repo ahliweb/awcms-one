@@ -1,0 +1,134 @@
+---
+/**
+ * `/akun/pesan` — the signed-in shopper's own message inbox with the store
+ * (issue #115, S3 of #33, contract #106 D8). List view (keyset, "Muat lebih
+ * banyak", each row carrying an unread badge) with no `?id=`; "Pesan baru"
+ * form (subject + body) at the top of the list; a thread view with `?id=`,
+ * mirroring `/akun/pesanan`'s own `?kode=` shape — a reply form when the
+ * thread is open, a short note instead when it is closed. See
+ * `src/scripts/akun-pesan.ts`'s own docblock for the full behaviour.
+ *
+ * `noindex, follow` — the `/akun` prefix already covers this in
+ * `robots.txt.ts`'s `Disallow` list (verified, not assumed — see that
+ * file).
+ */
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getSiteIdentity } from "../../lib/awcms/profil";
+import { getStoreSettings } from "../../lib/awcms/pemasaran";
+import { ROUTES } from "../../config/routes";
+import "../../styles/toko.css";
+import "../../styles/akun.css";
+
+const identity = await getSiteIdentity();
+const storeSettings = await getStoreSettings();
+const whatsappNumber = storeSettings.whatsapp ?? identity.whatsappNumber ?? "";
+---
+
+<BaseLayout title="Pesan Saya" description="Percakapan Anda dengan toko." canonicalPath="/akun/pesan">
+  <meta slot="head" name="robots" content="noindex, follow" />
+
+  <noscript>
+    <div class="container">
+      <div class="toko-banner toko-banner--info">
+        Halaman pesan memerlukan JavaScript aktif di peramban Anda. Anda tetap bisa menghubungi kami
+        langsung melalui WhatsApp:
+        {whatsappNumber && (
+          <a class="toko-wa-fallback" href={`https://wa.me/${whatsappNumber.replace(/\D/g, "")}`}>
+            Hubungi WhatsApp
+          </a>
+        )}
+      </div>
+    </div>
+  </noscript>
+
+  <div
+    class="container"
+    data-akun-pesan-root
+    data-whatsapp-number={whatsappNumber}
+    data-store-name={identity.name}
+  >
+    <div class="page-heading">
+      <h1>Pesan Saya</h1>
+      <p><a href={ROUTES.account}>&larr; Kembali ke Akun Saya</a></p>
+    </div>
+
+    <div data-submit-error class="toko-banner toko-banner--danger" hidden>
+      <p data-submit-error-message></p>
+      <div class="toko-actions">
+        <a data-wa-fallback-link class="toko-wa-fallback" hidden>Hubungi via WhatsApp</a>
+      </div>
+    </div>
+
+    <div data-guest-view class="akun-card" hidden>
+      <p>Anda belum masuk.</p>
+      <div class="akun-actions">
+        <a href={ROUTES.login}>Masuk</a>
+      </div>
+    </div>
+
+    <div data-list-view hidden>
+      <div class="akun-card">
+        <h2>Pesan Baru</h2>
+        <form data-pesan-baru-form novalidate>
+          <div class="toko-field">
+            <label for="pesan-baru-subject">Subjek</label>
+            <input type="text" id="pesan-baru-subject" name="subject" required maxlength="200" />
+            <p class="toko-field-error" data-error-for="subject"></p>
+          </div>
+          <div class="toko-field">
+            <label for="pesan-baru-body">Pesan</label>
+            <textarea id="pesan-baru-body" name="body" required maxlength="4000" rows="4"></textarea>
+            <p class="toko-field-error" data-error-for="body"></p>
+          </div>
+          <div class="akun-actions">
+            <button type="submit">Kirim</button>
+          </div>
+        </form>
+      </div>
+
+      <p class="toko-empty" data-conversation-list-empty hidden>Anda belum memiliki percakapan.</p>
+      <ul class="akun-nav-grid" data-conversation-list aria-live="polite"></ul>
+      <div class="akun-actions">
+        <button type="button" data-load-more hidden>Muat lebih banyak</button>
+      </div>
+    </div>
+
+    <div data-detail-view hidden>
+      <p><a data-back-to-list href={ROUTES.accountMessages}>&larr; Kembali ke daftar pesan</a></p>
+
+      <div data-conversation-error class="toko-banner toko-banner--danger" hidden>
+        <p>Percakapan tidak ditemukan, atau bukan milik akun Anda.</p>
+      </div>
+
+      <div data-conversation-body hidden>
+        <div class="toko-section">
+          <h2 data-conversation-subject></h2>
+          <p>Status: <span data-conversation-status></span></p>
+        </div>
+
+        <ul class="toko-lines" data-message-list aria-live="polite"></ul>
+
+        <div class="toko-section" data-reply-section hidden>
+          <form data-reply-form novalidate>
+            <div class="toko-field">
+              <label for="pesan-balasan-body">Balasan</label>
+              <textarea id="pesan-balasan-body" name="body" required maxlength="4000" rows="3"></textarea>
+              <p class="toko-field-error" data-error-for="reply-body"></p>
+            </div>
+            <div class="akun-actions">
+              <button type="submit">Kirim Balasan</button>
+            </div>
+          </form>
+        </div>
+
+        <p class="toko-banner toko-banner--info" data-closed-note hidden>
+          Percakapan ini telah ditutup. Buat pesan baru jika Anda memiliki pertanyaan lain.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    import "../../scripts/akun-pesan";
+  </script>
+</BaseLayout>

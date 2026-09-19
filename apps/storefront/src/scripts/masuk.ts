@@ -1,9 +1,12 @@
 /**
- * `/masuk` interactivity (issue #88, S1) — e-mail → "Kirim kode" → 6-digit
- * code → verify → `simpanSesi` → redirect to `?kembali=` (validated,
- * same-origin path only) or `/akun`.
+ * `/masuk` interactivity (issue #88 S1, extended by #115/#106 D5) —
+ * e-mail OR WhatsApp → "Kirim kode" → 6-digit code → verify → `simpanSesi` →
+ * redirect to `?kembali=` (validated, same-origin path only) or `/akun`.
+ * The channel radio (`[data-channel-choice]`) only exists in the markup when
+ * `whatsappOtpEnabled` was `true` at build time (`masuk.astro`); this script
+ * degrades to e-mail-only when it is absent.
  */
-import { mintaKode, verifikasiKode } from "../lib/akun-klien";
+import { mintaKode, verifikasiKode, type OtpChannel } from "../lib/akun-klien";
 import { simpanSesi } from "../lib/akun-sesi";
 import { TokoApiError } from "../lib/toko-permintaan";
 import { ROUTES } from "../config/routes";
@@ -37,14 +40,35 @@ if (root) {
   const submitErrorLinkEl = root.querySelector<HTMLElement>("[data-submit-error-link]");
   const waFallbackLink = root.querySelector<HTMLAnchorElement>("[data-wa-fallback-link]");
   const emailInput = form?.querySelector<HTMLInputElement>('[name="email"]');
+  const phoneInput = form?.querySelector<HTMLInputElement>('[name="phone"]');
   const codeInput = form?.querySelector<HTMLInputElement>('[name="code"]');
   const kirimKodeButton = form?.querySelector<HTMLButtonElement>("[data-kirim-kode]");
   const kirimUlangButton = form?.querySelector<HTMLButtonElement>("[data-kirim-ulang]");
   const countdownEl = form?.querySelector<HTMLElement>("[data-countdown]");
+  const fieldEmail = form?.querySelector<HTMLElement>("[data-field-email]");
+  const fieldPhone = form?.querySelector<HTMLElement>("[data-field-phone]");
+  const codeSentToEl = form?.querySelector<HTMLElement>("[data-code-sent-to]");
+  const channelRadios = form?.querySelectorAll<HTMLInputElement>('input[name="via"]');
 
   const whatsappNumber = root.dataset.whatsappNumber ?? "";
   const storeName = root.dataset.storeName ?? "toko";
   const registerHref = root.dataset.registerHref ?? ROUTES.register;
+
+  /** The channel currently chosen — `"email"` when the radio group is absent (WhatsApp OTP not enabled at build time), matching `masuk.astro`'s own degrade rule. */
+  function selectedChannel(): OtpChannel {
+    if (!channelRadios || channelRadios.length === 0) return "email";
+    for (const radio of channelRadios) if (radio.checked) return radio.value as OtpChannel;
+    return "email";
+  }
+
+  function updateChannelFields(): void {
+    const channel = selectedChannel();
+    if (fieldEmail) fieldEmail.hidden = channel === "whatsapp";
+    if (fieldPhone) fieldPhone.hidden = channel === "email";
+  }
+
+  channelRadios?.forEach((radio) => radio.addEventListener("change", updateChannelFields));
+  updateChannelFields();
 
   const params = new URLSearchParams(window.location.search);
   const kembali = validKembaliPath(params.get("kembali"));
@@ -107,6 +131,15 @@ if (root) {
         return;
       }
 
+      if (error.code === "CHANNEL_UNAVAILABLE") {
+        if (submitErrorEl && submitErrorMessageEl) {
+          submitErrorEl.hidden = false;
+          submitErrorMessageEl.textContent =
+            "Kode via WhatsApp sedang tidak tersedia di toko ini. Silakan gunakan e-mail.";
+        }
+        return;
+      }
+
       if (error.code === "RATE_LIMITED") {
         const seconds = error.retryAfterSeconds;
         if (submitErrorEl && submitErrorMessageEl) {
@@ -155,10 +188,31 @@ if (root) {
   }
 
   async function sendCode(): Promise<void> {
-    if (!emailInput) return;
     hideSubmitError();
     clearFieldErrors();
 
+    const channel = selectedChannel();
+
+    if (channel === "whatsapp") {
+      const phone = phoneInput?.value.trim() ?? "";
+      if (!phone) {
+        const target = form?.querySelector<HTMLElement>('[data-error-for="phone"]');
+        if (target) target.textContent = "Nomor WhatsApp wajib diisi.";
+        return;
+      }
+
+      try {
+        await mintaKode({ phone, purpose: "login", via: "whatsapp" });
+        if (codeSentToEl) codeSentToEl.textContent = "Kode telah dikirim ke WhatsApp Anda.";
+        showStatus("Kode telah dikirim ke WhatsApp Anda.");
+        showCodeStep();
+      } catch (error) {
+        showSubmitError(error, "mendapatkan kode masuk via WhatsApp");
+      }
+      return;
+    }
+
+    if (!emailInput) return;
     const email = emailInput.value.trim();
     if (!email) {
       const target = form?.querySelector<HTMLElement>('[data-error-for="email"]');
@@ -168,6 +222,7 @@ if (root) {
 
     try {
       await mintaKode({ email, purpose: "login" });
+      if (codeSentToEl) codeSentToEl.textContent = "Kode telah dikirim ke e-mail Anda.";
       showStatus("Kode telah dikirim ke e-mail Anda.");
       showCodeStep();
     } catch (error) {
@@ -183,7 +238,7 @@ if (root) {
     hideSubmitError();
     clearFieldErrors();
 
-    const email = emailInput?.value.trim() ?? "";
+    const channel = selectedChannel();
     const code = codeInput?.value.trim() ?? "";
 
     if (!code) {
@@ -193,7 +248,10 @@ if (root) {
     }
 
     try {
-      const result = await verifikasiKode({ email, code, purpose: "login" });
+      const result =
+        channel === "whatsapp"
+          ? await verifikasiKode({ phone: phoneInput?.value.trim() ?? "", code, purpose: "login" })
+          : await verifikasiKode({ email: emailInput?.value.trim() ?? "", code, purpose: "login" });
       simpanSesi({ token: result.token, expiresAt: result.expiresAt, account: result.account });
       window.location.href = kembali ?? ROUTES.account;
     } catch (error) {
