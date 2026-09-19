@@ -181,7 +181,16 @@ if (root) {
     if (enrolView) enrolView.hidden = true;
     if (enrolledView) enrolledView.hidden = false;
 
-    if (linkInput) linkInput.value = affiliate.link;
+    // The CMS returns an absolute link only when its deployment knows the
+    // storefront origin (`COMMERCE_STOREFRONT_PUBLIC_URL`); otherwise it is a
+    // relative `/?ref=CODE`, which this page — running on the storefront
+    // itself — completes with its own origin so the shopper always copies a
+    // shareable URL.
+    if (linkInput) {
+      linkInput.value = affiliate.link.startsWith("/")
+        ? `${window.location.origin}${affiliate.link}`
+        : affiliate.link;
+    }
     if (rateEl) rateEl.textContent = `${affiliate.commissionRate}%`;
     if (statusBadgeEl) statusBadgeEl.textContent = STATUS_LABELS[affiliate.status] ?? affiliate.status;
     if (referredOrdersEl) referredOrdersEl.textContent = String(affiliate.stats.referredOrders);
