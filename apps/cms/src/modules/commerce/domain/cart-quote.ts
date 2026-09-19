@@ -161,6 +161,16 @@ export type CartQuoteContext = {
   now: Date;
   /** Issue #107 — `null`/absent when courier rates were never attempted (see {@link CartQuoteCourierContext}'s own header); optional so every pre-#107 `CartQuoteContext` literal keeps compiling unchanged. */
   courier?: CartQuoteCourierContext | null;
+  /**
+   * Issue #110 — `resolveIsPaymentGatewayProviderConfigured(...)`'s result,
+   * passed in rather than resolved here for the same reason
+   * `courierProviderConfigured` is a boolean parameter on
+   * `store-settings-directory.ts`'s `toPublicRecord`: this function is pure
+   * and must keep working with no live environment in tests. Optional so
+   * every pre-#110 `CartQuoteContext` literal keeps compiling unchanged
+   * (absent -> `gateway.available` is always `false`).
+   */
+  gatewayProviderConfigured?: boolean;
 };
 
 export type CartQuoteLineResult = {
@@ -694,7 +704,13 @@ export function quoteCart(
       method: "manual_bank",
       available: context.storeSettings.payment.manualBank.active
     },
-    { method: "dp", available: downPaymentAvailable }
+    { method: "dp", available: downPaymentAvailable },
+    {
+      method: "gateway",
+      available:
+        context.storeSettings.payment.gateway.enabled &&
+        (context.gatewayProviderConfigured ?? false)
+    }
   ];
 
   const canCheckout =

@@ -503,6 +503,17 @@ export type StoreSettingsPayment = {
   downPayment: { active: boolean; percent: number };
   tax: { active: boolean; percent: number };
   insurance: { active: boolean; ratePercent: string; minFee: string };
+  /**
+   * Issue #110 (contract #106 D3) — the payment-gateway integration's own
+   * on/off switch, same shape as `shipping.courier.enabled`
+   * (`validateCourier`'s own header): this flag alone does not mean gateway
+   * checkout is actually usable — the public read model's
+   * `payment.gatewayEnabled` (`application/store-settings-directory.ts`'s
+   * `toPublicRecord`) is DERIVED from `gateway.enabled && a
+   * PaymentGatewayProvider is configured`, never read back from this stored
+   * field alone.
+   */
+  gateway: { enabled: boolean };
 };
 
 const PAYMENT_KEYS = [
@@ -510,13 +521,15 @@ const PAYMENT_KEYS = [
   "manualQris",
   "downPayment",
   "tax",
-  "insurance"
+  "insurance",
+  "gateway"
 ] as const;
 const MANUAL_BANK_KEYS = ["active", "accounts"] as const;
 const MANUAL_QRIS_KEYS = ["active", "mediaObjectId"] as const;
 const DOWN_PAYMENT_KEYS = ["active", "percent"] as const;
 const TAX_KEYS = ["active", "percent"] as const;
 const INSURANCE_KEYS = ["active", "ratePercent", "minFee"] as const;
+const GATEWAY_KEYS = ["enabled"] as const;
 
 function validatePayment(
   value: unknown,
@@ -529,6 +542,8 @@ function validatePayment(
   const downPayment = isRecord(record.downPayment) ? record.downPayment : {};
   const tax = isRecord(record.tax) ? record.tax : {};
   const insurance = isRecord(record.insurance) ? record.insurance : {};
+  const gateway = isRecord(record.gateway) ? record.gateway : {};
+  rejectUnknownKeys(record.gateway, GATEWAY_KEYS, "payment.gateway", errors);
   rejectUnknownKeys(
     record.manualBank,
     MANUAL_BANK_KEYS,
@@ -600,6 +615,9 @@ function validatePayment(
       active: bool(insurance.active, false),
       ratePercent,
       minFee: money(insurance.minFee, "payment.insurance.minFee", errors)
+    },
+    gateway: {
+      enabled: bool(gateway.enabled, false)
     }
   };
 }

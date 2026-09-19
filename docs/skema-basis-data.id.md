@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](skema-basis-data.md)
 
-<!-- i18n-source-hash: sha256:040e1b9cc86a51f0712589c4c2d6739c0cd876e4373176a373a7178954fa191c -->
+<!-- i18n-source-hash: sha256:f31c478fb4030f9d907d46709c0b591d4e942602fc08c05c95fe6bada3d8df27 -->
 
 # Skema basis data
 
@@ -140,6 +140,20 @@ Issue #107, D4 kontrak #106 — cache kode-kecamatan→id-tujuan-provider dan ca
 Kedua tabel mengikuti konvensi `sql/901` (`ENABLE`/`FORCE ROW LEVEL SECURITY`, satu kebijakan isolasi tenant, indeks FK pada `tenant_id`) tapi tidak pernah ditulis langsung oleh transaksi tulis `application/order-directory.ts` untuk tarif BARU — `getCourierRates`/`resolveDestination` milik `application/shipping-rate-directory.ts` selalu membaca cache dalam satu transaksi pendek, memanggil `ShippingRateProvider` (API v2 RajaOngkir Komerce, atau adapter fixture `log`) tanpa transaksi terbuka sama sekali, lalu menulis-balik hasilnya dalam transaksi pendek kedua (aturan "jangan pernah memanggil provider di dalam transaksi database" ADR-0006/0010, diterapkan di sini sama seperti outbox `email` sudah menerapkannya). Pembuatan pesanan memvalidasi `{courier, service, cost}` yang dipilih HANYA terhadap `awcms_commerce_shipping_rates` — `SELECT ... WHERE expires_at > now()` biasa yang aman-transaksi, tidak pernah panggilan provider langsung kedua dari dalam transaksi tulis pesanan itu sendiri.
 
 Kedua tabel baru: RLS `ENABLE`+`FORCE`, kebijakan isolasi-tenant, indeks FK. Tak satu pun pernah di-soft-delete oleh kode modul ini sendiri dalam praktiknya — `deleted_at` ada murni sebagai kursor purge data-lifecycle yang seragam, bentuk "kursor selalu-`NULL`" yang sama dengan yang sudah dipakai `awcms_commerce_orders` dan `awcms_commerce_customer_accounts`.
+
+## Payment gateway: sesi, buku besar event, token webhook-endpoint (`sql/926`)
+
+Issue #110, D2/D3 kontrak #106 — tabel sesi hosted-checkout, buku besar anti-replay untuk webhook provider masuk (belum ada penulisnya; rute INTAKE webhook adalah cakupan issue #113 sendiri), dan token webhook-endpoint milik tenant yang di-resolve lookup bootstrap D2.
+
+| Tabel | Kolom kunci | Catatan |
+| --- | --- | --- |
+| `awcms_commerce_payment_gateway_sessions` | `order_id NOT NULL` (FK), `provider NOT NULL` (`CHECK IN ('midtrans','log')`), `provider_ref NOT NULL`, `redirect_url NOT NULL`, `status NOT NULL DEFAULT 'created'` (`CHECK IN ('created','pending','paid','expired','failed','refunded')`), `expires_at NOT NULL`, `last_checked_at`, `raw_status jsonb`, `UNIQUE (provider, provider_ref)` | Satu baris per percobaan hosted-checkout. `createGatewaySession` milik `application/payment-gateway-directory.ts` adalah satu-satunya penulis: memvalidasi pesanan dan mengecek sesi yang masih hidup dalam satu transaksi pendek, memanggil provider tanpa transaksi terbuka, menyimpan dalam transaksi pendek kedua. Pembuatan ganda yang benar-benar bersamaan mengenai constraint `UNIQUE (provider, provider_ref)` (`23505`) dan mengambil-ulang baris pemenang, bukan error |
+| `awcms_commerce_payment_events` | `provider NOT NULL` (`CHECK IN ('midtrans','log')`), `event_key NOT NULL`, `provider_ref NOT NULL`, `order_id` (FK, nullable), `payload jsonb NOT NULL`, `received_at NOT NULL DEFAULT now()`, `outcome NOT NULL` (`CHECK IN ('applied','ignored','replay')`), `UNIQUE (tenant_id, provider, event_key)` | Buku besar anti-replay D2 — belum ada apa pun di cakupan issue ini yang menulis ke sana; rute INTAKE webhook (#113) adalah penulis pertamanya |
+| `awcms_commerce_webhook_endpoints` | `provider NOT NULL` (`CHECK IN ('midtrans')`), `token_hash NOT NULL` (`UNIQUE`), `label`, `created_by` (FK ke `awcms_tenant_users`, nullable), `revoked_at` | SATU baris per endpoint (tenant, provider) yang dicetak owner. Hanya hash SHA-256 dari token mentah yang pernah disimpan — `createWebhookEndpoint` milik `application/webhook-endpoint-directory.ts` mengembalikan token mentah tepat sekali dan tidak pernah menyimpannya, disiplin yang sama seperti yang sudah diterapkan `awcms_machine_credentials` pada rahasia yang struktural identik |
+
+Plus dua kolom nullable pada `awcms_commerce_orders` yang sudah ada: `gateway_provider text`, `gateway_ref text` — gateway/referensi mana yang membayar pesanan ini, jika ada (ditambahkan `ADD COLUMN IF NOT EXISTS`, sehingga migration tetap aditif terhadap tabel `orders` yang sudah terisi).
+
+Ketiga tabel baru: RLS `ENABLE`+`FORCE`, kebijakan isolasi-tenant, indeks FK (termasuk indeks komposit `(tenant_id, <kolom kursor>)` di masing-masing, mengikuti konvensi `data-lifecycle:table-coverage:check` milik repo ini sendiri). Satu objek keempat, `awcms_resolve_commerce_webhook_endpoint(token_hash)`, adalah fungsi `SECURITY DEFINER` yang meniru pola bootstrap-read `awcms_resolve_tenant_domain_lookup` milik `sql/048` persis — peran pemilik `NOLOGIN` khusus (`awcms_webhook_endpoint_bootstrap`), kebijakan `FOR SELECT` eksplisit yang dibatasi hanya untuk peran itu, bentuk balikan tetap yang tidak sensitif (`tenant_id`, `provider` — tidak pernah `token_hash`/`label`/`created_by`), dan `EXECUTE` dibatasi ke `awcms_app`. Fungsi ini me-resolve `(tenant_id, provider)` dari token opak yang di-hash sebelum konteks tenant apa pun ada, celah bootstrap yang sama yang ditutup fungsi tenant-domain untuk sebuah hostname.
 
 ## Row-level security: `ENABLE` dan `FORCE`, terbukti di bawah role tak-berhak-istimewa
 

@@ -697,6 +697,16 @@
       "source": "factory"
     },
     {
+      "path": "src/pages/api/v1/commerce/webhook-endpoints/[id].ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/webhook-endpoints/index.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
       "path": "src/pages/api/v1/commerce/whatsapp/messages/index.ts",
       "workClass": "interactive",
       "source": "factory"

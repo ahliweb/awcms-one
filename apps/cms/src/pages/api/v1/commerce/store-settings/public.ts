@@ -8,6 +8,7 @@ import {
 } from "../../../../../modules/commerce/application/store-settings-directory";
 import { COMMERCE_SETTINGS_ACTIVITY_CODE } from "../../../../../modules/commerce/domain/commerce-permissions";
 import { isShippingRateProviderConfigured } from "../../../../../modules/commerce/infrastructure/shipping-rate-provider-resolver";
+import { isPaymentGatewayProviderConfigured } from "../../../../../modules/commerce/infrastructure/payment-gateway-provider-resolver";
 
 const READ_GUARD = {
   moduleKey: "commerce",
@@ -37,7 +38,8 @@ export const GET = defineTenantRoute({
         settings,
         mediaLibraryPortAdapter,
         affiliateCommissionRate !== null,
-        isShippingRateProviderConfigured()
+        isShippingRateProviderConfigured(),
+        isPaymentGatewayProviderConfigured()
       )
     );
   }

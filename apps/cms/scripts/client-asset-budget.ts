@@ -506,8 +506,19 @@ export const READER_BUDGET_BYTES = 24_000;
  * mirrored field to keep in sync — the Issue #552 "one shared lifecycle,
  * not one per screen" lesson, applied to a genuinely new control this repo
  * had none of yet, not per-screen duplication of one that already existed.
+ *
+ * **Raised to 232,000 B after Issue #110** (awcms-one epic #33, C3) — the
+ * payment-gateway section added to the same `commerce-settings.astro`
+ * screen: a `payment.gateway.enabled` toggle (reusing the exact courier
+ * toggle's re-attach shape above) plus a webhook-endpoint create/revoke
+ * panel built entirely from the shared `onSubmit`/`onAction`/
+ * `mutateAndReload`/`sendJson`/`sendJsonForData`/`field`/`messageBox`
+ * helpers `machine-credentials.astro` already established — no new
+ * lifecycle code, no hand-rolled DOM row construction. The measured
+ * overage was ~440 B for this genuinely new control (list/create/revoke
+ * for a resource this screen had none of), not per-screen duplication.
  */
-export const APP_BUDGET_BYTES = 231_500;
+export const APP_BUDGET_BYTES = 232_000;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.

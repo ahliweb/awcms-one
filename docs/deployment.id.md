@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](deployment.md)
 
-<!-- i18n-source-hash: sha256:acad07b11175ff796eeb1e1d15d9cbad44a707d3cdb6cd93490661f4c14bda6b -->
+<!-- i18n-source-hash: sha256:ef9e1767abb035afab11f37149ee4fcb0d000b9a9290eb63e7cd2ca0bbca2dcb -->
 
 # Deployment
 
@@ -50,6 +50,14 @@ Berkas yang jauh lebih besar, dimiliki sepenuhnya oleh `apps/cms` sebagai kode `
 | `COMMERCE_RAJAONGKIR_API_KEY` | tidak diset | Wajib saat `COMMERCE_SHIPPING_RATE_PROVIDER=rajaongkir` — nilai header `key` API v2 Komerce |
 | `COMMERCE_RAJAONGKIR_BASE_URL` | `https://rajaongkir.komerce.id/api/v1` | Override hanya untuk pengujian/dev — tidak pernah dari input permintaan |
 | `COMMERCE_RAJAONGKIR_TIMEOUT_MS` | `10000` | Timeout per panggilan (`withTimeout`) untuk kedua panggilan RajaOngkir, pencarian tujuan dan hitung ongkos |
+| `COMMERCE_PAYMENT_GATEWAY` | tidak diset | Issue #110 (kontrak #106 D3) — `midtrans` (adapter nyata) atau `log` (deterministik, tanpa jaringan; ditolak saat `NODE_ENV=production`); tidak diset berarti `payment.method: "gateway"` tidak pernah `available`, apa pun status `payment.gateway.enabled` pada pengaturan tenant sendiri |
+| `COMMERCE_MIDTRANS_SERVER_KEY` | tidak diset | Wajib saat `COMMERCE_PAYMENT_GATEWAY=midtrans` — server key Basic-auth yang dikirim sebagai `Authorization: Basic base64(ServerKey + ":")` |
+| `COMMERCE_MIDTRANS_IS_PRODUCTION` | `false` | Memilih base URL Snap/status API (sandbox vs production) saat override di bawah tidak diset |
+| `COMMERCE_MIDTRANS_SNAP_BASE_URL` | `https://app.sandbox.midtrans.com` (sandbox) / `https://app.midtrans.com` (production) | Override hanya untuk tes/dev — jangan pernah dari input request |
+| `COMMERCE_MIDTRANS_STATUS_BASE_URL` | `https://api.sandbox.midtrans.com` (sandbox) / `https://api.midtrans.com` (production) | Override hanya untuk tes/dev — jangan pernah dari input request |
+| `COMMERCE_MIDTRANS_TIMEOUT_MS` | `15000` | Timeout per panggilan (`withTimeout`) untuk `createSession` maupun `fetchStatus` |
+
+**`COMMERCE_STOREFRONT_PUBLIC_URL` (sudah didokumentasikan di atas untuk tautan referral afiliasi) juga membangun `redirectUrl` milik provider payment-gateway `log` (`"${COMMERCE_STOREFRONT_PUBLIC_URL}/pesanan?kode=...&gateway=log"`) dan, saat diset, URL `callbacks.finish` milik adapter Midtrans.**
 
 **`COMMERCE_WHATSAPP_ENABLED`/`COMMERCE_WHATSAPP_PROVIDER` adalah gerbang deployment sejenis untuk login WhatsApp (issue #108, kontrak #106 D5).** `POST account/otp/request` dengan `via: "whatsapp"` menjawab `409 CHANNEL_UNAVAILABLE` sampai `COMMERCE_WHATSAPP_ENABLED=true`; kode kemudian pergi ke adapter `log` (dev/CI) kecuali `COMMERCE_WHATSAPP_PROVIDER` juga menyebut provider nyata (`fonnte` atau `meta`, masing-masing dengan variabel kredensial sendiri di bawah). WhatsApp adalah kanal login-saja untuk akun yang sudah ada — pendaftaran tidak terpengaruh dan tetap hanya OTP e-mail.
 

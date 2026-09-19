@@ -27,7 +27,9 @@ import {
   COMMERCE_AFFILIATE_COMMISSIONS_ACTIVITY_CODE,
   COMMERCE_AFFILIATE_COMMISSION_PERMISSIONS,
   COMMERCE_WHATSAPP_ACTIVITY_CODE,
-  COMMERCE_WHATSAPP_PERMISSIONS
+  COMMERCE_WHATSAPP_PERMISSIONS,
+  COMMERCE_WEBHOOK_ENDPOINTS_ACTIVITY_CODE,
+  COMMERCE_WEBHOOK_ENDPOINT_PERMISSIONS
 } from "./domain/commerce-permissions";
 import {
   COMMERCE_FLASH_SALE_ENDED_EVENT_TYPE,
@@ -1391,6 +1393,127 @@ export const commerceModule = defineModule({
           "Deletes every cached rate whose expires_at has elapsed, across all tenants, in bounded batches, as awcms_worker (sql/924)."
       }
     },
+    // Issue #110, contract #106/ADR-0017 D2/D3 — the payment-gateway
+    // schema's three new tables. None has a dedicated purge job in this
+    // issue's scope (the reconciliation job is #113's own C5 follow-up);
+    // each descriptor states that honestly rather than inventing one.
+    {
+      key: "commerce.payment_gateway_sessions",
+      tableName: "awcms_commerce_payment_gateway_sessions",
+      ownerModuleKey: "commerce",
+      scope: "tenant",
+      cursorColumn: "expires_at",
+      retentionClass: "operational_queue",
+      retentionMinDays: 30,
+      retentionMaxDays: 365,
+      defaultRetentionDays: 90,
+      partition: {
+        eligible: false,
+        rationale:
+          "Bounded by a single storefront's own gateway-checkout attempt volume — nowhere near partition-worthy."
+      },
+      archive: {
+        archivable: false,
+        rationale:
+          "A hosted-checkout session record — the order it belongs to is the durable record of what was paid; this row is reconciliation metadata, nothing worth a standalone archive."
+      },
+      deletion: {
+        mode: "hard_delete",
+        rationale:
+          "No cascading FK children; a session past its own expires_at has no further reconciliation value once #113's reconcile job (out of this issue's scope) has had a chance to poll it."
+      },
+      legalHold: { applicable: false, precedence: "not_applicable" },
+      requiredIndexes: [
+        {
+          columns: ["tenant_id", "expires_at"],
+          purpose:
+            "awcms_commerce_payment_gateway_sessions_tenant_expires_idx (sql/926) — the (tenant, cursor) composite the generic purge engine filters + orders by."
+        }
+      ],
+      batchLimit: 5000,
+      backupRestoreNotes:
+        "Included in ordinary full-database backup/restore; no standalone archive artifact. No purge job runs against this table yet — it is small and reconciliation-relevant for the lifetime of this issue's own scope.",
+      executionMode: "generic"
+    },
+    {
+      key: "commerce.payment_events",
+      tableName: "awcms_commerce_payment_events",
+      ownerModuleKey: "commerce",
+      scope: "tenant",
+      cursorColumn: "received_at",
+      // Fiscal-adjacent — a payment provider's own callback about money
+      // received/refunded on a real order — same widest-window reasoning
+      // commerce.orders/commerce.affiliate_commissions already state.
+      retentionClass: "system_event",
+      retentionMinDays: 365,
+      retentionMaxDays: 3650,
+      defaultRetentionDays: 3650,
+      partition: {
+        eligible: false,
+        rationale:
+          "Bounded by a single storefront's own inbound-webhook volume — nowhere near partition-worthy."
+      },
+      archive: {
+        archivable: false,
+        rationale:
+          "The generic engine's only implemented artefact is ordinary backup/restore; no standalone archive exists yet for this table."
+      },
+      deletion: {
+        mode: "hard_delete",
+        rationale:
+          "Technically the generic engine's only mode, but this append-only replay-protection ledger (UNIQUE (tenant_id, provider, event_key)) is never expected to reach a purge predicate in practice within this issue's own retention window."
+      },
+      legalHold: { applicable: false, precedence: "not_applicable" },
+      requiredIndexes: [
+        {
+          columns: ["tenant_id", "received_at"],
+          purpose:
+            "awcms_commerce_payment_events_tenant_received_idx (sql/926) — the (tenant, cursor) composite the generic purge engine filters + orders by."
+        }
+      ],
+      batchLimit: 5000,
+      backupRestoreNotes:
+        "Included in ordinary full-database backup/restore; no standalone archive artifact. Nothing in this issue's scope writes to this table yet — the webhook INTAKE route (#113) is its first writer.",
+      executionMode: "generic"
+    },
+    {
+      key: "commerce.webhook_endpoints",
+      tableName: "awcms_commerce_webhook_endpoints",
+      ownerModuleKey: "commerce",
+      scope: "tenant",
+      cursorColumn: "revoked_at",
+      retentionClass: "operational_queue",
+      retentionMinDays: 30,
+      retentionMaxDays: 365,
+      defaultRetentionDays: 90,
+      partition: {
+        eligible: false,
+        rationale:
+          "Bounded by a single storefront's own minted-token volume — an owner mints a handful of these, ever."
+      },
+      archive: {
+        archivable: false,
+        rationale:
+          "The generic engine's only implemented artefact is ordinary backup/restore; a revoked endpoint carries no evidentiary value once its own audit-log entries (recordAuditEvent, this issue's create/revoke routes) already capture the lifecycle event."
+      },
+      deletion: {
+        mode: "hard_delete",
+        rationale:
+          "No cascading FK children; a revoked endpoint's token_hash is useless without the plaintext (never stored), so hard-deleting a long-revoked row loses nothing an operator could still act on."
+      },
+      legalHold: { applicable: false, precedence: "not_applicable" },
+      requiredIndexes: [
+        {
+          columns: ["tenant_id", "revoked_at"],
+          purpose:
+            "awcms_commerce_webhook_endpoints_tenant_revoked_idx (sql/926) — the (tenant, cursor) composite the generic purge engine filters + orders by."
+        }
+      ],
+      batchLimit: 5000,
+      backupRestoreNotes:
+        "Included in ordinary full-database backup/restore; no standalone archive artifact. No purge job runs against this table yet — a live (non-revoked) endpoint's revoked_at stays NULL forever and can never match this engine's age-based predicate.",
+      executionMode: "generic"
+    },
     // Issue #108, contract #106/ADR-0017 D5 — the WhatsApp outbox, same
     // "queue-shaped, purge-only, legalHold not applicable" treatment
     // `commerce.customer_otps`/`commerce.customer_sessions` above already
@@ -1736,6 +1859,45 @@ export const commerceModule = defineModule({
       erasure: "retain_under_obligation",
       rationale:
         "A payment confirmation's own method/amount/bank details/reviewer — bank_name/account_name here are the CUSTOMER's own transfer details (unlike commerce.store_settings' merchant-owned bank accounts), part of the same order record as commerce.orders and inheriting its reasoning."
+    },
+    // Issue #110, contract #106/ADR-0017 D2/D3 — the payment-gateway
+    // schema's three new tables, addressed by ORDER (like
+    // commerce.payment_confirmations just above) or not by a person at
+    // all, never by a per-tenant subject id.
+    {
+      key: "commerce.payment_gateway_sessions",
+      tableName: "awcms_commerce_payment_gateway_sessions",
+      ownerModuleKey: "commerce",
+      unreachableBySubject: true,
+      subjectColumns: [],
+      exportable: false,
+      erasure: "retain_under_obligation",
+      rationale:
+        "A hosted-checkout session's own provider/reference/redirect URL/status, part of the same order record as commerce.orders and inheriting its reasoning. raw_status is the provider's own response snippet — may echo back transaction/customer details Midtrans itself already holds, never exported, redacted here for the same reason commerce.whatsapp_messages redacts its own provider payload.",
+      redactedColumns: ["raw_status"]
+    },
+    {
+      key: "commerce.payment_events",
+      tableName: "awcms_commerce_payment_events",
+      ownerModuleKey: "commerce",
+      unreachableBySubject: true,
+      subjectColumns: [],
+      exportable: false,
+      erasure: "retain_under_obligation",
+      rationale:
+        "An inbound provider webhook's own replay-protection record — event_key/provider_ref/outcome, optionally linked to an order the same way commerce.payment_confirmations is. payload is the provider's own callback body (may echo transaction/customer details Midtrans already holds) and is never exported, same redaction reasoning as commerce.payment_gateway_sessions.raw_status.",
+      redactedColumns: ["payload"]
+    },
+    {
+      key: "commerce.webhook_endpoints",
+      tableName: "awcms_commerce_webhook_endpoints",
+      ownerModuleKey: "commerce",
+      unreachableBySubject: true,
+      subjectColumns: [],
+      exportable: false,
+      erasure: "retain_under_obligation",
+      rationale:
+        "An owner-minted integration secret's own metadata — provider/label/created_by/revoked_at. created_by names a STAFF tenant_user (an operator, not a customer/subject) the same way commerce.payment_confirmations.reviewed_by does; token_hash is a one-way hash of a secret, not personal data, and is never selected back out by anything in this module (application/webhook-endpoint-directory.ts's own header)."
     },
     {
       key: "commerce.reviews",
@@ -2097,6 +2259,12 @@ export const commerceModule = defineModule({
       action: "read",
       description:
         "Read WhatsApp outbox message diagnostics (masked phone only)"
+    },
+    {
+      activityCode: COMMERCE_WEBHOOK_ENDPOINTS_ACTIVITY_CODE,
+      action: "update",
+      description:
+        "List, create, and revoke this tenant's commerce webhook-endpoint tokens"
     }
   ]
 });
@@ -2118,5 +2286,6 @@ export {
   COMMERCE_REVIEW_PERMISSIONS,
   COMMERCE_AFFILIATE_PERMISSIONS,
   COMMERCE_AFFILIATE_COMMISSION_PERMISSIONS,
-  COMMERCE_WHATSAPP_PERMISSIONS
+  COMMERCE_WHATSAPP_PERMISSIONS,
+  COMMERCE_WEBHOOK_ENDPOINT_PERMISSIONS
 };

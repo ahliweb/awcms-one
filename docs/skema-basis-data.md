@@ -139,6 +139,20 @@ Both tables follow `sql/901`'s conventions (`ENABLE`/`FORCE ROW LEVEL SECURITY`,
 
 Both new tables: RLS `ENABLE`+`FORCE`, tenant-isolation policy, FK indexes. Neither is ever soft-deleted by this module's own code in practice — `deleted_at` exists purely as the uniform data-lifecycle purge cursor, the same "always-`NULL` cursor" shape `awcms_commerce_orders` and `awcms_commerce_customer_accounts` already use.
 
+## Payment gateway: sessions, event ledger, webhook-endpoint tokens (`sql/926`)
+
+Issue #110, contract #106's D2/D3 — a hosted-checkout session table, a replay-protection ledger for inbound provider webhooks (no writer yet; the webhook INTAKE route is issue #113's own scope), and the tenant-scoped webhook-endpoint tokens D2's bootstrap lookup resolves.
+
+| Table | Key columns | Notes |
+| --- | --- | --- |
+| `awcms_commerce_payment_gateway_sessions` | `order_id NOT NULL` (FK), `provider NOT NULL` (`CHECK IN ('midtrans','log')`), `provider_ref NOT NULL`, `redirect_url NOT NULL`, `status NOT NULL DEFAULT 'created'` (`CHECK IN ('created','pending','paid','expired','failed','refunded')`), `expires_at NOT NULL`, `last_checked_at`, `raw_status jsonb`, `UNIQUE (provider, provider_ref)` | One row per hosted-checkout attempt. `application/payment-gateway-directory.ts`'s `createGatewaySession` is the only writer: validates the order and checks for a still-live session in one short transaction, calls the provider with NO transaction open, persists in a second short transaction. A genuinely concurrent double-create hits the `UNIQUE (provider, provider_ref)` constraint (`23505`) and re-fetches the winning row rather than erroring |
+| `awcms_commerce_payment_events` | `provider NOT NULL` (`CHECK IN ('midtrans','log')`), `event_key NOT NULL`, `provider_ref NOT NULL`, `order_id` (FK, nullable), `payload jsonb NOT NULL`, `received_at NOT NULL DEFAULT now()`, `outcome NOT NULL` (`CHECK IN ('applied','ignored','replay')`), `UNIQUE (tenant_id, provider, event_key)` | The D2 replay-protection ledger — nothing in this issue's own scope writes to it yet; the webhook INTAKE route (#113) is its first writer |
+| `awcms_commerce_webhook_endpoints` | `provider NOT NULL` (`CHECK IN ('midtrans')`), `token_hash NOT NULL` (`UNIQUE`), `label`, `created_by` (FK to `awcms_tenant_users`, nullable), `revoked_at` | ONE row per (tenant, provider) endpoint an owner minted. Only the SHA-256 hash of the plaintext token is ever stored — `application/webhook-endpoint-directory.ts`'s `createWebhookEndpoint` returns the plaintext exactly once and never persists it, the same discipline `awcms_machine_credentials` already applies to a structurally identical secret |
+
+Plus two nullable columns on the existing `awcms_commerce_orders`: `gateway_provider text`, `gateway_ref text` — which gateway/reference paid this order, if any (added `ADD COLUMN IF NOT EXISTS`, so the migration stays additive against an already-populated `orders` table).
+
+All three new tables: RLS `ENABLE`+`FORCE`, tenant-isolation policy, FK indexes (including a composite `(tenant_id, <cursor column>)` index on each, per this repo's own `data-lifecycle:table-coverage:check` convention). A fourth object, `awcms_resolve_commerce_webhook_endpoint(token_hash)`, is a `SECURITY DEFINER` function mirroring `sql/048`'s `awcms_resolve_tenant_domain_lookup` bootstrap-read pattern exactly — a dedicated `NOLOGIN` owner role (`awcms_webhook_endpoint_bootstrap`), an explicit `FOR SELECT` policy scoped to that role only, a fixed non-sensitive return shape (`tenant_id`, `provider` — never `token_hash`/`label`/`created_by`), and `EXECUTE` restricted to `awcms_app`. It resolves `(tenant_id, provider)` from a hashed, opaque token before any tenant context exists, the same bootstrap gap the tenant-domain function closes for a hostname.
+
 ## Row-level security: `ENABLE` and `FORCE`, proven under the unprivileged role
 
 Every table above carries `ALTER TABLE ... ENABLE ROW LEVEL SECURITY` **and** `ALTER TABLE ... FORCE ROW LEVEL SECURITY`, with one tenant-isolation policy each:

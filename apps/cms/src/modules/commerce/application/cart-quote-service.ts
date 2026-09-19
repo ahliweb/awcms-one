@@ -31,6 +31,7 @@ import {
 import type { ProductStatus } from "../domain/product-status";
 import type { ServiceFormField } from "../domain/service-form-validation";
 import { resolveShippingRateProvider } from "../infrastructure/shipping-rate-provider-resolver";
+import { isPaymentGatewayProviderConfigured } from "../infrastructure/payment-gateway-provider-resolver";
 import {
   findCachedDestinationId,
   findCachedRatesForCouriers,
@@ -463,7 +464,12 @@ export async function buildCartQuote(
     storeSettings,
     voucher,
     now,
-    courier
+    courier,
+    // Issue #110 — a pure `process.env` read, safe to call unconditionally:
+    // `isPaymentGatewayProviderConfigured` never touches the database, and
+    // `quoteCart` only ever multiplies it against
+    // `storeSettings.payment.gateway.enabled`.
+    gatewayProviderConfigured: isPaymentGatewayProviderConfigured()
   };
 
   return quoteCart(

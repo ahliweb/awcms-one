@@ -73,7 +73,8 @@ function baseSettings(courierEnabled: boolean): StoreSettingsData {
       manualQris: { active: false, mediaObjectId: null },
       downPayment: { active: false, percent: 0 },
       tax: { active: false, percent: 0 },
-      insurance: { active: false, ratePercent: "0.0", minFee: "0.00" }
+      insurance: { active: false, ratePercent: "0.0", minFee: "0.00" },
+      gateway: { enabled: false }
     },
     orders: { expiryHours: 24 },
     promoSection: { active: false, items: [] },

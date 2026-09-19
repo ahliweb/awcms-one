@@ -318,7 +318,8 @@ function defaultSettings(
       manualQris: { active: true, mediaObjectId: null },
       downPayment: { active: false, percent: 50 },
       tax: { active: false, percent: 11 },
-      insurance: { active: false, ratePercent: "0.0", minFee: "0.00" }
+      insurance: { active: false, ratePercent: "0.0", minFee: "0.00" },
+      gateway: { enabled: false }
     },
     orders: { expiryHours: 24 },
     promoSection: { active: false, items: [] },
@@ -814,7 +815,8 @@ describe("cart-quote — arithmetic order (subtotal -> voucher -> shipping -> in
         manualQris: { active: true, mediaObjectId: null },
         downPayment: { active: false, percent: 50 },
         tax: { active: false, percent: 11 },
-        insurance: { active: true, ratePercent: "1.00", minFee: "5000.00" }
+        insurance: { active: true, ratePercent: "1.00", minFee: "5000.00" },
+        gateway: { enabled: false }
       }
     });
     const result = quoteCart(
@@ -849,7 +851,8 @@ describe("cart-quote — arithmetic order (subtotal -> voucher -> shipping -> in
         manualQris: { active: true, mediaObjectId: null },
         downPayment: { active: false, percent: 50 },
         tax: { active: false, percent: 11 },
-        insurance: { active: true, ratePercent: "1.00", minFee: "5000.00" }
+        insurance: { active: true, ratePercent: "1.00", minFee: "5000.00" },
+        gateway: { enabled: false }
       }
     });
     const result = quoteCart(
@@ -886,7 +889,8 @@ describe("cart-quote — arithmetic order (subtotal -> voucher -> shipping -> in
         manualQris: { active: true, mediaObjectId: null },
         downPayment: { active: false, percent: 50 },
         tax: { active: true, percent: 10 },
-        insurance: { active: false, ratePercent: "0.0", minFee: "0.00" }
+        insurance: { active: false, ratePercent: "0.0", minFee: "0.00" },
+        gateway: { enabled: false }
       }
     });
     const result = quoteCart(
@@ -937,7 +941,8 @@ describe("cart-quote — arithmetic order (subtotal -> voucher -> shipping -> in
         manualQris: { active: true, mediaObjectId: null },
         downPayment: { active: true, percent: 50 },
         tax: { active: false, percent: 11 },
-        insurance: { active: false, ratePercent: "0.0", minFee: "0.00" }
+        insurance: { active: false, ratePercent: "0.0", minFee: "0.00" },
+        gateway: { enabled: false }
       }
     });
     const result = quoteCart(
@@ -972,7 +977,8 @@ describe("cart-quote — arithmetic order (subtotal -> voucher -> shipping -> in
         manualQris: { active: true, mediaObjectId: null },
         downPayment: { active: false, percent: 50 },
         tax: { active: true, percent: 11 },
-        insurance: { active: false, ratePercent: "0.0", minFee: "0.00" }
+        insurance: { active: false, ratePercent: "0.0", minFee: "0.00" },
+        gateway: { enabled: false }
       }
     });
     const result = quoteCart(
