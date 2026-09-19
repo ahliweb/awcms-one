@@ -87,6 +87,17 @@ export type StoreSettings = {
   } | null;
   /** Added by #29 alongside `payment.proofUpload` above — not read by this app today (`/pesanan`'s countdown uses each order's own `expiresAt`, not this store-wide default), modelled here only so `StoreSettings` stays a faithful mirror of the public read model. */
   orders?: { expiryHours: number };
+  /**
+   * Added by issue #93 (S3 of #32, #86's own D5): whether this tenant's
+   * affiliate program is turned on at all — `/akun/afiliasi` reads this at
+   * BUILD time to decide whether to render the enrol/link/stats controls or
+   * a short "program closed" explanation with none. Optional, exactly like
+   * `payment.proofUpload` above, for the same reason: an awcms build that
+   * predates #86/#92 simply never sends this field, and every read site
+   * defaults it with `?? false` rather than assuming a program that does
+   * not exist yet is somehow on.
+   */
+  affiliateProgramEnabled?: boolean;
 };
 
 /** BjekMart's own well-known level names — the same "a real fallback, never an invented placeholder" convention `src/config/site.ts`'s `DEFAULT_IDENTITY` already follows — used only when awcms has not (yet) configured `customerLevels` at all. */
