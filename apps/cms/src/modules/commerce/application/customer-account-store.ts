@@ -229,45 +229,69 @@ export type IssuedOtp = {
   expiresAt: string;
 };
 
+/** Which identifier column an OTP row is keyed by — `"email_normalized"` (Issue #87/#89, the default) or `"phone_normalized"` (Issue #108, `via: "whatsapp"` login only — see `sql/925`'s header). */
+export type OtpIdentifierColumn = "email_normalized" | "phone_normalized";
+
 /**
- * Invalidates every previous unconsumed code for this (tenant, email,
+ * Invalidates every previous unconsumed code for this (tenant, identifier,
  * purpose) — a NEW `issueOtp` call always supersedes any code already sent,
  * so a stale, still-valid earlier code can never be replayed once a fresher
  * one exists. `registration` stores the pending registration payload
  * (name/phone) for `purpose: "register"` only; `null` for `purpose:
- * "login"`.
+ * "login"` and for every `phone_normalized`-keyed row (registration stays
+ * e-mail-OTP only — ADR-0017 D5).
+ *
+ * `identifierColumn` defaults to `"email_normalized"` so every existing
+ * caller (Issue #87/#89's e-mail-only flow) is unaffected; Issue #108's
+ * WhatsApp login path is the only caller that passes `"phone_normalized"`.
  */
 export async function issueOtp(
   tx: Bun.SQL,
   tenantId: string,
-  emailNormalized: string,
+  identifierValue: string,
   purpose: "login" | "register",
   registration: { name: string; phone: string } | null = null,
-  now: Date = new Date()
+  now: Date = new Date(),
+  identifierColumn: OtpIdentifierColumn = "email_normalized"
 ): Promise<IssuedOtp> {
-  await tx`
-    UPDATE awcms_commerce_customer_otps
-    SET consumed_at = ${now}
-    WHERE tenant_id = ${tenantId}
-      AND email_normalized = ${emailNormalized}
-      AND purpose = ${purpose}
-      AND consumed_at IS NULL
-  `;
+  if (identifierColumn === "phone_normalized") {
+    await tx`
+      UPDATE awcms_commerce_customer_otps
+      SET consumed_at = ${now}
+      WHERE tenant_id = ${tenantId}
+        AND phone_normalized = ${identifierValue}
+        AND purpose = ${purpose}
+        AND consumed_at IS NULL
+    `;
+  } else {
+    await tx`
+      UPDATE awcms_commerce_customer_otps
+      SET consumed_at = ${now}
+      WHERE tenant_id = ${tenantId}
+        AND email_normalized = ${identifierValue}
+        AND purpose = ${purpose}
+        AND consumed_at IS NULL
+    `;
+  }
 
   const code = generateOtpCode();
-  const codeHash = hashOtpCode(code, emailNormalized, tenantId);
+  const codeHash = hashOtpCode(code, identifierValue, tenantId);
   const expiresAt = new Date(now.getTime() + OTP_TTL_SECONDS * 1000);
   const registrationJson =
     registration === null ? null : JSON.stringify(registration);
+  const emailColumnValue =
+    identifierColumn === "email_normalized" ? identifierValue : null;
+  const phoneColumnValue =
+    identifierColumn === "phone_normalized" ? identifierValue : null;
 
   await tx`
     INSERT INTO awcms_commerce_customer_otps (
-      tenant_id, email_normalized, purpose, code_hash, registration,
-      attempts, expires_at
+      tenant_id, email_normalized, phone_normalized, purpose, code_hash,
+      registration, attempts, expires_at
     )
     VALUES (
-      ${tenantId}, ${emailNormalized}, ${purpose}, ${codeHash},
-      ${registrationJson}::jsonb, 0, ${expiresAt}
+      ${tenantId}, ${emailColumnValue}, ${phoneColumnValue}, ${purpose},
+      ${codeHash}, ${registrationJson}::jsonb, 0, ${expiresAt}
     )
   `;
 
@@ -279,7 +303,10 @@ export async function issueOtp(
     resourceId: undefined,
     message: `Customer OTP issued for ${purpose}.`,
     attributes: {
-      emailMasked: maskIdentifierValue(emailNormalized, "email"),
+      identifierMasked:
+        identifierColumn === "phone_normalized"
+          ? maskPhone(identifierValue)
+          : maskIdentifierValue(identifierValue, "email"),
       purpose
     }
   });
@@ -340,18 +367,51 @@ function parseRegistrationColumn(
 export async function consumeOtp(
   tx: Bun.SQL,
   tenantId: string,
-  emailNormalized: string,
+  identifierValue: string,
   purpose: "login" | "register",
   code: string,
-  now: Date = new Date()
+  now: Date = new Date(),
+  identifierColumn: OtpIdentifierColumn = "email_normalized"
 ): Promise<ConsumeOtpResult> {
-  const candidateHash = hashOtpCode(code, emailNormalized, tenantId);
+  const candidateHash = hashOtpCode(code, identifierValue, tenantId);
 
-  const rows = (await tx`
+  const rows = (
+    identifierColumn === "phone_normalized"
+      ? await tx`
     WITH target AS (
       SELECT id, attempts AS attempts_before FROM awcms_commerce_customer_otps
       WHERE tenant_id = ${tenantId}
-        AND email_normalized = ${emailNormalized}
+        AND phone_normalized = ${identifierValue}
+        AND purpose = ${purpose}
+        AND consumed_at IS NULL
+      ORDER BY created_at DESC
+      LIMIT 1
+    )
+    UPDATE awcms_commerce_customer_otps AS o
+    SET
+      attempts = o.attempts + 1,
+      consumed_at = CASE
+        WHEN o.code_hash = ${candidateHash} AND o.expires_at > ${now}
+             AND o.attempts < ${OTP_MAX_ATTEMPTS} THEN ${now}::timestamptz
+        WHEN o.attempts + 1 >= ${OTP_MAX_ATTEMPTS} THEN ${now}::timestamptz
+        ELSE NULL
+      END
+    FROM target
+    WHERE o.id = target.id
+    RETURNING
+      o.id,
+      o.purpose,
+      o.registration,
+      o.code_hash = ${candidateHash} AS code_matched,
+      o.expires_at > ${now} AS not_expired,
+      target.attempts_before AS attempts_before_this_try,
+      o.consumed_at IS NOT NULL AS is_consumed
+  `
+      : await tx`
+    WITH target AS (
+      SELECT id, attempts AS attempts_before FROM awcms_commerce_customer_otps
+      WHERE tenant_id = ${tenantId}
+        AND email_normalized = ${identifierValue}
         AND purpose = ${purpose}
         AND consumed_at IS NULL
       ORDER BY created_at DESC
@@ -379,7 +439,8 @@ export async function consumeOtp(
       -- attempt reads as already exhausted even when it matched.
       target.attempts_before AS attempts_before_this_try,
       o.consumed_at IS NOT NULL AS is_consumed
-  `) as {
+  `
+  ) as {
     id: string;
     purpose: "login" | "register";
     registration: { name: string; phone: string } | string | null;

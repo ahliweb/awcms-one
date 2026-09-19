@@ -11653,12 +11653,12 @@ Anonymous, per-IP and per-e-mail rate limited (10/IP/h, 5/e-mail/h). For `purpos
 
 **Responses**
 
-| Status | Description                                                                                                                                                                                                                                                                            | Schema                                 |
-| ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
-| 202    | Always — the OTP was queued (or the request was silently absorbed by a rate limit/tenant resolution failure that answers identically).                                                                                                                                                 | object                                 |
-| 400    | Validation error.                                                                                                                                                                                                                                                                      | [`ApiError`](#standard-error-envelope) |
-| 409    | CHANNEL_UNAVAILABLE — `via:"whatsapp"` on a tenant with no WhatsApp provider configured (Issue #106 ADR-0017 D5; not yet implemented, lands in #108). Not an anti-enumeration exception: this reveals a per-TENANT configuration fact, never anything about the e-mail/account itself. | [`ApiError`](#standard-error-envelope) |
-| 429    | Too many OTP requests from this source (RATE_LIMITED). Carries `Retry-After`.                                                                                                                                                                                                          | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                                                                                                                                                                                                                                | Schema                                 |
+| ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 202    | Always — the OTP was queued (or the request was silently absorbed by a rate limit/tenant resolution failure that answers identically).                                                                                                                                                                                     | object                                 |
+| 400    | Validation error.                                                                                                                                                                                                                                                                                                          | [`ApiError`](#standard-error-envelope) |
+| 409    | CHANNEL_UNAVAILABLE — `via: "whatsapp"` and the tenant has no WhatsApp channel configured/enabled (Issue #108, contract #106/ADR-0017 D5). Configuration, not enumeration — answered before an OTP is ever issued, and reveals only a per-tenant configuration fact, never anything about the e-mail/phone/account itself. | [`ApiError`](#standard-error-envelope) |
+| 429    | Too many OTP requests from this source (RATE_LIMITED). Carries `Retry-After`.                                                                                                                                                                                                                                              | [`ApiError`](#standard-error-envelope) |
 
 ### `POST /api/v1/commerce/storefront/account/otp/verify` — Issue #89 (implemented, contract #86). Verify a 6-digit e-mail OTP and mint a bearer session (D2/D3).
 
@@ -11866,6 +11866,33 @@ Issue #86 (ADR-0016, epic #32 wave 0) — CONTRACT ONLY, no route file yet (hand
 | 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
 | 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
 | 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
+
+## Commerce WhatsApp
+
+Issue #108 (contract #106/ADR-0017 D5). Read-only owner diagnostics over the WhatsApp outbox (`awcms_commerce_whatsapp_messages`) — a message's masked phone, template key, delivery status and attempt count, never the raw phone/rendered body/OTP code. Gated on `commerce.whatsapp.read`. WhatsApp itself is the third `CustomerOtpChannel` (Fonnte/Meta Cloud API adapters, `log` for dev/CI) and a second login identifier: `POST .../account/otp/request` accepts `via: "whatsapp"` (login only, phone required) and `.../otp/verify` accepts `phone` as an alternative to `email`.
+
+### `GET /api/v1/commerce/whatsapp/messages` — Issue #108 (contract #106/ADR-0017 D5). Read-only WhatsApp outbox diagnostics, keyset-paginated. Gated on `commerce.whatsapp.read`.
+
+- **operationId**: `listCommerceWhatsappMessages`
+- **Security**: bearerAuth + tenantHeader
+
+Masked phone only (`toPhoneMasked`) — never the raw `to_phone`.
+
+**Parameters**
+
+| Name     | In    | Required | Type                                        | Description |
+| -------- | ----- | -------- | ------------------------------------------- | ----------- |
+| `status` | query | no       | enum(`queued`, `sending`, `sent`, `failed`) |             |
+| `cursor` | query | no       | string                                      |             |
+
+**Responses**
+
+| Status | Description                           | Schema                                 |
+| ------ | ------------------------------------- | -------------------------------------- |
+| 200    | One page of WhatsApp outbox messages. | object                                 |
+| 400    | Validation error.                     | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.           | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.           | [`ApiError`](#standard-error-envelope) |
 
 ## Schema appendix
 
@@ -13589,15 +13616,15 @@ There is deliberately no consent field. PRD §30 forbids a pre-ticked consent, a
 
 ### Schema: OtpRequest
 
-Issue #86 (design only). Body of `POST /account/otp/request`.
+Issue #86/#108 (implemented, contract #86/#106 D2/D5). Body of `POST /account/otp/request`. `email` is required unless `via` is `"whatsapp"`, in which case `phone` is required instead and `purpose` must be `"login"` (registration stays e-mail OTP only).
 
-| Field     | Type                      | Required | Nullable | Description                                                                                                                                                                                                                                                                                                                          |
-| --------- | ------------------------- | -------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `email`   | string (email)            | yes      | no       |                                                                                                                                                                                                                                                                                                                                      |
-| `purpose` | enum(`login`, `register`) | yes      | no       |                                                                                                                                                                                                                                                                                                                                      |
-| `name`    | string                    | no       | no       | Required when `purpose` is `register`; ignored for `login`.                                                                                                                                                                                                                                                                          |
-| `phone`   | string                    | no       | no       | Required when `purpose` is `register`; ignored for `login`.                                                                                                                                                                                                                                                                          |
-| `via`     | enum(`email`, `whatsapp`) | no       | no       | Issue #106 (ADR-0017 D5; not yet implemented, lands in #108). Default `email`. `whatsapp` requires `phone` on this same request (for `login`, the phone is looked up through the account's linked customer row); `409 CHANNEL_UNAVAILABLE` when the tenant has no WhatsApp provider configured (`COMMERCE_WHATSAPP_PROVIDER` unset). |
+| Field     | Type                      | Required | Nullable | Description                                                                                                                                                                                                                                                                                          |
+| --------- | ------------------------- | -------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `email`   | string (email)            | no       | no       | Required unless `via` is `"whatsapp"`.                                                                                                                                                                                                                                                               |
+| `purpose` | enum(`login`, `register`) | yes      | no       |                                                                                                                                                                                                                                                                                                      |
+| `name`    | string                    | no       | no       | Required when `purpose` is `register`; ignored for `login`.                                                                                                                                                                                                                                          |
+| `phone`   | string                    | no       | no       | Required when `purpose` is `register` (via e-mail), or when `via` is `"whatsapp"` (E.164 or a locally-typed Indonesian number, normalised server-side).                                                                                                                                              |
+| `via`     | enum(`email`, `whatsapp`) | no       | no       | Issue #108 (implemented, contract #106/ADR-0017 D5). `"whatsapp"` only supports `purpose: "login"` (the phone is looked up through the account's linked customer row) and answers `409 CHANNEL_UNAVAILABLE` when the tenant has no WhatsApp channel configured (`COMMERCE_WHATSAPP_PROVIDER` unset). |
 
 **Example**
 
@@ -13613,19 +13640,21 @@ Issue #86 (design only). Body of `POST /account/otp/request`.
 
 ### Schema: OtpVerify
 
-Issue #86 (design only). Body of `POST /account/otp/verify`.
+Issue #86/#108 (implemented, contract #86/#106 D2/D5). Body of `POST /account/otp/verify`. Exactly one of `email`/`phone` is required — `phone` proves a `via: "whatsapp"` login OTP and only ever supports `purpose: "login"`.
 
-| Field     | Type                      | Required | Nullable | Description |
-| --------- | ------------------------- | -------- | -------- | ----------- |
-| `email`   | string (email)            | yes      | no       |             |
-| `code`    | string                    | yes      | no       | 6 digits.   |
-| `purpose` | enum(`login`, `register`) | yes      | no       |             |
+| Field     | Type                      | Required | Nullable | Description                                                                                                             |
+| --------- | ------------------------- | -------- | -------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `email`   | string (email)            | no       | no       |                                                                                                                         |
+| `phone`   | string                    | no       | no       | Issue #108 — alternative to `email` when the OTP was requested with `via: "whatsapp"`. Mutually exclusive with `email`. |
+| `code`    | string                    | yes      | no       | 6 digits.                                                                                                               |
+| `purpose` | enum(`login`, `register`) | yes      | no       |                                                                                                                         |
 
 **Example**
 
 ```json
 {
   "email": "user@example.com",
+  "phone": "string",
   "code": "string",
   "purpose": "login"
 }

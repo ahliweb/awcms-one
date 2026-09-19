@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](deployment.md)
 
-<!-- i18n-source-hash: sha256:7e1a4d10ce5a4daa940ea4764c99652a2d0631d2652c530306ddb81c534aed04 -->
+<!-- i18n-source-hash: sha256:c7e9e096c1dbb35c83289e177a578ff17c57e4c053073591036280ab89e27c4c -->
 
 # Deployment
 
@@ -46,6 +46,15 @@ Berkas yang jauh lebih besar, dimiliki sepenuhnya oleh `apps/cms` sebagai kode `
 | `COMMERCE_ACCOUNT_OTP_RATE_LIMIT_MAX_PER_IP` / `_WINDOW_SEC` / `_MAX_PER_EMAIL` | 10 / 3600 / 5 | Batas dua-sumbu `account/otp/request` (issue #89) — batas per-IP saja tidak bisa melindungi kotak surat tujuan OTP |
 | `COMMERCE_ACCOUNT_OTP_VERIFY_RATE_LIMIT_MAX_PER_IP` / `_WINDOW_SEC` | 20 / 3600 | Budget per-IP `account/otp/verify` sendiri yang lebih longgar — tanpa sumbu per-e-mail, karena kode ter-hash dengan 5 percobaan sudah membatasi tebakan satu alamat |
 | `COMMERCE_STOREFRONT_PUBLIC_URL` | tidak diset | Origin storefront publik deployment ini, dipakai hanya untuk membangun tautan referral afiliasi yang terdaftar (issue #92, `"${COMMERCE_STOREFRONT_PUBLIC_URL}/?ref=CODE"`); tidak diset jatuh kembali ke `/?ref=CODE` relatif alih-alih mengarang origin |
+
+**`COMMERCE_WHATSAPP_ENABLED`/`COMMERCE_WHATSAPP_PROVIDER` adalah gerbang deployment sejenis untuk login WhatsApp (issue #108, kontrak #106 D5).** `POST account/otp/request` dengan `via: "whatsapp"` menjawab `409 CHANNEL_UNAVAILABLE` sampai `COMMERCE_WHATSAPP_ENABLED=true`; kode kemudian pergi ke adapter `log` (dev/CI) kecuali `COMMERCE_WHATSAPP_PROVIDER` juga menyebut provider nyata (`fonnte` atau `meta`, masing-masing dengan variabel kredensial sendiri di bawah). WhatsApp adalah kanal login-saja untuk akun yang sudah ada — pendaftaran tidak terpengaruh dan tetap hanya OTP e-mail.
+
+| Variabel | Default | Tujuan |
+| --- | --- | --- |
+| `COMMERCE_WHATSAPP_ENABLED` | `false` | Menggerbangi baik klaim di `commerce:whatsapp:dispatch` maupun apakah `via: "whatsapp"` tersedia sama sekali di `otp/request` |
+| `COMMERCE_WHATSAPP_PROVIDER` | tidak diset (`log` saat `COMMERCE_WHATSAPP_ENABLED=false`) | `fonnte`, `meta`, atau `log` (aman untuk lokal/dev, tanpa jaringan) |
+| `COMMERCE_FONNTE_TOKEN` / `COMMERCE_FONNTE_API_BASE_URL` | tidak diset / `https://api.fonnte.com` | Kredensial/base URL adapter Fonnte |
+| `COMMERCE_META_WA_TOKEN` / `COMMERCE_META_WA_PHONE_NUMBER_ID` / `COMMERCE_META_WA_OTP_TEMPLATE` / `COMMERCE_META_WA_API_BASE_URL` | semua tidak diset / `https://graph.facebook.com/v20.0` | Adapter Meta WhatsApp Cloud API — `COMMERCE_META_WA_OTP_TEMPLATE` menyebut nama templat yang sudah disetujui operator yang dibutuhkan Meta untuk pesan templat (OTP) |
 
 Variabel storefront `PUBLIC_*` tidak berubah oleh increment 4 — sesi bearer hidup sepenuhnya di `localStorage` browser sendiri, sehingga tidak ada env var build-time atau runtime baru yang dibutuhkan di sisi `apps/storefront` untuk akun atau afiliasi.
 

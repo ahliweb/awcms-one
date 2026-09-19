@@ -68,6 +68,15 @@ AWCMS_LOCK=/home/admin1/awcms-jobs/locks
 # SKIP LOCKED, bounded batch).
 */5 * * * * /usr/bin/flock -n $AWCMS_LOCK/commerce-orders-expire.lock $AWCMS_RUN_JOB commerce:orders:expire >> $AWCMS_JOB_LOG/commerce-orders-expire.log 2>&1
 
+# commerce — Drain the due WhatsApp delivery queue (claim-lease,
+# retry/backoff, circuit breaker) for every active tenant (Issue #108).
+*/2 * * * * /usr/bin/flock -n $AWCMS_LOCK/commerce-whatsapp-dispatch.lock $AWCMS_RUN_JOB commerce:whatsapp:dispatch >> $AWCMS_JOB_LOG/commerce-whatsapp-dispatch.log 2>&1
+
+# commerce — Deletes terminal (sent/failed) WhatsApp outbox messages and
+# delivery attempts past their retention window, across all tenants (Issue
+# #108). Idempotent and bounded.
+*/15 * * * * /usr/bin/flock -n $AWCMS_LOCK/commerce-whatsapp-purge.lock $AWCMS_RUN_JOB commerce:whatsapp:purge >> $AWCMS_JOB_LOG/commerce-whatsapp-purge.log 2>&1
+
 # data_lifecycle — Archive (where applicable) and purge rows past retention
 # for every registered generic-execution descriptor; record a dry-run backlog
 # snapshot for every delegated (existing-adopter) descriptor.

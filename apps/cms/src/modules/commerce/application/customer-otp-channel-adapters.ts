@@ -128,12 +128,15 @@ export function createEmailCustomerOtpChannel(): CustomerOtpChannel {
       request: CustomerOtpChannelRequest
     ): Promise<CustomerOtpChannelResult> {
       const correlationId = request.correlationId ?? crypto.randomUUID();
+      // `via: "email"` always carries a non-null `emailNormalized` —
+      // `requestCustomerOtp` never resolves this adapter otherwise.
+      const emailNormalized = request.emailNormalized!;
       const enqueue = () =>
         enqueueDirectAddressEmail(
           tx,
           request.tenantId,
           CUSTOMER_OTP_TEMPLATE_KEY,
-          request.emailNormalized,
+          emailNormalized,
           buildVariables(request),
           correlationId
         );
@@ -168,7 +171,7 @@ export function createLogCustomerOtpChannel(): CustomerOtpChannel {
     ): Promise<CustomerOtpChannelResult> {
       const normalized = normalizeIdentifierValue(
         "email",
-        request.emailNormalized
+        request.emailNormalized!
       );
 
       log("info", "commerce.customer_otp.log_channel.send", {
