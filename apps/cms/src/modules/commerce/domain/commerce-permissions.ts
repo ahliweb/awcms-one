@@ -221,6 +221,26 @@ export const COMMERCE_WHATSAPP_PERMISSIONS = {
 } as const;
 
 /**
+ * Inbox activity code (Issue #111, contract #106 D8). `read`/`update` only
+ * — same "no permission with nothing to enforce it" reasoning
+ * `COMMERCE_ORDER_PERMISSIONS`/`COMMERCE_AFFILIATE_PERMISSIONS` already
+ * state: a conversation is created only through the shopper's own
+ * bearer-secured `POST .../account/conversations`, never by an admin
+ * "start a conversation on a customer's behalf" route. `update` also gates
+ * the staff reply (`POST .../conversations/{id}/messages`) and the
+ * close/reopen status transition (`PATCH .../conversations/{id}`) — one
+ * verb, one moderation audience, the same choice `COMMERCE_REVIEW_PERMISSIONS`
+ * makes.
+ */
+export const COMMERCE_CONVERSATIONS_ACTIVITY_CODE = "conversations";
+
+export const COMMERCE_CONVERSATION_PERMISSIONS = {
+  read: "commerce.conversations.read",
+  /** Also gates the staff reply and the close/reopen transition. */
+  update: "commerce.conversations.update"
+} as const;
+
+/**
  * Payment-gateway webhook-endpoint tokens (Issue #110, contract #106's
  * D2/D3 OpenAPI note). ONE permission key gates the whole owner surface —
  * list (masked), create (plaintext token shown once), and revoke alike —

@@ -139,6 +139,17 @@ Both tables follow `sql/901`'s conventions (`ENABLE`/`FORCE ROW LEVEL SECURITY`,
 
 Both new tables: RLS `ENABLE`+`FORCE`, tenant-isolation policy, FK indexes. Neither is ever soft-deleted by this module's own code in practice — `deleted_at` exists purely as the uniform data-lifecycle purge cursor, the same "always-`NULL` cursor" shape `awcms_commerce_orders` and `awcms_commerce_customer_accounts` already use.
 
+## Commerce inbox: two tables (`sql/927`)
+
+Issue #111, contract #106's D8 — a customer account's own thread with the store.
+
+| Table | Key columns | Notes |
+| --- | --- | --- |
+| `awcms_commerce_conversations` | `account_id NOT NULL` (FK to `awcms_commerce_customer_accounts` — an inbox thread requires a verified account, unlike guest checkout), `subject NOT NULL` (`CHECK char_length BETWEEN 1 AND 150`), `status` (`CHECK IN ('open','closed')`, default `open`), `last_message_at timestamptz NOT NULL DEFAULT now()`, `unread_for_store boolean NOT NULL DEFAULT true`, `unread_for_customer boolean NOT NULL DEFAULT false` | `last_message_at`/both `unread_for_*` flags are DENORMALIZED and kept in step with `awcms_commerce_messages` inside the SAME transaction as every message insert — never a join-derived value at read time. `deleted_at` exists purely as the uniform data-lifecycle purge cursor (this module's own code never sets it), the same "always-`NULL` cursor" shape `awcms_commerce_orders`/`awcms_commerce_customer_accounts` already use |
+| `awcms_commerce_messages` | `conversation_id NOT NULL` (FK), `sender NOT NULL` (`CHECK IN ('customer','store')`), `sender_tenant_user_id` (nullable; a `CHECK` requires it set for `sender='store'` and NULL for `sender='customer'`), `body NOT NULL` (`CHECK char_length BETWEEN 1 AND 4000`) | Append-only, like `awcms_commerce_order_events` — no `deleted_at`, no `updated_at`; a sent message is never edited or retracted |
+
+Both new tables: RLS `ENABLE`+`FORCE`, tenant-isolation policy, FK indexes. `commerce.conversations`'s `dataLifecycle` descriptor uses the usual `deleted_at` cursor; `commerce.messages`, being append-only, uses `created_at` instead — the one exception `commerce.order_events` already established for exactly this shape.
+
 ## Payment gateway: sessions, event ledger, webhook-endpoint tokens (`sql/926`)
 
 Issue #110, contract #106's D2/D3 — a hosted-checkout session table, a replay-protection ledger for inbound provider webhooks (no writer yet; the webhook INTAKE route is issue #113's own scope), and the tenant-scoped webhook-endpoint tokens D2's bootstrap lookup resolves.

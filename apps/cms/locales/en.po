@@ -5393,3 +5393,50 @@ msgstr ""
 
 msgid "Newest 100 for the selected filter. Codes and message bodies are never shown here."
 msgstr ""
+
+msgid "Inbox"
+msgstr ""
+
+msgid "Customer conversations with the store — reply, close, and reopen threads."
+msgstr ""
+
+msgid "You do not have permission to view the inbox."
+msgstr ""
+
+msgid "The inbox could not be loaded right now. Please try again later."
+msgstr ""
+
+msgid "Filter conversations"
+msgstr ""
+
+msgid "Open"
+msgstr ""
+
+msgid "Closed"
+msgstr ""
+
+msgid "Unread"
+msgstr ""
+
+msgid "{count} conversation"
+msgid_plural "{count} conversations"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Last message"
+msgstr ""
+
+msgid "No conversations yet"
+msgstr ""
+
+msgid "Conversations customers start from the storefront will appear here."
+msgstr ""
+
+msgid "Store"
+msgstr ""
+
+msgid "Send reply"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""

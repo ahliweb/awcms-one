@@ -234,13 +234,6 @@ const ALLOWED_PUBLIC_OPERATIONS = new Set([
 const ROUTE_PARITY_EXEMPTIONS = new Set<string>([
   // #113 — gateway webhook intake, system actor paid, payments reconcile job.
   "/api/v1/commerce/webhooks/{provider}/{endpointToken}",
-  // #111 — customer inbox: conversations/messages, bearer + owner endpoints.
-  "/api/v1/commerce/storefront/account/conversations",
-  "/api/v1/commerce/storefront/account/conversations/{id}",
-  "/api/v1/commerce/storefront/account/conversations/{id}/messages",
-  "/api/v1/commerce/conversations",
-  "/api/v1/commerce/conversations/{id}",
-  "/api/v1/commerce/conversations/{id}/messages",
   // #116 — POS: cash orders, channel, permission, POS screen + history.
   "/api/v1/commerce/pos/orders",
   // #114 — customer campaigns: consent, e-mail/WhatsApp mass notification,

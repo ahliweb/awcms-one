@@ -507,18 +507,36 @@ export const READER_BUDGET_BYTES = 24_000;
  * not one per screen" lesson, applied to a genuinely new control this repo
  * had none of yet, not per-screen duplication of one that already existed.
  *
- * **Raised to 232,000 B after Issue #110** (awcms-one epic #33, C3) — the
- * payment-gateway section added to the same `commerce-settings.astro`
- * screen: a `payment.gateway.enabled` toggle (reusing the exact courier
- * toggle's re-attach shape above) plus a webhook-endpoint create/revoke
- * panel built entirely from the shared `onSubmit`/`onAction`/
- * `mutateAndReload`/`sendJson`/`sendJsonForData`/`field`/`messageBox`
- * helpers `machine-credentials.astro` already established — no new
- * lifecycle code, no hand-rolled DOM row construction. The measured
- * overage was ~440 B for this genuinely new control (list/create/revoke
- * for a resource this screen had none of), not per-screen duplication.
+ * 231,405 B measured after Issue #111 (contract #106 D8) — one more admin
+ * screen, `commerce-inbox.astro` (conversation list with status/unread
+ * filters, a thread view, a reply form, close/reopen). Its own client
+ * script is 624 B, built on `onSubmit`/`onAction`/`mutateAndReload` (the
+ * exact consolidation Issue #552 introduced) rather than a hand-rolled
+ * lock/send/reload lifecycle — no per-screen duplication to fix here, only
+ * the unavoidable cost of a genuinely new screen plus its own i18n
+ * catalogue entries. Measured on its own branch point at 231,405 B; measured
+ * again after merging #107's courier-settings section above, the combined
+ * total is 231,919 B — the two additions are independent (a new screen and a
+ * new control on an existing screen), so their costs simply add. 232,000
+ * keeps the same small margin above the measured total this constant's own
+ * history already establishes.
+ *
+ * **Raised to 233,000 B after merging Issue #110 on top of #111** (awcms-one
+ * epic #33, C3) — the payment-gateway section added to the same
+ * `commerce-settings.astro` screen: a `payment.gateway.enabled` toggle
+ * (reusing the exact courier toggle's re-attach shape above) plus a
+ * webhook-endpoint create/revoke panel built entirely from the shared
+ * `onSubmit`/`onAction`/`mutateAndReload`/`sendJson`/`sendJsonForData`/
+ * `field`/`messageBox` helpers `machine-credentials.astro` already
+ * established — no new lifecycle code, no hand-rolled DOM row
+ * construction. Measured at 231,939 B on its own branch point (231,500 +
+ * ~440 B for this genuinely new control); measured again after merging
+ * #111's inbox screen above, the combined total is 232,662 B — two
+ * independent additions whose costs add, plus the two screens' own i18n
+ * catalogue entries now sharing one compiled catalogue. 233,000 keeps the
+ * same small margin above the measured total this constant's history uses.
  */
-export const APP_BUDGET_BYTES = 232_000;
+export const APP_BUDGET_BYTES = 233_000;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.
