@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/katalog-pemasaran.test.ts"
 type: "code"
-community: "Marketing Data (Flash Sales, Vouchers, Settings)"
+community: "pemasaran.ts"
 location: "L27"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Marketing_Data_Flash_Sales_Vouchers_Settings
+  - community/pemasarants
 ---
 
 # mockFetchCounting()
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[katalog-pemasaran.test.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Marketing_Data_Flash_Sales_Vouchers_Settings
+#graphify/code #graphify/EXTRACTED #community/pemasarants

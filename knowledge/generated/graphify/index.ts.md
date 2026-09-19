@@ -1,12 +1,12 @@
 ---
 source_file: "packages/kontrak/src/index.ts"
 type: "code"
-community: "Kontrak Public Entry Points"
+community: "index.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Kontrak_Public_Entry_Points
+  - community/indexts
 ---
 
 # index.ts
@@ -17,4 +17,4 @@ tags:
 - [[promosi.ts]] - `re_exports` [EXTRACTED]
 - [[srcpesanan.ts]] - `re_exports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Kontrak_Public_Entry_Points
+#graphify/code #graphify/EXTRACTED #community/indexts

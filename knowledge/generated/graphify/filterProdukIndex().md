@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/catalog.ts"
 type: "code"
-community: "Price Formatting & Product Cards"
+community: "harga.ts"
 location: "L602"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Price_Formatting__Product_Cards
+  - community/hargats
 ---
 
 # filterProdukIndex()
@@ -22,4 +22,4 @@ tags:
 - [[render()_1]] - `calls` [EXTRACTED]
 - [[run()_3]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Price_Formatting__Product_Cards
+#graphify/code #graphify/EXTRACTED #community/hargats

@@ -1,12 +1,12 @@
 ---
 source_file: "packages/gerbang/lib/changeset.mjs"
 type: "code"
-community: "Release & Changeset Tooling"
+community: "rilis.mjs"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Release__Changeset_Tooling
+  - community/rilismjs
 ---
 
 # changeset.mjs
@@ -24,4 +24,4 @@ tags:
 - [[validateChangeset()]] - `contains` [EXTRACTED]
 - [[versi-changeset.test.mjs]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Release__Changeset_Tooling
+#graphify/code #graphify/EXTRACTED #community/rilismjs

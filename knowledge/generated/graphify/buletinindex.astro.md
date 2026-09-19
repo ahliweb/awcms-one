@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/pages/buletin/index.astro"
 type: "code"
-community: "Newsletter Forms & Visitor Beacon"
+community: "buletin.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Newsletter_Forms__Visitor_Beacon
+  - community/buletints
 ---
 
 # buletin/index.astro
@@ -16,4 +16,4 @@ tags:
 - [[FormBuletin.astro]] - `imports_from` [EXTRACTED]
 - [[buletin.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Newsletter_Forms__Visitor_Beacon
+#graphify/code #graphify/EXTRACTED #community/buletints

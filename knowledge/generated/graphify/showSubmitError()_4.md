@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/scripts/akun.ts"
 type: "code"
-community: "Account Dashboard Script"
+community: "akun.ts"
 location: "L51"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Account_Dashboard_Script
+  - community/akunts
 ---
 
 # showSubmitError()
@@ -16,4 +16,4 @@ tags:
 - [[showAccountView()_2]] - `calls` [EXTRACTED]
 - [[showWaFallback()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Account_Dashboard_Script
+#graphify/code #graphify/EXTRACTED #community/akunts

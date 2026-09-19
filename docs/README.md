@@ -2,12 +2,12 @@
 
 # Documentation
 
-Architecture, schema, API, CMS workflow, storefront behaviour, testing, deployment, and process documentation for `awcms-one` — describing the repository **as it actually is after every implementation PR merged** (increment 1: issues #2–#6, #11; increment 2, epic [#21](https://github.com/ahliweb/awcms-one/issues/21): issues #22–#30; increment 3, epic [#46](https://github.com/ahliweb/awcms-one/issues/46): issues #47–#60; increment 4, epic [#32](https://github.com/ahliweb/awcms-one/issues/32): issues #86–#93), never as it was originally planned. Where the tree and an issue's original text disagree, these documents follow the tree, and say so.
+Architecture, schema, API, CMS workflow, storefront behaviour, testing, deployment, and process documentation for `awcms-one` — describing the repository **as it actually is after every implementation PR merged** (increment 1: issues #2–#6, #11; increment 2, epic [#21](https://github.com/ahliweb/awcms-one/issues/21): issues #22–#30; increment 3, epic [#46](https://github.com/ahliweb/awcms-one/issues/46): issues #47–#60; increment 4, epic [#32](https://github.com/ahliweb/awcms-one/issues/32): issues #86–#93; increment 5, epic [#33](https://github.com/ahliweb/awcms-one/issues/33): issues #106–#118), never as it was originally planned. Where the tree and an issue's original text disagree, these documents follow the tree, and say so.
 
 | Document | Contents |
 | --- | --- |
-| [`arsitektur.md`](arsitektur.md) | The two-deployable topology, the one-way import direction, the subtree embed, the anonymous runtime seam (ADR-0007), the third (authenticated-customer) trust tier (ADR-0016), the derived CSP |
-| [`adr/`](adr/README.md) | Sixteen Architecture Decision Records — the trade-off behind each structural decision above |
+| [`arsitektur.md`](arsitektur.md) | The two-deployable topology, the one-way import direction, the subtree embed, the anonymous runtime seam (ADR-0007), the third (authenticated-customer) trust tier (ADR-0016), external provider ports/outboxes/webhook intake (ADR-0017), the derived CSP |
+| [`adr/`](adr/README.md) | Seventeen Architecture Decision Records — the trade-off behind each structural decision above |
 | [`skema-basis-data.md`](skema-basis-data.md) | The `awcms_commerce_*` tables: columns, types, constraints, indexes, RLS |
 | [`kamus-data.md`](kamus-data.md) | Data dictionary: every column, its meaning, and its legacy `commerce_bj_mart` source column |
 | [`api.md`](api.md) | The `/api/v1/commerce/*` endpoints, envelope, pagination, permissions, domain events |

@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/pengalihan-legacy.ts"
 type: "code"
-community: "Legacy Redirect Map & Video Lookup"
+community: "getVideo"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Legacy_Redirect_Map__Video_Lookup
+  - community/getVideo
 ---
 
 # pengalihan-legacy.ts
@@ -22,4 +22,4 @@ tags:
 - [[pengalihan-legacy.json.ts]] - `imports_from` [EXTRACTED]
 - [[routes.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Legacy_Redirect_Map__Video_Lookup
+#graphify/code #graphify/EXTRACTED #community/getVideo

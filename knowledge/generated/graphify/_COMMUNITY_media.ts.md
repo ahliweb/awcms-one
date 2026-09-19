@@ -57,22 +57,22 @@ SORT file.name ASC
 ```
 
 ## Connections to other communities
-- 13 edges to [[_COMMUNITY_berita.ts]]
-- 7 edges to [[_COMMUNITY_navigasi-berita.ts]]
+- 12 edges to [[_COMMUNITY_berita.ts]]
+- 9 edges to [[_COMMUNITY_navigasi-berita.ts]]
 - 7 edges to [[_COMMUNITY_BeritaLayout.astro]]
-- 4 edges to [[_COMMUNITY_Homepage & Derived CSP Artifact]]
-- 4 edges to [[_COMMUNITY_Portable Text & Static Pages]]
-- 3 edges to [[_COMMUNITY_Build-Time CMS Client & Region Data]]
-- 3 edges to [[_COMMUNITY_Blog Client & Ad Slots]]
-- 2 edges to [[_COMMUNITY_Site Config, Sitemaps & Theme]]
-- 2 edges to [[_COMMUNITY_slugfeed.xml.ts]]
+- 4 edges to [[_COMMUNITY_pagesindex.astro]]
+- 4 edges to [[_COMMUNITY_portable-text.ts]]
+- 3 edges to [[_COMMUNITY_wilayah-checkout.ts]]
+- 3 edges to [[_COMMUNITY_blog.ts]]
+- 2 edges to [[_COMMUNITY_site.ts]]
 - 2 edges to [[_COMMUNITY_routes.ts]]
-- 1 edge to [[_COMMUNITY_Wishlist Storage & Account Sync]]
-- 1 edge to [[_COMMUNITY_Documentation Link Audit]]
+- 1 edge to [[_COMMUNITY_wishlist-akun-sync.ts]]
+- 1 edge to [[_COMMUNITY_audit-dokumen.mjs]]
+- 1 edge to [[_COMMUNITY_Sidebar.astro]]
 
 ## Top bridge nodes
 - [[media.ts]] - degree 28, connects to 5 communities
-- [[lembaga.ts]] - degree 19, connects to 5 communities
-- [[mitraslug.astro]] - degree 11, connects to 3 communities
+- [[lembaga.ts]] - degree 19, connects to 4 communities
+- [[mitraslug.astro]] - degree 11, connects to 4 communities
 - [[ResolvedMedia]] - degree 9, connects to 3 communities
-- [[RawInstitution]] - degree 6, connects to 3 communities
+- [[getMitraList()_1]] - degree 8, connects to 3 communities

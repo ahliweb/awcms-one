@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/catalog.ts"
 type: "code"
-community: "Product & Category Pages, Product JSON-LD"
+community: "product/[slug].astro"
 location: "L123"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Product__Category_Pages_Product_JSON-LD
+  - community/product/slugastro
 ---
 
 # CommerceProductVariant
@@ -17,4 +17,4 @@ tags:
 - [[katalog-catalog.test.ts]] - `imports` [EXTRACTED]
 - [[produk-detail.ts]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Product__Category_Pages_Product_JSON-LD
+#graphify/code #graphify/EXTRACTED #community/product/slugastro

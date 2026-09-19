@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/scripts/akun-afiliasi.ts"
 type: "code"
-community: "Account Affiliate Page Script"
+community: "akun-afiliasi.ts"
 location: "L106"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Account_Affiliate_Page_Script
+  - community/akun-afiliasits
 ---
 
 # appendKomisiRows()
@@ -16,4 +16,4 @@ tags:
 - [[formatPrice()]] - `calls` [EXTRACTED]
 - [[loadMoreKomisi()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Account_Affiliate_Page_Script
+#graphify/code #graphify/EXTRACTED #community/akun-afiliasits

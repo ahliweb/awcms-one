@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/afiliasi-build-smoke.test.ts"
 type: "code"
-community: "Affiliate Build Smoke"
+community: "afiliasi-build-smoke.test.ts"
 location: "L43"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Affiliate_Build_Smoke
+  - community/afiliasi-build-smoketestts
 ---
 
 # assertNoInlineScriptOrStyle()
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[afiliasi-build-smoke.test.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Affiliate_Build_Smoke
+#graphify/code #graphify/EXTRACTED #community/afiliasi-build-smoketestts

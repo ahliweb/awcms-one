@@ -1,12 +1,12 @@
 ---
 source_file: "tools/knowledge-graph-combine.mjs"
 type: "code"
-community: "Documentation & Graph Audit Gates"
+community: "audit-graf.mjs"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Documentation__Graph_Audit_Gates
+  - community/audit-grafmjs
 ---
 
 # knowledge-graph-combine.mjs
@@ -33,4 +33,4 @@ tags:
 - [[subtree-guard.mjs]] - `imports_from` [EXTRACTED]
 - [[validateGraphFile()]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Documentation__Graph_Audit_Gates
+#graphify/code #graphify/EXTRACTED #community/audit-grafmjs

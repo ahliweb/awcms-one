@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/pages/csp.json.ts"
 type: "code"
-community: "Homepage & Derived CSP Artifact"
+community: "pages/index.astro"
 location: "L113"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Homepage__Derived_CSP_Artifact
+  - community/pages/indexastro
 ---
 
 # GET()
@@ -27,4 +27,4 @@ tags:
 - [[readGaMeasurementId()]] - `calls` [EXTRACTED]
 - [[requireAwcmsOrigin()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Homepage__Derived_CSP_Artifact
+#graphify/code #graphify/EXTRACTED #community/pages/indexastro

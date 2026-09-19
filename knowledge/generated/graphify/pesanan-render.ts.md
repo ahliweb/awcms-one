@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/pesanan-render.ts"
 type: "code"
-community: "Commerce Storefront Client & Order Tracking"
+community: "toko-klien.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Commerce_Storefront_Client__Order_Tracking
+  - community/toko-klients
 ---
 
 # pesanan-render.ts
@@ -23,4 +23,4 @@ tags:
 - [[scriptspesanan.ts]] - `imports_from` [EXTRACTED]
 - [[toko-klien.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Commerce_Storefront_Client__Order_Tracking
+#graphify/code #graphify/EXTRACTED #community/toko-klients

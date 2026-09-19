@@ -1,12 +1,12 @@
 ---
 source_file: "packages/gerbang/lib/subtree-guard.mjs"
 type: "code"
-community: "Documentation & Graph Audit Gates"
+community: "audit-graf.mjs"
 location: "L39"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Documentation__Graph_Audit_Gates
+  - community/audit-grafmjs
 ---
 
 # isUnderSubtree()
@@ -17,4 +17,4 @@ tags:
 - [[subtree-guard.mjs]] - `contains` [EXTRACTED]
 - [[subtree-guard.test.mjs]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Documentation__Graph_Audit_Gates
+#graphify/code #graphify/EXTRACTED #community/audit-grafmjs

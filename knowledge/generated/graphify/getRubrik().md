@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/berita.ts"
 type: "code"
-community: "[slug]/feed.xml.ts"
+community: "berita.ts"
 location: "L541"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/slug/feedxmlts
+  - community/beritats
 ---
 
 # getRubrik()
@@ -23,4 +23,4 @@ tags:
 - [[getStaticPaths()_11]] - `calls` [EXTRACTED]
 - [[toPublicRubrikNode()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/slug/feedxmlts
+#graphify/code #graphify/EXTRACTED #community/beritats

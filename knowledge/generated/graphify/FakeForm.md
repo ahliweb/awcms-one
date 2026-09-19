@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/buletin-forms.test.ts"
 type: "code"
-community: "Newsletter Forms & Visitor Beacon"
+community: "buletin.ts"
 location: "L50"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Newsletter_Forms__Visitor_Beacon
+  - community/buletints
 ---
 
 # FakeForm
@@ -18,4 +18,4 @@ tags:
 - [[dot-submit()]] - `method` [EXTRACTED]
 - [[buletin-forms.test.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Newsletter_Forms__Visitor_Beacon
+#graphify/code #graphify/EXTRACTED #community/buletints

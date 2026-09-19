@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/akun-klien.ts"
 type: "code"
-community: "Customer Session Store"
+community: "bacaSesi"
 location: "L55"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Customer_Session_Store
+  - community/bacaSesi
 ---
 
 # verifikasiKode()
@@ -18,4 +18,4 @@ tags:
 - [[kirimPermintaan()]] - `calls` [EXTRACTED]
 - [[masuk.ts]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Customer_Session_Store
+#graphify/code #graphify/EXTRACTED #community/bacaSesi

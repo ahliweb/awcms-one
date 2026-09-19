@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/server/pengalihan-aturan.mjs"
 type: "code"
-community: "Static Server & Legacy Redirect Rules"
+community: "penyaji.mjs"
 location: "L567"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Static_Server__Legacy_Redirect_Rules
+  - community/penyajimjs
 ---
 
 # resolveImgQuery()
@@ -16,4 +16,4 @@ tags:
 - [[pengalihan-aturan.mjs]] - `contains` [EXTRACTED]
 - [[ruleBasedRedirectLocation()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Static_Server__Legacy_Redirect_Rules
+#graphify/code #graphify/EXTRACTED #community/penyajimjs

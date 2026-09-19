@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/berita-penyaji-legacy.test.ts"
 type: "code"
-community: "Static Server & Legacy Redirect Rules"
+community: "penyaji.mjs"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Static_Server__Legacy_Redirect_Rules
+  - community/penyajimjs
 ---
 
 # berita-penyaji-legacy.test.ts
@@ -18,4 +18,4 @@ tags:
 - [[readLegacyRedirectMap()]] - `imports` [EXTRACTED]
 - [[withServer()]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Static_Server__Legacy_Redirect_Rules
+#graphify/code #graphify/EXTRACTED #community/penyajimjs

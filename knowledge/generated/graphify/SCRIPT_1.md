@@ -1,12 +1,12 @@
 ---
 source_file: "tests/audit-dokumen.test.mjs"
 type: "code"
-community: "Documentation Link Audit"
+community: "audit-dokumen.mjs"
 location: "L19"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Documentation_Link_Audit
+  - community/audit-dokumenmjs
 ---
 
 # SCRIPT
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[audit-dokumen.test.mjs]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Documentation_Link_Audit
+#graphify/code #graphify/EXTRACTED #community/audit-dokumenmjs

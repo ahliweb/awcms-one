@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/berita-rubrik.test.ts"
 type: "code"
-community: "[slug]/feed.xml.ts"
+community: "berita.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/slug/feedxmlts
+  - community/beritats
 ---
 
 # berita-rubrik.test.ts
@@ -27,4 +27,4 @@ tags:
 - [[toPublicRubrikNode()]] - `imports` [EXTRACTED]
 - [[toRegionRef()]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/slug/feedxmlts
+#graphify/code #graphify/EXTRACTED #community/beritats

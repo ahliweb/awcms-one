@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/scripts/akun.ts"
 type: "code"
-community: "Account Dashboard Script"
+community: "akun.ts"
 location: "L17"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Account_Dashboard_Script
+  - community/akunts
 ---
 
 # levelLabel()
@@ -15,4 +15,4 @@ tags:
 - [[akun.ts]] - `contains` [EXTRACTED]
 - [[renderProfile()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Account_Dashboard_Script
+#graphify/code #graphify/EXTRACTED #community/akunts

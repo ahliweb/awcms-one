@@ -1,12 +1,12 @@
 ---
 source_file: "tools/import-seputarborneo.ts"
 type: "code"
-community: "Legacy Taxonomy Mapping (Importer)"
+community: "import-seputarborneo.ts"
 location: "L211"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Legacy_Taxonomy_Mapping_Importer
+  - community/import-seputarborneots
 ---
 
 # DAERAH_LEAF_LABELS
@@ -15,4 +15,4 @@ tags:
 - [[import-seputarborneo.ts]] - `contains` [EXTRACTED]
 - [[normalizeLegacyTaxonomy()]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Legacy_Taxonomy_Mapping_Importer
+#graphify/code #graphify/EXTRACTED #community/import-seputarborneots

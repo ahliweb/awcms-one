@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/scripts/pesanan.ts"
 type: "code"
-community: "Commerce Storefront Client & Order Tracking"
+community: "toko-klien.ts"
 location: "L74"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Commerce_Storefront_Client__Order_Tracking
+  - community/toko-klients
 ---
 
 # loadOrder()
@@ -17,4 +17,4 @@ tags:
 - [[scriptspesanan.ts]] - `contains` [EXTRACTED]
 - [[storePhone()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Commerce_Storefront_Client__Order_Tracking
+#graphify/code #graphify/EXTRACTED #community/toko-klients

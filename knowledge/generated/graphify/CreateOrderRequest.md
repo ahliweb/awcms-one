@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/toko-klien.ts"
 type: "code"
-community: "Commerce Storefront Client & Order Tracking"
+community: "toko-klien.ts"
 location: "L170"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Commerce_Storefront_Client__Order_Tracking
+  - community/toko-klients
 ---
 
 # CreateOrderRequest
@@ -16,4 +16,4 @@ tags:
 - [[toko-klien.test.ts]] - `imports` [EXTRACTED]
 - [[toko-klien.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Commerce_Storefront_Client__Order_Tracking
+#graphify/code #graphify/EXTRACTED #community/toko-klients

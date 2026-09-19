@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/telepon.ts"
 type: "code"
-community: "Checkout Flow & Phone Preview"
+community: "checkout.ts"
 location: "L38"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Checkout_Flow__Phone_Preview
+  - community/checkoutts
 ---
 
 # previewIndonesianPhone()
@@ -18,4 +18,4 @@ tags:
 - [[telepon.test.ts]] - `imports` [EXTRACTED]
 - [[telepon.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Checkout_Flow__Phone_Preview
+#graphify/code #graphify/EXTRACTED #community/checkoutts

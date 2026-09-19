@@ -1,10 +1,10 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](arsitektur.md)
 
-<!-- i18n-source-hash: sha256:87e5ae45cad2ea6fae1552997ccdf833d9f624682c863b2c98c88e754898563b -->
+<!-- i18n-source-hash: sha256:b27273145b23eaf6e82fd8cebf85a1f0a6ac686b21ae4d7c76271192669996bc -->
 
 # Arsitektur
 
-Apa yang benar-benar di-deploy oleh repositori ini hari ini, dan batasan yang menjaga kedua bagiannya agar tidak diam-diam saling menyusup. Dokumen ini mendeskripsikan increment 4 — paritas BjekMart/portal-berita milik increment 2, paritas fungsional dengan seputarborneo.com v2.4.0 yang ditambahkan epic [#46](https://github.com/ahliweb/awcms-one/issues/46) (media sungguhan, chrome berita, pemutar baca-nyaring, pengalihan lawas berbasis aturan, analitik first-party, lambang lembaga), dan epic akun-pelanggan/afiliasi [#32](https://github.com/ahliweb/awcms-one/issues/32) ([ADR-0016](adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.id.md)), tetap tanpa basis data produksi yang hidup — sebagaimana adanya di tree yang sudah digabung, bukan sebagaimana direncanakan. Lihat [`README.md`](../README.id.md) dan [`AGENTS.md`](../AGENTS.id.md) untuk tata letak workspace dan aturan kerja yang diasumsikan dokumen ini.
+Apa yang benar-benar di-deploy oleh repositori ini hari ini, dan batasan yang menjaga kedua bagiannya agar tidak diam-diam saling menyusup. Dokumen ini mendeskripsikan increment 5 — paritas BjekMart/portal-berita milik increment 2, paritas fungsional dengan seputarborneo.com v2.4.0 yang ditambahkan epic [#46](https://github.com/ahliweb/awcms-one/issues/46) (media sungguhan, chrome berita, pemutar baca-nyaring, pengalihan lawas berbasis aturan, analitik first-party, lambang lembaga), epic akun-pelanggan/afiliasi [#32](https://github.com/ahliweb/awcms-one/issues/32) ([ADR-0016](adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.id.md)), dan epic fitur BjekMart khusus admin plus integrasi penyedia eksternal [#33](https://github.com/ahliweb/awcms-one/issues/33) ([ADR-0017](adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.id.md) — ongkos kurir RajaOngkir, outbox WhatsApp, payment gateway Midtrans dengan intake webhook, POS, laporan penjualan, inbox, dan kampanye), tetap tanpa basis data produksi yang hidup — sebagaimana adanya di tree yang sudah digabung, bukan sebagaimana direncanakan. Lihat [`README.md`](../README.id.md) dan [`AGENTS.md`](../AGENTS.id.md) untuk tata letak workspace dan aturan kerja yang diasumsikan dokumen ini.
 
 ## Dua deployable, satu aliran data saat-build, satu seam runtime anonim
 
@@ -104,8 +104,59 @@ Per [ADR-0008](adr/0008-one-commerce-module-carries-the-whole-store-not-three.md
 - **Catalog** (issue #23) — kategori, produk (gambar, varian, harga bertingkat, size chart, form layanan, banner promo).
 - **Marketing** (issue #26) — flash sale, voucher, slider, testimoni, popup, pengaturan toko yang di-versioning.
 - **Orders** (issue #29) — pelanggan, alamat, quote keranjang, pesanan, konfirmasi pembayaran, ulasan, wishlist, dan permukaan `/api/v1/commerce/storefront/*` yang anonim.
+- **Akun pelanggan dan afiliasi** (issue #32) — akun terverifikasi OTP, sesi bearer, dan program afiliasi ([ADR-0016](adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.id.md)).
+- **Penyedia eksternal, POS, laporan, inbox, kampanye, dan sakelar fitur** (issue #33, [ADR-0017](adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.id.md)) — ongkos kurir RajaOngkir, outbox WhatsApp dan kanal OTP, payment gateway Midtrans dengan intake webhook publik dan rekonsiliasi, penjualan POS di toko (`orders.channel`, `payment_method = cash`), laporan penjualan berbasis proyeksi `reporting`, inbox pelanggan, kampanye marketing yang di-gate consent, dan sakelar fitur per tenant plus harga bertingkat saat quote — lihat "Penyedia eksternal" di bawah.
 
 `dependencies` milik `module.ts` adalah `tenant_admin`, `identity_access`, `domain_event_runtime`, `media_library` (gambar produk/slider/testimoni/popup di-resolve lewat `MediaLibraryPort`), dan `module_management` (pengecekan fail-closed milik tenant-resolver storefront anonim). Lihat [`docs/skema-basis-data.md`](skema-basis-data.id.md), [`docs/kamus-data.md`](kamus-data.id.md), [`docs/api.md`](api.id.md), dan [`docs/cms.md`](cms.id.md) untuk isi modul ini secara mendalam, dan [`apps/cms/src/modules/commerce/README.md`](../apps/cms/src/modules/commerce/README.id.md) untuk dokumentasinya sendiri yang berdekatan-kode.
+
+## Penyedia eksternal: port dan outbox di dalam `commerce`, tidak pernah panggilan sinkron di jalur pesanan
+
+Increment 5 (epic [#33](https://github.com/ahliweb/awcms-one/issues/33)) menambahkan integrasi HTTP eksternal pertama milik `commerce` — agregator ongkos kurir (RajaOngkir), pengirim WhatsApp (Fonnte/Meta Cloud API), dan payment gateway (Midtrans Snap). [ADR-0017](adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.id.md) (D1) menetapkan bentuknya sekali, dan ketiganya mengikutinya: interface port kecil, satu atau lebih adapter yang dipilih lewat env var, adapter `log` untuk dev/CI, `withTimeout` plus `getProviderCircuitBreaker`, dan — untuk apa pun yang bergantung padanya jalur pesanan — tabel outbox sehingga panggilan penyedia tidak pernah terjadi di dalam transaksi basis data yang mengubah status pesanan (disiplin yang sama yang sudah ditetapkan [ADR-0010](adr/0010-manual-payment-and-alternative-courier-first-gateways-via-outbox.id.md) untuk konfirmasi pembayaran dan catatan kurir).
+
+```mermaid
+flowchart TB
+  subgraph Ports["port penyedia milik commerce"]
+    SRP["ShippingRateProvider\n{getRates}"]
+    PGP["PaymentGatewayProvider\n{createSession, verifyWebhook, fetchStatus}"]
+    WAP["WhatsappProvider\n{send}"]
+  end
+
+  SRP --> RajaOngkir["adapter RajaOngkir\n(Komerce API v2)"]
+  SRP --> LogShip["adapter log"]
+  PGP --> Midtrans["adapter Midtrans Snap"]
+  PGP --> LogPay["adapter log"]
+  WAP --> Fonnte["adapter Fonnte"]
+  WAP --> Meta["adapter Meta Cloud API"]
+  WAP --> LogWA["adapter log"]
+
+  Quote["cart/quote (destination)"] -->|"di luar tx apa pun, cache 6 jam"| SRP
+  RajaOngkir --> RatesCache[("awcms_commerce_shipping_rates\n+ courier_destinations")]
+
+  Order["order pending_payment"] -->|createSession| PGP
+  Midtrans --> GatewaySessions[("awcms_commerce_payment_gateway_sessions")]
+
+  OtpReq["account/otp/request via=whatsapp"] --> WAOutbox[("awcms_commerce_whatsapp_messages\n(outbox)")]
+  Campaign["dispatch kampanye"] --> WAOutbox
+  WAOutbox -->|"commerce:whatsapp:dispatch, tiap 2 menit"| WAP
+
+  Webhook["POST /api/v1/commerce/webhooks/{provider}/{endpointToken}"] -->|"pencarian token SECURITY DEFINER"| Resolve["awcms_resolve_commerce_webhook_endpoint"]
+  Resolve --> Verify["verifyWebhook (perbandingan tanda tangan timing-safe)"]
+  Verify -->|"ok, event_key baru"| Events[("awcms_commerce_payment_events\nUNIQUE(tenant_id, provider, event_key)")]
+  Events --> MarkPaid["markOrderPaidBySystem\n(pending_payment → paid, aktor=system)"]
+  Verify -->|"replay: event_key sudah pernah dilihat"| Ack200["200, tanpa efek"]
+  Verify -->|"tanda tangan salah"| Reject401["401"]
+
+  Reconcile["commerce:payments:reconcile, tiap 2 menit"] -->|"fetchStatus untuk sesi pending"| PGP
+  Reconcile --> MarkPaid
+```
+
+| Port penyedia | Adapter (env `COMMERCE_*_PROVIDER`) | Tabel outbox / cache | Job dispatcher / purge |
+| --- | --- | --- | --- |
+| `ShippingRateProvider` (issue #107) | `rajaongkir`, `log` | `awcms_commerce_shipping_rates` (TTL 6 jam, per tenant/origin/destination/weight-bucket/kurir), `awcms_commerce_courier_destinations` | `commerce:shipping-rates:purge` (tiap jam) |
+| `WhatsappProvider` (issue #108) | `fonnte`, `meta`, `log` | `awcms_commerce_whatsapp_messages` (+ `awcms_commerce_whatsapp_delivery_attempts`) | `commerce:whatsapp:dispatch` (tiap 2 menit), `commerce:whatsapp:purge` (tiap 15 menit) |
+| `PaymentGatewayProvider` (issue #110/#113) | `midtrans`, `log` | `awcms_commerce_payment_gateway_sessions`, `awcms_commerce_payment_events` (buku besar anti-replay), `awcms_commerce_webhook_endpoints` (token di-hash) | `commerce:payments:reconcile` (tiap 2 menit) |
+
+**Webhook masuk tidak pernah mempercayai payload untuk identitas tenant.** `POST /api/v1/commerce/webhooks/{provider}/{endpointToken}` publik me-resolve `(tenant, provider)` dari token per-tenant yang opak dan di-hash lewat fungsi bootstrap `SECURITY DEFINER` yang meniru `awcms_resolve_tenant_domain_lookup` — body webhook yang mengklaim `tenant_id` akan menjadi oracle yang tidak terverifikasi, sesuai tabel alternatif-yang-ditolak milik ADR-0017 D2 sendiri. Perlindungan replay adalah constraint `UNIQUE (tenant_id, provider, event_key)` pada `awcms_commerce_payment_events`, sehingga pengiriman at-least-once milik penyedia menjadi idempoten: event yang di-replay tetap menjawab `200`, hanya tanpa efek samping kedua. Ketidakcocokan jumlah antara `gross_amount` webhook dan total pesanan sendiri dicatat (`outcome = 'amount_mismatch'`) tapi tidak pernah menandai pesanan lunas — `sql/934` menambahkan guard itu setelah #110 dikirim, menutup celah yang ditandai #113. Karena webhook bisa hilang dalam perjalanan, `commerce:payments:reconcile` mem-poll `fetchStatus` setiap sesi gateway yang masih `pending`/`created` pada jadwalnya sendiri — jalur `markOrderPaidBySystem` yang sama yang dipakai handler webhook, sehingga webhook yang hilang menyembuhkan dirinya sendiri dalam interval job itu alih-alih membuat pesanan terdampar selamanya di `pending_payment`.
 
 ## Satu hal lagi yang dilakukan server: memperbaiki halaman yang terbayangi
 
@@ -113,11 +164,11 @@ Per [ADR-0008](adr/0008-one-commerce-module-carries-the-whole-store-not-three.md
 
 ## Apa yang masih belum ada di sini
 
-Yang secara eksplisit ditangguhkan D6 [ADR-0016](adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.id.md) sebagai tindak lanjut pekerjaan akun pelanggan: OTP WhatsApp/SMS (tindak lanjut D2 sendiri), ubah e-mail/telepon pada akun yang sudah ada, verifikasi telepon, dan harga bertingkat (`priceLevel2/3/4`) yang diterapkan saat quote. Integrasi tarif kurir RajaOngkir yang live dan payment gateway (keduanya harus dipanggil lewat outbox milik `apps/cms`, tidak pernah secara sinkron di jalur pesanan, per [ADR-0010](adr/0010-manual-payment-and-alternative-courier-first-gateways-via-outbox.md) — [issue #33](https://github.com/ahliweb/awcms-one/issues/33)); POS dan pelaporan manajemen (issue #33); upload berbasis-R2 yang nyata untuk gambar produk, media slider, dan gambar bukti konfirmasi-pembayaran (skrip seed memakai SVG placeholder yang dibuat sendiri dan endpoint upload bukti-pembayaran anonim menjawab `503 MEDIA_UNAVAILABLE` — lihat [`docs/deployment.md`](deployment.id.md) dan [`docs/cms.md`](cms.id.md)); deployment PostgreSQL produksi (`postgres:18.4` milik `compose.yaml` hanya kemudahan lokal/CI — lihat [`docs/deployment.md`](deployment.id.md)).
+Yang ditangguhkan D6 [ADR-0016](adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.id.md) dan tidak diambil increment 5: ubah e-mail/telepon pada akun yang sudah ada, dan verifikasi telepon. Yang dicatat [ADR-0017](adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.id.md) sebagai follow-up eksplisit di belakang port yang sudah dibangunnya: adapter Xendit di belakang port `PaymentGatewayProvider` yang sama, dan pelacakan kurir (tarif sudah selesai; melacak paket yang sudah dikirim belum). Upload berbasis-R2 yang nyata untuk gambar produk, media slider, dan gambar bukti konfirmasi-pembayaran (skrip seed memakai SVG placeholder yang dibuat sendiri dan endpoint upload bukti-pembayaran anonim menjawab `503 MEDIA_UNAVAILABLE` — lihat [`docs/deployment.md`](deployment.id.md) dan [`docs/cms.md`](cms.id.md)); deployment PostgreSQL produksi (`postgres:18.4` milik `compose.yaml` hanya kemudahan lokal/CI — lihat [`docs/deployment.md`](deployment.id.md)); layar admin backup basis data (secara eksplisit dikeluarkan dari cakupan issue #33 sebagai urusan operasi — lihat [`docs/deployment.md`](deployment.id.md)); notifikasi push pelanggan (kampanye saat ini hanya menjangkau e-mail dan WhatsApp — subscription push masih per-staf hari ini, bukan per-pelanggan).
 
 ## Bacaan lanjutan
 
-- [`docs/adr/`](adr/README.id.md) — enam belas keputusan yang menjadi landasan arsitektur ini, masing-masing dengan tabel trade-off-nya sendiri.
+- [`docs/adr/`](adr/README.id.md) — tujuh belas keputusan yang menjadi landasan arsitektur ini, masing-masing dengan tabel trade-off-nya sendiri.
 - [`docs/skema-basis-data.md`](skema-basis-data.id.md), [`docs/kamus-data.md`](kamus-data.id.md) — skema dan pemetaan kolom legacy-nya.
 - [`docs/api.md`](api.id.md), [`docs/cms.md`](cms.id.md) — API commerce (owner dan anonim) dan alur kerja authoring/publishing di baliknya.
 - [`docs/routing.md`](routing.id.md) — peta URL publik lengkap.

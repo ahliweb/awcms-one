@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/berita.ts"
 type: "code"
-community: "berita.ts"
+community: "navigasi-berita.ts"
 location: "L330"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/beritats
+  - community/navigasi-beritats
 ---
 
 # buildIndex()
@@ -26,4 +26,4 @@ tags:
 - [[toPostSummary()]] - `calls` [EXTRACTED]
 - [[toRegionRef()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/beritats
+#graphify/code #graphify/EXTRACTED #community/navigasi-beritats

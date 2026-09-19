@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/scripts/keranjang.ts"
 type: "code"
-community: "Cart Page & WhatsApp Fallback"
+community: "formatPrice"
 location: "L192"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Cart_Page__WhatsApp_Fallback
+  - community/formatPrice
 ---
 
 # hideQuoteError()
@@ -15,4 +15,4 @@ tags:
 - [[keranjang.ts]] - `contains` [EXTRACTED]
 - [[refresh()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Cart_Page__WhatsApp_Fallback
+#graphify/code #graphify/EXTRACTED #community/formatPrice

@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/components/berita/ArtikelView.astro"
 type: "code"
-community: "berita.ts"
+community: "Sidebar.astro"
 location: "L102"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/beritats
+  - community/Sidebarastro
 ---
 
 # joinNonEmpty()
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[ArtikelView.astro]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/beritats
+#graphify/code #graphify/EXTRACTED #community/Sidebarastro

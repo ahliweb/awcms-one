@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/awcms/profil.ts"
 type: "code"
-community: "Site Profile Merge Test"
+community: "profil.test.ts"
 location: "L187"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Site_Profile_Merge_Test
+  - community/profiltestts
 ---
 
 # mergeSiteIdentity()
@@ -18,4 +18,4 @@ tags:
 - [[profil.ts]] - `contains` [EXTRACTED]
 - [[readEnv()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Site_Profile_Merge_Test
+#graphify/code #graphify/EXTRACTED #community/profiltestts

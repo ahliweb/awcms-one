@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/checkout-build-smoke.test.ts"
 type: "code"
-community: "Checkout Build Smoke"
+community: "checkout-build-smoke.test.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Checkout_Build_Smoke
+  - community/checkout-build-smoketestts
 ---
 
 # checkout-build-smoke.test.ts
@@ -15,4 +15,4 @@ tags:
 - [[canSpawnBun()_1]] - `contains` [EXTRACTED]
 - [[waitForStub()_1]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Checkout_Build_Smoke
+#graphify/code #graphify/EXTRACTED #community/checkout-build-smoketestts

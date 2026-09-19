@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/ikon-sosial.ts"
 type: "code"
-community: "Share Row & Social Icons"
+community: "bagikan.test.ts"
 location: "L135"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Share_Row__Social_Icons
+  - community/bagikantestts
 ---
 
 # resolveSocialIcons()
@@ -20,4 +20,4 @@ tags:
 - [[libbagikan.ts]] - `imports` [EXTRACTED]
 - [[resolveFollowLinks()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Share_Row__Social_Icons
+#graphify/code #graphify/EXTRACTED #community/bagikantestts

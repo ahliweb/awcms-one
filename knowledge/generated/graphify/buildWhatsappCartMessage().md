@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/wa-fallback.ts"
 type: "code"
-community: "Cart Page & WhatsApp Fallback"
+community: "formatPrice"
 location: "L38"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Cart_Page__WhatsApp_Fallback
+  - community/formatPrice
 ---
 
 # buildWhatsappCartMessage()
@@ -20,4 +20,4 @@ tags:
 - [[wa-fallback.test.ts]] - `imports` [EXTRACTED]
 - [[wa-fallback.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Cart_Page__WhatsApp_Fallback
+#graphify/code #graphify/EXTRACTED #community/formatPrice

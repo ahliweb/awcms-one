@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/akun-klien.ts"
 type: "code"
-community: "Account Address Book Script"
+community: "akun-alamat.ts"
 location: "L142"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Account_Address_Book_Script
+  - community/akun-alamatts
 ---
 
 # AlamatInput
@@ -15,4 +15,4 @@ tags:
 - [[akun-alamat.ts]] - `imports` [EXTRACTED]
 - [[akun-klien.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Account_Address_Book_Script
+#graphify/code #graphify/EXTRACTED #community/akun-alamatts

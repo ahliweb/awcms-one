@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/pages/index/produk.json.ts"
 type: "code"
-community: "Catalog Data & Product Index"
+community: "catalog.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Catalog_Data__Product_Index
+  - community/catalogts
 ---
 
 # produk.json.ts
@@ -21,4 +21,4 @@ tags:
 - [[pemasaran.ts]] - `imports_from` [EXTRACTED]
 - [[prerender_4]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Catalog_Data__Product_Index
+#graphify/code #graphify/EXTRACTED #community/catalogts

@@ -2,7 +2,7 @@
 
 # Data dictionary
 
-Every column across the nineteen `awcms_commerce_*` tables, its meaning, its unit/enum domain, and — where one exists — its source column in the legacy `commerce_bj_mart` MySQL schema.
+Every column across the thirty-eight `awcms_commerce_*` tables, its meaning, its unit/enum domain, and — where one exists — its source column in the legacy `commerce_bj_mart` MySQL schema.
 
 ## Provenance, stated once so every row below does not have to repeat it
 
@@ -167,8 +167,8 @@ BjekMart's kasir (`commerce_bj_mart`'s counter sales, recorded in the legacy `or
 | `commerce.pos.create` | `awcms_permissions` (`sql/932`); `COMMERCE_POS_PERMISSIONS.create` | The ONE permission-gated order-creation path in the module. POS history reuses `commerce.orders.read` |
 | `commerce.pos.sale` | `awcms_audit_events.action` | The audit event every counter sale writes (order code, total, method, tendered, change, walk-in flag, line count — never the customer's name or phone) |
 
-## Deferred columns and tables — not ported in this increment
+## Deferred columns and tables — not ported
 
-- **A live RajaOngkir courier-rate/tracking table** — [issue #33](https://github.com/ahliweb/awcms-one/issues/33); `shipping_method`/`shipping_service_name` on an order are merchant-defined labels today, never a live carrier response.
-- **A payment-gateway transaction record** — the `payment_method` enum already accepts `gateway` (additive), but no provider integration exists; must be built through the outbox per [ADR-0010](adr/0010-manual-payment-and-alternative-courier-first-gateways-via-outbox.md).
+- **A live RajaOngkir courier-RATE table is done** (issue #107, `sql/924` — `awcms_commerce_courier_destinations`/`_shipping_rates`, a cached rate the order path validates against, never a synchronous provider call). What is still deferred: live courier TRACKING (a shipped parcel's own status) — `shipping_method`/`shipping_service_name` on an order remain merchant-defined labels for the `alternative`/`self_pickup` methods; a `courier` shipment's rate is now live, its post-dispatch tracking is not (named as a follow-up in [ADR-0017](adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.md)).
+- **A payment-gateway transaction record is done** — `awcms_commerce_payment_gateway_sessions`/`_payment_events` (`sql/926`, issues #110/#113), built through the outbox per [ADR-0010](adr/0010-manual-payment-and-alternative-courier-first-gateways-via-outbox.md)/[ADR-0017](adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.md). Deferred: a Xendit adapter behind the same `PaymentGatewayProvider` port (`midtrans`/`log` only today).
 - **A real media upload for product images, slider media, payment-confirmation proof images, and ad-placement creatives** — resolved through `media_library`'s existing reference/URL mechanism, but this increment's seed uses placeholder SVGs/PNGs and the anonymous proof-upload endpoint is a stub (`503 MEDIA_UNAVAILABLE`); ad placements need a REAL R2-verified media object (`mediaObjectId` is required, not optional), so issue #57's seed step creates none of the 12 locally — see [`docs/cms.md`](cms.md) and [`docs/deployment.md`](deployment.md).

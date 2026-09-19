@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/scripts/stub-awcms.mjs"
 type: "code"
-community: "Stub CMS State Machine"
+community: "stub-awcms.mjs"
 location: "L377"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Stub_CMS_State_Machine
+  - community/stub-awcmsmjs
 ---
 
 # computeQuote()
@@ -21,4 +21,4 @@ tags:
 - [[stub-awcms.mjs]] - `contains` [EXTRACTED]
 - [[toCents()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Stub_CMS_State_Machine
+#graphify/code #graphify/EXTRACTED #community/stub-awcmsmjs

@@ -1,12 +1,12 @@
 ---
 source_file: "packages/gerbang/lib/git.mjs"
 type: "code"
-community: "Build Smoke Harness (Bun Spawn)"
+community: "bun"
 location: "L119"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Build_Smoke_Harness_Bun_Spawn
+  - community/bun
 ---
 
 # gitRunInherit()
@@ -16,4 +16,4 @@ tags:
 - [[git.mjs]] - `contains` [EXTRACTED]
 - [[rilis.mjs]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Build_Smoke_Harness_Bun_Spawn
+#graphify/code #graphify/EXTRACTED #community/bun

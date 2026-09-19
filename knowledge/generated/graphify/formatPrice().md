@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/harga.ts"
 type: "code"
-community: "Cart Page & WhatsApp Fallback"
+community: "formatPrice"
 location: "L35"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Cart_Page__WhatsApp_Fallback
+  - community/formatPrice
 ---
 
 # formatPrice()
@@ -42,4 +42,4 @@ tags:
 - [[wa-fallback.ts]] - `imports` [EXTRACTED]
 - [[wishlist.ts]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Cart_Page__WhatsApp_Fallback
+#graphify/code #graphify/EXTRACTED #community/formatPrice

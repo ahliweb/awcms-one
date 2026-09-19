@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/akun-kontrak.ts"
 type: "code"
-community: "Customer Session Store"
+community: "bacaSesi"
 location: "L70"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Customer_Session_Store
+  - community/bacaSesi
 ---
 
 # validateSesi()
@@ -18,4 +18,4 @@ tags:
 - [[parseSesi()]] - `calls` [EXTRACTED]
 - [[validateAkun()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Customer_Session_Store
+#graphify/code #graphify/EXTRACTED #community/bacaSesi

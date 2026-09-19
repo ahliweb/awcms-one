@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/components/berita/ArtikelView.astro"
 type: "code"
-community: "berita.ts"
+community: "Sidebar.astro"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/beritats
+  - community/Sidebarastro
 ---
 
 # ArtikelView.astro
@@ -41,4 +41,4 @@ tags:
 - [[toDatetimeAttr()]] - `imports` [EXTRACTED]
 - [[videoslug.astro]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/beritats
+#graphify/code #graphify/EXTRACTED #community/Sidebarastro

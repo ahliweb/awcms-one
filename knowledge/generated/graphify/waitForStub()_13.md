@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/akun-dashboard-build-smoke.test.ts"
 type: "code"
-community: "Account Dashboard Build Smoke"
+community: "akun-dashboard-build-smoke.test.ts"
 location: "L27"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Account_Dashboard_Build_Smoke
+  - community/akun-dashboard-build-smoketestts
 ---
 
 # waitForStub()
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[akun-dashboard-build-smoke.test.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Account_Dashboard_Build_Smoke
+#graphify/code #graphify/EXTRACTED #community/akun-dashboard-build-smoketestts

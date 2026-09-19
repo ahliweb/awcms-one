@@ -38,21 +38,22 @@ SORT file.name ASC
 ```
 
 ## Connections to other communities
-- 9 edges to [[_COMMUNITY_berita.ts]]
-- 8 edges to [[_COMMUNITY_Article Pages & News JSON-LD]]
+- 8 edges to [[_COMMUNITY_videoslug.astro]]
 - 7 edges to [[_COMMUNITY_media.ts]]
 - 7 edges to [[_COMMUNITY_slugfeed.xml.ts]]
-- 6 edges to [[_COMMUNITY_Site Profile & Base Layout]]
-- 4 edges to [[_COMMUNITY_routes.ts]]
-- 3 edges to [[_COMMUNITY_navigasi-berita.ts]]
-- 2 edges to [[_COMMUNITY_Site Config, Sitemaps & Theme]]
-- 2 edges to [[_COMMUNITY_Newsletter Forms & Visitor Beacon]]
-- 1 edge to [[_COMMUNITY_Share Row & Social Icons]]
-- 1 edge to [[_COMMUNITY_Ad Popup]]
+- 6 edges to [[_COMMUNITY_profil.ts]]
+- 5 edges to [[_COMMUNITY_routes.ts]]
+- 5 edges to [[_COMMUNITY_berita.ts]]
+- 4 edges to [[_COMMUNITY_Sidebar.astro]]
+- 2 edges to [[_COMMUNITY_site.ts]]
+- 2 edges to [[_COMMUNITY_navigasi-berita.ts]]
+- 2 edges to [[_COMMUNITY_buletin.ts]]
+- 1 edge to [[_COMMUNITY_bagikan.test.ts]]
+- 1 edge to [[_COMMUNITY_iklan-popup.ts]]
 
 ## Top bridge nodes
-- [[BeritaLayout.astro]] - degree 28, connects to 10 communities
+- [[BeritaLayout.astro]] - degree 28, connects to 11 communities
 - [[meta-sosial.ts]] - degree 27, connects to 7 communities
 - [[meta-sosial.test.ts]] - degree 16, connects to 3 communities
+- [[PostDetail]] - degree 4, connects to 2 communities
 - [[FormBuletin.astro]] - degree 3, connects to 2 communities
-- [[videoSocialMeta()]] - degree 8, connects to 1 community

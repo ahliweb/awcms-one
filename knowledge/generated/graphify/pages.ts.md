@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/awcms/pages.ts"
 type: "code"
-community: "Portable Text & Static Pages"
+community: "portable-text.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Portable_Text__Static_Pages
+  - community/portable-textts
 ---
 
 # pages.ts
@@ -31,4 +31,4 @@ tags:
 - [[resetStaticPagesCacheForTests()]] - `contains` [EXTRACTED]
 - [[sitemap-sources.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Portable_Text__Static_Pages
+#graphify/code #graphify/EXTRACTED #community/portable-textts

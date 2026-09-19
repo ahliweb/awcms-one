@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/berita.ts"
 type: "code"
-community: "berita.ts"
+community: "Sidebar.astro"
 location: "L69"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/beritats
+  - community/Sidebarastro
 ---
 
 # PostSummary
@@ -18,4 +18,4 @@ tags:
 - [[Sidebar.astro]] - `imports` [EXTRACTED]
 - [[berita.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/beritats
+#graphify/code #graphify/EXTRACTED #community/Sidebarastro

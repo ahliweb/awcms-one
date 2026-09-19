@@ -1,12 +1,12 @@
 ---
 source_file: "tools/import-seputarborneo.ts"
 type: "code"
-community: "Legacy Taxonomy Mapping (Importer)"
+community: "import-seputarborneo.ts"
 location: "L669"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Legacy_Taxonomy_Mapping_Importer
+  - community/import-seputarborneots
 ---
 
 # SOCIAL_COLUMNS
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[import-seputarborneo.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Legacy_Taxonomy_Mapping_Importer
+#graphify/code #graphify/EXTRACTED #community/import-seputarborneots

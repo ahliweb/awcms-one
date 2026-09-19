@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tsconfig.json"
 type: "concept"
-community: "Storefront TypeScript Config"
+community: "extends"
 location: "L15"
 tags:
   - graphify/concept
   - graphify/EXTRACTED
-  - community/Storefront_TypeScript_Config
+  - community/extends
 ---
 
 # bun
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[types_1]] - `extends` [EXTRACTED]
 
-#graphify/concept #graphify/EXTRACTED #community/Storefront_TypeScript_Config
+#graphify/concept #graphify/EXTRACTED #community/extends

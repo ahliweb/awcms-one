@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/sitemap.ts"
 type: "code"
-community: "Site Config, Sitemaps & Theme"
+community: "site.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Site_Config_Sitemaps__Theme
+  - community/sitets
 ---
 
 # sitemap.ts
@@ -31,4 +31,4 @@ tags:
 - [[sitemap.test.ts]] - `imports_from` [EXTRACTED]
 - [[sources]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Site_Config_Sitemaps__Theme
+#graphify/code #graphify/EXTRACTED #community/sitets

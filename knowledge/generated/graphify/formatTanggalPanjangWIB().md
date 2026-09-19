@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/tanggal.ts"
 type: "code"
-community: "berita.ts"
+community: "Sidebar.astro"
 location: "L26"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/beritats
+  - community/Sidebarastro
 ---
 
 # formatTanggalPanjangWIB()
@@ -20,4 +20,4 @@ tags:
 - [[tanggal.ts]] - `contains` [EXTRACTED]
 - [[toDatetimeAttr()_1]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/beritats
+#graphify/code #graphify/EXTRACTED #community/Sidebarastro

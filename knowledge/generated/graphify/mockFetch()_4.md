@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/buletin-klien.test.ts"
 type: "code"
-community: "Newsletter Forms & Visitor Beacon"
+community: "buletin.ts"
 location: "L28"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Newsletter_Forms__Visitor_Beacon
+  - community/buletints
 ---
 
 # mockFetch()
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[buletin-klien.test.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Newsletter_Forms__Visitor_Beacon
+#graphify/code #graphify/EXTRACTED #community/buletints

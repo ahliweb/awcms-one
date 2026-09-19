@@ -1,12 +1,12 @@
 ---
 source_file: "tools/import-seputarborneo.ts"
 type: "code"
-community: "Legacy Taxonomy Mapping (Importer)"
+community: "import-seputarborneo.ts"
 location: "L229"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Legacy_Taxonomy_Mapping_Importer
+  - community/import-seputarborneots
 ---
 
 # UMUM_LEAF_LABELS
@@ -16,4 +16,4 @@ tags:
 - [[mapLegacyTaxonomy()]] - `references` [EXTRACTED]
 - [[normalizeLegacyTaxonomy()]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Legacy_Taxonomy_Mapping_Importer
+#graphify/code #graphify/EXTRACTED #community/import-seputarborneots

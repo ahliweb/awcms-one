@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/env.ts"
 type: "code"
-community: "Build-Time CMS Client & Region Data"
+community: "wilayah-checkout.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Build-Time_CMS_Client__Region_Data
+  - community/wilayah-checkoutts
 ---
 
 # env.ts
@@ -24,4 +24,4 @@ tags:
 - [[toko-origin.ts]] - `imports_from` [EXTRACTED]
 - [[wilayah-checkout.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Build-Time_CMS_Client__Region_Data
+#graphify/code #graphify/EXTRACTED #community/wilayah-checkoutts

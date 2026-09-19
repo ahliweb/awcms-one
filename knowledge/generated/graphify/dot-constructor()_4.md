@@ -1,12 +1,12 @@
 ---
 source_file: "tools/lib/mysql-dump-reader.ts"
 type: "code"
-community: "MySQL Dump Reader"
+community: "mysql-dump-reader.ts"
 location: "L358"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/MySQL_Dump_Reader
+  - community/mysql-dump-readerts
 ---
 
 # .constructor()
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[SqlInsertTokenizer]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/MySQL_Dump_Reader
+#graphify/code #graphify/EXTRACTED #community/mysql-dump-readerts

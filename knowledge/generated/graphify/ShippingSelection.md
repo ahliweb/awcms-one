@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/toko-klien.ts"
 type: "code"
-community: "Checkout Flow & Phone Preview"
+community: "checkout.ts"
 location: "L65"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Checkout_Flow__Phone_Preview
+  - community/checkoutts
 ---
 
 # ShippingSelection
@@ -15,4 +15,4 @@ tags:
 - [[checkout.ts]] - `imports` [EXTRACTED]
 - [[toko-klien.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Checkout_Flow__Phone_Preview
+#graphify/code #graphify/EXTRACTED #community/checkoutts

@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/keranjang-kontrak.ts"
 type: "code"
-community: "Cart Page & WhatsApp Fallback"
+community: "formatPrice"
 location: "L63"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Cart_Page__WhatsApp_Fallback
+  - community/formatPrice
 ---
 
 # Cart
@@ -18,4 +18,4 @@ tags:
 - [[keranjang.ts]] - `imports` [EXTRACTED]
 - [[wa-fallback.ts]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Cart_Page__WhatsApp_Fallback
+#graphify/code #graphify/EXTRACTED #community/formatPrice

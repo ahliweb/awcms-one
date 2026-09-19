@@ -1,12 +1,12 @@
 ---
 source_file: "tools/import-seputarborneo.ts"
 type: "code"
-community: "Legacy Taxonomy Mapping (Importer)"
+community: "import-seputarborneo.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Legacy_Taxonomy_Mapping_Importer
+  - community/import-seputarborneots
 ---
 
 # import-seputarborneo.ts
@@ -74,4 +74,4 @@ tags:
 - [[usage()]] - `contains` [EXTRACTED]
 - [[videoRedirectSourcePath()]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Legacy_Taxonomy_Mapping_Importer
+#graphify/code #graphify/EXTRACTED #community/import-seputarborneots

@@ -1,12 +1,12 @@
 ---
 source_file: "tools/rilis.mjs"
 type: "code"
-community: "Release & Changeset Tooling"
+community: "rilis.mjs"
 location: "L64"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Release__Changeset_Tooling
+  - community/rilismjs
 ---
 
 # git()
@@ -15,4 +15,4 @@ tags:
 - [[gitRunOrThrow()]] - `calls` [EXTRACTED]
 - [[rilis.mjs]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Release__Changeset_Tooling
+#graphify/code #graphify/EXTRACTED #community/rilismjs

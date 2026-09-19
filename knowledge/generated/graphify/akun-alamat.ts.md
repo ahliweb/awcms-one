@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/scripts/akun-alamat.ts"
 type: "code"
-community: "Account Address Book Script"
+community: "akun-alamat.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Account_Address_Book_Script
+  - community/akun-alamatts
 ---
 
 # akun-alamat.ts
@@ -48,4 +48,4 @@ tags:
 - [[wilayah-region-select.ts]] - `imports_from` [EXTRACTED]
 - [[wireCascadingRegionSelects()]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Account_Address_Book_Script
+#graphify/code #graphify/EXTRACTED #community/akun-alamatts

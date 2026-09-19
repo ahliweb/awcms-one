@@ -43,9 +43,9 @@ SORT file.name ASC
 ```
 
 ## Connections to other communities
-- 11 edges to [[_COMMUNITY_Importer Record Builders & Legacy URLs]]
+- 11 edges to [[_COMMUNITY_import-seputarborneo.test.mjs]]
 - 7 edges to [[_COMMUNITY_runExport]]
-- 6 edges to [[_COMMUNITY_Legacy Taxonomy Mapping (Importer)]]
+- 6 edges to [[_COMMUNITY_import-seputarborneo.ts]]
 
 ## Top bridge nodes
 - [[redirect-push.ts]] - degree 27, connects to 3 communities

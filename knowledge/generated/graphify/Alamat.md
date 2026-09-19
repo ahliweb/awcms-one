@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/akun-klien.ts"
 type: "code"
-community: "Checkout Flow & Phone Preview"
+community: "checkout.ts"
 location: "L125"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Checkout_Flow__Phone_Preview
+  - community/checkoutts
 ---
 
 # Alamat
@@ -16,4 +16,4 @@ tags:
 - [[akun-klien.ts]] - `contains` [EXTRACTED]
 - [[checkout.ts]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Checkout_Flow__Phone_Preview
+#graphify/code #graphify/EXTRACTED #community/checkoutts

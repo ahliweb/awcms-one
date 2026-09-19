@@ -1,12 +1,12 @@
 ---
 source_file: "packages/gerbang/lib/lockfile.mjs"
 type: "code"
-community: "Lockfile Check"
+community: "cek-lockfile.mjs"
 location: "L26"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Lockfile_Check
+  - community/cek-lockfilemjs
 ---
 
 # stripTrailingCommas()
@@ -16,4 +16,4 @@ tags:
 - [[lockfile.mjs]] - `contains` [EXTRACTED]
 - [[readJsonc()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Lockfile_Check
+#graphify/code #graphify/EXTRACTED #community/cek-lockfilemjs

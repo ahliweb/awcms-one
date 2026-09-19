@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/scripts/produk-listing.ts"
 type: "code"
-community: "Product Listing Filters & URL State"
+community: "produk-listing.ts"
 location: "L45"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Product_Listing_Filters__URL_State
+  - community/produk-listingts
 ---
 
 # readStateFromUrl()
@@ -17,4 +17,4 @@ tags:
 - [[produk-listing.ts]] - `contains` [EXTRACTED]
 - [[readFormState()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Product_Listing_Filters__URL_State
+#graphify/code #graphify/EXTRACTED #community/produk-listingts

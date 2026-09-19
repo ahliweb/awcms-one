@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/keranjang-kontrak.ts"
 type: "code"
-community: "Cart Storage & Cart Contract"
+community: "keranjang-kontrak.ts"
 location: "L70"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Cart_Storage__Cart_Contract
+  - community/keranjang-kontrakts
 ---
 
 # createEmptyCart()
@@ -19,4 +19,4 @@ tags:
 - [[loadCart()]] - `calls` [EXTRACTED]
 - [[wa-fallback.test.ts]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Cart_Storage__Cart_Contract
+#graphify/code #graphify/EXTRACTED #community/keranjang-kontrakts

@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/scripts/akun-alamat.ts"
 type: "code"
-community: "Account Address Book Script"
+community: "akun-alamat.ts"
 location: "L213"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Account_Address_Book_Script
+  - community/akun-alamatts
 ---
 
 # setDefault()
@@ -19,4 +19,4 @@ tags:
 - [[renderList()_1]] - `calls` [EXTRACTED]
 - [[showSubmitError()_1]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Account_Address_Book_Script
+#graphify/code #graphify/EXTRACTED #community/akun-alamatts

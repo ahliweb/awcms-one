@@ -30,12 +30,12 @@ SORT file.name ASC
 ```
 
 ## Connections to other communities
-- 5 edges to [[_COMMUNITY_Customer Session Store]]
-- 4 edges to [[_COMMUNITY_Account API Client]]
+- 5 edges to [[_COMMUNITY_bacaSesi]]
+- 4 edges to [[_COMMUNITY_akun-klien.ts]]
 - 4 edges to [[_COMMUNITY_akun-pesanan.ts]]
-- 2 edges to [[_COMMUNITY_Login (OTP) Page Script & Request Plumbing]]
-- 1 edge to [[_COMMUNITY_Cart Page & WhatsApp Fallback]]
-- 1 edge to [[_COMMUNITY_Site Profile & Base Layout]]
+- 2 edges to [[_COMMUNITY_masuk.ts]]
+- 1 edge to [[_COMMUNITY_formatPrice]]
+- 1 edge to [[_COMMUNITY_profil.ts]]
 
 ## Top bridge nodes
 - [[akun-ulasan.ts]] - degree 22, connects to 6 communities

@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/tanggal.ts"
 type: "code"
-community: "berita.ts"
+community: "Sidebar.astro"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/beritats
+  - community/Sidebarastro
 ---
 
 # tanggal.ts
@@ -27,4 +27,4 @@ tags:
 - [[pernahDiperbaruiSetelahTerbit()]] - `contains` [EXTRACTED]
 - [[toDatetimeAttr()]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/beritats
+#graphify/code #graphify/EXTRACTED #community/Sidebarastro

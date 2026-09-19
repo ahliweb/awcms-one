@@ -41,7 +41,7 @@ Two things this issue considered and did not do: `noindex` on rubrik pages beyon
 
 ## `noindex` pages
 
-`checkout`, `pesanan`, `cari`, `wishlist`, `keranjang`, `masuk`, `daftar`, and `akun` (issue #88) all carry `<meta name="robots" content="noindex, follow">` via `BaseLayout`'s `head` slot — none of them is a page a search result should ever land a reader on directly. `robots.txt` additionally `Disallow`s the fetch for the same paths (a bare `Disallow: /akun` covers every child account route, including `/akun/afiliasi` added by issue #93, S3 of #32) plus `/api/`.
+`checkout`, `pesanan`, `cari`, `wishlist`, `keranjang`, `masuk`, `daftar`, and `akun` (issue #88) all carry `<meta name="robots" content="noindex, follow">` via `BaseLayout`'s `head` slot — none of them is a page a search result should ever land a reader on directly. `robots.txt` additionally `Disallow`s the fetch for the same paths (a bare `Disallow: /akun` covers every child account route, including `/akun/afiliasi` added by issue #93, S3 of #32, and `/akun/pesan` — the customer inbox — added by issue #115, S3 of #33) plus `/api/`.
 
 ## Referral capture (`?ref=`) never becomes part of a canonical URL (issue #93)
 

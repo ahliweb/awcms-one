@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/toko-permintaan.ts"
 type: "code"
-community: "Login (OTP) Page Script & Request Plumbing"
+community: "masuk.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Login_OTP_Page_Script__Request_Plumbing
+  - community/masukts
 ---
 
 # toko-permintaan.ts
@@ -31,4 +31,4 @@ tags:
 - [[toko-klien.ts]] - `imports_from` [EXTRACTED]
 - [[toko-origin.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Login_OTP_Page_Script__Request_Plumbing
+#graphify/code #graphify/EXTRACTED #community/masukts

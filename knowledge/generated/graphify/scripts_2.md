@@ -1,12 +1,12 @@
 ---
 source_file: "package.json"
 type: "code"
-community: "Root Workspace Manifest"
+community: "scripts"
 location: "L21"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Root_Workspace_Manifest
+  - community/scripts
 ---
 
 # scripts
@@ -39,4 +39,4 @@ tags:
 - [[start_1]] - `contains` [EXTRACTED]
 - [[test]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Root_Workspace_Manifest
+#graphify/code #graphify/EXTRACTED #community/scripts

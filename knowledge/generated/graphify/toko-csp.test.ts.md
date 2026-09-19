@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/toko-csp.test.ts"
 type: "code"
-community: "Static Server & Legacy Redirect Rules"
+community: "penyaji.mjs"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Static_Server__Legacy_Redirect_Rules
+  - community/penyajimjs
 ---
 
 # toko-csp.test.ts
@@ -19,4 +19,4 @@ tags:
 - [[requireAwcmsOrigin()]] - `imports` [EXTRACTED]
 - [[toko-origin.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Static_Server__Legacy_Redirect_Rules
+#graphify/code #graphify/EXTRACTED #community/penyajimjs

@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/meta-sosial-build-smoke.test.ts"
 type: "code"
-community: "Social Meta Build Smoke"
+community: "meta-sosial-build-smoke.test.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Social_Meta_Build_Smoke
+  - community/meta-sosial-build-smoketestts
 ---
 
 # meta-sosial-build-smoke.test.ts
@@ -19,4 +19,4 @@ tags:
 - [[socialMeta()]] - `contains` [EXTRACTED]
 - [[waitForStub()_8]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Social_Meta_Build_Smoke
+#graphify/code #graphify/EXTRACTED #community/meta-sosial-build-smoketestts

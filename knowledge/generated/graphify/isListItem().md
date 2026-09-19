@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/portable-text.ts"
 type: "code"
-community: "Portable Text & Static Pages"
+community: "portable-text.ts"
 location: "L257"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Portable_Text__Static_Pages
+  - community/portable-textts
 ---
 
 # isListItem()
@@ -16,4 +16,4 @@ tags:
 - [[renderList()]] - `calls` [EXTRACTED]
 - [[renderPortableText()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Portable_Text__Static_Pages
+#graphify/code #graphify/EXTRACTED #community/portable-textts

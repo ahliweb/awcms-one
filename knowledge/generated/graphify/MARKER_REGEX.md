@@ -1,12 +1,12 @@
 ---
 source_file: "packages/gerbang/lib/docs-i18n-checks.mjs"
 type: "code"
-community: "Documentation & Graph Audit Gates"
+community: "audit-graf.mjs"
 location: "L43"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Documentation__Graph_Audit_Gates
+  - community/audit-grafmjs
 ---
 
 # MARKER_REGEX
@@ -16,4 +16,4 @@ tags:
 - [[docs-i18n-stamp.mjs]] - `imports` [EXTRACTED]
 - [[withoutMarker()]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Documentation__Graph_Audit_Gates
+#graphify/code #graphify/EXTRACTED #community/audit-grafmjs

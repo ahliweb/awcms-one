@@ -1,13 +1,13 @@
 ---
 type: community
-cohesion: 0.14
-members: 23
+cohesion: 0.11
+members: 28
 ---
 
 # routes.ts
 
-**Cohesion:** 0.14 - loosely connected
-**Members:** 23 nodes
+**Cohesion:** 0.11 - loosely connected
+**Members:** 28 nodes
 
 ## Members
 - [[404.astro]] - code - apps/storefront/src/pages/404.astro
@@ -22,9 +22,13 @@ members: 23
 - [[STATIC_PAGE_SLUGS]] - code - apps/storefront/src/config/routes.ts
 - [[SearchForm.astro]] - code - apps/storefront/src/components/SearchForm.astro
 - [[berita-guard-no-news-route.test.ts]] - code - apps/storefront/tests/berita-guard-no-news-route.test.ts
+- [[canonicalPath]] - code - apps/storefront/src/pages/daerah/[slug].astro
 - [[cari-berita.astro]] - code - apps/storefront/src/pages/cari-berita.astro
+- [[daerahslug.astro]] - code - apps/storefront/src/pages/daerah/[slug].astro
+- [[getStaticPaths()]] - code - apps/storefront/src/pages/daerah/[slug].astro
 - [[input]] - code - apps/storefront/src/pages/cari-berita.astro
 - [[listAllFiles()]] - code - apps/storefront/tests/berita-guard-no-news-route.test.ts
+- [[listDaerahLinks()]] - code - apps/storefront/src/lib/berita.ts
 - [[matches]] - code - apps/storefront/src/pages/cari-berita.astro
 - [[needle]] - code - apps/storefront/src/pages/cari-berita.astro
 - [[renderResult()]] - code - apps/storefront/src/pages/cari-berita.astro
@@ -33,6 +37,7 @@ members: 23
 - [[routes.ts]] - code - apps/storefront/src/config/routes.ts
 - [[status]] - code - apps/storefront/src/pages/cari-berita.astro
 - [[videoindex.astro]] - code - apps/storefront/src/pages/video/index.astro
+- [[{ slug }]] - code - apps/storefront/src/pages/daerah/[slug].astro
 
 ## Live Query (requires Dataview plugin)
 
@@ -42,31 +47,32 @@ SORT file.name ASC
 ```
 
 ## Connections to other communities
-- 21 edges to [[_COMMUNITY_berita.ts]]
-- 17 edges to [[_COMMUNITY_Site Profile & Base Layout]]
-- 11 edges to [[_COMMUNITY_navigasi-berita.ts]]
+- 17 edges to [[_COMMUNITY_profil.ts]]
+- 13 edges to [[_COMMUNITY_Sidebar.astro]]
+- 12 edges to [[_COMMUNITY_navigasi-berita.ts]]
+- 11 edges to [[_COMMUNITY_berita.ts]]
 - 8 edges to [[_COMMUNITY_slugfeed.xml.ts]]
-- 5 edges to [[_COMMUNITY_Portable Text & Static Pages]]
-- 5 edges to [[_COMMUNITY_Product & Category Pages, Product JSON-LD]]
-- 4 edges to [[_COMMUNITY_Site Config, Sitemaps & Theme]]
-- 4 edges to [[_COMMUNITY_BeritaLayout.astro]]
-- 4 edges to [[_COMMUNITY_Legacy Redirect Map & Video Lookup]]
-- 4 edges to [[_COMMUNITY_Article Pages & News JSON-LD]]
-- 3 edges to [[_COMMUNITY_Customer Session Store]]
-- 2 edges to [[_COMMUNITY_Catalog Data & Product Index]]
-- 2 edges to [[_COMMUNITY_Homepage & Derived CSP Artifact]]
-- 2 edges to [[_COMMUNITY_Blog Client & Ad Slots]]
+- 5 edges to [[_COMMUNITY_portable-text.ts]]
+- 5 edges to [[_COMMUNITY_productslug.astro]]
+- 5 edges to [[_COMMUNITY_site.ts]]
+- 5 edges to [[_COMMUNITY_BeritaLayout.astro]]
+- 4 edges to [[_COMMUNITY_getVideo]]
+- 4 edges to [[_COMMUNITY_videoslug.astro]]
+- 3 edges to [[_COMMUNITY_bacaSesi]]
+- 2 edges to [[_COMMUNITY_catalog.ts]]
+- 2 edges to [[_COMMUNITY_pagesindex.astro]]
+- 2 edges to [[_COMMUNITY_blog.ts]]
 - 2 edges to [[_COMMUNITY_media.ts]]
 - 2 edges to [[_COMMUNITY_akun-pesanan.ts]]
-- 2 edges to [[_COMMUNITY_Registration Page Script]]
-- 2 edges to [[_COMMUNITY_Login (OTP) Page Script & Request Plumbing]]
-- 1 edge to [[_COMMUNITY_Client-Side Search & Listing Renderer]]
-- 1 edge to [[_COMMUNITY_Cart Storage & Cart Contract]]
-- 1 edge to [[_COMMUNITY_Wishlist Storage & Account Sync]]
+- 2 edges to [[_COMMUNITY_daftar.ts]]
+- 2 edges to [[_COMMUNITY_masuk.ts]]
+- 1 edge to [[_COMMUNITY_cari-listing.ts]]
+- 1 edge to [[_COMMUNITY_keranjang-kontrak.ts]]
+- 1 edge to [[_COMMUNITY_wishlist-akun-sync.ts]]
 
 ## Top bridge nodes
-- [[routes.ts]] - degree 55, connects to 17 communities
-- [[ROUTES_1]] - degree 47, connects to 17 communities
+- [[routes.ts]] - degree 55, connects to 18 communities
+- [[ROUTES_1]] - degree 47, connects to 18 communities
+- [[daerahslug.astro]] - degree 10, connects to 4 communities
 - [[Header.astro]] - degree 9, connects to 4 communities
-- [[videoindex.astro]] - degree 7, connects to 3 communities
-- [[cari-berita.astro]] - degree 10, connects to 2 communities
+- [[videoindex.astro]] - degree 7, connects to 4 communities

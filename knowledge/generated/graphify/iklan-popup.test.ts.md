@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/iklan-popup.test.ts"
 type: "code"
-community: "Ad Popup"
+community: "iklan-popup.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Ad_Popup
+  - community/iklan-popupts
 ---
 
 # iklan-popup.test.ts
@@ -23,4 +23,4 @@ tags:
 - [[showModal()]] - `contains` [EXTRACTED]
 - [[supportsDialog()]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Ad_Popup
+#graphify/code #graphify/EXTRACTED #community/iklan-popupts

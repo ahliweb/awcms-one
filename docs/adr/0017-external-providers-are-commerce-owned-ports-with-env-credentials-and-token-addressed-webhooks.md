@@ -162,3 +162,22 @@ See the tables under D1–D4 above for the full dimension-by-dimension compariso
 - Only TWO new operations declare `security: []` and join `ALLOWED_PUBLIC_OPERATIONS`: the payment-gateway webhook intake (a provider callback has no session to present, by definition) and the payment-gateway session-creation endpoint (a guest identified by phone, matching the rest of the anonymous storefront surface's own trust model) — every other new endpoint requires either `customerBearer` or the owner's staff `bearerAuth` plus a `commerce.*` permission.
 - `payment_method` already carries the `gateway` enum value (added ahead of time, per ADR-0010's own "additive" note) and `shipping` already carries the `courier` method — D3/D4 do not need an enum migration, only a working adapter behind each.
 - No handler exists yet for any of D2–D10's endpoints; this ADR and its OpenAPI contract are the reviewed target C1–C9 (issues #107–#118) build against, not a description of running code.
+
+## Status — 19 September 2026: every decision implemented, `ROUTE_PARITY_EXEMPTIONS` empty
+
+Every child issue landed and every `ROUTE_PARITY_EXEMPTIONS` entry this contract needed has been removed — the set is empty on `main`, as this ADR required above.
+
+| Decision | Status | Landed by |
+| --- | --- | --- |
+| D1 — provider ports inside `commerce`, env credentials | Implemented — `ShippingRateProvider`, `PaymentGatewayProvider`, `WhatsappProvider`, each with a `log` dev/CI adapter, `withTimeout` + `getProviderCircuitBreaker`, called outside any DB transaction | #107, #108, #110 |
+| D2 — token-addressed public webhooks, replay protection | Implemented — `POST /api/v1/commerce/webhooks/{provider}/{endpointToken}`, `awcms_resolve_commerce_webhook_endpoint` (`SECURITY DEFINER`), `UNIQUE (tenant_id, provider, event_key)` on `awcms_commerce_payment_events`, `commerce:payments:reconcile` backstop | #110, #113 |
+| D3 — Midtrans Snap payment gateway | Implemented — redirect-based checkout, `/pesanan` 5 s polling, `COMMERCE_PAYMENT_GATEWAY=midtrans\|none`. Xendit remains a named follow-up, not built | #110, #112, #113 |
+| D4 — RajaOngkir courier rates, cached | Implemented — `awcms_commerce_shipping_rates`/`_courier_destinations` (`sql/924`), 6 h TTL, weight-bucketed, never called from inside the order transaction. Courier tracking remains a named follow-up, not built | #107, #109 |
+| D5 — WhatsApp outbox + OTP channel | Implemented — Fonnte + Meta Cloud API adapters, `awcms_commerce_whatsapp_messages` outbox (`sql/925`), `otp/request via: "whatsapp"` (login-only) | #108, #115 |
+| D6 — POS | Implemented — `orders.channel`, `payment_method = 'cash'` (`sql/931`), `commerce.pos.create`, `/admin/commerce-pos` | #116 |
+| D7 — sales reports | Implemented — three `reporting` `cursor_table`/`dimensional` projections (`commerce.sales_daily`/`_by_product`/`_by_category`, `sql/933`), `/admin/commerce-reports` | #117 |
+| D8 — inbox | Implemented — `awcms_commerce_conversations`/`_messages` (`sql/927`/`928`), bearer storefront routes, `/admin/commerce-inbox` | #111 |
+| D9 — campaigns, consent | Implemented — `awcms_commerce_campaigns`/`_campaign_recipients` (`sql/929`/`930`), `marketing_consent_at`, `commerce:campaigns:dispatch` | #114 |
+| D10 — feature toggles, tiered pricing | Implemented — `commerce` module settings `{pos, inbox, campaigns, gateway, courier}`, `price_level_{n}` at quote via `customerLevel` | #118 |
+
+Out of scope at this ADR's own writing and still out of scope: a database-backup admin screen (an operations concern — see [`docs/deployment.md`](../deployment.md)), customer-facing push notifications, courier package tracking, and the Xendit payment-gateway adapter (both named above as follow-ups behind ports this increment already built).

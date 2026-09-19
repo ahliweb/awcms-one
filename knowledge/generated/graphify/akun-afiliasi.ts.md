@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/scripts/akun-afiliasi.ts"
 type: "code"
-community: "Account Affiliate Page Script"
+community: "akun-afiliasi.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Account_Affiliate_Page_Script
+  - community/akun-afiliasits
 ---
 
 # akun-afiliasi.ts
@@ -42,4 +42,4 @@ tags:
 - [[toko-permintaan.ts]] - `imports_from` [EXTRACTED]
 - [[wa-fallback.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Account_Affiliate_Page_Script
+#graphify/code #graphify/EXTRACTED #community/akun-afiliasits

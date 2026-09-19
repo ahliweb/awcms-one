@@ -31,21 +31,21 @@ SORT file.name ASC
 ```
 
 ## Connections to other communities
-- 7 edges to [[_COMMUNITY_Cart Page & WhatsApp Fallback]]
-- 6 edges to [[_COMMUNITY_Account API Client]]
-- 6 edges to [[_COMMUNITY_Login (OTP) Page Script & Request Plumbing]]
-- 5 edges to [[_COMMUNITY_Customer Session Store]]
-- 5 edges to [[_COMMUNITY_Account Affiliate Page Script]]
-- 4 edges to [[_COMMUNITY_Account Dashboard Script]]
-- 4 edges to [[_COMMUNITY_Account Address Book Script]]
+- 7 edges to [[_COMMUNITY_formatPrice]]
+- 6 edges to [[_COMMUNITY_akun-klien.ts]]
+- 6 edges to [[_COMMUNITY_masuk.ts]]
+- 5 edges to [[_COMMUNITY_bacaSesi]]
+- 5 edges to [[_COMMUNITY_akun-afiliasi.ts]]
+- 4 edges to [[_COMMUNITY_akun.ts]]
+- 4 edges to [[_COMMUNITY_akun-alamat.ts]]
 - 4 edges to [[_COMMUNITY_akun-ulasan.ts]]
-- 4 edges to [[_COMMUNITY_Registration Page Script]]
-- 3 edges to [[_COMMUNITY_Commerce Storefront Client & Order Tracking]]
+- 4 edges to [[_COMMUNITY_daftar.ts]]
+- 3 edges to [[_COMMUNITY_toko-klien.ts]]
 - 2 edges to [[_COMMUNITY_routes.ts]]
-- 1 edge to [[_COMMUNITY_Price Formatting & Product Cards]]
-- 1 edge to [[_COMMUNITY_Cart Storage & Cart Contract]]
-- 1 edge to [[_COMMUNITY_Checkout Flow & Phone Preview]]
-- 1 edge to [[_COMMUNITY_Site Profile & Base Layout]]
+- 1 edge to [[_COMMUNITY_harga.ts]]
+- 1 edge to [[_COMMUNITY_keranjang-kontrak.ts]]
+- 1 edge to [[_COMMUNITY_checkout.ts]]
+- 1 edge to [[_COMMUNITY_profil.ts]]
 
 ## Top bridge nodes
 - [[buildWhatsappUrl()]] - degree 19, connects to 9 communities

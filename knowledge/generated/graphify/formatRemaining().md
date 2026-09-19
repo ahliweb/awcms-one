@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/scripts/flash-sale-countdown.ts"
 type: "code"
-community: "Flash Sale Countdown"
+community: "flash-sale-countdown.ts"
 location: "L22"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Flash_Sale_Countdown
+  - community/flash-sale-countdownts
 ---
 
 # formatRemaining()
@@ -15,4 +15,4 @@ tags:
 - [[flash-sale-countdown.ts]] - `contains` [EXTRACTED]
 - [[tick()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Flash_Sale_Countdown
+#graphify/code #graphify/EXTRACTED #community/flash-sale-countdownts

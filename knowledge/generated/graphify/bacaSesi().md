@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/akun-sesi.ts"
 type: "code"
-community: "Customer Session Store"
+community: "bacaSesi"
 location: "L40"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Customer_Session_Store
+  - community/bacaSesi
 ---
 
 # bacaSesi()
@@ -37,4 +37,4 @@ tags:
 - [[tulisKeAkunJikaMasuk()]] - `calls` [EXTRACTED]
 - [[wishlist-akun-sync.ts]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Customer_Session_Store
+#graphify/code #graphify/EXTRACTED #community/bacaSesi

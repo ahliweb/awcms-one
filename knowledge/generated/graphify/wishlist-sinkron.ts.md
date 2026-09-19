@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/wishlist-sinkron.ts"
 type: "code"
-community: "Wishlist Storage & Account Sync"
+community: "wishlist-akun-sync.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Wishlist_Storage__Account_Sync
+  - community/wishlist-akun-syncts
 ---
 
 # wishlist-sinkron.ts
@@ -18,4 +18,4 @@ tags:
 - [[wishlist-akun-sync.ts]] - `imports_from` [EXTRACTED]
 - [[wishlist-sinkron.test.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Wishlist_Storage__Account_Sync
+#graphify/code #graphify/EXTRACTED #community/wishlist-akun-syncts

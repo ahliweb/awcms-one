@@ -1,12 +1,12 @@
 ---
 source_file: "packages/kontrak/tsconfig.json"
 type: "code"
-community: "Kontrak TypeScript Config"
+community: "compilerOptions"
 location: "L3"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Kontrak_TypeScript_Config
+  - community/compilerOptions
 ---
 
 # compilerOptions
@@ -20,4 +20,4 @@ tags:
 - [[strict]] - `contains` [EXTRACTED]
 - [[target]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Kontrak_TypeScript_Config
+#graphify/code #graphify/EXTRACTED #community/compilerOptions

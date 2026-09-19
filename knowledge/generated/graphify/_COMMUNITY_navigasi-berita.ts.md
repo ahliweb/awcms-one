@@ -1,13 +1,13 @@
 ---
 type: community
-cohesion: 0.07
-members: 53
+cohesion: 0.08
+members: 49
 ---
 
 # navigasi-berita.ts
 
-**Cohesion:** 0.07 - loosely connected
-**Members:** 53 nodes
+**Cohesion:** 0.08 - loosely connected
+**Members:** 49 nodes
 
 ## Members
 - [[DAERAH_PANEL_ID]] - code - apps/storefront/src/lib/navigasi-berita.ts
@@ -25,9 +25,8 @@ members: 53
 - [[RubrikNode]] - code - apps/storefront/src/lib/berita.ts
 - [[UmumItem]] - code - apps/storefront/src/lib/navigasi-berita.ts
 - [[branchOrder()]] - code - apps/storefront/src/lib/navigasi-berita.ts
+- [[buildIndex()]] - code - apps/storefront/src/lib/berita.ts
 - [[buildRegionIndex()]] - code - apps/storefront/src/lib/awcms/wilayah.ts
-- [[canonicalPath]] - code - apps/storefront/src/pages/daerah/[slug].astro
-- [[daerahslug.astro]] - code - apps/storefront/src/pages/daerah/[slug].astro
 - [[daerahActive]] - code - apps/storefront/src/components/berita/NavBerita.astro
 - [[daerahOrderIndex()]] - code - apps/storefront/src/lib/navigasi-berita.ts
 - [[findKaltengProvince()]] - code - apps/storefront/src/lib/awcms/wilayah.ts
@@ -39,10 +38,8 @@ members: 53
 - [[getProvinces()]] - code - apps/storefront/src/lib/awcms/wilayah.ts
 - [[getRegenciesOf()]] - code - apps/storefront/src/lib/awcms/wilayah.ts
 - [[getResolvableRegionsByCode()]] - code - apps/storefront/src/lib/awcms/wilayah.ts
-- [[getStaticPaths()]] - code - apps/storefront/src/pages/daerah/[slug].astro
 - [[institution()]] - code - apps/storefront/tests/navigasi-berita.test.ts
 - [[isActive()]] - code - apps/storefront/src/components/berita/NavBerita.astro
-- [[listDaerahLinks()]] - code - apps/storefront/src/lib/berita.ts
 - [[listLintasKalimantanProvinces()]] - code - apps/storefront/src/lib/awcms/wilayah.ts
 - [[listRegions()]] - code - apps/storefront/src/lib/awcms/wilayah.ts
 - [[matchesProvinceName()]] - code - apps/storefront/src/lib/awcms/wilayah.ts
@@ -62,7 +59,6 @@ members: 53
 - [[toRegionRef()]] - code - apps/storefront/src/lib/berita.ts
 - [[wilayah.ts]] - code - apps/storefront/src/lib/awcms/wilayah.ts
 - [[year_1]] - code - apps/storefront/src/components/berita/FooterBerita.astro
-- [[{ slug }]] - code - apps/storefront/src/pages/daerah/[slug].astro
 
 ## Live Query (requires Dataview plugin)
 
@@ -72,22 +68,22 @@ SORT file.name ASC
 ```
 
 ## Connections to other communities
-- 19 edges to [[_COMMUNITY_berita.ts]]
-- 11 edges to [[_COMMUNITY_routes.ts]]
-- 10 edges to [[_COMMUNITY_slugfeed.xml.ts]]
-- 7 edges to [[_COMMUNITY_media.ts]]
-- 5 edges to [[_COMMUNITY_Blog Client & Ad Slots]]
-- 3 edges to [[_COMMUNITY_Portable Text & Static Pages]]
-- 3 edges to [[_COMMUNITY_BeritaLayout.astro]]
-- 2 edges to [[_COMMUNITY_Build-Time CMS Client & Region Data]]
-- 2 edges to [[_COMMUNITY_Site Profile & Base Layout]]
-- 2 edges to [[_COMMUNITY_Share Row & Social Icons]]
-- 2 edges to [[_COMMUNITY_Article Pages & News JSON-LD]]
-- 1 edge to [[_COMMUNITY_Site Config, Sitemaps & Theme]]
+- 16 edges to [[_COMMUNITY_berita.ts]]
+- 12 edges to [[_COMMUNITY_routes.ts]]
+- 9 edges to [[_COMMUNITY_media.ts]]
+- 9 edges to [[_COMMUNITY_slugfeed.xml.ts]]
+- 7 edges to [[_COMMUNITY_blog.ts]]
+- 5 edges to [[_COMMUNITY_portable-text.ts]]
+- 2 edges to [[_COMMUNITY_wilayah-checkout.ts]]
+- 2 edges to [[_COMMUNITY_profil.ts]]
+- 2 edges to [[_COMMUNITY_bagikan.test.ts]]
+- 2 edges to [[_COMMUNITY_BeritaLayout.astro]]
+- 2 edges to [[_COMMUNITY_Sidebar.astro]]
+- 2 edges to [[_COMMUNITY_videoslug.astro]]
 
 ## Top bridge nodes
-- [[navigasi-berita.ts]] - degree 45, connects to 7 communities
+- [[navigasi-berita.ts]] - degree 45, connects to 8 communities
 - [[FooterBerita.astro]] - degree 13, connects to 5 communities
 - [[navigasi-berita.test.ts]] - degree 16, connects to 4 communities
+- [[buildIndex()]] - degree 13, connects to 4 communities
 - [[NavBerita.astro]] - degree 11, connects to 4 communities
-- [[wilayah.ts]] - degree 18, connects to 3 communities

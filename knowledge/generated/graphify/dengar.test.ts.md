@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/dengar.test.ts"
 type: "code"
-community: "Read-Aloud Player"
+community: "dengar.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Read-Aloud_Player
+  - community/dengarts
 ---
 
 # dengar.test.ts
@@ -25,4 +25,4 @@ tags:
 - [[teksDari()]] - `contains` [EXTRACTED]
 - [[tulisSimpanan()]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Read-Aloud_Player
+#graphify/code #graphify/EXTRACTED #community/dengarts

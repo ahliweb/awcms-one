@@ -1,12 +1,12 @@
 ---
 source_file: "tests/knowledge-no-subtree-write.test.mjs"
 type: "code"
-community: "Knowledge Subtree-Write Guard Test"
+community: "knowledge-no-subtree-write.test.mjs"
 location: "L139"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Knowledge_Subtree-Write_Guard_Test
+  - community/knowledge-no-subtree-writetestmjs
 ---
 
 # buildFixture()
@@ -16,4 +16,4 @@ tags:
 - [[knowledge-no-subtree-write.test.mjs]] - `contains` [EXTRACTED]
 - [[write()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Knowledge_Subtree-Write_Guard_Test
+#graphify/code #graphify/EXTRACTED #community/knowledge-no-subtree-writetestmjs

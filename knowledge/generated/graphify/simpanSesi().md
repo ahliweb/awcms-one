@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/akun-sesi.ts"
 type: "code"
-community: "Customer Session Store"
+community: "bacaSesi"
 location: "L60"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Customer_Session_Store
+  - community/bacaSesi
 ---
 
 # simpanSesi()
@@ -18,4 +18,4 @@ tags:
 - [[masuk.ts]] - `imports` [EXTRACTED]
 - [[tulis()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Customer_Session_Store
+#graphify/code #graphify/EXTRACTED #community/bacaSesi
