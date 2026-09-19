@@ -66,13 +66,27 @@ const affiliateCommissionRate =
   screen.state === "allowed" ? screen.data.affiliateCommissionRate : null;
 const canUpdate = screen.state === "allowed" && screen.data.canUpdate;
 
+// Issue #107 — `shipping.courier` gets its own explicit section below (an
+// enabled toggle, an origin-destination picker, a couriers multi-select),
+// the same "pull the field out of the JSON blob" treatment
+// `affiliateCommissionRate` already got. It is therefore EXCLUDED from the
+// advanced JSON here so there is exactly one place to edit it, never two
+// that can disagree — the submit handler re-attaches it from the dedicated
+// controls before sending.
+const shippingWithoutCourier = settings
+  ? (() => {
+      const { courier: _courier, ...rest } = settings.shipping;
+      return rest;
+    })()
+  : null;
+
 const advancedJson = settings
   ? JSON.stringify(
       {
         faqs: settings.faqs,
         social: settings.social,
         customerLevels: settings.customerLevels,
-        shipping: settings.shipping,
+        shipping: shippingWithoutCourier,
         payment: settings.payment,
         promoSection: settings.promoSection,
         meta: settings.meta
@@ -81,6 +95,25 @@ const advancedJson = settings
       2
     )
   : "{}";
+
+const courier = settings?.shipping.courier ?? {
+  enabled: false,
+  originDestinationId: null,
+  couriers: []
+};
+
+// Issue #107 — fixed courier list the courier settings understand
+// (`domain/store-settings-validation.ts`'s `COURIER_CODE_PATTERN` accepts
+// any lowercase code, but this screen only ever offers the couriers the
+// RajaOngkir adapter is known to carry).
+const COURIER_OPTIONS = [
+  { value: "jne", label: "JNE" },
+  { value: "jnt", label: "J&T Express" },
+  { value: "sicepat", label: "SiCepat" },
+  { value: "pos", label: "POS Indonesia" },
+  { value: "tiki", label: "TIKI" },
+  { value: "anteraja", label: "AnterAja" }
+] as const;
 ---
 
 <AdminLayout
@@ -197,10 +230,53 @@ const advancedJson = settings
           value={affiliateCommissionRate ?? ""}
         />
 
+        <p class="form-legend">{t("Courier rates (RajaOngkir)")}</p>
+        <p class="cell-muted">
+          {t(
+            "Turn on live courier rates for checkout. Requires a courier rate provider configured for this deployment (see the deployment guide) — otherwise shoppers still see a disabled courier option."
+          )}
+        </p>
+
+        <label>
+          <input id="cr-enabled" type="checkbox" checked={courier.enabled} />{" "}
+          {t("Enable courier rates")}
+        </label>
+
+        <label for="cr-search">
+          {t("Store origin (search by city or subdistrict)")}
+        </label>
+        <input
+          id="cr-search"
+          type="text"
+          list="cr-datalist"
+          placeholder="e.g. Sukajadi Bandung"
+          autocomplete="off"
+          value={courier.originDestinationId ?? ""}
+        />
+        <datalist id="cr-datalist" />
+        <p class="cell-muted">
+          {t("Type to search, then pick a suggestion to fill in its id.")}
+        </p>
+
+        <label for="cr-couriers">{t("Couriers to quote")}</label>
+        <select id="cr-couriers" multiple size={6}>
+          {COURIER_OPTIONS.map((option) => (
+            <option
+              value={option.value}
+              selected={courier.couriers.includes(option.value)}
+            >
+              {option.label}
+            </option>
+          ))}
+        </select>
+        <p class="cell-muted">
+          {t("Hold Ctrl/Cmd (or Shift) to select more than one courier.")}
+        </p>
+
         <p class="form-legend">{t("Advanced settings (JSON)")}</p>
         <p class="cell-muted">
           {t(
-            "FAQs, social links, customer levels, shipping, payment (including bank accounts — never shown publicly), promo section, and per-page meta titles."
+            "FAQs, social links, customer levels, shipping (except courier rates, above), payment (including bank accounts — never shown publicly), promo section, and per-page meta titles."
           )}
         </p>
         <label for="settings-advanced" class="sr-only">
@@ -223,7 +299,13 @@ const advancedJson = settings
 <script>
   import { messageBox, sendJson } from "../../lib/ui/admin-form-client";
 
-  const form = document.getElementById("store-settings-form");
+  const el = (id: string) => document.getElementById(id);
+  const val = (id: string) =>
+    (el(id) as HTMLInputElement | HTMLTextAreaElement | null)?.value.trim() ??
+    "";
+  const orNull = (input: string) => (input === "" ? null : input);
+
+  const form = el("store-settings-form");
   const errorBox = messageBox("store-settings-error");
   const successBox = messageBox("store-settings-success");
 
@@ -232,27 +314,30 @@ const advancedJson = settings
     errorBox.clear();
     successBox.clear();
 
-    const submit = document.getElementById(
-      "store-settings-submit"
-    ) as HTMLButtonElement | null;
+    const submit = el("store-settings-submit") as HTMLButtonElement | null;
 
     let advanced: Record<string, unknown>;
     try {
-      const raw = (
-        document.getElementById("settings-advanced") as HTMLTextAreaElement
-      ).value;
-      advanced = JSON.parse(raw || "{}");
+      advanced = JSON.parse(val("settings-advanced") || "{}");
     } catch {
       errorBox.show("Advanced settings must be valid JSON.");
       return;
     }
 
-    const value = (id: string) =>
-      (
-        document.getElementById(id) as
-          HTMLInputElement | HTMLTextAreaElement | null
-      )?.value.trim() ?? "";
-    const blankToNull = (input: string) => (input === "" ? null : input);
+    // Issue #107 — re-attach `shipping.courier` from the dedicated controls
+    // (excluded from the advanced JSON, see the frontmatter's own comment).
+    // Both controls render whenever this form does, same as every other
+    // field here, so they are asserted rather than re-guarded.
+    advanced.shipping = {
+      ...(advanced.shipping as Record<string, unknown> | undefined),
+      courier: {
+        enabled: (el("cr-enabled") as HTMLInputElement).checked,
+        originDestinationId: orNull(val("cr-search")),
+        couriers: [
+          ...(el("cr-couriers") as HTMLSelectElement).selectedOptions
+        ].map((option) => option.value)
+      }
+    };
 
     if (submit) {
       submit.disabled = true;
@@ -260,18 +345,16 @@ const advancedJson = settings
     }
 
     const result = await sendJson("PUT", "/api/v1/commerce/store-settings", {
-      storeName: value("settings-storeName"),
-      tagline: blankToNull(value("settings-tagline")),
-      logoMediaObjectId: blankToNull(value("settings-logoMediaObjectId")),
-      faviconMediaObjectId: blankToNull(value("settings-faviconMediaObjectId")),
-      address: blankToNull(value("settings-address")),
-      phone: blankToNull(value("settings-phone")),
-      whatsapp: blankToNull(value("settings-whatsapp")),
-      email: blankToNull(value("settings-email")),
-      mapsEmbedUrl: blankToNull(value("settings-mapsEmbedUrl")),
-      affiliateCommissionRate: blankToNull(
-        value("settings-affiliateCommissionRate")
-      ),
+      storeName: val("settings-storeName"),
+      tagline: orNull(val("settings-tagline")),
+      logoMediaObjectId: orNull(val("settings-logoMediaObjectId")),
+      faviconMediaObjectId: orNull(val("settings-faviconMediaObjectId")),
+      address: orNull(val("settings-address")),
+      phone: orNull(val("settings-phone")),
+      whatsapp: orNull(val("settings-whatsapp")),
+      email: orNull(val("settings-email")),
+      mapsEmbedUrl: orNull(val("settings-mapsEmbedUrl")),
+      affiliateCommissionRate: orNull(val("settings-affiliateCommissionRate")),
       ...advanced
     });
 
@@ -287,5 +370,49 @@ const advancedJson = settings
       submit.disabled = false;
       submit.textContent = "Save store settings";
     }
+  });
+
+  // Issue #107 — debounced search against the owner-only
+  // `GET /api/v1/commerce/shipping/destinations?search=`, offered through a
+  // native `<datalist>` (no custom list markup/selection JS to ship): each
+  // fetch fills the datalist with one `<option value=id>` per candidate
+  // (`textContent` is the visible suggestion text, `value` is what the
+  // browser fills THIS SAME field with on pick — the search box doubles as
+  // the id field, pre-filled with the currently configured id, so there is
+  // no second mirrored control to keep in sync). Provider-supplied text
+  // only ever goes through `textContent`, never `innerHTML`. `fetch`
+  // defaults to same-origin credentials already, so this never sets that
+  // option explicitly. `cr-datalist` renders alongside `cr-search` (same
+  // permission gate as every other field on this form), so it is asserted
+  // rather than re-guarded.
+  const search = el("cr-search") as HTMLInputElement | null;
+  const dl = el("cr-datalist") as HTMLDataListElement;
+  let timer: ReturnType<typeof setTimeout> | undefined;
+
+  search?.addEventListener("input", () => {
+    clearTimeout(timer);
+    const query = search.value.trim();
+    if (query.length < 2) return;
+
+    timer = setTimeout(async () => {
+      const response = await fetch(
+        `/api/v1/commerce/shipping/destinations?search=${encodeURIComponent(query)}`
+      );
+      const payload = response.ok ? await response.json() : null;
+      // A failure carries no `data` key at all (the shared error envelope),
+      // so this is already `[]` on failure — no separate `success` check.
+      const items = (payload?.data?.items ?? []) as {
+        id: string;
+        label: string;
+      }[];
+
+      dl.innerHTML = "";
+      for (const item of items) {
+        const option = document.createElement("option");
+        option.value = item.id;
+        option.textContent = item.label;
+        dl.appendChild(option);
+      }
+    }, 300);
   });
 </script>

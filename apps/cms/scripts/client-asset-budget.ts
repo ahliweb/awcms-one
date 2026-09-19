@@ -491,8 +491,23 @@ export const READER_BUDGET_BYTES = 24_000;
  * own three-way PATCH/POST duplication into two small local helpers rather
  * than one `sendJson` call per button, the same consolidation instinct at
  * screen scale. 231,000 keeps a small margin above the measured total.
+ *
+ * **Raised to 231,500 B after Issue #107** (awcms-one epic #33, C1) — the
+ * courier-settings section added to `commerce-settings.astro` (an enabled
+ * toggle, a debounced origin-destination search against `GET .../commerce/
+ * shipping/destinations` rendered through a native `<datalist>` rather than
+ * custom list markup, and a couriers multi-select), measured at 1,748 B for
+ * the whole screen's script chunk. The new logic itself is ~620 B: it
+ * reuses this same screen's own `el`/`val`/`orNull` one-line helpers rather
+ * than adding a second copy, asserts elements that render under the exact
+ * same permission gate as every other field on the form instead of
+ * re-guarding them, and resolves the picked destination through the search
+ * box's OWN value (the browser fills it in on pick) rather than a second
+ * mirrored field to keep in sync — the Issue #552 "one shared lifecycle,
+ * not one per screen" lesson, applied to a genuinely new control this repo
+ * had none of yet, not per-screen duplication of one that already existed.
  */
-export const APP_BUDGET_BYTES = 231_000;
+export const APP_BUDGET_BYTES = 231_500;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.

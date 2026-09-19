@@ -63,3 +63,12 @@ integration.test.ts`.
 
 OpenAPI: `destination`/`shippingOptions` added to the quote request/result schemas,
 new `GET /api/v1/commerce/shipping/destinations` path, bundled.
+
+**Admin screen**: `/admin/commerce-settings` gains a courier section — an enabled
+toggle, a debounced origin-destination search (against the new endpoint above,
+rendered through a native `<datalist>` rather than custom list markup/JS) that
+doubles as the id field, and a couriers multi-select (`jne`/`jnt`/`sicepat`/`pos`/
+`tiki`/`anteraja`); it writes through the existing `PUT /store-settings`, i18n
+`en`+`id`. `APP_BUDGET_BYTES` (`apps/cms/scripts/client-asset-budget.ts`) raised
+from 231,000 to 231,500 B to fit the new (non-duplicative) control — reasoning
+recorded in that file's own docblock.
