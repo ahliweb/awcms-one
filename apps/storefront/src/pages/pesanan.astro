@@ -76,8 +76,10 @@ const whatsappNumber = storeSettings.whatsapp ?? identity.whatsappNumber ?? "";
       </div>
 
       <div class="toko-section" data-payment-section hidden>
-        <h2>Instruksi Pembayaran</h2>
+        <h2>Pembayaran</h2>
         <div data-payment-instructions></div>
+        <button type="button" data-gateway-pay hidden>Bayar sekarang</button>
+        <p data-gateway-status aria-live="polite"></p>
       </div>
 
       <div class="toko-section">

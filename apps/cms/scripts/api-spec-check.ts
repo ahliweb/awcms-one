@@ -182,7 +182,27 @@ const ALLOWED_PUBLIC_OPERATIONS = new Set([
   // from the request Origin/Host and per-IP/per-e-mail rate limited, matching
   // the rest of the anonymous commerce storefront surface just above.
   "requestCommerceStorefrontAccountOtp",
-  "verifyCommerceStorefrontAccountOtp"
+  "verifyCommerceStorefrontAccountOtp",
+  // commerce integrations (Issue #106, ADR-0017, awcms-one epic #33 wave 0) —
+  // CONTRACT ONLY today (see ROUTE_PARITY_EXEMPTIONS below). Exactly two new
+  // operations are genuinely anonymous, for two DIFFERENT structural reasons:
+  //
+  // `receiveCommercePaymentWebhook` is a provider callback (Midtrans) — it
+  // carries no session by definition, the same reason every other webhook
+  // intake in this codebase is public. It resolves its tenant from an opaque,
+  // hashed `endpointToken` (D2) rather than a client-supplied header or an
+  // unverified payload field, verifies the provider's own signature
+  // timing-safe, and is replay-protected by a UNIQUE constraint — not an
+  // oracle, because a caller without the token cannot address a tenant at
+  // all, let alone learn anything from the response.
+  //
+  // `createCommerceStorefrontPaymentGatewaySession` matches the trust model
+  // the rest of the anonymous storefront surface already uses: a guest
+  // identified by phone (or an optional customerBearer, exactly like
+  // `createCommerceStorefrontOrder`/`createCommerceStorefrontReview` above),
+  // tenant-resolved from Origin/Host, rate-limited the same way.
+  "receiveCommercePaymentWebhook",
+  "createCommerceStorefrontPaymentGatewaySession"
 ]);
 
 /**
@@ -197,14 +217,50 @@ const ALLOWED_PUBLIC_OPERATIONS = new Set([
  * settled instead of re-deciding it. Each path here is removed the moment
  * its own route file lands; none is a permanent exemption.
  *
- * Empty as of Issue #92 — every wave's route files now exist under
+ * Was empty as of Issue #92 — every wave's route files existed under
  * `src/pages/api/v1/commerce/storefront/account/` (otp/request, otp/verify,
  * me, logout — Issue #89; addresses/wishlist/orders/reviews — Issue #91;
  * affiliate/affiliate-commissions — Issue #92) and
  * `src/pages/api/v1/commerce/{affiliates,affiliate-commissions}` (owner
  * side).
+ *
+ * Issue #106 (ADR-0017, awcms-one epic #33 wave 0) reopens the set: the
+ * external-providers contract (payment gateway, courier rates, WhatsApp, POS,
+ * reports, inbox, campaigns, webhook endpoints) is documented ahead of every
+ * one of its handlers, exactly as Issue #86 did for ADR-0016. Each entry below
+ * names the CHILD issue that removes it — the set is required to be empty
+ * again once that issue's route file lands.
  */
-const ROUTE_PARITY_EXEMPTIONS = new Set<string>([]);
+const ROUTE_PARITY_EXEMPTIONS = new Set<string>([
+  // #110 — payment gateway (schema, Midtrans Snap adapter, session endpoint,
+  // webhook endpoint tokens).
+  "/api/v1/commerce/storefront/orders/{orderCode}/payment-gateway/sessions",
+  "/api/v1/commerce/webhook-endpoints",
+  "/api/v1/commerce/webhook-endpoints/{id}",
+  // #113 — gateway webhook intake, system actor paid, payments reconcile job.
+  "/api/v1/commerce/webhooks/{provider}/{endpointToken}",
+  // #111 — customer inbox: conversations/messages, bearer + owner endpoints.
+  "/api/v1/commerce/storefront/account/conversations",
+  "/api/v1/commerce/storefront/account/conversations/{id}",
+  "/api/v1/commerce/storefront/account/conversations/{id}/messages",
+  "/api/v1/commerce/conversations",
+  "/api/v1/commerce/conversations/{id}",
+  "/api/v1/commerce/conversations/{id}/messages",
+  // #116 — POS: cash orders, channel, permission, POS screen + history.
+  "/api/v1/commerce/pos/orders",
+  // #114 — customer campaigns: consent, e-mail/WhatsApp mass notification,
+  // dispatcher, admin screen.
+  "/api/v1/commerce/campaigns",
+  "/api/v1/commerce/campaigns/{id}",
+  "/api/v1/commerce/campaigns/{id}/preview",
+  "/api/v1/commerce/campaigns/{id}/send",
+  "/api/v1/commerce/campaigns/{id}/cancel",
+  // #117 — sales reports: three reporting projections over order events +
+  // reports screen.
+  "/api/v1/reports/commerce/sales-daily",
+  "/api/v1/reports/commerce/sales-by-product",
+  "/api/v1/reports/commerce/sales-by-category"
+]);
 
 type OpenApiDocument = {
   security?: unknown[];

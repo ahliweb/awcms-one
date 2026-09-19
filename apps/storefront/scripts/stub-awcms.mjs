@@ -177,6 +177,45 @@
  * (#86's own D5 describes that as the CMS's job, not this storefront-only
  * stub's).
  *
+ * Issue #112 (S2 of #33, contract: #106 D3) adds the payment-gateway
+ * lifecycle: `store-settings-public.json`'s `payment.gatewayEnabled: true`
+ * lists `gateway` in `computeQuote`'s own `paymentMethods[]`; `POST
+ * …/orders/{code}/payment-gateway/sessions` mints (idempotently, per order)
+ * a session pointing at THIS process's own `GET /stub/gateway/{sessionId}`
+ * page — a tiny, un-styled HTML page with "Bayar (simulasi)"/"Batal" forms,
+ * deliberately served OUTSIDE `STOREFRONT_PREFIX`'s CORS/`Origin` gate (see
+ * `handleStubGatewayPage`'s own docblock for why) — which flips the order to
+ * `paid` or leaves it, then `302`s back to the storefront's own `/pesanan?
+ * kode=`.
+ *
+ * Issue #115 (S3 of #33, contract: #106 D5/D8/D9) adds:
+ *
+ *   - `via?: "email"|"whatsapp"` on `POST …/account/otp/request` (default
+ *     `"email"`); `via:"whatsapp"` is LOGIN-only, keyed by `phone` rather
+ *     than `email`, and answers `409 CHANNEL_UNAVAILABLE` when
+ *     `store-settings-public.json`'s own `whatsappOtpEnabled` is not `true`
+ *     — the same field this app's build reads to decide whether to render
+ *     the channel choice at all. `POST …/otp/verify` accepts `{phone, code,
+ *     purpose:"login"}` for that path, resolving the account by phone
+ *     instead of e-mail. The fixture account (`budi@example.test`,
+ *     `+6281234567890`) is what a WhatsApp login authenticates against —
+ *     the same OTP code (`123456`) as the e-mail path.
+ *   - `marketingConsent: boolean` on every account (default `false`,
+ *     `true` for the seeded fixture account), read/written by
+ *     `GET`/`PATCH …/account/me`.
+ *   - `awcms_commerce_conversations`/`…_messages`'s own bearer routes:
+ *     `GET/POST …/account/conversations`, `GET …/account/conversations/
+ *     {id}` (marks the thread read), `POST …/account/conversations/{id}/
+ *     messages` (`409 CONVERSATION_CLOSED` once `status` is `"closed"`,
+ *     `400 VALIDATION_ERROR` over 4000 characters). The fixture account is
+ *     seeded with one OPEN thread carrying an unread store reply and one
+ *     CLOSED thread, so `/akun/pesan`'s unread badge and "closed thread
+ *     shows a note" behaviour are both exercised with no manual message
+ *     first; every new customer message additionally schedules a
+ *     SIMULATED store auto-reply 2 seconds later (this issue's own "so
+ *     unread flags are exercised" requirement) — a `setTimeout` against
+ *     this process's own in-memory state, never persisted.
+ *
  * See `handleStorefrontRequest` below for the route table itself.
  */
 import { readFileSync } from "node:fs";
@@ -345,7 +384,85 @@ function storeSettings() {
   return fixture("store-settings-public.json");
 }
 
-function shippingOptionsFor(storeSettingsValue) {
+/** `tests/fixtures/awcms/shipping-rates.json`, read fresh every call (see this file's own header — no persistence, no caching layer here). */
+function shippingRatesFixture() {
+  return fixture("shipping-rates.json");
+}
+
+/**
+ * The real courier toggle (issue #109, contract: #106 D4) — `shipping.
+ * courier.enabled`/`.couriers` when present, falling back to the older
+ * `shipping.courierEnabled` boolean (with no per-courier allow-list) for a
+ * settings fixture that predates this issue, exactly as `store-settings-
+ * public.json`'s own comment for this app's read side (`pemasaran.ts`)
+ * describes.
+ */
+function courierSettings(storeSettingsValue) {
+  const courier = storeSettingsValue.shipping?.courier;
+  if (courier) return { enabled: Boolean(courier.enabled), couriers: courier.couriers ?? [] };
+  return { enabled: Boolean(storeSettingsValue.shipping?.courierEnabled), couriers: [] };
+}
+
+/** The single disabled placeholder row (contract's own shape) — one per "why", never several at once. */
+function unavailableCourierOption(note) {
+  return [{ method: "courier", serviceId: null, name: "Kurir", cost: null, etd: null, available: false, note }];
+}
+
+/**
+ * Real, priced courier options for `destination` (issue #109, contract:
+ * #106 D4) — one row per `{courier, service}` in `shipping-rates.json`,
+ * priced for `weightGrams` in whole-kilogram buckets (the fixture's own
+ * `baseCost` covers the first kg, `perExtraKg` each kg after it — the same
+ * "round UP, never down" a real courier's own weight bucketing uses, so a
+ * 100 g order is never quoted as if it weighed nothing). Falls back to the
+ * single disabled placeholder — courier off, no destination yet, or this
+ * destination has no rate row at all (an "unreachable for this provider"
+ * outcome, not a bug) — exactly per the contract's own "failure →
+ * `available:false` with a note".
+ */
+function buildCourierOptions(storeSettingsValue, destination, weightGrams) {
+  const settings = courierSettings(storeSettingsValue);
+
+  if (!settings.enabled) {
+    return unavailableCourierOption("Pengiriman kurir belum diaktifkan oleh toko ini.");
+  }
+
+  const districtCode = destination?.districtCode;
+  if (!districtCode) {
+    return unavailableCourierOption("Pilih kecamatan tujuan pada langkah alamat untuk melihat ongkir kurir.");
+  }
+
+  const ratesForDistrict = shippingRatesFixture()[districtCode];
+  if (!ratesForDistrict) {
+    return unavailableCourierOption("Kurir tidak tersedia untuk tujuan ini.");
+  }
+
+  const weightKg = Math.max(1, Math.ceil((weightGrams || 0) / 1000));
+  const extraKg = weightKg - 1;
+  const couriers = settings.couriers.length > 0 ? settings.couriers : Object.keys(ratesForDistrict);
+
+  const options = [];
+  for (const courier of couriers) {
+    const services = ratesForDistrict[courier];
+    if (!services) continue;
+
+    for (const [serviceCode, service] of Object.entries(services)) {
+      const costCents = toCents(service.baseCost) + extraKg * toCents(service.perExtraKg);
+      options.push({
+        method: "courier",
+        serviceId: `${courier}:${serviceCode}`,
+        name: service.name,
+        etd: service.etd,
+        cost: fromCents(costCents),
+        available: true
+      });
+    }
+  }
+
+  return options.length > 0 ? options : unavailableCourierOption("Kurir tidak tersedia untuk tujuan ini.");
+}
+
+function shippingOptionsFor(storeSettingsValue, destination, weightGrams) {
   const options = [];
   for (const service of storeSettingsValue.shipping?.alternativeServices ?? []) {
     options.push({ method: "alternative", serviceId: service.id, name: service.name, cost: service.cost, available: true });
@@ -353,14 +470,15 @@ function shippingOptionsFor(storeSettingsValue) {
   if (storeSettingsValue.shipping?.selfPickup) {
     options.push({ method: "self_pickup", serviceId: null, name: "Ambil di toko", cost: "0.00", available: true });
   }
-  options.push({
-    method: "courier",
-    serviceId: null,
-    name: "Kurir (segera)",
-    cost: null,
-    available: Boolean(storeSettingsValue.shipping?.courierEnabled)
-  });
+  options.push(...buildCourierOptions(storeSettingsValue, destination, weightGrams));
   return options;
+}
+
+/** `option.method === "courier"` or `"alternative"` both carry a `serviceId` that must match exactly; `self_pickup` never does — the one equality rule both `computeQuote`'s own shipping match and `/orders`' order-time re-validation share. */
+function shippingSelectionMatches(option, selection) {
+  if (option.method !== selection.method) return false;
+  if (option.method === "self_pickup") return true;
+  return option.serviceId === selection.serviceId;
 }
 
 function findVoucher(code) {
@@ -492,14 +610,10 @@ function computeQuote(body) {
     }
   }
 
-  const shippingOptions = shippingOptionsFor(settings);
+  const shippingOptions = shippingOptionsFor(settings, body.destination ?? null, weightGrams);
   let shipping = null;
   if (body.shipping) {
-    const match = shippingOptions.find(
-      (option) =>
-        option.method === body.shipping.method &&
-        (option.method !== "alternative" || option.serviceId === body.shipping.serviceId)
-    );
+    const match = shippingOptions.find((option) => shippingSelectionMatches(option, body.shipping));
     if (match && match.available) {
       shipping = { method: match.method, serviceId: match.serviceId, name: match.name, cost: match.cost ?? "0.00" };
     }
@@ -557,7 +671,10 @@ function computeQuote(body) {
     paymentMethods: [
       { method: "manual_qris", available: Boolean(settings.payment?.manualQris?.active) },
       { method: "manual_bank", available: Boolean(settings.payment?.manualBank?.active) },
-      { method: "dp", available: downPaymentAvailable }
+      { method: "dp", available: downPaymentAvailable },
+      // Issue #112 (contract: #106 D3) — listed, `available:true`, only
+      // when the fixture's own `payment.gatewayEnabled` is on.
+      { method: "gateway", available: Boolean(settings.payment?.gatewayEnabled) }
     ],
     canCheckout,
     quotedAt: new Date().toISOString()
@@ -569,6 +686,49 @@ const ORDERS = new Map();
 /** `idempotencyKey -> orderCode`, so a repeated `POST …/orders` answers with the SAME order (the contract's own rule) instead of creating a second one. */
 const IDEMPOTENCY_KEYS = new Map();
 let orderSequence = 0;
+
+// ---------------------------------------------------------------------------
+// Issue #112 (contract: #106 D3) — the payment-gateway session state machine.
+//
+// One session per order, minted the first time `POST …/orders/{code}/
+// payment-gateway/sessions` succeeds and reused on every later call for the
+// SAME order (this contract's own "idempotent per order") — never a second
+// `redirectUrl` for the same `pending_payment`/`gateway` order. Two maps
+// index the same object: by `orderCode` (the idempotency check) and by
+// `sessionId` (the `GET /stub/gateway/{id}` page and its "Bayar"/"Batal"
+// forms, which know only the session id from the URL, never the order code).
+// ---------------------------------------------------------------------------
+
+const GATEWAY_SESSIONS_BY_ORDER = new Map();
+const GATEWAY_SESSIONS_BY_ID = new Map();
+let gatewaySessionSequence = 0;
+
+/**
+ * The base URL the "Bayar"/"Batal" forms redirect back to, resolved once at
+ * SESSION-CREATION time (never re-derived later, since by the time a
+ * shopper clicks "Bayar" on the stub's own page there is no more storefront
+ * request to read it from). Contract's own choice, documented here because
+ * it is genuinely a choice: `SITE_URL` (this repo's own build/e2e variable,
+ * the storefront's real public origin) wins when set; otherwise this falls
+ * back to the CREATE-SESSION request's own `Referer` header (the checkout/
+ * tracking page's URL, sent by every real browser navigating there) origin;
+ * and, failing both, `ALLOWED_ORIGIN` (this stub's one known tenant origin)
+ * — a real awcms would instead read its OWN configured storefront origin
+ * (`apps/cms`'s own site-settings), which this fixture-only stub has no
+ * equivalent of.
+ */
+function gatewayReturnBase(request) {
+  if (process.env.SITE_URL) return process.env.SITE_URL.replace(/\/+$/, "");
+  const referer = request.headers.get("referer");
+  if (referer) {
+    try {
+      return new URL(referer).origin;
+    } catch {
+      // Falls through to ALLOWED_ORIGIN below.
+    }
+  }
+  return ALLOWED_ORIGIN;
+}
 
 // ---------------------------------------------------------------------------
 // Issue #88: the /account/* customer-account state machine (#86 contract)
@@ -693,6 +853,38 @@ function sumKomisi(commissions, status) {
   return total.toFixed(2);
 }
 
+/**
+ * Issue #115 — the fixture account's (`budi@example.test`) two seeded
+ * conversations: one OPEN with an unread store reply already sitting on it
+ * (so `/akun/pesan`'s unread badge is exercised without a manual message
+ * first), one CLOSED (so the "closed thread shows a note instead of the
+ * reply form" behaviour is exercised too). A freshly registered account
+ * starts with `conversations: []`, same as it starts with no addresses/
+ * orders/reviews.
+ */
+const SEEDED_CONVERSATIONS = [
+  {
+    id: "conv-seed-1",
+    subject: "Pertanyaan tentang pengiriman",
+    status: "open",
+    unreadForCustomer: 1,
+    messages: [
+      { id: "msg-seed-1", sender: "customer", body: "Kapan pesanan saya dikirim?", createdAt: "2026-02-01T01:00:00.000Z" },
+      { id: "msg-seed-2", sender: "store", body: "Pesanan Anda akan dikirim besok pagi.", createdAt: "2026-02-01T02:00:00.000Z" }
+    ]
+  },
+  {
+    id: "conv-seed-2",
+    subject: "Komplain produk rusak",
+    status: "closed",
+    unreadForCustomer: 0,
+    messages: [
+      { id: "msg-seed-3", sender: "customer", body: "Produk yang saya terima rusak.", createdAt: "2026-01-05T01:00:00.000Z" },
+      { id: "msg-seed-4", sender: "store", body: "Mohon maaf, kami akan proses pengembalian.", createdAt: "2026-01-05T05:00:00.000Z" }
+    ]
+  }
+];
+
 /** Accounts keyed by normalized e-mail — seeded once from the fixture, then grown by `purpose:"register"` verifies. */
 const ACCOUNTS = new Map(
   fixture("customer-accounts.json").map((account) => {
@@ -702,16 +894,22 @@ const ACCOUNTS = new Map(
       {
         ...account,
         // Only the fixture's own `budi@example.test` gets the seeded
-        // addresses/orders/affiliate state below — a second fixture row (if
-        // one is ever added) starts empty, same as a freshly registered
-        // account.
+        // addresses/orders/affiliate/conversations state below — a second
+        // fixture row (if one is ever added) starts empty, same as a
+        // freshly registered account.
         addresses: isSeeded ? SEEDED_ADDRESSES.map((a) => ({ ...a })) : [],
         wishlist: [],
         reviews: [],
         affiliate: isSeeded
           ? { code: deterministicAffiliateCode(account), commissionRate: "10.00", status: "active" }
           : null,
-        commissions: isSeeded ? SEEDED_KOMISI.map((k) => ({ ...k })) : []
+        commissions: isSeeded ? SEEDED_KOMISI.map((k) => ({ ...k })) : [],
+        // Issue #115 — the seeded account already opted in, so `/akun`'s
+        // consent toggle has something real to show ON by default.
+        marketingConsent: isSeeded ? true : false,
+        conversations: isSeeded
+          ? SEEDED_CONVERSATIONS.map((c) => ({ ...c, messages: c.messages.map((m) => ({ ...m })) }))
+          : []
       }
     ];
   })
@@ -810,7 +1008,8 @@ function serializeAccount(account) {
     phone: account.phone,
     level: account.level,
     createdAt: account.createdAt,
-    historyFrom: account.historyFrom
+    historyFrom: account.historyFrom,
+    marketingConsent: Boolean(account.marketingConsent)
   };
 }
 
@@ -830,11 +1029,48 @@ function findAccountByBearer(request) {
   return ACCOUNTS.get(session.emailNormalized) ?? null;
 }
 
+/** The `via:"whatsapp"` OTP request/verify path keys `OTPS` by NORMALIZED phone rather than e-mail — this key format keeps the two channels from ever colliding in the same `Map`. */
+function otpKeyForPhone(phone) {
+  return `wa:${normalizePhoneForComparison(String(phone ?? ""))}`;
+}
+
+function findAccountByPhone(phone) {
+  const target = normalizePhoneForComparison(String(phone ?? ""));
+  if (!target) return null;
+  return [...ACCOUNTS.values()].find((account) => normalizePhoneForComparison(account.phone) === target) ?? null;
+}
+
 function handleAccountRequest(request, path, body, headers) {
   if (path === "/otp/request" && request.method === "POST") {
-    const emailNormalized = normalizeEmail(body?.email);
     const purpose = body?.purpose === "register" ? "register" : "login";
+    // Issue #115 (contract #106 D5) — `via` defaults to `"email"`; WhatsApp
+    // is LOGIN-only (registration always goes out over e-mail regardless of
+    // what a caller sends here, matching `/daftar`'s own "registration
+    // stays e-mail OTP" rule).
+    const via = body?.via === "whatsapp" && purpose === "login" ? "whatsapp" : "email";
 
+    if (via === "whatsapp") {
+      if (!(storeSettings().whatsappOtpEnabled ?? false)) {
+        return envelopeError(
+          409,
+          "CHANNEL_UNAVAILABLE",
+          "Kode via WhatsApp sedang tidak tersedia di toko ini.",
+          undefined,
+          headers
+        );
+      }
+
+      OTPS.set(otpKeyForPhone(body?.phone), {
+        code: OTP_CODE,
+        purpose: "login",
+        registration: null,
+        expiresAt: new Date(Date.now() + OTP_TTL_SECONDS * 1000).toISOString(),
+        consumed: false
+      });
+      return envelope({ sent: true, expiresInSeconds: OTP_TTL_SECONDS }, { status: 202, headers });
+    }
+
+    const emailNormalized = normalizeEmail(body?.email);
     OTPS.set(emailNormalized, {
       code: OTP_CODE,
       purpose,
@@ -850,8 +1086,25 @@ function handleAccountRequest(request, path, body, headers) {
   }
 
   if (path === "/otp/verify" && request.method === "POST") {
-    const emailNormalized = normalizeEmail(body?.email);
     const purpose = body?.purpose === "register" ? "register" : "login";
+
+    // Issue #115 — `{phone, code, purpose:"login"}` verifies the WhatsApp
+    // path, resolving the account by phone instead of e-mail.
+    if (purpose === "login" && typeof body?.phone === "string" && body.phone.length > 0) {
+      const otp = OTPS.get(otpKeyForPhone(body.phone));
+      if (!otp || otp.consumed || otp.code !== body?.code || new Date(otp.expiresAt).getTime() <= Date.now()) {
+        return envelopeError(401, "OTP_INVALID", "Kode salah atau kedaluwarsa.", undefined, headers);
+      }
+      const account = findAccountByPhone(body.phone);
+      if (!account) {
+        return envelopeError(404, "ACCOUNT_NOT_FOUND", "Akun tidak ditemukan.", undefined, headers);
+      }
+      otp.consumed = true;
+      const session = issueSession(normalizeEmail(account.email));
+      return envelope({ ...session, account: serializeAccount(account) }, { headers });
+    }
+
+    const emailNormalized = normalizeEmail(body?.email);
     const otp = OTPS.get(emailNormalized);
 
     if (!otp || otp.consumed || otp.purpose !== purpose || otp.code !== body?.code) {
@@ -896,7 +1149,14 @@ function handleAccountRequest(request, path, body, headers) {
       phone: registration.phone,
       level: 0,
       createdAt: now,
-      historyFrom: now
+      historyFrom: now,
+      addresses: [],
+      wishlist: [],
+      reviews: [],
+      affiliate: null,
+      commissions: [],
+      marketingConsent: false,
+      conversations: []
     };
     ACCOUNTS.set(emailNormalized, account);
 
@@ -912,6 +1172,9 @@ function handleAccountRequest(request, path, body, headers) {
 
     if (request.method === "PATCH" && typeof body?.name === "string" && body.name.trim()) {
       account.name = body.name.trim();
+    }
+    if (request.method === "PATCH" && typeof body?.marketingConsent === "boolean") {
+      account.marketingConsent = body.marketingConsent;
     }
 
     return envelope({ account: serializeAccount(account) }, { headers });
@@ -1187,6 +1450,120 @@ function handleAccountRequest(request, path, body, headers) {
     return envelope({ items: page, nextCursor }, { headers });
   }
 
+  // Issue #115 (S3, #106 D8) — the account's own inbox with the store.
+
+  if (path === "/conversations" && request.method === "GET") {
+    const account = findAccountByBearer(request);
+    if (!account) {
+      return envelopeError(401, "UNAUTHENTICATED", "Sesi tidak valid atau telah berakhir.", undefined, headers);
+    }
+
+    const owned = [...account.conversations].sort(
+      (a, b) => new Date(lastMessageAt(b)).getTime() - new Date(lastMessageAt(a)).getTime()
+    );
+
+    const cursorParam = new URL(request.url).searchParams.get("cursor");
+    const PAGE_SIZE = 10;
+    const startIndex = cursorParam ? owned.findIndex((c) => c.id === cursorParam) + 1 : 0;
+    const page = owned.slice(startIndex, startIndex + PAGE_SIZE);
+    const nextCursor = startIndex + PAGE_SIZE < owned.length ? page[page.length - 1]?.id ?? null : null;
+
+    return envelope({ items: page.map(serializeConversation), nextCursor }, { headers });
+  }
+
+  if (path === "/conversations" && request.method === "POST") {
+    const account = findAccountByBearer(request);
+    if (!account) {
+      return envelopeError(401, "UNAUTHENTICATED", "Sesi tidak valid atau telah berakhir.", undefined, headers);
+    }
+
+    const subject = typeof body?.subject === "string" ? body.subject.trim() : "";
+    const messageBody = typeof body?.body === "string" ? body.body.trim() : "";
+    const fieldErrors = [];
+    if (!subject) fieldErrors.push({ field: "subject", message: "Subjek wajib diisi." });
+    if (!messageBody) fieldErrors.push({ field: "body", message: "Pesan wajib diisi." });
+    else if (messageBody.length > 4000) {
+      fieldErrors.push({ field: "body", message: "Pesan maksimum 4000 karakter." });
+    }
+    if (fieldErrors.length > 0) {
+      return envelopeError(400, "VALIDATION_ERROR", "Data pesan belum lengkap.", fieldErrors, headers);
+    }
+
+    const now = new Date().toISOString();
+    const message = { id: nextMessageId(), sender: "customer", body: messageBody, createdAt: now };
+    const conversation = { id: nextConversationId(), subject, status: "open", unreadForCustomer: 0, messages: [message] };
+    account.conversations.push(conversation);
+    scheduleAutoReply(conversation);
+
+    return envelope(
+      { conversation: serializeConversation(conversation), message },
+      { status: 201, headers }
+    );
+  }
+
+  const conversationMatch = /^\/conversations\/([^/]+)$/.exec(path);
+  if (conversationMatch && request.method === "GET") {
+    const account = findAccountByBearer(request);
+    if (!account) {
+      return envelopeError(401, "UNAUTHENTICATED", "Sesi tidak valid atau telah berakhir.", undefined, headers);
+    }
+
+    const conversation = account.conversations.find((c) => c.id === conversationMatch[1]);
+    if (!conversation) {
+      return envelopeError(404, "NOT_FOUND", "Percakapan tidak ditemukan.", undefined, headers);
+    }
+
+    // #106's own contract: reading a thread marks it read.
+    conversation.unreadForCustomer = 0;
+
+    return envelope(
+      { conversation: serializeConversation(conversation), messages: conversation.messages },
+      { headers }
+    );
+  }
+
+  const conversationMessagesMatch = /^\/conversations\/([^/]+)\/messages$/.exec(path);
+  if (conversationMessagesMatch && request.method === "POST") {
+    const account = findAccountByBearer(request);
+    if (!account) {
+      return envelopeError(401, "UNAUTHENTICATED", "Sesi tidak valid atau telah berakhir.", undefined, headers);
+    }
+
+    const conversation = account.conversations.find((c) => c.id === conversationMessagesMatch[1]);
+    if (!conversation) {
+      return envelopeError(404, "NOT_FOUND", "Percakapan tidak ditemukan.", undefined, headers);
+    }
+    if (conversation.status === "closed") {
+      return envelopeError(409, "CONVERSATION_CLOSED", "Percakapan ini telah ditutup.", undefined, headers);
+    }
+
+    const messageBody = typeof body?.body === "string" ? body.body.trim() : "";
+    if (!messageBody) {
+      return envelopeError(
+        400,
+        "VALIDATION_ERROR",
+        "Pesan wajib diisi.",
+        [{ field: "body", message: "Pesan wajib diisi." }],
+        headers
+      );
+    }
+    if (messageBody.length > 4000) {
+      return envelopeError(
+        400,
+        "VALIDATION_ERROR",
+        "Pesan maksimum 4000 karakter.",
+        [{ field: "body", message: "Pesan maksimum 4000 karakter." }],
+        headers
+      );
+    }
+
+    const message = { id: nextMessageId(), sender: "customer", body: messageBody, createdAt: new Date().toISOString() };
+    conversation.messages.push(message);
+    scheduleAutoReply(conversation);
+
+    return envelope({ message }, { status: 201, headers });
+  }
+
   return null;
 }
 
@@ -1206,6 +1583,59 @@ function serializeAffiliate(account) {
       paidAmount: sumKomisi(account.commissions, "paid")
     }
   };
+}
+
+// ---------------------------------------------------------------------------
+// Issue #115 — conversations helpers.
+// ---------------------------------------------------------------------------
+
+let conversationSequence = 100;
+function nextConversationId() {
+  conversationSequence += 1;
+  return `conv-${conversationSequence}`;
+}
+
+let messageSequence = 100;
+function nextMessageId() {
+  messageSequence += 1;
+  return `msg-${messageSequence}`;
+}
+
+/** The `createdAt` of `conversation`'s last message — `lastMessageAt` is never stored separately, always derived, so it can never drift from the messages it summarises. */
+function lastMessageAt(conversation) {
+  const last = conversation.messages[conversation.messages.length - 1];
+  return last ? last.createdAt : new Date(0).toISOString();
+}
+
+function serializeConversation(conversation) {
+  return {
+    id: conversation.id,
+    subject: conversation.subject,
+    status: conversation.status,
+    lastMessageAt: lastMessageAt(conversation),
+    unreadForCustomer: conversation.unreadForCustomer
+  };
+}
+
+/**
+ * This issue's own "so unread flags are exercised" requirement: 2 seconds
+ * after a customer message, a SIMULATED store reply lands on the same
+ * thread (unless it was closed in the meantime) and the thread's own
+ * `unreadForCustomer` counter increments — the same signal a real reply
+ * from staff would produce. Purely in-memory; a process restart forgets any
+ * reply still pending.
+ */
+function scheduleAutoReply(conversation) {
+  setTimeout(() => {
+    if (conversation.status !== "open") return;
+    conversation.messages.push({
+      id: nextMessageId(),
+      sender: "store",
+      body: "Terima kasih, tim kami akan segera membalas pesan Anda.",
+      createdAt: new Date().toISOString()
+    });
+    conversation.unreadForCustomer += 1;
+  }, 2000);
 }
 
 function maskPhone(phone) {
@@ -1232,6 +1662,10 @@ function generateOrderCode() {
 
 function buildPaymentInstructions(order, settings) {
   if (order.status !== "pending_payment") return null;
+  // Issue #112 — a `gateway` order has no manual bank/QRIS instructions at
+  // all; `/pesanan`'s own renderer shows the "Bayar sekarang" button
+  // instead (`src/lib/pesanan-render.ts`).
+  if (order.paymentMethod === "gateway") return null;
 
   const banks =
     order.paymentMethod === "manual_bank"
@@ -1276,7 +1710,9 @@ function serializeOrder(order) {
     paymentConfirmations: order.paymentConfirmations,
     timeline: order.timeline,
     canCancel: order.status === "pending_payment",
-    canConfirmPayment: order.status === "pending_payment",
+    // Issue #112 — a `gateway` order is never manually confirmed; its own
+    // "Bayar sekarang"/poll flow is the only path to `paid`.
+    canConfirmPayment: order.status === "pending_payment" && order.paymentMethod !== "gateway",
     canReview: order.status === "completed",
     createdAt: order.createdAt,
     expiresAt: order.expiresAt,
@@ -1284,6 +1720,10 @@ function serializeOrder(order) {
     shippedAt: null,
     completedAt: null,
     cancelledAt: order.cancelledAt,
+    // Issue #112 (contract: #106 D3) — `null` for every order this stub's
+    // own gateway-session route has not touched (including every order
+    // whose `paymentMethod` is not `"gateway"` at all).
+    gateway: order.gateway ?? null,
     whatsapp: {
       number: (settings.whatsapp ?? "").replace(/\D/g, ""),
       text: `Halo ${settings.storeName}, saya ingin menanyakan pesanan ${order.orderCode}`
@@ -1387,9 +1827,31 @@ async function handleStorefrontRequest(request, url) {
       return envelope(serializeOrder(ORDERS.get(existingCode)), { status: 200, headers });
     }
 
-    const quote = computeQuote(body);
+    // Issue #109 (contract: #106 D4) — `CreateOrderRequest` carries no
+    // separate `destination` field (unlike `QuoteRequest`): the shopper's
+    // address, when one is given, already names the district the order
+    // ships to, so order-time re-validation derives `destination` from
+    // `body.address.districtCode` rather than trusting a second, possibly
+    // stale copy of it. `self_pickup`/no-address orders pass `null`, same
+    // as a quote taken before a district was ever chosen.
+    const quote = computeQuote({
+      ...body,
+      destination: body.address?.districtCode ? { districtCode: body.address.districtCode } : null
+    });
     if (!quote.canCheckout) {
       return envelopeError(409, "CART_CHANGED", "Cart changed since the quote was made.", { quote }, headers);
+    }
+
+    // The chosen `{method, serviceId}` (and, for a courier, its cost) is
+    // re-validated against a FRESH quote at order time, never trusted from
+    // the request alone: a rate this stub priced a minute ago may have gone
+    // stale (a district's rates changed, courier got disabled) by the time
+    // the shopper submits. A mismatch answers the SAME `409 CART_CHANGED` +
+    // fresh quote a stock/price change would, matching this contract's own
+    // "on mismatch at order time" rule.
+    const shippingOption = quote.shippingOptions.find((option) => shippingSelectionMatches(option, body.shipping));
+    if (!shippingOption || !shippingOption.available) {
+      return envelopeError(409, "CART_CHANGED", "Shipping option changed since the quote was made.", { quote }, headers);
     }
 
     const settings = storeSettings();
@@ -1397,10 +1859,6 @@ async function handleStorefrontRequest(request, url) {
     const now = new Date();
     const expiryHours = settings.orders?.expiryHours ?? 24;
     const expiresAt = new Date(now.getTime() + expiryHours * 3600_000).toISOString();
-
-    const shippingOption = quote.shippingOptions.find(
-      (option) => option.method === body.shipping.method && (option.method !== "alternative" || option.serviceId === body.shipping.serviceId)
-    );
 
     const order = {
       orderCode,
@@ -1438,6 +1896,10 @@ async function handleStorefrontRequest(request, url) {
       expiresAt,
       paidAt: null,
       cancelledAt: null,
+      // Issue #112 — `null` until this order's own `POST …/payment-gateway/
+      // sessions` is called at least once (see `GATEWAY_SESSIONS_BY_ORDER`
+      // below), regardless of `paymentMethod`.
+      gateway: null,
       // Issue #90 (#86's own "accept an OPTIONAL Bearer … the customer is
       // the account's row") — an anonymous request (no/invalid token) binds
       // to nothing, exactly as before this issue.
@@ -1500,6 +1962,71 @@ async function handleStorefrontRequest(request, url) {
       order.timeline.push({ status: "cancelled", at: order.cancelledAt, note: body?.reason ?? null });
       return envelope(serializeOrder(order), { headers });
     }
+
+    if (rest === "/payment-gateway/sessions" && request.method === "POST") {
+      const order = ORDERS.get(orderCode);
+      if (!order) return Response.json(NEUTRAL_NOT_FOUND, { status: 404, headers });
+
+      // Ownership: the SAME phone/Bearer proof every other order-scoped
+      // route on this stub already requires (see `findOrderForPhone`
+      // above) — a caller that owns neither gets the same neutral 404 an
+      // unresolvable tenant would, never a hint about which check failed.
+      const account = findAccountByBearer(request);
+      const ownsByPhone = Boolean(body?.phone) && normalizePhoneForComparison(order.phone) === normalizePhoneForComparison(body.phone);
+      const ownsByAccount = Boolean(account) && order.accountEmail === normalizeEmail(account.email);
+      if (!ownsByPhone && !ownsByAccount) {
+        return Response.json(NEUTRAL_NOT_FOUND, { status: 404, headers });
+      }
+
+      if (order.paymentMethod !== "gateway" || order.status !== "pending_payment") {
+        return envelopeError(
+          409,
+          "PAYMENT_NOT_APPLICABLE",
+          "This order has no gateway payment to start.",
+          undefined,
+          headers
+        );
+      }
+
+      const settings = storeSettings();
+      if (!(settings.payment?.gatewayEnabled ?? false)) {
+        return envelopeError(
+          503,
+          "GATEWAY_UNAVAILABLE",
+          "Payment gateway is not available on this deployment.",
+          undefined,
+          headers
+        );
+      }
+
+      // Idempotent per order (this contract's own rule) — a repeated call
+      // for the SAME order answers with the session already minted for it,
+      // never a second `redirectUrl`.
+      let session = GATEWAY_SESSIONS_BY_ORDER.get(orderCode);
+      if (!session) {
+        gatewaySessionSequence += 1;
+        const sessionId = `gw-${gatewaySessionSequence}`;
+        session = {
+          sessionId,
+          orderCode,
+          providerRef: `stub-${sessionId}`,
+          expiresAt: new Date(Date.now() + 30 * 60_000).toISOString(),
+          returnBase: gatewayReturnBase(request)
+        };
+        GATEWAY_SESSIONS_BY_ORDER.set(orderCode, session);
+        GATEWAY_SESSIONS_BY_ID.set(sessionId, session);
+        order.gateway = { provider: "stub", status: "created" };
+      }
+
+      return envelope(
+        {
+          redirectUrl: `http://localhost:${PORT}/stub/gateway/${session.sessionId}`,
+          expiresAt: session.expiresAt,
+          providerRef: session.providerRef
+        },
+        { status: 201, headers }
+      );
+    }
   }
 
   if (path === "/reviews" && request.method === "POST") {
@@ -1536,10 +2063,89 @@ async function handleStorefrontRequest(request, url) {
   return Response.json(NEUTRAL_NOT_FOUND, { status: 404, headers });
 }
 
+/**
+ * Issue #112 (contract: #106 D3) — the stub's OWN hosted payment page,
+ * `GET /stub/gateway/{sessionId}`, and its two forms. This is deliberately
+ * NOT under `STOREFRONT_PREFIX`/`ALLOWED_ORIGIN`'s CORS gate: a real payment
+ * gateway's hosted page is the PROVIDER's own origin, not the CMS's, and a
+ * shopper's browser navigates there with a plain top-level `GET` — no CORS,
+ * no `Origin` check, the same as any other page on the open web the browser
+ * is simply sent to. "Bayar (simulasi)" flips the order to `paid` (with
+ * `paidAt` and a timeline entry, `gateway.status: "paid"`); "Batal" leaves
+ * the order exactly as it was, only marking `gateway.status: "failed"`. Both
+ * then `302` back to `{returnBase}/pesanan?kode={orderCode}` — never a
+ * different order, never a bare 200, matching how a shopper is expected to
+ * land back on `/pesanan`'s own polling/"Bayar sekarang" UI either way.
+ */
+function gatewayPageHtml(order, sessionId) {
+  return `<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<title>Simulasi Pembayaran</title>
+</head>
+<body>
+<h1>Simulasi Pembayaran Gateway</h1>
+<p>Pesanan: ${order.orderCode} — Total: Rp ${order.total}</p>
+<form method="post" action="/stub/gateway/${sessionId}/pay">
+<button type="submit">Bayar (simulasi)</button>
+</form>
+<form method="post" action="/stub/gateway/${sessionId}/cancel">
+<button type="submit">Batal</button>
+</form>
+</body>
+</html>`;
+}
+
+function handleStubGatewayPage(request, url) {
+  const match = /^\/stub\/gateway\/([^/]+)(\/pay|\/cancel)?\/?$/.exec(url.pathname);
+  if (!match) return new Response("Not found", { status: 404 });
+
+  const session = GATEWAY_SESSIONS_BY_ID.get(match[1]);
+  if (!session) return new Response("Sesi pembayaran tidak ditemukan atau telah kedaluwarsa.", { status: 404 });
+
+  const order = ORDERS.get(session.orderCode);
+  if (!order) return new Response("Pesanan tidak ditemukan.", { status: 404 });
+
+  const action = match[2];
+  const returnUrl = `${session.returnBase}/pesanan?kode=${encodeURIComponent(order.orderCode)}`;
+
+  if (!action && request.method === "GET") {
+    return new Response(gatewayPageHtml(order, session.sessionId), {
+      headers: { "content-type": "text/html; charset=utf-8" }
+    });
+  }
+
+  if (action === "/pay" && request.method === "POST") {
+    if (order.status === "pending_payment") {
+      order.status = "paid";
+      order.paymentStatus = "paid";
+      order.paidAt = new Date().toISOString();
+      order.timeline.push({ status: "paid", at: order.paidAt, note: "Dibayar melalui gateway (simulasi)." });
+    }
+    order.gateway = { provider: "stub", status: "paid" };
+    return Response.redirect(returnUrl, 302);
+  }
+
+  if (action === "/cancel" && request.method === "POST") {
+    order.gateway = { provider: "stub", status: "failed" };
+    return Response.redirect(returnUrl, 302);
+  }
+
+  return new Response("Not found", { status: 404 });
+}
+
 const server = Bun.serve({
   port: PORT,
   async fetch(request) {
     const url = new URL(request.url);
+
+    // The stub's own hosted payment page — see `handleStubGatewayPage`'s
+    // own docblock for why this is checked BEFORE, and outside, every other
+    // gate in this file.
+    if (url.pathname.startsWith("/stub/gateway/")) {
+      return handleStubGatewayPage(request, url);
+    }
 
     // Anonymous, cross-origin, no bearer token at all — handled BEFORE the
     // bearer-token gate below, which every OTHER route in this file needs.

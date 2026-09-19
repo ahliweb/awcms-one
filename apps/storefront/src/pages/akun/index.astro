@@ -32,7 +32,8 @@ const NAV_CARDS = [
   { href: ROUTES.accountAddresses, label: "Alamat" },
   { href: ROUTES.wishlist, label: "Wishlist" },
   { href: ROUTES.accountReviews, label: "Ulasan" },
-  { href: ROUTES.accountAffiliate, label: "Afiliasi" }
+  { href: ROUTES.accountAffiliate, label: "Afiliasi" },
+  { href: ROUTES.accountMessages, label: "Pesan" }
 ];
 ---
 
@@ -115,6 +116,15 @@ const NAV_CARDS = [
             <button type="submit">Simpan</button>
           </div>
         </form>
+      </div>
+
+      <div class="akun-card">
+        <h2>Preferensi Promo</h2>
+        <label class="akun-consent-label">
+          <input type="checkbox" data-consent-checkbox />
+          Terima promo lewat e-mail/WhatsApp
+        </label>
+        <p data-consent-status role="status" aria-live="polite" class="akun-countdown"></p>
       </div>
 
       <div class="akun-card">

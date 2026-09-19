@@ -3130,6 +3130,81 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/storefront/orders/{orderCode}/payment-gateway/sessions:
+    post:
+      operationId: createCommerceStorefrontPaymentGatewaySession
+      tags:
+        - Commerce
+      summary: "Issue #106 (ADR-0017 D3; not yet implemented, lands in #110). Create a hosted payment-gateway session (Midtrans Snap) for a `pending_payment` order whose `paymentMethod` is `gateway`. Anonymous, identified by `phone` — or an optional `customerBearer`, matching the rest of this anonymous surface (Issue #91's own optional-bearer pattern)."
+      description: >-
+        `createSession` (the `PaymentGatewayProvider` port) is called OUTSIDE
+        any DB transaction (ADR-0006/ADR-0017 D1); the returned `providerRef`
+        is persisted before the redirect is handed back, so a
+        `commerce:payments:reconcile` pass can always find this session even
+        if the shopper never returns from the hosted page. Calling this twice
+        for the same order while a session is still live returns the SAME
+        session rather than creating a second one at the provider.
+      security: []
+      parameters:
+        - name: orderCode
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                phone:
+                  type: string
+                  description: Required unless a valid `customerBearer` is presented instead.
+      responses:
+        "201":
+          description: Session created (or the still-live session for this order was returned).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      redirectUrl:
+                        type: string
+                      expiresAt:
+                        type: string
+                        format: date-time
+                      providerRef:
+                        type: string
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          description: "UNAUTHENTICATED — an Authorization header was present but not a live session."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "PAYMENT_NOT_APPLICABLE — the order's `paymentMethod` is not `gateway`, or its status is not `pending_payment`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "503":
+          description: "GATEWAY_UNAVAILABLE — `COMMERCE_PAYMENT_GATEWAY=none`, unset, or the provider call itself failed/timed out."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
   /api/v1/commerce/storefront/reviews:
     post:
       operationId: createCommerceStorefrontReview
@@ -3264,7 +3339,7 @@ paths:
         "400":
           $ref: "#/components/responses/BadRequest"
         "409":
-          description: 'CHANNEL_UNAVAILABLE — `via: "whatsapp"` and the tenant has no WhatsApp channel configured/enabled (Issue #108). Configuration, not enumeration — answered before an OTP is ever issued.'
+          description: 'CHANNEL_UNAVAILABLE — `via: "whatsapp"` and the tenant has no WhatsApp channel configured/enabled (Issue #108, contract #106/ADR-0017 D5). Configuration, not enumeration — answered before an OTP is ever issued, and reveals only a per-tenant configuration fact, never anything about the e-mail/phone/account itself.'
           content:
             application/json:
               schema:
@@ -3386,7 +3461,7 @@ paths:
       operationId: updateCommerceStorefrontAccountMe
       tags:
         - Commerce Accounts
-      summary: "Issue #89 (implemented, contract #86). Update the account's display name. No e-mail/phone change in this increment (D6)."
+      summary: "Issue #89 (implemented, contract #86). Update the account's display name. No e-mail/phone change in this increment (D6). `marketingConsent` (Issue #106 ADR-0017 D9; not yet implemented, lands in #115) is the ONLY field a campaign's audience resolution ever reads to decide reachability."
       security:
         - customerBearer: []
       requestBody:
@@ -3400,6 +3475,9 @@ paths:
               properties:
                 name:
                   type: string
+                marketingConsent:
+                  type: boolean
+                  description: "Issue #106 (ADR-0017 D9; not yet implemented, lands in #115). `true` sets `customer_accounts.marketing_consent_at` to now; `false` clears it to null. Toggled by the account itself in `/akun` — never set by staff."
       responses:
         "200":
           description: Updated.
@@ -3877,6 +3955,193 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/storefront/account/conversations:
+    get:
+      operationId: listCommerceStorefrontAccountConversations
+      tags:
+        - Commerce Accounts
+      summary: "Issue #106 (ADR-0017 D8; not yet implemented, lands in #111). The account's own conversations with the store, newest first."
+      security:
+        - customerBearer: []
+      parameters:
+        - name: cursor
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: One page of conversations.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/CommerceConversation"
+                      nextCursor:
+                        type: string
+                        nullable: true
+        "401":
+          description: UNAUTHENTICATED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+    post:
+      operationId: createCommerceStorefrontAccountConversation
+      tags:
+        - Commerce Accounts
+      summary: "Issue #106 (ADR-0017 D8; not yet implemented, lands in #111). Start a new conversation with the store, with its opening message."
+      security:
+        - customerBearer: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - subject
+                - body
+              properties:
+                subject:
+                  type: string
+                body:
+                  type: string
+      responses:
+        "201":
+          description: Conversation created.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceConversation"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          description: UNAUTHENTICATED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/storefront/account/conversations/{id}:
+    get:
+      operationId: getCommerceStorefrontAccountConversation
+      tags:
+        - Commerce Accounts
+      summary: "Issue #106 (ADR-0017 D8; not yet implemented, lands in #111). One conversation the account owns, with its messages."
+      security:
+        - customerBearer: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: The conversation and its messages.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      conversation:
+                        $ref: "#/components/schemas/CommerceConversation"
+                      messages:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/CommerceConversationMessage"
+        "401":
+          description: UNAUTHENTICATED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "404":
+          description: "Unknown conversation, or one belonging to another account — the same neutral 404 either way."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/storefront/account/conversations/{id}/messages:
+    post:
+      operationId: createCommerceStorefrontAccountConversationMessage
+      tags:
+        - Commerce Accounts
+      summary: "Issue #106 (ADR-0017 D8; not yet implemented, lands in #111). Reply on the account's own conversation. Reopens a `closed` conversation."
+      security:
+        - customerBearer: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - body
+              properties:
+                body:
+                  type: string
+      responses:
+        "201":
+          description: Message added.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceConversationMessage"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          description: UNAUTHENTICATED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "404":
+          description: "Unknown conversation, or one belonging to another account."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
   /api/v1/commerce/storefront/account/affiliate:
     get:
       operationId: getCommerceStorefrontAccountAffiliate
@@ -4296,6 +4561,882 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ApiError"
+  # --- Issue #106 (ADR-0017, epic #33 wave 0) — CONTRACT ONLY. -------------
+  /api/v1/commerce/pos/orders:
+    get:
+      operationId: listCommercePosOrders
+      tags:
+        - Commerce
+      summary: "Issue #106 (ADR-0017 D6; not yet implemented, lands in #116). POS order history — the existing owner order list, filtered `channel=pos`. Gated on `commerce.orders.read`."
+      parameters:
+        - name: cursor
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: One page of POS orders.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/CommerceOrderSummary"
+                      nextCursor:
+                        type: string
+                        nullable: true
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+    post:
+      operationId: createCommercePosOrder
+      tags:
+        - Commerce
+      summary: "Issue #106 (ADR-0017 D6; not yet implemented, lands in #116). Staff creates a `paid`, `self_pickup` order at the counter for a walk-in or phone-identified customer. Gated on `commerce.pos.create` — the ONLY order-creation path that needs a permission at all, since every other one is anonymous or provider-driven."
+      description: >-
+        `orders.channel` is set `pos`; `order_events` records the acting
+        STAFF member (`admin`), never `system` and never `customer`. Payment
+        is `cash` and the order is created already `paid` — there is no
+        `pending_payment` step for a counter sale.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - customer
+                - lines
+              properties:
+                customer:
+                  type: object
+                  required:
+                    - name
+                    - phone
+                  properties:
+                    name:
+                      type: string
+                    phone:
+                      type: string
+                lines:
+                  type: array
+                  items:
+                    $ref: "#/components/schemas/CommerceCartQuoteLine"
+                notes:
+                  type: string
+                  nullable: true
+      responses:
+        "201":
+          description: Order created, already `paid`.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceOrderAdmin"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+  /api/v1/commerce/conversations:
+    get:
+      operationId: listCommerceConversations
+      tags:
+        - Commerce
+      summary: "Issue #106 (ADR-0017 D8; not yet implemented, lands in #111). Staff list of every customer conversation, newest first. Gated on `commerce.conversations.read`."
+      parameters:
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - open
+              - closed
+        - name: cursor
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: One page of conversations.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/CommerceConversation"
+                      nextCursor:
+                        type: string
+                        nullable: true
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+  /api/v1/commerce/conversations/{id}:
+    get:
+      operationId: getCommerceConversation
+      tags:
+        - Commerce
+      summary: "Issue #106 (ADR-0017 D8; not yet implemented, lands in #111). One conversation with its messages. Gated on `commerce.conversations.read`."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: The conversation and its messages.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      conversation:
+                        $ref: "#/components/schemas/CommerceConversation"
+                      messages:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/CommerceConversationMessage"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+    patch:
+      operationId: updateCommerceConversation
+      tags:
+        - Commerce
+      summary: "Issue #106 (ADR-0017 D8; not yet implemented, lands in #111). Close or reopen a conversation. Gated on `commerce.conversations.update`."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - status
+              properties:
+                status:
+                  type: string
+                  enum:
+                    - open
+                    - closed
+      responses:
+        "200":
+          description: Updated.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceConversation"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+  /api/v1/commerce/conversations/{id}/messages:
+    post:
+      operationId: createCommerceConversationMessage
+      tags:
+        - Commerce
+      summary: "Issue #106 (ADR-0017 D8; not yet implemented, lands in #111). Staff reply. Triggers an e-mail notification to the customer through the existing `email` outbox (no new delivery channel). Gated on `commerce.conversations.update`."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - body
+              properties:
+                body:
+                  type: string
+      responses:
+        "201":
+          description: Message added.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceConversationMessage"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+  /api/v1/commerce/campaigns:
+    get:
+      operationId: listCommerceCampaigns
+      tags:
+        - Commerce
+      summary: "Issue #106 (ADR-0017 D9; not yet implemented, lands in #114). Staff list of campaigns, newest first. Gated on `commerce.campaigns.read`."
+      parameters:
+        - name: cursor
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: One page of campaigns.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/CommerceCampaign"
+                      nextCursor:
+                        type: string
+                        nullable: true
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+    post:
+      operationId: createCommerceCampaign
+      tags:
+        - Commerce
+      summary: "Issue #106 (ADR-0017 D9; not yet implemented, lands in #114). Create a `draft` campaign. Gated on `commerce.campaigns.update`."
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - channel
+                - audience
+                - subject
+                - body
+              properties:
+                channel:
+                  type: string
+                  enum:
+                    - email
+                    - whatsapp
+                audience:
+                  type: object
+                  properties:
+                    levels:
+                      type: array
+                      items:
+                        type: integer
+                    hasAccount:
+                      type: boolean
+                      nullable: true
+                    lastOrderSince:
+                      type: string
+                      format: date-time
+                      nullable: true
+                subject:
+                  type: string
+                  description: Ignored for `channel:"whatsapp"`.
+                body:
+                  type: string
+      responses:
+        "201":
+          description: "Campaign created, `status: draft`."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceCampaign"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+  /api/v1/commerce/campaigns/{id}:
+    get:
+      operationId: getCommerceCampaign
+      tags:
+        - Commerce
+      summary: "Issue #106 (ADR-0017 D9; not yet implemented, lands in #114). One campaign. Gated on `commerce.campaigns.read`."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: The campaign.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceCampaign"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+    patch:
+      operationId: updateCommerceCampaign
+      tags:
+        - Commerce
+      summary: "Issue #106 (ADR-0017 D9; not yet implemented, lands in #114). Edit a campaign still in `draft`. Gated on `commerce.campaigns.update`."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                audience:
+                  type: object
+                subject:
+                  type: string
+                body:
+                  type: string
+      responses:
+        "200":
+          description: Updated.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceCampaign"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "CAMPAIGN_NOT_EDITABLE — not `draft`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/campaigns/{id}/preview:
+    post:
+      operationId: previewCommerceCampaign
+      tags:
+        - Commerce
+      summary: "Issue #106 (ADR-0017 D9; not yet implemented, lands in #114). Resolve the audience filter into a recipient COUNT, without sending anything. Gated on `commerce.campaigns.read`."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: The audience count.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      recipientCount:
+                        type: integer
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+  /api/v1/commerce/campaigns/{id}/send:
+    post:
+      operationId: sendCommerceCampaign
+      tags:
+        - Commerce
+      summary: "Issue #106 (ADR-0017 D9; not yet implemented, lands in #114). Resolve the audience, create one `awcms_commerce_campaign_recipients` row per recipient, and move the campaign to `sending` — the `commerce:campaigns:dispatch` job fans the rows out into the e-mail/WhatsApp outboxes from there. Gated on `commerce.campaigns.send`; `Idempotency-Key` required."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: "Campaign moved to `sending` (or `sent`, once every recipient row is dispatched)."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceCampaign"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "CAMPAIGN_NOT_SENDABLE — not `draft`/`scheduled`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/campaigns/{id}/cancel:
+    post:
+      operationId: cancelCommerceCampaign
+      tags:
+        - Commerce
+      summary: "Issue #106 (ADR-0017 D9; not yet implemented, lands in #114). Cancel a campaign before (or while) it sends; already-dispatched recipient rows are not un-sent. Gated on `commerce.campaigns.send`."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: "Campaign moved to `cancelled`."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceCampaign"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "CAMPAIGN_ALREADY_FINAL — already `sent`/`cancelled`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/webhook-endpoints:
+    get:
+      operationId: listCommerceWebhookEndpoints
+      tags:
+        - Commerce
+      summary: "Issue #106 (ADR-0017 D2/D3; not yet implemented, lands in #110). Staff list of this tenant's inbound webhook endpoints — the token itself is NEVER re-shown after creation. Gated on `commerce.webhook_endpoints.update`."
+      responses:
+        "200":
+          description: The endpoints.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/CommerceWebhookEndpoint"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+    post:
+      operationId: createCommerceWebhookEndpoint
+      tags:
+        - Commerce
+      summary: "Issue #106 (ADR-0017 D2/D3; not yet implemented, lands in #110). Mint a new opaque endpoint token for a provider. The RAW token is returned exactly once, in this response, and never again — only its hash is stored (`awcms_commerce_webhook_endpoints`, D2). Gated on `commerce.webhook_endpoints.update`."
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - provider
+              properties:
+                provider:
+                  type: string
+                  enum:
+                    - midtrans
+      responses:
+        "201":
+          description: Endpoint created; `data.token` is shown exactly once.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    allOf:
+                      - $ref: "#/components/schemas/CommerceWebhookEndpoint"
+                      - type: object
+                        properties:
+                          token:
+                            type: string
+                            description: "The RAW token — embed it in the webhook URL configured at the provider. Never retrievable again after this response."
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+  /api/v1/commerce/webhook-endpoints/{id}:
+    delete:
+      operationId: deleteCommerceWebhookEndpoint
+      tags:
+        - Commerce
+      summary: "Issue #106 (ADR-0017 D2/D3; not yet implemented, lands in #110). Revoke a webhook endpoint token — the fastest available rotation path if a URL leaks. Gated on `commerce.webhook_endpoints.update`."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "204":
+          description: Revoked. Idempotent — deleting an already-deleted endpoint still answers 204.
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+  /api/v1/commerce/webhooks/{provider}/{endpointToken}:
+    post:
+      operationId: receiveCommercePaymentWebhook
+      tags:
+        - Commerce
+      summary: "Issue #106 (ADR-0017 D2/D3; not yet implemented, lands in #113). Public inbound payment-gateway callback. Tenant resolved from `endpointToken` via a SECURITY DEFINER bootstrap function; the provider's own signature is verified timing-safe before anything else happens."
+      description: >-
+        Anonymous by definition — a provider callback carries no session.
+        Replay-protected by a UNIQUE `(tenant_id, provider, event_key)`
+        constraint on `awcms_commerce_payment_events`: a duplicate or replayed
+        event is deduplicated and still answers `200`, exactly like a freshly
+        verified one, so the provider's own retry behaviour never needs
+        special-casing. A verified `paid` event calls `markOrderPaidBySystem`
+        (the new `system` edge on `pending_payment -> paid`, `order-status.ts`).
+        Body size is bounded; an oversized or malformed body is rejected
+        before signature verification runs.
+      security: []
+      parameters:
+        - name: provider
+          in: path
+          required: true
+          schema:
+            type: string
+            enum:
+              - midtrans
+        - name: endpointToken
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: "Always, for a verified event — new, deduplicated, or replayed alike."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+        "401":
+          description: Bad or missing provider signature.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "404":
+          description: "Unknown `endpointToken`, or a `provider` value the token was not minted for."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/reports/commerce/sales-daily:
+    get:
+      operationId: getReportsCommerceSalesDaily
+      tags:
+        - Commerce
+      summary: "Issue #106 (ADR-0017 D7; not yet implemented, lands in #117). The `commerce.sales_daily` reporting projection, read through the `reporting` module's own projection read path. Gated on `reporting.dashboard.read`."
+      parameters:
+        - name: from
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: to
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+      responses:
+        "200":
+          description: One row per day in range.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            date:
+                              type: string
+                              format: date
+                            orderCount:
+                              type: integer
+                            grossSales:
+                              type: string
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+  /api/v1/reports/commerce/sales-by-product:
+    get:
+      operationId: getReportsCommerceSalesByProduct
+      tags:
+        - Commerce
+      summary: "Issue #106 (ADR-0017 D7; not yet implemented, lands in #117). The `commerce.sales_by_product` projection. Gated on `reporting.dashboard.read`."
+      parameters:
+        - name: from
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: to
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+      responses:
+        "200":
+          description: One row per product in range.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            productId:
+                              type: string
+                              format: uuid
+                            productName:
+                              type: string
+                            quantitySold:
+                              type: integer
+                            grossSales:
+                              type: string
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+  /api/v1/reports/commerce/sales-by-category:
+    get:
+      operationId: getReportsCommerceSalesByCategory
+      tags:
+        - Commerce
+      summary: "Issue #106 (ADR-0017 D7; not yet implemented, lands in #117). The `commerce.sales_by_category` projection. Gated on `reporting.dashboard.read`."
+      parameters:
+        - name: from
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: to
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+      responses:
+        "200":
+          description: One row per category in range.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            categoryId:
+                              type: string
+                              format: uuid
+                            categoryName:
+                              type: string
+                            quantitySold:
+                              type: integer
+                            grossSales:
+                              type: string
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
 components:
   schemas:
     CommerceCategory:
@@ -5641,10 +6782,10 @@ components:
                 type: boolean
         shipping:
           type: object
-          description: alternativeServices[] {id,name,cost}, selfPickup, courierEnabled, pinpointEnabled, freeShipping {active,minOrder,maxDiscount}, originCityName, originSubdistrictName.
+          description: "alternativeServices[] {id,name,cost}, selfPickup, courierEnabled, pinpointEnabled, freeShipping {active,minOrder,maxDiscount}, originCityName, originSubdistrictName. Gains `courier: {enabled, originDestinationId, couriers: string[]}` (Issue #106 ADR-0017 D4/D10; not yet implemented, lands in #107/#118) — `originDestinationId` is the RajaOngkir destination id resolved once for the store's own shipping origin; `couriers` names which provider courier codes (e.g. `jne`, `sicepat`) are offered."
         payment:
           type: object
-          description: manualBank {active, accounts[] {bankName, accountNumber, accountHolder}}, manualQris {active, mediaObjectId}, downPayment {active, percent}, tax {active, percent}, insurance {active, ratePercent, minFee}.
+          description: "manualBank {active, accounts[] {bankName, accountNumber, accountHolder}}, manualQris {active, mediaObjectId}, downPayment {active, percent}, tax {active, percent}, insurance {active, ratePercent, minFee}. Gains `gateway: {enabled}` (Issue #106 ADR-0017 D3/D10; not yet implemented, lands in #110/#118) — the store-level ON/OFF switch; `COMMERCE_PAYMENT_GATEWAY` (env, per deployment) must ALSO be a real gateway for the method to actually appear, per D1's env-only-credentials rule."
         promoSection:
           type: object
           properties:
@@ -5809,6 +6950,9 @@ components:
             proofUpload:
               type: boolean
               description: Issue 29 — whether the public payment-proof upload path is usable on this deployment. Always false in this increment; a payment confirmation without a proof image is still accepted.
+            gatewayEnabled:
+              type: boolean
+              description: 'Issue #106 (ADR-0017 D3/D10; not yet implemented, lands in #110/#118). Whether the storefront should offer `payment.method: "gateway"` at all — both the store-level `payment.gateway.enabled` toggle AND a configured `COMMERCE_PAYMENT_GATEWAY` must be true; the rate/provider details themselves never cross into this public shape.'
         orders:
           type: object
           description: Issue 29.
@@ -5886,6 +7030,13 @@ components:
                 - courier
             serviceId:
               type: string
+        destination:
+          type: object
+          nullable: true
+          description: "Issue #106 (ADR-0017 D4; not yet implemented, lands in #107). `{districtCode}` — an `idn_admin_regions` district code, resolved server-side against `awcms_commerce_courier_destinations` to a RajaOngkir destination id. Required for a `courier` shipping option to be quoted at all; absent, every `courier` option answers `available:false`."
+          properties:
+            districtCode:
+              type: string
         voucherCode:
           type: string
           nullable: true
@@ -5945,6 +7096,32 @@ components:
           type: string
         weightGrams:
           type: integer
+        shippingOptions:
+          type: array
+          description: 'Issue #106 (ADR-0017 D4; not yet implemented, lands in #107). Every offered method, available or not. A `courier` entry becomes `{method:"courier", serviceId:"jne:REG", name:"JNE REG (2-3 hari)", cost, etd, available:true}` once `destination` is supplied and RajaOngkir answers; without a `destination`, or on a provider failure, every `courier` entry keeps `available:false` and `cost:null` — the cart is never blocked on the provider being reachable.'
+          items:
+            type: object
+            properties:
+              method:
+                type: string
+                enum:
+                  - alternative
+                  - self_pickup
+                  - courier
+              serviceId:
+                type: string
+                nullable: true
+              name:
+                type: string
+              cost:
+                type: string
+                nullable: true
+              etd:
+                type: string
+                nullable: true
+                description: Estimated delivery duration as the provider phrases it (e.g. "2-3 hari") — courier options only.
+              available:
+                type: boolean
         shipping:
           type: object
           nullable: true
@@ -5965,11 +7142,17 @@ components:
           type: object
         paymentMethods:
           type: array
+          description: "`gateway` (Issue #106 ADR-0017 D3; not yet implemented, lands in #110) joins the existing `manual_bank`/`manual_qris`/`dp` entries once `COMMERCE_PAYMENT_GATEWAY` is not `none`; `available` still reflects the tenant's own store-settings toggle (`payment.gateway.enabled`, D10)."
           items:
             type: object
             properties:
               method:
                 type: string
+                enum:
+                  - manual_bank
+                  - manual_qris
+                  - dp
+                  - gateway
               available:
                 type: boolean
         canCheckout:
@@ -6010,6 +7193,7 @@ components:
             $ref: "#/components/schemas/CommerceCartQuoteLine"
         shipping:
           type: object
+          description: '`{method:"courier", serviceId}` (Issue #106 ADR-0017 D4; not yet implemented, lands in #107) joins the existing `{method:"alternative", serviceId}` and `{method:"self_pickup"}` shapes; `serviceId` is validated against the SAME cached rate `POST cart/quote` most recently returned for this cart — the provider is never called a second time on the write path.'
         payment:
           type: object
           required:
@@ -6022,6 +7206,7 @@ components:
                 - manual_qris
                 - dp
                 - gateway
+              description: "`gateway` (Issue #106 ADR-0017 D3; not yet implemented, lands in #110) creates the order `pending_payment` exactly like every other method; the shopper is redirected to the gateway's hosted page only via the separate `POST .../payment-gateway/sessions` call below, never as a side effect of order creation itself."
         voucherCode:
           type: string
           nullable: true
@@ -6054,6 +7239,12 @@ components:
           type: string
         paymentMethod:
           type: string
+        channel:
+          type: string
+          enum:
+            - storefront
+            - pos
+          description: "Issue #106 (ADR-0017 D6; not yet implemented, lands in #116). `pos` for a walk-in/phone-identified order created through `POST /api/v1/commerce/pos/orders`; `storefront` for every existing anonymous/bearer order-creation path. Every order created before #116 lands is `storefront`."
         shippingMethod:
           type: string
         shippingServiceName:
@@ -6260,6 +7451,9 @@ components:
           type: string
           format: date-time
           description: Order-history floor (D4) — the guest row's own `created_at` when the phone/e-mail match at bind time, otherwise the moment this account was created.
+        marketingConsent:
+          type: boolean
+          description: "Issue #106 (ADR-0017 D9; not yet implemented, lands in #115). `true` when `marketing_consent_at` is non-null. A campaign's audience resolution only ever includes accounts where this is `true` — an account that never opts in is structurally unreachable, not merely filtered by convention."
     CustomerSession:
       type: object
       description: "Issue #86 (design only). A row of `awcms_commerce_customer_sessions` — never returned with its token; the token is minted once, at verify, and only its `sha256:` digest is ever stored (D3)."
@@ -6309,7 +7503,7 @@ components:
             - email
             - whatsapp
           default: email
-          description: 'Issue #108 (contract #106/ADR-0017 D5). `"whatsapp"` only supports `purpose: "login"` and answers `409 CHANNEL_UNAVAILABLE` when the tenant has no WhatsApp channel configured.'
+          description: 'Issue #108 (implemented, contract #106/ADR-0017 D5). `"whatsapp"` only supports `purpose: "login"` (the phone is looked up through the account''s linked customer row) and answers `409 CHANNEL_UNAVAILABLE` when the tenant has no WhatsApp channel configured (`COMMERCE_WHATSAPP_PROVIDER` unset).'
     OtpVerify:
       type: object
       description: 'Issue #86/#108 (implemented, contract #86/#106 D2/D5). Body of `POST /account/otp/verify`. Exactly one of `email`/`phone` is required — `phone` proves a `via: "whatsapp"` login OTP and only ever supports `purpose: "login"`.'
@@ -6516,3 +7710,105 @@ components:
         createdAt:
           type: string
           format: date-time
+    # --- Issue #106 (ADR-0017, epic #33 wave 0) — CONTRACT ONLY. ---------------
+    CommerceConversation:
+      type: object
+      description: "Issue #106 (ADR-0017 D8; not yet implemented, lands in #111). A row of `awcms_commerce_conversations` — one customer account's private thread with the store. The staff list additionally carries `customerName`/`customerId`; the account's own list never needs them."
+      properties:
+        id:
+          type: string
+          format: uuid
+        subject:
+          type: string
+        status:
+          type: string
+          enum:
+            - open
+            - closed
+        customerId:
+          type: string
+          format: uuid
+        customerName:
+          type: string
+        lastMessageAt:
+          type: string
+          format: date-time
+        createdAt:
+          type: string
+          format: date-time
+    CommerceConversationMessage:
+      type: object
+      description: "Issue #106 (ADR-0017 D8; not yet implemented, lands in #111). A row of `awcms_commerce_messages` — one turn of a conversation, from either side."
+      properties:
+        id:
+          type: string
+          format: uuid
+        conversationId:
+          type: string
+          format: uuid
+        author:
+          type: string
+          enum:
+            - customer
+            - staff
+        body:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+    CommerceCampaign:
+      type: object
+      description: "Issue #106 (ADR-0017 D9; not yet implemented, lands in #114). A row of `awcms_commerce_campaigns` — a consent-gated mass e-mail/WhatsApp send. `recipientCount`/`sentCount` are populated once the campaign has been previewed/sent at least once; both are `null` on a fresh `draft`."
+      properties:
+        id:
+          type: string
+          format: uuid
+        channel:
+          type: string
+          enum:
+            - email
+            - whatsapp
+        audience:
+          type: object
+          description: "`{levels: number[], hasAccount: boolean|null, lastOrderSince: string|null}` — every non-empty filter narrows the audience further (AND, not OR); an empty object targets every consented account."
+        subject:
+          type: string
+          nullable: true
+          description: Ignored for `channel:"whatsapp"`.
+        body:
+          type: string
+        status:
+          type: string
+          enum:
+            - draft
+            - scheduled
+            - sending
+            - sent
+            - cancelled
+        recipientCount:
+          type: integer
+          nullable: true
+        sentCount:
+          type: integer
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+    CommerceWebhookEndpoint:
+      type: object
+      description: "Issue #106 (ADR-0017 D2/D3; not yet implemented, lands in #110). A row of `awcms_commerce_webhook_endpoints`. The raw token is NEVER part of this shape — only `createCommerceWebhookEndpoint`'s own `201` response carries it, once."
+      properties:
+        id:
+          type: string
+          format: uuid
+        provider:
+          type: string
+          enum:
+            - midtrans
+        createdAt:
+          type: string
+          format: date-time
+        lastUsedAt:
+          type: string
+          format: date-time
+          nullable: true

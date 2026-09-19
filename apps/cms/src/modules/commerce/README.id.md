@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:3a9874a567cbfe8228b2e1e33304e00f5477df9d3c9a60a2c3b38b9a6330cf06 -->
+<!-- i18n-source-hash: sha256:062431911453e53654edda1de987a06cc5406ce30f1a6656b702e0a375bc1168 -->
 
 # `commerce`
 
@@ -649,7 +649,13 @@ tabel komisi (afiliasi, pesanan, jumlah, status, dapat difilter berdasarkan
 status, tombol approve/pay/void), i18n `en`+`id`.
 `/admin/commerce-settings` mendapat field tarif komisi.
 
-## Outbox & OTP WhatsApp (Issue #108, epic #33 — kontrak #106/ADR-0017 D5)
+## Provider eksternal — kontrak saja, kecuali D5 (epic #33 wave 0 — ADR-0017, issue #106)
+
+`openapi/modules/commerce.openapi.yaml` kini juga mendokumentasikan, SEBELUM ADA HANDLER APA PUN, sebagian besar permukaan provider-eksternal increment 5: endpoint sesi payment-gateway dan intake webhook publik (D2/D3, Midtrans Snap), field tarif kurir pada path cart-quote/order yang sudah ada (D4, RajaOngkir), pembuatan order POS (D6), tiga proyeksi penjualan yang ditampung `reporting` (D7), kotak masuk pelanggan — sisi bearer maupun owner (D8), kampanye bergerbang consent (D9), dan flag pengaturan modul plus harga bertingkat saat quote (D10). **D5 (WhatsApp) adalah satu-satunya pengecualian — sudah DIIMPLEMENTASIKAN, bukan kontrak-saja; lihat bagiannya sendiri persis di bawah ini.** Setiap satu dari sepuluh keputusan D1–D10 — mengapa port hidup di dalam `commerce` alih-alih `integration_hub`, mengapa tenant webhook diresolusi dari token opak alih-alih payload-nya, mengapa alur gateway adalah redirect alih-alih embed, dan seterusnya — dicatat di [ADR-0017](../../../../../docs/adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.md) di awcms-one.
+
+Setiap path baru yang masih menunggu handler dinamai di `ROUTE_PARITY_EXEMPTIONS` (`scripts/api-spec-check.ts`), masing-masing entri mengutip issue ANAK yang menghapusnya: tarif kurir dan pengaturan (#107), payment gateway + token endpoint webhook (#110), kotak masuk (#111), POS (#116), laporan penjualan (#117), kampanye (#114), dan intake webhook gateway + rekonsiliasi (#113) — set itu wajib KOSONG lagi begitu increment 5 selesai, disiplin yang sama yang sudah dibuktikan #86/ADR-0016 untuk akun. Entri pengecualian milik WhatsApp sendiri sudah dihapus (#108). ADR-0017 menamai setiap variabel lingkungan baru yang akan dibaca permukaan ini (`COMMERCE_PAYMENT_GATEWAY`, `COMMERCE_MIDTRANS_SERVER_KEY`, `COMMERCE_MIDTRANS_IS_PRODUCTION`, `COMMERCE_RAJAONGKIR_API_KEY`) — belum satu pun dibaca, dideklarasikan di `.env.example`, atau diperiksa `scripts/validate-env.ts`; masing-masing ditambahkan oleh issue adapter-nya sendiri, bukan oleh perubahan kontrak-saja ini. Variabel env WhatsApp (`COMMERCE_WHATSAPP_PROVIDER`, `COMMERCE_FONNTE_TOKEN`, `COMMERCE_META_WA_TOKEN`, `COMMERCE_META_WA_PHONE_NUMBER_ID`, …) SUDAH dibaca/dideklarasikan/diperiksa — lihat bagian WhatsApp di bawah.
+
+## Outbox & OTP WhatsApp — SUDAH DIIMPLEMENTASIKAN (Issue #108, epic #33 — kontrak #106/ADR-0017 D5)
 
 Outbox provider kedua, dimodelkan persis seperti `email` (ADR-0017 D1 —
 setiap provider eksternal adalah port + adapter di dalam `commerce`): tabel

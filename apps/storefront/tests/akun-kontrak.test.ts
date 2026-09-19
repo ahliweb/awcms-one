@@ -21,7 +21,8 @@ const AKUN_VALID = {
   phone: "+6281234567890",
   level: 1,
   createdAt: "2026-01-01T00:00:00.000Z",
-  historyFrom: "2026-01-01T00:00:00.000Z"
+  historyFrom: "2026-01-01T00:00:00.000Z",
+  marketingConsent: true
 };
 
 const SESI_VALID: SesiAkun = {
@@ -50,6 +51,15 @@ describe("akun-kontrak: validateAkun", () => {
     expect(validateAkun({ ...AKUN_VALID, level: "1" })).toBeNull();
     expect(validateAkun({ ...AKUN_VALID, createdAt: "not a date" })).toBeNull();
     expect(validateAkun({ ...AKUN_VALID, historyFrom: 123 })).toBeNull();
+  });
+
+  test("marketingConsent (issue #115) defaults to false rather than rejecting when absent or not a boolean", () => {
+    const { marketingConsent: _omit, ...withoutConsent } = AKUN_VALID;
+    expect(validateAkun(withoutConsent)).toEqual({ ...withoutConsent, marketingConsent: false });
+    expect(validateAkun({ ...AKUN_VALID, marketingConsent: "yes" })).toEqual({
+      ...AKUN_VALID,
+      marketingConsent: false
+    });
   });
 });
 

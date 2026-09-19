@@ -1,0 +1,44 @@
+{
+  "62.02.01": {
+    "jne": {
+      "REG": { "name": "JNE REG", "etd": "2-3 hari", "baseCost": "15000.00", "perExtraKg": "5000.00" },
+      "YES": { "name": "JNE YES", "etd": "1-2 hari", "baseCost": "28000.00", "perExtraKg": "8000.00" }
+    },
+    "jnt": {
+      "EZ": { "name": "J&T EZ", "etd": "3-4 hari", "baseCost": "12000.00", "perExtraKg": "4500.00" },
+      "REG": { "name": "J&T REG", "etd": "2-3 hari", "baseCost": "16000.00", "perExtraKg": "5500.00" }
+    },
+    "sicepat": {
+      "REG": { "name": "SiCepat REG", "etd": "2-3 hari", "baseCost": "14000.00", "perExtraKg": "5000.00" },
+      "BEST": { "name": "SiCepat BEST", "etd": "1 hari", "baseCost": "26000.00", "perExtraKg": "9000.00" }
+    }
+  },
+  "63.01.01": {
+    "jne": {
+      "REG": { "name": "JNE REG", "etd": "3-4 hari", "baseCost": "22000.00", "perExtraKg": "7000.00" },
+      "YES": { "name": "JNE YES", "etd": "2 hari", "baseCost": "35000.00", "perExtraKg": "10000.00" }
+    },
+    "jnt": {
+      "EZ": { "name": "J&T EZ", "etd": "4-5 hari", "baseCost": "18000.00", "perExtraKg": "6000.00" },
+      "REG": { "name": "J&T REG", "etd": "3-4 hari", "baseCost": "23000.00", "perExtraKg": "7500.00" }
+    },
+    "sicepat": {
+      "REG": { "name": "SiCepat REG", "etd": "3-4 hari", "baseCost": "21000.00", "perExtraKg": "7000.00" },
+      "BEST": { "name": "SiCepat BEST", "etd": "2 hari", "baseCost": "33000.00", "perExtraKg": "11000.00" }
+    }
+  },
+  "62.01.01": {
+    "jne": {
+      "REG": { "name": "JNE REG", "etd": "1-2 hari", "baseCost": "10000.00", "perExtraKg": "3500.00" },
+      "YES": { "name": "JNE YES", "etd": "1 hari", "baseCost": "20000.00", "perExtraKg": "6000.00" }
+    },
+    "jnt": {
+      "EZ": { "name": "J&T EZ", "etd": "2 hari", "baseCost": "9000.00", "perExtraKg": "3000.00" },
+      "REG": { "name": "J&T REG", "etd": "1-2 hari", "baseCost": "11000.00", "perExtraKg": "4000.00" }
+    },
+    "sicepat": {
+      "REG": { "name": "SiCepat REG", "etd": "1-2 hari", "baseCost": "9500.00", "perExtraKg": "3500.00" },
+      "BEST": { "name": "SiCepat BEST", "etd": "1 hari", "baseCost": "18000.00", "perExtraKg": "6500.00" }
+    }
+  }
+}

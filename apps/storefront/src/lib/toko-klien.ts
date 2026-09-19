@@ -65,7 +65,7 @@ export type CartLineRequest = {
 export type ShippingSelection =
   | { method: "alternative"; serviceId: string }
   | { method: "self_pickup" }
-  | { method: "courier" }
+  | { method: "courier"; serviceId: string | null }
   | null;
 
 export type QuoteRequest = {
@@ -73,6 +73,15 @@ export type QuoteRequest = {
   shipping: ShippingSelection;
   voucherCode: string | null;
   insurance: boolean;
+  /**
+   * Issue #109 (contract: #106 D4) — the shopper's chosen district, sent as
+   * soon as the checkout address step's district `<select>` has a value.
+   * `undefined`/`null`/absent means "no destination known yet" — the CMS
+   * (and this repo's own stub) then answers with the single disabled
+   * `{available:false}` courier placeholder rather than real rates, exactly
+   * as it does when `shipping.courier.enabled` is off.
+   */
+  destination?: { districtCode: string } | null;
 };
 
 export type CartLineStatus =
@@ -114,6 +123,20 @@ export type ShippingOption = {
   name: string;
   cost: string | null;
   available: boolean;
+  /**
+   * Issue #109 (contract: #106 D4) — the courier's estimated delivery time
+   * (e.g. `"2-3 hari"`), shown beside the price. `null`/absent for a
+   * non-courier option, or for the disabled placeholder row.
+   */
+  etd?: string | null;
+  /**
+   * Issue #109 — a human-readable reason the SINGLE disabled courier
+   * placeholder row is unavailable (courier disabled, no destination yet, or
+   * the provider could not price this destination) — shown as the row's own
+   * visible help text, not just a "Segera hadir" label with no explanation.
+   * `null`/absent on every other option.
+   */
+  note?: string | null;
 };
 
 export type QuoteVoucher = {
@@ -125,7 +148,15 @@ export type QuoteVoucher = {
 } | null;
 
 export type PaymentMethodAvailability = {
-  method: "manual_qris" | "manual_bank" | "dp";
+  /**
+   * `"gateway"` (issue #112, contract: #106 D3) is listed, `available:true`,
+   * only when the tenant's public store settings carry `payment.
+   * gatewayEnabled: true` (`src/lib/awcms/pemasaran.ts`'s `PaymentSettings`)
+   * — an awcms that predates #106/#110 simply never sends it, and this
+   * union member exists for the CMS to send at all, not for this app to
+   * infer it from anything else.
+   */
+  method: "manual_qris" | "manual_bank" | "dp" | "gateway";
   available: boolean;
 };
 
@@ -165,7 +196,8 @@ export type OrderAddressInput = {
   notes: string | null;
 };
 
-export type OrderPaymentInput = { method: "manual_qris" | "manual_bank" | "dp" };
+/** `"gateway"` (issue #112) places the order in `pending_payment` exactly like every other method — the CMS starts it with no gateway session at all; `checkout.ts` creates one immediately afterwards via `createGatewaySession`, a separate call, never a field on this request. */
+export type OrderPaymentInput = { method: "manual_qris" | "manual_bank" | "dp" | "gateway" };
 
 export type CreateOrderRequest = {
   idempotencyKey: string;
@@ -257,6 +289,17 @@ export type Order = {
   completedAt: string | null;
   cancelledAt: string | null;
   whatsapp: { number: string; text: string };
+  /**
+   * Issue #112 (contract: #106 D3) — present only for a `paymentMethod:
+   * "gateway"` order, and only once a session has actually been created
+   * (`createGatewaySession` below); `null`/absent for every order this
+   * app's own gateway flow has not touched yet, and for every order made
+   * with a different `paymentMethod` at all. `status` tracks the gateway's
+   * OWN lifecycle, not this app's order status — a `"paid"` gateway with an
+   * order still `pending_payment` is a state the CMS's webhook/reconciler
+   * closes shortly after, not something this client reconciles itself.
+   */
+  gateway?: { provider: string; status: "created" | "pending" | "paid" | "expired" | "failed" } | null;
 };
 
 export type PaymentConfirmationRequest = {
@@ -277,6 +320,9 @@ export type UploadSession = {
   mediaObjectId: string;
   expiresAt: string;
 };
+
+/** `POST …/orders/{orderCode}/payment-gateway/sessions` — issue #112, contract: #106 D3. */
+export type GatewaySession = { redirectUrl: string; expiresAt: string; providerRef: string };
 
 export type ReviewRequest = {
   orderCode: string;
@@ -351,6 +397,40 @@ export function finalizePaymentProofUpload(
     `/orders/${encodeURIComponent(orderCode)}/payment-proof/upload-sessions/${encodeURIComponent(sessionId)}/finalize`,
     "POST",
     input
+  );
+}
+
+/**
+ * `POST …/orders/{orderCode}/payment-gateway/sessions` — issue #112,
+ * contract: #106 D3. Starts (or, per that contract's own "idempotent per
+ * order", re-reads) the gateway session for a `pending_payment`,
+ * `paymentMethod: "gateway"` order and hands back the hosted page to send
+ * the shopper's whole browser to (`checkout.ts`/`pesanan.ts`/`akun-
+ * pesanan.ts` all `window.location.assign` it, never embed it — see this
+ * repo's own `docs/adr/0010-*.md`).
+ *
+ * `phone` is required for an ANONYMOUS caller (the same ownership proof
+ * `getOrder`/`cancelOrder`/`submitPaymentConfirmation` already ask for) and
+ * ignored when `bearerToken` is given instead (a signed-in shopper's own
+ * order, `/akun/pesanan`'s detail view) — passing `null` for `phone` when a
+ * bearer token is supplied sends no `phone` field at all, matching this
+ * contract's own "`{phone}` (or `Authorization: Bearer`)".
+ *
+ * `409 PAYMENT_NOT_APPLICABLE` — the order is not a `gateway` order, or has
+ * left `pending_payment`. `503 GATEWAY_UNAVAILABLE` — the deployment's own
+ * provider is unreachable/misconfigured. Both are ordinary `TokoApiError`s,
+ * switched on `.code` like every other error this file throws.
+ */
+export function createGatewaySession(
+  orderCode: string,
+  phone: string | null,
+  bearerToken?: string
+): Promise<GatewaySession> {
+  return kirimPermintaan<GatewaySession>(
+    `/orders/${encodeURIComponent(orderCode)}/payment-gateway/sessions`,
+    "POST",
+    phone ? { phone } : {},
+    bearerToken ? { Authorization: `Bearer ${bearerToken}` } : undefined
   );
 }
 

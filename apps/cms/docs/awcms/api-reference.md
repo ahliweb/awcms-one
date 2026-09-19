@@ -9399,6 +9399,147 @@ Proves the parts of the chain nothing else can see — that the VAPID key pair m
 
 Catalog slice of the re-platformed storefront (commerce module, Issue #4, epic #1) — tenant-scoped product categories (hierarchical, self-referencing parent) and products (physical/digital/service/subscription), ported from the legacy MySQL commerce_bj_mart schema's core catalog columns. price is numeric(14,2) and crosses the wire as a string, never a JSON number, so money arithmetic never drifts through binary floating point. A product's lifecycle status (draft/active/inactive/archived) travels through the same PATCH as every other field and is checked against a legal-transition table before any write. Categories have no status and no re-parenting via update — a hierarchy position is set once, at creation. This slice ships no restore endpoint: a soft-deleted row is retained (for the FK integrity of anything still referencing it) but not exposed for recovery here.
 
+### `GET /api/v1/commerce/campaigns` — Issue #106 (ADR-0017 D9; not yet implemented, lands in #114). Staff list of campaigns, newest first. Gated on `commerce.campaigns.read`.
+
+- **operationId**: `listCommerceCampaigns`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name     | In    | Required | Type   | Description |
+| -------- | ----- | -------- | ------ | ----------- |
+| `cursor` | query | no       | string |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | One page of campaigns.      | object                                 |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/campaigns` — Issue #106 (ADR-0017 D9; not yet implemented, lands in #114). Create a `draft` campaign. Gated on `commerce.campaigns.update`.
+
+- **operationId**: `createCommerceCampaign`
+- **Security**: bearerAuth + tenantHeader
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                        | Schema                                 |
+| ------ | ---------------------------------- | -------------------------------------- |
+| 201    | Campaign created, `status: draft`. | object                                 |
+| 400    | Validation error.                  | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.        | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.        | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/campaigns/{id}` — Issue #106 (ADR-0017 D9; not yet implemented, lands in #114). One campaign. Gated on `commerce.campaigns.read`.
+
+- **operationId**: `getCommerceCampaign`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The campaign.               | object                                 |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
+
+### `PATCH /api/v1/commerce/campaigns/{id}` — Issue #106 (ADR-0017 D9; not yet implemented, lands in #114). Edit a campaign still in `draft`. Gated on `commerce.campaigns.update`.
+
+- **operationId**: `updateCommerceCampaign`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                          | Schema                                 |
+| ------ | ------------------------------------ | -------------------------------------- |
+| 200    | Updated.                             | object                                 |
+| 400    | Validation error.                    | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.          | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.          | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                  | [`ApiError`](#standard-error-envelope) |
+| 409    | CAMPAIGN_NOT_EDITABLE — not `draft`. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/campaigns/{id}/cancel` — Issue #106 (ADR-0017 D9; not yet implemented, lands in #114). Cancel a campaign before (or while) it sends; already-dispatched recipient rows are not un-sent. Gated on `commerce.campaigns.send`.
+
+- **operationId**: `cancelCommerceCampaign`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                                          | Schema                                 |
+| ------ | ---------------------------------------------------- | -------------------------------------- |
+| 200    | Campaign moved to `cancelled`.                       | object                                 |
+| 401    | Missing or invalid session.                          | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                          | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                  | [`ApiError`](#standard-error-envelope) |
+| 409    | CAMPAIGN_ALREADY_FINAL — already `sent`/`cancelled`. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/campaigns/{id}/preview` — Issue #106 (ADR-0017 D9; not yet implemented, lands in #114). Resolve the audience filter into a recipient COUNT, without sending anything. Gated on `commerce.campaigns.read`.
+
+- **operationId**: `previewCommerceCampaign`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The audience count.         | object                                 |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/campaigns/{id}/send` — Issue #106 (ADR-0017 D9; not yet implemented, lands in #114). Resolve the audience, create one `awcms_commerce_campaign_recipients` row per recipient, and move the campaign to `sending` — the `commerce:campaigns:dispatch` job fans the rows out into the e-mail/WhatsApp outboxes from there. Gated on `commerce.campaigns.send`; `Idempotency-Key` required.
+
+- **operationId**: `sendCommerceCampaign`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                                                                      | Schema                                 |
+| ------ | -------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | Campaign moved to `sending` (or `sent`, once every recipient row is dispatched). | object                                 |
+| 401    | Missing or invalid session.                                                      | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                      | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                              | [`ApiError`](#standard-error-envelope) |
+| 409    | CAMPAIGN_NOT_SENDABLE — not `draft`/`scheduled`.                                 | [`ApiError`](#standard-error-envelope) |
+
 ### `GET /api/v1/commerce/categories` — List categories for the current tenant — keyset-paginated, newest first.
 
 - **operationId**: `listCommerceCategories`
@@ -9527,6 +9668,92 @@ Sets deleted_at; the slug is freed for reuse. Restore it with POST /api/v1/comme
 | 403    | Access denied by RBAC/ABAC.                                                             | [`ApiError`](#standard-error-envelope) |
 | 404    | Resource not found.                                                                     | [`ApiError`](#standard-error-envelope) |
 | 409    | slug is already taken by a live category in this tenant (CATEGORY_SLUG_ALREADY_EXISTS). | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/conversations` — Issue #106 (ADR-0017 D8; not yet implemented, lands in #111). Staff list of every customer conversation, newest first. Gated on `commerce.conversations.read`.
+
+- **operationId**: `listCommerceConversations`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name     | In    | Required | Type                   | Description |
+| -------- | ----- | -------- | ---------------------- | ----------- |
+| `status` | query | no       | enum(`open`, `closed`) |             |
+| `cursor` | query | no       | string                 |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | One page of conversations.  | object                                 |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/conversations/{id}` — Issue #106 (ADR-0017 D8; not yet implemented, lands in #111). One conversation with its messages. Gated on `commerce.conversations.read`.
+
+- **operationId**: `getCommerceConversation`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                        | Schema                                 |
+| ------ | ---------------------------------- | -------------------------------------- |
+| 200    | The conversation and its messages. | object                                 |
+| 401    | Missing or invalid session.        | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.        | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                | [`ApiError`](#standard-error-envelope) |
+
+### `PATCH /api/v1/commerce/conversations/{id}` — Issue #106 (ADR-0017 D8; not yet implemented, lands in #111). Close or reopen a conversation. Gated on `commerce.conversations.update`.
+
+- **operationId**: `updateCommerceConversation`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | Updated.                    | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/conversations/{id}/messages` — Issue #106 (ADR-0017 D8; not yet implemented, lands in #111). Staff reply. Triggers an e-mail notification to the customer through the existing `email` outbox (no new delivery channel). Gated on `commerce.conversations.update`.
+
+- **operationId**: `createCommerceConversationMessage`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 201    | Message added.              | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
 
 ### `GET /api/v1/commerce/customers` — Admin customer list (Issue 29). Keyset-paginated, newest first. Gated on customers.read.
 
@@ -10010,6 +10237,43 @@ status is DERIVED from now() against startsAt/endsAt — scheduled or active; en
 | 200    | The active popup, or null when none. | object                                 |
 | 401    | Missing or invalid session.          | [`ApiError`](#standard-error-envelope) |
 | 403    | Access denied by RBAC/ABAC.          | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/pos/orders` — Issue #106 (ADR-0017 D6; not yet implemented, lands in #116). POS order history — the existing owner order list, filtered `channel=pos`. Gated on `commerce.orders.read`.
+
+- **operationId**: `listCommercePosOrders`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name     | In    | Required | Type   | Description |
+| -------- | ----- | -------- | ------ | ----------- |
+| `cursor` | query | no       | string |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | One page of POS orders.     | object                                 |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/pos/orders` — Issue #106 (ADR-0017 D6; not yet implemented, lands in #116). Staff creates a `paid`, `self_pickup` order at the counter for a walk-in or phone-identified customer. Gated on `commerce.pos.create` — the ONLY order-creation path that needs a permission at all, since every other one is anonymous or provider-driven.
+
+- **operationId**: `createCommercePosOrder`
+- **Security**: bearerAuth + tenantHeader
+
+`orders.channel` is set `pos`; `order_events` records the acting STAFF member (`admin`), never `system` and never `customer`. Payment is `cash` and the order is created already `paid` — there is no `pending_payment` step for a counter sale.
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                    | Schema                                 |
+| ------ | ------------------------------ | -------------------------------------- |
+| 201    | Order created, already `paid`. | object                                 |
+| 400    | Validation error.              | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.    | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.    | [`ApiError`](#standard-error-envelope) |
 
 ### `GET /api/v1/commerce/products` — List products for the current tenant — filterable, sortable, keyset-paginated.
 
@@ -10633,6 +10897,32 @@ Issue #91 (implemented, contract #86): an OPTIONAL `Authorization: Bearer <custo
 | 404    | Resource not found.                                   | [`ApiError`](#standard-error-envelope) |
 | 409    | ORDER_NOT_PAYABLE — the order is not pending_payment. | [`ApiError`](#standard-error-envelope) |
 
+### `POST /api/v1/commerce/storefront/orders/{orderCode}/payment-gateway/sessions` — Issue #106 (ADR-0017 D3; not yet implemented, lands in #110). Create a hosted payment-gateway session (Midtrans Snap) for a `pending_payment` order whose `paymentMethod` is `gateway`. Anonymous, identified by `phone` — or an optional `customerBearer`, matching the rest of this anonymous surface (Issue #91's own optional-bearer pattern).
+
+- **operationId**: `createCommerceStorefrontPaymentGatewaySession`
+- **Security**: none (public endpoint)
+
+`createSession` (the `PaymentGatewayProvider` port) is called OUTSIDE any DB transaction (ADR-0006/ADR-0017 D1); the returned `providerRef` is persisted before the redirect is handed back, so a `commerce:payments:reconcile` pass can always find this session even if the shopper never returns from the hosted page. Calling this twice for the same order while a session is still live returns the SAME session rather than creating a second one at the provider.
+
+**Parameters**
+
+| Name        | In   | Required | Type   | Description |
+| ----------- | ---- | -------- | ------ | ----------- |
+| `orderCode` | path | yes      | string |             |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                                                                    | Schema                                 |
+| ------ | -------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 201    | Session created (or the still-live session for this order was returned).                                       | object                                 |
+| 400    | Validation error.                                                                                              | [`ApiError`](#standard-error-envelope) |
+| 401    | UNAUTHENTICATED — an Authorization header was present but not a live session.                                  | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                            | [`ApiError`](#standard-error-envelope) |
+| 409    | PAYMENT_NOT_APPLICABLE — the order's `paymentMethod` is not `gateway`, or its status is not `pending_payment`. | [`ApiError`](#standard-error-envelope) |
+| 503    | GATEWAY_UNAVAILABLE — `COMMERCE_PAYMENT_GATEWAY=none`, unset, or the provider call itself failed/timed out.    | [`ApiError`](#standard-error-envelope) |
+
 ### `POST /api/v1/commerce/storefront/orders/{orderCode}/payment-proof/upload-sessions` — Reserved for a future increment (Issue 29) — always 503 MEDIA_UNAVAILABLE today. See the module README for why.
 
 - **operationId**: `createCommerceStorefrontPaymentProofUploadSession`
@@ -10933,6 +11223,136 @@ Arithmetic is exact (integer cents) — a percentage discount is capped by maxDi
 | 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
 | 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
 
+### `GET /api/v1/commerce/webhook-endpoints` — Issue #106 (ADR-0017 D2/D3; not yet implemented, lands in #110). Staff list of this tenant's inbound webhook endpoints — the token itself is NEVER re-shown after creation. Gated on `commerce.webhook_endpoints.update`.
+
+- **operationId**: `listCommerceWebhookEndpoints`
+- **Security**: bearerAuth + tenantHeader
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The endpoints.              | object                                 |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/webhook-endpoints` — Issue #106 (ADR-0017 D2/D3; not yet implemented, lands in #110). Mint a new opaque endpoint token for a provider. The RAW token is returned exactly once, in this response, and never again — only its hash is stored (`awcms_commerce_webhook_endpoints`, D2). Gated on `commerce.webhook_endpoints.update`.
+
+- **operationId**: `createCommerceWebhookEndpoint`
+- **Security**: bearerAuth + tenantHeader
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                           | Schema                                 |
+| ------ | ----------------------------------------------------- | -------------------------------------- |
+| 201    | Endpoint created; `data.token` is shown exactly once. | object                                 |
+| 400    | Validation error.                                     | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                           | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                           | [`ApiError`](#standard-error-envelope) |
+
+### `DELETE /api/v1/commerce/webhook-endpoints/{id}` — Issue #106 (ADR-0017 D2/D3; not yet implemented, lands in #110). Revoke a webhook endpoint token — the fastest available rotation path if a URL leaks. Gated on `commerce.webhook_endpoints.update`.
+
+- **operationId**: `deleteCommerceWebhookEndpoint`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                                                                   | Schema                                 |
+| ------ | ----------------------------------------------------------------------------- | -------------------------------------- |
+| 204    | Revoked. Idempotent — deleting an already-deleted endpoint still answers 204. |                                        |
+| 401    | Missing or invalid session.                                                   | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                   | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/webhooks/{provider}/{endpointToken}` — Issue #106 (ADR-0017 D2/D3; not yet implemented, lands in #113). Public inbound payment-gateway callback. Tenant resolved from `endpointToken` via a SECURITY DEFINER bootstrap function; the provider's own signature is verified timing-safe before anything else happens.
+
+- **operationId**: `receiveCommercePaymentWebhook`
+- **Security**: none (public endpoint)
+
+Anonymous by definition — a provider callback carries no session. Replay-protected by a UNIQUE `(tenant_id, provider, event_key)` constraint on `awcms_commerce_payment_events`: a duplicate or replayed event is deduplicated and still answers `200`, exactly like a freshly verified one, so the provider's own retry behaviour never needs special-casing. A verified `paid` event calls `markOrderPaidBySystem` (the new `system` edge on `pending_payment -> paid`, `order-status.ts`). Body size is bounded; an oversized or malformed body is rejected before signature verification runs.
+
+**Parameters**
+
+| Name            | In   | Required | Type             | Description |
+| --------------- | ---- | -------- | ---------------- | ----------- |
+| `provider`      | path | yes      | enum(`midtrans`) |             |
+| `endpointToken` | path | yes      | string           |             |
+
+**Responses**
+
+| Status | Description                                                                  | Schema                                 |
+| ------ | ---------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | Always, for a verified event — new, deduplicated, or replayed alike.         | object                                 |
+| 401    | Bad or missing provider signature.                                           | [`ApiError`](#standard-error-envelope) |
+| 404    | Unknown `endpointToken`, or a `provider` value the token was not minted for. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/reports/commerce/sales-by-category` — Issue #106 (ADR-0017 D7; not yet implemented, lands in #117). The `commerce.sales_by_category` projection. Gated on `reporting.dashboard.read`.
+
+- **operationId**: `getReportsCommerceSalesByCategory`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name   | In    | Required | Type          | Description |
+| ------ | ----- | -------- | ------------- | ----------- |
+| `from` | query | no       | string (date) |             |
+| `to`   | query | no       | string (date) |             |
+
+**Responses**
+
+| Status | Description                    | Schema                                 |
+| ------ | ------------------------------ | -------------------------------------- |
+| 200    | One row per category in range. | object                                 |
+| 401    | Missing or invalid session.    | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.    | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/reports/commerce/sales-by-product` — Issue #106 (ADR-0017 D7; not yet implemented, lands in #117). The `commerce.sales_by_product` projection. Gated on `reporting.dashboard.read`.
+
+- **operationId**: `getReportsCommerceSalesByProduct`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name   | In    | Required | Type          | Description |
+| ------ | ----- | -------- | ------------- | ----------- |
+| `from` | query | no       | string (date) |             |
+| `to`   | query | no       | string (date) |             |
+
+**Responses**
+
+| Status | Description                   | Schema                                 |
+| ------ | ----------------------------- | -------------------------------------- |
+| 200    | One row per product in range. | object                                 |
+| 401    | Missing or invalid session.   | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.   | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/reports/commerce/sales-daily` — Issue #106 (ADR-0017 D7; not yet implemented, lands in #117). The `commerce.sales_daily` reporting projection, read through the `reporting` module's own projection read path. Gated on `reporting.dashboard.read`.
+
+- **operationId**: `getReportsCommerceSalesDaily`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name   | In    | Required | Type          | Description |
+| ------ | ----- | -------- | ------------- | ----------- |
+| `from` | query | no       | string (date) |             |
+| `to`   | query | no       | string (date) |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | One row per day in range.   | object                                 |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
 ## Commerce Accounts
 
 Issue #86 (ADR-0016, epic #32 wave 0) — CONTRACT ONLY, no route file yet (handlers land in C2–C4, issues #87–#93). Customer accounts are OTP-verified, password-free `commerce` rows (D1), authenticated by a 6-digit e-mail OTP (D2) and a `customerBearer` opaque session token (D3) — a security surface deliberately separate from the staff `bearerAuth`/session schemes, so a customer credential can never reach a staff-only endpoint and vice versa. Registration binds to an existing guest checkout customer by phone when the e-mail also matches (D4). Covers OTP request/verify, the account profile, saved addresses, wishlist, the account's own order history and reviews, and the account's own affiliate enrolment/commissions.
@@ -11069,6 +11489,80 @@ Issue #86 (ADR-0016, epic #32 wave 0) — CONTRACT ONLY, no route file yet (hand
 | 200    | One page of the account's commissions. | object                                 |
 | 401    | UNAUTHENTICATED.                       | [`ApiError`](#standard-error-envelope) |
 
+### `GET /api/v1/commerce/storefront/account/conversations` — Issue #106 (ADR-0017 D8; not yet implemented, lands in #111). The account's own conversations with the store, newest first.
+
+- **operationId**: `listCommerceStorefrontAccountConversations`
+- **Security**: customerBearer
+
+**Parameters**
+
+| Name     | In    | Required | Type   | Description |
+| -------- | ----- | -------- | ------ | ----------- |
+| `cursor` | query | no       | string |             |
+
+**Responses**
+
+| Status | Description                | Schema                                 |
+| ------ | -------------------------- | -------------------------------------- |
+| 200    | One page of conversations. | object                                 |
+| 401    | UNAUTHENTICATED.           | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/storefront/account/conversations` — Issue #106 (ADR-0017 D8; not yet implemented, lands in #111). Start a new conversation with the store, with its opening message.
+
+- **operationId**: `createCommerceStorefrontAccountConversation`
+- **Security**: customerBearer
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description           | Schema                                 |
+| ------ | --------------------- | -------------------------------------- |
+| 201    | Conversation created. | object                                 |
+| 400    | Validation error.     | [`ApiError`](#standard-error-envelope) |
+| 401    | UNAUTHENTICATED.      | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/storefront/account/conversations/{id}` — Issue #106 (ADR-0017 D8; not yet implemented, lands in #111). One conversation the account owns, with its messages.
+
+- **operationId**: `getCommerceStorefrontAccountConversation`
+- **Security**: customerBearer
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                                                                                  | Schema                                 |
+| ------ | -------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The conversation and its messages.                                                           | object                                 |
+| 401    | UNAUTHENTICATED.                                                                             | [`ApiError`](#standard-error-envelope) |
+| 404    | Unknown conversation, or one belonging to another account — the same neutral 404 either way. | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/storefront/account/conversations/{id}/messages` — Issue #106 (ADR-0017 D8; not yet implemented, lands in #111). Reply on the account's own conversation. Reopens a `closed` conversation.
+
+- **operationId**: `createCommerceStorefrontAccountConversationMessage`
+- **Security**: customerBearer
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                | Schema                                 |
+| ------ | ---------------------------------------------------------- | -------------------------------------- |
+| 201    | Message added.                                             | object                                 |
+| 400    | Validation error.                                          | [`ApiError`](#standard-error-envelope) |
+| 401    | UNAUTHENTICATED.                                           | [`ApiError`](#standard-error-envelope) |
+| 404    | Unknown conversation, or one belonging to another account. | [`ApiError`](#standard-error-envelope) |
+
 ### `POST /api/v1/commerce/storefront/account/logout` — Issue #89 (implemented, contract #86). Revoke the presented bearer session (D3).
 
 - **operationId**: `logoutCommerceStorefrontAccount`
@@ -11094,7 +11588,7 @@ Issue #86 (ADR-0016, epic #32 wave 0) — CONTRACT ONLY, no route file yet (hand
 | 401    | UNAUTHENTICATED — missing, invalid, or expired bearer. | [`ApiError`](#standard-error-envelope) |
 | 403    | ACCOUNT_BLOCKED.                                       | [`ApiError`](#standard-error-envelope) |
 
-### `PATCH /api/v1/commerce/storefront/account/me` — Issue #89 (implemented, contract #86). Update the account's display name. No e-mail/phone change in this increment (D6).
+### `PATCH /api/v1/commerce/storefront/account/me` — Issue #89 (implemented, contract #86). Update the account's display name. No e-mail/phone change in this increment (D6). `marketingConsent` (Issue #106 ADR-0017 D9; not yet implemented, lands in #115) is the ONLY field a campaign's audience resolution ever reads to decide reachability.
 
 - **operationId**: `updateCommerceStorefrontAccountMe`
 - **Security**: customerBearer
@@ -11159,12 +11653,12 @@ Anonymous, per-IP and per-e-mail rate limited (10/IP/h, 5/e-mail/h). For `purpos
 
 **Responses**
 
-| Status | Description                                                                                                                                                                             | Schema                                 |
-| ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
-| 202    | Always — the OTP was queued (or the request was silently absorbed by a rate limit/tenant resolution failure that answers identically).                                                  | object                                 |
-| 400    | Validation error.                                                                                                                                                                       | [`ApiError`](#standard-error-envelope) |
-| 409    | CHANNEL_UNAVAILABLE — `via: "whatsapp"` and the tenant has no WhatsApp channel configured/enabled (Issue #108). Configuration, not enumeration — answered before an OTP is ever issued. | [`ApiError`](#standard-error-envelope) |
-| 429    | Too many OTP requests from this source (RATE_LIMITED). Carries `Retry-After`.                                                                                                           | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                                                                                                                                                                                                                                | Schema                                 |
+| ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 202    | Always — the OTP was queued (or the request was silently absorbed by a rate limit/tenant resolution failure that answers identically).                                                                                                                                                                                     | object                                 |
+| 400    | Validation error.                                                                                                                                                                                                                                                                                                          | [`ApiError`](#standard-error-envelope) |
+| 409    | CHANNEL_UNAVAILABLE — `via: "whatsapp"` and the tenant has no WhatsApp channel configured/enabled (Issue #108, contract #106/ADR-0017 D5). Configuration, not enumeration — answered before an OTP is ever issued, and reveals only a per-tenant configuration fact, never anything about the e-mail/phone/account itself. | [`ApiError`](#standard-error-envelope) |
+| 429    | Too many OTP requests from this source (RATE_LIMITED). Carries `Retry-After`.                                                                                                                                                                                                                                              | [`ApiError`](#standard-error-envelope) |
 
 ### `POST /api/v1/commerce/storefront/account/otp/verify` — Issue #89 (implemented, contract #86). Verify a 6-digit e-mail OTP and mint a bearer session (D2/D3).
 
@@ -11938,12 +12432,13 @@ Issue 29 — a resolved cart line, request or response shape depending on contex
 
 ### Schema: CommerceCartQuoteRequest
 
-| Field         | Type                                                              | Required | Nullable | Description |
-| ------------- | ----------------------------------------------------------------- | -------- | -------- | ----------- |
-| `lines`       | array of [`CommerceCartQuoteLine`](#schema-commercecartquoteline) | yes      | no       |             |
-| `shipping`    | object                                                            | no       | yes      |             |
-| `voucherCode` | string                                                            | no       | yes      |             |
-| `insurance`   | boolean                                                           | no       | no       |             |
+| Field         | Type                                                              | Required | Nullable | Description                                                                                                                                                                                                                                                                                                                                       |
+| ------------- | ----------------------------------------------------------------- | -------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `lines`       | array of [`CommerceCartQuoteLine`](#schema-commercecartquoteline) | yes      | no       |                                                                                                                                                                                                                                                                                                                                                   |
+| `shipping`    | object                                                            | no       | yes      |                                                                                                                                                                                                                                                                                                                                                   |
+| `destination` | object                                                            | no       | yes      | Issue #106 (ADR-0017 D4; not yet implemented, lands in #107). `{districtCode}` — an `idn_admin_regions` district code, resolved server-side against `awcms_commerce_courier_destinations` to a RajaOngkir destination id. Required for a `courier` shipping option to be quoted at all; absent, every `courier` option answers `available:false`. |
+| `voucherCode` | string                                                            | no       | yes      |                                                                                                                                                                                                                                                                                                                                                   |
+| `insurance`   | boolean                                                           | no       | no       |                                                                                                                                                                                                                                                                                                                                                   |
 
 **Example**
 
@@ -11961,6 +12456,9 @@ Issue 29 — a resolved cart line, request or response shape depending on contex
     "method": "alternative",
     "serviceId": "string"
   },
+  "destination": {
+    "districtCode": "string"
+  },
   "voucherCode": "string",
   "insurance": false
 }
@@ -11968,18 +12466,18 @@ Issue 29 — a resolved cart line, request or response shape depending on contex
 
 ### Schema: CommerceCreateOrderRequest
 
-| Field            | Type                                                              | Required | Nullable | Description                                                                                                                                                                                     |
-| ---------------- | ----------------------------------------------------------------- | -------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `idempotencyKey` | string                                                            | yes      | no       |                                                                                                                                                                                                 |
-| `customer`       | object                                                            | yes      | no       |                                                                                                                                                                                                 |
-| `address`        | object                                                            | no       | yes      |                                                                                                                                                                                                 |
-| `lines`          | array of [`CommerceCartQuoteLine`](#schema-commercecartquoteline) | yes      | no       |                                                                                                                                                                                                 |
-| `shipping`       | object                                                            | yes      | no       |                                                                                                                                                                                                 |
-| `payment`        | object                                                            | yes      | no       |                                                                                                                                                                                                 |
-| `voucherCode`    | string                                                            | no       | yes      |                                                                                                                                                                                                 |
-| `insurance`      | boolean                                                           | no       | no       |                                                                                                                                                                                                 |
-| `notes`          | string                                                            | no       | yes      |                                                                                                                                                                                                 |
-| `affiliateCode`  | string                                                            | no       | yes      | Issue #86 (design only). Optional `?ref=` referral code captured by the storefront; ignored if it matches the ordering customer's own affiliate code (self-referral yields no commission — D5). |
+| Field            | Type                                                              | Required | Nullable | Description                                                                                                                                                                                                                                                                                                                                                           |
+| ---------------- | ----------------------------------------------------------------- | -------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `idempotencyKey` | string                                                            | yes      | no       |                                                                                                                                                                                                                                                                                                                                                                       |
+| `customer`       | object                                                            | yes      | no       |                                                                                                                                                                                                                                                                                                                                                                       |
+| `address`        | object                                                            | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                       |
+| `lines`          | array of [`CommerceCartQuoteLine`](#schema-commercecartquoteline) | yes      | no       |                                                                                                                                                                                                                                                                                                                                                                       |
+| `shipping`       | object                                                            | yes      | no       | `{method:"courier", serviceId}` (Issue #106 ADR-0017 D4; not yet implemented, lands in #107) joins the existing `{method:"alternative", serviceId}` and `{method:"self_pickup"}` shapes; `serviceId` is validated against the SAME cached rate `POST cart/quote` most recently returned for this cart — the provider is never called a second time on the write path. |
+| `payment`        | object                                                            | yes      | no       |                                                                                                                                                                                                                                                                                                                                                                       |
+| `voucherCode`    | string                                                            | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                       |
+| `insurance`      | boolean                                                           | no       | no       |                                                                                                                                                                                                                                                                                                                                                                       |
+| `notes`          | string                                                            | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                       |
+| `affiliateCode`  | string                                                            | no       | yes      | Issue #86 (design only). Optional `?ref=` referral code captured by the storefront; ignored if it matches the ordering customer's own affiliate code (self-referral yields no commission — D5).                                                                                                                                                                       |
 
 **Example**
 
@@ -12495,26 +12993,26 @@ Every field of CommerceSliderCreateInput, all optional.
 
 The OWNER shape — a versioned settings document validated against domain/store-settings-validation.ts (unknown keys are rejected). Contains manual-bank account numbers and the QRIS media id; only settings.read may read it and it is never echoed on a public route.
 
-| Field                     | Type            | Required | Nullable | Description                                                                                                                                                                                                                                                                                       |
-| ------------------------- | --------------- | -------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `schemaVersion`           | enum(`1`)       | no       | no       |                                                                                                                                                                                                                                                                                                   |
-| `storeName`               | string          | yes      | no       |                                                                                                                                                                                                                                                                                                   |
-| `tagline`                 | string          | no       | yes      |                                                                                                                                                                                                                                                                                                   |
-| `logoMediaObjectId`       | string (uuid)   | no       | yes      |                                                                                                                                                                                                                                                                                                   |
-| `faviconMediaObjectId`    | string (uuid)   | no       | yes      |                                                                                                                                                                                                                                                                                                   |
-| `address`                 | string          | no       | yes      |                                                                                                                                                                                                                                                                                                   |
-| `phone`                   | string          | no       | yes      |                                                                                                                                                                                                                                                                                                   |
-| `whatsapp`                | string          | no       | yes      |                                                                                                                                                                                                                                                                                                   |
-| `email`                   | string          | no       | yes      |                                                                                                                                                                                                                                                                                                   |
-| `mapsEmbedUrl`            | string          | no       | yes      |                                                                                                                                                                                                                                                                                                   |
-| `faqs`                    | array of object | no       | no       |                                                                                                                                                                                                                                                                                                   |
-| `social`                  | object          | no       | no       | facebook/instagram/tiktok/x/youtube/linkedin, each a URL or null.                                                                                                                                                                                                                                 |
-| `customerLevels`          | array of object | no       | no       |                                                                                                                                                                                                                                                                                                   |
-| `shipping`                | object          | no       | no       | alternativeServices[] {id,name,cost}, selfPickup, courierEnabled, pinpointEnabled, freeShipping {active,minOrder,maxDiscount}, originCityName, originSubdistrictName.                                                                                                                             |
-| `payment`                 | object          | no       | no       | manualBank {active, accounts[] {bankName, accountNumber, accountHolder}}, manualQris {active, mediaObjectId}, downPayment {active, percent}, tax {active, percent}, insurance {active, ratePercent, minFee}.                                                                                      |
-| `promoSection`            | object          | no       | no       |                                                                                                                                                                                                                                                                                                   |
-| `meta`                    | object          | no       | no       | home/contact, each {title, description} (nullable).                                                                                                                                                                                                                                               |
-| `affiliateCommissionRate` | string          | no       | yes      | Issue #92 — numeric(5,2) as a string, 0-100, two decimals. A real column, not part of this jsonb document (sql/921's header) — included here on the wire only. null means the affiliate program is OFF for this tenant; a non-null value both turns it on and is the rate a NEW enrolment copies. |
+| Field                     | Type            | Required | Nullable | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| ------------------------- | --------------- | -------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `schemaVersion`           | enum(`1`)       | no       | no       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| `storeName`               | string          | yes      | no       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| `tagline`                 | string          | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| `logoMediaObjectId`       | string (uuid)   | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| `faviconMediaObjectId`    | string (uuid)   | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| `address`                 | string          | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| `phone`                   | string          | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| `whatsapp`                | string          | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| `email`                   | string          | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| `mapsEmbedUrl`            | string          | no       | yes      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| `faqs`                    | array of object | no       | no       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| `social`                  | object          | no       | no       | facebook/instagram/tiktok/x/youtube/linkedin, each a URL or null.                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| `customerLevels`          | array of object | no       | no       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| `shipping`                | object          | no       | no       | alternativeServices[] {id,name,cost}, selfPickup, courierEnabled, pinpointEnabled, freeShipping {active,minOrder,maxDiscount}, originCityName, originSubdistrictName. Gains `courier: {enabled, originDestinationId, couriers: string[]}` (Issue #106 ADR-0017 D4/D10; not yet implemented, lands in #107/#118) — `originDestinationId` is the RajaOngkir destination id resolved once for the store's own shipping origin; `couriers` names which provider courier codes (e.g. `jne`, `sicepat`) are offered. |
+| `payment`                 | object          | no       | no       | manualBank {active, accounts[] {bankName, accountNumber, accountHolder}}, manualQris {active, mediaObjectId}, downPayment {active, percent}, tax {active, percent}, insurance {active, ratePercent, minFee}. Gains `gateway: {enabled}` (Issue #106 ADR-0017 D3/D10; not yet implemented, lands in #110/#118) — the store-level ON/OFF switch; `COMMERCE_PAYMENT_GATEWAY` (env, per deployment) must ALSO be a real gateway for the method to actually appear, per D1's env-only-credentials rule.             |
+| `promoSection`            | object          | no       | no       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| `meta`                    | object          | no       | no       | home/contact, each {title, description} (nullable).                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| `affiliateCommissionRate` | string          | no       | yes      | Issue #92 — numeric(5,2) as a string, 0-100, two decimals. A real column, not part of this jsonb document (sql/921's header) — included here on the wire only. null means the affiliate program is OFF for this tenant; a non-null value both turns it on and is the rate a NEW enrolment copies.                                                                                                                                                                                                              |
 
 **Example**
 
@@ -13120,13 +13618,13 @@ There is deliberately no consent field. PRD §30 forbids a pre-ticked consent, a
 
 Issue #86/#108 (implemented, contract #86/#106 D2/D5). Body of `POST /account/otp/request`. `email` is required unless `via` is `"whatsapp"`, in which case `phone` is required instead and `purpose` must be `"login"` (registration stays e-mail OTP only).
 
-| Field     | Type                      | Required | Nullable | Description                                                                                                                                                                     |
-| --------- | ------------------------- | -------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `email`   | string (email)            | no       | no       | Required unless `via` is `"whatsapp"`.                                                                                                                                          |
-| `purpose` | enum(`login`, `register`) | yes      | no       |                                                                                                                                                                                 |
-| `name`    | string                    | no       | no       | Required when `purpose` is `register`; ignored for `login`.                                                                                                                     |
-| `phone`   | string                    | no       | no       | Required when `purpose` is `register` (via e-mail), or when `via` is `"whatsapp"` (E.164 or a locally-typed Indonesian number, normalised server-side).                         |
-| `via`     | enum(`email`, `whatsapp`) | no       | no       | Issue #108 (contract #106/ADR-0017 D5). `"whatsapp"` only supports `purpose: "login"` and answers `409 CHANNEL_UNAVAILABLE` when the tenant has no WhatsApp channel configured. |
+| Field     | Type                      | Required | Nullable | Description                                                                                                                                                                                                                                                                                          |
+| --------- | ------------------------- | -------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `email`   | string (email)            | no       | no       | Required unless `via` is `"whatsapp"`.                                                                                                                                                                                                                                                               |
+| `purpose` | enum(`login`, `register`) | yes      | no       |                                                                                                                                                                                                                                                                                                      |
+| `name`    | string                    | no       | no       | Required when `purpose` is `register`; ignored for `login`.                                                                                                                                                                                                                                          |
+| `phone`   | string                    | no       | no       | Required when `purpose` is `register` (via e-mail), or when `via` is `"whatsapp"` (E.164 or a locally-typed Indonesian number, normalised server-side).                                                                                                                                              |
+| `via`     | enum(`email`, `whatsapp`) | no       | no       | Issue #108 (implemented, contract #106/ADR-0017 D5). `"whatsapp"` only supports `purpose: "login"` (the phone is looked up through the account's linked customer row) and answers `409 CHANNEL_UNAVAILABLE` when the tenant has no WhatsApp channel configured (`COMMERCE_WHATSAPP_PROVIDER` unset). |
 
 **Example**
 
