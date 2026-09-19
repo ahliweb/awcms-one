@@ -428,6 +428,72 @@ suite(
       expect(sessionRows[0]!.status).toBe("paid");
     });
 
+    test("amount guard: a verified 'paid' whose gross_amount differs from the order total is recorded as amount_mismatch, audited, and never marks the order paid", async () => {
+      const productId = await seedActiveProduct(TENANT_A, "SKU-WH-MISMATCH");
+      const orderCode = await createGatewayOrder(TENANT_A, productId);
+      const session = await createLiveSession(TENANT_A, orderCode, {
+        kind: "phone",
+        phone: "081311112222"
+      });
+
+      const eventKey = `${session.providerRef}:200`;
+      const result = await applyVerifiedWebhookEvent(
+        getRuntimeSql(),
+        TENANT_A,
+        {
+          provider: "log",
+          eventKey,
+          providerRef: session.providerRef,
+          status: "paid",
+          grossAmount: "1.00", // the order is 10000.00
+          payload: { fixture: "mismatch", gross_amount: "1.00" }
+        }
+      );
+
+      expect(result.kind).toBe("amount_mismatch");
+      expect(await fetchOrderStatus(TENANT_A, orderCode)).toBe(
+        "pending_payment"
+      );
+
+      const events = (await inTenant(
+        TENANT_A,
+        (tx) =>
+          tx`SELECT outcome FROM awcms_commerce_payment_events WHERE tenant_id = ${TENANT_A} AND event_key = ${eventKey}`
+      )) as { outcome: string }[];
+      expect(events).toEqual([{ outcome: "amount_mismatch" }]);
+
+      // Not a terminal provider failure — the session is left pending.
+      const sessionRows = (await inTenant(
+        TENANT_A,
+        (tx) =>
+          tx`SELECT status FROM awcms_commerce_payment_gateway_sessions WHERE id = ${session.id}`
+      )) as { status: string }[];
+      expect(sessionRows[0]!.status).toBe("pending");
+
+      const audit = (await inTenant(
+        TENANT_A,
+        (tx) =>
+          tx`SELECT count(*)::int AS count FROM awcms_audit_events WHERE tenant_id = ${TENANT_A} AND resource_type = 'order' AND message LIKE '%REJECTED%'`
+      )) as { count: number }[];
+      expect(audit[0]!.count).toBe(1);
+
+      // A later CORRECT callback (different event_key) still settles it.
+      const correct = await applyVerifiedWebhookEvent(
+        getRuntimeSql(),
+        TENANT_A,
+        {
+          provider: "log",
+          eventKey: `${session.providerRef}:200:retry`,
+          providerRef: session.providerRef,
+          status: "paid",
+          grossAmount: "10000.00",
+          payload: { fixture: "paid" }
+        }
+      );
+      expect(correct).toEqual({ kind: "applied", orderAffected: true });
+      expect(await fetchOrderStatus(TENANT_A, orderCode)).toBe("paid");
+    });
+
     test("RLS: a webhook-endpoint token belonging to tenant B cannot pay/affect an order belonging to tenant A", async () => {
       const productId = await seedActiveProduct(TENANT_A, "SKU-RLS-WH");
       const orderCode = await createGatewayOrder(TENANT_A, productId);

@@ -146,6 +146,7 @@ export const POST: APIRoute = async ({ params, request, clientAddress }) => {
     eventKey: verifyResult.eventKey,
     providerRef: verifyResult.providerRef,
     status: verifyResult.status,
+    grossAmount: webhookInput.grossAmount,
     payload: bodyRead.value
   });
 

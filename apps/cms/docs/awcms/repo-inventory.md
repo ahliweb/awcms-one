@@ -8,11 +8,11 @@
 | Aspect                              | Value |
 | ----------------------------------- | ----- |
 | Registered modules                  | 25    |
-| Migrations                          | 179   |
+| Migrations                          | 180   |
 | `awcms_*` tables                    | 183   |
 | Tables with `FORCE` RLS             | 165   |
 | RLS-free tables (global, by design) | 18    |
-| Test files                          | 552   |
+| Test files                          | 553   |
 | Route files                         | 476   |
 | ADR                                 | 244   |
 
@@ -229,6 +229,7 @@
 | 177 | `sql/924_awcms_commerce_shipping_rates_schema.sql`                          |
 | 178 | `sql/925_awcms_commerce_whatsapp_outbox_otp_channel.sql`                    |
 | 179 | `sql/926_awcms_commerce_payment_gateway_schema.sql`                         |
+| 180 | `sql/934_awcms_commerce_payment_events_amount_mismatch.sql`                 |
 
 ### Tables & Row-Level Security
 
@@ -422,7 +423,7 @@
 
 | Directory     | Test files |
 | ------------- | ---------- |
-| `(root)`      | 442        |
+| `(root)`      | 443        |
 | `e2e`         | 19         |
 | `integration` | 90         |
 | `unit`        | 1          |

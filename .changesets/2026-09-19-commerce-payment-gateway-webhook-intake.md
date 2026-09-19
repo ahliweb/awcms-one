@@ -29,6 +29,10 @@ way regardless of source.
   recorded as a payment event only, and an owner refunds manually via the
   existing admin `-> cancelled` action (see `order-status.ts`'s header and
   `docs/cms.md`'s payment-gateway runbook for the full reasoning).
+- Amount guard (defense in depth): a verified event whose `gross_amount`
+  differs from the order total is recorded as `outcome = 'amount_mismatch'`
+  (`sql/934` widens the CHECK) with an audit entry, never marks the order
+  paid, and still answers `200`; the reconcile job applies the same guard.
 - `commerce:payments:reconcile` job (every 1-2 minutes) — polls every
   gateway session still `pending` more than 2 minutes old via
   `provider.fetchStatus`, called with no database transaction open

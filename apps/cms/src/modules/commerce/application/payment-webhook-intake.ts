@@ -48,6 +48,12 @@ import {
   updateGatewaySessionStatus
 } from "./payment-gateway-directory";
 import { expireOrderBySystem, markOrderPaidBySystem } from "./order-directory";
+import { recordAuditEvent } from "../../logging/application/audit-log";
+import { normalizeMoney } from "../domain/price-calculation";
+import {
+  checkPaymentAmount,
+  isTerminalFailureStatus
+} from "../domain/payment-amount-guard";
 import type { PaymentGatewayStatus } from "../domain/payment-gateway-provider";
 
 export type ResolvedWebhookEndpoint = {
@@ -80,6 +86,15 @@ export type ApplyWebhookEventInput = {
   eventKey: string;
   providerRef: string;
   status: PaymentGatewayStatus;
+  /**
+   * The provider's own reported amount (Midtrans `gross_amount`, a decimal
+   * string). When present it is compared against the order's `total` in
+   * integer cents BEFORE any order transition — a mismatch is recorded as
+   * `outcome = 'amount_mismatch'` and never marks the order paid
+   * (`domain/payment-amount-guard.ts`). Absent only for a provider whose
+   * status response carries no amount at all (the `log` adapter).
+   */
+  grossAmount?: string;
   payload: unknown;
   correlationId?: string;
 };
@@ -87,7 +102,63 @@ export type ApplyWebhookEventInput = {
 export type ApplyWebhookEventResult =
   | { kind: "replay" }
   | { kind: "applied"; orderAffected: boolean }
-  | { kind: "ignored" };
+  | { kind: "ignored" }
+  | { kind: "amount_mismatch"; reported: string; expected: string };
+
+/**
+ * Shared by this file and `payment-reconcile.ts`: the amount guard plus the
+ * audit entry it writes on a mismatch. Returns `null` when the amounts
+ * agree (or no amount was reported), or the mismatch detail otherwise —
+ * the caller decides what that means for the event row/session.
+ */
+export async function guardPaymentAmount(
+  tx: Bun.SQL,
+  tenantId: string,
+  orderId: string,
+  grossAmount: string | undefined,
+  context: {
+    provider: string;
+    providerRef: string;
+    eventKey: string;
+    status: string;
+    correlationId?: string;
+  }
+): Promise<{ reported: string; expected: string } | null> {
+  if (grossAmount === undefined) return null;
+
+  const rows = (await tx`
+    SELECT total, order_code FROM awcms_commerce_orders
+    WHERE tenant_id = ${tenantId} AND id = ${orderId} AND deleted_at IS NULL
+  `) as { total: string; order_code: string }[];
+  const order = rows[0];
+  const expected = order ? normalizeMoney(order.total) : "";
+
+  const check = checkPaymentAmount(grossAmount, expected);
+  if (check.ok) return null;
+
+  await recordAuditEvent(tx, {
+    tenantId,
+    actorTenantUserId: undefined,
+    moduleKey: "commerce",
+    action: "update",
+    resourceType: "order",
+    resourceId: orderId,
+    message: `Payment ${context.provider} event ${context.eventKey} REJECTED: reported amount ${grossAmount} does not match order ${order?.order_code ?? orderId} total ${expected} (${check.reason}). Order NOT marked paid.`,
+    attributes: {
+      orderCode: order?.order_code ?? null,
+      provider: context.provider,
+      providerRef: context.providerRef,
+      eventKey: context.eventKey,
+      providerStatus: context.status,
+      reportedAmount: grossAmount,
+      expectedAmount: expected,
+      reason: check.reason
+    },
+    correlationId: context.correlationId
+  });
+
+  return { reported: grossAmount, expected };
+}
 
 /** Which `PaymentGatewayStatus` values move the order at all — see `domain/order-status.ts`'s header for why `failed`/`refunded` never do. */
 function isActionableForOrder(
@@ -119,7 +190,31 @@ export async function applyVerifiedWebhookEvent(
       input.providerRef
     );
 
-    const outcome = input.status === "pending" ? "ignored" : "applied";
+    // Defense in depth (Issue #113 review): the amount guard runs BEFORE the
+    // event row is written, so the row itself records the verdict. It only
+    // has an order to compare against when a session resolved; an
+    // unattached event falls through to `ignored` as before.
+    const mismatch = session
+      ? await guardPaymentAmount(
+          tx,
+          tenantId,
+          session.orderId,
+          input.grossAmount,
+          {
+            provider: input.provider,
+            providerRef: input.providerRef,
+            eventKey: input.eventKey,
+            status: input.status,
+            correlationId: input.correlationId
+          }
+        )
+      : null;
+
+    const outcome = mismatch
+      ? "amount_mismatch"
+      : input.status === "pending"
+        ? "ignored"
+        : "applied";
 
     const inserted = (await tx`
       INSERT INTO awcms_commerce_payment_events (
@@ -147,6 +242,23 @@ export async function applyVerifiedWebhookEvent(
       // is still recorded above for the operator's own audit trail; nothing
       // else can be done without an order to apply it to.
       return { kind: "ignored" };
+    }
+
+    if (mismatch) {
+      // Recorded + audited above; the ORDER is never touched. The session
+      // row only moves when the provider itself says the transaction is
+      // terminally failed — a mismatched "paid" leaves it `pending` so the
+      // reconcile job / a later correct callback can still settle it.
+      if (isTerminalFailureStatus(input.status)) {
+        await updateGatewaySessionStatus(
+          tx,
+          tenantId,
+          session.id,
+          "failed",
+          input.payload
+        );
+      }
+      return { kind: "amount_mismatch", ...mismatch };
     }
 
     await updateGatewaySessionStatus(

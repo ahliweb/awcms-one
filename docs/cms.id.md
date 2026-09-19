@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](cms.md)
 
-<!-- i18n-source-hash: sha256:dcdecd8c900fe3ea9c7c3e98e25ea1e3daa3eb93d52c2d844175ff70ee52dac1 -->
+<!-- i18n-source-hash: sha256:5642ecc934f50415427d9dbccc07b3010e80379c1cca259b43429cb3789c7184 -->
 
 # CMS: authoring, publikasi, izin, audit, media, taksonomi
 
@@ -190,6 +190,8 @@ Increment 3 membuat slot-slot itu nyata, bukan sekadar nominal. Kedua belas kunc
 2. `(tenant_id, provider)` di-resolve dari hash token lewat fungsi bootstrap di atas. Token tak dikenal/dicabut, segmen path `{provider}` yang tidak cocok dengan hasil resolve token, atau tidak ada provider yang dikonfigurasi untuk deployment ini — semuanya menjawab `404` netral YANG SAMA, setelah respons dipadatkan ke sebuah latensi lantai (`NEUTRAL_404_MIN_LATENCY_MS`) sehingga kedua kasus tidak bisa dibedakan lewat timing.
 3. `provider.verifyWebhook(...)` — signature yang buruk/hilang adalah `401`.
 4. Di dalam satu transaksi `withTenantOrThrow`: `INSERT INTO awcms_commerce_payment_events (...) ON CONFLICT (tenant_id, provider, event_key) DO NOTHING` — nol baris terpengaruh berarti callback yang DIULANG (replay), dijawab `200` tanpa efek samping. Selain itu status yang sudah dipetakan diterapkan: `paid` → `markOrderPaidBySystem`; `expired` → `expireOrderBySystem` (hanya dari `pending_payment`, diserap diam-diam selain itu); `failed`/`refunded` → baris sesi gateway diperbarui, pesanan dibiarkan tidak tersentuh. Rute ini **tidak pernah** memanggil provider itu sendiri (tidak ada `fetchStatus`) — `fetchStatus` adalah urusan eksklusif job reconcile.
+
+**Penjaga nominal (pertahanan berlapis).** Sebelum transisi pesanan apa pun, `gross_amount` yang dilaporkan provider dibandingkan dengan `total` pesanan sendiri dalam sen bulat (`domain/payment-amount-guard.ts`). Ketidakcocokan — atau nominal yang tak terbaca — tidak pernah menandai pesanan lunas: peristiwanya tetap dicatat (penjaga replay tetap berlaku) dengan `outcome = 'amount_mismatch'` (`sql/934` memperlebar CHECK-nya), satu entri audit-log ditulis terhadap pesanan itu, sesi gateway dipindah ke `failed` **hanya** jika status provider itu sendiri adalah kegagalan terminal (`failed`/`expired`) dan selain itu dibiarkan `pending`, dan rute tetap menjawab `200` agar Midtrans berhenti mencoba ulang. Callback berikutnya dengan nominal yang benar (`event_key` berbeda) melunasi pesanan secara normal. Job reconcile menerapkan penjaga identik pada `gross_amount` dari `fetchStatus`.
 
 `markOrderPaidBySystem` (`application/order-directory.ts`) menyetel `paid_at`/`payment_status`, `gateway_provider`/`gateway_ref` pada pesanan, satu baris `order_events` dengan aktor `system`, dan satu entri audit-log — idempoten: pesanan yang sudah `paid` adalah no-op, dan pesanan dalam status apa pun selain `pending_payment`/`paid` (mis. sudah `cancelled`) juga no-op, bukan error.
 
