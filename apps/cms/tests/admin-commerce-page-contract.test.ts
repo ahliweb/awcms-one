@@ -89,7 +89,7 @@ async function enforcedTriples(
 }
 
 describe("commerce module descriptor — restore is declared for both activity codes", () => {
-  test("forty-six permissions total — five per catalog activity code (incl. restore), four per marketing code, two for settings, two each for orders/customers/affiliates/affiliate_commissions/conversations, three for reviews, one for whatsapp", () => {
+  test("forty-nine permissions total — five per catalog activity code (incl. restore), four per marketing code, two for settings, two each for orders/customers/affiliates/affiliate_commissions/conversations, three for reviews, one for whatsapp, three for campaigns", () => {
     // Issue #23: categories/products carry read/create/update/delete/restore.
     // Issue #26: flash_sales/vouchers/sliders/testimonials/popups carry
     // read/create/update/delete (soft delete only, no restore — the marketing
@@ -108,8 +108,13 @@ describe("commerce module descriptor — restore is declared for both activity c
     // (a conversation is created only through the shopper's own
     // bearer-secured route, no hard-delete route exists), same reasoning as
     // orders/customers/affiliates above.
+    // Issue #114: campaigns carries read/update/send — `send` is split from
+    // `update` because it is the one action that actually reaches a real
+    // inbox/phone (also gates cancel).
     const declared = declaredTriples();
-    expect(declared.size).toBe(2 * 5 + 5 * 4 + 2 + 2 + 2 + 3 + 2 + 2 + 1 + 2);
+    expect(declared.size).toBe(
+      2 * 5 + 5 * 4 + 2 + 2 + 2 + 3 + 2 + 2 + 1 + 2 + 3
+    );
 
     for (const activityCode of ["categories", "products"]) {
       for (const action of ["read", "create", "update", "delete", "restore"]) {

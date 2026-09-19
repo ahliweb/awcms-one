@@ -5385,3 +5385,55 @@ msgstr "Kirim balasan"
 
 msgid "Reopen"
 msgstr "Buka kembali"
+
+msgid "Campaigns"
+msgstr "Kampanye"
+
+msgid "Consent-gated mass e-mail/WhatsApp campaigns to your customers."
+msgstr "Kampanye massal e-mail/WhatsApp ke pelanggan Anda, hanya untuk yang menyetujui (consent)."
+
+msgid "You do not have permission to view campaigns."
+msgstr "Anda tidak memiliki izin untuk melihat kampanye."
+
+msgid "Campaigns could not be loaded right now. Please try again later."
+msgstr "Kampanye tidak dapat dimuat saat ini. Silakan coba lagi nanti."
+
+msgid "New campaign"
+msgstr "Kampanye baru"
+
+msgid "Channel"
+msgstr "Saluran"
+
+msgid "Subject (e-mail only)"
+msgstr "Subjek (khusus e-mail)"
+
+msgid "Use {{name}} and {{storeName}} — the only variables the message may interpolate."
+msgstr "Gunakan {{name}} dan {{storeName}} — satu-satunya variabel yang dapat disisipkan ke dalam pesan."
+
+msgid "Audience: customer levels (all if none checked)"
+msgstr "Audiens: level pelanggan (semua jika tidak ada yang dicentang)"
+
+msgid "Recipients"
+msgstr "Penerima"
+
+msgid "Sent"
+msgstr "Terkirim"
+
+msgid "{count} campaign"
+msgid_plural "{count} campaigns"
+msgstr[0] "{count} kampanye"
+
+msgid "No campaigns yet"
+msgstr "Belum ada kampanye"
+
+msgid "Create a draft above to get started."
+msgstr "Buat draf di atas untuk memulai."
+
+msgid "(none)"
+msgstr "(tidak ada)"
+
+msgid "Preview audience"
+msgstr "Pratinjau audiens"
+
+msgid "Send now"
+msgstr "Kirim sekarang"

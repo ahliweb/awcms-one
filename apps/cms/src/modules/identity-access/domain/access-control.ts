@@ -154,7 +154,14 @@ export type AccessAction =
   // on `media.update` alone, which let whoever could type a credit line also
   // self-attest it cleared for publication. Classified HIGH-RISK below: see
   // that Set's own comment for why.
-  | "adjudicate_rights";
+  | "adjudicate_rights"
+  // Customer campaigns (Issue #114, contract #106 ADR-0017 D9): `send`
+  // gates `POST .../campaigns/{id}/send` AND `.../cancel` — one verb, one
+  // high-risk audience (same split `cancel` above already establishes for
+  // order/POS actions), distinct from `update` (drafting/editing a
+  // campaign) because sending is the one action that actually reaches a
+  // real inbox/phone. Classified HIGH-RISK below.
+  | "send";
 
 export type AccessRequest = {
   moduleKey: string;
@@ -295,7 +302,9 @@ const HIGH_RISK_ACTIONS: ReadonlySet<AccessAction> = new Set([
   // (`checkHighRiskSoDConflicts`) available the moment a tenant authors one —
   // e.g. "the same subject may not both edit routine credit fields and
   // adjudicate rights" — without a second code change.
-  "adjudicate_rights"
+  "adjudicate_rights",
+  // Customer campaigns (Issue #114): reaches real customer inboxes/phones.
+  "send"
 ]);
 
 export function isHighRiskAction(action: AccessAction): boolean {

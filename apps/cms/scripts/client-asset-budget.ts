@@ -520,8 +520,17 @@ export const READER_BUDGET_BYTES = 24_000;
  * new control on an existing screen), so their costs simply add. 232,000
  * keeps the same small margin above the measured total this constant's own
  * history already establishes.
+ *
+ * **Raised to 234,200 B after Issue #114** (contract #106 ADR-0017 D9) —
+ * one more admin screen, `commerce-campaigns.astro` (a campaign list, a
+ * create-draft form with channel/subject/message fields and customer-level
+ * checkboxes, and a detail/editor panel with an audience-preview button and
+ * send/cancel actions). Measured at 233,778 B total (up from 231,919 B —
+ * this screen's own cost, no other surface changed), so this constant keeps
+ * the same small margin above the measured total this constant's own
+ * history already establishes.
  */
-export const APP_BUDGET_BYTES = 232_000;
+export const APP_BUDGET_BYTES = 234_200;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.

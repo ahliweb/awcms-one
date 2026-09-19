@@ -10,10 +10,11 @@
  * variable allowlist — same allowlist discipline
  * `email-template-categories.ts` applies, just without the database.
  *
- * Three keys exist for the whole D5/D7/D9 family (`commerce.customer_otp` —
- * wired end to end by this issue; `commerce.order_paid`/`commerce.campaign`
- * — registered for the later waves that enqueue them, #D7/#D9, not yet
- * called from anywhere in this issue).
+ * Three keys exist for the whole D5/D7/D9 family: `commerce.customer_otp`
+ * (Issue #108), `commerce.campaign` (Issue #114 — the campaign dispatcher's
+ * WhatsApp fan-out, `application/campaign-dispatch.ts`), and
+ * `commerce.order_paid` (registered for a later wave, #D7, not yet called
+ * from anywhere).
  */
 
 export const WHATSAPP_TEMPLATE_KEYS = [
@@ -48,9 +49,18 @@ const WHATSAPP_TEMPLATES: Record<
     variables: ["orderCode", "total", "storeName"],
     body: "Pesanan {{orderCode}} telah dibayar (total {{total}}). Terima kasih telah berbelanja di {{storeName}}."
   },
+  // Issue #114 (contract #106/ADR-0017 D9) — the campaign fan-out's own
+  // WhatsApp body. `subject` is deliberately NOT one of this template's
+  // variables: the OpenAPI contract documents `subject` as "Ignored for
+  // channel:\"whatsapp\"", so the rendered WhatsApp message is the
+  // campaign's own `body` alone (already allowlist-rendered for
+  // `{{name}}`/`{{storeName}}` by `domain/campaign-content.ts` before this
+  // template ever sees it — this is a second, independent substitution
+  // layer, same "one layer per representation" shape `commerce.customer_otp`
+  // already has above).
   "commerce.campaign": {
-    variables: ["subject", "body", "storeName"],
-    body: "{{subject}}\n\n{{body}}\n\n{{storeName}}"
+    variables: ["body", "storeName"],
+    body: "{{body}}\n\n{{storeName}}"
   }
 };
 

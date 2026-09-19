@@ -7638,7 +7638,7 @@ paths:
       operationId: listCommerceCampaigns
       tags:
         - Commerce
-      summary: "Issue #106 (ADR-0017 D9; not yet implemented, lands in #114). Staff list of campaigns, newest first. Gated on `commerce.campaigns.read`."
+      summary: "Issue #114 (contract #106 ADR-0017 D9). Staff list of campaigns, newest first. Gated on `commerce.campaigns.read`."
       parameters:
         - name: cursor
           in: query
@@ -7675,7 +7675,7 @@ paths:
       operationId: createCommerceCampaign
       tags:
         - Commerce
-      summary: "Issue #106 (ADR-0017 D9; not yet implemented, lands in #114). Create a `draft` campaign. Gated on `commerce.campaigns.update`."
+      summary: "Issue #114 (contract #106 ADR-0017 D9). Create a `draft` campaign. Gated on `commerce.campaigns.update`."
       requestBody:
         required: true
         content:
@@ -7685,7 +7685,6 @@ paths:
               required:
                 - channel
                 - audience
-                - subject
                 - body
               properties:
                 channel:
@@ -7709,7 +7708,8 @@ paths:
                       nullable: true
                 subject:
                   type: string
-                  description: Ignored for `channel:"whatsapp"`.
+                  nullable: true
+                  description: Required for `channel:"email"`; ignored (optional) for `channel:"whatsapp"`.
                 body:
                   type: string
       responses:
@@ -7737,7 +7737,7 @@ paths:
       operationId: getCommerceCampaign
       tags:
         - Commerce
-      summary: "Issue #106 (ADR-0017 D9; not yet implemented, lands in #114). One campaign. Gated on `commerce.campaigns.read`."
+      summary: "Issue #114 (contract #106 ADR-0017 D9). One campaign. Gated on `commerce.campaigns.read`."
       parameters:
         - name: id
           in: path
@@ -7769,7 +7769,7 @@ paths:
       operationId: updateCommerceCampaign
       tags:
         - Commerce
-      summary: "Issue #106 (ADR-0017 D9; not yet implemented, lands in #114). Edit a campaign still in `draft`. Gated on `commerce.campaigns.update`."
+      summary: "Issue #114 (contract #106 ADR-0017 D9). Edit a campaign still in `draft`. Gated on `commerce.campaigns.update`."
       parameters:
         - name: id
           in: path
@@ -7823,7 +7823,7 @@ paths:
       operationId: cancelCommerceCampaign
       tags:
         - Commerce
-      summary: "Issue #106 (ADR-0017 D9; not yet implemented, lands in #114). Cancel a campaign before (or while) it sends; already-dispatched recipient rows are not un-sent. Gated on `commerce.campaigns.send`."
+      summary: "Issue #114 (contract #106 ADR-0017 D9). Cancel a campaign before (or while) it sends; already-dispatched recipient rows are not un-sent. Gated on `commerce.campaigns.send`."
       parameters:
         - name: id
           in: path
@@ -7862,7 +7862,7 @@ paths:
       operationId: previewCommerceCampaign
       tags:
         - Commerce
-      summary: "Issue #106 (ADR-0017 D9; not yet implemented, lands in #114). Resolve the audience filter into a recipient COUNT, without sending anything. Gated on `commerce.campaigns.read`."
+      summary: "Issue #114 (contract #106 ADR-0017 D9). Resolve the audience filter into a recipient COUNT, without sending anything. Gated on `commerce.campaigns.read`."
       parameters:
         - name: id
           in: path
@@ -7898,7 +7898,7 @@ paths:
       operationId: sendCommerceCampaign
       tags:
         - Commerce
-      summary: "Issue #106 (ADR-0017 D9; not yet implemented, lands in #114). Resolve the audience, create one `awcms_commerce_campaign_recipients` row per recipient, and move the campaign to `sending` — the `commerce:campaigns:dispatch` job fans the rows out into the e-mail/WhatsApp outboxes from there. Gated on `commerce.campaigns.send`; `Idempotency-Key` required."
+      summary: "Issue #114 (contract #106 ADR-0017 D9). Moves the campaign to `scheduled` (scheduled_at = now); the `commerce:campaigns:dispatch` job then resolves the audience, creates one `awcms_commerce_campaign_recipients` row per recipient, and fans the rows out into the e-mail/WhatsApp outboxes. Gated on `commerce.campaigns.send`; `Idempotency-Key` required."
       parameters:
         - name: id
           in: path
@@ -11180,7 +11180,7 @@ paths:
       operationId: updateCommerceStorefrontAccountMe
       tags:
         - Commerce Accounts
-      summary: "Issue #89 (implemented, contract #86). Update the account's display name. No e-mail/phone change in this increment (D6). `marketingConsent` (Issue #106 ADR-0017 D9; not yet implemented, lands in #115) is the ONLY field a campaign's audience resolution ever reads to decide reachability."
+      summary: "Issue #89 (implemented, contract #86). Update the account's display name. No e-mail/phone change in this increment (D6). `marketingConsent` (Issue #114, contract #106 ADR-0017 D9) is the ONLY field a campaign's audience resolution ever reads to decide reachability."
       security:
         - customerBearer: []
       requestBody:
@@ -11196,7 +11196,7 @@ paths:
                   type: string
                 marketingConsent:
                   type: boolean
-                  description: "Issue #106 (ADR-0017 D9; not yet implemented, lands in #115). `true` sets `customer_accounts.marketing_consent_at` to now; `false` clears it to null. Toggled by the account itself in `/akun` — never set by staff."
+                  description: "Issue #114 (contract #106 ADR-0017 D9). `true` sets `customer_accounts.marketing_consent_at` to now; `false` clears it to null. Toggled by the account itself in `/akun` — never set by staff."
       responses:
         "200":
           description: Updated.
@@ -26481,7 +26481,7 @@ components:
           type: boolean
     CommerceCampaign:
       type: object
-      description: "Issue #106 (ADR-0017 D9; not yet implemented, lands in #114). A row of `awcms_commerce_campaigns` — a consent-gated mass e-mail/WhatsApp send. `recipientCount`/`sentCount` are populated once the campaign has been previewed/sent at least once; both are `null` on a fresh `draft`."
+      description: "Issue #114 (contract #106 ADR-0017 D9). A row of `awcms_commerce_campaigns` — a consent-gated mass e-mail/WhatsApp send. `recipientCount`/`sentCount` are populated once the campaign has actually been dispatched; both are `null` on a fresh `draft`."
       properties:
         id:
           type: string
@@ -28837,7 +28837,7 @@ components:
           description: Order-history floor (D4) — the guest row's own `created_at` when the phone/e-mail match at bind time, otherwise the moment this account was created.
         marketingConsent:
           type: boolean
-          description: "Issue #106 (ADR-0017 D9; not yet implemented, lands in #115). `true` when `marketing_consent_at` is non-null. A campaign's audience resolution only ever includes accounts where this is `true` — an account that never opts in is structurally unreachable, not merely filtered by convention."
+          description: "Issue #114 (contract #106 ADR-0017 D9). `true` when `marketing_consent_at` is non-null. A campaign's audience resolution only ever includes accounts where this is `true` — an account that never opts in is structurally unreachable, not merely filtered by convention."
     CustomerSession:
       type: object
       description: "Issue #86 (design only). A row of `awcms_commerce_customer_sessions` — never returned with its token; the token is minted once, at verify, and only its `sha256:` digest is ever stored (D3)."
