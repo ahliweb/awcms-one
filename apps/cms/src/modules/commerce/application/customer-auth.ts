@@ -378,6 +378,54 @@ export async function verifyCustomerOtp(
   // here (`issueOtp` always stores it for that purpose, `requestCustomerOtp`
   // above never issues one without it).
   const registration = consumed.otp.registration!;
+
+  // The verified e-mail already owns an account: the shopper proved control
+  // of that mailbox, so this is a login under a different button, not a
+  // second account (the (tenant, email) unique index would refuse one
+  // anyway). Without this branch a returning shopper who picks "Daftar"
+  // instead of "Masuk" would hit the index and get a 500.
+  const accountByEmail = await findAccountByEmail(
+    tx,
+    tenantId,
+    emailNormalized
+  );
+  if (accountByEmail) {
+    if (accountByEmail.status === "blocked") {
+      await auditFailure("blocked");
+      return { kind: "blocked" };
+    }
+
+    await recordAuditEvent(tx, {
+      tenantId,
+      moduleKey: AUDIT_MODULE_KEY,
+      action: "commerce.customer.otp_verified",
+      resourceType: AUDIT_RESOURCE_TYPE_OTP,
+      message:
+        "Customer OTP verified (register on an existing account — treated as login).",
+      attributes: { emailMasked, purpose },
+      correlationId
+    });
+
+    const existingSession = await issueSession(
+      tx,
+      tenantId,
+      accountByEmail.id,
+      sessionMeta,
+      now
+    );
+
+    return {
+      kind: "success",
+      token: existingSession.token,
+      expiresAt: existingSession.expiresAt,
+      account: (await fetchCustomerAccountView(
+        tx,
+        tenantId,
+        accountByEmail.id
+      ))!
+    };
+  }
+
   const phoneResult = normalizePhoneNumber(registration.phone);
   const normalizedPhone = phoneResult.valid
     ? phoneResult.value

@@ -46,6 +46,10 @@ import {
 } from "../../src/modules/commerce/application/customer-auth";
 import { requireCustomerSession } from "../../src/modules/commerce/application/customer-session-auth";
 import { revokeSession } from "../../src/modules/commerce/application/customer-account-store";
+import {
+  CUSTOMER_OTP_TEMPLATE_KEY,
+  createEmailCustomerOtpChannel
+} from "../../src/modules/commerce/application/customer-otp-channel-adapters";
 import type {
   CustomerOtpChannel,
   CustomerOtpChannelRequest
@@ -180,6 +184,42 @@ suite("commerce customer auth integration (Issue #89)", () => {
     expect(afterLogout.ok).toBe(false);
   });
 
+  test("the e-mail channel seeds the tenant's OTP template on first use, so a tenant created after sql/919 still gets a message enqueued", async () => {
+    // The harness creates tenants AFTER migrations ran, so neither has the
+    // row sql/919 seeded — exactly the production shape of a tenant
+    // provisioned later. Without the adapter's self-seed this request would
+    // answer its neutral 202 with nothing in the outbox.
+    const admin = getAdminSql();
+    const before = await admin<{ n: number }[]>`
+      SELECT count(*)::int AS n FROM awcms_email_templates
+      WHERE tenant_id = ${TENANT_A} AND template_key = ${CUSTOMER_OTP_TEMPLATE_KEY}
+    `;
+    expect(before[0]!.n).toBe(0);
+
+    const outcome = await inTenant(TENANT_A, (tx) =>
+      requestCustomerOtp(
+        tx,
+        TENANT_A,
+        "Toko A",
+        { email: "seed@example.com", purpose: "login" },
+        createEmailCustomerOtpChannel()
+      )
+    );
+    expect(outcome.kind).toBe("sent");
+
+    const templates = await admin<{ n: number }[]>`
+      SELECT count(*)::int AS n FROM awcms_email_templates
+      WHERE tenant_id = ${TENANT_A} AND template_key = ${CUSTOMER_OTP_TEMPLATE_KEY} AND deleted_at IS NULL
+    `;
+    expect(templates[0]!.n).toBe(1);
+
+    const messages = await admin<{ n: number }[]>`
+      SELECT count(*)::int AS n FROM awcms_email_messages
+      WHERE tenant_id = ${TENANT_A} AND template_key = ${CUSTOMER_OTP_TEMPLATE_KEY}
+    `;
+    expect(messages[0]!.n).toBe(1);
+  });
+
   test("wrong code five times exhausts the OTP — the sixth guess, even if correct, is rejected", async () => {
     const { channel, sent } = capturingChannel();
 
@@ -276,6 +316,64 @@ suite("commerce customer auth integration (Issue #89)", () => {
       )
     );
     expect(secondVerify.kind).toBe("phone_already_registered");
+  });
+
+  test("register again with an e-mail that already owns an account logs in — one account, a second live session", async () => {
+    // A returning shopper who picks "Daftar" instead of "Masuk" has still
+    // proven control of the mailbox; a second account is impossible (unique
+    // e-mail per tenant) and a 500 from that index is not an answer.
+    const email = "again@example.com";
+    const { channel: c1, sent: s1 } = capturingChannel();
+    await inTenant(TENANT_A, (tx) =>
+      requestCustomerOtp(
+        tx,
+        TENANT_A,
+        "Toko A",
+        { email, purpose: "register", name: "Ulang", phone: "081222222222" },
+        c1
+      )
+    );
+    const first = await inTenant(TENANT_A, (tx) =>
+      verifyCustomerOtp(
+        tx,
+        TENANT_A,
+        { email, code: s1[0]!.code, purpose: "register" },
+        { clientIpHash: null, userAgentSummary: null }
+      )
+    );
+    expect(first.kind).toBe("success");
+
+    const { channel: c2, sent: s2 } = capturingChannel();
+    await inTenant(TENANT_A, (tx) =>
+      requestCustomerOtp(
+        tx,
+        TENANT_A,
+        "Toko A",
+        {
+          email,
+          purpose: "register",
+          name: "Ulang Lagi",
+          phone: "081333333333"
+        },
+        c2
+      )
+    );
+    const second = await inTenant(TENANT_A, (tx) =>
+      verifyCustomerOtp(
+        tx,
+        TENANT_A,
+        { email, code: s2[0]!.code, purpose: "register" },
+        { clientIpHash: null, userAgentSummary: null }
+      )
+    );
+    expect(second.kind).toBe("success");
+    if (first.kind === "success" && second.kind === "success") {
+      expect(second.account.id).toBe(first.account.id);
+      // The original registration wins: the second attempt's name/phone are
+      // not applied, because it was a login, not an edit.
+      expect(second.account.name).toBe("Ulang");
+      expect(second.token).not.toBe(first.token);
+    }
   });
 
   test("D4: registration binds to a guest row whose e-mail matches -> history_from is the guest's own created_at", async () => {
