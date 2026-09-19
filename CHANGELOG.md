@@ -2,6 +2,615 @@
 
 Every entry below is folded from `.changesets/` by `bun run release`, which also tags the release. The version is `MAJOR.MINOR.PATCH`, tagged `vX.Y.Z`; the next version is the largest `bump` declared among the changesets a release folds (see [`.changesets/README.md`](.changesets/README.md)) — never a level chosen at release time from a list of file names.
 
+## [0.7.0] — 2026-09-20
+
+### ADR-0017 + OpenAPI contract for external providers — payment gateway, courier rates, WhatsApp, POS, reports, inbox, campaigns
+
+Epic #33 (external providers) needed its ten architectural decisions settled and its
+API contract argued through review **before** any handler exists, so C1–C9 (issues
+#107–#118) code against a contract already reviewed and settled instead of
+re-deciding it issue by issue.
+
+- [ADR-0017](docs/adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.md)
+  records the integration pattern (a port + adapters inside `commerce`, modelled on
+  `email`, env-per-deployment credentials), inbound webhooks (token-addressed,
+  `SECURITY DEFINER`-resolved, replay-protected), the payment gateway (a
+  `PaymentGatewayProvider` port, Midtrans Snap first, redirect-based storefront
+  flow), courier rates (a `ShippingRateProvider` port, RajaOngkir, a 6-hour cached
+  rate), WhatsApp (an outbox, Fonnte + Meta Cloud API adapters, a third
+  `CustomerOtpChannel` adapter), POS, reports, an inbox, campaigns, and the
+  module-settings feature flags plus tiered pricing at quote.
+- `apps/cms/openapi/modules/commerce.openapi.yaml` gains the payment-gateway
+  session endpoint and public webhook intake, courier/gateway fields on the
+  existing cart-quote/order/store-settings paths, a WhatsApp `via` option on OTP
+  request, POS order creation, three `reporting`-hosted sales projections, a
+  customer inbox (bearer + owner sides), and campaign CRUD/preview/send/cancel.
+  Every new path is listed by name in `ROUTE_PARITY_EXEMPTIONS`
+  (`apps/cms/scripts/api-spec-check.ts`), each entry citing the child issue that
+  removes it, and exactly two new operations (the webhook intake and the
+  payment-gateway session endpoint) join `ALLOWED_PUBLIC_OPERATIONS`.
+- `docs/api.md` documents the new "External providers — planned — #107–#118"
+  table and updates the "Not built" line to say the contract now exists
+  (ADR-0017, issue #106) even though no handler does yet; the commerce module's
+  README gains a matching "contract only" section.
+
+### Commerce inbox — customer/store conversations, bearer + owner endpoints, admin screen
+
+`commerce` gains a support inbox (Issue #111, contract #106 D8): `awcms_commerce_conversations`/`awcms_commerce_messages` (`sql/927`, FORCE RLS, one thread per verified customer account), and a `commerce.conversations.read|update` permission pair (`sql/928`).
+
+Storefront (bearer, `Authorization: Bearer <customer session>`): `GET/POST /api/v1/commerce/storefront/account/conversations` (list, newest-activity-first, keyset-paginated; open a thread with its first message — subject 1-150 chars, body 1-4000 chars), `GET .../conversations/{id}` (thread + messages, marks it read for the customer), `POST .../conversations/{id}/messages` (post a reply; `409 CONVERSATION_CLOSED` once the thread is closed — a customer never reopens their own thread). Customer posts are rate-limited 10/hour per ACCOUNT (`COMMERCE_CONVERSATION_POST_RATE_LIMIT_MAX`), on top of the existing per-IP limiter every storefront route already applies.
+
+Owner API: `GET /api/v1/commerce/conversations` (staff list, filterable by `status`/`unread`), `GET .../conversations/{id}` (marks it read for the store), `PATCH .../conversations/{id}` (explicit close/reopen), `POST .../conversations/{id}/messages` (staff reply — implicitly reopens a closed thread; requires `Idempotency-Key`). A store reply enqueues one `derived.commerce_conversation_reply` e-mail through the existing `email` module outbox in the SAME transaction as the reply insert, auto-seeding its default template on first miss (the same pattern `customer-otp-channel-adapters.ts` already established for OTP e-mail).
+
+`unread_for_store`/`unread_for_customer` are independent flags on the conversation row, kept in step with every message insert; the storefront's own `Percakapan.unreadForCustomer` contract field travels as `0|1`.
+
+New admin screen `/admin/commerce-inbox`: conversation list with status/unread filters and an unread badge, a thread view, a reply form (`Idempotency-Key` header), and close/reopen actions.
+
+- Both new tables are `unreachableBySubject: true` in `subjectData` — the owning customer account carries no tenant_user/identity/profile/principal id (ADR-0016 D1), the same shape `commerce.customer_addresses`/`commerce.wishlists` already document; an account holder reaches their own threads through the bearer routes above, outside this automated engine's scope.
+- New env var: `COMMERCE_CONVERSATION_POST_RATE_LIMIT_MAX` (default 10).
+- `APP_BUDGET_BYTES` (`apps/cms/scripts/client-asset-budget.ts`) raised 231,000 -> 231,500 for this screen's own measured cost (624 B client script, built on the shared `onSubmit`/`onAction`/`mutateAndReload` helpers — no per-screen duplication).
+
+### Payment gateway — schema, Midtrans Snap adapter, session endpoint, webhook endpoint tokens (C3)
+
+Issue #110 (part of epic #33, C3; contract #106's D2/D3, ADR-0017). The second
+external-provider integration under `commerce`, following the same
+`rajaongkir-provider.ts` shape #107 established: a port + adapters, credentials
+env-only per deployment, `withTimeout` + `getProviderCircuitBreaker`, provider calls
+never inside a DB transaction (ADR-0006/0010).
+
+**Schema** (`apps/cms/sql/926_awcms_commerce_payment_gateway_schema.sql`):
+`awcms_commerce_payment_gateway_sessions` (one row per hosted-checkout attempt,
+`UNIQUE (provider, provider_ref)`), `awcms_commerce_payment_events` (the D2
+replay-protection ledger, `UNIQUE (tenant_id, provider, event_key)` — no writer yet,
+the webhook INTAKE route is #113's own scope), `awcms_commerce_webhook_endpoints`
+(a hashed opaque token per (tenant, provider)); `orders` gains `gateway_provider`/
+`gateway_ref`. All three new tables `FORCE RLS`, indexed for the generic
+purge/batching path, `awcms_worker`-granted. A `SECURITY DEFINER`
+`awcms_resolve_commerce_webhook_endpoint(token_hash)` mirrors
+`awcms_resolve_tenant_domain_lookup`'s bootstrap pattern exactly (dedicated NOLOGIN
+owner role, a scoped read policy, EXECUTE restricted to `awcms_app`) — the bootstrap
+lookup the webhook INTAKE route will use, before any tenant context exists.
+
+**Domain**: `payment-gateway-provider.ts` (the `PaymentGatewayProvider` port —
+`createSession`/`fetchStatus`/`verifyWebhook`), `midtrans-signature.ts`
+(`sha512(order_id + status_code + gross_amount + ServerKey)`, timing-safe compare),
+`gateway-status-mapping.ts` (Midtrans `transaction_status`/`fraud_status` →
+`paid|pending|expired|failed|refunded`), `payment.gateway = {enabled}` added to
+`store-settings-validation.ts`.
+
+**Application** (`payment-gateway-directory.ts`): `createGatewaySession(sql,
+tenantId, orderCode, auth, provider, providerKey)` — validate the order (gateway
+method, `pending_payment`) and check for a still-live session in one short
+transaction, call the provider with NONE open, persist in a second short
+transaction; a genuinely concurrent double-create is caught by the `(provider,
+provider_ref)` UNIQUE constraint and re-fetches the winner rather than 500ing.
+Auth is `{phone}` or a customer bearer, matching `POST .../orders`'s own optional-
+bearer pattern; a wrong phone, unknown order, or a live bearer for a different
+order's owner all answer the SAME neutral 404 the order-tracking route uses.
+Adapters `infrastructure/midtrans-provider.ts` (Snap `POST /snap/v1/transactions`,
+`GET /v2/{orderId}/status`, sandbox/production base URLs by
+`COMMERCE_MIDTRANS_IS_PRODUCTION`, both env-overridable) and
+`log-payment-gateway-provider.ts` (no network call; `redirectUrl` is
+`${COMMERCE_STOREFRONT_PUBLIC_URL}/pesanan?kode=...&gateway=log`; `fetchStatus`
+answers `paid` once 60 real seconds have elapsed since creation, via an injectable
+clock and a timestamp folded into `providerRef` — deterministic, no sleeping in
+tests), resolved by `COMMERCE_PAYMENT_GATEWAY=midtrans|log` (`log` refused outside
+non-production).
+
+**Quote/order**: `POST .../cart/quote`'s `paymentMethods[]` gains `{method:
+"gateway", available}` — `true` only when `payment.gateway.enabled` AND a
+`PaymentGatewayProvider` is configured; `POST .../orders`'s `payment.method:
+"gateway"` was already accepted by the orders schema and validator (additive,
+already-shipped columns/checks), unchanged here.
+
+**Routes**: `POST .../storefront/orders/{orderCode}/payment-gateway/sessions`
+(anonymous, rate-limited, `409 PAYMENT_NOT_APPLICABLE` for a non-gateway/non-payable
+order, `503 GATEWAY_UNAVAILABLE` when no provider is configured); owner
+`GET|POST /api/v1/commerce/webhook-endpoints` (masked list; the raw token is
+returned exactly once at creation, hashed at rest — deliberately NOT
+idempotency-keyed, the same reasoning `machine-credential-directory.ts`'s issuance
+route already gives) and `DELETE .../webhook-endpoints/{id}` (revoke, idempotent);
+both gated on the new `commerce.webhook_endpoints.update` permission.
+
+**Store settings / admin**: owner `PUT /store-settings` gains `payment.gateway`;
+the public `payment.gatewayEnabled` is derived the same way `shipping.courierEnabled`
+already is. `/admin/commerce-settings` gains a gateway-enable toggle and a
+webhook-endpoints panel (list/create/revoke, built entirely from the shared
+`onSubmit`/`onAction`/`mutateAndReload` admin-form-client helpers
+`machine-credentials.astro` already established — no new lifecycle code).
+`APP_BUDGET_BYTES` raised from 231,500 to 232,000 B for this genuinely new control
+— reasoning recorded in that file's own docblock.
+
+**Tests**: unit (Midtrans signature, status mapping, both adapters against a local
+fake HTTP server / an injected clock, a static-text contract test on the migration's
+SQL for the SECURITY DEFINER function) and integration against a real migrated
+database (session creation idempotent with the `log` provider, phone- and
+bearer-based auth, the neutral-404 mismatch cases, the 409 non-applicable case, the
+webhook-endpoint token round-trip through the SECURITY DEFINER lookup with a revoked
+token no longer resolving, RLS isolation for both new resource kinds) —
+`apps/cms/tests/integration/commerce-payment-gateway.integration.test.ts`.
+
+OpenAPI: the three DRAFT paths from #106 (`.../payment-gateway/sessions`,
+`.../webhook-endpoints`, `.../webhook-endpoints/{id}`) are now backed by real
+handlers and removed from `ROUTE_PARITY_EXEMPTIONS`; `CommerceWebhookEndpoint`
+gains `label`/`revokedAt`; the revoke response is `200 {endpoint}` (not `204`) to
+match this module's own DELETE convention; bundled.
+
+Out of scope, explicitly: the webhook INTAKE route itself
+(`POST /api/v1/commerce/webhooks/midtrans/{token}`), `markOrderPaidBySystem`, and
+the `commerce:payments:reconcile` job — all #113.
+
+### POS — cash counter sales, `orders.channel`, `commerce.pos.create`, POS screen + history
+
+Issue #116 (epic #33 C7, contract #106 D6, ADR-0017). BjekMart's kasir as
+one more order-creation path over the SAME order tables, quote engine and
+status graph — never a second sales ledger. With it the last path #106
+merged ahead of its handler has one, and `ROUTE_PARITY_EXEMPTIONS` is
+empty again as `AGENTS.md` requires before the epic closes.
+
+- `apps/cms/sql/931_awcms_commerce_pos_schema.sql`: `awcms_commerce_orders`
+  gains `channel text NOT NULL DEFAULT 'storefront' CHECK IN
+  ('storefront','pos')` (every pre-existing order is `storefront` by the
+  default) and `pos_cashier_tenant_user_id uuid` (a plain stamp, not a
+  foreign key — a fiscal record outlives a staff account); the
+  `payment_method` CHECK is dropped and re-created with `cash`; indexes
+  `(tenant_id, channel, created_at DESC)` and a partial cashier index.
+  `sql/932` seeds the one new permission, `commerce.pos.create`.
+- `PaymentMethod` gains `"cash"` — re-exported unchanged by
+  `packages/kontrak`'s `pesanan.ts`, so `apps/storefront` sees the widened
+  union at compile time (additive; the storefront's own checkout validator
+  still refuses `cash`, and even a body that reached the application layer
+  finds no available `cash` method). New `domain/pos-order-validation.ts`:
+  lines/customer/payment shape, `amountTendered` REQUIRED for cash as a
+  `numeric(14,2)` STRING, `computeChange` in `bigint` cents (ADR-0003).
+- `application/pos-directory.ts`: `createPosOrder` — customer first (no
+  phone → the tenant's single walk-in row under the documented sentinel
+  `+620000000000`; a phone → find-or-create by normalised number, and that
+  customer's `level` prices the sale), then the SAME `buildCartQuote` the
+  storefront uses, insert `channel='pos'` + cashier stamp, decrement stock,
+  audit `commerce.pos.sale`, and `pending_payment → paid` in the same
+  transaction (actor `admin`) through the shared status transition, so
+  #117's sales projections pick the sale up like any paid order.
+  `Idempotency-Key` header required; the hash binds the acting cashier.
+  `listPosOrders`: keyset history, `channel='pos'`, date/cashier filters.
+- Owner routes `GET|POST /api/v1/commerce/pos/orders` (`commerce.orders.read`
+  / `commerce.pos.create`), both `409 FEATURE_DISABLED` when the tenant's
+  `pos` feature (#118) is off; `409 CART_CHANGED` / `INSUFFICIENT_TENDER` /
+  `IDEMPOTENCY_CONFLICT` on the write.
+- The storefront never serves a POS order: the anonymous tracking lookup and
+  the bearer account history filter `channel = 'storefront'` (the sentinel
+  phone is documented, so honouring it on tracking would expose every
+  walk-in receipt by order code), and the storefront checkout refuses the
+  sentinel phone as a customer identity.
+- Admin screen `/admin/commerce-pos` (entry any-of `commerce.pos.create` /
+  `commerce.orders.read`, nav entry `requiredFeature: pos`): product search
+  + cart island, optional customer quick-fields, cash (tendered + live
+  change) / QRIS, submit with `Idempotency-Key`, printable receipt
+  (`@media print`), history tab with filters and keyset paging. Every
+  client string is `t()`-rendered into `data-*` attributes; catalog data
+  reaches the DOM through `textContent` only. English + Indonesian
+  catalogue entries added.
+- `apps/cms/scripts/client-asset-budget.ts` `APP_BUDGET_BYTES` 237,800 → 246,500:
+  measured 246,276 B, +8,718 B = exactly this screen's own script (5,854 B)
+  and scoped stylesheet (2,864 B) — the one admin screen that IS a client
+  island by design.
+- `commerce.orders`'s `subjectData` descriptor gains the cashier stamp as a
+  `tenant_user` subject column; erasure stays `retain_under_obligation`.
+- Tests: `apps/cms/tests/commerce-pos-domain.test.ts` (validation, string change
+  arithmetic incl. the IEEE-754 failure cases, storefront refuses cash),
+  `apps/cms/tests/integration/commerce-pos.integration.test.ts` (real Postgres: paid
+  immediately + stock decremented + events/audit, history vs. storefront
+  exclusion, walk-in reuse + level pricing, idempotent replay/conflict,
+  short tender writes nothing, `409 FEATURE_DISABLED`), and the POS block
+  of `apps/cms/tests/admin-commerce-page-contract.test.ts`.
+- Docs: `docs/cms.md` (POS workflow + receipt), `docs/skema-basis-data.md`,
+  `docs/kamus-data.md` (`channel`, `cash`, the walk-in sentinel),
+  `docs/api.md`, the commerce module README, and their Indonesian mirrors.
+
+### RajaOngkir courier rates — provider port, cached rates, destination in quote, courier settings (C1)
+
+Issue #107 (part of epic #33, C1; contract #106's D4). The first external-provider
+integration under `commerce` (ADR-0006/0010's "external providers are commerce-owned
+ports with env credentials, never called from inside a DB transaction").
+
+**Schema** (`apps/cms/sql/924_awcms_commerce_shipping_rates_schema.sql`):
+`awcms_commerce_courier_destinations` (a tenant's `idn_admin_regions` district code
+resolved once to a provider's own destination id, no TTL) and
+`awcms_commerce_shipping_rates` (a rate cache keyed by `(tenant, provider, origin,
+destination, weight bucket, courier, service)`, TTL 6 hours). Both `FORCE RLS`,
+indexed for the generic purge/batching path, `awcms_worker`-granted.
+
+**Domain**: `shipping-rate-provider.ts` (the `ShippingRateProvider` port + `Rate`
+type), `courier-service-id.ts` (`"jne:REG"` parse/format), `weight-bucket.ts`
+(rounds up to the next 100 g, floored at 1000 g — RajaOngkir's own minimum billable
+weight), `shipping.courier = {enabled, originDestinationId, couriers[]}` added to
+`store-settings-validation.ts`.
+
+**Application** (`shipping-rate-directory.ts`): `resolveDestination` (cache → name
+search against `idn_admin_regions` → provider search → store) and `getCourierRates`
+(cache read in a short transaction, provider call with NONE open, write-back in a
+second short transaction — a concurrent miss just means the last writer wins under
+the cache's own `UNIQUE` key). Adapters `infrastructure/rajaongkir-provider.ts`
+(Komerce API v2: `GET /destination/domestic-destination`, `POST
+/calculate/domestic-cost`, `withTimeout` + `getProviderCircuitBreaker
+("commerce-rajaongkir")`) and `log-shipping-rate-provider.ts` (deterministic
+fixtures), resolved by `COMMERCE_SHIPPING_RATE_PROVIDER=rajaongkir|log` (+
+`COMMERCE_RAJAONGKIR_API_KEY`, `_BASE_URL`, `_TIMEOUT_MS`).
+
+**Quote/order**: `POST .../cart/quote` accepts an optional `destination:
+{districtCode}`; when `shipping.courier.enabled` AND a provider is configured AND a
+destination is present, `shippingOptions[]`'s courier entries are live per-service
+rates (`{method:"courier", serviceId:"jne:REG", name, cost, etd, available:true}`);
+otherwise a single `available:false` placeholder with a `note`. `POST
+.../orders`'s `shipping: {method:"courier", serviceId}` is validated against a
+non-expired cached rate keyed off the delivery address's own `districtCode` — never
+a second live provider call inside `createOrderFromCart`'s write transaction; a
+stale/unknown selection answers the same `409 CART_CHANGED` (with a fresh quote)
+every other price/stock/shipping mismatch does.
+
+**Job**: `commerce:shipping-rates:purge` (hourly) deletes every expired
+`awcms_commerce_shipping_rates` row, across tenants, bounded per tick.
+
+**Store settings / admin**: owner `PUT /store-settings` gains `shipping.courier`;
+`GET /api/v1/commerce/shipping/destinations?search=` (owner-only,
+`settings.update`) backs the origin-destination picker; the public
+`shipping.courierEnabled` is now derived — `true` only when `courier.enabled` AND a
+provider is configured, never a raw copy of the stored flag.
+
+**Tests**: unit (weight bucket, service-id parse/format, `buildShippingOptions`'s
+courier branch, both adapters against a mocked `fetch`/fixtures) and integration
+against a real migrated database (destination cache miss/hit, rate cache
+hit/miss with the `log` provider, a quote with a destination, order-creation
+validation against the cache) — `tests/integration/commerce-shipping-rates.
+integration.test.ts`.
+
+OpenAPI: `destination`/`shippingOptions` added to the quote request/result schemas,
+new `GET /api/v1/commerce/shipping/destinations` path, bundled.
+
+**Admin screen**: `/admin/commerce-settings` gains a courier section — an enabled
+toggle, a debounced origin-destination search (against the new endpoint above,
+rendered through a native `<datalist>` rather than custom list markup/JS) that
+doubles as the id field, and a couriers multi-select (`jne`/`jnt`/`sicepat`/`pos`/
+`tiki`/`anteraja`); it writes through the existing `PUT /store-settings`, i18n
+`en`+`id`. `APP_BUDGET_BYTES` (`apps/cms/scripts/client-asset-budget.ts`) raised
+from 231,000 to 231,500 B to fit the new (non-duplicative) control — reasoning
+recorded in that file's own docblock.
+
+### Sales reports — three commerce reporting projections over order events + reports screen (C8)
+
+Issue #117 (part of epic #33, C8; contract #106's D7, ADR-0017). `commerce`
+contributes three `cursor_table` projections to the `reporting` module's generic
+projection engine (Issue #753) from its own `module.ts` (`reportingProjections`):
+`commerce.sales_daily`, `commerce.sales_by_product`, `commerce.sales_by_category`,
+all over the append-only `awcms_commerce_order_events` log. The engine keeps its
+cursor, freshness, rebuild, reconciliation and export machinery; `commerce`
+supplies the descriptor, the pure delta rules and the sinks.
+
+**Why a projection and not a live `GROUP BY`.** A sales report that re-aggregates
+every order on each page view costs what the order table costs; a projection costs
+one bounded pass per worker tick and answers from a table the size of the calendar.
+The event log is the right source because it is the ONE append-only record of
+"this order became paid / stopped being paid", which is exactly the property the
+`cursor_table` strategy needs to be correct.
+
+**Delta rules** (`domain/sales-report-deltas.ts`, pure): `-> paid` from a
+not-yet-paid state adds the order's totals (gross = subtotal, discount = order +
+voucher discount, shipping, net = total) and its lines per product and per
+category; `-> cancelled|refunded` from a paid state subtracts them; every other
+transition is a no-op — including a cancellation of a never-paid order and a refund
+after a cancellation, so an order is never subtracted twice. Everything is
+attributed to the day of the order's `paid_at` in `Asia/Jakarta`, so a reversal
+lands on the same day row as its payment and `net` is a true per-day net.
+
+**Schema** (`apps/cms/sql/933_awcms_commerce_reporting_projections_schema.sql`):
+`awcms_commerce_sales_daily` (day, orders_paid, gross, discount, shipping, net),
+`awcms_commerce_sales_by_product` (day, product_id, name snapshot, qty, gross),
+`awcms_commerce_sales_by_category` (day, category_id, name, qty, gross) — all
+`FORCE RLS`, upserted with additive deltas by primary key; `awcms_worker` gets
+`SELECT, INSERT, UPDATE, DELETE` (mirrored in `WORKER_ROLE_GRANTS`); retention
+answered by three `dataLifecycle` descriptors (cursor `day`, the same 3650-day
+ceiling as `commerce.order_events`), subject data by `NO_SUBJECT_DATA` (derived,
+rebuildable aggregates about nobody).
+
+**One additive engine extension** — `MODULE_CONTRACT_VERSION` 4.1.0 → 4.2.0:
+`ProjectionCursorStream.dimensional` (`selectColumns` + `applyBatch`, called by the
+incremental worker AND the rebuild pass on every fetched batch, inside the same
+bounded transaction, before the cursor advance) and
+`ProjectionDescriptor.dimensional` (`resetForTenant` in the rebuild reset's own
+transaction; `readProjectionTotals`/`computeSourceTotals` merged into
+reconciliation; `exportRows` so exports carry the rows, not a metric snapshot).
+`reporting:projections:registry:check` refuses a sink without the contract and vice
+versa. No existing descriptor changes.
+
+**Read routes** (`reporting.dashboard.read`, `defineTenantRoute`, `reporting` work
+class): `GET /api/v1/reports/commerce/sales-daily?from&to`,
+`sales-by-product?from&to&limit`, `sales-by-category?from&to` — owned by `commerce`
+via `api.routes: ["/api/v1/reports/commerce"]`, documented in
+`openapi/modules/commerce.openapi.yaml`, and their three `ROUTE_PARITY_EXEMPTIONS`
+entries from the #106 contract-only PR are removed.
+
+**Admin screen** `/admin/commerce-reports`: a GET date-range form, the three tables,
+projection freshness (`reporting.projections.read`), an **Export CSV** button per
+projection that POSTs to the real `/api/v1/reports/exports/trigger`
+(`reporting.exports.export`), and the recent export runs with checksum-verified
+download links (`reporting.exports.read`). English + Indonesian strings; nav entry
+under Commerce.
+
+**Tests**: pure delta rules + registry pairing (`apps/cms/tests/commerce-sales-report-domain.test.ts`);
+against a real Postgres under the unprivileged role
+(`apps/cms/tests/integration/commerce-sales-reports.integration.test.ts`): paid → rows,
+cancel-after-paid → subtracted on the same day, rebuild byte-equal to live,
+reconcile with no mismatch (a tampered table IS flagged), tabular export, RLS.
+
+**Known limitation, stated**: order items snapshot the product name but not its
+category, so by-category attribution reads the product's category at processing
+time; a rebuild after a recategorisation re-attributes past sales. The control
+totals are category-agnostic, so this never reads as a reconcile mismatch.
+
+Docs: `docs/cms.md` "Sales reports", `docs/skema-basis-data.md` "Sales-report
+projections", the commerce and reporting module READMEs, plus Indonesian mirrors.
+
+### WhatsApp outbox, Fonnte/Meta adapters, OTP via WhatsApp, login by phone
+
+`commerce` gains a second provider outbox modelled on `email` (ADR-0017 D1): `awcms_commerce_whatsapp_messages`/`awcms_commerce_whatsapp_delivery_attempts` (`sql/925`), a claim/send/finalize dispatcher (`bun run commerce:whatsapp:dispatch`) with the same lease/retry/circuit-breaker shape as `email-dispatch.ts`, and a retention purge (`bun run commerce:whatsapp:purge`). Two real adapters — Fonnte (`COMMERCE_WHATSAPP_PROVIDER=fonnte`) and the Meta WhatsApp Cloud API (`meta`) — plus a `log` adapter for dev/CI, resolved by `COMMERCE_WHATSAPP_PROVIDER`/gated by `COMMERCE_WHATSAPP_ENABLED`.
+
+`CustomerOtpChannel` gains a third adapter, `whatsapp`: `POST .../account/otp/request` accepts `via?: "email"|"whatsapp"` (default `email`); `via: "whatsapp"` requires `phone`, only ever supports `purpose: "login"` (registration stays e-mail OTP only), and answers `409 CHANNEL_UNAVAILABLE` — before an OTP is ever issued — when the tenant has no WhatsApp channel configured (configuration, not enumeration). `POST .../account/otp/verify` accepts `phone` as an alternative to `email`; a phone-keyed OTP resolves the account via `findAccountByPhone`. `awcms_commerce_customer_otps` gains a nullable `phone_normalized` column (`email_normalized`'s own `NOT NULL` relaxed to a CHECK that at least one identifier is present).
+
+New owner diagnostics: `GET /api/v1/commerce/whatsapp/messages` (`commerce.whatsapp.read`) plus a minimal `/admin/commerce-whatsapp` screen — masked phone only, never the raw number/rendered body/OTP code.
+
+- `to_phone` is kept in the clear in the outbox (same reasoning `customers.phone` already documents — a provider adapter cannot deliver a message knowing only a hash), alongside `to_phone_hash`/`to_phone_masked`.
+- Module-local WhatsApp template registry (`commerce.customer_otp`/`commerce.order_paid`/`commerce.campaign`) — `{{var}}` rendering with a per-template variable allowlist; only `commerce.customer_otp` is wired to a caller in this issue.
+- New env vars: `COMMERCE_WHATSAPP_ENABLED`, `COMMERCE_WHATSAPP_PROVIDER`, `COMMERCE_WHATSAPP_SEND_TIMEOUT_MS`, `COMMERCE_WHATSAPP_SEND_MAX_RETRIES`, `COMMERCE_FONNTE_TOKEN`, `COMMERCE_FONNTE_API_BASE_URL`, `COMMERCE_META_WA_TOKEN`, `COMMERCE_META_WA_PHONE_NUMBER_ID`, `COMMERCE_META_WA_OTP_TEMPLATE`, `COMMERCE_META_WA_API_BASE_URL`.
+
+### Customer campaigns: consent, mass e-mail/WhatsApp, dispatcher, admin screen (issue #114, C6 of #33)
+
+`apps/cms` gains a consent-gated mass e-mail/WhatsApp send to a filtered
+slice of a tenant's customer accounts, coded against
+[issue #106](https://github.com/ahliweb/awcms-one/issues/106)'s
+ADR-0017 D9 — reusing the SAME e-mail/WhatsApp outboxes D5/D8 already
+dispatch from, no third delivery mechanism.
+
+- `awcms_commerce_customer_accounts.marketing_consent_at` (nullable
+  timestamp) — toggled only by the account itself, via `PATCH
+  .../account/me {marketingConsent}` (matching the storefront shape
+  `apps/storefront` already shipped against this contract). Both a grant
+  and a revoke are audited.
+- `awcms_commerce_campaigns`/`awcms_commerce_campaign_recipients`
+  (`sql/929`, permission seed `sql/930` —
+  `commerce.campaigns.{read,update,send}`): CRUD on a `draft`, an
+  audience-count-only preview (never a resolved list), `send`/`cancel`
+  (`Idempotency-Key` required, gated on the separate `.send` permission).
+- `commerce:campaigns:dispatch` (script, `awcms_worker`, every 1-2
+  minutes): claims due/resumed campaigns (`FOR UPDATE SKIP LOCKED`) and
+  fans each one out in pages of 200 consented, addressable customers,
+  inserting one recipient row per customer (resumable — a crash mid-send
+  is picked back up from wherever the recipient ledger left off) and
+  enqueuing into the e-mail outbox (a pass-through `derived.commerce_campaign`
+  template) or the WhatsApp outbox (`commerce.campaign` template). A
+  `cancel` between pages stops further dispatch immediately.
+- A campaign's own `subject`/`body` may interpolate `{{name}}`/
+  `{{storeName}}` only — an unknown placeholder is left as a literal.
+- Admin screen `/admin/commerce-campaigns`: list, create-draft form,
+  detail/editor panel with an audience-preview button and send/cancel
+  actions.
+- `ROUTE_PARITY_EXEMPTIONS` (`apps/cms/scripts/api-spec-check.ts`) loses
+  its five `commerce/campaigns*` entries; the OpenAPI draft's
+  `marketingConsent`/campaign paths are flipped from "not yet
+  implemented" to real.
+
+Docs updated: `docs/cms.md`, `docs/api.md`, `docs/skema-basis-data.md`,
+`apps/cms/src/modules/commerce/README.md`, all with their Indonesian
+mirrors.
+
+### Commerce feature toggles per tenant + tiered pricing at quote for logged-in customers
+
+Issue #118 (epic #33 C9, contract #106 D10, closing ADR-0016 D6's tiered-pricing
+follow-up).
+
+- `apps/cms/src/modules/commerce/module.ts` gains `settings: {schemaVersion: 1,
+  defaults: {features: {pos, inbox, campaigns, gateway, courier}}}` (every flag
+  `true` by default — no behaviour change for a tenant that never opens the new
+  "Fitur" section) — `commerce`'s first use of `module_management`'s generic
+  tenant-settings service.
+- `apps/cms/src/modules/commerce/domain/commerce-features.ts` (new): pure
+  `resolveCommerceFeatures`/`assertFeatureEnabled`/`FeatureDisabledError`.
+  `apps/cms/src/modules/commerce/application/commerce-feature-gate.ts` (new):
+  `fetchCommerceFeatures` + owner (`409 FEATURE_DISABLED`) and public (neutral
+  `404`) route-guard helpers. Applied to every owner + storefront route of the
+  inbox (conversations), campaigns, gateway (webhook-endpoints; the storefront
+  payment-gateway-session route folds a disabled gateway into its existing `503
+  GATEWAY_UNAVAILABLE`; the public webhook intake route answers the same neutral
+  `404` an unknown token does), and courier (`GET /shipping/destinations`) —
+  documented 409-vs-404 rule: `409` on an authenticated owner route, `404`/`503`
+  on an anonymous one, never the reverse.
+- `ModuleNavigationEntry` gains an optional `requiredFeature`, applied to the
+  Inbox/Campaigns admin nav entries; `AdminLayout.astro` hides them per-tenant.
+- `GET /api/v1/commerce/store-settings/public` gains `inboxEnabled`,
+  `campaignsEnabled`, and `whatsappOtpEnabled` (matching `apps/storefront`'s
+  already-expected field names); `gatewayEnabled`/`courierEnabled` now also
+  require `features.gateway`/`features.courier`.
+- `/admin/commerce-settings` gains a "Fitur" section writing through the generic
+  `PATCH /api/v1/tenant/modules/commerce/settings` (`updateModuleSettings`,
+  audited), gated on `module_management.settings.update`.
+- `domain/cart-quote.ts`'s `quoteCart` accepts an optional `customerLevel`
+  (1–4) and prices a line at `price_level_{n}` (falling back to `price`);
+  `POST .../storefront/cart/quote` resolves it from an optional Bearer;
+  `createOrderFromCart` resolves the same account's level before its own
+  re-quote so quote and order always agree. No new column: the level is
+  snapshotted only implicitly, via `order_items.unit_price`.
+- Docs: `docs/cms.md`/`.id.md`, `docs/api.md`/`.id.md`, ADR-0016 status note,
+  `apps/cms/src/modules/commerce/README.md`/`.id.md`.
+
+### Payment gateway webhook intake, system-actor `paid`, and reconcile job (issue #113, C5 of #33)
+
+Closes the payment-gateway loop issue #110 opened: `apps/cms` can now
+actually learn that a hosted-checkout order was paid, from either an
+inbound Midtrans callback or a scheduled poll, and applies it the same
+way regardless of source.
+
+- `POST /api/v1/commerce/webhooks/{provider}/{endpointToken}` — public,
+  `POST`-only, tenant resolved from an opaque per-tenant token via the
+  `SECURITY DEFINER` `awcms_resolve_commerce_webhook_endpoint` (`sql/926`).
+  Unknown/revoked token, a provider mismatch, or no provider configured
+  all answer the same padded-latency neutral `404`; a bad signature
+  (`provider.verifyWebhook`) is `401`; a replayed event (`INSERT …
+  ON CONFLICT DO NOTHING` on `awcms_commerce_payment_events` hitting zero
+  rows) is a `200` no-op. The route never calls the provider's own
+  `fetchStatus` — it only ever acts on what `verifyWebhook` already
+  produced.
+- `markOrderPaidBySystem` (`order-directory.ts`) — the new `system` actor
+  edge `pending_payment -> paid`, alongside the existing `-> expired`.
+  Idempotent (already-`paid`, or any status other than `pending_payment`,
+  is a no-op). `paid -> refunded` is **deliberately never auto-applied** —
+  there is no `refunded` order status at all; a gateway-reported refund is
+  recorded as a payment event only, and an owner refunds manually via the
+  existing admin `-> cancelled` action (see `order-status.ts`'s header and
+  `docs/cms.md`'s payment-gateway runbook for the full reasoning).
+- Amount guard (defense in depth): a verified event whose `gross_amount`
+  differs from the order total is recorded as `outcome = 'amount_mismatch'`
+  (`sql/934` widens the CHECK) with an audit entry, never marks the order
+  paid, and still answers `200`; the reconcile job applies the same guard.
+- `commerce:payments:reconcile` job (every 1-2 minutes) — polls every
+  gateway session still `pending` more than 2 minutes old via
+  `provider.fetchStatus`, called with no database transaction open
+  (timeout + circuit breaker live inside the adapter itself), and applies
+  the same transition path the webhook uses; expires any session past its
+  own `expires_at` regardless of what `fetchStatus` answers.
+- Admin: the order list screen (`/admin/commerce-orders`) gains a
+  per-row, read-only gateway session/payment-events panel and a "Cek
+  status" button (`commerce.orders.update`, `Idempotency-Key` required)
+  that triggers a scoped single-order reconcile
+  (`POST /api/v1/commerce/orders/{id}/payment-gateway/reconcile`) rather
+  than the full batch job.
+- `ROUTE_PARITY_EXEMPTIONS` (`apps/cms/scripts/api-spec-check.ts`) drops
+  the webhook path now that it has a handler; the OpenAPI doc gains the
+  request body schema and the new reconcile-one-order path.
+
+Documented in `docs/cms.md` (operator runbook: minting an endpoint,
+pointing Midtrans's dashboard at it, the `COMMERCE_MIDTRANS_*`/
+`COMMERCE_WEBHOOK_RATE_LIMIT_*` env vars, how the reconcile job works),
+`docs/deployment.md`, `docs/api.md`, and the commerce module README (all
+with their Indonesian mirrors).
+
+### Build-smoke tests wait 20 s, not 5 s, for the stub CMS to boot
+
+Sixteen storefront build-smoke tests each spawn `apps/storefront/scripts/stub-awcms.mjs` and waited a hard-coded five seconds for its first answer. The stub now loads a dozen fixtures and state machines and the root `bun test` runs those builds concurrently, so a cold start on a two-core CI runner regularly crossed the line and a green change failed CI on a timing accident — four reruns in two days.
+
+- One shared constant, `apps/storefront/tests/stub-deadline.ts` (`STUB_START_DEADLINE_MS = 20_000`), replaces every literal; a stub that truly cannot start still fails inside the test's own budget.
+
+### Payment gateway checkout — "Bayar sekarang" + polling (issue #112, S2 of #33)
+
+Checkout gains a fourth, redirect-based payment method — "Bayar online
+(kartu, VA, e-wallet)" — and `/pesanan`/`/akun/pesanan` gain a live-polled
+"Bayar sekarang" retry path. Coded against the contract
+[issue #106](https://github.com/ahliweb/awcms-one/issues/106) (D3) names, so
+wiring `apps/cms`'s own Midtrans Snap adapter in later needs no storefront
+change.
+
+- Checkout lists `Bayar online (kartu, VA, e-wallet)` whenever the quote's
+  `paymentMethods[]` includes `gateway`. Placing the order is unchanged; a
+  separate `createGatewaySession` call then sends the whole tab to the
+  session's `redirectUrl` (`window.location.assign`, never an embed) —
+  validated as `https:` (or `http:` only when this build's own
+  `PUBLIC_AWCMS_ORIGIN` is itself `http:`, i.e. the local/CI stub). Any
+  failure falls through to `/pesanan?kode=` instead, never a checkout error.
+- `/pesanan` and `/akun/pesanan`'s detail view render a "Bayar sekarang"
+  button in place of manual-transfer instructions for a `gateway` order
+  still `pending_payment`, with an `aria-live="polite"` status line
+  ("Menunggu konfirmasi pembayaran…" → "Pembayaran diterima.") and a 5-second
+  poller (`apps/storefront/src/lib/pesanan-poll.ts`) that stops once the
+  order leaves `pending_payment`, once its `expiresAt` passes, after 15
+  minutes, or pauses (never stops) while the tab is hidden.
+- `toko-klien.ts` gains `createGatewaySession`, `PaymentMethodAvailability`/
+  `OrderPaymentInput` gain `"gateway"`, and `Order` gains an optional
+  `gateway?: {provider, status}`.
+- `apps/storefront/scripts/stub-awcms.mjs` lists `gateway` when
+  `payment.gatewayEnabled` is on, mints an idempotent-per-order session
+  pointing at its own hosted `GET /stub/gateway/{id}` page ("Bayar
+  (simulasi)"/"Batal"), and redirects back to `/pesanan?kode=…` either way.
+
+A pure `nextPollDecision` scheduler (`apps/storefront/src/lib/pesanan-poll.ts`)
+and `isValidGatewayRedirectUrl` (`apps/storefront/src/lib/gateway-redirect.ts`)
+are both unit-tested with no DOM/timer at all;
+`apps/storefront/tests/e2e/checkout.e2e.ts` gains a full gateway scenario
+against the stub's own hosted page.
+
+### Checkout prices real courier rates per destination (issue #109, S1 of #33)
+
+The checkout shipping step's courier row stops being a permanent "segera"
+placeholder. Coded against the contract [issue #106](https://github.com/ahliweb/awcms-one/issues/106)
+(D4) names, so wiring `apps/cms`'s own RajaOngkir adapter in later needs no
+storefront change.
+
+- `cart/quote` sends `destination: {districtCode}` as soon as the address
+  step's kecamatan `<select>` has a value, and re-quotes on every district
+  change (including a saved-address autofill). Courier options render one
+  radio per real, priced service (name, ETD, price) — or the same single
+  disabled placeholder as before, now carrying a visible `note` explaining
+  which of three reasons applies (courier off, no destination yet, the
+  provider could not price this destination).
+- An `aria-live="polite"` status line announces "Menghitung ongkir…" while a
+  quote is in flight and a short failure message otherwise; every disabled
+  row keeps a real `<label>` and its note as visible help text
+  (`aria-describedby`), not a tooltip.
+- `apps/storefront/scripts/stub-awcms.mjs` prices real JNE/J&T/SiCepat
+  services from a new fixture (`shipping-rates.json`, three district codes ×
+  three couriers × two services, per-kilogram pricing) and re-validates the
+  chosen courier service against a fresh quote at order time, answering
+  `409 CART_CHANGED` on any mismatch — the same treatment a stock/price
+  change already gets.
+- A pure `describeShippingOption`/`isShippingOptionSelected` module
+  (`apps/storefront/src/lib/kurir-opsi.ts`) now owns the option → label
+  decision, unit-tested with no DOM.
+
+- No client-side arithmetic was added — every price shown still comes from
+  the quote, formatted only through the existing `formatPrice`.
+
+### WhatsApp OTP, marketing consent, and `/akun/pesan` (issue #115, S3 of #33)
+
+Sign-in gains a second OTP channel, `/akun` gains a promo-consent toggle,
+and signed-in shoppers gain a message inbox with the store. Coded against
+the contract [issue #106](https://github.com/ahliweb/awcms-one/issues/106)
+(D5/D8/D9) names, so wiring `apps/cms`'s own WhatsApp adapter and inbox
+storage in later needs no storefront change.
+
+- `/masuk` renders a "Kirim kode lewat: E-mail | WhatsApp" channel choice
+  only when the public store settings' new `whatsappOtpEnabled` is `true`
+  at build time; choosing WhatsApp swaps the identifier field to a phone
+  input (`type="tel"`, `autocomplete="tel"`, an Indonesian-format hint) and
+  both request/verify send `phone`. `409 CHANNEL_UNAVAILABLE` is a plain
+  message, not a dead end. `/daftar` stays e-mail-only, with a one-line note
+  saying so — registration is never offered a channel choice.
+- `/akun` gains a "Preferensi Promo" card: a real `<input type="checkbox">`
+  in its own `<label>`, saving on `change` (`PATCH …/account/me
+  {marketingConsent}`), confirmed through an `aria-live="polite"` region,
+  reverting its own checked state on failure with no reload.
+- `/akun/pesan` (new page + script) mirrors `/akun/pesanan`'s own
+  list/`?id=`-detail split: a keyset-paginated conversation list with an
+  `aria-label`'d unread badge, a "Pesan baru" form, a thread view with a
+  reply form shown only while the thread is open (a closed thread shows a
+  note instead). `ROUTES.accountMessages`/`accountMessage(id)` and a new
+  dashboard nav card round this out.
+- `akun-klien.ts` gains `via`/`phone` on the OTP request/verify functions,
+  a `{name?, marketingConsent?}` `ubahProfil` input, and
+  `ambilPercakapan`/`buatPercakapan`/`ambilPercakapanById`/
+  `kirimPesanPercakapan` — every one bearer-only through the same
+  `denganPembersihanSesi` wrapper every other account call already uses.
+  `akun-kontrak.ts`'s `Akun` gains `marketingConsent: boolean` (defaults to
+  `false` for a session stored before this field existed).
+- `apps/storefront/scripts/stub-awcms.mjs` implements the whole surface:
+  WhatsApp OTP for the fixture phone `+6281234567890` (code `123456`,
+  `409 CHANNEL_UNAVAILABLE` when `whatsappOtpEnabled` is off),
+  `marketingConsent` on every account, and a conversations state machine
+  seeded with one open thread (an unread store reply already on it) and one
+  closed thread — every new customer message schedules a simulated store
+  auto-reply 2 seconds later, so unread flags are exercised without a
+  manual second message.
+
+`apps/storefront/tests/pesan-build-smoke.test.ts` (new file) proves the
+real build; `akun-klien.test.ts`/`akun-kontrak.test.ts` gain unit coverage
+for every new request shape and the `marketingConsent` default.
+
 ## [0.6.0] — 2026-09-19
 
 ### ADR-0016 + OpenAPI contract for customer accounts, OTP, bearer sessions, affiliates
