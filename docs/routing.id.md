@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](routing.md)
 
-<!-- i18n-source-hash: sha256:cd2e7effa2383565a321fa0b167bca48ca091735ccf60f1f0608d9973f3faf5d -->
+<!-- i18n-source-hash: sha256:83d6090293fbe9ce5813e06c532146369ed7111f4f9ef519ead1f3f9686a89c3 -->
 
 # Routing
 

@@ -285,9 +285,25 @@ export function quoteCart(input: QuoteRequest): Promise<CartQuote> {
   return kirimPermintaan<CartQuote>("/cart/quote", "POST", input);
 }
 
-/** `POST …/orders` — places the order. `201`, or `200` for a REPEATED `idempotencyKey` on the same tenant (the same order comes back, not a duplicate). */
-export function createOrder(input: CreateOrderRequest): Promise<Order> {
-  return kirimPermintaan<Order>("/orders", "POST", input);
+/**
+ * `POST …/orders` — places the order. `201`, or `200` for a REPEATED
+ * `idempotencyKey` on the same tenant (the same order comes back, not a
+ * duplicate).
+ *
+ * `bearerToken` is OPTIONAL and additive (issue #90, #86's own "existing
+ * `POST /storefront/orders` … accept an optional Bearer"): every existing
+ * caller that omits it keeps calling this exactly as before (anonymous
+ * guest checkout, unchanged). `checkout.ts` passes the signed-in shopper's
+ * session token (`akun-sesi.ts`'s `bacaSesi()?.token`) when one exists, so
+ * the created order is bound to that account.
+ */
+export function createOrder(input: CreateOrderRequest, bearerToken?: string): Promise<Order> {
+  return kirimPermintaan<Order>(
+    "/orders",
+    "POST",
+    input,
+    bearerToken ? { Authorization: `Bearer ${bearerToken}` } : undefined
+  );
 }
 
 /** `GET …/orders/{orderCode}?phone=` — order tracking. `404 NOT_FOUND` (the same neutral body as an unresolvable tenant) for an unknown code, a wrong phone, or another tenant's order — this function does not, and cannot, tell those apart, by design. */
@@ -333,7 +349,21 @@ export function cancelOrder(orderCode: string, input: { phone: string; reason: s
   return kirimPermintaan<Order>(`/orders/${encodeURIComponent(orderCode)}/cancel`, "POST", input);
 }
 
-/** `POST …/reviews` — `409 REVIEW_NOT_ALLOWED` when the order is not `completed`, the product is not on it, or a review already exists. */
-export function submitReview(input: ReviewRequest): Promise<{ id: string; status: string }> {
-  return kirimPermintaan<{ id: string; status: string }>("/reviews", "POST", input);
+/**
+ * `POST …/reviews` — `409 REVIEW_NOT_ALLOWED` when the order is not
+ * `completed`, the product is not on it, or a review already exists.
+ *
+ * `bearerToken` is OPTIONAL, the SAME additive pattern `createOrder` above
+ * uses (issue #90) — a review submitted with no session behaves exactly as
+ * before (matched to the order by `orderCode`+`phone` alone); one submitted
+ * with a session is additionally bound to that account, so it appears on
+ * `/akun/ulasan`.
+ */
+export function submitReview(input: ReviewRequest, bearerToken?: string): Promise<{ id: string; status: string }> {
+  return kirimPermintaan<{ id: string; status: string }>(
+    "/reviews",
+    "POST",
+    input,
+    bearerToken ? { Authorization: `Bearer ${bearerToken}` } : undefined
+  );
 }

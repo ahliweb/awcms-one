@@ -43,6 +43,16 @@ Four decisions inside that surface are worth carrying forward:
 - **The read-aloud player is offered only where it works.** The card ships `hidden` and is revealed only when the browser really has `speechSynthesis` and a voice; the highlight it draws while reading is an outline, so the article never reflows under someone who is listening.
 - **The institution emblem belongs to the institution.** One upload serves every article of that channel, and an article whose institution has none simply has none ([ADR-0014](adr/0014-the-institution-owns-the-emblem-not-the-post.md)).
 
+## The account surface (issue #90, S2 of #32)
+
+`/akun/alamat`, `/akun/pesanan`, and `/akun/ulasan` extend the S1 account shell (`/masuk`, `/daftar`, `/akun`) with the shopper's own addresses, order history, and reviews. Three decisions carried forward from S1, applied here too:
+
+- **Every page renders both states in static markup.** A script (`akun-alamat.ts`/`akun-pesanan.ts`/`akun-ulasan.ts`) toggles guest vs. signed-in per `bacaSesi()`, the same split `akun.ts` (S1) already established — the HTML itself never decides anything only JavaScript could know.
+- **The region control is shared, not duplicated.** `/akun/alamat`'s add/edit form and `checkout.astro`'s own "Pilih alamat tersimpan" autofill both drive the province/city/district `<select>`s through the SAME module, `apps/storefront/src/lib/wilayah-region-select.ts` — extracted out of `checkout.ts`'s original inline cascading-fetch code specifically so this issue would not need a second copy of it.
+- **The account's own order detail reuses the guest tracking page's renderer.** `apps/storefront/src/lib/pesanan-render.ts` is the DOM-building code `/pesanan` (issue #30) already had, extracted so `/akun/pesanan?kode=` renders an `Order` identically — minus the phone-verification form and the confirm-payment/cancel actions, which stay phone-gated CMS routes issue #86 names no account-authenticated equivalent for (a deliberate scope reduction, not an oversight).
+
+**The wishlist becomes account-synced while signed in, and stays local otherwise.** `apps/storefront/src/lib/wishlist-sinkron.ts` is a PURE merge function (union by `productId`, earliest `addedAt` wins, capped at 200) — on login, the local wishlist's product ids are `PUT` to the account and the local copy is replaced with the merge of what was local and what the CMS answered; while signed in, `wishlist-tombol.ts` (every heart button, site-wide) and `wishlist.ts` (the `/wishlist` listing) write through to the account on every add/remove, treating `localStorage` as a render cache rather than the source of truth. Logging out leaves the local copy exactly as it is. Any network failure degrades to local-only operation with a shared, polite `aria-live` status region (`apps/storefront/src/lib/wishlist-akun-sync.ts`) — the heart button never looks broken.
+
 ## Not built
 
 A locale switcher; any product-imagery decision tied to dark mode (the colour-scheme media query governs this app's own chrome, not CMS-supplied imagery or `labelColor`); a live carrier-rate comparison at checkout (courier options render as "segera" — disabled — pending [issue #33](https://github.com/ahliweb/awcms-one/issues/33), see [ADR-0010](adr/0010-manual-payment-and-alternative-courier-first-gateways-via-outbox.md)).

@@ -20,6 +20,9 @@ import { formatPrice } from "../lib/harga";
 import { previewIndonesianPhone } from "../lib/telepon";
 import { buildWhatsappCartMessage, buildWhatsappUrl } from "../lib/wa-fallback";
 import { PESANAN_PHONE_KEY } from "../lib/pesanan-sesi";
+import { bacaSesi } from "../lib/akun-sesi";
+import { ambilAlamat, type Alamat } from "../lib/akun-klien";
+import { applyRegionSelection, wireCascadingRegionSelects } from "../lib/wilayah-region-select";
 
 const STEP_ORDER = ["contact", "address", "shipping", "payment", "review"] as const;
 type Step = (typeof STEP_ORDER)[number];
@@ -134,71 +137,65 @@ if (root) {
       phonePreview.textContent = preview ? `Akan dikirim sebagai: ${preview}` : "";
     });
 
-    // --- address: region selects ---------------------------------------------
+    // --- address: region selects (shared with /akun/alamat, see wilayah-region-select.ts) --
 
     const provinceSelect = formEl.querySelector<HTMLSelectElement>("[data-province-select]");
     const citySelect = formEl.querySelector<HTMLSelectElement>("[data-city-select]");
     const districtSelect = formEl.querySelector<HTMLSelectElement>("[data-district-select]");
 
-    async function fetchJson<T>(path: string): Promise<T> {
-      const response = await fetch(path);
-      if (!response.ok) throw new Error(`${path} -> HTTP ${response.status}`);
-      return (await response.json()) as T;
+    if (provinceSelect && citySelect && districtSelect) {
+      wireCascadingRegionSelects({ province: provinceSelect, city: citySelect, district: districtSelect });
     }
 
-    function fillOptions(select: HTMLSelectElement, items: { code: string; name: string }[], placeholder: string): void {
-      select.innerHTML = "";
-      const placeholderOption = document.createElement("option");
-      placeholderOption.value = "";
-      placeholderOption.textContent = placeholder;
-      select.appendChild(placeholderOption);
+    // --- address: saved-address autofill (issue #90) — only offered once a
+    // customer session is confirmed, per this issue's own "hidden by default
+    // until session is confirmed" rule. A network failure here degrades to
+    // simply not offering the select — a shopper can still fill the form
+    // manually, the same posture every other fetch on this page takes.
 
-      for (const item of items) {
-        const option = document.createElement("option");
-        option.value = item.code;
-        option.textContent = item.name;
-        select.appendChild(option);
-      }
-    }
+    const alamatWrap = formEl.querySelector<HTMLElement>("[data-alamat-tersimpan-wrap]");
+    const alamatSelect = formEl.querySelector<HTMLSelectElement>("[data-alamat-tersimpan]");
+    const recipientInput = formEl.querySelector<HTMLInputElement>('[name="address.recipientName"]');
+    const addressPhoneInput = formEl.querySelector<HTMLInputElement>('[name="address.phone"]');
+    const postalInput = formEl.querySelector<HTMLInputElement>('[name="address.postalCode"]');
+    const streetInput = formEl.querySelector<HTMLTextAreaElement>('[name="address.street"]');
+    const addressNotesInput = formEl.querySelector<HTMLInputElement>('[name="address.notes"]');
 
-    if (provinceSelect) {
-      fetchJson<{ code: string; name: string }[]>("/index/wilayah-provinsi.json")
-        .then((provinces) => fillOptions(provinceSelect, provinces, "Pilih provinsi"))
+    const sesi = bacaSesi();
+    let alamatTersimpan: Alamat[] = [];
+
+    if (sesi && alamatWrap && alamatSelect && provinceSelect && citySelect && districtSelect) {
+      ambilAlamat()
+        .then(({ items }) => {
+          alamatTersimpan = items;
+          if (items.length === 0) return;
+
+          for (const alamat of items) {
+            const option = document.createElement("option");
+            option.value = alamat.id;
+            option.textContent = `${alamat.label} — ${alamat.recipientName}${alamat.isDefault ? " (Utama)" : ""}`;
+            alamatSelect.appendChild(option);
+          }
+          alamatWrap.hidden = false;
+        })
         .catch(() => {
-          // Degrades to an empty select — the shopper can still type a
-          // street address; a missing region index must not block checkout.
+          // No saved addresses reachable — the manual form stays the only path.
         });
 
-      provinceSelect.addEventListener("change", () => {
-        if (citySelect) {
-          citySelect.disabled = !provinceSelect.value;
-          fillOptions(citySelect, [], "Pilih kabupaten/kota");
-        }
-        if (districtSelect) {
-          districtSelect.disabled = true;
-          fillOptions(districtSelect, [], "Pilih kabupaten/kota dahulu");
-        }
+      alamatSelect.addEventListener("change", () => {
+        const alamat = alamatTersimpan.find((item) => item.id === alamatSelect.value);
+        if (!alamat) return;
 
-        if (provinceSelect.value && citySelect) {
-          fetchJson<{ code: string; name: string }[]>(`/index/wilayah-kabupaten-${provinceSelect.value}.json`)
-            .then((regencies) => fillOptions(citySelect, regencies, "Pilih kabupaten/kota"))
-            .catch(() => {});
-        }
-      });
-    }
+        if (recipientInput) recipientInput.value = alamat.recipientName;
+        if (addressPhoneInput) addressPhoneInput.value = alamat.phone;
+        if (postalInput) postalInput.value = alamat.postalCode;
+        if (streetInput) streetInput.value = alamat.street;
+        if (addressNotesInput) addressNotesInput.value = alamat.notes ?? "";
 
-    if (citySelect) {
-      citySelect.addEventListener("change", () => {
-        if (districtSelect) {
-          districtSelect.disabled = !citySelect.value;
-          fillOptions(districtSelect, [], "Pilih kecamatan");
-        }
-
-        if (citySelect.value && districtSelect) {
-          fetchJson<{ code: string; name: string }[]>(`/index/wilayah-kecamatan-${citySelect.value}.json`)
-            .then((districts) => fillOptions(districtSelect, districts, "Pilih kecamatan"))
-            .catch(() => {});
-        }
+        void applyRegionSelection(
+          { province: provinceSelect, city: citySelect, district: districtSelect },
+          { provinceCode: alamat.provinceCode, cityCode: alamat.cityCode, districtCode: alamat.districtCode }
+        );
       });
     }
 
@@ -510,7 +507,10 @@ if (root) {
       if (submitButton) submitButton.disabled = true;
 
       try {
-        const order = await createOrder(request);
+        // Re-read at submit time: `bacaSesi()` drops an expired session, so a
+        // shopper whose 30-day token lapsed mid-checkout places a guest order
+        // instead of sending a stale Bearer the CMS would reject.
+        const order = await createOrder(request, bacaSesi()?.token);
         clearCart();
         try {
           window.sessionStorage.setItem(PESANAN_PHONE_KEY, request.customer.phone);

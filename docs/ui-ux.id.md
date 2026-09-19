@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](ui-ux.md)
 
-<!-- i18n-source-hash: sha256:5c020e1b1425fc1c456dc250dc18e875e3fc0571248718c891b6883e1c90d2cf -->
+<!-- i18n-source-hash: sha256:045205c9d28f5fc177acd994df2f9da9b82eedc317326e2dd1f3ef9582b88c66 -->
 
 # UI / UX
 

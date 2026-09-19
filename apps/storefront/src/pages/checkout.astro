@@ -98,6 +98,13 @@ const pinpointEnabled = storeSettings.shipping?.pinpointEnabled ?? false;
         <h2>2. Alamat pengiriman</h2>
         <p class="toko-field-hint">Lewati bagian ini jika Anda memilih ambil di toko pada langkah berikutnya.</p>
 
+        <div class="toko-field" data-alamat-tersimpan-wrap hidden>
+          <label for="alamat-tersimpan">Pilih alamat tersimpan</label>
+          <select id="alamat-tersimpan" data-alamat-tersimpan>
+            <option value="">Alamat baru</option>
+          </select>
+        </div>
+
         <div class="toko-field">
           <label for="address-recipient">Nama penerima</label>
           <input type="text" id="address-recipient" name="address.recipientName" autocomplete="name" />

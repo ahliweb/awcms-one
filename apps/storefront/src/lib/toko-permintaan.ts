@@ -92,7 +92,7 @@ export const STOREFRONT_PATH_PREFIX = "/api/v1/commerce/storefront";
  */
 export async function kirimPermintaan<T>(
   path: string,
-  method: "GET" | "POST" | "PATCH" | "DELETE",
+  method: "GET" | "POST" | "PATCH" | "PUT" | "DELETE",
   body?: unknown,
   extraHeaders?: Record<string, string>
 ): Promise<T> {
