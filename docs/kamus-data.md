@@ -60,7 +60,7 @@ The legacy column list was **recorded from the live `commerce_bj_mart` database 
 | `is_featured`/`is_recommended` | `is_featured`/`is_recommended` | Home-page placement flags | Boolean |
 | `created_at`/`updated_at`/`deleted_at`/`restored_at` | *(timestamps / new)* | Row lifecycle | `timestamptz` |
 
-**Not ported from `commerce_bj_mart.products`:** every `affiliate_*` column, and the legacy `product_affiliate_links` table — the affiliate program is [issue #32](https://github.com/ahliweb/awcms-one/issues/32)'s to admit, alongside customer accounts.
+**Not ported from `commerce_bj_mart.products`:** every legacy `affiliate_*` column, and the legacy `product_affiliate_links` table. The affiliate program was rebuilt fresh instead, per [ADR-0016](adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md)'s D5 decision and [issue #92](https://github.com/ahliweb/awcms-one/issues/92): `awcms_commerce_affiliates` (one row per enrolled customer — `code` an 8-char unambiguous alphabet, unique per tenant; `commission_rate` a `numeric(5,2)` snapshot copied from `awcms_commerce_store_settings.affiliate_commission_rate` at enrolment time; `status` `active`/`suspended`) and `awcms_commerce_affiliate_commissions` (one row per order that ever earned a commission — `order_id` unique per tenant, forever; `base_amount`/`rate`/`amount` snapshots; `status` `pending → approved/void → paid`). No legacy column or table survives — this is a fresh design, not a port. See [`docs/skema-basis-data.md`](skema-basis-data.md) for the exact columns.
 
 ## `awcms_commerce_product_images` / `awcms_commerce_product_variants` ← `commerce_bj_mart.product_images` / `.product_variants`
 
@@ -155,7 +155,6 @@ Row count read for the export summary only. `awcms_blog_institutions` carries no
 
 ## Deferred columns and tables — not ported in this increment
 
-- **Affiliate columns and `product_affiliate_links`** — [issue #32](https://github.com/ahliweb/awcms-one/issues/32), alongside customer accounts.
 - **A live RajaOngkir courier-rate/tracking table** — [issue #33](https://github.com/ahliweb/awcms-one/issues/33); `shipping_method`/`shipping_service_name` on an order are merchant-defined labels today, never a live carrier response.
 - **A payment-gateway transaction record** — the `payment_method` enum already accepts `gateway` (additive), but no provider integration exists; must be built through the outbox per [ADR-0010](adr/0010-manual-payment-and-alternative-courier-first-gateways-via-outbox.md).
 - **A real media upload for product images, slider media, payment-confirmation proof images, and ad-placement creatives** — resolved through `media_library`'s existing reference/URL mechanism, but this increment's seed uses placeholder SVGs/PNGs and the anonymous proof-upload endpoint is a stub (`503 MEDIA_UNAVAILABLE`); ad placements need a REAL R2-verified media object (`mediaObjectId` is required, not optional), so issue #57's seed step creates none of the 12 locally — see [`docs/cms.md`](cms.md) and [`docs/deployment.md`](deployment.md).

@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](kamus-data.md)
 
-<!-- i18n-source-hash: sha256:9d713b6a4357cedf10d20630b5350a53390164633261de852094e8928c3f7940 -->
+<!-- i18n-source-hash: sha256:69bd956c6cd51acb2906e06dfcc5093f53a85cca228c18020339eeec585ae904 -->
 
 # Kamus data
 
@@ -62,7 +62,7 @@ Daftar kolom lawas **dicatat dari basis data `commerce_bj_mart` yang live pada 2
 | `is_featured`/`is_recommended` | `is_featured`/`is_recommended` | Flag penempatan di halaman utama | Boolean |
 | `created_at`/`updated_at`/`deleted_at`/`restored_at` | *(timestamp / baru)* | Siklus-hidup baris | `timestamptz` |
 
-**Tidak di-porting dari `commerce_bj_mart.products`:** setiap kolom `affiliate_*`, dan tabel lawas `product_affiliate_links` — program afiliasi adalah bagian yang harus diadmisi [issue #32](https://github.com/ahliweb/awcms-one/issues/32), bersama akun pelanggan.
+**Tidak di-porting dari `commerce_bj_mart.products`:** setiap kolom lawas `affiliate_*`, dan tabel lawas `product_affiliate_links`. Program afiliasi dibangun ulang dari nol, sesuai keputusan D5 [ADR-0016](adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.id.md) dan [issue #92](https://github.com/ahliweb/awcms-one/issues/92): `awcms_commerce_affiliates` (satu baris per pelanggan yang bergabung — `code` alfabet 8 karakter tanpa ambiguitas, unik per tenant; `commission_rate` snapshot `numeric(5,2)` disalin dari `awcms_commerce_store_settings.affiliate_commission_rate` saat pendaftaran; `status` `active`/`suspended`) dan `awcms_commerce_affiliate_commissions` (satu baris per pesanan yang pernah menghasilkan komisi — `order_id` unik per tenant, selamanya; snapshot `base_amount`/`rate`/`amount`; `status` `pending → approved/void → paid`). Tidak ada kolom atau tabel lawas yang bertahan — ini rancangan baru, bukan porting. Lihat [`docs/skema-basis-data.md`](skema-basis-data.id.md) untuk kolom persisnya.
 
 ## `awcms_commerce_product_images` / `awcms_commerce_product_variants` ← `commerce_bj_mart.product_images` / `.product_variants`
 
@@ -157,7 +157,6 @@ Jumlah baris dibaca untuk ringkasan export saja. `awcms_blog_institutions` belum
 
 ## Kolom dan tabel yang ditunda — tidak di-porting di increment ini
 
-- **Kolom afiliasi dan `product_affiliate_links`** — [issue #32](https://github.com/ahliweb/awcms-one/issues/32), bersama akun pelanggan.
 - **Tabel rate/tracking kurir RajaOngkir live** — [issue #33](https://github.com/ahliweb/awcms-one/issues/33); `shipping_method`/`shipping_service_name` pada order saat ini adalah label yang ditentukan merchant, tidak pernah respons kurir live.
 - **Catatan transaksi payment-gateway** — enum `payment_method` sudah menerima `gateway` (aditif), tapi belum ada integrasi provider; harus dibangun lewat outbox sesuai [ADR-0010](adr/0010-manual-payment-and-alternative-courier-first-gateways-via-outbox.id.md).
 - **Upload media sungguhan untuk gambar produk, media slider, gambar bukti konfirmasi pembayaran, dan kreatif ad placement** — diselesaikan lewat mekanisme referensi/URL yang sudah ada milik `media_library`, tapi seed increment ini memakai SVG/PNG placeholder dan endpoint upload-bukti anonim adalah stub (`503 MEDIA_UNAVAILABLE`); ad placement butuh media object ter-verifikasi-R2 SUNGGUHAN (`mediaObjectId` wajib, bukan opsional), jadi langkah seed issue #57 tidak membuat satu pun dari 12 placement secara lokal — lihat [`docs/cms.md`](cms.id.md) dan [`docs/deployment.md`](deployment.id.md).

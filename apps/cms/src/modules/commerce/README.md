@@ -16,15 +16,15 @@ of epic #21) brought it to full product-model parity with the legacy schema;
 Issue #26 (same epic) added the marketing tables; Issue #29 (same epic) added
 customers, orders and the anonymous storefront checkout surface.
 
-| Aspect      | Value                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Key / type  | `commerce` · `domain`, `isCore: false`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| Tables      | `awcms_commerce_categories`, `awcms_commerce_products` (`sql/901`, extended `sql/904`), `awcms_commerce_product_images`, `awcms_commerce_product_variants` (`sql/905`); `awcms_commerce_flash_sales`, `awcms_commerce_flash_sale_products`, `awcms_commerce_vouchers`, `awcms_commerce_sliders`, `awcms_commerce_testimonials`, `awcms_commerce_popups` (`sql/909`), `awcms_commerce_store_settings` (`sql/910`); `awcms_commerce_customers`, `awcms_commerce_customer_addresses`, `awcms_commerce_orders`, `awcms_commerce_order_items`, `awcms_commerce_order_events`, `awcms_commerce_payment_confirmations`, `awcms_commerce_reviews`, `awcms_commerce_wishlists` (`sql/913`); `awcms_commerce_customer_accounts`, `awcms_commerce_customer_otps`, `awcms_commerce_customer_sessions` (`sql/917`-`918`); the `derived.commerce_customer_otp` `awcms_email_templates` row, seeded per existing tenant (`sql/919`) |
-| Permissions | `categories.{read,create,update,delete,restore}`, `products.{read,create,update,delete,restore}` (`sql/902`, `sql/906`); `{flash_sales,vouchers,sliders,testimonials,popups}.{read,create,update,delete}`, `settings.{read,update}` (`sql/911`); `orders.{read,update}`, `customers.{read,update}`, `reviews.{read,update,delete}` (`sql/914`, deliberately no create/delete for orders or customers — see "Customers, orders and reviews" below) — 39 in all                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| API         | `/api/v1/commerce/{categories,products,flash-sales,vouchers,sliders,testimonials,popups,store-settings,orders,customers,reviews}` (owner side); `/api/v1/commerce/storefront/{cart/quote,orders,reviews}` (anonymous side, `orders`/`reviews` also accept an OPTIONAL `customerBearer`, Issue #91); `/api/v1/commerce/storefront/account/{otp/request,otp/verify,me,logout}` (anonymous OTP + `customerBearer`, Issue #89); `/api/v1/commerce/storefront/account/{addresses,addresses/{id},addresses/{id}/default,wishlist,wishlist/{productId},orders,orders/{orderCode},reviews}` (`customerBearer`, Issue #91) (`openapi/modules/commerce.openapi.yaml`)                                                                                                                                                                                                                                                          |
-| Events      | `commerce.product.{created,updated,status_changed}`; `commerce.flash_sale.{started,ended}` (Issue #26, emitted by the tick job); `commerce.order.{created,paid,status_changed,cancelled,expired}`, `commerce.voucher.redeemed`, `commerce.review.published` (Issue #29)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| Depends on  | `tenant_admin`, `identity_access`, `domain_event_runtime`, `media_library` (product images, sliders, testimonial avatars, the popup image and the store logo/favicon all resolve through `MediaLibraryPort`), `module_management` (the anonymous storefront tenant resolver checks the module is enabled for the tenant before answering), `profile_identity` (e-mail/phone masking), `email` (Issue #89 — the customer OTP channel's `email` adapter enqueues into `email`'s own outbox)                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| Jobs        | `commerce:flash-sales:tick` (`scripts/commerce-flash-sales-tick.ts`, every 5 minutes — persists each sale's derived status and fires the two flash-sale events); `commerce:orders:expire` (`scripts/commerce-orders-expire.ts`, every 5 minutes — expires unpaid orders past the store's configured window, restocks their lines, and fires `commerce.order.expired`)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Aspect      | Value                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Key / type  | `commerce` · `domain`, `isCore: false`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| Tables      | `awcms_commerce_categories`, `awcms_commerce_products` (`sql/901`, extended `sql/904`), `awcms_commerce_product_images`, `awcms_commerce_product_variants` (`sql/905`); `awcms_commerce_flash_sales`, `awcms_commerce_flash_sale_products`, `awcms_commerce_vouchers`, `awcms_commerce_sliders`, `awcms_commerce_testimonials`, `awcms_commerce_popups` (`sql/909`), `awcms_commerce_store_settings` (`sql/910`); `awcms_commerce_customers`, `awcms_commerce_customer_addresses`, `awcms_commerce_orders`, `awcms_commerce_order_items`, `awcms_commerce_order_events`, `awcms_commerce_payment_confirmations`, `awcms_commerce_reviews`, `awcms_commerce_wishlists` (`sql/913`); `awcms_commerce_customer_accounts`, `awcms_commerce_customer_otps`, `awcms_commerce_customer_sessions` (`sql/917`-`918`); the `derived.commerce_customer_otp` `awcms_email_templates` row, seeded per existing tenant (`sql/919`); `awcms_commerce_affiliates`, `awcms_commerce_affiliate_commissions`, plus `orders.affiliate_id`/`store_settings.affiliate_commission_rate` (`sql/921`) |
+| Permissions | `categories.{read,create,update,delete,restore}`, `products.{read,create,update,delete,restore}` (`sql/902`, `sql/906`); `{flash_sales,vouchers,sliders,testimonials,popups}.{read,create,update,delete}`, `settings.{read,update}` (`sql/911`); `orders.{read,update}`, `customers.{read,update}`, `reviews.{read,update,delete}` (`sql/914`, deliberately no create/delete for orders or customers — see "Customers, orders and reviews" below); `affiliates.{read,update}`, `affiliate_commissions.{read,update}` (`sql/922`, same no-create/delete reasoning) — 43 in all                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| API         | `/api/v1/commerce/{categories,products,flash-sales,vouchers,sliders,testimonials,popups,store-settings,orders,customers,reviews,affiliates,affiliates/{id},affiliate-commissions,affiliate-commissions/{id}/{approve,pay,void}}` (owner side); `/api/v1/commerce/storefront/{cart/quote,orders,reviews}` (anonymous side, `orders`/`reviews` also accept an OPTIONAL `customerBearer`, Issue #91); `/api/v1/commerce/storefront/account/{otp/request,otp/verify,me,logout}` (anonymous OTP + `customerBearer`, Issue #89); `/api/v1/commerce/storefront/account/{addresses,addresses/{id},addresses/{id}/default,wishlist,wishlist/{productId},orders,orders/{orderCode},reviews,affiliate,affiliate/commissions}` (`customerBearer`, Issues #91/#92) (`openapi/modules/commerce.openapi.yaml`)                                                                                                                                                                                                                                                                              |
+| Events      | `commerce.product.{created,updated,status_changed}`; `commerce.flash_sale.{started,ended}` (Issue #26, emitted by the tick job); `commerce.order.{created,paid,status_changed,cancelled,expired}`, `commerce.voucher.redeemed`, `commerce.review.published` (Issue #29)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| Depends on  | `tenant_admin`, `identity_access`, `domain_event_runtime`, `media_library` (product images, sliders, testimonial avatars, the popup image and the store logo/favicon all resolve through `MediaLibraryPort`), `module_management` (the anonymous storefront tenant resolver checks the module is enabled for the tenant before answering), `profile_identity` (e-mail/phone masking), `email` (Issue #89 — the customer OTP channel's `email` adapter enqueues into `email`'s own outbox)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| Jobs        | `commerce:flash-sales:tick` (`scripts/commerce-flash-sales-tick.ts`, every 5 minutes — persists each sale's derived status and fires the two flash-sale events); `commerce:orders:expire` (`scripts/commerce-orders-expire.ts`, every 5 minutes — expires unpaid orders past the store's configured window, restocks their lines, and fires `commerce.order.expired`)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 
 **Migrations live in the reserved `901`–`999` range, not upstream's `001`–`899` (issue #72, [ADR-0015](../../../../../docs/adr/0015-commerce-migrations-live-in-the-reserved-9xx-range.md) in awcms-one).** This module's original sixteen migrations, numbered 153 through 168, collided with upstream `ahliweb/awcms`'s own numbering the moment it started using the same numbers for its own migrations (`sql/153_awcms_blog_institution_logo.sql`, issue #59). All sixteen were renumbered to `sql/901_awcms_commerce_schema.sql` through `sql/916_awcms_commerce_orders_expire_worker_write_grants.sql` (offset +748); the next commerce migration is `917`. `tests/commerce-migrations-range.test.ts` enforces the split both ways. A database migrated before this rename runs `bun run db:commerce:renumber` once, before its next `bun run db:migrate` (`scripts/commerce-migrations-renumber.ts`).
 
@@ -395,7 +395,8 @@ of those paths are implemented as of Issue #89** — `otp/request`,
 `otp/verify`, `me` (`GET`/`PATCH`), and `logout` — and are removed from
 `ROUTE_PARITY_EXEMPTIONS` (`scripts/api-spec-check.ts`) accordingly; the
 remaining paths (addresses, wishlist, order history, reviews, affiliates)
-stay contract-only, landing across C3/C4 (issues #90–#93). The four
+landed across C3/C4 (issues #91/#92 — see those sections below), and
+`ROUTE_PARITY_EXEMPTIONS` is now empty. The four
 architectural decisions behind the shape — identity stays a `commerce` row
 never linked to `awcms_principals`, e-mail OTP now with WhatsApp deferred to
 #33, an opaque `customerBearer` session token kept in `localStorage`, and
@@ -454,8 +455,7 @@ Six more `/api/v1/commerce/storefront/account/*` paths land: `addresses`
 `addresses/{id}/default` (`POST`), `wishlist` (`GET`/`PUT`),
 `wishlist/{productId}` (`DELETE`), `orders` (`GET`, keyset), `orders/
 {orderCode}` (`GET`), and `reviews` (`GET`) — every one removed from
-`ROUTE_PARITY_EXEMPTIONS` accordingly; only the affiliate paths (C4, issues
-#92/#93) remain contract-only.
+`ROUTE_PARITY_EXEMPTIONS` accordingly.
 
 **Addresses** (`application/customer-account-resources.ts`,
 `domain/address-validation.ts`'s `validateAccountAddressInput`): the same
@@ -508,9 +508,9 @@ still validated for shape and is still the per-phone rate limit's key.
 Present but invalid/expired: `401 UNAUTHENTICATED`, explicit — the
 storefront re-reads its own session right before submit and needs to be
 told plainly. Absent entirely: unchanged guest path. `POST .../orders` also
-accepts `affiliateCode` in the body now — shape-validated (a string, at
-most 50 characters) and otherwise IGNORED; Issue #92 is what actually
-resolves it against `awcms_commerce_affiliates.code`.
+accepts `affiliateCode` in the body — shape-validated (a string, at most 50
+characters) and, since Issue #92, resolved against
+`awcms_commerce_affiliates.code` (see the next section).
 
 **Data lifecycle / subject data**: `commerce.customer_addresses` and
 `commerce.wishlists` (`module.ts`'s `subjectData` array) stay
@@ -521,11 +521,84 @@ rationale now records that Issue #91 gives the account holder a genuine
 SELF-SERVICE path to their own rows (the bearer-secured routes above),
 where before this issue there was none.
 
+## Customer accounts — affiliates (Issue #92, epic #32 wave 4 — C4)
+
+The last two contract-only paths land: `account/affiliate` (`GET`/`POST`)
+and `account/affiliate/commissions` (`GET`, keyset) — both removed from
+`ROUTE_PARITY_EXEMPTIONS`, which is now EMPTY (every path #86 documented
+ahead of its handler now has one). Plus the owner side:
+`/api/v1/commerce/affiliates(/{id})` and
+`/api/v1/commerce/affiliate-commissions(/{id}/{approve,pay,void})`, gated on
+the new `affiliates.{read,update}`/`affiliate_commissions.{read,update}`
+permissions (`sql/922`).
+
+**Schema** (`sql/921`): `awcms_commerce_affiliates` — one row per enrolled
+customer, `code` (`domain/affiliate-code.ts`: 8 chars, CSPRNG, the
+unambiguous alphabet `ABCDEFGHJKLMNPQRSTUVWXYZ23456789` — no `I`/`O`/`0`/`1`),
+`commission_rate` (a SNAPSHOT copied from
+`store_settings.affiliate_commission_rate` at enrolment time, never
+re-derived afterwards), `status` (`active`/`suspended`).
+`awcms_commerce_affiliate_commissions` — one row per order that ever earned
+a commission (`order_id` unique, forever), `base_amount`/`rate`/`amount`
+snapshots, `status` (`pending → approved/void → paid`). Plus
+`awcms_commerce_orders.affiliate_id` (nullable FK, set once at
+order-creation time) and `awcms_commerce_store_settings.
+affiliate_commission_rate` (nullable `numeric(5,2)`, a real column outside
+the settings jsonb blob — `null` means the program is OFF).
+
+**Domain** (`domain/affiliate-commission.ts`, pure): `computeCommissionBase`
+(`subtotal − discount − voucher_discount`, floored at zero, integer-cent
+`BigInt` arithmetic via `price-calculation.ts`'s `toCents`/`fromCents` —
+ADR-0003, never a float) and `computeCommissionAmount` (`base × rate / 100`,
+rounded to the cent). `shouldEarnCommission({affiliateCustomerId,
+orderCustomerId, affiliateStatus})` is `false` on self-referral OR a
+suspended affiliate — evaluated TWICE: `application/affiliate-directory.ts`'s
+`resolveAffiliateForOrder` only links an `active` code to a NEW order (an
+unknown/suspended code resolves to `null`, never a validation error — a bad
+referral must never fail a checkout); `shouldEarnCommission` re-checks both
+conditions again, using the affiliate's CURRENT status, the moment the order
+reaches `completed` — a code valid at checkout may belong to an affiliate
+suspended before the order completes.
+
+**Application** (`application/affiliate-directory.ts`): `enrolAffiliate` is
+idempotent (an already-enrolled customer gets their existing row back, never
+a second one) and throws `AffiliateProgramDisabledError` (`409
+AFFILIATE_PROGRAM_DISABLED`) when `store_settings.affiliate_commission_rate`
+is `null`. `fetchAccountAffiliate` returns `stats: {referredOrders,
+pendingAmount, approvedAmount, paidAmount}`, computed live from
+`awcms_commerce_orders`/`_affiliate_commissions`, never cached. The ONE place
+a commission is created is `order-directory.ts`'s `transitionOrderStatus`,
+on the transition to `completed` — calling
+`recordAffiliateCommissionOnOrderCompleted` in the SAME transaction as the
+status change; a `cancelled` transition calls `voidAffiliateCommissionForOrder`
+(a defensive hook: `completed` has no outgoing edge in the current
+`domain/order-status.ts` graph, so this cannot fire today, but reuses the
+same enforcement the moment a future refund/cancel-after-completion path is
+added, rather than growing a second one). Owner-side commission moderation
+is a small state machine (`pending → approved → paid`, `pending|approved →
+void`, anything else `409 INVALID_TRANSITION`-shaped), each transition
+requiring an `Idempotency-Key` (skill `awcms-idempotency`) and its own audit
+event.
+
+**Public exposure**: `GET .../store-settings/public` exposes
+`affiliateProgramEnabled: boolean` ONLY — the rate itself never crosses into
+that shape, the same masking discipline `payment.manualBank`/`manualQris`
+already apply to bank details. The owner-only `GET /api/v1/commerce/
+store-settings` and its `PUT` DO carry `affiliateCommissionRate` (validated
+0–100, two decimals, nullable) — stored in its own column, not the jsonb
+`settings` blob (see `sql/921`'s header for why).
+
+**Admin screen**: `/admin/commerce-affiliates` — an affiliates table
+(code, customer, rate with an inline edit control, status,
+suspend/activate) and a commissions table (affiliate, order, amount,
+status, filterable by status, approve/pay/void buttons), i18n `en`+`id`.
+`/admin/commerce-settings` gains the commission-rate field.
+
 ## Deliberately not here
 
-- **No shipping-carrier integration or affiliate-link surface.**
-  `shippingMethod` on an order is a merchant-defined label, not a live rate
-  or tracking number from a carrier API — out of scope for this epic so far.
+- **No shipping-carrier integration.** `shippingMethod` on an order is a
+  merchant-defined label, not a live rate or tracking number from a
+  carrier API — out of scope for this epic so far.
 - **No restore for the marketing tables, nor for orders/customers/reviews.**
   Soft delete only; a deleted voucher, slider, order or customer is
   recreated, not brought back — the audit trail keeps the record. `order_code`
