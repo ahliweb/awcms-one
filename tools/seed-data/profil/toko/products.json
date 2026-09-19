@@ -1,0 +1,213 @@
+[
+  {
+    "slug": "kipas-angin-meja-nusantara",
+    "current": {
+      "sku": "TN-ELK-001",
+      "name": "Kipas Angin Meja Nusantara",
+      "categorySlug": "elektronik",
+      "type": "physical",
+      "description": "Kipas angin meja 3 kecepatan, hemat listrik, cocok untuk ruang kerja atau kamar.",
+      "digitalNote": null,
+      "price": "125000.00",
+      "discountPercent": 0,
+      "stock": 40,
+      "label": "Baru",
+      "labelColor": "#2b6cb0"
+    },
+    "future": {
+      "note": "Placeholder image, tidak diunggah lewat API create hari ini — lihat header tools/seed-cms.ts.",
+      "images": ["tools/seed-assets/profil/toko/produk-elektronik.svg"]
+    }
+  },
+  {
+    "slug": "lampu-belajar-led-nusantara",
+    "current": {
+      "sku": "TN-ELK-002",
+      "name": "Lampu Belajar LED Nusantara",
+      "categorySlug": "elektronik",
+      "type": "physical",
+      "description": "Lampu belajar LED dengan pengatur kecerahan 3 tingkat dan port USB.",
+      "digitalNote": null,
+      "price": "89000.00",
+      "discountPercent": 10,
+      "stock": 60,
+      "label": null,
+      "labelColor": null
+    }
+  },
+  {
+    "slug": "kemeja-katun-pria-nusantara",
+    "current": {
+      "sku": "TN-FSH-001",
+      "name": "Kemeja Katun Pria Nusantara",
+      "categorySlug": "fashion",
+      "type": "physical",
+      "description": "Kemeja lengan panjang bahan katun adem, tersedia ukuran S-XL.",
+      "digitalNote": null,
+      "price": "145000.00",
+      "discountPercent": 0,
+      "stock": 50,
+      "label": null,
+      "labelColor": null
+    },
+    "future": {
+      "images": ["tools/seed-assets/profil/toko/produk-fashion.svg"]
+    }
+  },
+  {
+    "slug": "gamis-wanita-nusantara",
+    "current": {
+      "sku": "TN-FSH-002",
+      "name": "Gamis Wanita Nusantara",
+      "categorySlug": "fashion",
+      "type": "physical",
+      "description": "Gamis harian bahan kaos rayon, nyaman dipakai sehari-hari.",
+      "digitalNote": null,
+      "price": "179000.00",
+      "discountPercent": 15,
+      "stock": 35,
+      "label": "Diskon",
+      "labelColor": "#d53f8c"
+    }
+  },
+  {
+    "slug": "rak-serbaguna-nusantara",
+    "current": {
+      "sku": "TN-RTG-001",
+      "name": "Rak Serbaguna Nusantara",
+      "categorySlug": "rumah-tangga",
+      "type": "physical",
+      "description": "Rak susun 4 tingkat berbahan plastik kokoh untuk dapur atau gudang.",
+      "digitalNote": null,
+      "price": "165000.00",
+      "discountPercent": 0,
+      "stock": 25,
+      "label": null,
+      "labelColor": null
+    },
+    "future": {
+      "images": ["tools/seed-assets/profil/toko/produk-rumah-tangga.svg"]
+    }
+  },
+  {
+    "slug": "set-panci-anti-lengket-nusantara",
+    "current": {
+      "sku": "TN-RTG-002",
+      "name": "Set Panci Anti Lengket Nusantara",
+      "categorySlug": "rumah-tangga",
+      "type": "physical",
+      "description": "Set 3 panci anti lengket dengan tutup kaca tahan panas.",
+      "digitalNote": null,
+      "price": "249000.00",
+      "discountPercent": 5,
+      "stock": 20,
+      "label": null,
+      "labelColor": null
+    }
+  },
+  {
+    "slug": "serum-wajah-nusantara",
+    "current": {
+      "sku": "TN-KEC-001",
+      "name": "Serum Wajah Nusantara",
+      "categorySlug": "kesehatan-kecantikan",
+      "type": "physical",
+      "description": "Serum wajah dengan ekstrak niacinamide untuk mencerahkan kulit.",
+      "digitalNote": null,
+      "price": "59000.00",
+      "discountPercent": 0,
+      "stock": 80,
+      "label": "Terlaris",
+      "labelColor": "#38a169"
+    },
+    "future": {
+      "images": ["tools/seed-assets/profil/toko/produk-kecantikan.svg"]
+    }
+  },
+  {
+    "slug": "vitamin-c-nusantara",
+    "current": {
+      "sku": "TN-KEC-002",
+      "name": "Vitamin C Nusantara",
+      "categorySlug": "kesehatan-kecantikan",
+      "type": "physical",
+      "description": "Suplemen vitamin C 500mg, satu botol isi 30 tablet.",
+      "digitalNote": null,
+      "price": "45000.00",
+      "discountPercent": 0,
+      "stock": 100,
+      "label": null,
+      "labelColor": null
+    }
+  },
+  {
+    "slug": "matras-yoga-nusantara",
+    "current": {
+      "sku": "TN-OLR-001",
+      "name": "Matras Yoga Nusantara",
+      "categorySlug": "olahraga",
+      "type": "physical",
+      "description": "Matras yoga anti-selip tebal 8mm dengan tali jinjing.",
+      "digitalNote": null,
+      "price": "99000.00",
+      "discountPercent": 0,
+      "stock": 30,
+      "label": null,
+      "labelColor": null
+    },
+    "future": {
+      "images": ["tools/seed-assets/profil/toko/produk-olahraga.svg"]
+    }
+  },
+  {
+    "slug": "botol-minum-olahraga-nusantara",
+    "current": {
+      "sku": "TN-OLR-002",
+      "name": "Botol Minum Olahraga Nusantara",
+      "categorySlug": "olahraga",
+      "type": "physical",
+      "description": "Botol minum 1 liter bebas BPA dengan penanda takaran waktu minum.",
+      "digitalNote": null,
+      "price": "39000.00",
+      "discountPercent": 0,
+      "stock": 70,
+      "label": null,
+      "labelColor": null
+    }
+  },
+  {
+    "slug": "kopi-robusta-nusantara-250g",
+    "current": {
+      "sku": "TN-MKN-001",
+      "name": "Kopi Robusta Nusantara 250g",
+      "categorySlug": "makanan-minuman",
+      "type": "physical",
+      "description": "Kopi bubuk robusta sangrai sedang, kemasan 250 gram.",
+      "digitalNote": null,
+      "price": "35000.00",
+      "discountPercent": 0,
+      "stock": 90,
+      "label": null,
+      "labelColor": null
+    },
+    "future": {
+      "images": ["tools/seed-assets/profil/toko/produk-makanan.svg"]
+    }
+  },
+  {
+    "slug": "e-voucher-belanja-nusantara",
+    "current": {
+      "sku": "TN-DIG-001",
+      "name": "E-Voucher Belanja Nusantara",
+      "categorySlug": "makanan-minuman",
+      "type": "digital",
+      "description": "Voucher belanja digital senilai Rp50.000, dikirim sebagai kode ke pembeli.",
+      "digitalNote": "Kode voucher dikirim otomatis setelah pembayaran dikonfirmasi.",
+      "price": "50000.00",
+      "discountPercent": 0,
+      "stock": 500,
+      "label": "Digital",
+      "labelColor": "#805ad5"
+    }
+  }
+]

@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Pemerintah Provinsi Jawa Barat",
+    "slug": "pemprov-jawa-barat",
+    "branch": "executive",
+    "regionLevel": 1,
+    "regionName": "Jawa Barat",
+    "seoTitle": "Pemerintah Provinsi Jawa Barat",
+    "description": "Institusi eksekutif contoh (data publik, bukan afiliasi platform ini) dipakai untuk mendemonstrasikan arsip berita per daerah pada profil build 'berita'."
+  },
+  {
+    "name": "DPRD Kota Bandung",
+    "slug": "dprd-kota-bandung",
+    "branch": "legislative",
+    "regionLevel": 2,
+    "regionName": "Kota Bandung",
+    "provinceName": "Jawa Barat",
+    "seoTitle": "DPRD Kota Bandung",
+    "description": "Institusi legislatif contoh (data publik, bukan afiliasi platform ini) dipakai untuk mendemonstrasikan arsip berita per daerah pada profil build 'berita'."
+  }
+]

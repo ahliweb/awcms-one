@@ -1,0 +1,42 @@
+[
+  {
+    "slug": "tentang-kami",
+    "title": "Tentang Kami",
+    "pageType": "standard",
+    "excerpt": "Profil singkat Toko Nusantara, toko contoh untuk demonstrasi template awcms-one.",
+    "bodyParagraphs": [
+      "Toko Nusantara adalah toko daring fiktif yang digunakan sebagai contoh isi (sample content) untuk profil build 'toko' pada template awcms-one.",
+      "PLACEHOLDER — konten contoh. Ganti paragraf ini dengan profil toko sungguhan sebelum tenant ini melayani pelanggan sungguhan."
+    ]
+  },
+  {
+    "slug": "cara-belanja",
+    "title": "Cara Belanja",
+    "pageType": "standard",
+    "excerpt": "Langkah-langkah berbelanja di Toko Nusantara.",
+    "bodyParagraphs": [
+      "Pilih produk yang diinginkan, tambahkan ke keranjang, lalu lanjutkan ke halaman checkout untuk mengisi alamat dan memilih metode pengiriman.",
+      "Setelah pesanan dibuat, ikuti instruksi pembayaran QRIS manual dan unggah bukti pembayaran melalui halaman status pesanan."
+    ]
+  },
+  {
+    "slug": "kebijakan-privasi",
+    "title": "Kebijakan Privasi",
+    "pageType": "legal",
+    "excerpt": "Bagaimana Toko Nusantara mengumpulkan dan menggunakan data pelanggan.",
+    "bodyParagraphs": [
+      "Kebijakan ini menjelaskan bagaimana Toko Nusantara mengumpulkan, menggunakan, dan melindungi data pelanggan saat berbelanja melalui platform ini.",
+      "PLACEHOLDER — konten seed awal. Operator toko menggantikan paragraf ini dengan kebijakan privasi resmi sebelum tenant ini melayani pelanggan sungguhan."
+    ]
+  },
+  {
+    "slug": "syarat-ketentuan",
+    "title": "Syarat dan Ketentuan",
+    "pageType": "legal",
+    "excerpt": "Syarat dan ketentuan penggunaan layanan Toko Nusantara.",
+    "bodyParagraphs": [
+      "Dengan menggunakan Toko Nusantara, pelanggan menyetujui syarat dan ketentuan yang berlaku atas transaksi dan pengiriman di platform ini.",
+      "PLACEHOLDER — konten seed awal. Operator toko menggantikan paragraf ini dengan syarat dan ketentuan resmi sebelum tenant ini melayani pelanggan sungguhan."
+    ]
+  }
+]

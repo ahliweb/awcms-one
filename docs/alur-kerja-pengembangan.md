@@ -53,6 +53,12 @@ Increment 2 (epic #21) was delivered as a sequence of atomic, single-issue PRs r
 
 Both jobs are required status checks on `main` (see "Branch protection on `main`" above) — this closes the gap earlier drafts of this document described: `apps/cms`'s own gate chain, and its RLS/DB coverage, run in THIS repository's CI on every PR, not only locally.
 
+## Seeding a profile locally
+
+`tools/seed-cms.ts` (`bun run db:seed:cms` / `bun run db:seed:cms:profil <name>`, issue #139) seeds an already-migrated `apps/cms` with one of four profiles: the neutral, fictional `toko`/`berita`/`landing` sample sets under `tools/seed-data/profil/**`, or `contoh:borneojek-mart` (the default, unchanged) — the live reference deployment's own full content under `tools/seed-data/contoh/borneojek-mart/**`. See [`docs/template.md`](template.md)'s "Sample seeds" section for what each profile contains.
+
+**Never seed a neutral profile into this repository's own shared local dev database** (`postgres://awcms:awcms_dev_password@localhost:5433/awcms`, `bun run db:up`'s default) — it already holds this repository's own BjekMart tenant, and `POST /api/v1/setup/initialize` is a once-per-database singleton lock (see `tools/seed-cms.ts`'s own `ensureTenantAndSession`): a second `--profil` run against that same database fails the bootstrap step rather than creating a second tenant. Use `--dry-run` instead to see what a profile WOULD seed (it validates the profile's JSON and prints an inventory summary, making no network call at all, so it needs no running `apps/cms` and is always safe to run), or point `AWCMS_BASE_URL`/`POSTGRES_*` at a disposable database when a real run against a profile is actually needed.
+
 ## Not enforced today
 
 A merge-strategy restriction tied specifically to `apps/cms`-touching PRs (the honour-system rule in [`AGENTS.md`](../AGENTS.md#the-one-rule-that-protects-every-future-sync)). A required review count or code-owner requirement — branch protection here names two required checks and nothing about reviewers. A CI step that builds or publishes a container image, or deploys anywhere — see [`docs/deployment.md`](deployment.md) for what "deploying this repository" means today.

@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](alur-kerja-pengembangan.md)
 
-<!-- i18n-source-hash: sha256:93017ad385fd0230b946c649202a682062b54ed5651e1823d5b96f8813dd2e12 -->
+<!-- i18n-source-hash: sha256:d4eac2d2c020aa6bc71f57e758bba72ff285c6098e24f95737e2a5f849f6397a -->
 
 # Alur kerja pengembangan
 
@@ -54,6 +54,12 @@ Increment 2 (epic #21) dikirimkan sebagai rangkaian PR atomik satu-issue, bukan 
 5. Langkah job-summary (`if: always()`) meng-grep jumlah `N skip` dari kedua berkas log dan melaporkan jumlah skip ber-gate-DB sebelum/sesudah, sehingga reviewer bisa melihat suite itu benar-benar berjalan, bukan diam-diam skip dua kali.
 
 Kedua job adalah status check wajib di `main` (lihat "Branch protection pada `main`" di atas) — ini menutup celah yang dideskripsikan draf dokumen ini sebelumnya: rantai gate `apps/cms` sendiri, dan cakupan RLS/basis datanya, berjalan di CI repositori INI sendiri pada setiap PR, tidak hanya lokal.
+
+## Seeding profil secara lokal
+
+`tools/seed-cms.ts` (`bun run db:seed:cms` / `bun run db:seed:cms:profil <nama>`, issue #139) menyemai `apps/cms` yang sudah dimigrasi dengan salah satu dari empat profil: set contoh netral dan fiktif `toko`/`berita`/`landing` di bawah `tools/seed-data/profil/**`, atau `contoh:borneojek-mart` (default, tidak berubah) — konten lengkap deployment referensi yang hidup di bawah `tools/seed-data/contoh/borneojek-mart/**`. Lihat bagian "Seed contoh" di [`docs/template.md`](template.md) untuk isi tiap profil.
+
+**Jangan pernah menyemai profil netral ke basis data dev lokal bersama milik repositori ini** (`postgres://awcms:awcms_dev_password@localhost:5433/awcms`, default `bun run db:up`) — basis data itu sudah berisi tenant BjekMart milik repositori ini, dan `POST /api/v1/setup/initialize` adalah kunci singleton sekali-per-basis-data (lihat `ensureTenantAndSession` milik `tools/seed-cms.ts` sendiri): run `--profil` kedua terhadap basis data yang sama akan gagal di langkah bootstrap, bukan membuat tenant kedua. Pakai `--dry-run` untuk melihat apa yang AKAN disemai suatu profil (ia memvalidasi JSON profil dan mencetak ringkasan inventaris, tanpa panggilan jaringan sama sekali, sehingga tidak butuh `apps/cms` yang berjalan dan selalu aman dijalankan), atau arahkan `AWCMS_BASE_URL`/`POSTGRES_*` ke basis data sekali-pakai saat run sungguhan terhadap suatu profil memang dibutuhkan.
 
 ## Belum ditegakkan hari ini
 

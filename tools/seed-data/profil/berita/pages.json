@@ -1,0 +1,42 @@
+[
+  {
+    "slug": "redaksi",
+    "title": "Redaksi",
+    "pageType": "legal",
+    "excerpt": "Susunan dan kontak redaksi contoh Kabar Kita.",
+    "bodyParagraphs": [
+      "Halaman ini menjelaskan struktur redaksi dan kanal kontak redaksi contoh untuk profil build 'berita'.",
+      "PLACEHOLDER — konten seed awal (issue #139). Data pada halaman ini sengaja tidak memuat nama personel atau identitas badan hukum media mana pun."
+    ]
+  },
+  {
+    "slug": "pedoman-media-siber",
+    "title": "Pedoman Pemberitaan Media Siber",
+    "pageType": "legal",
+    "excerpt": "Rujukan singkat Pedoman Pemberitaan Media Siber, Dewan Pers, 3 Februari 2012.",
+    "bodyParagraphs": [
+      "Media siber pada platform ini mengikuti Pedoman Pemberitaan Media Siber yang ditetapkan Dewan Pers bersama organisasi pers dan pengelola media siber pada 3 Februari 2012.",
+      "PLACEHOLDER — halaman contoh untuk profil build 'berita'; operator mengganti dengan rujukan lengkap sebelum tenant ini menayangkan berita produksi."
+    ]
+  },
+  {
+    "slug": "kebijakan-privasi",
+    "title": "Kebijakan Privasi",
+    "pageType": "legal",
+    "excerpt": "Bagaimana Kabar Kita mengumpulkan dan menggunakan data pembaca.",
+    "bodyParagraphs": [
+      "Kebijakan ini menjelaskan bagaimana platform ini mengumpulkan, menggunakan, dan melindungi data pembaca.",
+      "PLACEHOLDER — konten seed awal. Operator menggantikan paragraf ini dengan kebijakan privasi resmi sebelum tenant ini melayani pembaca sungguhan."
+    ]
+  },
+  {
+    "slug": "disclaimer",
+    "title": "Disclaimer",
+    "pageType": "legal",
+    "excerpt": "Batasan tanggung jawab konten berita pada platform ini.",
+    "bodyParagraphs": [
+      "Seluruh isi berita pada situs contoh ini hanya berfungsi sebagai demonstrasi profil build 'berita' dan tidak dimaksudkan sebagai berita sungguhan.",
+      "PLACEHOLDER — konten seed awal. Operator menggantikan paragraf ini dengan disclaimer resmi sebelum tenant ini menayangkan berita produksi."
+    ]
+  }
+]

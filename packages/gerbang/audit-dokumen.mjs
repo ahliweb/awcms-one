@@ -521,13 +521,6 @@ const EXCLUDED_PATHS = new Map([
     }
   ],
   [
-    "tools/seed-cms.ts",
-    {
-      reason:
-        "not built yet — issue #139 (the profile-aware seeder replacing tools/seed-borneojek-mart.ts). Named here to describe the planned mechanism."
-    }
-  ],
-  [
     "packages/kontrak",
     {
       reason:
