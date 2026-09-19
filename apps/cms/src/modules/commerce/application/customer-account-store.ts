@@ -102,6 +102,31 @@ export async function findAccountByEmail(
   return rows[0] ? toAccountRecord(rows[0]) : null;
 }
 
+/**
+ * D4's conflict check (Issue #89) — is this normalised phone ALREADY bound to
+ * an account (any account, this lookup does not care whose)? Joined through
+ * `awcms_commerce_customers` because the phone lives there, not on the
+ * account row itself (`awcms_commerce_customer_accounts.customer_id` is the
+ * only link). A guest checkout row with no account bound to it is NOT a
+ * conflict — this is exactly why `createAccountForCustomer` is still safe to
+ * call after this returns `null`.
+ */
+export async function findAccountByPhone(
+  tx: Bun.SQL,
+  tenantId: string,
+  phone: string
+): Promise<CustomerAccountRecord | null> {
+  const rows = (await tx`
+    SELECT a.id, a.customer_id, a.email_normalized, a.status,
+           a.email_verified_at, a.history_from, a.last_login_at, a.created_at
+    FROM awcms_commerce_customer_accounts a
+    JOIN awcms_commerce_customers c ON c.id = a.customer_id
+    WHERE a.tenant_id = ${tenantId} AND c.tenant_id = ${tenantId}
+      AND c.phone = ${phone} AND c.deleted_at IS NULL
+  `) as AccountRow[];
+  return rows[0] ? toAccountRecord(rows[0]) : null;
+}
+
 export async function findAccountById(
   tx: Bun.SQL,
   tenantId: string,
@@ -291,6 +316,27 @@ export type ConsumeOtpResult =
  * "exhausted" durable: the row is dead even if the 6th guess happens to be
  * correct.
  */
+/**
+ * `o.registration` in the `consumeOtp` query below round-trips through this
+ * codebase's `Bun.SQL` driver as a raw JSON STRING, not a parsed object —
+ * unlike a plain `SELECT` of a `jsonb` column, the `UPDATE … FROM target …
+ * RETURNING` shape apparently loses the column's type OID, so the driver
+ * falls back to text (confirmed empirically by Issue #89's integration
+ * suite, the first caller that ever read a NON-null `registration` back out
+ * of this query — #87's own tests never exercised the register path far
+ * enough to notice). Defensive on either shape, so a future driver upgrade
+ * that starts parsing it correctly does not silently double-parse.
+ */
+function parseRegistrationColumn(
+  value: { name: string; phone: string } | string | null
+): { name: string; phone: string } | null {
+  if (value === null) return null;
+  if (typeof value === "string") {
+    return JSON.parse(value) as { name: string; phone: string };
+  }
+  return value;
+}
+
 export async function consumeOtp(
   tx: Bun.SQL,
   tenantId: string,
@@ -336,7 +382,7 @@ export async function consumeOtp(
   `) as {
     id: string;
     purpose: "login" | "register";
-    registration: { name: string; phone: string } | null;
+    registration: { name: string; phone: string } | string | null;
     code_matched: boolean;
     not_expired: boolean;
     attempts_before_this_try: number;
@@ -352,7 +398,11 @@ export async function consumeOtp(
   if (succeeded) {
     return {
       ok: true,
-      otp: { id: row.id, purpose: row.purpose, registration: row.registration }
+      otp: {
+        id: row.id,
+        purpose: row.purpose,
+        registration: parseRegistrationColumn(row.registration)
+      }
     };
   }
 
