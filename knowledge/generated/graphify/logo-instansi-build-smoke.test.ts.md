@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/logo-instansi-build-smoke.test.ts"
 type: "code"
-community: "Institution Emblem Build Smoke"
+community: "logo-instansi-build-smoke.test.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Institution_Emblem_Build_Smoke
+  - community/logo-instansi-build-smoketestts
 ---
 
 # logo-instansi-build-smoke.test.ts
@@ -17,4 +17,4 @@ tags:
 - [[canSpawnBun()_11]] - `contains` [EXTRACTED]
 - [[waitForStub()_10]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Institution_Emblem_Build_Smoke
+#graphify/code #graphify/EXTRACTED #community/logo-instansi-build-smoketestts

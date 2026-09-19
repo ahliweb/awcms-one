@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/config/site.ts"
 type: "code"
-community: "Site Config, Sitemaps & Theme"
+community: "site.ts"
 location: "L20"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Site_Config_Sitemaps__Theme
+  - community/sitets
 ---
 
 # siteUrl
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[site.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Site_Config_Sitemaps__Theme
+#graphify/code #graphify/EXTRACTED #community/sitets

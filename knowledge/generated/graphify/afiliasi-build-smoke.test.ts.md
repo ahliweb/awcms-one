@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/afiliasi-build-smoke.test.ts"
 type: "code"
-community: "Affiliate Build Smoke"
+community: "afiliasi-build-smoke.test.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Affiliate_Build_Smoke
+  - community/afiliasi-build-smoketestts
 ---
 
 # afiliasi-build-smoke.test.ts
@@ -16,4 +16,4 @@ tags:
 - [[canSpawnBun()_12]] - `contains` [EXTRACTED]
 - [[waitForStub()_11]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Affiliate_Build_Smoke
+#graphify/code #graphify/EXTRACTED #community/afiliasi-build-smoketestts

@@ -2,7 +2,7 @@
 
 # Architecture
 
-What this repository actually deploys today, and the boundaries that keep its two halves from quietly growing into each other. This document describes increment 4 — increment 2's BjekMart/news-portal parity, the functional parity with seputarborneo.com v2.4.0 that epic [#46](https://github.com/ahliweb/awcms-one/issues/46) added (real media, the news chrome, the read-aloud player, rule-based legacy redirects, first-party analytics, the institution emblem), and the customer-accounts/affiliates epic [#32](https://github.com/ahliweb/awcms-one/issues/32) added ([ADR-0016](adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md)), still with no live production database — as it exists in the merged tree, not as it was planned. See [`README.md`](../README.md) and [`AGENTS.md`](../AGENTS.md) for the workspace layout and working rules this document assumes.
+What this repository actually deploys today, and the boundaries that keep its two halves from quietly growing into each other. This document describes increment 5 — increment 2's BjekMart/news-portal parity, the functional parity with seputarborneo.com v2.4.0 that epic [#46](https://github.com/ahliweb/awcms-one/issues/46) added (real media, the news chrome, the read-aloud player, rule-based legacy redirects, first-party analytics, the institution emblem), the customer-accounts/affiliates epic [#32](https://github.com/ahliweb/awcms-one/issues/32) added ([ADR-0016](adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md)), and the admin-only BjekMart features plus external-provider integrations epic [#33](https://github.com/ahliweb/awcms-one/issues/33) added ([ADR-0017](adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.md) — RajaOngkir courier rates, a WhatsApp outbox, a Midtrans payment gateway with webhook intake, POS, sales reports, an inbox, and campaigns), still with no live production database — as it exists in the merged tree, not as it was planned. See [`README.md`](../README.md) and [`AGENTS.md`](../AGENTS.md) for the workspace layout and working rules this document assumes.
 
 ## Two deployables, one build-time data flow, one anonymous runtime seam
 
@@ -102,8 +102,59 @@ Per [ADR-0008](adr/0008-one-commerce-module-carries-the-whole-store-not-three.md
 - **Catalog** (issue #23) — categories, products (images, variants, tiered pricing, size charts, service forms, promo banners).
 - **Marketing** (issue #26) — flash sales, vouchers, sliders, testimonials, a popup, versioned store settings.
 - **Orders** (issue #29) — customers, addresses, cart quoting, orders, payment confirmations, reviews, wishlists, and the anonymous `/api/v1/commerce/storefront/*` surface.
+- **Customer accounts and affiliates** (issue #32) — OTP-verified accounts, bearer sessions, and the affiliate program ([ADR-0016](adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md)).
+- **External providers, POS, reports, inbox, campaigns, and feature toggles** (issue #33, [ADR-0017](adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.md)) — RajaOngkir courier rates, a WhatsApp outbox and OTP channel, a Midtrans payment gateway with public webhook intake and reconciliation, in-store POS sales (`orders.channel`, `payment_method = cash`), `reporting`-projection sales reports, a customer inbox, consent-gated marketing campaigns, and per-tenant feature toggles plus tiered pricing at quote — see "External providers" below.
 
 `module.ts`'s `dependencies` are `tenant_admin`, `identity_access`, `domain_event_runtime`, `media_library` (product/slider/testimonial/popup images resolve through `MediaLibraryPort`), and `module_management` (the anonymous storefront tenant-resolver's fail-closed check). See [`docs/skema-basis-data.md`](skema-basis-data.md), [`docs/kamus-data.md`](kamus-data.md), [`docs/api.md`](api.md), and [`docs/cms.md`](cms.md) for the module's contents in depth, and [`apps/cms/src/modules/commerce/README.md`](../apps/cms/src/modules/commerce/README.md) for its own, code-adjacent documentation.
+
+## External providers: ports and outboxes inside `commerce`, never a synchronous call on the order path
+
+Increment 5 (epic [#33](https://github.com/ahliweb/awcms-one/issues/33)) added `commerce`'s first external HTTP integrations — a courier-rate aggregator (RajaOngkir), a WhatsApp sender (Fonnte/Meta Cloud API), and a payment gateway (Midtrans Snap). [ADR-0017](adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.md) (D1) settled the shape once, and every one of the three follows it: a small port interface, one or more adapters selected by an env var, a `log` adapter for dev/CI, `withTimeout` plus `getProviderCircuitBreaker`, and — for anything the order path depends on — an outbox table so the provider call never happens inside the database transaction that changes order state (this is the same discipline [ADR-0010](adr/0010-manual-payment-and-alternative-courier-first-gateways-via-outbox.md) already established for payment confirmations and courier notes).
+
+```mermaid
+flowchart TB
+  subgraph Ports["commerce-owned provider ports"]
+    SRP["ShippingRateProvider\n{getRates}"]
+    PGP["PaymentGatewayProvider\n{createSession, verifyWebhook, fetchStatus}"]
+    WAP["WhatsappProvider\n{send}"]
+  end
+
+  SRP --> RajaOngkir["RajaOngkir adapter\n(Komerce API v2)"]
+  SRP --> LogShip["log adapter"]
+  PGP --> Midtrans["Midtrans Snap adapter"]
+  PGP --> LogPay["log adapter"]
+  WAP --> Fonnte["Fonnte adapter"]
+  WAP --> Meta["Meta Cloud API adapter"]
+  WAP --> LogWA["log adapter"]
+
+  Quote["cart/quote (destination)"] -->|"outside any tx, cached 6h"| SRP
+  RajaOngkir --> RatesCache[("awcms_commerce_shipping_rates\n+ courier_destinations")]
+
+  Order["order pending_payment"] -->|createSession| PGP
+  Midtrans --> GatewaySessions[("awcms_commerce_payment_gateway_sessions")]
+
+  OtpReq["account/otp/request via=whatsapp"] --> WAOutbox[("awcms_commerce_whatsapp_messages\n(outbox)")]
+  Campaign["campaign dispatch"] --> WAOutbox
+  WAOutbox -->|"commerce:whatsapp:dispatch, */2m"| WAP
+
+  Webhook["POST /api/v1/commerce/webhooks/{provider}/{endpointToken}"] -->|"SECURITY DEFINER token lookup"| Resolve["awcms_resolve_commerce_webhook_endpoint"]
+  Resolve --> Verify["verifyWebhook (timing-safe signature)"]
+  Verify -->|"ok, new event_key"| Events[("awcms_commerce_payment_events\nUNIQUE(tenant_id, provider, event_key)")]
+  Events --> MarkPaid["markOrderPaidBySystem\n(pending_payment → paid, actor=system)"]
+  Verify -->|"replay: event_key already seen"| Ack200["200, no-op"]
+  Verify -->|"bad signature"| Reject401["401"]
+
+  Reconcile["commerce:payments:reconcile, */2m"] -->|"fetchStatus for pending sessions"| PGP
+  Reconcile --> MarkPaid
+```
+
+| Provider port | Adapters (env `COMMERCE_*_PROVIDER`) | Outbox / cache table | Dispatcher / purge job |
+| --- | --- | --- | --- |
+| `ShippingRateProvider` (issue #107) | `rajaongkir`, `log` | `awcms_commerce_shipping_rates` (TTL 6h, per tenant/origin/destination/weight-bucket/courier), `awcms_commerce_courier_destinations` | `commerce:shipping-rates:purge` (hourly) |
+| `WhatsappProvider` (issue #108) | `fonnte`, `meta`, `log` | `awcms_commerce_whatsapp_messages` (+ `awcms_commerce_whatsapp_delivery_attempts`) | `commerce:whatsapp:dispatch` (`*/2m`), `commerce:whatsapp:purge` (`*/15m`) |
+| `PaymentGatewayProvider` (issues #110/#113) | `midtrans`, `log` | `awcms_commerce_payment_gateway_sessions`, `awcms_commerce_payment_events` (replay ledger), `awcms_commerce_webhook_endpoints` (token-hashed) | `commerce:payments:reconcile` (`*/2m`) |
+
+**Inbound webhooks never trust the payload for tenant identity.** A public `POST /api/v1/commerce/webhooks/{provider}/{endpointToken}` resolves `(tenant, provider)` from an opaque, hashed per-tenant token via a `SECURITY DEFINER` bootstrap function modelled on `awcms_resolve_tenant_domain_lookup` — a webhook body claiming a `tenant_id` would be an unverified oracle, per ADR-0017 D2's own rejected-alternatives table. Replay protection is a `UNIQUE (tenant_id, provider, event_key)` constraint on `awcms_commerce_payment_events`, so a provider's at-least-once delivery is idempotent: a replayed event still answers `200`, just without a second side effect. An amount mismatch between the webhook's `gross_amount` and the order's own total is recorded (`outcome = 'amount_mismatch'`) but never marks the order paid — `sql/934` added that guard after #110 shipped, closing the gap #113 flagged. Because webhooks can be dropped in transit, `commerce:payments:reconcile` polls every still-`pending`/`created` gateway session's `fetchStatus` on its own schedule — the same `markOrderPaidBySystem` path the webhook handler uses, so a lost webhook self-heals within the job's own interval rather than stranding an order in `pending_payment` forever.
 
 ## One more thing the server does: it repairs a shadowed page
 
@@ -111,11 +162,11 @@ Per [ADR-0008](adr/0008-one-commerce-module-carries-the-whole-store-not-three.md
 
 ## What is still not here
 
-What [ADR-0016](adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md) D6 explicitly deferred as follow-ups to the customer-accounts work: WhatsApp/SMS OTP (D2's own follow-up), e-mail/phone change on an existing account, phone verification, and tiered pricing (`priceLevel2/3/4`) applied at quote time. A live RajaOngkir courier-rate integration and a payment gateway (both must be called through `apps/cms`'s outbox, never synchronously on the order path, per [ADR-0010](adr/0010-manual-payment-and-alternative-courier-first-gateways-via-outbox.md) — [issue #33](https://github.com/ahliweb/awcms-one/issues/33)); POS and management reporting (issue #33); a real R2-backed upload for product images, slider media, and payment-confirmation proof images (the seed script uses self-generated placeholder SVGs and the anonymous payment-proof upload endpoint answers `503 MEDIA_UNAVAILABLE` — see [`docs/deployment.md`](deployment.md) and [`docs/cms.md`](cms.md)); a production PostgreSQL deployment (`compose.yaml`'s `postgres:18.4` is a local/CI convenience only — see [`docs/deployment.md`](deployment.md)).
+What [ADR-0016](adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md) D6 deferred and increment 5 did not pick up: e-mail/phone change on an existing account, and phone verification. What [ADR-0017](adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.md) names as explicit follow-ups behind the ports it already built: a Xendit adapter behind the same `PaymentGatewayProvider` port, and courier tracking (rates are done; tracking a shipped parcel is not). A real R2-backed upload for product images, slider media, and payment-confirmation proof images (the seed script uses self-generated placeholder SVGs and the anonymous payment-proof upload endpoint answers `503 MEDIA_UNAVAILABLE` — see [`docs/deployment.md`](deployment.md) and [`docs/cms.md`](cms.md)); a production PostgreSQL deployment (`compose.yaml`'s `postgres:18.4` is a local/CI convenience only — see [`docs/deployment.md`](deployment.md)); a database-backup admin screen (explicitly scoped out of issue #33 as an operations concern — see [`docs/deployment.md`](deployment.md)); customer push notifications (campaigns currently reach e-mail and WhatsApp only — push subscriptions are per-staff today, not per-customer).
 
 ## Further reading
 
-- [`docs/adr/`](adr/README.md) — sixteen decisions this architecture rests on, each with its own trade-off table.
+- [`docs/adr/`](adr/README.md) — seventeen decisions this architecture rests on, each with its own trade-off table.
 - [`docs/skema-basis-data.md`](skema-basis-data.md), [`docs/kamus-data.md`](kamus-data.md) — the schema and the legacy-column mapping.
 - [`docs/api.md`](api.md), [`docs/cms.md`](cms.md) — the commerce API (owner and anonymous) and the authoring/publishing workflow behind it.
 - [`docs/routing.md`](routing.md) — the full public URL map.

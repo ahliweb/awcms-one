@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/scripts/promo-popup.ts"
 type: "code"
-community: "Promo Popup"
+community: "promo-popup.ts"
 location: "L61"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Promo_Popup
+  - community/promo-popupts
 ---
 
 # dialog
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[promo-popup.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Promo_Popup
+#graphify/code #graphify/EXTRACTED #community/promo-popupts

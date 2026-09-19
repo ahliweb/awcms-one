@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/scripts/akun-afiliasi.ts"
 type: "code"
-community: "Account Affiliate Page Script"
+community: "akun-afiliasi.ts"
 location: "L90"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Account_Affiliate_Page_Script
+  - community/akun-afiliasits
 ---
 
 # showGuestView()
@@ -16,4 +16,4 @@ tags:
 - [[render()_2]] - `calls` [EXTRACTED]
 - [[showAccountView()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Account_Affiliate_Page_Script
+#graphify/code #graphify/EXTRACTED #community/akun-afiliasits

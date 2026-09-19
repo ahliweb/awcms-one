@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/pages/product/[slug].astro"
 type: "code"
-community: "Product & Category Pages, Product JSON-LD"
+community: "product/[slug].astro"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Product__Category_Pages_Product_JSON-LD
+  - community/product/slugastro
 ---
 
 # product/[slug].astro
@@ -43,4 +43,4 @@ tags:
 - [[routes.ts]] - `imports_from` [EXTRACTED]
 - [[site.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Product__Category_Pages_Product_JSON-LD
+#graphify/code #graphify/EXTRACTED #community/product/slugastro

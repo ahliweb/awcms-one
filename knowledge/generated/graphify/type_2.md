@@ -1,12 +1,12 @@
 ---
 source_file: "packages/kontrak/package.json"
 type: "code"
-community: "Kontrak Package Manifest"
+community: "kontrak/package.json"
 location: "L3"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Kontrak_Package_Manifest
+  - community/kontrak/packagejson
 ---
 
 # type
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[kontrakpackage.json]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Kontrak_Package_Manifest
+#graphify/code #graphify/EXTRACTED #community/kontrak/packagejson

@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/awcms/pemasaran.ts"
 type: "code"
-community: "Marketing Data (Flash Sales, Vouchers, Settings)"
+community: "pemasaran.ts"
 location: "L30"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Marketing_Data_Flash_Sales_Vouchers_Settings
+  - community/pemasarants
 ---
 
 # StoreFavicon
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[pemasaran.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Marketing_Data_Flash_Sales_Vouchers_Settings
+#graphify/code #graphify/EXTRACTED #community/pemasarants

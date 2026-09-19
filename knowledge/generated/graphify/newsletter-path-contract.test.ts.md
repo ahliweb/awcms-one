@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/newsletter-path-contract.test.ts"
 type: "code"
-community: "Newsletter Path Contract Test"
+community: "newsletter-path-contract.test.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Newsletter_Path_Contract_Test
+  - community/newsletter-path-contracttestts
 ---
 
 # newsletter-path-contract.test.ts
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[ADR-0070_1]] - `cites` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Newsletter_Path_Contract_Test
+#graphify/code #graphify/EXTRACTED #community/newsletter-path-contracttestts

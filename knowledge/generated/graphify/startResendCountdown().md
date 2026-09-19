@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/scripts/daftar.ts"
 type: "code"
-community: "Registration Page Script"
+community: "daftar.ts"
 location: "L121"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Registration_Page_Script
+  - community/daftarts
 ---
 
 # startResendCountdown()
@@ -15,4 +15,4 @@ tags:
 - [[daftar.ts]] - `contains` [EXTRACTED]
 - [[showCodeStep()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Registration_Page_Script
+#graphify/code #graphify/EXTRACTED #community/daftarts

@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/pages/berita/feed.xml.ts"
 type: "code"
-community: "Portable Text & Static Pages"
+community: "portable-text.ts"
 location: "L18"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Portable_Text__Static_Pages
+  - community/portable-textts
 ---
 
 # GET()
@@ -20,4 +20,4 @@ tags:
 - [[renderBeritaRssXml()]] - `calls` [EXTRACTED]
 - [[renderPortableText()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Portable_Text__Static_Pages
+#graphify/code #graphify/EXTRACTED #community/portable-textts

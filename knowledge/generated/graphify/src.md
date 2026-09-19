@@ -1,12 +1,12 @@
 ---
 source_file: "packages/kontrak/tsconfig.json"
 type: "concept"
-community: "Kontrak TypeScript Config"
+community: "compilerOptions"
 location: "L11"
 tags:
   - graphify/concept
   - graphify/EXTRACTED
-  - community/Kontrak_TypeScript_Config
+  - community/compilerOptions
 ---
 
 # src/**/*
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[include]] - `extends` [EXTRACTED]
 
-#graphify/concept #graphify/EXTRACTED #community/Kontrak_TypeScript_Config
+#graphify/concept #graphify/EXTRACTED #community/compilerOptions

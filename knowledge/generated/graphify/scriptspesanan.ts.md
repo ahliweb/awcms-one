@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/scripts/pesanan.ts"
 type: "code"
-community: "Commerce Storefront Client & Order Tracking"
+community: "toko-klien.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Commerce_Storefront_Client__Order_Tracking
+  - community/toko-klients
 ---
 
 # scripts/pesanan.ts
@@ -28,4 +28,4 @@ tags:
 - [[submitPaymentConfirmation()]] - `imports` [EXTRACTED]
 - [[toko-klien.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Commerce_Storefront_Client__Order_Tracking
+#graphify/code #graphify/EXTRACTED #community/toko-klients

@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/scripts/dengar.ts"
 type: "code"
-community: "Read-Aloud Player"
+community: "dengar.ts"
 location: "L87"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Read-Aloud_Player
+  - community/dengarts
 ---
 
 # kumpulkanUnit()
@@ -18,4 +18,4 @@ tags:
 - [[el()]] - `indirect_call` [INFERRED]
 - [[pasangPemutar()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Read-Aloud_Player
+#graphify/code #graphify/EXTRACTED #community/dengarts

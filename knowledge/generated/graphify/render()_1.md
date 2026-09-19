@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/scripts/produk-listing.ts"
 type: "code"
-community: "Client-Side Search & Listing Renderer"
+community: "cari-listing.ts"
 location: "L107"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Client-Side_Search__Listing_Renderer
+  - community/cari-listingts
 ---
 
 # render()
@@ -21,4 +21,4 @@ tags:
 - [[renderProdukGrid()]] - `calls` [EXTRACTED]
 - [[writeStateToUrl()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Client-Side_Search__Listing_Renderer
+#graphify/code #graphify/EXTRACTED #community/cari-listingts

@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/theme.test.ts"
 type: "code"
-community: "Site Config, Sitemaps & Theme"
+community: "site.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Site_Config_Sitemaps__Theme
+  - community/sitets
 ---
 
 # theme.test.ts
@@ -16,4 +16,4 @@ tags:
 - [[extractThemeToken()]] - `imports` [EXTRACTED]
 - [[theme.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Site_Config_Sitemaps__Theme
+#graphify/code #graphify/EXTRACTED #community/sitets

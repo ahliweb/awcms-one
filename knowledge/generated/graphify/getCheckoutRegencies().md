@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/awcms/wilayah-checkout.ts"
 type: "code"
-community: "Build-Time CMS Client & Region Data"
+community: "wilayah-checkout.ts"
 location: "L270"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Build-Time_CMS_Client__Region_Data
+  - community/wilayah-checkoutts
 ---
 
 # getCheckoutRegencies()
@@ -19,4 +19,4 @@ tags:
 - [[wilayah-checkout.ts]] - `contains` [EXTRACTED]
 - [[wilayah-kabupaten-provinceCode.json.ts]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Build-Time_CMS_Client__Region_Data
+#graphify/code #graphify/EXTRACTED #community/wilayah-checkoutts

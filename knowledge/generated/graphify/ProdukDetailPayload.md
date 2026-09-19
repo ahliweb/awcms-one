@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/scripts/produk-detail.ts"
 type: "code"
-community: "Product Detail Variants Script"
+community: "produk-detail.ts"
 location: "L25"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Product_Detail_Variants_Script
+  - community/produk-detailts
 ---
 
 # ProdukDetailPayload
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[produk-detail.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Product_Detail_Variants_Script
+#graphify/code #graphify/EXTRACTED #community/produk-detailts

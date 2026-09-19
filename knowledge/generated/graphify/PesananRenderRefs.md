@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/pesanan-render.ts"
 type: "code"
-community: "Commerce Storefront Client & Order Tracking"
+community: "toko-klien.ts"
 location: "L33"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Commerce_Storefront_Client__Order_Tracking
+  - community/toko-klients
 ---
 
 # PesananRenderRefs
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[pesanan-render.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Commerce_Storefront_Client__Order_Tracking
+#graphify/code #graphify/EXTRACTED #community/toko-klients

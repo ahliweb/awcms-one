@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/catalog.ts"
 type: "code"
-community: "Homepage & Derived CSP Artifact"
+community: "pages/index.astro"
 location: "L299"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Homepage__Derived_CSP_Artifact
+  - community/pages/indexastro
 ---
 
 # getProducts()
@@ -31,4 +31,4 @@ tags:
 - [[produk.json.ts]] - `imports` [EXTRACTED]
 - [[sitemap-katalog.ts]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Homepage__Derived_CSP_Artifact
+#graphify/code #graphify/EXTRACTED #community/pages/indexastro

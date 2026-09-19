@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/harga.ts"
 type: "code"
-community: "Price Formatting & Product Cards"
+community: "harga.ts"
 location: "L50"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Price_Formatting__Product_Cards
+  - community/hargats
 ---
 
 # priceToNumber()
@@ -19,4 +19,4 @@ tags:
 - [[harga.ts]] - `contains` [EXTRACTED]
 - [[katalog-harga.test.ts]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Price_Formatting__Product_Cards
+#graphify/code #graphify/EXTRACTED #community/hargats

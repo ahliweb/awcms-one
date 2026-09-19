@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/sidebar-build-smoke.test.ts"
 type: "code"
-community: "Sidebar Build Smoke"
+community: "sidebar-build-smoke.test.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Sidebar_Build_Smoke
+  - community/sidebar-build-smoketestts
 ---
 
 # sidebar-build-smoke.test.ts
@@ -18,4 +18,4 @@ tags:
 - [[placements()]] - `contains` [EXTRACTED]
 - [[waitForStub()_9]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Sidebar_Build_Smoke
+#graphify/code #graphify/EXTRACTED #community/sidebar-build-smoketestts

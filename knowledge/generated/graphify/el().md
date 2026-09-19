@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/dengar.test.ts"
 type: "code"
-community: "Read-Aloud Player"
+community: "dengar.ts"
 location: "L24"
 tags:
   - graphify/code
   - graphify/INFERRED
-  - community/Read-Aloud_Player
+  - community/dengarts
 ---
 
 # el()
@@ -15,4 +15,4 @@ tags:
 - [[dengar.test.ts]] - `contains` [EXTRACTED]
 - [[kumpulkanUnit()]] - `indirect_call` [INFERRED]
 
-#graphify/code #graphify/INFERRED #community/Read-Aloud_Player
+#graphify/code #graphify/INFERRED #community/dengarts

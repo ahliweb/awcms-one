@@ -1,12 +1,12 @@
 ---
 source_file: "packages/gerbang/lib/graph-combine.mjs"
 type: "code"
-community: "Documentation & Graph Audit Gates"
+community: "audit-graf.mjs"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Documentation__Graph_Audit_Gates
+  - community/audit-grafmjs
 ---
 
 # graph-combine.mjs
@@ -18,4 +18,4 @@ tags:
 - [[knowledge-graph-combine.mjs]] - `imports_from` [EXTRACTED]
 - [[validateGraphFile()]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Documentation__Graph_Audit_Gates
+#graphify/code #graphify/EXTRACTED #community/audit-grafmjs

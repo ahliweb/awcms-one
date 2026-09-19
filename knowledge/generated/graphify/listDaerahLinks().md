@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/berita.ts"
 type: "code"
-community: "navigasi-berita.ts"
+community: "routes.ts"
 location: "L561"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/navigasi-beritats
+  - community/routests
 ---
 
 # listDaerahLinks()
@@ -19,4 +19,4 @@ tags:
 - [[sitemap-sources.ts]] - `imports` [EXTRACTED]
 - [[toRegionRef()]] - `indirect_call` [INFERRED]
 
-#graphify/code #graphify/EXTRACTED #community/navigasi-beritats
+#graphify/code #graphify/EXTRACTED #community/routests

@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/awcms/pemasaran.ts"
 type: "code"
-community: "Homepage & Derived CSP Artifact"
+community: "pages/index.astro"
 location: "L300"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Homepage__Derived_CSP_Artifact
+  - community/pages/indexastro
 ---
 
 # getActiveSliders()
@@ -20,4 +20,4 @@ tags:
 - [[pemasaran.ts]] - `contains` [EXTRACTED]
 - [[warnMissing()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Homepage__Derived_CSP_Artifact
+#graphify/code #graphify/EXTRACTED #community/pages/indexastro

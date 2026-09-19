@@ -1,12 +1,12 @@
 ---
 source_file: "packages/gerbang/check-docs-translation.mjs"
 type: "code"
-community: "Documentation & Graph Audit Gates"
+community: "audit-graf.mjs"
 location: "L45"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Documentation__Graph_Audit_Gates
+  - community/audit-grafmjs
 ---
 
 # DOCS_AWAITING_MIRROR
@@ -15,4 +15,4 @@ tags:
 - [[check-docs-translation.mjs]] - `contains` [EXTRACTED]
 - [[docs-i18n-checks.test.mjs]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Documentation__Graph_Audit_Gates
+#graphify/code #graphify/EXTRACTED #community/audit-grafmjs

@@ -1,12 +1,12 @@
 ---
 source_file: "tools/knowledge-graph-combine.mjs"
 type: "code"
-community: "Documentation & Graph Audit Gates"
+community: "audit-graf.mjs"
 location: "L83"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Documentation__Graph_Audit_Gates
+  - community/audit-grafmjs
 ---
 
 # rootResult
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[knowledge-graph-combine.mjs]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Documentation__Graph_Audit_Gates
+#graphify/code #graphify/EXTRACTED #community/audit-grafmjs

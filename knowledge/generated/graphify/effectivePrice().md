@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/scripts/produk-detail.ts"
 type: "code"
-community: "Product Detail Variants Script"
+community: "produk-detail.ts"
 location: "L89"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Product_Detail_Variants_Script
+  - community/produk-detailts
 ---
 
 # effectivePrice()
@@ -15,4 +15,4 @@ tags:
 - [[produk-detail.ts]] - `contains` [EXTRACTED]
 - [[refresh()_1]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Product_Detail_Variants_Script
+#graphify/code #graphify/EXTRACTED #community/produk-detailts

@@ -1,12 +1,12 @@
 ---
 source_file: "tools/import-seputarborneo.ts"
 type: "code"
-community: "Importer Record Builders & Legacy URLs"
+community: "import-seputarborneo.test.mjs"
 location: "L560"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Importer_Record_Builders__Legacy_URLs
+  - community/import-seputarborneotestmjs
 ---
 
 # buildVideoRecord()
@@ -21,4 +21,4 @@ tags:
 - [[runExport()_1]] - `calls` [EXTRACTED]
 - [[videoRedirectSourcePath()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Importer_Record_Builders__Legacy_URLs
+#graphify/code #graphify/EXTRACTED #community/import-seputarborneotestmjs

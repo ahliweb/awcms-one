@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](cms.md)
 
-<!-- i18n-source-hash: sha256:67d3dcf3663fd136e6591a7e2b50f3d1a4f93e97a7b76273f382ac7212f2d64b -->
+<!-- i18n-source-hash: sha256:591543497d7876a92add612f2f89640989a5fb1f9315747fdfa8c887a31a1949 -->
 
 # CMS: authoring, publikasi, izin, audit, media, taksonomi
 
@@ -67,7 +67,7 @@ Setiap rute commerce dijaga pada satu kunci izin `commerce.*`, dikelompokkan ke 
 | Marketing | `flash_sales`, `vouchers`, `sliders`, `testimonials`, `popups` | `read`, `create`, `update`, `delete` |
 | Pengaturan toko | `settings` | `read`, `update` |
 
-Orders, customers, dan reviews adalah area keempat yang lebih sempit: `commerce.orders.{read,update}`, `commerce.customers.{read,update}`, `commerce.reviews.{read,update,delete}` — **sengaja tanpa `create`/`delete`** untuk orders atau customers, karena keduanya hanya dibuat lewat jalur storefront anonim, yang tidak punya identitas admin untuk diperiksa izinnya. SATU-SATUNYA jalur pembuatan pesanan yang di-gate izin adalah penjualan kasir POS (issue #116): `commerce.pos.create` menjaga `POST /api/v1/commerce/pos/orders`, karena di sana anggota staf-lah aktornya; pembacaan riwayatnya memakai ulang `commerce.orders.read` alih-alih menyemai kunci baca kedua yang lebih sempit tanpa sesuatu yang berbeda untuk ditegakkan. Lihat [`docs/api.md`](api.id.md) untuk daftar 39-kunci lengkap dan [ADR-0009](adr/0009-guest-checkout-by-order-code-and-phone.id.md) untuk alasan jalur itu anonim sama sekali. Row-level security menguatkan batas yang sama di lapisan basis data — lihat [`docs/skema-basis-data.md`](skema-basis-data.id.md).
+Orders, customers, dan reviews adalah area keempat yang lebih sempit: `commerce.orders.{read,update}`, `commerce.customers.{read,update}`, `commerce.reviews.{read,update,delete}` — **sengaja tanpa `create`/`delete`** untuk orders atau customers, karena keduanya hanya dibuat lewat jalur storefront anonim, yang tidak punya identitas admin untuk diperiksa izinnya. SATU-SATUNYA jalur pembuatan pesanan yang di-gate izin adalah penjualan kasir POS (issue #116): `commerce.pos.create` menjaga `POST /api/v1/commerce/pos/orders`, karena di sana anggota staf-lah aktornya; pembacaan riwayatnya memakai ulang `commerce.orders.read` alih-alih menyemai kunci baca kedua yang lebih sempit tanpa sesuatu yang berbeda untuk ditegakkan. Lihat [`docs/api.md`](api.id.md) untuk tabel izin lengkap dan terkini (39 kunci dasar plus setiap kunci yang ditambahkan tiap anak increment 5 — afiliasi, WhatsApp, percakapan, kampanye, webhook endpoint, POS) dan [ADR-0009](adr/0009-guest-checkout-by-order-code-and-phone.id.md) untuk alasan jalur itu anonim sama sekali. Row-level security menguatkan batas yang sama di lapisan basis data — lihat [`docs/skema-basis-data.md`](skema-basis-data.id.md).
 
 ## E-mail OTP akun pelanggan (Issue #89, kontrak #86/ADR-0016 D2)
 

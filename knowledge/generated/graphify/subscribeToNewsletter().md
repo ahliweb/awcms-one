@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/scripts/buletin.ts"
 type: "code"
-community: "Newsletter Forms & Visitor Beacon"
+community: "buletin.ts"
 location: "L134"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Newsletter_Forms__Visitor_Beacon
+  - community/buletints
 ---
 
 # subscribeToNewsletter()
@@ -17,4 +17,4 @@ tags:
 - [[request()]] - `calls` [EXTRACTED]
 - [[wireBuletinForm()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Newsletter_Forms__Visitor_Beacon
+#graphify/code #graphify/EXTRACTED #community/buletints

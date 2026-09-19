@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/warna.ts"
 type: "code"
-community: "Site Config, Sitemaps & Theme"
+community: "site.ts"
 location: "L39"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Site_Config_Sitemaps__Theme
+  - community/sitets
 ---
 
 # contrastRatio()
@@ -17,4 +17,4 @@ tags:
 - [[warna.test.ts]] - `imports` [EXTRACTED]
 - [[warna.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Site_Config_Sitemaps__Theme
+#graphify/code #graphify/EXTRACTED #community/sitets

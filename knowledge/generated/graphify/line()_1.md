@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/wa-fallback.test.ts"
 type: "code"
-community: "Cart Storage & Cart Contract"
+community: "keranjang-kontrak.ts"
 location: "L5"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Cart_Storage__Cart_Contract
+  - community/keranjang-kontrakts
 ---
 
 # line()
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[wa-fallback.test.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Cart_Storage__Cart_Contract
+#graphify/code #graphify/EXTRACTED #community/keranjang-kontrakts

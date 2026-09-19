@@ -1,12 +1,12 @@
 ---
 source_file: "packages/gerbang/audit-dokumen.mjs"
 type: "code"
-community: "Documentation Link Audit"
+community: "audit-dokumen.mjs"
 location: "L942"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Documentation_Link_Audit
+  - community/audit-dokumenmjs
 ---
 
 # documents
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[audit-dokumen.mjs]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Documentation_Link_Audit
+#graphify/code #graphify/EXTRACTED #community/audit-dokumenmjs

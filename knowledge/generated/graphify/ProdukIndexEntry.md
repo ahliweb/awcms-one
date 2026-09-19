@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/catalog.ts"
 type: "code"
-community: "Client-Side Search & Listing Renderer"
+community: "cari-listing.ts"
 location: "L531"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Client-Side_Search__Listing_Renderer
+  - community/cari-listingts
 ---
 
 # ProdukIndexEntry
@@ -16,4 +16,4 @@ tags:
 - [[katalog-catalog.test.ts]] - `imports` [EXTRACTED]
 - [[produk-index-klien.ts]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Client-Side_Search__Listing_Renderer
+#graphify/code #graphify/EXTRACTED #community/cari-listingts

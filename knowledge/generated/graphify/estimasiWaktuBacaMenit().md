@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/berita.ts"
 type: "code"
-community: "[slug]/feed.xml.ts"
+community: "berita.ts"
 location: "L740"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/slug/feedxmlts
+  - community/beritats
 ---
 
 # estimasiWaktuBacaMenit()
@@ -16,4 +16,4 @@ tags:
 - [[berita-rubrik.test.ts]] - `imports` [EXTRACTED]
 - [[berita.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/slug/feedxmlts
+#graphify/code #graphify/EXTRACTED #community/beritats

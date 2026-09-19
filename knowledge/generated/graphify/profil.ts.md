@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/awcms/profil.ts"
 type: "code"
-community: "Site Profile & Base Layout"
+community: "profil.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Site_Profile__Base_Layout
+  - community/profilts
 ---
 
 # profil.ts
@@ -61,4 +61,4 @@ tags:
 - [[videoslug.astro]] - `imports_from` [EXTRACTED]
 - [[warnDegraded()]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Site_Profile__Base_Layout
+#graphify/code #graphify/EXTRACTED #community/profilts

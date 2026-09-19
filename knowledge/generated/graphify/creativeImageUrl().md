@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/components/berita/IklanSlot.astro"
 type: "code"
-community: "Blog Client & Ad Slots"
+community: "blog.ts"
 location: "L54"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Blog_Client__Ad_Slots
+  - community/blogts
 ---
 
 # creativeImageUrl()
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[IklanSlot.astro]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Blog_Client__Ad_Slots
+#graphify/code #graphify/EXTRACTED #community/blogts

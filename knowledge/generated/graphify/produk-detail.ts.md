@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/scripts/produk-detail.ts"
 type: "code"
-community: "Product Detail Variants Script"
+community: "produk-detail.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Product_Detail_Variants_Script
+  - community/produk-detailts
 ---
 
 # produk-detail.ts
@@ -31,4 +31,4 @@ tags:
 - [[root_4]] - `contains` [EXTRACTED]
 - [[selectedOptionNames()]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Product_Detail_Variants_Script
+#graphify/code #graphify/EXTRACTED #community/produk-detailts

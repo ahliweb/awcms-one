@@ -1,12 +1,12 @@
 ---
 source_file: "tests/versi-changeset.test.mjs"
 type: "code"
-community: "Release & Changeset Tooling"
+community: "rilis.mjs"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Release__Changeset_Tooling
+  - community/rilismjs
 ---
 
 # versi-changeset.test.mjs
@@ -29,4 +29,4 @@ tags:
 - [[semver.mjs]] - `imports_from` [EXTRACTED]
 - [[validateChangeset()]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Release__Changeset_Tooling
+#graphify/code #graphify/EXTRACTED #community/rilismjs

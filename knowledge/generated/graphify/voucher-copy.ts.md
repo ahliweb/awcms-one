@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/scripts/voucher-copy.ts"
 type: "code"
-community: "Homepage & Derived CSP Artifact"
+community: "pages/index.astro"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Homepage__Derived_CSP_Artifact
+  - community/pages/indexastro
 ---
 
 # voucher-copy.ts
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[pagesindex.astro]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Homepage__Derived_CSP_Artifact
+#graphify/code #graphify/EXTRACTED #community/pages/indexastro

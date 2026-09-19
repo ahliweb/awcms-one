@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/akun-kontrak.test.ts"
 type: "code"
-community: "Customer Session Store"
+community: "bacaSesi"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Customer_Session_Store
+  - community/bacaSesi
 ---
 
 # akun-kontrak.test.ts
@@ -23,4 +23,4 @@ tags:
 - [[validateAkun()]] - `imports` [EXTRACTED]
 - [[validateSesi()]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Customer_Session_Store
+#graphify/code #graphify/EXTRACTED #community/bacaSesi

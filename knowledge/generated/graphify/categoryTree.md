@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/pages/produk.astro"
 type: "code"
-community: "Catalog Data & Product Index"
+community: "catalog.ts"
 location: "L31"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Catalog_Data__Product_Index
+  - community/catalogts
 ---
 
 # categoryTree
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[produk.astro]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Catalog_Data__Product_Index
+#graphify/code #graphify/EXTRACTED #community/catalogts

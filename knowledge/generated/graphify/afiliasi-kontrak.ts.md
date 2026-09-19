@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/afiliasi-kontrak.ts"
 type: "code"
-community: "Affiliate Referral Capture"
+community: "afiliasi-kontrak.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Affiliate_Referral_Capture
+  - community/afiliasi-kontrakts
 ---
 
 # afiliasi-kontrak.ts
@@ -27,4 +27,4 @@ tags:
 - [[validasiKodeAfiliasi()]] - `contains` [EXTRACTED]
 - [[validateAfiliasi()]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Affiliate_Referral_Capture
+#graphify/code #graphify/EXTRACTED #community/afiliasi-kontrakts

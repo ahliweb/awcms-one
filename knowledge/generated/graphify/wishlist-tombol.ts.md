@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/scripts/wishlist-tombol.ts"
 type: "code"
-community: "Wishlist Storage & Account Sync"
+community: "wishlist-akun-sync.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Wishlist_Storage__Account_Sync
+  - community/wishlist-akun-syncts
 ---
 
 # wishlist-tombol.ts
@@ -28,4 +28,4 @@ tags:
 - [[wishlist-klien.ts]] - `imports_from` [EXTRACTED]
 - [[wishlist-kontrak.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Wishlist_Storage__Account_Sync
+#graphify/code #graphify/EXTRACTED #community/wishlist-akun-syncts

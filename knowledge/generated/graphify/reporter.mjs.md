@@ -1,12 +1,12 @@
 ---
 source_file: "packages/gerbang/lib/reporter.mjs"
 type: "code"
-community: "Documentation Link Audit"
+community: "audit-dokumen.mjs"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Documentation_Link_Audit
+  - community/audit-dokumenmjs
 ---
 
 # reporter.mjs
@@ -19,4 +19,4 @@ tags:
 - [[formatReport()]] - `contains` [EXTRACTED]
 - [[standar-skrip.test.mjs]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Documentation_Link_Audit
+#graphify/code #graphify/EXTRACTED #community/audit-dokumenmjs

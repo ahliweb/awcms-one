@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/analitik-build-smoke.test.ts"
 type: "code"
-community: "Analytics Build Smoke"
+community: "analitik-build-smoke.test.ts"
 location: "L21"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Analytics_Build_Smoke
+  - community/analitik-build-smoketestts
 ---
 
 # canSpawnBun()
@@ -15,4 +15,4 @@ tags:
 - [[analitik-build-smoke.test.ts]] - `contains` [EXTRACTED]
 - [[bun_1]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Analytics_Build_Smoke
+#graphify/code #graphify/EXTRACTED #community/analitik-build-smoketestts

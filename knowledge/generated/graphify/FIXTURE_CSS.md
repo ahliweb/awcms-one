@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/theme.test.ts"
 type: "code"
-community: "Site Config, Sitemaps & Theme"
+community: "site.ts"
 location: "L5"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Site_Config_Sitemaps__Theme
+  - community/sitets
 ---
 
 # FIXTURE_CSS
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[theme.test.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Site_Config_Sitemaps__Theme
+#graphify/code #graphify/EXTRACTED #community/sitets

@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/checkout-guard-no-prerender.test.ts"
 type: "code"
-community: "No-Prerender Guard Test"
+community: "checkout-guard-no-prerender.test.ts"
 location: "L20"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/No-Prerender_Guard_Test
+  - community/checkout-guard-no-prerendertestts
 ---
 
 # listSourceFiles()
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[checkout-guard-no-prerender.test.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/No-Prerender_Guard_Test
+#graphify/code #graphify/EXTRACTED #community/checkout-guard-no-prerendertestts

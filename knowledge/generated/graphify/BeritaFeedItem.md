@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/berita.ts"
 type: "code"
-community: "Portable Text & Static Pages"
+community: "portable-text.ts"
 location: "L765"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Portable_Text__Static_Pages
+  - community/portable-textts
 ---
 
 # BeritaFeedItem
@@ -17,4 +17,4 @@ tags:
 - [[berita.ts]] - `contains` [EXTRACTED]
 - [[beritafeed.xml.ts]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Portable_Text__Static_Pages
+#graphify/code #graphify/EXTRACTED #community/portable-textts

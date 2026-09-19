@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/afiliasi-kontrak.test.ts"
 type: "code"
-community: "Affiliate Referral Capture"
+community: "afiliasi-kontrak.ts"
 location: "L28"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Affiliate_Referral_Capture
+  - community/afiliasi-kontrakts
 ---
 
 # installWindowStub()
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[afiliasi-kontrak.test.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Affiliate_Referral_Capture
+#graphify/code #graphify/EXTRACTED #community/afiliasi-kontrakts

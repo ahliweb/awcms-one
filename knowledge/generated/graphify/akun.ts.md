@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/scripts/akun.ts"
 type: "code"
-community: "Account Dashboard Script"
+community: "akun.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Account_Dashboard_Script
+  - community/akunts
 ---
 
 # akun.ts
@@ -38,4 +38,4 @@ tags:
 - [[ubahProfil()]] - `imports` [EXTRACTED]
 - [[wa-fallback.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Account_Dashboard_Script
+#graphify/code #graphify/EXTRACTED #community/akunts

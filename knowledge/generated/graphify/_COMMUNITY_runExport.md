@@ -34,11 +34,11 @@ SORT file.name ASC
 ```
 
 ## Connections to other communities
-- 14 edges to [[_COMMUNITY_Legacy Taxonomy Mapping (Importer)]]
-- 9 edges to [[_COMMUNITY_Importer Record Builders & Legacy URLs]]
+- 14 edges to [[_COMMUNITY_import-seputarborneo.ts]]
+- 9 edges to [[_COMMUNITY_import-seputarborneo.test.mjs]]
 - 7 edges to [[_COMMUNITY_redirect-push.ts]]
-- 2 edges to [[_COMMUNITY_Build Smoke Harness (Bun Spawn)]]
-- 2 edges to [[_COMMUNITY_MySQL Dump Reader]]
+- 2 edges to [[_COMMUNITY_bun]]
+- 2 edges to [[_COMMUNITY_mysql-dump-reader.ts]]
 
 ## Top bridge nodes
 - [[runExport()_1]] - degree 11, connects to 4 communities

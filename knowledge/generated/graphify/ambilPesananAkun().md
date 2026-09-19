@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/akun-klien.ts"
 type: "code"
-community: "Account API Client"
+community: "akun-klien.ts"
 location: "L224"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Account_API_Client
+  - community/akun-klients
 ---
 
 # ambilPesananAkun()
@@ -19,4 +19,4 @@ tags:
 - [[kirimPermintaan()]] - `calls` [EXTRACTED]
 - [[loadMore()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Account_API_Client
+#graphify/code #graphify/EXTRACTED #community/akun-klients

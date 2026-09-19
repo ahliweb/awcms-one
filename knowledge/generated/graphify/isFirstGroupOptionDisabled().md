@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/pages/product/[slug].astro"
 type: "code"
-community: "Product & Category Pages, Product JSON-LD"
+community: "product/[slug].astro"
 location: "L143"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Product__Category_Pages_Product_JSON-LD
+  - community/product/slugastro
 ---
 
 # isFirstGroupOptionDisabled()
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[productslug.astro]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Product__Category_Pages_Product_JSON-LD
+#graphify/code #graphify/EXTRACTED #community/product/slugastro

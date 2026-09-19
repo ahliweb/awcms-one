@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.md)
 
-<!-- i18n-source-hash: sha256:33a62e54cf00be4ae899c9cdf8fae18df7b1a22f2a14a3fc885d21e8dfddfd84 -->
+<!-- i18n-source-hash: sha256:77f8a6ad37b7471adeef4399cee2e5e5b7255918f8cd2298b2bb0333d52f9c8c -->
 
 # ADR-0017 — Provider eksternal adalah port milik `commerce`, dengan kredensial per-deployment dari env dan webhook beralamat token
 
@@ -164,3 +164,22 @@ Lihat tabel di bawah D1–D4 di atas untuk perbandingan dimensi-demi-dimensi yan
 - Hanya DUA operasi baru yang mendeklarasikan `security: []` dan bergabung ke `ALLOWED_PUBLIC_OPERATIONS`: intake webhook payment-gateway (callback provider tidak punya sesi untuk dipresentasikan, menurut definisi) dan endpoint pembuatan-sesi payment-gateway (guest teridentifikasi-telepon, cocok dengan model kepercayaan permukaan storefront anonim lainnya) — setiap endpoint baru lain mensyaratkan `customerBearer` atau `bearerAuth` staf owner plus permission `commerce.*`.
 - `payment_method` sudah membawa nilai enum `gateway` (ditambahkan lebih dulu, sesuai catatan "aditif" ADR-0010 sendiri) dan `shipping` sudah membawa metode `courier` — D3/D4 tidak butuh migrasi enum, hanya adapter yang bekerja di belakang masing-masing.
 - Belum ada handler untuk endpoint D2–D10 mana pun; ADR ini dan kontrak OpenAPI-nya adalah target yang sudah direview yang menjadi dasar C1–C9 (issue #107–#118) dibangun, bukan deskripsi kode yang sedang berjalan.
+
+## Status — 19 September 2026: semua keputusan terimplementasi, `ROUTE_PARITY_EXEMPTIONS` kosong
+
+Setiap issue anak mendarat dan setiap entri `ROUTE_PARITY_EXEMPTIONS` yang dibutuhkan kontrak ini sudah dihapus — set itu kosong di `main`, sesuai yang disyaratkan ADR ini di atas.
+
+| Keputusan | Status | Dikirim oleh |
+| --- | --- | --- |
+| D1 — port penyedia di dalam `commerce`, kredensial env | Terimplementasi — `ShippingRateProvider`, `PaymentGatewayProvider`, `WhatsappProvider`, masing-masing dengan adapter `log` dev/CI, `withTimeout` + `getProviderCircuitBreaker`, dipanggil di luar transaksi DB apa pun | #107, #108, #110 |
+| D2 — webhook publik beralamat token, perlindungan replay | Terimplementasi — `POST /api/v1/commerce/webhooks/{provider}/{endpointToken}`, `awcms_resolve_commerce_webhook_endpoint` (`SECURITY DEFINER`), `UNIQUE (tenant_id, provider, event_key)` pada `awcms_commerce_payment_events`, backstop `commerce:payments:reconcile` | #110, #113 |
+| D3 — payment gateway Midtrans Snap | Terimplementasi — checkout berbasis redirect, polling `/pesanan` tiap 5 detik, `COMMERCE_PAYMENT_GATEWAY=midtrans\|none`. Xendit tetap follow-up bernama, belum dibangun | #110, #112, #113 |
+| D4 — ongkos kurir RajaOngkir, di-cache | Terimplementasi — `awcms_commerce_shipping_rates`/`_courier_destinations` (`sql/924`), TTL 6 jam, weight-bucketed, tidak pernah dipanggil dari dalam transaksi pesanan. Pelacakan kurir tetap follow-up bernama, belum dibangun | #107, #109 |
+| D5 — outbox WhatsApp + kanal OTP | Terimplementasi — adapter Fonnte + Meta Cloud API, outbox `awcms_commerce_whatsapp_messages` (`sql/925`), `otp/request via: "whatsapp"` (hanya login) | #108, #115 |
+| D6 — POS | Terimplementasi — `orders.channel`, `payment_method = 'cash'` (`sql/931`), `commerce.pos.create`, `/admin/commerce-pos` | #116 |
+| D7 — laporan penjualan | Terimplementasi — tiga proyeksi `reporting` `cursor_table`/`dimensional` (`commerce.sales_daily`/`_by_product`/`_by_category`, `sql/933`), `/admin/commerce-reports` | #117 |
+| D8 — inbox | Terimplementasi — `awcms_commerce_conversations`/`_messages` (`sql/927`/`928`), rute storefront ber-bearer, `/admin/commerce-inbox` | #111 |
+| D9 — kampanye, consent | Terimplementasi — `awcms_commerce_campaigns`/`_campaign_recipients` (`sql/929`/`930`), `marketing_consent_at`, `commerce:campaigns:dispatch` | #114 |
+| D10 — sakelar fitur, harga bertingkat | Terimplementasi — pengaturan modul `commerce` `{pos, inbox, campaigns, gateway, courier}`, `price_level_{n}` saat quote lewat `customerLevel` | #118 |
+
+Di luar cakupan sejak ADR ini ditulis dan masih di luar cakupan: layar admin backup basis data (urusan operasi — lihat [`docs/deployment.md`](../deployment.id.md)), notifikasi push customer-facing, pelacakan paket kurir, dan adapter payment-gateway Xendit (keduanya dicatat di atas sebagai follow-up di belakang port yang sudah dibangun increment ini).

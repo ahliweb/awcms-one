@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/akun-klien.ts"
 type: "code"
-community: "Registration Page Script"
+community: "daftar.ts"
 location: "L36"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Registration_Page_Script
+  - community/daftarts
 ---
 
 # mintaKode()
@@ -20,4 +20,4 @@ tags:
 - [[sendCode()]] - `calls` [EXTRACTED]
 - [[sendCode()_1]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Registration_Page_Script
+#graphify/code #graphify/EXTRACTED #community/daftarts

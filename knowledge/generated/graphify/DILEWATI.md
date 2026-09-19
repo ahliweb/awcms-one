@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/scripts/dengar.ts"
 type: "code"
-community: "Read-Aloud Player"
+community: "dengar.ts"
 location: "L49"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Read-Aloud_Player
+  - community/dengarts
 ---
 
 # DILEWATI
@@ -15,4 +15,4 @@ tags:
 - [[dengar.ts]] - `contains` [EXTRACTED]
 - [[kumpulkanUnit()]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Read-Aloud_Player
+#graphify/code #graphify/EXTRACTED #community/dengarts

@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/pages/feed.xml.ts"
 type: "code"
-community: "Root RSS Feed"
+community: "pages/feed.xml.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Root_RSS_Feed
+  - community/pages/feedxmlts
 ---
 
 # pages/feed.xml.ts
@@ -24,4 +24,4 @@ tags:
 - [[site.ts]] - `imports_from` [EXTRACTED]
 - [[siteConfig]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Root_RSS_Feed
+#graphify/code #graphify/EXTRACTED #community/pages/feedxmlts

@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/berita.ts"
 type: "code"
-community: "Article Pages & News JSON-LD"
+community: "video/[slug].astro"
 location: "L433"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Article_Pages__News_JSON-LD
+  - community/video/slugastro
 ---
 
 # getPosts()
@@ -25,4 +25,4 @@ tags:
 - [[getStaticPaths()_7]] - `calls` [EXTRACTED]
 - [[sitemap-sources.ts]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Article_Pages__News_JSON-LD
+#graphify/code #graphify/EXTRACTED #community/video/slugastro

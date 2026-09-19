@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](seo.md)
 
-<!-- i18n-source-hash: sha256:45a71c1273cec4ed2d53f30f4022048cd924f5c409ac8033d3f80697d31258c4 -->
+<!-- i18n-source-hash: sha256:8c8f63c6db9ae17662dd0abe05fc56d7a43587d89fd62c4404193c033d61cd46 -->
 
 # SEO
 
@@ -43,7 +43,7 @@ Dua hal yang dipertimbangkan issue ini dan tidak dilakukan: `noindex` pada halam
 
 ## Halaman `noindex`
 
-`checkout`, `pesanan`, `cari`, `wishlist`, `keranjang`, `masuk`, `daftar`, dan `akun` (issue #88) semuanya membawa `<meta name="robots" content="noindex, follow">` lewat slot `head` milik `BaseLayout` — tidak satu pun dari halaman ini seharusnya menjadi tempat hasil pencarian mendaratkan pembaca secara langsung. `robots.txt` juga men-`Disallow` fetch untuk path yang sama (`Disallow: /akun` yang bertelanjang juga mencakup setiap rute anak akun, termasuk `/akun/afiliasi` yang ditambahkan issue #93, S3 dari #32) plus `/api/`.
+`checkout`, `pesanan`, `cari`, `wishlist`, `keranjang`, `masuk`, `daftar`, dan `akun` (issue #88) semuanya membawa `<meta name="robots" content="noindex, follow">` lewat slot `head` milik `BaseLayout` — tidak satu pun dari halaman ini seharusnya menjadi tempat hasil pencarian mendaratkan pembaca secara langsung. `robots.txt` juga men-`Disallow` fetch untuk path yang sama (`Disallow: /akun` yang bertelanjang juga mencakup setiap rute anak akun, termasuk `/akun/afiliasi` yang ditambahkan issue #93, S3 dari #32, dan `/akun/pesan` — inbox pelanggan — yang ditambahkan issue #115, S3 dari #33) plus `/api/`.
 
 ## Penangkapan referral (`?ref=`) tidak pernah menjadi bagian dari URL kanonik (issue #93)
 

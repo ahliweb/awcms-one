@@ -1,12 +1,12 @@
 ---
 source_file: "packages/gerbang/lib/docs-i18n-checks.mjs"
 type: "code"
-community: "Documentation & Graph Audit Gates"
+community: "audit-graf.mjs"
 location: "L76"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Documentation__Graph_Audit_Gates
+  - community/audit-grafmjs
 ---
 
 # isInScope()
@@ -18,4 +18,4 @@ tags:
 - [[isMirrorInScope()]] - `calls` [EXTRACTED]
 - [[listSources()]] - `indirect_call` [INFERRED]
 
-#graphify/code #graphify/EXTRACTED #community/Documentation__Graph_Audit_Gates
+#graphify/code #graphify/EXTRACTED #community/audit-grafmjs

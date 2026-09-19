@@ -1,12 +1,12 @@
 ---
 source_file: "tests/standar-skrip.test.mjs"
 type: "code"
-community: "Documentation Link Audit"
+community: "audit-dokumen.mjs"
 location: "L34"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Documentation_Link_Audit
+  - community/audit-dokumenmjs
 ---
 
 # SCRIPT_DIRS
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[standar-skrip.test.mjs]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Documentation_Link_Audit
+#graphify/code #graphify/EXTRACTED #community/audit-dokumenmjs

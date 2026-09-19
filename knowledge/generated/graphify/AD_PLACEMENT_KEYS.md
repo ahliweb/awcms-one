@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/awcms/blog.ts"
 type: "code"
-community: "Blog Client & Ad Slots"
+community: "blog.ts"
 location: "L301"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Blog_Client__Ad_Slots
+  - community/blogts
 ---
 
 # AD_PLACEMENT_KEYS
@@ -15,4 +15,4 @@ tags:
 - [[berita-routes.test.ts]] - `imports` [EXTRACTED]
 - [[blog.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Blog_Client__Ad_Slots
+#graphify/code #graphify/EXTRACTED #community/blogts

@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/scripts/analitik.ts"
 type: "code"
-community: "Newsletter Forms & Visitor Beacon"
+community: "buletin.ts"
 location: "L127"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Newsletter_Forms__Visitor_Beacon
+  - community/buletints
 ---
 
 # buildAnalyticsPayload()
@@ -16,4 +16,4 @@ tags:
 - [[reportPageView()]] - `calls` [EXTRACTED]
 - [[scriptsanalitik.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Newsletter_Forms__Visitor_Beacon
+#graphify/code #graphify/EXTRACTED #community/buletints

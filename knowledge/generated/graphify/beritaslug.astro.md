@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/pages/berita/[slug].astro"
 type: "code"
-community: "Article Pages & News JSON-LD"
+community: "video/[slug].astro"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Article_Pages__News_JSON-LD
+  - community/video/slugastro
 ---
 
 # berita/[slug].astro
@@ -38,4 +38,4 @@ tags:
 - [[social]] - `contains` [EXTRACTED]
 - [[{ slug }_2]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Article_Pages__News_JSON-LD
+#graphify/code #graphify/EXTRACTED #community/video/slugastro

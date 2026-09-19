@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/pages/arsip/[yyyy]/[mm].astro"
 type: "code"
-community: "berita.ts"
+community: "Sidebar.astro"
 location: "L18"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/beritats
+  - community/Sidebarastro
 ---
 
 # canonicalPath
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[mm.astro]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/beritats
+#graphify/code #graphify/EXTRACTED #community/Sidebarastro

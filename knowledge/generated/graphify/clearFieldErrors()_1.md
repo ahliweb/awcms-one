@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/scripts/daftar.ts"
 type: "code"
-community: "Registration Page Script"
+community: "daftar.ts"
 location: "L46"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Registration_Page_Script
+  - community/daftarts
 ---
 
 # clearFieldErrors()
@@ -16,4 +16,4 @@ tags:
 - [[sendCode()]] - `calls` [EXTRACTED]
 - [[showSubmitError()_5]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Registration_Page_Script
+#graphify/code #graphify/EXTRACTED #community/daftarts

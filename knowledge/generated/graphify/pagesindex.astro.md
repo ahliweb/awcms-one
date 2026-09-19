@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/pages/index.astro"
 type: "code"
-community: "Homepage & Derived CSP Artifact"
+community: "pages/index.astro"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Homepage__Derived_CSP_Artifact
+  - community/pages/indexastro
 ---
 
 # pages/index.astro
@@ -40,4 +40,4 @@ tags:
 - [[starText()]] - `contains` [EXTRACTED]
 - [[voucher-copy.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Homepage__Derived_CSP_Artifact
+#graphify/code #graphify/EXTRACTED #community/pages/indexastro

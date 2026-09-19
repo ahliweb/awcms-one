@@ -1,10 +1,10 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](kamus-data.md)
 
-<!-- i18n-source-hash: sha256:5e05329b0c41fbcc92a28757861368f21e4bd4a7b62e98a23e6a00481299ecec -->
+<!-- i18n-source-hash: sha256:e8c8ba5ee52bf90907d2eba2eeeb1cd0940066a4a177f1f36c0074a822246cb0 -->
 
 # Kamus data
 
-Setiap kolom di sembilan belas tabel `awcms_commerce_*`, maknanya, domain unit/enum-nya, dan — jika ada — kolom sumbernya di skema MySQL lawas `commerce_bj_mart`.
+Setiap kolom di tiga puluh delapan tabel `awcms_commerce_*`, maknanya, domain unit/enum-nya, dan — jika ada — kolom sumbernya di skema MySQL lawas `commerce_bj_mart`.
 
 ## Provenans, dinyatakan sekali agar setiap baris di bawah tidak perlu mengulanginya
 
@@ -169,8 +169,8 @@ Kasir BjekMart (penjualan konter `commerce_bj_mart`, yang di tabel `orders`/`tra
 | `commerce.pos.create` | `awcms_permissions` (`sql/932`); `COMMERCE_POS_PERMISSIONS.create` | SATU-SATUNYA jalur pembuatan pesanan yang di-gate izin di modul ini. Riwayat POS memakai ulang `commerce.orders.read` |
 | `commerce.pos.sale` | `awcms_audit_events.action` | Peristiwa audit yang ditulis setiap penjualan konter (kode pesanan, total, metode, dibayar, kembalian, flag walk-in, jumlah baris — tidak pernah nama atau telepon pelanggan) |
 
-## Kolom dan tabel yang ditunda — tidak di-porting di increment ini
+## Kolom dan tabel yang ditunda — tidak di-porting
 
-- **Tabel rate/tracking kurir RajaOngkir live** — [issue #33](https://github.com/ahliweb/awcms-one/issues/33); `shipping_method`/`shipping_service_name` pada order saat ini adalah label yang ditentukan merchant, tidak pernah respons kurir live.
-- **Catatan transaksi payment-gateway** — enum `payment_method` sudah menerima `gateway` (aditif), tapi belum ada integrasi provider; harus dibangun lewat outbox sesuai [ADR-0010](adr/0010-manual-payment-and-alternative-courier-first-gateways-via-outbox.id.md).
+- **Tabel RATE kurir RajaOngkir live sudah selesai** (issue #107, `sql/924` — `awcms_commerce_courier_destinations`/`_shipping_rates`, rate ter-cache yang divalidasi jalur pesanan, tidak pernah panggilan provider sinkron). Yang masih ditunda: pelacakan (TRACKING) kurir live (status paket yang sudah dikirim) — `shipping_method`/`shipping_service_name` pada order tetap label yang ditentukan merchant untuk metode `alternative`/`self_pickup`; rate pengiriman `courier` kini live, pelacakan pasca-kirimnya belum (tercatat sebagai follow-up di [ADR-0017](adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.id.md)).
+- **Catatan transaksi payment-gateway sudah selesai** — `awcms_commerce_payment_gateway_sessions`/`_payment_events` (`sql/926`, issue #110/#113), dibangun lewat outbox sesuai [ADR-0010](adr/0010-manual-payment-and-alternative-courier-first-gateways-via-outbox.id.md)/[ADR-0017](adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.id.md). Ditunda: adapter Xendit di belakang port `PaymentGatewayProvider` yang sama (hari ini hanya `midtrans`/`log`).
 - **Upload media sungguhan untuk gambar produk, media slider, gambar bukti konfirmasi pembayaran, dan kreatif ad placement** — diselesaikan lewat mekanisme referensi/URL yang sudah ada milik `media_library`, tapi seed increment ini memakai SVG/PNG placeholder dan endpoint upload-bukti anonim adalah stub (`503 MEDIA_UNAVAILABLE`); ad placement butuh media object ter-verifikasi-R2 SUNGGUHAN (`mediaObjectId` wajib, bukan opsional), jadi langkah seed issue #57 tidak membuat satu pun dari 12 placement secara lokal — lihat [`docs/cms.md`](cms.id.md) dan [`docs/deployment.md`](deployment.id.md).

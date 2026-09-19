@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/harga.ts"
 type: "code"
-community: "Price Formatting & Product Cards"
+community: "harga.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Price_Formatting__Product_Cards
+  - community/hargats
 ---
 
 # harga.ts
@@ -34,4 +34,4 @@ tags:
 - [[wa-fallback.ts]] - `imports_from` [EXTRACTED]
 - [[wishlist.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Price_Formatting__Product_Cards
+#graphify/code #graphify/EXTRACTED #community/hargats

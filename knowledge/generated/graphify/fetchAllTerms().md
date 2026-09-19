@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/awcms/blog.ts"
 type: "code"
-community: "Blog Client & Ad Slots"
+community: "blog.ts"
 location: "L215"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Blog_Client__Ad_Slots
+  - community/blogts
 ---
 
 # fetchAllTerms()
@@ -16,4 +16,4 @@ tags:
 - [[getAllTerms()]] - `calls` [EXTRACTED]
 - [[isExpectedRefusal()_4]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Blog_Client__Ad_Slots
+#graphify/code #graphify/EXTRACTED #community/blogts

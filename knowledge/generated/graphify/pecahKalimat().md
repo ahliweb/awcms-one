@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/scripts/dengar.ts"
 type: "code"
-community: "Read-Aloud Player"
+community: "dengar.ts"
 location: "L73"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Read-Aloud_Player
+  - community/dengarts
 ---
 
 # pecahKalimat()
@@ -15,4 +15,4 @@ tags:
 - [[dengar.test.ts]] - `imports` [EXTRACTED]
 - [[dengar.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Read-Aloud_Player
+#graphify/code #graphify/EXTRACTED #community/dengarts

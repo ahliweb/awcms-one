@@ -1,12 +1,12 @@
 ---
 source_file: "package.json"
 type: "concept"
-community: "Root Workspace Manifest"
+community: "scripts"
 location: "L17"
 tags:
   - graphify/concept
   - graphify/EXTRACTED
-  - community/Root_Workspace_Manifest
+  - community/scripts
 ---
 
 # packages/*
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[workspaces]] - `extends` [EXTRACTED]
 
-#graphify/concept #graphify/EXTRACTED #community/Root_Workspace_Manifest
+#graphify/concept #graphify/EXTRACTED #community/scripts

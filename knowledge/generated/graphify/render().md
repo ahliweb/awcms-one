@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/scripts/keranjang-hitung.ts"
 type: "code"
-community: "Cart Storage & Cart Contract"
+community: "keranjang-kontrak.ts"
 location: "L25"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Cart_Storage__Cart_Contract
+  - community/keranjang-kontrakts
 ---
 
 # render()
@@ -16,4 +16,4 @@ tags:
 - [[keranjang-hitung.ts]] - `indirect_call` [INFERRED]
 - [[parseCart()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Cart_Storage__Cart_Contract
+#graphify/code #graphify/EXTRACTED #community/keranjang-kontrakts

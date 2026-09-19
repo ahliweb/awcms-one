@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/scripts/checkout.ts"
 type: "code"
-community: "Checkout Flow & Phone Preview"
+community: "checkout.ts"
 location: "L61"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Checkout_Flow__Phone_Preview
+  - community/checkoutts
 ---
 
 # runCheckout()
@@ -24,4 +24,4 @@ tags:
 - [[toLineRequests()_1]] - `calls` [EXTRACTED]
 - [[wireCascadingRegionSelects()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Checkout_Flow__Phone_Preview
+#graphify/code #graphify/EXTRACTED #community/checkoutts

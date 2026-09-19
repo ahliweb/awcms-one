@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/akun-klien.test.ts"
 type: "code"
-community: "Customer Session Store"
+community: "bacaSesi"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Customer_Session_Store
+  - community/bacaSesi
 ---
 
 # akun-klien.test.ts
@@ -30,4 +30,4 @@ tags:
 - [[ubahProfil()]] - `imports` [EXTRACTED]
 - [[verifikasiKode()]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Customer_Session_Store
+#graphify/code #graphify/EXTRACTED #community/bacaSesi

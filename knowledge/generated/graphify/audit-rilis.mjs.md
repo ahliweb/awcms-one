@@ -1,12 +1,12 @@
 ---
 source_file: "packages/gerbang/audit-rilis.mjs"
 type: "code"
-community: "Release & Changeset Tooling"
+community: "rilis.mjs"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Release__Changeset_Tooling
+  - community/rilismjs
 ---
 
 # audit-rilis.mjs
@@ -25,4 +25,4 @@ tags:
 - [[today()]] - `contains` [EXTRACTED]
 - [[todayIso]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Release__Changeset_Tooling
+#graphify/code #graphify/EXTRACTED #community/rilismjs

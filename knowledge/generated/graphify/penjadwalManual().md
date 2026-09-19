@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/bagikan.test.ts"
 type: "code"
-community: "Share Row & Social Icons"
+community: "bagikan.test.ts"
 location: "L239"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Share_Row__Social_Icons
+  - community/bagikantestts
 ---
 
 # penjadwalManual()
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[bagikan.test.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Share_Row__Social_Icons
+#graphify/code #graphify/EXTRACTED #community/bagikantestts

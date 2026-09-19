@@ -1,12 +1,12 @@
 ---
 source_file: "packages/config/package.json"
 type: "code"
-community: "Config Package Manifest"
+community: "config/package.json"
 location: "L3"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Config_Package_Manifest
+  - community/config/packagejson
 ---
 
 # type
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[configpackage.json]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Config_Package_Manifest
+#graphify/code #graphify/EXTRACTED #community/config/packagejson

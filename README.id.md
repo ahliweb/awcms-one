@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:367d98bcd84b65d6531781ccccac0f79c0dc90c4cb797af9d04e4a6b9b8cc48b -->
+<!-- i18n-source-hash: sha256:a257453f1002dcaaea8f7f798e7c3a968ce3a67b252451d282c626775810d9c7 -->
 
 [![License](https://img.shields.io/badge/License-MIT-blue)](LICENSE) [![runtime](https://img.shields.io/badge/runtime-Bun-blue?logo=bun&logoColor=white)](https://bun.sh)
 
@@ -22,11 +22,11 @@ Modul commerce yang dibutuhkan platform ini tidak bisa berdiri sendiri — ia be
 
 ## Pendekatan: fondasi dulu, lalu satu vertical slice tipis, lalu toko lengkap
 
-Scaffold dulu (increment 1: daftar katalog + detail produk, tanpa basis data hidup), lalu **increment 2** (epic [#21](https://github.com/ahliweb/awcms-one/issues/21)): paritas penuh BjekMart/news-portal — PostgreSQL tersedia untuk pengembangan lokal dan CI, modul `commerce` yang lengkap (kedalaman katalog, marketing, pesanan), dan situs publik yang lengkap (katalog, berita, keranjang, checkout, pelacakan pesanan, wishlist). Lalu **increment 3** (epic [#46](https://github.com/ahliweb/awcms-one/issues/46)): paritas fungsional dengan seputarborneo.com v2.4.0 — gambar sungguhan di setiap permukaan, chrome berita dan sidebar bersama, form buletin, baris bagikan, pemutar "Dengarkan berita ini", popup iklan, metadata sosial lengkap, pengalihan lawas berbasis aturan, analitik pengunjung first-party dengan sakelar GA4 opt-in, seed berbentuk seputarborneo dan exporter dump lawas, serta lambang lembaga. Lalu **increment 4** (epic [#32](https://github.com/ahliweb/awcms-one/issues/32)): identitas pelanggan sungguhan ([ADR-0016](docs/adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.id.md)) — login/registrasi OTP e-mail, sesi bearer opak, dashboard akun (alamat, riwayat pesanan, ulasan, wishlist tersinkron), dan program afiliasi dengan penangkapan `?ref=`, atribusi checkout, dan layar moderasi owner.
+Scaffold dulu (increment 1: daftar katalog + detail produk, tanpa basis data hidup), lalu **increment 2** (epic [#21](https://github.com/ahliweb/awcms-one/issues/21)): paritas penuh BjekMart/news-portal — PostgreSQL tersedia untuk pengembangan lokal dan CI, modul `commerce` yang lengkap (kedalaman katalog, marketing, pesanan), dan situs publik yang lengkap (katalog, berita, keranjang, checkout, pelacakan pesanan, wishlist). Lalu **increment 3** (epic [#46](https://github.com/ahliweb/awcms-one/issues/46)): paritas fungsional dengan seputarborneo.com v2.4.0 — gambar sungguhan di setiap permukaan, chrome berita dan sidebar bersama, form buletin, baris bagikan, pemutar "Dengarkan berita ini", popup iklan, metadata sosial lengkap, pengalihan lawas berbasis aturan, analitik pengunjung first-party dengan sakelar GA4 opt-in, seed berbentuk seputarborneo dan exporter dump lawas, serta lambang lembaga. Lalu **increment 4** (epic [#32](https://github.com/ahliweb/awcms-one/issues/32)): identitas pelanggan sungguhan ([ADR-0016](docs/adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.id.md)) — login/registrasi OTP e-mail, sesi bearer opak, dashboard akun (alamat, riwayat pesanan, ulasan, wishlist tersinkron), dan program afiliasi dengan penangkapan `?ref=`, atribusi checkout, dan layar moderasi owner. Lalu **increment 5** (epic [#33](https://github.com/ahliweb/awcms-one/issues/33)): fitur BjekMart khusus admin yang tidak punya padanan di situs publik, dan dua integrasi eksternal yang dilewatkan awcms lewat outbox ([ADR-0017](docs/adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.id.md)) — ongkir kurir RajaOngkir, outbox/OTP WhatsApp, payment gateway Midtrans Snap dengan intake webhook beralamat token dan job rekonsiliasi, POS (penjualan tunai, `orders.channel`), laporan penjualan (proyeksi per hari/produk/kategori), inbox pelanggan, kampanye marketing dengan consent, serta sakelar fitur per tenant plus harga bertingkat saat quote.
 
 ## Yang ada hari ini, dan yang tidak
 
-Setiap issue anak dari [issue #21](https://github.com/ahliweb/awcms-one/issues/21), [issue #46](https://github.com/ahliweb/awcms-one/issues/46), dan [issue #32](https://github.com/ahliweb/awcms-one/issues/32) sudah mendarat: akar workspace dan governance-nya, `packages/config`, `packages/gerbang`, `packages/kontrak`, `tools/`, `knowledge/`, `docs/`, situs publik `apps/storefront` yang lengkap — kini termasuk dashboard akun pelanggan dan permukaan afiliasi — dan `apps/cms` (membawa satu modul `commerce` — katalog, marketing, pesanan, akun/OTP/sesi pelanggan, dan afiliasi). Di mana pun dokumen ini atau `AGENTS.md` perlu mendeskripsikan permukaan yang masih belum ada, ia menyatakannya terus terang alih-alih mendeskripsikan jalur yang belum ada — lihat [`docs/arsitektur.md`](docs/arsitektur.id.md) dan [`docs/cms.md`](docs/cms.id.md) untuk daftar lengkap dan terkininya (OTP WhatsApp/SMS, ubah e-mail/telepon, verifikasi telepon, harga bertingkat saat quote — [ADR-0016](docs/adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.id.md) D6; integrasi RajaOngkir/payment gateway; POS/pelaporan; unggah media sungguhan untuk gambar produk/slider).
+Setiap issue anak dari [issue #21](https://github.com/ahliweb/awcms-one/issues/21), [issue #46](https://github.com/ahliweb/awcms-one/issues/46), [issue #32](https://github.com/ahliweb/awcms-one/issues/32), dan [issue #33](https://github.com/ahliweb/awcms-one/issues/33) sudah mendarat: akar workspace dan governance-nya, `packages/config`, `packages/gerbang`, `packages/kontrak`, `tools/`, `knowledge/`, `docs/`, situs publik `apps/storefront` yang lengkap — kini termasuk dashboard akun pelanggan, permukaan afiliasi, opsi kurir dan redirect payment gateway saat checkout, serta inbox pelanggan (`/akun/pesan`) — dan `apps/cms` (membawa satu modul `commerce` — katalog, marketing, pesanan, akun/OTP/sesi pelanggan, afiliasi, ongkir kurir RajaOngkir, outbox WhatsApp, payment gateway Midtrans + intake webhook, POS, laporan penjualan, inbox, kampanye, dan sakelar fitur). Di mana pun dokumen ini atau `AGENTS.md` perlu mendeskripsikan permukaan yang masih belum ada, ia menyatakannya terus terang alih-alih mendeskripsikan jalur yang belum ada — lihat [`docs/arsitektur.md`](docs/arsitektur.id.md) dan [`docs/cms.md`](docs/cms.id.md) untuk daftar lengkap dan terkininya (ubah e-mail/telepon dan verifikasi telepon pada akun yang sudah ada — [ADR-0016](docs/adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.id.md) D6; unggah media sungguhan untuk gambar produk/slider; deployment PostgreSQL produksi; adapter payment gateway Xendit dan pelacakan kurir, keduanya tercatat sebagai follow-up di [ADR-0017](docs/adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.id.md)).
 
 ```
 apps/
@@ -35,14 +35,21 @@ apps/
 │                             commerce: katalog (gambar, varian, tingkatan harga), marketing
 │                             (flash sale, voucher, slider, testimoni, popup, pengaturan
 │                             toko), pesanan (checkout tamu, konfirmasi pembayaran, ulasan),
-│                             akun/OTP/sesi bearer pelanggan, dan program afiliasi — plus API
-│                             anonim dan ber-bearer /api/v1/commerce/storefront/*
+│                             akun/OTP/sesi bearer pelanggan, program afiliasi, ongkir kurir
+│                             RajaOngkir, outbox WhatsApp + kanal OTP, payment gateway
+│                             Midtrans Snap dengan intake webhook beralamat token dan job
+│                             rekonsiliasi, POS, proyeksi laporan penjualan, inbox
+│                             pelanggan, kampanye marketing, dan sakelar fitur per tenant —
+│                             plus API anonim dan ber-bearer /api/v1/commerce/storefront/*
+│                             serta route intake webhook publik
 └── storefront/              storefront Astro publik: paritas katalog + berita lengkap,
-                              keranjang, checkout, pelacakan pesanan, wishlist, dan dashboard
-                              akun pelanggan (/masuk, /daftar, /akun*) dengan wishlist
-                              tersinkron dan permukaan afiliasi — output: "static" di seluruh
-                              bagian, keranjang/checkout dan permukaan akun memanggil API
-                              storefront apps/cms langsung dari browser (ADR-0007, ADR-0016)
+                              keranjang, checkout (opsi kurir, redirect pembayaran gateway),
+                              pelacakan pesanan, wishlist, dan dashboard akun pelanggan
+                              (/masuk, /daftar, /akun*) dengan wishlist tersinkron,
+                              permukaan afiliasi, dan inbox (/akun/pesan) — output: "static"
+                              di seluruh bagian, keranjang/checkout dan permukaan akun
+                              memanggil API storefront apps/cms langsung dari browser
+                              (ADR-0007, ADR-0016)
 packages/
 ├── config/                  preset tsconfig bersama
 ├── gerbang/                 gerbang audit workspace ini, sebagai paket
@@ -54,7 +61,7 @@ tests/                       tes gerbang tingkat akar (docs, changeset, toolchai
                               arah impor)
 docs/                        referensi arsitektur, skema, API, CMS, routing, SEO, aksesibilitas,
                               responsif, UI/UX, pengujian, deployment, dan alur kerja,
-                              plus docs/adr/ (enam belas ADR)
+                              plus docs/adr/ (tujuh belas ADR)
 knowledge/                   workflow graf pengetahuan Graphify + Obsidian yang terfederasi
 .claude/skills/               awcms-one-storefront, awcms-one-commerce — panduan cara
                               menambah halaman storefront atau tabel/endpoint commerce

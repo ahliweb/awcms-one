@@ -1,12 +1,12 @@
 ---
 source_file: "tests/subtree-guard.test.mjs"
 type: "code"
-community: "Documentation & Graph Audit Gates"
+community: "audit-graf.mjs"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Documentation__Graph_Audit_Gates
+  - community/audit-grafmjs
 ---
 
 # subtree-guard.test.mjs
@@ -16,4 +16,4 @@ tags:
 - [[isUnderSubtree()]] - `imports` [EXTRACTED]
 - [[subtree-guard.mjs]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Documentation__Graph_Audit_Gates
+#graphify/code #graphify/EXTRACTED #community/audit-grafmjs

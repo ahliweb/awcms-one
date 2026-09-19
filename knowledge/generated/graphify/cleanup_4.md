@@ -1,12 +1,12 @@
 ---
 source_file: "tests/audit-rilis.test.mjs"
 type: "code"
-community: "Release Audit Test"
+community: "audit-rilis.test.mjs"
 location: "L30"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Release_Audit_Test
+  - community/audit-rilistestmjs
 ---
 
 # cleanup
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[audit-rilis.test.mjs]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Release_Audit_Test
+#graphify/code #graphify/EXTRACTED #community/audit-rilistestmjs

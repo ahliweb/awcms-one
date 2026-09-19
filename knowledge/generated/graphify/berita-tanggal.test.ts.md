@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/berita-tanggal.test.ts"
 type: "code"
-community: "berita.ts"
+community: "Sidebar.astro"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/beritats
+  - community/Sidebarastro
 ---
 
 # berita-tanggal.test.ts
@@ -21,4 +21,4 @@ tags:
 - [[tanggal.ts]] - `imports_from` [EXTRACTED]
 - [[toDatetimeAttr()]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/beritats
+#graphify/code #graphify/EXTRACTED #community/Sidebarastro

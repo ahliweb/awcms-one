@@ -1,12 +1,12 @@
 ---
 source_file: "package.json"
 type: "code"
-community: "Build Smoke Harness (Bun Spawn)"
+community: "bun"
 location: "L15"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Build_Smoke_Harness_Bun_Spawn
+  - community/bun
 ---
 
 # bun
@@ -40,4 +40,4 @@ tags:
 - [[runExport()_1]] - `references` [EXTRACTED]
 - [[runPushRedirects()]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Build_Smoke_Harness_Bun_Spawn
+#graphify/code #graphify/EXTRACTED #community/bun

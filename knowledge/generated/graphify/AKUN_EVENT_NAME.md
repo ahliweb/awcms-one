@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/akun-kontrak.ts"
 type: "code"
-community: "Customer Session Store"
+community: "bacaSesi"
 location: "L20"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Customer_Session_Store
+  - community/bacaSesi
 ---
 
 # AKUN_EVENT_NAME
@@ -23,4 +23,4 @@ tags:
 - [[akun.ts]] - `imports` [EXTRACTED]
 - [[wishlist-akun-sync.ts]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Customer_Session_Store
+#graphify/code #graphify/EXTRACTED #community/bacaSesi

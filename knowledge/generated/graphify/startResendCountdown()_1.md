@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/scripts/masuk.ts"
 type: "code"
-community: "Login (OTP) Page Script & Request Plumbing"
+community: "masuk.ts"
 location: "L130"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Login_OTP_Page_Script__Request_Plumbing
+  - community/masukts
 ---
 
 # startResendCountdown()
@@ -15,4 +15,4 @@ tags:
 - [[masuk.ts]] - `contains` [EXTRACTED]
 - [[showCodeStep()_1]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Login_OTP_Page_Script__Request_Plumbing
+#graphify/code #graphify/EXTRACTED #community/masukts

@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/akun-build-smoke.test.ts"
 type: "code"
-community: "Account Pages Build Smoke"
+community: "akun-build-smoke.test.ts"
 location: "L30"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Account_Pages_Build_Smoke
+  - community/akun-build-smoketestts
 ---
 
 # waitForStub()
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[akun-build-smoke.test.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Account_Pages_Build_Smoke
+#graphify/code #graphify/EXTRACTED #community/akun-build-smoketestts
