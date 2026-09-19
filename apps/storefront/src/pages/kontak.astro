@@ -18,6 +18,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { getSiteIdentity } from "../lib/awcms/profil";
 import { getStoreSettings, isGoogleMapsEmbedUrl } from "../lib/awcms/pemasaran";
+import { isGroupActive } from "../config/profil";
 import "../styles/katalog.css";
 
 const identity = await getSiteIdentity();
@@ -28,6 +29,13 @@ const whatsappHref = identity.whatsappNumber
   : null;
 
 const mapsEmbedUrl = isGoogleMapsEmbedUrl(storeSettings.mapsEmbedUrl) ? storeSettings.mapsEmbedUrl : null;
+
+// Issue #137: the intro line mentions orders and products only on a build
+// that sells anything (`toko` group active); a `berita`/`landing`
+// deployment's contact page asks the neutral question.
+const intro = isGroupActive("toko")
+  ? "Ada pertanyaan tentang pesanan atau produk? Hubungi kami melalui salah satu cara di bawah ini."
+  : "Ada pertanyaan atau ingin bekerja sama? Hubungi kami melalui salah satu cara di bawah ini.";
 ---
 
 <BaseLayout
@@ -38,7 +46,7 @@ const mapsEmbedUrl = isGoogleMapsEmbedUrl(storeSettings.mapsEmbedUrl) ? storeSet
   <div class="container">
     <div class="page-heading">
       <h1>Kontak {identity.name}</h1>
-      <p>Ada pertanyaan tentang pesanan atau produk? Hubungi kami melalui salah satu cara di bawah ini.</p>
+      <p>{intro}</p>
     </div>
 
     <div class="contact-grid">

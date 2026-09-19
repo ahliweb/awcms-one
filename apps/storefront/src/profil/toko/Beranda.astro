@@ -1,0 +1,274 @@
+---
+/**
+ * The `toko` profile's home page (issue #137 moved it here from
+ * `src/pages/index.astro`, which now delegates to whichever variant the
+ * active profile selects — see `integrations/profil.mjs`'s `@profil/beranda`
+ * alias). Its content and behaviour are unchanged.
+ *
+ * The home page (issue #27) — parity with mart.borneojek.com's front page:
+ * slider, popular categories, a flash-sale strip with a live countdown,
+ * featured/recommended products, a promo section, a public-voucher strip,
+ * testimonials, recent news, and a promo popup — everything baked at BUILD
+ * time (ADR-0002), the same static posture increment 1 established.
+ *
+ * Replaces increment-1's plain catalog grid entirely — that grid is now
+ * `/produk` (`src/profil/toko/pages/produk.astro`).
+ */
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getSiteIdentity } from "../../lib/awcms/profil";
+import { getProducts, getCategories, buildCategoryTree } from "../../lib/catalog";
+import {
+  getActiveSliders,
+  getActiveFlashSales,
+  getPublicVouchers,
+  getActiveTestimonials,
+  getActivePopup,
+  getStoreSettings
+} from "../../lib/awcms/pemasaran";
+import { getRecentPosts } from "../../lib/berita-terkini";
+import { formatPrice } from "../../lib/harga";
+import { ROUTES } from "../../config/routes";
+import ProductCard from "../../components/katalog/ProductCard.astro";
+import Countdown from "../../components/katalog/Countdown.astro";
+import "../../styles/katalog.css";
+
+const identity = await getSiteIdentity();
+
+const [products, categories, sliders, flashSales, vouchers, testimonials, popup, storeSettings, recentPosts] =
+  await Promise.all([
+    getProducts(),
+    getCategories(),
+    getActiveSliders(),
+    getActiveFlashSales(),
+    getPublicVouchers(),
+    getActiveTestimonials(),
+    getActivePopup(),
+    getStoreSettings(),
+    getRecentPosts(3)
+  ]);
+
+const categoryTree = buildCategoryTree(categories);
+const popularCategories = [...categoryTree].sort((a, b) => b.productCount - a.productCount).slice(0, 6);
+
+const activeFlashSales = flashSales.filter((sale) => sale.status === "active");
+
+const featuredProducts = products.filter((product) => product.isFeatured).slice(0, 8);
+const recommendedProducts = products.filter((product) => product.isRecommended).slice(0, 8);
+
+/** A plain-text star glyph rating — no icon font/SVG sprite needed for a small, decorative rating display. */
+function starText(rating: number): string {
+  const rounded = Math.max(0, Math.min(5, Math.round(rating)));
+  return "★".repeat(rounded) + "☆".repeat(5 - rounded);
+}
+---
+
+<BaseLayout title={identity.name} description={identity.description} canonicalPath="/">
+  <div class="container">
+    {sliders.length > 0 && (
+      <div class="slider" role="region" aria-label="Promo unggulan">
+        <div class="slider-track">
+          {sliders.map((slide) => (
+            <a class="slider-slide" href={slide.linkUrl ?? "#"}>
+              <img src={slide.image.url} alt={slide.image.alt} width={slide.image.width} height={slide.image.height} loading="lazy" />
+              <span class="slider-caption">
+                <strong>{slide.title}</strong>
+                {slide.subtitle && <span> — {slide.subtitle}</span>}
+              </span>
+            </a>
+          ))}
+        </div>
+      </div>
+    )}
+
+    {popularCategories.length > 0 && (
+      <section class="home-section" aria-labelledby="popular-categories-heading">
+        <div class="home-section-heading">
+          <h2 id="popular-categories-heading">Kategori Populer</h2>
+          <a href={ROUTES.products}>Semua produk &rarr;</a>
+        </div>
+        <ul class="popular-categories">
+          {popularCategories.map((category) => (
+            <li>
+              <a class="popular-category-card" href={ROUTES.category(category.slug)}>
+                <span>{category.name}</span>
+                <span class="category-count">{category.productCount} produk</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+
+    {activeFlashSales.length > 0 && (
+      <section class="home-section flash-sale-strip" aria-labelledby="flash-sale-heading">
+        <div class="flash-sale-strip-heading">
+          <h2 id="flash-sale-heading">Flash Sale</h2>
+          <a href={ROUTES.flashSale}>Lihat semua &rarr;</a>
+        </div>
+        {activeFlashSales.map((sale) => (
+          <div>
+            <p>
+              {sale.name} — <Countdown endsAt={sale.endsAt} />
+            </p>
+            <ul class="grid-cards">
+              {sale.products.map((entry) => (
+                <li data-flash-sale-item>
+                  <a href={`/product/${entry.product.slug}`} class="card">
+                    {entry.product.image ? (
+                      <img
+                        src={entry.product.image.url}
+                        alt={entry.product.image.alt}
+                        loading="lazy"
+                        width="280"
+                        height="280"
+                        class="card-image"
+                      />
+                    ) : (
+                      <span class="card-image-placeholder" aria-hidden="true" />
+                    )}
+                    <h3 class="card-title">{entry.product.name}</h3>
+                    <p class="card-price">
+                      {formatPrice(entry.salePrice)}{" "}
+                      <span class="price-original">{formatPrice(entry.originalPrice)}</span>
+                    </p>
+                    <progress class="flash-sale-quota" value={entry.sold} max={entry.quota}>
+                      {entry.sold}/{entry.quota}
+                    </progress>
+                    <span>{entry.sold}/{entry.quota} terjual</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </section>
+    )}
+
+    {featuredProducts.length > 0 && (
+      <section class="home-section" aria-labelledby="featured-heading">
+        <div class="home-section-heading">
+          <h2 id="featured-heading">Produk Unggulan</h2>
+        </div>
+        <ul class="grid-cards">
+          {featuredProducts.map((product) => (
+            <ProductCard product={product} />
+          ))}
+        </ul>
+      </section>
+    )}
+
+    {recommendedProducts.length > 0 && (
+      <section class="home-section" aria-labelledby="recommended-heading">
+        <div class="home-section-heading">
+          <h2 id="recommended-heading">Rekomendasi Untuk Anda</h2>
+        </div>
+        <ul class="grid-cards">
+          {recommendedProducts.map((product) => (
+            <ProductCard product={product} />
+          ))}
+        </ul>
+      </section>
+    )}
+
+    {storeSettings.promoSection?.active && storeSettings.promoSection.items.length > 0 && (
+      <section class="home-section" aria-labelledby="promo-section-heading">
+        <h2 id="promo-section-heading" class="visually-hidden">Keunggulan Belanja</h2>
+        <div class="promo-section-grid">
+          {storeSettings.promoSection.items.map((item) => (
+            <div class="promo-card">
+              {item.badge && <span class="card-eyebrow">{item.badge}</span>}
+              <h3>{item.title}</h3>
+              {item.subtitle && <p>{item.subtitle}</p>}
+              {item.buttonText && item.buttonLink && (
+                <a class="button-primary" href={item.buttonLink}>{item.buttonText}</a>
+              )}
+            </div>
+          ))}
+        </div>
+      </section>
+    )}
+
+    {vouchers.length > 0 && (
+      <section class="home-section" aria-labelledby="vouchers-heading">
+        <div class="home-section-heading">
+          <h2 id="vouchers-heading">Voucher Tersedia</h2>
+        </div>
+        <div class="voucher-strip">
+          {vouchers.map((voucher) => (
+            <div class="voucher-chip">
+              <div>
+                <p class="voucher-code">{voucher.code}</p>
+                <p>{voucher.name}</p>
+              </div>
+              <button type="button" class="voucher-copy" data-voucher-copy data-code={voucher.code}>
+                Salin
+              </button>
+            </div>
+          ))}
+        </div>
+      </section>
+    )}
+
+    {testimonials.length > 0 && (
+      <section class="home-section" aria-labelledby="testimonials-heading">
+        <div class="home-section-heading">
+          <h2 id="testimonials-heading">Kata Pelanggan Kami</h2>
+        </div>
+        <div class="testimonial-grid">
+          {testimonials.map((testimonial) => (
+            <article class="testimonial-card">
+              <p class="testimonial-rating" aria-label={`Rating ${testimonial.rating} dari 5`}>
+                {starText(testimonial.rating)}
+              </p>
+              <p>&ldquo;{testimonial.body}&rdquo;</p>
+              <p class="card-eyebrow">
+                {testimonial.authorName}
+                {testimonial.authorRole && ` — ${testimonial.authorRole}`}
+              </p>
+            </article>
+          ))}
+        </div>
+      </section>
+    )}
+
+    {recentPosts.length > 0 && (
+      <section class="home-section" aria-labelledby="recent-news-heading">
+        <div class="home-section-heading">
+          <h2 id="recent-news-heading">Berita Terkini</h2>
+          <a href={ROUTES.news}>Semua berita &rarr;</a>
+        </div>
+        <ul class="grid-cards">
+          {recentPosts.map((post) => (
+            <li>
+              <a href={ROUTES.article(post.slug)} class="card">
+                {post.rubric && <span class="card-eyebrow">{post.rubric.name}</span>}
+                <h3 class="card-title">{post.title}</h3>
+                {post.excerpt && <p>{post.excerpt}</p>}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+  </div>
+
+  {popup && (
+    <dialog data-promo-popup data-popup-id={popup.id} data-frequency={popup.frequency}>
+      <div class="promo-popup-body">
+        <button type="button" class="promo-popup-close" data-popup-close aria-label="Tutup">&times;</button>
+        {popup.image && <img src={popup.image.url} alt={popup.image.alt} loading="lazy" />}
+        <h2>{popup.title}</h2>
+        <p>{popup.body}</p>
+        {popup.linkUrl && popup.buttonText && (
+          <a class="button-primary" href={popup.linkUrl}>{popup.buttonText}</a>
+        )}
+      </div>
+    </dialog>
+  )}
+</BaseLayout>
+
+<script>
+  import "../../scripts/flash-sale-countdown";
+  import "../../scripts/promo-popup";
+  import "../../scripts/voucher-copy";
+</script>

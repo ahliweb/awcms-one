@@ -1,0 +1,52 @@
+---
+/** `/tag/[slug]` — tag archive (issue #28). Issue #49: the grid sits beside the shared `Sidebar.astro` in `.layout-with-sidebar`. */
+import BeritaLayout from "../../../../layouts/BeritaLayout.astro";
+import ArtikelCard from "../../../../components/berita/ArtikelCard.astro";
+import Sidebar from "../../../../components/berita/Sidebar.astro";
+import { ROUTES } from "../../../../config/routes";
+import { getTags, getTag } from "../../../../lib/berita";
+
+export async function getStaticPaths() {
+  const tags = await getTags();
+  return tags.map((tag) => ({ params: { slug: tag.slug } }));
+}
+
+const { slug } = Astro.params as { slug: string };
+const archive = await getTag(slug);
+
+if (!archive) {
+  throw new Error(
+    `No tag with slug "${slug}" carried by any visible post. getStaticPaths() ` +
+      `only ever requests a slug getTags() just returned, so this can only ` +
+      `happen if this route is reached with a slug from somewhere else.`
+  );
+}
+
+const canonicalPath = ROUTES.tag(slug);
+---
+
+<BeritaLayout
+  title={archive.term.name}
+  description={`Berita bertag ${archive.term.name}.`}
+  canonicalPath={canonicalPath}
+>
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Remah roti">
+      <a href={ROUTES.home}>Beranda</a>
+      <span aria-hidden="true">/</span>
+      <a href={ROUTES.news}>Berita</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">{archive.term.name}</span>
+    </nav>
+
+    <h1>Tag: {archive.term.name}</h1>
+
+    <div class="layout-with-sidebar">
+      <ul class="grid-cards">
+        {archive.posts.map((post) => <ArtikelCard post={post} />)}
+      </ul>
+
+      <Sidebar />
+    </div>
+  </div>
+</BeritaLayout>

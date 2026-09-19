@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](arsitektur.md)
 
-<!-- i18n-source-hash: sha256:b27273145b23eaf6e82fd8cebf85a1f0a6ac686b21ae4d7c76271192669996bc -->
+<!-- i18n-source-hash: sha256:ba9959c1b4ccfe1c67ed6f7fc66997b0d5412378b4dda73ce08b6fe6327d0348 -->
 
 # Arsitektur
 
@@ -74,6 +74,31 @@ sequenceDiagram
 ```
 
 Tamu tidak kehilangan apa pun karena tidak mendaftar: setiap jalur anonim yang dikirim ADR-0007/ADR-0009 tidak berubah, `POST orders`/`POST reviews` tetap berfungsi tanpa header `Authorization` sama sekali, dan kedua endpoint OTP itu sendiri anonim (belum ada sesi untuk diperiksa). Lihat [`docs/api.md`](api.id.md) untuk tabel endpoint lengkap dan [`docs/routing.md`](routing.id.md) untuk halaman `/masuk`/`/daftar`/`/akun*` tempat UI tingkat ini hidup.
+
+## Satu storefront, tiga profil build (issue #137, [ADR-0018](adr/0018-awcms-one-is-a-template-with-build-profiles-and-an-idempotent-init.id.md) D2/D3)
+
+Pohon `apps/storefront` yang sama membangun tiga situs berbeda, diputuskan sekali, saat build, oleh `SITE_PROFILE`: `toko` (default — commerce + berita, bentuk BjekMart sendiri, byte-per-byte sama dengan yang dibangun aplikasi ini sebelum #137), `berita` (berita saja), dan `landing` (profil perusahaan: beranda, halaman statis, kontak). Inilah yang membuat repositori ini bisa menjadi template ([ADR-0018 D1](adr/0018-awcms-one-is-a-template-with-build-profiles-and-an-idempotent-init.id.md), [`docs/template.md`](template.id.md)) tanpa basis kode kedua: deployment turunan hanya mengirimkan halaman yang dibutuhkannya, dan halaman profil yang tidak dipakai tidak pernah dibangun — bukan dibangun-lalu-disembunyikan.
+
+```mermaid
+flowchart LR
+  ENV["SITE_PROFILE (env, saat build)"] --> P["src/config/profil.ts<br/>profil → grup → nav · sitemap · feed · robots · kebutuhan CSP"]
+  P --> I["integrations/profil.mjs<br/>astro:config:setup"]
+  I -->|"injectRoute × grup aktif"| R["src/profil/toko/pages/** · src/profil/berita/pages/**"]
+  I -->|"alias @profil/beranda"| H["src/profil/&lt;profil&gt;/Beranda.astro"]
+  S["src/pages/** (grup shared, berbasis berkas)"] --> B["astro build → dist/"]
+  R --> B
+  H --> B
+  P --> C["Header · Footer · BaseLayout · robots.txt · sitemap-sources · csp.json"]
+  C --> B
+```
+
+Mekanismenya punya tiga bagian dan satu aturan:
+
+1. **[`apps/storefront/src/config/profil.ts`](../apps/storefront/src/config/profil.ts)** adalah satu-satunya sumber. Ia membaca `SITE_PROFILE` lewat rantai `readEnv` yang sama dengan `SITE_URL` (nilai tak dikenal → build gagal sambil menyebut variabelnya; tidak diset → `toko`), memetakan profil ke grup halamannya (`toko` = `shared`+`toko`+`berita`, `berita` = `shared`+`berita`, `landing` = `shared`), dan menurunkan dari anotasi `ROUTE_GROUPS` di `apps/storefront/src/config/routes.ts` semua yang dibutuhkan konsumen: himpunan nav, permukaan pencarian, tautan footer, sumber sitemap, feed, aturan `robots.txt`, dan apa yang harus dibaca artefak CSP. Ia tidak mengambil apa pun dan tidak menyentuh sistem berkas, sehingga unit test-nya mencakup ketiga profil dalam satu proses.
+2. **[`apps/storefront/integrations/profil.mjs`](../apps/storefront/integrations/profil.mjs)** — satu-satunya integrasi Astro aplikasi ini — mengubah grup menjadi rute di `astro:config:setup`, sebelum Astro memindai `apps/storefront/src/pages/`: untuk setiap berkas di bawah `src/profil/<grup>/pages/**` grup aktif ia memanggil `injectRoute` dengan pola yang akan diturunkan routing berbasis-berkas dan entrypoint relatif-akar-proyek. Direktori grup yang tidak aktif tidak pernah dijelajahi, sehingga `getStaticPaths()`-nya tidak pernah berjalan dan datanya tidak pernah diambil — halaman yang dikecualikan tidak ada di `dist/` secara konstruksi, persis alasan ADR-0018 D3 menolak guard 404 runtime. Integrasi ini juga mengarahkan alias `@profil/beranda` ke varian beranda milik profil, sehingga `apps/storefront/src/pages/index.astro` (shared) me-render konten per-profil dengan hanya satu varian di graf modul.
+3. **Para konsumen** — `Header`/`Footer`/`BaseLayout`, `robots.txt.ts`, `sitemap-sources.ts`/`sitemap-katalog.ts`, `csp.json.ts`, gerbang redirect lawas milik server — membaca `profil.ts` dan tidak yang lain. Aturannya: **tidak ada berkas yang memutuskan grup dua kali.** Grup sebuah rute dinyatakan sekali, di `ROUTE_GROUPS`; grup sebuah berkas halaman dinyatakan sekali, oleh direktori tempatnya berada; matriks profil di `docs/template.md` adalah salinan yang terbaca manusia, dan [`apps/storefront/tests/profil-integrasi.test.ts`](../apps/storefront/tests/profil-integrasi.test.ts) mem-parse tabel itu dan gagal bila pohon berkas tidak sesuai.
+
+Tidak ada yang berubah pada aturan statis/runtime di atas per profil: setiap profil tetap `output: "static"` dengan pengambilan saat build, tetap memanggil `apps/cms` secara anonim dari browser di tempat yang mengharuskannya (formulir buletin pada `berita`, beacon pengunjung di mana-mana), dan tetap dilayani lewat `penyaji.mjs` yang sama, yang tidak memerlukan flag profil — ia menurunkan isi build dari `dist/` saat startup, seperti yang sudah dilakukannya untuk artefak CSP dan peta redirect lawas. Penurunan CSP di bawah hanya membaca grup konten yang dimiliki profil (gambar produk/pemasaran dengan `toko`, media artikel dan facade YouTube dengan `berita`), sementara `connect-src` membawa `PUBLIC_AWCMS_ORIGIN` pada setiap profil karena beacon berjalan pada setiap profil — koreksi atas matriks ADR-0018 sendiri, dibuat dari kode. CI membangun dan menguji-asap setiap profil pada setiap push ([`docs/pengujian.md`](pengujian.id.md), "Tingkat profil build").
 
 ## CSP diturunkan dari konten, bukan dikonfigurasi
 

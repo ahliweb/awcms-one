@@ -1,0 +1,160 @@
+---
+/**
+ * `/akun/alamat` — list/add/edit/delete/set-default over `akun-klien.ts`'s
+ * address functions (issue #90, S2 of #32). The province/city/district
+ * selects here are wired through `src/lib/wilayah-region-select.ts`, the
+ * SAME shared module `checkout.ts`'s own saved-address autofill uses — see
+ * `src/scripts/akun-alamat.ts`'s own docblock.
+ *
+ * `noindex, follow`.
+ */
+import BaseLayout from "../../../../layouts/BaseLayout.astro";
+import { getSiteIdentity } from "../../../../lib/awcms/profil";
+import { getStoreSettings } from "../../../../lib/awcms/pemasaran";
+import { ROUTES } from "../../../../config/routes";
+import "../../../../styles/toko.css";
+import "../../../../styles/akun.css";
+
+const identity = await getSiteIdentity();
+const storeSettings = await getStoreSettings();
+const whatsappNumber = storeSettings.whatsapp ?? identity.whatsappNumber ?? "";
+---
+
+<BaseLayout title="Alamat Saya" description="Kelola alamat pengiriman akun Anda." canonicalPath="/akun/alamat">
+  <meta slot="head" name="robots" content="noindex, follow" />
+
+  <noscript>
+    <div class="container">
+      <div class="toko-banner toko-banner--info">
+        Halaman alamat memerlukan JavaScript aktif di peramban Anda. Anda tetap bisa menghubungi kami
+        langsung melalui WhatsApp:
+        {whatsappNumber && (
+          <a class="toko-wa-fallback" href={`https://wa.me/${whatsappNumber.replace(/\D/g, "")}`}>
+            Hubungi WhatsApp
+          </a>
+        )}
+      </div>
+    </div>
+  </noscript>
+
+  <div
+    class="container"
+    data-akun-alamat-root
+    data-whatsapp-number={whatsappNumber}
+    data-store-name={identity.name}
+  >
+    <div class="page-heading">
+      <h1>Alamat Saya</h1>
+      <p><a href={ROUTES.account}>&larr; Kembali ke Akun Saya</a></p>
+    </div>
+
+    <div data-status class="toko-banner toko-banner--info" role="status" aria-live="polite" hidden></div>
+    <div data-submit-error class="toko-banner toko-banner--danger" hidden>
+      <p data-submit-error-message></p>
+      <div class="toko-actions">
+        <a data-wa-fallback-link class="toko-wa-fallback" hidden>Hubungi via WhatsApp</a>
+      </div>
+    </div>
+
+    <div data-guest-view class="akun-card" hidden>
+      <p>Anda belum masuk.</p>
+      <div class="akun-actions">
+        <a href={ROUTES.login}>Masuk</a>
+      </div>
+    </div>
+
+    <div data-account-view hidden>
+      <p class="toko-empty" data-alamat-empty hidden>Anda belum memiliki alamat tersimpan.</p>
+      <ul class="akun-nav-grid" data-alamat-list aria-live="polite"></ul>
+
+      <p class="toko-field-hint" data-alamat-limit hidden>
+        Anda telah mencapai batas maksimum 10 alamat tersimpan. Hapus salah satu alamat untuk menambah yang
+        baru.
+      </p>
+
+      <div class="akun-actions">
+        <button type="button" data-alamat-tambah>Tambah Alamat</button>
+      </div>
+
+      <div class="akun-card" data-alamat-form-wrap hidden>
+        <h2 data-alamat-form-title>Tambah Alamat</h2>
+        <form data-alamat-form>
+          <div class="toko-field">
+            <label for="alamat-label">Label (mis. Rumah, Kantor)</label>
+            <input type="text" id="alamat-label" name="label" required />
+            <p class="toko-field-error" data-error-for="label"></p>
+          </div>
+
+          <div class="toko-field">
+            <label for="alamat-recipient">Nama penerima</label>
+            <input type="text" id="alamat-recipient" name="recipientName" required autocomplete="name" />
+            <p class="toko-field-error" data-error-for="recipientName"></p>
+          </div>
+
+          <div class="toko-field">
+            <label for="alamat-phone">Nomor WhatsApp penerima</label>
+            <input type="tel" id="alamat-phone" name="phone" required autocomplete="tel" />
+            <p class="toko-field-error" data-error-for="phone"></p>
+          </div>
+
+          <div class="toko-field">
+            <label for="alamat-province">Provinsi</label>
+            <select id="alamat-province" name="provinceCode" data-province-select required>
+              <option value="">Pilih provinsi</option>
+            </select>
+            <p class="toko-field-error" data-error-for="provinceCode"></p>
+          </div>
+
+          <div class="toko-field">
+            <label for="alamat-city">Kabupaten/Kota</label>
+            <select id="alamat-city" name="cityCode" data-city-select disabled required>
+              <option value="">Pilih provinsi dahulu</option>
+            </select>
+            <p class="toko-field-error" data-error-for="cityCode"></p>
+          </div>
+
+          <div class="toko-field">
+            <label for="alamat-district">Kecamatan</label>
+            <select id="alamat-district" name="districtCode" data-district-select disabled required>
+              <option value="">Pilih kabupaten/kota dahulu</option>
+            </select>
+            <p class="toko-field-error" data-error-for="districtCode"></p>
+          </div>
+
+          <div class="toko-field">
+            <label for="alamat-postal">Kode pos</label>
+            <input type="text" id="alamat-postal" name="postalCode" inputmode="numeric" required />
+            <p class="toko-field-error" data-error-for="postalCode"></p>
+          </div>
+
+          <div class="toko-field">
+            <label for="alamat-street">Alamat lengkap</label>
+            <textarea id="alamat-street" name="street" rows="2" required></textarea>
+            <p class="toko-field-error" data-error-for="street"></p>
+          </div>
+
+          <div class="toko-field">
+            <label for="alamat-notes">Catatan (opsional)</label>
+            <input type="text" id="alamat-notes" name="notes" />
+          </div>
+
+          <div class="toko-field">
+            <label>
+              <input type="checkbox" name="isDefault" />
+              Jadikan alamat utama
+            </label>
+          </div>
+
+          <div class="akun-actions">
+            <button type="submit">Simpan</button>
+            <button type="button" data-alamat-form-cancel>Batal</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    import "../../../../scripts/akun-alamat";
+  </script>
+</BaseLayout>

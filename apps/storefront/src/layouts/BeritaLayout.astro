@@ -110,7 +110,7 @@ const meta: readonly MetaTag[] =
   ogType={ogType}
   meta={meta}
 >
-  {/* Issue #54 (A8): the `head` slot transferred through to `BaseLayout.astro`'s own — a rubrik page's `rel="prev"/"next"` links ride on it (see `src/pages/rubrik/[slug]/**`). Same one-line "transferring slots" pattern the `buletin` slot below already uses. */}
+  {/* Issue #54 (A8): the `head` slot transferred through to `BaseLayout.astro`'s own — a rubrik page's `rel="prev"/"next"` links ride on it (see `src/profil/berita/pages/rubrik/[slug]/**`). Same one-line "transferring slots" pattern the `buletin` slot below already uses. */}
   <slot name="head" slot="head" />
   <BilahUtilitas identity={identity} slot="header" />
   <NavBerita identity={identity} currentPath={canonicalPath} slot="header" />

@@ -46,7 +46,7 @@
  *
  * `script-src 'self'` (`server/penyaji.mjs`) has no `'unsafe-inline'` — this
  * file is an ordinary Astro-bundled external module, imported from the
- * component's own `<script>` block the same way `src/pages/video/
+ * component's own `<script>` block the same way `src/profil/berita/pages/video/
  * [slug].astro` imports `video-facade.ts`.
  */
 

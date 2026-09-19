@@ -27,17 +27,23 @@ import { join } from "node:path";
  * CMS to compose these links pointing at THIS storefront's origin at all).
  */
 const STOREFRONT_SRC = new URL("../src/", import.meta.url).pathname;
+// Issue #137: the newsletter pages belong to the `berita` page group and live
+// under `src/profil/berita/pages/**` (injected as routes by
+// `integrations/profil.mjs`); the served paths are unchanged.
+const BERITA_PAGES = join(STOREFRONT_SRC, "profil", "berita", "pages");
 
 describe("newsletter e-mail link path contract (apps/cms's NEWSLETTER_CONFIRM_PATH / NEWSLETTER_UNSUBSCRIBE_PATH)", () => {
   test("this app serves a page file for /newsletter/confirm", () => {
-    expect(existsSync(join(STOREFRONT_SRC, "pages", "newsletter", "confirm.astro"))).toBe(true);
+    expect(existsSync(join(BERITA_PAGES, "newsletter", "confirm.astro"))).toBe(true);
   });
 
   test("this app serves a page file for /newsletter/unsubscribe", () => {
-    expect(existsSync(join(STOREFRONT_SRC, "pages", "newsletter", "unsubscribe.astro"))).toBe(true);
+    expect(existsSync(join(BERITA_PAGES, "newsletter", "unsubscribe.astro"))).toBe(true);
   });
 
   test("the old, never-shipped /buletin/{konfirmasi,berhenti} paths are NOT kept as aliases", () => {
+    expect(existsSync(join(BERITA_PAGES, "buletin", "konfirmasi.astro"))).toBe(false);
+    expect(existsSync(join(BERITA_PAGES, "buletin", "berhenti.astro"))).toBe(false);
     expect(existsSync(join(STOREFRONT_SRC, "pages", "buletin", "konfirmasi.astro"))).toBe(false);
     expect(existsSync(join(STOREFRONT_SRC, "pages", "buletin", "berhenti.astro"))).toBe(false);
   });

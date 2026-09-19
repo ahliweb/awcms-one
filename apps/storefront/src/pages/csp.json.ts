@@ -102,6 +102,7 @@ import { readGaMeasurementId } from "../lib/ga";
 import { getMediaPublicOrigin } from "../lib/awcms/media";
 import { getVideo, getResolvedMedia } from "../lib/berita";
 import { getActiveAdPlacements } from "../lib/awcms/blog";
+import { CSP_NEEDS } from "../config/profil";
 
 /** YouTube's own fixed poster CDN — see this file's own header. */
 const YOUTUBE_POSTER_ORIGIN = "https://i.ytimg.com";
@@ -110,30 +111,35 @@ const YOUTUBE_EMBED_ORIGIN = "https://www.youtube-nocookie.com";
 
 export const prerender = true;
 
+/**
+ * Issue #137: which content this derivation reads is decided by the build
+ * profile (`src/config/profil.ts`'s `CSP_NEEDS`). A `berita`/`landing`
+ * build never calls `getProducts()`/`getActive*()` — there is no page that
+ * renders their images, so there is nothing to widen `img-src` for, and no
+ * commerce fixture is needed to build them; a `landing` build likewise
+ * never reads article media, ad creatives or the video list. Every
+ * function below is memoized per build, so on `toko` (which reads all of
+ * it) this costs exactly what it did before.
+ */
 export async function GET(): Promise<Response> {
-  const [
-    products,
-    sliders,
-    testimonials,
-    popup,
-    flashSales,
-    storeSettings,
-    mediaOrigin,
-    videoPosts,
-    resolvedMedia,
-    adSlots
-  ] = await Promise.all([
-    getProducts(),
-    getActiveSliders(),
-    getActiveTestimonials(),
-    getActivePopup(),
-    getActiveFlashSales(),
-    getStoreSettings(),
-    getMediaPublicOrigin(),
-    getVideo(),
-    getResolvedMedia(),
-    getActiveAdPlacements()
-  ]);
+  const [products, sliders, testimonials, popup, flashSales] = CSP_NEEDS.mediaFromToko
+    ? await Promise.all([
+        getProducts(),
+        getActiveSliders(),
+        getActiveTestimonials(),
+        getActivePopup(),
+        getActiveFlashSales()
+      ])
+    : [[], [], [], null, []];
+
+  const [videoPosts, resolvedMedia, adSlots] = CSP_NEEDS.mediaFromBerita
+    ? await Promise.all([getVideo(), getResolvedMedia(), getActiveAdPlacements()])
+    : [[], new Map(), {}];
+
+  // Store settings carry the site logo/favicon `BaseLayout`'s chrome and
+  // `/kontak` render on every profile, and the media host is where every
+  // resolved image lives — both read unconditionally.
+  const [storeSettings, mediaOrigin] = await Promise.all([getStoreSettings(), getMediaPublicOrigin()]);
 
   const imageUrls: Array<string | null | undefined> = [];
 
@@ -176,10 +182,17 @@ export async function GET(): Promise<Response> {
 
   // Throws (naming the variable) when `PUBLIC_AWCMS_ORIGIN` is unset or
   // malformed — see this file's own docblock for why that failure belongs
-  // HERE, in a page every build unconditionally prerenders.
+  // HERE, in a page every build unconditionally prerenders. Issue #137:
+  // needed on EVERY profile (`CSP_NEEDS.connectAwcmsOrigin` is always
+  // true) — the visitor beacon `BaseLayout.astro` mounts on every page
+  // POSTs to this origin, not only checkout.
   const awcmsOrigin = requireAwcmsOrigin();
 
-  const derivedArtifact = buildCspOriginsArtifact(imageUrls, [awcmsOrigin], frameUrls);
+  const derivedArtifact = buildCspOriginsArtifact(
+    imageUrls,
+    CSP_NEEDS.connectAwcmsOrigin ? [awcmsOrigin] : [],
+    frameUrls
+  );
 
   // GA branch (issue #56, A10) — see this file's own docblock. `ga` is
   // simply omitted (not `false`) in the default build; `readCspOrigins`

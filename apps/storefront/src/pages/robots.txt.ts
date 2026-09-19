@@ -39,8 +39,16 @@
  * `BaseLayout.astro`'s `head` slot, for the same "Disallow stops the FETCH,
  * noindex stops the INDEX of a URL linked from elsewhere" reason this file's
  * own comments above already give.
+ *
+ * Issue #137: the `Disallow` list is `src/config/profil.ts`'s
+ * `ROBOTS_DISALLOW` — every rule above tagged with the page group that owns
+ * the path, filtered to the active build profile. `toko` emits exactly the
+ * list this file always emitted; `berita` drops the commerce paths (they do
+ * not exist in that build) and keeps the newsletter pair and `/api/`;
+ * `landing` keeps `/api/` only.
  */
 import { siteConfig } from "../config/site";
+import { ROBOTS_DISALLOW } from "../config/profil";
 
 export const prerender = true;
 
@@ -48,17 +56,7 @@ export function GET(): Response {
   const body = [
     "User-agent: *",
     "Allow: /",
-    "Disallow: /keranjang",
-    "Disallow: /checkout",
-    "Disallow: /pesanan",
-    "Disallow: /wishlist",
-    "Disallow: /cari",
-    "Disallow: /newsletter/confirm",
-    "Disallow: /newsletter/unsubscribe",
-    "Disallow: /masuk",
-    "Disallow: /daftar",
-    "Disallow: /akun",
-    "Disallow: /api/",
+    ...ROBOTS_DISALLOW.map((path) => `Disallow: ${path}`),
     "",
     `Sitemap: ${siteConfig.siteUrl}/sitemap-index.xml`,
     ""

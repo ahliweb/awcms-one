@@ -84,7 +84,7 @@ export function pernahDiperbaruiSetelahTerbit(
   return new Date(updatedAt).getTime() > new Date(publishedAt).getTime();
 }
 
-/** "September 2026" — a monthly archive's own heading, from its URL's `yyyy`/`mm` segments (`src/pages/arsip/[yyyy]/[mm].astro`), not from any post's own date. */
+/** "September 2026" — a monthly archive's own heading, from its URL's `yyyy`/`mm` segments (`src/profil/berita/pages/arsip/[yyyy]/[mm].astro`), not from any post's own date. */
 export function formatBulanArsipWIB(yyyy: string, mm: string): string {
   const year = Number(yyyy);
   const month = Number(mm);

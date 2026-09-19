@@ -1,7 +1,7 @@
 /**
  * `/produk` client-side refine: sidebar category filter, sort, price range,
  * "in stock only", "flash sale only", and pagination — all over the SAME
- * build-time index `src/pages/index/produk.json.ts` serves, all URL-synced
+ * build-time index `src/profil/toko/pages/index/produk.json.ts` serves, all URL-synced
  * (`?halaman=&kategori=&urut=&stok=&flash=&hargaMin=&hargaMax=`) via
  * `history.pushState` so a refined view is bookmarkable/shareable and the
  * back/forward buttons work.

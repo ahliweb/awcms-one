@@ -232,7 +232,7 @@ async function fetchAllTerms(): Promise<RawTerm[]> {
 
 const INSTITUTIONS_PATH = "/api/v1/blog/institutions";
 
-/** One row of `GET /api/v1/blog/institutions` — verified against `InstitutionView` (`institution-directory.ts`). No logo/media field exists on this row at all — `src/pages/mitra/[slug].astro` renders name/description/posts and nothing else. */
+/** One row of `GET /api/v1/blog/institutions` — verified against `InstitutionView` (`institution-directory.ts`). No logo/media field exists on this row at all — `src/profil/berita/pages/mitra/[slug].astro` renders name/description/posts and nothing else. */
 export type RawInstitution = {
   id: string;
   branch: "legislative" | "executive";

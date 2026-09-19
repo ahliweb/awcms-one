@@ -14,10 +14,17 @@
  * page — see `src/config/routes.ts`'s `FOOTER_PAGE_LINKS` for why the
  * three press-council links need no separate "does news exist" signal
  * beyond this.
+ *
+ * Issue #137: `FOOTER_PAGE_LINKS` now comes from `src/config/profil.ts`
+ * (the active profile's own list — `toko`'s six, unchanged; `berita`'s
+ * five; `landing`'s two), and the "Cari Produk" help link renders only
+ * when the profile has a search surface, pointing at whatever that surface
+ * is (`/cari` for `toko`, `/cari-berita` for `berita`).
  */
 import type { SiteIdentity } from "../lib/awcms/profil";
 import type { StaticPageSummary } from "../lib/awcms/pages";
-import { FOOTER_PAGE_LINKS, ROUTES } from "../config/routes";
+import { ROUTES } from "../config/routes";
+import { FOOTER_PAGE_LINKS, SEARCH_SURFACE } from "../config/profil";
 
 interface Props {
   identity: SiteIdentity;
@@ -74,7 +81,9 @@ const copyright = identity.copyrightNotice ?? `© ${year} ${identity.name}`;
       <h2>Bantuan</h2>
       <ul class="footer-page-links">
         <li><a href={ROUTES.contact}>Kontak</a></li>
-        <li><a href={ROUTES.search}>Cari Produk</a></li>
+        {SEARCH_SURFACE && (
+          <li><a href={SEARCH_SURFACE.action}>{SEARCH_SURFACE.route === "search" ? "Cari Produk" : "Cari Berita"}</a></li>
+        )}
       </ul>
     </div>
   </div>

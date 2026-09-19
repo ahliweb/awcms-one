@@ -46,7 +46,7 @@
  *     `https://i.ytimg.com/vi/{id}/hqdefault.jpg` poster (a fixed YouTube
  *     CDN convention — no media-object resolution needed for this one), and
  *     `apps/storefront/src/scripts/video-facade.ts` (loaded only from
- *     `src/pages/video/[slug].astro`, the only route a playable `videoNews`
+ *     `src/profil/berita/pages/video/[slug].astro`, the only route a playable `videoNews`
  *     block can ever appear on — see `src/lib/berita.ts`'s own routing
  *     rule, and the ONE call site that passes `"facade"`) swaps it for a
  *     real `<iframe src="https://www.youtube-nocookie.com/embed/{id}">` on
@@ -88,7 +88,7 @@
  * (every visible post's `featuredMediaId` plus every gallery item's
  * `mediaObjectId`, batched through `resolveMedia`), and
  * `src/components/berita/ArtikelView.astro` passes it through, along with a
- * `videoMode` prop the PAGE decides (`"facade"` only from `src/pages/video/
+ * `videoMode` prop the PAGE decides (`"facade"` only from `src/profil/berita/pages/video/
  * [slug].astro`, which alone mounts `video-facade.ts` — see
  * `renderPortableText`'s own docblock, "The video facade is opt-in, per
  * render call"). An empty map with `videoMode: "link"` (the default, and
@@ -599,7 +599,7 @@ export type VideoRenderMode = "facade" | "link";
  * (issue #47's click-to-load poster/button) is safe ONLY on a page that
  * also mounts `apps/storefront/src/scripts/video-facade.ts`, because
  * without it the button is inert: a reader clicks and nothing happens.
- * Today that is `src/pages/video/[slug].astro` alone — the only route a
+ * Today that is `src/profil/berita/pages/video/[slug].astro` alone — the only route a
  * playable `videoNews` block can ever appear on (`src/lib/berita.ts`'s own
  * routing rule) — which is the ONE call site
  * (`src/components/berita/ArtikelView.astro`) that passes `"facade"`

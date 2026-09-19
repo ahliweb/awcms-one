@@ -1,0 +1,71 @@
+---
+/**
+ * `/rubrik/[slug]/halaman/[n]` — rubrik index, page N>=2 (issue #28). Page 1
+ * lives ONLY at `/rubrik/[slug]` (`src/profil/berita/pages/rubrik/[slug]/index.astro`) —
+ * this route is never generated for `n=1`, so there is never a duplicate
+ * page 1 URL.
+ *
+ * Issue #54 (A8): `<link rel="prev">` (to page N-1 — the bare rubrik URL
+ * when that is page 1) and `<link rel="next">` (when N < totalPages),
+ * through `BaseLayout.astro`'s `head` slot — see `index.astro` beside this
+ * file for why the decision lives in `src/lib/meta-sosial.ts`.
+ */
+import BeritaLayout from "../../../../../../layouts/BeritaLayout.astro";
+import RubrikBody from "../../../../../../components/berita/RubrikBody.astro";
+import { ROUTES } from "../../../../../../config/routes";
+import { getRubrikTree, getRubrik, paginate, flattenRubrikTree } from "../../../../../../lib/berita";
+import { rubrikPaginationLinks } from "../../../../../../lib/meta-sosial";
+
+export async function getStaticPaths() {
+  const tree = await getRubrikTree();
+  const paths: { params: { slug: string; n: string } }[] = [];
+
+  for (const node of flattenRubrikTree(tree)) {
+    const archive = await getRubrik(node.slug);
+    if (!archive) continue;
+
+    const { totalPages } = paginate(archive.posts, 1);
+    for (let page = 2; page <= totalPages; page += 1) {
+      paths.push({ params: { slug: node.slug, n: String(page) } });
+    }
+  }
+
+  return paths;
+}
+
+const { slug, n } = Astro.params as { slug: string; n: string };
+const archive = await getRubrik(slug);
+
+if (!archive) {
+  throw new Error(`No rubrik with slug "${slug}" in the cached taxonomy.`);
+}
+
+const requestedPage = Number(n);
+const paged = paginate(archive.posts, requestedPage);
+
+// A stale build reached with a page number the CURRENT content no longer
+// has (content shrank between two builds' getStaticPaths() and page render)
+// fails loudly rather than silently serving a clamped page under a
+// different URL — the same "no answer that looks complete" rule
+// src/lib/catalog.ts's MAX_PAGES guard already applies.
+if (!Number.isInteger(requestedPage) || requestedPage < 2 || requestedPage !== paged.currentPage) {
+  throw new Error(
+    `Rubrik "${slug}" page ${n} is out of range — this rubrik has ` +
+      `${paged.totalPages} page(s) of ${archive.posts.length} post(s).`
+  );
+}
+
+const canonicalPath = ROUTES.rubricPage(slug, requestedPage);
+const paginationLinks = rubrikPaginationLinks(slug, requestedPage, paged.totalPages);
+---
+
+<BeritaLayout
+  title={`${archive.term.name} — Halaman ${requestedPage}`}
+  description={`Berita rubrik ${archive.term.name}, halaman ${requestedPage}.`}
+  canonicalPath={canonicalPath}
+>
+  <Fragment slot="head">
+    {paginationLinks.map((link) => <link rel={link.rel} href={link.href} />)}
+  </Fragment>
+  <RubrikBody archive={archive} paged={paged} slug={slug} />
+</BeritaLayout>

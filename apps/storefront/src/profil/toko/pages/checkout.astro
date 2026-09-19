@@ -1,0 +1,230 @@
+---
+/**
+ * `/checkout` — one page, five progressively-disclosed steps (issue #30,
+ * ADR-0007 revised): contact → address → shipping → payment → review.
+ * Every field error the CMS's `400 VALIDATION_ERROR` envelope names
+ * (`details[].field`, e.g. `customer.phone`, `address.districtCode`) has a
+ * matching `[data-error-for="<field>"]` paragraph next to the input it
+ * describes — `src/scripts/checkout.ts` fills it in and reveals the step
+ * that owns it, rather than a single generic "something went wrong".
+ *
+ * Region `<select>`s start EMPTY and are populated client-side from the
+ * build-time static indexes (`/index/wilayah-*.json`,
+ * `src/lib/awcms/wilayah-checkout.ts`) — same-origin fetches, no CORS/CSP
+ * concern at all, unlike the CMS calls this page also makes.
+ *
+ * `noindex, follow`; the whole page degrades to a `<noscript>` WhatsApp
+ * fallback (this page's own JS is what reads the cart and talks to the
+ * CMS — there is no server-rendered checkout to fall back to).
+ */
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { getSiteIdentity } from "../../../lib/awcms/profil";
+import { getStoreSettings } from "../../../lib/awcms/pemasaran";
+import "../../../styles/katalog.css";
+import "../../../styles/toko.css";
+
+const identity = await getSiteIdentity();
+const storeSettings = await getStoreSettings();
+const whatsappNumber = storeSettings.whatsapp ?? identity.whatsappNumber ?? "";
+const pinpointEnabled = storeSettings.shipping?.pinpointEnabled ?? false;
+---
+
+<BaseLayout title="Checkout" description="Selesaikan pesanan Anda." canonicalPath="/checkout">
+  <meta slot="head" name="robots" content="noindex, follow" />
+
+  <noscript>
+    <div class="container">
+      <div class="toko-banner toko-banner--info">
+        Checkout memerlukan JavaScript aktif di peramban Anda. Anda tetap bisa memesan langsung melalui
+        WhatsApp:
+        {whatsappNumber && (
+          <a class="toko-wa-fallback" href={`https://wa.me/${whatsappNumber.replace(/\D/g, "")}`}>
+            Pesan lewat WhatsApp
+          </a>
+        )}
+      </div>
+    </div>
+  </noscript>
+
+  <div
+    class="container"
+    data-checkout-root
+    data-whatsapp-number={whatsappNumber}
+    data-store-name={identity.name}
+    data-pinpoint-enabled={String(pinpointEnabled)}
+  >
+    <div class="page-heading">
+      <h1>Checkout</h1>
+    </div>
+
+    <p class="toko-empty" data-checkout-empty hidden>
+      Keranjang Anda kosong. <a href="/keranjang">Kembali ke keranjang</a>.
+    </p>
+
+    <div data-submit-error class="toko-banner toko-banner--danger" hidden>
+      <p data-submit-error-message></p>
+      <div class="toko-actions">
+        <a data-wa-fallback-link class="toko-wa-fallback" hidden>Pesan lewat WhatsApp</a>
+      </div>
+    </div>
+
+    <form data-checkout-form novalidate>
+      <section class="toko-section" data-step="contact">
+        <h2>1. Kontak</h2>
+
+        <div class="toko-field">
+          <label for="customer-name">Nama lengkap</label>
+          <input type="text" id="customer-name" name="customer.name" required autocomplete="name" />
+          <p class="toko-field-error" data-error-for="customer.name"></p>
+        </div>
+
+        <div class="toko-field">
+          <label for="customer-phone">Nomor WhatsApp</label>
+          <input type="tel" id="customer-phone" name="customer.phone" required autocomplete="tel" />
+          <p class="toko-field-hint" data-phone-preview></p>
+          <p class="toko-field-error" data-error-for="customer.phone"></p>
+        </div>
+
+        <div class="toko-field">
+          <label for="customer-email">E-mail (opsional)</label>
+          <input type="email" id="customer-email" name="customer.email" autocomplete="email" />
+          <p class="toko-field-error" data-error-for="customer.email"></p>
+        </div>
+
+        <button type="button" data-step-next="contact">Lanjut ke alamat</button>
+      </section>
+
+      <section class="toko-section" data-step="address" hidden>
+        <h2>2. Alamat pengiriman</h2>
+        <p class="toko-field-hint">Lewati bagian ini jika Anda memilih ambil di toko pada langkah berikutnya.</p>
+
+        <div class="toko-field" data-alamat-tersimpan-wrap hidden>
+          <label for="alamat-tersimpan">Pilih alamat tersimpan</label>
+          <select id="alamat-tersimpan" data-alamat-tersimpan>
+            <option value="">Alamat baru</option>
+          </select>
+        </div>
+
+        <div class="toko-field">
+          <label for="address-recipient">Nama penerima</label>
+          <input type="text" id="address-recipient" name="address.recipientName" autocomplete="name" />
+          <p class="toko-field-error" data-error-for="address.recipientName"></p>
+        </div>
+
+        <div class="toko-field">
+          <label for="address-phone">Nomor WhatsApp penerima</label>
+          <input type="tel" id="address-phone" name="address.phone" autocomplete="tel" />
+          <p class="toko-field-error" data-error-for="address.phone"></p>
+        </div>
+
+        <div class="toko-field">
+          <label for="address-province">Provinsi</label>
+          <select id="address-province" name="address.provinceCode" data-province-select>
+            <option value="">Pilih provinsi</option>
+          </select>
+          <p class="toko-field-error" data-error-for="address.provinceCode"></p>
+        </div>
+
+        <div class="toko-field">
+          <label for="address-city">Kabupaten/Kota</label>
+          <select id="address-city" name="address.cityCode" data-city-select disabled>
+            <option value="">Pilih provinsi dahulu</option>
+          </select>
+          <p class="toko-field-error" data-error-for="address.cityCode"></p>
+        </div>
+
+        <div class="toko-field">
+          <label for="address-district">Kecamatan</label>
+          <select id="address-district" name="address.districtCode" data-district-select disabled>
+            <option value="">Pilih kabupaten/kota dahulu</option>
+          </select>
+          <p class="toko-field-error" data-error-for="address.districtCode"></p>
+        </div>
+
+        <div class="toko-field">
+          <label for="address-postal">Kode pos</label>
+          <input type="text" id="address-postal" name="address.postalCode" inputmode="numeric" />
+          <p class="toko-field-error" data-error-for="address.postalCode"></p>
+        </div>
+
+        <div class="toko-field">
+          <label for="address-street">Alamat lengkap</label>
+          <textarea id="address-street" name="address.street" rows="2"></textarea>
+          <p class="toko-field-error" data-error-for="address.street"></p>
+        </div>
+
+        <div class="toko-field" data-pinpoint-fields hidden>
+          <label for="address-lat">Titik lokasi (opsional)</label>
+          <div class="toko-qty">
+            <input type="text" id="address-lat" name="address.latitude" placeholder="Lintang" inputmode="decimal" />
+            <input type="text" id="address-lng" name="address.longitude" placeholder="Bujur" inputmode="decimal" />
+          </div>
+        </div>
+
+        <div class="toko-field">
+          <label for="address-notes">Catatan alamat (opsional)</label>
+          <input type="text" id="address-notes" name="address.notes" />
+        </div>
+
+        <div class="toko-actions">
+          <button type="button" data-step-prev="address">Kembali</button>
+          <button type="button" data-step-next="address">Lanjut ke pengiriman</button>
+        </div>
+      </section>
+
+      <section class="toko-section" data-step="shipping" hidden>
+        <h2>3. Pengiriman</h2>
+        <p class="toko-field-hint" data-shipping-status aria-live="polite"></p>
+        <div data-shipping-options role="radiogroup" aria-label="Metode pengiriman"></div>
+        <p class="toko-field-error" data-error-for="shipping"></p>
+
+        <div data-insurance-field hidden>
+          <label>
+            <input type="checkbox" name="insurance" data-insurance-checkbox />
+            Tambahkan asuransi pengiriman (<span data-insurance-fee></span>)
+          </label>
+        </div>
+
+        <div class="toko-actions">
+          <button type="button" data-step-prev="shipping">Kembali</button>
+          <button type="button" data-step-next="shipping">Lanjut ke pembayaran</button>
+        </div>
+      </section>
+
+      <section class="toko-section" data-step="payment" hidden>
+        <h2>4. Pembayaran</h2>
+        <div data-payment-options role="radiogroup" aria-label="Metode pembayaran"></div>
+        <p class="toko-field-error" data-error-for="payment.method"></p>
+
+        <div class="toko-field">
+          <label for="voucher-code">Kode voucher (opsional)</label>
+          <input type="text" id="voucher-code" name="voucherCode" autocomplete="off" />
+        </div>
+
+        <div class="toko-field">
+          <label for="order-notes">Catatan pesanan (opsional)</label>
+          <textarea id="order-notes" name="notes" rows="2"></textarea>
+        </div>
+
+        <div class="toko-actions">
+          <button type="button" data-step-prev="payment">Kembali</button>
+          <button type="button" data-step-next="payment">Lanjut ke ringkasan</button>
+        </div>
+      </section>
+
+      <section class="toko-section" data-step="review" hidden>
+        <h2>5. Ringkasan &amp; konfirmasi</h2>
+        <div class="toko-summary" aria-live="polite" data-review-summary></div>
+
+        <div class="toko-actions">
+          <button type="button" data-step-prev="review">Kembali</button>
+          <button type="submit" data-submit-order>Buat Pesanan</button>
+        </div>
+      </section>
+    </form>
+  </div>
+
+  <script>
+    import "../../../scripts/checkout";
+  </script>
+</BaseLayout>

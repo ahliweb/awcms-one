@@ -48,9 +48,22 @@
  * (`src/lib/akun-sesi.ts`) finds a session, re-checking on `akun:berubah`
  * (login/logout/profile-edit, this tab) and the native `storage` event
  * (another tab).
+ *
+ * ## Issue #137: the header renders only what the build profile has
+ *
+ * `src/config/profil.ts` is the single source: the primary nav comes from
+ * `getPrimaryNav()` (`src/lib/navigasi-profil.ts` — the profile's static
+ * list plus its dynamic entries), the search form from `SEARCH_SURFACE`
+ * (products for `toko`, news for `berita`, none for `landing`), and the
+ * wishlist/cart/account tools render only when the `toko` group is active
+ * — a `berita` or `landing` deployment has no `/keranjang` to link to. In
+ * the default `toko` profile every condition is true and this file's
+ * rendered HTML is exactly what it was before this issue.
  */
 import type { SiteIdentity } from "../lib/awcms/profil";
-import { PRIMARY_NAV, ROUTES } from "../config/routes";
+import { ROUTES } from "../config/routes";
+import { SEARCH_SURFACE, isGroupActive } from "../config/profil";
+import { getPrimaryNav } from "../lib/navigasi-profil";
 import SearchForm from "./SearchForm.astro";
 
 interface Props {
@@ -58,6 +71,9 @@ interface Props {
 }
 
 const { identity } = Astro.props;
+
+const primaryNav = await getPrimaryNav();
+const tokoAktif = isGroupActive("toko");
 ---
 
 <header class="site-header">
@@ -71,30 +87,36 @@ const { identity } = Astro.props;
       </summary>
 
       <nav aria-label="Navigasi utama">
-        {PRIMARY_NAV.map((item) => (
+        {primaryNav.map((item) => (
           <a href={item.href}>{item.label}</a>
         ))}
       </nav>
     </details>
 
     <div class="site-header-tools">
-      <SearchForm idPrefix="header-search" />
+      {SEARCH_SURFACE && <SearchForm idPrefix="header-search" />}
 
-      <a href={ROUTES.wishlist} class="wishlist-link">
-        <span aria-hidden="true">♡</span>
-        Wishlist
-      </a>
+      {tokoAktif && (
+        <a href={ROUTES.wishlist} class="wishlist-link">
+          <span aria-hidden="true">♡</span>
+          Wishlist
+        </a>
+      )}
 
-      <a href={ROUTES.cart} class="cart-link">
-        <span aria-hidden="true">🛒</span>
-        Keranjang
-        <span class="cart-count" data-cart-count aria-live="polite">0</span>
-      </a>
+      {tokoAktif && (
+        <a href={ROUTES.cart} class="cart-link">
+          <span aria-hidden="true">🛒</span>
+          Keranjang
+          <span class="cart-count" data-cart-count aria-live="polite">0</span>
+        </a>
+      )}
 
-      <a href={ROUTES.login} class="akun-link" data-akun-tautan>
-        <span aria-hidden="true">👤</span>
-        <span data-akun-label>Masuk</span>
-      </a>
+      {tokoAktif && (
+        <a href={ROUTES.login} class="akun-link" data-akun-tautan>
+          <span aria-hidden="true">👤</span>
+          <span data-akun-label>Masuk</span>
+        </a>
+      )}
     </div>
   </div>
 </header>

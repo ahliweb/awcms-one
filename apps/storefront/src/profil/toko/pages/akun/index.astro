@@ -1,0 +1,150 @@
+---
+/**
+ * `/akun` — the signed-in dashboard shell (issue #88, S1). Static markup for
+ * BOTH states (signed out: links to `/masuk`/`/daftar`; signed in: profile
+ * card, "Ubah nama", "Keluar", and placeholder navigation cards for
+ * Pesanan/Alamat/Wishlist/Ulasan/Afiliasi) — `src/scripts/akun.ts` toggles
+ * which one shows, per this app's own "the markup works without deciding
+ * anything only JS could decide" rule (`bacaSesi()` is the only thing that
+ * knows which state applies, and it needs `window`).
+ *
+ * The Pesanan/Alamat/Ulasan/Afiliasi cards link to `ROUTES.accountOrders`
+ * etc. — real hrefs that 404 until S2/S3 build those pages (documented in
+ * this issue's own PR description, not hidden behind a "coming soon" label).
+ * `ROUTES.wishlist` already has a real page (`/wishlist`, issue #30), so
+ * that card is not a placeholder.
+ *
+ * `noindex, follow`.
+ */
+import BaseLayout from "../../../../layouts/BaseLayout.astro";
+import { getSiteIdentity } from "../../../../lib/awcms/profil";
+import { getStoreSettings } from "../../../../lib/awcms/pemasaran";
+import { ROUTES } from "../../../../config/routes";
+import "../../../../styles/toko.css";
+import "../../../../styles/akun.css";
+
+const identity = await getSiteIdentity();
+const storeSettings = await getStoreSettings();
+const whatsappNumber = storeSettings.whatsapp ?? identity.whatsappNumber ?? "";
+
+const NAV_CARDS = [
+  { href: ROUTES.accountOrders, label: "Pesanan" },
+  { href: ROUTES.accountAddresses, label: "Alamat" },
+  { href: ROUTES.wishlist, label: "Wishlist" },
+  { href: ROUTES.accountReviews, label: "Ulasan" },
+  { href: ROUTES.accountAffiliate, label: "Afiliasi" },
+  { href: ROUTES.accountMessages, label: "Pesan" }
+];
+---
+
+<BaseLayout title="Akun Saya" description="Kelola akun Anda." canonicalPath="/akun">
+  <meta slot="head" name="robots" content="noindex, follow" />
+
+  <noscript>
+    <div class="container">
+      <div class="toko-banner toko-banner--info">
+        Halaman akun memerlukan JavaScript aktif di peramban Anda. Anda tetap bisa menghubungi kami
+        langsung melalui WhatsApp:
+        {whatsappNumber && (
+          <a class="toko-wa-fallback" href={`https://wa.me/${whatsappNumber.replace(/\D/g, "")}`}>
+            Hubungi WhatsApp
+          </a>
+        )}
+      </div>
+    </div>
+  </noscript>
+
+  <div
+    class="container"
+    data-akun-root
+    data-whatsapp-number={whatsappNumber}
+    data-store-name={identity.name}
+    data-login-href={ROUTES.login}
+    data-register-href={ROUTES.register}
+  >
+    <div class="page-heading">
+      <h1>Akun Saya</h1>
+    </div>
+
+    <div data-status class="toko-banner toko-banner--info" role="status" aria-live="polite" hidden></div>
+    <div data-submit-error class="toko-banner toko-banner--danger" hidden>
+      <p data-submit-error-message></p>
+      <div class="toko-actions">
+        <a data-wa-fallback-link class="toko-wa-fallback" hidden>Hubungi via WhatsApp</a>
+      </div>
+    </div>
+
+    <div data-guest-view class="akun-card" hidden>
+      <p>Anda belum masuk.</p>
+      <div class="akun-actions">
+        <a href={ROUTES.login}>Masuk</a>
+        <a href={ROUTES.register}>Daftar akun baru</a>
+      </div>
+    </div>
+
+    <div data-account-view hidden>
+      <div class="akun-card" aria-live="polite" data-profile-card>
+        <dl>
+          <div class="akun-profile-row">
+            <dt>Nama</dt>
+            <dd data-profile-name></dd>
+          </div>
+          <div class="akun-profile-row">
+            <dt>E-mail</dt>
+            <dd data-profile-email></dd>
+          </div>
+          <div class="akun-profile-row">
+            <dt>Telepon</dt>
+            <dd data-profile-phone></dd>
+          </div>
+          <div class="akun-profile-row">
+            <dt>Level</dt>
+            <dd data-profile-level></dd>
+          </div>
+        </dl>
+      </div>
+
+      <div class="akun-card">
+        <h2>Ubah Nama</h2>
+        <form data-ubah-nama-form>
+          <div class="toko-field">
+            <label for="akun-nama-baru">Nama lengkap</label>
+            <input type="text" id="akun-nama-baru" name="name" required autocomplete="name" />
+            <p class="toko-field-error" data-error-for="name"></p>
+          </div>
+          <div class="akun-actions">
+            <button type="submit">Simpan</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="akun-card">
+        <h2>Preferensi Promo</h2>
+        <label class="akun-consent-label">
+          <input type="checkbox" data-consent-checkbox />
+          Terima promo lewat e-mail/WhatsApp
+        </label>
+        <p data-consent-status role="status" aria-live="polite" class="akun-countdown"></p>
+      </div>
+
+      <div class="akun-card">
+        <h2>Menu Akun</h2>
+        <div class="akun-nav-grid">
+          {NAV_CARDS.map((card) => (
+            <a class="akun-nav-card" href={card.href}>
+              <span class="akun-nav-card-label">{card.label}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <div class="akun-actions">
+        <button type="button" data-keluar>Keluar</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    import "../../../../scripts/akun";
+  </script>
+</BaseLayout>

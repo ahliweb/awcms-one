@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](seo.md)
 
-<!-- i18n-source-hash: sha256:8c8f63c6db9ae17662dd0abe05fc56d7a43587d89fd62c4404193c033d61cd46 -->
+<!-- i18n-source-hash: sha256:0c398382ae873122379b36266c2d5f94fddd94cf9b6f8ca7533033fb616efff3 -->
 
 # SEO
 
@@ -57,6 +57,22 @@ Penghapusan hanya menyentuh `ref` — setiap parameter kueri lain pada URL (`?q=
 ## Sitemap dan feed
 
 `registerSitemapSource(name, source)` milik `apps/storefront/src/lib/sitemap.ts` mendaftarkan fungsi penghasil-URL bernama; dua belas sumber didaftarkan di seluruh katalog dan berita (`static-routes`, `static-pages`, `berita-front`, `berita-posts`, `berita-video`, `berita-rubrik`, `berita-daerah`, `berita-mitra`, `berita-tag`, `katalog-produk`, `katalog-kategori`, `katalog-product-detail`). `chunkSitemapEntries` membagi hasil gabungan menjadi chunk berisi maksimal 5.000 URL masing-masing; `sitemap-index.xml` mendaftar berkas `/sitemap-{n}.xml` hasilnya. `feed.xml` (produk) dan `berita/feed.xml` + `rubrik/{slug}/feed.xml` per-rubrik (berita, RSS 2.0, `content:encoded`) adalah feed terpisah yang dibangun tangan, bukan sumber sitemap.
+
+## Profil build: permukaan penemuan menyusut mengikuti profil (issue #137)
+
+Sejak issue #137 sebuah build hanya mengirimkan grup halaman yang disusun `SITE_PROFILE`-nya ([`docs/routing.md`](routing.id.md), "Profil build"; [ADR-0018](adr/0018-awcms-one-is-a-template-with-build-profiles-and-an-idempotent-init.id.md) D2/D3), dan setiap permukaan SEO di atas mengikuti [`apps/storefront/src/config/profil.ts`](../apps/storefront/src/config/profil.ts), bukan daftar yang ditulis tetap, sehingga crawler tidak pernah menemukan URL yang tidak dilayani sebuah deployment:
+
+| | `toko` (default) | `berita` | `landing` |
+| --- | --- | --- | --- |
+| Sumber sitemap yang didaftarkan | kedua belas (tidak berubah) | `static-routes`, `static-pages`, `berita-front`, `berita-posts`, `berita-video`, `berita-rubrik`, `berita-daerah`, `berita-mitra`, `berita-tag` | `static-routes`, `static-pages` |
+| Feed yang dibangun | `/feed.xml` (produk), `/berita/feed.xml`, `/rubrik/{slug}/feed.xml` | `/berita/feed.xml`, `/rubrik/{slug}/feed.xml` | tidak ada |
+| `<link rel="alternate" type="application/rss+xml">` di setiap `<head>` | `/feed.xml` (tidak berubah) | `/berita/feed.xml` | tidak ada |
+| `Disallow` `robots.txt` | sebelas path yang tercantum di "Halaman `noindex`" (tidak berubah) | `/newsletter/confirm`, `/newsletter/unsubscribe`, `/api/` | `/api/` |
+| Redirect berita lawas (aturan `pengalihan-aturan.mjs` + peta baris) | aktif | aktif | nonaktif — server tidak melihat `berita.html` di `dist/` dan tidak menerapkan aturan; artefak peta baris tidak dibangun |
+
+Registrasinya sendiri bersyarat di sumbernya: `apps/storefront/src/lib/sitemap-sources.ts` mendaftarkan sumber `berita-*` di dalam `if (isGroupActive("berita"))`, `sitemap-katalog.ts` mendaftarkan sumber `katalog-*` di dalam `if (isGroupActive("toko"))`, dan `getPosts()` maupun `getProducts()` tidak pernah dipanggil untuk grup yang tidak dimiliki build. Dua test menjaga ini: [`apps/storefront/tests/profil-build-smoke.test.ts`](../apps/storefront/tests/profil-build-smoke.test.ts) membangun setiap profil terhadap stub CMS dan memastikan tidak ada rute yang dikecualikan muncul di `dist/` atau di `sitemap-*.xml` mana pun, `robots.txt` persis daftar milik profil, dan hanya feed milik profil yang ada; [`apps/storefront/tests/profil-routes.test.ts`](../apps/storefront/tests/profil-routes.test.ts) memastikan tidak ada halaman terbangun yang menaut ke rute di luar profil dan setiap tautan internal ter-resolve di `dist/`. Keluaran profil `toko` byte-per-byte sama dengan sebelum #137 (diperiksa berkas demi berkas terhadap build pra-#137 saat perubahan ini masuk), sehingga URL kanonis, sitemap, dan feed BjekMart sendiri tidak tersentuh.
+
+Satu koreksi atas matriks ADR-0018 sendiri, diputuskan dari kode: `connect-src` diperlebar ke `PUBLIC_AWCMS_ORIGIN` pada **setiap** profil, bukan hanya `toko`. Beacon pengunjung pihak-pertama (`apps/storefront/src/scripts/analitik.ts`, dipasang `BaseLayout` di setiap halaman) mem-POST ke origin itu dari browser pada setiap profil, dan formulir buletin `berita` juga; CSP `berita`/`landing` tanpa origin itu akan diam-diam menjatuhkan setiap beacon. Yang berbeda adalah apa yang DIBACA penurunan `img-src`/`frame-src` — gambar produk dan pemasaran hanya dengan grup `toko`, media artikel dan origin facade YouTube hanya dengan `berita`.
 
 ## Pengalihan lawas: dua lapis, baris lebih dulu
 

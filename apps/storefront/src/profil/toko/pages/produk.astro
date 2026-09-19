@@ -1,0 +1,111 @@
+---
+/**
+ * `/produk` — the full catalog listing: sidebar category tree with counts,
+ * sort, price range, "in stock only", "flash sale only", pagination.
+ *
+ * Server-rendered here is the FIRST page, unfiltered, `sort=newest` (the
+ * order `getProducts()` already returns) — a real, indexable, working grid
+ * with no JavaScript required at all. `src/scripts/produk-listing.ts` then
+ * takes over: it reads the URL's own query string as the starting state (so
+ * a shared filtered link still renders filtered once JS runs) and replaces
+ * this grid entirely from `/index/produk.json`. The sidebar's category
+ * links are real `<a href="/kategori/...">` throughout — filtering via
+ * `?kategori=` on THIS page is a JS enhancement on top of navigation that
+ * already works without it.
+ *
+ * Sort/price-range/stock/flash-sale controls have no server to submit to on
+ * a static site — without JavaScript they have no effect, which is the
+ * honest limit of `output: "static"` (ADR-0002), not a bug; the category
+ * tree and the unfiltered grid above are what stay fully functional either
+ * way.
+ */
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { getSiteIdentity } from "../../../lib/awcms/profil";
+import { getProducts, getCategories, buildCategoryTree, PRODUK_PAGE_SIZE } from "../../../lib/catalog";
+import CategoryTree from "../../../components/katalog/CategoryTree.astro";
+import ProductCard from "../../../components/katalog/ProductCard.astro";
+import "../../../styles/katalog.css";
+
+const identity = await getSiteIdentity();
+const [products, categories] = await Promise.all([getProducts(), getCategories()]);
+const categoryTree = buildCategoryTree(categories);
+
+const firstPage = products.slice(0, PRODUK_PAGE_SIZE);
+---
+
+<BaseLayout
+  title="Semua Produk"
+  description={`Jelajahi seluruh katalog produk ${identity.name}.`}
+  canonicalPath="/produk"
+>
+  <div class="container">
+    <div class="page-heading">
+      <h1>Semua Produk</h1>
+      <p data-produk-count>{products.length} produk ditemukan</p>
+    </div>
+
+    <div class="listing-layout">
+      <aside class="listing-sidebar" aria-label="Filter produk">
+        <div class="listing-sidebar-section">
+          <h2>Kategori</h2>
+          <CategoryTree nodes={categoryTree} />
+        </div>
+
+        <form data-produk-filters class="listing-sidebar-section">
+          <h2>Urutkan &amp; Saring</h2>
+
+          <div class="filter-field">
+            <label for="filter-sort">Urutkan</label>
+            <select id="filter-sort" data-filter-sort>
+              <option value="newest">Terbaru</option>
+              <option value="price_asc">Harga: Rendah ke Tinggi</option>
+              <option value="price_desc">Harga: Tinggi ke Rendah</option>
+              <option value="name">Nama A-Z</option>
+            </select>
+          </div>
+
+          <div class="filter-field filter-price-range">
+            <div>
+              <label for="filter-price-min">Harga Min</label>
+              <input type="number" id="filter-price-min" data-filter-price-min min="0" step="1000" />
+            </div>
+            <div>
+              <label for="filter-price-max">Harga Maks</label>
+              <input type="number" id="filter-price-max" data-filter-price-max min="0" step="1000" />
+            </div>
+          </div>
+
+          <label class="filter-checkbox">
+            <input type="checkbox" data-filter-stock /> Stok tersedia saja
+          </label>
+
+          <label class="filter-checkbox">
+            <input type="checkbox" data-filter-flash /> Flash sale saja
+          </label>
+
+          <button type="submit" class="button-primary">Terapkan</button>
+        </form>
+      </aside>
+
+      <div>
+        {products.length === 0 ? (
+          <p class="empty-state">Belum ada produk yang dipublikasikan.</p>
+        ) : (
+          <>
+            <ul class="grid-cards" data-produk-grid>
+              {firstPage.map((product) => (
+                <ProductCard product={product} />
+              ))}
+            </ul>
+            <p class="empty-state" data-produk-empty hidden>Tidak ada produk yang sesuai filter.</p>
+            <nav class="pagination" data-produk-pagination aria-label="Halaman produk"></nav>
+          </>
+        )}
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  import "../../../scripts/produk-listing";
+</script>
