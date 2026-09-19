@@ -124,6 +124,16 @@ export type StoreSettings = {
    * not exist yet is somehow on.
    */
   affiliateProgramEnabled?: boolean;
+  /**
+   * Added by issue #115 (contract #106 D5): whether this tenant has a
+   * WhatsApp OTP channel configured at all. `/masuk` reads this at BUILD
+   * time to decide whether to render the "E-mail | WhatsApp" channel choice
+   * at all — `false`/absent means the page renders the e-mail-only step it
+   * always has, exactly the `?? false` convention `affiliateProgramEnabled`
+   * above already sets for an awcms build that predates this field.
+   * `/daftar` never reads this: registration stays e-mail-only regardless.
+   */
+  whatsappOtpEnabled?: boolean;
 };
 
 /** BjekMart's own well-known level names — the same "a real fallback, never an invented placeholder" convention `src/config/site.ts`'s `DEFAULT_IDENTITY` already follows — used only when awcms has not (yet) configured `customerLevels` at all. */

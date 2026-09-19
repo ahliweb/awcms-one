@@ -45,20 +45,22 @@ Every route `apps/storefront` publishes — 41 route files under `apps/storefron
 
 All four: `noindex, follow`, `aria-live="polite"` on quote/status updates, keyboard-reachable, a `<noscript>` fallback plus a JS-ran-but-CMS-down WhatsApp fallback (`apps/storefront/src/lib/wa-fallback.ts`).
 
-## Customer accounts (issue #88 S1, issue #90 S2, issue #93 S3, of #32)
+## Customer accounts (issue #88 S1, issue #90 S2, issue #93/#115 S3, of #32/#33)
 
 | Path | Source | Notes |
 | --- | --- | --- |
-| `/masuk` | `apps/storefront/src/pages/masuk.astro` | E-mail OTP sign-in; `noindex, follow` |
-| `/daftar` | `apps/storefront/src/pages/daftar.astro` | Name + phone + e-mail OTP registration; `noindex, follow` |
-| `/akun` | `apps/storefront/src/pages/akun/index.astro` | Signed-in dashboard shell (profile, "Ubah nama", "Keluar", navigation cards); `noindex, follow` |
+| `/masuk` | `apps/storefront/src/pages/masuk.astro` | E-mail OTP sign-in; issue #115 (contract #106 D5) adds a "Kirim kode lewat: E-mail \| WhatsApp" channel choice, rendered only when the public store settings' `whatsappOtpEnabled` is `true` at build time — WhatsApp asks for a phone (`type="tel"`) instead of an e-mail; `noindex, follow` |
+| `/daftar` | `apps/storefront/src/pages/daftar.astro` | Name + phone + e-mail OTP registration; always e-mail-only (issue #115's own note explains this even when `/masuk`'s WhatsApp channel is on); `noindex, follow` |
+| `/akun` | `apps/storefront/src/pages/akun/index.astro` | Signed-in dashboard shell (profile, "Ubah nama", the marketing-consent checkbox added by issue #115, "Keluar", navigation cards); `noindex, follow` |
 | `/akun/alamat` | `apps/storefront/src/pages/akun/alamat.astro` | List/add/edit/delete/set-default addresses (max 10); the province/city/district selects reuse `apps/storefront/src/lib/wilayah-region-select.ts`, the SAME module `checkout.astro`'s own saved-address autofill uses; `noindex, follow` |
 | `/akun/pesanan` | `apps/storefront/src/pages/akun/pesanan.astro` | Keyset-paginated order list ("Muat lebih banyak"); `noindex, follow` |
 | `/akun/pesanan?kode=` | same file, `?kode=` present | One owned order's detail, reusing `/pesanan`'s own renderer (`apps/storefront/src/lib/pesanan-render.ts`) — NO phone prompt, the session already proves ownership |
 | `/akun/ulasan` | `apps/storefront/src/pages/akun/ulasan.astro` | The account's own product reviews — rating as text + stars, Indonesian moderation status; `noindex, follow` |
 | `/akun/afiliasi` | `apps/storefront/src/pages/akun/afiliasi.astro` | The affiliate program (issue #93, S3 of #32; the CMS/staff side is issue #92): closed explanation when `affiliateProgramEnabled` is `false` at build time, otherwise enrol/referral-link/stats/commissions; `noindex, follow` |
+| `/akun/pesan` | `apps/storefront/src/pages/akun/pesan.astro` | The account's own message inbox with the store (issue #115, S3 of #33, contract #106 D8): keyset-paginated conversation list with an unread badge, a "Pesan baru" form, a thread view; `noindex, follow` (inherited from the `/akun` `Disallow` prefix — no `robots.txt` change needed) |
+| `/akun/pesan?id=` | same file, `?id=` present | One owned conversation's thread — every message, a reply form while `status` is `"open"`, a closed-thread note otherwise |
 
-`ROUTES.accountOrder(kode)` (`/akun/pesanan?kode=`) is a single order's own URL.
+`ROUTES.accountOrder(kode)` (`/akun/pesanan?kode=`) is a single order's own URL; `ROUTES.accountMessage(id)` (`/akun/pesan?id=`) is the same shape for a single conversation.
 
 `?ref={code}` on ANY page (not just `/`) is a captured referral, not a distinct route — `apps/storefront/src/scripts/afiliasi-tangkap.ts`, mounted from `BaseLayout.astro` on every page, stores a valid code and strips ONLY that query parameter via `history.replaceState`; see [`docs/seo.md`](seo.md) for why the canonical link is unaffected by the capture.
 

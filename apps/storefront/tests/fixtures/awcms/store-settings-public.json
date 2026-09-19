@@ -110,6 +110,7 @@
     "expiryHours": 24
   },
   "affiliateProgramEnabled": true,
+  "whatsappOtpEnabled": true,
   "promoSection": {
     "active": true,
     "items": [

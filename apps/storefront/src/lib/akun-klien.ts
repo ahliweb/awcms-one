@@ -22,29 +22,50 @@ import type { Order } from "./toko-klien";
 
 export type OtpPurpose = "login" | "register";
 
+/** `"email"` (default) or `"whatsapp"` — issue #115 (contract: #106 D5). WhatsApp is a LOGIN-only channel: registration always goes out over e-mail, per this issue's own UI copy on `/daftar`. */
+export type OtpChannel = "email" | "whatsapp";
+
 export type MintaKodeInput = {
-  email: string;
+  /** Required when `via` is omitted or `"email"`; irrelevant (and not sent) for `via: "whatsapp"`. */
+  email?: string;
   purpose: OtpPurpose;
   /** Only meaningful, and only sent, for `purpose: "register"` — #86's own "registration data is stored on the OTP row and applied at verify". */
   name?: string;
+  /** For `purpose: "register"` this is the account's own phone; for `via: "whatsapp"` (login only) this is the number the code is sent to. */
   phone?: string;
+  /** Omitted (defaults to `"email"` server-side) unless the shopper picked WhatsApp on `/masuk` — `/daftar` never sends this, matching its own "registration stays e-mail OTP" rule. */
+  via?: OtpChannel;
 };
 
 export type MintaKodeResponse = { sent: true; expiresInSeconds: number };
 
-/** `POST …/account/otp/request` — anonymous. Always `202 {sent:true, expiresInSeconds}` per #86's own anti-enumeration rule; a caller must never infer "this e-mail has/has not an account" from this call's outcome. */
+/**
+ * `POST …/account/otp/request` — anonymous. Always `202 {sent:true,
+ * expiresInSeconds}` per #86's own anti-enumeration rule; a caller must
+ * never infer "this e-mail/phone has/has not an account" from this call's
+ * outcome. `409 CHANNEL_UNAVAILABLE` (an ordinary `TokoApiError`, not
+ * special-cased here) is `via: "whatsapp"`'s own failure mode when the
+ * tenant has not configured a WhatsApp provider — `/masuk`'s own script
+ * decides how to explain it.
+ */
 export function mintaKode(input: MintaKodeInput): Promise<MintaKodeResponse> {
   return kirimPermintaan<MintaKodeResponse>("/account/otp/request", "POST", input);
 }
 
-export type VerifikasiKodeInput = { email: string; code: string; purpose: OtpPurpose };
+export type VerifikasiKodeInput = {
+  /** Required unless `phone` is given — the WhatsApp login path (#115) verifies by phone instead. */
+  email?: string;
+  phone?: string;
+  code: string;
+  purpose: OtpPurpose;
+};
 
 export type VerifikasiKodeResponse = { token: string; expiresAt: string; account: Akun };
 
 /**
  * `POST …/account/otp/verify` — anonymous. `401 OTP_INVALID` (wrong,
  * expired, consumed, or attempts exhausted), `404 ACCOUNT_NOT_FOUND`
- * (`purpose: "login"`, no account for this e-mail), `409
+ * (`purpose: "login"`, no account for this e-mail/phone), `409
  * PHONE_ALREADY_REGISTERED` (`purpose: "register"`, phone bound to another
  * account) — every one of these is a `TokoApiError` a caller switches on by
  * `.code`, per `toko-permintaan.ts`'s own contract. This function does NOT
@@ -90,7 +111,13 @@ export function ambilProfil(): Promise<{ account: Akun }> {
   );
 }
 
-export type UbahProfilInput = { name: string };
+/**
+ * `PATCH …/account/me`'s own body — both fields optional so a caller only
+ * ever sends the ONE field it is changing (`/akun`'s "Ubah Nama" form sends
+ * `name`; its consent toggle, added by issue #115, sends `marketingConsent`
+ * alone) rather than round-tripping the whole profile on every edit.
+ */
+export type UbahProfilInput = { name?: string; marketingConsent?: boolean };
 
 /** `PATCH …/account/me` — bearer. */
 export function ubahProfil(input: UbahProfilInput): Promise<{ account: Akun }> {
@@ -324,5 +351,79 @@ export function ambilKomisiAfiliasi(cursor?: string | null): Promise<AfiliasiKom
   const query = cursor ? `?cursor=${encodeURIComponent(cursor)}` : "";
   return denganPembersihanSesi(() =>
     kirimPermintaan<AfiliasiKomisiHalaman>(`/account/affiliate/commissions${query}`, "GET", undefined, authHeader())
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Issue #115 (S3 of #33, contract #106 D8) — `/akun/pesan`'s own inbox: a
+// signed-in shopper's conversations with the store. Every function below is
+// bearer-only, wrapped in the same `denganPembersihanSesi` every other
+// function in this file already uses.
+// ---------------------------------------------------------------------------
+
+/** One row of `GET …/account/conversations` — #106's own contract shape. `unreadForCustomer` is the count `/akun/pesan`'s list view badges; reading the thread (`ambilPercakapanById`) is what the CMS resets it on. */
+export type Percakapan = {
+  id: string;
+  subject: string;
+  status: "open" | "closed";
+  lastMessageAt: string;
+  unreadForCustomer: number;
+};
+
+export type PercakapanHalaman = { items: Percakapan[]; nextCursor: string | null };
+
+/** One message inside a thread — `sender` is who sent it, never this account's own name/label (both sides render from `sender` alone). */
+export type PesanPercakapan = {
+  id: string;
+  sender: "customer" | "store";
+  body: string;
+  createdAt: string;
+};
+
+/** `GET …/account/conversations?cursor=` — keyset-paginated, newest-activity-first (the CMS's own order), for `/akun/pesan`'s own list view. */
+export function ambilPercakapan(cursor?: string | null): Promise<PercakapanHalaman> {
+  const query = cursor ? `?cursor=${encodeURIComponent(cursor)}` : "";
+  return denganPembersihanSesi(() =>
+    kirimPermintaan<PercakapanHalaman>(`/account/conversations${query}`, "GET", undefined, authHeader())
+  );
+}
+
+export type BuatPercakapanInput = { subject: string; body: string };
+
+/** `POST …/account/conversations` — `201 {conversation, message}`, the new thread and its own first (customer) message. `400 VALIDATION_ERROR` for an empty subject/body or a body over 4000 characters. */
+export function buatPercakapan(
+  input: BuatPercakapanInput
+): Promise<{ conversation: Percakapan; message: PesanPercakapan }> {
+  return denganPembersihanSesi(() =>
+    kirimPermintaan<{ conversation: Percakapan; message: PesanPercakapan }>(
+      "/account/conversations",
+      "POST",
+      input,
+      authHeader()
+    )
+  );
+}
+
+/** `GET …/account/conversations/{id}` — the thread's own header plus every message, oldest first; the CMS marks it read (resets `unreadForCustomer`) as a side effect of this call, per #106's own contract — this function does not do that itself, only reflects the fresh `conversation` the response already carries. `404 NOT_FOUND` for a thread that is not this account's own. */
+export function ambilPercakapanById(id: string): Promise<{ conversation: Percakapan; messages: PesanPercakapan[] }> {
+  return denganPembersihanSesi(() =>
+    kirimPermintaan<{ conversation: Percakapan; messages: PesanPercakapan[] }>(
+      `/account/conversations/${encodeURIComponent(id)}`,
+      "GET",
+      undefined,
+      authHeader()
+    )
+  );
+}
+
+/** `POST …/account/conversations/{id}/messages` — `201 {message}`. `409 CONVERSATION_CLOSED` once a thread is closed (the reply form is hidden then too, but a stale tab can still reach this); `400 VALIDATION_ERROR` over 4000 characters; `429 RATE_LIMITED` on abuse, the same field `toko-permintaan.ts`'s own `TokoApiError.retryAfterSeconds` already decodes. */
+export function kirimPesanPercakapan(id: string, body: string): Promise<{ message: PesanPercakapan }> {
+  return denganPembersihanSesi(() =>
+    kirimPermintaan<{ message: PesanPercakapan }>(
+      `/account/conversations/${encodeURIComponent(id)}/messages`,
+      "POST",
+      { body },
+      authHeader()
+    )
   );
 }
