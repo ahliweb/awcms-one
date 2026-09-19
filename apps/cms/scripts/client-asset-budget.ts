@@ -561,7 +561,18 @@ export const READER_BUDGET_BYTES = 24_000;
 // screen's gateway-session/payment-events panel and "Cek status" action
 // (`/admin/commerce-orders.astro`, CSS/markup growth, no new script asset).
 // Measured on the merged tree: 236,985 B.
-export const APP_BUDGET_BYTES = 237_200;
+//
+// **Raised to 237,800 B after Issue #118** (contract #106 ADR-0017 D10) —
+// `/admin/commerce-settings.astro`'s new "Fitur" section: five checkboxes,
+// one `<form>`, and one submit handler following the SAME
+// `messageBox`/`el`/`sendJson` idiom every other form on that page already
+// uses (no new lifecycle code, no hand-rolled DOM construction — the same
+// discipline the #114/#117 entries above already record). Measured at
+// 237,558 B (up from 236,985 B, +573 B — this section's own markup/script
+// plus its seven new i18n catalogue entries in the shared compiled
+// catalogue), so this constant keeps the same small margin above the
+// measured total this constant's history uses.
+export const APP_BUDGET_BYTES = 237_800;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.

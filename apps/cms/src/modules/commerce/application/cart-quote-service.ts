@@ -26,7 +26,8 @@ import {
   type CartQuoteResult,
   type CartQuoteShippingInput,
   type CartQuoteVariantSnapshot,
-  type CartQuoteVoucherRowLookup
+  type CartQuoteVoucherRowLookup,
+  type CustomerLevel
 } from "../domain/cart-quote";
 import type { ProductStatus } from "../domain/product-status";
 import type { ServiceFormField } from "../domain/service-form-validation";
@@ -52,6 +53,9 @@ type ProductSnapshotRow = {
   name: string;
   sku: string;
   price: string;
+  price_level_2: string | null;
+  price_level_3: string | null;
+  price_level_4: string | null;
   discount_percent: number;
   stock: number;
   status: string;
@@ -94,7 +98,8 @@ async function fetchProductSnapshots(
   if (productIds.length === 0) return map;
 
   const rows = (await tx`
-    SELECT id, slug, name, sku, price, discount_percent, stock, status,
+    SELECT id, slug, name, sku, price, price_level_2, price_level_3,
+           price_level_4, discount_percent, stock, status,
            min_purchase, weight_grams, with_insurance, insurance_required,
            allow_dp, allow_free_shipping, service_form
     FROM awcms_commerce_products
@@ -347,6 +352,8 @@ export async function buildCartQuote(
     voucherCode: string | null;
     insurance: boolean;
     destination?: { districtCode: string } | null;
+    /** Issue #118 — resolved by the CALLER (the storefront quote route from an optional Bearer, `order-directory.ts` from the account it already looked up); `null`/absent for an anonymous or level-1 caller. */
+    customerLevel?: CustomerLevel | null;
   },
   now: Date = new Date(),
   providerSql?: Bun.SQL
@@ -396,6 +403,9 @@ export async function buildCartQuote(
       name: row.name,
       sku: row.sku,
       price: row.price,
+      priceLevel2: row.price_level_2,
+      priceLevel3: row.price_level_3,
+      priceLevel4: row.price_level_4,
       discountPercent: row.discount_percent,
       stock: row.stock,
       status: row.status as ProductStatus,
@@ -476,7 +486,8 @@ export async function buildCartQuote(
     {
       lines: input.lines,
       shipping: input.shipping,
-      insurance: input.insurance
+      insurance: input.insurance,
+      customerLevel: input.customerLevel
     },
     context
   );

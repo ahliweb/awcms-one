@@ -5,6 +5,7 @@ import {
   fetchCampaign
 } from "../../../../../../modules/commerce/application/campaign-directory";
 import { COMMERCE_CAMPAIGNS_ACTIVITY_CODE } from "../../../../../../modules/commerce/domain/commerce-permissions";
+import { requireCommerceFeatureForOwnerRoute } from "../../../../../../modules/commerce/application/commerce-feature-gate";
 
 /**
  * `POST /api/v1/commerce/campaigns/{id}/preview` (Issue #114, contract #106
@@ -23,6 +24,13 @@ export const POST = defineTenantRoute({
   workClass: "interactive",
   authorize: READ_GUARD,
   handler: async ({ tx, tenantId, params }) => {
+    const gate = await requireCommerceFeatureForOwnerRoute(
+      tx,
+      tenantId,
+      "campaigns"
+    );
+    if (gate) return gate;
+
     const campaignId = params.id;
     if (!campaignId) return fail(400, "VALIDATION_ERROR", "id is required.");
 

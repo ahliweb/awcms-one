@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:a72c2d2ccea484426f6316a3fbadc01aaeaa16ad8e661bcc5f1784cdda356874 -->
+<!-- i18n-source-hash: sha256:778e86010f98ce6ad1cad38bda54fe6b136e2058084cf9651aec858b1aafc650 -->
 
 # `commerce`
 
@@ -649,15 +649,14 @@ tabel komisi (afiliasi, pesanan, jumlah, status, dapat difilter berdasarkan
 status, tombol approve/pay/void), i18n `en`+`id`.
 `/admin/commerce-settings` mendapat field tarif komisi.
 
-## Provider eksternal — kontrak saja, kecuali D4, D5, D7, D8, D9, dan payment gateway secara penuh (D2/D3) (epic #33 wave 0 — ADR-0017, issue #106)
+## Provider eksternal — kontrak saja, kecuali D4, D5, D7, D8, D9, D10, dan payment gateway secara penuh (D2/D3) (epic #33 wave 0 — ADR-0017, issue #106)
 
 `openapi/modules/commerce.openapi.yaml` kini juga mendokumentasikan,
-SEBELUM ADA HANDLER APA PUN, sebagian besar permukaan provider-eksternal
-increment 5: pembuatan order POS (D6),
-tiga proyeksi penjualan yang ditampung `reporting` (D7), dan flag
-pengaturan modul plus harga bertingkat saat quote (D10). **D4 (tarif
+SEBELUM ADA HANDLER APA PUN, permukaan provider-eksternal increment 5
+yang masih tersisa: pembuatan order POS (D6). **D4 (tarif
 kurir), D5 (WhatsApp), D7 (laporan penjualan), D8 (kotak masuk), D9
-(kampanye bergerbang consent), dan payment gateway secara PENUH (D2/D3 —
+(kampanye bergerbang consent), D10 (flag Fitur BjekMart + harga bertingkat
+saat quote, issue #118), dan payment gateway secara PENUH (D2/D3 —
 pembuatan sesi, token webhook-endpoint, intake webhook, rekonsiliasi) sudah
 DIIMPLEMENTASIKAN, bukan kontrak-saja; lihat bagian masing-masing di
 bawah.** Setiap satu dari
@@ -675,7 +674,12 @@ KOSONG lagi begitu increment 5 selesai, disiplin yang sama yang sudah
 dibuktikan #86/ADR-0016 untuk akun. Entri pengecualian milik tarif kurir,
 WhatsApp, kotak masuk, kampanye, laporan penjualan, dan payment gateway
 secara penuh (sesi maupun intake webhook/rekonsiliasi) sendiri sudah
-dihapus (#107, #108, #111, #114, #117, #110, #113).
+dihapus (#107, #108, #111, #114, #117, #110, #113) — D10 (#118) tidak
+pernah menambah satu pun: setiap path yang disentuhnya
+(`store-settings/public`, `cart/quote`, `orders`) sudah ada sebelumnya, dan
+satu-satunya permukaan tulis barunya (bagian "Fitur") memakai ulang rute
+generik `module_management` sendiri yang sudah terdokumentasi,
+`PATCH /api/v1/tenant/modules/{moduleKey}/settings`.
 Variabel env RajaOngkir (`COMMERCE_SHIPPING_RATE_PROVIDER`,
 `COMMERCE_RAJAONGKIR_API_KEY`, …), variabel env WhatsApp
 (`COMMERCE_WHATSAPP_PROVIDER`, `COMMERCE_FONNTE_TOKEN`,
@@ -1064,6 +1068,105 @@ replay → 200 no-op, semuanya dengan provider tiruan; sebuah integration
 test terhadap Postgres nyata yang sudah dimigrasikan mencakup jalur penuh
 webhook-`paid`, replay-adalah-no-op, job reconcile dengan provider `log`,
 dan isolasi RLS lintas-tenant milik token webhook-endpoint.
+
+## Toggle fitur & harga bertingkat — SUDAH DIIMPLEMENTASIKAN (Issue #118, epic #33 C9 — kontrak #106/ADR-0017 D10, ADR-0016 D6)
+
+Layar "Fitur" BjekMart adalah `settings.defaults.features` milik `module.ts`
+sendiri — `{pos, inbox, campaigns, gateway, courier}`, setiap flag `true`
+secara default (`DEFAULT_COMMERCE_FEATURES` milik
+`domain/commerce-features.ts`) — dibaca/ditulis lewat layanan
+pengaturan-tenant GENERIK milik `module_management`
+(`fetchModuleSettingsView`/`updateModuleSettings`, `awcms_module_settings`),
+kali pertama `commerce` mendeklarasikan kontrak `settings` sama sekali.
+`resolveCommerceFeatures` me-resolve setiap flag secara INDEPENDEN terhadap
+default (tidak pernah mengasumsikan seluruh objek `features` ada), yang
+membuat flag keenam di masa depan bebas-migrasi untuk tenant yang sudah
+menyimpan baris pengaturan — alasan yang sama yang sudah diberikan merge
+dangkal tingkat-atas milik `module-settings.ts` sendiri untuk modul secara
+keseluruhan, satu tingkat lebih dalam.
+
+**Aturan 409-vs-404** (header `domain/commerce-features.ts` sendiri,
+`requireCommerceFeatureForOwnerRoute`/`requireCommerceFeatureForPublicRoute`
+milik `application/commerce-feature-gate.ts`): fitur nonaktif menjawab
+`409 FEATURE_DISABLED` pada setiap rute pemilik yang TERAUTENTIKASI
+(pemanggil sudah membuktikan siapa dirinya — konfigurasi tenant sendirilah
+yang menghalanginya, dan mereka perlu melihat alasannya) dan `404` netral —
+atau, pada satu-satunya rute yang sudah punya kode "tidak dapat dipakai
+sekarang" tersendiri, `503 GATEWAY_UNAVAILABLE` yang sudah ada — pada
+setiap rute PUBLIK/anonim (tidak pernah `409`, yang akan memberitahu
+prober bahwa sebuah rute memang ada, aturan anti-oracle yang sama yang
+sudah ditegakkan `public-commerce-tenant.ts` untuk tenant yang tak
+ter-resolve).
+
+**Yang di-gate**: kotak masuk (pemilik `/conversations*`, etalase
+`/storefront/account/conversations*`), kampanye (pemilik `/campaigns*`),
+gerbang (pemilik `/webhook-endpoints*`; etalase
+`.../payment-gateway/sessions` dilipat ke 503 yang sudah ada; intake
+PUBLIK `/webhooks/{provider}/{endpointToken}` menjawab 404 netral yang
+sama seperti token tak dikenal), kurir (pemilik
+`GET /shipping/destinations`). `pos` belum punya rute penegak — issue #116
+memasang gate itu di cabangnya sendiri, secara paralel; flag-nya sudah ada
+sekarang agar bentuk dokumen pengaturan tidak berubah lagi saat itu tiba.
+
+**Navigasi admin** menyembunyikan entri sidebar Kotak Masuk/Kampanye begitu
+fiturnya nonaktif (`ModuleNavigationEntry.requiredFeature`, field baru dan
+aditif pada kontrak entri-nav bersama; di-resolve per-request di
+`AdminLayout.astro` dari panggilan `fetchCommerceFeatures` yang SAMA yang
+dipakai rute — `sidebar-menu.ts`/`sidebar-menu-config.ts` milik
+`module_management` sendiri tidak pernah mengimpor `commerce`, menjaga arah
+ketergantungan modul satu-arah yang sudah ada).
+
+**Pengaturan toko publik** (`GET .../store-settings/public`) —
+`toPublicRecord` kini menerima dua parameter lagi, keduanya berdefault
+sehingga setiap titik panggil sebelum-#118 (termasuk literal test) tetap
+kompilasi dan menghitung jawaban yang SAMA seperti sebelumnya:
+`shipping.courierEnabled`/`payment.gatewayEnabled` mendapat suku-DAN
+TAMBAHAN `features.courier`/`features.gateway` (nama tak berubah, disiplin
+masking yang sama), dan dua boolean tingkat-atas baru bergabung —
+`inboxEnabled`/`campaignsEnabled` (flag mentah; keduanya tak punya toggle
+pengaturan-toko sendiri untuk di-AND-kan) dan `whatsappOtpEnabled`
+(`isWhatsappProviderConfigured` baru milik
+`infrastructure/whatsapp-provider-resolver.ts` — BUKAN flag `features.*`,
+karena Issue #108 tak pernah mendapat satu; `masuk.astro`/`daftar.astro`
+milik `apps/storefront` sudah membaca kunci persis ini).
+
+**Formulir pengaturan**: `/admin/commerce-settings` mendapat bagian "Fitur"
+yang menulis lewat rute GENERIK `PATCH /api/v1/tenant/modules/commerce/settings`
+— yaitu `updateModuleSettings`, diaudit di bawah
+`module_management.settings_updated` dengan diff aman berupa nama-kunci
+saja — di-gate pada `module_management.settings.update`, izin yang BERBEDA
+dari `commerce.settings.update` milik layar ini sendiri (perbedaan yang
+sama yang sudah ditarik bagian webhook-endpoints terhadap
+`commerce.webhook_endpoints.update`). Klien selalu mengirim SELURUH objek
+`features`: merge `updateModuleSettings` bersifat dangkal dan tingkat-atas,
+sehingga patch parsial akan diam-diam menonaktifkan setiap flag yang belum
+baru saja disentuh tenant.
+
+**Harga bertingkat** (menutup catatan tertangguh
+[ADR-0016](../../../../../docs/adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md)
+D6 sendiri): `quoteCart` milik `domain/cart-quote.ts` menerima
+`customerLevel` opsional (1–4); `resolveTierPrice` memilih `price_level_{n}`
+untuk baris tanpa flash sale aktif dan tanpa override harga varian, jatuh
+kembali ke `price` saat merchant tak pernah mengatur tingkat itu atau
+levelnya 1/tidak ada — diterapkan SEBELUM `discountPercent` milik
+`computeFinalPrice` sendiri, sehingga aturan diskon yang sama tetap berlaku
+apa pun harga dasar yang menang. `POST .../storefront/cart/quote`
+me-resolve level dari `Authorization: Bearer` OPSIONAL
+(`requireCustomerSession`; hilang/tak valid tak pernah menggagalkan quote —
+itu hanya berarti level 1). `createOrderFromCart` milik
+`application/order-directory.ts` kini mengambil baris pelanggan milik akun
+(saat `accountCustomerId` ada) SEBELUM re-quote internalnya, bukan sesudah,
+sehingga level yang SAMA memberi harga pada quote yang sudah dilihat
+pembeli maupun pesanan yang menjadi hasilnya — quote dan pesanan tak pernah
+bisa berselisih. **Level di-snapshot pada pesanan hanya secara IMPLISIT**,
+lewat harga satuan yang dipanggang ke `order_items.unit_price` saat
+pembuatan; tidak ada kolom `orders.customer_level` terpisah (issue ini tak
+perlu migrasi), dan perubahan level pelanggan di kemudian hari tak pernah
+mengubah harga pesanan lampau secara retroaktif. Edit `level` di layar
+admin pelanggan (`/admin/commerce-customers`, `commerce.customers.update`,
+diaudit) sudah ada sejak Issue #29 — #118 tidak menambah permukaan
+pengeditan pelanggan baru, hanya konsumen sisi quote/pesanan atas kolom
+yang sama itu.
 
 ## Laporan penjualan — SUDAH DIIMPLEMENTASIKAN (Issue #117, epic #33 — kontrak #106/ADR-0017 D7)
 

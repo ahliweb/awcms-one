@@ -9,6 +9,7 @@ import {
   type AdminConversationFilter
 } from "../../../../../modules/commerce/application/conversation-directory";
 import { COMMERCE_CONVERSATIONS_ACTIVITY_CODE } from "../../../../../modules/commerce/domain/commerce-permissions";
+import { requireCommerceFeatureForOwnerRoute } from "../../../../../modules/commerce/application/commerce-feature-gate";
 
 /** `GET /api/v1/commerce/conversations?status=&unread=&cursor=` — staff list, keyset (Issue #111, contract #106 D8). */
 const READ_GUARD = {
@@ -59,13 +60,21 @@ export const GET = defineTenantRoute<Prepared>({
     return { cursor, filter };
   },
   authorize: READ_GUARD,
-  handler: async ({ tx, tenantId, prepared }) =>
-    ok(
+  handler: async ({ tx, tenantId, prepared }) => {
+    const gate = await requireCommerceFeatureForOwnerRoute(
+      tx,
+      tenantId,
+      "inbox"
+    );
+    if (gate) return gate;
+
+    return ok(
       await listConversationsForAdmin(
         tx,
         tenantId,
         prepared.filter,
         prepared.cursor
       )
-    )
+    );
+  }
 });

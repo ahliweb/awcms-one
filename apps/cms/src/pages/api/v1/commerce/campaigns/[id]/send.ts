@@ -10,6 +10,7 @@ import {
 } from "../../../../../../modules/_shared/idempotency";
 import { sendCampaign } from "../../../../../../modules/commerce/application/campaign-directory";
 import { COMMERCE_CAMPAIGNS_ACTIVITY_CODE } from "../../../../../../modules/commerce/domain/commerce-permissions";
+import { requireCommerceFeatureForOwnerRoute } from "../../../../../../modules/commerce/application/commerce-feature-gate";
 
 const IDEMPOTENCY_SCOPE = "commerce_campaign_send";
 
@@ -44,6 +45,13 @@ export const POST = defineTenantRoute<Prepared>({
   },
   authorize: SEND_GUARD,
   handler: async ({ tx, tenantId, auth, params, prepared, locals }) => {
+    const gate = await requireCommerceFeatureForOwnerRoute(
+      tx,
+      tenantId,
+      "campaigns"
+    );
+    if (gate) return gate;
+
     const campaignId = params.id;
     if (!campaignId) return fail(400, "VALIDATION_ERROR", "id is required.");
 

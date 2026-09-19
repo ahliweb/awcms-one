@@ -98,6 +98,17 @@ export type ModuleNavigationEntry = {
   order?: number;
   group?: string;
   requiredPermission?: string;
+  /**
+   * Issue #118 — a `commerce`-style feature toggle (`settings.defaults
+   * .features`) this entry additionally requires, on top of
+   * `requiredPermission`. `moduleKey` is carried alongside `feature` (rather
+   * than assuming the OWNING module) so a future cross-module nav entry
+   * gated on another module's feature flag needs no shape change; today only
+   * `commerce` declares any. Same "a hidden link protects nothing, a real
+   * server-side guard already runs regardless" caveat as
+   * `requiredPermission` — see `sidebar-menu.ts`'s own header.
+   */
+  requiredFeature?: { moduleKey: string; feature: string };
 };
 
 export type ModuleSettingsContract = {

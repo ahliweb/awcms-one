@@ -15,6 +15,7 @@ import {
 import { postStoreReply } from "../../../../../../modules/commerce/application/conversation-directory";
 import { validateConversationMessageInput } from "../../../../../../modules/commerce/domain/conversation-validation";
 import { COMMERCE_CONVERSATIONS_ACTIVITY_CODE } from "../../../../../../modules/commerce/domain/commerce-permissions";
+import { requireCommerceFeatureForOwnerRoute } from "../../../../../../modules/commerce/application/commerce-feature-gate";
 
 const IDEMPOTENCY_SCOPE = "commerce_conversation_reply";
 
@@ -63,6 +64,13 @@ export const POST = defineTenantRoute<Prepared>({
   },
   authorize: UPDATE_GUARD,
   handler: async ({ tx, tenantId, auth, params, prepared, locals }) => {
+    const gate = await requireCommerceFeatureForOwnerRoute(
+      tx,
+      tenantId,
+      "inbox"
+    );
+    if (gate) return gate;
+
     const conversationId = params.id;
     if (!conversationId) {
       return fail(400, "VALIDATION_ERROR", "id is required.");

@@ -17,6 +17,7 @@ import {
   type CreateCampaignInput
 } from "../../../../../modules/commerce/domain/campaign-validation";
 import { COMMERCE_CAMPAIGNS_ACTIVITY_CODE } from "../../../../../modules/commerce/domain/commerce-permissions";
+import { requireCommerceFeatureForOwnerRoute } from "../../../../../modules/commerce/application/commerce-feature-gate";
 
 /** `GET /api/v1/commerce/campaigns?cursor=` — staff list, newest-created first (Issue #114, contract #106 D9). */
 const READ_GUARD = {
@@ -39,8 +40,15 @@ export const GET = defineTenantRoute<ListPrepared>({
     return { cursor };
   },
   authorize: READ_GUARD,
-  handler: async ({ tx, tenantId, prepared }) =>
-    ok(await listCampaigns(tx, tenantId, prepared.cursor))
+  handler: async ({ tx, tenantId, prepared }) => {
+    const gate = await requireCommerceFeatureForOwnerRoute(
+      tx,
+      tenantId,
+      "campaigns"
+    );
+    if (gate) return gate;
+    return ok(await listCampaigns(tx, tenantId, prepared.cursor));
+  }
 });
 
 /** `POST /api/v1/commerce/campaigns` — creates a `draft` campaign. */
@@ -70,6 +78,13 @@ export const POST = defineTenantRoute<CreateCampaignInput>({
   },
   authorize: UPDATE_GUARD,
   handler: async ({ tx, tenantId, auth, prepared, locals }) => {
+    const gate = await requireCommerceFeatureForOwnerRoute(
+      tx,
+      tenantId,
+      "campaigns"
+    );
+    if (gate) return gate;
+
     const campaign = await createCampaign(
       tx,
       tenantId,

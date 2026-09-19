@@ -10,6 +10,7 @@ import {
 } from "../../../../../../modules/commerce/application/conversation-directory";
 import { validateConversationStatusInput } from "../../../../../../modules/commerce/domain/conversation-validation";
 import { COMMERCE_CONVERSATIONS_ACTIVITY_CODE } from "../../../../../../modules/commerce/domain/commerce-permissions";
+import { requireCommerceFeatureForOwnerRoute } from "../../../../../../modules/commerce/application/commerce-feature-gate";
 
 /** `GET /api/v1/commerce/conversations/{id}` — the thread + its messages; marks it read for the STORE (Issue #111). */
 const READ_GUARD = {
@@ -22,6 +23,13 @@ export const GET = defineTenantRoute({
   workClass: "interactive",
   authorize: READ_GUARD,
   handler: async ({ tx, tenantId, params }) => {
+    const gate = await requireCommerceFeatureForOwnerRoute(
+      tx,
+      tenantId,
+      "inbox"
+    );
+    if (gate) return gate;
+
     const conversationId = params.id;
     if (!conversationId) {
       return fail(400, "VALIDATION_ERROR", "id is required.");
@@ -68,6 +76,13 @@ export const PATCH = defineTenantRoute<Prepared>({
   },
   authorize: UPDATE_GUARD,
   handler: async ({ tx, tenantId, auth, params, prepared, locals }) => {
+    const gate = await requireCommerceFeatureForOwnerRoute(
+      tx,
+      tenantId,
+      "inbox"
+    );
+    if (gate) return gate;
+
     const conversationId = params.id;
     if (!conversationId) {
       return fail(400, "VALIDATION_ERROR", "id is required.");

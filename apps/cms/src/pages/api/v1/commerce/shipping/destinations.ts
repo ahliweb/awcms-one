@@ -2,6 +2,7 @@ import { fail, ok } from "../../../../../modules/_shared/api-response";
 import { defineTenantRoute } from "../../../../../modules/_shared/tenant-route";
 import { COMMERCE_SETTINGS_ACTIVITY_CODE } from "../../../../../modules/commerce/domain/commerce-permissions";
 import { resolveShippingRateProvider } from "../../../../../modules/commerce/infrastructure/shipping-rate-provider-resolver";
+import { requireCommerceFeatureForOwnerRoute } from "../../../../../modules/commerce/application/commerce-feature-gate";
 
 /**
  * `GET /api/v1/commerce/shipping/destinations?search=` (Issue #107, contract
@@ -39,7 +40,14 @@ export const GET = defineTenantRoute<{ search: string }>({
     activityCode: COMMERCE_SETTINGS_ACTIVITY_CODE,
     action: "update"
   },
-  handler: async ({ prepared }) => {
+  handler: async ({ tx, tenantId, prepared }) => {
+    const gate = await requireCommerceFeatureForOwnerRoute(
+      tx,
+      tenantId,
+      "courier"
+    );
+    if (gate) return gate;
+
     const provider = resolveShippingRateProvider();
     if (!provider) {
       return fail(

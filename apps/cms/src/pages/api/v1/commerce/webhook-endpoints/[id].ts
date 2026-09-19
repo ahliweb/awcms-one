@@ -3,6 +3,7 @@ import { defineTenantRoute } from "../../../../../modules/_shared/tenant-route";
 import { recordAuditEvent } from "../../../../../modules/logging/application/audit-log";
 import { revokeWebhookEndpoint } from "../../../../../modules/commerce/application/webhook-endpoint-directory";
 import { COMMERCE_WEBHOOK_ENDPOINTS_ACTIVITY_CODE } from "../../../../../modules/commerce/domain/commerce-permissions";
+import { requireCommerceFeatureForOwnerRoute } from "../../../../../modules/commerce/application/commerce-feature-gate";
 
 const UUID_PATTERN =
   /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
@@ -27,6 +28,13 @@ export const DELETE = defineTenantRoute({
     action: "update"
   },
   handler: async ({ tx, tenantId, params, auth }) => {
+    const gate = await requireCommerceFeatureForOwnerRoute(
+      tx,
+      tenantId,
+      "gateway"
+    );
+    if (gate) return gate;
+
     const endpointId = params.id ?? "";
     if (!UUID_PATTERN.test(endpointId)) {
       return fail(404, "NOT_FOUND", "No such webhook endpoint.");

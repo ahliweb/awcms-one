@@ -6,6 +6,10 @@ import {
   STORE_SETTINGS_SCHEMA_VERSION,
   type StoreSettingsData
 } from "../domain/store-settings-validation";
+import {
+  DEFAULT_COMMERCE_FEATURES,
+  type CommerceFeatures
+} from "../domain/commerce-features";
 
 const AUDIT_MODULE_KEY = "commerce";
 const AUDIT_RESOURCE_TYPE = "store_settings";
@@ -318,6 +322,24 @@ export type StoreSettingsPublicRecord = {
    * account/QRIS details.
    */
   affiliateProgramEnabled: boolean;
+  /**
+   * Issue #118 (contract #106 D10) — `commerce`'s own feature toggles,
+   * composed the same way `shipping.courierEnabled`/`payment.gatewayEnabled`
+   * already are: `gatewayEnabled`/`courierEnabled` above ALSO now require
+   * `features.gateway`/`features.courier` (see their own call sites in
+   * `toPublicRecord` below) — this pair, `inboxEnabled` and
+   * `campaignsEnabled`, have no separate "owner turned it on" store-setting
+   * to AND against (unlike gateway/courier, which layer a feature flag on
+   * top of an existing settings toggle), so they are the raw feature flag
+   * verbatim. `whatsappOtpEnabled` is not a `features.*` flag at all — it
+   * depends only on whether a `WhatsappProvider` is actually configured for
+   * this deployment (`isWhatsappProviderConfigured()`), the storefront's own
+   * `masuk.astro`/`daftar.astro` (`ahliweb/awcms-one` `apps/storefront`)
+   * already reading it at this exact top-level key name.
+   */
+  inboxEnabled: boolean;
+  campaignsEnabled: boolean;
+  whatsappOtpEnabled: boolean;
 };
 
 /**
@@ -354,7 +376,11 @@ export async function toPublicRecord(
    */
   courierProviderConfigured: boolean = false,
   /** Issue #110 — `isPaymentGatewayProviderConfigured() !== null`, passed in for the same reason `courierProviderConfigured` is. */
-  gatewayProviderConfigured: boolean = false
+  gatewayProviderConfigured: boolean = false,
+  /** Issue #118 — `resolveCommerceFeatures(...)`'s result, passed in for the same "no live settings lookup inside a pure-ish function" reason every other `*Configured` parameter here is. Defaults to every flag ON (`DEFAULT_COMMERCE_FEATURES`) — a caller that never adopts this parameter (an existing test literal) keeps computing the SAME `gatewayEnabled`/`courierEnabled` it always did. */
+  features: CommerceFeatures = DEFAULT_COMMERCE_FEATURES,
+  /** Issue #118 — `isWhatsappProviderConfigured()`, passed in for the same reason. */
+  whatsappProviderConfigured: boolean = false
 ): Promise<StoreSettingsPublicRecord> {
   const mediaIds = [
     settings.logoMediaObjectId,
@@ -407,7 +433,9 @@ export async function toPublicRecord(
       alternativeServices: settings.shipping.alternativeServices,
       selfPickup: settings.shipping.selfPickup,
       courierEnabled:
-        settings.shipping.courier.enabled && courierProviderConfigured,
+        settings.shipping.courier.enabled &&
+        features.courier &&
+        courierProviderConfigured,
       pinpointEnabled: settings.shipping.pinpointEnabled,
       freeShipping: settings.shipping.freeShipping,
       originCityName: settings.shipping.originCityName,
@@ -426,11 +454,16 @@ export async function toPublicRecord(
       insurance: settings.payment.insurance,
       proofUpload: false,
       gatewayEnabled:
-        settings.payment.gateway.enabled && gatewayProviderConfigured
+        settings.payment.gateway.enabled &&
+        features.gateway &&
+        gatewayProviderConfigured
     },
     orders: settings.orders,
     promoSection: settings.promoSection,
     meta: settings.meta,
-    affiliateProgramEnabled
+    affiliateProgramEnabled,
+    inboxEnabled: features.inbox,
+    campaignsEnabled: features.campaigns,
+    whatsappOtpEnabled: whatsappProviderConfigured
   };
 }

@@ -5349,6 +5349,21 @@ msgstr ""
 msgid "Enable payment gateway"
 msgstr ""
 
+msgid "Fitur"
+msgstr ""
+
+msgid "Turn a whole feature off for this tenant. A disabled feature's owner routes answer 409, its public/storefront routes answer 404, and its admin screen is hidden from the sidebar."
+msgstr ""
+
+msgid "Point of sale (POS)"
+msgstr ""
+
+msgid "Inbox (customer messages)"
+msgstr ""
+
+msgid "Save features"
+msgstr ""
+
 msgid "Payment gateway webhook endpoints"
 msgstr ""
 

@@ -19,6 +19,7 @@ import {
   type ConversationMessageRecord
 } from "../../../../../../../../modules/commerce/application/conversation-directory";
 import { requireCustomerSession } from "../../../../../../../../modules/commerce/application/customer-session-auth";
+import { fetchCommerceFeatures } from "../../../../../../../../modules/commerce/application/commerce-feature-gate";
 import { validateConversationMessageInput } from "../../../../../../../../modules/commerce/domain/conversation-validation";
 import { commercePreflightResponse } from "../../../../../../../../modules/commerce/application/public-commerce-preflight";
 import { withPublicCommerceTenant } from "../../../../../../../../modules/commerce/application/public-commerce-tenant";
@@ -97,6 +98,9 @@ export const POST: APIRoute = async ({
     sql,
     request,
     async (tx, tenant): Promise<Outcome> => {
+      const features = await fetchCommerceFeatures(tx, tenant.tenantId);
+      if (!features.inbox) return { kind: "not_found" };
+
       const authOutcome = await requireCustomerSession(
         request,
         tx,

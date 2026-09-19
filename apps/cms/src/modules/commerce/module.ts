@@ -1,4 +1,5 @@
 import { defineModule } from "../_shared/module-contract";
+import { DEFAULT_COMMERCE_FEATURES } from "./domain/commerce-features";
 import {
   COMMERCE_CATEGORIES_ACTIVITY_CODE,
   COMMERCE_CATEGORY_PERMISSIONS,
@@ -381,6 +382,42 @@ export const commerceModule = defineModule({
       safeInOfflineLan: true
     }
   ],
+  /**
+   * Issue #118 (epic #33 C9, contract #106 D10) — BjekMart's "Features"
+   * screen. `schemaVersion: 1` because `commerce` never declared a
+   * `settings` contract before this issue — there is no PRIOR commerce
+   * settings row anywhere to migrate away from (`updateModuleSettings`'s own
+   * `INSERT ... ON CONFLICT` always writes the descriptor's CURRENT
+   * `schemaVersion`, and no `awcms_module_settings` row with
+   * `module_key = 'commerce'` exists in any deployed database yet — grep the
+   * `sql/9xx` range). The "schemaVersion bump" the issue names is this
+   * declaration's very first version, not a bump away from an earlier one.
+   *
+   * The migration-free upgrade path for a tenant that saved a `commerce`
+   * settings row BEFORE this issue does not exist YET either (same reason);
+   * it is the FUTURE-FACING half of the design that matters here — a later
+   * issue adding a sixth feature flag needs no migration and no schema
+   * bump, because `domain/commerce-features.ts`'s `resolveCommerceFeatures`
+   * resolves each flag independently against
+   * `DEFAULT_COMMERCE_FEATURES`, never assumes the whole `features` object
+   * exists, and `module-settings.ts`'s own shallow top-level merge already
+   * guarantees a tenant who has never opened "Fitur" gets these defaults
+   * verbatim (`mergeEffectiveSettings(defaults, {})` is the empty override
+   * case; `defaults` — including `features` — passes straight through).
+   *
+   * Every flag defaults `true`: shipping this settings document changes
+   * NOTHING for an existing tenant that never opens the new "Fitur"
+   * section (see `commerce-features.ts`'s own header for the full
+   * reasoning). `pos` has no enforcing route/screen YET — issue #116 lands
+   * that gate separately, in parallel, on a different branch; the flag
+   * exists now so the settings document's shape is stable from day one.
+   */
+  settings: {
+    schemaVersion: 1,
+    defaults: {
+      features: { ...DEFAULT_COMMERCE_FEATURES }
+    }
+  },
   // Full CRUD screens: two as of Issue #23 (`src/pages/admin/commerce.astro`,
   // `commerce-categories.astro`), six more added by Issue #26 for the
   // marketing surface — every ACTIVE module must have at least one screen
@@ -472,13 +509,17 @@ export const commerceModule = defineModule({
       labelKey: "admin.layout.nav_commerce_inbox",
       path: "/admin/commerce-inbox",
       order: 14,
-      requiredPermission: "commerce.conversations.read"
+      requiredPermission: "commerce.conversations.read",
+      // Issue #118 — hidden the moment the tenant turns `features.inbox`
+      // off, on top of the existing permission gate.
+      requiredFeature: { moduleKey: "commerce", feature: "inbox" }
     },
     {
       labelKey: "admin.layout.nav_commerce_campaigns",
       path: "/admin/commerce-campaigns",
       order: 15,
-      requiredPermission: "commerce.campaigns.read"
+      requiredPermission: "commerce.campaigns.read",
+      requiredFeature: { moduleKey: "commerce", feature: "campaigns" }
     },
     // Issue #117 — the sales reports screen sits under Commerce but is gated
     // on `reporting.dashboard.read`, the same permission its three read

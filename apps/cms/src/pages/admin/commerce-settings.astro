@@ -25,6 +25,8 @@ import {
   fetchStoreSettings
 } from "../../modules/commerce/application/store-settings-directory";
 import { listWebhookEndpoints } from "../../modules/commerce/application/webhook-endpoint-directory";
+import { fetchCommerceFeatures } from "../../modules/commerce/application/commerce-feature-gate";
+import { MODULE_SETTINGS_UPDATE_GUARD } from "../../modules/module-management/application/module-settings";
 import { resolveRequestOrigin } from "../../lib/http/site-origin";
 
 const ssr = Astro.locals.ssrContext!;
@@ -59,12 +61,26 @@ const screen = await loadAdminScreen({
     const webhookEndpoints = canManageWebhookEndpoints
       ? await listWebhookEndpoints(tx, ssr.tenantId)
       : [];
+    // Issue #118 — the "Fitur" section writes through the GENERIC
+    // `PATCH /api/v1/tenant/modules/{moduleKey}/settings` route
+    // (`module-settings.ts`'s `updateModuleSettings`, per the issue's own
+    // "writing through updateModuleSettings" instruction), which is gated
+    // on `module_management.settings.update` — a DIFFERENT permission from
+    // this screen's own `commerce.settings.update`, on purpose: toggling
+    // whether a whole feature exists is a step up from editing that
+    // feature's own configuration, the same distinction
+    // `canManageWebhookEndpoints` already draws for `webhook_endpoints.update`
+    // vs. `settings.update`.
+    const canManageFeatures = await can(MODULE_SETTINGS_UPDATE_GUARD);
+    const commerceFeatures = await fetchCommerceFeatures(tx, ssr.tenantId);
     return {
       settings,
       affiliateCommissionRate,
       canUpdate,
       canManageWebhookEndpoints,
-      webhookEndpoints
+      webhookEndpoints,
+      canManageFeatures,
+      commerceFeatures
     };
   },
   onError: (error) => {
@@ -88,6 +104,19 @@ const canManageWebhookEndpoints =
   screen.state === "allowed" && screen.data.canManageWebhookEndpoints;
 const webhookEndpoints =
   screen.state === "allowed" ? screen.data.webhookEndpoints : [];
+const canManageFeatures =
+  screen.state === "allowed" && screen.data.canManageFeatures;
+const commerceFeatures =
+  screen.state === "allowed"
+    ? screen.data.commerceFeatures
+    : { pos: true, inbox: true, campaigns: true, gateway: true, courier: true };
+const FEATURE_TOGGLES = [
+  { key: "pos", label: "Point of sale (POS)" },
+  { key: "inbox", label: "Inbox (customer messages)" },
+  { key: "campaigns", label: "Campaigns" },
+  { key: "gateway", label: "Payment gateway" },
+  { key: "courier", label: "Courier rates" }
+] as const;
 /** `${public CMS origin}/api/v1/commerce/webhooks/midtrans/{token}` — the URL shape to paste into Midtrans, per contract #106 D2. The token itself is filled in client-side, once, right after creation. */
 const webhookUrlBase = `${resolveRequestOrigin(Astro.url, Astro.request)}/api/v1/commerce/webhooks/midtrans`;
 
@@ -345,6 +374,46 @@ const COURIER_OPTIONS = [
   }
 
   {
+    canManageFeatures && (
+      <section
+        id="commerce-features-section"
+        class="admin-create-form fade-in-up"
+      >
+        <p class="form-legend">{t("Fitur")}</p>
+        <p class="cell-muted">
+          {t(
+            "Turn a whole feature off for this tenant. A disabled feature's owner routes answer 409, its public/storefront routes answer 404, and its admin screen is hidden from the sidebar."
+          )}
+        </p>
+        <p
+          id="commerce-features-error"
+          class="admin-create-error"
+          role="alert"
+          hidden
+        />
+        <p id="commerce-features-success" class="state-notice" hidden />
+
+        <form id="commerce-features-form">
+          {FEATURE_TOGGLES.map((toggle) => (
+            <label>
+              <input
+                type="checkbox"
+                name={toggle.key}
+                data-feature-toggle={toggle.key}
+                checked={commerceFeatures[toggle.key]}
+              />{" "}
+              {t(toggle.label)}
+            </label>
+          ))}
+          <button type="submit" id="commerce-features-submit">
+            {t("Save features")}
+          </button>
+        </form>
+      </section>
+    )
+  }
+
+  {
     canManageWebhookEndpoints && (
       <section
         id="webhook-endpoints-section"
@@ -594,5 +663,55 @@ const COURIER_OPTIONS = [
       () => sendJson("DELETE", `/api/v1/commerce/webhook-endpoints/${id}`),
       () => "Could not revoke that webhook endpoint. Please try again."
     );
+  });
+
+  // Issue #118 — writes through the GENERIC module-settings route, per the
+  // issue's own "writing through updateModuleSettings" instruction. Always
+  // sends the WHOLE `features` object (every checkbox's current state, not
+  // only the one that changed): `updateModuleSettings`'s own merge is a
+  // shallow, TOP-LEVEL merge (`{...before, ...patch}`) — a patch carrying
+  // only `{features: {pos: false}}` would REPLACE the whole `features` key
+  // and silently turn every OTHER flag off for this tenant. See
+  // `module-settings.ts`'s own header for that contract.
+  const featuresForm = el("commerce-features-form");
+  const featuresError = messageBox("commerce-features-error");
+  const featuresSuccess = messageBox("commerce-features-success");
+
+  featuresForm?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    featuresError.clear();
+    featuresSuccess.clear();
+
+    const submit = el("commerce-features-submit") as HTMLButtonElement | null;
+    const toggles = document.querySelectorAll<HTMLInputElement>(
+      "[data-feature-toggle]"
+    );
+    const features: Record<string, boolean> = {};
+    for (const toggle of toggles) {
+      const key = toggle.dataset.featureToggle;
+      if (key) features[key] = toggle.checked;
+    }
+
+    if (submit) {
+      submit.disabled = true;
+      submit.textContent = "Saving…";
+    }
+
+    const result = await sendJson(
+      "PATCH",
+      "/api/v1/tenant/modules/commerce/settings",
+      { features }
+    );
+
+    if (result.ok) {
+      featuresSuccess.show("Saved.");
+    } else {
+      featuresError.show("Could not save features. Try again.");
+    }
+
+    if (submit) {
+      submit.disabled = false;
+      submit.textContent = "Save features";
+    }
   });
 </script>
