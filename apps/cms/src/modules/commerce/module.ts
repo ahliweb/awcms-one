@@ -2376,12 +2376,18 @@ export const commerceModule = defineModule({
       key: "commerce.orders",
       tableName: "awcms_commerce_orders",
       ownerModuleKey: "commerce",
-      unreachableBySubject: true,
-      subjectColumns: [],
+      // Issue #116 — a POS counter sale stamps the cashier's tenant user id
+      // (`pos_cashier_tenant_user_id`, sql/931), so this table IS reachable
+      // by the tenant_user vocabulary now — for the STAFF member who rang
+      // the sale up, never for the customer (whose reasoning is unchanged
+      // and stays in the rationale below).
+      subjectColumns: [
+        { column: "pos_cashier_tenant_user_id", references: "tenant_user" }
+      ],
       exportable: false,
       erasure: "retain_under_obligation",
       rationale:
-        "An order's own address-snapshot jsonb column carries the same recipient name/phone/street as commerce.customer_addresses, plus the transaction itself is the tenant's fiscal record. Unreachable by this engine's tenant_user/identity/profile vocabulary for the same reason as commerce.customers, AND independently subject to fiscal retention — retain_under_obligation is the honest answer on both grounds."
+        "An order's own address-snapshot jsonb column carries the same recipient name/phone/street as commerce.customer_addresses, plus the transaction itself is the tenant's fiscal record — retain_under_obligation on both grounds. The CUSTOMER stays unreachable by this engine's tenant_user/identity/profile vocabulary for the same reason as commerce.customers. The only subject column is the POS cashier stamp (Issue #116): which staff member took the cash is part of the same fiscal record, so it is retained too, and resolves to nobody once identity_access.identities anonymises."
     },
     {
       key: "commerce.order_items",

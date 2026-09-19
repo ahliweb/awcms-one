@@ -4,71 +4,130 @@
  * searches the existing product catalog, builds a cart, takes cash/QRIS
  * payment, and submits — the order is created ALREADY `paid` (see
  * `application/pos-directory.ts`'s `createPosOrder` header). The history
- * panel below the sale form reuses the same admin order-list summary shape
- * `commerce-orders.astro` renders, filtered `channel = pos`.
+ * tab (`?tab=history`) is an SSR table over the same `listPosOrders` the
+ * API route serves, filtered `channel = pos`, with date/cashier filters and
+ * keyset "next page" links.
+ *
+ * Entry is any-of `commerce.pos.create` (the sale panel) / `commerce.orders
+ * .read` (the history tab) — a staff member holding only the read
+ * permission sees the history and never the sale form, and the endpoints
+ * behind both still decide for themselves. Both panels are hidden behind the
+ * tenant's `pos` feature flag (#118): with POS off the page renders one
+ * notice pointing at the settings screen, matching the routes' own
+ * `409 FEATURE_DISABLED`.
  *
  * The cart/search interaction is the ONE client island this screen ships —
- * kept deliberately small (no framework, no state library: a plain array
- * closed over by the inline `<script>`, the SAME pattern `commerce.astro`'s
- * product form already uses) to stay inside `scripts/client-asset-budget.ts`'s
- * `APP_BUDGET_BYTES` ceiling; see this PR's own changeset/commit message for
- * the measured before/after byte count.
+ * a plain array closed over by the bundled `<script>`, rows built from
+ * `<template>`s via `textContent` (never `innerHTML` with catalog data), the
+ * SAME `sendJsonForData`/`messageBox`/`lockElement` idiom every other admin
+ * form uses (skill `awcms-ui-screen` §6: the import is what makes the script
+ * an external, CSP-permitted bundle). Every string the script shows is
+ * rendered by `t()` into a `data-*` attribute on `#pos-sale` and read from
+ * there, so the client half is translated like the SSR half. Money stays a
+ * `numeric(14,2)` STRING end to end; the on-screen change preview does its
+ * arithmetic in `bigint` cents exactly like `domain/pos-order-validation.ts`
+ * (ADR-0003), and the server's own `change` is what the receipt prints.
  *
- * The receipt panel is printable — `@media print` below hides the layout
- * chrome and the sale form, leaving only `#pos-receipt` (a plain 58mm-ish
- * receipt shape: no images, monospace, `page-break-inside: avoid`).
+ * The receipt is printable — `@media print` below hides everything but
+ * `#pos-receipt` (a plain 58 mm-ish receipt shape: no images, tabular
+ * figures, `page-break-inside: avoid`).
  */
 import AdminLayout from "../../layouts/AdminLayout.astro";
 import "../../styles/admin-screens.css";
 import { loadAdminScreen } from "../../lib/auth/admin-screen";
 import { logAdminPageError } from "../../lib/logging/error-log";
 import { getTranslatorFor } from "../../lib/i18n";
+import { decodeKeysetCursor } from "../../modules/_shared/keyset-pagination";
+import { fetchCommerceFeatures } from "../../modules/commerce/application/commerce-feature-gate";
 import {
-  decodeKeysetCursor,
-  type KeysetCursor
-} from "../../modules/_shared/keyset-pagination";
-import { listPosOrders } from "../../modules/commerce/application/pos-directory";
+  listPosOrders,
+  type PosOrderListPage
+} from "../../modules/commerce/application/pos-directory";
+import { POS_WALK_IN_CUSTOMER_NAME } from "../../modules/commerce/domain/pos-order-validation";
 
 const ssr = Astro.locals.ssrContext!;
-const { t } = getTranslatorFor(Astro.locals.locale);
+const { t, tn } = getTranslatorFor(Astro.locals.locale);
 
+const tab =
+  Astro.url.searchParams.get("tab") === "history" ? "history" : "sale";
 const dateFromParam = Astro.url.searchParams.get("dateFrom") ?? "";
 const dateToParam = Astro.url.searchParams.get("dateTo") ?? "";
 const cashierParam = Astro.url.searchParams.get("cashier") ?? "";
 const cursorParam = Astro.url.searchParams.get("cursor");
 
-let cursor: KeysetCursor | null = null;
-if (cursorParam) {
-  cursor = decodeKeysetCursor(cursorParam);
-}
+const DAY_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
+const UUID_PATTERN =
+  /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+const dateFrom = DAY_PATTERN.test(dateFromParam)
+  ? new Date(`${dateFromParam}T00:00:00.000Z`)
+  : undefined;
+const dateTo = DAY_PATTERN.test(dateToParam)
+  ? new Date(`${dateToParam}T23:59:59.999Z`)
+  : undefined;
+const cashierFilter = UUID_PATTERN.test(cashierParam)
+  ? cashierParam
+  : undefined;
+const cursor = cursorParam ? decodeKeysetCursor(cursorParam) : null;
+
+const SALE_ENTRY = {
+  moduleKey: "commerce",
+  activityCode: "pos",
+  action: "create"
+} as const;
+const HISTORY_ENTRY = {
+  moduleKey: "commerce",
+  activityCode: "orders",
+  action: "read"
+} as const;
 
 const screen = await loadAdminScreen({
   ssr,
   workClass: "interactive",
-  authorize: {
-    moduleKey: "commerce",
-    activityCode: "pos",
-    action: "create"
+  authorize: [SALE_ENTRY, HISTORY_ENTRY],
+  load: async ({ tx, entry }) => {
+    const features = await fetchCommerceFeatures(tx, ssr.tenantId);
+    const canSell = entry[0] === true;
+    const canReadHistory = entry[1] === true;
+    const history: PosOrderListPage | null =
+      features.pos && canReadHistory && tab === "history"
+        ? await listPosOrders(tx, ssr.tenantId, cursor, {
+            dateFrom,
+            dateTo,
+            cashierTenantUserId: cashierFilter
+          })
+        : null;
+    return { posEnabled: features.pos, canSell, canReadHistory, history };
   },
-  load: async ({ tx }) =>
-    listPosOrders(tx, ssr.tenantId, cursor, {
-      dateFrom: dateFromParam ? new Date(dateFromParam) : undefined,
-      dateTo: dateToParam ? new Date(dateToParam) : undefined,
-      cashierTenantUserId: cashierParam || undefined
-    }),
   onError: (error) => {
-    logAdminPageError(
-      "admin/commerce-pos.astro: failed to list POS history",
-      error,
-      { correlationId: Astro.locals.correlationId }
-    );
+    logAdminPageError("admin/commerce-pos.astro: failed to load", error, {
+      correlationId: Astro.locals.correlationId
+    });
   }
 });
 
-const canUse = screen.state !== "denied";
+const allowed = screen.state === "allowed";
+const denied = screen.state === "denied";
 const loadError = screen.state === "error";
-const history = screen.state === "allowed" ? screen.data.items : [];
-const nextCursor = screen.state === "allowed" ? screen.data.nextCursor : null;
+const posEnabled = allowed && screen.data.posEnabled;
+const canSell = allowed && screen.data.canSell;
+const canReadHistory = allowed && screen.data.canReadHistory;
+const history = allowed ? screen.data.history : null;
+const cashierTenantUserId = ssr.tenantUserId;
+const storeName = ssr.display.tenantName?.trim() || "";
+
+function historyHref(next: { cursor?: string | null } = {}): string {
+  const params = new URLSearchParams({ tab: "history" });
+  if (dateFromParam) params.set("dateFrom", dateFromParam);
+  if (dateToParam) params.set("dateTo", dateToParam);
+  if (cashierParam) params.set("cashier", cashierParam);
+  if (next.cursor) params.set("cursor", next.cursor);
+  return `/admin/commerce-pos?${params.toString()}`;
+}
+
+const paymentLabels: Record<string, string> = {
+  cash: t("Cash"),
+  manual_qris: t("QRIS")
+};
 ---
 
 <AdminLayout
@@ -78,182 +137,463 @@ const nextCursor = screen.state === "allowed" ? screen.data.nextCursor : null;
   )}
 >
   {
-    !canUse && (
-      <p class="state-notice fade-in-up" id="commerce-pos-denied">
+    denied && (
+      <p class="state-notice fade-in-up" id="pos-denied" role="status">
         {t("You do not have permission to use the POS screen.")}
       </p>
     )
   }
-
   {
-    canUse && loadError && (
-      <p class="state-notice fade-in-up" id="commerce-pos-load-error">
-        {t("Could not load the POS history. Please try again.")}
+    loadError && (
+      <p class="state-notice fade-in-up" id="pos-error" role="alert">
+        {t(
+          "The POS screen could not be loaded right now. Please try again later."
+        )}
+      </p>
+    )
+  }
+  {
+    allowed && !posEnabled && (
+      <p
+        class="state-notice fade-in-up"
+        id="pos-feature-disabled"
+        role="status"
+      >
+        {t("Point of sale is turned off for this store.")}{" "}
+        <a class="quick-link" href="/admin/commerce-settings">
+          {t("Turn it on under Features in the store settings.")}
+        </a>
       </p>
     )
   }
 
   {
-    canUse && (
-      <section class="fade-in-up" aria-labelledby="pos-sale-heading">
+    allowed && posEnabled && (
+      <nav class="row-actions fade-in-up" aria-label={t("POS sections")}>
+        {canSell && (
+          <a
+            href="/admin/commerce-pos"
+            class={tab === "sale" ? "module-toggle" : ""}
+            aria-current={tab === "sale" ? "page" : undefined}
+          >
+            {t("New sale")}
+          </a>
+        )}
+        {canReadHistory && (
+          <a
+            href={historyHref()}
+            class={tab === "history" ? "module-toggle" : ""}
+            aria-current={tab === "history" ? "page" : undefined}
+          >
+            {t("History")}
+          </a>
+        )}
+      </nav>
+    )
+  }
+
+  {
+    allowed && posEnabled && tab === "sale" && !canSell && (
+      <p class="state-notice fade-in-up" id="pos-sale-denied" role="status">
+        {t(
+          "You can browse POS history but do not have permission to ring up a sale."
+        )}
+      </p>
+    )
+  }
+
+  {
+    allowed && posEnabled && tab === "sale" && canSell && (
+      <section
+        class="fade-in-up pos-sale"
+        id="pos-sale"
+        aria-labelledby="pos-sale-heading"
+        data-walk-in-name={POS_WALK_IN_CUSTOMER_NAME}
+        data-msg-empty-cart={t("Add at least one product to the cart.")}
+        data-msg-cart-changed={t(
+          "One or more items changed price or stock. Search for them again and retry."
+        )}
+        data-msg-insufficient={t("The amount tendered is less than the total.")}
+        data-msg-feature-disabled={t(
+          "Point of sale is turned off for this store."
+        )}
+        data-msg-invalid-phone={t("The customer phone number is not valid.")}
+        data-msg-generic={t("Could not complete the sale. Please try again.")}
+        data-msg-search-failed={t("Product search failed. Please try again.")}
+        data-msg-no-results={t("No products match.")}
+        data-msg-out-of-stock={t("out of stock")}
+        data-msg-cart-empty-row={t("Cart is empty.")}
+        data-label-remove={t("Remove")}
+        data-label-cash={t("Cash")}
+        data-label-qris={t("QRIS")}
+        data-label-walk-in={t("Walk-in customer")}
+        data-busy-label={t("Completing…")}
+      >
         <h2 id="pos-sale-heading">{t("New sale")}</h2>
 
-        <p class="message-box" id="pos-sale-error" hidden />
+        <p id="pos-sale-error" class="admin-create-error" role="alert" hidden />
 
-        <div class="admin-form" id="pos-product-search">
-          <label for="pos-search-input">{t("Product search")}</label>
-          <input
-            type="text"
-            id="pos-search-input"
-            placeholder={t("Search by name or SKU…")}
-            autocomplete="off"
-          />
-          <ul id="pos-search-results" class="pos-search-results" />
+        <div class="pos-layout">
+          <div class="admin-panel pos-panel">
+            <div class="admin-form">
+              <label for="pos-search-input">
+                {t("Product search")}
+                <input
+                  type="search"
+                  id="pos-search-input"
+                  placeholder={t("Search by name or SKU…")}
+                  autocomplete="off"
+                  aria-controls="pos-search-results"
+                />
+              </label>
+              <p class="form-hint">
+                {t(
+                  "Type at least two characters. Pick a product to add one unit; products with variants list each variant."
+                )}
+              </p>
+            </div>
+            <ul
+              id="pos-search-results"
+              class="pos-search-results"
+              aria-live="polite"
+              aria-label={t("Search results")}
+            />
+
+            <div class="data-table-scroll">
+              <table class="data-table" id="pos-cart-table">
+                <caption>{t("Cart")}</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">{t("Product")}</th>
+                    <th scope="col">{t("Unit price")}</th>
+                    <th scope="col">{t("Quantity")}</th>
+                    <th scope="col">{t("Line total")}</th>
+                    <th scope="col">
+                      <span class="visually-hidden">{t("Actions")}</span>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody id="pos-cart-body">
+                  <tr id="pos-cart-empty-row">
+                    <td class="data-table-empty" colspan="5">
+                      {t("Cart is empty.")}
+                    </td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <th scope="row" colspan="3">
+                      {t("Subtotal")}
+                    </th>
+                    <td class="pos-money" id="pos-cart-subtotal" colspan="2">
+                      0.00
+                    </td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+            <p class="form-hint">
+              {t(
+                "The server re-prices every line when the sale is completed; tax from the store settings is added to the total there."
+              )}
+            </p>
+          </div>
+
+          <form class="admin-panel pos-panel admin-form" id="pos-checkout-form">
+            <fieldset>
+              <legend>{t("Customer (optional)")}</legend>
+              <label for="pos-customer-name">
+                {t("Name")}
+                <input
+                  type="text"
+                  id="pos-customer-name"
+                  name="name"
+                  maxlength="200"
+                  placeholder={t("Walk-in customer")}
+                  autocomplete="off"
+                />
+              </label>
+              <label for="pos-customer-phone">
+                {t("Phone")}
+                <input
+                  type="tel"
+                  id="pos-customer-phone"
+                  name="phone"
+                  maxlength="30"
+                  placeholder="08…"
+                  autocomplete="off"
+                />
+              </label>
+              <p class="form-hint">
+                {t(
+                  "Leave the phone blank for a walk-in customer. A phone finds or creates the customer and applies their price level."
+                )}
+              </p>
+            </fieldset>
+
+            <fieldset>
+              <legend>{t("Payment")}</legend>
+              <label for="pos-payment-method">
+                {t("Payment method")}
+                <select id="pos-payment-method" name="method">
+                  <option value="cash" selected>
+                    {t("Cash")}
+                  </option>
+                  <option value="manual_qris">{t("QRIS")}</option>
+                </select>
+              </label>
+              <label for="pos-amount-tendered" id="pos-tendered-field">
+                {t("Amount tendered")}
+                <input
+                  type="text"
+                  id="pos-amount-tendered"
+                  name="amountTendered"
+                  inputmode="decimal"
+                  pattern="\d{1,12}(\.\d{1,2})?"
+                  placeholder="0.00"
+                  autocomplete="off"
+                />
+              </label>
+              <p class="pos-change-line" id="pos-change-line">
+                <span>{t("Change")}</span>
+                <output
+                  class="pos-money"
+                  id="pos-change"
+                  for="pos-amount-tendered"
+                >
+                  0.00
+                </output>
+              </p>
+              <label for="pos-notes">
+                {t("Notes")}
+                <textarea
+                  id="pos-notes"
+                  name="notes"
+                  rows="2"
+                  maxlength="1000"
+                />
+              </label>
+            </fieldset>
+
+            <div class="admin-form-actions">
+              <button type="submit" class="module-toggle" id="pos-submit">
+                {t("Complete sale")}
+              </button>
+              <button type="button" class="btn-inline" id="pos-clear">
+                {t("Clear cart")}
+              </button>
+            </div>
+          </form>
         </div>
 
-        <div class="data-table-scroll">
-          <table class="data-table data-table--stack" id="pos-cart-table">
-            <thead>
-              <tr>
-                <th scope="col">{t("Product")}</th>
-                <th scope="col">{t("Quantity")}</th>
-                <th scope="col">{t("Total")}</th>
-                <th scope="col" />
-              </tr>
-            </thead>
-            <tbody id="pos-cart-body">
-              <tr id="pos-cart-empty-row">
-                <td colspan="4">{t("Cart is empty.")}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <p>
-          <strong>{t("Subtotal")}:</strong>{" "}
-          <span id="pos-cart-subtotal">0.00</span>
-        </p>
-
-        <div class="admin-form">
-          <label for="pos-customer-name">{t("Name")}</label>
-          <input
-            type="text"
-            id="pos-customer-name"
-            placeholder={t("Walk-in customer")}
-          />
-
-          <label for="pos-customer-phone">{t("Phone")}</label>
-          <input type="text" id="pos-customer-phone" placeholder="+62…" />
-
-          <label for="pos-payment-method">{t("Payment method")}</label>
-          <select id="pos-payment-method">
-            <option value="cash">{t("Cash")}</option>
-            <option value="manual_qris">{t("QRIS")}</option>
-          </select>
-
-          <label for="pos-amount-tendered">{t("Amount tendered")}</label>
-          <input
-            type="text"
-            id="pos-amount-tendered"
-            inputmode="decimal"
-            placeholder="0.00"
-          />
-
-          <p>
-            <strong>{t("Change")}:</strong> <span id="pos-change">0.00</span>
-          </p>
-
-          <label for="pos-notes">{t("Notes")}</label>
-          <textarea id="pos-notes" />
-
-          <button type="button" id="pos-submit-btn">
-            {t("Complete sale")}
-          </button>
-        </div>
-
-        <div id="pos-receipt-wrapper" hidden>
-          <pre id="pos-receipt" class="pos-receipt" />
-          <button type="button" id="pos-print-btn">
-            {t("Print receipt")}
-          </button>
-        </div>
+        <section
+          class="admin-panel pos-receipt-wrapper"
+          id="pos-receipt-wrapper"
+          aria-labelledby="pos-receipt-heading"
+          hidden
+        >
+          <div class="row-actions pos-receipt-actions">
+            <h2 id="pos-receipt-heading">{t("Receipt")}</h2>
+            <button type="button" class="module-toggle" id="pos-print">
+              {t("Print receipt")}
+            </button>
+            <button type="button" class="btn-inline" id="pos-new-sale">
+              {t("Start another sale")}
+            </button>
+          </div>
+          <div class="pos-receipt" id="pos-receipt">
+            <p class="pos-receipt-store" id="pos-receipt-store">
+              {storeName}
+            </p>
+            <p class="pos-receipt-meta">
+              <span>{t("Order")}</span> <span data-receipt="orderCode" />
+            </p>
+            <p class="pos-receipt-meta">
+              <span>{t("Date")}</span> <span data-receipt="createdAt" />
+            </p>
+            <p class="pos-receipt-meta">
+              <span>{t("Customer")}</span> <span data-receipt="customer" />
+            </p>
+            <table class="pos-receipt-lines">
+              <thead>
+                <tr>
+                  <th scope="col">{t("Item")}</th>
+                  <th scope="col">{t("Qty")}</th>
+                  <th scope="col">{t("Amount")}</th>
+                </tr>
+              </thead>
+              <tbody data-receipt="lines" />
+            </table>
+            <dl class="pos-receipt-totals">
+              <dt>{t("Subtotal")}</dt>
+              <dd data-receipt="subtotal" />
+              <dt>{t("Tax")}</dt>
+              <dd data-receipt="tax" />
+              <dt>{t("Total")}</dt>
+              <dd data-receipt="total" />
+              <dt>{t("Payment method")}</dt>
+              <dd data-receipt="method" />
+              <dt>{t("Amount tendered")}</dt>
+              <dd data-receipt="amountTendered" />
+              <dt>{t("Change")}</dt>
+              <dd data-receipt="change" />
+            </dl>
+            <p class="pos-receipt-footer">
+              {t("Thank you for your purchase.")}
+            </p>
+          </div>
+        </section>
       </section>
     )
   }
 
   {
-    canUse && !loadError && (
-      <section class="fade-in-up" aria-labelledby="pos-history-heading">
+    allowed && posEnabled && tab === "history" && !canReadHistory && (
+      <p class="state-notice fade-in-up" id="pos-history-denied" role="status">
+        {t("You do not have permission to view POS history.")}
+      </p>
+    )
+  }
+
+  {
+    allowed && posEnabled && tab === "history" && canReadHistory && history && (
+      <section
+        class="fade-in-up"
+        id="pos-history"
+        aria-labelledby="pos-history-heading"
+      >
         <h2 id="pos-history-heading">{t("History")}</h2>
 
-        <form method="get" class="admin-form">
-          <label for="pos-filter-date-from">{t("Date from")}</label>
-          <input
-            type="date"
-            id="pos-filter-date-from"
-            name="dateFrom"
-            value={dateFromParam}
-          />
-
-          <label for="pos-filter-date-to">{t("Date to")}</label>
-          <input
-            type="date"
-            id="pos-filter-date-to"
-            name="dateTo"
-            value={dateToParam}
-          />
-
-          <label for="pos-filter-cashier">{t("Cashier")}</label>
-          <input
-            type="text"
-            id="pos-filter-cashier"
-            name="cashier"
-            value={cashierParam}
-            placeholder={t("Tenant user id")}
-          />
-
-          <button type="submit">{t("Search")}</button>
+        <form
+          class="admin-create-form"
+          method="get"
+          role="search"
+          id="pos-history-filter"
+        >
+          <input type="hidden" name="tab" value="history" />
+          <p class="form-legend">{t("Filter POS sales")}</p>
+          <label for="pos-filter-date-from">
+            {t("Date from")}
+            <input
+              type="date"
+              id="pos-filter-date-from"
+              name="dateFrom"
+              value={dateFromParam}
+            />
+          </label>
+          <label for="pos-filter-date-to">
+            {t("Date to")}
+            <input
+              type="date"
+              id="pos-filter-date-to"
+              name="dateTo"
+              value={dateToParam}
+            />
+          </label>
+          <label for="pos-filter-cashier">
+            {t("Cashier")}
+            <input
+              type="text"
+              id="pos-filter-cashier"
+              name="cashier"
+              value={cashierParam}
+              placeholder={t("Tenant user id")}
+              list="pos-cashier-options"
+            />
+            <datalist id="pos-cashier-options">
+              <option value={cashierTenantUserId}>{t("Me")}</option>
+            </datalist>
+          </label>
+          <button type="submit" class="module-toggle">
+            {t("Apply filter")}
+          </button>
         </form>
 
-        {history.length === 0 ? (
-          <div class="empty-state">
-            <p id="commerce-pos-empty">
-              {t("No POS sales match this filter.")}
-            </p>
-          </div>
-        ) : (
-          <div class="data-table-scroll">
-            <table class="data-table data-table--stack">
-              <thead>
+        <div class="data-table-scroll">
+          <table class="data-table data-table--stack" id="pos-history-table">
+            <caption>
+              {tn(
+                "{count} POS sale",
+                "{count} POS sales",
+                history.items.length,
+                {
+                  count: history.items.length
+                }
+              )}
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">{t("Order code")}</th>
+                <th scope="col">{t("Customer")}</th>
+                <th scope="col">{t("Payment method")}</th>
+                <th scope="col">{t("Status")}</th>
+                <th scope="col">{t("Total")}</th>
+                <th scope="col">{t("Cashier")}</th>
+                <th scope="col">{t("Created")}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {history.items.length === 0 ? (
                 <tr>
-                  <th scope="col">{t("Order code")}</th>
-                  <th scope="col">{t("Customer")}</th>
-                  <th scope="col">{t("Status")}</th>
-                  <th scope="col">{t("Total")}</th>
-                  <th scope="col">{t("Created")}</th>
+                  <td class="data-table-empty" colspan="7">
+                    <div class="empty-state">
+                      <span class="empty-state-icon" aria-hidden="true">
+                        ◇
+                      </span>
+                      <span class="empty-state-title">
+                        {t("No POS sales match this filter.")}
+                      </span>
+                      <span class="empty-state-text">
+                        {t(
+                          "Counter sales completed on the New sale tab appear here."
+                        )}
+                      </span>
+                    </div>
+                  </td>
                 </tr>
-              </thead>
-              <tbody>
-                {history.map((order) => (
-                  <tr>
-                    <th scope="row" data-label="Order code">
+              ) : (
+                history.items.map((order) => (
+                  <tr data-pos-order-row={order.id}>
+                    <th scope="row" data-label={t("Order code")}>
                       {order.orderCode}
                     </th>
-                    <td data-label="Customer">{order.customerName}</td>
-                    <td data-label="Status">{order.status}</td>
-                    <td data-label="Total">{order.total}</td>
-                    <td data-label="Created">{order.createdAt.slice(0, 16)}</td>
+                    <td data-label={t("Customer")}>
+                      {order.customerName}
+                      <span class="cell-muted">
+                        {" "}
+                        {order.customerPhoneMasked}
+                      </span>
+                    </td>
+                    <td data-label={t("Payment method")}>
+                      {paymentLabels[order.paymentMethod] ??
+                        order.paymentMethod}
+                    </td>
+                    <td data-label={t("Status")}>
+                      <span class="status-badge">{order.status}</span>
+                    </td>
+                    <td data-label={t("Total")} class="pos-money">
+                      {order.total}
+                    </td>
+                    <td data-label={t("Cashier")}>
+                      <span class="cell-muted">
+                        {order.cashierTenantUserId === cashierTenantUserId
+                          ? t("Me")
+                          : (order.cashierTenantUserId ?? "—")}
+                      </span>
+                    </td>
+                    <td data-label={t("Created")}>{order.createdAt}</td>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
 
-        {nextCursor && (
-          <p class="page-description">
+        {history.nextCursor && (
+          <p class="row-actions">
             <a
-              href={`?dateFrom=${encodeURIComponent(dateFromParam)}&dateTo=${encodeURIComponent(dateToParam)}&cashier=${encodeURIComponent(cashierParam)}&cursor=${encodeURIComponent(nextCursor)}`}
+              class="module-toggle"
+              href={historyHref({ cursor: history.nextCursor })}
             >
               {t("Next page")}
             </a>
@@ -264,300 +604,596 @@ const nextCursor = screen.state === "allowed" ? screen.data.nextCursor : null;
   }
 </AdminLayout>
 
+<template id="pos-result-template">
+  <li>
+    <button type="button" class="btn-inline pos-result-btn">
+      <span data-field="name"></span>
+      <span class="cell-muted" data-field="sku"></span>
+      <span class="pos-money" data-field="price"></span>
+      <span class="cell-muted" data-field="stock"></span>
+    </button>
+  </li>
+</template>
+
+<template id="pos-cart-row-template">
+  <tr>
+    <td data-field="name"></td>
+    <td class="pos-money" data-field="price"></td>
+    <td>
+      <input
+        type="number"
+        class="pos-qty-input"
+        min="1"
+        max="10000"
+        step="1"
+        inputmode="numeric"
+      />
+    </td>
+    <td class="pos-money" data-field="lineTotal"></td>
+    <td>
+      <button type="button" class="btn-inline btn-inline--danger pos-remove-btn"
+      ></button>
+    </td>
+  </tr>
+</template>
+
 <style>
+  .pos-layout {
+    display: grid;
+    gap: var(--sp-4);
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+    align-items: start;
+  }
+  @media (max-width: 900px) {
+    .pos-layout {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+  .pos-panel {
+    min-width: 0;
+  }
   .pos-search-results {
     list-style: none;
-    margin: 0.5rem 0;
+    margin: 0 0 var(--sp-3);
     padding: 0;
-    max-height: 12rem;
+    max-height: 16rem;
     overflow-y: auto;
   }
-  .pos-search-results li {
-    padding: 0.35rem 0.5rem;
-    cursor: pointer;
-    border-bottom: 1px solid var(--border-color, #ddd);
+  .pos-search-results:empty {
+    display: none;
   }
-  .pos-search-results li:hover {
-    background: var(--hover-bg, #f2f2f2);
+  .pos-search-results li + li {
+    border-top: 1px solid var(--color-border-soft);
+  }
+  .pos-result-btn {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto auto auto;
+    gap: var(--sp-2);
+    width: 100%;
+    text-align: left;
+    align-items: baseline;
+  }
+  .pos-money {
+    font-variant-numeric: tabular-nums;
+    text-align: right;
+    white-space: nowrap;
+  }
+  .pos-qty-input {
+    width: 5.5rem;
+  }
+  .pos-change-line {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--sp-3);
+    margin: 0;
+    font-weight: 600;
+  }
+  .pos-receipt-actions {
+    align-items: center;
+    justify-content: space-between;
   }
   .pos-receipt {
-    font-family: monospace;
-    white-space: pre-wrap;
-    max-width: 320px;
-    border: 1px dashed #999;
-    padding: 1rem;
+    max-width: 22rem;
+    margin: var(--sp-3) auto 0;
+    padding: var(--sp-3);
+    border: 1px dashed var(--color-border-strong);
+    font-variant-numeric: tabular-nums;
+  }
+  .pos-receipt-store {
+    margin: 0 0 var(--sp-2);
+    text-align: center;
+    font-weight: 700;
+  }
+  .pos-receipt-meta {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--sp-2);
+    margin: 0;
+    font-size: var(--fs-sm);
+  }
+  .pos-receipt-lines {
+    width: 100%;
+    margin: var(--sp-2) 0;
+    border-collapse: collapse;
+    font-size: var(--fs-sm);
+  }
+  .pos-receipt-lines th,
+  .pos-receipt-lines td {
+    padding: 2px 0;
+    text-align: left;
+    border-bottom: 1px dotted var(--color-border-soft);
+  }
+  .pos-receipt-lines th:not(:first-child),
+  .pos-receipt-lines td:not(:first-child) {
+    text-align: right;
+  }
+  .pos-receipt-totals {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2px var(--sp-3);
+    margin: 0;
+    font-size: var(--fs-sm);
+  }
+  .pos-receipt-totals dd {
+    margin: 0;
+    text-align: right;
+  }
+  .pos-receipt-footer {
+    margin: var(--sp-2) 0 0;
+    text-align: center;
+    font-size: var(--fs-sm);
   }
 
   @media print {
-    body * {
+    :global(body) :global(*) {
       visibility: hidden;
     }
-    #pos-receipt-wrapper,
-    #pos-receipt-wrapper * {
+    #pos-receipt,
+    #pos-receipt * {
       visibility: visible;
     }
-    #pos-receipt-wrapper {
+    #pos-receipt {
       position: absolute;
       top: 0;
       left: 0;
-    }
-    #pos-print-btn {
-      display: none;
-    }
-    .pos-receipt {
+      width: 58mm;
+      max-width: none;
+      margin: 0;
+      padding: 2mm;
+      border: 0;
       page-break-inside: avoid;
-      border: none;
+      break-inside: avoid;
+      font-family: ui-monospace, "Courier New", monospace;
+      font-size: 10pt;
     }
   }
 </style>
 
 <script>
-  import { sendJsonForData } from "../../lib/ui/admin-form-client";
+  import {
+    lockElement,
+    messageBox,
+    sendJsonForData
+  } from "../../lib/ui/admin-form-client";
 
   type CartLine = {
     productId: string;
     variantId: string | null;
     name: string;
     price: string;
+    stock: number;
     quantity: number;
   };
 
-  type ProductSearchHit = {
+  type ProductVariant = {
+    id: string;
+    name: string;
+    value: string;
+    sku: string | null;
+    price: string | null;
+    stock: number;
+  };
+  type ProductHit = {
     id: string;
     name: string;
     sku: string;
-    price: string;
+    finalPrice: string;
+    stock: number;
+    status: string;
+    variants: ProductVariant[];
   };
 
+  type PosOrderResponse = {
+    orderCode: string;
+    createdAt: string;
+    paymentMethod: string;
+    subtotal: string;
+    tax: string;
+    total: string;
+    change: string | null;
+    amountTendered: string | null;
+    customer: { name: string; phone: string };
+    lines: {
+      name: string;
+      variantName: string | null;
+      quantity: number;
+      lineTotal: string;
+    }[];
+  };
+
+  const root = document.getElementById("pos-sale");
+  const msg = (key: string): string => root?.dataset[key] ?? "";
+
+  // ADR-0003 — `numeric(14,2)` strings in, `bigint` cents inside, strings
+  // out. Mirrors `domain/price-calculation.ts`'s `toCents`/`fromCents`.
+  const MONEY = /^\d{1,12}(\.\d{1,2})?$/;
+  function toCents(value: string): bigint {
+    const [whole, fraction = ""] = value.split(".");
+    return BigInt(whole || "0") * 100n + BigInt((fraction + "00").slice(0, 2));
+  }
+  function fromCents(cents: bigint): string {
+    const negative = cents < 0n;
+    const abs = negative ? -cents : cents;
+    return `${negative ? "-" : ""}${abs / 100n}.${(abs % 100n).toString().padStart(2, "0")}`;
+  }
+
   const cart: CartLine[] = [];
+  const el = <T extends HTMLElement>(id: string) =>
+    document.getElementById(id) as T | null;
+  const saleError = messageBox("pos-sale-error");
+  const cartBody = el<HTMLTableSectionElement>("pos-cart-body");
+  const subtotalEl = el<HTMLElement>("pos-cart-subtotal");
+  const changeEl = el<HTMLElement>("pos-change");
+  const tenderedInput = el<HTMLInputElement>("pos-amount-tendered");
+  const tenderedField = el<HTMLElement>("pos-tendered-field");
+  const changeLine = el<HTMLElement>("pos-change-line");
+  const methodSelect = el<HTMLSelectElement>("pos-payment-method");
+  const searchInput = el<HTMLInputElement>("pos-search-input");
+  const searchResults = el<HTMLUListElement>("pos-search-results");
+  const resultTemplate = el<HTMLTemplateElement>("pos-result-template");
+  const cartRowTemplate = el<HTMLTemplateElement>("pos-cart-row-template");
+  const checkoutForm = el<HTMLFormElement>("pos-checkout-form");
+  const receiptWrapper = el<HTMLElement>("pos-receipt-wrapper");
 
-  function cents(value: string): bigint {
-    const [w, f = ""] = value.split(".");
-    return BigInt(w || "0") * 100n + BigInt((f + "00").slice(0, 2) || "0");
-  }
-  function fromCents(value: bigint): string {
-    const whole = value / 100n;
-    const frac = value % 100n;
-    return `${whole}.${frac.toString().padStart(2, "0")}`;
-  }
-
-  function renderCart(): void {
-    const body = document.getElementById("pos-cart-body");
-    const subtotalEl = document.getElementById("pos-cart-subtotal");
-    if (!body || !subtotalEl) return;
-
-    body.innerHTML = "";
-    if (cart.length === 0) {
-      const row = document.createElement("tr");
-      row.innerHTML = `<td colspan="4">Cart is empty.</td>`;
-      body.appendChild(row);
-      subtotalEl.textContent = "0.00";
-      return;
-    }
-
-    let subtotal = 0n;
-    cart.forEach((line, index) => {
-      const lineTotal = cents(line.price) * BigInt(line.quantity);
-      subtotal += lineTotal;
-      const row = document.createElement("tr");
-      row.innerHTML = `
-        <td data-label="Product">${line.name}</td>
-        <td data-label="Quantity"><input type="number" min="1" value="${line.quantity}" data-idx="${index}" class="pos-qty-input" /></td>
-        <td data-label="Total">${fromCents(lineTotal)}</td>
-        <td><button type="button" data-idx="${index}" class="pos-remove-btn">Remove</button></td>
-      `;
-      body.appendChild(row);
-    });
-    subtotalEl.textContent = fromCents(subtotal);
-
-    body
-      .querySelectorAll<HTMLInputElement>(".pos-qty-input")
-      .forEach((input) => {
-        input.addEventListener("change", () => {
-          const idx = Number(input.dataset.idx);
-          const qty = Math.max(1, Math.trunc(Number(input.value) || 1));
-          if (cart[idx]) cart[idx].quantity = qty;
-          renderCart();
-          recomputeChange();
-        });
-      });
-    body
-      .querySelectorAll<HTMLButtonElement>(".pos-remove-btn")
-      .forEach((btn) => {
-        btn.addEventListener("click", () => {
-          const idx = Number(btn.dataset.idx);
-          cart.splice(idx, 1);
-          renderCart();
-          recomputeChange();
-        });
-      });
-  }
-
-  function cartSubtotal(): bigint {
+  function cartSubtotalCents(): bigint {
     return cart.reduce(
-      (sum, line) => sum + cents(line.price) * BigInt(line.quantity),
+      (sum, line) => sum + toCents(line.price) * BigInt(line.quantity),
       0n
     );
   }
 
+  function setField(scope: ParentNode, name: string, text: string): void {
+    const node = scope.querySelector<HTMLElement>(`[data-field="${name}"]`);
+    if (node) node.textContent = text;
+  }
+
+  function renderCart(): void {
+    if (!cartBody || !subtotalEl || !cartRowTemplate) return;
+    cartBody.textContent = "";
+
+    if (cart.length === 0) {
+      const row = document.createElement("tr");
+      row.id = "pos-cart-empty-row";
+      const cell = document.createElement("td");
+      cell.className = "data-table-empty";
+      cell.colSpan = 5;
+      cell.textContent = msg("msgCartEmptyRow");
+      row.appendChild(cell);
+      cartBody.appendChild(row);
+    }
+
+    cart.forEach((line, index) => {
+      const fragment = cartRowTemplate.content.cloneNode(
+        true
+      ) as DocumentFragment;
+      const row = fragment.querySelector("tr");
+      if (!row) return;
+      setField(row, "name", line.name);
+      setField(row, "price", line.price);
+      setField(
+        row,
+        "lineTotal",
+        fromCents(toCents(line.price) * BigInt(line.quantity))
+      );
+      const qty = row.querySelector<HTMLInputElement>(".pos-qty-input");
+      if (qty) {
+        qty.value = String(line.quantity);
+        qty.max = String(Math.max(1, Math.min(10000, line.stock)));
+        qty.setAttribute("aria-label", line.name);
+        qty.addEventListener("change", () => {
+          const next = Math.trunc(Number(qty.value));
+          cart[index]!.quantity =
+            Number.isFinite(next) && next >= 1 ? Math.min(next, 10000) : 1;
+          renderCart();
+        });
+      }
+      const remove = row.querySelector<HTMLButtonElement>(".pos-remove-btn");
+      if (remove) {
+        remove.textContent = msg("labelRemove");
+        remove.setAttribute(
+          "aria-label",
+          `${msg("labelRemove")}: ${line.name}`
+        );
+        remove.addEventListener("click", () => {
+          cart.splice(index, 1);
+          renderCart();
+        });
+      }
+      cartBody.appendChild(fragment);
+    });
+
+    subtotalEl.textContent = fromCents(cartSubtotalCents());
+    recomputeChange();
+  }
+
   function recomputeChange(): void {
-    const tenderedInput = document.getElementById(
-      "pos-amount-tendered"
-    ) as HTMLInputElement | null;
-    const changeEl = document.getElementById("pos-change");
-    if (!tenderedInput || !changeEl) return;
-    const tendered = tenderedInput.value.trim();
-    if (!tendered) {
+    if (!changeEl) return;
+    const tendered = tenderedInput?.value.trim() ?? "";
+    if (methodSelect?.value !== "cash" || !MONEY.test(tendered)) {
       changeEl.textContent = "0.00";
       return;
     }
-    try {
-      const diff = cents(tendered) - cartSubtotal();
-      changeEl.textContent = diff >= 0n ? fromCents(diff) : "0.00";
-    } catch {
-      changeEl.textContent = "0.00";
+    const diff = toCents(tendered) - cartSubtotalCents();
+    changeEl.textContent = fromCents(diff);
+  }
+
+  function syncPaymentFields(): void {
+    const cash = methodSelect?.value === "cash";
+    if (tenderedField) tenderedField.hidden = !cash;
+    if (changeLine) changeLine.hidden = !cash;
+    if (tenderedInput) tenderedInput.required = cash;
+    recomputeChange();
+  }
+
+  function addToCart(line: Omit<CartLine, "quantity">): void {
+    const existing = cart.find(
+      (entry) =>
+        entry.productId === line.productId && entry.variantId === line.variantId
+    );
+    if (existing) existing.quantity += 1;
+    else cart.push({ ...line, quantity: 1 });
+    renderCart();
+    if (searchResults) searchResults.textContent = "";
+    if (searchInput) {
+      searchInput.value = "";
+      searchInput.focus();
+    }
+  }
+
+  function renderResults(items: ProductHit[]): void {
+    if (!searchResults || !resultTemplate) return;
+    searchResults.textContent = "";
+    const sellable = items.filter((item) => item.status === "active");
+    if (sellable.length === 0) {
+      const li = document.createElement("li");
+      li.className = "cell-muted";
+      li.textContent = msg("msgNoResults");
+      searchResults.appendChild(li);
+      return;
+    }
+    for (const item of sellable.slice(0, 20)) {
+      const options =
+        item.variants.length > 0
+          ? item.variants.map((variant) => ({
+              variantId: variant.id,
+              name: `${item.name} — ${variant.name}: ${variant.value}`,
+              sku: variant.sku ?? item.sku,
+              price: variant.price ?? item.finalPrice,
+              stock: variant.stock
+            }))
+          : [
+              {
+                variantId: null,
+                name: item.name,
+                sku: item.sku,
+                price: item.finalPrice,
+                stock: item.stock
+              }
+            ];
+      for (const option of options) {
+        const fragment = resultTemplate.content.cloneNode(
+          true
+        ) as DocumentFragment;
+        const button =
+          fragment.querySelector<HTMLButtonElement>(".pos-result-btn");
+        if (!button) continue;
+        setField(button, "name", option.name);
+        setField(button, "sku", option.sku);
+        setField(button, "price", option.price);
+        setField(
+          button,
+          "stock",
+          option.stock > 0 ? `×${option.stock}` : msg("msgOutOfStock")
+        );
+        button.disabled = option.stock <= 0;
+        button.addEventListener("click", () =>
+          addToCart({
+            productId: item.id,
+            variantId: option.variantId,
+            name: option.name,
+            price: option.price,
+            stock: option.stock
+          })
+        );
+        searchResults.appendChild(fragment);
+      }
     }
   }
 
   let searchTimer: ReturnType<typeof setTimeout> | null = null;
-  const searchInput = document.getElementById(
-    "pos-search-input"
-  ) as HTMLInputElement | null;
-  const searchResults = document.getElementById("pos-search-results");
-
+  let searchSequence = 0;
   searchInput?.addEventListener("input", () => {
     if (searchTimer) clearTimeout(searchTimer);
     const query = searchInput.value.trim();
-    if (query.length === 0) {
-      if (searchResults) searchResults.innerHTML = "";
+    if (query.length < 2) {
+      if (searchResults) searchResults.textContent = "";
       return;
     }
     searchTimer = setTimeout(async () => {
-      const response = await fetch(
-        `/api/v1/commerce/products?q=${encodeURIComponent(query)}`,
-        { credentials: "same-origin" }
-      );
-      const payload = await response.json().catch(() => null);
-      const items: ProductSearchHit[] = payload?.data?.items ?? [];
-      if (!searchResults) return;
-      searchResults.innerHTML = "";
-      items.slice(0, 20).forEach((item) => {
-        const li = document.createElement("li");
-        li.textContent = `${item.name} (${item.sku}) — ${item.price}`;
-        li.addEventListener("click", () => {
-          cart.push({
-            productId: item.id,
-            variantId: null,
-            name: item.name,
-            price: item.price,
-            quantity: 1
-          });
-          renderCart();
-          recomputeChange();
-          searchResults.innerHTML = "";
-          searchInput.value = "";
-        });
-        searchResults.appendChild(li);
-      });
+      const sequence = ++searchSequence;
+      try {
+        // A read, so the shared mutation helpers do not apply — the same
+        // same-origin GET `commerce-orders.astro` uses for its detail panel.
+        const response = await fetch(
+          `/api/v1/commerce/products?q=${encodeURIComponent(query)}&status=active`,
+          { credentials: "same-origin" }
+        );
+        const payload = (await response.json().catch(() => null)) as {
+          success?: boolean;
+          data?: { items?: ProductHit[] };
+        } | null;
+        if (sequence !== searchSequence) return;
+        if (!response.ok || !payload?.success) {
+          saleError.show(msg("msgSearchFailed"));
+          return;
+        }
+        saleError.clear();
+        renderResults(payload.data?.items ?? []);
+      } catch {
+        if (sequence === searchSequence) saleError.show(msg("msgSearchFailed"));
+      }
     }, 250);
   });
 
-  document
-    .getElementById("pos-amount-tendered")
-    ?.addEventListener("input", recomputeChange);
+  methodSelect?.addEventListener("change", syncPaymentFields);
+  tenderedInput?.addEventListener("input", recomputeChange);
 
-  document
-    .getElementById("pos-submit-btn")
-    ?.addEventListener("click", async () => {
-      const errorBox = document.getElementById("pos-sale-error");
-      if (errorBox) {
-        errorBox.hidden = true;
-        errorBox.textContent = "";
+  el<HTMLButtonElement>("pos-clear")?.addEventListener("click", () => {
+    cart.length = 0;
+    renderCart();
+  });
+
+  function renderReceipt(order: PosOrderResponse): void {
+    if (!receiptWrapper) return;
+    const set = (name: string, text: string) => {
+      const node = receiptWrapper.querySelector<HTMLElement>(
+        `[data-receipt="${name}"]`
+      );
+      if (node) node.textContent = text;
+    };
+    set("orderCode", order.orderCode);
+    set("createdAt", new Date(order.createdAt).toLocaleString());
+    set(
+      "customer",
+      order.customer.name === msg("walkInName")
+        ? msg("labelWalkIn")
+        : `${order.customer.name} ${order.customer.phone}`
+    );
+    set("subtotal", order.subtotal);
+    set("tax", order.tax);
+    set("total", order.total);
+    set(
+      "method",
+      order.paymentMethod === "cash" ? msg("labelCash") : msg("labelQris")
+    );
+    set("amountTendered", order.amountTendered ?? "—");
+    set("change", order.change ?? "—");
+
+    const lines = receiptWrapper.querySelector<HTMLElement>(
+      '[data-receipt="lines"]'
+    );
+    if (lines) {
+      lines.textContent = "";
+      for (const line of order.lines) {
+        const row = document.createElement("tr");
+        const name = document.createElement("td");
+        name.textContent = line.variantName
+          ? `${line.name} — ${line.variantName}`
+          : line.name;
+        const qty = document.createElement("td");
+        qty.textContent = String(line.quantity);
+        const amount = document.createElement("td");
+        amount.textContent = line.lineTotal;
+        row.append(name, qty, amount);
+        lines.appendChild(row);
       }
+    }
+    receiptWrapper.hidden = false;
+    receiptWrapper.scrollIntoView({ block: "start" });
+  }
 
-      if (cart.length === 0) {
-        if (errorBox) {
-          errorBox.hidden = false;
-          errorBox.textContent = "Add at least one product to the cart.";
-        }
-        return;
-      }
+  checkoutForm?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    saleError.clear();
 
-      const name =
-        (
-          document.getElementById("pos-customer-name") as HTMLInputElement
-        )?.value.trim() || null;
-      const phone =
-        (
-          document.getElementById("pos-customer-phone") as HTMLInputElement
-        )?.value.trim() || null;
-      const method =
-        (document.getElementById("pos-payment-method") as HTMLSelectElement)
-          ?.value || "cash";
-      const amountTendered =
-        (
-          document.getElementById("pos-amount-tendered") as HTMLInputElement
-        )?.value.trim() || null;
-      const notes =
-        (
-          document.getElementById("pos-notes") as HTMLTextAreaElement
-        )?.value.trim() || null;
+    if (cart.length === 0) {
+      saleError.show(msg("msgEmptyCart"));
+      return;
+    }
+    const submit = el<HTMLButtonElement>("pos-submit");
+    if (!submit) return;
 
-      const idempotencyKey = crypto.randomUUID();
+    const data = new FormData(checkoutForm);
+    const method = String(data.get("method") ?? "cash");
+    const tendered = String(data.get("amountTendered") ?? "").trim();
+    const name = String(data.get("name") ?? "").trim();
+    const phone = String(data.get("phone") ?? "").trim();
+    const notes = String(data.get("notes") ?? "").trim();
 
-      const { ok, errorCode, data } = await sendJsonForData<{
-        orderCode: string;
-        total: string;
-        change: string | null;
-        lines: { name: string; quantity: number; lineTotal: string }[];
-      }>(
+    if (method === "cash" && !MONEY.test(tendered)) {
+      saleError.show(msg("msgInsufficient"));
+      tenderedInput?.focus();
+      return;
+    }
+
+    // ONE key per attempt-set: a network retry of this same submission
+    // replays the same sale; a fresh submission (after the cart changed)
+    // gets a fresh key. `admin-form-client`'s own idiom.
+    const idempotencyKey = crypto.randomUUID();
+    const unlock = lockElement(submit, msg("busyLabel"));
+    try {
+      const {
+        ok,
+        errorCode,
+        data: order
+      } = await sendJsonForData<PosOrderResponse>(
         "POST",
         "/api/v1/commerce/pos/orders",
         {
-          idempotencyKey,
-          customer: { name, phone },
+          customer: { name: name || null, phone: phone || null },
           lines: cart.map((line) => ({
             productId: line.productId,
             variantId: line.variantId,
             quantity: line.quantity
           })),
-          payment: { method, amountTendered },
-          notes
+          payment: {
+            method,
+            amountTendered: method === "cash" ? tendered : null
+          },
+          notes: notes || null
         },
         { "Idempotency-Key": idempotencyKey }
       );
 
-      if (!ok || !data) {
-        if (errorBox) {
-          errorBox.hidden = false;
-          errorBox.textContent =
-            errorCode === "CART_CHANGED"
-              ? "One or more items changed price/stock. Please re-search and try again."
-              : errorCode === "INSUFFICIENT_TENDER"
-                ? "Amount tendered is less than the total."
-                : "Could not complete the sale. Please try again.";
-        }
+      if (!ok || !order) {
+        const messages: Record<string, string> = {
+          CART_CHANGED: msg("msgCartChanged"),
+          INSUFFICIENT_TENDER: msg("msgInsufficient"),
+          FEATURE_DISABLED: msg("msgFeatureDisabled"),
+          VALIDATION_ERROR: phone ? msg("msgInvalidPhone") : msg("msgGeneric")
+        };
+        saleError.show(messages[errorCode ?? ""] ?? msg("msgGeneric"));
         return;
       }
 
-      const receiptEl = document.getElementById("pos-receipt");
-      const wrapper = document.getElementById("pos-receipt-wrapper");
-      if (receiptEl && wrapper) {
-        const lines = data.lines
-          .map((line) => `${line.quantity}x ${line.name} — ${line.lineTotal}`)
-          .join("\n");
-        receiptEl.textContent = `Order ${data.orderCode}\n${lines}\n\nTotal: ${data.total}\nChange: ${data.change ?? "-"}`;
-        wrapper.hidden = false;
-      }
-
+      renderReceipt(order);
       cart.length = 0;
       renderCart();
-      recomputeChange();
-    });
+      checkoutForm.reset();
+      syncPaymentFields();
+    } finally {
+      unlock();
+    }
+  });
 
-  document.getElementById("pos-print-btn")?.addEventListener("click", () => {
+  el<HTMLButtonElement>("pos-print")?.addEventListener("click", () => {
     window.print();
+  });
+  el<HTMLButtonElement>("pos-new-sale")?.addEventListener("click", () => {
+    if (receiptWrapper) receiptWrapper.hidden = true;
+    searchInput?.focus();
   });
 
   renderCart();
+  syncPaymentFields();
 </script>

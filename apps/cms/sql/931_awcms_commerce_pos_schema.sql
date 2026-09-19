@@ -35,8 +35,15 @@
 ALTER TABLE awcms_commerce_orders
   ADD COLUMN IF NOT EXISTS channel text NOT NULL DEFAULT 'storefront';
 
+-- A plain uuid STAMP, not a foreign key — the same shape every `created_by`/
+-- `deleted_by`/`actor_tenant_user_id` column in this schema uses: an order is
+-- a fiscal record that must outlive the staff account that rang it up, so a
+-- FK here would either block removing that tenant user or force `ON DELETE
+-- SET NULL` to rewrite the tenant's own record of who took the cash. The
+-- stamp resolves through `awcms_tenant_users` while the row exists and to
+-- nobody once identity anonymisation runs (module.ts `subjectData`).
 ALTER TABLE awcms_commerce_orders
-  ADD COLUMN IF NOT EXISTS pos_cashier_tenant_user_id uuid REFERENCES awcms_tenant_users (id);
+  ADD COLUMN IF NOT EXISTS pos_cashier_tenant_user_id uuid;
 
 DO $$
 BEGIN
@@ -74,12 +81,11 @@ ALTER TABLE awcms_commerce_orders
 CREATE INDEX IF NOT EXISTS awcms_commerce_orders_tenant_channel_created_idx
   ON awcms_commerce_orders (tenant_id, channel, created_at DESC);
 
--- `db:fk-index:check`'s own rule: every FK column needs an index it can
--- lead, or be the second column of a `(tenant_id, …)` composite. This one
--- is neither (the composite above leads with `channel`, not this column),
--- so it gets its own — also `listPosOrders`' own `cashier` filter scan.
-CREATE INDEX IF NOT EXISTS awcms_commerce_orders_pos_cashier_idx
-  ON awcms_commerce_orders (pos_cashier_tenant_user_id);
+-- `listPosOrders`' own `cashier` filter scan; partial because every
+-- storefront order leaves the column NULL and would only bloat the index.
+CREATE INDEX IF NOT EXISTS awcms_commerce_orders_tenant_pos_cashier_idx
+  ON awcms_commerce_orders (tenant_id, pos_cashier_tenant_user_id, created_at DESC)
+  WHERE pos_cashier_tenant_user_id IS NOT NULL;
 
 -- No new GRANT is needed here: `awcms_worker` already holds whatever it was
 -- granted on `awcms_commerce_orders`/`_order_items`/`_order_events` by

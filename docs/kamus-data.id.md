@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](kamus-data.md)
 
-<!-- i18n-source-hash: sha256:69bd956c6cd51acb2906e06dfcc5093f53a85cca228c18020339eeec585ae904 -->
+<!-- i18n-source-hash: sha256:5e05329b0c41fbcc92a28757861368f21e4bd4a7b62e98a23e6a00481299ecec -->
 
 # Kamus data
 
@@ -154,6 +154,20 @@ Jumlah baris dibaca untuk ringkasan export saja. `awcms_blog_institutions` belum
 - **`newsletter_subscribers`** — dihitung dan dilaporkan, tidak pernah diimpor: tidak ada catatan persetujuan yang bertahan dari formulir pendaftaran lawas, dan newsletter `apps/cms` sendiri double opt-in (Keputusan 2 epic #46 sendiri). Flag `--with-subscribers` di kemudian hari mungkin menambahkan mereka sebagai `pending` setelah ada keputusan legal, sesuai Scope issue #58 sendiri.
 - **`renungan_rmd`, `tanya_jawab`** — tabel mati di situs live (tidak ada yang menautkannya).
 - **`foto_berita`** (tabel galeri, berbeda dari KOLOM `berita_red.foto_berita`) — fitur galeri tak terpakai yang tidak pernah dirender situs publik.
+
+## Kosakata kasir (point-of-sale) pada `awcms_commerce_orders` (issue #116, kontrak #106 D6)
+
+Kasir BjekMart (penjualan konter `commerce_bj_mart`, yang di tabel `orders`/`transactions` lawas hanya tercatat lewat metode pembayarannya — skema lawas tidak punya kolom channel terpisah, sehingga penjualan tunai hanya dikenali dari jenis pembayarannya) diungkapkan ulang di sini sebagai tiga fakta aditif pada tabel pesanan yang SAMA, bukan buku penjualan kedua:
+
+| Istilah | Di mana | Arti |
+| --- | --- | --- |
+| `channel` | `awcms_commerce_orders.channel` — `text NOT NULL DEFAULT 'storefront'`, `CHECK IN ('storefront','pos')` (`sql/931`); `PublicOrderRecord.channel`/`OrderDetail.channel` di wire | DI MANA pesanan dibuat. `storefront` = setiap checkout anonim/bearer lewat `/api/v1/commerce/storefront/*`, dan setiap pesanan yang dibuat sebelum issue #116 (default kolom); `pos` = penjualan konter yang dibuat staf lewat `POST /api/v1/commerce/pos/orders`. Independen dari `payment_method` (BAGAIMANA ia dibayar) — channel tidak pernah disimpulkan dari metode pembayaran. Jalur baca storefront hanya melayani `channel = 'storefront'`; riwayat POS hanya `channel = 'pos'`; daftar pesanan admin melayani keduanya |
+| `cash` | satu nilai `payment_method` lagi (`CHECK IN ('manual_bank','manual_qris','dp','gateway','cash')`, `sql/931`); `PaymentMethod` di `domain/commerce-order-types.ts`, di-re-export oleh `packages/kontrak` | Uang tunai fisik yang diserahkan di konter. Khusus POS: `domain/pos-order-validation.ts` menerima `cash` dan `manual_qris`; `domain/order-request-validation.ts` milik checkout storefront menolak `cash` (`400 VALIDATION_ERROR`) karena pembeli daring tidak pernah menyerahkan uang tunai ke platform ini. Pesanan `cash` sudah `paid` sejak ia ada |
+| `amountTendered` / `change` | request/response `POST /api/v1/commerce/pos/orders` (tidak disimpan sebagai kolom — aritmetika struk itu sendiri; peristiwa audit `commerce.pos.sale` mencatat keduanya) | Uang tunai yang diserahkan pelanggan dan `amountTendered − total`, keduanya **string** `numeric(14,2)` ([ADR-0003](adr/0003-money-is-numeric-14-2-and-crosses-the-wire-as-a-string.id.md)), dihitung dalam sen `bigint` oleh `computeChange`. Wajib untuk `cash`, `null` untuk `manual_qris`. Pembayaran di bawah total ditolak (`409 INSUFFICIENT_TENDER`), tidak pernah kembalian negatif |
+| `pos_cashier_tenant_user_id` | `awcms_commerce_orders.pos_cashier_tenant_user_id uuid` (`sql/931`); `cashierTenantUserId` di wire | `awcms_tenant_users.id` anggota staf yang mencatat penjualan. Stempel biasa, bukan foreign key (catatan fiskal hidup lebih lama daripada akun staf). `NULL` pada setiap pesanan `storefront`. Sumbu filter `?cashier=` riwayat POS |
+| telepon sentinel walk-in | `POS_WALK_IN_CUSTOMER_SENTINEL_PHONE` = **`+620000000000`** (`domain/phone-normalisation.ts`, satu-satunya sumber kebenaran untuk literalnya); nama barisnya `POS_WALK_IN_CUSTOMER_NAME` = `Pelanggan Walk-in` | Satu baris `awcms_commerce_customers` per tenant tempat setiap penjualan konter tanpa telepon dikaitkan (`customers.phone` `NOT NULL` dan unik per tenant, sehingga sentinel-lah yang membuat baris itu unik). Sudah dinormalisasi E.164 (`+62` + sepuluh nol — tidak ada nomor pelanggan Indonesia yang bagian nasionalnya berawalan `0`), sehingga ia melewati `normalizePhoneNumber` tanpa berubah dan tidak pernah tertukar dengan pelanggan nyata. Ditolak sebagai identitas pelanggan pada checkout storefront, dan tidak pernah dilayani pencarian pelacakan storefront — nilai yang terdokumentasi tidak boleh menjadi kredensial untuk membaca struk walk-in |
+| `commerce.pos.create` | `awcms_permissions` (`sql/932`); `COMMERCE_POS_PERMISSIONS.create` | SATU-SATUNYA jalur pembuatan pesanan yang di-gate izin di modul ini. Riwayat POS memakai ulang `commerce.orders.read` |
+| `commerce.pos.sale` | `awcms_audit_events.action` | Peristiwa audit yang ditulis setiap penjualan konter (kode pesanan, total, metode, dibayar, kembalian, flag walk-in, jumlah baris — tidak pernah nama atau telepon pelanggan) |
 
 ## Kolom dan tabel yang ditunda — tidak di-porting di increment ini
 

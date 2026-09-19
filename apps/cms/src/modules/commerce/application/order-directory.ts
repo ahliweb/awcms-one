@@ -61,7 +61,11 @@ import type {
   ResolvedMediaReferenceDTO
 } from "../../_shared/ports/media-library-port";
 import { normalizeMoney } from "../domain/price-calculation";
-import { normalizePhoneNumber, maskPhone } from "../domain/phone-normalisation";
+import {
+  normalizePhoneNumber,
+  maskPhone,
+  POS_WALK_IN_CUSTOMER_SENTINEL_PHONE
+} from "../domain/phone-normalisation";
 import { generateOrderCode } from "../domain/order-code";
 import {
   applyOrderStatusTransition,
@@ -604,10 +608,23 @@ export async function toPublicOrderRecord(
 }
 
 /**
+ * Issue #116 (contract #106 D6) — the storefront surface serves STOREFRONT
+ * orders only. A `channel = 'pos'` counter sale never appears through the
+ * anonymous tracking lookup or the bearer account history: the walk-in
+ * customer's sentinel phone is documented (`docs/kamus-data.md`), so a
+ * tracking lookup that honoured it would let anyone holding an order code
+ * read every walk-in receipt of the tenant; and a POS receipt is the
+ * cashier's record (`GET /api/v1/commerce/pos/orders`), not a storefront
+ * order a shopper can cancel, confirm payment on, or review.
+ */
+const STOREFRONT_CHANNEL = "storefront";
+
+/**
  * The tracking lookup — `orderCode` + `phone` is the credential, and the
  * check happens INSIDE this query (not merely in the route's `prepare`):
- * unknown code, wrong phone, and another tenant's order all fall through to
- * the same `null`, which the route maps to one neutral `404`.
+ * unknown code, wrong phone, a POS counter sale, and another tenant's order
+ * all fall through to the same `null`, which the route maps to one neutral
+ * `404`.
  */
 export async function fetchOrderForTracking(
   tx: Bun.SQL,
@@ -619,7 +636,13 @@ export async function fetchOrderForTracking(
   const detail = await fetchOrderDetailByWhere(tx, tenantId, mediaPort, {
     orderCode
   });
-  if (!detail || detail.customer.phone !== phone) return null;
+  if (
+    !detail ||
+    detail.customer.phone !== phone ||
+    detail.channel !== STOREFRONT_CHANNEL
+  ) {
+    return null;
+  }
   return toPublicOrderRecord(tx, tenantId, detail);
 }
 
@@ -784,6 +807,12 @@ export async function createOrderFromCart(
 
   const phoneResult = normalizePhoneNumber(input.customer.phone);
   if (!phoneResult.valid) return { kind: "invalid_phone" };
+  // Issue #116 — the POS walk-in sentinel is not a subscriber number; a
+  // storefront guest "using" it would attach their order to the tenant's
+  // walk-in row. Refused exactly like a malformed phone.
+  if (phoneResult.value === POS_WALK_IN_CUSTOMER_SENTINEL_PHONE) {
+    return { kind: "invalid_phone" };
+  }
   const normalizedPhone = phoneResult.value;
 
   // Issue #118 — the level lookup happens BEFORE the re-quote (not after,
@@ -1735,6 +1764,7 @@ export async function listOrdersForAccount(
     FROM awcms_commerce_orders o
     WHERE o.tenant_id = ${tenantId}
       AND o.customer_id = ${customerId}
+      AND o.channel = ${STOREFRONT_CHANNEL}
       AND o.deleted_at IS NULL
       AND o.created_at >= ${historyFrom}
       AND (
@@ -1776,6 +1806,7 @@ export async function fetchOrderForAccount(
     WHERE tenant_id = ${tenantId}
       AND order_code = ${orderCode}
       AND customer_id = ${customerId}
+      AND channel = ${STOREFRONT_CHANNEL}
       AND created_at >= ${historyFrom}
       AND deleted_at IS NULL
   `) as { id: string }[];

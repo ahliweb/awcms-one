@@ -26,7 +26,10 @@
  * The QUOTE/STOCK path IS reused, though — `buildCartQuote` (the same
  * function `createOrderFromCart` calls) re-prices every line and re-checks
  * stock inside this transaction, so a cashier can never ring up a price the
- * catalog no longer honours or a quantity the shelf no longer has.
+ * catalog no longer honours or a quantity the shelf no longer has. A
+ * phone-identified customer's `level` is passed through as `customerLevel`
+ * (#118 tiered pricing) — a level-2 partner buying at the counter pays the
+ * same `price_level_2` they would online.
  *
  * ## Walk-in customer (contract #106 D6)
  *
@@ -36,18 +39,21 @@
  * `findOrCreateCustomerByPhone` a phone-identified sale uses, with
  * `domain/phone-normalisation.ts`'s documented
  * `POS_WALK_IN_CUSTOMER_SENTINEL_PHONE` — so every tenant gets exactly ONE
- * walk-in row, reused (never re-created) across every no-phone sale.
+ * walk-in row, reused (never re-created) across every no-phone sale. A
+ * phone that IS given but does not normalise is a `400` (`invalid_phone`),
+ * never a silent fall-back to the walk-in row — the cashier typed something
+ * and must be told it was wrong.
  *
  * ## Idempotency
  *
  * Same shared `awcms_idempotency_keys` store every other high-risk mutation
  * uses (`_shared/idempotency.ts`), scoped `"commerce.pos.create"` —
- * `(tenantId, scope, idempotencyKey)`. Unlike `createOrderFromCart`'s
- * anonymous scope, this one is also bound to the ACTING tenant user (part of
- * the hashed payload) — see `awcms-idempotency` skill's "bind the hash to
- * the resource id" rule: two different cashiers must never be able to
- * collide on the same `Idempotency-Key` value and have the second replay the
- * first's sale.
+ * `(tenantId, scope, idempotencyKey)`. Same key + same payload replays the
+ * stored 201 body; same key + different payload is
+ * `IdempotencyPayloadMismatchError` (409 `IDEMPOTENCY_CONFLICT`). The acting
+ * tenant user is part of the hashed payload (`awcms-idempotency` skill's
+ * "bind the hash to the resource" rule): two cashiers who happen to reuse
+ * one key value can never have the second replay the first's sale.
  */
 import { recordAuditEvent } from "../../logging/application/audit-log";
 import { appendDomainEvent } from "../../domain-event-runtime/application/append-domain-event";
@@ -70,8 +76,12 @@ import {
 } from "../domain/phone-normalisation";
 import { generateOrderCode } from "../domain/order-code";
 import type { OrderStatus } from "../domain/order-status";
-import type { CreatePosOrderInput } from "../domain/pos-order-validation";
-import { computeChange } from "../domain/pos-order-validation";
+import type { CustomerLevel } from "../domain/cart-quote";
+import {
+  computeChange,
+  POS_WALK_IN_CUSTOMER_NAME,
+  type CreatePosOrderInput
+} from "../domain/pos-order-validation";
 import {
   COMMERCE_EVENT_VERSION,
   COMMERCE_ORDER_AGGREGATE_TYPE,
@@ -82,6 +92,7 @@ import { findOrCreateCustomerByPhone } from "./customer-directory";
 import {
   applyPosOrderPaidTransition,
   fetchOrderDetailForAdmin,
+  IdempotencyPayloadMismatchError,
   toAdminOrderRecord,
   type OrderAdminDetailRecord,
   type OrderAdminSummary
@@ -92,6 +103,8 @@ const AUDIT_MODULE_KEY = "commerce";
 const AUDIT_RESOURCE_TYPE = "order";
 const PRODUCER_MODULE = "commerce";
 const IDEMPOTENCY_SCOPE = "commerce.pos.create";
+/** The audit action every counter sale records (skill `awcms-audit-log`: a posted transaction MUST be audited). */
+export const POS_SALE_AUDIT_ACTION = "commerce.pos.sale";
 const POSTGRES_UNIQUE_VIOLATION = "23505";
 const ORDER_CODE_CONSTRAINT = "awcms_commerce_orders_tenant_code_key";
 const MAX_ORDER_CODE_ATTEMPTS = 5;
@@ -109,20 +122,31 @@ export class PosCartChangedError extends Error {
   }
 }
 
+/**
+ * The 201 body — the admin order record (unmasked phone: this is a staff
+ * context) plus the computed `change` (`numeric(14,2)` string for cash,
+ * `null` for QRIS), the `amountTendered` echoed back for the receipt, and
+ * the cashier's own tenant user id.
+ */
+export type PosOrderRecord = OrderAdminDetailRecord & {
+  change: string | null;
+  amountTendered: string | null;
+  cashierTenantUserId: string;
+};
+
 export type CreatePosOrderOutcome =
-  | {
-      kind: "replayed";
-      order: OrderAdminDetailRecord & { change: string | null };
-    }
-  | {
-      kind: "created";
-      order: OrderAdminDetailRecord & { change: string | null };
-    };
+  | { kind: "replayed"; order: PosOrderRecord }
+  | { kind: "created"; order: PosOrderRecord }
+  | { kind: "invalid_phone" };
 
 /**
  * `POST /api/v1/commerce/pos/orders` — a `paid`, `self_pickup`, `channel:
  * "pos"` counter sale, created and settled in one call. See this file's
  * header for the full reasoning.
+ *
+ * @throws {IdempotencyPayloadMismatchError} same key, different payload.
+ * @throws {PosCartChangedError} a line's price/stock no longer allows checkout.
+ * @throws {InsufficientTenderError} cash tendered is less than the total.
  */
 export async function createPosOrder(
   tx: Bun.SQL,
@@ -149,13 +173,41 @@ export async function createPosOrder(
     input.idempotencyKey
   );
   if (existing) {
+    if (existing.requestHash !== requestHash) {
+      throw new IdempotencyPayloadMismatchError();
+    }
     return {
       kind: "replayed",
-      order: existing.responseBody as OrderAdminDetailRecord & {
-        change: string | null;
-      }
+      order: existing.responseBody as PosOrderRecord
     };
   }
+
+  // Walk-in when no phone was given; otherwise find-or-create by the
+  // normalised phone, exactly like a storefront guest checkout — resolved
+  // BEFORE the quote so the customer's `level` can price it (#118).
+  let customerPhone = POS_WALK_IN_CUSTOMER_SENTINEL_PHONE;
+  if (input.customer.phone) {
+    const phoneResult = normalizePhoneNumber(input.customer.phone);
+    if (!phoneResult.valid) return { kind: "invalid_phone" };
+    customerPhone = phoneResult.value;
+  }
+  const isWalkIn = customerPhone === POS_WALK_IN_CUSTOMER_SENTINEL_PHONE;
+  const customerName =
+    input.customer.name ??
+    (isWalkIn ? POS_WALK_IN_CUSTOMER_NAME : "Pelanggan POS");
+
+  const customer = await findOrCreateCustomerByPhone(
+    tx,
+    tenantId,
+    customerName,
+    customerPhone,
+    null,
+    correlationId
+  );
+  const customerLevel: CustomerLevel | null =
+    !isWalkIn && customer.level >= 1 && customer.level <= 4
+      ? (customer.level as CustomerLevel)
+      : null;
 
   const quote = await buildCartQuote(
     tx,
@@ -171,47 +223,27 @@ export async function createPosOrder(
       shipping: { method: "self_pickup" },
       voucherCode: null,
       insurance: false,
-      destination: null
+      destination: null,
+      customerLevel
     },
     now
   );
 
+  // `canCheckout` is lines-only (every line `status: "ok"`): `quote.shipping`
+  // may legitimately be `null` when the tenant never enabled self-pickup in
+  // its store settings — a counter sale IS a pickup by definition, so the
+  // storefront's shipping/payment availability never decides a POS sale.
+  // The store's tax setting DOES apply (`quote.tax`), exactly as online.
   if (!quote.canCheckout) {
     throw new PosCartChangedError(quote);
   }
 
-  let change: string | null = null;
-  if (input.payment.method === "cash") {
-    if (input.payment.amountTendered !== null) {
-      // Throws `InsufficientTenderError` on a short tender — the route maps
-      // it to a `409`, never silently records a negative change.
-      change = computeChange(input.payment.amountTendered, quote.total);
-    }
-  }
-
-  // Walk-in when no phone was given; otherwise find-or-create by the
-  // normalised phone, exactly like a storefront guest checkout.
-  let customerPhone = POS_WALK_IN_CUSTOMER_SENTINEL_PHONE;
-  if (input.customer.phone) {
-    const phoneResult = normalizePhoneNumber(input.customer.phone);
-    customerPhone = phoneResult.valid
-      ? phoneResult.value
-      : POS_WALK_IN_CUSTOMER_SENTINEL_PHONE;
-  }
-  const customerName =
-    input.customer.name ??
-    (customerPhone === POS_WALK_IN_CUSTOMER_SENTINEL_PHONE
-      ? "Pelanggan Walk-in"
-      : "Pelanggan POS");
-
-  const customer = await findOrCreateCustomerByPhone(
-    tx,
-    tenantId,
-    customerName,
-    customerPhone,
-    null,
-    correlationId
-  );
+  // Throws `InsufficientTenderError` on a short tender — the route maps it
+  // to a `409`, never silently records a negative change. QRIS is exact.
+  const change =
+    input.payment.method === "cash" && input.payment.amountTendered !== null
+      ? computeChange(input.payment.amountTendered, quote.total)
+      : null;
 
   let orderId = "";
   let orderCode = "";
@@ -291,15 +323,25 @@ export async function createPosOrder(
     VALUES (${tenantId}, ${orderId}, NULL, 'pending_payment', 'admin')
   `;
 
+  // Attributes carry no PII: order code, money, method, walk-in flag —
+  // never the customer's name/phone (skill `awcms-audit-log` redaction).
   await recordAuditEvent(tx, {
     tenantId,
     actorTenantUserId,
     moduleKey: AUDIT_MODULE_KEY,
-    action: "commerce.pos.sale",
+    action: POS_SALE_AUDIT_ACTION,
     resourceType: AUDIT_RESOURCE_TYPE,
     resourceId: orderId,
-    message: `POS order ${orderCode} rung up at the counter.`,
-    attributes: { orderCode, total: quote.total, method: input.payment.method },
+    message: `POS sale ${orderCode} rung up at the counter (${input.payment.method}).`,
+    attributes: {
+      orderCode,
+      total: quote.total,
+      method: input.payment.method,
+      amountTendered: input.payment.amountTendered,
+      change,
+      walkIn: isWalkIn,
+      lineCount: quote.lines.length
+    },
     correlationId
   });
 
@@ -332,7 +374,12 @@ export async function createPosOrder(
     orderId
   );
   const record = await toAdminOrderRecord(tx, tenantId, detail!);
-  const responseBody = { ...record, change };
+  const responseBody: PosOrderRecord = {
+    ...record,
+    change,
+    amountTendered: input.payment.amountTendered,
+    cashierTenantUserId: actorTenantUserId
+  };
 
   await saveIdempotencyRecord(
     tx,
@@ -351,8 +398,13 @@ export async function createPosOrder(
 // POS history — `GET /api/v1/commerce/pos/orders`
 // ---------------------------------------------------------------------------
 
+export type PosOrderSummary = OrderAdminSummary & {
+  paymentMethod: string;
+  cashierTenantUserId: string | null;
+};
+
 export type PosOrderListPage = {
-  items: OrderAdminSummary[];
+  items: PosOrderSummary[];
   nextCursor: string | null;
 };
 
@@ -365,7 +417,8 @@ export type PosOrderListFilters = {
 /**
  * Keyset history, newest first, `channel = 'pos'` only (contract's own
  * `(tenant, channel, created_at)` index, `sql/931`). Optional `dateFrom`/
- * `dateTo`/`cashierTenantUserId` filters narrow the same scan.
+ * `dateTo` (inclusive bounds) and `cashierTenantUserId` filters narrow the
+ * same scan.
  */
 export async function listPosOrders(
   tx: Bun.SQL,
@@ -380,7 +433,8 @@ export async function listPosOrders(
   const cashierTenantUserId = filters.cashierTenantUserId ?? null;
 
   const rows = (await tx`
-    SELECT o.id, o.order_code, o.status, o.payment_status, o.total, o.created_at,
+    SELECT o.id, o.order_code, o.status, o.payment_status, o.payment_method,
+           o.pos_cashier_tenant_user_id, o.total, o.created_at,
            c.name AS customer_name, c.phone AS customer_phone,
            ${tx.unsafe(keysetCursorCreatedAtSql("o"))} AS created_at_cursor
     FROM awcms_commerce_orders o
@@ -405,6 +459,8 @@ export async function listPosOrders(
     order_code: string;
     status: string;
     payment_status: string;
+    payment_method: string;
+    pos_cashier_tenant_user_id: string | null;
     total: string;
     created_at: Date;
     customer_name: string;
@@ -424,6 +480,8 @@ export async function listPosOrders(
       orderCode: row.order_code,
       status: row.status as OrderStatus,
       paymentStatus: row.payment_status,
+      paymentMethod: row.payment_method,
+      cashierTenantUserId: row.pos_cashier_tenant_user_id,
       customerName: row.customer_name,
       customerPhoneMasked: maskPhone(row.customer_phone),
       total: normalizeMoney(row.total),

@@ -231,8 +231,7 @@ const ALLOWED_PUBLIC_OPERATIONS = new Set([
  * names the CHILD issue that removes it — the set is required to be empty
  * again once that issue's route file lands.
  */
-const ROUTE_PARITY_EXEMPTIONS = new Set<string>([
-]);
+const ROUTE_PARITY_EXEMPTIONS = new Set<string>([]);
 
 type OpenApiDocument = {
   security?: unknown[];

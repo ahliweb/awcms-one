@@ -5424,9 +5424,6 @@ msgstr "Catat penjualan di kasir — tunai atau QRIS, langsung lunas — dan lih
 msgid "You do not have permission to use the POS screen."
 msgstr "Anda tidak memiliki izin untuk menggunakan layar POS."
 
-msgid "Could not load the POS history. Please try again."
-msgstr "Riwayat POS tidak dapat dimuat. Silakan coba lagi."
-
 msgid "New sale"
 msgstr "Penjualan baru"
 
@@ -5715,3 +5712,110 @@ msgstr "kedaluwarsa"
 
 msgid "unavailable"
 msgstr "tidak tersedia"
+
+#. Admin screen — POS counter sales (Issue #116), continued
+msgid "Add at least one product to the cart."
+msgstr "Tambahkan minimal satu produk ke keranjang."
+
+msgid "Cart"
+msgstr "Keranjang"
+
+msgid "Clear cart"
+msgstr "Kosongkan keranjang"
+
+msgid "Completing…"
+msgstr "Menyelesaikan…"
+
+msgid "Could not complete the sale. Please try again."
+msgstr "Penjualan tidak dapat diselesaikan. Silakan coba lagi."
+
+msgid "Counter sales completed on the New sale tab appear here."
+msgstr "Penjualan kasir yang diselesaikan di tab Penjualan baru akan muncul di sini."
+
+msgid "Customer (optional)"
+msgstr "Pelanggan (opsional)"
+
+msgid "Date"
+msgstr "Tanggal"
+
+msgid "Filter POS sales"
+msgstr "Saring penjualan POS"
+
+msgid "Item"
+msgstr "Barang"
+
+msgid "Leave the phone blank for a walk-in customer. A phone finds or creates the customer and applies their price level."
+msgstr "Kosongkan nomor telepon untuk pelanggan walk-in. Nomor telepon akan mencari atau membuat data pelanggan dan menerapkan level harganya."
+
+msgid "Line total"
+msgstr "Total baris"
+
+msgid "Me"
+msgstr "Saya"
+
+msgid "No products match."
+msgstr "Tidak ada produk yang cocok."
+
+msgid "One or more items changed price or stock. Search for them again and retry."
+msgstr "Harga atau stok satu atau beberapa barang berubah. Cari lagi barangnya lalu coba ulang."
+
+msgid "out of stock"
+msgstr "stok habis"
+
+msgid "Point of sale is turned off for this store."
+msgstr "Kasir (POS) dimatikan untuk toko ini."
+
+msgid "POS sections"
+msgstr "Bagian POS"
+
+msgid "Product search failed. Please try again."
+msgstr "Pencarian produk gagal. Silakan coba lagi."
+
+msgid "Qty"
+msgstr "Jml"
+
+msgid "Receipt"
+msgstr "Struk"
+
+msgid "Search results"
+msgstr "Hasil pencarian"
+
+msgid "Start another sale"
+msgstr "Mulai penjualan lain"
+
+msgid "Tax"
+msgstr "Pajak"
+
+msgid "Thank you for your purchase."
+msgstr "Terima kasih atas pembelian Anda."
+
+msgid "The amount tendered is less than the total."
+msgstr "Jumlah yang dibayarkan kurang dari total."
+
+msgid "The customer phone number is not valid."
+msgstr "Nomor telepon pelanggan tidak valid."
+
+msgid "The POS screen could not be loaded right now. Please try again later."
+msgstr "Layar POS tidak dapat dimuat saat ini. Silakan coba lagi nanti."
+
+msgid "The server re-prices every line when the sale is completed; tax from the store settings is added to the total there."
+msgstr "Server menghitung ulang harga setiap baris saat penjualan diselesaikan; pajak dari pengaturan toko ditambahkan ke total di sana."
+
+msgid "Turn it on under Features in the store settings."
+msgstr "Nyalakan di bagian Fitur pada pengaturan toko."
+
+msgid "Type at least two characters. Pick a product to add one unit; products with variants list each variant."
+msgstr "Ketik minimal dua karakter. Pilih produk untuk menambahkan satu unit; produk dengan varian menampilkan tiap variannya."
+
+msgid "Unit price"
+msgstr "Harga satuan"
+
+msgid "You can browse POS history but do not have permission to ring up a sale."
+msgstr "Anda dapat melihat riwayat POS tetapi tidak memiliki izin untuk mencatat penjualan."
+
+msgid "You do not have permission to view POS history."
+msgstr "Anda tidak memiliki izin untuk melihat riwayat POS."
+
+msgid "{count} POS sale"
+msgid_plural "{count} POS sales"
+msgstr[0] "{count} penjualan POS"

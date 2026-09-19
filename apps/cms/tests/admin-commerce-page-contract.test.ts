@@ -319,3 +319,78 @@ describe("/admin/commerce-categories permission gates", () => {
     expect(declaredTriples().has(nav!.requiredPermission as Triple)).toBe(true);
   });
 });
+
+// ---------------------------------------------------------------------------
+// Issue #116 — `/admin/commerce-pos` (POS counter sales + history)
+// ---------------------------------------------------------------------------
+
+const POS_PAGE = "src/pages/admin/commerce-pos.astro";
+const POS_ROUTES = ["src/pages/api/v1/commerce/pos/orders/index.ts"];
+
+describe("/admin/commerce-pos permission gates", () => {
+  test("the page gates on exactly commerce.pos.create (sale) and commerce.orders.read (history), both declared and both enforced by the POS route", async () => {
+    const page = await readFile(POS_PAGE, "utf8");
+    const pageKeys = pageTriplesFrom(page);
+    const declared = declaredTriples();
+
+    expect([...pageKeys].sort()).toEqual([
+      "commerce.orders.read",
+      "commerce.pos.create"
+    ]);
+    expect([...pageKeys].filter((key) => !declared.has(key))).toEqual([]);
+
+    const enforcedPos = await enforcedTriples(
+      POS_ROUTES,
+      "COMMERCE_POS_ACTIVITY_CODE",
+      "pos"
+    );
+    expect([...enforcedPos]).toEqual(["commerce.pos.create"]);
+    const enforcedOrders = await enforcedTriples(
+      POS_ROUTES,
+      "COMMERCE_ORDERS_ACTIVITY_CODE",
+      "orders"
+    );
+    expect([...enforcedOrders]).toEqual(["commerce.orders.read"]);
+  });
+
+  test("the page never writes raw SQL — the sale posts to the guarded POS endpoint with an Idempotency-Key", async () => {
+    const page = await readFile(POS_PAGE, "utf8");
+
+    expect(page).not.toMatch(
+      /\b(INSERT\s+INTO|UPDATE\s+awcms_|DELETE\s+FROM)/i
+    );
+    expect(page).toContain('"/api/v1/commerce/pos/orders"');
+    expect(page).toContain('"Idempotency-Key"');
+    // Catalog data reaches the DOM through textContent only — never an
+    // innerHTML ASSIGNMENT (the docblock may name the property it avoids).
+    expect(page).not.toMatch(/\.innerHTML\s*=/);
+  });
+
+  test("the page honours the pos feature flag (#118) and reads history through listPosOrders", async () => {
+    const page = await readFile(POS_PAGE, "utf8");
+    expect(page).toContain("fetchCommerceFeatures(");
+    expect(page).toContain("listPosOrders(");
+  });
+
+  test("the sidebar entry points at this page, is gated on commerce.pos.create, and requires the pos feature", () => {
+    const nav = listModules()
+      .find((module) => module.key === "commerce")
+      ?.navigation?.find((entry) => entry.path === "/admin/commerce-pos");
+
+    expect(nav).toBeDefined();
+    expect(nav!.requiredPermission).toBe("commerce.pos.create");
+    expect(declaredTriples().has(nav!.requiredPermission as Triple)).toBe(true);
+    expect(nav!.requiredFeature).toEqual({
+      moduleKey: "commerce",
+      feature: "pos"
+    });
+  });
+
+  test("both POS route handlers are gated by the pos feature flag", async () => {
+    const source = await readFile(POS_ROUTES[0]!, "utf8");
+    const gates = source.match(
+      /requireCommerceFeatureForOwnerRoute\(tx, tenantId, "pos"\)/g
+    );
+    expect(gates?.length).toBe(2);
+  });
+});

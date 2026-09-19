@@ -9431,7 +9431,7 @@ paths:
       operationId: listCommercePosOrders
       tags:
         - Commerce
-      summary: "Issue #116 (ADR-0017 D6). POS order history — the existing owner order list, filtered `channel=pos`, with optional date/cashier filters. Gated on `commerce.orders.read`."
+      summary: "Issue #116 (ADR-0017 D6). POS order history — the owner order-list summary plus `paymentMethod`/`cashierTenantUserId`, filtered `channel=pos`, with optional date/cashier filters. Gated on `commerce.orders.read`; `409 FEATURE_DISABLED` when the tenant's `pos` feature is off (#118)."
       parameters:
         - name: cursor
           in: query
@@ -9441,12 +9441,14 @@ paths:
         - name: dateFrom
           in: query
           required: false
+          description: Inclusive lower bound on `createdAt`. A bare `YYYY-MM-DD` means the start of that day (UTC).
           schema:
             type: string
             format: date-time
         - name: dateTo
           in: query
           required: false
+          description: Inclusive upper bound on `createdAt`. A bare `YYYY-MM-DD` means the end of that day (UTC).
           schema:
             type: string
             format: date-time
@@ -9475,20 +9477,40 @@ paths:
                       items:
                         type: array
                         items:
-                          $ref: "#/components/schemas/CommerceOrderSummary"
+                          allOf:
+                            - $ref: "#/components/schemas/CommerceOrderSummary"
+                            - type: object
+                              properties:
+                                paymentMethod:
+                                  type: string
+                                  enum:
+                                    - cash
+                                    - manual_qris
+                                cashierTenantUserId:
+                                  type: string
+                                  format: uuid
+                                  nullable: true
                       nextCursor:
                         type: string
                         nullable: true
+        "400":
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
           $ref: "#/components/responses/Forbidden"
+        "409":
+          description: "`FEATURE_DISABLED` — the tenant turned the `pos` feature off (Issue #118)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
     post:
       operationId: createCommercePosOrder
       tags:
         - Commerce
       summary: "Issue #116 (ADR-0017 D6). Staff creates a `paid`, `self_pickup` order at the counter for a walk-in or phone-identified customer. Gated on `commerce.pos.create` — the ONLY order-creation path that needs a permission at all, since every other one is anonymous or provider-driven."
-      description: "Requires `Idempotency-Key`. `orders.channel` is set `pos`; `order_events` records the acting STAFF member (`admin`), never `system` and never `customer` — `pos_cashier_tenant_user_id` on the order row carries WHICH staff member. Payment is `cash` or `manual_qris` and the order is created already `paid` — there is no `pending_payment` step visible to the caller for a counter sale. `customer` is optional in full: an omitted/blank `phone` attaches the sale to this tenant's single WALK-IN customer row (a documented sentinel phone, `docs/kamus-data.md`); a given `phone` finds or creates a customer by that (normalised) phone, same as a storefront guest checkout. `payment.amountTendered` (cash only) is a `numeric(14,2)` string; the response's `change` is computed server-side, also as a string (ADR-0003 — never a float)."
+      description: "Requires `Idempotency-Key`. `orders.channel` is set `pos`; `order_events` records the acting STAFF member (`admin`), never `system` and never `customer` — `pos_cashier_tenant_user_id` on the order row carries WHICH staff member. Payment is `cash` or `manual_qris` and the order is created already `paid` — there is no `pending_payment` step visible to the caller for a counter sale. `customer` is optional in full: an omitted/blank `phone` attaches the sale to this tenant's single WALK-IN customer row (a documented sentinel phone, `docs/kamus-data.md`); a given `phone` finds or creates a customer by that (normalised) phone, same as a storefront guest checkout (and prices the sale at that customer's level, #118). `payment.amountTendered` is REQUIRED for `cash` and ignored for `manual_qris`; it is a `numeric(14,2)` string, and the response's `change` is computed server-side, also as a string (ADR-0003 — never a float). The idempotency key is the HEADER only — a body field of the same name is ignored. Same key + same body replays the stored 201; same key + different body (or a different cashier) is `409 IDEMPOTENCY_CONFLICT`."
       parameters:
         - name: Idempotency-Key
           in: header
@@ -9502,12 +9524,9 @@ paths:
             schema:
               type: object
               required:
-                - idempotencyKey
                 - lines
                 - payment
               properties:
-                idempotencyKey:
-                  type: string
                 customer:
                   type: object
                   nullable: true
@@ -9518,7 +9537,7 @@ paths:
                     phone:
                       type: string
                       nullable: true
-                      description: Omitted/blank attaches the sale to this tenant's walk-in customer row.
+                      description: Omitted/blank attaches the sale to this tenant's walk-in customer row; a phone that does not normalise is a `400 VALIDATION_ERROR`.
                 lines:
                   type: array
                   items:
@@ -9547,7 +9566,7 @@ paths:
                     amountTendered:
                       type: string
                       nullable: true
-                      description: "`numeric(14,2)` string — cash only."
+                      description: "`numeric(14,2)` string — required for `cash`, ignored for `manual_qris`."
                 notes:
                   type: string
                   nullable: true
@@ -9567,19 +9586,35 @@ paths:
                     allOf:
                       - $ref: "#/components/schemas/CommerceOrderAdmin"
                       - type: object
+                        required:
+                          - change
+                          - amountTendered
+                          - cashierTenantUserId
                         properties:
                           change:
                             type: string
                             nullable: true
-                            description: "`amountTendered - total`, `numeric(14,2)` string; `null` when no `amountTendered` was given (e.g. QRIS)."
+                            description: "`amountTendered - total`, `numeric(14,2)` string; `null` for `manual_qris`."
+                          amountTendered:
+                            type: string
+                            nullable: true
+                            description: The cash handed over, echoed back for the receipt; `null` for `manual_qris`.
+                          cashierTenantUserId:
+                            type: string
+                            format: uuid
+                            description: The staff member who rang the sale up (`orders.pos_cashier_tenant_user_id`).
         "400":
-          $ref: "#/components/responses/BadRequest"
+          description: "`VALIDATION_ERROR` (shape, or a `customer.phone` that does not normalise) or `IDEMPOTENCY_REQUIRED` (no `Idempotency-Key` header)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
           $ref: "#/components/responses/Forbidden"
         "409":
-          description: "`CART_CHANGED` (a line's price/stock changed since it was priced) or `INSUFFICIENT_TENDER` (cash `amountTendered` less than the total)."
+          description: "`FEATURE_DISABLED` (the tenant turned `pos` off, #118), `IDEMPOTENCY_CONFLICT` (same key, different payload), `CART_CHANGED` (a line's price/stock changed since it was priced — `details.quote` carries the fresh quote) or `INSUFFICIENT_TENDER` (cash `amountTendered` less than the total — `details.shortfall`)."
           content:
             application/json:
               schema:

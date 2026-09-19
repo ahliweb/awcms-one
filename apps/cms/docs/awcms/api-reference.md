@@ -10266,7 +10266,7 @@ Calls `provider.fetchStatus` for this order's most recent payment-gateway sessio
 | 401    | Missing or invalid session.          | [`ApiError`](#standard-error-envelope) |
 | 403    | Access denied by RBAC/ABAC.          | [`ApiError`](#standard-error-envelope) |
 
-### `GET /api/v1/commerce/pos/orders` — Issue #116 (ADR-0017 D6). POS order history — the existing owner order list, filtered `channel=pos`, with optional date/cashier filters. Gated on `commerce.orders.read`.
+### `GET /api/v1/commerce/pos/orders` — Issue #116 (ADR-0017 D6). POS order history — the owner order-list summary plus `paymentMethod`/`cashierTenantUserId`, filtered `channel=pos`, with optional date/cashier filters. Gated on `commerce.orders.read`; `409 FEATURE_DISABLED` when the tenant's `pos` feature is off (#118).
 
 - **operationId**: `listCommercePosOrders`
 - **Security**: bearerAuth + tenantHeader
@@ -10276,24 +10276,26 @@ Calls `provider.fetchStatus` for this order's most recent payment-gateway sessio
 | Name       | In    | Required | Type               | Description                                                                                                |
 | ---------- | ----- | -------- | ------------------ | ---------------------------------------------------------------------------------------------------------- |
 | `cursor`   | query | no       | string             |                                                                                                            |
-| `dateFrom` | query | no       | string (date-time) |                                                                                                            |
-| `dateTo`   | query | no       | string (date-time) |                                                                                                            |
+| `dateFrom` | query | no       | string (date-time) | Inclusive lower bound on `createdAt`. A bare `YYYY-MM-DD` means the start of that day (UTC).               |
+| `dateTo`   | query | no       | string (date-time) | Inclusive upper bound on `createdAt`. A bare `YYYY-MM-DD` means the end of that day (UTC).                 |
 | `cashier`  | query | no       | string (uuid)      | A `tenant_users.id` — filters to sales rung up by this staff member (`orders.pos_cashier_tenant_user_id`). |
 
 **Responses**
 
-| Status | Description                 | Schema                                 |
-| ------ | --------------------------- | -------------------------------------- |
-| 200    | One page of POS orders.     | object                                 |
-| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
-| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                | Schema                                 |
+| ------ | -------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | One page of POS orders.                                                    | object                                 |
+| 400    | Validation error.                                                          | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                | [`ApiError`](#standard-error-envelope) |
+| 409    | `FEATURE_DISABLED` — the tenant turned the `pos` feature off (Issue #118). | [`ApiError`](#standard-error-envelope) |
 
 ### `POST /api/v1/commerce/pos/orders` — Issue #116 (ADR-0017 D6). Staff creates a `paid`, `self_pickup` order at the counter for a walk-in or phone-identified customer. Gated on `commerce.pos.create` — the ONLY order-creation path that needs a permission at all, since every other one is anonymous or provider-driven.
 
 - **operationId**: `createCommercePosOrder`
 - **Security**: bearerAuth + tenantHeader
 
-Requires `Idempotency-Key`. `orders.channel` is set `pos`; `order_events` records the acting STAFF member (`admin`), never `system` and never `customer` — `pos_cashier_tenant_user_id` on the order row carries WHICH staff member. Payment is `cash` or `manual_qris` and the order is created already `paid` — there is no `pending_payment` step visible to the caller for a counter sale. `customer` is optional in full: an omitted/blank `phone` attaches the sale to this tenant's single WALK-IN customer row (a documented sentinel phone, `docs/kamus-data.md`); a given `phone` finds or creates a customer by that (normalised) phone, same as a storefront guest checkout. `payment.amountTendered` (cash only) is a `numeric(14,2)` string; the response's `change` is computed server-side, also as a string (ADR-0003 — never a float).
+Requires `Idempotency-Key`. `orders.channel` is set `pos`; `order_events` records the acting STAFF member (`admin`), never `system` and never `customer` — `pos_cashier_tenant_user_id` on the order row carries WHICH staff member. Payment is `cash` or `manual_qris` and the order is created already `paid` — there is no `pending_payment` step visible to the caller for a counter sale. `customer` is optional in full: an omitted/blank `phone` attaches the sale to this tenant's single WALK-IN customer row (a documented sentinel phone, `docs/kamus-data.md`); a given `phone` finds or creates a customer by that (normalised) phone, same as a storefront guest checkout (and prices the sale at that customer's level, #118). `payment.amountTendered` is REQUIRED for `cash` and ignored for `manual_qris`; it is a `numeric(14,2)` string, and the response's `change` is computed server-side, also as a string (ADR-0003 — never a float). The idempotency key is the HEADER only — a body field of the same name is ignored. Same key + same body replays the stored 201; same key + different body (or a different cashier) is `409 IDEMPOTENCY_CONFLICT`.
 
 **Parameters**
 
@@ -10305,13 +10307,13 @@ Requires `Idempotency-Key`. `orders.channel` is set `pos`; `order_events` record
 
 **Responses**
 
-| Status | Description                                                                                                                             | Schema                                 |
-| ------ | --------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
-| 201    | Order created, already `paid`.                                                                                                          | object                                 |
-| 400    | Validation error.                                                                                                                       | [`ApiError`](#standard-error-envelope) |
-| 401    | Missing or invalid session.                                                                                                             | [`ApiError`](#standard-error-envelope) |
-| 403    | Access denied by RBAC/ABAC.                                                                                                             | [`ApiError`](#standard-error-envelope) |
-| 409    | `CART_CHANGED` (a line's price/stock changed since it was priced) or `INSUFFICIENT_TENDER` (cash `amountTendered` less than the total). | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                                                                                                                                                                                                                           | Schema                                 |
+| ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 201    | Order created, already `paid`.                                                                                                                                                                                                                                                                                        | object                                 |
+| 400    | `VALIDATION_ERROR` (shape, or a `customer.phone` that does not normalise) or `IDEMPOTENCY_REQUIRED` (no `Idempotency-Key` header).                                                                                                                                                                                    | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                                                                                                                                                                           | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                                                                                                                                                                           | [`ApiError`](#standard-error-envelope) |
+| 409    | `FEATURE_DISABLED` (the tenant turned `pos` off, #118), `IDEMPOTENCY_CONFLICT` (same key, different payload), `CART_CHANGED` (a line's price/stock changed since it was priced — `details.quote` carries the fresh quote) or `INSUFFICIENT_TENDER` (cash `amountTendered` less than the total — `details.shortfall`). | [`ApiError`](#standard-error-envelope) |
 
 ### `GET /api/v1/commerce/products` — List products for the current tenant — filterable, sortable, keyset-paginated.
 

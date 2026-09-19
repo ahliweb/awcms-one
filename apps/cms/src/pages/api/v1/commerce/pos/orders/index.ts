@@ -1,9 +1,18 @@
+/**
+ * `GET|POST /api/v1/commerce/pos/orders` — POS history + counter sale
+ * (Issue #116, epic #33 C7, contract #106 D6, ADR-0017). Both handlers are
+ * gated by the tenant's `pos` feature flag (#118) right after their ABAC
+ * guard: a tenant that turned POS off answers `409 FEATURE_DISABLED` on
+ * both, exactly like the inbox/campaign owner routes.
+ */
 import {
   created,
   fail,
+  jsonResponse,
   ok
 } from "../../../../../../modules/_shared/api-response";
 import { defineTenantRoute } from "../../../../../../modules/_shared/tenant-route";
+import { IdempotencyRaceLostError } from "../../../../../../modules/_shared/idempotency";
 import {
   bodyTooLargeResponse,
   readJsonBody
@@ -13,13 +22,15 @@ import {
   type KeysetCursor
 } from "../../../../../../modules/_shared/keyset-pagination";
 import { mediaLibraryPortAdapter } from "../../../../../../modules/media-library/application/media-library-port-adapter";
+import { requireCommerceFeatureForOwnerRoute } from "../../../../../../modules/commerce/application/commerce-feature-gate";
 import {
   createPosOrder,
   listPosOrders,
   PosCartChangedError
 } from "../../../../../../modules/commerce/application/pos-directory";
-import { InsufficientTenderError } from "../../../../../../modules/commerce/domain/pos-order-validation";
+import { IdempotencyPayloadMismatchError } from "../../../../../../modules/commerce/application/order-directory";
 import {
+  InsufficientTenderError,
   validateCreatePosOrderInput,
   type CreatePosOrderInput
 } from "../../../../../../modules/commerce/domain/pos-order-validation";
@@ -40,6 +51,9 @@ const CREATE_GUARD = {
   action: "create"
 } as const;
 
+const UUID_PATTERN =
+  /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
 type PreparedList = {
   cursor: KeysetCursor | null;
   dateFrom?: Date;
@@ -47,9 +61,29 @@ type PreparedList = {
   cashierTenantUserId?: string;
 };
 
+function parseDateParam(
+  url: URL,
+  name: string,
+  endOfDay: boolean
+): Date | Response | undefined {
+  const raw = url.searchParams.get(name);
+  if (!raw) return undefined;
+  // A bare `YYYY-MM-DD` (the admin screen's `<input type="date">`) is read
+  // as a whole day — inclusive end for `dateTo` — rather than the midnight
+  // instant `new Date()` would give it.
+  const dayOnly = /^\d{4}-\d{2}-\d{2}$/.test(raw);
+  const parsed = new Date(
+    dayOnly ? `${raw}T${endOfDay ? "23:59:59.999" : "00:00:00.000"}Z` : raw
+  );
+  if (Number.isNaN(parsed.getTime())) {
+    return fail(400, "VALIDATION_ERROR", `${name} is not a valid date.`);
+  }
+  return parsed;
+}
+
 /**
- * `GET /api/v1/commerce/pos/orders` — POS history (Issue #116). Reuses the
- * same admin order-list summary shape `GET /api/v1/commerce/orders` returns,
+ * `GET /api/v1/commerce/pos/orders` — POS history (Issue #116). The admin
+ * order-list summary shape plus `paymentMethod`/`cashierTenantUserId`,
  * filtered `channel = 'pos'`; optional `dateFrom`/`dateTo`/`cashier` query
  * filters. Gated on `commerce.orders.read` (contract's own note: a POS
  * order is still an order; see `commerce-permissions.ts`'s header).
@@ -66,42 +100,37 @@ export const GET = defineTenantRoute<PreparedList>({
       cursor = decoded;
     }
 
-    let dateFrom: Date | undefined;
-    const dateFromParam = url.searchParams.get("dateFrom");
-    if (dateFromParam) {
-      const parsed = new Date(dateFromParam);
-      if (Number.isNaN(parsed.getTime())) {
-        return fail(400, "VALIDATION_ERROR", "dateFrom is not a valid date.");
-      }
-      dateFrom = parsed;
+    const dateFrom = parseDateParam(url, "dateFrom", false);
+    if (dateFrom instanceof Response) return dateFrom;
+    const dateTo = parseDateParam(url, "dateTo", true);
+    if (dateTo instanceof Response) return dateTo;
+
+    const cashierParam = url.searchParams.get("cashier");
+    if (cashierParam && !UUID_PATTERN.test(cashierParam)) {
+      return fail(400, "VALIDATION_ERROR", "cashier must be a UUID.");
     }
 
-    let dateTo: Date | undefined;
-    const dateToParam = url.searchParams.get("dateTo");
-    if (dateToParam) {
-      const parsed = new Date(dateToParam);
-      if (Number.isNaN(parsed.getTime())) {
-        return fail(400, "VALIDATION_ERROR", "dateTo is not a valid date.");
-      }
-      dateTo = parsed;
-    }
-
-    const cashierTenantUserId = url.searchParams.get("cashier") ?? undefined;
-
-    return { cursor, dateFrom, dateTo, cashierTenantUserId };
+    return {
+      cursor,
+      dateFrom,
+      dateTo,
+      cashierTenantUserId: cashierParam ?? undefined
+    };
   },
   authorize: READ_GUARD,
-  handler: async ({ tx, tenantId, prepared }) =>
-    ok(
+  handler: async ({ tx, tenantId, prepared }) => {
+    const gate = await requireCommerceFeatureForOwnerRoute(tx, tenantId, "pos");
+    if (gate) return gate;
+
+    return ok(
       await listPosOrders(tx, tenantId, prepared.cursor, {
         dateFrom: prepared.dateFrom,
         dateTo: prepared.dateTo,
         cashierTenantUserId: prepared.cashierTenantUserId
       })
-    )
+    );
+  }
 });
-
-type Prepared = { idempotencyKey: string; input: CreatePosOrderInput };
 
 /**
  * `POST /api/v1/commerce/pos/orders` — a counter sale, `paid` immediately
@@ -109,11 +138,11 @@ type Prepared = { idempotencyKey: string; input: CreatePosOrderInput };
  * — the only order-creation path in this module that needs a permission at
  * all (every other one is anonymous or provider/system-driven).
  */
-export const POST = defineTenantRoute<Prepared>({
+export const POST = defineTenantRoute<CreatePosOrderInput>({
   workClass: "interactive",
-  prepare: async ({ request }): Promise<Prepared | Response> => {
+  prepare: async ({ request }): Promise<CreatePosOrderInput | Response> => {
     const idempotencyKey = request.headers.get("idempotency-key");
-    if (!idempotencyKey) {
+    if (!idempotencyKey || idempotencyKey.trim().length === 0) {
       return fail(
         400,
         "IDEMPOTENCY_REQUIRED",
@@ -124,7 +153,10 @@ export const POST = defineTenantRoute<Prepared>({
     const bodyRead = await readJsonBody(request);
     if (bodyRead.tooLarge) return bodyTooLargeResponse(bodyRead.limitBytes);
 
-    const result = validateCreatePosOrderInput(bodyRead.value ?? {});
+    const result = validateCreatePosOrderInput(
+      bodyRead.value ?? {},
+      idempotencyKey
+    );
     if (!result.valid) {
       return fail(
         400,
@@ -135,25 +167,61 @@ export const POST = defineTenantRoute<Prepared>({
       );
     }
 
-    return {
-      idempotencyKey,
-      input: { ...result.value, idempotencyKey }
-    };
+    return result.value;
   },
   authorize: CREATE_GUARD,
   handler: async ({ tx, tenantId, auth, prepared, locals }) => {
+    const gate = await requireCommerceFeatureForOwnerRoute(tx, tenantId, "pos");
+    if (gate) return gate;
+
     try {
       const outcome = await createPosOrder(
         tx,
         tenantId,
         auth.context.tenantUserId,
         mediaLibraryPortAdapter,
-        prepared.input,
+        prepared,
         new Date(),
         locals.correlationId
       );
-      return jsonResponseFor(outcome);
+      if (outcome.kind === "invalid_phone") {
+        return fail(
+          400,
+          "VALIDATION_ERROR",
+          "customer.phone is not a valid Indonesian phone number.",
+          {},
+          [
+            {
+              field: "customer.phone",
+              message: "customer.phone is not a valid Indonesian phone number."
+            }
+          ]
+        );
+      }
+      // Both `"created"` and `"replayed"` return the SAME 201 body (a
+      // replay is a client network retry, not a second order), matching
+      // `createOrderFromCart`'s own idempotent-replay contract.
+      return created(outcome.order);
     } catch (error) {
+      if (error instanceof IdempotencyRaceLostError) {
+        if (error.replay) {
+          return jsonResponse(error.replay.responseBody, {
+            status: error.replay.responseStatus
+          });
+        }
+        return fail(
+          409,
+          "IDEMPOTENCY_CONFLICT",
+          "Idempotency-Key was already used with a different request."
+        );
+      }
+      if (error instanceof IdempotencyPayloadMismatchError) {
+        return fail(
+          409,
+          "IDEMPOTENCY_CONFLICT",
+          "Idempotency-Key was already used with a different request."
+        );
+      }
       if (error instanceof PosCartChangedError) {
         return fail(
           409,
@@ -167,17 +235,12 @@ export const POST = defineTenantRoute<Prepared>({
         return fail(
           409,
           "INSUFFICIENT_TENDER",
-          "payment.amountTendered is less than the order total."
+          "payment.amountTendered is less than the order total.",
+          {},
+          { shortfall: error.shortfall }
         );
       }
       throw error;
     }
   }
 });
-
-function jsonResponseFor(outcome: Awaited<ReturnType<typeof createPosOrder>>) {
-  // Both `"created"` and `"replayed"` return the SAME 201 body shape (a
-  // replay is a client network retry, not a second order), matching
-  // `createOrderFromCart`'s own idempotent-replay contract.
-  return created(outcome.order);
-}
