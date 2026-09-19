@@ -599,6 +599,12 @@ suspend/activate) and a commissions table (affiliate, order, amount,
 status, filterable by status, approve/pay/void buttons), i18n `en`+`id`.
 `/admin/commerce-settings` gains the commission-rate field.
 
+## External providers — contract only (epic #33 wave 0 — ADR-0017, issue #106)
+
+`openapi/modules/commerce.openapi.yaml` also now documents, AHEAD OF ANY HANDLER, the full increment-5 external-providers surface: a payment-gateway session endpoint and public webhook intake (D2/D3, Midtrans Snap), the courier-rate fields on the existing cart-quote/order paths (D4, RajaOngkir), a WhatsApp `via` option on OTP request (D5, Fonnte/Meta), POS order creation (D6), three `reporting`-hosted sales projections (D7), a customer inbox — both the bearer and owner sides (D8), consent-gated campaigns (D9), and the module-settings feature flags plus tiered pricing at quote (D10). Every one of D1–D10's ten decisions — why a port lives inside `commerce` rather than `integration_hub`, why a webhook's tenant is resolved from an opaque token rather than its payload, why the gateway flow is a redirect rather than an embed, and so on — is recorded in [ADR-0017](../../../../../docs/adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.md) in awcms-one.
+
+Every new path is named in `ROUTE_PARITY_EXEMPTIONS` (`scripts/api-spec-check.ts`), each entry citing the CHILD issue that removes it: courier rates and settings (#107), WhatsApp (#108), payment gateway + webhook endpoint tokens (#110), the inbox (#111), POS (#116), sales reports (#117), campaigns (#114), and gateway webhook intake + reconciliation (#113) — the set is required to be EMPTY again once increment 5 finishes, the same discipline #86/ADR-0016 already proved for accounts. ADR-0017 names every new environment variable this surface will read (`COMMERCE_PAYMENT_GATEWAY`, `COMMERCE_MIDTRANS_SERVER_KEY`, `COMMERCE_MIDTRANS_IS_PRODUCTION`, `COMMERCE_RAJAONGKIR_API_KEY`, `COMMERCE_WHATSAPP_PROVIDER`, `COMMERCE_FONNTE_TOKEN`, `COMMERCE_META_WA_TOKEN`, `COMMERCE_META_WA_PHONE_NUMBER_ID`) — none is read, declared in `env.example`, or checked by `scripts/validate-env.ts` yet; each is added by its own adapter's issue, not by this contract-only change.
+
 ## Deliberately not here
 
 - **No shipping-carrier integration.** `shippingMethod` on an order is a

@@ -32,6 +32,7 @@ What does **not** need an ADR: adding a field within an already-decided schema, 
 | [0014](0014-the-institution-owns-the-emblem-not-the-post.md) | An institution owns its emblem; a post never carries one | Accepted |
 | [0015](0015-commerce-migrations-live-in-the-reserved-9xx-range.md) | Commerce migrations live in the reserved `9xx` range | Accepted |
 | [0016](0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md) | Customer accounts are OTP-verified `commerce` accounts with bearer sessions | Accepted |
+| [0017](0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.md) | External providers are `commerce`-owned ports, with env-per-deployment credentials and token-addressed webhooks | Accepted |
 
 ## Why the numbering starts at 0001
 
