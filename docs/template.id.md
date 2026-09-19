@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](template.md)
 
-<!-- i18n-source-hash: sha256:971fcfd0b173ed6490c941bbf12a1eb33ce5c575bd77166f6663729092f9ab0b -->
+<!-- i18n-source-hash: sha256:f4cd95e0413b7a475e7304c8a2206f87d568ab9b7c05187e0caf80b6968cc39c -->
 
 # Menggunakan awcms-one sebagai template
 
@@ -93,6 +93,7 @@ Artefak khusus BjekMart yang tidak dibutuhkan deployment turunan dan tidak sehar
 
 - `tools/seed-borneojek-mart.ts` (shim deprecation yang ditinggalkan [#139](https://github.com/ahliweb/awcms-one/issues/139)) dan `tools/seed-data/contoh/borneojek-mart/**` (konten referensi BjekMart lengkap yang dipindahkan #139 ke sana) — `template:init` juga memeriksa tata letak datar SEBELUM-#139 (`tools/seed-data/*.json` + `tools/seed-assets/`) dan menghapusnya juga, jika suatu saat alat ini berjalan terhadap pohon dari sebelum #139 landing. Skrip `db:seed:cms` milik `package.json` ditulis ulang, bukan dihapus: `bun tools/seed-cms.ts` (default milik BjekMart sendiri) menjadi `bun tools/seed-cms.ts --profil <profil pilihan>`, sehingga target seed default repo turunan cocok dengan pilihan `--profil`-nya sendiri, bukan contoh referensi.
 - `tools/import-seputarborneo.ts`, `tests/import-seputarborneo.test.mjs`, dan entri skrip `import:seputarborneo`
+- `tests/seed-profil.test.mjs` — pengujian milik [#139](https://github.com/ahliweb/awcms-one/issues/139) sendiri memastikan contoh referensi BjekMart dan shim deprecation-nya keduanya ada dan tervalidasi; keduanya dihapus oleh run yang sama ini, sehingga `template:init` juga menghapus berkas ini alih-alih meninggalkan gerbang yang gagal terhadap pohon yang tidak pernah ditulis untuk digambarkannya. Cakupan lainnya (skema seed `toko`/`berita`/`landing`) adalah perawatan CI milik `tools/seed-data` sendiri untuk template, bukan sesuatu yang perlu dijaga tetap hijau oleh kontribusi deployment turunan.
 - `graphify-out/` dan `knowledge/generated/` — dihapus sepenuhnya, bukan dikosongkan. **Inilah "keadaan kosong terdokumentasi" yang diterima `audit:graf`**: pemeriksaan pertama gerbang itu sendiri (`packages/gerbang/audit-graf.mjs`) adalah `!existsSync(outputDir)`, yang lulus dengan catatan ("graphify-out/ absent — no root graph artefacts to check") alih-alih gagal — direktori yang tidak ada adalah keadaan yang valid dan lulus gerbang menurut desain gerbang itu sendiri, sehingga menghapusnya lebih sederhana dan sama benarnya dengan menulis `graph.json` yang kosong-tapi-valid-skema. `bun run knowledge:graph:update` pertama milik repo turunan membuatnya kembali.
 
 ### Apa yang tidak pernah disentuh

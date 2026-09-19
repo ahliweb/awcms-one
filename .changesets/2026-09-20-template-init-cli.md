@@ -23,13 +23,16 @@ derived repo's first commit is already green.
   happen exactly once, gated on the new `package.json#awcmsOne.templateVersion`
   field. Refuses a dirty working tree, and refuses to run against the
   template itself (`package.json.name === "awcms-one"`), without `--yes`.
-- Removes BjekMart-only artefacts — `tools/seed-borneojek-mart.ts` plus
-  `tools/seed-data/*.json`/`tools/seed-assets/**` (today's layout) **or**
-  `tools/seed-data/contoh/borneojek-mart/**` (issue #139's planned layout,
-  whichever is present), `tools/import-seputarborneo.ts` and its test — and
-  resets `graphify-out/`/`knowledge/generated/` to absent, which
-  `packages/gerbang/audit-graf.mjs` already treats as a valid, gate-passing
-  state.
+- Removes BjekMart-only artefacts — `tools/seed-borneojek-mart.ts` (issue
+  #139's own deprecation shim) and `tools/seed-data/contoh/borneojek-mart/**`
+  (its reference-example layout, checking the pre-#139 flat layout too,
+  defensively), `tools/import-seputarborneo.ts` and its test, and #139's own
+  `tests/seed-profil.test.mjs` (which otherwise asserts the just-removed
+  content still exists) — and resets `graphify-out/`/`knowledge/generated/`
+  to absent, which `packages/gerbang/audit-graf.mjs` already treats as a
+  valid, gate-passing state. Rewrites `tools/seed-cms.ts`'s `--profil`
+  default and `package.json`'s `db:seed:cms` script from BjekMart's
+  reference example to the deployment's own chosen profile.
 - New CI workflow `.github/workflows/template-init-smoke.yml`, matrixed over
   `toko`/`berita`/`landing`, not yet a required status check.
 - Two corrections to `docs/template.md`'s wave-0 draft, made in this same

@@ -27,7 +27,18 @@ export const ALWAYS_REMOVE_FILES = [
   "tests/import-seputarborneo.test.mjs",
   // #139's own one-release deprecation shim — a derived repo has no
   // reference deployment to keep it running for.
-  "tools/seed-borneojek-mart.ts"
+  "tools/seed-borneojek-mart.ts",
+  // #139's own test file asserts BjekMart's reference example
+  // (`tools/seed-data/contoh/borneojek-mart/**`) and the deprecation shim
+  // above both exist and validate — both removed by THIS run, so those
+  // assertions would fail on a tree they were never written to describe.
+  // Its OTHER coverage (the `toko`/`berita`/`landing` seed schemas,
+  // `tools/seed-cms.ts --dry-run`) is `tools/seed-data`'s own CI upkeep for
+  // the TEMPLATE, not something a derived deployment's own contributions
+  // depend on keeping green — removed as a whole file rather than surgically
+  // split, matching this tool's own "template:init removes an entire
+  // artefact its own removals invalidate" pattern elsewhere.
+  "tests/seed-profil.test.mjs"
 ];
 
 /** Directories reset to absent — ADR-0018 D5's "documented empty state" for the knowledge-graph corpus (see `docs/template.md`'s own note on why absence, not an emptied file, is what `audit:graf` treats as valid). */

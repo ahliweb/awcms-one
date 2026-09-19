@@ -83,6 +83,15 @@ function listMarkdownFiles(root) {
 export function planDocCitationCleanup(root, removedPaths, overlay = new Map()) {
   if (removedPaths.length === 0) return [];
   const tokens = removedPaths.flatMap((p) => [`\`${p}\``, `\`${p}/\``, `\`${p}/**\``]);
+  // A removed DIRECTORY's own citation is not the only shape a doc uses —
+  // `docs/deployment.md` cites a specific FILE nested under it (e.g.
+  // `` `tools/seed-data/contoh/borneojek-mart/ad-placements.json` ``),
+  // which the three literal tokens above never match. One regex per
+  // removed path catches any backtick span that starts with it, file or
+  // directory alike.
+  const prefixPatterns = removedPaths.map(
+    (p) => new RegExp("`" + p.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "(?:/[^`]*)?`", "g")
+  );
 
   const edits = [];
   for (const file of listMarkdownFiles(root)) {
@@ -93,6 +102,9 @@ export function planDocCitationCleanup(root, removedPaths, overlay = new Map()) 
         // Strip only the backticks, keeping the path itself as plain prose.
         after = after.split(token).join(token.slice(1, -1));
       }
+    }
+    for (const pattern of prefixPatterns) {
+      after = after.replace(pattern, (match) => match.slice(1, -1));
     }
     if (after !== before) edits.push({ path: file, before, after });
   }
