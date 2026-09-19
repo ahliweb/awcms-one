@@ -64,7 +64,11 @@
       }
     ],
     "selfPickup": true,
-    "courierEnabled": false,
+    "courierEnabled": true,
+    "courier": {
+      "enabled": true,
+      "couriers": ["jne", "jnt", "sicepat"]
+    },
     "pinpointEnabled": false,
     "freeShipping": {
       "active": false,
@@ -99,12 +103,14 @@
       "ratePercent": "0.2",
       "minFee": "500.00"
     },
-    "proofUpload": false
+    "proofUpload": false,
+    "gatewayEnabled": true
   },
   "orders": {
     "expiryHours": 24
   },
   "affiliateProgramEnabled": true,
+  "whatsappOtpEnabled": true,
   "promoSection": {
     "active": true,
     "items": [

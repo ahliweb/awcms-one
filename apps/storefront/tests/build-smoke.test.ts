@@ -1,4 +1,5 @@
 import { describe, expect, test } from "bun:test";
+import { STUB_START_DEADLINE_MS } from "./stub-deadline";
 import { existsSync, readFileSync, rmSync } from "node:fs";
 import { join } from "node:path";
 
@@ -62,7 +63,7 @@ describe("build smoke: astro build against the stub CMS", () => {
       });
 
       try {
-        await waitForStub(`http://localhost:${stubPort}/api/v1/commerce/products`, Date.now() + 5000);
+        await waitForStub(`http://localhost:${stubPort}/api/v1/commerce/products`, Date.now() + STUB_START_DEADLINE_MS);
 
         const build = Bun.spawnSync(["bun", "--bun", "astro", "build"], {
           cwd: STOREFRONT_ROOT,

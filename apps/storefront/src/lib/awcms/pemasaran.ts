@@ -42,6 +42,21 @@ export type ShippingSettings = {
   alternativeServices: ShippingAlternativeService[];
   selfPickup: boolean;
   courierEnabled: boolean;
+  /**
+   * Issue #109 (contract: #106 D4) — the real courier toggle, additive
+   * beside the older `courierEnabled` flag above (kept for whatever awcms
+   * build still only sends that one). Optional for the same reason every
+   * other #109-and-earlier addition in this file is: an awcms predating
+   * this contract never sends it at all, and every read site defaults it
+   * rather than assuming a courier integration that does not exist yet.
+   * This app itself never READS this field today — `checkout.ts` never
+   * decides whether to show real rates client-side, it always asks the
+   * quote endpoint and renders whatever `shippingOptions[]` comes back —
+   * but it is modelled here so `StoreSettings` stays a faithful mirror of
+   * the public read model (the same posture `payment.proofUpload` and
+   * `affiliateProgramEnabled` above already take).
+   */
+  courier?: { enabled: boolean; couriers: string[] };
   pinpointEnabled: boolean;
   freeShipping: { active: boolean; minOrder: string; maxDiscount: string };
   originCityName: string | null;
@@ -62,6 +77,17 @@ export type PaymentSettings = {
    * offering an upload the CMS has nowhere to receive.
    */
   proofUpload?: boolean;
+  /**
+   * Issue #112 (contract: #106 D3) — whether this tenant's payment gateway
+   * (Midtrans Snap, `apps/cms`'s own `COMMERCE_PAYMENT_GATEWAY` env) is
+   * turned on. This app itself never branches on this field directly —
+   * `/checkout` always renders whatever `quoteCart`'s own `paymentMethods[]`
+   * lists, the same posture every other payment method here already takes —
+   * it is modelled here, `?? false`-checked wherever read, only so
+   * `PaymentSettings` stays a faithful mirror of the public read model, per
+   * this file's own `proofUpload`/`affiliateProgramEnabled` convention.
+   */
+  gatewayEnabled?: boolean;
 };
 
 export type StoreSettings = {
@@ -98,6 +124,16 @@ export type StoreSettings = {
    * not exist yet is somehow on.
    */
   affiliateProgramEnabled?: boolean;
+  /**
+   * Added by issue #115 (contract #106 D5): whether this tenant has a
+   * WhatsApp OTP channel configured at all. `/masuk` reads this at BUILD
+   * time to decide whether to render the "E-mail | WhatsApp" channel choice
+   * at all — `false`/absent means the page renders the e-mail-only step it
+   * always has, exactly the `?? false` convention `affiliateProgramEnabled`
+   * above already sets for an awcms build that predates this field.
+   * `/daftar` never reads this: registration stays e-mail-only regardless.
+   */
+  whatsappOtpEnabled?: boolean;
 };
 
 /** BjekMart's own well-known level names — the same "a real fallback, never an invented placeholder" convention `src/config/site.ts`'s `DEFAULT_IDENTITY` already follows — used only when awcms has not (yet) configured `customerLevels` at all. */

@@ -23,7 +23,13 @@ function isIsoDateString(value: unknown): value is string {
   return typeof value === "string" && !Number.isNaN(Date.parse(value));
 }
 
-/** The account fields `GET/PATCH …/account/me` and the OTP-verify response carry (#86's own `{account:{id,name,email,phone,level,createdAt,historyFrom}}`). */
+/**
+ * The account fields `GET/PATCH …/account/me` and the OTP-verify response
+ * carry (#86's own `{account:{id,name,email,phone,level,createdAt,
+ * historyFrom}}`, `marketingConsent` added by issue #115/#106 D9: whether
+ * this shopper opted into promotional e-mail/WhatsApp campaigns — read here
+ * and toggled from `/akun` (`PATCH …/account/me {marketingConsent}`).
+ */
 export type Akun = {
   id: string;
   name: string;
@@ -32,6 +38,7 @@ export type Akun = {
   level: number;
   createdAt: string;
   historyFrom: string;
+  marketingConsent: boolean;
 };
 
 export type SesiAkun = {
@@ -62,7 +69,11 @@ export function validateAkun(value: unknown): Akun | null {
     phone: candidate.phone,
     level: candidate.level,
     createdAt: candidate.createdAt,
-    historyFrom: candidate.historyFrom
+    historyFrom: candidate.historyFrom,
+    // `?? false` — a session stored by a build that predates #115 never had
+    // this field at all; treated as "not consented" rather than dropping the
+    // whole cached session.
+    marketingConsent: candidate.marketingConsent === true
   };
 }
 
