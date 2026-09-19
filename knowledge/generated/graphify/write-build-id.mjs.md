@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/scripts/write-build-id.mjs"
 type: "code"
-community: "write-build-id.mjs"
+community: "Build ID Writer"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/write-build-idmjs
+  - community/Build_ID_Writer
 ---
 
 # write-build-id.mjs
@@ -16,4 +16,4 @@ tags:
 - [[buildId]] - `contains` [EXTRACTED]
 - [[resolveBuildId()]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/write-build-idmjs
+#graphify/code #graphify/EXTRACTED #community/Build_ID_Writer

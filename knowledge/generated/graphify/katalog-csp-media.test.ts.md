@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/katalog-csp-media.test.ts"
 type: "code"
-community: "katalog-csp-media.test.ts"
+community: "Static Server & Legacy Redirect Rules"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/katalog-csp-mediatestts
+  - community/Static_Server__Legacy_Redirect_Rules
 ---
 
 # katalog-csp-media.test.ts
@@ -22,4 +22,4 @@ tags:
 - [[penyaji.mjs]] - `imports_from` [EXTRACTED]
 - [[readCspOrigins()]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/katalog-csp-mediatestts
+#graphify/code #graphify/EXTRACTED #community/Static_Server__Legacy_Redirect_Rules

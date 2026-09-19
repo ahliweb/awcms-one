@@ -14,7 +14,7 @@ tags:
 ## Connections
 - [[BeritaLayout.astro]] - `imports_from` [EXTRACTED]
 - [[IklanSlot.astro]] - `imports_from` [EXTRACTED]
-- [[ROUTES]] - `imports` [EXTRACTED]
+- [[ROUTES_1]] - `imports` [EXTRACTED]
 - [[getDaerahList()]] - `imports` [EXTRACTED]
 - [[getMitraList()]] - `imports` [EXTRACTED]
 - [[getNavUtama()]] - `imports` [EXTRACTED]

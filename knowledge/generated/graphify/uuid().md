@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/awcms-media.test.ts"
 type: "code"
-community: "BeritaLayout.astro"
+community: "media.ts"
 location: "L47"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/BeritaLayoutastro
+  - community/mediats
 ---
 
 # uuid()
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[awcms-media.test.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/BeritaLayoutastro
+#graphify/code #graphify/EXTRACTED #community/mediats

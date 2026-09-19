@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/berita.ts"
 type: "code"
-community: "site.ts"
+community: "Portable Text & Static Pages"
 location: "L775"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/sitets
+  - community/Portable_Text__Static_Pages
 ---
 
 # renderBeritaRssXml()
@@ -21,4 +21,4 @@ tags:
 - [[escapeCdata()]] - `calls` [EXTRACTED]
 - [[escapeXml()_2]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/sitets
+#graphify/code #graphify/EXTRACTED #community/Portable_Text__Static_Pages

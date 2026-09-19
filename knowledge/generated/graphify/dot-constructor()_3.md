@@ -1,17 +1,17 @@
 ---
-source_file: "apps/storefront/src/scripts/buletin.ts"
+source_file: "tools/lib/awcms-api.ts"
 type: "code"
-community: "buletin.ts"
-location: "L57"
+community: "redirect-push.ts"
+location: "L61"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/buletints
+  - community/redirect-pushts
 ---
 
 # .constructor()
 
 ## Connections
-- [[BuletinApiError]] - `method` [EXTRACTED]
+- [[AwcmsApiError_1]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/buletints
+#graphify/code #graphify/EXTRACTED #community/redirect-pushts

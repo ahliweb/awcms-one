@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/navigasi-berita.ts"
 type: "code"
-community: "[n].astro"
+community: "[slug]/feed.xml.ts"
 location: "L129"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/nastro
+  - community/slug/feedxmlts
 ---
 
 # getNavUtama()
@@ -19,4 +19,4 @@ tags:
 - [[navigasi-berita.ts]] - `contains` [EXTRACTED]
 - [[selectNavUtamaRubrik()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/nastro
+#graphify/code #graphify/EXTRACTED #community/slug/feedxmlts

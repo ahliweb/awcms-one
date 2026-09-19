@@ -1,12 +1,12 @@
 ---
 source_file: "packages/kontrak/package.json"
 type: "code"
-community: "kontrak/package.json"
+community: "Kontrak Package Manifest"
 location: "L15"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/kontrak/packagejson
+  - community/Kontrak_Package_Manifest
 ---
 
 # awcms
@@ -15,4 +15,4 @@ tags:
 - [[awcms_1]] - `imports` [EXTRACTED]
 - [[dependencies]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/kontrak/packagejson
+#graphify/code #graphify/EXTRACTED #community/Kontrak_Package_Manifest

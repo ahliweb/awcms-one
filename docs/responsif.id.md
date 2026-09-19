@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](responsif.md)
 
-<!-- i18n-source-hash: sha256:ed1c7b23ff8f54795c71897ec357edf279618ec5b72bfc5aaec8a35aa3da6ee1 -->
+<!-- i18n-source-hash: sha256:35eeed2fec2628dfdf1ca8d6c0d471618a270c4d51e23b8505418d17d125dd6d -->
 
 # Desain responsif
 
@@ -33,6 +33,10 @@ Clamp `min(Npx, 100%)` disengaja di mana-mana: track tetap polos bisa memaksa sc
 ## Target sentuh
 
 Setiap kontrol interaktif yang ditambahkan untuk keranjang/checkout/wishlist (tombol, stepper kuantitas, toggle nav mobile) membawa `min-width: 44px` — terverifikasi di `global.css`, `katalog.css` (tiga deklarasi terpisah), sesuai minimum 44px yang sama yang direkomendasikan WCAG 2.5.5 dan panduan platform Apple/Google sendiri, diterapkan secara konsisten alih-alih hanya pada halaman yang kebetulan paling membutuhkannya.
+
+## Akun pelanggan: tanpa breakpoint tersendiri, fluid seperti yang lain
+
+`apps/storefront/src/styles/akun.css` (`/masuk`, `/daftar`, `/akun*`, issue #88/#90/#93) tidak membawa query `@media` sendiri — terverifikasi dengan membaca berkasnya: setiap aturan tidak bergantung lebar, dan target ukuran 44px `min-height` yang sama yang disebut komentar header stylesheet-nya sendiri diterapkan seragam di setiap kontrol (input kode OTP, kolom formulir alamat, tombol gabung afiliasi), tidak digerbangi breakpoint apa pun. Grid kartu-navigasi dashboard akun adalah `grid-template-columns: repeat(auto-fill, minmax(180px, 1fr))` — mekanisme reflow `auto-fill` yang sama yang dipakai grid katalog dan berita, tanpa clamp overflow `min(Npx, 100%)` tambahan yang dibawa keduanya (tidak dibutuhkan di sini: track 180px tidak pernah mendekati lebar viewport ponsel itu sendiri), sehingga tetap kolaps menjadi sesedikit satu kolom pada lebar ponsel tanpa breakpoint sendiri.
 
 ## Apa yang diverifikasi, dan bagaimana
 

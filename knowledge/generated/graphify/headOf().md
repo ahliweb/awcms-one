@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/meta-sosial-build-smoke.test.ts"
 type: "code"
-community: "meta-sosial-build-smoke.test.ts"
+community: "Social Meta Build Smoke"
 location: "L64"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/meta-sosial-build-smoketestts
+  - community/Social_Meta_Build_Smoke
 ---
 
 # headOf()
@@ -16,4 +16,4 @@ tags:
 - [[relLinks()]] - `calls` [EXTRACTED]
 - [[socialMeta()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/meta-sosial-build-smoketestts
+#graphify/code #graphify/EXTRACTED #community/Social_Meta_Build_Smoke

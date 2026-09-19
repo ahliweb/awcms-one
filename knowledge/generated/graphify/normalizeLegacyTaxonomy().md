@@ -1,12 +1,12 @@
 ---
 source_file: "tools/import-seputarborneo.ts"
 type: "code"
-community: "import-seputarborneo.ts"
+community: "Legacy Taxonomy Mapping (Importer)"
 location: "L233"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/import-seputarborneots
+  - community/Legacy_Taxonomy_Mapping_Importer
 ---
 
 # normalizeLegacyTaxonomy()
@@ -18,4 +18,4 @@ tags:
 - [[import-seputarborneo.ts]] - `contains` [EXTRACTED]
 - [[mapLegacyTaxonomy()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/import-seputarborneots
+#graphify/code #graphify/EXTRACTED #community/Legacy_Taxonomy_Mapping_Importer

@@ -1,19 +1,19 @@
 ---
 source_file: "apps/storefront/src/pages/rubrik/[slug]/index.astro"
 type: "code"
-community: "[n].astro"
+community: "[slug]/feed.xml.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/nastro
+  - community/slug/feedxmlts
 ---
 
 # [slug]/index.astro
 
 ## Connections
 - [[BeritaLayout.astro]] - `imports_from` [EXTRACTED]
-- [[ROUTES]] - `imports` [EXTRACTED]
+- [[ROUTES_1]] - `imports` [EXTRACTED]
 - [[RubrikBody.astro]] - `imports_from` [EXTRACTED]
 - [[berita.ts]] - `imports_from` [EXTRACTED]
 - [[canonicalPath_5]] - `contains` [EXTRACTED]
@@ -29,4 +29,4 @@ tags:
 - [[rubrikPaginationLinks()]] - `imports` [EXTRACTED]
 - [[{ slug }_4]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/nastro
+#graphify/code #graphify/EXTRACTED #community/slug/feedxmlts

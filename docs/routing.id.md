@@ -54,11 +54,17 @@ Keempatnya: `noindex, follow`, `aria-live="polite"` pada update quote/status, te
 | `/masuk` | `apps/storefront/src/pages/masuk.astro` | Masuk dengan OTP e-mail; `noindex, follow` |
 | `/daftar` | `apps/storefront/src/pages/daftar.astro` | Pendaftaran dengan nama + telepon + OTP e-mail; `noindex, follow` |
 | `/akun` | `apps/storefront/src/pages/akun/index.astro` | Shell dashboard setelah masuk (profil, "Ubah nama", "Keluar", kartu navigasi); `noindex, follow` |
+| `/akun/alamat` | `apps/storefront/src/pages/akun/alamat.astro` | Daftar/tambah/ubah/hapus/atur-default alamat (maksimal 10); pilihan provinsi/kota/kecamatan memakai ulang `apps/storefront/src/lib/wilayah-region-select.ts`, modul YANG SAMA dipakai autofill alamat tersimpan milik `checkout.astro`; `noindex, follow` |
+| `/akun/pesanan` | `apps/storefront/src/pages/akun/pesanan.astro` | Daftar pesanan berpaginasi keyset ("Muat lebih banyak"); `noindex, follow` |
+| `/akun/pesanan?kode=` | berkas yang sama, dengan `?kode=` | Detail satu pesanan milik akun, memakai ulang renderer `/pesanan` sendiri (`apps/storefront/src/lib/pesanan-render.ts`) — TANPA prompt telepon, sesi sudah membuktikan kepemilikan |
+| `/akun/ulasan` | `apps/storefront/src/pages/akun/ulasan.astro` | Ulasan produk milik akun sendiri — rating sebagai teks + bintang, status moderasi dalam Bahasa Indonesia; `noindex, follow` |
 | `/akun/afiliasi` | `apps/storefront/src/pages/akun/afiliasi.astro` | Program afiliasi (issue #93, S3 dari #32; sisi CMS/staf adalah issue #92): penjelasan tertutup saat `affiliateProgramEnabled` bernilai `false` pada saat build, jika tidak maka gabung/tautan-referral/statistik/komisi; `noindex, follow` |
 
-`ROUTES.accountOrder(kode)` (`/akun/pesanan?kode=`) adalah pola "deklarasikan bentuknya, isi halamannya nanti" yang sama untuk satu pesanan.
+`ROUTES.accountOrder(kode)` (`/akun/pesanan?kode=`) adalah URL milik satu pesanan itu sendiri.
 
 `?ref={code}` pada HALAMAN MANA PUN (bukan hanya `/`) adalah referral yang ditangkap, bukan rute tersendiri — `apps/storefront/src/scripts/afiliasi-tangkap.ts`, dipasang dari `BaseLayout.astro` di setiap halaman, menyimpan kode yang valid dan menghapus HANYA parameter kueri itu lewat `history.replaceState`; lihat [`docs/seo.md`](seo.id.md) untuk alasan mengapa tautan kanonik tidak terpengaruh oleh penangkapan ini.
+
+`checkout.astro`/`checkout.ts` mendapat `<select>` "Pilih alamat tersimpan", tersembunyi sampai sesi pelanggan terkonfirmasi, yang mengisi otomatis langkah alamat dari `GET …/account/addresses`; permintaan pembuatan pesanan membawa Bearer token pembeli yang sudah masuk bila ada (`createOrder` milik `apps/storefront/src/lib/toko-klien.ts` menerima argumen kedua OPSIONAL `bearerToken` — pemanggil anonim yang sudah ada tidak terpengaruh).
 
 ## Statis
 

@@ -1,20 +1,21 @@
 ---
-source_file: "apps/storefront/src/scripts/wishlist.ts"
+source_file: "apps/storefront/src/scripts/akun-afiliasi.ts"
 type: "code"
-community: "wishlist-kontrak.ts"
-location: "L61"
+community: "Account Affiliate Page Script"
+location: "L253"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/wishlist-kontrakts
+  - community/Account_Affiliate_Page_Script
 ---
 
 # render()
 
 ## Connections
-- [[item()]] - `indirect_call` [INFERRED]
-- [[itemMarkup()]] - `calls` [EXTRACTED]
-- [[loadWishlist()]] - `calls` [EXTRACTED]
-- [[wishlist.ts]] - `indirect_call` [INFERRED]
+- [[akun-afiliasi.ts]] - `indirect_call` [INFERRED]
+- [[bacaSesi()]] - `calls` [EXTRACTED]
+- [[hideSubmitError()]] - `calls` [EXTRACTED]
+- [[showAccountView()]] - `calls` [EXTRACTED]
+- [[showGuestView()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/wishlist-kontrakts
+#graphify/code #graphify/EXTRACTED #community/Account_Affiliate_Page_Script

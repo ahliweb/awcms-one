@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/awcms/toko-origin.ts"
 type: "code"
-community: "requireAwcmsOrigin"
+community: "Newsletter Forms & Visitor Beacon"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/requireAwcmsOrigin
+  - community/Newsletter_Forms__Visitor_Beacon
 ---
 
 # toko-origin.ts
@@ -21,7 +21,7 @@ tags:
 - [[requireAwcmsOrigin()]] - `contains` [EXTRACTED]
 - [[scriptsanalitik.ts]] - `imports_from` [EXTRACTED]
 - [[toko-csp.test.ts]] - `imports_from` [EXTRACTED]
-- [[toko-klien.ts]] - `imports_from` [EXTRACTED]
 - [[toko-origin.test.ts]] - `imports_from` [EXTRACTED]
+- [[toko-permintaan.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/requireAwcmsOrigin
+#graphify/code #graphify/EXTRACTED #community/Newsletter_Forms__Visitor_Beacon

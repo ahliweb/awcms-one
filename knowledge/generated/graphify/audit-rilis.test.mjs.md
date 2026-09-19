@@ -1,12 +1,12 @@
 ---
 source_file: "tests/audit-rilis.test.mjs"
 type: "code"
-community: "audit-rilis.test.mjs"
+community: "Release Audit Test"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/audit-rilistestmjs
+  - community/Release_Audit_Test
 ---
 
 # audit-rilis.test.mjs
@@ -18,4 +18,4 @@ tags:
 - [[run()_5]] - `contains` [EXTRACTED]
 - [[tree()_1]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/audit-rilistestmjs
+#graphify/code #graphify/EXTRACTED #community/Release_Audit_Test

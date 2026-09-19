@@ -12,7 +12,7 @@ tags:
 # berita.ts
 
 ## Connections
-- [[ADR-0109_2]] - `cites` [EXTRACTED]
+- [[ADR-0109]] - `cites` [EXTRACTED]
 - [[ArtikelCard.astro]] - `imports_from` [EXTRACTED]
 - [[ArtikelView.astro]] - `imports_from` [EXTRACTED]
 - [[AuthorArchive]] - `contains` [EXTRACTED]

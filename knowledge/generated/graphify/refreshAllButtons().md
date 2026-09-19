@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/scripts/wishlist-tombol.ts"
 type: "code"
-community: "wishlist-kontrak.ts"
-location: "L64"
+community: "Wishlist Storage & Account Sync"
+location: "L65"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/wishlist-kontrakts
+  - community/Wishlist_Storage__Account_Sync
 ---
 
 # refreshAllButtons()
@@ -17,4 +17,4 @@ tags:
 - [[renderButtonState()]] - `calls` [EXTRACTED]
 - [[wishlist-tombol.ts]] - `indirect_call` [INFERRED]
 
-#graphify/code #graphify/EXTRACTED #community/wishlist-kontrakts
+#graphify/code #graphify/EXTRACTED #community/Wishlist_Storage__Account_Sync

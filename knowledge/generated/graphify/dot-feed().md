@@ -1,12 +1,12 @@
 ---
 source_file: "tools/lib/mysql-dump-reader.ts"
 type: "code"
-community: "mysql-dump-reader.ts"
+community: "MySQL Dump Reader"
 location: "L380"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/mysql-dump-readerts
+  - community/MySQL_Dump_Reader
 ---
 
 # .feed()
@@ -19,4 +19,4 @@ tags:
 - [[readMysqlDumpRows()]] - `calls` [EXTRACTED]
 - [[tryParseValueTuple()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/mysql-dump-readerts
+#graphify/code #graphify/EXTRACTED #community/MySQL_Dump_Reader

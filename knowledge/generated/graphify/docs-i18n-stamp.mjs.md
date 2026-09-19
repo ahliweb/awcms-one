@@ -1,12 +1,12 @@
 ---
 source_file: "tools/docs-i18n-stamp.mjs"
 type: "code"
-community: "audit-graf.mjs"
+community: "Documentation & Graph Audit Gates"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/audit-grafmjs
+  - community/Documentation__Graph_Audit_Gates
 ---
 
 # docs-i18n-stamp.mjs
@@ -34,4 +34,4 @@ tags:
 - [[withMarker()]] - `contains` [EXTRACTED]
 - [[withoutMarker()]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/audit-grafmjs
+#graphify/code #graphify/EXTRACTED #community/Documentation__Graph_Audit_Gates

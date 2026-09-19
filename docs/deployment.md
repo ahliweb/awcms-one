@@ -35,6 +35,18 @@ Two separate `.env.example` files, one per workspace, deliberately not merged �
 
 A much larger file, owned entirely by `apps/cms` as embedded `ahliweb/awcms` code — this repository's root does not duplicate it (`AGENTS.md`'s "Configuration and toolchain": "every env variable a root-level script reads belongs in `.env.example`... `apps/cms` maintains its own `.env.example` for its own runtime configuration; this repo's root file does not duplicate it"). The variables that matter for understanding what a running `apps/cms` needs: `DATABASE_URL` (application role `awcms_app` — never the database owner role, which is a Postgres superuser that bypasses `FORCE ROW LEVEL SECURITY` outright, defeating the exact isolation [`docs/skema-basis-data.md`](skema-basis-data.md) documents), `APP_ENV`/`APP_URL`, and the HTTP listener variables (`PORT`, `HOST`, and optional in-process TLS certificate paths) its own standalone entrypoint reads.
 
+**`EMAIL_ENABLED`/`EMAIL_PROVIDER` are load-bearing for customer login, not merely for outbound mail generally, since increment 4.** `POST account/otp/request` (issue #89) enqueues its 6-digit code through the same `email` module outbox every other transactional e-mail uses. With `EMAIL_ENABLED=false` (the default) or `EMAIL_PROVIDER=log`, the code goes to a `log` adapter instead of an inbox — a deployment left at these defaults can still exercise the whole OTP flow in development/CI, but a real, "production" customer cannot actually receive their login code until both are set (`EMAIL_ENABLED=true` and a real `EMAIL_PROVIDER`, e.g. `mailketing`). This is a deployment gate, not merely a feature flag: turning it on late is the difference between the account surface working end to end and every login silently only reaching the server log.
+
+| Variable | Default | Purpose |
+| --- | --- | --- |
+| `EMAIL_ENABLED` | `false` | Whether the `email` module actually sends — `false` routes every message, including the OTP, to the `log` adapter |
+| `EMAIL_PROVIDER` | unset (`log` when `EMAIL_ENABLED=false`) | `mailketing` (real adapter) or `log` (safe local/dev, no network) |
+| `COMMERCE_ACCOUNT_OTP_RATE_LIMIT_MAX_PER_IP` / `_WINDOW_SEC` / `_MAX_PER_EMAIL` | 10 / 3600 / 5 | `account/otp/request`'s two-axis limit (issue #89) — an IP-only limit cannot protect the mailbox an OTP is sent to |
+| `COMMERCE_ACCOUNT_OTP_VERIFY_RATE_LIMIT_MAX_PER_IP` / `_WINDOW_SEC` | 20 / 3600 | `account/otp/verify`'s own, looser per-IP budget — no per-e-mail axis, since the hashed code with 5 attempts already limits guessing one address |
+| `COMMERCE_STOREFRONT_PUBLIC_URL` | unset | This deployment's public storefront origin, used only to build an enrolled affiliate's referral link (issue #92, `"${COMMERCE_STOREFRONT_PUBLIC_URL}/?ref=CODE"`); unset falls back to a relative `/?ref=CODE` rather than fabricating an origin |
+
+`PUBLIC_*` storefront variables are unchanged by increment 4 — the bearer session lives entirely in the browser's own `localStorage`, so no new build-time or runtime env var was needed on the `apps/storefront` side for accounts or affiliates.
+
 ## What may reach `apps/cms`: the build process, and — since issue #30 — the reader's browser
 
 | | May reach |
@@ -101,6 +113,15 @@ DATABASE_URL=postgres://awcms:awcms_dev_password@localhost:5433/awcms \
 # once. It updates the sixteen already-applied rows' recorded names/checksums
 # to the new sql/901-sql/916 names; a fresh database (this one) needs it not
 # at all, since it applies the new file names directly.
+
+# db:migrate:cms now also applies sql/917-sql/923 (increment 4, epic #32):
+# the customer account/OTP/session schema (917) plus its worker purge grants
+# (918), the derived OTP e-mail template seed for existing tenants (919), the
+# address default-per-customer partial unique index (920), and the affiliate
+# program's schema — including orders.affiliate_id and
+# store_settings.affiliate_commission_rate (921), its permission seed (922),
+# and its worker purge grants (923). Nothing beyond the ordinary
+# `db:migrate:cms` step above is needed to pick these up.
 
 # Issue #57 — the news taxonomy's "Daerah" institutions and /daerah/{slug}
 # archive resolve their region codes/names against `idn_admin_regions`

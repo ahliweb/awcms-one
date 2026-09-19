@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/pages/rubrik/[slug]/feed.xml.ts"
 type: "code"
-community: "site.ts"
+community: "[slug]/feed.xml.ts"
 location: "L9"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/sitets
+  - community/slug/feedxmlts
 ---
 
 # prerender
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[slugfeed.xml.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/sitets
+#graphify/code #graphify/EXTRACTED #community/slug/feedxmlts

@@ -1,12 +1,12 @@
 ---
 source_file: "tools/import-seputarborneo.ts"
 type: "code"
-community: "import-seputarborneo.test.mjs"
+community: "Importer Record Builders & Legacy URLs"
 location: "L641"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/import-seputarborneotestmjs
+  - community/Importer_Record_Builders__Legacy_URLs
 ---
 
 # REDIRECT_ORIGIN
@@ -15,4 +15,4 @@ tags:
 - [[import-seputarborneo.test.mjs]] - `imports` [EXTRACTED]
 - [[import-seputarborneo.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/import-seputarborneotestmjs
+#graphify/code #graphify/EXTRACTED #community/Importer_Record_Builders__Legacy_URLs

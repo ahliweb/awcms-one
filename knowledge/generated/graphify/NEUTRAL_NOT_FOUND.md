@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/scripts/stub-awcms.mjs"
 type: "code"
-community: "stub-awcms.mjs"
-location: "L254"
+community: "Stub CMS State Machine"
+location: "L303"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/stub-awcmsmjs
+  - community/Stub_CMS_State_Machine
 ---
 
 # NEUTRAL_NOT_FOUND
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[stub-awcms.mjs]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/stub-awcmsmjs
+#graphify/code #graphify/EXTRACTED #community/Stub_CMS_State_Machine

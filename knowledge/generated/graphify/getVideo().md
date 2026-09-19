@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/berita.ts"
 type: "code"
-community: "getVideo"
+community: "Legacy Redirect Map & Video Lookup"
 location: "L459"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/getVideo
+  - community/Legacy_Redirect_Map__Video_Lookup
 ---
 
 # getVideo()
@@ -25,4 +25,4 @@ tags:
 - [[videoslug.astro]] - `imports` [EXTRACTED]
 - [[videoindex.astro]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/getVideo
+#graphify/code #graphify/EXTRACTED #community/Legacy_Redirect_Map__Video_Lookup

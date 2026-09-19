@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/pengalihan-aturan.test.ts"
 type: "code"
-community: "pengalihan-aturan.mjs"
+community: "Static Server & Legacy Redirect Rules"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/pengalihan-aturanmjs
+  - community/Static_Server__Legacy_Redirect_Rules
 ---
 
 # pengalihan-aturan.test.ts
@@ -24,4 +24,4 @@ tags:
 - [[penyaji.mjs]] - `imports_from` [EXTRACTED]
 - [[ruleBasedRedirectLocation()]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/pengalihan-aturanmjs
+#graphify/code #graphify/EXTRACTED #community/Static_Server__Legacy_Redirect_Rules

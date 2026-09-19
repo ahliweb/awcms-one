@@ -1,12 +1,12 @@
 ---
 source_file: "tests/versi-toolchain.test.mjs"
 type: "code"
-community: "versi-toolchain.test.mjs"
+community: "Toolchain Version Test"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/versi-toolchaintestmjs
+  - community/Toolchain_Version_Test
 ---
 
 # versi-toolchain.test.mjs
@@ -16,4 +16,4 @@ tags:
 - [[ci]] - `contains` [EXTRACTED]
 - [[pkg_1]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/versi-toolchaintestmjs
+#graphify/code #graphify/EXTRACTED #community/Toolchain_Version_Test

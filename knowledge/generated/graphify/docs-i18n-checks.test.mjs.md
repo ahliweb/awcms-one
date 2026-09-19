@@ -1,12 +1,12 @@
 ---
 source_file: "tests/docs-i18n-checks.test.mjs"
 type: "code"
-community: "audit-graf.mjs"
+community: "Documentation & Graph Audit Gates"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/audit-grafmjs
+  - community/Documentation__Graph_Audit_Gates
 ---
 
 # docs-i18n-checks.test.mjs
@@ -24,4 +24,4 @@ tags:
 - [[isInScope()]] - `imports` [EXTRACTED]
 - [[isMirrorInScope()]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/audit-grafmjs
+#graphify/code #graphify/EXTRACTED #community/Documentation__Graph_Audit_Gates

@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/package.json"
 type: "code"
-community: "scripts"
+community: "Storefront Package Manifest"
 location: "L20"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/scripts
+  - community/Storefront_Package_Manifest
 ---
 
 # @awcms-one/kontrak
@@ -15,4 +15,4 @@ tags:
 - [[@awcms-onekontrak_1]] - `imports` [EXTRACTED]
 - [[dependencies_1]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/scripts
+#graphify/code #graphify/EXTRACTED #community/Storefront_Package_Manifest

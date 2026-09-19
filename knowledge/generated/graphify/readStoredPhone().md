@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/scripts/pesanan.ts"
 type: "code"
-community: "scripts/pesanan.ts"
-location: "L55"
+community: "Commerce Storefront Client & Order Tracking"
+location: "L37"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/scripts/pesanants
+  - community/Commerce_Storefront_Client__Order_Tracking
 ---
 
 # readStoredPhone()
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[scriptspesanan.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/scripts/pesanants
+#graphify/code #graphify/EXTRACTED #community/Commerce_Storefront_Client__Order_Tracking

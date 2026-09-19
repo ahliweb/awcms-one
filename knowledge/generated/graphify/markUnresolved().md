@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/awcms/media.ts"
 type: "code"
-community: "BeritaLayout.astro"
+community: "media.ts"
 location: "L143"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/BeritaLayoutastro
+  - community/mediats
 ---
 
 # markUnresolved()
@@ -15,4 +15,4 @@ tags:
 - [[media.ts]] - `contains` [EXTRACTED]
 - [[resolveMedia()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/BeritaLayoutastro
+#graphify/code #graphify/EXTRACTED #community/mediats

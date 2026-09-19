@@ -1,17 +1,17 @@
 ---
-source_file: "apps/storefront/src/scripts/buletin.ts"
+source_file: "apps/storefront/src/lib/toko-permintaan.ts"
 type: "code"
-community: "buletin.ts"
-location: "L69"
+community: "Login (OTP) Page Script & Request Plumbing"
+location: "L80"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/buletints
+  - community/Login_OTP_Page_Script__Request_Plumbing
 ---
 
 # Envelope
 
 ## Connections
-- [[buletin.ts]] - `contains` [EXTRACTED]
+- [[toko-permintaan.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/buletints
+#graphify/code #graphify/EXTRACTED #community/Login_OTP_Page_Script__Request_Plumbing

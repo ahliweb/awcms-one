@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/analitik-terpopuler.test.ts"
 type: "code"
-community: "awcms/analitik.ts"
+community: "Build-Time CMS Client & Region Data"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/awcms/analitikts
+  - community/Build-Time_CMS_Client__Region_Data
 ---
 
 # analitik-terpopuler.test.ts
@@ -27,4 +27,4 @@ tags:
 - [[resetAnalitikCacheForTests()]] - `imports` [EXTRACTED]
 - [[slugDariPath()]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/awcms/analitikts
+#graphify/code #graphify/EXTRACTED #community/Build-Time_CMS_Client__Region_Data

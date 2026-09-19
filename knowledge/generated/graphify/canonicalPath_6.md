@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/pages/tag/[slug].astro"
 type: "code"
-community: "Sidebar.astro"
+community: "berita.ts"
 location: "L25"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Sidebarastro
+  - community/beritats
 ---
 
 # canonicalPath
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[tagslug.astro]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Sidebarastro
+#graphify/code #graphify/EXTRACTED #community/beritats

@@ -12,7 +12,7 @@ tags:
 # AwcmsApiError
 
 ## Connections
-- [[dot-constructor()_4]] - `method` [EXTRACTED]
+- [[dot-constructor()_3]] - `method` [EXTRACTED]
 - [[awcms-api.ts]] - `contains` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/redirect-pushts

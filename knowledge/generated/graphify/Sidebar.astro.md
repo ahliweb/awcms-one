@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/components/berita/Sidebar.astro"
 type: "code"
-community: "Sidebar.astro"
+community: "berita.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/Sidebarastro
+  - community/beritats
 ---
 
 # Sidebar.astro
@@ -16,7 +16,7 @@ tags:
 - [[FormBuletin.astro]] - `imports_from` [EXTRACTED]
 - [[IklanSlot.astro]] - `imports_from` [EXTRACTED]
 - [[PostSummary]] - `imports` [EXTRACTED]
-- [[ROUTES]] - `imports` [EXTRACTED]
+- [[ROUTES_1]] - `imports` [EXTRACTED]
 - [[RubrikBody.astro]] - `imports_from` [EXTRACTED]
 - [[TagCloud.astro]] - `imports_from` [EXTRACTED]
 - [[mm.astro]] - `imports_from` [EXTRACTED]
@@ -42,4 +42,4 @@ tags:
 - [[toDatetimeAttr()_1]] - `contains` [EXTRACTED]
 - [[videoindex.astro]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/Sidebarastro
+#graphify/code #graphify/EXTRACTED #community/beritats

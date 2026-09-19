@@ -1,12 +1,12 @@
 ---
 source_file: "tools/rilis.mjs"
 type: "code"
-community: "rilis.mjs"
+community: "Release & Changeset Tooling"
 location: "L194"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/rilismjs
+  - community/Release__Changeset_Tooling
 ---
 
 # body
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[rilis.mjs]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/rilismjs
+#graphify/code #graphify/EXTRACTED #community/Release__Changeset_Tooling

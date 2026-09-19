@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/scripts/produk-index-klien.ts"
 type: "code"
-community: "produk-listing.ts"
+community: "Client-Side Search & Listing Renderer"
 location: "L84"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/produk-listingts
+  - community/Client-Side_Search__Listing_Renderer
 ---
 
 # renderPagination()
@@ -18,4 +18,4 @@ tags:
 - [[render()_1]] - `calls` [EXTRACTED]
 - [[run()_3]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/produk-listingts
+#graphify/code #graphify/EXTRACTED #community/Client-Side_Search__Listing_Renderer

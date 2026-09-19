@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/keranjang-klien.ts"
 type: "code"
-community: "checkout.ts"
+community: "Cart Storage & Cart Contract"
 location: "L96"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/checkoutts
+  - community/Cart_Storage__Cart_Contract
 ---
 
 # clearCart()
@@ -19,4 +19,4 @@ tags:
 - [[runCheckout()]] - `calls` [EXTRACTED]
 - [[saveCart()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/checkoutts
+#graphify/code #graphify/EXTRACTED #community/Cart_Storage__Cart_Contract

@@ -11,10 +11,15 @@ store-settings document — and, since Issue #29, **customers, orders and
 reviews**: a guest checkout that never requires an account, a cart quote that
 re-prices server-side, order tracking and cancellation by `orderCode` +
 phone, manual payment confirmations, and a review left from a completed
-order. Issue #4 (part of epic #1) shipped the catalog core; Issue #23 (part
+order — and, since epic #32 (issues #86–#93), **customer accounts, OTP
+login/bearer sessions, a self-service account surface** (saved addresses, a
+synced wishlist, order history, reviews) **and an affiliate program**
+designed fresh per [ADR-0016](../../../../../docs/adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md).
+Issue #4 (part of epic #1) shipped the catalog core; Issue #23 (part
 of epic #21) brought it to full product-model parity with the legacy schema;
 Issue #26 (same epic) added the marketing tables; Issue #29 (same epic) added
-customers, orders and the anonymous storefront checkout surface.
+customers, orders and the anonymous storefront checkout surface; epic #32
+added customer accounts and affiliates on top of that same customer row.
 
 | Aspect      | Value                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -385,24 +390,24 @@ the 39 declared permissions is claimed by one of them, and
 `tests/admin-commerce-page-contract.test.ts` hold the new screens to the same
 properties the earlier ones satisfy.
 
-## Customer accounts — auth (Issue #89, epic #32 wave 2 — C2)
+## Customer accounts & affiliates (epic #32 — ADR-0016)
 
 `openapi/modules/commerce.openapi.yaml` documents the full
 `/api/v1/commerce/storefront/account/*` surface (OTP login/registration,
 profile, saved addresses, wishlist, order history, reviews, affiliate
-enrolment) plus the staff-side `/api/v1/commerce/affiliates*` routes. **Four
-of those paths are implemented as of Issue #89** — `otp/request`,
-`otp/verify`, `me` (`GET`/`PATCH`), and `logout` — and are removed from
-`ROUTE_PARITY_EXEMPTIONS` (`scripts/api-spec-check.ts`) accordingly; the
-remaining paths (addresses, wishlist, order history, reviews, affiliates)
-landed across C3/C4 (issues #91/#92 — see those sections below), and
-`ROUTE_PARITY_EXEMPTIONS` is now empty. The four
-architectural decisions behind the shape — identity stays a `commerce` row
-never linked to `awcms_principals`, e-mail OTP now with WhatsApp deferred to
-#33, an opaque `customerBearer` session token kept in `localStorage`, and
-the guest-row binding rule at registration — are recorded in
+enrolment) plus the staff-side `/api/v1/commerce/affiliates*` routes — every
+one of them implemented, landed across three waves (C2 auth issue #89, C3
+resources issue #91, C4 affiliates issue #92), and `ROUTE_PARITY_EXEMPTIONS`
+(`scripts/api-spec-check.ts`) is now EMPTY — every path #86 documented ahead
+of its handler has one. The four architectural decisions behind the shape —
+identity stays a `commerce` row never linked to `awcms_principals`, e-mail
+OTP now with WhatsApp deferred to #33, an opaque `customerBearer` session
+token kept in `localStorage`, and the guest-row binding rule at registration
+— plus the affiliate program's own design (D5) are recorded in
 [ADR-0016](../../../../../docs/adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md)
 in awcms-one.
+
+### Auth (Issue #89, wave 2 — C2)
 
 **Application layer** (`application/customer-auth.ts`): `requestCustomerOtp`
 validates `{email, purpose, name?, phone?}` — `purpose: "register"` runs the
@@ -448,7 +453,7 @@ otp_requested`, `otp_verified`, `login_failed` (every verify failure,
 whatever the reason — the reason lives only in `attributes.reason`),
 `account_registered`, `logout`.
 
-## Customer accounts — resources (Issue #91, epic #32 wave 3 — C3)
+### Resources (Issue #91, wave 3 — C3)
 
 Six more `/api/v1/commerce/storefront/account/*` paths land: `addresses`
 (`GET`/`POST`), `addresses/{id}` (`PATCH`/`DELETE`),
@@ -521,7 +526,7 @@ rationale now records that Issue #91 gives the account holder a genuine
 SELF-SERVICE path to their own rows (the bearer-secured routes above),
 where before this issue there was none.
 
-## Customer accounts — affiliates (Issue #92, epic #32 wave 4 — C4)
+### Affiliates (Issue #92, wave 4 — C4)
 
 The last two contract-only paths land: `account/affiliate` (`GET`/`POST`)
 and `account/affiliate/commissions` (`GET`, keyset) — both removed from

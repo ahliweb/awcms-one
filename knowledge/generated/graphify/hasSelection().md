@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/scripts/produk-detail.ts"
 type: "code"
-community: "produk-detail.ts"
+community: "Product Detail Variants Script"
 location: "L118"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/produk-detailts
+  - community/Product_Detail_Variants_Script
 ---
 
 # hasSelection()
@@ -15,4 +15,4 @@ tags:
 - [[produk-detail.ts]] - `contains` [EXTRACTED]
 - [[refresh()_1]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/produk-detailts
+#graphify/code #graphify/EXTRACTED #community/Product_Detail_Variants_Script

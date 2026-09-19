@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/awcms/analitik.ts"
 type: "code"
-community: "awcms/analitik.ts"
+community: "Build-Time CMS Client & Region Data"
 location: "L99"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/awcms/analitikts
+  - community/Build-Time_CMS_Client__Region_Data
 ---
 
 # getTopPaths()
@@ -17,4 +17,4 @@ tags:
 - [[awcmsanalitik.ts]] - `contains` [EXTRACTED]
 - [[fetchTopPaths()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/awcms/analitikts
+#graphify/code #graphify/EXTRACTED #community/Build-Time_CMS_Client__Region_Data

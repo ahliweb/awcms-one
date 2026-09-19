@@ -1,10 +1,10 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](arsitektur.md)
 
-<!-- i18n-source-hash: sha256:2c9a07c0b4b1f8c2b0b46adc8e92988ffa5e33293f46c283bb6b27a375375a50 -->
+<!-- i18n-source-hash: sha256:87e5ae45cad2ea6fae1552997ccdf833d9f624682c863b2c98c88e754898563b -->
 
 # Arsitektur
 
-Apa yang benar-benar di-deploy oleh repositori ini hari ini, dan batasan yang menjaga kedua bagiannya agar tidak diam-diam saling menyusup. Dokumen ini mendeskripsikan increment 3 — paritas BjekMart/portal-berita milik increment 2 ditambah paritas fungsional dengan seputarborneo.com v2.4.0 yang ditambahkan epic [#46](https://github.com/ahliweb/awcms-one/issues/46) (media sungguhan, chrome berita, pemutar baca-nyaring, pengalihan lawas berbasis aturan, analitik first-party, lambang lembaga), tetap tanpa basis data produksi yang hidup — sebagaimana adanya di tree yang sudah digabung, bukan sebagaimana direncanakan. Lihat [`README.md`](../README.id.md) dan [`AGENTS.md`](../AGENTS.id.md) untuk tata letak workspace dan aturan kerja yang diasumsikan dokumen ini.
+Apa yang benar-benar di-deploy oleh repositori ini hari ini, dan batasan yang menjaga kedua bagiannya agar tidak diam-diam saling menyusup. Dokumen ini mendeskripsikan increment 4 — paritas BjekMart/portal-berita milik increment 2, paritas fungsional dengan seputarborneo.com v2.4.0 yang ditambahkan epic [#46](https://github.com/ahliweb/awcms-one/issues/46) (media sungguhan, chrome berita, pemutar baca-nyaring, pengalihan lawas berbasis aturan, analitik first-party, lambang lembaga), dan epic akun-pelanggan/afiliasi [#32](https://github.com/ahliweb/awcms-one/issues/32) ([ADR-0016](adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.id.md)), tetap tanpa basis data produksi yang hidup — sebagaimana adanya di tree yang sudah digabung, bukan sebagaimana direncanakan. Lihat [`README.md`](../README.id.md) dan [`AGENTS.md`](../AGENTS.id.md) untuk tata letak workspace dan aturan kerja yang diasumsikan dokumen ini.
 
 ## Dua deployable, satu aliran data saat-build, satu seam runtime anonim
 
@@ -42,6 +42,38 @@ flowchart LR
 **Container yang menjalankan `apps/storefront` tidak pernah berbicara ke `apps/cms`.** `astro build` memanggil API owner `apps/cms` sekali, dengan token Bearer read-only (`AWCMS_API_TOKEN`), untuk memanggang katalog, berita, permukaan pemasaran, dan halaman statis menjadi HTML datar di bawah `dist/client/`. Begitu build itu selesai, `bun dist/server/penyaji.mjs` hanya melayani berkas-berkas itu dan tidak lebih — ia tidak memegang token API, tidak membuka koneksi ke `apps/cms`, dan tidak punya jalur kode yang bisa menjangkau basis data sekalipun ia mau. **Yang berubah di increment 2 adalah hubungan *browser* itu sendiri dengan `apps/cms`**, bukan hubungan container: keranjang, checkout, dan pelacakan pesanan adalah halaman statis yang JavaScript sisi-kliennya memanggil `https://<cms>/api/v1/commerce/storefront/*` langsung, lintas-origin, memakai `PUBLIC_AWCMS_ORIGIN` — nilai yang dipanggang saat build, sengaja dibuat publik (sebuah origin bukan rahasia; setiap URL media sudah mengungkapkannya). Inilah keseluruhan argumen [ADR-0007](adr/0007-cart-and-checkout-stay-static-the-browser-calls-anonymous-commerce-endpoints.id.md): kredensial runtime di dalam *container* ditolak karena kredensial mesin `apps/cms` memang read-only secara konstruksi (kredensial itu tidak pernah bisa membuat pesanan); keluarga endpoint anonim dan Origin-bound yang sudah dibangun `apps/cms` untuk permukaan newsletter/site-search/comments-nya adalah pola yang dipakai ulang di sini. Kompromi pada container storefront tetap tidak menjangkau data pelanggan apa pun, karena memang tidak ada yang bisa dijangkau dari dalamnya — pesanan, nomor telepon, instruksi pembayaran semuanya berjalan browser ↔ CMS langsung dan tidak pernah dicatat log atau disimpan oleh storefront.
 
 **Trade-off dari ADR-0002 tidak berubah untuk semua hal kecuali harga dan stok pada saat menambahkan ke keranjang:** setiap halaman katalog dan berita tetap hanya sesegar build terakhir. Halaman keranjang meng-quote ulang setiap baris terhadap `apps/cms` secara live sebelum checkout (`POST .../storefront/cart/quote`), sehingga harga statis yang basi ditampilkan dan ditandai, tidak pernah dikenakan secara diam-diam.
+
+## Tingkat kepercayaan ketiga: anonim → pelanggan terautentikasi, tetap tanpa cookie
+
+Increment 2 memberi browser satu cara anonim dan Origin-bound untuk berbicara ke `apps/cms` (ADR-0007). Increment 4 menambahkan tingkat kedua di atasnya, tidak pernah menggantikannya: pembeli yang memverifikasi OTP e-mail mendapat satu baris `customer` (`awcms_commerce_customer_accounts`, 1:1 dengan `awcms_commerce_customers`) dan sesi bearer opak — tidak pernah tertaut ke `awcms_principals`, tabel kredensial staf, dan tidak pernah cookie ([ADR-0016](adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.id.md) D1/D3). Ketiga tingkat itu, secara konkret:
+
+| Tingkat | Kredensial | Penyimpanan | Berbicara ke |
+| --- | --- | --- | --- |
+| Owner saat build | `AWCMS_API_TOKEN`, Bearer | Tidak dikirim ke browser | `/api/v1/commerce/*` dan setiap permukaan owner-only lain yang dipanggang `apps/storefront` ke HTML |
+| Pembeli anonim | Tidak ada | Tidak ada yang persisten — hanya keranjang/wishlist `localStorage` | `/api/v1/commerce/storefront/*`, Origin-bound, sama sekali tanpa kredensial |
+| Pelanggan terautentikasi | Token bearer opak berawalan `cs_`, di-hash `sha256:` saat disimpan di `awcms_commerce_customer_sessions` | `localStorage` (`awcms-one:akun:v1`), TTL bergeser 30 hari | Keluarga `/api/v1/commerce/storefront/account/*` yang sama, plus bearer OPSIONAL pada `POST orders`/`POST reviews` |
+
+Bearer dikirim sebagai `Authorization: Bearer …`; CORS mendapat `authorization` di daftar header yang diizinkan untuk rute-rute ini tapi **tidak pernah** `Access-Control-Allow-Credentials` — token itu tidak pernah menjadi otoritas ambien, sehingga tidak ada permukaan CSRF baru untuk dipertahankan, sejalan dengan sikap tingkat anonim sendiri. `apps/storefront/src/lib/akun-sesi.ts` memiliki bentuk `{token, expiresAt, account}` yang tersimpan dan memicu event `akun:berubah` saat berubah; `apps/storefront/src/lib/akun-klien.ts` melampirkan header itu dan membersihkan sesi saat melihat `401 UNAUTHENTICATED` apa pun, sehingga token yang basi atau dicabut tidak pernah bertahan di sisi klien. Tabel akun itu sendiri — `awcms_commerce_customer_accounts`, `awcms_commerce_customer_otps`, `awcms_commerce_customer_sessions` — adalah tabel tenant-scoped, `FORCE ROW LEVEL SECURITY`, dimiliki sepenuhnya oleh `commerce` (`sql/917`); lihat [`docs/skema-basis-data.md`](skema-basis-data.id.md) untuk kolom-kolomnya.
+
+Login/registrasi adalah OTP 6 digit yang dikirim lewat outbox milik modul `email` yang sudah ada, di bawah kategori template turunan `derived.commerce_customer_otp` yang di-seed migrasi `sql/919` (satu salinan EN+ID per tenant); ketika `EMAIL_ENABLED` bukan `"true"` (atau `EMAIL_PROVIDER=log`), kodenya pergi ke adapter `log` sebagai gantinya sehingga CI dan pengembangan lokal bisa menjalankan seluruh alurnya tanpa kredensial e-mail — lihat [`docs/cms.md`](cms.id.md) dan [`docs/deployment.md`](deployment.id.md) untuk alasan kedua env var itu load-bearing untuk login itu sendiri, bukan sekadar untuk e-mail keluar secara umum.
+
+```mermaid
+sequenceDiagram
+  participant Browser
+  participant CMS as apps/cms (storefront/account/*)
+  participant Outbox as outbox e-mail
+  Browser->>CMS: POST account/otp/request {email, purpose}
+  CMS->>Outbox: antre derived.commerce_customer_otp (transaksi yang sama)
+  CMS-->>Browser: 202 {sent:true, expiresInSeconds:600}
+  Outbox--)Browser: e-mail berisi kode 6 digit (atau baris log saat EMAIL_ENABLED=false)
+  Browser->>CMS: POST account/otp/verify {email, code, purpose}
+  CMS-->>Browser: 200 {token, expiresAt, account}
+  Browser->>Browser: simpan {token, expiresAt, account} di localStorage (akun-sesi.ts)
+  Browser->>CMS: GET account/me  (Authorization: Bearer token)
+  CMS-->>Browser: 200 {account}
+```
+
+Tamu tidak kehilangan apa pun karena tidak mendaftar: setiap jalur anonim yang dikirim ADR-0007/ADR-0009 tidak berubah, `POST orders`/`POST reviews` tetap berfungsi tanpa header `Authorization` sama sekali, dan kedua endpoint OTP itu sendiri anonim (belum ada sesi untuk diperiksa). Lihat [`docs/api.md`](api.id.md) untuk tabel endpoint lengkap dan [`docs/routing.md`](routing.id.md) untuk halaman `/masuk`/`/daftar`/`/akun*` tempat UI tingkat ini hidup.
 
 ## CSP diturunkan dari konten, bukan dikonfigurasi
 
@@ -81,11 +113,11 @@ Per [ADR-0008](adr/0008-one-commerce-module-carries-the-whole-store-not-three.md
 
 ## Apa yang masih belum ada di sini
 
-Akun pelanggan (login, wishlist/alamat/ulasan yang tersinkron, program afiliasi — [issue #32](https://github.com/ahliweb/awcms-one/issues/32)); integrasi tarif kurir RajaOngkir yang live dan payment gateway (keduanya harus dipanggil lewat outbox milik `apps/cms`, tidak pernah secara sinkron di jalur pesanan, per [ADR-0010](adr/0010-manual-payment-and-alternative-courier-first-gateways-via-outbox.md) — [issue #33](https://github.com/ahliweb/awcms-one/issues/33)); POS dan pelaporan manajemen (issue #33); upload berbasis-R2 yang nyata untuk gambar produk, media slider, dan gambar bukti konfirmasi-pembayaran (skrip seed memakai SVG placeholder yang dibuat sendiri dan endpoint upload bukti-pembayaran anonim menjawab `503 MEDIA_UNAVAILABLE` — lihat [`docs/deployment.md`](deployment.id.md) dan [`docs/cms.md`](cms.id.md)); deployment PostgreSQL produksi (`postgres:18.4` milik `compose.yaml` hanya kemudahan lokal/CI — lihat [`docs/deployment.md`](deployment.id.md)).
+Yang secara eksplisit ditangguhkan D6 [ADR-0016](adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.id.md) sebagai tindak lanjut pekerjaan akun pelanggan: OTP WhatsApp/SMS (tindak lanjut D2 sendiri), ubah e-mail/telepon pada akun yang sudah ada, verifikasi telepon, dan harga bertingkat (`priceLevel2/3/4`) yang diterapkan saat quote. Integrasi tarif kurir RajaOngkir yang live dan payment gateway (keduanya harus dipanggil lewat outbox milik `apps/cms`, tidak pernah secara sinkron di jalur pesanan, per [ADR-0010](adr/0010-manual-payment-and-alternative-courier-first-gateways-via-outbox.md) — [issue #33](https://github.com/ahliweb/awcms-one/issues/33)); POS dan pelaporan manajemen (issue #33); upload berbasis-R2 yang nyata untuk gambar produk, media slider, dan gambar bukti konfirmasi-pembayaran (skrip seed memakai SVG placeholder yang dibuat sendiri dan endpoint upload bukti-pembayaran anonim menjawab `503 MEDIA_UNAVAILABLE` — lihat [`docs/deployment.md`](deployment.id.md) dan [`docs/cms.md`](cms.id.md)); deployment PostgreSQL produksi (`postgres:18.4` milik `compose.yaml` hanya kemudahan lokal/CI — lihat [`docs/deployment.md`](deployment.id.md)).
 
 ## Bacaan lanjutan
 
-- [`docs/adr/`](adr/README.id.md) — sepuluh keputusan yang menjadi landasan arsitektur ini, masing-masing dengan tabel trade-off-nya sendiri.
+- [`docs/adr/`](adr/README.id.md) — enam belas keputusan yang menjadi landasan arsitektur ini, masing-masing dengan tabel trade-off-nya sendiri.
 - [`docs/skema-basis-data.md`](skema-basis-data.id.md), [`docs/kamus-data.md`](kamus-data.id.md) — skema dan pemetaan kolom legacy-nya.
 - [`docs/api.md`](api.id.md), [`docs/cms.md`](cms.id.md) — API commerce (owner dan anonim) dan alur kerja authoring/publishing di baliknya.
 - [`docs/routing.md`](routing.id.md) — peta URL publik lengkap.

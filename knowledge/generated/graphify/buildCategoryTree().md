@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/catalog.ts"
 type: "code"
-community: "catalog.ts"
+community: "Catalog Data & Product Index"
 location: "L367"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/catalogts
+  - community/Catalog_Data__Product_Index
 ---
 
 # buildCategoryTree()
@@ -18,4 +18,4 @@ tags:
 - [[pagesindex.astro]] - `imports` [EXTRACTED]
 - [[produk.astro]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/catalogts
+#graphify/code #graphify/EXTRACTED #community/Catalog_Data__Product_Index

@@ -32,6 +32,10 @@ The `min(Npx, 100%)` clamp is deliberate throughout: a bare fixed track could fo
 
 Every interactive control added for cart/checkout/wishlist (buttons, quantity steppers, the mobile nav toggle) carries `min-width: 44px` — verified in `global.css`, `katalog.css` (three separate declarations), matching the same 44px minimum recommended by WCAG 2.5.5 and Apple/Google's own platform guidance, applied consistently rather than only on the pages that happen to need it most.
 
+## Customer accounts: no dedicated breakpoint, fluid like the rest
+
+`apps/storefront/src/styles/akun.css` (`/masuk`, `/daftar`, `/akun*`, issues #88/#90/#93) carries no `@media` query of its own — verified by reading the file: every rule is width-independent, and the same 44px `min-height` target size the stylesheet's own header comment names is applied uniformly across every control (the OTP code input, the address form's fields, the affiliate enrol button), not gated behind a breakpoint. The account dashboard's navigation-card grid is `grid-template-columns: repeat(auto-fill, minmax(180px, 1fr))` — the same `auto-fill` reflow mechanism the catalog and news grids use, without the extra `min(Npx, 100%)` overflow clamp those two carry (unneeded here: a 180px track never approaches a phone viewport's own width), so it still collapses to as few as one column at phone width with no breakpoint of its own.
+
 ## What was verified, and how
 
 - **`grep`-level confirmation of every `@media` query** across `global.css`, `katalog.css`, `berita.css`, `toko.css` — the breakpoint table above is exhaustive, not a sample. `toko.css` (checkout/cart-specific styles) carries no width breakpoint of its own, relying on `min-width: 0` flex-shrink guards instead.

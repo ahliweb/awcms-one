@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/catalog.ts"
 type: "code"
-community: "produk-listing.ts"
+community: "Product Listing Filters & URL State"
 location: "L579"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/produk-listingts
+  - community/Product_Listing_Filters__URL_State
 ---
 
 # ProdukIndexFilter
@@ -15,4 +15,4 @@ tags:
 - [[catalog.ts]] - `contains` [EXTRACTED]
 - [[produk-listing.ts]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/produk-listingts
+#graphify/code #graphify/EXTRACTED #community/Product_Listing_Filters__URL_State

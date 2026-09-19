@@ -1,15 +1,15 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:113a0c664d5206a264a9da27fed56f9c54904f52be84fcf9225c41fb6f2cff5e -->
+<!-- i18n-source-hash: sha256:0bdea7413679cb1da42a306a5846dfe75c0a6ddfaa0960cc2ed8f4e1b427aad8 -->
 
 # Dokumentasi
 
-Dokumentasi arsitektur, skema, API, alur kerja CMS, perilaku storefront, pengujian, deployment, dan proses untuk `awcms-one` — mendeskripsikan repositori **sebagaimana ia benar-benar ada setelah setiap PR implementasi digabung** (increment 1: issue #2–#6, #11; increment 2, epic [#21](https://github.com/ahliweb/awcms-one/issues/21): issue #22–#30), tidak pernah sebagaimana direncanakan semula. Di mana tree dan teks asli suatu issue berbeda, dokumen-dokumen ini mengikuti tree, dan menyatakannya.
+Dokumentasi arsitektur, skema, API, alur kerja CMS, perilaku storefront, pengujian, deployment, dan proses untuk `awcms-one` — mendeskripsikan repositori **sebagaimana ia benar-benar ada setelah setiap PR implementasi digabung** (increment 1: issue #2–#6, #11; increment 2, epic [#21](https://github.com/ahliweb/awcms-one/issues/21): issue #22–#30; increment 3, epic [#46](https://github.com/ahliweb/awcms-one/issues/46): issue #47–#60; increment 4, epic [#32](https://github.com/ahliweb/awcms-one/issues/32): issue #86–#93), tidak pernah sebagaimana direncanakan semula. Di mana tree dan teks asli suatu issue berbeda, dokumen-dokumen ini mengikuti tree, dan menyatakannya.
 
 | Dokumen | Isi |
 | --- | --- |
-| [`arsitektur.md`](arsitektur.id.md) | Topologi dua-deployable, arah impor satu-jalur, embed subtree, jalur runtime anonim (ADR-0007), CSP turunan |
-| [`adr/`](adr/README.id.md) | Sepuluh Architecture Decision Record — trade-off di balik setiap keputusan struktural di atas |
+| [`arsitektur.md`](arsitektur.id.md) | Topologi dua-deployable, arah impor satu-jalur, embed subtree, jalur runtime anonim (ADR-0007), tingkat kepercayaan ketiga pelanggan-terautentikasi (ADR-0016), CSP turunan |
+| [`adr/`](adr/README.id.md) | Enam belas Architecture Decision Record — trade-off di balik setiap keputusan struktural di atas |
 | [`skema-basis-data.md`](skema-basis-data.id.md) | Setiap tabel `awcms_commerce_*`: kolom, tipe, constraint, indeks, RLS |
 | [`kamus-data.md`](kamus-data.id.md) | Kamus data: setiap kolom, maknanya, dan kolom sumber legacy `commerce_bj_mart`-nya |
 | [`api.md`](api.id.md) | API owner dan storefront anonim, envelope, paginasi, izin, domain event |

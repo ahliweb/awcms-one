@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/awcms/pemasaran.ts"
 type: "code"
-community: "pemasaran.ts"
-location: "L237"
+community: "Marketing Data (Flash Sales, Vouchers, Settings)"
+location: "L248"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/pemasarants
+  - community/Marketing_Data_Flash_Sales_Vouchers_Settings
 ---
 
 # PopupFrequency
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[pemasaran.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/pemasarants
+#graphify/code #graphify/EXTRACTED #community/Marketing_Data_Flash_Sales_Vouchers_Settings

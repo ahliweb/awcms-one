@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/buletin-build-smoke.test.ts"
 type: "code"
-community: "buletin-build-smoke.test.ts"
+community: "Newsletter Build Smoke"
 location: "L40"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/buletin-build-smoketestts
+  - community/Newsletter_Build_Smoke
 ---
 
 # waitForStub()
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[buletin-build-smoke.test.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/buletin-build-smoketestts
+#graphify/code #graphify/EXTRACTED #community/Newsletter_Build_Smoke

@@ -13,7 +13,7 @@ tags:
 
 ## Connections
 - [[BeritaLayout.astro]] - `imports_from` [EXTRACTED]
-- [[ROUTES]] - `imports` [EXTRACTED]
+- [[ROUTES_1]] - `imports` [EXTRACTED]
 - [[Sidebar.astro]] - `imports_from` [EXTRACTED]
 - [[input]] - `contains` [EXTRACTED]
 - [[matches]] - `contains` [EXTRACTED]

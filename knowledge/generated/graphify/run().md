@@ -1,12 +1,12 @@
 ---
 source_file: "tests/audit-graf.test.mjs"
 type: "code"
-community: "audit-graf.test.mjs"
+community: "Graph Audit Test"
 location: "L101"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/audit-graftestmjs
+  - community/Graph_Audit_Test
 ---
 
 # run()
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[audit-graf.test.mjs]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/audit-graftestmjs
+#graphify/code #graphify/EXTRACTED #community/Graph_Audit_Test

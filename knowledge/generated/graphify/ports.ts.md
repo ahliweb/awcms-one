@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/e2e/ports.ts"
 type: "code"
-community: "global-setup.ts"
+community: "Playwright Global Setup & Ports"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/global-setupts
+  - community/Playwright_Global_Setup__Ports
 ---
 
 # ports.ts
@@ -17,4 +17,4 @@ tags:
 - [[global-setup.ts]] - `imports_from` [EXTRACTED]
 - [[playwright.config.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/global-setupts
+#graphify/code #graphify/EXTRACTED #community/Playwright_Global_Setup__Ports

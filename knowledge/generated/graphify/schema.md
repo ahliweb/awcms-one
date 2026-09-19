@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/pages/berita/[slug].astro"
 type: "code"
-community: "BeritaLayout.astro"
+community: "Article Pages & News JSON-LD"
 location: "L77"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/BeritaLayoutastro
+  - community/Article_Pages__News_JSON-LD
 ---
 
 # schema
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[beritaslug.astro]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/BeritaLayoutastro
+#graphify/code #graphify/EXTRACTED #community/Article_Pages__News_JSON-LD

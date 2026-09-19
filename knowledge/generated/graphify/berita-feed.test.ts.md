@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/berita-feed.test.ts"
 type: "code"
-community: "site.ts"
+community: "Portable Text & Static Pages"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/sitets
+  - community/Portable_Text__Static_Pages
 ---
 
 # berita-feed.test.ts
@@ -19,4 +19,4 @@ tags:
 - [[extractItems()]] - `contains` [EXTRACTED]
 - [[renderBeritaRssXml()]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/sitets
+#graphify/code #graphify/EXTRACTED #community/Portable_Text__Static_Pages

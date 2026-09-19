@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/awcms/client.ts"
 type: "code"
-community: "awcms/analitik.ts"
+community: "Build-Time CMS Client & Region Data"
 location: "L40"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/awcms/analitikts
+  - community/Build-Time_CMS_Client__Region_Data
 ---
 
 # AwcmsApiError
@@ -22,4 +22,4 @@ tags:
 - [[pemasaran.ts]] - `imports` [EXTRACTED]
 - [[profil.ts]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/awcms/analitikts
+#graphify/code #graphify/EXTRACTED #community/Build-Time_CMS_Client__Region_Data

@@ -1,12 +1,12 @@
 ---
 source_file: "packages/gerbang/lib/obsidian-safety.mjs"
 type: "code"
-community: "knowledge-obsidian-export.mjs"
+community: "Obsidian Export Safety"
 location: "L72"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/knowledge-obsidian-exportmjs
+  - community/Obsidian_Export_Safety
 ---
 
 # extensionOf()
@@ -15,4 +15,4 @@ tags:
 - [[classifyEntry()]] - `calls` [EXTRACTED]
 - [[obsidian-safety.mjs]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/knowledge-obsidian-exportmjs
+#graphify/code #graphify/EXTRACTED #community/Obsidian_Export_Safety

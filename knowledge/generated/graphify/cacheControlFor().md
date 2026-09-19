@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/server/penyaji.mjs"
 type: "code"
-community: "penyaji.mjs"
+community: "Static Server & Legacy Redirect Rules"
 location: "L361"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/penyajimjs
+  - community/Static_Server__Legacy_Redirect_Rules
 ---
 
 # cacheControlFor()
@@ -17,4 +17,4 @@ tags:
 - [[penyaji.mjs]] - `contains` [EXTRACTED]
 - [[penyaji.test.ts]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/penyajimjs
+#graphify/code #graphify/EXTRACTED #community/Static_Server__Legacy_Redirect_Rules

@@ -1,12 +1,12 @@
 ---
 source_file: "tools/cek-lockfile.mjs"
 type: "code"
-community: "cek-lockfile.mjs"
+community: "Lockfile Check"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/cek-lockfilemjs
+  - community/Lockfile_Check
 ---
 
 # cek-lockfile.mjs
@@ -25,4 +25,4 @@ tags:
 - [[rootPkg]] - `contains` [EXTRACTED]
 - [[stripTrailingCommas()]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/cek-lockfilemjs
+#graphify/code #graphify/EXTRACTED #community/Lockfile_Check

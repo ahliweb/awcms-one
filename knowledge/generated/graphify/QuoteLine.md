@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/toko-klien.ts"
 type: "code"
-community: "toko-klien.ts"
-location: "L79"
+community: "Cart Page & WhatsApp Fallback"
+location: "L87"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/toko-klients
+  - community/Cart_Page__WhatsApp_Fallback
 ---
 
 # QuoteLine
@@ -15,4 +15,4 @@ tags:
 - [[keranjang.ts]] - `imports` [EXTRACTED]
 - [[toko-klien.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/toko-klients
+#graphify/code #graphify/EXTRACTED #community/Cart_Page__WhatsApp_Fallback

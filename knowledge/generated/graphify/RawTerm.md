@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/awcms/blog.ts"
 type: "code"
-community: "berita.ts"
+community: "[slug]/feed.xml.ts"
 location: "L192"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/beritats
+  - community/slug/feedxmlts
 ---
 
 # RawTerm
@@ -16,4 +16,4 @@ tags:
 - [[berita.ts]] - `imports` [EXTRACTED]
 - [[blog.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/beritats
+#graphify/code #graphify/EXTRACTED #community/slug/feedxmlts

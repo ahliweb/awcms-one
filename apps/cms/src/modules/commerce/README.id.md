@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:2802375d4623caf9a34604b5cb1c1c706103510ffeca04cdabfe4614abd06f84 -->
+<!-- i18n-source-hash: sha256:e60034cb69a7f0a2c7abb2adae69f24f255462210330aad7cb3ddde1987eaf50 -->
 
 # `commerce`
 
@@ -14,11 +14,17 @@ guest checkout yang tak pernah mewajibkan akun, cart quote yang menghitung
 ulang harga di sisi server, pelacakan dan pembatalan order lewat `orderCode`
 
 - nomor telepon, konfirmasi pembayaran manual, dan review yang ditinggalkan
-  dari order yang sudah selesai. Issue #4 (bagian dari epic #1) mengirimkan
+  dari order yang sudah selesai — dan, sejak epic #32 (issue #86–#93),
+  **akun pelanggan, login OTP/sesi bearer, permukaan akun swa-layanan**
+  (alamat tersimpan, wishlist tersinkron, riwayat pesanan, ulasan) **dan
+  program afiliasi** yang dirancang dari nol sesuai
+  [ADR-0016](../../../../../docs/adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.id.md).
+  Issue #4 (bagian dari epic #1) mengirimkan
   inti katalog; Issue #23 (bagian dari epic #21) membawanya ke paritas model
   produk penuh dengan skema legacy; Issue #26 (epic yang sama) menambahkan
   tabel pemasaran; Issue #29 (epic yang sama) menambahkan pelanggan, order,
-  dan permukaan checkout storefront anonim.
+  dan permukaan checkout storefront anonim; epic #32 menambahkan akun
+  pelanggan dan afiliasi di atas baris pelanggan yang sama itu.
 
 | Aspek      | Nilai                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
 | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -421,24 +427,25 @@ Issue #26 menambahkan `/admin/commerce-flash-sales`, `-vouchers`, `-sliders`,
   `tests/admin-commerce-page-contract.test.ts` menuntut layar-layar baru itu
   pada sifat yang sama yang dipenuhi layar-layar sebelumnya.
 
-## Akun pelanggan — auth (Issue #89, epic #32 gelombang 2 — C2)
+## Akun pelanggan & afiliasi (epic #32 — ADR-0016)
 
 `openapi/modules/commerce.openapi.yaml` mendokumentasikan seluruh permukaan
 `/api/v1/commerce/storefront/account/*` (login/registrasi OTP, profil, alamat
 tersimpan, wishlist, riwayat pesanan, ulasan, pendaftaran afiliasi) plus rute
-sisi staf `/api/v1/commerce/affiliates*`. **Empat dari jalur itu sudah
-diimplementasikan sejak Issue #89** — `otp/request`, `otp/verify`, `me`
-(`GET`/`PATCH`), dan `logout` — dan dihapus dari `ROUTE_PARITY_EXEMPTIONS`
-(`scripts/api-spec-check.ts`) sesuai itu; jalur yang tersisa (alamat,
-wishlist, riwayat pesanan, ulasan, afiliasi) mendarat lintas C3/C4 (issue
-#91/#92 — lihat bagian-bagian itu di bawah), dan `ROUTE_PARITY_EXEMPTIONS`
-kini kosong. Empat keputusan arsitektur di balik bentuknya —
-identitas tetap baris `commerce` yang tidak pernah ditautkan ke
+sisi staf `/api/v1/commerce/affiliates*` — setiap satu sudah
+diimplementasikan, mendarat lintas tiga gelombang (auth C2 issue #89, sumber
+daya C3 issue #91, afiliasi C4 issue #92), dan `ROUTE_PARITY_EXEMPTIONS`
+(`scripts/api-spec-check.ts`) kini KOSONG — setiap jalur yang didokumentasikan
+#86 sebelum handler-nya kini punya satu. Empat keputusan arsitektur di balik
+bentuknya — identitas tetap baris `commerce` yang tidak pernah ditautkan ke
 `awcms_principals`, OTP e-mail sekarang dengan WhatsApp ditunda ke #33, token
 sesi `customerBearer` opaque yang disimpan di `localStorage`, dan aturan
-binding baris tamu saat registrasi — tercatat di
-[ADR-0016](../../../../../docs/adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md)
+binding baris tamu saat registrasi — plus rancangan program afiliasi sendiri
+(D5) tercatat di
+[ADR-0016](../../../../../docs/adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.id.md)
 di awcms-one.
+
+### Auth (Issue #89, gelombang 2 — C2)
 
 **Lapisan aplikasi** (`application/customer-auth.ts`): `requestCustomerOtp`
 memvalidasi `{email, purpose, name?, phone?}` — `purpose: "register"`
@@ -487,7 +494,7 @@ namespace sesi kelima yang independen dari `awcms_sessions` (lihat
 kegagalan verifikasi, apa pun alasannya — alasannya hanya ada di
 `attributes.reason`), `account_registered`, `logout`.
 
-## Akun pelanggan — sumber daya (Issue #91, epic #32 gelombang 3 — C3)
+### Sumber daya (Issue #91, gelombang 3 — C3)
 
 Enam jalur `/api/v1/commerce/storefront/account/*` lagi mendarat:
 `addresses` (`GET`/`POST`), `addresses/{id}` (`PATCH`/`DELETE`),
@@ -565,7 +572,7 @@ rationale-nya kini mencatat bahwa Issue #91 memberi pemilik akun jalur
 SWALAYAN sungguhan ke baris miliknya sendiri (rute bearer di atas), yang
 sebelum issue ini tidak ada.
 
-## Akun pelanggan — afiliasi (Issue #92, epic #32 gelombang 4 — C4)
+### Afiliasi (Issue #92, gelombang 4 — C4)
 
 Dua jalur terakhir yang tadinya hanya kontrak kini mendarat: `account/affiliate`
 (`GET`/`POST`) dan `account/affiliate/commissions` (`GET`, keyset) — keduanya

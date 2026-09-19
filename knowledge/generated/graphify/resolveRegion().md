@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/awcms/wilayah.ts"
 type: "code"
-community: "lembaga.ts"
+community: "media.ts"
 location: "L169"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/lembagats
+  - community/mediats
 ---
 
 # resolveRegion()
@@ -17,4 +17,4 @@ tags:
 - [[lembaga.ts]] - `imports` [EXTRACTED]
 - [[wilayah.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/lembagats
+#graphify/code #graphify/EXTRACTED #community/mediats

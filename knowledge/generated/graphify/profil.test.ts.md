@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/profil.test.ts"
 type: "code"
-community: "profil.ts"
+community: "Site Profile Merge Test"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/profilts
+  - community/Site_Profile_Merge_Test
 ---
 
 # profil.test.ts
@@ -19,4 +19,4 @@ tags:
 - [[profil.ts]] - `imports_from` [EXTRACTED]
 - [[site.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/profilts
+#graphify/code #graphify/EXTRACTED #community/Site_Profile_Merge_Test

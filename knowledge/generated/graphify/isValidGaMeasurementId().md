@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/ga.ts"
 type: "code"
-community: "ga.ts"
+community: "Static Server & Legacy Redirect Rules"
 location: "L39"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/gats
+  - community/Static_Server__Legacy_Redirect_Rules
 ---
 
 # isValidGaMeasurementId()
@@ -17,4 +17,4 @@ tags:
 - [[ga.ts]] - `contains` [EXTRACTED]
 - [[readGaMeasurementId()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/gats
+#graphify/code #graphify/EXTRACTED #community/Static_Server__Legacy_Redirect_Rules

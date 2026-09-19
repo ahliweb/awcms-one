@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/awcms/profil.ts"
 type: "code"
-community: "profil.ts"
+community: "Site Profile & Base Layout"
 location: "L215"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/profilts
+  - community/Site_Profile__Base_Layout
 ---
 
 # fetchSiteIdentity()
@@ -18,4 +18,4 @@ tags:
 - [[profil.ts]] - `contains` [EXTRACTED]
 - [[warnDegraded()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/profilts
+#graphify/code #graphify/EXTRACTED #community/Site_Profile__Base_Layout

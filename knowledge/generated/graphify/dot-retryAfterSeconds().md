@@ -1,12 +1,12 @@
 ---
-source_file: "apps/storefront/src/lib/toko-klien.ts"
+source_file: "apps/storefront/src/lib/toko-permintaan.ts"
 type: "code"
-community: "TokoApiError"
-location: "L318"
+community: "Login (OTP) Page Script & Request Plumbing"
+location: "L73"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/TokoApiError
+  - community/Login_OTP_Page_Script__Request_Plumbing
 ---
 
 # .retryAfterSeconds()
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[TokoApiError]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/TokoApiError
+#graphify/code #graphify/EXTRACTED #community/Login_OTP_Page_Script__Request_Plumbing

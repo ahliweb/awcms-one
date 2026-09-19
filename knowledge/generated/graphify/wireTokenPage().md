@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/scripts/buletin.ts"
 type: "code"
-community: "buletin.ts"
+community: "Newsletter Forms & Visitor Beacon"
 location: "L339"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/buletints
+  - community/Newsletter_Forms__Visitor_Beacon
 ---
 
 # wireTokenPage()
@@ -17,4 +17,4 @@ tags:
 - [[buletinErrorMessage()]] - `calls` [EXTRACTED]
 - [[showStatus()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/buletints
+#graphify/code #graphify/EXTRACTED #community/Newsletter_Forms__Visitor_Beacon

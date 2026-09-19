@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/pages/flash-sale.astro"
 type: "code"
-community: "product/[slug].astro"
+community: "Site Profile & Base Layout"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/product/slugastro
+  - community/Site_Profile__Base_Layout
 ---
 
 # flash-sale.astro
@@ -22,4 +22,4 @@ tags:
 - [[pemasaran.ts]] - `imports_from` [EXTRACTED]
 - [[profil.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/product/slugastro
+#graphify/code #graphify/EXTRACTED #community/Site_Profile__Base_Layout

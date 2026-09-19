@@ -1,17 +1,17 @@
 ---
-source_file: "package.json"
+source_file: "apps/storefront/src/scripts/afiliasi-tangkap.ts"
 type: "code"
-community: "scripts"
-location: "L10"
+community: "Affiliate Referral Capture"
+location: "L30"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/scripts
+  - community/Affiliate_Referral_Capture
 ---
 
 # url
 
 ## Connections
-- [[repository]] - `contains` [EXTRACTED]
+- [[afiliasi-tangkap.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/scripts
+#graphify/code #graphify/EXTRACTED #community/Affiliate_Referral_Capture

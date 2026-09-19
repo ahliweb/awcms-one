@@ -1,12 +1,12 @@
 ---
 source_file: "packages/gerbang/check-docs-translation.mjs"
 type: "code"
-community: "audit-graf.mjs"
+community: "Documentation & Graph Audit Gates"
 location: "L97"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/audit-grafmjs
+  - community/Documentation__Graph_Audit_Gates
 ---
 
 # listMirrors()
@@ -17,4 +17,4 @@ tags:
 - [[isMirrorInScope()]] - `indirect_call` [INFERRED]
 - [[runChecks()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/audit-grafmjs
+#graphify/code #graphify/EXTRACTED #community/Documentation__Graph_Audit_Gates

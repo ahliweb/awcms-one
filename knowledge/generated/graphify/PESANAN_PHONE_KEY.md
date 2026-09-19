@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/pesanan-sesi.ts"
 type: "code"
-community: "scripts/pesanan.ts"
+community: "Commerce Storefront Client & Order Tracking"
 location: "L16"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/scripts/pesanants
+  - community/Commerce_Storefront_Client__Order_Tracking
 ---
 
 # PESANAN_PHONE_KEY
@@ -16,4 +16,4 @@ tags:
 - [[pesanan-sesi.ts]] - `contains` [EXTRACTED]
 - [[scriptspesanan.ts]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/scripts/pesanants
+#graphify/code #graphify/EXTRACTED #community/Commerce_Storefront_Client__Order_Tracking

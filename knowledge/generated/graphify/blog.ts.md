@@ -1,19 +1,19 @@
 ---
 source_file: "apps/storefront/src/lib/awcms/blog.ts"
 type: "code"
-community: "blog.ts"
+community: "Blog Client & Ad Slots"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/blogts
+  - community/Blog_Client__Ad_Slots
 ---
 
 # blog.ts
 
 ## Connections
-- [[ADR-0100_3]] - `cites` [EXTRACTED]
-- [[ADR-0109_1]] - `cites` [EXTRACTED]
+- [[ADR-0100_2]] - `cites` [EXTRACTED]
+- [[ADR-0109]] - `cites` [EXTRACTED]
 - [[AD_PLACEMENT_KEYS]] - `contains` [EXTRACTED]
 - [[AdPlacementKey]] - `contains` [EXTRACTED]
 - [[AwcmsApiError]] - `imports` [EXTRACTED]
@@ -48,4 +48,4 @@ tags:
 - [[resetBlogCachesForTests()]] - `contains` [EXTRACTED]
 - [[walkKeysetPages()]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/blogts
+#graphify/code #graphify/EXTRACTED #community/Blog_Client__Ad_Slots

@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/awcms/theme.ts"
 type: "code"
-community: "theme.ts"
+community: "Site Config, Sitemaps & Theme"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/themets
+  - community/Site_Config_Sitemaps__Theme
 ---
 
 # theme.ts
@@ -28,4 +28,4 @@ tags:
 - [[theme-tokens.css.ts]] - `imports_from` [EXTRACTED]
 - [[theme.test.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/themets
+#graphify/code #graphify/EXTRACTED #community/Site_Config_Sitemaps__Theme
