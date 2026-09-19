@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](skema-basis-data.md)
 
-<!-- i18n-source-hash: sha256:eeb6da4e73375d2c03d9b387c0fcf9e3d8e1a0b63fd1da115f9e7d44f858ac2a -->
+<!-- i18n-source-hash: sha256:ebbfaef9e04902f873dcd144e8434628c016c7fcef2ea31ca3b394335337e49b -->
 
 # Skema basis data
 
@@ -116,6 +116,19 @@ Issue #87 (C1, kontrak #86/ADR-0016 — ADR milik repo awcms ini sendiri, belum 
 | `awcms_commerce_customer_sessions` | `account_id` (FK), `token_hash text NOT NULL UNIQUE` (berawalan `sha256:` — namespace BARU, bukan hash sesi admin milik `apps/cms/src/lib/auth`), `issued_at`, `expires_at`, `last_seen_at`, `revoked_at`, `client_ip_hash`, `user_agent_summary` | TTL sliding 30 hari (`touchSession` hanya menulis saat `last_seen_at` sudah basi 5+ menit); token bearer `cs_` + 32 byte acak base64url — ADR-0016 D3 |
 
 Ketiganya: RLS `ENABLE`+`FORCE`, kebijakan isolasi-tenant, indeks FK. `commerce:customer-auth:purge` (role worker, hibah `sql/918`) menghapus OTP kedaluwarsa dan sesi kedaluwarsa/dicabut-7-hari-lalu secara terjadwal; tabel akun tidak punya perilaku purge sama sekali (lihat komentar `dataLifecycle` di `module.ts`).
+
+## Program afiliasi: dua tabel (`sql/921`)
+
+Issue #92, keputusan D5 kontrak #86 — rancangan baru, tidak ada kolom lawas `affiliate_*` atau baris `product_affiliate_links` yang dibawa (lihat [`docs/kamus-data.md`](kamus-data.id.md)).
+
+| Tabel | Kolom kunci | Catatan |
+| --- | --- | --- |
+| `awcms_commerce_affiliates` | `customer_id NOT NULL` (FK, `UNIQUE (tenant_id, customer_id) WHERE deleted_at IS NULL` — 1:1 dengan `awcms_commerce_customers`), `code NOT NULL` (`UNIQUE (tenant_id, code) WHERE deleted_at IS NULL`, alfabet 8 karakter tanpa ambiguitas — `domain/affiliate-code.ts`), `commission_rate numeric(5,2) NOT NULL` (`CHECK BETWEEN 0 AND 100`), `status` (`CHECK IN ('active','suspended')`, default `active`) | `commission_rate` adalah SNAPSHOT yang disalin dari `store_settings.affiliate_commission_rate` saat pendaftaran — perubahan tarif toko-lebar berikutnya tidak pernah menetapkan ulang harga afiliasi yang sudah terdaftar; hanya `PATCH /api/v1/commerce/affiliates/{id}` yang mengubah tarif satu afiliasi setelahnya |
+| `awcms_commerce_affiliate_commissions` | `affiliate_id NOT NULL` (FK), `order_id NOT NULL` (FK, `UNIQUE` — **tidak dibatasi ke baris hidup**, satu komisi per pesanan selamanya, bentuk "unik untuk seumur hidup target FK" yang sama dengan `awcms_commerce_orders.order_code`), `base_amount numeric(14,2) NOT NULL`, `rate numeric(5,2) NOT NULL`, `amount numeric(14,2) NOT NULL`, `status` (`CHECK IN ('pending','approved','paid','void')`, default `pending`), `approved_at`/`paid_at`/`voided_at` | `base_amount`/`rate`/`amount` semuanya SNAPSHOT yang diambil saat pesanan yang direferensikan mencapai `completed` (`domain/affiliate-commission.ts`); `base = subtotal − discount − voucher_discount` dibatasi minimum nol, `amount = round(base × rate / 100, 2)` |
+
+Ditambah satu kolom pada masing-masing dari dua tabel yang sudah ada: `awcms_commerce_orders.affiliate_id` (FK nullable, terindeks `WHERE affiliate_id IS NOT NULL`) — diatur sekali saat pesanan dibuat oleh `resolveAffiliateForOrder` (kode tak dikenal/ditangguhkan → `NULL`, tidak pernah error validasi) dan tidak pernah diubah setelahnya; `awcms_commerce_store_settings.affiliate_commission_rate numeric(5,2)` (nullable, `CHECK BETWEEN 0 AND 100` saat diisi) — kolom nyata di luar blob jsonb `settings` (lihat entri tabel itu sendiri di atas untuk alasan jsonb menjadi pilihan default; kolom ini dibaca oleh jalur panas `resolveAffiliateForOrder`/pemeriksaan pendaftaran dan tidak pernah membutuhkan versi skema jsonb itu sendiri), `NULL` berarti program afiliasi MATI untuk tenant tersebut.
+
+Kedua tabel baru: RLS `ENABLE`+`FORCE`, kebijakan isolasi-tenant, indeks FK. Tak satu pun pernah di-soft-delete oleh kode modul ini sendiri dalam praktiknya — `deleted_at` ada murni sebagai kursor purge data-lifecycle yang seragam, bentuk "kursor selalu-`NULL`" yang sama dengan yang sudah dipakai `awcms_commerce_orders` dan `awcms_commerce_customer_accounts`.
 
 ## Row-level security: `ENABLE` dan `FORCE`, terbukti di bawah role tak-berhak-istimewa
 

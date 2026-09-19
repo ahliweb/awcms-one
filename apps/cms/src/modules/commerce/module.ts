@@ -21,7 +21,11 @@ import {
   COMMERCE_CUSTOMERS_ACTIVITY_CODE,
   COMMERCE_CUSTOMER_PERMISSIONS,
   COMMERCE_REVIEWS_ACTIVITY_CODE,
-  COMMERCE_REVIEW_PERMISSIONS
+  COMMERCE_REVIEW_PERMISSIONS,
+  COMMERCE_AFFILIATES_ACTIVITY_CODE,
+  COMMERCE_AFFILIATE_PERMISSIONS,
+  COMMERCE_AFFILIATE_COMMISSIONS_ACTIVITY_CODE,
+  COMMERCE_AFFILIATE_COMMISSION_PERMISSIONS
 } from "./domain/commerce-permissions";
 import {
   COMMERCE_FLASH_SALE_ENDED_EVENT_TYPE,
@@ -241,6 +245,12 @@ export const commerceModule = defineModule({
       path: "/admin/commerce-reviews",
       order: 11,
       requiredPermission: "commerce.reviews.read"
+    },
+    {
+      labelKey: "admin.layout.nav_commerce_affiliates",
+      path: "/admin/commerce-affiliates",
+      order: 12,
+      requiredPermission: "commerce.affiliates.read"
     }
   ],
   /**
@@ -1027,6 +1037,83 @@ export const commerceModule = defineModule({
         "Included in ordinary full-database backup/restore; no standalone archive artifact.",
       executionMode: "generic"
     },
+    {
+      key: "commerce.affiliates",
+      tableName: "awcms_commerce_affiliates",
+      ownerModuleKey: "commerce",
+      scope: "tenant",
+      cursorColumn: "deleted_at",
+      retentionClass: "system_event",
+      retentionMinDays: 365,
+      retentionMaxDays: 3650,
+      defaultRetentionDays: 3650,
+      partition: {
+        eligible: false,
+        rationale: "Bounded by a single storefront's own customer volume."
+      },
+      archive: {
+        archivable: false,
+        rationale:
+          "An enrolment row an owner already sees in the admin screen; this module never soft-deletes one in practice (PATCH only ever changes status/commission_rate)."
+      },
+      deletion: {
+        mode: "hard_delete",
+        rationale:
+          "Technically the generic engine's only mode, but practically UNREACHABLE the same way commerce.orders' descriptor already documents: deleted_at stays NULL forever in this increment."
+      },
+      legalHold: { applicable: false, precedence: "not_applicable" },
+      requiredIndexes: [
+        {
+          columns: ["tenant_id", "deleted_at"],
+          purpose:
+            "awcms_commerce_affiliates_tenant_deleted_idx (sql/921) — the (tenant, cursor) composite the generic purge engine filters + orders by."
+        }
+      ],
+      batchLimit: 5000,
+      backupRestoreNotes:
+        "Included in ordinary full-database backup/restore; no standalone archive artifact.",
+      executionMode: "generic"
+    },
+    {
+      key: "commerce.affiliate_commissions",
+      tableName: "awcms_commerce_affiliate_commissions",
+      ownerModuleKey: "commerce",
+      scope: "tenant",
+      cursorColumn: "deleted_at",
+      retentionClass: "system_event",
+      // Fiscal/payout-adjacent, same widest-window reasoning as
+      // commerce.orders — a commission is money owed or paid to a real
+      // customer.
+      retentionMinDays: 365,
+      retentionMaxDays: 3650,
+      defaultRetentionDays: 3650,
+      partition: {
+        eligible: false,
+        rationale: "Bounded by a single storefront's own referred-order volume."
+      },
+      archive: {
+        archivable: false,
+        rationale:
+          "The generic engine's only implemented artefact is ordinary backup/restore; no standalone archive exists yet for this table."
+      },
+      deletion: {
+        mode: "hard_delete",
+        rationale:
+          "Technically the generic engine's only mode, but practically UNREACHABLE: this table's rows are never soft-deleted (a commission is voided via its own status column, never deleted_at) — deleted_at stays NULL forever, same shape commerce.orders' own descriptor documents."
+      },
+      legalHold: { applicable: false, precedence: "not_applicable" },
+      requiredIndexes: [
+        {
+          columns: ["tenant_id", "deleted_at"],
+          purpose:
+            "awcms_commerce_affiliate_commissions_tenant_deleted_idx (sql/921) — the (tenant, cursor) composite the generic purge engine filters + orders by."
+        }
+      ],
+      batchLimit: 5000,
+      backupRestoreNotes:
+        "Included in ordinary full-database backup/restore; no standalone archive artifact. A commission is never expected to reach this engine's purge predicate in practice.",
+      executionMode: "generic"
+    },
     /**
      * Issue #87 (C1) — `awcms_commerce_customer_accounts` never soft-deletes
      * (a blocked account is `status = 'blocked'`, not purged) — the SAME
@@ -1428,6 +1515,28 @@ export const commerceModule = defineModule({
         "A rating + free-text review body a guest customer wrote — real personal expression, same unreachable-by-this-engine's-vocabulary shape as commerce.customers above. A genuine erasure request is handled as an ordinary admin moderation delete (DELETE /api/v1/commerce/reviews/{id}), outside this automated engine's scope by construction."
     },
     {
+      key: "commerce.affiliates",
+      tableName: "awcms_commerce_affiliates",
+      ownerModuleKey: "commerce",
+      unreachableBySubject: true,
+      subjectColumns: [],
+      exportable: false,
+      erasure: "retain_under_obligation",
+      rationale:
+        "Issue #92 — an affiliate enrolment row, keyed by customer_id, same unreachable-by-this-engine's-vocabulary shape as commerce.customers above. An account holder reaches their OWN row through the bearer-secured GET/POST /account/affiliate routes; this automated engine still cannot walk it by id."
+    },
+    {
+      key: "commerce.affiliate_commissions",
+      tableName: "awcms_commerce_affiliate_commissions",
+      ownerModuleKey: "commerce",
+      unreachableBySubject: true,
+      subjectColumns: [],
+      exportable: false,
+      erasure: "retain_under_obligation",
+      rationale:
+        "Issue #92 — a commission row references an affiliate and an order, not a person directly, but is part of the same order/affiliate record chain as commerce.orders/commerce.affiliates above and inherits their reasoning (fiscal-adjacent, unreachable by this engine's subject vocabulary)."
+    },
+    {
       key: "commerce.wishlists",
       tableName: "awcms_commerce_wishlists",
       ownerModuleKey: "commerce",
@@ -1699,6 +1808,27 @@ export const commerceModule = defineModule({
       activityCode: COMMERCE_REVIEWS_ACTIVITY_CODE,
       action: "delete",
       description: "Soft-delete a review record"
+    },
+    {
+      activityCode: COMMERCE_AFFILIATES_ACTIVITY_CODE,
+      action: "read",
+      description: "Read affiliate records and their stats"
+    },
+    {
+      activityCode: COMMERCE_AFFILIATES_ACTIVITY_CODE,
+      action: "update",
+      description:
+        "Edit an affiliate's status (active/suspended) or commission rate"
+    },
+    {
+      activityCode: COMMERCE_AFFILIATE_COMMISSIONS_ACTIVITY_CODE,
+      action: "read",
+      description: "Read affiliate commission records"
+    },
+    {
+      activityCode: COMMERCE_AFFILIATE_COMMISSIONS_ACTIVITY_CODE,
+      action: "update",
+      description: "Moderate a commission (approve/pay/void)"
     }
   ]
 });
@@ -1717,5 +1847,7 @@ export {
   COMMERCE_SETTINGS_PERMISSIONS,
   COMMERCE_ORDER_PERMISSIONS,
   COMMERCE_CUSTOMER_PERMISSIONS,
-  COMMERCE_REVIEW_PERMISSIONS
+  COMMERCE_REVIEW_PERMISSIONS,
+  COMMERCE_AFFILIATE_PERMISSIONS,
+  COMMERCE_AFFILIATE_COMMISSION_PERMISSIONS
 };

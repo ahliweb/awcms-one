@@ -1571,7 +1571,15 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   // `data-lifecycle:table-coverage:check` — `deleted_at` stays NULL forever
   // (sql/917's header), so the generic engine's SELECT + DELETE is granted
   // but never actually matches a row in practice.
-  awcms_commerce_customer_accounts: ["SELECT", "DELETE"]
+  awcms_commerce_customer_accounts: ["SELECT", "DELETE"],
+  // Issue #92 (`sql/923`): the affiliate-program tables, same
+  // `deleted_at`-cursor reasoning as `commerce.orders`/`commerce.reviews`
+  // above — neither table is ever actually soft-deleted by this module's own
+  // code (a commission is voided via its own `status` column, never
+  // `deleted_at`), so the grant is what `dataLifecycle`'s
+  // `executionMode: "generic"` requires without ever matching a live row.
+  awcms_commerce_affiliates: ["SELECT", "DELETE"],
+  awcms_commerce_affiliate_commissions: ["SELECT", "DELETE"]
 };
 
 /**

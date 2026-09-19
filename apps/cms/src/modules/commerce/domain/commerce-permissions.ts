@@ -176,3 +176,32 @@ export const COMMERCE_REVIEW_PERMISSIONS = {
   update: "commerce.reviews.update",
   delete: "commerce.reviews.delete"
 } as const;
+
+/**
+ * Affiliate-program activity codes (Issue #92, contract #86's D5). Two
+ * resources, `read`/`update` only — same "no `create`/`delete` action with
+ * nothing to enforce it" reasoning as `COMMERCE_ORDER_PERMISSIONS` above: an
+ * affiliate row is created only through the shopper's own bearer-secured
+ * `POST .../account/affiliate` enrolment (no admin "create an affiliate"
+ * route), and a commission row is created only as a side effect of an order
+ * reaching `completed` (`application/order-directory.ts`'s
+ * `transitionOrderStatus`) — never directly. `update` on
+ * `affiliate_commissions` also gates the approve/pay/void transitions,
+ * same "one verb, one moderation action" choice `COMMERCE_REVIEW_PERMISSIONS`
+ * makes.
+ */
+export const COMMERCE_AFFILIATES_ACTIVITY_CODE = "affiliates";
+export const COMMERCE_AFFILIATE_COMMISSIONS_ACTIVITY_CODE =
+  "affiliate_commissions";
+
+export const COMMERCE_AFFILIATE_PERMISSIONS = {
+  read: "commerce.affiliates.read",
+  /** Edit an affiliate's status (active/suspended) or commission rate. */
+  update: "commerce.affiliates.update"
+} as const;
+
+export const COMMERCE_AFFILIATE_COMMISSION_PERMISSIONS = {
+  read: "commerce.affiliate_commissions.read",
+  /** Also gates the approve/pay/void state-machine transitions. */
+  update: "commerce.affiliate_commissions.update"
+} as const;

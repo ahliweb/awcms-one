@@ -115,6 +115,19 @@ Issue #87 (C1, contract #86/ADR-0016 — this awcms repo's own ADR, not yet writ
 
 All three: RLS `ENABLE`+`FORCE`, tenant-isolation policy, FK indexes. `commerce:customer-auth:purge` (worker role, `sql/918`'s grants) deletes expired OTPs and expired/revoked-7-days-ago sessions on a schedule; the accounts table has no purge behaviour at all (see `module.ts`'s `dataLifecycle` comment).
 
+## Affiliate program: two tables (`sql/921`)
+
+Issue #92, contract #86's D5 — a fresh design, no legacy `affiliate_*` column or `product_affiliate_links` row carried over (see [`docs/kamus-data.md`](kamus-data.md)).
+
+| Table | Key columns | Notes |
+| --- | --- | --- |
+| `awcms_commerce_affiliates` | `customer_id NOT NULL` (FK, `UNIQUE (tenant_id, customer_id) WHERE deleted_at IS NULL` — 1:1 with `awcms_commerce_customers`), `code NOT NULL` (`UNIQUE (tenant_id, code) WHERE deleted_at IS NULL`, 8-char unambiguous alphabet — `domain/affiliate-code.ts`), `commission_rate numeric(5,2) NOT NULL` (`CHECK BETWEEN 0 AND 100`), `status` (`CHECK IN ('active','suspended')`, default `active`) | `commission_rate` is a SNAPSHOT copied from `store_settings.affiliate_commission_rate` at enrolment time — a later store-wide rate change never reprices an already-enrolled affiliate; only `PATCH /api/v1/commerce/affiliates/{id}` changes one affiliate's own rate afterwards |
+| `awcms_commerce_affiliate_commissions` | `affiliate_id NOT NULL` (FK), `order_id NOT NULL` (FK, `UNIQUE` — **not scoped to live rows**, one commission per order forever, the same "unique for the FK target's own lifetime" shape `awcms_commerce_orders.order_code` uses), `base_amount numeric(14,2) NOT NULL`, `rate numeric(5,2) NOT NULL`, `amount numeric(14,2) NOT NULL`, `status` (`CHECK IN ('pending','approved','paid','void')`, default `pending`), `approved_at`/`paid_at`/`voided_at` | `base_amount`/`rate`/`amount` are all SNAPSHOTS taken when the referenced order reached `completed` (`domain/affiliate-commission.ts`); `base = subtotal − discount − voucher_discount` floored at zero, `amount = round(base × rate / 100, 2)` |
+
+Plus one column on each of two existing tables: `awcms_commerce_orders.affiliate_id` (nullable FK, indexed `WHERE affiliate_id IS NOT NULL`) — set once at order-creation time by `resolveAffiliateForOrder` (unknown/suspended code → `NULL`, never a validation error) and never changed afterwards; `awcms_commerce_store_settings.affiliate_commission_rate numeric(5,2)` (nullable, `CHECK BETWEEN 0 AND 100` when set) — a real column outside the `settings` jsonb blob (see that table's own entry above for why jsonb is the default choice; this column is read by the hot `resolveAffiliateForOrder`/enrolment-check path and never needed the jsonb schema's own versioning), `NULL` meaning the affiliate program is OFF for the tenant.
+
+Both new tables: RLS `ENABLE`+`FORCE`, tenant-isolation policy, FK indexes. Neither is ever soft-deleted by this module's own code in practice — `deleted_at` exists purely as the uniform data-lifecycle purge cursor, the same "always-`NULL` cursor" shape `awcms_commerce_orders` and `awcms_commerce_customer_accounts` already use.
+
 ## Row-level security: `ENABLE` and `FORCE`, proven under the unprivileged role
 
 Every table above carries `ALTER TABLE ... ENABLE ROW LEVEL SECURITY` **and** `ALTER TABLE ... FORCE ROW LEVEL SECURITY`, with one tenant-isolation policy each:

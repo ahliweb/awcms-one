@@ -68,11 +68,11 @@ Every route resolves its tenant from the request's `Origin`/`Host` against `awcm
 | `POST` | `reviews` | Requires a `completed` order for that product; created `status: pending`, moderated on the owner side |
 | `GET` | `store-settings/public` | Also used by the storefront build; the same route serves both build-time and (in principle) runtime callers |
 
-**`orders`/`reviews` now also accept an OPTIONAL `customerBearer` (#91):** present and valid → the order/review is attributed to that account's own customer row instead of the guest phone credential (the phone is still validated for shape and still the per-phone rate limit's key); present but invalid/expired → `401 UNAUTHENTICATED`; absent entirely → unchanged. `POST orders` also accepts `affiliateCode` in the body now — shape-validated (a string, at most 50 characters) and otherwise ignored until #92 wires actual attribution.
+**`orders`/`reviews` now also accept an OPTIONAL `customerBearer` (#91):** present and valid → the order/review is attributed to that account's own customer row instead of the guest phone credential (the phone is still validated for shape and still the per-phone rate limit's key); present but invalid/expired → `401 UNAUTHENTICATED`; absent entirely → unchanged. `POST orders` also accepts `affiliateCode` in the body — shape-validated (a string, at most 50 characters) and, since #92, resolved against `awcms_commerce_affiliates.code`: an unknown or suspended code links nothing and never fails the checkout; a valid, active code sets `orders.affiliate_id`, which is what a later transition to `completed` reads to record a commission.
 
 **Idempotency:** order creation reuses the module-agnostic `awcms_idempotency_keys` store (`(tenantId, requestScope, idempotencyKey)`, no principal needed — it works from the anonymous tenant wrapper). The cart's own client-generated UUID is reused as the idempotency key, so a double-submitted "Place order" click returns the same `orderCode` rather than creating a second order.
 
-### Customer accounts — auth + resources implemented (#89, #91), affiliates planned — #92/#93
+### Customer accounts — auth + resources + affiliates implemented (#89, #91, #92)
 
 [ADR-0016](adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md) records the four decisions (identity, OTP channel, bearer session, registration binding) the whole surface was designed against, and [issue #86](https://github.com/ahliweb/awcms-one/issues/86) is where the OpenAPI shape lives (`apps/cms/openapi/modules/commerce.openapi.yaml`). A new `customerBearer` security scheme — deliberately separate from the staff `bearerAuth`/session schemes — authenticates every route below except the two OTP ones, which are anonymous by the same anti-enumeration logic as the rest of this API.
 
@@ -97,16 +97,27 @@ Every route resolves its tenant from the request's `Origin`/`Host` against `awcm
 | `GET` | `account/orders(/{orderCode})` | `customerBearer` | Keyset (`cursor`, `limit` ≤ 50), bounded to `created_at >= account.historyFrom`, enforced INSIDE the query; the detail route needs no phone (ownership + `historyFrom` both checked inside that same query — a neutral `404` for an unknown code, another account's order, or one before `historyFrom`) |
 | `GET` | `account/reviews` | `customerBearer` | Own reviews, any moderation status, product name + order code inlined |
 
-**Planned — contract without a handler yet (#92/#93)**, still exempted from the route↔contract parity gate by name in `apps/cms/scripts/api-spec-check.ts`:
+**Implemented (#92):**
 
 | Method | Path | Auth | Notes |
 | --- | --- | --- | --- |
-| `GET`/`POST` | `account/affiliate` | `customerBearer` | `POST` enrols; `409 AFFILIATE_PROGRAM_DISABLED` when `storeSettings.affiliateCommissionRate` is null |
-| `GET` | `account/affiliate/commissions` | `customerBearer` | |
+| `GET`/`POST` | `account/affiliate` | `customerBearer` | `GET` never 404s (`{affiliate: null}` when not enrolled); `POST` enrols (idempotent — a second call returns the same row), `201`; `409 AFFILIATE_PROGRAM_DISABLED` when `storeSettings.affiliateCommissionRate` is null |
+| `GET` | `account/affiliate/commissions` | `customerBearer` | Keyset (`cursor`), newest first; `{items, nextCursor}` |
 
-The existing anonymous `POST orders` and `POST reviews` (#91) each now accept an *optional* `customerBearer`: present and valid, the order/review is attributed to that account's own customer row instead of the guest phone credential; present but invalid/expired, `401 UNAUTHENTICATED`; absent, both endpoints behave exactly as documented above. `POST orders` also accepts an optional `affiliateCode` — shape-validated only in #91 (self-referral yielding no commission is #92's own job once it resolves the code at all).
+The existing anonymous `POST orders` and `POST reviews` (#91) each accept an *optional* `customerBearer`: present and valid, the order/review is attributed to that account's own customer row instead of the guest phone credential; present but invalid/expired, `401 UNAUTHENTICATED`; absent, both endpoints behave exactly as documented above. `POST orders` also accepts an optional `affiliateCode`, now resolved (#92) against `awcms_commerce_affiliates.code` — an unknown/suspended code is silently ignored, never a checkout failure.
 
-Owner-side staff routes for the affiliate program itself — `GET`/`PATCH /api/v1/commerce/affiliates(/{id})`, `GET /api/v1/commerce/affiliate-commissions`, `POST /api/v1/commerce/affiliate-commissions/{id}/{approve,pay,void}` — are the same contract-only status, gated on `commerce.affiliates.{read,update}` and `commerce.affiliate_commissions.{read,update}`.
+Owner-side staff routes for the affiliate program itself, gated on `commerce.affiliates.{read,update}`/`commerce.affiliate_commissions.{read,update}`:
+
+| Method | Path | Notes |
+| --- | --- | --- |
+| `GET` | `commerce/affiliates` | Keyset, newest first |
+| `PATCH` | `commerce/affiliates/{id}` | `{status?, commissionRate?}` |
+| `GET` | `commerce/affiliate-commissions?status=` | Keyset, newest first |
+| `POST` | `commerce/affiliate-commissions/{id}/approve` | `pending -> approved`; `Idempotency-Key` required; `409 COMMISSION_NOT_APPROVABLE` |
+| `POST` | `commerce/affiliate-commissions/{id}/pay` | `approved -> paid`; `Idempotency-Key` required; `409 COMMISSION_NOT_PAYABLE` |
+| `POST` | `commerce/affiliate-commissions/{id}/void` | `pending\|approved -> void`; `Idempotency-Key` required; `409 COMMISSION_ALREADY_FINAL` |
+
+A commission is created `pending` the moment the referenced order's status reaches `completed` (never on self-referral, never for a since-suspended affiliate); `base = subtotal − discount − voucher_discount` (floored at zero), `amount = round(base × rate / 100, 2)`, both `numeric` strings (ADR-0003). `store-settings/public`'s `affiliateProgramEnabled` boolean is the only affiliate fact exposed publicly — the rate itself is owner-only (`GET /api/v1/commerce/store-settings`).
 
 ## Request/response shapes
 
@@ -203,4 +214,4 @@ The build credential's permission set is seeded by `tools/seed-borneojek-mart.ts
 
 ## Not built
 
-RajaOngkir courier rates and a payment gateway — `payment_method` accepts a `gateway` enum value already (additive, per [ADR-0010](adr/0010-manual-payment-and-alternative-courier-first-gateways-via-outbox.md)), but no provider integration exists; both must go through the outbox when they land ([issue #33](https://github.com/ahliweb/awcms-one/issues/33)). Customer accounts, login, and any authenticated storefront endpoint ([issue #32](https://github.com/ahliweb/awcms-one/issues/32)) are **in progress**: the contract is settled ([ADR-0016](adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md), issue #86, the "Customer accounts" table above); OTP login/registration, `me`, `logout` ([issue #89](https://github.com/ahliweb/awcms-one/issues/89)), and addresses/wishlist/order-history/review are all implemented now ([issue #91](https://github.com/ahliweb/awcms-one/issues/91)) — only the `customerBearer`-secured affiliate surface still has no handler. A working payment-proof upload for an anonymous caller (`media_library`'s session flow needs an authenticated `actorTenantUserId`, which no guest checkout caller has).
+RajaOngkir courier rates and a payment gateway — `payment_method` accepts a `gateway` enum value already (additive, per [ADR-0010](adr/0010-manual-payment-and-alternative-courier-first-gateways-via-outbox.md)), but no provider integration exists; both must go through the outbox when they land ([issue #33](https://github.com/ahliweb/awcms-one/issues/33)). Customer accounts, login, and every authenticated storefront endpoint ([issue #32](https://github.com/ahliweb/awcms-one/issues/32)) are **done**: the contract ([ADR-0016](adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md), issue #86, the "Customer accounts" table above) is fully implemented — OTP login/registration, `me`, `logout` ([issue #89](https://github.com/ahliweb/awcms-one/issues/89)), addresses/wishlist/order-history/review ([issue #91](https://github.com/ahliweb/awcms-one/issues/91)), and the affiliate program, both the shopper's own bearer-secured surface and the owner's moderation API ([issue #92](https://github.com/ahliweb/awcms-one/issues/92)). A working payment-proof upload for an anonymous caller (`media_library`'s session flow needs an authenticated `actorTenantUserId`, which no guest checkout caller has).

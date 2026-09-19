@@ -11038,7 +11038,7 @@ Issue #86 (ADR-0016, epic #32 wave 0) — CONTRACT ONLY, no route file yet (hand
 | 200    | The account's affiliate state. | object                                 |
 | 401    | UNAUTHENTICATED.               | [`ApiError`](#standard-error-envelope) |
 
-### `POST /api/v1/commerce/storefront/account/affiliate` — Issue #86 (design only). Enrol the account in the affiliate program (D5). Requires the program enabled tenant-wide.
+### `POST /api/v1/commerce/storefront/account/affiliate` — Issue #92 (contract #86 D5). Enrol the account in the affiliate program. Requires the program enabled tenant-wide. Idempotent — a second call returns the same row.
 
 - **operationId**: `enrolCommerceStorefrontAccountAffiliate`
 - **Security**: customerBearer
@@ -11047,11 +11047,11 @@ Issue #86 (ADR-0016, epic #32 wave 0) — CONTRACT ONLY, no route file yet (hand
 
 | Status | Description                                                                                                       | Schema                                 |
 | ------ | ----------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
-| 201    | Enrolled.                                                                                                         | object                                 |
+| 201    | Enrolled (or already enrolled — idempotent).                                                                      | object                                 |
 | 401    | UNAUTHENTICATED.                                                                                                  | [`ApiError`](#standard-error-envelope) |
 | 409    | AFFILIATE_PROGRAM_DISABLED — `storeSettings.affiliateCommissionRate` is null, or the account is already enrolled. | [`ApiError`](#standard-error-envelope) |
 
-### `GET /api/v1/commerce/storefront/account/affiliate/commissions` — Issue #86 (design only). This account's own commission ledger, keyset-paginated.
+### `GET /api/v1/commerce/storefront/account/affiliate/commissions` — Issue #92 (contract #86 D5). This account's own commission ledger, keyset-paginated.
 
 - **operationId**: `listCommerceStorefrontAccountAffiliateCommissions`
 - **Security**: customerBearer
@@ -11247,10 +11247,17 @@ Anonymous, per-IP and per-e-mail rate limited. The code is hashed, 10 minute TTL
 
 Issue #86 (ADR-0016, epic #32 wave 0) — CONTRACT ONLY, no route file yet (handler lands in C4). The staff side of the affiliate program designed fresh by D5 (no legacy column carried over): review/approve/pay/void a referred order's commission, and edit an affiliate's status or commission rate. Gated on `commerce.affiliates.{read,update}` and `commerce.affiliate_commissions.{read,update}`.
 
-### `GET /api/v1/commerce/affiliate-commissions` — Issue #86 (design only). Staff list of affiliate commissions. Gated on `commerce.affiliate_commissions.read`.
+### `GET /api/v1/commerce/affiliate-commissions` — Issue #92 (contract #86 D5). Staff list of affiliate commissions, keyset-paginated. Gated on `commerce.affiliate_commissions.read`.
 
 - **operationId**: `listCommerceAffiliateCommissions`
 - **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name     | In    | Required | Type                                        | Description |
+| -------- | ----- | -------- | ------------------------------------------- | ----------- |
+| `cursor` | query | no       | string                                      |             |
+| `status` | query | no       | enum(`pending`, `approved`, `paid`, `void`) |             |
 
 **Responses**
 
@@ -11323,10 +11330,16 @@ Issue #86 (ADR-0016, epic #32 wave 0) — CONTRACT ONLY, no route file yet (hand
 | 404    | Resource not found.                                  | [`ApiError`](#standard-error-envelope) |
 | 409    | COMMISSION_ALREADY_FINAL — already `paid` or `void`. | [`ApiError`](#standard-error-envelope) |
 
-### `GET /api/v1/commerce/affiliates` — Issue #86 (design only). Staff list of affiliates. Gated on `commerce.affiliates.read`.
+### `GET /api/v1/commerce/affiliates` — Issue #92 (contract #86 D5). Staff list of affiliates, keyset-paginated. Gated on `commerce.affiliates.read`.
 
 - **operationId**: `listCommerceAffiliates`
 - **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name     | In    | Required | Type   | Description |
+| -------- | ----- | -------- | ------ | ----------- |
+| `cursor` | query | no       | string |             |
 
 **Responses**
 
@@ -12454,25 +12467,26 @@ Every field of CommerceSliderCreateInput, all optional.
 
 The OWNER shape — a versioned settings document validated against domain/store-settings-validation.ts (unknown keys are rejected). Contains manual-bank account numbers and the QRIS media id; only settings.read may read it and it is never echoed on a public route.
 
-| Field                  | Type            | Required | Nullable | Description                                                                                                                                                                                                  |
-| ---------------------- | --------------- | -------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `schemaVersion`        | enum(`1`)       | no       | no       |                                                                                                                                                                                                              |
-| `storeName`            | string          | yes      | no       |                                                                                                                                                                                                              |
-| `tagline`              | string          | no       | yes      |                                                                                                                                                                                                              |
-| `logoMediaObjectId`    | string (uuid)   | no       | yes      |                                                                                                                                                                                                              |
-| `faviconMediaObjectId` | string (uuid)   | no       | yes      |                                                                                                                                                                                                              |
-| `address`              | string          | no       | yes      |                                                                                                                                                                                                              |
-| `phone`                | string          | no       | yes      |                                                                                                                                                                                                              |
-| `whatsapp`             | string          | no       | yes      |                                                                                                                                                                                                              |
-| `email`                | string          | no       | yes      |                                                                                                                                                                                                              |
-| `mapsEmbedUrl`         | string          | no       | yes      |                                                                                                                                                                                                              |
-| `faqs`                 | array of object | no       | no       |                                                                                                                                                                                                              |
-| `social`               | object          | no       | no       | facebook/instagram/tiktok/x/youtube/linkedin, each a URL or null.                                                                                                                                            |
-| `customerLevels`       | array of object | no       | no       |                                                                                                                                                                                                              |
-| `shipping`             | object          | no       | no       | alternativeServices[] {id,name,cost}, selfPickup, courierEnabled, pinpointEnabled, freeShipping {active,minOrder,maxDiscount}, originCityName, originSubdistrictName.                                        |
-| `payment`              | object          | no       | no       | manualBank {active, accounts[] {bankName, accountNumber, accountHolder}}, manualQris {active, mediaObjectId}, downPayment {active, percent}, tax {active, percent}, insurance {active, ratePercent, minFee}. |
-| `promoSection`         | object          | no       | no       |                                                                                                                                                                                                              |
-| `meta`                 | object          | no       | no       | home/contact, each {title, description} (nullable).                                                                                                                                                          |
+| Field                     | Type            | Required | Nullable | Description                                                                                                                                                                                                                                                                                       |
+| ------------------------- | --------------- | -------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `schemaVersion`           | enum(`1`)       | no       | no       |                                                                                                                                                                                                                                                                                                   |
+| `storeName`               | string          | yes      | no       |                                                                                                                                                                                                                                                                                                   |
+| `tagline`                 | string          | no       | yes      |                                                                                                                                                                                                                                                                                                   |
+| `logoMediaObjectId`       | string (uuid)   | no       | yes      |                                                                                                                                                                                                                                                                                                   |
+| `faviconMediaObjectId`    | string (uuid)   | no       | yes      |                                                                                                                                                                                                                                                                                                   |
+| `address`                 | string          | no       | yes      |                                                                                                                                                                                                                                                                                                   |
+| `phone`                   | string          | no       | yes      |                                                                                                                                                                                                                                                                                                   |
+| `whatsapp`                | string          | no       | yes      |                                                                                                                                                                                                                                                                                                   |
+| `email`                   | string          | no       | yes      |                                                                                                                                                                                                                                                                                                   |
+| `mapsEmbedUrl`            | string          | no       | yes      |                                                                                                                                                                                                                                                                                                   |
+| `faqs`                    | array of object | no       | no       |                                                                                                                                                                                                                                                                                                   |
+| `social`                  | object          | no       | no       | facebook/instagram/tiktok/x/youtube/linkedin, each a URL or null.                                                                                                                                                                                                                                 |
+| `customerLevels`          | array of object | no       | no       |                                                                                                                                                                                                                                                                                                   |
+| `shipping`                | object          | no       | no       | alternativeServices[] {id,name,cost}, selfPickup, courierEnabled, pinpointEnabled, freeShipping {active,minOrder,maxDiscount}, originCityName, originSubdistrictName.                                                                                                                             |
+| `payment`                 | object          | no       | no       | manualBank {active, accounts[] {bankName, accountNumber, accountHolder}}, manualQris {active, mediaObjectId}, downPayment {active, percent}, tax {active, percent}, insurance {active, ratePercent, minFee}.                                                                                      |
+| `promoSection`            | object          | no       | no       |                                                                                                                                                                                                                                                                                                   |
+| `meta`                    | object          | no       | no       | home/contact, each {title, description} (nullable).                                                                                                                                                                                                                                               |
+| `affiliateCommissionRate` | string          | no       | yes      | Issue #92 — numeric(5,2) as a string, 0-100, two decimals. A real column, not part of this jsonb document (sql/921's header) — included here on the wire only. null means the affiliate program is OFF for this tenant; a non-null value both turns it on and is the rate a NEW enrolment copies. |
 
 **Example**
 
@@ -12510,7 +12524,8 @@ The OWNER shape — a versioned settings document validated against domain/store
     "active": false,
     "items": ["(operation-specific payload)"]
   },
-  "meta": "(operation-specific payload)"
+  "meta": "(operation-specific payload)",
+  "affiliateCommissionRate": "string"
 }
 ```
 

@@ -1,5 +1,6 @@
 import { recordAuditEvent } from "../../logging/application/audit-log";
 import type { MediaLibraryPort } from "../../_shared/ports/media-library-port";
+import { normalizeMoney } from "../domain/price-calculation";
 import {
   DEFAULT_CUSTOMER_LEVEL_NAMES,
   STORE_SETTINGS_SCHEMA_VERSION,
@@ -70,6 +71,47 @@ function buildDefaultStoreSettings(storeName: string): StoreSettingsData {
       contact: { title: null, description: null }
     }
   };
+}
+
+/**
+ * `awcms_commerce_store_settings.affiliate_commission_rate` — Issue #92
+ * (contract #86's D5). A real COLUMN, not part of the `settings` jsonb blob
+ * (`sql/921`'s header explains why) — `null` means the affiliate program is
+ * OFF for this tenant. A tenant with no settings row at all (never opened
+ * the settings screen) reads as `null` — same "no row = defaults" answer
+ * `fetchStoreSettings` gives, and a RESET row (`deleted_at IS NOT NULL`)
+ * reads the same way too.
+ */
+export async function fetchAffiliateCommissionRate(
+  tx: Bun.SQL,
+  tenantId: string
+): Promise<string | null> {
+  const rows = (await tx`
+    SELECT affiliate_commission_rate
+    FROM awcms_commerce_store_settings
+    WHERE tenant_id = ${tenantId} AND deleted_at IS NULL
+  `) as { affiliate_commission_rate: string | null }[];
+
+  const raw = rows[0]?.affiliate_commission_rate ?? null;
+  return raw === null ? null : normalizeMoney(raw);
+}
+
+/**
+ * `PUT /api/v1/commerce/store-settings`'s own `affiliateCommissionRate`
+ * field — called AFTER `saveStoreSettings` in the same request, so the
+ * singleton row this UPDATEs already exists (created/refreshed by that
+ * upsert moments earlier in the same transaction).
+ */
+export async function saveAffiliateCommissionRate(
+  tx: Bun.SQL,
+  tenantId: string,
+  rate: string | null
+): Promise<void> {
+  await tx`
+    UPDATE awcms_commerce_store_settings
+    SET affiliate_commission_rate = ${rate}, updated_at = now()
+    WHERE tenant_id = ${tenantId}
+  `;
 }
 
 async function fetchTenantName(tx: Bun.SQL, tenantId: string): Promise<string> {
@@ -251,6 +293,14 @@ export type StoreSettingsPublicRecord = {
   orders: StoreSettingsData["orders"];
   promoSection: StoreSettingsData["promoSection"];
   meta: StoreSettingsData["meta"];
+  /**
+   * Issue #92 — whether the affiliate program is on at all. The RATE itself
+   * (`affiliate_commission_rate`) never crosses into this public shape —
+   * only whether it is configured, mirroring the same masking discipline
+   * `payment.manualBank`/`manualQris` already apply to bank
+   * account/QRIS details.
+   */
+  affiliateProgramEnabled: boolean;
 };
 
 /**
@@ -268,7 +318,16 @@ export async function toPublicRecord(
   tx: Bun.SQL,
   tenantId: string,
   settings: StoreSettingsData,
-  mediaPort: MediaLibraryPort
+  mediaPort: MediaLibraryPort,
+  /**
+   * Issue #92 — the caller's own `fetchAffiliateCommissionRate(tx,
+   * tenantId) !== null` result, passed in rather than queried again here:
+   * `tx` above is used ONLY for media reference resolution (a caller
+   * exercising this function with a fake `MediaLibraryPort` and no real
+   * `Bun.SQL`, as `tests/commerce-marketing-domain.test.ts` does, must keep
+   * working without a live database handle).
+   */
+  affiliateProgramEnabled: boolean = false
 ): Promise<StoreSettingsPublicRecord> {
   const mediaIds = [
     settings.logoMediaObjectId,
@@ -341,6 +400,7 @@ export async function toPublicRecord(
     },
     orders: settings.orders,
     promoSection: settings.promoSection,
-    meta: settings.meta
+    meta: settings.meta,
+    affiliateProgramEnabled
   };
 }

@@ -196,21 +196,15 @@ const ALLOWED_PUBLIC_OPERATIONS = new Set([
  * affiliates — issues #87–#93) codes against a contract already reviewed and
  * settled instead of re-deciding it. Each path here is removed the moment
  * its own route file lands; none is a permanent exemption.
+ *
+ * Empty as of Issue #92 — every wave's route files now exist under
+ * `src/pages/api/v1/commerce/storefront/account/` (otp/request, otp/verify,
+ * me, logout — Issue #89; addresses/wishlist/orders/reviews — Issue #91;
+ * affiliate/affiliate-commissions — Issue #92) and
+ * `src/pages/api/v1/commerce/{affiliates,affiliate-commissions}` (owner
+ * side).
  */
-const ROUTE_PARITY_EXEMPTIONS = new Set<string>([
-  // otp/request, otp/verify, me, logout — implemented by Issue #89, route
-  // files now exist under src/pages/api/v1/commerce/storefront/account/.
-  // addresses/wishlist/orders/reviews — implemented by Issue #91, route
-  // files now exist under the same directory.
-  "/api/v1/commerce/storefront/account/affiliate",
-  "/api/v1/commerce/storefront/account/affiliate/commissions",
-  "/api/v1/commerce/affiliates",
-  "/api/v1/commerce/affiliates/{id}",
-  "/api/v1/commerce/affiliate-commissions",
-  "/api/v1/commerce/affiliate-commissions/{id}/approve",
-  "/api/v1/commerce/affiliate-commissions/{id}/pay",
-  "/api/v1/commerce/affiliate-commissions/{id}/void"
-]);
+const ROUTE_PARITY_EXEMPTIONS = new Set<string>([]);
 
 type OpenApiDocument = {
   security?: unknown[];
