@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](api.md)
 
-<!-- i18n-source-hash: sha256:f23d190a5778d4290fbfd6ee688b662615647ac090145a8d965e25c4a3e1a039 -->
+<!-- i18n-source-hash: sha256:1080e4ecb6b1fe775b34ecd03e05546bb72e2647c0aec31a941986474e1eb2ae -->
 
 # API
 
@@ -124,15 +124,13 @@ Sebuah komisi dibuat `pending` tepat saat status pesanan yang direferensikan men
 
 ### Provider eksternal — payment gateway, kurir, WhatsApp, POS, laporan, kotak masuk, kampanye (increment 5 — #107–#118)
 
-[ADR-0017](adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.md) mencatat sepuluh keputusan (D1–D10) yang menjadi dasar rancangan permukaan ini, dan [issue #106](https://github.com/ahliweb/awcms-one/issues/106) adalah tempat bentuk OpenAPI-nya hidup, persis seperti ADR-0016/#86 untuk akun. **D5 (WhatsApp) sudah diimplementasikan — lihat sub-bagiannya sendiri persis di bawah ini.** Belum ada handler untuk baris mana pun di tabel di bawah ini — masing-masing dinamai di `ROUTE_PARITY_EXEMPTIONS` (`apps/cms/scripts/api-spec-check.ts`) dengan issue anak yang menghapusnya.
+[ADR-0017](adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.md) mencatat sepuluh keputusan (D1–D10) yang menjadi dasar rancangan permukaan ini, dan [issue #106](https://github.com/ahliweb/awcms-one/issues/106) adalah tempat bentuk OpenAPI-nya hidup, persis seperti ADR-0016/#86 untuk akun. **D5 (WhatsApp) dan D8 (kotak masuk) sudah diimplementasikan — lihat sub-bagian masing-masing persis di bawah ini.** Belum ada handler untuk baris mana pun di tabel di bawah ini — masing-masing dinamai di `ROUTE_PARITY_EXEMPTIONS` (`apps/cms/scripts/api-spec-check.ts`) dengan issue anak yang menghapusnya.
 
 | Method | Path | Auth | Catatan |
 | --- | --- | --- | --- |
 | `POST` | `storefront/orders/{orderCode}/payment-gateway/sessions` | tanpa (telepon) atau `customerBearer` | `201 {redirectUrl, expiresAt, providerRef}` (Midtrans Snap, D3); `409 PAYMENT_NOT_APPLICABLE`; `503 GATEWAY_UNAVAILABLE` — #110 |
 | `POST` | `webhooks/midtrans/{endpointToken}` | tanpa (publik) | Tenant diresolusi dari token opak (D2); selalu `200` untuk event terverifikasi/terduplikasi/replay, `401` tanda tangan salah, `404` token tidak dikenal — #113 |
-| `GET`/`POST` | `storefront/account/conversations`, `GET .../{id}`, `POST .../{id}/messages` | `customerBearer` | Thread kotak masuk milik pembeli sendiri (D8) — #111 |
 | `GET`/`POST` | `commerce/pos/orders` | `commerce.orders.read` / `commerce.pos.create` | Penjualan kasir, `channel:"pos"`, dibuat langsung `paid` (D6) — #116 |
-| `GET`/`PATCH` | `commerce/conversations(/{id})`, `POST .../{id}/messages` | `commerce.conversations.{read,update}` | Sisi owner kotak masuk (D8) — #111 |
 | `GET`/`POST`/`PATCH` | `commerce/campaigns(/{id})`, `POST .../{id}/{preview,send,cancel}` | `commerce.campaigns.{read,update,send}` | E-mail/WhatsApp massal bergerbang consent (D9) — #114 |
 | `GET`/`POST`/`DELETE` | `commerce/webhook-endpoints(/{id})` | `commerce.webhook_endpoints.update` | Membuat/mencabut token opak yang menjadi dasar resolusi tenant webhook D2; token mentah ditampilkan tepat sekali — #110 |
 | `GET` | `/api/v1/reports/commerce/sales-{daily,by-product,by-category}` | `reporting.dashboard.read` | Tiga proyeksi yang ditampung `reporting`, disumbang `commerce` (D7) — #117 |
@@ -148,6 +146,22 @@ Diagnostik sisi pemilik, digerbangi `commerce.whatsapp.read`:
 | Method | Path | Catatan |
 | --- | --- | --- |
 | `GET` | `commerce/whatsapp/messages?status=` | Keyset, terbaru dulu; telepon tersamar (`toPhoneMasked`) saja — tidak pernah nomor asli, isi pesan yang dirender, atau kode OTP |
+
+### Kotak masuk komersial — sudah diimplementasikan (#111, kontrak #106/ADR-0017 D8)
+
+`awcms_commerce_conversations`/`awcms_commerce_messages` (`apps/cms/sql/927_awcms_commerce_conversations_schema.sql`) — satu thread per akun pelanggan terverifikasi (ADR-0016), tidak pernah pelanggan guest. `unread_for_store`/`unread_for_customer` adalah dua boolean independen yang dijaga selaras dengan setiap penyisipan pesan; field kontrak `Percakapan.unreadForCustomer` milik storefront sendiri melintas sebagai `0|1`, bukan hitungan sungguhan.
+
+| Method | Path | Auth | Catatan |
+| --- | --- | --- | --- |
+| `GET`/`POST` | `storefront/account/conversations` | `customerBearer` | `GET`: keyset (`cursor`), terbaru-aktivitas dulu, `{items, nextCursor}`. `POST`: membuka thread dengan pesan pertamanya (`subject` 1-150 karakter, `body` 1-4000 karakter), `201 {conversation, message}` |
+| `GET` | `storefront/account/conversations/{id}` | `customerBearer` | Thread + pesan terlama dulu, `{conversation, messages}`; menandai terbaca untuk pelanggan. `404` netral untuk id tak dikenal atau milik akun lain |
+| `POST` | `storefront/account/conversations/{id}/messages` | `customerBearer` | `201 {message}`; `409 CONVERSATION_CLOSED` begitu thread ditutup (pelanggan tidak pernah membuka kembali thread miliknya sendiri); dibatasi laju 10/jam per AKUN (`COMMERCE_CONVERSATION_POST_RATE_LIMIT_MAX`) |
+| `GET` | `commerce/conversations?status=&unread=` | `commerce.conversations.read` | Daftar staf, keyset, terbaru-aktivitas dulu, bisa difilter `status` dan `unread` (belum-dibaca sisi toko saja) |
+| `GET` | `commerce/conversations/{id}` | `commerce.conversations.read` | Thread + pesan; menandai terbaca untuk toko |
+| `PATCH` | `commerce/conversations/{id}` | `commerce.conversations.update` | `{status: "open"\|"closed"}` — tutup/buka kembali eksplisit |
+| `POST` | `commerce/conversations/{id}/messages` | `commerce.conversations.update` | Balasan staf — secara implisit membuka kembali thread yang tertutup; `Idempotency-Key` wajib (mengantre e-mail dalam transaksi yang sama, lihat di bawah) |
+
+Balasan staf mengantre satu e-mail `derived.commerce_conversation_reply` lewat outbox modul `email` yang sudah ada, dalam TRANSAKSI YANG SAMA dengan penyisipan balasan, men-seed templat default otomatis saat pertama kali tak ditemukan (pola yang sama yang ditetapkan `customer-otp-channel-adapters.ts` untuk OTP e-mail). Variabel templat: `name`, `subject`, `storeName`, `link` (`COMMERCE_STOREFRONT_PUBLIC_URL` + `/akun/pesan?id=<conversationId>`).
 
 ## Bentuk request/respons
 

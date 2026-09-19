@@ -122,15 +122,13 @@ A commission is created `pending` the moment the referenced order's status reach
 
 ### External providers — payment gateway, courier, WhatsApp, POS, reports, inbox, campaigns (increment 5 — #107–#118)
 
-[ADR-0017](adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.md) records the ten decisions (D1–D10) this surface is designed against, and [issue #106](https://github.com/ahliweb/awcms-one/issues/106) is where the OpenAPI shape lives, exactly as ADR-0016/#86 did for accounts. **D5 (WhatsApp) is implemented — see its own subsection immediately below.** No handler exists yet for any row in the table below — each is named in `ROUTE_PARITY_EXEMPTIONS` (`apps/cms/scripts/api-spec-check.ts`) with the child issue that removes it.
+[ADR-0017](adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.md) records the ten decisions (D1–D10) this surface is designed against, and [issue #106](https://github.com/ahliweb/awcms-one/issues/106) is where the OpenAPI shape lives, exactly as ADR-0016/#86 did for accounts. **D5 (WhatsApp) and D8 (inbox) are implemented — see their own subsections immediately below.** No handler exists yet for any row in the table below — each is named in `ROUTE_PARITY_EXEMPTIONS` (`apps/cms/scripts/api-spec-check.ts`) with the child issue that removes it.
 
 | Method | Path | Auth | Notes |
 | --- | --- | --- | --- |
 | `POST` | `storefront/orders/{orderCode}/payment-gateway/sessions` | none (phone) or `customerBearer` | `201 {redirectUrl, expiresAt, providerRef}` (Midtrans Snap, D3); `409 PAYMENT_NOT_APPLICABLE`; `503 GATEWAY_UNAVAILABLE` — #110 |
 | `POST` | `webhooks/midtrans/{endpointToken}` | none (public) | Tenant resolved from the opaque token (D2); always `200` for a verified/deduplicated/replayed event, `401` bad signature, `404` unknown token — #113 |
-| `GET`/`POST` | `storefront/account/conversations`, `GET .../{id}`, `POST .../{id}/messages` | `customerBearer` | The shopper's own inbox thread (D8) — #111 |
 | `GET`/`POST` | `commerce/pos/orders` | `commerce.orders.read` / `commerce.pos.create` | Counter sale, `channel:"pos"`, created already `paid` (D6) — #116 |
-| `GET`/`PATCH` | `commerce/conversations(/{id})`, `POST .../{id}/messages` | `commerce.conversations.{read,update}` | Owner side of the inbox (D8) — #111 |
 | `GET`/`POST`/`PATCH` | `commerce/campaigns(/{id})`, `POST .../{id}/{preview,send,cancel}` | `commerce.campaigns.{read,update,send}` | Consent-gated mass e-mail/WhatsApp (D9) — #114 |
 | `GET`/`POST`/`DELETE` | `commerce/webhook-endpoints(/{id})` | `commerce.webhook_endpoints.update` | Mints/revokes the opaque token D2 resolves a webhook's tenant from; the raw token is shown exactly once — #110 |
 | `GET` | `/api/v1/reports/commerce/sales-{daily,by-product,by-category}` | `reporting.dashboard.read` | Three `reporting`-hosted projections contributed by `commerce` (D7) — #117 |
@@ -146,6 +144,22 @@ Owner-side diagnostics, gated on `commerce.whatsapp.read`:
 | Method | Path | Notes |
 | --- | --- | --- |
 | `GET` | `commerce/whatsapp/messages?status=` | Keyset, newest first; masked phone (`toPhoneMasked`) only — never the raw number, rendered body, or OTP code |
+
+### Commerce inbox — implemented (#111, contract #106/ADR-0017 D8)
+
+`awcms_commerce_conversations`/`awcms_commerce_messages` (`apps/cms/sql/927_awcms_commerce_conversations_schema.sql`) — one thread per verified customer account (ADR-0016), never a guest. `unread_for_store`/`unread_for_customer` are independent booleans kept in step with every message insert; the storefront's own `Percakapan.unreadForCustomer` field travels as `0|1`, never a genuine count.
+
+| Method | Path | Auth | Notes |
+| --- | --- | --- | --- |
+| `GET`/`POST` | `storefront/account/conversations` | `customerBearer` | `GET`: keyset (`cursor`), newest-activity-first, `{items, nextCursor}`. `POST`: opens a thread with its first message (`subject` 1-150 chars, `body` 1-4000 chars), `201 {conversation, message}` |
+| `GET` | `storefront/account/conversations/{id}` | `customerBearer` | Thread + messages oldest-first, `{conversation, messages}`; marks it read for the customer. Neutral `404` for an unknown id or one belonging to another account |
+| `POST` | `storefront/account/conversations/{id}/messages` | `customerBearer` | `201 {message}`; `409 CONVERSATION_CLOSED` once the thread is closed (a customer never reopens their own thread); rate-limited 10/h per ACCOUNT (`COMMERCE_CONVERSATION_POST_RATE_LIMIT_MAX`) |
+| `GET` | `commerce/conversations?status=&unread=` | `commerce.conversations.read` | Staff list, keyset, newest-activity-first, filterable by `status` and `unread` (store-side unread only) |
+| `GET` | `commerce/conversations/{id}` | `commerce.conversations.read` | Thread + messages; marks it read for the store |
+| `PATCH` | `commerce/conversations/{id}` | `commerce.conversations.update` | `{status: "open"\|"closed"}` — explicit close/reopen |
+| `POST` | `commerce/conversations/{id}/messages` | `commerce.conversations.update` | Staff reply — implicitly reopens a closed thread; `Idempotency-Key` required (enqueues an e-mail in the same transaction, see below) |
+
+A staff reply enqueues one `derived.commerce_conversation_reply` e-mail through the existing `email` module's outbox, in the SAME transaction as the reply insert, auto-seeding its default template on first miss (the same pattern `customer-otp-channel-adapters.ts` established for OTP e-mail). Template variables: `name`, `subject`, `storeName`, `link` (`COMMERCE_STOREFRONT_PUBLIC_URL` + `/akun/pesan?id=<conversationId>`).
 
 ## Request/response shapes
 

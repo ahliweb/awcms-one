@@ -5315,3 +5315,49 @@ msgstr "Templat"
 
 msgid "Newest 100 for the selected filter. Codes and message bodies are never shown here."
 msgstr "100 terbaru untuk filter yang dipilih. Kode dan isi pesan tidak pernah ditampilkan di sini."
+
+msgid "Inbox"
+msgstr "Kotak Masuk"
+
+msgid "Customer conversations with the store — reply, close, and reopen threads."
+msgstr "Percakapan pelanggan dengan toko — balas, tutup, dan buka kembali percakapan."
+
+msgid "You do not have permission to view the inbox."
+msgstr "Anda tidak memiliki izin untuk melihat kotak masuk."
+
+msgid "The inbox could not be loaded right now. Please try again later."
+msgstr "Kotak masuk tidak dapat dimuat saat ini. Silakan coba lagi nanti."
+
+msgid "Filter conversations"
+msgstr "Filter percakapan"
+
+msgid "Open"
+msgstr "Terbuka"
+
+msgid "Closed"
+msgstr "Ditutup"
+
+msgid "Unread"
+msgstr "Belum dibaca"
+
+msgid "{count} conversation"
+msgid_plural "{count} conversations"
+msgstr[0] "{count} percakapan"
+
+msgid "Last message"
+msgstr "Pesan terakhir"
+
+msgid "No conversations yet"
+msgstr "Belum ada percakapan"
+
+msgid "Conversations customers start from the storefront will appear here."
+msgstr "Percakapan yang dimulai pelanggan dari etalase akan muncul di sini."
+
+msgid "Store"
+msgstr "Toko"
+
+msgid "Send reply"
+msgstr "Kirim balasan"
+
+msgid "Reopen"
+msgstr "Buka kembali"

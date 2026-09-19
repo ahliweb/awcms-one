@@ -491,8 +491,18 @@ export const READER_BUDGET_BYTES = 24_000;
  * own three-way PATCH/POST duplication into two small local helpers rather
  * than one `sendJson` call per button, the same consolidation instinct at
  * screen scale. 231,000 keeps a small margin above the measured total.
+ *
+ * 231,405 B measured after Issue #111 (contract #106 D8) — one more admin
+ * screen, `commerce-inbox.astro` (conversation list with status/unread
+ * filters, a thread view, a reply form, close/reopen). Its own client
+ * script is 624 B, built on `onSubmit`/`onAction`/`mutateAndReload` (the
+ * exact consolidation Issue #552 introduced) rather than a hand-rolled
+ * lock/send/reload lifecycle — no per-screen duplication to fix here, only
+ * the unavoidable cost of a genuinely new screen plus its own i18n
+ * catalogue entries. 231,500 keeps the same small margin above the
+ * measured total this constant's own history already establishes.
  */
-export const APP_BUDGET_BYTES = 231_000;
+export const APP_BUDGET_BYTES = 231_500;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.

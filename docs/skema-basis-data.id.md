@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](skema-basis-data.md)
 
-<!-- i18n-source-hash: sha256:b110dfaa9e638e836a578efeeb2f78073f371b06832e4567dc68a20f133a3389 -->
+<!-- i18n-source-hash: sha256:518e22992eddbffb12eaee1d4843b3dd12b834439f44f514365d39da86fc619f -->
 
 # Skema basis data
 
@@ -129,6 +129,17 @@ Issue #92, keputusan D5 kontrak #86 — rancangan baru, tidak ada kolom lawas `a
 Ditambah satu kolom pada masing-masing dari dua tabel yang sudah ada: `awcms_commerce_orders.affiliate_id` (FK nullable, terindeks `WHERE affiliate_id IS NOT NULL`) — diatur sekali saat pesanan dibuat oleh `resolveAffiliateForOrder` (kode tak dikenal/ditangguhkan → `NULL`, tidak pernah error validasi) dan tidak pernah diubah setelahnya; `awcms_commerce_store_settings.affiliate_commission_rate numeric(5,2)` (nullable, `CHECK BETWEEN 0 AND 100` saat diisi) — kolom nyata di luar blob jsonb `settings` (lihat entri tabel itu sendiri di atas untuk alasan jsonb menjadi pilihan default; kolom ini dibaca oleh jalur panas `resolveAffiliateForOrder`/pemeriksaan pendaftaran dan tidak pernah membutuhkan versi skema jsonb itu sendiri), `NULL` berarti program afiliasi MATI untuk tenant tersebut.
 
 Kedua tabel baru: RLS `ENABLE`+`FORCE`, kebijakan isolasi-tenant, indeks FK. Tak satu pun pernah di-soft-delete oleh kode modul ini sendiri dalam praktiknya — `deleted_at` ada murni sebagai kursor purge data-lifecycle yang seragam, bentuk "kursor selalu-`NULL`" yang sama dengan yang sudah dipakai `awcms_commerce_orders` dan `awcms_commerce_customer_accounts`.
+
+## Kotak masuk komersial: dua tabel (`sql/927`)
+
+Issue #111, keputusan D8 kontrak #106 — thread milik akun pelanggan dengan toko.
+
+| Tabel | Kolom kunci | Catatan |
+| --- | --- | --- |
+| `awcms_commerce_conversations` | `account_id NOT NULL` (FK ke `awcms_commerce_customer_accounts` — thread kotak masuk membutuhkan akun terverifikasi, tidak seperti guest checkout), `subject NOT NULL` (`CHECK char_length BETWEEN 1 AND 150`), `status` (`CHECK IN ('open','closed')`, default `open`), `last_message_at timestamptz NOT NULL DEFAULT now()`, `unread_for_store boolean NOT NULL DEFAULT true`, `unread_for_customer boolean NOT NULL DEFAULT false` | `last_message_at`/kedua flag `unread_for_*` adalah DENORMALIZED dan dijaga selaras dengan `awcms_commerce_messages` di dalam TRANSAKSI YANG SAMA dengan setiap penyisipan pesan — tidak pernah nilai turunan join saat baca. `deleted_at` ada murni sebagai kursor purge data-lifecycle yang seragam (kode modul ini sendiri tidak pernah mengaturnya), bentuk "kursor selalu-`NULL`" yang sama dengan yang sudah dipakai `awcms_commerce_orders`/`awcms_commerce_customer_accounts` |
+| `awcms_commerce_messages` | `conversation_id NOT NULL` (FK), `sender NOT NULL` (`CHECK IN ('customer','store')`), `sender_tenant_user_id` (nullable; `CHECK` mewajibkan diisi untuk `sender='store'` dan NULL untuk `sender='customer'`), `body NOT NULL` (`CHECK char_length BETWEEN 1 AND 4000`) | Append-only, seperti `awcms_commerce_order_events` — tanpa `deleted_at`, tanpa `updated_at`; pesan yang sudah dikirim tidak pernah diedit atau ditarik kembali |
+
+Kedua tabel baru: RLS `ENABLE`+`FORCE`, kebijakan isolasi-tenant, indeks FK. Deskriptor `dataLifecycle` milik `commerce.conversations` memakai kursor `deleted_at` biasa; `commerce.messages`, karena append-only, memakai `created_at` sebagai gantinya — satu-satunya pengecualian yang sudah ditetapkan `commerce.order_events`, bentuk yang identik.
 
 ## Row-level security: `ENABLE` dan `FORCE`, terbukti di bawah role tak-berhak-istimewa
 

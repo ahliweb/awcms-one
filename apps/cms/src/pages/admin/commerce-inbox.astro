@@ -1,0 +1,336 @@
+---
+/**
+ * Commerce inbox admin screen (Issue #111, contract #106 D8) — a
+ * conversation list with status/unread filters and an unread badge, plus a
+ * thread view (`?id=`) with a reply form and close/reopen actions. One
+ * screen, two panels, the same "list + detail on one page via a query
+ * param" shape this repo has no dedicated precedent for yet, so this screen
+ * follows `commerce-orders.astro`'s table conventions for the list half and
+ * `commerce-affiliates.astro`'s "load once per render, no pagination
+ * control this increment" scope for both halves.
+ */
+import AdminLayout from "../../layouts/AdminLayout.astro";
+import "../../styles/admin-screens.css";
+import { loadAdminScreen } from "../../lib/auth/admin-screen";
+import { logAdminPageError } from "../../lib/logging/error-log";
+import { getTranslatorFor } from "../../lib/i18n";
+import {
+  fetchConversationForAdmin,
+  listConversationsForAdmin
+} from "../../modules/commerce/application/conversation-directory";
+
+const ssr = Astro.locals.ssrContext!;
+const { t, tn } = getTranslatorFor(Astro.locals.locale);
+
+const statusParam = Astro.url.searchParams.get("status");
+const unreadParam = Astro.url.searchParams.get("unread");
+const selectedId = Astro.url.searchParams.get("id");
+
+const statusFilter =
+  statusParam === "open" || statusParam === "closed" ? statusParam : undefined;
+const unreadFilter = unreadParam === "true" ? true : undefined;
+
+const screen = await loadAdminScreen({
+  ssr,
+  workClass: "interactive",
+  authorize: {
+    moduleKey: "commerce",
+    activityCode: "conversations",
+    action: "read"
+  },
+  load: async ({ tx, can }) => {
+    const page = await listConversationsForAdmin(
+      tx,
+      ssr.tenantId,
+      { status: statusFilter, unreadForStore: unreadFilter },
+      null
+    );
+    const canUpdate = await can({
+      moduleKey: "commerce",
+      activityCode: "conversations",
+      action: "update"
+    });
+
+    // Reading a thread inside THIS load marks it read for the store — the
+    // same side effect `fetchConversationForAdmin` performs for the API
+    // route, exercised here so opening a thread from the admin screen
+    // clears its own unread badge without a second round trip.
+    const thread =
+      selectedId != null
+        ? await fetchConversationForAdmin(tx, ssr.tenantId, selectedId)
+        : null;
+
+    return { conversations: page.items, canUpdate, thread };
+  },
+  onError: (error) => {
+    logAdminPageError(
+      "admin/commerce-inbox.astro: failed to load conversations",
+      error,
+      {
+        correlationId: Astro.locals.correlationId
+      }
+    );
+  }
+});
+
+const canRead = screen.state !== "denied";
+const loadError = screen.state === "error";
+const conversations =
+  screen.state === "allowed" ? screen.data.conversations : [];
+const canUpdate = screen.state === "allowed" && screen.data.canUpdate;
+const thread = screen.state === "allowed" ? screen.data.thread : null;
+
+function filterHref(next: { status?: string; unread?: string }): string {
+  const params = new URLSearchParams();
+  if (next.status) params.set("status", next.status);
+  if (next.unread) params.set("unread", next.unread);
+  const query = params.toString();
+  return query ? `/admin/commerce-inbox?${query}` : "/admin/commerce-inbox";
+}
+---
+
+<AdminLayout
+  title={t("Inbox")}
+  description={t(
+    "Customer conversations with the store — reply, close, and reopen threads."
+  )}
+>
+  {
+    !canRead && (
+      <p class="state-notice fade-in-up" id="inbox-denied">
+        {t("You do not have permission to view the inbox.")}
+      </p>
+    )
+  }
+  {
+    canRead && loadError && (
+      <p class="state-notice fade-in-up" id="inbox-error">
+        {t("The inbox could not be loaded right now. Please try again later.")}
+      </p>
+    )
+  }
+
+  {
+    canRead && !loadError && (
+      <p
+        id="inbox-action-error"
+        class="admin-create-error"
+        role="alert"
+        hidden
+      />
+    )
+  }
+
+  {
+    canRead && !loadError && (
+      <div class="fade-in-up">
+        <nav class="row-actions" aria-label={t("Filter conversations")}>
+          <a
+            href={filterHref({})}
+            class={!statusFilter && !unreadFilter ? "module-toggle" : ""}
+          >
+            {t("All")}
+          </a>
+          <a
+            href={filterHref({ status: "open" })}
+            class={statusFilter === "open" ? "module-toggle" : ""}
+          >
+            {t("Open")}
+          </a>
+          <a
+            href={filterHref({ status: "closed" })}
+            class={statusFilter === "closed" ? "module-toggle" : ""}
+          >
+            {t("Closed")}
+          </a>
+          <a
+            href={filterHref({ unread: "true" })}
+            class={unreadFilter ? "module-toggle" : ""}
+          >
+            {t("Unread")}
+          </a>
+        </nav>
+
+        <div class="data-table-scroll">
+          <table class="data-table data-table--stack" id="commerce-inbox-table">
+            <caption>
+              {tn(
+                "{count} conversation",
+                "{count} conversations",
+                conversations.length,
+                {
+                  count: conversations.length
+                }
+              )}
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">{t("Customer")}</th>
+                <th scope="col">{t("Subject")}</th>
+                <th scope="col">{t("Status")}</th>
+                <th scope="col">{t("Last message")}</th>
+                <th scope="col">{t("Open")}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {conversations.length === 0 ? (
+                <tr>
+                  <td class="data-table-empty" colspan={5}>
+                    <div class="empty-state">
+                      <span class="empty-state-icon" aria-hidden="true">
+                        ◇
+                      </span>
+                      <span class="empty-state-title">
+                        {t("No conversations yet")}
+                      </span>
+                      <span class="empty-state-text">
+                        {t(
+                          "Conversations customers start from the storefront will appear here."
+                        )}
+                      </span>
+                    </div>
+                  </td>
+                </tr>
+              ) : (
+                conversations.map((conversation) => (
+                  <tr data-conversation-row={conversation.id}>
+                    <td data-label="Customer">
+                      {conversation.customerName}
+                      {conversation.unreadForStore > 0 && (
+                        <span class="status-badge" aria-label={t("Unread")}>
+                          {t("Unread")}
+                        </span>
+                      )}
+                    </td>
+                    <td data-label="Subject">{conversation.subject}</td>
+                    <td data-label="Status">
+                      <span class="status-badge">{conversation.status}</span>
+                    </td>
+                    <td data-label="Last message">
+                      {conversation.lastMessageAt}
+                    </td>
+                    <td data-label="Open">
+                      <a href={`/admin/commerce-inbox?id=${conversation.id}`}>
+                        {t("View")}
+                      </a>
+                    </td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
+
+        {thread && (
+          <section
+            class="fade-in-up"
+            aria-labelledby="inbox-thread-heading"
+            id="inbox-thread"
+          >
+            <h2 id="inbox-thread-heading">{thread.conversation.subject}</h2>
+            <p>
+              {t("Status")}:{" "}
+              <span class="status-badge">{thread.conversation.status}</span>
+            </p>
+
+            <ol class="inbox-thread-messages">
+              {thread.messages.map((message) => (
+                <li class="admin-panel">
+                  <p class="cell-muted">
+                    {message.sender === "customer" ? t("Customer") : t("Store")}{" "}
+                    · {message.createdAt}
+                  </p>
+                  <p>{message.body}</p>
+                </li>
+              ))}
+            </ol>
+
+            {canUpdate && (
+              <form
+                id="inbox-reply-form"
+                data-conversation-id={thread.conversation.id}
+              >
+                <label for="inbox-reply-body">{t("Reply")}</label>
+                <textarea
+                  id="inbox-reply-body"
+                  name="body"
+                  rows={4}
+                  maxlength={4000}
+                  required
+                />
+                <div class="row-actions">
+                  <button
+                    type="submit"
+                    class="module-toggle"
+                    id="inbox-reply-submit"
+                  >
+                    {t("Send reply")}
+                  </button>
+                  <button
+                    type="button"
+                    class="module-toggle inbox-status-btn"
+                    data-conversation-id={thread.conversation.id}
+                    data-target-status={
+                      thread.conversation.status === "open" ? "closed" : "open"
+                    }
+                  >
+                    {thread.conversation.status === "open"
+                      ? t("Close")
+                      : t("Reopen")}
+                  </button>
+                </div>
+              </form>
+            )}
+          </section>
+        )}
+      </div>
+    )
+  }
+</AdminLayout>
+
+<script>
+  import {
+    field,
+    messageBox,
+    mutateAndReload,
+    onAction,
+    onSubmit,
+    sendJson
+  } from "../../lib/ui/admin-form-client";
+
+  const actionError = messageBox("inbox-action-error");
+
+  onSubmit("inbox-reply-form", ({ form, data, submit }) => {
+    const id = form.dataset.conversationId;
+    if (!id) return;
+
+    return mutateAndReload(
+      submit,
+      actionError,
+      () =>
+        sendJson(
+          "POST",
+          `/api/v1/commerce/conversations/${id}/messages`,
+          { body: field(data, "body") },
+          { "Idempotency-Key": crypto.randomUUID() }
+        ),
+      "Could not send the reply. Please try again.",
+      "Sending…"
+    );
+  });
+
+  onAction(".inbox-status-btn", (button) => {
+    const id = button.dataset.conversationId;
+    const status = button.dataset.targetStatus;
+    if (!id || !status) return;
+
+    return mutateAndReload(
+      button,
+      actionError,
+      () =>
+        sendJson("PATCH", `/api/v1/commerce/conversations/${id}`, { status }),
+      "Could not update the conversation status.",
+      "Saving…"
+    );
+  });
+</script>

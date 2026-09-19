@@ -27,7 +27,9 @@ import {
   COMMERCE_AFFILIATE_COMMISSIONS_ACTIVITY_CODE,
   COMMERCE_AFFILIATE_COMMISSION_PERMISSIONS,
   COMMERCE_WHATSAPP_ACTIVITY_CODE,
-  COMMERCE_WHATSAPP_PERMISSIONS
+  COMMERCE_WHATSAPP_PERMISSIONS,
+  COMMERCE_CONVERSATIONS_ACTIVITY_CODE,
+  COMMERCE_CONVERSATION_PERMISSIONS
 } from "./domain/commerce-permissions";
 import {
   COMMERCE_FLASH_SALE_ENDED_EVENT_TYPE,
@@ -283,6 +285,12 @@ export const commerceModule = defineModule({
       path: "/admin/commerce-whatsapp",
       order: 13,
       requiredPermission: "commerce.whatsapp.read"
+    },
+    {
+      labelKey: "admin.layout.nav_commerce_inbox",
+      path: "/admin/commerce-inbox",
+      order: 14,
+      requiredPermission: "commerce.conversations.read"
     }
   ],
   /**
@@ -1376,6 +1384,93 @@ export const commerceModule = defineModule({
         description:
           "Deletes attempt rows older than the cutoff in bounded batches, BEFORE the messages step so the foreign key ordering holds, as awcms_worker (sql/925)."
       }
+    },
+    // Issue #111, contract #106 D8 — the commerce inbox. `conversations`
+    // follows the usual `deleted_at`-cursor convention (this increment ships
+    // no route that ever sets it, the same "declared, unreachable in
+    // practice" shape `commerce.categories`/`commerce.products` already have
+    // — see this array's header comment); `messages` is append-only, like
+    // `commerce.order_events` above, so its cursor is `created_at` instead.
+    {
+      key: "commerce.conversations",
+      tableName: "awcms_commerce_conversations",
+      ownerModuleKey: "commerce",
+      scope: "tenant",
+      cursorColumn: "deleted_at",
+      retentionClass: "system_event",
+      retentionMinDays: 30,
+      retentionMaxDays: 3650,
+      defaultRetentionDays: 730,
+      partition: {
+        eligible: false,
+        rationale:
+          "Bounded by a tenant's own customer-account count and support volume — nowhere near partition-worthy volume for a single storefront."
+      },
+      archive: {
+        archivable: false,
+        rationale:
+          "A thread's own subject/status/unread flags — reconstructible from its own messages and not evidence of anything on its own."
+      },
+      deletion: {
+        mode: "hard_delete",
+        rationale:
+          "The generic engine's only implemented mode. Safe here specifically because the cursor column (deleted_at) is NULL for every live row — see this array's header comment."
+      },
+      legalHold: { applicable: false, precedence: "not_applicable" },
+      requiredIndexes: [
+        {
+          columns: ["tenant_id", "deleted_at"],
+          purpose:
+            "awcms_commerce_conversations_tenant_deleted_idx (sql/927) — the (tenant, cursor) composite the generic purge engine filters + orders by."
+        }
+      ],
+      batchLimit: 5000,
+      backupRestoreNotes:
+        "Included in ordinary full-database backup/restore; no standalone archive artifact (archive.archivable is false above).",
+      executionMode: "generic"
+    },
+    {
+      key: "commerce.messages",
+      tableName: "awcms_commerce_messages",
+      ownerModuleKey: "commerce",
+      scope: "tenant",
+      cursorColumn: "created_at",
+      retentionClass: "system_event",
+      retentionMinDays: 365,
+      retentionMaxDays: 3650,
+      defaultRetentionDays: 730,
+      partition: {
+        eligible: false,
+        rationale:
+          "Bounded by its parent conversation's own message count — a handful to a few dozen rows per thread."
+      },
+      archive: {
+        archivable: false,
+        rationale:
+          "A message's own body — the conversation transcript the tenant's own support record already retains."
+      },
+      deletion: {
+        mode: "hard_delete",
+        rationale:
+          "The generic engine's only implemented mode; a genuinely old row (older than the parent conversation's own retention) is safe to purge."
+      },
+      legalHold: { applicable: false, precedence: "not_applicable" },
+      requiredIndexes: [
+        {
+          columns: ["tenant_id", "created_at"],
+          purpose:
+            "awcms_commerce_messages_tenant_created_idx (sql/927) — the (tenant, cursor) composite the generic purge engine filters + orders by, keyed on created_at since this append-only table has no deleted_at."
+        },
+        {
+          columns: ["conversation_id", "created_at"],
+          purpose:
+            "awcms_commerce_messages_conversation_idx (sql/927) — this table's own thread transcript read."
+        }
+      ],
+      batchLimit: 5000,
+      backupRestoreNotes:
+        "Included in ordinary full-database backup/restore; no standalone archive artifact.",
+      executionMode: "generic"
     }
   ],
   /**
@@ -1756,6 +1851,41 @@ export const commerceModule = defineModule({
       rationale:
         "Per-attempt provider outcomes hanging off a message row. No column names a person — the link is the message, which answers for itself — and the provider snippet is operational telemetry kept under this module's own retention.",
       redactedColumns: ["provider_response_snippet"]
+    },
+    // Issue #111, contract #106 D8 — the commerce inbox. Both tables are
+    // reachable only through the owning `awcms_commerce_customer_accounts`
+    // row, which itself carries no tenant_user/identity/profile/principal
+    // id (ADR-0016 D1) — the SAME "no such column to point at" shape
+    // `commerce.customer_addresses`/`commerce.wishlists` above already
+    // document for a table an account holder reaches through their own
+    // bearer-secured routes: since Issue #111, an account holder reaches
+    // their own threads directly through GET/POST .../account/conversations
+    // and GET/POST .../account/conversations/{id}[/messages] — the honest
+    // self-service path this account's own vocabulary gap allows — but this
+    // AUTOMATED per-id engine still cannot walk either table by a
+    // tenant_user/identity/profile/principal id, because none exists on the
+    // owning account to begin with.
+    {
+      key: "commerce.conversations",
+      tableName: "awcms_commerce_conversations",
+      ownerModuleKey: "commerce",
+      unreachableBySubject: true,
+      subjectColumns: [],
+      exportable: false,
+      erasure: "retain_under_obligation",
+      rationale:
+        "A thread's own subject/status/unread flags, keyed by account_id — same unreachable-by-this-engine's-vocabulary shape as commerce.customer_accounts above (ADR-0016 D1: no tenant_user/identity/profile/principal id on the account this table hangs off of). An account holder reaches their OWN threads through the bearer-secured GET/POST /account/conversations routes; this automated engine still cannot walk it by id."
+    },
+    {
+      key: "commerce.messages",
+      tableName: "awcms_commerce_messages",
+      ownerModuleKey: "commerce",
+      unreachableBySubject: true,
+      subjectColumns: [],
+      exportable: false,
+      erasure: "retain_under_obligation",
+      rationale:
+        "A conversation's own transcript — the message body may be real personal content a customer wrote, but the link is conversation_id, not any tenant_user/identity/profile/principal id, inheriting commerce.conversations' own unreachable-by-this-engine's-vocabulary shape one level down. A store-sent row's sender_tenant_user_id names STAFF, not a data subject of this table."
     }
   ],
   permissions: [
@@ -1989,6 +2119,16 @@ export const commerceModule = defineModule({
       action: "read",
       description:
         "Read WhatsApp outbox message diagnostics (masked phone only)"
+    },
+    {
+      activityCode: COMMERCE_CONVERSATIONS_ACTIVITY_CODE,
+      action: "read",
+      description: "Read customer conversations and their messages"
+    },
+    {
+      activityCode: COMMERCE_CONVERSATIONS_ACTIVITY_CODE,
+      action: "update",
+      description: "Reply on a conversation and close/reopen it"
     }
   ]
 });
@@ -2010,5 +2150,6 @@ export {
   COMMERCE_REVIEW_PERMISSIONS,
   COMMERCE_AFFILIATE_PERMISSIONS,
   COMMERCE_AFFILIATE_COMMISSION_PERMISSIONS,
-  COMMERCE_WHATSAPP_PERMISSIONS
+  COMMERCE_WHATSAPP_PERMISSIONS,
+  COMMERCE_CONVERSATION_PERMISSIONS
 };
