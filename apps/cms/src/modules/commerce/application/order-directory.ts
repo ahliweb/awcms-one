@@ -1367,6 +1367,94 @@ export async function expireOrderBySystem(
   );
 }
 
+/**
+ * `markOrderPaidBySystem` (Issue #113, contract #106's D2/D3) — the ONE
+ * place the payment-gateway webhook intake route
+ * (`src/pages/api/v1/commerce/webhooks/[provider]/[endpointToken].ts`) and
+ * the `commerce:payments:reconcile` job apply a verified gateway "paid"
+ * outcome to an order. Actor is always `"system"` — never the gateway's own
+ * identity, which this platform does not model as a principal.
+ *
+ * Idempotent by construction, for two independent replay paths:
+ *
+ * 1. The webhook route's own `INSERT … ON CONFLICT DO NOTHING` on
+ *    `awcms_commerce_payment_events` already turns a REDELIVERED callback
+ *    into a no-op before this function is ever called a second time for the
+ *    same `eventKey`.
+ * 2. This function ALSO checks the order's own current status first and
+ *    returns `{ applied: false, reason: "already_paid" }` without writing
+ *    anything when it is already `"paid"` — the second independent guard
+ *    contract #106 asks for, covering a genuinely concurrent webhook +
+ *    reconcile race (both read `pending_payment` before either commits is
+ *    impossible under `transitionOrderStatus`'s row lock via the UPDATE …
+ *    WHERE, but the SELECT this function does first is not itself
+ *    serialising, so a caller must not assume the FIRST check alone is
+ *    race-free — it is a fast path, not the sole guard).
+ *
+ * An order found in any status OTHER than `pending_payment`/`paid` (e.g.
+ * `cancelled`, `expired`) is also a no-op, never a thrown error — a gateway
+ * confirming payment for an order the shop already cancelled is an
+ * out-of-band race this function must absorb quietly (the payment EVENT
+ * itself is still recorded by the caller either way; this function is only
+ * ever reached once that record already exists).
+ *
+ * `gateway_provider`/`gateway_ref` (`sql/926`) are stamped on the order row
+ * in the SAME transaction the status transition runs in, so an admin
+ * reading the order detail screen's payment panel always sees a consistent
+ * pair.
+ */
+export type MarkOrderPaidBySystemInput = {
+  provider: string;
+  providerRef: string;
+  /** `awcms_commerce_payment_events.event_key` — carried through only for the audit message/correlation, never re-checked here (the caller's own `ON CONFLICT DO NOTHING` already did that). */
+  eventKey: string;
+};
+
+export type MarkOrderPaidBySystemResult =
+  | { applied: true }
+  | { applied: false; reason: "already_paid" | "not_payable" };
+
+export async function markOrderPaidBySystem(
+  tx: Bun.SQL,
+  tenantId: string,
+  orderId: string,
+  gateway: MarkOrderPaidBySystemInput,
+  correlationId?: string
+): Promise<MarkOrderPaidBySystemResult> {
+  const rows = (await tx`
+    SELECT status FROM awcms_commerce_orders
+    WHERE tenant_id = ${tenantId} AND id = ${orderId} AND deleted_at IS NULL
+  `) as { status: string }[];
+  const current = rows[0];
+  if (!current) return { applied: false, reason: "not_payable" };
+
+  if (current.status === "paid") {
+    return { applied: false, reason: "already_paid" };
+  }
+  if (current.status !== "pending_payment") {
+    return { applied: false, reason: "not_payable" };
+  }
+
+  await tx`
+    UPDATE awcms_commerce_orders
+    SET gateway_provider = ${gateway.provider}, gateway_ref = ${gateway.providerRef}
+    WHERE tenant_id = ${tenantId} AND id = ${orderId} AND deleted_at IS NULL
+  `;
+
+  await transitionOrderStatus(
+    tx,
+    tenantId,
+    undefined,
+    "system",
+    orderId,
+    "paid",
+    `Payment confirmed by ${gateway.provider} (ref ${gateway.providerRef}, event ${gateway.eventKey}).`,
+    correlationId
+  );
+
+  return { applied: true };
+}
+
 /** Every `pending_payment` order in `tenantId` whose `expires_at` has passed — the expiry job's own scan. */
 export async function listExpirableOrderIds(
   tx: Bun.SQL,

@@ -10087,6 +10087,31 @@ status is DERIVED from now() against startsAt/endsAt — scheduled or active; en
 | 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
 | 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
 
+### `POST /api/v1/commerce/orders/{id}/payment-gateway/reconcile` — Issue #113 (contract #106's D2). The order detail admin screen's "Cek status" action — a SCOPED, single-order reconcile (never the full `commerce:payments:reconcile` batch). Gated on `commerce.orders.update`; `Idempotency-Key` required.
+
+- **operationId**: `reconcileCommerceOrderPaymentGateway`
+- **Security**: bearerAuth + tenantHeader
+
+Calls `provider.fetchStatus` for this order's most recent payment-gateway session, outside any open database transaction, and applies the same `markOrderPaidBySystem`/`expireOrderBySystem` transition path the webhook route and the reconcile job use.
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                                                                          | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------ | -------------------------------------- |
+| 200    | Checked (the session may or may not have changed status).                            | object                                 |
+| 400    | Validation error.                                                                    | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                          | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                          | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                  | [`ApiError`](#standard-error-envelope) |
+| 409    | NO_PAYMENT_SESSION — this order has no gateway payment session at all.               | [`ApiError`](#standard-error-envelope) |
+| 503    | GATEWAY_UNAVAILABLE — no payment-gateway provider is configured for this deployment. | [`ApiError`](#standard-error-envelope) |
+
 ### `PATCH /api/v1/commerce/orders/{id}/status` — Admin status transition, enforced through the legal-transition table (Issue 29). Gated on orders.update.
 
 - **operationId**: `updateCommerceOrderStatus`
@@ -11293,12 +11318,12 @@ Arithmetic is exact (integer cents) — a percentage discount is capped by maxDi
 | 403    | Access denied by RBAC/ABAC.                                                                     | [`ApiError`](#standard-error-envelope) |
 | 404    | Resource not found.                                                                             | [`ApiError`](#standard-error-envelope) |
 
-### `POST /api/v1/commerce/webhooks/{provider}/{endpointToken}` — Issue #106 (ADR-0017 D2/D3; not yet implemented, lands in #113). Public inbound payment-gateway callback. Tenant resolved from `endpointToken` via a SECURITY DEFINER bootstrap function; the provider's own signature is verified timing-safe before anything else happens.
+### `POST /api/v1/commerce/webhooks/{provider}/{endpointToken}` — Issue #113 (contract #106's D2/D3). Public inbound payment-gateway callback. Tenant resolved from `endpointToken` via the SECURITY DEFINER `awcms_resolve_commerce_webhook_endpoint`; the provider's own signature (`verifyWebhook`) is verified timing-safe before anything else happens.
 
 - **operationId**: `receiveCommercePaymentWebhook`
 - **Security**: none (public endpoint)
 
-Anonymous by definition — a provider callback carries no session. Replay-protected by a UNIQUE `(tenant_id, provider, event_key)` constraint on `awcms_commerce_payment_events`: a duplicate or replayed event is deduplicated and still answers `200`, exactly like a freshly verified one, so the provider's own retry behaviour never needs special-casing. A verified `paid` event calls `markOrderPaidBySystem` (the new `system` edge on `pending_payment -> paid`, `order-status.ts`). Body size is bounded; an oversized or malformed body is rejected before signature verification runs.
+Anonymous by definition — a provider callback carries no session. Replay-protected by a UNIQUE `(tenant_id, provider, event_key)` constraint on `awcms_commerce_payment_events`: a duplicate or replayed event is deduplicated and still answers `200`, exactly like a freshly verified one, so the provider's own retry behaviour never needs special-casing. A verified `paid` event calls `markOrderPaidBySystem` (the new `system` edge on `pending_payment -> paid`, `order-status.ts`); `expired` calls the existing `expireOrderBySystem`; `failed`/`refunded` only update the gateway session row — the order is deliberately never auto-transitioned to a refunded state (there is no such state; see `order-status.ts`'s header). Body size is bounded; an oversized or malformed body is rejected before signature verification runs. This route never calls the provider itself (no `fetchStatus`) — `commerce:payments:reconcile` is the only caller of that method.
 
 **Parameters**
 
@@ -11306,6 +11331,8 @@ Anonymous by definition — a provider callback carries no session. Replay-prote
 | --------------- | ---- | -------- | ---------------- | ----------- |
 | `provider`      | path | yes      | enum(`midtrans`) |             |
 | `endpointToken` | path | yes      | string           |             |
+
+**Request body** (required): object
 
 **Responses**
 

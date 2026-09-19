@@ -68,6 +68,15 @@ AWCMS_LOCK=/home/admin1/awcms-jobs/locks
 # SKIP LOCKED, bounded batch).
 */5 * * * * /usr/bin/flock -n $AWCMS_LOCK/commerce-orders-expire.lock $AWCMS_RUN_JOB commerce:orders:expire >> $AWCMS_JOB_LOG/commerce-orders-expire.log 2>&1
 
+# commerce — Polls every payment-gateway session still pending more than 2
+# minutes across every active tenant (provider.fetchStatus, outside any DB
+# transaction, timeout + circuit breaker), applying the same paid/expired
+# transition path the webhook intake route uses; also expires every session
+# past expires_at regardless of fetchStatus (Issue #113, contract #106 D2 —
+# 'webhooks get lost'). Idempotent — a session already moved out of pending is
+# simply absent from the next scan.
+*/2 * * * * /usr/bin/flock -n $AWCMS_LOCK/commerce-payments-reconcile.lock $AWCMS_RUN_JOB commerce:payments:reconcile >> $AWCMS_JOB_LOG/commerce-payments-reconcile.log 2>&1
+
 # commerce — Deletes every expired awcms_commerce_shipping_rates row across
 # all active tenants (Issue #107). Idempotent and bounded — a row already
 # deleted is simply absent from the next run's scan.

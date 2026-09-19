@@ -604,13 +604,14 @@ status, filterable by status, approve/pay/void buttons), i18n `en`+`id`.
 
 `openapi/modules/commerce.openapi.yaml` also now documents, AHEAD OF ANY
 HANDLER, most of the increment-5 external-providers surface: the gateway
-webhook INTAKE route (D2), POS order creation (D6), three
+POS order creation (D6), three
 `reporting`-hosted sales projections (D7), a customer inbox — both the
 bearer and owner sides (D8), consent-gated campaigns (D9), and the
 module-settings feature flags plus tiered pricing at quote (D10). **D4
-(courier rates), D5 (WhatsApp), and D2/D3's session half (payment-gateway
-session creation + webhook-endpoint tokens, Midtrans Snap) are IMPLEMENTED,
-not contract-only; see their own sections immediately below.** Every one of
+(courier rates), D5 (WhatsApp), and the FULL payment gateway (D2/D3 —
+session creation, webhook-endpoint tokens, webhook intake, reconcile) are
+IMPLEMENTED, not contract-only; see their own sections immediately below.**
+Every one of
 D1–D10's ten decisions — why a port lives inside `commerce` rather than
 `integration_hub`, why a webhook's tenant is resolved from an opaque
 token rather than its payload, why the gateway flow is a redirect rather
@@ -621,15 +622,11 @@ in awcms-one.
 Every new path still pending a handler is named in
 `ROUTE_PARITY_EXEMPTIONS` (`scripts/api-spec-check.ts`), each entry citing
 the child issue that removes it: the inbox (#111), POS (#116), sales
-reports (#117), and campaigns (#114) plus gateway webhook intake +
-reconciliation (#113) — the set is required to be EMPTY again once
-increment 5 finishes, the same discipline #86/ADR-0016 already proved for
-accounts. Courier rates', WhatsApp's, and the payment-gateway session
-half's own exemption entries are already removed (#107, #108, #110).
-ADR-0017 names the webhook INTAKE route's own environment concerns (the
-`awcms_resolve_commerce_webhook_endpoint` bootstrap lookup landed in
-#110; the route itself has not) — none of that is wired yet; it is added
-by #113, not by this contract-only change. The RajaOngkir env vars
+reports (#117), and campaigns (#114) — the set is required to be EMPTY
+again once increment 5 finishes, the same discipline #86/ADR-0016 already
+proved for accounts. Courier rates', WhatsApp's, and the full payment
+gateway's (session half AND webhook intake/reconcile) own exemption
+entries are already removed (#107, #108, #110, #113). The RajaOngkir env vars
 (`COMMERCE_SHIPPING_RATE_PROVIDER`, `COMMERCE_RAJAONGKIR_API_KEY`, …), the
 WhatsApp env vars (`COMMERCE_WHATSAPP_PROVIDER`, `COMMERCE_FONNTE_TOKEN`,
 `COMMERCE_META_WA_TOKEN`, `COMMERCE_META_WA_PHONE_NUMBER_ID`, …), and the
@@ -763,7 +760,7 @@ CUSTOMER row carries that phone.
 minimal `/admin/commerce-whatsapp` screen (status filter, no create/update/
 delete action over the outbox in this issue).
 
-## Payment gateway — session half IMPLEMENTED (Issue #110, epic #33 — contract #106/ADR-0017 D2/D3)
+## Payment gateway — session creation (Issue #110, epic #33 — contract #106/ADR-0017 D2/D3)
 
 `PaymentGatewayProvider` (`domain/payment-gateway-provider.ts`) is a
 port — `createSession`, `fetchStatus`, `verifyWebhook` — modelled on
@@ -782,8 +779,8 @@ resolved by `infrastructure/payment-gateway-provider-resolver.ts` from
 **Schema** (`sql/926`): `awcms_commerce_payment_gateway_sessions` (one row
 per hosted-checkout attempt, `UNIQUE (provider, provider_ref)`),
 `awcms_commerce_payment_events` (the D2 replay-protection ledger, `UNIQUE
-(tenant_id, provider, event_key)` — no writer yet, the webhook INTAKE
-route is #113's own scope), `awcms_commerce_webhook_endpoints` (a hashed
+(tenant_id, provider, event_key)` — written by the webhook intake route,
+see "Payment gateway — webhook intake + reconcile" below), `awcms_commerce_webhook_endpoints` (a hashed
 opaque token per (tenant, provider)); `orders` gains `gateway_provider`/
 `gateway_ref`. A `SECURITY DEFINER` `awcms_resolve_commerce_webhook_endpoint
 (token_hash)` mirrors `awcms_resolve_tenant_domain_lookup`'s bootstrap
@@ -822,9 +819,60 @@ is the on/off switch; the public `payment.gatewayEnabled` is derived —
 raw copy of the stored flag. `/admin/commerce-settings` gains the enable
 toggle plus a webhook-endpoints panel.
 
-**Deliberately out of scope here (Issue #113)**: the webhook INTAKE route
-itself, `markOrderPaidBySystem`, and the `commerce:payments:reconcile`
-job that polls pending sessions.
+## Payment gateway — webhook intake + reconcile IMPLEMENTED (Issue #113, epic #33 — contract #106/ADR-0017 D2)
+
+**Webhook route** (`src/pages/api/v1/commerce/webhooks/[provider]/[endpointToken].ts`,
+thin per `awcms-new-endpoint`; logic in `application/payment-webhook-
+intake.ts`): public, `POST`-only, registered in `lib/security/api-body-
+auth-boundary.ts`'s exemption list (same family as `/api/v1/sync/push`'s
+HMAC entries — a credential OTHER than a session). Gate order: body read
+(size-capped) → `resolveWebhookEndpoint` (hashes the token, calls
+`awcms_resolve_commerce_webhook_endpoint` on the plain pool client, no
+tenant context yet) → unknown/revoked token OR a `{provider}` path segment
+mismatch OR no provider configured all answer the SAME neutral `404`,
+padded to a floor latency (`NEUTRAL_404_MIN_LATENCY_MS`) → `provider.
+verifyWebhook(...)` (bad signature → `401`) → `applyVerifiedWebhookEvent`,
+ONE `withTenantOrThrow` transaction: `INSERT … ON CONFLICT (tenant_id,
+provider, event_key) DO NOTHING` (0 rows → `{kind: "replay"}`, `200`, no
+side effect) → status-mapped apply. This route NEVER calls the provider's
+`fetchStatus` — that stays the reconcile job's own exclusive concern.
+
+**`markOrderPaidBySystem`** (`application/order-directory.ts`) — actor
+`system`, sets `paid_at`/`payment_status`/`gateway_provider`/`gateway_ref`,
+an `order_events` row, and an audit-log entry; idempotent (already-`paid`
+or any non-`pending_payment` status is a no-op, never an error).
+`domain/order-status.ts` gains the `system` edge `pending_payment -> paid`
+alongside the existing `-> expired`. **`paid -> refunded` is deliberately
+NEVER auto-applied** — there is no `refunded` order status at all; a
+gateway-reported refund is recorded as a payment event only, and the owner
+refunds manually via the existing admin `-> cancelled` action. See
+`order-status.ts`'s own header for the full reasoning.
+
+**Reconcile job** `commerce:payments:reconcile` (`scripts/commerce-
+payments-reconcile.ts`, registered in `module.ts`'s `jobs`, `*/2 * * * *`,
+`background_sync` work class): for every active tenant, every gateway
+session still `pending` more than 2 minutes old gets one `provider.
+fetchStatus` call with NO transaction open (timeout + circuit breaker live
+INSIDE the adapter itself); a fetch failure just skips that session for
+this tick. Every session past `expires_at` is expired regardless of what
+`fetchStatus` says. `application/payment-reconcile.ts` also exposes
+`reconcileOneOrderPaymentSession` — the admin "Cek status" action's own
+SCOPED single-order variant (`POST /api/v1/commerce/orders/{id}/payment-
+gateway/reconcile`, gated `commerce.orders.update`, `Idempotency-Key`
+required), never the full batch.
+
+**Admin**: the order list screen (`/admin/commerce-orders` — this module
+has no separate order DETAIL page) gains a per-row expandable read-only
+panel (gateway session status/provider/expiry plus the payment-events
+list, via `GET /api/v1/commerce/orders/{id}`'s new `gateway` field) and
+the "Cek status" button described above.
+
+**Tests**: unit tests cover route gate ordering (public/POST-only, unknown
+token → padded 404), `verifyWebhook` failure → 401, and replay → 200
+no-op, all with a mocked provider; an integration test against a real,
+migrated Postgres covers the full webhook-paid path, replay-is-a-no-op,
+the reconcile job with the `log` provider, and cross-tenant RLS isolation
+of a webhook-endpoint token.
 
 ## Deliberately not here
 

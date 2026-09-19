@@ -294,3 +294,198 @@ export async function createGatewaySession(
     });
   }
 }
+
+// ---------------------------------------------------------------------------
+// Issue #113 (contract #106's D2) — webhook intake / reconcile job's own
+// reads and status writes against this table. None of these call the
+// provider (that stays the webhook route's and the reconcile job's own
+// concern, per `PaymentGatewayProvider`'s own header) — this file only ever
+// persists a status a caller already obtained.
+// ---------------------------------------------------------------------------
+
+/** The webhook route's own lookup — `(tenant, provider, providerRef)` uniquely identifies one session (`sql/926`'s own UNIQUE index). */
+export async function findGatewaySessionByProviderRef(
+  tx: Bun.SQL,
+  tenantId: string,
+  provider: string,
+  providerRef: string
+): Promise<GatewaySessionRecord | null> {
+  const rows = (await tx`
+    SELECT id, order_id, provider, provider_ref, redirect_url, status, expires_at
+    FROM awcms_commerce_payment_gateway_sessions
+    WHERE tenant_id = ${tenantId} AND provider = ${provider} AND provider_ref = ${providerRef}
+  `) as SessionRow[];
+  return rows[0] ? toRecord(rows[0]) : null;
+}
+
+/**
+ * Persists a new session status (webhook intake / reconcile job's own
+ * mapped outcome). `rawStatus` is the provider's own untrusted response
+ * body, stored for operator debugging only (`sql/926`'s own column
+ * comment) — nothing in this module ever reads a field back out of it.
+ */
+export async function updateGatewaySessionStatus(
+  tx: Bun.SQL,
+  tenantId: string,
+  sessionId: string,
+  status: string,
+  rawStatus: unknown
+): Promise<void> {
+  await tx`
+    UPDATE awcms_commerce_payment_gateway_sessions
+    SET status = ${status},
+        raw_status = ${JSON.stringify(rawStatus ?? null)},
+        last_checked_at = now(),
+        updated_at = now()
+    WHERE tenant_id = ${tenantId} AND id = ${sessionId}
+  `;
+}
+
+export type PendingGatewaySessionForReconcile = {
+  id: string;
+  orderId: string;
+  provider: string;
+  providerRef: string;
+  expiresAt: Date;
+};
+
+/**
+ * `commerce:payments:reconcile`'s own scan (Issue #113): every session in
+ * `pending` older than `olderThanMs`, for tenant `tenantId` — `FOR UPDATE
+ * SKIP LOCKED` the same way `listExpirableOrderIds` bounds the expiry job's
+ * own scan, so two overlapping reconcile ticks (or the job racing an
+ * inbound webhook that is about to mark the same session `paid`) never
+ * double-process a row.
+ */
+export async function listPendingGatewaySessionsForReconcile(
+  tx: Bun.SQL,
+  tenantId: string,
+  now: Date,
+  olderThanMs: number,
+  limit = 200
+): Promise<PendingGatewaySessionForReconcile[]> {
+  const cutoff = new Date(now.getTime() - olderThanMs);
+  const rows = (await tx`
+    SELECT id, order_id, provider, provider_ref, expires_at
+    FROM awcms_commerce_payment_gateway_sessions
+    WHERE tenant_id = ${tenantId}
+      AND status = 'pending'
+      AND created_at <= ${cutoff}
+    ORDER BY created_at ASC
+    LIMIT ${limit}
+    FOR UPDATE SKIP LOCKED
+  `) as {
+    id: string;
+    order_id: string;
+    provider: string;
+    provider_ref: string;
+    expires_at: Date;
+  }[];
+
+  return rows.map((row) => ({
+    id: row.id,
+    orderId: row.order_id,
+    provider: row.provider,
+    providerRef: row.provider_ref,
+    expiresAt: row.expires_at
+  }));
+}
+
+/** Every session past `expires_at` that is still `created`/`pending` — expired regardless of a `fetchStatus` result (Issue #113's own "expire past expires_at either way" rule). */
+export async function listExpiredGatewaySessions(
+  tx: Bun.SQL,
+  tenantId: string,
+  now: Date,
+  limit = 200
+): Promise<PendingGatewaySessionForReconcile[]> {
+  const rows = (await tx`
+    SELECT id, order_id, provider, provider_ref, expires_at
+    FROM awcms_commerce_payment_gateway_sessions
+    WHERE tenant_id = ${tenantId}
+      AND status = ANY(${tx.array([...LIVE_STATUSES], "text")}::text[])
+      AND expires_at <= ${now}
+    ORDER BY expires_at ASC
+    LIMIT ${limit}
+    FOR UPDATE SKIP LOCKED
+  `) as {
+    id: string;
+    order_id: string;
+    provider: string;
+    provider_ref: string;
+    expires_at: Date;
+  }[];
+
+  return rows.map((row) => ({
+    id: row.id,
+    orderId: row.order_id,
+    provider: row.provider,
+    providerRef: row.provider_ref,
+    expiresAt: row.expires_at
+  }));
+}
+
+/** Fetches one gateway session by its own id, tenant-scoped — the admin "Cek status" action's own single-row lookup. */
+export async function findGatewaySessionById(
+  tx: Bun.SQL,
+  tenantId: string,
+  sessionId: string
+): Promise<GatewaySessionRecord | null> {
+  const rows = (await tx`
+    SELECT id, order_id, provider, provider_ref, redirect_url, status, expires_at
+    FROM awcms_commerce_payment_gateway_sessions
+    WHERE tenant_id = ${tenantId} AND id = ${sessionId}
+  `) as SessionRow[];
+  return rows[0] ? toRecord(rows[0]) : null;
+}
+
+/** The order detail admin screen's own read — the most recent session for one order, plus every payment event, oldest first. */
+export type PaymentEventSummary = {
+  id: string;
+  provider: string;
+  eventKey: string;
+  outcome: string;
+  receivedAt: string;
+};
+
+export async function fetchLatestGatewaySessionForOrder(
+  tx: Bun.SQL,
+  tenantId: string,
+  orderId: string
+): Promise<GatewaySessionRecord | null> {
+  const rows = (await tx`
+    SELECT id, order_id, provider, provider_ref, redirect_url, status, expires_at
+    FROM awcms_commerce_payment_gateway_sessions
+    WHERE tenant_id = ${tenantId} AND order_id = ${orderId}
+    ORDER BY created_at DESC
+    LIMIT 1
+  `) as SessionRow[];
+  return rows[0] ? toRecord(rows[0]) : null;
+}
+
+export async function listPaymentEventsForOrder(
+  tx: Bun.SQL,
+  tenantId: string,
+  orderId: string
+): Promise<PaymentEventSummary[]> {
+  const rows = (await tx`
+    SELECT id, provider, event_key, outcome, received_at
+    FROM awcms_commerce_payment_events
+    WHERE tenant_id = ${tenantId} AND order_id = ${orderId}
+    ORDER BY received_at DESC
+    LIMIT 100
+  `) as {
+    id: string;
+    provider: string;
+    event_key: string;
+    outcome: string;
+    received_at: Date;
+  }[];
+
+  return rows.map((row) => ({
+    id: row.id,
+    provider: row.provider,
+    eventKey: row.event_key,
+    outcome: row.outcome,
+    receivedAt: row.received_at.toISOString()
+  }));
+}

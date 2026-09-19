@@ -65,6 +65,7 @@
     "commerce:customer-auth:purge": "bun scripts/commerce-customer-auth-purge.ts",
     "commerce:shipping-rates:purge": "bun scripts/commerce-shipping-rates-purge.ts",
     "commerce:whatsapp:dispatch": "bun scripts/commerce-whatsapp-dispatch.ts",
+    "commerce:payments:reconcile": "bun scripts/commerce-payments-reconcile.ts",
     "commerce:whatsapp:purge": "bun scripts/commerce-whatsapp-purge.ts",
     "blog:portable-text:backfill": "bun scripts/blog-portable-text-backfill.ts",
     "blog:legacy:import": "bun scripts/blog-legacy-import.ts",

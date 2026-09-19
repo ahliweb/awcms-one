@@ -88,7 +88,11 @@ const canUpdate = screen.state === "allowed" && screen.data.canUpdate;
   {
     canRead && !loadError && (
       <div class="data-table-scroll fade-in-up">
-        <table class="data-table data-table--stack" id="commerce-orders-table">
+        <table
+          class="data-table data-table--stack"
+          id="commerce-orders-table"
+          data-can-update={canUpdate ? "true" : "false"}
+        >
           <caption>
             {tn("{count} order", "{count} orders", orders.length, {
               count: orders.length
@@ -102,13 +106,14 @@ const canUpdate = screen.state === "allowed" && screen.data.canUpdate;
               <th scope="col">{t("Payment")}</th>
               <th scope="col">{t("Total")}</th>
               <th scope="col">{t("Placed")}</th>
+              <th scope="col">{t("Payment gateway")}</th>
               {canUpdate && <th scope="col">{t("Actions")}</th>}
             </tr>
           </thead>
           <tbody>
             {orders.length === 0 ? (
               <tr>
-                <td class="data-table-empty" colspan={canUpdate ? 7 : 6}>
+                <td class="data-table-empty" colspan={canUpdate ? 8 : 7}>
                   <div class="empty-state">
                     <span class="empty-state-icon" aria-hidden="true">
                       ◇
@@ -124,52 +129,79 @@ const canUpdate = screen.state === "allowed" && screen.data.canUpdate;
               </tr>
             ) : (
               orders.map((order) => (
-                <tr data-order-row={order.id}>
-                  <td data-label="Order code">
-                    <span class="cell-code">{order.orderCode}</span>
-                  </td>
-                  <td data-label="Customer">
-                    {order.customerName} ({order.customerPhoneMasked})
-                  </td>
-                  <td
-                    data-label="Status"
-                    class={canUpdate ? "stacked-block" : ""}
-                  >
-                    {canUpdate ? (
-                      <select
-                        class="order-status-input"
-                        data-order-status={order.id}
-                      >
-                        {ORDER_STATUSES.map((status) => (
-                          <option
-                            value={status}
-                            selected={order.status === status}
-                          >
-                            {status}
-                          </option>
-                        ))}
-                      </select>
-                    ) : (
-                      order.status
-                    )}
-                  </td>
-                  <td data-label="Payment">{order.paymentStatus}</td>
-                  <td data-label="Total">{order.total}</td>
-                  <td data-label="Placed">{order.createdAt}</td>
-                  {canUpdate && (
-                    <td data-label="Actions" class="stacked-block">
-                      <div class="row-actions">
-                        <button
-                          type="button"
-                          class="module-toggle order-status-save-btn"
-                          data-order-id={order.id}
+                <>
+                  <tr data-order-row={order.id}>
+                    <td data-label="Order code">
+                      <span class="cell-code">{order.orderCode}</span>
+                    </td>
+                    <td data-label="Customer">
+                      {order.customerName} ({order.customerPhoneMasked})
+                    </td>
+                    <td
+                      data-label="Status"
+                      class={canUpdate ? "stacked-block" : ""}
+                    >
+                      {canUpdate ? (
+                        <select
+                          class="order-status-input"
+                          data-order-status={order.id}
                         >
-                          {t("Save")}
-                        </button>
+                          {ORDER_STATUSES.map((status) => (
+                            <option
+                              value={status}
+                              selected={order.status === status}
+                            >
+                              {status}
+                            </option>
+                          ))}
+                        </select>
+                      ) : (
+                        order.status
+                      )}
+                    </td>
+                    <td data-label="Payment">{order.paymentStatus}</td>
+                    <td data-label="Total">{order.total}</td>
+                    <td data-label="Placed">{order.createdAt}</td>
+                    <td data-label="Payment gateway" class="stacked-block">
+                      <button
+                        type="button"
+                        class="module-toggle order-gateway-toggle-btn"
+                        data-order-id={order.id}
+                      >
+                        {t("View gateway status")}
+                      </button>
+                    </td>
+                    {canUpdate && (
+                      <td data-label="Actions" class="stacked-block">
+                        <div class="row-actions">
+                          <button
+                            type="button"
+                            class="module-toggle order-status-save-btn"
+                            data-order-id={order.id}
+                          >
+                            {t("Save")}
+                          </button>
+                        </div>
+                      </td>
+                    )}
+                  </tr>
+                  <tr
+                    class="order-gateway-panel-row"
+                    data-order-gateway-panel-row={order.id}
+                    hidden
+                  >
+                    <td colspan={canUpdate ? 8 : 7}>
+                      <div
+                        class="order-gateway-panel"
+                        data-order-gateway-panel={order.id}
+                      >
+                        <p class="order-gateway-panel-loading">
+                          {t("Loading…")}
+                        </p>
                       </div>
                     </td>
-                  )}
-                </tr>
+                  </tr>
+                </>
               ))
             )}
           </tbody>
@@ -178,6 +210,50 @@ const canUpdate = screen.state === "allowed" && screen.data.canUpdate;
     )
   }
 </AdminLayout>
+
+<style>
+  /* Load-bearing, not defensive — the same specificity fix `users.astro`'s
+     `.session-panel-row[hidden]` documents in full: `admin.css` turns every
+     row of a `.data-table--stack` into a card below `--bp-md` with
+     `.data-table--stack tr { display: block }` (specificity 0,1,1), which
+     outranks the user-agent `[hidden] { display: none }` (0,1,0) — so on a
+     phone the collapsed gateway panel below would NOT collapse.
+     `.order-gateway-panel-row[hidden]` is (0,2,0) and wins in both layouts,
+     and lives outside any media query on purpose (media queries add no
+     specificity, so one rule covers both). */
+  .order-gateway-panel-row[hidden] {
+    display: none;
+  }
+</style>
+
+<template id="order-gateway-panel-template">
+  <div class="order-gateway-session">
+    <h3>{t("Gateway payment session")}</h3>
+    <p data-field="session-empty">
+      {t("This order has no gateway payment session.")}
+    </p>
+    <dl data-field="session-detail" hidden>
+      <dt>{t("Provider")}</dt>
+      <dd data-field="session-provider"></dd>
+      <dt>{t("Status")}</dt>
+      <dd data-field="session-status"></dd>
+      <dt>{t("Expires at")}</dt>
+      <dd data-field="session-expires"></dd>
+    </dl>
+    <button
+      type="button"
+      class="module-toggle order-gateway-reconcile-btn"
+      hidden
+    >
+      {t("Cek status")}
+    </button>
+  </div>
+  <div class="order-gateway-events">
+    <h3>{t("Payment events")}</h3>
+    <ul data-field="events-list"></ul>
+    <p data-field="events-empty">{t("No payment events recorded yet.")}</p>
+  </div>
+</template>
 
 <script>
   import {
@@ -205,6 +281,157 @@ const canUpdate = screen.state === "allowed" && screen.data.canUpdate;
         sendJson("PATCH", `/api/v1/commerce/orders/${id}/status`, { status }),
       "Could not update the order status. Check the transition is legal from the order's current status.",
       "Saving…"
+    );
+  });
+
+  // Issue #113 — read-only gateway session + payment-events panel, plus the
+  // "Cek status" scoped reconcile action, on the order list's expandable
+  // row (this module has no separate order DETAIL page, only this list).
+  type GatewaySession = {
+    provider: string;
+    status: string;
+    expiresAt: string;
+  } | null;
+  type PaymentEvent = {
+    id: string;
+    provider: string;
+    eventKey: string;
+    outcome: string;
+    receivedAt: string;
+  };
+  type OrderGatewayDetail = {
+    gateway: { session: GatewaySession; events: PaymentEvent[] };
+  };
+
+  const canUpdate =
+    document.querySelector<HTMLTableElement>("#commerce-orders-table")?.dataset
+      .canUpdate === "true";
+  const panelTemplate = document.getElementById(
+    "order-gateway-panel-template"
+  ) as HTMLTemplateElement | null;
+  const loadedOrderIds = new Set<string>();
+
+  async function fetchOrderGatewayDetail(
+    orderId: string
+  ): Promise<{ ok: boolean; data: OrderGatewayDetail | null }> {
+    try {
+      const response = await fetch(`/api/v1/commerce/orders/${orderId}`, {
+        credentials: "same-origin"
+      });
+      const payload = (await response.json().catch(() => null)) as {
+        success?: boolean;
+        data?: OrderGatewayDetail;
+      } | null;
+      if (!response.ok || !payload?.success || !payload.data) {
+        return { ok: false, data: null };
+      }
+      return { ok: true, data: payload.data };
+    } catch {
+      return { ok: false, data: null };
+    }
+  }
+
+  async function renderGatewayPanel(orderId: string, panel: HTMLElement) {
+    const { ok, data } = await fetchOrderGatewayDetail(orderId);
+    panel.innerHTML = "";
+    if (!panelTemplate) return;
+    panel.appendChild(panelTemplate.content.cloneNode(true));
+
+    if (!ok || !data) {
+      const empty = panel.querySelector<HTMLElement>(
+        '[data-field="session-empty"]'
+      );
+      if (empty) empty.textContent = "Could not load payment-gateway status.";
+      return;
+    }
+
+    const { session, events } = data.gateway;
+
+    const sessionEmpty = panel.querySelector<HTMLElement>(
+      '[data-field="session-empty"]'
+    );
+    const sessionDetail = panel.querySelector<HTMLElement>(
+      '[data-field="session-detail"]'
+    );
+    const reconcileBtn = panel.querySelector<HTMLButtonElement>(
+      ".order-gateway-reconcile-btn"
+    );
+
+    if (session) {
+      if (sessionEmpty) sessionEmpty.hidden = true;
+      if (sessionDetail) {
+        sessionDetail.hidden = false;
+        const provider = sessionDetail.querySelector(
+          '[data-field="session-provider"]'
+        );
+        const status = sessionDetail.querySelector(
+          '[data-field="session-status"]'
+        );
+        const expires = sessionDetail.querySelector(
+          '[data-field="session-expires"]'
+        );
+        if (provider) provider.textContent = session.provider;
+        if (status) status.textContent = session.status;
+        if (expires) expires.textContent = session.expiresAt;
+      }
+      if (reconcileBtn && canUpdate) {
+        reconcileBtn.hidden = false;
+        reconcileBtn.dataset.orderId = orderId;
+      }
+    }
+
+    const eventsList = panel.querySelector<HTMLElement>(
+      '[data-field="events-list"]'
+    );
+    const eventsEmpty = panel.querySelector<HTMLElement>(
+      '[data-field="events-empty"]'
+    );
+    if (events.length === 0) {
+      if (eventsEmpty) eventsEmpty.hidden = false;
+    } else {
+      if (eventsEmpty) eventsEmpty.hidden = true;
+      for (const event of events) {
+        const item = document.createElement("li");
+        item.textContent = `${event.receivedAt} — ${event.provider} — ${event.outcome} (${event.eventKey})`;
+        eventsList?.appendChild(item);
+      }
+    }
+  }
+
+  onAction(".order-gateway-toggle-btn", async (button) => {
+    const id = button.dataset.orderId;
+    if (!id) return;
+    const row = document.querySelector<HTMLTableRowElement>(
+      `[data-order-gateway-panel-row="${id}"]`
+    );
+    if (!row) return;
+
+    row.hidden = !row.hidden;
+    if (!row.hidden && !loadedOrderIds.has(id)) {
+      loadedOrderIds.add(id);
+      const panel = row.querySelector<HTMLElement>(
+        `[data-order-gateway-panel="${id}"]`
+      );
+      if (panel) await renderGatewayPanel(id, panel);
+    }
+  });
+
+  onAction(".order-gateway-reconcile-btn", async (button) => {
+    const id = button.dataset.orderId;
+    if (!id) return;
+
+    await mutateAndReload(
+      button,
+      actionError,
+      () =>
+        sendJson(
+          "POST",
+          `/api/v1/commerce/orders/${id}/payment-gateway/reconcile`,
+          undefined,
+          { "Idempotency-Key": crypto.randomUUID() }
+        ),
+      "Could not check the payment-gateway status for this order.",
+      "Checking…"
     );
   });
 </script>

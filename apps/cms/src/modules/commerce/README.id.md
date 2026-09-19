@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:9b0725eb1fd7aef6e1310bd301b7b98d558b71d38a37158a43a7a17d277865e8 -->
+<!-- i18n-source-hash: sha256:5fb69f41c01941353a23dbc450bc14a2fdf30ea018db4969388699222fe6d620 -->
 
 # `commerce`
 
@@ -649,18 +649,18 @@ tabel komisi (afiliasi, pesanan, jumlah, status, dapat difilter berdasarkan
 status, tombol approve/pay/void), i18n `en`+`id`.
 `/admin/commerce-settings` mendapat field tarif komisi.
 
-## Provider eksternal — kontrak saja, kecuali D4, D5, dan separuh sesi D2/D3 (epic #33 wave 0 — ADR-0017, issue #106)
+## Provider eksternal — kontrak saja, kecuali D4, D5, dan payment gateway secara penuh (D2/D3) (epic #33 wave 0 — ADR-0017, issue #106)
 
 `openapi/modules/commerce.openapi.yaml` kini juga mendokumentasikan,
 SEBELUM ADA HANDLER APA PUN, sebagian besar permukaan provider-eksternal
-increment 5: rute INTAKE webhook gateway (D2), pembuatan order POS (D6),
+increment 5: pembuatan order POS (D6),
 tiga proyeksi penjualan yang ditampung `reporting` (D7), kotak masuk
 pelanggan — sisi bearer maupun owner (D8), kampanye bergerbang consent
 (D9), dan flag pengaturan modul plus harga bertingkat saat quote (D10).
-**D4 (tarif kurir), D5 (WhatsApp), dan separuh sesi D2/D3 (pembuatan
-sesi payment-gateway + token webhook-endpoint, Midtrans Snap) sudah
-DIIMPLEMENTASIKAN, bukan kontrak-saja; lihat bagiannya sendiri persis di
-bawah ini.** Setiap satu dari sepuluh keputusan D1–D10 — mengapa port
+**D4 (tarif kurir), D5 (WhatsApp), dan payment gateway secara PENUH (D2/D3
+— pembuatan sesi, token webhook-endpoint, intake webhook, rekonsiliasi)
+sudah DIIMPLEMENTASIKAN, bukan kontrak-saja; lihat bagiannya sendiri
+persis di bawah ini.** Setiap satu dari sepuluh keputusan D1–D10 — mengapa port
 hidup di dalam `commerce` alih-alih `integration_hub`, mengapa tenant
 webhook diresolusi dari token opak alih-alih payload-nya, mengapa alur
 gateway adalah redirect alih-alih embed, dan seterusnya — dicatat di
@@ -670,15 +670,11 @@ di awcms-one.
 Setiap path baru yang masih menunggu handler dinamai di
 `ROUTE_PARITY_EXEMPTIONS` (`scripts/api-spec-check.ts`), masing-masing
 entri mengutip issue anak yang menghapusnya: kotak masuk (#111), POS
-(#116), laporan penjualan (#117), dan kampanye (#114) plus intake
-webhook gateway + rekonsiliasi (#113) — set itu wajib KOSONG lagi begitu
-increment 5 selesai, disiplin yang sama yang sudah dibuktikan
-#86/ADR-0016 untuk akun. Entri pengecualian milik tarif kurir, WhatsApp,
-dan separuh sesi payment-gateway sendiri sudah dihapus (#107, #108,
-#110). ADR-0017 menamai kepentingan lingkungan milik rute INTAKE webhook
-sendiri (lookup bootstrap `awcms_resolve_commerce_webhook_endpoint`
-sudah mendarat di #110; rutenya sendiri belum) — belum ada yang
-tersambung; ditambahkan oleh #113, bukan oleh perubahan kontrak-saja ini.
+(#116), laporan penjualan (#117), dan kampanye (#114) — set itu wajib
+KOSONG lagi begitu increment 5 selesai, disiplin yang sama yang sudah
+dibuktikan #86/ADR-0016 untuk akun. Entri pengecualian milik tarif kurir,
+WhatsApp, dan payment gateway secara penuh (sesi maupun intake
+webhook/rekonsiliasi) sendiri sudah dihapus (#107, #108, #110, #113).
 Variabel env RajaOngkir (`COMMERCE_SHIPPING_RATE_PROVIDER`,
 `COMMERCE_RAJAONGKIR_API_KEY`, …), variabel env WhatsApp
 (`COMMERCE_WHATSAPP_PROVIDER`, `COMMERCE_FONNTE_TOKEN`,
@@ -819,7 +815,7 @@ telepon" berarti akun yang baris PELANGGANnya membawa telepon itu.
 layar minimal `/admin/commerce-whatsapp` (filter status, tanpa aksi
 create/update/delete atas outbox di issue ini).
 
-## Payment gateway — separuh sesi DIIMPLEMENTASIKAN (Issue #110, epic #33 — kontrak #106/ADR-0017 D2/D3)
+## Payment gateway — pembuatan sesi (Issue #110, epic #33 — kontrak #106/ADR-0017 D2/D3)
 
 `PaymentGatewayProvider` (`domain/payment-gateway-provider.ts`) adalah
 sebuah port — `createSession`, `fetchStatus`, `verifyWebhook` — dibentuk
@@ -839,8 +835,8 @@ sama-sama mengimplementasikannya, di-resolve
 **Skema** (`sql/926`): `awcms_commerce_payment_gateway_sessions` (satu
 baris per percobaan hosted-checkout, `UNIQUE (provider, provider_ref)`),
 `awcms_commerce_payment_events` (buku besar anti-replay D2, `UNIQUE
-(tenant_id, provider, event_key)` — belum ada penulisnya, rute INTAKE
-webhook adalah cakupan #113 sendiri), `awcms_commerce_webhook_endpoints`
+(tenant_id, provider, event_key)` — ditulis oleh rute intake webhook,
+lihat "Payment gateway — intake webhook + rekonsiliasi" di bawah), `awcms_commerce_webhook_endpoints`
 (token opak ter-hash per (tenant, provider)); `orders` mendapat
 `gateway_provider`/`gateway_ref`. Fungsi `SECURITY DEFINER`
 `awcms_resolve_commerce_webhook_endpoint(token_hash)` meniru pola
@@ -881,9 +877,64 @@ dikonfigurasi, tidak pernah salinan mentah flag tersimpan.
 `/admin/commerce-settings` mendapat sakelar enable plus panel
 webhook-endpoints.
 
-**Sengaja di luar cakupan di sini (Issue #113)**: rute INTAKE webhook itu
-sendiri, `markOrderPaidBySystem`, dan job `commerce:payments:reconcile`
-yang mem-poll sesi yang masih pending.
+## Payment gateway — intake webhook + rekonsiliasi SUDAH DIIMPLEMENTASIKAN (Issue #113, epic #33 — kontrak #106/ADR-0017 D2)
+
+**Rute webhook** (`src/pages/api/v1/commerce/webhooks/[provider]/
+[endpointToken].ts`, tipis sesuai `awcms-new-endpoint`; logikanya di
+`application/payment-webhook-intake.ts`): publik, `POST`-saja, terdaftar
+di daftar pengecualian `lib/security/api-body-auth-boundary.ts` (keluarga
+yang sama dengan entri HMAC `/api/v1/sync/push`). Urutan gerbang:
+pembacaan body (dibatasi ukuran) → `resolveWebhookEndpoint` (meng-hash
+token, memanggil `awcms_resolve_commerce_webhook_endpoint` pada pool
+client biasa, belum ada konteks tenant) → token tak dikenal/dicabut ATAU
+segmen path `{provider}` tidak cocok ATAU tidak ada provider dikonfigurasi
+— semuanya menjawab `404` netral YANG SAMA, dipadatkan ke latensi lantai
+(`NEUTRAL_404_MIN_LATENCY_MS`) → `provider.verifyWebhook(...)` (signature
+salah → `401`) → `applyVerifiedWebhookEvent`, SATU transaksi
+`withTenantOrThrow`: `INSERT … ON CONFLICT (tenant_id, provider,
+event_key) DO NOTHING` (0 baris → `{kind: "replay"}`, `200`, tanpa efek
+samping) → penerapan sesuai pemetaan status. Rute ini TIDAK PERNAH
+memanggil `fetchStatus` milik provider — itu tetap urusan eksklusif job
+reconcile.
+
+**`markOrderPaidBySystem`** (`application/order-directory.ts`) — aktor
+`system`, menyetel `paid_at`/`payment_status`/`gateway_provider`/
+`gateway_ref`, satu baris `order_events`, dan satu entri audit-log;
+idempoten (sudah-`paid` atau status apa pun selain `pending_payment`
+adalah no-op, tidak pernah error). `domain/order-status.ts` mendapat edge
+`system` `pending_payment -> paid` di samping `-> expired` yang sudah ada.
+**`paid -> refunded` sengaja TIDAK PERNAH diterapkan otomatis** — tidak
+ada status pesanan `refunded` sama sekali; refund yang dilaporkan gateway
+dicatat hanya sebagai peristiwa pembayaran, dan owner me-refund secara
+manual lewat aksi admin `-> cancelled` yang sudah ada. Lihat header
+`order-status.ts` sendiri untuk alasan lengkapnya.
+
+**Job reconcile** `commerce:payments:reconcile`
+(`scripts/commerce-payments-reconcile.ts`, terdaftar di `jobs` milik
+`module.ts`, `*/2 * * * *`, work class `background_sync`): untuk setiap
+tenant aktif, setiap sesi gateway yang masih `pending` lebih dari 2 menit
+mendapat satu panggilan `provider.fetchStatus` TANPA transaksi terbuka
+(timeout + circuit breaker hidup DI DALAM adapter itu sendiri); kegagalan
+fetch cukup melewati sesi itu untuk tick ini. Setiap sesi yang sudah lewat
+`expires_at` di-expire terlepas dari jawaban `fetchStatus`.
+`application/payment-reconcile.ts` juga mengekspos
+`reconcileOneOrderPaymentSession` — varian tercakup satu-pesanan milik
+aksi admin "Cek status" (`POST /api/v1/commerce/orders/{id}/payment-
+gateway/reconcile`, digerbangi `commerce.orders.update`,
+`Idempotency-Key` wajib), tidak pernah batch penuh.
+
+**Admin**: layar daftar pesanan (`/admin/commerce-orders` — modul ini
+tidak punya halaman DETAIL pesanan terpisah) mendapat panel baca-saja
+yang bisa diperluas per baris (status/provider/kedaluwarsa sesi gateway
+plus daftar peristiwa pembayaran, lewat field `gateway` baru pada `GET
+/api/v1/commerce/orders/{id}`) dan tombol "Cek status" di atas.
+
+**Tes**: unit test mencakup urutan gerbang rute (publik/POST-saja, token
+tak dikenal → 404 dipadatkan), kegagalan `verifyWebhook` → 401, dan
+replay → 200 no-op, semuanya dengan provider tiruan; sebuah integration
+test terhadap Postgres nyata yang sudah dimigrasikan mencakup jalur penuh
+webhook-`paid`, replay-adalah-no-op, job reconcile dengan provider `log`,
+dan isolasi RLS lintas-tenant milik token webhook-endpoint.
 
 ## Dengan sengaja tidak ada di sini
 

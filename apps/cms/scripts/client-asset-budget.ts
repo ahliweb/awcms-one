@@ -518,7 +518,14 @@ export const READER_BUDGET_BYTES = 24_000;
  * overage was ~440 B for this genuinely new control (list/create/revoke
  * for a resource this screen had none of), not per-screen duplication.
  */
-export const APP_BUDGET_BYTES = 232_000;
+// Issue #113 raised this from 232,000 to the measured value after adding the
+// order detail admin screen's gateway-session/payment-events panel and "Cek
+// status" action to `/admin/commerce-orders.astro` (CSS/markup growth, no new
+// script asset). Measured on this branch: 234,035 B. NOTE: `main` was at
+// 234,200 at the time this branch was cut from an older base — reconcile the
+// two numbers (take the larger, re-measure) at merge time rather than
+// assuming this branch's own number is current.
+export const APP_BUDGET_BYTES = 234_300;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.

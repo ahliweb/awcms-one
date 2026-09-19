@@ -54,8 +54,11 @@ A much larger file, owned entirely by `apps/cms` as embedded `ahliweb/awcms` cod
 | `COMMERCE_MIDTRANS_SNAP_BASE_URL` | `https://app.sandbox.midtrans.com` (sandbox) / `https://app.midtrans.com` (production) | Override for tests/dev only — never request input |
 | `COMMERCE_MIDTRANS_STATUS_BASE_URL` | `https://api.sandbox.midtrans.com` (sandbox) / `https://api.midtrans.com` (production) | Override for tests/dev only — never request input |
 | `COMMERCE_MIDTRANS_TIMEOUT_MS` | `15000` | Per-call timeout (`withTimeout`) for both `createSession` and `fetchStatus` |
+| `COMMERCE_WEBHOOK_RATE_LIMIT_MAX` / `_WINDOW_SEC` | 120 / 60 | Issue #113 — per-IP rate limit on `POST /api/v1/commerce/webhooks/{provider}/{endpointToken}`, the same shared-limiter shape every storefront route uses |
 
 **`COMMERCE_STOREFRONT_PUBLIC_URL` (already documented above for affiliate referral links) also builds the `log` payment-gateway provider's own `redirectUrl` (`"${COMMERCE_STOREFRONT_PUBLIC_URL}/pesanan?kode=...&gateway=log"`) and, when set, the Midtrans adapter's `callbacks.finish` URL.**
+
+**Scheduled job — `commerce:payments:reconcile` (issue #113).** Run `bun run commerce:payments:reconcile` every 1-2 minutes via cron/systemd timer, the same way `commerce:orders:expire`/`commerce:whatsapp:dispatch` already are (`commerce/module.ts`'s own `jobs` descriptor names the recommended schedule for every job in this module, including this one). It reads the same `COMMERCE_PAYMENT_GATEWAY`/`COMMERCE_MIDTRANS_*` variables above and is a clean no-op when no provider is configured.
 
 **`COMMERCE_WHATSAPP_ENABLED`/`COMMERCE_WHATSAPP_PROVIDER` are the same kind of deployment gate for WhatsApp login (issue #108, contract #106 D5).** `POST account/otp/request` with `via: "whatsapp"` answers `409 CHANNEL_UNAVAILABLE` until `COMMERCE_WHATSAPP_ENABLED=true`; the code then goes to a `log` adapter (dev/CI) unless `COMMERCE_WHATSAPP_PROVIDER` also names a real provider (`fonnte` or `meta`, each with its own credential variables below). WhatsApp is a login-only channel for an account that already exists — registration is unaffected and stays e-mail OTP only.
 

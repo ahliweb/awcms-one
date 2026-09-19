@@ -77,7 +77,7 @@
       "capabilitiesConsumed": [],
       "permissionCount": 45,
       "navigationCount": 13,
-      "jobCount": 6,
+      "jobCount": 7,
       "hasHealthCheck": false,
       "hasReadinessCheck": false,
       "deploymentProfiles": null

@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](deployment.md)
 
-<!-- i18n-source-hash: sha256:ef9e1767abb035afab11f37149ee4fcb0d000b9a9290eb63e7cd2ca0bbca2dcb -->
+<!-- i18n-source-hash: sha256:d643e2d8735c34599f8c30f5e04215836bd094194c2ba9a6508dc9ec0e4f6344 -->
 
 # Deployment
 
@@ -56,8 +56,11 @@ Berkas yang jauh lebih besar, dimiliki sepenuhnya oleh `apps/cms` sebagai kode `
 | `COMMERCE_MIDTRANS_SNAP_BASE_URL` | `https://app.sandbox.midtrans.com` (sandbox) / `https://app.midtrans.com` (production) | Override hanya untuk tes/dev — jangan pernah dari input request |
 | `COMMERCE_MIDTRANS_STATUS_BASE_URL` | `https://api.sandbox.midtrans.com` (sandbox) / `https://api.midtrans.com` (production) | Override hanya untuk tes/dev — jangan pernah dari input request |
 | `COMMERCE_MIDTRANS_TIMEOUT_MS` | `15000` | Timeout per panggilan (`withTimeout`) untuk `createSession` maupun `fetchStatus` |
+| `COMMERCE_WEBHOOK_RATE_LIMIT_MAX` / `_WINDOW_SEC` | 120 / 60 | Issue #113 — rate limit per-IP pada `POST /api/v1/commerce/webhooks/{provider}/{endpointToken}`, bentuk shared-limiter yang sama yang dipakai setiap rute storefront |
 
 **`COMMERCE_STOREFRONT_PUBLIC_URL` (sudah didokumentasikan di atas untuk tautan referral afiliasi) juga membangun `redirectUrl` milik provider payment-gateway `log` (`"${COMMERCE_STOREFRONT_PUBLIC_URL}/pesanan?kode=...&gateway=log"`) dan, saat diset, URL `callbacks.finish` milik adapter Midtrans.**
+
+**Job terjadwal — `commerce:payments:reconcile` (issue #113).** Jalankan `bun run commerce:payments:reconcile` tiap 1-2 menit lewat cron/systemd timer, dengan cara yang sama seperti `commerce:orders:expire`/`commerce:whatsapp:dispatch` (descriptor `jobs` milik `commerce/module.ts` sendiri menyebut jadwal yang direkomendasikan untuk setiap job di modul ini, termasuk yang ini). Job ini membaca variabel `COMMERCE_PAYMENT_GATEWAY`/`COMMERCE_MIDTRANS_*` yang sama di atas dan merupakan no-op bersih saat tidak ada provider yang dikonfigurasi.
 
 **`COMMERCE_WHATSAPP_ENABLED`/`COMMERCE_WHATSAPP_PROVIDER` adalah gerbang deployment sejenis untuk login WhatsApp (issue #108, kontrak #106 D5).** `POST account/otp/request` dengan `via: "whatsapp"` menjawab `409 CHANNEL_UNAVAILABLE` sampai `COMMERCE_WHATSAPP_ENABLED=true`; kode kemudian pergi ke adapter `log` (dev/CI) kecuali `COMMERCE_WHATSAPP_PROVIDER` juga menyebut provider nyata (`fonnte` atau `meta`, masing-masing dengan variabel kredensial sendiri di bawah). WhatsApp adalah kanal login-saja untuk akun yang sudah ada — pendaftaran tidak terpengaruh dan tetap hanya OTP e-mail.
 
