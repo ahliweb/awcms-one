@@ -62,6 +62,7 @@
     "blog:publish:scheduled": "bun scripts/blog-scheduled-publish.ts",
     "commerce:flash-sales:tick": "bun scripts/commerce-flash-sales-tick.ts",
     "commerce:orders:expire": "bun scripts/commerce-orders-expire.ts",
+    "commerce:customer-auth:purge": "bun scripts/commerce-customer-auth-purge.ts",
     "blog:portable-text:backfill": "bun scripts/blog-portable-text-backfill.ts",
     "blog:legacy:import": "bun scripts/blog-legacy-import.ts",
     "blog:legacy:redirects:import": "bun scripts/blog-legacy-redirects-import.ts",

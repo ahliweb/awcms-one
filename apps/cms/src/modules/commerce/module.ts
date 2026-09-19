@@ -84,7 +84,13 @@ export const commerceModule = defineModule({
     // to fail-closed when a tenant has not enabled `commerce`, the same
     // dependency `newsletter`'s own public tenant resolver already declares
     // for the identical call.
-    "module_management"
+    "module_management",
+    // Issue #87 — `application/customer-account-store.ts` calls
+    // `maskIdentifierValue` for the customer account e-mail, the SAME
+    // masking `newsletter`/`comments`/`email` already depend on
+    // `profile_identity` for, and for the same reason: one masking rule,
+    // not a second copy that eventually disagrees with the first.
+    "profile_identity"
   ],
   type: "domain",
   isCore: false,
@@ -138,6 +144,20 @@ export const commerceModule = defineModule({
       recommendedSchedule: "Every 1-5 minutes via cron/systemd timer.",
       environmentNotes:
         "No external provider call — pure database transition, safe to run in any deployment profile.",
+      safeInOfflineLan: true
+    },
+    {
+      command: "bun run commerce:customer-auth:purge",
+      schedule: {
+        mode: "cron",
+        expression: "*/15 * * * *",
+        backlog: "bounded"
+      },
+      purpose:
+        "Deletes every expired customer OTP and every expired or revoked-more-than-7-days-ago customer session, across all tenants (Issue #87). Idempotent and bounded — a row already deleted is simply absent from the next run's scan.",
+      recommendedSchedule: "Every 5-15 minutes via cron/systemd timer.",
+      environmentNotes:
+        "No external provider call — pure database DELETE, safe to run in any deployment profile.",
       safeInOfflineLan: true
     }
   ],
@@ -1000,6 +1020,143 @@ export const commerceModule = defineModule({
       backupRestoreNotes:
         "Included in ordinary full-database backup/restore; no standalone archive artifact.",
       executionMode: "generic"
+    },
+    /**
+     * Issue #87 (C1) — `awcms_commerce_customer_accounts` never soft-deletes
+     * (a blocked account is `status = 'blocked'`, not purged) — the SAME
+     * "safe cursor even though it always stays NULL" shape `commerce.orders`
+     * above already uses, for the same reason: `data-lifecycle:table-coverage:check`
+     * requires every table to answer the retention question, and `deleted_at`
+     * (`sql/917`'s header) exists ONLY to give this descriptor a real,
+     * honest column to name — the predicate `deleted_at < $cutoff` can
+     * mathematically never match a row that stays `NULL` forever.
+     */
+    {
+      key: "commerce.customer_accounts",
+      tableName: "awcms_commerce_customer_accounts",
+      ownerModuleKey: "commerce",
+      scope: "tenant",
+      cursorColumn: "deleted_at",
+      retentionClass: "operational_queue",
+      retentionMinDays: 365,
+      retentionMaxDays: 3650,
+      defaultRetentionDays: 3650,
+      partition: {
+        eligible: false,
+        rationale:
+          "Bounded by a single storefront's own registered-shopper volume — nowhere near partition-worthy."
+      },
+      archive: {
+        archivable: false,
+        rationale:
+          "The generic engine's only implemented artefact is ordinary backup/restore; no standalone archive exists yet for this table."
+      },
+      deletion: {
+        mode: "hard_delete",
+        rationale:
+          "Technically the generic engine's only mode, but practically UNREACHABLE: this module never soft-deletes an account (deleted_at stays NULL forever, sql/917's header) — blocking (status='blocked') is how a stale/abusive account is actually handled."
+      },
+      legalHold: { applicable: false, precedence: "not_applicable" },
+      requiredIndexes: [
+        {
+          columns: ["tenant_id", "deleted_at"],
+          purpose:
+            "awcms_commerce_customer_accounts_tenant_deleted_idx (sql/917) — the (tenant, cursor) composite the generic purge engine filters + orders by."
+        }
+      ],
+      batchLimit: 5000,
+      backupRestoreNotes:
+        "Included in ordinary full-database backup/restore; no standalone archive artifact. An account is never expected to reach this engine's purge predicate in practice.",
+      executionMode: "generic"
+    },
+    {
+      key: "commerce.customer_otps",
+      tableName: "awcms_commerce_customer_otps",
+      ownerModuleKey: "commerce",
+      scope: "tenant",
+      cursorColumn: "expires_at",
+      retentionClass: "operational_queue",
+      retentionMinDays: 1,
+      retentionMaxDays: 30,
+      defaultRetentionDays: 7,
+      partition: {
+        eligible: false,
+        rationale:
+          "Bounded by a single storefront's own OTP request volume — nowhere near partition-worthy."
+      },
+      archive: {
+        archivable: false,
+        rationale:
+          "A spent/expired one-time code — no evidentiary value once past its own TTL, nothing worth archiving."
+      },
+      deletion: {
+        mode: "hard_delete",
+        rationale:
+          "Matches commerce:customer-auth:purge's own behaviour exactly — a straight DELETE of rows past expires_at, no cascading FK children."
+      },
+      legalHold: { applicable: false, precedence: "not_applicable" },
+      requiredIndexes: [
+        {
+          columns: ["expires_at"],
+          purpose:
+            "awcms_commerce_customer_otps_expires_idx (sql/917) — the cursor commerce:customer-auth:purge's own DELETE filters on."
+        }
+      ],
+      batchLimit: 5000,
+      backupRestoreNotes:
+        "Included in ordinary full-database backup/restore; no standalone archive artifact.",
+      executionMode: "delegated",
+      existingAdopter: {
+        jobCommand: "bun run commerce:customer-auth:purge",
+        purgeFunctionRef:
+          "src/modules/commerce/application/customer-account-store.ts#consumeOtp (issuance/expiry) and scripts/commerce-customer-auth-purge.ts (deletion)",
+        description:
+          "Deletes every OTP whose expires_at has elapsed, across all tenants, in bounded batches, as awcms_worker (sql/918)."
+      }
+    },
+    {
+      key: "commerce.customer_sessions",
+      tableName: "awcms_commerce_customer_sessions",
+      ownerModuleKey: "commerce",
+      scope: "tenant",
+      cursorColumn: "expires_at",
+      retentionClass: "operational_queue",
+      retentionMinDays: 1,
+      retentionMaxDays: 90,
+      defaultRetentionDays: 37,
+      partition: {
+        eligible: false,
+        rationale:
+          "Bounded by a single storefront's own active-session volume — nowhere near partition-worthy."
+      },
+      archive: {
+        archivable: false,
+        rationale:
+          "An expired/revoked bearer session — no evidentiary value once dead, nothing worth archiving."
+      },
+      deletion: {
+        mode: "hard_delete",
+        rationale:
+          "Matches commerce:customer-auth:purge's own behaviour exactly — deletes expired sessions and revoked sessions older than 7 days, no cascading FK children."
+      },
+      legalHold: { applicable: false, precedence: "not_applicable" },
+      requiredIndexes: [
+        {
+          columns: ["expires_at"],
+          purpose:
+            "awcms_commerce_customer_sessions_expires_idx (sql/917) — the cursor commerce:customer-auth:purge's own DELETE filters on."
+        }
+      ],
+      batchLimit: 5000,
+      backupRestoreNotes:
+        "Included in ordinary full-database backup/restore; no standalone archive artifact.",
+      executionMode: "delegated",
+      existingAdopter: {
+        jobCommand: "bun run commerce:customer-auth:purge",
+        purgeFunctionRef: "scripts/commerce-customer-auth-purge.ts",
+        description:
+          "Deletes every session whose expires_at has elapsed, and every revoked session older than 7 days, across all tenants, in bounded batches, as awcms_worker (sql/918)."
+      }
     }
   ],
   /**
@@ -1274,6 +1431,62 @@ export const commerceModule = defineModule({
       erasure: "retain_under_obligation",
       rationale:
         "A bare (customer, product) saved-item pair — no route reads or writes it in this increment (see this module's README); same unreachable-by-this-engine's-vocabulary shape as commerce.customers above."
+    },
+    /**
+     * Issue #87 (C1, contract #86/ADR-0016) — a customer ACCOUNT is real
+     * personal data (an e-mail, a login history) and a genuine subject in
+     * the ordinary sense, but ADR-0094 Decision 1 answers the subject
+     * question PER TENANT MEMBER, through exactly one of
+     * `tenant_user_id`/`identity_id`/`profile_id` (or, on a global table
+     * only, `principal_id`) — and ADR-0016 D1 is explicit that a customer
+     * account carries NONE of those on purpose ("No password, ever — no
+     * second password store and no link to awcms_principals"). There is
+     * therefore no column this registry's fixed subject vocabulary can
+     * honestly name here, for exactly the reason `newsletter.subscribers`
+     * (a subscriber "has no account, no session and no tenant membership")
+     * is already `unreachableBySubject: true` rather than pointing at a
+     * column that does not exist — a customer account is the SAME shape:
+     * a real person, reachable only by the storefront's own e-mail/session
+     * credential, not by any id this engine's automated per-subject
+     * export/erasure can walk. The honest export/erasure path for a named
+     * account is the same ordinary admin lookup/edit the `commerce.customers`
+     * entry above describes (`GET/PATCH` on the owning admin screen once
+     * one exists), outside this automated engine's scope by construction.
+     */
+    {
+      key: "commerce.customer_accounts",
+      tableName: "awcms_commerce_customer_accounts",
+      ownerModuleKey: "commerce",
+      unreachableBySubject: true,
+      subjectColumns: [],
+      exportable: false,
+      erasure: "retain_under_obligation",
+      rationale:
+        "A verified e-mail, a login history and a bound guest-customer row for a storefront shopper who has no tenant_user/identity/profile/principal id in this system's subject vocabulary (ADR-0016 D1 — no password, no principal link, by design). See this array's header comment; addressed today the same way commerce.customers is, as an ordinary admin lookup by e-mail, not by this automated engine."
+    },
+    {
+      key: "commerce.customer_otps",
+      tableName: "awcms_commerce_customer_otps",
+      ownerModuleKey: "commerce",
+      unreachableBySubject: true,
+      subjectColumns: [],
+      exportable: false,
+      erasure: "retain_under_obligation",
+      rationale:
+        "A short-lived, single-use e-mail OTP — the e-mail is real personal data, but this table is reached by e-mail address, not by any id in this registry's subject vocabulary, the same gap commerce.customer_accounts above has. Purge-only: commerce:customer-auth:purge already deletes every row past its own expires_at (module.ts's dataLifecycle entry), so there is nothing left to export/erase once a code is spent or expired, and a live one is dead within OTP_TTL_SECONDS regardless.",
+      redactedColumns: ["code_hash"]
+    },
+    {
+      key: "commerce.customer_sessions",
+      tableName: "awcms_commerce_customer_sessions",
+      ownerModuleKey: "commerce",
+      unreachableBySubject: true,
+      subjectColumns: [],
+      exportable: false,
+      erasure: "retain_under_obligation",
+      rationale:
+        "A bearer session's diagnostic metadata (hashed IP, UA summary) — the account it belongs to has no subject-vocabulary id (see commerce.customer_accounts above), so this table has the same gap one level down. Purge-only: commerce:customer-auth:purge deletes expired sessions and revoked sessions older than 7 days (module.ts's dataLifecycle entry); a session an account holder wants gone today is ended via logout (revokeSession), which is immediate and does not wait for this table's descriptor.",
+      redactedColumns: ["token_hash", "client_ip_hash"]
     }
   ],
   permissions: [

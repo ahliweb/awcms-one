@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:b9643f3c4983fff899a8a456448ed4286ddf65ef6307529459e5ee356654e2d1 -->
+<!-- i18n-source-hash: sha256:2d42abd40f26f59a2f4eab0c51bd3691a14d839fd6fccf5795a3370b8dc5aebc -->
 
 # Scripts AWCMS
 
@@ -27,7 +27,7 @@ lalu membangun duplikatnya.
 
 <!-- Dihasilkan `bun run scripts:inventory:generate`. JANGAN diedit tangan. -->
 
-127 target menjalankan berkas di `scripts/`; 56 di antaranya
+128 target menjalankan berkas di `scripts/`; 56 di antaranya
 ada di rantai `bun run check` (kolom **Gate**), sisanya dijalankan manual,
 terjadwal, atau oleh workflow CI tertentu.
 
@@ -69,6 +69,7 @@ terjadwal, atau oleh workflow CI tertentu.
 | `check:docs:translation`                  | `check-docs-translation.mjs`                   | ✅   |
 | `comments:resources:check`                | `comments-resources-check.ts`                  | ✅   |
 | `comments:retention`                      | `comments-retention.ts`                        | —    |
+| `commerce:customer-auth:purge`            | `commerce-customer-auth-purge.ts`              | —    |
 | `commerce:flash-sales:tick`               | `commerce-flash-sales-tick.ts`                 | —    |
 | `commerce:orders:expire`                  | `commerce-orders-expire.ts`                    | —    |
 | `config:env:coverage:check`               | `env-contract-coverage-check.ts`               | ✅   |
