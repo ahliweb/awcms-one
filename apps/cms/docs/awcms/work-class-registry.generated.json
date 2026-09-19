@@ -492,6 +492,31 @@
       "source": "factory"
     },
     {
+      "path": "src/pages/api/v1/commerce/campaigns/[id]/cancel.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/campaigns/[id]/index.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/campaigns/[id]/preview.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/campaigns/[id]/send.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/campaigns/index.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
       "path": "src/pages/api/v1/commerce/categories/[id].ts",
       "workClass": "interactive",
       "source": "factory"
@@ -503,6 +528,21 @@
     },
     {
       "path": "src/pages/api/v1/commerce/categories/index.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/conversations/[id]/index.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/conversations/[id]/messages.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/conversations/index.ts",
       "workClass": "interactive",
       "source": "factory"
     },
@@ -1648,6 +1688,12 @@
       "workClass": "maintenance",
       "source": "registry",
       "rationale": "Scheduled retention sweep (comments:retention, ADR-0041) — tolerant of delay, never latency-sensitive; same profile as audit-log-purge/form-draft-purge."
+    },
+    {
+      "path": "scripts/commerce-campaigns-dispatch.ts",
+      "workClass": "background_sync",
+      "source": "registry",
+      "rationale": "Scheduled campaign claim/page/finalize drain (commerce:campaigns:dispatch, Issue #114), every 1-2 minutes — same claim/page/finalize profile as commerce:whatsapp:dispatch; dispatchCampaignQueue passes workClass: \"background_sync\" explicitly on every transaction."
     },
     {
       "path": "scripts/commerce-customer-auth-purge.ts",

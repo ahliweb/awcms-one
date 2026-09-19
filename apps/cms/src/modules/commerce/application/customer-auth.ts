@@ -69,6 +69,8 @@ export type CustomerAccountView = {
   level: number;
   createdAt: string;
   historyFrom: string;
+  /** Issue #114 (contract #106 ADR-0017 D9) — `true` when `marketing_consent_at` is non-null. */
+  marketingConsent: boolean;
 };
 
 type AccountViewRow = {
@@ -79,6 +81,7 @@ type AccountViewRow = {
   level: number;
   created_at: Date;
   history_from: Date;
+  marketing_consent_at: Date | null;
 };
 
 function toAccountView(row: AccountViewRow): CustomerAccountView {
@@ -89,7 +92,8 @@ function toAccountView(row: AccountViewRow): CustomerAccountView {
     phone: row.phone,
     level: row.level,
     createdAt: row.created_at.toISOString(),
-    historyFrom: row.history_from.toISOString()
+    historyFrom: row.history_from.toISOString(),
+    marketingConsent: row.marketing_consent_at !== null
   };
 }
 
@@ -101,7 +105,7 @@ export async function fetchCustomerAccountView(
 ): Promise<CustomerAccountView | null> {
   const rows = (await tx`
     SELECT a.id, c.name, c.phone, a.email_normalized, c.level,
-           a.created_at, a.history_from
+           a.created_at, a.history_from, a.marketing_consent_at
     FROM awcms_commerce_customer_accounts a
     JOIN awcms_commerce_customers c ON c.id = a.customer_id
     WHERE a.tenant_id = ${tenantId} AND a.id = ${accountId}
@@ -704,6 +708,55 @@ export async function updateCustomerName(
     SET name = ${name}, updated_at = now()
     WHERE tenant_id = ${tenantId} AND id = ${account.customerId}
   `;
+
+  return {
+    kind: "updated",
+    account: (await fetchCustomerAccountView(tx, tenantId, account.id))!
+  };
+}
+
+export type UpdateMarketingConsentOutcome = {
+  kind: "updated";
+  account: CustomerAccountView;
+};
+
+/**
+ * `PATCH /account/me {marketingConsent}` (Issue #114, contract #106
+ * ADR-0017 D9) — `true` sets `marketing_consent_at` to `now()`, `false`
+ * clears it to `NULL`. Toggled ONLY by the account itself (never by staff —
+ * this module ships no admin route that sets it for a customer). Audited on
+ * BOTH grant and revoke, per this issue's own instructions — a consent
+ * change is legally load-bearing (it is the ONLY thing a campaign's
+ * audience resolution reads to decide reachability, `application/
+ * campaign-directory.ts`), unlike a plain name edit above which records no
+ * audit event at all.
+ */
+export async function updateMarketingConsent(
+  tx: Bun.SQL,
+  tenantId: string,
+  account: CustomerAccountRecord,
+  consent: boolean,
+  correlationId?: string
+): Promise<UpdateMarketingConsentOutcome> {
+  await tx`
+    UPDATE awcms_commerce_customer_accounts
+    SET marketing_consent_at = CASE WHEN ${consent} THEN now() ELSE NULL END,
+        updated_at = now()
+    WHERE tenant_id = ${tenantId} AND id = ${account.id}
+  `;
+
+  await recordAuditEvent(tx, {
+    tenantId,
+    moduleKey: AUDIT_MODULE_KEY,
+    action: "update",
+    resourceType: "customer_marketing_consent",
+    resourceId: account.id,
+    message: consent
+      ? "Customer granted marketing consent."
+      : "Customer revoked marketing consent.",
+    attributes: { accountId: account.id, consent },
+    correlationId
+  });
 
   return {
     kind: "updated",

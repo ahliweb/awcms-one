@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](skema-basis-data.md)
 
-<!-- i18n-source-hash: sha256:f31c478fb4030f9d907d46709c0b591d4e942602fc08c05c95fe6bada3d8df27 -->
+<!-- i18n-source-hash: sha256:f26094b7260fb736eb4e37ef2f103f16cf839a67547618c09455dced758382b9 -->
 
 # Skema basis data
 
@@ -140,6 +140,29 @@ Issue #107, D4 kontrak #106 — cache kode-kecamatan→id-tujuan-provider dan ca
 Kedua tabel mengikuti konvensi `sql/901` (`ENABLE`/`FORCE ROW LEVEL SECURITY`, satu kebijakan isolasi tenant, indeks FK pada `tenant_id`) tapi tidak pernah ditulis langsung oleh transaksi tulis `application/order-directory.ts` untuk tarif BARU — `getCourierRates`/`resolveDestination` milik `application/shipping-rate-directory.ts` selalu membaca cache dalam satu transaksi pendek, memanggil `ShippingRateProvider` (API v2 RajaOngkir Komerce, atau adapter fixture `log`) tanpa transaksi terbuka sama sekali, lalu menulis-balik hasilnya dalam transaksi pendek kedua (aturan "jangan pernah memanggil provider di dalam transaksi database" ADR-0006/0010, diterapkan di sini sama seperti outbox `email` sudah menerapkannya). Pembuatan pesanan memvalidasi `{courier, service, cost}` yang dipilih HANYA terhadap `awcms_commerce_shipping_rates` — `SELECT ... WHERE expires_at > now()` biasa yang aman-transaksi, tidak pernah panggilan provider langsung kedua dari dalam transaksi tulis pesanan itu sendiri.
 
 Kedua tabel baru: RLS `ENABLE`+`FORCE`, kebijakan isolasi-tenant, indeks FK. Tak satu pun pernah di-soft-delete oleh kode modul ini sendiri dalam praktiknya — `deleted_at` ada murni sebagai kursor purge data-lifecycle yang seragam, bentuk "kursor selalu-`NULL`" yang sama dengan yang sudah dipakai `awcms_commerce_orders` dan `awcms_commerce_customer_accounts`.
+
+## Kotak masuk komersial: dua tabel (`sql/927`)
+
+Issue #111, D8 kontrak #106 — thread milik akun pelanggan sendiri dengan toko.
+
+| Tabel | Kolom kunci | Catatan |
+| --- | --- | --- |
+| `awcms_commerce_conversations` | `account_id NOT NULL` (FK ke `awcms_commerce_customer_accounts` — thread kotak masuk mensyaratkan akun terverifikasi, tidak seperti checkout tamu), `subject NOT NULL` (`CHECK char_length BETWEEN 1 AND 150`), `status` (`CHECK IN ('open','closed')`, default `open`), `last_message_at timestamptz NOT NULL DEFAULT now()`, `unread_for_store boolean NOT NULL DEFAULT true`, `unread_for_customer boolean NOT NULL DEFAULT false` | `last_message_at`/kedua flag `unread_for_*` DIDENORMALISASI dan dijaga selaras dengan `awcms_commerce_messages` di dalam transaksi yang SAMA dengan setiap insert pesan — tidak pernah nilai turunan join saat baca. `deleted_at` ada murni sebagai kursor purge data-lifecycle yang seragam (kode modul ini sendiri tidak pernah men-set-nya), bentuk "kursor selalu-`NULL`" yang sama dengan `awcms_commerce_orders`/`awcms_commerce_customer_accounts` |
+| `awcms_commerce_messages` | `conversation_id NOT NULL` (FK), `sender NOT NULL` (`CHECK IN ('customer','store')`), `sender_tenant_user_id` (nullable; sebuah `CHECK` mewajibkannya terisi untuk `sender='store'` dan NULL untuk `sender='customer'`), `body NOT NULL` (`CHECK char_length BETWEEN 1 AND 4000`) | Append-only, seperti `awcms_commerce_order_events` — tanpa `deleted_at`, tanpa `updated_at`; pesan yang terkirim tidak pernah diedit atau ditarik |
+
+Kedua tabel baru: RLS `ENABLE`+`FORCE`, kebijakan isolasi-tenant, indeks FK. Deskriptor `dataLifecycle` milik `commerce.conversations` memakai kursor `deleted_at` biasa; `commerce.messages`, karena append-only, memakai `created_at` — satu pengecualian yang sudah ditetapkan `commerce.order_events` untuk bentuk persis ini.
+
+## Kampanye pelanggan: dua tabel + satu kolom (`sql/929`)
+
+Issue #114, D9 kontrak #106 — pengiriman massal e-mail/WhatsApp bergerbang consent.
+
+| Tabel | Kolom kunci | Catatan |
+| --- | --- | --- |
+| `awcms_commerce_customer_accounts.marketing_consent_at` (kolom baru, bukan tabel baru) | `timestamptz`, nullable | Non-null berarti akun setuju menerima komunikasi pemasaran pada saat itu; `NULL` berarti tidak pernah setuju (atau sudah dicabut). Hanya diubah oleh akun itu sendiri lewat `PATCH .../account/me {marketingConsent}` — tidak pernah oleh staf |
+| `awcms_commerce_campaigns` | `channel NOT NULL` (`CHECK IN ('email','whatsapp')`), `subject` (nullable — wajib untuk `email`, diabaikan untuk `whatsapp` di batas aplikasi), `body NOT NULL` (`CHECK char_length BETWEEN 1 AND 4000`), `audience jsonb NOT NULL DEFAULT '{}'` (divalidasi di batas aplikasi, bukan oleh CHECK database — bentuk filter kecil yang terus berevolusi), `status NOT NULL` (`CHECK IN ('draft','scheduled','sending','sent','cancelled')`, default `draft`), `scheduled_at`/`sent_at timestamptz`, `recipient_count integer` | `recipient_count`/`sent_at` dimulai `NULL` pada `draft` baru, terisi hanya setelah kampanye benar-benar dikirim (fase FINALIZE milik `commerce:campaigns:dispatch`) |
+| `awcms_commerce_campaign_recipients` | `campaign_id NOT NULL` (FK), `customer_id NOT NULL` (FK), `address_masked NOT NULL` (alamat e-mail/telepon tersamar SAJA, tidak pernah alamat mentah), `status NOT NULL` (`CHECK IN ('queued','enqueued','skipped')`, default `queued`), `outbox_ref` (nullable), `UNIQUE (campaign_id, customer_id)` | Satu baris per penerima yang terselesaikan — buku besar keteresumeannya/audit yang diandalkan pengiriman parsial. Constraint `UNIQUE` plus `ON CONFLICT DO NOTHING` saat penyisipan inilah yang membuat pemulihan-dari-crash dispatcher aman diulang; `NOT EXISTS` milik `resolveCampaignAudiencePage` sendiri terhadap tabel ini yang membuat cursor lanjutannya benar tanpa kolom cursor terpisah pada baris kampanye |
+
+Kedua tabel baru: RLS `ENABLE`+`FORCE`, kebijakan isolasi-tenant, indeks FK. Deskriptor `dataLifecycle` milik `commerce.campaigns` memakai kursor `deleted_at` yang biasa; `commerce.campaign_recipients`, karena append-only per kampanye, memakai `created_at` — bentuk yang sama dengan `commerce.messages` di atas. Seed katalog permission: `sql/930` (`commerce.campaigns.{read,update,send}`).
 
 ## Payment gateway: sesi, buku besar event, token webhook-endpoint (`sql/926`)
 

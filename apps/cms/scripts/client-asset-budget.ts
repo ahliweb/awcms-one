@@ -507,25 +507,50 @@ export const READER_BUDGET_BYTES = 24_000;
  * not one per screen" lesson, applied to a genuinely new control this repo
  * had none of yet, not per-screen duplication of one that already existed.
  *
- * **Raised to 232,000 B after Issue #110** (awcms-one epic #33, C3) — the
- * payment-gateway section added to the same `commerce-settings.astro`
- * screen: a `payment.gateway.enabled` toggle (reusing the exact courier
- * toggle's re-attach shape above) plus a webhook-endpoint create/revoke
- * panel built entirely from the shared `onSubmit`/`onAction`/
- * `mutateAndReload`/`sendJson`/`sendJsonForData`/`field`/`messageBox`
- * helpers `machine-credentials.astro` already established — no new
- * lifecycle code, no hand-rolled DOM row construction. The measured
- * overage was ~440 B for this genuinely new control (list/create/revoke
- * for a resource this screen had none of), not per-screen duplication.
+ * 231,405 B measured after Issue #111 (contract #106 D8) — one more admin
+ * screen, `commerce-inbox.astro` (conversation list with status/unread
+ * filters, a thread view, a reply form, close/reopen). Its own client
+ * script is 624 B, built on `onSubmit`/`onAction`/`mutateAndReload` (the
+ * exact consolidation Issue #552 introduced) rather than a hand-rolled
+ * lock/send/reload lifecycle — no per-screen duplication to fix here, only
+ * the unavoidable cost of a genuinely new screen plus its own i18n
+ * catalogue entries. Measured on its own branch point at 231,405 B; measured
+ * again after merging #107's courier-settings section above, the combined
+ * total is 231,919 B — the two additions are independent (a new screen and a
+ * new control on an existing screen), so their costs simply add. 232,000
+ * keeps the same small margin above the measured total this constant's own
+ * history already establishes.
+ *
+ * **Raised to 234,200 B after Issue #114** (contract #106 ADR-0017 D9) —
+ * one more admin screen, `commerce-campaigns.astro` (a campaign list, a
+ * create-draft form with channel/subject/message fields and customer-level
+ * checkboxes, and a detail/editor panel with an audience-preview button and
+ * send/cancel actions). Measured at 233,778 B total (up from 231,919 B —
+ * this screen's own cost, no other surface changed), so this constant keeps
+ * the same small margin above the measured total this constant's own
+ * history already establishes.
+ *
+ * **Raised to 234,800 B after merging Issue #110 on top of #111 and #114** (awcms-one
+ * epic #33, C3) — the payment-gateway section added to the same
+ * `commerce-settings.astro` screen: a `payment.gateway.enabled` toggle
+ * (reusing the exact courier toggle's re-attach shape above) plus a
+ * webhook-endpoint create/revoke panel built entirely from the shared
+ * `onSubmit`/`onAction`/`mutateAndReload`/`sendJson`/`sendJsonForData`/
+ * `field`/`messageBox` helpers `machine-credentials.astro` already
+ * established — no new lifecycle code, no hand-rolled DOM row
+ * construction. Measured at 231,939 B on its own branch point (231,500 +
+ * ~440 B for this genuinely new control); measured again after merging
+ * #111's inbox screen the total was 232,662 B; measured once more after
+ * merging #114's campaigns screen above, the combined total is 234,521 B —
+ * independent additions whose costs add, plus each screen's own i18n
+ * catalogue entries sharing one compiled catalogue. 234,800 keeps the
+ * same small margin above the measured total this constant's history uses.
  */
-// Issue #113 raised this from 232,000 to the measured value after adding the
-// order detail admin screen's gateway-session/payment-events panel and "Cek
-// status" action to `/admin/commerce-orders.astro` (CSS/markup growth, no new
-// script asset). Measured on this branch: 234,035 B. NOTE: `main` was at
-// 234,200 at the time this branch was cut from an older base — reconcile the
-// two numbers (take the larger, re-measure) at merge time rather than
-// assuming this branch's own number is current.
-export const APP_BUDGET_BYTES = 234_300;
+// Issue #113 (merged with #111 inbox + #114 campaigns on main): the order
+// list screen's gateway-session/payment-events panel and "Cek status" action
+// (`/admin/commerce-orders.astro`, CSS/markup growth, no new script asset)
+// on top of main's 234,800. Measured on the merged branch: 236,617 B.
+export const APP_BUDGET_BYTES = 236_800;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.

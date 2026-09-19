@@ -5419,4 +5419,102 @@ msgid "No payment events recorded yet."
 msgstr ""
 
 msgid "Payment gateway"
+msgid "Inbox"
+msgstr ""
+
+msgid "Customer conversations with the store — reply, close, and reopen threads."
+msgstr ""
+
+msgid "You do not have permission to view the inbox."
+msgstr ""
+
+msgid "The inbox could not be loaded right now. Please try again later."
+msgstr ""
+
+msgid "Filter conversations"
+msgstr ""
+
+msgid "Open"
+msgstr ""
+
+msgid "Closed"
+msgstr ""
+
+msgid "Unread"
+msgstr ""
+
+msgid "{count} conversation"
+msgid_plural "{count} conversations"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Last message"
+msgstr ""
+
+msgid "No conversations yet"
+msgstr ""
+
+msgid "Conversations customers start from the storefront will appear here."
+msgstr ""
+
+msgid "Store"
+msgstr ""
+
+msgid "Send reply"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
+
+msgid "Campaigns"
+msgstr ""
+
+msgid "Consent-gated mass e-mail/WhatsApp campaigns to your customers."
+msgstr ""
+
+msgid "You do not have permission to view campaigns."
+msgstr ""
+
+msgid "Campaigns could not be loaded right now. Please try again later."
+msgstr ""
+
+msgid "New campaign"
+msgstr ""
+
+msgid "Channel"
+msgstr ""
+
+msgid "Subject (e-mail only)"
+msgstr ""
+
+msgid "Use {{name}} and {{storeName}} — the only variables the message may interpolate."
+msgstr ""
+
+msgid "Audience: customer levels (all if none checked)"
+msgstr ""
+
+msgid "Recipients"
+msgstr ""
+
+msgid "Sent"
+msgstr ""
+
+msgid "{count} campaign"
+msgid_plural "{count} campaigns"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "No campaigns yet"
+msgstr ""
+
+msgid "Create a draft above to get started."
+msgstr ""
+
+msgid "(none)"
+msgstr ""
+
+msgid "Preview audience"
+msgstr ""
+
+msgid "Send now"
 msgstr ""
