@@ -40,7 +40,7 @@
  * Issue #28 adds a third: a legacy-URL redirect MAP this time (unlike
  * `isProductsRedirect`'s one hardcoded rule) — `readLegacyRedirectMap`/
  * `legacyRedirectLocation` below, read once at startup from a build-time
- * artifact (`src/pages/index/pengalihan-legacy.json.ts`), never per
+ * artifact (`src/profil/berita/pages/index/pengalihan-legacy.json.ts`), never per
  * request, so the same "no live awcms credential at runtime" invariant
  * holds for it too.
  *
@@ -63,7 +63,7 @@
  */
 import http from "node:http";
 import { posix } from "node:path";
-import { readFileSync, readdirSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { ruleBasedRedirectLocation } from "./pengalihan-aturan.mjs";
 
 /** Prefix Astro gives its content-hashed build assets (`build.assets`, default `_astro`). */
@@ -108,7 +108,7 @@ export const CACHE_PAGE = "public, max-age=0, must-revalidate";
  * The one thing that would normally tempt an inline `style=""` or a
  * hand-written `<style>` block — coloring a product's label badge from its
  * CMS-supplied `labelColor` — is instead a build-time-generated EXTERNAL
- * stylesheet (`src/pages/product-labels.css.ts`), specifically so
+ * stylesheet (`src/profil/toko/pages/product-labels.css.ts`), specifically so
  * `style-src 'self'` never needs `'unsafe-inline'`.
  */
 
@@ -394,7 +394,7 @@ export function isHealthzRequest(url) {
 
 // --- issue #28: legacy URL compatibility (seputarborneo/beritasampit) ------
 //
-// `src/pages/index/pengalihan-legacy.json.ts` bakes the CMS's own
+// `src/profil/berita/pages/index/pengalihan-legacy.json.ts` bakes the CMS's own
 // `awcms_seo_redirects` rows (`origin: "legacy_blog"`) into a static
 // `sourcePath -> targetPath` map at build time
 // (`src/lib/pengalihan-legacy.ts`'s `buildLegacyRedirectMap`). This block
@@ -454,18 +454,55 @@ export function readLegacyRedirectMap(clientDir) {
  * redirect) returns `{ location, status }` instead, handled by
  * `createServer` below.
  *
+ * Issue #137 (build profiles): `rulesEnabled` gates the RULE-based half.
+ * Every rule in `pengalihan-aturan.mjs` sends a reader to a news route
+ * (`/berita`, `/berita/{slug}`, `/rubrik/...`, `/video`, `/cari-berita`) —
+ * routes a `landing` build does not have, so a rule firing there would
+ * 301 a reader into a 404. `run()` passes `hasNewsSurface(clientDir)`,
+ * which is derived from the build itself (does `berita.html` exist?), the
+ * same "read what was actually built, once, at startup" posture
+ * `readLegacyRedirectMap`/`readCspOrigins` already take — never from a
+ * runtime environment variable the build did not set. The row-based map is
+ * never gated: on a build without the `berita` group the artifact does not
+ * exist and `readLegacyRedirectMap` already yields `{}`. Defaults to `true`
+ * so every caller written before this issue (the tests included) sees
+ * exactly the behaviour it always did.
+ *
  * @param {string} url
  * @param {Record<string, string>} map
+ * @param {boolean} [rulesEnabled]
  * @returns {string | { location: string, status: number } | null}
  */
-export function legacyRedirectLocation(url, map) {
+export function legacyRedirectLocation(url, map, rulesEnabled = true) {
   const path = normalizedPath(url);
   const key = path.length > 1 && path.endsWith("/") ? path.slice(0, -1) : path;
   if (Object.prototype.hasOwnProperty.call(map, key)) {
     return map[key];
   }
 
-  return ruleBasedRedirectLocation(url, map);
+  return rulesEnabled ? ruleBasedRedirectLocation(url, map) : null;
+}
+
+/** Where `astro build` writes the news front page (`/berita`) under `build.format: "file"`, relative to `dist/client/`. */
+const NEWS_FRONT_PAGE_FILE = "berita.html";
+
+/**
+ * Whether this build has a news surface at all — i.e. whether the `berita`
+ * page group was part of its `SITE_PROFILE` (issue #137). Decided from the
+ * one file that group always emits, read once at startup like every other
+ * build artifact here. A missing `dist/` (a test with no build) reads as
+ * "no news surface", which only ever DISABLES redirects — the fail-closed
+ * direction.
+ *
+ * @param {URL} clientDir
+ * @returns {boolean}
+ */
+export function hasNewsSurface(clientDir) {
+  try {
+    return existsSync(new URL(NEWS_FRONT_PAGE_FILE, clientDir));
+  } catch {
+    return false;
+  }
 }
 
 /**
@@ -728,7 +765,7 @@ export function applyHeaders(req, res, context = {}) {
  * request that is about to reach the adapter.
  *
  * @param {(req: import("node:http").IncomingMessage, res: import("node:http").ServerResponse) => unknown} appHandler
- * @param {{ buildId?: string, cssPreloadLinks?: string[], legacyRedirects?: Record<string, string>, csp?: string, shadowedHtmlPaths?: ReadonlySet<string> }} [context]
+ * @param {{ buildId?: string, cssPreloadLinks?: string[], legacyRedirects?: Record<string, string>, legacyRulesEnabled?: boolean, csp?: string, shadowedHtmlPaths?: ReadonlySet<string> }} [context]
  */
 export function createServer(appHandler, context = {}) {
   return http.createServer((req, res) => {
@@ -746,7 +783,11 @@ export function createServer(appHandler, context = {}) {
       return;
     }
 
-    const legacyTarget = legacyRedirectLocation(req.url ?? "/", context.legacyRedirects ?? {});
+    const legacyTarget = legacyRedirectLocation(
+      req.url ?? "/",
+      context.legacyRedirects ?? {},
+      context.legacyRulesEnabled ?? true
+    );
     if (legacyTarget) {
       // A plain string (the row-based map, and almost every rule-based one)
       // is always a 301; only `pengalihan-aturan.mjs`'s search rule returns
@@ -807,6 +848,9 @@ export async function run() {
   const buildId = readBuildId(clientDir);
   const cssPreloadLinks = discoverCssPreloadPaths(clientDir);
   const legacyRedirects = readLegacyRedirectMap(clientDir);
+  // Issue #137: the rule-based legacy redirects target news routes, so they
+  // run only on a build that has them — see `hasNewsSurface`.
+  const legacyRulesEnabled = hasNewsSurface(clientDir);
   // Read once, at startup, not per request: the artifact cannot change
   // while this process runs (a new build means a new container), and a
   // per-request file read would put a disk hit in front of every response
@@ -822,6 +866,7 @@ export async function run() {
     buildId,
     cssPreloadLinks,
     legacyRedirects,
+    legacyRulesEnabled,
     csp,
     shadowedHtmlPaths
   });

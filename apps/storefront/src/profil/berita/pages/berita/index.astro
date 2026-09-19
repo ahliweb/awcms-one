@@ -1,0 +1,17 @@
+---
+/**
+ * `/berita` — the news front page (issue #28). Issue #137 moved its body
+ * into `src/components/berita/HalamanDepanBerita.astro` so the `berita`
+ * profile's home page (`src/profil/berita/Beranda.astro`) can render the
+ * same front page at `/`; this file keeps the route, the layout and the
+ * `<h1>` exactly as they were. That component's own docblock carries the
+ * original design notes (headline block, rubrik sections, ad-slot order).
+ */
+import BeritaLayout from "../../../../layouts/BeritaLayout.astro";
+import HalamanDepanBerita from "../../../../components/berita/HalamanDepanBerita.astro";
+import { ROUTES } from "../../../../config/routes";
+---
+
+<BeritaLayout title="Berita" description="Berita terbaru." canonicalPath={ROUTES.news}>
+  <HalamanDepanBerita heading="Berita" />
+</BeritaLayout>

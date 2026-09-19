@@ -134,7 +134,7 @@ function twitterCardMeta(input: {
   return tags;
 }
 
-/** The SEO title/description a post page passes to `BaseLayout` — the same precedence `src/pages/berita/[slug].astro` has used since issue #28, kept in one place so `twitter:title`/`twitter:description` can never drift from `<title>`/`og:description`. */
+/** The SEO title/description a post page passes to `BaseLayout` — the same precedence `src/profil/berita/pages/berita/[slug].astro` has used since issue #28, kept in one place so `twitter:title`/`twitter:description` can never drift from `<title>`/`og:description`. */
 export function postSeoText(post: PostDetail): { title: string; description: string | null } {
   return {
     title: post.seoTitle ?? post.title,
@@ -222,7 +222,7 @@ export function listingSocialMeta(logo: ResolvedMedia | null): MetaTag[] {
 /**
  * `rel="prev"`/`rel="next"` for a paginated rubrik archive — page 1 lives
  * ONLY at `/rubrik/{slug}` (never `/halaman/1`, see
- * `src/pages/rubrik/[slug]/halaman/[n].astro`), so the link back from page
+ * `src/profil/berita/pages/rubrik/[slug]/halaman/[n].astro`), so the link back from page
  * 2 points at the bare rubrik URL, matching `RubrikBody.astro`'s own
  * `hrefFor`. Absolute URLs, like the canonical, because a crawler treats
  * these as the same class of hint. Empty for a single-page archive, and

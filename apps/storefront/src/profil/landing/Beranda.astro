@@ -1,0 +1,101 @@
+---
+/**
+ * The `landing` profile's home page (issue #137) — a company-profile /
+ * landing site's `/`: a hero (the site's name, tagline and description,
+ * with the contact page as the primary call to action), the published
+ * static pages (`listStaticPages()` — the same list the footer and the
+ * header nav render, so every page the CMS publishes is reachable from
+ * here), and a contact section (address, phone, e-mail, WhatsApp — the
+ * identity fields `/kontak` renders in full). `identity.description` is
+ * the CMS's tagline (`src/lib/awcms/profil.ts`), so the hero's one line of
+ * copy under the name is the operator's own.
+ *
+ * No commerce, no news: nothing here imports from `src/lib/catalog.ts` or
+ * `src/lib/berita.ts`, so a `landing` build fetches neither products nor
+ * posts. Everything it reads (`getSiteIdentity()`, `listStaticPages()`)
+ * `BaseLayout.astro` already reads for every page, memoized per build.
+ *
+ * Renders through `BaseLayout` (skip link, `<header>`/`<main id="konten">`/
+ * `<footer>` landmarks) and owns the page's single `<h1>`. Every string is
+ * Indonesian, matching the rest of this app. Selected by
+ * `integrations/profil.mjs`'s `@profil/beranda` alias when
+ * `SITE_PROFILE=landing`.
+ */
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getSiteIdentity } from "../../lib/awcms/profil";
+import { listStaticPages } from "../../lib/awcms/pages";
+import { ROUTES } from "../../config/routes";
+import "../../styles/katalog.css";
+
+const identity = await getSiteIdentity();
+const pages = await listStaticPages();
+
+const whatsappHref = identity.whatsappNumber
+  ? `https://wa.me/${identity.whatsappNumber.replace(/[^\d]/g, "")}`
+  : null;
+---
+
+<BaseLayout title={identity.name} description={identity.description} canonicalPath="/">
+  <div class="container">
+    <section class="home-section landing-hero" aria-labelledby="landing-heading">
+      <div class="page-heading">
+        <h1 id="landing-heading">{identity.name}</h1>
+        <p>{identity.description}</p>
+      </div>
+      <div class="contact-actions">
+        <a class="button-primary" href={ROUTES.contact}>Hubungi Kami</a>
+        {pages.length > 0 && <a class="button-primary" href="#halaman">Lihat Halaman</a>}
+      </div>
+    </section>
+
+    {pages.length > 0 && (
+      <section class="home-section" id="halaman" aria-labelledby="halaman-heading">
+        <div class="home-section-heading">
+          <h2 id="halaman-heading">Halaman</h2>
+        </div>
+        <ul class="grid-cards">
+          {pages.map((page) => (
+            <li>
+              <a href={ROUTES.page(page.slug)} class="card">
+                <h3 class="card-title">{page.title}</h3>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+
+    <section class="home-section" aria-labelledby="kontak-heading">
+      <div class="home-section-heading">
+        <h2 id="kontak-heading">Kontak</h2>
+        <a href={ROUTES.contact}>Halaman kontak &rarr;</a>
+      </div>
+      <div class="contact-grid">
+        {identity.address && (
+          <div class="contact-card">
+            <h3>Alamat</h3>
+            <p>{identity.address}</p>
+          </div>
+        )}
+        {identity.contactPhone && (
+          <div class="contact-card">
+            <h3>Telepon</h3>
+            <p><a href={`tel:${identity.contactPhone.replace(/[^+\d]/g, "")}`}>{identity.contactPhone}</a></p>
+          </div>
+        )}
+        {identity.contactEmail && (
+          <div class="contact-card">
+            <h3>E-mail</h3>
+            <p><a href={`mailto:${identity.contactEmail}`}>{identity.contactEmail}</a></p>
+          </div>
+        )}
+        {whatsappHref && (
+          <div class="contact-card">
+            <h3>WhatsApp</h3>
+            <p><a href={whatsappHref} rel="noopener noreferrer" target="_blank">Chat WhatsApp</a></p>
+          </div>
+        )}
+      </div>
+    </section>
+  </div>
+</BaseLayout>

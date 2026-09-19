@@ -1,0 +1,114 @@
+---
+/**
+ * `/berita/[slug]` — article detail (issue #28). Kicker, title, byline,
+ * body, tags, share, related posts, region cross-link, `NewsArticle` +
+ * `BreadcrumbList` JSON-LD, canonical — the actual markup is shared with
+ * `/video/[slug]` via `src/components/berita/ArtikelView.astro` (a video
+ * post is rendered through the exact same Portable Text renderer; only the
+ * URL and the breadcrumb hub differ).
+ *
+ * ## Two gaps issue #28 recorded here, both since closed
+ *
+ * - **Hero `<img>` — closed by issue #47.** `PostDetail.image` is the
+ *   post's `featuredMediaId` resolved through `src/lib/awcms/media.ts`;
+ *   `ArtikelView.astro` renders it as a sized `<figure>` with the media's
+ *   verified credit. An unresolved id renders no image, never a broken one.
+ * - **Open Graph `article:*` / `og:image` / Twitter card — closed by issue
+ *   #54 (A8).** `BaseLayout.astro` now takes `ogType` + `meta` props, and
+ *   this page passes `src/lib/meta-sosial.ts`'s `articleSocialMeta(post)`:
+ *   `og:type=article`, `og:image` (+ `og:image:width/height/alt`) when the
+ *   featured image resolved, `article:published_time`/`article:modified_time`
+ *   (the same raw ISO timestamps the `NewsArticle` JSON-LD below carries as
+ *   `datePublished`/`dateModified`), `article:section` (the rubrik),
+ *   one `article:tag` per tag, and `twitter:card` (`summary_large_image`
+ *   with an image, `summary` without) + `twitter:title/description/image`.
+ *   The head-slot alternative was rejected for these: a per-page `<meta>`
+ *   list built in markup would have re-implemented the escaping and the
+ *   type/namespace pairing in every page; a typed prop and one builder
+ *   keep both in one place. What the previous docblock said about JSON-LD
+ *   still holds — it remains the primary machine-readable source; the OG
+ *   tags are for the link-preview crawlers that read only those.
+ */
+import BeritaLayout from "../../../../layouts/BeritaLayout.astro";
+import ArtikelView from "../../../../components/berita/ArtikelView.astro";
+import { ROUTES } from "../../../../config/routes";
+import { getPosts, getPost, getRelatedPosts, getDaerah } from "../../../../lib/berita";
+import { newsArticleSchema, breadcrumbListSchema, combineSchemas } from "../../../../lib/jsonld-berita";
+import { articleSocialMeta, postSeoText } from "../../../../lib/meta-sosial";
+import { getSiteIdentity } from "../../../../lib/awcms/profil";
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  return posts.map((post) => ({ params: { slug: post.slug } }));
+}
+
+const { slug } = Astro.params as { slug: string };
+const post = await getPost(slug);
+
+if (!post || post.isVideo) {
+  // Prerendered (`output: "static"`) — no request to redirect at build
+  // time. getStaticPaths() only ever requests a non-video slug getPosts()
+  // just returned, so reaching here is a routing bug, not a content gap —
+  // the same posture src/pages/halaman/[slug].astro already takes.
+  throw new Error(
+    `No non-video published post with slug "${slug}" in the cached index. ` +
+      `getStaticPaths() only ever requests a slug getPosts() just returned, ` +
+      `so this can only happen if this route is reached with a slug from ` +
+      `somewhere else.`
+  );
+}
+
+const identity = await getSiteIdentity();
+const related = await getRelatedPosts(post, 3);
+const canonicalPath = ROUTES.article(post.slug);
+
+const daerahLainnya = post.region ? await getDaerah(post.region.slug) : null;
+const daerahLainnyaPosts = daerahLainnya
+  ? daerahLainnya.posts.filter((p) => p.id !== post.id).slice(0, 3)
+  : [];
+
+const breadcrumbItems = [
+  { name: "Beranda", path: ROUTES.home },
+  { name: "Berita", path: ROUTES.news },
+  ...(post.rubric ? [{ name: post.rubric.name, path: ROUTES.rubric(post.rubric.slug) }] : []),
+  { name: post.title, path: canonicalPath }
+];
+
+const schema = combineSchemas(
+  newsArticleSchema({
+    headline: post.title,
+    description: post.excerpt ?? post.metaDescription,
+    canonicalPath,
+    publishedAt: post.publishedAt,
+    updatedAt: post.updatedAt,
+    authorByline: post.authorByline,
+    publisherName: identity.name,
+    rubricName: post.rubric?.name ?? null
+  }),
+  breadcrumbListSchema(breadcrumbItems)
+);
+
+// Issue #54 (A8): the SEO title/description come from the same helper the
+// social meta is built from, so `<title>`/`og:*` and `twitter:*` can never
+// name different text for the same post.
+const seo = postSeoText(post);
+const social = articleSocialMeta(post);
+---
+
+<BeritaLayout
+  title={seo.title}
+  description={seo.description ?? undefined}
+  canonicalPath={canonicalPath}
+  schema={schema}
+  ogType={social.ogType}
+  meta={social.meta}
+>
+  <ArtikelView
+    post={post}
+    related={related}
+    daerahLainnyaPosts={daerahLainnyaPosts}
+    canonicalPath={canonicalPath}
+    parentLabel="Berita"
+    parentPath={ROUTES.news}
+  />
+</BeritaLayout>

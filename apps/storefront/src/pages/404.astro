@@ -6,7 +6,13 @@
  */
 import BaseLayout from "../layouts/BaseLayout.astro";
 import SearchForm from "../components/SearchForm.astro";
-import { PRIMARY_NAV } from "../config/routes";
+import { getPrimaryNav } from "../lib/navigasi-profil";
+
+// Issue #137: the "popular links" list is the active profile's own nav
+// (`src/config/profil.ts`), so a `berita`/`landing` 404 never offers a
+// route that build does not serve. `SearchForm` renders itself only when
+// the profile has a search surface.
+const primaryNav = await getPrimaryNav();
 ---
 
 <BaseLayout
@@ -24,7 +30,7 @@ import { PRIMARY_NAV } from "../config/routes";
 
     <nav aria-label="Tautan populer" class="page-heading">
       <ul class="footer-page-links">
-        {PRIMARY_NAV.map((item) => (
+        {primaryNav.map((item) => (
           <li><a href={item.href}>{item.label}</a></li>
         ))}
       </ul>

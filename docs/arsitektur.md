@@ -73,6 +73,31 @@ sequenceDiagram
 
 A guest never loses anything by not registering: every anonymous path ADR-0007/ADR-0009 shipped is unchanged, `POST orders`/`POST reviews` still work with no `Authorization` header at all, and the two OTP endpoints are themselves anonymous (no session exists yet to check). See [`docs/api.md`](api.md) for the full endpoint table and [`docs/routing.md`](routing.md) for the `/masuk`/`/daftar`/`/akun*` pages this tier's UI lives behind.
 
+## One storefront, three build profiles (issue #137, [ADR-0018](adr/0018-awcms-one-is-a-template-with-build-profiles-and-an-idempotent-init.md) D2/D3)
+
+The same `apps/storefront` tree builds three different sites, decided once, at build time, by `SITE_PROFILE`: `toko` (the default — commerce + news, BjekMart's own shape, byte-for-byte what the app built before #137), `berita` (news only) and `landing` (company profile: home, static pages, contact). This is what lets this repository be a template ([ADR-0018 D1](adr/0018-awcms-one-is-a-template-with-build-profiles-and-an-idempotent-init.md), [`docs/template.md`](template.md)) without a second codebase: a derived deployment ships only the pages it needs, and an unused profile's pages are never built — not built-and-hidden.
+
+```mermaid
+flowchart LR
+  ENV["SITE_PROFILE (env, build time)"] --> P["src/config/profil.ts<br/>profile → groups → nav · sitemap · feeds · robots · CSP needs"]
+  P --> I["integrations/profil.mjs<br/>astro:config:setup"]
+  I -->|"injectRoute × active groups"| R["src/profil/toko/pages/** · src/profil/berita/pages/**"]
+  I -->|"alias @profil/beranda"| H["src/profil/&lt;profile&gt;/Beranda.astro"]
+  S["src/pages/** (shared group, file-based)"] --> B["astro build → dist/"]
+  R --> B
+  H --> B
+  P --> C["Header · Footer · BaseLayout · robots.txt · sitemap-sources · csp.json"]
+  C --> B
+```
+
+The mechanism has three parts and one rule:
+
+1. **[`apps/storefront/src/config/profil.ts`](../apps/storefront/src/config/profil.ts)** is the single source. It reads `SITE_PROFILE` through the same `readEnv` chain as `SITE_URL` (unknown value → the build fails naming the variable; unset → `toko`), maps a profile to its page groups (`toko` = `shared`+`toko`+`berita`, `berita` = `shared`+`berita`, `landing` = `shared`), and derives from `apps/storefront/src/config/routes.ts`'s `ROUTE_GROUPS` annotation everything a consumer needs: the nav set, the search surface, footer links, sitemap sources, feeds, `robots.txt` rules, and what the CSP artifact has to read. It fetches nothing and touches no file system, so its unit test covers all three profiles in one process.
+2. **[`apps/storefront/integrations/profil.mjs`](../apps/storefront/integrations/profil.mjs)** — the app's only Astro integration — turns groups into routes in `astro:config:setup`, before Astro scans `apps/storefront/src/pages/`: for every file under an active group's `src/profil/<group>/pages/**` it calls `injectRoute` with the pattern file-based routing would have derived and a project-root-relative entrypoint. An inactive group's directory is never walked, so its `getStaticPaths()` never runs and its data is never fetched — the excluded pages are absent from `dist/` by construction, which is exactly what ADR-0018 D3 rejected runtime 404 guards in favour of. It also points the `@profil/beranda` alias at the profile's home variant, so `apps/storefront/src/pages/index.astro` (shared) renders per-profile content with only one variant in the module graph.
+3. **The consumers** — `Header`/`Footer`/`BaseLayout`, `robots.txt.ts`, `sitemap-sources.ts`/`sitemap-katalog.ts`, `csp.json.ts`, the server's legacy-redirect gate — read `profil.ts` and nothing else. The rule: **no file decides a group twice.** A route's group is stated once, in `ROUTE_GROUPS`; a page file's group is stated once, by the directory it lives in; `docs/template.md`'s profile matrix is the human-readable copy, and [`apps/storefront/tests/profil-integrasi.test.ts`](../apps/storefront/tests/profil-integrasi.test.ts) parses that table and fails when the tree disagrees with it.
+
+Nothing about the static/runtime rule above changes per profile: every profile is still `output: "static"` with build-time fetch, still calls `apps/cms` anonymously from the browser where it must (the newsletter form on `berita`, the visitor beacon everywhere), and still serves through the same `penyaji.mjs`, which needs no profile flag — it derives what the build contains from `dist/` at startup, as it already did for the CSP artifact and the legacy-redirect map. The CSP derivation below reads only the content groups the profile has (product/marketing images with `toko`, article media and the YouTube facade with `berita`), while `connect-src` carries `PUBLIC_AWCMS_ORIGIN` on every profile because the beacon runs on every profile — a correction to ADR-0018's own matrix, made from the code. CI builds and smoke-tests every profile on every push ([`docs/pengujian.md`](pengujian.md), "The build-profile tier").
+
 ## The CSP is derived from content, not configured
 
 Product photos, slider/testimonial images, and — since increment 2 — the CMS origin itself are all things a build only learns about by fetching content; a hand-maintained CSP would drift from the moment a merchandiser uploads a new image. Instead:

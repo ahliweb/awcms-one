@@ -40,42 +40,105 @@ Two files exist specifically to prove this rule holds without a live CMS:
   in `dist/client/` with no inline `<script>`/`<style>` anywhere (the CSP
   invariant below).
 
+## Build profiles — `SITE_PROFILE` (issue #137)
+
+This one tree builds three sites. `SITE_PROFILE`, read at build time by
+[`apps/storefront/src/config/profil.ts`](src/config/profil.ts) through the same `readEnv`
+chain as `SITE_URL`, picks which **page groups** the build includes
+([ADR-0018](../../docs/adr/0018-awcms-one-is-a-template-with-build-profiles-and-an-idempotent-init.md) D2/D3,
+the full matrix in [`docs/template.md`](../../docs/template.md)):
+
+| `SITE_PROFILE` | Groups | Site |
+| --- | --- | --- |
+| `toko` (default, unset) | `shared` + `toko` + `berita` | Commerce + news — BjekMart's own shape, byte-for-byte what this app built before #137 |
+| `berita` | `shared` + `berita` | News portal only |
+| `landing` | `shared` | Company profile / landing: home, static pages, contact |
+
+An unknown value fails the build naming the variable — never a silent
+fallback to `toko`.
+
+**Layout.** `src/pages/**` holds only the `shared` group (ten files: `/`,
+`/404`, `/kontak`, `/halaman/[slug]`, `robots.txt`, the two sitemaps,
+`csp.json`, the manifest, `theme-tokens.css`). Every other page file lives
+under `src/profil/<group>/pages/**` with the same relative path it had under
+`apps/storefront/src/pages/` — 23 files in `apps/storefront/src/profil/toko/pages/`, 19 in
+`apps/storefront/src/profil/berita/pages/`. [`apps/storefront/integrations/profil.mjs`](integrations/profil.mjs),
+this app's only Astro integration (registered in `astro.config.mjs`), calls
+`injectRoute` for every file of every ACTIVE group in `astro:config:setup`,
+with the route pattern file-based routing would have derived and a
+project-root-relative entrypoint (`./src/profil/toko/pages/produk.astro`).
+An inactive group is never walked: no route, no `getStaticPaths()`, no
+fetch, nothing in `dist/`. The integration also points the `@profil/beranda`
+Vite alias at `src/profil/<profile>/Beranda.astro`, which `apps/storefront/src/pages/index.astro`
+imports — so `/` is shared but its body is the profile's own (`toko`: the
+pre-#137 home page moved verbatim; `berita`: the `/berita` front page via
+`apps/storefront/src/components/berita/HalamanDepanBerita.astro` under the news chrome;
+`landing`: hero + static pages + contact), with only ONE variant in the
+module graph (Astro collects a page's CSS from everything it imports).
+
+**Everything else reads `profil.ts`.** `Header.astro` (nav via
+`apps/storefront/src/lib/navigasi-profil.ts` — the profile's static list plus its dynamic
+entries: rubrik for `berita`, static pages for `landing`; search form and
+cart/wishlist/account tools only where the group exists), `Footer.astro`,
+`BaseLayout.astro` (the advertised feed, `/product-labels.css`),
+`robots.txt.ts`, `apps/storefront/src/lib/sitemap-sources.ts`/`sitemap-katalog.ts`,
+`apps/storefront/src/pages/csp.json.ts`, and `apps/storefront/src/config/routes.ts`'s `ROUTE_GROUPS`
+(every `ROUTES` key annotated with its group; `satisfies` makes a missing
+one a type error). `apps/storefront/server/penyaji.mjs` needs no flag: it applies the
+rule-based legacy news redirects only when `dist/client/berita.html`
+exists.
+
+**Adding a page now means choosing its group first**: a `shared` page goes
+under `apps/storefront/src/pages/`; a commerce or news page goes under
+`apps/storefront/src/profil/toko/pages/` or `apps/storefront/src/profil/berita/pages/`, gets its `ROUTES`
+key annotated in `ROUTE_GROUPS`, and appears in `docs/template.md`'s
+matrix ([`apps/storefront/tests/profil-integrasi.test.ts`](tests/profil-integrasi.test.ts)
+parses that table and fails when the tree disagrees). Verify with
+`SITE_PROFILE=<profile> bun run check` and
+`SITE_PROFILE=<profile> bun test tests/profil-build-smoke.test.ts tests/profil-routes.test.ts`
+for each profile — CI runs exactly that as a 3-leg matrix.
+
 ## Page inventory
 
-| Route | What it is | Data source |
-| --- | --- | --- |
-| `/` | Home: slider, popular categories, flash-sale strip, featured/recommended products, promo section, public vouchers, testimonials, recent news, promo popup (issue #27) | `GET /api/v1/commerce/products`, `/categories`, and the marketing read models |
-| `/produk` | Catalog listing — grid + sidebar, client-side search/filter/sort/pagination over `/index/produk.json` | `GET /api/v1/commerce/products`, `/categories` |
-| `/kategori/{slug}` | One page per category (its subtree's products, breadcrumb, `CollectionPage` JSON-LD) | same as above |
-| `/flash-sale` | Active + scheduled flash sales, sale price vs. normal price, quota, live countdown | `GET /api/v1/commerce/flash-sales/active` |
-| `/product/{slug}` | Product detail: image gallery, variant picker, tiered prices, service-form fields, size chart, promo banner, add-to-cart, share, related products, `Product`/`Offer`/`BreadcrumbList` JSON-LD | same as above |
-| `/kontak` | Contact card + `mailto:`/WhatsApp links | `GET /api/v1/site-profile/composed` |
-| `/cari` | Client-side product search over `/index/produk.json`; `noindex, follow` | `/index/produk.json` (build-time index) |
-| `/halaman/{slug}` | CMS static/legal pages (privacy, TOS, shopping guide, and — once #28's news pages exist — Redaksi/Pedoman Media Siber/Disclaimer), rendered from Portable Text | `GET /api/v1/blog/pages/public[/​{slug}]` |
-| `/404` | Not-found page with search + top nav links | none |
-| `/robots.txt` | Allow-all + sitemap line + disallowed paths | deployment identity |
-| `/sitemap-index.xml`, `/sitemap-{n}.xml` | Registry-driven sitemap, split at 5000 URLs/file | every registered source |
-| `/feed.xml` | RSS of products (newest-first is approximated — see that route's own docblock for why the DTO has no timestamp to sort by) | `GET /api/v1/commerce/products` |
-| `/manifest.webmanifest` | Web app manifest | site identity + theme + bundled favicon |
-| `/theme-tokens.css` | Build-time-generated `--color-primary/secondary/accent` stylesheet | `GET /theming/{tenantCode}/tokens.css` |
-| `/product-labels.css` | Build-time-generated per-product badge-color stylesheet | derived from the catalog fetch |
-| `/berita`, `/berita/{slug}`, `/berita/feed.xml` | News front page, article detail (with the issue-#51 share row — see "Article share row" below), RSS 2.0 (issue #28); shared sidebar with a real "Terpopuler" (issue #49) | `GET /api/v1/blog/posts`/`terms`/`institutions` |
-| `/rubrik/{slug}`, `/rubrik/{slug}/halaman/{n}`, `/rubrik/{slug}/feed.xml` | Hierarchical rubrik (category) archive + pagination + feed | same as above |
-| `/daerah/{slug}` | Region archive, reached via an institution's `regionCode` | `GET /api/v1/blog/institutions`, `/api/v1/idn-regions/regions` |
-| `/mitra/{slug}` | Institution ("Mitra") landing | `GET /api/v1/blog/institutions` |
-| `/video`, `/video/{slug}` | Video-news index + detail (a post with a `videoNews` block) | `GET /api/v1/blog/posts` |
-| `/tag/{slug}`, `/penulis/{slug}`, `/arsip/{yyyy}/{mm}` | Tag, author (byline-based), and monthly archives | `GET /api/v1/blog/posts`/`terms` |
-| `/cari-berita` | Client-side search over `/index/berita.json` | `/index/berita.json` (build-time index) |
-| `/index/produk.json` | The product search/listing index every client-side catalog surface reads | derived from the catalog fetch |
-| `/csp.json` | The external origins this build references, read at startup by `apps/storefront/server/penyaji.mjs` to widen `img-src`/`connect-src`/`frame-src` — see "Content-Security-Policy" below | derived from every image URL the CMS sent, the resolved media origin, `PUBLIC_AWCMS_ORIGIN`, and (issue #47) the two YouTube origins when this build has a video post |
-| `/index/berita.json`, `/index/pengalihan-legacy.json` | The search index, and the legacy-URL redirect map `apps/storefront/server/penyaji.mjs` reads at startup | `GET /api/v1/blog/posts`, `/api/v1/seo/redirects` |
-| `/keranjang` | Cart — renders `localStorage`, re-quotes live, voucher/quantity/remove, "Lanjut ke checkout" (issue #30) | `POST <PUBLIC_AWCMS_ORIGIN>/api/v1/commerce/storefront/cart/quote` |
-| `/checkout` | One-page, five-step checkout: contact → address → shipping → payment → review → place order | the same quote endpoint, plus `POST …/orders` |
-| `/pesanan` | Order tracking by `?kode=`; phone from `sessionStorage`/a form, never the URL | `GET …/orders/{code}`, `POST …/orders/{code}/{payment-confirmations,cancel,payment-gateway/sessions}` |
-| `/wishlist` | `localStorage`-only saved-products list; heart button on `ProductCard.astro` | none (client-side only) |
-| `/index/wilayah-provinsi.json`, `/index/wilayah-kabupaten-{code}.json`, `/index/wilayah-kecamatan-{code}.json` | Checkout address region indexes, scoped to `PUBLIC_WILAYAH_PROVINSI` | `GET /api/v1/idn-regions/regions` |
-| `/buletin` | Newsletter subscribe form (issue #50); not linked from anywhere yet — see "Newsletter" below | `POST <PUBLIC_AWCMS_ORIGIN>/api/v1/newsletter/subscribe` |
-| `/newsletter/confirm`, `/newsletter/unsubscribe` | Double opt-in confirm/unsubscribe, token from `?token=`; `noindex, follow`; path is a fixed `apps/cms` contract, not this app's naming — see "Newsletter" below | `POST …/newsletter/{confirm,unsubscribe}` |
+Every route this app can build. The **Group** column is the page group
+(issue #137) — `shared` routes exist in every profile, `toko` and `berita`
+routes only in a profile composing that group.
+
+
+| Route | Group | What it is | Data source |
+| --- | --- | --- | --- |
+| `/` | shared | Home: slider, popular categories, flash-sale strip, featured/recommended products, promo section, public vouchers, testimonials, recent news, promo popup (issue #27) | `GET /api/v1/commerce/products`, `/categories`, and the marketing read models |
+| `/produk` | toko | Catalog listing — grid + sidebar, client-side search/filter/sort/pagination over `/index/produk.json` | `GET /api/v1/commerce/products`, `/categories` |
+| `/kategori/{slug}` | toko | One page per category (its subtree's products, breadcrumb, `CollectionPage` JSON-LD) | same as above |
+| `/flash-sale` | toko | Active + scheduled flash sales, sale price vs. normal price, quota, live countdown | `GET /api/v1/commerce/flash-sales/active` |
+| `/product/{slug}` | toko | Product detail: image gallery, variant picker, tiered prices, service-form fields, size chart, promo banner, add-to-cart, share, related products, `Product`/`Offer`/`BreadcrumbList` JSON-LD | same as above |
+| `/kontak` | shared | Contact card + `mailto:`/WhatsApp links | `GET /api/v1/site-profile/composed` |
+| `/cari` | toko | Client-side product search over `/index/produk.json`; `noindex, follow` | `/index/produk.json` (build-time index) |
+| `/halaman/{slug}` | shared | CMS static/legal pages (privacy, TOS, shopping guide, and — once #28's news pages exist — Redaksi/Pedoman Media Siber/Disclaimer), rendered from Portable Text | `GET /api/v1/blog/pages/public[/​{slug}]` |
+| `/404` | shared | Not-found page with search + top nav links | none |
+| `/robots.txt` | shared | Allow-all + sitemap line + disallowed paths | deployment identity |
+| `/sitemap-index.xml`, `/sitemap-{n}.xml` | shared | Registry-driven sitemap, split at 5000 URLs/file | every registered source |
+| `/feed.xml` | toko | RSS of products (newest-first is approximated — see that route's own docblock for why the DTO has no timestamp to sort by) | `GET /api/v1/commerce/products` |
+| `/manifest.webmanifest` | shared | Web app manifest | site identity + theme + bundled favicon |
+| `/theme-tokens.css` | shared | Build-time-generated `--color-primary/secondary/accent` stylesheet | `GET /theming/{tenantCode}/tokens.css` |
+| `/product-labels.css` | toko | Build-time-generated per-product badge-color stylesheet | derived from the catalog fetch |
+| `/berita`, `/berita/{slug}`, `/berita/feed.xml` | berita | News front page, article detail (with the issue-#51 share row — see "Article share row" below), RSS 2.0 (issue #28); shared sidebar with a real "Terpopuler" (issue #49) | `GET /api/v1/blog/posts`/`terms`/`institutions` |
+| `/rubrik/{slug}`, `/rubrik/{slug}/halaman/{n}`, `/rubrik/{slug}/feed.xml` | berita | Hierarchical rubrik (category) archive + pagination + feed | same as above |
+| `/daerah/{slug}` | berita | Region archive, reached via an institution's `regionCode` | `GET /api/v1/blog/institutions`, `/api/v1/idn-regions/regions` |
+| `/mitra/{slug}` | berita | Institution ("Mitra") landing | `GET /api/v1/blog/institutions` |
+| `/video`, `/video/{slug}` | berita | Video-news index + detail (a post with a `videoNews` block) | `GET /api/v1/blog/posts` |
+| `/tag/{slug}`, `/penulis/{slug}`, `/arsip/{yyyy}/{mm}` | berita | Tag, author (byline-based), and monthly archives | `GET /api/v1/blog/posts`/`terms` |
+| `/cari-berita` | berita | Client-side search over `/index/berita.json` | `/index/berita.json` (build-time index) |
+| `/index/produk.json` | toko | The product search/listing index every client-side catalog surface reads | derived from the catalog fetch |
+| `/csp.json` | shared | The external origins this build references, read at startup by `apps/storefront/server/penyaji.mjs` to widen `img-src`/`connect-src`/`frame-src` — see "Content-Security-Policy" below | derived from every image URL the CMS sent, the resolved media origin, `PUBLIC_AWCMS_ORIGIN`, and (issue #47) the two YouTube origins when this build has a video post |
+| `/index/berita.json`, `/index/pengalihan-legacy.json` | berita | The search index, and the legacy-URL redirect map `apps/storefront/server/penyaji.mjs` reads at startup | `GET /api/v1/blog/posts`, `/api/v1/seo/redirects` |
+| `/keranjang` | toko | Cart — renders `localStorage`, re-quotes live, voucher/quantity/remove, "Lanjut ke checkout" (issue #30) | `POST <PUBLIC_AWCMS_ORIGIN>/api/v1/commerce/storefront/cart/quote` |
+| `/checkout` | toko | One-page, five-step checkout: contact → address → shipping → payment → review → place order | the same quote endpoint, plus `POST …/orders` |
+| `/pesanan` | toko | Order tracking by `?kode=`; phone from `sessionStorage`/a form, never the URL | `GET …/orders/{code}`, `POST …/orders/{code}/{payment-confirmations,cancel,payment-gateway/sessions}` |
+| `/wishlist` | toko | `localStorage`-only saved-products list; heart button on `ProductCard.astro` | none (client-side only) |
+| `/index/wilayah-provinsi.json`, `/index/wilayah-kabupaten-{code}.json`, `/index/wilayah-kecamatan-{code}.json` | toko | Checkout address region indexes, scoped to `PUBLIC_WILAYAH_PROVINSI` | `GET /api/v1/idn-regions/regions` |
+| `/buletin` | berita | Newsletter subscribe form (issue #50); not linked from anywhere yet — see "Newsletter" below | `POST <PUBLIC_AWCMS_ORIGIN>/api/v1/newsletter/subscribe` |
+| `/newsletter/confirm`, `/newsletter/unsubscribe` | berita | Double opt-in confirm/unsubscribe, token from `?token=`; `noindex, follow`; path is a fixed `apps/cms` contract, not this app's naming — see "Newsletter" below | `POST …/newsletter/{confirm,unsubscribe}` |
 
 Every non-static-asset route above is prerendered — there is no
 `prerender = false` anywhere in this app, and none should be added without
@@ -232,7 +295,7 @@ What actually renders now:
   `i.ytimg.com/vi/{id}/hqdefault.jpg` poster, swapped for a real
   `youtube-nocookie.com/embed/{id}` `<iframe>` by
   `apps/storefront/src/scripts/video-facade.ts` on a real click, never
-  before). `apps/storefront/src/pages/video/[slug].astro` — the only route
+  before). `apps/storefront/src/profil/berita/pages/video/[slug].astro` — the only route
   a playable `videoNews` block can ever appear on, and the only page that
   mounts `video-facade.ts` — is the one caller that passes `"facade"`
   (through `ArtikelView.astro`'s own `videoMode` prop); every other caller
@@ -697,9 +760,9 @@ Part of the increment-4 accounts epic (#32); the API contract is https://github.
 - **Routes**: `ROUTES.login` (`/masuk`), `ROUTES.register` (`/daftar`), `ROUTES.account` (`/akun`) get real pages in this issue. `ROUTES.accountOrders`/`accountOrder(kode)`/`accountAddresses`/`accountReviews`/`accountAffiliate` are declared now (S2/S3 build the pages behind them) so `/akun`'s own navigation cards and `Header.astro` can link at a named constant rather than a hand-typed path. `ROUTES.wishlist` (already existing) is reused as-is for the wishlist card.
 - **`Header.astro`** gained a `<a data-akun-tautan>` beside wishlist/cart, server-rendered as "Masuk" → `/masuk` (works with no JavaScript). `apps/storefront/src/scripts/akun-header.ts`, imported from the same `<script>` block that already mounts `keranjang-hitung.ts`/`wishlist-tombol.ts`, swaps its text to the account's first name and its `href` to `/akun` when `bacaSesi()` finds a session, re-checking on `akun:berubah` and the native `storage` event.
 - **Pages**, all static (`output: "static"`, no `prerender = false`), one `<h1>` each, `noindex, follow`:
-  - **`/masuk`** (`apps/storefront/src/pages/masuk.astro` + `apps/storefront/src/scripts/masuk.ts`) — e-mail → "Kirim kode" (`mintaKode({email, purpose:"login"})`) → a 6-digit code step (`inputmode="numeric"`, `autocomplete="one-time-code"`, focus moves to it, "Kirim ulang" disabled for 60 seconds) → `verifikasiKode` → `simpanSesi` → redirect to a validated same-origin `?kembali=` path or `/akun`. `404 ACCOUNT_NOT_FOUND` shows a link to `/daftar?email=` (pre-filled); `401 OTP_INVALID` shows "Kode salah atau kedaluwarsa"; `429 RATE_LIMITED` shows the `Retry-After` seconds.
+  - **`/masuk`** (`apps/storefront/src/profil/toko/pages/masuk.astro` + `apps/storefront/src/scripts/masuk.ts`) — e-mail → "Kirim kode" (`mintaKode({email, purpose:"login"})`) → a 6-digit code step (`inputmode="numeric"`, `autocomplete="one-time-code"`, focus moves to it, "Kirim ulang" disabled for 60 seconds) → `verifikasiKode` → `simpanSesi` → redirect to a validated same-origin `?kembali=` path or `/akun`. `404 ACCOUNT_NOT_FOUND` shows a link to `/daftar?email=` (pre-filled); `401 OTP_INVALID` shows "Kode salah atau kedaluwarsa"; `429 RATE_LIMITED` shows the `Retry-After` seconds.
   - **`/daftar`** (`daftar.astro` + `daftar.ts`, same directories) — name, phone (`type="tel"`), e-mail → `mintaKode({purpose:"register", name, phone, email})` → the same code step → verify. `409 PHONE_ALREADY_REGISTERED` shows a link to `/masuk`.
-  - **`/akun`** (`apps/storefront/src/pages/akun/index.astro` + `apps/storefront/src/scripts/akun.ts`) — no session: a card linking to `/masuk`/`/daftar`. A session: a profile card (name, e-mail, phone, "Level {n}"), an inline "Ubah nama" form (`PATCH /me`), a "Keluar" button (`POST /logout`, clearing the local session unconditionally — even on a network error), and navigation cards for Pesanan/Alamat/Wishlist/Ulasan/Afiliasi. **Pesanan/Alamat/Ulasan link to real pages as of issue #90 (S2); Afiliasi still 404s until S3** — labelled plainly, no "coming soon" placeholder text.
+  - **`/akun`** (`apps/storefront/src/profil/toko/pages/akun/index.astro` + `apps/storefront/src/scripts/akun.ts`) — no session: a card linking to `/masuk`/`/daftar`. A session: a profile card (name, e-mail, phone, "Level {n}"), an inline "Ubah nama" form (`PATCH /me`), a "Keluar" button (`POST /logout`, clearing the local session unconditionally — even on a network error), and navigation cards for Pesanan/Alamat/Wishlist/Ulasan/Afiliasi. **Pesanan/Alamat/Ulasan link to real pages as of issue #90 (S2); Afiliasi still 404s until S3** — labelled plainly, no "coming soon" placeholder text.
   - Every page carries a `<noscript>` explaining JavaScript is required (with the store's WhatsApp link) and a JS-ran-but-CMS-unreachable WhatsApp fallback (`wa-fallback.ts`'s new `buildWhatsappAccountMessage`), an `aria-live="polite"` status region, and field errors via `[data-error-for]`, the same conventions `checkout.astro`/`checkout.ts` already established.
   - `apps/storefront/src/styles/akun.css` is a dedicated, feature-scoped stylesheet (imported by these three pages alongside `toko.css`) — tokens from `global.css`, 44px control targets, contrast checked the same way `apps/storefront/tests/warna.test.ts` already checks the default theme colors.
 - **`robots.txt.ts`** disallows `/masuk`, `/daftar`, and `/akun` — the bare `/akun` prefix also covers every child route (`/akun/pesanan`, …) as S2/S3 add them, with no new line needed per child.
@@ -908,7 +971,7 @@ after a build in this issue's own review, not asserted by a new test — a
 
   `subscribe.ts`'s own docblock says explicitly that the public site in
   front of this CMS (this storefront, per ADR-0070) is expected to serve
-  exactly these two paths — so this app serves `src/pages/newsletter/
+  exactly these two paths — so this app serves `src/profil/berita/pages/newsletter/
   {confirm,unsubscribe}.astro` at those literal paths rather than at a
   storefront-chosen URL with a redirect layered in front of it: a redirect
   would be a workaround for a contract this app can simply honour.
@@ -938,7 +1001,10 @@ after a build in this issue's own review, not asserted by a new test — a
 ## Environment variables
 
 See `apps/storefront/.env.example` for the full, current list with
-rationale. New in issue #24: `AWCMS_TENANT_CODE` (optional) — this tenant's
+rationale. New in issue #137: `SITE_PROFILE` (optional) — `toko` (the
+default when unset), `berita`, or `landing`; selects the page groups this
+build includes (see "Build profiles" above). Any other value fails the
+build. New in issue #24: `AWCMS_TENANT_CODE` (optional) — this tenant's
 public code, used only by the theme client above **and, since issue #56, the
 visitor beacon's `tenantCode`**; unset is a normal state that falls back to
 BjekMart's default palette, and — for the beacon — to sending nothing at

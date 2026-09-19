@@ -1,6 +1,6 @@
 /**
  * `NewsArticle` + `BreadcrumbList` JSON-LD for the news surface (issue #28)
- * — PATTERN modeled on `src/pages/product/[slug].astro`'s inline `Product`
+ * — PATTERN modeled on `src/profil/toko/pages/product/[slug].astro`'s inline `Product`
  * schema (issue #5): a plain object handed to `BaseLayout`'s `schema` prop,
  * which `jsonForScript()` (`BaseLayout.astro`) serializes and HTML-escapes.
  * This file never touches a `<script>` tag or does its own escaping —

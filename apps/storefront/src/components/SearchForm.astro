@@ -8,28 +8,41 @@
  * page's own query-echo form) — `idPrefix` keeps the two instances' `id`/
  * `for` pairs from colliding, which would otherwise make the SECOND
  * `<label for="q">` on a page point at the FIRST form's input.
+ *
+ * Issue #137: the target, label and placeholder come from
+ * `src/config/profil.ts`'s `SEARCH_SURFACE` — a product search (`/cari`)
+ * whenever the `toko` group is built, a news search (`/cari-berita`) for a
+ * `berita`-only build. A `landing` build has no search surface at all, and
+ * the callers (`Header.astro`, `404.astro`) render nothing then; this
+ * component itself renders nothing too, so a stray mount cannot produce a
+ * form that posts to a route the build does not have. `/cari` passes
+ * `surface` explicitly for its own query-echo form.
  */
-import { ROUTES } from "../config/routes";
+import { SEARCH_SURFACE, type SearchSurface } from "../config/profil";
 
 interface Props {
   idPrefix: string;
   /** Pre-fills the field — used by `/cari` to echo back `?q=`. */
   value?: string;
+  /** Overrides the profile's default search surface — `/cari` always searches products. */
+  surface?: SearchSurface | null;
 }
 
-const { idPrefix, value = "" } = Astro.props;
+const { idPrefix, value = "", surface = SEARCH_SURFACE } = Astro.props;
 const inputId = `${idPrefix}-q`;
 ---
 
-<form class="search-form" action={ROUTES.search} method="get" role="search">
-  <label for={inputId} class="visually-hidden">Cari produk</label>
+{surface && (
+<form class="search-form" action={surface.action} method="get" role="search">
+  <label for={inputId} class="visually-hidden">{surface.label}</label>
   <input
     type="search"
     id={inputId}
     name="q"
     value={value}
-    placeholder="Cari produk..."
+    placeholder={surface.placeholder}
     autocomplete="off"
   />
   <button type="submit">Cari</button>
 </form>
+)}

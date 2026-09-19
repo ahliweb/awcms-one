@@ -1,0 +1,32 @@
+---
+/** `/video` — video news index (issue #28): every post whose body carries a renderable `videoNews` block (`src/lib/berita.ts`'s `getVideo()`). Issue #49: the grid sits beside the shared `Sidebar.astro` in `.layout-with-sidebar`. */
+import BeritaLayout from "../../../../layouts/BeritaLayout.astro";
+import ArtikelCard from "../../../../components/berita/ArtikelCard.astro";
+import Sidebar from "../../../../components/berita/Sidebar.astro";
+import { ROUTES } from "../../../../config/routes";
+import { getVideo } from "../../../../lib/berita";
+
+const posts = await getVideo();
+---
+
+<BeritaLayout title="Video" description="Video berita terbaru." canonicalPath={ROUTES.video}>
+  <div class="container">
+    <div class="page-heading">
+      <h1>Video</h1>
+    </div>
+
+    <div class="layout-with-sidebar">
+      <div>
+        {posts.length === 0 ? (
+          <p class="empty-state">Belum ada video berita.</p>
+        ) : (
+          <ul class="grid-cards">
+            {posts.map((post) => <ArtikelCard post={post} />)}
+          </ul>
+        )}
+      </div>
+
+      <Sidebar />
+    </div>
+  </div>
+</BeritaLayout>

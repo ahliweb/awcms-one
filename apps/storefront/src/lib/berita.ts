@@ -492,7 +492,7 @@ export async function getRubrikTree(): Promise<RubrikNode[]> {
 
 /**
  * Every rubrik in `nodes`' trees, flattened depth-first (parent before its
- * children) — `getStaticPaths()` in `src/pages/rubrik/[slug]/index.astro`/
+ * children) — `getStaticPaths()` in `src/profil/berita/pages/rubrik/[slug]/index.astro`/
  * `halaman/[n].astro`/`feed.xml.ts` and `src/lib/sitemap-sources.ts` all
  * need "every rubrik at any depth", not just the top-level roots
  * `getRubrikTree()` returns. Declared ONCE, here, and exported — four
@@ -650,7 +650,7 @@ export async function getTag(slug: string): Promise<TagArchive | null> {
 // Authors (Penulis) — byline-based, since there is no author entity/route
 // ---------------------------------------------------------------------------
 
-/** Every distinct byline in use, as `{slug, name}` — `/penulis`'s own index, if one is ever needed; used today by `getStaticPaths()` in `src/pages/penulis/[slug].astro`. */
+/** Every distinct byline in use, as `{slug, name}` — `/penulis`'s own index, if one is ever needed; used today by `getStaticPaths()` in `src/profil/berita/pages/penulis/[slug].astro`. */
 export async function listAuthors(): Promise<Array<{ slug: string; name: string }>> {
   const { posts } = await getIndex();
   const seen = new Map<string, string>();
@@ -734,7 +734,7 @@ const WORDS_PER_MINUTE = 200;
  * from the RENDERED body and counts words. Safe to do with a plain regex
  * only because the input is always this app's own escaped, closed-vocabulary
  * renderer output (`src/lib/portable-text.ts`), never raw CMS HTML — the
- * same precondition `src/pages/berita/[slug].astro` already relies on when
+ * same precondition `src/profil/berita/pages/berita/[slug].astro` already relies on when
  * it injects that same HTML via `set:html`.
  */
 export function estimasiWaktuBacaMenit(bodyHtml: string): number {

@@ -1,0 +1,56 @@
+---
+/**
+ * `/daerah/[slug]` — region index (issue #28): posts reaching this region
+ * via an institution's `regionCode` (see `src/lib/awcms/wilayah.ts`'s file
+ * header for why there is no direct post→region field to filter on
+ * instead).
+ */
+import BeritaLayout from "../../../../layouts/BeritaLayout.astro";
+import ArtikelCard from "../../../../components/berita/ArtikelCard.astro";
+import { ROUTES } from "../../../../config/routes";
+import { listDaerahLinks, getDaerah } from "../../../../lib/berita";
+
+export async function getStaticPaths() {
+  const regions = await listDaerahLinks();
+  return regions.map((region) => ({ params: { slug: region.slug } }));
+}
+
+const { slug } = Astro.params as { slug: string };
+const archive = await getDaerah(slug);
+
+if (!archive) {
+  throw new Error(
+    `No resolvable region with slug "${slug}". getStaticPaths() only ever ` +
+      `requests a slug listDaerahLinks() just returned, so this can only ` +
+      `happen if this route is reached with a slug from somewhere else.`
+  );
+}
+
+const canonicalPath = ROUTES.region(slug);
+---
+
+<BeritaLayout
+  title={archive.region.name}
+  description={`Berita seputar ${archive.region.name}.`}
+  canonicalPath={canonicalPath}
+>
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Remah roti">
+      <a href={ROUTES.home}>Beranda</a>
+      <span aria-hidden="true">/</span>
+      <a href={ROUTES.news}>Berita</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">{archive.region.name}</span>
+    </nav>
+
+    <h1>{archive.region.name}</h1>
+
+    {archive.posts.length === 0 ? (
+      <p class="empty-state">Belum ada berita dari daerah ini.</p>
+    ) : (
+      <ul class="grid-cards">
+        {archive.posts.map((post) => <ArtikelCard post={post} />)}
+      </ul>
+    )}
+  </div>
+</BeritaLayout>

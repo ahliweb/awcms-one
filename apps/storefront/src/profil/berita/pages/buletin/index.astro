@@ -1,0 +1,42 @@
+---
+/**
+ * `/buletin` — the standalone newsletter subscribe page (issue #50). Exists
+ * for links from an e-mail/social post that need a page of their own rather
+ * than a form buried in the footer; the footer/sidebar placement itself is
+ * A3's job (issue #46), not this one — this issue's smoke is this page.
+ *
+ * A plain static shell, per ADR-0002/`docs/routing.md`: nothing here is
+ * known at build time (there is nothing to fetch — the form posts straight
+ * to the CMS from the browser, `src/scripts/buletin.ts`), so this page
+ * needs no runtime opt-out from the static build — the same posture
+ * `checkout.astro`/`keranjang.astro` already take for issue #30's pages
+ * (see `apps/storefront/tests/checkout-guard-no-prerender.test.ts`, which
+ * greps every page under `src/pages` for that opt-out and fails if it finds
+ * one).
+ */
+import BaseLayout from "../../../../layouts/BaseLayout.astro";
+import FormBuletin from "../../../../components/berita/FormBuletin.astro";
+import "../../../../styles/toko.css";
+---
+
+<BaseLayout
+  title="Buletin"
+  description="Berlangganan buletin email untuk kabar dan penawaran terbaru."
+  canonicalPath="/buletin"
+>
+  <div class="container">
+    <div class="page-heading">
+      <h1>Buletin</h1>
+      <p>
+        Dapatkan kabar produk baru, promo, dan berita terbaru langsung ke email Anda. Pendaftaran menggunakan
+        opt-in ganda: Anda akan menerima email konfirmasi sebelum langganan benar-benar aktif.
+      </p>
+    </div>
+
+    <FormBuletin variant="sidebar" idPrefix="buletin-halaman" />
+  </div>
+</BaseLayout>
+
+<script>
+  import "../../../../scripts/buletin";
+</script>

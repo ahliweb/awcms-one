@@ -12,6 +12,18 @@
      * is an installed devDependency — the automatic `@types/*` inclusion
      * astro's own base tsconfig relies on does not reach it here.
      */
-    "types": ["bun"]
+    "types": ["bun"],
+    /**
+     * `@profil/beranda` (issue #137) is a Vite alias `integrations/profil.mjs`
+     * points at the active profile's `src/profil/<profile>/Beranda.astro`
+     * at build time. TypeScript cannot follow a build-time alias, so
+     * `astro check` is given ONE variant to type `src/pages/index.astro`'s
+     * import against; the three variants share the same (empty) Props, so
+     * whichever profile a `check` runs under the typing is the same.
+     */
+    "baseUrl": ".",
+    "paths": {
+      "@profil/beranda": ["./src/profil/toko/Beranda.astro"]
+    }
   }
 }

@@ -1,0 +1,120 @@
+---
+/**
+ * `/kategori/[slug]` — one page per category: its direct children, the
+ * breadcrumb, and every product in its SUBTREE (this category plus every
+ * descendant) — `collectCategorySubtreeIds`/`productsInCategory`
+ * (`src/lib/catalog.ts`) resolve that without a recursive SQL query this
+ * static build has no database connection to run.
+ */
+import BaseLayout from "../../../../layouts/BaseLayout.astro";
+import { absoluteUrl } from "../../../../config/site";
+import { ROUTES } from "../../../../config/routes";
+import {
+  getCategories,
+  getProducts,
+  buildCategoryTree,
+  collectCategorySubtreeIds,
+  productsInCategory,
+  type CommerceCategory
+} from "../../../../lib/catalog";
+import { buildCategoryPageSchema, type BreadcrumbItem } from "../../../../lib/jsonld-produk";
+import ProductCard from "../../../../components/katalog/ProductCard.astro";
+import CategoryTree from "../../../../components/katalog/CategoryTree.astro";
+import Breadcrumb from "../../../../components/katalog/Breadcrumb.astro";
+import "../../../../styles/katalog.css";
+
+export async function getStaticPaths() {
+  const categories = await getCategories();
+  return categories.map((category) => ({
+    params: { slug: category.slug },
+    props: { category }
+  }));
+}
+
+interface Props {
+  category: CommerceCategory;
+}
+
+const { category } = Astro.props;
+
+const [categories, products] = await Promise.all([getCategories(), getProducts()]);
+const categoryTree = buildCategoryTree(categories);
+const subtreeIds = collectCategorySubtreeIds(categories, category.id);
+const categoryProducts = productsInCategory(products, subtreeIds);
+const children = categories.filter((candidate) => candidate.parentId === category.id);
+
+const byId = new Map(categories.map((candidate) => [candidate.id, candidate]));
+const ancestry: CommerceCategory[] = [];
+let cursor: CommerceCategory | undefined = category;
+while (cursor) {
+  ancestry.unshift(cursor);
+  cursor = cursor.parentId ? byId.get(cursor.parentId) : undefined;
+}
+
+const canonicalPath = ROUTES.category(category.slug);
+
+const pageBreadcrumb = [
+  { label: "Beranda", href: ROUTES.home },
+  { label: "Produk", href: ROUTES.products },
+  ...ancestry.map((node, index) => ({
+    label: node.name,
+    href: index === ancestry.length - 1 ? undefined : ROUTES.category(node.slug)
+  }))
+];
+
+const jsonLdBreadcrumb: BreadcrumbItem[] = [
+  { name: "Beranda", url: absoluteUrl(ROUTES.home) },
+  { name: "Produk", url: absoluteUrl(ROUTES.products) },
+  ...ancestry.map((node) => ({ name: node.name, url: absoluteUrl(ROUTES.category(node.slug)) }))
+];
+
+const schema = buildCategoryPageSchema(category, absoluteUrl(canonicalPath), jsonLdBreadcrumb);
+---
+
+<BaseLayout
+  title={category.name}
+  description={`Produk kategori ${category.name}.`}
+  canonicalPath={canonicalPath}
+  schema={schema}
+>
+  <div class="container">
+    <Breadcrumb items={pageBreadcrumb} />
+
+    <div class="page-heading">
+      <h1>{category.name}</h1>
+      <p>{categoryProducts.length} produk</p>
+    </div>
+
+    <div class="listing-layout">
+      <aside class="listing-sidebar" aria-label="Kategori lain">
+        <h2>Kategori</h2>
+        <CategoryTree nodes={categoryTree} activeSlug={category.slug} />
+      </aside>
+
+      <div>
+        {children.length > 0 && (
+          <ul class="popular-categories">
+            {children.map((child) => (
+              <li>
+                <a class="popular-category-card" href={ROUTES.category(child.slug)}>
+                  <span>{child.name}</span>
+                  <span class="category-count">{child.productCount} produk</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        )}
+
+        {categoryProducts.length === 0 ? (
+          <p class="empty-state">Belum ada produk di kategori ini.</p>
+        ) : (
+          <ul class="grid-cards">
+            {categoryProducts.map((product) => (
+              <ProductCard product={product} categoryName={category.name} />
+            ))}
+          </ul>
+        )}
+      </div>
+    </div>
+  </div>
+</BaseLayout>

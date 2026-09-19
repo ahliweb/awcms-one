@@ -28,7 +28,7 @@ export type { ProductType, ProductStatus };
 export { isValidHexColor, contrastingForeground };
 
 /**
- * Re-exported for backward compatibility: `src/pages/feed.xml.ts` (issue
+ * Re-exported for backward compatibility: `src/profil/toko/pages/feed.xml.ts` (issue
  * #24, outside this issue's file ownership) still imports `formatPrice`
  * from this module. Price formatting itself now lives in `src/lib/
  * harga.ts` (issue #27's own file list — "all price display, no
@@ -520,7 +520,7 @@ export function buildPriceTiers(
 }
 
 // ---------------------------------------------------------------------------
-// Search/listing index — the build-time JSON `src/pages/index/produk.json.ts`
+// Search/listing index — the build-time JSON `src/profil/toko/pages/index/produk.json.ts`
 // serves and every client-side filter/sort/paginate control on `/produk` and
 // `/cari` reads. Kept deliberately small per row (issue #27: "id, slug,
 // name, sku, category, price, finalPrice, image, label, rating, sold,
@@ -670,10 +670,10 @@ export function paginateProdukIndex<T>(
 
 // ---------------------------------------------------------------------------
 // Label badge — unchanged from increment 1, still consumed by
-// `src/pages/product-labels.css.ts` (outside this issue's ownership).
+// `src/profil/toko/pages/product-labels.css.ts` (outside this issue's ownership).
 // ---------------------------------------------------------------------------
 
-/** The CSS class `src/pages/product-labels.css.ts` generates for a given `labelColor`, or `undefined` when there is nothing safe to render. */
+/** The CSS class `src/profil/toko/pages/product-labels.css.ts` generates for a given `labelColor`, or `undefined` when there is nothing safe to render. */
 export function labelClassName(hex: string | null | undefined): string | undefined {
   if (!hex || !isValidHexColor(hex)) return undefined;
   return `label-bg-${hex.trim().replace("#", "").toLowerCase()}`;

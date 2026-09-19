@@ -308,7 +308,7 @@ main {
 /* --- Labels / badges ----------------------------------------------------
    `.label-badge` alone is the fallback: plain text on a neutral background,
    used whenever a product has no `labelColor` or an unusable one. The
-   colored variant is one of the classes `src/pages/product-labels.css.ts`
+   colored variant is one of the classes `src/profil/toko/pages/product-labels.css.ts`
    generates at build time from the catalog's actual `labelColor` values —
    never an inline `style=""`, which `style-src 'self'` (server/penyaji.mjs)
    would silently refuse to render. */

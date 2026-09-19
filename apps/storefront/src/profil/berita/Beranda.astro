@@ -1,0 +1,26 @@
+---
+/**
+ * The `berita` profile's home page (issue #137) — a news deployment's `/`
+ * IS its front page, so this renders `src/components/berita/
+ * HalamanDepanBerita.astro`, the same body `/berita` renders, inside the
+ * same `BeritaLayout` (news chrome: utility bar, rubrik nav, ticker, news
+ * footer with the newsletter box). The one difference is the `<h1>`: the
+ * site's own name rather than "Berita", because on this deployment the
+ * front page is the site, not a section of it.
+ *
+ * Selected by `integrations/profil.mjs`'s `@profil/beranda` alias when
+ * `SITE_PROFILE=berita`; `src/pages/index.astro` delegates here. `/berita`
+ * itself still exists in this profile (the `berita` group is active), so a
+ * reader who lands there sees the same front page under its section
+ * heading — the canonical home is `/`.
+ */
+import BeritaLayout from "../../layouts/BeritaLayout.astro";
+import HalamanDepanBerita from "../../components/berita/HalamanDepanBerita.astro";
+import { getSiteIdentity } from "../../lib/awcms/profil";
+
+const identity = await getSiteIdentity();
+---
+
+<BeritaLayout title={identity.name} description={identity.description} canonicalPath="/">
+  <HalamanDepanBerita heading={identity.name} />
+</BeritaLayout>
