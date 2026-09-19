@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:41d5e522fa1a5aea3f53a76ba6f52ecb212884479abdb6cb094f5579f86ac2fd -->
+<!-- i18n-source-hash: sha256:4f0b511033bc74df5a42680d987c0a46825ad4c16d629ba62aa43d2275a20624 -->
 
 # Architecture Decision Records
 
@@ -35,6 +35,7 @@ Yang **tidak** butuh ADR: menambah field dalam skema yang sudah diputuskan, kena
 | [0015](0015-commerce-migrations-live-in-the-reserved-9xx-range.md) | Migrasi commerce hidup di rentang cadangan `9xx` | Diterima |
 | [0016](0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md) | Akun pelanggan adalah akun `commerce` terverifikasi OTP dengan sesi bearer | Diterima |
 | [0017](0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.md) | Provider eksternal adalah port milik `commerce`, dengan kredensial per-deployment dari env dan webhook beralamat token | Diterima |
+| [0018](0018-awcms-one-is-a-template-with-build-profiles-and-an-idempotent-init.md) | awcms-one adalah sebuah template, dengan profil build dan `template:init` yang idempoten | Diterima |
 
 ## Mengapa penomoran dimulai dari 0001
 

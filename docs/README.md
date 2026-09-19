@@ -7,7 +7,7 @@ Architecture, schema, API, CMS workflow, storefront behaviour, testing, deployme
 | Document | Contents |
 | --- | --- |
 | [`arsitektur.md`](arsitektur.md) | The two-deployable topology, the one-way import direction, the subtree embed, the anonymous runtime seam (ADR-0007), the third (authenticated-customer) trust tier (ADR-0016), external provider ports/outboxes/webhook intake (ADR-0017), the derived CSP |
-| [`adr/`](adr/README.md) | Seventeen Architecture Decision Records — the trade-off behind each structural decision above |
+| [`adr/`](adr/README.md) | Eighteen Architecture Decision Records — the trade-off behind each structural decision above |
 | [`skema-basis-data.md`](skema-basis-data.md) | The `awcms_commerce_*` tables: columns, types, constraints, indexes, RLS |
 | [`kamus-data.md`](kamus-data.md) | Data dictionary: every column, its meaning, and its legacy `commerce_bj_mart` source column |
 | [`api.md`](api.md) | The `/api/v1/commerce/*` endpoints, envelope, pagination, permissions, domain events |
@@ -20,6 +20,7 @@ Architecture, schema, API, CMS workflow, storefront behaviour, testing, deployme
 | [`pengujian.md`](pengujian.md) | The three test suites, which need PostgreSQL, and which do not |
 | [`deployment.md`](deployment.md) | Build vs. serve, environment variables, what the container may and may not reach |
 | [`alur-kerja-pengembangan.md`](alur-kerja-pengembangan.md) | Branching, real branch protection settings, changesets, the release cut |
+| [`template.md`](template.md) | Using awcms-one as a template: `template:init`, the build-profile matrix, per-profile seeds, BjekMart as the reference example |
 
 ## What this directory does not duplicate
 

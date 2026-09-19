@@ -106,6 +106,10 @@ This repo is **Bun-only**: Bun is both the runtime and the package manager, its 
 
 **Still not ported**, and deliberately so: `media-lenterakalteng` also carries `audit:konten` (published-output content checks), `audit:aset` (reader byte budget), and `audit:serapan` (upstream ADR uptake). Every one of them guards a surface — built HTML output, a crawlable running server — that this repository does not have yet. Porting them now would ship a gate that always passes trivially, which reads as more dangerous than no gate at all: a green check that has checked nothing looks exactly like one that checked something and found it clean.
 
+## Use this as a template
+
+Increment 6 (epic [#135](https://github.com/ahliweb/awcms-one/issues/135)) turns awcms-one into a **template** other applications can start from, while it keeps running as the BjekMart reference deployment: a build-time `SITE_PROFILE` (`toko` | `berita` | `landing`) picks which pages a deployment ships, and an idempotent `bun run template:init` rewrites the brand surface (name, domain, colours, contact) for a repository created from GitHub's own "Use this template" button. See [ADR-0018](docs/adr/0018-awcms-one-is-a-template-with-build-profiles-and-an-idempotent-init.md) for the decisions and [`docs/template.md`](docs/template.md) for the walkthrough — as of this section's writing (wave 0, issue #136), this is the contract the mechanism is built against, not yet running code.
+
 ## Documentation
 
 | Document | Contents |

@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:a257453f1002dcaaea8f7f798e7c3a968ce3a67b252451d282c626775810d9c7 -->
+<!-- i18n-source-hash: sha256:f66278ed7cecd6d9610534ca80e5426b9baa460a3e60e4dc8e038364b7077d30 -->
 
 [![License](https://img.shields.io/badge/License-MIT-blue)](LICENSE) [![runtime](https://img.shields.io/badge/runtime-Bun-blue?logo=bun&logoColor=white)](https://bun.sh)
 
@@ -107,6 +107,10 @@ Repo ini **hanya-Bun**: Bun adalah runtime sekaligus package manager, versinya d
 `audit:graf` (kebersihan artefak graphify) dulu ada di daftar "tidak diporting" di bawah — repo ini belum punya korpus `graphify-out/` untuk dijaganya. [Issue #11](https://github.com/ahliweb/awcms-one/issues/11) membangun satu: graf Graphify milik-akar, `--code-only`, yang sengaja mengecualikan `apps/cms/**` (yang sudah punya graf dan gerbangnya sendiri), plus keluarga perintah federasi (`bun run knowledge:graph:update` / `knowledge:graph:combine` / `knowledge:obsidian:export`) yang didokumentasikan di [`knowledge/README.md`](knowledge/README.md). `audit:graf` sekarang memeriksa korpus itu sungguhan — lihat dokumen itu untuk persisnya apa.
 
 **Masih tidak diporting**, dan itu disengaja: `media-lenterakalteng` juga membawa `audit:konten` (pemeriksaan konten keluaran terbit), `audit:aset` (anggaran byte pembaca), dan `audit:serapan` (penyerapan ADR upstream). Setiap satu darinya menjaga permukaan — keluaran HTML yang dibangun, server hidup yang bisa dirayapi — yang belum dimiliki repo ini. Memporting-nya sekarang akan mengirim gerbang yang selalu lulus secara trivial, yang terbaca lebih berbahaya daripada tanpa gerbang sama sekali: sebuah pemeriksaan hijau yang tidak memeriksa apa pun terlihat persis seperti yang memeriksa sesuatu dan menemukannya bersih.
+
+## Gunakan sebagai template
+
+Increment 6 (epic [#135](https://github.com/ahliweb/awcms-one/issues/135)) mengubah awcms-one menjadi sebuah **template** yang bisa dijadikan titik awal aplikasi lain, sementara ia tetap berjalan sebagai deployment referensi BjekMart: `SITE_PROFILE` (`toko` | `berita` | `landing`) saat build memilih halaman mana yang dikirim sebuah deployment, dan `bun run template:init` yang idempoten menulis ulang permukaan merek (nama, domain, warna, kontak) untuk repo yang dibuat lewat tombol "Use this template" milik GitHub. Lihat [ADR-0018](docs/adr/0018-awcms-one-is-a-template-with-build-profiles-and-an-idempotent-init.id.md) untuk keputusannya dan [`docs/template.md`](docs/template.id.md) untuk panduannya — per penulisan bagian ini (wave 0, issue #136), ini adalah kontrak yang menjadi dasar pembangunan mekanismenya, belum kode yang berjalan.
 
 ## Dokumentasi
 

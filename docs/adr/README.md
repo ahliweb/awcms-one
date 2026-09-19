@@ -33,6 +33,7 @@ What does **not** need an ADR: adding a field within an already-decided schema, 
 | [0015](0015-commerce-migrations-live-in-the-reserved-9xx-range.md) | Commerce migrations live in the reserved `9xx` range | Accepted |
 | [0016](0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md) | Customer accounts are OTP-verified `commerce` accounts with bearer sessions | Accepted |
 | [0017](0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.md) | External providers are `commerce`-owned ports, with env-per-deployment credentials and token-addressed webhooks | Accepted |
+| [0018](0018-awcms-one-is-a-template-with-build-profiles-and-an-idempotent-init.md) | awcms-one is a template, with build profiles and an idempotent `template:init` | Accepted |
 
 ## Why the numbering starts at 0001
 
