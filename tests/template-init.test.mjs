@@ -113,22 +113,11 @@ function listTrackedFiles() {
   })
     .split("\n")
     .filter(Boolean)
-    .filter(
-      // THIS test file is deliberately excluded from the copy. The `toko`
-      // leg below runs the copy's own real trailing gate chain, which
-      // includes a real `bun test` — bare `bun test` collects every test
-      // file under the copy, which would include a copy of THIS file,
-      // recursively re-running the whole suite (and its own temp copies)
-      // a second time inside the first copy. Worse: by the time that
-      // inner `bun test` runs, `template:init` has already DELETED files
-      // this same test's `git ls-files --cached` still lists as tracked
-      // (a real `unlinkSync`, never a `git rm`, inside a copy that is
-      // never re-committed) — so the inner run's own `makeTempCopy()`
-      // then fails trying to copy something gone. Excluding this one file
-      // means the copy's `bun test` exercises every OTHER root gate test
-      // for real, without also re-running (and re-breaking) itself.
-      (file) => file !== "tests/template-init.test.mjs"
-    )
+    // NOTE: this test file is NOT excluded from the copy any more. It used to
+    // be (to stop the copy's own `bun test` from re-running this suite), but
+    // the module-top self-skip (`PKG_NAME !== "awcms-one"`) now makes the
+    // inner run a no-op, and keeping the file in the copy is what lets
+    // `audit:dokumen` there resolve every doc that cites it.
     .filter((file) => {
       // A second, independent layer of defence, kept even with the guard
       // above: `git ls-files --cached` answers from the INDEX, not the
