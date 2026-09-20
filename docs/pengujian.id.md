@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](pengujian.md)
 
-<!-- i18n-source-hash: sha256:9591a633484b463bc7ebd7240bb30ac17e50b2f7af25cfae30508177a1aaf415 -->
+<!-- i18n-source-hash: sha256:f4ae228e861ad9cc4c4328095809af1dd858b436ae05f47de61c24ec94c704ee -->
 
 # Pengujian
 
@@ -9,6 +9,8 @@ Tiga tingkat, masing-masing dimiliki workspace berbeda, dijalankan oleh dua job 
 ## 1. Root gate suite (`bun test` dari root repo)
 
 Tidak butuh basis data, tidak butuh build, dan tidak butuh jaringan di luar `bun install`. Mengecualikan `apps/cms/**` sepenuhnya lewat `[test] pathIgnorePatterns` milik `bunfig.toml` (CI memanggil `bun test` telanjang, dan flag pada `bun run test` diam-diam tidak akan berlaku pada pemanggilan telanjang itu). Mencakup gate milik-root repositori ini sendiri (audit dokumentasi, pemeriksaan artefak knowledge-graph, konvensi changeset/rilis, pemeriksaan pin-toolchain, [`tests/kontrak-arah-impor.test.mjs`](../tests/kontrak-arah-impor.test.mjs)) **plus setiap tes unit, build-smoke, dan rute milik `apps/storefront` sendiri** — `apps/storefront` tidak punya skrip `test` sendiri; berkas `tests/*.test.ts`-nya berjalan sebagai bagian dari pemanggilan `bun test` root yang sama ini, di seluruh workspace.
+
+Dua tambahan increment 6 juga hidup di sini: [`tests/seed-profil.test.mjs`](../tests/seed-profil.test.mjs) (issue #139 — validasi schema/no-PII/aset dan `--dry-run` untuk keempat profil `tools/seed-cms.ts`) dan [`tests/template-init.test.mjs`](../tests/template-init.test.mjs) (issue #138 — rencana dry-run `template:init`, run penuh nyata per profil di salinan sementara, idempotensi, penolakan working tree kotor, kode keluar flag yang hilang). Yang kedua **melewati dirinya sendiri begitu `package.json.name !== "awcms-one"`**, dicetak sebagai satu baris SKIPPED yang jelas — tanpa guard itu, `bun test` akhir yang dijalankan sebuah run `template:init` akan menemukan dan menjalankan ulang tes full-run-nya sendiri di dalam repositori yang baru saja diinisialisasinya, yang langkah salinan-sementaranya kemudian tersedak pada `git ls-files` yang masih mendaftar path yang sudah dihapus langkah penghapusan run yang sama. Lihat [`docs/template.md`](template.id.md) untuk apa yang sebenarnya ditegaskan tes setiap alat.
 
 ## 2. `apps/storefront`: tes unit, type-check, dan dua tingkat build-smoke
 

@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/berita.ts"
 type: "code"
-community: "portable-text.ts"
+community: "video/[slug].astro"
 location: "L761"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/portable-textts
+  - community/video/slugastro
 ---
 
 # escapeCdata()
@@ -15,4 +15,4 @@ tags:
 - [[berita.ts]] - `contains` [EXTRACTED]
 - [[renderBeritaRssXml()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/portable-textts
+#graphify/code #graphify/EXTRACTED #community/video/slugastro

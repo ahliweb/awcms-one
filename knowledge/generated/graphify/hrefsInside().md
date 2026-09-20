@@ -2,7 +2,7 @@
 source_file: "apps/storefront/tests/sidebar-build-smoke.test.ts"
 type: "code"
 community: "sidebar-build-smoke.test.ts"
-location: "L71"
+location: "L72"
 tags:
   - graphify/code
   - graphify/EXTRACTED

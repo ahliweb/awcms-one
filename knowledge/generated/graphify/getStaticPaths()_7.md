@@ -1,18 +1,19 @@
 ---
-source_file: "apps/storefront/src/pages/berita/[slug].astro"
+source_file: "apps/storefront/src/profil/berita/pages/rubrik/[slug]/feed.xml.ts"
 type: "code"
-community: "video/[slug].astro"
-location: "L40"
+community: "navigasi-berita.ts"
+location: "L13"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/video/slugastro
+  - community/navigasi-beritats
 ---
 
 # getStaticPaths()
 
 ## Connections
-- [[beritaslug.astro]] - `contains` [EXTRACTED]
-- [[getPosts()]] - `calls` [EXTRACTED]
+- [[slugfeed.xml.ts]] - `contains` [EXTRACTED]
+- [[flattenRubrikTree()]] - `calls` [EXTRACTED]
+- [[getRubrikTree()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/video/slugastro
+#graphify/code #graphify/EXTRACTED #community/navigasi-beritats

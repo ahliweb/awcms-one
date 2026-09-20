@@ -14,7 +14,7 @@ tags:
 ## Connections
 - [[akun-ulasan.ts]] - `contains` [EXTRACTED]
 - [[ambilUlasanAkun()]] - `calls` [EXTRACTED]
-- [[render()_5]] - `calls` [EXTRACTED]
+- [[render()_4]] - `calls` [EXTRACTED]
 - [[renderItem()]] - `calls` [EXTRACTED]
 - [[showGuestView()_2]] - `calls` [EXTRACTED]
 - [[showSubmitError()_3]] - `calls` [EXTRACTED]

@@ -14,7 +14,7 @@ tags:
 ## Connections
 - [[akun-alamat.ts]] - `contains` [EXTRACTED]
 - [[deleteAlamat()]] - `calls` [EXTRACTED]
-- [[render()_3]] - `calls` [EXTRACTED]
+- [[render()_2]] - `calls` [EXTRACTED]
 - [[setDefault()]] - `calls` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/akun-alamatts

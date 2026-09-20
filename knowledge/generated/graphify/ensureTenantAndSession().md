@@ -1,20 +1,23 @@
 ---
-source_file: "tools/seed-borneojek-mart.ts"
+source_file: "tools/seed-cms.ts"
 type: "code"
-community: "seed-borneojek-mart.ts"
-location: "L253"
+community: "seed-cms.ts"
+location: "L271"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/seed-borneojek-martts
+  - community/seed-cmsts
 ---
 
 # ensureTenantAndSession()
 
 ## Connections
 - [[assertOk()_1]] - `calls` [EXTRACTED]
-- [[main()_1]] - `calls` [EXTRACTED]
 - [[randomPassword()]] - `calls` [EXTRACTED]
-- [[seed-borneojek-mart.ts]] - `contains` [EXTRACTED]
+- [[runBerita()]] - `calls` [EXTRACTED]
+- [[runContohBorneojekMart()]] - `calls` [EXTRACTED]
+- [[runLanding()]] - `calls` [EXTRACTED]
+- [[runToko()]] - `calls` [EXTRACTED]
+- [[seed-cms.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/seed-borneojek-martts
+#graphify/code #graphify/EXTRACTED #community/seed-cmsts

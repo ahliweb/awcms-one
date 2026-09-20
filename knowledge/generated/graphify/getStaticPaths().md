@@ -1,18 +1,18 @@
 ---
-source_file: "apps/storefront/src/pages/daerah/[slug].astro"
+source_file: "apps/storefront/src/pages/halaman/[slug].astro"
 type: "code"
-community: "routes.ts"
+community: "pages.ts"
 location: "L13"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/routests
+  - community/pagests
 ---
 
 # getStaticPaths()
 
 ## Connections
-- [[daerahslug.astro]] - `contains` [EXTRACTED]
-- [[listDaerahLinks()]] - `calls` [EXTRACTED]
+- [[halamanslug.astro]] - `contains` [EXTRACTED]
+- [[listStaticPages()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/routests
+#graphify/code #graphify/EXTRACTED #community/pagests

@@ -1,16 +1,17 @@
 ---
 type: community
 cohesion: 0.15
-members: 23
+members: 22
 ---
 
 # blog.ts
 
 **Cohesion:** 0.15 - loosely connected
-**Members:** 23 nodes
+**Members:** 22 nodes
 
 ## Members
-- [[ADR-0100_2]] - concept - apps/storefront/src/lib/awcms/blog.ts
+- [[ADR-0100_1]] - concept - apps/storefront/src/lib/awcms/blog.ts
+- [[ADR-0109]] - concept - apps/storefront/src/lib/awcms/blog.ts
 - [[AD_PLACEMENT_KEYS]] - code - apps/storefront/src/lib/awcms/blog.ts
 - [[AD_SLOTS]] - code - apps/storefront/src/lib/awcms/iklan.ts
 - [[AdPlacementKey]] - code - apps/storefront/src/lib/awcms/blog.ts
@@ -25,8 +26,6 @@ members: 23
 - [[fetchAllInstitutions()]] - code - apps/storefront/src/lib/awcms/blog.ts
 - [[fetchAllTerms()]] - code - apps/storefront/src/lib/awcms/blog.ts
 - [[fetchLegacyRedirectRows()]] - code - apps/storefront/src/lib/awcms/blog.ts
-- [[getActiveAdPlacements()]] - code - apps/storefront/src/lib/awcms/blog.ts
-- [[getAdSlot()]] - code - apps/storefront/src/lib/awcms/iklan.ts
 - [[getAllPosts()]] - code - apps/storefront/src/lib/awcms/blog.ts
 - [[getAllTerms()]] - code - apps/storefront/src/lib/awcms/blog.ts
 - [[iklan.ts]] - code - apps/storefront/src/lib/awcms/iklan.ts
@@ -42,21 +41,19 @@ SORT file.name ASC
 ```
 
 ## Connections to other communities
-- 7 edges to [[_COMMUNITY_navigasi-berita.ts]]
-- 6 edges to [[_COMMUNITY_berita.ts]]
+- 8 edges to [[_COMMUNITY_berita.ts]]
+- 5 edges to [[_COMMUNITY_routes.ts]]
+- 5 edges to [[_COMMUNITY_pemasaran.ts]]
 - 4 edges to [[_COMMUNITY_Sidebar.astro]]
-- 3 edges to [[_COMMUNITY_wilayah-checkout.ts]]
-- 3 edges to [[_COMMUNITY_slugfeed.xml.ts]]
-- 3 edges to [[_COMMUNITY_pagesindex.astro]]
+- 4 edges to [[_COMMUNITY_navigasi-berita.ts]]
+- 4 edges to [[_COMMUNITY_lembaga.ts]]
 - 3 edges to [[_COMMUNITY_getVideo]]
-- 3 edges to [[_COMMUNITY_media.ts]]
-- 2 edges to [[_COMMUNITY_routes.ts]]
-- 1 edge to [[_COMMUNITY_videoslug.astro]]
-- 1 edge to [[_COMMUNITY_seed-borneojek-mart.ts]]
+- 2 edges to [[_COMMUNITY_site.ts]]
+- 1 edge to [[_COMMUNITY_awcmsanalitik.ts]]
 
 ## Top bridge nodes
 - [[blog.ts]] - degree 35, connects to 7 communities
+- [[iklan.ts]] - degree 10, connects to 3 communities
 - [[IklanSlot.astro]] - degree 8, connects to 3 communities
-- [[iklan.ts]] - degree 10, connects to 2 communities
-- [[getAllPosts()]] - degree 4, connects to 2 communities
-- [[getAllTerms()]] - degree 4, connects to 2 communities
+- [[AD_SLOTS]] - degree 4, connects to 2 communities
+- [[berita-routes.test.ts]] - degree 6, connects to 1 community

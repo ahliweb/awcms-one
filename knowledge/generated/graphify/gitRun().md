@@ -19,5 +19,7 @@ tags:
 - [[git.mjs]] - `contains` [EXTRACTED]
 - [[gitList()]] - `calls` [EXTRACTED]
 - [[listMirrors()_1]] - `calls` [EXTRACTED]
+- [[main()_2]] - `calls` [EXTRACTED]
+- [[run.mjs]] - `imports` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/audit-grafmjs

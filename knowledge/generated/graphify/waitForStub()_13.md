@@ -1,17 +1,17 @@
 ---
-source_file: "apps/storefront/tests/akun-dashboard-build-smoke.test.ts"
+source_file: "apps/storefront/tests/logo-instansi-build-smoke.test.ts"
 type: "code"
-community: "akun-dashboard-build-smoke.test.ts"
-location: "L27"
+community: "logo-instansi-build-smoke.test.ts"
+location: "L46"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/akun-dashboard-build-smoketestts
+  - community/logo-instansi-build-smoketestts
 ---
 
 # waitForStub()
 
 ## Connections
-- [[akun-dashboard-build-smoke.test.ts]] - `contains` [EXTRACTED]
+- [[logo-instansi-build-smoke.test.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/akun-dashboard-build-smoketestts
+#graphify/code #graphify/EXTRACTED #community/logo-instansi-build-smoketestts

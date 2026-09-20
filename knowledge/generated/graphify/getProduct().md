@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/catalog.ts"
 type: "code"
-community: "catalog.ts"
+community: "getProducts"
 location: "L321"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/catalogts
+  - community/getProducts
 ---
 
 # getProduct()
@@ -15,4 +15,4 @@ tags:
 - [[catalog.ts]] - `contains` [EXTRACTED]
 - [[getProducts()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/catalogts
+#graphify/code #graphify/EXTRACTED #community/getProducts

@@ -14,8 +14,8 @@ tags:
 ## Connections
 - [[dialog]] - `contains` [EXTRACTED]
 - [[markShown()]] - `contains` [EXTRACTED]
-- [[pagesindex.astro]] - `imports_from` [EXTRACTED]
 - [[shouldShow()]] - `contains` [EXTRACTED]
 - [[storageKey()]] - `contains` [EXTRACTED]
+- [[tokoBeranda.astro]] - `imports_from` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/promo-popupts

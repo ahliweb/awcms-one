@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](deployment.md)
 
-<!-- i18n-source-hash: sha256:d00effd2749a75b4e4326ebd79f77980ef904346d98d785d9da2359df35cfac1 -->
+<!-- i18n-source-hash: sha256:a9f0105db9b113243da93e844ae2843328c0cfe331bbd8148444b475f0783bbd -->
 
 # Deployment
 
@@ -14,6 +14,10 @@ bun run serve          # bun dist/server/penyaji.mjs
 ```
 
 `bun run build` (`apps/storefront/package.json`) menjalankan `bun run check` (type-check), lalu `astro build` (mengambil katalog, permukaan marketing, dan konten berita dari `apps/cms` memakai `AWCMS_API_TOKEN`, memanggang setiap halaman ke `dist/client/`, dan menulis artefak CSP turunan — lihat [`docs/arsitektur.md`](arsitektur.id.md)), lalu menulis build id, lalu `build:penyaji` (mem-bundle `apps/storefront/server/penyaji.mjs` sendiri ke `dist/server/penyaji.mjs` lewat `bun build --target=bun`). **Hanya langkah build yang pernah membaca variabel `AWCMS_*`, dan hanya langkah build yang pernah membaca `AWCMS_API_TOKEN` sama sekali.** `bun run serve` menjalankan `dist/server/penyaji.mjs` yang sudah di-build, yang membaca `PORT`/`HOST` dan, hanya saat startup, artefak `csp.json` build-nya sendiri — tidak pernah kredensial `apps/cms` hidup. Ini bukti mekanis dari klaim [ADR-0002](adr/0002-static-output-with-build-time-fetch-for-the-storefront.md) bahwa *container* tidak pernah berbicara ke `apps/cms`: sumber proses yang dilayani sama sekali tidak punya jalur kode yang membaca kredensial atau URL yang bisa menjangkaunya. **Yang ditambahkan increment 2 adalah relasi kedua, sisi-browser** — halaman keranjang, checkout, dan pelacakan pesanan mengirimkan JavaScript sisi-klien yang memanggil endpoint anonim `apps/cms` `/api/v1/commerce/storefront/*` langsung, cross-origin, dari browser pembaca sendiri, tidak pernah dari container — lihat [ADR-0007](adr/0007-cart-and-checkout-stay-static-the-browser-calls-anonymous-commerce-endpoints.id.md).
+
+### Profil build (`SITE_PROFILE`, issue #137)
+
+`bun run build`/`check`/`dev`/`serve` semuanya menuruti `SITE_PROFILE ∈ {toko, berita, landing}` (default `toko`), dibaca sekali saat build oleh `apps/storefront/src/config/profil.ts` — lihat bagian "Build profiles" di [`docs/routing.md`](routing.id.md) untuk mekanismenya dan [`docs/template.md`](template.id.md) untuk matriks lengkapnya. Men-deploy situs khusus `berita` atau khusus `landing` adalah proses build-lalu-serve dua langkah yang sama di atas, dengan `SITE_PROFILE` diatur di environment build; tidak ada yang berbeda dari cara melayani `dist/` hasilnya — `apps/storefront/server/penyaji.mjs` menurunkan apa yang bisa dilayaninya dari build yang diberikan padanya, sama seperti yang sudah dilakukannya untuk artefak CSP. CI membuktikan ketiganya bisa dibangun (matriks `Check (toko|berita|landing)` milik `ci.yml`, ketiganya status check wajib di `main` bersama `check-cms`), dan `.github/workflows/template-init-smoke.yml` tambahan membangun tiap profil setelah run `bun run template:init` yang sungguhan, meski workflow itu belum menjadi status check wajib — lihat [`docs/alur-kerja-pengembangan.md`](alur-kerja-pengembangan.id.md).
 
 ## Variabel environment
 

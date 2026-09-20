@@ -1,19 +1,18 @@
 ---
-source_file: "apps/storefront/src/pages/sitemap-[n].xml.ts"
+source_file: "apps/storefront/src/profil/berita/pages/mitra/[slug].astro"
 type: "code"
-community: "site.ts"
-location: "L12"
+community: "lembaga.ts"
+location: "L19"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/sitets
+  - community/lembagats
 ---
 
 # getStaticPaths()
 
 ## Connections
-- [[chunkSitemapEntries()]] - `calls` [EXTRACTED]
-- [[getAllSitemapEntries()]] - `calls` [EXTRACTED]
-- [[sitemap-n.xml.ts]] - `contains` [EXTRACTED]
+- [[getMitraList()_1]] - `calls` [EXTRACTED]
+- [[mitraslug.astro]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/sitets
+#graphify/code #graphify/EXTRACTED #community/lembagats

@@ -1,18 +1,18 @@
 ---
-source_file: "apps/storefront/src/pages/feed.xml.ts"
+source_file: "apps/storefront/src/lib/berita.ts"
 type: "code"
-community: "pages/feed.xml.ts"
-location: "L29"
+community: "video/[slug].astro"
+location: "L751"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/pages/feedxmlts
+  - community/video/slugastro
 ---
 
 # escapeXml()
 
 ## Connections
-- [[GET()_2]] - `calls` [EXTRACTED]
-- [[pagesfeed.xml.ts]] - `contains` [EXTRACTED]
+- [[berita.ts]] - `contains` [EXTRACTED]
+- [[renderBeritaRssXml()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/pages/feedxmlts
+#graphify/code #graphify/EXTRACTED #community/video/slugastro

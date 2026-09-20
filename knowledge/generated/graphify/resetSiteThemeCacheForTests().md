@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/awcms/theme.ts"
 type: "code"
-community: "site.ts"
+community: "theme.ts"
 location: "L147"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/sitets
+  - community/themets
 ---
 
 # resetSiteThemeCacheForTests()
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[theme.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/sitets
+#graphify/code #graphify/EXTRACTED #community/themets

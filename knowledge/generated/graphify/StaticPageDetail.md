@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/awcms/pages.ts"
 type: "code"
-community: "portable-text.ts"
+community: "pages.ts"
 location: "L34"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/portable-textts
+  - community/pagests
 ---
 
 # StaticPageDetail
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[pages.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/portable-textts
+#graphify/code #graphify/EXTRACTED #community/pagests

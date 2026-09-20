@@ -1,21 +1,22 @@
 ---
-source_file: "apps/storefront/src/scripts/akun-ulasan.ts"
+source_file: "apps/storefront/src/scripts/akun.ts"
 type: "code"
-community: "akun-ulasan.ts"
-location: "L109"
+community: "akun.ts"
+location: "L92"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/akun-ulasants
+  - community/akunts
 ---
 
 # render()
 
 ## Connections
-- [[akun-ulasan.ts]] - `indirect_call` [INFERRED]
+- [[akun.ts]] - `indirect_call` [INFERRED]
 - [[bacaSesi()]] - `calls` [EXTRACTED]
-- [[hideSubmitError()_3]] - `calls` [EXTRACTED]
-- [[loadList()_1]] - `calls` [EXTRACTED]
-- [[showGuestView()_2]] - `calls` [EXTRACTED]
+- [[hideSubmitError()_4]] - `calls` [EXTRACTED]
+- [[renderProfile()]] - `calls` [EXTRACTED]
+- [[showAccountView()_2]] - `calls` [EXTRACTED]
+- [[showGuestView()_3]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/akun-ulasants
+#graphify/code #graphify/EXTRACTED #community/akunts

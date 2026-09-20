@@ -12,9 +12,9 @@ members: 5
 ## Members
 - [[ARTICLE_WITH_LOGO]] - code - apps/storefront/tests/logo-instansi-build-smoke.test.ts
 - [[MITRA_WITH_LOGO]] - code - apps/storefront/tests/logo-instansi-build-smoke.test.ts
-- [[canSpawnBun()_11]] - code - apps/storefront/tests/logo-instansi-build-smoke.test.ts
+- [[canSpawnBun()_13]] - code - apps/storefront/tests/logo-instansi-build-smoke.test.ts
 - [[logo-instansi-build-smoke.test.ts]] - code - apps/storefront/tests/logo-instansi-build-smoke.test.ts
-- [[waitForStub()_10]] - code - apps/storefront/tests/logo-instansi-build-smoke.test.ts
+- [[waitForStub()_13]] - code - apps/storefront/tests/logo-instansi-build-smoke.test.ts
 
 ## Live Query (requires Dataview plugin)
 
@@ -27,4 +27,4 @@ SORT file.name ASC
 - 1 edge to [[_COMMUNITY_bun]]
 
 ## Top bridge nodes
-- [[canSpawnBun()_11]] - degree 2, connects to 1 community
+- [[canSpawnBun()_13]] - degree 2, connects to 1 community

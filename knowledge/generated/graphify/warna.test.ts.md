@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/warna.test.ts"
 type: "code"
-community: "site.ts"
+community: "warna.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/sitets
+  - community/warnats
 ---
 
 # warna.test.ts
@@ -21,4 +21,4 @@ tags:
 - [[site.ts]] - `imports_from` [EXTRACTED]
 - [[warna.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/sitets
+#graphify/code #graphify/EXTRACTED #community/warnats

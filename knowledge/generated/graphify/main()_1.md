@@ -1,34 +1,25 @@
 ---
-source_file: "tools/seed-borneojek-mart.ts"
+source_file: "tools/seed-cms.ts"
 type: "code"
-community: "seed-borneojek-mart.ts"
-location: "L2125"
+community: "seed-cms.ts"
+location: "L1845"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/seed-borneojek-martts
+  - community/seed-cmsts
 ---
 
 # main()
 
 ## Connections
-- [[applySiteProfile()]] - `calls` [EXTRACTED]
-- [[ensureAdPlacements()]] - `calls` [EXTRACTED]
-- [[ensureBlogPages()]] - `calls` [EXTRACTED]
-- [[ensureBlogPosts()]] - `calls` [EXTRACTED]
-- [[ensureBlogTerms()]] - `calls` [EXTRACTED]
-- [[ensureCategories()]] - `calls` [EXTRACTED]
-- [[ensureInstitutions()]] - `calls` [EXTRACTED]
-- [[ensureMachineCredential()]] - `calls` [EXTRACTED]
-- [[ensureMarketing()]] - `calls` [EXTRACTED]
-- [[ensureNewsPosts()]] - `calls` [EXTRACTED]
-- [[ensureOrders()]] - `calls` [EXTRACTED]
-- [[ensureProducts()]] - `calls` [EXTRACTED]
-- [[ensureRedirects()]] - `calls` [EXTRACTED]
-- [[ensureRubrikTerms()]] - `calls` [EXTRACTED]
-- [[ensureTenantAndSession()]] - `calls` [EXTRACTED]
-- [[ensureTenantDomains()]] - `calls` [EXTRACTED]
-- [[resolveKaltengRegions()]] - `calls` [EXTRACTED]
-- [[seed-borneojek-mart.ts]] - `contains` [EXTRACTED]
+- [[parseArgs()]] - `calls` [EXTRACTED]
+- [[printHelp()]] - `calls` [EXTRACTED]
+- [[runBerita()]] - `calls` [EXTRACTED]
+- [[runContohBorneojekMart()]] - `calls` [EXTRACTED]
+- [[runDryRun()]] - `calls` [EXTRACTED]
+- [[runLanding()]] - `calls` [EXTRACTED]
+- [[runToko()]] - `calls` [EXTRACTED]
+- [[seed-cms.ts]] - `contains` [EXTRACTED]
+- [[seedDirFor()_1]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/seed-borneojek-martts
+#graphify/code #graphify/EXTRACTED #community/seed-cmsts

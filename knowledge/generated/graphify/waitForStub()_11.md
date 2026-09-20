@@ -1,17 +1,17 @@
 ---
-source_file: "apps/storefront/tests/afiliasi-build-smoke.test.ts"
+source_file: "apps/storefront/tests/katalog-build-smoke.test.ts"
 type: "code"
-community: "afiliasi-build-smoke.test.ts"
-location: "L30"
+community: "katalog-build-smoke.test.ts"
+location: "L31"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/afiliasi-build-smoketestts
+  - community/katalog-build-smoketestts
 ---
 
 # waitForStub()
 
 ## Connections
-- [[afiliasi-build-smoke.test.ts]] - `contains` [EXTRACTED]
+- [[katalog-build-smoke.test.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/afiliasi-build-smoketestts
+#graphify/code #graphify/EXTRACTED #community/katalog-build-smoketestts

@@ -1,18 +1,18 @@
 ---
 source_file: "apps/storefront/src/scripts/analitik.ts"
 type: "code"
-community: "buletin.ts"
+community: "requireAwcmsOrigin"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/buletints
+  - community/requireAwcmsOrigin
 ---
 
 # scripts/analitik.ts
 
 ## Connections
-- [[ADR-0007_5]] - `cites` [EXTRACTED]
+- [[ADR-0007_3]] - `cites` [EXTRACTED]
 - [[AnalyticsBeaconPayload]] - `contains` [EXTRACTED]
 - [[BaseLayout.astro]] - `imports_from` [EXTRACTED]
 - [[TrackingSignalSource]] - `contains` [EXTRACTED]
@@ -24,4 +24,4 @@ tags:
 - [[sendAnalyticsBeacon()]] - `contains` [EXTRACTED]
 - [[toko-origin.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/buletints
+#graphify/code #graphify/EXTRACTED #community/requireAwcmsOrigin

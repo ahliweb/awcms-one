@@ -1,19 +1,19 @@
 ---
-source_file: "apps/storefront/src/pages/rubrik/[slug]/index.astro"
+source_file: "apps/storefront/src/profil/toko/pages/index/wilayah-kabupaten-[provinceCode].json.ts"
 type: "code"
-community: "[slug]/feed.xml.ts"
-location: "L21"
+community: "wilayah-checkout.ts"
+location: "L18"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/slug/feedxmlts
+  - community/wilayah-checkoutts
 ---
 
 # getStaticPaths()
 
 ## Connections
-- [[slugindex.astro]] - `contains` [EXTRACTED]
-- [[flattenRubrikTree()]] - `calls` [EXTRACTED]
-- [[getRubrikTree()]] - `calls` [EXTRACTED]
+- [[getCheckoutProvinces()]] - `calls` [EXTRACTED]
+- [[getCheckoutRegencies()]] - `calls` [EXTRACTED]
+- [[tokopagesindexwilayah-kabupaten-provinceCode.json.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/slug/feedxmlts
+#graphify/code #graphify/EXTRACTED #community/wilayah-checkoutts

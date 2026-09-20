@@ -13,8 +13,8 @@ tags:
 
 ## Connections
 - [[ArtikelView.astro]] - `imports` [EXTRACTED]
+- [[HalamanDepanBerita.astro]] - `imports` [EXTRACTED]
 - [[berita-routes.test.ts]] - `imports` [EXTRACTED]
-- [[beritaindex.astro]] - `imports` [EXTRACTED]
 - [[iklan.ts]] - `contains` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/blogts

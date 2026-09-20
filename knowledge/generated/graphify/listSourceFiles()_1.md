@@ -1,17 +1,18 @@
 ---
-source_file: "apps/storefront/tests/bagikan.test.ts"
+source_file: "apps/storefront/tests/checkout-guard-no-prerender.test.ts"
 type: "code"
-community: "bagikan.test.ts"
-location: "L322"
+community: "checkout-guard-no-prerender.test.ts"
+location: "L44"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/bagikantestts
+  - community/checkout-guard-no-prerendertestts
 ---
 
 # listSourceFiles()
 
 ## Connections
-- [[bagikan.test.ts]] - `contains` [EXTRACTED]
+- [[checkout-guard-no-prerender.test.ts]] - `contains` [EXTRACTED]
+- [[listAllPageFiles()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/bagikantestts
+#graphify/code #graphify/EXTRACTED #community/checkout-guard-no-prerendertestts

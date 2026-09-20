@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/awcms-media.test.ts"
 type: "code"
-community: "media.ts"
+community: "portable-text.ts"
 location: "L47"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/mediats
+  - community/portable-textts
 ---
 
 # uuid()
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[awcms-media.test.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/mediats
+#graphify/code #graphify/EXTRACTED #community/portable-textts

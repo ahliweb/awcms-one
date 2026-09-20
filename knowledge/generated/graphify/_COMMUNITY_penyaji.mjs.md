@@ -1,13 +1,13 @@
 ---
 type: community
-cohesion: 0.05
-members: 80
+cohesion: 0.06
+members: 76
 ---
 
 # penyaji.mjs
 
-**Cohesion:** 0.05 - loosely connected
-**Members:** 80 nodes
+**Cohesion:** 0.06 - loosely connected
+**Members:** 76 nodes
 
 ## Members
 - [[ADR-0002_2]] - concept - apps/storefront/src/lib/csp-asal-media.ts
@@ -47,12 +47,9 @@ members: 80
 - [[findNewsRowTargetById()]] - code - apps/storefront/server/pengalihan-aturan.mjs
 - [[findVideoRowTargetById()]] - code - apps/storefront/server/pengalihan-aturan.mjs
 - [[fixtureDir()]] - code - apps/storefront/tests/katalog-csp-media.test.ts
-- [[ga-csp.test.ts]] - code - apps/storefront/tests/ga-csp.test.ts
-- [[ga.test.ts]] - code - apps/storefront/tests/ga.test.ts
-- [[ga.ts]] - code - apps/storefront/src/lib/ga.ts
+- [[hasNewsSurface()]] - code - apps/storefront/server/penyaji.mjs
 - [[isHealthzRequest()]] - code - apps/storefront/server/penyaji.mjs
 - [[isProductsRedirect()]] - code - apps/storefront/server/penyaji.mjs
-- [[isValidGaMeasurementId()]] - code - apps/storefront/src/lib/ga.ts
 - [[katalog-csp-media.test.ts]] - code - apps/storefront/tests/katalog-csp-media.test.ts
 - [[lastPathSegment()]] - code - apps/storefront/server/pengalihan-aturan.mjs
 - [[legacyRedirectLocation()]] - code - apps/storefront/server/penyaji.mjs
@@ -69,7 +66,6 @@ members: 80
 - [[preloadLinkHeaderValue()]] - code - apps/storefront/server/penyaji.mjs
 - [[readBuildId()]] - code - apps/storefront/server/penyaji.mjs
 - [[readCspOrigins()]] - code - apps/storefront/server/penyaji.mjs
-- [[readGaMeasurementId()]] - code - apps/storefront/src/lib/ga.ts
 - [[readLegacyRedirectMap()]] - code - apps/storefront/server/penyaji.mjs
 - [[resolveImgQuery()]] - code - apps/storefront/server/pengalihan-aturan.mjs
 - [[resolveRubriksQuery()]] - code - apps/storefront/server/pengalihan-aturan.mjs
@@ -78,7 +74,7 @@ members: 80
 - [[resolveVideoQuery()]] - code - apps/storefront/server/pengalihan-aturan.mjs
 - [[rowIdIndexFor()]] - code - apps/storefront/server/pengalihan-aturan.mjs
 - [[ruleBasedRedirectLocation()]] - code - apps/storefront/server/pengalihan-aturan.mjs
-- [[run()_4]] - code - apps/storefront/server/penyaji.mjs
+- [[run()_5]] - code - apps/storefront/server/penyaji.mjs
 - [[sanitizeOrigins()]] - code - apps/storefront/server/penyaji.mjs
 - [[securityHeaders()]] - code - apps/storefront/server/penyaji.mjs
 - [[securityHeadersWithCsp()]] - code - apps/storefront/server/penyaji.mjs
@@ -99,14 +95,13 @@ SORT file.name ASC
 ```
 
 ## Connections to other communities
-- 6 edges to [[_COMMUNITY_pagesindex.astro]]
-- 3 edges to [[_COMMUNITY_wilayah-checkout.ts]]
-- 2 edges to [[_COMMUNITY_buletin.ts]]
-- 2 edges to [[_COMMUNITY_profil.ts]]
+- 3 edges to [[_COMMUNITY_pemasaran.ts]]
+- 3 edges to [[_COMMUNITY_site.ts]]
+- 2 edges to [[_COMMUNITY_requireAwcmsOrigin]]
 
 ## Top bridge nodes
-- [[ga.ts]] - degree 8, connects to 3 communities
-- [[readGaMeasurementId()]] - degree 7, connects to 3 communities
+- [[penyaji.mjs]] - degree 40, connects to 1 community
 - [[csp-asal-media.ts]] - degree 8, connects to 1 community
+- [[buildCsp()]] - degree 6, connects to 1 community
 - [[buildCspOriginsArtifact()]] - degree 6, connects to 1 community
 - [[toko-csp.test.ts]] - degree 6, connects to 1 community

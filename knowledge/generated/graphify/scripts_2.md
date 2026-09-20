@@ -24,6 +24,7 @@ tags:
 - [[dbmigratecms]] - `contains` [EXTRACTED]
 - [[dbreset]] - `contains` [EXTRACTED]
 - [[dbseedcms]] - `contains` [EXTRACTED]
+- [[dbseedcmsprofil]] - `contains` [EXTRACTED]
 - [[dbup]] - `contains` [EXTRACTED]
 - [[dev_1]] - `contains` [EXTRACTED]
 - [[docsi18nstamp]] - `contains` [EXTRACTED]
@@ -37,6 +38,7 @@ tags:
 - [[release]] - `contains` [EXTRACTED]
 - [[serve_1]] - `contains` [EXTRACTED]
 - [[start_1]] - `contains` [EXTRACTED]
+- [[templateinit]] - `contains` [EXTRACTED]
 - [[test]] - `contains` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/scripts

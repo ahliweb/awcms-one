@@ -17,7 +17,6 @@ tags:
 - [[KOMISI_STATUS_LABELS]] - `contains` [EXTRACTED]
 - [[STATUS_LABELS_1]] - `contains` [EXTRACTED]
 - [[TokoApiError]] - `imports` [EXTRACTED]
-- [[afiliasi.astro]] - `imports_from` [EXTRACTED]
 - [[akun-klien.ts]] - `imports_from` [EXTRACTED]
 - [[akun-kontrak.ts]] - `imports_from` [EXTRACTED]
 - [[akun-sesi.ts]] - `imports_from` [EXTRACTED]
@@ -32,7 +31,7 @@ tags:
 - [[harga.ts]] - `imports_from` [EXTRACTED]
 - [[hideSubmitError()]] - `contains` [EXTRACTED]
 - [[loadMoreKomisi()]] - `contains` [EXTRACTED]
-- [[render()_2]] - `indirect_call` [INFERRED]
+- [[render()_1]] - `indirect_call` [INFERRED]
 - [[renderEnrolled()]] - `contains` [EXTRACTED]
 - [[root_5]] - `contains` [EXTRACTED]
 - [[showAccountView()]] - `contains` [EXTRACTED]
@@ -40,6 +39,7 @@ tags:
 - [[showGuestView()]] - `contains` [EXTRACTED]
 - [[showSubmitError()]] - `contains` [EXTRACTED]
 - [[toko-permintaan.ts]] - `imports_from` [EXTRACTED]
+- [[tokopagesakunafiliasi.astro]] - `imports_from` [EXTRACTED]
 - [[wa-fallback.ts]] - `imports_from` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/akun-afiliasits

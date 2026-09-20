@@ -19,7 +19,6 @@ tags:
 - [[buildWhatsappAccountMessage()]] - `imports` [EXTRACTED]
 - [[buildWhatsappUrl()]] - `imports` [EXTRACTED]
 - [[clearFieldErrors()_1]] - `contains` [EXTRACTED]
-- [[daftar.astro]] - `imports_from` [EXTRACTED]
 - [[hideSubmitError()_5]] - `contains` [EXTRACTED]
 - [[mintaKode()]] - `imports` [EXTRACTED]
 - [[root_11]] - `contains` [EXTRACTED]
@@ -32,6 +31,7 @@ tags:
 - [[simpanSesi()]] - `imports` [EXTRACTED]
 - [[startResendCountdown()]] - `contains` [EXTRACTED]
 - [[toko-permintaan.ts]] - `imports_from` [EXTRACTED]
+- [[tokopagesdaftar.astro]] - `imports_from` [EXTRACTED]
 - [[verifikasiKode()]] - `imports` [EXTRACTED]
 - [[wa-fallback.ts]] - `imports_from` [EXTRACTED]
 

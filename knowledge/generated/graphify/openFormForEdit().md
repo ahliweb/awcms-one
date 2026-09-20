@@ -15,6 +15,6 @@ tags:
 - [[akun-alamat.ts]] - `contains` [EXTRACTED]
 - [[applyRegionSelection()]] - `calls` [EXTRACTED]
 - [[clearFieldErrors()]] - `calls` [EXTRACTED]
-- [[renderList()_1]] - `calls` [EXTRACTED]
+- [[renderList()]] - `calls` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/akun-alamatts

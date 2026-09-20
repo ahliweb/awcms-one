@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/awcms-media.test.ts"
 type: "code"
-community: "media.ts"
+community: "portable-text.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/mediats
+  - community/portable-textts
 ---
 
 # awcms-media.test.ts
@@ -22,4 +22,4 @@ tags:
 - [[resolveOneMedia()]] - `imports` [EXTRACTED]
 - [[uuid()]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/mediats
+#graphify/code #graphify/EXTRACTED #community/portable-textts

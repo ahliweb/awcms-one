@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/berita-feed.test.ts"
 type: "code"
-community: "portable-text.ts"
+community: "video/[slug].astro"
 location: "L27"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/portable-textts
+  - community/video/slugastro
 ---
 
 # extractItems()
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[berita-feed.test.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/portable-textts
+#graphify/code #graphify/EXTRACTED #community/video/slugastro

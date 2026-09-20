@@ -12,11 +12,11 @@ tags:
 # meta-sosial-build-smoke.test.ts
 
 ## Connections
-- [[canSpawnBun()_8]] - `contains` [EXTRACTED]
+- [[canSpawnBun()_14]] - `contains` [EXTRACTED]
 - [[headOf()]] - `contains` [EXTRACTED]
 - [[preIssue54OgBlock()]] - `contains` [EXTRACTED]
 - [[relLinks()]] - `contains` [EXTRACTED]
 - [[socialMeta()]] - `contains` [EXTRACTED]
-- [[waitForStub()_8]] - `contains` [EXTRACTED]
+- [[waitForStub()_14]] - `contains` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/meta-sosial-build-smoketestts

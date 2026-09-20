@@ -1,18 +1,18 @@
 ---
-source_file: "apps/storefront/tests/katalog-build-smoke.test.ts"
+source_file: "apps/storefront/tests/akun-dashboard-build-smoke.test.ts"
 type: "code"
-community: "bun"
-location: "L21"
+community: "akun-dashboard-build-smoke.test.ts"
+location: "L20"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/bun
+  - community/akun-dashboard-build-smoketestts
 ---
 
 # canSpawnBun()
 
 ## Connections
+- [[akun-dashboard-build-smoke.test.ts]] - `contains` [EXTRACTED]
 - [[bun_1]] - `references` [EXTRACTED]
-- [[katalog-build-smoke.test.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/bun
+#graphify/code #graphify/EXTRACTED #community/akun-dashboard-build-smoketestts

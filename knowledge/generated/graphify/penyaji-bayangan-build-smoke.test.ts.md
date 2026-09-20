@@ -12,7 +12,7 @@ tags:
 # penyaji-bayangan-build-smoke.test.ts
 
 ## Connections
-- [[canSpawnBun()_9]] - `contains` [EXTRACTED]
+- [[canSpawnBun()_15]] - `contains` [EXTRACTED]
 - [[waitForHttp()_1]] - `contains` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/bun

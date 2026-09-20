@@ -13,7 +13,7 @@ tags:
 
 ## Connections
 - [[ADR-0002]] - `cites` [EXTRACTED]
-- [[ADR-0007_2]] - `cites` [EXTRACTED]
+- [[ADR-0007_1]] - `cites` [EXTRACTED]
 - [[PREVIEW_PORT]] - `imports` [EXTRACTED]
 - [[STUB_PORT]] - `imports` [EXTRACTED]
 - [[globalSetup()]] - `contains` [EXTRACTED]

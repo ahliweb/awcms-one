@@ -2,7 +2,7 @@
 source_file: "apps/storefront/tests/logo-instansi-build-smoke.test.ts"
 type: "code"
 community: "logo-instansi-build-smoke.test.ts"
-location: "L34"
+location: "L35"
 tags:
   - graphify/code
   - graphify/EXTRACTED

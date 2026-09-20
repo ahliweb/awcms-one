@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/logo-instansi.test.ts"
 type: "code"
-community: "media.ts"
+community: "lembaga.ts"
 location: "L29"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/mediats
+  - community/lembagats
 ---
 
 # institution()
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[logo-instansi.test.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/mediats
+#graphify/code #graphify/EXTRACTED #community/lembagats

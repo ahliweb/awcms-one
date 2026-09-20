@@ -15,5 +15,6 @@ tags:
 - [[berita.ts]] - `contains` [EXTRACTED]
 - [[navigasi-berita.test.ts]] - `imports` [EXTRACTED]
 - [[navigasi-berita.ts]] - `imports` [EXTRACTED]
+- [[navigasi-profil.ts]] - `imports` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/navigasi-beritats

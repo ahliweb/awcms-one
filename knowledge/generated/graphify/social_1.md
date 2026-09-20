@@ -1,5 +1,5 @@
 ---
-source_file: "apps/storefront/src/pages/video/[slug].astro"
+source_file: "apps/storefront/src/profil/berita/pages/video/[slug].astro"
 type: "code"
 community: "video/[slug].astro"
 location: "L83"

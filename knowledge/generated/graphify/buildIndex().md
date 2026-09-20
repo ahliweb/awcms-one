@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/berita.ts"
 type: "code"
-community: "navigasi-berita.ts"
+community: "berita.ts"
 location: "L330"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/navigasi-beritats
+  - community/beritats
 ---
 
 # buildIndex()
@@ -21,9 +21,9 @@ tags:
 - [[getIndex()]] - `calls` [EXTRACTED]
 - [[getMitraList()_1]] - `calls` [EXTRACTED]
 - [[getResolvableRegionsByCode()]] - `calls` [EXTRACTED]
-- [[isPubliclyVisible()_1]] - `calls` [EXTRACTED]
+- [[isPubliclyVisible()]] - `calls` [EXTRACTED]
 - [[resolveMedia()]] - `calls` [EXTRACTED]
 - [[toPostSummary()]] - `calls` [EXTRACTED]
 - [[toRegionRef()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/navigasi-beritats
+#graphify/code #graphify/EXTRACTED #community/beritats

@@ -2,7 +2,7 @@
 source_file: "apps/storefront/tests/dengar-build-smoke.test.ts"
 type: "code"
 community: "dengar-build-smoke.test.ts"
-location: "L35"
+location: "L36"
 tags:
   - graphify/code
   - graphify/EXTRACTED

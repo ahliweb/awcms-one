@@ -1,12 +1,12 @@
 ---
-source_file: "apps/storefront/src/pages/rubrik/[slug]/index.astro"
+source_file: "apps/storefront/src/profil/berita/pages/rubrik/[slug]/index.astro"
 type: "code"
-community: "[slug]/feed.xml.ts"
+community: "BeritaLayout.astro"
 location: "L37"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/slug/feedxmlts
+  - community/BeritaLayoutastro
 ---
 
 # paged
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[slugindex.astro]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/slug/feedxmlts
+#graphify/code #graphify/EXTRACTED #community/BeritaLayoutastro

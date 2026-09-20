@@ -1,12 +1,12 @@
 ---
-source_file: "apps/storefront/src/pages/rubrik/[slug]/index.astro"
+source_file: "apps/storefront/src/profil/berita/pages/rubrik/[slug]/index.astro"
 type: "code"
-community: "[slug]/feed.xml.ts"
+community: "BeritaLayout.astro"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/slug/feedxmlts
+  - community/BeritaLayoutastro
 ---
 
 # [slug]/index.astro
@@ -16,17 +16,17 @@ tags:
 - [[ROUTES_1]] - `imports` [EXTRACTED]
 - [[RubrikBody.astro]] - `imports_from` [EXTRACTED]
 - [[berita.ts]] - `imports_from` [EXTRACTED]
-- [[canonicalPath_5]] - `contains` [EXTRACTED]
+- [[canonicalPath_6]] - `contains` [EXTRACTED]
 - [[flattenRubrikTree()]] - `imports` [EXTRACTED]
 - [[getRubrik()]] - `imports` [EXTRACTED]
 - [[getRubrikTree()]] - `imports` [EXTRACTED]
-- [[getStaticPaths()_12]] - `contains` [EXTRACTED]
+- [[getStaticPaths()_9]] - `contains` [EXTRACTED]
 - [[meta-sosial.ts]] - `imports_from` [EXTRACTED]
 - [[paged_1]] - `contains` [EXTRACTED]
 - [[paginate()]] - `imports` [EXTRACTED]
 - [[paginationLinks_1]] - `contains` [EXTRACTED]
 - [[routes.ts]] - `imports_from` [EXTRACTED]
 - [[rubrikPaginationLinks()]] - `imports` [EXTRACTED]
-- [[{ slug }_4]] - `contains` [EXTRACTED]
+- [[{ slug }_5]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/slug/feedxmlts
+#graphify/code #graphify/EXTRACTED #community/BeritaLayoutastro

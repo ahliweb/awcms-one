@@ -1,21 +1,18 @@
 ---
-source_file: "apps/storefront/src/pages/rubrik/[slug]/halaman/[n].astro"
+source_file: "apps/storefront/src/profil/berita/pages/video/[slug].astro"
 type: "code"
-community: "[slug]/feed.xml.ts"
-location: "L19"
+community: "getVideo"
+location: "L34"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/slug/feedxmlts
+  - community/getVideo
 ---
 
 # getStaticPaths()
 
 ## Connections
-- [[n.astro]] - `contains` [EXTRACTED]
-- [[flattenRubrikTree()]] - `calls` [EXTRACTED]
-- [[getRubrik()]] - `calls` [EXTRACTED]
-- [[getRubrikTree()]] - `calls` [EXTRACTED]
-- [[paginate()]] - `calls` [EXTRACTED]
+- [[getVideo()]] - `calls` [EXTRACTED]
+- [[videoslug.astro]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/slug/feedxmlts
+#graphify/code #graphify/EXTRACTED #community/getVideo

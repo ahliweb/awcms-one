@@ -22,9 +22,19 @@ flowchart LR
 
 If you find yourself wanting a third option — a server-rendered route, a runtime credential in `apps/storefront/server/penyaji.mjs` — stop and read ADR-0007's trade-off table first. That exact idea was proposed and rejected for cart/checkout.
 
+## Choose the profile group first (issue #137, ADR-0018 D2/D3)
+
+Every page belongs to exactly one build-profile group — `shared`, `toko`, or `berita` — decided by [ADR-0018's profile matrix, kept current in `docs/template.md`](../../../docs/template.md#the-profile-matrix). Before adding a route, ask which group it belongs to:
+
+- **Every profile ships it** (a page every deployment needs, regardless of commerce/news) → `shared` → the file goes under `apps/storefront/src/pages/**`, exactly as ordinary Astro file-based routing.
+- **Only a commerce build ships it** (cart, checkout, product, category, account…) → `toko` → the file goes under `apps/storefront/src/profil/toko/pages/**`, same relative path it would have had under `src/pages/`.
+- **Only a news build ships it** (article, rubric, author, region…) → `berita` → `apps/storefront/src/profil/berita/pages/**`.
+
+`apps/storefront/integrations/profil.mjs` injects every page under an active group's `pages/**` before Astro scans `src/pages/` — the route pattern is derived from the file's path exactly like ordinary file-based routing (`feed.xml.ts` → `/feed.xml`), and no page in either location may set `prerender = false`. Register the route in `apps/storefront/src/config/routes.ts`'s `ROUTE_GROUPS` regardless of which group it is in — an unannotated key is a type error. Add the new file to the matrix in `docs/template.md` in the same change; `apps/storefront/tests/profil-integrasi.test.ts` fails the build if the tree and that table disagree. If the page adds a nav link, a footer link, a sitemap source, a feed, or a robots rule, wire it through `apps/storefront/src/config/profil.ts` (per-group lists) rather than adding a standalone conditional elsewhere — that module is the single place every profile-aware consumer reads from.
+
 ## Adding a build-time page (the common case: catalog, news, a static page)
 
-1. Add the route file under `apps/storefront/src/pages/` (Astro file-based routing — `apps/storefront/src/pages/foo/[slug].astro` → `/foo/{slug}`). Register it in `apps/storefront/src/config/routes.ts` if the route is one other pages link to.
+1. Add the route file under the group's `pages/` directory chosen above (`apps/storefront/src/pages/` for `shared`, `apps/storefront/src/profil/<group>/pages/` for `toko`/`berita`) — Astro file-based routing either way (`foo/[slug].astro` → `/foo/{slug}`). Register it in `apps/storefront/src/config/routes.ts` if the route is one other pages link to.
 2. Fetch its data in the page's frontmatter or a `getStaticPaths()`, through a function in `apps/storefront/src/lib/awcms/` (e.g. `catalog.ts`, `blog.ts`, `pemasaran.ts`) — never a raw `fetch()` inline in a page. These functions call `apps/cms`'s **owner** API (`AWCMS_API_TOKEN`, read-only, build-time only) and are memoized per build, so multiple pages reading the same resource do not refetch it.
 3. If the page renders an image whose origin isn't already `'self'`, or otherwise needs a new external origin, check [`docs/arsitektur.md`](../../../docs/arsitektur.md)'s CSP section — `img-src` is *derived*, not configured; a new image field usually needs no CSP change at all, because `csp-asal-media.ts` collects origins from content automatically.
 4. If the page should appear in the sitemap, register a source: `registerSitemapSource(name, asyncFn)` in `apps/storefront/src/lib/sitemap-sources.ts` or `sitemap-katalog.ts`.
@@ -72,9 +82,19 @@ AWCMS_API_URL=http://localhost:4310 AWCMS_API_TOKEN=stub-token \
 `apps/storefront/scripts/stub-awcms.mjs` serves every endpoint this app calls, including the storefront-commerce state machine (quote → create order → track → confirm payment → cancel) from fixtures under `tests/fixtures/awcms/`. If your page calls a new endpoint, extend the stub and its fixtures in the same change — a page whose only proof of correctness is "it compiled" is not proven.
 
 ```bash
-bun run check         # astro check — type errors
-bun test               # from the repo root — every storefront unit/build-smoke/route test runs here
+bun run check         # astro check — type errors, checks every profile's src/profil/** too
+bun test               # from the repo root — every storefront unit/build-smoke/route test runs here (SITE_PROFILE=toko, the default)
 bun run test:e2e        # inside apps/storefront, only for a real cart/checkout/tracking change — Playwright, real Chromium
 ```
+
+**If your page is not in the `shared` group, also run its own profile's smoke tests** — the default `bun test` pins `SITE_PROFILE=toko` (or builds all three, for the `profil-*` suites specifically), so a `berita`-only regression can otherwise hide behind a green default run:
+
+```bash
+cd apps/storefront
+SITE_PROFILE=berita bun run check                                              # or landing
+SITE_PROFILE=berita bun test tests/profil-build-smoke.test.ts tests/profil-routes.test.ts
+```
+
+CI runs exactly this as a 3-leg matrix (`Check (toko)`, `Check (berita)`, `Check (landing)` — all three are required status checks on `main`); see [`docs/pengujian.md`](../../../docs/pengujian.md)'s "build-profile tier" for what each assertion actually proves.
 
 `bun run audit:dokumen`/`audit:translation` (from the root) if you touched a `docs/**` file in the same change — see [`docs/pengujian.md`](../../../docs/pengujian.md) for what each tier actually proves.

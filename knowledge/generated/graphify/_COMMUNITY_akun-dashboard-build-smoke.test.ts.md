@@ -12,8 +12,8 @@ members: 4
 ## Members
 - [[akun-dashboard-build-smoke.test.ts]] - code - apps/storefront/tests/akun-dashboard-build-smoke.test.ts
 - [[assertNoInlineScriptOrStyle()_1]] - code - apps/storefront/tests/akun-dashboard-build-smoke.test.ts
-- [[canSpawnBun()_14]] - code - apps/storefront/tests/akun-dashboard-build-smoke.test.ts
-- [[waitForStub()_13]] - code - apps/storefront/tests/akun-dashboard-build-smoke.test.ts
+- [[canSpawnBun()_2]] - code - apps/storefront/tests/akun-dashboard-build-smoke.test.ts
+- [[waitForStub()_2]] - code - apps/storefront/tests/akun-dashboard-build-smoke.test.ts
 
 ## Live Query (requires Dataview plugin)
 
@@ -26,4 +26,4 @@ SORT file.name ASC
 - 1 edge to [[_COMMUNITY_bun]]
 
 ## Top bridge nodes
-- [[canSpawnBun()_14]] - degree 2, connects to 1 community
+- [[canSpawnBun()_2]] - degree 2, connects to 1 community

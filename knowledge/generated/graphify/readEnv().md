@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/env.ts"
 type: "code"
-community: "wilayah-checkout.ts"
+community: "site.ts"
 location: "L36"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/wilayah-checkoutts
+  - community/sitets
 ---
 
 # readEnv()
@@ -14,14 +14,15 @@ tags:
 ## Connections
 - [[BaseLayout.astro]] - `imports` [EXTRACTED]
 - [[apiOrigin()]] - `calls` [EXTRACTED]
+- [[awcmsprofil.ts]] - `imports` [EXTRACTED]
 - [[awcmsGet()]] - `calls` [EXTRACTED]
 - [[baseUrl()]] - `calls` [EXTRACTED]
 - [[client.ts]] - `imports` [EXTRACTED]
+- [[configprofil.ts]] - `imports` [EXTRACTED]
 - [[configuredProvinceCodes()]] - `calls` [EXTRACTED]
 - [[env.ts]] - `contains` [EXTRACTED]
 - [[ga.ts]] - `imports` [EXTRACTED]
 - [[mergeSiteIdentity()]] - `calls` [EXTRACTED]
-- [[profil.ts]] - `imports` [EXTRACTED]
 - [[readEnvOr()]] - `calls` [EXTRACTED]
 - [[readGaMeasurementId()]] - `calls` [EXTRACTED]
 - [[requireAwcmsOrigin()]] - `calls` [EXTRACTED]
@@ -31,4 +32,4 @@ tags:
 - [[toko-origin.ts]] - `imports` [EXTRACTED]
 - [[wilayah-checkout.ts]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/wilayah-checkoutts
+#graphify/code #graphify/EXTRACTED #community/sitets

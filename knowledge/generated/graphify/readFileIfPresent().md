@@ -12,10 +12,12 @@ tags:
 # readFileIfPresent()
 
 ## Connections
+- [[buildPlan()]] - `calls` [EXTRACTED]
 - [[check-docs-translation.mjs]] - `imports` [EXTRACTED]
 - [[docs-i18n-stamp.mjs]] - `imports` [EXTRACTED]
 - [[files.mjs]] - `contains` [EXTRACTED]
 - [[knowledge-graph-combine.mjs]] - `imports` [EXTRACTED]
+- [[plan.mjs]] - `imports` [EXTRACTED]
 - [[runChecks()]] - `calls` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/audit-grafmjs

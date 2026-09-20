@@ -15,15 +15,15 @@ tags:
 - [[BeritaLayout.astro]] - `imports_from` [EXTRACTED]
 - [[IklanSlot.astro]] - `imports_from` [EXTRACTED]
 - [[ROUTES_1]] - `imports` [EXTRACTED]
+- [[awcmsprofil.ts]] - `imports_from` [EXTRACTED]
 - [[getDaerahList()]] - `imports` [EXTRACTED]
 - [[getMitraList()]] - `imports` [EXTRACTED]
 - [[getNavUtama()]] - `imports` [EXTRACTED]
 - [[getPerusahaanLinks()]] - `imports` [EXTRACTED]
 - [[getUmumList()]] - `imports` [EXTRACTED]
 - [[navigasi-berita.ts]] - `imports_from` [EXTRACTED]
-- [[profil.ts]] - `imports_from` [EXTRACTED]
 - [[routes.ts]] - `imports_from` [EXTRACTED]
 - [[rubrikColumn]] - `contains` [EXTRACTED]
-- [[year_1]] - `contains` [EXTRACTED]
+- [[year]] - `contains` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/navigasi-beritats

@@ -12,7 +12,7 @@ tags:
 # portable-text.ts
 
 ## Connections
-- [[ADR-0100_1]] - `cites` [EXTRACTED]
+- [[ADR-0100_2]] - `cites` [EXTRACTED]
 - [[ALLOWED_LINK_SCHEMES]] - `contains` [EXTRACTED]
 - [[ArtikelView.astro]] - `imports_from` [EXTRACTED]
 - [[BLOCK_STYLES]] - `contains` [EXTRACTED]
@@ -45,7 +45,7 @@ tags:
 - [[portable-text.test.ts]] - `imports_from` [EXTRACTED]
 - [[renderGalleryItem()]] - `contains` [EXTRACTED]
 - [[renderGalleryNode()]] - `contains` [EXTRACTED]
-- [[renderList()]] - `contains` [EXTRACTED]
+- [[renderList()_1]] - `contains` [EXTRACTED]
 - [[renderPlaceholder()]] - `contains` [EXTRACTED]
 - [[renderPortableText()]] - `contains` [EXTRACTED]
 - [[renderProseBlock()]] - `contains` [EXTRACTED]

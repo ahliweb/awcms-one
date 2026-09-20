@@ -14,7 +14,7 @@ tags:
 ## Connections
 - [[404.astro]] - `imports_from` [EXTRACTED]
 - [[Header.astro]] - `imports_from` [EXTRACTED]
-- [[cari.astro]] - `imports_from` [EXTRACTED]
-- [[routes.ts]] - `imports_from` [EXTRACTED]
+- [[configprofil.ts]] - `imports_from` [EXTRACTED]
+- [[tokopagescari.astro]] - `imports_from` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/routests

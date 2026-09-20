@@ -1,17 +1,17 @@
 ---
-source_file: "apps/storefront/src/pages/berita/[slug].astro"
+source_file: "apps/storefront/src/profil/berita/pages/daerah/[slug].astro"
 type: "code"
-community: "video/[slug].astro"
-location: "L45"
+community: "wilayah.ts"
+location: "L18"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/video/slugastro
+  - community/wilayahts
 ---
 
 # { slug }
 
 ## Connections
-- [[beritaslug.astro]] - `contains` [EXTRACTED]
+- [[daerahslug.astro]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/video/slugastro
+#graphify/code #graphify/EXTRACTED #community/wilayahts

@@ -1,18 +1,18 @@
 ---
 source_file: "apps/storefront/tests/katalog-build-smoke.test.ts"
 type: "code"
-community: "bun"
+community: "katalog-build-smoke.test.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/bun
+  - community/katalog-build-smoketestts
 ---
 
 # katalog-build-smoke.test.ts
 
 ## Connections
-- [[canSpawnBun()_2]] - `contains` [EXTRACTED]
-- [[waitForStub()_2]] - `contains` [EXTRACTED]
+- [[canSpawnBun()_11]] - `contains` [EXTRACTED]
+- [[waitForStub()_11]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/bun
+#graphify/code #graphify/EXTRACTED #community/katalog-build-smoketestts

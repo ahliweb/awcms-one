@@ -1,21 +1,21 @@
 ---
-source_file: "apps/storefront/src/scripts/akun-alamat.ts"
+source_file: "apps/storefront/src/lib/portable-text.ts"
 type: "code"
-community: "akun-alamat.ts"
-location: "L136"
+community: "portable-text.ts"
+location: "L276"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/akun-alamatts
+  - community/portable-textts
 ---
 
 # renderList()
 
 ## Connections
-- [[akun-alamat.ts]] - `contains` [EXTRACTED]
-- [[deleteAlamat()]] - `calls` [EXTRACTED]
-- [[loadList()]] - `calls` [EXTRACTED]
-- [[openFormForEdit()]] - `calls` [EXTRACTED]
-- [[setDefault()]] - `calls` [EXTRACTED]
+- [[blockText()]] - `calls` [EXTRACTED]
+- [[isListItem()]] - `calls` [EXTRACTED]
+- [[listLevel()]] - `calls` [EXTRACTED]
+- [[portable-text.ts]] - `contains` [EXTRACTED]
+- [[renderPortableText()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/akun-alamatts
+#graphify/code #graphify/EXTRACTED #community/portable-textts

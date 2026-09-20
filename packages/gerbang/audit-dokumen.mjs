@@ -478,6 +478,13 @@ const EXCLUDED_PATHS = new Map([
     }
   ],
   [
+    "packages/kontrak",
+    {
+      reason:
+        "not built yet — issue #6 (the type-only DTO contract package + its import-direction gate). Named here to describe the planned workspace layout."
+    }
+  ],
+  [
     "apps/examples",
     {
       reason:
@@ -497,34 +504,6 @@ const EXCLUDED_PATHS = new Map([
         "docs/adr/0018-awcms-one-is-a-template-with-build-profiles-and-an-idempotent-init.md",
         "docs/adr/0018-awcms-one-is-a-template-with-build-profiles-and-an-idempotent-init.id.md"
       ]
-    }
-  ],
-  [
-    "apps/storefront/integrations/profil.mjs",
-    {
-      reason:
-        "not built yet — issue #137 (the injectRoute Astro integration ADR-0018 D3 specifies). Named here to describe the planned mechanism."
-    }
-  ],
-  [
-    "apps/storefront/src/config/profil.ts",
-    {
-      reason:
-        "not built yet — issue #137 (the SITE_PROFILE config module ADR-0018 D2/D3 specifies). Named here to describe the planned mechanism."
-    }
-  ],
-  [
-    "tests/template-init.test.mjs",
-    {
-      reason:
-        "not built yet — issue #138 (bun run template:init's own idempotency/dry-run/exit-code test suite). Named here to describe the planned mechanism."
-    }
-  ],
-  [
-    "packages/kontrak",
-    {
-      reason:
-        "not built yet — issue #6 (the type-only DTO contract package + its import-direction gate). Named here to describe the planned workspace layout."
     }
   ],
   [

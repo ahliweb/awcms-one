@@ -10,9 +10,9 @@ members: 3
 **Members:** 3 nodes
 
 ## Members
-- [[canSpawnBun()_1]] - code - apps/storefront/tests/checkout-build-smoke.test.ts
+- [[canSpawnBun()_8]] - code - apps/storefront/tests/checkout-build-smoke.test.ts
 - [[checkout-build-smoke.test.ts]] - code - apps/storefront/tests/checkout-build-smoke.test.ts
-- [[waitForStub()_1]] - code - apps/storefront/tests/checkout-build-smoke.test.ts
+- [[waitForStub()_8]] - code - apps/storefront/tests/checkout-build-smoke.test.ts
 
 ## Live Query (requires Dataview plugin)
 
@@ -25,4 +25,4 @@ SORT file.name ASC
 - 1 edge to [[_COMMUNITY_bun]]
 
 ## Top bridge nodes
-- [[canSpawnBun()_1]] - degree 2, connects to 1 community
+- [[canSpawnBun()_8]] - degree 2, connects to 1 community

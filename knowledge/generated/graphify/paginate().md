@@ -1,21 +1,21 @@
 ---
 source_file: "apps/storefront/src/lib/berita.ts"
 type: "code"
-community: "[slug]/feed.xml.ts"
+community: "BeritaLayout.astro"
 location: "L714"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/slug/feedxmlts
+  - community/BeritaLayoutastro
 ---
 
 # paginate()
 
 ## Connections
-- [[n.astro]] - `imports` [EXTRACTED]
 - [[slugindex.astro]] - `imports` [EXTRACTED]
 - [[berita-rubrik.test.ts]] - `imports` [EXTRACTED]
 - [[berita.ts]] - `contains` [EXTRACTED]
-- [[getStaticPaths()_11]] - `calls` [EXTRACTED]
+- [[beritapagesrubrikslughalamann.astro]] - `imports` [EXTRACTED]
+- [[getStaticPaths()_8]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/slug/feedxmlts
+#graphify/code #graphify/EXTRACTED #community/BeritaLayoutastro

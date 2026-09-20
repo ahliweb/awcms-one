@@ -11,7 +11,7 @@ members: 49
 
 ## Members
 - [[ACCOUNTS]] - code - apps/storefront/scripts/stub-awcms.mjs
-- [[ADR-0003_4]] - concept - apps/storefront/scripts/stub-awcms.mjs
+- [[ADR-0003_3]] - concept - apps/storefront/scripts/stub-awcms.mjs
 - [[ANALYTICS_RANGES]] - code - apps/storefront/scripts/stub-awcms.mjs
 - [[FIXTURES]] - code - apps/storefront/scripts/stub-awcms.mjs
 - [[IDEMPOTENCY_KEYS]] - code - apps/storefront/scripts/stub-awcms.mjs

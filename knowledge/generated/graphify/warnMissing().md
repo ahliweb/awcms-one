@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/awcms/pemasaran.ts"
 type: "code"
-community: "pages/index.astro"
+community: "pemasaran.ts"
 location: "L271"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/pages/indexastro
+  - community/pemasarants
 ---
 
 # warnMissing()
@@ -20,4 +20,4 @@ tags:
 - [[getStoreSettings()]] - `calls` [EXTRACTED]
 - [[pemasaran.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/pages/indexastro
+#graphify/code #graphify/EXTRACTED #community/pemasarants

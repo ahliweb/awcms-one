@@ -1,17 +1,17 @@
 ---
-source_file: "apps/storefront/src/pages/index.astro"
+source_file: "apps/storefront/src/profil/toko/Beranda.astro"
 type: "code"
-community: "pages/index.astro"
-location: "L54"
+community: "pemasaran.ts"
+location: "L59"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/pages/indexastro
+  - community/pemasarants
 ---
 
 # starText()
 
 ## Connections
-- [[pagesindex.astro]] - `contains` [EXTRACTED]
+- [[tokoBeranda.astro]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/pages/indexastro
+#graphify/code #graphify/EXTRACTED #community/pemasarants

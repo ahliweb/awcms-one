@@ -1,22 +1,22 @@
 ---
 source_file: "apps/storefront/src/config/site.ts"
 type: "code"
-community: "site.ts"
+community: "video/[slug].astro"
 location: "L33"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/sitets
+  - community/video/slugastro
 ---
 
 # absoluteUrl()
 
 ## Connections
 - [[ArtikelView.astro]] - `imports` [EXTRACTED]
-- [[GET()_1]] - `calls` [EXTRACTED]
 - [[GET()_2]] - `calls` [EXTRACTED]
-- [[GET()_7]] - `calls` [EXTRACTED]
+- [[GET()_6]] - `calls` [EXTRACTED]
 - [[GET()_9]] - `calls` [EXTRACTED]
+- [[GET()_10]] - `calls` [EXTRACTED]
 - [[slugfeed.xml.ts]] - `imports` [EXTRACTED]
 - [[beritafeed.xml.ts]] - `imports` [EXTRACTED]
 - [[breadcrumbListSchema()]] - `calls` [EXTRACTED]
@@ -32,4 +32,4 @@ tags:
 - [[sitemap-katalog.ts]] - `imports` [EXTRACTED]
 - [[sitemap-sources.ts]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/sitets
+#graphify/code #graphify/EXTRACTED #community/video/slugastro

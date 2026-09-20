@@ -38,24 +38,24 @@ SORT file.name ASC
 ```
 
 ## Connections to other communities
-- 6 edges to [[_COMMUNITY_akun-pesanan.ts]]
 - 5 edges to [[_COMMUNITY_bacaSesi]]
 - 4 edges to [[_COMMUNITY_akun-klien.ts]]
 - 4 edges to [[_COMMUNITY_daftar.ts]]
 - 4 edges to [[_COMMUNITY_toko-klien.ts]]
+- 4 edges to [[_COMMUNITY_akun-pesanan.ts]]
 - 3 edges to [[_COMMUNITY_checkout.ts]]
-- 2 edges to [[_COMMUNITY_buletin.ts]]
-- 2 edges to [[_COMMUNITY_routes.ts]]
+- 3 edges to [[_COMMUNITY_formatPrice]]
+- 2 edges to [[_COMMUNITY_requireAwcmsOrigin]]
 - 2 edges to [[_COMMUNITY_akun.ts]]
 - 2 edges to [[_COMMUNITY_akun-afiliasi.ts]]
 - 2 edges to [[_COMMUNITY_akun-alamat.ts]]
 - 2 edges to [[_COMMUNITY_akun-ulasan.ts]]
-- 1 edge to [[_COMMUNITY_formatPrice]]
-- 1 edge to [[_COMMUNITY_profil.ts]]
+- 2 edges to [[_COMMUNITY_routes.ts]]
+- 1 edge to [[_COMMUNITY_awcmsprofil.ts]]
 
 ## Top bridge nodes
 - [[toko-permintaan.ts]] - degree 18, connects to 11 communities
 - [[TokoApiError]] - degree 17, connects to 10 communities
 - [[masuk.ts]] - degree 23, connects to 7 communities
+- [[showWaFallback()_2]] - degree 4, connects to 2 communities
 - [[sendCode()_1]] - degree 7, connects to 1 community
-- [[showWaFallback()_2]] - degree 4, connects to 1 community

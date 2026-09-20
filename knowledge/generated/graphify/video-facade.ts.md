@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/scripts/video-facade.ts"
 type: "code"
-community: "video/[slug].astro"
+community: "video-facade.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/video/slugastro
+  - community/video-facadets
 ---
 
 # video-facade.ts
@@ -16,4 +16,4 @@ tags:
 - [[init()]] - `indirect_call` [INFERRED]
 - [[videoslug.astro]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/video/slugastro
+#graphify/code #graphify/EXTRACTED #community/video-facadets

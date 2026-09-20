@@ -1,23 +1,18 @@
 ---
-source_file: "apps/storefront/src/pages/berita/feed.xml.ts"
+source_file: "apps/storefront/src/pages/sitemap-[n].xml.ts"
 type: "code"
-community: "portable-text.ts"
-location: "L18"
+community: "sitemap.ts"
+location: "L22"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/portable-textts
+  - community/sitemapts
 ---
 
 # GET()
 
 ## Connections
-- [[absoluteUrl()]] - `calls` [EXTRACTED]
-- [[beritafeed.xml.ts]] - `contains` [EXTRACTED]
-- [[getPost()]] - `calls` [EXTRACTED]
-- [[getPosts()]] - `calls` [EXTRACTED]
-- [[getSiteIdentity()]] - `calls` [EXTRACTED]
-- [[renderBeritaRssXml()]] - `calls` [EXTRACTED]
-- [[renderPortableText()]] - `calls` [EXTRACTED]
+- [[renderUrlsetXml()]] - `calls` [EXTRACTED]
+- [[sitemap-n.xml.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/portable-textts
+#graphify/code #graphify/EXTRACTED #community/sitemapts

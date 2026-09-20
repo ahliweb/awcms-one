@@ -1,5 +1,5 @@
 ---
-source_file: "apps/storefront/src/pages/arsip/[yyyy]/[mm].astro"
+source_file: "apps/storefront/src/profil/berita/pages/arsip/[yyyy]/[mm].astro"
 type: "code"
 community: "Sidebar.astro"
 location: "L15"
@@ -12,6 +12,6 @@ tags:
 # { yyyy, mm }
 
 ## Connections
-- [[mm.astro]] - `contains` [EXTRACTED]
+- [[beritapagesarsipyyyymm.astro]] - `contains` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/Sidebarastro

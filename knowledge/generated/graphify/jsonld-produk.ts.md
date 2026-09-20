@@ -1,18 +1,18 @@
 ---
 source_file: "apps/storefront/src/lib/jsonld-produk.ts"
 type: "code"
-community: "product/[slug].astro"
+community: "kategori/[slug].astro"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/product/slugastro
+  - community/kategori/slugastro
 ---
 
 # jsonld-produk.ts
 
 ## Connections
-- [[BreadcrumbItem_1]] - `contains` [EXTRACTED]
+- [[BreadcrumbItem]] - `contains` [EXTRACTED]
 - [[CommerceCategory]] - `imports` [EXTRACTED]
 - [[CommerceProduct]] - `imports` [EXTRACTED]
 - [[CommerceProductVariant]] - `imports` [EXTRACTED]
@@ -25,4 +25,4 @@ tags:
 - [[kategorislug.astro]] - `imports_from` [EXTRACTED]
 - [[productslug.astro]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/product/slugastro
+#graphify/code #graphify/EXTRACTED #community/kategori/slugastro

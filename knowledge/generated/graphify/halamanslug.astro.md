@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/pages/halaman/[slug].astro"
 type: "code"
-community: "portable-text.ts"
+community: "pages.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/portable-textts
+  - community/pagests
 ---
 
 # halaman/[slug].astro
@@ -15,11 +15,11 @@ tags:
 - [[BaseLayout.astro]] - `imports_from` [EXTRACTED]
 - [[bodyHtml]] - `contains` [EXTRACTED]
 - [[getStaticPage()]] - `imports` [EXTRACTED]
-- [[getStaticPaths()_1]] - `contains` [EXTRACTED]
+- [[getStaticPaths()]] - `contains` [EXTRACTED]
 - [[listStaticPages()]] - `imports` [EXTRACTED]
 - [[pages.ts]] - `imports_from` [EXTRACTED]
 - [[portable-text.ts]] - `imports_from` [EXTRACTED]
 - [[renderPortableText()]] - `imports` [EXTRACTED]
-- [[{ slug }_1]] - `contains` [EXTRACTED]
+- [[{ slug }]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/portable-textts
+#graphify/code #graphify/EXTRACTED #community/pagests

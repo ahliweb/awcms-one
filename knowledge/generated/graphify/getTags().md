@@ -15,7 +15,7 @@ tags:
 - [[Sidebar.astro]] - `imports` [EXTRACTED]
 - [[berita.ts]] - `contains` [EXTRACTED]
 - [[getIndex()]] - `calls` [EXTRACTED]
-- [[getStaticPaths()_13]] - `calls` [EXTRACTED]
+- [[getStaticPaths()_10]] - `calls` [EXTRACTED]
 - [[sitemap-sources.ts]] - `imports` [EXTRACTED]
 - [[tagslug.astro]] - `imports` [EXTRACTED]
 

@@ -2,7 +2,7 @@
 source_file: "apps/storefront/tests/analitik-build-smoke.test.ts"
 type: "code"
 community: "analitik-build-smoke.test.ts"
-location: "L21"
+location: "L22"
 tags:
   - graphify/code
   - graphify/EXTRACTED

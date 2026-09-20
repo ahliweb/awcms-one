@@ -13,5 +13,6 @@ tags:
 
 ## Connections
 - [[ADR-0070_1]] - `cites` [EXTRACTED]
+- [[BERITA_PAGES]] - `contains` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/newsletter-path-contracttestts

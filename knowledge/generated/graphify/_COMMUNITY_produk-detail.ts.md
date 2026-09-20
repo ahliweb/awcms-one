@@ -31,11 +31,11 @@ SORT file.name ASC
 ```
 
 ## Connections to other communities
-- 3 edges to [[_COMMUNITY_productslug.astro]]
-- 2 edges to [[_COMMUNITY_catalog.ts]]
-- 2 edges to [[_COMMUNITY_formatPrice]]
+- 3 edges to [[_COMMUNITY_formatPrice]]
 - 2 edges to [[_COMMUNITY_keranjang-kontrak.ts]]
-- 1 edge to [[_COMMUNITY_harga.ts]]
+- 2 edges to [[_COMMUNITY_catalog.ts]]
+- 2 edges to [[_COMMUNITY_kategorislug.astro]]
+- 1 edge to [[_COMMUNITY_productslug.astro]]
 
 ## Top bridge nodes
 - [[produk-detail.ts]] - degree 18, connects to 5 communities

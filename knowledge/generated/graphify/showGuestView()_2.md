@@ -14,6 +14,6 @@ tags:
 ## Connections
 - [[akun-ulasan.ts]] - `contains` [EXTRACTED]
 - [[loadList()_1]] - `calls` [EXTRACTED]
-- [[render()_5]] - `calls` [EXTRACTED]
+- [[render()_4]] - `calls` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/akun-ulasants

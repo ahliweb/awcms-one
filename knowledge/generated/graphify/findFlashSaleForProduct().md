@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/awcms/pemasaran.ts"
 type: "code"
-community: "pemasaran.ts"
+community: "product/[slug].astro"
 location: "L195"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/pemasarants
+  - community/product/slugastro
 ---
 
 # findFlashSaleForProduct()
@@ -16,4 +16,4 @@ tags:
 - [[pemasaran.ts]] - `contains` [EXTRACTED]
 - [[productslug.astro]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/pemasarants
+#graphify/code #graphify/EXTRACTED #community/product/slugastro

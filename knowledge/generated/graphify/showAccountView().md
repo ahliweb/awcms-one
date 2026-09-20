@@ -14,7 +14,7 @@ tags:
 ## Connections
 - [[akun-afiliasi.ts]] - `contains` [EXTRACTED]
 - [[ambilAfiliasi()]] - `calls` [EXTRACTED]
-- [[render()_2]] - `calls` [EXTRACTED]
+- [[render()_1]] - `calls` [EXTRACTED]
 - [[renderEnrolled()]] - `calls` [EXTRACTED]
 - [[showEnrolView()]] - `calls` [EXTRACTED]
 - [[showGuestView()]] - `calls` [EXTRACTED]

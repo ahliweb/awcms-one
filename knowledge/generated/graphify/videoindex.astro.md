@@ -1,5 +1,5 @@
 ---
-source_file: "apps/storefront/src/pages/video/index.astro"
+source_file: "apps/storefront/src/profil/berita/pages/video/index.astro"
 type: "code"
 community: "routes.ts"
 location: "L1"

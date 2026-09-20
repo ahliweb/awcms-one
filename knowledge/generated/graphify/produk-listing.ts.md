@@ -29,13 +29,13 @@ tags:
 - [[paginationEl_1]] - `contains` [EXTRACTED]
 - [[parseNumberParam()]] - `contains` [EXTRACTED]
 - [[produk-index-klien.ts]] - `imports_from` [EXTRACTED]
-- [[produk.astro]] - `imports_from` [EXTRACTED]
 - [[readFormState()]] - `contains` [EXTRACTED]
 - [[readStateFromUrl()]] - `contains` [EXTRACTED]
-- [[render()_1]] - `contains` [EXTRACTED]
+- [[render()_7]] - `contains` [EXTRACTED]
 - [[renderPagination()]] - `imports` [EXTRACTED]
 - [[renderProdukGrid()]] - `imports` [EXTRACTED]
 - [[syncControlsToState()]] - `contains` [EXTRACTED]
+- [[tokopagesproduk.astro]] - `imports_from` [EXTRACTED]
 - [[writeStateToUrl()]] - `contains` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/produk-listingts

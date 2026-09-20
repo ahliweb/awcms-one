@@ -43,7 +43,7 @@ members: 43
 - [[isHttpUrl()]] - code - apps/storefront/src/lib/ikon-sosial.ts
 - [[kemampuanDariNavigator()]] - code - apps/storefront/src/scripts/bagikan.ts
 - [[libbagikan.ts]] - code - apps/storefront/src/lib/bagikan.ts
-- [[listSourceFiles()_1]] - code - apps/storefront/tests/bagikan.test.ts
+- [[listSourceFiles()]] - code - apps/storefront/tests/bagikan.test.ts
 - [[normalizeHost()]] - code - apps/storefront/src/lib/ikon-sosial.ts
 - [[penjadwalManual()]] - code - apps/storefront/tests/bagikan.test.ts
 - [[resolveFollowLinks()]] - code - apps/storefront/src/lib/bagikan.ts
@@ -62,7 +62,7 @@ SORT file.name ASC
 ```
 
 ## Connections to other communities
-- 2 edges to [[_COMMUNITY_profil.ts]]
+- 2 edges to [[_COMMUNITY_awcmsprofil.ts]]
 - 2 edges to [[_COMMUNITY_navigasi-berita.ts]]
 - 1 edge to [[_COMMUNITY_Sidebar.astro]]
 - 1 edge to [[_COMMUNITY_BeritaLayout.astro]]

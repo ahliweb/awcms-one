@@ -1,17 +1,17 @@
 ---
-source_file: "apps/storefront/src/pages/theme-tokens.css.ts"
+source_file: "apps/storefront/src/profil/toko/pages/feed.xml.ts"
 type: "code"
-community: "site.ts"
-location: "L21"
+community: "awcms/profil.ts"
+location: "L25"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/sitets
+  - community/awcms/profilts
 ---
 
 # prerender
 
 ## Connections
-- [[theme-tokens.css.ts]] - `contains` [EXTRACTED]
+- [[pagesfeed.xml.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/sitets
+#graphify/code #graphify/EXTRACTED #community/awcms/profilts

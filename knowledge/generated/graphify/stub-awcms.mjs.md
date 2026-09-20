@@ -13,7 +13,7 @@ tags:
 
 ## Connections
 - [[ACCOUNTS]] - `contains` [EXTRACTED]
-- [[ADR-0003_4]] - `cites` [EXTRACTED]
+- [[ADR-0003_3]] - `cites` [EXTRACTED]
 - [[ANALYTICS_RANGES]] - `contains` [EXTRACTED]
 - [[FIXTURES]] - `contains` [EXTRACTED]
 - [[IDEMPOTENCY_KEYS]] - `contains` [EXTRACTED]

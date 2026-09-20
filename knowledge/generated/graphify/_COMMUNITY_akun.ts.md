@@ -14,7 +14,7 @@ members: 11
 - [[akun.ts]] - code - apps/storefront/src/scripts/akun.ts
 - [[hideSubmitError()_4]] - code - apps/storefront/src/scripts/akun.ts
 - [[levelLabel()]] - code - apps/storefront/src/scripts/akun.ts
-- [[render()_6]] - code - apps/storefront/src/scripts/akun.ts
+- [[render()_5]] - code - apps/storefront/src/scripts/akun.ts
 - [[renderProfile()]] - code - apps/storefront/src/scripts/akun.ts
 - [[root_9]] - code - apps/storefront/src/scripts/akun.ts
 - [[showAccountView()_2]] - code - apps/storefront/src/scripts/akun.ts
@@ -32,13 +32,13 @@ SORT file.name ASC
 ## Connections to other communities
 - 6 edges to [[_COMMUNITY_bacaSesi]]
 - 5 edges to [[_COMMUNITY_akun-klien.ts]]
-- 4 edges to [[_COMMUNITY_akun-pesanan.ts]]
+- 3 edges to [[_COMMUNITY_formatPrice]]
 - 2 edges to [[_COMMUNITY_masuk.ts]]
-- 1 edge to [[_COMMUNITY_formatPrice]]
-- 1 edge to [[_COMMUNITY_profil.ts]]
+- 2 edges to [[_COMMUNITY_akun-pesanan.ts]]
+- 1 edge to [[_COMMUNITY_awcmsprofil.ts]]
 
 ## Top bridge nodes
 - [[akun.ts]] - degree 25, connects to 6 communities
-- [[render()_6]] - degree 6, connects to 1 community
+- [[showWaFallback()]] - degree 4, connects to 2 communities
+- [[render()_5]] - degree 6, connects to 1 community
 - [[showAccountView()_2]] - degree 6, connects to 1 community
-- [[showWaFallback()]] - degree 4, connects to 1 community

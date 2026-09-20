@@ -15,6 +15,7 @@ tags:
 - [[check-docs-translation.mjs]] - `imports_from` [EXTRACTED]
 - [[docs-i18n-stamp.mjs]] - `imports_from` [EXTRACTED]
 - [[knowledge-graph-combine.mjs]] - `imports_from` [EXTRACTED]
+- [[plan.mjs]] - `imports_from` [EXTRACTED]
 - [[readFileIfPresent()]] - `contains` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/audit-grafmjs

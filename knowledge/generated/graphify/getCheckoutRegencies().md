@@ -13,10 +13,10 @@ tags:
 
 ## Connections
 - [[getAllCheckoutRegencies()]] - `calls` [EXTRACTED]
-- [[getStaticPaths()_8]] - `calls` [EXTRACTED]
+- [[getStaticPaths()_12]] - `calls` [EXTRACTED]
 - [[listRegions()_1]] - `calls` [EXTRACTED]
+- [[tokopagesindexwilayah-kabupaten-provinceCode.json.ts]] - `imports` [EXTRACTED]
 - [[wilayah-checkout.test.ts]] - `imports` [EXTRACTED]
 - [[wilayah-checkout.ts]] - `contains` [EXTRACTED]
-- [[wilayah-kabupaten-provinceCode.json.ts]] - `imports` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/wilayah-checkoutts

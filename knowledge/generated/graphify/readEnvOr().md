@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/env.ts"
 type: "code"
-community: "wilayah-checkout.ts"
+community: "site.ts"
 location: "L42"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/wilayah-checkoutts
+  - community/sitets
 ---
 
 # readEnvOr()
@@ -16,4 +16,4 @@ tags:
 - [[readEnv()]] - `calls` [EXTRACTED]
 - [[site.ts]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/wilayah-checkoutts
+#graphify/code #graphify/EXTRACTED #community/sitets

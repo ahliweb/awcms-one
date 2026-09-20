@@ -12,15 +12,15 @@ tags:
 # getVideo()
 
 ## Connections
-- [[GET()_11]] - `calls` [EXTRACTED]
-- [[GET()_12]] - `calls` [EXTRACTED]
+- [[GET()_4]] - `calls` [EXTRACTED]
+- [[GET()_8]] - `calls` [EXTRACTED]
+- [[HalamanDepanBerita.astro]] - `imports` [EXTRACTED]
 - [[Sidebar.astro]] - `imports` [EXTRACTED]
 - [[berita.ts]] - `contains` [EXTRACTED]
-- [[beritaindex.astro]] - `imports` [EXTRACTED]
+- [[beritapagesindexpengalihan-legacy.json.ts]] - `imports` [EXTRACTED]
 - [[csp.json.ts]] - `imports` [EXTRACTED]
 - [[getIndex()]] - `calls` [EXTRACTED]
-- [[getStaticPaths()_14]] - `calls` [EXTRACTED]
-- [[pengalihan-legacy.json.ts]] - `imports` [EXTRACTED]
+- [[getStaticPaths()_11]] - `calls` [EXTRACTED]
 - [[sitemap-sources.ts]] - `imports` [EXTRACTED]
 - [[videoslug.astro]] - `imports` [EXTRACTED]
 - [[videoindex.astro]] - `imports` [EXTRACTED]

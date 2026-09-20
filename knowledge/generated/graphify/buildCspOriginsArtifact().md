@@ -12,7 +12,7 @@ tags:
 # buildCspOriginsArtifact()
 
 ## Connections
-- [[GET()_11]] - `calls` [EXTRACTED]
+- [[GET()_4]] - `calls` [EXTRACTED]
 - [[collectOrigins()]] - `calls` [EXTRACTED]
 - [[csp-asal-media.ts]] - `contains` [EXTRACTED]
 - [[csp.json.ts]] - `imports` [EXTRACTED]

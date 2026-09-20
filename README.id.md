@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:f66278ed7cecd6d9610534ca80e5426b9baa460a3e60e4dc8e038364b7077d30 -->
+<!-- i18n-source-hash: sha256:c8563eddf8cf7d8ac8286a528607357b1155c0956a55f8fb152e34ad42eaa93d -->
 
 [![License](https://img.shields.io/badge/License-MIT-blue)](LICENSE) [![runtime](https://img.shields.io/badge/runtime-Bun-blue?logo=bun&logoColor=white)](https://bun.sh)
 
@@ -60,11 +60,12 @@ tools/                       skrip lintas-workspace: rilis, pemeriksaan lockfile
 tests/                       tes gerbang tingkat akar (docs, changeset, toolchain, skrip,
                               arah impor)
 docs/                        referensi arsitektur, skema, API, CMS, routing, SEO, aksesibilitas,
-                              responsif, UI/UX, pengujian, deployment, dan alur kerja,
-                              plus docs/adr/ (tujuh belas ADR)
+                              responsif, UI/UX, pengujian, deployment, alur kerja, dan
+                              template, plus docs/adr/ (delapan belas ADR)
 knowledge/                   workflow graf pengetahuan Graphify + Obsidian yang terfederasi
-.claude/skills/               awcms-one-storefront, awcms-one-commerce — panduan cara
-                              menambah halaman storefront atau tabel/endpoint commerce
+.claude/skills/               awcms-one-storefront, awcms-one-commerce, awcms-one-template —
+                              panduan cara menambah halaman storefront, tabel/endpoint
+                              commerce, atau memulai aplikasi baru dari template ini
 .changesets/, .github/       tetap di akar repo — keputusan tentang repo secara keseluruhan
 ```
 
@@ -98,11 +99,12 @@ Repo ini **hanya-Bun**: Bun adalah runtime sekaligus package manager, versinya d
 | `bun run db:migrate:cms` | Menjalankan migrasi `apps/cms` terhadap `DATABASE_URL` — lihat `apps/cms/.env.example` |
 | `bun run db:seed:cms` | Men-seed tenant `borneojek-mart`, katalog, permukaan marketing, dan contoh pesanan lewat API publik `apps/cms` sendiri — lihat [`docs/deployment.md`](docs/deployment.id.md) |
 | `bun run release` | Memotong rilis bertag dari changeset yang menunggu — lihat [`CONTRIBUTING.md`](CONTRIBUTING.md) |
-| `dev` / `build` / `check` / `serve` | Mendelegasikan ke `apps/storefront` — `bun run build` men-type-check, mengambil konten katalog/marketing/berita dari `apps/cms` saat build, dan memanggang output statis termasuk CSP turunan; `bun run serve` menjalankan `apps/storefront/server/penyaji.mjs` yang sudah di-build — lihat [`docs/deployment.md`](docs/deployment.id.md) |
+| `dev` / `build` / `check` / `serve` | Mendelegasikan ke `apps/storefront` — `bun run build` men-type-check, mengambil konten katalog/marketing/berita dari `apps/cms` saat build, dan memanggang output statis termasuk CSP turunan; `bun run serve` menjalankan `apps/storefront/server/penyaji.mjs` yang sudah di-build. Ketiga perintah saat-build ini menuruti `SITE_PROFILE` (default `toko`) — lihat [`docs/deployment.md`](docs/deployment.id.md) |
+| `bun run template:init` | Inisialisasi merek/profil yang idempoten untuk repo turunan — lihat [`docs/template.md`](docs/template.id.md) |
 
 ### Gerbang
 
-`bun test` plus empat skrip `audit:*` berjalan tanpa syarat di setiap push, tidak butuh build, jaringan, atau `apps/cms` — job CI `check`. Job CI kedua, `check-cms`, menjalankan rangkaian gerbang penuh `apps/cms` sendiri plus rangkaian integrasi ber-gerbang-DB-nya terhadap PostgreSQL hidup yang sekali-pakai (issue #25) — lihat [`docs/alur-kerja-pengembangan.md`](docs/alur-kerja-pengembangan.id.md). **Baik `Check` maupun `check-cms` adalah status check wajib di `main`.**
+`bun test` plus empat skrip `audit:*` berjalan tanpa syarat di setiap push, tidak butuh build, jaringan, atau `apps/cms`. Sejak increment 6 (issue #137), job `Check` adalah **matriks atas tiga profil build** — `Check (toko)`, `Check (berita)`, `Check (landing)` — tiap kaki men-type-check dan menjalankan profile-smoke-test `apps/storefront` di bawah `SITE_PROFILE` masing-masing; tes akar dan skrip `audit:*` berjalan sekali, di kaki `toko`. Job CI kedua, `check-cms`, menjalankan rangkaian gerbang penuh `apps/cms` sendiri plus rangkaian integrasi ber-gerbang-DB-nya terhadap PostgreSQL hidup yang sekali-pakai (issue #25) — lihat [`docs/alur-kerja-pengembangan.md`](docs/alur-kerja-pengembangan.id.md). **`Check (toko)`, `Check (berita)`, `Check (landing)`, dan `check-cms` semuanya adalah status check wajib di `main`.** Sebuah workflow keempat, `.github/workflows/template-init-smoke.yml`, menjalankan matriks `bun run template:init` atas ketiga profil ke dalam salinan sementara repo; ia belum menjadi status check wajib (lihat dokumen itu untuk rencana promosinya).
 
 `audit:graf` (kebersihan artefak graphify) dulu ada di daftar "tidak diporting" di bawah — repo ini belum punya korpus `graphify-out/` untuk dijaganya. [Issue #11](https://github.com/ahliweb/awcms-one/issues/11) membangun satu: graf Graphify milik-akar, `--code-only`, yang sengaja mengecualikan `apps/cms/**` (yang sudah punya graf dan gerbangnya sendiri), plus keluarga perintah federasi (`bun run knowledge:graph:update` / `knowledge:graph:combine` / `knowledge:obsidian:export`) yang didokumentasikan di [`knowledge/README.md`](knowledge/README.md). `audit:graf` sekarang memeriksa korpus itu sungguhan — lihat dokumen itu untuk persisnya apa.
 
@@ -110,7 +112,28 @@ Repo ini **hanya-Bun**: Bun adalah runtime sekaligus package manager, versinya d
 
 ## Gunakan sebagai template
 
-Increment 6 (epic [#135](https://github.com/ahliweb/awcms-one/issues/135)) mengubah awcms-one menjadi sebuah **template** yang bisa dijadikan titik awal aplikasi lain, sementara ia tetap berjalan sebagai deployment referensi BjekMart: `SITE_PROFILE` (`toko` | `berita` | `landing`) saat build memilih halaman mana yang dikirim sebuah deployment, dan `bun run template:init` yang idempoten menulis ulang permukaan merek (nama, domain, warna, kontak) untuk repo yang dibuat lewat tombol "Use this template" milik GitHub. Lihat [ADR-0018](docs/adr/0018-awcms-one-is-a-template-with-build-profiles-and-an-idempotent-init.id.md) untuk keputusannya dan [`docs/template.md`](docs/template.id.md) untuk panduannya — per penulisan bagian ini (wave 0, issue #136), ini adalah kontrak yang menjadi dasar pembangunan mekanismenya, belum kode yang berjalan.
+Increment 6 (epic [#135](https://github.com/ahliweb/awcms-one/issues/135)) mengubah awcms-one menjadi sebuah **template** yang bisa dijadikan titik awal aplikasi lain, sementara ia tetap berjalan sebagai deployment referensi BjekMart. `SITE_PROFILE` saat build memilih halaman mana yang dikirim sebuah deployment, dan `bun run template:init` yang idempoten menulis ulang permukaan merek (nama, domain, warna, kontak) untuk repo yang dibuat lewat tombol **"Use this template"** milik GitHub.
+
+### Mulai cepat
+
+1. Klik **"Use this template"** di `ahliweb/awcms-one` untuk membuat repo baru tanpa riwayat — bukan fork. Klon, lalu `bun install`.
+2. Jalankan `bun run template:init`, menjawab prompt-nya (atau memberikan semua flag secara non-interaktif) — lihat [`docs/template.md`](docs/template.id.md#templateinit--referensi-cli) untuk referensi flag lengkap, termasuk `--profil`, warna, dan kolom kontak.
+3. `cp .env.example .env` dan `cp apps/cms/.env.example apps/cms/.env`, mengisi apa yang belum diatur `template:init` (kredensial basis data, kunci provider mana pun — lihat [ADR-0017](docs/adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.id.md)).
+4. `bun run db:up` — PostgreSQL lokal lewat `docker compose`.
+5. `bun run db:migrate:cms` — menjalankan rantai migrasi `apps/cms` sendiri.
+6. `bun run db:seed:cms:profil <toko|berita|landing>` — konten contoh netral sesuai profil pilihan Anda.
+7. `bun run dev` — menyalakan `apps/cms` dan `apps/storefront`, storefront dibangun dengan `SITE_PROFILE` dari langkah 2.
+8. Deploy sesuai [`docs/deployment.md`](docs/deployment.id.md) — tidak ada yang berubah dari mekanisme itu hanya karena ini "repo turunan".
+
+### Profil build
+
+| Profil | Komposisi | Apa itu |
+| --- | --- | --- |
+| `toko` (default) | shared + toko + berita | Bentuk BjekMart hari ini — commerce dan berita bersama |
+| `berita` | shared + berita | Portal berita saja, tanpa commerce |
+| `landing` | shared saja | Profil perusahaan / situs landing — halaman, kontak, chrome SEO; tanpa commerce, tanpa berita |
+
+Lihat [ADR-0018](docs/adr/0018-awcms-one-is-a-template-with-build-profiles-and-an-idempotent-init.id.md) untuk keputusan di balik mekanisme template dan [`docs/template.md`](docs/template.id.md) untuk panduan lengkapnya, referensi CLI `template:init`, matriks profil, dan set seed per profil.
 
 ## Dokumentasi
 
@@ -125,7 +148,7 @@ Increment 6 (epic [#135](https://github.com/ahliweb/awcms-one/issues/135)) mengu
 | [`CHANGELOG.md`](CHANGELOG.md) | Riwayat rilis, dilipat dari changeset |
 | [`.changesets/README.md`](.changesets/README.md) | Cara menulis catatan perubahan |
 | [`knowledge/README.md`](knowledge/README.md) | Workflow graf pengetahuan Graphify + Obsidian yang terfederasi |
-| [`docs/README.md`](docs/README.md) | Referensi arsitektur, skema, API, CMS, routing, SEO, aksesibilitas, responsif, UI/UX, pengujian, deployment, dan alur kerja, plus [`docs/adr/`](docs/adr/README.md) |
+| [`docs/README.md`](docs/README.md) | Referensi arsitektur, skema, API, CMS, routing, SEO, aksesibilitas, responsif, UI/UX, pengujian, deployment, alur kerja, dan template, plus [`docs/adr/`](docs/adr/README.md) |
 
 ## Bahasa
 

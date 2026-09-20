@@ -1,17 +1,17 @@
 ---
-source_file: "tools/seed-borneojek-mart.ts"
+source_file: "tools/seed-cms.ts"
 type: "code"
-community: "seed-borneojek-mart.ts"
-location: "L378"
+community: "seed-cms.ts"
+location: "L365"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/seed-borneojek-martts
+  - community/seed-cmsts
 ---
 
 # StorefrontOrigin
 
 ## Connections
-- [[seed-borneojek-mart.ts]] - `contains` [EXTRACTED]
+- [[seed-cms.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/seed-borneojek-martts
+#graphify/code #graphify/EXTRACTED #community/seed-cmsts

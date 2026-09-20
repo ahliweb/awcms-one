@@ -1,8 +1,8 @@
 ---
-source_file: "apps/storefront/src/pages/penulis/[slug].astro"
+source_file: "apps/storefront/src/profil/berita/pages/tag/[slug].astro"
 type: "code"
 community: "berita.ts"
-location: "L16"
+location: "L9"
 tags:
   - graphify/code
   - graphify/EXTRACTED
@@ -12,7 +12,7 @@ tags:
 # getStaticPaths()
 
 ## Connections
-- [[listAuthors()]] - `calls` [EXTRACTED]
-- [[penulisslug.astro]] - `contains` [EXTRACTED]
+- [[getTags()]] - `calls` [EXTRACTED]
+- [[tagslug.astro]] - `contains` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/beritats

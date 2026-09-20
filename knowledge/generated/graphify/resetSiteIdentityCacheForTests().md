@@ -1,17 +1,17 @@
 ---
 source_file: "apps/storefront/src/lib/awcms/profil.ts"
 type: "code"
-community: "profil.ts"
+community: "awcms/profil.ts"
 location: "L235"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/profilts
+  - community/awcms/profilts
 ---
 
 # resetSiteIdentityCacheForTests()
 
 ## Connections
-- [[profil.ts]] - `contains` [EXTRACTED]
+- [[awcmsprofil.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/profilts
+#graphify/code #graphify/EXTRACTED #community/awcms/profilts

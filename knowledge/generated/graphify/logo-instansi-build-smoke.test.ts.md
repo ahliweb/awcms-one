@@ -14,7 +14,7 @@ tags:
 ## Connections
 - [[ARTICLE_WITH_LOGO]] - `contains` [EXTRACTED]
 - [[MITRA_WITH_LOGO]] - `contains` [EXTRACTED]
-- [[canSpawnBun()_11]] - `contains` [EXTRACTED]
-- [[waitForStub()_10]] - `contains` [EXTRACTED]
+- [[canSpawnBun()_13]] - `contains` [EXTRACTED]
+- [[waitForStub()_13]] - `contains` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/logo-instansi-build-smoketestts

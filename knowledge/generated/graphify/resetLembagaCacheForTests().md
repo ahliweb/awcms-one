@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/awcms/lembaga.ts"
 type: "code"
-community: "media.ts"
+community: "lembaga.ts"
 location: "L110"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/mediats
+  - community/lembagats
 ---
 
 # resetLembagaCacheForTests()
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[lembaga.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/mediats
+#graphify/code #graphify/EXTRACTED #community/lembagats

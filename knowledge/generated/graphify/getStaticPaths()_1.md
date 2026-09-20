@@ -1,18 +1,19 @@
 ---
-source_file: "apps/storefront/src/pages/halaman/[slug].astro"
+source_file: "apps/storefront/src/pages/sitemap-[n].xml.ts"
 type: "code"
-community: "portable-text.ts"
-location: "L13"
+community: "sitemap.ts"
+location: "L12"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/portable-textts
+  - community/sitemapts
 ---
 
 # getStaticPaths()
 
 ## Connections
-- [[halamanslug.astro]] - `contains` [EXTRACTED]
-- [[listStaticPages()]] - `calls` [EXTRACTED]
+- [[chunkSitemapEntries()]] - `calls` [EXTRACTED]
+- [[getAllSitemapEntries()]] - `calls` [EXTRACTED]
+- [[sitemap-n.xml.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/portable-textts
+#graphify/code #graphify/EXTRACTED #community/sitemapts

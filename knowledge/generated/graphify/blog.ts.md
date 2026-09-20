@@ -12,7 +12,7 @@ tags:
 # blog.ts
 
 ## Connections
-- [[ADR-0100_2]] - `cites` [EXTRACTED]
+- [[ADR-0100_1]] - `cites` [EXTRACTED]
 - [[ADR-0109]] - `cites` [EXTRACTED]
 - [[AD_PLACEMENT_KEYS]] - `contains` [EXTRACTED]
 - [[AdPlacementKey]] - `contains` [EXTRACTED]
@@ -27,6 +27,7 @@ tags:
 - [[berita-routes.test.ts]] - `imports_from` [EXTRACTED]
 - [[berita-rubrik.test.ts]] - `imports_from` [EXTRACTED]
 - [[berita.ts]] - `imports_from` [EXTRACTED]
+- [[beritapagesindexpengalihan-legacy.json.ts]] - `imports_from` [EXTRACTED]
 - [[client.ts]] - `imports_from` [EXTRACTED]
 - [[csp.json.ts]] - `imports_from` [EXTRACTED]
 - [[fetchActiveAdPlacements()]] - `contains` [EXTRACTED]
@@ -44,7 +45,6 @@ tags:
 - [[logo-instansi.test.ts]] - `imports_from` [EXTRACTED]
 - [[navigasi-berita.test.ts]] - `imports_from` [EXTRACTED]
 - [[navigasi-berita.ts]] - `imports_from` [EXTRACTED]
-- [[pengalihan-legacy.json.ts]] - `imports_from` [EXTRACTED]
 - [[resetBlogCachesForTests()]] - `contains` [EXTRACTED]
 - [[walkKeysetPages()]] - `contains` [EXTRACTED]
 

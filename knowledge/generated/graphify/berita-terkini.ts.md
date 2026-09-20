@@ -18,6 +18,6 @@ tags:
 - [[defaultLoader()]] - `contains` [EXTRACTED]
 - [[getRecentPosts()]] - `contains` [EXTRACTED]
 - [[katalog-berita-terkini.test.ts]] - `imports_from` [EXTRACTED]
-- [[pagesindex.astro]] - `imports_from` [EXTRACTED]
+- [[tokoBeranda.astro]] - `imports_from` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/berita-terkinits

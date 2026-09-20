@@ -14,7 +14,7 @@ tags:
 ## Connections
 - [[ARTICLE_PAGE_1]] - `contains` [EXTRACTED]
 - [[VIDEO_PAGE_1]] - `contains` [EXTRACTED]
-- [[canSpawnBun()_7]] - `contains` [EXTRACTED]
-- [[waitForStub()_7]] - `contains` [EXTRACTED]
+- [[canSpawnBun()_9]] - `contains` [EXTRACTED]
+- [[waitForStub()_9]] - `contains` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/dengar-build-smoketestts

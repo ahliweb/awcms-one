@@ -1,12 +1,12 @@
 ---
 source_file: "packages/gerbang/lib/graph-combine.mjs"
 type: "code"
-community: "audit-graf.mjs"
+community: "knowledge-graph-combine.mjs"
 location: "L105"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/audit-grafmjs
+  - community/knowledge-graph-combinemjs
 ---
 
 # checkMergedResult()
@@ -16,4 +16,4 @@ tags:
 - [[graph-combine.test.mjs]] - `imports` [EXTRACTED]
 - [[knowledge-graph-combine.mjs]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/audit-grafmjs
+#graphify/code #graphify/EXTRACTED #community/knowledge-graph-combinemjs

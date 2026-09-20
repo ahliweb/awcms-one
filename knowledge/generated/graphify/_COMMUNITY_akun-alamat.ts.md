@@ -1,15 +1,16 @@
 ---
 type: community
-cohesion: 0.28
-members: 16
+cohesion: 0.26
+members: 17
 ---
 
 # akun-alamat.ts
 
-**Cohesion:** 0.28 - loosely connected
-**Members:** 16 nodes
+**Cohesion:** 0.26 - loosely connected
+**Members:** 17 nodes
 
 ## Members
+- [[Alamat]] - code - apps/storefront/src/lib/akun-klien.ts
 - [[AlamatInput]] - code - apps/storefront/src/lib/akun-klien.ts
 - [[akun-alamat.ts]] - code - apps/storefront/src/scripts/akun-alamat.ts
 - [[clearFieldErrors()]] - code - apps/storefront/src/scripts/akun-alamat.ts
@@ -19,8 +20,8 @@ members: 16
 - [[loadList()]] - code - apps/storefront/src/scripts/akun-alamat.ts
 - [[openFormForCreate()]] - code - apps/storefront/src/scripts/akun-alamat.ts
 - [[openFormForEdit()]] - code - apps/storefront/src/scripts/akun-alamat.ts
-- [[render()_3]] - code - apps/storefront/src/scripts/akun-alamat.ts
-- [[renderList()_1]] - code - apps/storefront/src/scripts/akun-alamat.ts
+- [[render()_2]] - code - apps/storefront/src/scripts/akun-alamat.ts
+- [[renderList()]] - code - apps/storefront/src/scripts/akun-alamat.ts
 - [[root_6]] - code - apps/storefront/src/scripts/akun-alamat.ts
 - [[setDefault()]] - code - apps/storefront/src/scripts/akun-alamat.ts
 - [[showAccountView()_1]] - code - apps/storefront/src/scripts/akun-alamat.ts
@@ -35,18 +36,18 @@ SORT file.name ASC
 ```
 
 ## Connections to other communities
-- 10 edges to [[_COMMUNITY_akun-klien.ts]]
+- 11 edges to [[_COMMUNITY_akun-klien.ts]]
 - 5 edges to [[_COMMUNITY_bacaSesi]]
-- 4 edges to [[_COMMUNITY_akun-pesanan.ts]]
 - 4 edges to [[_COMMUNITY_wilayah-region-select.ts]]
+- 3 edges to [[_COMMUNITY_formatPrice]]
 - 2 edges to [[_COMMUNITY_masuk.ts]]
+- 2 edges to [[_COMMUNITY_akun-pesanan.ts]]
 - 1 edge to [[_COMMUNITY_checkout.ts]]
-- 1 edge to [[_COMMUNITY_formatPrice]]
-- 1 edge to [[_COMMUNITY_profil.ts]]
+- 1 edge to [[_COMMUNITY_awcmsprofil.ts]]
 
 ## Top bridge nodes
-- [[akun-alamat.ts]] - degree 35, connects to 8 communities
+- [[akun-alamat.ts]] - degree 35, connects to 7 communities
+- [[showSubmitError()_1]] - degree 6, connects to 2 communities
+- [[Alamat]] - degree 3, connects to 2 communities
 - [[loadList()]] - degree 8, connects to 1 community
 - [[deleteAlamat()]] - degree 6, connects to 1 community
-- [[setDefault()]] - degree 6, connects to 1 community
-- [[showSubmitError()_1]] - degree 6, connects to 1 community

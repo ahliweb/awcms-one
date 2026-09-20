@@ -1,12 +1,12 @@
 ---
-source_file: "tools/seed-borneojek-mart.ts"
+source_file: "tools/seed-cms.ts"
 type: "code"
-community: "seed-borneojek-mart.ts"
-location: "L512"
+community: "seed-cms.ts"
+location: "L475"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/seed-borneojek-martts
+  - community/seed-cmsts
 ---
 
 # ensureProducts()
@@ -14,8 +14,9 @@ tags:
 ## Connections
 - [[apiCall()_1]] - `calls` [EXTRACTED]
 - [[assertOk()_1]] - `calls` [EXTRACTED]
-- [[main()_1]] - `calls` [EXTRACTED]
 - [[readSeedJson()]] - `calls` [EXTRACTED]
-- [[seed-borneojek-mart.ts]] - `contains` [EXTRACTED]
+- [[runContohBorneojekMart()]] - `calls` [EXTRACTED]
+- [[runToko()]] - `calls` [EXTRACTED]
+- [[seed-cms.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/seed-borneojek-martts
+#graphify/code #graphify/EXTRACTED #community/seed-cmsts

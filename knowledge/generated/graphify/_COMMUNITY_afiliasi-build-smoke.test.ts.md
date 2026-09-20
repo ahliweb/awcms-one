@@ -12,8 +12,8 @@ members: 4
 ## Members
 - [[afiliasi-build-smoke.test.ts]] - code - apps/storefront/tests/afiliasi-build-smoke.test.ts
 - [[assertNoInlineScriptOrStyle()]] - code - apps/storefront/tests/afiliasi-build-smoke.test.ts
-- [[canSpawnBun()_12]] - code - apps/storefront/tests/afiliasi-build-smoke.test.ts
-- [[waitForStub()_11]] - code - apps/storefront/tests/afiliasi-build-smoke.test.ts
+- [[canSpawnBun()]] - code - apps/storefront/tests/afiliasi-build-smoke.test.ts
+- [[waitForStub()]] - code - apps/storefront/tests/afiliasi-build-smoke.test.ts
 
 ## Live Query (requires Dataview plugin)
 
@@ -26,4 +26,4 @@ SORT file.name ASC
 - 1 edge to [[_COMMUNITY_bun]]
 
 ## Top bridge nodes
-- [[canSpawnBun()_12]] - degree 2, connects to 1 community
+- [[canSpawnBun()]] - degree 2, connects to 1 community

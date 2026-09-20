@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/awcms/lembaga.ts"
 type: "code"
-community: "media.ts"
+community: "lembaga.ts"
 location: "L104"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/mediats
+  - community/lembagats
 ---
 
 # getMitraBySlug()
@@ -15,4 +15,4 @@ tags:
 - [[getMitraList()_1]] - `calls` [EXTRACTED]
 - [[lembaga.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/mediats
+#graphify/code #graphify/EXTRACTED #community/lembagats

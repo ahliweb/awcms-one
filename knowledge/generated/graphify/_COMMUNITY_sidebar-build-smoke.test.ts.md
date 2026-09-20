@@ -10,12 +10,12 @@ members: 6
 **Members:** 6 nodes
 
 ## Members
-- [[canSpawnBun()_10]] - code - apps/storefront/tests/sidebar-build-smoke.test.ts
+- [[canSpawnBun()_18]] - code - apps/storefront/tests/sidebar-build-smoke.test.ts
 - [[extractSidebar()]] - code - apps/storefront/tests/sidebar-build-smoke.test.ts
 - [[hrefsInside()]] - code - apps/storefront/tests/sidebar-build-smoke.test.ts
 - [[placements()]] - code - apps/storefront/tests/sidebar-build-smoke.test.ts
 - [[sidebar-build-smoke.test.ts]] - code - apps/storefront/tests/sidebar-build-smoke.test.ts
-- [[waitForStub()_9]] - code - apps/storefront/tests/sidebar-build-smoke.test.ts
+- [[waitForStub()_17]] - code - apps/storefront/tests/sidebar-build-smoke.test.ts
 
 ## Live Query (requires Dataview plugin)
 
@@ -28,4 +28,4 @@ SORT file.name ASC
 - 1 edge to [[_COMMUNITY_bun]]
 
 ## Top bridge nodes
-- [[canSpawnBun()_10]] - degree 2, connects to 1 community
+- [[canSpawnBun()_18]] - degree 2, connects to 1 community

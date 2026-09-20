@@ -32,13 +32,13 @@ SORT file.name ASC
 ## Connections to other communities
 - 4 edges to [[_COMMUNITY_masuk.ts]]
 - 4 edges to [[_COMMUNITY_bacaSesi]]
-- 4 edges to [[_COMMUNITY_akun-pesanan.ts]]
 - 3 edges to [[_COMMUNITY_akun-klien.ts]]
+- 3 edges to [[_COMMUNITY_formatPrice]]
+- 2 edges to [[_COMMUNITY_akun-pesanan.ts]]
 - 2 edges to [[_COMMUNITY_routes.ts]]
-- 1 edge to [[_COMMUNITY_formatPrice]]
-- 1 edge to [[_COMMUNITY_profil.ts]]
+- 1 edge to [[_COMMUNITY_awcmsprofil.ts]]
 
 ## Top bridge nodes
 - [[daftar.ts]] - degree 22, connects to 7 communities
 - [[mintaKode()]] - degree 7, connects to 3 communities
-- [[showWaFallback()_1]] - degree 4, connects to 1 community
+- [[showWaFallback()_1]] - degree 4, connects to 2 communities

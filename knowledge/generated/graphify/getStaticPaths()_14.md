@@ -1,18 +1,18 @@
 ---
-source_file: "apps/storefront/src/pages/video/[slug].astro"
+source_file: "apps/storefront/src/profil/toko/pages/kategori/[slug].astro"
 type: "code"
-community: "getVideo"
-location: "L34"
+community: "kategori/[slug].astro"
+location: "L26"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/getVideo
+  - community/kategori/slugastro
 ---
 
 # getStaticPaths()
 
 ## Connections
-- [[getVideo()]] - `calls` [EXTRACTED]
-- [[videoslug.astro]] - `contains` [EXTRACTED]
+- [[getCategories()]] - `calls` [EXTRACTED]
+- [[kategorislug.astro]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/getVideo
+#graphify/code #graphify/EXTRACTED #community/kategori/slugastro

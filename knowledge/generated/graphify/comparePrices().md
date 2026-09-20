@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/harga.ts"
 type: "code"
-community: "harga.ts"
+community: "catalog.ts"
 location: "L65"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/hargats
+  - community/catalogts
 ---
 
 # comparePrices()
@@ -18,4 +18,4 @@ tags:
 - [[katalog-harga.test.ts]] - `imports` [EXTRACTED]
 - [[priceToNumber()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/hargats
+#graphify/code #graphify/EXTRACTED #community/catalogts

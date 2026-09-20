@@ -24,7 +24,7 @@ SORT file.name ASC
 ```
 
 ## Connections to other communities
-- 1 edge to [[_COMMUNITY_pagesindex.astro]]
+- 1 edge to [[_COMMUNITY_pemasaran.ts]]
 
 ## Top bridge nodes
 - [[promo-popup.ts]] - degree 5, connects to 1 community

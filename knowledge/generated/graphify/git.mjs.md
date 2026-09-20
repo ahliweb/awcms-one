@@ -20,5 +20,6 @@ tags:
 - [[gitRunInherit()]] - `contains` [EXTRACTED]
 - [[gitRunOrThrow()]] - `contains` [EXTRACTED]
 - [[rilis.mjs]] - `imports_from` [EXTRACTED]
+- [[run.mjs]] - `imports_from` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/audit-grafmjs

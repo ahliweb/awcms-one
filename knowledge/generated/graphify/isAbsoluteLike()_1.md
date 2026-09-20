@@ -1,12 +1,12 @@
 ---
 source_file: "packages/gerbang/lib/subtree-guard.mjs"
 type: "code"
-community: "audit-graf.mjs"
+community: "knowledge-graph-combine.mjs"
 location: "L46"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/audit-grafmjs
+  - community/knowledge-graph-combinemjs
 ---
 
 # isAbsoluteLike()
@@ -15,4 +15,4 @@ tags:
 - [[isUnderSubtree()]] - `calls` [EXTRACTED]
 - [[subtree-guard.mjs]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/audit-grafmjs
+#graphify/code #graphify/EXTRACTED #community/knowledge-graph-combinemjs

@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/jsonld-produk.ts"
 type: "code"
-community: "product/[slug].astro"
+community: "kategori/[slug].astro"
 location: "L32"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/product/slugastro
+  - community/kategori/slugastro
 ---
 
 # ProductSchemaInput
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[jsonld-produk.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/product/slugastro
+#graphify/code #graphify/EXTRACTED #community/kategori/slugastro

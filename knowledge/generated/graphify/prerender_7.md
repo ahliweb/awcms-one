@@ -1,17 +1,17 @@
 ---
-source_file: "apps/storefront/src/pages/rubrik/[slug]/feed.xml.ts"
+source_file: "apps/storefront/src/profil/berita/pages/index/berita.json.ts"
 type: "code"
-community: "[slug]/feed.xml.ts"
-location: "L9"
+community: "video/[slug].astro"
+location: "L11"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/slug/feedxmlts
+  - community/video/slugastro
 ---
 
 # prerender
 
 ## Connections
-- [[slugfeed.xml.ts]] - `contains` [EXTRACTED]
+- [[beritapagesindexberita.json.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/slug/feedxmlts
+#graphify/code #graphify/EXTRACTED #community/video/slugastro

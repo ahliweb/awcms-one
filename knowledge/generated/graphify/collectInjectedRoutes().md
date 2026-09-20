@@ -1,0 +1,21 @@
+---
+source_file: "apps/storefront/integrations/profil.mjs"
+type: "code"
+community: "profil.mjs"
+location: "L136"
+tags:
+  - graphify/code
+  - graphify/EXTRACTED
+  - community/profilmjs
+---
+
+# collectInjectedRoutes()
+
+## Connections
+- [[listPageFiles()]] - `calls` [EXTRACTED]
+- [[profil()]] - `calls` [EXTRACTED]
+- [[profil-integrasi.test.ts]] - `imports` [EXTRACTED]
+- [[profil.mjs]] - `contains` [EXTRACTED]
+- [[routePatternFor()]] - `calls` [EXTRACTED]
+
+#graphify/code #graphify/EXTRACTED #community/profilmjs

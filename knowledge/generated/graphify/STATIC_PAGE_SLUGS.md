@@ -12,7 +12,9 @@ tags:
 # STATIC_PAGE_SLUGS
 
 ## Connections
+- [[configprofil.ts]] - `imports` [EXTRACTED]
 - [[navigasi-berita.ts]] - `imports` [EXTRACTED]
+- [[profil-konfig.test.ts]] - `imports` [EXTRACTED]
 - [[routes.test.ts]] - `imports` [EXTRACTED]
 - [[routes.ts]] - `contains` [EXTRACTED]
 

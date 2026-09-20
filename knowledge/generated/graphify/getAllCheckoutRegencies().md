@@ -14,9 +14,9 @@ tags:
 ## Connections
 - [[getCheckoutProvinces()]] - `calls` [EXTRACTED]
 - [[getCheckoutRegencies()]] - `calls` [EXTRACTED]
-- [[getStaticPaths()_9]] - `calls` [EXTRACTED]
+- [[getStaticPaths()_13]] - `calls` [EXTRACTED]
+- [[tokopagesindexwilayah-kecamatan-cityCode.json.ts]] - `imports` [EXTRACTED]
 - [[wilayah-checkout.test.ts]] - `imports` [EXTRACTED]
 - [[wilayah-checkout.ts]] - `contains` [EXTRACTED]
-- [[wilayah-kecamatan-cityCode.json.ts]] - `imports` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/wilayah-checkoutts

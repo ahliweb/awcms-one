@@ -1,22 +1,21 @@
 ---
-source_file: "apps/storefront/src/pages/feed.xml.ts"
+source_file: "apps/storefront/src/pages/sitemap-index.xml.ts"
 type: "code"
-community: "pages/feed.xml.ts"
-location: "L38"
+community: "sitemap.ts"
+location: "L13"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/pages/feedxmlts
+  - community/sitemapts
 ---
 
 # GET()
 
 ## Connections
 - [[absoluteUrl()]] - `calls` [EXTRACTED]
-- [[escapeXml()_1]] - `calls` [EXTRACTED]
-- [[formatPrice()]] - `calls` [EXTRACTED]
-- [[getProducts()]] - `calls` [EXTRACTED]
-- [[getSiteIdentity()]] - `calls` [EXTRACTED]
-- [[pagesfeed.xml.ts]] - `contains` [EXTRACTED]
+- [[chunkSitemapEntries()]] - `calls` [EXTRACTED]
+- [[getAllSitemapEntries()]] - `calls` [EXTRACTED]
+- [[renderSitemapIndexXml()]] - `calls` [EXTRACTED]
+- [[sitemap-index.xml.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/pages/feedxmlts
+#graphify/code #graphify/EXTRACTED #community/sitemapts

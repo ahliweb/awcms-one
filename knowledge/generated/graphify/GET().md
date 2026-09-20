@@ -1,19 +1,19 @@
 ---
-source_file: "apps/storefront/src/pages/product-labels.css.ts"
+source_file: "apps/storefront/src/pages/manifest.webmanifest.ts"
 type: "code"
-community: "cari-listing.ts"
-location: "L34"
+community: "theme.ts"
+location: "L14"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/cari-listingts
+  - community/themets
 ---
 
 # GET()
 
 ## Connections
-- [[getProducts()]] - `calls` [EXTRACTED]
-- [[labelClassName()]] - `calls` [EXTRACTED]
-- [[product-labels.css.ts]] - `contains` [EXTRACTED]
+- [[getSiteIdentity()]] - `calls` [EXTRACTED]
+- [[getSiteTheme()]] - `calls` [EXTRACTED]
+- [[manifest.webmanifest.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/cari-listingts
+#graphify/code #graphify/EXTRACTED #community/themets

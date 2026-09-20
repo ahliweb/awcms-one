@@ -14,6 +14,6 @@ tags:
 ## Connections
 - [[applyAndRender()]] - `calls` [EXTRACTED]
 - [[produk-listing.ts]] - `contains` [EXTRACTED]
-- [[render()_1]] - `calls` [EXTRACTED]
+- [[render()_7]] - `calls` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/produk-listingts

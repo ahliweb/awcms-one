@@ -1,13 +1,13 @@
 ---
 type: community
 cohesion: 0.05
-members: 42
+members: 44
 ---
 
 # scripts
 
 **Cohesion:** 0.05 - loosely connected
-**Members:** 42 nodes
+**Members:** 44 nodes
 
 ## Members
 - [[apps]] - concept - package.json
@@ -23,6 +23,7 @@ members: 42
 - [[dbmigratecms]] - code - package.json
 - [[dbreset]] - code - package.json
 - [[dbseedcms]] - code - package.json
+- [[dbseedcmsprofil]] - code - package.json
 - [[dbup]] - code - package.json
 - [[description_4]] - code - package.json
 - [[dev_1]] - code - package.json
@@ -46,6 +47,7 @@ members: 42
 - [[scripts_2]] - code - package.json
 - [[serve_1]] - code - package.json
 - [[start_1]] - code - package.json
+- [[templateinit]] - code - package.json
 - [[test]] - code - package.json
 - [[type_5]] - code - package.json
 - [[type_4]] - code - package.json

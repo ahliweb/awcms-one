@@ -1,17 +1,19 @@
 ---
-source_file: "apps/storefront/src/lib/jsonld-berita.ts"
+source_file: "apps/storefront/src/lib/jsonld-produk.ts"
 type: "code"
-community: "video/[slug].astro"
-location: "L62"
+community: "kategori/[slug].astro"
+location: "L18"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/video/slugastro
+  - community/kategori/slugastro
 ---
 
 # BreadcrumbItem
 
 ## Connections
-- [[jsonld-berita.ts]] - `contains` [EXTRACTED]
+- [[jsonld-produk.ts]] - `contains` [EXTRACTED]
+- [[kategorislug.astro]] - `imports` [EXTRACTED]
+- [[productslug.astro]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/video/slugastro
+#graphify/code #graphify/EXTRACTED #community/kategori/slugastro

@@ -1,30 +1,21 @@
 ---
-source_file: "apps/storefront/src/pages/csp.json.ts"
+source_file: "apps/storefront/src/profil/toko/pages/index/produk.json.ts"
 type: "code"
-community: "pages/index.astro"
-location: "L113"
+community: "getProducts"
+location: "L14"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/pages/indexastro
+  - community/getProducts
 ---
 
 # GET()
 
 ## Connections
-- [[buildCspOriginsArtifact()]] - `calls` [EXTRACTED]
-- [[csp.json.ts]] - `contains` [EXTRACTED]
-- [[getActiveAdPlacements()]] - `calls` [EXTRACTED]
+- [[buildProdukIndex()]] - `calls` [EXTRACTED]
 - [[getActiveFlashSales()]] - `calls` [EXTRACTED]
-- [[getActivePopup()]] - `calls` [EXTRACTED]
-- [[getActiveSliders()]] - `calls` [EXTRACTED]
-- [[getActiveTestimonials()]] - `calls` [EXTRACTED]
-- [[getMediaPublicOrigin()]] - `calls` [EXTRACTED]
+- [[getCategories()]] - `calls` [EXTRACTED]
 - [[getProducts()]] - `calls` [EXTRACTED]
-- [[getResolvedMedia()]] - `calls` [EXTRACTED]
-- [[getStoreSettings()]] - `calls` [EXTRACTED]
-- [[getVideo()]] - `calls` [EXTRACTED]
-- [[readGaMeasurementId()]] - `calls` [EXTRACTED]
-- [[requireAwcmsOrigin()]] - `calls` [EXTRACTED]
+- [[tokopagesindexproduk.json.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/pages/indexastro
+#graphify/code #graphify/EXTRACTED #community/getProducts

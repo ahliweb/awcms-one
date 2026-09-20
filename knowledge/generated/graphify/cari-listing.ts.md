@@ -12,7 +12,6 @@ tags:
 # cari-listing.ts
 
 ## Connections
-- [[cari.astro]] - `imports_from` [EXTRACTED]
 - [[catalog.ts]] - `imports_from` [EXTRACTED]
 - [[currentPage()]] - `contains` [EXTRACTED]
 - [[currentQuery()]] - `contains` [EXTRACTED]
@@ -27,5 +26,6 @@ tags:
 - [[renderPagination()]] - `imports` [EXTRACTED]
 - [[renderProdukGrid()]] - `imports` [EXTRACTED]
 - [[run()_3]] - `contains` [EXTRACTED]
+- [[tokopagescari.astro]] - `imports_from` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/cari-listingts

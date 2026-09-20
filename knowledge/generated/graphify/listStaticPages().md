@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/awcms/pages.ts"
 type: "code"
-community: "portable-text.ts"
+community: "navigasi-berita.ts"
 location: "L66"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/portable-textts
+  - community/navigasi-beritats
 ---
 
 # listStaticPages()
@@ -15,10 +15,13 @@ tags:
 - [[BaseLayout.astro]] - `imports` [EXTRACTED]
 - [[fetchStaticPageList()]] - `calls` [EXTRACTED]
 - [[getPerusahaanLinks()]] - `calls` [EXTRACTED]
-- [[getStaticPaths()_1]] - `calls` [EXTRACTED]
+- [[getPrimaryNav()]] - `calls` [EXTRACTED]
+- [[getStaticPaths()]] - `calls` [EXTRACTED]
 - [[halamanslug.astro]] - `imports` [EXTRACTED]
+- [[landingBeranda.astro]] - `imports` [EXTRACTED]
 - [[navigasi-berita.ts]] - `imports` [EXTRACTED]
+- [[navigasi-profil.ts]] - `imports` [EXTRACTED]
 - [[pages.ts]] - `contains` [EXTRACTED]
 - [[sitemap-sources.ts]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/portable-textts
+#graphify/code #graphify/EXTRACTED #community/navigasi-beritats

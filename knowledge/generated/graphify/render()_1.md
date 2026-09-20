@@ -1,24 +1,21 @@
 ---
-source_file: "apps/storefront/src/scripts/produk-listing.ts"
+source_file: "apps/storefront/src/scripts/akun-afiliasi.ts"
 type: "code"
-community: "cari-listing.ts"
-location: "L107"
+community: "akun-afiliasi.ts"
+location: "L253"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/cari-listingts
+  - community/akun-afiliasits
 ---
 
 # render()
 
 ## Connections
-- [[applyAndRender()]] - `calls` [EXTRACTED]
-- [[fetchProdukIndex()]] - `calls` [EXTRACTED]
-- [[filterProdukIndex()]] - `calls` [EXTRACTED]
-- [[paginateProdukIndex()]] - `calls` [EXTRACTED]
-- [[produk-listing.ts]] - `contains` [EXTRACTED]
-- [[renderPagination()]] - `calls` [EXTRACTED]
-- [[renderProdukGrid()]] - `calls` [EXTRACTED]
-- [[writeStateToUrl()]] - `calls` [EXTRACTED]
+- [[akun-afiliasi.ts]] - `indirect_call` [INFERRED]
+- [[bacaSesi()]] - `calls` [EXTRACTED]
+- [[hideSubmitError()]] - `calls` [EXTRACTED]
+- [[showAccountView()]] - `calls` [EXTRACTED]
+- [[showGuestView()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/cari-listingts
+#graphify/code #graphify/EXTRACTED #community/akun-afiliasits

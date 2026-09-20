@@ -1,21 +1,30 @@
 ---
-source_file: "apps/storefront/src/pages/index/produk.json.ts"
+source_file: "apps/storefront/src/pages/csp.json.ts"
 type: "code"
-community: "catalog.ts"
-location: "L14"
+community: "pemasaran.ts"
+location: "L124"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/catalogts
+  - community/pemasarants
 ---
 
 # GET()
 
 ## Connections
-- [[buildProdukIndex()]] - `calls` [EXTRACTED]
+- [[buildCspOriginsArtifact()]] - `calls` [EXTRACTED]
+- [[csp.json.ts]] - `contains` [EXTRACTED]
+- [[getActiveAdPlacements()]] - `calls` [EXTRACTED]
 - [[getActiveFlashSales()]] - `calls` [EXTRACTED]
-- [[getCategories()]] - `calls` [EXTRACTED]
+- [[getActivePopup()]] - `calls` [EXTRACTED]
+- [[getActiveSliders()]] - `calls` [EXTRACTED]
+- [[getActiveTestimonials()]] - `calls` [EXTRACTED]
+- [[getMediaPublicOrigin()]] - `calls` [EXTRACTED]
 - [[getProducts()]] - `calls` [EXTRACTED]
-- [[produk.json.ts]] - `contains` [EXTRACTED]
+- [[getResolvedMedia()]] - `calls` [EXTRACTED]
+- [[getStoreSettings()]] - `calls` [EXTRACTED]
+- [[getVideo()]] - `calls` [EXTRACTED]
+- [[readGaMeasurementId()]] - `calls` [EXTRACTED]
+- [[requireAwcmsOrigin()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/catalogts
+#graphify/code #graphify/EXTRACTED #community/pemasarants

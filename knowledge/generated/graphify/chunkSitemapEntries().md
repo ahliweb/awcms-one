@@ -1,22 +1,22 @@
 ---
 source_file: "apps/storefront/src/lib/sitemap.ts"
 type: "code"
-community: "site.ts"
+community: "sitemap.ts"
 location: "L96"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/sitets
+  - community/sitemapts
 ---
 
 # chunkSitemapEntries()
 
 ## Connections
-- [[GET()_9]] - `calls` [EXTRACTED]
-- [[getStaticPaths()_5]] - `calls` [EXTRACTED]
+- [[GET()_2]] - `calls` [EXTRACTED]
+- [[getStaticPaths()_1]] - `calls` [EXTRACTED]
 - [[sitemap-n.xml.ts]] - `imports` [EXTRACTED]
 - [[sitemap-index.xml.ts]] - `imports` [EXTRACTED]
 - [[sitemap.test.ts]] - `imports` [EXTRACTED]
 - [[sitemap.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/sitets
+#graphify/code #graphify/EXTRACTED #community/sitemapts

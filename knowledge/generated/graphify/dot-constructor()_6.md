@@ -1,12 +1,12 @@
 ---
-source_file: "tools/seed-borneojek-mart.ts"
+source_file: "tools/seed-cms.ts"
 type: "code"
-community: "seed-borneojek-mart.ts"
-location: "L215"
+community: "seed-cms.ts"
+location: "L247"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/seed-borneojek-martts
+  - community/seed-cmsts
 ---
 
 # .constructor()
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[SeedApiError]] - `method` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/seed-borneojek-martts
+#graphify/code #graphify/EXTRACTED #community/seed-cmsts

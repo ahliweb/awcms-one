@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/berita.ts"
 type: "code"
-community: "navigasi-berita.ts"
+community: "wilayah.ts"
 location: "L326"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/navigasi-beritats
+  - community/wilayahts
 ---
 
 # toRegionRef()
@@ -21,4 +21,4 @@ tags:
 - [[navigasi-berita.ts]] - `imports` [EXTRACTED]
 - [[slugifyName()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/navigasi-beritats
+#graphify/code #graphify/EXTRACTED #community/wilayahts

@@ -19,9 +19,9 @@ tags:
 - [[ROUTES_1]] - `imports` [EXTRACTED]
 - [[RubrikArchive]] - `imports` [EXTRACTED]
 - [[Sidebar.astro]] - `imports_from` [EXTRACTED]
-- [[n.astro]] - `imports_from` [EXTRACTED]
 - [[slugindex.astro]] - `imports_from` [EXTRACTED]
 - [[berita.ts]] - `imports_from` [EXTRACTED]
+- [[beritapagesrubrikslughalamann.astro]] - `imports_from` [EXTRACTED]
 - [[hrefFor()]] - `contains` [EXTRACTED]
 - [[routes.ts]] - `imports_from` [EXTRACTED]
 

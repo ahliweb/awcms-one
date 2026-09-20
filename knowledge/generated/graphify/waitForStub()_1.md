@@ -1,17 +1,17 @@
 ---
-source_file: "apps/storefront/tests/checkout-build-smoke.test.ts"
+source_file: "apps/storefront/tests/akun-build-smoke.test.ts"
 type: "code"
-community: "checkout-build-smoke.test.ts"
-location: "L30"
+community: "bun"
+location: "L31"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/checkout-build-smoketestts
+  - community/bun
 ---
 
 # waitForStub()
 
 ## Connections
-- [[checkout-build-smoke.test.ts]] - `contains` [EXTRACTED]
+- [[akun-build-smoke.test.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/checkout-build-smoketestts
+#graphify/code #graphify/EXTRACTED #community/bun

@@ -50,17 +50,17 @@ SORT file.name ASC
 
 ## Connections to other communities
 - 13 edges to [[_COMMUNITY_bacaSesi]]
-- 10 edges to [[_COMMUNITY_akun-alamat.ts]]
+- 11 edges to [[_COMMUNITY_akun-alamat.ts]]
 - 9 edges to [[_COMMUNITY_toko-klien.ts]]
 - 7 edges to [[_COMMUNITY_akun-afiliasi.ts]]
 - 6 edges to [[_COMMUNITY_akun-pesanan.ts]]
 - 6 edges to [[_COMMUNITY_wishlist-akun-sync.ts]]
-- 5 edges to [[_COMMUNITY_checkout.ts]]
 - 5 edges to [[_COMMUNITY_akun.ts]]
 - 4 edges to [[_COMMUNITY_akun-ulasan.ts]]
 - 4 edges to [[_COMMUNITY_masuk.ts]]
+- 4 edges to [[_COMMUNITY_checkout.ts]]
 - 3 edges to [[_COMMUNITY_daftar.ts]]
-- 1 edge to [[_COMMUNITY_buletin.ts]]
+- 1 edge to [[_COMMUNITY_requireAwcmsOrigin]]
 - 1 edge to [[_COMMUNITY_formatPrice]]
 
 ## Top bridge nodes

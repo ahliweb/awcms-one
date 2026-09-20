@@ -1,5 +1,5 @@
 ---
-source_file: "apps/storefront/src/pages/cari-berita.astro"
+source_file: "apps/storefront/src/profil/berita/pages/cari-berita.astro"
 type: "code"
 community: "routes.ts"
 location: "L115"
@@ -12,6 +12,6 @@ tags:
 # needle
 
 ## Connections
-- [[cari-berita.astro]] - `contains` [EXTRACTED]
+- [[beritapagescari-berita.astro]] - `contains` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/routests

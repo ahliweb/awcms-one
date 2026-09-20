@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/config/site.ts"
 type: "code"
-community: "site.ts"
+community: "robots.txt.ts"
 location: "L25"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/sitets
+  - community/robotstxtts
 ---
 
 # siteConfig
@@ -16,4 +16,4 @@ tags:
 - [[robots.txt.ts]] - `imports` [EXTRACTED]
 - [[site.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/sitets
+#graphify/code #graphify/EXTRACTED #community/robotstxtts

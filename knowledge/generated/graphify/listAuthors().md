@@ -14,7 +14,7 @@ tags:
 ## Connections
 - [[berita.ts]] - `contains` [EXTRACTED]
 - [[getIndex()]] - `calls` [EXTRACTED]
-- [[getStaticPaths()_10]] - `calls` [EXTRACTED]
+- [[getStaticPaths()_6]] - `calls` [EXTRACTED]
 - [[penulisslug.astro]] - `imports` [EXTRACTED]
 - [[slugifyName()]] - `calls` [EXTRACTED]
 

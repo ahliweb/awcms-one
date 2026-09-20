@@ -1,17 +1,17 @@
 ---
-source_file: "packages/gerbang/audit-dokumen.mjs"
+source_file: "packages/gerbang/audit-rilis.mjs"
 type: "code"
-community: "audit-dokumen.mjs"
-location: "L106"
+community: "audit-graf.mjs"
+location: "L104"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/audit-dokumenmjs
+  - community/audit-grafmjs
 ---
 
 # reporter
 
 ## Connections
-- [[audit-dokumen.mjs]] - `contains` [EXTRACTED]
+- [[audit-rilis.mjs]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/audit-dokumenmjs
+#graphify/code #graphify/EXTRACTED #community/audit-grafmjs

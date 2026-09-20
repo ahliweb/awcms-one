@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tsconfig.json"
 type: "code"
-community: "extends"
+community: "compilerOptions"
 location: "L2"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/extends
+  - community/compilerOptions
 ---
 
 # extends
@@ -16,4 +16,4 @@ tags:
 - [[astrotsconfigsstrict]] - `extends` [EXTRACTED]
 - [[storefronttsconfig.json]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/extends
+#graphify/code #graphify/EXTRACTED #community/compilerOptions

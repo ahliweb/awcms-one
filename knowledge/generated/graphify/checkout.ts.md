@@ -12,7 +12,7 @@ tags:
 # checkout.ts
 
 ## Connections
-- [[ADR-0007_11]] - `cites` [EXTRACTED]
+- [[ADR-0007_9]] - `cites` [EXTRACTED]
 - [[Alamat]] - `imports` [EXTRACTED]
 - [[Cart]] - `imports` [EXTRACTED]
 - [[CartLineRequest]] - `imports` [EXTRACTED]
@@ -32,7 +32,6 @@ tags:
 - [[bacaSesi()]] - `imports` [EXTRACTED]
 - [[buildWhatsappCartMessage()]] - `imports` [EXTRACTED]
 - [[buildWhatsappUrl()]] - `imports` [EXTRACTED]
-- [[checkout.astro]] - `imports_from` [EXTRACTED]
 - [[clearCart()]] - `imports` [EXTRACTED]
 - [[createOrder()]] - `imports` [EXTRACTED]
 - [[formatPrice()]] - `imports` [EXTRACTED]
@@ -48,6 +47,7 @@ tags:
 - [[telepon.ts]] - `imports_from` [EXTRACTED]
 - [[toLineRequests()_1]] - `contains` [EXTRACTED]
 - [[toko-klien.ts]] - `imports_from` [EXTRACTED]
+- [[tokopagescheckout.astro]] - `imports_from` [EXTRACTED]
 - [[wa-fallback.ts]] - `imports_from` [EXTRACTED]
 - [[wilayah-region-select.ts]] - `imports_from` [EXTRACTED]
 - [[wireCascadingRegionSelects()]] - `imports` [EXTRACTED]

@@ -1,18 +1,18 @@
 ---
-source_file: "apps/storefront/src/lib/berita.ts"
+source_file: "apps/storefront/src/profil/toko/pages/feed.xml.ts"
 type: "code"
-community: "portable-text.ts"
-location: "L751"
+community: "awcms/profil.ts"
+location: "L29"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/portable-textts
+  - community/awcms/profilts
 ---
 
 # escapeXml()
 
 ## Connections
-- [[berita.ts]] - `contains` [EXTRACTED]
-- [[renderBeritaRssXml()]] - `calls` [EXTRACTED]
+- [[GET()_10]] - `calls` [EXTRACTED]
+- [[pagesfeed.xml.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/portable-textts
+#graphify/code #graphify/EXTRACTED #community/awcms/profilts

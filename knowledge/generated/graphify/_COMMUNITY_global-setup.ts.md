@@ -11,7 +11,7 @@ members: 9
 
 ## Members
 - [[ADR-0002]] - concept - apps/storefront/tests/e2e/global-setup.ts
-- [[ADR-0007_2]] - concept - apps/storefront/tests/e2e/global-setup.ts
+- [[ADR-0007_1]] - concept - apps/storefront/tests/e2e/global-setup.ts
 - [[PREVIEW_PORT]] - code - apps/storefront/tests/e2e/ports.ts
 - [[STUB_PORT]] - code - apps/storefront/tests/e2e/ports.ts
 - [[global-setup.ts]] - code - apps/storefront/tests/e2e/global-setup.ts

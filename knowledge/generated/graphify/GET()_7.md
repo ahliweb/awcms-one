@@ -1,23 +1,18 @@
 ---
-source_file: "apps/storefront/src/pages/rubrik/[slug]/feed.xml.ts"
+source_file: "apps/storefront/src/profil/berita/pages/index/berita.json.ts"
 type: "code"
-community: "portable-text.ts"
-location: "L18"
+community: "video/[slug].astro"
+location: "L22"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/portable-textts
+  - community/video/slugastro
 ---
 
 # GET()
 
 ## Connections
-- [[slugfeed.xml.ts]] - `contains` [EXTRACTED]
-- [[absoluteUrl()]] - `calls` [EXTRACTED]
-- [[getPost()]] - `calls` [EXTRACTED]
-- [[getRubrik()]] - `calls` [EXTRACTED]
-- [[getSiteIdentity()]] - `calls` [EXTRACTED]
-- [[renderBeritaRssXml()]] - `calls` [EXTRACTED]
-- [[renderPortableText()]] - `calls` [EXTRACTED]
+- [[beritapagesindexberita.json.ts]] - `contains` [EXTRACTED]
+- [[getPosts()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/portable-textts
+#graphify/code #graphify/EXTRACTED #community/video/slugastro

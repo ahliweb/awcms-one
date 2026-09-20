@@ -15,6 +15,8 @@ tags:
 - [[getNavUtama()]] - `calls` [EXTRACTED]
 - [[navigasi-berita.test.ts]] - `imports` [EXTRACTED]
 - [[navigasi-berita.ts]] - `contains` [EXTRACTED]
+- [[navigasi-profil.ts]] - `imports` [EXTRACTED]
 - [[normalizeForMatch()]] - `calls` [EXTRACTED]
+- [[selectPrimaryNav()]] - `calls` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/navigasi-beritats
