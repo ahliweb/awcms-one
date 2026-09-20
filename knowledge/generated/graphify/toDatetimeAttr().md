@@ -1,8 +1,8 @@
 ---
-source_file: "apps/storefront/src/lib/tanggal.ts"
+source_file: "apps/storefront/src/components/berita/Sidebar.astro"
 type: "code"
 community: "Sidebar.astro"
-location: "L63"
+location: "L180"
 tags:
   - graphify/code
   - graphify/EXTRACTED
@@ -12,11 +12,7 @@ tags:
 # toDatetimeAttr()
 
 ## Connections
-- [[ArtikelCard.astro]] - `imports` [EXTRACTED]
-- [[ArtikelView.astro]] - `imports` [EXTRACTED]
-- [[Sidebar.astro]] - `imports` [EXTRACTED]
-- [[Ticker.astro]] - `imports` [EXTRACTED]
-- [[berita-tanggal.test.ts]] - `imports` [EXTRACTED]
-- [[tanggal.ts]] - `contains` [EXTRACTED]
+- [[Sidebar.astro]] - `contains` [EXTRACTED]
+- [[formatTanggalPanjangWIB()]] - `calls` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/Sidebarastro

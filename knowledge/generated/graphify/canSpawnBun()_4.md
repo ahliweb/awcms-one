@@ -2,7 +2,7 @@
 source_file: "apps/storefront/tests/bagikan-build-smoke.test.ts"
 type: "code"
 community: "bagikan-build-smoke.test.ts"
-location: "L33"
+location: "L34"
 tags:
   - graphify/code
   - graphify/EXTRACTED

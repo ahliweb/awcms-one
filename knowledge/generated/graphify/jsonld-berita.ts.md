@@ -12,8 +12,8 @@ tags:
 # jsonld-berita.ts
 
 ## Connections
-- [[ADR-0109]] - `cites` [EXTRACTED]
-- [[BreadcrumbItem]] - `contains` [EXTRACTED]
+- [[ADR-0109_2]] - `cites` [EXTRACTED]
+- [[BreadcrumbItem_1]] - `contains` [EXTRACTED]
 - [[NewsArticleSchemaInput]] - `contains` [EXTRACTED]
 - [[absoluteUrl()]] - `imports` [EXTRACTED]
 - [[berita-jsonld.test.ts]] - `imports_from` [EXTRACTED]

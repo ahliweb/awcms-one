@@ -1,12 +1,12 @@
 ---
-source_file: "tools/seed-borneojek-mart.ts"
+source_file: "tools/seed-cms.ts"
 type: "code"
-community: "seed-borneojek-mart.ts"
-location: "L1897"
+community: "seed-cms.ts"
+location: "L1514"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/seed-borneojek-martts
+  - community/seed-cmsts
 ---
 
 # isProviderNotConfigured()
@@ -14,6 +14,6 @@ tags:
 ## Connections
 - [[attemptCreateVerifiedMediaObject()]] - `calls` [EXTRACTED]
 - [[errorCodeOf()]] - `calls` [EXTRACTED]
-- [[seed-borneojek-mart.ts]] - `contains` [EXTRACTED]
+- [[seed-cms.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/seed-borneojek-martts
+#graphify/code #graphify/EXTRACTED #community/seed-cmsts

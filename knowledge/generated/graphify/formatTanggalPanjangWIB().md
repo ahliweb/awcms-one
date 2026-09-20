@@ -18,6 +18,6 @@ tags:
 - [[berita-tanggal.test.ts]] - `imports` [EXTRACTED]
 - [[formatTanggalWaktuWIB()]] - `calls` [EXTRACTED]
 - [[tanggal.ts]] - `contains` [EXTRACTED]
-- [[toDatetimeAttr()_1]] - `calls` [EXTRACTED]
+- [[toDatetimeAttr()]] - `calls` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/Sidebarastro

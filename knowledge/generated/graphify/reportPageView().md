@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/scripts/analitik.ts"
 type: "code"
-community: "buletin.ts"
+community: "requireAwcmsOrigin"
 location: "L180"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/buletints
+  - community/requireAwcmsOrigin
 ---
 
 # reportPageView()
@@ -18,4 +18,4 @@ tags:
 - [[scriptsanalitik.ts]] - `indirect_call` [INFERRED]
 - [[sendAnalyticsBeacon()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/buletints
+#graphify/code #graphify/EXTRACTED #community/requireAwcmsOrigin

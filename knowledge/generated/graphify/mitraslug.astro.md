@@ -1,12 +1,12 @@
 ---
-source_file: "apps/storefront/src/pages/mitra/[slug].astro"
+source_file: "apps/storefront/src/profil/berita/pages/mitra/[slug].astro"
 type: "code"
-community: "media.ts"
+community: "lembaga.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/mediats
+  - community/lembagats
 ---
 
 # mitra/[slug].astro
@@ -16,12 +16,12 @@ tags:
 - [[BeritaLayout.astro]] - `imports_from` [EXTRACTED]
 - [[ROUTES_1]] - `imports` [EXTRACTED]
 - [[berita.ts]] - `imports_from` [EXTRACTED]
-- [[canonicalPath_8]] - `contains` [EXTRACTED]
+- [[canonicalPath_3]] - `contains` [EXTRACTED]
 - [[getMitra()]] - `imports` [EXTRACTED]
 - [[getMitraList()_1]] - `imports` [EXTRACTED]
-- [[getStaticPaths()_15]] - `contains` [EXTRACTED]
+- [[getStaticPaths()_5]] - `contains` [EXTRACTED]
 - [[lembaga.ts]] - `imports_from` [EXTRACTED]
 - [[routes.ts]] - `imports_from` [EXTRACTED]
-- [[{ slug }_7]] - `contains` [EXTRACTED]
+- [[{ slug }_3]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/mediats
+#graphify/code #graphify/EXTRACTED #community/lembagats

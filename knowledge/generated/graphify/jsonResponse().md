@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/analitik-terpopuler.test.ts"
 type: "code"
-community: "wilayah-checkout.ts"
+community: "awcms/analitik.ts"
 location: "L191"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/wilayah-checkoutts
+  - community/awcms/analitikts
 ---
 
 # jsonResponse()
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[analitik-terpopuler.test.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/wilayah-checkoutts
+#graphify/code #graphify/EXTRACTED #community/awcms/analitikts

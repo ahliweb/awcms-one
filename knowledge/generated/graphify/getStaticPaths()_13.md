@@ -1,18 +1,19 @@
 ---
-source_file: "apps/storefront/src/pages/tag/[slug].astro"
+source_file: "apps/storefront/src/profil/toko/pages/index/wilayah-kecamatan-[cityCode].json.ts"
 type: "code"
-community: "berita.ts"
-location: "L9"
+community: "wilayah-checkout.ts"
+location: "L26"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/beritats
+  - community/wilayah-checkoutts
 ---
 
 # getStaticPaths()
 
 ## Connections
-- [[getTags()]] - `calls` [EXTRACTED]
-- [[tagslug.astro]] - `contains` [EXTRACTED]
+- [[getAllCheckoutRegencies()]] - `calls` [EXTRACTED]
+- [[getCheckoutDistricts()]] - `calls` [EXTRACTED]
+- [[tokopagesindexwilayah-kecamatan-cityCode.json.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/beritats
+#graphify/code #graphify/EXTRACTED #community/wilayah-checkoutts

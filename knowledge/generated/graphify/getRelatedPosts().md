@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/berita.ts"
 type: "code"
-community: "video/[slug].astro"
+community: "berita.ts"
 location: "L476"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/video/slugastro
+  - community/beritats
 ---
 
 # getRelatedPosts()
@@ -17,4 +17,4 @@ tags:
 - [[getIndex()]] - `calls` [EXTRACTED]
 - [[videoslug.astro]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/video/slugastro
+#graphify/code #graphify/EXTRACTED #community/beritats

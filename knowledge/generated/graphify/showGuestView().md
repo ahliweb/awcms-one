@@ -13,7 +13,7 @@ tags:
 
 ## Connections
 - [[akun-afiliasi.ts]] - `contains` [EXTRACTED]
-- [[render()_2]] - `calls` [EXTRACTED]
+- [[render()_1]] - `calls` [EXTRACTED]
 - [[showAccountView()]] - `calls` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/akun-afiliasits

@@ -10,7 +10,7 @@ members: 18
 **Members:** 18 nodes
 
 ## Members
-- [[ADR-0007_10]] - concept - apps/storefront/src/scripts/afiliasi-tangkap.ts
+- [[ADR-0007_8]] - concept - apps/storefront/src/scripts/afiliasi-tangkap.ts
 - [[AFILIASI_STORAGE_KEY]] - code - apps/storefront/src/lib/afiliasi-kontrak.ts
 - [[AFILIASI_TTL_MS]] - code - apps/storefront/src/lib/afiliasi-kontrak.ts
 - [[AfiliasiTertangkap]] - code - apps/storefront/src/lib/afiliasi-kontrak.ts
@@ -38,7 +38,7 @@ SORT file.name ASC
 
 ## Connections to other communities
 - 3 edges to [[_COMMUNITY_checkout.ts]]
-- 1 edge to [[_COMMUNITY_profil.ts]]
+- 1 edge to [[_COMMUNITY_awcmsprofil.ts]]
 
 ## Top bridge nodes
 - [[afiliasi-kontrak.ts]] - degree 14, connects to 1 community

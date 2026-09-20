@@ -14,11 +14,11 @@ tags:
 ## Connections
 - [[ArtikelView.astro]] - `imports_from` [EXTRACTED]
 - [[SOCIAL_ICON_PATHS]] - `imports` [EXTRACTED]
+- [[awcmsprofil.ts]] - `imports_from` [EXTRACTED]
 - [[buildShareLinks()]] - `imports` [EXTRACTED]
 - [[followLinks]] - `contains` [EXTRACTED]
 - [[ikon-sosial.ts]] - `imports_from` [EXTRACTED]
 - [[libbagikan.ts]] - `imports_from` [EXTRACTED]
-- [[profil.ts]] - `imports_from` [EXTRACTED]
 - [[resolveFollowLinks()]] - `imports` [EXTRACTED]
 - [[scriptsbagikan.ts]] - `imports_from` [EXTRACTED]
 - [[shareLinks]] - `contains` [EXTRACTED]

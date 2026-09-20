@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/scripts/flash-sale-countdown.ts"
 type: "code"
-community: "flash-sale-countdown.ts"
+community: "product/[slug].astro"
 location: "L38"
 tags:
   - graphify/code
   - graphify/INFERRED
-  - community/flash-sale-countdownts
+  - community/product/slugastro
 ---
 
 # tick()
@@ -15,4 +15,4 @@ tags:
 - [[flash-sale-countdown.ts]] - `indirect_call` [INFERRED]
 - [[formatRemaining()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/INFERRED #community/flash-sale-countdownts
+#graphify/code #graphify/INFERRED #community/product/slugastro

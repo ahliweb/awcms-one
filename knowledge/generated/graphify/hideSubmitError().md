@@ -14,6 +14,6 @@ tags:
 ## Connections
 - [[akun-afiliasi.ts]] - `contains` [EXTRACTED]
 - [[loadMoreKomisi()]] - `calls` [EXTRACTED]
-- [[render()_2]] - `calls` [EXTRACTED]
+- [[render()_1]] - `calls` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/akun-afiliasits

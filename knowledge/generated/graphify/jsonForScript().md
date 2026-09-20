@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/layouts/BaseLayout.astro"
 type: "code"
-community: "profil.ts"
-location: "L125"
+community: "awcms/profil.ts"
+location: "L126"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/profilts
+  - community/awcms/profilts
 ---
 
 # jsonForScript()
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[BaseLayout.astro]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/profilts
+#graphify/code #graphify/EXTRACTED #community/awcms/profilts

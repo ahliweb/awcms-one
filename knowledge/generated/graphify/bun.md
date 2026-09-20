@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tsconfig.json"
 type: "concept"
-community: "extends"
+community: "compilerOptions"
 location: "L15"
 tags:
   - graphify/concept
   - graphify/EXTRACTED
-  - community/extends
+  - community/compilerOptions
 ---
 
 # bun
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[types_1]] - `extends` [EXTRACTED]
 
-#graphify/concept #graphify/EXTRACTED #community/extends
+#graphify/concept #graphify/EXTRACTED #community/compilerOptions

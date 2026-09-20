@@ -12,8 +12,8 @@ tags:
 # Countdown.astro
 
 ## Connections
-- [[flash-sale.astro]] - `imports_from` [EXTRACTED]
-- [[pagesindex.astro]] - `imports_from` [EXTRACTED]
 - [[productslug.astro]] - `imports_from` [EXTRACTED]
+- [[tokoBeranda.astro]] - `imports_from` [EXTRACTED]
+- [[tokopagesflash-sale.astro]] - `imports_from` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/product/slugastro

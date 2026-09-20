@@ -1,27 +1,18 @@
 ---
-source_file: "apps/storefront/server/penyaji.mjs"
+source_file: "tests/audit-rilis.test.mjs"
 type: "code"
-community: "penyaji.mjs"
-location: "L782"
+community: "audit-rilis.test.mjs"
+location: "L63"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/penyajimjs
+  - community/audit-rilistestmjs
 ---
 
 # run()
 
 ## Connections
-- [[buildCsp()]] - `calls` [EXTRACTED]
-- [[createServer()]] - `calls` [EXTRACTED]
-- [[discoverCssPreloadPaths()]] - `calls` [EXTRACTED]
-- [[discoverShadowedHtmlPaths()]] - `calls` [EXTRACTED]
-- [[penyaji.mjs]] - `contains` [EXTRACTED]
-- [[readBuildId()]] - `calls` [EXTRACTED]
-- [[readCspOrigins()]] - `calls` [EXTRACTED]
-- [[readLegacyRedirectMap()]] - `calls` [EXTRACTED]
-- [[withServer()]] - `calls` [EXTRACTED]
-- [[withServer()_1]] - `calls` [EXTRACTED]
-- [[withServer()_2]] - `calls` [EXTRACTED]
+- [[audit-rilis.test.mjs]] - `contains` [EXTRACTED]
+- [[bun_1]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/penyajimjs
+#graphify/code #graphify/EXTRACTED #community/audit-rilistestmjs

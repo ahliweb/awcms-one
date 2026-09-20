@@ -1,17 +1,17 @@
 ---
-source_file: "apps/storefront/src/pages/manifest.webmanifest.ts"
+source_file: "apps/storefront/src/profil/berita/pages/berita/feed.xml.ts"
 type: "code"
-community: "site.ts"
-location: "L12"
+community: "video/[slug].astro"
+location: "L14"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/sitets
+  - community/video/slugastro
 ---
 
 # prerender
 
 ## Connections
-- [[manifest.webmanifest.ts]] - `contains` [EXTRACTED]
+- [[beritafeed.xml.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/sitets
+#graphify/code #graphify/EXTRACTED #community/video/slugastro

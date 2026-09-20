@@ -1,17 +1,17 @@
 ---
-source_file: "apps/storefront/src/pages/berita/feed.xml.ts"
+source_file: "apps/storefront/src/pages/sitemap-[n].xml.ts"
 type: "code"
-community: "portable-text.ts"
-location: "L14"
+community: "sitemap.ts"
+location: "L10"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/portable-textts
+  - community/sitemapts
 ---
 
 # prerender
 
 ## Connections
-- [[beritafeed.xml.ts]] - `contains` [EXTRACTED]
+- [[sitemap-n.xml.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/portable-textts
+#graphify/code #graphify/EXTRACTED #community/sitemapts

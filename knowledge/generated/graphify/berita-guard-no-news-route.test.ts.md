@@ -12,9 +12,11 @@ tags:
 # berita-guard-no-news-route.test.ts
 
 ## Connections
-- [[ADR-0071]] - `cites` [EXTRACTED]
+- [[ADR-0071_1]] - `cites` [EXTRACTED]
 - [[PAGES_ROOT]] - `contains` [EXTRACTED]
+- [[PROFIL_ROOT_1]] - `contains` [EXTRACTED]
 - [[ROUTES_1]] - `imports` [EXTRACTED]
+- [[SRC_ROOT_1]] - `contains` [EXTRACTED]
 - [[listAllFiles()]] - `contains` [EXTRACTED]
 - [[routes.ts]] - `imports_from` [EXTRACTED]
 

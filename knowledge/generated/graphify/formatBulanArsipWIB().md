@@ -12,8 +12,8 @@ tags:
 # formatBulanArsipWIB()
 
 ## Connections
-- [[mm.astro]] - `imports` [EXTRACTED]
 - [[berita-tanggal.test.ts]] - `imports` [EXTRACTED]
+- [[beritapagesarsipyyyymm.astro]] - `imports` [EXTRACTED]
 - [[tanggal.ts]] - `contains` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/Sidebarastro

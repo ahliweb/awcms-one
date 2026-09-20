@@ -10,7 +10,7 @@ members: 28
 **Members:** 28 nodes
 
 ## Members
-- [[ADR-0003_2]] - concept - apps/storefront/src/lib/keranjang-kontrak.ts
+- [[ADR-0003_1]] - concept - apps/storefront/src/lib/keranjang-kontrak.ts
 - [[CartLine]] - code - apps/storefront/src/lib/keranjang-kontrak.ts
 - [[KERANJANG_EVENT_NAME]] - code - apps/storefront/src/lib/keranjang-kontrak.ts
 - [[KERANJANG_STORAGE_KEY]] - code - apps/storefront/src/lib/keranjang-kontrak.ts
@@ -47,15 +47,14 @@ SORT file.name ASC
 ```
 
 ## Connections to other communities
-- 13 edges to [[_COMMUNITY_formatPrice]]
+- 14 edges to [[_COMMUNITY_formatPrice]]
 - 5 edges to [[_COMMUNITY_checkout.ts]]
 - 2 edges to [[_COMMUNITY_produk-detail.ts]]
 - 1 edge to [[_COMMUNITY_routes.ts]]
-- 1 edge to [[_COMMUNITY_akun-pesanan.ts]]
 
 ## Top bridge nodes
 - [[keranjang-klien.ts]] - degree 20, connects to 3 communities
 - [[keranjang-kontrak.ts]] - degree 21, connects to 2 communities
 - [[loadCart()]] - degree 10, connects to 2 communities
-- [[wa-fallback.test.ts]] - degree 8, connects to 2 communities
+- [[wa-fallback.test.ts]] - degree 8, connects to 1 community
 - [[keranjang-hitung.ts]] - degree 7, connects to 1 community

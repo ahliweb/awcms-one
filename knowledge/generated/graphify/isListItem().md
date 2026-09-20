@@ -13,7 +13,7 @@ tags:
 
 ## Connections
 - [[portable-text.ts]] - `contains` [EXTRACTED]
-- [[renderList()]] - `calls` [EXTRACTED]
+- [[renderList()_1]] - `calls` [EXTRACTED]
 - [[renderPortableText()]] - `calls` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/portable-textts

@@ -14,7 +14,7 @@ tags:
 ## Connections
 - [[akun.ts]] - `contains` [EXTRACTED]
 - [[ambilProfil()]] - `calls` [EXTRACTED]
-- [[render()_6]] - `calls` [EXTRACTED]
+- [[render()_5]] - `calls` [EXTRACTED]
 - [[renderProfile()]] - `calls` [EXTRACTED]
 - [[showGuestView()_3]] - `calls` [EXTRACTED]
 - [[showSubmitError()_4]] - `calls` [EXTRACTED]

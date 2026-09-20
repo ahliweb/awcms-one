@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/awcms/analitik.ts"
 type: "code"
-community: "wilayah-checkout.ts"
+community: "awcms/analitik.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/wilayah-checkoutts
+  - community/awcms/analitikts
 ---
 
 # awcms/analitik.ts
@@ -27,4 +27,4 @@ tags:
 - [[resetAnalitikCacheForTests()]] - `contains` [EXTRACTED]
 - [[slugDariPath()]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/wilayah-checkoutts
+#graphify/code #graphify/EXTRACTED #community/awcms/analitikts

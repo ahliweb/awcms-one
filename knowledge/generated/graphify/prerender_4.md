@@ -1,17 +1,17 @@
 ---
-source_file: "apps/storefront/src/pages/index/produk.json.ts"
+source_file: "apps/storefront/src/pages/csp.json.ts"
 type: "code"
-community: "catalog.ts"
-location: "L12"
+community: "pemasaran.ts"
+location: "L112"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/catalogts
+  - community/pemasarants
 ---
 
 # prerender
 
 ## Connections
-- [[produk.json.ts]] - `contains` [EXTRACTED]
+- [[csp.json.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/catalogts
+#graphify/code #graphify/EXTRACTED #community/pemasarants

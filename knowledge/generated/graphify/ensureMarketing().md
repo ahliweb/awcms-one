@@ -1,12 +1,12 @@
 ---
-source_file: "tools/seed-borneojek-mart.ts"
+source_file: "tools/seed-cms.ts"
 type: "code"
-community: "seed-borneojek-mart.ts"
-location: "L709"
+community: "seed-cms.ts"
+location: "L629"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/seed-borneojek-martts
+  - community/seed-cmsts
 ---
 
 # ensureMarketing()
@@ -15,8 +15,9 @@ tags:
 - [[apiCall()_1]] - `calls` [EXTRACTED]
 - [[assertOk()_1]] - `calls` [EXTRACTED]
 - [[hoursFromNow()]] - `calls` [EXTRACTED]
-- [[main()_1]] - `calls` [EXTRACTED]
 - [[readSeedJson()]] - `calls` [EXTRACTED]
-- [[seed-borneojek-mart.ts]] - `contains` [EXTRACTED]
+- [[runContohBorneojekMart()]] - `calls` [EXTRACTED]
+- [[runToko()]] - `calls` [EXTRACTED]
+- [[seed-cms.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/seed-borneojek-martts
+#graphify/code #graphify/EXTRACTED #community/seed-cmsts

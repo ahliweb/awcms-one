@@ -14,6 +14,6 @@ tags:
 ## Connections
 - [[berita-terkini.ts]] - `contains` [EXTRACTED]
 - [[katalog-berita-terkini.test.ts]] - `imports` [EXTRACTED]
-- [[pagesindex.astro]] - `imports` [EXTRACTED]
+- [[tokoBeranda.astro]] - `imports` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/berita-terkinits

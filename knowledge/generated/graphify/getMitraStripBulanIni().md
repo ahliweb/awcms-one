@@ -12,9 +12,9 @@ tags:
 # getMitraStripBulanIni()
 
 ## Connections
+- [[HalamanDepanBerita.astro]] - `imports` [EXTRACTED]
 - [[arsipBulanWIB()]] - `calls` [EXTRACTED]
 - [[berita.ts]] - `contains` [EXTRACTED]
-- [[beritaindex.astro]] - `imports` [EXTRACTED]
 - [[getIndex()]] - `calls` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/beritats

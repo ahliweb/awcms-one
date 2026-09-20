@@ -14,7 +14,7 @@ tags:
 ## Connections
 - [[annotationMap()]] - `calls` [EXTRACTED]
 - [[portable-text.ts]] - `contains` [EXTRACTED]
-- [[renderList()]] - `calls` [EXTRACTED]
+- [[renderList()_1]] - `calls` [EXTRACTED]
 - [[renderProseBlock()]] - `calls` [EXTRACTED]
 - [[renderSpan()]] - `calls` [EXTRACTED]
 

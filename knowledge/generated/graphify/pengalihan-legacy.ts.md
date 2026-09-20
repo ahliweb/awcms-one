@@ -16,10 +16,10 @@ tags:
 - [[LegacyRedirectRow]] - `contains` [EXTRACTED]
 - [[ROUTES_1]] - `imports` [EXTRACTED]
 - [[berita-pengalihan-legacy.test.ts]] - `imports_from` [EXTRACTED]
+- [[beritapagesindexpengalihan-legacy.json.ts]] - `imports_from` [EXTRACTED]
 - [[buildLegacyRedirectMap()]] - `contains` [EXTRACTED]
 - [[lastPathSegment()_1]] - `contains` [EXTRACTED]
 - [[normalizeLegacyPath()]] - `contains` [EXTRACTED]
-- [[pengalihan-legacy.json.ts]] - `imports_from` [EXTRACTED]
 - [[routes.ts]] - `imports_from` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/getVideo

@@ -14,7 +14,7 @@ tags:
 ## Connections
 - [[formatPrice()]] - `calls` [EXTRACTED]
 - [[removeFromWishlist()]] - `calls` [EXTRACTED]
-- [[render()_7]] - `calls` [EXTRACTED]
+- [[render()_6]] - `calls` [EXTRACTED]
 - [[tulisKeAkunJikaMasuk()]] - `calls` [EXTRACTED]
 - [[wishlist.ts]] - `contains` [EXTRACTED]
 

@@ -1,23 +1,25 @@
 ---
 source_file: "apps/storefront/src/pages/csp.json.ts"
 type: "code"
-community: "pages/index.astro"
+community: "pemasaran.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/pages/indexastro
+  - community/pemasarants
 ---
 
 # csp.json.ts
 
 ## Connections
-- [[ADR-0007_4]] - `cites` [EXTRACTED]
-- [[GET()_11]] - `contains` [EXTRACTED]
+- [[ADR-0007_10]] - `cites` [EXTRACTED]
+- [[CSP_NEEDS]] - `imports` [EXTRACTED]
+- [[GET()_4]] - `contains` [EXTRACTED]
 - [[berita.ts]] - `imports_from` [EXTRACTED]
 - [[blog.ts]] - `imports_from` [EXTRACTED]
 - [[buildCspOriginsArtifact()]] - `imports` [EXTRACTED]
 - [[catalog.ts]] - `imports_from` [EXTRACTED]
+- [[configprofil.ts]] - `imports_from` [EXTRACTED]
 - [[csp-asal-media.ts]] - `imports_from` [EXTRACTED]
 - [[ga.ts]] - `imports_from` [EXTRACTED]
 - [[getActiveAdPlacements()]] - `imports` [EXTRACTED]
@@ -32,9 +34,9 @@ tags:
 - [[getVideo()]] - `imports` [EXTRACTED]
 - [[media.ts]] - `imports_from` [EXTRACTED]
 - [[pemasaran.ts]] - `imports_from` [EXTRACTED]
-- [[prerender_11]] - `contains` [EXTRACTED]
+- [[prerender_4]] - `contains` [EXTRACTED]
 - [[readGaMeasurementId()]] - `imports` [EXTRACTED]
 - [[requireAwcmsOrigin()]] - `imports` [EXTRACTED]
 - [[toko-origin.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/pages/indexastro
+#graphify/code #graphify/EXTRACTED #community/pemasarants

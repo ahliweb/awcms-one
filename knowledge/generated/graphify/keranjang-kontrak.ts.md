@@ -12,7 +12,7 @@ tags:
 # keranjang-kontrak.ts
 
 ## Connections
-- [[ADR-0003_2]] - `cites` [EXTRACTED]
+- [[ADR-0003_1]] - `cites` [EXTRACTED]
 - [[Cart]] - `contains` [EXTRACTED]
 - [[CartLine]] - `contains` [EXTRACTED]
 - [[KERANJANG_EVENT_NAME]] - `contains` [EXTRACTED]

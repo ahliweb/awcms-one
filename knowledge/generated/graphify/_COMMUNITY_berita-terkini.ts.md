@@ -26,7 +26,7 @@ SORT file.name ASC
 ```
 
 ## Connections to other communities
-- 2 edges to [[_COMMUNITY_pagesindex.astro]]
+- 2 edges to [[_COMMUNITY_pemasaran.ts]]
 - 1 edge to [[_COMMUNITY_berita.ts]]
 
 ## Top bridge nodes

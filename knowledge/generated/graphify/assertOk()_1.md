@@ -1,12 +1,12 @@
 ---
-source_file: "tools/seed-borneojek-mart.ts"
+source_file: "tools/seed-cms.ts"
 type: "code"
-community: "seed-borneojek-mart.ts"
-location: "L223"
+community: "seed-cms.ts"
+location: "L253"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/seed-borneojek-martts
+  - community/seed-cmsts
 ---
 
 # assertOk()
@@ -18,7 +18,8 @@ tags:
 - [[ensureBlogPosts()]] - `calls` [EXTRACTED]
 - [[ensureBlogTerms()]] - `calls` [EXTRACTED]
 - [[ensureCategories()]] - `calls` [EXTRACTED]
-- [[ensureInstitutions()]] - `calls` [EXTRACTED]
+- [[ensureInstitutionsForBorneojekMart()]] - `calls` [EXTRACTED]
+- [[ensureInstitutionsGeneric()]] - `calls` [EXTRACTED]
 - [[ensureMachineCredential()]] - `calls` [EXTRACTED]
 - [[ensureMarketing()]] - `calls` [EXTRACTED]
 - [[ensureNewsPosts()]] - `calls` [EXTRACTED]
@@ -29,6 +30,6 @@ tags:
 - [[ensureTenantAndSession()]] - `calls` [EXTRACTED]
 - [[fetchRegionItems()]] - `calls` [EXTRACTED]
 - [[issueMachineCredentialFor()]] - `calls` [EXTRACTED]
-- [[seed-borneojek-mart.ts]] - `contains` [EXTRACTED]
+- [[seed-cms.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/seed-borneojek-martts
+#graphify/code #graphify/EXTRACTED #community/seed-cmsts

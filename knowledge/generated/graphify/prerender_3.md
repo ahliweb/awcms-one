@@ -1,17 +1,17 @@
 ---
-source_file: "apps/storefront/src/pages/index/berita.json.ts"
+source_file: "apps/storefront/src/pages/theme-tokens.css.ts"
 type: "code"
-community: "video/[slug].astro"
-location: "L11"
+community: "theme.ts"
+location: "L21"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/video/slugastro
+  - community/themets
 ---
 
 # prerender
 
 ## Connections
-- [[berita.json.ts]] - `contains` [EXTRACTED]
+- [[theme-tokens.css.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/video/slugastro
+#graphify/code #graphify/EXTRACTED #community/themets

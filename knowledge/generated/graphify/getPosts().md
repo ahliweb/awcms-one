@@ -12,17 +12,17 @@ tags:
 # getPosts()
 
 ## Connections
-- [[GET()_1]] - `calls` [EXTRACTED]
-- [[GET()_3]] - `calls` [EXTRACTED]
+- [[GET()_6]] - `calls` [EXTRACTED]
+- [[GET()_7]] - `calls` [EXTRACTED]
+- [[HalamanDepanBerita.astro]] - `imports` [EXTRACTED]
 - [[Sidebar.astro]] - `imports` [EXTRACTED]
 - [[Ticker.astro]] - `imports` [EXTRACTED]
-- [[berita.json.ts]] - `imports` [EXTRACTED]
 - [[berita.ts]] - `contains` [EXTRACTED]
 - [[beritaslug.astro]] - `imports` [EXTRACTED]
 - [[beritafeed.xml.ts]] - `imports` [EXTRACTED]
-- [[beritaindex.astro]] - `imports` [EXTRACTED]
+- [[beritapagesindexberita.json.ts]] - `imports` [EXTRACTED]
 - [[getIndex()]] - `calls` [EXTRACTED]
-- [[getStaticPaths()_7]] - `calls` [EXTRACTED]
+- [[getStaticPaths()_3]] - `calls` [EXTRACTED]
 - [[sitemap-sources.ts]] - `imports` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/video/slugastro

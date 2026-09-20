@@ -31,7 +31,7 @@ members: 40
 - [[refreshAllButtons()]] - code - apps/storefront/src/scripts/wishlist-tombol.ts
 - [[removeFromWishlist()]] - code - apps/storefront/src/lib/wishlist-klien.ts
 - [[removeWishlistItem()]] - code - apps/storefront/src/lib/wishlist-kontrak.ts
-- [[render()_7]] - code - apps/storefront/src/scripts/wishlist.ts
+- [[render()_6]] - code - apps/storefront/src/scripts/wishlist.ts
 - [[renderButtonState()]] - code - apps/storefront/src/scripts/wishlist-tombol.ts
 - [[root_14]] - code - apps/storefront/src/scripts/wishlist.ts
 - [[saveWishlist()]] - code - apps/storefront/src/lib/wishlist-klien.ts
@@ -39,6 +39,7 @@ members: 40
 - [[statusElement()]] - code - apps/storefront/src/lib/wishlist-akun-sync.ts
 - [[toggleWishlist()]] - code - apps/storefront/src/lib/wishlist-klien.ts
 - [[toggleWishlistItem()]] - code - apps/storefront/src/lib/wishlist-kontrak.ts
+- [[tokopageswishlist.astro]] - code - apps/storefront/src/profil/toko/pages/wishlist.astro
 - [[tulisKeAkunJikaMasuk()]] - code - apps/storefront/src/lib/wishlist-akun-sync.ts
 - [[validateWishlistItem()]] - code - apps/storefront/src/lib/wishlist-kontrak.ts
 - [[wishlist-akun-sync.ts]] - code - apps/storefront/src/lib/wishlist-akun-sync.ts
@@ -48,7 +49,6 @@ members: 40
 - [[wishlist-sinkron.test.ts]] - code - apps/storefront/tests/wishlist-sinkron.test.ts
 - [[wishlist-sinkron.ts]] - code - apps/storefront/src/lib/wishlist-sinkron.ts
 - [[wishlist-tombol.ts]] - code - apps/storefront/src/scripts/wishlist-tombol.ts
-- [[wishlist.astro]] - code - apps/storefront/src/pages/wishlist.astro
 - [[wishlist.ts]] - code - apps/storefront/src/scripts/wishlist.ts
 
 ## Live Query (requires Dataview plugin)
@@ -61,15 +61,14 @@ SORT file.name ASC
 ## Connections to other communities
 - 7 edges to [[_COMMUNITY_bacaSesi]]
 - 6 edges to [[_COMMUNITY_akun-klien.ts]]
-- 2 edges to [[_COMMUNITY_formatPrice]]
-- 1 edge to [[_COMMUNITY_harga.ts]]
-- 1 edge to [[_COMMUNITY_profil.ts]]
-- 1 edge to [[_COMMUNITY_media.ts]]
+- 3 edges to [[_COMMUNITY_formatPrice]]
+- 1 edge to [[_COMMUNITY_portable-text.ts]]
 - 1 edge to [[_COMMUNITY_routes.ts]]
+- 1 edge to [[_COMMUNITY_awcmsprofil.ts]]
 
 ## Top bridge nodes
 - [[wishlist-akun-sync.ts]] - degree 19, connects to 2 communities
-- [[wishlist.ts]] - degree 16, connects to 2 communities
 - [[sinkronkanWishlistSaatMasuk()]] - degree 8, connects to 2 communities
 - [[tulisKeAkunJikaMasuk()]] - degree 8, connects to 2 communities
+- [[wishlist.ts]] - degree 16, connects to 1 community
 - [[wishlist-tombol.ts]] - degree 15, connects to 1 community

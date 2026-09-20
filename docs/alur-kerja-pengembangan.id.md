@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](alur-kerja-pengembangan.md)
 
-<!-- i18n-source-hash: sha256:3f92e75e5c849e255d791384341e660a20c14fd2c003e759206956e03422ff58 -->
+<!-- i18n-source-hash: sha256:cde8982d64621d623f80e95e3c51fe25278b3f4ae93e57fc7e0273a5286dc11b -->
 
 # Alur kerja pengembangan
 
@@ -16,7 +16,7 @@ Diverifikasi langsung terhadap pengaturan GitHub repositori ini saat tulisan ini
 
 | Pengaturan | Nilai |
 | --- | --- |
-| Status check wajib | `Check` **dan** `check-cms` — kedua job `.github/workflows/ci.yml` |
+| Status check wajib | `Check (toko)`, `Check (berita)`, `Check (landing)` **dan** `check-cms` — sejak increment 6 (issue #137) job `Check` storefront adalah matriks 3-leg, keempat leg/job `.github/workflows/ci.yml` wajib |
 | Strict (branch harus up to date sebelum merge) | Ya |
 | Force push | Ditolak |
 | Penghapusan branch | Ditolak |
@@ -43,7 +43,7 @@ Increment 2 (epic #21) dikirimkan sebagai rangkaian PR atomik satu-issue, bukan 
 
 `.github/workflows/ci.yml` mendefinisikan dua job.
 
-**`check`** (`name: Check`, `timeout-minutes: 15`) berjalan pada setiap push ke `main`, setiap pull request, dan dispatch manual, tidak butuh build, tidak butuh `apps/cms` hidup, dan tidak butuh basis data: `bun run check:lockfile`, `bun install --frozen-lockfile`, langkah type-check storefront (`bun run check`, yang mendelegasikan ke `bun --bun astro check` milik `apps/storefront` sendiri — guard `if: hashFiles('apps/storefront/package.json') != ''` langkah ini adalah sisa dari sebelum workspace itu ada dan sekarang selalu benar), root `bun test`, `audit:dokumen`, `audit:translation`, `audit:graf`, `audit:rilis`, dan `bun audit --audit-level=low`. Tidak ada apa pun di job ini yang membangun image container atau men-deploy apa pun.
+**`check`** (`name: Check`, `timeout-minutes: 15`) berjalan pada setiap push ke `main`, setiap pull request, dan dispatch manual, tidak butuh build, tidak butuh `apps/cms` hidup, dan tidak butuh basis data. Sejak increment 6 (issue #137, [ADR-0018 D7](adr/0018-awcms-one-is-a-template-with-build-profiles-and-an-idempotent-init.id.md)), ia adalah **matriks 3-leg** (`strategy.matrix.profile: [toko, berita, landing]`, `fail-fast: false`) — GitHub menampilkan tiap leg sebagai `Check (toko)`, `Check (berita)`, `Check (landing)`. Setiap leg menjalankan `bun run check:lockfile`, `bun install --frozen-lockfile`, lalu `SITE_PROFILE=<leg> bun run check` (type-check storefront yang mencakup `src/profil/**` tanpa memandang group mana yang aktif) dan `cd apps/storefront && SITE_PROFILE=<leg> bun test tests/profil-build-smoke.test.ts tests/profil-routes.test.ts` — build milik leg itu sendiri terhadap stub CMS, membuktikan group halaman yang dikecualikan sungguh-sungguh absen dari `dist/` dan sitemap. `bun test` root, `audit:dokumen`, `audit:translation`, `audit:graf`, `audit:rilis`, dan `bun audit --audit-level=low` tidak bergantung pada profil, jadi ia berjalan **sekali saja, di leg `toko`** (`if: matrix.profile == 'toko'`), tanpa `SITE_PROFILE` diatur — di langkah itu, `profil-build-smoke` sendiri membangun ketiga profil, jadi leg `toko` sendiri sudah membuktikan seluruh matriks. Tidak ada apa pun di job ini yang membangun image container atau men-deploy apa pun.
 
 **`check-cms`** (`name: check-cms`, `needs: check`, `timeout-minutes: 20`) berjalan terhadap container layanan `postgres:18.4` nyata (`POSTGRES_USER=awcms`, `POSTGRES_DB=awcms`, port 5432, health-checked dengan `pg_isready`):
 
@@ -53,11 +53,13 @@ Increment 2 (epic #21) dikirimkan sebagai rangkaian PR atomik satu-issue, bukan 
 4. `cd apps/cms && bun test tests/integration/ --timeout 60000` — suite integrasi ber-gate-DB, kini benar-benar berjalan (lebih dari 670 tes per PR orders/customers).
 5. Langkah job-summary (`if: always()`) meng-grep jumlah `N skip` dari kedua berkas log dan melaporkan jumlah skip ber-gate-DB sebelum/sesudah, sehingga reviewer bisa melihat suite itu benar-benar berjalan, bukan diam-diam skip dua kali.
 
-Kedua job adalah status check wajib di `main` (lihat "Branch protection pada `main`" di atas) — ini menutup celah yang dideskripsikan draf dokumen ini sebelumnya: rantai gate `apps/cms` sendiri, dan cakupan RLS/basis datanya, berjalan di CI repositori INI sendiri pada setiap PR, tidak hanya lokal.
+Ketiga leg `Check` dan `check-cms` semuanya status check wajib di `main` (lihat "Branch protection pada `main`" di atas) — ini menutup celah yang dideskripsikan draf dokumen ini sebelumnya: rantai gate `apps/cms` sendiri, dan cakupan RLS/basis datanya, berjalan di CI repositori INI sendiri pada setiap PR, tidak hanya lokal.
 
 ## CI: workflow ketiga, belum wajib — `template-init-smoke`
 
 `.github/workflows/template-init-smoke.yml` (issue #138) adalah berkas workflow TERPISAH, bukan job ketiga di `ci.yml` — berkas itu dimiliki oleh perubahan lain yang sejak itu landing (issue #137), dan cakupan workflow ini sendiri meminta berkas baru alih-alih job yang ditempelkan ke sana. Ia mematriks `toko`/`berita`/`landing` (ADR-0018 D2): untuk setiap profil, ia menjalankan `bun run template:init --profil <profile> --yes` terhadap checkout-nya sendiri (termasuk rantai gate akhir milik alat itu sendiri), memulai stub CMS milik storefront, menjalankan `SITE_PROFILE=<profile> bun run build` dari `apps/storefront`, lalu `bun test` root. Ia **belum menjadi status check wajib** — mengikuti pola promosi yang sama yang dilalui `check-cms` sendiri (lihat "Branch protection pada `main`" di atas): ditambahkan ke daftar wajib hanya setelah berjalan hijau di `main` untuk sementara waktu.
+
+Dua detail menjaga `bun test` akhir itu tidak gagal terhadap dirinya sendiri. Pertama, probe kesiapan workflow ini memeriksa stub CMS **dengan bearer token** (`curl -sf -H "Authorization: Bearer stub" http://localhost:4310/api/v1/commerce/products`) — stub menjawab `401` untuk request tanpa autentikasi memang disengaja (`apps/storefront/scripts/stub-awcms.mjs`), dan `curl -f` polos akan membaca `401` itu sebagai "belum siap" selamanya. Kedua, `tests/template-init.test.mjs` melewati dirinya sendiri begitu mendeteksi ia tidak lagi berjalan di dalam `awcms-one` (`package.json.name !== "awcms-one"`) — tanpa guard itu, `bun test` akhir yang dijalankan sebuah run `template:init` akan menemukan dan menjalankan ulang berkas tesnya sendiri di dalam repositori yang baru saja diinisialisasinya, yang tes full-run-nya kemudian mencoba membangun salinan sementara lain dari `git ls-files`, yang masih mendaftar path yang sudah di-`unlinkSync` (tidak pernah di-`git rm`) oleh langkah penghapusan run itu sendiri, melempar `ENOENT` pada setiap satu darinya.
 
 ## Seeding profil secara lokal
 

@@ -1,17 +1,17 @@
 ---
-source_file: "apps/storefront/src/pages/penulis/[slug].astro"
+source_file: "apps/storefront/src/profil/berita/pages/mitra/[slug].astro"
 type: "code"
-community: "berita.ts"
-location: "L32"
+community: "lembaga.ts"
+location: "L35"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/beritats
+  - community/lembagats
 ---
 
 # canonicalPath
 
 ## Connections
-- [[penulisslug.astro]] - `contains` [EXTRACTED]
+- [[mitraslug.astro]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/beritats
+#graphify/code #graphify/EXTRACTED #community/lembagats

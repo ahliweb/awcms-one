@@ -1,18 +1,18 @@
 ---
 source_file: "apps/storefront/tests/buletin-build-smoke.test.ts"
 type: "code"
-community: "buletin-build-smoke.test.ts"
+community: "bun"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/buletin-build-smoketestts
+  - community/bun
 ---
 
 # buletin-build-smoke.test.ts
 
 ## Connections
-- [[canSpawnBun()_6]] - `contains` [EXTRACTED]
-- [[waitForStub()_6]] - `contains` [EXTRACTED]
+- [[canSpawnBun()_7]] - `contains` [EXTRACTED]
+- [[waitForStub()_7]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/buletin-build-smoketestts
+#graphify/code #graphify/EXTRACTED #community/bun

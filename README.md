@@ -58,11 +58,12 @@ tools/                       cross-workspace scripts: release, lockfile check, d
 tests/                       the root-level gate tests (docs, changesets, toolchain, scripts,
                               import direction)
 docs/                        architecture, schema, API, CMS, routing, SEO, accessibility,
-                              responsive, UI/UX, testing, deployment, and workflow reference,
-                              plus docs/adr/ (seventeen ADRs)
+                              responsive, UI/UX, testing, deployment, workflow, and template
+                              reference, plus docs/adr/ (eighteen ADRs)
 knowledge/                   the federated Graphify + Obsidian knowledge-graph workflow
-.claude/skills/               awcms-one-storefront, awcms-one-commerce — how-to guides for
-                              adding a storefront page or a commerce table/endpoint
+.claude/skills/               awcms-one-storefront, awcms-one-commerce, awcms-one-template —
+                              how-to guides for adding a storefront page, a commerce
+                              table/endpoint, or starting a new app from this template
 .changesets/, .github/       stay at the repo root — decisions about the whole repo
 ```
 
@@ -96,11 +97,12 @@ This repo is **Bun-only**: Bun is both the runtime and the package manager, its 
 | `bun run db:migrate:cms` | Runs `apps/cms`'s migrations against `DATABASE_URL` — see `apps/cms/.env.example` |
 | `bun run db:seed:cms` | Seeds the `borneojek-mart` tenant, catalog, marketing surfaces, and sample orders through `apps/cms`'s own public API — see [`docs/deployment.md`](docs/deployment.md) |
 | `bun run release` | Cuts a tagged release from the waiting changesets — see [`CONTRIBUTING.md`](CONTRIBUTING.md) |
-| `dev` / `build` / `check` / `serve` | Delegate into `apps/storefront` — `bun run build` type-checks, fetches the catalog/marketing/news content from `apps/cms` at build time, and bakes static output including the derived CSP; `bun run serve` runs the built `apps/storefront/server/penyaji.mjs` — see [`docs/deployment.md`](docs/deployment.md) |
+| `dev` / `build` / `check` / `serve` | Delegate into `apps/storefront` — `bun run build` type-checks, fetches the catalog/marketing/news content from `apps/cms` at build time, and bakes static output including the derived CSP; `bun run serve` runs the built `apps/storefront/server/penyaji.mjs`. All three build-time commands honour `SITE_PROFILE` (`toko` default) — see [`docs/deployment.md`](docs/deployment.md) |
+| `bun run template:init` | Idempotent brand/profile initialisation for a derived repository — see [`docs/template.md`](docs/template.md) |
 
 ### Gates
 
-`bun test` plus four `audit:*` scripts run unconditionally on every push, needing no build, network, or `apps/cms` — the `check` CI job. A second CI job, `check-cms`, runs `apps/cms`'s own full gate chain plus its DB-gated integration suite against a real, ephemeral PostgreSQL (issue #25) — see [`docs/alur-kerja-pengembangan.md`](docs/alur-kerja-pengembangan.md). **Both `Check` and `check-cms` are required status checks on `main`.**
+`bun test` plus four `audit:*` scripts run unconditionally on every push, needing no build, network, or `apps/cms`. Since increment 6 (issue #137), the `Check` job is a **matrix over the three build profiles** — `Check (toko)`, `Check (berita)`, `Check (landing)` — each leg type-checking and profile-smoke-testing `apps/storefront` under its own `SITE_PROFILE`; the root tests and `audit:*` scripts run once, on the `toko` leg. A second CI job, `check-cms`, runs `apps/cms`'s own full gate chain plus its DB-gated integration suite against a real, ephemeral PostgreSQL (issue #25) — see [`docs/alur-kerja-pengembangan.md`](docs/alur-kerja-pengembangan.md). **`Check (toko)`, `Check (berita)`, `Check (landing)`, and `check-cms` are all required status checks on `main`.** A fourth workflow, `.github/workflows/template-init-smoke.yml`, matrices `bun run template:init` over the three profiles into a temporary copy of the repo; it is not yet a required status check (see that document for the promotion plan).
 
 `audit:graf` (graphify artefact hygiene) used to sit on the "not ported" list below — this repository had no `graphify-out/` corpus for it to guard. [Issue #11](https://github.com/ahliweb/awcms-one/issues/11) built one: a root-owned, `--code-only` Graphify graph that deliberately excludes `apps/cms/**` (which already has its own graph and its own gate), plus a federated command family (`bun run knowledge:graph:update` / `knowledge:graph:combine` / `knowledge:obsidian:export`) documented in [`knowledge/README.md`](knowledge/README.md). `audit:graf` now checks that corpus for real — see that document for exactly what.
 
@@ -108,7 +110,28 @@ This repo is **Bun-only**: Bun is both the runtime and the package manager, its 
 
 ## Use this as a template
 
-Increment 6 (epic [#135](https://github.com/ahliweb/awcms-one/issues/135)) turns awcms-one into a **template** other applications can start from, while it keeps running as the BjekMart reference deployment: a build-time `SITE_PROFILE` (`toko` | `berita` | `landing`) picks which pages a deployment ships, and an idempotent `bun run template:init` rewrites the brand surface (name, domain, colours, contact) for a repository created from GitHub's own "Use this template" button. See [ADR-0018](docs/adr/0018-awcms-one-is-a-template-with-build-profiles-and-an-idempotent-init.md) for the decisions and [`docs/template.md`](docs/template.md) for the walkthrough — as of this section's writing (wave 0, issue #136), this is the contract the mechanism is built against, not yet running code.
+Increment 6 (epic [#135](https://github.com/ahliweb/awcms-one/issues/135)) turned awcms-one into a **template** other applications can start from, while it keeps running as the BjekMart reference deployment. A build-time `SITE_PROFILE` picks which pages a deployment ships, and an idempotent `bun run template:init` rewrites the brand surface (name, domain, colours, contact) for a repository created from GitHub's own **"Use this template"** button.
+
+### Quick start
+
+1. Click **"Use this template"** on `ahliweb/awcms-one` to create a new, historyless repository — not a fork. Clone it, then `bun install`.
+2. Run `bun run template:init`, answering the prompts (or passing every flag non-interactively) — see [`docs/template.md`](docs/template.md#templateinit--cli-reference) for the full flag reference, including `--profil`, the colours, and the contact fields.
+3. `cp .env.example .env` and `cp apps/cms/.env.example apps/cms/.env`, filling in what `template:init` did not already set (database credentials, any provider keys — see [ADR-0017](docs/adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.md)).
+4. `bun run db:up` — a local PostgreSQL via `docker compose`.
+5. `bun run db:migrate:cms` — runs `apps/cms`'s own migration chain.
+6. `bun run db:seed:cms:profil <toko|berita|landing>` — the neutral sample content matching your chosen profile.
+7. `bun run dev` — starts `apps/cms` and `apps/storefront`, the storefront built against the `SITE_PROFILE` from step 2.
+8. Deploy per [`docs/deployment.md`](docs/deployment.md) — nothing about being a derived repo changes that mechanism.
+
+### Build profiles
+
+| Profile | Composition | What it is |
+| --- | --- | --- |
+| `toko` (default) | shared + toko + berita | Today's BjekMart shape — commerce and news together |
+| `berita` | shared + berita | A news portal only, no commerce |
+| `landing` | shared only | A company profile / landing site — pages, contact, SEO chrome; no commerce, no news |
+
+See [ADR-0018](docs/adr/0018-awcms-one-is-a-template-with-build-profiles-and-an-idempotent-init.md) for the decisions behind the template mechanism and [`docs/template.md`](docs/template.md) for the full walkthrough, the `template:init` CLI reference, the profile matrix, and the per-profile seed sets.
 
 ## Documentation
 
@@ -123,7 +146,7 @@ Increment 6 (epic [#135](https://github.com/ahliweb/awcms-one/issues/135)) turns
 | [`CHANGELOG.md`](CHANGELOG.md) | Release history, folded from changesets |
 | [`.changesets/README.md`](.changesets/README.md) | How to write a change note |
 | [`knowledge/README.md`](knowledge/README.md) | The federated Graphify + Obsidian knowledge-graph workflow |
-| [`docs/README.md`](docs/README.md) | Architecture, schema, API, CMS, routing, SEO, accessibility, responsive, UI/UX, testing, deployment, and workflow reference, plus [`docs/adr/`](docs/adr/README.md) |
+| [`docs/README.md`](docs/README.md) | Architecture, schema, API, CMS, routing, SEO, accessibility, responsive, UI/UX, testing, deployment, workflow, and template reference, plus [`docs/adr/`](docs/adr/README.md) |
 
 ## Language
 

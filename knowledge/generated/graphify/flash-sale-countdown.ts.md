@@ -1,21 +1,21 @@
 ---
 source_file: "apps/storefront/src/scripts/flash-sale-countdown.ts"
 type: "code"
-community: "flash-sale-countdown.ts"
+community: "product/[slug].astro"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/flash-sale-countdownts
+  - community/product/slugastro
 ---
 
 # flash-sale-countdown.ts
 
 ## Connections
-- [[flash-sale.astro]] - `imports_from` [EXTRACTED]
 - [[formatRemaining()]] - `contains` [EXTRACTED]
-- [[pagesindex.astro]] - `imports_from` [EXTRACTED]
 - [[productslug.astro]] - `imports_from` [EXTRACTED]
 - [[tick()]] - `indirect_call` [INFERRED]
+- [[tokoBeranda.astro]] - `imports_from` [EXTRACTED]
+- [[tokopagesflash-sale.astro]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/flash-sale-countdownts
+#graphify/code #graphify/EXTRACTED #community/product/slugastro

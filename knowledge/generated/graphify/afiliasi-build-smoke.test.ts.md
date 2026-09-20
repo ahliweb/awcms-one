@@ -13,7 +13,7 @@ tags:
 
 ## Connections
 - [[assertNoInlineScriptOrStyle()]] - `contains` [EXTRACTED]
-- [[canSpawnBun()_12]] - `contains` [EXTRACTED]
-- [[waitForStub()_11]] - `contains` [EXTRACTED]
+- [[canSpawnBun()]] - `contains` [EXTRACTED]
+- [[waitForStub()]] - `contains` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/afiliasi-build-smoketestts

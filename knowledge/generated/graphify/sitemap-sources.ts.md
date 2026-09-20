@@ -1,28 +1,31 @@
 ---
 source_file: "apps/storefront/src/lib/sitemap-sources.ts"
 type: "code"
-community: "site.ts"
+community: "routes.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/sitets
+  - community/routests
 ---
 
 # sitemap-sources.ts
 
 ## Connections
 - [[ROUTES_1]] - `imports` [EXTRACTED]
+- [[SITEMAP_SOURCES]] - `imports` [EXTRACTED]
 - [[SITEMAP_SOURCE_NAMES]] - `contains` [EXTRACTED]
 - [[SitemapEntry]] - `imports` [EXTRACTED]
 - [[absoluteUrl()]] - `imports` [EXTRACTED]
 - [[berita.ts]] - `imports_from` [EXTRACTED]
+- [[configprofil.ts]] - `imports_from` [EXTRACTED]
 - [[flattenRubrikTree()]] - `imports` [EXTRACTED]
 - [[getMitraList()_1]] - `imports` [EXTRACTED]
 - [[getPosts()]] - `imports` [EXTRACTED]
 - [[getRubrikTree()]] - `imports` [EXTRACTED]
 - [[getTags()]] - `imports` [EXTRACTED]
 - [[getVideo()]] - `imports` [EXTRACTED]
+- [[isGroupActive()]] - `imports` [EXTRACTED]
 - [[lembaga.ts]] - `imports_from` [EXTRACTED]
 - [[listDaerahLinks()]] - `imports` [EXTRACTED]
 - [[listStaticPages()]] - `imports` [EXTRACTED]
@@ -30,9 +33,7 @@ tags:
 - [[registerSitemapSource()]] - `imports` [EXTRACTED]
 - [[routes.ts]] - `imports_from` [EXTRACTED]
 - [[site.ts]] - `imports_from` [EXTRACTED]
-- [[sitemap-n.xml.ts]] - `imports_from` [EXTRACTED]
-- [[sitemap-index.xml.ts]] - `imports_from` [EXTRACTED]
 - [[sitemap-katalog.ts]] - `imports_from` [EXTRACTED]
 - [[sitemap.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/sitets
+#graphify/code #graphify/EXTRACTED #community/routests

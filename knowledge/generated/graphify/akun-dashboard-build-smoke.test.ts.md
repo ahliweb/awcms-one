@@ -13,7 +13,7 @@ tags:
 
 ## Connections
 - [[assertNoInlineScriptOrStyle()_1]] - `contains` [EXTRACTED]
-- [[canSpawnBun()_14]] - `contains` [EXTRACTED]
-- [[waitForStub()_13]] - `contains` [EXTRACTED]
+- [[canSpawnBun()_2]] - `contains` [EXTRACTED]
+- [[waitForStub()_2]] - `contains` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/akun-dashboard-build-smoketestts

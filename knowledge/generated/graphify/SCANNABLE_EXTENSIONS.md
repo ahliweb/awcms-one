@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/katalog-harga.test.ts"
 type: "code"
-community: "harga.ts"
+community: "katalog-harga.test.ts"
 location: "L56"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/hargats
+  - community/katalog-hargatestts
 ---
 
 # SCANNABLE_EXTENSIONS
@@ -15,4 +15,4 @@ tags:
 - [[katalog-harga.test.ts]] - `contains` [EXTRACTED]
 - [[walk()_1]] - `references` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/hargats
+#graphify/code #graphify/EXTRACTED #community/katalog-hargatestts

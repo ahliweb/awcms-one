@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/scripts/akun-afiliasi.ts"
 type: "code"
-community: "akun-pesanan.ts"
+community: "akun-afiliasi.ts"
 location: "L78"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/akun-pesanants
+  - community/akun-afiliasits
 ---
 
 # showSubmitError()
@@ -18,4 +18,4 @@ tags:
 - [[loadMoreKomisi()]] - `calls` [EXTRACTED]
 - [[showAccountView()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/akun-pesanants
+#graphify/code #graphify/EXTRACTED #community/akun-afiliasits

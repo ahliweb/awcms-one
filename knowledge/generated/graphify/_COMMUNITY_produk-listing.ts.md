@@ -38,7 +38,7 @@ SORT file.name ASC
 ## Connections to other communities
 - 8 edges to [[_COMMUNITY_cari-listing.ts]]
 - 4 edges to [[_COMMUNITY_catalog.ts]]
-- 1 edge to [[_COMMUNITY_harga.ts]]
+- 1 edge to [[_COMMUNITY_getProducts]]
 
 ## Top bridge nodes
 - [[produk-listing.ts]] - degree 25, connects to 3 communities

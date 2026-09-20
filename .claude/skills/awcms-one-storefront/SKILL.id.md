@@ -19,9 +19,19 @@ flowchart LR
 
 Jika Anda mendapati diri ingin opsi ketiga — rute server-rendered, kredensial runtime di `apps/storefront/server/penyaji.mjs` — berhenti dan baca dulu tabel trade-off ADR-0007. Ide itu persis pernah diusulkan dan ditolak untuk keranjang/checkout.
 
+## Pilih dulu group profilnya (issue #137, ADR-0018 D2/D3)
+
+Setiap halaman memiliki tepat satu group profil build — `shared`, `toko`, atau `berita` — ditentukan oleh [matriks profil ADR-0018, dijaga tetap terkini di `docs/template.md`](../../../docs/template.id.md#matriks-profil). Sebelum menambah rute, tanyakan dulu group mana yang cocok:
+
+- **Setiap profil mengirimnya** (halaman yang dibutuhkan setiap deployment, tanpa memandang commerce/berita) → `shared` → berkas masuk ke `apps/storefront/src/pages/**`, persis seperti routing berbasis-berkas Astro biasa.
+- **Hanya build commerce yang mengirimnya** (keranjang, checkout, produk, kategori, akun…) → `toko` → berkas masuk ke `apps/storefront/src/profil/toko/pages/**`, path relatif sama seperti kalau berada di bawah `src/pages/`.
+- **Hanya build berita yang mengirimnya** (artikel, rubrik, penulis, daerah…) → `berita` → `apps/storefront/src/profil/berita/pages/**`.
+
+`apps/storefront/integrations/profil.mjs` menyuntikkan setiap halaman di bawah `pages/**` group yang aktif sebelum Astro memindai `src/pages/` — pola rute diturunkan dari path berkasnya persis seperti routing berbasis-berkas biasa (`feed.xml.ts` → `/feed.xml`), dan tidak ada halaman di lokasi mana pun yang boleh menyetel `prerender = false`. Daftarkan rute di `ROUTE_GROUPS` milik `apps/storefront/src/config/routes.ts` tanpa memandang group mana pun — key yang tidak dianotasi adalah error tipe. Tambahkan berkas baru ke matriks di `docs/template.md` dalam perubahan yang sama; `apps/storefront/tests/profil-integrasi.test.ts` menggagalkan build jika tree dan tabel itu tidak sepakat. Jika halaman menambah tautan nav, tautan footer, sumber sitemap, feed, atau aturan robots, sambungkan lewat `apps/storefront/src/config/profil.ts` (daftar per-group) alih-alih menambah kondisional berdiri sendiri di tempat lain — modul itu adalah satu-satunya tempat setiap konsumen sadar-profil membaca.
+
 ## Menambah halaman build-time (kasus umum: katalog, berita, halaman statis)
 
-1. Tambah berkas rute di bawah `apps/storefront/src/pages/` (routing berbasis-berkas Astro — `apps/storefront/src/pages/foo/[slug].astro` → `/foo/{slug}`). Daftarkan di `apps/storefront/src/config/routes.ts` jika rute itu ditautkan dari halaman lain.
+1. Tambah berkas rute di bawah direktori `pages/` group yang dipilih di atas (`apps/storefront/src/pages/` untuk `shared`, `apps/storefront/src/profil/<group>/pages/` untuk `toko`/`berita`) — routing berbasis-berkas Astro pada keduanya (`foo/[slug].astro` → `/foo/{slug}`). Daftarkan di `apps/storefront/src/config/routes.ts` jika rute itu ditautkan dari halaman lain.
 2. Ambil datanya di frontmatter halaman atau `getStaticPaths()`, lewat fungsi di `apps/storefront/src/lib/awcms/` (mis. `catalog.ts`, `blog.ts`, `pemasaran.ts`) — jangan pernah `fetch()` mentah langsung di dalam halaman. Fungsi-fungsi ini memanggil API **owner** milik `apps/cms` (`AWCMS_API_TOKEN`, read-only, hanya saat build) dan di-memoize per build, sehingga beberapa halaman yang membaca resource sama tidak fetch ulang.
 3. Jika halaman merender gambar yang origin-nya bukan `'self'`, atau butuh origin eksternal baru, cek bagian CSP di [`docs/arsitektur.md`](../../../docs/arsitektur.id.md) — `img-src` *diturunkan*, bukan dikonfigurasi; field gambar baru biasanya tidak butuh perubahan CSP sama sekali, karena `csp-asal-media.ts` mengumpulkan origin dari konten secara otomatis.
 4. Jika halaman itu harus muncul di sitemap, daftarkan sumbernya: `registerSitemapSource(name, asyncFn)` di `apps/storefront/src/lib/sitemap-sources.ts` atau `sitemap-katalog.ts`.

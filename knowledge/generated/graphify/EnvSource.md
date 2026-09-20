@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/env.ts"
 type: "code"
-community: "wilayah-checkout.ts"
+community: "site.ts"
 location: "L23"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/wilayah-checkoutts
+  - community/sitets
 ---
 
 # EnvSource
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[env.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/wilayah-checkoutts
+#graphify/code #graphify/EXTRACTED #community/sitets

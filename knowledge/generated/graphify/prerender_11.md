@@ -1,17 +1,17 @@
 ---
-source_file: "apps/storefront/src/pages/csp.json.ts"
+source_file: "apps/storefront/src/profil/toko/pages/index/produk.json.ts"
 type: "code"
-community: "pages/index.astro"
-location: "L111"
+community: "getProducts"
+location: "L12"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/pages/indexastro
+  - community/getProducts
 ---
 
 # prerender
 
 ## Connections
-- [[csp.json.ts]] - `contains` [EXTRACTED]
+- [[tokopagesindexproduk.json.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/pages/indexastro
+#graphify/code #graphify/EXTRACTED #community/getProducts

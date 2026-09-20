@@ -1,5 +1,5 @@
 ---
-source_file: "apps/storefront/src/pages/buletin/index.astro"
+source_file: "apps/storefront/src/profil/berita/pages/buletin/index.astro"
 type: "code"
 community: "buletin.ts"
 location: "L1"

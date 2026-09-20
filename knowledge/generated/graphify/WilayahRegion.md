@@ -12,9 +12,9 @@ tags:
 # WilayahRegion
 
 ## Connections
+- [[tokopagesindexwilayah-kabupaten-provinceCode.json.ts]] - `imports` [EXTRACTED]
+- [[tokopagesindexwilayah-kecamatan-cityCode.json.ts]] - `imports` [EXTRACTED]
 - [[wilayah-checkout.test.ts]] - `imports` [EXTRACTED]
 - [[wilayah-checkout.ts]] - `contains` [EXTRACTED]
-- [[wilayah-kabupaten-provinceCode.json.ts]] - `imports` [EXTRACTED]
-- [[wilayah-kecamatan-cityCode.json.ts]] - `imports` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/wilayah-checkoutts

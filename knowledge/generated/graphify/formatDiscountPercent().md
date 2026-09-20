@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/harga.ts"
 type: "code"
-community: "harga.ts"
+community: "katalog-harga.test.ts"
 location: "L70"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/hargats
+  - community/katalog-hargatestts
 ---
 
 # formatDiscountPercent()
@@ -16,4 +16,4 @@ tags:
 - [[katalog-harga.test.ts]] - `imports` [EXTRACTED]
 - [[productslug.astro]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/hargats
+#graphify/code #graphify/EXTRACTED #community/katalog-hargatestts

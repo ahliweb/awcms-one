@@ -13,7 +13,7 @@ tags:
 
 ## Connections
 - [[produk-listing.ts]] - `contains` [EXTRACTED]
-- [[render()_1]] - `calls` [EXTRACTED]
+- [[render()_7]] - `calls` [EXTRACTED]
 - [[syncControlsToState()]] - `calls` [EXTRACTED]
 - [[writeStateToUrl()]] - `calls` [EXTRACTED]
 

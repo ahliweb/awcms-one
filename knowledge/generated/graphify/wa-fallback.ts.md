@@ -12,8 +12,8 @@ tags:
 # wa-fallback.ts
 
 ## Connections
-- [[ADR-0003_5]] - `cites` [EXTRACTED]
-- [[ADR-0007_9]] - `cites` [EXTRACTED]
+- [[ADR-0003_4]] - `cites` [EXTRACTED]
+- [[ADR-0007_7]] - `cites` [EXTRACTED]
 - [[Cart]] - `imports` [EXTRACTED]
 - [[akun-afiliasi.ts]] - `imports_from` [EXTRACTED]
 - [[akun-alamat.ts]] - `imports_from` [EXTRACTED]

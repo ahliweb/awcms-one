@@ -12,7 +12,7 @@ tags:
 # akun-kontrak.ts
 
 ## Connections
-- [[ADR-0007_7]] - `cites` [EXTRACTED]
+- [[ADR-0007_5]] - `cites` [EXTRACTED]
 - [[AKUN_EVENT_NAME]] - `contains` [EXTRACTED]
 - [[AKUN_STORAGE_KEY]] - `contains` [EXTRACTED]
 - [[Akun]] - `contains` [EXTRACTED]

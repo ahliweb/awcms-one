@@ -1,83 +1,69 @@
 ---
 type: community
-cohesion: 0.05
-members: 68
+cohesion: 0.06
+members: 54
 ---
 
 # portable-text.ts
 
-**Cohesion:** 0.05 - loosely connected
-**Members:** 68 nodes
+**Cohesion:** 0.06 - loosely connected
+**Members:** 54 nodes
 
 ## Members
-- [[ADR-0100]] - concept - apps/storefront/src/lib/awcms/pages.ts
-- [[ADR-0100_1]] - concept - apps/storefront/src/lib/portable-text.ts
+- [[ADR-0100_2]] - concept - apps/storefront/src/lib/portable-text.ts
 - [[ALLOWED_LINK_SCHEMES]] - code - apps/storefront/src/lib/portable-text.ts
 - [[BLOCK_STYLES]] - code - apps/storefront/src/lib/portable-text.ts
-- [[BeritaFeedItem]] - code - apps/storefront/src/lib/berita.ts
-- [[CHANNEL]] - code - apps/storefront/tests/berita-feed.test.ts
-- [[Footer.astro]] - code - apps/storefront/src/components/Footer.astro
-- [[GET()_1]] - code - apps/storefront/src/pages/berita/feed.xml.ts
-- [[GET()_7]] - code - apps/storefront/src/pages/rubrik/[slug]/feed.xml.ts
 - [[GalleryItemLike]] - code - apps/storefront/src/lib/portable-text.ts
 - [[HEADING_TAG]] - code - apps/storefront/src/lib/portable-text.ts
-- [[ITEM]] - code - apps/storefront/tests/berita-feed.test.ts
 - [[LIST_ITEMS]] - code - apps/storefront/src/lib/portable-text.ts
+- [[MediaPublicOrigin]] - code - apps/storefront/src/lib/awcms/media.ts
 - [[PORTABLE_TEXT_BLOCK_STYLES]] - code - apps/storefront/src/lib/portable-text.ts
+- [[PlayableVideoInfo]] - code - apps/storefront/src/lib/portable-text.ts
 - [[PortableTextDocument]] - code - apps/storefront/src/lib/portable-text.ts
 - [[PortableTextNode]] - code - apps/storefront/src/lib/portable-text.ts
 - [[PortableTextSpan]] - code - apps/storefront/src/lib/portable-text.ts
-- [[StaticPageDetail]] - code - apps/storefront/src/lib/awcms/pages.ts
-- [[StaticPageSummary]] - code - apps/storefront/src/lib/awcms/pages.ts
+- [[RawResolvedMediaItem]] - code - apps/storefront/src/lib/awcms/media.ts
+- [[UNCONFIGURED]] - code - apps/storefront/src/lib/awcms/media.ts
 - [[VideoRenderMode]] - code - apps/storefront/src/lib/portable-text.ts
+- [[_typeCheck]] - code - apps/storefront/tests/awcms-media.test.ts
 - [[annotationMap()]] - code - apps/storefront/src/lib/portable-text.ts
-- [[berita-feed.test.ts]] - code - apps/storefront/tests/berita-feed.test.ts
+- [[awcms-media.test.ts]] - code - apps/storefront/tests/awcms-media.test.ts
 - [[berita-portable-text.test.ts]] - code - apps/storefront/tests/berita-portable-text.test.ts
-- [[beritafeed.xml.ts]] - code - apps/storefront/src/pages/berita/feed.xml.ts
 - [[blockText()]] - code - apps/storefront/src/lib/portable-text.ts
-- [[bodyHtml]] - code - apps/storefront/src/pages/halaman/[slug].astro
-- [[collectGalleryMediaObjectIds()]] - code - apps/storefront/src/lib/portable-text.ts
-- [[detailCache]] - code - apps/storefront/src/lib/awcms/pages.ts
+- [[chunk()]] - code - apps/storefront/src/lib/awcms/media.ts
 - [[documentHasPlayableVideo()]] - code - apps/storefront/src/lib/portable-text.ts
-- [[escapeCdata()]] - code - apps/storefront/src/lib/berita.ts
 - [[escapeHtml()_1]] - code - apps/storefront/src/lib/portable-text.ts
-- [[escapeXml()_2]] - code - apps/storefront/src/lib/berita.ts
-- [[extractItems()]] - code - apps/storefront/tests/berita-feed.test.ts
 - [[extractPlayableVideoInfo()]] - code - apps/storefront/src/lib/portable-text.ts
-- [[fetchStaticPage()]] - code - apps/storefront/src/lib/awcms/pages.ts
-- [[fetchStaticPageList()]] - code - apps/storefront/src/lib/awcms/pages.ts
-- [[footerLinks]] - code - apps/storefront/src/components/Footer.astro
+- [[fetchMediaPublicOrigin()]] - code - apps/storefront/src/lib/awcms/media.ts
 - [[formatDurationSeconds()]] - code - apps/storefront/src/lib/portable-text.ts
 - [[formatMediaCredit()]] - code - apps/storefront/src/lib/portable-text.ts
-- [[getPost()]] - code - apps/storefront/src/lib/berita.ts
-- [[getStaticPage()]] - code - apps/storefront/src/lib/awcms/pages.ts
-- [[getStaticPaths()_1]] - code - apps/storefront/src/pages/halaman/[slug].astro
-- [[halamanslug.astro]] - code - apps/storefront/src/pages/halaman/[slug].astro
-- [[isExpectedRefusal()]] - code - apps/storefront/src/lib/awcms/pages.ts
+- [[isExpectedRefusal()_3]] - code - apps/storefront/src/lib/awcms/media.ts
 - [[isListItem()]] - code - apps/storefront/src/lib/portable-text.ts
+- [[item()]] - code - apps/storefront/tests/wishlist-kontrak.test.ts
 - [[listLevel()]] - code - apps/storefront/src/lib/portable-text.ts
-- [[listStaticPages()]] - code - apps/storefront/src/lib/awcms/pages.ts
-- [[pages.ts]] - code - apps/storefront/src/lib/awcms/pages.ts
+- [[markUnresolved()]] - code - apps/storefront/src/lib/awcms/media.ts
+- [[media.ts]] - code - apps/storefront/src/lib/awcms/media.ts
 - [[portable-text.test.ts]] - code - apps/storefront/tests/portable-text.test.ts
 - [[portable-text.ts]] - code - apps/storefront/src/lib/portable-text.ts
-- [[prerender_1]] - code - apps/storefront/src/pages/berita/feed.xml.ts
-- [[publishedSlugs]] - code - apps/storefront/src/components/Footer.astro
-- [[renderBeritaRssXml()]] - code - apps/storefront/src/lib/berita.ts
+- [[rawItem()]] - code - apps/storefront/tests/awcms-media.test.ts
 - [[renderGalleryItem()]] - code - apps/storefront/src/lib/portable-text.ts
 - [[renderGalleryNode()]] - code - apps/storefront/src/lib/portable-text.ts
-- [[renderList()]] - code - apps/storefront/src/lib/portable-text.ts
+- [[renderList()_1]] - code - apps/storefront/src/lib/portable-text.ts
 - [[renderPlaceholder()]] - code - apps/storefront/src/lib/portable-text.ts
-- [[renderPortableText()]] - code - apps/storefront/src/lib/portable-text.ts
 - [[renderProseBlock()]] - code - apps/storefront/src/lib/portable-text.ts
 - [[renderSpan()]] - code - apps/storefront/src/lib/portable-text.ts
 - [[renderVideoNewsNode()]] - code - apps/storefront/src/lib/portable-text.ts
-- [[resetStaticPagesCacheForTests()]] - code - apps/storefront/src/lib/awcms/pages.ts
+- [[resetMediaCachesForTests()]] - code - apps/storefront/src/lib/awcms/media.ts
+- [[resolveMedia()]] - code - apps/storefront/src/lib/awcms/media.ts
+- [[resolveOneMedia()]] - code - apps/storefront/src/lib/awcms/media.ts
+- [[resolvedCache]] - code - apps/storefront/src/lib/awcms/media.ts
 - [[safeHref()]] - code - apps/storefront/src/lib/portable-text.ts
 - [[toPostSummary()]] - code - apps/storefront/src/lib/berita.ts
-- [[year]] - code - apps/storefront/src/components/Footer.astro
+- [[toResolvedMedia()]] - code - apps/storefront/src/lib/awcms/media.ts
+- [[unresolvedIds]] - code - apps/storefront/src/lib/awcms/media.ts
+- [[uuid()]] - code - apps/storefront/tests/awcms-media.test.ts
 - [[youtubePosterUrl()]] - code - apps/storefront/src/lib/portable-text.ts
 - [[youtubeWatchUrl()]] - code - apps/storefront/src/lib/portable-text.ts
-- [[{ slug }_1]] - code - apps/storefront/src/pages/halaman/[slug].astro
 
 ## Live Query (requires Dataview plugin)
 
@@ -87,20 +73,20 @@ SORT file.name ASC
 ```
 
 ## Connections to other communities
-- 15 edges to [[_COMMUNITY_berita.ts]]
-- 9 edges to [[_COMMUNITY_profil.ts]]
-- 6 edges to [[_COMMUNITY_site.ts]]
-- 6 edges to [[_COMMUNITY_slugfeed.xml.ts]]
-- 5 edges to [[_COMMUNITY_routes.ts]]
-- 5 edges to [[_COMMUNITY_navigasi-berita.ts]]
-- 4 edges to [[_COMMUNITY_videoslug.astro]]
-- 4 edges to [[_COMMUNITY_media.ts]]
-- 3 edges to [[_COMMUNITY_wilayah-checkout.ts]]
-- 3 edges to [[_COMMUNITY_Sidebar.astro]]
+- 11 edges to [[_COMMUNITY_berita.ts]]
+- 11 edges to [[_COMMUNITY_videoslug.astro]]
+- 8 edges to [[_COMMUNITY_BeritaLayout.astro]]
+- 4 edges to [[_COMMUNITY_lembaga.ts]]
+- 4 edges to [[_COMMUNITY_pemasaran.ts]]
+- 2 edges to [[_COMMUNITY_site.ts]]
+- 2 edges to [[_COMMUNITY_Sidebar.astro]]
+- 1 edge to [[_COMMUNITY_awcmsanalitik.ts]]
+- 1 edge to [[_COMMUNITY_pages.ts]]
+- 1 edge to [[_COMMUNITY_wishlist-akun-sync.ts]]
 
 ## Top bridge nodes
-- [[beritafeed.xml.ts]] - degree 15, connects to 5 communities
-- [[portable-text.ts]] - degree 42, connects to 4 communities
-- [[pages.ts]] - degree 18, connects to 4 communities
-- [[GET()_7]] - degree 7, connects to 4 communities
-- [[listStaticPages()]] - degree 8, connects to 3 communities
+- [[media.ts]] - degree 28, connects to 6 communities
+- [[portable-text.ts]] - degree 42, connects to 5 communities
+- [[berita-portable-text.test.ts]] - degree 7, connects to 3 communities
+- [[resolveMedia()]] - degree 12, connects to 2 communities
+- [[awcms-media.test.ts]] - degree 9, connects to 2 communities

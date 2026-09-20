@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/awcms/toko-origin.ts"
 type: "code"
-community: "buletin.ts"
+community: "requireAwcmsOrigin"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/buletints
+  - community/requireAwcmsOrigin
 ---
 
 # toko-origin.ts
@@ -24,4 +24,4 @@ tags:
 - [[toko-origin.test.ts]] - `imports_from` [EXTRACTED]
 - [[toko-permintaan.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/buletints
+#graphify/code #graphify/EXTRACTED #community/requireAwcmsOrigin

@@ -1,17 +1,17 @@
 ---
-source_file: "apps/storefront/src/pages/daerah/[slug].astro"
+source_file: "apps/storefront/src/pages/halaman/[slug].astro"
 type: "code"
-community: "routes.ts"
-location: "L18"
+community: "pages.ts"
+location: "L21"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/routests
+  - community/pagests
 ---
 
 # { slug }
 
 ## Connections
-- [[daerahslug.astro]] - `contains` [EXTRACTED]
+- [[halamanslug.astro]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/routests
+#graphify/code #graphify/EXTRACTED #community/pagests

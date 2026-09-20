@@ -46,6 +46,7 @@ tags:
 - [[getUmumList()]] - `contains` [EXTRACTED]
 - [[listStaticPages()]] - `imports` [EXTRACTED]
 - [[navigasi-berita.test.ts]] - `imports_from` [EXTRACTED]
+- [[navigasi-profil.ts]] - `imports_from` [EXTRACTED]
 - [[normalizeForMatch()]] - `contains` [EXTRACTED]
 - [[pages.ts]] - `imports_from` [EXTRACTED]
 - [[routes.ts]] - `imports_from` [EXTRACTED]

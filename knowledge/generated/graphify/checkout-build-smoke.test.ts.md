@@ -12,7 +12,7 @@ tags:
 # checkout-build-smoke.test.ts
 
 ## Connections
-- [[canSpawnBun()_1]] - `contains` [EXTRACTED]
-- [[waitForStub()_1]] - `contains` [EXTRACTED]
+- [[canSpawnBun()_8]] - `contains` [EXTRACTED]
+- [[waitForStub()_8]] - `contains` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/checkout-build-smoketestts

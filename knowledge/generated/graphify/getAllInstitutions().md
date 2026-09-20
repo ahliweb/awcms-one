@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/awcms/blog.ts"
 type: "code"
-community: "navigasi-berita.ts"
+community: "lembaga.ts"
 location: "L268"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/navigasi-beritats
+  - community/lembagats
 ---
 
 # getAllInstitutions()
@@ -22,4 +22,4 @@ tags:
 - [[lembaga.ts]] - `imports` [EXTRACTED]
 - [[navigasi-berita.ts]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/navigasi-beritats
+#graphify/code #graphify/EXTRACTED #community/lembagats

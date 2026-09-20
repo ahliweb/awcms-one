@@ -1,18 +1,17 @@
 ---
-source_file: "apps/storefront/src/pages/index/wilayah-provinsi.json.ts"
+source_file: "apps/storefront/src/pages/robots.txt.ts"
 type: "code"
-community: "wilayah-checkout.ts"
-location: "L12"
+community: "robots.txt.ts"
+location: "L55"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/wilayah-checkoutts
+  - community/robotstxtts
 ---
 
 # GET()
 
 ## Connections
-- [[getCheckoutProvinces()]] - `calls` [EXTRACTED]
-- [[wilayah-provinsi.json.ts]] - `contains` [EXTRACTED]
+- [[robots.txt.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/wilayah-checkoutts
+#graphify/code #graphify/EXTRACTED #community/robotstxtts

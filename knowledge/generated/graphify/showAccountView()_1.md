@@ -14,6 +14,6 @@ tags:
 ## Connections
 - [[akun-alamat.ts]] - `contains` [EXTRACTED]
 - [[loadList()]] - `calls` [EXTRACTED]
-- [[render()_3]] - `calls` [EXTRACTED]
+- [[render()_2]] - `calls` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/akun-alamatts

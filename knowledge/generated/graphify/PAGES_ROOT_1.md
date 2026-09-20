@@ -2,7 +2,7 @@
 source_file: "apps/storefront/tests/checkout-guard-no-prerender.test.ts"
 type: "code"
 community: "checkout-guard-no-prerender.test.ts"
-location: "L18"
+location: "L26"
 tags:
   - graphify/code
   - graphify/EXTRACTED

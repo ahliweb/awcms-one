@@ -1,18 +1,18 @@
 ---
-source_file: "apps/storefront/src/pages/product/[slug].astro"
+source_file: "apps/storefront/src/profil/berita/pages/berita/[slug].astro"
 type: "code"
-community: "product/[slug].astro"
-location: "L48"
+community: "video/[slug].astro"
+location: "L40"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/product/slugastro
+  - community/video/slugastro
 ---
 
 # getStaticPaths()
 
 ## Connections
-- [[getProducts()]] - `calls` [EXTRACTED]
-- [[productslug.astro]] - `contains` [EXTRACTED]
+- [[beritaslug.astro]] - `contains` [EXTRACTED]
+- [[getPosts()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/product/slugastro
+#graphify/code #graphify/EXTRACTED #community/video/slugastro

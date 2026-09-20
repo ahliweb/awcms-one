@@ -13,7 +13,7 @@ tags:
 
 ## Connections
 - [[ADR-0002_1]] - `cites` [EXTRACTED]
-- [[ADR-0007_3]] - `cites` [EXTRACTED]
+- [[ADR-0007_2]] - `cites` [EXTRACTED]
 - [[ConcurrencyLimiter]] - `contains` [EXTRACTED]
 - [[DEFAULT_PROVINCE_CODES]] - `contains` [EXTRACTED]
 - [[MAX_IN_FLIGHT_REGION_REQUESTS]] - `contains` [EXTRACTED]
@@ -35,9 +35,9 @@ tags:
 - [[regenciesCache_1]] - `contains` [EXTRACTED]
 - [[regionRequestLimiter]] - `contains` [EXTRACTED]
 - [[resetWilayahCheckoutCachesForTests()]] - `contains` [EXTRACTED]
+- [[tokopagesindexwilayah-kabupaten-provinceCode.json.ts]] - `imports_from` [EXTRACTED]
+- [[tokopagesindexwilayah-kecamatan-cityCode.json.ts]] - `imports_from` [EXTRACTED]
+- [[tokopagesindexwilayah-provinsi.json.ts]] - `imports_from` [EXTRACTED]
 - [[wilayah-checkout.test.ts]] - `imports_from` [EXTRACTED]
-- [[wilayah-kabupaten-provinceCode.json.ts]] - `imports_from` [EXTRACTED]
-- [[wilayah-kecamatan-cityCode.json.ts]] - `imports_from` [EXTRACTED]
-- [[wilayah-provinsi.json.ts]] - `imports_from` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/wilayah-checkoutts

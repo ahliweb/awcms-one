@@ -16,12 +16,12 @@ tags:
 - [[DAERAH_PANEL_ID]] - `imports` [EXTRACTED]
 - [[NavUtamaItem]] - `imports` [EXTRACTED]
 - [[ROUTES_1]] - `imports` [EXTRACTED]
+- [[awcmsprofil.ts]] - `imports_from` [EXTRACTED]
 - [[daerahActive]] - `contains` [EXTRACTED]
 - [[getDaerahList()]] - `imports` [EXTRACTED]
 - [[getNavUtama()]] - `imports` [EXTRACTED]
 - [[isActive()]] - `contains` [EXTRACTED]
 - [[navigasi-berita.ts]] - `imports_from` [EXTRACTED]
-- [[profil.ts]] - `imports_from` [EXTRACTED]
 - [[routes.ts]] - `imports_from` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/navigasi-beritats

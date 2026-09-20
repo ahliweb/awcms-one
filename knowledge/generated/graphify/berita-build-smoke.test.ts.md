@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/berita-build-smoke.test.ts"
 type: "code"
-community: "berita-build-smoke.test.ts"
+community: "bun"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/berita-build-smoketestts
+  - community/bun
 ---
 
 # berita-build-smoke.test.ts
@@ -15,4 +15,4 @@ tags:
 - [[canSpawnBun()_5]] - `contains` [EXTRACTED]
 - [[waitForStub()_5]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/berita-build-smoketestts
+#graphify/code #graphify/EXTRACTED #community/bun

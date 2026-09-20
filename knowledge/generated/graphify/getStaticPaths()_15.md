@@ -1,18 +1,18 @@
 ---
-source_file: "apps/storefront/src/pages/mitra/[slug].astro"
+source_file: "apps/storefront/src/profil/toko/pages/product/[slug].astro"
 type: "code"
-community: "media.ts"
-location: "L19"
+community: "getProducts"
+location: "L48"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/mediats
+  - community/getProducts
 ---
 
 # getStaticPaths()
 
 ## Connections
-- [[getMitraList()_1]] - `calls` [EXTRACTED]
-- [[mitraslug.astro]] - `contains` [EXTRACTED]
+- [[getProducts()]] - `calls` [EXTRACTED]
+- [[productslug.astro]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/mediats
+#graphify/code #graphify/EXTRACTED #community/getProducts

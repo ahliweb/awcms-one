@@ -1,21 +1,21 @@
 ---
-source_file: "apps/storefront/src/scripts/akun-alamat.ts"
+source_file: "apps/storefront/src/scripts/akun-pesanan.ts"
 type: "code"
-community: "akun-alamat.ts"
-location: "L301"
+community: "akun-pesanan.ts"
+location: "L151"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/akun-alamatts
+  - community/akun-pesanants
 ---
 
 # render()
 
 ## Connections
-- [[akun-alamat.ts]] - `indirect_call` [INFERRED]
+- [[akun-pesanan.ts]] - `indirect_call` [INFERRED]
 - [[bacaSesi()]] - `calls` [EXTRACTED]
-- [[hideSubmitError()_1]] - `calls` [EXTRACTED]
-- [[showAccountView()_1]] - `calls` [EXTRACTED]
-- [[showGuestView()_1]] - `calls` [EXTRACTED]
+- [[hideSubmitError()_2]] - `calls` [EXTRACTED]
+- [[loadDetail()]] - `calls` [EXTRACTED]
+- [[loadMore()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/akun-alamatts
+#graphify/code #graphify/EXTRACTED #community/akun-pesanants

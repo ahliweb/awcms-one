@@ -13,10 +13,10 @@ tags:
 
 ## Connections
 - [[BeritaLayout.astro]] - `imports_from` [EXTRACTED]
+- [[awcmsprofil.ts]] - `imports_from` [EXTRACTED]
 - [[getPerusahaanLinks()]] - `imports` [EXTRACTED]
 - [[ikon-sosial.ts]] - `imports_from` [EXTRACTED]
 - [[navigasi-berita.ts]] - `imports_from` [EXTRACTED]
-- [[profil.ts]] - `imports_from` [EXTRACTED]
 - [[resolveSocialIcons()]] - `imports` [EXTRACTED]
 - [[socialIcons]] - `contains` [EXTRACTED]
 

@@ -1,17 +1,17 @@
 ---
-source_file: "apps/storefront/src/pages/product-labels.css.ts"
+source_file: "apps/storefront/src/pages/manifest.webmanifest.ts"
 type: "code"
-community: "cari-listing.ts"
-location: "L32"
+community: "theme.ts"
+location: "L12"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/cari-listingts
+  - community/themets
 ---
 
 # prerender
 
 ## Connections
-- [[product-labels.css.ts]] - `contains` [EXTRACTED]
+- [[manifest.webmanifest.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/cari-listingts
+#graphify/code #graphify/EXTRACTED #community/themets

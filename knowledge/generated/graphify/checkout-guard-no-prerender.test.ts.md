@@ -12,8 +12,12 @@ tags:
 # checkout-guard-no-prerender.test.ts
 
 ## Connections
-- [[ADR-0007_1]] - `cites` [EXTRACTED]
+- [[ADR-0007_11]] - `cites` [EXTRACTED]
 - [[PAGES_ROOT_1]] - `contains` [EXTRACTED]
-- [[listSourceFiles()]] - `contains` [EXTRACTED]
+- [[PROFIL_ROOT_2]] - `contains` [EXTRACTED]
+- [[SRC_ROOT_2]] - `contains` [EXTRACTED]
+- [[TOKO_PAGES_ROOT]] - `contains` [EXTRACTED]
+- [[listAllPageFiles()]] - `contains` [EXTRACTED]
+- [[listSourceFiles()_1]] - `contains` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/checkout-guard-no-prerendertestts

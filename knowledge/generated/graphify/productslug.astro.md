@@ -1,5 +1,5 @@
 ---
-source_file: "apps/storefront/src/pages/product/[slug].astro"
+source_file: "apps/storefront/src/profil/toko/pages/product/[slug].astro"
 type: "code"
 community: "product/[slug].astro"
 location: "L1"
@@ -14,7 +14,7 @@ tags:
 ## Connections
 - [[BaseLayout.astro]] - `imports_from` [EXTRACTED]
 - [[Breadcrumb.astro]] - `imports_from` [EXTRACTED]
-- [[BreadcrumbItem_1]] - `imports` [EXTRACTED]
+- [[BreadcrumbItem]] - `imports` [EXTRACTED]
 - [[CommerceProduct]] - `imports` [EXTRACTED]
 - [[Countdown.astro]] - `imports_from` [EXTRACTED]
 - [[ProductCard.astro]] - `imports_from` [EXTRACTED]
@@ -30,7 +30,7 @@ tags:
 - [[getActiveFlashSales()]] - `imports` [EXTRACTED]
 - [[getCategories()]] - `imports` [EXTRACTED]
 - [[getProducts()]] - `imports` [EXTRACTED]
-- [[getStaticPaths()_3]] - `contains` [EXTRACTED]
+- [[getStaticPaths()_15]] - `contains` [EXTRACTED]
 - [[getStoreSettings()]] - `imports` [EXTRACTED]
 - [[harga.ts]] - `imports_from` [EXTRACTED]
 - [[isFirstGroupOptionDisabled()]] - `contains` [EXTRACTED]

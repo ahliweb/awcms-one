@@ -1,17 +1,17 @@
 ---
-source_file: "apps/storefront/src/components/Footer.astro"
+source_file: "apps/storefront/src/components/berita/FooterBerita.astro"
 type: "code"
-community: "portable-text.ts"
-location: "L32"
+community: "navigasi-berita.ts"
+location: "L73"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/portable-textts
+  - community/navigasi-beritats
 ---
 
 # year
 
 ## Connections
-- [[Footer.astro]] - `contains` [EXTRACTED]
+- [[FooterBerita.astro]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/portable-textts
+#graphify/code #graphify/EXTRACTED #community/navigasi-beritats

@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/awcms/media.ts"
 type: "code"
-community: "media.ts"
+community: "portable-text.ts"
 location: "L106"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/mediats
+  - community/portable-textts
 ---
 
 # toResolvedMedia()
@@ -15,4 +15,4 @@ tags:
 - [[media.ts]] - `contains` [EXTRACTED]
 - [[resolveMedia()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/mediats
+#graphify/code #graphify/EXTRACTED #community/portable-textts

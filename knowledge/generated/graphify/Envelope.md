@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/awcms/client.ts"
 type: "code"
-community: "wilayah-checkout.ts"
+community: "site.ts"
 location: "L52"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/wilayah-checkoutts
+  - community/sitets
 ---
 
 # Envelope
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[client.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/wilayah-checkoutts
+#graphify/code #graphify/EXTRACTED #community/sitets

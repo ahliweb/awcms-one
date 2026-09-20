@@ -1,17 +1,17 @@
 ---
-source_file: "apps/storefront/src/pages/feed.xml.ts"
+source_file: "apps/storefront/src/pages/sitemap-index.xml.ts"
 type: "code"
-community: "pages/feed.xml.ts"
-location: "L25"
+community: "sitemap.ts"
+location: "L11"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/pages/feedxmlts
+  - community/sitemapts
 ---
 
 # prerender
 
 ## Connections
-- [[pagesfeed.xml.ts]] - `contains` [EXTRACTED]
+- [[sitemap-index.xml.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/pages/feedxmlts
+#graphify/code #graphify/EXTRACTED #community/sitemapts

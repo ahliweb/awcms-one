@@ -13,6 +13,6 @@ tags:
 
 ## Connections
 - [[catalog.ts]] - `contains` [EXTRACTED]
-- [[isPubliclyVisible()]] - `calls` [EXTRACTED]
+- [[isPubliclyVisible()_1]] - `calls` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/catalogts

@@ -1,17 +1,17 @@
 ---
-source_file: "apps/storefront/src/pages/rubrik/[slug]/index.astro"
+source_file: "apps/storefront/src/profil/berita/pages/rubrik/[slug]/halaman/[n].astro"
 type: "code"
-community: "[slug]/feed.xml.ts"
-location: "L38"
+community: "BeritaLayout.astro"
+location: "L58"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/slug/feedxmlts
+  - community/BeritaLayoutastro
 ---
 
 # canonicalPath
 
 ## Connections
-- [[slugindex.astro]] - `contains` [EXTRACTED]
+- [[beritapagesrubrikslughalamann.astro]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/slug/feedxmlts
+#graphify/code #graphify/EXTRACTED #community/BeritaLayoutastro

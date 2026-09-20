@@ -2,7 +2,7 @@
 source_file: "apps/storefront/tests/meta-sosial-build-smoke.test.ts"
 type: "code"
 community: "meta-sosial-build-smoke.test.ts"
-location: "L64"
+location: "L65"
 tags:
   - graphify/code
   - graphify/EXTRACTED

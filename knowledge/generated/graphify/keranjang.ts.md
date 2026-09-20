@@ -12,7 +12,7 @@ tags:
 # keranjang.ts
 
 ## Connections
-- [[ADR-0003_3]] - `cites` [EXTRACTED]
+- [[ADR-0003_2]] - `cites` [EXTRACTED]
 - [[Cart]] - `imports` [EXTRACTED]
 - [[CartLineRequest]] - `imports` [EXTRACTED]
 - [[CartQuote]] - `imports` [EXTRACTED]
@@ -24,7 +24,6 @@ tags:
 - [[hideQuoteError()]] - `contains` [EXTRACTED]
 - [[keranjang-klien.ts]] - `imports_from` [EXTRACTED]
 - [[keranjang-kontrak.ts]] - `imports_from` [EXTRACTED]
-- [[keranjang.astro]] - `imports_from` [EXTRACTED]
 - [[loadCart()]] - `imports` [EXTRACTED]
 - [[quoteCart()]] - `imports` [EXTRACTED]
 - [[refresh()]] - `contains` [EXTRACTED]
@@ -36,6 +35,7 @@ tags:
 - [[statusLabel()]] - `contains` [EXTRACTED]
 - [[toLineRequests()]] - `contains` [EXTRACTED]
 - [[toko-klien.ts]] - `imports_from` [EXTRACTED]
+- [[tokopageskeranjang.astro]] - `imports_from` [EXTRACTED]
 - [[updateCartLineQuantity()]] - `imports` [EXTRACTED]
 - [[wa-fallback.ts]] - `imports_from` [EXTRACTED]
 

@@ -1,17 +1,17 @@
 ---
-source_file: "apps/storefront/src/pages/robots.txt.ts"
+source_file: "apps/storefront/src/profil/toko/pages/product-labels.css.ts"
 type: "code"
-community: "site.ts"
-location: "L45"
+community: "getProducts"
+location: "L32"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/sitets
+  - community/getProducts
 ---
 
 # prerender
 
 ## Connections
-- [[robots.txt.ts]] - `contains` [EXTRACTED]
+- [[tokopagesproduct-labels.css.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/sitets
+#graphify/code #graphify/EXTRACTED #community/getProducts

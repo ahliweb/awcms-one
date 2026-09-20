@@ -1,18 +1,19 @@
 ---
 source_file: "apps/storefront/src/lib/awcms/client.ts"
 type: "code"
-community: "wilayah-checkout.ts"
+community: "site.ts"
 location: "L132"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/wilayah-checkoutts
+  - community/sitets
 ---
 
 # awcmsGet()
 
 ## Connections
 - [[awcmsanalitik.ts]] - `imports` [EXTRACTED]
+- [[awcmsprofil.ts]] - `imports` [EXTRACTED]
 - [[baseUrl()]] - `calls` [EXTRACTED]
 - [[blog.ts]] - `imports` [EXTRACTED]
 - [[catalog.ts]] - `imports` [EXTRACTED]
@@ -21,10 +22,9 @@ tags:
 - [[media.ts]] - `imports` [EXTRACTED]
 - [[pages.ts]] - `imports` [EXTRACTED]
 - [[pemasaran.ts]] - `imports` [EXTRACTED]
-- [[profil.ts]] - `imports` [EXTRACTED]
 - [[readEnv()]] - `calls` [EXTRACTED]
 - [[timeoutMs()]] - `calls` [EXTRACTED]
 - [[wilayah-checkout.ts]] - `imports` [EXTRACTED]
 - [[wilayah.ts]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/wilayah-checkoutts
+#graphify/code #graphify/EXTRACTED #community/sitets

@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/wa-fallback.ts"
 type: "code"
-community: "akun-pesanan.ts"
+community: "formatPrice"
 location: "L60"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/akun-pesanants
+  - community/formatPrice
 ---
 
 # buildWhatsappUrl()
@@ -32,4 +32,4 @@ tags:
 - [[wa-fallback.test.ts]] - `imports` [EXTRACTED]
 - [[wa-fallback.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/akun-pesanants
+#graphify/code #graphify/EXTRACTED #community/formatPrice

@@ -1,19 +1,18 @@
 ---
-source_file: "apps/storefront/src/lib/catalog.ts"
+source_file: "apps/storefront/src/lib/berita.ts"
 type: "code"
-community: "catalog.ts"
-location: "L276"
+community: "berita.ts"
+location: "L208"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/catalogts
+  - community/beritats
 ---
 
 # isPubliclyVisible()
 
 ## Connections
-- [[assertNeverProductStatus()]] - `calls` [EXTRACTED]
-- [[catalog.ts]] - `contains` [EXTRACTED]
-- [[getProducts()]] - `calls` [EXTRACTED]
+- [[berita.ts]] - `contains` [EXTRACTED]
+- [[buildIndex()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/catalogts
+#graphify/code #graphify/EXTRACTED #community/beritats

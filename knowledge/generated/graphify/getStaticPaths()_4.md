@@ -1,19 +1,18 @@
 ---
-source_file: "apps/storefront/src/pages/rubrik/[slug]/feed.xml.ts"
+source_file: "apps/storefront/src/profil/berita/pages/daerah/[slug].astro"
 type: "code"
-community: "[slug]/feed.xml.ts"
+community: "wilayah.ts"
 location: "L13"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/slug/feedxmlts
+  - community/wilayahts
 ---
 
 # getStaticPaths()
 
 ## Connections
-- [[slugfeed.xml.ts]] - `contains` [EXTRACTED]
-- [[flattenRubrikTree()]] - `calls` [EXTRACTED]
-- [[getRubrikTree()]] - `calls` [EXTRACTED]
+- [[daerahslug.astro]] - `contains` [EXTRACTED]
+- [[listDaerahLinks()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/slug/feedxmlts
+#graphify/code #graphify/EXTRACTED #community/wilayahts

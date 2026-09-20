@@ -14,7 +14,7 @@ tags:
 ## Connections
 - [[akun.ts]] - `contains` [EXTRACTED]
 - [[levelLabel()]] - `calls` [EXTRACTED]
-- [[render()_6]] - `calls` [EXTRACTED]
+- [[render()_5]] - `calls` [EXTRACTED]
 - [[showAccountView()_2]] - `calls` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/akunts

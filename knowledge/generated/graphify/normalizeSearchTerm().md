@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/catalog.ts"
 type: "code"
-community: "harga.ts"
+community: "catalog.ts"
 location: "L589"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/hargats
+  - community/catalogts
 ---
 
 # normalizeSearchTerm()
@@ -15,4 +15,4 @@ tags:
 - [[catalog.ts]] - `contains` [EXTRACTED]
 - [[filterProdukIndex()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/hargats
+#graphify/code #graphify/EXTRACTED #community/catalogts

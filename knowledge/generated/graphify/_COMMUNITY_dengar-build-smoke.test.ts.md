@@ -12,9 +12,9 @@ members: 5
 ## Members
 - [[ARTICLE_PAGE_1]] - code - apps/storefront/tests/dengar-build-smoke.test.ts
 - [[VIDEO_PAGE_1]] - code - apps/storefront/tests/dengar-build-smoke.test.ts
-- [[canSpawnBun()_7]] - code - apps/storefront/tests/dengar-build-smoke.test.ts
+- [[canSpawnBun()_9]] - code - apps/storefront/tests/dengar-build-smoke.test.ts
 - [[dengar-build-smoke.test.ts]] - code - apps/storefront/tests/dengar-build-smoke.test.ts
-- [[waitForStub()_7]] - code - apps/storefront/tests/dengar-build-smoke.test.ts
+- [[waitForStub()_9]] - code - apps/storefront/tests/dengar-build-smoke.test.ts
 
 ## Live Query (requires Dataview plugin)
 
@@ -27,4 +27,4 @@ SORT file.name ASC
 - 1 edge to [[_COMMUNITY_bun]]
 
 ## Top bridge nodes
-- [[canSpawnBun()_7]] - degree 2, connects to 1 community
+- [[canSpawnBun()_9]] - degree 2, connects to 1 community

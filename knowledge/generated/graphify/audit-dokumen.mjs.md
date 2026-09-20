@@ -42,7 +42,7 @@ tags:
 - [[numbersIn()]] - `contains` [EXTRACTED]
 - [[parseSource()]] - `contains` [EXTRACTED]
 - [[proseFromBlock()]] - `contains` [EXTRACTED]
-- [[reporter_1]] - `contains` [EXTRACTED]
+- [[reporter_2]] - `contains` [EXTRACTED]
 - [[reporter.mjs]] - `imports_from` [EXTRACTED]
 - [[violation()]] - `contains` [EXTRACTED]
 

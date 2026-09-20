@@ -12,9 +12,9 @@ tags:
 # getLegacyRedirectRows()
 
 ## Connections
-- [[GET()_12]] - `calls` [EXTRACTED]
+- [[GET()_8]] - `calls` [EXTRACTED]
+- [[beritapagesindexpengalihan-legacy.json.ts]] - `imports` [EXTRACTED]
 - [[blog.ts]] - `contains` [EXTRACTED]
 - [[fetchLegacyRedirectRows()]] - `calls` [EXTRACTED]
-- [[pengalihan-legacy.json.ts]] - `imports` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/getVideo

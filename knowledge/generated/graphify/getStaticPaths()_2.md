@@ -1,18 +1,18 @@
 ---
-source_file: "apps/storefront/src/pages/kategori/[slug].astro"
+source_file: "apps/storefront/src/profil/berita/pages/arsip/[yyyy]/[mm].astro"
 type: "code"
-community: "product/[slug].astro"
-location: "L26"
+community: "berita.ts"
+location: "L10"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/product/slugastro
+  - community/beritats
 ---
 
 # getStaticPaths()
 
 ## Connections
-- [[getCategories()]] - `calls` [EXTRACTED]
-- [[kategorislug.astro]] - `contains` [EXTRACTED]
+- [[beritapagesarsipyyyymm.astro]] - `contains` [EXTRACTED]
+- [[listArsipBulan()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/product/slugastro
+#graphify/code #graphify/EXTRACTED #community/beritats

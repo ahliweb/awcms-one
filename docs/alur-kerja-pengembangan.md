@@ -14,7 +14,7 @@ Verified directly against this repository's GitHub settings at the time of writi
 
 | Setting | Value |
 | --- | --- |
-| Required status checks | `Check` **and** `check-cms` — both `.github/workflows/ci.yml` jobs |
+| Required status checks | `Check (toko)`, `Check (berita)`, `Check (landing)` **and** `check-cms` — since increment 6 (issue #137) the storefront `Check` job is a 3-leg matrix, all four `.github/workflows/ci.yml` legs/jobs are required |
 | Strict (branch must be up to date before merging) | Yes |
 | Force pushes | Refused |
 | Branch deletion | Refused |
@@ -41,7 +41,7 @@ Increment 2 (epic #21) was delivered as a sequence of atomic, single-issue PRs r
 
 `.github/workflows/ci.yml` defines two jobs.
 
-**`check`** (`name: Check`, `timeout-minutes: 15`) runs on every push to `main`, every pull request, and on manual dispatch, needing no build, no live `apps/cms`, and no database: `bun run check:lockfile`, `bun install --frozen-lockfile`, a storefront type-check step (`bun run check`, which delegates into `apps/storefront`'s own `bun --bun astro check` — this step's `if: hashFiles('apps/storefront/package.json') != ''` guard is a leftover from before that workspace existed and is now always true), the root `bun test`, `audit:dokumen`, `audit:translation`, `audit:graf`, `audit:rilis`, and `bun audit --audit-level=low`. Nothing in this job builds a container image or deploys anything.
+**`check`** (`name: Check`, `timeout-minutes: 15`) runs on every push to `main`, every pull request, and on manual dispatch, needing no build, no live `apps/cms`, and no database. Since increment 6 (issue #137, [ADR-0018 D7](adr/0018-awcms-one-is-a-template-with-build-profiles-and-an-idempotent-init.md)), it is a **3-leg matrix** (`strategy.matrix.profile: [toko, berita, landing]`, `fail-fast: false`) — GitHub displays each leg as `Check (toko)`, `Check (berita)`, `Check (landing)`. Every leg runs `bun run check:lockfile`, `bun install --frozen-lockfile`, then `SITE_PROFILE=<leg> bun run check` (a storefront type-check that covers `src/profil/**` regardless of which group is active) and `cd apps/storefront && SITE_PROFILE=<leg> bun test tests/profil-build-smoke.test.ts tests/profil-routes.test.ts` — that leg's own build against the stub CMS, proving the excluded page groups are genuinely absent from `dist/` and the sitemaps. The root `bun test`, `audit:dokumen`, `audit:translation`, `audit:graf`, `audit:rilis`, and `bun audit --audit-level=low` are profile-independent, so they run **once, on the `toko` leg only** (`if: matrix.profile == 'toko'`), with no `SITE_PROFILE` set — in that step, `profil-build-smoke` itself builds all three profiles, so the `toko` leg alone still proves the whole matrix. Nothing in this job builds a container image or deploys anything.
 
 **`check-cms`** (`name: check-cms`, `needs: check`, `timeout-minutes: 20`) runs against a real `postgres:18.4` service container (`POSTGRES_USER=awcms`, `POSTGRES_DB=awcms`, port 5432, health-checked with `pg_isready`):
 
@@ -51,11 +51,13 @@ Increment 2 (epic #21) was delivered as a sequence of atomic, single-issue PRs r
 4. `cd apps/cms && bun test tests/integration/ --timeout 60000` — the DB-gated integration suite, now running for real (over 670 tests as of the orders/customers PR).
 5. A job-summary step (`if: always()`) greps the trailing `N skip` count from both log files and reports the before/after DB-gated skip count, so a reviewer can see the suites actually ran instead of silently skipping twice.
 
-Both jobs are required status checks on `main` (see "Branch protection on `main`" above) — this closes the gap earlier drafts of this document described: `apps/cms`'s own gate chain, and its RLS/DB coverage, run in THIS repository's CI on every PR, not only locally.
+All three `Check` legs and `check-cms` are required status checks on `main` (see "Branch protection on `main`" above) — this closes the gap earlier drafts of this document described: `apps/cms`'s own gate chain, and its RLS/DB coverage, run in THIS repository's CI on every PR, not only locally.
 
 ## CI: a third, not-yet-required workflow — `template-init-smoke`
 
 `.github/workflows/template-init-smoke.yml` (issue #138) is a SEPARATE workflow file, not a third job on `ci.yml` — that file is owned by a different, since-landed change (issue #137), and this workflow's own scope asked for a new file rather than a job bolted onto it. It matrices over `toko`/`berita`/`landing` (ADR-0018 D2): for each profile, it runs `bun run template:init --profil <profile> --yes` against its own checkout (including that tool's own trailing gate chain), starts the storefront's stub CMS, runs `SITE_PROFILE=<profile> bun run build` from `apps/storefront`, then a root `bun test`. It is **not yet a required status check** — following the same promotion pattern `check-cms` itself went through (see "Branch protection on `main`" above): added to the required list only after it has run green on `main` for a while.
+
+Two details keep that trailing `bun test` from failing on itself. First, the workflow's readiness probe polls the stub CMS **with a bearer token** (`curl -sf -H "Authorization: Bearer stub" http://localhost:4310/api/v1/commerce/products`) — the stub answers `401` to an unauthenticated request on purpose (`apps/storefront/scripts/stub-awcms.mjs`), and a plain `curl -f` would read that `401` as "not up yet" forever. Second, `tests/template-init.test.mjs` skips itself the moment it detects it is no longer running inside `awcms-one` (`package.json.name !== "awcms-one"`) — without that guard, the trailing `bun test` a `template:init` run ends with would discover and re-run its own test file inside the very repository it just initialised, whose full-run tests then try to build another temporary copy from `git ls-files`, which still lists paths that run's own removal step already `unlinkSync`'d (never `git rm`'d), throwing `ENOENT` on every one.
 
 ## Seeding a profile locally
 

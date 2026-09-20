@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/awcms/lembaga.ts"
 type: "code"
-community: "media.ts"
+community: "lembaga.ts"
 location: "L51"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/mediats
+  - community/lembagats
 ---
 
 # getMitraList()
@@ -16,9 +16,9 @@ tags:
 - [[buildIndex()]] - `calls` [EXTRACTED]
 - [[buildMitraList()]] - `calls` [EXTRACTED]
 - [[getMitraBySlug()]] - `calls` [EXTRACTED]
-- [[getStaticPaths()_15]] - `calls` [EXTRACTED]
+- [[getStaticPaths()_5]] - `calls` [EXTRACTED]
 - [[lembaga.ts]] - `contains` [EXTRACTED]
 - [[mitraslug.astro]] - `imports` [EXTRACTED]
 - [[sitemap-sources.ts]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/mediats
+#graphify/code #graphify/EXTRACTED #community/lembagats

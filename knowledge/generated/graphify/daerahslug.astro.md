@@ -1,12 +1,12 @@
 ---
-source_file: "apps/storefront/src/pages/daerah/[slug].astro"
+source_file: "apps/storefront/src/profil/berita/pages/daerah/[slug].astro"
 type: "code"
-community: "routes.ts"
+community: "wilayah.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/routests
+  - community/wilayahts
 ---
 
 # daerah/[slug].astro
@@ -16,11 +16,11 @@ tags:
 - [[BeritaLayout.astro]] - `imports_from` [EXTRACTED]
 - [[ROUTES_1]] - `imports` [EXTRACTED]
 - [[berita.ts]] - `imports_from` [EXTRACTED]
-- [[canonicalPath]] - `contains` [EXTRACTED]
+- [[canonicalPath_2]] - `contains` [EXTRACTED]
 - [[getDaerah()]] - `imports` [EXTRACTED]
-- [[getStaticPaths()]] - `contains` [EXTRACTED]
+- [[getStaticPaths()_4]] - `contains` [EXTRACTED]
 - [[listDaerahLinks()]] - `imports` [EXTRACTED]
 - [[routes.ts]] - `imports_from` [EXTRACTED]
-- [[{ slug }]] - `contains` [EXTRACTED]
+- [[{ slug }_2]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/routests
+#graphify/code #graphify/EXTRACTED #community/wilayahts

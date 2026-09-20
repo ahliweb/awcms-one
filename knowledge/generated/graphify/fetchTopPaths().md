@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/awcms/analitik.ts"
 type: "code"
-community: "wilayah-checkout.ts"
+community: "awcms/analitik.ts"
 location: "L104"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/wilayah-checkoutts
+  - community/awcms/analitikts
 ---
 
 # fetchTopPaths()
@@ -16,4 +16,4 @@ tags:
 - [[getTopPaths()]] - `calls` [EXTRACTED]
 - [[isExpectedRefusal()_2]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/wilayah-checkoutts
+#graphify/code #graphify/EXTRACTED #community/awcms/analitikts

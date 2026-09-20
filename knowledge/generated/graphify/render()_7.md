@@ -1,19 +1,24 @@
 ---
-source_file: "apps/storefront/src/scripts/wishlist.ts"
+source_file: "apps/storefront/src/scripts/produk-listing.ts"
 type: "code"
-community: "wishlist-akun-sync.ts"
-location: "L63"
+community: "cari-listing.ts"
+location: "L107"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/wishlist-akun-syncts
+  - community/cari-listingts
 ---
 
 # render()
 
 ## Connections
-- [[itemMarkup()]] - `calls` [EXTRACTED]
-- [[loadWishlist()]] - `calls` [EXTRACTED]
-- [[wishlist.ts]] - `indirect_call` [INFERRED]
+- [[applyAndRender()]] - `calls` [EXTRACTED]
+- [[fetchProdukIndex()]] - `calls` [EXTRACTED]
+- [[filterProdukIndex()]] - `calls` [EXTRACTED]
+- [[paginateProdukIndex()]] - `calls` [EXTRACTED]
+- [[produk-listing.ts]] - `contains` [EXTRACTED]
+- [[renderPagination()]] - `calls` [EXTRACTED]
+- [[renderProdukGrid()]] - `calls` [EXTRACTED]
+- [[writeStateToUrl()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/wishlist-akun-syncts
+#graphify/code #graphify/EXTRACTED #community/cari-listingts

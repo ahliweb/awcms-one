@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/awcms/pages.ts"
 type: "code"
-community: "portable-text.ts"
+community: "pages.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/portable-textts
+  - community/pagests
 ---
 
 # pages.ts
@@ -26,9 +26,11 @@ tags:
 - [[getStaticPage()]] - `contains` [EXTRACTED]
 - [[halamanslug.astro]] - `imports_from` [EXTRACTED]
 - [[isExpectedRefusal()]] - `contains` [EXTRACTED]
+- [[landingBeranda.astro]] - `imports_from` [EXTRACTED]
 - [[listStaticPages()]] - `contains` [EXTRACTED]
 - [[navigasi-berita.ts]] - `imports_from` [EXTRACTED]
+- [[navigasi-profil.ts]] - `imports_from` [EXTRACTED]
 - [[resetStaticPagesCacheForTests()]] - `contains` [EXTRACTED]
 - [[sitemap-sources.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/portable-textts
+#graphify/code #graphify/EXTRACTED #community/pagests

@@ -23,7 +23,7 @@ D1–D8 below settle the shape, the mechanism, the brand surface, the init tool'
 
 ### D1 — Template in place: one repository, a `template` flag, no fork
 
-This repository **is** the template. It keeps running as the BjekMart reference deployment (`bun run dev`, `db:seed:cms` with no `--profil` flag still seeds BjekMart's own content), and it also carries everything a derived repository needs: the GitHub *template repository* flag (set in #140, once #136–#139 land), a `template:init` CLI (D5), and a documented walkthrough (`docs/template.md`). A derived repository is created with GitHub's own "Use this template" button — a fresh, historyless repository, not a fork — and runs `template:init` once to become itself.
+This repository **is** the template. It keeps running as the BjekMart reference deployment (`bun run dev`, `db:seed:cms` with no `--profil` flag still seeds BjekMart's own content), and it also carries everything a derived repository needs: the GitHub *template repository* flag (set in #140, once #136–#139 landed), a `template:init` CLI (D5), and a documented walkthrough (`docs/template.md`). A derived repository is created with GitHub's own "Use this template" button — a fresh, historyless repository, not a fork — and runs `template:init` once to become itself.
 
 | Dimension | **(a) Template in place + profiles (chosen)** | (b) Separate template repo | (c) Full generalisation with `apps/examples` |
 | --- | --- | --- | --- |
@@ -257,7 +257,7 @@ Every file under `apps/storefront/src/pages/**` (52 files, as of this ADR) is as
 - `bun run template:init` (#138) is a new root-level script with its own test suite (`tests/template-init.test.mjs`) and its own CI job (`template-init-smoke`, matrixed over profiles) — it never touches `apps/cms/**`.
 - `tools/seed-cms.ts --profil {toko,berita,landing,contoh:borneojek-mart}` (#139) replaces `tools/seed-borneojek-mart.ts` as the seeder entry point; `db:seed:cms` keeps seeding BjekMart's own content by default so the reference deployment's own workflow does not change.
 - CI's storefront `Check` job becomes a 3-leg matrix (#137, D7); `check`/`check-cms`'s own status remains required on `main` exactly as `AGENTS.md` already documents — the matrix is additive to that job, not a new required check to separately configure.
-- This increment releases **v0.8.0** (D8); the GitHub *template repository* flag is set in #140, once #137–#139 have merged and this ADR's own profile matrix and file list match the tree exactly.
+- This increment releases **v0.8.0** (D8); the GitHub *template repository* flag was set in #140, once #137–#139 had merged and this ADR's own profile matrix and file list matched the tree exactly.
 - `docs/template.md` (this ADR's sibling deliverable) carries the profile matrix forward as the living copy #137 keeps in step with the actual `src/profil/**` layout; this ADR's own copy is the wave-0 contract, not re-updated page-by-page as #137 lands (its Status line records the PR that closed the gap, matching ADR-0017's own convention).
 
 ## Options considered
@@ -278,12 +278,21 @@ See the tables under D1–D8 above for the full dimension-by-dimension compariso
 
 ## Follow-ups
 
-- #137 — `apps/storefront/src/config/profil.ts`, the `injectRoute` integration, moving page files into `src/profil/<group>/pages/**`, the CI matrix.
-- #138 — `bun run template:init`'s implementation, its idempotency/dry-run/exit-code tests, and the `template-init-smoke` CI job.
-- #139 — the neutral per-profile seed content, `tools/seed-cms.ts`, and BjekMart's own seed relocated to `tools/seed-data/contoh/borneojek-mart/**`.
-- #140 — the documentation sweep to actual state once #137–#139 merge, the GitHub *template repository* flag, the knowledge-graph rebuild, and the v0.8.0 release that closes epic #135.
 - Xendit-shaped follow-ups from ADR-0017 and the two ADR-0016 D6 items remain independently tracked and are unaffected by this ADR.
 
-## Status — 20 September 2026: wave 0, ADR accepted, no code changed
+## Status — 20 September 2026: epic #135 complete, v0.8.0 released
 
-This ADR and its profile matrix are the reviewed contract #137, #138, and #139 build against in parallel (wave 1, no file overlap between them per each issue's own scope line). No `apps/storefront/src/profil/**` directory exists yet, no `template:init` script exists yet, and no per-profile seed data exists yet — this document describes the target, not running code. This section is updated with landing PR numbers as #137–#140 merge, matching ADR-0017's own "Status" convention.
+Every decision below is landed, running code, verified against the tree — not a plan.
+
+| Decision | Issue | PR | What landed |
+| --- | --- | --- | --- |
+| D1 Template in place | #136 | #141 | This ADR, `docs/template.md`, the profile matrix, and the GitHub *template repository* flag (set in #140) |
+| D2 Build profiles (`SITE_PROFILE`) | #137 | #143 | `apps/storefront/src/config/profil.ts`, `SITE_PROFILE ∈ {toko, berita, landing}` read at build time |
+| D3 `src/profil/<group>/pages/**` + Astro integration | #137 | #143 | `apps/storefront/integrations/profil.mjs` (`injectRoute`), 42 pages moved per the matrix, `profil-routes`/`profil-integrasi`/`profil-build-smoke` tests |
+| D4 Brand lives in env + `site.ts` | #138 | #144 | `DEFAULT_IDENTITY`, `DEFAULT_THEME_COLORS`, `SITE_NAME`/`SITE_URL`/`SITE_DESCRIPTION`, the named brand-surface list `template:init` rewrites |
+| D5 `template:init` | #138 | #144 | `tools/template-init.ts` + `tools/template-init/**`, `tests/template-init.test.mjs`, `.github/workflows/template-init-smoke.yml` |
+| D6 Sample seeds per profile | #139 | #142 | `tools/seed-cms.ts --profil`, `tools/seed-data/profil/{toko,berita,landing}/**`; BjekMart's own seed relocated to `tools/seed-data/contoh/borneojek-mart/**` |
+| D7 CI matrix | #137 | #143 | `ci.yml`'s `Check (toko|berita|landing)` 3-leg matrix, required status checks on `main` |
+| D8 Versioning (v0.8.0) | #140 | (release) | This increment released **v0.8.0**; a derived repository's `template:init` run resets its own `CHANGELOG.md`/version to **0.1.0** |
+
+The documentation sweep to this actual state (README, AGENTS.md, `docs/template.md`, the CI/routing/SEO/testing/deployment/workflow docs, `apps/storefront/README.md`, the `.claude/skills/` how-tos including the new `awcms-one-template` skill), the knowledge-graph rebuild, and the `packages/gerbang/audit-dokumen.mjs` `EXCLUDED_PATHS` cleanup all landed in #140, which also closed epic #135.

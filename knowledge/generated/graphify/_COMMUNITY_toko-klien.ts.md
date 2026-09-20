@@ -1,16 +1,16 @@
 ---
 type: community
 cohesion: 0.07
-members: 41
+members: 42
 ---
 
 # toko-klien.ts
 
 **Cohesion:** 0.07 - loosely connected
-**Members:** 41 nodes
+**Members:** 42 nodes
 
 ## Members
-- [[ADR-0007_8]] - concept - apps/storefront/src/lib/toko-klien.ts
+- [[ADR-0007_6]] - concept - apps/storefront/src/lib/toko-klien.ts
 - [[CartLineStatus]] - code - apps/storefront/src/lib/toko-klien.ts
 - [[CreateOrderRequest]] - code - apps/storefront/src/lib/toko-klien.ts
 - [[Order]] - code - apps/storefront/src/lib/toko-klien.ts
@@ -27,6 +27,7 @@ members: 41
 - [[PesananRenderRefs]] - code - apps/storefront/src/lib/pesanan-render.ts
 - [[PesananRenderer]] - code - apps/storefront/src/lib/pesanan-render.ts
 - [[QUOTE_REQUEST]] - code - apps/storefront/tests/toko-klien.test.ts
+- [[QuoteLine]] - code - apps/storefront/src/lib/toko-klien.ts
 - [[QuoteRequest]] - code - apps/storefront/src/lib/toko-klien.ts
 - [[QuoteVoucher]] - code - apps/storefront/src/lib/toko-klien.ts
 - [[ReviewRequest]] - code - apps/storefront/src/lib/toko-klien.ts
@@ -62,15 +63,14 @@ SORT file.name ASC
 ## Connections to other communities
 - 9 edges to [[_COMMUNITY_checkout.ts]]
 - 9 edges to [[_COMMUNITY_akun-klien.ts]]
-- 5 edges to [[_COMMUNITY_formatPrice]]
+- 6 edges to [[_COMMUNITY_formatPrice]]
 - 4 edges to [[_COMMUNITY_masuk.ts]]
 - 3 edges to [[_COMMUNITY_akun-pesanan.ts]]
-- 1 edge to [[_COMMUNITY_harga.ts]]
-- 1 edge to [[_COMMUNITY_profil.ts]]
+- 1 edge to [[_COMMUNITY_awcmsprofil.ts]]
 
 ## Top bridge nodes
 - [[toko-klien.ts]] - degree 40, connects to 4 communities
-- [[pesanan-render.ts]] - degree 10, connects to 3 communities
 - [[scriptspesanan.ts]] - degree 15, connects to 2 communities
 - [[toko-klien.test.ts]] - degree 11, connects to 2 communities
+- [[pesanan-render.ts]] - degree 10, connects to 2 communities
 - [[getOrder()]] - degree 5, connects to 1 community

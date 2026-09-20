@@ -1,27 +1,26 @@
 ---
-source_file: "apps/storefront/src/pages/feed.xml.ts"
+source_file: "apps/storefront/src/profil/toko/pages/feed.xml.ts"
 type: "code"
-community: "pages/feed.xml.ts"
+community: "awcms/profil.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/pages/feedxmlts
+  - community/awcms/profilts
 ---
 
 # pages/feed.xml.ts
 
 ## Connections
-- [[GET()_2]] - `contains` [EXTRACTED]
+- [[GET()_10]] - `contains` [EXTRACTED]
 - [[absoluteUrl()]] - `imports` [EXTRACTED]
+- [[awcmsprofil.ts]] - `imports_from` [EXTRACTED]
 - [[catalog.ts]] - `imports_from` [EXTRACTED]
-- [[escapeXml()_1]] - `contains` [EXTRACTED]
-- [[formatPrice()]] - `imports` [EXTRACTED]
+- [[escapeXml()_2]] - `contains` [EXTRACTED]
 - [[getProducts()]] - `imports` [EXTRACTED]
 - [[getSiteIdentity()]] - `imports` [EXTRACTED]
-- [[prerender_2]] - `contains` [EXTRACTED]
-- [[profil.ts]] - `imports_from` [EXTRACTED]
+- [[prerender_10]] - `contains` [EXTRACTED]
 - [[site.ts]] - `imports_from` [EXTRACTED]
 - [[siteConfig]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/pages/feedxmlts
+#graphify/code #graphify/EXTRACTED #community/awcms/profilts

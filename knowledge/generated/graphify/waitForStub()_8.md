@@ -1,17 +1,17 @@
 ---
-source_file: "apps/storefront/tests/meta-sosial-build-smoke.test.ts"
+source_file: "apps/storefront/tests/checkout-build-smoke.test.ts"
 type: "code"
-community: "meta-sosial-build-smoke.test.ts"
-location: "L50"
+community: "checkout-build-smoke.test.ts"
+location: "L31"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/meta-sosial-build-smoketestts
+  - community/checkout-build-smoketestts
 ---
 
 # waitForStub()
 
 ## Connections
-- [[meta-sosial-build-smoke.test.ts]] - `contains` [EXTRACTED]
+- [[checkout-build-smoke.test.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/meta-sosial-build-smoketestts
+#graphify/code #graphify/EXTRACTED #community/checkout-build-smoketestts

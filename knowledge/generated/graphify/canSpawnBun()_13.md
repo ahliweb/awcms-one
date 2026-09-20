@@ -1,18 +1,18 @@
 ---
-source_file: "apps/storefront/tests/akun-build-smoke.test.ts"
+source_file: "apps/storefront/tests/logo-instansi-build-smoke.test.ts"
 type: "code"
-community: "akun-build-smoke.test.ts"
-location: "L22"
+community: "logo-instansi-build-smoke.test.ts"
+location: "L38"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/akun-build-smoketestts
+  - community/logo-instansi-build-smoketestts
 ---
 
 # canSpawnBun()
 
 ## Connections
-- [[akun-build-smoke.test.ts]] - `contains` [EXTRACTED]
 - [[bun_1]] - `references` [EXTRACTED]
+- [[logo-instansi-build-smoke.test.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/akun-build-smoketestts
+#graphify/code #graphify/EXTRACTED #community/logo-instansi-build-smoketestts

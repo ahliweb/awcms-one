@@ -15,7 +15,7 @@ tags:
 - [[cari-listing.ts]] - `imports` [EXTRACTED]
 - [[produk-index-klien.ts]] - `contains` [EXTRACTED]
 - [[produk-listing.ts]] - `imports` [EXTRACTED]
-- [[render()_1]] - `calls` [EXTRACTED]
+- [[render()_7]] - `calls` [EXTRACTED]
 - [[run()_3]] - `calls` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/cari-listingts

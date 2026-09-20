@@ -21,12 +21,12 @@ tags:
 - [[loadWishlist()]] - `imports` [EXTRACTED]
 - [[pasangSinkronisasiWishlist()]] - `imports` [EXTRACTED]
 - [[removeFromWishlist()]] - `imports` [EXTRACTED]
-- [[render()_7]] - `indirect_call` [INFERRED]
+- [[render()_6]] - `indirect_call` [INFERRED]
 - [[root_14]] - `contains` [EXTRACTED]
+- [[tokopageswishlist.astro]] - `imports_from` [EXTRACTED]
 - [[tulisKeAkunJikaMasuk()]] - `imports` [EXTRACTED]
 - [[wishlist-akun-sync.ts]] - `imports_from` [EXTRACTED]
 - [[wishlist-klien.ts]] - `imports_from` [EXTRACTED]
 - [[wishlist-kontrak.ts]] - `imports_from` [EXTRACTED]
-- [[wishlist.astro]] - `imports_from` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/wishlist-akun-syncts

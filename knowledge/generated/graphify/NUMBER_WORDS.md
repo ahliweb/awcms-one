@@ -2,7 +2,7 @@
 source_file: "packages/gerbang/audit-dokumen.mjs"
 type: "code"
 community: "audit-dokumen.mjs"
-location: "L820"
+location: "L828"
 tags:
   - graphify/code
   - graphify/EXTRACTED

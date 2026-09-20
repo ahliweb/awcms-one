@@ -1,18 +1,20 @@
 ---
-source_file: "apps/storefront/src/pages/sitemap-[n].xml.ts"
+source_file: "apps/storefront/src/profil/berita/pages/index/pengalihan-legacy.json.ts"
 type: "code"
-community: "site.ts"
-location: "L22"
+community: "getVideo"
+location: "L20"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/sitets
+  - community/getVideo
 ---
 
 # GET()
 
 ## Connections
-- [[renderUrlsetXml()]] - `calls` [EXTRACTED]
-- [[sitemap-n.xml.ts]] - `contains` [EXTRACTED]
+- [[beritapagesindexpengalihan-legacy.json.ts]] - `contains` [EXTRACTED]
+- [[buildLegacyRedirectMap()]] - `calls` [EXTRACTED]
+- [[getLegacyRedirectRows()]] - `calls` [EXTRACTED]
+- [[getVideo()]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/sitets
+#graphify/code #graphify/EXTRACTED #community/getVideo

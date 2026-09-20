@@ -12,7 +12,7 @@ tags:
 # toko-klien.ts
 
 ## Connections
-- [[ADR-0007_8]] - `cites` [EXTRACTED]
+- [[ADR-0007_6]] - `cites` [EXTRACTED]
 - [[CartLineRequest]] - `contains` [EXTRACTED]
 - [[CartLineStatus]] - `contains` [EXTRACTED]
 - [[CartQuote]] - `contains` [EXTRACTED]

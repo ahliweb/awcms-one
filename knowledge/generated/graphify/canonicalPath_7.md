@@ -1,17 +1,17 @@
 ---
-source_file: "apps/storefront/src/pages/video/[slug].astro"
+source_file: "apps/storefront/src/profil/berita/pages/tag/[slug].astro"
 type: "code"
-community: "video/[slug].astro"
-location: "L53"
+community: "berita.ts"
+location: "L25"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/video/slugastro
+  - community/beritats
 ---
 
 # canonicalPath
 
 ## Connections
-- [[videoslug.astro]] - `contains` [EXTRACTED]
+- [[tagslug.astro]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/video/slugastro
+#graphify/code #graphify/EXTRACTED #community/beritats

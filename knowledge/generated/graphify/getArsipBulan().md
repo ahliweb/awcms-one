@@ -12,9 +12,9 @@ tags:
 # getArsipBulan()
 
 ## Connections
-- [[mm.astro]] - `imports` [EXTRACTED]
 - [[arsipBulanWIB()]] - `calls` [EXTRACTED]
 - [[berita.ts]] - `contains` [EXTRACTED]
+- [[beritapagesarsipyyyymm.astro]] - `imports` [EXTRACTED]
 - [[getIndex()]] - `calls` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/beritats

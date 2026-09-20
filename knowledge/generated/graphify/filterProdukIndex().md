@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/catalog.ts"
 type: "code"
-community: "harga.ts"
+community: "catalog.ts"
 location: "L602"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/hargats
+  - community/catalogts
 ---
 
 # filterProdukIndex()
@@ -19,7 +19,7 @@ tags:
 - [[normalizeSearchTerm()]] - `calls` [EXTRACTED]
 - [[priceToNumber()]] - `calls` [EXTRACTED]
 - [[produk-listing.ts]] - `imports` [EXTRACTED]
-- [[render()_1]] - `calls` [EXTRACTED]
+- [[render()_7]] - `calls` [EXTRACTED]
 - [[run()_3]] - `calls` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/hargats
+#graphify/code #graphify/EXTRACTED #community/catalogts

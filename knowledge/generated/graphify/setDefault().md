@@ -16,7 +16,7 @@ tags:
 - [[hideSubmitError()_1]] - `calls` [EXTRACTED]
 - [[jadikanAlamatUtama()]] - `calls` [EXTRACTED]
 - [[loadList()]] - `calls` [EXTRACTED]
-- [[renderList()_1]] - `calls` [EXTRACTED]
+- [[renderList()]] - `calls` [EXTRACTED]
 - [[showSubmitError()_1]] - `calls` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/akun-alamatts

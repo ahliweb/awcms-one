@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](0018-awcms-one-is-a-template-with-build-profiles-and-an-idempotent-init.md)
 
-<!-- i18n-source-hash: sha256:4bc37954231c5d912331731c7b40209eeaf481fd20f35111946deb67fa1d8ad5 -->
+<!-- i18n-source-hash: sha256:dbf1b40b058e9504e731f514d26a38833ea5599f8172da258e46f5ca09fe53d9 -->
 
 # ADR-0018 — awcms-one adalah sebuah template, dengan profil build dan `template:init` yang idempoten
 
@@ -259,7 +259,7 @@ Setiap file di bawah `apps/storefront/src/pages/**` (52 file, per ADR ini) ditem
 - `bun run template:init` (#138) adalah skrip root-level baru dengan test suite-nya sendiri (`tests/template-init.test.mjs`) dan job CI-nya sendiri (`template-init-smoke`, dimatriks-kan atas profil) — ia tidak pernah menyentuh `apps/cms/**`.
 - `tools/seed-cms.ts --profil {toko,berita,landing,contoh:borneojek-mart}` (#139) menggantikan `tools/seed-borneojek-mart.ts` sebagai titik masuk seeder; `db:seed:cms` tetap menyemai konten BjekMart sendiri secara default sehingga alur kerja deployment referensi tidak berubah.
 - Job CI `Check` milik storefront menjadi matriks 3-leg (#137, D7); status `check`/`check-cms` sendiri tetap wajib pada `main` persis seperti yang sudah didokumentasikan `AGENTS.md` — matriks bersifat aditif terhadap job itu, bukan pemeriksaan wajib baru untuk dikonfigurasi terpisah.
-- Increment ini merilis **v0.8.0** (D8); flag GitHub *template repository* diatur di #140, setelah #137–#139 di-merge dan matriks profil serta daftar file ADR ini cocok persis dengan pohonnya.
+- Increment ini merilis **v0.8.0** (D8); flag GitHub *template repository* sudah diatur di #140, setelah #137–#139 di-merge dan matriks profil serta daftar file ADR ini cocok persis dengan pohonnya.
 - `docs/template.md` (deliverable saudara ADR ini) membawa matriks profil ke depan sebagai salinan hidup yang dijaga sinkron #137 dengan tata letak `src/profil/**` yang sebenarnya; salinan ADR ini sendiri adalah kontrak wave-0, tidak diperbarui halaman-demi-halaman seiring #137 landing (baris Status-nya mencatat PR yang menutup celah, sesuai konvensi "Status" ADR-0017 sendiri).
 
 ## Opsi yang dipertimbangkan
@@ -280,12 +280,21 @@ Lihat tabel di bawah D1–D8 di atas untuk perbandingan lengkap dimensi-demi-dim
 
 ## Tindak lanjut
 
-- #137 — `apps/storefront/src/config/profil.ts`, integrasi `injectRoute`, memindahkan file halaman ke `src/profil/<group>/pages/**`, matriks CI.
-- #138 — implementasi `bun run template:init`, tes idempotensi/dry-run/exit-code-nya, dan job CI `template-init-smoke`.
-- #139 — konten seed netral per profil, `tools/seed-cms.ts`, dan seed BjekMart sendiri dipindah ke `tools/seed-data/contoh/borneojek-mart/**`.
-- #140 — sapuan dokumentasi ke keadaan sebenarnya setelah #137–#139 merge, flag GitHub *template repository*, pembangunan ulang knowledge graph, dan rilis v0.8.0 yang menutup epic #135.
 - Tindak lanjut berbentuk-Xendit dari ADR-0017 dan dua item ADR-0016 D6 tetap dilacak independen dan tidak terpengaruh ADR ini.
 
-## Status — 20 September 2026: wave 0, ADR diterima, tidak ada kode yang berubah
+## Status — 20 September 2026: epic #135 selesai, v0.8.0 dirilis
 
-ADR ini dan matriks profilnya adalah kontrak yang ditinjau yang menjadi dasar pembangunan #137, #138, dan #139 secara paralel (wave 1, tanpa tumpang tindih file di antara mereka sesuai baris cakupan masing-masing issue sendiri). Belum ada direktori `apps/storefront/src/profil/**`, belum ada skrip `template:init`, dan belum ada data seed per profil — dokumen ini menjelaskan target, bukan kode yang berjalan. Bagian ini diperbarui dengan nomor PR yang landing seiring #137–#140 merge, sesuai konvensi "Status" ADR-0017 sendiri.
+Setiap keputusan di bawah ini sudah landing, kode yang berjalan, diverifikasi terhadap pohonnya — bukan rencana.
+
+| Keputusan | Issue | PR | Yang landing |
+| --- | --- | --- | --- |
+| D1 Template di tempat | #136 | #141 | ADR ini, `docs/template.md`, matriks profil, dan flag GitHub *template repository* (diatur di #140) |
+| D2 Profil build (`SITE_PROFILE`) | #137 | #143 | `apps/storefront/src/config/profil.ts`, `SITE_PROFILE ∈ {toko, berita, landing}` dibaca saat build |
+| D3 `src/profil/<group>/pages/**` + integrasi Astro | #137 | #143 | `apps/storefront/integrations/profil.mjs` (`injectRoute`), 42 halaman dipindah sesuai matriks, tes `profil-routes`/`profil-integrasi`/`profil-build-smoke` |
+| D4 Merek hidup di env + `site.ts` | #138 | #144 | `DEFAULT_IDENTITY`, `DEFAULT_THEME_COLORS`, `SITE_NAME`/`SITE_URL`/`SITE_DESCRIPTION`, daftar permukaan merek bernama yang ditulis-ulang `template:init` |
+| D5 `template:init` | #138 | #144 | `tools/template-init.ts` + `tools/template-init/**`, `tests/template-init.test.mjs`, `.github/workflows/template-init-smoke.yml` |
+| D6 Seed contoh per profil | #139 | #142 | `tools/seed-cms.ts --profil`, `tools/seed-data/profil/{toko,berita,landing}/**`; seed BjekMart sendiri dipindah ke `tools/seed-data/contoh/borneojek-mart/**` |
+| D7 Matriks CI | #137 | #143 | Matriks 3-leg `Check (toko|berita|landing)` di `ci.yml`, status check wajib di `main` |
+| D8 Penomoran versi (v0.8.0) | #140 | (rilis) | Increment ini merilis **v0.8.0**; jalan `template:init` repo turunan mereset `CHANGELOG.md`/versinya sendiri ke **0.1.0** |
+
+Sapuan dokumentasi ke keadaan sebenarnya ini (README, AGENTS.md, `docs/template.md`, dokumen CI/routing/SEO/pengujian/deployment/alur-kerja, `apps/storefront/README.md`, panduan `.claude/skills/` termasuk skill baru `awcms-one-template`), pembangunan ulang knowledge graph, dan pembersihan `EXCLUDED_PATHS` `packages/gerbang/audit-dokumen.mjs` semuanya landing di #140, yang juga menutup epic #135.

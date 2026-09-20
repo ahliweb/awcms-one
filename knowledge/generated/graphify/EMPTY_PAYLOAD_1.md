@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/profil.test.ts"
 type: "code"
-community: "profil.test.ts"
+community: "site.ts"
 location: "L5"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/profiltestts
+  - community/sitets
 ---
 
 # EMPTY_PAYLOAD
@@ -14,4 +14,4 @@ tags:
 ## Connections
 - [[profil.test.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/profiltestts
+#graphify/code #graphify/EXTRACTED #community/sitets

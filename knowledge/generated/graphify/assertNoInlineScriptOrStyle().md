@@ -2,7 +2,7 @@
 source_file: "apps/storefront/tests/afiliasi-build-smoke.test.ts"
 type: "code"
 community: "afiliasi-build-smoke.test.ts"
-location: "L43"
+location: "L44"
 tags:
   - graphify/code
   - graphify/EXTRACTED

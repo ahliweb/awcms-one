@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/ga.test.ts"
 type: "code"
-community: "penyaji.mjs"
+community: "site.ts"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/penyajimjs
+  - community/sitets
 ---
 
 # ga.test.ts
@@ -16,4 +16,4 @@ tags:
 - [[isValidGaMeasurementId()]] - `imports` [EXTRACTED]
 - [[readGaMeasurementId()]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/penyajimjs
+#graphify/code #graphify/EXTRACTED #community/sitets

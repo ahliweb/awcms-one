@@ -1,5 +1,5 @@
 ---
-source_file: "apps/storefront/src/pages/penulis/[slug].astro"
+source_file: "apps/storefront/src/profil/berita/pages/penulis/[slug].astro"
 type: "code"
 community: "berita.ts"
 location: "L1"
@@ -17,11 +17,11 @@ tags:
 - [[ROUTES_1]] - `imports` [EXTRACTED]
 - [[Sidebar.astro]] - `imports_from` [EXTRACTED]
 - [[berita.ts]] - `imports_from` [EXTRACTED]
-- [[canonicalPath_3]] - `contains` [EXTRACTED]
+- [[canonicalPath_4]] - `contains` [EXTRACTED]
 - [[getAuthor()]] - `imports` [EXTRACTED]
-- [[getStaticPaths()_10]] - `contains` [EXTRACTED]
+- [[getStaticPaths()_6]] - `contains` [EXTRACTED]
 - [[listAuthors()]] - `imports` [EXTRACTED]
 - [[routes.ts]] - `imports_from` [EXTRACTED]
-- [[{ slug }_3]] - `contains` [EXTRACTED]
+- [[{ slug }_4]] - `contains` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/beritats

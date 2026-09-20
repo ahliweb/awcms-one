@@ -1,28 +1,30 @@
 ---
 source_file: "apps/storefront/src/lib/berita.ts"
 type: "code"
-community: "[slug]/feed.xml.ts"
+community: "navigasi-berita.ts"
 location: "L506"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/slug/feedxmlts
+  - community/navigasi-beritats
 ---
 
 # flattenRubrikTree()
 
 ## Connections
-- [[n.astro]] - `imports` [EXTRACTED]
+- [[HalamanDepanBerita.astro]] - `imports` [EXTRACTED]
 - [[slugfeed.xml.ts]] - `imports` [EXTRACTED]
 - [[slugindex.astro]] - `imports` [EXTRACTED]
 - [[berita.ts]] - `contains` [EXTRACTED]
-- [[beritaindex.astro]] - `imports` [EXTRACTED]
+- [[beritapagesrubrikslughalamann.astro]] - `imports` [EXTRACTED]
 - [[getNavUtama()]] - `calls` [EXTRACTED]
-- [[getStaticPaths()_4]] - `calls` [EXTRACTED]
-- [[getStaticPaths()_11]] - `calls` [EXTRACTED]
-- [[getStaticPaths()_12]] - `calls` [EXTRACTED]
+- [[getPrimaryNav()]] - `calls` [EXTRACTED]
+- [[getStaticPaths()_7]] - `calls` [EXTRACTED]
+- [[getStaticPaths()_8]] - `calls` [EXTRACTED]
+- [[getStaticPaths()_9]] - `calls` [EXTRACTED]
 - [[getUmumList()]] - `calls` [EXTRACTED]
 - [[navigasi-berita.ts]] - `imports` [EXTRACTED]
+- [[navigasi-profil.ts]] - `imports` [EXTRACTED]
 - [[sitemap-sources.ts]] - `imports` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/slug/feedxmlts
+#graphify/code #graphify/EXTRACTED #community/navigasi-beritats

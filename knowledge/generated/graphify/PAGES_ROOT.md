@@ -2,7 +2,7 @@
 source_file: "apps/storefront/tests/berita-guard-no-news-route.test.ts"
 type: "code"
 community: "routes.ts"
-location: "L15"
+location: "L16"
 tags:
   - graphify/code
   - graphify/EXTRACTED

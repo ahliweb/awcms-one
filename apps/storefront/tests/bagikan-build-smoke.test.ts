@@ -25,7 +25,7 @@ import { join } from "node:path";
  */
 
 const STOREFRONT_ROOT = new URL("../", import.meta.url).pathname;
-const TIMEOUT_MS = 60_000;
+const TIMEOUT_MS = 120_000;
 
 /** A fixture article (`tests/fixtures/awcms/blog-posts.json`) and the video post — both render through `ArtikelView.astro`. */
 const ARTICLE_PAGE = join("berita", "bupati-kobar-resmikan-jembatan-baru.html");

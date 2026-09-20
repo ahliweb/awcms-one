@@ -12,7 +12,7 @@ tags:
 # afiliasi-tangkap.ts
 
 ## Connections
-- [[ADR-0007_10]] - `cites` [EXTRACTED]
+- [[ADR-0007_8]] - `cites` [EXTRACTED]
 - [[BaseLayout.astro]] - `imports_from` [EXTRACTED]
 - [[afiliasi-kontrak.ts]] - `imports_from` [EXTRACTED]
 - [[raw]] - `contains` [EXTRACTED]

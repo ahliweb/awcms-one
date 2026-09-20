@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/katalog-catalog.test.ts"
 type: "code"
-community: "product/[slug].astro"
+community: "kategori/[slug].astro"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/product/slugastro
+  - community/kategori/slugastro
 ---
 
 # katalog-catalog.test.ts
@@ -32,4 +32,4 @@ tags:
 - [[productsInCategory()]] - `imports` [EXTRACTED]
 - [[variant()]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/product/slugastro
+#graphify/code #graphify/EXTRACTED #community/kategori/slugastro

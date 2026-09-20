@@ -12,6 +12,7 @@ tags:
 # bun
 
 ## Connections
+- [[buildProfile()]] - `references` [EXTRACTED]
 - [[canSpawnBun()]] - `references` [EXTRACTED]
 - [[canSpawnBun()_1]] - `references` [EXTRACTED]
 - [[canSpawnBun()_2]] - `references` [EXTRACTED]
@@ -27,6 +28,10 @@ tags:
 - [[canSpawnBun()_12]] - `references` [EXTRACTED]
 - [[canSpawnBun()_13]] - `references` [EXTRACTED]
 - [[canSpawnBun()_14]] - `references` [EXTRACTED]
+- [[canSpawnBun()_15]] - `references` [EXTRACTED]
+- [[canSpawnBun()_16]] - `references` [EXTRACTED]
+- [[canSpawnBun()_17]] - `references` [EXTRACTED]
+- [[canSpawnBun()_18]] - `references` [EXTRACTED]
 - [[engines]] - `contains` [EXTRACTED]
 - [[gitRun()]] - `references` [EXTRACTED]
 - [[gitRunInherit()]] - `references` [EXTRACTED]
@@ -35,7 +40,7 @@ tags:
 - [[readMysqlDumpRows()]] - `references` [EXTRACTED]
 - [[resolveBuildId()]] - `references` [EXTRACTED]
 - [[run()_2]] - `references` [EXTRACTED]
-- [[run()_5]] - `references` [EXTRACTED]
+- [[run()_4]] - `references` [EXTRACTED]
 - [[runBuild()]] - `references` [EXTRACTED]
 - [[runExport()_1]] - `references` [EXTRACTED]
 - [[runPushRedirects()]] - `references` [EXTRACTED]

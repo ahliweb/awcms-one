@@ -25,14 +25,14 @@ tags:
 - [[buildWhatsappUrl()]] - `imports` [EXTRACTED]
 - [[hideSubmitError()_3]] - `contains` [EXTRACTED]
 - [[loadList()_1]] - `contains` [EXTRACTED]
-- [[render()_5]] - `indirect_call` [INFERRED]
+- [[render()_4]] - `indirect_call` [INFERRED]
 - [[renderItem()]] - `contains` [EXTRACTED]
 - [[root_8]] - `contains` [EXTRACTED]
 - [[showGuestView()_2]] - `contains` [EXTRACTED]
 - [[showSubmitError()_3]] - `contains` [EXTRACTED]
 - [[starRow()]] - `contains` [EXTRACTED]
 - [[toko-permintaan.ts]] - `imports_from` [EXTRACTED]
-- [[ulasan.astro]] - `imports_from` [EXTRACTED]
+- [[tokopagesakunulasan.astro]] - `imports_from` [EXTRACTED]
 - [[wa-fallback.ts]] - `imports_from` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/akun-ulasants

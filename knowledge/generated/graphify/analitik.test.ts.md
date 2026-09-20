@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/tests/analitik.test.ts"
 type: "code"
-community: "buletin.ts"
+community: "requireAwcmsOrigin"
 location: "L1"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/buletints
+  - community/requireAwcmsOrigin
 ---
 
 # analitik.test.ts
@@ -16,4 +16,4 @@ tags:
 - [[isTrackingOptedOut()]] - `imports` [EXTRACTED]
 - [[scriptsanalitik.ts]] - `imports_from` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/buletints
+#graphify/code #graphify/EXTRACTED #community/requireAwcmsOrigin

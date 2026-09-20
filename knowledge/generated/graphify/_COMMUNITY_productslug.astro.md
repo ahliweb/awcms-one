@@ -1,43 +1,24 @@
 ---
 type: community
-cohesion: 0.12
-members: 28
+cohesion: 0.28
+members: 9
 ---
 
 # product/[slug].astro
 
-**Cohesion:** 0.12 - loosely connected
-**Members:** 28 nodes
+**Cohesion:** 0.28 - loosely connected
+**Members:** 9 nodes
 
 ## Members
-- [[Breadcrumb.astro]] - code - apps/storefront/src/components/katalog/Breadcrumb.astro
-- [[BreadcrumbItem_1]] - code - apps/storefront/src/lib/jsonld-produk.ts
-- [[CommerceCategory]] - code - apps/storefront/src/lib/catalog.ts
-- [[CommerceProduct]] - code - apps/storefront/src/lib/catalog.ts
-- [[CommerceProductVariant]] - code - apps/storefront/src/lib/catalog.ts
 - [[Countdown.astro]] - code - apps/storefront/src/components/katalog/Countdown.astro
-- [[ProductSchemaInput]] - code - apps/storefront/src/lib/jsonld-produk.ts
-- [[breadcrumbListNode()]] - code - apps/storefront/src/lib/jsonld-produk.ts
-- [[buildCategoryPageSchema()]] - code - apps/storefront/src/lib/jsonld-produk.ts
-- [[buildPriceTiers()]] - code - apps/storefront/src/lib/catalog.ts
-- [[buildProductPageSchema()]] - code - apps/storefront/src/lib/jsonld-produk.ts
-- [[category()]] - code - apps/storefront/tests/katalog-catalog.test.ts
-- [[category()_1]] - code - apps/storefront/tests/katalog-jsonld.test.ts
-- [[collectCategorySubtreeIds()]] - code - apps/storefront/src/lib/catalog.ts
-- [[getCategoryBySlug()]] - code - apps/storefront/src/lib/catalog.ts
-- [[getStaticPaths()_2]] - code - apps/storefront/src/pages/kategori/[slug].astro
-- [[getStaticPaths()_3]] - code - apps/storefront/src/pages/product/[slug].astro
-- [[isFirstGroupOptionDisabled()]] - code - apps/storefront/src/pages/product/[slug].astro
-- [[isTableRows()]] - code - apps/storefront/src/pages/product/[slug].astro
-- [[jsonld-produk.ts]] - code - apps/storefront/src/lib/jsonld-produk.ts
-- [[katalog-catalog.test.ts]] - code - apps/storefront/tests/katalog-catalog.test.ts
-- [[katalog-jsonld.test.ts]] - code - apps/storefront/tests/katalog-jsonld.test.ts
-- [[kategorislug.astro]] - code - apps/storefront/src/pages/kategori/[slug].astro
-- [[product()]] - code - apps/storefront/tests/katalog-catalog.test.ts
-- [[product()_1]] - code - apps/storefront/tests/katalog-jsonld.test.ts
-- [[productslug.astro]] - code - apps/storefront/src/pages/product/[slug].astro
-- [[productsInCategory()]] - code - apps/storefront/src/lib/catalog.ts
-- [[variant()]] - code - apps/storefront/tests/katalog-catalog.test.ts
+- [[findFlashSaleForProduct()]] - code - apps/storefront/src/lib/awcms/pemasaran.ts
+- [[flash-sale-countdown.ts]] - code - apps/storefront/src/scripts/flash-sale-countdown.ts
+- [[formatRemaining()]] - code - apps/storefront/src/scripts/flash-sale-countdown.ts
+- [[isFirstGroupOptionDisabled()]] - code - apps/storefront/src/profil/toko/pages/product/[slug].astro
+- [[isTableRows()]] - code - apps/storefront/src/profil/toko/pages/product/[slug].astro
+- [[productslug.astro]] - code - apps/storefront/src/profil/toko/pages/product/[slug].astro
+- [[tick()]] - code - apps/storefront/src/scripts/flash-sale-countdown.ts
+- [[tokopagesflash-sale.astro]] - code - apps/storefront/src/profil/toko/pages/flash-sale.astro
 
 ## Live Query (requires Dataview plugin)
 
@@ -47,21 +28,21 @@ SORT file.name ASC
 ```
 
 ## Connections to other communities
-- 20 edges to [[_COMMUNITY_catalog.ts]]
-- 5 edges to [[_COMMUNITY_routes.ts]]
-- 5 edges to [[_COMMUNITY_pagesindex.astro]]
-- 5 edges to [[_COMMUNITY_harga.ts]]
-- 4 edges to [[_COMMUNITY_profil.ts]]
-- 4 edges to [[_COMMUNITY_site.ts]]
-- 4 edges to [[_COMMUNITY_cari-listing.ts]]
-- 3 edges to [[_COMMUNITY_produk-detail.ts]]
-- 2 edges to [[_COMMUNITY_pemasaran.ts]]
-- 1 edge to [[_COMMUNITY_formatPrice]]
-- 1 edge to [[_COMMUNITY_flash-sale-countdown.ts]]
+- 8 edges to [[_COMMUNITY_pemasaran.ts]]
+- 6 edges to [[_COMMUNITY_kategorislug.astro]]
+- 5 edges to [[_COMMUNITY_formatPrice]]
+- 5 edges to [[_COMMUNITY_awcmsprofil.ts]]
+- 5 edges to [[_COMMUNITY_getProducts]]
+- 2 edges to [[_COMMUNITY_routes.ts]]
+- 1 edge to [[_COMMUNITY_site.ts]]
+- 1 edge to [[_COMMUNITY_videoslug.astro]]
+- 1 edge to [[_COMMUNITY_katalog-harga.test.ts]]
+- 1 edge to [[_COMMUNITY_produk-detail.ts]]
+- 1 edge to [[_COMMUNITY_catalog.ts]]
 
 ## Top bridge nodes
 - [[productslug.astro]] - degree 30, connects to 11 communities
-- [[kategorislug.astro]] - degree 19, connects to 6 communities
-- [[katalog-catalog.test.ts]] - degree 19, connects to 4 communities
-- [[CommerceProductVariant]] - degree 4, connects to 2 communities
-- [[Countdown.astro]] - degree 3, connects to 2 communities
+- [[tokopagesflash-sale.astro]] - degree 9, connects to 3 communities
+- [[flash-sale-countdown.ts]] - degree 5, connects to 1 community
+- [[Countdown.astro]] - degree 3, connects to 1 community
+- [[findFlashSaleForProduct()]] - degree 3, connects to 1 community

@@ -1,17 +1,17 @@
 ---
-source_file: "apps/storefront/src/pages/sitemap-[n].xml.ts"
+source_file: "apps/storefront/src/profil/berita/pages/index/pengalihan-legacy.json.ts"
 type: "code"
-community: "site.ts"
-location: "L10"
+community: "getVideo"
+location: "L18"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/sitets
+  - community/getVideo
 ---
 
 # prerender
 
 ## Connections
-- [[sitemap-n.xml.ts]] - `contains` [EXTRACTED]
+- [[beritapagesindexpengalihan-legacy.json.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/sitets
+#graphify/code #graphify/EXTRACTED #community/getVideo

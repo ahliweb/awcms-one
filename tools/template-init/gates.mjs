@@ -31,7 +31,14 @@ function run(root, args, label) {
 
 /**
  * @param {string} root
- * @param {{ skipInstall?: boolean }} [opts] - `skipInstall`: for
+ * @param {{ skipInstall?: boolean, testScope?: "all" | "root" }} [opts] -
+ *   `testScope: "root"` runs only the root gate tests (`bun test tests`),
+ *   not the workspace suites with their stub-CMS builds — for a runner that
+ *   already executes the full `bun test` itself (the `template-init-smoke`
+ *   workflow's own next step, or `tests/template-init.test.mjs`'s outer
+ *   suite), where a NESTED full run only doubles the load and trips the
+ *   stub-start deadline. Also read from `TEMPLATE_INIT_TEST_SCOPE`. A real
+ *   derived repository keeps the default `"all"`. `skipInstall`: for
  *   `tests/template-init.test.mjs`'s temp-copy runs, which SYMLINK
  *   `node_modules` in rather than reinstalling (this file's own docblock
  *   references the reasoning the test file states in full) — everything
@@ -44,5 +51,7 @@ export function runFollowUpGates(root, opts = {}) {
   run(root, ["run", "audit:dokumen"], "audit:dokumen");
   run(root, ["run", "audit:translation"], "audit:translation");
   run(root, ["run", "audit:rilis"], "audit:rilis");
-  run(root, ["test"], "bun test");
+  const scope = opts.testScope ?? process.env.TEMPLATE_INIT_TEST_SCOPE ?? "all";
+  if (scope === "root") run(root, ["test", "tests"], "bun test tests (root gate tests only)");
+  else run(root, ["test"], "bun test");
 }

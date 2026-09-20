@@ -1,12 +1,12 @@
 ---
 source_file: "apps/storefront/src/lib/warna.ts"
 type: "code"
-community: "site.ts"
+community: "warna.ts"
 location: "L19"
 tags:
   - graphify/code
   - graphify/EXTRACTED
-  - community/sitets
+  - community/warnats
 ---
 
 # isValidHexColor()
@@ -18,4 +18,4 @@ tags:
 - [[warna.test.ts]] - `imports` [EXTRACTED]
 - [[warna.ts]] - `contains` [EXTRACTED]
 
-#graphify/code #graphify/EXTRACTED #community/sitets
+#graphify/code #graphify/EXTRACTED #community/warnats
