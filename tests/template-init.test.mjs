@@ -261,7 +261,11 @@ describe("template:init — full run in a temp copy", () => {
             "--yes"
           ];
 
-          const exitCode = await main(flags, { root: dir, isTTY: false, skipInstall: true, skipGates: !runGates });
+          // `testScope: "root"`: the copy's gate chain runs the root gate tests
+          // for real; the storefront smoke builds are already exercised by
+          // THIS outer suite, and a nested full run doubled the load enough
+          // to trip the stub-start deadline on CI (PR #145).
+          const exitCode = await main(flags, { root: dir, isTTY: false, skipInstall: true, skipGates: !runGates, testScope: "root" });
           expect(exitCode).toBe(0);
 
           const originPkg = JSON.parse(readFileSync(join(REPO_ROOT, "package.json"), "utf8"));

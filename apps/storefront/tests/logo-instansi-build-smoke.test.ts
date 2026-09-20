@@ -28,7 +28,7 @@ import { join } from "node:path";
  */
 
 const STOREFRONT_ROOT = new URL("../", import.meta.url).pathname;
-const TIMEOUT_MS = 60_000;
+const TIMEOUT_MS = 120_000;
 
 /** Filed under `i-pemkab-kobar` — the one institution the fixture gives an emblem. */
 const ARTICLE_WITH_LOGO = join("berita", "bupati-kobar-resmikan-jembatan-baru.html");

@@ -28,7 +28,7 @@ import { join } from "node:path";
  */
 
 const STOREFRONT_ROOT = new URL("../", import.meta.url).pathname;
-const TIMEOUT_MS = 55_000;
+const TIMEOUT_MS = 120_000;
 
 function canSpawnBun(): boolean {
   try {

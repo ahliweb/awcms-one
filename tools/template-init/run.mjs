@@ -21,6 +21,7 @@ import { runFollowUpGates } from "./gates.mjs";
  * @param {boolean} [opts.isTTY] - defaults to `process.stdin.isTTY`
  * @param {boolean} [opts.skipGates] - for tests: build + apply the plan, but never spawn `bun run <gate>`
  * @param {boolean} [opts.skipInstall] - forwarded to {@link runFollowUpGates} — see that function's own docblock
+ * @param {"all"|"root"} [opts.testScope] - forwarded to {@link runFollowUpGates} — see that function's own docblock
  * @returns {Promise<number>} the process exit code — never calls `process.exit` itself, so tests can assert on the return value
  */
 export async function main(argv, opts = {}) {
@@ -119,7 +120,7 @@ export async function main(argv, opts = {}) {
   if (opts.skipGates) return 0;
 
   try {
-    runFollowUpGates(root, { skipInstall: opts.skipInstall });
+    runFollowUpGates(root, { skipInstall: opts.skipInstall, testScope: opts.testScope });
   } catch (error) {
     console.error(`template:init: ${error.message}`);
     return 1;

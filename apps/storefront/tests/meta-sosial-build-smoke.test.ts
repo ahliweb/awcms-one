@@ -36,7 +36,7 @@ import { join } from "node:path";
  */
 
 const STOREFRONT_ROOT = new URL("../", import.meta.url).pathname;
-const TIMEOUT_MS = 60_000;
+const TIMEOUT_MS = 120_000;
 const SITE_URL = "http://localhost:4321";
 
 function canSpawnBun(): boolean {

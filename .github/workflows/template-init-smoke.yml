@@ -62,6 +62,12 @@ jobs:
       # copy) is fine — this job's only purpose is proving the tool leaves
       # ITS OWN checkout green for each profile, one matrix leg at a time.
       - name: bun run template:init --profil ${{ matrix.profil }}
+        # `TEMPLATE_INIT_TEST_SCOPE=root`: the tool's own trailing `bun test`
+        # runs only the root gate tests here — the "Root bun test" step
+        # below runs the full suite once, and a nested full run doubled the
+        # stub-CMS build load enough to trip the stub-start deadline.
+        env:
+          TEMPLATE_INIT_TEST_SCOPE: root
         run: |
           bun run template:init \
             --nama "Toko Contoh ${{ matrix.profil }}" \

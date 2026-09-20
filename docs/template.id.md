@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](template.md)
 
-<!-- i18n-source-hash: sha256:b88118119be97b2281bef6e534628a4c71fdfecb0d83127767c6e6bfda55edf8 -->
+<!-- i18n-source-hash: sha256:7e77699b1ef3387bfd529ee17061129ba0d960abe10261190021828193bbbd54 -->
 
 # Menggunakan awcms-one sebagai template
 
@@ -106,6 +106,8 @@ Artefak khusus BjekMart yang tidak dibutuhkan deployment turunan dan tidak sehar
 `template:init` selesai dengan menjalankan, secara berurutan: `docs:i18n:stamp`, `bun install`, `audit:dokumen`, `audit:translation`, `audit:rilis`, dan root `bun test` — sehingga commit pertama repo turunan sudah hijau, titik awal "gerbang lulus sebelum Anda menyentuh apa pun" yang sama yang diharapkan `AGENTS.md` repo ini sendiri dari setiap perubahan di sini.
 
 **`tests/template-init.test.mjs` melewati dirinya sendiri begitu mendeteksi ia tidak lagi berjalan di dalam `awcms-one` sendiri** (`package.json.name !== "awcms-one"`, dicetak sebagai satu baris SKIPPED yang jelas). Tanpa ini, `bun test` akhir ini akan menemukan dan menjalankan ulang berkas tesnya sendiri di dalam repositori yang baru saja diinisialisasinya — tes full-run milik berkas itu kemudian mencoba membangun SALINAN sementara lain dari `git ls-files`, yang masih mendaftar path yang sudah dihapus langkah penghapusan run ini sendiri (`unlinkSync` sungguhan, tidak pernah `git rm`), melempar `ENOENT` pada setiap satu darinya. Guard ini bukan solusi sementara untuk kegagalan penyalinan itu (`makeTempCopy` juga menyaring `git ls-files` lewat `existsSync`, secara defensif, sebagai lapisan pertahanan kedua yang independen) — ia adalah perbaikan sesungguhnya: pengujian ini ada untuk menguji template, dan tidak boleh pernah berjalan kedua kalinya terhadap repositori yang sudah bukan template lagi.
+
+`TEMPLATE_INIT_TEST_SCOPE=root` (variabel lingkungan, hanya untuk CI) membuat `bun test` penutup itu hanya menjalankan uji gerbang akar (`bun test tests`), bukan seluruh workspace: workflow `template-init-smoke` dan `tests/template-init.test.mjs` sudah menjalankan suite lengkap di sekeliling alat ini, dan run penuh yang bersarang menggandakan beban build stub-CMS sampai melewati tenggat mulai stub pada uji asap storefront. Repositori turunan yang sesungguhnya tidak pernah menyetelnya.
 
 ## Profil build
 

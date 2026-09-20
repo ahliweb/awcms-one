@@ -102,6 +102,8 @@ BjekMart-only artefacts that a derived deployment does not need and should not c
 
 **`tests/template-init.test.mjs` skips itself the moment it detects it is no longer running inside `awcms-one` itself** (`package.json.name !== "awcms-one"`, printed as one clear SKIPPED line). Without this, this trailing `bun test` would discover and re-run its own test file inside the very repository it just initialised — that file's own full-run tests then try to build ANOTHER temp copy from `git ls-files`, which still lists paths this run's own removal step already deleted (a real `unlinkSync`, never a `git rm`), throwing `ENOENT` on every one of them. The guard is not a workaround for that copy failure (`makeTempCopy` also filters `git ls-files` through `existsSync`, defensively, as a second and independent layer) — it is the actual fix: these tests exist to test the template, and must never run a second time against a repository that is no longer the template.
 
+`TEMPLATE_INIT_TEST_SCOPE=root` (environment variable, CI-only) makes that trailing `bun test` run only the root gate tests (`bun test tests`) instead of the whole workspace: the `template-init-smoke` workflow and `tests/template-init.test.mjs` both already run the full suite around the tool, and a nested full run doubled the stub-CMS build load enough to trip the storefront smoke tests' stub-start deadline. A real derived repository never sets it.
+
 ## Build profiles
 
 `SITE_PROFILE` (read at build time by `apps/storefront/src/config/profil.ts`, [#137](https://github.com/ahliweb/awcms-one/issues/137)) selects which page groups a build includes. Full reasoning: [ADR-0018 D2/D3](adr/0018-awcms-one-is-a-template-with-build-profiles-and-an-idempotent-init.md).
