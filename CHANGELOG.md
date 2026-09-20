@@ -2,6 +2,180 @@
 
 Every entry below is folded from `.changesets/` by `bun run release`, which also tags the release. The version is `MAJOR.MINOR.PATCH`, tagged `vX.Y.Z`; the next version is the largest `bump` declared among the changesets a release folds (see [`.changesets/README.md`](.changesets/README.md)) — never a level chosen at release time from a list of file names.
 
+## [0.8.0] — 2026-09-20
+
+### ADR-0018 + profile matrix + template contract (wave 0 of epic #135)
+
+Increment 6 turns awcms-one into a **template** other applications can start from, while it
+keeps running as the BjekMart reference deployment. Wave 0 (issue #136) settles the eight
+architectural decisions (D1–D8) the whole increment codes against, before any code changes,
+exactly as ADR-0016 and ADR-0017 did for their own increments.
+
+- [ADR-0018](docs/adr/0018-awcms-one-is-a-template-with-build-profiles-and-an-idempotent-init.md)
+  records the template shape (this repository stays the template, no fork, no second repo),
+  build profiles (`SITE_PROFILE ∈ {toko, berita, landing}`), the page-group mechanism
+  (`src/profil/<group>/pages/**` injected by an Astro integration — runtime 404 guards and
+  one-app-per-profile are both rejected), the brand surface `template:init` rewrites, the
+  `template:init` CLI's own idempotency/dry-run/exit-code contract, neutral per-profile sample
+  seeds (with BjekMart's own content kept as the labelled reference example), a 3-leg CI
+  matrix, and this increment's own v0.8.0 release / derived-repo-starts-at-0.1.0 versioning
+  rule.
+- The **profile matrix** assigns every one of the 52 files under `apps/storefront/src/pages/**`
+  to `shared`/`toko`/`berita`, including three edge cases decided from reading the code rather
+  than the issue text: `mitra/[slug].astro` is a news-institution directory (`berita`, not
+  `toko` — it uses `BeritaLayout` and is registered as a `berita-mitra` sitemap source), the
+  root `feed.xml.ts` is the PRODUCT feed (`toko`, not the news feed — `berita/feed.xml.ts` is
+  that), and `index/wilayah-*.json` is the checkout address cascade (`toko`, despite the
+  "wilayah" name overlapping with `berita`'s own regional sections).
+- [`docs/template.md`](docs/template.md) walks through starting from the template
+  ("Use this template" → `template:init` → `.env` → `db:up`/`db:migrate:cms`/`db:seed:cms
+  --profil` → `bun run dev` → deploy), the `template:init` CLI flag table, the same profile
+  matrix, the seeds section, and BjekMart as the reference example. Linked from
+  [`docs/README.md`](docs/README.md) and root `README.md`, with a new "Use this as
+  template" section pointing at both documents.
+- `packages/gerbang/audit-dokumen.mjs`'s `EXCLUDED_PATHS` gains entries for the not-yet-built
+  paths this wave-0 contract names ahead of #137/#138/#139 (`apps/storefront/src/config/profil.ts`,
+  `apps/storefront/integrations/profil.mjs`, `tests/template-init.test.mjs`,
+  `tools/seed-cms.ts`), plus ADR-0018's own two rejected-alternative paths under a hypothetical
+  examples workspace (a shape this ADR turned down, never built), each citing the issue or ADR
+  section that names it.
+
+No code changes — this is the contract #137 (storefront profiles + CI matrix), #138
+(`template:init`), and #139 (profile seeds) build against in parallel next.
+
+### Neutral sample seeds per profile; BjekMart's seed becomes the labelled reference example
+
+ADR-0018 D6, issue #139. `tools/seed-cms.ts` replaces `tools/seed-borneojek-mart.ts` as the
+seeder every profile shares — `--profil toko|berita|landing|contoh:borneojek-mart`, `--dry-run`,
+idempotent upsert-by-slug, a printed inventory summary — so a repository derived from this
+template (`template:init`, #138) has real, honest, fast-to-seed sample content the moment it
+first runs `bun run dev`, without inheriting BjekMart's own five-increment-deep production
+content as its default.
+
+- `tools/seed-data/*.json` moved, unchanged in shape, to
+  `tools/seed-data/contoh/borneojek-mart/**` — the reference example. `bun run db:seed:cms`
+  with no flag still targets it by default, so the live reference deployment's own workflow is
+  unchanged; `tools/seed-borneojek-mart.ts` is now a one-release deprecation shim that prints a
+  notice and delegates to `tools/seed-cms.ts --profil contoh:borneojek-mart`.
+- Three new neutral, fictional seed sets under `tools/seed-data/profil/{toko,berita,landing}/*`
+  — invented names ("Toko Nusantara", "Kabar Kita", "PT Contoh Karya"), placeholder contacts on
+  `example.com`/`example.id` and `+62 800 0000 0000`-style numbers, no real people, brands, or
+  places tied to BjekMart/seputarborneo. `toko` ships 6 categories/12 products/marketing/4
+  pages/terms; `berita` ships 5 rubrics/10 news posts/3 informational author bylines/4 pages,
+  plus the region/institution rows a `/daerah/{slug}` archive needs (resolved generically from
+  the seed data itself, not a hardcoded region list); `landing` ships a site profile, 4 pages,
+  and contact details. Placeholder images are simple, self-generated SVGs under
+  `tools/seed-assets/profil/**`.
+- Root `package.json`: `db:seed:cms` now points at `tools/seed-cms.ts` directly (same default
+  behaviour); a new `db:seed:cms:profil` script is the ergonomic entry point for a chosen
+  profile (`bun run db:seed:cms:profil toko`).
+- `tests/seed-profil.test.mjs` (`tools/lib/seed-profil.mjs`'s shared, side-effect-free
+  validators): every profile's JSON validates against the shapes `tools/seed-cms.ts`'s own
+  `ensure*` functions expect, a no-PII regex sweep over each file's raw text, every asset
+  reference resolves, and `--dry-run` exits 0 for all four profiles with no network call at
+  all — `--dry-run` is deliberately network-free by design, a stronger guarantee than seeding
+  against a fake server would give, and safe to run against a database that already holds real
+  content.
+- `docs/template.md`'s "Sample seeds" section now describes real, landed mechanism instead of a
+  wave-0 target; a new "Seeding a profile locally" section in
+  `docs/alur-kerja-pengembangan.md` warns against ever seeding a neutral profile into this
+  repository's own shared local dev database (it already holds BjekMart's own tenant, and
+  tenant setup is a once-per-database lock).
+- `packages/gerbang/audit-dokumen.mjs`'s `EXCLUDED_PATHS` drops its `tools/seed-cms.ts` entry —
+  the path this wave-0 contract named ahead of this issue now genuinely exists.
+
+`#137` (storefront profiles + CI matrix) and `#138` (`template:init`) remain outstanding; this
+issue's own scope is the seeder and its seed data only.
+
+### Storefront build profiles: `SITE_PROFILE` = `toko` | `berita` | `landing` (issue #137)
+
+`apps/storefront` now builds one of three sites from the same tree, decided at build time by
+`SITE_PROFILE` ([ADR-0018](docs/adr/0018-awcms-one-is-a-template-with-build-profiles-and-an-idempotent-init.md)
+D2/D3/D7) — the mechanism that lets this repository be a template a derived deployment can
+start from without a second codebase. `toko` (the default when unset) is BjekMart's own
+commerce + news site, byte-for-byte what the app built before; `berita` is a news portal only;
+`landing` is a company-profile site (home, static pages, contact). An unknown value fails the
+build naming the variable.
+
+- **Page groups.** `apps/storefront/src/pages/**` now holds only the `shared` group (ten files
+  every profile serves). The other 42 page files moved (`git mv`, history kept) to
+  `apps/storefront/src/profil/<group>/pages/**` — 23 under `toko`, 19 under `berita` — with the
+  same relative paths, per the profile matrix in `docs/template.md` (including its three
+  code-decided edge cases: `mitra/[slug]` is `berita`, the root `feed.xml` is `toko`'s product
+  feed, `index/wilayah-*` is `toko`'s checkout address cascade). A new Astro integration,
+  `apps/storefront/integrations/profil.mjs`, `injectRoute`s every file of every ACTIVE group in
+  `astro:config:setup` with project-root-relative entrypoints; an inactive group is never walked,
+  so its pages, data fetches and artifacts never reach `dist/`. `apps/storefront/src/pages/index.astro` stays the
+  one `/` route and imports `@profil/beranda`, an alias the integration points at the profile's
+  own `src/profil/<profile>/Beranda.astro`.
+- **One source of truth.** `apps/storefront/src/config/profil.ts` reads `SITE_PROFILE` and
+  derives, from `routes.ts`'s new `ROUTE_GROUPS` annotation (every `ROUTES` key carries its
+  group), the nav set, search surface, footer links, sitemap sources, feeds, `robots.txt` rules and
+  CSP needs per profile. `Header`/`Footer`/`BaseLayout`, `robots.txt.ts`,
+  `sitemap-sources.ts`/`sitemap-katalog.ts`, `csp.json.ts` and the server's rule-based legacy
+  news redirects (now applied only when the build has a `berita.html`) all read it; nothing
+  hardcodes a group twice. `PRIMARY_NAV`/`FOOTER_PAGE_LINKS` moved from `routes.ts` to
+  `profil.ts`; `ROUTES` gains `newsletter`, `newsletterConfirm`, `newsletterUnsubscribe`,
+  `orderTracking`.
+- **CSP correction to the ADR matrix.** `connect-src` carries `PUBLIC_AWCMS_ORIGIN` on every
+  profile (the visitor beacon posts there from every page), not only `toko`; what varies is which
+  content the `img-src`/`frame-src` derivation reads.
+- **Tests.** `profil-konfig` (pure config), `profil-integrasi` (the integration's pure half; the
+  tree must match `docs/template.md`'s matrix row for row), `profil-routes` (no built page links
+  outside the active profile, every internal link resolves), `profil-build-smoke` (every profile
+  built against the stub CMS: excluded routes absent from `dist/` and `sitemap-*.xml`, robots/
+  feeds/CSP per profile). Existing build-smoke tests pin `SITE_PROFILE: "toko"`; the
+  no-`prerender = false` and no-`/news/**` guards now walk `src/profil/**` too.
+- **CI.** The storefront `Check` job is a 3-leg matrix over `profile: [toko, berita, landing]`
+  (`fail-fast: false`, shared install cache): each leg type-checks and builds/smoke-tests its
+  profile; the root `bun test` and audits run once on the `toko` leg. `STUB_START_DEADLINE_MS`
+  unchanged.
+- **Docs.** `docs/routing.md`, `docs/seo.md`, `docs/pengujian.md`, `docs/arsitektur.md` (+ `.id.md`
+  mirrors), `apps/storefront/README.md` and `.env.example` describe the profile mechanism, the
+  `injectRoute` wiring and the CI matrix; page paths named in docs follow the moved files.
+
+Operators of the BjekMart deployment need to do nothing: with `SITE_PROFILE` unset the build is
+unchanged.
+
+### `bun run template:init` — idempotent brand/profile initialisation for derived repos
+
+Issue #138 (ADR-0018 D4/D5): a new root-level script that rewrites this
+repository's brand surface (name, domain, colours, contact, `SITE_PROFILE`)
+for a repository created from GitHub's own "Use this template" button, so a
+derived repo's first commit is already green.
+
+- `tools/template-init.ts` (entry) + `tools/template-init/**` (CLI parsing
+  and prompting, targeted text-surgery rewriters, a `plan`/`apply` split so
+  `--dry-run` and a real run share one code path, and the trailing gate
+  chain: `docs:i18n:stamp`, `bun install`, `audit:dokumen`,
+  `audit:translation`, `audit:rilis`, `bun test`).
+- Idempotent by construction: every rewrite is diffed against the file's
+  current content, so a second run with identical flags touches nothing
+  (exit `0`, "nothing to do"); a run with different flags rewrites only what
+  changed. `CHANGELOG.md`/`.changesets/*.md`/`package.json`'s version reset
+  happen exactly once, gated on the new `package.json#awcmsOne.templateVersion`
+  field. Refuses a dirty working tree, and refuses to run against the
+  template itself (`package.json.name === "awcms-one"`), without `--yes`.
+- Removes BjekMart-only artefacts — `tools/seed-borneojek-mart.ts` (issue
+  #139's own deprecation shim) and `tools/seed-data/contoh/borneojek-mart/**`
+  (its reference-example layout, checking the pre-#139 flat layout too,
+  defensively), `tools/import-seputarborneo.ts` and its test — and resets
+  `graphify-out/`/`knowledge/generated/` to absent, which
+  `packages/gerbang/audit-graf.mjs` already treats as a valid, gate-passing
+  state. Rewrites `tools/seed-cms.ts`'s `--profil` default and
+  `package.json`'s `db:seed:cms` script from BjekMart's reference example
+  to the deployment's own chosen profile. `tests/seed-profil.test.mjs`
+  (#139) is kept, not removed — it validates the neutral profile seeds a
+  derived repo keeps; its own `contoh:borneojek-mart`/deprecation-shim
+  coverage now guards itself with an existence check and skips once
+  `template:init` has removed what it describes.
+- New CI workflow `.github/workflows/template-init-smoke.yml`, matrixed over
+  `toko`/`berita`/`landing`, not yet a required status check.
+- Two corrections to `docs/template.md`'s wave-0 draft, made in this same
+  change: `SECURITY.md` carries no rewritable contact line as the tree
+  actually stands, and `SITE_NAME`/`SITE_URL`/`SITE_DESCRIPTION`/
+  `SITE_PROFILE` live in `apps/storefront/.env.example`, not the root one.
+
 ## [0.7.0] — 2026-09-20
 
 ### ADR-0017 + OpenAPI contract for external providers — payment gateway, courier rates, WhatsApp, POS, reports, inbox, campaigns
