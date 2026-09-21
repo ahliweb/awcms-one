@@ -423,13 +423,23 @@ p {
   color: var(--accent-primary) !important;
 }
 
+/* Category nav row as chips (2026-09 redesign, mockup lines 51-55). */
 .site-header nav a {
   display: inline-flex;
   align-items: center;
-  min-height: 44px;
-  padding-inline: 0.5rem;
+  height: 34px;
+  padding: 0 12px;
+  border-radius: var(--radius-xs);
   color: var(--text-secondary);
+  font-family: var(--font-sans);
   font-weight: 600;
+  font-size: var(--text-xs);
+}
+
+.site-header nav a:hover,
+.site-header nav a[aria-current] {
+  background: var(--bg-subtle);
+  color: var(--text-primary);
 }
 
 .site-footer {
@@ -684,27 +694,39 @@ main {
   flex-wrap: wrap;
 }
 
+/* One joined control (2026-09 redesign, mockup lines 41-44) — the wrapper
+   itself carries the border/radius/background, the input inside it is
+   borderless and transparent, and the "Cari" button sits flush against the
+   wrapper's own edge (no gap, no radius of its own) rather than as a
+   second, separate control beside it. The wrapper is 44px tall so the
+   whole group — not just the button — clears the touch-target minimum. */
 .search-form {
   display: flex;
-  gap: 0.4rem;
+  align-items: stretch;
+  height: 44px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-m);
+  background: var(--bg-subtle);
+  overflow: hidden;
 }
 
 .search-form input[type="search"] {
-  min-height: 44px;
-  padding: 0.4rem 0.75rem;
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-sm);
+  flex: 1;
+  min-width: 9rem;
+  height: 100%;
+  padding: 0 0.75rem;
+  border: 0;
+  border-radius: 0;
   font: inherit;
   color: var(--text-primary);
-  background: var(--bg-surface);
-  min-width: 9rem;
+  background: transparent;
 }
 
 .search-form button {
-  min-height: 44px;
-  padding: 0.4rem 1rem;
+  height: 100%;
+  padding: 0 1rem;
   border: none;
-  border-radius: var(--radius-sm);
+  border-radius: 0;
   font-weight: 700;
   cursor: pointer;
   background: var(--color-primary, #10b981);
