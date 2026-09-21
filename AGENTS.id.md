@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](AGENTS.md)
 
-<!-- i18n-source-hash: sha256:3bb1095dbe97eb4372df7656bd54173ad0d89db04c961307062f002e683d870b -->
+<!-- i18n-source-hash: sha256:e04e3b757b90cd30282063d71a80857b0cb755c0899beb6733e8b89535f00b19 -->
 
 # AGENTS.md — kontrak kerja awcms-one
 
@@ -70,7 +70,7 @@ Sumber `apps/cms` sendiri adalah pohon milik upstream, dibawa ke sini untuk alas
 
 - `apps/cms/tests/version-check.test.ts` — test "the committed tag namespace conforms" di dalamnya menegaskan bahwa lebih dari 20 tag git telah diperiksa, sebuah ambang non-vakuitas yang benar pada klon `ahliweb/awcms` (sekitar tiga puluh lima tag `v*`) dan salah secara konstruksi di embed ini, di mana `git tag` menjawab dengan lini `v0.x` milik repo ini sendiri dan tag upstream tidak boleh pernah diambil (lihat "Kenapa `--no-tags` bukan pilihan" di atas). Tambalan lokalnya hanya melewati ambang itu, dan hanya ketika `git rev-parse --show-toplevel` dari `apps/cms` bukan `apps/cms` itu sendiri; dua asersi yang menyatakan aturan tetap berjalan. Tanpanya `bun run check:cms` merah pada `main` yang bersih ([issue #22](https://github.com/ahliweb/awcms-one/issues/22)).
 
-- `apps/cms/src/layouts/AdminLayout.astro` dan `apps/cms/src/modules/_shared/module-contract.ts` / `module-management/domain/sidebar-menu.ts` — `requiredFeature` dari issue #118 pada entri navigasi sidebar (toggle fitur `commerce` yang menyembunyikan tautan). `badgeCount` milik upstream sendiri (awcms PR #813) tiba di baris yang sama; sinkronisasi #170 mempertahankan KEDUA field, dalam urutan itu.
+- `apps/cms/src/layouts/AdminLayout.astro` dan `apps/cms/src/modules/_shared/module-contract.ts` / `module-management/domain/sidebar-menu.ts` — `requiredFeature` dari issue #118 pada entri navigasi sidebar (toggle fitur `commerce` yang menyembunyikan tautan). `badgeCount` milik upstream sendiri (awcms PR #813) tiba di baris yang sama; sinkronisasi #170 mempertahankan KEDUA field, dalam urutan itu. `sidebar-menu.ts` juga membawa label/ikon sidebar milik modul `commerce` sendiri (setiap kunci `admin.layout.nav_commerce*` di `SIDEBAR_LABELS`/`DEFAULT_SIDEBAR_ICONS`, termasuk `nav_commerce_dashboard` milik issue #171) — tambahan platform ini sendiri ke tabel yang juga ditulisi baris oleh upstream, diselesaikan dengan mempertahankan kedua lini keturunan saat konflik, sama seperti entri lain dalam daftar ini.
 - `apps/cms/src/styles/admin-screens.css` — 11 baris yang ditambahkan layar inbox issue #111.
 - `apps/cms/scripts/client-asset-budget.ts` — `APP_BUDGET_BYTES` dinaikkan oleh setiap layar admin commerce sejak issue #23 (upstream berada di 226.000 setelah PR #813; embed ini di 254.500 = 246.500 miliknya sendiri ditambah delta chrome +8.000 milik upstream), setiap kenaikan tercatat di docblock konstanta itu sendiri. Selesaikan konflik di sini dengan mempertahankan kedua silsilah docblock dan menambahkan delta upstream ke angka repo ini.
 

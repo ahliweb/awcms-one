@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](cms.md)
 
-<!-- i18n-source-hash: sha256:591543497d7876a92add612f2f89640989a5fb1f9315747fdfa8c887a31a1949 -->
+<!-- i18n-source-hash: sha256:c6991d6ed327450a421da27e307562416853892a5b297bd069327fb233c1b619 -->
 
 # CMS: authoring, publikasi, izin, audit, media, taksonomi
 
@@ -96,12 +96,13 @@ Kode dikirim lewat outbox provider kedua yang dimodelkan persis seperti `email` 
 
 Setiap rute owner yang mengubah data — create, update, delete, restore, transisi status, review konfirmasi-pembayaran, moderasi ulasan — memanggil `recordAuditEvent` di dalam transaksi ber-RLS yang sama dengan tulisan yang dicatatnya, menamai modul (`commerce`), jenis resource, id resource, aksinya, dan (untuk delete) severity `warning`. Tidak satu pun tabel commerce membawa `created_by`/`updated_by`/`deleted_by`, jadi log audit adalah satu-satunya catatan kepelakuan untuk modul ini, bukan catatan tambahan. Jalur storefront anonim tidak menulis event audit apa pun untuk pembuatan pesanan itu sendiri (tidak ada aktor admin untuk diatributkan) — baris `order_events` milik pesanan itu sendiri adalah catatan setara jalur itu, ber-timestamp dan membawa alasan.
 
-## Layar admin: sebelas, mencakup setiap izin
+## Layar admin: dua belas, mencakup setiap izin
 
-Sebelas layar di bawah `apps/cms/src/pages/admin/`, masing-masing dijaga pada izin `read` area-nya lewat `loadAdminScreen`, dengan pengecekan inline lebih lanjut untuk create/update/delete/restore. (Jumlah baris tabel ini dijaga otomatis oleh penanda `hitung:` di [`cms.md`](cms.md), sumber Inggris dokumen ini — lihat berkas itu.)
+Dua belas layar di bawah `apps/cms/src/pages/admin/`, masing-masing dijaga pada izin `read` area-nya lewat `loadAdminScreen`, dengan pengecekan inline lebih lanjut untuk create/update/delete/restore. (Jumlah baris tabel ini dijaga otomatis oleh penanda `hitung:` di [`cms.md`](cms.md), sumber Inggris dokumen ini — lihat berkas itu.)
 
 | Layar | Rute | Dijaga pada |
 | --- | --- | --- |
+| Dashboard | `/admin/commerce-dashboard` | `commerce.orders.read` |
 | Produk | `/admin/commerce` | `commerce.products.read` |
 | Kategori | `/admin/commerce-categories` | `commerce.categories.read` |
 | Flash sale | `/admin/commerce-flash-sales` | `commerce.flash_sales.read` |
@@ -110,11 +111,27 @@ Sebelas layar di bawah `apps/cms/src/pages/admin/`, masing-masing dijaga pada iz
 | Testimoni | `/admin/commerce-testimonials` | `commerce.testimonials.read` |
 | Popup | `/admin/commerce-popup` | `commerce.popups.read` |
 | Pengaturan toko | `/admin/commerce-settings` | `commerce.settings.read` |
-| Pesanan | `/admin/commerce-orders` | `commerce.orders.read` (tanpa form create) |
+| Pesanan | `/admin/commerce-orders` (daftar) dan `/admin/commerce-orders/{id}` (detail) | `commerce.orders.read` (tanpa form create) |
 | Pelanggan | `/admin/commerce-customers` | `commerce.customers.read` (tanpa form create) |
 | Ulasan | `/admin/commerce-reviews` | `commerce.reviews.read` |
 
-Bersama-sama, sebelas layar ini mengklaim setiap satu dari 39 izin yang dideklarasikan modul ini — diverifikasi oleh gate `admin-screen-coverage-ledger.ts` milik `apps/cms` (`admin:screen-coverage:check`) dan dua berkas contract test (`apps/cms/tests/admin-commerce-page-contract.test.ts`, `apps/cms/tests/admin-commerce-marketing-page-contract.test.ts`). Layar Orders dan Customers sengaja tidak punya form create — lihat "Izin dan otorisasi" di atas.
+Bersama-sama, dua belas layar ini mengklaim setiap satu dari 39 izin yang dideklarasikan modul ini — diverifikasi oleh gate `admin-screen-coverage-ledger.ts` milik `apps/cms` (`admin:screen-coverage:check`) dan dua berkas contract test (`apps/cms/tests/admin-commerce-page-contract.test.ts`, `apps/cms/tests/admin-commerce-marketing-page-contract.test.ts`). Layar Orders dan Customers sengaja tidak punya form create — lihat "Izin dan otorisasi" di atas. Halaman detail pesanan (`apps/cms/src/pages/admin/commerce-orders/[id].astro`, issue #171) adalah rute di bawah izin layar Orders sendiri, bukan layar yang dihitung terpisah untuk keperluan cakupan — ia merender baris pesanan, total, sebuah `.admin-timeline` yang dibangun dari `order_events`, dan panel gateway-session/payment-events yang sudah ada.
+
+### Komposisi ulang admin-chrome 2026-09-21 (issue #171)
+
+Setiap layar admin commerce di atas (kecuali layout dua-panel khusus POS — lihat di bawah) kini dibangun di atas primitive bersama yang ditambahkan restyle admin-chrome ke `admin.css` (issue #170 / awcms#813 upstream), bukan markup khusus per halaman:
+
+- **Dashboard** (`/admin/commerce-dashboard`, baru) — ubin `.admin-stat-card` untuk pesanan hari ini, pendapatan hari ini, dan jumlah stok menipis (tanpa stat tingkat konversi: belum ada proyeksi funnel/kunjungan untuk menghitungnya, jadi dihilangkan alih-alih dikarang); tren pendapatan 14 hari yang dibaca dari proyeksi laporan penjualan yang sudah ada (issue #117); daftar "perlu tindakan" berisi pesanan menunggu konfirmasi, ulasan menunggu moderasi, thread kotak masuk belum dibaca, dan komisi afiliasi tertunda, masing-masing hanya tampil bila pelihat punya izin `read` untuk sumber daya itu dan, bila relevan, fiturnya menyala; serta tabel pesanan terbaru yang memakai ulang bentuk baris `commerce-orders.astro` dengan `.admin-status-pill`. Setiap angka berasal dari `fetchDashboardSummary` (`apps/cms/src/modules/commerce/application/admin-dashboard.ts`) yang membaca tabel nyata atau proyeksi laporan penjualan nyata — tak ada yang berupa placeholder di layar ini.
+- **Produk** (`/admin/commerce`) — filter status `.admin-segmented` (Semua/Terbit/Draf) dan `.admin-bulk-bar` untuk aksi massal kategori/publish/archive yang sudah ada.
+- **Pesanan** (`/admin/commerce-orders`) — filter tab status `.admin-segmented` dan `.admin-status-pill` per baris; halaman detail baru (`/admin/commerce-orders/{id}`) menambah `.admin-timeline` yang dibangun dari `order_events`, mempertahankan panel gateway-session/payment-events yang sudah ada.
+- **POS** (`/admin/commerce-pos`) — tetap memakai grid dua-panel `.pos-layout` sendiri alih-alih primitive generik `.admin-two-pane`, karena sisi keranjang butuh kontrol khusus POS (stepper, jumlah dibayar/kembalian, blok resi `@media print`) yang tak dimodelkan primitive generik; angka uang memakai ulang `.admin-status-pill` untuk indikator kembalian/dibayar.
+- **Laporan** (`/admin/commerce-reports`) — `.admin-stat-card` untuk pesanan-lunas/kotor/dsb. plus rentang `.admin-segmented` dan tab Per produk/Per kategori yang sudah ada.
+- **Marketing** (flash sale, voucher, slider, popup, testimoni) — komponen `CommerceMarketingTabs.astro` baru yang dibagikan (`apps/cms/src/components/`) merender satu strip tab `.admin-segmented` dengan tautan navigasi `aria-current` di kelima layar, menggantikan lima header hasil tulis-tangan yang nyaris identik.
+- **Kotak masuk** (`/admin/commerce-inbox`) — `.admin-two-pane` (daftar thread + percakapan), dengan filter status `.admin-segmented` dan state thread-tertutup yang sudah ada dipertahankan.
+- **Afiliasi** (`/admin/commerce-affiliates`) — `.admin-stat-card` untuk jumlah afiliasi-aktif/komisi; tabel komisi approve/reject tidak berubah.
+- **Pengaturan** (`/admin/commerce-settings`) — toggle fitur yang sudah ada kini dirender sebagai sakelar `.admin-toggle`, dan setiap provider integrasi (WhatsApp, Midtrans, RajaOngkir) mendapat `.admin-stat-card` dengan `.admin-status-pill` yang menunjukkan terkonfigurasi/tidak, diturunkan hanya dari keberadaan env — tak pernah nilai secret.
+
+Tidak ada layar media commerce yang berubah pada issue ini: `apps/cms` belum punya layar galeri media commerce khusus hari ini (gambar dikelola inline per produk/slider/testimoni, bukan lewat galeri berdiri sendiri), sehingga `.admin-media-grid` tidak dipakai di sini — ia tetap tersedia sebagai primitive untuk layar mana pun yang mengadopsinya berikutnya.
 
 ## Media: gambar produk, slider, testimoni — di-resolve, belum di-upload lewat tooling repo ini sendiri
 

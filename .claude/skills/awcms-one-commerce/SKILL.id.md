@@ -46,6 +46,23 @@ Baca [ADR-0007](../../../docs/adr/0007-cart-and-checkout-stay-static-the-browser
 - Layar admin baru: ikuti `awcms-ui-screen`; gerbang tampilan `read`-nya pada permission `commerce.<resource>.read` yang sesuai lewat `loadAdminScreen`, dan pastikan `admin:screen-coverage:check` melihat setiap permission yang ditambah perubahan Anda diklaim di suatu tempat.
 - Event domain baru: ikuti `awcms-new-event`; daftarkan di `events.publishes` milik `module.ts`, `domain-event-runtime/domain/event-type-registry.ts`, dan `apps/cms/asyncapi/awcms-domain-events.asyncapi.yaml` dalam perubahan yang **sama** — event yang dideklarasikan lebih dulu tanpa registrasi (`voucher.redeemed` dideklarasikan satu increment penuh sebelum pernah ditembakkan) tidak masalah; event yang ditembakkan tanpa registrasi, masalah.
 
+### Komposisi layar admin (redesain 2026-09, issue #171)
+
+Setiap layar admin `commerce` disusun di atas primitive bersama yang ditambahkan restyle admin-chrome ke `apps/cms/src/styles/admin.css` (issue #170, subtree sync dari awcms#813 upstream) — jangan menulis ulang stat tile, tab strip, atau toggle sendiri untuk sebuah layar; pakai kelas yang sudah ada:
+
+| Primitive | Dipakai untuk |
+| --- | --- |
+| `.admin-stat-card` | Satu ubin KPI (jumlah/mata uang/label) — dashboard, laporan, afiliasi, status provider di settings |
+| `.admin-status-pill[data-tone]` | Indikator status/nada kecil — status pesanan, provider terkonfigurasi/tidak, jumlah kembalian POS |
+| `.admin-segmented` | Baris tab/filter berbobot-sama (`aria-current="page"` untuk tautan navigasi biasa, `aria-selected` yang digerakkan JS hanya untuk tablist sungguhan) — filter status, strip tab bersama `CommerceMarketingTabs.astro` |
+| `.admin-bulk-bar` | Bar yang muncul setelah baris tabel dipilih via checkbox, untuk aksi massal |
+| `.admin-two-pane` | Pembagian daftar + detail — inbox; **bukan** POS, yang sisi keranjangnya butuh kontrol khusus POS yang tak dimodelkan two-pane generik, sehingga POS tetap memakai `.pos-layout` sendiri |
+| `.admin-toggle` | Sakelar fitur on/off — settings |
+| `.admin-timeline` | Daftar event berurutan-waktu — riwayat status halaman detail pesanan dari `order_events` |
+| `.admin-media-grid` | Grid gambar yang bisa dipilih dengan panel detail di samping — belum dipakai layar `commerce` mana pun; adopsi ini alih-alih membuat layout grid baru saat dibutuhkan |
+
+**Hanya data nyata, di setiap layar** — statistik, jumlah, atau baris yang tak bisa dihitung modul ini secara jujur dari tabel atau proyeksi yang sudah ada, dihilangkan, tidak pernah diisi placeholder atau angka karangan (stat tingkat konversi yang sengaja tak ada di dashboard, karena tak ada proyeksi funnel/kunjungan, adalah pola yang harus diikuti). Partial lintas-halaman bersama (strip tab marketing) hidup di bawah `apps/cms/src/components/`, tak pernah di `apps/cms/src/pages/admin/` — `access-chokepoint-check.ts` menyusuri setiap berkas `.astro` di bawah pohon itu mencari panggilan `loadAdminScreen`, dan partial bersama yang diletakkan di sana terbaca sebagai layar tambahan tanpa chokepoint.
+
 ## Verifikasi
 
 ```bash
