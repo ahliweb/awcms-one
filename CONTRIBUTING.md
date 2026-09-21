@@ -28,7 +28,7 @@ bun test                # the root gate suite
 | `bun audit` | Dependency-chain vulnerabilities |
 | `bun run release` | Cuts a tagged release from the waiting changesets (a maintainer's action) |
 
-`apps/storefront` does not exist yet ([issue #5](https://github.com/ahliweb/awcms-one/issues/5)); the root `dev`/`build`/`check`/`serve` scripts will delegate into it once it does. Until then there is nothing for them to run.
+The root `dev`/`build`/`check`/`serve` scripts delegate into `apps/storefront` (`cd apps/storefront && bun run <script>`) — that workspace has carried the full public site and its own gate chain since increment 2 ([issue #5](https://github.com/ahliweb/awcms-one/issues/5)).
 
 ## The contribution flow
 
@@ -40,7 +40,7 @@ bun test                # the root gate suite
 6. **Run `bun test`** (and `bun run check:cms` if the change touched `apps/cms/`); both must be clean.
 7. **Open a Pull Request** with `Closes #<issue>`. Merge after review and a green CI.
 8. **If the PR syncs `apps/cms/` from upstream** (`git subtree pull`), it **must** be merged with a merge commit — never squashed, never rebased. `AGENTS.md`'s "The subtree embed" explains why; nothing in this repo's current settings stops a squash mechanically, so this is a rule to remember, not one CI enforces yet.
-9. **When the waiting changeset backlog is due** (`bun run audit:rilis` reddens past 10 files or 14 days), a maintainer runs `bun run release`, which folds the backlog into `CHANGELOG.md` and tags `vX.Y.Z`.
+9. **When the waiting changeset backlog is due** (`bun run audit:rilis` reddens past 20 files or 14 days), a maintainer runs `bun run release`, which folds the backlog into `CHANGELOG.md` and tags `vX.Y.Z`.
 
 ### Branch naming
 
@@ -66,7 +66,7 @@ The commit body explains **why**, rather than repeating the diff.
 Full detail and reasoning: [`AGENTS.md`](AGENTS.md). The ones most often broken without anyone noticing — because breaking them never fails a build on its own:
 
 - **A `git subtree pull` PR is merged with a merge commit, never squashed or rebased.**
-- **Nothing outside `apps/cms/` depends on its internals** — only its public API, once `apps/storefront` exists to call it.
+- **Nothing outside `apps/cms/` depends on its internals** — only its public API, which `apps/storefront` calls.
 - **A root-level gate stays workspace-agnostic.** A check specific to one workspace belongs in that workspace's own gate chain.
 - **`bun.lock` is regenerated in full**, never hand-edited: `rm -rf node_modules bun.lock && bun install`.
 
