@@ -139,6 +139,18 @@ function jsonForScript(value: unknown): string {
     <title>{fullTitle}</title>
     <meta name="description" content={metaDescription} />
 
+    {/* Self-hosted type system (issue #166, 2026-09 redesign) — only the
+        faces rendered above the fold on a typical page are preloaded: the
+        sans's body (400) and semibold (600) weights, and the serif's medium
+        (500) weight (news headlines/pull quotes use it at that weight).
+        Every other declared `@font-face` (700/800 sans, serif 600/400
+        italic, both mono weights) loads lazily, on demand, with
+        `font-display: swap` (`src/styles/global.css`) — no CSP change,
+        since every font is already same-origin `/fonts/*.woff2`. */}
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/plus-jakarta-sans-latin-400-normal.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/plus-jakarta-sans-latin-600-normal.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/lora-latin-500-normal.woff2" crossorigin />
+
     {/* GA4 (issue #56, A10) — the ONLY third-party script this app ever
         loads, and only when `gaId` is configured (`src/lib/ga.ts`); the
         default build renders nothing here at all.

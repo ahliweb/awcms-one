@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](ui-ux.md)
 
-<!-- i18n-source-hash: sha256:03bccb407d0c4767eda4e5fd3813d21059f297483a51f999883fb84618aaeb3a -->
+<!-- i18n-source-hash: sha256:0f13faca254b0d569ecc3854fde918f3ec97d18f1e0155b947763ebb1db6f60d -->
 
 # UI / UX
 
@@ -84,3 +84,64 @@ Pengalih locale; keputusan gambar-produk apa pun yang terkait dark mode (media q
 ## Checkout: tarif kurir nyata, dihitung per tujuan (issue #109, kontrak: #106 D4)
 
 Baris kurir pada langkah pengiriman checkout bukan lagi placeholder "segera" permanen — kini merender satu radio per layanan yang sudah dihitung harganya (`{nama} ({etd}) — {harga}`, mis. "JNE REG (2-3 hari) — Rp15.000") begitu `<select>` kecamatan pada langkah alamat memiliki nilai, dan otomatis meng-quote ulang setiap kali kecamatan berubah (termasuk saat alamat tersimpan diisi otomatis, yang mengisi select secara terprogram, bukan lewat event `change` pengguna). Sebelum kecamatan dipilih, saat toko menonaktifkan kurir, atau saat penyedia tidak bisa menghitung tujuan yang dipilih, placeholder tunggal yang dinonaktifkan tetap tampil seperti sebelumnya — `available:false`, `serviceId:null` — namun kini membawa `note` yang menjelaskan salah satu dari tiga alasan itu, ditampilkan sebagai teks bantuan yang terlihat pada baris itu sendiri (`aria-describedby`, bukan sekadar atribut title). Baris status `aria-live="polite"` di atas daftar opsi mengumumkan "Menghitung ongkir…" selagi quote sedang diminta dan pesan kegagalan singkat bila gagal, sehingga pengguna pembaca layar tidak dibiarkan menebak-nebak mengapa daftarnya kosong. `apps/storefront/src/lib/kurir-opsi.ts` adalah satu-satunya tempat sebuah opsi diubah menjadi teks ini — `checkout.ts` hanya mengulang apa yang sudah diputuskan di sana.
+
+## Sistem desain (redesign 2026-09, issue #166) — fondasi saja
+
+**Gelombang 1 dari redesign visual yang lebih luas** (canvas Claude Design "Publik awcms-one" dari `redesign/AWCMS-One Admin dan Publik.zip`, 11 halaman mockup — issue ini hanya membaca markup mockup itu dan chrome-nya, baris 24-86 dan 861-877, tidak pernah mengimplementasikan ulang satu halaman penuh). Issue ini menghadirkan sistem tipografi, token desain, sekumpulan primitif CSS bersama, dan pembaruan chrome situs (utility bar, brand tile, kolom "Kanal" keempat pada footer) — setiap halaman yang memakainya (detail produk, keranjang, checkout, akun) adalah issue lanjutan (#167/#168/#169) yang membangun DI ATAS nama kelas ini, bukan issue ini.
+
+### Sistem tipografi: self-hosted, tiga keluarga
+
+`apps/storefront/public/fonts/` membawa build subset-latin `woff2` (SIL OFL, `apps/storefront/public/fonts/LICENSE-OFL.txt` menyebutkan keluarga/bobot/versi paket persisnya) dari:
+
+| Token | Keluarga | Bobot yang dibawa |
+| --- | --- | --- |
+| `--font-sans` | Plus Jakarta Sans | 400, 500, 600, 700, 800 |
+| `--font-serif` | Lora | 400, 500, 600 (+ 400 italic) |
+| `--font-mono` | IBM Plex Mono | 400, 500 |
+
+Tidak ada Google Fonts, tidak ada origin CSP baru: setiap `src` `@font-face` di `apps/storefront/src/styles/global.css` adalah path same-origin `/fonts/*.woff2` (`font-src 'self'`, `apps/storefront/server/penyaji.mjs`, tidak berubah), `font-display: swap` di semuanya, dan `apps/storefront/tests/global-css-fonts.test.ts` membuktikan keduanya. `BaseLayout.astro` hanya mem-preload tiga wajah huruf yang benar-benar tampil di atas lipatan pada halaman biasa — sans 400/600, serif 500 — sisanya dimuat lambat saat pertama dipakai.
+
+### Token (`apps/storefront/src/styles/global.css`)
+
+Warna merek tidak pernah di-hardcode di sini: `--color-primary`/`--color-secondary`/`--color-accent` tetap berasal dari `/theme-tokens.css` (didorong CMS, `apps/storefront/src/pages/theme-tokens.css.ts`), dipakai hanya sebagai LATAR tombol/pill dipasangkan dengan padanan `-foreground`-nya — aturan yang sama yang sudah dinyatakan docblock header berkas ini sebelumnya. Yang ditambahkan issue ini:
+
+| Kelompok | Token |
+| --- | --- |
+| Pita inverse | `--bg-inverse`, `--bg-inverse-2`, `--text-on-inverse`, `--text-on-inverse-muted`, `--border-on-inverse` |
+| Pasangan status lembut | `--status-{success,warning,info,danger,neutral}-bg` / `-fg` (+ `--status-info-border`) |
+| Warna tautan | `--link-color`, `--link-hover` (biru langit, terpisah namanya dari `--accent-primary` walau nilainya sama hari ini) |
+| Skala radius | `--radius-xs` (8px) … `--radius-full` (999px) |
+| Bayangan | `--shadow-sm`/`--shadow-md` (nilai tidak berubah, kini juga dipakai primitif baru) |
+| Skala tipe | `--text-xs` (12px, batas bawah AA) … `--text-2xl` (28px) |
+| Font | `--font-sans`, `--font-serif`, `--font-mono` |
+
+Setiap token di atas punya padanan `prefers-color-scheme: dark` di blok gelap yang sudah ada — mockup-nya sendiri tidak punya satu pun, jadi setiap nilai gelap dipilih agar tetap mempertahankan maksudnya (status warning lembut tetap terbaca amber-di-atas-amber-gelap, bukan sekadar pasangan mode-terang diulang mentah).
+
+### Primitif (`apps/storefront/src/styles/global.css`, didokumentasikan di puncak berkas itu sendiri)
+
+Semuanya ADITIF — setiap kelas yang sudah ada sebelum issue ini (`.card`, `.cart-count`, `.wishlist-button`, `.stock-badge`, `.label-badge`, `.empty-state`, …) tidak berubah sedikit pun.
+
+| Kelas | Apa itu |
+| --- | --- |
+| `.btn`, `.btn--primary`/`--secondary`/`--quiet`, `.btn--md`/`--sm` | Tombol — terisi warna merek, outline, teks-saja; tinggi 44/40/36px |
+| `.pill`, `.pill--success`/`--warning`/`--info`/`--danger`/`--neutral`/`--label` | Badge status/label bulat kecil di atas token status lembut |
+| `.band-inverse` | Permukaan gelap (utility bar, footer) |
+| `.field-label`, `.is-mono` | Pembungkus label formulir; font monospace untuk input kode/telepon/kode pos |
+| `input[type=…]`, `select`, `textarea` | Kontrol 42px (semua formulir produk/checkout sudah menargetkan tinggi ini; kini digerakkan token) |
+| `.stepper`, `.stepper--lg` | Kontrol qty −/n/+, 38px dan 46px |
+| `.radio-card` | Kartu terpilih selebar penuh, dibangun dari `<input type="radio">` + `<label>` sungguhan |
+| `.segmented` | Baris tab/langkah berbobot sama, `[aria-current="true"]` menandai yang aktif |
+| `.section-title` | Judul bagian halaman dengan meta/hitungan ekor opsional |
+
+`.card` dan `.empty-state` sudah ada sebelumnya (increment 1) dan dipakai ulang apa adanya — issue ini tidak mendefinisikan ulang keduanya.
+
+### Chrome situs
+
+- **Utility bar** (`Header.astro`, hanya grup `toko`): "Lacak pesanan", "Berita" (hanya saat grup `berita` JUGA aktif di build ini), "Akun saya" — di atas `.band-inverse`. Slot notifikasi gratis-ongkir milik mockup dengan sengaja TIDAK dirender: itu adalah teks yang didorong pengaturan toko (`shippingSettings.freeShipping`, `apps/storefront/src/lib/awcms/pemasaran.ts`) yang tidak disambungkan issue ini ke fetch waktu-build header, dan mengarang salinan Bahasa Indonesia sebagai gantinya justru kesalahan yang diperingatkan aturan repo ini sendiri.
+- **Brand tile**: huruf pertama nama situs, `aria-hidden`, di atas `--color-primary`, di samping tautan wordmark yang sudah ada (nama aksesibel `.site-brand` tidak berubah).
+- **Alat header**: tombol "Cari" pencarian, pill hitungan keranjang (`--color-accent`), dan tautan wishlist sudah bernada merek sebelum issue ini (`.search-form button`/`.cart-count` milik increment 1) dan tidak berubah.
+- **Footer**: kolom "Kanal" keempat (Katalog/Flash Sale/Berita/Program Afiliasi), setiap entri digerbangi `isRouteActive` (`apps/storefront/src/config/profil.ts`) persis seperti setiap tautan footer sadar-profil lainnya — build `landing`/khusus-`berita` tidak merender kanal apa pun yang tidak punya rute untuknya. Footer sendiri kini berada di atas `.band-inverse`, dan baris bawahnya berbunyi `© TAHUN nama · Semua harga dalam Rupiah` plus catatan "Bahasa Indonesia · html lang="id"" milik mockup sendiri.
+
+### Batas aksesibilitas
+
+Tidak ada teks dalam sistem desain ini yang dirender di bawah `--text-xs` (12px) — caption 10-11px milik mockup sendiri (`#94a3b8` pada 10px, yang gagal WCAG AA) menjadi 12px `--text-muted`/`--status-*-fg` di semua tempat. Lihat [`docs/aksesibilitas.md`](aksesibilitas.md) untuk detail kontras dan target sentuh.

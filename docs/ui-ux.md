@@ -82,3 +82,64 @@ A locale switcher; any product-imagery decision tied to dark mode (the colour-sc
 ## Checkout: real courier rates, priced per destination (issue #109, contract: #106 D4)
 
 The checkout shipping step's courier row is no longer a permanent "segera" placeholder — it renders one radio per priced service (`{name} ({etd}) — {price}`, e.g. "JNE REG (2-3 hari) — Rp15.000") once the address step's kecamatan `<select>` carries a value, and re-quotes automatically on every district change (including a saved-address autofill, which sets the select programmatically rather than through a user `change` event). Before a district is chosen, when the store has courier disabled, or when the provider cannot price the chosen destination, the SAME single disabled placeholder as before renders — `available:false`, `serviceId:null` — but now carries a `note` explaining which of the three it is, shown as the row's own visible help text (`aria-describedby`, not just a title attribute). An `aria-live="polite"` status line above the options announces "Menghitung ongkir…" while a quote is in flight and a short failure message if it errors, so a screen-reader user is not left guessing why the list is empty. `apps/storefront/src/lib/kurir-opsi.ts` is the one place an option becomes this text — `checkout.ts` only loops over what it decides.
+
+## Design system (2026-09 redesign, issue #166) — foundation only
+
+**Wave 1 of a broader visual redesign** (`redesign/AWCMS-One Admin dan Publik.zip`'s "Publik awcms-one" Claude Design canvas, 11 mocked pages — this issue reads only that mockup's markup and its chrome, lines 24-86 and 861-877, never re-implements a whole page). This issue lands the type system, the design tokens, a set of shared CSS primitives, and site-chrome updates (utility bar, brand tile, footer's fourth "Kanal" column) — every consuming page (product detail, cart, checkout, account) is a later issue (#167/#168/#169) building ON these class names, not this one.
+
+### Type system: self-hosted, three families
+
+`apps/storefront/public/fonts/` carries latin-subset `woff2` builds (SIL OFL, `apps/storefront/public/fonts/LICENSE-OFL.txt` names the exact families/weights/version) of:
+
+| Token | Family | Weights vendored |
+| --- | --- | --- |
+| `--font-sans` | Plus Jakarta Sans | 400, 500, 600, 700, 800 |
+| `--font-serif` | Lora | 400, 500, 600 (+ 400 italic) |
+| `--font-mono` | IBM Plex Mono | 400, 500 |
+
+No Google Fonts, no new CSP origin: every `@font-face src` in `apps/storefront/src/styles/global.css` is a same-origin `/fonts/*.woff2` path (`font-src 'self'`, `apps/storefront/server/penyaji.mjs`, unchanged), `font-display: swap` throughout, and `apps/storefront/tests/global-css-fonts.test.ts` proves both. `BaseLayout.astro` preloads only the three faces actually above the fold on a typical page — sans 400/600, serif 500 — everything else loads lazily on first use.
+
+### Tokens (`apps/storefront/src/styles/global.css`)
+
+Brand colour is never hard-coded here: `--color-primary`/`--color-secondary`/`--color-accent` still come from `/theme-tokens.css` (CMS-driven, `apps/storefront/src/pages/theme-tokens.css.ts`), used only as button/pill BACKGROUNDS paired with their `-foreground` counterpart — the same rule this file's pre-existing header docblock already states. What this issue adds:
+
+| Group | Tokens |
+| --- | --- |
+| Inverse band | `--bg-inverse`, `--bg-inverse-2`, `--text-on-inverse`, `--text-on-inverse-muted`, `--border-on-inverse` |
+| Soft status pairs | `--status-{success,warning,info,danger,neutral}-bg` / `-fg` (+ `--status-info-border`) |
+| Link colour | `--link-color`, `--link-hover` (sky, distinct from `--accent-primary`'s name even though it shares its value today) |
+| Radius scale | `--radius-xs` (8px) … `--radius-full` (999px) |
+| Shadows | `--shadow-sm`/`--shadow-md` (unchanged values, now also used by the new primitives) |
+| Type scale | `--text-xs` (12px, the AA floor) … `--text-2xl` (28px) |
+| Fonts | `--font-sans`, `--font-serif`, `--font-mono` |
+
+Every token above has a `prefers-color-scheme: dark` counterpart in the existing dark block — the mockup itself has none, so each dark value was chosen to hold the same intent (a soft warning stays legibly amber-on-dark-amber, not the light-mode pair repeated verbatim).
+
+### Primitives (`apps/storefront/src/styles/global.css`, documented at that file's own top)
+
+All ADDITIVE — every class that predates this issue (`.card`, `.cart-count`, `.wishlist-button`, `.stock-badge`, `.label-badge`, `.empty-state`, …) is byte-for-byte unchanged.
+
+| Class | What it is |
+| --- | --- |
+| `.btn`, `.btn--primary`/`--secondary`/`--quiet`, `.btn--md`/`--sm` | Buttons — brand-filled, outline, text-only; 44/40/36px heights |
+| `.pill`, `.pill--success`/`--warning`/`--info`/`--danger`/`--neutral`/`--label` | Small rounded status/label badges over the soft status tokens |
+| `.band-inverse` | The dark surface (utility bar, footer) |
+| `.field-label`, `.is-mono` | Form label wrapper; monospace value font for a code/phone/postcode input |
+| `input[type=…]`, `select`, `textarea` | 42px controls (all product/checkout forms already targeted this height; now token-driven) |
+| `.stepper`, `.stepper--lg` | Qty −/n/+ control, 38px and 46px |
+| `.radio-card` | A full-width selectable card built from a real `<input type="radio">` + `<label>` |
+| `.segmented` | An equal-weight tab/step row, `[aria-current="true"]` marks the active one |
+| `.section-title` | A page-section heading with an optional trailing meta/count |
+
+`.card` and `.empty-state` already existed (increment 1) and are reused as-is — this issue does not redefine either.
+
+### Site chrome
+
+- **Utility bar** (`Header.astro`, `toko` group only): "Lacak pesanan", "Berita" (only when the `berita` group is ALSO active in this build), "Akun saya" — on `.band-inverse`. The mockup's free-shipping notice slot is deliberately **not** rendered: it is store-settings-driven copy (`shippingSettings.freeShipping`, `apps/storefront/src/lib/awcms/pemasaran.ts`) this issue does not wire the header's build-time fetch to, and inventing the Indonesian copy instead would be exactly the mistake this repo's own rules warn against.
+- **Brand tile**: the site name's first letter, `aria-hidden`, on `--color-primary`, beside the existing wordmark link (`.site-brand`'s accessible name is unchanged).
+- **Header tools**: search's "Cari" button, the cart-count pill (`--color-accent`) and the wishlist link were already brand-toned before this issue (increment 1's own `.search-form button`/`.cart-count`) and are unchanged.
+- **Footer**: a fourth "Kanal" column (Katalog/Flash Sale/Berita/Program Afiliasi), each entry gated on `isRouteActive` (`apps/storefront/src/config/profil.ts`) exactly like every other profile-aware footer link — a `landing`/`berita`-only build renders none of a channel it has no route for. The footer itself now sits on `.band-inverse`, and its bottom line reads `© YEAR name · Semua harga dalam Rupiah` plus the mockup's own "Bahasa Indonesia · html lang="id"" note.
+
+### Accessibility floor
+
+Nothing in this design system renders text below `--text-xs` (12px) — the mockup's own 10-11px captions (`#94a3b8` at 10px, which fails WCAG AA) become 12px `--text-muted`/`--status-*-fg` throughout. See [`docs/aksesibilitas.md`](aksesibilitas.md) for the contrast and touch-target detail.

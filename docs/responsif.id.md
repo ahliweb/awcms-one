@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](responsif.md)
 
-<!-- i18n-source-hash: sha256:35eeed2fec2628dfdf1ca8d6c0d471618a270c4d51e23b8505418d17d125dd6d -->
+<!-- i18n-source-hash: sha256:65f862ed2cb863f0177d4affe1135a91fefc160cfe2e461a05e98ac0c5d64cae -->
 
 # Desain responsif
 
@@ -37,6 +37,10 @@ Setiap kontrol interaktif yang ditambahkan untuk keranjang/checkout/wishlist (to
 ## Akun pelanggan: tanpa breakpoint tersendiri, fluid seperti yang lain
 
 `apps/storefront/src/styles/akun.css` (`/masuk`, `/daftar`, `/akun*`, issue #88/#90/#93) tidak membawa query `@media` sendiri — terverifikasi dengan membaca berkasnya: setiap aturan tidak bergantung lebar, dan target ukuran 44px `min-height` yang sama yang disebut komentar header stylesheet-nya sendiri diterapkan seragam di setiap kontrol (input kode OTP, kolom formulir alamat, tombol gabung afiliasi), tidak digerbangi breakpoint apa pun. Grid kartu-navigasi dashboard akun adalah `grid-template-columns: repeat(auto-fill, minmax(180px, 1fr))` — mekanisme reflow `auto-fill` yang sama yang dipakai grid katalog dan berita, tanpa clamp overflow `min(Npx, 100%)` tambahan yang dibawa keduanya (tidak dibutuhkan di sini: track 180px tidak pernah mendekati lebar viewport ponsel itu sendiri), sehingga tetap kolaps menjadi sesedikit satu kolom pada lebar ponsel tanpa breakpoint sendiri.
+
+## Chrome redesign 2026-09 (issue #166)
+
+Utility bar (`Header.astro`) dan kolom "Kanal" baru pada footer (`Footer.astro`) sama-sama memakai pola fluid yang sudah didokumentasikan di atas — `flex-wrap: wrap` dengan `gap`, tanpa breakpoint baru. Grid footer (`.site-footer-grid`, `grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr))` tidak berubah) sekadar mendapat kolom kelima yang mungkin (Kanal, di samping kolom Informasi yang digerbangi profil) dan mengalir ulang persis seperti empat kolom yang sudah ada. `.stepper`/`.radio-card`/`.segmented` (primitif baru, `global.css`) semuanya adalah baris flex berukuran intrinsik tanpa breakpoint sendiri — sikap "fluid sampai ada alasan nyata untuk berubah bentuk" yang sama yang sudah dijelaskan dokumen ini.
 
 ## Apa yang diverifikasi, dan bagaimana
 

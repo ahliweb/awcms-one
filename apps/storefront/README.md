@@ -194,6 +194,14 @@ brief this issue was implemented under asks:
    fragment) — the page renders every field the endpoint actually returns
    and omits the two that would otherwise have to be invented.
 
+## Design system foundation — self-hosted type, tokens, primitives (issue #166)
+
+The 2026-09 redesign's Wave 1 (`docs/ui-ux.md`'s "Design system (2026-09 redesign)" section has the full token/primitive table):
+
+- **Fonts are vendored, not fetched.** `public/fonts/*.woff2` — latin-subset Plus Jakarta Sans (400/500/600/700/800), Lora (400/500/600 + 400 italic), IBM Plex Mono (400/500), all SIL OFL (`apps/storefront/public/fonts/LICENSE-OFL.txt` names the exact package version each was pulled from). `apps/storefront/src/styles/global.css`'s `@font-face` blocks are the only place these files are referenced — every `src` is a same-origin `/fonts/*.woff2` path, so `apps/storefront/server/penyaji.mjs`'s `font-src 'self'` needed no change and `dist/client/csp.json` (the *derived* origins — img/connect/frame) gained nothing new either. `BaseLayout.astro` preloads only the sans's 400/600 weights and the serif's 500 weight — the three faces a typical page actually paints above the fold.
+- **Tokens and primitives live in `global.css`, additively.** New CSS custom properties (an inverse-band surface, soft status colour pairs, a named link colour, a radius scale, a type scale) each carry a `prefers-color-scheme: dark` counterpart; new primitive classes (`.btn`, `.pill`, `.band-inverse`, `.stepper`, `.radio-card`, `.segmented`, `.field-label`/`.is-mono`, `.section-title`) sit alongside every class this app already had (`.card`, `.cart-count`, `.stock-badge`, …), unchanged. No page in this app consumes the new primitives yet — issues #167 (product/catalog), #168 (cart/checkout), and #169 (account/news chrome) do.
+- **Site chrome gained a utility bar, a brand tile, and a footer "Kanal" column** (`Header.astro`/`Footer.astro`) — see `docs/ui-ux.md` for what each renders and why the mockup's free-shipping notice slot was deliberately left out (no store-settings-driven copy this issue wires up). `apps/storefront/src/scripts/akun-header.ts` was changed from `querySelector` to `querySelectorAll` in the same change, since the utility bar's "Akun saya" is now a SECOND `[data-akun-tautan]` element that also needs to reflect the signed-in state.
+
 ## News surface (issue #28)
 
 `/berita`, `/rubrik/{slug}`, `/daerah/{slug}`, `/mitra/{slug}`, `/video`,
