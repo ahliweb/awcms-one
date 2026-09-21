@@ -31,7 +31,10 @@ const posts = await getPosts({ limit: 3 });
 {posts.length > 0 && (
   <div class="ticker-berita">
     <div class="container ticker-berita__isi">
-      <span class="ticker-berita__label">Terkini</span>
+      <span class="ticker-berita__label">
+        Terkini
+        <span class="ticker-berita__titik" aria-hidden="true"></span>
+      </span>
       <ul class="ticker-berita__daftar">
         {posts.map((post) => (
           <li>
