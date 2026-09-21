@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](AGENTS.md)
 
-<!-- i18n-source-hash: sha256:e04e3b757b90cd30282063d71a80857b0cb755c0899beb6733e8b89535f00b19 -->
+<!-- i18n-source-hash: sha256:ee39f0d20cebbf1770c0a98a7b495710693bbd90a85479850b99bfcdf66298a2 -->
 
 # AGENTS.md — kontrak kerja awcms-one
 
@@ -72,7 +72,7 @@ Sumber `apps/cms` sendiri adalah pohon milik upstream, dibawa ke sini untuk alas
 
 - `apps/cms/src/layouts/AdminLayout.astro` dan `apps/cms/src/modules/_shared/module-contract.ts` / `module-management/domain/sidebar-menu.ts` — `requiredFeature` dari issue #118 pada entri navigasi sidebar (toggle fitur `commerce` yang menyembunyikan tautan). `badgeCount` milik upstream sendiri (awcms PR #813) tiba di baris yang sama; sinkronisasi #170 mempertahankan KEDUA field, dalam urutan itu. `sidebar-menu.ts` juga membawa label/ikon sidebar milik modul `commerce` sendiri (setiap kunci `admin.layout.nav_commerce*` di `SIDEBAR_LABELS`/`DEFAULT_SIDEBAR_ICONS`, termasuk `nav_commerce_dashboard` milik issue #171) — tambahan platform ini sendiri ke tabel yang juga ditulisi baris oleh upstream, diselesaikan dengan mempertahankan kedua lini keturunan saat konflik, sama seperti entri lain dalam daftar ini.
 - `apps/cms/src/styles/admin-screens.css` — 11 baris yang ditambahkan layar inbox issue #111.
-- `apps/cms/scripts/client-asset-budget.ts` — `APP_BUDGET_BYTES` dinaikkan oleh setiap layar admin commerce sejak issue #23 (upstream berada di 226.000 setelah PR #813; embed ini di 254.500 = 246.500 miliknya sendiri ditambah delta chrome +8.000 milik upstream), setiap kenaikan tercatat di docblock konstanta itu sendiri. Selesaikan konflik di sini dengan mempertahankan kedua silsilah docblock dan menambahkan delta upstream ke angka repo ini.
+- `apps/cms/scripts/client-asset-budget.ts` — `APP_BUDGET_BYTES` dinaikkan oleh setiap layar admin commerce sejak issue #23 (upstream berada di 226.000 setelah PR #813; embed ini di 259.000 setelah issue #171 — 254.500 saat sinkronisasi #170 = 246.500 miliknya sendiri ditambah delta chrome +8.000 milik upstream), setiap kenaikan tercatat di docblock konstanta itu sendiri. Selesaikan konflik di sini dengan mempertahankan kedua silsilah docblock dan menambahkan delta upstream ke angka repo ini.
 
 Versi satu-butir daftar ini ditulis setelah increment 2 dan sudah basi sejak increment 5; sinkronisasi subtree #170 (21 September 2026) menemukan tiga butir di atas lewat konflik dan lewat `git diff awcms/main:<path> HEAD:apps/cms/<path>`, perintah yang harus dijalankan sebelum mengklaim daftar ini lengkap. Semua hal lain yang pernah ditambahkan modul `commerce` adalah pekerjaan modul aditif biasa di dalam disiplin admission `apps/cms` sendiri.
 
