@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](alur-kerja-pengembangan.md)
 
-<!-- i18n-source-hash: sha256:e778960c660d8a9d876981ad3eb834d712ca4d28c50d901c787a57d552fd34da -->
+<!-- i18n-source-hash: sha256:53f70d0a202651b5a43c008c55806007d1e3ea3635b0e21c585bbfe6e65d88a8 -->
 
 # Alur kerja pengembangan
 
