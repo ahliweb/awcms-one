@@ -14,6 +14,17 @@
  * `global.css` already ships at >= 4.5:1 in both its light and dark
  * palettes (`--text-secondary` on `--bg-surface`, `--bg-surface` on
  * `--text-primary`).
+ *
+ * ## Squares, not circles (issue #169) — but still 44px, not the mockup's 34px
+ *
+ * The mockup (`redesign/…/publik.template.html` line 798) draws the share
+ * row as 34px squares. This file keeps the 44px dimension this component
+ * shipped with (issue #51) and only changes the SHAPE (`border-radius:
+ * 50%` → `var(--radius-s)`): `AGENTS.md`'s own accessibility floor for
+ * this app is a 44px target, restated in this issue's own rules ("44px
+ * targets"), and shrinking a real, keyboard-operable control to chase a
+ * mockup's pixel value would trade a stated accessibility requirement for
+ * visual fidelity to a screenshot — not a trade this file makes.
  */
 
 .baris-bagikan {
@@ -47,7 +58,7 @@
   height: 44px;
   padding: 0;
   border: 1px solid var(--border-color);
-  border-radius: 50%;
+  border-radius: var(--radius-s);
   background: var(--bg-surface);
   color: var(--text-secondary);
   font: inherit;

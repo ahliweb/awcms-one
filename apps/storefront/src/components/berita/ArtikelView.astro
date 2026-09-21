@@ -31,6 +31,13 @@
  *    `src/profil/berita/pages/video/[slug].astro` is the one caller that passes
  *    `"facade"`.
  *
+ * Issue #169 (2026-09 redesign): a lede paragraph (`post.excerpt`, when the
+ * CMS has one) and decorative avatar initials beside the byline — both
+ * markup-only additions, no new data fetch (`post.excerpt` already exists
+ * on `PostSummary`/`PostDetail`, `src/lib/berita.ts`). Typography
+ * (Lora title/body, the byline's mono dates, the pull-quote) is
+ * `src/styles/berita.css`'s own change, not this file's.
+ *
  * Issue #49 — the layout column: the whole article (header, hero, body,
  * tags, share, related, the three in-article ad slots) now sits in the
  * main column of ONE `.container > .layout-with-sidebar` grid
@@ -106,6 +113,17 @@ function joinNonEmpty(parts: Array<string | null | undefined>, separator: string
 const heroCredit = joinNonEmpty([post.image?.creditLine, post.image?.sourceName], " — ");
 const heroCaption = joinNonEmpty([post.image?.alt ?? null, heroCredit || null], " · ");
 
+// Byline avatar initials (issue #169, mockup line 792) — the first letter
+// of up to the first two words of `authorByline`; decorative (`aria-hidden`
+// below), the byline's own text is still the accessible name.
+const avatarInitials = (post.authorByline ?? "")
+  .trim()
+  .split(/\s+/)
+  .filter(Boolean)
+  .slice(0, 2)
+  .map((word) => word.charAt(0).toUpperCase())
+  .join("");
+
 const breadcrumbItems = [
   { name: "Beranda", path: ROUTES.home },
   { name: parentLabel, path: parentPath },
@@ -130,7 +148,12 @@ const breadcrumbItems = [
   {post.rubric && <p class="card-eyebrow">{post.rubric.name}</p>}
   <h1>{post.title}</h1>
 
+  {post.excerpt && <p class="article-lede">{post.excerpt}</p>}
+
   <p class="article-byline">
+    {post.authorByline && (
+      <span class="article-byline__avatar" aria-hidden="true">{avatarInitials || "•"}</span>
+    )}
     {post.authorByline && <strong>{post.authorByline}</strong>}
     {post.region && <span>{post.region.name}</span>}
     <time datetime={toDatetimeAttr(post.publishedAt)}>{formatTanggalWaktuWIB(post.publishedAt)}</time>

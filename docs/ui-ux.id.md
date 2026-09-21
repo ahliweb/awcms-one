@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](ui-ux.md)
 
-<!-- i18n-source-hash: sha256:c9b2a14ddc4a7ffcfa6112c314ded39bc95d48d8310d3e7ccb52a5aeed148343 -->
+<!-- i18n-source-hash: sha256:cb5dcc44cc495452882f3e1b2feecf6064a2c0c94176b15f934b4b05690fb41f -->
 
 # UI / UX
 
@@ -146,38 +146,55 @@ Semuanya ADITIF — setiap kelas yang sudah ada sebelum issue ini (`.card`, `.ca
 
 Tidak ada teks dalam sistem desain ini yang dirender di bawah `--text-xs` (12px) — caption 10-11px milik mockup sendiri (`#94a3b8` pada 10px, yang gagal WCAG AA) menjadi 12px `--text-muted`/`--status-*-fg` di semua tempat. Lihat [`docs/aksesibilitas.md`](aksesibilitas.md) untuk detail kontras dan target sentuh.
 
-## Sistem desain (redesign 2026-09, issue #167) — halaman commerce
+### Halaman commerce (issue #167)
 
 **Gelombang 2**, dibangun sepenuhnya di atas primitif issue #166 di atas — tidak ada token baru, tidak ada kelas primitif baru, hanya halaman pemakainya yang didesain ulang. Markup/CSS saja: setiap kontrak klien (`toko-klien.ts`, `keranjang-kontrak.ts`, `wishlist-kontrak.ts`, alur quote/pesanan checkout) tidak berubah, dan setiap nama kelas yang diperiksa test yang sudah ada dipertahankan.
 
-### Beranda (`apps/storefront/src/profil/toko/Beranda.astro`)
+#### Beranda (`apps/storefront/src/profil/toko/Beranda.astro`)
 
 Slider CMS (`getActiveSliders()`) kini merender setiap slide di permukaan `.band-inverse` sebagai kartu hero: badge `.pill--success` "Slider dikelola CMS", judul/subjudul slide itu sendiri, dan dua tautan sungguhan — CTA utama ke `linkUrl` slide (jatuh ke `/produk` bila slide tidak punya satu pun) dan CTA sekunder outline ke katalog. `<a class="slider-slide">` tunggal yang dulu membungkus seluruh slide kini menjadi `<div>` dengan dua tautan sungguhan yang bisa difokus terpisah, karena satu slide bukan lagi satu target sentuh raksasa — sesuai komposisi dua-CTA milik mockup sendiri. Strip flash sale kini menjadi pita lembut amber (`--status-warning-bg`/`-fg`); kartu unggulan/rekomendasi adalah hasil desain ulang `ProductCard.astro` sendiri (bagian berikutnya).
 
-### Kartu produk (`apps/storefront/src/components/katalog/ProductCard.astro`)
+#### Kartu produk (`apps/storefront/src/components/katalog/ProductCard.astro`)
 
 Dipakai oleh beranda, `/produk`, `/kategori/[slug]`, dan daftar terkait di detail produk — didesain ulang sekali. `.card-badges` mengelompokkan pill label/flash/stok dalam satu baris; `.card-price-row` menampilkan harga "semula" + persentase diskon hanya saat `product.discountPercent > 0` (tidak pernah coretan yang direkayasa — `finalPrice` sudah menjadi angka setelah diskon, ADR-0003); `.card-tier-line` menampilkan "Grosir mulai {formatPrice(priceLevel2)}" hanya saat produk benar-benar punya harga level-2 (tidak ada angka kuantitas-minimum yang direkayasa — DTO produk awcms tidak punya kolom semacam itu). Hati wishlist (`.wishlist-button`, saudara dari `.card`, kontrak atribut data tidak berubah) menjadi 44px di sini lewat aturan `.card-wrap .wishlist-button` berspesifisitas lebih tinggi di `katalog.css`, sementara kelas telanjang `global.css` tetap 32px untuk apa pun yang tidak ikut serta.
 
-### Katalog (`/produk`, `/kategori/[slug]`)
+#### Katalog (`/produk`, `/kategori/[slug]`)
 
 Kartu filter sidebar dan baris `CategoryTree.astro` didesain ulang — kotak penanda dekoratif di samping tiap baris kategori memberinya bentuk sekilas yang sama dengan checkbox milik mockup, tapi tetap `<a>` sungguhan (aturan fallback yang didokumentasikan issue ini sendiri: "tautan biasa" saat tidak ada kontrak pemfilteran multi-pilih untuk ditambahkan tanpa mengubah perilaku klien `produk-listing.ts`). Kontrol urutkan/rentang-harga/stok memakai primitif baru `.field-label`/`.is-mono`/`.btn`; selector `data-filter-*` yang dibaca `produk-listing.ts` tidak berubah.
 
-### Detail produk (`/product/[slug]`)
+#### Detail produk (`/product/[slug]`)
 
 Badge berkelompok di atas judul; tabel harga bertingkat kini berada dalam `.tier-box` (kartu bernada info-lembut, `--status-info-bg`/`-border`/`-fg`); stepper qty/tambah-ke-keranjang memakai tampilan `.stepper--lg`/`.btn btn--primary` di atas perilaku `data-qty-*`/`data-add-to-cart` yang sama; tombol `[data-wishlist]` (bentuk atribut data yang sama dengan `ProductCard.astro`) kini duduk di samping "Tambah ke Keranjang" — delegasi event situs-lebar `wishlist-tombol.ts` menyambungkannya tanpa perubahan skrip. Deskripsi kini mendahului tabel size chart (keduanya didesain ulang), dan aksi bagikan memakai nada `.btn`. **Tidak ada daftar ulasan per-produk yang dirender**: kontrak awcms tidak punya `GET …/storefront/reviews` (`openapi/modules/commerce.openapi.yaml` — hanya `POST` anonim, menunggu moderasi), jadi satu-satunya sinyal ulasan nyata di halaman ini tetap baris rata-rata rating + jumlah terjual yang sudah ada; mengarang kartu ulasan berarti menampilkan teks/penulis yang tidak pernah dikirim CMS.
 
-### Keranjang (`/keranjang`)
+#### Keranjang (`/keranjang`)
 
 Tata letak dua kolom `.cart-layout` (kartu baris + voucher di kiri, `.cart-summary` lengket-di-desktop di kanan, satu kolom di bawah 900px). `renderLines` milik `keranjang.ts` kini membangun kontrol `.stepper` −/n/+ (sebuah `<output>`, tidak bisa diketik langsung — pertukaran afordansi, bukan perubahan alur data) yang memanggil `updateCartLineQuantity` yang sama, plus `.toko-line-sum` rata-kanan dari `quoteLine.lineTotal` (tidak pernah dihitung di sisi klien). Kondisi kosong memakai primitif bersama `.empty-state` dengan CTA "Mulai belanja".
 
-### Checkout (`/checkout`)
+#### Checkout (`/checkout`)
 
 Baris pill langkah yang dekoratif dan **non-interaktif** (`<span data-step-pill>`, bukan tab `.segmented` — sebuah langkah di sini bukan jalan pintas melewati validasi kolom-wajib formulir) berada di atas formulir; `showStep()` yang sudah ada di `checkout.ts` kini juga memperbarui `aria-current` pada pill yang cocok, di samping bagian `[data-step]` sungguhan yang selalu ditogelnya. Kolom telepon/kode-pos memakai `.is-mono`. Opsi pengiriman dan pembayaran — dibangun oleh `renderShippingOptions`/`renderPaymentOptions` yang SAMA — didesain ulang menjadi baris bergaya `.radio-card` murni lewat CSS (`.toko-shipping-option`/`[data-payment-options] .toko-field`, persis nama kelas yang sudah diberikan fungsi-fungsi itu).
 
-### Pelacakan (`/pesanan`)
+#### Pelacakan (`/pesanan`)
 
 Input telepon/kode pesanan memakai `.is-mono`. Pill status (`renderOrder` milik `pesanan-render.ts`) kini bernada sesuai status pesanan sungguhan (`pill--warning` saat menunggu pembayaran, `pill--success` setelah selesai, `pill--danger` bila dibatalkan, …) alih-alih warna tetap — renderer bersama yang sama juga dipakai tampilan detail `/akun/pesanan`, sehingga halaman itu mendapat penyesuaian nada pill status yang sama secara cuma-cuma. Pita "Bayar sekarang" tampil persis saat kondisi gateway-pending yang sudah ada (`renderPaymentSection`) bernilai benar; tidak ada yang berubah dari kondisi itu.
 
-### Wishlist (`/wishlist`)
+#### Wishlist (`/wishlist`)
 
 Sebuah pita info menyatakan perilaku sinkronisasi yang sungguhan (`wishlist-akun-sync.ts` sudah menulis ke akun saat masuk — bukan salinan baru). Setiap kartu mendapat tautan "Ke keranjang" di samping hapus — navigasi sungguhan ke halaman produk, **bukan** `addToCart()` langsung: `WishlistItem` (`wishlist-kontrak.ts`) tidak membawa cuplikan `minPurchase`/`maxQuantity`/`sku`, sehingga tidak ada kuantitas/stok yang jujur untuk ditambahkan tanpa mengambil ulang data, dan halaman produklah tempat penambahan itu sudah terjadi dengan benar.
+
+### Chrome berita, beranda berita, dan artikel (issue #169)
+
+Dibangun di atas token/primitif di atas — tidak ada perubahan pada `apps/storefront/src/styles/global.css` itu sendiri; setiap aturan di bawah ini hidup di `apps/storefront/src/styles/berita-chrome.css`/`berita.css`/`dengar.css`/`bagikan.css`, yang hanya dimuat pada halaman yang merender `BeritaLayout.astro` (`apps/storefront/src/layouts/BeritaLayout.astro`), tidak pernah pada halaman toko/landing. Sumber: mockup yang sama, baris 59-86 (chrome), 718-782 (beranda berita), 784-857 (artikel).
+
+**Dua token baru, dibatasi pada `berita-chrome.css`** — bukan `--color-primary` yang digerakkan CMS, sehingga warna zamrud sebuah deployment bermerek BjekMart tidak pernah menjadi identitas visual desk berita:
+
+| Token | Terang | Gelap | Dipakai oleh |
+| --- | --- | --- | --- |
+| `--news-bar-bg` | `#111827` | `#030712` | Bilah tanggal (`BilahUtilitas.astro`) |
+| `--news-accent` | `#dc2626` | `#f87171` (AA di atas `--news-bar-bg`) | Garis bawah nav aktif, garis bawah tab, pil "TERKINI" |
+
+**Chrome berita**: bilah tanggal (`BilahUtilitas.astro`) memakai `--news-bar-bg`, mono (`--font-mono`), membawa tanggal yang dirender di sisi klien (tidak berubah — lihat dokblok komponen itu sendiri untuk alasan nilai ini tidak boleh menjadi nilai waktu-build) plus akhiran statis "· WIB", dan — hanya saat grup `toko` JUGA aktif di build ini (`isGroupActive("toko")`, `apps/storefront/src/config/profil.ts`) — "Ke toko" dan "Akun". "Akun" memakai ulang kontrak `[data-akun-tautan]`/`[data-akun-label]` milik `Header.astro`; `apps/storefront/src/scripts/akun-header.ts` dipasang kedua kalinya, dari `BeritaLayout.astro`, sehingga skrip yang sama menjaga tautan akun kedua chrome tetap selaras. Masthead (`NavBerita.astro`) menetapkan nama situs dalam `--font-serif` pada 26px, dengan kicker mono di sampingnya dari `identity.description` (field `tagline` milik CMS — lihat `apps/storefront/src/lib/awcms/profil.ts`) saat CMS memiliki satu yang dikonfigurasi. Item nav utama yang aktif mendapat garis bawah `--news-accent` 2px (`border-bottom`, bukan `text-decoration`) menggantikan garis bawah bernada merek yang dipakainya sebelum issue ini. Ticker "Terkini" (`Ticker.astro`) kini berupa pita terang dengan hanya label "TERKINI" sebagai pil `--news-accent` yang membawa titik berdenyut (`prefers-reduced-motion: reduce` membekukannya — animasi sungguhan kali ini, berbeda dari kisah reduced-motion "tanpa marquee" milik ticker sendiri sebelumnya untuk daftar judul itu sendiri), dan setiap judul terpotong satu baris dengan elipsis, bukan pita gulir-horizontal yang dipakainya sebelum ini.
+
+**Beranda berita** (`HalamanDepanBerita.astro`, data/urutan bagian tidak berubah): blok headline mendapat label "Headline" (`.berita-hero__lencana`) dan judul Lora 28px; setiap kartu dalam grid 6-kartu mendapat judul Lora dan eyebrow rubrik langit (`--link-color`) huruf besar — `berita.css` menimpa `.card-title`/`.card-eyebrow` generik milik `global.css`, aman hanya karena file itu dimuat khusus pada layout ini. Sidebar (`Sidebar.astro`) mempertahankan tab **Terbaru / Mitra Borneo** yang teruji (lihat dokblok komponen itu sendiri untuk alasan pasangan "Terbaru / Terpopuler" milik mockup tidak diimplementasikan issue ini — `sidebar-build-smoke.test.ts` mengunci panel Mitra Borneo sebagai konten nyata yang teruji); bagian "Terpopuler" yang selalu tampil mendapat indeks mono 2-digit berpadding-nol (`decimal-leading-zero`) dan judul Lora. Kartu buletin kini berada di atas `.band-inverse`, membungkus `FormBuletin` opt-in ganda yang sama, tidak berubah. Panel Daerah, direktori Mitra Borneo, dan setiap slot iklan tidak tersentuh dalam penempatan dan perilaku — hanya digaya ulang, lewat cascade token yang sama.
+
+**Artikel** (`ArtikelView.astro`): judul memakai Lora 32px (`.article-header h1`); paragraf lede kini dirender dari `post.excerpt` saat CMS memilikinya (tanpa fetch baru — field itu sudah ada pada `PostSummary`/`PostDetail`); baris byline mendapat inisial avatar dekoratif (dua kata pertama `post.authorByline`) dan tanggalnya dirender dalam `--font-mono`. Baris bagikan (`BarisBagikan.astro`/`bagikan.css`) mempertahankan target sentuh 44px-nya — batas aksesibilitas repo ini sendiri — dan hanya mengubah bentuk, `border-radius: 50%` → `var(--radius-s)` (kotak membulat, bukan 34px literal milik mockup). Pemutar "Dengarkan berita ini" (`PemutarDengar.astro`/`dengar.css`/`dengar.ts`) mendapat bilah progres visual 4px sungguhan (`data-dengar-progres-bar`) yang lebar isiannya kini juga ditetapkan `tulisProgres()` milik `dengar.ts` yang sudah ada, dari angka indeks-unit yang sama yang sudah diubahnya menjadi teks live-region `data-dengar-progres` — tanpa komputasi progres baru, hanya rendering visual kedua dari angka yang sama. Isi artikel memakai `--font-serif` pada 16px/1,85 (`.article-body`); sebuah blockquote (pull-quote) mempertahankan garis kiri `--color-primary` 3px-nya — warna merek yang digerakkan CMS, dengan sengaja, karena pull-quote berada dalam konten editorial toko itu sendiri — kini dengan kutipan Lora miring di atas latar belakang halus. "Produk terkait dari toko" (mockup baris 850) **tidak diimplementasikan** dalam issue ini: tidak ada apa pun di aplikasi ini hari ini yang mengorelasikan sebuah artikel dengan sekumpulan produk, dan aturan issue ini sendiri melarang penambahan fetch waktu-build baru untuk mengarang korelasi itu — issue lanjutan yang merancang hubungan itu (pilihan manual? tag bersama?) dapat menambahkan kotak sidebar itu begitu ia ada.
