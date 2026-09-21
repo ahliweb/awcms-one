@@ -4,6 +4,10 @@ dist/
 .env
 .env.*
 !.env.example
+
+# Local file-backed secrets for compose.production.yaml's BuildKit build
+# secret (`awcms_api_token`, issue #150/ADR-0019 D4) — never committed.
+.secrets/
 .DS_Store
 npm-debug.log*
 pnpm-debug.log*
