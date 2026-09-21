@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](template.md)
 
-<!-- i18n-source-hash: sha256:7e77699b1ef3387bfd529ee17061129ba0d960abe10261190021828193bbbd54 -->
+<!-- i18n-source-hash: sha256:cb4cfa2c686c4fd56e3e258dd81c51f259c721b26f2b87caacc3264b10f73951 -->
 
 # Menggunakan awcms-one sebagai template
 
@@ -107,7 +107,9 @@ Artefak khusus BjekMart yang tidak dibutuhkan deployment turunan dan tidak sehar
 
 **`tests/template-init.test.mjs` melewati dirinya sendiri begitu mendeteksi ia tidak lagi berjalan di dalam `awcms-one` sendiri** (`package.json.name !== "awcms-one"`, dicetak sebagai satu baris SKIPPED yang jelas). Tanpa ini, `bun test` akhir ini akan menemukan dan menjalankan ulang berkas tesnya sendiri di dalam repositori yang baru saja diinisialisasinya — tes full-run milik berkas itu kemudian mencoba membangun SALINAN sementara lain dari `git ls-files`, yang masih mendaftar path yang sudah dihapus langkah penghapusan run ini sendiri (`unlinkSync` sungguhan, tidak pernah `git rm`), melempar `ENOENT` pada setiap satu darinya. Guard ini bukan solusi sementara untuk kegagalan penyalinan itu (`makeTempCopy` juga menyaring `git ls-files` lewat `existsSync`, secara defensif, sebagai lapisan pertahanan kedua yang independen) — ia adalah perbaikan sesungguhnya: pengujian ini ada untuk menguji template, dan tidak boleh pernah berjalan kedua kalinya terhadap repositori yang sudah bukan template lagi.
 
-`TEMPLATE_INIT_TEST_SCOPE=root` (variabel lingkungan, hanya untuk CI) membuat `bun test` penutup itu hanya menjalankan uji gerbang akar (`bun test tests`), bukan seluruh workspace: workflow `template-init-smoke` dan `tests/template-init.test.mjs` sudah menjalankan suite lengkap di sekeliling alat ini, dan run penuh yang bersarang menggandakan beban build stub-CMS sampai melewati tenggat mulai stub pada uji asap storefront. Repositori turunan yang sesungguhnya tidak pernah menyetelnya.
+`TEMPLATE_INIT_TEST_SCOPE=root` (variabel lingkungan, hanya untuk CI) membuat `bun test` penutup itu hanya menjalankan uji gerbang akar (`bun test ./tests/` — `./` di depan itu penting, lihat di bawah), bukan seluruh workspace: workflow `template-init-smoke` dan `tests/template-init.test.mjs` sudah menjalankan suite lengkap di sekeliling alat ini, dan run penuh yang bersarang menggandakan beban build stub-CMS sampai melewati tenggat mulai stub pada uji asap storefront. Repositori turunan yang sesungguhnya tidak pernah menyetelnya.
+
+**Mengapa `./tests/`, bukan `tests` (issue #147).** Argumen posisi `bun test` adalah FILTER path — pencocokan substring terhadap path setiap berkas tes — bukan pembatas direktori. `bun test tests` karena itu juga cocok dengan `apps/storefront/tests/*.test.ts`, sebab path itu pun mengandung substring `tests`; ia cocok dengan setiap berkas tes di repositori ini, karena masing-masing memang berada di dalam direktori yang namanya persis `tests`. `TEMPLATE_INIT_TEST_SCOPE=root` diam-diam tidak pernah membatasi apa pun sebelum perbaikan ini — docblock `runFollowUpGates` milik `tools/template-init/gates.mjs` sendiri memuat reproduksi lengkapnya, dan `tests/gerbang-test-scope.test.mjs` menjaganya sebagai tes regresi permanen. Sebuah path yang diawali `./` atau `/` tidak dianggap filter; ia di-resolve sebagai direktori sungguhan.
 
 ## Profil build
 
