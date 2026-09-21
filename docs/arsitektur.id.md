@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](arsitektur.md)
 
-<!-- i18n-source-hash: sha256:ba9959c1b4ccfe1c67ed6f7fc66997b0d5412378b4dda73ce08b6fe6327d0348 -->
+<!-- i18n-source-hash: sha256:e02de726df4cb77d886509c277e7496649e20172f9c9d5780004d134f11b56db -->
 
 # Arsitektur
 
@@ -182,6 +182,10 @@ flowchart TB
 | `PaymentGatewayProvider` (issue #110/#113) | `midtrans`, `log` | `awcms_commerce_payment_gateway_sessions`, `awcms_commerce_payment_events` (buku besar anti-replay), `awcms_commerce_webhook_endpoints` (token di-hash) | `commerce:payments:reconcile` (tiap 2 menit) |
 
 **Webhook masuk tidak pernah mempercayai payload untuk identitas tenant.** `POST /api/v1/commerce/webhooks/{provider}/{endpointToken}` publik me-resolve `(tenant, provider)` dari token per-tenant yang opak dan di-hash lewat fungsi bootstrap `SECURITY DEFINER` yang meniru `awcms_resolve_tenant_domain_lookup` — body webhook yang mengklaim `tenant_id` akan menjadi oracle yang tidak terverifikasi, sesuai tabel alternatif-yang-ditolak milik ADR-0017 D2 sendiri. Perlindungan replay adalah constraint `UNIQUE (tenant_id, provider, event_key)` pada `awcms_commerce_payment_events`, sehingga pengiriman at-least-once milik penyedia menjadi idempoten: event yang di-replay tetap menjawab `200`, hanya tanpa efek samping kedua. Ketidakcocokan jumlah antara `gross_amount` webhook dan total pesanan sendiri dicatat (`outcome = 'amount_mismatch'`) tapi tidak pernah menandai pesanan lunas — `sql/934` menambahkan guard itu setelah #110 dikirim, menutup celah yang ditandai #113. Karena webhook bisa hilang dalam perjalanan, `commerce:payments:reconcile` mem-poll `fetchStatus` setiap sesi gateway yang masih `pending`/`created` pada jadwalnya sendiri — jalur `markOrderPaidBySystem` yang sama yang dipakai handler webhook, sehingga webhook yang hilang menyembuhkan dirinya sendiri dalam interval job itu alih-alih membuat pesanan terdampar selamanya di `pending_payment`.
+
+## OMES Control Center (issue #146, [ADR-0020](adr/0020-omes-control-center-is-an-isolated-module-over-pinned-contracts-and-a-pull-worker-transport.md))
+
+[ADR-0020](adr/0020-omes-control-center-is-an-isolated-module-over-pinned-contracts-and-a-pull-worker-transport.md) adalah keputusan admisi untuk domain kedua yang tak terkait: bidang kendali web di atas host yang dikelola `ahliweb/omes`, terisolasi dari `commerce` di modul `omes_control` miliknya sendiri (bukan area keempat `commerce`, sesuai penalaran ADR-0008 sendiri yang diterapkan ke arah sebaliknya). ADR ini mereproduksi matriks kepemilikan milik `ahliweb/omes` sendiri (AWCMS-one memiliki tenant/RBAC/ABAC/RLS/persetujuan/proyeksi; OMES memiliki kebenaran dan eksekusi host; Hermes memiliki semantik runtime agent), mem-pin `contracts/control-center/v1/**` pada commit upstream bernama dengan validasi fail-closed, dan mengomitkan sisi server repositori ini untuk mengonsumsi — tidak pernah mendesain — transport pull-worker keluar yang akan didefinisikan `ahliweb/omes#192` (browser tidak pernah bicara ke host, dan repositori ini pun tidak pernah memanggil satu pun). **Belum ada kode untuk `omes_control` saat ADR ini ditulis** — `apps/cms/src/modules/omes-control/` dibuat oleh issue #152, dan issue turunan pengajuan-operasi/hasil-worker (#155) secara eksplisit terblokir pada `ahliweb/omes#192`, yang masih terbuka.
 
 ## Satu hal lagi yang dilakukan server: memperbaiki halaman yang terbayangi
 
