@@ -22,7 +22,28 @@ import {
   routePathPrefix,
   type SiteProfile
 } from "../src/config/profil";
-import type { RouteKey } from "../src/config/routes";
+import { ROUTES, type RouteKey } from "../src/config/routes";
+
+/**
+ * One representative built file per group — a page and an endpoint each, so
+ * a group's presence/absence is checked on both kinds. Shared between
+ * `profil-build-smoke.test.ts` and `scripts/assert-profil-dist.ts` (issue
+ * #147's deterministic post-build check over an ALREADY-BUILT `dist/`) so
+ * the two never drift into checking a different notion of "this group's
+ * files".
+ */
+export const GROUP_FILES = {
+  shared: ["index.html", "kontak.html", "404.html", "robots.txt", "sitemap-index.xml", "csp.json", "manifest.webmanifest", "theme-tokens.css"],
+  toko: ["produk.html", "keranjang.html", "checkout.html", "cari.html", "masuk.html", "akun.html", "feed.xml", "product-labels.css", "index/produk.json", "index/wilayah-provinsi.json"],
+  berita: ["berita.html", "cari-berita.html", "buletin.html", "video.html", "berita/feed.xml", "index/berita.json", "index/pengalihan-legacy.json", "newsletter/confirm.html"]
+} as const;
+
+/** Site-relative paths each group's sitemap sources put in the sitemap (static ones only — the fixtures decide the dynamic ones). */
+export const GROUP_SITEMAP_PATHS = {
+  shared: [ROUTES.home, ROUTES.contact],
+  toko: [ROUTES.products, ROUTES.flashSale],
+  berita: [ROUTES.news, ROUTES.video, ROUTES.newsSearch]
+} as const;
 
 export const STOREFRONT_ROOT = new URL("../", import.meta.url).pathname;
 export const DIST_CLIENT = join(STOREFRONT_ROOT, "dist", "client");
