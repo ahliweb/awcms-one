@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](SECURITY.md)
 
-<!-- i18n-source-hash: sha256:43de6aa65d30eeb6f5eea7bf285d6c0b5affa1324583ce8c6963036b85628d12 -->
+<!-- i18n-source-hash: sha256:e80ab49b7f36b902258413a66fd8db12918bbf751f0498540f438a0efb83fe34 -->
 
 # Kebijakan Keamanan
 
@@ -40,7 +40,7 @@ Container *yang dilayani* `apps/storefront` — semua kecuali permukaan commerce
 - **Tidak ada rahasia, token, atau kredensial** di kode, commit, issue, atau dokumentasi.
 - **`bun audit` harus melaporkan nol kerentanan** sebelum rilis (`tools/rilis.mjs` menjalankannya sebelum menerapkan); `bun audit --audit-level=low` juga berjalan di setiap push CI.
 - **GitHub Actions dipin ke SHA commit**, bukan tag — lihat bagian "Configuration and toolchain" di `AGENTS.md`.
-- **PR `git subtree pull` di-merge dengan merge commit, tidak pernah di-squash atau di-rebase** — bukan kontrol keamanan terhadap penyerang eksternal, melainkan kontrol terhadap rusaknya kemampuan repo ini sendiri untuk menarik patch keamanan upstream ke `apps/cms` di masa depan. Lihat "The subtree embed" di `AGENTS.md`.
+- **PR `git subtree pull` di-merge dengan merge commit, tidak pernah di-squash atau di-rebase** — bukan kontrol keamanan terhadap penyerang eksternal, melainkan kontrol terhadap rusaknya kemampuan repo ini sendiri untuk menarik patch keamanan upstream ke `apps/cms` di masa depan. Sejak issue #149 ini ditegakkan secara mekanis di seluruh repositori (`allow_squash_merge=false`, `allow_rebase_merge=false`), bukan hanya diingat reviewer. Lihat "The subtree embed" di `AGENTS.md`.
 - **RLS `ENABLE`+`FORCE` di setiap tabel ber-scope-tenant**, termasuk kesembilan belas tabel commerce yang ditambah increment 2 — lihat [`docs/skema-basis-data.md`](docs/skema-basis-data.id.md).
 
 ## Yang BELUM benar, dinyatakan terus terang
