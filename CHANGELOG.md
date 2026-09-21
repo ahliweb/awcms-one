@@ -2,6 +2,196 @@
 
 Every entry below is folded from `.changesets/` by `bun run release`, which also tags the release. The version is `MAJOR.MINOR.PATCH`, tagged `vX.Y.Z`; the next version is the largest `bump` declared among the changesets a release folds (see [`.changesets/README.md`](.changesets/README.md)) — never a level chosen at release time from a list of file names.
 
+## [0.9.0] — 2026-09-21
+
+### Merge commit is now the only merge method — subtree-sync protection is mechanical, not procedural
+
+Issue #149 closed the gap this repo's own governance had named since ADR-0001: nothing in
+GitHub's settings stopped a `git subtree pull` PR from being squashed or rebased, which would
+destroy the merge base the next upstream sync needs — invisibly, until that next sync fails far
+from the commit that broke it. The fix is a repository setting, not code: `allow_merge_commit=true`,
+`allow_squash_merge=false`, `allow_rebase_merge=false` (applied separately, verified via
+`gh api repos/ahliweb/awcms-one`). Required linear history stays disabled, deliberately — it would
+conflict with the full-history subtree model this repo depends on.
+
+This change updates every place that documented the old gap as procedural-only ("a rule to
+remember, not one CI enforces") so it instead states the current, mechanically-enforced reality,
+and records the operational consequence for ordinary PRs: a merge commit is now the only method
+GitHub's merge button offers, repository-wide, not only for subtree syncs.
+
+- `AGENTS.md`/`AGENTS.id.md` — "The one rule that protects every future sync" now describes the
+  enforced state instead of "nothing mechanically stops this today".
+- `GOVERNANCE.md`/`GOVERNANCE.id.md` — the decision-flow diagram and "Changes that may not be made
+  alone" no longer describe a merge-strategy fork that no longer exists.
+- `CONTRIBUTING.md`/`CONTRIBUTING.id.md`, `SECURITY.md`/`SECURITY.id.md` — the subtree merge-commit
+  rule now notes it is mechanically enforced.
+- `docs/alur-kerja-pengembangan.md`/`.id.md` — "Branch protection on `main`" and "Not enforced
+  today" updated; the merge-strategy item is removed from what is not enforced.
+- `docs/adr/0001-git-subtree-with-full-history-for-apps-cms.md`/`.id.md` — a dated status-update
+  note is appended after the original decision text, which is left untouched as history.
+- `knowledge/curated/ownership-boundaries.md` — notes the rule is now also a mechanical property
+  of the repository, not only a documented one.
+
+No `apps/cms/**` files were changed. This is a docs/governance-only change; the repository
+settings themselves were applied out of band by a maintainer.
+
+### A real production deployment path, and a fail-closed preflight
+
+Issue #150 closed the gap between "a broad, tested feature set" and "a
+reproducible way to run it in production": `docs/deployment.md` used to state
+plainly that no production PostgreSQL deployment exists and that
+`compose.yaml` is a local/CI convenience only. That is no longer the whole
+story.
+
+- **`compose.production.yaml`** — `postgres` (no host port published by
+  default), a one-shot `migrate` service (the only one using the privileged
+  owner/setup DSN), `cms` (the `awcms_app` runtime role), `jobs` (the
+  `awcms_worker` role, gated behind a profile, invoked on a schedule rather
+  than left running), and `storefront` (built with a BuildKit secret — see
+  below). `tests/compose-produksi.test.mjs` mechanically checks the file for
+  a hardcoded-looking secret, the role split, and the absent host ports.
+- **`apps/storefront/Dockerfile`** — a new multi-stage build. `AWCMS_API_TOKEN`
+  reaches the build ONLY through a BuildKit `--mount=type=secret`, never an
+  ARG/ENV, so it can never enter an image layer.
+- **`apps/cms/scripts/commerce-deploy-preflight.ts`** (`bun run
+  commerce:deploy:preflight`, additive commerce-module tooling) and
+  **`tools/deploy-preflight.mjs`** (`bun run deploy:preflight`, root) —
+  fail-closed checks: the runtime DB role is never the owner/superuser
+  (`--live` verifies this for real against a database), customer OTP
+  delivery is production-capable, payment/shipping/WhatsApp adapters cannot
+  silently stay on `log` in production, canonical URLs are valid https, the
+  storefront build's `AWCMS_API_TOKEN` is never `PUBLIC_`-prefixed and no
+  `PUBLIC_*` variable looks like a credential.
+- **`ops/run-job-compose.sh`** — a drop-in replacement for
+  `apps/cms/ops/run-job.sh` that runs a scheduled job through
+  `compose.production.yaml` instead of a bare `docker run`, reusing the SAME
+  crontab `bun run jobs:crontab:generate` already generates from the module
+  registry — no hand-copied cron list.
+- **[ADR-0019](docs/adr/0019-production-topology-two-images-a-jobs-sidecar-and-a-fail-closed-preflight.md)**
+  records the topology decisions; `docs/deployment.md`'s "Production
+  topology" section is the operator-facing runbook.
+
+Not built by this change: a CI pipeline that publishes `apps/storefront`'s
+per-profile images to a registry, a reverse-proxy/TLS config beyond an
+example, backup encryption (tracked upstream), and a Xendit/courier-tracking
+adapter (both already-named ADR-0017 follow-ups).
+
+### Security policy reconciled with the implemented customer and provider surfaces
+
+`SECURITY.md`/`SECURITY.id.md` still said, under "What is NOT yet true," that
+customer accounts do not exist and that there is no session/login attack
+surface — stale since increment 4 (epic #32, ADR-0016) shipped OTP-verified
+customer accounts and bearer sessions, and increment 5 (epic #33, ADR-0017)
+added the Midtrans/WhatsApp/RajaOngkir provider ports. A stale security
+policy is worse than a missing one: it tells a reviewer a surface does not
+exist when it does.
+
+- `SECURITY.md`/`SECURITY.id.md` now describe five surfaces, not three: the
+  authenticated customer bearer-session surface (`Authorization: Bearer`,
+  `awcms_commerce_customer_sessions`, `localStorage`-only, the XSS-not-CSRF
+  residual risk, OTP rate limits and attempt caps) and the provider/webhook
+  surfaces (Midtrans Snap's token-addressed webhook intake, the amount
+  guard, the reconcile job, the WhatsApp OTP outbox, RajaOngkir rate
+  caching, consent-gated campaigns) join the existing `apps/cms` and
+  anonymous-commerce surfaces. "What is NOT yet true" now states plainly
+  that customer accounts/sessions exist, and only what ADR-0016 D6 actually
+  deferred (identifier change, phone verification) and the ADR-0017
+  follow-ups (Xendit, courier tracking) remain undone.
+- `CONTRIBUTING.md`/`CONTRIBUTING.id.md` no longer claim `apps/storefront`
+  does not exist, and the changeset-backlog bound they quoted is corrected
+  from 10 to the current 20 (`packages/gerbang/audit-rilis.mjs`).
+- `SUPPORT.md`/`SUPPORT.id.md`'s "no live deployment" note now points at
+  `docs/deployment.md` instead of a stale "increment 1" parenthetical.
+- `apps/storefront/README.md` no longer claims the affiliate dashboard card
+  still 404s — it has linked to a real page since issue #93 (S3).
+- Added `tests/status-prosa.test.mjs`, a regression guard asserting the
+  retired "customer accounts do not exist" phrasing never returns to either
+  language of `SECURITY.md`, and that the bearer-session table/scheme and
+  the webhook route family stay named concretely.
+
+### `template-init-smoke` no longer runs the full root suite three times at once
+
+Issue #147: two consecutive `main` runs each failed a *different* matrix
+leg's final `Root bun test` step on a *different* storefront build-smoke
+test's stub-start deadline — three copies of the full suite (each of which
+starts its own stub CMS and runs its own `astro build`) competing for the
+same two-core runner's CPU/IO, not a real profile-specific defect.
+
+- The `toko`/`berita`/`landing` matrix legs still run the real
+  `template:init` for their profile, start the stub CMS with an explicit
+  PID and a deterministic `if: always()` teardown that surfaces
+  `/tmp/stub-awcms.log` on failure, and build under `SITE_PROFILE`. They
+  now assert the build's output with `apps/storefront/scripts/
+  assert-profil-dist.ts` — a deterministic, non-rebuilding check derived
+  from `apps/storefront/src/config/profil.ts` — instead of re-running a full `bun test`.
+- A new `root-suite` job, with no matrix, runs `template:init --profil
+  toko` and the full `bun test` exactly once, on its own runner.
+- `apps/storefront/tests/profil-uji-bersama.ts` now exports `GROUP_FILES`/
+  `GROUP_SITEMAP_PATHS` so `apps/storefront/tests/profil-build-smoke.test.ts` and the new
+  assertion script share one definition of "this group's files" rather
+  than two that could drift apart.
+- No timeout was raised to mask the contention; the workflow is still not
+  a required status check — promotion still waits for a run of consecutive
+  green `main` runs (docs/alur-kerja-pengembangan.md).
+
+#### A second, independent contention source, found while validating this fix
+
+After the job-split above landed, the REQUIRED `Check (toko)` job (a
+different workflow, `ci.yml`) still hit the same failure *shape* on two
+more PRs (runs `35594952727`/`35595042601`): `"stub-awcms did not answer
+http://localhost:<port>/... in time"` inside `build-smoke.test.ts` and the
+institution-emblem test, on two more random ports. Diagnosis: every
+`*-build-smoke.test.ts` picked `stubPort = <base> + Math.random() * 4000`
+— landing inside Linux's own ephemeral range (32768–60999) that a
+*concurrent* `astro build`'s own outbound client sockets already use, so a
+"free" port could already be bound by a different test's build a moment
+earlier. The stub was spawned with `stdout: "pipe", stderr: "pipe"` that
+nobody ever read, so a resulting `EADDRINUSE` bind failure (and the
+process exiting immediately) was silently buffered — the calling test's
+own polling `waitForStub` helper then read identically whether the stub
+was slow or already dead, failing only after its own deadline elapsed.
+
+Fixed with a new shared helper, `apps/storefront/tests/stub-lifecycle.ts`'s
+`startStub()`: it starts the stub with `STUB_PORT=0` (a real, OS-assigned
+free port — no collision possible), resolves readiness from the stub's own
+`"serving fixtures on ..."` stdout line (an event, not a poll), and races
+that against the process's own exit so a stub that fails to start rejects
+immediately with its captured output. Every build-smoke test (and
+`apps/storefront/tests/profil-uji-bersama.ts`'s `buildProfile()`) now uses
+this one helper instead of its own copy of the random-port-plus-poll
+pattern; `apps/storefront/tests/stub-lifecycle.ts`'s own docblock has the
+full account. No test's assertions changed. `docs/pengujian.md`/`.id.md`
+now describe this lifecycle in place of the old shared-deadline-only
+description.
+
+#### A third, root-cause finding: `TEMPLATE_INIT_TEST_SCOPE=root` never scoped anything
+
+`main` itself went red after PR #160 merged (run `35594610231`,
+`template:init`'s own full-run-in-a-temp-copy test): "killed 1 dangling
+process / bun test tests (root gate tests only) failed (exit signal
+SIGTERM)", right after the nested run started
+`apps/storefront/tests/profil-build-smoke.test.ts`. Reproduced directly: a
+bare positional argument to `bun test` is a path **filter** (a substring
+match against every test file's path), not a directory restriction —
+`bun test tests` matches `apps/storefront/tests/*.test.ts` too, because
+that path also contains the substring `tests`. `TEMPLATE_INIT_TEST_SCOPE=
+root`'s `bun test tests` therefore silently re-ran the WHOLE workspace
+suite (every storefront build-smoke test and its own stub-CMS
+`astro build`) inside whatever budget the outer caller sized for "root
+gate tests only" — exactly the double-build contention this option exists
+to remove, decided by a race rather than prevented by the scope.
+
+`tools/template-init/gates.mjs` now invokes `bun test ./tests/` (a leading
+`./` is resolved as a real directory, never as a filter) via a new,
+separately-exported `testScopeArgs(scope)`, so the exact argv can be
+asserted directly rather than trusted from a docblock —
+`tests/gerbang-test-scope.test.mjs` is the permanent regression test: a
+temp directory with a root `tests/` file and a nested `apps/x/tests/`
+file, proving `testScopeArgs("root")` runs exactly the root one (and, for
+contrast, that the OLD `["test", "tests"]` argv runs both). `docs/
+template.md`/`.id.md` now explain the filter-vs-directory distinction
+where `TEMPLATE_INIT_TEST_SCOPE` is documented.
+
 ## [0.8.0] — 2026-09-20
 
 ### ADR-0018 + profile matrix + template contract (wave 0 of epic #135)
