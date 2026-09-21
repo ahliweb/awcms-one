@@ -730,3 +730,245 @@
   display: grid;
   gap: var(--sp-2);
 }
+
+/* =========================================================================
+   commerce (awcms-one #171) — the commerce admin screens re-composed on the
+   upstream admin primitives added by #170/awcms#813 (`.admin-stat-card`,
+   `.admin-status-pill`, `.admin-segmented`, `.admin-bulk-bar`,
+   `.admin-two-pane`, `.admin-toggle`, `.admin-timeline`,
+   `.admin-media-grid` — all defined in `admin.css`, never redeclared here).
+   This section only holds layout that is specific to a commerce screen and
+   has no shared-primitive equivalent yet.
+   ========================================================================= */
+
+/* ---- /admin/commerce-dashboard --------------------------------------- */
+.admin-dashboard-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-5);
+}
+
+.admin-dashboard-panel {
+  margin-bottom: var(--sp-5);
+}
+
+.admin-dashboard-panel-title {
+  font-size: var(--fs-md);
+  font-weight: var(--fw-semibold);
+  margin: 0 0 var(--sp-3);
+}
+
+/* A plain CSS bar chart — no chart library. Heights are DISCRETE buckets
+   (`data-h="0"`..`"10"`, computed server-side) rather than a continuous
+   inline `style=` custom property, because this CSP's `style-src` has no
+   `'unsafe-inline'` (doc 14 checklist item 9) and an inline `style`
+   attribute is silently dropped by the browser. */
+.admin-dashboard-bars {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: flex-end;
+  gap: var(--sp-2);
+  height: 140px;
+}
+
+.admin-dashboard-bar-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--sp-1);
+  flex: 1;
+  height: 100%;
+}
+
+.admin-dashboard-bar {
+  display: block;
+  width: 100%;
+  max-width: 28px;
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  background: var(--color-primary-strong);
+}
+
+.admin-dashboard-bar[data-h="0"] {
+  height: 2%;
+}
+.admin-dashboard-bar[data-h="1"] {
+  height: 10%;
+}
+.admin-dashboard-bar[data-h="2"] {
+  height: 20%;
+}
+.admin-dashboard-bar[data-h="3"] {
+  height: 30%;
+}
+.admin-dashboard-bar[data-h="4"] {
+  height: 40%;
+}
+.admin-dashboard-bar[data-h="5"] {
+  height: 50%;
+}
+.admin-dashboard-bar[data-h="6"] {
+  height: 60%;
+}
+.admin-dashboard-bar[data-h="7"] {
+  height: 70%;
+}
+.admin-dashboard-bar[data-h="8"] {
+  height: 80%;
+}
+.admin-dashboard-bar[data-h="9"] {
+  height: 90%;
+}
+.admin-dashboard-bar[data-h="10"] {
+  height: 100%;
+}
+
+.admin-dashboard-bar-label {
+  font-size: var(--fs-2xs);
+  color: var(--color-text-faint);
+  white-space: nowrap;
+}
+
+.admin-dashboard-action-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--sp-2);
+}
+
+.admin-dashboard-action-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  padding: var(--sp-3) var(--sp-4);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.admin-dashboard-action-link:hover,
+.admin-dashboard-action-link:focus-visible {
+  border-color: var(--color-border-strong);
+}
+
+/* ---- /admin/commerce-order-detail -------------------------------------- */
+.admin-order-detail-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: var(--sp-4);
+  align-items: start;
+}
+
+@media (max-width: 899.98px) {
+  .admin-order-detail-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.admin-order-detail-panel {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xs);
+  padding: var(--sp-4);
+}
+
+.admin-order-totals {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--sp-1);
+}
+
+.admin-order-totals li {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--sp-3);
+}
+
+.admin-order-totals .admin-order-total-grand {
+  font-weight: var(--fw-semibold);
+  border-top: 1px solid var(--color-border);
+  padding-top: var(--sp-2);
+  margin-top: var(--sp-1);
+}
+
+/* `.admin-segmented-option` used as a plain navigation (a `<nav>` of
+   `<a>`s — order-status filter, marketing tab strip) rather than a JS tab
+   list: `aria-current="page"` is the correct state attribute for a nav link
+   (a bare `<a>` has no ARIA role that allows `aria-selected`), so it needs
+   its own selector alongside `admin.css`'s `[aria-selected="true"]` one. */
+.admin-segmented-option[aria-current="page"] {
+  background: var(--color-surface);
+  color: var(--color-text);
+  box-shadow: var(--shadow-xs);
+}
+
+a.admin-segmented-option {
+  text-decoration: none;
+}
+
+/* ---- /admin/commerce-inbox — `.admin-two-pane-detail`'s contents -------
+   `.admin-two-pane-detail` deliberately carries no padding of its own (its
+   contents vary by screen — a table wants none, a form/text wants some), so
+   this screen's two fills (the empty-state caption and the thread section)
+   supply it themselves. */
+.admin-two-pane-empty,
+#inbox-thread {
+  padding: var(--sp-4);
+}
+
+/* ---- /admin/commerce-reports — CSS-only "Per product"/"Per category" tab
+   switch (a `sr-only` radio pair + `.admin-segmented-option` labels; no JS,
+   same pattern `AdminLayout.astro`'s own sidebar drawer uses). */
+#sales-tab-product:checked + label,
+#sales-tab-category:checked + label {
+  background: var(--color-surface);
+  color: var(--color-text);
+  box-shadow: var(--shadow-xs);
+}
+
+#sales-tab-category:checked ~ #sales-by-product {
+  display: none;
+}
+
+#sales-tab-product:checked ~ #sales-by-category {
+  display: none;
+}
+
+/* ---- Marketing tab strip (flash-sales / vouchers / sliders / popup /
+   testimonials) — a shared nav, not a new component: five `<a>`s styled with
+   the SAME `.admin-segmented`/`.admin-segmented-option` primitive already
+   used for a filter, `aria-current="page"` standing in for
+   `aria-selected` on a navigation (rather than tab) role. */
+.admin-marketing-tabs {
+  margin-bottom: var(--sp-4);
+}
+
+/* ---- /admin/commerce-settings — feature toggles + provider status cards */
+.admin-feature-toggle-row {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  margin: 0 0 var(--sp-2);
+}
+
+.admin-provider-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--sp-3);
+}
+
+/* Issue #171 item 10 ("Media: grid with selection ring, side panel") is
+   `/admin/media.astro` — owned by `media_library`, not `commerce` (it is not
+   one of this file's `commerce*.astro` screens and carries no
+   `commerce.*` permission). Out of this change's ownership boundary; see the
+   PR description. */

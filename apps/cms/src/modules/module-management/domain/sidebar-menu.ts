@@ -257,6 +257,7 @@ export const SIDEBAR_LABELS: Readonly<Record<string, string>> = {
   "admin.layout.nav_invitations": "Invitations",
   "admin.layout.nav_business_scope": "Business scope",
   "admin.layout.nav_seo": "SEO & distribution",
+  "admin.layout.nav_commerce_dashboard": "Commerce overview",
   "admin.layout.nav_commerce": "Products",
   "admin.layout.nav_commerce_categories": "Product categories",
   "admin.layout.nav_commerce_flash_sales": "Flash sales",
@@ -361,6 +362,7 @@ export const DEFAULT_SIDEBAR_ICONS: Readonly<Record<string, string>> = {
   "admin.layout.nav_invitations": "send",
   "admin.layout.nav_business_scope": "layers",
   // Commerce.
+  "admin.layout.nav_commerce_dashboard": "chart",
   "admin.layout.nav_commerce": "tag",
   "admin.layout.nav_commerce_categories": "tag",
   "admin.layout.nav_commerce_flash_sales": "bolt",

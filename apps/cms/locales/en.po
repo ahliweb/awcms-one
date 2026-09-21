@@ -5852,3 +5852,146 @@ msgid "{count} POS sale"
 msgid_plural "{count} POS sales"
 msgstr[0] ""
 msgstr[1] ""
+
+#. Issue #171 -- commerce admin screens re-composed on the new admin primitives
+msgid "0 selected"
+msgstr ""
+
+msgid "Active affiliates"
+msgstr ""
+
+msgid "Affiliate figures"
+msgstr ""
+
+msgid "Commerce dashboard"
+msgstr ""
+
+msgid "Daily gross revenue bar chart"
+msgstr ""
+
+msgid "Insurance"
+msgstr ""
+
+msgid "Key figures"
+msgstr ""
+
+msgid "Lines"
+msgstr ""
+
+msgid "Lines, totals, and the order's own status timeline."
+msgstr ""
+
+msgid "Low-stock products"
+msgstr ""
+
+msgid "Marketing sections"
+msgstr ""
+
+msgid "Needs restock"
+msgstr ""
+
+msgid "No orders yet."
+msgstr ""
+
+msgid "No sales report data for this period yet."
+msgstr ""
+
+msgid "No status history recorded for this order yet."
+msgstr ""
+
+msgid "Nothing needs attention right now."
+msgstr ""
+
+msgid "Order detail"
+msgstr ""
+
+msgid "Order lines"
+msgstr ""
+
+msgid "Orders awaiting payment confirmation"
+msgstr ""
+
+msgid "Orders paid"
+msgstr ""
+
+msgid "Orders today"
+msgstr ""
+
+msgid "Pending affiliate commissions"
+msgstr ""
+
+msgid "Pending commissions"
+msgstr ""
+
+msgid "Pending commission total"
+msgstr ""
+
+msgid "Per category"
+msgstr ""
+
+msgid "Per product"
+msgstr ""
+
+msgid "Quick status filter"
+msgstr ""
+
+msgid "Recent orders"
+msgstr ""
+
+msgid "Report breakdown"
+msgstr ""
+
+msgid "Revenue, last 14 days"
+msgstr ""
+
+msgid "Revenue today"
+msgstr ""
+
+msgid "Reviews awaiting moderation"
+msgstr ""
+
+msgid "Select"
+msgstr ""
+
+msgid "Select a conversation to view its messages."
+msgstr ""
+
+msgid "Select this product"
+msgstr ""
+
+msgid "Sliders"
+msgstr ""
+
+msgid "The dashboard could not be loaded right now. Please try again later."
+msgstr ""
+
+msgid "The order could not be loaded right now. Please try again later."
+msgstr ""
+
+msgid "This order could not be found."
+msgstr ""
+
+msgid "Timeline"
+msgstr ""
+
+msgid "Today's orders and revenue, the 14-day trend, and what needs attention."
+msgstr ""
+
+msgid "Totals"
+msgstr ""
+
+msgid "Totals for the selected range"
+msgstr ""
+
+msgid "Unread inbox threads"
+msgstr ""
+
+msgid "You do not have permission to view the commerce dashboard."
+msgstr ""
+
+msgid "You do not have permission to view this order."
+msgstr ""
+
+msgid "Commerce overview"
+msgstr ""
+

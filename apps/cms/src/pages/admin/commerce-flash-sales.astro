@@ -13,6 +13,7 @@ import "../../styles/admin-screens.css";
 import { loadAdminScreen } from "../../lib/auth/admin-screen";
 import { logAdminPageError } from "../../lib/logging/error-log";
 import { getTranslatorFor } from "../../lib/i18n";
+import MarketingTabs from "../../components/CommerceMarketingTabs.astro";
 import { listFlashSales } from "../../modules/commerce/application/flash-sale-directory";
 import { listProducts } from "../../modules/commerce/application/product-directory";
 
@@ -81,6 +82,7 @@ const showActions = canUpdate || canDelete;
     "Time-boxed promotions: name, window, and the products/variants on sale."
   )}
 >
+  <MarketingTabs active="flash-sales" locale={Astro.locals.locale} />
   {
     !canRead && (
       <p class="state-notice fade-in-up" id="flash-sales-denied">

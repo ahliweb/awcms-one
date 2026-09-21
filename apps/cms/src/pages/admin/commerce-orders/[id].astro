@@ -1,0 +1,342 @@
+---
+/**
+ * `/admin/commerce-orders/{id}` (Issue #171) — the order detail view the
+ * mockup asks for: lines, totals, and a REAL timeline built from
+ * `OrderDetail.timeline` (`order-directory.ts`'s own status-history read,
+ * already used by the public tracking page — nothing new is computed here),
+ * rendered with the shared `.admin-timeline` primitive. The gateway
+ * session/payment-events panel is the same one `commerce-orders.astro`
+ * already renders inline on its list row — kept, not duplicated, by loading
+ * it through the same `GET /api/v1/commerce/orders/{id}` route client-side.
+ *
+ * A DYNAMIC page (`[id].astro`) under `commerce-orders/`, not a query-string
+ * page — `tests/admin-navigation-registry.test.ts`'s "every admin page is
+ * claimed by exactly one descriptor or is a core entry" requires a static
+ * page to be a `navigation` target, and a per-order detail view is not a
+ * sidebar link; the dynamic-page shape it explicitly carves out instead
+ * requires only that its PARENT page exist — `/admin/commerce-orders`,
+ * which links to this page from its own order-code cell.
+ *
+ * Same permission as the list (`commerce.orders.read`); the list's own
+ * "Save status" control is NOT duplicated here — this is a read view, so a
+ * user with `orders.update` still makes the status change from the list.
+ */
+import AdminLayout from "../../../layouts/AdminLayout.astro";
+import "../../../styles/admin-screens.css";
+import { loadAdminScreen } from "../../../lib/auth/admin-screen";
+import { logAdminPageError } from "../../../lib/logging/error-log";
+import { getTranslatorFor } from "../../../lib/i18n";
+import {
+  fetchOrderDetailForAdmin,
+  toAdminOrderRecord
+} from "../../../modules/commerce/application/order-directory";
+import { mediaLibraryPortAdapter } from "../../../modules/media-library/application/media-library-port-adapter";
+import type { OrderStatus } from "../../../modules/commerce/domain/order-status";
+
+const ssr = Astro.locals.ssrContext!;
+const { t } = getTranslatorFor(Astro.locals.locale);
+
+const orderId = Astro.params.id ?? "";
+
+const STATUS_TONE: Record<OrderStatus, string> = {
+  pending_payment: "warning",
+  paid: "info",
+  processing: "info",
+  shipped: "primary",
+  completed: "success",
+  cancelled: "danger",
+  expired: "neutral"
+};
+
+const screen = await loadAdminScreen({
+  ssr,
+  workClass: "interactive",
+  authorize: {
+    moduleKey: "commerce",
+    activityCode: "orders",
+    action: "read"
+  },
+  load: async ({ tx }) => {
+    if (!orderId) return { order: null };
+    const detail = await fetchOrderDetailForAdmin(
+      tx,
+      ssr.tenantId,
+      mediaLibraryPortAdapter,
+      orderId
+    );
+    if (!detail) return { order: null };
+    const record = await toAdminOrderRecord(tx, ssr.tenantId, detail);
+    return { order: record };
+  },
+  onError: (error) => {
+    logAdminPageError(
+      "admin/commerce-order-detail.astro: failed to load order",
+      error,
+      { correlationId: Astro.locals.correlationId }
+    );
+  }
+});
+
+const canRead = screen.state !== "denied";
+const loadError = screen.state === "error";
+const order = screen.state === "allowed" ? screen.data.order : null;
+const notFound = screen.state === "allowed" && !order;
+---
+
+<AdminLayout
+  title={t("Order detail")}
+  description={t("Lines, totals, and the order's own status timeline.")}
+>
+  {
+    !canRead && (
+      <p class="state-notice fade-in-up" id="order-detail-denied">
+        {t("You do not have permission to view this order.")}
+      </p>
+    )
+  }
+  {
+    canRead && loadError && (
+      <p class="state-notice fade-in-up" id="order-detail-error">
+        {t("The order could not be loaded right now. Please try again later.")}
+      </p>
+    )
+  }
+  {
+    canRead && !loadError && notFound && (
+      <p class="state-notice fade-in-up" id="order-detail-not-found">
+        {t("This order could not be found.")}
+      </p>
+    )
+  }
+
+  {
+    canRead && !loadError && order && (
+      <div class="fade-in-up">
+        <p>
+          <span class="cell-code">{order.orderCode}</span>{" "}
+          <span
+            class="admin-status-pill"
+            data-tone={STATUS_TONE[order.status] ?? "neutral"}
+          >
+            <span class="admin-status-pill-dot" aria-hidden="true" />
+            {order.status}
+          </span>{" "}
+          <span class="admin-status-pill" data-tone="neutral">
+            {order.channel}
+          </span>
+        </p>
+
+        <div class="admin-order-detail-grid">
+          <div class="admin-order-detail-panel">
+            <h2 class="admin-dashboard-panel-title">{t("Lines")}</h2>
+            <div class="data-table-scroll">
+              <table class="data-table data-table--stack">
+                <caption class="sr-only">{t("Order lines")}</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">{t("Product")}</th>
+                    <th scope="col">{t("Unit price")}</th>
+                    <th scope="col">{t("Qty")}</th>
+                    <th scope="col">{t("Line total")}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {order.lines.map((line) => (
+                    <tr>
+                      <td data-label="Product">
+                        {line.name}
+                        {line.variantName && <> &mdash; {line.variantName}</>}
+                      </td>
+                      <td data-label="Unit price">{line.unitPrice}</td>
+                      <td data-label="Qty">{line.quantity}</td>
+                      <td data-label="Line total">{line.lineTotal}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            <h2 class="admin-dashboard-panel-title">{t("Totals")}</h2>
+            <ul class="admin-order-totals">
+              <li>
+                <span>{t("Subtotal")}</span>
+                <span>{order.subtotal}</span>
+              </li>
+              <li>
+                <span>{t("Discount")}</span>
+                <span>{order.discount}</span>
+              </li>
+              <li>
+                <span>{t("Shipping")}</span>
+                <span>{order.shippingCost}</span>
+              </li>
+              <li>
+                <span>{t("Insurance")}</span>
+                <span>{order.insuranceFee}</span>
+              </li>
+              <li>
+                <span>{t("Tax")}</span>
+                <span>{order.tax}</span>
+              </li>
+              <li class="admin-order-total-grand">
+                <span>{t("Total")}</span>
+                <span>{order.total}</span>
+              </li>
+            </ul>
+
+            <h2 class="admin-dashboard-panel-title">{t("Payment gateway")}</h2>
+            <div class="order-gateway-panel" data-order-gateway-panel={orderId}>
+              <p class="order-gateway-panel-loading">{t("Loading…")}</p>
+            </div>
+            <p
+              id="order-gateway-fetch-error"
+              class="admin-create-error"
+              role="alert"
+              hidden
+            />
+          </div>
+
+          <div class="admin-order-detail-panel">
+            <h2 class="admin-dashboard-panel-title">{t("Timeline")}</h2>
+            {order.timeline.length === 0 ? (
+              <p class="admin-stat-card-caption">
+                {t("No status history recorded for this order yet.")}
+              </p>
+            ) : (
+              <ol class="admin-timeline">
+                {order.timeline.map((entry) => (
+                  <li class="admin-timeline-item">
+                    <div class="admin-timeline-label">{entry.status}</div>
+                    <div class="admin-timeline-meta">
+                      {entry.at}
+                      {entry.note && <> &mdash; {entry.note}</>}
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            )}
+          </div>
+        </div>
+      </div>
+    )
+  }
+</AdminLayout>
+
+<template id="order-gateway-panel-template">
+  <div class="order-gateway-session">
+    <h3>{t("Gateway payment session")}</h3>
+    <p data-field="session-empty">
+      {t("This order has no gateway payment session.")}
+    </p>
+    <dl data-field="session-detail" hidden>
+      <dt>{t("Provider")}</dt>
+      <dd data-field="session-provider"></dd>
+      <dt>{t("Status")}</dt>
+      <dd data-field="session-status"></dd>
+      <dt>{t("Expires at")}</dt>
+      <dd data-field="session-expires"></dd>
+    </dl>
+  </div>
+  <div class="order-gateway-events">
+    <h3>{t("Payment events")}</h3>
+    <ul data-field="events-list"></ul>
+    <p data-field="events-empty">{t("No payment events recorded yet.")}</p>
+  </div>
+</template>
+
+<script>
+  // A REGULAR `<script>` with an import — never `define:vars` (that
+  // attribute forces Astro to treat the tag as `is:inline`, which this CSP's
+  // `default-src 'self'`/no-`'unsafe-inline'` then silently drops; see the
+  // `awcms-ui-screen` skill's checklist item 6). The order id travels
+  // through the existing `data-order-gateway-panel` attribute instead of a
+  // templated variable.
+  //
+  // Re-fetches the SAME `GET /api/v1/commerce/orders/{id}` route
+  // `commerce-orders.astro`'s inline panel calls, so there is one gateway
+  // rendering implementation to keep correct, not two — this page just
+  // shows it expanded by default instead of behind a toggle.
+  import { messageBox } from "../../../lib/ui/admin-form-client";
+
+  const fetchError = messageBox("order-gateway-fetch-error");
+
+  async function renderGatewayPanel() {
+    const panel = document.querySelector<HTMLElement>(
+      "[data-order-gateway-panel]"
+    );
+    const template = document.getElementById(
+      "order-gateway-panel-template"
+    ) as HTMLTemplateElement | null;
+    const orderId = panel?.dataset.orderGatewayPanel;
+    if (!panel || !template || !orderId) return;
+
+    let payload: { success?: boolean; data?: any } | null = null;
+    try {
+      const response = await fetch(`/api/v1/commerce/orders/${orderId}`, {
+        credentials: "same-origin"
+      });
+      payload = await response.json().catch(() => null);
+      if (!response.ok || !payload?.success) payload = null;
+    } catch {
+      payload = null;
+    }
+
+    panel.innerHTML = "";
+    panel.appendChild(template.content.cloneNode(true));
+
+    if (!payload) {
+      fetchError.show("Could not load payment-gateway status.");
+      return;
+    }
+
+    const { session, events } = payload.data.gateway;
+    const sessionEmpty = panel.querySelector<HTMLElement>(
+      '[data-field="session-empty"]'
+    );
+    const sessionDetail = panel.querySelector<HTMLElement>(
+      '[data-field="session-detail"]'
+    );
+    if (session) {
+      if (sessionEmpty) sessionEmpty.hidden = true;
+      if (sessionDetail) {
+        sessionDetail.hidden = false;
+        const provider = sessionDetail.querySelector(
+          '[data-field="session-provider"]'
+        );
+        const status = sessionDetail.querySelector(
+          '[data-field="session-status"]'
+        );
+        const expires = sessionDetail.querySelector(
+          '[data-field="session-expires"]'
+        );
+        if (provider) provider.textContent = session.provider;
+        if (status) status.textContent = session.status;
+        if (expires) expires.textContent = session.expiresAt;
+      }
+    }
+
+    const eventsList = panel.querySelector<HTMLElement>(
+      '[data-field="events-list"]'
+    );
+    const eventsEmpty = panel.querySelector<HTMLElement>(
+      '[data-field="events-empty"]'
+    );
+    if (!events || events.length === 0) {
+      if (eventsEmpty) eventsEmpty.hidden = false;
+    } else {
+      if (eventsEmpty) eventsEmpty.hidden = true;
+      for (const event of events as {
+        receivedAt: string;
+        provider: string;
+        outcome: string;
+        eventKey: string;
+      }[]) {
+        const item = document.createElement("li");
+        item.textContent = `${event.receivedAt} — ${event.provider} — ${event.outcome} (${event.eventKey})`;
+        eventsList?.appendChild(item);
+      }
+    }
+  }
+
+  void renderGatewayPanel();
+</script>

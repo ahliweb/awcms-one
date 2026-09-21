@@ -13,7 +13,7 @@
 | Tables with `FORCE` RLS             | 172   |
 | RLS-free tables (global, by design) | 18    |
 | Test files                          | 562   |
-| Route files                         | 495   |
+| Route files                         | 497   |
 | ADR                                 | 244   |
 
 ### Modules
@@ -447,7 +447,7 @@
 | Surface         | Files |
 | --------------- | ----- |
 | `/api/v1/**`    | 398   |
-| `/admin/**`     | 67    |
+| `/admin/**`     | 69    |
 | publik / anonim | 30    |
 
 <!-- END GENERATED: repo-inventory -->

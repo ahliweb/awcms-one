@@ -124,165 +124,185 @@ function filterHref(next: { status?: string; unread?: string }): string {
   {
     canRead && !loadError && (
       <div class="fade-in-up">
-        <nav class="row-actions" aria-label={t("Filter conversations")}>
+        <nav class="admin-segmented" aria-label={t("Filter conversations")}>
           <a
             href={filterHref({})}
-            class={!statusFilter && !unreadFilter ? "module-toggle" : ""}
+            class="admin-segmented-option"
+            aria-current={!statusFilter && !unreadFilter ? "page" : "false"}
           >
             {t("All")}
           </a>
           <a
             href={filterHref({ status: "open" })}
-            class={statusFilter === "open" ? "module-toggle" : ""}
+            class="admin-segmented-option"
+            aria-current={statusFilter === "open" ? "page" : "false"}
           >
             {t("Open")}
           </a>
           <a
             href={filterHref({ status: "closed" })}
-            class={statusFilter === "closed" ? "module-toggle" : ""}
+            class="admin-segmented-option"
+            aria-current={statusFilter === "closed" ? "page" : "false"}
           >
             {t("Closed")}
           </a>
           <a
             href={filterHref({ unread: "true" })}
-            class={unreadFilter ? "module-toggle" : ""}
+            class="admin-segmented-option"
+            aria-current={unreadFilter ? "page" : "false"}
           >
             {t("Unread")}
           </a>
         </nav>
 
-        <div class="data-table-scroll">
-          <table class="data-table data-table--stack" id="commerce-inbox-table">
-            <caption>
-              {tn(
-                "{count} conversation",
-                "{count} conversations",
-                conversations.length,
-                {
-                  count: conversations.length
-                }
-              )}
-            </caption>
-            <thead>
-              <tr>
-                <th scope="col">{t("Customer")}</th>
-                <th scope="col">{t("Subject")}</th>
-                <th scope="col">{t("Status")}</th>
-                <th scope="col">{t("Last message")}</th>
-                <th scope="col">{t("Open")}</th>
-              </tr>
-            </thead>
-            <tbody>
-              {conversations.length === 0 ? (
+        <div class="admin-two-pane">
+          <div class="admin-two-pane-list data-table-scroll">
+            <table
+              class="data-table data-table--stack"
+              id="commerce-inbox-table"
+            >
+              <caption>
+                {tn(
+                  "{count} conversation",
+                  "{count} conversations",
+                  conversations.length,
+                  {
+                    count: conversations.length
+                  }
+                )}
+              </caption>
+              <thead>
                 <tr>
-                  <td class="data-table-empty" colspan={5}>
-                    <div class="empty-state">
-                      <span class="empty-state-icon" aria-hidden="true">
-                        ◇
-                      </span>
-                      <span class="empty-state-title">
-                        {t("No conversations yet")}
-                      </span>
-                      <span class="empty-state-text">
-                        {t(
-                          "Conversations customers start from the storefront will appear here."
-                        )}
-                      </span>
-                    </div>
-                  </td>
+                  <th scope="col">{t("Customer")}</th>
+                  <th scope="col">{t("Subject")}</th>
+                  <th scope="col">{t("Status")}</th>
+                  <th scope="col">{t("Last message")}</th>
+                  <th scope="col">{t("Open")}</th>
                 </tr>
-              ) : (
-                conversations.map((conversation) => (
-                  <tr data-conversation-row={conversation.id}>
-                    <td data-label="Customer">
-                      {conversation.customerName}
-                      {conversation.unreadForStore > 0 && (
-                        <span class="status-badge" aria-label={t("Unread")}>
-                          {t("Unread")}
+              </thead>
+              <tbody>
+                {conversations.length === 0 ? (
+                  <tr>
+                    <td class="data-table-empty" colspan={5}>
+                      <div class="empty-state">
+                        <span class="empty-state-icon" aria-hidden="true">
+                          ◇
                         </span>
-                      )}
-                    </td>
-                    <td data-label="Subject">{conversation.subject}</td>
-                    <td data-label="Status">
-                      <span class="status-badge">{conversation.status}</span>
-                    </td>
-                    <td data-label="Last message">
-                      {conversation.lastMessageAt}
-                    </td>
-                    <td data-label="Open">
-                      <a href={`/admin/commerce-inbox?id=${conversation.id}`}>
-                        {t("View")}
-                      </a>
+                        <span class="empty-state-title">
+                          {t("No conversations yet")}
+                        </span>
+                        <span class="empty-state-text">
+                          {t(
+                            "Conversations customers start from the storefront will appear here."
+                          )}
+                        </span>
+                      </div>
                     </td>
                   </tr>
-                ))
-              )}
-            </tbody>
-          </table>
-        </div>
+                ) : (
+                  conversations.map((conversation) => (
+                    <tr data-conversation-row={conversation.id}>
+                      <td data-label="Customer">
+                        {conversation.customerName}
+                        {conversation.unreadForStore > 0 && (
+                          <span class="status-badge" aria-label={t("Unread")}>
+                            {t("Unread")}
+                          </span>
+                        )}
+                      </td>
+                      <td data-label="Subject">{conversation.subject}</td>
+                      <td data-label="Status">
+                        <span class="status-badge">{conversation.status}</span>
+                      </td>
+                      <td data-label="Last message">
+                        {conversation.lastMessageAt}
+                      </td>
+                      <td data-label="Open">
+                        <a href={`/admin/commerce-inbox?id=${conversation.id}`}>
+                          {t("View")}
+                        </a>
+                      </td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
 
-        {thread && (
-          <section
-            class="fade-in-up"
-            aria-labelledby="inbox-thread-heading"
-            id="inbox-thread"
-          >
-            <h2 id="inbox-thread-heading">{thread.conversation.subject}</h2>
-            <p>
-              {t("Status")}:{" "}
-              <span class="status-badge">{thread.conversation.status}</span>
-            </p>
-
-            <ol class="inbox-thread-messages">
-              {thread.messages.map((message) => (
-                <li class="admin-panel">
-                  <p class="cell-muted">
-                    {message.sender === "customer" ? t("Customer") : t("Store")}{" "}
-                    · {message.createdAt}
-                  </p>
-                  <p>{message.body}</p>
-                </li>
-              ))}
-            </ol>
-
-            {canUpdate && (
-              <form
-                id="inbox-reply-form"
-                data-conversation-id={thread.conversation.id}
-              >
-                <label for="inbox-reply-body">{t("Reply")}</label>
-                <textarea
-                  id="inbox-reply-body"
-                  name="body"
-                  rows={4}
-                  maxlength={4000}
-                  required
-                />
-                <div class="row-actions">
-                  <button
-                    type="submit"
-                    class="module-toggle"
-                    id="inbox-reply-submit"
-                  >
-                    {t("Send reply")}
-                  </button>
-                  <button
-                    type="button"
-                    class="module-toggle inbox-status-btn"
-                    data-conversation-id={thread.conversation.id}
-                    data-target-status={
-                      thread.conversation.status === "open" ? "closed" : "open"
-                    }
-                  >
-                    {thread.conversation.status === "open"
-                      ? t("Close")
-                      : t("Reopen")}
-                  </button>
-                </div>
-              </form>
+          <div class="admin-two-pane-detail">
+            {!thread && (
+              <p class="admin-stat-card-caption admin-two-pane-empty">
+                {t("Select a conversation to view its messages.")}
+              </p>
             )}
-          </section>
-        )}
+            {thread && (
+              <section
+                class="fade-in-up"
+                aria-labelledby="inbox-thread-heading"
+                id="inbox-thread"
+              >
+                <h2 id="inbox-thread-heading">{thread.conversation.subject}</h2>
+                <p>
+                  {t("Status")}:{" "}
+                  <span class="status-badge">{thread.conversation.status}</span>
+                </p>
+
+                <ol class="inbox-thread-messages">
+                  {thread.messages.map((message) => (
+                    <li class="admin-panel">
+                      <p class="cell-muted">
+                        {message.sender === "customer"
+                          ? t("Customer")
+                          : t("Store")}{" "}
+                        · {message.createdAt}
+                      </p>
+                      <p>{message.body}</p>
+                    </li>
+                  ))}
+                </ol>
+
+                {canUpdate && (
+                  <form
+                    id="inbox-reply-form"
+                    data-conversation-id={thread.conversation.id}
+                  >
+                    <label for="inbox-reply-body">{t("Reply")}</label>
+                    <textarea
+                      id="inbox-reply-body"
+                      name="body"
+                      rows={4}
+                      maxlength={4000}
+                      required
+                    />
+                    <div class="row-actions">
+                      <button
+                        type="submit"
+                        class="module-toggle"
+                        id="inbox-reply-submit"
+                      >
+                        {t("Send reply")}
+                      </button>
+                      <button
+                        type="button"
+                        class="module-toggle inbox-status-btn"
+                        data-conversation-id={thread.conversation.id}
+                        data-target-status={
+                          thread.conversation.status === "open"
+                            ? "closed"
+                            : "open"
+                        }
+                      >
+                        {thread.conversation.status === "open"
+                          ? t("Close")
+                          : t("Reopen")}
+                      </button>
+                    </div>
+                  </form>
+                )}
+              </section>
+            )}
+          </div>
+        </div>
       </div>
     )
   }

@@ -5,20 +5,35 @@ import "../../styles/admin-screens.css";
 import { loadAdminScreen } from "../../lib/auth/admin-screen";
 import { logAdminPageError } from "../../lib/logging/error-log";
 import { getTranslatorFor } from "../../lib/i18n";
-import { listOrdersForAdmin } from "../../modules/commerce/application/order-directory";
+import {
+  countOrdersByStatus,
+  listOrdersForAdmin
+} from "../../modules/commerce/application/order-directory";
+import {
+  ORDER_STATUSES,
+  type OrderStatus
+} from "../../modules/commerce/domain/order-status";
 
 const ssr = Astro.locals.ssrContext!;
 const { t, tn } = getTranslatorFor(Astro.locals.locale);
 
-const ORDER_STATUSES = [
-  "pending_payment",
-  "paid",
-  "processing",
-  "shipped",
-  "completed",
-  "cancelled",
-  "expired"
-] as const;
+const url = new URL(Astro.request.url);
+const rawStatus = url.searchParams.get("status") ?? "";
+const activeStatus: OrderStatus | null = (
+  ORDER_STATUSES as readonly string[]
+).includes(rawStatus)
+  ? (rawStatus as OrderStatus)
+  : null;
+
+const STATUS_TONE: Record<OrderStatus, string> = {
+  pending_payment: "warning",
+  paid: "info",
+  processing: "info",
+  shipped: "primary",
+  completed: "success",
+  cancelled: "danger",
+  expired: "neutral"
+};
 
 const screen = await loadAdminScreen({
   ssr,
@@ -29,14 +44,17 @@ const screen = await loadAdminScreen({
     action: "read"
   },
   load: async ({ tx, can }) => {
-    const page = await listOrdersForAdmin(tx, ssr.tenantId, null);
+    const page = await listOrdersForAdmin(tx, ssr.tenantId, null, {
+      status: activeStatus ?? undefined
+    });
+    const statusCounts = await countOrdersByStatus(tx, ssr.tenantId);
     const canUpdate = await can({
       moduleKey: "commerce",
       activityCode: "orders",
       action: "update"
     });
 
-    return { orders: page.items, canUpdate };
+    return { orders: page.items, statusCounts, canUpdate };
   },
   onError: (error) => {
     logAdminPageError(
@@ -52,6 +70,14 @@ const screen = await loadAdminScreen({
 const canRead = screen.state !== "denied";
 const loadError = screen.state === "error";
 const orders = screen.state === "allowed" ? screen.data.orders : [];
+const statusCounts =
+  screen.state === "allowed" ? screen.data.statusCounts : null;
+const totalOrders = statusCounts
+  ? Object.values(statusCounts as Record<OrderStatus, number>).reduce(
+      (sum: number, n: number) => sum + n,
+      0
+    )
+  : 0;
 const canUpdate = screen.state === "allowed" && screen.data.canUpdate;
 ---
 
@@ -82,6 +108,32 @@ const canUpdate = screen.state === "allowed" && screen.data.canUpdate;
         role="alert"
         hidden
       />
+    )
+  }
+
+  {
+    canRead && !loadError && statusCounts && (
+      <nav
+        class="admin-segmented fade-in-up"
+        aria-label={t("Filter by status")}
+      >
+        <a
+          class="admin-segmented-option"
+          aria-current={activeStatus === null ? "page" : "false"}
+          href="/admin/commerce-orders"
+        >
+          {t("All")} ({totalOrders})
+        </a>
+        {ORDER_STATUSES.map((status) => (
+          <a
+            class="admin-segmented-option"
+            aria-current={activeStatus === status ? "page" : "false"}
+            href={`/admin/commerce-orders?status=${status}`}
+          >
+            {status} ({statusCounts[status]})
+          </a>
+        ))}
+      </nav>
     )
   }
 
@@ -132,7 +184,12 @@ const canUpdate = screen.state === "allowed" && screen.data.canUpdate;
                 <>
                   <tr data-order-row={order.id}>
                     <td data-label="Order code">
-                      <span class="cell-code">{order.orderCode}</span>
+                      <a
+                        class="cell-code"
+                        href={`/admin/commerce-orders/${order.id}`}
+                      >
+                        {order.orderCode}
+                      </a>
                     </td>
                     <td data-label="Customer">
                       {order.customerName} ({order.customerPhoneMasked})
@@ -141,7 +198,17 @@ const canUpdate = screen.state === "allowed" && screen.data.canUpdate;
                       data-label="Status"
                       class={canUpdate ? "stacked-block" : ""}
                     >
-                      {canUpdate ? (
+                      <span
+                        class="admin-status-pill"
+                        data-tone={STATUS_TONE[order.status] ?? "neutral"}
+                      >
+                        <span
+                          class="admin-status-pill-dot"
+                          aria-hidden="true"
+                        />
+                        {order.status}
+                      </span>
+                      {canUpdate && (
                         <select
                           class="order-status-input"
                           data-order-status={order.id}
@@ -155,8 +222,6 @@ const canUpdate = screen.state === "allowed" && screen.data.canUpdate;
                             </option>
                           ))}
                         </select>
-                      ) : (
-                        order.status
                       )}
                     </td>
                     <td data-label="Payment">{order.paymentStatus}</td>

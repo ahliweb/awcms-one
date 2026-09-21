@@ -5,6 +5,7 @@ import "../../styles/admin-screens.css";
 import { loadAdminScreen } from "../../lib/auth/admin-screen";
 import { logAdminPageError } from "../../lib/logging/error-log";
 import { getTranslatorFor } from "../../lib/i18n";
+import MarketingTabs from "../../components/CommerceMarketingTabs.astro";
 import { listVouchers } from "../../modules/commerce/application/voucher-directory";
 
 const ssr = Astro.locals.ssrContext!;
@@ -62,6 +63,7 @@ const showActions = canUpdate || canDelete;
   title={t("Vouchers")}
   description={t("Discount codes: percentage, nominal, or free shipping.")}
 >
+  <MarketingTabs active="vouchers" locale={Astro.locals.locale} />
   {
     !canRead && (
       <p class="state-notice fade-in-up" id="vouchers-denied">

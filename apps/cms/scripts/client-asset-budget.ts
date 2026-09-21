@@ -612,8 +612,24 @@ export const READER_BUDGET_BYTES = 24_000;
  * "measured + margin" convention, applied once per lineage rather than
  * guessed. Re-measure on the next commerce screen and tighten if the real
  * total sits well below this.
+ *
+ * **Raised to 259,000 B for Issue #171** — the commerce admin screens
+ * re-composed on the upstream admin-chrome primitives named above: a new
+ * `/admin/commerce-dashboard.astro` (stat cards + status pills), the
+ * `/admin/commerce-orders/[id].astro` detail page (a timeline + two-pane
+ * layout), `CommerceMarketingTabs.astro` (a shared segmented control the
+ * flash-sales/vouchers/sliders/testimonials/popup screens now share instead
+ * of five near-duplicate tab headers), and the POS/inbox screens' move to
+ * `.admin-two-pane`/`.admin-media-grid`. This is markup/CSS reuse of
+ * primitives `admin.css` already shipped, not a new client script, so the
+ * growth is `admin-screens.css`'s own additions plus the compiled i18n
+ * catalogue's new keys. Measured clean build: 258,829 B (up from 254,500 B
+ * headroom already spent by earlier screens). 259,000 keeps the same tight
+ * "measured + small margin" convention as every raise above; re-measure on
+ * the next commerce screen and tighten if the real total sits well below
+ * this.
  */
-export const APP_BUDGET_BYTES = 254_500;
+export const APP_BUDGET_BYTES = 259_000;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.
