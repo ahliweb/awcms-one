@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](pengujian.md)
 
-<!-- i18n-source-hash: sha256:f4ae228e861ad9cc4c4328095809af1dd858b436ae05f47de61c24ec94c704ee -->
+<!-- i18n-source-hash: sha256:ff044c96c2ef4efea4a5bcbb92f97eab165b8ef5631ce3ca83be8d1c3d67bc6e -->
 
 # Pengujian
 
@@ -11,6 +11,8 @@ Tiga tingkat, masing-masing dimiliki workspace berbeda, dijalankan oleh dua job 
 Tidak butuh basis data, tidak butuh build, dan tidak butuh jaringan di luar `bun install`. Mengecualikan `apps/cms/**` sepenuhnya lewat `[test] pathIgnorePatterns` milik `bunfig.toml` (CI memanggil `bun test` telanjang, dan flag pada `bun run test` diam-diam tidak akan berlaku pada pemanggilan telanjang itu). Mencakup gate milik-root repositori ini sendiri (audit dokumentasi, pemeriksaan artefak knowledge-graph, konvensi changeset/rilis, pemeriksaan pin-toolchain, [`tests/kontrak-arah-impor.test.mjs`](../tests/kontrak-arah-impor.test.mjs)) **plus setiap tes unit, build-smoke, dan rute milik `apps/storefront` sendiri** — `apps/storefront` tidak punya skrip `test` sendiri; berkas `tests/*.test.ts`-nya berjalan sebagai bagian dari pemanggilan `bun test` root yang sama ini, di seluruh workspace.
 
 Dua tambahan increment 6 juga hidup di sini: [`tests/seed-profil.test.mjs`](../tests/seed-profil.test.mjs) (issue #139 — validasi schema/no-PII/aset dan `--dry-run` untuk keempat profil `tools/seed-cms.ts`) dan [`tests/template-init.test.mjs`](../tests/template-init.test.mjs) (issue #138 — rencana dry-run `template:init`, run penuh nyata per profil di salinan sementara, idempotensi, penolakan working tree kotor, kode keluar flag yang hilang). Yang kedua **melewati dirinya sendiri begitu `package.json.name !== "awcms-one"`**, dicetak sebagai satu baris SKIPPED yang jelas — tanpa guard itu, `bun test` akhir yang dijalankan sebuah run `template:init` akan menemukan dan menjalankan ulang tes full-run-nya sendiri di dalam repositori yang baru saja diinisialisasinya, yang langkah salinan-sementaranya kemudian tersedak pada `git ls-files` yang masih mendaftar path yang sudah dihapus langkah penghapusan run yang sama. Lihat [`docs/template.md`](template.id.md) untuk apa yang sebenarnya ditegaskan tes setiap alat.
+
+Dua tambahan increment 7 (issue #150) mencakup topologi produksi: [`tests/deploy-preflight.test.mjs`](../tests/deploy-preflight.test.mjs) (menguji-bentuk pemeriksaan bentuk-env-storefront murni milik `tools/deploy-preflight.mjs` — `SITE_PROFILE` valid, origin kanonik https, `AWCMS_API_TOKEN` hadir dan tidak pernah berawalan `PUBLIC_`, tidak ada nilai `PUBLIC_*` yang terlihat seperti kredensial — tanpa kredensial nyata dan tanpa spawn subprocess) dan [`tests/compose-produksi.test.mjs`](../tests/compose-produksi.test.mjs) (mem-parse `compose.production.yaml` dengan `Bun.YAML` dan menegaskan tidak ada rahasia yang terlihat hardcode, pemisahan peran `awcms_app`/`awcms_worker`/setup di `cms`/`jobs`/`migrate`, tidak ada port host dipublikasikan di `postgres`/`cms`/`storefront`, dan tidak ada build ARG `AWCMS_API_TOKEN` di `storefront`). Tidak ada yang membangun image atau menyentuh Docker — lihat [ADR-0019](adr/0019-production-topology-two-images-a-jobs-sidecar-and-a-fail-closed-preflight.id.md) untuk apa yang sebenarnya diputuskan berkas yang diperiksanya.
 
 ## 2. `apps/storefront`: tes unit, type-check, dan dua tingkat build-smoke
 
@@ -69,6 +71,10 @@ Masing-masing mendarat dengan berkas `tests/integration/` sendiri, dijalankan su
 ### Playwright e2e — tingkat keempat, perintahnya sendiri, bukan bagian dari `bun test`
 
 `apps/storefront/tests/e2e/checkout.e2e.ts` menjalankan browser Chromium nyata terhadap build+serve+stub nyata, dijalankan dengan `bun run test:e2e` **di dalam `apps/storefront`** (tidak pernah root `bun test` — sufiks `.e2e.ts` sengaja menjaganya di luar discovery itu). Mencakup add-to-cart → quote keranjang me-render total → checkout submit → pelacakan menampilkan pesanan, plus state not-found netral untuk telepon yang salah. **Tidak tersambung ke `.github/workflows/ci.yml`** — ini di luar cakupan berkas CI milik-ops untuk issue yang menambahkannya; `apps/storefront/README.md` mendokumentasikan persis bagaimana job CI di masa depan akan menjalankannya (install Chromium, jalankan stub, build dengan env yang tepat, serve, arahkan `E2E_BASE_URL`/`STUB_ALLOWED_ORIGIN` satu sama lain).
+
+### Preflight produksi (issue #150, ADR-0019)
+
+`apps/cms/tests/commerce-deploy-preflight.test.ts` menguji-bentuk fungsi per-pemeriksaan murni milik `commerce-deploy-preflight.ts` (bentuk peran DSN, aturan provider OTP/pembayaran/pengiriman, validitas URL kanonik) dengan bag env buatan — tanpa kredensial nyata, tanpa koneksi basis data. Jalur `--live` (koneksi nyata terhadap PostgreSQL sekali-pakai, memeriksa `rolsuper`/`rolbypassrls`/kepemilikan tabel/RLS/buku besar migrasi sungguhan) dijalankan manual, bukan oleh suite ini — lihat body PR issue #150 untuk bukti itu, karena butuh basis data yang tidak dimiliki tingkat tes ini.
 
 ## 3. `apps/cms` (job CI `check-cms`): PostgreSQL nyata yang disediakan
 

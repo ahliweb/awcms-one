@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:c8563eddf8cf7d8ac8286a528607357b1155c0956a55f8fb152e34ad42eaa93d -->
+<!-- i18n-source-hash: sha256:a6ca4e2454dc11fe9055ee8f9178d6188e5c0e035168c3028aa7a23fc3c9f229 -->
 
 [![License](https://img.shields.io/badge/License-MIT-blue)](LICENSE) [![runtime](https://img.shields.io/badge/runtime-Bun-blue?logo=bun&logoColor=white)](https://bun.sh)
 
@@ -26,7 +26,7 @@ Scaffold dulu (increment 1: daftar katalog + detail produk, tanpa basis data hid
 
 ## Yang ada hari ini, dan yang tidak
 
-Setiap issue anak dari [issue #21](https://github.com/ahliweb/awcms-one/issues/21), [issue #46](https://github.com/ahliweb/awcms-one/issues/46), [issue #32](https://github.com/ahliweb/awcms-one/issues/32), dan [issue #33](https://github.com/ahliweb/awcms-one/issues/33) sudah mendarat: akar workspace dan governance-nya, `packages/config`, `packages/gerbang`, `packages/kontrak`, `tools/`, `knowledge/`, `docs/`, situs publik `apps/storefront` yang lengkap — kini termasuk dashboard akun pelanggan, permukaan afiliasi, opsi kurir dan redirect payment gateway saat checkout, serta inbox pelanggan (`/akun/pesan`) — dan `apps/cms` (membawa satu modul `commerce` — katalog, marketing, pesanan, akun/OTP/sesi pelanggan, afiliasi, ongkir kurir RajaOngkir, outbox WhatsApp, payment gateway Midtrans + intake webhook, POS, laporan penjualan, inbox, kampanye, dan sakelar fitur). Di mana pun dokumen ini atau `AGENTS.md` perlu mendeskripsikan permukaan yang masih belum ada, ia menyatakannya terus terang alih-alih mendeskripsikan jalur yang belum ada — lihat [`docs/arsitektur.md`](docs/arsitektur.id.md) dan [`docs/cms.md`](docs/cms.id.md) untuk daftar lengkap dan terkininya (ubah e-mail/telepon dan verifikasi telepon pada akun yang sudah ada — [ADR-0016](docs/adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.id.md) D6; unggah media sungguhan untuk gambar produk/slider; deployment PostgreSQL produksi; adapter payment gateway Xendit dan pelacakan kurir, keduanya tercatat sebagai follow-up di [ADR-0017](docs/adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.id.md)).
+Setiap issue anak dari [issue #21](https://github.com/ahliweb/awcms-one/issues/21), [issue #46](https://github.com/ahliweb/awcms-one/issues/46), [issue #32](https://github.com/ahliweb/awcms-one/issues/32), dan [issue #33](https://github.com/ahliweb/awcms-one/issues/33) sudah mendarat: akar workspace dan governance-nya, `packages/config`, `packages/gerbang`, `packages/kontrak`, `tools/`, `knowledge/`, `docs/`, situs publik `apps/storefront` yang lengkap — kini termasuk dashboard akun pelanggan, permukaan afiliasi, opsi kurir dan redirect payment gateway saat checkout, serta inbox pelanggan (`/akun/pesan`) — dan `apps/cms` (membawa satu modul `commerce` — katalog, marketing, pesanan, akun/OTP/sesi pelanggan, afiliasi, ongkir kurir RajaOngkir, outbox WhatsApp, payment gateway Midtrans + intake webhook, POS, laporan penjualan, inbox, kampanye, dan sakelar fitur). Di mana pun dokumen ini atau `AGENTS.md` perlu mendeskripsikan permukaan yang masih belum ada, ia menyatakannya terus terang alih-alih mendeskripsikan jalur yang belum ada — lihat [`docs/arsitektur.md`](docs/arsitektur.id.md) dan [`docs/cms.md`](docs/cms.id.md) untuk daftar lengkap dan terkininya (ubah e-mail/telepon dan verifikasi telepon pada akun yang sudah ada — [ADR-0016](docs/adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.id.md) D6; unggah media sungguhan untuk gambar produk/slider; pipeline CI yang mempublikasikan image storefront ke registry dan konfigurasi reverse-proxy di luar contoh `docs/deployment.md` sendiri — topologi produksi itu sendiri kini sudah ada, lihat [ADR-0019](docs/adr/0019-production-topology-two-images-a-jobs-sidecar-and-a-fail-closed-preflight.id.md); adapter payment gateway Xendit dan pelacakan kurir, keduanya tercatat sebagai follow-up di [ADR-0017](docs/adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.id.md)).
 
 ```
 apps/
@@ -61,7 +61,7 @@ tests/                       tes gerbang tingkat akar (docs, changeset, toolchai
                               arah impor)
 docs/                        referensi arsitektur, skema, API, CMS, routing, SEO, aksesibilitas,
                               responsif, UI/UX, pengujian, deployment, alur kerja, dan
-                              template, plus docs/adr/ (delapan belas ADR)
+                              template, plus docs/adr/ (sembilan belas ADR)
 knowledge/                   workflow graf pengetahuan Graphify + Obsidian yang terfederasi
 .claude/skills/               awcms-one-storefront, awcms-one-commerce, awcms-one-template —
                               panduan cara menambah halaman storefront, tabel/endpoint
@@ -69,7 +69,7 @@ knowledge/                   workflow graf pengetahuan Graphify + Obsidian yang 
 .changesets/, .github/       tetap di akar repo — keputusan tentang repo secara keseluruhan
 ```
 
-PostgreSQL hidup dan tersedia kini ada untuk pengembangan lokal dan CI (`compose.yaml`, `bun run db:up`/`db:migrate:cms`/`db:seed:cms`, job CI `check-cms`) — lihat [`docs/deployment.md`](docs/deployment.id.md) untuk urutan lengkapnya, dan untuk apa yang masih benar: **belum ada deployment PostgreSQL produksi**.
+PostgreSQL hidup dan tersedia kini ada untuk pengembangan lokal dan CI (`compose.yaml`, `bun run db:up`/`db:migrate:cms`/`db:seed:cms`, job CI `check-cms`), dan topologi produksi nyata juga sudah ada (`compose.production.yaml`, `bun run deploy:preflight` yang fail-closed, ADR-0019) — lihat [`docs/deployment.md`](docs/deployment.id.md) untuk kedua urutannya dan apa yang masih belum dibangun.
 
 ## Menjalankannya
 
@@ -95,6 +95,7 @@ Repo ini **hanya-Bun**: Bun adalah runtime sekaligus package manager, versinya d
 | `bun run knowledge:obsidian:export` | Mementaskan, memvalidasi, dan menyinkronkan ekspor Obsidian yang aman dari graf akar ke `knowledge/generated/graphify/` — butuh `graphify` di `PATH` |
 | `bun run docs:i18n:stamp` | Menulis banner bahasa dan penanda hash sumber pada setiap cermin `.id.md` |
 | `bun run check:cms` | Rangkaian gerbang penuh `apps/cms` sendiri (53 langkah — lint, docs, inventaris, spec, gerbang, typecheck, tesnya sendiri, build-nya sendiri) |
+| `bun run deploy:preflight` | Preflight produksi fail-closed — bentuk env build storefront, lalu mendelegasikan ke `commerce:deploy:preflight` milik `apps/cms` sendiri — lihat [`docs/deployment.md`](docs/deployment.id.md) dan ADR-0019 |
 | `bun run db:up` / `db:down` / `db:reset` | Menyalakan/mematikan/mereset `postgres:18.4` lokal sekali-pakai (`compose.yaml`, issue #25) |
 | `bun run db:migrate:cms` | Menjalankan migrasi `apps/cms` terhadap `DATABASE_URL` — lihat `apps/cms/.env.example` |
 | `bun run db:seed:cms` | Men-seed tenant `borneojek-mart`, katalog, permukaan marketing, dan contoh pesanan lewat API publik `apps/cms` sendiri — lihat [`docs/deployment.md`](docs/deployment.id.md) |

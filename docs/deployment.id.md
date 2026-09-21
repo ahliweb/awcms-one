@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](deployment.md)
 
-<!-- i18n-source-hash: sha256:a9f0105db9b113243da93e844ae2843328c0cfe331bbd8148444b475f0783bbd -->
+<!-- i18n-source-hash: sha256:e4cc57dc3e3e56a8caff30faefcbaceab6dce4a04aad69a46b25aa6ff9e93e27 -->
 
 # Deployment
 
@@ -336,10 +336,74 @@ Dua keputusan bentuk di `redirects.json` ada semata karena cara CMS dan storefro
 
 `newsletter_subscribers` dihitung dan dilaporkan, tidak pernah diimpor — tidak ada catatan persetujuan yang bertahan dari formulir pendaftaran lawas. `users`, `counter`, `renungan_rmd`, `tanya_jawab`, dan `foto_berita` (tabel galeri) sama sekali tidak pernah dibaca — lihat tabel pemetaan `docs/kamus-data.md` untuk alasan masing-masing dikecualikan.
 
-## Penyediaan PostgreSQL produksi belum dilakukan
+## Topologi produksi (issue #150, ADR-0019)
 
-`apps/cms` hanya-PostgreSQL. **Server produksi borneojek menjalankan MySQL** — basis data yang sama tempat skema katalog platform ini sedang diekspresikan-ulang (lihat [`docs/kamus-data.md`](kamus-data.md)) — jadi instans PostgreSQL harus disediakan di infrastruktur itu, atau di tempat lain, sebelum `apps/cms` bisa di-deploy terhadap basis data produksi nyata. Container `postgres:18.4` milik `compose.yaml` sengaja adalah kenyamanan LOKAL/CI (volume bernama di disk developer, password default kelas-development terdokumentasi di `.env.example`) dan tidak pernah dimaksudkan untuk diarahkan dari deployment produksi. Inilah mengapa [`docs/pengujian.md`](pengujian.md) mendeskripsikan suite tes ber-gate-DB `apps/cms` sebagai sesuatu untuk dijalankan terhadap PostgreSQL sekali-pakai yang disediakan lokal, tidak pernah terhadap apa pun yang saat ini dioperasikan borneojek.
+`apps/cms` hanya-PostgreSQL, dan sampai bagian ini ditulis, infrastruktur produksi borneojek sendiri menjalankan MySQL tanpa PostgreSQL yang disediakan di mana pun di atasnya — celah pengiriman yang disebutkan langsung oleh [issue #150](https://github.com/ahliweb/awcms-one/issues/150). Berikut adalah jalur produksi nyata dan teruji yang sekarang dikirim repositori ini; [ADR-0019](adr/0019-production-topology-two-images-a-jobs-sidecar-and-a-fail-closed-preflight.md) mencatat keputusan di baliknya. Container `postgres:18.4` milik `compose.yaml` sendiri tetap kenyamanan LOKAL/CI — `compose.production.yaml` (di bawah) adalah bentuk produksinya, dan keduanya tidak pernah dimaksudkan berbagi basis data.
 
-## Belum dibangun
+### Model basis data dua-peran
 
-Dockerfile, image container, atau pipeline deployment apa pun untuk `apps/cms` maupun `apps/storefront` di repositori ini — tidak ada apa pun di bawah `.github/workflows/` yang membangun atau mempublikasikan image container hari ini (lihat [`docs/alur-kerja-pengembangan.md`](alur-kerja-pengembangan.md) untuk persis apa yang dijalankan CI). Konfigurasi reverse-proxy/terminasi-TLS untuk `apps/storefront` di produksi — `apps/storefront/server/penyaji.mjs` mengasumsikan satu ada di depannya tapi tidak mengonfigurasi atau mendokumentasikannya sendiri.
+Tiga identitas berbeda, tidak pernah dicampur (ADR-0019 D2):
+
+- **`awcms_setup`** (atau superuser Postgres) — koneksi pemilik migrasi. Dipakai hanya untuk menjalankan migrasi, tidak pernah dibiarkan tetap berjalan.
+- **`awcms_app`** — peran runtime `apps/cms` sendiri yang berhak-minimum (`sql/019`). `DATABASE_URL` servis `cms` harus mengarah ke peran ini.
+- **`awcms_worker`** — peran job latar belakang (`sql/022`). `DATABASE_URL` servis `jobs` harus mengarah ke peran ini.
+
+`docker/postgres-init/01-create-least-privilege-roles.sh` (sudah dipakai `compose.yaml` lokal/CI) mengaktifkan `LOGIN` dan password nyata untuk ketiganya pertama kali volume `postgres` kosong.
+
+### Image
+
+- **`apps/cms`** — `apps/cms/Dockerfile.production` (sudah ada sebelumnya, upstream, tidak diubah) membangun target `runtime` (hanya `dist/`, peran berhak-minimum, tanpa scripts) dan target `jobs` (source penuh, sehingga 30+ target job terdaftarnya benar-benar bisa berjalan).
+- **`apps/storefront`** — `apps/storefront/Dockerfile` (baru). Multi-stage: stage build yang menjalankan `bun run build` dari konteks ROOT REPO (build aplikasi ini butuh kontrak type-only `packages/kontrak`, yang sendiri mengimpor dari source `apps/cms`) dengan `SITE_PROFILE`/`SITE_URL`/`AWCMS_API_URL`/`PUBLIC_AWCMS_ORIGIN`/`PUBLIC_GA_ID` sebagai build ARG, dan `AWCMS_API_TOKEN` HANYA lewat BuildKit `--mount=type=secret,id=awcms_api_token` — tidak pernah ARG/ENV, sehingga tidak pernah masuk layer image (ADR-0019 D4); stage runtime yang hanya membawa `dist/` dan menjalankan `bun dist/server/penyaji.mjs` sebagai user non-root `bun` milik image itu sendiri. **Setiap `SITE_PROFILE` adalah image-nya sendiri** — bangun `toko`, `berita`, dan `landing` terpisah bila lebih dari satu deployment berbagi repositori ini.
+
+```bash
+DOCKER_BUILDKIT=1 docker build \
+  -f apps/storefront/Dockerfile \
+  --build-arg SITE_PROFILE=toko \
+  --build-arg SITE_URL=https://shop.example.test \
+  --build-arg AWCMS_API_URL=https://cms.example.test \
+  --build-arg PUBLIC_AWCMS_ORIGIN=https://cms.example.test \
+  --secret id=awcms_api_token,env=AWCMS_API_TOKEN \
+  -t awcms-one-storefront:toko .
+```
+
+### `compose.production.yaml`
+
+Topologi reproducible untuk deployment self-hosted: `postgres` (tanpa port host dipublikasikan secara default — lihat komentar file itu sendiri untuk memakai instans terkelola/eksternal sebagai gantinya), `migrate` (sekali-jalan, `--profile migrate`, satu-satunya servis yang memakai DSN pemilik/setup), `cms` (image runtime, DSN `awcms_app`), `jobs` (image jobs, DSN `awcms_worker`, dijaga di balik `--profile jobs`, dipanggil terjadwal alih-alih dibiarkan berjalan — lihat "Job terjadwal" di bawah), dan `storefront` (dibangun dengan secret BuildKit di atas). Tidak ada servis yang mempublikasikan port host untuk `cms`/`storefront` secara default — pasang reverse proxy di depan dan biarkan ia menerminasi TLS. Setiap kredensial dibaca dari file turunan `apps/cms/.env.example` dan turunan root `.env.example` yang tidak pernah di-commit; `tests/compose-produksi.test.mjs` secara mekanis memeriksa file itu untuk rahasia yang terlihat hardcode, pemisahan peran `awcms_app`/`awcms_worker`, dan ketiadaan port host.
+
+### Job terjadwal
+
+`bun run jobs:crontab:generate` (di dalam `apps/cms`) sudah menggenerate `apps/cms/ops/awcms-jobs.crontab` dari registry job modul — satu-satunya sumber kebenaran tentang job mana yang ada dan kapan berjalan; `jobs:crontab:check` (bagian dari `bun run check`) gagal bila menyimpang. Variabel `AWCMS_RUN_JOB` file itu dirancang untuk `docker run` biasa terhadap image yang dipublikasikan (`apps/cms/ops/run-job.sh`); deployment docker-compose mengarahkannya ke `ops/run-job-compose.sh` sebagai gantinya (skrip baru milik repositori ini sendiri, ADR-0019 D3) — signature `<target> [args...]` yang sama, memanggil `docker compose -f compose.production.yaml --profile jobs run --rm jobs bun run <target>`. Pasang crontab yang SAMA yang sudah digenerate bagaimanapun caranya; hanya kontainer mana yang menjalankan setiap job yang berubah.
+
+### Preflight produksi fail-closed
+
+Dua perintah berlapis, tidak menggantikan `bun run config:validate`/`bun run security:readiness` milik `apps/cms` sendiri (tidak diubah):
+
+```bash
+# Di dalam apps/cms — pemeriksaan produksi spesifik modul commerce:
+cd apps/cms && bun run commerce:deploy:preflight --live --production
+
+# Dari root repo — bentuk env build storefront, lalu mendelegasikan ke atas:
+bun run deploy:preflight --live --production
+```
+
+Setiap pemeriksaan mencetak satu baris `PASS|FAIL|SKIP` dan alasannya, tidak pernah nilai rahasia. `--live` tambahan terhubung ke `DATABASE_URL` dan memverifikasi peran runtime bukan superuser/pemilik, tidak memiliki tabel `awcms_commerce_*` mana pun, setiap tabel semacam itu punya `relrowsecurity AND relforcerowsecurity`, dan buku besar migrasi tidak punya yang tertunda. Tanpa `--production`, aturan khusus-produksi (pengiriman OTP, provider pembayaran/pengiriman bukan `log`, URL kanonik https) di-skip alih-alih digagalkan — teruskan `--production` (atau set `APP_ENV=production`) untuk menerapkannya terhadap file yang sedang ditinjau sebelum disalin ke tempatnya (`--file <path>`).
+
+### Runbook produksi
+
+1. **Sediakan PostgreSQL** — baik servis `postgres` di `compose.production.yaml`, atau instans terkelola dengan tiga peran yang sama dibuat manual (lihat komentar file itu sendiri).
+2. **Migrasi**, dengan DSN setup/pemilik yang berhak-istimewa: `docker compose -f compose.production.yaml --profile migrate run --rm migrate`.
+3. **Jalankan `cms`**: `docker compose -f compose.production.yaml up -d cms`.
+4. **Jalankan preflight dengan `--live`** terhadap basis data yang berjalan, memakai DSN runtime `awcms_app`: `cd apps/cms && DATABASE_URL=<DSN awcms_app> bun run commerce:deploy:preflight --live --production`. Jangan lanjut melewati `FAIL`.
+5. **Jalankan `jobs`** terjadwal — pasang `apps/cms/ops/awcms-jobs.crontab` di host, dengan `AWCMS_RUN_JOB` mengarah ke `ops/run-job-compose.sh` (lihat "Job terjadwal" di atas).
+6. **Bangun dan jalankan `storefront`** untuk setiap profil yang dibutuhkan deployment ini (lihat "Image" di atas), lalu `docker compose -f compose.production.yaml up -d storefront`.
+7. **Daftarkan origin nyata storefront** di `awcms_tenant_domains` — API storefront anonim me-resolve tenant-nya dari header `Origin` browser pemanggil (lihat "Origin storefront tenant yang di-seed harus terdaftar" di atas); deployment yang melewatkan langkah ini mendapat build yang berfungsi dan checkout yang tidak pernah me-resolve tenant.
+
+**Health/readiness:** `cms` mengekspos `GET /api/v1/health` (liveness — menjawab 200 bahkan dengan basis data tak terjangkau, sengaja; lihat komentar `apps/cms/Dockerfile.production` sendiri kenapa probe yang me-restart kontainer tidak boleh bergantung pada basis data) dan `GET /api/v1/database/pool/health` (pertanyaan kesehatan dependensi yang nyata, dibaca `apps/cms/ops/synthetic-check.sh` alih-alih orkestrator kontainer). `storefront` mengekspos `GET /healthz`, melaporkan build id yang ditulis `apps/storefront/scripts/write-build-id.mjs` saat waktu build.
+
+**Rollback/cutover:** setiap image ditandai dengan commit/rilis tempat ia dibangun; rollback adalah men-deploy ulang tag sebelumnya, tidak pernah mengedit kontainer yang berjalan. Migrasi maju-saja dengan checksum immutable (`validateAppliedChecksums` milik `apps/cms/scripts/db-migrate.ts` menolak menerapkan ulang migrasi yang sudah diterapkan yang isinya berubah) — migrasi yang salah dikoreksi lewat migrasi BARU, tidak pernah edit-tangan yang sudah diterapkan.
+
+**Backup/restore:** `apps/cms/ops/backup-awcms.sh` dan `restore-drill-awcms.sh` adalah semuanya di upstream — lihat bagian "Backup & restore" skill `awcms-production-preflight` sendiri untuk perintah persisnya dan, penting, bahwa enkripsi saat-diam **belum diimplementasikan** di upstream hari ini (lindungi dump dengan izin filesystem dan salinan off-host sebagai gantinya; lihat `apps/cms/docs/awcms/` untuk status nyata terkini).
+
+### Apa yang masih belum dibangun (ADR-0019 D7)
+
+Pipeline CI yang membangun dan mempublikasikan image per-profil `apps/storefront` ke registry — dokumen ini mendeskripsikan `docker build`, bukan pipeline rilis (image `apps/cms` sendiri sudah dipublikasikan `.github/workflows/release.yml`, tidak terpengaruh perubahan ini). Konfigurasi reverse-proxy/terminasi-TLS di luar contoh di atas — ingress operator sendiri yang menerminasi TLS. Enkripsi backup saat-diam (dilacak upstream). Adapter pembayaran Xendit dan pelacakan kurir (keduanya disebut sebagai tindak lanjut eksplisit ADR-0017). PostgreSQL produksi yang dioperasikan repositori ini sendiri — servis `postgres` `compose.production.yaml` disediakan untuk deployment self-hosted; instans terkelola didokumentasikan sebagai alternatif, tidak dikirim.

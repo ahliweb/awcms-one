@@ -24,7 +24,7 @@ Scaffold-first (increment 1: catalog listing + product detail, no live database)
 
 ## What is here today, and what is not
 
-Every child issue of [issue #21](https://github.com/ahliweb/awcms-one/issues/21), [issue #46](https://github.com/ahliweb/awcms-one/issues/46), [issue #32](https://github.com/ahliweb/awcms-one/issues/32), and [issue #33](https://github.com/ahliweb/awcms-one/issues/33) has landed: the workspace root and its governance, `packages/config`, `packages/gerbang`, `packages/kontrak`, `tools/`, `knowledge/`, `docs/`, the full `apps/storefront` public site — now including a customer-account dashboard, the affiliate surface, courier options and a payment-gateway redirect at checkout, and a customer inbox (`/akun/pesan`) — and `apps/cms` (carrying the one `commerce` module — catalog, marketing, orders, customer accounts/OTP/sessions, affiliates, RajaOngkir courier rates, WhatsApp outbox, Midtrans payment gateway + webhook intake, POS, sales reports, inbox, campaigns, and feature toggles). Where this document or `AGENTS.md` needs to describe a surface that still does not exist, it says so plainly rather than describing a path that is not there — see [`docs/arsitektur.md`](docs/arsitektur.md) and [`docs/cms.md`](docs/cms.md) for that full, current list (e-mail/phone change and phone verification on an existing account — [ADR-0016](docs/adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md) D6; a real media upload for product/slider images; a production PostgreSQL deployment; a Xendit payment-gateway adapter and courier tracking, both named as follow-ups in [ADR-0017](docs/adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.md)).
+Every child issue of [issue #21](https://github.com/ahliweb/awcms-one/issues/21), [issue #46](https://github.com/ahliweb/awcms-one/issues/46), [issue #32](https://github.com/ahliweb/awcms-one/issues/32), and [issue #33](https://github.com/ahliweb/awcms-one/issues/33) has landed: the workspace root and its governance, `packages/config`, `packages/gerbang`, `packages/kontrak`, `tools/`, `knowledge/`, `docs/`, the full `apps/storefront` public site — now including a customer-account dashboard, the affiliate surface, courier options and a payment-gateway redirect at checkout, and a customer inbox (`/akun/pesan`) — and `apps/cms` (carrying the one `commerce` module — catalog, marketing, orders, customer accounts/OTP/sessions, affiliates, RajaOngkir courier rates, WhatsApp outbox, Midtrans payment gateway + webhook intake, POS, sales reports, inbox, campaigns, and feature toggles). Where this document or `AGENTS.md` needs to describe a surface that still does not exist, it says so plainly rather than describing a path that is not there — see [`docs/arsitektur.md`](docs/arsitektur.md) and [`docs/cms.md`](docs/cms.md) for that full, current list (e-mail/phone change and phone verification on an existing account — [ADR-0016](docs/adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md) D6; a real media upload for product/slider images; a CI pipeline publishing storefront images to a registry and a reverse-proxy config beyond `docs/deployment.md`'s own example — the production topology itself now exists, see [ADR-0019](docs/adr/0019-production-topology-two-images-a-jobs-sidecar-and-a-fail-closed-preflight.md); a Xendit payment-gateway adapter and courier tracking, both named as follow-ups in [ADR-0017](docs/adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.md)).
 
 ```
 apps/
@@ -59,7 +59,7 @@ tests/                       the root-level gate tests (docs, changesets, toolch
                               import direction)
 docs/                        architecture, schema, API, CMS, routing, SEO, accessibility,
                               responsive, UI/UX, testing, deployment, workflow, and template
-                              reference, plus docs/adr/ (eighteen ADRs)
+                              reference, plus docs/adr/ (nineteen ADRs)
 knowledge/                   the federated Graphify + Obsidian knowledge-graph workflow
 .claude/skills/               awcms-one-storefront, awcms-one-commerce, awcms-one-template —
                               how-to guides for adding a storefront page, a commerce
@@ -67,7 +67,7 @@ knowledge/                   the federated Graphify + Obsidian knowledge-graph w
 .changesets/, .github/       stay at the repo root — decisions about the whole repo
 ```
 
-A live, provisioned PostgreSQL now exists for local development and CI (`compose.yaml`, `bun run db:up`/`db:migrate:cms`/`db:seed:cms`, the `check-cms` CI job) — see [`docs/deployment.md`](docs/deployment.md) for the full sequence, and for what is still true: **no production PostgreSQL deployment exists yet**.
+A live, provisioned PostgreSQL now exists for local development and CI (`compose.yaml`, `bun run db:up`/`db:migrate:cms`/`db:seed:cms`, the `check-cms` CI job), and a real production topology exists too (`compose.production.yaml`, a fail-closed `bun run deploy:preflight`, ADR-0019) — see [`docs/deployment.md`](docs/deployment.md) for both sequences and for what remains not built.
 
 ## Running it
 
@@ -93,6 +93,7 @@ This repo is **Bun-only**: Bun is both the runtime and the package manager, its 
 | `bun run knowledge:obsidian:export` | Stages, validates, and syncs a safe Obsidian export of the root graph to `knowledge/generated/graphify/` — needs `graphify` on `PATH` |
 | `bun run docs:i18n:stamp` | Writes the language banners and source-hash markers on every `.id.md` mirror |
 | `bun run check:cms` | `apps/cms`'s own full gate chain (53 steps — lint, docs, inventories, spec, gates, typecheck, its own tests, its own build) |
+| `bun run deploy:preflight` | Fail-closed production preflight — storefront build-env shape, then delegates to `apps/cms`'s own `commerce:deploy:preflight` — see [`docs/deployment.md`](docs/deployment.md) and ADR-0019 |
 | `bun run db:up` / `db:down` / `db:reset` | Starts/stops/resets the disposable local `postgres:18.4` (`compose.yaml`, issue #25) |
 | `bun run db:migrate:cms` | Runs `apps/cms`'s migrations against `DATABASE_URL` — see `apps/cms/.env.example` |
 | `bun run db:seed:cms` | Seeds the `borneojek-mart` tenant, catalog, marketing surfaces, and sample orders through `apps/cms`'s own public API — see [`docs/deployment.md`](docs/deployment.md) |
