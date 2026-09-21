@@ -20,11 +20,22 @@
  * five; `landing`'s two), and the "Cari Produk" help link renders only
  * when the profile has a search surface, pointing at whatever that surface
  * is (`/cari` for `toko`, `/cari-berita` for `berita`).
+ *
+ * ## Issue #166 (2026-09 redesign): the "Kanal" column and dark surface
+ *
+ * `.site-footer` now sits on `.band-inverse` (the mockup's `#0f172a`), and
+ * gains a fourth column — "Kanal" — linking Katalog/Flash sale/Berita/
+ * Program afiliasi, EACH gated on `isGroupActive`/`isRouteActive`
+ * (`src/config/profil.ts`) exactly like every other profile-aware link in
+ * this file already is, so a `landing`/`berita`-only build renders none of
+ * a column it has no routes for. The bottom line's copyright falls back to
+ * `© YEAR name · Semua harga dalam Rupiah` (was bare `© YEAR name`) and
+ * gains the mockup's own Indonesian-language note.
  */
 import type { SiteIdentity } from "../lib/awcms/profil";
 import type { StaticPageSummary } from "../lib/awcms/pages";
 import { ROUTES } from "../config/routes";
-import { FOOTER_PAGE_LINKS, SEARCH_SURFACE } from "../config/profil";
+import { FOOTER_PAGE_LINKS, SEARCH_SURFACE, isRouteActive } from "../config/profil";
 
 interface Props {
   identity: SiteIdentity;
@@ -36,11 +47,20 @@ const { identity, staticPages } = Astro.props;
 const publishedSlugs = new Set(staticPages.map((page) => page.slug));
 const footerLinks = FOOTER_PAGE_LINKS.filter((link) => publishedSlugs.has(link.slug));
 
+type ChannelLink = { href: string; label: string };
+const channelCandidates: Array<ChannelLink | false> = [
+  isRouteActive("products") && { href: ROUTES.products, label: "Katalog" },
+  isRouteActive("flashSale") && { href: ROUTES.flashSale, label: "Flash Sale" },
+  isRouteActive("news") && { href: ROUTES.news, label: "Berita" },
+  isRouteActive("accountAffiliate") && { href: ROUTES.accountAffiliate, label: "Program Afiliasi" }
+];
+const channelLinks: ChannelLink[] = channelCandidates.filter((entry): entry is ChannelLink => entry !== false);
+
 const year = new Date().getFullYear();
-const copyright = identity.copyrightNotice ?? `© ${year} ${identity.name}`;
+const copyright = identity.copyrightNotice ?? `© ${year} ${identity.name} · Semua harga dalam Rupiah`;
 ---
 
-<footer class="site-footer">
+<footer class="site-footer band-inverse">
   <div class="container site-footer-grid">
     <div class="site-footer-column">
       <h2>{identity.name}</h2>
@@ -86,9 +106,21 @@ const copyright = identity.copyrightNotice ?? `© ${year} ${identity.name}`;
         )}
       </ul>
     </div>
+
+    {channelLinks.length > 0 && (
+      <div class="site-footer-column">
+        <h2>Kanal</h2>
+        <ul class="footer-page-links">
+          {channelLinks.map((link) => (
+            <li><a href={link.href}>{link.label}</a></li>
+          ))}
+        </ul>
+      </div>
+    )}
   </div>
 
   <div class="container site-footer-bottom">
     <p>{copyright}</p>
+    <p class="site-footer-lang is-mono">Bahasa Indonesia · html lang="id"</p>
   </div>
 </footer>

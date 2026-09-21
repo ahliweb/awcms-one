@@ -8,11 +8,136 @@
  * Theming is CSS custom properties on `:root`, redefined under
  * `prefers-color-scheme: dark` — no theme-switcher script, and none needed
  * for this slice.
+ *
+ * --------------------------------------------------------------------------
+ * Design system — 2026-09-21 redesign (issue #166)
+ * --------------------------------------------------------------------------
+ *
+ * Source: `redesign/AWCMS-One Admin dan Publik.zip`'s "Publik awcms-one"
+ * mockup (11 pages) — see `docs/ui-ux.md`'s "Design system (2026-09
+ * redesign)" section for the full token/primitive reference table. Brand
+ * colour is NEVER hard-coded here: `--color-primary`/`--color-secondary`/
+ * `--color-accent` come from `/theme-tokens.css` (CMS-driven,
+ * `src/pages/theme-tokens.css.ts`), with BjekMart's emerald/amber defaults
+ * as the `var()` fallback only.
+ *
+ * Type system: self-hosted latin woff2 subsets under `public/fonts/`
+ * (`public/fonts/LICENSE-OFL.txt` — all three families are SIL OFL). No
+ * Google Fonts, no new CSP origin — every `@font-face src` below is a
+ * same-origin `/fonts/*.woff2` path, proven by
+ * `tests/global-css-fonts.test.ts`.
+ *
+ * Primitives (`.btn`, `.pill`, form controls, `.stepper`, `.radio-card`,
+ * `.segmented`, `.section-title`, `.empty-state`, `.band-inverse`) are
+ * ADDITIVE: every class name that existed before this issue
+ * (`.card`, `.cart-count`, `.wishlist-button`, `.stock-badge`, …) is
+ * unchanged, so no page or test that already renders them needs to change.
  */
 
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/plus-jakarta-sans-latin-400-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/plus-jakarta-sans-latin-500-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/plus-jakarta-sans-latin-600-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/plus-jakarta-sans-latin-700-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url('/fonts/plus-jakarta-sans-latin-800-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/lora-latin-400-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/lora-latin-400-italic.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/lora-latin-500-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/lora-latin-600-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/ibm-plex-mono-latin-400-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/ibm-plex-mono-latin-500-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 :root {
-  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
     Oxygen, Ubuntu, Cantarell, sans-serif;
+  --font-serif: 'Lora', Georgia, 'Times New Roman', serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
   --bg-primary: #f8fafc;
   --bg-surface: #ffffff;
@@ -27,18 +152,64 @@
 
   --accent-primary: #0284c7;
   --accent-hover: #0369a1;
+  /* Sky link colour (2026-09 redesign) — the same value as `--accent-primary`
+     today, named separately so body copy and the mockup's "sky" link colour
+     can diverge later without renaming every `a` rule that reads
+     `--accent-primary`. */
+  --link-color: #0284c7;
+  --link-hover: #0369a1;
 
   --danger-bg: #fef2f2;
   --danger-text: #991b1b;
   --success-bg: #dcfce7;
   --success-text: #166534;
 
+  /* Soft status pairs (2026-09 redesign) — a tinted background + a readable
+     foreground on it, for a pill/badge/notice, distinct from the older
+     `--danger-*`/`--success-*` pair above which is used for a full-block
+     notice (`.product-note`-style). */
+  --status-success-bg: #dcfce7;
+  --status-success-fg: #166534;
+  --status-warning-bg: #fef3c7;
+  --status-warning-fg: #92400e;
+  --status-info-bg: #f0f9ff;
+  --status-info-border: #bae6fd;
+  --status-info-fg: #075985;
+  --status-danger-bg: #fef2f2;
+  --status-danger-fg: #991b1b;
+  --status-neutral-bg: #f1f5f9;
+  --status-neutral-fg: #334155;
+
+  /* Inverse band (2026-09 redesign) — the dark utility bar/header/footer
+     surfaces the mockup uses for chrome, distinct from `--bg-primary`'s
+     light page background. */
+  --bg-inverse: #0f172a;
+  --bg-inverse-2: #1e293b;
+  --text-on-inverse: #f8fafc;
+  --text-on-inverse-muted: #cbd5e1;
+  --border-on-inverse: #334155;
+
   --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.06);
   --shadow-md: 0 4px 10px -2px rgba(15, 23, 42, 0.08), 0 2px 4px -2px rgba(15, 23, 42, 0.04);
 
-  --radius-sm: 0.375rem;
-  --radius-md: 0.5rem;
-  --radius-lg: 0.75rem;
+  /* Radius scale (2026-09 redesign) — `--radius-sm/md/lg` above stay as
+     they were (nothing that already reads them changes shape); this named
+     scale is what a NEW primitive below reads from. */
+  --radius-xs: 8px;
+  --radius-s: 9px;
+  --radius-m: 10px;
+  --radius-l: 12px;
+  --radius-xl: 14px;
+  --radius-full: 999px;
+
+  /* Type scale (2026-09 redesign) — `rem`-based, 16px root. */
+  --text-xs: 0.75rem;    /* 12px — the AA floor; nothing in this app goes smaller */
+  --text-sm: 0.8125rem;  /* 13px */
+  --text-base: 0.875rem; /* 14px */
+  --text-md: 1rem;       /* 16px */
+  --text-lg: 1.125rem;   /* 18px */
+  --text-xl: 1.375rem;   /* 22px */
+  --text-2xl: 1.75rem;   /* 28px */
 
   --max-width: 1200px;
 }
@@ -58,11 +229,34 @@
 
     --accent-primary: #38bdf8;
     --accent-hover: #7dd3fc;
+    --link-color: #38bdf8;
+    --link-hover: #7dd3fc;
 
     --danger-bg: #450a0a;
     --danger-text: #fecaca;
     --success-bg: #052e16;
     --success-text: #bbf7d0;
+
+    --status-success-bg: #052e16;
+    --status-success-fg: #bbf7d0;
+    --status-warning-bg: #451a03;
+    --status-warning-fg: #fde68a;
+    --status-info-bg: #082f49;
+    --status-info-border: #0c4a6e;
+    --status-info-fg: #bae6fd;
+    --status-danger-bg: #450a0a;
+    --status-danger-fg: #fecaca;
+    --status-neutral-bg: #1e293b;
+    --status-neutral-fg: #cbd5e1;
+
+    /* The inverse band is already dark in light mode — in dark mode it
+       lightens slightly relative to the page so it still reads as a
+       distinct surface rather than disappearing into `--bg-primary`. */
+    --bg-inverse: #1e293b;
+    --bg-inverse-2: #334155;
+    --text-on-inverse: #f8fafc;
+    --text-on-inverse-muted: #cbd5e1;
+    --border-on-inverse: #475569;
   }
 }
 
@@ -170,30 +364,101 @@ p {
 
 .site-brand {
   font-size: 1.25rem;
-  font-weight: 700;
+  font-weight: 800;
+  font-family: var(--font-sans);
+  letter-spacing: -0.02em;
   color: var(--text-primary);
   text-decoration: none;
   /* 44px touch target even though the visible glyph is smaller. */
   display: inline-flex;
   align-items: center;
+  gap: 0.5rem;
   min-height: 44px;
 }
 
+/* Brand tile (issue #166) — the site name's first letter on
+   `--color-primary`, `aria-hidden` since `.site-brand`'s own text already
+   carries the accessible name. */
+.site-brand-tile {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  flex: none;
+  border-radius: var(--radius-xs);
+  background: var(--color-primary, #10b981);
+  color: var(--color-primary-foreground, #000000);
+  font-family: var(--font-sans);
+  font-weight: 800;
+  font-size: 0.8rem;
+}
+
+/* Utility bar (issue #166) — the dark strip above the header proper:
+   "Lacak pesanan" / "Berita" / "Akun saya". Text stays >= 12px
+   (`--text-xs`) for AA against `--bg-inverse`, unlike the mockup's own
+   11px. */
+.utility-bar-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1rem;
+  padding-block: 0.45rem;
+}
+
+.utility-bar-spacer {
+  flex: 1;
+}
+
+.utility-bar-inner a {
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.utility-bar-akun {
+  color: var(--accent-primary) !important;
+}
+
+/* Category nav row as chips (2026-09 redesign, mockup lines 51-55). */
 .site-header nav a {
   display: inline-flex;
   align-items: center;
-  min-height: 44px;
-  padding-inline: 0.5rem;
+  height: 34px;
+  padding: 0 12px;
+  border-radius: var(--radius-xs);
   color: var(--text-secondary);
+  font-family: var(--font-sans);
   font-weight: 600;
+  font-size: var(--text-xs);
+}
+
+.site-header nav a:hover,
+.site-header nav a[aria-current] {
+  background: var(--bg-subtle);
+  color: var(--text-primary);
 }
 
 .site-footer {
   margin-top: auto;
-  border-top: 1px solid var(--border-color);
   padding-block: 1.5rem;
-  color: var(--text-muted);
   font-size: 0.875rem;
+}
+
+.site-footer h2 {
+  color: var(--text-on-inverse);
+}
+
+.site-footer p,
+.site-footer li {
+  color: var(--text-on-inverse-muted);
+}
+
+.site-footer-bottom {
+  color: var(--text-on-inverse-muted);
 }
 
 main {
@@ -429,27 +694,39 @@ main {
   flex-wrap: wrap;
 }
 
+/* One joined control (2026-09 redesign, mockup lines 41-44) — the wrapper
+   itself carries the border/radius/background, the input inside it is
+   borderless and transparent, and the "Cari" button sits flush against the
+   wrapper's own edge (no gap, no radius of its own) rather than as a
+   second, separate control beside it. The wrapper is 44px tall so the
+   whole group — not just the button — clears the touch-target minimum. */
 .search-form {
   display: flex;
-  gap: 0.4rem;
+  align-items: stretch;
+  height: 44px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-m);
+  background: var(--bg-subtle);
+  overflow: hidden;
 }
 
 .search-form input[type="search"] {
-  min-height: 44px;
-  padding: 0.4rem 0.75rem;
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-sm);
+  flex: 1;
+  min-width: 9rem;
+  height: 100%;
+  padding: 0 0.75rem;
+  border: 0;
+  border-radius: 0;
   font: inherit;
   color: var(--text-primary);
-  background: var(--bg-surface);
-  min-width: 9rem;
+  background: transparent;
 }
 
 .search-form button {
-  min-height: 44px;
-  padding: 0.4rem 1rem;
+  height: 100%;
+  padding: 0 1rem;
   border: none;
-  border-radius: var(--radius-sm);
+  border-radius: 0;
   font-weight: 700;
   cursor: pointer;
   background: var(--color-primary, #10b981);
@@ -590,10 +867,17 @@ main {
 }
 
 .site-footer-bottom {
-  border-top: 1px solid var(--border-color);
+  border-top: 1px solid var(--border-on-inverse);
   padding-block: 1rem;
   font-size: 0.8rem;
-  color: var(--text-muted);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1rem;
+}
+
+.site-footer-lang {
+  margin-left: auto;
 }
 
 /* --- Portable Text content (issue #24 — `/halaman/[slug]`) --------------- */
@@ -649,6 +933,297 @@ main {
   flex-wrap: wrap;
   gap: 0.75rem;
   margin-top: 1rem;
+}
+
+/* --- Primitives (issue #166, 2026-09 redesign) ---------------------------
+   ADDITIVE only — every class above this comment predates this issue and is
+   unchanged. These are the shared building blocks issues #167/#168/#169
+   (product/cart/account screens) compose from, documented here rather than
+   in a separate stylesheet because this app already keeps all its CSS in
+   one file (see this file's own top-of-file docblock).
+   Brand backgrounds (`.btn--primary`, `.pill--label`) read
+   `--color-primary`/`--color-accent` from `/theme-tokens.css`, always
+   paired with their `-foreground` counterpart, exactly as `.button-primary`
+   and `.cart-count` already do above. */
+
+/* `.btn` — three tones (`--primary` brand-filled, `--secondary` outline,
+   `--quiet` text-only) and three heights matching the mockup's own
+   (44px default touch target, 40px compact, 36px dense — e.g. a filter
+   chip). Height is set via a modifier so a `.btn` with no size class still
+   clears the 44px minimum touch target. */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  height: 44px;
+  padding: 0 1.1rem;
+  border-radius: var(--radius-m);
+  border: 1px solid transparent;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: var(--text-base);
+  line-height: 1;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.btn:hover {
+  text-decoration: none;
+}
+
+.btn--primary {
+  background: var(--color-primary, #10b981);
+  color: var(--color-primary-foreground, #000000);
+}
+
+.btn--primary:hover {
+  filter: brightness(0.94);
+}
+
+.btn--secondary {
+  background: var(--bg-surface);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+.btn--secondary:hover {
+  border-color: var(--text-muted);
+}
+
+.btn--quiet {
+  background: transparent;
+  color: var(--text-secondary);
+}
+
+.btn--quiet:hover {
+  color: var(--text-primary);
+  background: var(--bg-subtle);
+}
+
+.btn--md { height: 40px; padding: 0 0.9rem; font-size: var(--text-sm); }
+.btn--sm { height: 36px; padding: 0 0.75rem; font-size: var(--text-xs); }
+
+/* `.pill` — a small rounded label, in one of two roles: `--tone-*` (a soft
+   status colour) or the plain neutral default. Distinct from the existing
+   `.stock-badge`/`.label-badge` above (kept unchanged for compatibility);
+   `.pill` is the general-purpose successor those two specialise. */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.15rem 0.65rem;
+  border-radius: var(--radius-full);
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  line-height: 1.6;
+  background: var(--status-neutral-bg);
+  color: var(--status-neutral-fg);
+}
+
+.pill--success { background: var(--status-success-bg); color: var(--status-success-fg); }
+.pill--warning { background: var(--status-warning-bg); color: var(--status-warning-fg); }
+.pill--info { background: var(--status-info-bg); color: var(--status-info-fg); border: 1px solid var(--status-info-border); }
+.pill--danger { background: var(--status-danger-bg); color: var(--status-danger-fg); }
+.pill--neutral { background: var(--status-neutral-bg); color: var(--status-neutral-fg); }
+.pill--label {
+  background: var(--color-accent, #f59e0b);
+  color: var(--color-accent-foreground, #000000);
+  font-weight: 700;
+}
+
+/* `.band-inverse` — the dark surface the utility bar/header-chrome/footer
+   sit on. A plain block, so any existing dark section (`.site-footer`) can
+   opt in without restructuring its markup. */
+.band-inverse {
+  background: var(--bg-inverse);
+  color: var(--text-on-inverse-muted);
+}
+
+.band-inverse a,
+.band-inverse button {
+  color: var(--text-on-inverse-muted);
+}
+
+.band-inverse a:hover,
+.band-inverse button:hover {
+  color: var(--text-on-inverse);
+}
+
+/* Form controls — 42px inputs/selects/textareas (issue #166's own height,
+   distinct from the 44px `.btn`, matching the mockup's own address/checkout
+   forms). `.is-mono` switches the value font for a code/phone/postcode
+   field, where digit alignment matters more than the sans's own numerals. */
+.field-label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+input[type="text"],
+input[type="search"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+input[type="password"],
+select,
+textarea {
+  height: 42px;
+  padding: 0 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-s);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  font: inherit;
+  font-family: var(--font-sans);
+}
+
+textarea {
+  height: auto;
+  min-height: 84px;
+  padding-block: 0.65rem;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.is-mono {
+  font-family: var(--font-mono);
+}
+
+/* `.stepper` — the qty −/n/+ control. `--lg` (46px, product detail) and the
+   default (38px, cart line) match the mockup's own two sizes. */
+.stepper {
+  display: inline-flex;
+  align-items: stretch;
+  height: 38px;
+}
+
+.stepper--lg {
+  height: 46px;
+}
+
+.stepper button {
+  width: 34px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.stepper--lg button {
+  width: 42px;
+}
+
+.stepper button:first-child {
+  border-radius: var(--radius-s) 0 0 var(--radius-s);
+  border-right: 0;
+}
+
+.stepper button:last-child {
+  border-radius: 0 var(--radius-s) var(--radius-s) 0;
+  border-left: 0;
+}
+
+.stepper output {
+  min-width: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-color);
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* `.radio-card` — a full-width selectable card (courier/payment choice),
+   built from a real `<input type="radio">` plus its `<label>` so keyboard
+   and screen-reader behaviour comes from the browser, never a div with a
+   click handler. */
+.radio-card {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.8rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-l);
+  background: var(--bg-surface);
+  cursor: pointer;
+}
+
+.radio-card input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  flex: none;
+  accent-color: var(--color-primary, #10b981);
+}
+
+.radio-card:has(input:checked) {
+  border-color: var(--color-primary, #10b981);
+  background: var(--bg-subtle);
+}
+
+.radio-card:has(input:disabled) {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* `.segmented` — a tab row of equal-weight buttons (checkout steps, sort
+   toggles); `[aria-current="true"]` (rather than a bare CSS class) marks
+   the active one so assistive tech announces it without extra markup. */
+.segmented {
+  display: inline-flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.segmented button,
+.segmented a {
+  display: inline-flex;
+  align-items: center;
+  height: 38px;
+  padding: 0 0.9rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-full);
+  background: var(--bg-surface);
+  color: var(--text-secondary);
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: var(--text-xs);
+  cursor: pointer;
+}
+
+.segmented [aria-current="true"] {
+  border-color: var(--color-primary, #10b981);
+  background: var(--bg-subtle);
+  color: var(--text-primary);
+}
+
+/* `.section-title` — a page-section heading with an optional trailing
+   meta/count, replacing an ad-hoc flex row per page. */
+.section-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.section-title h2,
+.section-title h3 {
+  margin: 0;
+}
+
+.section-title .section-title-meta {
+  color: var(--text-muted);
+  font-size: var(--text-xs);
 }
 
 /* --- Motion --------------------------------------------------------------

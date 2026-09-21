@@ -1,0 +1,26 @@
+Self-hosted web fonts — SIL Open Font License 1.1
+===================================================
+
+The woff2 files in this directory are latin-subset builds of the following
+typefaces, all licensed under the SIL Open Font License, Version 1.1
+(https://openfontlicense.org). Redistribution and self-hosting is explicit
+Permitted Use under that licence.
+
+Fetched from the @fontsource jsDelivr CDN mirror (no build-time runtime
+dependency — see AGENTS.md / docs/ui-ux.md for why this app vendors the
+files instead of depending on the npm packages), package version 5.3.0 for
+every family below:
+
+- Plus Jakarta Sans — weights 400, 500, 600, 700, 800 (normal)
+  Copyright 2020 The Plus Jakarta Sans Project Authors
+  https://github.com/tokotype/PlusJakartaSans
+
+- Lora — weights 400, 500, 600 (normal), 400 (italic)
+  Copyright 2011-2018 The Lora Project Authors
+  https://github.com/cyrealtype/Lora-Cyrillic
+
+- IBM Plex Mono — weights 400, 500 (normal)
+  Copyright 2017 IBM Corp.
+  https://github.com/IBM/plex
+
+Full licence text: https://openfontlicense.org/open-font-license-official-text/

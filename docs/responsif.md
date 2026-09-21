@@ -36,6 +36,10 @@ Every interactive control added for cart/checkout/wishlist (buttons, quantity st
 
 `apps/storefront/src/styles/akun.css` (`/masuk`, `/daftar`, `/akun*`, issues #88/#90/#93) carries no `@media` query of its own — verified by reading the file: every rule is width-independent, and the same 44px `min-height` target size the stylesheet's own header comment names is applied uniformly across every control (the OTP code input, the address form's fields, the affiliate enrol button), not gated behind a breakpoint. The account dashboard's navigation-card grid is `grid-template-columns: repeat(auto-fill, minmax(180px, 1fr))` — the same `auto-fill` reflow mechanism the catalog and news grids use, without the extra `min(Npx, 100%)` overflow clamp those two carry (unneeded here: a 180px track never approaches a phone viewport's own width), so it still collapses to as few as one column at phone width with no breakpoint of its own.
 
+## The 2026-09 redesign's chrome (issue #166)
+
+The utility bar (`Header.astro`) and the footer's new "Kanal" column (`Footer.astro`) both use the same fluid patterns already documented above — `flex-wrap: wrap` with `gap`, no new breakpoint. The footer grid (`.site-footer-grid`, unchanged `grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr))`) simply gained a fifth possible column (Kanal, alongside the profile-gated Informasi one), reflowing exactly like the four it already had. `.stepper`/`.radio-card`/`.segmented` (the new primitives, `global.css`) are all intrinsically-sized flex rows with no breakpoint of their own — the same "fluid until a real reason to reshape" posture the rest of this document already describes.
+
 ## What was verified, and how
 
 - **`grep`-level confirmation of every `@media` query** across `global.css`, `katalog.css`, `berita.css`, `toko.css` — the breakpoint table above is exhaustive, not a sample. `toko.css` (checkout/cart-specific styles) carries no width breakpoint of its own, relying on `min-width: 0` flex-shrink guards instead.

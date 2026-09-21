@@ -59,6 +59,27 @@
  * — a `berita` or `landing` deployment has no `/keranjang` to link to. In
  * the default `toko` profile every condition is true and this file's
  * rendered HTML is exactly what it was before this issue.
+ *
+ * ## Issue #166 (2026-09 redesign): the utility bar and brand tile
+ *
+ * A dark `.band-inverse` utility bar sits above the header proper, per the
+ * mockup (`redesign/…/publik.template.html` lines 24-34): "Lacak pesanan"
+ * (order tracking, `toko` only), "Berita" (only when the `berita` group is
+ * ALSO active in this build — i.e. today's default `toko` profile, which
+ * composes `toko` + `berita`; a `toko`-only template-init choice with news
+ * turned off has no `/berita` to link to), and "Akun saya" pointing at
+ * whatever `data-akun-tautan already resolves (Masuk vs the account link,
+ * `src/scripts/akun-header.ts`). The mockup's free-shipping notice slot is
+ * deliberately NOT rendered: it is store-settings-driven copy
+ * (`shippingSettings.freeShipping`, `src/lib/awcms/pemasaran.ts`) this
+ * issue does not wire the header's build-time fetch to — inventing the
+ * Indonesian copy instead would be exactly the "no invented copy" mistake
+ * `AGENTS.md`/this issue's own rules warn against.
+ *
+ * The brand tile (site name's first letter, `aria-hidden`, on
+ * `--color-primary`) replaces the previous bare-text wordmark link with the
+ * same link, just with a mark beside it — `identity.name` is still the
+ * only accessible name `.site-brand` carries.
  */
 import type { SiteIdentity } from "../lib/awcms/profil";
 import { ROUTES } from "../config/routes";
@@ -74,11 +95,29 @@ const { identity } = Astro.props;
 
 const primaryNav = await getPrimaryNav();
 const tokoAktif = isGroupActive("toko");
+const beritaAktif = isGroupActive("berita");
+const brandInitial = identity.name.trim().charAt(0).toUpperCase() || "•";
 ---
+
+{tokoAktif && (
+  <div class="utility-bar band-inverse">
+    <div class="container utility-bar-inner">
+      <div class="utility-bar-spacer" />
+      <a href={ROUTES.orderTracking}>Lacak pesanan</a>
+      {beritaAktif && <a href={ROUTES.news}>Berita</a>}
+      <a href={ROUTES.login} class="utility-bar-akun" data-akun-tautan>
+        <span data-akun-label>Akun saya</span>
+      </a>
+    </div>
+  </div>
+)}
 
 <header class="site-header">
   <div class="container site-header-inner">
-    <a href="/" class="site-brand">{identity.name}</a>
+    <a href="/" class="site-brand">
+      <span class="site-brand-tile" aria-hidden="true">{brandInitial}</span>
+      {identity.name}
+    </a>
 
     <details class="mobile-nav-toggle">
       <summary aria-label="Buka menu navigasi">
