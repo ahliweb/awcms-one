@@ -62,7 +62,7 @@ Sejak increment 5 ([ADR-0017](docs/adr/0017-external-providers-are-commerce-owne
 - **Tidak ada rahasia, token, atau kredensial** di kode, commit, issue, atau dokumentasi.
 - **`bun audit` harus melaporkan nol kerentanan** sebelum rilis (`tools/rilis.mjs` menjalankannya sebelum menerapkan); `bun audit --audit-level=low` juga berjalan di setiap push CI.
 - **GitHub Actions dipin ke SHA commit**, bukan tag — lihat bagian "Configuration and toolchain" di `AGENTS.md`.
-- **PR `git subtree pull` di-merge dengan merge commit, tidak pernah di-squash atau di-rebase** — bukan kontrol keamanan terhadap penyerang eksternal, melainkan kontrol terhadap rusaknya kemampuan repo ini sendiri untuk menarik patch keamanan upstream ke `apps/cms` di masa depan. Lihat "The subtree embed" di `AGENTS.md`.
+- **PR `git subtree pull` di-merge dengan merge commit, tidak pernah di-squash atau di-rebase** — bukan kontrol keamanan terhadap penyerang eksternal, melainkan kontrol terhadap rusaknya kemampuan repo ini sendiri untuk menarik patch keamanan upstream ke `apps/cms` di masa depan. Sejak issue #149 ini ditegakkan secara mekanis di seluruh repositori (`allow_squash_merge=false`, `allow_rebase_merge=false`), bukan hanya diingat reviewer. Lihat "The subtree embed" di `AGENTS.md`.
 - **RLS `ENABLE`+`FORCE` di setiap tabel ber-scope-tenant**, termasuk setiap tabel `awcms_commerce_*` yang ditambahkan sejak increment 2 — lihat [`docs/skema-basis-data.md`](docs/skema-basis-data.id.md) untuk daftar tabel yang persis dan terkini, alih-alih sebuah hitungan yang diulang di sini yang akan menjadi basi oleh migrasi berikutnya.
 
 ## Yang BELUM benar, dinyatakan terus terang

@@ -39,7 +39,7 @@ The root `dev`/`build`/`check`/`serve` scripts delegate into `apps/storefront` (
 5. **Write a changeset** in [`.changesets/`](.changesets/README.md) in the same iteration, not batched up at the end.
 6. **Run `bun test`** (and `bun run check:cms` if the change touched `apps/cms/`); both must be clean.
 7. **Open a Pull Request** with `Closes #<issue>`. Merge after review and a green CI.
-8. **If the PR syncs `apps/cms/` from upstream** (`git subtree pull`), it **must** be merged with a merge commit — never squashed, never rebased. `AGENTS.md`'s "The subtree embed" explains why; nothing in this repo's current settings stops a squash mechanically, so this is a rule to remember, not one CI enforces yet.
+8. **If the PR syncs `apps/cms/` from upstream** (`git subtree pull`), it **must** be merged with a merge commit — never squashed, never rebased. `AGENTS.md`'s "The subtree embed" explains why. This is also now mechanically true of every PR in the repo: squash and rebase merges are disabled repository-wide (issue #149), so a merge commit is the only method GitHub's merge button offers.
 9. **When the waiting changeset backlog is due** (`bun run audit:rilis` reddens past 20 files or 14 days), a maintainer runs `bun run release`, which folds the backlog into `CHANGELOG.md` and tags `vX.Y.Z`.
 
 ### Branch naming

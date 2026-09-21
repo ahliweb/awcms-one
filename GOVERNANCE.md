@@ -38,11 +38,8 @@ flowchart TD
   Proposal["Change proposal"] --> Branch["Branch from main"]
   Branch --> Gates["bun test + audit:dokumen/rilis/translation green"]
   Gates --> Review["Maintainer review"]
-  Review --> Merge{"Touches apps/cms via a subtree sync?"}
-  Merge -->|Yes| MergeCommit["Merge commit — never squash or rebase"]
-  Merge -->|No| AnyMerge["Any merge strategy"]
+  Review --> MergeCommit["Merge commit — the only method GitHub offers repo-wide (issue #149)"]
   MergeCommit --> Changeset["Changeset, if public/structural"]
-  AnyMerge --> Changeset
   Changeset --> Due{"Backlog due? (audit:rilis)"}
   Due -->|Yes| Release["bun run release"]
   Due -->|No| Done["Done"]
@@ -52,7 +49,7 @@ flowchart TD
 
 The following always need a recorded maintainer decision, however small the change looks:
 
-- Merging a `git subtree pull` PR with anything other than a merge commit.
+- Merging a `git subtree pull` PR with anything other than a merge commit — since issue #149 this is also mechanically impossible repository-wide, not only a rule to follow.
 - Loosening a gate to make CI green. If the rule really is wrong, change it deliberately, with its reasoning, and record why in the PR.
 - Editing `apps/cms`'s source in a way that a future `git subtree pull` is likely to conflict with or silently overwrite, rather than contributing the change upstream first.
 

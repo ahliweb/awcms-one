@@ -41,7 +41,7 @@ Skrip akar `dev`/`build`/`check`/`serve` mendelegasikan ke `apps/storefront` (`c
 5. **Tulis sebuah changeset** di [`.changesets/`](.changesets/README.md) di iterasi yang sama, bukan dikumpulkan di akhir.
 6. **Jalankan `bun test`** (dan `bun run check:cms` bila perubahan menyentuh `apps/cms/`); keduanya harus bersih.
 7. **Buka Pull Request** dengan `Closes #<issue>`. Merge setelah review dan CI hijau.
-8. **Bila PR menyinkronkan `apps/cms/` dari upstream** (`git subtree pull`), ia **wajib** di-merge dengan merge commit — jangan pernah di-squash, jangan pernah di-rebase. "The subtree embed" di `AGENTS.md` menjelaskan alasannya; tidak ada apa pun di pengaturan repo ini saat ini yang mencegah squash secara mekanis, jadi ini aturan yang harus diingat, bukan yang sudah ditegakkan CI.
+8. **Bila PR menyinkronkan `apps/cms/` dari upstream** (`git subtree pull`), ia **wajib** di-merge dengan merge commit — jangan pernah di-squash, jangan pernah di-rebase. "The subtree embed" di `AGENTS.md` menjelaskan alasannya. Ini kini juga berlaku secara mekanis untuk setiap PR di repositori ini: squash dan rebase merge dinonaktifkan di seluruh repositori (issue #149), jadi merge commit adalah satu-satunya metode yang ditawarkan tombol merge GitHub.
 9. **Saat backlog changeset yang menunggu jatuh tempo** (`bun run audit:rilis` memerah melewati 20 berkas atau 14 hari), seorang maintainer menjalankan `bun run release`, yang melipat backlog ke `CHANGELOG.md` dan menandai tag `vX.Y.Z`.
 
 ### Penamaan branch
