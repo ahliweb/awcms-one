@@ -11,6 +11,13 @@
  * false`, which the CMS answers with `shippingOptions`/`canCheckout` still
  * computed (just with no shipping cost added yet) so a shopper sees an
  * accurate "this line is out of stock" flag before ever reaching checkout.
+ *
+ * 2026-09 redesign (issue #167): `renderLines` now builds a `.stepper`
+ * −/n/+ control per line (an `<output>`, not editable by typing) instead of
+ * a bare `<input type="number">`, and a right-aligned `.toko-line-sum`
+ * (from `quoteLine.lineTotal`, never computed here — ADR-0003). Both still
+ * call the SAME `updateCartLineQuantity`/`removeCartLine` this file always
+ * called; only the affordance changed.
  */
 import { loadCart, removeCartLine, updateCartLineQuantity } from "../lib/keranjang-klien";
 import type { Cart } from "../lib/keranjang-kontrak";
@@ -90,10 +97,12 @@ if (root) {
       info.className = "toko-line-info";
 
       const title = document.createElement("p");
+      title.className = "toko-line-title";
       title.textContent = line.variantName ? `${line.name} (${line.variantName})` : line.name;
       info.appendChild(title);
 
       const price = document.createElement("p");
+      price.className = "toko-line-variant is-mono";
       price.textContent = formatPrice(quoteLine?.unitPrice ?? line.unitPrice);
       info.appendChild(price);
 
@@ -105,35 +114,56 @@ if (root) {
         info.appendChild(badge);
       }
 
-      const qtyWrap = document.createElement("div");
-      qtyWrap.className = "toko-qty";
-
-      const qtyInput = document.createElement("input");
-      qtyInput.type = "number";
-      qtyInput.min = String(line.minPurchase);
-      qtyInput.max = String(line.maxQuantity);
-      qtyInput.value = String(line.quantity);
-      qtyInput.setAttribute("aria-label", `Jumlah ${line.name}`);
-      qtyInput.addEventListener("change", () => {
-        const next = Number(qtyInput.value);
-        if (!Number.isFinite(next)) return;
-        updateCartLineQuantity(index, Math.trunc(next));
-        refresh();
-      });
-      qtyWrap.appendChild(qtyInput);
-
       const removeButton = document.createElement("button");
       removeButton.type = "button";
+      removeButton.className = "toko-line-remove";
       removeButton.textContent = "Hapus";
       removeButton.setAttribute("aria-label", `Hapus ${line.name} dari keranjang`);
       removeButton.addEventListener("click", () => {
         removeCartLine(index);
         refresh();
       });
-      qtyWrap.appendChild(removeButton);
-
-      info.appendChild(qtyWrap);
+      info.appendChild(removeButton);
       li.appendChild(info);
+
+      // A `.stepper`-styled −/n/+ control (issue #167) over the SAME
+      // `updateCartLineQuantity` call the previous plain `<input
+      // type="number">` made — direct typing is traded for the mockup's
+      // tap-only affordance, but the underlying data operation (and its
+      // min/max clamping) is unchanged.
+      const stepper = document.createElement("div");
+      stepper.className = "stepper";
+
+      const decButton = document.createElement("button");
+      decButton.type = "button";
+      decButton.textContent = "−";
+      decButton.setAttribute("aria-label", `Kurangi jumlah ${line.name}`);
+
+      const qtyOutput = document.createElement("output");
+      qtyOutput.textContent = String(line.quantity);
+
+      const incButton = document.createElement("button");
+      incButton.type = "button";
+      incButton.textContent = "+";
+      incButton.setAttribute("aria-label", `Tambah jumlah ${line.name}`);
+
+      function applyQuantity(next: number): void {
+        const clamped = Math.min(line.maxQuantity, Math.max(line.minPurchase, Math.trunc(next)));
+        updateCartLineQuantity(index, clamped);
+        refresh();
+      }
+
+      decButton.addEventListener("click", () => applyQuantity(line.quantity - 1));
+      incButton.addEventListener("click", () => applyQuantity(line.quantity + 1));
+
+      stepper.append(decButton, qtyOutput, incButton);
+      li.appendChild(stepper);
+
+      const sum = document.createElement("span");
+      sum.className = "toko-line-sum";
+      sum.textContent = quoteLine ? formatPrice(quoteLine.lineTotal) : "";
+      li.appendChild(sum);
+
       linesEl.appendChild(li);
     });
   }

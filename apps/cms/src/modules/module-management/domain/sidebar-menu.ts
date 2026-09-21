@@ -415,6 +415,8 @@ export type SidebarDefaultEntry = {
   requiredPermission?: string;
   /** Issue #118 — carried straight from `ModuleNavigationEntry.requiredFeature`; see that type's own header. */
   requiredFeature?: { moduleKey: string; feature: string };
+  /** See `ModuleNavigationEntry.badgeCount` — carried through unchanged. */
+  badgeCount?: number;
 };
 
 export type SidebarComposeOptions = {
@@ -440,6 +442,8 @@ export type ComposedEntry = {
   label: string;
   icon?: string;
   isCurrent: boolean;
+  /** See `ModuleNavigationEntry.badgeCount` — carried through unchanged. */
+  badgeCount?: number;
 };
 
 export type ComposedModuleGroup = {
@@ -499,7 +503,8 @@ export function buildDefaultSidebarModel(
         icon: nav.icon ?? resolveSidebarIcon(nav.labelKey),
         order: nav.order ?? 0,
         requiredPermission: nav.requiredPermission,
-        requiredFeature: nav.requiredFeature
+        requiredFeature: nav.requiredFeature,
+        badgeCount: nav.badgeCount
       });
     }
   }
@@ -596,7 +601,8 @@ export function composeSidebarSections(
             path: entry.path,
             label: resolveSidebarLabel(entry.labelKey),
             icon: entry.icon,
-            isCurrent: entry.path === options.currentPath
+            isCurrent: entry.path === options.currentPath,
+            badgeCount: entry.badgeCount
           }))
         }
       });

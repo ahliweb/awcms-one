@@ -178,3 +178,221 @@
   font-weight: 600;
   text-decoration: none;
 }
+
+/* ===========================================================================
+ * 2026-09 redesign — issue #167 (cart / checkout / tracking / wishlist)
+ *
+ * Builds on `global.css`'s issue #166 primitives, additive over every class
+ * above (`.toko-section`, `.toko-line`, `.toko-summary`, `.toko-field`,
+ * `.toko-banner`, `.toko-timeline`, …) — none of them is redefined, only
+ * extended or given new sibling classes.
+ * ========================================================================= */
+
+/* --- Cart: two-column layout, sticky summary on desktop ------------------- */
+
+.cart-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 22rem);
+  gap: 1.5rem;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .cart-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cart-main {
+  min-width: 0;
+}
+
+@media (min-width: 901px) {
+  .cart-summary {
+    position: sticky;
+    top: 1.5rem;
+  }
+}
+
+.cart-summary .toko-section {
+  box-shadow: var(--shadow-md);
+}
+
+.empty-state .btn {
+  margin-top: 0.75rem;
+}
+
+.empty-state p + p {
+  margin-top: 0.35rem;
+}
+
+/* --- Cart line card: nicer card, stepper, right-aligned line total -------- */
+
+.toko-line {
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-l);
+  background: var(--bg-surface);
+  margin-bottom: 0.75rem;
+}
+
+.toko-line:last-child {
+  margin-bottom: 0;
+}
+
+.toko-line-image {
+  width: 68px;
+  height: 68px;
+  border-radius: var(--radius-m);
+}
+
+.toko-line-title {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.toko-line-variant {
+  color: var(--text-muted);
+  font-size: var(--text-xs);
+}
+
+.toko-line-remove {
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin-top: 0.2rem;
+  color: var(--status-danger-fg);
+  font-weight: 600;
+  font-size: var(--text-xs);
+  cursor: pointer;
+  min-height: 44px;
+}
+
+.toko-line-sum {
+  min-width: 6.5rem;
+  text-align: right;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+/* --- Checkout: step pills -------------------------------------------------- */
+
+.checkout-steps {
+  margin-bottom: 0.5rem;
+}
+
+/* `.segmented`'s own CSS (`global.css`) only styles `button`/`a` children —
+   these steps are plain `<span>`s (see `checkout.astro`'s own comment for
+   why), so the same visual is repeated here for `span`. */
+.checkout-steps span {
+  display: inline-flex;
+  align-items: center;
+  height: 38px;
+  padding: 0 0.9rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-full);
+  background: var(--bg-surface);
+  color: var(--text-secondary);
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: var(--text-xs);
+}
+
+.checkout-steps span[aria-current="true"] {
+  border-color: var(--color-primary, #10b981);
+  background: var(--bg-subtle);
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+/* --- Checkout / tracking: shipping + payment radio cards ------------------ */
+
+.toko-shipping-option,
+[data-payment-options] .toko-field {
+  flex-direction: row;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.8rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-l);
+  background: var(--bg-surface);
+  margin-bottom: 0.6rem;
+  cursor: pointer;
+}
+
+.toko-shipping-option:has(input:checked),
+[data-payment-options] .toko-field:has(input:checked) {
+  border-color: var(--color-primary, #10b981);
+  background: var(--bg-subtle);
+}
+
+.toko-shipping-option:has(input:disabled) {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.toko-shipping-option input[type="radio"],
+[data-payment-options] .toko-field input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  flex: none;
+  accent-color: var(--color-primary, #10b981);
+}
+
+/* --- Tracking: status pill, expiry, gateway-pay band, timeline ------------ */
+
+.toko-order-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+[data-order-countdown] {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+}
+
+[data-gateway-status] {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.8rem 0.9rem;
+  border-radius: var(--radius-l);
+  background: var(--status-info-bg);
+  border: 1px solid var(--status-info-border);
+  color: var(--status-info-fg);
+  font-size: var(--text-sm);
+}
+
+[data-gateway-pay] {
+  margin-left: auto;
+}
+
+.toko-timeline li {
+  font-size: var(--text-sm);
+}
+
+/* --- Wishlist grid card: "Ke keranjang" + remove, siblings of `.card` -----
+   Positioned exactly like `ProductCard.astro`'s own `.wishlist-button`
+   overlay (`global.css`'s `.card-wrap { position: relative }`) but as a
+   static row under the card rather than an absolute-positioned heart,
+   since both actions need a visible text label here. */
+.wishlist-grid-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.6rem;
+}
+
+.wishlist-grid-actions .btn {
+  flex: 1;
+}
+
+.wishlist-grid-actions .wishlist-button {
+  position: static;
+  flex: none;
+}
