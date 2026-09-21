@@ -2,6 +2,91 @@
 
 Every entry below is folded from `.changesets/` by `bun run release`, which also tags the release. The version is `MAJOR.MINOR.PATCH`, tagged `vX.Y.Z`; the next version is the largest `bump` declared among the changesets a release folds (see [`.changesets/README.md`](.changesets/README.md)) — never a level chosen at release time from a list of file names.
 
+## [0.10.0] — 2026-09-22
+
+### Storefront redesign — account and affiliate pages
+
+Wave 2 of the 2026-09 redesign (issue #168), built on issue #166's foundation (`.btn`, `.pill`, `.field-label`/`.is-mono`, the 42px form controls) — markup/CSS only across `apps/storefront/src/profil/toko/pages/akun/**`, `masuk.astro`, `daftar.astro`, `apps/storefront/src/styles/akun.css`, and the account scripts' own DOM-building code. The bearer-session client (`akun-sesi.ts`/`akun-klien.ts`) and every data-fetching contract are unchanged; every pre-existing `data-*` hook a test asserts on is unchanged.
+
+- **Account shell**: an avatar tile (initials on `--bg-inverse`), the account's name/e-mail, and a "Keluar" button, plus a persistent side navigation (Ringkasan/Pesanan/Alamat/Pesan/Ulasan/Afiliasi) with `aria-current="page"` on the six account pages.
+- **Ringkasan**: three stat tiles (pesanan / sedang berjalan / wishlist), computed from `akun-klien.ts` functions the client already exposes — no new endpoint. The promo-preference checkbox (issue #115) is unchanged behaviour, restyled.
+- **A shared status-pill tone map** across orders/reviews/affiliate/commissions: pending → warning, paid/published/approved/completed/active → success, cancelled/expired/rejected/void/suspended → danger, processing/shipped → info.
+- **Pesanan/Alamat/Pesan/Ulasan**: order rows, address cards ("Utama" pill, dashed "+ Tambah alamat"), message threads (unread pill, arrow), and review cards (mono star rating on a new `--text-rating` token scoped to `akun.css`).
+- **Afiliasi**: a status pill, the referral link in a dashed mono box (a real focusable `<input readonly>`), a "Salin"/"Tersalin!" copy button (behaviour unchanged), four stat tiles, and a commission table.
+- **Masuk/Daftar**: the same 42px form controls, `.field-label`, `.is-mono` phone/OTP inputs, and `.btn` submit/resend controls.
+
+Documented in `docs/ui-ux.md`'s "Design system (2026-09 redesign)" section under a new "Account & affiliate pages, redesigned (issue #168)" heading (+ Indonesian mirror).
+
+### Storefront redesign — commerce pages (home, catalog, product, cart, checkout, tracking, wishlist)
+
+Wave 2 of the 2026-09 redesign (issue #167), built on the foundation issue #166 landed (`.btn`, `.pill`, `.band-inverse`, `.stepper`, `.radio-card`, `.segmented`, `.field-label`/`.is-mono`, the token scales). Markup/CSS only — every client contract (`toko-klien`, `keranjang-kontrak`, `wishlist-kontrak`, the checkout quote/order flow) is unchanged.
+
+- **Home**: the CMS slider now renders on the inverse band as a hero card (badge, heading, copy, primary + secondary CTAs); the flash-sale strip is an amber soft band; product cards carry a price/was/discount row and a "Grosir mulai …" tier line when the product actually has a level-2 price.
+- **Product card** (`ProductCard.astro`, used by home/catalog/category/related-products): a grouped badges row, price/was/discount, tier line, and a 44px wishlist heart hit area.
+- **Catalog** (`/produk`, `/kategori/[slug]`): the sidebar filter card and category-tree rows are restyled (a decorative marker box beside each — still real `<a>` navigation, the documented fallback for "no multi-select client contract to add"), sort/price/stock controls use the new form primitives.
+- **Product detail**: badges, price-tier table in an info-toned `.tier-box`, a `[data-wishlist]` button beside "Tambah ke Keranjang" (wired for free by the site-wide `wishlist-tombol.ts`), a notes list, description before the restyled size-chart table, and `.btn`-toned share actions. No fabricated reviews list is rendered — awcms's contract has no `GET …/storefront/reviews` (only anonymous `POST` submission), so the existing rating-average + sold-count line is the only real review data available.
+- **Cart**: line cards are restyled with a `.stepper` −/n/+ control (still calling the same `updateCartLineQuantity`) and a real line-total column (`quoteLine.lineTotal`, never computed client-side), a two-column layout with the summary sticky on desktop, and a proper `.empty-state`.
+- **Checkout**: a decorative (non-interactive) step-pill row kept in sync by the existing `showStep()`, `.is-mono` phone/postcode fields, and shipping/payment options restyled as `.radio-card`-style rows — all over the unchanged quote/step logic.
+- **Tracking**: mono inputs, a status pill toned by the real order status, and a "Bayar sekarang" band shown exactly when the existing gateway-pending condition is true.
+- **Wishlist**: an info band, and a "Ke keranjang" link beside remove — a real navigation to the product page (a `WishlistItem` snapshot carries no `minPurchase`/`maxQuantity`/`sku`, so there is no honest quantity to add directly).
+
+Documented in `docs/ui-ux.md`'s "Design system (2026-09 redesign)" section (+ Indonesian mirror).
+
+### Storefront redesign foundation — self-hosted type system, tokens, primitives, site chrome
+
+Wave 1 of the 2026-09 redesign (issue #166): everything issues #167/#168/#169 (product, cart/checkout, and account/news-chrome screens) build on, landed on its own so those issues never touch `apps/storefront/src/styles/global.css`'s top-of-file structure or the font vendoring again.
+
+- **Self-hosted type system.** `apps/storefront/public/fonts/` vendors latin-subset `woff2` builds (SIL OFL) of Plus Jakarta Sans (400/500/600/700/800), Lora (400/500/600 + 400 italic), and IBM Plex Mono (400/500) — `@font-face` with `font-display: swap`, `--font-sans`/`--font-serif`/`--font-mono` tokens, and `BaseLayout.astro` preload hints for the three faces above the fold. No Google Fonts, no new CSP origin — every font stays same-origin (`font-src 'self'` unchanged).
+- **New design tokens** in `global.css`: an inverse-band surface, soft status colour pairs, a named link colour, a radius scale, and a type scale — each with a `prefers-color-scheme: dark` counterpart. Brand colour is still read from `/theme-tokens.css`, never hard-coded.
+- **New, additive CSS primitives**: `.btn`, `.pill`, `.band-inverse`, `.field-label`/`.is-mono`, token-driven 42px form controls, `.stepper`, `.radio-card`, `.segmented`, `.section-title` — every pre-existing class (`.card`, `.cart-count`, `.stock-badge`, …) is unchanged.
+- **Site chrome**: a dark utility bar (Lacak pesanan / Berita / Akun saya), a brand-tile wordmark, and a footer "Kanal" column, all profile-gated through `apps/storefront/src/config/profil.ts` exactly like every existing chrome link.
+
+Documented in `docs/ui-ux.md`'s new "Design system (2026-09 redesign)" section (+ Indonesian mirror), with matching updates to `docs/aksesibilitas.md`/`docs/responsif.md` and `apps/storefront/README.md`.
+
+### Storefront redesign — news chrome, news home and article
+
+Wave 2 of the 2026-09 redesign (issue #169), building on issue #166's foundation (`docs/ui-ux.md`'s "Design system (2026-09 redesign)" section) — markup/CSS restyling only, no data or behaviour change beyond what is called out below.
+
+- **News chrome**: the date bar (`BilahUtilitas.astro`) is now `--news-bar-bg` (a new, news-only dark token) with a mono date, a static "· WIB" suffix, and — only when the `toko` group is also active — "Ke toko" and "Akun" (reusing `Header.astro`'s own `[data-akun-tautan]` account-link contract). The masthead (`NavBerita.astro`) is set in `--font-serif` with a mono kicker from `identity.description` when the CMS has one. The primary nav's active item gets a 2px `--news-accent` underline (a new, news-only red token — never the CMS-driven brand colour). The "Terkini" ticker (`Ticker.astro`) is now a light band with the label as a red pill carrying a reduced-motion-safe pulsing dot, and each headline truncates to one line.
+- **News home** (`HalamanDepanBerita.astro`): a "Headline" tag and Lora typography on the hero block; Lora titles and a sky rubric eyebrow on the 6-card grid (`berita.css`, safe because that file loads only on the news layout). The sidebar's tested Terbaru/Mitra Borneo tabs are kept as-is (see `Sidebar.astro`'s own docblock for why); the always-visible "Terpopuler" section gets a mono, zero-padded 2-digit index. The newsletter card moves onto `.band-inverse`, wrapping the same double opt-in form.
+- **Article** (`ArtikelView.astro`): Lora 32px title, a new lede paragraph from `post.excerpt` (no new fetch — the field already existed), decorative byline avatar initials, mono byline dates, `--font-serif` 16px/1.85 body, and a restyled pull-quote (3px `--color-primary` rule, italic, on a subtle background). The "Dengarkan berita ini" player gets a real 4px visual progress bar, wired from the same unit-index numbers `dengar.ts` already tracked. The share row keeps its 44px touch target (this repo's own accessibility floor) and only changes shape from a circle to a rounded square.
+- **Deliberately not done**: the mockup's "Produk terkait dari toko" sidebar box — nothing in this app today correlates an article with a set of products, and this issue's own rules forbid adding a new build-time fetch to invent one.
+
+Documented in `docs/ui-ux.md`'s "News chrome, news home and article (issue #169)" subsection (+ Indonesian mirror).
+
+### apps/cms synced to ahliweb/awcms 8c64528d — the admin chrome restyle
+
+Issue #170's upstream half landed as awcms PR #813 and is pulled in here with a
+`git subtree pull` merged by merge commit (AGENTS.md, "The subtree embed"). The
+admin gains the 2026-09-21 redesign's chrome without any local patch to
+upstream files: a dark sidebar rail on a new `--color-sidebar-*` token family
+(the mockup's faint text corrected to clear WCAG AA), a brand tile + tenant line,
+count-badge and status-card slots, and shared primitives every screen can use —
+`.admin-stat-card`, `.admin-status-pill[data-tone]`, `.admin-segmented`,
+`.admin-bulk-bar`, `.admin-two-pane`, `.admin-toggle`, `.admin-timeline`,
+`.admin-media-grid`. Issue #171 re-composes this repo's own commerce screens on
+them.
+
+- Conflicts resolved by keeping both sides: `requiredFeature` (#118) and
+  upstream's new `badgeCount` on sidebar entries; `client-asset-budget.ts`'s
+  app budget is this repo's 246,500 plus upstream's +8,000 chrome delta.
+- AGENTS.md's "Known local divergences" list now records the three
+  divergences this sync surfaced (AdminLayout/sidebar model, admin-screens.css,
+  the asset budget) beside the original version-check patch.
+
+### Commerce admin screens re-composed on the new admin primitives (issue #171)
+
+Every `apps/cms` commerce admin screen is now built on the shared primitives issue #170's admin-chrome subtree sync (upstream awcms#813) added to `admin.css` — `.admin-stat-card`, `.admin-status-pill`, `.admin-segmented`, `.admin-bulk-bar`, `.admin-two-pane`, `.admin-toggle`, `.admin-timeline` — rather than page-specific markup, so the twelve commerce screens read as one coherent surface with the rest of the redesigned admin chrome. Real data only throughout: a screen omits a stat it cannot honestly compute (the dashboard's missing conversion-rate stat, for lack of a funnel/visit projection) rather than inventing one.
+
+- **New `/admin/commerce-dashboard`**: stat cards (orders/revenue today, low-stock count), a 14-day revenue trend from the existing sales-report projections, a "needs attention" list (orders awaiting confirmation, reviews awaiting moderation, unread inbox threads, pending affiliate commissions — each permission-gated), and a recent-orders table. All figures come from the new `fetchDashboardSummary` (`apps/cms/src/modules/commerce/application/admin-dashboard.ts`).
+- **New order detail page** (`/admin/commerce-orders/{id}.astro`): lines, totals, an `.admin-timeline` built from `order_events`, and the existing gateway-session/payment-events panel.
+- **New shared `CommerceMarketingTabs.astro`** (`apps/cms/src/components/`): one `.admin-segmented` tab strip across flash sales/vouchers/sliders/popup/testimonials, replacing five near-duplicate hand-rolled headers.
+- Products, orders list, POS, reports, inbox, affiliates, and settings restyled on the primitives above; POS deliberately keeps its own `.pos-layout` two-pane grid rather than the generic `.admin-two-pane`, since its cart side needs POS-specific controls the generic primitive does not model.
+- A new sidebar entry, `admin.layout.nav_commerce_dashboard`, gets its label/icon in `sidebar-menu.ts`'s `SIDEBAR_LABELS`/`DEFAULT_SIDEBAR_ICONS`, plus catalog entries in `locales/en.po`/`locales/id.po` ("Commerce overview" / "Ringkasan komersial").
+- `apps/cms/scripts/client-asset-budget.ts`'s `APP_BUDGET_BYTES` raised 254,500 → 259,000 B (measured 258,829 B) — markup/CSS reuse of existing primitives, not a new client script.
+
+Documented in `docs/cms.md` (+ Indonesian mirror, the admin-screens table and a new re-composition section) and `docs/ui-ux.md` (+ mirror, a new "Admin (2026-09 redesign, issue #171)" section); `.claude/skills/awcms-one-commerce/SKILL.md` (+ mirror) gets an "Admin screen composition" note naming the primitives.
+
 ## [0.9.0] — 2026-09-21
 
 ### Merge commit is now the only merge method — subtree-sync protection is mechanical, not procedural
