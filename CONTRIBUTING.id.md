@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](CONTRIBUTING.md)
 
-<!-- i18n-source-hash: sha256:5a02433237e7ec6675ab034f737d7a0c0999787f6c2c4e5392f6fa11a10e72b5 -->
+<!-- i18n-source-hash: sha256:bb8db4c074fe27637e055617ea1a351cc67308fd840d5f7601c840a5b5a48765 -->
 
 # Panduan Kontribusi
 

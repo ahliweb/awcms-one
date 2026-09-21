@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](SECURITY.md)
 
-<!-- i18n-source-hash: sha256:d923737b36020a6c915dfc1a9c820331fd1bca8ec623de9f49fa6f447bc45158 -->
+<!-- i18n-source-hash: sha256:db61660d7667acc3fe7511193a0f7b64223855a9c9177451da84c161a7538a86 -->
 
 # Kebijakan Keamanan
 
