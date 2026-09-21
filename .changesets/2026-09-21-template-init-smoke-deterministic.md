@@ -58,3 +58,31 @@ pattern; `apps/storefront/tests/stub-lifecycle.ts`'s own docblock has the
 full account. No test's assertions changed. `docs/pengujian.md`/`.id.md`
 now describe this lifecycle in place of the old shared-deadline-only
 description.
+
+## A third, root-cause finding: `TEMPLATE_INIT_TEST_SCOPE=root` never scoped anything
+
+`main` itself went red after PR #160 merged (run `35594610231`,
+`template:init`'s own full-run-in-a-temp-copy test): "killed 1 dangling
+process / bun test tests (root gate tests only) failed (exit signal
+SIGTERM)", right after the nested run started
+`apps/storefront/tests/profil-build-smoke.test.ts`. Reproduced directly: a
+bare positional argument to `bun test` is a path **filter** (a substring
+match against every test file's path), not a directory restriction —
+`bun test tests` matches `apps/storefront/tests/*.test.ts` too, because
+that path also contains the substring `tests`. `TEMPLATE_INIT_TEST_SCOPE=
+root`'s `bun test tests` therefore silently re-ran the WHOLE workspace
+suite (every storefront build-smoke test and its own stub-CMS
+`astro build`) inside whatever budget the outer caller sized for "root
+gate tests only" — exactly the double-build contention this option exists
+to remove, decided by a race rather than prevented by the scope.
+
+`tools/template-init/gates.mjs` now invokes `bun test ./tests/` (a leading
+`./` is resolved as a real directory, never as a filter) via a new,
+separately-exported `testScopeArgs(scope)`, so the exact argv can be
+asserted directly rather than trusted from a docblock —
+`tests/gerbang-test-scope.test.mjs` is the permanent regression test: a
+temp directory with a root `tests/` file and a nested `apps/x/tests/`
+file, proving `testScopeArgs("root")` runs exactly the root one (and, for
+contrast, that the OLD `["test", "tests"]` argv runs both). `docs/
+template.md`/`.id.md` now explain the filter-vs-directory distinction
+where `TEMPLATE_INIT_TEST_SCOPE` is documented.
