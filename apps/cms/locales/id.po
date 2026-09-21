@@ -5827,3 +5827,146 @@ msgstr "Anda tidak memiliki izin untuk melihat riwayat POS."
 msgid "{count} POS sale"
 msgid_plural "{count} POS sales"
 msgstr[0] "{count} penjualan POS"
+
+#. Issue #171 -- commerce admin screens re-composed on the new admin primitives
+msgid "0 selected"
+msgstr "0 dipilih"
+
+msgid "Active affiliates"
+msgstr "Afiliasi aktif"
+
+msgid "Affiliate figures"
+msgstr "Angka afiliasi"
+
+msgid "Commerce dashboard"
+msgstr "Dasbor komersial"
+
+msgid "Daily gross revenue bar chart"
+msgstr "Grafik batang pendapatan kotor harian"
+
+msgid "Insurance"
+msgstr "Asuransi"
+
+msgid "Key figures"
+msgstr "Angka utama"
+
+msgid "Lines"
+msgstr "Baris pesanan"
+
+msgid "Lines, totals, and the order's own status timeline."
+msgstr "Baris pesanan, total, dan linimasa status pesanan itu sendiri."
+
+msgid "Low-stock products"
+msgstr "Produk stok menipis"
+
+msgid "Marketing sections"
+msgstr "Bagian pemasaran"
+
+msgid "Needs restock"
+msgstr "Perlu restok"
+
+msgid "No orders yet."
+msgstr "Belum ada pesanan."
+
+msgid "No sales report data for this period yet."
+msgstr "Belum ada data laporan penjualan untuk periode ini."
+
+msgid "No status history recorded for this order yet."
+msgstr "Belum ada riwayat status yang tercatat untuk pesanan ini."
+
+msgid "Nothing needs attention right now."
+msgstr "Tidak ada yang perlu perhatian saat ini."
+
+msgid "Order detail"
+msgstr "Detail pesanan"
+
+msgid "Order lines"
+msgstr "Baris pesanan"
+
+msgid "Orders awaiting payment confirmation"
+msgstr "Pesanan menunggu konfirmasi pembayaran"
+
+msgid "Orders paid"
+msgstr "Pesanan terbayar"
+
+msgid "Orders today"
+msgstr "Pesanan hari ini"
+
+msgid "Pending affiliate commissions"
+msgstr "Komisi afiliasi tertunda"
+
+msgid "Pending commissions"
+msgstr "Komisi tertunda"
+
+msgid "Pending commission total"
+msgstr "Total komisi tertunda"
+
+msgid "Per category"
+msgstr "Per kategori"
+
+msgid "Per product"
+msgstr "Per produk"
+
+msgid "Quick status filter"
+msgstr "Filter status cepat"
+
+msgid "Recent orders"
+msgstr "Pesanan terbaru"
+
+msgid "Report breakdown"
+msgstr "Rincian laporan"
+
+msgid "Revenue, last 14 days"
+msgstr "Pendapatan, 14 hari terakhir"
+
+msgid "Revenue today"
+msgstr "Pendapatan hari ini"
+
+msgid "Reviews awaiting moderation"
+msgstr "Ulasan menunggu moderasi"
+
+msgid "Select"
+msgstr "Pilih"
+
+msgid "Select a conversation to view its messages."
+msgstr "Pilih percakapan untuk melihat pesannya."
+
+msgid "Select this product"
+msgstr "Pilih produk ini"
+
+msgid "Sliders"
+msgstr "Slider"
+
+msgid "The dashboard could not be loaded right now. Please try again later."
+msgstr "Dasbor tidak dapat dimuat saat ini. Silakan coba lagi nanti."
+
+msgid "The order could not be loaded right now. Please try again later."
+msgstr "Pesanan tidak dapat dimuat saat ini. Silakan coba lagi nanti."
+
+msgid "This order could not be found."
+msgstr "Pesanan ini tidak ditemukan."
+
+msgid "Timeline"
+msgstr "Linimasa"
+
+msgid "Today's orders and revenue, the 14-day trend, and what needs attention."
+msgstr "Pesanan dan pendapatan hari ini, tren 14 hari, dan yang perlu perhatian."
+
+msgid "Totals"
+msgstr "Total"
+
+msgid "Totals for the selected range"
+msgstr "Total untuk rentang yang dipilih"
+
+msgid "Unread inbox threads"
+msgstr "Percakapan kotak masuk belum dibaca"
+
+msgid "You do not have permission to view the commerce dashboard."
+msgstr "Anda tidak memiliki izin untuk melihat dasbor komersial."
+
+msgid "You do not have permission to view this order."
+msgstr "Anda tidak memiliki izin untuk melihat pesanan ini."
+
+msgid "Commerce overview"
+msgstr "Ringkasan komersial"
+

@@ -98,14 +98,15 @@ The code is delivered through a second provider outbox modelled on `email` exact
 
 Every mutating owner route — create, update, delete, restore, status transition, payment-confirmation review, review moderation — calls `recordAuditEvent` inside the same RLS-scoped transaction as the write it records, naming the module (`commerce`), the resource type, the resource id, the action, and (for a delete) a `warning` severity. Neither commerce table carries `created_by`/`updated_by`/`deleted_by`, so the audit log is the sole record of actorship for this module, not a supplementary one. The anonymous storefront path writes no audit event for order creation itself (there is no admin actor to attribute it to) — the order's own `order_events` row is that path's equivalent record, timestamped and reason-carrying.
 
-## Admin screens: eleven, covering every permission
+## Admin screens: twelve, covering every permission
 
 <!-- hitung:mulai key=commerce-admin-screens source=table-rows -->
 
-Eleven screens under `apps/cms/src/pages/admin/`, each gated on its area's `read` permission via `loadAdminScreen`, with further inline checks for create/update/delete/restore:
+Twelve screens under `apps/cms/src/pages/admin/`, each gated on its area's `read` permission via `loadAdminScreen`, with further inline checks for create/update/delete/restore:
 
 | Screen | Route | Gated on |
 | --- | --- | --- |
+| Dashboard | `/admin/commerce-dashboard` | `commerce.orders.read` |
 | Products | `/admin/commerce` | `commerce.products.read` |
 | Categories | `/admin/commerce-categories` | `commerce.categories.read` |
 | Flash sales | `/admin/commerce-flash-sales` | `commerce.flash_sales.read` |
@@ -114,13 +115,29 @@ Eleven screens under `apps/cms/src/pages/admin/`, each gated on its area's `read
 | Testimonials | `/admin/commerce-testimonials` | `commerce.testimonials.read` |
 | Popup | `/admin/commerce-popup` | `commerce.popups.read` |
 | Store settings | `/admin/commerce-settings` | `commerce.settings.read` |
-| Orders | `/admin/commerce-orders` | `commerce.orders.read` (no create form) |
+| Orders | `/admin/commerce-orders` (list) and `/admin/commerce-orders/{id}` (detail) | `commerce.orders.read` (no create form) |
 | Customers | `/admin/commerce-customers` | `commerce.customers.read` (no create form) |
 | Reviews | `/admin/commerce-reviews` | `commerce.reviews.read` |
 
 <!-- hitung:selesai -->
 
-Between them, these eleven screens claim every one of the module's 39 declared permissions — verified by `apps/cms`'s `admin-screen-coverage-ledger.ts` gate (`admin:screen-coverage:check`) and two contract test files (`apps/cms/tests/admin-commerce-page-contract.test.ts`, `apps/cms/tests/admin-commerce-marketing-page-contract.test.ts`). The Orders and Customers screens have no create form by design — see "Permissions" above.
+Between them, these twelve screens claim every one of the module's 39 declared permissions — verified by `apps/cms`'s `admin-screen-coverage-ledger.ts` gate (`admin:screen-coverage:check`) and two contract test files (`apps/cms/tests/admin-commerce-page-contract.test.ts`, `apps/cms/tests/admin-commerce-marketing-page-contract.test.ts`). The Orders and Customers screens have no create form by design — see "Permissions" above. The order detail page (`apps/cms/src/pages/admin/commerce-orders/[id].astro`, issue #171) is a route under the Orders screen's own permission, not a separately counted screen for coverage purposes — it renders the order's lines, totals, an `.admin-timeline` built from `order_events`, and the existing gateway-session/payment-events panel.
+
+### The 2026-09-21 admin-chrome re-composition (issue #171)
+
+Every commerce admin screen above (bar POS's own bespoke two-pane layout — see below) is now built on the shared primitives the admin-chrome restyle added to `admin.css` (issue #170 / upstream awcms#813) rather than page-specific markup:
+
+- **Dashboard** (`/admin/commerce-dashboard`, new) — `.admin-stat-card` tiles for orders today, revenue today, and low-stock count (no conversion-rate stat: no funnel/visit projection exists yet to compute one from, so it is omitted rather than invented); a 14-day revenue trend read from the existing sales-report projections (issue #117); a "needs attention" list of orders awaiting confirmation, reviews awaiting moderation, unread inbox threads, and pending affiliate commissions, each only shown when the viewer holds that resource's own `read` permission and, where relevant, the feature is on; and a recent-orders table reusing `commerce-orders.astro`'s row shape with `.admin-status-pill`. Every number comes from `fetchDashboardSummary` (`apps/cms/src/modules/commerce/application/admin-dashboard.ts`) reading a real table or the real sales-report projection — nothing on this screen is a placeholder.
+- **Products** (`/admin/commerce`) — an `.admin-segmented` status filter (Semua/Terbit/Draf) and an `.admin-bulk-bar` for the existing category/publish/archive bulk actions.
+- **Orders** (`/admin/commerce-orders`) — an `.admin-segmented` status-tabs filter and `.admin-status-pill` per row; the new detail page (`/admin/commerce-orders/{id}`) adds an `.admin-timeline` built from `order_events`, keeping the existing gateway-session/payment-events panel unchanged.
+- **POS** (`/admin/commerce-pos`) — kept its own `.pos-layout` two-pane grid (product search + cart) rather than the generic `.admin-two-pane` primitive, because the cart side needs POS-specific controls (stepper, tendered-amount/change, a `@media print` receipt) the generic primitive does not model; the money figures reuse `.admin-status-pill` for the change/paid indicator.
+- **Reports** (`/admin/commerce-reports`) — `.admin-stat-card`s for orders-paid/gross/etc. plus a range `.admin-segmented` and the existing Per produk/Per kategori tabs.
+- **Marketing** (flash sales, vouchers, sliders, popup, testimonials) — a new shared `CommerceMarketingTabs.astro` component (`apps/cms/src/components/`) renders one `.admin-segmented` tab strip with `aria-current` navigation links across all five screens, replacing five near-identical hand-rolled headers.
+- **Inbox** (`/admin/commerce-inbox`) — `.admin-two-pane` (thread list + conversation), with an `.admin-segmented` status filter and the existing closed-thread state kept.
+- **Affiliates** (`/admin/commerce-affiliates`) — `.admin-stat-card`s for active-affiliate/commission counts; the approve/reject commission table is unchanged.
+- **Settings** (`/admin/commerce-settings`) — the existing feature toggles now render as `.admin-toggle` switches, and each integration provider (WhatsApp, Midtrans, RajaOngkir) gets an `.admin-stat-card` with an `.admin-status-pill` showing configured/not, derived from env presence only — never a secret value.
+
+No product-images/media-library screen changed in this issue: `apps/cms` has no dedicated commerce media-grid screen today (images are managed inline per product/slider/testimonial, not through a standalone gallery), so `.admin-media-grid` was not applied here — it remains an available primitive for whichever screen adopts it next.
 
 ## Media: product images, sliders, testimonials — resolved, not yet uploaded through this repo's own tooling
 

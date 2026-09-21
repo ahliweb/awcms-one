@@ -283,6 +283,30 @@ function formatTimestamp(value: Date | string | null): string {
           hidden
         />
 
+        <section
+          class="admin-dashboard-stats fade-in-up"
+          aria-label={t("Totals for the selected range")}
+        >
+          <div class="admin-stat-card">
+            <span class="admin-stat-card-label">{t("Orders paid")}</span>
+            <span class="admin-stat-card-value">
+              {count(totals.ordersPaid)}
+            </span>
+          </div>
+          <div class="admin-stat-card">
+            <span class="admin-stat-card-label">{t("Gross")}</span>
+            <span class="admin-stat-card-value">
+              {money(String(totals.gross))}
+            </span>
+          </div>
+          <div class="admin-stat-card">
+            <span class="admin-stat-card-label">{t("Net")}</span>
+            <span class="admin-stat-card-value">
+              {money(String(totals.net))}
+            </span>
+          </div>
+        </section>
+
         {projections.length > 0 && (
           <section
             class="admin-section fade-in-up"
@@ -414,6 +438,36 @@ function formatTimestamp(value: Date | string | null): string {
             </table>
           </div>
         </section>
+
+        {/* CSS-only tab switch (no JS, same "checkbox/radio + label" pattern
+            `AdminLayout.astro`'s own sidebar drawer already uses for a
+            no-script interactive control) between the two sections below —
+            a `sr-only` radio pair driving `~` sibling visibility. */}
+        <div
+          class="admin-segmented fade-in-up"
+          role="radiogroup"
+          aria-label={t("Report breakdown")}
+        >
+          <input
+            type="radio"
+            name="sales-report-tab"
+            id="sales-tab-product"
+            class="sr-only"
+            checked
+          />
+          <label class="admin-segmented-option" for="sales-tab-product">
+            {t("Per product")}
+          </label>
+          <input
+            type="radio"
+            name="sales-report-tab"
+            id="sales-tab-category"
+            class="sr-only"
+          />
+          <label class="admin-segmented-option" for="sales-tab-category">
+            {t("Per category")}
+          </label>
+        </div>
 
         <section
           class="admin-section fade-in-up"

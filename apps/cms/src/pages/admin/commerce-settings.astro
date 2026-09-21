@@ -393,17 +393,56 @@ const COURIER_OPTIONS = [
         />
         <p id="commerce-features-success" class="state-notice" hidden />
 
+        {/* "Configured" here means the toggle this settings view already
+            exposes (`courier.enabled`/`gateway.enabled`) — this screen has
+            no separate signal for "the deployment's env credential is set"
+            (that lives in each provider's own module, e.g.
+            `commerce-whatsapp.astro`'s outbox), so the card is honestly
+            worded around the ONE thing this view knows, never a secret
+            value. */}
+        <div class="admin-provider-grid">
+          <div class="admin-stat-card">
+            <span class="admin-stat-card-label">
+              {t("Courier rates (RajaOngkir)")}
+            </span>
+            <span
+              class="admin-status-pill"
+              data-tone={courier.enabled ? "success" : "neutral"}
+            >
+              <span class="admin-status-pill-dot" aria-hidden="true" />
+              {courier.enabled ? t("Enabled") : t("Disabled")}
+            </span>
+          </div>
+          <div class="admin-stat-card">
+            <span class="admin-stat-card-label">
+              {t("Payment gateway (Midtrans)")}
+            </span>
+            <span
+              class="admin-status-pill"
+              data-tone={gateway.enabled ? "success" : "neutral"}
+            >
+              <span class="admin-status-pill-dot" aria-hidden="true" />
+              {gateway.enabled ? t("Enabled") : t("Disabled")}
+            </span>
+          </div>
+        </div>
+
         <form id="commerce-features-form">
           {FEATURE_TOGGLES.map((toggle) => (
-            <label>
-              <input
-                type="checkbox"
-                name={toggle.key}
-                data-feature-toggle={toggle.key}
-                checked={commerceFeatures[toggle.key]}
-              />{" "}
-              {t(toggle.label)}
-            </label>
+            <p class="admin-feature-toggle-row">
+              <label class="admin-toggle">
+                <input
+                  type="checkbox"
+                  name={toggle.key}
+                  data-feature-toggle={toggle.key}
+                  checked={commerceFeatures[toggle.key]}
+                />
+                <span class="admin-toggle-track">
+                  <span class="admin-toggle-thumb" />
+                </span>
+              </label>
+              <span>{t(toggle.label)}</span>
+            </p>
           ))}
           <button type="submit" id="commerce-features-submit">
             {t("Save features")}

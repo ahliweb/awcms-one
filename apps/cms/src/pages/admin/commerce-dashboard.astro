@@ -1,0 +1,279 @@
+---
+/**
+ * `/admin/commerce-dashboard` — the commerce admin overview (Issue #171).
+ * Composed entirely on the shared primitives the 2026-09-21 admin chrome
+ * restyle added to `admin.css` (Issue #170/awcms#813): `.admin-stat-card`
+ * for orders/revenue/low-stock, plain CSS bars over the existing 14-day
+ * sales-report projection (Issue #117) for the revenue trend, a
+ * "Perlu tindakan" list built from real pending counts (payment
+ * confirmations, review moderation, unread inbox threads, pending affiliate
+ * commissions — each only shown when the viewer can read that resource AND,
+ * where relevant, the feature is on), and the same order summary shape
+ * `commerce-orders.astro` renders, restyled with `.admin-status-pill`.
+ *
+ * No number on this screen is invented: every stat is `fetchDashboardSummary`
+ * (`application/admin-dashboard.ts`) reading an existing table or the
+ * existing sales-report projection. A conversion-rate stat is intentionally
+ * NOT shown — no funnel/visit projection exists yet to compute one from.
+ */
+import AdminLayout from "../../layouts/AdminLayout.astro";
+import "../../styles/admin-screens.css";
+import { loadAdminScreen } from "../../lib/auth/admin-screen";
+import { logAdminPageError } from "../../lib/logging/error-log";
+import { getTranslatorFor } from "../../lib/i18n";
+import { formatCurrency, formatNumber } from "../../lib/i18n/format";
+import { fetchDashboardSummary } from "../../modules/commerce/application/admin-dashboard";
+
+const ssr = Astro.locals.ssrContext!;
+const locale = Astro.locals.locale;
+const { t } = getTranslatorFor(locale);
+const CURRENCY = "IDR";
+const money = (value: string) =>
+  formatCurrency(locale, value, CURRENCY, { maximumFractionDigits: 0 });
+const count = (value: number) => formatNumber(locale, value);
+
+const screen = await loadAdminScreen({
+  ssr,
+  workClass: "reporting",
+  authorize: {
+    moduleKey: "commerce",
+    activityCode: "orders",
+    action: "read"
+  },
+  load: async ({ tx, can }) => {
+    const canReadReviews = await can({
+      moduleKey: "commerce",
+      activityCode: "reviews",
+      action: "read"
+    });
+    const canReadInbox = await can({
+      moduleKey: "commerce",
+      activityCode: "conversations",
+      action: "read"
+    });
+    const canReadAffiliates = await can({
+      moduleKey: "commerce",
+      activityCode: "affiliates",
+      action: "read"
+    });
+
+    const summary = await fetchDashboardSummary(tx, ssr.tenantId, {
+      canReadReviews,
+      canReadInbox,
+      canReadAffiliates
+    });
+
+    return { summary };
+  },
+  onError: (error) => {
+    logAdminPageError(
+      "admin/commerce-dashboard.astro: failed to load dashboard",
+      error,
+      { correlationId: Astro.locals.correlationId }
+    );
+  }
+});
+
+const canRead = screen.state !== "denied";
+const loadError = screen.state === "error";
+const summary = screen.state === "allowed" ? screen.data.summary : null;
+
+const maxRevenue = summary
+  ? Math.max(1, ...summary.revenueDaily.map((d) => Number(d.gross)))
+  : 1;
+
+const ACTION_ITEM_LABEL: Record<string, string> = {
+  confirmations: t("Orders awaiting payment confirmation"),
+  reviews: t("Reviews awaiting moderation"),
+  inbox: t("Unread inbox threads"),
+  affiliate_commissions: t("Pending affiliate commissions")
+};
+
+const STATUS_TONE: Record<string, string> = {
+  pending_payment: "warning",
+  paid: "info",
+  processing: "info",
+  shipped: "primary",
+  completed: "success",
+  cancelled: "danger",
+  expired: "neutral"
+};
+---
+
+<AdminLayout
+  title={t("Commerce dashboard")}
+  description={t(
+    "Today's orders and revenue, the 14-day trend, and what needs attention."
+  )}
+>
+  {
+    !canRead && (
+      <p class="state-notice fade-in-up" id="dashboard-denied">
+        {t("You do not have permission to view the commerce dashboard.")}
+      </p>
+    )
+  }
+  {
+    canRead && loadError && (
+      <p class="state-notice fade-in-up" id="dashboard-error">
+        {t(
+          "The dashboard could not be loaded right now. Please try again later."
+        )}
+      </p>
+    )
+  }
+
+  {
+    canRead && !loadError && summary && (
+      <div class="fade-in-up">
+        <section class="admin-dashboard-stats" aria-label={t("Key figures")}>
+          <div class="admin-stat-card">
+            <span class="admin-stat-card-label">{t("Orders today")}</span>
+            <span class="admin-stat-card-value">
+              {count(summary.today.ordersToday)}
+            </span>
+          </div>
+          <div class="admin-stat-card">
+            <span class="admin-stat-card-label">{t("Revenue today")}</span>
+            <span class="admin-stat-card-value">
+              {money(summary.today.revenueToday)}
+            </span>
+          </div>
+          <div class="admin-stat-card">
+            <span class="admin-stat-card-label">{t("Low-stock products")}</span>
+            <span class="admin-stat-card-value">
+              {count(summary.lowStockCount)}
+            </span>
+            {summary.lowStockCount > 0 && (
+              <span class="admin-status-pill" data-tone="warning">
+                <span class="admin-status-pill-dot" aria-hidden="true" />
+                {t("Needs restock")}
+              </span>
+            )}
+          </div>
+        </section>
+
+        <section
+          class="admin-dashboard-panel"
+          aria-label={t("Revenue, last 14 days")}
+        >
+          <h2 class="admin-dashboard-panel-title">
+            {t("Revenue, last 14 days")}
+          </h2>
+          {summary.revenueDaily.length === 0 ? (
+            <p class="admin-stat-card-caption">
+              {t("No sales report data for this period yet.")}
+            </p>
+          ) : (
+            <ul
+              class="admin-dashboard-bars"
+              role="img"
+              aria-label={t("Daily gross revenue bar chart")}
+            >
+              {summary.revenueDaily.map((day) => {
+                // No inline `style=` (CSP `style-src` has no
+                // `'unsafe-inline'` — see the `awcms-ui-screen` skill's
+                // checklist item 9) — bucket into 11 discrete heights
+                // (`data-h="0"`..`"10"`) that `admin-screens.css` maps to a
+                // `height: N0%` rule each, rather than a continuous inline
+                // custom property.
+                const bucket = Math.round(
+                  Math.max(0.02, Number(day.gross) / maxRevenue) * 10
+                );
+                return (
+                  <li class="admin-dashboard-bar-item">
+                    <span
+                      class="admin-dashboard-bar"
+                      data-h={bucket}
+                      title={`${day.day}: ${money(day.gross)}`}
+                    />
+                    <span class="admin-dashboard-bar-label">
+                      {day.day.slice(5)}
+                    </span>
+                  </li>
+                );
+              })}
+            </ul>
+          )}
+        </section>
+
+        <section
+          class="admin-dashboard-panel"
+          aria-label={t("Needs attention")}
+        >
+          <h2 class="admin-dashboard-panel-title">{t("Needs attention")}</h2>
+          {summary.actionItems.length === 0 ? (
+            <p class="admin-stat-card-caption">
+              {t("Nothing needs attention right now.")}
+            </p>
+          ) : (
+            <ul class="admin-dashboard-action-list">
+              {summary.actionItems.map((item) => (
+                <li>
+                  <a href={item.href} class="admin-dashboard-action-link">
+                    <span>{ACTION_ITEM_LABEL[item.kind] ?? item.kind}</span>
+                    <span class="admin-status-pill" data-tone="warning">
+                      {count(item.count)}
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          )}
+        </section>
+
+        <section aria-label={t("Recent orders")}>
+          <h2 class="admin-dashboard-panel-title">{t("Recent orders")}</h2>
+          <div class="data-table-scroll">
+            <table class="data-table data-table--stack">
+              <caption class="sr-only">{t("Recent orders")}</caption>
+              <thead>
+                <tr>
+                  <th scope="col">{t("Order code")}</th>
+                  <th scope="col">{t("Customer")}</th>
+                  <th scope="col">{t("Status")}</th>
+                  <th scope="col">{t("Total")}</th>
+                  <th scope="col">{t("Placed")}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {summary.recentOrders.length === 0 ? (
+                  <tr>
+                    <td class="data-table-empty" colspan={5}>
+                      {t("No orders yet.")}
+                    </td>
+                  </tr>
+                ) : (
+                  summary.recentOrders.map((order) => (
+                    <tr>
+                      <td data-label="Order code">
+                        <span class="cell-code">{order.orderCode}</span>
+                      </td>
+                      <td data-label="Customer">
+                        {order.customerName} ({order.customerPhoneMasked})
+                      </td>
+                      <td data-label="Status">
+                        <span
+                          class="admin-status-pill"
+                          data-tone={STATUS_TONE[order.status] ?? "neutral"}
+                        >
+                          <span
+                            class="admin-status-pill-dot"
+                            aria-hidden="true"
+                          />
+                          {order.status}
+                        </span>
+                      </td>
+                      <td data-label="Total">{money(order.total)}</td>
+                      <td data-label="Placed">{order.createdAt}</td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+    )
+  }
+</AdminLayout>

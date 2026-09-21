@@ -11,6 +11,7 @@ import "../../styles/admin-screens.css";
 import { loadAdminScreen } from "../../lib/auth/admin-screen";
 import { logAdminPageError } from "../../lib/logging/error-log";
 import { getTranslatorFor } from "../../lib/i18n";
+import MarketingTabs from "../../components/CommerceMarketingTabs.astro";
 import { listPopups } from "../../modules/commerce/application/popup-directory";
 
 const ssr = Astro.locals.ssrContext!;
@@ -66,6 +67,7 @@ const showActions = canUpdate || canDelete;
     "At most one active popup per tenant, shown on the storefront by its own frequency rule."
   )}
 >
+  <MarketingTabs active="popup" locale={Astro.locals.locale} />
   {
     !canRead && (
       <p class="state-notice fade-in-up" id="popups-denied">

@@ -429,6 +429,18 @@ export const commerceModule = defineModule({
   // `admin.menu_type.commerce` (`sidebar-menu.ts`) predates this module by
   // design — ADR-0035 reserved the slot.
   navigation: [
+    // Issue #171 — the commerce overview: today's orders/revenue, the 14-day
+    // sales-report trend, and a real "needs attention" list. Gated on
+    // `orders.read` (the same permission `commerce-orders.astro` uses) since
+    // that is the narrowest permission that already covers the page's own
+    // primary content; the page's own `can()` checks additionally hide each
+    // "needs attention" entry a viewer cannot read.
+    {
+      labelKey: "admin.layout.nav_commerce_dashboard",
+      path: "/admin/commerce-dashboard",
+      order: 0,
+      requiredPermission: "commerce.orders.read"
+    },
     {
       labelKey: "admin.layout.nav_commerce",
       path: "/admin/commerce",

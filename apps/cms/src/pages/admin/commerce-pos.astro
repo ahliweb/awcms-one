@@ -357,7 +357,8 @@ const paymentLabels: Record<string, string> = {
               <p class="pos-change-line" id="pos-change-line">
                 <span>{t("Change")}</span>
                 <output
-                  class="pos-money"
+                  class="admin-status-pill pos-money"
+                  data-tone="neutral"
                   id="pos-change"
                   for="pos-amount-tendered"
                 >
@@ -931,10 +932,13 @@ const paymentLabels: Record<string, string> = {
     const tendered = tenderedInput?.value.trim() ?? "";
     if (methodSelect?.value !== "cash" || !MONEY.test(tendered)) {
       changeEl.textContent = "0.00";
+      changeEl.dataset.tone = "neutral";
       return;
     }
     const diff = toCents(tendered) - cartSubtotalCents();
     changeEl.textContent = fromCents(diff);
+    changeEl.dataset.tone =
+      diff < 0n ? "danger" : diff === 0n ? "neutral" : "success";
   }
 
   function syncPaymentFields(): void {

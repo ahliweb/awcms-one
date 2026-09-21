@@ -1,0 +1,64 @@
+---
+/**
+ * Shared marketing tab strip (Issue #171 item 6) across the five marketing
+ * screens — flash sales, vouchers, sliders, popup, testimonials. Lives under
+ * `src/components/` (the existing convention for cross-page Astro partials —
+ * see `AuthBrandPanel.astro`/`TenantBadge.astro`), never under
+ * `src/pages/admin/`: `access-chokepoint-check.ts` walks every `.astro` file
+ * under that tree looking for a `loadAdminScreen` call, with no exemption for
+ * an Astro-routing-excluded `_`-prefixed directory, so a shared partial
+ * placed there reads as an 18th screen with no chokepoint and fails the gate.
+ *
+ * Built on the SAME `.admin-segmented` primitive `commerce-orders.astro`'s
+ * status filter and `commerce.astro`'s quick status filter already use —
+ * one shared component, not a sixth hand-rolled tab strip. `aria-current`
+ * (not `aria-selected`) because these are plain navigation links, not a
+ * JS-driven ARIA tablist — see `admin-screens.css`'s
+ * `.admin-segmented-option[aria-current="page"]` rule.
+ */
+import { getTranslatorFor } from "../lib/i18n";
+import type { Locale } from "../lib/i18n/locales";
+
+export type MarketingTabKey =
+  "flash-sales" | "vouchers" | "sliders" | "popup" | "testimonials";
+
+const { active, locale } = Astro.props as {
+  active: MarketingTabKey;
+  locale: Locale | null | undefined;
+};
+
+const { t } = getTranslatorFor(locale);
+
+const TABS: { key: MarketingTabKey; href: string; label: string }[] = [
+  {
+    key: "flash-sales",
+    href: "/admin/commerce-flash-sales",
+    label: t("Flash sales")
+  },
+  { key: "vouchers", href: "/admin/commerce-vouchers", label: t("Vouchers") },
+  { key: "sliders", href: "/admin/commerce-sliders", label: t("Sliders") },
+  { key: "popup", href: "/admin/commerce-popup", label: t("Promo popup") },
+  {
+    key: "testimonials",
+    href: "/admin/commerce-testimonials",
+    label: t("Testimonials")
+  }
+];
+---
+
+<nav
+  class="admin-segmented admin-marketing-tabs fade-in-up"
+  aria-label={t("Marketing sections")}
+>
+  {
+    TABS.map((tab) => (
+      <a
+        class="admin-segmented-option"
+        aria-current={tab.key === active ? "page" : "false"}
+        href={tab.href}
+      >
+        {tab.label}
+      </a>
+    ))
+  }
+</nav>

@@ -11,6 +11,7 @@ import "../../styles/admin-screens.css";
 import { loadAdminScreen } from "../../lib/auth/admin-screen";
 import { logAdminPageError } from "../../lib/logging/error-log";
 import { getTranslatorFor } from "../../lib/i18n";
+import MarketingTabs from "../../components/CommerceMarketingTabs.astro";
 import { listSliders } from "../../modules/commerce/application/slider-directory";
 
 const ssr = Astro.locals.ssrContext!;
@@ -64,6 +65,7 @@ const showActions = canUpdate || canDelete;
   title={t("Home sliders")}
   description={t("The home-page banner deck: image, link, and display order.")}
 >
+  <MarketingTabs active="sliders" locale={Astro.locals.locale} />
   {
     !canRead && (
       <p class="state-notice fade-in-up" id="sliders-denied">

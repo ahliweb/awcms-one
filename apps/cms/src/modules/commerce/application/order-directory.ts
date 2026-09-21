@@ -72,6 +72,7 @@ import {
   isOrderCancellableByCustomer,
   isOrderPayable,
   isOrderReviewable,
+  ORDER_STATUSES,
   type OrderStatus,
   type OrderStatusActor
 } from "../domain/order-status";
@@ -1640,6 +1641,33 @@ export async function listOrdersForAdmin(
     })),
     nextCursor
   };
+}
+
+/**
+ * Issue #171 — one grouped query behind `commerce-orders.astro`'s status
+ * tabs, so a tab's count is real (`GROUP BY status`) rather than the length
+ * of whatever page is currently loaded. Every {@link OrderStatus} is present
+ * in the result with `0` when a tenant has no order in that status, so the
+ * caller never has to guard a missing key.
+ */
+export async function countOrdersByStatus(
+  tx: Bun.SQL,
+  tenantId: string
+): Promise<Record<OrderStatus, number>> {
+  const rows = (await tx`
+    SELECT status, count(*)::int AS status_count
+    FROM awcms_commerce_orders
+    WHERE tenant_id = ${tenantId} AND deleted_at IS NULL
+    GROUP BY status
+  `) as { status: OrderStatus; status_count: number }[];
+
+  const counts = Object.fromEntries(
+    ORDER_STATUSES.map((status) => [status, 0])
+  ) as Record<OrderStatus, number>;
+  for (const row of rows) {
+    counts[row.status] = Number(row.status_count);
+  }
+  return counts;
 }
 
 /**

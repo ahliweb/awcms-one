@@ -49,6 +49,23 @@ Read [ADR-0007](../../../docs/adr/0007-cart-and-checkout-stay-static-the-browser
 - New admin screen: follow `awcms-ui-screen`; gate its `read` view on the matching `commerce.<resource>.read` permission via `loadAdminScreen`, and make sure `admin:screen-coverage:check` sees every permission your change adds claimed somewhere.
 - New domain event: follow `awcms-new-event`; register it in `module.ts`'s `events.publishes`, `domain-event-runtime/domain/event-type-registry.ts`, and `apps/cms/asyncapi/awcms-domain-events.asyncapi.yaml` in the **same** change — a forward-declared event with no registration (`voucher.redeemed` was declared a full increment before it was ever fired) is fine; a fired event with no registration is not.
 
+### Admin screen composition (2026-09 redesign, issue #171)
+
+Every `commerce` admin screen composes on the shared primitives the admin-chrome restyle added to `apps/cms/src/styles/admin.css` (issue #170, subtree sync of upstream awcms#813) — do not hand-roll a stat tile, tab strip, or toggle a screen needs; reuse the existing class:
+
+| Primitive | Use it for |
+| --- | --- |
+| `.admin-stat-card` | A single KPI tile (count/currency/label) — dashboard, reports, affiliates, settings' provider status |
+| `.admin-status-pill[data-tone]` | A small status/tone indicator — order status, provider configured/not, POS change amount |
+| `.admin-segmented` | An equal-weight tab/filter row (`aria-current="page"` for plain navigation links, a JS-driven `aria-selected` only for a real tablist) — status filters, the shared `CommerceMarketingTabs.astro` strip |
+| `.admin-bulk-bar` | The bar that appears once a table row is selection-checked, for a bulk action |
+| `.admin-two-pane` | A list + detail split — inbox; **not** POS, whose cart side needs POS-specific controls a generic two-pane does not model, so POS keeps its own `.pos-layout` |
+| `.admin-toggle` | A feature on/off switch — settings |
+| `.admin-timeline` | An ordered, timestamped event list — the order detail page's status history from `order_events` |
+| `.admin-media-grid` | A selectable image grid with a side detail panel — not yet consumed by any `commerce` screen; adopt it rather than inventing a grid layout when one is needed |
+
+**Real data only, on every screen** — a stat, count, or row this module cannot honestly compute from an existing table or projection is omitted, never filled with a placeholder or invented number (the dashboard's own missing conversion-rate stat, absent for lack of a funnel/visit projection, is the pattern to follow). A shared cross-page partial (the marketing tab strip) lives under `apps/cms/src/components/`, never `apps/cms/src/pages/admin/` — `access-chokepoint-check.ts` walks every `.astro` file under that tree looking for a `loadAdminScreen` call, and a shared partial placed there reads as an extra screen with no chokepoint.
+
 ## Verification
 
 ```bash

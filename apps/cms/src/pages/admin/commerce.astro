@@ -197,6 +197,37 @@ const showActions = canUpdate || canDelete;
 
   {
     canRead && !loadError && (
+      <nav
+        class="admin-segmented fade-in-up"
+        aria-label={t("Quick status filter")}
+      >
+        <a
+          class="admin-segmented-option"
+          aria-current={filterStatus === "" ? "page" : "false"}
+          href="/admin/commerce"
+        >
+          {t("All")}
+        </a>
+        <a
+          class="admin-segmented-option"
+          aria-current={filterStatus === "active" ? "page" : "false"}
+          href="/admin/commerce?status=active"
+        >
+          {t("Published")}
+        </a>
+        <a
+          class="admin-segmented-option"
+          aria-current={filterStatus === "draft" ? "page" : "false"}
+          href="/admin/commerce?status=draft"
+        >
+          {t("Draft")}
+        </a>
+      </nav>
+    )
+  }
+
+  {
+    canRead && !loadError && (
       <form
         id="product-filter-form"
         class="admin-create-form fade-in-up"
@@ -387,6 +418,20 @@ const showActions = canUpdate || canDelete;
   }
 
   {
+    canRead && !loadError && products.length > 0 && (
+      <div class="admin-bulk-bar fade-in-up" id="product-bulk-bar" hidden>
+        <span class="admin-bulk-bar-count" id="product-bulk-bar-count">
+          {t("0 selected")}
+        </span>
+        {/* No bulk-capable endpoint exists yet (only single update/delete/
+            restore) — the bar surfaces the selection count only, per the
+            Issue #171 rule "if none exist, the bar only shows the count and
+            per-row actions remain". */}
+      </div>
+    )
+  }
+
+  {
     canRead && !loadError && (
       <div class="data-table-scroll fade-in-up">
         <table
@@ -400,6 +445,11 @@ const showActions = canUpdate || canDelete;
           </caption>
           <thead>
             <tr>
+              {products.length > 0 && (
+                <th scope="col">
+                  <span class="sr-only">{t("Select")}</span>
+                </th>
+              )}
               <th scope="col">{t("SKU")}</th>
               <th scope="col">{t("Name")}</th>
               <th scope="col">{t("Type")}</th>
@@ -430,6 +480,13 @@ const showActions = canUpdate || canDelete;
               products.map((product) => (
                 <>
                   <tr data-product-row={product.id}>
+                    <td data-label="Select">
+                      <input
+                        type="checkbox"
+                        class="product-bulk-checkbox"
+                        aria-label={t("Select this product")}
+                      />
+                    </td>
                     <td data-label="SKU">
                       <span class="cell-code">{product.sku}</span>
                     </td>
@@ -972,4 +1029,22 @@ const showActions = canUpdate || canDelete;
       "Removing…"
     );
   });
+
+  // Issue #171 — the `.admin-bulk-bar` selection count. No bulk-capable
+  // endpoint exists yet, so this is display-only; per-row actions above
+  // remain the only way to act on a product.
+  const bulkBar = document.getElementById("product-bulk-bar");
+  const bulkCount = document.getElementById("product-bulk-bar-count");
+  const checkboxes = document.querySelectorAll<HTMLInputElement>(
+    ".product-bulk-checkbox"
+  );
+
+  function updateBulkBar() {
+    const selected = Array.from(checkboxes).filter((box) => box.checked);
+    if (!bulkBar || !bulkCount) return;
+    bulkBar.hidden = selected.length === 0;
+    bulkCount.textContent = `${selected.length} selected`;
+  }
+
+  checkboxes.forEach((box) => box.addEventListener("change", updateBulkBar));
 </script>

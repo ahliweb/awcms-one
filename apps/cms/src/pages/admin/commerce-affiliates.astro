@@ -91,6 +91,26 @@ const canReadCommissions =
   screen.state === "allowed" && screen.data.canReadCommissions;
 const canUpdateCommissions =
   screen.state === "allowed" && screen.data.canUpdateCommissions;
+
+const activeAffiliateCount = affiliates.filter(
+  (a) => a.status === "active"
+).length;
+const pendingCommissionCount = commissions.filter(
+  (c) => c.status === "pending"
+).length;
+const pendingCommissionTotal = commissions
+  .filter((c) => c.status === "pending")
+  .reduce((sum, c) => sum + Number(c.amount), 0)
+  .toFixed(2);
+
+const STATUS_TONE: Record<string, string> = {
+  active: "success",
+  suspended: "danger",
+  pending: "warning",
+  approved: "info",
+  paid: "success",
+  void: "neutral"
+};
 ---
 
 <AdminLayout
@@ -122,6 +142,40 @@ const canUpdateCommissions =
         role="alert"
         hidden
       />
+    )
+  }
+
+  {
+    canRead && !loadError && (
+      <section
+        class="admin-dashboard-stats fade-in-up"
+        aria-label={t("Affiliate figures")}
+      >
+        <div class="admin-stat-card">
+          <span class="admin-stat-card-label">{t("Active affiliates")}</span>
+          <span class="admin-stat-card-value">{activeAffiliateCount}</span>
+        </div>
+        {canReadCommissions && (
+          <>
+            <div class="admin-stat-card">
+              <span class="admin-stat-card-label">
+                {t("Pending commissions")}
+              </span>
+              <span class="admin-stat-card-value">
+                {pendingCommissionCount}
+              </span>
+            </div>
+            <div class="admin-stat-card">
+              <span class="admin-stat-card-label">
+                {t("Pending commission total")}
+              </span>
+              <span class="admin-stat-card-value">
+                {pendingCommissionTotal}
+              </span>
+            </div>
+          </>
+        )}
+      </section>
     )
   }
 
@@ -198,7 +252,15 @@ const canUpdateCommissions =
                       )}
                     </span>
                   </td>
-                  <td data-label="Status">{affiliate.status}</td>
+                  <td data-label="Status">
+                    <span
+                      class="admin-status-pill"
+                      data-tone={STATUS_TONE[affiliate.status] ?? "neutral"}
+                    >
+                      <span class="admin-status-pill-dot" aria-hidden="true" />
+                      {affiliate.status}
+                    </span>
+                  </td>
                   {canUpdateAffiliates && (
                     <td data-label="Actions" class="stacked-block">
                       <div class="row-actions">
@@ -315,7 +377,15 @@ const canUpdateCommissions =
                     <span class="cell-code">{commission.orderCode}</span>
                   </td>
                   <td data-label="Amount">{commission.amount}</td>
-                  <td data-label="Status">{commission.status}</td>
+                  <td data-label="Status">
+                    <span
+                      class="admin-status-pill"
+                      data-tone={STATUS_TONE[commission.status] ?? "neutral"}
+                    >
+                      <span class="admin-status-pill-dot" aria-hidden="true" />
+                      {commission.status}
+                    </span>
+                  </td>
                   <td data-label="Created">{commission.createdAt}</td>
                   {canUpdateCommissions && (
                     <td data-label="Actions" class="stacked-block">
