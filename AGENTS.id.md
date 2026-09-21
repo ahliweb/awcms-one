@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](AGENTS.md)
 
-<!-- i18n-source-hash: sha256:ab9f3c9b51b258d08ee0de0f0c6f9de03190da9f93a2022309e91aa67c75d05e -->
+<!-- i18n-source-hash: sha256:93d6b8cebcb50b8f5a4bed6806a2cbbbf9f74d27de6445d7b8f37d0519b9c867 -->
 
 # AGENTS.md — kontrak kerja awcms-one
 
@@ -58,9 +58,9 @@ git config remote.awcms.tagOpt --no-tags
 
 Ini bukan preferensi gaya; ini jebakan mekanis. `git subtree pull` bekerja dengan menemukan merge base antara riwayat repo ini dan riwayat upstream, lalu memutar ulang commit upstream di atasnya. Meng-squash sinkronisasi itu melipat setiap commit upstream tadi menjadi satu commit sintetis yang tidak dibuat git lewat merge — yang merusak merge base yang dibutuhkan `git subtree pull` *berikutnya* untuk ditemukan. Setiap sinkronisasi berikutnya setelah itu kemudian bentrok melawan riwayat yang tidak bisa lagi diselaraskan git, dan kerusakannya tidak terlihat saat itu juga: PR yang di-squash tadi merge dengan bersih, CI hijau, dan kerusakannya baru muncul saat seseorang mencoba menarik dari upstream berikutnya, jauh dari commit yang menyebabkannya.
 
-**Tidak ada apa pun yang mencegah ini secara mekanis hari ini.** `main` sudah dilindungi — workflow `Check` adalah status wajib, branch harus mutakhir sebelum merge, dan force-push serta penghapusan ditolak — tetapi tidak satu pun dari itu membatasi *metode* merge: pengaturan repo ini masih mengizinkan squash merge, rebase merge, dan merge commit sekaligus, dan GitHub tidak bisa membatasi metode per jalur. Satu-satunya penjaga adalah paragraf ini, dibaca sebelum tombol merge diklik. Menonaktifkan squash dan rebase merge di seluruh repo akan menutup jebakan ini secara mekanis dengan mengorbankan squash untuk setiap PR lain; pertukaran itu sudah direkomendasikan dan belum diambil (lihat [`docs/alur-kerja-pengembangan.md`](docs/alur-kerja-pengembangan.md) untuk pengaturan proteksi sebagaimana diverifikasi).
+**Ini kini ditegakkan secara mekanis, bukan sekadar diingat** (issue #149): pengaturan merge repositori adalah `allow_merge_commit=true`, `allow_squash_merge=false`, `allow_rebase_merge=false` — diverifikasi lewat `gh api repos/ahliweb/awcms-one` — jadi tombol merge GitHub tidak lagi menawarkan squash atau rebase sebagai opsi untuk PR ini atau PR mana pun. `main` tetap dilindungi di atas itu — workflow `Check` (ketiga leg profil build) dan `check-cms` adalah status wajib, branch harus mutakhir sebelum merge, dan force-push serta penghapusan ditolak. Required linear history tetap **dinonaktifkan** dengan sengaja: itu berbenturan dengan model subtree riwayat-lengkap, yang butuh merge commit sungguhan yang justru dilarang oleh syarat riwayat linear. Lihat [`docs/alur-kerja-pengembangan.md`](docs/alur-kerja-pengembangan.md) untuk pengaturan proteksi sebagaimana diverifikasi.
 
-Setiap PR lain di repo ini boleh di-merge dengan cara apa pun yang disukai reviewer; `delete_branch_on_merge` aktif di seluruh repo, jadi branch yang sudah di-merge dibersihkan otomatis apa pun strategi merge-nya.
+Setiap PR lain di repo ini kini juga di-merge dengan merge commit — GitHub tidak menawarkan metode lain di seluruh repo — dan `delete_branch_on_merge` tetap aktif di seluruh repo, jadi branch yang sudah di-merge tetap dibersihkan otomatis.
 
 ### Apa yang boleh, dan tidak boleh, disunting repo ini
 
