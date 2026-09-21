@@ -48,10 +48,23 @@ COPY packages/config/package.json packages/config/package.json
 RUN bun install --frozen-lockfile
 
 # ---------------------------------------------------------------------------
-# build — the real source tree, one profile's static build. Astro's own
-# typecheck (`apps/storefront`'s `check` script, part of its `build` script)
-# needs apps/cms's real source for packages/kontrak's type-only imports, so
-# this stage needs the FULL repo context, not a source subset.
+# build — the real source tree, one profile's static build.
+#
+# `COPY . .` (the whole repo, filtered by the root `.dockerignore`) was
+# CHOSEN over a narrower `COPY package.json bun.lock packages/ apps/storefront/`
+# after actually trying the narrower form (issue #150 review) and watching it
+# break: `apps/storefront`'s own `check` script (`astro check`, the first step
+# of `bun run build`) failed with
+# `src/lib/catalog.ts:285:39 - error ts(2345): Argument of type
+# 'ProductStatus' is not assignable to parameter of type 'never'` — because
+# `packages/kontrak` re-exports TYPE-ONLY from `apps/cms/src/modules/**/domain/
+# *.ts` (see that package's own docblock), and without that source present
+# TypeScript resolves the re-exported type to `never` instead of failing to
+# find it outright. There is no small, stable subset of `apps/cms/src/**` to
+# allowlist instead: `kontrak` draws from several modules' domain layers, and
+# a hand-picked list would silently rot the next time it grows one import.
+# `.dockerignore` is what keeps this COPY cheap and safe despite covering the
+# whole tree — it, not a narrower COPY, is the mechanism doing the work here.
 # ---------------------------------------------------------------------------
 FROM deps AS build
 WORKDIR /repo

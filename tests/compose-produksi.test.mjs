@@ -79,6 +79,16 @@ describe("compose.production.yaml", () => {
     expect(doc.services.postgres.ports).toBeUndefined();
   });
 
+  test("postgres has no env_file — it must never receive apps/cms's own secrets (issue #150 review)", () => {
+    // Every ${VAR:?...} on postgres is meant to be interpolated by `docker
+    // compose` itself from the root .env/shell — the SAME source
+    // compose.yaml's own local/CI postgres service already reads. An
+    // `env_file: [apps/cms/.env]` here would hand the DATABASE container
+    // every apps/cms-only secret (Midtrans server key, WhatsApp tokens, …)
+    // it has no reason to hold.
+    expect(doc.services.postgres.env_file).toBeUndefined();
+  });
+
   test("cms and storefront publish no host port by default (reverse proxy expected in front)", () => {
     expect(doc.services.cms.ports).toBeUndefined();
     expect(doc.services.storefront.ports).toBeUndefined();
@@ -114,4 +124,25 @@ describe("compose.production.yaml", () => {
     // cms's own DATABASE_URL) would collapse this set to fewer than 3.
     expect(roles.size).toBe(3);
   });
+});
+
+describe("root .dockerignore (apps/storefront/Dockerfile's build stage COPYs the whole repo — issue #150 review)", () => {
+  const dockerignorePath = join(REPO_ROOT, ".dockerignore");
+  const dockerignore = readFileSync(dockerignorePath, "utf8");
+
+  test("exists at the repo root", () => {
+    expect(dockerignore.length).toBeGreaterThan(0);
+  });
+
+  // Docker's own pattern matcher does NOT recurse a directory-less pattern
+  // the way `.gitignore` does — verified empirically (issue #150 review):
+  // `node_modules/` alone excludes only a TOP-LEVEL `node_modules`, not
+  // `apps/cms/node_modules`. So the required entries below must carry the
+  // `**/` prefix wherever the excluded thing can exist inside a nested
+  // workspace, not merely be present under some name.
+  for (const required of ["**/node_modules", ".git", ".secrets"]) {
+    test(`lists \`${required}\``, () => {
+      expect(dockerignore.split("\n").some((line) => line.trim() === required)).toBe(true);
+    });
+  }
 });

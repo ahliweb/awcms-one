@@ -41,13 +41,18 @@
 #
 # ## Secrets
 #
-# No secret value is written in this file. Every service reads its
-# credentials from an `env_file` that is never committed (see `.gitignore`);
-# `apps/storefront`'s `AWCMS_API_TOKEN` is the one exception — it is a
-# BUILD-time-only secret, passed through BuildKit's `--secret` flag when the
-# image is built (`apps/storefront/Dockerfile`'s own header), and never
-# appears in this file or in the running `storefront` container's
-# environment at all.
+# No secret value is written in this file. `cms`/`jobs`/`migrate` read their
+# credentials from `apps/cms/.env` via `env_file:` — the same file
+# `apps/cms/.env.example` documents, never committed (see `.gitignore`).
+# `postgres` reads NO `env_file:` at all: every `${VAR:?...}` on it is
+# interpolated by `docker compose` itself from the root `.env` (or the
+# shell) — the SAME source `compose.yaml`'s own local/CI postgres service
+# already reads — so the database container never sees a single
+# `apps/cms`-only secret (Midtrans, WhatsApp, …) it has no reason to hold.
+# `apps/storefront`'s `AWCMS_API_TOKEN` is a third, BUILD-time-only shape —
+# passed through BuildKit's `--secret` flag when the image is built
+# (`apps/storefront/Dockerfile`'s own header), and never appears in this file
+# or in the running `storefront` container's environment at all.
 name: awcms-one-production
 
 services:
@@ -55,8 +60,14 @@ services:
     image: postgres:18.4
     container_name: awcms-one-postgres
     restart: unless-stopped
-    env_file:
-      - apps/cms/.env
+    # No `env_file:` here on purpose (issue #150 review) — every `${VAR:?...}`
+    # below is interpolated by `docker compose` itself from the root `.env`
+    # (or the shell), the SAME source `compose.yaml`'s own local/CI postgres
+    # service already reads (see root `.env.example`'s "Local PostgreSQL"
+    # section). Pointing this service's `env_file:` at `apps/cms/.env` would
+    # hand the DATABASE container every `apps/cms`-only secret (the Midtrans
+    # server key, WhatsApp tokens, …) for no reason — this service never
+    # reads any of them.
     environment:
       POSTGRES_DB: ${POSTGRES_DB:?POSTGRES_DB is required}
       POSTGRES_USER: ${POSTGRES_USER:?POSTGRES_USER is required — the migration-owner/superuser, never used by cms/jobs at runtime}

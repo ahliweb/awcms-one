@@ -1,25 +1,49 @@
 # Never ship secrets into the build context.
-.env
-.env.*
-!.env.example
+#
+# A bare `.env`/`.env.*` (no `**/` prefix) matches ONLY the context root —
+# verified empirically (issue #150 review): Docker's own pattern matcher does
+# NOT recurse a directory-less pattern the way `.gitignore` does. Every path
+# below that needs to catch a nested workspace's own copy (apps/cms/.env,
+# apps/storefront/.env.local, …) is written `**/…` for exactly that reason.
+**/.env
+**/.env.*
+!**/.env.example
 
-# Reinstalled / rebuilt inside the image.
-node_modules/
-dist/
-.astro/
+# Local file-backed build secrets (compose.production.yaml's BuildKit
+# `awcms_api_token` secret, ADR-0019 D4) — never sent to a build context.
+.secrets
+
+# Reinstalled / rebuilt inside the image. `apps/storefront/Dockerfile`'s build
+# stage COPYs the whole repo (see that file's own comment on why), which
+# means the HOST's own `node_modules` — root and every workspace
+# (apps/cms/node_modules alone is hundreds of MB) — would otherwise be sent
+# into the build context and land OVER the image's freshly `bun install`ed
+# one. `**/` is load-bearing here, not decorative: `node_modules/` alone was
+# proven (issue #150 review) to exclude only a top-level `node_modules`, not
+# `apps/cms/node_modules`.
+**/node_modules
+**/dist
+**/.astro
 
 # Not used to build, and copying them busts the source layer cache on every
-# commit or note that changes.
-.git/
-.github/
-.claude/
-.changesets/
+# commit or note that changes. These are genuinely root-only in this repo (no
+# nested `.git`/`.github`/`.claude`/`.changesets`), so a bare pattern is
+# correct here — unlike `node_modules`/`dist`/`.env` above, which exist inside
+# every workspace.
+.git
+.github
+.claude
+.changesets
 docs/
 *.md
 
 # graphify skill output: analysis artefacts, not build inputs. Megabytes in
 # size, and every rebuild of them busts the image's source layer cache.
+# `apps/cms/graphify-out` is named explicitly because `apps/cms` has its own
+# `.dockerignore` that this root one does not inherit or extend — a build
+# from THIS root context reads only this file.
 graphify-out/
+apps/cms/graphify-out
 
 # knowledge-graph federation docs (issue #11): human/agent reference, not a
 # build input. `*.md` below already catches knowledge/curated/ and the
@@ -28,5 +52,10 @@ graphify-out/
 # rather than by the coincidence of a broader rule.
 knowledge/
 
+# tools/import-seputarborneo.ts's own output directory (git-ignored, can hold
+# a legacy dump's exported row content) — never a build input.
+tools/out
+
 .DS_Store
 npm-debug.log*
+**/*.log
