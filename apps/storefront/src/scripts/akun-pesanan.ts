@@ -33,6 +33,19 @@ import { buildWhatsappAccountMessage, buildWhatsappUrl } from "../lib/wa-fallbac
 import { isValidGatewayRedirectUrl } from "../lib/gateway-redirect";
 import { wirePesananPolling, type PesananPoller } from "../lib/pesanan-poll";
 
+/** Issue #168 — the status-pill tone map every `/akun/*` list uses:
+ * pending → warning, paid/done → success, cancelled/expired → danger,
+ * shipped/processing → info. */
+const STATUS_TONES: Record<string, "warning" | "success" | "danger" | "info"> = {
+  pending_payment: "warning",
+  paid: "success",
+  processing: "info",
+  shipped: "info",
+  completed: "success",
+  cancelled: "danger",
+  expired: "danger"
+};
+
 const root = document.querySelector<HTMLElement>("[data-akun-pesanan-root]");
 if (root) {
   const guestView = root.querySelector<HTMLElement>("[data-guest-view]");
@@ -76,18 +89,49 @@ if (root) {
     if (!listEl) return;
     for (const order of page.items) {
       const li = document.createElement("li");
-      li.className = "akun-card";
+      li.className = "akun-card akun-order-row";
 
-      const link = document.createElement("a");
-      link.href = ROUTES.accountOrder(order.orderCode);
+      const idBlock = document.createElement("span");
+      idBlock.className = "akun-order-row-id";
 
-      const title = document.createElement("strong");
-      title.textContent = order.orderCode;
-      const status = document.createElement("span");
-      status.textContent = ` — ${STATUS_LABELS[order.status] ?? order.status} — ${formatPrice(order.total)}`;
+      const code = document.createElement("span");
+      code.className = "akun-order-code";
+      code.textContent = order.orderCode;
+      idBlock.appendChild(code);
 
-      link.append(title, status);
-      li.appendChild(link);
+      const itemCount = order.lines.reduce((sum, line) => sum + line.quantity, 0);
+      const meta = document.createElement("span");
+      meta.className = "akun-order-meta";
+      meta.textContent = `${new Date(order.createdAt).toLocaleDateString("id-ID", {
+        day: "numeric",
+        month: "short",
+        year: "numeric"
+      })} · ${itemCount} item`;
+      idBlock.appendChild(meta);
+
+      li.appendChild(idBlock);
+
+      const rowSpacer = document.createElement("span");
+      rowSpacer.className = "akun-order-row-spacer";
+      li.appendChild(rowSpacer);
+
+      const statusPill = document.createElement("span");
+      const tone = STATUS_TONES[order.status];
+      statusPill.className = tone ? `pill pill--${tone}` : "pill";
+      statusPill.textContent = STATUS_LABELS[order.status] ?? order.status;
+      li.appendChild(statusPill);
+
+      const total = document.createElement("span");
+      total.className = "akun-order-total";
+      total.textContent = formatPrice(order.total);
+      li.appendChild(total);
+
+      const detailLink = document.createElement("a");
+      detailLink.className = "btn btn--secondary btn--sm";
+      detailLink.href = ROUTES.accountOrder(order.orderCode);
+      detailLink.textContent = "Detail";
+      li.appendChild(detailLink);
+
       listEl.appendChild(li);
     }
 

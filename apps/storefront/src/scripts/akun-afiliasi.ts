@@ -43,6 +43,20 @@ const KOMISI_STATUS_LABELS: Record<"pending" | "approved" | "paid" | "void", str
   void: "Dibatalkan"
 };
 
+/** Issue #168 — the status-pill tone map: pending → warning,
+ * paid/approved/active → success, void/suspended → danger. */
+const STATUS_TONES: Record<"active" | "suspended", "success" | "danger"> = {
+  active: "success",
+  suspended: "danger"
+};
+
+const KOMISI_STATUS_TONES: Record<"pending" | "approved" | "paid" | "void", "warning" | "info" | "success" | "danger"> = {
+  pending: "warning",
+  approved: "info",
+  paid: "success",
+  void: "danger"
+};
+
 const root = document.querySelector<HTMLElement>("[data-akun-afiliasi-root]");
 if (root) {
   const statusEl = root.querySelector<HTMLElement>("[data-status]");
@@ -107,27 +121,34 @@ if (root) {
     if (!komisiListEl) return;
     for (const komisi of page.items) {
       const li = document.createElement("li");
-      li.className = "akun-card";
+      li.className = "akun-commission-row";
 
-      const code = document.createElement("strong");
+      const code = document.createElement("span");
+      code.className = "akun-commission-order is-mono";
       code.textContent = komisi.orderCode;
-
-      const status = document.createElement("span");
-      status.className = "akun-badge-status";
-      status.textContent = KOMISI_STATUS_LABELS[komisi.status] ?? komisi.status;
-
-      const amount = document.createElement("span");
-      amount.textContent = ` ${formatPrice(komisi.amount)} — `;
+      li.appendChild(code);
 
       const date = document.createElement("time");
+      date.className = "akun-commission-date";
       date.dateTime = komisi.createdAt;
       date.textContent = new Date(komisi.createdAt).toLocaleDateString("id-ID", {
         year: "numeric",
         month: "long",
         day: "numeric"
       });
+      li.appendChild(date);
 
-      li.append(code, document.createTextNode(" — "), amount, status, document.createTextNode(" "), date);
+      const status = document.createElement("span");
+      const tone = KOMISI_STATUS_TONES[komisi.status];
+      status.className = tone ? `pill pill--${tone}` : "pill";
+      status.textContent = KOMISI_STATUS_LABELS[komisi.status] ?? komisi.status;
+      li.appendChild(status);
+
+      const amount = document.createElement("span");
+      amount.className = "akun-commission-amount";
+      amount.textContent = formatPrice(komisi.amount);
+      li.appendChild(amount);
+
       komisiListEl.appendChild(li);
     }
 
@@ -192,7 +213,11 @@ if (root) {
         : affiliate.link;
     }
     if (rateEl) rateEl.textContent = `${affiliate.commissionRate}%`;
-    if (statusBadgeEl) statusBadgeEl.textContent = STATUS_LABELS[affiliate.status] ?? affiliate.status;
+    if (statusBadgeEl) {
+      const tone = STATUS_TONES[affiliate.status];
+      statusBadgeEl.className = tone ? `pill pill--${tone}` : "pill";
+      statusBadgeEl.textContent = STATUS_LABELS[affiliate.status] ?? affiliate.status;
+    }
     if (referredOrdersEl) referredOrdersEl.textContent = String(affiliate.stats.referredOrders);
     if (pendingEl) pendingEl.textContent = formatPrice(affiliate.stats.pendingAmount);
     if (approvedEl) approvedEl.textContent = formatPrice(affiliate.stats.approvedAmount);

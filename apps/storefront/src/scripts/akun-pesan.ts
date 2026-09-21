@@ -119,29 +119,46 @@ if (root) {
     if (!listEl) return;
     for (const conversation of page.items) {
       const li = document.createElement("li");
-      li.className = "akun-card";
+      li.className = "akun-card akun-thread-row";
 
       const link = document.createElement("a");
       link.href = ROUTES.accountMessage(conversation.id);
+      link.className = "akun-thread-body";
 
-      const title = document.createElement("strong");
-      title.textContent = conversation.subject;
+      const subject = document.createElement("span");
+      subject.className = "akun-thread-subject";
+      subject.textContent = conversation.subject;
+      link.appendChild(subject);
 
-      const status = document.createElement("span");
-      status.textContent = ` — ${STATUS_LABELS[conversation.status]}`;
+      // No message-body snippet here: `GET …/account/conversations` (#106's
+      // own contract) returns only `lastMessageAt`, never a preview of the
+      // thread's own last message — showing one would mean fabricating text
+      // this client was never given.
+      const meta = document.createElement("span");
+      meta.className = "akun-thread-meta is-mono";
+      meta.textContent =
+        new Date(conversation.lastMessageAt).toLocaleDateString("id-ID", {
+          day: "numeric",
+          month: "short"
+        }) + ` · ${STATUS_LABELS[conversation.status]}`;
+      link.appendChild(meta);
 
-      link.append(title, status);
+      li.appendChild(link);
 
       if (conversation.unreadForCustomer > 0) {
         const badge = document.createElement("span");
-        badge.className = "akun-badge-unread";
+        badge.className = "pill pill--info";
         badge.textContent = String(conversation.unreadForCustomer);
         badge.setAttribute("aria-label", `${conversation.unreadForCustomer} pesan belum dibaca`);
-        link.appendChild(document.createTextNode(" "));
-        link.appendChild(badge);
+        li.appendChild(badge);
       }
 
-      li.appendChild(link);
+      const arrow = document.createElement("span");
+      arrow.className = "akun-thread-arrow";
+      arrow.setAttribute("aria-hidden", "true");
+      arrow.textContent = "→";
+      li.appendChild(arrow);
+
       listEl.appendChild(li);
     }
 

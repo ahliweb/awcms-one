@@ -18,6 +18,19 @@ import "../../../../styles/akun.css";
 const identity = await getSiteIdentity();
 const storeSettings = await getStoreSettings();
 const whatsappNumber = storeSettings.whatsapp ?? identity.whatsappNumber ?? "";
+
+/** The `/akun*` side navigation (issue #168) — see `akun/index.astro`'s own
+ * copy of this constant for why it is duplicated rather than factored into
+ * a shared partial. */
+const SIDENAV_ITEMS = [
+  { key: "ringkasan", href: ROUTES.account, label: "Ringkasan" },
+  { key: "pesanan", href: ROUTES.accountOrders, label: "Pesanan" },
+  { key: "alamat", href: ROUTES.accountAddresses, label: "Alamat" },
+  { key: "pesan", href: ROUTES.accountMessages, label: "Pesan" },
+  { key: "ulasan", href: ROUTES.accountReviews, label: "Ulasan" },
+  { key: "afiliasi", href: ROUTES.accountAffiliate, label: "Afiliasi" }
+] as const;
+const SIDENAV_ACTIVE = "alamat";
 ---
 
 <BaseLayout title="Alamat Saya" description="Kelola alamat pengiriman akun Anda." canonicalPath="/akun/alamat">
@@ -45,7 +58,6 @@ const whatsappNumber = storeSettings.whatsapp ?? identity.whatsappNumber ?? "";
   >
     <div class="page-heading">
       <h1>Alamat Saya</h1>
-      <p><a href={ROUTES.account}>&larr; Kembali ke Akun Saya</a></p>
     </div>
 
     <div data-status class="toko-banner toko-banner--info" role="status" aria-live="polite" hidden></div>
@@ -59,97 +71,113 @@ const whatsappNumber = storeSettings.whatsapp ?? identity.whatsappNumber ?? "";
     <div data-guest-view class="akun-card" hidden>
       <p>Anda belum masuk.</p>
       <div class="akun-actions">
-        <a href={ROUTES.login}>Masuk</a>
+        <a href={ROUTES.login} class="btn btn--primary btn--sm">Masuk</a>
       </div>
     </div>
 
-    <div data-account-view hidden>
-      <p class="toko-empty" data-alamat-empty hidden>Anda belum memiliki alamat tersimpan.</p>
-      <ul class="akun-nav-grid" data-alamat-list aria-live="polite"></ul>
+    <div class="akun-layout">
+      <nav class="akun-sidenav" aria-label="Menu akun">
+        {
+          SIDENAV_ITEMS.map((item) => (
+            <a
+              class="akun-sidenav-item"
+              href={item.href}
+              aria-current={item.key === SIDENAV_ACTIVE ? "page" : undefined}
+            >
+              <span class="akun-sidenav-item-label">{item.label}</span>
+            </a>
+          ))
+        }
+      </nav>
 
-      <p class="toko-field-hint" data-alamat-limit hidden>
-        Anda telah mencapai batas maksimum 10 alamat tersimpan. Hapus salah satu alamat untuk menambah yang
-        baru.
-      </p>
+      <div class="akun-content">
+        <div data-account-view hidden>
+          <p class="empty-state" data-alamat-empty hidden>Anda belum memiliki alamat tersimpan.</p>
+          <ul class="akun-nav-grid" data-alamat-list aria-live="polite"></ul>
 
-      <div class="akun-actions">
-        <button type="button" data-alamat-tambah>Tambah Alamat</button>
-      </div>
+          <p class="toko-field-hint" data-alamat-limit hidden>
+            Anda telah mencapai batas maksimum 10 alamat tersimpan. Hapus salah satu alamat untuk menambah yang
+            baru.
+          </p>
 
-      <div class="akun-card" data-alamat-form-wrap hidden>
-        <h2 data-alamat-form-title>Tambah Alamat</h2>
-        <form data-alamat-form>
-          <div class="toko-field">
-            <label for="alamat-label">Label (mis. Rumah, Kantor)</label>
-            <input type="text" id="alamat-label" name="label" required />
-            <p class="toko-field-error" data-error-for="label"></p>
+          <button type="button" class="akun-address-add" data-alamat-tambah>+ Tambah alamat</button>
+
+          <div class="akun-card" data-alamat-form-wrap hidden>
+            <h2 data-alamat-form-title>Tambah Alamat</h2>
+            <form data-alamat-form>
+              <div class="toko-field">
+                <label for="alamat-label" class="field-label">Label (mis. Rumah, Kantor)</label>
+                <input type="text" id="alamat-label" name="label" required />
+                <p class="toko-field-error" data-error-for="label"></p>
+              </div>
+
+              <div class="toko-field">
+                <label for="alamat-recipient" class="field-label">Nama penerima</label>
+                <input type="text" id="alamat-recipient" name="recipientName" required autocomplete="name" />
+                <p class="toko-field-error" data-error-for="recipientName"></p>
+              </div>
+
+              <div class="toko-field">
+                <label for="alamat-phone" class="field-label">Nomor WhatsApp penerima</label>
+                <input type="tel" id="alamat-phone" name="phone" required autocomplete="tel" class="is-mono" />
+                <p class="toko-field-error" data-error-for="phone"></p>
+              </div>
+
+              <div class="toko-field">
+                <label for="alamat-province" class="field-label">Provinsi</label>
+                <select id="alamat-province" name="provinceCode" data-province-select required>
+                  <option value="">Pilih provinsi</option>
+                </select>
+                <p class="toko-field-error" data-error-for="provinceCode"></p>
+              </div>
+
+              <div class="toko-field">
+                <label for="alamat-city" class="field-label">Kabupaten/Kota</label>
+                <select id="alamat-city" name="cityCode" data-city-select disabled required>
+                  <option value="">Pilih provinsi dahulu</option>
+                </select>
+                <p class="toko-field-error" data-error-for="cityCode"></p>
+              </div>
+
+              <div class="toko-field">
+                <label for="alamat-district" class="field-label">Kecamatan</label>
+                <select id="alamat-district" name="districtCode" data-district-select disabled required>
+                  <option value="">Pilih kabupaten/kota dahulu</option>
+                </select>
+                <p class="toko-field-error" data-error-for="districtCode"></p>
+              </div>
+
+              <div class="toko-field">
+                <label for="alamat-postal" class="field-label">Kode pos</label>
+                <input type="text" id="alamat-postal" name="postalCode" inputmode="numeric" required class="is-mono" />
+                <p class="toko-field-error" data-error-for="postalCode"></p>
+              </div>
+
+              <div class="toko-field">
+                <label for="alamat-street" class="field-label">Alamat lengkap</label>
+                <textarea id="alamat-street" name="street" rows="2" required></textarea>
+                <p class="toko-field-error" data-error-for="street"></p>
+              </div>
+
+              <div class="toko-field">
+                <label for="alamat-notes" class="field-label">Catatan (opsional)</label>
+                <input type="text" id="alamat-notes" name="notes" />
+              </div>
+
+              <div class="toko-field">
+                <label>
+                  <input type="checkbox" name="isDefault" />
+                  Jadikan alamat utama
+                </label>
+              </div>
+
+              <div class="akun-actions">
+                <button type="submit" class="btn btn--primary btn--sm">Simpan</button>
+                <button type="button" class="btn btn--quiet btn--sm" data-alamat-form-cancel>Batal</button>
+              </div>
+            </form>
           </div>
-
-          <div class="toko-field">
-            <label for="alamat-recipient">Nama penerima</label>
-            <input type="text" id="alamat-recipient" name="recipientName" required autocomplete="name" />
-            <p class="toko-field-error" data-error-for="recipientName"></p>
-          </div>
-
-          <div class="toko-field">
-            <label for="alamat-phone">Nomor WhatsApp penerima</label>
-            <input type="tel" id="alamat-phone" name="phone" required autocomplete="tel" />
-            <p class="toko-field-error" data-error-for="phone"></p>
-          </div>
-
-          <div class="toko-field">
-            <label for="alamat-province">Provinsi</label>
-            <select id="alamat-province" name="provinceCode" data-province-select required>
-              <option value="">Pilih provinsi</option>
-            </select>
-            <p class="toko-field-error" data-error-for="provinceCode"></p>
-          </div>
-
-          <div class="toko-field">
-            <label for="alamat-city">Kabupaten/Kota</label>
-            <select id="alamat-city" name="cityCode" data-city-select disabled required>
-              <option value="">Pilih provinsi dahulu</option>
-            </select>
-            <p class="toko-field-error" data-error-for="cityCode"></p>
-          </div>
-
-          <div class="toko-field">
-            <label for="alamat-district">Kecamatan</label>
-            <select id="alamat-district" name="districtCode" data-district-select disabled required>
-              <option value="">Pilih kabupaten/kota dahulu</option>
-            </select>
-            <p class="toko-field-error" data-error-for="districtCode"></p>
-          </div>
-
-          <div class="toko-field">
-            <label for="alamat-postal">Kode pos</label>
-            <input type="text" id="alamat-postal" name="postalCode" inputmode="numeric" required />
-            <p class="toko-field-error" data-error-for="postalCode"></p>
-          </div>
-
-          <div class="toko-field">
-            <label for="alamat-street">Alamat lengkap</label>
-            <textarea id="alamat-street" name="street" rows="2" required></textarea>
-            <p class="toko-field-error" data-error-for="street"></p>
-          </div>
-
-          <div class="toko-field">
-            <label for="alamat-notes">Catatan (opsional)</label>
-            <input type="text" id="alamat-notes" name="notes" />
-          </div>
-
-          <div class="toko-field">
-            <label>
-              <input type="checkbox" name="isDefault" />
-              Jadikan alamat utama
-            </label>
-          </div>
-
-          <div class="akun-actions">
-            <button type="submit">Simpan</button>
-            <button type="button" data-alamat-form-cancel>Batal</button>
-          </div>
-        </form>
+        </div>
       </div>
     </div>
   </div>

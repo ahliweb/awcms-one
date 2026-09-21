@@ -17,8 +17,17 @@ const STATUS_LABELS: Record<UlasanAkun["status"], string> = {
   rejected: "Ditolak"
 };
 
+/** Issue #168 — the status-pill tone map every `/akun/*` list uses:
+ * pending → warning, published/done → success, rejected → danger. */
+const STATUS_TONES: Record<UlasanAkun["status"], "warning" | "success" | "danger"> = {
+  pending: "warning",
+  published: "success",
+  rejected: "danger"
+};
+
 function starRow(rating: number): HTMLElement {
   const span = document.createElement("span");
+  span.className = "akun-review-stars";
   span.setAttribute("aria-label", `${rating} dari 5 bintang`);
   const glyphs = document.createElement("span");
   glyphs.setAttribute("aria-hidden", "true");
@@ -64,28 +73,34 @@ if (root) {
 
   function renderItem(ulasan: UlasanAkun): HTMLElement {
     const li = document.createElement("li");
-    li.className = "akun-card";
+    li.className = "akun-card akun-review-card";
 
-    const title = document.createElement("p");
-    const strong = document.createElement("strong");
-    strong.textContent = ulasan.productName;
-    title.appendChild(strong);
-    li.appendChild(title);
+    const heading = document.createElement("p");
+    heading.className = "akun-review-heading";
 
-    const ratingRow = document.createElement("p");
-    ratingRow.append(`${ulasan.rating}/5 `, starRow(ulasan.rating));
-    li.appendChild(ratingRow);
+    const product = document.createElement("span");
+    product.className = "akun-review-product";
+    product.textContent = ulasan.productName;
+    heading.appendChild(product);
+
+    heading.append(`${ulasan.rating}/5 `, starRow(ulasan.rating));
+
+    const spacer = document.createElement("span");
+    spacer.className = "akun-review-spacer";
+    heading.appendChild(spacer);
+
+    const statusBadge = document.createElement("span");
+    const tone = STATUS_TONES[ulasan.status];
+    statusBadge.className = tone ? `pill pill--${tone}` : "pill";
+    statusBadge.textContent = STATUS_LABELS[ulasan.status] ?? ulasan.status;
+    heading.appendChild(statusBadge);
+
+    li.appendChild(heading);
 
     const body = document.createElement("p");
+    body.className = "akun-review-text";
     body.textContent = ulasan.body;
     li.appendChild(body);
-
-    const status = document.createElement("p");
-    const statusBadge = document.createElement("span");
-    statusBadge.className = "akun-badge-status";
-    statusBadge.textContent = STATUS_LABELS[ulasan.status] ?? ulasan.status;
-    status.appendChild(statusBadge);
-    li.appendChild(status);
 
     return li;
   }

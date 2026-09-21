@@ -29,6 +29,19 @@ const identity = await getSiteIdentity();
 const storeSettings = await getStoreSettings();
 const whatsappNumber = storeSettings.whatsapp ?? identity.whatsappNumber ?? "";
 const affiliateProgramEnabled = storeSettings.affiliateProgramEnabled ?? false;
+
+/** The `/akun*` side navigation (issue #168) — see `akun/index.astro`'s own
+ * copy of this constant for why it is duplicated rather than factored into
+ * a shared partial. */
+const SIDENAV_ITEMS = [
+  { key: "ringkasan", href: ROUTES.account, label: "Ringkasan" },
+  { key: "pesanan", href: ROUTES.accountOrders, label: "Pesanan" },
+  { key: "alamat", href: ROUTES.accountAddresses, label: "Alamat" },
+  { key: "pesan", href: ROUTES.accountMessages, label: "Pesan" },
+  { key: "ulasan", href: ROUTES.accountReviews, label: "Ulasan" },
+  { key: "afiliasi", href: ROUTES.accountAffiliate, label: "Afiliasi" }
+] as const;
+const SIDENAV_ACTIVE = "afiliasi";
 ---
 
 <BaseLayout title="Program Afiliasi" description="Ikuti program afiliasi dan dapatkan komisi." canonicalPath="/akun/afiliasi">
@@ -37,7 +50,7 @@ const affiliateProgramEnabled = storeSettings.affiliateProgramEnabled ?? false;
   <div class="container">
     <div class="page-heading">
       <h1>Program Afiliasi</h1>
-      <p><a href={ROUTES.account}>&larr; Kembali ke Akun Saya</a></p>
+      <p>Bagikan tautan, dapat komisi dari pesanan yang selesai.</p>
     </div>
 
     {
@@ -53,95 +66,117 @@ const affiliateProgramEnabled = storeSettings.affiliateProgramEnabled ?? false;
 
     {
       affiliateProgramEnabled && (
-        <div
-          data-akun-afiliasi-root
-          data-whatsapp-number={whatsappNumber}
-          data-store-name={identity.name}
-        >
-          <noscript>
-            <div class="toko-banner toko-banner--info">
-              Halaman afiliasi memerlukan JavaScript aktif di peramban Anda. Anda tetap bisa
-              menghubungi kami langsung melalui WhatsApp:
-              {whatsappNumber && (
-                <a class="toko-wa-fallback" href={`https://wa.me/${whatsappNumber.replace(/\D/g, "")}`}>
-                  Hubungi WhatsApp
+        <div class="akun-layout">
+          <nav class="akun-sidenav" aria-label="Menu akun">
+            {
+              SIDENAV_ITEMS.map((item) => (
+                <a
+                  class="akun-sidenav-item"
+                  href={item.href}
+                  aria-current={item.key === SIDENAV_ACTIVE ? "page" : undefined}
+                >
+                  <span class="akun-sidenav-item-label">{item.label}</span>
                 </a>
-              )}
-            </div>
-          </noscript>
+              ))
+            }
+          </nav>
 
-          <div data-status class="toko-banner toko-banner--info" role="status" aria-live="polite" hidden></div>
-          <div data-submit-error class="toko-banner toko-banner--danger" hidden>
-            <p data-submit-error-message></p>
-            <div class="toko-actions">
-              <a data-wa-fallback-link class="toko-wa-fallback" hidden>Hubungi via WhatsApp</a>
-            </div>
-          </div>
+          <div
+            class="akun-content"
+            data-akun-afiliasi-root
+            data-whatsapp-number={whatsappNumber}
+            data-store-name={identity.name}
+          >
+            <noscript>
+              <div class="toko-banner toko-banner--info">
+                Halaman afiliasi memerlukan JavaScript aktif di peramban Anda. Anda tetap bisa
+                menghubungi kami langsung melalui WhatsApp:
+                {whatsappNumber && (
+                  <a class="toko-wa-fallback" href={`https://wa.me/${whatsappNumber.replace(/\D/g, "")}`}>
+                    Hubungi WhatsApp
+                  </a>
+                )}
+              </div>
+            </noscript>
 
-          <div data-guest-view class="akun-card" hidden>
-            <p>Masuk terlebih dahulu untuk bergabung dengan program afiliasi.</p>
-            <div class="akun-actions">
-              <a href={ROUTES.login}>Masuk</a>
+            <div data-status class="toko-banner toko-banner--info" role="status" aria-live="polite" hidden></div>
+            <div data-submit-error class="toko-banner toko-banner--danger" hidden>
+              <p data-submit-error-message></p>
+              <div class="toko-actions">
+                <a data-wa-fallback-link class="toko-wa-fallback" hidden>Hubungi via WhatsApp</a>
+              </div>
             </div>
-          </div>
 
-          <div data-enrol-view class="akun-card" hidden>
-            <p>Anda belum bergabung dengan program afiliasi. Bergabung sekarang untuk mendapatkan tautan referral dan komisi dari setiap pesanan yang berhasil melalui tautan Anda.</p>
-            <div class="akun-actions">
-              <button type="button" data-afiliasi-gabung>Gabung program afiliasi</button>
+            <div data-guest-view class="akun-card" hidden>
+              <p>Masuk terlebih dahulu untuk bergabung dengan program afiliasi.</p>
+              <div class="akun-actions">
+                <a href={ROUTES.login} class="btn btn--primary btn--sm">Masuk</a>
+              </div>
             </div>
-          </div>
 
-          <div data-enrolled-view hidden aria-live="polite">
-            <div class="akun-card">
-              <h2>Tautan Referral Anda</h2>
-              <div class="toko-field akun-afiliasi-link-field">
-                <label for="afiliasi-link">Bagikan tautan ini</label>
-                <div class="akun-afiliasi-link-row">
-                  <input type="text" id="afiliasi-link" data-afiliasi-link readonly />
-                  <button type="button" data-afiliasi-copy>Salin</button>
+            <div data-enrol-view class="akun-card" hidden>
+              <p>
+                Anda belum bergabung dengan program afiliasi. Bergabung sekarang untuk mendapatkan
+                tautan referral dan komisi dari setiap pesanan yang berhasil melalui tautan Anda.
+              </p>
+              <div class="akun-actions">
+                <button type="button" class="btn btn--primary btn--sm" data-afiliasi-gabung>
+                  Gabung program afiliasi
+                </button>
+              </div>
+            </div>
+
+            <div data-enrolled-view hidden aria-live="polite">
+              <div class="akun-card">
+                <div class="akun-affiliate-status-row">
+                  <span class="pill pill--success" data-afiliasi-status></span>
+                  <span class="akun-affiliate-terms">komisi <span data-afiliasi-rate></span></span>
+                </div>
+                <div class="toko-field akun-afiliasi-link-field">
+                  <label for="afiliasi-link" class="field-label">Bagikan tautan ini</label>
+                  <div class="akun-afiliasi-link-row">
+                    <div class="akun-affiliate-link-box">
+                      <input
+                        type="text"
+                        id="afiliasi-link"
+                        class="is-mono akun-affiliate-link-input"
+                        data-afiliasi-link
+                        readonly
+                      />
+                    </div>
+                    <button type="button" class="btn btn--primary btn--sm" data-afiliasi-copy>Salin</button>
+                  </div>
                 </div>
               </div>
-              <dl>
-                <div class="akun-profile-row">
-                  <dt>Komisi</dt>
-                  <dd data-afiliasi-rate></dd>
-                </div>
-                <div class="akun-profile-row">
-                  <dt>Status</dt>
-                  <dd><span class="akun-badge-status" data-afiliasi-status></span></dd>
-                </div>
-              </dl>
-            </div>
 
-            <div class="akun-card">
-              <h2>Statistik</h2>
-              <dl>
-                <div class="akun-profile-row">
-                  <dt>Pesanan direferensikan</dt>
-                  <dd data-afiliasi-referred-orders></dd>
+              <div class="akun-stat-grid">
+                <div class="akun-stat-card">
+                  <span class="akun-stat-label">Pesanan direferensikan</span>
+                  <div class="akun-stat-value" data-afiliasi-referred-orders></div>
                 </div>
-                <div class="akun-profile-row">
-                  <dt>Komisi menunggu</dt>
-                  <dd data-afiliasi-pending></dd>
+                <div class="akun-stat-card">
+                  <span class="akun-stat-label">Komisi menunggu</span>
+                  <div class="akun-stat-value" data-afiliasi-pending></div>
                 </div>
-                <div class="akun-profile-row">
-                  <dt>Komisi disetujui</dt>
-                  <dd data-afiliasi-approved></dd>
+                <div class="akun-stat-card">
+                  <span class="akun-stat-label">Komisi disetujui</span>
+                  <div class="akun-stat-value" data-afiliasi-approved></div>
                 </div>
-                <div class="akun-profile-row">
-                  <dt>Komisi dibayar</dt>
-                  <dd data-afiliasi-paid></dd>
+                <div class="akun-stat-card">
+                  <span class="akun-stat-label">Komisi dibayar</span>
+                  <div class="akun-stat-value" data-afiliasi-paid></div>
                 </div>
-              </dl>
-            </div>
+              </div>
 
-            <div class="akun-card">
-              <h2>Riwayat Komisi</h2>
-              <p class="toko-empty" data-komisi-empty hidden>Belum ada komisi.</p>
-              <ul class="akun-nav-grid" data-komisi-list aria-live="polite"></ul>
-              <div class="akun-actions">
-                <button type="button" data-load-more hidden>Muat lebih banyak</button>
+              <div class="akun-commission-table">
+                <div class="akun-commission-head">Riwayat komisi</div>
+                <p class="empty-state" data-komisi-empty hidden>Belum ada komisi.</p>
+                <ul class="akun-nav-grid" data-komisi-list aria-live="polite"></ul>
+                <div class="akun-commission-more">
+                  <button type="button" class="btn btn--secondary btn--sm" data-load-more hidden>
+                    Muat lebih banyak
+                  </button>
+                </div>
               </div>
             </div>
           </div>
