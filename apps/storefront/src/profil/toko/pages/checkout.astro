@@ -68,6 +68,24 @@ const pinpointEnabled = storeSettings.shipping?.pinpointEnabled ?? false;
       </div>
     </div>
 
+    <!--
+      A decorative step indicator (issue #167), mirroring the mockup's
+      `.segmented` pill row — plain, NON-interactive `<span>`s (a step here
+      is not a navigation shortcut around the form's own required-field
+      validation, unlike a `.segmented` tab), so nothing about this is a
+      focusable no-op for a keyboard user. `checkout.ts`'s `showStep()`
+      updates `aria-current` on the matching `[data-step-pill]` alongside
+      the real `[data-step]` section it always toggled — the step order/
+      validation/quote logic itself is unchanged.
+    -->
+    <div class="segmented checkout-steps" role="list" aria-label="Langkah checkout">
+      <span role="listitem" data-step-pill="contact" aria-current="true">1 · Kontak</span>
+      <span role="listitem" data-step-pill="address" aria-current="false">2 · Alamat</span>
+      <span role="listitem" data-step-pill="shipping" aria-current="false">3 · Pengiriman</span>
+      <span role="listitem" data-step-pill="payment" aria-current="false">4 · Pembayaran</span>
+      <span role="listitem" data-step-pill="review" aria-current="false">5 · Ringkasan</span>
+    </div>
+
     <form data-checkout-form novalidate>
       <section class="toko-section" data-step="contact">
         <h2>1. Kontak</h2>
@@ -80,7 +98,7 @@ const pinpointEnabled = storeSettings.shipping?.pinpointEnabled ?? false;
 
         <div class="toko-field">
           <label for="customer-phone">Nomor WhatsApp</label>
-          <input type="tel" id="customer-phone" name="customer.phone" required autocomplete="tel" />
+          <input type="tel" id="customer-phone" name="customer.phone" required autocomplete="tel" class="is-mono" />
           <p class="toko-field-hint" data-phone-preview></p>
           <p class="toko-field-error" data-error-for="customer.phone"></p>
         </div>
@@ -91,7 +109,7 @@ const pinpointEnabled = storeSettings.shipping?.pinpointEnabled ?? false;
           <p class="toko-field-error" data-error-for="customer.email"></p>
         </div>
 
-        <button type="button" data-step-next="contact">Lanjut ke alamat</button>
+        <button type="button" class="btn btn--primary" data-step-next="contact">Lanjut ke alamat</button>
       </section>
 
       <section class="toko-section" data-step="address" hidden>
@@ -113,7 +131,7 @@ const pinpointEnabled = storeSettings.shipping?.pinpointEnabled ?? false;
 
         <div class="toko-field">
           <label for="address-phone">Nomor WhatsApp penerima</label>
-          <input type="tel" id="address-phone" name="address.phone" autocomplete="tel" />
+          <input type="tel" id="address-phone" name="address.phone" autocomplete="tel" class="is-mono" />
           <p class="toko-field-error" data-error-for="address.phone"></p>
         </div>
 
@@ -143,7 +161,7 @@ const pinpointEnabled = storeSettings.shipping?.pinpointEnabled ?? false;
 
         <div class="toko-field">
           <label for="address-postal">Kode pos</label>
-          <input type="text" id="address-postal" name="address.postalCode" inputmode="numeric" />
+          <input type="text" id="address-postal" name="address.postalCode" inputmode="numeric" class="is-mono" />
           <p class="toko-field-error" data-error-for="address.postalCode"></p>
         </div>
 
@@ -167,8 +185,8 @@ const pinpointEnabled = storeSettings.shipping?.pinpointEnabled ?? false;
         </div>
 
         <div class="toko-actions">
-          <button type="button" data-step-prev="address">Kembali</button>
-          <button type="button" data-step-next="address">Lanjut ke pengiriman</button>
+          <button type="button" class="btn btn--secondary" data-step-prev="address">Kembali</button>
+          <button type="button" class="btn btn--primary" data-step-next="address">Lanjut ke pengiriman</button>
         </div>
       </section>
 
@@ -186,8 +204,8 @@ const pinpointEnabled = storeSettings.shipping?.pinpointEnabled ?? false;
         </div>
 
         <div class="toko-actions">
-          <button type="button" data-step-prev="shipping">Kembali</button>
-          <button type="button" data-step-next="shipping">Lanjut ke pembayaran</button>
+          <button type="button" class="btn btn--secondary" data-step-prev="shipping">Kembali</button>
+          <button type="button" class="btn btn--primary" data-step-next="shipping">Lanjut ke pembayaran</button>
         </div>
       </section>
 
@@ -207,8 +225,8 @@ const pinpointEnabled = storeSettings.shipping?.pinpointEnabled ?? false;
         </div>
 
         <div class="toko-actions">
-          <button type="button" data-step-prev="payment">Kembali</button>
-          <button type="button" data-step-next="payment">Lanjut ke ringkasan</button>
+          <button type="button" class="btn btn--secondary" data-step-prev="payment">Kembali</button>
+          <button type="button" class="btn btn--primary" data-step-next="payment">Lanjut ke ringkasan</button>
         </div>
       </section>
 
@@ -217,8 +235,8 @@ const pinpointEnabled = storeSettings.shipping?.pinpointEnabled ?? false;
         <div class="toko-summary" aria-live="polite" data-review-summary></div>
 
         <div class="toko-actions">
-          <button type="button" data-step-prev="review">Kembali</button>
-          <button type="submit" data-submit-order>Buat Pesanan</button>
+          <button type="button" class="btn btn--secondary" data-step-prev="review">Kembali</button>
+          <button type="submit" class="btn btn--primary" data-submit-order>Buat Pesanan</button>
         </div>
       </section>
     </form>

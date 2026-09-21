@@ -65,16 +65,21 @@ function starText(rating: number): string {
 <BaseLayout title={identity.name} description={identity.description} canonicalPath="/">
   <div class="container">
     {sliders.length > 0 && (
-      <div class="slider" role="region" aria-label="Promo unggulan">
+      <div class="slider band-inverse" role="region" aria-label="Promo unggulan">
         <div class="slider-track">
           {sliders.map((slide) => (
-            <a class="slider-slide" href={slide.linkUrl ?? "#"}>
+            <div class="slider-slide">
               <img src={slide.image.url} alt={slide.image.alt} width={slide.image.width} height={slide.image.height} loading="lazy" />
-              <span class="slider-caption">
+              <div class="slider-caption">
+                <span class="pill pill--success">Slider dikelola CMS</span>
                 <strong>{slide.title}</strong>
-                {slide.subtitle && <span> — {slide.subtitle}</span>}
-              </span>
-            </a>
+                {slide.subtitle && <span class="slider-subtitle">{slide.subtitle}</span>}
+                <span class="slider-cta-row">
+                  <a class="btn btn--primary btn--sm" href={slide.linkUrl ?? ROUTES.products}>Lihat produk ini</a>
+                  <a class="btn btn--secondary btn--sm" href={ROUTES.products}>Lihat katalog</a>
+                </span>
+              </div>
+            </div>
           ))}
         </div>
       </div>

@@ -22,9 +22,18 @@
  * `produk-index-klien.ts`'s client-built cards do not (yet) carry this
  * button — a documented, deliberate gap, not an oversight; see this
  * issue's PR notes.
+ *
+ * ## 2026-09 redesign addition (issue #167): price row + tier line
+ *
+ * `.card-badges` groups the label/flash/stock pills on one row (CSS,
+ * `katalog.css`); `.card-price-row` adds the "was" price + discount percent
+ * ONLY when `discountPercent > 0` (never a fabricated strike-through), and
+ * `.card-tier-line` shows the level-2 price ONLY when the product actually
+ * carries one — no invented minimum-quantity number, since awcms's product
+ * DTO has no such field (see `lib/catalog.ts`'s `buildPriceTiers`).
  */
 import { labelClassName, primaryProductImage, type CommerceProduct } from "../../lib/catalog";
-import { formatPrice } from "../../lib/harga";
+import { formatPrice, formatDiscountPercent } from "../../lib/harga";
 
 interface Props {
   product: CommerceProduct;
@@ -37,6 +46,25 @@ const { product, categoryName = null, inFlashSale = false } = Astro.props;
 const image = primaryProductImage(product);
 const badgeClass = labelClassName(product.labelColor);
 const inStock = product.stock > 0;
+
+/**
+ * 2026-09 redesign (issue #167): "was" price + discount percent, shown only
+ * when awcms actually discounted this product (`discountPercent > 0`) —
+ * never a fabricated strike-through. `finalPrice` is already
+ * `price` after `discountPercent` (see `CommerceProduct`'s own docblock in
+ * `lib/catalog.ts`), so `product.price` alone is the "was" figure — no
+ * arithmetic happens here, matching ADR-0003.
+ */
+const hasDiscount = product.discountPercent > 0;
+
+/**
+ * The tier line ("Grosir mulai …") renders only when the product actually
+ * carries a level-2+ price — never a fabricated minimum-quantity number.
+ * `priceLevel2` is the cheapest of the higher tiers awcms ever returns for
+ * this product (level 3/4 are lower still, but showing the level-2 figure
+ * matches what `buildPriceTiers` (`lib/catalog.ts`) always includes first).
+ */
+const tierFrom = product.priceLevel2;
 
 /**
  * `data-name` below is an HTML ATTRIBUTE value, not a text node — Astro
@@ -86,13 +114,24 @@ const wishlistName = product.name.replace(/[<>]/g, "");
     ) : (
       <span class="card-image-placeholder" aria-hidden="true" />
     )}
+    <span class="card-badges">
+      {product.label && <span class={`label-badge ${badgeClass ?? ""}`}>{product.label}</span>}
+      {inFlashSale && <span class="flash-badge">Flash Sale</span>}
+      <span class={`stock-badge ${inStock ? "stock-badge--in" : "stock-badge--out"}`}>
+        {inStock ? "Stok tersedia" : "Stok habis"}
+      </span>
+    </span>
     {categoryName && <span class="card-eyebrow">{categoryName}</span>}
     <h2 class="card-title">{product.name}</h2>
-    {product.label && <span class={`label-badge ${badgeClass ?? ""}`}>{product.label}</span>}
-    {inFlashSale && <span class="flash-badge">Flash Sale</span>}
-    <p class="card-price">{formatPrice(product.finalPrice)}</p>
-    <span class={`stock-badge ${inStock ? "stock-badge--in" : "stock-badge--out"}`}>
-      {inStock ? "Stok tersedia" : "Stok habis"}
+    <span class="card-price-row">
+      <span class="card-price">{formatPrice(product.finalPrice)}</span>
+      {hasDiscount && (
+        <>
+          <span class="price-original">{formatPrice(product.price)}</span>
+          <span class="price-discount">-{formatDiscountPercent(product.discountPercent)}</span>
+        </>
+      )}
     </span>
+    {tierFrom && <span class="card-tier-line">Grosir mulai {formatPrice(tierFrom)}</span>}
   </a>
 </li>

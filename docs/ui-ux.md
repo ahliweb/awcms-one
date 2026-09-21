@@ -144,6 +144,42 @@ All ADDITIVE — every class that predates this issue (`.card`, `.cart-count`, `
 
 Nothing in this design system renders text below `--text-xs` (12px) — the mockup's own 10-11px captions (`#94a3b8` at 10px, which fails WCAG AA) become 12px `--text-muted`/`--status-*-fg` throughout. See [`docs/aksesibilitas.md`](aksesibilitas.md) for the contrast and touch-target detail.
 
+### Commerce pages (issue #167)
+
+**Wave 2**, built entirely on issue #166's primitives above — no new token, no new primitive class, only consuming pages restyled. Markup/CSS only: every client contract (`toko-klien.ts`, `keranjang-kontrak.ts`, `wishlist-kontrak.ts`, the checkout quote/order flow) is unchanged, and every class an existing test asserts on was kept.
+
+#### Home (`apps/storefront/src/profil/toko/Beranda.astro`)
+
+The CMS slider (`getActiveSliders()`) now renders each slide on the `.band-inverse` surface as a hero card: a `.pill--success` "Slider dikelola CMS" badge, the slide's own title/subtitle, and two real links — a primary CTA to the slide's `linkUrl` (falling back to `/produk` when a slide has none) and a secondary outline CTA to the catalog. The previous single `<a class="slider-slide">` wrapping the whole slide became a `<div>` with two real, separately-focusable links, since a slide is no longer one giant hit target — matching the mockup's own two-CTA composition. The flash-sale strip is now an amber soft band (`--status-warning-bg`/`-fg`); featured/recommended cards are `ProductCard.astro`'s own restyle (next section).
+
+#### Product card (`apps/storefront/src/components/katalog/ProductCard.astro`)
+
+Used by home, `/produk`, `/kategori/[slug]`, and product-detail's related list — restyled once. `.card-badges` groups the label/flash/stock pills on one row; `.card-price-row` shows the "was" price + discount percent only when `product.discountPercent > 0` (never a fabricated strike-through — `finalPrice` is already the discounted figure, ADR-0003); `.card-tier-line` shows "Grosir mulai {formatPrice(priceLevel2)}" only when the product actually carries a level-2 price (no invented minimum-quantity number — awcms's product DTO has no such field). The wishlist heart (`.wishlist-button`, a sibling of `.card`, unchanged data-attribute contract) is 44px here via a higher-specificity `.card-wrap .wishlist-button` rule in `katalog.css`, while the bare `global.css` class stays 32px for anything that does not opt in.
+
+#### Catalog (`/produk`, `/kategori/[slug]`)
+
+The sidebar filter card and `CategoryTree.astro` rows are restyled — a decorative marker square beside each category row gives it the same at-a-glance shape as the mockup's checkboxes, but it stays a real `<a>` (the issue's own documented fallback: "plain links" when there is no multi-select filtering contract to add without changing `produk-listing.ts`'s client behaviour). Sort/price-range/stock controls use the new `.field-label`/`.is-mono`/`.btn` primitives; the underlying `data-filter-*` selectors `produk-listing.ts` reads are unchanged.
+
+#### Product detail (`/product/[slug]`)
+
+Badges group above the title; the price-tier table now sits inside a `.tier-box` (an info-soft card, `--status-info-bg`/`-border`/`-fg`); the qty stepper/add-to-cart carry `.stepper--lg`/`.btn btn--primary` visuals over the same `data-qty-*`/`data-add-to-cart` behaviour; a `[data-wishlist]` button (the same data-attribute shape `ProductCard.astro` uses) now sits beside "Tambah ke Keranjang" — `wishlist-tombol.ts`'s site-wide event delegation wires it up with no script change. Description now precedes the size-chart table (both restyled), and share actions use `.btn` tones. **No per-product reviews list is rendered**: awcms's contract has no `GET …/storefront/reviews` (`openapi/modules/commerce.openapi.yaml` — only an anonymous `POST`, pending moderation), so the page's only real review signal remains the existing rating-average + sold-count line; inventing review cards would mean showing text/authors the CMS never sent.
+
+#### Cart (`/keranjang`)
+
+A two-column `.cart-layout` (line cards + voucher on the left, a sticky-on-desktop `.cart-summary` on the right, single column under 900px). `keranjang.ts`'s `renderLines` now builds a `.stepper` −/n/+ control (an `<output>`, not editable by typing — a traded affordance, not a data-flow change) calling the same `updateCartLineQuantity`, plus a right-aligned `.toko-line-sum` from `quoteLine.lineTotal` (never computed client-side). The empty state is the shared `.empty-state` primitive with a "Mulai belanja" CTA.
+
+#### Checkout (`/checkout`)
+
+A decorative, **non-interactive** step-pill row (`<span data-step-pill>`, not a `.segmented` tab — a step here is not a shortcut around the form's own required-field validation) sits above the form; `checkout.ts`'s existing `showStep()` now also updates `aria-current` on the matching pill, alongside the real `[data-step]` section it always toggled. Phone/postcode fields carry `.is-mono`. Shipping and payment options — built by the SAME `renderShippingOptions`/`renderPaymentOptions` — are restyled as `.radio-card`-style rows purely via CSS (`.toko-shipping-option`/`[data-payment-options] .toko-field`, the exact class names those functions already assigned).
+
+#### Tracking (`/pesanan`)
+
+Phone/order-code inputs are `.is-mono`. The status pill (`pesanan-render.ts`'s `renderOrder`) is now toned by the real order status (`pill--warning` while pending payment, `pill--success` once completed, `pill--danger` if cancelled, …) rather than a fixed colour — the same shared renderer `/akun/pesanan`'s own detail view uses, so that page's status pill gains the same accurate toning for free. The "Bayar sekarang" band shows exactly when the pre-existing `gateway` + `pending_payment` condition (`renderPaymentSection`) is true; nothing about that condition changed.
+
+#### Wishlist (`/wishlist`)
+
+An info band states the real sync behaviour (`wishlist-akun-sync.ts` already writes to the account when signed in — not new copy). Each card gets a "Ke keranjang" link beside remove — a real navigation to the product page, **not** a direct `addToCart()`: `WishlistItem` (`wishlist-kontrak.ts`) carries no `minPurchase`/`maxQuantity`/`sku` snapshot, so there is no honest quantity/stock to add without re-fetching, and the product page is where that add already happens correctly.
+
 ### News chrome, news home and article (issue #169)
 
 Builds on the tokens/primitives above — no change to `apps/storefront/src/styles/global.css` itself; every rule below lives in `apps/storefront/src/styles/berita-chrome.css`/`berita.css`/`dengar.css`/`bagikan.css`, which load only on a page that renders `BeritaLayout.astro` (`apps/storefront/src/layouts/BeritaLayout.astro`), never a store/landing page. Source: the same mockup, lines 59-86 (chrome), 718-782 (news home), 784-857 (article).

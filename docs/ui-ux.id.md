@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](ui-ux.md)
 
-<!-- i18n-source-hash: sha256:dea6d471c1286c43fb8500e71bca741b812db3645421e8b8d758082b574553aa -->
+<!-- i18n-source-hash: sha256:cb5dcc44cc495452882f3e1b2feecf6064a2c0c94176b15f934b4b05690fb41f -->
 
 # UI / UX
 
@@ -145,6 +145,42 @@ Semuanya ADITIF — setiap kelas yang sudah ada sebelum issue ini (`.card`, `.ca
 ### Batas aksesibilitas
 
 Tidak ada teks dalam sistem desain ini yang dirender di bawah `--text-xs` (12px) — caption 10-11px milik mockup sendiri (`#94a3b8` pada 10px, yang gagal WCAG AA) menjadi 12px `--text-muted`/`--status-*-fg` di semua tempat. Lihat [`docs/aksesibilitas.md`](aksesibilitas.md) untuk detail kontras dan target sentuh.
+
+### Halaman commerce (issue #167)
+
+**Gelombang 2**, dibangun sepenuhnya di atas primitif issue #166 di atas — tidak ada token baru, tidak ada kelas primitif baru, hanya halaman pemakainya yang didesain ulang. Markup/CSS saja: setiap kontrak klien (`toko-klien.ts`, `keranjang-kontrak.ts`, `wishlist-kontrak.ts`, alur quote/pesanan checkout) tidak berubah, dan setiap nama kelas yang diperiksa test yang sudah ada dipertahankan.
+
+#### Beranda (`apps/storefront/src/profil/toko/Beranda.astro`)
+
+Slider CMS (`getActiveSliders()`) kini merender setiap slide di permukaan `.band-inverse` sebagai kartu hero: badge `.pill--success` "Slider dikelola CMS", judul/subjudul slide itu sendiri, dan dua tautan sungguhan — CTA utama ke `linkUrl` slide (jatuh ke `/produk` bila slide tidak punya satu pun) dan CTA sekunder outline ke katalog. `<a class="slider-slide">` tunggal yang dulu membungkus seluruh slide kini menjadi `<div>` dengan dua tautan sungguhan yang bisa difokus terpisah, karena satu slide bukan lagi satu target sentuh raksasa — sesuai komposisi dua-CTA milik mockup sendiri. Strip flash sale kini menjadi pita lembut amber (`--status-warning-bg`/`-fg`); kartu unggulan/rekomendasi adalah hasil desain ulang `ProductCard.astro` sendiri (bagian berikutnya).
+
+#### Kartu produk (`apps/storefront/src/components/katalog/ProductCard.astro`)
+
+Dipakai oleh beranda, `/produk`, `/kategori/[slug]`, dan daftar terkait di detail produk — didesain ulang sekali. `.card-badges` mengelompokkan pill label/flash/stok dalam satu baris; `.card-price-row` menampilkan harga "semula" + persentase diskon hanya saat `product.discountPercent > 0` (tidak pernah coretan yang direkayasa — `finalPrice` sudah menjadi angka setelah diskon, ADR-0003); `.card-tier-line` menampilkan "Grosir mulai {formatPrice(priceLevel2)}" hanya saat produk benar-benar punya harga level-2 (tidak ada angka kuantitas-minimum yang direkayasa — DTO produk awcms tidak punya kolom semacam itu). Hati wishlist (`.wishlist-button`, saudara dari `.card`, kontrak atribut data tidak berubah) menjadi 44px di sini lewat aturan `.card-wrap .wishlist-button` berspesifisitas lebih tinggi di `katalog.css`, sementara kelas telanjang `global.css` tetap 32px untuk apa pun yang tidak ikut serta.
+
+#### Katalog (`/produk`, `/kategori/[slug]`)
+
+Kartu filter sidebar dan baris `CategoryTree.astro` didesain ulang — kotak penanda dekoratif di samping tiap baris kategori memberinya bentuk sekilas yang sama dengan checkbox milik mockup, tapi tetap `<a>` sungguhan (aturan fallback yang didokumentasikan issue ini sendiri: "tautan biasa" saat tidak ada kontrak pemfilteran multi-pilih untuk ditambahkan tanpa mengubah perilaku klien `produk-listing.ts`). Kontrol urutkan/rentang-harga/stok memakai primitif baru `.field-label`/`.is-mono`/`.btn`; selector `data-filter-*` yang dibaca `produk-listing.ts` tidak berubah.
+
+#### Detail produk (`/product/[slug]`)
+
+Badge berkelompok di atas judul; tabel harga bertingkat kini berada dalam `.tier-box` (kartu bernada info-lembut, `--status-info-bg`/`-border`/`-fg`); stepper qty/tambah-ke-keranjang memakai tampilan `.stepper--lg`/`.btn btn--primary` di atas perilaku `data-qty-*`/`data-add-to-cart` yang sama; tombol `[data-wishlist]` (bentuk atribut data yang sama dengan `ProductCard.astro`) kini duduk di samping "Tambah ke Keranjang" — delegasi event situs-lebar `wishlist-tombol.ts` menyambungkannya tanpa perubahan skrip. Deskripsi kini mendahului tabel size chart (keduanya didesain ulang), dan aksi bagikan memakai nada `.btn`. **Tidak ada daftar ulasan per-produk yang dirender**: kontrak awcms tidak punya `GET …/storefront/reviews` (`openapi/modules/commerce.openapi.yaml` — hanya `POST` anonim, menunggu moderasi), jadi satu-satunya sinyal ulasan nyata di halaman ini tetap baris rata-rata rating + jumlah terjual yang sudah ada; mengarang kartu ulasan berarti menampilkan teks/penulis yang tidak pernah dikirim CMS.
+
+#### Keranjang (`/keranjang`)
+
+Tata letak dua kolom `.cart-layout` (kartu baris + voucher di kiri, `.cart-summary` lengket-di-desktop di kanan, satu kolom di bawah 900px). `renderLines` milik `keranjang.ts` kini membangun kontrol `.stepper` −/n/+ (sebuah `<output>`, tidak bisa diketik langsung — pertukaran afordansi, bukan perubahan alur data) yang memanggil `updateCartLineQuantity` yang sama, plus `.toko-line-sum` rata-kanan dari `quoteLine.lineTotal` (tidak pernah dihitung di sisi klien). Kondisi kosong memakai primitif bersama `.empty-state` dengan CTA "Mulai belanja".
+
+#### Checkout (`/checkout`)
+
+Baris pill langkah yang dekoratif dan **non-interaktif** (`<span data-step-pill>`, bukan tab `.segmented` — sebuah langkah di sini bukan jalan pintas melewati validasi kolom-wajib formulir) berada di atas formulir; `showStep()` yang sudah ada di `checkout.ts` kini juga memperbarui `aria-current` pada pill yang cocok, di samping bagian `[data-step]` sungguhan yang selalu ditogelnya. Kolom telepon/kode-pos memakai `.is-mono`. Opsi pengiriman dan pembayaran — dibangun oleh `renderShippingOptions`/`renderPaymentOptions` yang SAMA — didesain ulang menjadi baris bergaya `.radio-card` murni lewat CSS (`.toko-shipping-option`/`[data-payment-options] .toko-field`, persis nama kelas yang sudah diberikan fungsi-fungsi itu).
+
+#### Pelacakan (`/pesanan`)
+
+Input telepon/kode pesanan memakai `.is-mono`. Pill status (`renderOrder` milik `pesanan-render.ts`) kini bernada sesuai status pesanan sungguhan (`pill--warning` saat menunggu pembayaran, `pill--success` setelah selesai, `pill--danger` bila dibatalkan, …) alih-alih warna tetap — renderer bersama yang sama juga dipakai tampilan detail `/akun/pesanan`, sehingga halaman itu mendapat penyesuaian nada pill status yang sama secara cuma-cuma. Pita "Bayar sekarang" tampil persis saat kondisi gateway-pending yang sudah ada (`renderPaymentSection`) bernilai benar; tidak ada yang berubah dari kondisi itu.
+
+#### Wishlist (`/wishlist`)
+
+Sebuah pita info menyatakan perilaku sinkronisasi yang sungguhan (`wishlist-akun-sync.ts` sudah menulis ke akun saat masuk — bukan salinan baru). Setiap kartu mendapat tautan "Ke keranjang" di samping hapus — navigasi sungguhan ke halaman produk, **bukan** `addToCart()` langsung: `WishlistItem` (`wishlist-kontrak.ts`) tidak membawa cuplikan `minPurchase`/`maxQuantity`/`sku`, sehingga tidak ada kuantitas/stok yang jujur untuk ditambahkan tanpa mengambil ulang data, dan halaman produklah tempat penambahan itu sudah terjadi dengan benar.
 
 ### Chrome berita, beranda berita, dan artikel (issue #169)
 

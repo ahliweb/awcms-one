@@ -25,6 +25,23 @@
  *   plain-text rendering stays safe. Rendering `description` as HTML would
  *   be introducing an XSS surface the CMS contract does not actually ask
  *   for; it is rendered as plain text, the same way increment 1 already did.
+ *
+ * ## 2026-09 redesign (issue #167): tier box, wishlist, and no fabricated reviews
+ *
+ * The price-tier table now sits inside a `.tier-box` (`.pill--info`-toned
+ * card); the qty stepper/add-to-cart carry the new `.stepper--lg`/`.btn
+ * btn--primary` classes (`data-qty-*`/`data-add-to-cart` selectors —
+ * `produk-detail.ts` — are unchanged); and a `[data-wishlist]` button
+ * (identical data attributes to `ProductCard.astro`'s own) sits next to
+ * "Tambah ke Keranjang" — `wishlist-tombol.ts`'s site-wide event delegation
+ * (mounted once from `Header.astro`) wires it up with no script change here.
+ * **No per-product reviews LIST is rendered**: `GET …/storefront/reviews`
+ * does not exist in awcms's contract (only `POST` — anonymous submission,
+ * pending moderation; see `openapi/modules/commerce.openapi.yaml`), so the
+ * only real review data this page has is the existing rating average +
+ * `soldCount` line above — inventing review cards would mean showing
+ * text/authors the CMS never sent, which this issue's own "real data only"
+ * rule forbids.
  */
 import BaseLayout from "../../../../layouts/BaseLayout.astro";
 import { absoluteUrl } from "../../../../config/site";
@@ -210,11 +227,12 @@ const detailPayload = {
           >
             {inStock ? "Stok tersedia" : "Stok habis"}
           </span>
-          {product.manualRating && (
-            <span aria-label={`Rating ${product.manualRating} dari 5`}>★ {product.manualRating}</span>
-          )}
-          <span>{product.soldCount} terjual</span>
         </div>
+        <p class="sku">
+          {product.manualRating && <span aria-label={`Rating ${product.manualRating} dari 5`}>★ {product.manualRating}</span>}
+          {product.manualRating && " · "}
+          {product.soldCount} terjual
+        </p>
 
         {flashSaleMatch && (
           <p>
@@ -233,37 +251,40 @@ const detailPayload = {
         )}
 
         {priceTiers.length > 1 && (
-          <table class="tier-table">
-            <caption class="visually-hidden">Harga berdasarkan level pelanggan</caption>
-            <thead>
-              <tr>
-                <th>Level</th>
-                <th>Harga</th>
-              </tr>
-            </thead>
-            <tbody>
-              {priceTiers.map((tier) => (
+          <div class="tier-box">
+            <p class="pill pill--info">Harga bertingkat</p>
+            <table class="tier-table">
+              <caption class="visually-hidden">Harga berdasarkan level pelanggan</caption>
+              <thead>
                 <tr>
-                  <td>{tier.label}</td>
-                  <td>{formatPrice(tier.price)}</td>
+                  <th>Level</th>
+                  <th>Harga</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {priceTiers.map((tier) => (
+                  <tr>
+                    <td>{tier.label}</td>
+                    <td>{formatPrice(tier.price)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         )}
 
-        <p>Min. pembelian: {product.minPurchase} · Berat: {product.weightGrams}g</p>
-
-        {product.withInsurance && (
-          <p class="content-placeholder">
-            Produk ini dilindungi asuransi pengiriman{product.insuranceRequired ? " (wajib)" : ""}
-            {product.insuranceFee ? ` — biaya ${formatPrice(product.insuranceFee)}` : ""}.
-          </p>
-        )}
-
-        {product.subscriptionPeriod && (
-          <p>Periode langganan: {SUBSCRIPTION_LABELS[product.subscriptionPeriod] ?? product.subscriptionPeriod}</p>
-        )}
+        <div class="product-notes">
+          <span>Min. pembelian {product.minPurchase} · Berat {product.weightGrams}g</span>
+          {product.withInsurance && (
+            <span>
+              Dilindungi asuransi pengiriman{product.insuranceRequired ? " (wajib)" : ""}
+              {product.insuranceFee ? ` — biaya ${formatPrice(product.insuranceFee)}` : ""}.
+            </span>
+          )}
+          {product.subscriptionPeriod && (
+            <span>Periode langganan: {SUBSCRIPTION_LABELS[product.subscriptionPeriod] ?? product.subscriptionPeriod}</span>
+          )}
+        </div>
 
         {product.type === "digital" && product.digitalNote && (
           <div class="product-note">
@@ -336,7 +357,7 @@ const detailPayload = {
         )}
 
         <div class="purchase-bar">
-          <div class="qty-stepper">
+          <div class="qty-stepper stepper stepper--lg">
             <button type="button" data-qty-decrement aria-label="Kurangi jumlah">−</button>
             <input
               type="number"
@@ -348,15 +369,37 @@ const detailPayload = {
             />
             <button type="button" data-qty-increment aria-label="Tambah jumlah">+</button>
           </div>
-          <button type="button" class="button-primary" data-add-to-cart disabled={!inStock}>
+          <button type="button" class="button-primary btn btn--primary" data-add-to-cart disabled={!inStock}>
             Tambah ke Keranjang
           </button>
+          <button
+            type="button"
+            class="wishlist-button"
+            data-wishlist
+            data-product-id={product.id}
+            data-slug={product.slug}
+            data-name={product.name.replace(/[<>]/g, "")}
+            data-price={product.finalPrice}
+            data-image-url={primaryImage?.url}
+            data-image-alt={primaryImage?.alt}
+            aria-pressed="false"
+            aria-label="Tambah ke wishlist"
+          >
+            <span aria-hidden="true">♡</span>
+          </button>
         </div>
-        <p role="status" aria-live="polite" data-cart-feedback hidden></p>
+        <p role="status" aria-live="polite" class="pill pill--success" data-cart-feedback hidden></p>
+
+        {product.description && (
+          <div>
+            <h2 class="section-title">Deskripsi</h2>
+            <p class="product-description">{product.description}</p>
+          </div>
+        )}
 
         {product.sizeChartType !== "none" && (
-          <div>
-            <h2>Tabel Ukuran</h2>
+          <div class="size-chart-box">
+            <h2 class="section-title">Size chart</h2>
             {product.sizeChartType === "image" && (
               <p class="content-placeholder">
                 Tabel ukuran (gambar) tersedia untuk produk ini.
@@ -388,13 +431,11 @@ const detailPayload = {
           </div>
         )}
 
-        {product.description && <p class="product-description">{product.description}</p>}
-
         <div class="share-buttons">
-          <a href={waShareUrl} target="_blank" rel="noopener noreferrer">Bagikan ke WhatsApp</a>
-          <a href={fbShareUrl} target="_blank" rel="noopener noreferrer">Bagikan ke Facebook</a>
-          <a href={xShareUrl} target="_blank" rel="noopener noreferrer">Bagikan ke X</a>
-          <button type="button" data-copy-link data-share-url={canonicalUrl}>Salin Tautan</button>
+          <a class="btn btn--secondary btn--sm" href={waShareUrl} target="_blank" rel="noopener noreferrer">Bagikan ke WhatsApp</a>
+          <a class="btn btn--secondary btn--sm" href={fbShareUrl} target="_blank" rel="noopener noreferrer">Bagikan ke Facebook</a>
+          <a class="btn btn--secondary btn--sm" href={xShareUrl} target="_blank" rel="noopener noreferrer">Bagikan ke X</a>
+          <button type="button" class="btn btn--quiet btn--sm" data-copy-link data-share-url={canonicalUrl}>Salin Tautan</button>
         </div>
       </div>
     </div>
