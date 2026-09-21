@@ -17,6 +17,10 @@
  * Terbaru/Mitra Borneo tabs, Terpopuler, the three sidebar ad slots, the
  * newsletter box, the tag cloud; this page's own inline `<aside>` is gone).
  *
+ * Issue #169 (2026-09 redesign): the headline block gets a "Headline" tag
+ * (`.berita-hero__lencana`, `src/styles/berita.css`) and Lora typography —
+ * markup/CSS only, the data and section order below are unchanged.
+ *
  * Composed directly from `getPosts()`/`getRubrikTree()`/`getVideo()`/
  * `getMitraStripBulanIni()` rather than the CMS's
  * `news-portal/homepage-sections/composed` endpoint — see
@@ -105,6 +109,7 @@ const { heading } = Astro.props;
       <div>
         {headline && (
           <div class="berita-hero">
+            <span class="berita-hero__lencana" aria-hidden="true">Headline</span>
             <ul class="grid-cards">
               <ArtikelCard post={headline} />
             </ul>

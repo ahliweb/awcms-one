@@ -50,6 +50,16 @@
  * hint`/`.toko-banner` classes — the same stylesheet `/buletin` and the
  * two token pages already import for the identical markup; 3 kB, every
  * selector class-scoped, no effect on anything else on a news page.
+ *
+ * ## `akun-header.ts`, mounted here too (issue #169)
+ *
+ * `BilahUtilitas.astro`'s "Akun" link (rendered only when the `toko` group
+ * is active) reuses `Header.astro`'s own `[data-akun-tautan]` swap —
+ * `src/scripts/akun-header.ts` already updates EVERY matching element via
+ * `querySelectorAll` (see that script's own docblock), so mounting it a
+ * second time, here, is what makes the news chrome's own "Akun" link
+ * behave identically to the store header's, on a page where
+ * `Header.astro` itself never renders.
  */
 import BaseLayout from "./BaseLayout.astro";
 import BilahUtilitas from "../components/berita/BilahUtilitas.astro";
@@ -126,6 +136,10 @@ const meta: readonly MetaTag[] =
   */}
   <script>
     import "../scripts/buletin";
+    // Issue #169: `BilahUtilitas.astro`'s "Akun" link reuses `Header.astro`'s
+    // own `[data-akun-tautan]` contract — mounted here so it works on a
+    // news page too (`Header.astro` itself never renders on this layout).
+    import "../scripts/akun-header";
   </script>
 
   {/*
