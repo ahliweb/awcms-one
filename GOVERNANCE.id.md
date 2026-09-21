@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](GOVERNANCE.md)
 
-<!-- i18n-source-hash: sha256:98bcfa279aee1d9a865281821e40b7f8d1c931cbfc97c331e8761feb37bcca7c -->
+<!-- i18n-source-hash: sha256:8e9351f468efd0545f73698dec822944b5f9e07adba3e89004e3432bdc801a49 -->
 
 # Governance
 
@@ -40,11 +40,8 @@ flowchart TD
   Proposal["Usulan perubahan"] --> Branch["Branch dari main"]
   Branch --> Gates["bun test + audit:dokumen/rilis/translation hijau"]
   Gates --> Review["Review maintainer"]
-  Review --> Merge{"Menyentuh apps/cms lewat subtree sync?"}
-  Merge -->|Ya| MergeCommit["Merge commit — jangan squash atau rebase"]
-  Merge -->|Tidak| AnyMerge["Strategi merge apa pun"]
+  Review --> MergeCommit["Merge commit — satu-satunya metode yang ditawarkan GitHub di seluruh repo (issue #149)"]
   MergeCommit --> Changeset["Changeset, bila publik/struktural"]
-  AnyMerge --> Changeset
   Changeset --> Due{"Backlog jatuh tempo? (audit:rilis)"}
   Due -->|Ya| Release["bun run release"]
   Due -->|Tidak| Done["Selesai"]
@@ -54,7 +51,7 @@ flowchart TD
 
 Yang berikut selalu butuh keputusan maintainer yang tercatat, sekecil apa pun perubahannya tampak:
 
-- Meng-merge PR `git subtree pull` dengan cara selain merge commit.
+- Meng-merge PR `git subtree pull` dengan cara selain merge commit — sejak issue #149 ini juga mustahil secara mekanis di seluruh repositori, bukan lagi sekadar aturan yang harus dipatuhi.
 - Melonggarkan sebuah gerbang demi membuat CI hijau. Bila aturannya memang salah, ubah dengan sengaja, sertakan alasannya, dan catat kenapa di PR.
 - Menyunting sumber `apps/cms` dengan cara yang besar kemungkinan akan bentrok dengan atau diam-diam ditimpa oleh `git subtree pull` berikutnya, alih-alih mengontribusikan perubahannya ke upstream lebih dulu.
 

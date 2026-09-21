@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](alur-kerja-pengembangan.md)
 
-<!-- i18n-source-hash: sha256:cde8982d64621d623f80e95e3c51fe25278b3f4ae93e57fc7e0273a5286dc11b -->
+<!-- i18n-source-hash: sha256:b15f769d4b3798d2f83b4b4381c53825234c4222875c309471a698bf9d4ae7c9 -->
 
 # Alur kerja pengembangan
 
@@ -25,7 +25,9 @@ Diverifikasi langsung terhadap pengaturan GitHub repositori ini saat tulisan ini
 | Riwayat linear wajib | Tidak |
 | Resolusi percakapan wajib | Tidak |
 
-`check-cms` ditambahkan ke daftar wajib setelah dua run hijau di `main`, memakai perintah persis yang dicatat lebih dulu oleh [`docs/deployment.md`](deployment.id.md) dan PR issue #25 sendiri — lihat "CI: dua job" di bawah untuk apa yang dijalankan masing-masing. `delete_branch_on_merge` aktif di seluruh repositori (juga diverifikasi lewat `gh api repos/ahliweb/awcms-one`), jadi branch yang sudah di-merge dibersihkan otomatis tanpa memandang strategi merge. **Squash merge, rebase merge, dan merge commit biasa semuanya masih diizinkan di seluruh repositori** — branch protection di sini mensyaratkan kedua job lulus sebelum merge, ia tidak membatasi *bagaimana* PR boleh di-merge. Rekomendasi untuk menonaktifkan squash/rebase merge khusus untuk PR yang menjalankan `git subtree pull` (sehingga jebakan mekanis yang dideskripsikan [ADR-0001](adr/0001-git-subtree-with-full-history-for-apps-cms.md) ditegakkan alih-alih sekadar didokumentasikan) dicatat di sini dan di `AGENTS.md`, dan **belum** diambil — menggabung PR semacam itu dengan apa pun selain merge commit tetap aturan yang harus diingat reviewer, bukan yang ditegakkan GitHub.
+`check-cms` ditambahkan ke daftar wajib setelah dua run hijau di `main`, memakai perintah persis yang dicatat lebih dulu oleh [`docs/deployment.md`](deployment.id.md) dan PR issue #25 sendiri — lihat "CI: dua job" di bawah untuk apa yang dijalankan masing-masing. `delete_branch_on_merge` aktif di seluruh repositori (juga diverifikasi lewat `gh api repos/ahliweb/awcms-one`), jadi branch yang sudah di-merge dibersihkan otomatis tanpa memandang strategi merge.
+
+**Squash dan rebase merge kini dinonaktifkan di seluruh repositori (issue #149).** Diverifikasi lewat `gh api repos/ahliweb/awcms-one`: `allow_merge_commit=true`, `allow_squash_merge=false`, `allow_rebase_merge=false`. Branch protection (tabel di atas) masih hanya menamai status check wajib — ia sendiri tidak membatasi metode merge, dan GitHub tidak bisa membatasi metode merge khusus ke PR yang menyentuh satu path — jadi jebakan mekanis yang dideskripsikan [ADR-0001](adr/0001-git-subtree-with-full-history-for-apps-cms.md) (PR sinkronisasi subtree di-merge dengan apa pun selain merge commit) kini ditutup dengan satu-satunya cara yang diizinkan GitHub: di seluruh repositori. Konsekuensi operasional untuk PR biasa yang tidak menyentuh `apps/cms` sama dengan untuk sinkronisasi subtree — merge commit adalah satu-satunya opsi yang ditawarkan tombol merge; `delete_branch_on_merge` tetap membersihkan branch tanpa memandang itu. **Required linear history tetap dinonaktifkan**, dengan sengaja: itu akan berbenturan dengan model subtree riwayat-lengkap, yang bergantung pada merge commit sungguhan, bukan riwayat linear hasil rebase.
 
 ## Changeset buatan-sendiri, bukan `@changesets/cli`
 
@@ -69,4 +71,4 @@ Dua detail menjaga `bun test` akhir itu tidak gagal terhadap dirinya sendiri. Pe
 
 ## Belum ditegakkan hari ini
 
-Pembatasan strategi-merge yang terikat khusus pada PR yang menyentuh `apps/cms` (aturan honour-system di [`AGENTS.md`](../AGENTS.md#the-one-rule-that-protects-every-future-sync)). Jumlah review wajib atau syarat code-owner — branch protection di sini menamai dua status check wajib dan tidak ada apa pun soal reviewer. Langkah CI yang membangun atau mempublikasikan image container, atau men-deploy ke mana pun — lihat [`docs/deployment.md`](deployment.id.md) untuk apa arti "men-deploy repositori ini" hari ini.
+Jumlah review wajib atau syarat code-owner — branch protection di sini menamai status check wajib dan tidak ada apa pun soal reviewer. Langkah CI yang membangun atau mempublikasikan image container, atau men-deploy ke mana pun — lihat [`docs/deployment.md`](deployment.id.md) untuk apa arti "men-deploy repositori ini" hari ini. (Pembatasan strategi-merge untuk PR yang menyentuh `apps/cms`, sebelumnya tercantum di sini sebagai honour-system saja, kini ditegakkan secara mekanis di seluruh repositori — lihat "Branch protection pada `main`" di atas — issue #149.)

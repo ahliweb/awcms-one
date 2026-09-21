@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](CONTRIBUTING.md)
 
-<!-- i18n-source-hash: sha256:b322a68eb09626c7143e4010b6fb9583268c0701490ad38631a0f6dd55b7b1f3 -->
+<!-- i18n-source-hash: sha256:fdd3694439b051cea1075835af77749f9463346fec80f4e186558354b2d30452 -->
 
 # Panduan Kontribusi
 
@@ -41,7 +41,7 @@ bun test                # rangkaian gerbang akar
 5. **Tulis sebuah changeset** di [`.changesets/`](.changesets/README.md) di iterasi yang sama, bukan dikumpulkan di akhir.
 6. **Jalankan `bun test`** (dan `bun run check:cms` bila perubahan menyentuh `apps/cms/`); keduanya harus bersih.
 7. **Buka Pull Request** dengan `Closes #<issue>`. Merge setelah review dan CI hijau.
-8. **Bila PR menyinkronkan `apps/cms/` dari upstream** (`git subtree pull`), ia **wajib** di-merge dengan merge commit — jangan pernah di-squash, jangan pernah di-rebase. "The subtree embed" di `AGENTS.md` menjelaskan alasannya; tidak ada apa pun di pengaturan repo ini saat ini yang mencegah squash secara mekanis, jadi ini aturan yang harus diingat, bukan yang sudah ditegakkan CI.
+8. **Bila PR menyinkronkan `apps/cms/` dari upstream** (`git subtree pull`), ia **wajib** di-merge dengan merge commit — jangan pernah di-squash, jangan pernah di-rebase. "The subtree embed" di `AGENTS.md` menjelaskan alasannya. Ini kini juga berlaku secara mekanis untuk setiap PR di repositori ini: squash dan rebase merge dinonaktifkan di seluruh repositori (issue #149), jadi merge commit adalah satu-satunya metode yang ditawarkan tombol merge GitHub.
 9. **Saat backlog changeset yang menunggu jatuh tempo** (`bun run audit:rilis` memerah melewati 10 berkas atau 14 hari), seorang maintainer menjalankan `bun run release`, yang melipat backlog ke `CHANGELOG.md` dan menandai tag `vX.Y.Z`.
 
 ### Penamaan branch

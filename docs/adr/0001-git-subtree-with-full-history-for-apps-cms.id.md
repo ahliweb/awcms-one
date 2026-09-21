@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](0001-git-subtree-with-full-history-for-apps-cms.md)
 
-<!-- i18n-source-hash: sha256:2877cee145bad1209417fff829e48b98d5e1b70129cdce3bddfa221117e93a2f -->
+<!-- i18n-source-hash: sha256:04ac23689037e84896f8b7357443d56267023dd09f9fa16f2af4e114440b186b -->
 
 # ADR-0001 — `apps/cms` adalah `ahliweb/awcms`, di-embed lewat `git subtree` dengan riwayat lengkap
 
@@ -31,6 +31,8 @@ Tiga cara membawa tree itu ke repositori ini dipertimbangkan:
 **Satu aturan yang melindungi setiap sinkronisasi masa depan: PR yang menjalankan `git subtree pull` harus digabung dengan merge commit, tidak pernah di-squash, tidak pernah di-rebase.** `git subtree pull` bekerja dengan mencari merge base antara riwayat repo ini dan upstream lalu memutar ulang commit upstream di atasnya. Men-squash pull itu meruntuhkan setiap commit yang diputar ulang menjadi satu commit sintetis yang tidak dibuat git lewat merge, yang menghancurkan merge base yang dibutuhkan pull *berikutnya* — dan kerusakannya tak kasatmata saat itu: PR yang di-squash tetap tergabung mulus, CI hijau, dan kerusakan baru muncul saat sinkronisasi berikutnya dicoba, jauh dari commit yang menyebabkannya. Tidak ada apa pun di branch protection repositori ini yang mencegah ini secara mekanis hari ini (required check GitHub bernama `Check`, bukan pembatasan strategi merge — lihat [`docs/alur-kerja-pengembangan.md`](../alur-kerja-pengembangan.md)); penjaganya adalah paragraf ini, dibaca sebelum tombol merge ditekan, dicatat di tiga tempat (`AGENTS.md`, ADR ini, dan [`knowledge/curated/ownership-boundaries.md`](../../knowledge/curated/ownership-boundaries.md)) justru karena belum ditegakkan oleh tempat keempat.
 
 Sumber `apps/cms` sendiri tetap tree milik upstream. Pekerjaan yang spesifik untuk platform ini — modul `commerce` — bersifat aditif di dalam direktori modul `apps/cms` sendiri, mengikuti disiplin pengadopsian-modulnya sendiri (`apps/cms/AGENTS.md`), tidak pernah menjadi tambalan lokal pada kode yang akan dikonflikkan atau ditimpa diam-diam oleh `git subtree pull` berikutnya.
+
+**Pembaruan status (2026-09-21, issue #149):** paragraf di atas mencatat keputusan sebagaimana berlaku pada 15 September 2026, ketika tidak ada apa pun di pengaturan repositori ini yang mencegah squash atau rebase merge secara mekanis. Celah itu kini ditutup: pengaturan merge repositori adalah `allow_merge_commit=true`, `allow_squash_merge=false`, `allow_rebase_merge=false` (diverifikasi lewat `gh api repos/ahliweb/awcms-one`), jadi merge commit adalah satu-satunya metode yang ditawarkan tombol merge GitHub, untuk kelas PR ini maupun semua PR lain. Required linear history tetap dinonaktifkan dengan sengaja, karena akan berbenturan dengan model subtree riwayat-lengkap yang dipilih ADR ini. Lihat [`AGENTS.md`](../../AGENTS.id.md#penyematan-subtree) dan [`docs/alur-kerja-pengembangan.md`](../alur-kerja-pengembangan.id.md) untuk keadaan saat ini.
 
 ## Konsekuensi
 

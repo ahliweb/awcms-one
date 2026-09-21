@@ -38,7 +38,7 @@ This repo is a monorepo, and today it holds three real attack surfaces plus the 
 - **No secret, token, or credential** in code, commits, issues, or documentation.
 - **`bun audit` must report zero vulnerabilities** before a release (`tools/rilis.mjs` runs it before applying); `bun audit --audit-level=low` also runs on every CI push.
 - **GitHub Actions are pinned to a commit SHA**, not a tag — see `AGENTS.md`'s "Configuration and toolchain".
-- **A `git subtree pull` PR is merged with a merge commit, never squashed or rebased** — not a security control against an external attacker, but a control against corrupting this repo's own ability to pull upstream security patches into `apps/cms` in the future. See `AGENTS.md`'s "The subtree embed".
+- **A `git subtree pull` PR is merged with a merge commit, never squashed or rebased** — not a security control against an external attacker, but a control against corrupting this repo's own ability to pull upstream security patches into `apps/cms` in the future. Since issue #149 this is mechanically enforced repository-wide (`allow_squash_merge=false`, `allow_rebase_merge=false`), not only a reviewer's own memory. See `AGENTS.md`'s "The subtree embed".
 - **RLS `ENABLE`+`FORCE` on every tenant-scoped table**, including all nineteen commerce tables added in increment 2 — see [`docs/skema-basis-data.md`](docs/skema-basis-data.md).
 
 ## What is NOT yet true, stated plainly
