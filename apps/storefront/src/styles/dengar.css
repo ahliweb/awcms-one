@@ -23,9 +23,9 @@
 .dengar {
   margin: 1.5rem 0;
   padding: 0.875rem 1rem;
-  border: 1px solid var(--border-subtle);
-  border-radius: 0.5rem;
-  background: var(--bg-surface);
+  border: 1px solid var(--border-color, var(--border-subtle));
+  border-radius: var(--radius-l, 0.5rem);
+  background: var(--bg-subtle);
 }
 
 .dengar[hidden] {
@@ -39,19 +39,29 @@
   gap: 0.75rem;
 }
 
+/* The play control (issue #169, mockup line 802) — an inverse-surface
+   pill, not the outlined button this card shipped with pre-redesign.
+   Deliberately kept as ONE control with the label still inside it
+   (rather than splitting the label out onto the row, as the mockup's own
+   icon-only circle does): `src/scripts/dengar.ts` swaps this same
+   `data-dengar-label` text between "Dengarkan berita ini"/"Lanjutkan"/
+   "Jeda", and splitting it out would need that script to also keep a
+   SECOND element (this button's own accessible name) in sync — a
+   behaviour change this issue's own rules ask this file not to make. */
 .dengar__putar {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   min-height: 44px;
   padding: 0 1rem;
-  border: 1px solid var(--border-subtle);
-  border-radius: 0.375rem;
-  background: var(--text-primary);
-  color: var(--bg-surface);
+  border: 0;
+  border-radius: 999px;
+  background: var(--bg-inverse);
+  color: var(--text-on-inverse);
   font: inherit;
   font-weight: 600;
   cursor: pointer;
+  flex-shrink: 0;
 }
 
 .dengar__ikon {
@@ -85,6 +95,39 @@
   margin: 0;
   color: var(--text-secondary);
   font-size: 0.875rem;
+}
+
+/* The visual progress bar (issue #169, mockup line 803) — a 4px track
+   whose fill width `src/scripts/dengar.ts`'s own `tulisProgres()` sets
+   from the SAME `indeks`/`unit.length` numbers it already turns into the
+   `data-dengar-progres` text; this bar duplicates that number visually,
+   it does not compute a second one. Full width when `data-dengar-progres-
+   bar` carries no inline width yet (nothing has played), matching the
+   `dengar__progres` text's own empty-before-play state via the track's
+   own background instead. */
+.dengar__trek {
+  display: block;
+  flex: 1 1 auto;
+  min-width: 6rem;
+  height: 4px;
+  border-radius: 999px;
+  background: var(--bg-subtle);
+  overflow: hidden;
+}
+
+.dengar__isian {
+  display: block;
+  height: 100%;
+  width: 0%;
+  border-radius: 999px;
+  background: var(--accent-primary);
+  transition: width 0.2s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dengar__isian {
+    transition: none;
+  }
 }
 
 .dengar__catatan:empty,

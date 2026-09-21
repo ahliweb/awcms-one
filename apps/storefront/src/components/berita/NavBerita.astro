@@ -61,7 +61,16 @@ const TOGGLE_ID = "nav-daerah-toggle";
 
 <div class="nav-berita">
   <div class="container nav-berita__masthead">
-    <a href={ROUTES.home} class="nav-berita__merek">{identity.name}</a>
+    <div class="nav-berita__jenama">
+      <a href={ROUTES.home} class="nav-berita__merek">{identity.name}</a>
+      {/* `identity.description` — `SiteIdentity`'s own name for the CMS's
+          `tagline` field (see `src/lib/awcms/profil.ts`'s docblock: "standing
+          in for a description field the endpoint does not have"). Falls back
+          to `DEFAULT_IDENTITY.description` when the CMS has none configured
+          (`src/config/site.ts`), same as every other identity-driven page —
+          never blank, never an invented string. */}
+      {identity.description && <span class="nav-berita__kicker">{identity.description}</span>}
+    </div>
 
     <form class="nav-berita__cari" action={ROUTES.newsSearch} method="get" role="search">
       <label for="nav-berita-cari" class="visually-hidden">Cari berita</label>
