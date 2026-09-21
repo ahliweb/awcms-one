@@ -33,9 +33,15 @@ import "../../../styles/toko.css";
       <h1>Wishlist</h1>
     </div>
 
-    <p class="toko-empty" data-wishlist-empty hidden>
-      Belum ada produk di wishlist Anda. <a href="/produk">Jelajahi produk</a>.
-    </p>
+    <div class="toko-banner toko-banner--info" role="note">
+      Perubahan disimpan di peramban ini, dan disinkronkan ke akun Anda saat masuk. Bila jaringan gagal,
+      wishlist tetap tersimpan di peramban ini.
+    </div>
+
+    <div class="empty-state" data-wishlist-empty hidden>
+      <p>Belum ada produk disimpan</p>
+      <a class="btn btn--primary" href="/produk">Jelajahi katalog</a>
+    </div>
 
     <ul class="grid-cards" data-wishlist-items aria-live="polite"></ul>
   </div>

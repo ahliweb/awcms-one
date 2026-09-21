@@ -42,6 +42,7 @@ if (root) {
   const whatsappNumber = root.dataset.whatsappNumber ?? "";
   const storeName = root.dataset.storeName ?? "toko";
   const pinpointEnabled = root.dataset.pinpointEnabled === "true";
+  const stepPills = Array.from(root.querySelectorAll<HTMLElement>("[data-step-pill]"));
 
   const cart = loadCart();
 
@@ -77,6 +78,17 @@ if (root) {
       for (const section of formEl.querySelectorAll<HTMLElement>("[data-step]")) {
         section.hidden = section.dataset.step !== step;
       }
+
+      // Issue #167 — the decorative step-pill row above the form
+      // (`checkout.astro`'s own comment): purely visual, no navigation of
+      // its own, kept in sync with the real step this function already
+      // decided. `stepPills` is captured once, above, rather than
+      // re-querying `root` here (TypeScript cannot carry `root`'s
+      // null-check narrowing into this nested function).
+      for (const pill of stepPills) {
+        pill.setAttribute("aria-current", pill.dataset.stepPill === step ? "true" : "false");
+      }
+
       const heading = formEl.querySelector<HTMLElement>(`[data-step="${step}"] h2`);
       if (heading) {
         // A heading is not natively focusable — moving keyboard/AT focus to

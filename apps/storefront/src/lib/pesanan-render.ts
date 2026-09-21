@@ -25,6 +25,23 @@ export const STATUS_LABELS: Record<string, string> = {
 };
 
 /**
+ * 2026-09 redesign (issue #167) — the `[data-order-status]` pill's soft-tone
+ * class, one of the tones `global.css`'s `.pill` primitive already defines.
+ * A status this map does not name (none exist today, but a defensive
+ * default matters more than an exhaustive union here) falls back to the
+ * neutral tone rather than leaving the pill unstyled.
+ */
+const STATUS_TONE_CLASS: Record<string, string> = {
+  pending_payment: "pill--warning",
+  paid: "pill--info",
+  processing: "pill--info",
+  shipped: "pill--info",
+  completed: "pill--success",
+  cancelled: "pill--danger",
+  expired: "pill--neutral"
+};
+
+/**
  * Every element `createPesananRenderer` writes to — all optional, so a page
  * that omits one section (`/akun/pesanan`'s detail view has no
  * confirm-payment/cancel actions, see that page's own docblock) simply gets
@@ -197,7 +214,10 @@ export function createPesananRenderer(refs: PesananRenderRefs): PesananRenderer 
   }
 
   function renderOrder(order: Order): void {
-    if (refs.statusEl) refs.statusEl.textContent = STATUS_LABELS[order.status] ?? order.status;
+    if (refs.statusEl) {
+      refs.statusEl.textContent = STATUS_LABELS[order.status] ?? order.status;
+      refs.statusEl.className = `pill ${STATUS_TONE_CLASS[order.status] ?? "pill--neutral"}`;
+    }
     if (refs.orderCodeEl) refs.orderCodeEl.textContent = `Kode Pesanan: ${order.orderCode}`;
 
     renderCountdown(order.status === "pending_payment" ? order.expiresAt : null);

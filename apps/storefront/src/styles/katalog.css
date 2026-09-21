@@ -613,3 +613,230 @@ dialog[data-promo-popup]::backdrop {
 .faq-item p {
   padding-block: 0.5rem 0.75rem;
 }
+
+/* ===========================================================================
+ * 2026-09 redesign — issue #167 (home / catalog / product detail)
+ *
+ * Builds on `global.css`'s issue #166 primitives (`.btn`, `.pill`,
+ * `.band-inverse`, `.stepper`, `.field-label`, the token scales) — every
+ * class below is ADDITIVE, and every class that predates this issue
+ * (`.card`, `.card-price`, `.label-badge`, `.stock-badge`, `.wishlist-
+ * button`, `.qty-stepper`, `.tier-table`, …) keeps working unchanged; this
+ * section only restyles/extends them for the new visual language.
+ * ========================================================================= */
+
+/* --- Product card: badges row, price/was/discount, tier line ------------- */
+
+.card-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.card-price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.card-tier-line {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+}
+
+/* The wishlist heart is a 44px touch target on every card in this redesign
+   (the pre-existing `.wishlist-button` in `global.css` stays 32px, unchanged,
+   for anything that does not opt in) — higher specificity than that bare
+   class guarantees this wins regardless of stylesheet load order. */
+.card-wrap .wishlist-button {
+  width: 44px;
+  height: 44px;
+  font-size: 1.15rem;
+}
+
+/* --- Home hero: the CMS slider on the inverse band ------------------------ */
+
+.slider.band-inverse {
+  border-radius: var(--radius-xl);
+  padding: 1.75rem;
+}
+
+.slider-track {
+  border-radius: 0;
+}
+
+.slider-slide {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.5rem;
+  scroll-snap-align: start;
+}
+
+.slider-slide img {
+  width: min(320px, 100%);
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-l);
+  object-fit: cover;
+  flex: none;
+}
+
+.slider-caption {
+  position: static;
+  background: none;
+  flex: 1;
+  min-width: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.6rem;
+  padding: 0;
+}
+
+.slider-caption strong {
+  font-size: var(--text-2xl);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--text-on-inverse);
+}
+
+.slider-subtitle {
+  color: var(--text-on-inverse-muted);
+  max-width: 46ch;
+}
+
+.slider-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 0.25rem;
+}
+
+/* --- Flash sale: amber soft band ------------------------------------------ */
+
+.flash-sale-strip {
+  background: var(--status-warning-bg);
+  border: 1px solid color-mix(in srgb, var(--status-warning-fg) 35%, transparent);
+  border-radius: var(--radius-l);
+}
+
+.flash-sale-strip-heading h2 {
+  color: var(--status-warning-fg);
+}
+
+/* --- Category sidebar: a visual marker beside each "plain link" row ------
+   These stay real `<a>` navigation (issue #167's own fallback rule: "plain
+   links" when there is no multi-select checkbox behaviour to wire without a
+   new client contract) — the small square is decorative only, giving the
+   row the same at-a-glance shape as the mockup's checkbox list. */
+.category-tree a {
+  border-radius: var(--radius-xs);
+  padding-inline: 0.4rem;
+}
+
+.category-tree a::before {
+  content: "";
+  width: 14px;
+  height: 14px;
+  flex: none;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background: var(--bg-surface);
+}
+
+.category-tree a[aria-current="true"]::before {
+  background: var(--color-primary, #10b981);
+  border-color: var(--color-primary, #10b981);
+}
+
+.category-count {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+}
+
+.listing-sidebar {
+  border-radius: var(--radius-l);
+}
+
+/* --- Product detail: tier box, product notes, size chart ------------------ */
+
+.tier-box {
+  margin-block: 1rem;
+  padding: 1rem 1.1rem;
+  background: var(--status-info-bg);
+  border: 1px solid var(--status-info-border);
+  border-radius: var(--radius-l);
+}
+
+.tier-box .tier-table {
+  margin-block: 0.5rem 0;
+}
+
+.tier-box .tier-table th,
+.tier-box .tier-table td {
+  background: transparent;
+  border-bottom: 1px solid color-mix(in srgb, var(--status-info-border) 60%, transparent);
+  color: var(--status-info-fg);
+  padding-inline: 0;
+}
+
+.product-notes {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-block: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border-color);
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+}
+
+.product-notes span {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.product-notes span::before {
+  content: "·";
+  color: var(--color-primary, #10b981);
+  font-weight: 700;
+}
+
+.size-chart-box {
+  margin-top: 0.75rem;
+  padding: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-l);
+  background: var(--bg-surface);
+}
+
+/* The qty stepper stays the same `<input type="number">` control
+   (`produk-detail.ts`'s own `data-qty-*` selectors and typed-entry behaviour
+   are unchanged) — this only makes it LOOK like `.stepper--lg` beside the
+   new `.btn--primary` add-to-cart button. */
+.purchase-bar .qty-stepper {
+  height: 46px;
+  border-radius: var(--radius-m);
+}
+
+.purchase-bar .qty-stepper button {
+  min-width: 42px;
+  font-family: var(--font-mono);
+}
+
+.purchase-bar .qty-stepper input {
+  font-family: var(--font-mono);
+  font-weight: 600;
+}
+
+.purchase-bar .wishlist-button {
+  width: 46px;
+  height: 46px;
+  font-size: 1.2rem;
+}
+
+[data-cart-feedback] {
+  margin-block: 0.75rem;
+}
