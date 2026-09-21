@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { STUB_START_DEADLINE_MS } from "./stub-deadline";
+import { startStub } from "./stub-lifecycle";
 import { readFileSync, rmSync } from "node:fs";
 import { join } from "node:path";
 
@@ -44,19 +44,6 @@ function canSpawnBun(): boolean {
   }
 }
 
-async function waitForStub(url: string, deadline: number): Promise<void> {
-  while (Date.now() < deadline) {
-    try {
-      const response = await fetch(url);
-      if (response.status === 401 || response.ok) return;
-    } catch {
-      // Not listening yet.
-    }
-    await new Promise((resolve) => setTimeout(resolve, 100));
-  }
-  throw new Error(`stub-awcms did not answer ${url} in time.`);
-}
-
 /** The `<aside>` this issue's `Sidebar.astro` renders, extracted whole — `null` if the page has none. */
 function extractSidebar(html: string): string | null {
   const match = /<aside class="sidebar sisi"[\s\S]*?<\/aside>/.exec(html);
@@ -86,20 +73,13 @@ describe("build smoke: shared news sidebar, homepage ad slots, real Terpopuler (
   test(
     "renders one identical sidebar per news page, every booked slot and no empty box, a ranked Terpopuler, and the newsletter form in sidebar and footer",
     async () => {
-      const stubPort = 55000 + Math.floor(Math.random() * 4000);
       const distClient = join(STOREFRONT_ROOT, "dist", "client");
       rmSync(join(STOREFRONT_ROOT, "dist"), { recursive: true, force: true });
 
-      const stub = Bun.spawn(["bun", "scripts/stub-awcms.mjs"], {
-        cwd: STOREFRONT_ROOT,
-        env: { ...process.env, STUB_PORT: String(stubPort) },
-        stdout: "pipe",
-        stderr: "pipe"
-      });
+      const stub = await startStub();
+      const stubPort = stub.port;
 
       try {
-        await waitForStub(`http://localhost:${stubPort}/api/v1/blog/posts`, Date.now() + STUB_START_DEADLINE_MS);
-
         const build = Bun.spawnSync(["bun", "--bun", "astro", "build"], {
           cwd: STOREFRONT_ROOT,
           env: {
@@ -270,8 +250,7 @@ describe("build smoke: shared news sidebar, homepage ad slots, real Terpopuler (
         expect(articleHtml).toMatch(/<script[^>]*src="\/_astro\/Sidebar\.astro[^"]*"/);
         expect(articleHtml).toMatch(/<script[^>]*src="\/_astro\/BeritaLayout\.astro[^"]*"/);
       } finally {
-        stub.kill();
-        await stub.exited;
+        await stub.stop();
       }
     },
     TIMEOUT_MS

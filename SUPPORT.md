@@ -4,7 +4,7 @@
 
 ## What this channel is NOT
 
-**This repo holds the code and documentation for re-platforming borneojek-mart, not its live storefront or customer support.** There is no live production deployment of this platform yet (increment 1 has no live database — see [`SECURITY.md`](SECURITY.md)), and even once there is, a customer's order, payment, or account issue on the running store is not something this repository's issue tracker handles.
+**This repo holds the code and documentation for re-platforming borneojek-mart, not its live storefront or customer support.** There is no live production deployment of this platform yet — see [`docs/deployment.md`](docs/deployment.md) and [`SECURITY.md`](SECURITY.md) for exactly what is and is not provisioned — and even once there is, a customer's order, payment, or account issue on the running store is not something this repository's issue tracker handles.
 
 Questions about the code, the workspace, the re-platform's scope, or integration with `apps/cms` are welcome through GitHub Issues.
 

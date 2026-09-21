@@ -33,10 +33,11 @@ import {
   isSiteProfile,
   type SiteProfile
 } from "../src/config/profil";
-import { ROUTES } from "../src/config/routes";
 import {
   BUILD_TIMEOUT_MS,
   DIST_CLIENT,
+  GROUP_FILES,
+  GROUP_SITEMAP_PATHS,
   buildProfile,
   canSpawnBun,
   collectInternalLinks,
@@ -50,20 +51,6 @@ import {
 const PROFILES_UNDER_TEST: readonly SiteProfile[] = isSiteProfile(process.env.SITE_PROFILE)
   ? [process.env.SITE_PROFILE]
   : SITE_PROFILES;
-
-/** One representative built file per group — a page and an endpoint each, so a group's presence/absence is checked on both kinds. */
-const GROUP_FILES = {
-  shared: ["index.html", "kontak.html", "404.html", "robots.txt", "sitemap-index.xml", "csp.json", "manifest.webmanifest", "theme-tokens.css"],
-  toko: ["produk.html", "keranjang.html", "checkout.html", "cari.html", "masuk.html", "akun.html", "feed.xml", "product-labels.css", "index/produk.json", "index/wilayah-provinsi.json"],
-  berita: ["berita.html", "cari-berita.html", "buletin.html", "video.html", "berita/feed.xml", "index/berita.json", "index/pengalihan-legacy.json", "newsletter/confirm.html"]
-} as const;
-
-/** Site-relative paths each group's sitemap sources put in the sitemap (static ones only — the fixtures decide the dynamic ones). */
-const GROUP_SITEMAP_PATHS = {
-  shared: [ROUTES.home, ROUTES.contact],
-  toko: [ROUTES.products, ROUTES.flashSale],
-  berita: [ROUTES.news, ROUTES.video, ROUTES.newsSearch]
-} as const;
 
 function exists(relativePath: string): boolean {
   return existsSync(join(DIST_CLIENT, relativePath));

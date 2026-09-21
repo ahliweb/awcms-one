@@ -1,12 +1,12 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](SUPPORT.md)
 
-<!-- i18n-source-hash: sha256:6f50aaa65a3a01dd7aae67d9709f9df185ca7317c8c8f661200ff05ba0f1a016 -->
+<!-- i18n-source-hash: sha256:13bbb8ef0a69394ed787a3b7c66740f7991fd0f31a57bb443e25177f221fcf63 -->
 
 # Dukungan
 
 ## Yang BUKAN kanal ini
 
-**Repo ini menyimpan kode dan dokumentasi untuk me-re-platform borneojek-mart, bukan toko yang sudah tayang atau layanan pelanggannya.** Belum ada deployment produksi platform ini yang hidup (increment 1 belum punya basis data hidup — lihat [`SECURITY.md`](SECURITY.md)), dan sekalipun nanti sudah ada, masalah pesanan, pembayaran, atau akun pelanggan di toko yang berjalan bukan sesuatu yang ditangani oleh issue tracker repo ini.
+**Repo ini menyimpan kode dan dokumentasi untuk me-re-platform borneojek-mart, bukan toko yang sudah tayang atau layanan pelanggannya.** Belum ada deployment produksi platform ini yang hidup — lihat [`docs/deployment.md`](docs/deployment.md) dan [`SECURITY.md`](SECURITY.md) untuk rincian persis apa yang sudah dan belum disediakan — dan sekalipun nanti sudah ada, masalah pesanan, pembayaran, atau akun pelanggan di toko yang berjalan bukan sesuatu yang ditangani oleh issue tracker repo ini.
 
 Pertanyaan tentang kode, workspace, cakupan re-platform, atau integrasi dengan `apps/cms` dipersilakan lewat GitHub Issues.
 
