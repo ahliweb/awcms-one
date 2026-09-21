@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](CONTRIBUTING.md)
 
-<!-- i18n-source-hash: sha256:b322a68eb09626c7143e4010b6fb9583268c0701490ad38631a0f6dd55b7b1f3 -->
+<!-- i18n-source-hash: sha256:bb8db4c074fe27637e055617ea1a351cc67308fd840d5f7601c840a5b5a48765 -->
 
 # Panduan Kontribusi
 
@@ -30,7 +30,7 @@ bun test                # rangkaian gerbang akar
 | `bun audit` | Kerentanan rantai dependency |
 | `bun run release` | Memotong rilis bertag dari changeset yang menunggu (tindakan maintainer) |
 
-`apps/storefront` belum ada ([issue #5](https://github.com/ahliweb/awcms-one/issues/5)); skrip akar `dev`/`build`/`check`/`serve` akan mendelegasikan ke sana begitu ia ada. Sampai saat itu tidak ada yang bisa dijalankannya.
+Skrip akar `dev`/`build`/`check`/`serve` mendelegasikan ke `apps/storefront` (`cd apps/storefront && bun run <skrip>`) — workspace itu sudah membawa seluruh situs publik dan rangkaian gerbangnya sendiri sejak increment 2 ([issue #5](https://github.com/ahliweb/awcms-one/issues/5)).
 
 ## Alur kontribusi
 
@@ -41,8 +41,8 @@ bun test                # rangkaian gerbang akar
 5. **Tulis sebuah changeset** di [`.changesets/`](.changesets/README.md) di iterasi yang sama, bukan dikumpulkan di akhir.
 6. **Jalankan `bun test`** (dan `bun run check:cms` bila perubahan menyentuh `apps/cms/`); keduanya harus bersih.
 7. **Buka Pull Request** dengan `Closes #<issue>`. Merge setelah review dan CI hijau.
-8. **Bila PR menyinkronkan `apps/cms/` dari upstream** (`git subtree pull`), ia **wajib** di-merge dengan merge commit — jangan pernah di-squash, jangan pernah di-rebase. "The subtree embed" di `AGENTS.md` menjelaskan alasannya; tidak ada apa pun di pengaturan repo ini saat ini yang mencegah squash secara mekanis, jadi ini aturan yang harus diingat, bukan yang sudah ditegakkan CI.
-9. **Saat backlog changeset yang menunggu jatuh tempo** (`bun run audit:rilis` memerah melewati 10 berkas atau 14 hari), seorang maintainer menjalankan `bun run release`, yang melipat backlog ke `CHANGELOG.md` dan menandai tag `vX.Y.Z`.
+8. **Bila PR menyinkronkan `apps/cms/` dari upstream** (`git subtree pull`), ia **wajib** di-merge dengan merge commit — jangan pernah di-squash, jangan pernah di-rebase. "The subtree embed" di `AGENTS.md` menjelaskan alasannya. Ini kini juga berlaku secara mekanis untuk setiap PR di repositori ini: squash dan rebase merge dinonaktifkan di seluruh repositori (issue #149), jadi merge commit adalah satu-satunya metode yang ditawarkan tombol merge GitHub.
+9. **Saat backlog changeset yang menunggu jatuh tempo** (`bun run audit:rilis` memerah melewati 20 berkas atau 14 hari), seorang maintainer menjalankan `bun run release`, yang melipat backlog ke `CHANGELOG.md` dan menandai tag `vX.Y.Z`.
 
 ### Penamaan branch
 
@@ -68,7 +68,7 @@ Isi commit menjelaskan **kenapa**, bukan mengulang diff.
 Rincian lengkap dan alasannya: [`AGENTS.md`](AGENTS.md). Yang paling sering dilanggar tanpa disadari — karena melanggarnya tidak pernah menggagalkan build dengan sendirinya:
 
 - **PR `git subtree pull` di-merge dengan merge commit, tidak pernah di-squash atau di-rebase.**
-- **Tidak ada yang di luar `apps/cms/` bergantung pada internalnya** — hanya API publiknya, begitu `apps/storefront` ada untuk memanggilnya.
+- **Tidak ada yang di luar `apps/cms/` bergantung pada internalnya** — hanya API publiknya, yang dipanggil `apps/storefront`.
 - **Sebuah gerbang di akar tetap agnostik-workspace.** Pemeriksaan yang spesifik untuk satu workspace masuk ke rangkaian gerbang workspace itu sendiri.
 - **`bun.lock` diregenerasi utuh**, tidak pernah disunting tangan: `rm -rf node_modules bun.lock && bun install`.
 
