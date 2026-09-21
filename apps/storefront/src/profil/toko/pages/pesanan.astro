@@ -58,9 +58,9 @@ const whatsappNumber = storeSettings.whatsapp ?? identity.whatsappNumber ?? "";
     <form class="toko-section" data-phone-form hidden>
       <div class="toko-field">
         <label for="pesanan-phone">Nomor WhatsApp yang digunakan saat memesan</label>
-        <input type="tel" id="pesanan-phone" name="phone" required autocomplete="tel" />
+        <input type="tel" id="pesanan-phone" name="phone" required autocomplete="tel" class="is-mono" />
       </div>
-      <button type="submit">Lihat Pesanan</button>
+      <button type="submit" class="btn btn--primary">Lihat Pesanan</button>
     </form>
 
     <div data-order-error class="toko-banner toko-banner--danger" hidden>
@@ -69,16 +69,19 @@ const whatsappNumber = storeSettings.whatsapp ?? identity.whatsappNumber ?? "";
 
     <div data-order-body hidden aria-live="polite">
       <div class="toko-section">
-        <h2>Status: <span data-order-status></span></h2>
-        <p data-order-code></p>
-        <p data-order-countdown></p>
+        <div class="toko-order-heading">
+          <span data-order-status></span>
+          <span data-order-countdown class="is-mono"></span>
+        </div>
+        <p data-order-code class="is-mono"></p>
+        <h2 class="section-title">Riwayat status</h2>
         <ol class="toko-timeline" data-order-timeline></ol>
       </div>
 
       <div class="toko-section" data-payment-section hidden>
         <h2>Pembayaran</h2>
         <div data-payment-instructions></div>
-        <button type="button" data-gateway-pay hidden>Bayar sekarang</button>
+        <button type="button" class="btn btn--primary" data-gateway-pay hidden>Bayar sekarang</button>
         <p data-gateway-status aria-live="polite"></p>
       </div>
 

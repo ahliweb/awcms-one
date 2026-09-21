@@ -55,28 +55,39 @@ const whatsappNumber = storeSettings.whatsapp ?? identity.whatsappNumber ?? "";
       </div>
     </div>
 
-    <p class="toko-empty" data-keranjang-empty hidden>Keranjang Anda masih kosong.</p>
+    <div class="empty-state" data-keranjang-empty hidden>
+      <p>Keranjang masih kosong</p>
+      <p>Keranjang disimpan di peramban ini dan dikutip ulang ke server saat checkout.</p>
+      <a class="btn btn--primary" href="/produk">Mulai belanja</a>
+    </div>
 
-    <ul class="toko-lines" data-keranjang-lines aria-live="polite"></ul>
+    <div data-keranjang-body hidden class="cart-layout">
+      <div class="cart-main">
+        <ul class="toko-lines" data-keranjang-lines aria-live="polite"></ul>
 
-    <div data-keranjang-body hidden>
-      <div class="toko-section">
-        <label for="voucher-code">Kode voucher</label>
-        <div class="toko-qty">
-          <input type="text" id="voucher-code" name="voucherCode" data-voucher-input autocomplete="off" />
-          <button type="button" data-voucher-apply>Terapkan</button>
+        <div class="toko-section">
+          <label class="field-label" for="voucher-code">
+            Kode voucher
+            <div class="toko-qty">
+              <input type="text" id="voucher-code" name="voucherCode" data-voucher-input autocomplete="off" class="is-mono" />
+              <button type="button" class="btn btn--secondary btn--md" data-voucher-apply>Terapkan</button>
+            </div>
+          </label>
+          <p class="toko-field-hint" data-voucher-message></p>
         </div>
-        <p class="toko-field-hint" data-voucher-message></p>
       </div>
 
-      <div class="toko-section" aria-live="polite" data-quote-summary>
-        <h2>Ringkasan</h2>
-        <div class="toko-summary" data-summary-body></div>
-      </div>
-
-      <div class="toko-actions">
-        <a href="/checkout" class="button" data-checkout-link aria-disabled="true">Lanjut ke checkout</a>
-      </div>
+      <aside class="cart-summary">
+        <div class="toko-section" aria-live="polite" data-quote-summary>
+          <h2>Ringkasan</h2>
+          <div class="toko-summary" data-summary-body></div>
+          <p class="toko-field-hint">Ongkir dihitung setelah kecamatan tujuan dipilih di checkout.</p>
+          <div class="toko-actions">
+            <a href="/checkout" class="btn btn--primary" data-checkout-link aria-disabled="true">Lanjut ke checkout</a>
+            <a href="/produk" class="btn btn--secondary">Tambah produk lain</a>
+          </div>
+        </div>
+      </aside>
     </div>
   </div>
 

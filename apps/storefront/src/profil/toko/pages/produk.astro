@@ -54,25 +54,25 @@ const firstPage = products.slice(0, PRODUK_PAGE_SIZE);
         <form data-produk-filters class="listing-sidebar-section">
           <h2>Urutkan &amp; Saring</h2>
 
-          <div class="filter-field">
-            <label for="filter-sort">Urutkan</label>
+          <label class="field-label" for="filter-sort">
+            Urutkan
             <select id="filter-sort" data-filter-sort>
               <option value="newest">Terbaru</option>
               <option value="price_asc">Harga: Rendah ke Tinggi</option>
               <option value="price_desc">Harga: Tinggi ke Rendah</option>
               <option value="name">Nama A-Z</option>
             </select>
-          </div>
+          </label>
 
           <div class="filter-field filter-price-range">
-            <div>
-              <label for="filter-price-min">Harga Min</label>
-              <input type="number" id="filter-price-min" data-filter-price-min min="0" step="1000" />
-            </div>
-            <div>
-              <label for="filter-price-max">Harga Maks</label>
-              <input type="number" id="filter-price-max" data-filter-price-max min="0" step="1000" />
-            </div>
+            <label class="field-label" for="filter-price-min">
+              Harga Min
+              <input type="number" id="filter-price-min" data-filter-price-min min="0" step="1000" class="is-mono" />
+            </label>
+            <label class="field-label" for="filter-price-max">
+              Harga Maks
+              <input type="number" id="filter-price-max" data-filter-price-max min="0" step="1000" class="is-mono" />
+            </label>
           </div>
 
           <label class="filter-checkbox">
@@ -83,7 +83,7 @@ const firstPage = products.slice(0, PRODUK_PAGE_SIZE);
             <input type="checkbox" data-filter-flash /> Flash sale saja
           </label>
 
-          <button type="submit" class="button-primary">Terapkan</button>
+          <button type="submit" class="btn btn--primary btn--md">Terapkan</button>
         </form>
       </aside>
 
