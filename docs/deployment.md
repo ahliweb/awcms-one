@@ -329,10 +329,74 @@ Two shape decisions in `redirects.json` exist only because of how the CMS and th
 
 `newsletter_subscribers` is counted and reported, never imported — no consent record survives the legacy signup form. `users`, `counter`, `renungan_rmd`, `tanya_jawab`, and `foto_berita` (the gallery table) are never read at all — see `docs/kamus-data.md`'s mapping table for why each one is excluded.
 
-## Production PostgreSQL provisioning is not done
+## Production topology (issue #150, ADR-0019)
 
-`apps/cms` is PostgreSQL-only. **borneojek's production server runs MySQL** — the very database this platform's catalog schema is being re-expressed from (see [`docs/kamus-data.md`](kamus-data.md)) — so a PostgreSQL instance has to be provisioned on that infrastructure, or elsewhere, before `apps/cms` can be deployed against a real, production database. `compose.yaml`'s `postgres:18.4` container is deliberately a LOCAL/CI convenience (a named volume on a developer's disk, development-grade default passwords documented in `.env.example`) and is never meant to be pointed at from a production deployment. This is why [`docs/pengujian.md`](pengujian.md) describes `apps/cms`'s DB-gated test suite as something to run against a locally provisioned, disposable PostgreSQL, never against anything borneojek currently operates.
+`apps/cms` is PostgreSQL-only, and until this section was written, borneojek's own production infrastructure ran MySQL with no PostgreSQL provisioned anywhere on it — the delivery gap [issue #150](https://github.com/ahliweb/awcms-one/issues/150) named directly. What follows is the real, tested production path this repository now ships; [ADR-0019](adr/0019-production-topology-two-images-a-jobs-sidecar-and-a-fail-closed-preflight.md) records the decisions behind it. `compose.yaml`'s own `postgres:18.4` container remains a LOCAL/CI convenience — `compose.production.yaml` (below) is the production shape, and the two are never meant to share a database.
 
-## Not built
+### The two-role database model
 
-Any Dockerfile, container image, or deployment pipeline for either `apps/cms` or `apps/storefront` in this repository — nothing under `.github/workflows/` builds or publishes a container image today (see [`docs/alur-kerja-pengembangan.md`](alur-kerja-pengembangan.md) for exactly what CI does run). A reverse-proxy/TLS-termination configuration for `apps/storefront` in production — `apps/storefront/server/penyaji.mjs` assumes one exists in front of it but does not configure or document one itself.
+Three distinct identities, never conflated (ADR-0019 D2):
+
+- **`awcms_setup`** (or the Postgres superuser) — the migration-owner connection. Used only to run migrations, never left running.
+- **`awcms_app`** — `apps/cms`'s own least-privilege runtime role (`sql/019`). The `cms` service's `DATABASE_URL` must resolve to this role.
+- **`awcms_worker`** — the background-job role (`sql/022`). The `jobs` service's `DATABASE_URL` must resolve to this role.
+
+`docker/postgres-init/01-create-least-privilege-roles.sh` (already used by the local/CI `compose.yaml`) activates `LOGIN` and a real password for all three the first time the `postgres` volume is empty.
+
+### Images
+
+- **`apps/cms`** — `apps/cms/Dockerfile.production` (already existed, upstream, unmodified) builds a `runtime` target (only `dist/`, the least-privilege role, no scripts) and a `jobs` target (the full source, so its 30+ registered job targets can actually run).
+- **`apps/storefront`** — `apps/storefront/Dockerfile` (new). Multi-stage: a build stage that runs `bun run build` from the REPO ROOT context (this app's build needs `packages/kontrak`'s type-only contract, which itself imports from `apps/cms`'s own source) with `SITE_PROFILE`/`SITE_URL`/`AWCMS_API_URL`/`PUBLIC_AWCMS_ORIGIN`/`PUBLIC_GA_ID` as build ARGs, and `AWCMS_API_TOKEN` ONLY via a BuildKit `--mount=type=secret,id=awcms_api_token` — never an ARG/ENV, so it never enters an image layer (ADR-0019 D4); a runtime stage that carries only `dist/` and runs `bun dist/server/penyaji.mjs` as the image's own non-root `bun` user. **Each `SITE_PROFILE` is its own image** — build `toko`, `berita`, and `landing` separately if more than one deployment shares this repository.
+
+```bash
+DOCKER_BUILDKIT=1 docker build \
+  -f apps/storefront/Dockerfile \
+  --build-arg SITE_PROFILE=toko \
+  --build-arg SITE_URL=https://shop.example.test \
+  --build-arg AWCMS_API_URL=https://cms.example.test \
+  --build-arg PUBLIC_AWCMS_ORIGIN=https://cms.example.test \
+  --secret id=awcms_api_token,env=AWCMS_API_TOKEN \
+  -t awcms-one-storefront:toko .
+```
+
+### `compose.production.yaml`
+
+A reproducible topology for a self-hosted deployment: `postgres` (no host port published by default — see the file's own comment for using a managed/external instance instead), `migrate` (one-shot, `--profile migrate`, the ONLY service using the owner/setup DSN), `cms` (the runtime image, `awcms_app` DSN), `jobs` (the jobs image, `awcms_worker` DSN, gated behind `--profile jobs`, invoked on a schedule rather than left running — see "Scheduled jobs" below), and `storefront` (built with the BuildKit secret above). No service publishes a host port for `cms`/`storefront` by default — put a reverse proxy in front and let it terminate TLS. Every credential is read from `apps/cms/.env.example`-derived and root `.env.example`-derived files that are never committed; `tests/compose-produksi.test.mjs` mechanically checks the file for a hardcoded-looking secret, the `awcms_app`/`awcms_worker` role split, and the absent host ports.
+
+### Scheduled jobs
+
+`bun run jobs:crontab:generate` (inside `apps/cms`) already generates `apps/cms/ops/awcms-jobs.crontab` from the module job registry — the single source of truth for which jobs exist and when they run; `jobs:crontab:check` (part of `bun run check`) fails if it drifts. That file's `AWCMS_RUN_JOB` variable is designed for a bare `docker run` against a published image (`apps/cms/ops/run-job.sh`); a docker-compose deployment points it at `ops/run-job-compose.sh` instead (this repository's own new script, ADR-0019 D3) — same `<target> [args...]` signature, calling `docker compose -f compose.production.yaml --profile jobs run --rm jobs bun run <target>`. Install the SAME generated crontab either way; only which container runs each job changes.
+
+### Fail-closed production preflight
+
+Two layered commands, neither replacing `apps/cms`'s own `bun run config:validate`/`bun run security:readiness` (unmodified):
+
+```bash
+# Inside apps/cms — commerce-module-specific production checks:
+cd apps/cms && bun run commerce:deploy:preflight --live --production
+
+# From the repo root — storefront build-env shape, then delegates to the above:
+bun run deploy:preflight --live --production
+```
+
+Every check prints one `PASS|FAIL|SKIP` line and a reason, never a secret value. `--live` additionally connects to `DATABASE_URL` and verifies the runtime role is not a superuser/owner, does not own any `awcms_commerce_*` table, every such table has `relrowsecurity AND relforcerowsecurity`, and the migration ledger has nothing pending. Without `--production`, the production-only rules (OTP delivery, payment/shipping providers not `log`, https canonical URLs) are skipped rather than failed — pass `--production` (or set `APP_ENV=production`) to apply them against a file being reviewed before it is copied into place (`--file <path>`).
+
+### Production runbook
+
+1. **Provision PostgreSQL** — either the `postgres` service in `compose.production.yaml`, or a managed instance with the same three roles created by hand (see that file's own comment).
+2. **Migrate**, with the privileged setup/owner DSN: `docker compose -f compose.production.yaml --profile migrate run --rm migrate`.
+3. **Start `cms`**: `docker compose -f compose.production.yaml up -d cms`.
+4. **Run the preflight with `--live`** against the running database, using the `awcms_app` runtime DSN: `cd apps/cms && DATABASE_URL=<awcms_app DSN> bun run commerce:deploy:preflight --live --production`. Do not proceed past a `FAIL`.
+5. **Start `jobs`** on a schedule — install `apps/cms/ops/awcms-jobs.crontab` on the host, with `AWCMS_RUN_JOB` pointed at `ops/run-job-compose.sh` (see "Scheduled jobs" above).
+6. **Build and start `storefront`** for each profile this deployment needs (see "Images" above), then `docker compose -f compose.production.yaml up -d storefront`.
+7. **Register the storefront's real origin** in `awcms_tenant_domains` — the anonymous storefront API resolves its tenant from the calling browser's `Origin` header (see "The seeded tenant's storefront origins must be registered" above); a deployment that skips this step gets a working build and a checkout that never resolves a tenant.
+
+**Health/readiness:** `cms` exposes `GET /api/v1/health` (liveness — answers 200 even with the database unreachable, by design; see `apps/cms/Dockerfile.production`'s own comment on why a probe that restarts containers must not depend on the database) and `GET /api/v1/database/pool/health` (the real dependency-health question, read by `apps/cms/ops/synthetic-check.sh` rather than a container orchestrator). `storefront` exposes `GET /healthz`, reporting the build id `apps/storefront/scripts/write-build-id.mjs` wrote at build time.
+
+**Rollback/cutover:** every image is tagged by the commit/release it was built from; a rollback is redeploying the previous tag, never editing a running container. Migrations are forward-only with immutable checksums (`apps/cms/scripts/db-migrate.ts`'s `validateAppliedChecksums` refuses to re-apply an already-applied migration whose file content changed) — a bad migration is corrected by a NEW migration, never a hand-edit of an applied one.
+
+**Backup/restore:** `apps/cms/ops/backup-awcms.sh` and `restore-drill-awcms.sh` are the whole of it upstream — see the `awcms-production-preflight` skill's own "Backup & restore" section for the exact commands and, importantly, that at-rest encryption is **not implemented** upstream today (protect the dump with filesystem permissions and off-host copies instead; see `apps/cms/docs/awcms/` for the current, real status).
+
+### What remains not built (ADR-0019 D7)
+
+A CI pipeline that builds and publishes `apps/storefront`'s per-profile images to a registry — this document describes `docker build`, not a release pipeline (`apps/cms`'s own image already IS published by `.github/workflows/release.yml`, unaffected by this change). A reverse-proxy/TLS-termination configuration beyond the example above — an operator's own ingress terminates TLS. At-rest backup encryption (tracked upstream). A Xendit payment adapter and courier tracking (both named as explicit ADR-0017 follow-ups). A production PostgreSQL this repository itself operates — `compose.production.yaml`'s `postgres` service is provided for a self-hosted deployment; a managed instance is documented as an alternative, not shipped.

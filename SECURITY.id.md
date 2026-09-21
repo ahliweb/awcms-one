@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](SECURITY.md)
 
-<!-- i18n-source-hash: sha256:db61660d7667acc3fe7511193a0f7b64223855a9c9177451da84c161a7538a86 -->
+<!-- i18n-source-hash: sha256:db8ce18991f8dccfb41e1218aede93e3825addec5a1c121e7c77b3cd6bba22c5 -->
 
 # Kebijakan Keamanan
 
@@ -67,7 +67,7 @@ Sejak increment 5 ([ADR-0017](docs/adr/0017-external-providers-are-commerce-owne
 
 ## Yang BELUM benar, dinyatakan terus terang
 
-**Belum ada deployment produksi platform ini yang hidup.** Lihat [`docs/deployment.md`](docs/deployment.id.md) untuk persisnya apa yang tersedia dan tidak; tidak ada sistem yang berjalan di `mart.borneojek.com` untuk diekspos kode repo ini sendiri.
+**Belum ada deployment produksi platform ini yang hidup.** Lihat [`docs/deployment.md`](docs/deployment.id.md) untuk persisnya apa yang tersedia dan tidak; tidak ada sistem yang berjalan di `mart.borneojek.com` untuk diekspos kode repo ini sendiri. Topologi produksi reproducible dan preflight fail-closed kini sudah ada ([ADR-0019](docs/adr/0019-production-topology-two-images-a-jobs-sidecar-and-a-fail-closed-preflight.id.md), bagian "Production runbook" milik `docs/deployment.md`) — kalimat di atas soal apakah ada yang benar-benar berjalan, bukan soal apakah jalur terdokumentasi ada.
 
 **Akun pelanggan, login OTP, dan sesi bearer SUDAH ADA** ([issue #32](https://github.com/ahliweb/awcms-one/issues/32), [ADR-0016](docs/adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md)) — lihat "Permukaan pelanggan terautentikasi storefront" di atas untuk permukaannya sendiri dan kontrolnya. Yang secara eksplisit ditangguhkan D6 milik ADR-0016 sendiri, dan masih belum ada di sini: mengubah e-mail atau telepon pada akun yang sudah ada, dan verifikasi telepon. Adapter payment-gateway Xendit dan pelacakan kurir disebut sebagai tindak lanjut eksplisit di belakang port provider yang sudah ada di [ADR-0017](docs/adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.md), dan belum dibangun.
 

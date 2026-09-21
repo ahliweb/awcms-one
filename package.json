@@ -24,6 +24,7 @@
     "check": "cd apps/storefront && bun run check",
     "check:lockfile": "bun tools/cek-lockfile.mjs",
     "check:cms": "cd apps/cms && bun run check",
+    "deploy:preflight": "bun tools/deploy-preflight.mjs",
     "audit:dokumen": "bun packages/gerbang/audit-dokumen.mjs",
     "audit:rilis": "bun packages/gerbang/audit-rilis.mjs",
     "audit:translation": "bun packages/gerbang/check-docs-translation.mjs",

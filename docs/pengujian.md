@@ -10,6 +10,8 @@ Needs no database, no build, and no network beyond `bun install`. Excludes `apps
 
 Two increment-6 additions live here too: [`tests/seed-profil.test.mjs`](../tests/seed-profil.test.mjs) (issue #139 — schema/no-PII/asset validation and `--dry-run` for all four `tools/seed-cms.ts` profiles) and [`tests/template-init.test.mjs`](../tests/template-init.test.mjs) (issue #138 — `template:init`'s dry-run plan, a real full run per profile in a temporary copy, idempotency, dirty-tree refusal, missing-flag exit codes). The latter **skips itself the moment `package.json.name !== "awcms-one"`**, printed as a clear SKIPPED line — without that guard, the trailing `bun test` a `template:init` run ends with would rediscover and re-run its own full-run tests inside the very repository it just initialised, whose temp-copy step then chokes on `git ls-files` still listing paths that same run's own removal step already deleted. See [`docs/template.md`](template.md) for what each tool's tests actually assert.
 
+Two increment-7 (issue #150) additions cover the production topology: [`tests/deploy-preflight.test.mjs`](../tests/deploy-preflight.test.mjs) (shape-tests `tools/deploy-preflight.mjs`'s pure storefront-env-shape checks — a valid `SITE_PROFILE`, https canonical origins, `AWCMS_API_TOKEN` present and never `PUBLIC_`-prefixed, no `PUBLIC_*` value that looks like a credential — with no real credentials and no subprocess spawn) and [`tests/compose-produksi.test.mjs`](../tests/compose-produksi.test.mjs) (parses `compose.production.yaml` with `Bun.YAML` and asserts no hardcoded-looking secret, the `awcms_app`/`awcms_worker`/setup role split across `cms`/`jobs`/`migrate`, no published host port on `postgres`/`cms`/`storefront`, and no `AWCMS_API_TOKEN` build ARG on `storefront`). Neither test builds an image or touches Docker — see [ADR-0019](adr/0019-production-topology-two-images-a-jobs-sidecar-and-a-fail-closed-preflight.md) for what the files they check actually decide.
+
 ## 2. `apps/storefront`: unit tests, a type-check, and two build-smoke tiers
 
 `apps/storefront/tests/` holds around 55 files (excluding `e2e/`), grouped roughly by area:
@@ -68,6 +70,10 @@ Each landed its own `tests/integration/` file, run for real against a live Postg
 ### Playwright e2e — a fourth tier, its own command, not part of `bun test`
 
 `apps/storefront/tests/e2e/checkout.e2e.ts` drives a real Chromium browser against a real build+serve+stub, run with `bun run test:e2e` **inside `apps/storefront`** (never the root `bun test` — the `.e2e.ts` suffix keeps it out of that discovery on purpose). Covers add-to-cart → cart quote renders totals → checkout submits → tracking shows the order, plus the neutral not-found state for a wrong phone. **Not wired into `.github/workflows/ci.yml`** — this was outside the ops-owned CI file's scope for the issue that added it; `apps/storefront/README.md` documents exactly how a future CI job would run it (install Chromium, start the stub, build with the right env, serve, point `E2E_BASE_URL`/`STUB_ALLOWED_ORIGIN` at each other).
+
+### Production preflight (issue #150, ADR-0019)
+
+`apps/cms/tests/commerce-deploy-preflight.test.ts` shape-tests `commerce-deploy-preflight.ts`'s pure per-check functions (DSN-role shape, OTP/payment/shipping provider rules, canonical-URL validity) with fabricated env bags — no real credentials, no database connection. The `--live` path (a real connect against a disposable PostgreSQL, checking `rolsuper`/`rolbypassrls`/table ownership/RLS/migration-ledger for real) is exercised manually, not by this suite — see the issue #150 PR body for that evidence, since it needs a database this test tier does not have.
 
 ## 3. `apps/cms` (`check-cms` CI job): a real, provisioned PostgreSQL
 

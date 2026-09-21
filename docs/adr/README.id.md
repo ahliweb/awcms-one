@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:4f0b511033bc74df5a42680d987c0a46825ad4c16d629ba62aa43d2275a20624 -->
+<!-- i18n-source-hash: sha256:739f9d047146b0842198eceb080cec329db053f280f43a67aa456432f2c26770 -->
 
 # Architecture Decision Records
 
@@ -36,6 +36,7 @@ Yang **tidak** butuh ADR: menambah field dalam skema yang sudah diputuskan, kena
 | [0016](0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md) | Akun pelanggan adalah akun `commerce` terverifikasi OTP dengan sesi bearer | Diterima |
 | [0017](0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.md) | Provider eksternal adalah port milik `commerce`, dengan kredensial per-deployment dari env dan webhook beralamat token | Diterima |
 | [0018](0018-awcms-one-is-a-template-with-build-profiles-and-an-idempotent-init.md) | awcms-one adalah sebuah template, dengan profil build dan `template:init` yang idempoten | Diterima |
+| [0019](0019-production-topology-two-images-a-jobs-sidecar-and-a-fail-closed-preflight.md) | Topologi produksi: dua image, satu sidecar jobs, dan preflight fail-closed | Diterima |
 
 ## Mengapa penomoran dimulai dari 0001
 

@@ -65,7 +65,7 @@ Since increment 5 ([ADR-0017](docs/adr/0017-external-providers-are-commerce-owne
 
 ## What is NOT yet true, stated plainly
 
-**There is no live production deployment of this platform yet.** See [`docs/deployment.md`](docs/deployment.md) for exactly what is and is not provisioned; there is no running system at `mart.borneojek.com` for this repo's own code to expose.
+**There is no live production deployment of this platform yet.** See [`docs/deployment.md`](docs/deployment.md) for exactly what is and is not provisioned; there is no running system at `mart.borneojek.com` for this repo's own code to expose. A reproducible production topology and a fail-closed preflight now exist ([ADR-0019](docs/adr/0019-production-topology-two-images-a-jobs-sidecar-and-a-fail-closed-preflight.md), `docs/deployment.md`'s "Production runbook") — the sentence above is about whether anything is actually running yet, not whether a documented path exists.
 
 **Customer accounts, OTP login, and bearer sessions DO exist** ([issue #32](https://github.com/ahliweb/awcms-one/issues/32), [ADR-0016](docs/adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md)) — see "The storefront's authenticated customer surface" above for the surface itself and its controls. What ADR-0016's own D6 explicitly deferred, and is still not here: changing e-mail or phone on an existing account, and phone verification. A Xendit payment-gateway adapter and courier tracking are named as explicit follow-ups behind the existing provider ports in [ADR-0017](docs/adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.md), and are not built yet.
 
