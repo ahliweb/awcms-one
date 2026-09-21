@@ -27,14 +27,28 @@ const identity = await getSiteIdentity();
 const storeSettings = await getStoreSettings();
 const whatsappNumber = storeSettings.whatsapp ?? identity.whatsappNumber ?? "";
 
-const NAV_CARDS = [
-  { href: ROUTES.accountOrders, label: "Pesanan" },
-  { href: ROUTES.accountAddresses, label: "Alamat" },
-  { href: ROUTES.wishlist, label: "Wishlist" },
-  { href: ROUTES.accountReviews, label: "Ulasan" },
-  { href: ROUTES.accountAffiliate, label: "Afiliasi" },
-  { href: ROUTES.accountMessages, label: "Pesan" }
-];
+/**
+ * The `/akun*` side navigation (issue #168, 2026-09 redesign), matching the
+ * design source's single "Menu" card (`publik.template.html` lines
+ * 532–541). Duplicated identically across the six account pages' own
+ * frontmatter rather than factored into a shared partial: a `_`-prefixed
+ * file under `src/profil/toko/pages/**` is skipped by `integrations/
+ * profil.mjs`'s own route injection, but `listPageFiles` (the same module)
+ * still lists it, and `tests/profil-integrasi.test.ts` requires every file
+ * `listPageFiles` finds to appear in `docs/template.md`'s profile matrix —
+ * a partial with no route of its own has no row to appear in. See that
+ * test's own failure for a components-only extraction if this array ever
+ * needs a seventh reader.
+ */
+const SIDENAV_ITEMS = [
+  { key: "ringkasan", href: ROUTES.account, label: "Ringkasan" },
+  { key: "pesanan", href: ROUTES.accountOrders, label: "Pesanan" },
+  { key: "alamat", href: ROUTES.accountAddresses, label: "Alamat" },
+  { key: "pesan", href: ROUTES.accountMessages, label: "Pesan" },
+  { key: "ulasan", href: ROUTES.accountReviews, label: "Ulasan" },
+  { key: "afiliasi", href: ROUTES.accountAffiliate, label: "Afiliasi" }
+] as const;
+const SIDENAV_ACTIVE = "ringkasan";
 ---
 
 <BaseLayout title="Akun Saya" description="Kelola akun Anda." canonicalPath="/akun">
@@ -77,69 +91,95 @@ const NAV_CARDS = [
     <div data-guest-view class="akun-card" hidden>
       <p>Anda belum masuk.</p>
       <div class="akun-actions">
-        <a href={ROUTES.login}>Masuk</a>
-        <a href={ROUTES.register}>Daftar akun baru</a>
+        <a href={ROUTES.login} class="btn btn--primary btn--sm">Masuk</a>
+        <a href={ROUTES.register} class="btn btn--secondary btn--sm">Daftar akun baru</a>
       </div>
     </div>
 
     <div data-account-view hidden>
-      <div class="akun-card" aria-live="polite" data-profile-card>
-        <dl>
-          <div class="akun-profile-row">
-            <dt>Nama</dt>
-            <dd data-profile-name></dd>
-          </div>
-          <div class="akun-profile-row">
-            <dt>E-mail</dt>
-            <dd data-profile-email></dd>
-          </div>
-          <div class="akun-profile-row">
-            <dt>Telepon</dt>
-            <dd data-profile-phone></dd>
-          </div>
-          <div class="akun-profile-row">
-            <dt>Level</dt>
-            <dd data-profile-level></dd>
-          </div>
-        </dl>
-      </div>
-
-      <div class="akun-card">
-        <h2>Ubah Nama</h2>
-        <form data-ubah-nama-form>
-          <div class="toko-field">
-            <label for="akun-nama-baru">Nama lengkap</label>
-            <input type="text" id="akun-nama-baru" name="name" required autocomplete="name" />
-            <p class="toko-field-error" data-error-for="name"></p>
-          </div>
-          <div class="akun-actions">
-            <button type="submit">Simpan</button>
-          </div>
-        </form>
-      </div>
-
-      <div class="akun-card">
-        <h2>Preferensi Promo</h2>
-        <label class="akun-consent-label">
-          <input type="checkbox" data-consent-checkbox />
-          Terima promo lewat e-mail/WhatsApp
-        </label>
-        <p data-consent-status role="status" aria-live="polite" class="akun-countdown"></p>
-      </div>
-
-      <div class="akun-card">
-        <h2>Menu Akun</h2>
-        <div class="akun-nav-grid">
-          {NAV_CARDS.map((card) => (
-            <a class="akun-nav-card" href={card.href}>
-              <span class="akun-nav-card-label">{card.label}</span>
-            </a>
-          ))}
+      <div class="akun-shell-head">
+        <span class="akun-avatar" aria-hidden="true" data-avatar-initials>—</span>
+        <div class="akun-identity">
+          <span class="akun-identity-name" data-profile-name></span>
+          <span class="akun-identity-meta is-mono">
+            <span data-profile-email></span> · sesi bearer aktif
+          </span>
         </div>
+        <span class="akun-shell-spacer"></span>
+        <button type="button" class="btn btn--secondary btn--sm" data-keluar>Keluar</button>
       </div>
 
-      <div class="akun-actions">
-        <button type="button" data-keluar>Keluar</button>
+      <div class="akun-layout">
+        <nav class="akun-sidenav" aria-label="Menu akun">
+          {
+            SIDENAV_ITEMS.map((item) => (
+              <a
+                class="akun-sidenav-item"
+                href={item.href}
+                aria-current={item.key === SIDENAV_ACTIVE ? "page" : undefined}
+              >
+                <span class="akun-sidenav-item-label">{item.label}</span>
+              </a>
+            ))
+          }
+        </nav>
+
+        <div class="akun-content">
+          <div class="akun-stat-grid" data-akun-stats aria-live="polite">
+            <div class="akun-stat-card">
+              <span class="akun-stat-label">Pesanan</span>
+              <div class="akun-stat-value" data-stat-pesanan>—</div>
+            </div>
+            <div class="akun-stat-card">
+              <span class="akun-stat-label">Sedang berjalan</span>
+              <div class="akun-stat-value" data-stat-berjalan>—</div>
+            </div>
+            <div class="akun-stat-card">
+              <span class="akun-stat-label">Wishlist</span>
+              <div class="akun-stat-value" data-stat-wishlist>—</div>
+            </div>
+          </div>
+
+          <div class="akun-card" aria-live="polite" data-profile-card>
+            <dl>
+              <div class="akun-profile-row">
+                <dt>Telepon</dt>
+                <dd data-profile-phone></dd>
+              </div>
+              <div class="akun-profile-row">
+                <dt>Level</dt>
+                <dd data-profile-level></dd>
+              </div>
+            </dl>
+          </div>
+
+          <div class="akun-card">
+            <h2>Ubah Nama</h2>
+            <form data-ubah-nama-form>
+              <div class="toko-field">
+                <label for="akun-nama-baru" class="field-label">Nama lengkap</label>
+                <input type="text" id="akun-nama-baru" name="name" required autocomplete="name" />
+                <p class="toko-field-error" data-error-for="name"></p>
+              </div>
+              <div class="akun-actions">
+                <button type="submit" class="btn btn--primary btn--sm">Simpan</button>
+              </div>
+            </form>
+          </div>
+
+          <div class="akun-card">
+            <h2>Preferensi promo</h2>
+            <label class="akun-consent-label">
+              <input type="checkbox" data-consent-checkbox />
+              <span>
+                <span>Terima kabar promo lewat e-mail dan WhatsApp</span>
+                <br />
+                <small>Tersimpan langsung saat diubah — tanpa tombol Simpan.</small>
+              </span>
+            </label>
+            <p data-consent-status role="status" aria-live="polite" class="akun-countdown"></p>
+          </div>
+        </div>
       </div>
     </div>
   </div>

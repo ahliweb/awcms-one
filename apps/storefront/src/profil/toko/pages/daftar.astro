@@ -73,25 +73,25 @@ const whatsappOtpEnabled = storeSettings.whatsappOtpEnabled ?? false;
         </p>
 
         <div class="toko-field">
-          <label for="daftar-name">Nama lengkap</label>
+          <label for="daftar-name" class="field-label">Nama lengkap</label>
           <input type="text" id="daftar-name" name="name" required autocomplete="name" />
           <p class="toko-field-error" data-error-for="name"></p>
         </div>
 
         <div class="toko-field">
-          <label for="daftar-phone">Nomor telepon</label>
-          <input type="tel" id="daftar-phone" name="phone" required autocomplete="tel" />
+          <label for="daftar-phone" class="field-label">Nomor telepon</label>
+          <input type="tel" id="daftar-phone" name="phone" required autocomplete="tel" class="is-mono" />
           <p class="toko-field-error" data-error-for="phone"></p>
         </div>
 
         <div class="toko-field">
-          <label for="daftar-email">Alamat e-mail</label>
+          <label for="daftar-email" class="field-label">Alamat e-mail</label>
           <input type="email" id="daftar-email" name="email" required autocomplete="email" />
           <p class="toko-field-error" data-error-for="email"></p>
         </div>
 
         <div class="akun-actions">
-          <button type="button" data-kirim-kode>Kirim kode</button>
+          <button type="button" class="btn btn--primary btn--sm" data-kirim-kode>Kirim kode</button>
         </div>
       </section>
 
@@ -99,7 +99,7 @@ const whatsappOtpEnabled = storeSettings.whatsappOtpEnabled ?? false;
         <p>Kode telah dikirim ke e-mail Anda.</p>
 
         <div class="toko-field">
-          <label for="daftar-code">Kode 6 digit</label>
+          <label for="daftar-code" class="field-label">Kode 6 digit</label>
           <input
             type="text"
             id="daftar-code"
@@ -109,13 +109,16 @@ const whatsappOtpEnabled = storeSettings.whatsappOtpEnabled ?? false;
             autocomplete="one-time-code"
             pattern="[0-9]{6}"
             maxlength="6"
+            class="akun-otp-input is-mono"
           />
           <p class="toko-field-error" data-error-for="code"></p>
         </div>
 
         <div class="akun-actions">
-          <button type="submit" data-verifikasi>Daftar</button>
-          <button type="button" data-kirim-ulang disabled>Kirim ulang (<span data-countdown>60</span> detik)</button>
+          <button type="submit" class="btn btn--primary btn--sm" data-verifikasi>Daftar</button>
+          <button type="button" class="btn btn--quiet btn--sm" data-kirim-ulang disabled>
+            Kirim ulang (<span data-countdown>60</span> detik)
+          </button>
         </div>
       </section>
     </form>

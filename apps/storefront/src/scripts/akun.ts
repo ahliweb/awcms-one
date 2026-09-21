@@ -13,11 +13,18 @@
  * save fails — the checkbox is never left showing a state the server does
  * not actually hold.
  */
-import { ambilProfil, keluar, ubahProfil } from "../lib/akun-klien";
+import { ambilPesananAkun, ambilProfil, ambilWishlistAkun, keluar, ubahProfil } from "../lib/akun-klien";
 import { bacaSesi, hapusSesi } from "../lib/akun-sesi";
 import { AKUN_EVENT_NAME } from "../lib/akun-kontrak";
 import { TokoApiError } from "../lib/toko-permintaan";
 import { buildWhatsappAccountMessage, buildWhatsappUrl } from "../lib/wa-fallback";
+
+/** Issue #168 (2026-09 redesign) — the Ringkasan stat tiles' own "in
+ * progress" definition: any order not yet in a terminal state. Mirrors
+ * `pesanan-render.ts`'s own `STATUS_LABELS` keys; kept as a small local set
+ * rather than importing that whole module here (this file never renders an
+ * order's full detail, only counts). */
+const TERMINAL_ORDER_STATUSES = new Set(["completed", "cancelled", "expired"]);
 
 const LEVEL_LABELS: Record<number, string> = {};
 
@@ -42,6 +49,10 @@ if (root) {
   const keluarButton = root.querySelector<HTMLButtonElement>("[data-keluar]");
   const consentCheckbox = root.querySelector<HTMLInputElement>("[data-consent-checkbox]");
   const consentStatusEl = root.querySelector<HTMLElement>("[data-consent-status]");
+  const avatarInitialsEl = root.querySelector<HTMLElement>("[data-avatar-initials]");
+  const statPesananEl = root.querySelector<HTMLElement>("[data-stat-pesanan]");
+  const statBerjalanEl = root.querySelector<HTMLElement>("[data-stat-berjalan]");
+  const statWishlistEl = root.querySelector<HTMLElement>("[data-stat-wishlist]");
 
   const whatsappNumber = root.dataset.whatsappNumber ?? "";
   const storeName = root.dataset.storeName ?? "toko";
@@ -71,6 +82,19 @@ if (root) {
     if (accountView) accountView.hidden = true;
   }
 
+  /** Issue #168 — "RH" from "Rina Halim": up to the first two words' first
+   * letters, uppercased; a one-word name still renders one letter rather
+   * than an empty tile. */
+  function initialsFor(name: string): string {
+    const letters = name
+      .trim()
+      .split(/\s+/)
+      .filter(Boolean)
+      .slice(0, 2)
+      .map((word) => word[0]?.toUpperCase() ?? "");
+    return letters.join("") || "?";
+  }
+
   function renderProfile(account: {
     name: string;
     email: string;
@@ -84,6 +108,29 @@ if (root) {
     if (profileLevelEl) profileLevelEl.textContent = levelLabel(account.level);
     if (ubahNamaInput) ubahNamaInput.value = account.name;
     if (consentCheckbox) consentCheckbox.checked = account.marketingConsent;
+    if (avatarInitialsEl) avatarInitialsEl.textContent = initialsFor(account.name);
+  }
+
+  /** Issue #168 — the Ringkasan stat tiles. Every number here comes from a
+   * function `akun-klien.ts` already exposes (the account's own first page
+   * of orders, the account's own wishlist) — no new endpoint, and a
+   * transient failure just leaves the tile at its placeholder rather than
+   * surfacing a second error banner over the profile one above. */
+  async function loadStats(): Promise<void> {
+    try {
+      const [orders, wishlist] = await Promise.all([ambilPesananAkun(null), ambilWishlistAkun()]);
+      if (statPesananEl) statPesananEl.textContent = String(orders.items.length);
+      if (statBerjalanEl) {
+        statBerjalanEl.textContent = String(
+          orders.items.filter((order) => !TERMINAL_ORDER_STATUSES.has(order.status)).length
+        );
+      }
+      if (statWishlistEl) statWishlistEl.textContent = String(wishlist.items.length);
+    } catch {
+      // Stats are a nice-to-have summary, not the point of this page — a
+      // failure here leaves the placeholder dashes rather than blocking the
+      // rest of the Ringkasan view.
+    }
   }
 
   async function showAccountView(): Promise<void> {
@@ -93,6 +140,7 @@ if (root) {
     try {
       const { account } = await ambilProfil();
       renderProfile(account);
+      void loadStats();
     } catch (error) {
       if (error instanceof TokoApiError && error.code === "UNAUTHENTICATED") {
         // The session was already cleared by akun-klien.ts's own 401
