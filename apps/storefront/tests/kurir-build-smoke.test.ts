@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { STUB_START_DEADLINE_MS } from "./stub-deadline";
+import { startStub } from "./stub-lifecycle";
 import { existsSync, readFileSync, rmSync } from "node:fs";
 import { join } from "node:path";
 
@@ -27,19 +27,6 @@ function canSpawnBun(): boolean {
   }
 }
 
-async function waitForStub(url: string, deadline: number): Promise<void> {
-  while (Date.now() < deadline) {
-    try {
-      const response = await fetch(url);
-      if (response.status === 401 || response.ok) return;
-    } catch {
-      // Not listening yet.
-    }
-    await new Promise((resolve) => setTimeout(resolve, 100));
-  }
-  throw new Error(`stub-awcms did not answer ${url} in time.`);
-}
-
 describe("build smoke: astro build against the stub CMS (issue #109's courier checkout)", () => {
   if (!canSpawnBun()) {
     test.skip("SKIPPED — this environment cannot spawn `bun` (Bun.spawnSync failed)", () => {});
@@ -49,20 +36,13 @@ describe("build smoke: astro build against the stub CMS (issue #109's courier ch
   test(
     "produces /checkout with the shipping aria-live status region, no inline <script>/<style>",
     async () => {
-      const stubPort = 46000 + Math.floor(Math.random() * 4000);
       const distClient = join(STOREFRONT_ROOT, "dist", "client");
       rmSync(join(STOREFRONT_ROOT, "dist"), { recursive: true, force: true });
 
-      const stub = Bun.spawn(["bun", "scripts/stub-awcms.mjs"], {
-        cwd: STOREFRONT_ROOT,
-        env: { ...process.env, STUB_PORT: String(stubPort) },
-        stdout: "pipe",
-        stderr: "pipe"
-      });
+      const stub = await startStub();
+      const stubPort = stub.port;
 
       try {
-        await waitForStub(`http://localhost:${stubPort}/api/v1/commerce/products`, Date.now() + STUB_START_DEADLINE_MS);
-
         const build = Bun.spawnSync(["bun", "--bun", "astro", "build"], {
           cwd: STOREFRONT_ROOT,
           env: {
@@ -108,8 +88,7 @@ describe("build smoke: astro build against the stub CMS (issue #109's courier ch
         expect(html).not.toMatch(/<style[\s>]/i);
         expect(html).not.toMatch(/\sstyle="/i);
       } finally {
-        stub.kill();
-        await stub.exited;
+        await stub.stop();
       }
     },
     TIMEOUT_MS
