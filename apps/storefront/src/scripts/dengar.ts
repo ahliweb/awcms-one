@@ -155,6 +155,7 @@ function pasangPemutar(kartu: HTMLElement): void {
   const tombolBerikut = kartu.querySelector<HTMLButtonElement>("[data-dengar-berikut]");
   const tombolHenti = kartu.querySelector<HTMLButtonElement>("[data-dengar-henti]");
   const progres = kartu.querySelector<HTMLElement>("[data-dengar-progres]");
+  const progresBar = kartu.querySelector<HTMLElement>("[data-dengar-progres-bar]");
   const catatan = kartu.querySelector<HTMLElement>("[data-dengar-catatan]");
   const pilihRate = kartu.querySelector<HTMLSelectElement>("[data-dengar-rate]");
   const pilihSuara = kartu.querySelector<HTMLSelectElement>("[data-dengar-suara]");
@@ -182,6 +183,9 @@ function pasangPemutar(kartu: HTMLElement): void {
 
   function tulisProgres(): void {
     if (progres) progres.textContent = `Bagian ${indeks + 1} dari ${unit.length}`;
+    // Issue #169: the same `indeks`/`unit.length` numbers as the visible
+    // fraction above, drawn as a fill width instead of a second count.
+    if (progresBar) progresBar.style.width = `${Math.round(((indeks + 1) / unit.length) * 100)}%`;
   }
 
   function tulisCatatan(teks: string): void {
@@ -258,6 +262,7 @@ function pasangPemutar(kartu: HTMLElement): void {
     setTombol(false);
     if (label) label.textContent = "Dengarkan berita ini";
     if (progres) progres.textContent = "";
+    if (progresBar) progresBar.style.width = "100%";
     tulisCatatan("Selesai dibacakan.");
   }
 
@@ -271,6 +276,7 @@ function pasangPemutar(kartu: HTMLElement): void {
     setTombol(false);
     if (label) label.textContent = "Dengarkan berita ini";
     if (progres) progres.textContent = "";
+    if (progresBar) progresBar.style.width = "0%";
     for (const t of [tombolSebelum, tombolBerikut, tombolHenti]) {
       if (t) t.disabled = true;
     }

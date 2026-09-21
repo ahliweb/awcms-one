@@ -40,6 +40,7 @@
  * | `data-dengar-panel` | the settings panel (rate, voice) |
  * | `data-dengar-rate` / `data-dengar-suara` | the two `<select>`s |
  * | `data-dengar-progres` | the `n / total` live region |
+ * | `data-dengar-progres-bar` | the visual 4px fill (issue #169) — width set from the same `n`/`total` `tulisProgres()` already turns into the text above; `aria-hidden` on its track, since the live region already announces the number |
  * | `data-dengar-catatan` | the status line (errors, "selesai") |
  *
  * The body it reads is `.article-body` — `ArtikelView.astro`'s own
@@ -74,6 +75,10 @@ const { judul } = Astro.props;
         <span aria-hidden="true">⏹</span>
       </button>
     </div>
+
+    <span class="dengar__trek" aria-hidden="true">
+      <span class="dengar__isian" data-dengar-progres-bar></span>
+    </span>
 
     <p class="dengar__progres" data-dengar-progres role="status" aria-live="polite"></p>
   </div>

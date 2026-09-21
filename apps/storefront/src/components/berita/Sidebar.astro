@@ -68,6 +68,21 @@
  * their `id`/`for` pairs distinct. The section's own `id` is a plain
  * in-page anchor.
  *
+ * ## Issue #169 (2026-09 redesign): restyled, not restructured
+ *
+ * The tabbed list stays **Terbaru / Mitra Borneo**, not the mockup's own
+ * "Terbaru / Terpopuler" pairing (`redesign/…/publik.template.html` line
+ * 745): `sidebar-build-smoke.test.ts` locks in `sisi-tab-mitra`/
+ * `sisi-panel-mitra` as real, tested content (the two fixture posts
+ * carrying an institution), and restructuring the tabs to match the
+ * mockup would mean removing that panel's content, not merely restyling
+ * it — the "Terpopuler" section right below the first ad slot already
+ * gives every reader the mockup's numbered "Terpopuler" list, just as its
+ * own always-visible section rather than a second tab. Everything else
+ * below — the numbered index (`decimal-leading-zero`, mono), Lora
+ * titles, mono timestamps, the news-accent tab underline, the newsletter
+ * card on `.band-inverse` — is this issue's restyling.
+ *
  * ## Styles are component-scoped, and that is safe under this app's CSP
  *
  * `src/styles/berita.css`/`berita-chrome.css` are issue #28's/#48's files,
@@ -236,7 +251,12 @@ const hrefFor = (post: PostSummary): string =>
 
   <IklanSlot placement="sidebar_middle" />
 
-  <section class="sisi-widget sisi-buletin" id="buletin-sidebar" aria-labelledby="sisi-buletin-judul">
+  {/* Issue #169 (mockup line 761): the newsletter card on the inverse
+      band, wrapping the SAME double opt-in form (`FormBuletin`,
+      unchanged) — see this component's own `<style>` for the `:global()`
+      overrides that keep its field/hint text readable on the dark
+      surface. */}
+  <section class="sisi-widget sisi-buletin band-inverse" id="buletin-sidebar" aria-labelledby="sisi-buletin-judul">
     <h2 id="sisi-buletin-judul" class="sisi-judul">Buletin Pagi</h2>
     <p class="sisi-teks">Ringkasan berita Kalimantan Tengah setiap pagi, langsung ke email Anda.</p>
     <FormBuletin variant="sidebar" />
@@ -298,7 +318,10 @@ const hrefFor = (post: PostSummary): string =>
 
   .sisi-tab__tombol[aria-selected="true"] {
     color: var(--text-primary);
-    border-bottom-color: var(--color-primary, #10b981);
+    /* Issue #169: the news accent, not the CMS-driven brand color — see
+       `berita-chrome.css`'s own docblock for why the news surface's active
+       marks are independent of `--color-primary`. */
+    border-bottom-color: var(--news-accent, #dc2626);
   }
 
   /* --- Compact post lists (Terbaru / Mitra Borneo / Terpopuler) --------- */
@@ -338,13 +361,17 @@ const hrefFor = (post: PostSummary): string =>
     grid-template-columns: 2rem minmax(0, 1fr);
   }
 
+  /* Mono 2-digit index (issue #169, mockup line 750: "01"/"02"/…) — the
+     `decimal-leading-zero` counter style is exactly the CSS-native way to
+     zero-pad; no script needed for a purely presentational numeral. */
   .sisi-daftar--bernomor a::before {
-    content: counter(sisi-nomor);
+    content: counter(sisi-nomor, decimal-leading-zero);
     grid-row: 1 / span 2;
-    font-size: 1.5rem;
-    font-weight: 800;
+    font-family: var(--font-mono);
+    font-size: 1.05rem;
+    font-weight: 600;
     line-height: 1;
-    color: var(--color-primary, #10b981);
+    color: var(--text-muted);
   }
 
   .sisi-daftar__rubrik {
@@ -352,16 +379,20 @@ const hrefFor = (post: PostSummary): string =>
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    color: var(--color-primary, #10b981);
+    color: var(--link-color, var(--color-primary, #10b981));
   }
 
+  /* Issue #169: Lora titles, mono timestamps — matching the mockup's
+     sidebar list (line 749) and `berita.css`'s own news-card typography. */
   .sisi-daftar__judul {
-    font-weight: 600;
-    line-height: 1.35;
+    font-family: var(--font-serif);
+    font-weight: 500;
+    line-height: 1.4;
   }
 
   .sisi-daftar__waktu {
-    font-size: 0.8rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
     color: var(--text-muted);
   }
 
@@ -387,8 +418,19 @@ const hrefFor = (post: PostSummary): string =>
 
   .sisi-buletin {
     padding: 1rem;
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-l, var(--radius-md));
+  }
+
+  /* `.band-inverse` (`global.css`, 2026-09 redesign) sets the section's own
+     background/text; this card's OWN heading/hint text need the same
+     treatment explicitly, since `.sisi-judul`/`.sisi-teks` are declared
+     with their own (light-surface) colors elsewhere in this file. */
+  .sisi-buletin.band-inverse .sisi-judul {
+    color: var(--text-on-inverse);
+  }
+
+  .sisi-buletin.band-inverse .sisi-teks {
+    color: var(--text-on-inverse-muted);
   }
 
   .sisi-buletin :global(.buletin-form--sidebar) {
@@ -398,6 +440,25 @@ const hrefFor = (post: PostSummary): string =>
 
   .sisi-buletin :global(.buletin-form--sidebar .toko-field) {
     margin-bottom: 0;
+  }
+
+  /* The form's own field label/hint/input, restyled for the dark card —
+     `toko.css`'s `.toko-field`/`.toko-field-hint` classes are shared with
+     every OTHER page that renders `FormBuletin` (`/buletin`, the token
+     pages, the footer's own copy of this same form), so the override
+     lives here, scoped to THIS card, rather than in that shared file. */
+  .sisi-buletin.band-inverse :global(.toko-field label) {
+    color: var(--text-on-inverse);
+  }
+
+  .sisi-buletin.band-inverse :global(.toko-field-hint) {
+    color: var(--text-on-inverse-muted);
+  }
+
+  .sisi-buletin.band-inverse :global(.toko-field input) {
+    background: var(--bg-inverse-2);
+    border-color: var(--border-on-inverse);
+    color: var(--text-on-inverse);
   }
 </style>
 

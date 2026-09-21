@@ -43,6 +43,17 @@
  * `http(s)` — see that file's own docblock for why the second check is not
  * redundant defence.
  *
+ * ## "Ke toko" / "Akun" (issue #169, 2026-09 redesign)
+ *
+ * Two links added beside the editorial ones, both gated on
+ * `isGroupActive("toko")` (`src/config/profil.ts`) — a `berita`-only build
+ * has no store home and no `/akun` for either to point at. "Akun" reuses
+ * `Header.astro`'s own `[data-akun-tautan]`/`[data-akun-label]` contract
+ * (server-rendered "Akun" → `ROUTES.login`, swapped to the signed-in
+ * account by `src/scripts/akun-header.ts`, mounted for news pages by
+ * `BeritaLayout.astro`) rather than inventing a second session-aware
+ * link — see that script's own docblock for the swap.
+ *
  * ## `id="atas"` on this component's own outermost element
  *
  * `FooterBerita.astro`'s back-to-top link is `<a href="#atas">` — this is
@@ -53,6 +64,8 @@
 import type { SiteIdentity } from "../../lib/awcms/profil";
 import { getPerusahaanLinks } from "../../lib/navigasi-berita";
 import { resolveSocialIcons } from "../../lib/ikon-sosial";
+import { isGroupActive } from "../../config/profil";
+import { ROUTES } from "../../config/routes";
 
 interface Props {
   identity: SiteIdentity;
@@ -62,12 +75,17 @@ const { identity } = Astro.props;
 
 const perusahaanLinks = await getPerusahaanLinks();
 const socialIcons = resolveSocialIcons(identity.socialLinks);
+// "Ke toko"/"Akun" (issue #169, mockup lines 60-64): only when this BUILD
+// also composes the `toko` group — a `berita`-only deployment has no
+// store home and no `/akun` for either link to point at.
+const tokoAktif = isGroupActive("toko");
 ---
 
 <div class="bilah-utilitas" id="atas">
   <div class="container bilah-utilitas__isi">
     <div class="bilah-utilitas__kiri">
       <span class="bilah-utilitas__tanggal" id="bilah-tanggal"></span>
+      <span class="bilah-utilitas__zona">&middot; WIB</span>
       {identity.contactEmail && (
         <>
           <span class="bilah-utilitas__pisah" aria-hidden="true">&middot;</span>
@@ -77,9 +95,15 @@ const socialIcons = resolveSocialIcons(identity.socialLinks);
     </div>
 
     <nav class="bilah-utilitas__kanan" aria-label="Tautan redaksi">
+      {tokoAktif && <a href={ROUTES.home}>Ke toko</a>}
       {perusahaanLinks.map((link) => (
         <a href={link.href}>{link.label}</a>
       ))}
+      {tokoAktif && (
+        <a href={ROUTES.login} class="bilah-utilitas__akun" data-akun-tautan>
+          <span data-akun-label>Akun</span>
+        </a>
+      )}
 
       {socialIcons.length > 0 && (
         <span class="bilah-utilitas__sosial">

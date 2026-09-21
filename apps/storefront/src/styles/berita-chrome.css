@@ -10,15 +10,55 @@
  * `.mobile-nav-toggle` utility classes rather than re-declaring any of
  * them — `BeritaLayout.astro` imports `global.css` directly (it no longer
  * delegates to `BaseLayout.astro`; see that layout's own docblock for why).
+ *
+ * --------------------------------------------------------------------------
+ * News surface redesign (2026-09-21, issue #169)
+ * --------------------------------------------------------------------------
+ *
+ * Source: the same `redesign/…/publik.template.html` mockup
+ * `global.css`'s own 2026-09 redesign section cites, lines 59-86 (news
+ * chrome) — see `docs/ui-ux.md`'s "Design system (2026-09 redesign)" news
+ * sections for the token/primitive reference. Two NEW tokens, scoped to
+ * this file only (the news surface never bleeds into the store chrome):
+ *
+ * - `--news-bar-bg` — the dark date-bar background (`#111827` in the
+ *   mockup); distinct from `--bg-inverse` (`#0f172a`, the STORE utility
+ *   bar's own dark) so the two chromes can diverge later without one
+ *   redefinition moving the other.
+ * - `--news-accent` — the red (`#dc2626`) used for the active-nav
+ *   underline and the "TERKINI" pill. This is the NEWS section's own
+ *   accent, never the CMS-driven `--color-primary` brand color: a
+ *   BjekMart-branded deployment's emerald does not become the news
+ *   desk's own visual identity, and a `berita`-only deployment gets a
+ *   consistent, non-brand-dependent "breaking news" signal.
  */
 
-/* --- Utility bar (`BilahUtilitas.astro`) --------------------------------- */
+:root {
+  --news-bar-bg: #111827;
+  --news-accent: #dc2626;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* The date bar is already near-black in light mode; in dark mode it
+       lightens slightly relative to `--bg-primary` so it still reads as
+       its own surface, the same reasoning `global.css`'s `--bg-inverse`
+       dark-mode override already uses. */
+    --news-bar-bg: #030712;
+    /* A lighter red for AA against a dark background — `#dc2626` on
+       `--bg-surface`'s dark value (`#111827`) falls under 4.5:1; `#f87171`
+       clears it comfortably while staying unmistakably "red". */
+    --news-accent: #f87171;
+  }
+}
+
+/* --- Date bar (`BilahUtilitas.astro`) ------------------------------------ */
 
 .bilah-utilitas {
-  background: var(--bg-subtle);
-  border-bottom: 1px solid var(--border-color);
-  font-size: 0.8rem;
-  color: var(--text-secondary);
+  background: var(--news-bar-bg);
+  color: var(--text-on-inverse-muted);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
 }
 
 .bilah-utilitas__isi {
@@ -38,7 +78,16 @@
 }
 
 .bilah-utilitas__pisah {
-  color: var(--text-muted);
+  color: var(--text-on-inverse-muted);
+  opacity: 0.6;
+}
+
+/* The static "· WIB" suffix (issue #169) — always rendered, unlike
+   `#bilah-tanggal` itself which starts empty (see this file's own
+   docblock on `BilahUtilitas.astro` for why the date is client-rendered);
+   "WIB" is timezone LABEL text, true regardless of build time. */
+.bilah-utilitas__zona {
+  opacity: 0.8;
 }
 
 /* `#bilah-tanggal` (`BilahUtilitas.astro`) starts empty and is filled by
@@ -59,10 +108,21 @@
 }
 
 .bilah-utilitas__kanan a {
-  color: var(--text-secondary);
+  color: var(--text-on-inverse-muted);
   min-height: 32px;
   display: inline-flex;
   align-items: center;
+}
+
+.bilah-utilitas__kanan a:hover {
+  color: var(--text-on-inverse);
+}
+
+/* "Akun" (issue #169) — reuses `Header.astro`'s own `[data-akun-tautan]`
+   sky-colored treatment so the two chromes' account links read as the
+   same control, just restyled for each bar's own background. */
+.bilah-utilitas__akun {
+  color: var(--accent-primary) !important;
 }
 
 .bilah-utilitas__sosial {
@@ -77,7 +137,7 @@
   justify-content: center;
   width: 1.75rem;
   height: 1.75rem;
-  color: var(--text-secondary);
+  color: var(--text-on-inverse-muted);
 }
 
 .bilah-utilitas__sosial svg {
@@ -110,14 +170,40 @@
   padding-block: 0.75rem;
 }
 
+/* Masthead (issue #169): the site name set in the serif family, matching
+   the mockup's "Kabar Contoh" wordmark — Lora, not the sans this app's
+   store brand mark uses, so a reader can tell a news deployment's masthead
+   from a store's brand tile at a glance. */
 .nav-berita__merek {
-  font-size: 1.4rem;
-  font-weight: 800;
+  font-family: var(--font-serif);
+  font-size: 1.625rem; /* 26px */
+  font-weight: 600;
+  letter-spacing: -0.01em;
   color: var(--text-primary);
   min-height: 44px;
   display: inline-flex;
   align-items: center;
+}
+
+/* Brand + kicker sit in one wrapper (`.nav-berita__jenama`, see
+   `NavBerita.astro`) so `margin-right: auto` pushes the search form/menu
+   toggle to the right whether or not `identity.tagline` renders the
+   kicker — one spacer, not a conditional one on whichever element happens
+   to render last. */
+.nav-berita__jenama {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  flex-wrap: wrap;
   margin-right: auto;
+}
+
+/* The mono kicker beside the masthead (issue #169) — `identity.tagline`
+   when the CMS has one; renders nothing otherwise (never invented copy). */
+.nav-berita__kicker {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--text-muted);
 }
 
 .nav-berita__cari {
@@ -160,9 +246,21 @@
   font-weight: 700;
 }
 
-.mobile-nav-toggle nav a[aria-current="page"] {
-  color: var(--color-primary, #10b981);
-  text-decoration: underline;
+/* Active-nav underline (issue #169) — 2px `--news-accent`, never the
+   CMS-driven brand color (see this file's own docblock on why the news
+   accent is independent of `--color-primary`). `border-bottom` rather than
+   `text-decoration` so the mark sits flush under the label at a fixed
+   2px, matching the mockup's nav underline exactly rather than following
+   each glyph's own descenders. */
+.nav-berita .mobile-nav-toggle nav a {
+  border-bottom: 2px solid transparent;
+}
+
+.nav-berita .mobile-nav-toggle nav a[aria-current="page"] {
+  color: var(--text-primary);
+  font-weight: 800;
+  text-decoration: none;
+  border-bottom-color: var(--news-accent);
 }
 
 /* --- Daerah panel --------------------------------------------------------- */
@@ -203,45 +301,94 @@
 }
 
 .nav-berita__rel-tautan a[aria-current="page"] {
-  color: var(--color-primary, #10b981);
+  color: var(--news-accent);
   font-weight: 700;
 }
 
-/* --- Ticker (`Ticker.astro`) ---------------------------------------------- */
+/* --- Ticker (`Ticker.astro`) — restyled issue #169, mockup lines 78-83:
+   a light band (matching the nav's own `--bg-subtle`, not a brand-colored
+   strip) with just the "TERKINI" label as a red pill carrying a pulsing
+   dot, and the headlines list truncated to one line rather than the
+   brand-colored full-width band this component shipped with since issue
+   #48. --------------------------------------------------------------- */
 
 .ticker-berita {
-  background: var(--color-primary, #10b981);
-  color: var(--color-primary-foreground, #000000);
+  background: var(--bg-subtle);
+  color: var(--text-secondary);
+  border-top: 1px solid var(--border-color);
 }
 
 .ticker-berita__isi {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  padding-block: 0.4rem;
-  overflow-x: auto;
+  padding-block: 0.5rem;
 }
 
 .ticker-berita__label {
   flex-shrink: 0;
-  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 700;
   text-transform: uppercase;
-  font-size: 0.75rem;
-  letter-spacing: 0.05em;
-  padding-inline: 0.5rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  padding: 0.2rem 0.55rem;
   border-radius: var(--radius-sm);
-  background: rgba(0, 0, 0, 0.12);
+  background: var(--news-accent);
+  color: #ffffff;
 }
 
+/* The pulse dot (issue #169) — a decorative, non-essential animation
+   (the ticker's OWN "no marquee" reduced-motion story, `Ticker.astro`'s
+   docblock, is about the headline list never auto-scrolling; this dot is
+   a separate, tiny affordance covered on its own by the media query
+   below). */
+.ticker-berita__titik {
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+  background: #ffffff;
+  animation: ticker-berita-nadi 1.4s ease-in-out infinite;
+}
+
+@keyframes ticker-berita-nadi {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ticker-berita__titik {
+    animation: none;
+  }
+}
+
+/* One line, ellipsis rather than the horizontal scroll this list used
+   before this issue — `min-width: 0` lets the flex item actually shrink
+   below its content size so `text-overflow` can take effect. */
 .ticker-berita__daftar {
   display: flex;
   align-items: center;
   gap: 1.25rem;
+  min-width: 0;
+  flex: 1 1 auto;
   list-style: none;
-  white-space: nowrap;
+  overflow: hidden;
+}
+
+.ticker-berita__daftar li {
+  min-width: 0;
+  flex-shrink: 0;
+  max-width: 32ch;
+  overflow: hidden;
 }
 
 .ticker-berita__daftar a {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   color: inherit;
   font-weight: 600;
 }
@@ -249,7 +396,7 @@
 .ticker-berita__semua {
   flex-shrink: 0;
   margin-left: auto;
-  color: inherit;
+  color: var(--link-color);
   font-weight: 700;
   white-space: nowrap;
 }
