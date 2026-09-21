@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](AGENTS.md)
 
-<!-- i18n-source-hash: sha256:b05f0b926de2481ddbfcc890392b2086de30e71d6a0237b84033ee72ba21f327 -->
+<!-- i18n-source-hash: sha256:3bb1095dbe97eb4372df7656bd54173ad0d89db04c961307062f002e683d870b -->
 
 # AGENTS.md — kontrak kerja awcms-one
 
@@ -37,7 +37,7 @@ Setiap issue anak dari [issue #21](https://github.com/ahliweb/awcms-one/issues/2
 | --- | --- |
 | Remote upstream | `awcms` → `https://github.com/ahliweb/awcms.git`, fetch refspec dipersempit ke `+refs/heads/main:refs/remotes/awcms/main`, dan `tagOpt` diset `--no-tags` |
 | Titik sematan | `ahliweb/awcms` v10.3.0, commit `749404d4963af1dfaf8a5cf8b229299b29556ce2` (`git subtree add` awal) |
-| Sinkronisasi terakhir | `main` upstream pada commit `4e049743f53b8490a95d579a0abc53cd1eb7fff7` (awcms PR #807 — logo institusi, pemindai keamanan SVG), ditarik oleh PR awcms-one untuk issue #59 dengan merge commit |
+| Sinkronisasi terakhir | `main` upstream pada commit `8c64528db2698d1631cdaaa7c1c2129b5bc9e5a2` (awcms PR #813 — restyle chrome admin: keluarga token sidebar gelap, primitif admin bersama), ditarik oleh PR awcms-one untuk issue #170 dengan merge commit; sinkronisasi sebelumnya `4e049743` (awcms PR #807, issue #59) |
 | Perintah sinkron | `git subtree pull --prefix=apps/cms awcms main` |
 
 Set keduanya saat menambahkan remote:
@@ -70,7 +70,11 @@ Sumber `apps/cms` sendiri adalah pohon milik upstream, dibawa ke sini untuk alas
 
 - `apps/cms/tests/version-check.test.ts` — test "the committed tag namespace conforms" di dalamnya menegaskan bahwa lebih dari 20 tag git telah diperiksa, sebuah ambang non-vakuitas yang benar pada klon `ahliweb/awcms` (sekitar tiga puluh lima tag `v*`) dan salah secara konstruksi di embed ini, di mana `git tag` menjawab dengan lini `v0.x` milik repo ini sendiri dan tag upstream tidak boleh pernah diambil (lihat "Kenapa `--no-tags` bukan pilihan" di atas). Tambalan lokalnya hanya melewati ambang itu, dan hanya ketika `git rev-parse --show-toplevel` dari `apps/cms` bukan `apps/cms` itu sendiri; dua asersi yang menyatakan aturan tetap berjalan. Tanpanya `bun run check:cms` merah pada `main` yang bersih ([issue #22](https://github.com/ahliweb/awcms-one/issues/22)).
 
-Daftar ini sengaja masih sepanjang satu butir setelah sembilan PR increment-2 yang mendarat (#34–#42): setiap PR modul `commerce` adalah pekerjaan modul aditif biasa di dalam disiplin admission `apps/cms` sendiri, bukan tambalan pada infrastruktur bersama upstream, jadi tidak satu pun darinya menambah divergensi baru di sini.
+- `apps/cms/src/layouts/AdminLayout.astro` dan `apps/cms/src/modules/_shared/module-contract.ts` / `module-management/domain/sidebar-menu.ts` — `requiredFeature` dari issue #118 pada entri navigasi sidebar (toggle fitur `commerce` yang menyembunyikan tautan). `badgeCount` milik upstream sendiri (awcms PR #813) tiba di baris yang sama; sinkronisasi #170 mempertahankan KEDUA field, dalam urutan itu.
+- `apps/cms/src/styles/admin-screens.css` — 11 baris yang ditambahkan layar inbox issue #111.
+- `apps/cms/scripts/client-asset-budget.ts` — `APP_BUDGET_BYTES` dinaikkan oleh setiap layar admin commerce sejak issue #23 (upstream berada di 226.000 setelah PR #813; embed ini di 254.500 = 246.500 miliknya sendiri ditambah delta chrome +8.000 milik upstream), setiap kenaikan tercatat di docblock konstanta itu sendiri. Selesaikan konflik di sini dengan mempertahankan kedua silsilah docblock dan menambahkan delta upstream ke angka repo ini.
+
+Versi satu-butir daftar ini ditulis setelah increment 2 dan sudah basi sejak increment 5; sinkronisasi subtree #170 (21 September 2026) menemukan tiga butir di atas lewat konflik dan lewat `git diff awcms/main:<path> HEAD:apps/cms/<path>`, perintah yang harus dijalankan sebelum mengklaim daftar ini lengkap. Semua hal lain yang pernah ditambahkan modul `commerce` adalah pekerjaan modul aditif biasa di dalam disiplin admission `apps/cms` sendiri.
 
 **Migrasi `commerce` mencadangkan `901`–`999`; upstream memiliki `001`–`899`.** `apps/cms/sql/*.sql` adalah satu urutan datar, terurut leksikal (`apps/cms/scripts/db-migrate.ts`, upstream, tidak pernah disunting secara lokal), dan modul `commerce` milik repo ini semula memberi nomor enam belas migrasinya di dalam rentang upstream sendiri — tabrakan yang menunggu penomoran upstream sendiri mencapai nomor yang sama, dan itu terjadi (issue #72; lihat [ADR-0015](docs/adr/0015-commerce-migrations-live-in-the-reserved-9xx-range.id.md)). Setiap migrasi commerce kini hidup di `901`–`934` (increment 5 saja menambahkan `924`–`934` — ongkos kurir, WhatsApp, payment gateway, inbox, kampanye, POS, laporan penjualan, guard amount pada payment events), dengan yang berikutnya di `935`; `apps/cms/tests/commerce-migrations-range.test.ts` menegakkan pemisahan ini dua arah. **Jangan pernah beri nomor ulang berkas yang dibawa `git subtree pull` dari upstream** — hanya migrasi `commerce` milik repo ini sendiri yang pernah diberi nomor ulang, dan hanya maju, tidak pernah menyentuh ulang isi yang sudah diterapkan (checksum bersifat immutable; lihat `validateAppliedChecksums` milik `apps/cms/scripts/db-migrate.ts`). Basis data yang bermigrasi sebelum aturan ini menjalankan `bun run db:commerce:renumber` sekali, sebelum `db:migrate` berikutnya — lihat `apps/cms/scripts/commerce-migrations-renumber.ts`.
 
