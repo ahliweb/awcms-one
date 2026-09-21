@@ -28,3 +28,33 @@ same two-core runner's CPU/IO, not a real profile-specific defect.
 - No timeout was raised to mask the contention; the workflow is still not
   a required status check — promotion still waits for a run of consecutive
   green `main` runs (docs/alur-kerja-pengembangan.md).
+
+## A second, independent contention source, found while validating this fix
+
+After the job-split above landed, the REQUIRED `Check (toko)` job (a
+different workflow, `ci.yml`) still hit the same failure *shape* on two
+more PRs (runs `35594952727`/`35595042601`): `"stub-awcms did not answer
+http://localhost:<port>/... in time"` inside `build-smoke.test.ts` and the
+institution-emblem test, on two more random ports. Diagnosis: every
+`*-build-smoke.test.ts` picked `stubPort = <base> + Math.random() * 4000`
+— landing inside Linux's own ephemeral range (32768–60999) that a
+*concurrent* `astro build`'s own outbound client sockets already use, so a
+"free" port could already be bound by a different test's build a moment
+earlier. The stub was spawned with `stdout: "pipe", stderr: "pipe"` that
+nobody ever read, so a resulting `EADDRINUSE` bind failure (and the
+process exiting immediately) was silently buffered — the calling test's
+own polling `waitForStub` helper then read identically whether the stub
+was slow or already dead, failing only after its own deadline elapsed.
+
+Fixed with a new shared helper, `apps/storefront/tests/stub-lifecycle.ts`'s
+`startStub()`: it starts the stub with `STUB_PORT=0` (a real, OS-assigned
+free port — no collision possible), resolves readiness from the stub's own
+`"serving fixtures on ..."` stdout line (an event, not a poll), and races
+that against the process's own exit so a stub that fails to start rejects
+immediately with its captured output. Every build-smoke test (and
+`apps/storefront/tests/profil-uji-bersama.ts`'s `buildProfile()`) now uses
+this one helper instead of its own copy of the random-port-plus-poll
+pattern; `apps/storefront/tests/stub-lifecycle.ts`'s own docblock has the
+full account. No test's assertions changed. `docs/pengujian.md`/`.id.md`
+now describe this lifecycle in place of the old shared-deadline-only
+description.

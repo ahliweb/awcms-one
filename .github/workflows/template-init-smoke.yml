@@ -99,12 +99,16 @@ jobs:
             --yes
 
       # The storefront's own stub CMS (apps/storefront/scripts/stub-awcms.mjs),
-      # on a fixed port for this job only — see
-      # apps/storefront/tests/berita-build-smoke.test.ts for the identical
-      # start/wait pattern this step follows. The PID is written to a file
-      # (rather than relied on as a shell variable) so the teardown step
-      # below — a SEPARATE step, run under `if: always()` — can find and
-      # kill it even when an earlier step in between failed.
+      # on a FIXED port here — unlike apps/storefront/tests/stub-lifecycle.ts's
+      # `startStub()` (which every in-process smoke test uses, and which asks
+      # the OS for a free port because many of those tests can run
+      # concurrently in the same `bun test` process). This step's job runs
+      # exactly one stub, alone on its own runner, so a fixed port cannot
+      # collide with anything — the random-port hazard `stub-lifecycle.ts`'s
+      # own docblock explains does not apply here. The PID is written to a
+      # file (rather than relied on as a shell variable) so the teardown
+      # step below — a SEPARATE step, run under `if: always()` — can find
+      # and kill it even when an earlier step in between failed.
       - name: Start the stub CMS
         run: |
           cd apps/storefront
@@ -113,8 +117,22 @@ jobs:
           # The stub answers 401 to a request without a bearer token (on
           # purpose — see scripts/stub-awcms.mjs), so probe WITH one; `-f`
           # would otherwise treat that 401 as "not up yet" forever.
+          #
+          # This runner is single-tenant (one job, one stub, a fixed port),
+          # so the random-port collision `tests/stub-lifecycle.ts` fixes for
+          # the in-process test suite cannot happen here — but the OTHER
+          # half of that same finding still applies: a process that exits
+          # right after `nohup` (a bind failure, a crash) must fail this
+          # step IMMEDIATELY, not after the same 20s the loop would also
+          # take for ordinary slow-start. `kill -0` checks the PID is still
+          # alive without signalling it.
           for _ in $(seq 1 100); do
             if curl -sf -H "Authorization: Bearer stub" http://localhost:4310/api/v1/commerce/products -o /dev/null; then exit 0; fi
+            if ! kill -0 "$(cat /tmp/stub-awcms.pid)" 2>/dev/null; then
+              echo "stub-awcms exited before it was ready" >&2
+              cat /tmp/stub-awcms.log >&2
+              exit 1
+            fi
             sleep 0.2
           done
           echo "stub-awcms did not answer in time" >&2

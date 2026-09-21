@@ -15,7 +15,7 @@
  */
 import { existsSync, readFileSync, readdirSync, rmSync } from "node:fs";
 import { join, relative, sep } from "node:path";
-import { STUB_START_DEADLINE_MS } from "./stub-deadline";
+import { startStub } from "./stub-lifecycle";
 import {
   excludedRouteKeys,
   activeRouteKeys,
@@ -59,38 +59,19 @@ export function canSpawnBun(): boolean {
   }
 }
 
-async function waitForStub(url: string, deadline: number): Promise<void> {
-  while (Date.now() < deadline) {
-    try {
-      const response = await fetch(url);
-      if (response.status === 401 || response.ok) return;
-    } catch {
-      // Not listening yet.
-    }
-    await new Promise((resolve) => setTimeout(resolve, 100));
-  }
-  throw new Error(`stub-awcms did not answer ${url} in time.`);
-}
-
 /**
- * Starts the stub CMS on a random port, runs `astro build` for `profile`
- * into `dist/`, stops the stub. Throws (with the build's own output) on a
+ * Starts the stub CMS (a real, OS-assigned free port via `startStub()` —
+ * see `tests/stub-lifecycle.ts`), runs `astro build` for `profile` into
+ * `dist/`, stops the stub. Throws (with the build's own output) on a
  * non-zero exit — never a silent pass.
  */
 export async function buildProfile(profile: SiteProfile): Promise<void> {
-  const stubPort = 41000 + Math.floor(Math.random() * 4000);
   rmSync(join(STOREFRONT_ROOT, "dist"), { recursive: true, force: true });
 
-  const stub = Bun.spawn(["bun", "scripts/stub-awcms.mjs"], {
-    cwd: STOREFRONT_ROOT,
-    env: { ...process.env, STUB_PORT: String(stubPort) },
-    stdout: "pipe",
-    stderr: "pipe"
-  });
+  const stub = await startStub();
+  const stubPort = stub.port;
 
   try {
-    await waitForStub(`http://localhost:${stubPort}/api/v1/commerce/products`, Date.now() + STUB_START_DEADLINE_MS);
-
     const build = Bun.spawnSync(["bun", "--bun", "astro", "build"], {
       cwd: STOREFRONT_ROOT,
       env: {
@@ -111,8 +92,7 @@ export async function buildProfile(profile: SiteProfile): Promise<void> {
       );
     }
   } finally {
-    stub.kill();
-    await stub.exited;
+    await stub.stop();
   }
 }
 

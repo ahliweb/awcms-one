@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { STUB_START_DEADLINE_MS } from "./stub-deadline";
+import { startStub } from "./stub-lifecycle";
 import { existsSync, rmSync, statSync } from "node:fs";
 import { join } from "node:path";
 
@@ -57,22 +57,15 @@ describe("build smoke: the bundled server serves directory-shadowed pages (issue
   test(
     "/berita, /video and /rubrik/<slug> answer 200; their children still 200; the trailing-slash form still 301s",
     async () => {
-      const stubPort = 45000 + Math.floor(Math.random() * 4000);
       const servePort = 49000 + Math.floor(Math.random() * 4000);
       rmSync(join(STOREFRONT_ROOT, "dist"), { recursive: true, force: true });
 
-      const stub = Bun.spawn(["bun", "scripts/stub-awcms.mjs"], {
-        cwd: STOREFRONT_ROOT,
-        env: { ...process.env, STUB_PORT: String(stubPort) },
-        stdout: "pipe",
-        stderr: "pipe"
-      });
+      const stub = await startStub();
+      const stubPort = stub.port;
 
       let served: ReturnType<typeof Bun.spawn> | undefined;
 
       try {
-        await waitForHttp(`http://localhost:${stubPort}/api/v1/blog/posts`, Date.now() + STUB_START_DEADLINE_MS, "stub-awcms");
-
         const buildEnv = {
           ...process.env,
           AWCMS_API_URL: `http://localhost:${stubPort}`,
@@ -163,8 +156,7 @@ describe("build smoke: the bundled server serves directory-shadowed pages (issue
         expect((await fetch(`${origin}/halaman-yang-tidak-ada`)).status).toBe(404);
       } finally {
         served?.kill();
-        stub.kill();
-        await Promise.all([served?.exited, stub.exited]);
+        await Promise.all([served?.exited, stub.stop()]);
       }
     },
     TIMEOUT_MS
