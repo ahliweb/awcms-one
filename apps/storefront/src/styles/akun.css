@@ -167,3 +167,482 @@ ul.akun-nav-grid > li + li {
   background: var(--accent-primary);
   color: var(--bg-surface, #fff);
 }
+
+/**
+ * --------------------------------------------------------------------------
+ * Design system — 2026-09-21 redesign, account & affiliate pages (issue #168)
+ * --------------------------------------------------------------------------
+ *
+ * Builds on the primitives `src/styles/global.css` shipped for issue #166
+ * (`.btn`/`--primary`/`--secondary`/`--quiet`, `.pill` + tones, `.card`,
+ * `.section-title`, `.empty-state`, `.field-label`, `.is-mono`) — nothing
+ * below duplicates one of those, it only adds the shapes specific to
+ * `/akun*`/`/masuk`/`/daftar` the shared file has no reason to know about:
+ * the avatar tile, the side navigation, stat tiles, order/address/thread/
+ * review rows, and the affiliate referral box. Every class already declared
+ * above this comment stays as-is — this section is purely additive.
+ *
+ * `--text-rating` is a new token, scoped to THIS stylesheet (never added to
+ * `global.css`, which this issue does not touch): the mono amber star/rating
+ * colour the design source uses (`#b45309`), redefined for dark mode.
+ */
+:root {
+  --text-rating: #b45309;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --text-rating: #fbbf24;
+  }
+}
+
+:root[data-theme="dark"] {
+  --text-rating: #fbbf24;
+}
+
+/* --- Shell: avatar + identity + "Keluar" ---------------------------------- */
+
+.akun-shell-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.125rem;
+}
+
+.akun-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-full);
+  background: var(--bg-inverse);
+  color: var(--text-on-inverse, #f8fafc);
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: var(--text-sm);
+}
+
+.akun-identity {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 0;
+}
+
+.akun-identity-name {
+  font-family: var(--font-sans);
+  font-weight: 800;
+  font-size: var(--text-xl);
+  color: var(--text-primary);
+}
+
+.akun-identity-meta {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  overflow-wrap: anywhere;
+}
+
+.akun-shell-spacer {
+  flex: 1;
+}
+
+/* --- Layout: side nav + content column ------------------------------------ */
+
+.akun-layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+  gap: 1.125rem;
+  align-items: start;
+}
+
+.akun-sidenav {
+  min-width: 0;
+  max-width: 240px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 0.625rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-l);
+  background: var(--bg-surface);
+}
+
+.akun-sidenav-item {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  height: 38px;
+  padding: 0 0.7rem;
+  border: 0;
+  border-radius: var(--radius-xs);
+  text-decoration: none;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  background: transparent;
+}
+
+.akun-sidenav-item:hover,
+.akun-sidenav-item:focus-visible {
+  background: var(--bg-subtle);
+  color: var(--text-primary);
+}
+
+.akun-sidenav-item[aria-current="page"] {
+  background: var(--bg-subtle);
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+.akun-sidenav-item-label {
+  flex: 1;
+  min-width: 0;
+}
+
+.akun-content {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+}
+
+/* --- Ringkasan: stat tiles + promo-preference card ------------------------ */
+
+.akun-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(170px, 100%), 1fr));
+  gap: 0.75rem;
+}
+
+.akun-stat-card {
+  padding: 0.9rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-l);
+  background: var(--bg-surface);
+}
+
+.akun-stat-label {
+  display: block;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 0.625rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.akun-stat-value {
+  margin-top: 0.5rem;
+  font-family: var(--font-sans);
+  font-weight: 800;
+  font-size: var(--text-xl);
+  color: var(--text-primary);
+}
+
+/* --- Pesanan: order rows --------------------------------------------------- */
+
+.akun-order-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.akun-order-row-spacer {
+  flex: 1;
+}
+
+.akun-order-row-id {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 130px;
+}
+
+.akun-order-code {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: var(--text-sm);
+  color: var(--text-primary);
+}
+
+.akun-order-meta {
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+}
+
+.akun-order-total {
+  font-family: var(--font-sans);
+  font-weight: 800;
+  font-size: var(--text-lg);
+  color: var(--text-primary);
+}
+
+/* --- Alamat: address cards -------------------------------------------------- */
+
+.akun-address-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.akun-address-heading {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.akun-address-name {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: var(--text-sm);
+  color: var(--text-primary);
+}
+
+.akun-address-body {
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.akun-address-add {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 120px;
+  border: 1px dashed var(--border-color);
+  border-radius: var(--radius-l);
+  background: var(--bg-surface);
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: var(--text-sm);
+  color: var(--color-primary, #10b981);
+  cursor: pointer;
+}
+
+.akun-address-add:hover,
+.akun-address-add:focus-visible {
+  border-color: var(--color-primary, #10b981);
+}
+
+/* --- Pesan: thread rows ------------------------------------------------------ */
+
+.akun-thread-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.akun-thread-body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.akun-thread-subject {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: var(--text-sm);
+  color: var(--text-primary);
+}
+
+.akun-thread-snippet {
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.akun-thread-meta {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  color: var(--text-muted);
+}
+
+.akun-thread-arrow {
+  flex: none;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+}
+
+/* --- Ulasan: review cards ----------------------------------------------------- */
+
+.akun-review-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.akun-review-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.akun-review-product {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: var(--text-sm);
+  color: var(--text-primary);
+}
+
+.akun-review-stars {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--text-rating);
+}
+
+.akun-review-spacer {
+  flex: 1;
+}
+
+.akun-review-text {
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+/* --- Afiliasi: referral box + commission table -------------------------------- */
+
+.akun-affiliate-status-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.akun-affiliate-terms {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+}
+
+.akun-affiliate-link-box {
+  flex: 1;
+  min-width: 200px;
+  display: flex;
+  align-items: center;
+  height: 44px;
+  padding: 0 0.8rem;
+  border: 1px dashed var(--border-color);
+  border-radius: var(--radius-m);
+  background: var(--bg-subtle);
+  overflow: hidden;
+}
+
+/* The referral link itself is a real, focusable, readonly `<input>` inside
+   `.akun-affiliate-link-box` (never plain text) so a keyboard/screen-reader
+   user can select and copy it even if the "Salin" button's Clipboard-API
+   call is unavailable — the box supplies the dashed mono chrome, the input
+   is borderless and transparent so it reads as one control. */
+input[type="text"].akun-affiliate-link-input {
+  flex: 1;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.akun-affiliate-link-input:focus-visible {
+  outline: 2px solid var(--color-primary, #10b981);
+  outline-offset: 2px;
+}
+
+.akun-commission-table {
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-l);
+  background: var(--bg-surface);
+  overflow: hidden;
+}
+
+.akun-commission-head {
+  padding: 0.9rem 1rem;
+  border-bottom: 1px solid var(--border-color);
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: var(--text-sm);
+  color: var(--text-primary);
+}
+
+.akun-commission-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.8rem 1rem;
+  border-bottom: 1px solid var(--bg-subtle);
+}
+
+.akun-commission-row:last-child {
+  border-bottom: 0;
+}
+
+.akun-commission-order {
+  min-width: 110px;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--text-primary);
+}
+
+.akun-commission-date {
+  flex: 1;
+  min-width: 90px;
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+}
+
+.akun-commission-amount {
+  min-width: 96px;
+  text-align: right;
+  font-family: var(--font-sans);
+  font-weight: 800;
+  font-size: var(--text-sm);
+  color: var(--text-primary);
+}
+
+.akun-commission-more {
+  padding: 0.8rem 1rem;
+  text-align: center;
+}
+
+/* `.akun-commission-row` already carries its own divider/padding —
+   overrides the generic `ul.akun-nav-grid > li + li` gap from this
+   stylesheet's own Issue #90 section above, so rows sit flush inside
+   `.akun-commission-table`. */
+.akun-commission-table ul.akun-nav-grid > li + li {
+  margin-top: 0;
+}
+
+/* A `.btn--quiet` used for a destructive action ("Hapus") — same control,
+   the danger status colour instead of the default quiet text colour. */
+.akun-btn-danger {
+  color: var(--status-danger-fg);
+}
+
+.akun-btn-danger:hover {
+  background: var(--status-danger-bg);
+  color: var(--status-danger-fg);
+}

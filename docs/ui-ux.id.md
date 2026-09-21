@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](ui-ux.md)
 
-<!-- i18n-source-hash: sha256:7ba44da74aa5f324c90b247d545e6a8043bcf70eeb681bc2c1b5c018d2a9f508 -->
+<!-- i18n-source-hash: sha256:5ee33c070305280e2d110b87b53da99e212c142840c6bc947b9a2fa11654999d -->
 
 # UI / UX
 
@@ -181,6 +181,23 @@ Input telepon/kode pesanan memakai `.is-mono`. Pill status (`renderOrder` milik 
 #### Wishlist (`/wishlist`)
 
 Sebuah pita info menyatakan perilaku sinkronisasi yang sungguhan (`wishlist-akun-sync.ts` sudah menulis ke akun saat masuk — bukan salinan baru). Setiap kartu mendapat tautan "Ke keranjang" di samping hapus — navigasi sungguhan ke halaman produk, **bukan** `addToCart()` langsung: `WishlistItem` (`wishlist-kontrak.ts`) tidak membawa cuplikan `minPurchase`/`maxQuantity`/`sku`, sehingga tidak ada kuantitas/stok yang jujur untuk ditambahkan tanpa mengambil ulang data, dan halaman produklah tempat penambahan itu sudah terjadi dengan benar.
+
+### Halaman akun & afiliasi, di-redesain (issue #168)
+
+**Wave 2**, dibangun di atas fondasi issue #166 di atas — hanya markup/CSS, `apps/storefront/src/profil/toko/pages/akun/**`, `masuk.astro`, `daftar.astro`, `apps/storefront/src/styles/akun.css`, dan kode pembangun-DOM milik skrip akun sendiri (`src/scripts/akun*.ts`, `afiliasi*.ts` tidak disentuh, `pesan.ts`/`alamat.ts`/`ulasan.ts`/`pesanan.ts` di bawah prefiks `akun-`). Klien sesi bearer (`akun-sesi.ts`/`akun-klien.ts`) dan setiap kontrak pengambilan data tidak berubah.
+
+- **Shell akun**: satu avatar tile (inisial di atas `--bg-inverse`, `.akun-avatar`), nama dan e-mail akun (`.akun-identity-name`/`.akun-identity-meta.is-mono`), dan `.btn.btn--secondary` "Keluar" — baris header `/akun` sendiri (`.akun-shell-head`).
+- **Navigasi samping** (`.akun-sidenav`/`.akun-sidenav-item`): Ringkasan/Pesanan/Alamat/Pesan/Ulasan/Afiliasi, item 38px, `aria-current="page"` menandai halaman saat ini (nilai statis nyata per halaman — tidak pernah dihitung di sisi klien). Markup identik diduplikasi di seluruh enam halaman akun pada frontmatter masing-masing, alih-alih difaktorkan ke partial berawalan `_`: `listPageFiles` milik `integrations/profil.mjs` (dipakai `apps/storefront/tests/profil-integrasi.test.ts` untuk menegakkan matriks profil `docs/template.md`) mendaftar setiap berkas di bawah `src/profil/toko/pages/**` tanpa memandang prefiks `_` yang dilewati pemindaian rute Astro sendiri, sehingga sebuah partial tanpa rute sendiri akan butuh baris matriks yang tidak ada. Tidak ada lencana belum-dibaca pada "Pesan": tidak ada klien di aplikasi ini yang mengekspos jumlah total percakapan belum-dibaca (hanya `unreadForCustomer` milik setiap thread sendiri, berpaginasi) — lencana di sini berarti menebak total yang tidak bisa dihitung halaman ini secara jujur.
+- **Ringkasan**: tiga ubin statistik (`.akun-stat-grid`/`.akun-stat-card`) — "Pesanan" dan "Sedang berjalan" (pesanan mana pun yang bukan `completed`/`cancelled`/`expired`) dari halaman pertama pesanan akun sendiri, "Wishlist" dari wishlist akun sendiri — keduanya fungsi `akun-klien.ts` yang sudah ada (`ambilPesananAkun`, `ambilWishlistAkun`), tanpa endpoint baru. Checkbox preferensi promo (issue #115) perilakunya tidak berubah, hanya di-restyle ke `.akun-card`.
+- **Peta corak pill-status**, dipakai bersama oleh pesanan/ulasan/afiliasi/komisi: `pending → warning`, `paid`/`published`/`approved`/`completed`/`active → success`, `cancelled`/`expired`/`rejected`/`void`/`suspended → danger`, `processing`/`shipped → info` (`.pill`/`.pill--*`, primitif milik issue #166 sendiri).
+- **Pesanan**: baris (`.akun-order-row`) — kode pesanan mono, tanggal · jumlah item, satu pill status, total, dan tautan "Detail" `.btn.btn--secondary`.
+- **Alamat**: kartu (`.akun-address-card`) dengan lencana "Utama" `.pill.pill--success`, tombol `.btn` Ubah/Hapus (Hapus dalam `--status-danger-fg` lewat `.akun-btn-danger`), dan tombol putus-putus `.akun-address-add` "+ Tambah alamat".
+- **Pesan**: baris thread (`.akun-thread-row`) — subjek, jumlah belum-dibaca `.pill.pill--info`, glyph panah, dan `lastMessageAt` · status sebagai baris meta. Tanpa cuplikan: `GET …/account/conversations` tidak pernah mengembalikan pratinjau pesan terakhir suatu thread, hanya `lastMessageAt` — menampilkan satu berarti mengarang teks yang tidak pernah diberikan ke klien ini.
+- **Ulasan**: kartu (`.akun-review-card`) — nama produk, rating numerik plus glyph bintang mono dalam `--text-rating` (token baru yang didefinisikan lokal oleh stylesheet ini, `#b45309`/`#fbbf24` gelap — `global.css` sendiri tidak disentuh), dan satu pill status.
+- **Afiliasi**: satu pill status plus tarif komisi yang terdaftar, tautan referral dalam kotak mono putus-putus (`.akun-affiliate-link-box`, sebuah `<input readonly>` yang benar-benar bisa difokus di dalamnya, tidak pernah teks polos) dengan tombol salin "Salin"/"Tersalin!" (perilaku tidak berubah), empat ubin statistik, dan tabel komisi (`.akun-commission-table`/`-row`) dengan "Muat lebih banyak" — semuanya memakai ulang primitif ubin-statistik dan pill yang sama dengan Ringkasan/Pesanan.
+- **Masuk/Daftar**: kontrol formulir 42px `global.css` yang sama, `.field-label` pada setiap label, `.is-mono` pada input telepon/OTP, `.akun-otp-input` untuk kode 6 digit, dan `.btn.btn--primary`/`--quiet` pada tombol kirim/kirim-ulang.
+
+Setiap kontrol mempertahankan hook `data-*` yang sudah ada sebelumnya (`tests/akun-*`, `tests/afiliasi-*`, `apps/storefront/tests/pesan-build-smoke.test.ts` menguji hook itu, tidak pernah nama kelas) — issue ini tidak mengubah satu pun assersi uji, hanya markup/CSS di sekeliling hook yang sudah diuji itu.
 
 ### Chrome berita, beranda berita, dan artikel (issue #169)
 

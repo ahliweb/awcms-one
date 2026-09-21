@@ -14,6 +14,19 @@ import "../../../../styles/akun.css";
 const identity = await getSiteIdentity();
 const storeSettings = await getStoreSettings();
 const whatsappNumber = storeSettings.whatsapp ?? identity.whatsappNumber ?? "";
+
+/** The `/akun*` side navigation (issue #168) — see `akun/index.astro`'s own
+ * copy of this constant for why it is duplicated rather than factored into
+ * a shared partial. */
+const SIDENAV_ITEMS = [
+  { key: "ringkasan", href: ROUTES.account, label: "Ringkasan" },
+  { key: "pesanan", href: ROUTES.accountOrders, label: "Pesanan" },
+  { key: "alamat", href: ROUTES.accountAddresses, label: "Alamat" },
+  { key: "pesan", href: ROUTES.accountMessages, label: "Pesan" },
+  { key: "ulasan", href: ROUTES.accountReviews, label: "Ulasan" },
+  { key: "afiliasi", href: ROUTES.accountAffiliate, label: "Afiliasi" }
+] as const;
+const SIDENAV_ACTIVE = "ulasan";
 ---
 
 <BaseLayout title="Ulasan Saya" description="Ulasan produk yang Anda kirimkan." canonicalPath="/akun/ulasan">
@@ -41,7 +54,6 @@ const whatsappNumber = storeSettings.whatsapp ?? identity.whatsappNumber ?? "";
   >
     <div class="page-heading">
       <h1>Ulasan Saya</h1>
-      <p><a href={ROUTES.account}>&larr; Kembali ke Akun Saya</a></p>
     </div>
 
     <div data-submit-error class="toko-banner toko-banner--danger" hidden>
@@ -54,13 +66,31 @@ const whatsappNumber = storeSettings.whatsapp ?? identity.whatsappNumber ?? "";
     <div data-guest-view class="akun-card" hidden>
       <p>Anda belum masuk.</p>
       <div class="akun-actions">
-        <a href={ROUTES.login}>Masuk</a>
+        <a href={ROUTES.login} class="btn btn--primary btn--sm">Masuk</a>
       </div>
     </div>
 
-    <div data-account-view hidden>
-      <p class="toko-empty" data-ulasan-empty hidden>Anda belum mengirimkan ulasan apa pun.</p>
-      <ul class="akun-nav-grid" data-ulasan-list aria-live="polite"></ul>
+    <div class="akun-layout">
+      <nav class="akun-sidenav" aria-label="Menu akun">
+        {
+          SIDENAV_ITEMS.map((item) => (
+            <a
+              class="akun-sidenav-item"
+              href={item.href}
+              aria-current={item.key === SIDENAV_ACTIVE ? "page" : undefined}
+            >
+              <span class="akun-sidenav-item-label">{item.label}</span>
+            </a>
+          ))
+        }
+      </nav>
+
+      <div class="akun-content">
+        <div data-account-view hidden>
+          <p class="empty-state" data-ulasan-empty hidden>Anda belum mengirimkan ulasan apa pun.</p>
+          <ul class="akun-nav-grid" data-ulasan-list aria-live="polite"></ul>
+        </div>
+      </div>
     </div>
   </div>
 

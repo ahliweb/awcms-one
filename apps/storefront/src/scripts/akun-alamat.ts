@@ -141,26 +141,29 @@ if (root) {
 
     for (const alamat of alamatList) {
       const li = document.createElement("li");
-      li.className = "akun-card";
+      li.className = "akun-card akun-address-card";
 
       const heading = document.createElement("p");
-      heading.innerHTML = "";
-      const strong = document.createElement("strong");
+      heading.className = "akun-address-heading";
+      const strong = document.createElement("span");
+      strong.className = "akun-address-name";
       strong.textContent = alamat.label;
       heading.appendChild(strong);
       if (alamat.isDefault) {
         const badge = document.createElement("span");
-        badge.className = "akun-badge-utama";
-        badge.textContent = " Utama";
+        badge.className = "pill pill--success";
+        badge.textContent = "Utama";
         heading.appendChild(badge);
       }
       li.appendChild(heading);
 
       const detail = document.createElement("p");
+      detail.className = "akun-address-body";
       detail.textContent = `${alamat.recipientName} — ${alamat.phone}`;
       li.appendChild(detail);
 
       const region = document.createElement("p");
+      region.className = "akun-address-body";
       region.textContent = `${alamat.street}, ${alamat.districtName}, ${alamat.cityName}, ${alamat.provinceName} ${alamat.postalCode}`;
       li.appendChild(region);
 
@@ -169,6 +172,7 @@ if (root) {
 
       const editButton = document.createElement("button");
       editButton.type = "button";
+      editButton.className = "btn btn--secondary btn--sm";
       editButton.textContent = "Ubah";
       editButton.addEventListener("click", () => void openFormForEdit(alamat));
       actions.appendChild(editButton);
@@ -176,6 +180,7 @@ if (root) {
       if (!alamat.isDefault) {
         const defaultButton = document.createElement("button");
         defaultButton.type = "button";
+        defaultButton.className = "btn btn--secondary btn--sm";
         defaultButton.textContent = "Jadikan Utama";
         defaultButton.addEventListener("click", () => void setDefault(alamat.id));
         actions.appendChild(defaultButton);
@@ -183,6 +188,7 @@ if (root) {
 
       const deleteButton = document.createElement("button");
       deleteButton.type = "button";
+      deleteButton.className = "btn btn--quiet btn--sm akun-btn-danger";
       deleteButton.textContent = "Hapus";
       deleteButton.addEventListener("click", () => void deleteAlamat(alamat.id));
       actions.appendChild(deleteButton);

@@ -85,20 +85,20 @@ const whatsappOtpEnabled = storeSettings.whatsappOtpEnabled ?? false;
         }
 
         <div class="toko-field" data-field-email>
-          <label for="masuk-email">Alamat e-mail</label>
+          <label for="masuk-email" class="field-label">Alamat e-mail</label>
           <input type="email" id="masuk-email" name="email" autocomplete="email" />
           <p class="toko-field-error" data-error-for="email"></p>
         </div>
 
         <div class="toko-field" data-field-phone hidden>
-          <label for="masuk-phone">Nomor WhatsApp</label>
-          <input type="tel" id="masuk-phone" name="phone" autocomplete="tel" placeholder="08xxxxxxxxxx" />
+          <label for="masuk-phone" class="field-label">Nomor WhatsApp</label>
+          <input type="tel" id="masuk-phone" name="phone" autocomplete="tel" placeholder="08xxxxxxxxxx" class="is-mono" />
           <p class="toko-field-hint">Gunakan format Indonesia, contoh: 08123456789 atau +6281234567890.</p>
           <p class="toko-field-error" data-error-for="phone"></p>
         </div>
 
         <div class="akun-actions">
-          <button type="button" data-kirim-kode>Kirim kode</button>
+          <button type="button" class="btn btn--primary btn--sm" data-kirim-kode>Kirim kode</button>
         </div>
       </section>
 
@@ -106,7 +106,7 @@ const whatsappOtpEnabled = storeSettings.whatsappOtpEnabled ?? false;
         <p data-code-sent-to>Kode telah dikirim ke e-mail Anda.</p>
 
         <div class="toko-field">
-          <label for="masuk-code">Kode 6 digit</label>
+          <label for="masuk-code" class="field-label">Kode 6 digit</label>
           <input
             type="text"
             id="masuk-code"
@@ -116,13 +116,16 @@ const whatsappOtpEnabled = storeSettings.whatsappOtpEnabled ?? false;
             autocomplete="one-time-code"
             pattern="[0-9]{6}"
             maxlength="6"
+            class="akun-otp-input is-mono"
           />
           <p class="toko-field-error" data-error-for="code"></p>
         </div>
 
         <div class="akun-actions">
-          <button type="submit" data-verifikasi>Masuk</button>
-          <button type="button" data-kirim-ulang disabled>Kirim ulang (<span data-countdown>60</span> detik)</button>
+          <button type="submit" class="btn btn--primary btn--sm" data-verifikasi>Masuk</button>
+          <button type="button" class="btn btn--quiet btn--sm" data-kirim-ulang disabled>
+            Kirim ulang (<span data-countdown>60</span> detik)
+          </button>
         </div>
       </section>
     </form>
