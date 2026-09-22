@@ -32,13 +32,13 @@ The root `dev`/`build`/`check`/`serve` scripts delegate into `apps/storefront` (
 
 ## The contribution flow
 
-1. **Start from an issue** with a clear scope.
+1. **Start from an issue** with a clear scope — pick the closest fit among the [issue forms](.github/ISSUE_TEMPLATE/): **Bug report**, **Feature request**, or **Upstream sync (apps/cms)**. A blank issue stays available for anything that does not fit one of those three, such as an epic spanning several child issues.
 2. **Branch from `main` before touching any file.** Do not commit directly to `main`.
 3. **One iteration = one atomic scope**, scoped to one workspace unless the change is genuinely about more than one — see `AGENTS.md`'s "Workspace boundaries". Finish and validate it before moving on.
 4. **Update the documentation** in the same iteration when behaviour, workflow, structure, or configuration changes. A governance document ships its Indonesian mirror in the same change (`bun run docs:i18n:stamp`).
 5. **Write a changeset** in [`.changesets/`](.changesets/README.md) in the same iteration, not batched up at the end.
 6. **Run `bun test`** (and `bun run check:cms` if the change touched `apps/cms/`); both must be clean.
-7. **Open a Pull Request** with `Closes #<issue>`. Merge after review and a green CI.
+7. **Open a Pull Request** with `Closes #<issue>`, filling in [`.github/pull_request_template.md`](.github/pull_request_template.md) — GitHub pre-fills it, and its checklist restates this section's own Definition of Done. Merge after review and a green CI.
 8. **If the PR syncs `apps/cms/` from upstream** (`git subtree pull`), it **must** be merged with a merge commit — never squashed, never rebased. `AGENTS.md`'s "The subtree embed" explains why. This is also now mechanically true of every PR in the repo: squash and rebase merges are disabled repository-wide (issue #149), so a merge commit is the only method GitHub's merge button offers.
 9. **When the waiting changeset backlog is due** (`bun run audit:rilis` reddens past 20 files or 14 days), a maintainer runs `bun run release`, which folds the backlog into `CHANGELOG.md` and tags `vX.Y.Z`.
 
@@ -60,6 +60,10 @@ The root `dev`/`build`/`check`/`serve` scripts delegate into `apps/storefront` (
 | `refactor` | A change of code shape with no change of behaviour |
 
 The commit body explains **why**, rather than repeating the diff.
+
+## Code ownership
+
+[`.github/CODEOWNERS`](.github/CODEOWNERS) names `@ahliweb` as the default owner for the whole repo, plus explicit routing lines for `apps/cms/` (upstream subtree work), `.github/`, `packages/gerbang/`, `tools/`, and `docs/adr/`. This repo has one maintainer, and branch protection does not require a code-owner review before merging — the file is advisory, driving GitHub's own review-request routing and its "Code owners" list in the PR UI, not a merge gate.
 
 ## Rules that are not negotiable
 
