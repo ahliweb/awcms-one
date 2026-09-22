@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](template.md)
 
-<!-- i18n-source-hash: sha256:cb4cfa2c686c4fd56e3e258dd81c51f259c721b26f2b87caacc3264b10f73951 -->
+<!-- i18n-source-hash: sha256:e90269c4a1370c4a96c12c1c93bbc3980176ff4a2c113272698d2e03f3b35c99 -->
 
 # Menggunakan awcms-one sebagai template
 
@@ -219,4 +219,4 @@ Increment 6 (epic [#135](https://github.com/ahliweb/awcms-one/issues/135)) sudah
 | 20 September 2026 | [#138](https://github.com/ahliweb/awcms-one/issues/138) | `bun run template:init` (`tools/template-init.ts` + `tools/template-init/**`), diuji oleh `tests/template-init.test.mjs`, dimatriks di CI oleh `.github/workflows/template-init-smoke.yml`. Langkah penghapusannya dan penulisan-ulang `apps/storefront/.env.example`-nya menyasar langsung tata letak yang sudah landing dari #137 dan #139: `template:init --profil <p>` menghapus komentar dan mengatur baris `SITE_PROFILE` nyata yang ditambahkan #137, sehingga build repo turunan sungguh-sungguh menyaring halaman menurut profil pilihan sejak build pertamanya |
 | 20 September 2026 | [#140](https://github.com/ahliweb/awcms-one/issues/140) | Sapuan dokumentasi ke keadaan sebenarnya (halaman ini, `README.md`, `AGENTS.md`, dokumen CI/routing/SEO/pengujian/deployment/alur-kerja, `apps/storefront/README.md`, panduan `.claude/skills/` termasuk skill baru `awcms-one-template`), flag GitHub *template repository*, pembersihan `EXCLUDED_PATHS` `packages/gerbang/audit-dokumen.mjs`, pembangunan ulang knowledge graph, dan rilis v0.8.0 yang menutup epic #135 |
 
-Matriks `Check` tiga-leg dan `check-cms` adalah status check wajib di `main`; `template-init-smoke` belum wajib (lihat [`docs/alur-kerja-pengembangan.md`](alur-kerja-pengembangan.id.md) untuk rencana promosinya).
+Matriks `Check` tiga-leg, `check-cms`, dan keempat leg `template-init-smoke` adalah status check wajib di `main` (yang disebut terakhir dipromosikan pada issue #182 — lihat [`docs/alur-kerja-pengembangan.md`](alur-kerja-pengembangan.id.md) untuk pengaturannya sebagaimana diverifikasi).
