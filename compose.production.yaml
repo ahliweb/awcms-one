@@ -53,6 +53,26 @@
 # passed through BuildKit's `--secret` flag when the image is built
 # (`apps/storefront/Dockerfile`'s own header), and never appears in this file
 # or in the running `storefront` container's environment at all.
+#
+# ## Image names (issue #187, ADR-0020)
+#
+# `migrate`/`cms`/`jobs` all read their `image:` from an env var with
+# TODAY's local-build name as its default — `${AWCMS_ONE_CMS_IMAGE:-awcms-one/cms:latest}`
+# and `${AWCMS_ONE_CMS_JOBS_IMAGE:-awcms-one/cms-jobs:latest}` — rather than a
+# hardcoded literal. This is backward compatible (an operator who sets
+# neither variable gets the exact same local-build behaviour this file
+# always had: `docker compose ... build` tags the image under that default
+# name) AND lets an operator who has pulled the images
+# `.github/workflows/images.yml` publishes to GHCR on a version tag point
+# these services at `ghcr.io/<owner>/<repo>-cms:<tag>` /
+# `ghcr.io/<owner>/<repo>-cms-jobs:<tag>` instead of building locally — see
+# docs/deployment.md's "Published images" for the exact pull/verify steps.
+# The `build:` block on every service stays, unconditionally: `docker
+# compose` only builds when the named image is not already present (or when
+# `--build` is passed), so leaving it in costs a pre-pull deployment
+# nothing and keeps a from-source deployment working exactly as before.
+# `apps/storefront`'s own `image:` is NOT part of this — ADR-0020 deliberately
+# does not publish it (it bakes content at build time; see that ADR).
 name: awcms-one-production
 
 services:
@@ -100,7 +120,7 @@ services:
       context: apps/cms
       dockerfile: Dockerfile.production
       target: jobs
-    image: awcms-one/cms-jobs:latest
+    image: ${AWCMS_ONE_CMS_JOBS_IMAGE:-awcms-one/cms-jobs:latest}
     profiles: ["migrate"]
     env_file:
       - apps/cms/.env
@@ -120,7 +140,7 @@ services:
       context: apps/cms
       dockerfile: Dockerfile.production
       target: runtime
-    image: awcms-one/cms:latest
+    image: ${AWCMS_ONE_CMS_IMAGE:-awcms-one/cms:latest}
     container_name: awcms-one-cms
     restart: unless-stopped
     env_file:
@@ -166,7 +186,7 @@ services:
       context: apps/cms
       dockerfile: Dockerfile.production
       target: jobs
-    image: awcms-one/cms-jobs:latest
+    image: ${AWCMS_ONE_CMS_JOBS_IMAGE:-awcms-one/cms-jobs:latest}
     profiles: ["jobs"]
     env_file:
       - apps/cms/.env

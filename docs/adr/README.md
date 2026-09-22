@@ -35,6 +35,7 @@ What does **not** need an ADR: adding a field within an already-decided schema, 
 | [0017](0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.md) | External providers are `commerce`-owned ports, with env-per-deployment credentials and token-addressed webhooks | Accepted |
 | [0018](0018-awcms-one-is-a-template-with-build-profiles-and-an-idempotent-init.md) | awcms-one is a template, with build profiles and an idempotent `template:init` | Accepted |
 | [0019](0019-production-topology-two-images-a-jobs-sidecar-and-a-fail-closed-preflight.md) | Production topology: two images, a jobs sidecar, and a fail-closed preflight | Accepted |
+| [0020](0020-publish-only-the-cms-images-to-ghcr-with-sbom-and-provenance.md) | Publish only the CMS images to GHCR, with SBOM and provenance | Accepted |
 
 ## Why the numbering starts at 0001
 
