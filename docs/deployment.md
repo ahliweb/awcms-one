@@ -373,8 +373,8 @@ DOCKER_BUILDKIT=1 docker build \
 **Pulling a published image instead of building locally** — set the two env vars `compose.production.yaml`'s `cms`/`jobs`/`migrate` services now read (ADR-0020 D4; both default to today's local-build names, so leaving them unset changes nothing about this file's existing behaviour):
 
 ```bash
-export AWCMS_ONE_CMS_IMAGE=ghcr.io/ahliweb/awcms-one-cms:v0.11.0
-export AWCMS_ONE_CMS_JOBS_IMAGE=ghcr.io/ahliweb/awcms-one-cms-jobs:v0.11.0
+export AWCMS_ONE_CMS_IMAGE=ghcr.io/ahliweb/awcms-one-cms:0.11.0
+export AWCMS_ONE_CMS_JOBS_IMAGE=ghcr.io/ahliweb/awcms-one-cms-jobs:0.11.0
 docker compose -f compose.production.yaml pull cms
 docker compose -f compose.production.yaml --profile jobs pull jobs
 docker compose -f compose.production.yaml --profile migrate pull migrate
@@ -384,11 +384,11 @@ docker compose -f compose.production.yaml up -d cms
 **Verifying the attestation** before trusting a pulled image — `gh` reads the attestation `actions/attest-build-provenance` pushed to the registry:
 
 ```bash
-gh attestation verify oci://ghcr.io/ahliweb/awcms-one-cms:v0.11.0 --owner ahliweb
-gh attestation verify oci://ghcr.io/ahliweb/awcms-one-cms-jobs:v0.11.0 --owner ahliweb
+gh attestation verify oci://ghcr.io/ahliweb/awcms-one-cms:0.11.0 --owner ahliweb
+gh attestation verify oci://ghcr.io/ahliweb/awcms-one-cms-jobs:0.11.0 --owner ahliweb
 ```
 
-A `PASS` names the exact workflow run and commit the image was built from — the same guarantee this document's own "Rollback/cutover" note already assumes ("every image is tagged by the commit/release it was built from"), now independently checkable rather than only asserted. The **SBOM** itself is inspectable the same way any buildx-attested SBOM is: `docker buildx imagetools inspect ghcr.io/ahliweb/awcms-one-cms:v0.11.0 --format '{{ json .SBOM }}'`.
+A `PASS` names the exact workflow run and commit the image was built from — the same guarantee this document's own "Rollback/cutover" note already assumes ("every image is tagged by the commit/release it was built from"), now independently checkable rather than only asserted. The **SBOM** itself is inspectable the same way any buildx-attested SBOM is: `docker buildx imagetools inspect ghcr.io/ahliweb/awcms-one-cms:0.11.0 --format '{{ json .SBOM }}'`.
 
 **GHCR package visibility** — the first push to a new package (`ahliweb/awcms-one-cms`, `ahliweb/awcms-one-cms-jobs`) may create it as **private**, GHCR's own default for a package with no prior visibility setting. A private package needs its own pull credential (`docker login ghcr.io` with a token carrying `read:packages`) even for a deploy host this repository's own files name no secret for; the repository owner makes a package public from that package's own GitHub settings (its "Package settings" → "Change visibility") once, after which an anonymous `docker pull` works. Nothing in `.github/workflows/images.yml` sets visibility itself — GHCR ties it to manual owner action, not to anything a workflow run can request on its own behalf.
 

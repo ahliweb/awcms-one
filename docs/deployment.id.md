@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](deployment.md)
 
-<!-- i18n-source-hash: sha256:998364b7d92e8f238ed752917d6250f4f7176a208db73dd2e540f6f097818b50 -->
+<!-- i18n-source-hash: sha256:ccff700ce033f2882bc42e696f56ce0b5b01b8591ea2132ea7d3cc7ae286c1f1 -->
 
 # Deployment
 
@@ -380,8 +380,8 @@ Image `runtime`/`jobs` milik `apps/cms` sendiri di atas, sejak issue #187, juga 
 **Menarik image yang dipublikasikan alih-alih membangun lokal** — set dua env var yang kini dibaca servis `cms`/`jobs`/`migrate` milik `compose.production.yaml` (ADR-0020 D4; keduanya default ke nama build-lokal hari ini, jadi membiarkannya unset tidak mengubah apa pun dari perilaku berkas ini yang sudah ada):
 
 ```bash
-export AWCMS_ONE_CMS_IMAGE=ghcr.io/ahliweb/awcms-one-cms:v0.11.0
-export AWCMS_ONE_CMS_JOBS_IMAGE=ghcr.io/ahliweb/awcms-one-cms-jobs:v0.11.0
+export AWCMS_ONE_CMS_IMAGE=ghcr.io/ahliweb/awcms-one-cms:0.11.0
+export AWCMS_ONE_CMS_JOBS_IMAGE=ghcr.io/ahliweb/awcms-one-cms-jobs:0.11.0
 docker compose -f compose.production.yaml pull cms
 docker compose -f compose.production.yaml --profile jobs pull jobs
 docker compose -f compose.production.yaml --profile migrate pull migrate
@@ -391,11 +391,11 @@ docker compose -f compose.production.yaml up -d cms
 **Memverifikasi atestasi** sebelum mempercayai image yang ditarik — `gh` membaca atestasi yang didorong `actions/attest-build-provenance` ke registry:
 
 ```bash
-gh attestation verify oci://ghcr.io/ahliweb/awcms-one-cms:v0.11.0 --owner ahliweb
-gh attestation verify oci://ghcr.io/ahliweb/awcms-one-cms-jobs:v0.11.0 --owner ahliweb
+gh attestation verify oci://ghcr.io/ahliweb/awcms-one-cms:0.11.0 --owner ahliweb
+gh attestation verify oci://ghcr.io/ahliweb/awcms-one-cms-jobs:0.11.0 --owner ahliweb
 ```
 
-Sebuah `PASS` menyebutkan persis jalannya workflow dan commit tempat image itu dibangun — jaminan yang sama yang sudah diasumsikan catatan "Rollback/cutover" dokumen ini sendiri ("setiap image ditandai commit/rilis tempat ia dibangun"), kini bisa diperiksa independen, tidak hanya dinyatakan. **SBOM** itu sendiri bisa diperiksa dengan cara yang sama seperti SBOM ber-atestasi buildx mana pun: `docker buildx imagetools inspect ghcr.io/ahliweb/awcms-one-cms:v0.11.0 --format '{{ json .SBOM }}'`.
+Sebuah `PASS` menyebutkan persis jalannya workflow dan commit tempat image itu dibangun — jaminan yang sama yang sudah diasumsikan catatan "Rollback/cutover" dokumen ini sendiri ("setiap image ditandai commit/rilis tempat ia dibangun"), kini bisa diperiksa independen, tidak hanya dinyatakan. **SBOM** itu sendiri bisa diperiksa dengan cara yang sama seperti SBOM ber-atestasi buildx mana pun: `docker buildx imagetools inspect ghcr.io/ahliweb/awcms-one-cms:0.11.0 --format '{{ json .SBOM }}'`.
 
 **Visibilitas package GHCR** — push pertama ke package baru (`ahliweb/awcms-one-cms`, `ahliweb/awcms-one-cms-jobs`) bisa membuatnya sebagai **privat**, default GHCR sendiri untuk package tanpa pengaturan visibilitas sebelumnya. Package privat butuh kredensial tariknya sendiri (`docker login ghcr.io` dengan token yang membawa `read:packages`) bahkan untuk host deploy yang tidak disebutkan berkas mana pun milik repositori ini rahasianya; pemilik repositori membuat sebuah package publik dari pengaturan GitHub milik package itu sendiri ("Package settings" → "Change visibility") sekali, setelah itu `docker pull` anonim berfungsi. Tidak ada apa pun di `.github/workflows/images.yml` yang mengeset visibilitas sendiri — GHCR mengikat visibilitas pada aksi manual pemilik, bukan pada apa pun yang bisa diminta sendiri oleh sebuah jalannya workflow.
 

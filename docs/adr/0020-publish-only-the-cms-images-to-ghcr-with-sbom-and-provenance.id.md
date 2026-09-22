@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](0020-publish-only-the-cms-images-to-ghcr-with-sbom-and-provenance.md)
 
-<!-- i18n-source-hash: sha256:30d9eceb594a6985537cd555f54ea4bb51ce0caa0b114a391cdebc78d5e13152 -->
+<!-- i18n-source-hash: sha256:faf92bb257bd52d9d7cd7b9976ecf8748b6998c9fc405d6045733f6c8866a640 -->
 
 # ADR-0020 — Hanya image CMS yang dipublikasikan ke GHCR, dengan SBOM dan provenance
 
@@ -50,7 +50,7 @@ Tidak mempublikasikan image storefront tidak sama dengan tidak pernah mengujinya
 
 ## Konsekuensi
 
-- Sebuah rollback kini, secara opsional, adalah "deploy ulang tag sebelumnya" tanpa rebuild — host deploy bisa `docker pull`/`docker compose pull` sebuah `vX.Y.Z` tertentu yang teratestasi, alih-alih menjalankan ulang `bun install` dan build penuh dari source pada setiap rilis, sambil tetap bebas terus membangun dari source bila operator lebih menyukainya (default D4 mempertahankannya persis sama).
+- Sebuah rollback kini, secara opsional, adalah "deploy ulang tag sebelumnya" tanpa rebuild — host deploy bisa `docker pull`/`docker compose pull` sebuah tag `X.Y.Z` tertentu yang teratestasi, alih-alih menjalankan ulang `bun install` dan build penuh dari source pada setiap rilis, sambil tetap bebas terus membangun dari source bila operator lebih menyukainya (default D4 mempertahankannya persis sama).
 - Push pertama ke package GHCR baru bisa mendarat sebagai **privat** secara default; bagian baru "Published images" pada `docs/deployment.md` menyebutkan langkah satu-kali (pengaturan GitHub milik package itu sendiri) yang diambil operator untuk membuatnya publik, dan menyatakan dengan jelas bahwa package privat butuh kredensial tariknya sendiri sampai saat itu.
 - Cerita deployment storefront sendiri tidak berubah oleh ADR ini: ia tetap dibangun di host deploy, sekali per `SITE_PROFILE`, per perubahan konten, persis seperti yang sudah didokumentasikan ADR-0019 — ADR ini hanya menambahkan bukti sisi-CI bahwa `Dockerfile`-nya tetap bisa dibangun, tidak pernah entri registry untuknya.
 - Adapter payment Xendit atau provider pelacakan kurir di masa depan (follow-up bernama milik [ADR-0017](0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.md) sendiri) mendarat di dalam `apps/cms` tanpa perubahan oleh ADR ini — itu mengubah apa yang dikirim di dalam image `runtime`/`jobs`, tidak pernah apakah atau bagaimana keduanya dipublikasikan.
