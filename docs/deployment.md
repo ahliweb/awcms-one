@@ -359,6 +359,41 @@ DOCKER_BUILDKIT=1 docker build \
   -t awcms-one-storefront:toko .
 ```
 
+`apps/cms`'s own `runtime`/`jobs` images above are, since issue #187, additionally built and published to GHCR by CI — see "Published images" immediately below. `apps/storefront`'s image is deliberately not: it stays a manual `docker build` on the deploy host, for the reason given there.
+
+### Published images (issue #187, ADR-0020)
+
+`.github/workflows/images.yml` builds `apps/cms/Dockerfile.production`'s `runtime` and `jobs` targets — the same, unmodified file the "Images" heading above describes — and, on a `v*` tag push or an explicit `workflow_dispatch` run with its `push` input checked, publishes them to:
+
+- `ghcr.io/<owner>/<repo>-cms` — the `runtime` target, i.e. the `cms` service.
+- `ghcr.io/<owner>/<repo>-cms-jobs` — the `jobs` target, i.e. the `jobs`/`migrate` services.
+
+(`<owner>/<repo>` is this repository's own GitHub path, lower-cased, so a template-derived repository publishes to its own namespace with nothing to edit — for `ahliweb/awcms-one` that is `ghcr.io/ahliweb/awcms-one-cms` and `ghcr.io/ahliweb/awcms-one-cms-jobs`.) Each push carries three tags — the released semver (`vX.Y.Z` → `X.Y.Z`), the `X.Y` line, and the building commit's `sha` — plus an SBOM and a provenance attestation attached by `docker/build-push-action` itself (`sbom: true`, `provenance: mode=max`), and a second, independent attestation pushed to the registry by `actions/attest-build-provenance`. The workflow also runs, build-only, on a `pull_request` touching `apps/cms/**`/`apps/storefront/**`/`compose.production.yaml`/itself — it never pushes on a PR, and it is not a required status check (AGENTS.md's "The gates").
+
+**Pulling a published image instead of building locally** — set the two env vars `compose.production.yaml`'s `cms`/`jobs`/`migrate` services now read (ADR-0020 D4; both default to today's local-build names, so leaving them unset changes nothing about this file's existing behaviour):
+
+```bash
+export AWCMS_ONE_CMS_IMAGE=ghcr.io/ahliweb/awcms-one-cms:v0.11.0
+export AWCMS_ONE_CMS_JOBS_IMAGE=ghcr.io/ahliweb/awcms-one-cms-jobs:v0.11.0
+docker compose -f compose.production.yaml pull cms
+docker compose -f compose.production.yaml --profile jobs pull jobs
+docker compose -f compose.production.yaml --profile migrate pull migrate
+docker compose -f compose.production.yaml up -d cms
+```
+
+**Verifying the attestation** before trusting a pulled image — `gh` reads the attestation `actions/attest-build-provenance` pushed to the registry:
+
+```bash
+gh attestation verify oci://ghcr.io/ahliweb/awcms-one-cms:v0.11.0 --owner ahliweb
+gh attestation verify oci://ghcr.io/ahliweb/awcms-one-cms-jobs:v0.11.0 --owner ahliweb
+```
+
+A `PASS` names the exact workflow run and commit the image was built from — the same guarantee this document's own "Rollback/cutover" note already assumes ("every image is tagged by the commit/release it was built from"), now independently checkable rather than only asserted. The **SBOM** itself is inspectable the same way any buildx-attested SBOM is: `docker buildx imagetools inspect ghcr.io/ahliweb/awcms-one-cms:v0.11.0 --format '{{ json .SBOM }}'`.
+
+**GHCR package visibility** — the first push to a new package (`ahliweb/awcms-one-cms`, `ahliweb/awcms-one-cms-jobs`) may create it as **private**, GHCR's own default for a package with no prior visibility setting. A private package needs its own pull credential (`docker login ghcr.io` with a token carrying `read:packages`) even for a deploy host this repository's own files name no secret for; the repository owner makes a package public from that package's own GitHub settings (its "Package settings" → "Change visibility") once, after which an anonymous `docker pull` works. Nothing in `.github/workflows/images.yml` sets visibility itself — GHCR ties it to manual owner action, not to anything a workflow run can request on its own behalf.
+
+**Why `apps/storefront` is not published** — see [ADR-0020](adr/0020-publish-only-the-cms-images-to-ghcr-with-sbom-and-provenance.md) D2: its build bakes a tenant's live catalog/news content using the CMS owner token as a BuildKit secret, so publishing it from CI would mean that production credential living in a GitHub secret, this repository's runners reaching production, and a published tag silently going stale the moment content changes with no corresponding new image. It stays built on the deploy host, exactly as the "Images" section above describes. `.github/workflows/images.yml` only proves `apps/storefront/Dockerfile` still builds — a build-only `storefront-smoke` job, matrixed over all three `SITE_PROFILE` values, against this repository's own stub CMS (`apps/storefront/scripts/stub-awcms.mjs`) — and never publishes the result.
+
 ### `compose.production.yaml`
 
 A reproducible topology for a self-hosted deployment: `postgres` (no host port published by default — see the file's own comment for using a managed/external instance instead), `migrate` (one-shot, `--profile migrate`, the ONLY service using the owner/setup DSN), `cms` (the runtime image, `awcms_app` DSN), `jobs` (the jobs image, `awcms_worker` DSN, gated behind `--profile jobs`, invoked on a schedule rather than left running — see "Scheduled jobs" below), and `storefront` (built with the BuildKit secret above). No service publishes a host port for `cms`/`storefront` by default — put a reverse proxy in front and let it terminate TLS. Every credential is read from `apps/cms/.env.example`-derived and root `.env.example`-derived files that are never committed; `tests/compose-produksi.test.mjs` mechanically checks the file for a hardcoded-looking secret, the `awcms_app`/`awcms_worker` role split, and the absent host ports.
@@ -397,6 +432,6 @@ Every check prints one `PASS|FAIL|SKIP` line and a reason, never a secret value.
 
 **Backup/restore:** `apps/cms/ops/backup-awcms.sh` and `restore-drill-awcms.sh` are the whole of it upstream — see the `awcms-production-preflight` skill's own "Backup & restore" section for the exact commands and, importantly, that at-rest encryption is **not implemented** upstream today (protect the dump with filesystem permissions and off-host copies instead; see `apps/cms/docs/awcms/` for the current, real status).
 
-### What remains not built (ADR-0019 D7)
+### What remains not built (ADR-0019 D7, narrowed by ADR-0020)
 
-A CI pipeline that builds and publishes `apps/storefront`'s per-profile images to a registry — this document describes `docker build`, not a release pipeline (`apps/cms`'s own image already IS published by `.github/workflows/release.yml`, unaffected by this change). A reverse-proxy/TLS-termination configuration beyond the example above — an operator's own ingress terminates TLS. At-rest backup encryption (tracked upstream). A Xendit payment adapter and courier tracking (both named as explicit ADR-0017 follow-ups). A production PostgreSQL this repository itself operates — `compose.production.yaml`'s `postgres` service is provided for a self-hosted deployment; a managed instance is documented as an alternative, not shipped.
+`apps/cms`'s own `runtime`/`jobs` images are, as of issue #187, published by `.github/workflows/images.yml` — see "Published images" above; that part of ADR-0019 D7's own list is now closed. What remains, deliberately: a CI pipeline that publishes `apps/storefront`'s per-profile images to a registry — [ADR-0020](adr/0020-publish-only-the-cms-images-to-ghcr-with-sbom-and-provenance.md) D2 rejects this outright, not merely postpones it (the build-time content-fetch and the BuildKit-secret owner token — see "Published images" above — make a published storefront image a production-credential and staleness risk, not only an unbuilt convenience). A reverse-proxy/TLS-termination configuration beyond the example above — an operator's own ingress terminates TLS. At-rest backup encryption (tracked upstream). A Xendit payment adapter and courier tracking (both named as explicit ADR-0017 follow-ups). A production PostgreSQL this repository itself operates — `compose.production.yaml`'s `postgres` service is provided for a self-hosted deployment; a managed instance is documented as an alternative, not shipped.
