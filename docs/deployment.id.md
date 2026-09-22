@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](deployment.md)
 
-<!-- i18n-source-hash: sha256:ccff700ce033f2882bc42e696f56ce0b5b01b8591ea2132ea7d3cc7ae286c1f1 -->
+<!-- i18n-source-hash: sha256:fa7d4ca511a730d5bf6ffb0fc38d237d86178f62d75d7f153ef875f82b6c7364 -->
 
 # Deployment
 
@@ -17,7 +17,7 @@ bun run serve          # bun dist/server/penyaji.mjs
 
 ### Profil build (`SITE_PROFILE`, issue #137)
 
-`bun run build`/`check`/`dev`/`serve` semuanya menuruti `SITE_PROFILE ∈ {toko, berita, landing}` (default `toko`), dibaca sekali saat build oleh `apps/storefront/src/config/profil.ts` — lihat bagian "Build profiles" di [`docs/routing.md`](routing.id.md) untuk mekanismenya dan [`docs/template.md`](template.id.md) untuk matriks lengkapnya. Men-deploy situs khusus `berita` atau khusus `landing` adalah proses build-lalu-serve dua langkah yang sama di atas, dengan `SITE_PROFILE` diatur di environment build; tidak ada yang berbeda dari cara melayani `dist/` hasilnya — `apps/storefront/server/penyaji.mjs` menurunkan apa yang bisa dilayaninya dari build yang diberikan padanya, sama seperti yang sudah dilakukannya untuk artefak CSP. CI membuktikan ketiganya bisa dibangun (matriks `Check (toko|berita|landing)` milik `ci.yml`, ketiganya status check wajib di `main` bersama `check-cms`), dan `.github/workflows/template-init-smoke.yml` tambahan membangun tiap profil setelah run `bun run template:init` yang sungguhan, meski workflow itu belum menjadi status check wajib — lihat [`docs/alur-kerja-pengembangan.md`](alur-kerja-pengembangan.id.md).
+`bun run build`/`check`/`dev`/`serve` semuanya menuruti `SITE_PROFILE ∈ {toko, berita, landing}` (default `toko`), dibaca sekali saat build oleh `apps/storefront/src/config/profil.ts` — lihat bagian "Build profiles" di [`docs/routing.md`](routing.id.md) untuk mekanismenya dan [`docs/template.md`](template.id.md) untuk matriks lengkapnya. Men-deploy situs khusus `berita` atau khusus `landing` adalah proses build-lalu-serve dua langkah yang sama di atas, dengan `SITE_PROFILE` diatur di environment build; tidak ada yang berbeda dari cara melayani `dist/` hasilnya — `apps/storefront/server/penyaji.mjs` menurunkan apa yang bisa dilayaninya dari build yang diberikan padanya, sama seperti yang sudah dilakukannya untuk artefak CSP. CI membuktikan ketiganya bisa dibangun (matriks `Check (toko|berita|landing)` milik `ci.yml`, ketiganya status check wajib di `main` bersama `check-cms`), dan `.github/workflows/template-init-smoke.yml` tambahan membangun tiap profil setelah run `bun run template:init` yang sungguhan — keempat leg workflow itu juga menjadi status check wajib, sejak issue #182 — lihat [`docs/alur-kerja-pengembangan.md`](alur-kerja-pengembangan.id.md).
 
 ## Variabel environment
 
