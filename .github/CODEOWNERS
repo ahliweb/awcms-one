@@ -2,10 +2,11 @@
 #
 # This repo has a single maintainer, @ahliweb — a GitHub USER account, not an
 # org, so there is no @org/team syntax to reach for here. Branch protection
-# does not require a code-owner review before merging (the required checks
-# are the `Check (toko|berita|landing)` and `check-cms` status checks — see
-# AGENTS.md's "The subtree embed" and docs/alur-kerja-pengembangan.md for the
-# protection settings as verified). This file only drives GitHub's own
+# does not require a code-owner review before merging — only the required
+# status checks gate a merge (see docs/alur-kerja-pengembangan.md for the
+# protection settings as verified, and AGENTS.md's "The gates" for the
+# current list; it is deliberately not repeated here, where it would go
+# stale). This file only drives GitHub's own
 # review-request routing and the "Code owners" list the PR UI shows; it is
 # advisory, and reviewing every PR alone does not block anything.
 #
