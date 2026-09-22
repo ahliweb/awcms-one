@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](alur-kerja-pengembangan.md)
 
-<!-- i18n-source-hash: sha256:53f70d0a202651b5a43c008c55806007d1e3ea3635b0e21c585bbfe6e65d88a8 -->
+<!-- i18n-source-hash: sha256:5d5b6c4eba9d1e04c42ea2c262d254dc66fea84fbd42c7fe59d5a9e65eeacf0f -->
 
 # Alur kerja pengembangan
 
@@ -12,22 +12,30 @@ Satu branch per issue, dipotong dari `main`; PR kembali ke `main`, berjudul meru
 
 ## Branch protection pada `main`
 
-Diverifikasi langsung terhadap pengaturan GitHub repositori ini saat tulisan ini dibuat (`gh api repos/ahliweb/awcms-one/branches/main/protection`):
+Diverifikasi langsung terhadap pengaturan GitHub repositori ini, paling akhir diverifikasi ulang untuk issue #182 (22 September 2026) dengan:
+
+```
+gh api repos/ahliweb/awcms-one/branches/main/protection
+gh api repos/ahliweb/awcms-one --jq '{has_wiki, allow_merge_commit, allow_squash_merge, allow_rebase_merge, delete_branch_on_merge, security_and_analysis}'
+```
 
 | Pengaturan | Nilai |
 | --- | --- |
-| Status check wajib | `Check (toko)`, `Check (berita)`, `Check (landing)` **dan** `check-cms` — sejak increment 6 (issue #137) job `Check` storefront adalah matriks 3-leg, keempat leg/job `.github/workflows/ci.yml` wajib |
+| Status check wajib | Delapan context: `check-cms`, `Check (toko)`, `Check (berita)`, `Check (landing)`, `template-init-smoke (toko)`, `template-init-smoke (berita)`, `template-init-smoke (landing)`, `template-init-smoke (root-suite)` — keempat leg `template-init-smoke` dipromosikan menjadi wajib pada issue #182, di samping keempat leg `ci.yml` yang sudah wajib sejak increment 6 (issue #137) |
 | Strict (branch harus up to date sebelum merge) | Ya |
 | Force push | Ditolak |
 | Penghapusan branch | Ditolak |
 | Tanda tangan wajib | Tidak |
-| Berlaku untuk admin | Tidak |
-| Riwayat linear wajib | Tidak |
-| Resolusi percakapan wajib | Tidak |
+| Berlaku untuk admin | **Ya**, sejak issue #182 — seorang admin tidak lagi bisa merge melewati status check wajib yang merah atau masih pending |
+| Riwayat linear wajib | Tidak, dengan sengaja — itu akan berbenturan dengan model subtree riwayat-lengkap (lihat "The subtree embed" di [`AGENTS.md`](../AGENTS.md#the-subtree-embed)), yang bergantung pada merge commit sungguhan, bukan riwayat linear hasil rebase |
+| Resolusi percakapan wajib | **Ya**, sejak issue #182 — setiap percakapan review di sebuah PR harus ditandai selesai sebelum PR itu bisa merge |
+| Review wajib / code owner | Tidak — repositori ini punya satu maintainer aktif, jadi jumlah approval wajib akan memblokir setiap PR pada penulisnya sendiri; berkas `CODEOWNERS` (hanya `apps/cms/.github/CODEOWNERS` yang ada hari ini, dan itu milik upstream, bukan milik repositori ini) sifatnya informatif saja kecuali pengaturan branch protection "require review from code owners" juga diaktifkan — dan itu tidak diaktifkan |
 
 `check-cms` ditambahkan ke daftar wajib setelah dua run hijau di `main`, memakai perintah persis yang dicatat lebih dulu oleh [`docs/deployment.md`](deployment.id.md) dan PR issue #25 sendiri — lihat "CI: dua job" di bawah untuk apa yang dijalankan masing-masing. `delete_branch_on_merge` aktif di seluruh repositori (juga diverifikasi lewat `gh api repos/ahliweb/awcms-one`), jadi branch yang sudah di-merge dibersihkan otomatis tanpa memandang strategi merge.
 
 **Squash dan rebase merge kini dinonaktifkan di seluruh repositori (issue #149).** Diverifikasi lewat `gh api repos/ahliweb/awcms-one`: `allow_merge_commit=true`, `allow_squash_merge=false`, `allow_rebase_merge=false`. Branch protection (tabel di atas) masih hanya menamai status check wajib — ia sendiri tidak membatasi metode merge, dan GitHub tidak bisa membatasi metode merge khusus ke PR yang menyentuh satu path — jadi jebakan mekanis yang dideskripsikan [ADR-0001](adr/0001-git-subtree-with-full-history-for-apps-cms.md) (PR sinkronisasi subtree di-merge dengan apa pun selain merge commit) kini ditutup dengan satu-satunya cara yang diizinkan GitHub: di seluruh repositori. Konsekuensi operasional untuk PR biasa yang tidak menyentuh `apps/cms` sama dengan untuk sinkronisasi subtree — merge commit adalah satu-satunya opsi yang ditawarkan tombol merge; `delete_branch_on_merge` tetap membersihkan branch tanpa memandang itu. **Required linear history tetap dinonaktifkan**, dengan sengaja: itu akan berbenturan dengan model subtree riwayat-lengkap, yang bergantung pada merge commit sungguhan, bukan riwayat linear hasil rebase.
+
+**Pengaturan repositori lain, diverifikasi dengan cara yang sama (issue #182):** wiki dinonaktifkan (`has_wiki: false`) — diverifikasi kosong lebih dulu (`ahliweb/awcms-one.wiki.git` tidak pernah ada, jadi menonaktifkannya tidak menghilangkan apa pun) — karena dokumentasi repositori ini sudah hidup di `docs/**`, bukan wiki terpisah. Secret scanning dan secret-scanning push protection keduanya aktif, begitu juga Dependabot security updates. Dua toggle terkait yang juga dicoba diaktifkan maintainer pada perubahan yang sama, `secret_scanning_non_provider_patterns` dan `secret_scanning_validity_checks`, tetap `disabled`: `PATCH` lewat `gh api` diterima tanpa galat, tapi pengaturannya tidak sungguh-sungguh berubah — keduanya tampaknya membutuhkan lisensi GitHub Secret Protection yang tidak bisa diaktifkan repositori publik milik perorangan. Jalankan ulang perintah kedua di atas untuk memeriksa apakah itu sudah berubah.
 
 ## Changeset buatan-sendiri, bukan `@changesets/cli`
 
@@ -57,9 +65,9 @@ Increment 2 (epic #21) dikirimkan sebagai rangkaian PR atomik satu-issue, bukan 
 
 Ketiga leg `Check` dan `check-cms` semuanya status check wajib di `main` (lihat "Branch protection pada `main`" di atas) — ini menutup celah yang dideskripsikan draf dokumen ini sebelumnya: rantai gate `apps/cms` sendiri, dan cakupan RLS/basis datanya, berjalan di CI repositori INI sendiri pada setiap PR, tidak hanya lokal.
 
-## CI: workflow ketiga, belum wajib — `template-init-smoke`
+## CI: workflow ketiga, kini wajib — `template-init-smoke`
 
-`.github/workflows/template-init-smoke.yml` (issue #138) adalah berkas workflow TERPISAH, bukan job ketiga di `ci.yml` — berkas itu dimiliki oleh perubahan lain yang sejak itu landing (issue #137), dan cakupan workflow ini sendiri meminta berkas baru alih-alih job yang ditempelkan ke sana. Ia **belum menjadi status check wajib** — mengikuti pola promosi yang sama yang dilalui `check-cms` sendiri (lihat "Branch protection pada `main`" di atas): ditambahkan ke daftar wajib hanya setelah berjalan hijau di `main` untuk sementara waktu, DAN hanya setelah setidaknya tiga run berturut-turut terhadap kondisi kode yang sama semuanya kembali hijau (kriteria penerimaan issue #147 sendiri — lihat di bawah untuk alasan batas itu ada).
+`.github/workflows/template-init-smoke.yml` (issue #138) adalah berkas workflow TERPISAH, bukan job ketiga di `ci.yml` — berkas itu dimiliki oleh perubahan lain yang sejak itu landing (issue #137), dan cakupan workflow ini sendiri meminta berkas baru alih-alih job yang ditempelkan ke sana. **Keempat leg-nya — `template-init-smoke (toko)`, `template-init-smoke (berita)`, `template-init-smoke (landing)`, `template-init-smoke (root-suite)` — menjadi status check wajib pada issue #182 (22 September 2026)**, mengikuti pola promosi yang sama yang dilalui `check-cms` sendiri (lihat "Branch protection pada `main`" di atas): dipromosikan hanya setelah berjalan hijau di `main` untuk sementara waktu, DAN hanya setelah setidaknya tiga run berturut-turut terhadap kondisi kode yang sama semuanya hijau lebih dulu (kriteria penerimaan issue #147 sendiri — lihat di bawah untuk alasan batas itu ada).
 
 **Bentuk sejak issue #147.** Workflow aslinya menjalankan `bun test` root penuh — termasuk setiap tes build-smoke storefront, yang masing-masing memulai stub CMS-nya sendiri dan `astro build`-nya sendiri — satu kali per leg matriks, sehingga tiga salinan suite itu berebut CPU/IO runner dua-core yang sama secara bersamaan. Dua run `main` berturut-turut masing-masing gagal pada langkah `Root bun test` milik leg yang BERBEDA, pada tenggat mulai-stub tes build-smoke yang BERBEDA pula — perebutan sumber daya, bukan cacat profil yang nyata, tetapi justru jenis kegagalan sesekali yang membuat status "wajib" tidak bisa dipercaya. Perbaikannya adalah pemisahan tanggung jawab, bukan tenggat yang diperbesar:
 
