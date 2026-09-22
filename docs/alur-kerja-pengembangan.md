@@ -10,22 +10,30 @@ One branch per issue, cut from `main`; a PR back into `main`, titled to referenc
 
 ## Branch protection on `main`
 
-Verified directly against this repository's GitHub settings at the time of writing (`gh api repos/ahliweb/awcms-one/branches/main/protection`):
+Verified directly against this repository's GitHub settings, most recently re-verified for issue #182 (22 September 2026) with:
+
+```
+gh api repos/ahliweb/awcms-one/branches/main/protection
+gh api repos/ahliweb/awcms-one --jq '{has_wiki, allow_merge_commit, allow_squash_merge, allow_rebase_merge, delete_branch_on_merge, security_and_analysis}'
+```
 
 | Setting | Value |
 | --- | --- |
-| Required status checks | `Check (toko)`, `Check (berita)`, `Check (landing)` **and** `check-cms` — since increment 6 (issue #137) the storefront `Check` job is a 3-leg matrix, all four `.github/workflows/ci.yml` legs/jobs are required |
+| Required status checks | Eight contexts: `check-cms`, `Check (toko)`, `Check (berita)`, `Check (landing)`, `template-init-smoke (toko)`, `template-init-smoke (berita)`, `template-init-smoke (landing)`, `template-init-smoke (root-suite)` — the four `template-init-smoke` legs were promoted to required in issue #182, alongside the four `ci.yml` legs already required since increment 6 (issue #137) |
 | Strict (branch must be up to date before merging) | Yes |
 | Force pushes | Refused |
 | Branch deletion | Refused |
 | Required signatures | No |
-| Enforce for admins | No |
-| Required linear history | No |
-| Required conversation resolution | No |
+| Enforce for admins | **Yes**, since issue #182 — an administrator can no longer merge past a required check that is red or still pending |
+| Required linear history | No, deliberately — it would conflict with the full-history subtree model (see "The subtree embed" in [`AGENTS.md`](../AGENTS.md#the-subtree-embed)), which depends on real merge commits rather than a linear, rebased history |
+| Required conversation resolution | **Yes**, since issue #182 — every review conversation on a PR must be marked resolved before that PR can merge |
+| Required reviews / code owners | No — this repository has one active maintainer, so a required-approval count would block every PR on its own author; a `CODEOWNERS` file (only `apps/cms/.github/CODEOWNERS` exists today, and it is upstream's own, not this repository's) is informational at best unless branch protection's own "require review from code owners" is also turned on, which it is not |
 
 `check-cms` was added to the required list after two green runs on `main`, using the exact command [`docs/deployment.md`](deployment.md) and issue #25's own PR recorded in advance — see "CI: two jobs" below for what each one runs. `delete_branch_on_merge` is enabled repository-wide (also verified via `gh api repos/ahliweb/awcms-one`), so a merged branch is cleaned up automatically regardless of merge strategy.
 
 **Squash and rebase merges are now disabled repository-wide (issue #149).** Verified via `gh api repos/ahliweb/awcms-one`: `allow_merge_commit=true`, `allow_squash_merge=false`, `allow_rebase_merge=false`. Branch protection (the table above) still only names required status checks — it does not itself restrict merge method, and GitHub cannot restrict a merge method to PRs touching one path — so the mechanical trap described in [ADR-0001](adr/0001-git-subtree-with-full-history-for-apps-cms.md) (a subtree-sync PR merged with anything but a merge commit) is now closed the only way GitHub allows: repository-wide. The operational consequence for an ordinary PR unrelated to `apps/cms` is the same as for a subtree sync — a merge commit is the only option the merge button offers; `delete_branch_on_merge` still cleans up the branch regardless. **Required linear history remains disabled**, deliberately: it would conflict with the full-history subtree model, which depends on real merge commits rather than a linear, rebased history.
+
+**Other repository settings, verified the same way (issue #182):** the wiki is disabled (`has_wiki: false`) — verified empty first (`ahliweb/awcms-one.wiki.git` did not exist, so disabling it lost nothing) — because this repository's documentation already lives in `docs/**`, not a separate wiki. Secret scanning and secret-scanning push protection are both enabled, and so are Dependabot security updates. Two related toggles the maintainer also tried to turn on in the same change, `secret_scanning_non_provider_patterns` and `secret_scanning_validity_checks`, remain `disabled`: the `gh api` `PATCH` is accepted without error, but the setting does not take effect — both appear to require a GitHub Secret Protection licence that a user-owned public repository cannot enable. Re-run the second command above to check whether that has since changed.
 
 ## Homegrown changesets, not `@changesets/cli`
 
@@ -55,9 +63,9 @@ Increment 2 (epic #21) was delivered as a sequence of atomic, single-issue PRs r
 
 All three `Check` legs and `check-cms` are required status checks on `main` (see "Branch protection on `main`" above) — this closes the gap earlier drafts of this document described: `apps/cms`'s own gate chain, and its RLS/DB coverage, run in THIS repository's CI on every PR, not only locally.
 
-## CI: a third, not-yet-required workflow — `template-init-smoke`
+## CI: a third, now-required workflow — `template-init-smoke`
 
-`.github/workflows/template-init-smoke.yml` (issue #138) is a SEPARATE workflow file, not a third job on `ci.yml` — that file is owned by a different, since-landed change (issue #137), and this workflow's own scope asked for a new file rather than a job bolted onto it. It is **not yet a required status check** — following the same promotion pattern `check-cms` itself went through (see "Branch protection on `main`" above): added to the required list only after it has run green on `main` for a while, and only after at least three consecutive runs against the same code state have all come back green (issue #147's own acceptance criterion — see below for why that bar exists).
+`.github/workflows/template-init-smoke.yml` (issue #138) is a SEPARATE workflow file, not a third job on `ci.yml` — that file is owned by a different, since-landed change (issue #137), and this workflow's own scope asked for a new file rather than a job bolted onto it. **All four of its legs — `template-init-smoke (toko)`, `template-init-smoke (berita)`, `template-init-smoke (landing)`, `template-init-smoke (root-suite)` — became required status checks in issue #182 (22 September 2026)**, following the same promotion pattern `check-cms` itself went through (see "Branch protection on `main`" above): promoted only after it had run green on `main` for a while, with at least three consecutive runs against the same code state all green first (issue #147's own acceptance criterion — see below for why that bar exists).
 
 **Shape since issue #147.** The original workflow ran a full root `bun test` — including every storefront build-smoke test, each of which starts its own stub CMS and its own `astro build` — once per matrix leg, so three copies of that suite competed for the same two-core runner's CPU/IO at once. Two consecutive `main` runs each failed a DIFFERENT leg's `Root bun test` step on a DIFFERENT build-smoke test's stub-start deadline — contention, not a real profile defect, but exactly the kind of intermittent red that makes a "required" status untrustworthy. The fix is a responsibility split, not a bigger timeout:
 
