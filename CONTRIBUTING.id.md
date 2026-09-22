@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](CONTRIBUTING.md)
 
-<!-- i18n-source-hash: sha256:bb8db4c074fe27637e055617ea1a351cc67308fd840d5f7601c840a5b5a48765 -->
+<!-- i18n-source-hash: sha256:0b4fd47eb06cc8061630ca6b9309c6bf156398ba345b9d405b4b4619db4abe54 -->
 
 # Panduan Kontribusi
 
@@ -34,13 +34,13 @@ Skrip akar `dev`/`build`/`check`/`serve` mendelegasikan ke `apps/storefront` (`c
 
 ## Alur kontribusi
 
-1. **Mulai dari sebuah issue** dengan cakupan yang jelas.
+1. **Mulai dari sebuah issue** dengan cakupan yang jelas — pilih yang paling sesuai di antara [formulir issue](.github/ISSUE_TEMPLATE/): **Bug report**, **Feature request**, atau **Upstream sync (apps/cms)**. Issue kosong tetap tersedia untuk apa pun yang tidak cocok dengan salah satu dari ketiganya, misalnya sebuah epic yang mencakup beberapa child issue.
 2. **Branch dari `main` sebelum menyentuh berkas apa pun.** Jangan commit langsung ke `main`.
 3. **Satu iterasi = satu cakupan atomik**, terbatas pada satu workspace kecuali perubahannya memang tentang lebih dari satu — lihat "Workspace boundaries" di `AGENTS.md`. Selesaikan dan validasi sebelum berpindah.
 4. **Perbarui dokumentasi** di iterasi yang sama saat perilaku, alur kerja, struktur, atau konfigurasi berubah. Dokumen governance ikut mengirim cermin Indonesianya di perubahan yang sama (`bun run docs:i18n:stamp`).
 5. **Tulis sebuah changeset** di [`.changesets/`](.changesets/README.md) di iterasi yang sama, bukan dikumpulkan di akhir.
 6. **Jalankan `bun test`** (dan `bun run check:cms` bila perubahan menyentuh `apps/cms/`); keduanya harus bersih.
-7. **Buka Pull Request** dengan `Closes #<issue>`. Merge setelah review dan CI hijau.
+7. **Buka Pull Request** dengan `Closes #<issue>`, mengisi [`.github/pull_request_template.md`](.github/pull_request_template.md) — GitHub sudah mengisinya lebih dulu, dan daftar periksanya mengulang Definition of Done dari bagian ini. Merge setelah review dan CI hijau.
 8. **Bila PR menyinkronkan `apps/cms/` dari upstream** (`git subtree pull`), ia **wajib** di-merge dengan merge commit — jangan pernah di-squash, jangan pernah di-rebase. "The subtree embed" di `AGENTS.md` menjelaskan alasannya. Ini kini juga berlaku secara mekanis untuk setiap PR di repositori ini: squash dan rebase merge dinonaktifkan di seluruh repositori (issue #149), jadi merge commit adalah satu-satunya metode yang ditawarkan tombol merge GitHub.
 9. **Saat backlog changeset yang menunggu jatuh tempo** (`bun run audit:rilis` memerah melewati 20 berkas atau 14 hari), seorang maintainer menjalankan `bun run release`, yang melipat backlog ke `CHANGELOG.md` dan menandai tag `vX.Y.Z`.
 
@@ -62,6 +62,10 @@ Skrip akar `dev`/`build`/`check`/`serve` mendelegasikan ke `apps/storefront` (`c
 | `refactor` | Perubahan bentuk kode tanpa perubahan perilaku |
 
 Isi commit menjelaskan **kenapa**, bukan mengulang diff.
+
+## Kepemilikan kode
+
+[`.github/CODEOWNERS`](.github/CODEOWNERS) menetapkan `@ahliweb` sebagai pemilik default untuk seluruh repo, ditambah baris rute eksplisit untuk `apps/cms/` (pekerjaan subtree upstream), `.github/`, `packages/gerbang/`, `tools/`, dan `docs/adr/`. Repo ini punya satu maintainer, dan branch protection tidak mewajibkan review dari code owner sebelum merge — berkas ini bersifat advisory, menggerakkan rute permintaan review milik GitHub sendiri dan daftar "Code owners" di UI PR, bukan gerbang merge.
 
 ## Aturan yang tidak bisa ditawar
 

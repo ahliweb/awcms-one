@@ -1,0 +1,77 @@
+name: Bug report
+description: Something in this repo is broken — a gate, a build, a script, or documented behaviour that does not match reality.
+title: "bug: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting. Please read [`AGENTS.md`](https://github.com/ahliweb/awcms-one/blob/main/AGENTS.md) first if you have not — it is this repo's working contract and may already explain what you are seeing.
+
+        _Bahasa Indonesia: Laporkan bug pada formulir ini. Sertakan langkah reproduksi, hasil yang diharapkan, dan hasil sebenarnya — dalam bahasa apa pun yang Anda kuasai._
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      description: |
+        Which part of the repo is affected?
+          - `storefront` — apps/storefront
+          - `cms-commerce` — apps/cms's commerce module (this platform's own additive code)
+          - `cms-upstream` — apps/cms's general-purpose ahliweb/awcms behaviour, unrelated to commerce
+          - `tooling-gates` — packages/gerbang, tools/, the root tests/
+          - `docs` — docs/, AGENTS.md and its siblings, ADRs, and their Indonesian mirrors
+          - `deployment` — compose files, CI workflows, deploy:preflight
+      options:
+        - storefront
+        - cms-commerce
+        - cms-upstream
+        - tooling-gates
+        - docs
+        - deployment
+    validations:
+      required: true
+  - type: dropdown
+    id: build-profile
+    attributes:
+      label: Build profile
+      description: Which `SITE_PROFILE` were you running, if relevant at all? See `AGENTS.md`'s "Build profiles and the template mechanism".
+      options:
+        - toko
+        - berita
+        - landing
+        - n.a.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Exact commands, in order, from a clean checkout where possible.
+      placeholder: |
+        1. `bun install`
+        2. `bun run ...`
+        3. ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behaviour
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behaviour
+      description: Include the exact error output, gate name, or failing assertion where there is one.
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version / commit
+      description: "`git rev-parse HEAD`, a `vX.Y.Z` tag, or the `version` in the root `package.json`."
+      placeholder: e.g. v0.10.0, or a commit SHA
+    validations:
+      required: true
