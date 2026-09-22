@@ -1,0 +1,24 @@
+# Issue-form chooser configuration. See https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/configuring-issue-templates-for-your-repository#configuring-the-template-chooser
+#
+# blank_issues_enabled: false only removes the "Open a blank issue" link from
+# the web chooser at github.com/ahliweb/awcms-one/issues/new/choose — it does
+# NOT affect `gh issue create` or the REST/GraphQL API, which this repo's own
+# maintainer already uses to open umbrella/epic issues (e.g. #179, #150, #46)
+# that do not fit any of the three forms below. Disabling it here steers a
+# reporter arriving through the web UI toward the structured form that fits,
+# without taking anything away from how epics actually get created.
+blank_issues_enabled: false
+contact_links:
+  - name: Report a security vulnerability
+    url: https://github.com/ahliweb/awcms-one/security/advisories/new
+    about: >-
+      Do not open a public issue for an exploitable vulnerability — see
+      SECURITY.md. This reports it privately through a GitHub Security
+      Advisory instead; this repo aims for an initial response within 3
+      working days.
+  - name: Support and general questions
+    url: https://github.com/ahliweb/awcms-one/blob/main/SUPPORT.md
+    about: >-
+      For a question that is not a bug report, a feature request, or an
+      upstream sync — SUPPORT.md routes it to the right place, including
+      help translating a governance document's Indonesian mirror.

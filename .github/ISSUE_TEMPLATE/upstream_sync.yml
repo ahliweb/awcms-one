@@ -1,0 +1,42 @@
+name: Upstream sync (apps/cms)
+description: Track a git subtree pull of apps/cms from ahliweb/awcms.
+title: "chore(cms): sync apps/cms with ahliweb/awcms up to "
+labels:
+  - cms
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Read `AGENTS.md`'s "The subtree embed" before opening the PR this issue tracks. The merge-commit rule is now mechanically enforced repo-wide (GitHub's merge button offers no other method), but the checklist below is not — nothing stops a sync PR from silently dropping a local divergence.
+
+        _Bahasa Indonesia: Gunakan formulir ini untuk melacak `git subtree pull` apps/cms dari ahliweb/awcms. Item wajib: commit/PR upstream, alasan sinkronisasi, dan daftar periksa di bawah._
+  - type: input
+    id: upstream-ref
+    attributes:
+      label: Upstream commit / PR
+      description: The ahliweb/awcms commit SHA this sync will pull up to (and its PR number, if one prompted the sync).
+      placeholder: e.g. 8c64528db2698d1631cdaaa7c1c2129b5bc9e5a2 (awcms PR #813)
+    validations:
+      required: true
+  - type: textarea
+    id: reason
+    attributes:
+      label: Reason for this sync
+      description: What upstream change motivates pulling now — a fix this repo needs, a scheduled catch-up, or a specific awcms PR/issue.
+    validations:
+      required: true
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist for the PR that closes this issue
+      options:
+        - label: Merged with a MERGE COMMIT — never squashed, never rebased (mechanically the only option GitHub's merge button offers here, but confirm the PR was not force-pushed around it).
+          required: true
+        - label: Every documented local divergence in AGENTS.md's "The subtree embed" (the version-check test skip, the AdminLayout/module-contract/sidebar-menu fields, admin-screens.css, client-asset-budget.ts) was either kept as-is or re-applied on conflict — verified with `git diff awcms/main:<path> HEAD:apps/cms/<path>` for each, not assumed from memory.
+          required: true
+        - label: Generators and gates re-run after the merge (at minimum `bun run check:cms`; regenerate `bun.lock` in full if apps/cms's own dependencies moved).
+          required: true
+        - label: AGENTS.md's "Last sync" row updated with the new upstream commit and this issue/PR number.
+          required: true
+        - label: The divergence list itself re-verified as complete, not just each existing entry re-applied — a subtree pull is also how a NEW divergence gets discovered, by conflict or by diff.
+          required: true

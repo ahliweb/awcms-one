@@ -1,0 +1,37 @@
+# CODEOWNERS — routing and documentation only, NOT a merge gate.
+#
+# This repo has a single maintainer, @ahliweb — a GitHub USER account, not an
+# org, so there is no @org/team syntax to reach for here. Branch protection
+# does not require a code-owner review before merging (the required checks
+# are the `Check (toko|berita|landing)` and `check-cms` status checks — see
+# AGENTS.md's "The subtree embed" and docs/alur-kerja-pengembangan.md for the
+# protection settings as verified). This file only drives GitHub's own
+# review-request routing and the "Code owners" list the PR UI shows; it is
+# advisory, and reviewing every PR alone does not block anything.
+#
+# Rules are matched last-one-wins (GitHub's own precedence for this file), so
+# the blanket default comes first and the more specific lines below exist to
+# name, in one place, which area a change actually falls under — each with a
+# short reason, same as AGENTS.md asks of any other rule here.
+
+* @ahliweb
+
+# apps/cms is ahliweb/awcms embedded whole via git subtree (AGENTS.md's "The
+# subtree embed"). A change here usually belongs upstream, not in this repo —
+# except the small, deliberately-kept-small set of local divergences that
+# section lists by name and path.
+/apps/cms/ @ahliweb
+
+# Workflows, issue forms, the PR template, and this file itself.
+/.github/ @ahliweb
+
+# The root audit gates (audit:dokumen, audit:rilis, audit:translation,
+# audit:graf) and the shared lib/ they import from — AGENTS.md's "The gates".
+/packages/gerbang/ @ahliweb
+
+# Root-level scripts: release cutting, template:init, DB seeding, the
+# knowledge-graph pipeline.
+/tools/ @ahliweb
+
+# Architecture decision records — GOVERNANCE.md's "Recording a decision".
+/docs/adr/ @ahliweb
