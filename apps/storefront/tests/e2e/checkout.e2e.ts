@@ -9,10 +9,19 @@
  * product with no variants and no service-form fields, so "add to cart"
  * needs no extra selection first — the SAME reason `tests/fixtures/awcms/
  * products.json` carries it at all is not tested here, only relied on.
+ *
+ * Commerce-only (issue #183): `/product`, `/keranjang`, `/checkout`,
+ * `/pesanan` are all `toko`-group routes (`src/config/routes.ts`'s
+ * `ROUTE_GROUPS`) — this whole file skips cleanly, not red, on a `berita`
+ * or `landing` run of `bun run test:e2e`, which build neither the pages
+ * nor the anonymous storefront-commerce endpoints this spec drives.
  */
 import { expect, test } from "@playwright/test";
+import { isGroupActive } from "../../src/config/profil";
 
 test.describe.configure({ mode: "serial" });
+
+test.skip(!isGroupActive("toko"), "Checkout/cart routes are only built for the toko profile group.");
 
 let orderCode: string | undefined;
 

@@ -1,0 +1,127 @@
+name: e2e
+
+# Issue #183 — `apps/storefront/tests/e2e/` (Playwright: checkout, ad popup,
+# and this issue's own new axe-core accessibility + no-horizontal-overflow
+# specs) never ran in CI before this file. A SEPARATE workflow from
+# `.github/workflows/ci.yml` on purpose, matching `template-init-smoke.yml`'s
+# own precedent: this is a slower, browser-driven suite with a different
+# risk profile (a flaky third-party rendering difference should never block
+# every other PR), so it is explicitly NOT a required status check — see
+# AGENTS.md's "The gates" for the checks that ARE required, and
+# `template-init-smoke.yml`'s own comment for how a workflow like this one
+# gets promoted once it has proven itself over several consecutive green
+# runs.
+#
+# Deterministic assertions only (the issue's own decision record): axe-core
+# failing on serious/critical WCAG 2.1 A/AA violations, and a
+# no-horizontal-overflow check at 360px. Full-page screenshots (mobile +
+# desktop, every key page, every profile) are captured and uploaded as
+# artifacts for a human to actually look at — NEVER compared against a
+# committed baseline, since cross-OS font rendering makes a byte-level
+# baseline flaky by construction and a hosted visual-diff service is a paid
+# external dependency this repo does not have.
+#
+# Actions are pinned to a commit SHA, not a tag — see AGENTS.md's
+# "Configuration and toolchain". The `# vX.Y.Z` comment behind each SHA is
+# read by Dependabot to raise the pin and its comment together.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  # A 3-leg matrix over the storefront's build profile — the same shape
+  # `ci.yml`'s own `check` job uses (issue #137), so a `berita`/`landing`
+  # regression in the e2e suite is never hidden behind a `toko`-only run.
+  # Every leg builds ONE real site (`tests/e2e/build-and-serve.ts`, via
+  # `tests/e2e/global-setup.ts`) against the committed stub CMS fixtures —
+  # no live `apps/cms`, no network beyond `bun install`/the Chromium
+  # download.
+  e2e:
+    name: e2e (${{ matrix.profile }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    strategy:
+      fail-fast: false
+      matrix:
+        profile: [toko, berita, landing]
+
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      # The ROOT pin (package.json's packageManager/engines.bun) — see
+      # AGENTS.md's "Configuration and toolchain".
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2.2.0
+        with:
+          bun-version: "1.4.0"
+
+      - name: Cache Bun install cache
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ~/.bun/install/cache
+          key: bun-${{ runner.os }}-${{ hashFiles('bun.lock') }}
+          restore-keys: |
+            bun-${{ runner.os }}-
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      # Chromium only (never `--with-deps`, which needs root — this repo's
+      # own `playwright` skill: "TANPA --with-deps di host tanpa root").
+      # `ubuntu-latest` GitHub-hosted runners already carry every OS
+      # library Chromium needs, so no `apt-get` step is required here the
+      # way it would be on a locked-down host. Cached on the exact
+      # `@playwright/test` version pinned in `bun.lock` — a version bump
+      # invalidates the cache automatically rather than silently reusing a
+      # stale browser build.
+      - name: Cache Playwright browsers
+        id: cache-playwright
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('bun.lock') }}
+
+      - name: Install Chromium
+        if: steps.cache-playwright.outputs.cache-hit != 'true'
+        working-directory: apps/storefront
+        run: bun --bun playwright install chromium
+
+      # Every spec's own screenshot output (`screenshots.e2e.ts`) is pointed
+      # at a path this job uploads afterwards, distinct from Playwright's
+      # own `test-results`/`playwright-report` (traces/videos on failure) —
+      # both are uploaded, `if: always()`, so a failing run still leaves
+      # something to look at.
+      - name: Run Playwright e2e (SITE_PROFILE=${{ matrix.profile }})
+        working-directory: apps/storefront
+        env:
+          SITE_PROFILE: ${{ matrix.profile }}
+          E2E_SCREENSHOT_DIR: test-results/screenshots
+        run: bun run test:e2e
+
+      - name: Upload Playwright report (${{ matrix.profile }})
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: playwright-report-${{ matrix.profile }}
+          path: apps/storefront/playwright-report/
+          if-no-files-found: ignore
+          retention-days: 14
+
+      - name: Upload screenshots (${{ matrix.profile }})
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: screenshots-${{ matrix.profile }}
+          path: apps/storefront/test-results/screenshots/
+          if-no-files-found: ignore
+          retention-days: 14

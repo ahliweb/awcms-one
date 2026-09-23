@@ -14,8 +14,8 @@ Architecture, schema, API, CMS workflow, storefront behaviour, testing, deployme
 | [`cms.md`](cms.md) | Authoring, the product state machine, permissions, audit logging, media, taxonomy |
 | [`routing.md`](routing.md) | Every storefront route and how `getStaticPaths()` derives it |
 | [`seo.md`](seo.md) | Metadata, `Product` JSON-LD, and the XSS defence around it |
-| [`aksesibilitas.md`](aksesibilitas.md) | What is in place, and that it was verified by reading code, not by a tool |
-| [`responsif.md`](responsif.md) | The fluid, breakpoint-free grid, and that it was verified by reading code, not a browser |
+| [`aksesibilitas.md`](aksesibilitas.md) | What is in place, and that it is verified by a real axe-core run in CI, not merely by reading code |
+| [`responsif.md`](responsif.md) | The mostly-fluid grid, and that it is verified by a real browser checking for overflow in CI, not merely by reading code |
 | [`ui-ux.md`](ui-ux.md) | No product imagery, computed badge contrast, price/stock presentation |
 | [`pengujian.md`](pengujian.md) | The three test suites, which need PostgreSQL, and which do not |
 | [`deployment.md`](deployment.md) | Build vs. serve, environment variables, what the container may and may not reach |

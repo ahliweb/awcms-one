@@ -1,10 +1,10 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](responsif.md)
 
-<!-- i18n-source-hash: sha256:65f862ed2cb863f0177d4affe1135a91fefc160cfe2e461a05e98ac0c5d64cae -->
+<!-- i18n-source-hash: sha256:3a741be488045396b39bc19a4c928a53be4a2c4cb71684d6c0c13100459a422d -->
 
 # Desain responsif
 
-Bagaimana `apps/storefront` berperilaku di berbagai lebar viewport, dan bagaimana itu diperiksa. **Baca ini dulu: setiap klaim di bawah berasal dari membaca `apps/storefront/src/styles/*.css` dan template halaman — tidak ada browser, sungguhan atau headless, yang dibuka untuk memverifikasi layout pada lebar mana pun saat menulis dokumen ini.** `apps/storefront` belum punya uji visual-regression saat ini; ia punya suite e2e Playwright sungguhan (`apps/storefront/tests/e2e/checkout.e2e.ts`), tapi suite itu menguji perilaku checkout, bukan layout pada rentang lebar.
+Bagaimana `apps/storefront` berperilaku di berbagai lebar viewport, dan bagaimana itu diperiksa. **Baca ini dulu: setiap klaim di bawah kini diverifikasi oleh pemeriksaan browser otomatis sungguhan, bukan sekadar dengan membaca `apps/storefront/src/styles/*.css` dan template halaman secara manual.** `apps/storefront/tests/e2e/responsif.e2e.ts` (issue #183) membuka setiap halaman kunci profil build aktif di peramban Chromium sungguhan pada 360px (mobile) dan 1280px (desktop) dan menegaskan `document.documentElement.scrollWidth <= window.innerWidth` — kondisi persis yang menghasilkan scrollbar horizontal yang tak diinginkan. `.github/workflows/e2e.yml` menjalankannya untuk ketiga profil build pada setiap push (belum menjadi status check wajib — lihat komentar milik workflow itu sendiri); bagian "Playwright e2e" milik `docs/pengujian.md` adalah rujukan tier lengkapnya. `apps/storefront` masih belum punya baseline visual-regression yang di-commit — `apps/storefront/tests/e2e/screenshots.e2e.ts` menangkap screenshot halaman penuh untuk dilihat manusia, sengaja tidak pernah dibandingkan byte demi byte (lihat docblock spec itu sendiri untuk alasannya).
 
 ## Sebagian besar fluid, dengan sekumpulan breakpoint kecil yang disengaja
 
@@ -44,10 +44,18 @@ Utility bar (`Header.astro`) dan kolom "Kanal" baru pada footer (`Footer.astro`)
 
 ## Apa yang diverifikasi, dan bagaimana
 
+- **Peramban sungguhan mengukur overflow sungguhan** (`apps/storefront/tests/e2e/responsif.e2e.ts`, issue #183) pada 360px dan 1280px, untuk setiap halaman kunci setiap profil build — inilah sekarang sumber utama untuk "apakah halaman ini overflow", bukan pembacaan setingkat `grep` di bawah.
 - **Konfirmasi setingkat `grep` untuk setiap query `@media`** di `global.css`, `katalog.css`, `berita.css`, `toko.css` — tabel breakpoint di atas menyeluruh, bukan sampel. `toko.css` (gaya khusus checkout/keranjang) tidak membawa breakpoint lebar sendiri, mengandalkan guard flex-shrink `min-width: 0` sebagai gantinya.
-- **Membaca, bukan mengukur, batas-bawah viewport-sempit** untuk setiap grid fluid — penalaran `min(Npx, 100%)` di atas dibaca dari komentar/struktur masing-masing stylesheet sendiri, tidak dikonfirmasi dengan jendela browser terbuka.
+- **Penalaran `min(Npx, 100%)` clamp sendiri** dibaca dari komentar/struktur masing-masing stylesheet sendiri — masih benar, dan kini didukung pemeriksaan 360px di atas yang sungguh menjalankannya.
 - **Tabel layar admin** (`apps/cms/src/pages/admin/commerce.astro`) mendeklarasikan kelas `data-table--stack` untuk perilaku responsifnya sendiri — milik `apps/cms`, bukan storefront ini, dan tidak diperiksa lebih lanjut untuk dokumen ini.
+
+## Dua bug overflow sungguhan yang ditemukan jalankan otomatis pertama (issue #183)
+
+Keduanya diperbaiki di `apps/storefront/src/styles/katalog.css`, di token/komponen alih-alih patch satu-off:
+
+- **Baris rentang harga sidebar filter `/produk`** (`.filter-price-range`) secara tak sengaja adalah flex KOLOM, bukan baris — ia juga membawa class `.filter-field`, yang aturan `flex-direction: column`-nya adalah satu-satunya yang menetapkan properti itu, sehingga `flex: 1`/`min-width: 0` pada kedua field `<input type="number">`-nya menyusutkan TINGGI-nya (sumbu utama kolom), bukan lebarnya; tiap input berada pada default intrinsiknya sendiri ~190px, jauh melewati viewport 360px. Diperbaiki dengan mendeklarasikan `flex-direction: row` secara eksplisit pada `.filter-price-range`.
+- **Breakpoint satu-kolom halaman yang sama** (`@media (max-width: 860px) { .listing-layout { grid-template-columns: 1fr; } }`) tetap overflow bahkan setelah perbaikan di atas: track `1fr` polos adalah singkatan `minmax(auto, 1fr)`, dan minimum otomatis track itu tetap pada ukuran min-content item terbesar terlepas dari `min-width: 0` yang ditetapkan pada ITEM grid (`.listing-sidebar` sudah membawanya, dan itu tidak cukup dengan sendirinya). Diperbaiki dengan `minmax(0, 1fr)`, yang juga menghapus batas track itu sendiri.
 
 ## Belum dibangun
 
-Uji visual-regression otomatis apa pun, atau langkah CI yang me-render storefront pada berbagai lebar viewport. `bun run check` milik `apps/storefront` adalah type-check; suite Playwright menguji perilaku, bukan layout. Langkah berikutnya yang konkret, belum diambil, akan persis jenis pemeriksaan browser-sungguhan yang skill `playwright` di lingkungan ini ada untuk menyiapkannya.
+Baseline visual-regression yang di-commit — `apps/storefront/tests/e2e/screenshots.e2e.ts` (issue #183) menangkap PNG halaman-penuh per halaman kunci per viewport (diunggah sebagai artifact CI oleh `.github/workflows/e2e.yml`) untuk dilihat manusia, sengaja tidak pernah dibandingkan byte demi byte terhadap jalankan sebelumnya (rendering font lintas-OS membuat itu flaky secara konstruksi, dan layanan visual-diff yang di-hosting adalah dependensi eksternal berbayar yang tidak dimiliki repo ini).

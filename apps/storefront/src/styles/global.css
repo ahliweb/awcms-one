@@ -145,19 +145,42 @@
 
   --text-primary: #0f172a;
   --text-secondary: #334155;
-  --text-muted: #64748b;
+  /* #64748b measured 4.34:1 against --bg-subtle (#f1f5f9) — under the 4.5:1
+     AA floor for normal text (issue #183's axe run caught this on
+     `.content-placeholder`). #5a6b82 is the same slate hue, darkened just
+     enough to clear 4.97:1 against every light-mode background this token
+     is used on (bg-primary/bg-surface/bg-subtle, bg-subtle being the
+     tightest case) without a visible colour-family change. */
+  --text-muted: #5a6b82;
 
   --border-color: #e2e8f0;
   --border-focus: #0284c7;
 
   --accent-primary: #0284c7;
   --accent-hover: #0369a1;
-  /* Sky link colour (2026-09 redesign) — the same value as `--accent-primary`
-     today, named separately so body copy and the mockup's "sky" link colour
-     can diverge later without renaming every `a` rule that reads
-     `--accent-primary`. */
-  --link-color: #0284c7;
-  --link-hover: #0369a1;
+  /* Sky link colour (2026-09 redesign). Originally the same value as
+     `--accent-primary` (#0284c7) — issue #183's axe run measured that
+     against real backgrounds (white, --bg-primary, --bg-subtle) and found
+     3.74–4.10:1, under the 4.5:1 AA floor for normal-size text wherever a
+     plain inline link (a contact-card phone/e-mail link, the header's
+     unstyled "Masuk" link, prose body copy) had no more specific colour
+     rule of its own. #0369a1/#075985 are the same sky family, one and two
+     steps darker (already this app's own `--accent-hover` value and
+     `--status-info-fg` value respectively — not new colours), clearing
+     5.42–5.93:1 and 6.90–7.56:1. `--accent-primary`/`--accent-hover`
+     (buttons, focus rings, the brand tile) are UNCHANGED — this pair only
+     ever governed plain text-link colour, per the note above; darkening it
+     alone was the migration this comment already anticipated. */
+  --link-color: #0369a1;
+  --link-hover: #075985;
+  /* The accent colour to use for text/icons on `--bg-inverse` regardless of
+     OS colour scheme (the utility bar is a permanently dark strip even in
+     light mode — see `.band-inverse` below) — the SAME value dark mode's
+     own `--accent-primary` already uses, since `--bg-inverse` is close in
+     luminance to dark mode's own surfaces. Fixes `.utility-bar-akun`, which
+     forced light-mode's `--accent-primary` (#0284c7, 4.35:1 against
+     `--bg-inverse` — under the 4.5:1 AA floor) onto this always-dark band. */
+  --accent-on-inverse: #38bdf8;
 
   --danger-bg: #fef2f2;
   --danger-text: #991b1b;
@@ -315,12 +338,12 @@ body {
 }
 
 a {
-  color: var(--accent-primary);
+  color: var(--link-color);
   text-decoration: none;
 }
 
 a:hover {
-  color: var(--accent-hover);
+  color: var(--link-hover);
   text-decoration: underline;
 }
 
@@ -420,7 +443,7 @@ p {
 }
 
 .utility-bar-akun {
-  color: var(--accent-primary) !important;
+  color: var(--accent-on-inverse) !important;
 }
 
 /* Category nav row as chips (2026-09 redesign, mockup lines 51-55). */
@@ -890,6 +913,15 @@ main {
   margin-block: 0.75rem;
 }
 
+/* A link inside CMS prose needs a NON-colour cue too (WCAG 1.4.1 — axe's
+   `link-in-text-block`, issue #183): `--link-color` against `--text-secondary`
+   body copy does not reach the 3:1 text-to-text ratio that rule wants, and a
+   sky blue dark enough to reach it would barely read as "blue" any more.
+   Underlining every prose link is the standard, colour-independent fix. */
+.page-body a {
+  text-decoration: underline;
+}
+
 .page-body ul,
 .page-body ol {
   margin-block: 0.75rem;
@@ -1050,6 +1082,21 @@ main {
 .band-inverse a:hover,
 .band-inverse button:hover {
   color: var(--text-on-inverse);
+}
+
+/* A `.btn--primary` (a solid, brand-filled button — see `.btn` below) needs
+   its OWN `--color-primary-foreground` text colour even inside a
+   `.band-inverse` container (issue #183: `Sidebar.astro`'s dark newsletter
+   card puts one on `--color-primary`, and `.band-inverse button`'s generic
+   muted-grey text colour above measured 1.7:1 against that green,
+   overriding `.btn--primary`'s own rule purely on selector specificity —
+   `.band-inverse button` has one more type selector than `.btn--primary`
+   alone). `--color-primary-foreground` is already chosen for AA contrast
+   against `--color-primary` (`tests/warna.test.ts`), so restating it here
+   at matching specificity is the fix, not a new colour. */
+.band-inverse .btn--primary,
+.band-inverse .btn--primary:hover {
+  color: var(--color-primary-foreground, #000000);
 }
 
 /* Form controls — 42px inputs/selects/textareas (issue #166's own height,
