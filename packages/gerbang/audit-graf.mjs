@@ -19,8 +19,9 @@
  * Five questions shared with the model this gate is adapted from
  * (`apps/cms/scripts/graph-artifacts-check.ts` — see
  * `packages/gerbang/lib/graf-checks.mjs`'s own docblock for exactly what
- * carries over and what does not), plus two that exist only at a federated
- * root:
+ * carries over and what does not), plus one bounded-staleness question this
+ * gate needs that the model does not, plus two that exist only at a
+ * federated root:
  *
  *   1. Only the tracked root artefacts (`graph.json`, `GRAPH_REPORT.md`,
  *      `manifest.json`, `cost.json`) are tracked under `graphify-out/`.
@@ -33,10 +34,17 @@
  *      directly, **no node in the tracked graph has a `source_file` under
  *      `apps/cms/`** (`checkNoSubtreeNodes`) — the federation's central
  *      promise, checked twice on purpose (see that function's own docblock).
- *   6. `graphify-out/combined/` (the on-demand federated graph) is never
+ *   6. **The graph still describes the tree, within a bound** (issue #186)
+ *      — `manifest.json`'s recorded `ast_hash` per file, re-hashed against
+ *      the current working tree, may not show more than
+ *      {@link MAX_STALE_FILES} files changed/added/removed since the graph
+ *      was last built. See "Why content, not git history" below and
+ *      `packages/gerbang/lib/graf-checks.mjs`'s `diffManifestStaleness` for
+ *      the mechanism.
+ *   7. `graphify-out/combined/` (the on-demand federated graph) is never
  *      tracked — issue #11 is explicit that it is generated, gitignored,
  *      and not approved for commit.
- *   7. `apps/cms/graphify-out/` still tracks exactly the four files
+ *   8. `apps/cms/graphify-out/` still tracks exactly the four files
  *      `ahliweb/awcms`'s own gate expects — the standing proof that this
  *      repo's own `knowledge:graph:combine` / `knowledge:obsidian:export`
  *      have never written into the subtree.
@@ -44,8 +52,28 @@
  * `cost.json`'s token totals are NOTED, never failed on: issue #11 requires
  * semantic/LLM extraction to be explicit, not forbidden. A nonzero total
  * means someone deliberately opted in (`knowledge/README.md` documents how);
- * this gate's job is visibility, the same stance `graph-artifacts-check.ts`
- * takes on staleness (reported, never fatal — see that file's own docblock).
+ * this gate's job for THAT number is visibility, the same stance
+ * `graph-artifacts-check.ts` takes on staleness generally (reported, never
+ * fatal — see that file's own docblock). Rule 6 above is the one place this
+ * gate now departs from that stance, and deliberately: nothing else in this
+ * repo would ever notice the graph had gone stale otherwise (see below).
+ *
+ * ## Why content, not git history
+ *
+ * The obvious way to measure staleness is `git rev-list --count
+ * <built_at_commit>..HEAD` — and this gate already prints that as an
+ * informational `freshness:` note (below), unconditionally, because it costs
+ * nothing to say. It cannot be the FAILING check, though: `check-cms` and
+ * the `Check` matrix both run on GitHub-hosted runners against a checkout
+ * whose depth is not guaranteed, and a shallow checkout makes
+ * `built_at_commit..HEAD` unreadable (`gitRun` returns `null`) — not wrong,
+ * just silent, which is worse than either red or green for a gate whose job
+ * is to be trusted when it says nothing is wrong. Rule 6 instead re-derives
+ * the same MD5 `graphify` itself already computed and recorded
+ * (`graphify-out/manifest.json`'s `ast_hash` — verified against the
+ * installed `graphify` 0.9.35's own `detect.py`, see
+ * `graf-checks.mjs`'s `md5Hex` docblock), which needs nothing but the
+ * working tree that is already checked out.
  *
  * ## What is deliberately NOT checked
  *
@@ -73,7 +101,6 @@ import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 
 import { gitLines, gitRun } from "./lib/git.mjs";
-import { createReporter } from "./lib/reporter.mjs";
 import {
   checkCombinedGraphUntracked,
   checkCommunityLabels,
@@ -81,14 +108,39 @@ import {
   checkGraphifyIgnoreExcludesSubtree,
   checkNoSubtreeNodes,
   checkReportAgreesWithGraph,
+  checkStaleness,
   checkSubtreeArtifactsUnchanged,
   checkTrackedArtifacts,
+  diffManifestStaleness,
   graphCounts,
+  md5Hex,
   parseGraphifyIgnore
 } from "./lib/graf-checks.mjs";
+import { createReporter } from "./lib/reporter.mjs";
 
 const ROOT = process.argv[2] ?? ".";
 const OUTPUT_DIR = "graphify-out";
+
+/**
+ * At most this many files may show up changed/added/removed (content MD5
+ * vs. `graphify-out/manifest.json`'s recorded `ast_hash`, over the in-scope
+ * candidate set — see `diffManifestStaleness`) before the graph is treated
+ * as stale enough to fail the gate, not merely note it.
+ *
+ * A starting assumption, the same way `audit-rilis.mjs`'s own `MAX_WAITING`
+ * and `MAX_AGE_DAYS` were: this repo has one measured data point so far, the
+ * incident issue #186 itself exists to catch. v0.10.0's storefront redesign
+ * (epic #166–#171) landed against the graph this gate's own fixture,
+ * `graphify-out/manifest.json`, was last built from, and re-hashing that
+ * manifest against the tree afterwards found 65 files changed and 9 added —
+ * 74 total, entirely storefront and root-owned work, zero of it noticed by
+ * any gate until this one. 40 sits below that real incident (so the same
+ * change would have failed this gate, which is the point) and above the
+ * handful of files an ordinary single-issue PR touches, so a normal PR does
+ * not trip it. Revisit once a few more releases give this a measured rate,
+ * the same way `audit-rilis.mjs`'s own docblock records having done.
+ */
+const MAX_STALE_FILES = 40;
 
 if (!existsSync(ROOT)) {
   console.error(`root "${ROOT}" is not a directory`);
@@ -125,6 +177,13 @@ if (subtreeTrackedOutput !== null) {
 
 const graphPath = path.join(outputDir, "graph.json");
 const reportPath = path.join(outputDir, "GRAPH_REPORT.md");
+const ignorePath = path.join(ROOT, ".graphifyignore");
+
+// Parsed once, up front, so both the graph-consuming checks below and the
+// staleness check (which needs no graph.json at all) share one reading of
+// .graphifyignore rather than two.
+const ignoreExists = existsSync(ignorePath);
+const ignore = ignoreExists ? parseGraphifyIgnore(readFileSync(ignorePath, "utf8")) : null;
 
 let graph = null;
 
@@ -157,16 +216,13 @@ if (graph) {
     for (const v of checkCommunityLabels(graph, report)) reporter.violation(v.rule, v.file, v.message);
   }
 
-  const ignorePath = path.join(ROOT, ".graphifyignore");
-
-  if (!existsSync(ignorePath)) {
+  if (!ignoreExists) {
     reporter.violation(
       "subtree-excluded",
       ".graphifyignore",
       "does not exist — without it, the next root rebuild would duplicate-extract apps/cms/"
     );
   } else {
-    const ignore = parseGraphifyIgnore(readFileSync(ignorePath, "utf8"));
     for (const v of checkGraphifyIgnoreExcludesSubtree(ignore)) reporter.violation(v.rule, v.file, v.message);
     for (const v of checkExclusionsHeld(graph, ignore)) reporter.violation(v.rule, v.file, v.message);
     reporter.note(
@@ -208,6 +264,49 @@ if (graph) {
           ? `freshness: built from ${short}, level with HEAD`
           : `freshness: built from ${short}, ${behind.trim()} commit(s) behind HEAD — consider \`bun run knowledge:graph:update\``
     );
+  }
+}
+
+// -----------------------------------------------------------------------
+// Bounded content staleness (issue #186) — independent of graph.json/
+// GRAPH_REPORT.md above: only manifest.json and the current working tree
+// are needed, so this still runs (and can still fail) even when one of the
+// checks above already found the graph itself broken.
+// -----------------------------------------------------------------------
+
+const manifestPath = path.join(outputDir, "manifest.json");
+
+if (!existsSync(manifestPath)) {
+  reporter.note(`staleness: ${OUTPUT_DIR}/manifest.json absent — cannot check content staleness`);
+} else {
+  try {
+    const manifest = JSON.parse(readFileSync(manifestPath, "utf8"));
+    const trackedRepoOutput = gitRun(ROOT, "ls-files");
+
+    if (trackedRepoOutput === null) {
+      reporter.note("staleness: SKIPPED — not a git repository, `git ls-files` unavailable");
+    } else {
+      const trackedRepo = gitLines(trackedRepoOutput);
+      const ignorePrefixes = ignore?.prefixes ?? [];
+      const diff = diffManifestStaleness(manifest, trackedRepo, ignorePrefixes, (filePath) => {
+        try {
+          return md5Hex(readFileSync(path.join(ROOT, filePath)));
+        } catch {
+          return null;
+        }
+      });
+
+      for (const v of checkStaleness(diff, MAX_STALE_FILES)) reporter.violation(v.rule, v.file, v.message);
+
+      const total = diff.changed.length + diff.added.length + diff.removed.length;
+      reporter.note(
+        `staleness: ${diff.changed.length} changed, ${diff.added.length} added, ${diff.removed.length} removed ` +
+          `— ${total} total (bound ${MAX_STALE_FILES})` +
+          (total > MAX_STALE_FILES ? "" : "; `bun run knowledge:graph:update` regenerates when it is time")
+      );
+    }
+  } catch (error) {
+    reporter.violation("artifact", `${OUTPUT_DIR}/manifest.json`, `is not readable as JSON: ${error.message}`);
   }
 }
 
