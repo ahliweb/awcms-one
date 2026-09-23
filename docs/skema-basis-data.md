@@ -105,7 +105,7 @@ All eight: RLS `ENABLE`+`FORCE`, tenant-isolation policy. `deleted_at` exists on
 
 ## Customer accounts, OTP, sessions: three tables (`sql/917`-`918`)
 
-Issue #87 (C1, contract #86/ADR-0016 — this awcms repo's own ADR, not yet written as of this table). No password anywhere — authentication is a 6-digit e-mail OTP; a session is an opaque bearer token, only its `sha256:` hash stored.
+Issue #87 (C1, contract #86 — see [ADR-0016](adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md), this repo's own ADR). No password anywhere — authentication is a 6-digit e-mail OTP; a session is an opaque bearer token, only its `sha256:` hash stored.
 
 | Table | Key columns | Notes |
 | --- | --- | --- |

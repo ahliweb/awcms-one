@@ -1,10 +1,10 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](arsitektur.md)
 
-<!-- i18n-source-hash: sha256:ba9959c1b4ccfe1c67ed6f7fc66997b0d5412378b4dda73ce08b6fe6327d0348 -->
+<!-- i18n-source-hash: sha256:f6e10b63862a6b3c182f84e04c02682f5b7644a422a20ec035c8e94a9cca7ba3 -->
 
 # Arsitektur
 
-Apa yang benar-benar di-deploy oleh repositori ini hari ini, dan batasan yang menjaga kedua bagiannya agar tidak diam-diam saling menyusup. Dokumen ini mendeskripsikan increment 5 — paritas BjekMart/portal-berita milik increment 2, paritas fungsional dengan seputarborneo.com v2.4.0 yang ditambahkan epic [#46](https://github.com/ahliweb/awcms-one/issues/46) (media sungguhan, chrome berita, pemutar baca-nyaring, pengalihan lawas berbasis aturan, analitik first-party, lambang lembaga), epic akun-pelanggan/afiliasi [#32](https://github.com/ahliweb/awcms-one/issues/32) ([ADR-0016](adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.id.md)), dan epic fitur BjekMart khusus admin plus integrasi penyedia eksternal [#33](https://github.com/ahliweb/awcms-one/issues/33) ([ADR-0017](adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.id.md) — ongkos kurir RajaOngkir, outbox WhatsApp, payment gateway Midtrans dengan intake webhook, POS, laporan penjualan, inbox, dan kampanye), tetap tanpa basis data produksi yang hidup — sebagaimana adanya di tree yang sudah digabung, bukan sebagaimana direncanakan. Lihat [`README.md`](../README.id.md) dan [`AGENTS.md`](../AGENTS.id.md) untuk tata letak workspace dan aturan kerja yang diasumsikan dokumen ini.
+Apa yang benar-benar di-deploy oleh repositori ini hari ini, dan batasan yang menjaga kedua bagiannya agar tidak diam-diam saling menyusup — sebagaimana adanya di tree yang sudah digabung, bukan sebagaimana direncanakan. Lihat [`docs/status.md`](status.id.md) untuk ringkasan keadaan-terkini yang didukung detail dokumen ini sendiri, dan [`README.md`](../README.id.md) serta [`AGENTS.md`](../AGENTS.id.md) untuk tata letak workspace dan aturan kerja yang diasumsikan dokumen ini.
 
 ## Dua deployable, satu aliran data saat-build, satu seam runtime anonim
 
