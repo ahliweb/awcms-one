@@ -2,6 +2,219 @@
 
 Every entry below is folded from `.changesets/` by `bun run release`, which also tags the release. The version is `MAJOR.MINOR.PATCH`, tagged `vX.Y.Z`; the next version is the largest `bump` declared among the changesets a release folds (see [`.changesets/README.md`](.changesets/README.md)) — never a level chosen at release time from a list of file names.
 
+## [0.11.0] — 2026-09-23
+
+### CODEOWNERS, a PR template, and issue forms
+
+Contribution routing had no structure: no `CODEOWNERS` to route review requests, no PR template to put `AGENTS.md`'s Definition of Done in front of a contributor (human or agent) at the exact moment they open a PR, and no issue forms to separate the three shapes this repo's own history actually produces — a bug report, a feature request, and a `git subtree pull` of `apps/cms` from `ahliweb/awcms`, which carries its own checklist nothing else was reminding anyone of.
+
+- `.github/CODEOWNERS`: `@ahliweb` (the repo's single user-account owner — not an org, no team syntax) as the default, plus explicit routing lines for `apps/cms/`, `.github/`, `packages/gerbang/`, `tools/`, and `docs/adr/`. Advisory only — branch protection does not require a code-owner review, so this drives GitHub's own routing UI, not a merge gate.
+- `.github/pull_request_template.md`: Summary, linked issue, how it was verified, and a checklist mirroring `AGENTS.md`'s Definition of Done in substance — short enough to actually fill in.
+- `.github/ISSUE_TEMPLATE/`: `bug_report.yml` and `feature_request.yml` (both with an area dropdown covering storefront/cms-commerce/cms-upstream/tooling-gates/docs/deployment), `upstream_sync.yml` (upstream commit/PR, reason, and a checklist naming the documented local divergences by path), and `config.yml` (blank issues off in the web chooser only — `gh issue create` and the API, which is how this repo's own epics get opened, are unaffected; a contact link routes vulnerability reports to a private GitHub Security Advisory, per `SECURITY.md`).
+- `CONTRIBUTING.md` (+ `.id.md`): the contribution flow now points at the issue forms and the PR template, and a new "Code ownership" section explains what `CODEOWNERS` does and does not gate.
+
+No code, gate, or runtime behaviour changes — this is contribution-process scaffolding.
+
+### GitHub Releases are published from CHANGELOG.md on tag push
+
+Ten release tags (`v0.1.0`–`v0.10.0`) existed with zero GitHub Release
+objects behind them — a template user landing on this repo's own GitHub page
+saw no release notes at all, even though every one of those tags already has
+a perfectly good entry sitting in `CHANGELOG.md`. Writing the Release by hand
+is exactly the kind of mechanical, easily-postponed step `tools/rilis.mjs`
+already exists to take off a maintainer's plate for the rest of a release —
+this closes the one part it did not yet cover.
+
+- **`packages/gerbang/lib/changelog.mjs`** (new, pure, unit-tested): reads one
+  version's section out of a `CHANGELOG.md`-shaped document, refusing —
+  rather than silently mis-splitting — when a `##` heading has drifted from
+  the one shape (`## [X.Y.Z] — <date>`) every version heading relies on.
+- **`tools/rilis-catatan.mjs`** (new): the CLI shell around it — prints one
+  version's section to stdout, accepting `v0.10.0` or `0.10.0`, exiting
+  non-zero with a clear stderr message when the version is missing or the
+  file is malformed. `tests/rilis-catatan.test.mjs` covers the parser
+  directly (middle/first/last section, missing version, optional `v`
+  prefix, CRLF, heading-format drift) and the CLI's own exit-code contract.
+- **`.github/workflows/release.yml`** (new): `push: tags: ['v*']` plus a
+  `workflow_dispatch` `tag` input, `permissions: contents: write` only.
+  Extracts the pushed version's notes with the tool above and runs
+  `gh release create --verify-tag`, marking `--latest` only when that tag is
+  the highest `v*` semver (`git tag --sort=-v:refname`, the same comparison
+  `tools/rilis.mjs` itself already relies on) — or `gh release edit` when a
+  Release already exists, so a `workflow_dispatch` backfill or a re-publish
+  is idempotent rather than failing. The tag is validated against
+  `^v[0-9]+\.[0-9]+\.[0-9]+$` and only ever reaches a shell script through
+  `env:`, never spliced into `run:` as a `${{ }}` expression, to close off
+  script injection through a hostile tag name or dispatch input.
+- **`tools/rilis.mjs`**: its printed next steps after `--apply` now say that
+  pushing the tag publishes the GitHub Release automatically, and how to
+  back-fill or re-publish one via `workflow_dispatch`.
+- Docs: `docs/alur-kerja-pengembangan.md`'s "The release cut" section and
+  `AGENTS.md`'s "Changesets and releases" section now describe the publish
+  step, both with their Indonesian mirrors re-stamped.
+
+After this merges, the manager backfills Releases for `v0.1.0`–`v0.10.0` by
+dispatching this workflow once per tag.
+
+### Publish `apps/cms`'s runtime/jobs images to GHCR, with SBOM and provenance
+
+Every production deploy re-ran `bun install --frozen-lockfile` and a full `apps/cms`
+build on the machine serving traffic, with nothing attestable behind the tag a
+rollback would name. `apps/cms/Dockerfile.production`'s `runtime` and `jobs`
+targets are content-independent — a pure function of a commit, unlike the
+storefront's own image, which bakes a tenant's live catalog/news content at
+build time using the CMS owner token as a BuildKit secret. That asymmetry is
+why only the CMS images are published here (see [ADR-0020](docs/adr/0020-publish-only-the-cms-images-to-ghcr-with-sbom-and-provenance.md)
+for the full reasoning and the rejected alternatives — publishing the
+storefront too, a runtime-building storefront container, a third-party
+registry).
+
+- `.github/workflows/images.yml` (new, not a required check) builds both
+  targets and, on a `v*` tag push or an explicit `workflow_dispatch` with its
+  `push` input checked, publishes `ghcr.io/<owner>/<repo>-cms` and
+  `-cms-jobs` — semver + sha tags, an SBOM, and a provenance attestation
+  verifiable with `gh attestation verify`. It builds (never pushes) on a
+  `pull_request` touching `apps/cms/**`/`apps/storefront/**`/
+  `compose.production.yaml`, and separately proves `apps/storefront/Dockerfile`
+  still builds, per `SITE_PROFILE`, against this repo's own stub CMS.
+- `compose.production.yaml`'s `cms`/`jobs`/`migrate` services read their
+  image name from `AWCMS_ONE_CMS_IMAGE`/`AWCMS_ONE_CMS_JOBS_IMAGE`, defaulting
+  to today's local-build names — an operator can now point a deployment at a
+  published tag instead of building on the deploy host, or change nothing.
+- `docs/deployment.md` gains a "Published images" section (pulling via the
+  new env vars, verifying the attestation/SBOM, GHCR package visibility) and
+  corrects a stale "not built" note that pre-dated this pipeline; `AGENTS.md`'s
+  "Not here yet" list is updated the same way. ADR-0019 itself is left
+  untouched — it is cited from ADR-0020, not amended.
+
+### Repository settings hardening: admin enforcement, conversation resolution, template-init-smoke required
+
+Issue #182 closed a gap between what `main`'s branch protection actually enforced and what a maintainer merging solo could still get away with: until now, an administrator (the only role that ever merges here) could push past a red or pending required check, and a review thread could be left unresolved at merge time. Neither is a defect a reviewer would catch, because both only matter on the one PR where someone is in a hurry — exactly when a mechanical gate is worth more than a habit.
+
+- `enforce_admins` is now on: an administrator merging `main` is held to the same required-status-check bar as anyone else.
+- `required_conversation_resolution` is now on: every review conversation on a PR must be marked resolved before it can merge.
+- All four `template-init-smoke` legs (`toko`, `berita`, `landing`, `root-suite`) are now required status checks, alongside the existing `check-cms`/`Check (toko)`/`Check (berita)`/`Check (landing)` four — the workflow has run green on `main` with no path filter since issue #147's job split, so the promotion this document always described as pending has now happened.
+- Secret scanning and push protection were confirmed on; two additional toggles (`secret_scanning_non_provider_patterns`, `secret_scanning_validity_checks`) were attempted but remain `disabled` — they appear to require a GitHub Secret Protection licence this user-owned public repository cannot enable. Documented as unavailable rather than claimed as enabled.
+- The repository wiki was disabled after confirming it held nothing (`ahliweb/awcms-one.wiki.git` did not exist) — this repository's documentation already lives under `docs/**`.
+- `.gitignore` now ignores `/redesign/`, so a local design-source drop (e.g. an unpacked redesign zip used as reference input) is never accidentally staged.
+
+No code, schema, or runtime behaviour changes. `docs/alur-kerja-pengembangan.md`, `AGENTS.md`, `README.md`, and `docs/template.md` (each with its Indonesian mirror) are updated to match the settings as verified, with the `gh api` commands to re-verify them.
+
+### `audit:graf` fails once the root knowledge graph drifts too far from the tree
+
+`graphify-out/` was last regenerated 2026-09-20, before v0.10.0's storefront
+redesign — `audit:graf` verified the corpus was self-consistent but never
+that it still described the current code, and CI has no `graphify` on `PATH`
+to regenerate it itself.
+
+- `audit:graf` now diffs `graphify-out/manifest.json`'s recorded per-file MD5
+  (`graphify`'s own `ast_hash` — verified reproducible with plain
+  `node:crypto`, no `graphify` install needed) against the current working
+  tree, and fails once more than `MAX_STALE_FILES` (40) files show up
+  changed/added/removed since the graph was last built — content-based, not
+  git history, so it works under CI's possibly-shallow checkouts.
+- `packages/gerbang/lib/graf-checks.mjs` gains the pure counting logic
+  (`diffManifestStaleness`, `checkStaleness`, `md5Hex`,
+  `manifestExtensions`, `inScopeCandidates`), unit-tested directly in
+  `tests/graf-checks-staleness.test.mjs` (under/at/over the bound,
+  added/removed in isolation) with the runner's wiring proven end-to-end in
+  `tests/audit-graf.test.mjs`.
+- The root graph is regenerated (`bun run knowledge:graph:update`,
+  `--code-only`, `apps/cms/` still excluded) and every one of its 94
+  communities carries a human-chosen name — the graph is at parity with the
+  tree as of this change.
+
+### CodeQL code scanning for JavaScript/TypeScript
+
+Issue #184 (part of epic #179) adds GitHub CodeQL code scanning alongside the secret scanning + push protection and Dependabot security updates already enabled on this repository (issue #182).
+
+- `.github/workflows/codeql.yml` — a new, separate workflow (`javascript-typescript`, `build-mode: none`) on push to `main`, every pull request, a weekly schedule, and manual dispatch. `github/codeql-action/{init,analyze}` are pinned to a commit SHA (`1c5b675653bb5c22dbe9b12b556ec555138e09fd`, `# v4.38.1`, verified against `github/codeql-action`'s own tag), the job's own permissions are the least required (`security-events: write`, `actions: read`, on top of the workflow-level `contents: read`), and the query suite is `security-extended` — not upstream `ahliweb/awcms`'s own `security-extended,security-and-quality`, since this repository has no CodeQL triage playbook of its own yet.
+- `.github/codeql/codeql-config.yml` excludes only generated/build/vendored output (`node_modules`, `dist`, `.astro`, `graphify-out`, generated i18n catalogs, lockfiles, vendored datasets, Playwright run artefacts) at any depth in the workspace. **`apps/cms/**` SOURCE stays in scope** — it is the code that actually runs in this deployment, even though that tree is upstream `ahliweb/awcms` embedded via `git subtree`; a resulting finding there is triaged per `SECURITY.md` (fixed here only if it is one of `AGENTS.md`'s documented local divergences or this repository's own `commerce` module, otherwise reported/fixed upstream and pulled in via the normal subtree sync).
+- Not a required status check yet — promoted, if ever, only after it has run green on `main` for a while, the same bar `check-cms` and `template-init-smoke` were held to before their own promotion.
+- Docs: `SECURITY.md` (+ `.id.md`) now names all three forms of automated scanning in force and how a CodeQL alert on `apps/cms/**` is triaged; `docs/alur-kerja-pengembangan.md` (+ `.id.md`) gets a new "CI: a fifth workflow, not required — `codeql`" section describing the workflow's shape and scope decision.
+
+### Dependabot version updates for GitHub Actions and this repo's own workspaces
+
+`AGENTS.md`'s "Configuration and toolchain" already claimed GitHub Actions are pinned to a SHA "with a `# vX.Y.Z` comment Dependabot reads to keep both in step" — but no `.github/dependabot.yml` existed, so only Dependabot *security* updates ever ran and pinned actions/dependencies never received a routine version bump.
+
+- Adds `.github/dependabot.yml`: `github-actions` (root workflows) and `bun` (this repo's own workspaces), both monthly and grouped (minor/patch together, majors separate).
+- `bun` update excludes `apps/cms/**` (`exclude-paths`) — that tree is `ahliweb/awcms` embedded via `git subtree`, and upstream owns its own dependency set and its own (inert-here) `apps/cms/.github/dependabot.yml`.
+- `bun` update ignores the `bun` dependency itself — its version is pinned in three places that must move together (`packageManager`/`engines.bun`, `bun-version` in every CI job), a deliberate hand-made change, not something a single-dependency PR should touch.
+- `AGENTS.md` and `docs/alur-kerja-pengembangan.md` (plus their `.id.md` mirrors) now name the real config and describe what to check on a Dependabot PR against the lockfile gate.
+
+### A newcomer-first README, with real per-profile screenshots
+
+`README.md` (+ `.id.md`) had grown into the same increment-by-increment chronicle `docs/status.md` (issue #188) already moved out of `AGENTS.md` — a first-time visitor to a public template had to read five increments' worth of history before reaching "how do I run this". This restructures it around what a newcomer actually needs, in order: what the platform is (one paragraph) → screenshots of the redesigned storefront per build profile → "Use this as a template" + quick start → the documentation index → running locally → architecture at a glance → gates. The chronicle itself was never deleted — it lives in [`CHANGELOG.md`](CHANGELOG.md), and [`docs/status.md`](docs/status.md) is the current-state reference both documents now point to.
+
+- Three new images, `docs/assets/readme-{toko,berita,landing}.webp` — an above-the-fold, 1280×800 crop of each build profile's home page, generated with `apps/storefront`'s own Playwright e2e harness (issue #183) and converted to WebP at quality 80. Combined weight: ~72 KB, well inside a 600 KB budget for this change. `apps/storefront/scripts/screenshots-readme.mjs` and `apps/storefront/tests/e2e/screenshots.e2e.ts` gained three new flags/env vars (`--pages`/`E2E_SCREENSHOT_PAGES`, `--viewport`/`E2E_SCREENSHOT_VIEWPORTS`, `--above-fold`/`E2E_SCREENSHOT_FULLPAGE`) so this exact shot is reproducible with one command per profile — documented in `docs/pengujian.md`. `.github/workflows/e2e.yml`'s own full-page, every-page, every-viewport CI capture is unchanged, since it sets none of the new env vars.
+- A CI status badge for `.github/workflows/ci.yml`.
+- The "Gates" section now names `MAX_STALE_FILES` (40, issue #186's bounded knowledge-graph staleness check) and briefly lists the four workflows that run on every push but are not yet required status checks (CodeQL, the Playwright e2e suite, the GHCR image publish, the release publish).
+- `tools/template-init/rewriters.mjs`'s `rewriteReadme` structural markers (the H1 hero span, the "Use this as a template" span) are unchanged in shape, so `bun run template:init` still rewrites this README correctly for a derived repository — verified with `bun test ./tests/template-init.test.mjs` and the `template-init-smoke` workflow.
+
+### Remove the Dependabot `bun` ecosystem block
+
+Dependabot's `bun` updater cannot parse this repo's `bun.lock`
+(`lockfileVersion` 2 — Bun 1.4's own format): its first scheduled run
+failed outright (issue #199, run 35858077848), and a monthly job that
+always fails is noise that hides a real failure. `.github/dependabot.yml`
+now carries only the working `github-actions` block; this repo's own
+workspace dependencies (root `package.json`, `apps/storefront`,
+`packages/*`) are bumped by hand until Dependabot supports lockfile v2:
+`bun update`, then `bun run check:lockfile`.
+
+- `tests/dependabot-config.test.mjs` now asserts the block is absent
+  while `bun.lock`'s `lockfileVersion` is greater than 1, and reads that
+  number from the lockfile itself rather than hard-coding the invariant —
+  so the test flips back to requiring the block the day it would pass.
+- `AGENTS.md`'s "Configuration and toolchain" and
+  `docs/alur-kerja-pengembangan.md`'s "Dependency updates" (plus both
+  `.id.md` mirrors) describe the manual bump workflow and how to
+  re-enable the block later.
+
+### A single current-state status page; AGENTS.md becomes working rules only
+
+`AGENTS.md`'s "What this repo is"/"What is here today" sections had grown into an increment-by-increment chronicle that went stale the moment the next increment landed — "Increment 1 — this epic — is foundation... with no live database" was still there after five increments. History belongs in `CHANGELOG.md` and the ADR index, not in the working contract a reader consults on every task.
+
+- New `docs/status.md` (+ `.id.md`): the single, concise, current-state reference — what exists by surface (storefront per build profile, the `commerce` module, customer accounts, external integrations, ops/deploy, the template mechanism) and the short "not here yet" list, each item linking to its own document or ADR.
+- `AGENTS.md` (+ `.id.md`): the two chronicle sections are replaced with a short summary pointing at `docs/status.md`; every working rule (the subtree embed, migration ranges, build profiles, the gates, the knowledge graph, toolchain, changesets, DoD, language, the bearer-session and `ROUTE_PARITY_EXEMPTIONS` rules) is kept in substance.
+- `docs/README.md` (+ `.id.md`): added a `status.md` row, fixed the ADR count (eighteen → twenty), and made the `ui-ux.md`/`aksesibilitas.md`/`responsif.md` rows describe the documents as they are now (a design system with real product imagery; automated axe-core/browser-overflow verification, not only a manual read).
+- Fixed a handful of present-tense claims elsewhere that contradicted the current tree: `docs/skema-basis-data.md` citing ADR-0016 as "not yet written" (it has been since increment 4), and `docs/arsitektur.md`'s epic-chronicle opening paragraph (now points at `docs/status.md` instead).
+- `AGENTS.md`'s Dependabot bullet also updated to match reality: no `bun` ecosystem block (Dependabot's updater cannot parse this repo's `bun.lock` `lockfileVersion` 2 — issue #199), workspace dependencies bumped by hand instead.
+
+### Storefront Playwright e2e now runs in CI: axe accessibility, no-overflow checks, per-profile screenshots
+
+`apps/storefront/tests/e2e/` (Playwright: checkout, the ad popup) never ran in CI, and `docs/aksesibilitas.md`/`docs/responsif.md` both stated their claims were verified by reading code by hand, not by a tool or a browser — stale since the 2026-09 redesign rewrote every public page's visuals (issue #183, part of #179).
+
+- Two new spec files, deterministic only: `aksesibilitas.e2e.ts` (`@axe-core/playwright`, `wcag2a`/`wcag2aa`/`wcag21a`/`wcag21aa` tags, failing on `serious`/`critical`) and `responsif.e2e.ts` (`document.documentElement.scrollWidth` vs. `window.innerWidth` at 360px/1280px) — both walk every key page of the active build profile via the new shared `profil-halaman.ts`.
+- `screenshots.e2e.ts` captures a full-page PNG per key page per viewport, uploaded as a CI artifact and never diffed against a committed baseline (cross-OS font rendering, no paid visual-diff service).
+- `.github/workflows/e2e.yml`: a new workflow, a 3-leg matrix over `SITE_PROFILE` (`toko`/`berita`/`landing`), Chromium cached, actions pinned to SHA — deliberately **not** a required status check yet, matching `template-init-smoke.yml`'s own promotion path.
+- `bun run screenshots:readme` (`apps/storefront/scripts/screenshots-readme.mjs`) regenerates the same screenshots deterministically from the identical harness, for a future README-images change to consume.
+- `apps/storefront/tests/e2e/build-and-serve.ts` factors the build+serve harness out of `global-setup.ts` so both the Playwright run and the new script share one implementation.
+- The first real run found four real `serious` axe colour-contrast violations, a genuine flex-direction bug overflowing `/produk`'s filter sidebar at 360px, and a pre-existing `<dialog>` centering bug the global margin reset had silently broken — all fixed in `apps/storefront` tokens/components, documented in `docs/aksesibilitas.md`/`docs/responsif.md`.
+- `docs/pengujian.md`, `docs/aksesibilitas.md`, `docs/responsif.md` (+ `.id.md` mirrors) restate every claim as tool-verified, with each tool's own stated limits.
+
+`bun.lock` gained `@axe-core/playwright` as an `apps/storefront` devDependency, regenerated by `bun install`.
+
+### Fix the storefront Dockerfile smoke job's unreachable stub CMS
+
+`.github/workflows/images.yml`'s `storefront-smoke` job has never passed:
+`astro build` inside `apps/storefront/Dockerfile` failed prerendering with
+`awcms could not be reached at http://localhost:4310`. The job's
+`docker/setup-buildx-action` step defaulted to the `docker-container`
+driver, which runs BuildKit inside its own container with its own network
+namespace — so `--network host` in the build step meant that container's
+host namespace, not the runner's, and the stub CMS started on the runner
+(`apps/storefront/scripts/stub-awcms.mjs`) was unreachable from inside the
+build.
+
+- `storefront-smoke` now passes `driver: docker` to `setup-buildx-action`,
+  so the build runs in the runner's own dockerd, where `--network host` is
+  the runner's real network namespace.
+- `cms-images` is deliberately left on the default `docker-container`
+  driver — it pushes to a registry and uses `cache-to: type=gha`, both of
+  which need BuildKit features the classic `docker` driver does not
+  support.
+
 ## [0.10.0] — 2026-09-22
 
 ### Storefront redesign — account and affiliate pages
