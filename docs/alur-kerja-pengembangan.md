@@ -47,6 +47,8 @@ Increment 2 (epic #21) was delivered as a sequence of atomic, single-issue PRs r
 
 `bun run release` (a maintainer's action, [`tools/rilis.mjs`](../tools/rilis.mjs)) folds every waiting changeset into `CHANGELOG.md`, using the **largest** `bump` among them to decide the next version — one `minor` beside nine `patch` entries makes the whole release `minor`, so the size of a release is a consequence of what went into it, not a judgement made at release time from a list of file names. `--commit` additionally tags `vX.Y.Z`. Issue #31 (this documentation refresh) does not cut the release itself — see [`.changesets/README.md`](../.changesets/README.md) for the backlog bound and `README.md`'s "Gates" section for `audit:rilis`.
 
+Pushing that tag is what actually publishes it (issue #181). [`.github/workflows/release.yml`](../.github/workflows/release.yml) triggers on `push: tags: ['v*']`, extracts the pushed version's `CHANGELOG.md` section with [`tools/rilis-catatan.mjs`](../tools/rilis-catatan.mjs), and creates a GitHub Release from it with `GITHUB_TOKEN` — marked "latest" only when that tag is the highest `v*` semver in the repository. The same workflow also accepts `workflow_dispatch` with a required `tag` input, idempotently running `gh release edit` rather than failing when that tag already has a Release — the way to back-fill a tag pushed before this workflow existed, or to re-publish one's notes after a `CHANGELOG.md` correction.
+
 ## CI: two jobs — one unconditional, one against a real database
 
 `.github/workflows/ci.yml` defines two jobs.

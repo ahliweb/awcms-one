@@ -239,12 +239,24 @@ fs.writeFileSync("package.json", `${JSON.stringify(pkg, null, 2)}\n`);
 console.log(`\nCHANGELOG.md and package.json updated to ${next}.`);
 
 // -- Commit and tag ------------------------------------------------------------
+// Issue #181: pushing the tag is also what PUBLISHES the release, not just
+// what records it. `.github/workflows/release.yml` triggers on `push: tags:
+// ['v*']` and takes this CHANGELOG.md entry straight to a GitHub Release
+// (via tools/rilis-catatan.mjs) — so the step printed below is not only
+// "record the tag", it is the actual publish action.
+const publishNote =
+  `Pushing ${tag} triggers .github/workflows/release.yml, which publishes ` +
+  `the GitHub Release from this CHANGELOG.md entry automatically (or, to ` +
+  `back-fill or re-publish a tag that is already pushed, run that workflow ` +
+  `manually with "workflow_dispatch", giving it the tag).`;
+
 if (!commit) {
   console.log("\nNext steps:");
   console.log("  git add -A");
   console.log(`  git commit -m "release: ${tag}"`);
   console.log(`  git tag -a ${tag} -m "${tag}"`);
   console.log(`  git push && git push origin ${tag}`);
+  console.log(`\n${publishNote}`);
   process.exit(0);
 }
 
@@ -252,3 +264,4 @@ gitRunInherit(".", "add", "-A");
 gitRunInherit(".", "commit", "-m", `release: ${tag}`);
 gitRunInherit(".", "tag", "-a", tag, "-m", tag);
 console.log(`\n${tag} created. Push with: git push && git push origin ${tag}`);
+console.log(`\n${publishNote}`);
