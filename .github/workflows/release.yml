@@ -1,0 +1,159 @@
+name: Release
+
+# Issue #181 — this repo had 10 release tags (v0.1.0–v0.10.0) and zero GitHub
+# Release objects: a template user landing on the repo page saw no release
+# notes at all. `bun run release` (tools/rilis.mjs) already writes the exact
+# text a Release needs into CHANGELOG.md and tags `vX.Y.Z`; this workflow's
+# only job is to take that section and publish it the moment the tag is
+# pushed, so writing a Release is never a separate, forgettable step.
+#
+# Triggers:
+#   - `push: tags: v*`         — the normal path, right after `git push
+#                                 origin vX.Y.Z` (tools/rilis.mjs's own
+#                                 printed next step).
+#   - `workflow_dispatch(tag)` — a backfill for a tag that was pushed before
+#                                 this workflow existed, or a manual
+#                                 re-publish. Idempotent either way: if the
+#                                 Release already exists, its notes are
+#                                 updated (`gh release edit`) instead of the
+#                                 run failing on `gh release create`.
+#
+# ---------------------------------------------------------------------------
+# Security note — the tag is validated BEFORE it touches a shell script.
+#
+# A `push: tags: v*` glob accepts far more than real semver (`v1`, `v-oops`
+# all match), and a `workflow_dispatch` `tag` input is free text typed by
+# whoever ran it. Both are validated below against `^v[0-9]+\.[0-9]+\.[0-9]+$`
+# before anything downstream reads them.
+#
+# Every step that needs one of these values receives it through `env:`, and
+# every `run:` script below reads it back as a shell variable (`"$TAG"`) —
+# NEVER as a `${{ ... }}` expression spliced directly into a `run:` script's
+# source text. That splice is the actual GitHub Actions injection class: a
+# value containing `$(...)` or backticks, substituted into the script BEFORE
+# the shell ever sees it, executes as part of that script. Going through
+# `env:` instead hands the shell an inert string in a variable, which is safe
+# even before the format check below runs.
+# ---------------------------------------------------------------------------
+#
+# Actions are pinned to a commit SHA (not a tag) with the same `# vX.Y.Z`
+# comment style as `.github/workflows/ci.yml` — see AGENTS.md's
+# "Configuration and toolchain". The `bun-version` below is the same literal
+# as ci.yml's own and package.json's `packageManager`/`engines.bun`; moving
+# one without the other two is exactly the drift that section warns about.
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Tag to publish or re-publish a GitHub Release for, e.g. v0.10.0"
+        required: true
+        type: string
+
+concurrency:
+  group: release-${{ inputs.tag || github.ref_name }}
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Publish GitHub Release
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      # fetch-depth 0 + fetch-tags: this job needs EVERY `v*` tag present,
+      # not just the one that triggered it, to tell whether that tag is the
+      # highest release (below) — a shallow, single-ref checkout would see
+      # only the pushed tag and always answer "yes".
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          fetch-tags: true
+
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2.2.0
+        with:
+          bun-version: "1.4.0"
+
+      # No `bun install` here on purpose: tools/rilis-catatan.mjs and the
+      # packages/gerbang/lib/ modules it imports use only relative imports
+      # and node: built-ins — nothing in node_modules — so this job stays a
+      # cheap, dependency-free checkout-and-run.
+      - name: Resolve and validate the target tag
+        id: tag
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          DISPATCH_TAG: ${{ inputs.tag }}
+          PUSH_REF_NAME: ${{ github.ref_name }}
+        run: |
+          set -euo pipefail
+          if [ "$EVENT_NAME" = "workflow_dispatch" ]; then
+            TAG="$DISPATCH_TAG"
+          else
+            TAG="$PUSH_REF_NAME"
+          fi
+          if ! [[ "$TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "::error::tag '$TAG' does not match ^v[0-9]+\.[0-9]+\.[0-9]+\$ — refusing to use it." >&2
+            exit 1
+          fi
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+
+      # tools/rilis-catatan.mjs (packages/gerbang/lib/changelog.mjs) does the
+      # actual parsing, unit-tested in tests/rilis-catatan.test.mjs — this
+      # step is just "run it and keep its stdout". That stdout becomes the
+      # Release body verbatim, so nothing else may be appended to this file.
+      - name: Extract this version's CHANGELOG.md section
+        env:
+          TAG: ${{ steps.tag.outputs.tag }}
+        run: bun tools/rilis-catatan.mjs "$TAG" > release-notes.md
+
+      # `git tag --sort=-v:refname` is the same version-sort tools/rilis.mjs
+      # itself already relies on (see that script and AGENTS.md's "Why
+      # --no-tags is not optional" for the one way this has gone wrong
+      # before) — reused here rather than re-implementing semver comparison
+      # in a second place.
+      - name: Determine whether this tag is the highest release
+        id: latest
+        env:
+          TAG: ${{ steps.tag.outputs.tag }}
+        run: |
+          set -euo pipefail
+          highest="$(git tag --list 'v*' --sort=-v:refname | head -n1)"
+          echo "Highest v* tag in this checkout: ${highest:-<none>}"
+          if [ "$TAG" = "$highest" ]; then
+            echo "flag=--latest" >> "$GITHUB_OUTPUT"
+          else
+            echo "flag=--latest=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      # Idempotent: `gh release view` tells us whether TAG already has a
+      # Release (true for every v0.1.0–v0.10.0 backfill after the first one
+      # is dispatched, and true for any accidental re-run of this workflow),
+      # and the same notes are written either way through `edit` instead of
+      # letting `create` fail on a Release that already exists.
+      - name: Publish or update the GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.tag.outputs.tag }}
+          LATEST_FLAG: ${{ steps.latest.outputs.flag }}
+        run: |
+          set -euo pipefail
+          if gh release view "$TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            echo "Release $TAG already exists — updating its notes."
+            gh release edit "$TAG" --repo "$GITHUB_REPOSITORY" \
+              --title "$TAG" \
+              --notes-file release-notes.md \
+              "$LATEST_FLAG"
+          else
+            echo "Release $TAG does not exist yet — creating it."
+            gh release create "$TAG" --repo "$GITHUB_REPOSITORY" \
+              --title "$TAG" \
+              --notes-file release-notes.md \
+              --verify-tag \
+              "$LATEST_FLAG"
+          fi
