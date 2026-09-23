@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](AGENTS.md)
 
-<!-- i18n-source-hash: sha256:25ad7817e8e467f73b749f3c31c64d44295b3226a28f1c065331803f351d8f8b -->
+<!-- i18n-source-hash: sha256:ab10b0588e9d6683325238ee7657ac1fd2afba27820bb8f338fc7285914475f3 -->
 
 # AGENTS.md — kontrak kerja awcms-one
 
@@ -109,7 +109,7 @@ Ini adalah workspace Bun (`workspaces: ["apps/*", "packages/*"]`); setiap direkt
 | `bun run audit:dokumen` | Tautan relatif mati di markdown; indeks ADR yang tidak lengkap di salah satu arah atau memuat baris ganda; jalur berkas yang disebut dalam backtick yang tidak ada di repo ini; kutipan `ADR-NNNN` yang tidak resolve ke mana pun; angka yang dieja yang tidak sesuai dengan himpunan yang diklaimnya dihitung, di dalam blok yang ditandai eksplisit |
 | `bun run audit:rilis` | Backlog `.changesets/` yang menunggu melewati batasnya — 20 berkas atau 14 hari; batas jumlahnya 10 sampai increment 3 mengukur laju nyata per increment (lihat docblock gerbang itu sendiri) |
 | `bun run audit:translation` | Cermin Indonesia (`<nama>.id.md`) yang hash sumber tercatatnya sudah tidak cocok lagi dengan sumber Inggrisnya, atau dokumen governance tanpa cermin sama sekali |
-| `bun run audit:graf` (alias: `bun run knowledge:check`) | Korpus graf pengetahuan akar (`graphify-out/`) menggambarkan dirinya sendiri secara jujur — hanya artefak yang dilacak yang dilacak, laporan sesuai dengan `graph.json`, setiap komunitas punya nama yang dipilih, `.graphifyignore` masih mengecualikan `apps/cms`, tidak ada node yang diekstraksi ganda darinya, graf federasi tidak pernah tanpa sengaja ter-commit, dan `apps/cms/graphify-out/` tidak tersentuh oleh perkakas repo ini sendiri. Lihat [`knowledge/README.md`](knowledge/README.md) |
+| `bun run audit:graf` (alias: `bun run knowledge:check`) | Korpus graf pengetahuan akar (`graphify-out/`) menggambarkan dirinya sendiri secara jujur — hanya artefak yang dilacak yang dilacak, laporan sesuai dengan `graph.json`, setiap komunitas punya nama yang dipilih, `.graphifyignore` masih mengecualikan `apps/cms`, tidak ada node yang diekstraksi ganda darinya, graf federasi tidak pernah tanpa sengaja ter-commit, `apps/cms/graphify-out/` tidak tersentuh oleh perkakas repo ini sendiri, dan — dengan batas, berbasis hash konten, karena checkout CI tidak dijamin penuh (issue #186) — graf belum melenceng lebih dari `MAX_STALE_FILES` berkas dari pohon yang dideskripsikannya. Lihat [`knowledge/README.md`](knowledge/README.md) |
 | `bun test` | Rangkaian tes gerbang akar — `tests/*.test.mjs` — plus tes unit/build-smoke/route milik `apps/storefront` sendiri. `apps/cms/**` dikecualikan lewat `pathIgnorePatterns` di `bunfig.toml`, bukan lewat flag di skrip `test` (lihat komentar berkas itu sendiri untuk kenapa perbedaannya krusial: CI memanggil `bun test` telanjang, dan flag di `bun run test` akan diam-diam tidak berlaku) |
 | `check-cms` (job CI, bukan skrip akar) | Rangkaian `bun run check` ~53-langkah milik `apps/cms` sendiri, lalu rangkaian `tests/integration/`-nya terhadap PostgreSQL hidup yang sudah dimigrasi — cakupan RLS/isolasi-tenant dan ber-gerbang-DB yang tidak bisa dijalankan apa pun milik-akar. Lokal: `cd apps/cms && DATABASE_URL="" bun run check`, lalu migrasi dan `bun test tests/integration/ --timeout 60000` terhadap basis data sekali-pakai — lihat [`docs/pengujian.md`](docs/pengujian.id.md) |
 
