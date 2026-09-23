@@ -64,6 +64,33 @@ Since increment 5 ([ADR-0017](docs/adr/0017-external-providers-are-commerce-owne
 - **A `git subtree pull` PR is merged with a merge commit, never squashed or rebased** — not a security control against an external attacker, but a control against corrupting this repo's own ability to pull upstream security patches into `apps/cms` in the future. Since issue #149 this is mechanically enforced repository-wide (`allow_squash_merge=false`, `allow_rebase_merge=false`), not only a reviewer's own memory. See `AGENTS.md`'s "The subtree embed".
 - **RLS `ENABLE`+`FORCE` on every tenant-scoped table**, including every `awcms_commerce_*` table added since increment 2 — see [`docs/skema-basis-data.md`](docs/skema-basis-data.md) for the current, exact table list rather than a count repeated here that a later migration would make stale.
 
+## CodeQL triage
+
+**Where alerts appear.** CodeQL's findings land on the repository's [Security → Code scanning alerts](https://github.com/ahliweb/awcms-one/security/code-scanning) tab and are readable/writable via `gh api repos/ahliweb/awcms-one/code-scanning/alerts` — the same API this section's own triage record was produced with (issue #206). An alert is not itself a defect report; it is a starting point that must be read against the actual flagged line before any action is taken.
+
+**The `security-extended` query suite is kept deliberately**, not widened to upstream `ahliweb/awcms`'s own `security-extended,security-and-quality` — see `docs/alur-kerja-pengembangan.md`'s "CI: a fifth workflow, not required — `codeql`" for why this repository starts narrower than the tree it embeds.
+
+**How an alert on `apps/cms/**` is triaged.** That tree is upstream's own source, carried here via subtree (see `AGENTS.md`'s "The subtree embed"), so the first question is never "is this a real bug" but "whose code is this": an alert on ordinary upstream code is reported to (and fixed in) `ahliweb/awcms` and pulled in through the normal subtree sync, never patched locally in a way a future `git subtree pull` would conflict with; an alert on this repository's own additive `commerce` module code (`apps/cms/src/modules/commerce/**` and the handful of other local divergences `AGENTS.md` names) is this repository's own to fix or dismiss, following the same verify-before-dismiss discipline as everywhere else.
+
+**Two standing rules a future reader must not re-litigate.** Issue #206's triage dismissed thirteen of the fifteen alerts open on `main` at the time as false positives / won't-fix / test-only, verified line by line against the flagged code rather than accepted on the tool's word. Two of the findings it dismissed rest on rules worth stating outright, so nobody "fixes" them again later:
+
+1. **A SHA-256 hash over a high-entropy random token (`randomBytes(32)`) is not a password hash**, and must not be replaced with a slow key-derivation function (argon2/bcrypt/scrypt). A KDF's cost buys resistance against an attacker guessing a low-entropy, human-chosen secret; a 256-bit CSPRNG value has no guessable structure to resist, so the added cost defends nothing while making every verification slower. This is why `js/insufficient-password-hash` is a false positive on `apps/cms/src/lib/auth/mfa-challenge-token.ts`'s `hashChallengeToken` and `apps/cms/src/lib/auth/oauth-state-token.ts`'s `hashOAuthState` — both hash a `randomBytes(32)` token, the same accepted shape as `session-token.ts`'s `hashSessionToken`.
+2. **`computePkceChallengeS256` (`apps/cms/src/lib/auth/oauth-state-token.ts`) implements RFC 7636 §4.2**, which specifies the PKCE `code_challenge` as `base64url(sha256(code_verifier))` — SHA-256 is not a weak choice here, it is the mandated one. Swapping it for a slower hash would not harden anything; it would produce a `code_challenge` the OAuth provider's own S256 verification no longer accepts, breaking login.
+
+**The dismissed alerts, by rule ID** (full reasoning and the exact `dismissed_comment` for each are on the alerts themselves, via the API above):
+
+| Rule ID | Count | Files | Reason used |
+| --- | --- | --- | --- |
+| `js/insufficient-password-hash` | 3 | `apps/cms/src/lib/auth/mfa-challenge-token.ts`, `oauth-state-token.ts` (×2) | false positive |
+| `js/file-access-to-http` | 4 | `tools/seed-cms.ts` | false positive |
+| `js/file-system-race` | 2 | `tools/rilis.mjs`, `tools/knowledge-graph-update.mjs` | won't fix |
+| `js/file-system-race` | 1 | `tests/knowledge-no-subtree-write.test.mjs` | used in tests |
+| `js/reflected-xss` | 1 | `apps/storefront/tests/penyaji-bayangan-html.test.ts` | used in tests |
+| `js/incomplete-url-substring-sanitization` | 1 | `apps/storefront/tests/profil-build-smoke.test.ts` | false positive |
+| `js/clear-text-logging` | 1 | `tools/seed-cms.ts` (the generated owner password, printed once and labelled "SHOWN ONCE, not stored", for the local dev operator who needs it) | won't fix |
+
+**Not dismissed.** Two further `js/clear-text-logging` alerts on `apps/cms/scripts/commerce-deploy-preflight.ts` are, technically, false positives too — CodeQL taints everything `loadEnv()` returns, and today's `reason:` strings print only role names, provider names, and URL values, never a credential (see [issue #205](https://github.com/ahliweb/awcms-one/issues/205)). They are fixed as code by a sibling change rather than dismissed here for a different reason: that safety currently rests entirely on every `reason:` string being composed carefully by hand, in a script whose output lands in retained deploy-pipeline logs, and two of its code paths echo a child process's stderr verbatim — output this script does not itself control. The sibling fix makes that property structural instead of leaving it to be maintained by discipline alone.
+
 ## What is NOT yet true, stated plainly
 
 **There is no live production deployment of this platform yet.** See [`docs/deployment.md`](docs/deployment.md) for exactly what is and is not provisioned; there is no running system at `mart.borneojek.com` for this repo's own code to expose. A reproducible production topology and a fail-closed preflight now exist ([ADR-0019](docs/adr/0019-production-topology-two-images-a-jobs-sidecar-and-a-fail-closed-preflight.md), `docs/deployment.md`'s "Production runbook") — the sentence above is about whether anything is actually running yet, not whether a documented path exists.

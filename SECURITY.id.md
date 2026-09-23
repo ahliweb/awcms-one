@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](SECURITY.md)
 
-<!-- i18n-source-hash: sha256:d4e199693515e9dd6798951a8e772dd346255b7924f02f0f1cc7e0c21482e470 -->
+<!-- i18n-source-hash: sha256:463cb76525778271c3b67e0a0c70f9b6d7878a1df06fa7092a0fe15079fe9bee -->
 
 # Kebijakan Keamanan
 
@@ -65,6 +65,33 @@ Sejak increment 5 ([ADR-0017](docs/adr/0017-external-providers-are-commerce-owne
 - **GitHub Actions dipin ke SHA commit**, bukan tag — lihat bagian "Configuration and toolchain" di `AGENTS.md`.
 - **PR `git subtree pull` di-merge dengan merge commit, tidak pernah di-squash atau di-rebase** — bukan kontrol keamanan terhadap penyerang eksternal, melainkan kontrol terhadap rusaknya kemampuan repo ini sendiri untuk menarik patch keamanan upstream ke `apps/cms` di masa depan. Sejak issue #149 ini ditegakkan secara mekanis di seluruh repositori (`allow_squash_merge=false`, `allow_rebase_merge=false`), bukan hanya diingat reviewer. Lihat "The subtree embed" di `AGENTS.md`.
 - **RLS `ENABLE`+`FORCE` di setiap tabel ber-scope-tenant**, termasuk setiap tabel `awcms_commerce_*` yang ditambahkan sejak increment 2 — lihat [`docs/skema-basis-data.md`](docs/skema-basis-data.id.md) untuk daftar tabel yang persis dan terkini, alih-alih sebuah hitungan yang diulang di sini yang akan menjadi basi oleh migrasi berikutnya.
+
+## Triase CodeQL
+
+**Di mana alert muncul.** Temuan CodeQL muncul di tab [Security → Code scanning alerts](https://github.com/ahliweb/awcms-one/security/code-scanning) repositori dan bisa dibaca/ditulis lewat `gh api repos/ahliweb/awcms-one/code-scanning/alerts` — API yang sama dipakai untuk membuat catatan triase pada bagian ini (issue #206). Sebuah alert bukan laporan cacat itu sendiri; ia adalah titik awal yang wajib dibaca ulang terhadap baris yang ditandai sebelum tindakan apa pun diambil.
+
+**Rangkaian query `security-extended` dipertahankan dengan sengaja**, tidak diperluas ke `security-extended,security-and-quality` milik `ahliweb/awcms` upstream sendiri — lihat bagian "CI: a fifth workflow, not required — `codeql`" di `docs/alur-kerja-pengembangan.md` untuk alasan repo ini mulai lebih sempit daripada pohon yang disematkannya.
+
+**Bagaimana alert di `apps/cms/**` ditriase.** Pohon itu adalah source milik upstream, dibawa ke sini lewat subtree (lihat "The subtree embed" di `AGENTS.md`), jadi pertanyaan pertama bukan "apakah ini bug sungguhan" melainkan "kode siapa ini": alert pada kode upstream biasa dilaporkan ke (dan diperbaiki di) `ahliweb/awcms` lalu ditarik masuk lewat sinkronisasi subtree biasa, tidak pernah ditambal lokal dengan cara yang akan konflik dengan `git subtree pull` berikutnya; alert pada kode tambahan modul `commerce` milik repo ini sendiri (`apps/cms/src/modules/commerce/**` dan segelintir divergensi lokal lain yang disebutkan `AGENTS.md`) adalah milik repo ini sendiri untuk diperbaiki atau di-dismiss, mengikuti disiplin verifikasi-sebelum-dismiss yang sama seperti di tempat lain.
+
+**Dua aturan baku yang tidak boleh dipersoalkan ulang pembaca di masa depan.** Triase issue #206 men-dismiss tiga belas dari lima belas alert yang terbuka di `main` saat itu sebagai false positive / won't-fix / khusus-test, diverifikasi baris demi baris terhadap kode yang ditandai, bukan diterima begitu saja dari kata alat. Dua dari temuan yang di-dismiss itu bersandar pada aturan yang layak dinyatakan tegas, agar tidak ada yang "memperbaikinya" lagi nanti:
+
+1. **Hash SHA-256 atas token acak berentropi tinggi (`randomBytes(32)`) BUKAN hash password**, dan tidak boleh diganti dengan fungsi derivasi kunci (key-derivation function) yang lambat (argon2/bcrypt/scrypt). Biaya sebuah KDF membeli ketahanan terhadap penyerang yang menebak rahasia berentropi rendah pilihan manusia; nilai CSPRNG 256-bit tidak punya struktur yang bisa ditebak untuk dilawan, jadi biaya tambahan itu tidak melindungi apa pun sementara membuat setiap verifikasi lebih lambat. Inilah kenapa `js/insufficient-password-hash` adalah false positive pada `hashChallengeToken` di `apps/cms/src/lib/auth/mfa-challenge-token.ts` dan `hashOAuthState` di `apps/cms/src/lib/auth/oauth-state-token.ts` — keduanya meng-hash token `randomBytes(32)`, bentuk yang sama yang sudah diterima seperti `hashSessionToken` di `session-token.ts`.
+2. **`computePkceChallengeS256` (`apps/cms/src/lib/auth/oauth-state-token.ts`) mengimplementasikan RFC 7636 §4.2**, yang menetapkan `code_challenge` PKCE sebagai `base64url(sha256(code_verifier))` — SHA-256 di sini bukan pilihan lemah, melainkan yang diwajibkan. Menggantinya dengan hash yang lebih lambat tidak memperkuat apa pun; itu akan menghasilkan `code_challenge` yang tidak lagi diterima verifikasi S256 milik penyedia OAuth, sehingga login rusak.
+
+**Alert yang di-dismiss, per rule ID** (alasan lengkap dan `dismissed_comment` persis untuk masing-masing ada di alert itu sendiri, lewat API di atas):
+
+| Rule ID | Jumlah | Berkas | Alasan yang dipakai |
+| --- | --- | --- | --- |
+| `js/insufficient-password-hash` | 3 | `apps/cms/src/lib/auth/mfa-challenge-token.ts`, `oauth-state-token.ts` (×2) | false positive |
+| `js/file-access-to-http` | 4 | `tools/seed-cms.ts` | false positive |
+| `js/file-system-race` | 2 | `tools/rilis.mjs`, `tools/knowledge-graph-update.mjs` | won't fix |
+| `js/file-system-race` | 1 | `tests/knowledge-no-subtree-write.test.mjs` | used in tests |
+| `js/reflected-xss` | 1 | `apps/storefront/tests/penyaji-bayangan-html.test.ts` | used in tests |
+| `js/incomplete-url-substring-sanitization` | 1 | `apps/storefront/tests/profil-build-smoke.test.ts` | false positive |
+| `js/clear-text-logging` | 1 | `tools/seed-cms.ts` (password owner yang digenerate, dicetak sekali dan dilabeli "SHOWN ONCE, not stored", untuk operator dev lokal yang membutuhkannya) | won't fix |
+
+**Tidak di-dismiss.** Dua alert `js/clear-text-logging` lain pada `apps/cms/scripts/commerce-deploy-preflight.ts` sebenarnya juga false positive — CodeQL menandai (taint) segala yang dikembalikan `loadEnv()`, dan string `reason:` hari ini hanya mencetak nama role, nama provider, dan nilai URL, tidak pernah kredensial (lihat [issue #205](https://github.com/ahliweb/awcms-one/issues/205)). Keduanya diperbaiki sebagai kode oleh perubahan sibling, bukan di-dismiss di sini, karena alasan yang berbeda: keamanan itu saat ini sepenuhnya bertumpu pada setiap string `reason:` yang disusun hati-hati dengan tangan, dalam skrip yang keluarannya mendarat di log pipeline deploy yang disimpan, dan dua jalur kodenya menggemakan (echo) stderr proses anak apa adanya — keluaran yang tidak dikendalikan skrip ini sendiri. Perbaikan sibling itu membuat properti tersebut struktural, bukan lagi dijaga hanya oleh kedisiplinan.
 
 ## Yang BELUM benar, dinyatakan terus terang
 
