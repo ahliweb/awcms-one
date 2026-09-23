@@ -7,7 +7,8 @@ import {
   checkRuntimeRoleShape,
   dsnUser,
   isProduction,
-  isValidHttpsUrl
+  isValidHttpsUrl,
+  redact
 } from "../scripts/commerce-deploy-preflight";
 
 /**
@@ -260,6 +261,47 @@ describe("checkPublicUrls", () => {
   test("unset URLs are skipped outside production", () => {
     const results = checkPublicUrls({}, false);
     expect(statusOf(results, "APP_URL")).toBe("SKIP");
+  });
+});
+
+describe("redact — issue #205, masks credential shapes before anything is printed", () => {
+  test("masks a postgres DSN's password, keeping user/host/db legible", () => {
+    const out = redact(
+      "connecting to postgres://awcms_app:placeholder-pw@db.internal:5432/awcms failed"
+    );
+    expect(out).not.toContain("placeholder-pw");
+    expect(out).toContain("postgres://awcms_app:***@db.internal:5432/awcms");
+  });
+
+  test("masks a bearer token surfaced in captured child-process stderr", () => {
+    const fakeTokenNotARealSecret = "placeholder-example-token-987654321";
+    const childStderr = `RajaOngkir request failed: 401 — header sent was "Authorization: Bearer ${fakeTokenNotARealSecret}" (rejected)`;
+    const out = redact(childStderr);
+    expect(out).not.toContain(fakeTokenNotARealSecret);
+    expect(out).toContain("Bearer ***");
+  });
+
+  test("masks the value of a NAME=value pair whose NAME looks like a secret", () => {
+    const out = redact(
+      "DATABASE_URL=postgres://awcms_app:placeholder-pw@db/awcms"
+    );
+    expect(out).toBe("DATABASE_URL=***");
+  });
+
+  test("a benign env NAME=value pair passes through unchanged", () => {
+    const line = "COMMERCE_PAYMENT_GATEWAY=midtrans";
+    expect(redact(line)).toBe(line);
+  });
+
+  test("a benign, credential-free line passes through unchanged", () => {
+    const line =
+      'PASS  runtime DB role is not the owner/superuser (DSN shape)  — DATABASE_URL connects as "awcms_app", distinct from every known owner/superuser role name.';
+    expect(redact(line)).toBe(line);
+  });
+
+  test("empty string and undefined both come back as an empty string", () => {
+    expect(redact("")).toBe("");
+    expect(redact(undefined)).toBe("");
   });
 });
 
