@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](deployment.md)
 
-<!-- i18n-source-hash: sha256:fa7d4ca511a730d5bf6ffb0fc38d237d86178f62d75d7f153ef875f82b6c7364 -->
+<!-- i18n-source-hash: sha256:333cccbc4cd1d05889affb264759a98b576f917df6b634d50b7c301772d3f230 -->
 
 # Deployment
 
@@ -421,7 +421,7 @@ cd apps/cms && bun run commerce:deploy:preflight --live --production
 bun run deploy:preflight --live --production
 ```
 
-Setiap pemeriksaan mencetak satu baris `PASS|FAIL|SKIP` dan alasannya, tidak pernah nilai rahasia. `--live` tambahan terhubung ke `DATABASE_URL` dan memverifikasi peran runtime bukan superuser/pemilik, tidak memiliki tabel `awcms_commerce_*` mana pun, setiap tabel semacam itu punya `relrowsecurity AND relforcerowsecurity`, dan buku besar migrasi tidak punya yang tertunda. Tanpa `--production`, aturan khusus-produksi (pengiriman OTP, provider pembayaran/pengiriman bukan `log`, URL kanonik https) di-skip alih-alih digagalkan — teruskan `--production` (atau set `APP_ENV=production`) untuk menerapkannya terhadap file yang sedang ditinjau sebelum disalin ke tempatnya (`--file <path>`).
+Setiap pemeriksaan mencetak satu baris `PASS|FAIL|SKIP` dan alasannya, tidak pernah nilai rahasia. Ini ditegakkan secara struktural, bukan sekadar konvensi (issue #205): satu helper `redact()` menyamarkan kata sandi DSN `postgres://user:pass@host`, nilai berbentuk bearer/API-token, dan seluruh nilai variabel env mana pun yang NAMA-nya cocok `/(PASSWORD|SECRET|TOKEN|KEY|DSN|DATABASE_URL)/i`, dan setiap baris yang dicetak — banner saat mulai, tiap baris `PASS|FAIL|SKIP`, dan ekor stderr/stdout tangkapan dari skrip yang didelegasikan (mis. `jobs:crontab:check`, `apps/cms/scripts/validate-env.ts`) — melewatinya lebih dulu sebelum sampai ke terminal. Nilai yang tidak berbahaya (nama provider, nama peran, URL polos) tercetak apa adanya tanpa perubahan; `apps/cms/tests/commerce-deploy-preflight.test.ts` mengunci baik redaksi maupun non-regresi itu. `--live` tambahan terhubung ke `DATABASE_URL` dan memverifikasi peran runtime bukan superuser/pemilik, tidak memiliki tabel `awcms_commerce_*` mana pun, setiap tabel semacam itu punya `relrowsecurity AND relforcerowsecurity`, dan buku besar migrasi tidak punya yang tertunda. Tanpa `--production`, aturan khusus-produksi (pengiriman OTP, provider pembayaran/pengiriman bukan `log`, URL kanonik https) di-skip alih-alih digagalkan — teruskan `--production` (atau set `APP_ENV=production`) untuk menerapkannya terhadap file yang sedang ditinjau sebelum disalin ke tempatnya (`--file <path>`).
 
 ### Runbook produksi
 

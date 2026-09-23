@@ -121,6 +121,54 @@ export function isValidHttpsUrl(value: string | undefined): boolean {
 }
 
 /**
+ * Env variable NAMEs whose value this script never prints raw — matched
+ * case-insensitively against the NAME half of a `NAME=value` pair. Issue
+ * #205: CodeQL correctly flags that `loadEnv()`'s whole bag is tainted, and
+ * two paths below echo a child process's stderr, which nobody here controls.
+ */
+const SECRET_ENV_NAME_PATTERN = /(PASSWORD|SECRET|TOKEN|KEY|DSN|DATABASE_URL)/i;
+
+/**
+ * Masks anything printed that looks like a credential, so every diagnostic
+ * string this script emits — `printResult`, the `main()` banner, and a
+ * captured child-process stderr/stdout tail — is safe to paste into a deploy
+ * pipeline's retained logs. Three shapes, applied in order:
+ *
+ *  1. `NAME=value` where NAME matches {@link SECRET_ENV_NAME_PATTERN} — masks
+ *     the whole value (covers a raw `DATABASE_URL=postgres://...` leak, not
+ *     just its password).
+ *  2. a bare `postgres://user:pass@host` DSN not already caught by (1) —
+ *     e.g. one a child process echoes without a `NAME=` prefix — masks only
+ *     the password, keeping the user/host/db legible for debugging.
+ *  3. a bearer/API-token-shaped value (`Bearer <token>`, `Authorization:
+ *     Bearer <token>`, `token=<value>`, `api_key=<value>`) — masks the
+ *     token, keeping the prefix so the shape of the leak is still visible.
+ *
+ * A benign value (a provider name, a role name, a URL with no credentials)
+ * passes through byte-for-byte unchanged — this is what
+ * `tests/commerce-deploy-preflight.test.ts` pins down.
+ */
+export function redact(value: string | undefined): string {
+  if (!value) return value ?? "";
+  let out = value;
+
+  out = out.replace(
+    /\b([A-Z][A-Z0-9_]*)(=)([^\s"']+)/g,
+    (match, name: string, eq: string) =>
+      SECRET_ENV_NAME_PATTERN.test(name) ? `${name}${eq}***` : match
+  );
+
+  out = out.replace(/(:\/\/[^:/\s@]+:)([^@\s]+)(@)/g, "$1***$3");
+
+  out = out.replace(
+    /\b(bearer\s+|api[-_]?key[:=]\s*|token[:=]\s*)([A-Za-z0-9\-_.~+/]{8,}=*)/gi,
+    (_match, prefix: string) => `${prefix}***`
+  );
+
+  return out;
+}
+
+/**
  * The roles this repo's own migrations create: `awcms_setup`/`awcms_setup`
  * style owner roles, `postgres` (the compose superuser), and any name equal
  * to the DSN user of `SETUP_DATABASE_URL` — the migration-owner connection.
@@ -563,7 +611,7 @@ function runBunScriptCheck(scriptName: string): CheckResult {
     return {
       name: scriptName,
       status: "FAIL",
-      reason: `exit ${result.exitCode}: ${tail}`
+      reason: `exit ${result.exitCode}: ${redact(tail)}`
     };
   }
 
@@ -571,7 +619,9 @@ function runBunScriptCheck(scriptName: string): CheckResult {
 }
 
 function printResult(result: CheckResult) {
-  console.log(`${result.status.padEnd(4)}  ${result.name}  — ${result.reason}`);
+  console.log(
+    `${result.status.padEnd(4)}  ${result.name}  — ${redact(result.reason)}`
+  );
 }
 
 async function main() {
@@ -580,7 +630,9 @@ async function main() {
   const production = isProduction(env, args.production);
 
   console.log(
-    `commerce:deploy:preflight — APP_ENV=${env.APP_ENV ?? "(unset)"}${args.production ? " (--production forced)" : ""}, ${args.live ? "--live" : "no --live"}`
+    redact(
+      `commerce:deploy:preflight — APP_ENV=${env.APP_ENV ?? "(unset)"}${args.production ? " (--production forced)" : ""}, ${args.live ? "--live" : "no --live"}`
+    )
   );
 
   const results: CheckResult[] = [];
@@ -622,7 +674,7 @@ async function main() {
     results.push({
       name: "scripts/validate-env.ts",
       status: "FAIL",
-      reason: `exit ${validateEnvResult.exitCode}: ${tail}`
+      reason: `exit ${validateEnvResult.exitCode}: ${redact(tail)}`
     });
   } else {
     results.push({
