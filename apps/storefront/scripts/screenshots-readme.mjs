@@ -23,6 +23,16 @@
  *   bun run screenshots:readme -- --profil berita
  *   bun run screenshots:readme -- --profil landing
  *
+ * Three optional flags, passed straight through to `screenshots.e2e.ts` as
+ * the env vars its own docblock describes (issue #189, the README's own
+ * above-the-fold crops):
+ *
+ *   bun run screenshots:readme -- --profil toko --pages home --viewport desktop --above-fold
+ *
+ *   --pages <name,name,...>   only these KEY_PAGES names (default: all)
+ *   --viewport <mobile|desktop|mobile,desktop>  only these viewports (default: both)
+ *   --above-fold              crop to the viewport instead of the full page
+ *
  * Output: `E2E_SCREENSHOT_DIR` (default `test-results/screenshots-readme`),
  * one PNG per key page per viewport at `<dir>/<profile>/<page>-<viewport>.png`
  * — the exact layout `tests/e2e/screenshots.e2e.ts` itself writes, since
@@ -36,7 +46,10 @@ import { SITE_PROFILES } from "../src/config/profil";
 const { values } = parseArgs({
   args: Bun.argv.slice(2),
   options: {
-    profil: { type: "string", default: "toko" }
+    profil: { type: "string", default: "toko" },
+    pages: { type: "string" },
+    viewport: { type: "string" },
+    "above-fold": { type: "boolean", default: false }
   },
   strict: true
 });
@@ -55,7 +68,10 @@ const run = Bun.spawnSync(["bun", "--bun", "playwright", "test", "tests/e2e/scre
   env: {
     ...process.env,
     SITE_PROFILE: profile,
-    E2E_SCREENSHOT_DIR: outputDir
+    E2E_SCREENSHOT_DIR: outputDir,
+    ...(values.pages ? { E2E_SCREENSHOT_PAGES: values.pages } : {}),
+    ...(values.viewport ? { E2E_SCREENSHOT_VIEWPORTS: values.viewport } : {}),
+    ...(values["above-fold"] ? { E2E_SCREENSHOT_FULLPAGE: "false" } : {})
   },
   stdout: "inherit",
   stderr: "inherit"

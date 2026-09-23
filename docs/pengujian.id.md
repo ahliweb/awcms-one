@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](pengujian.md)
 
-<!-- i18n-source-hash: sha256:8a6622670a26ce16ffb1b953d17ec4c9064afd94d4e4e5fbfcb207413a3361c4 -->
+<!-- i18n-source-hash: sha256:fa39383bf04513d9843fa878d00176fd15b753582200c0e3a37ca21cb40b6cfb -->
 
 # Pengujian
 
@@ -84,7 +84,18 @@ Masing-masing mendarat dengan berkas `tests/integration/` sendiri, dijalankan su
 
 **`.github/workflows/e2e.yml`** — matriks 3-leg atas `SITE_PROFILE` (`toko`/`berita`/`landing`, sesuai bentuk job `check` milik `ci.yml` sendiri), Chromium di-cache atas hash `bun.lock`, laporan HTML Playwright maupun screenshot tiap profil diunggah sebagai artifact (`if: always()`, sehingga jalankan yang gagal tetap meninggalkan sesuatu untuk dilihat). **Bukan status check wajib** — suite berbasis rendering peramban punya profil risiko berbeda dari gate deterministik pada tabel di atas, dan "The gates" milik AGENTS.md hanya menamai `Check (*)`/`check-cms` sebagai wajib; lihat komentar milik `template-init-smoke.yml` sendiri untuk bagaimana workflow seperti ini dipromosikan setelah berjalan hijau untuk sementara waktu.
 
-**`bun run screenshots:readme`** (`apps/storefront/scripts/screenshots-readme.mjs`, `--profil <toko|berita|landing>`, default `toko`) meregenerasi screenshot penuh-halaman yang sama secara deterministik, dari harness identik yang dijalankan `screenshots.e2e.ts` di CI — untuk maintainer, atau langkah CI di masa depan, menyegarkan gambar tertanam README tanpa mengemudikan browser secara manual. Ia tidak sendiri memilih shot mana yang ditanam README; kurasi itu dimiliki issue terpisah yang belum diajukan. Output: `E2E_SCREENSHOT_DIR` (default `test-results/screenshots-readme`), di-gitignore seperti path `test-results/` lainnya.
+**`bun run screenshots:readme`** (`apps/storefront/scripts/screenshots-readme.mjs`, `--profil <toko|berita|landing>`, default `toko`) meregenerasi screenshot yang sama secara deterministik, dari harness identik yang dijalankan `screenshots.e2e.ts` di CI — untuk maintainer, atau langkah CI di masa depan, menyegarkan gambar tertanam README tanpa mengemudikan browser secara manual. Output: `E2E_SCREENSHOT_DIR` (default `test-results/screenshots-readme`), di-gitignore seperti path `test-results/` lainnya.
+
+Tiga flag tambahan (issue #189), dilewatkan langsung sebagai env var yang dideskripsikan docblock `screenshots.e2e.ts` sendiri, mempersempit harness yang sama menjadi satu shot yang benar-benar ditanam README — potongan above-the-fold dari satu halaman kunci pada satu viewport, bukan setiap halaman kunci pada kedua viewport secara penuh-halaman:
+
+```bash
+cd apps/storefront
+bun run screenshots:readme -- --profil toko    --pages home --viewport desktop --above-fold
+bun run screenshots:readme -- --profil berita  --pages home --viewport desktop --above-fold
+bun run screenshots:readme -- --profil landing --pages home --viewport desktop --above-fold
+```
+
+`--above-fold` juga menutup popup promo halaman beranda terlebih dahulu, jika profilnya menampilkan satu (dialog `[data-promo-popup]` milik `toko`) — screenshot README menampilkan halamannya, bukan overlay yang menutupinya; artifact CI penuh-halaman dari `screenshots.e2e.ts` sendiri tetap menampilkan popup itu persis seperti yang dilihat pengunjung sungguhan. Tiga gambar tertanam README di `docs/assets/readme-{toko,berita,landing}.webp` dihasilkan dengan cara ini, lalu dikonversi dari PNG dengan `cwebp -q 80 <halaman>.png -o <nama>.webp` (konverter apa pun yang tersedia secara lokal — `cwebp`, `sharp` lewat `bunx`, atau `convert`/`magick` milik ImageMagick semuanya menghasilkan WebP yang setara); root [`README.md`](../README.md#screenshots) menyatakan bobot gabungannya.
 
 ### Preflight produksi (issue #150, ADR-0019)
 
