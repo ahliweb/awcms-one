@@ -194,7 +194,22 @@ jobs:
         with:
           bun-version: "1.4.0"
 
+      # `driver: docker` (the classic builder, driven by the runner's own
+      # dockerd) rather than setup-buildx-action's default `docker-container`
+      # driver. The container driver runs BuildKit inside its own container,
+      # with its own network namespace — `--network host` below then means
+      # THAT container's host namespace, not the runner's, so the build's RUN
+      # step can never reach the stub CMS bound to the runner's localhost
+      # (issue #198; every run failed with "awcms could not be reached at
+      # http://localhost:4310"). `driver: docker` builds inside the runner's
+      # own dockerd instead, where `--network host` is the runner's real
+      # network namespace. Deliberately NOT applied to the `cms-images` job
+      # above: that job pushes to a registry and uses `cache-to: type=gha`,
+      # both of which need the `docker-container` driver's BuildKit features
+      # that the classic `docker` driver does not support.
       - uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4.4.1
+        with:
+          driver: docker
 
       - name: Start the repo's stub CMS
         working-directory: apps/storefront
