@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](AGENTS.md)
 
-<!-- i18n-source-hash: sha256:25ad7817e8e467f73b749f3c31c64d44295b3226a28f1c065331803f351d8f8b -->
+<!-- i18n-source-hash: sha256:d8d2bfcc31bb16daee2fb9d32e87dbd7cd46c01d9ce6ed394744ea9a308084bb -->
 
 # AGENTS.md — kontrak kerja awcms-one
 
@@ -152,6 +152,8 @@ Ditegakkan oleh `tests/standar-skrip.test.mjs`, dan layak dinyatakan di sini kar
 Perubahan yang memengaruhi perilaku publik, struktur workspace, dependency, atau deployment mendapat berkas di `.changesets/` di perubahan yang sama yang menyebabkannya — lihat [`.changesets/README.md`](.changesets/README.md) untuk formatnya. `bump` adalah field yang penting: versi rilis berikutnya adalah `bump` **terbesar** di antara changeset yang menunggu saat `bun run release --apply` berjalan, jadi besar sebuah rilis adalah konsekuensi dari apa yang masuk ke dalamnya, bukan penilaian yang dibuat saat rilis dari daftar nama berkas.
 
 `bun run audit:rilis` mengawasi backlog yang menunggu dan memerah begitu melewati 20 berkas atau 14 hari — sinyal bahwa rilis sudah jatuh tempo, bukan kesalahan yang perlu diminta maaf. Seorang maintainer lalu menjalankan `bun run release`, yang melipat changeset yang menunggu ke `CHANGELOG.md`, menaikkan `package.json`, dan (dengan `--commit`) menandai tag `vX.Y.Z`.
+
+Mendorong (push) tag itu (`git push origin vX.Y.Z`) mempublikasikan rilisnya sendiri: [`.github/workflows/release.yml`](.github/workflows/release.yml) mengambil bagian `CHANGELOG.md` versi tersebut (lewat `tools/rilis-catatan.mjs`) dan membuat atau memperbarui GitHub Release yang sesuai — secara idempoten, sehingga menjalankan `workflow_dispatch` dengan input `tag` bisa mem-backfill tag lama atau menerbitkan ulang catatannya tanpa gagal pada Release yang sudah ada.
 
 ## Definition of Done
 
