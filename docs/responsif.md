@@ -2,7 +2,7 @@
 
 # Responsive design
 
-How `apps/storefront` behaves across viewport widths, and how that was checked. **Read this first: every claim below comes from reading `apps/storefront/src/styles/*.css` and the page templates — no browser, real or headless, was opened to verify a layout at any width while writing this document.** `apps/storefront` has no visual-regression test today; it does have a real Playwright e2e suite (`apps/storefront/tests/e2e/checkout.e2e.ts`), but that suite tests checkout behaviour, not layout at a range of widths.
+How `apps/storefront` behaves across viewport widths, and how that was checked. **Read this first: every claim below is now verified by a real, automated browser check, not merely by reading `apps/storefront/src/styles/*.css` and the page templates by hand.** `apps/storefront/tests/e2e/responsif.e2e.ts` (issue #183) opens every one of the active build profile's key pages in a real Chromium browser at 360px (mobile) and 1280px (desktop) and asserts `document.documentElement.scrollWidth <= window.innerWidth` — the exact condition that produces an unwanted horizontal scrollbar. `.github/workflows/e2e.yml` runs it for all three build profiles on every push (not yet a required status check — see that workflow's own comment); `docs/pengujian.md`'s "Playwright e2e" section is the full tier reference. `apps/storefront` still has no committed visual-regression baseline — `apps/storefront/tests/e2e/screenshots.e2e.ts` captures full-page screenshots for a human reviewer to look at instead, deliberately never diffed byte-for-byte (see that spec's own docblock for why).
 
 ## Mostly fluid, with a small, deliberate set of breakpoints
 
@@ -42,10 +42,18 @@ The utility bar (`Header.astro`) and the footer's new "Kanal" column (`Footer.as
 
 ## What was verified, and how
 
+- **A real browser measuring real overflow** (`apps/storefront/tests/e2e/responsif.e2e.ts`, issue #183) at 360px and 1280px, for every key page of every build profile — this is now the primary source for "does this page overflow", not the `grep`-level reading below.
 - **`grep`-level confirmation of every `@media` query** across `global.css`, `katalog.css`, `berita.css`, `toko.css` — the breakpoint table above is exhaustive, not a sample. `toko.css` (checkout/cart-specific styles) carries no width breakpoint of its own, relying on `min-width: 0` flex-shrink guards instead.
-- **Reading, not measuring, the narrow-viewport floor** for every fluid grid — the `min(Npx, 100%)` reasoning above was read in each stylesheet's own comments/structure, not confirmed with an open browser window.
+- **The `min(Npx, 100%)` clamp's own reasoning** was read in each stylesheet's own comments/structure — still true, and now backed by the 360px check above actually exercising it.
 - **The admin screen's table** (`apps/cms/src/pages/admin/commerce.astro`) declares a `data-table--stack` class for its own responsive behaviour — belongs to `apps/cms`, not this storefront, and was not inspected further for this document.
+
+## Two real overflow bugs the first automated run found (issue #183)
+
+Both fixed in `apps/storefront/src/styles/katalog.css`, in tokens/components rather than a one-off patch:
+
+- **`/produk`'s filter sidebar price-range row** (`.filter-price-range`) was accidentally a flex COLUMN, not a row — it also carries the `.filter-field` class, whose `flex-direction: column` rule was the only one setting that property, so `flex: 1`/`min-width: 0` on its two `<input type="number">` fields were shrinking their HEIGHT (the column's main axis), not their width; each input sat at its own ~190px intrinsic default, well past a 360px viewport. Fixed by declaring `flex-direction: row` explicitly on `.filter-price-range`.
+- **The same page's single-column breakpoint** (`@media (max-width: 860px) { .listing-layout { grid-template-columns: 1fr; } }`) still overflowed even after the fix above: a bare `1fr` track is shorthand for `minmax(auto, 1fr)`, and that track's own automatic minimum floors at the largest item's min-content size regardless of `min-width: 0` set on the grid ITEM (`.listing-sidebar` already carried that, and it was not enough on its own). Fixed with `minmax(0, 1fr)`, which removes the track's own floor too.
 
 ## Not built
 
-Any automated visual-regression test, or a CI step that renders the storefront at multiple viewport widths. `apps/storefront`'s `bun run check` is a type-check; the Playwright suite tests behaviour, not layout. A concrete next step, not yet taken, would be exactly the kind of real-browser check the `playwright` skill in this environment exists to set up.
+A committed visual-regression baseline — `apps/storefront/tests/e2e/screenshots.e2e.ts` (issue #183) captures a full-page PNG per key page per viewport (uploaded as a CI artifact by `.github/workflows/e2e.yml`) for a human reviewer to look at, deliberately never diffed byte-for-byte against a prior run (cross-OS font rendering makes that flaky by construction, and a hosted visual-diff service is a paid external dependency this repo does not have).

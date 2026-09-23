@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:28f5c499934c2c5d1a2dbfab6393a4bac36a84fb9de2537939b3c3af01352317 -->
+<!-- i18n-source-hash: sha256:350bedb0d9c39a755e486e1d2d71dfeaae1275a4c77fce0174df29bc6abf7ed6 -->
 
 # Dokumentasi
 
@@ -16,8 +16,8 @@ Dokumentasi arsitektur, skema, API, alur kerja CMS, perilaku storefront, penguji
 | [`cms.md`](cms.id.md) | Authoring, mesin status produk/pesanan/flash-sale, izin, log audit, media, taksonomi |
 | [`routing.md`](routing.id.md) | Peta URL publik lengkap — katalog, berita, halaman runtime commerce, pengalihan legacy |
 | [`seo.md`](seo.id.md) | Metadata, JSON-LD per jenis halaman, sitemap, feed, dan peta pengalihan legacy |
-| [`aksesibilitas.md`](aksesibilitas.id.md) | Apa yang sudah ada, dan bahwa itu diverifikasi dengan membaca kode, bukan alat |
-| [`responsif.md`](responsif.id.md) | Grid yang sebagian besar fluid plus beberapa breakpoint yang disengaja, dan bahwa itu diverifikasi dengan membaca kode, bukan browser |
+| [`aksesibilitas.md`](aksesibilitas.id.md) | Apa yang sudah ada, dan bahwa itu diverifikasi oleh jalankan axe-core sungguhan di CI, bukan sekadar dengan membaca kode |
+| [`responsif.md`](responsif.id.md) | Grid yang sebagian besar fluid, dan bahwa itu diverifikasi oleh browser sungguhan yang memeriksa overflow di CI, bukan sekadar dengan membaca kode |
 | [`ui-ux.md`](ui-ux.id.md) | Gambar produk sungguhan, kontras lencana terhitung, kontrak keranjang, presentasi harga/stok |
 | [`pengujian.md`](pengujian.id.md) | Empat tingkat tes, mana yang butuh PostgreSQL, dan mana yang tidak |
 | [`deployment.md`](deployment.id.md) | Build vs. serve, variabel environment, apa yang boleh dan tidak boleh dijangkau container dan browser |

@@ -55,6 +55,15 @@ body.iklan-popup-open {
   background: var(--bg-surface);
   color: var(--text-primary);
   box-shadow: var(--shadow-md);
+  /* Restores the UA stylesheet's own `dialog:modal { margin: auto; }`
+     centering — `global.css`'s `*, *::before, *::after { margin: 0; }`
+     reset wins over it regardless of specificity (an author rule always
+     beats a normal user-agent rule for the same property), so without this
+     the dialog renders pinned to the viewport's top-left corner instead of
+     centered. Issue #183's own `iklan-popup.e2e.ts` caught this: a
+     "click the backdrop to close" test clicks a corner the dialog is
+     supposed to never cover, which this bug put the dialog ON TOP of. */
+  margin: auto;
 }
 
 .iklan-popup::backdrop {

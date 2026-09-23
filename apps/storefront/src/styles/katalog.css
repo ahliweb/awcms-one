@@ -62,7 +62,17 @@
 
 @media (max-width: 860px) {
   .listing-layout {
-    grid-template-columns: 1fr;
+    /* `minmax(0, 1fr)`, not bare `1fr` (issue #183): a bare `1fr` track is
+       shorthand for `minmax(auto, 1fr)` — its OWN automatic minimum still
+       sizes to the largest min-content contribution among its items,
+       regardless of `min-width: 0` set on the item itself (that only
+       overrides the ITEM's automatic-minimum contribution, not the
+       TRACK's own `auto` floor). `.listing-sidebar`'s `min-width: 0` was
+       therefore not enough on its own — the single column still measured
+       356px against a 320px available width, which is what the 360px
+       overflow check actually caught on `/produk`. Wrapping in `minmax(0,
+       …)` removes the track's own auto floor too. */
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
@@ -71,6 +81,12 @@
   border: 1px solid var(--border-color);
   border-radius: var(--radius-lg);
   padding: 1.25rem;
+  /* Without this, a grid item's implicit `min-width: auto` floors it at its
+     content's min-content size — at <=860px `.listing-layout` collapses to
+     a single `1fr` track, but a long, unbreakable filter label inside this
+     sidebar (issue #183's 360px overflow check caught 356px vs. a 320px
+     track) kept the item from ever shrinking to fit it. */
+  min-width: 0;
 }
 
 .listing-sidebar h2 {
@@ -143,8 +159,34 @@
 
 .filter-price-range {
   display: flex;
+  /* Explicit, not left to default (issue #183): the markup carries BOTH
+     `filter-field` and `filter-price-range` on the same element, and
+     `.filter-field` above sets `flex-direction: column` — with no
+     `flex-direction` of its own, this rule inherited that column axis via
+     the cascade, so `flex: 1`/`min-width: 0` below were shrinking each
+     label's HEIGHT, not its width (`flex: 1`'s main-axis meaning follows
+     `flex-direction`). Two `<input type="number">`s were then left at
+     their own intrinsic content width — a browser default of roughly
+     170-190px each — which is what actually produced the 376px overflow
+     the 360px check caught, not the labels' own `min-width` at all. */
+  flex-direction: row;
   gap: 0.5rem;
   align-items: center;
+}
+
+/* Each `<label class="field-label">` inside the price-range row needs
+   `min-width: 0` to actually shrink on the (now correctly row) main axis —
+   a flex item's implicit `min-width: auto` otherwise floors it at its own
+   `<input type="number">`'s intrinsic width. `width: 100%` on the input
+   (below) then lets it fill whatever share of the row `flex: 1` actually
+   gives it. */
+.filter-price-range .field-label {
+  flex: 1;
+  min-width: 0;
+}
+
+.filter-price-range .field-label input[type="number"] {
+  width: 100%;
 }
 
 .listing-toolbar {
@@ -365,6 +407,10 @@ dialog[data-promo-popup] {
   max-width: min(28rem, 92vw);
   background: var(--bg-surface);
   color: var(--text-primary);
+  /* Same fix as `.iklan-popup` (`iklan-popup.css`, issue #183) — see that
+     rule's own comment for why the global margin reset needs restating
+     here. */
+  margin: auto;
 }
 
 dialog[data-promo-popup]::backdrop {
@@ -463,7 +509,15 @@ dialog[data-promo-popup]::backdrop {
 .variant-options input:checked + span,
 .variant-options label:has(input:checked) {
   border-color: var(--accent-primary);
-  color: var(--accent-primary);
+  /* `--link-color`, not `--accent-primary` (issue #183): at bold 16px this
+     is still normal-size text by WCAG's own "large text" definition (which
+     starts at 14pt/~18.66px bold), so it needs the 4.5:1 floor —
+     `--accent-primary` (#0284c7) measured 3.91:1 against `--bg-subtle`.
+     `--link-color` is the token already darkened for exactly this "plain
+     text needs AA, not just an interactive-element's own 3:1" case (see
+     `global.css`'s own token comment). The border keeps `--accent-primary`
+     — a non-text contrast requirement, unaffected by this. */
+  color: var(--link-color);
   font-weight: 700;
 }
 

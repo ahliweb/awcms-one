@@ -745,18 +745,26 @@ of `bun test`'s own file discovery, the same trap-avoidance the repo's
 `playwright` skill documents for any project mixing a unit-test runner with
 Playwright.
 
-**Running it in CI later** (not wired into `.github/workflows/ci.yml` by
-this change — that file is out of this issue's scope): a job would need (1)
-`bunx playwright install chromium` (no `--with-deps` unless the runner image
-already has the OS libraries, or is given root), (2) start
-`apps/storefront/scripts/stub-awcms.mjs`, (3) a stub-backed `bun run build` with
-`PUBLIC_AWCMS_ORIGIN` pointed at the stub's own origin, (4) `bun run serve`
-(or `astro preview`) against that build, with `STUB_ALLOWED_ORIGIN` (the
-stub's CORS allow-list) set to match whatever port step 4 actually listens
-on, then (5) `bun run test:e2e` with `E2E_BASE_URL` pointed at step 4's
-origin. Steps 2–4 are exactly what `apps/storefront/tests/checkout-build-smoke.test.ts`
-already automates for the build-only assertions; the e2e job would be that
-same shape with a real browser added on top.
+**Running it in CI (issue #183, `.github/workflows/e2e.yml`)**: a dedicated
+workflow, separate from `.github/workflows/ci.yml`, does exactly this — a
+3-leg matrix over `SITE_PROFILE` (`toko`/`berita`/`landing`), Chromium
+installed and cached, `bun run test:e2e` run per leg (its own
+`apps/storefront/tests/e2e/global-setup.ts`/`build-and-serve.ts` do steps 2–4 below
+internally, so the workflow itself only needs to install dependencies and
+Chromium before calling it), the Playwright HTML report and every profile's
+screenshots uploaded as artifacts. Deliberately **not** a required status
+check yet — see that workflow's own comment for the promotion path, and
+`docs/pengujian.md`'s "Playwright e2e" section for the full tier reference
+(axe-core accessibility and no-horizontal-overflow specs joined `checkout.e2e.ts`/
+`iklan-popup.e2e.ts` in the same change). The manual shape this workflow
+automates, for reference: (1) `bunx playwright install chromium` (no
+`--with-deps` unless the runner image already has the OS libraries, or is
+given root), (2) start `apps/storefront/scripts/stub-awcms.mjs`, (3) a
+stub-backed `bun run build` with `PUBLIC_AWCMS_ORIGIN` pointed at the
+stub's own origin, (4) `bun run serve` (or `astro preview`) against that
+build, with `STUB_ALLOWED_ORIGIN` (the stub's CORS allow-list) set to match
+whatever port step 4 actually listens on, then (5) `bun run test:e2e` with
+`E2E_BASE_URL` pointed at step 4's origin.
 
 ## Customer accounts — sign-in, sign-up, and the account shell (issue #88, S1)
 
@@ -1118,7 +1126,7 @@ this app's tests are part of the same root gate suite:
    script from `apps/storefront`, never by `bun test`/the root suite (a
    browser dependency has no business gating every contributor's unit-test
    run). See "Cart, checkout, order tracking, wishlist" above for how to run
-   it and how CI could run it later.
+   it, and `.github/workflows/e2e.yml` (issue #183) for how CI runs it.
 
 ## Payment gateway checkout — "Bayar sekarang" + polling (issue #112, S2 of #33, contract: #106 D3)
 

@@ -77,6 +77,22 @@
   flex-wrap: wrap;
 }
 
+/* The "kirim e-mail" link (`mailto:`) here had no colour rule of its own,
+   so it fell back to the plain `a { color: var(--link-color) }` rule in
+   `global.css` — a colour meant for ordinary, light-background body copy,
+   not this permanently-dark date bar (2.98:1 against `--news-bar-bg`,
+   under the 4.5:1 AA floor; issue #183's axe run caught it). The same
+   `--text-on-inverse-muted` the rest of this bar already uses (the
+   separator dot, `.bilah-utilitas__kanan a`) is proven safe against this
+   background. */
+.bilah-utilitas__kiri a {
+  color: var(--text-on-inverse-muted);
+}
+
+.bilah-utilitas__kiri a:hover {
+  color: var(--text-on-inverse);
+}
+
 .bilah-utilitas__pisah {
   color: var(--text-on-inverse-muted);
   opacity: 0.6;
@@ -120,9 +136,14 @@
 
 /* "Akun" (issue #169) — reuses `Header.astro`'s own `[data-akun-tautan]`
    sky-colored treatment so the two chromes' account links read as the
-   same control, just restyled for each bar's own background. */
+   same control, just restyled for each bar's own background.
+   `--accent-on-inverse` (not `--accent-primary`, issue #183): light mode's
+   `--accent-primary` measured 4.33:1 against `--news-bar-bg` — under the
+   4.5:1 AA floor. `--accent-on-inverse` is the SAME token `.utility-bar-akun`
+   (`global.css`) already uses for exactly this "sky accent on a
+   permanently-dark band regardless of colour scheme" case. */
 .bilah-utilitas__akun {
-  color: var(--accent-primary) !important;
+  color: var(--accent-on-inverse) !important;
 }
 
 .bilah-utilitas__sosial {
@@ -379,7 +400,16 @@
 
 .ticker-berita__daftar li {
   min-width: 0;
-  flex-shrink: 0;
+  /* `0` here defeated the whole point of the comment above: an item that
+     never shrinks never gets narrow enough for its own `text-overflow:
+     ellipsis` to engage, so 2-3 real headlines just sat at their natural
+     (up to 32ch) width and pushed `.ticker-berita__daftar` (already
+     correctly shrunk to fit the header row) into overflow it could not
+     clip away — issue #183's 360px check caught the resulting 637px
+     `document.documentElement.scrollWidth` on every `berita`-group page.
+     `1` lets the flex algorithm actually narrow each item to the row's
+     real available space, which is what makes the ellipsis show at all. */
+  flex-shrink: 1;
   max-width: 32ch;
   overflow: hidden;
 }

@@ -13,7 +13,8 @@
     "serve": "bun dist/server/penyaji.mjs",
     "start": "bun run serve",
     "preview": "bun run serve",
-    "test:e2e": "bun --bun playwright test"
+    "test:e2e": "bun --bun playwright test",
+    "screenshots:readme": "bun scripts/screenshots-readme.mjs"
   },
   "dependencies": {
     "@astrojs/node": "^11.1.5",
@@ -22,6 +23,7 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
+    "@axe-core/playwright": "^4.13.0",
     "@playwright/test": "^1.63.0",
     "@types/bun": "^1.4.0",
     "typescript": "^6.0.3"
