@@ -83,7 +83,18 @@ Each landed its own `tests/integration/` file, run for real against a live Postg
 
 **`.github/workflows/e2e.yml`** — a 3-leg matrix over `SITE_PROFILE` (`toko`/`berita`/`landing`, matching `ci.yml`'s own `check` job shape), Chromium cached on `bun.lock`'s hash, both the Playwright HTML report and every profile's screenshots uploaded as artifacts (`if: always()`, so a failing run still leaves something to look at). **Not a required status check** — a browser-rendering suite has a different risk profile from the deterministic gates in the table above, and AGENTS.md's "The gates" names only `Check (*)`/`check-cms` as required; see `template-init-smoke.yml`'s own comment for how a workflow like this one gets promoted once it has run green for a while.
 
-**`bun run screenshots:readme`** (`apps/storefront/scripts/screenshots-readme.mjs`, `--profil <toko|berita|landing>`, default `toko`) regenerates the same full-page screenshots deterministically, from the identical harness `screenshots.e2e.ts` runs in CI — for a maintainer, or a future CI step, to refresh a README's embedded images without hand-driving a browser. It does not itself choose which shots a README embeds; a separate, not-yet-filed issue owns that curation. Output: `E2E_SCREENSHOT_DIR` (default `test-results/screenshots-readme`), gitignored like every other `test-results/` path.
+**`bun run screenshots:readme`** (`apps/storefront/scripts/screenshots-readme.mjs`, `--profil <toko|berita|landing>`, default `toko`) regenerates the same screenshots deterministically, from the identical harness `screenshots.e2e.ts` runs in CI — for a maintainer, or a future CI step, to refresh a README's embedded images without hand-driving a browser. Output: `E2E_SCREENSHOT_DIR` (default `test-results/screenshots-readme`), gitignored like every other `test-results/` path.
+
+Three extra flags (issue #189), passed straight through as the env vars `screenshots.e2e.ts`'s own docblock describes, narrow that same harness to the one shot a README actually embeds — an above-the-fold crop of one key page at one viewport, instead of every key page at both viewports full-page:
+
+```bash
+cd apps/storefront
+bun run screenshots:readme -- --profil toko    --pages home --viewport desktop --above-fold
+bun run screenshots:readme -- --profil berita  --pages home --viewport desktop --above-fold
+bun run screenshots:readme -- --profil landing --pages home --viewport desktop --above-fold
+```
+
+`--above-fold` also dismisses the home page's own promo popup first, if the profile renders one (`toko`'s `[data-promo-popup]` dialog) — a README screenshot shows the page, not an overlay covering it; the full-page CI artifact from `screenshots.e2e.ts` on its own keeps showing the popup exactly as a real visitor sees it. The three README-embedded images at `docs/assets/readme-{toko,berita,landing}.webp` were produced this way, then converted from PNG with `cwebp -q 80 <page>.png -o <name>.webp` (whatever converter is available locally — `cwebp`, `sharp` via `bunx`, or ImageMagick's `convert`/`magick` all produce an equivalent WebP); root [`README.md`](../README.md#screenshots) states their combined weight.
 
 ### Production preflight (issue #150, ADR-0019)
 
