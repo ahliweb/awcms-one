@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](alur-kerja-pengembangan.md)
 
-<!-- i18n-source-hash: sha256:fed41ecd94512a418e7a72fed83e441c4a970ef0035ab5c245fc79678e2c5221 -->
+<!-- i18n-source-hash: sha256:e406b68e68641b49e03bd6d241fdf57c543aeabd3ed2c61b5e5b62c8ef3d4fc7 -->
 
 # Alur kerja pengembangan
 
@@ -48,6 +48,8 @@ Increment 2 (epic #21) dikirimkan sebagai rangkaian PR atomik satu-issue, bukan 
 ## Pemotongan rilis
 
 `bun run release` (aksi maintainer, [`tools/rilis.mjs`](../tools/rilis.mjs)) melipat setiap changeset yang menunggu ke `CHANGELOG.md`, memakai `bump` **terbesar** di antara mereka untuk memutuskan versi berikutnya — satu `minor` di samping sembilan entri `patch` membuat seluruh rilis `minor`, jadi ukuran rilis adalah konsekuensi dari apa yang masuk ke dalamnya, bukan penilaian yang dibuat saat rilis dari daftar nama berkas. `--commit` tambahan menandai `vX.Y.Z`. Issue #31 (refresh dokumentasi ini) tidak memotong rilis itu sendiri — lihat [`.changesets/README.md`](../.changesets/README.md) untuk batas backlog dan bagian "Gates" `README.md` untuk `audit:rilis`.
+
+Mendorong (push) tag itulah yang benar-benar mempublikasikannya (issue #181). [`.github/workflows/release.yml`](../.github/workflows/release.yml) terpicu pada `push: tags: ['v*']`, mengekstrak bagian `CHANGELOG.md` versi yang di-push memakai [`tools/rilis-catatan.mjs`](../tools/rilis-catatan.mjs), lalu membuat GitHub Release darinya memakai `GITHUB_TOKEN` — ditandai "latest" hanya bila tag itu adalah semver `v*` tertinggi di repositori. Workflow yang sama juga menerima `workflow_dispatch` dengan input `tag` yang wajib diisi, menjalankan `gh release edit` secara idempoten alih-alih gagal ketika tag itu sudah punya Release — cara untuk mem-backfill tag yang di-push sebelum workflow ini ada, atau menerbitkan ulang catatannya setelah ada koreksi di `CHANGELOG.md`.
 
 ## CI: dua job — satu tanpa syarat, satu terhadap basis data nyata
 

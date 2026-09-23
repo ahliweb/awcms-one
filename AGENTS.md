@@ -151,6 +151,8 @@ A change affecting public behaviour, workspace structure, dependencies, or deplo
 
 `bun run audit:rilis` watches the waiting backlog and reddens once it crosses 20 files or 14 days old — a signal that a release is due, not a fault to apologise for. A maintainer then runs `bun run release`, which folds the waiting changesets into `CHANGELOG.md`, bumps `package.json`, and (with `--commit`) tags `vX.Y.Z`.
 
+Pushing that tag (`git push origin vX.Y.Z`) publishes the release itself: [`.github/workflows/release.yml`](.github/workflows/release.yml) takes that version's `CHANGELOG.md` section (via `tools/rilis-catatan.mjs`) and creates or updates the matching GitHub Release — idempotently, so a `workflow_dispatch` run with a `tag` input can back-fill an older tag or re-publish one's notes without failing on a Release that already exists.
+
 ## Definition of Done
 
 - [ ] The change is scoped to one workspace (or explicitly, deliberately, more than one) — see "Workspace boundaries" above.
