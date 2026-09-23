@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:2947bdac1752191441d919f4385b9fcf0926096c3b2dd512958b44b4e02d728b -->
+<!-- i18n-source-hash: sha256:c6742bd2f3820b4e72d7f9eaa53f422ae1e6470262b176c917c11b97bb4fa3ba -->
 
 [![CI](https://github.com/ahliweb/awcms-one/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/ahliweb/awcms-one/actions/workflows/ci.yml) [![License](https://img.shields.io/badge/License-MIT-blue)](LICENSE) [![runtime](https://img.shields.io/badge/runtime-Bun-blue?logo=bun&logoColor=white)](https://bun.sh)
 
@@ -16,7 +16,7 @@ Potongan above-the-fold dari halaman beranda, satu per profil build — tiga ben
 | --- | --- | --- |
 | [![Halaman beranda profil toko: header storefront gelap dengan pencarian, wishlist, dan keranjang, di atas slider katalog promosi](docs/assets/readme-toko.webp)](docs/assets/readme-toko.webp) | [![Halaman beranda profil berita: masthead berita dengan ticker "Terkini", slot iklan, dan tata letak headline/sidebar](docs/assets/readme-berita.webp)](docs/assets/readme-berita.webp) | [![Halaman beranda profil landing: header polos di atas judul hero, tombol ajakan bertindak, grid halaman, dan kartu kontak](docs/assets/readme-landing.webp)](docs/assets/readme-landing.webp) |
 
-Setiap gambar disajikan dari `docs/assets/`, dikonversi ke WebP pada kualitas 80; ketiganya bersama-sama seberat sekitar 72 KB, jauh di bawah anggaran 600 KB dokumen ini untuk bobot gambar tambahan. Diregenerasi dengan harness e2e `apps/storefront` sendiri (issue #183) — lihat [`docs/pengujian.md`](docs/pengujian.id.md#playwright-e2e-tingkat-keempat-perintahnya-sendiri-workflow-ci-nya-sendiri-issue-183) untuk pemanggilan `bun run screenshots:readme` yang persis dan perintah konversinya.
+Setiap gambar disajikan dari `docs/assets/`, dikonversi ke WebP pada kualitas 80; ketiganya bersama-sama seberat sekitar 72 KB, jauh di bawah anggaran 600 KB dokumen ini untuk bobot gambar tambahan, dan dirender terhadap fixture CMS stub milik repo ini sendiri, bukan CMS yang sudah di-seed, sehingga konten dan brandingnya adalah placeholder — konten dan brand deployment sungguhan berasal dari CMS-nya sendiri. Diregenerasi dengan harness e2e `apps/storefront` sendiri (issue #183) — lihat [`docs/pengujian.md`](docs/pengujian.id.md#playwright-e2e-tingkat-keempat-perintahnya-sendiri-workflow-ci-nya-sendiri-issue-183) untuk pemanggilan `bun run screenshots:readme` yang persis dan perintah konversinya.
 
 ## Letak repo ini di keluarga AWCMS
 
