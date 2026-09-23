@@ -89,7 +89,7 @@ Since increment 5 ([ADR-0017](docs/adr/0017-external-providers-are-commerce-owne
 | `js/incomplete-url-substring-sanitization` | 1 | `apps/storefront/tests/profil-build-smoke.test.ts` | false positive |
 | `js/clear-text-logging` | 1 | `tools/seed-cms.ts` (the generated owner password, printed once and labelled "SHOWN ONCE, not stored", for the local dev operator who needs it) | won't fix |
 
-**Not dismissed.** Two further `js/clear-text-logging` alerts on `apps/cms/scripts/commerce-deploy-preflight.ts` are real findings, not false positives, and are fixed as code by a sibling change rather than dismissed here.
+**Not dismissed.** Two further `js/clear-text-logging` alerts on `apps/cms/scripts/commerce-deploy-preflight.ts` are, technically, false positives too — CodeQL taints everything `loadEnv()` returns, and today's `reason:` strings print only role names, provider names, and URL values, never a credential (see [issue #205](https://github.com/ahliweb/awcms-one/issues/205)). They are fixed as code by a sibling change rather than dismissed here for a different reason: that safety currently rests entirely on every `reason:` string being composed carefully by hand, in a script whose output lands in retained deploy-pipeline logs, and two of its code paths echo a child process's stderr verbatim — output this script does not itself control. The sibling fix makes that property structural instead of leaving it to be maintained by discipline alone.
 
 ## What is NOT yet true, stated plainly
 

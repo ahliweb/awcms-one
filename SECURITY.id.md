@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](SECURITY.md)
 
-<!-- i18n-source-hash: sha256:fc7dba7586107c14fc86a55d21fc3c232270f4fde9642e7a914c39db4fc7bc95 -->
+<!-- i18n-source-hash: sha256:463cb76525778271c3b67e0a0c70f9b6d7878a1df06fa7092a0fe15079fe9bee -->
 
 # Kebijakan Keamanan
 
@@ -91,7 +91,7 @@ Sejak increment 5 ([ADR-0017](docs/adr/0017-external-providers-are-commerce-owne
 | `js/incomplete-url-substring-sanitization` | 1 | `apps/storefront/tests/profil-build-smoke.test.ts` | false positive |
 | `js/clear-text-logging` | 1 | `tools/seed-cms.ts` (password owner yang digenerate, dicetak sekali dan dilabeli "SHOWN ONCE, not stored", untuk operator dev lokal yang membutuhkannya) | won't fix |
 
-**Tidak di-dismiss.** Dua alert `js/clear-text-logging` lain pada `apps/cms/scripts/commerce-deploy-preflight.ts` adalah temuan sungguhan, bukan false positive, dan diperbaiki sebagai kode oleh perubahan sibling, bukan di-dismiss di sini.
+**Tidak di-dismiss.** Dua alert `js/clear-text-logging` lain pada `apps/cms/scripts/commerce-deploy-preflight.ts` sebenarnya juga false positive — CodeQL menandai (taint) segala yang dikembalikan `loadEnv()`, dan string `reason:` hari ini hanya mencetak nama role, nama provider, dan nilai URL, tidak pernah kredensial (lihat [issue #205](https://github.com/ahliweb/awcms-one/issues/205)). Keduanya diperbaiki sebagai kode oleh perubahan sibling, bukan di-dismiss di sini, karena alasan yang berbeda: keamanan itu saat ini sepenuhnya bertumpu pada setiap string `reason:` yang disusun hati-hati dengan tangan, dalam skrip yang keluarannya mendarat di log pipeline deploy yang disimpan, dan dua jalur kodenya menggemakan (echo) stderr proses anak apa adanya — keluaran yang tidak dikendalikan skrip ini sendiri. Perbaikan sibling itu membuat properti tersebut struktural, bukan lagi dijaga hanya oleh kedisiplinan.
 
 ## Yang BELUM benar, dinyatakan terus terang
 
