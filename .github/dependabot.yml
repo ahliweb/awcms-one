@@ -22,38 +22,21 @@ updates:
       prefix: "ci(deps)"
       include: "scope"
 
-  # This repo's own workspaces (root package.json plus apps/storefront and
-  # packages/*) — deliberately NOT apps/cms. apps/cms is ahliweb/awcms
-  # embedded via git subtree (AGENTS.md's "The subtree embed"): upstream owns
-  # its own dependency set and its own dependabot.yml
-  # (apps/cms/.github/dependabot.yml, inert here because GitHub only reads
-  # the config at the repository root); a version-update PR opened against
-  # apps/cms/package.json from THIS repo would edit code a future
-  # `git subtree pull` can silently overwrite or conflict with. `exclude-paths`
-  # is a per-ecosystem-block option (GitHub, Aug 2025) and applies to the
-  # `bun` ecosystem the same as any other, so one root-directory `bun` entry
-  # with apps/cms excluded covers the workspace without a second entry.
-  - package-ecosystem: "bun"
-    directory: "/"
-    exclude-paths:
-      - "apps/cms/**"
-    schedule:
-      interval: "monthly"
-    open-pull-requests-limit: 10
-    groups:
-      workspace-minor-patch:
-        update-types:
-          - "minor"
-          - "patch"
-        # Same split as github-actions above: a major bump gets its own PR.
-    ignore:
-      # Bun itself is pinned in three places that must move together
-      # (packageManager/engines.bun here, bun-version in every ci.yml job) —
-      # AGENTS.md's "Configuration and toolchain". A version-update PR that
-      # bumped only one of the three would make the pin a lie between the
-      # PR's merge and whoever notices; raising it is a deliberate, all-three
-      # change a maintainer makes by hand, not something Dependabot opens.
-      - dependency-name: "bun"
-    commit-message:
-      prefix: "chore(deps)"
-      include: "scope"
+  # No `bun` ecosystem block (issue #199, follow-up to #180/#179). The first
+  # scheduled run against it failed outright — run 35858077848:
+  #   "Unsupported bun.lock 'lockfileVersion' 2 in /bun.lock. The bun version
+  #   Dependabot runs supports up to 1."
+  # `bun.lock` at this repo's root is lockfileVersion 2 (Bun 1.4 writes v2;
+  # downgrading the lockfile format to keep the block working was rejected —
+  # it would fight the pinned Bun version instead of the other way around).
+  # A monthly job that always fails is noise that hides a real failure, so
+  # the block is removed rather than left red. Until Dependabot's `bun`
+  # ecosystem supports lockfileVersion 2, this repo's own workspace
+  # dependencies (root package.json, apps/storefront, packages/*) are bumped
+  # by hand: `bun update`, then `bun run check:lockfile` — see AGENTS.md's
+  # "Configuration and toolchain" and docs/alur-kerja-pengembangan.md's
+  # "Dependency updates". Re-enable by restoring a bun ecosystem update
+  # block (git history has the exact shape this repo used, prior to the
+  # commit that closed issue #199) once Dependabot's changelog says v2 is
+  # supported, then update `tests/dependabot-config.test.mjs` back to
+  # requiring the block.
