@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](SECURITY.md)
 
-<!-- i18n-source-hash: sha256:db8ce18991f8dccfb41e1218aede93e3825addec5a1c121e7c77b3cd6bba22c5 -->
+<!-- i18n-source-hash: sha256:d4e199693515e9dd6798951a8e772dd346255b7924f02f0f1cc7e0c21482e470 -->
 
 # Kebijakan Keamanan
 
@@ -60,6 +60,7 @@ Sejak increment 5 ([ADR-0017](docs/adr/0017-external-providers-are-commerce-owne
 ## Kontrol yang berlaku hari ini
 
 - **Tidak ada rahasia, token, atau kredensial** di kode, commit, issue, atau dokumentasi.
+- **Pemindaian otomatis yang berlaku**: CodeQL code scanning untuk JavaScript/TypeScript (`.github/workflows/codeql.yml`, issue #184, bagian dari epic #179) pada setiap push ke `main`, setiap pull request, dan mingguan; GitHub secret scanning dan secret-scanning push protection; Dependabot security updates — ketiganya diverifikasi aktif lewat `gh api repos/ahliweb/awcms-one --jq '.security_and_analysis'` (lihat "Branch protection on `main`" di `docs/alur-kerja-pengembangan.md`). `apps/cms/**` SOURCE milik CodeQL tetap dalam cakupan, dengan sengaja — lihat "Lima permukaan" di atas; temuan di sana ditriase dengan cara yang sama seperti temuan lain di pohon tersebut: diperbaiki di sini hanya jika termasuk divergensi lokal terdokumentasi di AGENTS.md atau modul `commerce` milik repo ini sendiri, selain itu dilaporkan ke (dan diperbaiki di) `ahliweb/awcms` lalu ditarik masuk lewat sinkronisasi subtree biasa. CodeQL belum menjadi status check wajib — lihat "CI: a fifth workflow, not required — `codeql`" di `docs/alur-kerja-pengembangan.md`.
 - **`bun audit` harus melaporkan nol kerentanan** sebelum rilis (`tools/rilis.mjs` menjalankannya sebelum menerapkan); `bun audit --audit-level=low` juga berjalan di setiap push CI.
 - **GitHub Actions dipin ke SHA commit**, bukan tag — lihat bagian "Configuration and toolchain" di `AGENTS.md`.
 - **PR `git subtree pull` di-merge dengan merge commit, tidak pernah di-squash atau di-rebase** — bukan kontrol keamanan terhadap penyerang eksternal, melainkan kontrol terhadap rusaknya kemampuan repo ini sendiri untuk menarik patch keamanan upstream ke `apps/cms` di masa depan. Sejak issue #149 ini ditegakkan secara mekanis di seluruh repositori (`allow_squash_merge=false`, `allow_rebase_merge=false`), bukan hanya diingat reviewer. Lihat "The subtree embed" di `AGENTS.md`.

@@ -1,143 +1,122 @@
-# Graph Report - .  (2026-09-20)
+# Graph Report - .  (2026-09-23)
 
 ## Corpus Check
 - cluster-only mode — file stats not available
 
 ## Summary
-- 2185 nodes · 4809 edges · 116 communities (99 shown, 17 thin omitted)
-- Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 37 edges (avg confidence: 0.61)
+- 2254 nodes · 5021 edges · 94 communities (88 shown, 6 thin omitted)
+- Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 38 edges (avg confidence: 0.6)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `a67521b1`
+- Built from commit: `f09bfb12`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
-- seed-cms.ts
-- penyaji.mjs
-- audit-graf.mjs
-- plan.mjs
-- routes.ts
-- berita.ts
-- portable-text.ts
-- navigasi-berita.ts
-- stub-awcms.mjs
-- video/[slug].astro
-- pemasaran.ts
-- scripts
-- bagikan.test.ts
-- toko-klien.ts
-- wishlist-akun-sync.ts
-- buletin.ts
-- audit-dokumen.mjs
-- config/profil.ts
-- wilayah-checkout.ts
-- rilis.mjs
-- BeritaLayout.astro
-- awcms/profil.ts
-- scripts
-- lembaga.ts
-- akun-klien.ts
-- seed-profil.test.mjs
-- bacaSesi
-- keranjang-kontrak.ts
-- import-seputarborneo.ts
-- profil-build-smoke.test.ts
-- sitemap.ts
-- redirect-push.ts
-- kategori/[slug].astro
-- formatPrice
-- catalog.ts
-- knowledge-graph-combine.mjs
-- profil.mjs
-- site.ts
-- knowledge-obsidian-export.mjs
-- wilayah.ts
-- iklan-popup.ts
-- masuk.ts
-- dengar.ts
-- afiliasi-kontrak.ts
-- getProducts
-- import-seputarborneo.test.mjs
-- akun-alamat.ts
-- awcms/analitik.ts
-- theme.ts
-- cari-listing.ts
-- produk-listing.ts
-- checkout.ts
-- mysql-dump-reader.ts
-- requireAwcmsOrigin
-- runExport
-- akun-afiliasi.ts
-- pages.ts
-- bun
-- getVideo
-- cek-lockfile.mjs
-- compilerOptions
-- produk-detail.ts
-- daftar.ts
-- akun-ulasan.ts
-- akun.ts
-- compilerOptions
-- kontrak/package.json
-- knowledge-no-subtree-write.test.mjs
-- isGroupActive
-- akun-pesanan.ts
-- wilayah-region-select.ts
-- global-setup.ts
-- product/[slug].astro
-- knowledge-obsidian-export.test.mjs
-- checkout-guard-no-prerender.test.ts
-- Footer.astro
-- berita-terkini.ts
-- warna.ts
-- meta-sosial-build-smoke.test.ts
-- kontrak-arah-impor.test.mjs
-- katalog-harga.test.ts
-- ga-init.ts
-- analitik-build-smoke.test.ts
-- sidebar-build-smoke.test.ts
-- config/package.json
-- gerbang/package.json
-- audit-rilis.test.mjs
-- robots.txt.ts
-- promo-popup.ts
-- bagikan-build-smoke.test.ts
-- dengar-build-smoke.test.ts
-- logo-instansi-build-smoke.test.ts
-- compilerOptions
-- audit-graf.test.mjs
-- root-env-example-coverage.test.mjs
-- write-build-id.mjs
-- afiliasi-build-smoke.test.ts
-- akun-dashboard-build-smoke.test.ts
-- gateway-build-smoke.test.ts
-- pesan-build-smoke.test.ts
-- versi-toolchain.test.mjs
-- knowledge-graph-update.mjs
-- video-facade.ts
-- build-smoke.test.ts
-- checkout-build-smoke.test.ts
-- katalog-build-smoke.test.ts
-- kurir-build-smoke.test.ts
-- newsletter-path-contract.test.ts
-- 01-create-least-privilege-roles.sh
-- seed-borneojek-mart.ts
-- blog.ts
-- Sidebar.astro
+- Storefront checkout & affiliate capture
+- Dev server routing & Daerah panel
+- Template init plan & rewrite
+- Storefront catalog domain model
+- Knowledge-graph gate (audit:graf)
+- Storefront build/test spawn helpers
+- Docs i18n mirror stamping
+- News (berita) domain model
+- Site build-profile config
+- First-party analytics beacon
+- CMS seed CLI
+- Storefront dev stub server (awcms API)
+- Static page & portable text rendering
+- Site identity & route registry
+- Customer session & wishlist sync
+- Root package.json manifest
+- Region (Kalteng) navigation index
+- Marketing surface (flash sales, tiers)
+- Share-row (bagikan) tests
+- Docs audit gate (audit:dokumen)
+- Release & changeset tooling
+- Checkout region & courier lookups
+- Shared profile-route test harness
+- Article view component
+- Product listing filters & sort
+- Storefront order client
+- Account client (akun-klien)
+- Storefront package.json manifest
+- Article/video schema & breadcrumbs
+- Seed-profile validation tests
+- Primary navigation per profile
+- Legacy seputarborneo importer
+- Seed-CMS ensure/apply helpers
+- Account reviews screen
+- Legacy redirect import tool
+- Blog & ad-placement fetch helpers
+- Bearer customer-session store
+- Price formatting utilities
+- Sitemap sources & RSS feed
+- Obsidian export tool
+- Media object resolution client
+- Sitemap XML rendering
+- Account inbox (pesan) screen
+- Ad popup widget
+- Astro profile route injection
+- Account order-history screen
+- Read-aloud (dengar) player
+- Institution (mitra) directory
+- Legacy redirect map & video lookup
+- OG/social meta builder
+- Legacy importer tests
+- audit:graf end-to-end tests
+- MySQL dump reader
+- Tenant theme colors
+- Affiliate commission screen
+- Terpopuler analytics client
+- Account address book screen
+- Institution & redirect export CLI
+- Berita layout OG/search helpers
+- Env var reader helpers
+- Account profile screen
+- Lockfile consistency check
+- Base tsconfig compiler options
+- Product detail variant pricing
+- Registration (daftar) OTP screen
+- Storefront tsconfig compiler options
+- kontrak package manifest
+- Subtree-write guard tests
+- Color contrast utilities
+- E2E global setup
+- Obsidian export tool tests
+- No-prerender guard tests
+- Production compose file tests
+- Footer & static-page links
+- Recent-news (terkini) loader
+- Contract import-direction test
+- GA4 opt-in init
+- Social-meta build-smoke test
+- Stale-phrase prose check
+- packages/config manifest
+- packages/gerbang manifest
+- Region-institution matching helpers
+- Promo popup dialog
+- Kontrak tsconfig compiler options
+- Env-example coverage test
+- Bun version-pin test
+- Graph-update tool (knowledge:graph:update)
+- Global CSS/fonts test
+- Newsletter path-contract test
+- Postgres least-privilege role init
+- Production job-runner script
 
 ## God Nodes (most connected - your core abstractions)
-1. `ROUTES` - 54 edges
-2. `bun` - 32 edges
+1. `ROUTES` - 56 edges
+2. `bun` - 37 edges
 3. `getSiteIdentity()` - 31 edges
 4. `kirimPermintaan()` - 31 edges
-5. `scripts` - 28 edges
+5. `scripts` - 29 edges
 6. `formatPrice()` - 27 edges
-7. `bacaSesi()` - 24 edges
-8. `getStoreSettings()` - 20 edges
-9. `readEnv()` - 19 edges
-10. `absoluteUrl()` - 19 edges
+7. `bacaSesi()` - 26 edges
+8. `startStub()` - 23 edges
+9. `buildWhatsappUrl()` - 21 edges
+10. `getStoreSettings()` - 20 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `run()` --references--> `bun`  [EXTRACTED]
@@ -149,274 +128,274 @@
 - `runTemplateInitTests()` --indirect_call--> `profil()`  [INFERRED]
   tests/template-init.test.mjs → apps/storefront/integrations/profil.mjs
 - `canSpawnBun()` --references--> `bun`  [EXTRACTED]
-  apps/storefront/tests/afiliasi-build-smoke.test.ts → package.json
+  apps/storefront/tests/meta-sosial-build-smoke.test.ts → package.json
 
 ## Import Cycles
 - 2-file cycle: `apps/storefront/src/lib/toko-klien.ts -> apps/storefront/src/lib/toko-permintaan.ts -> apps/storefront/src/lib/toko-klien.ts`
 
-## Communities (116 total, 17 thin omitted)
+## Communities (94 total, 6 thin omitted)
 
-### Community 0 - "CMS seeding: profile seed loader & validators"
+### Community 0 - "Storefront checkout & affiliate capture"
 Cohesion: 0.05
-Nodes (80): AdPlacementSeed, apiCall(), ApiResult, applySiteProfile(), assertOk(), attemptCreateVerifiedMediaObject(), BASE_URL, CategorySeed (+72 more)
+Nodes (72): AFILIASI_STORAGE_KEY, AFILIASI_TTL_MS, AfiliasiTertangkap, bacaKodeAfiliasi(), bacaStorage(), isAfiliasiKedaluwarsa(), isIsoDateString(), parseAfiliasi() (+64 more)
 
-### Community 1 - "Storefront server: legacy redirects & shadow-path rewrite"
+### Community 1 - "Dev server routing & Daerah panel"
 Cohesion: 0.06
 Nodes (64): canonicalRubrikSlug(), DAERAH_ENTRIES, DAERAH_NAMES, DAERAH_SLUG_BY_ALIAS, decodeSegment(), findNewsRowTargetById(), findVideoRowTargetById(), lastPathSegment() (+56 more)
 
-### Community 2 - "Knowledge-graph audit gate"
+### Community 2 - "Template init plan & rewrite"
+Cohesion: 0.06
+Nodes (55): canSpawnBun(), ADR-0018, NOTE: this test file is NOT excluded from the copy any more. It used to, runTemplateInitTests(), ADR-0018, applyPlan(), applyColorDefaults(), BOOLEAN_FLAGS (+47 more)
+
+### Community 3 - "Storefront catalog domain model"
 Cohesion: 0.05
-Nodes (54): graphPath, outputDir, reporter, reportPath, subtreeTrackedOutput, trackedOutput, dated, oldest (+46 more)
+Nodes (51): siteConfig, assertNeverProductStatus(), buildCategoryTree(), buildPriceTiers(), buildProdukIndex(), CategoryNode, collectCategorySubtreeIds(), CommerceCategory (+43 more)
 
-### Community 3 - "template:init planning & CLI"
+### Community 4 - "Knowledge-graph gate (audit:graf)"
+Cohesion: 0.05
+Nodes (51): ADR-0002, graphPath, ignoreExists, ignorePath, manifestPath, outputDir, reporter, reportPath (+43 more)
+
+### Community 5 - "Storefront build/test spawn helpers"
 Cohesion: 0.06
-Nodes (57): ADR-0018, runTemplateInitTests(), applyPlan(), applyColorDefaults(), BOOLEAN_FLAGS, FLAG_KEYS, missingRequired(), ADR-0018 (+49 more)
+Nodes (29): canSpawnBun(), canSpawnBun(), canSpawnBun(), canSpawnBun(), runBuild(), ARTICLE_PAGE, canSpawnBun(), VIDEO_PAGE (+21 more)
 
-### Community 4 - "Storefront route registry & groups"
-Cohesion: 0.10
-Nodes (16): tokoAktif, PRIMARY_NAV, ROUTE_GROUPS, ROUTES, STATIC_PAGE_SLUGS, ADR-0018, SITEMAP_SOURCE_NAMES, input (+8 more)
+### Community 6 - "Docs i18n mirror stamping"
+Cohesion: 0.07
+Nodes (43): DOCS_AWAITING_MIRROR, gitList(), listMirrors(), listSources(), ROOT, runChecks(), checkMirrorCoverage(), checkTranslationPair() (+35 more)
 
-### Community 5 - "News (berita) client library"
+### Community 7 - "News (berita) domain model"
 Cohesion: 0.06
-Nodes (45): RawTerm, AuthorArchive, buildIndex(), buildRubrikForest(), collectAncestors(), collectDescendantSlugs(), DaerahArchive, DaerahLink (+37 more)
+Nodes (46): RawTerm, AuthorArchive, buildIndex(), buildRubrikForest(), collectAncestors(), collectDescendantSlugs(), DaerahArchive, DaerahLink (+38 more)
 
-### Community 6 - "Portable Text rendering"
+### Community 8 - "Site build-profile config"
+Cohesion: 0.07
+Nodes (44): CSP_NEEDS, CspNeeds, cspNeedsFor(), DEFAULT_SITE_PROFILE, describeProfile(), excludedRouteKeys(), FeedEntry, FEEDS (+36 more)
+
+### Community 9 - "First-party analytics beacon"
 Cohesion: 0.06
-Nodes (47): chunk(), fetchMediaPublicOrigin(), isExpectedRefusal(), markUnresolved(), MediaPublicOrigin, RawResolvedMediaItem, resetMediaCachesForTests(), resolvedCache (+39 more)
+Nodes (31): AwcmsOriginConfigError, requireAwcmsOrigin(), ADR-0007, AnalyticsBeaconPayload, buildAnalyticsPayload(), isTrackingOptedOut(), reportPageView(), sendAnalyticsBeacon() (+23 more)
 
-### Community 7 - "News navigation resolver"
-Cohesion: 0.09
-Nodes (38): rubrikColumn, year, daerahActive, RawInstitution, listStaticPages(), flattenRubrikTree(), getRubrikTree(), RegionRef (+30 more)
+### Community 10 - "CMS seed CLI"
+Cohesion: 0.05
+Nodes (46): AdPlacementSeed, ApiResult, attemptCreateVerifiedMediaObject(), BASE_URL, CategorySeed, Cli, ensureTenantDomains(), errorCodeOf() (+38 more)
 
-### Community 8 - "Stub CMS server for storefront tests"
+### Community 11 - "Storefront dev stub server (awcms API)"
 Cohesion: 0.09
 Nodes (45): ACCOUNTS, ANALYTICS_RANGES, analyticsPages(), buildAffiliateLink(), buildPaymentInstructions(), computeQuote(), corsHeaders(), deterministicAffiliateCode() (+37 more)
 
-### Community 9 - "News video pages"
+### Community 12 - "Static page & portable text rendering"
 Cohesion: 0.07
-Nodes (36): absoluteUrl(), BeritaFeedItem, escapeCdata(), escapeXml(), getPost(), getPosts(), renderBeritaRssXml(), BreadcrumbItem (+28 more)
+Nodes (42): detailCache, fetchStaticPage(), fetchStaticPageList(), getStaticPage(), isExpectedRefusal(), StaticPageDetail, ADR-0100, toPostSummary() (+34 more)
 
-### Community 10 - "Marketing surfaces client"
-Cohesion: 0.08
-Nodes (36): getActiveAdPlacements(), getAdSlot(), getMediaPublicOrigin(), CustomerLevel, DEFAULT_CUSTOMER_LEVELS, EMPTY_STORE_SETTINGS, FlashSale, FlashSaleProductEntry (+28 more)
+### Community 13 - "Site identity & route registry"
+Cohesion: 0.11
+Nodes (22): socialIcons, tokoAktif, ROUTES, DEFAULT_IDENTITY, siteUrl, getStoreSettings(), ComposedSiteIdentity, EMPTY_PAYLOAD (+14 more)
 
-### Community 11 - "Root package.json scripts registry"
-Cohesion: 0.05
-Nodes (43): description, engines, homepage, license, name, packageManager, private, repository (+35 more)
+### Community 14 - "Customer session & wishlist sync"
+Cohesion: 0.12
+Nodes (33): bacaSesi(), laporkanKegagalan(), pasangSinkronisasiWishlist(), sinkronkanWishlistSaatMasuk(), statusElement(), tulisKeAkunJikaMasuk(), loadWishlist(), removeFromWishlist() (+25 more)
 
-### Community 12 - "Share row (bagikan) tests"
+### Community 15 - "Root package.json manifest"
+Cohesion: 0.04
+Nodes (44): description, engines, homepage, license, name, packageManager, private, repository (+36 more)
+
+### Community 16 - "Region (Kalteng) navigation index"
 Cohesion: 0.09
-Nodes (33): followLinks, shareLinks, socialIcons, buildShareLinks(), FOLLOW_LABEL, FOLLOW_ORDER, FollowLink, FollowPlatform (+25 more)
+Nodes (35): rubrikColumn, year, daerahActive, buildRegionIndex(), findKaltengProvince(), getProvinces(), getRegenciesOf(), getResolvableRegionsByCode() (+27 more)
 
-### Community 13 - "Anonymous commerce API client (toko-klien)"
-Cohesion: 0.07
-Nodes (35): createPesananRenderer(), PesananRenderer, PesananRenderRefs, STATUS_LABELS, PESANAN_PHONE_KEY, cancelOrder(), CartLineStatus, CreateOrderRequest (+27 more)
-
-### Community 14 - "Wishlist/account sync"
-Cohesion: 0.14
-Nodes (29): laporkanKegagalan(), pasangSinkronisasiWishlist(), sinkronkanWishlistSaatMasuk(), statusElement(), tulisKeAkunJikaMasuk(), loadWishlist(), removeFromWishlist(), saveWishlist() (+21 more)
-
-### Community 15 - "Newsletter (buletin) client"
+### Community 17 - "Marketing surface (flash sales, tiers)"
 Cohesion: 0.08
-Nodes (21): BuletinApiError, buletinErrorMessage(), BuletinFormRoot, confirmNewsletterSubscription(), Envelope, request(), showStatus(), subscribeToNewsletter() (+13 more)
+Nodes (37): AwcmsApiError, CustomerLevel, DEFAULT_CUSTOMER_LEVELS, EMPTY_STORE_SETTINGS, findFlashSaleForProduct(), FlashSale, FlashSaleProductEntry, FlashSaleStatus (+29 more)
 
-### Community 16 - "Documentation audit gate"
+### Community 18 - "Share-row (bagikan) tests"
+Cohesion: 0.09
+Nodes (32): followLinks, shareLinks, buildShareLinks(), FOLLOW_LABEL, FOLLOW_ORDER, FollowLink, FollowPlatform, resolveFollowLinks() (+24 more)
+
+### Community 19 - "Docs audit gate (audit:dokumen)"
 Cohesion: 0.11
 Nodes (34): ADR-0042, actualCount(), adrStatus(), auditAdrCitations(), auditAdrIndex(), auditLinkedCounts(), auditLinks(), auditNamedPaths() (+26 more)
 
-### Community 17 - "Build profile configuration"
-Cohesion: 0.08
-Nodes (31): CSP_NEEDS, CspNeeds, DEFAULT_SITE_PROFILE, FeedEntry, FEEDS, FEEDS_ALL, FooterPageLink, GROUP_STYLESHEET_HREFS (+23 more)
+### Community 20 - "Release & changeset tooling"
+Cohesion: 0.11
+Nodes (33): CHANGESET_IMPACTS, CHANGESET_TYPES, changesetBody(), isChangesetFile(), parseChangeset(), validateChangeset(), gitRunInherit(), gitRunOrThrow() (+25 more)
 
-### Community 18 - "Checkout region (wilayah) cascade"
+### Community 21 - "Checkout region & courier lookups"
 Cohesion: 0.10
 Nodes (27): ConcurrencyLimiter, configuredProvinceCodes(), createConcurrencyLimiter(), DEFAULT_PROVINCE_CODES, districtsCache, getAllCheckoutRegencies(), getCheckoutDistricts(), getCheckoutProvinces() (+19 more)
 
-### Community 19 - "Release tooling"
+### Community 22 - "Shared profile-route test harness"
+Cohesion: 0.12
+Nodes (27): dead, excludedHits, failures, profile, sitemapDead, sitemapLeaks, sitemapPaths, activeRouteKeys() (+19 more)
+
+### Community 23 - "Article view component"
 Cohesion: 0.11
-Nodes (32): CHANGESET_IMPACTS, CHANGESET_TYPES, changesetBody(), isChangesetFile(), parseChangeset(), validateChangeset(), gitRunOrThrow(), atLeastAsSignificant() (+24 more)
+Nodes (23): absoluteShareUrl, avatarInitials, bodyHtml, breadcrumbItems, heroCaption, heroCredit, readingMinutes, wasUpdated (+15 more)
 
-### Community 20 - "News layout & chrome"
+### Community 24 - "Product listing filters & sort"
 Cohesion: 0.11
-Nodes (25): ResolvedMedia, paginate(), PostDetail, articleSocialMeta(), isHttpUrl(), listingSocialMeta(), MetaTag, ogImageMeta() (+17 more)
+Nodes (29): filterProdukIndex(), paginateProdukIndex(), ProductSort, ProdukIndexFilter, emptyState, grid, heading, paginationEl (+21 more)
 
-### Community 21 - "Storefront site-profile client"
-Cohesion: 0.14
-Nodes (15): getStoreSettings(), isGoogleMapsEmbedUrl(), ComposedSiteIdentity, EMPTY_PAYLOAD, fetchSiteIdentity(), getSiteIdentity(), isExpectedRefusal(), SiteIdentity (+7 more)
+### Community 25 - "Storefront order client"
+Cohesion: 0.08
+Nodes (29): createPesananRenderer(), cancelOrder(), CartLineStatus, CreateOrderRequest, createPaymentProofUploadSession(), finalizePaymentProofUpload(), getOrder(), OrderAddressInput (+21 more)
 
-### Community 22 - "Storefront package.json scripts"
+### Community 26 - "Account client (akun-klien)"
+Cohesion: 0.15
+Nodes (32): Afiliasi, AfiliasiKomisi, Alamat, AlamatInput, ambilAfiliasi(), ambilAlamat(), ambilKomisiAfiliasi(), ambilPesananAkun() (+24 more)
+
+### Community 27 - "Storefront package.json manifest"
 Cohesion: 0.06
 Nodes (31): dependencies, astro, @astrojs/node, @awcms-one/kontrak, description, devDependencies, @astrojs/check, @playwright/test (+23 more)
 
-### Community 23 - "Institution (lembaga/mitra) directory"
-Cohesion: 0.18
-Nodes (12): getAllInstitutions(), buildMitraList(), getMitraBySlug(), getMitraList(), MitraSummary, toMitraSummary(), resolveRegion(), getMitra() (+4 more)
+### Community 28 - "Article/video schema & breadcrumbs"
+Cohesion: 0.09
+Nodes (26): getPosts(), getRelatedPosts(), ADR-0109, BreadcrumbItem, breadcrumbListSchema(), combineSchemas(), newsArticleSchema(), NewsArticleSchemaInput (+18 more)
 
-### Community 24 - "Customer account API client"
-Cohesion: 0.18
-Nodes (29): Afiliasi, AfiliasiKomisi, ambilAfiliasi(), ambilAlamat(), ambilKomisiAfiliasi(), ambilPesananAkun(), ambilPesananAkunByKode(), ambilProfil() (+21 more)
-
-### Community 25 - "Profile seed validation tests"
+### Community 29 - "Seed-profile validation tests"
 Cohesion: 0.14
 Nodes (24): ALL_PROFILES, HAS_CONTOH_SEED, HAS_DEPRECATION_SHIM, NEUTRAL_PROFILES, SEED_ASSETS_ROOT, SEED_DATA_ROOT, check(), isNonEmptyString() (+16 more)
 
-### Community 26 - "Customer session storage (akun-sesi)"
-Cohesion: 0.15
-Nodes (21): verifikasiKode(), Akun, AKUN_EVENT_NAME, AKUN_STORAGE_KEY, isIsoDateString(), isSesiKedaluwarsa(), parseSesi(), SesiAkun (+13 more)
+### Community 30 - "Primary navigation per profile"
+Cohesion: 0.13
+Nodes (23): listStaticPages(), flattenRubrikTree(), getRubrikTree(), paginate(), getNavUtama(), getUmumList(), selectNavUtamaRubrik(), getPrimaryNav() (+15 more)
 
-### Community 27 - "Cart contract types"
-Cohesion: 0.20
-Nodes (21): addToCart(), clearCart(), loadCart(), newCartId(), removeCartLine(), saveCart(), updateCartLineQuantity(), addOrMergeLine() (+13 more)
-
-### Community 28 - "Legacy seputarborneo importer"
+### Community 31 - "Legacy seputarborneo importer"
 Cohesion: 0.09
 Nodes (25): ADR-0114, RFC-3986, BASE_URL, BuildResult, DAERAH_LEAF_LABELS, ExportOptions, LegacyImportRecordJson, Manifest (+17 more)
 
-### Community 29 - "Build-profile smoke tests"
-Cohesion: 0.16
-Nodes (21): routePathPrefix(), SiteProfile, GROUP_FILES, GROUP_SITEMAP_PATHS, ADR-0018, PROFILE, ADR-0018, BUILD_TIMEOUT_MS (+13 more)
+### Community 32 - "Seed-CMS ensure/apply helpers"
+Cohesion: 0.22
+Nodes (26): apiCall(), applySiteProfile(), assertOk(), ensureAdPlacements(), ensureBlogPages(), ensureBlogPosts(), ensureBlogTerms(), ensureCategories() (+18 more)
 
-### Community 30 - "Sitemap generation"
-Cohesion: 0.16
-Nodes (20): SITEMAP_SOURCES, chunkSitemapEntries(), collectSitemapEntries(), escapeXml(), getAllSitemapEntries(), KATALOG_SITEMAP_SOURCE_NAMES, registerSitemapSource(), renderSitemapIndexXml() (+12 more)
+### Community 33 - "Account reviews screen"
+Cohesion: 0.15
+Nodes (22): buildWhatsappAccountMessage(), buildWhatsappUrl(), showSubmitError(), hideSubmitError(), loadList(), render(), renderItem(), root (+14 more)
 
-### Community 31 - "Legacy redirect import tooling"
+### Community 34 - "Legacy redirect import tool"
 Cohesion: 0.12
 Nodes (21): apiCall(), ApiResult, AwcmsApiError, Session, ChunkOutcome, chunkRedirects(), createRedirectImportPoster(), FileWideDuplicate (+13 more)
 
-### Community 32 - "Category listing page"
-Cohesion: 0.14
-Nodes (13): buildPriceTiers(), collectCategorySubtreeIds(), CommerceCategory, CommerceProduct, CommerceProductVariant, getCategoryBySlug(), productsInCategory(), BreadcrumbItem (+5 more)
-
-### Community 33 - "Price formatting (harga)"
-Cohesion: 0.17
-Nodes (19): formatPrice(), PRICE_FORMATTER, ADR-0003, Cart, quoteCart(), buildWhatsappCartMessage(), buildWhatsappUrl(), lineText() (+11 more)
-
-### Community 34 - "Catalog client library"
-Cohesion: 0.11
-Nodes (22): assertNeverProductStatus(), CategoryNode, CommercePage, CommerceProductImage, DEFAULT_TIER_LABELS, filterProdukIndex(), isPubliclyVisible(), listAllCategories() (+14 more)
-
-### Community 35 - "Knowledge-graph federation/combine tooling"
-Cohesion: 0.13
-Nodes (17): checkMergedResult(), checkMergeInputsCompatible(), validateGraphFile(), assertNotUnderSubtree(), isAbsoluteLike(), isUnderSubtree(), CMS_GRAPH, cmsResult (+9 more)
-
-### Community 36 - "Astro build-profile integration"
+### Community 35 - "Blog & ad-placement fetch helpers"
 Cohesion: 0.15
-Nodes (18): ADR-0018, SITE, BERANDA_ALIAS, berandaVariantPath(), collectInjectedRoutes(), ENDPOINT_EXTENSIONS, listPageFiles(), ADR-0018 (+10 more)
+Nodes (17): AD_PLACEMENT_KEYS, AdPlacementKey, fetchActiveAdPlacements(), fetchAllInstitutions(), fetchAllTerms(), fetchLegacyRedirectRows(), getActiveAdPlacements(), getAllPosts() (+9 more)
 
-### Community 37 - "Site identity & theme config"
+### Community 36 - "Bearer customer-session store"
+Cohesion: 0.17
+Nodes (17): verifikasiKode(), AKUN_EVENT_NAME, AKUN_STORAGE_KEY, isIsoDateString(), isSesiKedaluwarsa(), parseSesi(), SesiAkun, ADR-0007 (+9 more)
+
+### Community 37 - "Price formatting utilities"
 Cohesion: 0.16
-Nodes (15): DEFAULT_IDENTITY, DEFAULT_THEME_COLORS, siteUrl, awcmsGet(), baseUrl(), Envelope, timeoutMs(), mergeSiteIdentity() (+7 more)
+Nodes (12): comparePrices(), formatDiscountPercent(), formatPrice(), PRICE_FORMATTER, priceToNumber(), ADR-0003, formatRemaining(), tick() (+4 more)
 
-### Community 38 - "Knowledge-graph Obsidian export"
+### Community 38 - "Sitemap sources & RSS feed"
+Cohesion: 0.16
+Nodes (16): SITEMAP_SOURCES, absoluteUrl(), BeritaFeedItem, getPost(), renderBeritaRssXml(), renderPortableText(), KATALOG_SITEMAP_SOURCE_NAMES, registerSitemapSource() (+8 more)
+
+### Community 39 - "Obsidian export tool"
 Cohesion: 0.14
 Nodes (16): ALLOWED_EXTENSIONS, basenameOf(), checkCuratedCollision(), classifyEntry(), extensionOf(), isAbsoluteLike(), KNOWN_HOUSEKEEPING_BASENAMES, resolveWithin() (+8 more)
 
-### Community 39 - "Region (wilayah) data client"
-Cohesion: 0.17
-Nodes (17): buildRegionIndex(), findKaltengProvince(), getProvinces(), getRegenciesOf(), getResolvableRegionsByCode(), listLintasKalimantanProvinces(), listRegions(), matchesProvinceName() (+9 more)
+### Community 40 - "Media object resolution client"
+Cohesion: 0.16
+Nodes (16): chunk(), fetchMediaPublicOrigin(), getMediaPublicOrigin(), isExpectedRefusal(), markUnresolved(), MediaPublicOrigin, RawResolvedMediaItem, resetMediaCachesForTests() (+8 more)
 
-### Community 40 - "Ad popup"
+### Community 41 - "Sitemap XML rendering"
+Cohesion: 0.22
+Nodes (16): chunkSitemapEntries(), collectSitemapEntries(), escapeXml(), getAllSitemapEntries(), renderSitemapIndexXml(), renderUrlsetXml(), resetSitemapEntriesCacheForTests(), resetSitemapSourcesForTests() (+8 more)
+
+### Community 42 - "Account inbox (pesan) screen"
+Cohesion: 0.15
+Nodes (14): CartQuote, Envelope, STOREFRONT_PATH_PREFIX, TokoApiError, ValidationErrorDetail, appendConversationRows(), hideSubmitError(), loadDetail() (+6 more)
+
+### Community 43 - "Ad popup widget"
 Cohesion: 0.15
 Nodes (14): BODY_OPEN_CLASS, CLOSE_LABEL, CTA_LABEL, DEFAULT_LABEL, DIALOG_ID, IklanPopupData, initIklanPopup(), isModifiedClick() (+6 more)
 
-### Community 41 - "Customer sign-in (masuk) page script"
-Cohesion: 0.16
-Nodes (13): Envelope, STOREFRONT_PATH_PREFIX, TokoApiError, ValidationErrorDetail, clearFieldErrors(), hideSubmitError(), root, sendCode() (+5 more)
+### Community 44 - "Astro profile route injection"
+Cohesion: 0.19
+Nodes (15): SITE, BERANDA_ALIAS, berandaVariantPath(), collectInjectedRoutes(), ENDPOINT_EXTENSIONS, listPageFiles(), PAGE_EXTENSIONS, profil() (+7 more)
 
-### Community 42 - "Read-aloud (dengar) player"
+### Community 45 - "Account order-history screen"
+Cohesion: 0.18
+Nodes (17): AkunPesananHalaman, ambilPesananAkunByKode(), PesananRenderer, PesananRenderRefs, STATUS_LABELS, STATUS_TONE_CLASS, Order, appendOrderRows() (+9 more)
+
+### Community 46 - "Read-aloud (dengar) player"
 Cohesion: 0.20
 Nodes (11): bacaSimpanan(), DILEWATI, initDengar(), KELAS_DIBACA, kumpulkanUnit(), pasangPemutar(), pecahKalimat(), suaraIndonesia() (+3 more)
 
-### Community 43 - "Affiliate contract & capture"
-Cohesion: 0.23
-Nodes (14): AFILIASI_STORAGE_KEY, AFILIASI_TTL_MS, AfiliasiTertangkap, bacaKodeAfiliasi(), bacaStorage(), isAfiliasiKedaluwarsa(), isIsoDateString(), parseAfiliasi() (+6 more)
+### Community 47 - "Institution (mitra) directory"
+Cohesion: 0.17
+Nodes (13): getAllInstitutions(), RawInstitution, buildMitraList(), getMitraBySlug(), getMitraList(), MitraSummary, toMitraSummary(), resolveRegion() (+5 more)
 
-### Community 44 - "Product catalog data fetchers"
-Cohesion: 0.15
-Nodes (15): buildCategoryTree(), buildProdukIndex(), getCategories(), getProduct(), getProducts(), labelClassName(), primaryProductImage(), PRODUK_PAGE_SIZE (+7 more)
+### Community 48 - "Legacy redirect map & video lookup"
+Cohesion: 0.16
+Nodes (13): getLegacyRedirectRows(), getVideo(), buildLegacyRedirectMap(), lastPathSegment(), LegacyRedirectRow, normalizeLegacyPath(), ADR-0071, GET() (+5 more)
 
-### Community 45 - "Legacy importer tests"
+### Community 49 - "OG/social meta builder"
+Cohesion: 0.24
+Nodes (14): ResolvedMedia, PostDetail, articleSocialMeta(), isHttpUrl(), listingSocialMeta(), MetaTag, ogImageMeta(), postSeoText() (+6 more)
+
+### Community 50 - "Legacy importer tests"
 Cohesion: 0.22
 Nodes (15): buildPostRecord(), buildVideoRecord(), legacyNewsUrlCurrent(), legacyNewsUrlPre2000(), legacyVideoIdSlug(), legacyVideoUrl(), newPostSlug(), normalizeYoutubeVideoId() (+7 more)
 
-### Community 46 - "Account address book"
-Cohesion: 0.26
-Nodes (16): Alamat, AlamatInput, clearFieldErrors(), closeForm(), deleteAlamat(), hideSubmitError(), loadList(), openFormForCreate() (+8 more)
+### Community 51 - "audit:graf end-to-end tests"
+Cohesion: 0.10
+Nodes (10): buildId, OUT_PATH, resolveBuildId(), cleanup, fixture(), run(), SCRIPT, cleanup (+2 more)
 
-### Community 47 - "Visitor analytics client"
-Cohesion: 0.20
-Nodes (11): fetchTopPaths(), getTopPaths(), hitungTayangPerSlug(), isExpectedRefusal(), pilihTerpopuler(), resetAnalitikCacheForTests(), slugDariPath(), TERPOPULER_RANGE (+3 more)
-
-### Community 48 - "Theme token tests/config"
-Cohesion: 0.18
-Nodes (12): apiOrigin(), extractThemeToken(), fetchSiteTheme(), getSiteTheme(), tenantCode(), ThemeColors, GET(), prerender (+4 more)
-
-### Community 49 - "Product search listing"
-Cohesion: 0.21
-Nodes (13): paginateProdukIndex(), ProdukIndexEntry, emptyState, grid, heading, paginationEl, run(), cardHtml() (+5 more)
-
-### Community 50 - "Product listing page logic"
-Cohesion: 0.17
-Nodes (16): ProductSort, ProdukIndexFilter, applyAndRender(), countEl, emptyState, form, grid, isProductSort() (+8 more)
-
-### Community 51 - "Checkout page script"
-Cohesion: 0.18
-Nodes (12): keepDigitsAndLeadingPlus(), previewIndonesianPhone(), CartLineRequest, CartQuote, createOrder(), ShippingSelection, root, runCheckout() (+4 more)
-
-### Community 52 - "Legacy MySQL dump reader"
+### Community 52 - "MySQL dump reader"
 Cohesion: 0.18
 Nodes (11): DumpRow, extractCreateTableColumns(), findMatchingParen(), findNextStatementStart(), Mode, readMysqlDumpRows(), SqlInsertTokenizer, tryParseValueTuple() (+3 more)
 
-### Community 53 - "AWCMS origin validation (toko-origin)"
-Cohesion: 0.22
-Nodes (10): AwcmsOriginConfigError, requireAwcmsOrigin(), ADR-0007, AnalyticsBeaconPayload, buildAnalyticsPayload(), isTrackingOptedOut(), reportPageView(), sendAnalyticsBeacon() (+2 more)
+### Community 53 - "Tenant theme colors"
+Cohesion: 0.20
+Nodes (11): DEFAULT_THEME_COLORS, apiOrigin(), extractThemeToken(), fetchSiteTheme(), getSiteTheme(), tenantCode(), ThemeColors, GET() (+3 more)
 
-### Community 54 - "Legacy export runner"
+### Community 54 - "Affiliate commission screen"
+Cohesion: 0.22
+Nodes (14): AfiliasiKomisiHalaman, appendKomisiRows(), hideSubmitError(), KOMISI_STATUS_LABELS, KOMISI_STATUS_TONES, loadMoreKomisi(), render(), renderEnrolled() (+6 more)
+
+### Community 55 - "Terpopuler analytics client"
+Cohesion: 0.23
+Nodes (10): fetchTopPaths(), getTopPaths(), hitungTayangPerSlug(), isExpectedRefusal(), pilihTerpopuler(), resetAnalitikCacheForTests(), slugDariPath(), TERPOPULER_RANGE (+2 more)
+
+### Community 56 - "Account address book screen"
+Cohesion: 0.31
+Nodes (14): clearFieldErrors(), closeForm(), deleteAlamat(), hideSubmitError(), loadList(), openFormForCreate(), openFormForEdit(), render() (+6 more)
+
+### Community 57 - "Institution & redirect export CLI"
 Cohesion: 0.20
 Nodes (15): row(), buildRedirectEntry(), buildSiteProfileUpdateFromConfig(), collectPendingAssignments(), flag(), main(), runAssignInstitutions(), runExport() (+7 more)
 
-### Community 55 - "Affiliate dashboard page"
-Cohesion: 0.26
-Nodes (13): AfiliasiKomisiHalaman, appendKomisiRows(), hideSubmitError(), KOMISI_STATUS_LABELS, loadMoreKomisi(), render(), renderEnrolled(), root (+5 more)
+### Community 58 - "Berita layout OG/search helpers"
+Cohesion: 0.15
+Nodes (6): OgType, input, matches, needle, resultsList, status
 
-### Community 56 - "Storefront page group definitions"
-Cohesion: 0.19
-Nodes (10): detailCache, fetchStaticPage(), fetchStaticPageList(), getStaticPage(), isExpectedRefusal(), StaticPageDetail, ADR-0100, bodyHtml (+2 more)
+### Community 59 - "Env var reader helpers"
+Cohesion: 0.29
+Nodes (9): awcmsGet(), baseUrl(), Envelope, timeoutMs(), EnvSource, readEnv(), readEnvOr(), isValidGaMeasurementId() (+1 more)
 
-### Community 57 - "Test harness bootstrap"
-Cohesion: 0.14
-Nodes (6): canSpawnBun(), canSpawnBun(), canSpawnBun(), canSpawnBun(), bun, gitRunInherit()
+### Community 60 - "Account profile screen"
+Cohesion: 0.27
+Nodes (13): hideSubmitError(), initialsFor(), LEVEL_LABELS, levelLabel(), loadStats(), render(), renderProfile(), root (+5 more)
 
-### Community 58 - "News video data fetchers"
-Cohesion: 0.26
-Nodes (10): getLegacyRedirectRows(), getVideo(), buildLegacyRedirectMap(), lastPathSegment(), LegacyRedirectRow, normalizeLegacyPath(), ADR-0071, GET() (+2 more)
-
-### Community 59 - "Lockfile consistency check"
+### Community 61 - "Lockfile consistency check"
 Cohesion: 0.19
 Nodes (11): stripTrailingCommas(), ALL_PACKAGES, DEPENDENCY_BLOCKS, findWorkspaces(), foundPaths, foundWorkspaces, lock, problems (+3 more)
 
-### Community 60 - "kontrak package tsconfig"
+### Community 62 - "Base tsconfig compiler options"
 Cohesion: 0.15
 Nodes (12): compilerOptions, isolatedModules, lib, module, noEmit, strict, target, extends (+4 more)
 
-### Community 61 - "Product detail page logic"
+### Community 63 - "Product detail variant pricing"
 Cohesion: 0.26
 Nodes (11): findVariantForSelection(), currentVariant(), effectiveMaxQuantity(), effectivePrice(), FlashSalePayload, hasSelection(), ProdukDetailPayload, refresh() (+3 more)
 
-### Community 62 - "Customer registration (daftar) page"
+### Community 64 - "Registration (daftar) OTP screen"
 Cohesion: 0.35
 Nodes (10): mintaKode(), clearFieldErrors(), hideSubmitError(), root, sendCode(), showCodeStep(), showStatus(), showSubmitError() (+2 more)
 
-### Community 63 - "Account reviews (ulasan)"
-Cohesion: 0.31
-Nodes (10): UlasanAkun, hideSubmitError(), loadList(), render(), renderItem(), root, showGuestView(), showSubmitError() (+2 more)
-
-### Community 64 - "Account dashboard page script"
-Cohesion: 0.35
-Nodes (10): hideSubmitError(), LEVEL_LABELS, levelLabel(), render(), renderProfile(), root, showAccountView(), showGuestView() (+2 more)
-
-### Community 65 - "storefront package tsconfig"
+### Community 65 - "Storefront tsconfig compiler options"
 Cohesion: 0.18
 Nodes (10): compilerOptions, baseUrl, paths, types, extends, @profil/beranda, astro/tsconfigs/strict, bun (+2 more)
 
@@ -428,133 +407,93 @@ Nodes (10): awcms, dependencies, awcms, description, exports, name, private, typ
 Cohesion: 0.24
 Nodes (8): buildFixture(), cleanup, COMBINE_SCRIPT, EXPORT_SCRIPT, fakeGraph(), fakeGraphifyBin(), REPO_ROOT, write()
 
-### Community 68 - "Profile group activation logic"
-Cohesion: 0.33
-Nodes (10): activeRouteKeys(), cspNeedsFor(), describeProfile(), excludedRouteKeys(), feedsFor(), groupStylesheetsFor(), isGroupActive(), isRouteActive() (+2 more)
+### Community 68 - "Color contrast utilities"
+Cohesion: 0.40
+Nodes (7): contrastingForeground(), contrastRatio(), isValidHexColor(), relativeLuminance(), WCAG_AA_TEXT_CONTRAST, GET(), prerender
 
-### Community 69 - "Account order history page"
-Cohesion: 0.38
-Nodes (9): AkunPesananHalaman, buildWhatsappAccountMessage(), appendOrderRows(), hideSubmitError(), loadDetail(), loadMore(), render(), root (+1 more)
-
-### Community 70 - "Region select widget"
-Cohesion: 0.44
-Nodes (9): applyRegionSelection(), fetchRegionJson(), fillRegionOptions(), loadKabupaten(), loadKecamatan(), loadProvinces(), RegionOption, RegionSelects (+1 more)
-
-### Community 71 - "Storefront test global setup"
+### Community 69 - "E2E global setup"
 Cohesion: 0.33
 Nodes (6): globalSetup(), ADR-0002, ADR-0007, waitForHttp(), PREVIEW_PORT, STUB_PORT
 
-### Community 72 - "Product detail page (astro)"
-Cohesion: 0.28
-Nodes (3): findFlashSaleForProduct(), formatRemaining(), tick()
-
-### Community 73 - "Obsidian export tests"
+### Community 70 - "Obsidian export tool tests"
 Cohesion: 0.31
 Nodes (7): buildFixture(), cleanup, EXPORT_SCRIPT, fakeGraph(), fakeGraphifyBin(), REPO_ROOT, write()
 
-### Community 74 - "No-prerender guard tests"
+### Community 71 - "No-prerender guard tests"
 Cohesion: 0.29
 Nodes (7): listAllPageFiles(), listSourceFiles(), PAGES_ROOT, PROFIL_ROOT, SRC_ROOT, TOKO_PAGES_ROOT, ADR-0007
 
-### Community 75 - "Site footer component"
-Cohesion: 0.29
-Nodes (6): footerLinks, publishedSlugs, year, FOOTER_PAGE_LINKS, SEARCH_SURFACE, StaticPageSummary
+### Community 72 - "Production compose file tests"
+Cohesion: 0.25
+Nodes (5): ADR-0019, COMPOSE_PATH, doc, raw, REPO_ROOT
 
-### Community 76 - "News ticker (terkini)"
+### Community 73 - "Footer & static-page links"
+Cohesion: 0.29
+Nodes (7): [], channelCandidates, footerLinks, publishedSlugs, year, SEARCH_SURFACE, StaticPageSummary
+
+### Community 74 - "Recent-news (terkini) loader"
 Cohesion: 0.33
 Nodes (5): BeritaLoader, BeritaModule, defaultLoader(), getRecentPosts(), RecentPost
 
-### Community 77 - "Colour contrast utilities"
-Cohesion: 0.62
-Nodes (5): contrastingForeground(), contrastRatio(), isValidHexColor(), relativeLuminance(), WCAG_AA_TEXT_CONTRAST
-
-### Community 78 - "Social metadata smoke tests"
-Cohesion: 0.38
-Nodes (4): canSpawnBun(), headOf(), relLinks(), socialMeta()
-
-### Community 79 - "Import-direction gate tests"
+### Community 75 - "Contract import-direction test"
 Cohesion: 0.38
 Nodes (4): join(), SCANNED_EXTENSIONS, SKIP, sourceFiles()
 
-### Community 80 - "Catalog pricing tests"
-Cohesion: 0.40
-Nodes (5): formatDiscountPercent(), HARGA_FILE, SCANNABLE_EXTENSIONS, SRC_ROOT, walk()
-
-### Community 81 - "GA4 analytics init"
+### Community 76 - "GA4 opt-in init"
 Cohesion: 0.53
 Nodes (3): gtag(), initGa(), Window
 
-### Community 84 - "config package manifest"
+### Community 77 - "Social-meta build-smoke test"
+Cohesion: 0.47
+Nodes (4): canSpawnBun(), headOf(), relLinks(), socialMeta()
+
+### Community 78 - "Stale-phrase prose check"
+Cohesion: 0.33
+Nodes (5): ADR-0016, EN, ID, STALE_EN_PHRASES, STALE_ID_PHRASES
+
+### Community 79 - "packages/config manifest"
 Cohesion: 0.33
 Nodes (5): description, name, private, type, version
 
-### Community 85 - "gerbang package manifest"
+### Community 80 - "packages/gerbang manifest"
 Cohesion: 0.33
 Nodes (5): description, name, private, type, version
 
-### Community 86 - "Release audit tests"
-Cohesion: 0.33
-Nodes (3): cleanup, run(), SCRIPT
+### Community 81 - "Region-institution matching helpers"
+Cohesion: 0.53
+Nodes (6): ensureInstitutionsGeneric(), fetchRegionItems(), matchRegionCode(), namesMatchIgnoringSpaces(), resolveKaltengRegions(), resolveRegionCode()
 
-### Community 87 - "Robots.txt generation"
-Cohesion: 0.40
-Nodes (3): ROBOTS_DISALLOW, siteConfig, prerender
-
-### Community 88 - "Promo popup component logic"
+### Community 82 - "Promo popup dialog"
 Cohesion: 0.60
 Nodes (4): dialog, markShown(), shouldShow(), storageKey()
 
-### Community 89 - "Share row smoke tests"
-Cohesion: 0.40
-Nodes (3): ARTICLE_PAGE, canSpawnBun(), VIDEO_PAGE
-
-### Community 90 - "Read-aloud smoke tests"
-Cohesion: 0.40
-Nodes (3): ARTICLE_PAGE, canSpawnBun(), VIDEO_PAGE
-
-### Community 91 - "Institution logo smoke tests"
-Cohesion: 0.40
-Nodes (3): ARTICLE_WITH_LOGO, canSpawnBun(), MITRA_WITH_LOGO
-
-### Community 92 - "config package tsconfig"
+### Community 83 - "Kontrak tsconfig compiler options"
 Cohesion: 0.40
 Nodes (4): compilerOptions, jsx, jsxImportSource, moduleResolution
 
-### Community 95 - "Build-id writer"
-Cohesion: 0.50
-Nodes (3): buildId, OUT_PATH, resolveBuildId()
-
-### Community 101 - "Toolchain pin tests"
+### Community 85 - "Bun version-pin test"
 Cohesion: 0.50
 Nodes (3): ci, pkg, VERSION
 
-### Community 114 - "Blog/news content client"
-Cohesion: 0.15
-Nodes (16): AD_PLACEMENT_KEYS, AdPlacementKey, fetchActiveAdPlacements(), fetchAllInstitutions(), fetchAllTerms(), fetchLegacyRedirectRows(), getAllPosts(), getAllTerms() (+8 more)
-
-### Community 115 - "Sidebar component"
-Cohesion: 0.23
-Nodes (11): toDatetimeAttr(), PostSummary, formatBulanArsipWIB(), formatTanggalPanjangWIB(), formatTanggalWaktuWIB(), formatWaktuWIB(), pernahDiperbaruiSetelahTerbit(), toDatetimeAttr() (+3 more)
-
 ## Knowledge Gaps
-- **635 isolated node(s):** `Envelope`, `EnvSource`, `name`, `type`, `version` (+630 more)
+- **656 isolated node(s):** `Envelope`, `EnvSource`, `name`, `type`, `version` (+651 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **17 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **6 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `bun` connect `bun` to `audit-graf.mjs`, `scripts`, `audit-dokumen.mjs`, `rilis.mjs`, `profil-build-smoke.test.ts`, `mysql-dump-reader.ts`, `runExport`, `global-setup.ts`, `meta-sosial-build-smoke.test.ts`, `analitik-build-smoke.test.ts`, `sidebar-build-smoke.test.ts`, `audit-rilis.test.mjs`, `bagikan-build-smoke.test.ts`, `dengar-build-smoke.test.ts`, `logo-instansi-build-smoke.test.ts`, `write-build-id.mjs`, `afiliasi-build-smoke.test.ts`, `akun-dashboard-build-smoke.test.ts`, `gateway-build-smoke.test.ts`, `pesan-build-smoke.test.ts`, `build-smoke.test.ts`, `checkout-build-smoke.test.ts`, `katalog-build-smoke.test.ts`, `kurir-build-smoke.test.ts`?**
-  _High betweenness centrality (0.295) - this node is a cross-community bridge._
-- **Why does `buildProfile()` connect `profil-build-smoke.test.ts` to `bun`?**
-  _High betweenness centrality (0.130) - this node is a cross-community bridge._
-- **Why does `canSpawnBun()` connect `profil-build-smoke.test.ts` to `bun`?**
-  _High betweenness centrality (0.127) - this node is a cross-community bridge._
+- **Why does `bun` connect `Storefront build/test spawn helpers` to `Template init plan & rewrite`, `Knowledge-graph gate (audit:graf)`, `E2E global setup`, `Docs i18n mirror stamping`, `Social-meta build-smoke test`, `Root package.json manifest`, `audit:graf end-to-end tests`, `Release & changeset tooling`, `Docs audit gate (audit:dokumen)`, `Shared profile-route test harness`, `MySQL dump reader`, `Institution & redirect export CLI`?**
+  _High betweenness centrality (0.198) - this node is a cross-community bridge._
+- **Why does `ADR-0018` connect `Template init plan & rewrite` to `Site build-profile config`, `CMS seed CLI`, `Astro profile route injection`, `Site identity & route registry`, `Shared profile-route test harness`?**
+  _High betweenness centrality (0.138) - this node is a cross-community bridge._
+- **Why does `ROUTES` connect `Site identity & route registry` to `Storefront catalog domain model`, `News (berita) domain model`, `Site build-profile config`, `Customer session & wishlist sync`, `Region (Kalteng) navigation index`, `Shared profile-route test harness`, `Article view component`, `Article/video schema & breadcrumbs`, `Primary navigation per profile`, `Account reviews screen`, `Blog & ad-placement fetch helpers`, `Price formatting utilities`, `Sitemap sources & RSS feed`, `Account inbox (pesan) screen`, `Account order-history screen`, `Institution (mitra) directory`, `Legacy redirect map & video lookup`, `OG/social meta builder`, `Berita layout OG/search helpers`, `Registration (daftar) OTP screen`, `Footer & static-page links`?**
+  _High betweenness centrality (0.114) - this node is a cross-community bridge._
 - **What connects `Envelope`, `EnvSource`, `name` to the rest of the system?**
-  _635 weakly-connected nodes found - possible documentation gaps or missing edges._
-- **Should `seed-cms.ts` be split into smaller, more focused modules?**
-  _Cohesion score 0.05335628227194492 - nodes in this community are weakly interconnected._
-- **Should `penyaji.mjs` be split into smaller, more focused modules?**
+  _656 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **Should `Storefront checkout & affiliate capture` be split into smaller, more focused modules?**
+  _Cohesion score 0.052434456928838954 - nodes in this community are weakly interconnected._
+- **Should `Dev server routing & Daerah panel` be split into smaller, more focused modules?**
   _Cohesion score 0.05719298245614035 - nodes in this community are weakly interconnected._
-- **Should `audit-graf.mjs` be split into smaller, more focused modules?**
-  _Cohesion score 0.05438184663536776 - nodes in this community are weakly interconnected._
+- **Should `Template init plan & rewrite` be split into smaller, more focused modules?**
+  _Cohesion score 0.05997778600518327 - nodes in this community are weakly interconnected._
