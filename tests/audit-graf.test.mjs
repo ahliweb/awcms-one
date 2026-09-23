@@ -14,6 +14,7 @@
  * until there was something real for it to guard).
  */
 import { afterEach, describe, expect, test } from "bun:test";
+import { createHash } from "node:crypto";
 import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
@@ -234,5 +235,122 @@ describe("the subtree stays untouched", () => {
     const { code, output } = await run(root);
     expect(code).toBe(1);
     expect(output).toContain("subtree-untouched");
+  });
+});
+
+describe("content staleness (issue #186) — end-to-end wiring", () => {
+  /**
+   * Unit coverage for the counting logic itself (under/at/over bound,
+   * changed/added/removed in isolation) lives in
+   * `tests/graf-checks-staleness.test.mjs`, driven directly against
+   * `diffManifestStaleness`/`checkStaleness` with no fixture tree at all.
+   * These tests instead prove the RUNNER's wiring — that `audit-graf.mjs`
+   * reads `manifest.json` and `git ls-files` for real, hashes real files
+   * with `md5Hex`, and turns the result into the same violation/note shape.
+   *
+   * A manifest entry whose path is never written to disk is a cheap,
+   * reliable way to manufacture "removed" files here: it is recorded in
+   * `manifest.json` but never `git add -A`ed, so `git ls-files` never lists
+   * it and `diffManifestStaleness` counts it removed — without needing 40+
+   * real files on disk to prove the bound.
+   */
+  function md5(contents) {
+    return createHash("md5").update(contents).digest("hex");
+  }
+
+  /** A manifest with `count` fabricated, never-written entries — all "removed". */
+  function fabricatedManifest(count) {
+    const manifest = {};
+    for (let i = 0; i < count; i += 1) {
+      manifest[`src/fabricated-${i}.ts`] = { ast_hash: "does-not-matter" };
+    }
+    return manifest;
+  }
+
+  test("a tree with no drift reports zero changed/added/removed and stays green", async () => {
+    const content = "export const seedValue = 1;\n";
+    const root = fixture({
+      extra: {
+        "graphify-out/manifest.json": JSON.stringify({ "src/seed.ts": { ast_hash: md5(content) } }),
+        "src/seed.ts": content
+      }
+    });
+    const { code, output } = await run(root);
+    expect(code).toBe(0);
+    expect(output).toContain("staleness: 0 changed, 0 added, 0 removed");
+  });
+
+  test("a changed file is counted as changed, not removed", async () => {
+    const original = "export const seedValue = 1;\n";
+    const root = fixture({
+      extra: {
+        "graphify-out/manifest.json": JSON.stringify({ "src/seed.ts": { ast_hash: md5(original) } }),
+        "src/seed.ts": "export const seedValue = 2; // edited after the graph was built\n"
+      }
+    });
+    const { code, output } = await run(root);
+    expect(code).toBe(0); // one file is well under the bound
+    expect(output).toContain("staleness: 1 changed, 0 added, 0 removed");
+  });
+
+  test("a newly added, git-tracked file with a known extension is counted as added", async () => {
+    const content = "export const seedValue = 1;\n";
+    const root = fixture({
+      extra: {
+        // "src/seed.ts" seeds the manifest's extension vocabulary (.ts) —
+        // it is itself fabricated (never written), so it also shows up as
+        // removed; that is fine, this test asserts on "added" specifically.
+        "graphify-out/manifest.json": JSON.stringify({ "src/seed.ts": { ast_hash: "irrelevant" } }),
+        "src/added.ts": content
+      }
+    });
+    const { code, output } = await run(root);
+    expect(code).toBe(0);
+    expect(output).toContain("staleness: 0 changed, 1 added, 1 removed");
+  });
+
+  test("a diff at exactly the bound (40) is green", async () => {
+    const root = fixture({
+      extra: { "graphify-out/manifest.json": JSON.stringify(fabricatedManifest(40)) }
+    });
+    const { code, output } = await run(root);
+    expect(code).toBe(0);
+    expect(output).toContain("staleness: 0 changed, 0 added, 40 removed — 40 total (bound 40)");
+  });
+
+  test("a diff one over the bound (41) fails the gate", async () => {
+    const root = fixture({
+      extra: { "graphify-out/manifest.json": JSON.stringify(fabricatedManifest(41)) }
+    });
+    const { code, output } = await run(root);
+    expect(code).toBe(1);
+    expect(output).toContain("staleness");
+    expect(output).toContain("41 file(s) changed/added/removed since the graph was last built, bound is 40");
+    expect(output).toContain("knowledge:graph:update");
+  });
+
+  test("a manifest whose recorded path is now under apps/cms/ is removed, not changed", async () => {
+    // Simulates a file that moved into the subtree since the graph was last
+    // built — it must never be silently re-admitted as "still fine".
+    const root = fixture({
+      extra: {
+        "graphify-out/manifest.json": JSON.stringify({ "apps/cms/src/moved.ts": { ast_hash: "irrelevant" } })
+      }
+    });
+    const { code, output } = await run(root);
+    expect(code).toBe(0);
+    expect(output).toContain("staleness: 0 changed, 0 added, 1 removed");
+  });
+
+  test("graphify-out/manifest.json absent is a note, not a violation", async () => {
+    const root = fixture();
+    // Remove the manifest entirely (not merely emptied) to prove the
+    // "absent" branch, distinct from the baseline "{}" case above. The
+    // check reads the filesystem directly (existsSync), not git, so a plain
+    // unlink — not `git rm` — is what it needs to see.
+    rmSync(join(root, "graphify-out/manifest.json"));
+    const { code, output } = await run(root);
+    expect(code).toBe(0);
+    expect(output).toContain("manifest.json absent — cannot check content staleness");
   });
 });
