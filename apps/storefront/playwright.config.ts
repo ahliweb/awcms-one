@@ -22,7 +22,13 @@ export default defineConfig({
   fullyParallel: false,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 1 : 0,
-  reporter: process.env.CI ? "github" : "list",
+  // In CI (issue #183, `.github/workflows/e2e.yml`): annotations on the run
+  // itself ("github") PLUS a static HTML report ("html") written to the
+  // default `playwright-report/` so the workflow has something to upload as
+  // an artifact — `"github"` alone prints to the log but leaves no file.
+  // `open: "never"`: a CI runner has no browser to open a report in, and
+  // `bun run test:e2e` finishing must not block on one either.
+  reporter: process.env.CI ? [["github"], ["html", { open: "never" }]] : "list",
   use: {
     baseURL: process.env.E2E_BASE_URL ?? `http://localhost:${PREVIEW_PORT}`,
     headless: true,

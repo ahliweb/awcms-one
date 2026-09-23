@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](pengujian.md)
 
-<!-- i18n-source-hash: sha256:f2ac968d4dcc9c7d302560527a6514f4c98a4aa5d320d22cfb0d7e32ba63cb53 -->
+<!-- i18n-source-hash: sha256:8a6622670a26ce16ffb1b953d17ec4c9064afd94d4e4e5fbfcb207413a3361c4 -->
 
 # Pengujian
 
@@ -68,9 +68,23 @@ bun test tests/profil-build-smoke.test.ts              # tanpa SITE_PROFILE: ket
 
 Masing-masing mendarat dengan berkas `tests/integration/` sendiri, dijalankan sungguhan terhadap PostgreSQL hidup persis seperti setiap suite commerce sebelumnya — tidak pernah sekadar ditulis dan dibiarkan skip ber-gerbang-DB: `commerce-shipping-rates.integration.test.ts` (baca/tulis-balik cache RajaOngkir di luar transaksi, weight bucketing, purge TTL), `commerce-whatsapp.integration.test.ts` (claim/kirim/selesaikan outbox, login OTP WhatsApp, rate limit per telepon), `commerce-payment-gateway.integration.test.ts` (idempotensi pembuatan sesi, penanganan replay/tanda tangan/ketidakcocokan-jumlah intake webhook, `markOrderPaidBySystem`, job rekonsiliasi), `commerce-conversations.integration.test.ts` (buka/balas/tutup thread, denormalisasi flag unread, rate limit per akun), `commerce-campaigns.integration.test.ts` (resolusi audiens ber-gate consent, dispatch resumable lewat `FOR UPDATE SKIP LOCKED`, kirim/batal), `commerce-pos.integration.test.ts` (penjualan konter langsung lunas, reuse walk-in, harga bertingkat di konter, penolakan `cash` storefront, replay idempoten), `commerce-sales-reports.integration.test.ts` (paid → baris, batal-setelah-paid → dikurangi, rebuild identik-byte dengan live, rekonsiliasi tanpa mismatch), dan `commerce-feature-toggles.integration.test.ts` (`409` pada rute terautentikasi, `404` netral/`503` yang sudah ada pada rute anonim, cakupan gate per-fitur).
 
-### Playwright e2e — tingkat keempat, perintahnya sendiri, bukan bagian dari `bun test`
+### Playwright e2e — tingkat keempat, perintahnya sendiri, workflow CI-nya sendiri (issue #183)
 
-`apps/storefront/tests/e2e/checkout.e2e.ts` menjalankan browser Chromium nyata terhadap build+serve+stub nyata, dijalankan dengan `bun run test:e2e` **di dalam `apps/storefront`** (tidak pernah root `bun test` — sufiks `.e2e.ts` sengaja menjaganya di luar discovery itu). Mencakup add-to-cart → quote keranjang me-render total → checkout submit → pelacakan menampilkan pesanan, plus state not-found netral untuk telepon yang salah. **Tidak tersambung ke `.github/workflows/ci.yml`** — ini di luar cakupan berkas CI milik-ops untuk issue yang menambahkannya; `apps/storefront/README.md` mendokumentasikan persis bagaimana job CI di masa depan akan menjalankannya (install Chromium, jalankan stub, build dengan env yang tepat, serve, arahkan `E2E_BASE_URL`/`STUB_ALLOWED_ORIGIN` satu sama lain).
+`apps/storefront/tests/e2e/` menjalankan browser Chromium nyata terhadap build+serve+stub nyata (`apps/storefront/tests/e2e/build-and-serve.ts`, dipakai bersama `apps/storefront/scripts/screenshots-readme.mjs` di bawah), dijalankan dengan `bun run test:e2e` **di dalam `apps/storefront`** (tidak pernah root `bun test` — sufiks `.e2e.ts` sengaja menjaganya di luar discovery itu). Lima berkas spec:
+
+| Spec | Mencakup |
+| --- | --- |
+| `checkout.e2e.ts` | add-to-cart → quote keranjang me-render total → checkout submit → pelacakan menampilkan pesanan; pemilihan tarif kurir (issue #109); redirect pembayaran gateway (issue #112); state not-found netral untuk telepon salah. Skip bersih (bukan merah) pada jalankan `berita`/`landing` — `/product`, `/keranjang`, `/checkout`, `/pesanan` adalah rute grup `toko` yang tidak pernah dibangun profil-profil itu |
+| `iklan-popup.e2e.ts` | Perilaku buka/tutup/kembalinya fokus popup iklan (issue #53). Skip bersih pada jalankan `landing` — `/berita/*` adalah rute grup `berita` |
+| `aksesibilitas.e2e.ts` | axe-core (`@axe-core/playwright`), hanya tag `wcag2a`/`wcag2aa`/`wcag21a`/`wcag21aa`, terhadap setiap halaman kunci profil aktif (`profil-halaman.ts`: beranda, sebuah listing, sebuah halaman detail, `/masuk`/`/akun` di mana profil memilikinya). Pelanggaran `serious`/`critical` menggagalkan test; temuan `minor`/`moderate` dilampirkan ke laporan test sendiri alih-alih menggagalkan jalankan — lihat `docs/aksesibilitas.md` untuk apa yang dibuktikan dan tidak dibuktikan ini |
+| `responsif.e2e.ts` | `document.documentElement.scrollWidth` vs. `window.innerWidth` pada 360px (mobile) dan 1280px (desktop) untuk setiap halaman kunci — pengganti deterministik untuk caveat "tidak pernah membuka browser" milik `docs/responsif.md` sebelumnya |
+| `screenshots.e2e.ts` | PNG halaman-penuh per halaman kunci per viewport, ditulis di bawah `E2E_SCREENSHOT_DIR` (default `test-results/screenshots/`) — diunggah sebagai artifact CI, sengaja tidak pernah dibandingkan terhadap baseline yang di-commit (rendering font lintas-OS membuat baseline byte-level flaky secara konstruksi, dan layanan visual-diff yang di-hosting adalah dependensi eksternal berbayar yang tidak dimiliki repo ini) |
+
+`profil-halaman.ts` (helper, bukan spec — tidak ada `.e2e.` di namanya) adalah satu-satunya tempat ketiga spec terakhir membaca "halaman kunci profil ini" darinya, disusun dengan cara yang sama seperti `apps/storefront/src/config/profil.ts` menyusun set halaman build sungguhan, sehingga ketiganya tidak pernah bisa diam-diam menyimpang ke pemahaman "halaman kunci" yang berbeda untuk profil yang sama.
+
+**`.github/workflows/e2e.yml`** — matriks 3-leg atas `SITE_PROFILE` (`toko`/`berita`/`landing`, sesuai bentuk job `check` milik `ci.yml` sendiri), Chromium di-cache atas hash `bun.lock`, laporan HTML Playwright maupun screenshot tiap profil diunggah sebagai artifact (`if: always()`, sehingga jalankan yang gagal tetap meninggalkan sesuatu untuk dilihat). **Bukan status check wajib** — suite berbasis rendering peramban punya profil risiko berbeda dari gate deterministik pada tabel di atas, dan "The gates" milik AGENTS.md hanya menamai `Check (*)`/`check-cms` sebagai wajib; lihat komentar milik `template-init-smoke.yml` sendiri untuk bagaimana workflow seperti ini dipromosikan setelah berjalan hijau untuk sementara waktu.
+
+**`bun run screenshots:readme`** (`apps/storefront/scripts/screenshots-readme.mjs`, `--profil <toko|berita|landing>`, default `toko`) meregenerasi screenshot penuh-halaman yang sama secara deterministik, dari harness identik yang dijalankan `screenshots.e2e.ts` di CI — untuk maintainer, atau langkah CI di masa depan, menyegarkan gambar tertanam README tanpa mengemudikan browser secara manual. Ia tidak sendiri memilih shot mana yang ditanam README; kurasi itu dimiliki issue terpisah yang belum diajukan. Output: `E2E_SCREENSHOT_DIR` (default `test-results/screenshots-readme`), di-gitignore seperti path `test-results/` lainnya.
 
 ### Preflight produksi (issue #150, ADR-0019)
 
@@ -122,4 +136,4 @@ Container layanan `postgres:18.4` (`POSTGRES_USER=awcms`, `POSTGRES_DB=awcms`, h
 
 ## Belum dibangun
 
-Job CI untuk suite Playwright e2e milik `apps/storefront` (berjalan dan lulus secara lokal; lihat "Playwright e2e" di atas). Tooling visual-regression atau accessibility-audit apa pun — lihat [`docs/aksesibilitas.md`](aksesibilitas.id.md) dan [`docs/responsif.md`](responsif.id.md) untuk apa yang diverifikasi dengan membaca kode sebagai gantinya.
+Baseline visual-regression yang di-commit untuk screenshot Playwright milik `apps/storefront` (catatan keputusan issue #183 sendiri — lihat "Playwright e2e" di atas untuk alasannya) — reviewer membuka artifact CI dan melihat sendiri, alih-alih byte-diff yang menggerbangi jalankan. `.github/workflows/e2e.yml` belum menjadi status check wajib — lihat komentar milik workflow itu sendiri untuk jalur promosinya.

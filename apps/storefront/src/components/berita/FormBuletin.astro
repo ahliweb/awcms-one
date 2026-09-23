@@ -63,7 +63,16 @@ const honeypotId = `${idPrefix}-situs`;
     email.
   </p>
 
-  <button type="submit" data-buletin-submit>Daftar Buletin</button>
+  {/* `.btn .btn--primary` (issue #183): this button previously carried no
+     class at all, so it rendered with the browser's own UA default
+     background — while `variant="sidebar"`'s dark `.band-inverse` card
+     (`Sidebar.astro`) restyles the button's inherited TEXT colour but never
+     its background, axe's contrast check measured 1.29:1. `.btn--primary`
+     is self-contained against `--color-primary`/`--color-primary-foreground`
+     (a pair already unit-tested for AA contrast, `tests/warna.test.ts`), so
+     it reads correctly on every card this form is mounted in — footer,
+     sidebar, or `/buletin` itself — with no per-variant override needed. */}
+  <button type="submit" class="btn btn--primary btn--sm" data-buletin-submit>Daftar Buletin</button>
 
   <p data-buletin-status role="status" aria-live="polite" hidden></p>
 

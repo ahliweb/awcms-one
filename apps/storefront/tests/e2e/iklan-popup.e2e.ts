@@ -39,8 +39,16 @@
  * throughout. That is fine — every assertion here is about the dialog's
  * behaviour, not the pixels — and it exercises the "intrinsic size unknown
  * → no `width`/`height` attribute" branch of `readTrigger` for free.
+ *
+ * News-only (issue #183): `/berita/*` is a `berita`-group route
+ * (`src/config/routes.ts`'s `ROUTE_GROUPS`) — this whole file skips
+ * cleanly, not red, on a `landing` run of `bun run test:e2e`, which builds
+ * no article pages at all.
  */
 import { expect, test } from "@playwright/test";
+import { isGroupActive } from "../../src/config/profil";
+
+test.skip(!isGroupActive("berita"), "Article pages (and their ad-popup slots) are only built for the berita profile group.");
 
 const ARTICLE = "/berita/panduan-pemilu-2024";
 const LINKED_TRIGGER = '.ad-slot[data-placement="article_middle"] [data-iklan-popup]';
