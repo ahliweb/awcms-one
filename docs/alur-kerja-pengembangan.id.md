@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](alur-kerja-pengembangan.md)
 
-<!-- i18n-source-hash: sha256:5d5b6c4eba9d1e04c42ea2c262d254dc66fea84fbd42c7fe59d5a9e65eeacf0f -->
+<!-- i18n-source-hash: sha256:fed41ecd94512a418e7a72fed83e441c4a970ef0035ab5c245fc79678e2c5221 -->
 
 # Alur kerja pengembangan
 
@@ -75,6 +75,15 @@ Ketiga leg `Check` dan `check-cms` semuanya status check wajib di `main` (lihat 
 - **Job `root-suite` terpisah**, tanpa matriks, menjalankan `template:init --profil toko` (lagi-lagi `TEMPLATE_INIT_TEST_SCOPE=root`) lalu `bun test` penuh TEPAT SATU KALI, di runner-nya sendiri tanpa apa pun lain yang berebut CPU. Inilah kini satu-satunya tempat di seluruh workflow ini di mana suite derived-repository penuh berjalan.
 
 Dua detail menjaga rantai gate workflow ini sendiri tidak gagal terhadap dirinya sendiri. Pertama, probe kesiapan stub CMS memeriksa **dengan bearer token** (`curl -sf -H "Authorization: Bearer stub" http://localhost:4310/api/v1/commerce/products`) — stub menjawab `401` untuk request tanpa autentikasi memang disengaja (`apps/storefront/scripts/stub-awcms.mjs`), dan `curl -f` polos akan membaca `401` itu sebagai "belum siap" selamanya. Kedua, `tests/template-init.test.mjs` melewati dirinya sendiri begitu mendeteksi ia tidak lagi berjalan di dalam `awcms-one` (`package.json.name !== "awcms-one"`) — tanpa guard itu, `bun test` akhir milik sebuah run `template:init` akan menemukan dan menjalankan ulang berkas tesnya sendiri di dalam repositori yang baru saja diinisialisasinya, yang tes full-run-nya kemudian mencoba membangun salinan sementara lain dari `git ls-files`, yang masih mendaftar path yang sudah di-`unlinkSync` (tidak pernah di-`git rm`) oleh langkah penghapusan run itu sendiri, melempar `ENOENT` pada setiap satu darinya.
+
+## Pembaruan dependensi
+
+`.github/dependabot.yml` (issue #180) membuka pull request pembaruan versi — terpisah dari pembaruan *keamanan* Dependabot, yang sudah aktif sebelumnya (lihat "Branch protection pada `main`" di atas) dan mencakup ekosistem apa pun terlepas dari berkas ini. Dua blok `updates`:
+
+- **`github-actions`, `directory: "/"`.** Setiap action yang dipin di `.github/workflows/*.yml` — konvensi pin-SHA-plus-komentar-`# vX.Y.Z` yang dijelaskan bagian "Configuration and toolchain" AGENTS.md. Bulanan, dikelompokkan (`github-actions-minor-patch`: minor dan patch bersama dalam satu PR; versi mayor tidak pernah dikelompokkan, karena bisa mengubah perilaku sebuah action dan mendapat PR serta review sendiri), prefix commit `ci(deps)`.
+- **`bun`, `directory: "/"`, `exclude-paths: ["apps/cms/**"]`.** Dependensi workspace milik repositori ini sendiri (`package.json` root, `apps/storefront`, `packages/*`) terhadap `bun.lock`. `apps/cms/**` dikecualikan karena `apps/cms` adalah `ahliweb/awcms` yang di-embed lewat `git subtree` (bagian "The subtree embed" AGENTS.md) — upstream memiliki set dependensinya sendiri dan mengirimkan `apps/cms/.github/dependabot.yml`-nya sendiri (tidak aktif di repo ini: GitHub hanya membaca berkas konfigurasi di root repositori), dan sebuah PR pembaruan versi yang dibuka di sini terhadap `apps/cms/package.json` akan mengubah kode yang bisa di-overwrite atau dikonflikkan diam-diam oleh `git subtree pull` di masa depan. `exclude-paths` adalah opsi per-blok-`updates` yang berlaku untuk ekosistem apa pun, termasuk `bun`. Bentuk bulanan/dikelompokkan yang sama seperti `github-actions`, prefix commit `chore(deps)`. Versi Bun sendiri dikecualikan sepenuhnya dari pembaruan (`ignore: [{dependency-name: "bun"}]`): ia dipin di tiga tempat yang harus berpindah bersama (bagian "Configuration and toolchain" AGENTS.md), dan sebuah PR Dependabot hanya pernah menyentuh satu baris dependensi, sehingga menaikkannya tetap menjadi perubahan sengaja, sekaligus-di-ketiganya, yang dilakukan maintainer dengan tangan.
+
+**Meninjau PR Dependabot terhadap gate lockfile:** sama seperti bump dependensi lainnya — `bun run check:lockfile` harus tetap lolos (ia memeriksa ulang `bun.lock` terhadap `package.json` setiap workspace, sehingga PR Dependabot yang hanya menyentuh `bun.lock` tanpa baris `package.json` yang cocok, atau sebaliknya, gagal persis seperti lockfile yang diedit dengan tangan), lalu gate `bun test`/`audit:*` di root. PR `github-actions` memindahkan SHA dan komentar `# vX.Y.Z`-nya bersamaan — Dependabot telah memperbarui komentar versi setelah action yang dipin-SHA sejak Oktober 2022 — sehingga yang layak dilirik manusia adalah apakah komentar itu masih berakhir dengan versi (komentar dengan prosa tambahan setelah versi adalah satu-satunya bentuk yang dilewati updater Dependabot sendiri, menurut dokumennya), bukan apakah pembaruannya terjadi sama sekali.
 
 ## Seeding profil secara lokal
 
