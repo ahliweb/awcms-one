@@ -1,0 +1,245 @@
+name: Images
+
+# Builds, and — on a version tag or an explicit dispatch — publishes the two
+# CONTENT-INDEPENDENT apps/cms images to GHCR: `runtime` (the `cms` service)
+# and `jobs` (the `jobs`/`migrate` services), both built from the unmodified
+# upstream `apps/cms/Dockerfile.production` with context `apps/cms` — see
+# ADR-0020 for why only these two, and why `apps/storefront` is deliberately
+# NOT published here (it bakes catalog/news content at build time using the
+# CMS owner token as a BuildKit secret; publishing it from CI would need
+# that production token in a GitHub secret and this runner reaching
+# production, and would freeze content at release time). This workflow only
+# proves `apps/storefront/Dockerfile` still builds, against this repo's own
+# stub CMS — never pushing that image anywhere.
+#
+# Not a required status check (AGENTS.md's "The gates" table does not list
+# it, matching `.github/workflows/template-init-smoke.yml`) — a failure
+# here does not block a PR from merging.
+#
+# Actions are pinned to a commit SHA, not a tag (AGENTS.md's "Configuration
+# and toolchain"); `actions/checkout` and `oven-sh/setup-bun` reuse the exact
+# SHAs `.github/workflows/ci.yml` already pins, rather than a second
+# independently-resolved pin for the same action.
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+    inputs:
+      push:
+        description: "Push the built cms/cms-jobs images to GHCR (unchecked = dry-run build only)"
+        type: boolean
+        default: false
+  pull_request:
+    paths:
+      - "apps/cms/**"
+      - "apps/storefront/**"
+      - "compose.production.yaml"
+      - ".github/workflows/images.yml"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  # ---------------------------------------------------------------------------
+  # The two content-independent apps/cms images (ADR-0020). One job, matrixed
+  # over BOTH Dockerfile.production targets, so `apps/cms/Dockerfile.production`
+  # itself (upstream, never edited here — AGENTS.md's subtree rule) is read
+  # exactly once per target regardless of the trigger.
+  #
+  # `packages`/`id-token`/`attestations` are granted at the JOB level because
+  # GitHub only grants permissions per job, never per step — but the steps
+  # that actually SPEND those scopes (login, the build's own `push:`, attest)
+  # are each gated on `steps.publish.outputs.should_push`, computed below from
+  # the trigger alone. A `pull_request` run (the common case) therefore never
+  # logs in, never pushes, and never attests, even though the job's token
+  # technically carries the scope to do so — this is the narrowest static
+  # declaration that still lets ONE job serve both the dry-run and the real
+  # publish path, rather than duplicating every step across two jobs.
+  # ---------------------------------------------------------------------------
+  cms-images:
+    name: CMS image (${{ matrix.image }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
+      attestations: write
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - target: runtime
+            image: cms
+          - target: jobs
+            image: cms-jobs
+
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      # Computed from the trigger alone, never from anything a PR author
+      # controls: true only for a `v*` tag push, or an explicit
+      # workflow_dispatch with its `push` input checked.
+      - name: Resolve whether this run publishes
+        id: publish
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          REF: ${{ github.ref }}
+          DISPATCH_PUSH: ${{ github.event.inputs.push }}
+        run: |
+          should_push=false
+          if [ "$EVENT_NAME" = "push" ] && [[ "$REF" == refs/tags/v* ]]; then
+            should_push=true
+          fi
+          if [ "$EVENT_NAME" = "workflow_dispatch" ] && [ "$DISPATCH_PUSH" = "true" ]; then
+            should_push=true
+          fi
+          echo "should_push=$should_push" >> "$GITHUB_OUTPUT"
+
+      # `github.repository` preserves whatever case the owner/repo name was
+      # created with; GHCR image paths must be lower-case, and a template-
+      # derived repository (docs/template.md) is not guaranteed to be
+      # already-lower-case the way `ahliweb/awcms-one` happens to be.
+      - name: Lower-case the image repository
+        id: repo
+        env:
+          REPOSITORY: ${{ github.repository }}
+        run: echo "lower=$(printf '%s' "$REPOSITORY" | tr '[:upper:]' '[:lower:]')" >> "$GITHUB_OUTPUT"
+
+      - uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4.4.1
+
+      - name: Log in to GHCR
+        if: steps.publish.outputs.should_push == 'true'
+        uses: docker/login-action@dbcb813823bdd20940b903addbd779551569679f # v4.6.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      # `org.opencontainers.image.source` (among other OCI labels — created,
+      # revision, licenses, version) is one of metadata-action's own DEFAULT
+      # labels; nothing here needs to name it explicitly to get it.
+      - name: Derive tags and OCI labels
+        id: meta
+        uses: docker/metadata-action@dc802804100637a589fabce1cb79ff13a1411302 # v6.2.0
+        with:
+          images: ghcr.io/${{ steps.repo.outputs.lower }}-${{ matrix.image }}
+          tags: |
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=sha
+
+      - name: Build ${{ matrix.image }} (target=${{ matrix.target }})
+        id: build
+        uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7.4.0
+        with:
+          context: apps/cms
+          file: apps/cms/Dockerfile.production
+          target: ${{ matrix.target }}
+          push: ${{ steps.publish.outputs.should_push == 'true' }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          provenance: mode=max
+          sbom: true
+          cache-from: type=gha,scope=${{ matrix.image }}
+          cache-to: type=gha,mode=max,scope=${{ matrix.image }}
+
+      # `gh attestation verify oci://ghcr.io/<owner>/<repo>-cms:<tag> --owner
+      # <owner>` (docs/deployment.md) reads exactly this attestation.
+      - name: Attest build provenance
+        if: steps.publish.outputs.should_push == 'true'
+        uses: actions/attest-build-provenance@4d101475d8b20a2381f78447822ac1eab6504dd8 # v4.2.2
+        with:
+          subject-name: ghcr.io/${{ steps.repo.outputs.lower }}-${{ matrix.image }}
+          subject-digest: ${{ steps.build.outputs.digest }}
+          push-to-registry: true
+
+  # ---------------------------------------------------------------------------
+  # apps/storefront/Dockerfile is NOT published (ADR-0020) — this job only
+  # proves it still builds, per profile, against the repo's own stub CMS
+  # (apps/storefront/scripts/stub-awcms.mjs — already used by
+  # `apps/storefront/tests/profil-build-smoke.test.ts`, no live apps/cms
+  # needed). Build-only: no `push:`, no registry login, no elevated
+  # permissions — this job never needs anything beyond reading the checkout.
+  # Verified locally against a real `docker buildx build` before this
+  # workflow was written (see this PR's own description); CI is what proves
+  # it stays true for `berita`/`landing` on a clean runner going forward.
+  # ---------------------------------------------------------------------------
+  storefront-smoke:
+    name: Storefront Dockerfile smoke (${{ matrix.profile }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+
+    strategy:
+      fail-fast: false
+      matrix:
+        profile: [toko, berita, landing]
+
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      # Only to RUN the stub script (plain `node:fs`, no workspace
+      # dependencies) — the image build itself installs its own deps inside
+      # the Dockerfile's own `deps` stage; this step does not `bun install`.
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2.2.0
+        with:
+          bun-version: "1.4.0"
+
+      - uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4.4.1
+
+      - name: Start the repo's stub CMS
+        working-directory: apps/storefront
+        run: |
+          bun scripts/stub-awcms.mjs > /tmp/stub-awcms.log 2>&1 &
+          echo $! > /tmp/stub-awcms.pid
+          for _ in $(seq 1 30); do
+            if curl -sf -H "Authorization: Bearer smoke" http://localhost:4310/api/v1/commerce/products > /dev/null; then
+              exit 0
+            fi
+            sleep 1
+          done
+          echo "stub CMS did not become ready in time:" >&2
+          cat /tmp/stub-awcms.log >&2
+          exit 1
+
+      # NEVER a real credential — apps/storefront/Dockerfile's own RUN reads
+      # this file only inside its build step's environment (ADR-0019 D4);
+      # this dummy value never leaves this runner and this image is never
+      # pushed anywhere.
+      - name: Write a dummy build secret
+        run: |
+          mkdir -p .secrets
+          printf 'smoke-test-dummy-token' > .secrets/awcms_api_token
+
+      # `--network host` so the build's own RUN step (running inside
+      # BuildKit's isolated network namespace by default) can reach the stub
+      # CMS bound to this runner's localhost — the same reason
+      # apps/storefront/Dockerfile's own header shows an example build using
+      # a real, reachable apps/cms origin. No `--push`, no `--load`: this
+      # step only asks "does the build succeed", never keeps the image.
+      - name: Build (profile=${{ matrix.profile }}, no push)
+        env:
+          SITE_PROFILE: ${{ matrix.profile }}
+        run: |
+          docker buildx build \
+            --network host \
+            -f apps/storefront/Dockerfile \
+            --build-arg SITE_PROFILE="$SITE_PROFILE" \
+            --build-arg SITE_URL=http://localhost:4321 \
+            --build-arg AWCMS_API_URL=http://localhost:4310 \
+            --build-arg PUBLIC_AWCMS_ORIGIN=http://localhost:4310 \
+            --secret id=awcms_api_token,src=.secrets/awcms_api_token \
+            .
+
+      - name: Stop the stub CMS
+        if: always()
+        run: kill "$(cat /tmp/stub-awcms.pid)" 2>/dev/null || true

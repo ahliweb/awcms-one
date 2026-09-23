@@ -1,0 +1,63 @@
+name: Feature request
+description: Propose a new capability, workspace, or gate — or a change of scope for an existing one.
+title: "feat: "
+labels:
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        See [`AGENTS.md`](https://github.com/ahliweb/awcms-one/blob/main/AGENTS.md)'s "Workspace boundaries" before proposing — a change usually belongs to exactly one workspace, and that shapes how it should be scoped.
+
+        _Bahasa Indonesia: Ajukan usulan fitur pada formulir ini. Jelaskan masalahnya, usulan solusinya, dan kriteria penerimaannya — dalam bahasa apa pun yang Anda kuasai._
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What is missing or wrong today? Who is affected, and how do you know?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: What would you like to happen? Name the workspace(s) it touches.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Other approaches you thought about, and why they were set aside. Leave blank if there is really only one shape.
+    validations:
+      required: false
+  - type: dropdown
+    id: area
+    attributes:
+      label: Affected area
+      description: |
+          - `storefront` — apps/storefront
+          - `cms-commerce` — apps/cms's commerce module (this platform's own additive code)
+          - `cms-upstream` — belongs in ahliweb/awcms itself, not this repo — see `AGENTS.md`'s "The subtree embed"
+          - `tooling-gates` — packages/gerbang, tools/, the root tests/
+          - `docs` — docs/, AGENTS.md and its siblings, ADRs, and their Indonesian mirrors
+          - `deployment` — compose files, CI workflows, deploy:preflight
+      options:
+        - storefront
+        - cms-commerce
+        - cms-upstream
+        - tooling-gates
+        - docs
+        - deployment
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: How would we know this is done? Name the gate(s) that should go green, or the behaviour that should be observable.
+      placeholder: |
+        - [ ] ...
+        - [ ] `bun test` (and `bun run check:cms`, if `apps/cms/` is touched) green
+    validations:
+      required: true

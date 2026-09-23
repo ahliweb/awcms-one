@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](deployment.md)
 
-<!-- i18n-source-hash: sha256:a592ef0e94b55bcc02e0633001ba93f19a7ee5c78f860c8e04e7e2bd484421c6 -->
+<!-- i18n-source-hash: sha256:fa7d4ca511a730d5bf6ffb0fc38d237d86178f62d75d7f153ef875f82b6c7364 -->
 
 # Deployment
 
@@ -366,6 +366,41 @@ DOCKER_BUILDKIT=1 docker build \
   -t awcms-one-storefront:toko .
 ```
 
+Image `runtime`/`jobs` milik `apps/cms` sendiri di atas, sejak issue #187, juga dibangun dan dipublikasikan ke GHCR oleh CI — lihat "Image yang dipublikasikan" tepat di bawah ini. Image `apps/storefront` sengaja tidak — ia tetap `docker build` manual di host deploy, dengan alasan yang dijelaskan di sana.
+
+### Image yang dipublikasikan (issue #187, ADR-0020)
+
+`.github/workflows/images.yml` membangun target `runtime` dan `jobs` milik `apps/cms/Dockerfile.production` — berkas yang sama, tanpa perubahan, yang sudah dijelaskan judul "Image" di atas — dan, pada push tag `v*` atau jalannya `workflow_dispatch` eksplisit dengan input `push`-nya dicentang, mempublikasikan keduanya ke:
+
+- `ghcr.io/<owner>/<repo>-cms` — target `runtime`, yaitu servis `cms`.
+- `ghcr.io/<owner>/<repo>-cms-jobs` — target `jobs`, yaitu servis `jobs`/`migrate`.
+
+(`<owner>/<repo>` adalah path GitHub repositori ini sendiri, di-lower-case, sehingga repositori turunan-template mempublikasikan ke namespace-nya sendiri tanpa apa pun yang perlu diedit — untuk `ahliweb/awcms-one` itu adalah `ghcr.io/ahliweb/awcms-one-cms` dan `ghcr.io/ahliweb/awcms-one-cms-jobs`.) Setiap push membawa tiga tag — semver yang dirilis (`vX.Y.Z` → `X.Y.Z`), garis `X.Y`, dan `sha` commit yang membangunnya — plus atestasi SBOM dan provenance yang dilekatkan `docker/build-push-action` sendiri (`sbom: true`, `provenance: mode=max`), dan atestasi kedua yang independen, didorong ke registry oleh `actions/attest-build-provenance`. Workflow ini juga berjalan, build-saja, pada `pull_request` yang menyentuh `apps/cms/**`/`apps/storefront/**`/`compose.production.yaml`/dirinya sendiri — ia tidak pernah push pada PR, dan bukan status check wajib (bagian "The gates" AGENTS.md).
+
+**Menarik image yang dipublikasikan alih-alih membangun lokal** — set dua env var yang kini dibaca servis `cms`/`jobs`/`migrate` milik `compose.production.yaml` (ADR-0020 D4; keduanya default ke nama build-lokal hari ini, jadi membiarkannya unset tidak mengubah apa pun dari perilaku berkas ini yang sudah ada):
+
+```bash
+export AWCMS_ONE_CMS_IMAGE=ghcr.io/ahliweb/awcms-one-cms:0.11.0
+export AWCMS_ONE_CMS_JOBS_IMAGE=ghcr.io/ahliweb/awcms-one-cms-jobs:0.11.0
+docker compose -f compose.production.yaml pull cms
+docker compose -f compose.production.yaml --profile jobs pull jobs
+docker compose -f compose.production.yaml --profile migrate pull migrate
+docker compose -f compose.production.yaml up -d cms
+```
+
+**Memverifikasi atestasi** sebelum mempercayai image yang ditarik — `gh` membaca atestasi yang didorong `actions/attest-build-provenance` ke registry:
+
+```bash
+gh attestation verify oci://ghcr.io/ahliweb/awcms-one-cms:0.11.0 --owner ahliweb
+gh attestation verify oci://ghcr.io/ahliweb/awcms-one-cms-jobs:0.11.0 --owner ahliweb
+```
+
+Sebuah `PASS` menyebutkan persis jalannya workflow dan commit tempat image itu dibangun — jaminan yang sama yang sudah diasumsikan catatan "Rollback/cutover" dokumen ini sendiri ("setiap image ditandai commit/rilis tempat ia dibangun"), kini bisa diperiksa independen, tidak hanya dinyatakan. **SBOM** itu sendiri bisa diperiksa dengan cara yang sama seperti SBOM ber-atestasi buildx mana pun: `docker buildx imagetools inspect ghcr.io/ahliweb/awcms-one-cms:0.11.0 --format '{{ json .SBOM }}'`.
+
+**Visibilitas package GHCR** — push pertama ke package baru (`ahliweb/awcms-one-cms`, `ahliweb/awcms-one-cms-jobs`) bisa membuatnya sebagai **privat**, default GHCR sendiri untuk package tanpa pengaturan visibilitas sebelumnya. Package privat butuh kredensial tariknya sendiri (`docker login ghcr.io` dengan token yang membawa `read:packages`) bahkan untuk host deploy yang tidak disebutkan berkas mana pun milik repositori ini rahasianya; pemilik repositori membuat sebuah package publik dari pengaturan GitHub milik package itu sendiri ("Package settings" → "Change visibility") sekali, setelah itu `docker pull` anonim berfungsi. Tidak ada apa pun di `.github/workflows/images.yml` yang mengeset visibilitas sendiri — GHCR mengikat visibilitas pada aksi manual pemilik, bukan pada apa pun yang bisa diminta sendiri oleh sebuah jalannya workflow.
+
+**Kenapa `apps/storefront` tidak dipublikasikan** — lihat [ADR-0020](adr/0020-publish-only-the-cms-images-to-ghcr-with-sbom-and-provenance.md) D2: build-nya memanggang konten katalog/berita live satu tenant memakai token owner CMS sebagai BuildKit secret, sehingga mempublikasikannya dari CI berarti kredensial produksi itu hidup di GitHub secret, runner repositori ini menjangkau produksi, dan tag yang dipublikasikan diam-diam menjadi basi begitu konten berubah tanpa image baru yang sepadan. Ia tetap dibangun di host deploy, persis seperti yang dijelaskan bagian "Image" di atas. `.github/workflows/images.yml` hanya membuktikan `apps/storefront/Dockerfile` masih bisa dibangun — job `storefront-smoke` build-saja, dimatriks atas ketiga nilai `SITE_PROFILE`, terhadap stub CMS repositori ini sendiri (`apps/storefront/scripts/stub-awcms.mjs`) — dan tidak pernah mempublikasikan hasilnya.
+
 ### `compose.production.yaml`
 
 Topologi reproducible untuk deployment self-hosted: `postgres` (tanpa port host dipublikasikan secara default — lihat komentar file itu sendiri untuk memakai instans terkelola/eksternal sebagai gantinya), `migrate` (sekali-jalan, `--profile migrate`, satu-satunya servis yang memakai DSN pemilik/setup), `cms` (image runtime, DSN `awcms_app`), `jobs` (image jobs, DSN `awcms_worker`, dijaga di balik `--profile jobs`, dipanggil terjadwal alih-alih dibiarkan berjalan — lihat "Job terjadwal" di bawah), dan `storefront` (dibangun dengan secret BuildKit di atas). Tidak ada servis yang mempublikasikan port host untuk `cms`/`storefront` secara default — pasang reverse proxy di depan dan biarkan ia menerminasi TLS. Setiap kredensial dibaca dari file turunan `apps/cms/.env.example` dan turunan root `.env.example` yang tidak pernah di-commit; `tests/compose-produksi.test.mjs` secara mekanis memeriksa file itu untuk rahasia yang terlihat hardcode, pemisahan peran `awcms_app`/`awcms_worker`, dan ketiadaan port host.
@@ -404,6 +439,6 @@ Setiap pemeriksaan mencetak satu baris `PASS|FAIL|SKIP` dan alasannya, tidak per
 
 **Backup/restore:** `apps/cms/ops/backup-awcms.sh` dan `restore-drill-awcms.sh` adalah semuanya di upstream — lihat bagian "Backup & restore" skill `awcms-production-preflight` sendiri untuk perintah persisnya dan, penting, bahwa enkripsi saat-diam **belum diimplementasikan** di upstream hari ini (lindungi dump dengan izin filesystem dan salinan off-host sebagai gantinya; lihat `apps/cms/docs/awcms/` untuk status nyata terkini).
 
-### Apa yang masih belum dibangun (ADR-0019 D7)
+### Apa yang masih belum dibangun (ADR-0019 D7, dipersempit ADR-0020)
 
-Pipeline CI yang membangun dan mempublikasikan image per-profil `apps/storefront` ke registry — dokumen ini mendeskripsikan `docker build`, bukan pipeline rilis (image `apps/cms` sendiri sudah dipublikasikan `.github/workflows/release.yml`, tidak terpengaruh perubahan ini). Konfigurasi reverse-proxy/terminasi-TLS di luar contoh di atas — ingress operator sendiri yang menerminasi TLS. Enkripsi backup saat-diam (dilacak upstream). Adapter pembayaran Xendit dan pelacakan kurir (keduanya disebut sebagai tindak lanjut eksplisit ADR-0017). PostgreSQL produksi yang dioperasikan repositori ini sendiri — servis `postgres` `compose.production.yaml` disediakan untuk deployment self-hosted; instans terkelola didokumentasikan sebagai alternatif, tidak dikirim.
+Image `runtime`/`jobs` milik `apps/cms` sendiri, sejak issue #187, dipublikasikan `.github/workflows/images.yml` — lihat "Image yang dipublikasikan" di atas; bagian itu dari daftar ADR-0019 D7 sendiri kini tertutup. Yang masih tersisa, dengan sengaja: pipeline CI yang mempublikasikan image per-profil `apps/storefront` ke registry — [ADR-0020](adr/0020-publish-only-the-cms-images-to-ghcr-with-sbom-and-provenance.md) D2 menolaknya langsung, bukan sekadar menundanya (fetch-konten-saat-build dan token owner lewat BuildKit secret — lihat "Image yang dipublikasikan" di atas — membuat image storefront yang dipublikasikan menjadi risiko kredensial-produksi dan keusangan, bukan sekadar kemudahan yang belum dibangun). Konfigurasi reverse-proxy/terminasi-TLS di luar contoh di atas — ingress operator sendiri yang menerminasi TLS. Enkripsi backup saat-diam (dilacak upstream). Adapter pembayaran Xendit dan pelacakan kurir (keduanya disebut sebagai tindak lanjut eksplisit ADR-0017). PostgreSQL produksi yang dioperasikan repositori ini sendiri — servis `postgres` `compose.production.yaml` disediakan untuk deployment self-hosted; instans terkelola didokumentasikan sebagai alternatif, tidak dikirim.
