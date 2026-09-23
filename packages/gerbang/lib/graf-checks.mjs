@@ -15,8 +15,18 @@
  * workspace's own gates stay `.mjs`, matching `packages/gerbang`'s own
  * house style, not `apps/cms`'s TypeScript.
  *
- * Two questions have no equivalent in the model, because they exist only at
- * the ROOT of a federated workspace:
+ * A third question has no equivalent in the model either, and exists for a
+ * different reason than federation: **bounded content staleness**
+ * (`diffManifestStaleness` / `checkStaleness`, issue #186). CI has no
+ * `graphify` on `PATH` and cannot regenerate the graph itself, so the only
+ * thing a gate CAN do is notice the graph has drifted and say so past a
+ * documented bound — see those functions' own docblocks for the mechanism
+ * (a plain MD5 of file bytes, the same one `graphify`'s own incremental
+ * update already computes and records in `manifest.json`) and
+ * `audit-graf.mjs`'s `MAX_STALE_FILES` for the bound itself.
+ *
+ * Two more questions have no equivalent in the model, because they exist
+ * only at the ROOT of a federated workspace:
  *
  *   - **No duplicate extraction.** `checkNoSubtreeNodes` — the root graph
  *     must hold no node whose `source_file` sits under `apps/cms/`. This is
@@ -31,7 +41,7 @@
  *     is the standing check that would catch it on every future run, not
  *     just in the PR that introduced the bug.
  *
- * A third addition, `checkCombinedGraphUntracked`, enforces the issue's
+ * A fourth addition, `checkCombinedGraphUntracked`, enforces the issue's
  * other hard rule: the federated graph is generated, gitignored, and never
  * committed unless someone deliberately changes that — so nothing under
  * `graphify-out/combined/` may ever appear in `git ls-files`.
@@ -41,6 +51,7 @@
  * object instead of writing a fixture tree to disk for every case. The
  * runner in `audit-graf.mjs` does the I/O and turns these into a report.
  */
+import { createHash } from "node:crypto";
 
 /** @typedef {{ rule: string, file: string, message: string }} Violation */
 
@@ -405,7 +416,172 @@ export function checkNoSubtreeNodes(graph) {
 }
 
 // ---------------------------------------------------------------------------
-// 6. The subtree's own graph artefacts are untouched by root automation
+// 6. Bounded content staleness — does the graph still describe the tree?
+// ---------------------------------------------------------------------------
+
+/** @typedef {{ changed: string[], added: string[], removed: string[] }} StalenessDiff */
+
+/**
+ * `graphify extract`'s own incremental-update state
+ * (`graphify/detect.py::save_manifest`) records one `ast_hash` per file it
+ * indexed. That hash is `_md5_file()` — `hashlib.md5(usedforsecurity=False)`
+ * streamed over the RAW FILE BYTES, nothing else (no normalisation, no path
+ * salt) — verified directly against the installed `graphify` 0.9.35 by
+ * reading `detect.py` and by hand-checking `md5sum` of a tracked file
+ * against its own recorded `ast_hash` (they matched). It is therefore
+ * reproducible in plain Node/Bun with `node:crypto`, with no `graphify`
+ * install, no Python, and no network — exactly what a CI gate needs, since
+ * `graphify` itself is not on the CI runner's `PATH` (`knowledge/README.md`).
+ *
+ * @param {string | Buffer} contents - raw file bytes
+ * @returns {string}
+ */
+export function md5Hex(contents) {
+  return createHash("md5").update(contents).digest("hex");
+}
+
+/**
+ * The file-extension vocabulary a manifest already contains, lower-cased.
+ *
+ * Used to decide which currently-tracked files are candidates for "added
+ * since the graph was last built" (below) — learned from the manifest
+ * itself rather than reimplementing `graphify`'s own file-type/noise-dir/
+ * secret-file classification (`detect.py::classify_file`,
+ * `_is_graphable_source`, `_is_sensitive`, …), which is large, versioned
+ * independently of this repo, and not this gate's to keep in sync. A file
+ * whose extension `graphify` has never indexed here (because this workspace
+ * uses no such extension, or because `graphify` would drop it) is simply
+ * never a staleness candidate — an under-approximation on the "added" side
+ * that trades perfect parity with `graphify`'s own scan for a rule this
+ * module can state, test, and keep correct on its own.
+ *
+ * @param {Record<string, unknown>} manifest - parsed `manifest.json`
+ * @returns {Set<string>}
+ */
+export function manifestExtensions(manifest) {
+  const extensions = new Set();
+  for (const filePath of Object.keys(manifest)) {
+    const dot = filePath.lastIndexOf(".");
+    const slash = filePath.lastIndexOf("/");
+    if (dot > slash) extensions.add(filePath.slice(dot + 1).toLowerCase());
+  }
+  return extensions;
+}
+
+/**
+ * Path prefixes that are never in scope for the staleness check, regardless
+ * of `.graphifyignore`: `apps/cms/` for the same reason every other check in
+ * this module treats it specially (it is a different, subtree-owned graph
+ * with its own staleness question), and the two artefact directories this
+ * workflow itself writes into — a rebuild changing its own output, or an
+ * Obsidian export changing `knowledge/generated/graphify/`, must never count
+ * as the SOURCE drifting away from the graph that describes it.
+ */
+const ALWAYS_OUT_OF_SCOPE_PREFIXES = ["apps/cms/", "graphify-out/", "knowledge/generated/"];
+
+/**
+ * Every currently git-tracked path this gate considers a staleness
+ * candidate: not under {@link ALWAYS_OUT_OF_SCOPE_PREFIXES} or a
+ * `.graphifyignore` prefix, not a translation mirror (`*.id.md` — excluded
+ * from the graph itself, see `.graphifyignore`'s own comment), and carrying
+ * an extension the manifest has already shown is graphable here
+ * ({@link manifestExtensions}).
+ *
+ * @param {readonly string[]} trackedPaths - `git ls-files`, repo-wide
+ * @param {Set<string>} extensions - {@link manifestExtensions} of the manifest
+ * @param {readonly string[]} ignorePrefixes - `ParsedIgnore.prefixes`
+ * @returns {string[]} sorted
+ */
+export function inScopeCandidates(trackedPaths, extensions, ignorePrefixes) {
+  const prefixes = [...ALWAYS_OUT_OF_SCOPE_PREFIXES, ...ignorePrefixes.map((prefix) => `${prefix}/`)];
+
+  return trackedPaths
+    .filter((filePath) => {
+      if (filePath.endsWith(".id.md")) return false;
+      if (prefixes.some((prefix) => filePath === prefix.slice(0, -1) || filePath.startsWith(prefix))) return false;
+
+      const dot = filePath.lastIndexOf(".");
+      const slash = filePath.lastIndexOf("/");
+      const extension = dot > slash ? filePath.slice(dot + 1).toLowerCase() : "";
+      return extensions.has(extension);
+    })
+    .sort();
+}
+
+/**
+ * Diffs `manifest.json`'s recorded hashes against the current tree.
+ *
+ * Pure: the only filesystem access is `currentHash`, supplied by the caller
+ * (`audit-graf.mjs`'s runner), so this can be driven end-to-end with plain
+ * objects and a stub callback — no fixture tree needed to prove the counting
+ * logic itself.
+ *
+ * A manifest path that is no longer a candidate — deleted, moved out of
+ * scope, no longer git-tracked, or excluded by `.graphifyignore` since the
+ * graph was last built — is counted as **removed**, without a separate
+ * existence check: {@link inScopeCandidates} already encodes "still tracked
+ * and still in scope", so a manifest path missing from it IS the removal.
+ * A candidate `currentHash` cannot read (returns `null`, e.g. a working-tree
+ * deletion `git ls-files` has not caught up to) is counted as **changed**
+ * rather than removed — conservative, since a deletion mid-diff is rare and
+ * "changed" still crosses the same bound.
+ *
+ * @param {Record<string, { ast_hash?: string }>} manifest - parsed `manifest.json`
+ * @param {readonly string[]} trackedPaths - `git ls-files`, repo-wide
+ * @param {readonly string[]} ignorePrefixes - `ParsedIgnore.prefixes`
+ * @param {(filePath: string) => string | null} currentHash - current md5 of
+ *   a path relative to the repo root, or `null` when unreadable
+ * @returns {StalenessDiff}
+ */
+export function diffManifestStaleness(manifest, trackedPaths, ignorePrefixes, currentHash) {
+  const candidates = inScopeCandidates(trackedPaths, manifestExtensions(manifest), ignorePrefixes);
+  const candidateSet = new Set(candidates);
+
+  const changed = [];
+  const removed = [];
+
+  for (const filePath of Object.keys(manifest)) {
+    if (!candidateSet.has(filePath)) {
+      removed.push(filePath);
+      continue;
+    }
+    const hash = currentHash(filePath);
+    if (hash === null || hash !== manifest[filePath]?.ast_hash) changed.push(filePath);
+  }
+
+  const added = candidates.filter((filePath) => !(filePath in manifest));
+
+  return { changed: changed.sort(), added: added.sort(), removed: removed.sort() };
+}
+
+/**
+ * Turns a {@link StalenessDiff} into a violation once the total crosses
+ * `bound` — never AT it, the same `>` (not `>=`) convention
+ * `audit-rilis.mjs`'s own count bound uses, so a diff at exactly the bound
+ * is still green.
+ *
+ * @param {StalenessDiff} diff
+ * @param {number} bound
+ * @returns {Violation[]}
+ */
+export function checkStaleness(diff, bound) {
+  const total = diff.changed.length + diff.added.length + diff.removed.length;
+  if (total <= bound) return [];
+
+  return [
+    {
+      rule: "staleness",
+      file: "graphify-out/manifest.json",
+      message:
+        `${total} file(s) changed/added/removed since the graph was last built, bound is ${bound} ` +
+        `(${diff.changed.length} changed, ${diff.added.length} added, ${diff.removed.length} removed) — ` +
+        "run `bun run knowledge:graph:update`"
+    }
+  ];
+}
+
+// ---------------------------------------------------------------------------
+// 7. The subtree's own graph artefacts are untouched by root automation
 // ---------------------------------------------------------------------------
 
 /**
