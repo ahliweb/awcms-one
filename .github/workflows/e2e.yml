@@ -6,11 +6,17 @@ name: e2e
 # `.github/workflows/ci.yml` on purpose, matching `template-init-smoke.yml`'s
 # own precedent: this is a slower, browser-driven suite with a different
 # risk profile (a flaky third-party rendering difference should never block
-# every other PR), so it is explicitly NOT a required status check — see
-# AGENTS.md's "The gates" for the checks that ARE required, and
-# `template-init-smoke.yml`'s own comment for how a workflow like this one
-# gets promoted once it has proven itself over several consecutive green
-# runs.
+# every other PR), so it was introduced with a deliberate probation period —
+# not a required status check until it had proven itself deterministic over
+# several consecutive green runs, the same promotion path
+# `template-init-smoke.yml`'s own comment describes.
+#
+# That bar was met: at least seven consecutive post-introduction runs
+# (#197, #202, #203, #204, #207, #208, #209) all green, with no observed
+# e2e failure since this workflow was added. Issue #215 verified the exact
+# `e2e (toko)`/`e2e (berita)`/`e2e (landing)` contexts against a real PR and
+# added all three to `main`'s required status checks — see AGENTS.md's
+# "The gates" for the full required set.
 #
 # Deterministic assertions only (the issue's own decision record): axe-core
 # failing on serious/critical WCAG 2.1 A/AA violations, and a
@@ -63,7 +69,7 @@ jobs:
       # AGENTS.md's "Configuration and toolchain".
       - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2.2.0
         with:
-          bun-version: "1.4.0"
+          bun-version: "1.4.2"
 
       - name: Cache Bun install cache
         uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0

@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](alur-kerja-pengembangan.md)
 
-<!-- i18n-source-hash: sha256:96a3a68c2013969e63442a353969e3bd339d8c8dd3e5f9f451a059ed00ed868c -->
+<!-- i18n-source-hash: sha256:1bf2b86cc6de9155ac51dc26f98264f0dabbc4d881d9e6a80c2bd89fd505808f -->
 
 # Alur kerja pengembangan
 
@@ -21,7 +21,7 @@ gh api repos/ahliweb/awcms-one --jq '{has_wiki, allow_merge_commit, allow_squash
 
 | Pengaturan | Nilai |
 | --- | --- |
-| Status check wajib | Delapan context: `check-cms`, `Check (toko)`, `Check (berita)`, `Check (landing)`, `template-init-smoke (toko)`, `template-init-smoke (berita)`, `template-init-smoke (landing)`, `template-init-smoke (root-suite)` — keempat leg `template-init-smoke` dipromosikan menjadi wajib pada issue #182, di samping keempat leg `ci.yml` yang sudah wajib sejak increment 6 (issue #137) |
+| Status check wajib | Sebelas context: `check-cms`, `Check (toko)`, `Check (berita)`, `Check (landing)`, `template-init-smoke (toko)`, `template-init-smoke (berita)`, `template-init-smoke (landing)`, `template-init-smoke (root-suite)`, `e2e (toko)`, `e2e (berita)`, `e2e (landing)` — keempat leg `template-init-smoke` dipromosikan menjadi wajib pada issue #182, ketiga leg `e2e` pada issue #215, di samping keempat leg `ci.yml` yang sudah wajib sejak increment 6 (issue #137) |
 | Strict (branch harus up to date sebelum merge) | Ya |
 | Force push | Ditolak |
 | Penghapusan branch | Ditolak |
@@ -77,6 +77,12 @@ Ketiga leg `Check` dan `check-cms` semuanya status check wajib di `main` (lihat 
 - **Job `root-suite` terpisah**, tanpa matriks, menjalankan `template:init --profil toko` (lagi-lagi `TEMPLATE_INIT_TEST_SCOPE=root`) lalu `bun test` penuh TEPAT SATU KALI, di runner-nya sendiri tanpa apa pun lain yang berebut CPU. Inilah kini satu-satunya tempat di seluruh workflow ini di mana suite derived-repository penuh berjalan.
 
 Dua detail menjaga rantai gate workflow ini sendiri tidak gagal terhadap dirinya sendiri. Pertama, probe kesiapan stub CMS memeriksa **dengan bearer token** (`curl -sf -H "Authorization: Bearer stub" http://localhost:4310/api/v1/commerce/products`) — stub menjawab `401` untuk request tanpa autentikasi memang disengaja (`apps/storefront/scripts/stub-awcms.mjs`), dan `curl -f` polos akan membaca `401` itu sebagai "belum siap" selamanya. Kedua, `tests/template-init.test.mjs` melewati dirinya sendiri begitu mendeteksi ia tidak lagi berjalan di dalam `awcms-one` (`package.json.name !== "awcms-one"`) — tanpa guard itu, `bun test` akhir milik sebuah run `template:init` akan menemukan dan menjalankan ulang berkas tesnya sendiri di dalam repositori yang baru saja diinisialisasinya, yang tes full-run-nya kemudian mencoba membangun salinan sementara lain dari `git ls-files`, yang masih mendaftar path yang sudah di-`unlinkSync` (tidak pernah di-`git rm`) oleh langkah penghapusan run itu sendiri, melempar `ENOENT` pada setiap satu darinya.
+
+## CI: workflow keempat, kini wajib — `e2e`
+
+`.github/workflows/e2e.yml` (issue #183) adalah berkas workflow TERPISAH dari `ci.yml`, mengikuti presedan `template-init-smoke.yml` sendiri: suite Playwright browser-sungguhan lebih lambat dan membawa risiko flaky yang berbeda dari type-check atau tes unit, jadi ia diperkenalkan dengan masa percobaan yang disengaja alih-alih langsung wajib. Ia mematriks-kan spec e2e milik `apps/storefront` atas tiga profil build yang sama (`e2e (toko)`, `e2e (berita)`, `e2e (landing)`, `fail-fast: false`), setiap leg membangun satu situs sungguhan terhadap fixture stub CMS yang di-commit (`apps/storefront/tests/e2e/build-and-serve.ts`/`apps/storefront/tests/e2e/global-setup.ts` — tanpa `apps/cms` hidup, tanpa jaringan selain `bun install` dan unduhan Chromium) dan menjalankan: alur checkout dan pop-up iklan, pemeriksaan aksesibilitas axe-core yang gagal pada pelanggaran WCAG 2.1 A/AA `serious`/`critical`, dan pemeriksaan no-horizontal-overflow deterministik pada 360px. Screenshot penuh-halaman (mobile dan desktop, setiap halaman kunci, setiap profil) diunggah sebagai artifact CI untuk dilihat manusia — tidak pernah dibandingkan dengan baseline yang di-commit, karena rendering font lintas-OS membuat baseline byte-level flaky secara konstruksi dan layanan visual-diff yang dihosting adalah dependensi eksternal berbayar yang tidak dimiliki repo ini.
+
+**Ketiga leg-nya menjadi status check wajib pada issue #215 (24 September 2026)**, mengikuti pola promosi yang sama yang dilalui `check-cms` dan `template-init-smoke`: dipromosikan hanya setelah rekam jejak jalan pasca-perkenalan menunjukkan tidak ada kegagalan e2e. Sampel yang ditinjau adalah setidaknya tujuh run hijau berturut-turut setelah issue #183 memperkenalkan workflow itu (#197, #202, #203, #204, #207, #208, #209), dan pemeriksaan lebih luas atas `gh run list --workflow e2e.yml` pada saat promosi tidak menemukan run tambahan di luar sampel itu dalam status apa pun selain sukses (atau masih berjalan). Context persisnya diverifikasi terhadap check PR sungguhan (`gh pr checks`/`gh api .../check-runs`) alih-alih disimpulkan dari berkas workflow, karena GitHub menurunkan context yang ditampilkan job matriks dari `jobs.<id>.name`, bukan dari kunci job.
 
 ## CI: workflow kelima, belum wajib — `codeql`
 
