@@ -2,6 +2,196 @@
 
 Every entry below is folded from `.changesets/` by `bun run release`, which also tags the release. The version is `MAJOR.MINOR.PATCH`, tagged `vX.Y.Z`; the next version is the largest `bump` declared among the changesets a release folds (see [`.changesets/README.md`](.changesets/README.md)) — never a level chosen at release time from a list of file names.
 
+## [0.12.0] — 2026-09-24
+
+### Align the root-owned Bun pin to 1.4.2
+
+The #210 subtree sync left a root-owned toolchain drift: root `package.json`
+still pinned `packageManager: "bun@1.4.0"`/`engines.bun: ">=1.3.0"` while the
+embedded `apps/cms/package.json` (a leftover from before the subtree embed,
+not part of this pin) already read `bun@1.4.2`, and every root workflow that
+installs Bun (`ci.yml`, `template-init-smoke.yml`, `e2e.yml`, `images.yml`,
+`release.yml`) still requested `1.4.0`. Two Bun patch versions coexisting in
+one monorepo makes local/CI reproduction less deterministic.
+
+- Raised the authoritative root pin to `bun@1.4.2`: `package.json`'s
+  `packageManager`, and `bun-version: "1.4.2"` in every job of every root
+  workflow above.
+- `engines.bun` moved from `>=1.3.0` to `>=1.4.2` — its meaning stays a floor,
+  not an exact pin (it also gates `apps/storefront`'s own `bun install` and
+  any contributor's local Bun, where "at least this new enough" is the
+  actual requirement), only its value moved up alongside the rest.
+- Corrected AGENTS.md's (and its Indonesian mirror's) "Configuration and
+  toolchain" bullet, which had stated the pin as living in "three places"
+  naming only `ci.yml` — already an undercount before this change, since
+  `release.yml`'s own `bun-version` job existed and was not named. The rule
+  now names the actual, current set of root workflows that install Bun
+  instead of a fixed count, and a workflow that starts installing Bun in the
+  future is expected to join that list in the same change that adds its
+  `bun-version` line.
+- No lockfile content changed: this repository's local Bun runtime is
+  already 1.4.2, so `bun install` and `bun run check:lockfile` were exercised
+  under that same version and `bun.lock` came back byte-identical.
+
+Astro/Playwright/Changesets updates that arrived through #210 remain that
+subtree sync's own scope and are untouched here; this change is root-owned
+toolchain alignment only (issue #211).
+
+### Encrypted backup assurance and restore drills, integrated into the production topology
+
+`compose.production.yaml` gains three profile-gated services — `backup`, `restore-drill`, `offsite-copy` — that reuse upstream `apps/cms/deploy/backup/*.sh` (issue #210, ADR-0123) through this repository's own distinct `awcms_setup`/`awcms_app`/`awcms_worker` identities, rather than forking or reimplementing that tooling. `docker/backup/Dockerfile` supplies only the binaries (`age`, `rsync`, `openssh-client`) those scripts' own README already says a runner image needs, on top of the same `postgres:18.4` the `postgres` service runs. `ops/run-backup-compose.sh` and `ops/awcms-one-backup.crontab` give the host-cron scheduling path.
+
+- Backups are `age`-encrypted with an HMAC-SHA256-authenticated manifest; a local-only backup is never reported as a successful off-site copy.
+- `restore-drill` has a hard-coded command with no `--target` code path anywhere in it — structurally incapable of targeting a production database, not merely documented as a drill. A real disaster-recovery restore stays a manual, confirmed runbook step, never a compose service.
+- Validated end to end against a disposable PostgreSQL with synthetic data: create → backup → encrypt → manifest → off-site copy (a disposable SSH test target) → restore-drill into an isolated scratch database → schema/RLS integrity verification → measured RTO/RPO, plus five fail-closed paths (wrong/missing key material, tampered manifest, corrupted backup, unavailable off-site destination, unsafe restore target).
+- `docs/deployment.md`'s new "Backup assurance" section (and its Indonesian mirror) is the operator runbook; `docs/status.md` removes its "at-rest backup encryption" gap now that the capability is documented and validated.
+
+### Test awcms-one's deployment/migration boundary around the synchronized `omes_control` module
+
+Issue #210 pulled upstream's `omes_control` domain module into `apps/cms`
+(`sql/154`-`sql/158`, `awcms`'s own ADR-0122). Upstream already tests that module's own unit
+and application semantics; issue #212 adds the AWCMS-One-specific integration
+boundary around it — deployment/migration shape this repo owns, not a re-test
+of upstream's own coverage, and no OMES/Hermes runtime-execution behaviour
+(issue #146 moved that ownership to `ahliweb/omes` on purpose).
+
+- `apps/cms/tests/integration/omes-control-deployment-boundary.integration.test.ts`
+  (12 tests, real PostgreSQL): `154`-`158` and the full commerce `901`-`934`
+  range apply to one clean database with no numeric-prefix collision and a
+  migration ledger that matches the files on disk (ADR-0015's reserved-range
+  rule); `awcms_setup`/`awcms_app`/`awcms_worker` are three distinct roles on
+  a migrated cluster, matching `compose.production.yaml`'s three DSNs; all
+  eight `omes_control` tables carry RLS both `ENABLE`d and `FORCE`d;
+  cross-tenant reads/writes on `omes_control` data fail closed; a freshly
+  migrated tenant holds zero `omes_control` role-permission grants
+  (default-deny survives deployment); existing commerce RLS/tenant isolation
+  stays green alongside the new module; and, as the required **negative
+  test**, deliberately re-granting `awcms_worker` the exact `INSERT`/`UPDATE`
+  privileges `sql/156` revoked is caught by the least-privilege assertion
+  (with an over-grant message naming the table and both verbs), then reverted
+  and re-verified passing.
+- `apps/cms/tests/omes-control-execution-boundary.test.ts` (DB-free, 2 tests):
+  no source file under `src/modules/omes-control/` or
+  `src/pages/api/v1/omes/` imports `child_process`/`ssh2`, calls
+  `Bun.spawn`, or calls a raw `exec`/`execSync` — the module stays a
+  tenant-scoped control-plane record store, never a shell/SSH executor.
+- Both suites run in the existing DB-backed `check-cms` CI leg (`apps/cms`'s
+  own `bun test tests/integration/` step and its plain `bun test`
+  respectively) — no second migration/test pipeline was added, and root
+  `bun test` remains PostgreSQL-free.
+- `docs/pengujian.md`/`.id.md` document the new coverage under `check-cms`'s
+  section.
+
+### Promote CodeQL to a required pull-request status check
+
+CodeQL (issue #184) ran on every push and PR for a full triage cycle
+(issue #206) with a green track record and no un-triaged findings — the
+probation condition set when it was introduced by PR #194. That
+prerequisite is now satisfied, so it is promoted from advisory to a
+required merge gate on `main` (issue #214).
+
+- `main`'s branch protection now requires `Analyze (javascript-typescript)`
+  — the CodeQL workflow's own job-status check (app: GitHub Actions) —
+  additively, alongside the eleven contexts issue #215 had already
+  established. All eleven survive unchanged; `enforce_admins` and `strict`
+  are untouched.
+- **Not** the sibling `CodeQL` check (app: GitHub Advanced Security, the
+  code-scanning-results check posted only once a SARIF upload succeeds):
+  verified from a real PR's check-runs that the job-status check is the
+  one that fails closed on a workflow/analyzer failure, which is what a
+  required security gate needs — the results check cannot represent an
+  analyzer crash that never got far enough to upload a SARIF at all.
+- `security-extended`, `apps/cms/**` in scope, the weekly schedule,
+  SHA-pinned actions, and least-privilege workflow permissions are all
+  unchanged. `security-and-quality` is deliberately not made
+  merge-blocking — a separate signal/risk decision, out of scope here.
+- Documentation and workflow comments that described CodeQL as "not
+  required" are updated: `AGENTS.md`/`AGENTS.id.md`, `SECURITY.md`/
+  `SECURITY.id.md`, `README.md`/`README.id.md`, `docs/status.md`/
+  `docs/status.id.md`, `docs/alur-kerja-pengembangan.md`/`.id.md`, and
+  `.github/workflows/codeql.yml`'s own comments.
+
+### Promote the Playwright e2e matrix to required status checks
+
+`.github/workflows/e2e.yml` (issue #183) was introduced on a deliberate
+probation period: a real-browser suite carries a different flake risk than
+a type-check or unit test, so it started as advisory only, pending a
+proven, deterministic run history.
+
+That bar is now met. Issue #215 reviewed the post-introduction run history
+(`gh run list --workflow e2e.yml`) and found at least seven consecutive
+green runs across #197/#202/#203/#204/#207/#208/#209, with no observed e2e
+failure in any run since the workflow was introduced. The exact
+`e2e (toko)`/`e2e (berita)`/`e2e (landing)` contexts were verified against
+a real PR's checks (`gh pr checks`, `gh api .../check-runs`) rather than
+inferred from the workflow file, and all three are now added to `main`'s
+branch protection **additively** — every previously required check
+(`check-cms`, the three `Check (*)` legs, and the four
+`template-init-smoke` legs) is preserved, and `enforce_admins` stays on.
+
+- `main`'s required status checks go from eight contexts to eleven.
+- A pending or failing `e2e (toko)`/`e2e (berita)`/`e2e (landing)` leg now
+  blocks a PR merge, the same as any other required check.
+- No test scope, assertion, or screenshot behaviour changed — this is a
+  branch-protection and documentation change only.
+- `.github/workflows/e2e.yml`'s own comment, `AGENTS.md`, `README.md`,
+  `docs/status.md`, and `docs/alur-kerja-pengembangan.md`/`docs/pengujian.md`
+  (plus their Indonesian mirrors) no longer describe this workflow as
+  optional.
+
+### Sync the `apps/cms` subtree from upstream `8c64528d` to `2d29a446`
+
+`apps/cms` is `ahliweb/awcms` embedded via `git subtree` (see `AGENTS.md`'s "The
+subtree embed"). This pulls the 14 upstream commits that landed since the last
+sync (issue #170), full-history, with a merge commit (issue #210).
+
+- The `omes_control` domain module (26th registered module) — host fleet
+  lifecycle, worker enrollments, desired-vs-observed deployments, an
+  allowlisted safe-operation surface, a worker job dispatch queue, health/
+  backup/audit projections — arrives in the embedded tree via migrations
+  `sql/154`-`sql/158`. Its worker grant was narrowed in the same range
+  (`sql/156`) to `SELECT`+`DELETE` on all eight of its tables.
+- `commerce`'s own reserved migrations remain `sql/901`-`sql/934`, unaffected
+  and unrenumbered by the sync (ADR-0015).
+- The `identity-access` `AccessAction`/high-risk-action unions, the module
+  registry (`apps/cms/src/modules/index.ts`), and the two worker/subject-data
+  grant matrices in `apps/cms/scripts/security-readiness.ts`/`apps/cms/
+  scripts/subject-data-coverage-check.ts` overlapped this delta and were
+  resolved by keeping BOTH lineages (this platform's `commerce` additions and
+  upstream's `omes_control` additions), not by choosing one side.
+- Generated artifacts (`apps/cms/docs/awcms/api-reference.md`, `apps/cms/
+  docs/awcms/repo-inventory.md`, `apps/cms/docs/awcms/module-composition-
+  inventory.json`, `apps/cms/scripts/README(.id).md`, `apps/cms/docs/
+  PROJECT_STATE(.id).md`'s inventory table) were regenerated from the merged
+  registry rather than hand-merged, and the Indonesian mirrors touched by the
+  merge were re-translated and re-stamped.
+- Upstream also bumped Astro to 7.3.2, `@types/bun` to 1.4.2, `@changesets/
+  cli` to 3.0.3, and `@playwright/test` to 1.63.0 (all `apps/cms`-scoped
+  devDependencies/dependencies) and hardened PostgreSQL backup encryption/
+  manifests/restore drills and the Graphify/Obsidian knowledge workflow
+  inside the embedded tree — see `apps/cms/docs/adr/` for upstream's own ADRs
+  once read there; this repository does not yet claim any of that as part of
+  its own deployment contract (backup integration into this repo's
+  production topology is issue #213's separate scope).
+
+No OMES route or UI was added to `apps/storefront`, in any profile — OMES
+execution/runtime ownership stays in `ahliweb/omes`.
+
+Running the DB-gated integration suite as part of this sync's own validation
+(not something a subtree pull by itself would touch) surfaced one pre-existing
+defect, already present on the sync's own merge base and unrelated to the
+upstream delta: `commerce.pos.create`'s module descriptor and its `sql/932`
+seed disagreed on the permission's description text. Fixed in the same PR by
+moving the descriptor to match the applied, checksum-pinned migration.
+
+- Verified on a real PostgreSQL 18.4: migrations `sql/001`-`158` plus
+  `commerce`'s `901`-`934` apply forward-only from a clean database (192
+  applied), re-running `db:migrate` is a no-op (192 skipped, no checksum
+  drift), `FORCE RLS` holds on all 8 `omes_control` and all 38 `commerce`
+  tables, and `apps/cms/tests/integration/` passes against it (774 tests).
+- Verified `toko`/`berita`/`landing` all still pass `bun run check` under
+  their own `SITE_PROFILE`.
+
 ## [0.11.1] — 2026-09-24
 
 ### First CodeQL triage: dismiss the false positives, record the standing rules
