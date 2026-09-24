@@ -2932,7 +2932,7 @@ export const commerceModule = defineModule({
       activityCode: COMMERCE_POS_ACTIVITY_CODE,
       action: "create",
       description:
-        "Create a counter (POS) sale — the only order-creation path gated by a permission at all"
+        "Create a counter (POS) sale — the only order-creation path that requires a permission at all"
     }
   ]
 });
