@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](pengujian.md)
 
-<!-- i18n-source-hash: sha256:099feaf3071218ea2d838b91de9b83ade95bc57c81d2be573f4a8d6f7c995a37 -->
+<!-- i18n-source-hash: sha256:4065ad633c7aa8f3373040efb979d7d459c7cbd6ab4403f6bcabb65783d71a40 -->
 
 # Pengujian
 
@@ -82,7 +82,7 @@ Masing-masing mendarat dengan berkas `tests/integration/` sendiri, dijalankan su
 
 `profil-halaman.ts` (helper, bukan spec — tidak ada `.e2e.` di namanya) adalah satu-satunya tempat ketiga spec terakhir membaca "halaman kunci profil ini" darinya, disusun dengan cara yang sama seperti `apps/storefront/src/config/profil.ts` menyusun set halaman build sungguhan, sehingga ketiganya tidak pernah bisa diam-diam menyimpang ke pemahaman "halaman kunci" yang berbeda untuk profil yang sama.
 
-**`.github/workflows/e2e.yml`** — matriks 3-leg atas `SITE_PROFILE` (`toko`/`berita`/`landing`, sesuai bentuk job `check` milik `ci.yml` sendiri), Chromium di-cache atas hash `bun.lock`, laporan HTML Playwright maupun screenshot tiap profil diunggah sebagai artifact (`if: always()`, sehingga jalankan yang gagal tetap meninggalkan sesuatu untuk dilihat). **Bukan status check wajib** — suite berbasis rendering peramban punya profil risiko berbeda dari gate deterministik pada tabel di atas, dan "The gates" milik AGENTS.md hanya menamai `Check (*)`/`check-cms` sebagai wajib; lihat komentar milik `template-init-smoke.yml` sendiri untuk bagaimana workflow seperti ini dipromosikan setelah berjalan hijau untuk sementara waktu.
+**`.github/workflows/e2e.yml`** — matriks 3-leg atas `SITE_PROFILE` (`toko`/`berita`/`landing`, sesuai bentuk job `check` milik `ci.yml` sendiri), Chromium di-cache atas hash `bun.lock`, laporan HTML Playwright maupun screenshot tiap profil diunggah sebagai artifact (`if: always()`, sehingga jalankan yang gagal tetap meninggalkan sesuatu untuk dilihat). **Ketiga leg-nya (`e2e (toko)`, `e2e (berita)`, `e2e (landing)`) adalah status check wajib**, dipromosikan pada issue #215 setelah rekam jejak jalan pasca-perkenalan yang terverifikasi tanpa kegagalan e2e yang teramati — jalur promosi yang sama yang dideskripsikan komentar milik `template-init-smoke.yml` sendiri, dan yang dilalui `check-cms`/`template-init-smoke` sendiri.
 
 **`bun run screenshots:readme`** (`apps/storefront/scripts/screenshots-readme.mjs`, `--profil <toko|berita|landing>`, default `toko`) meregenerasi screenshot yang sama secara deterministik, dari harness identik yang dijalankan `screenshots.e2e.ts` di CI — untuk maintainer, atau langkah CI di masa depan, menyegarkan gambar tertanam README tanpa mengemudikan browser secara manual. Output: `E2E_SCREENSHOT_DIR` (default `test-results/screenshots-readme`), di-gitignore seperti path `test-results/` lainnya.
 
@@ -149,4 +149,4 @@ Container layanan `postgres:18.4` (`POSTGRES_USER=awcms`, `POSTGRES_DB=awcms`, h
 
 ## Belum dibangun
 
-Baseline visual-regression yang di-commit untuk screenshot Playwright milik `apps/storefront` (catatan keputusan issue #183 sendiri — lihat "Playwright e2e" di atas untuk alasannya) — reviewer membuka artifact CI dan melihat sendiri, alih-alih byte-diff yang menggerbangi jalankan. `.github/workflows/e2e.yml` belum menjadi status check wajib — lihat komentar milik workflow itu sendiri untuk jalur promosinya.
+Baseline visual-regression yang di-commit untuk screenshot Playwright milik `apps/storefront` (catatan keputusan issue #183 sendiri — lihat "Playwright e2e" di atas untuk alasannya) — reviewer membuka artifact CI dan melihat sendiri, alih-alih byte-diff yang menggerbangi jalankan. Ketiga leg `.github/workflows/e2e.yml` sudah menjadi status check wajib sejak issue #215; hanya baseline byte-level itu (secara sengaja, sesuai cakupan issue #215 sendiri) yang tetap belum dibangun.
