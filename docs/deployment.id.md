@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](deployment.md)
 
-<!-- i18n-source-hash: sha256:333cccbc4cd1d05889affb264759a98b576f917df6b634d50b7c301772d3f230 -->
+<!-- i18n-source-hash: sha256:ff92c3464d52de736e4c2e5e09f6c6d2fcd2c1bc96ca54bc4c47c97686fcea32 -->
 
 # Deployment
 
@@ -437,8 +437,92 @@ Setiap pemeriksaan mencetak satu baris `PASS|FAIL|SKIP` dan alasannya, tidak per
 
 **Rollback/cutover:** setiap image ditandai dengan commit/rilis tempat ia dibangun; rollback adalah men-deploy ulang tag sebelumnya, tidak pernah mengedit kontainer yang berjalan. Migrasi maju-saja dengan checksum immutable (`validateAppliedChecksums` milik `apps/cms/scripts/db-migrate.ts` menolak menerapkan ulang migrasi yang sudah diterapkan yang isinya berubah) — migrasi yang salah dikoreksi lewat migrasi BARU, tidak pernah edit-tangan yang sudah diterapkan.
 
-**Backup/restore:** `apps/cms/ops/backup-awcms.sh` dan `restore-drill-awcms.sh` adalah semuanya di upstream — lihat bagian "Backup & restore" skill `awcms-production-preflight` sendiri untuk perintah persisnya dan, penting, bahwa enkripsi saat-diam **belum diimplementasikan** di upstream hari ini (lindungi dump dengan izin filesystem dan salinan off-host sebagai gantinya; lihat `apps/cms/docs/awcms/` untuk status nyata terkini).
+**Backup/restore:** lihat "Jaminan backup" tepat di bawah — jalur terenkripsi, terautentikasi, tersalin off-site, dan teruji-drill yang kini dipakai topologi produksi repositori ini sendiri, memakai ulang `apps/cms/deploy/backup/*.sh` milik upstream lewat servis `backup`/`restore-drill`/`offsite-copy` milik `compose.production.yaml` sendiri. (`apps/cms/ops/backup-awcms.sh`/`restore-drill-awcms.sh` adalah pasangan skrip lain yang lebih lama, khusus-host, yang masih dibawa upstream untuk cron deployment lain — bukan yang dipasang topologi produksi repositori ini sendiri; jangan mencampuradukkan keduanya.)
+
+## Jaminan backup (issue #213)
+
+`apps/cms/deploy/backup/*.sh` (disinkronkan masuk oleh issue #210, tooling milik upstream sendiri — lihat [ADR-0123](https://github.com/ahliweb/awcms/blob/main/docs/adr/0123-backup-encryption-manifest-authentication.md) dan `README.md` milik direktori itu sendiri untuk apa yang dilakukan tiap skrip dan kenapa) dipakai di sini lewat topologi produksi REPOSITORI INI sendiri, bukan diimplementasikan ulang. `compose.production.yaml` menambah tiga servis ber-profile — `backup`, `restore-drill`, `offsite-copy` — masing-masing pembungkus tipis: kontainer dibangun dari `docker/backup/Dockerfile` (image `postgres:18.4` yang SAMA dengan yang dijalankan servis `postgres`, ditambah `age`/`rsync`/`openssh-client` — persis yang diminta catatan "Base images ship neither `age` nor a database client by default" milik `apps/cms/deploy/backup/README.md` sendiri) dengan `apps/cms/deploy/backup/` di-bind-mount read-only di `/scripts` dan skrip aslinya dipanggil tanpa modifikasi.
+
+### Identitas basis data (butir cakupan 1)
+
+`backup` dan `restore-drill` sama-sama terhubung memakai `SETUP_DATABASE_URL` — DSN pemilik-migrasi yang SAMA dengan yang sudah dipakai `migrate` di file ini, tidak pernah `awcms_app` (`cms`) atau `awcms_worker` (`jobs`). Dua alasan struktural: `pg_dump` harus membaca semua tabel, yang sengaja ditolak dari peran runtime berhak-istimewa-minimal (sql/019/021); dan mode drill `restore-postgres.sh` membuat lalu menghapus basis data scratch-nya sendiri, yang butuh `CREATEDB`. `offsite-copy` tidak butuh koneksi basis data sama sekali — ia hanya memindahkan berkas yang sudah ditulis.
+
+### Secrets (butir cakupan 2)
+
+Empat secret compose berbasis-berkas baru, mekanisme yang SAMA dengan yang sudah dipakai `awcms_api_token` milik `storefront` sendiri (di-mount read-only di `/run/secrets/<name>`, tidak pernah nilai `environment:`, tidak pernah lapisan image, tidak pernah muncul di output `docker inspect` sendiri):
+
+| Secret | Variabel env yang menunjuk berkas host-nya | Berisi |
+| --- | --- | --- |
+| `backup_age_recipients` | `BACKUP_AGE_RECIPIENTS_FILE` | recipient publik `age` — aman di host backup |
+| `backup_hmac_key` | `BACKUP_HMAC_KEY_FILE` | kunci HMAC-SHA256 — dibutuhkan di KEDUA host backup dan restore |
+| `restore_age_identity` | `RESTORE_AGE_IDENTITY_FILE` | identitas PRIVAT `age` — HANYA host restore/drill, tidak pernah host backup |
+| `offsite_ssh_key` | `OFFSITE_SSH_KEY_FILE` | kunci privat SSH off-site |
+
+Buat keempatnya persis seperti yang didokumentasikan langkah 1 milik `apps/cms/deploy/backup/README.md` sendiri (`age-keygen`, `openssl rand`), di workstation, bukan host backup itu sendiri; lalu, mis.:
+
+```bash
+mkdir -p .secrets
+age-keygen -o .secrets/restore-age-identity.key
+grep '^# public key:' .secrets/restore-age-identity.key | sed 's/# public key: //' > .secrets/backup-age-recipients.txt
+openssl rand -out .secrets/backup-hmac.key 32
+cp <kunci privat ssh off-site Anda> .secrets/offsite-ssh-key
+```
+
+`.secrets/` sudah di-`.gitignore` (aturan yang sama yang dipakai `AWCMS_API_TOKEN_FILE`). Tak satu pun dari keempat berkas ini, atau nilai turunannya, pernah dicetak skrip mana pun di `apps/cms/deploy/backup/` — lihat tabel "Secrets — what goes where, and what never appears in a log" milik README direktori itu sendiri.
+
+### Tempat artifact hidup, dan salinan off-site (butir cakupan 3-4)
+
+Artifact terenkripsi, sidecar, manifest, dan log evidence restore-drill hidup di volume bernama `awcms-one-production-backups`, di-mount di `/backup` di ketiga servis. `offsite-copy` butuh `OFFSITE_SSH_TARGET` (`user@host:/absolute/path`) dan memakai algoritma pemilihan-artifact yang SAMA dengan yang sudah dipakai `restore-drill.sh` (lewat `docker/backup/select-and-offsite-copy.sh`, skrip perekat kecil milik repositori ini sendiri — bukan fork dari `offsite-copy.sh` itu sendiri, yang dipanggilnya tanpa modifikasi) untuk memilih backup terbaru yang eligible plus sidecar-nya. Transfer yang gagal setelah percobaan-ulang `offsite-copy.sh` sendiri keluar non-zero dan tidak pernah menghapus salinan lokal — backup yang hanya lokal tidak pernah dilaporkan sebagai salinan off-site yang berhasil (header `offsite-copy.sh` sendiri; diverifikasi dalam validasi issue ini dengan menghentikan target off-site di tengah jadwal).
+
+### Retensi/rotasi (butir cakupan 5)
+
+Retensi lokal adalah `BACKUP_RETENTION_DAYS` (default 14, `0` menonaktifkan), dibaca `backup-postgres.sh` sendiri. Retensi off-site adalah kebijakan apa pun yang diterapkan tujuan di `OFFSITE_SSH_TARGET` — `offsite-copy.sh` hanya menyalin, tidak pernah memangkas tujuan (header-nya sendiri). Keduanya kebijakan host/tujuan milik operator, bukan sesuatu yang dikelola tooling repositori ini.
+
+### Invokasi terjadwal (butir cakupan 6)
+
+`ops/run-backup-compose.sh <backup|restore-drill|offsite-copy>` adalah bentuk `ops/run-job-compose.sh` (issue #150) diterapkan ke tiga profile ini — `docker compose -f compose.production.yaml --profile <task> run --rm <task>`. `ops/awcms-one-backup.crontab` adalah manifest pasang-manual (konvensi yang sama dengan `apps/cms/deploy/cron/awcms.crontab`): backup tiap malam, salinan off-site tepat sesudahnya, restore drill mingguan.
+
+### Observabilitas (butir cakupan 7)
+
+Setiap skrip mencetak persis apa yang dilakukannya ke stdout/stderr — tidak ada yang ditelan — jadi crontab host yang mengarahkan ke berkas log (seperti yang dilakukan `ops/awcms-one-backup.crontab`) membuat sukses/gagal terlihat di log, dan exit non-zero dari `ops/run-backup-compose.sh` adalah yang dipakai mailer cron atau setup log-shipping/alerting eksternal. `restore-drill.sh` tambahan menambahkan satu baris JSON per run ke `${BACKUP_DIR}/restore-drill-evidence.jsonl` — timestamp, nama artifact, pass/fail, RTO/RPO terukur, tanpa secret atau isi basis data — aman dikirim ke agregasi log atau dilampirkan ke tiket change-management.
+
+### Restore drill default ke isolated/disposable, secara struktural (butir cakupan 8, syarat keamanan)
+
+`restore-drill` punya `command: ["bash", "/scripts/restore-drill.sh"]` yang di-hardcode di `compose.production.yaml` — tidak pernah `restore-postgres.sh` langsung, dan tidak pernah dengan `--target`. `restore-drill.sh` sendiri tidak punya jalur kode `--target` sama sekali (headernya sendiri menyatakan ini), dan mode drill `restore-postgres.sh` sendiri (tanpa `--target`) membuat basis data scratch-nya SENDIRI (`RESTORE_SCRATCH_DB`, default `awcms_restore_drill`), menolak bila nama itu sama dengan basis data yang terhubung, memulihkan ke dalamnya, memverifikasinya, lalu menghapusnya — basis data yang terhubung/produksi tidak pernah dimutasi. Tidak ada variabel environment, profile compose, atau argumen cron yang membuat servis ini destruktif; restore disaster-recovery yang nyata SENGAJA BUKAN servis compose — ia adalah langkah runbook manual dan terkonfirmasi `docker run ... restore-postgres.sh <dump> --target=<db> --yes` di bawah, satu langkah lebih jauh dari `docker compose up` yang tak sengaja atau baris cron yang di-copy-paste dibanding definisi servis:
+
+```bash
+docker run --rm --network container:<kontainer postgres> \
+  -v awcms-one-production-backups:/backup \
+  -v ./apps/cms/deploy/backup:/scripts:ro \
+  -e DATABASE_URL="<DSN owner/setup>" \
+  -e RESTORE_AGE_IDENTITY_FILE=/secrets/restore-age-identity.key \
+  -e BACKUP_HMAC_KEY_FILE=/secrets/backup-hmac.key \
+  postgres:18.4 \
+  bash /scripts/restore-postgres.sh /backup/<artifact>.dump.age --target=<db> --yes
+```
+
+### Evidence RTO/RPO (butir cakupan 9)
+
+`restore-drill.sh` mengukur keduanya langsung, tanpa data produksi pernah keluar dari drill: `restoreRtoSeconds` adalah durasi nyata verify→decrypt→restore→check secara wall-clock; `restoreRpoSeconds` adalah umur backup yang di-drill, pada saat drill. Memvalidasi issue ini terhadap PostgreSQL disposable dengan data sintetis (satu baris tenant fiktif, tanpa data pelanggan/bisnis nyata), satu drill penuh mengukur **RTO 2-3 detik, RPO 1-615 detik** tergantung berapa lama sejak backup sintetis terakhir — evidence dari mekanismenya, bukan SLA produksi; angka deployment nyata bergantung pada ukuran basis data dan kadensi cron `backup`/`restore-drill`-nya sendiri.
+
+### Kaitan dengan topologi produksi saat ini (butir cakupan 10)
+
+`backup`/`restore-drill`/`offsite-copy` adalah servis tambahan di `compose.production.yaml` yang SAMA yang sudah dijelaskan "Runbook produksi" dokumen ini — tanpa perubahan pada `postgres`/`migrate`/`cms`/`jobs`/`storefront`, dan tanpa port basis data baru yang bisa diakses host (aturan keamanan di atas: produksi tetap hanya terjangkau dari jaringan proyek compose sendiri; `backup`/`restore-drill` bergabung ke jaringan yang sama persis seperti yang sudah dilakukan `migrate`).
+
+### Jalur kegagalan yang diverifikasi
+
+Diuji langsung terhadap PostgreSQL disposable (`bun run db:up`) dengan data sintetis, memakai baik skrip mentah maupun servis/image `compose.production.yaml` yang sesungguhnya:
+
+- **Materi kunci enkripsi salah/hilang** — `restore-postgres.sh` menolak sebelum menyentuh basis data mana pun ketika `RESTORE_AGE_IDENTITY_FILE` tidak diset, atau ketika `BACKUP_HMAC_KEY_FILE` menunjuk kunci yang salah (HMAC tidak cocok).
+- **Manifest yang di-tamper** — satu field yang diedit di JSON manifest tertangkap pemeriksaan HMAC sebelum dekripsi dicoba.
+- **Backup yang korup** — satu byte yang dibalik di ciphertext tertangkap pemeriksaan `artifact_sha256` milik manifest sebelum dekripsi dicoba.
+- **Tujuan off-site tak tersedia** — `offsite-copy.sh` mencoba ulang, lalu keluar non-zero, dan salinan lokal tidak tersentuh; tidak ada yang melaporkan backup lokal-saja sebagai off-site.
+- **Target restore tidak aman/tidak terisolasi** — `restore-postgres.sh --target=<db>` menolak ketika `<db>` sama dengan basis data yang disebut di DSN koneksi, sebelum mutasi apa pun; servis compose `restore-drill` sendiri sama sekali tidak bisa mencapai jalur kode ini (lihat di atas).
+
+### Tidak diuji
+
+Berkas recipient `age` yang salah/malformed pada saat BACKUP (berbeda dari identitas salah saat RESTORE) teramati sekali, secara insidental, selama validasi issue ini sendiri (berkas recipients sintetis non-bech32 membuat `backup-postgres.sh` gagal tertutup dengan dump plaintext dibiarkan di tempat dan tanpa artifact `.age` ditulis) tetapi tidak dijalankan sebagai kasus uji yang disengaja dan berulang seperti kelima jalur di atas. Host SSH off-site yang benar-benar tak terjangkau (kegagalan DNS, bukan sekadar connection-refused) dan prompt konfirmasi `restore-postgres.sh --target` di bawah TTY nyata tidak diuji terpisah — jalur kode yang mendasarinya adalah yang sama yang sudah dicakup test suite upstream milik `apps/cms` sendiri untuk skrip-skrip ini.
 
 ### Apa yang masih belum dibangun (ADR-0019 D7, dipersempit ADR-0020)
 
-Image `runtime`/`jobs` milik `apps/cms` sendiri, sejak issue #187, dipublikasikan `.github/workflows/images.yml` — lihat "Image yang dipublikasikan" di atas; bagian itu dari daftar ADR-0019 D7 sendiri kini tertutup. Yang masih tersisa, dengan sengaja: pipeline CI yang mempublikasikan image per-profil `apps/storefront` ke registry — [ADR-0020](adr/0020-publish-only-the-cms-images-to-ghcr-with-sbom-and-provenance.md) D2 menolaknya langsung, bukan sekadar menundanya (fetch-konten-saat-build dan token owner lewat BuildKit secret — lihat "Image yang dipublikasikan" di atas — membuat image storefront yang dipublikasikan menjadi risiko kredensial-produksi dan keusangan, bukan sekadar kemudahan yang belum dibangun). Konfigurasi reverse-proxy/terminasi-TLS di luar contoh di atas — ingress operator sendiri yang menerminasi TLS. Enkripsi backup saat-diam (dilacak upstream). Adapter pembayaran Xendit dan pelacakan kurir (keduanya disebut sebagai tindak lanjut eksplisit ADR-0017). PostgreSQL produksi yang dioperasikan repositori ini sendiri — servis `postgres` `compose.production.yaml` disediakan untuk deployment self-hosted; instans terkelola didokumentasikan sebagai alternatif, tidak dikirim.
+Image `runtime`/`jobs` milik `apps/cms` sendiri, sejak issue #187, dipublikasikan `.github/workflows/images.yml` — lihat "Image yang dipublikasikan" di atas; bagian itu dari daftar ADR-0019 D7 sendiri kini tertutup. Yang masih tersisa, dengan sengaja: pipeline CI yang mempublikasikan image per-profil `apps/storefront` ke registry — [ADR-0020](adr/0020-publish-only-the-cms-images-to-ghcr-with-sbom-and-provenance.md) D2 menolaknya langsung, bukan sekadar menundanya (fetch-konten-saat-build dan token owner lewat BuildKit secret — lihat "Image yang dipublikasikan" di atas — membuat image storefront yang dipublikasikan menjadi risiko kredensial-produksi dan keusangan, bukan sekadar kemudahan yang belum dibangun). Konfigurasi reverse-proxy/terminasi-TLS di luar contoh di atas — ingress operator sendiri yang menerminasi TLS. Adapter pembayaran Xendit dan pelacakan kurir (keduanya disebut sebagai tindak lanjut eksplisit ADR-0017). PostgreSQL produksi yang dioperasikan repositori ini sendiri — servis `postgres` `compose.production.yaml` disediakan untuk deployment self-hosted; instans terkelola didokumentasikan sebagai alternatif, tidak dikirim.

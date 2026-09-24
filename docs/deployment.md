@@ -430,8 +430,92 @@ Every check prints one `PASS|FAIL|SKIP` line and a reason, never a secret value.
 
 **Rollback/cutover:** every image is tagged by the commit/release it was built from; a rollback is redeploying the previous tag, never editing a running container. Migrations are forward-only with immutable checksums (`apps/cms/scripts/db-migrate.ts`'s `validateAppliedChecksums` refuses to re-apply an already-applied migration whose file content changed) — a bad migration is corrected by a NEW migration, never a hand-edit of an applied one.
 
-**Backup/restore:** `apps/cms/ops/backup-awcms.sh` and `restore-drill-awcms.sh` are the whole of it upstream — see the `awcms-production-preflight` skill's own "Backup & restore" section for the exact commands and, importantly, that at-rest encryption is **not implemented** upstream today (protect the dump with filesystem permissions and off-host copies instead; see `apps/cms/docs/awcms/` for the current, real status).
+**Backup/restore:** see "Backup assurance" immediately below — the encrypted, authenticated, off-site-copied, drill-tested path this repository's own production topology now uses, reusing upstream `apps/cms/deploy/backup/*.sh` through `compose.production.yaml`'s own `backup`/`restore-drill`/`offsite-copy` services. (`apps/cms/ops/backup-awcms.sh`/`restore-drill-awcms.sh` are a different, older, host-specific pair of scripts upstream still carries for a different deployment's own cron — not what this repository's own production topology installs; do not confuse the two.)
+
+## Backup assurance (issue #213)
+
+`apps/cms/deploy/backup/*.sh` (synced in by issue #210, upstream's own tooling — see [ADR-0123](https://github.com/ahliweb/awcms/blob/main/docs/adr/0123-backup-encryption-manifest-authentication.md) and that directory's own `README.md` for what each script does and why) are used here through THIS repository's own production topology, not reimplemented. `compose.production.yaml` adds three profile-gated services — `backup`, `restore-drill`, `offsite-copy` — each a thin wrapper: a container built from `docker/backup/Dockerfile` (the SAME `postgres:18.4` the `postgres` service runs, plus `age`/`rsync`/`openssh-client` — exactly what `apps/cms/deploy/backup/README.md`'s own "Base images ship neither `age` nor a database client by default" note asks for) with `apps/cms/deploy/backup/` bind-mounted read-only at `/scripts` and the actual script invoked unmodified.
+
+### Database identity (scope item 1)
+
+`backup` and `restore-drill` both connect with `SETUP_DATABASE_URL` — the SAME migration-owner DSN `migrate` already uses in this file, never `awcms_app` (`cms`) or `awcms_worker` (`jobs`). Two structural reasons: `pg_dump` has to read every table, which the least-privilege runtime roles are deliberately denied (sql/019/021); and `restore-postgres.sh`'s drill mode creates and drops its own scratch database, which needs `CREATEDB`. `offsite-copy` needs no database connection at all — it only moves already-written files.
+
+### Secrets (scope item 2)
+
+Four new file-backed compose secrets, the SAME mechanism `storefront`'s own `awcms_api_token` already uses (mounted read-only at `/run/secrets/<name>`, never an `environment:` value, never an image layer, never `docker inspect`'s own output):
+
+| Secret | Env var pointing at its host file | Holds |
+| --- | --- | --- |
+| `backup_age_recipients` | `BACKUP_AGE_RECIPIENTS_FILE` | `age` public recipient(s) — safe on the backup host |
+| `backup_hmac_key` | `BACKUP_HMAC_KEY_FILE` | the HMAC-SHA256 key — needed on BOTH backup and restore hosts |
+| `restore_age_identity` | `RESTORE_AGE_IDENTITY_FILE` | the `age` PRIVATE identity — restore/drill hosts ONLY, never the backup host |
+| `offsite_ssh_key` | `OFFSITE_SSH_KEY_FILE` | the off-site SSH private key |
+
+Generate them exactly as `apps/cms/deploy/backup/README.md`'s own step 1 documents (`age-keygen`, `openssl rand`), on a workstation, not the backup host itself; then, e.g.:
+
+```bash
+mkdir -p .secrets
+age-keygen -o .secrets/restore-age-identity.key
+grep '^# public key:' .secrets/restore-age-identity.key | sed 's/# public key: //' > .secrets/backup-age-recipients.txt
+openssl rand -out .secrets/backup-hmac.key 32
+cp <your off-site ssh private key> .secrets/offsite-ssh-key
+```
+
+`.secrets/` is already `.gitignore`d (the same rule `AWCMS_API_TOKEN_FILE` relies on). None of these four files, nor any value derived from them, is ever printed by any script in `apps/cms/deploy/backup/` — see that directory's own README "Secrets — what goes where, and what never appears in a log" table.
+
+### Where artifacts live, and off-site copy (scope items 3-4)
+
+Encrypted artifacts, sidecars, manifests, and the restore-drill evidence log live in the named volume `awcms-one-production-backups`, mounted at `/backup` in all three services. `offsite-copy` needs `OFFSITE_SSH_TARGET` (`user@host:/absolute/path`) and reads the SAME artifact-selection algorithm `restore-drill.sh` already uses (via `docker/backup/select-and-offsite-copy.sh`, this repository's own small glue script — not a fork of `offsite-copy.sh` itself, which it calls unmodified) to pick the newest eligible backup plus its sidecars. A transfer that fails after `offsite-copy.sh`'s own retries exits non-zero and never deletes the local copy — a local-only backup is never reported as a successful off-site copy (`offsite-copy.sh`'s own header; verified in this issue's own validation run by stopping the off-site target mid-schedule).
+
+### Retention/rotation (scope item 5)
+
+Local retention is `BACKUP_RETENTION_DAYS` (default 14, `0` disables), read by `backup-postgres.sh` itself. Off-site retention is whatever policy the destination in `OFFSITE_SSH_TARGET` applies — `offsite-copy.sh` only copies, never prunes the destination (its own header). Both are operator-owned host/destination policy, not something this repository's tooling manages.
+
+### Scheduled invocation (scope item 6)
+
+`ops/run-backup-compose.sh <backup|restore-drill|offsite-copy>` is the `ops/run-job-compose.sh` shape (issue #150) applied to these three profiles — `docker compose -f compose.production.yaml --profile <task> run --rm <task>`. `ops/awcms-one-backup.crontab` is the install-by-hand manifest (same convention as `apps/cms/deploy/cron/awcms.crontab`): backup nightly, off-site copy right after, restore drill weekly.
+
+### Observability (scope item 7)
+
+Every script prints exactly what it did to stdout/stderr — nothing is swallowed — so a host crontab redirecting to a log file (as `ops/awcms-one-backup.crontab` does) makes success/failure visible in the log, and a non-zero exit from `ops/run-backup-compose.sh` is what a cron mailer or external log-shipping/alerting setup keys off. `restore-drill.sh` additionally appends one JSON line per run to `${BACKUP_DIR}/restore-drill-evidence.jsonl` — timestamp, artifact name, pass/fail, measured RTO/RPO, no secrets or database contents — safe to ship to log aggregation or attach to a change-management ticket.
+
+### Restore drills default to isolated/disposable, structurally (scope item 8, safety requirement)
+
+`restore-drill` has a hard-coded `command: ["bash", "/scripts/restore-drill.sh"]` in `compose.production.yaml` — never `restore-postgres.sh` directly, and never with `--target`. `restore-drill.sh` itself has no `--target` code path anywhere in it (its own header states this), and `restore-postgres.sh`'s own drill mode (no `--target` given) creates its OWN scratch database (`RESTORE_SCRATCH_DB`, default `awcms_restore_drill`), refuses if that name equals the connected database, restores into it, verifies it, and drops it — the connected/production database is never mutated. There is no environment variable, compose profile, or cron argument that turns this service destructive; a real disaster-recovery restore is deliberately NOT a compose service — it is the manual, confirmed `docker run ... restore-postgres.sh <dump> --target=<db> --yes` step below, one step further from an accidental `docker compose up` or copy-pasted cron line than a service definition would be:
+
+```bash
+docker run --rm --network container:<the postgres container> \
+  -v awcms-one-production-backups:/backup \
+  -v ./apps/cms/deploy/backup:/scripts:ro \
+  -e DATABASE_URL="<owner/setup DSN>" \
+  -e RESTORE_AGE_IDENTITY_FILE=/secrets/restore-age-identity.key \
+  -e BACKUP_HMAC_KEY_FILE=/secrets/backup-hmac.key \
+  postgres:18.4 \
+  bash /scripts/restore-postgres.sh /backup/<artifact>.dump.age --target=<db> --yes
+```
+
+### RTO/RPO evidence (scope item 9)
+
+`restore-drill.sh` measures both directly, with no production data ever leaving the drill: `restoreRtoSeconds` is the real wall-clock verify→decrypt→restore→check duration; `restoreRpoSeconds` is the age of the backup it drilled, at drill time. Validating this issue against a disposable PostgreSQL with synthetic data (one fictional tenant row, no real customer/business data), a full drill measured **RTO 2-3 seconds, RPO 1-615 seconds** depending on how long since the last synthetic backup — evidence of the mechanism, not a production SLA; a real deployment's own numbers depend on database size and its own `backup`/`restore-drill` cron cadence.
+
+### How this relates to the current production topology (scope item 10)
+
+`backup`/`restore-drill`/`offsite-copy` are additive services in the SAME `compose.production.yaml` this document's "Production runbook" already describes — no change to `postgres`/`migrate`/`cms`/`jobs`/`storefront`, and no new host-accessible database port (the safety rule above: production stays reachable only from the compose project's own network; `backup`/`restore-drill` join that same network the way `migrate` already does).
+
+### Failure paths verified
+
+Exercised directly against a disposable PostgreSQL (`bun run db:up`) with synthetic data, using both the raw scripts and the actual `compose.production.yaml` services/image:
+
+- **Wrong/missing encryption key material** — `restore-postgres.sh` refuses before touching any database when `RESTORE_AGE_IDENTITY_FILE` is unset, or when `BACKUP_HMAC_KEY_FILE` points at the wrong key (HMAC mismatch).
+- **Tampered manifest** — a single field edited in the manifest JSON is caught by the HMAC check before decryption is attempted.
+- **Corrupted backup** — a single flipped byte in the ciphertext is caught by the manifest's `artifact_sha256` check before decryption is attempted.
+- **Unavailable off-site destination** — `offsite-copy.sh` retries, then exits non-zero, and the local copy is untouched; nothing reports a local-only backup as off-site.
+- **Unsafe/non-isolated restore target** — `restore-postgres.sh --target=<db>` refuses when `<db>` equals the database named in the connection DSN, before any mutation; `restore-drill`'s own compose service cannot reach this code path at all (see above).
+
+### Not exercised
+
+A wrong/malformed `age` recipients file at BACKUP time (as opposed to wrong identity at RESTORE time) was observed once, incidentally, during this issue's own validation (a synthetic non-bech32 recipients file made `backup-postgres.sh` fail closed with the plaintext dump left in place and no `.age` artifact written) but was not driven as a deliberate, repeatable test case the way the five paths above were. A genuinely unreachable off-site SSH host (DNS failure, not just connection-refused) and a `restore-postgres.sh --target` confirmation prompt under a real TTY were not separately exercised — the underlying code paths are the same ones `apps/cms`'s own upstream test suite for these scripts already covers.
 
 ### What remains not built (ADR-0019 D7, narrowed by ADR-0020)
 
-`apps/cms`'s own `runtime`/`jobs` images are, as of issue #187, published by `.github/workflows/images.yml` — see "Published images" above; that part of ADR-0019 D7's own list is now closed. What remains, deliberately: a CI pipeline that publishes `apps/storefront`'s per-profile images to a registry — [ADR-0020](adr/0020-publish-only-the-cms-images-to-ghcr-with-sbom-and-provenance.md) D2 rejects this outright, not merely postpones it (the build-time content-fetch and the BuildKit-secret owner token — see "Published images" above — make a published storefront image a production-credential and staleness risk, not only an unbuilt convenience). A reverse-proxy/TLS-termination configuration beyond the example above — an operator's own ingress terminates TLS. At-rest backup encryption (tracked upstream). A Xendit payment adapter and courier tracking (both named as explicit ADR-0017 follow-ups). A production PostgreSQL this repository itself operates — `compose.production.yaml`'s `postgres` service is provided for a self-hosted deployment; a managed instance is documented as an alternative, not shipped.
+`apps/cms`'s own `runtime`/`jobs` images are, as of issue #187, published by `.github/workflows/images.yml` — see "Published images" above; that part of ADR-0019 D7's own list is now closed. What remains, deliberately: a CI pipeline that publishes `apps/storefront`'s per-profile images to a registry — [ADR-0020](adr/0020-publish-only-the-cms-images-to-ghcr-with-sbom-and-provenance.md) D2 rejects this outright, not merely postpones it (the build-time content-fetch and the BuildKit-secret owner token — see "Published images" above — make a published storefront image a production-credential and staleness risk, not only an unbuilt convenience). A reverse-proxy/TLS-termination configuration beyond the example above — an operator's own ingress terminates TLS. A Xendit payment adapter and courier tracking (both named as explicit ADR-0017 follow-ups). A production PostgreSQL this repository itself operates — `compose.production.yaml`'s `postgres` service is provided for a self-hosted deployment; a managed instance is documented as an alternative, not shipped.

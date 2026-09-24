@@ -231,13 +231,150 @@ services:
     # ports:
     #   - "8080:8080"
 
+  # ---------------------------------------------------------------------
+  # Backup assurance (issue #213) — a THIN wrapper around upstream's own
+  # apps/cms/deploy/backup/*.sh, bind-mounted read-only below. Nothing here
+  # reimplements backup/restore/manifest/off-site logic; see
+  # apps/cms/deploy/backup/README.md and
+  # docs/adr/0123-backup-encryption-manifest-authentication.md (apps/cms) for
+  # what the scripts themselves do and why. `docker/backup/Dockerfile` adds
+  # only the binaries (`age`, `rsync`, `openssh-client`) those scripts'
+  # own header comments say a runner image needs on top of the SAME
+  # `postgres:18.4` the `postgres` service above runs (pg_dump/pg_restore
+  # must be version-matched). See docs/deployment.md's "Backup assurance"
+  # section for the full operator runbook this wires into.
+  #
+  # ## Database identity (issue #213 scope item 1)
+  #
+  # `backup` and `restore-drill` both connect with `SETUP_DATABASE_URL` — the
+  # SAME migration-owner DSN `migrate` above uses, NOT `awcms_app` (`cms`) or
+  # `awcms_worker` (`jobs`). Two independent reasons, both structural:
+  #   - `pg_dump` has to read every table; a least-privilege runtime role is
+  #     deliberately denied ownership/broad SELECT on tables it never queries
+  #     (sql/019/021), so it CANNOT produce a complete dump.
+  #   - `restore-postgres.sh`'s drill mode creates and drops its own scratch
+  #     database (`CREATE DATABASE`/`DROP DATABASE`), which needs a role with
+  #     CREATEDB — again the owner/setup role, never the runtime roles.
+  # This is the same "owner-only" boundary `migrate` already draws in this
+  # file; `backup`/`restore-drill` never touch `awcms_app`'s or
+  # `awcms_worker`'s DSN.
+  #
+  # ## Why restore here can NEVER hit production (issue #213 safety rule)
+  #
+  # `restore-drill` has a HARD-CODED command — `restore-drill.sh`, always,
+  # never `restore-postgres.sh` directly and never with a `--target` flag
+  # anywhere in this file. `restore-drill.sh` itself has no `--target`
+  # code path at all (see its own header). That means there is no
+  # environment variable, compose profile, or argument this file could be
+  # given that would make this service destructive — it is structurally a
+  # drill, not a policy this file merely documents. A REAL disaster-recovery
+  # restore into a live database is deliberately NOT a compose service here:
+  # it is the manual, confirmed `docker run ... restore-postgres.sh <dump>
+  # --target=<db> --yes` runbook step in docs/deployment.md's "Production
+  # runbook" — one step further away from an accidental `docker compose up`
+  # or a copy-pasted cron line than a service definition would be.
+  backup:
+    build:
+      context: docker/backup
+    image: ${AWCMS_ONE_BACKUP_IMAGE:-awcms-one/backup-tools:latest}
+    profiles: ["backup"]
+    volumes:
+      - awcms-one-production-backups:/backup
+      - ./apps/cms/deploy/backup:/scripts:ro
+    secrets:
+      - backup_age_recipients
+      - backup_hmac_key
+    environment:
+      DATABASE_URL: ${SETUP_DATABASE_URL:?SETUP_DATABASE_URL (the migration-owner DSN) is required to run backup — pg_dump has to read every table, which awcms_app/awcms_worker are deliberately denied}
+      BACKUP_DIR: /backup
+      BACKUP_LABEL: ${BACKUP_LABEL:-awcms-one}
+      BACKUP_RETENTION_DAYS: ${BACKUP_RETENTION_DAYS:-14}
+      # Compose `secrets:` mounts each one read-only at /run/secrets/<name>
+      # — the SAME mechanism `storefront`'s `awcms_api_token` above already
+      # uses, so neither file's bytes ever appear in this file, an image
+      # layer, or `docker inspect`'s own environment listing.
+      BACKUP_AGE_RECIPIENTS_FILE: /run/secrets/backup_age_recipients
+      BACKUP_HMAC_KEY_FILE: /run/secrets/backup_hmac_key
+    depends_on:
+      postgres:
+        condition: service_healthy
+    command: ["bash", "/scripts/backup-postgres.sh"]
+
+  restore-drill:
+    build:
+      context: docker/backup
+    image: ${AWCMS_ONE_BACKUP_IMAGE:-awcms-one/backup-tools:latest}
+    profiles: ["restore-drill"]
+    volumes:
+      - awcms-one-production-backups:/backup
+      - ./apps/cms/deploy/backup:/scripts:ro
+    secrets:
+      # `restore_age_identity` is the PRIVATE age key — deliberately a
+      # DIFFERENT secret from `backup`'s own `backup_age_recipients` (public).
+      # Never put the private identity in `backup`'s secret list above: a
+      # compromised backup-producing container must not be able to decrypt
+      # its own output (ADR-0123's whole point).
+      - restore_age_identity
+      - backup_hmac_key
+    environment:
+      DATABASE_URL: ${SETUP_DATABASE_URL:?SETUP_DATABASE_URL (the migration-owner DSN) is required to run restore-drill — the drill's scratch database needs CREATEDB}
+      BACKUP_DIR: /backup
+      BACKUP_LABEL: ${BACKUP_LABEL:-awcms-one}
+      RESTORE_SCRATCH_DB: ${RESTORE_SCRATCH_DB:-awcms_restore_drill}
+      RESTORE_AGE_IDENTITY_FILE: /run/secrets/restore_age_identity
+      BACKUP_HMAC_KEY_FILE: /run/secrets/backup_hmac_key
+    depends_on:
+      postgres:
+        condition: service_healthy
+    command: ["bash", "/scripts/restore-drill.sh"]
+
+  offsite-copy:
+    build:
+      context: docker/backup
+    image: ${AWCMS_ONE_BACKUP_IMAGE:-awcms-one/backup-tools:latest}
+    profiles: ["offsite-copy"]
+    volumes:
+      - awcms-one-production-backups:/backup
+      - ./apps/cms/deploy/backup:/scripts:ro
+    secrets:
+      - offsite_ssh_key
+    environment:
+      OFFSITE_SSH_TARGET: ${OFFSITE_SSH_TARGET:?OFFSITE_SSH_TARGET (user@host:/absolute/path) is required to run offsite-copy}
+      OFFSITE_SSH_KEY_FILE: /run/secrets/offsite_ssh_key
+      OFFSITE_SSH_PORT: ${OFFSITE_SSH_PORT:-22}
+      BACKUP_DIR: /backup
+      BACKUP_LABEL: ${BACKUP_LABEL:-awcms-one}
+    # select-and-offsite-copy.sh (docker/backup/, baked into the image built
+    # above — see its own header) selects the newest eligible artifact plus
+    # its verifiable sidecars and hands them to offsite-copy.sh unmodified. A
+    # local-only backup with no eligible artifact, or a transfer that
+    # ultimately fails after retries, exits non-zero — see offsite-copy.sh's
+    # own header: it never deletes the local copy and never reports a failed
+    # transfer as a success.
+    command: ["/usr/local/bin/select-and-offsite-copy.sh"]
+
 secrets:
   # A BuildKit build secret, sourced from a file this repo never commits
   # (listed in .gitignore alongside every other real `.env`). Create it with,
   # e.g.: `printf '%s' "$AWCMS_API_TOKEN" > .secrets/awcms_api_token`.
   awcms_api_token:
     file: ${AWCMS_API_TOKEN_FILE:-.secrets/awcms_api_token}
+  # Backup assurance (issue #213) — five files this repo never commits
+  # (`.gitignore`'s own `.secrets/` rule already covers this directory).
+  # See docs/deployment.md's "Backup assurance" section for how to generate
+  # each one; apps/cms/deploy/backup/README.md's step 1 is the canonical
+  # source for the age-keygen/openssl invocations themselves.
+  backup_age_recipients:
+    file: ${BACKUP_AGE_RECIPIENTS_FILE:-.secrets/backup-age-recipients.txt}
+  backup_hmac_key:
+    file: ${BACKUP_HMAC_KEY_FILE:-.secrets/backup-hmac.key}
+  restore_age_identity:
+    file: ${RESTORE_AGE_IDENTITY_FILE:-.secrets/restore-age-identity.key}
+  offsite_ssh_key:
+    file: ${OFFSITE_SSH_KEY_FILE:-.secrets/offsite-ssh-key}
 
 volumes:
   awcms-one-production-pgdata:
     name: awcms-one-production-pgdata
+  awcms-one-production-backups:
+    name: awcms-one-production-backups

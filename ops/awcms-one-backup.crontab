@@ -1,0 +1,116 @@
+# ops/awcms-one-backup.crontab — issue #213.
+#
+# THIS FILE IS A MANIFEST, NOT A LIVE CONFIGURATION — the same convention as
+# apps/cms/deploy/cron/awcms.crontab and apps/cms/ops/awcms-jobs.crontab
+# (issue #150's own `ops/run-job-compose.sh` pattern). Nothing in this repo
+# reads it, no deploy applies it, and merging it schedules nothing. An
+# operator installs it on the HOST that runs `compose.production.yaml` (not
+# inside any container):
+#
+#   sudo cp ops/awcms-one-backup.crontab /etc/cron.d/awcms-one-backup   # then edit the vars
+#   sudo chown root:root /etc/cron.d/awcms-one-backup
+#   sudo chmod 0644 /etc/cron.d/awcms-one-backup
+#
+# (/etc/cron.d entries need a USER field between the schedule and the
+# command — see the comment at the bottom of this file. As written below,
+# each line is a USER crontab line, `crontab -u <deploy-user>
+# ops/awcms-one-backup.crontab`, which needs no user field.)
+#
+# ## Why this file exists, separate from apps/cms/deploy/cron/awcms.crontab
+#
+# That file documents the Coolify one-shot-container invocation pattern
+# (`docker run --network container:<db-container> ...`) — correct for a
+# Coolify-managed database with no published port and no compose project of
+# its own. This repository's OWN production topology
+# (`compose.production.yaml`, ADR-0019) is different: `postgres` is a named
+# compose service reachable by DNS on the compose project's own network, and
+# `backup`/`restore-drill`/`offsite-copy` are compose SERVICES (profile-
+# gated, so a plain `docker compose up` never starts them) built from
+# `docker/backup/Dockerfile` — a thin image adding only `age`/`rsync`/
+# `openssh-client` on top of the SAME `postgres:18.4` the `postgres` service
+# runs. `ops/run-backup-compose.sh` is the one stable command this crontab
+# calls for all three; see docs/deployment.md's "Backup assurance" section
+# for the full runbook (key generation, secrets layout, what each task does).
+#
+# ## Database identity
+#
+# `backup` and `restore-drill` both connect as the SAME migration-owner role
+# `migrate` uses (`SETUP_DATABASE_URL` in `apps/cms/.env` /
+# `compose.production.yaml`'s own root `.env`) — never `awcms_app` (`cms`)
+# or `awcms_worker` (`jobs`). See compose.production.yaml's own `backup`/
+# `restore-drill` service comments for why (pg_dump needs to read every
+# table; the drill's scratch database needs CREATEDB).
+#
+# ## Safety — restore-drill can NEVER touch production from this file
+#
+# `restore-drill` below always runs `ops/run-backup-compose.sh restore-drill`
+# — no flag, argument, or environment variable this crontab line could carry
+# changes that. `compose.production.yaml`'s `restore-drill` service has a
+# hard-coded `command: ["bash", "/scripts/restore-drill.sh"]`, and
+# `restore-drill.sh` itself has no `--target` code path at all (see its own
+# header in apps/cms/deploy/backup/). A real disaster-recovery restore is
+# deliberately NOT scheduled anywhere — it is the manual, confirmed
+# `docker run ... restore-postgres.sh <dump> --target=<db> --yes` runbook
+# step in docs/deployment.md's "Production runbook".
+
+SHELL=/bin/bash
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+CRON_TZ=UTC
+
+# EDIT THIS ONE LINE, then the job lines need no further changes. Must be an
+# absolute path to the checkout that has `compose.production.yaml` and
+# `ops/run-backup-compose.sh` at the paths shown (the same checkout the
+# `cms`/`jobs`/`storefront` images are built from).
+AWCMS_ONE_REPO=/opt/awcms-one
+AWCMS_ONE_BACKUP_LOG=/var/log/awcms-one
+
+# ===========================================================================
+# Daily — staggered so the nightly work does not land in one heap, and so a
+# failed backup is visible before the off-site copy would otherwise run
+# against nothing new.
+# ===========================================================================
+
+# Backup, encrypted (when BACKUP_AGE_RECIPIENTS_FILE/BACKUP_HMAC_KEY_FILE
+# secrets are configured — see docs/deployment.md) or plain otherwise.
+0 2 * * * cd $AWCMS_ONE_REPO && ./ops/run-backup-compose.sh backup >> $AWCMS_ONE_BACKUP_LOG/backup.log 2>&1
+
+# Off-site copy, right after the backup completes. Requires OFFSITE_SSH_TARGET
+# (and OFFSITE_SSH_KEY_FILE) configured — see docs/deployment.md. Never
+# deletes the local copy regardless of transfer outcome, and never reports a
+# failed transfer as a success (offsite-copy.sh's own header).
+15 2 * * * cd $AWCMS_ONE_REPO && ./ops/run-backup-compose.sh offsite-copy >> $AWCMS_ONE_BACKUP_LOG/offsite-copy.log 2>&1
+
+# ===========================================================================
+# Weekly — a backup nobody restores is not a backup.
+# ===========================================================================
+
+# Unattended, non-destructive restore drill: selects the newest eligible
+# backup, verifies + decrypts it, restores into a scratch database, checks
+# it, drops it, and appends evidence to
+# ${BACKUP_DIR}/restore-drill-evidence.jsonl (inside the named
+# `awcms-one-production-backups` volume). Never touches a live database —
+# see the safety note above. Runs on Sunday, an hour after that night's
+# backup.
+0 3 * * 0 cd $AWCMS_ONE_REPO && ./ops/run-backup-compose.sh restore-drill >> $AWCMS_ONE_BACKUP_LOG/restore-drill.log 2>&1
+
+# ===========================================================================
+# Installing into /etc/cron.d instead of a user crontab
+# ===========================================================================
+#
+# /etc/cron.d entries take a USER field between the schedule and the command:
+#
+#   0 2 * * * awcms-one cd $AWCMS_ONE_REPO && ./ops/run-backup-compose.sh backup >> ...
+#             ^^^^^^^^^
+#
+# That user must be able to run `docker compose` against this project (in the
+# `docker` group, which is root-equivalent on most hosts — the same
+# trade-off apps/cms/deploy/cron/awcms.crontab's own installing section
+# documents). Add the field to every line if you take that route; leave the
+# file as-is for `crontab -u <deploy-user> ops/awcms-one-backup.crontab`.
+#
+# `mkdir -p /var/log/awcms-one` and a logrotate rule for
+# /var/log/awcms-one/*.log before installing — these three log files append
+# forever otherwise.
+#
+# A user crontab needs a trailing newline at end of file or the last entry is
+# silently dropped by some cron implementations. There is one below.
