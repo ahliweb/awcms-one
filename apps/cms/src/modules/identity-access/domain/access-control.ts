@@ -161,7 +161,21 @@ export type AccessAction =
   // order/POS actions), distinct from `update` (drafting/editing a
   // campaign) because sending is the one action that actually reaches a
   // real inbox/phone. Classified HIGH-RISK below.
-  | "send";
+  | "send"
+  // OMES Control Center (`omes_control`, ADR-0122, Issue ahliweb/omes#198):
+  // `register` enrolls a new host server (`servers.register`, distinct from
+  // `create` since it also seeds the `offline` fleet-inventory row that a
+  // later enrollment-challenge exchange activates). `operate` applies/
+  // reconciles/rolls back a deployment (`deployments.operate`) — one
+  // permission for the whole safe-operation lifecycle rather than a literal
+  // per operation code, since `domain/operations.ts`'s allowlist (not RBAC)
+  // is what constrains WHICH operation names are reachable at all. `rollback`
+  // is the one safe-operation-adjacent action classified high-risk on its
+  // own (`backups.rollback`) because it reverts live host state rather than
+  // merely reading or applying forward.
+  | "register"
+  | "operate"
+  | "rollback";
 
 export type AccessRequest = {
   moduleKey: string;
@@ -304,7 +318,15 @@ const HIGH_RISK_ACTIONS: ReadonlySet<AccessAction> = new Set([
   // adjudicate rights" — without a second code change.
   "adjudicate_rights",
   // Customer campaigns (Issue #114): reaches real customer inboxes/phones.
-  "send"
+  "send",
+  // OMES Control Center (Issue ahliweb/omes#198): `register` enrolls a new
+  // host into the tenant's fleet inventory and `operate` applies/reconciles/
+  // rolls a deployment forward — both irreversible-in-effect host-facing
+  // actions. `rollback` reverts live host state and is the most destructive
+  // of the three.
+  "register",
+  "operate",
+  "rollback"
 ]);
 
 export function isHighRiskAction(action: AccessAction): boolean {

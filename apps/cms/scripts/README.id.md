@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:9f3bd8c1571b0ecceee85ab89053c5dc65bd0764888ba67c0e43aa4637a44789 -->
+<!-- i18n-source-hash: sha256:616aef8ac26af158dcf986b2327a8cf71b71994095a0a9f33109fe50052314e1 -->
 
 # Scripts AWCMS
 
@@ -27,7 +27,7 @@ lalu membangun duplikatnya.
 
 <!-- Dihasilkan `bun run scripts:inventory:generate`. JANGAN diedit tangan. -->
 
-134 target menjalankan berkas di `scripts/`; 56 di antaranya
+138 target menjalankan berkas di `scripts/`; 57 di antaranya
 ada di rantai `bun run check` (kolom **Gate**), sisanya dijalankan manual,
 terjadwal, atau oleh workflow CI tertentu.
 
@@ -80,6 +80,8 @@ terjadwal, atau oleh workflow CI tertentu.
 | `commerce:whatsapp:purge`                 | `commerce-whatsapp-purge.ts`                   | —    |
 | `config:env:coverage:check`               | `env-contract-coverage-check.ts`               | ✅   |
 | `config:validate`                         | `validate-env.ts`                              | —    |
+| `contracts:omes:sync`                     | `sync-omes-contracts.ts`                       | —    |
+| `contracts:omes:sync:check`               | `sync-omes-contracts.ts`                       | ✅   |
 | `data-lifecycle:archive-purge`            | `data-lifecycle-archive-purge.ts`              | —    |
 | `data-lifecycle:registry:check`           | `data-lifecycle-registry-check.ts`             | ✅   |
 | `data-lifecycle:table-coverage:check`     | `data-lifecycle-table-coverage-check.ts`       | ✅   |
@@ -107,7 +109,7 @@ terjadwal, atau oleh workflow CI tertentu.
 | `entitlements:backfill`                   | `identity-access-entitlement-backfill.ts`      | —    |
 | `family:conformance:check`                | `family-conformance-check.ts`                  | ✅   |
 | `form-drafts:purge`                       | `form-draft-purge.ts`                          | —    |
-| `graph:artifacts:check`                   | `graph-artifacts-check.ts`                     | ✅   |
+| `graph:artifacts:check`                   | `graph-artifacts-check.ts`                     | —    |
 | `i18n:catalog:check`                      | `i18n-catalog-check.ts`                        | ✅   |
 | `i18n:compile`                            | `i18n-compile.ts`                              | —    |
 | `i18n:screens:check`                      | `i18n-screen-coverage-check.ts`                | ✅   |
@@ -127,6 +129,8 @@ terjadwal, atau oleh workflow CI tertentu.
 | `jobs:crontab:generate`                   | `jobs-crontab.ts`                              | —    |
 | `jobs:env-allowlist:check`                | `jobs-env-allowlist.ts`                        | ✅   |
 | `jobs:env-allowlist:generate`             | `jobs-env-allowlist.ts`                        | —    |
+| `knowledge:check`                         | `knowledge-obsidian-sync.ts`                   | ✅   |
+| `knowledge:obsidian:export`               | `knowledge-obsidian-sync.ts`                   | —    |
 | `logging:lint:check`                      | `logging-lint-check.ts`                        | ✅   |
 | `logs:audit:purge`                        | `audit-log-purge.ts`                           | —    |
 | `memory:docs:check`                       | `sync-agent-memory.ts`                         | ✅   |

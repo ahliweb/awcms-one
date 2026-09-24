@@ -24,6 +24,7 @@ import { commentsModule } from "./comments/module";
 import { idnAdminRegionsModule } from "./idn-admin-regions/module";
 import { pushDeliveryModule } from "./push-delivery/module";
 import { commerceModule } from "./commerce/module";
+import { omesControlModule } from "./omes-control/module";
 
 /**
  * The reviewed BASE registry. Every module below is reviewed, in-repo code.
@@ -168,7 +169,14 @@ const baseModules: ModuleDescriptor[] = [
   // this array), so the DAG stays acyclic: `product_images` references
   // `media_library`'s registry and resolves a public URL through
   // `MediaLibraryPort`. See src/modules/commerce/module.ts's `description`.
-  commerceModule
+  commerceModule,
+  // Admitted by ADR-0122 (Issue ahliweb/omes#196): OMES Control Center domain
+  // module for host fleet lifecycle, worker enrollments, desired vs observed
+  // deployments, operation requests, worker job dispatch queue, health snapshots,
+  // backup verification, and host execution audit projections.
+  // Depends only on tenant_admin/identity_access (both above), so the DAG stays acyclic.
+  // See src/modules/omes-control/module.ts's `description`.
+  omesControlModule
 ];
 
 /**
