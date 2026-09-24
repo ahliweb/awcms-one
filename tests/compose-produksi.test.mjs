@@ -43,7 +43,16 @@ function walkStrings(value, out = []) {
 describe("compose.production.yaml", () => {
   test("parses and declares the expected services", () => {
     expect(Object.keys(doc.services).sort()).toEqual(
-      ["cms", "jobs", "migrate", "postgres", "storefront"].sort()
+      [
+        "backup",
+        "cms",
+        "jobs",
+        "migrate",
+        "offsite-copy",
+        "postgres",
+        "restore-drill",
+        "storefront"
+      ].sort()
     );
   });
 
@@ -123,6 +132,82 @@ describe("compose.production.yaml", () => {
     // SETUP_DATABASE_URL) — a real drift (e.g. jobs accidentally reusing
     // cms's own DATABASE_URL) would collapse this set to fewer than 3.
     expect(roles.size).toBe(3);
+  });
+});
+
+/**
+ * Backup assurance (issue #213) — a thin wrapper around upstream
+ * apps/cms/deploy/backup/*.sh. The safety-critical claim here is structural,
+ * not documentary: `restore-drill` must have NO possible path to a
+ * `--target`-style destructive restore, ever, regardless of environment
+ * variables or arguments a caller might supply.
+ */
+describe("compose.production.yaml — backup assurance (issue #213)", () => {
+  test("backup, restore-drill, and offsite-copy are each gated behind their own profile", () => {
+    expect(doc.services.backup.profiles).toEqual(["backup"]);
+    expect(doc.services["restore-drill"].profiles).toEqual(["restore-drill"]);
+    expect(doc.services["offsite-copy"].profiles).toEqual(["offsite-copy"]);
+  });
+
+  test("backup and restore-drill connect with the SAME migration-owner DSN as migrate, never awcms_app/awcms_worker", () => {
+    for (const name of ["backup", "restore-drill"]) {
+      expect(doc.services[name].environment.DATABASE_URL).toMatch(/SETUP_DATABASE_URL/);
+    }
+  });
+
+  test("restore-drill's command is hard-coded to restore-drill.sh — no --target flag anywhere in this file", () => {
+    const command = doc.services["restore-drill"].command;
+    expect(command).toEqual(["bash", "/scripts/restore-drill.sh"]);
+    expect(JSON.stringify(command)).not.toMatch(/--target/);
+  });
+
+  test("backup's command is hard-coded to backup-postgres.sh", () => {
+    expect(doc.services.backup.command).toEqual(["bash", "/scripts/backup-postgres.sh"]);
+  });
+
+  test("no compose service anywhere in this file passes --target to a backup script", () => {
+    // Structural, not just for restore-drill: nothing in this file should
+    // ever be able to make a scheduled/automated invocation destructive.
+    for (const [name, service] of Object.entries(doc.services)) {
+      if (service.command) {
+        expect(JSON.stringify(service.command)).not.toMatch(/--target/);
+      }
+    }
+  });
+
+  test("restore_age_identity (private key) is never in backup's own secret list — only in restore-drill's", () => {
+    expect(doc.services.backup.secrets ?? []).not.toContain("restore_age_identity");
+    expect(doc.services["restore-drill"].secrets ?? []).toContain("restore_age_identity");
+  });
+
+  test("backup/restore-drill/offsite-copy read their secrets from /run/secrets, never a literal value in `environment:`", () => {
+    for (const name of ["backup", "restore-drill", "offsite-copy"]) {
+      const strings = walkStrings(doc.services[name].environment ?? {});
+      for (const value of strings) {
+        if (/AGE|HMAC|SSH_KEY/.test(value)) {
+          expect(value.startsWith("/run/secrets/") || value.includes("${")).toBe(true);
+        }
+      }
+    }
+  });
+
+  test("the four backup-assurance secrets are declared, file-backed, and never committed inline", () => {
+    for (const name of [
+      "backup_age_recipients",
+      "backup_hmac_key",
+      "restore_age_identity",
+      "offsite_ssh_key"
+    ]) {
+      expect(doc.secrets[name]).toBeDefined();
+      expect(doc.secrets[name].file).toMatch(/\.secrets\//);
+    }
+  });
+
+  test("awcms-one-production-backups is a named volume, distinct from the pgdata volume", () => {
+    expect(doc.volumes["awcms-one-production-backups"]).toBeDefined();
+    expect(doc.volumes["awcms-one-production-backups"].name).toBe(
+      "awcms-one-production-backups"
+    );
   });
 });
 
