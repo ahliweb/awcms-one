@@ -39,8 +39,9 @@ name: Release
 # Actions are pinned to a commit SHA (not a tag) with the same `# vX.Y.Z`
 # comment style as `.github/workflows/ci.yml` — see AGENTS.md's
 # "Configuration and toolchain". The `bun-version` below is the same literal
-# as ci.yml's own and package.json's `packageManager`/`engines.bun`; moving
-# one without the other two is exactly the drift that section warns about.
+# as every other root workflow's own and package.json's
+# `packageManager`/`engines.bun`; moving one without the rest is exactly the
+# drift that section warns about.
 
 on:
   push:
@@ -78,7 +79,7 @@ jobs:
 
       - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2.2.0
         with:
-          bun-version: "1.4.0"
+          bun-version: "1.4.2"
 
       # No `bun install` here on purpose: tools/rilis-catatan.mjs and the
       # packages/gerbang/lib/ modules it imports use only relative imports
