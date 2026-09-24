@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:34c38d0984d764445413fee6479bf960be7e987144ff6f129476fb81974586bd -->
+<!-- i18n-source-hash: sha256:192aecb4748f1b929893b1c76f55b38a81d3bfe32a311c4d97d0b1729d2be18e -->
 
 [![CI](https://github.com/ahliweb/awcms-one/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/ahliweb/awcms-one/actions/workflows/ci.yml) [![License](https://img.shields.io/badge/License-MIT-blue)](LICENSE) [![runtime](https://img.shields.io/badge/runtime-Bun-blue?logo=bun&logoColor=white)](https://bun.sh)
 
@@ -139,7 +139,7 @@ PostgreSQL hidup dan tersedia ada untuk pengembangan lokal dan CI (`compose.yaml
 | `bun test` | Rangkaian tes gerbang akar — `tests/*.test.mjs` — plus tes unit/build-smoke/route milik `apps/storefront` sendiri |
 | `check-cms` (job CI) | Rangkaian `bun run check` ~53 langkah `apps/cms` sendiri, lalu rangkaian `tests/integration/`-nya terhadap PostgreSQL hidup yang termigrasi sungguhan |
 
-Tiga workflow lagi berjalan di setiap push tapi **belum** menjadi status check wajib: `.github/workflows/codeql.yml` (analisis CodeQL `security-extended` milik GitHub, plus jadwal mingguan), `.github/workflows/images.yml` (mempublikasikan image `runtime`/`jobs` milik `apps/cms` ke GHCR dengan SBOM dan provenance, pada tag versi atau dispatch), dan `.github/workflows/release.yml` (mempublikasikan GitHub Release dari bagian `CHANGELOG.md` sebuah tag versi yang di-push). Lihat komentar `template-init-smoke.yml` sendiri untuk jalur promosi yang diikuti sebuah workflow begitu ia sudah berjalan hijau untuk sementara waktu, dan [`docs/README.md`](docs/README.id.md) untuk indeks dokumentasi lengkap.
+`.github/workflows/codeql.yml` (analisis CodeQL `security-extended` milik GitHub, plus jadwal mingguan) juga berjalan di setiap push dan PR; context status-job-nya, `Analyze (javascript-typescript)`, menjadi status check wajib pada issue #214 — lihat "CI: workflow kelima, kini wajib — `codeql`" di `docs/alur-kerja-pengembangan.md` untuk alasan memilih context itu, bukan check `CodeQL` hasil code-scanning yang bersebelahan. Dua workflow lagi berjalan di setiap push tapi **bukan** status check wajib: `.github/workflows/images.yml` (mempublikasikan image `runtime`/`jobs` milik `apps/cms` ke GHCR dengan SBOM dan provenance, pada tag versi atau dispatch), dan `.github/workflows/release.yml` (mempublikasikan GitHub Release dari bagian `CHANGELOG.md` sebuah tag versi yang di-push). Lihat komentar `template-init-smoke.yml` sendiri untuk jalur promosi yang diikuti sebuah workflow begitu ia sudah berjalan hijau untuk sementara waktu, dan [`docs/README.md`](docs/README.id.md) untuk indeks dokumentasi lengkap.
 
 ## Bahasa
 

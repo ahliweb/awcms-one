@@ -28,22 +28,29 @@ name: CodeQL
 # this repo wants the same coverage.
 #
 # Query suite: `security-extended` (not upstream's
-# `security-extended,security-and-quality`) — this workflow is not a
-# required status check yet and this repository has no CodeQL triage
-# playbook of its own (unlike apps/cms's, apps/cms/.claude/skills/
-# awcms-codeql-triage/SKILL.md), so it starts on the security-focused suite
-# only; `security-and-quality` adds pure code-quality/maintainability
-# queries that are not security findings at all, which would dilute the
-# signal before anyone here has triaged even one run. This mirrors how
-# AGENTS.md's own "The gates" describes audit:graf/check-cms as
-# deliberately withheld until this repo had the capacity to act on them —
-# the same discipline applied to a query suite rather than a whole gate.
+# `security-extended,security-and-quality`) — kept deliberately narrower
+# than upstream even now that this check is required (issue #214):
+# `security-and-quality` adds pure code-quality/maintainability queries
+# that are not security findings at all, which would dilute the signal
+# this repository's own CodeQL triage playbook (SECURITY.md's "CodeQL
+# triage" section, issue #206) is built around. Widening the suite is a
+# separate signal/risk decision, explicitly out of scope for #214.
 #
-# NOT a required status check (unlike Check (toko|berita|landing) and
-# check-cms, and unlike template-init-smoke's four legs since issue #182)
-# — promoted, if ever, only after it has run green on `main` for a while,
-# the same bar those workflows were held to. See
-# docs/alur-kerja-pengembangan.md for how to read a run.
+# REQUIRED status check since issue #214 (promoted after a real triage
+# process — SECURITY.md's "CodeQL triage" — and a verified green run
+# history with no observed workflow failure, the same bar
+# Check (toko|berita|landing), check-cms, template-init-smoke's four legs
+# (issue #182), and e2e's three legs (issue #215) were each held to
+# before their own promotion). The context actually named in branch
+# protection is this job's own name, `Analyze (javascript-typescript)`
+# (app: GitHub Actions) — NOT the sibling `CodeQL` check GitHub's code
+# scanning app posts once a SARIF upload succeeds (app: GitHub Advanced
+# Security). The job-status check is the one that fails closed when the
+# analysis itself fails (a broken step, a timeout, an extraction error);
+# the code-scanning-results check only exists once a SARIF has already
+# been produced, so it cannot represent an analyzer failure at all. See
+# docs/alur-kerja-pengembangan.md's "CI: a fifth, now-required workflow —
+# `codeql`" for the full reasoning and how to read a run.
 
 on:
   push:

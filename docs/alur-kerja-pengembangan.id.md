@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](alur-kerja-pengembangan.md)
 
-<!-- i18n-source-hash: sha256:1bf2b86cc6de9155ac51dc26f98264f0dabbc4d881d9e6a80c2bd89fd505808f -->
+<!-- i18n-source-hash: sha256:de2ea9b4dbe8c906b7d0964607b9efd2ecc6a9c6a26907ea159ea03624c6f9ba -->
 
 # Alur kerja pengembangan
 
@@ -12,7 +12,7 @@ Satu branch per issue, dipotong dari `main`; PR kembali ke `main`, berjudul meru
 
 ## Branch protection pada `main`
 
-Diverifikasi langsung terhadap pengaturan GitHub repositori ini, paling akhir diverifikasi ulang untuk issue #182 (22 September 2026) dengan:
+Diverifikasi langsung terhadap pengaturan GitHub repositori ini, paling akhir diverifikasi ulang untuk issue #214 (24 September 2026) dengan:
 
 ```
 gh api repos/ahliweb/awcms-one/branches/main/protection
@@ -21,7 +21,7 @@ gh api repos/ahliweb/awcms-one --jq '{has_wiki, allow_merge_commit, allow_squash
 
 | Pengaturan | Nilai |
 | --- | --- |
-| Status check wajib | Sebelas context: `check-cms`, `Check (toko)`, `Check (berita)`, `Check (landing)`, `template-init-smoke (toko)`, `template-init-smoke (berita)`, `template-init-smoke (landing)`, `template-init-smoke (root-suite)`, `e2e (toko)`, `e2e (berita)`, `e2e (landing)` — keempat leg `template-init-smoke` dipromosikan menjadi wajib pada issue #182, ketiga leg `e2e` pada issue #215, di samping keempat leg `ci.yml` yang sudah wajib sejak increment 6 (issue #137) |
+| Status check wajib | Dua belas context: `check-cms`, `Check (toko)`, `Check (berita)`, `Check (landing)`, `template-init-smoke (toko)`, `template-init-smoke (berita)`, `template-init-smoke (landing)`, `template-init-smoke (root-suite)`, `e2e (toko)`, `e2e (berita)`, `e2e (landing)`, `Analyze (javascript-typescript)` — keempat leg `template-init-smoke` dipromosikan menjadi wajib pada issue #182, ketiga leg `e2e` pada issue #215, `Analyze (javascript-typescript)` (status check milik job workflow `codeql` sendiri — lihat "CI: workflow kelima, kini wajib — `codeql`" di bawah untuk alasan memilih context itu, bukan check `CodeQL` yang bersebelahan) pada issue #214, di samping keempat leg `ci.yml` yang sudah wajib sejak increment 6 (issue #137) |
 | Strict (branch harus up to date sebelum merge) | Ya |
 | Force push | Ditolak |
 | Penghapusan branch | Ditolak |
@@ -84,11 +84,20 @@ Dua detail menjaga rantai gate workflow ini sendiri tidak gagal terhadap dirinya
 
 **Ketiga leg-nya menjadi status check wajib pada issue #215 (24 September 2026)**, mengikuti pola promosi yang sama yang dilalui `check-cms` dan `template-init-smoke`: dipromosikan hanya setelah rekam jejak jalan pasca-perkenalan menunjukkan tidak ada kegagalan e2e. Sampel yang ditinjau adalah setidaknya tujuh run hijau berturut-turut setelah issue #183 memperkenalkan workflow itu (#197, #202, #203, #204, #207, #208, #209), dan pemeriksaan lebih luas atas `gh run list --workflow e2e.yml` pada saat promosi tidak menemukan run tambahan di luar sampel itu dalam status apa pun selain sukses (atau masih berjalan). Context persisnya diverifikasi terhadap check PR sungguhan (`gh pr checks`/`gh api .../check-runs`) alih-alih disimpulkan dari berkas workflow, karena GitHub menurunkan context yang ditampilkan job matriks dari `jobs.<id>.name`, bukan dari kunci job.
 
-## CI: workflow kelima, belum wajib — `codeql`
+## CI: workflow kelima, kini wajib — `codeql`
 
 `.github/workflows/codeql.yml` (issue #184, bagian dari epic #179) menjalankan analisis CodeQL milik GitHub atas source JavaScript/TypeScript milik workspace ini sendiri, pada setiap push ke `main`, setiap pull request, jadwal mingguan, dan dispatch manual. `build-mode: none` (ekstraksi source tanpa-build milik CodeQL) menjaga job ini tetap Bun-only — tidak ada `astro build`, tidak ada `apps/cms` hidup, tidak ada kode aplikasi yang pernah dijalankan — dan CodeQL tidak menyediakan ekstraktor Astro, sehingga setiap berkas `.astro` di mana pun dalam workspace berada di luar pemindaian ini terlepas dari `paths-ignore` milik `.github/codeql/codeql-config.yml` sendiri. `apps/cms/**` SOURCE tetap dalam cakupan: itulah kode yang sungguhan berjalan di deployment ini (lihat "Lima permukaan" di [`SECURITY.md`](../SECURITY.md)), meski pohon itu adalah `ahliweb/awcms` upstream yang di-embed lewat subtree (lihat "The subtree embed" di [`AGENTS.md`](../AGENTS.md#the-subtree-embed)); hanya output generated/vendored milik pohon itu yang dikecualikan, dengan syarat sama seperti output setara milik repositori ini sendiri. Query suite-nya adalah `security-extended`, bukan `security-extended,security-and-quality` milik `ahliweb/awcms` upstream sendiri — dipertahankan sengaja lebih sempit, disiplin yang sama dengan yang diterapkan "The gates" di atas untuk menahan `audit:graf`/`check-cms` sampai ada kapasitas untuk menindaklanjutinya.
 
-Temuan mendarat di tab Security → Code scanning milik repositori ini sendiri, terpisah dari pemindaian `ahliweb/awcms` sendiri atas pohon yang sama. Sebuah temuan di bawah `apps/cms/**` ditriase menurut [`SECURITY.md`](../SECURITY.md): diperbaiki di sini hanya jika termasuk salah satu divergensi lokal terdokumentasi milik AGENTS.md atau modul `commerce` milik repositori ini sendiri, selain itu dilaporkan ke (dan diperbaiki di) `ahliweb/awcms` lalu ditarik masuk lewat sinkronisasi subtree biasa. Lihat bagian "Triase CodeQL" di [`SECURITY.md`](../SECURITY.md) untuk catatan triase repositori ini sendiri (issue #206) — alert mana yang di-dismiss dan alasannya, serta dua aturan baku (hash SHA-256 atas token acak berentropi tinggi bukan hash password; PKCE S256 adalah RFC 7636 §4.2) yang tidak boleh dipersoalkan ulang oleh alert serupa di masa depan. **Belum menjadi status check wajib** — dipromosikan, jika pernah, hanya setelah berjalan hijau di `main` untuk sementara waktu, batas yang sama yang dilalui `check-cms` dan `template-init-smoke` sebelum promosi mereka sendiri (lihat "Branch protection pada `main`" di atas).
+Temuan mendarat di tab Security → Code scanning milik repositori ini sendiri, terpisah dari pemindaian `ahliweb/awcms` sendiri atas pohon yang sama. Sebuah temuan di bawah `apps/cms/**` ditriase menurut [`SECURITY.md`](../SECURITY.md): diperbaiki di sini hanya jika termasuk salah satu divergensi lokal terdokumentasi milik AGENTS.md atau modul `commerce` milik repositori ini sendiri, selain itu dilaporkan ke (dan diperbaiki di) `ahliweb/awcms` lalu ditarik masuk lewat sinkronisasi subtree biasa. Lihat bagian "Triase CodeQL" di [`SECURITY.md`](../SECURITY.md) untuk catatan triase repositori ini sendiri (issue #206) — alert mana yang di-dismiss dan alasannya, serta dua aturan baku (hash SHA-256 atas token acak berentropi tinggi bukan hash password; PKCE S256 adalah RFC 7636 §4.2) yang tidak boleh dipersoalkan ulang oleh alert serupa di masa depan.
+
+**Dipromosikan menjadi status check wajib pada issue #214 (24 September 2026)**, mengikuti pola probasi-lalu-promosi yang sama yang dilalui `check-cms`, `template-init-smoke`, dan `e2e`: workflow ini berjalan di setiap push dan PR sejak issue #184 tanpa gate status check wajib, sementara issue #206 membangun proses triase sungguhan dan mencatat alasan setiap dismissal, dan dua temuan `js/clear-text-logging` yang bisa ditindaklanjuti diperbaiki dalam kode oleh #205/#208. Riwayat PR pasca-perkenalan yang ditinjau (#194, #196, #197, #200–#204, #207–#209) menunjukkan setidaknya 11 run sukses tanpa kegagalan workflow yang teramati.
+
+**Context wajibnya adalah `Analyze (javascript-typescript)`, bukan check `CodeQL` yang bersebelahan — diverifikasi, bukan disimpulkan, dari check-runs PR sungguhan** (`gh pr checks <n>` dan `gh api repos/ahliweb/awcms-one/commits/<sha>/check-runs`, dibaca terhadap commit *head* PR, karena merge commit hanya membawa check di sisi Actions). GitHub memasang dua check terpisah pada commit yang sama untuk workflow ini:
+
+- **`Analyze (javascript-typescript)`** — app `GitHub Actions` (`app_id` 15368), status job workflow itu sendiri. Ini adalah job yang dinamai di `jobs.analyze.name` milik `codeql.yml`, dan ia melaporkan `failure` setiap kali job itu sendiri error — langkah `Initialize CodeQL` yang rusak, kegagalan ekstraksi, kegagalan action, timeout — terlepas dari apakah SARIF pernah dihasilkan atau diunggah.
+- **`CodeQL`** — app `GitHub Advanced Security` (`app_id` 57789), check **hasil** code-scanning. GitHub membuat/memperbarui check ini hanya setelah unggahan SARIF berhasil, dari data alert dalam unggahan itu; ia tidak mengatakan apa pun tentang apakah run analisis itu sendiri selesai.
+
+Kebijakan failure/triase milik issue itu sendiri mensyaratkan sebuah check CodeQL wajib "gagal tertutup untuk kegagalan workflow/analyzer" — temuan itu sendiri tetap memakai semantik severity/triase code-scanning biasa milik GitHub, bukan gate merge. `Analyze (javascript-typescript)` adalah yang benar-benar melakukan ini: ia terikat langsung ke status keluar job workflow itu sendiri, sehingga crash analyzer atau kesalahan konfigurasi melaporkan `failure` (atau tidak pernah selesai, yang juga memblokir check wajib) alih-alih diam-diam tidak meninggalkan check hasil code-scanning sama sekali untuk dievaluasi aturan wajib. `CodeQL`, karena hilir dari unggahan SARIF yang berhasil, tidak bisa membedakan "analisis berjalan bersih" dari "analisis tidak pernah cukup jauh untuk menghasilkan SARIF sama sekali" dalam kasus yang justru penting untuk sebuah gate merge. `Analyze (javascript-typescript)` karena itu ditambahkan ke status check wajib `main`, secara aditif, di samping sebelas context yang sudah dibangun issue #215 (lihat "Branch protection pada `main`" di atas).
 
 ## Pembaruan dependensi
 
