@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](13_final_master_index_traceability.md)
 
-<!-- i18n-source-hash: sha256:c633fff257ca5426856e830940f70ff5e7aed29ca337cc00becbb2e27c3defdf -->
+<!-- i18n-source-hash: sha256:2cfe8af4f6358f0a4bb7f45e37af5d8490012efbc82a184d34efbc04969cee1f -->
 
 # Bagian 13 — Final Master Index dan Traceability Matrix
 
@@ -144,7 +144,7 @@ Sumber: `docs/awcms/repo-inventory.md` §Migrations dan
 diproduksi `bun run repo:inventory:generate` (`scripts/repo-inventory.ts`) dari
 registry modul, `sql/`, `tests/`, `src/pages/`, dan `docs/adr/`, dan
 `bun run repo:inventory:check` ada di rantai `bun run check`. **79 file migration nyata** di
-`sql/` (`001`..`081`), dipetakan ke **25 modul terdaftar** (urutan
+`sql/` (`001`..`081`), dipetakan ke **26 modul terdaftar** (urutan
 `src/modules/index.ts`: `logging`, `tenant-admin`, `profile-identity`,
 `identity-access`, `module-management`, `domain-event-runtime`,
 `sync-storage`, `workflow-approval`, `email`, `reporting`, `theming`,

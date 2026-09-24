@@ -10,12 +10,12 @@
       "version": "10.3.0",
       "dependencies": {
         "@astrojs/node": "^11.1.5",
-        "astro": "^7.3.1",
+        "astro": "^7.3.2",
       },
       "devDependencies": {
-        "@changesets/cli": "^3.0.1",
-        "@playwright/test": "^1.62.1",
-        "@types/bun": "^1.4.0",
+        "@changesets/cli": "^3.0.3",
+        "@playwright/test": "^1.63.0",
+        "@types/bun": "^1.4.2",
         "prettier": "^3.9.6",
         "prettier-plugin-astro": "^0.14.1",
         "typescript": "^7.0.2",

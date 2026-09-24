@@ -142,7 +142,7 @@ Source: `docs/awcms/repo-inventory.md` §Migrations and
 is produced by `bun run repo:inventory:generate` (`scripts/repo-inventory.ts`) from
 the module registry, `sql/`, `tests/`, `src/pages/`, and `docs/adr/`, and
 `bun run repo:inventory:check` is in the `bun run check` chain. **79 real migration files** in
-`sql/` (`001`..`081`), mapped onto **25 registered modules** (order of
+`sql/` (`001`..`081`), mapped onto **26 registered modules** (order of
 `src/modules/index.ts`: `logging`, `tenant-admin`, `profile-identity`,
 `identity-access`, `module-management`, `domain-event-runtime`,
 `sync-storage`, `workflow-approval`, `email`, `reporting`, `theming`,
