@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](13_final_master_index_traceability.md)
 
-<!-- i18n-source-hash: sha256:bc97de9fdee9d86f8f1c11a6fcf67d71fe58bd3facd974e7ec0b7f09e1916d45 -->
+<!-- i18n-source-hash: sha256:c633fff257ca5426856e830940f70ff5e7aed29ca337cc00becbb2e27c3defdf -->
 
 # Bagian 13 — Final Master Index dan Traceability Matrix
 
@@ -150,7 +150,7 @@ registry modul, `sql/`, `tests/`, `src/pages/`, dan `docs/adr/`, dan
 `sync-storage`, `workflow-approval`, `email`, `reporting`, `theming`,
 `media-library`, `blog-content`, `tenant-domain`, `visitor-analytics`,
 `data-lifecycle`, `seo-distribution`, `form-drafts`, `site-search`,
-`comments` — **25 modul**; `news-portal` dilebur ke `blog-content` oleh
+`comments`, `idn-admin-regions`, `push-delivery`, `commerce`, `omes-control` — **26 modul**; `news-portal` dilebur ke `blog-content` oleh
 [ADR-0044](../adr/0044-merge-news-portal-into-blog-content.md)). Tabel ini
 menggantikan versi sebelumnya yang mengutip nama file fiktif (mis.
 `003_awcms_catalog_inventory_schema.sql`,

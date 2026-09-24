@@ -260,6 +260,22 @@
       "deploymentProfiles": null
     },
     {
+      "key": "omes_control",
+      "name": "OMES Control Center",
+      "version": "0.1.0",
+      "status": "experimental",
+      "type": "domain",
+      "dependencies": ["tenant_admin", "identity_access"],
+      "capabilitiesProvided": [],
+      "capabilitiesConsumed": [],
+      "permissionCount": 13,
+      "navigationCount": 0,
+      "jobCount": 0,
+      "hasHealthCheck": false,
+      "hasReadinessCheck": false,
+      "deploymentProfiles": null
+    },
+    {
       "key": "profile_identity",
       "name": "Profile Identity",
       "version": "1.0.0",
