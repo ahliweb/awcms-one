@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](deployment.md)
 
-<!-- i18n-source-hash: sha256:ff92c3464d52de736e4c2e5e09f6c6d2fcd2c1bc96ca54bc4c47c97686fcea32 -->
+<!-- i18n-source-hash: sha256:8e590f56b970aef19fdea2eb913b9ea3b1a7332297977e4fd946755286283b71 -->
 
 # Deployment
 
@@ -423,21 +423,72 @@ bun run deploy:preflight --live --production
 
 Setiap pemeriksaan mencetak satu baris `PASS|FAIL|SKIP` dan alasannya, tidak pernah nilai rahasia. Ini ditegakkan secara struktural, bukan sekadar konvensi (issue #205): satu helper `redact()` menyamarkan kata sandi DSN `postgres://user:pass@host`, nilai berbentuk bearer/API-token, dan seluruh nilai variabel env mana pun yang NAMA-nya cocok `/(PASSWORD|SECRET|TOKEN|KEY|DSN|DATABASE_URL)/i`, dan setiap baris yang dicetak — banner saat mulai, tiap baris `PASS|FAIL|SKIP`, dan ekor stderr/stdout tangkapan dari skrip yang didelegasikan (mis. `jobs:crontab:check`, `apps/cms/scripts/validate-env.ts`) — melewatinya lebih dulu sebelum sampai ke terminal. Nilai yang tidak berbahaya (nama provider, nama peran, URL polos) tercetak apa adanya tanpa perubahan; `apps/cms/tests/commerce-deploy-preflight.test.ts` mengunci baik redaksi maupun non-regresi itu. `--live` tambahan terhubung ke `DATABASE_URL` dan memverifikasi peran runtime bukan superuser/pemilik, tidak memiliki tabel `awcms_commerce_*` mana pun, setiap tabel semacam itu punya `relrowsecurity AND relforcerowsecurity`, dan buku besar migrasi tidak punya yang tertunda. Tanpa `--production`, aturan khusus-produksi (pengiriman OTP, provider pembayaran/pengiriman bukan `log`, URL kanonik https) di-skip alih-alih digagalkan — teruskan `--production` (atau set `APP_ENV=production`) untuk menerapkannya terhadap file yang sedang ditinjau sebelum disalin ke tempatnya (`--file <path>`).
 
-### Runbook produksi
+### Tiga concern yang berbeda: pemeriksaan CI, publikasi artefak, deployment produksi (issue #224, ADR-0022)
 
-1. **Sediakan PostgreSQL** — baik servis `postgres` di `compose.production.yaml`, atau instans terkelola dengan tiga peran yang sama dibuat manual (lihat komentar file itu sendiri).
-2. **Migrasi**, dengan DSN setup/pemilik yang berhak-istimewa: `docker compose -f compose.production.yaml --profile migrate run --rm migrate`.
-3. **Jalankan `cms`**: `docker compose -f compose.production.yaml up -d cms`.
-4. **Jalankan preflight dengan `--live`** terhadap basis data yang berjalan, memakai DSN runtime `awcms_app`: `cd apps/cms && DATABASE_URL=<DSN awcms_app> bun run commerce:deploy:preflight --live --production`. Jangan lanjut melewati `FAIL`.
-5. **Jalankan `jobs`** terjadwal — pasang `apps/cms/ops/awcms-jobs.crontab` di host, dengan `AWCMS_RUN_JOB` mengarah ke `ops/run-job-compose.sh` (lihat "Job terjadwal" di atas).
-6. **Bangun dan jalankan `storefront`** untuk setiap profil yang dibutuhkan deployment ini (lihat "Image" di atas), lalu `docker compose -f compose.production.yaml up -d storefront`.
-7. **Daftarkan origin nyata storefront** di `awcms_tenant_domains` — API storefront anonim me-resolve tenant-nya dari header `Origin` browser pemanggil (lihat "Origin storefront tenant yang di-seed harus terdaftar" di atas); deployment yang melewatkan langkah ini mendapat build yang berfungsi dan checkout yang tidak pernah me-resolve tenant.
+Yang penting, secara persis, adalah mana dari ketiga hal ini yang sedang terjadi pada titik mana pun di jalur delivery platform ini — mencampuradukkannya di bawah satu deskripsi "Registry/CI-push" adalah persis ambiguitas yang ingin ditutup ADR-0022:
 
-**Health/readiness:** `cms` mengekspos `GET /api/v1/health` (liveness — menjawab 200 bahkan dengan basis data tak terjangkau, sengaja; lihat komentar `apps/cms/Dockerfile.production` sendiri kenapa probe yang me-restart kontainer tidak boleh bergantung pada basis data) dan `GET /api/v1/database/pool/health` (pertanyaan kesehatan dependensi yang nyata, dibaca `apps/cms/ops/synthetic-check.sh` alih-alih orkestrator kontainer). `storefront` mengekspos `GET /healthz`, melaporkan build id yang ditulis `apps/storefront/scripts/write-build-id.mjs` saat waktu build.
+1. **Pemeriksaan CI** — `.github/workflows/ci.yml`/`e2e.yml`/`codeql.yml` melakukan lint, type-check, test, dan menjalankan analisis keamanan. Mereka tidak pernah menyentuh kredensial produksi dan tidak pernah memutasi apa pun yang berjalan.
+2. **Publikasi artefak** — `.github/workflows/images.yml` (ADR-0020, "Image yang dipublikasikan" di atas) membangun dan, pada push tag, mempublikasikan image `apps/cms` yang diatestasi ke GHCR. Ini adalah engineering rilis: menghasilkan artefak imutabel yang dapat diverifikasi independen. Ia tetap tidak pernah men-deploy apa pun — tidak ada yang mengonsumsi image yang dipublikasikan sampai manusia atau agent secara eksplisit memberi tahu host produksi untuk melakukannya.
+3. **Deployment produksi** — `tools/deploy/deploy-production.sh`, dijelaskan tepat di bawah. Ini adalah SATU-SATUNYA langkah dalam daftar ini yang memutasi sistem produksi yang berjalan, dan ia tidak pernah berjalan di dalam GitHub Actions: **tidak ada runner GitHub-hosted atau self-hosted yang menjadi bagian dari control plane produksi, dan tidak ada host produksi yang pernah didaftarkan sebagai self-hosted runner GitHub** — repositori ini publik, dan panduan resmi GitHub tegas bahwa self-hosted runner repositori publik terekspos ke eksekusi kode PR-fork dengan kredensial dan jangkauan jaringan milik runner itu sendiri.
 
-**Rollback/cutover:** setiap image ditandai dengan commit/rilis tempat ia dibangun; rollback adalah men-deploy ulang tag sebelumnya, tidak pernah mengedit kontainer yang berjalan. Migrasi maju-saja dengan checksum immutable (`validateAppliedChecksums` milik `apps/cms/scripts/db-migrate.ts` menolak menerapkan ulang migrasi yang sudah diterapkan yang isinya berubah) — migrasi yang salah dikoreksi lewat migrasi BARU, tidak pernah edit-tangan yang sudah diterapkan.
+### Deployment produksi (server-side, eksplisit) — `tools/deploy/deploy-production.sh` (issue #224, ADR-0022)
 
-**Backup/restore:** lihat "Jaminan backup" tepat di bawah — jalur terenkripsi, terautentikasi, tersalin off-site, dan teruji-drill yang kini dipakai topologi produksi repositori ini sendiri, memakai ulang `apps/cms/deploy/backup/*.sh` milik upstream lewat servis `backup`/`restore-drill`/`offsite-copy` milik `compose.production.yaml` sendiri. (`apps/cms/ops/backup-awcms.sh`/`restore-drill-awcms.sh` adalah pasangan skrip lain yang lebih lama, khusus-host, yang masih dibawa upstream untuk cron deployment lain — bukan yang dipasang topologi produksi repositori ini sendiri; jangan mencampuradukkan keduanya.)
+Entrypoint deployment kanonis dan satu-satunya, dijalankan HANYA di host produksi (atau host dengan repositori ini dan `compose.production.yaml` sudah di-checkout) — tidak pernah oleh GitHub Actions, tidak pernah dipicu otomatis oleh push atau merge:
+
+```bash
+tools/deploy/deploy-production.sh <tag-eksak|sha-40-karakter|image@sha256:digest>
+# atau, dari laptop, lewat SSH ke host produksi, tanpa logika yang diduplikasi secara lokal:
+tools/deploy/deploy-remote.sh <ssh-host> <tag-eksak|sha-40-karakter|image@sha256:digest>
+```
+
+Target yang diterima tepat tiga bentuk, dan tidak ada yang lain: tag rilis eksak (`vX.Y.Z`), SHA commit 40 karakter, atau referensi image GHCR yang dipin dengan digest (`ghcr.io/<owner>/<repo>-cms@sha256:<64 hex>`) — nama branch, SHA pendek, atau tag yang mengambang ditolak sebelum apa pun berjalan. **Image GHCR yang dipublikasikan (ADR-0020) diutamakan begitu ada satu untuk suatu rilis** — ia diatestasi independen, tidak butuh build ulang di host produksi, dan rollback ke digest sebelumnya instan; build sumber (tag/SHA) tetap didukung penuh dan menjadi satu-satunya pilihan sebelum image suatu rilis dipublikasikan, atau untuk deployment yang tidak pernah mempublikasikan image sama sekali.
+
+Skrip menjalankan transaksi penuh di bawah `set -Eeuo pipefail` dan `flock` non-blocking (pemanggilan bersamaan langsung ditolak, tidak diantrekan):
+
+```text
+ambil lock -> resolusi target -> catat rilis saat ini
+  -> fetch/verifikasi (git status --porcelain harus kosong; gagal closed pada checkout kotor)
+  -> preflight (bun run deploy:preflight --live --production)
+  -> backup pra-migrasi (docker compose --profile backup run --rm backup)
+  -> build (target sumber) atau pull+verifikasi cosign opsional (target image)
+  -> migrasi (docker compose --profile migrate run --rm migrate — identitas setup yang berhak-istimewa)
+  -> verifikasi peran runtime adalah rolsuper=false AND rolbypassrls=false
+  -> aktivasi (docker compose up -d cms storefront)
+  -> health (tools/deploy/healthcheck-production.sh)
+  -> smoke (GET /api/v1/health, GET /healthz)
+  -> catatan audit append-only (timestamp, target, rilis sebelumnya, operator, hasil per-langkah)
+  -> sukses
+```
+
+Target yang sudah di-deploy dan sehat adalah no-op sukses. Pada kegagalan setelah aktivasi, skrip mengembalikan runtime ke rilis sebelumnya yang tercatat secara otomatis HANYA ketika tidak ada migrasi yang diterapkan pada percobaan yang sama — diputuskan dengan membaca ledger migrasi `apps/cms` (`awcms_schema_migrations`) sebelum dan sesudah langkah migrate, dan jumlah yang tidak terbaca dihitung sebagai "diterapkan" (`tools/deploy/rollback-production.sh [<rilis-sebelumnya>]`, juga bisa dijalankan manual); ketika migrasi memang berjalan, ia berhenti dan mencetak jalur ke "Celah yang diketahui" dan runbook jaminan-backup di bawah alih-alih menebak bahwa rollback kode aman terhadap skema yang mungkin sudah berubah. Setiap baris yang dicetak tooling ini — dan log audit append-only di `${DEPLOY_STATE_DIR:-/var/lib/awcms-one-deploy}/audit.jsonl` — diredaksi lewat `packages/gerbang/lib/redact.mjs` (via `tools/deploy/redact-log.mjs`) sebelum mencapai terminal atau disk, disiplin yang sama yang ditetapkan issue #205 untuk preflight milik `apps/cms` sendiri. `tests/deploy-production.test.mjs` adalah suite skenario hermetis atas setiap jalur kegagalan yang disebutkan di atas — docker/git/curl/ssh/cosign semuanya stub di `PATH` (juga bisa dibind lewat `DOCKER=`/`GIT=`/`CURL=`/`SSH=`/`COSIGN=`, yang dibaca setiap skrip alih-alih nama perintah yang di-hardcode); tidak ada test yang pernah menyentuh kontainer nyata, remote git, atau endpoint jaringan.
+
+Setiap variabel environment yang dibaca skrip-skrip ini (`DEPLOY_STATE_DIR`, `DEPLOY_SKIP_BACKUP`, `DEPLOY_COSIGN_VERIFY_COMMAND`, override perintah, URL smoke-check, `DEPLOY_REMOTE_SCRIPT_PATH`) didokumentasikan di bagian "Server-side production deployment" milik root `.env.example`.
+
+**Setup host pertama kali** (sekali, sebelum deploy pertama):
+
+1. Buat pengguna sistem `deploy` yang khusus alih-alih deploy sebagai root atau akun developer bersama; beri keanggotaan grup `docker` (atau akses Docker/Coolify berhak-istimewa-minimal yang setara) dan tidak lebih luas.
+2. Hasilkan kredensial SSH berbasis kunci untuk pengguna itu. Opsional, batasi `~deploy/.ssh/authorized_keys` dengan forced command, sehingga kunci yang bocor hanya bisa menjalankan entrypoint deploy milik repositori ini sendiri:
+   ```
+   command="/home/deploy/awcms-one/tools/deploy/deploy-production.sh $SSH_ORIGINAL_COMMAND",no-port-forwarding,no-X11-forwarding,no-agent-forwarding ssh-ed25519 AAAA... operator@laptop
+   ```
+3. `mkdir -p /var/lib/awcms-one-deploy && chmod 700 /var/lib/awcms-one-deploy` (atau arahkan `DEPLOY_STATE_DIR` ke tempat lain) — lock, log audit, dan state rilis-saat-ini hidup di sini.
+4. Buat `.secrets/` (sudah di-`.gitignore`kan) dengan file secret BuildKit/backup yang dijelaskan "Secrets" dan "Jaminan backup" di atas, dengan izin yang restriktif (`chmod 600`).
+5. Sediakan PostgreSQL — baik servis `postgres` di `compose.production.yaml`, atau instans terkelola dengan tiga peran yang sama dibuat manual (lihat komentar file itu sendiri).
+6. Jalankan deploy PERTAMA terhadap basis data yang genuinely baru dengan `DEPLOY_SKIP_BACKUP=true` (belum ada yang perlu dibackup), misalnya `DEPLOY_SKIP_BACKUP=true tools/deploy/deploy-production.sh v1.0.0` — setiap deploy berikutnya berjalan dengan default (backup ditegakkan).
+7. Pasang `apps/cms/ops/awcms-jobs.crontab` di host, dengan `AWCMS_RUN_JOB` mengarah ke `ops/run-job-compose.sh` (lihat "Job terjadwal" di atas) — skrip deploy tidak memasang ini untuk Anda.
+8. **Daftarkan origin nyata storefront** di `awcms_tenant_domains` — API storefront anonim me-resolve tenant-nya dari header `Origin` browser pemanggil (lihat "Origin storefront tenant yang di-seed harus terdaftar" di atas); deployment yang melewatkan langkah ini mendapat build yang berfungsi dan checkout yang tidak pernah me-resolve tenant.
+
+**Deploy biasa**, setelah host disiapkan: `tools/deploy/deploy-production.sh v1.4.0` (atau digest GHCR yang setara). **Rollback**: `tools/deploy/rollback-production.sh` tanpa argumen mengembalikan ke apa pun yang terakhir dicatat `deploy-production.sh` sebagai rilis sebelumnya; berikan rilis eksplisit untuk rollback ke yang lain.
+
+**Pemulihan basis data ketika rollback tidak kompatibel-skema** — ini adalah satu-satunya jalur yang secara sengaja tidak diotomatisasi `deploy-production.sh`/`rollback-production.sh`, karena menebak salah di sini bisa merusak data. Ketika percobaan deploy menjalankan migrasi lalu gagal (kegagalan health/aktivasi), baris audit skrip sendiri menyebutkan target dan backup pra-migrasi yang sudah diambil langkah itu: pulihkan backup itu dengan perintah manual dan terkonfirmasi `restore-postgres.sh --target=<db> --yes` yang didokumentasikan "Restore drill default ke isolated/disposable" di bawah, ke basis data scratch/staging dulu untuk mengonfirmasinya, lalu ikuti proses change-management organisasi Anda sendiri untuk memutuskan apakah memulihkan ke basis data produksi nyata atau forward-fix dengan migrasi baru sebagai gantinya (aturan `apps/cms/scripts/db-migrate.ts` sendiri: jangan pernah edit-tangan migrasi yang sudah diterapkan).
+
+**Coolify** — jika Coolify adalah orkestrator yang dipilih sebagai pengganti (atau bersama) `docker compose` polos, matikan webhook auto-deploy push-GitHub-ke-produksi miliknya untuk jalur ini; token API/kredensial Coolify sendiri hanya hidup di host deployment, tidak pernah di secret GitHub Actions. Skrip yang memanggil API Coolify melakukannya dengan identitas rilis yang eksplisit dan sudah diresolusi, dan tetap menjalankan `healthcheck-production.sh`/pemeriksaan smoke milik repositori ini sendiri setelahnya alih-alih mempercayai sinyal "deployment berhasil" milik Coolify sebagai kata akhir.
+
+### Mekanisme health/readiness dan rollback
+
+`cms` mengekspos `GET /api/v1/health` (liveness — menjawab 200 bahkan dengan basis data tak terjangkau, sengaja; lihat komentar `apps/cms/Dockerfile.production` sendiri kenapa probe yang me-restart kontainer tidak boleh bergantung pada basis data) dan `GET /api/v1/database/pool/health` (pertanyaan kesehatan dependensi yang nyata, dibaca `apps/cms/ops/synthetic-check.sh` alih-alih orkestrator kontainer). `storefront` mengekspos `GET /healthz`, melaporkan build id yang ditulis `apps/storefront/scripts/write-build-id.mjs` saat waktu build. Setiap image ditandai dengan commit/rilis tempat ia dibangun; rollback adalah men-deploy ulang tag/digest sebelumnya, tidak pernah mengedit kontainer yang berjalan. Migrasi maju-saja dengan checksum immutable (`validateAppliedChecksums` milik `apps/cms/scripts/db-migrate.ts` menolak menerapkan ulang migrasi yang sudah diterapkan yang isinya berubah) — migrasi yang salah dikoreksi lewat migrasi BARU, tidak pernah edit-tangan yang sudah diterapkan.
+
+**Backup/restore:** lihat "Jaminan backup" tepat di bawah — jalur terenkripsi, terautentikasi, tersalin off-site, dan teruji-drill yang kini dipakai topologi produksi repositori ini sendiri, memakai ulang `apps/cms/deploy/backup/*.sh` milik upstream lewat servis `backup`/`restore-drill`/`offsite-copy` milik `compose.production.yaml` sendiri — LANGKAH `backup` YANG SAMA yang dijalankan `deploy-production.sh` secara otomatis sebelum setiap migrasi. (`apps/cms/ops/backup-awcms.sh`/`restore-drill-awcms.sh` adalah pasangan skrip lain yang lebih lama, khusus-host, yang masih dibawa upstream untuk cron deployment lain — bukan yang dipasang topologi produksi repositori ini sendiri; jangan mencampuradukkan keduanya.)
 
 ## Jaminan backup (issue #213)
 

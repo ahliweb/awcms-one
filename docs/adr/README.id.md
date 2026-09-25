@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:ee99062bdbd1fb0c594881db53eefb270c00b9418eb35ab51779b865117cb9fb -->
+<!-- i18n-source-hash: sha256:9fea0d61f1c065e9ec3bcd0c8c94f4b0dcdf4991ffbb372b0a0116d09227067c -->
 
 # Architecture Decision Records
 
@@ -38,6 +38,7 @@ Yang **tidak** butuh ADR: menambah field dalam skema yang sudah diputuskan, kena
 | [0018](0018-awcms-one-is-a-template-with-build-profiles-and-an-idempotent-init.md) | awcms-one adalah sebuah template, dengan profil build dan `template:init` yang idempoten | Diterima |
 | [0019](0019-production-topology-two-images-a-jobs-sidecar-and-a-fail-closed-preflight.md) | Topologi produksi: dua image, satu sidecar jobs, dan preflight fail-closed | Diterima |
 | [0020](0020-publish-only-the-cms-images-to-ghcr-with-sbom-and-provenance.md) | Hanya image CMS yang dipublikasikan ke GHCR, dengan SBOM dan provenance | Diterima |
+| [0022](0022-production-deployment-is-server-side-and-explicit.md) | Deployment produksi bersifat server-side dan eksplisit | Diterima |
 
 ## Mengapa penomoran dimulai dari 0001
 
