@@ -50,6 +50,8 @@
     "serve": "cd apps/storefront && bun run serve",
     "start": "bun run serve",
     "preview": "bun run serve",
-    "release": "bun tools/rilis.mjs"
+    "release": "bun tools/rilis.mjs",
+    "release:images": "bun tools/release/images.ts",
+    "release:publish": "bun tools/release/publish.ts"
   }
 }

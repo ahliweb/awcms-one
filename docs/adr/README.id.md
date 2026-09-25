@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:9fea0d61f1c065e9ec3bcd0c8c94f4b0dcdf4991ffbb372b0a0116d09227067c -->
+<!-- i18n-source-hash: sha256:b24d42b365d676d59841d725f4935546170f484977bf1762a925dfdea0e6d462 -->
 
 # Architecture Decision Records
 
@@ -39,6 +39,7 @@ Yang **tidak** butuh ADR: menambah field dalam skema yang sudah diputuskan, kena
 | [0019](0019-production-topology-two-images-a-jobs-sidecar-and-a-fail-closed-preflight.md) | Topologi produksi: dua image, satu sidecar jobs, dan preflight fail-closed | Diterima |
 | [0020](0020-publish-only-the-cms-images-to-ghcr-with-sbom-and-provenance.md) | Hanya image CMS yang dipublikasikan ke GHCR, dengan SBOM dan provenance | Diterima |
 | [0022](0022-production-deployment-is-server-side-and-explicit.md) | Deployment produksi bersifat server-side dan eksplisit | Diterima |
+| [0023](0023-release-images-are-built-signed-and-published-from-a-trusted-release-host.md) | Image rilis dibangun, ditandatangani, dan dipublikasikan dari release host tepercaya | Diterima |
 
 ## Mengapa penomoran dimulai dari 0001
 

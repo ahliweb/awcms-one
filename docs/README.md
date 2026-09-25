@@ -21,6 +21,7 @@ Architecture, schema, API, CMS workflow, storefront behaviour, testing, deployme
 | [`pengujian.md`](pengujian.md) | The four test tiers — which need PostgreSQL, which drive a real browser, and which do not |
 | [`deployment.md`](deployment.md) | Build vs. serve, environment variables, the production topology, published images, what the container may and may not reach |
 | [`alur-kerja-pengembangan.md`](alur-kerja-pengembangan.md) | Branching, real branch protection settings, changesets, the release cut |
+| [`rilis.md`](rilis.md) | The end-to-end release runbook: changesets to tag, `release:images`, `release:publish`, evidence, consumer verification |
 | [`template.md`](template.md) | Using awcms-one as a template: `template:init`, the build-profile matrix, per-profile seeds, BjekMart as the reference example |
 
 ## What this directory does not duplicate
