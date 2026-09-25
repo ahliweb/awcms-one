@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:e1d12683750bf96b9971dd9d7eed5cf47fceff9a4814c9a8248b05b9453bf6c8 -->
+<!-- i18n-source-hash: sha256:8635526b75d9ef6eec9c667653ea318e8d3461a6f89d9ce3c7782d633d58ec9d -->
 
 # Dokumentasi
 
@@ -23,6 +23,7 @@ Dokumentasi arsitektur, skema, API, alur kerja CMS, perilaku storefront, penguji
 | [`pengujian.md`](pengujian.id.md) | Empat tingkat tes — mana yang butuh PostgreSQL, mana yang menjalankan browser sungguhan, dan mana yang tidak |
 | [`deployment.md`](deployment.id.md) | Build vs. serve, variabel environment, topologi produksi, image yang dipublikasikan, apa yang boleh dan tidak boleh dijangkau container |
 | [`alur-kerja-pengembangan.md`](alur-kerja-pengembangan.id.md) | Branching, pengaturan branch protection nyata, changeset, pemotongan rilis |
+| [`rilis.md`](rilis.id.md) | Runbook rilis end-to-end: changeset ke tag, `release:images`, `release:publish`, bukti, verifikasi konsumen |
 | [`template.md`](template.id.md) | Menggunakan awcms-one sebagai template: `template:init`, matriks profil build, seed per profil, BjekMart sebagai contoh referensi |
 
 ## Apa yang tidak diduplikasi direktori ini
