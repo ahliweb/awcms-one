@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](0021-zero-github-actions-local-ci-with-exact-sha-statuses.md)
 
-<!-- i18n-source-hash: sha256:ad3c1d930dcdc524d859a4e9e00fbaead192e94db8b68431c26fb1bb73f22748 -->
+<!-- i18n-source-hash: sha256:87b9e72000fde07372a375bf843f18bf7bd1199b1bbb4c99c047d5df7932f03c -->
 
 # ADR-0021 — Nol GitHub Actions: CI lokal dengan status komit ber-SHA-eksak
 
@@ -43,9 +43,9 @@ Sebuah tool Bun/TypeScript baru, `tools/ci/`, mereproduksi persis apa yang dilak
 
 Tabel ini hidup sekali, diekspor dari `tools/ci/legs.ts` (`LEGS`/`LEG_CONTEXTS`), sehingga migrasi branch-protection berikutnya dan dokumentasi repo ini sendiri membaca tabel itu, bukan mengetik ulang dua belas nama di tempat kedua.
 
-### D2 — Pelaporan SHA-eksak: worktree sekali pakai, tidak pernah checkout milik developer
+### D2 — Pelaporan SHA-eksak: satu worktree sekali pakai per leg, tidak pernah checkout milik developer
 
-`bun run ci` meresolusi komit HEAD checkout saat ini, membuat **`git worktree` sekali pakai** dari SHA eksak tersebut, dan menjalankan setiap leg di dalamnya — tidak pernah mengubah working tree milik pemanggil, karena beberapa leg (`template:init` yang paling utama) menulis ulang berkas di tempat. `bun run ci:pr -- <n>` melakukan hal yang sama setelah mengambil `refs/pull/<n>/head` dan meresolusi SHA *itu*. Setiap status komit diposting terhadap SHA tempat kode itu benar-benar berjalan, lewat `POST /repos/{owner}/{repo}/statuses/{sha}` — mekanisme yang sama yang dipakai GitHub App atau integrasi CI pihak ketiga mana pun, dan alasan "Opsi A" (daftar konteks datar) legibel bagi branch protection: UI required-status-check milik GitHub sendiri tidak pernah membedakan job Actions dari poster status API lainnya.
+`bun run ci` meresolusi komit HEAD checkout saat ini dan, untuk SETIAP leg, membuat **`git worktree` sekali pakainya sendiri** dari SHA eksak tersebut untuk dijalankan di dalamnya — tidak pernah mengubah working tree milik pemanggil, dan tidak pernah membiarkan perubahan satu leg bocor ke leg lain. Ini bukan detail kecil: sebuah run ujung-ke-ujung awal membagi satu worktree di antara kedua belas leg, dan begitu `local-ci/template-root` menjalankan `bun run template:init` sungguhan (yang menulis ulang `package.json`, menghapus fixture seed, dan mengubah merek pohon di tempat, secara sengaja), setiap leg yang berjalan sesudahnya di worktree yang sama itu berjalan terhadap kopi repositori yang sudah diubah-merek dan tidak lagi representatif — `git worktree add` cukup murah (berbagi object store repo ini sendiri) sehingga membayar biayanya sekali per leg bukan biaya nyata dibanding apa yang dilakukan satu leg sendiri. `bun run ci:pr -- <n>` melakukan hal yang sama setelah mengambil `refs/pull/<n>/head` dan meresolusi SHA *itu*. Setiap status komit diposting terhadap SHA tempat kode itu benar-benar berjalan, lewat `POST /repos/{owner}/{repo}/statuses/{sha}` — mekanisme yang sama yang dipakai GitHub App atau integrasi CI pihak ketiga mana pun, dan alasan "Opsi A" (daftar konteks datar) legibel bagi branch protection: UI required-status-check milik GitHub sendiri tidak pernah membedakan job Actions dari poster status API lainnya.
 
 ### D3 — Kredensial status
 
@@ -61,7 +61,7 @@ Actions mem-pin Bun untuk setiap job lewat `bun-version` milik `oven-sh/setup-bu
 
 ### D6 — Evidence, state, dan retensi hidup di luar repositori
 
-Lock, hasil tercatat per-(repo, PR, SHA head, versi definisi-CI), dan evidence leg (log, SARIF, laporan/screenshot Playwright) hidup di bawah `${XDG_STATE_HOME:-~/.local/state}/awcms-one-ci/` — tidak pernah di dalam repositori, dan tidak pernah di dalam worktree sekali pakai yang dibuat sebuah run (yang dihapus saat run berakhir, kecuali `--keep`). "Versi definisi-CI" adalah hash konten dari `tools/ci/**` ditambah `package.json`/`bun.lock` root — logika sebuah leg sendiri, atau apa yang diinstalnya, berubah membatalkan setiap hasil tercatat sebelumnya untuk sebuah komit, sehingga watcher (D8) tidak pernah mempercayai hasil yang diproduksi di bawah logika berbeda sebagai "sudah diperiksa."
+Lock, hasil tercatat per-(repo, PR, SHA head, versi definisi-CI), dan evidence leg (log, SARIF, laporan/screenshot Playwright) hidup di bawah `${XDG_STATE_HOME:-~/.local/state}/awcms-one-ci/` — tidak pernah di dalam repositori, dan tidak pernah di dalam worktree sekali pakai milik leg mana pun (masing-masing dihapus begitu leg itu selesai, kecuali `--keep`). "Versi definisi-CI" adalah hash konten dari `tools/ci/**` ditambah `package.json`/`bun.lock` root — logika sebuah leg sendiri, atau apa yang diinstalnya, berubah membatalkan setiap hasil tercatat sebelumnya untuk sebuah komit, sehingga watcher (D8) tidak pernah mempercayai hasil yang diproduksi di bawah logika berbeda sebagai "sudah diperiksa."
 
 ### D7 — Lingkup leg security dan titik buta jujurnya
 

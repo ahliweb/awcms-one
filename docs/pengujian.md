@@ -136,7 +136,7 @@ A `postgres:18.4` service container (`POSTGRES_USER=awcms`, `POSTGRES_DB=awcms`,
 
 | Command | What it does |
 | --- | --- |
-| `bun run ci` | Runs all twelve legs against the current checkout's HEAD, inside a disposable `git worktree` of that exact SHA — never mutating your own checkout. `--leg <name>` (repeatable) narrows to a subset, `--report` posts `local-ci/*` statuses, `--keep` leaves the worktree in place afterwards. |
+| `bun run ci` | Runs all twelve legs against the current checkout's HEAD, each in its OWN disposable `git worktree` of that exact SHA — never mutating your own checkout, and never letting one leg's mutations (`template:init`'s rewrites, chief among them) leak into another leg's run. `--leg <name>` (repeatable) narrows to a subset, `--report` posts `local-ci/*` statuses, `--keep` leaves every leg's worktree in place afterwards. |
 | `bun run ci:pr -- <number>` | Fetches `refs/pull/<n>/head`, resolves its exact head SHA, runs the same way, and posts statuses to that SHA. Refuses a fork PR unless `--allow-fork` is given explicitly. Re-checks the PR's head right before posting final results — if it moved mid-run, nothing stale is posted. |
 | `bun run ci:cms` / `ci:e2e` / `ci:security` / `ci:template` | The matching leg subset only. |
 | `bun run ci:watch` | One polling pass over open PRs, skipping any (repo, PR, head SHA, CI-definition version) combination already recorded. Meant to be triggered by `tools/ci/systemd/awcms-one-ci-watch.{service,timer}` (documented there, not installed by this repo). |

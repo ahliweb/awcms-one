@@ -41,9 +41,9 @@ A new Bun/TypeScript tool, `tools/ci/`, reproduces exactly what `.github/workflo
 
 The table lives once, exported from `tools/ci/legs.ts` (`LEGS`/`LEG_CONTEXTS`), so a later branch-protection migration and this repo's own docs read it rather than re-typing twelve names in a second place.
 
-### D2 — Exact-SHA reporting: a disposable worktree, never the developer's own checkout
+### D2 — Exact-SHA reporting: one disposable worktree per leg, never the developer's own checkout
 
-`bun run ci` resolves the current checkout's HEAD commit, creates a **disposable `git worktree`** of that exact SHA, and runs every leg inside it — never mutating the caller's own working tree, because several legs (`template:init` chief among them) rewrite files in place. `bun run ci:pr -- <n>` does the same after fetching `refs/pull/<n>/head` and resolving *that* exact SHA. Every commit status is posted against the SHA the code actually ran at, via `POST /repos/{owner}/{repo}/statuses/{sha}` — the same mechanism a GitHub App or any third-party CI integration uses, and the reason "Option A" (a flat context list) is legible to branch protection: GitHub's own required-status-check UI has never distinguished an Actions job from any other status-API poster.
+`bun run ci` resolves the current checkout's HEAD commit and, for EACH leg, creates its own **disposable `git worktree`** of that exact SHA to run inside — never mutating the caller's own working tree, and never letting one leg's worktree mutations leak into another's. This is not a minor detail: an early end-to-end run shared a single worktree across all twelve legs, and once `local-ci/template-root` ran a real `bun run template:init` (which rewrites `package.json`, removes seed fixtures, and rebrands the tree in place, by design), every leg that ran afterward in that same worktree was executing against an already-rebranded, no-longer-representative copy of the repository — `git worktree add` is cheap enough (it shares this repo's own object store) that paying its cost once per leg is not a real cost next to what a leg itself does. `bun run ci:pr -- <n>` does the same after fetching `refs/pull/<n>/head` and resolving *that* exact SHA. Every commit status is posted against the SHA the code actually ran at, via `POST /repos/{owner}/{repo}/statuses/{sha}` — the same mechanism a GitHub App or any third-party CI integration uses, and the reason "Option A" (a flat context list) is legible to branch protection: GitHub's own required-status-check UI has never distinguished an Actions job from any other status-API poster.
 
 ### D3 — The status credential
 
@@ -59,7 +59,7 @@ Actions pinned Bun for every job via `oven-sh/setup-bun`'s `bun-version`. Local 
 
 ### D6 — Evidence, state, and retention live outside the repository
 
-Locks, recorded per-(repo, PR, head SHA, CI-definition version) results, and leg evidence (logs, SARIF, Playwright reports/screenshots) live under `${XDG_STATE_HOME:-~/.local/state}/awcms-one-ci/` — never inside the repository, and never inside the disposable worktree a run creates (which is removed when the run ends, unless `--keep`). The "CI-definition version" is a content hash of `tools/ci/**` plus the root `package.json`/`bun.lock` — a leg's own logic, or what it installs, changing invalidates every previously recorded result for a commit, so the watcher (D8) never trusts a result produced under different logic as "already checked."
+Locks, recorded per-(repo, PR, head SHA, CI-definition version) results, and leg evidence (logs, SARIF, Playwright reports/screenshots) live under `${XDG_STATE_HOME:-~/.local/state}/awcms-one-ci/` — never inside the repository, and never inside any leg's own disposable worktree (each removed as soon as that leg finishes, unless `--keep`). The "CI-definition version" is a content hash of `tools/ci/**` plus the root `package.json`/`bun.lock` — a leg's own logic, or what it installs, changing invalidates every previously recorded result for a commit, so the watcher (D8) never trusts a result produced under different logic as "already checked."
 
 ### D7 — The security leg's scope and its honest blind spots
 

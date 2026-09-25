@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](pengujian.md)
 
-<!-- i18n-source-hash: sha256:6ec941b0871c1f94f2b875b59c9c1842062ba4b8b8d5d18aa90fa4c1e5d0346f -->
+<!-- i18n-source-hash: sha256:7a3f38acbadba0902dcbc105c4649492c2050820d9361d85f17c1e279b684c5a -->
 
 # Pengujian
 
@@ -135,7 +135,7 @@ Container layanan `postgres:18.4` (`POSTGRES_USER=awcms`, `POSTGRES_DB=awcms`, h
 
 | Perintah | Yang dilakukan |
 | --- | --- |
-| `bun run ci` | Menjalankan kedua belas leg terhadap HEAD checkout saat ini, di dalam `git worktree` sekali pakai dari SHA eksak itu — tidak pernah mengubah checkout Anda sendiri. `--leg <name>` (bisa diulang) mempersempit ke subset, `--report` memposting status `local-ci/*`, `--keep` membiarkan worktree tetap ada setelahnya. |
+| `bun run ci` | Menjalankan kedua belas leg terhadap HEAD checkout saat ini, masing-masing di dalam `git worktree` sekali pakainya SENDIRI dari SHA eksak itu — tidak pernah mengubah checkout Anda sendiri, dan tidak pernah membiarkan perubahan satu leg (terutama tulis-ulang `template:init`) bocor ke leg lain. `--leg <name>` (bisa diulang) mempersempit ke subset, `--report` memposting status `local-ci/*`, `--keep` membiarkan worktree setiap leg tetap ada setelahnya. |
 | `bun run ci:pr -- <number>` | Mengambil `refs/pull/<n>/head`, meresolusi SHA head eksaknya, berjalan dengan cara yang sama, dan memposting status ke SHA itu. Menolak PR fork kecuali `--allow-fork` diberikan secara eksplisit. Memeriksa ulang head PR tepat sebelum memposting hasil akhir — jika berpindah di tengah run, tidak ada yang basi diposting. |
 | `bun run ci:cms` / `ci:e2e` / `ci:security` / `ci:template` | Subset leg yang cocok saja. |
 | `bun run ci:watch` | Satu pass polling atas PR terbuka, melewati kombinasi (repo, PR, SHA head, versi definisi-CI) mana pun yang sudah tercatat. Dimaksudkan dipicu oleh `tools/ci/systemd/awcms-one-ci-watch.{service,timer}` (didokumentasikan di sana, tidak dipasang oleh repo ini). |

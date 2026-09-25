@@ -1,14 +1,15 @@
 #!/usr/bin/env bun
 /**
  * `bun run ci` — run local CI's legs against the current checkout's HEAD
- * commit, inside a disposable worktree of that exact SHA. Never mutates
- * the developer's own checkout (several legs, `template:init` chief among
- * them, mutate files in place).
+ * commit, each leg inside its OWN disposable worktree of that exact SHA.
+ * Never mutates the developer's own checkout (several legs, `template:init`
+ * chief among them, mutate files in place — which is exactly why each leg
+ * gets a worktree to itself; see `lib/orchestrate.ts`'s own header comment).
  *
  * Flags:
  *   --leg <name>       Run only this leg (repeatable). Defaults to all twelve.
  *   --report           Post `local-ci/*` commit statuses for HEAD's SHA.
- *   --keep             Do not remove the disposable worktree afterwards.
+ *   --keep             Do not remove any leg's disposable worktree afterwards.
  *   --upload-sarif     After a `security` leg run, upload its SARIF to
  *                      GitHub's code-scanning endpoint for HEAD's SHA.
  */
@@ -50,7 +51,7 @@ async function main() {
     ? { repo: resolveRepo(repoRoot), sha, token: resolveToken() }
     : undefined;
 
-  const { outcomes, worktreePath, cleanup } = await orchestrate(repoRoot, sha, {
+  const { outcomes, worktreePaths, cleanup } = await orchestrate(repoRoot, sha, {
     legContexts: legs.length > 0 ? legs : undefined,
     keep,
     report: reportOptions,
@@ -65,7 +66,11 @@ async function main() {
       console.log(`  [${status}] ${outcome.context} (${seconds}s) — ${outcome.summary}`);
       if (!outcome.ok) failed = true;
     }
-    console.log(`local-ci: worktree at ${worktreePath}${keep ? " (kept)" : ""}`);
+    if (keep) {
+      for (const [context, path] of Object.entries(worktreePaths)) {
+        console.log(`local-ci: ${context} worktree kept at ${path}`);
+      }
+    }
     process.exitCode = failed ? 1 : 0;
 
     if (uploadSarifFlag) {

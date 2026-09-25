@@ -52,7 +52,7 @@ async function main() {
 
   console.log(`local-ci: PR #${prNumber} (${pr.headRepoFullName}) at ${sha}`);
 
-  const { outcomes, worktreePath, cleanup } = await orchestrate(repoRoot, sha, {
+  const { outcomes, worktreePaths, cleanup } = await orchestrate(repoRoot, sha, {
     legContexts: legs.length > 0 ? legs : undefined,
     keep,
     report: { repo, sha, token },
@@ -73,7 +73,11 @@ async function main() {
       console.log(`  [${status}] ${outcome.context} (${(outcome.durationMs / 1000).toFixed(1)}s) — ${outcome.summary}`);
       if (!outcome.ok) failed = true;
     }
-    console.log(`local-ci: worktree at ${worktreePath}${keep ? " (kept)" : ""}`);
+    if (keep) {
+      for (const [context, path] of Object.entries(worktreePaths)) {
+        console.log(`local-ci: ${context} worktree kept at ${path}`);
+      }
+    }
     process.exitCode = failed ? 1 : 0;
   } catch (error) {
     // The head moved — the per-leg statuses already posted above are now
