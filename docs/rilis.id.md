@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](rilis.md)
 
-<!-- i18n-source-hash: sha256:300f5ad60b0c07b90c9c18208ac5900ee604ad38f5e62417567469d545319ad3 -->
+<!-- i18n-source-hash: sha256:2a7a67171d2fc9b029e90ef0adfaf0edad270e685068513185e92ecdaf7d9172 -->
 
 # Runbook rilis
 
@@ -25,7 +25,7 @@ Membangun target `runtime` dan `jobs` milik `apps/cms/Dockerfile.production`, me
 - commit itu adalah ancestor dari `origin/main` (fetch dijalankan dulu);
 - `COSIGN_KEY` diset ke kunci penandatanganan nyata — alat ini tidak pernah membuat kunci begitu saja.
 
-Environment yang wajib (terdokumentasi lengkap di root `.env.example`): `GHCR_USER`, `GHCR_TOKEN` (`write:packages` saja), `COSIGN_KEY`, `COSIGN_PASSWORD`, `COSIGN_PUBLIC_KEY`. Opsional: `--registry` (default `ghcr.io`), `--owner`/`--repo` (default: diparsing dari `git remote get-url origin`), `--trivy-severity` (default `CRITICAL`), `--evidence-dir` (default: direktori di bawah path temp OS, sengaja di luar working tree repositori ini).
+Environment yang wajib (terdokumentasi lengkap di root `.env.example`): `GHCR_USER`, `GHCR_TOKEN` (`write:packages` saja), `COSIGN_KEY`, `COSIGN_PASSWORD`, `COSIGN_PUBLIC_KEY`. Opsional: `--registry` (default `ghcr.io`), `--owner`/`--repo` (default: diparsing dari `git remote get-url origin`), `--trivy-severity` (default `CRITICAL`), `--evidence-dir` (default: direktori `mkdtemp` baru yang hanya bisa diakses pemiliknya di bawah path temp OS, dicetak di akhir run, sengaja di luar working tree repositori ini).
 
 Tanpa `--publish`, perintah yang sama hanya membangun — tidak pernah login, tidak pernah push, tidak pernah menandatangani. Ini mode PR/verifikasi; jalankan sebagai `bun run release:images` (tanpa perlu `--tag`, karena tidak ada yang membacanya di bawah) untuk membuktikan kedua target Dockerfile masih bisa dibangun dari tree saat ini.
 

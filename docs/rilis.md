@@ -23,7 +23,7 @@ Builds `apps/cms/Dockerfile.production`'s `runtime` and `jobs` targets, pushes b
 - that commit is an ancestor of `origin/main` (a fetch runs first);
 - `COSIGN_KEY` is set to a real signing key — this tool never generates one on the fly.
 
-Required environment (documented in full in root `.env.example`): `GHCR_USER`, `GHCR_TOKEN` (`write:packages` only), `COSIGN_KEY`, `COSIGN_PASSWORD`, `COSIGN_PUBLIC_KEY`. Optional: `--registry` (default `ghcr.io`), `--owner`/`--repo` (default: parsed from `git remote get-url origin`), `--trivy-severity` (default `CRITICAL`), `--evidence-dir` (default: a directory under the OS temp path, deliberately outside this repository's working tree).
+Required environment (documented in full in root `.env.example`): `GHCR_USER`, `GHCR_TOKEN` (`write:packages` only), `COSIGN_KEY`, `COSIGN_PASSWORD`, `COSIGN_PUBLIC_KEY`. Optional: `--registry` (default `ghcr.io`), `--owner`/`--repo` (default: parsed from `git remote get-url origin`), `--trivy-severity` (default `CRITICAL`), `--evidence-dir` (default: a fresh owner-only `mkdtemp` directory under the OS temp path, printed at the end of the run, deliberately outside this repository's working tree).
 
 Without `--publish`, the same command only builds — never logs in, never pushes, never signs. This is the PR/verification mode; run it as `bun run release:images` (no `--tag` needed, since nothing downstream reads one) to prove both Dockerfile targets still build from the current tree.
 

@@ -24,7 +24,7 @@
  * every one of them is documented in the root `.env.example` (AGENTS.md's
  * "every env variable a root-level script reads belongs in .env.example").
  */
-import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
 
@@ -57,7 +57,7 @@ function parseArgs(argv: string[]) {
     owner: undefined as string | undefined,
     repo: undefined as string | undefined,
     trivySeverity: "CRITICAL",
-    evidenceDir: process.env.RELEASE_EVIDENCE_DIR ?? join(tmpdir(), "awcms-one-release-evidence"),
+    evidenceDir: process.env.RELEASE_EVIDENCE_DIR as string | undefined,
     builder: "awcms-one-release"
   };
   for (let i = 0; i < argv.length; i++) {
@@ -375,7 +375,11 @@ async function main() {
   const createdAt = new Date().toISOString();
   const sourceUrl = `https://github.com/${owner}/${repo}`;
 
-  mkdirSync(opts.evidenceDir, { recursive: true });
+  // No evidence dir given: a fresh, unpredictable, owner-only (0700)
+  // directory. A fixed name under the shared temp dir could be pre-created
+  // or symlinked by another local user before this run writes into it.
+  const evidenceDir = opts.evidenceDir ?? mkdtempSync(join(tmpdir(), "awcms-one-release-evidence-"));
+  if (opts.evidenceDir) mkdirSync(evidenceDir, { recursive: true, mode: 0o700 });
   const sbomFiles: string[] = [];
   const images: { name: string; target: string; digest: string; tags: string[] }[] = [];
   let lastCosign: { verified: boolean; output: string; tlog: boolean } | undefined;
@@ -387,7 +391,7 @@ async function main() {
     const fullTags = versionTags.map((t) => `${repository}:${t}`);
     const labels = ociLabels({ sourceUrl, revision: sourceSha, version, createdAt });
 
-    const metadataFile = join(opts.evidenceDir, `${suffix}-metadata.json`);
+    const metadataFile = join(evidenceDir, `${suffix}-metadata.json`);
     const args = buildBuildxArgs({
       context: "apps/cms",
       file: "apps/cms/Dockerfile.production",
@@ -432,11 +436,11 @@ async function main() {
       const verify = cosignVerify(repository, digest, tlogUpload);
       log(`cosign verify: ${verify.verified ? "OK" : "FAILED"}`);
 
-      const trivyReportFile = join(opts.evidenceDir, `${suffix}-trivy.json`);
+      const trivyReportFile = join(evidenceDir, `${suffix}-trivy.json`);
       const trivy = trivyScan(repository, digest, opts.trivySeverity, trivyReportFile);
       log(`trivy: ${JSON.stringify(trivy)}`);
 
-      const sbomFile = join(opts.evidenceDir, `${suffix}-sbom.spdx.json`);
+      const sbomFile = join(evidenceDir, `${suffix}-sbom.spdx.json`);
       syftSbom(repository, digest, sbomFile);
       sbomFiles.push(sbomFile);
 
@@ -462,14 +466,14 @@ async function main() {
     tag,
     sourceSha,
     images,
-    sbomFiles: sbomFiles.map((f) => f.replace(`${opts.evidenceDir}/`, "")),
+    sbomFiles: sbomFiles.map((f) => f.replace(`${evidenceDir}/`, "")),
     cosign: lastCosign!,
     trivy: lastTrivy!,
     builtAt: createdAt,
     builder: runCaptureOrThrow(["docker", "buildx", "version"]).trim()
   });
 
-  const evidenceFile = join(opts.evidenceDir, `${tag}-evidence.json`);
+  const evidenceFile = join(evidenceDir, `${tag}-evidence.json`);
   writeFileSync(evidenceFile, `${JSON.stringify(evidence, null, 2)}\n`);
 
   // SHA256SUMS over every evidence artefact, so `gh release upload` carries
@@ -482,11 +486,11 @@ async function main() {
     const [hash] = sum.split(/\s+/);
     shaLines.push(`${hash}  ${f.split("/").pop()}`);
   }
-  writeFileSync(join(opts.evidenceDir, "SHA256SUMS"), `${shaLines.join("\n")}\n`);
+  writeFileSync(join(evidenceDir, "SHA256SUMS"), `${shaLines.join("\n")}\n`);
 
-  log(`Evidence written to ${opts.evidenceDir}`);
+  log(`Evidence written to ${evidenceDir}`);
   log(`  ${evidenceFile}`);
-  log(`  ${join(opts.evidenceDir, "SHA256SUMS")}`);
+  log(`  ${join(evidenceDir, "SHA256SUMS")}`);
 }
 
 main().catch((error) => {
