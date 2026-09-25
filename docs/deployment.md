@@ -416,21 +416,72 @@ bun run deploy:preflight --live --production
 
 Every check prints one `PASS|FAIL|SKIP` line and a reason, never a secret value. This is enforced structurally, not just by convention (issue #205): a single `redact()` helper masks a `postgres://user:pass@host` DSN's password, a bearer/API-token-shaped value, and the whole value of any env variable whose NAME matches `/(PASSWORD|SECRET|TOKEN|KEY|DSN|DATABASE_URL)/i`, and every printed line — the startup banner, each `PASS|FAIL|SKIP` line, and the tail of a delegated script's captured stderr/stdout (e.g. `jobs:crontab:check`, `apps/cms/scripts/validate-env.ts`) — passes through it before reaching the terminal. A benign value (a provider name, a role name, a plain URL) is printed byte-for-byte unchanged; `apps/cms/tests/commerce-deploy-preflight.test.ts` pins both the redaction and that non-regression down. `--live` additionally connects to `DATABASE_URL` and verifies the runtime role is not a superuser/owner, does not own any `awcms_commerce_*` table, every such table has `relrowsecurity AND relforcerowsecurity`, and the migration ledger has nothing pending. Without `--production`, the production-only rules (OTP delivery, payment/shipping providers not `log`, https canonical URLs) are skipped rather than failed — pass `--production` (or set `APP_ENV=production`) to apply them against a file being reviewed before it is copied into place (`--file <path>`).
 
-### Production runbook
+### Three distinct concerns: CI checks, artifact publication, production deployment (issue #224, ADR-0022)
 
-1. **Provision PostgreSQL** — either the `postgres` service in `compose.production.yaml`, or a managed instance with the same three roles created by hand (see that file's own comment).
-2. **Migrate**, with the privileged setup/owner DSN: `docker compose -f compose.production.yaml --profile migrate run --rm migrate`.
-3. **Start `cms`**: `docker compose -f compose.production.yaml up -d cms`.
-4. **Run the preflight with `--live`** against the running database, using the `awcms_app` runtime DSN: `cd apps/cms && DATABASE_URL=<awcms_app DSN> bun run commerce:deploy:preflight --live --production`. Do not proceed past a `FAIL`.
-5. **Start `jobs`** on a schedule — install `apps/cms/ops/awcms-jobs.crontab` on the host, with `AWCMS_RUN_JOB` pointed at `ops/run-job-compose.sh` (see "Scheduled jobs" above).
-6. **Build and start `storefront`** for each profile this deployment needs (see "Images" above), then `docker compose -f compose.production.yaml up -d storefront`.
-7. **Register the storefront's real origin** in `awcms_tenant_domains` — the anonymous storefront API resolves its tenant from the calling browser's `Origin` header (see "The seeded tenant's storefront origins must be registered" above); a deployment that skips this step gets a working build and a checkout that never resolves a tenant.
+It matters, precisely, which of three things is happening at any point in this platform's delivery path — conflating them under a single "Registry/CI-push" description is exactly the ambiguity ADR-0022 exists to close:
 
-**Health/readiness:** `cms` exposes `GET /api/v1/health` (liveness — answers 200 even with the database unreachable, by design; see `apps/cms/Dockerfile.production`'s own comment on why a probe that restarts containers must not depend on the database) and `GET /api/v1/database/pool/health` (the real dependency-health question, read by `apps/cms/ops/synthetic-check.sh` rather than a container orchestrator). `storefront` exposes `GET /healthz`, reporting the build id `apps/storefront/scripts/write-build-id.mjs` wrote at build time.
+1. **CI checks** — `.github/workflows/ci.yml`/`e2e.yml`/`codeql.yml` lint, type-check, test, and run security analysis. They never touch a production credential and never mutate anything running.
+2. **Artifact publication** — `.github/workflows/images.yml` (ADR-0020, "Published images" above) builds and, on a tag push, publishes attested `apps/cms` images to GHCR. This is release engineering: producing an immutable, independently verifiable artifact. It still never deploys anything — nothing consumes a published image until a human or agent explicitly tells a production host to.
+3. **Production deployment** — `tools/deploy/deploy-production.sh`, described immediately below. This is the ONLY step in this list that mutates a running production system, and it never runs inside GitHub Actions: **no GitHub-hosted or self-hosted Actions runner is part of the production control plane, and no production host is ever registered as a GitHub self-hosted runner** — this repository is public, and GitHub's own guidance is explicit that a public repository's self-hosted runners are exposed to fork-PR code execution with the runner's own credentials and network reach.
 
-**Rollback/cutover:** every image is tagged by the commit/release it was built from; a rollback is redeploying the previous tag, never editing a running container. Migrations are forward-only with immutable checksums (`apps/cms/scripts/db-migrate.ts`'s `validateAppliedChecksums` refuses to re-apply an already-applied migration whose file content changed) — a bad migration is corrected by a NEW migration, never a hand-edit of an applied one.
+### Production deployment (server-side, explicit) — `tools/deploy/deploy-production.sh` (issue #224, ADR-0022)
 
-**Backup/restore:** see "Backup assurance" immediately below — the encrypted, authenticated, off-site-copied, drill-tested path this repository's own production topology now uses, reusing upstream `apps/cms/deploy/backup/*.sh` through `compose.production.yaml`'s own `backup`/`restore-drill`/`offsite-copy` services. (`apps/cms/ops/backup-awcms.sh`/`restore-drill-awcms.sh` are a different, older, host-specific pair of scripts upstream still carries for a different deployment's own cron — not what this repository's own production topology installs; do not confuse the two.)
+The canonical, sole deployment entrypoint, run ONLY on the production host (or a host with this repository and `compose.production.yaml` checked out) — never by GitHub Actions, never triggered automatically by a push or merge:
+
+```bash
+tools/deploy/deploy-production.sh <exact-tag|40-char-sha|image@sha256:digest>
+# or, from a laptop, over SSH to the production host, with no logic duplicated locally:
+tools/deploy/deploy-remote.sh <ssh-host> <exact-tag|40-char-sha|image@sha256:digest>
+```
+
+Accepted targets are exactly three shapes, and nothing else: an exact release tag (`vX.Y.Z`), a 40-character commit SHA, or a GHCR image reference pinned by digest (`ghcr.io/<owner>/<repo>-cms@sha256:<64 hex>`) — a branch name, a short SHA, or a floating tag is rejected before anything runs. **The published GHCR image (ADR-0020) is the preferred target once one exists for a release** — it is independently attested, needs no rebuild on the production host, and a rollback to a previous digest is instant; a tag/SHA source build remains fully supported and is the only option before a release's images are published, or for a deployment that never publishes images at all.
+
+The script runs the full transaction under `set -Eeuo pipefail` and a non-blocking `flock` (a concurrent invocation is refused immediately, not queued):
+
+```text
+acquire lock -> resolve target -> record current release
+  -> fetch/verify (git status --porcelain must be empty; fails closed on a dirty checkout)
+  -> preflight (bun run deploy:preflight --live --production)
+  -> pre-migration backup (docker compose --profile backup run --rm backup)
+  -> build (source target) or pull+optional cosign verify (image target)
+  -> migrate (docker compose --profile migrate run --rm migrate — the privileged setup identity)
+  -> verify the runtime role is rolsuper=false AND rolbypassrls=false
+  -> activate (docker compose up -d cms storefront)
+  -> health (tools/deploy/healthcheck-production.sh)
+  -> smoke (GET /api/v1/health, GET /healthz)
+  -> append-only audit record (timestamp, target, previous release, operator, per-step result)
+  -> success
+```
+
+A target already deployed and healthy is a no-op success. On a failure after activation, the script rolls the runtime back to the previous recorded release automatically ONLY when no migration was applied during that same attempt — decided by reading `apps/cms`'s migration ledger (`awcms_schema_migrations`) before and after the migrate step, where an unreadable count counts as "applied" (`tools/deploy/rollback-production.sh [<previous-release>]`, also runnable by hand); when a migration did run, it stops and prints the path to "A known gap" and the backup-assurance runbook below instead of guessing that a code rollback is safe against a schema that may have changed. Every line this tooling prints — and the append-only audit log at `${DEPLOY_STATE_DIR:-/var/lib/awcms-one-deploy}/audit.jsonl` — is redacted through `packages/gerbang/lib/redact.mjs` (via `tools/deploy/redact-log.mjs`) before it reaches a terminal or disk, the same discipline issue #205 established for `apps/cms`'s own preflight. `tests/deploy-production.test.mjs` is a hermetic scenario suite over every failure path named above — docker/git/curl/ssh/cosign are all stubs on `PATH` (also bindable via `DOCKER=`/`GIT=`/`CURL=`/`SSH=`/`COSIGN=`, which every script reads instead of a hardcoded command); no test ever touches a real container, git remote, or network endpoint.
+
+Every environment variable these scripts read (`DEPLOY_STATE_DIR`, `DEPLOY_SKIP_BACKUP`, `DEPLOY_COSIGN_VERIFY_COMMAND`, the command overrides, the smoke-check URLs, `DEPLOY_REMOTE_SCRIPT_PATH`) is documented in root `.env.example`'s "Server-side production deployment" section.
+
+**First-time host setup** (once, before the first deploy):
+
+1. Create a dedicated `deploy` system user rather than deploying as root or a shared developer account; give it membership in the `docker` group (or equivalent least-privilege Docker/Coolify access) and nothing wider.
+2. Generate a key-based SSH credential for that user. Optionally restrict `~deploy/.ssh/authorized_keys` with a forced command, so a key that leaks can only ever run this repository's own deploy entrypoint:
+   ```
+   command="/home/deploy/awcms-one/tools/deploy/deploy-production.sh $SSH_ORIGINAL_COMMAND",no-port-forwarding,no-X11-forwarding,no-agent-forwarding ssh-ed25519 AAAA... operator@laptop
+   ```
+3. `mkdir -p /var/lib/awcms-one-deploy && chmod 700 /var/lib/awcms-one-deploy` (or point `DEPLOY_STATE_DIR` elsewhere) — the lock, audit log, and current-release state live here.
+4. Create `.secrets/` (already `.gitignore`d) with the BuildKit/backup secret files "Secrets" and "Backup assurance" above describe, with restrictive permissions (`chmod 600`).
+5. Provision PostgreSQL — either the `postgres` service in `compose.production.yaml`, or a managed instance with the same three roles created by hand (see that file's own comment).
+6. Run the FIRST deploy against a genuinely fresh database with `DEPLOY_SKIP_BACKUP=true` (nothing yet to back up), e.g. `DEPLOY_SKIP_BACKUP=true tools/deploy/deploy-production.sh v1.0.0` — every subsequent deploy runs with the default (backup enforced).
+7. Install `apps/cms/ops/awcms-jobs.crontab` on the host, with `AWCMS_RUN_JOB` pointed at `ops/run-job-compose.sh` (see "Scheduled jobs" above) — the deploy script does not install this for you.
+8. **Register the storefront's real origin** in `awcms_tenant_domains` — the anonymous storefront API resolves its tenant from the calling browser's `Origin` header (see "The seeded tenant's storefront origins must be registered" above); a deployment that skips this step gets a working build and a checkout that never resolves a tenant.
+
+**An ordinary deploy**, once the host is set up: `tools/deploy/deploy-production.sh v1.4.0` (or the equivalent GHCR digest). **A rollback**: `tools/deploy/rollback-production.sh` with no argument rolls back to whatever `deploy-production.sh` last recorded as the previous release; pass an explicit release to roll back to something else.
+
+**DB recovery when a rollback is not schema-compatible** — this is the one path `deploy-production.sh`/`rollback-production.sh` deliberately refuse to automate, because guessing wrong here can corrupt data. When a deploy attempt ran a migration and then failed (health/activation failure), the script's own audit line names the target and the pre-migration backup that step already took: restore that backup with the manual, confirmed `restore-postgres.sh --target=<db> --yes` command "Restore drills default to isolated/disposable" below documents, into a scratch/staging database first to confirm it, then follow your organization's own change-management process to decide whether to restore into the real production database or to forward-fix with a new migration instead (`apps/cms/scripts/db-migrate.ts`'s own rule: never hand-edit an applied migration).
+
+**Coolify** — if Coolify is the chosen orchestrator instead of (or alongside) bare `docker compose`, disable its GitHub-push-to-production auto-deploy webhook for this path; Coolify's own API token/credentials live only on the deployment host, never in a GitHub Actions secret. A script that calls the Coolify API does so with an explicit, already-resolved release identity, and still runs this repository's own `healthcheck-production.sh`/smoke checks itself afterward rather than trusting Coolify's own "deployment succeeded" signal as the final word.
+
+### Health/readiness and rollback mechanics
+
+`cms` exposes `GET /api/v1/health` (liveness — answers 200 even with the database unreachable, by design; see `apps/cms/Dockerfile.production`'s own comment on why a probe that restarts containers must not depend on the database) and `GET /api/v1/database/pool/health` (the real dependency-health question, read by `apps/cms/ops/synthetic-check.sh` rather than a container orchestrator). `storefront` exposes `GET /healthz`, reporting the build id `apps/storefront/scripts/write-build-id.mjs` wrote at build time. Every image is tagged by the commit/release it was built from; a rollback is redeploying the previous tag/digest, never editing a running container. Migrations are forward-only with immutable checksums (`apps/cms/scripts/db-migrate.ts`'s `validateAppliedChecksums` refuses to re-apply an already-applied migration whose file content changed) — a bad migration is corrected by a NEW migration, never a hand-edit of an applied one.
+
+**Backup/restore:** see "Backup assurance" immediately below — the encrypted, authenticated, off-site-copied, drill-tested path this repository's own production topology now uses, reusing upstream `apps/cms/deploy/backup/*.sh` through `compose.production.yaml`'s own `backup`/`restore-drill`/`offsite-copy` services — the SAME `backup` step `deploy-production.sh` runs automatically before every migration. (`apps/cms/ops/backup-awcms.sh`/`restore-drill-awcms.sh` are a different, older, host-specific pair of scripts upstream still carries for a different deployment's own cron — not what this repository's own production topology installs; do not confuse the two.)
 
 ## Backup assurance (issue #213)
 
