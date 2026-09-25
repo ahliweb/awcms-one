@@ -7,21 +7,52 @@
  * a plain, portable, atomic "create or fail if it already exists" the
  * kernel guarantees — the same primitive `flock` itself is built on.
  */
-import { closeSync, existsSync, mkdirSync, openSync, readFileSync, unlinkSync } from "node:fs";
+import { closeSync, linkSync, mkdirSync, openSync, readFileSync, renameSync, unlinkSync, writeSync } from "node:fs";
 import { dirname } from "node:path";
 
 export interface Lock {
   release: () => void;
 }
 
+/** Creates the lock file exclusively and writes this PID through that same fd; false if it already exists. */
+function tryCreate(path: string): boolean {
+  let fd: number;
+  try {
+    fd = openSync(path, "wx");
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code === "EEXIST") return false;
+    throw new Error(`Could not acquire the watch lock at ${path}: ${(error as Error).message}`);
+  }
+  try {
+    writeSync(fd, String(process.pid));
+  } finally {
+    closeSync(fd);
+  }
+  return true;
+}
+
+/** The PID a lock file names, or undefined when the file is gone or unreadable. */
+function readHolder(path: string): number | undefined {
+  try {
+    const pid = Number.parseInt(readFileSync(path, "utf8").trim(), 10);
+    return Number.isFinite(pid) ? pid : undefined;
+  } catch {
+    return undefined;
+  }
+}
+
 /**
  * Acquire the watch lock, or throw naming the PID already holding it.
  *
- * A stale lock (the PID it names is no longer running) is reclaimed
- * automatically — a watcher killed with SIGKILL leaves its lock file behind
- * with no chance to clean it up, and a permanently-stuck lock is worse than
- * the small risk of two watchers racing right at the reclaim instant, which
- * is guarded by O_EXCL itself.
+ * Creation is `open(..., O_EXCL)` first, never a check-then-create. A stale
+ * lock (its PID is no longer running — a watcher killed with SIGKILL cannot
+ * clean up) is reclaimed by atomically renaming it aside and then checking
+ * that the file actually moved names the dead PID. Two passes can find the
+ * same stale lock at once; if the loser's rename catches the winner's FRESH
+ * lock instead, the check fails, the winner's lock is put back with
+ * `link` (which never overwrites a newer lock), and the loser refuses.
+ * The systemd unit is a oneshot service, so systemd itself never starts a
+ * second pass while one runs; this lock guards manual runs beside it.
  *
  * @param {string} path - the lock file path (see state-dir.ts's `lockFilePath`)
  * @returns {Lock}
@@ -30,26 +61,31 @@ export interface Lock {
 export function acquireLock(path: string): Lock {
   mkdirSync(dirname(path), { recursive: true });
 
-  if (existsSync(path)) {
-    const heldBy = Number.parseInt(readFileSync(path, "utf8").trim(), 10);
-    if (Number.isFinite(heldBy) && isProcessAlive(heldBy)) {
+  if (!tryCreate(path)) {
+    const heldBy = readHolder(path);
+    if (heldBy !== undefined && isProcessAlive(heldBy)) {
       throw new Error(`Another ci:watch pass (pid ${heldBy}) is already running — refusing to overlap.`);
     }
-    // Stale — the PID that held it is gone. Reclaim by unlinking first, then
-    // creating fresh, below.
-    unlinkSync(path);
-  }
-
-  let fd: number;
-  try {
-    fd = openSync(path, "wx");
-  } catch (error) {
-    throw new Error(`Could not acquire the watch lock at ${path}: ${(error as Error).message}`);
-  }
-  try {
-    Bun.write(path, String(process.pid));
-  } finally {
-    closeSync(fd);
+    const aside = `${path}.stale.${process.pid}`;
+    try {
+      renameSync(path, aside);
+    } catch {
+      throw new Error(`The watch lock at ${path} changed while reclaiming it — another pass is starting; refusing to overlap.`);
+    }
+    const moved = readHolder(aside);
+    if (moved !== heldBy) {
+      try {
+        linkSync(aside, path);
+      } catch {
+        // A newer lock already exists; the one set aside is superseded.
+      }
+      unlinkSync(aside);
+      throw new Error(`Another ci:watch pass (pid ${moved}) took the watch lock first — refusing to overlap.`);
+    }
+    unlinkSync(aside);
+    if (!tryCreate(path)) {
+      throw new Error(`Another ci:watch pass took the watch lock at ${path} first — refusing to overlap.`);
+    }
   }
 
   let released = false;

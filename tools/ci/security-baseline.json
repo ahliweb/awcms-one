@@ -22,7 +22,7 @@
   {
     "ruleId": "js/insufficient-password-hash",
     "path": "apps/cms/src/lib/auth/oauth-state-token.ts",
-    "reason": "false positive (GitHub code-scanning alerts #6/#7): computePkceChallengeS256 implements RFC 7636 §4.2, which mandates SHA-256 for the PKCE S256 code_challenge (not a password hash); hashOAuthState hashes a 256-bit CSPRNG state token (randomBytes(32)), not a user-chosen password — a slow KDF buys nothing against a high-entropy random input."
+    "reason": "false positive (GitHub code-scanning alerts #6/#7): computePkceChallengeS256 implements RFC 7636 \u00a74.2, which mandates SHA-256 for the PKCE S256 code_challenge (not a password hash); hashOAuthState hashes a 256-bit CSPRNG state token (randomBytes(32)), not a user-chosen password \u2014 a slow KDF buys nothing against a high-entropy random input."
   },
   {
     "ruleId": "js/insufficient-password-hash",
@@ -38,10 +38,5 @@
     "ruleId": "js/clear-text-logging",
     "path": "tools/seed-cms.ts",
     "reason": "won't fix (GitHub code-scanning alert #3): prints the generated owner password once, explicitly labelled SHOWN ONCE and not stored by the script, for the local dev operator who needs it; this is a local dev seed tool, not a production logging path."
-  },
-  {
-    "ruleId": "js/file-system-race",
-    "path": "tools/ci/lib/lock.ts",
-    "reason": "won't fix: triaged the same way as the pre-existing tools/rilis.mjs and tools/knowledge-graph-update.mjs entries above (GitHub code-scanning alerts #10/#11) — acquireLock's existsSync/unlinkSync/openSync sequence is single-operator local tooling (the ci:watch cross-run lock) with no trust boundary between the check and the write; the TOCTOU window is not exploitable here, and openSync's own O_EXCL flag is still the actual exclusivity guarantee, not the existsSync check CodeQL flagged."
   }
 ]
