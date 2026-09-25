@@ -132,10 +132,16 @@ export async function runSecurityLeg(
       "--rm",
       "-v",
       `${worktreeRoot}:/repo`,
+      "-v",
+      `${join(worktreeRoot, "tools", "ci", "gitleaks.toml")}:/gitleaks.toml:ro`,
       GITLEAKS_IMAGE,
-      "gitleaks",
+      // The image's own ENTRYPOINT is already ["gitleaks"] — an argv
+      // element repeating that name makes the container try to run the
+      // subcommand "gitleaks" ("unknown command \"gitleaks\" for
+      // \"gitleaks\""), so this argv starts directly at the subcommand.
       "detect",
       "--source=/repo",
+      "--config=/gitleaks.toml",
       "--no-git",
       "--report-format=json",
       "--report-path=/repo/.gitleaks-report.json",
