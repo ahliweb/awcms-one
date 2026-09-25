@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:0000000000000000000000000000000000000000000000000000000000000000 -->
+<!-- i18n-source-hash: sha256:8226532a599100f817af3dd2633715ce3918ba91040976233852bd888dd54e73 -->
 
 # Architecture Decision Records
 
