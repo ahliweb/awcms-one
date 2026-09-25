@@ -13,7 +13,6 @@ export interface PullRequestInfo {
   number: number;
   headSha: string;
   headRepoFullName: string;
-  baseRepoFullName: string;
   isCrossRepository: boolean;
 }
 
@@ -54,7 +53,11 @@ export async function fetchPullRequestInfo(prNumber: number, repoRoot: string): 
       "view",
       String(prNumber),
       "--json",
-      "number,headRefOid,headRepository,headRepositoryOwner,isCrossRepository,baseRepository"
+      // "baseRepository" is not a field `gh pr view --json` accepts (its
+      // own error lists the real set); the PR's base repo is always the
+      // one `gh` is already scoped to here (this checkout's `origin`,
+      // matched by resolveRepo()), so this never needs to ask for it.
+      "number,headRefOid,headRepository,headRepositoryOwner,isCrossRepository"
     ],
     { cwd: repoRoot, stdout: "pipe", stderr: "pipe" }
   );
@@ -73,7 +76,6 @@ export async function fetchPullRequestInfo(prNumber: number, repoRoot: string): 
     number: parsed.number,
     headSha: parsed.headRefOid,
     headRepoFullName: `${headOwner}/${headRepoName}`,
-    baseRepoFullName: `${parsed.baseRepository?.owner?.login ?? ""}/${parsed.baseRepository?.name ?? ""}`,
     isCrossRepository: Boolean(parsed.isCrossRepository)
   };
 }
