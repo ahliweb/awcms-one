@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](0023-release-images-are-built-signed-and-published-from-a-trusted-release-host.md)
 
-<!-- i18n-source-hash: sha256:f7c33d6dddb1721bf2261098fe7186ccca15b55da4a9a3d41fb913dc4237b180 -->
+<!-- i18n-source-hash: sha256:92df99312d00b55501c28c052671bfba639ab603a33c7d731616c2940cfd1976 -->
 
 # ADR-0023 — Image rilis dibangun, ditandatangani, dan dipublikasikan dari release host tepercaya
 
@@ -37,6 +37,8 @@ Dinyatakan tanpa eufemisme: ini menukar "GitHub yang mengatestasi" dengan "kunci
 ### D3 — Custody kunci: penyimpanan, rotasi, pencabutan, dan cakupan token GHCR sendiri
 
 **Penyimpanan.** `COSIGN_KEY` menerima tiga bentuk, dalam urutan jaminan menaik: berkas di release host, dilindungi izin filesystem (`0600`, dimiliki akun yang menjalankan rilis, tidak pernah bisa dibaca grup atau dunia) dan kunci terenkripsi berlindung `COSIGN_PASSWORD` (format default `generate-key-pair` milik cosign sendiri); token hardware (YubiKey atau sejenisnya, dialamatkan lewat dukungan PIV cosign, `--key` menyebut slot ketimbang path); atau URI KMS (`awskms://`, `gcpkms://`, `azurekms://`, `hashivault://`), di mana materi kunci privat tidak pernah keluar dari KMS sama sekali dan cosign hanya meminta KMS untuk menandatangani. Kunci berbasis berkas dapat diterima untuk skala operasi repositori ini saat ini dan itulah yang didokumentasikan lebih dulu oleh runbook `docs/rilis.md` sendiri; kunci berbasis KMS adalah upgrade yang direkomendasikan begitu lebih dari satu orang atau satu mesin memerlukan kemampuan menandatangani, karena berkas bisa disalin sedangkan grant KMS bisa diaudit dan dicabut tanpa menyentuh kunci itu sendiri.
+
+**Log transparansi.** Tanda tangan rilis yang dipublikasikan dicatat di log publik Sigstore Rekor secara default. Repositori ini dan image-nya publik, sehingga entri tersebut tidak mengungkap hal baru, dan setiap penggunaan kunci penandatangan menjadi terlihat publik — kunci curian yang dipakai menandatangani sesuatu meninggalkan jejak yang bisa ditangkap pemantauan. Ini juga berarti konsumen memverifikasi dengan `cosign verify --key …` biasa, tanpa `--insecure-ignore-tlog`. Latihan terhadap registry `localhost` melewati unggahan agar digest sekali-pakai tidak pernah masuk ke log publik yang permanen; `COSIGN_TLOG_UPLOAD=true|false` menimpa default mana pun, dan verifikasi melewati pemeriksaan Rekor hanya bila unggahan dilewati (kedua pembangun argv ada di `tools/release/lib/cosign.mjs`). JSON bukti mencatat mana yang terjadi (`cosign.tlog`). Kata sandi kunci sampai ke container cosign hanya lewat nama variabel lingkungan, tidak pernah sebagai nilai di baris perintah.
 
 **Rotasi.** Buat pasangan kunci baru, publikasikan `COSIGN_PUBLIC_KEY` baru berdampingan dengan yang lama (keduanya tetap valid untuk memverifikasi image yang sudah dipublikasikan — rotasi tidak pernah berarti menandatangani ulang seluruh riwayat), alihkan `COSIGN_KEY` di release host, dan tandatangani setiap rilis dari titik itu dengan kunci baru. Kunci privat lama kemudian dimusnahkan — bukan diarsipkan — begitu tidak ada rilis yang diharapkan memerlukannya untuk apa pun selain memverifikasi apa yang sudah ditandatanganinya, yang hanya memerlukan separuh publiknya.
 

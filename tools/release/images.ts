@@ -31,7 +31,8 @@ import { tmpdir } from "node:os";
 import { gitRun, gitRunOrThrow } from "../../packages/gerbang/lib/git.mjs";
 import { buildBuildxArgs, ociLabels } from "./lib/buildx.mjs";
 import { buildEvidence } from "./lib/evidence.mjs";
-import { COSIGN_IMAGE, SYFT_IMAGE, TRIVY_IMAGE } from "./lib/pinned-images.mjs";
+import { cosignSignArgs, cosignVerifyArgs, shouldUploadTlog } from "./lib/cosign.mjs";
+import { SYFT_IMAGE, TRIVY_IMAGE } from "./lib/pinned-images.mjs";
 import { runCapture, runCaptureOrThrow, runInherit } from "./lib/proc.mjs";
 import { checkPublishPreconditions } from "./lib/refusal.mjs";
 import { deriveImageTags, imageRepository, parseGitHubRemote, parseTag } from "./lib/tag.mjs";
@@ -161,62 +162,36 @@ function resolveCosignKeyArg(cosignKey: string): { keyArg: string; mount?: strin
   return { keyArg: "/keys/cosign.key", mount: `${abs}:/keys/cosign.key:ro` };
 }
 
-function cosignSign(ref: string, digest: string) {
+function cosignSign(ref: string, digest: string, tlogUpload: boolean) {
   const cosignKey = process.env.COSIGN_KEY;
   if (!cosignKey) fail("COSIGN_KEY is not set — refusing to sign.");
   const { keyArg, mount } = resolveCosignKeyArg(cosignKey);
-  const args = ["docker", "run", "--rm", "--network", "host", "-e", `COSIGN_PASSWORD=${process.env.COSIGN_PASSWORD ?? ""}`];
-  if (mount) args.push("-v", mount);
-  args.push(
-    "-v",
-    `${process.env.HOME}/.docker/config.json:/root/.docker/config.json:ro`,
-    COSIGN_IMAGE,
-    "sign",
-    "--key",
+  // COSIGN_PASSWORD is passed by NAME (lib/cosign.mjs): docker copies it from
+  // this process's environment, so it never appears in an argv.
+  const args = cosignSignArgs({
     keyArg,
-    "--yes",
-    // Never upload to the PUBLIC Sigstore transparency log (Rekor) — this
-    // is key-based signing for images that may be private, and a Rekor
-    // entry is a permanent, public record of the image digest and the
-    // signing identity's metadata. Keyless signing's whole point is that
-    // public log; key-based signing's whole point is that the release
-    // host's own key IS the trust root (see docs/adr/0023-...md D2), so
-    // there is nothing here that needs Rekor's own guarantee, and every
-    // image this tool signs stays out of it.
-    "--tlog-upload=false",
-    `${ref}@${digest}`
-  );
-  log(`Signing ${ref}@${digest} with cosign...`);
-  runInherit(args);
+    keyMount: mount,
+    dockerConfig: `${process.env.HOME}/.docker/config.json`,
+    ref: `${ref}@${digest}`,
+    tlogUpload
+  });
+  log(`Signing ${ref}@${digest} with cosign (Rekor transparency log: ${tlogUpload ? "upload" : "skipped"})...`);
+  runInherit(args, { env: { ...process.env, COSIGN_PASSWORD: process.env.COSIGN_PASSWORD ?? "" } });
 }
 
-function cosignVerify(ref: string, digest: string): { verified: boolean; output: string } {
+function cosignVerify(ref: string, digest: string, tlogUpload: boolean): { verified: boolean; output: string; tlog: boolean } {
   const publicKey = process.env.COSIGN_PUBLIC_KEY;
   if (!publicKey) fail("COSIGN_PUBLIC_KEY is not set — refusing to verify what was just signed.");
   const abs = publicKey.startsWith("/") ? publicKey : join(process.cwd(), publicKey);
-  const args = [
-    "docker",
-    "run",
-    "--rm",
-    "--network",
-    "host",
-    "-v",
-    `${abs}:/keys/cosign.pub:ro`,
-    "-v",
-    `${process.env.HOME}/.docker/config.json:/root/.docker/config.json:ro`,
-    COSIGN_IMAGE,
-    "verify",
-    "--key",
-    "/keys/cosign.pub",
-    // Matches `--tlog-upload=false` above: this signature was never
-    // recorded in the public Rekor log, so verification must not require
-    // one to exist.
-    "--insecure-ignore-tlog=true",
-    `${ref}@${digest}`
-  ];
+  const args = cosignVerifyArgs({
+    publicKeyPath: abs,
+    dockerConfig: `${process.env.HOME}/.docker/config.json`,
+    ref: `${ref}@${digest}`,
+    tlogUpload
+  });
   const result = runCapture(args);
   if (!result.ok) fail(`cosign verify failed for ${ref}@${digest}:\n${result.stderr}`);
-  return { verified: true, output: result.stdout.trim() };
+  return { verified: true, output: result.stdout.trim(), tlog: tlogUpload };
 }
 
 function trivyScan(ref: string, digest: string, severity: string, reportFile: string) {
@@ -403,7 +378,7 @@ async function main() {
   mkdirSync(opts.evidenceDir, { recursive: true });
   const sbomFiles: string[] = [];
   const images: { name: string; target: string; digest: string; tags: string[] }[] = [];
-  let lastCosign: { verified: boolean; output: string } | undefined;
+  let lastCosign: { verified: boolean; output: string; tlog: boolean } | undefined;
   let lastTrivy: { scanner: string; critical: number; high: number; failedClosed: boolean } | undefined;
 
   for (const { target, suffix } of TARGETS) {
@@ -452,8 +427,9 @@ async function main() {
       }
       digest = pushedDigest;
 
-      cosignSign(repository, digest);
-      const verify = cosignVerify(repository, digest);
+      const tlogUpload = shouldUploadTlog({ registry: opts.registry, override: process.env.COSIGN_TLOG_UPLOAD });
+      cosignSign(repository, digest, tlogUpload);
+      const verify = cosignVerify(repository, digest, tlogUpload);
       log(`cosign verify: ${verify.verified ? "OK" : "FAILED"}`);
 
       const trivyReportFile = join(opts.evidenceDir, `${suffix}-trivy.json`);

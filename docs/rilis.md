@@ -58,6 +58,8 @@ gh attestation verify oci://ghcr.io/<owner>/<repo>-cms:<tag> --owner <owner>
 
 Both commands stay documented here, side by side, rather than the old one quietly going stale.
 
+Signatures on a real publish are recorded in the public Rekor transparency log, so the plain command above works as written. A signature made with `COSIGN_TLOG_UPLOAD=false` has no Rekor entry and verifies only with `--insecure-ignore-tlog=true` added; the release's evidence JSON (`cosign.tlog`) says which applies.
+
 ## Rehearsing without touching GHCR
 
 `tools/release/images.ts`'s full publish path (build → push → digest readback → sign → verify → scan → SBOM → evidence) can be rehearsed end to end against a throwaway local registry, without pushing anything real or touching a production key:

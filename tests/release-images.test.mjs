@@ -9,6 +9,7 @@
  * trivy, SBOM export) are proven separately, by hand, against a throwaway
  * local registry — see docs/rilis.md's "Rehearsing without touching GHCR".
  */
+import { shouldUploadTlog, cosignSignArgs, cosignVerifyArgs } from "../tools/release/lib/cosign.mjs";
 import { describe, test } from "bun:test";
 import assert from "node:assert/strict";
 
@@ -274,5 +275,36 @@ describe("evidence.mjs — the release-evidence JSON shape", () => {
   test("rejects a missing top-level string field", () => {
     const { tag, ...rest } = valid;
     assert.ok(validateEvidence(rest).some((p) => p.includes('"tag"')));
+  });
+});
+
+describe("tools/release/lib/cosign.mjs", () => {
+  const base = { keyArg: "/keys/cosign.key", keyMount: "/tmp/k:/keys/cosign.key:ro", dockerConfig: "/h/.docker/config.json", ref: "ghcr.io/o/r-cms@sha256:" + "a".repeat(64) };
+
+  test("uploads to Rekor for a real registry, skips it for a localhost rehearsal", () => {
+    assert.equal(shouldUploadTlog({ registry: "ghcr.io" }), true);
+    assert.equal(shouldUploadTlog({ registry: "localhost:5999" }), false);
+    assert.equal(shouldUploadTlog({ registry: "127.0.0.1:5000" }), false);
+    assert.equal(shouldUploadTlog({ registry: "ghcr.io", override: "false" }), false);
+    assert.equal(shouldUploadTlog({ registry: "localhost:5999", override: "true" }), true);
+    assert.throws(() => shouldUploadTlog({ registry: "ghcr.io", override: "yes" }));
+  });
+
+  test("the key password is passed by name only, never as a value in argv", () => {
+    const args = cosignSignArgs({ ...base, tlogUpload: true });
+    assert.ok(args.includes("COSIGN_PASSWORD"));
+    assert.equal(args.some((a) => a.startsWith("COSIGN_PASSWORD=")), false);
+  });
+
+  test("sign and verify agree on the transparency log", () => {
+    const signOn = cosignSignArgs({ ...base, tlogUpload: true });
+    const verifyOn = cosignVerifyArgs({ publicKeyPath: "/k.pub", dockerConfig: base.dockerConfig, ref: base.ref, tlogUpload: true });
+    assert.ok(!signOn.includes("--tlog-upload=false"));
+    assert.ok(!verifyOn.includes("--insecure-ignore-tlog=true"));
+    const signOff = cosignSignArgs({ ...base, tlogUpload: false });
+    const verifyOff = cosignVerifyArgs({ publicKeyPath: "/k.pub", dockerConfig: base.dockerConfig, ref: base.ref, tlogUpload: false });
+    assert.ok(signOff.includes("--tlog-upload=false"));
+    assert.ok(verifyOff.includes("--insecure-ignore-tlog=true"));
+    assert.equal(signOn.at(-1), base.ref);
   });
 });

@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](rilis.md)
 
-<!-- i18n-source-hash: sha256:546b86963c37b583a33cdbbf9f4d90f5685aaa4a33c71675ea06812e3852f284 -->
+<!-- i18n-source-hash: sha256:300f5ad60b0c07b90c9c18208ac5900ee604ad38f5e62417567469d545319ad3 -->
 
 # Runbook rilis
 
@@ -59,6 +59,8 @@ gh attestation verify oci://ghcr.io/<owner>/<repo>-cms:<tag> --owner <owner>
 ```
 
 Kedua perintah tetap terdokumentasi di sini, berdampingan, ketimbang yang lama diam-diam menjadi usang.
+
+Tanda tangan pada publikasi sungguhan dicatat di log transparansi publik Rekor, sehingga perintah biasa di atas berfungsi apa adanya. Tanda tangan yang dibuat dengan `COSIGN_TLOG_UPLOAD=false` tidak punya entri Rekor dan hanya terverifikasi dengan tambahan `--insecure-ignore-tlog=true`; JSON bukti rilis (`cosign.tlog`) menyatakan mana yang berlaku.
 
 ## Berlatih tanpa menyentuh GHCR
 
