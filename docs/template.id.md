@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](template.md)
 
-<!-- i18n-source-hash: sha256:75a38a64b1f8042a9caa0056341567ec0e8d29cfc321195218c4960517fea3e3 -->
+<!-- i18n-source-hash: sha256:0923a9e0e2dbab4849a7bd92a276672016421fb7afca870e8c68c97ecb6fc3c5 -->
 
 # Menggunakan awcms-one sebagai template
 
@@ -45,8 +45,8 @@ bun run template:init \
 | `--warna-sekunder` | Tidak | Default ke corak lebih gelap dari `--warna-primer` bila tidak diberikan — `DEFAULT_THEME_COLORS.secondary` |
 | `--warna-aksen` | Tidak | Default ke aksen kontras bila tidak diberikan — `DEFAULT_THEME_COLORS.accent` |
 | `--kontak-email` | Ya | Menjadi `DEFAULT_IDENTITY.contactEmail` dan baris kontak `SUPPORT*.md`/`SECURITY*.md` |
-| `--kontak-telepon` | Tidak | Menjadi `DEFAULT_IDENTITY.contactPhone` bila diberikan; jika tidak, tidak ada baris telepon alih-alih mengarang satu |
-| `--alamat` | Tidak | Menjadi `DEFAULT_IDENTITY.address` bila diberikan |
+| `--kontak-telepon` | Tidak | Menjadi `DEFAULT_IDENTITY.contactPhone` bila diberikan; jika tidak, ditulis `null` (issue #233 — `DEFAULT_IDENTITY.contactPhone` bertipe `string \| null` khusus untuk ini) alih-alih membiarkan nomor telepon asli BjekMart sebagai fallback yang hidup. Setiap konsumen sudah merender tanpa blok telepon sama sekali saat nilainya `null` |
+| `--alamat` | Tidak | Menjadi `DEFAULT_IDENTITY.address` bila diberikan; jika tidak, ditulis `null` dengan cara yang sama, untuk alasan yang sama — tidak ada blok alamat yang dirender, alih-alih alamat asli BjekMart |
 | `--dry-run` | Tidak | Mencetak rencana penulisan-ulang/penghapusan lengkap dan tidak menyentuh apa pun |
 | `--yes` | Tidak | Wajib untuk melanjutkan pada working tree yang kotor; jika tidak, alat menolak berjalan alih-alih mencampur penulisan-ulangnya sendiri ke dalam perubahan yang belum di-commit |
 
@@ -60,9 +60,10 @@ bun run template:init \
 
 Persis permukaan merek yang dinamai [ADR-0018 D4](adr/0018-awcms-one-is-a-template-with-build-profiles-and-an-idempotent-init.id.md#d4--merek-hidup-di-env--sitets-ditambah-daftar-pendek-dan-bernama-file-yang-ditulis-ulang-templateinit):
 
-- `apps/storefront/src/config/site.ts` — `DEFAULT_IDENTITY` (`name`, `description`, `contactEmail`, dan `contactPhone`/`address` bila diberikan), `DEFAULT_THEME_COLORS`, dan fallback `readEnvOr` `SITE_NAME`/`SITE_DESCRIPTION`
+- `apps/storefront/src/config/site.ts` — `DEFAULT_IDENTITY` (`name`, `description`, `contactEmail` selalu; `contactPhone`/`address` ditulis persis bila flag yang bersangkutan diberikan, dan ditulis sebagai literal `null` — tidak pernah dibiarkan sebagai nomor telepon/alamat asli BjekMart — bila tidak diberikan, sesuai issue #233; tipe `DEFAULT_IDENTITY` sendiri mengizinkan `null` khusus untuk dua field itu), `DEFAULT_THEME_COLORS`, dan fallback `readEnvOr` `SITE_NAME`/`SITE_DESCRIPTION`
 - Root `package.json` — `name`, `description`, `homepage`, `repository`, dan field `awcmsOne.templateVersion` baru yang mencatat versi awcms-one asal repo turunan ini dibuat
 - `compose.yaml` — nama proyek Docker Compose
+- `bun.lock` — HANYA field `name` milik workspace root (`workspaces[""].name`), agar cocok dengan `name` `package.json` yang ditulis ulang; tidak ada bagian lain lockfile yang disentuh atau dibuat ulang (issue #227 — membiarkan field ini tetap `"awcms-one"` membuat `bun run check:lockfile` gagal di setiap repo turunan)
 - `README.md`/`README.id.md` — bagian hero
 - `SUPPORT.md`/`SUPPORT.id.md` — kalimat hero
 - `.env.example` — default tenant skrip seed (`SEED_TENANT_CODE`/`SEED_TENANT_NAME`/`SEED_OFFICE_CODE`/`SEED_OFFICE_NAME`/`SEED_OWNER_EMAIL`)

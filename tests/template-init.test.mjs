@@ -31,7 +31,9 @@ import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 
 import { buildPlan, describePlan, isEmptyPlan } from "../tools/template-init/plan.mjs";
+import { rewriteBunLock } from "../tools/template-init/rewriters.mjs";
 import { main } from "../tools/template-init/run.mjs";
+import { rewriteSiteTs } from "../tools/template-init/rewriters.mjs";
 
 const REPO_ROOT = new URL("..", import.meta.url).pathname;
 
@@ -209,6 +211,7 @@ describe("template:init — dry-run plan", () => {
     const text = describePlan(plan);
     expect(text).toContain("apps/storefront/src/config/site.ts");
     expect(text).toContain("compose.yaml");
+    expect(text).toContain("bun.lock");
     expect(text).toContain("README.md");
   });
 
@@ -220,6 +223,43 @@ describe("template:init — dry-run plan", () => {
   test("refuses package.json.name === \"awcms-one\" without --yes", async () => {
     const exitCode = await main(BASE_FLAGS, { root: REPO_ROOT, isTTY: false });
     expect(exitCode).toBe(3);
+  });
+});
+
+describe("template:init — rewriteSiteTs contact fallbacks (issue #233)", () => {
+  const REAL_SITE_TS = readFileSync(join(REPO_ROOT, "apps/storefront/src/config/site.ts"), "utf8");
+  const BASE = {
+    nama: "Toko Contoh",
+    profil: "toko",
+    kontakEmail: "owner@toko-contoh.id",
+    warnaPrimer: "#0ea5e9",
+    warnaSekunder: "#096892",
+    warnaAksen: "#f59e0b"
+  };
+
+  test("omitted --kontak-telepon/--alamat write the bare null literal, not BjekMart's own values", () => {
+    const out = rewriteSiteTs(REAL_SITE_TS, BASE);
+    expect(out).toContain("contactPhone: null,");
+    expect(out).toContain("address: null");
+    expect(out).not.toContain("0851-2868-8885");
+    expect(out).not.toContain("Ahmad Wongso");
+
+    // Idempotent: a second run with the same (still-omitted) flags is a no-op on these two fields.
+    expect(rewriteSiteTs(out, BASE)).toBe(out);
+  });
+
+  test("--kontak-telepon/--alamat, when given, are written verbatim — unchanged behaviour", () => {
+    const withFlags = { ...BASE, kontakTelepon: "+62 812-0000-0000", alamat: "Jl. Contoh No. 1, Kota Contoh" };
+    const out = rewriteSiteTs(REAL_SITE_TS, withFlags);
+    expect(out).toContain('contactPhone: "+62 812-0000-0000"');
+    expect(out).toContain('address: "Jl. Contoh No. 1, Kota Contoh"');
+
+    // A later run that OMITS the flags again must still be able to null them out —
+    // proves the field is matched by its structural shape, not only by BjekMart's
+    // original literal (see `text.mjs`'s `setStringOrNullField` docblock).
+    const nulledAfter = rewriteSiteTs(out, BASE);
+    expect(nulledAfter).toContain("contactPhone: null,");
+    expect(nulledAfter).toContain("address: null");
   });
 });
 
@@ -291,6 +331,21 @@ describe("template:init — full run in a temp copy", () => {
           expect(siteTs).toContain('contactEmail: "owner@toko-contoh.id"');
           expect(siteTs).toContain('primary: "#0ea5e9"');
 
+          // issue #233 — this run passes neither `--kontak-telepon` nor
+          // `--alamat` (see the flags array above), so DEFAULT_IDENTITY's
+          // `contactPhone`/`address` must be written as the bare `null`
+          // literal, not left as BjekMart's own real phone number and
+          // street address — the exact strings that leaked in production
+          // (ahliweb/omes-web#8), checked here directly rather than only
+          // through the "no BjekMart string left" scan below (which is
+          // scoped to a different, narrower file list — see that scan's
+          // own comment).
+          expect(siteTs).toContain("contactPhone: null,");
+          expect(siteTs).toContain("address: null");
+          expect(siteTs).not.toContain("0851-2868-8885");
+          expect(siteTs).not.toContain("Ahmad Wongso");
+          expect(siteTs).not.toContain("borneojekpangkalanbun@gmail.com");
+
           // Grep-style scan, scoped to the files where `template:init`
           // rewrites the ENTIRE brand-bearing surface with no legitimate
           // historical prose left beside it — NOT the whole tree, and not
@@ -353,6 +408,19 @@ describe("template:init — full run in a temp copy", () => {
           expect(pkgAfter.scripts["db:seed:cms"]).toBe(`bun tools/seed-cms.ts --profil ${profil}`);
           expect(pkgAfter.scripts["import:seputarborneo"]).toBeUndefined();
 
+          // issue #227 — `bun.lock`'s root workspace name must follow
+          // `package.json`'s rewritten `name`, and ONLY the root workspace
+          // entry: every other workspace's own name (`apps/cms`'s "awcms",
+          // `apps/storefront`'s "@awcms-one/storefront", etc.) must survive
+          // untouched, and `bun run check:lockfile` must actually pass
+          // against the rewritten pair — this is the real regression the
+          // issue reports, not just a string match on `bun.lock`'s content.
+          const lockAfter = readFileSync(join(dir, "bun.lock"), "utf8");
+          expect(lockAfter).toContain(`"": {\n      "name": "${pkgAfter.name}",\n    },`);
+          expect(lockAfter).toContain('"name": "awcms",');
+          expect(lockAfter).toContain('"name": "@awcms-one/storefront",');
+          execSync("bun run tools/cek-lockfile.mjs", { cwd: dir, stdio: "pipe" });
+
           const seedCmsTs = readFileSync(join(dir, "tools/seed-cms.ts"), "utf8");
           expect(seedCmsTs).toContain(`let profil = ${JSON.stringify(profil)};`);
 
@@ -381,6 +449,13 @@ describe("template:init — idempotency", () => {
 
         const first = await main(flags, { root: dir, isTTY: false, skipInstall: true, skipGates: true });
         expect(first).toBe(0);
+
+        // issue #227 — the rewrite must have actually happened, and only to
+        // the root workspace entry.
+        const lockAfterFirst = readFileSync(join(dir, "bun.lock"), "utf8");
+        expect(lockAfterFirst).toContain('"": {\n      "name": "toko-contoh",\n    },');
+        expect(lockAfterFirst).toContain('"name": "awcms",');
+
         execSync("git add -A && git commit -q -m first --allow-empty", { cwd: dir });
 
         const planSecond = buildPlan({
@@ -430,6 +505,13 @@ describe("template:init — idempotency", () => {
         // no longer exists once already 0.1.0.
         const pkg = JSON.parse(readFileSync(join(dir, "package.json"), "utf8"));
         expect(pkg.version).toBe("0.1.0");
+
+        // The second run (identical flags) was a documented no-op above
+        // (`isEmptyPlan(planSecond)`); the third run's slug did NOT change,
+        // so bun.lock's root workspace name is still "toko-contoh" — this is
+        // the idempotency guarantee this rewrite must not break.
+        const lockAfterThird = readFileSync(join(dir, "bun.lock"), "utf8");
+        expect(lockAfterThird).toContain('"": {\n      "name": "toko-contoh",\n    },');
       },
       30_000
     );
@@ -453,3 +535,26 @@ describe("template:init — dirty working tree", () => {
   }
 });
 } // end runTemplateInitTests
+
+describe("rewriteBunLock (issue #227)", () => {
+  test("rewrites only the root name even when the root entry has more fields and a name+version workspace follows", () => {
+    const lock = [
+      "{",
+      '  "workspaces": {',
+      '    "": {',
+      '      "name": "awcms-one",',
+      '      "devDependencies": {',
+      '        "x": "^1.0.0",',
+      "      },",
+      "    },",
+      '    "packages/kontrak": {',
+      '      "name": "@awcms-one/kontrak",',
+      '      "version": "0.1.0",',
+      "    },",
+      "  },",
+      "}",
+    ].join("\n");
+    const out = rewriteBunLock(lock, { slug: "toko-contoh" });
+    expect(out).toBe(lock.replace('"name": "awcms-one"', '"name": "toko-contoh"'));
+  });
+});

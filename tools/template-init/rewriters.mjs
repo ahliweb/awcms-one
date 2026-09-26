@@ -16,6 +16,7 @@ import {
   replaceLineOnce,
   setEnvValue,
   setStringField,
+  setStringOrNullField,
   withBlock
 } from "./text.mjs";
 
@@ -73,8 +74,8 @@ export function rewriteSiteTs(content, flags) {
 
   const identity = extractBlock(
     next,
-    "export const DEFAULT_IDENTITY = {",
-    "} as const;",
+    "export const DEFAULT_IDENTITY: DefaultIdentity = {",
+    "};",
     "site.ts DEFAULT_IDENTITY"
   );
   let identityBlock = identity.block;
@@ -98,17 +99,20 @@ export function rewriteSiteTs(content, flags) {
     flags.kontakEmail,
     "DEFAULT_IDENTITY.contactEmail"
   );
-  if (flags.kontakTelepon) {
-    identityBlock = setStringField(
-      identityBlock,
-      "contactPhone",
-      flags.kontakTelepon,
-      "DEFAULT_IDENTITY.contactPhone"
-    );
-  }
-  if (flags.alamat) {
-    identityBlock = setStringField(identityBlock, "address", flags.alamat, "DEFAULT_IDENTITY.address");
-  }
+  // issue #233 — an OMITTED `--kontak-telepon`/`--alamat` must not leave
+  // BjekMart's own real phone number / street address as a live fallback
+  // forever: it writes the bare `null` literal instead, matched by
+  // `setStringOrNullField` regardless of whether the field currently holds
+  // a quoted string (BjekMart's original value, or a prior run's own
+  // output) or `null` (a prior run that also omitted the flag) — the same
+  // idempotency reasoning every other field in this block already follows.
+  identityBlock = setStringOrNullField(
+    identityBlock,
+    "contactPhone",
+    flags.kontakTelepon ?? null,
+    "DEFAULT_IDENTITY.contactPhone"
+  );
+  identityBlock = setStringOrNullField(identityBlock, "address", flags.alamat ?? null, "DEFAULT_IDENTITY.address");
   next = withBlock(identity, identityBlock);
 
   const theme = extractBlock(
@@ -227,6 +231,52 @@ export function rewriteStorefrontEnvExample(content, flags) {
   const describe = SITE_DESCRIPTION_BY_PROFILE[flags.profil] ?? SITE_DESCRIPTION_BY_PROFILE.toko;
   next = setEnvValue(next, "SITE_DESCRIPTION", describe(flags.nama), "apps/storefront/.env.example SITE_DESCRIPTION");
   return next;
+}
+
+/**
+ * `bun.lock` — ONLY the root workspace's own `name` field (the `""` entry
+ * inside `workspaces`), never any other workspace's name and never anything
+ * else in the file (issue #227).
+ *
+ * `template:init` rewrites `package.json`'s own `name` to `flags.slug`, but
+ * `bun install` does not rewrite an EXISTING root workspace entry in
+ * `bun.lock` to match — it reports "no changes" and leaves
+ * `workspaces[""].name` as `"awcms-one"`. `bun run check:lockfile`
+ * (`tools/cek-lockfile.mjs`) then fails in every derived repository with
+ * "lockfile entry name = \"awcms-one\", package.json name = \"<slug>\"".
+ *
+ * This is a targeted, single-field string replacement, never a full
+ * lockfile regeneration: `rm -rf node_modules bun.lock && bun install` would
+ * re-resolve every dependency and could drift resolved versions in a
+ * derived repo's very first commit, which is exactly what this fix must
+ * avoid.
+ *
+ * Anchored on the fixed STRUCTURE of the root workspace entry — the `""`
+ * key is unique to the root workspace by definition, and bun always emits
+ * it as the first entry of `workspaces` with this exact indentation — never
+ * on the literal value currently there. This is the same idempotency
+ * reasoning `rewriteComposeYaml`'s slug lines use: a second run with a
+ * DIFFERENT slug still finds this exact anchor, because the anchor is the
+ * surrounding JSON shape, not this tool's own prior output. If bun ever
+ * changes that shape, `replaceBetweenAnchors` throws loudly (exit 1) rather
+ * than silently rewriting the wrong field or a different workspace's name.
+ * The suffix ends at the name line's own `",\n`, never at the entry's closing
+ * brace: `replaceBetweenAnchors` matches lazily, so a closing-brace suffix
+ * would silently span into the NEXT workspace entry the day the root entry
+ * gains a second field.
+ *
+ * @param {string} content
+ * @param {TemplateFlags} flags
+ * @returns {string}
+ */
+export function rewriteBunLock(content, flags) {
+  return replaceBetweenAnchors(
+    content,
+    '"workspaces": {\n    "": {\n      "name": "',
+    '",\n',
+    flags.slug,
+    'bun.lock root workspace name (workspaces[""].name)'
+  );
 }
 
 const UPSTREAM_TEMPLATE_URL = "https://github.com/ahliweb/awcms-one";
