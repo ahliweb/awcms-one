@@ -12,12 +12,13 @@
  *
  *     "test": "bun test --path-ignore-patterns='apps/cms/**'"
  *
- * That would be green on a contributor's machine and RED in CI, because
- * `.github/workflows/ci.yml` calls `bun test` BARE, not `bun run test` — the
- * flag would be silently skipped, the whole CMS suite would be collected
- * against a database CI never provisioned, and every one of those tests
- * would fail. Two commands that look alike would give two different
- * answers, and the green one is the one typed more often on a workstation.
+ * That would be green on a contributor's machine and RED under local CI,
+ * because `tools/ci/runners/check.ts`'s `toko` leg calls `bun test` BARE,
+ * not `bun run test` — the flag would be silently skipped, the whole CMS
+ * suite would be collected against a database that leg never provisions,
+ * and every one of those tests would fail. Two commands that look alike
+ * would give two different answers, and the green one is the one typed
+ * more often on a workstation.
  *
  * ## What this gate guards
  *

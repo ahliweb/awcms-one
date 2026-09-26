@@ -515,6 +515,14 @@ const EXCLUDED_PATHS = new Map([
     }
   ],
   [
+    "tests/dependabot-config.test.mjs",
+    {
+      reason:
+        "issue #225 (ADR-0021) removed .github/dependabot.yml along with every GitHub Actions workflow, and this test — which existed only to guard that config file's own shape — went with it. CHANGELOG.md's historical entry for issue #180 still names the file it added at the time; CHANGELOG.md is a record of what was true when each entry was written, never rewritten to match the current tree.",
+      onlyIn: ["CHANGELOG.md"]
+    }
+  ],
+  [
     "tools/out/seputarborneo/posts.ndjson",
     {
       reason:

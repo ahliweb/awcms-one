@@ -3,22 +3,23 @@
  * Deterministic post-build assertion over an ALREADY-BUILT `dist/client` —
  * issue #147.
  *
- * `.github/workflows/template-init-smoke.yml`'s matrix leg already runs a
- * real `SITE_PROFILE=<profile> bun run build` (`astro build`) as its own
- * step; this script re-checks THAT build's output against
- * `src/config/profil.ts`'s promises — the same properties
+ * `bun run ci:template`'s per-profile leg (`tools/ci/runners/template.ts`,
+ * formerly `.github/workflows/template-init-smoke.yml`'s matrix leg)
+ * already runs a real `SITE_PROFILE=<profile> bun run build` (`astro
+ * build`) as its own step; this script re-checks THAT build's output
+ * against `src/config/profil.ts`'s promises — the same properties
  * `tests/profil-build-smoke.test.ts` and `tests/profil-routes.test.ts`
  * prove — WITHOUT building a second time. Those two test files each call
  * `buildProfile()` (`tests/profil-uji-bersama.ts`), which starts its own
- * stub CMS and runs its own `astro build`; running them here, on top of the
- * workflow's own build step, would double this job's build load for no
+ * stub CMS and runs its own `astro build`; running them here, on top of
+ * that leg's own build step, would double this job's build load for no
  * reason (the exact kind of contention issue #147 exists to remove) — and
- * `ci.yml`'s own 3-leg `Check` matrix already runs those two test files for
- * real, on every push, as the authoritative proof of the exclusion
- * invariant. This job's OWN scope (issue #138) is narrower: prove a
- * `template:init`-initialised checkout still builds AND ships the right
- * shape per profile — a cheap re-check of the build this job already paid
- * for, not a second independent proof.
+ * `bun run ci`'s own 3-leg `Check (toko|berita|landing)` matrix (formerly
+ * `ci.yml`'s) already runs those two test files for real, on every push, as
+ * the authoritative proof of the exclusion invariant. This job's OWN scope
+ * (issue #138) is narrower: prove a `template:init`-initialised checkout
+ * still builds AND ships the right shape per profile — a cheap re-check of
+ * the build this job already paid for, not a second independent proof.
  *
  * Usage: `SITE_PROFILE=<toko|berita|landing> bun scripts/assert-profil-dist.ts`
  * (unset `SITE_PROFILE` defaults to `toko`, same as a plain `bun run build`).

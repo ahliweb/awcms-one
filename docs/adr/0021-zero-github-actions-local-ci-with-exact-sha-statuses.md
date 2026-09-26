@@ -79,7 +79,9 @@ This PR (#225 part 1) is deliberately incomplete on its own: `.github/workflows/
 2. **A follow-up PR swaps branch protection** from the twelve GitHub Actions contexts to the twelve `local-ci/*` contexts, only once `bun run ci:watch` (or a manually-run `bun run ci:pr`) has posted real, green statuses against a real PR's head SHA — this PR's own verification step does exactly that, once, by hand, as a proof the mechanism works before anything is required on it.
 3. **Only after branch protection points at `local-ci/*`** does a later PR delete `.github/workflows/{ci,template-init-smoke,e2e,codeql}.yml` — removing them earlier would leave `main` with no required check answering while the new mechanism is still being proven.
 
-`.github/workflows/images.yml` and `release.yml` are out of scope for this migration; they are not required status checks and this ADR does not touch them.
+`.github/workflows/images.yml` and `release.yml` are out of scope for this migration; they are not required status checks and this ADR does not touch them (see [ADR-0023](0023-release-images-are-built-signed-and-published-from-a-trusted-release-host.md) for their own replacement).
+
+**Status: all three steps landed.** Step 2 (branch protection retargeted to the twelve `local-ci/*` contexts) and step 3 (every root workflow file, including `images.yml`/`release.yml`, and `.github/dependabot.yml`, deleted) both landed in issue #225 part 3. There is no longer a parallel GitHub Actions run checking the same commits — `tests/tanpa-github-actions.test.mjs` now guards against one being reintroduced.
 
 ## Consequences
 
@@ -87,7 +89,7 @@ This PR (#225 part 1) is deliberately incomplete on its own: `.github/workflows/
 - A contributor without access to whatever host runs `ci:watch` cannot get a `local-ci/*` result on their own PR without a maintainer (or a `--allow-fork` override) running one for them — this is the direct cost of D4's fork policy, accepted deliberately.
 - The security leg's blind spots (D7) are real and documented, not incidental; a future iteration can close the path-exclusion gap without revisiting this ADR's other decisions.
 - Every leg's evidence lives outside the repository (D6), so a maintainer debugging a red `local-ci/*` result needs access to the host that ran it, or to a `--keep`/`--report`-produced worktree, rather than a GitHub Actions log URL anyone with read access could open.
-- Until the migration sequence's step 2 lands, `.github/workflows/*.yml` and `tools/ci/`'s legs run in parallel, checking the same commits twice — accepted as the cost of proving the replacement before anything depends on it exclusively.
+- Until the migration sequence's steps landed (issue #225 part 3), `.github/workflows/*.yml` and `tools/ci/`'s legs ran in parallel for a time, checking the same commits twice — accepted as the cost of proving the replacement before anything depended on it exclusively.
 
 ## Rejected alternatives
 

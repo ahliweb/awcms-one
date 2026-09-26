@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](routing.md)
 
-<!-- i18n-source-hash: sha256:01778f5b39a4c56bedab6107cccb0df7a5882e7c8a502ddacf18e55fc9ee2a87 -->
+<!-- i18n-source-hash: sha256:b196fe7c4c394cc6a9fb03bd818264f159344edad751d845c32c273a50a64f82 -->
 
 # Routing
 
@@ -169,4 +169,4 @@ Di bawah `build.format: "file"`, halaman landing yang juga punya anak dipancarka
 
 ## Belum dibangun
 
-Path pelacakan-order per-kode (`/pesanan/{code}` — lihat "Commerce runtime" di atas untuk alasan mengapa `?kode=` adalah bentuk sungguhan yang kompatibel-statis). Job CI yang menjalankan suite e2e Playwright (`apps/storefront/tests/e2e/checkout.e2e.ts`, `bun run test:e2e` di dalam `apps/storefront`) — sudah ada dan lolos secara lokal, tapi belum dikaitkan ke `.github/workflows/ci.yml` (di luar cakupan berkas CI milik-ops untuk issue #30 — lihat [`docs/pengujian.md`](pengujian.id.md)).
+Path pelacakan-order per-kode (`/pesanan/{code}` — lihat "Commerce runtime" di atas untuk alasan mengapa `?kode=` adalah bentuk sungguhan yang kompatibel-statis). `apps/storefront/tests/e2e/checkout.e2e.ts` (`bun run test:e2e` di dalam `apps/storefront`) sudah ada dan lolos secara lokal, dan kini berjalan sebagai bagian leg `local-ci/e2e-*` (`tools/ci/runners/e2e.ts`, issue #183/#225) — lihat [`docs/pengujian.md`](pengujian.id.md).

@@ -1,8 +1,10 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](0018-awcms-one-is-a-template-with-build-profiles-and-an-idempotent-init.md)
 
-<!-- i18n-source-hash: sha256:dbf1b40b058e9504e731f514d26a38833ea5599f8172da258e46f5ca09fe53d9 -->
+<!-- i18n-source-hash: sha256:23e0d8a495e328095f24b5ce8061659a525415aa50bdc365fc07b031bdd79493 -->
 
 # ADR-0018 — awcms-one adalah sebuah template, dengan profil build dan `template:init` yang idempoten
+
+**Digantikan sebagian oleh [ADR-0021](0021-zero-github-actions-local-ci-with-exact-sha-statuses.id.md):** mekanisme matriks-CI milik ADR ini sendiri untuk memvalidasi `template:init` ("#137 (profil storefront + matriks CI)") dulu berjalan sebagai workflow GitHub Actions (`template-init-smoke.yml`); kini berjalan sebagai keempat leg `local-ci/template-*` milik `bun run ci:template` (`tools/ci/`, issue #225). Keputusan profil-build/`template:init` yang sungguh dibuat ADR ini tidak berubah — hanya permukaan eksekusi workflow-nya yang berpindah.
 
 - **Status:** Diterima
 - **Tanggal:** 20 September 2026

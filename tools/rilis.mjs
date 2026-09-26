@@ -239,16 +239,20 @@ fs.writeFileSync("package.json", `${JSON.stringify(pkg, null, 2)}\n`);
 console.log(`\nCHANGELOG.md and package.json updated to ${next}.`);
 
 // -- Commit and tag ------------------------------------------------------------
-// Issue #181: pushing the tag is also what PUBLISHES the release, not just
-// what records it. `.github/workflows/release.yml` triggers on `push: tags:
-// ['v*']` and takes this CHANGELOG.md entry straight to a GitHub Release
-// (via tools/rilis-catatan.mjs) — so the step printed below is not only
-// "record the tag", it is the actual publish action.
+// Issue #225 part 2 (ADR-0023): publishing is no longer automatic on tag
+// push — there is no GitHub Actions workflow left to trigger it. After the
+// tag is pushed, a trusted release host runs `bun run release:images --
+// --publish --tag <tag>` and then `bun run release:publish -- <tag>
+// --evidence <dir>` by hand (see docs/rilis.md's "Release runbook"); the
+// same `release:publish` command idempotently back-fills or re-publishes an
+// already-pushed tag's GitHub Release, so there is no separate
+// "workflow_dispatch" path any more.
 const publishNote =
-  `Pushing ${tag} triggers .github/workflows/release.yml, which publishes ` +
-  `the GitHub Release from this CHANGELOG.md entry automatically (or, to ` +
-  `back-fill or re-publish a tag that is already pushed, run that workflow ` +
-  `manually with "workflow_dispatch", giving it the tag).`;
+  `Pushing ${tag} does NOT publish anything by itself any more (ADR-0023) — ` +
+  `run "bun run release:images -- --publish --tag ${tag}" and then ` +
+  `"bun run release:publish -- ${tag} --evidence <evidence-dir>" from a ` +
+  `trusted release host to publish the GitHub Release from this ` +
+  `CHANGELOG.md entry. See docs/rilis.md's "Release runbook".`;
 
 if (!commit) {
   console.log("\nNext steps:");
