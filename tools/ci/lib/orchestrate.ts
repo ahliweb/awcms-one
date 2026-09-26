@@ -82,6 +82,15 @@ export async function orchestrate(
   const packageJsonText = await Bun.file(`${repoRoot}/package.json`).text();
   enforceBunPinOrThrow(packageJsonText);
 
+  // GitHub Actions set CI=true for every step, and both Playwright configs
+  // key their CI behaviour off it: `forbidOnly` (a stray `test.only` fails
+  // the run instead of silently skipping the rest of the suite), one retry
+  // for a flaky browser-protocol error, and the HTML report the e2e leg
+  // copies into its evidence. Every leg's child process inherits
+  // process.env, so setting it once here restores exactly what the removed
+  // workflows ran with.
+  process.env.CI = "true";
+
   const legs = selectLegs(options.legContexts);
 
   if (options.report) {
