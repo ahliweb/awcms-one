@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](0021-zero-github-actions-local-ci-with-exact-sha-statuses.md)
 
-<!-- i18n-source-hash: sha256:d5e7794ab389b47627e60fa2f154608e8f85fd14d289d8879e89f508c5bb3649 -->
+<!-- i18n-source-hash: sha256:57ddf608779ba0354cfd345e82adb5e5b818553aef5dbd15a5c1dd4c8819be13 -->
 
 # ADR-0021 — Nol GitHub Actions: CI lokal dengan status komit ber-SHA-eksak
 
@@ -81,7 +81,9 @@ PR ini (#225 bagian 1) sengaja belum lengkap sendirian: `.github/workflows/*.yml
 2. **PR susulan menukar branch protection** dari dua belas konteks GitHub Actions ke dua belas konteks `local-ci/*`, hanya setelah `bun run ci:watch` (atau `bun run ci:pr` yang dijalankan manual) memposting status nyata, hijau, terhadap SHA head PR nyata — langkah verifikasi PR ini sendiri melakukan persis itu, sekali, secara manual, sebagai bukti mekanismenya bekerja sebelum apa pun diwajibkan padanya.
 3. **Hanya setelah branch protection menunjuk ke `local-ci/*`** sebuah PR berikutnya menghapus `.github/workflows/{ci,template-init-smoke,e2e,codeql}.yml` — menghapusnya lebih awal akan meninggalkan `main` tanpa check wajib yang menjawab selagi mekanisme baru masih dibuktikan.
 
-`.github/workflows/images.yml` dan `release.yml` di luar lingkup migrasi ini; keduanya bukan status check wajib dan ADR ini tidak menyentuhnya.
+`.github/workflows/images.yml` dan `release.yml` di luar lingkup migrasi ini; keduanya bukan status check wajib dan ADR ini tidak menyentuhnya (lihat [ADR-0023](0023-release-images-are-built-signed-and-published-from-a-trusted-release-host.id.md) untuk pengganti keduanya).
+
+**Status: ketiga langkah sudah mendarat.** Langkah 2 (branch protection dialihkan ke dua belas context `local-ci/*`) dan langkah 3 (setiap berkas workflow root, termasuk `images.yml`/`release.yml`, dan `.github/dependabot.yml`, dihapus) keduanya mendarat di issue #225 bagian 3. Tidak ada lagi run GitHub Actions paralel yang memeriksa commit yang sama — `tests/tanpa-github-actions.test.mjs` kini menjaga agar itu tidak diperkenalkan ulang.
 
 ## Konsekuensi
 
@@ -89,7 +91,7 @@ PR ini (#225 bagian 1) sengaja belum lengkap sendirian: `.github/workflows/*.yml
 - Kontributor tanpa akses ke host mana pun yang menjalankan `ci:watch` tidak bisa mendapat hasil `local-ci/*` di PR-nya sendiri tanpa maintainer (atau override `--allow-fork`) menjalankannya untuk mereka — ini biaya langsung dari kebijakan fork D4, diterima secara sengaja.
 - Titik buta leg security (D7) nyata dan terdokumentasi, bukan kebetulan; iterasi mendatang bisa menutup celah path-exclusion tanpa meninjau ulang keputusan lain ADR ini.
 - Evidence setiap leg hidup di luar repositori (D6), sehingga maintainer yang men-debug hasil `local-ci/*` merah butuh akses ke host yang menjalankannya, atau ke worktree yang dihasilkan `--keep`/`--report`, bukan URL log GitHub Actions yang bisa dibuka siapa pun berakses baca.
-- Sampai langkah 2 urutan migrasi mendarat, `.github/workflows/*.yml` dan leg `tools/ci/` berjalan paralel, memeriksa komit yang sama dua kali — diterima sebagai biaya membuktikan penggantinya sebelum apa pun bergantung padanya secara eksklusif.
+- Sampai langkah-langkah urutan migrasi mendarat (issue #225 bagian 3), `.github/workflows/*.yml` dan leg `tools/ci/` sempat berjalan paralel untuk sementara waktu, memeriksa komit yang sama dua kali — diterima sebagai biaya membuktikan penggantinya sebelum apa pun bergantung padanya secara eksklusif.
 
 ## Alternatif yang ditolak
 
