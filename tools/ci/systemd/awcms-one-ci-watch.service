@@ -1,0 +1,37 @@
+# awcms-one-ci-watch.service — one polling pass of `bun run ci:watch`,
+# triggered by awcms-one-ci-watch.timer every 10 minutes. A USER unit
+# (installed under ~/.config/systemd/user/, run as the operator's own
+# account) — never a system unit, so it needs no root and carries no
+# elevated access beyond whatever the operator's own shell already has
+# (a `gh` session, docker group membership, etc).
+#
+# Not installed by this change, per ADR-0021 (issue #225 part 1) — an
+# operator installs it deliberately:
+#
+#   mkdir -p ~/.config/systemd/user
+#   cp tools/ci/systemd/awcms-one-ci-watch.{service,timer} ~/.config/systemd/user/
+#   # Edit WorkingDirectory below to this checkout's real path first.
+#   systemctl --user daemon-reload
+#   systemctl --user enable --now awcms-one-ci-watch.timer
+#
+# `loginctl enable-linger <user>` if this should keep running after the
+# operator's own session ends (a headless CI server almost always wants
+# this; an interactive workstation usually does not).
+
+[Unit]
+Description=awcms-one local CI — one ci:watch pass
+# Never two passes at once — ci:watch's own O_EXCL lock (tools/ci/lib/lock.ts)
+# is the belt; this is the suspenders, refusing to even start a second
+# instance if the previous run is still going for any reason.
+After=network-online.target docker.service
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+# EDIT THIS to the absolute path of your awcms-one checkout before installing.
+WorkingDirectory=%h/awcms-one
+ExecStart=/usr/bin/env bun run ci:watch
+# LOCAL_CI_GITHUB_TOKEN, if not relying on `gh auth token` — set it in an
+# EnvironmentFile the operator creates themselves (never committed):
+# EnvironmentFile=-%h/.config/awcms-one-ci/watch.env
+TimeoutStartSec=1800

@@ -1,0 +1,42 @@
+[
+  {
+    "ruleId": "js/file-system-race",
+    "path": "tools/rilis.mjs",
+    "reason": "won't fix (GitHub code-scanning alert #11): tools/rilis.mjs is single-user, maintainer-run local release tooling with no trust boundary between the check and the write; the TOCTOU window is not exploitable here."
+  },
+  {
+    "ruleId": "js/file-system-race",
+    "path": "tools/knowledge-graph-update.mjs",
+    "reason": "won't fix (GitHub code-scanning alert #10): tools/knowledge-graph-update.mjs is single-user, maintainer-run local tooling with no trust boundary between the check and the write; the TOCTOU window is not exploitable here."
+  },
+  {
+    "ruleId": "js/file-system-race",
+    "path": "tests/knowledge-no-subtree-write.test.mjs",
+    "reason": "used in tests (GitHub code-scanning alert #9): tests/knowledge-no-subtree-write.test.mjs's hashTree/fixture race is inside a test's own temp-directory setup, not production code."
+  },
+  {
+    "ruleId": "js/reflected-xss",
+    "path": "apps/storefront/tests/penyaji-bayangan-html.test.ts",
+    "reason": "used in tests (GitHub code-scanning alert #8): the stub server echoes the request URL on purpose inside a unit test, to assert what the adapter saw; it is never served to a real client."
+  },
+  {
+    "ruleId": "js/insufficient-password-hash",
+    "path": "apps/cms/src/lib/auth/oauth-state-token.ts",
+    "reason": "false positive (GitHub code-scanning alerts #6/#7): computePkceChallengeS256 implements RFC 7636 \u00a74.2, which mandates SHA-256 for the PKCE S256 code_challenge (not a password hash); hashOAuthState hashes a 256-bit CSPRNG state token (randomBytes(32)), not a user-chosen password \u2014 a slow KDF buys nothing against a high-entropy random input."
+  },
+  {
+    "ruleId": "js/insufficient-password-hash",
+    "path": "apps/cms/src/lib/auth/mfa-challenge-token.ts",
+    "reason": "false positive (GitHub code-scanning alert #5): hashChallengeToken hashes a 256-bit CSPRNG challenge token (randomBytes(32)), not a user-chosen password; a slow KDF buys nothing against a high-entropy random input."
+  },
+  {
+    "ruleId": "js/incomplete-url-substring-sanitization",
+    "path": "apps/storefront/tests/profil-build-smoke.test.ts",
+    "reason": "false positive (GitHub code-scanning alert #4): uses Array.includes to check membership in a fixed CSP source list, not substring sanitization of a URL."
+  },
+  {
+    "ruleId": "js/clear-text-logging",
+    "path": "tools/seed-cms.ts",
+    "reason": "won't fix (GitHub code-scanning alert #3): prints the generated owner password once, explicitly labelled SHOWN ONCE and not stored by the script, for the local dev operator who needs it; this is a local dev seed tool, not a production logging path."
+  }
+]

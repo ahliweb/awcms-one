@@ -1,0 +1,64 @@
+# gitleaks.toml — the `local-ci/security` leg's gitleaks configuration.
+#
+# `gitleaks detect`'s default rule set is entropy/pattern-based and, run
+# over this whole repository once for real, found exactly twenty matches —
+# every one of them either a deliberate test fixture for this codebase's OWN
+# redaction logic (apps/cms/tests/redaction.test.ts's own committed
+# "here is what a real private key/API key LOOKS like" strings, which the
+# test asserts get masked), a machine-generated report (graphify-out/*,
+# which quotes source identifiers that merely look high-entropy), a legacy
+# crawl-index text dump (apps/cms/data/seputarborneo-legacy/), or ordinary
+# prose whose wording happens to trip the entropy heuristic — never a real
+# credential. `bun run audit:dokumen`-style hand-editing (adding one entry
+# per finding, forever) would fight the same noise on every future prose
+# edit; excluding entire generated/fixture SURFACES here instead is the
+# same choice `.github/codeql/codeql-config.yml`'s `paths-ignore` already
+# made for CodeQL, applied to gitleaks by its own native mechanism.
+#
+# This file extends gitleaks' own default rule set (`useDefault = true`)
+# rather than replacing it — nothing here narrows what counts as a secret,
+# only WHERE this leg looks for one.
+[extend]
+useDefault = true
+
+[allowlist]
+paths = [
+  # Deliberately secret-shaped literals, asserted to be masked by the
+  # redaction logic they test — the whole POINT of this file is a
+  # private-key/API-key-shaped string.
+  '''apps/cms/tests/redaction\.test\.ts''',
+  '''apps/cms/tests/security-readiness-checks\.test\.ts''',
+  '''tests/deploy-preflight\.test\.mjs''',
+
+  # Machine-generated knowledge-graph output — AGENTS.md's "Working with
+  # the knowledge graph" already forbids hand-editing these; a node label
+  # or report line that merely looks high-entropy is not a secret.
+  '''apps/cms/graphify-out/.*''',
+  '''graphify-out/.*''',
+
+  # A legacy crawl-index text dump (URLs and hashes from the Wayback
+  # Machine CDX API), vendored reference data with no logic of its own —
+  # same class of exclusion as codeql-config.yml's own "vendored reference/
+  # sample datasets".
+  '''apps/cms/data/seputarborneo-legacy/.*''',
+
+  # This module's own contract fixtures deliberately name INVALID example
+  # values under keys like "invalid-raw-secret-in-*" to test that a bad
+  # value is rejected — the JSON key states the point.
+  '''apps/cms/src/modules/omes-control/contracts/v1/PIN\.json''',
+
+  # Prose whose wording (not a credential) trips the entropy heuristic.
+  '''apps/cms/docs/awcms/release-process\.md''',
+  '''apps/cms/docs/awcms/release-process\.id\.md'''
+]
+
+# Not a path exclusion: this one benign line (`row.p256dhKey`/`row.p256dh_key`,
+# a Web Push subscription's own column name — RFC 8291's ECDH public key
+# field, never a secret literal) tripped the generic-api-key rule's
+# `key\s*=` shape on the property NAME, not any value. A path exclusion
+# would be too broad for a real, non-generated application source file
+# (apps/cms/src/modules/push-delivery/application/subscription-directory.ts);
+# a content regex excuses only this exact benign shape.
+regexes = [
+  '''row\.p256dh_key'''
+]

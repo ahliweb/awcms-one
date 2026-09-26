@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:b24d42b365d676d59841d725f4935546170f484977bf1762a925dfdea0e6d462 -->
+<!-- i18n-source-hash: sha256:8226532a599100f817af3dd2633715ce3918ba91040976233852bd888dd54e73 -->
 
 # Architecture Decision Records
 
@@ -38,6 +38,7 @@ Yang **tidak** butuh ADR: menambah field dalam skema yang sudah diputuskan, kena
 | [0018](0018-awcms-one-is-a-template-with-build-profiles-and-an-idempotent-init.md) | awcms-one adalah sebuah template, dengan profil build dan `template:init` yang idempoten | Diterima |
 | [0019](0019-production-topology-two-images-a-jobs-sidecar-and-a-fail-closed-preflight.md) | Topologi produksi: dua image, satu sidecar jobs, dan preflight fail-closed | Diterima |
 | [0020](0020-publish-only-the-cms-images-to-ghcr-with-sbom-and-provenance.md) | Hanya image CMS yang dipublikasikan ke GHCR, dengan SBOM dan provenance | Diterima |
+| [0021](0021-zero-github-actions-local-ci-with-exact-sha-statuses.md) | Nol GitHub Actions: CI lokal dengan status komit ber-SHA-eksak | Diterima |
 | [0022](0022-production-deployment-is-server-side-and-explicit.md) | Deployment produksi bersifat server-side dan eksplisit | Diterima |
 | [0023](0023-release-images-are-built-signed-and-published-from-a-trusted-release-host.md) | Image rilis dibangun, ditandatangani, dan dipublikasikan dari release host tepercaya | Diterima |
 

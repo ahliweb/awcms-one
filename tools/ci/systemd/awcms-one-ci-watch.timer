@@ -1,0 +1,16 @@
+# awcms-one-ci-watch.timer — fires awcms-one-ci-watch.service every 10
+# minutes. See that unit's own header for installation.
+
+[Unit]
+Description=Run awcms-one local CI's watch pass every 10 minutes
+
+[Timer]
+OnBootSec=2min
+OnUnitActiveSec=10min
+# A pass that overran into the next tick is skipped rather than queued —
+# ci:watch's own lock would refuse the overlap anyway; this avoids a burst
+# of refused starts piling up in the journal.
+AccuracySec=30s
+
+[Install]
+WantedBy=timers.target
