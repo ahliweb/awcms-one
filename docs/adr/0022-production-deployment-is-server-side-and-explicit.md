@@ -2,6 +2,8 @@
 
 # ADR-0022 — Production deployment is server-side and explicit
 
+**Superseded in part by [ADR-0021](0021-zero-github-actions-local-ci-with-exact-sha-statuses.md):** D1 below still allows GitHub Actions for CI, security and release artifacts. Issue #225 later removed GitHub Actions entirely, so CI runs as `local-ci/*` legs (ADR-0021) and release images are built and signed on a trusted release host (ADR-0023). The rest of this ADR, server-side and explicit production deployment, stands unchanged.
+
 - **Status:** Accepted
 - **Date:** 26 September 2026
 - **Decision maker:** ahliweb

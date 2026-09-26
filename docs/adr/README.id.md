@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:b6c6d8bef2caf49cee72faae44c4009b62ed4d8d656ae972227d0e98a377d9de -->
+<!-- i18n-source-hash: sha256:c828edd33e8fd9320735ef6af3277edf8f47c0927600834be7b655ad0666ffc4 -->
 
 # Architecture Decision Records
 
@@ -39,7 +39,7 @@ Yang **tidak** butuh ADR: menambah field dalam skema yang sudah diputuskan, kena
 | [0019](0019-production-topology-two-images-a-jobs-sidecar-and-a-fail-closed-preflight.md) | Topologi produksi: dua image, satu sidecar jobs, dan preflight fail-closed | Diterima |
 | [0020](0020-publish-only-the-cms-images-to-ghcr-with-sbom-and-provenance.md) | Hanya image CMS yang dipublikasikan ke GHCR, dengan SBOM dan provenance | Diterima (digantikan sebagian oleh [0023](0023-release-images-are-built-signed-and-published-from-a-trusted-release-host.md)) |
 | [0021](0021-zero-github-actions-local-ci-with-exact-sha-statuses.md) | Nol GitHub Actions: CI lokal dengan status komit ber-SHA-eksak | Diterima |
-| [0022](0022-production-deployment-is-server-side-and-explicit.md) | Deployment produksi bersifat server-side dan eksplisit | Diterima |
+| [0022](0022-production-deployment-is-server-side-and-explicit.md) | Deployment produksi bersifat server-side dan eksplisit | Diterima (digantikan sebagian oleh [0021](0021-zero-github-actions-local-ci-with-exact-sha-statuses.md)) |
 | [0023](0023-release-images-are-built-signed-and-published-from-a-trusted-release-host.md) | Image rilis dibangun, ditandatangani, dan dipublikasikan dari release host tepercaya | Diterima |
 
 ## Mengapa penomoran dimulai dari 0001

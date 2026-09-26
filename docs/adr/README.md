@@ -37,7 +37,7 @@ What does **not** need an ADR: adding a field within an already-decided schema, 
 | [0019](0019-production-topology-two-images-a-jobs-sidecar-and-a-fail-closed-preflight.md) | Production topology: two images, a jobs sidecar, and a fail-closed preflight | Accepted |
 | [0020](0020-publish-only-the-cms-images-to-ghcr-with-sbom-and-provenance.md) | Publish only the CMS images to GHCR, with SBOM and provenance | Accepted (superseded in part by [0023](0023-release-images-are-built-signed-and-published-from-a-trusted-release-host.md)) |
 | [0021](0021-zero-github-actions-local-ci-with-exact-sha-statuses.md) | Zero GitHub Actions: local CI with exact-SHA commit statuses | Accepted |
-| [0022](0022-production-deployment-is-server-side-and-explicit.md) | Production deployment is server-side and explicit | Accepted |
+| [0022](0022-production-deployment-is-server-side-and-explicit.md) | Production deployment is server-side and explicit | Accepted (superseded in part by [0021](0021-zero-github-actions-local-ci-with-exact-sha-statuses.md)) |
 | [0023](0023-release-images-are-built-signed-and-published-from-a-trusted-release-host.md) | Release images are built, signed, and published from a trusted release host | Accepted |
 
 ## Why the numbering starts at 0001
