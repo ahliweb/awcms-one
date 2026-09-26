@@ -43,8 +43,8 @@ bun run template:init \
 | `--warna-sekunder` | No | Defaults to a darker shade of `--warna-primer` when omitted — `DEFAULT_THEME_COLORS.secondary` |
 | `--warna-aksen` | No | Defaults to a contrasting accent when omitted — `DEFAULT_THEME_COLORS.accent` |
 | `--kontak-email` | Yes | Becomes `DEFAULT_IDENTITY.contactEmail` and `SUPPORT*.md`/`SECURITY*.md`'s contact line |
-| `--kontak-telepon` | No | Becomes `DEFAULT_IDENTITY.contactPhone` when given; omitted leaves no phone line rather than inventing one |
-| `--alamat` | No | Becomes `DEFAULT_IDENTITY.address` when given |
+| `--kontak-telepon` | No | Becomes `DEFAULT_IDENTITY.contactPhone` when given; omitted writes `null` (issue #233 — `DEFAULT_IDENTITY.contactPhone` is typed `string \| null` specifically for this) rather than leaving BjekMart's own real phone number as a live fallback. Every consumer already renders no phone block at all when it is `null` |
+| `--alamat` | No | Becomes `DEFAULT_IDENTITY.address` when given; omitted writes `null` the same way, for the same reason — no street address block renders, rather than BjekMart's own |
 | `--dry-run` | No | Prints the full rewrite/removal plan and touches nothing |
 | `--yes` | No | Required to proceed on a dirty working tree; otherwise the tool refuses to run rather than mixing its own rewrite into uncommitted changes |
 
@@ -58,7 +58,7 @@ bun run template:init \
 
 Exactly the brand surface [ADR-0018 D4](adr/0018-awcms-one-is-a-template-with-build-profiles-and-an-idempotent-init.md#d4--brand-lives-in-env--sitets-plus-a-short-named-list-of-files-templateinit-rewrites) names:
 
-- `apps/storefront/src/config/site.ts` — `DEFAULT_IDENTITY` (`name`, `description`, `contactEmail`, and `contactPhone`/`address` when given), `DEFAULT_THEME_COLORS`, and the `SITE_NAME`/`SITE_DESCRIPTION` `readEnvOr` fallbacks. **A third correction to this section's wave-0 wording**: `DEFAULT_IDENTITY.description` was not in the original list (only `name`/`contactEmail`/`contactPhone`/`address` were named) — added here because leaving it untouched ships BjekMart's own catchphrase ("...di BjekMart") into every derived deployment forever, exactly the defect D4's own "Rejected (c)" paragraph describes.
+- `apps/storefront/src/config/site.ts` — `DEFAULT_IDENTITY` (`name`, `description`, `contactEmail` always; `contactPhone`/`address` written verbatim when the matching flag is given, and written as the bare `null` literal — never left as BjekMart's own real phone number/street address — when it is omitted, per issue #233; `DEFAULT_IDENTITY`'s own type allows `null` for exactly those two fields), `DEFAULT_THEME_COLORS`, and the `SITE_NAME`/`SITE_DESCRIPTION` `readEnvOr` fallbacks. **A third correction to this section's wave-0 wording**: `DEFAULT_IDENTITY.description` was not in the original list (only `name`/`contactEmail`/`contactPhone`/`address` were named) — added here because leaving it untouched ships BjekMart's own catchphrase ("...di BjekMart") into every derived deployment forever, exactly the defect D4's own "Rejected (c)" paragraph describes.
 - Root `package.json` — `name`, `description`, `homepage`, `repository.url`, and (once only, on the first run) a new `awcmsOne.templateVersion` field recording the awcms-one version this derived repo was created from
 - `compose.yaml` — the Docker Compose project name, container name, and named volume
 - `README.md`/`README.id.md` — the hero section

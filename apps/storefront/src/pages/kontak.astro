@@ -50,10 +50,12 @@ const intro = isGroupActive("toko")
     </div>
 
     <div class="contact-grid">
-      <div class="contact-card">
-        <h2>Alamat</h2>
-        <p>{identity.address}</p>
-      </div>
+      {identity.address && (
+        <div class="contact-card">
+          <h2>Alamat</h2>
+          <p>{identity.address}</p>
+        </div>
+      )}
 
       {identity.contactPhone && (
         <div class="contact-card">
