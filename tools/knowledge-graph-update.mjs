@@ -40,9 +40,18 @@ import { join, resolve } from "node:path";
 const ROOT = resolve(import.meta.dirname, "..");
 const COST_PATH = join(ROOT, "graphify-out/cost.json");
 
+// graphify's Leiden clustering is seeded, but its input node order comes
+// from Python set/dict iteration, which follows per-process string-hash
+// randomization. Without a fixed PYTHONHASHSEED every run re-partitions a
+// handful of communities differently, `.graphify_labels.json.sig` no longer
+// matches them, and their hand-chosen names fall back to hub filenames —
+// which `bun run audit:graf` then rejects. Pinning the seed makes a rebuild
+// of an unchanged tree reproduce the same partition, so names stick.
+const GRAPHIFY_ENV = { ...process.env, PYTHONHASHSEED: "0" };
+
 function run(args) {
   console.log(`$ graphify ${args.join(" ")}`);
-  const proc = Bun.spawnSync(["graphify", ...args], { cwd: ROOT, stdout: "inherit", stderr: "inherit" });
+  const proc = Bun.spawnSync(["graphify", ...args], { cwd: ROOT, env: GRAPHIFY_ENV, stdout: "inherit", stderr: "inherit" });
   if (proc.exitCode !== 0) {
     console.error(`knowledge:graph:update FAILED — \`graphify ${args.join(" ")}\` exited ${proc.exitCode}`);
     process.exit(1);

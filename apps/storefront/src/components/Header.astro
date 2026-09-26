@@ -2,13 +2,24 @@
 /**
  * The site header (issue #24): brand mark, primary nav, search, cart count.
  *
- * ## Mobile nav needs no JavaScript
+ * ## Mobile nav needs no JavaScript — and is rendered TWICE (issue #230)
  *
- * The nav list lives inside a native `<details>`/`<summary>` disclosure.
- * `global.css` shows/hides the `<summary>` toggle and the nav's layout by
- * viewport width — the browser's own disclosure widget does the opening and
- * closing, keyboard included (`Enter`/`Space` on a focused `<summary>`), with
- * nothing in this file's own `<script>` block touching it at all.
+ * `primaryNav` is mapped into markup twice from the same array, so the two
+ * copies can never drift apart: a desktop `.primary-nav`, a plain always-
+ * open horizontal `<nav>`, and — inside a native `<details>`/`<summary>`
+ * disclosure — a second `<nav aria-label="Navigasi utama">` for mobile.
+ * This is two renders rather than one nav shown/hidden by CSS because a
+ * *closed* `<details>` hides its own content (everything but `<summary>`)
+ * through the UA stylesheet's `::details-content` rule no author CSS can
+ * override — so a single nav living inside the `<details>` was never
+ * actually visible above the mobile breakpoint, in any browser (issue
+ * #230's defect). `global.css` shows exactly one of the two copies by
+ * viewport width, `display: none`-ing the other out of the accessibility
+ * tree, so a screen reader still meets exactly one "Navigasi utama"
+ * landmark. Below the breakpoint, the browser's own disclosure widget does
+ * the opening and closing of the mobile copy, keyboard included
+ * (`Enter`/`Space` on a focused `<summary>`), with nothing in this file's
+ * own `<script>` block touching it at all.
  *
  * ## No `<img>` logo — see `src/lib/awcms/profil.ts`
  *
@@ -118,6 +129,12 @@ const brandInitial = identity.name.trim().charAt(0).toUpperCase() || "•";
       <span class="site-brand-tile" aria-hidden="true">{brandInitial}</span>
       {identity.name}
     </a>
+
+    <nav class="primary-nav" aria-label="Navigasi utama">
+      {primaryNav.map((item) => (
+        <a href={item.href}>{item.label}</a>
+      ))}
+    </nav>
 
     <details class="mobile-nav-toggle">
       <summary aria-label="Buka menu navigasi">

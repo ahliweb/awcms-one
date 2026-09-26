@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](responsif.md)
 
-<!-- i18n-source-hash: sha256:3a741be488045396b39bc19a4c928a53be4a2c4cb71684d6c0c13100459a422d -->
+<!-- i18n-source-hash: sha256:b57758373090a89f7b53da76767ad2a6e9b815ff3d8226c672499b62744aaa71 -->
 
 # Desain responsif
 
@@ -12,7 +12,7 @@ Klaim increment 1 bahwa aplikasi ini sama sekali **tidak** membawa breakpoint le
 
 | File | Breakpoint | Apa yang berubah |
 | --- | --- | --- |
-| `global.css` | `max-width: 720px` | Layout navigasi mobile |
+| `global.css` | `max-width: 720px` (selain itu, desktop) | Render mana dari dua `Navigasi utama` yang ditampilkan (issue #230 — lihat di bawah) |
 | `katalog.css` | `max-width: 860px` (×2) | Sidebar `/produk` (`minmax(0,260px) 1fr` → kolom tunggal); collapse grid-produk kedua |
 | `katalog.css` | `max-width: 720px` | Pemadatan lanjutan halaman katalog |
 | `berita.css` | `min-width: 900px` | **Satu-satunya breakpoint min-width (ke-atas-desktop)** — layout dua-kolom berita (`minmax(0,1fr)` → `minmax(0,2fr) minmax(0,1fr)`) hanya aktif di atas 900px; di bawahnya, kedua kolom bertumpuk, yang merupakan default mobile-first, bukan pengecualian |
@@ -37,6 +37,10 @@ Setiap kontrol interaktif yang ditambahkan untuk keranjang/checkout/wishlist (to
 ## Akun pelanggan: tanpa breakpoint tersendiri, fluid seperti yang lain
 
 `apps/storefront/src/styles/akun.css` (`/masuk`, `/daftar`, `/akun*`, issue #88/#90/#93) tidak membawa query `@media` sendiri — terverifikasi dengan membaca berkasnya: setiap aturan tidak bergantung lebar, dan target ukuran 44px `min-height` yang sama yang disebut komentar header stylesheet-nya sendiri diterapkan seragam di setiap kontrol (input kode OTP, kolom formulir alamat, tombol gabung afiliasi), tidak digerbangi breakpoint apa pun. Grid kartu-navigasi dashboard akun adalah `grid-template-columns: repeat(auto-fill, minmax(180px, 1fr))` — mekanisme reflow `auto-fill` yang sama yang dipakai grid katalog dan berita, tanpa clamp overflow `min(Npx, 100%)` tambahan yang dibawa keduanya (tidak dibutuhkan di sini: track 180px tidak pernah mendekati lebar viewport ponsel itu sendiri), sehingga tetap kolaps menjadi sesedikit satu kolom pada lebar ponsel tanpa breakpoint sendiri.
+
+## Nav utama dirender dua kali, bukan ditampilkan/disembunyikan hanya lewat CSS (issue #230)
+
+`Header.astro` me-render array `primaryNav`-nya dua kali: sebuah `<nav class="primary-nav">` desktop, selalu terbuka, dan salinan mobile yang sudah ada di dalam `.mobile-nav-toggle` (disclosure `<details>`/`<summary>` native yang dijelaskan `docs/aksesibilitas.md`). `global.css` menampilkan tepat satu dari keduanya — `.primary-nav { display: flex }` / `.mobile-nav-toggle { display: none }` secara default (di atas 720px), dibalik di dalam `@media (max-width: 720px)` — tanpa jarak atau tumpang tindih pada breakpoint itu sendiri. Sebelum perbaikan ini hanya ada satu render, hidup di dalam `<details>`, dimaksudkan menjadi nav desktop di atas 720px lewat `display: flex` pada CSS-nya sendiri. Itu tidak pernah berfungsi di browser apa pun: `<details>` yang *tertutup* menyembunyikan isinya sendiri (semua kecuali `<summary>`) lewat aturan `::details-content { content-visibility: hidden }` milik UA stylesheet, yang tidak bisa ditimpa CSS penulis pada anak-anak konten yang tersembunyi itu — sehingga nav utama tidak terlihat di atas 720px, di setiap `SITE_PROFILE`, sampai issue ini. `apps/storefront/tests/e2e/navigasi-utama.e2e.ts` adalah uji regresi peramban sungguhan: pada 1440px ia menegaskan nav desktop terlihat, sebuah link dapat difokus-keyboard lewat Tab, dan hanya satu landmark `Navigasi utama` yang terlihat sekaligus; pada 360px ia menegaskan salinan desktop tersembunyi dan toggle `<summary>` tetap membuka nav mobile.
 
 ## Chrome redesign 2026-09 (issue #166)
 

@@ -10,7 +10,7 @@ Increment 1's claim that this app carried **no** viewport-width breakpoints at a
 
 | File | Breakpoint | What changes |
 | --- | --- | --- |
-| `global.css` | `max-width: 720px` | Mobile navigation layout |
+| `global.css` | `max-width: 720px` (else, desktop) | Which of the two `Navigasi utama` renders is shown (issue #230 — see below) |
 | `katalog.css` | `max-width: 860px` (×2) | The `/produk` sidebar (`minmax(0,260px) 1fr` → single column); a second product-grid collapse |
 | `katalog.css` | `max-width: 720px` | Further catalog-page tightening |
 | `berita.css` | `min-width: 900px` | The **only min-width (desktop-up) breakpoint** — the news two-column layout (`minmax(0,1fr)` → `minmax(0,2fr) minmax(0,1fr)`) only activates above 900px; below it, both columns stack, which is the mobile-first default rather than an exception |
@@ -35,6 +35,10 @@ Every interactive control added for cart/checkout/wishlist (buttons, quantity st
 ## Customer accounts: no dedicated breakpoint, fluid like the rest
 
 `apps/storefront/src/styles/akun.css` (`/masuk`, `/daftar`, `/akun*`, issues #88/#90/#93) carries no `@media` query of its own — verified by reading the file: every rule is width-independent, and the same 44px `min-height` target size the stylesheet's own header comment names is applied uniformly across every control (the OTP code input, the address form's fields, the affiliate enrol button), not gated behind a breakpoint. The account dashboard's navigation-card grid is `grid-template-columns: repeat(auto-fill, minmax(180px, 1fr))` — the same `auto-fill` reflow mechanism the catalog and news grids use, without the extra `min(Npx, 100%)` overflow clamp those two carry (unneeded here: a 180px track never approaches a phone viewport's own width), so it still collapses to as few as one column at phone width with no breakpoint of its own.
+
+## The primary nav is rendered twice, not shown/hidden by CSS alone (issue #230)
+
+`Header.astro` renders its `primaryNav` array twice: a desktop `<nav class="primary-nav">`, always open, and the pre-existing mobile copy inside `.mobile-nav-toggle` (the native `<details>`/`<summary>` disclosure `docs/aksesibilitas.md` describes). `global.css` shows exactly one of the two — `.primary-nav { display: flex }` / `.mobile-nav-toggle { display: none }` by default (above 720px), flipped inside `@media (max-width: 720px)` — with no gap or overlap in the breakpoint itself. Before this fix there was only one render, living inside the `<details>`, meant to become the desktop nav above 720px via `display: flex` on its own CSS. That never worked in any browser: a *closed* `<details>` hides its own content (everything but `<summary>`) through the UA stylesheet's `::details-content { content-visibility: hidden }` rule, which author CSS on the hidden content's children cannot override — so the primary nav was invisible above 720px, in every `SITE_PROFILE`, until this issue. `apps/storefront/tests/e2e/navigasi-utama.e2e.ts` is the real-browser regression test: at 1440px it asserts the desktop nav is visible, a link is keyboard-focusable via Tab, and only one `Navigasi utama` landmark is visible at once; at 360px it asserts the desktop copy is hidden and the `<summary>` toggle still opens the mobile nav.
 
 ## The 2026-09 redesign's chrome (issue #166)
 
