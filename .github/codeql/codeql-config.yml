@@ -1,5 +1,8 @@
-# CodeQL config for .github/workflows/codeql.yml's javascript-typescript
-# analysis (issue #184, part of epic #179).
+# CodeQL config for the local-ci/security leg's javascript-typescript
+# analysis (tools/ci/runners/security.ts, issue #184/#225, part of epic
+# #179) — originally written for `.github/workflows/codeql.yml`, removed
+# along with every other GitHub Actions workflow (ADR-0021); this file
+# itself stays, read directly by the CodeQL CLI rather than codeql-action.
 #
 # apps/cms/** SOURCE stays IN SCOPE — nothing below excludes it. It is the
 # code that actually runs in this deployment (SECURITY.md's "apps/cms"
