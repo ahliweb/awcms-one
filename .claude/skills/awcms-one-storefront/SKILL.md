@@ -95,6 +95,6 @@ SITE_PROFILE=berita bun run check                                              #
 SITE_PROFILE=berita bun test tests/profil-build-smoke.test.ts tests/profil-routes.test.ts
 ```
 
-CI runs exactly this as a 3-leg matrix (`Check (toko)`, `Check (berita)`, `Check (landing)` — all three are required status checks on `main`); see [`docs/pengujian.md`](../../../docs/pengujian.md)'s "build-profile tier" for what each assertion actually proves.
+Local CI runs exactly this as three legs (`local-ci/check-toko`, `local-ci/check-berita`, `local-ci/check-landing` — all three are required commit statuses on `main`, posted by `bun run ci:pr -- <n>`; ADR-0021); see [`docs/pengujian.md`](../../../docs/pengujian.md)'s "build-profile tier" for what each assertion actually proves.
 
 `bun run audit:dokumen`/`audit:translation` (from the root) if you touched a `docs/**` file in the same change — see [`docs/pengujian.md`](../../../docs/pengujian.md) for what each tier actually proves.

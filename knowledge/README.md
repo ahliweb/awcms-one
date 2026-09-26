@@ -20,7 +20,7 @@ Two graphs, not one: this repo builds its OWN root-owned graph rather than re-ex
 
 ## Toolchain
 
-Tested against **`graphify` 0.9.35** (a `uv tool install graphifyy` / `pip install graphifyy` install, resolved via `PATH`). `graphify` is a local Python tool; it is not installed on the CI runner, so only artefact-reading checks (`bun run audit:graf`) run there — the commands below need it on `PATH` locally.
+Tested against **`graphify` 0.9.35** (a `uv tool install graphifyy` / `pip install graphifyy` install, resolved via `PATH`). `graphify` is a local Python tool that no gate depends on: local CI (`bun run ci`, ADR-0021) runs only the artefact-reading check (`bun run audit:graf`), so a CI host needs no graphify install — the commands below need it on `PATH` wherever the graph is rebuilt.
 
 | Command | Does | Needs `graphify` |
 | --- | --- | --- |
@@ -28,7 +28,7 @@ Tested against **`graphify` 0.9.35** (a `uv tool install graphifyy` / `pip insta
 | `bun run knowledge:graph:combine` | Merges the root graph with `apps/cms/graphify-out/graph.json` into `graphify-out/combined/graph.json` (gitignored) via `graphify merge-graphs`, failing closed on a missing/malformed/empty/incompatible input | yes |
 | `bun run knowledge:obsidian:export` | Exports the root graph to a staging vault, validates it, syncs the allowlisted result to `knowledge/generated/graphify/` | yes |
 | `bun run audit:graf` | Reads the already-committed artefacts and checks the invariants below | no |
-| `bun run knowledge:check` | Alias for `audit:graf` — the CI-safe half of this family | no |
+| `bun run knowledge:check` | Alias for `audit:graf` — the half of this family that needs no graphify install, run by local CI's `local-ci/check-toko` leg | no |
 
 ## Extraction mode: code-only, local, no API, by default
 
