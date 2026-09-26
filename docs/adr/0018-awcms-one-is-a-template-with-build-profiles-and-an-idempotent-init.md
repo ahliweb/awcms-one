@@ -2,6 +2,8 @@
 
 # ADR-0018 — awcms-one is a template, with build profiles and an idempotent `template:init`
 
+**Superseded in part by [ADR-0021](0021-zero-github-actions-local-ci-with-exact-sha-statuses.md):** this ADR's own CI-matrix mechanism for validating `template:init` ("#137 (storefront profiles + CI matrix)") ran as a GitHub Actions workflow (`template-init-smoke.yml`); it now runs as `bun run ci:template`'s four `local-ci/template-*` legs (`tools/ci/`, issue #225). The build-profile/`template:init` decisions this ADR actually made are unchanged — only the workflow-execution surface moved.
+
 - **Status:** Accepted
 - **Date:** 20 September 2026
 - **Decision maker:** ahliweb

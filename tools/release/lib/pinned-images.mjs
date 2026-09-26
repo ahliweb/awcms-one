@@ -5,10 +5,10 @@
  * The release host has no cosign or trivy binary installed (this tool's own
  * design constraint — see `docs/rilis.md`), so both run as
  * `docker run --rm <image>@sha256:<digest> ...`. Pinning by digest, not tag,
- * for the same reason GitHub Actions are pinned to a commit SHA in
- * AGENTS.md's "Configuration and toolchain": a tag can move, a digest
- * cannot, and both tools sit directly on the supply-chain trust path this
- * release is trying to establish.
+ * for the same reason `local-ci/security`'s own gitleaks image is pinned by
+ * digest (`tools/ci/runners/security.ts`): a tag can move, a digest cannot,
+ * and both tools sit directly on the supply-chain trust path this release
+ * is trying to establish.
  *
  * Bumping one of these is a deliberate act — re-pull the new tag, copy its
  * digest, update the constant and the comment beside it, exercise the

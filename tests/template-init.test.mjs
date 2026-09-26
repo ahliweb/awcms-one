@@ -41,8 +41,8 @@ const REPO_ROOT = new URL("..", import.meta.url).pathname;
  *
  * `bun run template:init`'s own trailing gate chain (`docs/template.md`'s
  * "After it runs") ends with a bare `bun test` against whatever tree it
- * just rewrote — including, in CI (`.github/workflows/
- * template-init-smoke.yml`), the checked-out `awcms-one` repository
+ * just rewrote — including, under local CI (`bun run ci:template`, `tools/
+ * ci/runners/template.ts`), the checked-out `awcms-one` repository
  * itself. That `bun test` naturally discovers and runs THIS file, which
  * then tries to build its own temp copies from `git ls-files` — but by
  * then `template:init` has already `unlinkSync`'d files this run removed
@@ -234,10 +234,10 @@ describe("template:init — full run in a temp copy", () => {
     // rewrite/removal this run makes, still for real, still against a real
     // temp copy) without paying that cost three times over in this unit
     // suite — the per-PROFILE full gate-chain proof (SITE_PROFILE=<p> bun
-    // run build, then root bun test) is `.github/workflows/
-    // template-init-smoke.yml`'s own job, matrixed, inside its own
-    // 15-minute CI budget, which is the more appropriate place to pay this
-    // cost three times over.
+    // run build, then root bun test) is `bun run ci:template`'s own
+    // per-profile leg (`tools/ci/runners/template.ts`, matrixed the same
+    // way `template-init-smoke.yml` used to be), which is the more
+    // appropriate place to pay this cost three times over.
     const FULL_GATE_PROFILE = "toko";
     for (const profil of ["toko", "berita", "landing"]) {
       const runGates = profil === FULL_GATE_PROFILE;

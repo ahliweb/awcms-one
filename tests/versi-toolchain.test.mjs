@@ -1,33 +1,28 @@
 /**
- * Toolchain version gate: one Bun version, pinned in three places, and
- * nothing checked it was the same in all three until this file.
+ * Toolchain version gate: one Bun version, pinned in two places that must
+ * move together, and nothing checked they agreed until this file.
  *
  * ## The rule is already written; the checker is what was missing
  *
  * `AGENTS.md`'s "Configuration and toolchain" states it as a rule that
- * cannot be broken: Bun's version moves in `packageManager`/`engines.bun`
- * in the root `package.json` and in `bun-version` in `.github/workflows/
- * ci.yml` TOGETHER. Nothing fails when they drift apart on their own: CI
- * would run one Bun version, a contributor's machine another, and the
- * difference would only be felt as behaviour that cannot be reproduced —
- * exactly the class of defect every gate in this repo exists to catch, and
- * the one this specific rule had no checker for until now.
- *
- * This repo has two CI jobs today (`check`, and `check-cms` since issue
- * #25), so two `bun-version` declarations are expected — the comment this
- * replaced predicted exactly this: "When ... a from-source `apps/cms` CI job
- * lands with its own `bun-version` line, this count should grow with them,
- * deliberately, rather than silently." `check-cms` pins the SAME root
- * version as `check` (not apps/cms's own `1.4.2` — see the next test), so
- * growing the expected count is not enough on its own; every declaration
- * found must still equal the one root version.
+ * cannot be broken: Bun's version moves in `packageManager` and
+ * `engines.bun` in the root `package.json` TOGETHER. There is no
+ * `.github/workflows/ci.yml` `bun-version` line to keep in step with any
+ * more — GitHub Actions was removed entirely for this repo (ADR-0021,
+ * issue #225) — so the only enforced check left is `tools/ci/lib/
+ * bun-pin.ts`'s `enforceBunPinOrThrow`, which every local-ci leg runs
+ * against whatever Bun is actually on the operator's or server's PATH
+ * before doing anything else. `tests/local-ci-bun-pin.test.mjs` exercises
+ * that module's logic directly with fixtures; this file only owns the
+ * root `package.json` shape and that `tools/ci/lib/orchestrate.ts` still
+ * calls the enforcement function.
  */
 import { test, describe } from "bun:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 
 const pkg = JSON.parse(readFileSync("package.json", "utf8"));
-const ci = readFileSync(".github/workflows/ci.yml", "utf8");
+const orchestrate = readFileSync("tools/ci/lib/orchestrate.ts", "utf8");
 
 /** `bun@1.4.0` → `1.4.0`. This is the reference value everything else is compared to. */
 const VERSION = pkg.packageManager?.replace(/^bun@/, "");
@@ -63,18 +58,16 @@ describe("the Bun version agrees everywhere it is used", () => {
     );
   });
 
-  test("every CI job's bun-version equals packageManager", () => {
-    const used = [...ci.matchAll(/bun-version:\s*"([^"]+)"/g)].map((m) => m[1]);
-
-    assert.equal(
-      used.length,
-      2,
-      `expected exactly two bun-version declarations in ci.yml (\`check\` and \`check-cms\` — issue #25), found ${used.length}`
+  test("local CI enforces the Bun pin before running any leg", () => {
+    // There is no `bun-version:` line to compare any more — the enforcement
+    // is a runtime check (tools/ci/lib/bun-pin.ts), and this only proves the
+    // orchestrator still wires it in rather than having quietly dropped it.
+    assert.match(
+      orchestrate,
+      /enforceBunPinOrThrow/,
+      "tools/ci/lib/orchestrate.ts no longer calls enforceBunPinOrThrow — " +
+        "local CI would run legs under an unpinned Bun"
     );
-
-    for (const version of used) {
-      assert.equal(version, VERSION, "bun-version in ci.yml");
-    }
   });
 
   test("apps/cms's own packageManager is a known, accepted divergence", () => {

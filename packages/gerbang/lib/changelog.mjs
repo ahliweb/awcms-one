@@ -15,7 +15,8 @@
  * date moved before the version — still starts with `## `, and a parser that
  * matches only on that prefix would keep splitting sections on it anyway:
  * the wrong prose ends up in the wrong version's notes, or two versions'
- * entries merge into one, and `.github/workflows/release.yml` (issue #181)
+ * entries merge into one, and `tools/release/publish.ts` (formerly
+ * `.github/workflows/release.yml`, issue #181; see issue #225/ADR-0023)
  * publishes whatever comes out as a GitHub Release with no diff for anyone
  * to notice it in. So every `## ` line is checked against the full expected
  * shape, and one that does not match throws immediately, naming the
