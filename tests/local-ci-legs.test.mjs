@@ -54,3 +54,12 @@ describe("tools/ci/legs.ts", () => {
     assert.deepEqual(primary, ["local-ci/check-toko", "local-ci/template-root"]);
   });
 });
+
+describe("tools/ci/lib/orchestrate.ts", () => {
+  test("sets CI=true for every leg, as GitHub Actions did (forbidOnly, retries and the HTML report depend on it)", async () => {
+    const source = await Bun.file(new URL("../tools/ci/lib/orchestrate.ts", import.meta.url)).text();
+    assert.match(source, /process\.env\.CI = "true";/);
+    const config = await Bun.file(new URL("../apps/storefront/playwright.config.ts", import.meta.url)).text();
+    assert.match(config, /forbidOnly: !!process\.env\.CI/);
+  });
+});
