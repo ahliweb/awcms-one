@@ -1,8 +1,10 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](0022-production-deployment-is-server-side-and-explicit.md)
 
-<!-- i18n-source-hash: sha256:2886a4cf51e1717bd2b99526a203aace1e7986534889168a930b8650bfc10b11 -->
+<!-- i18n-source-hash: sha256:aa51a009c1547f6247a46f0064870bcf0b7f2126ce4290377874a64fc3f41fc7 -->
 
 # ADR-0022 — Deployment produksi bersifat server-side dan eksplisit
+
+**Digantikan sebagian oleh [ADR-0021](0021-zero-github-actions-local-ci-with-exact-sha-statuses.id.md):** D1 di bawah masih mengizinkan GitHub Actions untuk CI, keamanan, dan artefak rilis. Issue #225 kemudian menghapus GitHub Actions sepenuhnya, sehingga CI berjalan sebagai leg `local-ci/*` (ADR-0021) dan image rilis dibangun serta ditandatangani di release host tepercaya (ADR-0023). Bagian lain ADR ini, deployment produksi yang server-side dan eksplisit, tetap berlaku tanpa perubahan.
 
 - **Status:** Diterima
 - **Tanggal:** 26 September 2026
