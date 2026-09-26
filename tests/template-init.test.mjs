@@ -31,6 +31,7 @@ import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 
 import { buildPlan, describePlan, isEmptyPlan } from "../tools/template-init/plan.mjs";
+import { rewriteBunLock } from "../tools/template-init/rewriters.mjs";
 import { main } from "../tools/template-init/run.mjs";
 
 const REPO_ROOT = new URL("..", import.meta.url).pathname;
@@ -481,3 +482,26 @@ describe("template:init — dirty working tree", () => {
   }
 });
 } // end runTemplateInitTests
+
+describe("rewriteBunLock (issue #227)", () => {
+  test("rewrites only the root name even when the root entry has more fields and a name+version workspace follows", () => {
+    const lock = [
+      "{",
+      '  "workspaces": {',
+      '    "": {',
+      '      "name": "awcms-one",',
+      '      "devDependencies": {',
+      '        "x": "^1.0.0",',
+      "      },",
+      "    },",
+      '    "packages/kontrak": {',
+      '      "name": "@awcms-one/kontrak",',
+      '      "version": "0.1.0",',
+      "    },",
+      "  },",
+      "}",
+    ].join("\n");
+    const out = rewriteBunLock(lock, { slug: "toko-contoh" });
+    expect(out).toBe(lock.replace('"name": "awcms-one"', '"name": "toko-contoh"'));
+  });
+});

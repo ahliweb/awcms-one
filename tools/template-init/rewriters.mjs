@@ -256,6 +256,10 @@ export function rewriteStorefrontEnvExample(content, flags) {
  * surrounding JSON shape, not this tool's own prior output. If bun ever
  * changes that shape, `replaceBetweenAnchors` throws loudly (exit 1) rather
  * than silently rewriting the wrong field or a different workspace's name.
+ * The suffix ends at the name line's own `",\n`, never at the entry's closing
+ * brace: `replaceBetweenAnchors` matches lazily, so a closing-brace suffix
+ * would silently span into the NEXT workspace entry the day the root entry
+ * gains a second field.
  *
  * @param {string} content
  * @param {TemplateFlags} flags
@@ -265,7 +269,7 @@ export function rewriteBunLock(content, flags) {
   return replaceBetweenAnchors(
     content,
     '"workspaces": {\n    "": {\n      "name": "',
-    '",\n    },',
+    '",\n',
     flags.slug,
     'bun.lock root workspace name (workspaces[""].name)'
   );
