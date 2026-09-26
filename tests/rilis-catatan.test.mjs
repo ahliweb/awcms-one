@@ -8,9 +8,14 @@
  *      fixture strings — precise about WHICH characters end up in a section,
  *      which is easiest to see with a minimal document rather than the real
  *      (2000+ line) `CHANGELOG.md`.
- *   2. The CLI itself, spawned exactly as `.github/workflows/release.yml`
- *      will run it — proving the exit-code/stdout/stderr contract that
- *      workflow depends on, not just the function it calls.
+ *   2. The CLI itself, `tools/rilis-catatan.mjs`, spawned the same way a
+ *      human running it by hand would — proving the exit-code/stdout/
+ *      stderr contract, not just the `changelogSection` function it wraps.
+ *      `tools/release/publish.ts` (the trusted-release-host successor to
+ *      `.github/workflows/release.yml`, issue #225/ADR-0023) imports that
+ *      same underlying function directly rather than spawning this CLI, but
+ *      the CLI stays a supported, documented entry point in its own right
+ *      (docs/rilis.md), so its own contract is still worth proving here.
  *
  * A third block reads the REAL root `CHANGELOG.md`, so a future heading that
  * quietly stops matching `## [X.Y.Z] — <date>` fails a test here rather than
@@ -134,7 +139,7 @@ describe("the real root CHANGELOG.md — a heading-format regression here fails 
   });
 });
 
-/** Spawns the CLI exactly as `.github/workflows/release.yml` will. */
+/** Spawns the CLI exactly as a human running it by hand would. */
 async function run(args, cwd = process.cwd()) {
   const child = Bun.spawn(["bun", SCRIPT, ...args], {
     cwd,
@@ -155,7 +160,7 @@ function fixtureDir() {
   return dir;
 }
 
-describe("the CLI — the exact contract .github/workflows/release.yml depends on", () => {
+describe("the CLI — its own exit-code/stdout/stderr contract", () => {
   test("prints exactly the section body to stdout, nothing else, exit 0", async () => {
     const dir = fixtureDir();
     try {

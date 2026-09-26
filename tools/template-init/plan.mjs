@@ -28,6 +28,7 @@ import { join } from "node:path";
 import { readFileIfPresent } from "../../packages/gerbang/lib/files.mjs";
 import { planDocCitationCleanup } from "./docs-cleanup.mjs";
 import {
+  rewriteBunLock,
   rewriteComposeYaml,
   rewriteReadme,
   rewriteRootEnvExample,
@@ -52,6 +53,7 @@ function requiredRewriteTargets(flags) {
   return [
     { path: "apps/storefront/src/config/site.ts", transform: (c) => rewriteSiteTs(c, flags) },
     { path: "compose.yaml", transform: (c) => rewriteComposeYaml(c, flags) },
+    { path: "bun.lock", transform: (c) => rewriteBunLock(c, flags) },
     { path: ".env.example", transform: (c) => rewriteRootEnvExample(c, flags) },
     { path: "apps/storefront/.env.example", transform: (c) => rewriteStorefrontEnvExample(c, flags) },
     { path: "README.md", transform: (c) => rewriteReadme(c, flags, { lang: "en" }) },

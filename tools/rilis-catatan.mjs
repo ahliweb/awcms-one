@@ -4,11 +4,12 @@
  * stdout, with neither its own heading nor anything else the file did not
  * write for that version.
  *
- * Built for `.github/workflows/release.yml` (issue #181): a tag push (or a
- * `workflow_dispatch` backfill) runs this script and redirects its stdout to
- * the file `gh release create --notes-file` / `gh release edit --notes-file`
- * reads, so whatever this prints becomes the GitHub Release body verbatim.
- * Nothing here may write anything but the section body to STDOUT — every
+ * Originally built for `.github/workflows/release.yml` (issue #181); that
+ * workflow is gone (issue #225, ADR-0021/ADR-0023) and `tools/release/
+ * publish.ts` is now what calls this — its stdout is redirected to the file
+ * `gh release create --notes-file` / `gh release edit --notes-file` reads,
+ * so whatever this prints becomes the GitHub Release body verbatim. Nothing
+ * here may write anything but the section body to STDOUT — every
  * diagnostic goes to stderr instead, which is also where a human running
  * this by hand looks first.
  *

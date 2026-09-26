@@ -2,6 +2,8 @@
 
 # ADR-0020 — Publish only the CMS images to GHCR, with SBOM and provenance
 
+**Superseded in part by [ADR-0023](0023-release-images-are-built-signed-and-published-from-a-trusted-release-host.md):** this ADR's own publishing mechanism ran as a GitHub Actions workflow (`.github/workflows/images.yml`), attested by GitHub-native `actions/attest-build-provenance`. Image build/publish now runs as `bun run release:images -- --publish` (`tools/release/`) from a trusted release host, signed with `cosign` instead — issue #225 removed GitHub Actions entirely. The decision this ADR actually made — which images get published, why the storefront image does not — is unchanged; only the execution surface and attestation mechanism moved. Images published before that migration keep their original, still-valid GitHub attestation (see [`docs/rilis.md`](../rilis.md)).
+
 - **Status:** Accepted
 - **Date:** 22 September 2026
 - **Decision maker:** ahliweb

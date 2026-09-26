@@ -167,4 +167,4 @@ Under `build.format: "file"` a landing page that also has children is emitted as
 
 ## Not built
 
-A per-code order-tracking path (`/pesanan/{code}` — see "Commerce runtime" above for why `?kode=` is the real, static-compatible shape). A CI job that runs the Playwright e2e suite (`apps/storefront/tests/e2e/checkout.e2e.ts`, `bun run test:e2e` inside `apps/storefront`) — it exists and passes locally, but is not wired into `.github/workflows/ci.yml` (outside the ops-owned CI file's scope for issue #30 — see [`docs/pengujian.md`](pengujian.md)).
+A per-code order-tracking path (`/pesanan/{code}` — see "Commerce runtime" above for why `?kode=` is the real, static-compatible shape). `apps/storefront/tests/e2e/checkout.e2e.ts` (`bun run test:e2e` inside `apps/storefront`) exists and passes locally, and now runs as part of the `local-ci/e2e-*` legs (`tools/ci/runners/e2e.ts`, issue #183/#225) — see [`docs/pengujian.md`](pengujian.md).

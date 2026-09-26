@@ -31,6 +31,7 @@ import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 
 import { buildPlan, describePlan, isEmptyPlan } from "../tools/template-init/plan.mjs";
+import { rewriteBunLock } from "../tools/template-init/rewriters.mjs";
 import { main } from "../tools/template-init/run.mjs";
 import { rewriteSiteTs } from "../tools/template-init/rewriters.mjs";
 
@@ -42,8 +43,8 @@ const REPO_ROOT = new URL("..", import.meta.url).pathname;
  *
  * `bun run template:init`'s own trailing gate chain (`docs/template.md`'s
  * "After it runs") ends with a bare `bun test` against whatever tree it
- * just rewrote — including, in CI (`.github/workflows/
- * template-init-smoke.yml`), the checked-out `awcms-one` repository
+ * just rewrote — including, under local CI (`bun run ci:template`, `tools/
+ * ci/runners/template.ts`), the checked-out `awcms-one` repository
  * itself. That `bun test` naturally discovers and runs THIS file, which
  * then tries to build its own temp copies from `git ls-files` — but by
  * then `template:init` has already `unlinkSync`'d files this run removed
@@ -210,6 +211,7 @@ describe("template:init — dry-run plan", () => {
     const text = describePlan(plan);
     expect(text).toContain("apps/storefront/src/config/site.ts");
     expect(text).toContain("compose.yaml");
+    expect(text).toContain("bun.lock");
     expect(text).toContain("README.md");
   });
 
@@ -272,10 +274,10 @@ describe("template:init — full run in a temp copy", () => {
     // rewrite/removal this run makes, still for real, still against a real
     // temp copy) without paying that cost three times over in this unit
     // suite — the per-PROFILE full gate-chain proof (SITE_PROFILE=<p> bun
-    // run build, then root bun test) is `.github/workflows/
-    // template-init-smoke.yml`'s own job, matrixed, inside its own
-    // 15-minute CI budget, which is the more appropriate place to pay this
-    // cost three times over.
+    // run build, then root bun test) is `bun run ci:template`'s own
+    // per-profile leg (`tools/ci/runners/template.ts`, matrixed the same
+    // way `template-init-smoke.yml` used to be), which is the more
+    // appropriate place to pay this cost three times over.
     const FULL_GATE_PROFILE = "toko";
     for (const profil of ["toko", "berita", "landing"]) {
       const runGates = profil === FULL_GATE_PROFILE;
@@ -406,6 +408,19 @@ describe("template:init — full run in a temp copy", () => {
           expect(pkgAfter.scripts["db:seed:cms"]).toBe(`bun tools/seed-cms.ts --profil ${profil}`);
           expect(pkgAfter.scripts["import:seputarborneo"]).toBeUndefined();
 
+          // issue #227 — `bun.lock`'s root workspace name must follow
+          // `package.json`'s rewritten `name`, and ONLY the root workspace
+          // entry: every other workspace's own name (`apps/cms`'s "awcms",
+          // `apps/storefront`'s "@awcms-one/storefront", etc.) must survive
+          // untouched, and `bun run check:lockfile` must actually pass
+          // against the rewritten pair — this is the real regression the
+          // issue reports, not just a string match on `bun.lock`'s content.
+          const lockAfter = readFileSync(join(dir, "bun.lock"), "utf8");
+          expect(lockAfter).toContain(`"": {\n      "name": "${pkgAfter.name}",\n    },`);
+          expect(lockAfter).toContain('"name": "awcms",');
+          expect(lockAfter).toContain('"name": "@awcms-one/storefront",');
+          execSync("bun run tools/cek-lockfile.mjs", { cwd: dir, stdio: "pipe" });
+
           const seedCmsTs = readFileSync(join(dir, "tools/seed-cms.ts"), "utf8");
           expect(seedCmsTs).toContain(`let profil = ${JSON.stringify(profil)};`);
 
@@ -434,6 +449,13 @@ describe("template:init — idempotency", () => {
 
         const first = await main(flags, { root: dir, isTTY: false, skipInstall: true, skipGates: true });
         expect(first).toBe(0);
+
+        // issue #227 — the rewrite must have actually happened, and only to
+        // the root workspace entry.
+        const lockAfterFirst = readFileSync(join(dir, "bun.lock"), "utf8");
+        expect(lockAfterFirst).toContain('"": {\n      "name": "toko-contoh",\n    },');
+        expect(lockAfterFirst).toContain('"name": "awcms",');
+
         execSync("git add -A && git commit -q -m first --allow-empty", { cwd: dir });
 
         const planSecond = buildPlan({
@@ -483,6 +505,13 @@ describe("template:init — idempotency", () => {
         // no longer exists once already 0.1.0.
         const pkg = JSON.parse(readFileSync(join(dir, "package.json"), "utf8"));
         expect(pkg.version).toBe("0.1.0");
+
+        // The second run (identical flags) was a documented no-op above
+        // (`isEmptyPlan(planSecond)`); the third run's slug did NOT change,
+        // so bun.lock's root workspace name is still "toko-contoh" — this is
+        // the idempotency guarantee this rewrite must not break.
+        const lockAfterThird = readFileSync(join(dir, "bun.lock"), "utf8");
+        expect(lockAfterThird).toContain('"": {\n      "name": "toko-contoh",\n    },');
       },
       30_000
     );
@@ -506,3 +535,26 @@ describe("template:init — dirty working tree", () => {
   }
 });
 } // end runTemplateInitTests
+
+describe("rewriteBunLock (issue #227)", () => {
+  test("rewrites only the root name even when the root entry has more fields and a name+version workspace follows", () => {
+    const lock = [
+      "{",
+      '  "workspaces": {',
+      '    "": {',
+      '      "name": "awcms-one",',
+      '      "devDependencies": {',
+      '        "x": "^1.0.0",',
+      "      },",
+      "    },",
+      '    "packages/kontrak": {',
+      '      "name": "@awcms-one/kontrak",',
+      '      "version": "0.1.0",',
+      "    },",
+      "  },",
+      "}",
+    ].join("\n");
+    const out = rewriteBunLock(lock, { slug: "toko-contoh" });
+    expect(out).toBe(lock.replace('"name": "awcms-one"', '"name": "toko-contoh"'));
+  });
+});

@@ -1,8 +1,10 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](0020-publish-only-the-cms-images-to-ghcr-with-sbom-and-provenance.md)
 
-<!-- i18n-source-hash: sha256:faf92bb257bd52d9d7cd7b9976ecf8748b6998c9fc405d6045733f6c8866a640 -->
+<!-- i18n-source-hash: sha256:f801e82eaf439e46324dfe0ade71931dad4e6022f1532c2aaa1b91de29ddcdc2 -->
 
 # ADR-0020 — Hanya image CMS yang dipublikasikan ke GHCR, dengan SBOM dan provenance
+
+**Digantikan sebagian oleh [ADR-0023](0023-release-images-are-built-signed-and-published-from-a-trusted-release-host.id.md):** mekanisme publikasi milik ADR ini sendiri dulu berjalan sebagai workflow GitHub Actions (`.github/workflows/images.yml`), diattestasi oleh `actions/attest-build-provenance` milik GitHub sendiri. Build/publish image kini berjalan sebagai `bun run release:images -- --publish` (`tools/release/`) dari server rilis terpercaya, ditandatangani dengan `cosign` sebagai gantinya — issue #225 menghapus GitHub Actions seluruhnya. Keputusan yang sungguh dibuat ADR ini — image mana yang dipublikasikan, kenapa image storefront tidak — tidak berubah; hanya permukaan eksekusi dan mekanisme attestasi yang berpindah. Image yang dipublikasikan sebelum migrasi itu tetap memegang attestasi GitHub aslinya yang masih sah (lihat [`docs/rilis.md`](../rilis.id.md)).
 
 - **Status:** Diterima
 - **Tanggal:** 22 September 2026
