@@ -2,6 +2,172 @@
 
 Every entry below is folded from `.changesets/` by `bun run release`, which also tags the release. The version is `MAJOR.MINOR.PATCH`, tagged `vX.Y.Z`; the next version is the largest `bump` declared among the changesets a release folds (see [`.changesets/README.md`](.changesets/README.md)) — never a level chosen at release time from a list of file names.
 
+## [0.13.0] — 2026-09-27
+
+### The primary nav is now actually visible above 720px
+
+`Header.astro` (and `NavBerita.astro` on a `berita`-profile page) put the
+primary navigation inside a `<details>`/`<summary>` disclosure and relied on
+author CSS to show it as a plain horizontal nav above the mobile breakpoint.
+That never worked: a *closed* `<details>` hides everything but its
+`<summary>` through the UA stylesheet's own `::details-content` rule, which
+no CSS on the hidden content's children can override — so the primary nav
+was invisible above 720px, in every browser, in all three `SITE_PROFILE`s
+(issue #230).
+
+The fix renders the same nav array twice — an always-open desktop
+`.primary-nav` and the pre-existing mobile `<details>` copy — and lets
+`global.css` show exactly one of the two by viewport width, `display:
+none`-ing the other out of the accessibility tree so a screen reader still
+meets exactly one "Navigasi utama" landmark. No JavaScript is involved,
+keeping issue #24's no-JS mobile-nav design intact.
+
+- A reader on any deployment of this template can now reach every primary
+  nav link at desktop width — previously, only the mobile disclosure ever
+  worked.
+- `apps/storefront/tests/e2e/navigasi-utama.e2e.ts` is new regression
+  coverage: at 1440px it asserts the desktop nav is visible and
+  keyboard-focusable, and that exactly one "Navigasi utama" landmark is
+  accessible at a time; at 360px it asserts the desktop copy is hidden and
+  the disclosure toggle still opens the mobile nav. Run for all three
+  build profiles.
+
+### Local/server CI runner with exact-SHA commit statuses (#225 part 1)
+
+The owner decided to move this workspace's CI off GitHub Actions entirely. This is part 1: `tools/ci/` reproduces every leg `.github/workflows/{ci,template-init-smoke,e2e,codeql}.yml` runs today, one-to-one, as twelve `local-ci/*` commit-status contexts reported against the exact SHA each leg ran at — see [ADR-0021](docs/adr/0021-zero-github-actions-local-ci-with-exact-sha-statuses.md).
+
+- `bun run ci` runs all twelve legs against HEAD inside a disposable `git worktree`, never mutating the developer's own checkout; `bun run ci:pr -- <n>` does the same for a pull request, refusing fork PRs unless `--allow-fork` is given explicitly.
+- `bun run ci:watch` polls open PRs and skips any (repo, PR, head SHA, CI-definition version) already recorded; `tools/ci/systemd/` documents the systemd user timer that runs it every 10 minutes (not installed by this change).
+- Every leg fails closed if the running Bun does not match the root `package.json`'s pin; every log/evidence file is redacted for tokens and DSN passwords before it touches disk.
+- The `local-ci/security` leg runs the CodeQL CLI, gitleaks (pinned by digest), and `bun audit`, checked against a committed `tools/ci/security-baseline.json` seeded with this repository's nine already-dismissed GitHub code-scanning alerts (quoting each one's own dismissal reason) plus one further entry for a genuine new-code finding this leg's own first run surfaced in `tools/ci/lib/lock.ts`.
+- `.github/workflows/*.yml` are **not removed** by this change — see the ADR's "Migration sequence" for why branch protection moves to `local-ci/*` first, in a follow-up PR.
+
+### Local CI runs every leg with `CI=true`, as GitHub Actions did
+
+GitHub Actions set `CI=true` for every step, and both Playwright configs key
+their CI behaviour off it. Without it, the local e2e legs silently ran
+without `forbidOnly` (a stray `test.only` would have skipped the rest of the
+suite and still passed), without the one retry for a flaky
+`Page.captureScreenshot` protocol error, and without the HTML report the leg
+keeps as evidence. `tools/ci/lib/orchestrate.ts` now sets it once, after the
+Bun pin check, for every leg.
+
+### Build, sign, and publish release images and GitHub Releases from a trusted release host
+
+Issue #225 part 2 (zero-GitHub-Actions policy). `tools/release/images.ts` and `tools/release/publish.ts` (`bun run release:images`, `bun run release:publish`) replace what `.github/workflows/images.yml` and `.github/workflows/release.yml` do — building and pushing `apps/cms`'s `runtime`/`jobs` images to GHCR, signing each pushed digest with cosign, scanning with trivy (fail-closed on `CRITICAL`), exporting SBOMs, and publishing the matching GitHub Release — from a release host `awcms-one` itself controls, rather than a GitHub-hosted runner.
+
+Neither workflow file is removed by this change; both keep running until a later change disables GitHub Actions at the repository level and migrates the required-status-check contexts (issue #225's own remaining steps).
+
+- [ADR-0023](docs/adr/0023-release-images-are-built-signed-and-published-from-a-trusted-release-host.md) documents the new cosign-key trust root, why it supersedes ADR-0020's GitHub-native attestation for images published from here on, and the honest assurance-level trade-off.
+- [`docs/rilis.md`](docs/rilis.md) is the full release runbook, including how to rehearse the whole publish path against a throwaway local registry without touching GHCR or a production key.
+- New root env vars: `GHCR_USER`, `GHCR_TOKEN`, `COSIGN_KEY`, `COSIGN_PASSWORD`, `COSIGN_PUBLIC_KEY`, `RELEASE_EVIDENCE_DIR`, `RELEASE_DANGEROUSLY_SKIP_ANCESTOR_CHECK`, `RELEASE_GITHUB_TOKEN` — all documented in root `.env.example`.
+- An owner running the first real `--publish` needs a `COSIGN_KEY`/`COSIGN_PUBLIC_KEY` pair provisioned on the release host and a `GHCR_TOKEN` scoped to `write:packages` only — neither exists yet as a repository secret, by design (this tool never generates a signing key on the fly).
+
+### Remove GitHub Actions; required contexts are now `local-ci/*` (#225 part 3, closes #225)
+
+The owner's zero-GitHub-Actions decision (ADR-0021), started in part 1 (`tools/ci/`) and part 2 (`tools/release/`, ADR-0023), is now complete: every root workflow is deleted and GitHub Actions no longer executes anything in this repository.
+
+- Removed `.github/workflows/{ci,codeql,e2e,images,release,template-init-smoke}.yml` and `.github/dependabot.yml` (its only ecosystem, `github-actions`, is now meaningless).
+- Added `tests/tanpa-github-actions.test.mjs` — a root gate test that fails if a workflow file ever exists again under root `.github/workflows/`, and explicitly excludes `apps/cms/.github/**` (upstream's own subtree files, inert here since GitHub only reads a repository's own root `.github/workflows/`). Subsumes issue #224's workflow-guardrail requirement.
+- Fixed every test/tool that read a now-deleted workflow file: `tests/versi-toolchain.test.mjs` now checks `tools/ci/lib/orchestrate.ts`'s Bun-pin enforcement instead of a `bun-version:` line; the test that guarded `.github/dependabot.yml`'s own shape is removed with the config file it guarded; several tools/tests updated their comments to point at the `tools/ci/`/`tools/release/` successors instead of claiming current GitHub Actions behaviour (artifact uploads, automatic tag-push publication).
+- `docs/template.md` confirms and documents that `tools/template-init/**` never generates or references workflows — a derived repository starts with zero root GitHub Actions workflows too, and runs `bun run ci`/`ci:watch` locally or attaches its own approved CI by its own governance decision.
+- Full documentation sweep (EN + ID mirrors): `AGENTS.md` (new explicit rule that GitHub Actions is not an accepted implementation path; the gates table now lists the twelve `local-ci/*` legs; the Bun-pin/Dependabot paragraphs rewritten; Definition of Done requires `bun run ci:pr -- <n>`), `README.md`, `SECURITY.md`, `docs/alur-kerja-pengembangan.md` (five old per-workflow CI sections folded into one "Local CI: the twelve legs" section, keeping each leg's promotion history for the record), `docs/pengujian.md`, `docs/deployment.md`, `docs/status.md`, `docs/template.md`, `docs/aksesibilitas.md`, `docs/responsif.md`, `docs/routing.md`. ADR-0018 and ADR-0020 keep their original decisions; each gets a short "Superseded in part by ADR-0021/0023" note (their own CI/publish *mechanism* moved, not the decision itself), and the ADR index status column reflects it.
+- The twelve required status checks on `main` are now `local-ci/*` (posted by `bun run ci:pr`/`ci:watch`) instead of the old GitHub Actions contexts — branch protection was switched over in a companion change before this PR merged, so no Actions checks ever needed to run on it.
+
+### Server-side, explicit production deployment (`tools/deploy/*.sh`, ADR-0022)
+
+GitHub Actions could, until now, plausibly grow into the production control
+plane by accident — nothing in this repository forbade a future workflow
+from SSHing into production or calling a Coolify deploy API with
+production credentials in its secrets, and a validated derived repository
+already has exactly that shape today. This closes that gap: the ONE
+canonical way to mutate production is now `tools/deploy/deploy-production.sh`
+(plus its thin `deploy-remote.sh` SSH wrapper, `healthcheck-production.sh`,
+and `rollback-production.sh`), invoked explicitly by an operator or agent,
+never by CI.
+
+- New root scripts: `bun run deploy:production|remote|health|rollback`.
+  Fail-closed transaction (lock, exact-release resolution, clean-checkout
+  check, preflight, pre-migration backup, build-or-pull, migrate, runtime
+  least-privilege verification, activate, health, smoke, append-only audit
+  record); a migration having run in the failed attempt blocks any automatic
+  code rollback and points at the documented DB recovery runbook instead.
+- New `packages/gerbang/lib/redact.mjs` + `tools/deploy/redact-log.mjs`:
+  every line these scripts print, and the audit JSONL itself, is redacted
+  before it reaches a terminal or disk.
+- `tests/deploy-production.test.mjs` — a hermetic scenario suite; no real
+  docker/git/curl/ssh/cosign is ever invoked.
+- `docs/adr/0022-production-deployment-is-server-side-and-explicit.md` +
+  `.id.md`; `docs/deployment.md`/`.id.md` rewritten to separate CI checks,
+  artifact publication, and production deployment, with a first-time
+  host-setup runbook.
+- New root env vars documented in `.env.example` under "Server-side
+  production deployment".
+
+### `template:init` no longer leaks BjekMart's own phone number and address
+
+Omitting `--kontak-telepon`/`--alamat` from `template:init` left
+`DEFAULT_IDENTITY.contactPhone`/`.address`
+(`apps/storefront/src/config/site.ts`) as BjekMart's own real phone number
+("0851-…") and street address — `mergeSiteIdentity()`'s fallback then
+published them, live, on every derived deployment's footer, its landing
+contact section, and `/kontak`, whenever the CMS itself had nothing
+configured for those fields (issue #233, found in production pre-cutover
+checks for `ahliweb/omes-web`, fixed there in `ahliweb/omes-web#8`).
+
+- `DEFAULT_IDENTITY` is now typed `{ contactPhone: string | null; address:
+  string | null; ... }`, and `tools/template-init/rewriters.mjs`'s
+  `rewriteSiteTs()` writes the bare `null` literal for whichever of the two
+  fields its matching flag omits — never leaving BjekMart's own value in
+  place. When a flag IS given, behaviour is unchanged: the value is written
+  verbatim.
+- `apps/storefront/src/pages/kontak.astro`'s "Alamat" contact card, the one unconditional
+  consumer found by grepping every reader of `identity.address`/
+  `.contactPhone`, now renders only `{identity.address && (...)}` — the
+  same guard `Footer.astro`, `FooterBerita.astro`, and `profil/landing/
+  Beranda.astro` already had. No other BjekMart-specific contact surface
+  (WhatsApp number, maps embed, social links, e-mail) was found to leak the
+  same way: `whatsappNumber`/`mapsEmbedUrl`/`socialLinks` have no
+  `DEFAULT_IDENTITY` fallback at all (CMS-only, `null`/empty otherwise), and
+  `contactEmail` is always rewritten because `--kontak-email` is a required
+  flag.
+- `tests/template-init.test.mjs` asserts the null-write directly (both via
+  a full `template:init` run without these flags, across all three
+  profiles, and via a focused unit test of `rewriteSiteTs`), and that
+  giving the flags still writes them verbatim.
+  `apps/storefront/tests/kontak-fallback-null.test.ts` is a new real
+  `astro build` smoke test proving `/kontak` and the footer render with no
+  address/phone block — and no literal `"null"` — when both the CMS and
+  `DEFAULT_IDENTITY` have nothing for either field.
+
+### `template:init` now rewrites `bun.lock`'s root workspace name too
+
+`template:init` rewrote root `package.json`'s `name` to a derived
+deployment's own slug, but left `bun.lock`'s `workspaces[""].name` as
+`"awcms-one"` — `bun install` does not touch an existing root workspace
+entry to match a renamed manifest, it just reports "no changes". `bun run
+check:lockfile` (`tools/cek-lockfile.mjs`) then failed in every derived
+repository with "lockfile entry name = \"awcms-one\", package.json name =
+\"<slug>\"" (issue #227, first hit in `ahliweb/omes-web`).
+
+`tools/template-init/rewriters.mjs`'s new `rewriteBunLock()` targets ONLY
+that one field, anchored on the fixed JSON shape of the root workspace
+entry (never on the literal value currently there, so the rewrite stays
+idempotent across repeated runs with different `--slug` values, and never
+on any other workspace's own `name`). This is a single-field string
+replacement, never a lockfile regeneration — `rm -rf node_modules bun.lock
+&& bun install` would re-resolve every dependency and could drift resolved
+versions in a derived repo's very first commit.
+
+- A repository derived from this template now passes `bun run
+  check:lockfile` right after `template:init` runs, with no manual `sed`
+  workaround.
+- `tests/template-init.test.mjs` asserts the rewrite happened, that every
+  other workspace's own name survives untouched, that `bun run
+  tools/cek-lockfile.mjs` actually passes against the rewritten pair, and
+  that a second run with identical flags (and a third run with an
+  unrelated flag change) leaves it correctly idempotent.
+
 ## [0.12.0] — 2026-09-24
 
 ### Align the root-owned Bun pin to 1.4.2
