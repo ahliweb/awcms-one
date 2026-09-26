@@ -1,8 +1,8 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:438331bfe50b44fc7d7870b4fc7ee76c33f068f61eb213bf1fa0eb7c264441a7 -->
+<!-- i18n-source-hash: sha256:9802750aa5df52a90f5ed32a1a3810c617bce815eaea8f21f5c881ebfb6f4aaf -->
 
-[![CI](https://github.com/ahliweb/awcms-one/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/ahliweb/awcms-one/actions/workflows/ci.yml) [![License](https://img.shields.io/badge/License-MIT-blue)](LICENSE) [![runtime](https://img.shields.io/badge/runtime-Bun-blue?logo=bun&logoColor=white)](https://bun.sh)
+[![License](https://img.shields.io/badge/License-MIT-blue)](LICENSE) [![runtime](https://img.shields.io/badge/runtime-Bun-blue?logo=bun&logoColor=white)](https://bun.sh)
 
 # awcms-one
 
