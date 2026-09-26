@@ -106,6 +106,32 @@ export function setStringField(block, field, value, label) {
 }
 
 /**
+ * Set a `field: "value"` OR `field: null` line inside a block extracted by
+ * {@link extractBlock} — the nullable analogue of {@link setStringField},
+ * for a field whose CURRENT value might already be a quoted string (a prior
+ * run's own output, or the file's original literal) or the bare `null`
+ * literal (a prior run that wrote `null` because its own flag was omitted).
+ * `value === null` writes the bare `null` literal, never `"null"` the
+ * string — `JSON.stringify(null)` already produces exactly that (`"null"`
+ * as TEXT, i.e. the four characters `n`, `u`, `l`, `l`, with no quotes),
+ * which is also why this reuses the very same replacement shape
+ * {@link setStringField} uses.
+ *
+ * @param {string} block
+ * @param {string} field
+ * @param {string | null} value
+ * @param {string} label
+ * @returns {string}
+ */
+export function setStringOrNullField(block, field, value, label) {
+  const re = new RegExp(`(\\n\\s*${field}:\\s*)(?:"(?:[^"\\\\]|\\\\.)*"|null)`);
+  if (!re.test(block)) {
+    throw new Error(`${label}: field "${field}" not found in its expected block`);
+  }
+  return block.replace(re, (_match, prefix) => `${prefix}${JSON.stringify(value)}`);
+}
+
+/**
  * Reassemble a block extracted by {@link extractBlock}.
  *
  * @param {{ before: string, block: string, after: string }} extracted

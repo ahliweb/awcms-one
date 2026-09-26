@@ -33,6 +33,7 @@ import { dirname, join } from "node:path";
 import { buildPlan, describePlan, isEmptyPlan } from "../tools/template-init/plan.mjs";
 import { rewriteBunLock } from "../tools/template-init/rewriters.mjs";
 import { main } from "../tools/template-init/run.mjs";
+import { rewriteSiteTs } from "../tools/template-init/rewriters.mjs";
 
 const REPO_ROOT = new URL("..", import.meta.url).pathname;
 
@@ -225,6 +226,43 @@ describe("template:init — dry-run plan", () => {
   });
 });
 
+describe("template:init — rewriteSiteTs contact fallbacks (issue #233)", () => {
+  const REAL_SITE_TS = readFileSync(join(REPO_ROOT, "apps/storefront/src/config/site.ts"), "utf8");
+  const BASE = {
+    nama: "Toko Contoh",
+    profil: "toko",
+    kontakEmail: "owner@toko-contoh.id",
+    warnaPrimer: "#0ea5e9",
+    warnaSekunder: "#096892",
+    warnaAksen: "#f59e0b"
+  };
+
+  test("omitted --kontak-telepon/--alamat write the bare null literal, not BjekMart's own values", () => {
+    const out = rewriteSiteTs(REAL_SITE_TS, BASE);
+    expect(out).toContain("contactPhone: null,");
+    expect(out).toContain("address: null");
+    expect(out).not.toContain("0851-2868-8885");
+    expect(out).not.toContain("Ahmad Wongso");
+
+    // Idempotent: a second run with the same (still-omitted) flags is a no-op on these two fields.
+    expect(rewriteSiteTs(out, BASE)).toBe(out);
+  });
+
+  test("--kontak-telepon/--alamat, when given, are written verbatim — unchanged behaviour", () => {
+    const withFlags = { ...BASE, kontakTelepon: "+62 812-0000-0000", alamat: "Jl. Contoh No. 1, Kota Contoh" };
+    const out = rewriteSiteTs(REAL_SITE_TS, withFlags);
+    expect(out).toContain('contactPhone: "+62 812-0000-0000"');
+    expect(out).toContain('address: "Jl. Contoh No. 1, Kota Contoh"');
+
+    // A later run that OMITS the flags again must still be able to null them out —
+    // proves the field is matched by its structural shape, not only by BjekMart's
+    // original literal (see `text.mjs`'s `setStringOrNullField` docblock).
+    const nulledAfter = rewriteSiteTs(out, BASE);
+    expect(nulledAfter).toContain("contactPhone: null,");
+    expect(nulledAfter).toContain("address: null");
+  });
+});
+
 describe("template:init — full run in a temp copy", () => {
   if (!HAS_GIT || !HAS_BUN) {
     test.skip("SKIPPED — this environment cannot spawn git/bun", () => {});
@@ -292,6 +330,21 @@ describe("template:init — full run in a temp copy", () => {
           expect(siteTs).toContain(`description: "${identityDescription}"`);
           expect(siteTs).toContain('contactEmail: "owner@toko-contoh.id"');
           expect(siteTs).toContain('primary: "#0ea5e9"');
+
+          // issue #233 — this run passes neither `--kontak-telepon` nor
+          // `--alamat` (see the flags array above), so DEFAULT_IDENTITY's
+          // `contactPhone`/`address` must be written as the bare `null`
+          // literal, not left as BjekMart's own real phone number and
+          // street address — the exact strings that leaked in production
+          // (ahliweb/omes-web#8), checked here directly rather than only
+          // through the "no BjekMart string left" scan below (which is
+          // scoped to a different, narrower file list — see that scan's
+          // own comment).
+          expect(siteTs).toContain("contactPhone: null,");
+          expect(siteTs).toContain("address: null");
+          expect(siteTs).not.toContain("0851-2868-8885");
+          expect(siteTs).not.toContain("Ahmad Wongso");
+          expect(siteTs).not.toContain("borneojekpangkalanbun@gmail.com");
 
           // Grep-style scan, scoped to the files where `template:init`
           // rewrites the ENTIRE brand-bearing surface with no legitimate

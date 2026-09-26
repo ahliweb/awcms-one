@@ -16,6 +16,7 @@ import {
   replaceLineOnce,
   setEnvValue,
   setStringField,
+  setStringOrNullField,
   withBlock
 } from "./text.mjs";
 
@@ -73,8 +74,8 @@ export function rewriteSiteTs(content, flags) {
 
   const identity = extractBlock(
     next,
-    "export const DEFAULT_IDENTITY = {",
-    "} as const;",
+    "export const DEFAULT_IDENTITY: DefaultIdentity = {",
+    "};",
     "site.ts DEFAULT_IDENTITY"
   );
   let identityBlock = identity.block;
@@ -98,17 +99,20 @@ export function rewriteSiteTs(content, flags) {
     flags.kontakEmail,
     "DEFAULT_IDENTITY.contactEmail"
   );
-  if (flags.kontakTelepon) {
-    identityBlock = setStringField(
-      identityBlock,
-      "contactPhone",
-      flags.kontakTelepon,
-      "DEFAULT_IDENTITY.contactPhone"
-    );
-  }
-  if (flags.alamat) {
-    identityBlock = setStringField(identityBlock, "address", flags.alamat, "DEFAULT_IDENTITY.address");
-  }
+  // issue #233 — an OMITTED `--kontak-telepon`/`--alamat` must not leave
+  // BjekMart's own real phone number / street address as a live fallback
+  // forever: it writes the bare `null` literal instead, matched by
+  // `setStringOrNullField` regardless of whether the field currently holds
+  // a quoted string (BjekMart's original value, or a prior run's own
+  // output) or `null` (a prior run that also omitted the flag) — the same
+  // idempotency reasoning every other field in this block already follows.
+  identityBlock = setStringOrNullField(
+    identityBlock,
+    "contactPhone",
+    flags.kontakTelepon ?? null,
+    "DEFAULT_IDENTITY.contactPhone"
+  );
+  identityBlock = setStringOrNullField(identityBlock, "address", flags.alamat ?? null, "DEFAULT_IDENTITY.address");
   next = withBlock(identity, identityBlock);
 
   const theme = extractBlock(
