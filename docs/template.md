@@ -61,6 +61,7 @@ Exactly the brand surface [ADR-0018 D4](adr/0018-awcms-one-is-a-template-with-bu
 - `apps/storefront/src/config/site.ts` — `DEFAULT_IDENTITY` (`name`, `description`, `contactEmail`, and `contactPhone`/`address` when given), `DEFAULT_THEME_COLORS`, and the `SITE_NAME`/`SITE_DESCRIPTION` `readEnvOr` fallbacks. **A third correction to this section's wave-0 wording**: `DEFAULT_IDENTITY.description` was not in the original list (only `name`/`contactEmail`/`contactPhone`/`address` were named) — added here because leaving it untouched ships BjekMart's own catchphrase ("...di BjekMart") into every derived deployment forever, exactly the defect D4's own "Rejected (c)" paragraph describes.
 - Root `package.json` — `name`, `description`, `homepage`, `repository.url`, and (once only, on the first run) a new `awcmsOne.templateVersion` field recording the awcms-one version this derived repo was created from
 - `compose.yaml` — the Docker Compose project name, container name, and named volume
+- `bun.lock` — ONLY the root workspace's own `name` field (`workspaces[""].name`), to match `package.json`'s rewritten `name`; nothing else in the lockfile is touched or regenerated (issue #227 — leaving this field as `"awcms-one"` failed `bun run check:lockfile` in every derived repo)
 - `README.md`/`README.id.md` — the hero section
 - `SUPPORT.md`/`SUPPORT.id.md` — the hero sentence
 - `.env.example` — the seed-script tenant defaults (`SEED_TENANT_CODE`/`SEED_TENANT_NAME`/`SEED_OFFICE_CODE`/`SEED_OFFICE_NAME`/`SEED_OWNER_EMAIL`)

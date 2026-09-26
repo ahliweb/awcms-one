@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](template.md)
 
-<!-- i18n-source-hash: sha256:75a38a64b1f8042a9caa0056341567ec0e8d29cfc321195218c4960517fea3e3 -->
+<!-- i18n-source-hash: sha256:180aae0b4c92b636bb7f6b1aedb215332d47a15a01203a638ca7bbecbbbdb6c9 -->
 
 # Menggunakan awcms-one sebagai template
 
@@ -63,6 +63,7 @@ Persis permukaan merek yang dinamai [ADR-0018 D4](adr/0018-awcms-one-is-a-templa
 - `apps/storefront/src/config/site.ts` — `DEFAULT_IDENTITY` (`name`, `description`, `contactEmail`, dan `contactPhone`/`address` bila diberikan), `DEFAULT_THEME_COLORS`, dan fallback `readEnvOr` `SITE_NAME`/`SITE_DESCRIPTION`
 - Root `package.json` — `name`, `description`, `homepage`, `repository`, dan field `awcmsOne.templateVersion` baru yang mencatat versi awcms-one asal repo turunan ini dibuat
 - `compose.yaml` — nama proyek Docker Compose
+- `bun.lock` — HANYA field `name` milik workspace root (`workspaces[""].name`), agar cocok dengan `name` `package.json` yang ditulis ulang; tidak ada bagian lain lockfile yang disentuh atau dibuat ulang (issue #227 — membiarkan field ini tetap `"awcms-one"` membuat `bun run check:lockfile` gagal di setiap repo turunan)
 - `README.md`/`README.id.md` — bagian hero
 - `SUPPORT.md`/`SUPPORT.id.md` — kalimat hero
 - `.env.example` — default tenant skrip seed (`SEED_TENANT_CODE`/`SEED_TENANT_NAME`/`SEED_OFFICE_CODE`/`SEED_OFFICE_NAME`/`SEED_OWNER_EMAIL`)
