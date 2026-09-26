@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](pengujian.md)
 
-<!-- i18n-source-hash: sha256:36467a82355b0af3615c65d34831e1c4347dbc712cde359849239e7c6527fcc4 -->
+<!-- i18n-source-hash: sha256:77958f8387f27c4ea4f3aa113d8f193681948a8821259c7e32f4f0555cb44e0d -->
 
 # Pengujian
 
@@ -140,7 +140,7 @@ Container layanan `postgres:18.4` (`POSTGRES_USER=awcms`, `POSTGRES_DB=awcms`, h
 | `bun run ci:cms` / `ci:e2e` / `ci:security` / `ci:template` | Subset leg yang cocok saja. |
 | `bun run ci:watch` | Satu pass polling atas PR terbuka, melewati kombinasi (repo, PR, SHA head, versi definisi-CI) mana pun yang sudah tercatat. Dimaksudkan dipicu oleh `tools/ci/systemd/awcms-one-ci-watch.{service,timer}` (didokumentasikan di sana, tidak dipasang oleh repo ini). |
 
-Setiap run menegakkan pin Bun dulu (`tools/ci/lib/bun-pin.ts`): sebuah leg tidak pernah berjalan di bawah Bun yang tidak cocok dengan `packageManager` milik root `package.json`. Evidence — log leg, SARIF CodeQL, laporan/screenshot Playwright — dan lock/hasil tercatat watcher sendiri hidup di bawah `${XDG_STATE_HOME:-~/.local/state}/awcms-one-ci/`, tidak pernah di dalam repositori ini, dan setiap log dilewatkan lewat helper redaksi bersama sebelum ditulis (`tools/ci/lib/redact.ts`) sehingga password DSN atau bearer token tidak pernah mencapai disk dalam bentuk polos.
+Setiap run menegakkan pin Bun dulu (`tools/ci/lib/bun-pin.ts`): sebuah leg tidak pernah berjalan di bawah Bun yang tidak cocok dengan `packageManager` milik root `package.json`. Setelah itu ia menetapkan `CI=true` untuk setiap leg, seperti yang dilakukan GitHub Actions untuk setiap langkah: kedua konfigurasi Playwright mengaitkan `forbidOnly` (sebuah `test.only` yang tertinggal menggagalkan run alih-alih diam-diam melewati sisanya), satu retry, dan laporan HTML dengannya (`tools/ci/lib/orchestrate.ts`). Evidence — log leg, SARIF CodeQL, laporan/screenshot Playwright — dan lock/hasil tercatat watcher sendiri hidup di bawah `${XDG_STATE_HOME:-~/.local/state}/awcms-one-ci/`, tidak pernah di dalam repositori ini, dan setiap log dilewatkan lewat helper redaksi bersama sebelum ditulis (`tools/ci/lib/redact.ts`) sehingga password DSN atau bearer token tidak pernah mencapai disk dalam bentuk polos.
 
 Leg `local-ci/security` (CodeQL CLI + gitleaks dipin lewat digest + `bun audit`) sengaja tidak setara GHAS — lihat ADR-0021 D7 untuk titik buta yang dinyatakan (tanpa extractor `.astro`, kesesuaian `paths-ignore` yang mendekati, tanpa siklus hidup alert tab Security). Ia gagal pada temuan CodeQL apa pun di `security-severity >= 7.0` kecuali pasangan `(ruleId, path)` eksak itu terdaftar di `tools/ci/security-baseline.json`, yang disemai dengan sembilan alert code-scanning GitHub milik repositori ini yang sudah dismissed (`reason` masing-masing entri mengutip komentar dismissal alert itu) ditambah satu entri lagi untuk temuan kode-baru sungguhan yang dimunculkan run pertama leg ini sendiri di `tools/ci/lib/lock.ts`, dan tumbuh lebih jauh hanya dengan maintainer secara eksplisit men-triase dan mencatat alasan sebuah temuan yang benar-benar baru diterima.
 
