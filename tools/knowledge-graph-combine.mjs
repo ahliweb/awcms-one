@@ -47,8 +47,9 @@
  * output path.
  *
  * Needs the real `graphify` binary on `PATH` (a local Python tool, not
- * installed in CI — see `.github/workflows/ci.yml`'s own comments on this
- * point). Not part of `bun test`; the validation logic it calls into
+ * installed under local CI's `audit-graf` step either — that step checks
+ * the already-committed graph, per `tools/ci/runners/check.ts`, rather than
+ * regenerating it). Not part of `bun test`; the validation logic it calls into
  * (`packages/gerbang/lib/graph-combine.mjs`) IS, against fixtures, with no
  * `graphify` involved.
  */

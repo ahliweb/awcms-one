@@ -3,7 +3,9 @@
  * width (360px) and a desktop width (1280px) for every one of this
  * profile's key pages (`profil-halaman.ts`), written under
  * `E2E_SCREENSHOT_DIR` (default `test-results/screenshots/<profile>/`) and
- * uploaded as a CI artifact by `.github/workflows/e2e.yml`.
+ * copied into that run's own evidence directory by `bun run ci:e2e`
+ * (`tools/ci/runners/e2e.ts`) for human review — no GitHub Actions artifact
+ * upload any more (issue #225, ADR-0021).
  *
  * Deliberately NOT compared against a committed baseline: cross-OS font
  * rendering makes a byte-level baseline flaky by construction (a runner's
@@ -19,11 +21,11 @@
  * script captures a small, curated, optimised set for the README, not
  * every key page of every profile as a debugging/review artifact.
  *
- * `.github/workflows/e2e.yml` calls this spec directly with none of the
- * three env vars below set, so its own behaviour (every key page, both
- * viewports, full page) is unchanged. `screenshots-readme.mjs` is the one
- * caller that sets them, to capture a small, above-the-fold crop for a
- * README instead (issue #189):
+ * `bun run ci:e2e` (`tools/ci/runners/e2e.ts`) calls this spec via
+ * `bun run test:e2e` with none of the three env vars below set, so its own
+ * behaviour (every key page, both viewports, full page) is unchanged.
+ * `screenshots-readme.mjs` is the one caller that sets them, to capture a
+ * small, above-the-fold crop for a README instead (issue #189):
  *
  *   - `E2E_SCREENSHOT_PAGES` — a comma-separated subset of `KEY_PAGES` names
  *     (default: every key page)
