@@ -258,6 +258,11 @@
   filter: brightness(0.92);
 }
 
+/* Both nav renders (issue #230 — `.primary-nav` for desktop,
+   `.mobile-nav-toggle nav` for mobile, from the same `navUtama` array,
+   `NavBerita.astro`) share this base link style, one selector list rather
+   than two copies that could drift. */
+.primary-nav a,
 .mobile-nav-toggle nav a {
   display: inline-flex;
   align-items: center;
@@ -273,10 +278,12 @@
    `text-decoration` so the mark sits flush under the label at a fixed
    2px, matching the mockup's nav underline exactly rather than following
    each glyph's own descenders. */
+.nav-berita .primary-nav a,
 .nav-berita .mobile-nav-toggle nav a {
   border-bottom: 2px solid transparent;
 }
 
+.nav-berita .primary-nav a[aria-current="page"],
 .nav-berita .mobile-nav-toggle nav a[aria-current="page"] {
   color: var(--text-primary);
   font-weight: 800;

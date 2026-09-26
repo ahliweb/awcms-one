@@ -802,13 +802,34 @@ main {
   text-decoration: none;
 }
 
-/* --- Mobile nav — no JavaScript (issue #24) ------------------------------
-   A native <details>/<summary> disclosure: the browser opens/closes it
-   (mouse, touch, or keyboard — Enter/Space on a focused <summary>) with
-   nothing in Header.astro's own <script> block involved. `summary` is
-   hidden and `nav` shown inline above the mobile breakpoint (desktop: a
-   plain horizontal nav); below it, `summary` becomes the visible toggle and
-   `nav` is tucked inside the collapsible panel. */
+/* --- Primary nav — no JavaScript, two renders (issue #24, issue #230) ----
+   Header.astro renders the SAME `primaryNav` array twice: `.primary-nav`,
+   a plain always-open horizontal nav for desktop, and the second copy
+   inside `.mobile-nav-toggle` (a native <details>/<summary> disclosure)
+   for mobile. Two renders, not one nav shown/hidden by CSS, because a
+   *closed* <details> hides every descendant of its content through the
+   UA stylesheet's own `::details-content { content-visibility: hidden }`
+   — author CSS on the children (the old `.mobile-nav-toggle nav { display:
+   flex }` above the breakpoint) cannot override that, so above 720px the
+   nav was never actually visible in any browser, in every SITE_PROFILE
+   (issue #230). `display: none` on the copy not in use for the current
+   width removes it from the accessibility tree, so a screen reader still
+   meets exactly one "Navigasi utama" landmark regardless of viewport. The
+   breakpoint itself, and the mobile <details>/<summary> mechanics below
+   it (browser-native open/close, Enter/Space on a focused `<summary>`,
+   nothing in Header.astro's own <script> block involved), are unchanged
+   from issue #24. */
+.primary-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex-wrap: wrap;
+}
+
+.mobile-nav-toggle {
+  display: none;
+}
+
 .mobile-nav-toggle summary {
   display: none;
   list-style: none;
@@ -836,6 +857,14 @@ main {
 @media (max-width: 720px) {
   .site-header-inner {
     position: relative;
+  }
+
+  .primary-nav {
+    display: none;
+  }
+
+  .mobile-nav-toggle {
+    display: block;
   }
 
   .mobile-nav-toggle summary {

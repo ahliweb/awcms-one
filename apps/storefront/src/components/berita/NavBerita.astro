@@ -20,6 +20,24 @@
  * `<img src=... alt={identity.name} width=... height=...>`, matching
  * `layout_header.php`'s own `<img>`-or-text-fallback branch.
  *
+ * ## The primary nav is rendered TWICE — issue #230
+ *
+ * `navUtama` is mapped into markup twice, from the same array: a desktop
+ * `.primary-nav`, always open, and the mobile copy inside `.mobile-nav-
+ * toggle` below (the native `<details>`/`<summary>` disclosure this
+ * component always had). This mirrors `Header.astro`'s own fix for the
+ * same underlying bug: a *closed* `<details>` hides its own content
+ * (everything but `<summary>`) through the UA stylesheet's own
+ * `::details-content { content-visibility: hidden }` rule, which no
+ * author CSS on the hidden content's children can override — so, before
+ * this issue, this component's ONE nav (living only inside the
+ * `<details>`, reusing `global.css`'s `.mobile-nav-toggle` class the same
+ * way `Header.astro` did) was never actually visible above 720px either,
+ * on a `berita`-profile page. `global.css` shows exactly one of the two
+ * copies by viewport width (`.primary-nav` / `.mobile-nav-toggle`, shared
+ * with `Header.astro`), `display: none`-ing the other out of the
+ * accessibility tree — see `global.css`'s own docblock on the rule.
+ *
  * ## The Daerah panel needs no JavaScript to be COMPLETE
  *
  * All 14 links (`getDaerahList()`) render unconditionally, with no `hidden`
@@ -83,6 +101,27 @@ const TOGGLE_ID = "nav-daerah-toggle";
       />
       <button type="submit">Cari</button>
     </form>
+
+    <nav class="primary-nav" aria-label="Navigasi utama">
+      {navUtama.map((item) => {
+        const active = isActive(item);
+        return item.controls ? (
+          <a
+            href={item.href}
+            aria-expanded="true"
+            aria-controls={item.controls}
+            data-active={String(active)}
+            aria-current={active ? "page" : undefined}
+          >
+            {item.label}
+          </a>
+        ) : (
+          <a href={item.href} aria-current={active ? "page" : undefined}>
+            {item.label}
+          </a>
+        );
+      })}
+    </nav>
 
     <details class="mobile-nav-toggle">
       <summary aria-label="Buka menu navigasi">
