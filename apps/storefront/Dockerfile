@@ -104,6 +104,19 @@ RUN --mount=type=secret,id=awcms_api_token \
 FROM oven/bun:${BUN_VERSION}-slim AS runtime
 WORKDIR /app
 
+# The `oven/bun:*-slim` base tag ships whatever Debian package versions were
+# current the day it was cut, and falls behind Debian's own security repo
+# until `oven/bun` republishes it. A trivy scan of `oven/bun:1.4.2-slim`
+# (27 Sep 2026) found three fixable CRITICAL CVEs in perl-base 5.40.1-6 —
+# CVE-2026-13221, CVE-2026-42496, CVE-2026-8376 — all resolved by Debian
+# security in 5.40.1-6+deb13u1. Applying `apt-get upgrade` at build time,
+# rather than trusting the base tag's own packages, closes these (and
+# whatever else Debian security has fixed since) on every rebuild, without
+# waiting on `oven/bun` to re-cut the tag.
+RUN apt-get update \
+  && apt-get upgrade -y --no-install-recommends \
+  && rm -rf /var/lib/apt/lists/*
+
 COPY --from=build /repo/apps/storefront/dist ./dist
 
 ENV PORT=8080
