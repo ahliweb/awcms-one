@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](deployment.md)
 
-<!-- i18n-source-hash: sha256:1c160cdaaf6bb1906e91080121611208f3b51202b99d2cd90cd6b1ff20ce4c73 -->
+<!-- i18n-source-hash: sha256:35471b11f3c5dcf08f6736d629e0b43b7da4b64af8d58955931ade6d3dbc00ec -->
 
 # Deployment
 
@@ -353,7 +353,7 @@ Tiga identitas berbeda, tidak pernah dicampur (ADR-0019 D2):
 ### Image
 
 - **`apps/cms`** — `apps/cms/Dockerfile.production` (sudah ada sebelumnya, upstream, tidak diubah) membangun target `runtime` (hanya `dist/`, peran berhak-minimum, tanpa scripts) dan target `jobs` (source penuh, sehingga 30+ target job terdaftarnya benar-benar bisa berjalan).
-- **`apps/storefront`** — `apps/storefront/Dockerfile` (baru). Multi-stage: stage build yang menjalankan `bun run build` dari konteks ROOT REPO (build aplikasi ini butuh kontrak type-only `packages/kontrak`, yang sendiri mengimpor dari source `apps/cms`) dengan `SITE_PROFILE`/`SITE_URL`/`AWCMS_API_URL`/`PUBLIC_AWCMS_ORIGIN`/`PUBLIC_GA_ID` sebagai build ARG, dan `AWCMS_API_TOKEN` HANYA lewat BuildKit `--mount=type=secret,id=awcms_api_token` — tidak pernah ARG/ENV, sehingga tidak pernah masuk layer image (ADR-0019 D4); stage runtime yang hanya membawa `dist/` dan menjalankan `bun dist/server/penyaji.mjs` sebagai user non-root `bun` milik image itu sendiri. **Setiap `SITE_PROFILE` adalah image-nya sendiri** — bangun `toko`, `berita`, dan `landing` terpisah bila lebih dari satu deployment berbagi repositori ini.
+- **`apps/storefront`** — `apps/storefront/Dockerfile` (baru). Multi-stage: stage build yang menjalankan `bun run build` dari konteks ROOT REPO (build aplikasi ini butuh kontrak type-only `packages/kontrak`, yang sendiri mengimpor dari source `apps/cms`) dengan `SITE_PROFILE`/`SITE_URL`/`AWCMS_API_URL`/`PUBLIC_AWCMS_ORIGIN`/`PUBLIC_GA_ID` sebagai build ARG, dan `AWCMS_API_TOKEN` HANYA lewat BuildKit `--mount=type=secret,id=awcms_api_token` — tidak pernah ARG/ENV, sehingga tidak pernah masuk layer image (ADR-0019 D4); stage runtime yang menjalankan `apt-get upgrade` terhadap repo keamanan Debian sendiri sebelum turun ke user non-root `bun` milik image (temuan 27 Sep 2026 — tag basis `oven/bun:*-slim` sebaliknya membawa versi paket Debian apa pun yang berlaku saat tag itu dipotong, dan pemindaian trivy atas `oven/bun:1.4.2-slim` menemukan tiga CVE CRITICAL yang bisa diperbaiki pada `perl-base`), lalu hanya membawa `dist/` dan menjalankan `bun dist/server/penyaji.mjs` sebagai user `bun` yang sama itu. **Setiap `SITE_PROFILE` adalah image-nya sendiri** — bangun `toko`, `berita`, dan `landing` terpisah bila lebih dari satu deployment berbagi repositori ini.
 
 ```bash
 DOCKER_BUILDKIT=1 docker build \
