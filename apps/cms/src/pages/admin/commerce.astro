@@ -12,6 +12,18 @@
  *
  * Every control here is UX-only — the API routes it calls are the real
  * authority (same rule `offices.astro` documents).
+ *
+ * Issue #247 adds three things on top: every product type/status render
+ * (badge, table cell, filter/create/inline-edit `<select>`) goes through
+ * `commerce-admin-labels.ts`'s shared maps instead of the raw column value;
+ * the All/Published/Draft quick-filter tabs show a per-status count
+ * (`countProductsByStatus`, one extra grouped query — see its own docblock
+ * for why it deliberately ignores this screen's other filters); and the
+ * product list gets real bulk Publish/Move to draft/Delete actions, wired
+ * entirely by `commerce-products-bulk-client.ts` (read that module's header
+ * before touching either the bar or the checkbox column — it explains the
+ * `{n}` placeholder trick the live selection count and the delete
+ * confirmation message both depend on).
  */
 import AdminLayout from "../../layouts/AdminLayout.astro";
 import CommerceConfirmDialog from "../../components/CommerceConfirmDialog.astro";
@@ -23,6 +35,7 @@ import { mediaLibraryPortAdapter } from "../../modules/media-library/application
 import { listMediaObjects } from "../../modules/media-library/application/media-object-directory";
 import {
   attachProductRelations,
+  countProductsByStatus,
   listDeletedProductsForAdmin,
   listProductsForAdmin,
   type ProductAdminRecord,
@@ -33,8 +46,13 @@ import { listCategories } from "../../modules/commerce/application/category-dire
 import { PRODUCT_TYPES } from "../../modules/commerce/domain/product-type";
 import {
   isProductStatus,
-  PRODUCT_STATUSES
+  PRODUCT_STATUSES,
+  type ProductStatus
 } from "../../modules/commerce/domain/product-status";
+import {
+  commerceLabel,
+  createCommerceLabels
+} from "../../lib/ui/commerce-admin-labels";
 
 type AdminProductRow = ProductAdminRecord & {
   images: ProductImageDTO[];
@@ -79,6 +97,7 @@ function advancedFieldsJson(product: ProductAdminRecord): string {
 
 const ssr = Astro.locals.ssrContext!;
 const { t, tn } = getTranslatorFor(Astro.locals.locale);
+const labels = createCommerceLabels(t);
 
 const url = new URL(Astro.request.url);
 const filterCategoryId = url.searchParams.get("categoryId") ?? "";
@@ -113,6 +132,7 @@ const screen = await loadAdminScreen({
       mediaLibraryPortAdapter,
       page.items
     )) as unknown as AdminProductRow[];
+    const statusCounts = await countProductsByStatus(tx, ssr.tenantId);
 
     const canCreate = await can({
       moduleKey: "commerce",
@@ -148,6 +168,7 @@ const screen = await loadAdminScreen({
       categories: categoryPage.items,
       deleted,
       mediaOptions,
+      statusCounts,
       canCreate,
       canUpdate,
       canDelete,
@@ -167,11 +188,31 @@ const products = screen.state === "allowed" ? screen.data.products : [];
 const categories = screen.state === "allowed" ? screen.data.categories : [];
 const deletedProducts = screen.state === "allowed" ? screen.data.deleted : [];
 const mediaOptions = screen.state === "allowed" ? screen.data.mediaOptions : [];
+const statusCounts =
+  screen.state === "allowed" ? screen.data.statusCounts : null;
+const totalProductCount = statusCounts
+  ? Object.values(statusCounts as Record<ProductStatus, number>).reduce(
+      (sum: number, n: number) => sum + n,
+      0
+    )
+  : 0;
 const canCreate = screen.state === "allowed" && screen.data.canCreate;
 const canUpdate = screen.state === "allowed" && screen.data.canUpdate;
 const canDelete = screen.state === "allowed" && screen.data.canDelete;
 const canRestore = screen.state === "allowed" && screen.data.canRestore;
 const showActions = canUpdate || canDelete;
+/**
+ * The header select-all checkbox, the per-row checkbox column, and the
+ * `.admin-bulk-bar` are gated on the SAME predicate as the row Actions
+ * column (`showActions`): if an operator can neither update nor delete a
+ * product, there is no bulk action the selection could ever drive, so the
+ * checkboxes are not rendered at all rather than shown disabled. This also
+ * fixes the `<td colspan>` the expandable per-row edit panel below needs —
+ * it must span every column the header actually has, and the header now has
+ * 6 fixed columns (SKU/Name/Type/Price/Stock/Status) plus Select AND
+ * Actions together, never one without the other.
+ */
+const totalTableColumns = 6 + (showActions ? 2 : 0);
 ---
 
 <AdminLayout
@@ -197,7 +238,7 @@ const showActions = canUpdate || canDelete;
   }
 
   {
-    canRead && !loadError && (
+    canRead && !loadError && statusCounts && (
       <nav
         class="admin-segmented fade-in-up"
         aria-label={t("Quick status filter")}
@@ -207,21 +248,21 @@ const showActions = canUpdate || canDelete;
           aria-current={filterStatus === "" ? "page" : "false"}
           href="/admin/commerce"
         >
-          {t("All")}
+          {t("All")} ({totalProductCount})
         </a>
         <a
           class="admin-segmented-option"
           aria-current={filterStatus === "active" ? "page" : "false"}
           href="/admin/commerce?status=active"
         >
-          {t("Published")}
+          {t("Published")} ({statusCounts.active})
         </a>
         <a
           class="admin-segmented-option"
           aria-current={filterStatus === "draft" ? "page" : "false"}
           href="/admin/commerce?status=draft"
         >
-          {t("Draft")}
+          {t("Draft")} ({statusCounts.draft})
         </a>
       </nav>
     )
@@ -253,7 +294,7 @@ const showActions = canUpdate || canDelete;
           <option value="">{t("All statuses")}</option>
           {PRODUCT_STATUSES.map((status) => (
             <option value={status} selected={status === filterStatus}>
-              {status}
+              {commerceLabel(labels.productStatus, status)}
             </option>
           ))}
         </select>
@@ -334,7 +375,9 @@ const showActions = canUpdate || canDelete;
         <label for="create-type">{t("Type")}</label>
         <select id="create-type" name="type">
           {PRODUCT_TYPES.map((type) => (
-            <option value={type}>{type}</option>
+            <option value={type}>
+              {commerceLabel(labels.productType, type)}
+            </option>
           ))}
         </select>
 
@@ -419,15 +462,103 @@ const showActions = canUpdate || canDelete;
   }
 
   {
-    canRead && !loadError && products.length > 0 && (
-      <div class="admin-bulk-bar fade-in-up" id="product-bulk-bar" hidden>
-        <span class="admin-bulk-bar-count" id="product-bulk-bar-count">
+    /**
+     * Bulk selection bar (Issue #247) — CSS-hidden by `hidden` here AND by
+     * `.bulk-select-col`'s own default `display: none` below; JavaScript
+     * (`commerce-products-bulk-client.ts`) is what reveals both once it
+     * actually runs, so a no-JS visitor keeps the per-row-only UI this
+     * screen always had. Rendered only when there is at least one bulk
+     * action an operator with this permission set could take — the same
+     * `showActions` predicate the row Actions column already uses.
+     *
+     * Every `data-*` attribute below is a translated STRING or TEMPLATE this
+     * page renders once, server-side; the client never calls `t()`/`tn()`
+     * itself. `data-count-template-one`/`-other` and the delete button's
+     * `data-confirm-message-template-*` are the two grammatical forms this
+     * locale's plural rule produces (see
+     * `commerce-products-bulk-client.ts`'s header for the `{n}` mechanism),
+     * still carrying an unfilled `{n}` the client fills with the live
+     * selection count.
+     */
+    canRead && !loadError && showActions && products.length > 0 && (
+      <div
+        class="admin-bulk-bar fade-in-up"
+        id="product-bulk-bar"
+        role="region"
+        aria-label={t("Bulk actions")}
+        data-progress-template={t("Processing {done} of {total}…")}
+        data-generic-failure-reason={t(
+          "Could not process this product. Please try again."
+        )}
+        hidden
+      >
+        <span
+          class="admin-bulk-bar-count"
+          id="product-bulk-bar-count"
+          aria-live="polite"
+          data-count-template-one={tn(
+            "{n} product selected",
+            "{n} products selected",
+            1
+          )}
+          data-count-template-other={tn(
+            "{n} product selected",
+            "{n} products selected",
+            2
+          )}
+        >
           {t("0 selected")}
         </span>
-        {/* No bulk-capable endpoint exists yet (only single update/delete/
-            restore) — the bar surfaces the selection count only, per the
-            Issue #171 rule "if none exist, the bar only shows the count and
-            per-row actions remain". */}
+        <div class="admin-bulk-bar-actions">
+          {canUpdate && (
+            <button
+              type="button"
+              class="module-toggle"
+              id="product-bulk-publish-btn"
+              data-failure-header-template={t(
+                "{failedCount} of {totalCount} selected products could not be published."
+              )}
+            >
+              {t("Publish")}
+            </button>
+          )}
+          {canUpdate && (
+            <button
+              type="button"
+              class="module-toggle"
+              id="product-bulk-draft-btn"
+              data-failure-header-template={t(
+                "{failedCount} of {totalCount} selected products could not be moved to draft."
+              )}
+            >
+              {t("Move to draft")}
+            </button>
+          )}
+          {canDelete && (
+            <button
+              type="button"
+              class="module-toggle"
+              id="product-bulk-delete-btn"
+              data-confirm-title={t("Delete the selected products?")}
+              data-confirm-label={t("Delete products")}
+              data-confirm-message-template-one={tn(
+                "{n} selected product will be moved to trash and can be restored later.",
+                "{n} selected products will be moved to trash and can be restored later.",
+                1
+              )}
+              data-confirm-message-template-other={tn(
+                "{n} selected product will be moved to trash and can be restored later.",
+                "{n} selected products will be moved to trash and can be restored later.",
+                2
+              )}
+              data-failure-header-template={t(
+                "{failedCount} of {totalCount} selected products could not be deleted."
+              )}
+            >
+              {t("Delete")}
+            </button>
+          )}
+        </div>
       </div>
     )
   }
@@ -446,9 +577,13 @@ const showActions = canUpdate || canDelete;
           </caption>
           <thead>
             <tr>
-              {products.length > 0 && (
-                <th scope="col">
-                  <span class="sr-only">{t("Select")}</span>
+              {showActions && products.length > 0 && (
+                <th scope="col" class="bulk-select-col">
+                  <input
+                    type="checkbox"
+                    id="commerce-products-select-all"
+                    aria-label={t("Select all products on this page")}
+                  />
                 </th>
               )}
               <th scope="col">{t("SKU")}</th>
@@ -463,7 +598,7 @@ const showActions = canUpdate || canDelete;
           <tbody>
             {products.length === 0 ? (
               <tr>
-                <td class="data-table-empty" colspan={showActions ? 7 : 6}>
+                <td class="data-table-empty" colspan={totalTableColumns}>
                   <div class="empty-state">
                     <span class="empty-state-icon" aria-hidden="true">
                       ○
@@ -481,19 +616,27 @@ const showActions = canUpdate || canDelete;
               products.map((product) => (
                 <>
                   <tr data-product-row={product.id}>
-                    <td data-label="Select">
-                      <input
-                        type="checkbox"
-                        class="product-bulk-checkbox"
-                        aria-label={t("Select this product")}
-                      />
-                    </td>
+                    {showActions && (
+                      <td data-label="Select" class="bulk-select-col">
+                        <input
+                          type="checkbox"
+                          class="commerce-product-row-select"
+                          data-product-id={product.id}
+                          data-product-sku={product.sku}
+                          aria-label={t("Select {name}", {
+                            name: product.name
+                          })}
+                        />
+                      </td>
+                    )}
                     <td data-label="SKU">
                       <span class="cell-code">{product.sku}</span>
                     </td>
                     <td data-label="Name">{product.name}</td>
                     <td data-label="Type">
-                      <span class="cell-muted">{product.type}</span>
+                      <span class="cell-muted" data-product-type={product.type}>
+                        {commerceLabel(labels.productType, product.type)}
+                      </span>
                     </td>
                     <td data-label="Price">{product.price}</td>
                     <td data-label="Stock">{product.stock}</td>
@@ -503,9 +646,10 @@ const showActions = canUpdate || canDelete;
                         data-variant={
                           product.status === "active" ? "success" : "neutral"
                         }
+                        data-product-status={product.status}
                       >
                         <span class="status-dot" aria-hidden="true" />
-                        {product.status}
+                        {commerceLabel(labels.productStatus, product.status)}
                       </span>
                     </td>
                     {showActions && (
@@ -533,7 +677,7 @@ const showActions = canUpdate || canDelete;
                   </tr>
                   {canUpdate && (
                     <tr>
-                      <td colspan={showActions ? 7 : 6}>
+                      <td colspan={totalTableColumns}>
                         <details class="admin-section">
                           <summary>{t("Edit")}</summary>
 
@@ -580,7 +724,7 @@ const showActions = canUpdate || canDelete;
                                   value={type}
                                   selected={type === product.type}
                                 >
-                                  {type}
+                                  {commerceLabel(labels.productType, type)}
                                 </option>
                               ))}
                             </select>
@@ -612,7 +756,7 @@ const showActions = canUpdate || canDelete;
                                   value={status}
                                   selected={status === product.status}
                                 >
-                                  {status}
+                                  {commerceLabel(labels.productStatus, status)}
                                 </option>
                               ))}
                             </select>
@@ -838,6 +982,31 @@ const showActions = canUpdate || canDelete;
   <CommerceConfirmDialog locale={Astro.locals.locale} />
 </AdminLayout>
 
+<style>
+  /*
+   * Issue #247 — the checkbox column is CSS-hidden until
+   * `commerce-products-bulk-client.ts` actually runs (adds
+   * `.bulk-select-ready` to the table), so a no-JS visitor keeps today's
+   * per-row-only UI rather than a column of checkboxes that do nothing.
+   * Scoped to THIS table's id, same as `commerce-orders.astro`'s own
+   * `.order-gateway-panel-row[hidden]` fix — a class selector alone would
+   * also match `#deleted-products-table` below, which never gets a bulk bar.
+   */
+  #commerce-products-table .bulk-select-col {
+    display: none;
+  }
+
+  #commerce-products-table.bulk-select-ready .bulk-select-col {
+    display: table-cell;
+  }
+
+  .bulk-select-col input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+  }
+</style>
+
 <script>
   import {
     field,
@@ -849,6 +1018,7 @@ const showActions = canUpdate || canDelete;
     sendJson
   } from "../../lib/ui/admin-form-client";
   import { confirmFromTrigger } from "../../lib/ui/commerce-confirm-dialog-client";
+  import { initCommerceProductsBulk } from "../../lib/ui/commerce-products-bulk-client";
 
   function parseAdvancedFields(raw: string): Record<string, unknown> | null {
     const trimmed = raw.trim();
@@ -1039,21 +1209,9 @@ const showActions = canUpdate || canDelete;
     );
   });
 
-  // Issue #171 — the `.admin-bulk-bar` selection count. No bulk-capable
-  // endpoint exists yet, so this is display-only; per-row actions above
-  // remain the only way to act on a product.
-  const bulkBar = document.getElementById("product-bulk-bar");
-  const bulkCount = document.getElementById("product-bulk-bar-count");
-  const checkboxes = document.querySelectorAll<HTMLInputElement>(
-    ".product-bulk-checkbox"
-  );
-
-  function updateBulkBar() {
-    const selected = Array.from(checkboxes).filter((box) => box.checked);
-    if (!bulkBar || !bulkCount) return;
-    bulkBar.hidden = selected.length === 0;
-    bulkCount.textContent = `${selected.length} selected`;
-  }
-
-  checkboxes.forEach((box) => box.addEventListener("change", updateBulkBar));
+  // Issue #247 — checkbox column, selection bar, and Publish/Move to
+  // draft/Delete, each looping over the existing per-item endpoints above
+  // (never a new bulk API). See `commerce-products-bulk-client.ts` for the
+  // full contract.
+  initCommerceProductsBulk();
 </script>

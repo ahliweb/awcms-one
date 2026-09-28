@@ -6209,3 +6209,44 @@ msgstr "Status pesanan {orderCode} akan diubah dari {from} menjadi {to}."
 msgid "Note (optional)"
 msgstr "Catatan (opsional)"
 
+msgid "Select all products on this page"
+msgstr "Pilih semua produk di halaman ini"
+
+msgid "Select {name}"
+msgstr "Pilih {name}"
+
+msgid "Bulk actions"
+msgstr "Tindakan massal"
+
+msgid "{n} product selected"
+msgid_plural "{n} products selected"
+msgstr[0] "{n} produk dipilih"
+
+msgid "Move to draft"
+msgstr "Pindahkan ke draf"
+
+msgid "Delete the selected products?"
+msgstr "Hapus produk yang dipilih?"
+
+msgid "{n} selected product will be moved to trash and can be restored later."
+msgid_plural "{n} selected products will be moved to trash and can be restored later."
+msgstr[0] "{n} produk terpilih akan dipindahkan ke sampah dan dapat dipulihkan nanti."
+
+msgid "Delete products"
+msgstr "Hapus produk"
+
+msgid "Processing {done} of {total}…"
+msgstr "Memproses {done} dari {total}…"
+
+msgid "Could not process this product. Please try again."
+msgstr "Tidak dapat memproses produk ini. Silakan coba lagi."
+
+msgid "{failedCount} of {totalCount} selected products could not be published."
+msgstr "{failedCount} dari {totalCount} produk terpilih tidak dapat dipublikasikan."
+
+msgid "{failedCount} of {totalCount} selected products could not be moved to draft."
+msgstr "{failedCount} dari {totalCount} produk terpilih tidak dapat dipindahkan ke draf."
+
+msgid "{failedCount} of {totalCount} selected products could not be deleted."
+msgstr "{failedCount} dari {totalCount} produk terpilih tidak dapat dihapus."
+

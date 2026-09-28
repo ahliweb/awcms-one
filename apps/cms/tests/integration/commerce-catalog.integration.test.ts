@@ -26,6 +26,7 @@ import {
 } from "../../src/modules/commerce/application/category-directory";
 import {
   attachProductRelations,
+  countProductsByStatus,
   createProduct,
   deleteProduct,
   fetchProductBySlug,
@@ -263,6 +264,90 @@ suite("commerce catalog-parity integration (Issue #23)", () => {
         listProducts(tx, TENANT_A, null, { sort: "name" })
       );
       expect(byName.items.map((p) => p.name)).toEqual(["Aaa", "Zzz"]);
+    }, 20000);
+  });
+
+  describe("countProductsByStatus (Issue #247)", () => {
+    test("groups live products by status, zero-fills the rest, and ignores category/search/featured filters", async () => {
+      const category = await withTenantOrThrow(
+        getRuntimeSql(),
+        TENANT_A,
+        (tx) =>
+          createCategory(tx, TENANT_A, ACTOR, {
+            parentId: null,
+            name: "Minuman",
+            slug: "minuman",
+            icon: null
+          })
+      );
+
+      const draftOne = await makeProduct(TENANT_A, {
+        sku: "SKU-DRAFT-1",
+        slug: "draft-one",
+        categoryId: category.id,
+        isFeatured: true
+      });
+      await makeProduct(TENANT_A, {
+        sku: "SKU-DRAFT-2",
+        slug: "draft-two",
+        categoryId: null,
+        isFeatured: false
+      });
+      const active = await makeProduct(TENANT_A, {
+        sku: "SKU-ACTIVE-1",
+        slug: "active-one",
+        categoryId: null,
+        isFeatured: false
+      });
+      await withTenantOrThrow(getRuntimeSql(), TENANT_A, (tx) =>
+        updateProduct(tx, TENANT_A, ACTOR, active.id, { status: "active" })
+      );
+
+      // A soft-deleted product must not be counted under any status.
+      await withTenantOrThrow(getRuntimeSql(), TENANT_A, (tx) =>
+        deleteProduct(tx, TENANT_A, ACTOR, draftOne.id)
+      );
+
+      const counts = await withTenantOrThrow(getRuntimeSql(), TENANT_A, (tx) =>
+        countProductsByStatus(tx, TENANT_A)
+      );
+
+      // One draft (SKU-DRAFT-2) survives; SKU-DRAFT-1 was soft-deleted and
+      // SKU-ACTIVE-1 was moved to `active` above.
+      expect(counts).toEqual({
+        draft: 1,
+        active: 1,
+        inactive: 0,
+        archived: 0
+      });
+
+      // The count is NOT narrowed by categoryId/featured — both would leave
+      // only SKU-DRAFT-1 (soft-deleted, so absent from the count either way)
+      // if applied, but this helper takes no such filter to apply.
+      expect(
+        counts.draft + counts.active + counts.inactive + counts.archived
+      ).toBe(2);
+    }, 20000);
+
+    test("never counts another tenant's products", async () => {
+      await makeProduct(TENANT_A, { sku: "SKU-A", slug: "tenant-a-product" });
+      await withTenantOrThrow(getRuntimeSql(), TENANT_B, (tx) =>
+        createProduct(tx, TENANT_B, ACTOR, {
+          ...BASE_PRODUCT,
+          sku: "SKU-B",
+          slug: "tenant-b-product"
+        })
+      );
+
+      const countsA = await withTenantOrThrow(getRuntimeSql(), TENANT_A, (tx) =>
+        countProductsByStatus(tx, TENANT_A)
+      );
+      const countsB = await withTenantOrThrow(getRuntimeSql(), TENANT_B, (tx) =>
+        countProductsByStatus(tx, TENANT_B)
+      );
+
+      expect(countsA.draft).toBe(1);
+      expect(countsB.draft).toBe(1);
     }, 20000);
   });
 
