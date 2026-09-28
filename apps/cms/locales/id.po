@@ -6013,7 +6013,7 @@ msgid "Cancel this campaign?"
 msgstr "Batalkan kampanye ini?"
 
 msgid "Already-dispatched recipients will not be un-sent."
-msgstr "Penerima yang sudah menerima kampanye ini tidak akan bisa dibatalkan pengirimannya."
+msgstr "Pesan yang sudah terkirim ke penerima tidak akan ditarik kembali."
 
 msgid "Cancel campaign"
 msgstr "Batalkan kampanye"
