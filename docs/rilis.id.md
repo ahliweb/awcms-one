@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](rilis.md)
 
-<!-- i18n-source-hash: sha256:2a7a67171d2fc9b029e90ef0adfaf0edad270e685068513185e92ecdaf7d9172 -->
+<!-- i18n-source-hash: sha256:4e7499fae3df23be8506d7b48dc46d9a3c4b9a95dbd0d54e8bced2a3ca9b6e2e -->
 
 # Runbook rilis
 
@@ -62,44 +62,70 @@ Kedua perintah tetap terdokumentasi di sini, berdampingan, ketimbang yang lama d
 
 Tanda tangan pada publikasi sungguhan dicatat di log transparansi publik Rekor, sehingga perintah biasa di atas berfungsi apa adanya. Tanda tangan yang dibuat dengan `COSIGN_TLOG_UPLOAD=false` tidak punya entri Rekor dan hanya terverifikasi dengan tambahan `--insecure-ignore-tlog=true`; JSON bukti rilis (`cosign.tlog`) menyatakan mana yang berlaku.
 
+Baris `cosign verify` di atas mengasumsikan binary `cosign` lokal, bukan container yang dipin yang dijalankan `tools/release/lib/cosign.mjs`. Siapa pun yang menjalankan sendiri image yang dipin itu, dengan cara yang sama dengan alat ini, akan mengalami masalah issue #263 yang sama untuk image **privat**: uid milik image itu sendiri (65532, tanpa `HOME`) tidak bisa membaca docker config yang di-mount kecuali container itu juga diberi `--user 0 -e HOME=/root`, persis seperti yang sekarang dilakukan `cosignVerifyArgs`.
+
 ## Berlatih tanpa menyentuh GHCR
 
-Jalur publish lengkap milik `tools/release/images.ts` (build → push → baca-kembali digest → tandatangani → verifikasi → pindai → SBOM → bukti) bisa dilatih end-to-end terhadap registry lokal sekali pakai, tanpa mem-push apa pun yang nyata atau menyentuh kunci produksi:
+Jalur publish lengkap milik `tools/release/images.ts` (build → push → baca-kembali digest → tandatangani → verifikasi → pindai → SBOM → bukti) bisa dilatih end-to-end terhadap registry lokal sekali pakai, tanpa mem-push apa pun yang nyata atau menyentuh kunci produksi. Registry di bawah ini **terautentikasi** — inti perbaikan issue #263 adalah cosign, yang dijalankan lewat container yang dipin, sama sekali tidak bisa membaca kredensial registry, dan registry percobaan yang tidak terautentikasi tidak pernah menguji jalur itu:
 
 ```bash
-# 1. Registry sekali pakai, terbind hanya ke localhost.
-docker run -d --name rehearsal-registry -p 5999:5000 registry:2
+# 1. Kredensial htpasswd untuk registry sekali pakai.
+mkdir -m 700 /tmp/rehearsal-auth
+docker run --rm --entrypoint htpasswd httpd:2 -Bbn rehearsal rehearsal-pw \
+  > /tmp/rehearsal-auth/htpasswd
 
-# 2. Pasangan kunci cosign sekali pakai, di direktori yang tidak dibaca apa pun lain.
-mkdir -m 777 /tmp/rehearsal-cosign   # 777 hanya karena container cosign
-                                      # berjalan sebagai uid non-root;
-                                      # hapus direktori ini setelah selesai.
-docker run --rm -e COSIGN_PASSWORD=rehearsal-pw -e COSIGN_YES=true \
+# 2. Registry sekali pakai itu sendiri, dengan autentikasi htpasswd aktif.
+docker run -d --name rehearsal-registry -p 5999:5000 \
+  -v /tmp/rehearsal-auth:/auth:ro \
+  -e REGISTRY_AUTH=htpasswd \
+  -e REGISTRY_AUTH_HTPASSWD_REALM="Rehearsal Registry" \
+  -e REGISTRY_AUTH_HTPASSWD_PATH=/auth/htpasswd \
+  registry:2
+
+# 3. `docker login` ke registry itu, sehingga ~/.docker/config.json biasa
+#    (atau DOCKER_CONFIG yang terisolasi) membawa kredensial nyata
+#    untuknya — inilah file yang di-mount skrip ini ke dalam container
+#    cosign/trivy/syft.
+docker login localhost:5999 -u rehearsal -p rehearsal-pw
+
+# 4. Pasangan kunci cosign sekali pakai, dibuat sebagai user HOST (bukan
+#    uid milik container itu sendiri — pembuatan kunci sama sekali tidak
+#    perlu perbaikan #263, hanya sign/verify yang perlu), lalu dikunci
+#    ke 0600 seperti kunci sungguhan.
+mkdir -m 700 /tmp/rehearsal-cosign
+docker run --rm --user "$(id -u):$(id -g)" \
+  -e COSIGN_PASSWORD=rehearsal-pw -e COSIGN_YES=true \
   -v /tmp/rehearsal-cosign:/work -w /work \
   gcr.io/projectsigstore/cosign@sha256:<digest yang dipin — lihat tools/release/lib/pinned-images.mjs> \
   generate-key-pair
+chmod 600 /tmp/rehearsal-cosign/cosign.key
 
-# 3. Tag LOKAL-SAJA sementara, tidak pernah di-push ke origin.
+# 5. Tag LOKAL-SAJA sementara, tidak pernah di-push ke origin.
 git tag v99.99.99 HEAD
 
-# 4. Jalannya percobaan itu sendiri.
+# 6. Jalannya percobaan itu sendiri. GHCR_USER/GHCR_TOKEN adalah
+#    kredensial registry sekali pakai dari langkah 3, bukan kredensial
+#    GHCR sungguhan — `docker login` di langkah 3 sudah menaruhnya di
+#    tempat yang dibaca skrip, tapi skrip juga login lagi sendiri
+#    dengan nilai ini.
 RELEASE_DANGEROUSLY_SKIP_ANCESTOR_CHECK=1 \
-GHCR_USER=x GHCR_TOKEN=x \
+GHCR_USER=rehearsal GHCR_TOKEN=rehearsal-pw \
 COSIGN_KEY=/tmp/rehearsal-cosign/cosign.key \
 COSIGN_PASSWORD=rehearsal-pw \
 COSIGN_PUBLIC_KEY=/tmp/rehearsal-cosign/cosign.pub \
+COSIGN_TLOG_UPLOAD=false \
 RELEASE_EVIDENCE_DIR=/tmp/rehearsal-evidence \
 bun run release:images -- --publish --tag v99.99.99 \
   --registry localhost:5999 --owner <owner> --repo <repo>
 
-# 5. Bersihkan — setiap satu ini, setiap kali.
+# 7. Bersihkan — setiap satu ini, setiap kali.
 git tag -d v99.99.99
 docker rm -f rehearsal-registry
-rm -rf /tmp/rehearsal-cosign /tmp/rehearsal-evidence
+rm -rf /tmp/rehearsal-cosign /tmp/rehearsal-evidence /tmp/rehearsal-auth
 docker logout localhost:5999
 ```
 
-`RELEASE_DANGEROUSLY_SKIP_ANCESTOR_CHECK=1` ada persis untuk ini — tag percobaan tidak akan pernah bisa menjadi ancestor `origin/main` secara konstruksi — dan dicatat dengan keras oleh skrip itu sendiri setiap kali diset. Tidak ada kegunaan legitimate lain; rilis nyata selalu men-tag commit yang sudah ada di `origin/main`, sehingga pengecekan ancestry nyata selalu lolos untuknya dan variabel ini tidak pernah diperlukan di sana.
+`RELEASE_DANGEROUSLY_SKIP_ANCESTOR_CHECK=1` ada persis untuk ini — tag percobaan tidak akan pernah bisa menjadi ancestor `origin/main` secara konstruksi — dan dicatat dengan keras oleh skrip itu sendiri setiap kali diset. Tidak ada kegunaan legitimate lain; rilis nyata selalu men-tag commit yang sudah ada di `origin/main`, sehingga pengecekan ancestry nyata selalu lolos untuknya dan variabel ini tidak pernah diperlukan di sana. `COSIGN_TLOG_UPLOAD=false` menjaga tanda tangan sekali pakai percobaan ini tetap di luar log Rekor publik, sama seperti registry localhost mana pun (`shouldUploadTlog` sudah mendefaultkannya begitu; menyetelnya secara eksplisit di sini hanya menyatakannya).
 
 Dua mekanika Docker yang perlu diketahui sebelum menjalankan ini secara manual:
 

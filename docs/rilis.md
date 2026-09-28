@@ -60,44 +60,67 @@ Both commands stay documented here, side by side, rather than the old one quietl
 
 Signatures on a real publish are recorded in the public Rekor transparency log, so the plain command above works as written. A signature made with `COSIGN_TLOG_UPLOAD=false` has no Rekor entry and verifies only with `--insecure-ignore-tlog=true` added; the release's evidence JSON (`cosign.tlog`) says which applies.
 
+The `cosign verify` line above assumes a local `cosign` binary, not the pinned container `tools/release/lib/cosign.mjs` runs. Anyone who instead runs that pinned image by hand, the way this tool does, hits the same issue #263 problem for a **private** image: the image's own uid (65532, no `HOME`) cannot read a mounted docker config unless the container is also given `--user 0 -e HOME=/root`, exactly as `cosignVerifyArgs` now does.
+
 ## Rehearsing without touching GHCR
 
-`tools/release/images.ts`'s full publish path (build → push → digest readback → sign → verify → scan → SBOM → evidence) can be rehearsed end to end against a throwaway local registry, without pushing anything real or touching a production key:
+`tools/release/images.ts`'s full publish path (build → push → digest readback → sign → verify → scan → SBOM → evidence) can be rehearsed end to end against a throwaway local registry, without pushing anything real or touching a production key. The registry below is **authenticated** — the point of issue #263's fix was that cosign, run through the pinned container, could not read registry credentials at all, and an unauthenticated rehearsal registry never exercises that path:
 
 ```bash
-# 1. A throwaway registry, bound to localhost only.
-docker run -d --name rehearsal-registry -p 5999:5000 registry:2
+# 1. htpasswd credentials for a throwaway registry.
+mkdir -m 700 /tmp/rehearsal-auth
+docker run --rm --entrypoint htpasswd httpd:2 -Bbn rehearsal rehearsal-pw \
+  > /tmp/rehearsal-auth/htpasswd
 
-# 2. A throwaway cosign keypair, in a directory nothing else reads.
-mkdir -m 777 /tmp/rehearsal-cosign   # 777 only because the cosign
-                                      # container runs as a non-root uid;
-                                      # delete this directory when done.
-docker run --rm -e COSIGN_PASSWORD=rehearsal-pw -e COSIGN_YES=true \
+# 2. The throwaway registry itself, with htpasswd auth enabled.
+docker run -d --name rehearsal-registry -p 5999:5000 \
+  -v /tmp/rehearsal-auth:/auth:ro \
+  -e REGISTRY_AUTH=htpasswd \
+  -e REGISTRY_AUTH_HTPASSWD_REALM="Rehearsal Registry" \
+  -e REGISTRY_AUTH_HTPASSWD_PATH=/auth/htpasswd \
+  registry:2
+
+# 3. `docker login` to it, so a normal ~/.docker/config.json (or an
+#    isolated DOCKER_CONFIG) carries real credentials for it — this is the
+#    file the script mounts into the cosign/trivy/syft containers.
+docker login localhost:5999 -u rehearsal -p rehearsal-pw
+
+# 4. A throwaway cosign keypair, generated as the HOST user (not the
+#    container's own uid — nothing about key generation needs #263's fix,
+#    only sign/verify do), then locked down to 0600 like a real key.
+mkdir -m 700 /tmp/rehearsal-cosign
+docker run --rm --user "$(id -u):$(id -g)" \
+  -e COSIGN_PASSWORD=rehearsal-pw -e COSIGN_YES=true \
   -v /tmp/rehearsal-cosign:/work -w /work \
   gcr.io/projectsigstore/cosign@sha256:<pinned digest — see tools/release/lib/pinned-images.mjs> \
   generate-key-pair
+chmod 600 /tmp/rehearsal-cosign/cosign.key
 
-# 3. A temporary LOCAL-ONLY tag, never pushed to origin.
+# 5. A temporary LOCAL-ONLY tag, never pushed to origin.
 git tag v99.99.99 HEAD
 
-# 4. The rehearsal run itself.
+# 6. The rehearsal run itself. GHCR_USER/GHCR_TOKEN are the throwaway
+#    registry's own credentials from step 3, not real GHCR ones —
+#    `docker login` in step 3 already put them where the script reads
+#    from, but the script also logs in again itself with these values.
 RELEASE_DANGEROUSLY_SKIP_ANCESTOR_CHECK=1 \
-GHCR_USER=x GHCR_TOKEN=x \
+GHCR_USER=rehearsal GHCR_TOKEN=rehearsal-pw \
 COSIGN_KEY=/tmp/rehearsal-cosign/cosign.key \
 COSIGN_PASSWORD=rehearsal-pw \
 COSIGN_PUBLIC_KEY=/tmp/rehearsal-cosign/cosign.pub \
+COSIGN_TLOG_UPLOAD=false \
 RELEASE_EVIDENCE_DIR=/tmp/rehearsal-evidence \
 bun run release:images -- --publish --tag v99.99.99 \
   --registry localhost:5999 --owner <owner> --repo <repo>
 
-# 5. Clean up — every one of these, every time.
+# 7. Clean up — every one of these, every time.
 git tag -d v99.99.99
 docker rm -f rehearsal-registry
-rm -rf /tmp/rehearsal-cosign /tmp/rehearsal-evidence
+rm -rf /tmp/rehearsal-cosign /tmp/rehearsal-evidence /tmp/rehearsal-auth
 docker logout localhost:5999
 ```
 
-`RELEASE_DANGEROUSLY_SKIP_ANCESTOR_CHECK=1` exists for exactly this — a rehearsal tag can never be an ancestor of `origin/main` by construction — and is logged loudly by the script itself every time it is set. It has no other legitimate use; a real release always tags a commit already on `origin/main`, so the real ancestry check always passes for it and this variable is never needed there.
+`RELEASE_DANGEROUSLY_SKIP_ANCESTOR_CHECK=1` exists for exactly this — a rehearsal tag can never be an ancestor of `origin/main` by construction — and is logged loudly by the script itself every time it is set. It has no other legitimate use; a real release always tags a commit already on `origin/main`, so the real ancestry check always passes for it and this variable is never needed there. `COSIGN_TLOG_UPLOAD=false` keeps the rehearsal's throwaway signature out of the public Rekor log, same as any localhost registry (`shouldUploadTlog` already defaults it that way; setting it explicitly here just says so).
 
 Two Docker mechanics worth knowing before running this by hand:
 
