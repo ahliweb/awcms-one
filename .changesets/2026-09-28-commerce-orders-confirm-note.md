@@ -17,7 +17,7 @@ never collected it.
   from → to status (`"{orderCode} will move from {from} to {to}."`). The
   TO status is only known once the operator changes the `<select>`, so the
   message is composed server-side with a literal `{to}` placeholder left
-  unsubstituted on purpose (`src/lib/i18n/catalog.ts`'s own `interpolate()`
+  unsubstituted on purpose (`apps/cms/src/lib/i18n/catalog.ts`'s own `interpolate()`
   leaves an unmatched placeholder verbatim) and finished client-side from
   a server-rendered, translated label map carried as JSON in
   `data-order-status-meta` — never translated in the browser. A target
