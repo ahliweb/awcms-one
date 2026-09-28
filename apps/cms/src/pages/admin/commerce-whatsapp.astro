@@ -73,117 +73,109 @@ const statusOptions: WhatsappMessageStatus[] = [
     "Every WhatsApp message this tenant has queued or sent — OTP codes, order notifications, campaigns — with its delivery status. Phone numbers are shown masked."
   )}
 >
-  {
-    !canRead && (
-      <p class="state-notice fade-in-up" id="commerce-whatsapp-denied">
-        {t("You do not have permission to view the WhatsApp outbox.")}
-      </p>
-    )
-  }
+  {!canRead && (
+    <p class="state-notice fade-in-up" id="commerce-whatsapp-denied">
+      {t("You do not have permission to view the WhatsApp outbox.")}
+    </p>
+  )}
 
-  {
-    canRead && loadError && (
-      <p class="state-notice fade-in-up" id="commerce-whatsapp-load-error">
-        {t("Could not load the WhatsApp outbox. Please try again.")}
-      </p>
-    )
-  }
+  {canRead && loadError && (
+    <p class="state-notice fade-in-up" id="commerce-whatsapp-load-error">
+      {t("Could not load the WhatsApp outbox. Please try again.")}
+    </p>
+  )}
 
-  {
-    canRead && !loadError && (
-      <section
-        class="fade-in-up"
-        aria-labelledby="commerce-whatsapp-list-heading"
-      >
-        <h2 id="commerce-whatsapp-list-heading">{t("Messages")}</h2>
+  {canRead && !loadError && (
+    <section
+      class="fade-in-up"
+      aria-labelledby="commerce-whatsapp-list-heading"
+    >
+      <h2 id="commerce-whatsapp-list-heading">{t("Messages")}</h2>
 
-        <form method="get" class="admin-form">
-          <label for="commerce-whatsapp-status-filter">{t("Status")}</label>
-          <select
-            id="commerce-whatsapp-status-filter"
-            name="status"
-            onchange="this.form.submit()"
-          >
-            <option value="" selected={!statusFilter}>
-              {t("All")}
+      <form method="get" class="admin-form">
+        <label for="commerce-whatsapp-status-filter">{t("Status")}</label>
+        <select
+          id="commerce-whatsapp-status-filter"
+          name="status"
+          onchange="this.form.submit()"
+        >
+          <option value="" selected={!statusFilter}>
+            {t("All")}
+          </option>
+          {statusOptions.map((status) => (
+            <option value={status} selected={statusFilter === status}>
+              {commerceLabel(labels.whatsappMessageStatus, status)}
             </option>
-            {statusOptions.map((status) => (
-              <option value={status} selected={statusFilter === status}>
-                {commerceLabel(labels.whatsappMessageStatus, status)}
-              </option>
-            ))}
-          </select>
-        </form>
+          ))}
+        </select>
+      </form>
 
-        <div class="data-table-scroll">
-          <table class="data-table data-table--stack">
-            <thead>
+      <div class="data-table-scroll">
+        <table class="data-table data-table--stack">
+          <thead>
+            <tr>
+              <th scope="col">{t("Phone")}</th>
+              <th scope="col">{t("Template")}</th>
+              <th scope="col">{t("Status")}</th>
+              <th scope="col">{t("Attempts")}</th>
+              <th scope="col">{t("Last error")}</th>
+              <th scope="col">{t("Created")}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {entries.length === 0 ? (
               <tr>
-                <th scope="col">{t("Phone")}</th>
-                <th scope="col">{t("Template")}</th>
-                <th scope="col">{t("Status")}</th>
-                <th scope="col">{t("Attempts")}</th>
-                <th scope="col">{t("Last error")}</th>
-                <th scope="col">{t("Created")}</th>
+                <td class="data-table-empty" colspan={6}>
+                  <div class="empty-state">
+                    <span class="empty-state-icon" aria-hidden="true">
+                      ◇
+                    </span>
+                    <span
+                      class="empty-state-title"
+                      id="commerce-whatsapp-empty"
+                    >
+                      {t("No WhatsApp messages match this filter.")}
+                    </span>
+                    <span class="empty-state-text">
+                      {t(
+                        "Messages queued or sent through the WhatsApp outbox will appear here."
+                      )}
+                    </span>
+                  </div>
+                </td>
               </tr>
-            </thead>
-            <tbody>
-              {entries.length === 0 ? (
+            ) : (
+              entries.map((entry) => (
                 <tr>
-                  <td class="data-table-empty" colspan={6}>
-                    <div class="empty-state">
-                      <span class="empty-state-icon" aria-hidden="true">
-                        ◇
-                      </span>
-                      <span
-                        class="empty-state-title"
-                        id="commerce-whatsapp-empty"
-                      >
-                        {t("No WhatsApp messages match this filter.")}
-                      </span>
-                      <span class="empty-state-text">
-                        {t(
-                          "Messages queued or sent through the WhatsApp outbox will appear here."
-                        )}
-                      </span>
-                    </div>
+                  <th scope="row" data-label={t("Phone")}>
+                    {entry.toPhoneMasked}
+                  </th>
+                  <td data-label={t("Template")}>{entry.templateKey}</td>
+                  <td data-label={t("Status")}>
+                    <span data-status={entry.status}>
+                      {commerceLabel(
+                        labels.whatsappMessageStatus,
+                        entry.status
+                      )}
+                    </span>
+                  </td>
+                  <td data-label={t("Attempts")}>{entry.attempts}</td>
+                  <td data-label={t("Last error")}>{entry.lastError ?? ""}</td>
+                  <td data-label={t("Created")}>
+                    {entry.createdAt.slice(0, 16)}
                   </td>
                 </tr>
-              ) : (
-                entries.map((entry) => (
-                  <tr>
-                    <th scope="row" data-label={t("Phone")}>
-                      {entry.toPhoneMasked}
-                    </th>
-                    <td data-label={t("Template")}>{entry.templateKey}</td>
-                    <td data-label={t("Status")}>
-                      <span data-status={entry.status}>
-                        {commerceLabel(
-                          labels.whatsappMessageStatus,
-                          entry.status
-                        )}
-                      </span>
-                    </td>
-                    <td data-label={t("Attempts")}>{entry.attempts}</td>
-                    <td data-label={t("Last error")}>
-                      {entry.lastError ?? ""}
-                    </td>
-                    <td data-label={t("Created")}>
-                      {entry.createdAt.slice(0, 16)}
-                    </td>
-                  </tr>
-                ))
-              )}
-            </tbody>
-          </table>
-        </div>
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
 
-        <p class="page-description">
-          {t(
-            "Newest 100 for the selected filter. Codes and message bodies are never shown here."
-          )}
-        </p>
-      </section>
-    )
-  }
+      <p class="page-description">
+        {t(
+          "Newest 100 for the selected filter. Codes and message bodies are never shown here."
+        )}
+      </p>
+    </section>
+  )}
 </AdminLayout>

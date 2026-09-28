@@ -195,188 +195,179 @@ const COURIER_OPTIONS = [
     "Store identity, shipping, payment and promo configuration for this tenant."
   )}
 >
-  {
-    !canRead && (
-      <p class="state-notice fade-in-up" id="settings-denied">
-        {t("You do not have permission to view store settings.")}
-      </p>
-    )
-  }
-  {
-    canRead && loadError && (
-      <p class="state-notice fade-in-up" id="settings-error">
-        {t(
-          "Store settings could not be loaded right now. Please try again later."
-        )}
-      </p>
-    )
-  }
+  {!canRead && (
+    <p class="state-notice fade-in-up" id="settings-denied">
+      {t("You do not have permission to view store settings.")}
+    </p>
+  )}
+  {canRead && loadError && (
+    <p class="state-notice fade-in-up" id="settings-error">
+      {t(
+        "Store settings could not be loaded right now. Please try again later."
+      )}
+    </p>
+  )}
 
-  {
-    canRead && !loadError && settings && (
-      <section id="store-settings-section">
-        <form id="store-settings-form" class="admin-create-form fade-in-up">
-          <p class="form-legend">{t("Store identity")}</p>
-          <p
-            id="store-settings-error"
-            class="admin-create-error"
-            role="alert"
-            hidden
-          />
-          <p id="store-settings-success" class="state-notice" hidden>
-            {t("Saved.")}
-          </p>
+  {canRead && !loadError && settings && (
+    <section id="store-settings-section">
+      <form id="store-settings-form" class="admin-create-form fade-in-up">
+        <p class="form-legend">{t("Store identity")}</p>
+        <p
+          id="store-settings-error"
+          class="admin-create-error"
+          role="alert"
+          hidden
+        />
+        <p id="store-settings-success" class="state-notice" hidden>
+          {t("Saved.")}
+        </p>
 
-          <label for="settings-storeName">{t("Store name")}</label>
-          <input
-            id="settings-storeName"
-            type="text"
-            required
-            value={settings.storeName}
-          />
+        <label for="settings-storeName">{t("Store name")}</label>
+        <input
+          id="settings-storeName"
+          type="text"
+          required
+          value={settings.storeName}
+        />
 
-          <label for="settings-tagline">{t("Tagline")}</label>
-          <input
-            id="settings-tagline"
-            type="text"
-            value={settings.tagline ?? ""}
-          />
+        <label for="settings-tagline">{t("Tagline")}</label>
+        <input
+          id="settings-tagline"
+          type="text"
+          value={settings.tagline ?? ""}
+        />
 
-          <label for="settings-logoMediaObjectId">
-            {t("Logo media object id")}
-          </label>
-          <input
-            id="settings-logoMediaObjectId"
-            type="text"
-            value={settings.logoMediaObjectId ?? ""}
-            placeholder="uuid — see /admin/media"
-          />
+        <label for="settings-logoMediaObjectId">
+          {t("Logo media object id")}
+        </label>
+        <input
+          id="settings-logoMediaObjectId"
+          type="text"
+          value={settings.logoMediaObjectId ?? ""}
+          placeholder="uuid — see /admin/media"
+        />
 
-          <label for="settings-faviconMediaObjectId">
-            {t("Favicon media object id")}
-          </label>
-          <input
-            id="settings-faviconMediaObjectId"
-            type="text"
-            value={settings.faviconMediaObjectId ?? ""}
-            placeholder="uuid — see /admin/media"
-          />
+        <label for="settings-faviconMediaObjectId">
+          {t("Favicon media object id")}
+        </label>
+        <input
+          id="settings-faviconMediaObjectId"
+          type="text"
+          value={settings.faviconMediaObjectId ?? ""}
+          placeholder="uuid — see /admin/media"
+        />
 
-          <label for="settings-address">{t("Address")}</label>
-          <textarea id="settings-address" rows="2">
+        <label for="settings-address">{t("Address")}</label>
+        <textarea id="settings-address" rows="2">
             {settings.address ?? ""}
           </textarea>
 
-          <label for="settings-phone">{t("Phone")}</label>
-          <input id="settings-phone" type="text" value={settings.phone ?? ""} />
+        <label for="settings-phone">{t("Phone")}</label>
+        <input id="settings-phone" type="text" value={settings.phone ?? ""} />
 
-          <label for="settings-whatsapp">{t("WhatsApp")}</label>
-          <input
-            id="settings-whatsapp"
-            type="text"
-            value={settings.whatsapp ?? ""}
-          />
+        <label for="settings-whatsapp">{t("WhatsApp")}</label>
+        <input
+          id="settings-whatsapp"
+          type="text"
+          value={settings.whatsapp ?? ""}
+        />
 
-          <label for="settings-email">{t("Email")}</label>
-          <input
-            id="settings-email"
-            type="email"
-            value={settings.email ?? ""}
-          />
+        <label for="settings-email">{t("Email")}</label>
+        <input id="settings-email" type="email" value={settings.email ?? ""} />
 
-          <label for="settings-mapsEmbedUrl">{t("Maps embed URL")}</label>
-          <input
-            id="settings-mapsEmbedUrl"
-            type="text"
-            value={settings.mapsEmbedUrl ?? ""}
-          />
+        <label for="settings-mapsEmbedUrl">{t("Maps embed URL")}</label>
+        <input
+          id="settings-mapsEmbedUrl"
+          type="text"
+          value={settings.mapsEmbedUrl ?? ""}
+        />
 
-          <p class="form-legend">{t("Affiliate program")}</p>
-          <p class="cell-muted">
-            {t(
-              "Leave blank to keep the affiliate program off for this store. Set a rate (0-100, two decimals) to turn it on — new enrolments copy this rate."
-            )}
-          </p>
-          <label for="settings-affiliateCommissionRate">
-            {t("Affiliate commission rate (%)")}
-          </label>
-          <input
-            id="settings-affiliateCommissionRate"
-            type="text"
-            inputmode="decimal"
-            placeholder="e.g. 10.00"
-            value={affiliateCommissionRate ?? ""}
-          />
+        <p class="form-legend">{t("Affiliate program")}</p>
+        <p class="cell-muted">
+          {t(
+            "Leave blank to keep the affiliate program off for this store. Set a rate (0-100, two decimals) to turn it on — new enrolments copy this rate."
+          )}
+        </p>
+        <label for="settings-affiliateCommissionRate">
+          {t("Affiliate commission rate (%)")}
+        </label>
+        <input
+          id="settings-affiliateCommissionRate"
+          type="text"
+          inputmode="decimal"
+          placeholder="e.g. 10.00"
+          value={affiliateCommissionRate ?? ""}
+        />
 
-          <p class="form-legend">{t("Courier rates (RajaOngkir)")}</p>
-          <p class="cell-muted">
-            {t(
-              "Turn on live courier rates for checkout. Requires a courier rate provider configured for this deployment (see the deployment guide) — otherwise shoppers still see a disabled courier option."
-            )}
-          </p>
+        <p class="form-legend">{t("Courier rates (RajaOngkir)")}</p>
+        <p class="cell-muted">
+          {t(
+            "Turn on live courier rates for checkout. Requires a courier rate provider configured for this deployment (see the deployment guide) — otherwise shoppers still see a disabled courier option."
+          )}
+        </p>
 
-          <label>
-            <input id="cr-enabled" type="checkbox" checked={courier.enabled} />{" "}
-            {t("Enable courier rates")}
-          </label>
+        <label>
+          <input id="cr-enabled" type="checkbox" checked={courier.enabled} />{" "}
+          {t("Enable courier rates")}
+        </label>
 
-          <label for="cr-search">
-            {t("Store origin (search by city or subdistrict)")}
-          </label>
-          <input
-            id="cr-search"
-            type="text"
-            list="cr-datalist"
-            placeholder="e.g. Sukajadi Bandung"
-            autocomplete="off"
-            value={courier.originDestinationId ?? ""}
-          />
-          <datalist id="cr-datalist" />
-          <p class="cell-muted">
-            {t("Type to search, then pick a suggestion to fill in its id.")}
-          </p>
+        <label for="cr-search">
+          {t("Store origin (search by city or subdistrict)")}
+        </label>
+        <input
+          id="cr-search"
+          type="text"
+          list="cr-datalist"
+          placeholder="e.g. Sukajadi Bandung"
+          autocomplete="off"
+          value={courier.originDestinationId ?? ""}
+        />
+        <datalist id="cr-datalist" />
+        <p class="cell-muted">
+          {t("Type to search, then pick a suggestion to fill in its id.")}
+        </p>
 
-          <label for="cr-couriers">{t("Couriers to quote")}</label>
-          <select id="cr-couriers" multiple size={6}>
-            {COURIER_OPTIONS.map((option) => (
-              <option
-                value={option.value}
-                selected={courier.couriers.includes(option.value)}
-              >
-                {option.label}
-              </option>
-            ))}
-          </select>
-          <p class="cell-muted">
-            {t("Hold Ctrl/Cmd (or Shift) to select more than one courier.")}
-          </p>
+        <label for="cr-couriers">{t("Couriers to quote")}</label>
+        <select id="cr-couriers" multiple size={6}>
+          {COURIER_OPTIONS.map((option) => (
+            <option
+              value={option.value}
+              selected={courier.couriers.includes(option.value)}
+            >
+              {option.label}
+            </option>
+          ))}
+        </select>
+        <p class="cell-muted">
+          {t("Hold Ctrl/Cmd (or Shift) to select more than one courier.")}
+        </p>
 
-          <p class="form-legend">{t("Payment gateway (Midtrans)")}</p>
-          <p class="cell-muted">
-            {t(
-              "Turn on hosted checkout (Midtrans Snap) for this store. Requires COMMERCE_PAYMENT_GATEWAY and COMMERCE_MIDTRANS_SERVER_KEY configured for this deployment (see the deployment guide) — otherwise shoppers still see a disabled gateway option."
-            )}
-          </p>
-          <label>
-            <input id="gw-enabled" type="checkbox" checked={gateway.enabled} />{" "}
-            {t("Enable payment gateway")}
-          </label>
+        <p class="form-legend">{t("Payment gateway (Midtrans)")}</p>
+        <p class="cell-muted">
+          {t(
+            "Turn on hosted checkout (Midtrans Snap) for this store. Requires COMMERCE_PAYMENT_GATEWAY and COMMERCE_MIDTRANS_SERVER_KEY configured for this deployment (see the deployment guide) — otherwise shoppers still see a disabled gateway option."
+          )}
+        </p>
+        <label>
+          <input id="gw-enabled" type="checkbox" checked={gateway.enabled} />{" "}
+          {t("Enable payment gateway")}
+        </label>
 
-          <p class="form-legend">{t("Advanced settings (JSON)")}</p>
-          <p class="cell-muted">
-            {t(
-              "FAQs, social links, customer levels, shipping (except courier rates, above), payment (including bank accounts — never shown publicly), promo section, and per-page meta titles."
-            )}
-          </p>
-          <label for="settings-advanced" class="sr-only">
-            {t("Advanced settings JSON")}
-          </label>
-          <textarea id="settings-advanced" rows="20" spellcheck="false">
+        <p class="form-legend">{t("Advanced settings (JSON)")}</p>
+        <p class="cell-muted">
+          {t(
+            "FAQs, social links, customer levels, shipping (except courier rates, above), payment (including bank accounts — never shown publicly), promo section, and per-page meta titles."
+          )}
+        </p>
+        <label for="settings-advanced" class="sr-only">
+          {t("Advanced settings JSON")}
+        </label>
+        <textarea id="settings-advanced" rows="20" spellcheck="false">
             {advancedJson}
           </textarea>
-        </form>
+      </form>
 
-        {/* One submit control for this form, not two (Issue #244): the sticky
+      {/* One submit control for this form, not two (Issue #244): the sticky
           bar's button, reached from OUTSIDE the form via
           `form="store-settings-form"`, is now the only way to submit it.
           Rendered only when there is something to submit — the same
@@ -385,246 +376,241 @@ const COURIER_OPTIONS = [
           a request the endpoint will 403. Wrapped, together with the form
           above, in `#store-settings-section` so this bar sticks only while
           THIS section is in view — see the component's own docblock. */}
-        {canUpdate && (
-          <CommerceSettingsSaveBar
-            formId="store-settings-form"
-            saveLabel={t("Save store settings")}
-            resetLabel={t("Reset")}
-          >
-            <span
-              slot="status"
-              id="store-settings-save-status"
-              data-dirty-label={t("Unsaved changes")}
-              data-clean-label={t("Saved")}
-            >
-              {t("Saved")}
-            </span>
-          </CommerceSettingsSaveBar>
-        )}
-      </section>
-    )
-  }
-
-  {
-    canManageFeatures && (
-      <section
-        id="commerce-features-section"
-        class="admin-create-form fade-in-up"
-      >
-        <p class="form-legend">{t("Fitur")}</p>
-        <p class="cell-muted">
-          {t(
-            "Turn a whole feature off for this tenant. A disabled feature's owner routes answer 409, its public/storefront routes answer 404, and its admin screen is hidden from the sidebar."
-          )}
-        </p>
-        <p
-          id="commerce-features-error"
-          class="admin-create-error"
-          role="alert"
-          hidden
-        />
-        <p id="commerce-features-success" class="state-notice" hidden />
-
-        {/* "Configured" here means the toggle this settings view already
-            exposes (`courier.enabled`/`gateway.enabled`) — this screen has
-            no separate signal for "the deployment's env credential is set"
-            (that lives in each provider's own module, e.g.
-            `commerce-whatsapp.astro`'s outbox), so the card is honestly
-            worded around the ONE thing this view knows, never a secret
-            value. */}
-        <div class="admin-provider-grid">
-          <div class="admin-stat-card">
-            <span class="admin-stat-card-label">
-              {t("Courier rates (RajaOngkir)")}
-            </span>
-            <span
-              class="admin-status-pill"
-              data-tone={courier.enabled ? "success" : "neutral"}
-            >
-              <span class="admin-status-pill-dot" aria-hidden="true" />
-              {courier.enabled ? t("Enabled") : t("Disabled")}
-            </span>
-          </div>
-          <div class="admin-stat-card">
-            <span class="admin-stat-card-label">
-              {t("Payment gateway (Midtrans)")}
-            </span>
-            <span
-              class="admin-status-pill"
-              data-tone={gateway.enabled ? "success" : "neutral"}
-            >
-              <span class="admin-status-pill-dot" aria-hidden="true" />
-              {gateway.enabled ? t("Enabled") : t("Disabled")}
-            </span>
-          </div>
-        </div>
-
-        <form id="commerce-features-form">
-          {FEATURE_TOGGLES.map((toggle) => (
-            <p class="admin-feature-toggle-row">
-              <label class="admin-toggle">
-                <input
-                  type="checkbox"
-                  name={toggle.key}
-                  data-feature-toggle={toggle.key}
-                  checked={commerceFeatures[toggle.key]}
-                />
-                <span class="admin-toggle-track">
-                  <span class="admin-toggle-thumb" />
-                </span>
-              </label>
-              <span>{t(toggle.label)}</span>
-            </p>
-          ))}
-        </form>
-
-        {/* One submit control for this form, not two (Issue #244) — same
-            note as the store-settings section above. This bar is already
-            inside `#commerce-features-section`'s own `canManageFeatures`
-            gate, so no separate permission check is needed here. */}
+      {canUpdate && (
         <CommerceSettingsSaveBar
-          formId="commerce-features-form"
-          saveLabel={t("Save features")}
+          formId="store-settings-form"
+          saveLabel={t("Save store settings")}
           resetLabel={t("Reset")}
         >
           <span
             slot="status"
-            id="commerce-features-save-status"
+            id="store-settings-save-status"
             data-dirty-label={t("Unsaved changes")}
             data-clean-label={t("Saved")}
           >
             {t("Saved")}
           </span>
         </CommerceSettingsSaveBar>
-      </section>
-    )
-  }
+      )}
+    </section>
+  )}
 
-  {
-    canManageWebhookEndpoints && (
-      <section
-        id="webhook-endpoints-section"
-        class="admin-create-form fade-in-up"
-      >
-        <p class="form-legend">{t("Payment gateway webhook endpoints")}</p>
-        <p class="cell-muted">
-          {t(
-            "Mint a token, paste the resulting URL into Midtrans's own webhook settings. The token is shown exactly once — it is never retrievable again after this."
-          )}
-        </p>
+  {canManageFeatures && (
+    <section
+      id="commerce-features-section"
+      class="admin-create-form fade-in-up"
+    >
+      <p class="form-legend">{t("Fitur")}</p>
+      <p class="cell-muted">
+        {t(
+          "Turn a whole feature off for this tenant. A disabled feature's owner routes answer 409, its public/storefront routes answer 404, and its admin screen is hidden from the sidebar."
+        )}
+      </p>
+      <p
+        id="commerce-features-error"
+        class="admin-create-error"
+        role="alert"
+        hidden
+      />
+      <p id="commerce-features-success" class="state-notice" hidden />
 
-        <p
-          id="webhook-endpoint-error"
-          class="admin-create-error"
-          role="alert"
-          hidden
-        />
-        <p
-          id="webhook-endpoint-created"
-          class="state-notice"
-          hidden
-          data-url-base={webhookUrlBase}
-        />
-
-        <div class="data-table-scroll fade-in-up">
-          <table
-            class="data-table data-table--stack"
-            id="webhook-endpoints-table"
+      {/* "Configured" here means the toggle this settings view already
+            exposes (`courier.enabled`/`gateway.enabled`) — this screen has
+            no separate signal for "the deployment's env credential is set"
+            (that lives in each provider's own module, e.g.
+            `commerce-whatsapp.astro`'s outbox), so the card is honestly
+            worded around the ONE thing this view knows, never a secret
+            value. */}
+      <div class="admin-provider-grid">
+        <div class="admin-stat-card">
+          <span class="admin-stat-card-label">
+            {t("Courier rates (RajaOngkir)")}
+          </span>
+          <span
+            class="admin-status-pill"
+            data-tone={courier.enabled ? "success" : "neutral"}
           >
-            <caption>
-              {tn(
-                "{count} webhook endpoint",
-                "{count} webhook endpoints",
-                webhookEndpoints.length,
-                { count: webhookEndpoints.length }
-              )}
-            </caption>
-            <thead>
+            <span class="admin-status-pill-dot" aria-hidden="true" />
+            {courier.enabled ? t("Enabled") : t("Disabled")}
+          </span>
+        </div>
+        <div class="admin-stat-card">
+          <span class="admin-stat-card-label">
+            {t("Payment gateway (Midtrans)")}
+          </span>
+          <span
+            class="admin-status-pill"
+            data-tone={gateway.enabled ? "success" : "neutral"}
+          >
+            <span class="admin-status-pill-dot" aria-hidden="true" />
+            {gateway.enabled ? t("Enabled") : t("Disabled")}
+          </span>
+        </div>
+      </div>
+
+      <form id="commerce-features-form">
+        {FEATURE_TOGGLES.map((toggle) => (
+          <p class="admin-feature-toggle-row">
+            <label class="admin-toggle">
+              <input
+                type="checkbox"
+                name={toggle.key}
+                data-feature-toggle={toggle.key}
+                checked={commerceFeatures[toggle.key]}
+              />
+              <span class="admin-toggle-track">
+                <span class="admin-toggle-thumb" />
+              </span>
+            </label>
+            <span>{t(toggle.label)}</span>
+          </p>
+        ))}
+      </form>
+
+      {/* One submit control for this form, not two (Issue #244) — same
+            note as the store-settings section above. This bar is already
+            inside `#commerce-features-section`'s own `canManageFeatures`
+            gate, so no separate permission check is needed here. */}
+      <CommerceSettingsSaveBar
+        formId="commerce-features-form"
+        saveLabel={t("Save features")}
+        resetLabel={t("Reset")}
+      >
+        <span
+          slot="status"
+          id="commerce-features-save-status"
+          data-dirty-label={t("Unsaved changes")}
+          data-clean-label={t("Saved")}
+        >
+          {t("Saved")}
+        </span>
+      </CommerceSettingsSaveBar>
+    </section>
+  )}
+
+  {canManageWebhookEndpoints && (
+    <section
+      id="webhook-endpoints-section"
+      class="admin-create-form fade-in-up"
+    >
+      <p class="form-legend">{t("Payment gateway webhook endpoints")}</p>
+      <p class="cell-muted">
+        {t(
+          "Mint a token, paste the resulting URL into Midtrans's own webhook settings. The token is shown exactly once — it is never retrievable again after this."
+        )}
+      </p>
+
+      <p
+        id="webhook-endpoint-error"
+        class="admin-create-error"
+        role="alert"
+        hidden
+      />
+      <p
+        id="webhook-endpoint-created"
+        class="state-notice"
+        hidden
+        data-url-base={webhookUrlBase}
+      />
+
+      <div class="data-table-scroll fade-in-up">
+        <table
+          class="data-table data-table--stack"
+          id="webhook-endpoints-table"
+        >
+          <caption>
+            {tn(
+              "{count} webhook endpoint",
+              "{count} webhook endpoints",
+              webhookEndpoints.length,
+              { count: webhookEndpoints.length }
+            )}
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">{t("Provider")}</th>
+              <th scope="col">{t("Label")}</th>
+              <th scope="col">{t("Created")}</th>
+              <th scope="col">{t("Status")}</th>
+              <th scope="col">{t("Action")}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {webhookEndpoints.length === 0 ? (
               <tr>
-                <th scope="col">{t("Provider")}</th>
-                <th scope="col">{t("Label")}</th>
-                <th scope="col">{t("Created")}</th>
-                <th scope="col">{t("Status")}</th>
-                <th scope="col">{t("Action")}</th>
+                <td class="data-table-empty" colspan={5}>
+                  <div class="empty-state">
+                    <span class="empty-state-icon" aria-hidden="true">
+                      ◇
+                    </span>
+                    <span class="empty-state-title">
+                      {t("No webhook endpoints yet")}
+                    </span>
+                    <span class="empty-state-text">
+                      {t(
+                        "Webhook endpoints created for this tenant will appear here."
+                      )}
+                    </span>
+                  </div>
+                </td>
               </tr>
-            </thead>
-            <tbody>
-              {webhookEndpoints.length === 0 ? (
+            ) : (
+              webhookEndpoints.map((endpoint) => (
                 <tr>
-                  <td class="data-table-empty" colspan={5}>
-                    <div class="empty-state">
-                      <span class="empty-state-icon" aria-hidden="true">
-                        ◇
-                      </span>
-                      <span class="empty-state-title">
-                        {t("No webhook endpoints yet")}
-                      </span>
-                      <span class="empty-state-text">
-                        {t(
-                          "Webhook endpoints created for this tenant will appear here."
-                        )}
-                      </span>
+                  <td
+                    data-label={t("Provider")}
+                    data-provider={endpoint.provider}
+                  >
+                    {commerceLabel(
+                      labels.webhookEndpointProvider,
+                      endpoint.provider
+                    )}
+                  </td>
+                  <td data-label={t("Label")}>{endpoint.label ?? "—"}</td>
+                  <td data-label={t("Created")}>
+                    {new Date(endpoint.createdAt).toLocaleString()}
+                  </td>
+                  <td data-label={t("Status")}>
+                    {endpoint.revokedAt ? t("Revoked") : t("Active")}
+                  </td>
+                  <td data-label={t("Action")} class="stacked-block">
+                    <div class="row-actions">
+                      {!endpoint.revokedAt && (
+                        <button
+                          type="button"
+                          class="btn-inline js-revoke-webhook-endpoint"
+                          data-endpoint-id={endpoint.id}
+                        >
+                          {t("Revoke")}
+                        </button>
+                      )}
                     </div>
                   </td>
                 </tr>
-              ) : (
-                webhookEndpoints.map((endpoint) => (
-                  <tr>
-                    <td
-                      data-label={t("Provider")}
-                      data-provider={endpoint.provider}
-                    >
-                      {commerceLabel(
-                        labels.webhookEndpointProvider,
-                        endpoint.provider
-                      )}
-                    </td>
-                    <td data-label={t("Label")}>{endpoint.label ?? "—"}</td>
-                    <td data-label={t("Created")}>
-                      {new Date(endpoint.createdAt).toLocaleString()}
-                    </td>
-                    <td data-label={t("Status")}>
-                      {endpoint.revokedAt ? t("Revoked") : t("Active")}
-                    </td>
-                    <td data-label={t("Action")} class="stacked-block">
-                      <div class="row-actions">
-                        {!endpoint.revokedAt && (
-                          <button
-                            type="button"
-                            class="btn-inline js-revoke-webhook-endpoint"
-                            data-endpoint-id={endpoint.id}
-                          >
-                            {t("Revoke")}
-                          </button>
-                        )}
-                      </div>
-                    </td>
-                  </tr>
-                ))
-              )}
-            </tbody>
-          </table>
-        </div>
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
 
-        <form id="webhook-endpoint-create-form">
-          <label for="webhook-endpoint-provider">{t("Provider")}</label>
-          <select id="webhook-endpoint-provider" name="provider">
-            <option value="midtrans">{t("Midtrans")}</option>
-          </select>
+      <form id="webhook-endpoint-create-form">
+        <label for="webhook-endpoint-provider">{t("Provider")}</label>
+        <select id="webhook-endpoint-provider" name="provider">
+          <option value="midtrans">{t("Midtrans")}</option>
+        </select>
 
-          <label for="webhook-endpoint-label">{t("Label (optional)")}</label>
-          <input
-            id="webhook-endpoint-label"
-            name="label"
-            type="text"
-            placeholder="e.g. production"
-          />
+        <label for="webhook-endpoint-label">{t("Label (optional)")}</label>
+        <input
+          id="webhook-endpoint-label"
+          name="label"
+          type="text"
+          placeholder="e.g. production"
+        />
 
-          <button type="submit">{t("Create webhook endpoint")}</button>
-        </form>
-      </section>
-    )
-  }
+        <button type="submit">{t("Create webhook endpoint")}</button>
+      </form>
+    </section>
+  )}
 </AdminLayout>
 
 <script>

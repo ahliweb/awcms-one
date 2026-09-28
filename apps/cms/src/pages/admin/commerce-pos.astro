@@ -141,475 +141,439 @@ const paymentLabels: Record<string, string> = {
     "Ring up a counter sale — cash or QRIS, paid immediately — and browse past POS sales."
   )}
 >
-  {
-    denied && (
-      <p class="state-notice fade-in-up" id="pos-denied" role="status">
-        {t("You do not have permission to use the POS screen.")}
-      </p>
-    )
-  }
-  {
-    loadError && (
-      <p class="state-notice fade-in-up" id="pos-error" role="alert">
-        {t(
-          "The POS screen could not be loaded right now. Please try again later."
-        )}
-      </p>
-    )
-  }
-  {
-    allowed && !posEnabled && (
-      <p
-        class="state-notice fade-in-up"
-        id="pos-feature-disabled"
-        role="status"
-      >
-        {t("Point of sale is turned off for this store.")}{" "}
-        <a class="quick-link" href="/admin/commerce-settings">
-          {t("Turn it on under Features in the store settings.")}
+  {denied && (
+    <p class="state-notice fade-in-up" id="pos-denied" role="status">
+      {t("You do not have permission to use the POS screen.")}
+    </p>
+  )}
+  {loadError && (
+    <p class="state-notice fade-in-up" id="pos-error" role="alert">
+      {t(
+        "The POS screen could not be loaded right now. Please try again later."
+      )}
+    </p>
+  )}
+  {allowed && !posEnabled && (
+    <p class="state-notice fade-in-up" id="pos-feature-disabled" role="status">
+      {t("Point of sale is turned off for this store.")}{" "}
+      <a class="quick-link" href="/admin/commerce-settings">
+        {t("Turn it on under Features in the store settings.")}
+      </a>
+    </p>
+  )}
+
+  {allowed && posEnabled && (
+    <nav class="row-actions fade-in-up" aria-label={t("POS sections")}>
+      {canSell && (
+        <a
+          href="/admin/commerce-pos"
+          class={tab === "sale" ? "module-toggle" : ""}
+          aria-current={tab === "sale" ? "page" : undefined}
+        >
+          {t("New sale")}
         </a>
-      </p>
-    )
-  }
+      )}
+      {canReadHistory && (
+        <a
+          href={historyHref()}
+          class={tab === "history" ? "module-toggle" : ""}
+          aria-current={tab === "history" ? "page" : undefined}
+        >
+          {t("History")}
+        </a>
+      )}
+    </nav>
+  )}
 
-  {
-    allowed && posEnabled && (
-      <nav class="row-actions fade-in-up" aria-label={t("POS sections")}>
-        {canSell && (
-          <a
-            href="/admin/commerce-pos"
-            class={tab === "sale" ? "module-toggle" : ""}
-            aria-current={tab === "sale" ? "page" : undefined}
-          >
-            {t("New sale")}
-          </a>
-        )}
-        {canReadHistory && (
-          <a
-            href={historyHref()}
-            class={tab === "history" ? "module-toggle" : ""}
-            aria-current={tab === "history" ? "page" : undefined}
-          >
-            {t("History")}
-          </a>
-        )}
-      </nav>
-    )
-  }
+  {allowed && posEnabled && tab === "sale" && !canSell && (
+    <p class="state-notice fade-in-up" id="pos-sale-denied" role="status">
+      {t(
+        "You can browse POS history but do not have permission to ring up a sale."
+      )}
+    </p>
+  )}
 
-  {
-    allowed && posEnabled && tab === "sale" && !canSell && (
-      <p class="state-notice fade-in-up" id="pos-sale-denied" role="status">
-        {t(
-          "You can browse POS history but do not have permission to ring up a sale."
-        )}
-      </p>
-    )
-  }
+  {allowed && posEnabled && tab === "sale" && canSell && (
+    <section
+      class="fade-in-up pos-sale"
+      id="pos-sale"
+      aria-labelledby="pos-sale-heading"
+      data-walk-in-name={POS_WALK_IN_CUSTOMER_NAME}
+      data-msg-empty-cart={t("Add at least one product to the cart.")}
+      data-msg-cart-changed={t(
+        "One or more items changed price or stock. Search for them again and retry."
+      )}
+      data-msg-insufficient={t("The amount tendered is less than the total.")}
+      data-msg-feature-disabled={t(
+        "Point of sale is turned off for this store."
+      )}
+      data-msg-invalid-phone={t("The customer phone number is not valid.")}
+      data-msg-generic={t("Could not complete the sale. Please try again.")}
+      data-msg-search-failed={t("Product search failed. Please try again.")}
+      data-msg-no-results={t("No products match.")}
+      data-msg-out-of-stock={t("out of stock")}
+      data-msg-cart-empty-row={t("Cart is empty.")}
+      data-label-remove={t("Remove")}
+      data-label-cash={t("Cash")}
+      data-label-qris={t("QRIS")}
+      data-label-walk-in={t("Walk-in customer")}
+      data-busy-label={t("Completing…")}
+    >
+      <h2 id="pos-sale-heading">{t("New sale")}</h2>
 
-  {
-    allowed && posEnabled && tab === "sale" && canSell && (
-      <section
-        class="fade-in-up pos-sale"
-        id="pos-sale"
-        aria-labelledby="pos-sale-heading"
-        data-walk-in-name={POS_WALK_IN_CUSTOMER_NAME}
-        data-msg-empty-cart={t("Add at least one product to the cart.")}
-        data-msg-cart-changed={t(
-          "One or more items changed price or stock. Search for them again and retry."
-        )}
-        data-msg-insufficient={t("The amount tendered is less than the total.")}
-        data-msg-feature-disabled={t(
-          "Point of sale is turned off for this store."
-        )}
-        data-msg-invalid-phone={t("The customer phone number is not valid.")}
-        data-msg-generic={t("Could not complete the sale. Please try again.")}
-        data-msg-search-failed={t("Product search failed. Please try again.")}
-        data-msg-no-results={t("No products match.")}
-        data-msg-out-of-stock={t("out of stock")}
-        data-msg-cart-empty-row={t("Cart is empty.")}
-        data-label-remove={t("Remove")}
-        data-label-cash={t("Cash")}
-        data-label-qris={t("QRIS")}
-        data-label-walk-in={t("Walk-in customer")}
-        data-busy-label={t("Completing…")}
-      >
-        <h2 id="pos-sale-heading">{t("New sale")}</h2>
+      <p id="pos-sale-error" class="admin-create-error" role="alert" hidden />
 
-        <p id="pos-sale-error" class="admin-create-error" role="alert" hidden />
-
-        <div class="pos-layout">
-          <div class="admin-panel pos-panel">
-            <div class="admin-form">
-              <label for="pos-search-input">
-                {t("Product search")}
-                <input
-                  type="search"
-                  id="pos-search-input"
-                  placeholder={t("Search by name or SKU…")}
-                  autocomplete="off"
-                  aria-controls="pos-search-results"
-                />
-              </label>
-              <p class="form-hint">
-                {t(
-                  "Type at least two characters. Pick a product to add one unit; products with variants list each variant."
-                )}
-              </p>
-            </div>
-            <ul
-              id="pos-search-results"
-              class="pos-search-results"
-              aria-live="polite"
-              aria-label={t("Search results")}
-            />
-
-            <div class="data-table-scroll">
-              <table class="data-table" id="pos-cart-table">
-                <caption>{t("Cart")}</caption>
-                <thead>
-                  <tr>
-                    <th scope="col">{t("Product")}</th>
-                    <th scope="col">{t("Unit price")}</th>
-                    <th scope="col">{t("Quantity")}</th>
-                    <th scope="col">{t("Line total")}</th>
-                    <th scope="col">
-                      <span class="visually-hidden">{t("Actions")}</span>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody id="pos-cart-body">
-                  <tr id="pos-cart-empty-row">
-                    <td class="data-table-empty" colspan="5">
-                      {t("Cart is empty.")}
-                    </td>
-                  </tr>
-                </tbody>
-                <tfoot>
-                  <tr>
-                    <th scope="row" colspan="3">
-                      {t("Subtotal")}
-                    </th>
-                    <td class="pos-money" id="pos-cart-subtotal" colspan="2">
-                      0.00
-                    </td>
-                  </tr>
-                </tfoot>
-              </table>
-            </div>
+      <div class="pos-layout">
+        <div class="admin-panel pos-panel">
+          <div class="admin-form">
+            <label for="pos-search-input">
+              {t("Product search")}
+              <input
+                type="search"
+                id="pos-search-input"
+                placeholder={t("Search by name or SKU…")}
+                autocomplete="off"
+                aria-controls="pos-search-results"
+              />
+            </label>
             <p class="form-hint">
               {t(
-                "The server re-prices every line when the sale is completed; tax from the store settings is added to the total there."
+                "Type at least two characters. Pick a product to add one unit; products with variants list each variant."
               )}
             </p>
           </div>
+          <ul
+            id="pos-search-results"
+            class="pos-search-results"
+            aria-live="polite"
+            aria-label={t("Search results")}
+          />
 
-          <form class="admin-panel pos-panel admin-form" id="pos-checkout-form">
-            <fieldset>
-              <legend>{t("Customer (optional)")}</legend>
-              <label for="pos-customer-name">
-                {t("Name")}
-                <input
-                  type="text"
-                  id="pos-customer-name"
-                  name="name"
-                  maxlength="200"
-                  placeholder={t("Walk-in customer")}
-                  autocomplete="off"
-                />
-              </label>
-              <label for="pos-customer-phone">
-                {t("Phone")}
-                <input
-                  type="tel"
-                  id="pos-customer-phone"
-                  name="phone"
-                  maxlength="30"
-                  placeholder="08…"
-                  autocomplete="off"
-                />
-              </label>
-              <p class="form-hint">
-                {t(
-                  "Leave the phone blank for a walk-in customer. A phone finds or creates the customer and applies their price level."
-                )}
-              </p>
-            </fieldset>
-
-            <fieldset>
-              <legend>{t("Payment")}</legend>
-              <label for="pos-payment-method">
-                {t("Payment method")}
-                <select id="pos-payment-method" name="method">
-                  <option value="cash" selected>
-                    {t("Cash")}
-                  </option>
-                  <option value="manual_qris">{t("QRIS")}</option>
-                </select>
-              </label>
-              <label for="pos-amount-tendered" id="pos-tendered-field">
-                {t("Amount tendered")}
-                <input
-                  type="text"
-                  id="pos-amount-tendered"
-                  name="amountTendered"
-                  inputmode="decimal"
-                  pattern="\d{1,12}(\.\d{1,2})?"
-                  placeholder="0.00"
-                  autocomplete="off"
-                />
-              </label>
-              <p class="pos-change-line" id="pos-change-line">
-                <span>{t("Change")}</span>
-                <output
-                  class="admin-status-pill pos-money"
-                  data-tone="neutral"
-                  id="pos-change"
-                  for="pos-amount-tendered"
-                >
-                  0.00
-                </output>
-              </p>
-              <label for="pos-notes">
-                {t("Notes")}
-                <textarea
-                  id="pos-notes"
-                  name="notes"
-                  rows="2"
-                  maxlength="1000"
-                />
-              </label>
-            </fieldset>
-
-            <div class="admin-form-actions">
-              <button type="submit" class="module-toggle" id="pos-submit">
-                {t("Complete sale")}
-              </button>
-              <button type="button" class="btn-inline" id="pos-clear">
-                {t("Clear cart")}
-              </button>
-            </div>
-          </form>
-        </div>
-
-        <section
-          class="admin-panel pos-receipt-wrapper"
-          id="pos-receipt-wrapper"
-          aria-labelledby="pos-receipt-heading"
-          hidden
-        >
-          <div class="row-actions pos-receipt-actions">
-            <h2 id="pos-receipt-heading">{t("Receipt")}</h2>
-            <button type="button" class="module-toggle" id="pos-print">
-              {t("Print receipt")}
-            </button>
-            <button type="button" class="btn-inline" id="pos-new-sale">
-              {t("Start another sale")}
-            </button>
-          </div>
-          <div class="pos-receipt" id="pos-receipt">
-            <p class="pos-receipt-store" id="pos-receipt-store">
-              {storeName}
-            </p>
-            <p class="pos-receipt-meta">
-              <span>{t("Order")}</span> <span data-receipt="orderCode" />
-            </p>
-            <p class="pos-receipt-meta">
-              <span>{t("Date")}</span> <span data-receipt="createdAt" />
-            </p>
-            <p class="pos-receipt-meta">
-              <span>{t("Customer")}</span> <span data-receipt="customer" />
-            </p>
-            <table class="pos-receipt-lines">
+          <div class="data-table-scroll">
+            <table class="data-table" id="pos-cart-table">
+              <caption>{t("Cart")}</caption>
               <thead>
                 <tr>
-                  <th scope="col">{t("Item")}</th>
-                  <th scope="col">{t("Qty")}</th>
-                  <th scope="col">{t("Amount")}</th>
+                  <th scope="col">{t("Product")}</th>
+                  <th scope="col">{t("Unit price")}</th>
+                  <th scope="col">{t("Quantity")}</th>
+                  <th scope="col">{t("Line total")}</th>
+                  <th scope="col">
+                    <span class="visually-hidden">{t("Actions")}</span>
+                  </th>
                 </tr>
               </thead>
-              <tbody data-receipt="lines" />
-            </table>
-            <dl class="pos-receipt-totals">
-              <dt>{t("Subtotal")}</dt>
-              <dd data-receipt="subtotal" />
-              <dt>{t("Tax")}</dt>
-              <dd data-receipt="tax" />
-              <dt>{t("Total")}</dt>
-              <dd data-receipt="total" />
-              <dt>{t("Payment method")}</dt>
-              <dd data-receipt="method" />
-              <dt>{t("Amount tendered")}</dt>
-              <dd data-receipt="amountTendered" />
-              <dt>{t("Change")}</dt>
-              <dd data-receipt="change" />
-            </dl>
-            <p class="pos-receipt-footer">
-              {t("Thank you for your purchase.")}
-            </p>
-          </div>
-        </section>
-      </section>
-    )
-  }
-
-  {
-    allowed && posEnabled && tab === "history" && !canReadHistory && (
-      <p class="state-notice fade-in-up" id="pos-history-denied" role="status">
-        {t("You do not have permission to view POS history.")}
-      </p>
-    )
-  }
-
-  {
-    allowed && posEnabled && tab === "history" && canReadHistory && history && (
-      <section
-        class="fade-in-up"
-        id="pos-history"
-        aria-labelledby="pos-history-heading"
-      >
-        <h2 id="pos-history-heading">{t("History")}</h2>
-
-        <form
-          class="admin-create-form"
-          method="get"
-          role="search"
-          id="pos-history-filter"
-        >
-          <input type="hidden" name="tab" value="history" />
-          <p class="form-legend">{t("Filter POS sales")}</p>
-          <label for="pos-filter-date-from">
-            {t("Date from")}
-            <input
-              type="date"
-              id="pos-filter-date-from"
-              name="dateFrom"
-              value={dateFromParam}
-            />
-          </label>
-          <label for="pos-filter-date-to">
-            {t("Date to")}
-            <input
-              type="date"
-              id="pos-filter-date-to"
-              name="dateTo"
-              value={dateToParam}
-            />
-          </label>
-          <label for="pos-filter-cashier">
-            {t("Cashier")}
-            <input
-              type="text"
-              id="pos-filter-cashier"
-              name="cashier"
-              value={cashierParam}
-              placeholder={t("Tenant user id")}
-              list="pos-cashier-options"
-            />
-            <datalist id="pos-cashier-options">
-              <option value={cashierTenantUserId}>{t("Me")}</option>
-            </datalist>
-          </label>
-          <button type="submit" class="module-toggle">
-            {t("Apply filter")}
-          </button>
-        </form>
-
-        <div class="data-table-scroll">
-          <table class="data-table data-table--stack" id="pos-history-table">
-            <caption>
-              {tn(
-                "{count} POS sale",
-                "{count} POS sales",
-                history.items.length,
-                {
-                  count: history.items.length
-                }
-              )}
-            </caption>
-            <thead>
-              <tr>
-                <th scope="col">{t("Order code")}</th>
-                <th scope="col">{t("Customer")}</th>
-                <th scope="col">{t("Payment method")}</th>
-                <th scope="col">{t("Status")}</th>
-                <th scope="col">{t("Total")}</th>
-                <th scope="col">{t("Cashier")}</th>
-                <th scope="col">{t("Created")}</th>
-              </tr>
-            </thead>
-            <tbody>
-              {history.items.length === 0 ? (
-                <tr>
-                  <td class="data-table-empty" colspan="7">
-                    <div class="empty-state">
-                      <span class="empty-state-icon" aria-hidden="true">
-                        ◇
-                      </span>
-                      <span class="empty-state-title">
-                        {t("No POS sales match this filter.")}
-                      </span>
-                      <span class="empty-state-text">
-                        {t(
-                          "Counter sales completed on the New sale tab appear here."
-                        )}
-                      </span>
-                    </div>
+              <tbody id="pos-cart-body">
+                <tr id="pos-cart-empty-row">
+                  <td class="data-table-empty" colspan="5">
+                    {t("Cart is empty.")}
                   </td>
                 </tr>
-              ) : (
-                history.items.map((order) => (
-                  <tr data-pos-order-row={order.id}>
-                    <th scope="row" data-label={t("Order code")}>
-                      {order.orderCode}
-                    </th>
-                    <td data-label={t("Customer")}>
-                      {order.customerName}
-                      <span class="cell-muted">
-                        {" "}
-                        {order.customerPhoneMasked}
-                      </span>
-                    </td>
-                    <td data-label={t("Payment method")}>
-                      {paymentLabels[order.paymentMethod] ??
-                        order.paymentMethod}
-                    </td>
-                    <td data-label={t("Status")}>
-                      <span class="status-badge" data-status={order.status}>
-                        {commerceLabel(labels.orderStatus, order.status)}
-                      </span>
-                    </td>
-                    <td data-label={t("Total")} class="pos-money">
-                      {order.total}
-                    </td>
-                    <td data-label={t("Cashier")}>
-                      <span class="cell-muted">
-                        {order.cashierTenantUserId === cashierTenantUserId
-                          ? t("Me")
-                          : (order.cashierTenantUserId ?? "—")}
-                      </span>
-                    </td>
-                    <td data-label={t("Created")}>{order.createdAt}</td>
-                  </tr>
-                ))
-              )}
-            </tbody>
-          </table>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th scope="row" colspan="3">
+                    {t("Subtotal")}
+                  </th>
+                  <td class="pos-money" id="pos-cart-subtotal" colspan="2">
+                    0.00
+                  </td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+          <p class="form-hint">
+            {t(
+              "The server re-prices every line when the sale is completed; tax from the store settings is added to the total there."
+            )}
+          </p>
         </div>
 
-        {history.nextCursor && (
-          <p class="row-actions">
-            <a
-              class="module-toggle"
-              href={historyHref({ cursor: history.nextCursor })}
-            >
-              {t("Next page")}
-            </a>
+        <form class="admin-panel pos-panel admin-form" id="pos-checkout-form">
+          <fieldset>
+            <legend>{t("Customer (optional)")}</legend>
+            <label for="pos-customer-name">
+              {t("Name")}
+              <input
+                type="text"
+                id="pos-customer-name"
+                name="name"
+                maxlength="200"
+                placeholder={t("Walk-in customer")}
+                autocomplete="off"
+              />
+            </label>
+            <label for="pos-customer-phone">
+              {t("Phone")}
+              <input
+                type="tel"
+                id="pos-customer-phone"
+                name="phone"
+                maxlength="30"
+                placeholder="08…"
+                autocomplete="off"
+              />
+            </label>
+            <p class="form-hint">
+              {t(
+                "Leave the phone blank for a walk-in customer. A phone finds or creates the customer and applies their price level."
+              )}
+            </p>
+          </fieldset>
+
+          <fieldset>
+            <legend>{t("Payment")}</legend>
+            <label for="pos-payment-method">
+              {t("Payment method")}
+              <select id="pos-payment-method" name="method">
+                <option value="cash" selected>
+                  {t("Cash")}
+                </option>
+                <option value="manual_qris">{t("QRIS")}</option>
+              </select>
+            </label>
+            <label for="pos-amount-tendered" id="pos-tendered-field">
+              {t("Amount tendered")}
+              <input
+                type="text"
+                id="pos-amount-tendered"
+                name="amountTendered"
+                inputmode="decimal"
+                pattern="\d{1,12}(\.\d{1,2})?"
+                placeholder="0.00"
+                autocomplete="off"
+              />
+            </label>
+            <p class="pos-change-line" id="pos-change-line">
+              <span>{t("Change")}</span>
+              <output
+                class="admin-status-pill pos-money"
+                data-tone="neutral"
+                id="pos-change"
+                for="pos-amount-tendered"
+              >
+                0.00
+              </output>
+            </p>
+            <label for="pos-notes">
+              {t("Notes")}
+              <textarea id="pos-notes" name="notes" rows="2" maxlength="1000" />
+            </label>
+          </fieldset>
+
+          <div class="admin-form-actions">
+            <button type="submit" class="module-toggle" id="pos-submit">
+              {t("Complete sale")}
+            </button>
+            <button type="button" class="btn-inline" id="pos-clear">
+              {t("Clear cart")}
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <section
+        class="admin-panel pos-receipt-wrapper"
+        id="pos-receipt-wrapper"
+        aria-labelledby="pos-receipt-heading"
+        hidden
+      >
+        <div class="row-actions pos-receipt-actions">
+          <h2 id="pos-receipt-heading">{t("Receipt")}</h2>
+          <button type="button" class="module-toggle" id="pos-print">
+            {t("Print receipt")}
+          </button>
+          <button type="button" class="btn-inline" id="pos-new-sale">
+            {t("Start another sale")}
+          </button>
+        </div>
+        <div class="pos-receipt" id="pos-receipt">
+          <p class="pos-receipt-store" id="pos-receipt-store">
+            {storeName}
           </p>
-        )}
+          <p class="pos-receipt-meta">
+            <span>{t("Order")}</span> <span data-receipt="orderCode" />
+          </p>
+          <p class="pos-receipt-meta">
+            <span>{t("Date")}</span> <span data-receipt="createdAt" />
+          </p>
+          <p class="pos-receipt-meta">
+            <span>{t("Customer")}</span> <span data-receipt="customer" />
+          </p>
+          <table class="pos-receipt-lines">
+            <thead>
+              <tr>
+                <th scope="col">{t("Item")}</th>
+                <th scope="col">{t("Qty")}</th>
+                <th scope="col">{t("Amount")}</th>
+              </tr>
+            </thead>
+            <tbody data-receipt="lines" />
+          </table>
+          <dl class="pos-receipt-totals">
+            <dt>{t("Subtotal")}</dt>
+            <dd data-receipt="subtotal" />
+            <dt>{t("Tax")}</dt>
+            <dd data-receipt="tax" />
+            <dt>{t("Total")}</dt>
+            <dd data-receipt="total" />
+            <dt>{t("Payment method")}</dt>
+            <dd data-receipt="method" />
+            <dt>{t("Amount tendered")}</dt>
+            <dd data-receipt="amountTendered" />
+            <dt>{t("Change")}</dt>
+            <dd data-receipt="change" />
+          </dl>
+          <p class="pos-receipt-footer">{t("Thank you for your purchase.")}</p>
+        </div>
       </section>
-    )
-  }
+    </section>
+  )}
+
+  {allowed && posEnabled && tab === "history" && !canReadHistory && (
+    <p class="state-notice fade-in-up" id="pos-history-denied" role="status">
+      {t("You do not have permission to view POS history.")}
+    </p>
+  )}
+
+  {allowed && posEnabled && tab === "history" && canReadHistory && history && (
+    <section
+      class="fade-in-up"
+      id="pos-history"
+      aria-labelledby="pos-history-heading"
+    >
+      <h2 id="pos-history-heading">{t("History")}</h2>
+
+      <form
+        class="admin-create-form"
+        method="get"
+        role="search"
+        id="pos-history-filter"
+      >
+        <input type="hidden" name="tab" value="history" />
+        <p class="form-legend">{t("Filter POS sales")}</p>
+        <label for="pos-filter-date-from">
+          {t("Date from")}
+          <input
+            type="date"
+            id="pos-filter-date-from"
+            name="dateFrom"
+            value={dateFromParam}
+          />
+        </label>
+        <label for="pos-filter-date-to">
+          {t("Date to")}
+          <input
+            type="date"
+            id="pos-filter-date-to"
+            name="dateTo"
+            value={dateToParam}
+          />
+        </label>
+        <label for="pos-filter-cashier">
+          {t("Cashier")}
+          <input
+            type="text"
+            id="pos-filter-cashier"
+            name="cashier"
+            value={cashierParam}
+            placeholder={t("Tenant user id")}
+            list="pos-cashier-options"
+          />
+          <datalist id="pos-cashier-options">
+            <option value={cashierTenantUserId}>{t("Me")}</option>
+          </datalist>
+        </label>
+        <button type="submit" class="module-toggle">
+          {t("Apply filter")}
+        </button>
+      </form>
+
+      <div class="data-table-scroll">
+        <table class="data-table data-table--stack" id="pos-history-table">
+          <caption>
+            {tn("{count} POS sale", "{count} POS sales", history.items.length, {
+              count: history.items.length
+            })}
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">{t("Order code")}</th>
+              <th scope="col">{t("Customer")}</th>
+              <th scope="col">{t("Payment method")}</th>
+              <th scope="col">{t("Status")}</th>
+              <th scope="col">{t("Total")}</th>
+              <th scope="col">{t("Cashier")}</th>
+              <th scope="col">{t("Created")}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {history.items.length === 0 ? (
+              <tr>
+                <td class="data-table-empty" colspan="7">
+                  <div class="empty-state">
+                    <span class="empty-state-icon" aria-hidden="true">
+                      ◇
+                    </span>
+                    <span class="empty-state-title">
+                      {t("No POS sales match this filter.")}
+                    </span>
+                    <span class="empty-state-text">
+                      {t(
+                        "Counter sales completed on the New sale tab appear here."
+                      )}
+                    </span>
+                  </div>
+                </td>
+              </tr>
+            ) : (
+              history.items.map((order) => (
+                <tr data-pos-order-row={order.id}>
+                  <th scope="row" data-label={t("Order code")}>
+                    {order.orderCode}
+                  </th>
+                  <td data-label={t("Customer")}>
+                    {order.customerName}
+                    <span class="cell-muted"> {order.customerPhoneMasked}</span>
+                  </td>
+                  <td data-label={t("Payment method")}>
+                    {paymentLabels[order.paymentMethod] ?? order.paymentMethod}
+                  </td>
+                  <td data-label={t("Status")}>
+                    <span class="status-badge" data-status={order.status}>
+                      {commerceLabel(labels.orderStatus, order.status)}
+                    </span>
+                  </td>
+                  <td data-label={t("Total")} class="pos-money">
+                    {order.total}
+                  </td>
+                  <td data-label={t("Cashier")}>
+                    <span class="cell-muted">
+                      {order.cashierTenantUserId === cashierTenantUserId
+                        ? t("Me")
+                        : (order.cashierTenantUserId ?? "—")}
+                    </span>
+                  </td>
+                  <td data-label={t("Created")}>{order.createdAt}</td>
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
+
+      {history.nextCursor && (
+        <p class="row-actions">
+          <a
+            class="module-toggle"
+            href={historyHref({ cursor: history.nextCursor })}
+          >
+            {t("Next page")}
+          </a>
+        </p>
+      )}
+    </section>
+  )}
 </AdminLayout>
 
 <template id="pos-result-template">
@@ -639,7 +603,9 @@ const paymentLabels: Record<string, string> = {
     </td>
     <td class="pos-money" data-field="lineTotal"></td>
     <td>
-      <button type="button" class="btn-inline btn-inline--danger pos-remove-btn"
+      <button
+        type="button"
+        class="btn-inline btn-inline--danger pos-remove-btn"
       ></button>
     </td>
   </tr>

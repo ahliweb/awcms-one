@@ -79,284 +79,263 @@ const selected = screen.state === "allowed" ? screen.data.selected : null;
     "Consent-gated mass e-mail/WhatsApp campaigns to your customers."
   )}
 >
-  {
-    !canRead && (
-      <p class="state-notice fade-in-up" id="campaigns-denied">
-        {t("You do not have permission to view campaigns.")}
-      </p>
-    )
-  }
-  {
-    canRead && loadError && (
-      <p class="state-notice fade-in-up" id="campaigns-error">
-        {t("Campaigns could not be loaded right now. Please try again later.")}
-      </p>
-    )
-  }
+  {!canRead && (
+    <p class="state-notice fade-in-up" id="campaigns-denied">
+      {t("You do not have permission to view campaigns.")}
+    </p>
+  )}
+  {canRead && loadError && (
+    <p class="state-notice fade-in-up" id="campaigns-error">
+      {t("Campaigns could not be loaded right now. Please try again later.")}
+    </p>
+  )}
 
-  {
-    canRead && !loadError && (
-      <p
-        id="campaigns-action-error"
-        class="admin-create-error"
-        role="alert"
-        hidden
+  {canRead && !loadError && (
+    <p
+      id="campaigns-action-error"
+      class="admin-create-error"
+      role="alert"
+      hidden
+    />
+  )}
+
+  {canRead && !loadError && canUpdate && (
+    <form id="campaign-create-form" class="admin-panel fade-in-up">
+      <h2>{t("New campaign")}</h2>
+      <label for="campaign-create-channel">{t("Channel")}</label>
+      <select id="campaign-create-channel" name="channel" required>
+        <option value="email">{t("E-mail")}</option>
+        <option value="whatsapp">{t("WhatsApp")}</option>
+      </select>
+
+      <label for="campaign-create-subject">{t("Subject (e-mail only)")}</label>
+      <input
+        type="text"
+        id="campaign-create-subject"
+        name="subject"
+        maxlength={200}
       />
-    )
-  }
 
-  {
-    canRead && !loadError && canUpdate && (
-      <form id="campaign-create-form" class="admin-panel fade-in-up">
-        <h2>{t("New campaign")}</h2>
-        <label for="campaign-create-channel">{t("Channel")}</label>
-        <select id="campaign-create-channel" name="channel" required>
-          <option value="email">{t("E-mail")}</option>
-          <option value="whatsapp">{t("WhatsApp")}</option>
-        </select>
+      <label for="campaign-create-body">{t("Message")}</label>
+      <textarea
+        id="campaign-create-body"
+        name="body"
+        rows={5}
+        maxlength={4000}
+        required
+        placeholder={t(
+          "Use {{name}} and {{storeName}} — the only variables the message may interpolate."
+        )}
+      />
 
-        <label for="campaign-create-subject">
-          {t("Subject (e-mail only)")}
-        </label>
-        <input
-          type="text"
-          id="campaign-create-subject"
-          name="subject"
-          maxlength={200}
-        />
+      <fieldset>
+        <legend>{t("Audience: customer levels (all if none checked)")}</legend>
+        {[1, 2, 3, 4].map((level) => (
+          <label class="inline-checkbox">
+            <input
+              type="checkbox"
+              name="level"
+              value={level}
+              class="campaign-audience-level"
+            />
+            {level}
+          </label>
+        ))}
+      </fieldset>
 
-        <label for="campaign-create-body">{t("Message")}</label>
-        <textarea
-          id="campaign-create-body"
-          name="body"
-          rows={5}
-          maxlength={4000}
-          required
-          placeholder={t(
-            "Use {{name}} and {{storeName}} — the only variables the message may interpolate."
-          )}
-        />
+      <div class="row-actions">
+        <button type="submit" class="module-toggle" id="campaign-create-submit">
+          {t("Create draft")}
+        </button>
+      </div>
+    </form>
+  )}
 
-        <fieldset>
-          <legend>
-            {t("Audience: customer levels (all if none checked)")}
-          </legend>
-          {[1, 2, 3, 4].map((level) => (
-            <label class="inline-checkbox">
-              <input
-                type="checkbox"
-                name="level"
-                value={level}
-                class="campaign-audience-level"
-              />
-              {level}
-            </label>
-          ))}
-        </fieldset>
-
-        <div class="row-actions">
-          <button
-            type="submit"
-            class="module-toggle"
-            id="campaign-create-submit"
-          >
-            {t("Create draft")}
-          </button>
-        </div>
-      </form>
-    )
-  }
-
-  {
-    canRead && !loadError && (
-      <div class="fade-in-up">
-        <div class="data-table-scroll">
-          <table
-            class="data-table data-table--stack"
-            id="commerce-campaigns-table"
-          >
-            <caption>
-              {tn("{count} campaign", "{count} campaigns", campaigns.length, {
-                count: campaigns.length
-              })}
-            </caption>
-            <thead>
+  {canRead && !loadError && (
+    <div class="fade-in-up">
+      <div class="data-table-scroll">
+        <table
+          class="data-table data-table--stack"
+          id="commerce-campaigns-table"
+        >
+          <caption>
+            {tn("{count} campaign", "{count} campaigns", campaigns.length, {
+              count: campaigns.length
+            })}
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">{t("Channel")}</th>
+              <th scope="col">{t("Status")}</th>
+              <th scope="col">{t("Recipients")}</th>
+              <th scope="col">{t("Sent")}</th>
+              <th scope="col">{t("Created")}</th>
+              <th scope="col">{t("Open")}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {campaigns.length === 0 ? (
               <tr>
-                <th scope="col">{t("Channel")}</th>
-                <th scope="col">{t("Status")}</th>
-                <th scope="col">{t("Recipients")}</th>
-                <th scope="col">{t("Sent")}</th>
-                <th scope="col">{t("Created")}</th>
-                <th scope="col">{t("Open")}</th>
+                <td class="data-table-empty" colspan={6}>
+                  <div class="empty-state">
+                    <span class="empty-state-icon" aria-hidden="true">
+                      ◇
+                    </span>
+                    <span class="empty-state-title">
+                      {t("No campaigns yet")}
+                    </span>
+                    <span class="empty-state-text">
+                      {t("Create a draft above to get started.")}
+                    </span>
+                  </div>
+                </td>
               </tr>
-            </thead>
-            <tbody>
-              {campaigns.length === 0 ? (
-                <tr>
-                  <td class="data-table-empty" colspan={6}>
-                    <div class="empty-state">
-                      <span class="empty-state-icon" aria-hidden="true">
-                        ◇
-                      </span>
-                      <span class="empty-state-title">
-                        {t("No campaigns yet")}
-                      </span>
-                      <span class="empty-state-text">
-                        {t("Create a draft above to get started.")}
-                      </span>
-                    </div>
+            ) : (
+              campaigns.map((campaign) => (
+                <tr data-campaign-row={campaign.id}>
+                  <td data-label={t("Channel")} data-channel={campaign.channel}>
+                    {commerceLabel(labels.campaignChannel, campaign.channel)}
+                  </td>
+                  <td data-label={t("Status")}>
+                    <span class="status-badge" data-status={campaign.status}>
+                      {commerceLabel(labels.campaignStatus, campaign.status)}
+                    </span>
+                  </td>
+                  <td data-label={t("Recipients")}>
+                    {campaign.recipientCount ?? "—"}
+                  </td>
+                  <td data-label={t("Sent")}>{campaign.sentCount ?? "—"}</td>
+                  <td data-label={t("Created")}>{campaign.createdAt}</td>
+                  <td data-label={t("Open")}>
+                    <a href={`/admin/commerce-campaigns?id=${campaign.id}`}>
+                      {t("View")}
+                    </a>
                   </td>
                 </tr>
-              ) : (
-                campaigns.map((campaign) => (
-                  <tr data-campaign-row={campaign.id}>
-                    <td
-                      data-label={t("Channel")}
-                      data-channel={campaign.channel}
-                    >
-                      {commerceLabel(labels.campaignChannel, campaign.channel)}
-                    </td>
-                    <td data-label={t("Status")}>
-                      <span class="status-badge" data-status={campaign.status}>
-                        {commerceLabel(labels.campaignStatus, campaign.status)}
-                      </span>
-                    </td>
-                    <td data-label={t("Recipients")}>
-                      {campaign.recipientCount ?? "—"}
-                    </td>
-                    <td data-label={t("Sent")}>{campaign.sentCount ?? "—"}</td>
-                    <td data-label={t("Created")}>{campaign.createdAt}</td>
-                    <td data-label={t("Open")}>
-                      <a href={`/admin/commerce-campaigns?id=${campaign.id}`}>
-                        {t("View")}
-                      </a>
-                    </td>
-                  </tr>
-                ))
-              )}
-            </tbody>
-          </table>
-        </div>
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
 
-        {selected && (
-          <section
-            class="admin-panel fade-in-up"
-            aria-labelledby="campaign-detail-heading"
-            id="campaign-detail"
-            data-campaign-id={selected.id}
-          >
-            <h2 id="campaign-detail-heading">
-              <span data-channel={selected.channel}>
-                {commerceLabel(labels.campaignChannel, selected.channel)}
-              </span>{" "}
-              ·{" "}
-              <span class="status-badge" data-status={selected.status}>
-                {commerceLabel(labels.campaignStatus, selected.status)}
-              </span>
-            </h2>
+      {selected && (
+        <section
+          class="admin-panel fade-in-up"
+          aria-labelledby="campaign-detail-heading"
+          id="campaign-detail"
+          data-campaign-id={selected.id}
+        >
+          <h2 id="campaign-detail-heading">
+            <span data-channel={selected.channel}>
+              {commerceLabel(labels.campaignChannel, selected.channel)}
+            </span>{" "}
+            ·{" "}
+            <span class="status-badge" data-status={selected.status}>
+              {commerceLabel(labels.campaignStatus, selected.status)}
+            </span>
+          </h2>
 
-            {canUpdate && selected.status === "draft" ? (
-              <form id="campaign-edit-form" data-campaign-id={selected.id}>
-                <label for="campaign-edit-subject">
-                  {t("Subject (e-mail only)")}
-                </label>
-                <input
-                  type="text"
-                  id="campaign-edit-subject"
-                  name="subject"
-                  maxlength={200}
-                  value={selected.subject ?? ""}
-                />
-                <label for="campaign-edit-body">{t("Message")}</label>
-                <textarea
-                  id="campaign-edit-body"
-                  name="body"
-                  rows={5}
-                  maxlength={4000}
-                  required
-                >
+          {canUpdate && selected.status === "draft" ? (
+            <form id="campaign-edit-form" data-campaign-id={selected.id}>
+              <label for="campaign-edit-subject">
+                {t("Subject (e-mail only)")}
+              </label>
+              <input
+                type="text"
+                id="campaign-edit-subject"
+                name="subject"
+                maxlength={200}
+                value={selected.subject ?? ""}
+              />
+              <label for="campaign-edit-body">{t("Message")}</label>
+              <textarea
+                id="campaign-edit-body"
+                name="body"
+                rows={5}
+                maxlength={4000}
+                required
+              >
                   {selected.body}
                 </textarea>
-                <div class="row-actions">
-                  <button
-                    type="submit"
-                    class="module-toggle"
-                    id="campaign-edit-submit"
-                  >
-                    {t("Save draft")}
-                  </button>
-                </div>
-              </form>
-            ) : (
-              <div>
-                <p>
-                  <strong>{t("Subject")}:</strong>{" "}
-                  {selected.subject ?? t("(none)")}
-                </p>
-                <p>
-                  <strong>{t("Message")}:</strong> {selected.body}
-                </p>
+              <div class="row-actions">
+                <button
+                  type="submit"
+                  class="module-toggle"
+                  id="campaign-edit-submit"
+                >
+                  {t("Save draft")}
+                </button>
+              </div>
+            </form>
+          ) : (
+            <div>
+              <p>
+                <strong>{t("Subject")}:</strong>{" "}
+                {selected.subject ?? t("(none)")}
+              </p>
+              <p>
+                <strong>{t("Message")}:</strong> {selected.body}
+              </p>
+            </div>
+          )}
+
+          <div class="row-actions">
+            <button
+              type="button"
+              class="module-toggle"
+              id="campaign-preview-btn"
+              data-campaign-id={selected.id}
+            >
+              {t("Preview audience")}
+            </button>
+            <span id="campaign-preview-result" class="cell-muted" />
+          </div>
+
+          {canSend &&
+            (selected.status === "draft" ||
+              selected.status === "scheduled") && (
+              <div class="row-actions">
+                <button
+                  type="button"
+                  class="module-toggle"
+                  id="campaign-send-btn"
+                  data-campaign-id={selected.id}
+                  data-confirm-title={t("Send this campaign now?")}
+                  data-confirm-message={t(
+                    "This cannot be undone once dispatched."
+                  )}
+                  data-confirm-label={t("Send campaign")}
+                >
+                  {t("Send now")}
+                </button>
               </div>
             )}
 
-            <div class="row-actions">
-              <button
-                type="button"
-                class="module-toggle"
-                id="campaign-preview-btn"
-                data-campaign-id={selected.id}
-              >
-                {t("Preview audience")}
-              </button>
-              <span id="campaign-preview-result" class="cell-muted" />
-            </div>
-
-            {canSend &&
-              (selected.status === "draft" ||
-                selected.status === "scheduled") && (
-                <div class="row-actions">
-                  <button
-                    type="button"
-                    class="module-toggle"
-                    id="campaign-send-btn"
-                    data-campaign-id={selected.id}
-                    data-confirm-title={t("Send this campaign now?")}
-                    data-confirm-message={t(
-                      "This cannot be undone once dispatched."
-                    )}
-                    data-confirm-label={t("Send campaign")}
-                  >
-                    {t("Send now")}
-                  </button>
-                </div>
-              )}
-
-            {canSend &&
-              (selected.status === "draft" ||
-                selected.status === "scheduled" ||
-                selected.status === "sending") && (
-                <div class="row-actions">
-                  <button
-                    type="button"
-                    class="module-toggle campaign-cancel-btn"
-                    id="campaign-cancel-btn"
-                    data-campaign-id={selected.id}
-                    data-confirm-title={t("Cancel this campaign?")}
-                    data-confirm-message={t(
-                      "Already-dispatched recipients will not be un-sent."
-                    )}
-                    data-confirm-label={t("Cancel campaign")}
-                    data-confirm-danger="true"
-                  >
-                    {t("Cancel")}
-                  </button>
-                </div>
-              )}
-          </section>
-        )}
-      </div>
-    )
-  }
+          {canSend &&
+            (selected.status === "draft" ||
+              selected.status === "scheduled" ||
+              selected.status === "sending") && (
+              <div class="row-actions">
+                <button
+                  type="button"
+                  class="module-toggle campaign-cancel-btn"
+                  id="campaign-cancel-btn"
+                  data-campaign-id={selected.id}
+                  data-confirm-title={t("Cancel this campaign?")}
+                  data-confirm-message={t(
+                    "Already-dispatched recipients will not be un-sent."
+                  )}
+                  data-confirm-label={t("Cancel campaign")}
+                  data-confirm-danger="true"
+                >
+                  {t("Cancel")}
+                </button>
+              </div>
+            )}
+        </section>
+      )}
+    </div>
+  )}
   <CommerceConfirmDialog locale={Astro.locals.locale} />
 </AdminLayout>
 

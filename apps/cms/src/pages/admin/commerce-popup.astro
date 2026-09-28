@@ -74,209 +74,192 @@ const showActions = canUpdate || canDelete;
   )}
 >
   <MarketingTabs active="popup" locale={Astro.locals.locale} />
-  {
-    !canRead && (
-      <p class="state-notice fade-in-up" id="popups-denied">
-        {t("You do not have permission to view popups.")}
-      </p>
-    )
-  }
-  {
-    canRead && loadError && (
-      <p class="state-notice fade-in-up" id="popups-error">
-        {t("Popups could not be loaded right now. Please try again later.")}
-      </p>
-    )
-  }
+  {!canRead && (
+    <p class="state-notice fade-in-up" id="popups-denied">
+      {t("You do not have permission to view popups.")}
+    </p>
+  )}
+  {canRead && loadError && (
+    <p class="state-notice fade-in-up" id="popups-error">
+      {t("Popups could not be loaded right now. Please try again later.")}
+    </p>
+  )}
 
-  {
-    canCreate && (
-      <form id="popup-create-form" class="admin-create-form fade-in-up">
-        <p class="form-legend">{t("Create a popup")}</p>
-        <p
-          id="popup-create-error"
-          class="admin-create-error"
-          role="alert"
-          hidden
-        />
-
-        <label for="popup-title">{t("Title")}</label>
-        <input
-          id="popup-title"
-          name="title"
-          type="text"
-          required
-          autocomplete="off"
-        />
-
-        <label for="popup-body">{t("Body")}</label>
-        <textarea id="popup-body" name="body" rows="3" />
-
-        <label for="popup-mediaObjectId">
-          {t("Media object id (optional)")}
-        </label>
-        <input
-          id="popup-mediaObjectId"
-          name="mediaObjectId"
-          type="text"
-          placeholder="uuid — see /admin/media"
-        />
-
-        <label for="popup-linkUrl">{t("Link URL")}</label>
-        <input
-          id="popup-linkUrl"
-          name="linkUrl"
-          type="text"
-          placeholder="/flash-sale"
-        />
-
-        <label for="popup-buttonText">{t("Button text")}</label>
-        <input id="popup-buttonText" name="buttonText" type="text" />
-
-        <label for="popup-frequency">{t("Frequency")}</label>
-        <select id="popup-frequency" name="frequency">
-          {Object.entries(labels.popupFrequency).map(([value, label]) => (
-            <option value={value} selected={value === "once_per_day"}>
-              {label}
-            </option>
-          ))}
-        </select>
-
-        <label>
-          <input id="popup-isActive" name="isActive" type="checkbox" />{" "}
-          {t("Active (only one may be active at a time)")}
-        </label>
-
-        <button type="submit" id="popup-create-submit">
-          {t("Create popup")}
-        </button>
-      </form>
-    )
-  }
-
-  {
-    canRead && !loadError && (
+  {canCreate && (
+    <form id="popup-create-form" class="admin-create-form fade-in-up">
+      <p class="form-legend">{t("Create a popup")}</p>
       <p
-        id="popup-action-error"
+        id="popup-create-error"
         class="admin-create-error"
         role="alert"
         hidden
       />
-    )
-  }
 
-  {
-    canRead && !loadError && (
-      <div class="data-table-scroll fade-in-up">
-        <table class="data-table data-table--stack" id="commerce-popups-table">
-          <caption>
-            {tn("{count} popup", "{count} popups", popups.length, {
-              count: popups.length
-            })}
-          </caption>
-          <thead>
+      <label for="popup-title">{t("Title")}</label>
+      <input
+        id="popup-title"
+        name="title"
+        type="text"
+        required
+        autocomplete="off"
+      />
+
+      <label for="popup-body">{t("Body")}</label>
+      <textarea id="popup-body" name="body" rows="3" />
+
+      <label for="popup-mediaObjectId">{t("Media object id (optional)")}</label>
+      <input
+        id="popup-mediaObjectId"
+        name="mediaObjectId"
+        type="text"
+        placeholder="uuid — see /admin/media"
+      />
+
+      <label for="popup-linkUrl">{t("Link URL")}</label>
+      <input
+        id="popup-linkUrl"
+        name="linkUrl"
+        type="text"
+        placeholder="/flash-sale"
+      />
+
+      <label for="popup-buttonText">{t("Button text")}</label>
+      <input id="popup-buttonText" name="buttonText" type="text" />
+
+      <label for="popup-frequency">{t("Frequency")}</label>
+      <select id="popup-frequency" name="frequency">
+        {Object.entries(labels.popupFrequency).map(([value, label]) => (
+          <option value={value} selected={value === "once_per_day"}>
+            {label}
+          </option>
+        ))}
+      </select>
+
+      <label>
+        <input id="popup-isActive" name="isActive" type="checkbox" />{" "}
+        {t("Active (only one may be active at a time)")}
+      </label>
+
+      <button type="submit" id="popup-create-submit">
+        {t("Create popup")}
+      </button>
+    </form>
+  )}
+
+  {canRead && !loadError && (
+    <p id="popup-action-error" class="admin-create-error" role="alert" hidden />
+  )}
+
+  {canRead && !loadError && (
+    <div class="data-table-scroll fade-in-up">
+      <table class="data-table data-table--stack" id="commerce-popups-table">
+        <caption>
+          {tn("{count} popup", "{count} popups", popups.length, {
+            count: popups.length
+          })}
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">{t("Title")}</th>
+            <th scope="col">{t("Frequency")}</th>
+            <th scope="col">{t("Active")}</th>
+            {showActions && <th scope="col">{t("Actions")}</th>}
+          </tr>
+        </thead>
+        <tbody>
+          {popups.length === 0 ? (
             <tr>
-              <th scope="col">{t("Title")}</th>
-              <th scope="col">{t("Frequency")}</th>
-              <th scope="col">{t("Active")}</th>
-              {showActions && <th scope="col">{t("Actions")}</th>}
+              <td class="data-table-empty" colspan={showActions ? 4 : 3}>
+                <div class="empty-state">
+                  <span class="empty-state-icon" aria-hidden="true">
+                    ◇
+                  </span>
+                  <span class="empty-state-title">{t("No popups yet")}</span>
+                  <span class="empty-state-text">
+                    {t("Popups created for this tenant will appear here.")}
+                  </span>
+                </div>
+              </td>
             </tr>
-          </thead>
-          <tbody>
-            {popups.length === 0 ? (
-              <tr>
-                <td class="data-table-empty" colspan={showActions ? 4 : 3}>
-                  <div class="empty-state">
-                    <span class="empty-state-icon" aria-hidden="true">
-                      ◇
-                    </span>
-                    <span class="empty-state-title">{t("No popups yet")}</span>
-                    <span class="empty-state-text">
-                      {t("Popups created for this tenant will appear here.")}
-                    </span>
-                  </div>
-                </td>
-              </tr>
-            ) : (
-              popups.map((popup) => (
-                <tr data-popup-row={popup.id}>
-                  <td
-                    data-label={t("Title")}
-                    class={canUpdate ? "stacked-block" : ""}
-                  >
-                    {canUpdate ? (
-                      <input
-                        class="popup-title-input"
-                        type="text"
-                        value={popup.title}
-                        data-popup-title={popup.id}
-                      />
-                    ) : (
-                      popup.title
-                    )}
-                  </td>
-                  <td
-                    data-label={t("Frequency")}
-                    data-frequency={popup.frequency}
-                  >
-                    {commerceLabel(labels.popupFrequency, popup.frequency)}
-                  </td>
-                  <td
-                    data-label={t("Active")}
-                    class={canUpdate ? "stacked-block" : ""}
-                  >
-                    {canUpdate ? (
-                      <input
-                        type="checkbox"
-                        class="popup-active-input"
-                        checked={popup.isActive}
-                        data-popup-active={popup.id}
-                      />
-                    ) : popup.isActive ? (
-                      t("Yes")
-                    ) : (
-                      t("No")
-                    )}
-                  </td>
-                  {showActions && (
-                    <td data-label={t("Actions")} class="stacked-block">
-                      <div class="row-actions">
-                        {canUpdate && (
-                          <button
-                            type="button"
-                            class="module-toggle popup-save-btn"
-                            data-popup-id={popup.id}
-                          >
-                            {t("Save")}
-                          </button>
-                        )}
-                        {canDelete && (
-                          <button
-                            type="button"
-                            class="module-toggle popup-delete-btn"
-                            data-popup-id={popup.id}
-                            data-confirm-title={t("Delete this popup?")}
-                            data-confirm-message={t(
-                              "{title} will no longer be shown on the storefront.",
-                              { title: popup.title }
-                            )}
-                            data-confirm-label={t("Delete popup")}
-                            data-confirm-danger="true"
-                          >
-                            {t("Delete")}
-                          </button>
-                        )}
-                      </div>
-                    </td>
+          ) : (
+            popups.map((popup) => (
+              <tr data-popup-row={popup.id}>
+                <td
+                  data-label={t("Title")}
+                  class={canUpdate ? "stacked-block" : ""}
+                >
+                  {canUpdate ? (
+                    <input
+                      class="popup-title-input"
+                      type="text"
+                      value={popup.title}
+                      data-popup-title={popup.id}
+                    />
+                  ) : (
+                    popup.title
                   )}
-                </tr>
-              ))
-            )}
-          </tbody>
-        </table>
-      </div>
-    )
-  }
+                </td>
+                <td
+                  data-label={t("Frequency")}
+                  data-frequency={popup.frequency}
+                >
+                  {commerceLabel(labels.popupFrequency, popup.frequency)}
+                </td>
+                <td
+                  data-label={t("Active")}
+                  class={canUpdate ? "stacked-block" : ""}
+                >
+                  {canUpdate ? (
+                    <input
+                      type="checkbox"
+                      class="popup-active-input"
+                      checked={popup.isActive}
+                      data-popup-active={popup.id}
+                    />
+                  ) : popup.isActive ? (
+                    t("Yes")
+                  ) : (
+                    t("No")
+                  )}
+                </td>
+                {showActions && (
+                  <td data-label={t("Actions")} class="stacked-block">
+                    <div class="row-actions">
+                      {canUpdate && (
+                        <button
+                          type="button"
+                          class="module-toggle popup-save-btn"
+                          data-popup-id={popup.id}
+                        >
+                          {t("Save")}
+                        </button>
+                      )}
+                      {canDelete && (
+                        <button
+                          type="button"
+                          class="module-toggle popup-delete-btn"
+                          data-popup-id={popup.id}
+                          data-confirm-title={t("Delete this popup?")}
+                          data-confirm-message={t(
+                            "{title} will no longer be shown on the storefront.",
+                            { title: popup.title }
+                          )}
+                          data-confirm-label={t("Delete popup")}
+                          data-confirm-danger="true"
+                        >
+                          {t("Delete")}
+                        </button>
+                      )}
+                    </div>
+                  </td>
+                )}
+              </tr>
+            ))
+          )}
+        </tbody>
+      </table>
+    </div>
+  )}
   <CommerceConfirmDialog locale={Astro.locals.locale} />
 </AdminLayout>
 

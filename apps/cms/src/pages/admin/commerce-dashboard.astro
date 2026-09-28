@@ -102,175 +102,166 @@ const ACTION_ITEM_LABEL: Record<string, string> = {
     "Today's orders and revenue, the 14-day trend, and what needs attention."
   )}
 >
-  {
-    !canRead && (
-      <p class="state-notice fade-in-up" id="dashboard-denied">
-        {t("You do not have permission to view the commerce dashboard.")}
-      </p>
-    )
-  }
-  {
-    canRead && loadError && (
-      <p class="state-notice fade-in-up" id="dashboard-error">
-        {t(
-          "The dashboard could not be loaded right now. Please try again later."
-        )}
-      </p>
-    )
-  }
+  {!canRead && (
+    <p class="state-notice fade-in-up" id="dashboard-denied">
+      {t("You do not have permission to view the commerce dashboard.")}
+    </p>
+  )}
+  {canRead && loadError && (
+    <p class="state-notice fade-in-up" id="dashboard-error">
+      {t(
+        "The dashboard could not be loaded right now. Please try again later."
+      )}
+    </p>
+  )}
 
-  {
-    canRead && !loadError && summary && (
-      <div class="fade-in-up">
-        <section class="admin-dashboard-stats" aria-label={t("Key figures")}>
-          <div class="admin-stat-card">
-            <span class="admin-stat-card-label">{t("Orders today")}</span>
-            <span class="admin-stat-card-value">
-              {count(summary.today.ordersToday)}
+  {canRead && !loadError && summary && (
+    <div class="fade-in-up">
+      <section class="admin-dashboard-stats" aria-label={t("Key figures")}>
+        <div class="admin-stat-card">
+          <span class="admin-stat-card-label">{t("Orders today")}</span>
+          <span class="admin-stat-card-value">
+            {count(summary.today.ordersToday)}
+          </span>
+        </div>
+        <div class="admin-stat-card">
+          <span class="admin-stat-card-label">{t("Revenue today")}</span>
+          <span class="admin-stat-card-value">
+            {money(summary.today.revenueToday)}
+          </span>
+        </div>
+        <div class="admin-stat-card">
+          <span class="admin-stat-card-label">{t("Low-stock products")}</span>
+          <span class="admin-stat-card-value">
+            {count(summary.lowStockCount)}
+          </span>
+          {summary.lowStockCount > 0 && (
+            <span class="admin-status-pill" data-tone="warning">
+              <span class="admin-status-pill-dot" aria-hidden="true" />
+              {t("Needs restock")}
             </span>
-          </div>
-          <div class="admin-stat-card">
-            <span class="admin-stat-card-label">{t("Revenue today")}</span>
-            <span class="admin-stat-card-value">
-              {money(summary.today.revenueToday)}
-            </span>
-          </div>
-          <div class="admin-stat-card">
-            <span class="admin-stat-card-label">{t("Low-stock products")}</span>
-            <span class="admin-stat-card-value">
-              {count(summary.lowStockCount)}
-            </span>
-            {summary.lowStockCount > 0 && (
-              <span class="admin-status-pill" data-tone="warning">
-                <span class="admin-status-pill-dot" aria-hidden="true" />
-                {t("Needs restock")}
-              </span>
-            )}
-          </div>
-        </section>
-
-        <section
-          class="admin-dashboard-panel"
-          aria-label={t("Revenue, last 14 days")}
-        >
-          <h2 class="admin-dashboard-panel-title">
-            {t("Revenue, last 14 days")}
-          </h2>
-          {summary.revenueDaily.length === 0 ? (
-            <p class="admin-stat-card-caption">
-              {t("No sales report data for this period yet.")}
-            </p>
-          ) : (
-            <ul
-              class="admin-dashboard-bars"
-              role="img"
-              aria-label={t("Daily gross revenue bar chart")}
-            >
-              {summary.revenueDaily.map((day) => {
-                // No inline `style=` (CSP `style-src` has no
-                // `'unsafe-inline'` — see the `awcms-ui-screen` skill's
-                // checklist item 9) — bucket into 11 discrete heights
-                // (`data-h="0"`..`"10"`) that `admin-screens.css` maps to a
-                // `height: N0%` rule each, rather than a continuous inline
-                // custom property.
-                const bucket = Math.round(
-                  Math.max(0.02, Number(day.gross) / maxRevenue) * 10
-                );
-                return (
-                  <li class="admin-dashboard-bar-item">
-                    <span
-                      class="admin-dashboard-bar"
-                      data-h={bucket}
-                      title={`${day.day}: ${money(day.gross)}`}
-                    />
-                    <span class="admin-dashboard-bar-label">
-                      {day.day.slice(5)}
-                    </span>
-                  </li>
-                );
-              })}
-            </ul>
           )}
-        </section>
+        </div>
+      </section>
 
-        <section
-          class="admin-dashboard-panel"
-          aria-label={t("Needs attention")}
-        >
-          <h2 class="admin-dashboard-panel-title">{t("Needs attention")}</h2>
-          {summary.actionItems.length === 0 ? (
-            <p class="admin-stat-card-caption">
-              {t("Nothing needs attention right now.")}
-            </p>
-          ) : (
-            <ul class="admin-dashboard-action-list">
-              {summary.actionItems.map((item) => (
-                <li>
-                  <a href={item.href} class="admin-dashboard-action-link">
-                    <span>{ACTION_ITEM_LABEL[item.kind] ?? item.kind}</span>
-                    <span class="admin-status-pill" data-tone="warning">
-                      {count(item.count)}
-                    </span>
-                  </a>
+      <section
+        class="admin-dashboard-panel"
+        aria-label={t("Revenue, last 14 days")}
+      >
+        <h2 class="admin-dashboard-panel-title">
+          {t("Revenue, last 14 days")}
+        </h2>
+        {summary.revenueDaily.length === 0 ? (
+          <p class="admin-stat-card-caption">
+            {t("No sales report data for this period yet.")}
+          </p>
+        ) : (
+          <ul
+            class="admin-dashboard-bars"
+            role="img"
+            aria-label={t("Daily gross revenue bar chart")}
+          >
+            {summary.revenueDaily.map((day) => {
+              // No inline `style=` (CSP `style-src` has no
+              // `'unsafe-inline'` — see the `awcms-ui-screen` skill's
+              // checklist item 9) — bucket into 11 discrete heights
+              // (`data-h="0"`..`"10"`) that `admin-screens.css` maps to a
+              // `height: N0%` rule each, rather than a continuous inline
+              // custom property.
+              const bucket = Math.round(
+                Math.max(0.02, Number(day.gross) / maxRevenue) * 10
+              );
+              return (
+                <li class="admin-dashboard-bar-item">
+                  <span
+                    class="admin-dashboard-bar"
+                    data-h={bucket}
+                    title={`${day.day}: ${money(day.gross)}`}
+                  />
+                  <span class="admin-dashboard-bar-label">
+                    {day.day.slice(5)}
+                  </span>
                 </li>
-              ))}
-            </ul>
-          )}
-        </section>
+              );
+            })}
+          </ul>
+        )}
+      </section>
 
-        <section aria-label={t("Recent orders")}>
-          <h2 class="admin-dashboard-panel-title">{t("Recent orders")}</h2>
-          <div class="data-table-scroll">
-            <table class="data-table data-table--stack">
-              <caption class="sr-only">{t("Recent orders")}</caption>
-              <thead>
+      <section class="admin-dashboard-panel" aria-label={t("Needs attention")}>
+        <h2 class="admin-dashboard-panel-title">{t("Needs attention")}</h2>
+        {summary.actionItems.length === 0 ? (
+          <p class="admin-stat-card-caption">
+            {t("Nothing needs attention right now.")}
+          </p>
+        ) : (
+          <ul class="admin-dashboard-action-list">
+            {summary.actionItems.map((item) => (
+              <li>
+                <a href={item.href} class="admin-dashboard-action-link">
+                  <span>{ACTION_ITEM_LABEL[item.kind] ?? item.kind}</span>
+                  <span class="admin-status-pill" data-tone="warning">
+                    {count(item.count)}
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        )}
+      </section>
+
+      <section aria-label={t("Recent orders")}>
+        <h2 class="admin-dashboard-panel-title">{t("Recent orders")}</h2>
+        <div class="data-table-scroll">
+          <table class="data-table data-table--stack">
+            <caption class="sr-only">{t("Recent orders")}</caption>
+            <thead>
+              <tr>
+                <th scope="col">{t("Order code")}</th>
+                <th scope="col">{t("Customer")}</th>
+                <th scope="col">{t("Status")}</th>
+                <th scope="col">{t("Total")}</th>
+                <th scope="col">{t("Placed")}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {summary.recentOrders.length === 0 ? (
                 <tr>
-                  <th scope="col">{t("Order code")}</th>
-                  <th scope="col">{t("Customer")}</th>
-                  <th scope="col">{t("Status")}</th>
-                  <th scope="col">{t("Total")}</th>
-                  <th scope="col">{t("Placed")}</th>
+                  <td class="data-table-empty" colspan={5}>
+                    {t("No orders yet.")}
+                  </td>
                 </tr>
-              </thead>
-              <tbody>
-                {summary.recentOrders.length === 0 ? (
+              ) : (
+                summary.recentOrders.map((order) => (
                   <tr>
-                    <td class="data-table-empty" colspan={5}>
-                      {t("No orders yet.")}
+                    <td data-label={t("Order code")}>
+                      <span class="cell-code">{order.orderCode}</span>
                     </td>
-                  </tr>
-                ) : (
-                  summary.recentOrders.map((order) => (
-                    <tr>
-                      <td data-label={t("Order code")}>
-                        <span class="cell-code">{order.orderCode}</span>
-                      </td>
-                      <td data-label={t("Customer")}>
-                        {order.customerName} ({order.customerPhoneMasked})
-                      </td>
-                      <td data-label={t("Status")}>
+                    <td data-label={t("Customer")}>
+                      {order.customerName} ({order.customerPhoneMasked})
+                    </td>
+                    <td data-label={t("Status")}>
+                      <span
+                        class="admin-status-pill"
+                        data-tone={orderStatusTone[order.status] ?? "neutral"}
+                        data-status={order.status}
+                      >
                         <span
-                          class="admin-status-pill"
-                          data-tone={orderStatusTone[order.status] ?? "neutral"}
-                          data-status={order.status}
-                        >
-                          <span
-                            class="admin-status-pill-dot"
-                            aria-hidden="true"
-                          />
-                          {commerceLabel(labels.orderStatus, order.status)}
-                        </span>
-                      </td>
-                      <td data-label={t("Total")}>{money(order.total)}</td>
-                      <td data-label={t("Placed")}>{order.createdAt}</td>
-                    </tr>
-                  ))
-                )}
-              </tbody>
-            </table>
-          </div>
-        </section>
-      </div>
-    )
-  }
+                          class="admin-status-pill-dot"
+                          aria-hidden="true"
+                        />
+                        {commerceLabel(labels.orderStatus, order.status)}
+                      </span>
+                    </td>
+                    <td data-label={t("Total")}>{money(order.total)}</td>
+                    <td data-label={t("Placed")}>{order.createdAt}</td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  )}
 </AdminLayout>

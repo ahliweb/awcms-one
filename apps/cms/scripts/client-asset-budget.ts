@@ -940,19 +940,23 @@ export const READER_BUDGET_BYTES = 24_000;
  * catalogue, not new script — so it does not raise this budget further.
  */
 /**
- * **Raised to 284,456 B in awcms-one (subtree sync of awcms 8e9bce0c, issue
+ * **Raised to 288,500 B in awcms-one (subtree sync of awcms 8e9bce0c, issue
  * awcms-one#260)** — this embed again carries BOTH lineages: upstream's own
  * 226,000 → 239,956 B raise (the `ahliweb/omes#249` repository-progress
  * screen, its UX-polish follow-up, and the wider OMES Control Center screen
- * set landing in this same sync) lands on top of this repo's own 270,500 B,
- * which already accounts for every commerce admin screen listed above.
- * Delta: 239,956 − 226,000 = 13,956 B; 270,500 + 13,956 = 284,456 B — the
- * same "sum both deltas over the shared baseline" convention used at the
- * #170 sync above, applied once per lineage rather than guessed. Re-measure
- * on the next commerce or control-center screen and tighten if the real
- * total sits well below this.
+ * set landing in this same sync — 14 more screens, `omes-control-center.css`,
+ * and the compiled i18n catalogue's new OMES msgids) lands on top of this
+ * repo's own 270,500 B, which already accounts for every commerce admin
+ * screen listed above. The delta-sum estimate (270,500 + (239,956 −
+ * 226,000) = 284,456 B) undercounted the real merged build — the combined
+ * `AdminLayout.*.css` bundle and compiled catalogue are shared surfaces, not
+ * purely additive across the two lineages the way the arithmetic assumed.
+ * Measured clean build after the sync: 288,391 B. 288,500 keeps the same
+ * tight "measured + small margin" convention as every raise above;
+ * re-measure on the next commerce or control-center screen and tighten if
+ * the real total sits well below this.
  */
-export const APP_BUDGET_BYTES = 284_456;
+export const APP_BUDGET_BYTES = 288_500;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.

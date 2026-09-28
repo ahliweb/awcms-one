@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:fbe23a66764bb07dee09f99e4774eccfd36640bcd3e7e37f563aa6ff04f41605 -->
+<!-- i18n-source-hash: sha256:278c481d7f650fc7404bf720cf6dd6e561da1862c5adec57a7ffb3ad624828d8 -->
 
 # AWCMS Project Skills
 
