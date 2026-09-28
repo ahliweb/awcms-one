@@ -1,14 +1,27 @@
 /**
  * One shared presentation module for every commerce enum/status rendered on
- * an admin screen (Issue #243, part of the commerce admin v2 epic). This
- * issue changes NO screen — issues #245/#246/#247 adopt this module on the
- * 12 screens the pattern audit (`docs/…` scratchpad, §3b) found rendering a
- * raw English/snake_case value instead of a translated label:
- * `commerce-inbox.astro`, `commerce-dashboard.astro`,
- * `commerce-affiliates.astro`, `commerce-reports.astro`,
- * `commerce-orders.astro` + `commerce-orders/[id].astro`, `commerce.astro`,
- * `commerce-whatsapp.astro`, `commerce-pos.astro`, `commerce-reviews.astro`,
- * `commerce-campaigns.astro`, `commerce-vouchers.astro`.
+ * an admin screen (Issue #243, part of the commerce admin v2 epic #249).
+ * This issue changes NO screen — issues #245/#246/#247 adopt this module
+ * screen by screen. A full sweep of every `apps/cms/src/pages/admin/
+ * commerce*.astro` file plus `commerce-orders/[id].astro` (every `<option>`
+ * text, table cell, status/tone badge, detail field, and filter-tab label
+ * that shows an enum value) found the same defect repeated across sixteen
+ * screens: `commerce-inbox.astro` (conversation status), `commerce-
+ * dashboard.astro` (order status), `commerce-affiliates.astro` (affiliate
+ * and commission status), `commerce-reports.astro` (projection freshness
+ * and rebuild-run status), `commerce-orders.astro` + `commerce-orders/
+ * [id].astro` (order status, channel, payment status, gateway session
+ * status/provider, payment-event provider/outcome), `commerce.astro`
+ * (product status and type), `commerce-whatsapp.astro` (message status),
+ * `commerce-pos.astro` (order status), `commerce-reviews.astro` (review
+ * status), `commerce-campaigns.astro` (campaign status and channel),
+ * `commerce-vouchers.astro` (voucher type and status), `commerce-flash-
+ * sales.astro` (flash-sale status), `commerce-customers.astro` (customer
+ * status), `commerce-popup.astro` (popup frequency), and `commerce-
+ * settings.astro` (webhook endpoint provider) — a raw English/snake_case
+ * value rendered straight from the database instead of a translated label,
+ * each screen either redefining its own ad hoc map or skipping one
+ * entirely. This module is the one place every such value is labelled once.
  *
  * ## Why `src/lib/ui/`, not `src/modules/commerce/…`
  *
@@ -76,17 +89,21 @@
  *
  * ## Where each union comes from
  *
- * Every enum below already has an exported TS type or const array somewhere
- * in the commerce (or, for the two report statuses, `reporting`) module —
- * imported here, never redeclared — **except** `OrderChannel` and
- * `ConversationStatus`/`AffiliateStatus`/`CommissionStatus`, which are
- * derived rather than imported directly (see each section's own comment for
- * why). Reusing the exported type is what makes the `satisfies
- * Record<X, string>` below a REAL exhaustiveness check: if a future issue
- * widens e.g. `OrderStatus`, this file fails to compile until the new value
- * is labelled, because TypeScript is checking against the SAME union the
- * domain layer owns — a locally-redeclared copy would silently drift
- * instead.
+ * Most enums below already have an exported TS type or const array
+ * somewhere in the commerce (or, for the two report statuses, `reporting`)
+ * module — imported here, never redeclared. A few have no exported name at
+ * all, and are derived instead, each with its own comment explaining why:
+ * `OrderChannel`, `PaymentGatewaySessionProvider` and `PaymentEventOutcome`
+ * (no TS type anywhere — derived from the column's own database `CHECK`
+ * constraint), and `ConversationStatus`/`AffiliateStatus`/
+ * `CommissionStatus`/`CustomerStatus` (a union that already exists, publicly,
+ * as one field of an exported row type — derived via indexed access rather
+ * than redeclared). Reusing the exported (or derived) type is what makes the
+ * `satisfies Record<X, string>` below a REAL exhaustiveness check: if a
+ * future issue widens e.g. `OrderStatus`, this file fails to compile until
+ * the new value is labelled, because TypeScript is checking against the SAME
+ * union the domain layer owns — a locally-redeclared copy would silently
+ * drift instead.
  */
 import type { Translator } from "../i18n";
 
@@ -94,11 +111,17 @@ import type { OrderStatus } from "../../modules/commerce/domain/order-status";
 import type { PaymentStatus } from "../../modules/commerce/domain/commerce-order-types";
 import type { ProductStatus } from "../../modules/commerce/domain/product-status";
 import type { ProductType } from "../../modules/commerce/domain/product-type";
-import type { VoucherType } from "../../modules/commerce/domain/voucher-validation";
+import type {
+  VoucherType,
+  VoucherStatus
+} from "../../modules/commerce/domain/voucher-validation";
 import type {
   CampaignChannel,
   CampaignStatus
 } from "../../modules/commerce/domain/campaign-validation";
+import type { FlashSaleStatus } from "../../modules/commerce/domain/flash-sale-status";
+import type { PopupFrequency } from "../../modules/commerce/domain/popup-validation";
+import type { PaymentGatewayStatus } from "../../modules/commerce/domain/payment-gateway-provider";
 import type { ReviewStatus } from "../../modules/commerce/application/review-directory";
 import type { WhatsappMessageStatus } from "../../modules/commerce/application/whatsapp-message-directory";
 import type {
@@ -106,6 +129,8 @@ import type {
   AdminAffiliateCommissionRecord
 } from "../../modules/commerce/application/affiliate-directory";
 import type { AdminConversationRecord } from "../../modules/commerce/application/conversation-directory";
+import type { CustomerAdminRecord } from "../../modules/commerce/application/customer-directory";
+import type { WebhookEndpointProvider } from "../../modules/commerce/application/webhook-endpoint-directory";
 import type { ProjectionFreshnessStatus } from "../../modules/reporting/domain/freshness";
 import type { RebuildRunStatus } from "../../modules/reporting/application/rebuild-run-store";
 
@@ -152,6 +177,44 @@ export type AffiliateStatus = AdminAffiliateRecord["status"];
  * issue does not otherwise need) or redeclaring the four literals by hand.
  */
 export type CommissionStatus = AdminAffiliateCommissionRecord["status"];
+
+/**
+ * `application/customer-directory.ts` never named this union either —
+ * `CustomerAdminRecord.status` and the module-private `CustomerRow` both
+ * repeat the literal `"active" | "blocked"` inline (`sql/913`'s and
+ * `sql/917`'s own `CHECK (status IN ('active', 'blocked'))`). Derived via
+ * indexed access, same as {@link AffiliateStatus} above.
+ */
+export type CustomerStatus = CustomerAdminRecord["status"];
+
+/**
+ * `awcms_commerce_payment_gateway_sessions.provider` and
+ * `awcms_commerce_payment_events.provider` share one CHECK constraint
+ * (`sql/926_awcms_commerce_payment_gateway_schema.sql`'s
+ * `awcms_commerce_payment_gateway_sessions_provider_check` /
+ * `_payment_events_provider_check`, both `provider IN ('midtrans', 'log')`)
+ * — `application/payment-gateway-directory.ts` types it only as an inline
+ * function parameter (`createGatewaySession`'s `providerKey: "midtrans" |
+ * "log"`), never as a named export. Deliberately NOT the same type as the
+ * imported `WebhookEndpointProvider`: that column's own CHECK constraint
+ * (`_webhook_endpoints_provider_check`) allows only `'midtrans'` — a webhook
+ * SUBSCRIPTION is always for a real provider, while a gateway SESSION/EVENT
+ * may also be the `log` adapter's own synthetic row (`infrastructure/
+ * log-payment-gateway-provider.ts`, the deterministic dev/CI stand-in).
+ */
+export type PaymentGatewaySessionProvider = "midtrans" | "log";
+
+/**
+ * `application/payment-gateway-directory.ts`'s `PaymentEventSummary.outcome`
+ * is plain `string` — derived here from
+ * `sql/926_awcms_commerce_payment_gateway_schema.sql`'s
+ * `awcms_commerce_payment_events_outcome_check`
+ * (`outcome IN ('applied', 'ignored', 'replay')`). `order-status.ts`'s own
+ * header explains the domain meaning: `applied` the first time an event key
+ * is seen, `replay` for a repeat delivery of one already applied, `ignored`
+ * for one this deployment's webhook intake chose not to act on.
+ */
+export type PaymentEventOutcome = "applied" | "ignored" | "replay";
 
 /** CSS badge/pill tone name — the same small vocabulary every commerce admin screen's own `STATUS_TONE`/`FRESHNESS_VARIANT` map already uses (`data-tone`/`data-variant` on `.status-badge`/`.admin-status-pill`). */
 export type CommerceTone =
@@ -286,6 +349,66 @@ export function createCommerceLabels(t: Translator["t"]) {
     failed: t("Failed")
   } satisfies Record<ProjectionFreshnessStatus, string>;
 
+  /** Reuses `commerce-vouchers.astro`'s own status `<select>` options — "Active"/"Inactive" — verbatim. */
+  const voucherStatus = {
+    active: t("Active"),
+    inactive: t("Inactive")
+  } satisfies Record<VoucherStatus, string>;
+
+  /**
+   * All four values reuse an msgid already declared elsewhere in the
+   * catalog — `draft`/`scheduled` the same as {@link campaignStatus} above,
+   * `active` the same as {@link voucherStatus}/{@link customerStatus},
+   * `ended` the existing "Ended" entry `newsletter.astro`'s own "Ended"
+   * column already declared — zero new msgids for this map.
+   */
+  const flashSaleStatus = {
+    draft: t("Draft"),
+    scheduled: t("Scheduled"),
+    active: t("Active"),
+    ended: t("Ended")
+  } satisfies Record<FlashSaleStatus, string>;
+
+  /** The RAW gateway session state (`session.status` on `commerce-orders.astro`/`commerce-orders/[id].astro`'s payment-gateway panel) — distinct from {@link orderStatus}: a session can be `pending` while the ORDER is still `pending_payment`, and stays `expired`/`failed` even after an admin moves the order on manually. */
+  const paymentGatewayStatus = {
+    pending: t("Pending"),
+    paid: t("Paid"),
+    expired: t("Expired"),
+    failed: t("Failed"),
+    refunded: t("Refunded")
+  } satisfies Record<PaymentGatewayStatus, string>;
+
+  /** No CMS admin screen colour-codes this field; the table cell is plain text, so the two values reuse the same `<select>` options `commerce-customers.astro` already declares. */
+  const customerStatus = {
+    active: t("Active"),
+    blocked: t("Blocked")
+  } satisfies Record<CustomerStatus, string>;
+
+  /** Reuses `commerce-popup.astro`'s own create-form `<select>` options verbatim. */
+  const popupFrequency = {
+    once_per_session: t("Once per session"),
+    once_per_day: t("Once per day"),
+    always: t("Always")
+  } satisfies Record<PopupFrequency, string>;
+
+  /** Reuses `commerce-settings.astro`'s own webhook-creation form's `t("Midtrans")` — the only value today, kept as a real map (not a constant string) so a second provider is a compile error here until labelled, same as every other map in this file. */
+  const webhookEndpointProvider = {
+    midtrans: t("Midtrans")
+  } satisfies Record<WebhookEndpointProvider, string>;
+
+  /** `log` only ever appears outside production (`COMMERCE_PAYMENT_GATEWAY_PROVIDER=log`, the deterministic dev/CI adapter) — still labelled, never left to fall back to the raw string, since `commerceLabel` has no way to know an operator is looking at a dev environment. */
+  const paymentGatewaySessionProvider = {
+    midtrans: t("Midtrans"),
+    log: t("Log adapter (development)")
+  } satisfies Record<PaymentGatewaySessionProvider, string>;
+
+  /** `domain/order-status.ts`'s own header documents the domain meaning behind each of these three values — see {@link PaymentEventOutcome}'s own comment above. */
+  const paymentEventOutcome = {
+    applied: t("Applied"),
+    ignored: t("Ignored"),
+    replay: t("Replay")
+  } satisfies Record<PaymentEventOutcome, string>;
+
   return {
     orderStatus,
     paymentStatus,
@@ -301,7 +424,15 @@ export function createCommerceLabels(t: Translator["t"]) {
     conversationStatus,
     whatsappMessageStatus,
     reportRunStatus,
-    reportFreshnessStatus
+    reportFreshnessStatus,
+    voucherStatus,
+    flashSaleStatus,
+    paymentGatewayStatus,
+    customerStatus,
+    popupFrequency,
+    webhookEndpointProvider,
+    paymentGatewaySessionProvider,
+    paymentEventOutcome
   };
 }
 

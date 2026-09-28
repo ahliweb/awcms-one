@@ -46,7 +46,7 @@ const idEntries = flatten(idLabels);
 
 describe("createCommerceLabels", () => {
   test("returns a non-empty map for every enum (a vacuous pass is not a pass)", () => {
-    expect(Object.keys(idLabels).length).toBe(15);
+    expect(Object.keys(idLabels).length).toBe(23);
     for (const [, values] of Object.entries(idLabels)) {
       expect(Object.keys(values as object).length).toBeGreaterThan(0);
     }
@@ -82,6 +82,52 @@ describe("createCommerceLabels", () => {
 
   test('productStatus\'s "active" reads "Published", matching commerce.astro\'s own existing tab', () => {
     expect(enLabels.productStatus.active).toBe("Published");
+  });
+
+  test("flashSaleStatus covers the full derived state, not just the two editable values", () => {
+    // `sale.status` on the read-only fallback (`commerce-flash-sales.astro`)
+    // can be the TICK JOB's derived `active`/`ended`, not only the two
+    // values a human may `PATCH` — the map must cover all four.
+    expect(Object.keys(idLabels.flashSaleStatus).sort()).toEqual(
+      ["draft", "scheduled", "active", "ended"].sort()
+    );
+  });
+
+  test("voucherStatus/customerStatus are the plain active/inactive|blocked pairs their own screens' <select> options already declare", () => {
+    expect(Object.keys(idLabels.voucherStatus).sort()).toEqual(
+      ["active", "inactive"].sort()
+    );
+    expect(Object.keys(idLabels.customerStatus).sort()).toEqual(
+      ["active", "blocked"].sort()
+    );
+  });
+
+  test("paymentGatewayStatus is the RAW gateway session state, distinct from orderStatus", () => {
+    expect(Object.keys(idLabels.paymentGatewayStatus).sort()).toEqual(
+      ["pending", "paid", "expired", "failed", "refunded"].sort()
+    );
+  });
+
+  test("paymentGatewaySessionProvider covers midtrans and the dev/CI log adapter", () => {
+    expect(Object.keys(idLabels.paymentGatewaySessionProvider).sort()).toEqual(
+      ["midtrans", "log"].sort()
+    );
+  });
+
+  test("webhookEndpointProvider is midtrans-only, a NARROWER union than paymentGatewaySessionProvider", () => {
+    expect(Object.keys(idLabels.webhookEndpointProvider)).toEqual(["midtrans"]);
+  });
+
+  test("paymentEventOutcome covers applied/ignored/replay", () => {
+    expect(Object.keys(idLabels.paymentEventOutcome).sort()).toEqual(
+      ["applied", "ignored", "replay"].sort()
+    );
+  });
+
+  test("popupFrequency covers the three values commerce-popup.astro's own create form already offers", () => {
+    expect(Object.keys(idLabels.popupFrequency).sort()).toEqual(
+      ["once_per_session", "once_per_day", "always"].sort()
+    );
   });
 });
 

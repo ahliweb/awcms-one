@@ -6068,3 +6068,12 @@ msgstr ""
 msgid "Rebuilding"
 msgstr ""
 
+msgid "Applied"
+msgstr ""
+
+msgid "Ignored"
+msgstr ""
+
+msgid "Log adapter (development)"
+msgstr ""
+
