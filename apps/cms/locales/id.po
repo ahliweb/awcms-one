@@ -5288,6 +5288,9 @@ msgstr "Dibayar"
 msgid "Void"
 msgstr "Dibatalkan"
 
+msgid "Affiliate"
+msgstr "Afiliasi"
+
 msgid "Amount"
 msgstr "Jumlah"
 

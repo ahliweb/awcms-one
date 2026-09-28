@@ -617,7 +617,7 @@ const totalTableColumns = 6 + (showActions ? 2 : 0);
                 <>
                   <tr data-product-row={product.id}>
                     {showActions && (
-                      <td data-label="Select" class="bulk-select-col">
+                      <td data-label={t("Select")} class="bulk-select-col">
                         <input
                           type="checkbox"
                           class="commerce-product-row-select"
@@ -629,18 +629,18 @@ const totalTableColumns = 6 + (showActions ? 2 : 0);
                         />
                       </td>
                     )}
-                    <td data-label="SKU">
+                    <td data-label={t("SKU")}>
                       <span class="cell-code">{product.sku}</span>
                     </td>
-                    <td data-label="Name">{product.name}</td>
-                    <td data-label="Type">
+                    <td data-label={t("Name")}>{product.name}</td>
+                    <td data-label={t("Type")}>
                       <span class="cell-muted" data-product-type={product.type}>
                         {commerceLabel(labels.productType, product.type)}
                       </span>
                     </td>
-                    <td data-label="Price">{product.price}</td>
-                    <td data-label="Stock">{product.stock}</td>
-                    <td data-label="Status">
+                    <td data-label={t("Price")}>{product.price}</td>
+                    <td data-label={t("Stock")}>{product.stock}</td>
+                    <td data-label={t("Status")}>
                       <span
                         class="status-badge"
                         data-variant={
@@ -653,7 +653,7 @@ const totalTableColumns = 6 + (showActions ? 2 : 0);
                       </span>
                     </td>
                     {showActions && (
-                      <td data-label="Actions" class="stacked-block">
+                      <td data-label={t("Actions")} class="stacked-block">
                         <div class="row-actions">
                           {canDelete && (
                             <button
@@ -955,11 +955,11 @@ const totalTableColumns = 6 + (showActions ? 2 : 0);
             <tbody>
               {deletedProducts.map((product) => (
                 <tr data-deleted-product-row={product.id}>
-                  <td data-label="SKU">
+                  <td data-label={t("SKU")}>
                     <span class="cell-code">{product.sku}</span>
                   </td>
-                  <td data-label="Name">{product.name}</td>
-                  <td data-label="Actions" class="stacked-block">
+                  <td data-label={t("Name")}>{product.name}</td>
+                  <td data-label={t("Actions")} class="stacked-block">
                     <div class="row-actions">
                       <button
                         type="button"

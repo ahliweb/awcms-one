@@ -157,13 +157,13 @@ const notFound = screen.state === "allowed" && !order;
                 <tbody>
                   {order.lines.map((line) => (
                     <tr>
-                      <td data-label="Product">
+                      <td data-label={t("Product")}>
                         {line.name}
                         {line.variantName && <> &mdash; {line.variantName}</>}
                       </td>
-                      <td data-label="Unit price">{line.unitPrice}</td>
-                      <td data-label="Qty">{line.quantity}</td>
-                      <td data-label="Line total">{line.lineTotal}</td>
+                      <td data-label={t("Unit price")}>{line.unitPrice}</td>
+                      <td data-label={t("Qty")}>{line.quantity}</td>
+                      <td data-label={t("Line total")}>{line.lineTotal}</td>
                     </tr>
                   ))}
                 </tbody>

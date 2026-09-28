@@ -244,14 +244,14 @@ const showActions = canUpdate || canDelete;
             ) : (
               vouchers.map((voucher) => (
                 <tr data-voucher-row={voucher.id}>
-                  <td data-label="Code">
+                  <td data-label={t("Code")}>
                     <span class="cell-code">{voucher.code}</span>
                   </td>
-                  <td data-label="Type" data-type={voucher.type}>
+                  <td data-label={t("Type")} data-type={voucher.type}>
                     {commerceLabel(labels.voucherType, voucher.type)}
                   </td>
                   <td
-                    data-label="Value"
+                    data-label={t("Value")}
                     class={canUpdate ? "stacked-block" : ""}
                   >
                     {canUpdate ? (
@@ -266,16 +266,16 @@ const showActions = canUpdate || canDelete;
                       voucher.value
                     )}
                   </td>
-                  <td data-label="Quota / Used">
+                  <td data-label={t("Quota / Used")}>
                     {voucher.quota === 0
                       ? t("Unlimited")
                       : `${voucher.usedCount} / ${voucher.quota}`}
                   </td>
-                  <td data-label="Public">
+                  <td data-label={t("Public")}>
                     {voucher.isPublic ? t("Yes") : t("No")}
                   </td>
                   <td
-                    data-label="Status"
+                    data-label={t("Status")}
                     class={canUpdate ? "stacked-block" : ""}
                   >
                     {canUpdate ? (
@@ -303,7 +303,7 @@ const showActions = canUpdate || canDelete;
                     )}
                   </td>
                   {showActions && (
-                    <td data-label="Actions" class="stacked-block">
+                    <td data-label={t("Actions")} class="stacked-block">
                       <div class="row-actions">
                         {canUpdate && (
                           <button

@@ -207,7 +207,7 @@ function filterHref(next: { status?: string; unread?: string }): string {
                 ) : (
                   conversations.map((conversation) => (
                     <tr data-conversation-row={conversation.id}>
-                      <td data-label="Customer">
+                      <td data-label={t("Customer")}>
                         {conversation.customerName}
                         {conversation.unreadForStore > 0 && (
                           <span class="status-badge" aria-label={t("Unread")}>
@@ -215,8 +215,8 @@ function filterHref(next: { status?: string; unread?: string }): string {
                           </span>
                         )}
                       </td>
-                      <td data-label="Subject">{conversation.subject}</td>
-                      <td data-label="Status">
+                      <td data-label={t("Subject")}>{conversation.subject}</td>
+                      <td data-label={t("Status")}>
                         <span
                           class="status-badge"
                           data-status={conversation.status}
@@ -227,10 +227,10 @@ function filterHref(next: { status?: string; unread?: string }): string {
                           )}
                         </span>
                       </td>
-                      <td data-label="Last message">
+                      <td data-label={t("Last message")}>
                         {conversation.lastMessageAt}
                       </td>
-                      <td data-label="Open">
+                      <td data-label={t("Open")}>
                         <a href={`/admin/commerce-inbox?id=${conversation.id}`}>
                           {t("View")}
                         </a>

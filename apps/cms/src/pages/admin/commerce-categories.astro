@@ -211,7 +211,7 @@ const showActions = canUpdate || canDelete;
                 return (
                   <tr data-category-row={category.id}>
                     <td
-                      data-label="Name"
+                      data-label={t("Name")}
                       class={canUpdate ? "stacked-block" : ""}
                     >
                       {canUpdate ? (
@@ -227,7 +227,7 @@ const showActions = canUpdate || canDelete;
                       )}
                     </td>
                     <td
-                      data-label="Slug"
+                      data-label={t("Slug")}
                       class={canUpdate ? "stacked-block" : ""}
                     >
                       {canUpdate ? (
@@ -242,14 +242,14 @@ const showActions = canUpdate || canDelete;
                         <span class="cell-code">{category.slug}</span>
                       )}
                     </td>
-                    <td data-label="Parent">
+                    <td data-label={t("Parent")}>
                       <span class="cell-muted">
                         {parent ? parent.name : t("—")}
                       </span>
                     </td>
-                    <td data-label="Products">{category.productCount}</td>
+                    <td data-label={t("Products")}>{category.productCount}</td>
                     {showActions && (
-                      <td data-label="Actions" class="stacked-block">
+                      <td data-label={t("Actions")} class="stacked-block">
                         <div class="row-actions">
                           {canUpdate && (
                             <button
@@ -311,11 +311,11 @@ const showActions = canUpdate || canDelete;
             <tbody>
               {deletedCategories.map((category) => (
                 <tr data-deleted-category-row={category.id}>
-                  <td data-label="Name">{category.name}</td>
-                  <td data-label="Slug">
+                  <td data-label={t("Name")}>{category.name}</td>
+                  <td data-label={t("Slug")}>
                     <span class="cell-code">{category.slug}</span>
                   </td>
-                  <td data-label="Actions" class="stacked-block">
+                  <td data-label={t("Actions")} class="stacked-block">
                     <div class="row-actions">
                       <button
                         type="button"

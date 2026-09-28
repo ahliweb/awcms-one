@@ -224,11 +224,11 @@ const pendingCommissionTotal = commissions
             ) : (
               affiliates.map((affiliate) => (
                 <tr data-affiliate-row={affiliate.id}>
-                  <td data-label="Code">
+                  <td data-label={t("Code")}>
                     <span class="cell-code">{affiliate.code}</span>
                   </td>
-                  <td data-label="Customer">{affiliate.customerName}</td>
-                  <td data-label="Rate">
+                  <td data-label={t("Customer")}>{affiliate.customerName}</td>
+                  <td data-label={t("Rate (%)")}>
                     <span class="stacked-block">
                       <span>{affiliate.commissionRate}</span>
                       {canUpdateAffiliates && (
@@ -251,7 +251,7 @@ const pendingCommissionTotal = commissions
                       )}
                     </span>
                   </td>
-                  <td data-label="Status">
+                  <td data-label={t("Status")}>
                     <span
                       class="admin-status-pill"
                       data-tone={
@@ -264,7 +264,7 @@ const pendingCommissionTotal = commissions
                     </span>
                   </td>
                   {canUpdateAffiliates && (
-                    <td data-label="Actions" class="stacked-block">
+                    <td data-label={t("Actions")} class="stacked-block">
                       <div class="row-actions">
                         {affiliate.status === "active" ? (
                           <button
@@ -361,14 +361,14 @@ const pendingCommissionTotal = commissions
             ) : (
               commissions.map((commission) => (
                 <tr data-commission-row={commission.id}>
-                  <td data-label="Affiliate">
+                  <td data-label={t("Affiliate")}>
                     <span class="cell-code">{commission.affiliateCode}</span>
                   </td>
-                  <td data-label="Order">
+                  <td data-label={t("Order")}>
                     <span class="cell-code">{commission.orderCode}</span>
                   </td>
-                  <td data-label="Amount">{commission.amount}</td>
-                  <td data-label="Status">
+                  <td data-label={t("Amount")}>{commission.amount}</td>
+                  <td data-label={t("Status")}>
                     <span
                       class="admin-status-pill"
                       data-tone={
@@ -383,9 +383,9 @@ const pendingCommissionTotal = commissions
                       )}
                     </span>
                   </td>
-                  <td data-label="Created">{commission.createdAt}</td>
+                  <td data-label={t("Created")}>{commission.createdAt}</td>
                   {canUpdateCommissions && (
-                    <td data-label="Actions" class="stacked-block">
+                    <td data-label={t("Actions")} class="stacked-block">
                       <div class="row-actions">
                         {commission.status === "pending" && (
                           <>

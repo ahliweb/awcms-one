@@ -242,13 +242,13 @@ const ACTION_ITEM_LABEL: Record<string, string> = {
                 ) : (
                   summary.recentOrders.map((order) => (
                     <tr>
-                      <td data-label="Order code">
+                      <td data-label={t("Order code")}>
                         <span class="cell-code">{order.orderCode}</span>
                       </td>
-                      <td data-label="Customer">
+                      <td data-label={t("Customer")}>
                         {order.customerName} ({order.customerPhoneMasked})
                       </td>
-                      <td data-label="Status">
+                      <td data-label={t("Status")}>
                         <span
                           class="admin-status-pill"
                           data-tone={orderStatusTone[order.status] ?? "neutral"}
@@ -261,8 +261,8 @@ const ACTION_ITEM_LABEL: Record<string, string> = {
                           {commerceLabel(labels.orderStatus, order.status)}
                         </span>
                       </td>
-                      <td data-label="Total">{money(order.total)}</td>
-                      <td data-label="Placed">{order.createdAt}</td>
+                      <td data-label={t("Total")}>{money(order.total)}</td>
+                      <td data-label={t("Placed")}>{order.createdAt}</td>
                     </tr>
                   ))
                 )}

@@ -87,6 +87,7 @@ export const ID_CATALOG: CompiledCatalog = {
   "Advanced settings JSON": ["JSON pengaturan lanjutan"],
   "Advertisement inventory": ["Inventaris iklan"],
   "Advertisement slots and the creatives booked into them.": ["Slot iklan dan materi yang dipesan ke dalamnya."],
+  "Affiliate": ["Afiliasi"],
   "Affiliate commission rate (%)": ["Tarif komisi afiliasi (%)"],
   "Affiliate enrolments and their commission ledger for this store.": ["Pendaftaran afiliasi dan buku besar komisi untuk toko ini."],
   "Affiliate figures": ["Angka afiliasi"],
