@@ -52,6 +52,23 @@ function normalizeWhitespace(code: string): string {
   return code.replace(/\s+/g, " ").trim();
 }
 
+/**
+ * The text between a screen's single `<script>`...`</script>` pair, found
+ * with plain `indexOf`/`lastIndexOf` slicing rather than a `<tag>…</tag>`
+ * regex — CodeQL's `js/bad-tag-filter` (security-extended,
+ * severity 7.8) flags an HTML-tag-matching regex even in a test file, so
+ * this repeats the fix `commerce-confirm-dialog.test.ts`'s own sibling check
+ * needs, without a second hand-rolled parser.
+ */
+function extractScriptBody(code: string): string {
+  const openTag = "<script>";
+  const closeTag = "</script>";
+  const start = code.indexOf(openTag);
+  const end = code.lastIndexOf(closeTag);
+  if (start === -1 || end === -1 || end <= start) return "";
+  return code.slice(start + openTag.length, end);
+}
+
 describe("readConfirmOptionsWithNote", () => {
   test("maps the three note attributes alongside the base confirm-trigger fields", () => {
     const options = readConfirmOptionsWithNote({
@@ -149,9 +166,8 @@ describe("commerce-orders.astro", () => {
     // No hand-built `{ title: "...", message: "..." }` literal anywhere in
     // the script — same discipline `commerce-confirm-dialog.test.ts` enforces
     // for the ten #242 screens.
-    const scriptMatch = code.match(/<script>([\s\S]*)<\/script>/);
-    expect(scriptMatch).not.toBeNull();
-    const scriptBody = scriptMatch![1]!;
+    const scriptBody = extractScriptBody(code);
+    expect(scriptBody.length).toBeGreaterThan(0);
     expect(scriptBody).not.toMatch(/\btitle:\s*["'`]/);
     expect(scriptBody).not.toMatch(/\bmessage:\s*["'`][A-Za-z]/);
   });
