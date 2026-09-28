@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](status.md)
 
-<!-- i18n-source-hash: sha256:113251e03660c2391a17e69e3776c33f5805c85d5b61917becb6a046bb56abb2 -->
+<!-- i18n-source-hash: sha256:01527299c2f4775f71fcb70669b36219017a2a5d3e160db6e54f0479c69590b9 -->
 
 # Status
 
@@ -16,7 +16,7 @@ Sebuah workspace Bun: `apps/cms` (backend/system of record, `ahliweb/awcms` dise
 
 ## `apps/cms` — modul `commerce` (ADR-0008)
 
-Satu modul, bukan tiga, membawa seluruh toko: katalog (gambar, varian, harga bertingkat, tabel ukuran, formulir layanan), marketing (flash sale, voucher, slider, testimonial, popup, pengaturan toko berversi, banner promo), dan pesanan (checkout tamu lewat kode pesanan + telepon — [ADR-0009](adr/0009-guest-checkout-by-order-code-and-phone.md) — konfirmasi pembayaran, ulasan). Keluarga `/api/v1/commerce/storefront/*` yang anonim dan terikat Origin, yang dipanggil langsung oleh browser statis, adalah [ADR-0007](adr/0007-cart-and-checkout-stay-static-the-browser-calls-anonymous-commerce-endpoints.md). Detail per-field: [`docs/cms.md`](cms.id.md), [`docs/api.md`](api.id.md), [`docs/skema-basis-data.md`](skema-basis-data.id.md), [`docs/kamus-data.md`](kamus-data.id.md).
+Satu modul, bukan tiga, membawa seluruh toko: katalog (gambar, varian, harga bertingkat, tabel ukuran, formulir layanan), marketing (flash sale, voucher, slider, testimonial, popup, pengaturan toko berversi, banner promo), dan pesanan (checkout tamu lewat kode pesanan + telepon — [ADR-0009](adr/0009-guest-checkout-by-order-code-and-phone.md) — konfirmasi pembayaran, ulasan). Keluarga `/api/v1/commerce/storefront/*` yang anonim dan terikat Origin, yang dipanggil langsung oleh browser statis, adalah [ADR-0007](adr/0007-cart-and-checkout-stay-static-the-browser-calls-anonymous-commerce-endpoints.md). Detail per-field: [`docs/cms.md`](cms.id.md), [`docs/api.md`](api.id.md), [`docs/skema-basis-data.md`](skema-basis-data.id.md), [`docs/kamus-data.md`](kamus-data.id.md). UI admin (`apps/cms/src/pages/admin/commerce*`) punya epic paritas kedua sendiri terhadap admin v2 milik `ahliweb/media-lenterakalteng` (#249): dialog konfirmasi aksesibel yang menggantikan `window.confirm`, satu peta label terjemahan bersama untuk setiap enum commerce, save bar settings persisten, konfirmasi status-pesanan dengan catatan opsional, dan publish/draf/hapus massal pada daftar produk tanpa endpoint massal baru — lihat bagian "Commerce admin v2" milik [`docs/cms.md`](cms.id.md) dan [`docs/ui-ux.md`](ui-ux.id.md).
 
 ## Akun pelanggan dan afiliasi (ADR-0016)
 

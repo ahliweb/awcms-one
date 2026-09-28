@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](cms.md)
 
-<!-- i18n-source-hash: sha256:c6991d6ed327450a421da27e307562416853892a5b297bd069327fb233c1b619 -->
+<!-- i18n-source-hash: sha256:722218c9c363f33fb6b9f8937e7c7c7698c8b8c958f81e93a2a2d68c6a15e6f7 -->
 
 # CMS: authoring, publikasi, izin, audit, media, taksonomi
 
@@ -132,6 +132,16 @@ Setiap layar admin commerce di atas (kecuali layout dua-panel khusus POS — lih
 - **Pengaturan** (`/admin/commerce-settings`) — toggle fitur yang sudah ada kini dirender sebagai sakelar `.admin-toggle`, dan setiap provider integrasi (WhatsApp, Midtrans, RajaOngkir) mendapat `.admin-stat-card` dengan `.admin-status-pill` yang menunjukkan terkonfigurasi/tidak, diturunkan hanya dari keberadaan env — tak pernah nilai secret.
 
 Tidak ada layar media commerce yang berubah pada issue ini: `apps/cms` belum punya layar galeri media commerce khusus hari ini (gambar dikelola inline per produk/slider/testimoni, bukan lewat galeri berdiri sendiri), sehingga `.admin-media-grid` tidak dipakai di sini — ia tetap tersedia sebagai primitive untuk layar mana pun yang mengadopsinya berikutnya.
+
+### Commerce admin v2: konfirmasi, peta label, save bar, aksi massal (epic #249)
+
+Gelombang kedua di atas komposisi ulang admin-chrome di atas, mengadopsi primitive bersama pada bagian "Admin UI" milik [`apps/cms/src/modules/commerce/README.md`](../apps/cms/src/modules/commerce/README.md) sendiri, bukan markup level-halaman baru:
+
+- **Setiap `window.confirm()` yang masih tersisa pada layar commerce sudah hilang (issue #242).** Kategori, kampanye, afiliasi, popup, produk, review, slider, testimoni, voucher dan flash sale kini mengonfirmasi satu aksi destruktifnya (atau, untuk kirim kampanye, yang layak sejenak berpikir) lewat satu `<dialog role="alertdialog">` bersama.
+- **Mengubah status pesanan kini bertanya dulu, dan bisa membawa catatan (issue #246).** `/admin/commerce-orders` dan halaman detailnya menunjukkan status-asal dan status-tujuan dalam konfirmasi, plus field catatan opsional dibatasi 500 karakter — catatan yang tidak kosong dikirim lewat field `note` yang sudah ada milik `orders/{id}/status.ts` dan tercatat di linimasa pesanan (`awcms_commerce_order_events.note`, lihat "`status` pesanan" di atas); tanpa perubahan schema dan tanpa endpoint baru. Transisi menuju status terminal (`cancelled`/`completed`/`expired`) menggayakan dialog sebagai danger; setiap transisi legal lainnya tidak.
+- **Daftar produk mendapat hitungan tab langsung dan bar aksi massal (issue #247).** Tab Semua/Terbit/Draf menunjukkan hitungan dari `countProductsByStatus` (satu query berkelompok, zero-filled, tenant-scoped, mengecualikan baris soft-delete, dengan sengaja mengabaikan filter kategori/pencarian/unggulan karena klik tab menjatuhkan filter itu). Kolom checkbox dengan pilih-semua tri-state menambahkan aksi Terbitkan/Jadikan draf/Hapus yang melakukan loop di atas `PATCH`/`DELETE /api/v1/commerce/products/{id}` per-item yang SAMA yang sudah dipakai setiap aksi satu-baris — tanpa endpoint massal baru, sehingga setiap produk tetap memiliki pemeriksaan ABAC, idempotency key, dan baris audit sendiri persis seperti sebelumnya. **Gerbang permission**: Terbitkan/Jadikan draf hanya dirender untuk penampil yang memegang `commerce.products.update`; Hapus hanya dirender untuk yang memegang `commerce.products.delete` — dua permission yang sama yang sudah menggerbangi aksi per-baris yang digantikan bar massal ini, tak pernah permission "massal" baru yang lebih kasar. Hapus dikonfirmasi lewat dialog bersama dengan pesan yang sadar-jumlah; kegagalan sebagian (pemeriksaan satu produk gagal di tengah batch) melaporkan SKU itu dan alasan dari server tanpa memuat ulang halaman, sehingga laporan tetap terlihat.
+- **Satu peta label, satu konvensi untuk nama kolom yang di-stack.** `apps/cms/src/lib/ui/commerce-admin-labels.ts` (issue #243) kini menjadi satu-satunya sumber untuk setiap status/enum commerce yang dirender layar admin — tiga belas layar (issue #245) plus pesanan dan produk di atas mengadopsinya, menggantikan objek label/`STATUS_TONE` ad hoc milik masing-masing layar. `data-label` tampilan-stack setiap tabel admin commerce (issue #253) melewati `t()`, memakai ulang msgid `<th>` kolomnya sendiri, bukan literal Inggris yang sebelumnya dibawa kebanyakan tabel.
+- **Dua formulir milik `commerce-settings.astro` mendapat save bar persisten (issue #244).** `CommerceSettingsSaveBar.astro` — selalu dirender, terikat `form={formId}` sehingga bekerja tanpa JavaScript — menggantikan tombol submit inline milik masing-masing formulir; tabel webhook-endpoints juga mendapat layout stack responsif pada perubahan yang sama (lihat [`docs/responsif.md`](responsif.md)).
 
 ## Media: gambar produk, slider, testimoni — di-resolve, belum di-upload lewat tooling repo ini sendiri
 

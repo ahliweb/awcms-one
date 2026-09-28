@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:4f1a452f67a2b5bf11393a52d1625230bec958f4c27a0c544d27f4b380b428d9 -->
+<!-- i18n-source-hash: sha256:fa05342682f1555199401a2b82c4e7236d45b45bdb9ae9ba7c050f7664241f96 -->
 
 # `commerce`
 
@@ -426,6 +426,39 @@ Issue #26 menambahkan `/admin/commerce-flash-sales`, `-vouchers`, `-sliders`,
   `tests/admin-commerce-marketing-page-contract.test.ts` /
   `tests/admin-commerce-page-contract.test.ts` menuntut layar-layar baru itu
   pada sifat yang sama yang dipenuhi layar-layar sebelumnya.
+
+### UI admin: primitive bersama (issue #171; commerce admin v2, epic #249)
+
+Setiap layar di atas disusun di atas primitive bersama milik
+`apps/cms/src/styles/admin.css` (`.admin-stat-card`, `.admin-status-pill`,
+`.admin-segmented`, `.admin-bulk-bar`, `.admin-two-pane`, `.admin-toggle`,
+`.admin-timeline`) bukan markup khusus-halaman — lihat tabel primitive milik
+`.claude/skills/awcms-one-commerce/SKILL.md` sendiri untuk daftar lengkap dan
+kapan memakai masing-masing. Gelombang kedua (epic #249) menambahkan EMPAT
+komponen bersama milik-commerce lagi di bawah
+`src/components/`/`src/lib/ui/`, masing-masing dengan docblock header-nya
+sendiri:
+
+- `CommerceConfirmDialog.astro` + `commerce-confirm-dialog-client.ts` — satu
+  dialog konfirmasi aksesibel yang dipakai setiap aksi destruktif/perlu-jeda
+  layar commerce sebagai ganti `window.confirm`, termasuk field catatan
+  opsional (dipakai konsumsi perubahan status pesanan, issue #246).
+- `commerce-admin-labels.ts` — `createCommerceLabels(t)`/`commerceLabel()`,
+  satu peta label terjemahan untuk setiap enum commerce yang dirender layar
+  admin, plus konstanta peta-nadanya.
+- `CommerceSettingsSaveBar.astro` + `commerce-settings-save-bar-client.ts` —
+  save bar selalu-dirender, tak-perlu-JS untuk formulir settings.
+- `commerce-products-bulk-client.ts` — bar seleksi-massal daftar produk
+  (issue #247), melakukan loop di atas endpoint per-item yang sudah ada
+  bukan API massal baru.
+
+Lihat bagian "Commerce admin v2" milik
+[panduan authoring CMS](../../../../../docs/cms.id.md) awcms-one sendiri
+untuk apa yang kini dilakukan setiap layar pengadopsi, dan
+[dokumen desain UI/UX](../../../../../docs/ui-ux.id.md)-nya untuk rasionale
+desain dan daftar yang dengan sengaja tidak diporting (ReasonPanel, menu
+aksi baris, rute sampah terpisah, transisi status-pesanan massal, toast) —
+keduanya dokumentasi akar milik awcms-one sendiri, di luar pohon modul ini.
 
 ## Akun pelanggan & afiliasi (epic #32 — ADR-0016)
 

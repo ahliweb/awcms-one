@@ -390,6 +390,38 @@ the 39 declared permissions is claimed by one of them, and
 `tests/admin-commerce-page-contract.test.ts` hold the new screens to the same
 properties the earlier ones satisfy.
 
+### Admin UI: shared primitives (issue #171; commerce admin v2, epic #249)
+
+Every screen above composes on `apps/cms/src/styles/admin.css`'s shared
+primitives (`.admin-stat-card`, `.admin-status-pill`, `.admin-segmented`,
+`.admin-bulk-bar`, `.admin-two-pane`, `.admin-toggle`, `.admin-timeline`)
+rather than page-specific markup — see
+`.claude/skills/awcms-one-commerce/SKILL.md`'s own primitive table for the
+full list and when to use each. A second wave (epic #249) added four MORE
+shared, commerce-owned components under `src/components/`/`src/lib/ui/`,
+each with its own header docblock:
+
+- `CommerceConfirmDialog.astro` + `commerce-confirm-dialog-client.ts` — the
+  one accessible confirm dialog every commerce screen's destructive/
+  pausable action uses instead of `window.confirm`, including an optional
+  note field (consumed by the order-status change, issue #246).
+- `commerce-admin-labels.ts` — `createCommerceLabels(t)`/`commerceLabel()`,
+  the one translated label map for every commerce enum an admin screen
+  renders, plus its tone-map constants.
+- `CommerceSettingsSaveBar.astro` + `commerce-settings-save-bar-client.ts` —
+  an always-rendered, no-JS-required save/reset bar for a settings form.
+- `commerce-products-bulk-client.ts` — the products list's bulk-selection
+  bar (issue #247), looping over the existing per-item endpoints rather than
+  a new bulk API.
+
+See awcms-one's own ["Commerce admin v2" section of its CMS authoring
+guide](../../../../../docs/cms.md) for what each adopting screen now does,
+and its [UI/UX design document](../../../../../docs/ui-ux.md) for the
+design rationale and the deliberately-not-ported list (ReasonPanel, row
+action menus, a separate trash route, bulk order-status transitions,
+toasts) — both are awcms-one's own root documentation, outside this
+module's tree.
+
 ## Customer accounts & affiliates (epic #32 — ADR-0016)
 
 `openapi/modules/commerce.openapi.yaml` documents the full

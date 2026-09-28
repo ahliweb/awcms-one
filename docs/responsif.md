@@ -50,6 +50,7 @@ The utility bar (`Header.astro`) and the footer's new "Kanal" column (`Footer.as
 - **`grep`-level confirmation of every `@media` query** across `global.css`, `katalog.css`, `berita.css`, `toko.css` — the breakpoint table above is exhaustive, not a sample. `toko.css` (checkout/cart-specific styles) carries no width breakpoint of its own, relying on `min-width: 0` flex-shrink guards instead.
 - **The `min(Npx, 100%)` clamp's own reasoning** was read in each stylesheet's own comments/structure — still true, and now backed by the 360px check above actually exercising it.
 - **The admin screen's table** (`apps/cms/src/pages/admin/commerce.astro`) declares a `data-table--stack` class for its own responsive behaviour — belongs to `apps/cms`, not this storefront, and was not inspected further for this document.
+- **The commerce admin v2 epic (#249)'s three surfaces at 360px**, same caveat as above — `apps/cms`, not this storefront: `commerce-settings.astro`'s webhook-endpoints table (issue #244) now carries `data-table--stack` plus a scroll wrapper, matching every other admin table's own convention, so it no longer overflows; the products list's bulk-selection checkbox column (issue #247) stacks in the same layout the rest of that table already used below its breakpoint; and `CommerceSettingsSaveBar.astro` (issue #244) wraps its actions onto their own row, right-aligned, before the status text is squeezed under a comfortable touch height.
 
 ## Two real overflow bugs the first automated run found (issue #183)
 
