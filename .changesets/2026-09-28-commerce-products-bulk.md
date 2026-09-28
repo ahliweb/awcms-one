@@ -30,8 +30,9 @@ accessible confirm dialog) and #243 (`commerce-admin-labels.ts`).
   indeterminate state, each row checkbox labelled with the product's
   name) and a working `.admin-bulk-bar` with Publish/Move to draft/Delete
   — gated on the same `canUpdate`/`canDelete` permissions the row Actions
-  column already uses. Per LK ADR-0123 §5's pattern (no bulk API): every
-  action loops over the EXISTING per-item `PATCH`/`DELETE
+  column already uses. Per the reference repo `media-lenterakalteng`'s
+  ADR-0123 §5 pattern (no bulk API): every action loops over the EXISTING
+  per-item `PATCH`/`DELETE
   /api/v1/commerce/products/{id}` endpoints, one request per selected
   product, each carrying its own `Idempotency-Key` (neither route reads
   one today, but sending it costs nothing and matches the convention
