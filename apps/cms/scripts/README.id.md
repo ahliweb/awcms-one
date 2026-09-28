@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:616aef8ac26af158dcf986b2327a8cf71b71994095a0a9f33109fe50052314e1 -->
+<!-- i18n-source-hash: sha256:7820c3b935e0b4f9b641c2a52729192f9da6867e9669a2c823c909ac20df55f5 -->
 
 # Scripts AWCMS
 
@@ -27,7 +27,7 @@ lalu membangun duplikatnya.
 
 <!-- Dihasilkan `bun run scripts:inventory:generate`. JANGAN diedit tangan. -->
 
-138 target menjalankan berkas di `scripts/`; 57 di antaranya
+129 target menjalankan berkas di `scripts/`; 57 di antaranya
 ada di rantai `bun run check` (kolom **Gate**), sisanya dijalankan manual,
 terjadwal, atau oleh workflow CI tertentu.
 
@@ -69,15 +69,6 @@ terjadwal, atau oleh workflow CI tertentu.
 | `check:docs:translation`                  | `check-docs-translation.mjs`                   | ✅   |
 | `comments:resources:check`                | `comments-resources-check.ts`                  | ✅   |
 | `comments:retention`                      | `comments-retention.ts`                        | —    |
-| `commerce:campaigns:dispatch`             | `commerce-campaigns-dispatch.ts`               | —    |
-| `commerce:customer-auth:purge`            | `commerce-customer-auth-purge.ts`              | —    |
-| `commerce:deploy:preflight`               | `commerce-deploy-preflight.ts`                 | —    |
-| `commerce:flash-sales:tick`               | `commerce-flash-sales-tick.ts`                 | —    |
-| `commerce:orders:expire`                  | `commerce-orders-expire.ts`                    | —    |
-| `commerce:payments:reconcile`             | `commerce-payments-reconcile.ts`               | —    |
-| `commerce:shipping-rates:purge`           | `commerce-shipping-rates-purge.ts`             | —    |
-| `commerce:whatsapp:dispatch`              | `commerce-whatsapp-dispatch.ts`                | —    |
-| `commerce:whatsapp:purge`                 | `commerce-whatsapp-purge.ts`                   | —    |
 | `config:env:coverage:check`               | `env-contract-coverage-check.ts`               | ✅   |
 | `config:validate`                         | `validate-env.ts`                              | —    |
 | `contracts:omes:sync`                     | `sync-omes-contracts.ts`                       | —    |
@@ -86,7 +77,6 @@ terjadwal, atau oleh workflow CI tertentu.
 | `data-lifecycle:registry:check`           | `data-lifecycle-registry-check.ts`             | ✅   |
 | `data-lifecycle:table-coverage:check`     | `data-lifecycle-table-coverage-check.ts`       | ✅   |
 | `data-lifecycle:worker-grants:check`      | `data-lifecycle-worker-grants-check.ts`        | ✅   |
-| `db:commerce:renumber`                    | `commerce-migrations-renumber.ts`              | —    |
 | `db:fk-index:check`                       | `db-fk-index-check.ts`                         | ✅   |
 | `db:jsonb-binding:check`                  | `jsonb-binding-check.ts`                       | ✅   |
 | `db:migrate`                              | `db-migrate.ts`                                | —    |
@@ -144,6 +134,7 @@ terjadwal, atau oleh workflow CI tertentu.
 | `modules:routes:check`                    | `validate-module-routes.ts`                    | ✅   |
 | `modules:table-writes:check`              | `table-write-ownership-check.ts`               | ✅   |
 | `news-media:reconcile`                    | `news-media-r2-reconcile.ts`                   | —    |
+| `omes:repository-progress:poll`           | `omes-repository-progress-poll.ts`             | —    |
 | `openapi:bundle`                          | `openapi-bundle.ts`                            | —    |
 | `project-state:inventory:check`           | `project-state-inventory.ts`                   | ✅   |
 | `project-state:inventory:generate`        | `project-state-inventory.ts`                   | —    |

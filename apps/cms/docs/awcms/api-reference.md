@@ -11969,6 +11969,49 @@ Masked phone only (`toPhoneMasked`) — never the raw `to_phone`.
 
 Owner/operator API for OMES projections and safe operations (omes_control module, ADR-0122, Issue ahliweb/omes#198) — tenant-scoped fleet overview, server registration/decommission, enrollment-challenge issuance/revocation, desired-vs-observed deployment views, allowlisted safe-operation submission (with destructive operations routed through the canonical workflow-approval engine), worker job listing/cancel/retry-approval, health/backup/audit projections. AWCMS only ever records intent against OMES-owned capability evidence stored server-side — it never executes arbitrary shell/SSH, reads host files directly, or reads Hermes private state. Host/deployment execution is exclusively OMES's own pull worker (ahliweb/omes#199, out of scope here).
 
+### `POST /api/v1/omes/ai-privacy/egress-approvals` — Submit an AI egress owner-approval decision (ahliweb/omes#232)
+
+- **operationId**: `omesSubmitAiEgressApproval`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by omes_control.ai_privacy.approve. A RESTRICTED classification resolving to a cloud_sanitized destination is structurally refused — unconditionally, independent of the submitted reason_code — before the canonical workflow-approval engine is ever touched, and is also blocked by a database CHECK constraint. Refused with 409 APPROVAL_WORKFLOW_NOT_CONFIGURED if the tenant has not published an active approval workflow. Requires Idempotency-Key, audited critical.
+
+**Parameters**
+
+| Name               | In     | Required | Type   | Description |
+| ------------------ | ------ | -------- | ------ | ----------- |
+| `Idempotency-Key`  | header | yes      | string |             |
+| `X-Correlation-ID` | header | no       | string |             |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                                                                                                                               | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 201    | Approval decision recorded.                                                                                                                                               | object                                 |
+| 400    | Validation error.                                                                                                                                                         | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                               | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                               | [`ApiError`](#standard-error-envelope) |
+| 409    | No active AI-egress approval workflow is published (APPROVAL_WORKFLOW_NOT_CONFIGURED), or the Idempotency-Key was reused with a different request (IDEMPOTENCY_CONFLICT). | [`ApiError`](#standard-error-envelope) |
+| 422    | Structurally refused (AI_EGRESS_APPROVAL_DENIED) — e.g. RESTRICTED classification resolving to cloud_sanitized, or a not-approvable reason_code.                          | [`ApiError`](#standard-error-envelope) |
+| 429    | Too many approval requests (RATE_LIMITED).                                                                                                                                | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/omes/ai-privacy/posture` — Read AI privacy posture and egress-approval history (ahliweb/omes#232)
+
+- **operationId**: `omesReadAiPrivacyPosture`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by omes_control.ai_privacy.read. Freshness/effective status are recomputed at read time (never trusted off the stored evidence) — stale or unrecognized evidence is never reported as healthy.
+
+**Responses**
+
+| Status | Description                                              | Schema                                 |
+| ------ | -------------------------------------------------------- | -------------------------------------- |
+| 200    | Posture fleet view plus egress-approval request history. | object                                 |
+| 401    | Missing or invalid session.                              | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                              | [`ApiError`](#standard-error-envelope) |
+
 ### `GET /api/v1/omes/audit` — List OMES host execution/reconciliation audit projections
 
 - **operationId**: `omesListAudit`
@@ -12134,6 +12177,42 @@ Gated by omes_control.servers.read. Default (no serverId) returns the latest sna
 | 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
 | 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
 | 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/omes/hermes-orchestration/events` — Read the Hermes orchestration activity stream (ahliweb/omes#246)
+
+- **operationId**: `omesReadHermesOrchestrationEvents`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by omes_control.hermes_orchestration.read. Optional `session_id` query parameter narrows to one session's activity.
+
+**Parameters**
+
+| Name         | In    | Required | Type   | Description |
+| ------------ | ----- | -------- | ------ | ----------- |
+| `session_id` | query | no       | string |             |
+
+**Responses**
+
+| Status | Description                                               | Schema                                 |
+| ------ | --------------------------------------------------------- | -------------------------------------- |
+| 200    | The tenant's recent orchestration activity-stream events. | object                                 |
+| 401    | Missing or invalid session.                               | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                               | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/omes/hermes-orchestration/tree` — Read live Hermes orchestration tree snapshots (ahliweb/omes#246)
+
+- **operationId**: `omesReadHermesOrchestrationTree`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by omes_control.hermes_orchestration.read. Freshness and node state rollups are recomputed at read time (never trusted off the stored snapshot) — a snapshot older than its liveness window is never reported as live.
+
+**Responses**
+
+| Status | Description                                        | Schema                                 |
+| ------ | -------------------------------------------------- | -------------------------------------- |
+| 200    | The tenant's current orchestration tree snapshots. | object                                 |
+| 401    | Missing or invalid session.                        | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                        | [`ApiError`](#standard-error-envelope) |
 
 ### `GET /api/v1/omes/jobs` — List worker jobs
 
@@ -12321,6 +12400,83 @@ Gated by omes_control.servers.read. A pure aggregation computed directly from th
 | 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
 | 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
 
+### `GET /api/v1/omes/repository-progress` — Read the GitHub repository-progress projection (ahliweb/omes#249)
+
+- **operationId**: `omesReadRepositoryProgress`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by omes_control.hermes_orchestration.read (reused — see sql/167). Milestone/issue progress for the tenant's configured repository, polled from the GitHub REST API on a schedule (ADR-0030, `ahliweb/omes` repository). Freshness is recomputed at read time; a stale or failing poll is reported explicitly, never silently as current.
+
+**Responses**
+
+| Status | Description                                                               | Schema                                 |
+| ------ | ------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The tenant's repository-progress projection (or an "unconfigured" state). | object                                 |
+| 401    | Missing or invalid session.                                               | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                               | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/omes/repository-progress/config` — Read the tenant's repository-progress configuration (ahliweb/omes#249)
+
+- **operationId**: `omesReadRepositoryProgressConfig`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by omes_control.hermes_orchestration.read.
+
+**Responses**
+
+| Status | Description                                          | Schema                                 |
+| ------ | ---------------------------------------------------- | -------------------------------------- |
+| 200    | The tenant's configuration, or null if unconfigured. | object                                 |
+| 401    | Missing or invalid session.                          | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                          | [`ApiError`](#standard-error-envelope) |
+
+### `PUT /api/v1/omes/repository-progress/config` — Set the tenant's observed GitHub repository (ahliweb/omes#249)
+
+- **operationId**: `omesSetRepositoryProgressConfig`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by omes_control.repository_progress.configure (a NEW permission — see sql/167). owner/name are re-validated server-side against the GitHub identifier charset regardless of client input. Reconfiguring to a different repository clears any existing projection for the old one. Requires Idempotency-Key, audited.
+
+**Parameters**
+
+| Name              | In     | Required | Type   | Description |
+| ----------------- | ------ | -------- | ------ | ----------- |
+| `Idempotency-Key` | header | yes      | string |             |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                                     | Schema                                 |
+| ------ | ------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | Configuration saved.                                                            | object                                 |
+| 400    | Validation error.                                                               | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                     | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                     | [`ApiError`](#standard-error-envelope) |
+| 409    | The Idempotency-Key was reused with a different request (IDEMPOTENCY_CONFLICT). | [`ApiError`](#standard-error-envelope) |
+
+### `DELETE /api/v1/omes/repository-progress/config` — Clear the tenant's repository-progress configuration (ahliweb/omes#249)
+
+- **operationId**: `omesClearRepositoryProgressConfig`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by omes_control.repository_progress.configure. Also clears any existing projection row. Requires Idempotency-Key, audited.
+
+**Parameters**
+
+| Name              | In     | Required | Type   | Description |
+| ----------------- | ------ | -------- | ------ | ----------- |
+| `Idempotency-Key` | header | yes      | string |             |
+
+**Responses**
+
+| Status | Description                                                                     | Schema                                 |
+| ------ | ------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | Configuration cleared.                                                          | object                                 |
+| 401    | Missing or invalid session.                                                     | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                     | [`ApiError`](#standard-error-envelope) |
+| 409    | The Idempotency-Key was reused with a different request (IDEMPOTENCY_CONFLICT). | [`ApiError`](#standard-error-envelope) |
+
 ### `GET /api/v1/omes/servers` — List enrolled servers
 
 - **operationId**: `omesListServers`
@@ -12472,6 +12628,124 @@ Gated by omes_control.enrollments.manage. Requires Idempotency-Key, audited.
 | 403    | Access denied by RBAC/ABAC.                                                     | [`ApiError`](#standard-error-envelope) |
 | 404    | Resource not found.                                                             | [`ApiError`](#standard-error-envelope) |
 | 409    | The Idempotency-Key was reused with a different request (IDEMPOTENCY_CONFLICT). | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/omes/worker/ai-privacy-posture` — Ingest an AI privacy posture projection (ahliweb/omes#232)
+
+- **operationId**: `omesWorkerIngestAiPrivacyPosture`
+- **Security**: none (public endpoint)
+
+`security: []`. Same Ed25519 worker-envelope authentication as poll/result/heartbeat. The request body wraps a `posture` object that MUST independently validate against the vendored ai-privacy-posture-view schema (OMES issue #217, ADR-0029) — bounded metadata only, no prompt/transcript/credential field can pass validation. Upserts one current row per (tenant, server, deployment) target.
+
+**Request body** (required): unknown
+
+**Responses**
+
+| Status | Description                                     | Schema                                 |
+| ------ | ----------------------------------------------- | -------------------------------------- |
+| 200    | acknowledged or rejected.                       | unknown                                |
+| 413    | Request body exceeded the bounded size ceiling. | [`ApiError`](#standard-error-envelope) |
+| 429    | Rate-limited per (tenant, worker).              | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/omes/worker/enroll` — Worker enrollment challenge redemption (ahliweb/omes#199)
+
+- **operationId**: `omesWorkerEnroll`
+- **Security**: none (public endpoint)
+
+`security: []` — deliberately session-UNauthenticated, like POST /api/v1/analytics/collect. The caller is an OMES host pull worker, not an AWCMS session; identity is established by redeeming a single-use enrollment challenge and proving possession of the presented Ed25519 public key's matching private key (X-Omes-Enrollment-Signature, a signature over the raw challenge value). Every response, including a rejection, conforms to the pinned worker-enrollment.response contract vendored under src/modules/omes-control/contracts/v1/ — this endpoint never leaks whether a tenant/server/worker exists via its shape or status code (always 200, `status` distinguishes enrolled/rejected/ token_expired).
+
+**Request body** (required): unknown
+
+**Responses**
+
+| Status | Description                                                                  | Schema                                 |
+| ------ | ---------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | Enrollment outcome (enrolled, rejected, or token_expired — see description). | unknown                                |
+| 413    | Request body exceeded the bounded size ceiling.                              | [`ApiError`](#standard-error-envelope) |
+| 429    | Rate-limited per (tenant, server).                                           | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/omes/worker/heartbeat` — Ingest worker/host heartbeat telemetry (ahliweb/omes#199)
+
+- **operationId**: `omesWorkerHeartbeat`
+- **Security**: none (public endpoint)
+
+`security: []`. Same envelope authentication as result. Updates last_heartbeat_at and redacted evidence (omes_version/ contract_version/capability digest/platform/uptime, attributed to omes-host). Staleness is derived on READ from heartbeat age (domain/staleness.ts) — missing evidence never implies healthy. Never resurrects a decommissioned server's status.
+
+**Request body** (required): unknown
+
+**Responses**
+
+| Status | Description                                     | Schema                                 |
+| ------ | ----------------------------------------------- | -------------------------------------- |
+| 200    | acknowledged or re-enroll_required.             | unknown                                |
+| 413    | Request body exceeded the bounded size ceiling. | [`ApiError`](#standard-error-envelope) |
+| 429    | Rate-limited per (tenant, worker).              | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/omes/worker/hermes-orchestration-event` — Ingest a Hermes orchestration lifecycle event (ahliweb/omes#246)
+
+- **operationId**: `omesWorkerIngestHermesOrchestrationEvent`
+- **Security**: none (public endpoint)
+
+`security: []`. Same Ed25519 worker-envelope authentication as poll/result/heartbeat. The request body wraps an `event` object that MUST independently validate against the vendored hermes-orchestration-event schema (OMES issue #183, ADR-0028). Appended to the tenant's activity log, deduplicated by a natural idempotency key so a redelivered event is a no-op.
+
+**Request body** (required): unknown
+
+**Responses**
+
+| Status | Description                                     | Schema                                 |
+| ------ | ----------------------------------------------- | -------------------------------------- |
+| 200    | acknowledged or rejected.                       | unknown                                |
+| 413    | Request body exceeded the bounded size ceiling. | [`ApiError`](#standard-error-envelope) |
+| 429    | Rate-limited per (tenant, worker).              | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/omes/worker/hermes-orchestration-tree` — Ingest a Hermes orchestration tree snapshot (ahliweb/omes#246)
+
+- **operationId**: `omesWorkerIngestHermesOrchestrationTree`
+- **Security**: none (public endpoint)
+
+`security: []`. Same Ed25519 worker-envelope authentication as poll/result/heartbeat. The request body wraps a `tree` object that MUST independently validate against the vendored hermes-orchestration-tree schema (OMES issue #183, ADR-0028) — bounded metadata only, no prompt/transcript/tool-argument field can pass validation. Upserts one current row per (tenant, server, session) target; ADR-0017: read-only Hermes observability, no control action.
+
+**Request body** (required): unknown
+
+**Responses**
+
+| Status | Description                                     | Schema                                 |
+| ------ | ----------------------------------------------- | -------------------------------------- |
+| 200    | acknowledged or rejected.                       | unknown                                |
+| 413    | Request body exceeded the bounded size ceiling. | [`ApiError`](#standard-error-envelope) |
+| 429    | Rate-limited per (tenant, worker).              | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/omes/worker/poll` — Poll for a pending allowlisted job (ahliweb/omes#199)
+
+- **operationId**: `omesWorkerPoll`
+- **Security**: none (public endpoint)
+
+`security: []`. Authenticated by Ed25519 signature over a canonical envelope (X-Omes-Worker-Signature) binding tenant/server/worker/path/ timestamp/nonce/body-hash, verified against the enrolled worker's stored public key. Nonce/timestamp replay protection is bounded and persisted (awcms_omes_worker_nonces). Any identity/replay/scope failure answers the pinned worker-poll.response contract's own `re-enroll_required` status rather than an HTTP error — never distinguishing the reason. A returned `job` conforms exactly to the pinned operation-request contract.
+
+**Request body** (required): unknown
+
+**Responses**
+
+| Status | Description                                            | Schema                                 |
+| ------ | ------------------------------------------------------ | -------------------------------------- |
+| 200    | idle, job_available (with job), or re-enroll_required. | unknown                                |
+| 413    | Request body exceeded the bounded size ceiling.        | [`ApiError`](#standard-error-envelope) |
+| 429    | Rate-limited per (tenant, worker).                     | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/omes/worker/result` — Ingest a worker-reported job execution result (ahliweb/omes#199)
+
+- **operationId**: `omesWorkerResult`
+- **Security**: none (public endpoint)
+
+`security: []`. Same envelope authentication as poll, with X-Omes-Nonce/X-Omes-Timestamp headers (worker-result.request has no nonce/timestamp body fields, and no job_id field at all — issue ahliweb/omes#221). Idempotent by (tenant, server, idempotency_key). The response's job_id is the server's own resolved awcms_omes_jobs.id on recorded/duplicate_ignored, or the fixed literal "unknown" on rejected (never a resolved id, to avoid an existence oracle); see application/worker-result-ingestion.ts. A 2xx response is an acknowledgement of receipt only: every recorded row is stamped `source: "worker_reported"` / `reconciled: false` and is never presented elsewhere as independently confirmed success.
+
+**Request body** (required): unknown
+
+**Responses**
+
+| Status | Description                               | Schema                                 |
+| ------ | ----------------------------------------- | -------------------------------------- |
+| 200    | recorded, duplicate_ignored, or rejected. | unknown                                |
+| 429    | Rate-limited per (tenant, worker).        | [`ApiError`](#standard-error-envelope) |
 
 ## Schema appendix
 

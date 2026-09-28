@@ -101,6 +101,16 @@ export const NO_SUBJECT_DATA: readonly { table: string; reason: string }[] = [
       "ADR-0084. One row per package an operator sells — a price and a name, both authored rather than observed."
   },
   {
+    table: "awcms_omes_repository_progress_config",
+    reason:
+      'Issue ahliweb/omes#249, ADR-0030. Holds only a tenant-chosen GitHub repository identifier (owner/name, both public GitHub org/repo slugs the tenant selected) and an OPTIONAL `secret_ref` INDIRECTION ({"store":"env","key":"OMES_REPOSITORY_PROGRESS_GITHUB_TOKEN"}, never a raw token — sql/166\'s CHECK constraint enforces the one supported literal shape). Nothing here identifies a person; it identifies a repository.'
+  },
+  {
+    table: "awcms_omes_repository_progress",
+    reason:
+      "Issue ahliweb/omes#249, ADR-0030. A GitHub milestone/issue PROGRESS BOARD projection — number, title, state, label names, derived kind, html_url, updated_at. Deliberately excludes issue bodies, comments, and assignee/author identity by construction (domain/repository-progress.ts's mapping functions never read those GitHub API fields, and every stored payload is validated against the vendored, additionalProperties:false repository-progress-view schema before it is stored) — see ADR-0030's own PII boundary. A GitHub issue TITLE could theoretically mention a person's name as free text, the same residual risk any commit-message-shaped or ticket-title-shaped field carries across this codebase; it is not treated as subject data any more than an audit log's own free-text message field is."
+  },
+  {
     table: "awcms_schema_migrations",
     reason:
       "The migration ledger. It records which SQL file ran and when, which is a fact about the deployment and about nobody."
@@ -169,6 +179,36 @@ export const NO_SUBJECT_DATA: readonly { table: string; reason: string }[] = [
     table: "awcms_omes_audit_projections",
     reason:
       "ADR-0122 (Issue ahliweb/omes#196). Projected audit evidence of host-level mutations and system actions performed by OMES pull workers, not visitor or subscriber personal data."
+  },
+  {
+    table: "awcms_omes_worker_nonces",
+    reason:
+      "ADR-0122 (Issue ahliweb/omes#199). Replay-protection nonces consumed by the OMES host pull worker's poll/result/heartbeat requests — a machine identity, tenant, server, and a random nonce string. Holds no personal data about a natural person."
+  },
+  {
+    table: "awcms_omes_worker_results",
+    reason:
+      "ADR-0122 (Issue ahliweb/omes#199). Worker-reported job execution results (operation, state, evidence) from the OMES pull worker. Operational infrastructure evidence about a host/job, not personal data — evidence is additionally passed through redactSensitiveAttributes before persistence."
+  },
+  {
+    table: "awcms_omes_ai_privacy_posture",
+    reason:
+      "ADR-0122, OMES ADR-0029 (Issue ahliweb/omes#232). One row per (tenant, server, deployment) AI privacy posture projection — classification mode, destination class, status, and reason codes describing a HOST's AI egress posture. Bounded infrastructure/governance metadata only; structurally excludes prompt/transcript/credential content (additionalProperties:false in the vendored schema). Holds no personal data about a natural person."
+  },
+  {
+    table: "awcms_omes_ai_egress_approvals",
+    reason:
+      "ADR-0122, OMES ADR-0029 (Issue ahliweb/omes#232). AI egress owner-approval requests — classification/destination/reason_code and a short operator justification note, keyed by server. `requested_by_tenant_user_id` is the same shape `awcms_omes_operation_requests.requested_by`/`approved_by` already carries (operator attribution, not a subject of the data), covered by the same reasoning above."
+  },
+  {
+    table: "awcms_omes_hermes_orchestration_trees",
+    reason:
+      "ADR-0028, ADR-0017 (Issue ahliweb/omes#246, OMES issue #183). One current row per (tenant, server, session) live Hermes delegated-task/subagent tree snapshot — subagent ids, roles, bounded goal/summary strings, states, and timings describing a HOST's Hermes orchestration run. Every identifier is opaque machine correlation state, not a natural person; `nodes` is validated against the vendored `hermes-orchestration-tree` schema (`additionalProperties:false`), which structurally excludes prompt/transcript/tool-argument content. Holds no personal data about a natural person."
+  },
+  {
+    table: "awcms_omes_hermes_orchestration_events",
+    reason:
+      "ADR-0028, ADR-0017 (Issue ahliweb/omes#246, OMES issue #183). Append-only Hermes subagent lifecycle activity log — same bounded metadata shape (and same schema-enforced exclusion of prompt/transcript/tool-argument content) as the tree snapshot above, one row per reported lifecycle event. Holds no personal data about a natural person."
   }
 ];
 
