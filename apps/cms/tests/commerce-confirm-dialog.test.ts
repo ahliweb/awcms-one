@@ -200,11 +200,14 @@ const TARGET_SCREENS = [
   "src/pages/admin/commerce-flash-sales.astro"
 ] as const;
 
-/** Explicitly out of scope for this issue — a different agent owns them. */
-const UNTOUCHED_SCREENS = [
-  "src/pages/admin/commerce-orders.astro",
-  "src/pages/admin/commerce-settings.astro"
-] as const;
+/**
+ * Explicitly out of scope for this issue — a different agent owns them.
+ * `commerce-orders.astro` was picked up by Issue #246 (order-status confirm
+ * + note) and now DOES render `CommerceConfirmDialog` — see
+ * `commerce-orders-confirm-note-246.test.ts` for its own contract. Only
+ * `commerce-settings.astro` remains untouched here.
+ */
+const UNTOUCHED_SCREENS = ["src/pages/admin/commerce-settings.astro"] as const;
 
 function occurrences(source: string, needle: string): number {
   return source.split(needle).length - 1;

@@ -6205,3 +6205,12 @@ msgstr ""
 msgid "Log adapter (development)"
 msgstr ""
 
+msgid "Change order status?"
+msgstr ""
+
+msgid "{orderCode} will move from {from} to {to}."
+msgstr ""
+
+msgid "Note (optional)"
+msgstr ""
+

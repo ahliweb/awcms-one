@@ -1,6 +1,30 @@
 ---
-/** Commerce order list + status transition screen (Issue #29). Orders themselves are created only through the anonymous storefront path (`src/pages/api/v1/commerce/storefront/orders/index.ts`) — there is no create form here, matching `commerce-permissions.ts`'s "no `orders.create` permission" decision. */
+/**
+ * Commerce order list + status transition screen (Issue #29). Orders
+ * themselves are created only through the anonymous storefront path
+ * (`src/pages/api/v1/commerce/storefront/orders/index.ts`) — there is no
+ * create form here, matching `commerce-permissions.ts`'s "no `orders.create`
+ * permission" decision.
+ *
+ * Issue #246 adds a confirm-with-note step before the status PATCH and
+ * switches every raw enum render on this screen to `commerce-admin-labels.ts`
+ * (Issue #243). The confirm dialog's message is composed almost entirely
+ * server-side — order code and the FROM status are already known at render
+ * time — except for the TO status, which is only known once the operator
+ * changes the `<select>`, client-side. `data-confirm-message` is therefore
+ * rendered with a literal `{to}` placeholder left unsubstituted on purpose:
+ * `src/lib/i18n/catalog.ts`'s own `interpolate()` leaves an unmatched
+ * `{name}` VERBATIM rather than blanking it (see that function's docblock),
+ * so the client script's own `.replace("{to}", toLabel)` is completing a
+ * translation this file already started, never inventing English text of
+ * its own. The translated status-label map and the domain's own terminal-
+ * status set travel to the browser as `data-order-status-meta` on
+ * `#commerce-orders-table` (JSON) — the "pass a `data-status-labels`-shaped
+ * attribute, never translate in the browser" convention `raw-enum-table.md`
+ * asks for.
+ */
 import AdminLayout from "../../layouts/AdminLayout.astro";
+import CommerceConfirmDialog from "../../components/CommerceConfirmDialog.astro";
 import "../../styles/admin-screens.css";
 import { loadAdminScreen } from "../../lib/auth/admin-screen";
 import { logAdminPageError } from "../../lib/logging/error-log";
@@ -11,11 +35,18 @@ import {
 } from "../../modules/commerce/application/order-directory";
 import {
   ORDER_STATUSES,
+  LEGAL_ORDER_STATUS_TRANSITIONS,
   type OrderStatus
 } from "../../modules/commerce/domain/order-status";
+import {
+  createCommerceLabels,
+  commerceLabel,
+  orderStatusTone
+} from "../../lib/ui/commerce-admin-labels";
 
 const ssr = Astro.locals.ssrContext!;
 const { t, tn } = getTranslatorFor(Astro.locals.locale);
+const labels = createCommerceLabels(t);
 
 const url = new URL(Astro.request.url);
 const rawStatus = url.searchParams.get("status") ?? "";
@@ -25,14 +56,29 @@ const activeStatus: OrderStatus | null = (
   ? (rawStatus as OrderStatus)
   : null;
 
-const STATUS_TONE: Record<OrderStatus, string> = {
-  pending_payment: "warning",
-  paid: "info",
-  processing: "info",
-  shipped: "primary",
-  completed: "success",
-  cancelled: "danger",
-  expired: "neutral"
+/**
+ * Derived from the domain's own transition graph rather than hand-listed —
+ * `order-status.ts`'s header already names `completed`/`cancelled`/`expired`
+ * as terminal (no outgoing edge), and `docs/cms.md`'s own status-graph
+ * section agrees; deriving it here means a future domain change to that
+ * graph is reflected automatically instead of silently drifting from a
+ * second, hardcoded copy.
+ */
+const TERMINAL_ORDER_STATUSES: readonly OrderStatus[] = ORDER_STATUSES.filter(
+  (status) => LEGAL_ORDER_STATUS_TRANSITIONS[status].length === 0
+);
+
+/** Everything the client script needs to finish translating the confirm dialog and decide `danger` — never re-derived in the browser. */
+const orderStatusMeta = {
+  labels: labels.orderStatus,
+  terminal: TERMINAL_ORDER_STATUSES
+};
+
+/** The gateway panel's own translated maps (session provider/status, event provider/outcome) — `commerce-orders/[id].astro` carries the identical shape on its own gateway panel element. */
+const gatewayLabels = {
+  provider: labels.paymentGatewaySessionProvider,
+  status: labels.paymentGatewayStatus,
+  outcome: labels.paymentEventOutcome
 };
 
 const screen = await loadAdminScreen({
@@ -128,9 +174,11 @@ const canUpdate = screen.state === "allowed" && screen.data.canUpdate;
           <a
             class="admin-segmented-option"
             aria-current={activeStatus === status ? "page" : "false"}
+            data-status={status}
             href={`/admin/commerce-orders?status=${status}`}
           >
-            {status} ({statusCounts[status]})
+            {commerceLabel(labels.orderStatus, status)} ({statusCounts[status]}
+            )
           </a>
         ))}
       </nav>
@@ -144,6 +192,8 @@ const canUpdate = screen.state === "allowed" && screen.data.canUpdate;
           class="data-table data-table--stack"
           id="commerce-orders-table"
           data-can-update={canUpdate ? "true" : "false"}
+          data-order-status-meta={JSON.stringify(orderStatusMeta)}
+          data-gateway-labels={JSON.stringify(gatewayLabels)}
         >
           <caption>
             {tn("{count} order", "{count} orders", orders.length, {
@@ -180,100 +230,124 @@ const canUpdate = screen.state === "allowed" && screen.data.canUpdate;
                 </td>
               </tr>
             ) : (
-              orders.map((order) => (
-                <>
-                  <tr data-order-row={order.id}>
-                    <td data-label="Order code">
-                      <a
-                        class="cell-code"
-                        href={`/admin/commerce-orders/${order.id}`}
-                      >
-                        {order.orderCode}
-                      </a>
-                    </td>
-                    <td data-label="Customer">
-                      {order.customerName} ({order.customerPhoneMasked})
-                    </td>
-                    <td
-                      data-label="Status"
-                      class={canUpdate ? "stacked-block" : ""}
-                    >
-                      <span
-                        class="admin-status-pill"
-                        data-tone={STATUS_TONE[order.status] ?? "neutral"}
+              orders.map((order) => {
+                // The confirm dialog's message is composed here with the
+                // order code and the FROM status already substituted — the
+                // TO status is only known once the operator changes the
+                // `<select>`, so `{to}` is deliberately left as a literal
+                // placeholder for the client script to finish (see this
+                // file's own header comment for why that is safe).
+                const confirmMessage = t(
+                  "{orderCode} will move from {from} to {to}.",
+                  {
+                    orderCode: order.orderCode,
+                    from: commerceLabel(labels.orderStatus, order.status)
+                  }
+                );
+
+                return (
+                  <>
+                    <tr data-order-row={order.id}>
+                      <td data-label="Order code">
+                        <a
+                          class="cell-code"
+                          href={`/admin/commerce-orders/${order.id}`}
+                        >
+                          {order.orderCode}
+                        </a>
+                      </td>
+                      <td data-label="Customer">
+                        {order.customerName} ({order.customerPhoneMasked})
+                      </td>
+                      <td
+                        data-label="Status"
+                        class={canUpdate ? "stacked-block" : ""}
                       >
                         <span
-                          class="admin-status-pill-dot"
-                          aria-hidden="true"
-                        />
-                        {order.status}
-                      </span>
-                      {canUpdate && (
-                        <select
-                          class="order-status-input"
-                          data-order-status={order.id}
+                          class="admin-status-pill"
+                          data-tone={orderStatusTone[order.status] ?? "neutral"}
+                          data-status={order.status}
                         >
-                          {ORDER_STATUSES.map((status) => (
-                            <option
-                              value={status}
-                              selected={order.status === status}
-                            >
-                              {status}
-                            </option>
-                          ))}
-                        </select>
-                      )}
-                    </td>
-                    <td data-label="Payment">{order.paymentStatus}</td>
-                    <td data-label="Total">{order.total}</td>
-                    <td data-label="Placed">{order.createdAt}</td>
-                    <td data-label="Payment gateway" class="stacked-block">
-                      <button
-                        type="button"
-                        class="module-toggle order-gateway-toggle-btn"
-                        data-order-id={order.id}
-                      >
-                        {t("View gateway status")}
-                      </button>
-                    </td>
-                    {canUpdate && (
-                      <td data-label="Actions" class="stacked-block">
-                        <div class="row-actions">
-                          <button
-                            type="button"
-                            class="module-toggle order-status-save-btn"
-                            data-order-id={order.id}
+                          <span
+                            class="admin-status-pill-dot"
+                            aria-hidden="true"
+                          />
+                          {commerceLabel(labels.orderStatus, order.status)}
+                        </span>
+                        {canUpdate && (
+                          <select
+                            class="order-status-input"
+                            data-order-status={order.id}
                           >
-                            {t("Save")}
-                          </button>
+                            {ORDER_STATUSES.map((status) => (
+                              <option
+                                value={status}
+                                selected={order.status === status}
+                              >
+                                {commerceLabel(labels.orderStatus, status)}
+                              </option>
+                            ))}
+                          </select>
+                        )}
+                      </td>
+                      <td data-label="Payment" data-payment-status={order.paymentStatus}>
+                        {commerceLabel(labels.paymentStatus, order.paymentStatus)}
+                      </td>
+                      <td data-label="Total">{order.total}</td>
+                      <td data-label="Placed">{order.createdAt}</td>
+                      <td data-label="Payment gateway" class="stacked-block">
+                        <button
+                          type="button"
+                          class="module-toggle order-gateway-toggle-btn"
+                          data-order-id={order.id}
+                        >
+                          {t("View gateway status")}
+                        </button>
+                      </td>
+                      {canUpdate && (
+                        <td data-label="Actions" class="stacked-block">
+                          <div class="row-actions">
+                            <button
+                              type="button"
+                              class="module-toggle order-status-save-btn"
+                              data-order-id={order.id}
+                              data-confirm-title={t("Change order status?")}
+                              data-confirm-message={confirmMessage}
+                              data-confirm-note-label={t("Note (optional)")}
+                              data-confirm-note-max-length="500"
+                            >
+                              {t("Save")}
+                            </button>
+                          </div>
+                        </td>
+                      )}
+                    </tr>
+                    <tr
+                      class="order-gateway-panel-row"
+                      data-order-gateway-panel-row={order.id}
+                      hidden
+                    >
+                      <td colspan={canUpdate ? 8 : 7}>
+                        <div
+                          class="order-gateway-panel"
+                          data-order-gateway-panel={order.id}
+                        >
+                          <p class="order-gateway-panel-loading">
+                            {t("Loading…")}
+                          </p>
                         </div>
                       </td>
-                    )}
-                  </tr>
-                  <tr
-                    class="order-gateway-panel-row"
-                    data-order-gateway-panel-row={order.id}
-                    hidden
-                  >
-                    <td colspan={canUpdate ? 8 : 7}>
-                      <div
-                        class="order-gateway-panel"
-                        data-order-gateway-panel={order.id}
-                      >
-                        <p class="order-gateway-panel-loading">
-                          {t("Loading…")}
-                        </p>
-                      </div>
-                    </td>
-                  </tr>
-                </>
-              ))
+                    </tr>
+                  </>
+                );
+              })
             )}
           </tbody>
         </table>
       </div>
     )
   }
+  <CommerceConfirmDialog locale={Astro.locals.locale} />
 </AdminLayout>
 
 <style>
@@ -327,23 +401,80 @@ const canUpdate = screen.state === "allowed" && screen.data.canUpdate;
     onAction,
     sendJson
   } from "../../lib/ui/admin-form-client";
+  import {
+    confirmCommerceActionWithNote,
+    readConfirmOptionsWithNote
+  } from "../../lib/ui/commerce-confirm-dialog-client";
 
   const actionError = messageBox("order-action-error");
+
+  const ordersTable = document.querySelector<HTMLTableElement>(
+    "#commerce-orders-table"
+  );
+
+  /** Read once, server-rendered — never translated in the browser (Issue #246). */
+  interface OrderStatusMeta {
+    labels: Record<string, string>;
+    terminal: string[];
+  }
+  interface GatewayLabels {
+    provider: Record<string, string>;
+    status: Record<string, string>;
+    outcome: Record<string, string>;
+  }
+
+  function parseJsonDataset<T>(raw: string | undefined, fallback: T): T {
+    if (!raw) return fallback;
+    try {
+      return JSON.parse(raw) as T;
+    } catch {
+      return fallback;
+    }
+  }
+
+  const orderStatusMeta = parseJsonDataset<OrderStatusMeta>(
+    ordersTable?.dataset.orderStatusMeta,
+    { labels: {}, terminal: [] }
+  );
+  const gatewayLabels = parseJsonDataset<GatewayLabels>(
+    ordersTable?.dataset.gatewayLabels,
+    { provider: {}, status: {}, outcome: {} }
+  );
 
   onAction(".order-status-save-btn", async (button) => {
     const id = button.dataset.orderId;
     if (!id) return;
 
-    const status =
-      document.querySelector<HTMLSelectElement>(`[data-order-status="${id}"]`)
-        ?.value ?? "";
-    if (!status) return;
+    const select = document.querySelector<HTMLSelectElement>(
+      `[data-order-status="${id}"]`
+    );
+    const toStatus = select?.value ?? "";
+    if (!select || !toStatus) return;
+
+    // The dialog's message was rendered server-side with a literal `{to}`
+    // placeholder (see this file's own header comment) — finishing that
+    // translation here, from the server-rendered label map, is the ONLY
+    // client-side text substitution this screen performs.
+    const toLabel = orderStatusMeta.labels[toStatus] ?? toStatus;
+    const options = readConfirmOptionsWithNote(button.dataset);
+    options.message = options.message.replace("{to}", toLabel);
+    // A terminal target status (no outgoing edge in the domain's own
+    // transition graph — see `TERMINAL_ORDER_STATUSES` above) is destructive
+    // enough to style as `danger`; this cannot be decided server-side since
+    // the target is only known once the operator picks it.
+    options.danger = orderStatusMeta.terminal.includes(toStatus);
+
+    const result = await confirmCommerceActionWithNote(options);
+    if (!result) return; // Cancelled — the select is left at its chosen value; nothing is sent.
 
     await mutateAndReload(
       button,
       actionError,
       () =>
-        sendJson("PATCH", `/api/v1/commerce/orders/${id}/status`, { status }),
+        sendJson("PATCH", `/api/v1/commerce/orders/${id}/status`, {
+          status: toStatus,
+          ...(result.note ? { note: result.note } : {})
+        }),
       "Could not update the order status. Check the transition is legal from the order's current status.",
       "Saving…"
     );
@@ -368,9 +499,7 @@ const canUpdate = screen.state === "allowed" && screen.data.canUpdate;
     gateway: { session: GatewaySession; events: PaymentEvent[] };
   };
 
-  const canUpdate =
-    document.querySelector<HTMLTableElement>("#commerce-orders-table")?.dataset
-      .canUpdate === "true";
+  const canUpdate = ordersTable?.dataset.canUpdate === "true";
   const panelTemplate = document.getElementById(
     "order-gateway-panel-template"
   ) as HTMLTemplateElement | null;
@@ -435,8 +564,16 @@ const canUpdate = screen.state === "allowed" && screen.data.canUpdate;
         const expires = sessionDetail.querySelector(
           '[data-field="session-expires"]'
         );
-        if (provider) provider.textContent = session.provider;
-        if (status) status.textContent = session.status;
+        if (provider) {
+          provider.setAttribute("data-raw-value", session.provider);
+          provider.textContent =
+            gatewayLabels.provider[session.provider] ?? session.provider;
+        }
+        if (status) {
+          status.setAttribute("data-raw-value", session.status);
+          status.textContent =
+            gatewayLabels.status[session.status] ?? session.status;
+        }
         if (expires) expires.textContent = session.expiresAt;
       }
       if (reconcileBtn && canUpdate) {
@@ -457,7 +594,13 @@ const canUpdate = screen.state === "allowed" && screen.data.canUpdate;
       if (eventsEmpty) eventsEmpty.hidden = true;
       for (const event of events) {
         const item = document.createElement("li");
-        item.textContent = `${event.receivedAt} — ${event.provider} — ${event.outcome} (${event.eventKey})`;
+        item.setAttribute("data-raw-provider", event.provider);
+        item.setAttribute("data-raw-outcome", event.outcome);
+        const providerLabel =
+          gatewayLabels.provider[event.provider] ?? event.provider;
+        const outcomeLabel =
+          gatewayLabels.outcome[event.outcome] ?? event.outcome;
+        item.textContent = `${event.receivedAt} — ${providerLabel} — ${outcomeLabel} (${event.eventKey})`;
         eventsList?.appendChild(item);
       }
     }

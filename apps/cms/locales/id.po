@@ -6181,3 +6181,12 @@ msgstr "Diabaikan"
 msgid "Log adapter (development)"
 msgstr "Adaptor log (pengembangan)"
 
+msgid "Change order status?"
+msgstr "Ubah status pesanan?"
+
+msgid "{orderCode} will move from {from} to {to}."
+msgstr "{orderCode} akan berpindah dari {from} ke {to}."
+
+msgid "Note (optional)"
+msgstr "Catatan (opsional)"
+
