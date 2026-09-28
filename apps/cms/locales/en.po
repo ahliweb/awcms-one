@@ -5431,6 +5431,9 @@ msgstr ""
 msgid "No WhatsApp messages match this filter."
 msgstr ""
 
+msgid "Messages queued or sent through the WhatsApp outbox will appear here."
+msgstr ""
+
 msgid "Template"
 msgstr ""
 
@@ -6220,6 +6223,15 @@ msgid "Ignored"
 msgstr ""
 
 msgid "Log adapter (development)"
+msgstr ""
+
+msgid "Change order status?"
+msgstr ""
+
+msgid "{orderCode} will move from {from} to {to}."
+msgstr ""
+
+msgid "Note (optional)"
 msgstr ""
 
 msgid "Select all products on this page"

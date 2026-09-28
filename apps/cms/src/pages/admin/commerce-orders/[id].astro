@@ -20,6 +20,13 @@
  * Same permission as the list (`commerce.orders.read`); the list's own
  * "Save status" control is NOT duplicated here — this is a read view, so a
  * user with `orders.update` still makes the status change from the list.
+ *
+ * Issue #246 switches every raw enum render on this page (status pill,
+ * channel pill, timeline entry status) to `commerce-admin-labels.ts` (Issue
+ * #243), and passes the client-rendered gateway panel's own translated maps
+ * through `data-gateway-labels` on the panel element itself — the same JSON
+ * shape `commerce-orders.astro`'s own gateway panel uses, so there is one
+ * convention to read, not two.
  */
 import AdminLayout from "../../../layouts/AdminLayout.astro";
 import "../../../styles/admin-screens.css";
@@ -31,21 +38,23 @@ import {
   toAdminOrderRecord
 } from "../../../modules/commerce/application/order-directory";
 import { mediaLibraryPortAdapter } from "../../../modules/media-library/application/media-library-port-adapter";
-import type { OrderStatus } from "../../../modules/commerce/domain/order-status";
+import {
+  createCommerceLabels,
+  commerceLabel,
+  orderStatusTone
+} from "../../../lib/ui/commerce-admin-labels";
 
 const ssr = Astro.locals.ssrContext!;
 const { t } = getTranslatorFor(Astro.locals.locale);
+const labels = createCommerceLabels(t);
 
 const orderId = Astro.params.id ?? "";
 
-const STATUS_TONE: Record<OrderStatus, string> = {
-  pending_payment: "warning",
-  paid: "info",
-  processing: "info",
-  shipped: "primary",
-  completed: "success",
-  cancelled: "danger",
-  expired: "neutral"
+/** Same shape `commerce-orders.astro` sends its own gateway panel — one convention, not two. */
+const gatewayLabels = {
+  provider: labels.paymentGatewaySessionProvider,
+  status: labels.paymentGatewayStatus,
+  outcome: labels.paymentEventOutcome
 };
 
 const screen = await loadAdminScreen({
@@ -116,13 +125,18 @@ const notFound = screen.state === "allowed" && !order;
           <span class="cell-code">{order.orderCode}</span>{" "}
           <span
             class="admin-status-pill"
-            data-tone={STATUS_TONE[order.status] ?? "neutral"}
+            data-tone={orderStatusTone[order.status] ?? "neutral"}
+            data-status={order.status}
           >
             <span class="admin-status-pill-dot" aria-hidden="true" />
-            {order.status}
+            {commerceLabel(labels.orderStatus, order.status)}
           </span>{" "}
-          <span class="admin-status-pill" data-tone="neutral">
-            {order.channel}
+          <span
+            class="admin-status-pill"
+            data-tone="neutral"
+            data-channel={order.channel}
+          >
+            {commerceLabel(labels.orderChannel, order.channel)}
           </span>
         </p>
 
@@ -185,7 +199,11 @@ const notFound = screen.state === "allowed" && !order;
             </ul>
 
             <h2 class="admin-dashboard-panel-title">{t("Payment gateway")}</h2>
-            <div class="order-gateway-panel" data-order-gateway-panel={orderId}>
+            <div
+              class="order-gateway-panel"
+              data-order-gateway-panel={orderId}
+              data-gateway-labels={JSON.stringify(gatewayLabels)}
+            >
               <p class="order-gateway-panel-loading">{t("Loading…")}</p>
             </div>
             <p
@@ -206,7 +224,12 @@ const notFound = screen.state === "allowed" && !order;
               <ol class="admin-timeline">
                 {order.timeline.map((entry) => (
                   <li class="admin-timeline-item">
-                    <div class="admin-timeline-label">{entry.status}</div>
+                    <div
+                      class="admin-timeline-label"
+                      data-status={entry.status}
+                    >
+                      {commerceLabel(labels.orderStatus, entry.status)}
+                    </div>
                     <div class="admin-timeline-meta">
                       {entry.at}
                       {entry.note && <> &mdash; {entry.note}</>}
@@ -260,6 +283,23 @@ const notFound = screen.state === "allowed" && !order;
 
   const fetchError = messageBox("order-gateway-fetch-error");
 
+  /** Server-rendered, translated — never re-translated in the browser (Issue #246). Same JSON shape `commerce-orders.astro`'s own gateway panel carries. */
+  interface GatewayLabels {
+    provider: Record<string, string>;
+    status: Record<string, string>;
+    outcome: Record<string, string>;
+  }
+
+  function parseGatewayLabels(raw: string | undefined): GatewayLabels {
+    const fallback: GatewayLabels = { provider: {}, status: {}, outcome: {} };
+    if (!raw) return fallback;
+    try {
+      return { ...fallback, ...JSON.parse(raw) };
+    } catch {
+      return fallback;
+    }
+  }
+
   async function renderGatewayPanel() {
     const panel = document.querySelector<HTMLElement>(
       "[data-order-gateway-panel]"
@@ -269,6 +309,8 @@ const notFound = screen.state === "allowed" && !order;
     ) as HTMLTemplateElement | null;
     const orderId = panel?.dataset.orderGatewayPanel;
     if (!panel || !template || !orderId) return;
+
+    const gatewayLabels = parseGatewayLabels(panel.dataset.gatewayLabels);
 
     let payload: { success?: boolean; data?: any } | null = null;
     try {
@@ -309,8 +351,16 @@ const notFound = screen.state === "allowed" && !order;
         const expires = sessionDetail.querySelector(
           '[data-field="session-expires"]'
         );
-        if (provider) provider.textContent = session.provider;
-        if (status) status.textContent = session.status;
+        if (provider) {
+          provider.setAttribute("data-raw-value", session.provider);
+          provider.textContent =
+            gatewayLabels.provider[session.provider] ?? session.provider;
+        }
+        if (status) {
+          status.setAttribute("data-raw-value", session.status);
+          status.textContent =
+            gatewayLabels.status[session.status] ?? session.status;
+        }
         if (expires) expires.textContent = session.expiresAt;
       }
     }
@@ -332,7 +382,13 @@ const notFound = screen.state === "allowed" && !order;
         eventKey: string;
       }[]) {
         const item = document.createElement("li");
-        item.textContent = `${event.receivedAt} — ${event.provider} — ${event.outcome} (${event.eventKey})`;
+        item.setAttribute("data-raw-provider", event.provider);
+        item.setAttribute("data-raw-outcome", event.outcome);
+        const providerLabel =
+          gatewayLabels.provider[event.provider] ?? event.provider;
+        const outcomeLabel =
+          gatewayLabels.outcome[event.outcome] ?? event.outcome;
+        item.textContent = `${event.receivedAt} — ${providerLabel} — ${outcomeLabel} (${event.eventKey})`;
         eventsList?.appendChild(item);
       }
     }

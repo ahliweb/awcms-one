@@ -664,6 +664,21 @@ export const READER_BUDGET_BYTES = 24_000;
  * together): 264,573 B — still inside 265,000.
  */
 /**
+ * **Raised to 266,500 B for Issue #246** — `commerce-orders.astro` and
+ * `commerce-orders/[id].astro` adopt `commerce-admin-labels.ts` (Issue #243)
+ * for every raw enum render, and the orders list's status-save flow moves
+ * onto `CommerceConfirmDialog`'s note variant
+ * (`confirmCommerceActionWithNote`/`readConfirmOptionsWithNote`, added
+ * additively to Issue #242's own `commerce-confirm-dialog-client.ts`). No new
+ * component and no new stylesheet — the growth is the two screens' own larger
+ * `<script>` (the label lookup/JSON-dataset plumbing described in each
+ * file's own docblock) plus a handful of new i18n catalogue entries. Measured
+ * clean build: 266,095 B (up from 264,573 B). 266,500 keeps the same tight
+ * "measured + small margin" convention as every raise above; re-measure on
+ * the next commerce screen and tighten if the real total sits well below
+ * this.
+ */
+/**
  * **Raised to 269,000 B for Issue #247** — `commerce.astro` gains a new
  * shared client module, `commerce-products-bulk-client.ts` (checkbox-column
  * selection state, the sequential bulk Publish/Move to draft/Delete runner,
@@ -679,7 +694,19 @@ export const READER_BUDGET_BYTES = 24_000;
  * re-measure on the next commerce screen and tighten if the real total sits
  * well below this.
  */
-export const APP_BUDGET_BYTES = 269_000;
+/**
+ * **Raised to 270,500 B merging Issues #246 and #247** — both landed on top
+ * of the same 264,573 B baseline and each raised the budget independently
+ * (266,500 for #246, 269,000 for #247); neither PR's own measurement includes
+ * the other's growth. This merge sums both deltas over the shared baseline
+ * (+1,522 B for #246, +3,976 B for #247 → 264,573 + 1,522 + 3,976 = 270,071 B)
+ * and keeps a small margin, 270,500 B, in place of re-running a clean build
+ * for an estimate the next real change will re-measure anyway. Issue #253
+ * (this docblock's own change) adds `t()`-driven `data-label` attributes to
+ * existing table cells — translated strings already present in each
+ * catalogue, not new script — so it does not raise this budget further.
+ */
+export const APP_BUDGET_BYTES = 270_500;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.

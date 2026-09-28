@@ -34,6 +34,12 @@ import { logAdminPageError } from "../../lib/logging/error-log";
 import { getTranslatorFor } from "../../lib/i18n";
 import { formatCurrency, formatNumber } from "../../lib/i18n/format";
 import {
+  commerceLabel,
+  createCommerceLabels,
+  reportFreshnessTone,
+  reportRunStatusTone
+} from "../../lib/ui/commerce-admin-labels";
+import {
   listSalesByCategory,
   listSalesByProduct,
   listSalesDaily
@@ -59,6 +65,7 @@ import {
 const ssr = Astro.locals.ssrContext!;
 const locale = Astro.locals.locale;
 const { t } = getTranslatorFor(locale);
+const labels = createCommerceLabels(t);
 
 const rangeInput = {
   from: Astro.url.searchParams.get("from"),
@@ -179,15 +186,6 @@ const totals = daily.reduce(
   }),
   { ordersPaid: 0, gross: 0, discount: 0, shipping: 0, net: 0 }
 );
-
-/** Freshness status -> `status-badge` variant — same mapping `/admin/reporting` uses. */
-const FRESHNESS_VARIANT: Record<string, string> = {
-  current: "success",
-  delayed: "warning",
-  stale: "warning",
-  rebuilding: "info",
-  failed: "danger"
-};
 
 const PROJECTION_LABELS: Record<string, string> = {
   [SALES_DAILY_PROJECTION_KEY]: t("Sales by day"),
@@ -327,12 +325,16 @@ function formatTimestamp(value: Date | string | null): string {
                     <span
                       class="status-badge"
                       data-variant={
-                        FRESHNESS_VARIANT[projection.freshness.status] ??
+                        reportFreshnessTone[projection.freshness.status] ??
                         "neutral"
                       }
+                      data-status={projection.freshness.status}
                     >
                       <span class="status-dot" aria-hidden="true" />
-                      {projection.freshness.status}
+                      {commerceLabel(
+                        labels.reportFreshnessStatus,
+                        projection.freshness.status
+                      )}
                     </span>
                   </h3>
                   <p class="cell-muted">
@@ -671,11 +673,12 @@ function formatTimestamp(value: Date | string | null): string {
                           <span
                             class="status-badge"
                             data-variant={
-                              run.status === "completed" ? "success" : "danger"
+                              reportRunStatusTone[run.status] ?? "neutral"
                             }
+                            data-status={run.status}
                           >
                             <span class="status-dot" aria-hidden="true" />
-                            {run.status}
+                            {commerceLabel(labels.reportRunStatus, run.status)}
                           </span>
                         </td>
                         <td data-label="Rows">{count(run.rowCount)}</td>

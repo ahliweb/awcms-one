@@ -22,6 +22,10 @@ import { loadAdminScreen } from "../../lib/auth/admin-screen";
 import { logAdminPageError } from "../../lib/logging/error-log";
 import { getTranslatorFor } from "../../lib/i18n";
 import {
+  commerceLabel,
+  createCommerceLabels
+} from "../../lib/ui/commerce-admin-labels";
+import {
   fetchAffiliateCommissionRate,
   fetchStoreSettings
 } from "../../modules/commerce/application/store-settings-directory";
@@ -32,6 +36,7 @@ import { resolveRequestOrigin } from "../../lib/http/site-origin";
 
 const ssr = Astro.locals.ssrContext!;
 const { t, tn } = getTranslatorFor(Astro.locals.locale);
+const labels = createCommerceLabels(t);
 
 const screen = await loadAdminScreen({
   ssr,
@@ -565,7 +570,12 @@ const COURIER_OPTIONS = [
               ) : (
                 webhookEndpoints.map((endpoint) => (
                   <tr>
-                    <td data-label="Provider">{endpoint.provider}</td>
+                    <td data-label="Provider" data-provider={endpoint.provider}>
+                      {commerceLabel(
+                        labels.webhookEndpointProvider,
+                        endpoint.provider
+                      )}
+                    </td>
                     <td data-label="Label">{endpoint.label ?? "—"}</td>
                     <td data-label="Created">
                       {new Date(endpoint.createdAt).toLocaleString()}
