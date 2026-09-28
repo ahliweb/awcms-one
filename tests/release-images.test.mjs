@@ -296,6 +296,31 @@ describe("tools/release/lib/cosign.mjs", () => {
     assert.equal(args.some((a) => a.startsWith("COSIGN_PASSWORD=")), false);
   });
 
+  test("sign and verify both run as root with HOME=/root, before the image reference (#263)", () => {
+    const signArgs = cosignSignArgs({ ...base, tlogUpload: true });
+    const verifyArgs = cosignVerifyArgs({ publicKeyPath: "/k.pub", dockerConfig: base.dockerConfig, ref: base.ref, tlogUpload: true });
+    for (const args of [signArgs, verifyArgs]) {
+      const userIdx = args.indexOf("--user");
+      const homeIdx = args.indexOf("-e");
+      assert.ok(userIdx !== -1, "expected --user in argv");
+      assert.equal(args[userIdx + 1], "0");
+      assert.ok(homeIdx !== -1);
+      assert.equal(args[homeIdx + 1], "HOME=/root");
+      const imageIdx = args.indexOf("gcr.io/projectsigstore/cosign@sha256:b03690aa52bfe94054187142fba24dc54137650682810633901767d8a3e15b31");
+      assert.ok(imageIdx !== -1, "expected the pinned cosign image in argv");
+      assert.ok(userIdx < imageIdx, "--user must come before the image reference");
+      assert.ok(homeIdx < imageIdx, "-e HOME=/root must come before the image reference");
+    }
+  });
+
+  test("the docker-config mount target is /root/.docker/config.json, matching --user 0's HOME (#263)", () => {
+    const signArgs = cosignSignArgs({ ...base, tlogUpload: true });
+    const verifyArgs = cosignVerifyArgs({ publicKeyPath: "/k.pub", dockerConfig: base.dockerConfig, ref: base.ref, tlogUpload: true });
+    for (const args of [signArgs, verifyArgs]) {
+      assert.ok(args.includes(`${base.dockerConfig}:/root/.docker/config.json:ro`));
+    }
+  });
+
   test("sign and verify agree on the transparency log", () => {
     const signOn = cosignSignArgs({ ...base, tlogUpload: true });
     const verifyOn = cosignVerifyArgs({ publicKeyPath: "/k.pub", dockerConfig: base.dockerConfig, ref: base.ref, tlogUpload: true });

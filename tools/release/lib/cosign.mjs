@@ -45,7 +45,18 @@ export function shouldUploadTlog({ registry, override }) {
  * @returns {string[]}
  */
 export function cosignSignArgs({ keyArg, keyMount, dockerConfig, ref, tlogUpload }) {
-  const args = ["docker", "run", "--rm", "--network", "host", "-e", "COSIGN_PASSWORD"];
+  // --user 0 -e HOME=/root (issue #263): the pinned cosign image's own
+  // `Config.User` is 65532 with no HOME set, so a container started from it
+  // never looks in /root for docker credentials — and even if it did, the
+  // mounted ~/.docker/config.json is normally 0600 on the host, unreadable
+  // by that uid anyway. Without this, cosign has no registry credentials
+  // and `sign`/`verify` against an authenticated registry (e.g. GHCR) fail
+  // with "accessing image ... UNAUTHORIZED" — after the image has already
+  // been pushed unsigned. Proven 29 Sep 2026 against a local authenticated
+  // registry: fails with the old argv, succeeds with --user 0 -e HOME=/root,
+  // config and key both left at 0600. Trivy and syft already run as root
+  // and need no such fix.
+  const args = ["docker", "run", "--rm", "--network", "host", "--user", "0", "-e", "HOME=/root", "-e", "COSIGN_PASSWORD"];
   if (keyMount) args.push("-v", keyMount);
   args.push("-v", `${dockerConfig}:/root/.docker/config.json:ro`, COSIGN_IMAGE, "sign", "--key", keyArg, "--yes");
   if (!tlogUpload) args.push("--tlog-upload=false");
@@ -58,8 +69,11 @@ export function cosignSignArgs({ keyArg, keyMount, dockerConfig, ref, tlogUpload
  * @returns {string[]}
  */
 export function cosignVerifyArgs({ publicKeyPath, dockerConfig, ref, tlogUpload }) {
+  // --user 0 -e HOME=/root: see cosignSignArgs's own docblock (issue #263)
+  // — the same reasoning applies to verify, which reads the same mounted
+  // docker config to authenticate against the registry it verifies.
   const args = [
-    "docker", "run", "--rm", "--network", "host",
+    "docker", "run", "--rm", "--network", "host", "--user", "0", "-e", "HOME=/root",
     "-v", `${publicKeyPath}:/keys/cosign.pub:ro`,
     "-v", `${dockerConfig}:/root/.docker/config.json:ro`,
     COSIGN_IMAGE, "verify", "--key", "/keys/cosign.pub",
