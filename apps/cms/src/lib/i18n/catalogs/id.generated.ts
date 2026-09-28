@@ -2027,7 +2027,7 @@ export const ID_CATALOG: CompiledCatalog = {
   "{n}h ago": ["{n} jam lalu"],
   "{n}m ago": ["{n} mnt lalu"],
   "{n}s ago": ["{n} dtk lalu"],
-  "{orderCode} will move from {from} to {to}.": ["{orderCode} akan berpindah dari {from} ke {to}."],
+  "{orderCode} will move from {from} to {to}.": ["Status pesanan {orderCode} akan diubah dari {from} menjadi {to}."],
   "{slot} media id": ["id media {slot}"],
   "{status} comments awaiting moderation": ["komentar {status} menunggu moderasi"],
   "{title} will no longer be shown on the storefront.": ["{title} tidak akan lagi ditampilkan di etalase toko."],
