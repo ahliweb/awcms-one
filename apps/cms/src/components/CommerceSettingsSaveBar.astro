@@ -1,0 +1,229 @@
+---
+/**
+ * CommerceSettingsSaveBar — a sticky save/reset bar for a commerce settings
+ * form (Issue #244), ported from `media-lenterakalteng`'s
+ * `SettingsSaveBar.astro` (that fork's ADR-0124) into this module's own
+ * `src/components/` — never `src/pages/admin/`, see
+ * `CommerceMarketingTabs.astro`'s own docblock for why a shared partial
+ * placed under the admin route tree reads as an unregistered screen to
+ * `access-chokepoint-check.ts`.
+ *
+ * ## What this component is
+ *
+ * A **presentation-only** wrapper around two plain HTML controls that already
+ * work with no JavaScript at all:
+ *
+ *   - `<button type="submit" form={formId}>` — the `form` attribute lets this
+ *     button submit `formId` even though it is not a descendant of that
+ *     `<form>` (this bar is rendered after the form's own closing tag, sticky
+ *     to the bottom of its section, not nested inside the form's markup). A
+ *     real HTML form submission, exactly like a submit button written inside
+ *     the form.
+ *   - `<button type="reset" form={formId}>` (only when `resetLabel` is
+ *     given) — same mechanism, native `reset` behaviour, no script.
+ *
+ * It introduces **no new endpoint**: whatever `formId` already submits to is
+ * exactly what this bar triggers. `commerce-settings.astro`'s two settings
+ * forms keep their own manual `submit` listeners and `sendJson` calls
+ * unchanged — only the button that fires them moves outside the form, into
+ * this component.
+ *
+ * ## Props
+ *
+ * | Prop         | Type      | Required | Notes                                                                |
+ * | ------------ | --------- | -------- | --------------------------------------------------------------------- |
+ * | `formId`     | `string`  | yes      | `id` of the `<form>` this bar's buttons submit/reset.                 |
+ * | `saveLabel`  | `string`  | yes      | Primary button text — pass a translated string (`t("Save features")`).|
+ * | `resetLabel` | `string`  | no       | Secondary button text. Omitted -> no secondary button is rendered.    |
+ * | `ariaLabel`  | `string`  | no       | Landmark name. Defaults to `saveLabel`, which callers always pass through `t()` — so the region is never announced with an untranslated English fallback. |
+ * | `class`      | `string`  | no       | Extra class name(s) merged onto the root, e.g. a screen-specific hook. |
+ *
+ * A named `status` slot carries the text beside the buttons — "Saved",
+ * "Unsaved changes", or nothing at all. It is a slot rather than a string
+ * prop so the caller can attach the `data-dirty-label`/`data-clean-label`
+ * hooks the optional client half (below) reads, or render nothing.
+ *
+ * ## Demo
+ *
+ * ```astro
+ * <section>
+ *   <form id="commerce-features-form">
+ *     ...fields...
+ *   </form>
+ *
+ *   <CommerceSettingsSaveBar
+ *     formId="commerce-features-form"
+ *     saveLabel={t("Save features")}
+ *     resetLabel={t("Reset")}
+ *   >
+ *     <span
+ *       slot="status"
+ *       id="commerce-features-save-status"
+ *       data-dirty-label={t("Unsaved changes")}
+ *       data-clean-label={t("Saved")}
+ *     >
+ *       {t("Saved")}
+ *     </span>
+ *   </CommerceSettingsSaveBar>
+ * </section>
+ * ```
+ *
+ * ## Always visible — no field-changed gate
+ *
+ * This bar renders UNCONDITIONALLY whenever the caller renders it at all
+ * (subject only to the caller's own permission gate — see "Sticky within its
+ * own section" below). A version that hides until a field changes would mean
+ * a JavaScript-disabled visitor never sees a Save control at all on a screen
+ * that treats this bar as its ONLY submit affordance — a real regression
+ * given `AGENTS.md`'s "every core function works without JavaScript" rule.
+ * The optional client module (`commerce-settings-save-bar-client.ts`) adds
+ * only the dirty-vs-clean VISUAL distinction — a class toggle and an
+ * optional status-text swap — never a visibility change.
+ *
+ * ## Sticky within its own section, not the whole page
+ *
+ * `position: sticky; bottom: 0` is scoped by the element's containing
+ * block — the nearest block-container ancestor, e.g. the `<section>` this
+ * bar's caller wraps its form (and this bar) inside. Placed there, the bar
+ * sticks to the viewport bottom only while that section is still being
+ * scrolled through, and releases once the section's own bottom edge comes
+ * into view — so a page with TWO settings forms (like
+ * `commerce-settings.astro`'s store-settings and features sections) never
+ * shows two sticky bars overlapping at once. A caller that does NOT wrap its
+ * form + bar in a shared block ancestor gets a bar that stays stuck for the
+ * rest of the page instead — wrap them.
+ *
+ * ## Accessibility
+ *
+ * - `role="region"` + `aria-label` makes the bar a landmark a screen-reader
+ *   user can jump to directly, separate from the form's own fields.
+ * - Native buttons carry the browser's own focus/activation semantics; no
+ *   custom focus ring is defined here — the bar's surface is
+ *   `--color-surface` (a plain card, not a saturated fill), so the global
+ *   `:focus-visible` rule in `tokens.css` already reads clearly on it.
+ * - DOM order matters more than visual position for keyboard users: this bar
+ *   is rendered where the caller places it (right after the form it
+ *   submits), so Tab reaches it in the same order a sighted mouse user would
+ *   expect, and `position: sticky` never changes tab order.
+ * - 360px: actions wrap onto their own row, right-aligned, before the status
+ *   text is squeezed under a comfortable touch height — see the `@media`
+ *   block below.
+ *
+ * ## Buttons reuse the shared `.btn`/`.btn-primary` classes
+ *
+ * ADR-0120 already ships one button system (`admin.css`'s `.btn`,
+ * `.btn-primary`, `.btn-secondary`) at 36px tall by deliberate choice for a
+ * pointer-first admin (WCAG 2.2 AA 2.5.8 accepts 24px; see that file's own
+ * comment). This bar's buttons use those classes rather than a bespoke
+ * bar-specific button, so they look and behave exactly like every other
+ * primary/secondary button pair on this page.
+ */
+interface Props {
+  formId: string;
+  saveLabel: string;
+  resetLabel?: string;
+  ariaLabel?: string;
+  /** Extra class name(s) merged onto the root element. */
+  class?: string;
+}
+
+const {
+  formId,
+  saveLabel,
+  resetLabel,
+  ariaLabel,
+  class: className
+} = Astro.props;
+
+const hasStatusSlot = Astro.slots.has("status");
+---
+
+<div
+  class:list={["commerce-save-bar", className]}
+  role="region"
+  aria-label={ariaLabel ?? saveLabel}
+  data-commerce-save-bar
+  data-commerce-save-bar-form={formId}
+>
+  {
+    hasStatusSlot && (
+      <div class="commerce-save-bar-status">
+        <slot name="status" />
+      </div>
+    )
+  }
+  <div class="commerce-save-bar-actions">
+    {
+      resetLabel !== undefined && (
+        <button type="reset" form={formId} class="btn commerce-save-bar-reset">
+          {resetLabel}
+        </button>
+      )
+    }
+    <button
+      type="submit"
+      form={formId}
+      class="btn-primary commerce-save-bar-save"
+    >
+      {saveLabel}
+    </button>
+  </div>
+</div>
+
+<style>
+  .commerce-save-bar {
+    position: sticky;
+    bottom: 0;
+    z-index: var(--z-nav);
+    display: flex;
+    align-items: center;
+    gap: var(--sp-3);
+    flex-wrap: wrap;
+    margin-top: var(--sp-4);
+    padding: var(--sp-3) var(--sp-4);
+    /* iOS home-indicator safe area — the bar sits flush with the viewport
+       bottom once stuck, and a device with a bottom gesture bar would
+       otherwise render the buttons partly under it. */
+    padding-bottom: calc(var(--sp-3) + env(safe-area-inset-bottom, 0px));
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .commerce-save-bar-status {
+    flex: 1 1 auto;
+    min-width: 0;
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-semibold);
+    color: var(--color-text-muted);
+  }
+
+  /* Once a tracked form changes, `commerce-settings-save-bar-client.ts` adds
+     this class — a colour shift only, never a visibility change (see the
+     docblock above: the bar is never hidden). */
+  .commerce-save-bar.is-dirty .commerce-save-bar-status {
+    color: var(--color-primary);
+  }
+
+  .commerce-save-bar-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-2);
+    flex: none;
+    margin-left: auto;
+  }
+
+  @media (max-width: 480px) {
+    /* Actions get their own row, right-aligned, before the status text is
+       squeezed under a comfortable touch height. */
+    .commerce-save-bar {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .commerce-save-bar-actions {
+      justify-content: flex-end;
+    }
+  }
+</style>
