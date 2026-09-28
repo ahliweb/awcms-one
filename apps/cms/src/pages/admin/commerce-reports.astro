@@ -409,14 +409,16 @@ function formatTimestamp(value: Date | string | null): string {
                 ) : (
                   daily.map((row) => (
                     <tr data-sales-day={row.day}>
-                      <td data-label="Day">
+                      <td data-label={t("Day")}>
                         <span class="cell-code">{row.day}</span>
                       </td>
-                      <td data-label="Paid orders">{count(row.ordersPaid)}</td>
-                      <td data-label="Gross">{money(row.gross)}</td>
-                      <td data-label="Discount">{money(row.discount)}</td>
-                      <td data-label="Shipping">{money(row.shipping)}</td>
-                      <td data-label="Net">{money(row.net)}</td>
+                      <td data-label={t("Paid orders")}>
+                        {count(row.ordersPaid)}
+                      </td>
+                      <td data-label={t("Gross")}>{money(row.gross)}</td>
+                      <td data-label={t("Discount")}>{money(row.discount)}</td>
+                      <td data-label={t("Shipping")}>{money(row.shipping)}</td>
+                      <td data-label={t("Net")}>{money(row.net)}</td>
                     </tr>
                   ))
                 )}
@@ -425,15 +427,19 @@ function formatTimestamp(value: Date | string | null): string {
                 <tfoot>
                   <tr>
                     <th scope="row">{t("Total")}</th>
-                    <td data-label="Paid orders">{count(totals.ordersPaid)}</td>
-                    <td data-label="Gross">{money(String(totals.gross))}</td>
-                    <td data-label="Discount">
+                    <td data-label={t("Paid orders")}>
+                      {count(totals.ordersPaid)}
+                    </td>
+                    <td data-label={t("Gross")}>
+                      {money(String(totals.gross))}
+                    </td>
+                    <td data-label={t("Discount")}>
                       {money(String(totals.discount))}
                     </td>
-                    <td data-label="Shipping">
+                    <td data-label={t("Shipping")}>
                       {money(String(totals.shipping))}
                     </td>
-                    <td data-label="Net">{money(String(totals.net))}</td>
+                    <td data-label={t("Net")}>{money(String(totals.net))}</td>
                   </tr>
                 </tfoot>
               )}
@@ -525,9 +531,9 @@ function formatTimestamp(value: Date | string | null): string {
                 ) : (
                   byProduct.map((row) => (
                     <tr data-sales-product={row.productId}>
-                      <td data-label="Product">{row.productName}</td>
-                      <td data-label="Quantity">{count(row.qty)}</td>
-                      <td data-label="Gross">{money(row.gross)}</td>
+                      <td data-label={t("Product")}>{row.productName}</td>
+                      <td data-label={t("Quantity")}>{count(row.qty)}</td>
+                      <td data-label={t("Gross")}>{money(row.gross)}</td>
                     </tr>
                   ))
                 )}
@@ -589,13 +595,13 @@ function formatTimestamp(value: Date | string | null): string {
                 ) : (
                   byCategory.map((row) => (
                     <tr data-sales-category={row.categoryId ?? "uncategorised"}>
-                      <td data-label="Category">
+                      <td data-label={t("Category")}>
                         {row.categoryId === null
                           ? t("Uncategorised")
                           : row.categoryName}
                       </td>
-                      <td data-label="Quantity">{count(row.qty)}</td>
-                      <td data-label="Gross">{money(row.gross)}</td>
+                      <td data-label={t("Quantity")}>{count(row.qty)}</td>
+                      <td data-label={t("Gross")}>{money(row.gross)}</td>
                     </tr>
                   ))
                 )}
@@ -662,14 +668,14 @@ function formatTimestamp(value: Date | string | null): string {
                   ) : (
                     exportRuns.map((run) => (
                       <tr data-export-run={run.id}>
-                        <td data-label="Report">
+                        <td data-label={t("Report")}>
                           {PROJECTION_LABELS[run.projectionKey] ??
                             run.projectionKey}
                         </td>
-                        <td data-label="Format">
+                        <td data-label={t("Format")}>
                           <span class="cell-code">{run.format}</span>
                         </td>
-                        <td data-label="Status">
+                        <td data-label={t("Status")}>
                           <span
                             class="status-badge"
                             data-variant={
@@ -681,13 +687,13 @@ function formatTimestamp(value: Date | string | null): string {
                             {commerceLabel(labels.reportRunStatus, run.status)}
                           </span>
                         </td>
-                        <td data-label="Rows">{count(run.rowCount)}</td>
-                        <td data-label="Generated">
+                        <td data-label={t("Rows")}>{count(run.rowCount)}</td>
+                        <td data-label={t("Generated")}>
                           <span class="cell-muted">
                             {formatTimestamp(run.createdAt)}
                           </span>
                         </td>
-                        <td data-label="Artifact">
+                        <td data-label={t("Artifact")}>
                           {run.status === "completed" && !isExpired(run) ? (
                             <a
                               class="quick-link"

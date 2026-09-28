@@ -122,13 +122,13 @@ const canUpdate = screen.state === "allowed" && screen.data.canUpdate;
             ) : (
               customers.map((customer) => (
                 <tr data-customer-row={customer.id}>
-                  <td data-label="Name">{customer.name}</td>
-                  <td data-label="Phone">
+                  <td data-label={t("Name")}>{customer.name}</td>
+                  <td data-label={t("Phone")}>
                     <span class="cell-code">{customer.phoneMasked}</span>
                   </td>
-                  <td data-label="E-mail">{customer.email ?? "—"}</td>
+                  <td data-label={t("E-mail")}>{customer.email ?? "—"}</td>
                   <td
-                    data-label="Level"
+                    data-label={t("Level")}
                     class={canUpdate ? "stacked-block" : ""}
                   >
                     {canUpdate ? (
@@ -150,7 +150,7 @@ const canUpdate = screen.state === "allowed" && screen.data.canUpdate;
                     )}
                   </td>
                   <td
-                    data-label="Status"
+                    data-label={t("Status")}
                     class={canUpdate ? "stacked-block" : ""}
                   >
                     {canUpdate ? (
@@ -178,7 +178,7 @@ const canUpdate = screen.state === "allowed" && screen.data.canUpdate;
                     )}
                   </td>
                   {canUpdate && (
-                    <td data-label="Actions" class="stacked-block">
+                    <td data-label={t("Actions")} class="stacked-block">
                       <div class="row-actions">
                         <button
                           type="button"

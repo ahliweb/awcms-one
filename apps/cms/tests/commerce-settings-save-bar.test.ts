@@ -275,8 +275,12 @@ describe("/admin/commerce-settings — webhook endpoints table stacks on mobile 
   test("every data cell carries a data-label for the stacked mobile layout", async () => {
     const page = await readFile(PAGE, "utf8");
 
+    // Issue #253 moved every commerce screen's data-label from a bare
+    // English literal to data-label={t("…")}, reusing the matching <th>'s
+    // own msgid — see tests/commerce-data-label-i18n-253.test.ts for the
+    // repo-wide regression guard.
     for (const label of ["Provider", "Label", "Created", "Status", "Action"]) {
-      expect(page).toContain(`data-label="${label}"`);
+      expect(page).toContain(`data-label={t("${label}")}`);
     }
   });
 
@@ -284,7 +288,7 @@ describe("/admin/commerce-settings — webhook endpoints table stacks on mobile 
     const page = await readFile(PAGE, "utf8");
 
     const actionCellIndex = page.indexOf(
-      'data-label="Action" class="stacked-block"'
+      'data-label={t("Action")} class="stacked-block"'
     );
     expect(actionCellIndex).toBeGreaterThan(-1);
 

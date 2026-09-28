@@ -219,7 +219,7 @@ const showActions = canUpdate || canDelete;
               testimonials.map((testimonial) => (
                 <tr data-testimonial-row={testimonial.id}>
                   <td
-                    data-label="Author"
+                    data-label={t("Author")}
                     class={canUpdate ? "stacked-block" : ""}
                   >
                     {canUpdate ? (
@@ -234,7 +234,7 @@ const showActions = canUpdate || canDelete;
                     )}
                   </td>
                   <td
-                    data-label="Quote"
+                    data-label={t("Quote")}
                     class={canUpdate ? "stacked-block" : ""}
                   >
                     {canUpdate ? (
@@ -249,7 +249,7 @@ const showActions = canUpdate || canDelete;
                     )}
                   </td>
                   <td
-                    data-label="Rating"
+                    data-label={t("Rating")}
                     class={canUpdate ? "stacked-block" : ""}
                   >
                     {canUpdate ? (
@@ -267,7 +267,7 @@ const showActions = canUpdate || canDelete;
                     )}
                   </td>
                   <td
-                    data-label="Active"
+                    data-label={t("Active")}
                     class={canUpdate ? "stacked-block" : ""}
                   >
                     {canUpdate ? (
@@ -284,7 +284,7 @@ const showActions = canUpdate || canDelete;
                     )}
                   </td>
                   {showActions && (
-                    <td data-label="Actions" class="stacked-block">
+                    <td data-label={t("Actions")} class="stacked-block">
                       <div class="row-actions">
                         {canUpdate && (
                           <button

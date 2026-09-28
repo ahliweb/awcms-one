@@ -210,20 +210,23 @@ const selected = screen.state === "allowed" ? screen.data.selected : null;
               ) : (
                 campaigns.map((campaign) => (
                   <tr data-campaign-row={campaign.id}>
-                    <td data-label="Channel" data-channel={campaign.channel}>
+                    <td
+                      data-label={t("Channel")}
+                      data-channel={campaign.channel}
+                    >
                       {commerceLabel(labels.campaignChannel, campaign.channel)}
                     </td>
-                    <td data-label="Status">
+                    <td data-label={t("Status")}>
                       <span class="status-badge" data-status={campaign.status}>
                         {commerceLabel(labels.campaignStatus, campaign.status)}
                       </span>
                     </td>
-                    <td data-label="Recipients">
+                    <td data-label={t("Recipients")}>
                       {campaign.recipientCount ?? "—"}
                     </td>
-                    <td data-label="Sent">{campaign.sentCount ?? "—"}</td>
-                    <td data-label="Created">{campaign.createdAt}</td>
-                    <td data-label="Open">
+                    <td data-label={t("Sent")}>{campaign.sentCount ?? "—"}</td>
+                    <td data-label={t("Created")}>{campaign.createdAt}</td>
+                    <td data-label={t("Open")}>
                       <a href={`/admin/commerce-campaigns?id=${campaign.id}`}>
                         {t("View")}
                       </a>

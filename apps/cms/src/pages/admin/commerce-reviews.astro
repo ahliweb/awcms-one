@@ -127,19 +127,19 @@ const showActions = canUpdate || canDelete;
             ) : (
               reviews.map((review) => (
                 <tr data-review-row={review.id}>
-                  <td data-label="Product">
+                  <td data-label={t("Product")}>
                     <span class="cell-code">{review.productId}</span>
                   </td>
-                  <td data-label="Rating">{review.rating} / 5</td>
-                  <td data-label="Body">{review.body}</td>
-                  <td data-label="Status">
+                  <td data-label={t("Rating")}>{review.rating} / 5</td>
+                  <td data-label={t("Body")}>{review.body}</td>
+                  <td data-label={t("Status")}>
                     <span data-status={review.status}>
                       {commerceLabel(labels.reviewStatus, review.status)}
                     </span>
                   </td>
-                  <td data-label="Submitted">{review.createdAt}</td>
+                  <td data-label={t("Submitted")}>{review.createdAt}</td>
                   {showActions && (
-                    <td data-label="Actions" class="stacked-block">
+                    <td data-label={t("Actions")} class="stacked-block">
                       <div class="row-actions">
                         {canUpdate && review.status === "pending" && (
                           <>

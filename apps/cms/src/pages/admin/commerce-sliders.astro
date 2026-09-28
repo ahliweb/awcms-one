@@ -204,7 +204,7 @@ const showActions = canUpdate || canDelete;
               sliders.map((slider) => (
                 <tr data-slider-row={slider.id}>
                   <td
-                    data-label="Title"
+                    data-label={t("Title")}
                     class={canUpdate ? "stacked-block" : ""}
                   >
                     {canUpdate ? (
@@ -219,7 +219,7 @@ const showActions = canUpdate || canDelete;
                     )}
                   </td>
                   <td
-                    data-label="Sort order"
+                    data-label={t("Sort order")}
                     class={canUpdate ? "stacked-block" : ""}
                   >
                     {canUpdate ? (
@@ -235,7 +235,7 @@ const showActions = canUpdate || canDelete;
                     )}
                   </td>
                   <td
-                    data-label="Active"
+                    data-label={t("Active")}
                     class={canUpdate ? "stacked-block" : ""}
                   >
                     {canUpdate ? (
@@ -252,7 +252,7 @@ const showActions = canUpdate || canDelete;
                     )}
                   </td>
                   {showActions && (
-                    <td data-label="Actions" class="stacked-block">
+                    <td data-label={t("Actions")} class="stacked-block">
                       <div class="row-actions">
                         {canUpdate && (
                           <button

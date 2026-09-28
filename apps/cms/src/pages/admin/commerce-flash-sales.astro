@@ -223,7 +223,7 @@ const showActions = canUpdate || canDelete;
               flashSales.map((sale) => (
                 <tr data-flash-sale-row={sale.id}>
                   <td
-                    data-label="Name"
+                    data-label={t("Name")}
                     class={canUpdate ? "stacked-block" : ""}
                   >
                     {canUpdate ? (
@@ -239,7 +239,7 @@ const showActions = canUpdate || canDelete;
                     )}
                   </td>
                   <td
-                    data-label="Slug"
+                    data-label={t("Slug")}
                     class={canUpdate ? "stacked-block" : ""}
                   >
                     {canUpdate ? (
@@ -255,7 +255,7 @@ const showActions = canUpdate || canDelete;
                     )}
                   </td>
                   <td
-                    data-label="Starts at"
+                    data-label={t("Starts at")}
                     class={canUpdate ? "stacked-block" : ""}
                   >
                     {canUpdate ? (
@@ -270,7 +270,7 @@ const showActions = canUpdate || canDelete;
                     )}
                   </td>
                   <td
-                    data-label="Ends at"
+                    data-label={t("Ends at")}
                     class={canUpdate ? "stacked-block" : ""}
                   >
                     {canUpdate ? (
@@ -285,7 +285,7 @@ const showActions = canUpdate || canDelete;
                     )}
                   </td>
                   <td
-                    data-label="Status"
+                    data-label={t("Status")}
                     class={canUpdate ? "stacked-block" : ""}
                   >
                     {canUpdate ? (
@@ -313,7 +313,7 @@ const showActions = canUpdate || canDelete;
                     )}
                   </td>
                   {showActions && (
-                    <td data-label="Actions" class="stacked-block">
+                    <td data-label={t("Actions")} class="stacked-block">
                       <div class="row-actions">
                         {canUpdate && (
                           <button

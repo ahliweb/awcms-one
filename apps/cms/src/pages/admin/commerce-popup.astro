@@ -201,7 +201,7 @@ const showActions = canUpdate || canDelete;
               popups.map((popup) => (
                 <tr data-popup-row={popup.id}>
                   <td
-                    data-label="Title"
+                    data-label={t("Title")}
                     class={canUpdate ? "stacked-block" : ""}
                   >
                     {canUpdate ? (
@@ -215,11 +215,14 @@ const showActions = canUpdate || canDelete;
                       popup.title
                     )}
                   </td>
-                  <td data-label="Frequency" data-frequency={popup.frequency}>
+                  <td
+                    data-label={t("Frequency")}
+                    data-frequency={popup.frequency}
+                  >
                     {commerceLabel(labels.popupFrequency, popup.frequency)}
                   </td>
                   <td
-                    data-label="Active"
+                    data-label={t("Active")}
                     class={canUpdate ? "stacked-block" : ""}
                   >
                     {canUpdate ? (
@@ -236,7 +239,7 @@ const showActions = canUpdate || canDelete;
                     )}
                   </td>
                   {showActions && (
-                    <td data-label="Actions" class="stacked-block">
+                    <td data-label={t("Actions")} class="stacked-block">
                       <div class="row-actions">
                         {canUpdate && (
                           <button

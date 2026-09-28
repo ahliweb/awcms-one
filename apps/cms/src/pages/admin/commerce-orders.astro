@@ -247,7 +247,7 @@ const canUpdate = screen.state === "allowed" && screen.data.canUpdate;
                 return (
                   <>
                     <tr data-order-row={order.id}>
-                      <td data-label="Order code">
+                      <td data-label={t("Order code")}>
                         <a
                           class="cell-code"
                           href={`/admin/commerce-orders/${order.id}`}
@@ -255,11 +255,11 @@ const canUpdate = screen.state === "allowed" && screen.data.canUpdate;
                           {order.orderCode}
                         </a>
                       </td>
-                      <td data-label="Customer">
+                      <td data-label={t("Customer")}>
                         {order.customerName} ({order.customerPhoneMasked})
                       </td>
                       <td
-                        data-label="Status"
+                        data-label={t("Status")}
                         class={canUpdate ? "stacked-block" : ""}
                       >
                         <span
@@ -290,7 +290,7 @@ const canUpdate = screen.state === "allowed" && screen.data.canUpdate;
                         )}
                       </td>
                       <td
-                        data-label="Payment"
+                        data-label={t("Payment")}
                         data-payment-status={order.paymentStatus}
                       >
                         {commerceLabel(
@@ -298,9 +298,12 @@ const canUpdate = screen.state === "allowed" && screen.data.canUpdate;
                           order.paymentStatus
                         )}
                       </td>
-                      <td data-label="Total">{order.total}</td>
-                      <td data-label="Placed">{order.createdAt}</td>
-                      <td data-label="Payment gateway" class="stacked-block">
+                      <td data-label={t("Total")}>{order.total}</td>
+                      <td data-label={t("Placed")}>{order.createdAt}</td>
+                      <td
+                        data-label={t("Payment gateway")}
+                        class="stacked-block"
+                      >
                         <button
                           type="button"
                           class="module-toggle order-gateway-toggle-btn"
@@ -310,7 +313,7 @@ const canUpdate = screen.state === "allowed" && screen.data.canUpdate;
                         </button>
                       </td>
                       {canUpdate && (
-                        <td data-label="Actions" class="stacked-block">
+                        <td data-label={t("Actions")} class="stacked-block">
                           <div class="row-actions">
                             <button
                               type="button"

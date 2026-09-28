@@ -570,20 +570,23 @@ const COURIER_OPTIONS = [
               ) : (
                 webhookEndpoints.map((endpoint) => (
                   <tr>
-                    <td data-label="Provider" data-provider={endpoint.provider}>
+                    <td
+                      data-label={t("Provider")}
+                      data-provider={endpoint.provider}
+                    >
                       {commerceLabel(
                         labels.webhookEndpointProvider,
                         endpoint.provider
                       )}
                     </td>
-                    <td data-label="Label">{endpoint.label ?? "—"}</td>
-                    <td data-label="Created">
+                    <td data-label={t("Label")}>{endpoint.label ?? "—"}</td>
+                    <td data-label={t("Created")}>
                       {new Date(endpoint.createdAt).toLocaleString()}
                     </td>
-                    <td data-label="Status">
+                    <td data-label={t("Status")}>
                       {endpoint.revokedAt ? t("Revoked") : t("Active")}
                     </td>
-                    <td data-label="Action" class="stacked-block">
+                    <td data-label={t("Action")} class="stacked-block">
                       <div class="row-actions">
                         {!endpoint.revokedAt && (
                           <button
