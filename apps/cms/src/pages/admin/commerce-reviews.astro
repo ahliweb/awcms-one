@@ -5,10 +5,15 @@ import "../../styles/admin-screens.css";
 import { loadAdminScreen } from "../../lib/auth/admin-screen";
 import { logAdminPageError } from "../../lib/logging/error-log";
 import { getTranslatorFor } from "../../lib/i18n";
+import {
+  commerceLabel,
+  createCommerceLabels
+} from "../../lib/ui/commerce-admin-labels";
 import { listReviewsForAdmin } from "../../modules/commerce/application/review-directory";
 
 const ssr = Astro.locals.ssrContext!;
 const { t, tn } = getTranslatorFor(Astro.locals.locale);
+const labels = createCommerceLabels(t);
 
 const screen = await loadAdminScreen({
   ssr,
@@ -126,7 +131,11 @@ const showActions = canUpdate || canDelete;
                   </td>
                   <td data-label="Rating">{review.rating} / 5</td>
                   <td data-label="Body">{review.body}</td>
-                  <td data-label="Status">{review.status}</td>
+                  <td data-label="Status">
+                    <span data-status={review.status}>
+                      {commerceLabel(labels.reviewStatus, review.status)}
+                    </span>
+                  </td>
                   <td data-label="Submitted">{review.createdAt}</td>
                   {showActions && (
                     <td data-label="Actions" class="stacked-block">

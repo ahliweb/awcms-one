@@ -5,10 +5,15 @@ import "../../styles/admin-screens.css";
 import { loadAdminScreen } from "../../lib/auth/admin-screen";
 import { logAdminPageError } from "../../lib/logging/error-log";
 import { getTranslatorFor } from "../../lib/i18n";
+import {
+  commerceLabel,
+  createCommerceLabels
+} from "../../lib/ui/commerce-admin-labels";
 import { listCustomers } from "../../modules/commerce/application/customer-directory";
 
 const ssr = Astro.locals.ssrContext!;
 const { t, tn } = getTranslatorFor(Astro.locals.locale);
+const labels = createCommerceLabels(t);
 
 const screen = await loadAdminScreen({
   ssr,
@@ -167,7 +172,9 @@ const canUpdate = screen.state === "allowed" && screen.data.canUpdate;
                         </option>
                       </select>
                     ) : (
-                      customer.status
+                      <span data-status={customer.status}>
+                        {commerceLabel(labels.customerStatus, customer.status)}
+                      </span>
                     )}
                   </td>
                   {canUpdate && (

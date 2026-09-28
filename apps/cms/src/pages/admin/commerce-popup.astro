@@ -11,11 +11,16 @@ import "../../styles/admin-screens.css";
 import { loadAdminScreen } from "../../lib/auth/admin-screen";
 import { logAdminPageError } from "../../lib/logging/error-log";
 import { getTranslatorFor } from "../../lib/i18n";
+import {
+  commerceLabel,
+  createCommerceLabels
+} from "../../lib/ui/commerce-admin-labels";
 import MarketingTabs from "../../components/CommerceMarketingTabs.astro";
 import { listPopups } from "../../modules/commerce/application/popup-directory";
 
 const ssr = Astro.locals.ssrContext!;
 const { t, tn } = getTranslatorFor(Astro.locals.locale);
+const labels = createCommerceLabels(t);
 
 const screen = await loadAdminScreen({
   ssr,
@@ -129,11 +134,11 @@ const showActions = canUpdate || canDelete;
 
         <label for="popup-frequency">{t("Frequency")}</label>
         <select id="popup-frequency" name="frequency">
-          <option value="once_per_session">{t("Once per session")}</option>
-          <option value="once_per_day" selected>
-            {t("Once per day")}
-          </option>
-          <option value="always">{t("Always")}</option>
+          {Object.entries(labels.popupFrequency).map(([value, label]) => (
+            <option value={value} selected={value === "once_per_day"}>
+              {label}
+            </option>
+          ))}
         </select>
 
         <label>
@@ -209,7 +214,9 @@ const showActions = canUpdate || canDelete;
                       popup.title
                     )}
                   </td>
-                  <td data-label="Frequency">{popup.frequency}</td>
+                  <td data-label="Frequency" data-frequency={popup.frequency}>
+                    {commerceLabel(labels.popupFrequency, popup.frequency)}
+                  </td>
                   <td
                     data-label="Active"
                     class={canUpdate ? "stacked-block" : ""}

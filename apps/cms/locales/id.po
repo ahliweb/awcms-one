@@ -5390,6 +5390,9 @@ msgstr "Pesan"
 msgid "No WhatsApp messages match this filter."
 msgstr "Tidak ada pesan WhatsApp yang cocok dengan filter ini."
 
+msgid "Messages queued or sent through the WhatsApp outbox will appear here."
+msgstr "Pesan yang dimasukkan ke antrean atau dikirim melalui kotak keluar WhatsApp akan muncul di sini."
+
 msgid "Template"
 msgstr "Templat"
 
