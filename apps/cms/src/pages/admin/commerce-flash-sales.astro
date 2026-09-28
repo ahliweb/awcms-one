@@ -9,6 +9,7 @@
  * images/variants editors use for a product's sub-resources.
  */
 import AdminLayout from "../../layouts/AdminLayout.astro";
+import CommerceConfirmDialog from "../../components/CommerceConfirmDialog.astro";
 import "../../styles/admin-screens.css";
 import { loadAdminScreen } from "../../lib/auth/admin-screen";
 import { logAdminPageError } from "../../lib/logging/error-log";
@@ -321,7 +322,13 @@ const showActions = canUpdate || canDelete;
                             type="button"
                             class="module-toggle flash-sale-delete-btn"
                             data-flash-sale-id={sale.id}
-                            data-flash-sale-name={sale.name}
+                            data-confirm-title={t("Delete this flash sale?")}
+                            data-confirm-message={t(
+                              "{name} will no longer run on the storefront.",
+                              { name: sale.name }
+                            )}
+                            data-confirm-label={t("Delete flash sale")}
+                            data-confirm-danger="true"
                           >
                             {t("Delete")}
                           </button>
@@ -413,6 +420,7 @@ const showActions = canUpdate || canDelete;
       </section>
     )
   }
+  <CommerceConfirmDialog locale={Astro.locals.locale} />
 </AdminLayout>
 
 <script>
@@ -426,6 +434,7 @@ const showActions = canUpdate || canDelete;
     onSubmit,
     sendJson
   } from "../../lib/ui/admin-form-client";
+  import { confirmFromTrigger } from "../../lib/ui/commerce-confirm-dialog-client";
 
   const createError = messageBox("flash-sale-create-error");
 
@@ -493,8 +502,8 @@ const showActions = canUpdate || canDelete;
   onAction(".flash-sale-delete-btn", async (button) => {
     const id = button.dataset.flashSaleId;
     if (!id) return;
-    const name = button.dataset.flashSaleName ?? "this flash sale";
-    if (!window.confirm(`Delete ${name}?`)) return;
+    const confirmed = await confirmFromTrigger(button);
+    if (!confirmed) return;
 
     await mutateAndReload(
       button,

@@ -642,7 +642,28 @@ export const READER_BUDGET_BYTES = 24_000;
  * re-measure on the next commerce screen and tighten if the real total sits
  * well below this.
  */
-export const APP_BUDGET_BYTES = 261_000;
+/**
+ * **Raised to 265,000 B for Issue #242** — `CommerceConfirmDialog.astro` (a
+ * new shared component, its own scoped `<style>`) plus
+ * `commerce-confirm-dialog-client.ts` (a new shared client module), rendered
+ * and imported once each by the ten commerce screens that used to call
+ * `window.confirm(...)` directly.
+ *
+ * The client-side cost turned out SMALLER than a first measurement of this
+ * same issue suggested (264,289 B, when every screen's own `<script>` still
+ * built a `{ title, message, confirmLabel }` options object by hand). The
+ * coordinator's fix moved those strings server-side, into each trigger
+ * button's own `t()`-translated `data-confirm-*` attributes read back by
+ * `confirmFromTrigger` — so every screen's script SHRANK to a two-line
+ * `confirmFromTrigger(button)` call, while the growth that remains is the
+ * shared dialog/client module plus a few new i18n catalogue entries.
+ * Measured clean build: 262,861 B (up from 258,829 B). 265,000 is kept
+ * rather than tightened to match, since the margin is already small; the
+ * next commerce screen's own measurement is the one to tighten against.
+ * Re-measured after merging with Issue #244's save bar (both components
+ * together): 264,573 B — still inside 265,000.
+ */
+export const APP_BUDGET_BYTES = 265_000;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.

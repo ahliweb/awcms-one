@@ -10,6 +10,7 @@
  * screen's own admin-screen-coverage entry accepts for a first cut.
  */
 import AdminLayout from "../../layouts/AdminLayout.astro";
+import CommerceConfirmDialog from "../../components/CommerceConfirmDialog.astro";
 import "../../styles/admin-screens.css";
 import { loadAdminScreen } from "../../lib/auth/admin-screen";
 import { logAdminPageError } from "../../lib/logging/error-log";
@@ -396,6 +397,11 @@ const STATUS_TONE: Record<string, string> = {
                               type="button"
                               class="module-toggle commission-approve-btn"
                               data-commission-id={commission.id}
+                              data-confirm-title={t("Approve this commission?")}
+                              data-confirm-message={t(
+                                "This marks the commission as approved."
+                              )}
+                              data-confirm-label={t("Approve commission")}
                             >
                               {t("Approve")}
                             </button>
@@ -403,6 +409,10 @@ const STATUS_TONE: Record<string, string> = {
                               type="button"
                               class="module-toggle commission-void-btn"
                               data-commission-id={commission.id}
+                              data-confirm-title={t("Void this commission?")}
+                              data-confirm-message={t("This cannot be undone.")}
+                              data-confirm-label={t("Void commission")}
+                              data-confirm-danger="true"
                             >
                               {t("Void")}
                             </button>
@@ -414,6 +424,13 @@ const STATUS_TONE: Record<string, string> = {
                               type="button"
                               class="module-toggle commission-pay-btn"
                               data-commission-id={commission.id}
+                              data-confirm-title={t(
+                                "Mark this commission as paid?"
+                              )}
+                              data-confirm-message={t(
+                                "This records the commission as paid out."
+                              )}
+                              data-confirm-label={t("Mark paid")}
                             >
                               {t("Mark paid")}
                             </button>
@@ -421,6 +438,10 @@ const STATUS_TONE: Record<string, string> = {
                               type="button"
                               class="module-toggle commission-void-btn"
                               data-commission-id={commission.id}
+                              data-confirm-title={t("Void this commission?")}
+                              data-confirm-message={t("This cannot be undone.")}
+                              data-confirm-label={t("Void commission")}
+                              data-confirm-danger="true"
                             >
                               {t("Void")}
                             </button>
@@ -437,6 +458,7 @@ const STATUS_TONE: Record<string, string> = {
       </div>
     )
   }
+  <CommerceConfirmDialog locale={Astro.locals.locale} />
 </AdminLayout>
 
 <script>
@@ -446,6 +468,7 @@ const STATUS_TONE: Record<string, string> = {
     onAction,
     sendJson
   } from "../../lib/ui/admin-form-client";
+  import { confirmFromTrigger } from "../../lib/ui/commerce-confirm-dialog-client";
 
   const actionError = messageBox("affiliate-action-error");
 
@@ -471,18 +494,18 @@ const STATUS_TONE: Record<string, string> = {
     });
   }
 
-  /** One POST-transition wiring for approve/pay/void — all three require `Idempotency-Key` (skill `awcms-idempotency`). */
+  /** One POST-transition wiring for approve/pay/void — all three require `Idempotency-Key` (skill `awcms-idempotency`) and all three confirm first, via the button's own `data-confirm-*` attributes. */
   function commissionTransition(
     selector: string,
     action: "approve" | "pay" | "void",
     failMessage: string,
-    busyLabel: string,
-    confirmMessage?: string
+    busyLabel: string
   ): void {
     onAction(selector, async (button) => {
       const id = button.dataset.commissionId;
       if (!id) return;
-      if (confirmMessage && !window.confirm(confirmMessage)) return;
+      const confirmed = await confirmFromTrigger(button);
+      if (!confirmed) return;
       await mutateAndReload(
         button,
         actionError,
@@ -540,8 +563,7 @@ const STATUS_TONE: Record<string, string> = {
     ".commission-void-btn",
     "void",
     "Could not void the commission. Please try again.",
-    "Voiding…",
-    "Void this commission?"
+    "Voiding…"
   );
 
   document

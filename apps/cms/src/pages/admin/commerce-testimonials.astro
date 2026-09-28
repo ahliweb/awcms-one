@@ -1,6 +1,7 @@
 ---
 /** Commerce testimonial CRUD screen (Issue #26). */
 import AdminLayout from "../../layouts/AdminLayout.astro";
+import CommerceConfirmDialog from "../../components/CommerceConfirmDialog.astro";
 import "../../styles/admin-screens.css";
 import { loadAdminScreen } from "../../lib/auth/admin-screen";
 import { logAdminPageError } from "../../lib/logging/error-log";
@@ -299,7 +300,13 @@ const showActions = canUpdate || canDelete;
                             type="button"
                             class="module-toggle testimonial-delete-btn"
                             data-testimonial-id={testimonial.id}
-                            data-testimonial-author={testimonial.authorName}
+                            data-confirm-title={t("Delete this testimonial?")}
+                            data-confirm-message={t(
+                              "{author}'s testimonial will no longer be shown on the storefront.",
+                              { author: testimonial.authorName }
+                            )}
+                            data-confirm-label={t("Delete testimonial")}
+                            data-confirm-danger="true"
                           >
                             {t("Delete")}
                           </button>
@@ -315,6 +322,7 @@ const showActions = canUpdate || canDelete;
       </div>
     )
   }
+  <CommerceConfirmDialog locale={Astro.locals.locale} />
 </AdminLayout>
 
 <script>
@@ -328,6 +336,7 @@ const showActions = canUpdate || canDelete;
     onSubmit,
     sendJson
   } from "../../lib/ui/admin-form-client";
+  import { confirmFromTrigger } from "../../lib/ui/commerce-confirm-dialog-client";
 
   const createError = messageBox("testimonial-create-error");
 
@@ -391,8 +400,8 @@ const showActions = canUpdate || canDelete;
   onAction(".testimonial-delete-btn", async (button) => {
     const id = button.dataset.testimonialId;
     if (!id) return;
-    const author = button.dataset.testimonialAuthor ?? "this testimonial";
-    if (!window.confirm(`Delete ${author}'s testimonial?`)) return;
+    const confirmed = await confirmFromTrigger(button);
+    if (!confirmed) return;
 
     await mutateAndReload(
       button,

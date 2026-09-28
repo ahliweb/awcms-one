@@ -1,0 +1,263 @@
+---
+/**
+ * CommerceConfirmDialog — one accessible, native `<dialog>` confirm prompt,
+ * rendered ONCE per admin page and driven entirely from client `<script>`s
+ * via `commerce-confirm-dialog-client.ts` (Issue #242).
+ *
+ * ## Why this exists
+ *
+ * Ten commerce admin screens called `window.confirm(...)` directly for their
+ * one destructive (or, for a campaign send, non-destructive-but-worth-a-pause)
+ * action. `window.confirm` cannot be styled, cannot be labelled beyond its own
+ * message, blocks the main thread synchronously, and reads to a screen reader
+ * as a bare native alert rather than a dialog whose title and role describe
+ * WHAT is being confirmed. A `<dialog role="alertdialog">` fixes all four
+ * without any backend change — none of the endpoints these screens call
+ * accept or record a reason, so this is presentation-only.
+ *
+ * Lives under `src/components/`, never `src/pages/admin/` — same reasoning as
+ * `CommerceMarketingTabs.astro`'s own docblock: `access-chokepoint-check.ts`
+ * walks every `.astro` file under `src/pages/admin` looking for a
+ * `loadAdminScreen` call, and a shared partial placed there would read as an
+ * (N+1)th screen with no chokepoint and fail the gate.
+ *
+ * ## Contract
+ *
+ * Props:
+ *   - `id?: string` — the dialog's own DOM id, default `"commerce-confirm-dialog"`.
+ *     A page only needs a non-default id if it renders the dialog more than
+ *     once (none of the ten call sites this issue touches do — one dialog is
+ *     shared by every confirm action on the page, one at a time).
+ *   - `locale?: Locale | null | undefined` — forwarded to `getTranslatorFor`
+ *     for this component's own STATIC chrome (see below). Pass
+ *     `Astro.locals.locale`, the same value every screen already threads
+ *     through its own `getTranslatorFor` call.
+ *
+ * Rendered ids a caller's client script may address (all derived from `id`):
+ *   - `${id}` — the `<dialog>` itself.
+ *   - `${id}-title` — the `<h2>` title region (empty until a call sets it).
+ *   - `${id}-message` — the `<p>` message region (empty until a call sets it).
+ *   - `${id}-note-field` — the optional note `.admin-field` wrapper, `hidden`
+ *     by default.
+ *   - `${id}-note-label` — the note's own `<label>`.
+ *   - `${id}-note` — the note `<textarea>`.
+ *   - `${id}-cancel` / `${id}-confirm` — the two buttons.
+ *
+ * None of this is meant to be driven by hand: `commerce-confirm-dialog-client.ts`
+ * exports `confirmCommerceAction`/`confirmCommerceActionWithNote`, which know
+ * these ids already (given the same `dialogId`) and own the whole open/resolve
+ * lifecycle. A caller imports one of those two functions and never touches
+ * `document.getElementById` for this dialog directly.
+ *
+ * Three data attributes carry this component's OWN translated defaults (the
+ * dialog's own Cancel/Confirm chrome, and its generic title fallback) so this
+ * component is the only place that needs to import `t()` for THOSE three
+ * strings:
+ *   - `data-default-title`, `data-default-cancel-label`,
+ *     `data-default-confirm-label` — used whenever a call omits `title` /
+ *     relies on the default Cancel label / omits `confirmLabel`.
+ *
+ * A DIFFERENT, per-action set of `data-confirm-*` attributes — `-title`,
+ * `-message`, `-label`, `-danger` — belongs on the TRIGGER element (the
+ * delete/send/cancel/… button), not on this dialog. Every one of this
+ * issue's ten screens renders those, `t()`-translated and already
+ * per-row-interpolated, on its own buttons; `confirmFromTrigger(el)` in
+ * `commerce-confirm-dialog-client.ts` reads them back. This is the
+ * recommended path for a NEW commerce confirm action — `confirmCommerceAction`
+ * itself stays available as the lower-level primitive `confirmFromTrigger`
+ * is built on, but a screen that calls it with a hand-written
+ * `{ title, message, confirmLabel }` literal has put an untranslated
+ * English sentence back in its own `<script>`, which is the exact defect
+ * this component exists to remove.
+ *
+ * ## Usage
+ *
+ * ```astro
+ * ---
+ * import CommerceConfirmDialog from "../../components/CommerceConfirmDialog.astro";
+ * const { t } = getTranslatorFor(Astro.locals.locale);
+ * ---
+ * <AdminLayout ...>
+ *   <button
+ *     type="button"
+ *     class="thing-delete-btn"
+ *     data-thing-id={thing.id}
+ *     data-confirm-title={t("Delete this thing?")}
+ *     data-confirm-message={t("{name} will be removed.", { name: thing.name })}
+ *     data-confirm-label={t("Delete thing")}
+ *     data-confirm-danger="true"
+ *   >
+ *     {t("Delete")}
+ *   </button>
+ *   <CommerceConfirmDialog locale={Astro.locals.locale} />
+ * </AdminLayout>
+ *
+ * <script>
+ *   import { confirmFromTrigger } from "../../lib/ui/commerce-confirm-dialog-client";
+ *   import { onAction, mutateAndReload, messageBox, sendJson } from "../../lib/ui/admin-form-client";
+ *
+ *   onAction(".thing-delete-btn", async (button) => {
+ *     const confirmed = await confirmFromTrigger(button);
+ *     if (!confirmed) return;
+ *     await mutateAndReload(button, actionError, () => sendJson("DELETE", `/api/v1/commerce/things/${id}`), "…");
+ *   });
+ * </script>
+ * ```
+ *
+ * No `title`/`message`/`confirmLabel` literal appears in the `<script>`
+ * above — every word the operator reads came from the `data-confirm-*`
+ * attributes on the button itself, already translated server-side.
+ *
+ * ## Accessibility notes
+ *
+ * - `role="alertdialog"` (not the bare implicit `dialog` role a `<dialog>`
+ *   element otherwise gets): this is a prompt demanding a decision before the
+ *   page is usable again, which is exactly what `alertdialog` is for.
+ * - `aria-labelledby`/`aria-describedby` point at the title/message regions,
+ *   so a screen reader announces both the moment `showModal()` opens it.
+ * - `showModal()` itself supplies the focus trap, Escape-to-cancel, page
+ *   inertness behind the dialog, the `::backdrop`, and (via the client
+ *   module's own explicit `.focus()` call, since the browser's own default
+ *   first-focusable-element behaviour is not the contract this issue asks
+ *   for) focus lands on the SAFE button (Cancel) for a `danger` action and on
+ *   Confirm otherwise — see that module's header comment.
+ * - The note `<textarea>` is wrapped in the existing `.admin-field` class
+ *   (`admin.css`), which already styles its `<label>` and border/focus state
+ *   consistently with every other admin form field — no new input chrome is
+ *   invented here.
+ * - No inline `style=` attribute anywhere in this file; every value is a
+ *   design token from `tokens.css`, referenced through the scoped `<style>`
+ *   below (light/dark both fall out of the token's own `:root[data-theme]`
+ *   override, same as every other component in this directory).
+ */
+import { getTranslatorFor } from "../lib/i18n";
+import type { Locale } from "../lib/i18n/locales";
+
+interface Props {
+  id?: string;
+  locale?: Locale | null | undefined;
+}
+
+const { id = "commerce-confirm-dialog", locale } = Astro.props as Props;
+const { t } = getTranslatorFor(locale);
+
+const titleId = `${id}-title`;
+const messageId = `${id}-message`;
+const noteFieldId = `${id}-note-field`;
+const noteLabelId = `${id}-note-label`;
+const noteInputId = `${id}-note`;
+const cancelId = `${id}-cancel`;
+const confirmId = `${id}-confirm`;
+---
+
+<dialog
+  id={id}
+  class="commerce-confirm-dialog"
+  role="alertdialog"
+  aria-labelledby={titleId}
+  aria-describedby={messageId}
+  data-default-title={t("Confirm action")}
+  data-default-cancel-label={t("Cancel")}
+  data-default-confirm-label={t("Confirm")}
+>
+  <form method="dialog" class="commerce-confirm-dialog-body">
+    <h2 id={titleId} class="commerce-confirm-dialog-title"></h2>
+    <p id={messageId} class="commerce-confirm-dialog-message"></p>
+    <div
+      id={noteFieldId}
+      class="admin-field commerce-confirm-dialog-note"
+      hidden
+    >
+      <label id={noteLabelId} for={noteInputId}></label>
+      <textarea id={noteInputId} rows="3"></textarea>
+    </div>
+    <div class="commerce-confirm-dialog-actions">
+      <button type="button" class="btn-secondary" id={cancelId}>
+        {t("Cancel")}
+      </button>
+      <button type="button" class="btn-primary" id={confirmId}>
+        {t("Confirm")}
+      </button>
+    </div>
+  </form>
+</dialog>
+
+<style>
+  /*
+   * A native `<dialog>`, opened with `showModal()` — see `admin.css`'s
+   * `.admin-palette` (the command palette) for upstream's own precedent of
+   * the same pattern this component follows for its chrome.
+   */
+  .commerce-confirm-dialog {
+    width: min(440px, 92vw);
+    max-width: none;
+    padding: 0;
+    margin: 14vh auto auto;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    background: var(--color-surface);
+    color: var(--color-text);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .commerce-confirm-dialog::backdrop {
+    background: var(--color-overlay);
+  }
+
+  .commerce-confirm-dialog-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-3);
+    padding: var(--sp-5);
+  }
+
+  .commerce-confirm-dialog-title {
+    margin: 0;
+    font-size: var(--fs-lg);
+    font-weight: var(--fw-semibold);
+    line-height: var(--lh-snug);
+    color: var(--color-text);
+  }
+
+  .commerce-confirm-dialog-message {
+    margin: 0;
+    font-size: var(--fs-sm);
+    line-height: var(--lh-normal);
+    color: var(--color-text-muted);
+  }
+
+  /* `.admin-field` (admin.css) already supplies the label/input layout and
+     focus-visible border; this only adds the spacing between it and its
+     neighbours, which `.admin-field` does not own. */
+  .commerce-confirm-dialog-note textarea {
+    width: 100%;
+    min-height: 76px;
+    resize: vertical;
+  }
+
+  .commerce-confirm-dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--sp-2);
+  }
+
+  /* 360px, no horizontal overflow: stack the actions and let each button take
+     the full row rather than shrinking two 44px-tall touch targets side by
+     side. */
+  @media (max-width: 420px) {
+    .commerce-confirm-dialog {
+      width: 92vw;
+      margin: 8vh auto auto;
+    }
+
+    .commerce-confirm-dialog-actions {
+      flex-direction: column-reverse;
+    }
+
+    .commerce-confirm-dialog-actions .btn-secondary,
+    .commerce-confirm-dialog-actions .btn-primary,
+    .commerce-confirm-dialog-actions .btn-danger {
+      width: 100%;
+    }
+  }
+</style>

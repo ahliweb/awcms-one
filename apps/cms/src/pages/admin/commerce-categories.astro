@@ -7,6 +7,7 @@
  * recreate" limitation `offices.astro` accepts for `parentOfficeId`.
  */
 import AdminLayout from "../../layouts/AdminLayout.astro";
+import CommerceConfirmDialog from "../../components/CommerceConfirmDialog.astro";
 import "../../styles/admin-screens.css";
 import { loadAdminScreen } from "../../lib/auth/admin-screen";
 import { logAdminPageError } from "../../lib/logging/error-log";
@@ -264,7 +265,13 @@ const showActions = canUpdate || canDelete;
                               type="button"
                               class="module-toggle category-delete-btn"
                               data-category-id={category.id}
-                              data-category-name={category.name}
+                              data-confirm-title={t("Delete this category?")}
+                              data-confirm-message={t(
+                                "Category {name} will be moved to trash and can be restored later.",
+                                { name: category.name }
+                              )}
+                              data-confirm-label={t("Delete category")}
+                              data-confirm-danger="true"
                             >
                               {t("Delete")}
                             </button>
@@ -328,6 +335,7 @@ const showActions = canUpdate || canDelete;
       </section>
     )
   }
+  <CommerceConfirmDialog locale={Astro.locals.locale} />
 </AdminLayout>
 
 <script>
@@ -339,6 +347,7 @@ const showActions = canUpdate || canDelete;
     onSubmit,
     sendJson
   } from "../../lib/ui/admin-form-client";
+  import { confirmFromTrigger } from "../../lib/ui/commerce-confirm-dialog-client";
 
   const createError = messageBox("category-create-error");
 
@@ -386,8 +395,8 @@ const showActions = canUpdate || canDelete;
   onAction(".category-delete-btn", async (button) => {
     const id = button.dataset.categoryId;
     if (!id) return;
-    const name = button.dataset.categoryName ?? "this category";
-    if (!window.confirm(`Delete ${name}? It can be restored later.`)) return;
+    const confirmed = await confirmFromTrigger(button);
+    if (!confirmed) return;
 
     await mutateAndReload(
       button,

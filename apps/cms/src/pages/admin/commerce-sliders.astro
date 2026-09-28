@@ -7,6 +7,7 @@
  * media-picker component this issue does not require.
  */
 import AdminLayout from "../../layouts/AdminLayout.astro";
+import CommerceConfirmDialog from "../../components/CommerceConfirmDialog.astro";
 import "../../styles/admin-screens.css";
 import { loadAdminScreen } from "../../lib/auth/admin-screen";
 import { logAdminPageError } from "../../lib/logging/error-log";
@@ -267,7 +268,13 @@ const showActions = canUpdate || canDelete;
                             type="button"
                             class="module-toggle slider-delete-btn"
                             data-slider-id={slider.id}
-                            data-slider-title={slider.title}
+                            data-confirm-title={t("Delete this slider?")}
+                            data-confirm-message={t(
+                              "{title} will no longer be shown on the storefront.",
+                              { title: slider.title }
+                            )}
+                            data-confirm-label={t("Delete slider")}
+                            data-confirm-danger="true"
                           >
                             {t("Delete")}
                           </button>
@@ -283,6 +290,7 @@ const showActions = canUpdate || canDelete;
       </div>
     )
   }
+  <CommerceConfirmDialog locale={Astro.locals.locale} />
 </AdminLayout>
 
 <script>
@@ -296,6 +304,7 @@ const showActions = canUpdate || canDelete;
     onSubmit,
     sendJson
   } from "../../lib/ui/admin-form-client";
+  import { confirmFromTrigger } from "../../lib/ui/commerce-confirm-dialog-client";
 
   const createError = messageBox("slider-create-error");
 
@@ -352,8 +361,8 @@ const showActions = canUpdate || canDelete;
   onAction(".slider-delete-btn", async (button) => {
     const id = button.dataset.sliderId;
     if (!id) return;
-    const title = button.dataset.sliderTitle ?? "this slider";
-    if (!window.confirm(`Delete ${title}?`)) return;
+    const confirmed = await confirmFromTrigger(button);
+    if (!confirmed) return;
 
     await mutateAndReload(
       button,
