@@ -271,9 +271,17 @@ describe("no screen builds a confirm options literal by hand", () => {
       // call): no screen's own `<script>` may declare a `title:`/`message:`
       // object key at all — every one of those now lives in the template half,
       // as a `data-confirm-title`/`data-confirm-message` attribute.
-      const scriptMatch = code.match(/<script>([\s\S]*)<\/script>/);
-      expect(scriptMatch).not.toBeNull();
-      const scriptBody = scriptMatch![1]!;
+      // Plain index slicing, not a `<script>…</script>` regex: this reads a
+      // source file we own (never untrusted HTML), and a tag-matching regex
+      // trips CodeQL's js/bad-tag-filter even in a test.
+      const scriptOpen = code.indexOf("<script>");
+      const scriptClose = code.lastIndexOf("</script>");
+      expect(scriptOpen).toBeGreaterThanOrEqual(0);
+      expect(scriptClose).toBeGreaterThan(scriptOpen);
+      const scriptBody = code.slice(
+        scriptOpen + "<script>".length,
+        scriptClose
+      );
       expect(scriptBody).not.toMatch(/\btitle:\s*["'`]/);
       expect(scriptBody).not.toMatch(/\bmessage:\s*["'`]/);
     });
