@@ -16,12 +16,19 @@ import { loadAdminScreen } from "../../lib/auth/admin-screen";
 import { logAdminPageError } from "../../lib/logging/error-log";
 import { getTranslatorFor } from "../../lib/i18n";
 import {
+  affiliateStatusTone,
+  commerceLabel,
+  commissionStatusTone,
+  createCommerceLabels
+} from "../../lib/ui/commerce-admin-labels";
+import {
   listAffiliateCommissionsForAdmin,
   listAffiliatesForAdmin
 } from "../../modules/commerce/application/affiliate-directory";
 
 const ssr = Astro.locals.ssrContext!;
 const { t, tn } = getTranslatorFor(Astro.locals.locale);
+const labels = createCommerceLabels(t);
 
 const statusFilter = Astro.url.searchParams.get("commissionStatus") ?? "";
 
@@ -103,15 +110,6 @@ const pendingCommissionTotal = commissions
   .filter((c) => c.status === "pending")
   .reduce((sum, c) => sum + Number(c.amount), 0)
   .toFixed(2);
-
-const STATUS_TONE: Record<string, string> = {
-  active: "success",
-  suspended: "danger",
-  pending: "warning",
-  approved: "info",
-  paid: "success",
-  void: "neutral"
-};
 ---
 
 <AdminLayout
@@ -256,10 +254,13 @@ const STATUS_TONE: Record<string, string> = {
                   <td data-label="Status">
                     <span
                       class="admin-status-pill"
-                      data-tone={STATUS_TONE[affiliate.status] ?? "neutral"}
+                      data-tone={
+                        affiliateStatusTone[affiliate.status] ?? "neutral"
+                      }
+                      data-status={affiliate.status}
                     >
                       <span class="admin-status-pill-dot" aria-hidden="true" />
-                      {affiliate.status}
+                      {commerceLabel(labels.affiliateStatus, affiliate.status)}
                     </span>
                   </td>
                   {canUpdateAffiliates && (
@@ -318,24 +319,13 @@ const STATUS_TONE: Record<string, string> = {
                     <option value="" selected={statusFilter === ""}>
                       {t("All")}
                     </option>
-                    <option
-                      value="pending"
-                      selected={statusFilter === "pending"}
-                    >
-                      {t("Pending")}
-                    </option>
-                    <option
-                      value="approved"
-                      selected={statusFilter === "approved"}
-                    >
-                      {t("Approved")}
-                    </option>
-                    <option value="paid" selected={statusFilter === "paid"}>
-                      {t("Paid")}
-                    </option>
-                    <option value="void" selected={statusFilter === "void"}>
-                      {t("Void")}
-                    </option>
+                    {Object.entries(labels.commissionStatus).map(
+                      ([value, label]) => (
+                        <option value={value} selected={statusFilter === value}>
+                          {label}
+                        </option>
+                      )
+                    )}
                   </select>
                 </form>
               </th>
@@ -381,10 +371,16 @@ const STATUS_TONE: Record<string, string> = {
                   <td data-label="Status">
                     <span
                       class="admin-status-pill"
-                      data-tone={STATUS_TONE[commission.status] ?? "neutral"}
+                      data-tone={
+                        commissionStatusTone[commission.status] ?? "neutral"
+                      }
+                      data-status={commission.status}
                     >
                       <span class="admin-status-pill-dot" aria-hidden="true" />
-                      {commission.status}
+                      {commerceLabel(
+                        labels.commissionStatus,
+                        commission.status
+                      )}
                     </span>
                   </td>
                   <td data-label="Created">{commission.createdAt}</td>

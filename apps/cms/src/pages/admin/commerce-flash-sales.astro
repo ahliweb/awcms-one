@@ -14,12 +14,17 @@ import "../../styles/admin-screens.css";
 import { loadAdminScreen } from "../../lib/auth/admin-screen";
 import { logAdminPageError } from "../../lib/logging/error-log";
 import { getTranslatorFor } from "../../lib/i18n";
+import {
+  commerceLabel,
+  createCommerceLabels
+} from "../../lib/ui/commerce-admin-labels";
 import MarketingTabs from "../../components/CommerceMarketingTabs.astro";
 import { listFlashSales } from "../../modules/commerce/application/flash-sale-directory";
 import { listProducts } from "../../modules/commerce/application/product-directory";
 
 const ssr = Astro.locals.ssrContext!;
 const { t, tn } = getTranslatorFor(Astro.locals.locale);
+const labels = createCommerceLabels(t);
 
 const screen = await loadAdminScreen({
   ssr,
@@ -148,8 +153,8 @@ const showActions = canUpdate || canDelete;
 
         <label for="flash-sale-status">{t("Status")}</label>
         <select id="flash-sale-status" name="status">
-          <option value="draft">{t("Draft")}</option>
-          <option value="scheduled">{t("Scheduled")}</option>
+          <option value="draft">{labels.flashSaleStatus.draft}</option>
+          <option value="scheduled">{labels.flashSaleStatus.scheduled}</option>
         </select>
 
         <button type="submit" id="flash-sale-create-submit">
@@ -292,17 +297,19 @@ const showActions = canUpdate || canDelete;
                           value="draft"
                           selected={sale.status === "draft"}
                         >
-                          {t("Draft")}
+                          {labels.flashSaleStatus.draft}
                         </option>
                         <option
                           value="scheduled"
                           selected={sale.status === "scheduled"}
                         >
-                          {t("Scheduled")}
+                          {labels.flashSaleStatus.scheduled}
                         </option>
                       </select>
                     ) : (
-                      sale.status
+                      <span data-status={sale.status}>
+                        {commerceLabel(labels.flashSaleStatus, sale.status)}
+                      </span>
                     )}
                   </td>
                   {showActions && (

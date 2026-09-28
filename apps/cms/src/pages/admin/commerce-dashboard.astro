@@ -22,11 +22,17 @@ import { loadAdminScreen } from "../../lib/auth/admin-screen";
 import { logAdminPageError } from "../../lib/logging/error-log";
 import { getTranslatorFor } from "../../lib/i18n";
 import { formatCurrency, formatNumber } from "../../lib/i18n/format";
+import {
+  commerceLabel,
+  createCommerceLabels,
+  orderStatusTone
+} from "../../lib/ui/commerce-admin-labels";
 import { fetchDashboardSummary } from "../../modules/commerce/application/admin-dashboard";
 
 const ssr = Astro.locals.ssrContext!;
 const locale = Astro.locals.locale;
 const { t } = getTranslatorFor(locale);
+const labels = createCommerceLabels(t);
 const CURRENCY = "IDR";
 const money = (value: string) =>
   formatCurrency(locale, value, CURRENCY, { maximumFractionDigits: 0 });
@@ -87,16 +93,6 @@ const ACTION_ITEM_LABEL: Record<string, string> = {
   reviews: t("Reviews awaiting moderation"),
   inbox: t("Unread inbox threads"),
   affiliate_commissions: t("Pending affiliate commissions")
-};
-
-const STATUS_TONE: Record<string, string> = {
-  pending_payment: "warning",
-  paid: "info",
-  processing: "info",
-  shipped: "primary",
-  completed: "success",
-  cancelled: "danger",
-  expired: "neutral"
 };
 ---
 
@@ -255,13 +251,14 @@ const STATUS_TONE: Record<string, string> = {
                       <td data-label="Status">
                         <span
                           class="admin-status-pill"
-                          data-tone={STATUS_TONE[order.status] ?? "neutral"}
+                          data-tone={orderStatusTone[order.status] ?? "neutral"}
+                          data-status={order.status}
                         >
                           <span
                             class="admin-status-pill-dot"
                             aria-hidden="true"
                           />
-                          {order.status}
+                          {commerceLabel(labels.orderStatus, order.status)}
                         </span>
                       </td>
                       <td data-label="Total">{money(order.total)}</td>

@@ -822,6 +822,7 @@ export const ID_CATALOG: CompiledCatalog = {
   "Menus": ["Menu"],
   "Message": ["Pesan"],
   "Messages": ["Pesan"],
+  "Messages queued or sent through the WhatsApp outbox will appear here.": ["Pesan yang dimasukkan ke antrean atau dikirim melalui kotak keluar WhatsApp akan muncul di sini."],
   "Meta description": ["Deskripsi meta"],
   "Metric": ["Metrik"],
   "Midtrans": ["Midtrans"],

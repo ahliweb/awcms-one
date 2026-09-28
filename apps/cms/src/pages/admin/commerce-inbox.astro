@@ -15,12 +15,17 @@ import { loadAdminScreen } from "../../lib/auth/admin-screen";
 import { logAdminPageError } from "../../lib/logging/error-log";
 import { getTranslatorFor } from "../../lib/i18n";
 import {
+  commerceLabel,
+  createCommerceLabels
+} from "../../lib/ui/commerce-admin-labels";
+import {
   fetchConversationForAdmin,
   listConversationsForAdmin
 } from "../../modules/commerce/application/conversation-directory";
 
 const ssr = Astro.locals.ssrContext!;
 const { t, tn } = getTranslatorFor(Astro.locals.locale);
+const labels = createCommerceLabels(t);
 
 const statusParam = Astro.url.searchParams.get("status");
 const unreadParam = Astro.url.searchParams.get("unread");
@@ -212,7 +217,15 @@ function filterHref(next: { status?: string; unread?: string }): string {
                       </td>
                       <td data-label="Subject">{conversation.subject}</td>
                       <td data-label="Status">
-                        <span class="status-badge">{conversation.status}</span>
+                        <span
+                          class="status-badge"
+                          data-status={conversation.status}
+                        >
+                          {commerceLabel(
+                            labels.conversationStatus,
+                            conversation.status
+                          )}
+                        </span>
                       </td>
                       <td data-label="Last message">
                         {conversation.lastMessageAt}
@@ -244,7 +257,15 @@ function filterHref(next: { status?: string; unread?: string }): string {
                 <h2 id="inbox-thread-heading">{thread.conversation.subject}</h2>
                 <p>
                   {t("Status")}:{" "}
-                  <span class="status-badge">{thread.conversation.status}</span>
+                  <span
+                    class="status-badge"
+                    data-status={thread.conversation.status}
+                  >
+                    {commerceLabel(
+                      labels.conversationStatus,
+                      thread.conversation.status
+                    )}
+                  </span>
                 </p>
 
                 <ol class="inbox-thread-messages">
