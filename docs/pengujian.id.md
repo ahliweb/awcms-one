@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](pengujian.md)
 
-<!-- i18n-source-hash: sha256:bb3d9abe30a1ab9cf2a64c0baa53208a4641991df5733e9947146ba45be52fb0 -->
+<!-- i18n-source-hash: sha256:a1e7498b6f1e1a793bfa9c5fcfb9e9a2e80ee5fd646e57a5e7bcfed2e49eada0 -->
 
 # Pengujian
 
@@ -141,6 +141,7 @@ Setiap issue di epic commerce admin v2 mengirim satu berkas `apps/cms/tests/*.te
 | `apps/cms/tests/commerce-enum-labels-245.test.ts` | issue #245 — 41 tes yang mem-pin setiap titik render milik tiga belas layar pengadopsi, atribut nilai-mentah `data-*`-nya, dan duplikat peta-nada per-layar yang dihapus |
 | `apps/cms/tests/commerce-orders-confirm-note-246.test.ts` | issue #246 — 24 tes yang mem-pin salinan dari/ke milik dialog konfirmasi status-pesanan, set danger yang diturunkan dari `LEGAL_ORDER_STATUS_TRANSITIONS`, batas 500-karakter catatan, dan label pesanan/pembayaran/kanal yang diterjemahkan |
 | `apps/cms/tests/commerce-products-bulk-247.test.ts` | issue #247 — 37 tes yang mem-pin state seleksi bar massal, panggilan `PATCH`/`DELETE` per-itemnya (dan bahwa tidak ada rute massal yang ditambahkan), visibilitas aksi yang di-gate permission, dan label produk yang diterjemahkan |
+| `apps/cms/tests/commerce-data-label-i18n-253.test.ts` | issue #253 — pemeriksaan regex statis bebas-DB bahwa tidak ada layar admin commerce (setiap halaman di bawah `src/pages/admin/commerce*`) menulis atribut `data-label="…"` literal dan masing-masing membawa setidaknya satu `data-label={t("…")}` yang diterjemahkan, plus dua kasus khusus-layar (kolom checkbox `commerce.astro` memakai ulang msgid `"Select"`, kedua tabel `commerce-affiliates.astro` yang butuh msgid `"Rate (%)"`/`"Affiliate"` sendiri karena `<th>`-nya bukan label polos) |
 
 `apps/cms/tests/integration/commerce-catalog.integration.test.ts` (disebut di atas) mendapat blok `countProductsByStatus` untuk issue #247 — query berkelompok/zero-filled, pengecualian baris soft-delete, dan isolasi lintas-tenant — bukan berkas integrasi baru.
 
