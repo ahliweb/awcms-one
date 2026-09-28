@@ -5998,3 +5998,73 @@ msgstr ""
 msgid "Commerce overview"
 msgstr ""
 
+# commerce admin labels (#243)
+msgid "Pending payment"
+msgstr ""
+
+msgid "Processing"
+msgstr ""
+
+msgid "Shipped"
+msgstr ""
+
+msgid "Completed"
+msgstr ""
+
+msgid "Cancelled"
+msgstr ""
+
+msgid "Expired"
+msgstr ""
+
+msgid "Unpaid"
+msgstr ""
+
+msgid "Down payment paid"
+msgstr ""
+
+msgid "Refunded"
+msgstr ""
+
+msgid "Storefront"
+msgstr ""
+
+msgid "Physical"
+msgstr ""
+
+msgid "Digital"
+msgstr ""
+
+msgid "Service"
+msgstr ""
+
+msgid "Subscription"
+msgstr ""
+
+msgid "Sending"
+msgstr ""
+
+msgid "Awaiting moderation"
+msgstr ""
+
+msgid "Rejected"
+msgstr ""
+
+msgid "Suspended"
+msgstr ""
+
+msgid "Running"
+msgstr ""
+
+msgid "Current"
+msgstr ""
+
+msgid "Delayed"
+msgstr ""
+
+msgid "Stale"
+msgstr ""
+
+msgid "Rebuilding"
+msgstr ""
+

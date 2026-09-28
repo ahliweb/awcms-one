@@ -5973,3 +5973,73 @@ msgstr "Anda tidak memiliki izin untuk melihat pesanan ini."
 msgid "Commerce overview"
 msgstr "Ringkasan komersial"
 
+# commerce admin labels (#243)
+msgid "Pending payment"
+msgstr "Menunggu pembayaran"
+
+msgid "Processing"
+msgstr "Sedang diproses"
+
+msgid "Shipped"
+msgstr "Sedang dikirim"
+
+msgid "Completed"
+msgstr "Selesai"
+
+msgid "Cancelled"
+msgstr "Dibatalkan"
+
+msgid "Expired"
+msgstr "Kedaluwarsa"
+
+msgid "Unpaid"
+msgstr "Belum dibayar"
+
+msgid "Down payment paid"
+msgstr "Uang muka dibayar"
+
+msgid "Refunded"
+msgstr "Dikembalikan"
+
+msgid "Storefront"
+msgstr "Toko online"
+
+msgid "Physical"
+msgstr "Fisik"
+
+msgid "Digital"
+msgstr "Digital"
+
+msgid "Service"
+msgstr "Jasa"
+
+msgid "Subscription"
+msgstr "Berlangganan"
+
+msgid "Sending"
+msgstr "Mengirim"
+
+msgid "Awaiting moderation"
+msgstr "Menunggu moderasi"
+
+msgid "Rejected"
+msgstr "Ditolak"
+
+msgid "Suspended"
+msgstr "Ditangguhkan"
+
+msgid "Running"
+msgstr "Berjalan"
+
+msgid "Current"
+msgstr "Terkini"
+
+msgid "Delayed"
+msgstr "Terlambat"
+
+msgid "Stale"
+msgstr "Kedaluwarsa"
+
+msgid "Rebuilding"
+msgstr "Sedang dibangun ulang"
+
