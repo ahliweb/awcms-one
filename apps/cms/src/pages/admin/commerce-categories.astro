@@ -7,6 +7,7 @@
  * recreate" limitation `offices.astro` accepts for `parentOfficeId`.
  */
 import AdminLayout from "../../layouts/AdminLayout.astro";
+import CommerceConfirmDialog from "../../components/CommerceConfirmDialog.astro";
 import "../../styles/admin-screens.css";
 import { loadAdminScreen } from "../../lib/auth/admin-screen";
 import { logAdminPageError } from "../../lib/logging/error-log";
@@ -328,6 +329,7 @@ const showActions = canUpdate || canDelete;
       </section>
     )
   }
+  <CommerceConfirmDialog locale={Astro.locals.locale} />
 </AdminLayout>
 
 <script>
@@ -339,6 +341,7 @@ const showActions = canUpdate || canDelete;
     onSubmit,
     sendJson
   } from "../../lib/ui/admin-form-client";
+  import { confirmCommerceAction } from "../../lib/ui/commerce-confirm-dialog-client";
 
   const createError = messageBox("category-create-error");
 
@@ -387,7 +390,13 @@ const showActions = canUpdate || canDelete;
     const id = button.dataset.categoryId;
     if (!id) return;
     const name = button.dataset.categoryName ?? "this category";
-    if (!window.confirm(`Delete ${name}? It can be restored later.`)) return;
+    const confirmed = await confirmCommerceAction({
+      title: "Delete category",
+      message: `Delete ${name}? It can be restored later.`,
+      confirmLabel: "Delete category",
+      danger: true
+    });
+    if (!confirmed) return;
 
     await mutateAndReload(
       button,

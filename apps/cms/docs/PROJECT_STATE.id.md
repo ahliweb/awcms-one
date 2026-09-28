@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](PROJECT_STATE.md)
 
-<!-- i18n-source-hash: sha256:0bed166944855ce33d81242eaef822f166f26ebd89edf37cea230424c502ce16 -->
+<!-- i18n-source-hash: sha256:ef72483384b946d6c2f4ecade1cfc35a2a739fd48a4f97e2dc6c296c43596420 -->
 
 # AWCMS — Project State & Continuation
 
@@ -123,7 +123,7 @@ Model tata kelola dipakai-langsung/tanpa-repo-turunan (ADR-0034 §2/§3) **tidak
 | Migrasi                            | **192** (`sql/001`–`934`)                                                                              | `ls sql/`                                                                               |
 | ADR                                | **0000**–**0124** (`0000` = template; status ADR tertinggi: **Accepted**)                              | `ls docs/adr/`                                                                          |
 | Layar admin                        | **68** berkas `.astro` di `src/pages/admin/`; **1 dari 26** modul tanpa `navigation:` (`omes-control`) | `find src/pages/admin -name '*.astro'`, `grep -L 'navigation:' src/modules/*/module.ts` |
-| Berkas `.astro`                    | **83** (45.888 baris) — soal typecheck lihat §6                                                        | `find src -name '*.astro'`                                                              |
+| Berkas `.astro`                    | **84** (46.225 baris) — soal typecheck lihat §6                                                        | `find src -name '*.astro'`                                                              |
 | Gerbang                            | **61** di rantai `bun run check`                                                                       | `scripts.check` di `package.json`, dipisah pada `&&`                                    |
 | Kontrak                            | OpenAPI modular per-modul + AsyncAPI; `MODULE_CONTRACT_VERSION` **4.2.0**                              | `openapi/`, `asyncapi/`, `_shared/module-contract.ts`                                   |
 

@@ -10,6 +10,7 @@
  * screen's own admin-screen-coverage entry accepts for a first cut.
  */
 import AdminLayout from "../../layouts/AdminLayout.astro";
+import CommerceConfirmDialog from "../../components/CommerceConfirmDialog.astro";
 import "../../styles/admin-screens.css";
 import { loadAdminScreen } from "../../lib/auth/admin-screen";
 import { logAdminPageError } from "../../lib/logging/error-log";
@@ -437,6 +438,7 @@ const STATUS_TONE: Record<string, string> = {
       </div>
     )
   }
+  <CommerceConfirmDialog locale={Astro.locals.locale} />
 </AdminLayout>
 
 <script>
@@ -446,6 +448,7 @@ const STATUS_TONE: Record<string, string> = {
     onAction,
     sendJson
   } from "../../lib/ui/admin-form-client";
+  import { confirmCommerceAction } from "../../lib/ui/commerce-confirm-dialog-client";
 
   const actionError = messageBox("affiliate-action-error");
 
@@ -477,12 +480,25 @@ const STATUS_TONE: Record<string, string> = {
     action: "approve" | "pay" | "void",
     failMessage: string,
     busyLabel: string,
-    confirmMessage?: string
+    confirm?: {
+      title: string;
+      message: string;
+      confirmLabel: string;
+      danger?: boolean;
+    }
   ): void {
     onAction(selector, async (button) => {
       const id = button.dataset.commissionId;
       if (!id) return;
-      if (confirmMessage && !window.confirm(confirmMessage)) return;
+      if (confirm) {
+        const confirmed = await confirmCommerceAction({
+          title: confirm.title,
+          message: confirm.message,
+          confirmLabel: confirm.confirmLabel,
+          danger: confirm.danger
+        });
+        if (!confirmed) return;
+      }
       await mutateAndReload(
         button,
         actionError,
@@ -541,7 +557,12 @@ const STATUS_TONE: Record<string, string> = {
     "void",
     "Could not void the commission. Please try again.",
     "Voiding…",
-    "Void this commission?"
+    {
+      title: "Void commission",
+      message: "Void this commission?",
+      confirmLabel: "Void commission",
+      danger: true
+    }
   );
 
   document

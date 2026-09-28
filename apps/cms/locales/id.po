@@ -5973,3 +5973,15 @@ msgstr "Anda tidak memiliki izin untuk melihat pesanan ini."
 msgid "Commerce overview"
 msgstr "Ringkasan komersial"
 
+#. CommerceConfirmDialog.astro (Issue #242) -- shared accessible confirm
+#. dialog rendered once per commerce admin screen; these are its own STATIC
+#. chrome defaults, carried to the client via `data-default-*` attributes.
+#. Per-call title/message/confirmLabel strings stay plain JS literals in each
+#. screen's own `<script>`, unchanged from the `window.confirm(...)` calls
+#. they replace -- see that file's header comment for why.
+msgid "Confirm action"
+msgstr "Konfirmasi tindakan"
+
+msgid "Confirm"
+msgstr "Konfirmasi"
+

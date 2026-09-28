@@ -276,6 +276,8 @@ export const ID_CATALOG: CompiledCatalog = {
   "Complete sale": ["Selesaikan penjualan"],
   "Completing…": ["Menyelesaikan…"],
   "Config hash": ["Hash konfigurasi"],
+  "Confirm": ["Konfirmasi"],
+  "Confirm action": ["Konfirmasi tindakan"],
   "Confirm code": ["Konfirmasi kode"],
   "Confirmation cancelled — nothing changed.": ["Konfirmasi dibatalkan — tidak ada yang berubah."],
   "Conflict": ["Konflik"],

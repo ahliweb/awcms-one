@@ -629,7 +629,20 @@ export const READER_BUDGET_BYTES = 24_000;
  * the next commerce screen and tighten if the real total sits well below
  * this.
  */
-export const APP_BUDGET_BYTES = 259_000;
+/**
+ * **Raised to 265,000 B for Issue #242** — `CommerceConfirmDialog.astro` (a
+ * new shared component, its own scoped `<style>`) plus
+ * `commerce-confirm-dialog-client.ts` (a new shared client module), rendered
+ * and imported once each by the ten commerce screens that used to call
+ * `window.confirm(...)` directly. Every screen's own script also grew by a
+ * few lines (the `confirmCommerceAction(...)` call and its options object
+ * replacing a one-line `window.confirm(...)`), and two new i18n catalogue
+ * entries ("Confirm action", "Confirm") were added. Measured clean build:
+ * 264,289 B (up from 258,829 B). 265,000 keeps the same tight "measured +
+ * small margin" convention as every raise above; re-measure on the next
+ * commerce screen and tighten if the real total sits well below this.
+ */
+export const APP_BUDGET_BYTES = 265_000;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.

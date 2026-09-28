@@ -14,6 +14,7 @@
  * authority (same rule `offices.astro` documents).
  */
 import AdminLayout from "../../layouts/AdminLayout.astro";
+import CommerceConfirmDialog from "../../components/CommerceConfirmDialog.astro";
 import "../../styles/admin-screens.css";
 import { loadAdminScreen } from "../../lib/auth/admin-screen";
 import { logAdminPageError } from "../../lib/logging/error-log";
@@ -828,6 +829,7 @@ const showActions = canUpdate || canDelete;
       </section>
     )
   }
+  <CommerceConfirmDialog locale={Astro.locals.locale} />
 </AdminLayout>
 
 <script>
@@ -840,6 +842,7 @@ const showActions = canUpdate || canDelete;
     onSubmitAll,
     sendJson
   } from "../../lib/ui/admin-form-client";
+  import { confirmCommerceAction } from "../../lib/ui/commerce-confirm-dialog-client";
 
   function parseAdvancedFields(raw: string): Record<string, unknown> | null {
     const trimmed = raw.trim();
@@ -895,7 +898,13 @@ const showActions = canUpdate || canDelete;
     const id = button.dataset.productId;
     if (!id) return;
     const sku = button.dataset.productSku ?? "this product";
-    if (!window.confirm(`Delete ${sku}? It can be restored later.`)) return;
+    const confirmed = await confirmCommerceAction({
+      title: "Delete product",
+      message: `Delete ${sku}? It can be restored later.`,
+      confirmLabel: "Delete product",
+      danger: true
+    });
+    if (!confirmed) return;
 
     await mutateAndReload(
       button,

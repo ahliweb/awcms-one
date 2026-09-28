@@ -8,6 +8,7 @@
  * convention.
  */
 import AdminLayout from "../../layouts/AdminLayout.astro";
+import CommerceConfirmDialog from "../../components/CommerceConfirmDialog.astro";
 import "../../styles/admin-screens.css";
 import { loadAdminScreen } from "../../lib/auth/admin-screen";
 import { logAdminPageError } from "../../lib/logging/error-log";
@@ -328,6 +329,7 @@ const selected = screen.state === "allowed" ? screen.data.selected : null;
       </div>
     )
   }
+  <CommerceConfirmDialog locale={Astro.locals.locale} />
 </AdminLayout>
 
 <script>
@@ -340,6 +342,7 @@ const selected = screen.state === "allowed" ? screen.data.selected : null;
     sendJson,
     sendJsonForData
   } from "../../lib/ui/admin-form-client";
+  import { confirmCommerceAction } from "../../lib/ui/commerce-confirm-dialog-client";
 
   const actionError = messageBox("campaigns-action-error");
 
@@ -407,16 +410,16 @@ const selected = screen.state === "allowed" ? screen.data.selected : null;
     }
   });
 
-  onAction("#campaign-send-btn", (button) => {
+  onAction("#campaign-send-btn", async (button) => {
     const id = button.dataset.campaignId;
     if (!id) return;
-    if (
-      !window.confirm(
-        "Send this campaign now? This cannot be undone once dispatched."
-      )
-    ) {
-      return;
-    }
+    const confirmed = await confirmCommerceAction({
+      title: "Send campaign",
+      message: "Send this campaign now? This cannot be undone once dispatched.",
+      confirmLabel: "Send campaign",
+      danger: false
+    });
+    if (!confirmed) return;
 
     return mutateAndReload(
       button,
@@ -430,16 +433,17 @@ const selected = screen.state === "allowed" ? screen.data.selected : null;
     );
   });
 
-  onAction(".campaign-cancel-btn", (button) => {
+  onAction(".campaign-cancel-btn", async (button) => {
     const id = button.dataset.campaignId;
     if (!id) return;
-    if (
-      !window.confirm(
-        "Cancel this campaign? Already-dispatched recipients will not be un-sent."
-      )
-    ) {
-      return;
-    }
+    const confirmed = await confirmCommerceAction({
+      title: "Cancel campaign",
+      message:
+        "Cancel this campaign? Already-dispatched recipients will not be un-sent.",
+      confirmLabel: "Cancel campaign",
+      danger: true
+    });
+    if (!confirmed) return;
 
     return mutateAndReload(
       button,

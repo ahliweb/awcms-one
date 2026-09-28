@@ -1,6 +1,7 @@
 ---
 /** Commerce review moderation screen (Issue #29). A review is created only through the anonymous storefront path and always lands `pending` — this screen publishes/rejects it. */
 import AdminLayout from "../../layouts/AdminLayout.astro";
+import CommerceConfirmDialog from "../../components/CommerceConfirmDialog.astro";
 import "../../styles/admin-screens.css";
 import { loadAdminScreen } from "../../lib/auth/admin-screen";
 import { logAdminPageError } from "../../lib/logging/error-log";
@@ -169,6 +170,7 @@ const showActions = canUpdate || canDelete;
       </div>
     )
   }
+  <CommerceConfirmDialog locale={Astro.locals.locale} />
 </AdminLayout>
 
 <script>
@@ -178,6 +180,7 @@ const showActions = canUpdate || canDelete;
     onAction,
     sendJson
   } from "../../lib/ui/admin-form-client";
+  import { confirmCommerceAction } from "../../lib/ui/commerce-confirm-dialog-client";
 
   const actionError = messageBox("review-action-error");
 
@@ -216,7 +219,13 @@ const showActions = canUpdate || canDelete;
   onAction(".review-delete-btn", async (button) => {
     const id = button.dataset.reviewId;
     if (!id) return;
-    if (!window.confirm("Delete this review?")) return;
+    const confirmed = await confirmCommerceAction({
+      title: "Delete review",
+      message: "Delete this review?",
+      confirmLabel: "Delete review",
+      danger: true
+    });
+    if (!confirmed) return;
 
     await mutateAndReload(
       button,

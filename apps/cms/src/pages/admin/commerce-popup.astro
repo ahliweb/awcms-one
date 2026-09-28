@@ -7,6 +7,7 @@
  * 409 on the very first field they touch.
  */
 import AdminLayout from "../../layouts/AdminLayout.astro";
+import CommerceConfirmDialog from "../../components/CommerceConfirmDialog.astro";
 import "../../styles/admin-screens.css";
 import { loadAdminScreen } from "../../lib/auth/admin-screen";
 import { logAdminPageError } from "../../lib/logging/error-log";
@@ -260,6 +261,7 @@ const showActions = canUpdate || canDelete;
       </div>
     )
   }
+  <CommerceConfirmDialog locale={Astro.locals.locale} />
 </AdminLayout>
 
 <script>
@@ -272,6 +274,7 @@ const showActions = canUpdate || canDelete;
     onSubmit,
     sendJson
   } from "../../lib/ui/admin-form-client";
+  import { confirmCommerceAction } from "../../lib/ui/commerce-confirm-dialog-client";
 
   const createError = messageBox("popup-create-error");
 
@@ -327,7 +330,13 @@ const showActions = canUpdate || canDelete;
     const id = button.dataset.popupId;
     if (!id) return;
     const title = button.dataset.popupTitle ?? "this popup";
-    if (!window.confirm(`Delete ${title}?`)) return;
+    const confirmed = await confirmCommerceAction({
+      title: "Delete popup",
+      message: `Delete ${title}?`,
+      confirmLabel: "Delete popup",
+      danger: true
+    });
+    if (!confirmed) return;
 
     await mutateAndReload(
       button,
