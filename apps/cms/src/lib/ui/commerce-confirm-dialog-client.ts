@@ -22,6 +22,24 @@
  * before resolving, so two calls in a row (or two different dialogs on the
  * same page) cannot leak state into each other.
  *
+ * ## The `data-confirm-*` trigger contract
+ *
+ * `confirmCommerceAction`/`confirmCommerceActionWithNote` are still the
+ * primitive, but no screen calls either one directly with a literal
+ * `{ title, message, confirmLabel }` — that would put an untranslated
+ * English sentence in a `<script>`, exactly the defect this dialog exists to
+ * remove, just moved from a `window.confirm(...)` argument to an options
+ * object. Instead every screen's trigger element (the delete/send/cancel/…
+ * button) carries its own `t()`-translated `data-confirm-title`/
+ * `-message`/`-label`/`-danger` attributes, rendered SERVER-side with any
+ * per-row value (a SKU, a name, a code) already interpolated into the
+ * message by the catalogue's own `{placeholder}` syntax — see
+ * `CommerceConfirmDialog.astro`'s docblock for the attribute names.
+ * `confirmFromTrigger(el)` reads them back and is the ONLY thing a screen's
+ * `<script>` calls; `readConfirmOptions` is the pure half of that read,
+ * kept separate so it is unit-testable with a plain object standing in for
+ * `HTMLElement.dataset`.
+ *
  * ## Why `showModal()`
  *
  * It supplies the focus trap, the Escape-to-cancel handler (fired as the
@@ -373,4 +391,64 @@ export function confirmCommerceActionWithNote(
     maxLength: opts.noteMaxLength,
     placeholder: opts.notePlaceholder
   }).then((result) => (result.confirmed ? { note: result.note } : null));
+}
+
+/* -------------------------------------------------------------------- */
+/* The `data-confirm-*` trigger contract — the ONLY route a screen's own */
+/* `<script>` may reach `confirmCommerceAction` through (Issue #242       */
+/* follow-up). No English literal may sit in a screen's `<script>` for   */
+/* this: the title/message/label are `t()`-translated SERVER-side, once  */
+/* per trigger element, into these attributes; the client only reads     */
+/* them back. This is the same shape LK's `ReasonPanel` reads its own    */
+/* `data-reason-*` attributes through.                                   */
+/* -------------------------------------------------------------------- */
+
+/**
+ * The `data-confirm-*` attributes a trigger element carries, rendered
+ * server-side by the page that owns it (already translated, already
+ * per-row-interpolated where the message names a specific resource).
+ *
+ * `confirmDanger` is the STRING `"true"` when present, matching how HTML
+ * data attributes are always strings — never a boolean the DOM cannot
+ * actually hold. Astro omits the attribute entirely for a non-danger
+ * trigger (`data-confirm-danger={danger ? "true" : undefined}`), so its
+ * absence here means "not danger", not "unspecified".
+ */
+export interface ConfirmTriggerDataset {
+  confirmTitle?: string;
+  confirmMessage?: string;
+  confirmLabel?: string;
+  confirmDanger?: string;
+  confirmDialogId?: string;
+}
+
+/**
+ * Pure: maps a trigger's own dataset onto `confirmCommerceAction`'s options,
+ * with no DOM involved — this is what `commerce-confirm-dialog.test.ts`
+ * exercises directly. A missing `confirmMessage` degrades to an empty
+ * string rather than throwing, the same "malformed markup does nothing
+ * catastrophic" convention `onAction`/`getDialogHandles` already follow —
+ * it is a wiring bug for the screen that forgot the attribute, not
+ * something this reader can fix.
+ */
+export function readConfirmOptions(
+  dataset: ConfirmTriggerDataset
+): ConfirmCommerceActionOptions {
+  return {
+    title: dataset.confirmTitle,
+    message: dataset.confirmMessage ?? "",
+    confirmLabel: dataset.confirmLabel,
+    danger: dataset.confirmDanger === "true",
+    dialogId: dataset.confirmDialogId
+  };
+}
+
+/**
+ * The screen-facing entry point for a `data-confirm-*`-carrying trigger.
+ * Every one of this issue's ten screens calls this instead of building an
+ * options object by hand — which is exactly what keeps a translated string
+ * from ever being typed as an English literal inside a `<script>` again.
+ */
+export function confirmFromTrigger(el: HTMLElement): Promise<boolean> {
+  return confirmCommerceAction(readConfirmOptions(el.dataset));
 }

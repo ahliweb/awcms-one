@@ -268,7 +268,13 @@ const showActions = canUpdate || canDelete;
                             type="button"
                             class="module-toggle slider-delete-btn"
                             data-slider-id={slider.id}
-                            data-slider-title={slider.title}
+                            data-confirm-title={t("Delete this slider?")}
+                            data-confirm-message={t(
+                              "{title} will no longer be shown on the storefront.",
+                              { title: slider.title }
+                            )}
+                            data-confirm-label={t("Delete slider")}
+                            data-confirm-danger="true"
                           >
                             {t("Delete")}
                           </button>
@@ -298,7 +304,7 @@ const showActions = canUpdate || canDelete;
     onSubmit,
     sendJson
   } from "../../lib/ui/admin-form-client";
-  import { confirmCommerceAction } from "../../lib/ui/commerce-confirm-dialog-client";
+  import { confirmFromTrigger } from "../../lib/ui/commerce-confirm-dialog-client";
 
   const createError = messageBox("slider-create-error");
 
@@ -355,13 +361,7 @@ const showActions = canUpdate || canDelete;
   onAction(".slider-delete-btn", async (button) => {
     const id = button.dataset.sliderId;
     if (!id) return;
-    const title = button.dataset.sliderTitle ?? "this slider";
-    const confirmed = await confirmCommerceAction({
-      title: "Delete slider",
-      message: `Delete ${title}?`,
-      confirmLabel: "Delete slider",
-      danger: true
-    });
+    const confirmed = await confirmFromTrigger(button);
     if (!confirmed) return;
 
     await mutateAndReload(

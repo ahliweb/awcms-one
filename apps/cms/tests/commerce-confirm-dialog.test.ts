@@ -36,6 +36,7 @@ import {
   DEFAULT_NOTE_MAX_LENGTH,
   isDialogSupported,
   normalizeNote,
+  readConfirmOptions,
   resolveDialogId,
   resolveFocusTarget,
   resolveLabel,
@@ -141,6 +142,50 @@ describe("isDialogSupported", () => {
   });
 });
 
+describe("readConfirmOptions", () => {
+  test("maps a fully-populated data-confirm-* dataset", () => {
+    expect(
+      readConfirmOptions({
+        confirmTitle: "Delete this product?",
+        confirmMessage: "Product SKU-1 will be moved to trash.",
+        confirmLabel: "Delete product",
+        confirmDanger: "true",
+        confirmDialogId: "other-dialog"
+      })
+    ).toEqual({
+      title: "Delete this product?",
+      message: "Product SKU-1 will be moved to trash.",
+      confirmLabel: "Delete product",
+      danger: true,
+      dialogId: "other-dialog"
+    });
+  });
+
+  test("a missing confirmMessage degrades to '' rather than throwing", () => {
+    expect(readConfirmOptions({}).message).toBe("");
+  });
+
+  test("danger is true only for the literal string 'true' — absent, empty, or any other value is not danger", () => {
+    expect(readConfirmOptions({ confirmMessage: "x" }).danger).toBe(false);
+    expect(
+      readConfirmOptions({ confirmMessage: "x", confirmDanger: "false" }).danger
+    ).toBe(false);
+    expect(
+      readConfirmOptions({ confirmMessage: "x", confirmDanger: "" }).danger
+    ).toBe(false);
+    expect(
+      readConfirmOptions({ confirmMessage: "x", confirmDanger: "true" }).danger
+    ).toBe(true);
+  });
+
+  test("title/confirmLabel/dialogId pass through undefined when the attribute is absent", () => {
+    const opts = readConfirmOptions({ confirmMessage: "x" });
+    expect(opts.title).toBeUndefined();
+    expect(opts.confirmLabel).toBeUndefined();
+    expect(opts.dialogId).toBeUndefined();
+  });
+});
+
 /** The ten screens Issue #242 moved off `window.confirm`. */
 const TARGET_SCREENS = [
   "src/pages/admin/commerce-categories.astro",
@@ -195,13 +240,156 @@ describe("the ten target screens", () => {
         expect(occurrences(code, "<CommerceConfirmDialog")).toBe(1);
       });
 
-      test("drives it through confirmCommerceAction, never a raw confirm()", async () => {
+      test("drives it through confirmFromTrigger, never a raw confirm()", async () => {
         const code = await readCode(screen);
         expect(code).toContain(
-          'import { confirmCommerceAction } from "../../lib/ui/commerce-confirm-dialog-client";'
+          'import { confirmFromTrigger } from "../../lib/ui/commerce-confirm-dialog-client";'
         );
-        expect(code).toContain("confirmCommerceAction(");
+        expect(code).toContain("confirmFromTrigger(");
       });
+    });
+  }
+});
+
+describe("no screen builds a confirm options literal by hand", () => {
+  // The coordinator's fix for the first pass of this issue: a screen that
+  // calls `confirmCommerceAction({ title: "...", message: "..." })` has put
+  // an untranslated English sentence back in its own `<script>` — exactly
+  // the defect this whole component exists to remove, just moved from a
+  // `window.confirm(...)` argument to an options object. Every translatable
+  // string must instead be `t()`-rendered server-side into a trigger's own
+  // `data-confirm-*` attributes and read back by `confirmFromTrigger`.
+  for (const screen of TARGET_SCREENS) {
+    test(`${screen} never calls confirmCommerceAction({ title: ... / message: ... } directly`, async () => {
+      const code = await readCode(screen);
+      expect(code).not.toContain("confirmCommerceAction(");
+      // Belt and suspenders against a differently-shaped hand-built literal
+      // (e.g. built up across a few lines rather than one `confirmCommerceAction(`
+      // call): no screen's own `<script>` may declare a `title:`/`message:`
+      // object key at all — every one of those now lives in the template half,
+      // as a `data-confirm-title`/`data-confirm-message` attribute.
+      const scriptMatch = code.match(/<script>([\s\S]*)<\/script>/);
+      expect(scriptMatch).not.toBeNull();
+      const scriptBody = scriptMatch![1]!;
+      expect(scriptBody).not.toMatch(/\btitle:\s*["'`]/);
+      expect(scriptBody).not.toMatch(/\bmessage:\s*["'`]/);
+    });
+  }
+});
+
+/**
+ * Every trigger button that calls `confirmFromTrigger` must carry its own
+ * `data-confirm-*` attributes — otherwise the dialog opens with a blank
+ * title/message (`readConfirmOptions` degrades rather than throwing, per
+ * its own test above, which is precisely why nothing else would catch a
+ * missing attribute). One entry per `onAction`/`commissionTransition`
+ * selector this issue wired to `confirmFromTrigger`; `commission-void-btn`
+ * appears twice in its screen (the "pending" and "approved" row branches)
+ * and both must comply, so this checks EVERY occurrence, not just the first.
+ */
+const CONFIRM_TRIGGERS: ReadonlyArray<{
+  screen: (typeof TARGET_SCREENS)[number];
+  selector: string;
+  danger: boolean;
+}> = [
+  {
+    screen: "src/pages/admin/commerce-categories.astro",
+    selector: "category-delete-btn",
+    danger: true
+  },
+  {
+    screen: "src/pages/admin/commerce-campaigns.astro",
+    selector: "campaign-send-btn",
+    danger: false
+  },
+  {
+    screen: "src/pages/admin/commerce-campaigns.astro",
+    selector: "campaign-cancel-btn",
+    danger: true
+  },
+  {
+    screen: "src/pages/admin/commerce-affiliates.astro",
+    selector: "commission-approve-btn",
+    danger: false
+  },
+  {
+    screen: "src/pages/admin/commerce-affiliates.astro",
+    selector: "commission-pay-btn",
+    danger: false
+  },
+  {
+    screen: "src/pages/admin/commerce-affiliates.astro",
+    selector: "commission-void-btn",
+    danger: true
+  },
+  {
+    screen: "src/pages/admin/commerce-popup.astro",
+    selector: "popup-delete-btn",
+    danger: true
+  },
+  {
+    screen: "src/pages/admin/commerce.astro",
+    selector: "product-delete-btn",
+    danger: true
+  },
+  {
+    screen: "src/pages/admin/commerce-reviews.astro",
+    selector: "review-delete-btn",
+    danger: true
+  },
+  {
+    screen: "src/pages/admin/commerce-sliders.astro",
+    selector: "slider-delete-btn",
+    danger: true
+  },
+  {
+    screen: "src/pages/admin/commerce-testimonials.astro",
+    selector: "testimonial-delete-btn",
+    danger: true
+  },
+  {
+    screen: "src/pages/admin/commerce-vouchers.astro",
+    selector: "voucher-delete-btn",
+    danger: true
+  },
+  {
+    screen: "src/pages/admin/commerce-flash-sales.astro",
+    selector: "flash-sale-delete-btn",
+    danger: true
+  }
+];
+
+/**
+ * Every `<button ...CLASS_OR_ID...>` opening tag in `code` that mentions
+ * `token` (as a class or an id — both are plain space/quote-delimited
+ * tokens in this codebase's markup, so a substring match bounded by a word
+ * boundary is enough). Matches across attributes spanning several lines;
+ * `[^>]` already excludes the `>` that would let it cross into the NEXT
+ * tag, so no `<button ...>` here ever runs past its own close.
+ */
+function findButtonTags(code: string, token: string): string[] {
+  const pattern = new RegExp(`<button[^>]*\\b${token}\\b[^>]*>`, "g");
+  return code.match(pattern) ?? [];
+}
+
+describe("every confirmFromTrigger button carries its data-confirm-* attributes", () => {
+  for (const { screen, selector, danger } of CONFIRM_TRIGGERS) {
+    test(`${screen} .${selector}`, async () => {
+      const code = await readCode(screen);
+      const tags = findButtonTags(code, selector);
+
+      expect(tags.length).toBeGreaterThan(0);
+
+      for (const tag of tags) {
+        expect(tag).toContain("data-confirm-title=");
+        expect(tag).toContain("data-confirm-message=");
+        expect(tag).toContain("data-confirm-label=");
+        if (danger) {
+          expect(tag).toContain('data-confirm-danger="true"');
+        } else {
+          expect(tag).not.toContain("data-confirm-danger=");
+        }
+      }
     });
   }
 });

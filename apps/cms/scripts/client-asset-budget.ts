@@ -634,13 +634,19 @@ export const READER_BUDGET_BYTES = 24_000;
  * new shared component, its own scoped `<style>`) plus
  * `commerce-confirm-dialog-client.ts` (a new shared client module), rendered
  * and imported once each by the ten commerce screens that used to call
- * `window.confirm(...)` directly. Every screen's own script also grew by a
- * few lines (the `confirmCommerceAction(...)` call and its options object
- * replacing a one-line `window.confirm(...)`), and two new i18n catalogue
- * entries ("Confirm action", "Confirm") were added. Measured clean build:
- * 264,289 B (up from 258,829 B). 265,000 keeps the same tight "measured +
- * small margin" convention as every raise above; re-measure on the next
- * commerce screen and tighten if the real total sits well below this.
+ * `window.confirm(...)` directly.
+ *
+ * The client-side cost turned out SMALLER than a first measurement of this
+ * same issue suggested (264,289 B, when every screen's own `<script>` still
+ * built a `{ title, message, confirmLabel }` options object by hand). The
+ * coordinator's fix moved those strings server-side, into each trigger
+ * button's own `t()`-translated `data-confirm-*` attributes read back by
+ * `confirmFromTrigger` — so every screen's script SHRANK to a two-line
+ * `confirmFromTrigger(button)` call, while the growth that remains is the
+ * shared dialog/client module plus a few new i18n catalogue entries.
+ * Measured clean build: 262,861 B (up from 258,829 B). 265,000 is kept
+ * rather than tightened to match, since the margin is already small; the
+ * next commerce screen's own measurement is the one to tighten against.
  */
 export const APP_BUDGET_BYTES = 265_000;
 

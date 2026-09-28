@@ -49,12 +49,26 @@
  * lifecycle. A caller imports one of those two functions and never touches
  * `document.getElementById` for this dialog directly.
  *
- * Three data attributes carry this component's own translated defaults so the
- * (untranslated, plain-string) client module never needs to import `t()` or
- * duplicate a translation:
+ * Three data attributes carry this component's OWN translated defaults (the
+ * dialog's own Cancel/Confirm chrome, and its generic title fallback) so this
+ * component is the only place that needs to import `t()` for THOSE three
+ * strings:
  *   - `data-default-title`, `data-default-cancel-label`,
  *     `data-default-confirm-label` — used whenever a call omits `title` /
  *     relies on the default Cancel label / omits `confirmLabel`.
+ *
+ * A DIFFERENT, per-action set of `data-confirm-*` attributes — `-title`,
+ * `-message`, `-label`, `-danger` — belongs on the TRIGGER element (the
+ * delete/send/cancel/… button), not on this dialog. Every one of this
+ * issue's ten screens renders those, `t()`-translated and already
+ * per-row-interpolated, on its own buttons; `confirmFromTrigger(el)` in
+ * `commerce-confirm-dialog-client.ts` reads them back. This is the
+ * recommended path for a NEW commerce confirm action — `confirmCommerceAction`
+ * itself stays available as the lower-level primitive `confirmFromTrigger`
+ * is built on, but a screen that calls it with a hand-written
+ * `{ title, message, confirmLabel }` literal has put an untranslated
+ * English sentence back in its own `<script>`, which is the exact defect
+ * this component exists to remove.
  *
  * ## Usage
  *
@@ -64,26 +78,35 @@
  * const { t } = getTranslatorFor(Astro.locals.locale);
  * ---
  * <AdminLayout ...>
- *   ... screen markup ...
+ *   <button
+ *     type="button"
+ *     class="thing-delete-btn"
+ *     data-thing-id={thing.id}
+ *     data-confirm-title={t("Delete this thing?")}
+ *     data-confirm-message={t("{name} will be removed.", { name: thing.name })}
+ *     data-confirm-label={t("Delete thing")}
+ *     data-confirm-danger="true"
+ *   >
+ *     {t("Delete")}
+ *   </button>
  *   <CommerceConfirmDialog locale={Astro.locals.locale} />
  * </AdminLayout>
  *
  * <script>
- *   import { confirmCommerceAction } from "../../lib/ui/commerce-confirm-dialog-client";
+ *   import { confirmFromTrigger } from "../../lib/ui/commerce-confirm-dialog-client";
  *   import { onAction, mutateAndReload, messageBox, sendJson } from "../../lib/ui/admin-form-client";
  *
  *   onAction(".thing-delete-btn", async (button) => {
- *     const confirmed = await confirmCommerceAction({
- *       title: "Delete thing",
- *       message: `Delete ${name}? It can be restored later.`,
- *       confirmLabel: "Delete thing",
- *       danger: true
- *     });
+ *     const confirmed = await confirmFromTrigger(button);
  *     if (!confirmed) return;
  *     await mutateAndReload(button, actionError, () => sendJson("DELETE", `/api/v1/commerce/things/${id}`), "…");
  *   });
  * </script>
  * ```
+ *
+ * No `title`/`message`/`confirmLabel` literal appears in the `<script>`
+ * above — every word the operator reads came from the `data-confirm-*`
+ * attributes on the button itself, already translated server-side.
  *
  * ## Accessibility notes
  *

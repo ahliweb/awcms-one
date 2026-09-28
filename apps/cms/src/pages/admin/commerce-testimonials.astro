@@ -300,7 +300,13 @@ const showActions = canUpdate || canDelete;
                             type="button"
                             class="module-toggle testimonial-delete-btn"
                             data-testimonial-id={testimonial.id}
-                            data-testimonial-author={testimonial.authorName}
+                            data-confirm-title={t("Delete this testimonial?")}
+                            data-confirm-message={t(
+                              "{author}'s testimonial will no longer be shown on the storefront.",
+                              { author: testimonial.authorName }
+                            )}
+                            data-confirm-label={t("Delete testimonial")}
+                            data-confirm-danger="true"
                           >
                             {t("Delete")}
                           </button>
@@ -330,7 +336,7 @@ const showActions = canUpdate || canDelete;
     onSubmit,
     sendJson
   } from "../../lib/ui/admin-form-client";
-  import { confirmCommerceAction } from "../../lib/ui/commerce-confirm-dialog-client";
+  import { confirmFromTrigger } from "../../lib/ui/commerce-confirm-dialog-client";
 
   const createError = messageBox("testimonial-create-error");
 
@@ -394,13 +400,7 @@ const showActions = canUpdate || canDelete;
   onAction(".testimonial-delete-btn", async (button) => {
     const id = button.dataset.testimonialId;
     if (!id) return;
-    const author = button.dataset.testimonialAuthor ?? "this testimonial";
-    const confirmed = await confirmCommerceAction({
-      title: "Delete testimonial",
-      message: `Delete ${author}'s testimonial?`,
-      confirmLabel: "Delete testimonial",
-      danger: true
-    });
+    const confirmed = await confirmFromTrigger(button);
     if (!confirmed) return;
 
     await mutateAndReload(

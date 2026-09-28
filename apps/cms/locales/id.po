@@ -5976,12 +5976,129 @@ msgstr "Ringkasan komersial"
 #. CommerceConfirmDialog.astro (Issue #242) -- shared accessible confirm
 #. dialog rendered once per commerce admin screen; these are its own STATIC
 #. chrome defaults, carried to the client via `data-default-*` attributes.
-#. Per-call title/message/confirmLabel strings stay plain JS literals in each
-#. screen's own `<script>`, unchanged from the `window.confirm(...)` calls
-#. they replace -- see that file's header comment for why.
+#. Per-call title/message/confirmLabel strings are t()-translated
+#. SERVER-side into each trigger button's own `data-confirm-*` attributes
+#. (see `commerce-confirm-dialog-client.ts`'s `confirmFromTrigger`) -- never
+#. a plain JS literal in a screen's own `<script>`.
 msgid "Confirm action"
 msgstr "Konfirmasi tindakan"
 
 msgid "Confirm"
 msgstr "Konfirmasi"
+
+#. Per-screen confirm-dialog copy for the ten `window.confirm()` call sites
+#. Issue #242 replaced. Each action has a short question (the dialog title),
+#. a detail sentence (the dialog message, interpolated per-row where the
+#. action names a specific resource), and an imperative confirm-button label
+#. -- see `CommerceConfirmDialog.astro`'s "Usage" section for the shape.
+msgid "Delete this category?"
+msgstr "Hapus kategori?"
+
+msgid "Category {name} will be moved to trash and can be restored later."
+msgstr "Kategori {name} akan dipindahkan ke sampah dan dapat dipulihkan nanti."
+
+msgid "Delete category"
+msgstr "Hapus kategori"
+
+msgid "Send this campaign now?"
+msgstr "Kirim kampanye ini sekarang?"
+
+msgid "This cannot be undone once dispatched."
+msgstr "Tindakan ini tidak dapat dibatalkan setelah kampanye dikirim."
+
+msgid "Send campaign"
+msgstr "Kirim kampanye"
+
+msgid "Cancel this campaign?"
+msgstr "Batalkan kampanye ini?"
+
+msgid "Already-dispatched recipients will not be un-sent."
+msgstr "Penerima yang sudah menerima kampanye ini tidak akan bisa dibatalkan pengirimannya."
+
+msgid "Cancel campaign"
+msgstr "Batalkan kampanye"
+
+msgid "Approve this commission?"
+msgstr "Setujui komisi ini?"
+
+msgid "This marks the commission as approved."
+msgstr "Tindakan ini akan menandai komisi sebagai disetujui."
+
+msgid "Approve commission"
+msgstr "Setujui komisi"
+
+msgid "Mark this commission as paid?"
+msgstr "Tandai komisi ini sebagai dibayar?"
+
+msgid "This records the commission as paid out."
+msgstr "Tindakan ini akan mencatat komisi sebagai telah dibayar."
+
+msgid "Void this commission?"
+msgstr "Batalkan komisi ini?"
+
+msgid "This cannot be undone."
+msgstr "Tindakan ini tidak dapat dibatalkan."
+
+msgid "Void commission"
+msgstr "Batalkan komisi"
+
+msgid "Delete this popup?"
+msgstr "Hapus popup ini?"
+
+msgid "{title} will no longer be shown on the storefront."
+msgstr "{title} tidak akan lagi ditampilkan di etalase toko."
+
+msgid "Delete popup"
+msgstr "Hapus popup"
+
+msgid "Delete this product?"
+msgstr "Hapus produk?"
+
+msgid "Product {sku} will be moved to trash and can be restored later."
+msgstr "Produk {sku} akan dipindahkan ke sampah dan dapat dipulihkan nanti."
+
+msgid "Delete product"
+msgstr "Hapus produk"
+
+msgid "Delete this review?"
+msgstr "Hapus ulasan ini?"
+
+msgid "This review will no longer be visible on the storefront."
+msgstr "Ulasan ini tidak akan lagi terlihat di etalase toko."
+
+msgid "Delete review"
+msgstr "Hapus ulasan"
+
+msgid "Delete this slider?"
+msgstr "Hapus slider ini?"
+
+msgid "Delete slider"
+msgstr "Hapus slider"
+
+msgid "Delete this testimonial?"
+msgstr "Hapus testimoni ini?"
+
+msgid "{author}'s testimonial will no longer be shown on the storefront."
+msgstr "Testimoni dari {author} tidak akan lagi ditampilkan di etalase toko."
+
+msgid "Delete testimonial"
+msgstr "Hapus testimoni"
+
+msgid "Delete this voucher?"
+msgstr "Hapus voucher ini?"
+
+msgid "Voucher {code} will no longer be usable."
+msgstr "Voucher {code} tidak akan bisa digunakan lagi."
+
+msgid "Delete voucher"
+msgstr "Hapus voucher"
+
+msgid "Delete this flash sale?"
+msgstr "Hapus flash sale ini?"
+
+msgid "{name} will no longer run on the storefront."
+msgstr "{name} tidak akan lagi berjalan di etalase toko."
+
+msgid "Delete flash sale"
+msgstr "Hapus flash sale"
 

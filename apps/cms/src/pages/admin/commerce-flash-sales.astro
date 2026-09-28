@@ -322,7 +322,13 @@ const showActions = canUpdate || canDelete;
                             type="button"
                             class="module-toggle flash-sale-delete-btn"
                             data-flash-sale-id={sale.id}
-                            data-flash-sale-name={sale.name}
+                            data-confirm-title={t("Delete this flash sale?")}
+                            data-confirm-message={t(
+                              "{name} will no longer run on the storefront.",
+                              { name: sale.name }
+                            )}
+                            data-confirm-label={t("Delete flash sale")}
+                            data-confirm-danger="true"
                           >
                             {t("Delete")}
                           </button>
@@ -428,7 +434,7 @@ const showActions = canUpdate || canDelete;
     onSubmit,
     sendJson
   } from "../../lib/ui/admin-form-client";
-  import { confirmCommerceAction } from "../../lib/ui/commerce-confirm-dialog-client";
+  import { confirmFromTrigger } from "../../lib/ui/commerce-confirm-dialog-client";
 
   const createError = messageBox("flash-sale-create-error");
 
@@ -496,13 +502,7 @@ const showActions = canUpdate || canDelete;
   onAction(".flash-sale-delete-btn", async (button) => {
     const id = button.dataset.flashSaleId;
     if (!id) return;
-    const name = button.dataset.flashSaleName ?? "this flash sale";
-    const confirmed = await confirmCommerceAction({
-      title: "Delete flash sale",
-      message: `Delete ${name}?`,
-      confirmLabel: "Delete flash sale",
-      danger: true
-    });
+    const confirmed = await confirmFromTrigger(button);
     if (!confirmed) return;
 
     await mutateAndReload(

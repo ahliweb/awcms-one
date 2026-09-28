@@ -516,7 +516,13 @@ const showActions = canUpdate || canDelete;
                               type="button"
                               class="module-toggle product-delete-btn"
                               data-product-id={product.id}
-                              data-product-sku={product.sku}
+                              data-confirm-title={t("Delete this product?")}
+                              data-confirm-message={t(
+                                "Product {sku} will be moved to trash and can be restored later.",
+                                { sku: product.sku }
+                              )}
+                              data-confirm-label={t("Delete product")}
+                              data-confirm-danger="true"
                             >
                               {t("Delete")}
                             </button>
@@ -842,7 +848,7 @@ const showActions = canUpdate || canDelete;
     onSubmitAll,
     sendJson
   } from "../../lib/ui/admin-form-client";
-  import { confirmCommerceAction } from "../../lib/ui/commerce-confirm-dialog-client";
+  import { confirmFromTrigger } from "../../lib/ui/commerce-confirm-dialog-client";
 
   function parseAdvancedFields(raw: string): Record<string, unknown> | null {
     const trimmed = raw.trim();
@@ -897,13 +903,7 @@ const showActions = canUpdate || canDelete;
   onAction(".product-delete-btn", async (button) => {
     const id = button.dataset.productId;
     if (!id) return;
-    const sku = button.dataset.productSku ?? "this product";
-    const confirmed = await confirmCommerceAction({
-      title: "Delete product",
-      message: `Delete ${sku}? It can be restored later.`,
-      confirmLabel: "Delete product",
-      danger: true
-    });
+    const confirmed = await confirmFromTrigger(button);
     if (!confirmed) return;
 
     await mutateAndReload(

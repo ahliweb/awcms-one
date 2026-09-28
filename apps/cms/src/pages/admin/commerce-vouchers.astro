@@ -310,7 +310,13 @@ const showActions = canUpdate || canDelete;
                             type="button"
                             class="module-toggle voucher-delete-btn"
                             data-voucher-id={voucher.id}
-                            data-voucher-code={voucher.code}
+                            data-confirm-title={t("Delete this voucher?")}
+                            data-confirm-message={t(
+                              "Voucher {code} will no longer be usable.",
+                              { code: voucher.code }
+                            )}
+                            data-confirm-label={t("Delete voucher")}
+                            data-confirm-danger="true"
                           >
                             {t("Delete")}
                           </button>
@@ -341,7 +347,7 @@ const showActions = canUpdate || canDelete;
     onSubmit,
     sendJson
   } from "../../lib/ui/admin-form-client";
-  import { confirmCommerceAction } from "../../lib/ui/commerce-confirm-dialog-client";
+  import { confirmFromTrigger } from "../../lib/ui/commerce-confirm-dialog-client";
 
   const createError = messageBox("voucher-create-error");
 
@@ -393,13 +399,7 @@ const showActions = canUpdate || canDelete;
   onAction(".voucher-delete-btn", async (button) => {
     const id = button.dataset.voucherId;
     if (!id) return;
-    const code = button.dataset.voucherCode ?? "this voucher";
-    const confirmed = await confirmCommerceAction({
-      title: "Delete voucher",
-      message: `Delete ${code}?`,
-      confirmLabel: "Delete voucher",
-      danger: true
-    });
+    const confirmed = await confirmFromTrigger(button);
     if (!confirmed) return;
 
     await mutateAndReload(

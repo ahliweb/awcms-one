@@ -303,6 +303,11 @@ const selected = screen.state === "allowed" ? screen.data.selected : null;
                     class="module-toggle"
                     id="campaign-send-btn"
                     data-campaign-id={selected.id}
+                    data-confirm-title={t("Send this campaign now?")}
+                    data-confirm-message={t(
+                      "This cannot be undone once dispatched."
+                    )}
+                    data-confirm-label={t("Send campaign")}
                   >
                     {t("Send now")}
                   </button>
@@ -319,6 +324,12 @@ const selected = screen.state === "allowed" ? screen.data.selected : null;
                     class="module-toggle campaign-cancel-btn"
                     id="campaign-cancel-btn"
                     data-campaign-id={selected.id}
+                    data-confirm-title={t("Cancel this campaign?")}
+                    data-confirm-message={t(
+                      "Already-dispatched recipients will not be un-sent."
+                    )}
+                    data-confirm-label={t("Cancel campaign")}
+                    data-confirm-danger="true"
                   >
                     {t("Cancel")}
                   </button>
@@ -342,7 +353,7 @@ const selected = screen.state === "allowed" ? screen.data.selected : null;
     sendJson,
     sendJsonForData
   } from "../../lib/ui/admin-form-client";
-  import { confirmCommerceAction } from "../../lib/ui/commerce-confirm-dialog-client";
+  import { confirmFromTrigger } from "../../lib/ui/commerce-confirm-dialog-client";
 
   const actionError = messageBox("campaigns-action-error");
 
@@ -413,12 +424,7 @@ const selected = screen.state === "allowed" ? screen.data.selected : null;
   onAction("#campaign-send-btn", async (button) => {
     const id = button.dataset.campaignId;
     if (!id) return;
-    const confirmed = await confirmCommerceAction({
-      title: "Send campaign",
-      message: "Send this campaign now? This cannot be undone once dispatched.",
-      confirmLabel: "Send campaign",
-      danger: false
-    });
+    const confirmed = await confirmFromTrigger(button);
     if (!confirmed) return;
 
     return mutateAndReload(
@@ -436,13 +442,7 @@ const selected = screen.state === "allowed" ? screen.data.selected : null;
   onAction(".campaign-cancel-btn", async (button) => {
     const id = button.dataset.campaignId;
     if (!id) return;
-    const confirmed = await confirmCommerceAction({
-      title: "Cancel campaign",
-      message:
-        "Cancel this campaign? Already-dispatched recipients will not be un-sent.",
-      confirmLabel: "Cancel campaign",
-      danger: true
-    });
+    const confirmed = await confirmFromTrigger(button);
     if (!confirmed) return;
 
     return mutateAndReload(

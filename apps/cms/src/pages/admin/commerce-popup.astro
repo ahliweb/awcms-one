@@ -245,7 +245,13 @@ const showActions = canUpdate || canDelete;
                             type="button"
                             class="module-toggle popup-delete-btn"
                             data-popup-id={popup.id}
-                            data-popup-title={popup.title}
+                            data-confirm-title={t("Delete this popup?")}
+                            data-confirm-message={t(
+                              "{title} will no longer be shown on the storefront.",
+                              { title: popup.title }
+                            )}
+                            data-confirm-label={t("Delete popup")}
+                            data-confirm-danger="true"
                           >
                             {t("Delete")}
                           </button>
@@ -274,7 +280,7 @@ const showActions = canUpdate || canDelete;
     onSubmit,
     sendJson
   } from "../../lib/ui/admin-form-client";
-  import { confirmCommerceAction } from "../../lib/ui/commerce-confirm-dialog-client";
+  import { confirmFromTrigger } from "../../lib/ui/commerce-confirm-dialog-client";
 
   const createError = messageBox("popup-create-error");
 
@@ -329,13 +335,7 @@ const showActions = canUpdate || canDelete;
   onAction(".popup-delete-btn", async (button) => {
     const id = button.dataset.popupId;
     if (!id) return;
-    const title = button.dataset.popupTitle ?? "this popup";
-    const confirmed = await confirmCommerceAction({
-      title: "Delete popup",
-      message: `Delete ${title}?`,
-      confirmLabel: "Delete popup",
-      danger: true
-    });
+    const confirmed = await confirmFromTrigger(button);
     if (!confirmed) return;
 
     await mutateAndReload(
