@@ -128,7 +128,7 @@ describe("readConfirmOptionsWithNote", () => {
 
 describe("the domain's own terminal-status set (what `danger` is keyed on)", () => {
   test("completed, cancelled, and expired have no outgoing edge — nothing else does", () => {
-    const terminal = ORDER_STATUSES.filter(
+    const terminal: string[] = ORDER_STATUSES.filter(
       (status) => LEGAL_ORDER_STATUS_TRANSITIONS[status].length === 0
     );
     expect(terminal.slice().sort()).toEqual(
@@ -259,8 +259,8 @@ describe("commerce-orders.astro", () => {
 
     // Payment status cell.
     expect(code).toContain("data-payment-status={order.paymentStatus}");
-    expect(code).toContain(
-      "commerceLabel(labels.paymentStatus, order.paymentStatus)"
+    expect(normalized).toContain(
+      "commerceLabel( labels.paymentStatus, order.paymentStatus )"
     );
 
     // Gateway panel — session provider/status, event provider/outcome — all
@@ -308,9 +308,7 @@ describe("commerce-orders/[id].astro", () => {
 
     // Channel pill.
     expect(code).toContain("data-channel={order.channel}");
-    expect(code).toContain(
-      "commerceLabel(labels.orderChannel, order.channel)"
-    );
+    expect(code).toContain("commerceLabel(labels.orderChannel, order.channel)");
 
     // Timeline entry status.
     expect(code).toContain("data-status={entry.status}");

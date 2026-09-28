@@ -224,7 +224,10 @@ const notFound = screen.state === "allowed" && !order;
               <ol class="admin-timeline">
                 {order.timeline.map((entry) => (
                   <li class="admin-timeline-item">
-                    <div class="admin-timeline-label" data-status={entry.status}>
+                    <div
+                      class="admin-timeline-label"
+                      data-status={entry.status}
+                    >
                       {commerceLabel(labels.orderStatus, entry.status)}
                     </div>
                     <div class="admin-timeline-meta">

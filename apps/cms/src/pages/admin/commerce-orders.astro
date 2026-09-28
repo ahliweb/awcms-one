@@ -177,8 +177,7 @@ const canUpdate = screen.state === "allowed" && screen.data.canUpdate;
             data-status={status}
             href={`/admin/commerce-orders?status=${status}`}
           >
-            {commerceLabel(labels.orderStatus, status)} ({statusCounts[status]}
-            )
+            {commerceLabel(labels.orderStatus, status)} ({statusCounts[status]})
           </a>
         ))}
       </nav>
@@ -290,8 +289,14 @@ const canUpdate = screen.state === "allowed" && screen.data.canUpdate;
                           </select>
                         )}
                       </td>
-                      <td data-label="Payment" data-payment-status={order.paymentStatus}>
-                        {commerceLabel(labels.paymentStatus, order.paymentStatus)}
+                      <td
+                        data-label="Payment"
+                        data-payment-status={order.paymentStatus}
+                      >
+                        {commerceLabel(
+                          labels.paymentStatus,
+                          order.paymentStatus
+                        )}
                       </td>
                       <td data-label="Total">{order.total}</td>
                       <td data-label="Placed">{order.createdAt}</td>
