@@ -3017,6 +3017,12 @@ msgstr "Simpan konfigurasi"
 msgid "Saved."
 msgstr "Tersimpan."
 
+msgid "Saved"
+msgstr "Tersimpan"
+
+msgid "Unsaved changes"
+msgstr "Perubahan belum tersimpan"
+
 msgid "Saved draft"
 msgstr "Draf tersimpan"
 
@@ -5368,6 +5374,16 @@ msgstr "Label (opsional)"
 
 msgid "Create webhook endpoint"
 msgstr "Buat endpoint webhook"
+
+msgid "{count} webhook endpoint"
+msgid_plural "{count} webhook endpoints"
+msgstr[0] "{count} endpoint webhook"
+
+msgid "No webhook endpoints yet"
+msgstr "Belum ada endpoint webhook"
+
+msgid "Webhook endpoints created for this tenant will appear here."
+msgstr "Endpoint webhook yang dibuat untuk tenant ini akan muncul di sini."
 
 msgid "FAQs, social links, customer levels, shipping (except courier rates, above), payment (including bank accounts — never shown publicly), promo section, and per-page meta titles."
 msgstr "FAQ, tautan sosial, level pelanggan, pengiriman (kecuali tarif kurir, di atas), pembayaran (termasuk rekening bank — tidak pernah ditampilkan publik), bagian promo, dan judul meta per halaman."
