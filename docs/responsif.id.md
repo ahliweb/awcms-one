@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](responsif.md)
 
-<!-- i18n-source-hash: sha256:fd4e651e093243cd733bf1136c5abf0dace99979d09ad7fdad35b43f3a8382e5 -->
+<!-- i18n-source-hash: sha256:c1aac834bdbe9c47d036e229b2c4b44690eb1ac5a8eb3205507b382c688cb275 -->
 
 # Desain responsif
 
@@ -52,6 +52,7 @@ Utility bar (`Header.astro`) dan kolom "Kanal" baru pada footer (`Footer.astro`)
 - **Konfirmasi setingkat `grep` untuk setiap query `@media`** di `global.css`, `katalog.css`, `berita.css`, `toko.css` — tabel breakpoint di atas menyeluruh, bukan sampel. `toko.css` (gaya khusus checkout/keranjang) tidak membawa breakpoint lebar sendiri, mengandalkan guard flex-shrink `min-width: 0` sebagai gantinya.
 - **Penalaran `min(Npx, 100%)` clamp sendiri** dibaca dari komentar/struktur masing-masing stylesheet sendiri — masih benar, dan kini didukung pemeriksaan 360px di atas yang sungguh menjalankannya.
 - **Tabel layar admin** (`apps/cms/src/pages/admin/commerce.astro`) mendeklarasikan kelas `data-table--stack` untuk perilaku responsifnya sendiri — milik `apps/cms`, bukan storefront ini, dan tidak diperiksa lebih lanjut untuk dokumen ini.
+- **Tiga permukaan epic commerce admin v2 (#249) pada 360px**, caveat yang sama seperti di atas — `apps/cms`, bukan storefront ini: tabel webhook-endpoints milik `commerce-settings.astro` (issue #244) kini membawa `data-table--stack` plus pembungkus scroll, mengikuti konvensi tabel admin lain yang sudah ada, sehingga tidak lagi overflow; kolom checkbox seleksi-massal daftar produk (issue #247) stack dalam layout yang sama yang sudah dipakai sisa tabel itu di bawah breakpoint-nya; dan `CommerceSettingsSaveBar.astro` (issue #244) membungkus aksinya ke barisnya sendiri, rata-kanan, sebelum teks status disqueeze di bawah tinggi sentuh yang nyaman.
 
 ## Dua bug overflow sungguhan yang ditemukan jalankan otomatis pertama (issue #183)
 
