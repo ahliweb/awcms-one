@@ -37,9 +37,9 @@
  *   not named in the issue's "should switch" list, and (for flash sales) a
  *   full map iteration would wrongly offer the tick-job-only
  *   `active`/`ended` options to a human editor.
- * - Any `window.confirm`/confirm-dialog script code, or the markup just
- *   above `</AdminLayout>`, on affiliates/campaigns/reviews/vouchers/
- *   flash-sales/popup — reserved for the concurrent #242 PR.
+ * - Any confirm-dialog script code on affiliates/campaigns/reviews/vouchers/
+ *   flash-sales/popup — that is #242's (PR #252), pinned by its own
+ *   `commerce-confirm-dialog.test.ts`, not here.
  */
 import { describe, expect, test } from "bun:test";
 import { readFile } from "node:fs/promises";
@@ -329,11 +329,6 @@ describe("commerce-reviews.astro — the Status column is labelled without touch
       hasNormalized(source, "commerceLabel(labels.reviewStatus, review.status)")
     ).toBe(true);
   });
-
-  test("the review-delete confirm dialog is untouched (reserved for #242)", async () => {
-    const source = await readFile(REVIEWS_PAGE, "utf8");
-    expect(source).toContain('window.confirm("Delete this review?")');
-  });
 });
 
 describe("commerce-campaigns.astro — channel/status are labelled in the list and the detail heading, without touching send/cancel confirms", () => {
@@ -393,12 +388,6 @@ describe("commerce-campaigns.astro — channel/status are labelled in the list a
       hasNormalized(source, '<option value="email">{t("E-mail")}</option>')
     ).toBe(true);
   });
-
-  test("the send/cancel confirm dialogs are untouched (reserved for #242)", async () => {
-    const source = await readFile(CAMPAIGNS_PAGE, "utf8");
-    expect(source).toContain("Send this campaign now?");
-    expect(source).toContain("Cancel this campaign?");
-  });
 });
 
 describe("commerce-vouchers.astro — type/status are labelled, and the create-form type <select> reuses the shared map", () => {
@@ -432,11 +421,6 @@ describe("commerce-vouchers.astro — type/status are labelled, and the create-f
         "commerceLabel(labels.voucherStatus, voucher.status)"
       )
     ).toBe(true);
-  });
-
-  test("the delete confirm dialog is untouched (reserved for #242)", async () => {
-    const source = await readFile(VOUCHERS_PAGE, "utf8");
-    expect(source).toContain("window.confirm(`Delete ${code}?`)");
   });
 });
 
@@ -477,11 +461,6 @@ describe("commerce-flash-sales.astro — the create/edit status <select>s reuse 
         "commerceLabel(labels.flashSaleStatus, sale.status)"
       )
     ).toBe(true);
-  });
-
-  test("the delete confirm dialog is untouched (reserved for #242)", async () => {
-    const source = await readFile(FLASH_SALES_PAGE, "utf8");
-    expect(source).toContain("window.confirm(`Delete ${name}?`)");
   });
 });
 
@@ -525,9 +504,21 @@ describe("commerce-popup.astro — the create-form frequency <select> reuses the
       )
     ).toBe(true);
   });
+});
 
-  test("the delete confirm dialog is untouched (reserved for #242)", async () => {
-    const source = await readFile(POPUP_PAGE, "utf8");
-    expect(source).toContain("window.confirm(`Delete ${title}?`)");
+describe("commerce-settings.astro (webhook endpoint provider)", () => {
+  const SETTINGS_PAGE = "src/pages/admin/commerce-settings.astro";
+
+  test("the Provider cell renders through commerceLabel(labels.webhookEndpointProvider, …) and carries data-provider", async () => {
+    const source = await readFile(SETTINGS_PAGE, "utf8");
+    expect(source).toContain("createCommerceLabels(t)");
+    expect(source).toContain("data-provider={endpoint.provider}");
+    expect(
+      hasNormalized(
+        source,
+        "commerceLabel(labels.webhookEndpointProvider, endpoint.provider)"
+      )
+    ).toBe(true);
+    expect(source).not.toContain("{endpoint.provider}</td>");
   });
 });

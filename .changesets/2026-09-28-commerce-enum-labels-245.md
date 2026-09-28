@@ -4,7 +4,7 @@ type: fix
 impact: public
 ---
 
-# Twelve commerce admin screens now render translated labels, not raw enum values (issue #245)
+# Thirteen commerce admin screens now render translated labels, not raw enum values (issue #245)
 
 Issue #243 built one shared label-map module
 (`apps/cms/src/lib/ui/commerce-admin-labels.ts`) but changed no screen. This
@@ -14,8 +14,9 @@ WhatsApp, POS, reviews, campaigns, vouchers, flash sales, customers, popup —
 so a merchant reading `/admin/commerce-*` sees "Pending payment"/"Menunggu
 pembayaran" instead of `pending_payment`, and so on for every status,
 channel, type, and frequency those twelve screens show. `commerce-orders*`
-(#246), `commerce.astro` (#247), and `commerce-settings.astro`'s one webhook-
-provider cell are out of scope here.
+(#246) and `commerce.astro` (#247) are out of scope here. The manager added
+`commerce-settings.astro`'s one webhook-provider cell (`labels.webhookEndpointProvider`)
+after #244's rewrite of that table reached main, making thirteen screens.
 
 - Every render site now calls `commerceLabel(labels.<map>, <raw value>)` and
   keeps the raw value machine-readable in a `data-*` attribute on the same
