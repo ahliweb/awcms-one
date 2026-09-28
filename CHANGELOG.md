@@ -2,6 +2,432 @@
 
 Every entry below is folded from `.changesets/` by `bun run release`, which also tags the release. The version is `MAJOR.MINOR.PATCH`, tagged `vX.Y.Z`; the next version is the largest `bump` declared among the changesets a release folds (see [`.changesets/README.md`](.changesets/README.md)) — never a level chosen at release time from a list of file names.
 
+## [0.14.0] — 2026-09-29
+
+### Shared translated label maps for commerce admin enums/statuses (issue #243)
+
+A full sweep of every `apps/cms/src/pages/admin/commerce*.astro` screen plus
+`commerce-orders/[id].astro` — every `<option>` text, table cell, status/tone
+badge, detail field, and filter-tab label that shows an enum value — found
+the same defect repeated across sixteen screens: a raw English/snake_case
+value (`order.status`, `session.provider`, `run.status`, …) rendered straight
+from the database instead of a translated label, each screen that needed one
+either redefining its own ad hoc map or skipping it entirely, so the same
+field (order status, e.g.) could read differently depending which of up to
+four screens showed it. This change adds the one shared module the follow-up
+screen changes adopt, so a status has exactly one Indonesian label everywhere
+it appears.
+
+- New `apps/cms/src/lib/ui/commerce-admin-labels.ts`: `createCommerceLabels(t)`
+  returns one object of 23 label maps — order status, payment status, order
+  channel, product status, product type, voucher type and status, campaign
+  status and channel, review status, affiliate status, commission status,
+  conversation status, customer status, WhatsApp message status, flash-sale
+  status, popup frequency, webhook-endpoint provider, payment-gateway session
+  status/provider, payment-event outcome, and the shared `reporting` module's
+  projection run/freshness status — each `satisfies Record<TheEnumType,
+  string>` against the domain layer's own exported union, so a future new
+  enum value is a compile error here until labelled. `commerceLabel(map,
+  raw)` is the per-row lookup a screen calls; it never throws and falls back
+  to the raw value. Six tone maps (`orderStatusTone`, `affiliateStatusTone`,
+  `commissionStatusTone`, `reviewStatusTone`, `reportFreshnessTone`,
+  `reportRunStatusTone`) are extracted from the `STATUS_TONE`/
+  `FRESHNESS_VARIANT` maps that already exist, redundantly, on
+  `commerce-dashboard.astro`, `commerce-orders/[id].astro`,
+  `commerce-affiliates.astro` and `commerce-reports.astro` — no tone map for
+  an enum no screen already colour-codes.
+- Nine of the 23 unions had no exported TS type anywhere: `OrderChannel`,
+  `PaymentGatewaySessionProvider` and `PaymentEventOutcome` are derived from
+  the owning column's own database `CHECK` constraint (`sql/931`, `sql/926`
+  twice); `ConversationStatus`/`AffiliateStatus`/`CommissionStatus`/
+  `CustomerStatus` are derived via indexed access into an already-exported
+  record type (`AdminConversationRecord["status"]`, etc.) rather than
+  redeclared by hand.
+- `locales/en.po`/`locales/id.po` gain 26 new msgids under a
+  `# commerce admin labels (#243)` comment. The 23 label maps use 54
+  distinct msgids in total; the other 28 already existed — reused verbatim
+  where an existing screen or `apps/storefront`'s own
+  order/affiliate/review/conversation labels already established the exact
+  wording (e.g. `commerce-affiliates.astro`'s own commission-status filter
+  already spells "Pending"/"Approved"/"Paid"/"Void"; `commerce-vouchers.astro`,
+  `commerce-customers.astro` and `commerce-popup.astro`'s own `<select>`
+  options already spell out every value their respective enum needs).
+- This issue ships **no screen change** — the sixteen screens the sweep
+  found still render their own raw values today. Issues #245/#246/#247 adopt
+  this module screen by screen; the adopting issues' own PR descriptions are
+  the place to enumerate exactly which `labels.<map>` key replaces which
+  file:line.
+
+### An accessible, fully-translated confirm dialog replaces `window.confirm()` on ten commerce admin screens
+
+Part of the commerce admin v2 epic (LK admin v2 parity, issue #242). Eleven
+`window.confirm()` calls across ten `apps/cms` commerce admin screens —
+categories, campaigns (send + cancel), affiliates (approve/pay/void
+commission), popup, products, reviews, sliders, testimonials, vouchers,
+flash sales — are replaced by one shared, commerce-owned accessible dialog,
+with every string an operator reads translated through `t()`.
+
+- New `apps/cms/src/components/CommerceConfirmDialog.astro`: a native
+  `<dialog role="alertdialog">`, rendered once per page, with
+  `aria-labelledby`/`aria-describedby` wired to its own title/message
+  regions, an optional (hidden-by-default) note `<textarea>` region for a
+  future note-taking confirm, and Cancel/Confirm buttons reusing the
+  existing `.btn-secondary`/`.btn-primary`/`.btn-danger`/`.btn-danger--solid`
+  classes — no new button chrome invented.
+- New `apps/cms/src/lib/ui/commerce-confirm-dialog-client.ts`:
+  `confirmCommerceAction`/`confirmCommerceActionWithNote` drive the dialog
+  via `showModal()` (focus trap, Escape-to-cancel, backdrop, focus
+  restoration to the opener all free), explicitly focusing the safe Cancel
+  button first for a `danger` action. Falls back to `window.confirm` only
+  when `HTMLDialogElement`/`showModal()` is unsupported or the dialog is
+  missing from the page — the one remaining reference, documented as such.
+  Pure option-normalization/note-trimming helpers are exported separately
+  and unit-tested without a DOM.
+- **No English literal ever reaches a screen's `<script>`.** Every trigger
+  button (delete/send/cancel/approve/pay/void) carries its own
+  `t()`-translated `data-confirm-title`/`-message`/`-label`/`-danger`
+  attributes, rendered server-side with any per-row value (a SKU, a name, a
+  code) already interpolated via the catalogue's `{placeholder}` syntax. The
+  new `confirmFromTrigger(el)` reads them back — the ONLY thing a screen's
+  `<script>` calls; the pure `readConfirmOptions(dataset)` half is
+  unit-tested without a DOM. Natural, professional Indonesian copy for all
+  thirteen trigger actions is in `id.po` (e.g. "Hapus produk?" / "Produk
+  {sku} akan dipindahkan ke sampah dan dapat dipulihkan nanti." / "Hapus
+  produk"; "Kirim kampanye" is not danger, "Batalkan kampanye" is).
+- Affiliate commission approve/pay gained a confirmation they never had
+  before ("Setujui komisi"/"Tandai dibayar", both non-`danger`) alongside
+  void ("Batalkan komisi", `danger`) — a small UX addition, not a backend
+  change, made possible by the same trigger now existing on all three
+  buttons.
+- A campaign send stays non-`danger` (styled as the ordinary primary
+  action); a campaign cancel, every affiliate void, and every delete action
+  are `danger` (styled destructive, Cancel focused first).
+- No backend change: none of the endpoints these ten screens call accept or
+  record a reason, so the note variant ships unused here — issue #246
+  (order-status change) is the first real consumer.
+- `apps/cms/scripts/client-asset-budget.ts`'s `APP_BUDGET_BYTES` raised
+  259,000 B → 265,000 B for the new component/client module. Moving the
+  confirm copy server-side ultimately measured LIGHTER than the first,
+  literal-based pass (262,861 B vs. an interim 264,289 B), since every
+  screen's own script shrank to a one-line `confirmFromTrigger(button)`
+  call.
+- New test: `apps/cms/tests/commerce-confirm-dialog.test.ts` — pure helper
+  coverage (including `readConfirmOptions`) plus a static contract over all
+  ten screens: no `window.confirm(` or hand-built
+  `confirmCommerceAction({ title, message })` literal left, the component
+  imported and rendered exactly once each, every trigger's `data-confirm-*`
+  attributes present (checked per occurrence, since `commission-void-btn`
+  renders twice), no inline `style=` in the component.
+
+### Commerce admin: translate stacked-table column labels
+
+Issue #253. `apps/cms/src/styles/admin.css` renders each cell's column name
+on stacked tables at 767px and below through `content: attr(data-label)`.
+Every commerce admin table but `commerce-pos.astro` (Issue #171's own screen)
+set `data-label="Status"`/`"Customer"`/`"Created"`/etc. as bare English
+literals, so a phone-width operator on an Indonesian admin saw untranslated
+column names even though the table's own `<th>` header was correctly
+translated with `t()`.
+
+- 18 commerce admin screens (`commerce.astro`, `commerce-affiliates.astro`,
+  `commerce-campaigns.astro`, `commerce-categories.astro`,
+  `commerce-customers.astro`, `commerce-dashboard.astro`,
+  `commerce-flash-sales.astro`, `commerce-inbox.astro`,
+  `commerce-orders.astro`, `commerce-orders/[id].astro`,
+  `commerce-popup.astro`, `commerce-reports.astro`,
+  `commerce-reviews.astro`, `commerce-settings.astro`,
+  `commerce-sliders.astro`, `commerce-testimonials.astro`,
+  `commerce-vouchers.astro`, `commerce-whatsapp.astro`) now write
+  `data-label={t("…")}` on every table cell, reusing the exact msgid the
+  matching `<th>` in the same table already calls `t()` with — the stacked
+  label always equals the column header now. `commerce-pos.astro` needed no
+  change.
+- Two cells had no header text to copy directly:
+  `commerce.astro`'s row-checkbox column (header has no visible text) now
+  reuses the existing `"Select"` msgid; `commerce-affiliates.astro`'s
+  commission table's first data column (header is a status-filter
+  `<select>`, not a plain label) gets a new `"Affiliate"` msgid.
+  `commerce-affiliates.astro`'s affiliate-rate cell was also corrected from
+  `"Rate"` to the header's own `"Rate (%)"` msgid, which it had silently
+  drifted from.
+- New msgid: `"Affiliate"` (English + Indonesian `"Afiliasi"`).
+- `apps/cms/scripts/client-asset-budget.ts`: no change to
+  `APP_BUDGET_BYTES` — every cell already renders a translated string via
+  the existing `t()` catalogue, so this adds no new script weight. The
+  constant's docblock does record that this issue was checked against it.
+- Tests: new `apps/cms/tests/commerce-data-label-i18n-253.test.ts` — a
+  repo-wide regression guard forbidding a literal `data-label="…"` on any
+  commerce admin screen (present or future), plus targeted assertions for
+  the `"Select"`/`"Affiliate"`/`"Rate (%)"` cases above.
+  `apps/cms/tests/commerce-settings-save-bar.test.ts` (Issue #244) updated
+  to expect the now-translated `data-label` on its own webhook-endpoints
+  table.
+
+Out of scope: every non-commerce admin screen under `apps/cms/src/pages/
+admin/` — that tree is upstream `ahliweb/awcms`'s own subtree, and this
+issue only touches this platform's `commerce` module files.
+
+### Thirteen commerce admin screens now render translated labels, not raw enum values (issue #245)
+
+Issue #243 built one shared label-map module
+(`apps/cms/src/lib/ui/commerce-admin-labels.ts`) but changed no screen. This
+issue adopts it on the nine screens the issue named plus the three its own
+comment widened the scope to — inbox, dashboard, affiliates, reports,
+WhatsApp, POS, reviews, campaigns, vouchers, flash sales, customers, popup —
+so a merchant reading `/admin/commerce-*` sees "Pending payment"/"Menunggu
+pembayaran" instead of `pending_payment`, and so on for every status,
+channel, type, and frequency those twelve screens show. `commerce-orders*`
+(#246) and `commerce.astro` (#247) are out of scope here. The manager added
+`commerce-settings.astro`'s one webhook-provider cell (`labels.webhookEndpointProvider`)
+after #244's rewrite of that table reached main, making thirteen screens.
+
+- Every render site now calls `commerceLabel(labels.<map>, <raw value>)` and
+  keeps the raw value machine-readable in a `data-*` attribute on the same
+  element (the LK PR #263 pattern) — never lost, just no longer what a
+  reader sees.
+- `commerce-dashboard.astro`'s and `commerce-affiliates.astro`'s own
+  `STATUS_TONE` maps and `commerce-reports.astro`'s `FRESHNESS_VARIANT` map —
+  each a duplicate of a tone map the shared module now exports — are gone;
+  the screens import `orderStatusTone`/`affiliateStatusTone`/
+  `commissionStatusTone`/`reportFreshnessTone` instead. `commerce-
+  reports.astro`'s export-run status badge additionally replaces its old
+  binary `completed ? success : danger` ternary with the module's
+  `reportRunStatusTone`/`reportRunStatus` — a deliberate reuse across the
+  narrower two-value `ExportRunStatus` the export-runs table actually reads,
+  which produces the identical two tones the ternary did.
+- A handful of already-`t()`-wrapped `<select>`s now iterate the shared map
+  instead of repeating its options by hand, for one source of truth:
+  `commerce-vouchers.astro`'s create-form type options, `commerce-
+  affiliates.astro`'s commission-status filter, and `commerce-popup.astro`'s
+  create-form frequency options. Two screens whose `<select>` only ever
+  offers a NARROWER subset of the full enum (`commerce-flash-sales.astro`'s
+  create/edit status, draft/scheduled of four) reuse the map's own label
+  text directly rather than iterating it, so the tick-job-only
+  `active`/`ended` values are never wrongly offered to a human editor.
+- `commerce-whatsapp.astro`'s message table gets the empty state it was
+  missing — a `<td class="data-table-empty">` row inside the (now
+  always-rendered) table, matching every other commerce table's pattern,
+  instead of a bare `<div>` that skipped the table headers entirely.
+- No screen's `<script>` confirm-dialog code, or the markup just above
+  `</AdminLayout>`, was touched on affiliates/campaigns/reviews/vouchers/
+  flash-sales/popup — reserved for the concurrently-landing issue #242.
+- Two new msgids (`apps/cms/locales/en.po`/`id.po`): the WhatsApp table's new
+  empty-state body text. No other new catalog entries were needed — the
+  shared module already declared every label this issue's screens use.
+- New test: `apps/cms/tests/commerce-enum-labels-245.test.ts` pins, per
+  screen, that `createCommerceLabels` is imported and called, that every
+  listed field renders through `commerceLabel` with its `data-*` raw
+  attribute, and that no superseded per-screen tone map remains.
+
+### Commerce orders: confirm status changes with an optional note, translated labels
+
+Issue #246, part of the commerce admin v2 epic. `commerce-orders.astro`
+changed an order's status with no confirmation at all, even though
+`PATCH /api/v1/commerce/orders/{id}/status` already accepted and recorded
+an optional `note` (up to 500 characters) on the order timeline — the UI
+never collected it.
+
+- The status-save flow now opens Issue #242's `CommerceConfirmDialog` with
+  its optional note field before PATCHing, naming the order code and the
+  from → to status (`"{orderCode} will move from {from} to {to}."`). The
+  TO status is only known once the operator changes the `<select>`, so the
+  message is composed server-side with a literal `{to}` placeholder left
+  unsubstituted on purpose (`apps/cms/src/lib/i18n/catalog.ts`'s own `interpolate()`
+  leaves an unmatched placeholder verbatim) and finished client-side from
+  a server-rendered, translated label map carried as JSON in
+  `data-order-status-meta` — never translated in the browser. A target
+  status with no outgoing edge in the domain's own transition graph
+  (`completed`, `cancelled`, `expired` — derived at render time from
+  `LEGAL_ORDER_STATUS_TRANSITIONS`, never a second hardcoded list) styles
+  the confirm as `danger`. The note is sent in the existing `note` field,
+  trimmed, only when non-empty; its 500-character ceiling matches the
+  endpoint's own `.slice(0, 500)`. Cancelling the dialog leaves the
+  `<select>` at whatever the operator had chosen and sends nothing — the
+  least surprising outcome, since forcing it back to the order's current
+  status would erase a choice the operator might still want to re-confirm.
+- Adds `readConfirmOptionsWithNote`/`confirmFromTriggerWithNote` to
+  `apps/cms/src/lib/ui/commerce-confirm-dialog-client.ts`, additively —
+  the note variant of the existing `readConfirmOptions`/`confirmFromTrigger`
+  pair, reading the same `data-confirm-note-label`/`-note-max-length`/
+  `-note-placeholder` attributes `CommerceConfirmDialog`'s note field
+  already accepts. No existing caller's behaviour changes.
+- Every raw enum render on the orders list and the order detail page
+  (status filter tabs, badge, `<option>` text, payment status, channel,
+  timeline entry status, and the client-rendered payment-gateway
+  panel's session provider/status and payment-event provider/outcome)
+  now goes through Issue #243's `commerce-admin-labels.ts` instead of a
+  raw database value or each screen's own local `STATUS_TONE` map (now
+  identical to the shared `orderStatusTone`, so it is removed rather than
+  kept alongside it). Every translated render keeps the underlying raw
+  value in a `data-*` attribute (`data-status`, `data-channel`,
+  `data-payment-status`, or `setAttribute("data-raw-*", ...)` for the
+  JS-rendered gateway fields) rather than discarding it. The gateway
+  panel's translated maps travel to the browser as JSON in
+  `data-gateway-labels` — the same shape on both screens.
+- `apps/cms/scripts/client-asset-budget.ts`'s `APP_BUDGET_BYTES` raised
+  265,000 -> 266,500 B (measured 266,095 B) for the two screens' larger
+  client scripts (label-lookup/JSON-dataset plumbing) and a handful of new
+  i18n catalogue entries; docblock entry added in the same style as every
+  prior commerce raise. No new component, no new stylesheet.
+- New msgids: `"Change order status?"`, `"{orderCode} will move from
+  {from} to {to}."`, `"Note (optional)"` — English + natural Indonesian
+  (`"Ubah status pesanan?"` / `"{orderCode} akan berpindah dari {from} ke
+  {to}."` / `"Catatan (opsional)"`).
+- Tests: `apps/cms/tests/commerce-orders-confirm-note-246.test.ts` — pure
+  helper tests for `readConfirmOptionsWithNote` plus the static contract of
+  both screens (status-save goes through the note dialog and never a
+  hand-built options literal, the note's max length matches the endpoint,
+  cancelling sends nothing, every listed render site is translated with
+  its raw value kept in `data-*`, no English confirm literal, no
+  `window.confirm`). `commerce-confirm-dialog.test.ts`'s own
+  `UNTOUCHED_SCREENS` list is updated: `commerce-orders.astro` was the one
+  screen it deliberately left for a later issue, and this is that issue.
+
+No other commerce admin screen is touched by this change.
+
+### Commerce products: translated labels, status-tab counts, bulk publish/draft/delete
+
+Issue #247, part of the commerce admin v2 epic. Depends on #242 (the
+accessible confirm dialog) and #243 (`commerce-admin-labels.ts`).
+
+- `commerce.astro` renders product type/status through
+  `commerce-admin-labels.ts`'s shared maps everywhere the raw column value
+  used to appear: the table cell, the status badge, the filter `<select>`,
+  the create-form type `<select>`, and both inline-edit `<select>`s. The
+  raw value survives in a `data-product-type`/`data-product-status`
+  attribute on the cell/badge it replaced, so it is still readable by
+  anything that needs the untranslated value.
+- The All/Published/Draft quick-filter tabs now show a per-status count,
+  as `commerce-orders.astro`'s own status tabs already do. A new
+  `countProductsByStatus(tx, tenantId)` in `product-directory.ts` runs one
+  grouped `count(*)` query, zero-filling a status with no rows — the SAME
+  choice `order-directory.ts`'s `countOrdersByStatus` made, generalised:
+  it deliberately ignores this screen's `categoryId`/`q`/`featured`/
+  `recommended` filters, matching the tabs' own `href`s (which already
+  drop those filters when a tab is clicked). Covered by two new
+  integration tests in `commerce-catalog.integration.test.ts` (grouping +
+  soft-delete exclusion, and cross-tenant isolation).
+- The product list gets a real checkbox column (header select-all with
+  indeterminate state, each row checkbox labelled with the product's
+  name) and a working `.admin-bulk-bar` with Publish/Move to draft/Delete
+  — gated on the same `canUpdate`/`canDelete` permissions the row Actions
+  column already uses. Per the reference repo `media-lenterakalteng`'s
+  ADR-0123 §5 pattern (no bulk API): every action loops over the EXISTING
+  per-item `PATCH`/`DELETE
+  /api/v1/commerce/products/{id}` endpoints, one request per selected
+  product, each carrying its own `Idempotency-Key` (neither route reads
+  one today, but sending it costs nothing and matches the convention
+  every other high-risk mutation in this module follows). Requests run
+  SEQUENTIALLY with a "Processing N of M…" progress label; a run that
+  does not fully succeed reports which SKUs failed and why in the
+  existing `role="alert"` error box, then leaves the page as-is (matching
+  `mutateAndReload`'s own "reload only on success" convention); a fully
+  successful run reloads. Bulk delete confirms through
+  `CommerceConfirmDialog`, with a count-aware message ("N selected
+  product(s) will be moved to trash…") filled client-side from two
+  server-rendered plural forms.
+- New `apps/cms/src/lib/ui/commerce-products-bulk-client.ts`: the pure
+  selection-state/plural-template/idempotency-key/result-aggregation
+  helpers, plus the DOM wiring `commerce.astro`'s `<script>` calls
+  (`initCommerceProductsBulk()`). Its own header explains the `{n}`
+  placeholder (never `{count}`) the live selection count and the delete
+  confirmation both rely on to stay correctly translated without a
+  client-side i18n runtime. The checkbox column and the bar are
+  CSS-hidden (`commerce.astro`'s own scoped `<style>`) until this module
+  actually runs, so a no-JS visitor keeps the per-row-only UI the screen
+  always had.
+- `apps/cms/scripts/client-asset-budget.ts`'s `APP_BUDGET_BYTES` raised
+  265,000 -> 269,000 B (measured 268,549 B) for the new client module and
+  a dozen new i18n catalogue entries; docblock entry added in the same
+  style as every prior commerce raise.
+- New msgids for the bar's copy, the delete confirmation, and per-action
+  failure headers — English + natural Indonesian (the plural pair's
+  Indonesian form is a single string, since `id.po`'s `Plural-Forms` is
+  `nplurals=1`).
+- Tests: `apps/cms/tests/commerce-products-bulk-247.test.ts` — pure
+  helper coverage (placeholder filling, plural-form selection, select-all
+  tri-state, the per-item idempotency key, error-message extraction, the
+  sequential runner and its progress/failure aggregation, failure-summary
+  formatting) plus the static contract (label call sites, tab counts, the
+  bar/column hidden-until-JS contract, the confirm button's
+  `data-confirm-*` attributes, no `window.confirm`, and a directory
+  listing proving no new route was added under
+  `src/pages/api/v1/commerce/products/`).
+
+Bulk actions for orders remain deliberately out of scope, per the issue:
+status transitions there have side effects (stock, notifications,
+payment) a bulk mistake would make costly.
+
+### Commerce settings: sticky save bar, webhook table stacks on mobile
+
+Issue #244, part of the commerce admin v2 epic. `commerce-settings.astro`
+had three forms, each with its own inline submit button and no persistent
+save control once a form scrolled out of view. Ported from
+`media-lenterakalteng`'s `SettingsSaveBar` (that fork's ADR-0124) into
+this module's own `src/components/`, since `apps/cms/src/lib/ui/admin-
+form-client.ts` and `admin-screens.css` are upstream `ahliweb/awcms` files
+this repo does not edit locally.
+
+- New `apps/cms/src/components/CommerceSettingsSaveBar.astro` +
+  `apps/cms/src/lib/ui/commerce-settings-save-bar-client.ts`: `formId`
+  (required) and `saveLabel` (required) props, optional `resetLabel`/
+  `ariaLabel`/`class`, a named `status` slot. Always rendered — `<button
+  type="submit" form={formId}>`/`<button type="reset" form={formId}>` work
+  with JavaScript disabled, exactly like a submit button written inside
+  the form. The optional client module adds only a dirty/clean visual
+  distinction (an `is-dirty` class, a `data-dirty-label`/`data-clean-label`
+  status-text swap on `input`/`change`/`reset`) — it never hides or
+  disables the buttons, and deliberately adds no `beforeunload` guard (see
+  the client module's own docblock for why: the dirty flag has no signal
+  for "the page's own async save actually succeeded", so a leave-guard
+  keyed off it would still warn right after a successful save). Buttons
+  reuse the shared `.btn`/`.btn-primary` classes rather than a bespoke
+  button, and the bar's own surface is a plain `--color-surface` card, so
+  the existing global `:focus-visible` ring needs no override.
+- `commerce-settings.astro` adopts the bar for its two SETTINGS forms
+  (`#store-settings-form`, `#commerce-features-form`), removing each
+  form's own inline submit button so the bar's button is the one primary
+  submit control — the same "one submit control per form" resolution
+  `media-lenterakalteng`'s adopting screens used for the same
+  `admin-form-client.ts` submit-lock interaction, reached here by looking
+  the bar's button up through the new client module's own
+  `commerceSaveBarButton(formId)` (this module's own file, so the upstream
+  `admin-form-client.ts` never needed a matching export). Each form is
+  wrapped, together with its own bar, in a shared block ancestor
+  (`#store-settings-section` new; `#commerce-features-section` already
+  existed) — `position: sticky; bottom: 0` is scoped by that containing
+  block, so each bar sticks only while ITS OWN section is in view and the
+  two bars never overlap. `#webhook-endpoint-create-form` is a CRUD create
+  form, not a settings form, and keeps its own inline button unchanged.
+- The webhook endpoints table joins the shared `data-table`/
+  `data-table--stack` convention every other commerce table already uses:
+  a `data-table-scroll` wrapper, a `<caption>` reporting a real count via
+  the plural translator, `data-label` on every cell, the action cell
+  wrapped in `.row-actions` and marked `stacked-block`, and an
+  `.empty-state` block when a tenant has minted no webhook endpoint yet
+  (there was previously no empty state at all).
+- `apps/cms/scripts/client-asset-budget.ts`'s `APP_BUDGET_BYTES` raised
+  259,000 -> 261,000 B (measured 260,541 B) for the new component's scoped
+  stylesheet and the page's larger client script; docblock entry added in
+  the same style as every prior commerce raise.
+- New msgids: `"Saved"`, `"Unsaved changes"`, the `"{count} webhook
+  endpoint"`/`"{count} webhook endpoints"` plural pair, `"No webhook
+  endpoints yet"`, and `"Webhook endpoints created for this tenant will
+  appear here."` — English + natural Indonesian. Both settings forms'
+  save/reset labels reuse the screen's EXISTING `"Save store settings"`/
+  `"Save features"`/`"Reset"` catalogue entries rather than a new generic
+  `"Save changes"` string, since a page with two bars benefits more from
+  each one naming what it saves.
+- Tests: `apps/cms/tests/commerce-settings-save-bar.test.ts` — pure client
+  helper tests (`resolveStatusText`, no `.disabled =`/`.hidden =`
+  assignment, no `beforeunload` listener) plus the static contract of
+  both the component (no-JS-safe buttons, no inline style/script, shared
+  button classes) and the page (bar adoption, one submit control per
+  form, each bar's section wrapping, the webhook table's stacking
+  convention and empty state).
+
+No other commerce admin screen is touched by this change.
+
 ## [0.13.1] — 2026-09-27
 
 ### Apply Debian security updates in the storefront runtime image
