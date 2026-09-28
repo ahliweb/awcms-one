@@ -120,6 +120,7 @@
     "data-lifecycle:table-coverage:check": "bun scripts/data-lifecycle-table-coverage-check.ts",
     "analytics:rollup": "bun scripts/visitor-analytics-rollup.ts",
     "analytics:purge": "bun scripts/visitor-analytics-purge.ts",
+    "omes:repository-progress:poll": "bun scripts/omes-repository-progress-poll.ts",
     "email:dispatch": "bun scripts/email-dispatch.ts",
     "email:provider:health": "bun scripts/email-provider-health.ts",
     "email:queue:purge": "bun scripts/email-queue-purge.ts",
@@ -196,10 +197,10 @@
     "@changesets/cli": "^3.0.3",
     "@playwright/test": "^1.63.0",
     "@types/bun": "^1.4.2",
-    "prettier": "^3.9.6",
-    "prettier-plugin-astro": "^0.14.1",
+    "prettier": "^3.9.9",
+    "prettier-plugin-astro": "^1.1.0",
     "typescript": "^7.0.2",
-    "yaml": "^2.9.0"
+    "yaml": "^2.9.1"
   },
   "overrides": {
     "postcss": "^8.5.23",
@@ -210,7 +211,7 @@
     "svgo": "^4.1.0"
   },
   "dependencies": {
-    "@astrojs/node": "^11.1.5",
-    "astro": "^7.3.2"
+    "@astrojs/node": "^11.1.6",
+    "astro": "^7.3.5"
   }
 }

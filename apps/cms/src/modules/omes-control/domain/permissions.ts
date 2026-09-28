@@ -81,5 +81,38 @@ export const OMES_GUARDS = {
       activityCode: "enrollments",
       action: "manage" as const
     }
+  },
+  aiPrivacy: {
+    read: {
+      moduleKey: "omes_control",
+      activityCode: "ai_privacy",
+      action: "read" as const
+    },
+    approve: {
+      moduleKey: "omes_control",
+      activityCode: "ai_privacy",
+      action: "approve" as const
+    }
+  },
+  hermesOrchestration: {
+    read: {
+      moduleKey: "omes_control",
+      activityCode: "hermes_orchestration",
+      action: "read" as const
+    }
+  },
+  architecture: {
+    read: {
+      moduleKey: "omes_control",
+      activityCode: "architecture",
+      action: "read" as const
+    }
+  },
+  repositoryProgress: {
+    configure: {
+      moduleKey: "omes_control",
+      activityCode: "repository_progress",
+      action: "configure" as const
+    }
   }
 } as const;

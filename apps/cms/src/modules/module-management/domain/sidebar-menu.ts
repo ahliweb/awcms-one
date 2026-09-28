@@ -277,7 +277,21 @@ export const SIDEBAR_LABELS: Readonly<Record<string, string>> = {
   "admin.layout.nav_commerce_inbox": "Inbox",
   "admin.layout.nav_commerce_campaigns": "Campaigns",
   "admin.layout.nav_commerce_reports": "Sales reports",
-  "admin.layout.nav_commerce_pos": "POS"
+  "admin.layout.nav_commerce_pos": "POS",
+  "admin.layout.nav_omes_overview": "OMES overview",
+  "admin.layout.nav_omes_servers": "OMES servers",
+  "admin.layout.nav_omes_deployments": "OMES deployments",
+  "admin.layout.nav_omes_operations": "OMES operations",
+  "admin.layout.nav_omes_jobs": "OMES jobs",
+  "admin.layout.nav_omes_health": "OMES health",
+  "admin.layout.nav_omes_backups": "OMES backups",
+  "admin.layout.nav_omes_audit": "OMES audit",
+  "admin.layout.nav_omes_enrollments": "OMES enrollment tokens",
+  "admin.layout.nav_omes_ai_privacy": "OMES AI privacy",
+  "admin.layout.nav_omes_orkestrasi_langsung": "OMES live orchestration",
+  "admin.layout.nav_omes_hermes": "OMES Hermes",
+  "admin.layout.nav_omes_progres_hermes": "OMES Hermes progress",
+  "admin.layout.nav_omes_arsitektur": "OMES architecture"
 };
 
 /**
@@ -382,7 +396,21 @@ export const DEFAULT_SIDEBAR_ICONS: Readonly<Record<string, string>> = {
   "admin.layout.nav_commerce_inbox": "chat",
   "admin.layout.nav_commerce_campaigns": "send",
   "admin.layout.nav_commerce_reports": "chart",
-  "admin.layout.nav_commerce_pos": "cart"
+  "admin.layout.nav_commerce_pos": "cart",
+  "admin.layout.nav_omes_overview": "dashboard",
+  "admin.layout.nav_omes_servers": "monitor",
+  "admin.layout.nav_omes_deployments": "layers",
+  "admin.layout.nav_omes_operations": "bolt",
+  "admin.layout.nav_omes_jobs": "clock",
+  "admin.layout.nav_omes_health": "shield",
+  "admin.layout.nav_omes_backups": "database",
+  "admin.layout.nav_omes_audit": "clock",
+  "admin.layout.nav_omes_enrollments": "key",
+  "admin.layout.nav_omes_ai_privacy": "shield",
+  "admin.layout.nav_omes_orkestrasi_langsung": "bolt",
+  "admin.layout.nav_omes_hermes": "layers",
+  "admin.layout.nav_omes_progres_hermes": "chart",
+  "admin.layout.nav_omes_arsitektur": "map"
 };
 
 /** Display name for the synthetic core group. Rendered as a module sub-label. */

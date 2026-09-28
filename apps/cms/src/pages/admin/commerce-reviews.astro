@@ -62,129 +62,121 @@ const showActions = canUpdate || canDelete;
     "Product reviews left by customers after a completed order — moderate before they publish."
   )}
 >
-  {
-    !canRead && (
-      <p class="state-notice fade-in-up" id="reviews-denied">
-        {t("You do not have permission to view reviews.")}
-      </p>
-    )
-  }
-  {
-    canRead && loadError && (
-      <p class="state-notice fade-in-up" id="reviews-error">
-        {t("Reviews could not be loaded right now. Please try again later.")}
-      </p>
-    )
-  }
+  {!canRead && (
+    <p class="state-notice fade-in-up" id="reviews-denied">
+      {t("You do not have permission to view reviews.")}
+    </p>
+  )}
+  {canRead && loadError && (
+    <p class="state-notice fade-in-up" id="reviews-error">
+      {t("Reviews could not be loaded right now. Please try again later.")}
+    </p>
+  )}
 
-  {
-    canRead && !loadError && (
-      <p
-        id="review-action-error"
-        class="admin-create-error"
-        role="alert"
-        hidden
-      />
-    )
-  }
+  {canRead && !loadError && (
+    <p
+      id="review-action-error"
+      class="admin-create-error"
+      role="alert"
+      hidden
+    />
+  )}
 
-  {
-    canRead && !loadError && (
-      <div class="data-table-scroll fade-in-up">
-        <table class="data-table data-table--stack" id="commerce-reviews-table">
-          <caption>
-            {tn("{count} review", "{count} reviews", reviews.length, {
-              count: reviews.length
-            })}
-          </caption>
-          <thead>
+  {canRead && !loadError && (
+    <div class="data-table-scroll fade-in-up">
+      <table class="data-table data-table--stack" id="commerce-reviews-table">
+        <caption>
+          {tn("{count} review", "{count} reviews", reviews.length, {
+            count: reviews.length
+          })}
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">{t("Product")}</th>
+            <th scope="col">{t("Rating")}</th>
+            <th scope="col">{t("Body")}</th>
+            <th scope="col">{t("Status")}</th>
+            <th scope="col">{t("Submitted")}</th>
+            {showActions && <th scope="col">{t("Actions")}</th>}
+          </tr>
+        </thead>
+        <tbody>
+          {reviews.length === 0 ? (
             <tr>
-              <th scope="col">{t("Product")}</th>
-              <th scope="col">{t("Rating")}</th>
-              <th scope="col">{t("Body")}</th>
-              <th scope="col">{t("Status")}</th>
-              <th scope="col">{t("Submitted")}</th>
-              {showActions && <th scope="col">{t("Actions")}</th>}
+              <td class="data-table-empty" colspan={showActions ? 6 : 5}>
+                <div class="empty-state">
+                  <span class="empty-state-icon" aria-hidden="true">
+                    ◇
+                  </span>
+                  <span class="empty-state-title">{t("No reviews yet")}</span>
+                  <span class="empty-state-text">
+                    {t(
+                      "Reviews submitted for completed orders will appear here."
+                    )}
+                  </span>
+                </div>
+              </td>
             </tr>
-          </thead>
-          <tbody>
-            {reviews.length === 0 ? (
-              <tr>
-                <td class="data-table-empty" colspan={showActions ? 6 : 5}>
-                  <div class="empty-state">
-                    <span class="empty-state-icon" aria-hidden="true">
-                      ◇
-                    </span>
-                    <span class="empty-state-title">{t("No reviews yet")}</span>
-                    <span class="empty-state-text">
-                      {t(
-                        "Reviews submitted for completed orders will appear here."
-                      )}
-                    </span>
-                  </div>
+          ) : (
+            reviews.map((review) => (
+              <tr data-review-row={review.id}>
+                <td data-label={t("Product")}>
+                  <span class="cell-code">{review.productId}</span>
                 </td>
-              </tr>
-            ) : (
-              reviews.map((review) => (
-                <tr data-review-row={review.id}>
-                  <td data-label={t("Product")}>
-                    <span class="cell-code">{review.productId}</span>
-                  </td>
-                  <td data-label={t("Rating")}>{review.rating} / 5</td>
-                  <td data-label={t("Body")}>{review.body}</td>
-                  <td data-label={t("Status")}>
-                    <span data-status={review.status}>
-                      {commerceLabel(labels.reviewStatus, review.status)}
-                    </span>
-                  </td>
-                  <td data-label={t("Submitted")}>{review.createdAt}</td>
-                  {showActions && (
-                    <td data-label={t("Actions")} class="stacked-block">
-                      <div class="row-actions">
-                        {canUpdate && review.status === "pending" && (
-                          <>
-                            <button
-                              type="button"
-                              class="module-toggle review-publish-btn"
-                              data-review-id={review.id}
-                            >
-                              {t("Publish")}
-                            </button>
-                            <button
-                              type="button"
-                              class="module-toggle review-reject-btn"
-                              data-review-id={review.id}
-                            >
-                              {t("Reject")}
-                            </button>
-                          </>
-                        )}
-                        {canDelete && (
+                <td data-label={t("Rating")}>{review.rating} / 5</td>
+                <td data-label={t("Body")}>{review.body}</td>
+                <td data-label={t("Status")}>
+                  <span data-status={review.status}>
+                    {commerceLabel(labels.reviewStatus, review.status)}
+                  </span>
+                </td>
+                <td data-label={t("Submitted")}>{review.createdAt}</td>
+                {showActions && (
+                  <td data-label={t("Actions")} class="stacked-block">
+                    <div class="row-actions">
+                      {canUpdate && review.status === "pending" && (
+                        <>
                           <button
                             type="button"
-                            class="module-toggle review-delete-btn"
+                            class="module-toggle review-publish-btn"
                             data-review-id={review.id}
-                            data-confirm-title={t("Delete this review?")}
-                            data-confirm-message={t(
-                              "This review will no longer be visible on the storefront."
-                            )}
-                            data-confirm-label={t("Delete review")}
-                            data-confirm-danger="true"
                           >
-                            {t("Delete")}
+                            {t("Publish")}
                           </button>
-                        )}
-                      </div>
-                    </td>
-                  )}
-                </tr>
-              ))
-            )}
-          </tbody>
-        </table>
-      </div>
-    )
-  }
+                          <button
+                            type="button"
+                            class="module-toggle review-reject-btn"
+                            data-review-id={review.id}
+                          >
+                            {t("Reject")}
+                          </button>
+                        </>
+                      )}
+                      {canDelete && (
+                        <button
+                          type="button"
+                          class="module-toggle review-delete-btn"
+                          data-review-id={review.id}
+                          data-confirm-title={t("Delete this review?")}
+                          data-confirm-message={t(
+                            "This review will no longer be visible on the storefront."
+                          )}
+                          data-confirm-label={t("Delete review")}
+                          data-confirm-danger="true"
+                        >
+                          {t("Delete")}
+                        </button>
+                      )}
+                    </div>
+                  </td>
+                )}
+              </tr>
+            ))
+          )}
+        </tbody>
+      </table>
+    </div>
+  )}
   <CommerceConfirmDialog locale={Astro.locals.locale} />
 </AdminLayout>
 

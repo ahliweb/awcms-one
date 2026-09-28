@@ -54,6 +54,227 @@ Every mutation requires `Idempotency-Key` and replays the stored response on a r
 
 **Known scope limitation**: `awcms_idempotency_keys` is keyed `(tenant_id, request_scope, idempotency_key)` — tenant-scoped, not actor-scoped. Any tenant user who learns another user's `Idempotency-Key` value for a still-live key can trigger the replay path (never a second mutation, only the stored response) and will now show up in the audit trail as the replaying actor, distinct from the original. Whether idempotency keys should additionally be scoped per-actor is a product decision for a follow-up issue, not settled by this one — this module inherits the shared store's existing contract unchanged.
 
-## The `omes#199` integration seam
+## AI privacy posture and egress owner-approval (`ahliweb/omes#232`, OMES issue #217)
 
-ahliweb/omes#197 (merged, PR #816) added `domain/contracts/` to this same module: `validateOmesContract`/`validateOmesContractText`/`validateOmesContractOrThrow`, `scanForRawSecrets`, `getOmesStateMachine`, and the pinned `OMES_CONTRACT_PIN` — fail-closed shape/state-machine validation against the vendored OMES v1 contracts. This issue (#198) does **not** wire that validator into any route or application function here, and does not duplicate it: this module's own client-facing `validateOperationSubmission`/`validateServerRegistrationInput` (`domain/operations.ts`, `domain/server-registration.ts`) validate only the AWCMS-facing (session-authenticated) request shape — deliberately not the OMES wire schema, whose `tenant_id`/`correlation_id`/`idempotency_key`/`actor`/`permission` fields are derived server-side, never accepted from a browser. Building the OMES-facing envelope and calling `validateOmesContract` against it before forwarding to OMES is the pull worker's job (`ahliweb/omes#199`, not yet implemented) — `domain/contracts/` is the single place that wiring plugs into when it lands.
+Consumes the OMES-owned `ai-privacy-posture-view`/`ai-egress-approval.request`/`.response` contracts (`omes:docs/control-center-contracts.md` §2.10, ADR-0029) so a tenant can see AI privacy posture evidence and govern owner-approval of `approval_required` AI egress decisions — never a second Hermes/OMES runtime, and never a place raw prompts, transcripts, or provider credentials can land.
+
+| Endpoint                                        | Permission             | Notes                                                                                                           |
+| ----------------------------------------------- | ---------------------- | --------------------------------------------------------------------------------------------------------------- |
+| `GET /api/v1/omes/ai-privacy/posture`           | `ai_privacy.read`      | Fleet-wide posture projection plus egress-approval history. Freshness/effective status recomputed at read time. |
+| `POST /api/v1/omes/ai-privacy/egress-approvals` | `ai_privacy.approve`   | Records an owner approve/deny decision. Idempotency-Key required, rate-limited, audited critical.               |
+| `POST /api/v1/omes/worker/ai-privacy-posture`   | none (worker identity) | Session-unauthenticated; same Ed25519 worker-envelope authentication as `poll`/`result`/`heartbeat`.            |
+
+**Ingestion is the existing worker transport, not a new listener.** An enrolled OMES pull worker delivers its `ai-privacy-posture-view` projection to `POST /api/v1/omes/worker/ai-privacy-posture`, authenticated by the same `verifyWorkerEnvelope` chokepoint (`domain/worker-identity.ts`'s `WorkerRoute`, now including `"ai-privacy-posture"`) that guards `poll`/`result`/`heartbeat`. The envelope's authenticated `tenant_id`/`server_id` must agree with the posture projection's own `tenant_id`/`target.server_id`, so a worker authenticated for one tenant/server can never deliver a projection labeled for another. The inbound `posture` object is validated against the vendored `ai-privacy-posture-view.schema.json` before anything is persisted; a failed envelope or schema check answers the same neutral `{"status":"rejected"}` (never a distinguishing error), matching `worker-envelope-guard.ts`'s documented discipline. One current row per `(tenant_id, server_id, deployment_id)` target is kept (`awcms_omes_ai_privacy_posture`, sql/160) — a new projection replaces the prior one, matching the contract's own framing as a read projection, not an append-only history.
+
+**Freshness and status are recomputed at read time, never trusted off storage.** `domain/ai-privacy.ts`'s `projectAiPrivacyPosture` reclassifies `evidenceFreshness` (`fresh`/`stale`/`unknown`) from `lastVerifiedAt` against `now` on every read, and downgrades `effectiveStatus` to `BLOCKED` whenever evidence is not `fresh`, or an unrecognized status/destination/classification value slipped through, or `reasonCodes` is empty — stale or unknown evidence is never rendered as healthy, and an empty fleet is reported as "unknown", never "healthy" (`fetchAiPrivacyPosture`'s `fleetHealthy`).
+
+**A RESTRICTED classification resolving to a `cloud_sanitized` destination has NO approval path, structurally, at three independent layers**: (1) `domain/ai-privacy.ts`'s `authorizeAiEgressApproval` unconditionally refuses it by value, before ever touching the workflow engine; (2) `awcms_omes_ai_egress_approvals`'s own CHECK constraint (sql/160) makes storing that combination as approvable/approved impossible even if both application-layer checks were somehow bypassed; (3) the admin screen never renders an approve control for that pairing. Every other `approval_required` decision (the same three `AI_EGRESS_APPROVAL_REQUIRED_*` reason codes OMES's `egress_policy.py` already restricts approval to) is recorded via the SAME `workflow-approval` engine every other destructive `omes_control` action uses (`startWorkflowInstance` under workflow key `omes_control.ai_egress_approval`) — never a second, parallel approval authority. A tenant with no active workflow definition under that key gets `409 APPROVAL_WORKFLOW_NOT_CONFIGURED` and nothing is persisted as approved/denied-by-workflow; an explicit denial (`approve: false`) or a structurally-refused request is still recorded (`decision: "denied"`) without ever calling the workflow engine, since a denial needs no approval authority.
+
+**No raw prompt/transcript/credential field can reach this module, structurally.** The vendored `ai-privacy-posture-view`/`ai-egress-approval.request`/`.response` schemas are `additionalProperties: false` throughout; `domain/ai-privacy.ts`'s `findDisallowedEvidenceKeys` is a second, independent runtime scan (over `latest_decision` at ingestion) for key names shaped like raw content (`prompt`, `transcript`, `response_text`, `chain_of_thought`, `raw_provider_response`, `credential`, `secret`, `password`, `token`), belt-and-suspenders against a future schema relaxation. `justification` on an approval submission is a bounded (500-character) short operator note, redacted the same as any other free-text attribute — the length bound discourages pasting a transcript, it is not itself a content filter.
+
+## Hermes orchestration observability (`ahliweb/omes#246` part 2, OMES issue #183, ADR-0028)
+
+Consumes the OMES-owned `hermes-orchestration-tree`/`hermes-orchestration-event` v1 contracts (already vendored by `ahliweb/omes#232`'s re-vendor, PIN commit `f200c2012273de4a0e0598c5bf144a5b0ce33eaa` — no re-vendor needed for this issue) so a tenant can watch Hermes delegated-task/subagent orchestration state. ADR-0017 boundary, restated: Hermes owns orchestration; this is a READ-ONLY observability projection an enrolled OMES pull worker reports — no control action here ever reaches a Hermes agent, and no second orchestration engine exists.
+
+| Endpoint                                              | Permission                  | Notes                                                                                                |
+| ----------------------------------------------------- | --------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `GET /api/v1/omes/hermes-orchestration/tree`          | `hermes_orchestration.read` | The tenant's current orchestration tree snapshots. Freshness/state rollups recomputed at read time.  |
+| `GET /api/v1/omes/hermes-orchestration/events`        | `hermes_orchestration.read` | The tenant's recent activity-stream events, optionally narrowed by `?session_id=`.                   |
+| `POST /api/v1/omes/worker/hermes-orchestration-tree`  | none (worker identity)      | Session-unauthenticated; same Ed25519 worker-envelope authentication as `poll`/`result`/`heartbeat`. |
+| `POST /api/v1/omes/worker/hermes-orchestration-event` | none (worker identity)      | Same worker-envelope authentication; append-only, deduplicated by a natural idempotency key.         |
+
+**One current tree snapshot per session; an append-only, deduplicated event log.** `awcms_omes_hermes_orchestration_trees` (sql/163) keeps ONE row per `(tenant_id, server_id, session_id)` — a new snapshot for the same session REPLACES the prior one, matching the wire contract's own framing as a live projection, not history. `awcms_omes_hermes_orchestration_events` is append-only, deduplicated on `(tenant_id, server_id, session_id, subagent_id, event_type, step_number)` so a redelivered event (the pull worker's outbox is at-least-once) is a no-op, never a duplicate activity-stream row.
+
+**Freshness and node-state rollups are recomputed at read time, never trusted off storage** — the same discipline `domain/ai-privacy.ts` documents. `domain/hermes-orchestration.ts`'s `projectOrchestrationTree` reclassifies `freshness` (`live`/`stale`/`unknown`) from `generatedAt` against `now` (a 120-second window — much shorter than AI-privacy's 24-hour evidence window, since this reflects a currently-running delegation, not durable compliance evidence) and recomputes `activeCount`/`completedCount`/`failedCount`/depth from the ACTUAL node states, never the stored counts a producer sent. A stalled connection or missing terminal event therefore reconciles to stale, never invented completion (issue #183's own explicit requirement).
+
+**No raw prompt/transcript/tool-argument field can reach this module, structurally.** Both vendored schemas are `additionalProperties: false` throughout; `findDisallowedEvidenceKeys` (reused as-is from `domain/ai-privacy.ts`) is a second, independent runtime scan at ingestion.
+
+**A known, reported contract gap: no `planner`/step-`budget` field.** The redesign reference's "Hermes" screen shows an assigned planner/model identity and a step-count ceiling alongside goal/state/started/step-count. Neither is in either vendored v1 contract. Per an explicit coordinator decision (not this module inventing a shape), the Hermes screen ships using only the fields the contracts already carry and renders `planner`/step-budget as an explicit "not reported" state — see `src/pages/admin/omes/hermes.astro`'s own header comment.
+
+**"Progres Hermes" now consumes a real, polled GitHub repository-progress projection (`ahliweb/omes#249`, ADR-0030).** See the dedicated section below.
+
+## Repository progress (`ahliweb/omes#249`, split from `#246` part 2, ADR-0030 in `ahliweb/omes`)
+
+Consumes the OMES-owned `repository-progress-view` v1 contract (vendored at `ahliweb/omes` commit `7ce1e40937dae990f59a35f0e2a00401f1a19a71`). Per ADR-0030's decision, **AWCMS itself polls the GitHub REST API** on a schedule — never an OMES host worker, never a static/hand-maintained list. GitHub remains the sole authority for repository/issue/milestone state; this module only stores a `observed_at`-stamped observation.
+
+| Endpoint                                         | Permission                            | Notes                                                                                            |
+| ------------------------------------------------ | ------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| `GET /api/v1/omes/repository-progress`           | `hermes_orchestration.read` (reused)  | The tenant's projection, or an explicit `unconfigured` state. Freshness recomputed at read time. |
+| `GET /api/v1/omes/repository-progress/config`    | `hermes_orchestration.read` (reused)  | The tenant's current owner/name/`usesToken` — never the resolved token value.                    |
+| `PUT /api/v1/omes/repository-progress/config`    | `repository_progress.configure` (NEW) | Sets/replaces the observed repository. Requires `Idempotency-Key`, audited.                      |
+| `DELETE /api/v1/omes/repository-progress/config` | `repository_progress.configure` (NEW) | Clears the configuration and any existing projection. Requires `Idempotency-Key`, audited.       |
+
+**Why read reuses `hermes_orchestration.read` but configure is a new permission.** The projection lives on the same screen, and viewing it is the same "family of related read-only projections" precedent `servers.read`/`health` and the three `#246` part 2 screens already set (sql/167's own header). Configuring WHICH repository a tenant observes is a genuinely new write capability with nothing to reuse, so it gets `repository_progress.configure` (sql/167) — an operator with only read access sees the projection but never the configuration form.
+
+**Configuration and secrets (`sql/166`, `application/repository-progress-config.ts`).** `awcms_omes_repository_progress_config` is a per-tenant (unique on `tenant_id`), `FORCE ROW LEVEL SECURITY` table holding `owner`/`name` (validated against the GitHub identifier charset, both client- and server-side) and an OPTIONAL `secret_ref`. A `secret_ref` NEVER holds a raw token — for v1 the ONLY accepted shape (enforced by a database `CHECK` constraint, not just application code) is `{"store": "env", "key": "OMES_REPOSITORY_PROGRESS_GITHUB_TOKEN"}`, a single, fixed, statically-scannable env var name (the same convention `tenant-domain`'s `TENANT_DOMAIN_CLOUDFLARE_*` vars use), required by `scripts/jobs-env-allowlist.ts`'s static analysis of literal `process.env.NAME` reads — a dynamic, tenant-chosen env var name could not be discovered that way. A public repository needs no token at all. This is a deliberate v1 simplification: every tenant that opts in to token-authenticated polling shares one operator-provisioned token, not a distinct credential per tenant; a future issue can add a genuinely per-tenant credential store if that becomes necessary.
+
+**The poller (`scripts/omes-repository-progress-poll.ts`, `bun run omes:repository-progress:poll`, every 15 minutes by default).** For every active tenant with a configuration, reads it plus the previous projection's ETags/data in one short read-only transaction, then — OUTSIDE any database transaction (this repository's own "never call an external provider inside a transaction" rule) — calls the GitHub REST API (`milestones?state=all`, `issues?state=all`, pull requests excluded) via `application/repository-progress-poller.ts`, then writes the outcome in a second short transaction (`application/repository-progress-ingestion.ts`). Every HTTP call goes through `ssrfSafeFetch` (bounded timeout, response-size cap, the `User-Agent` GitHub requires) even though the host is always the literal `api.github.com`. Conditional requests (`If-None-Match` on page 1 of each resource) mean an unchanged repository's poll costs no extra GitHub rate-limit quota; a `403`/`429` with rate-limit headers records an explicit `rate_limited` error state rather than retrying in a tight loop. A poll failure NEVER discards the last successful observation — only `status`/`last_error_class`/`last_error_at` change.
+
+**`kind` derivation (`domain/repository-progress.ts`'s `deriveIssueKind`)** mirrors ADR-0030 exactly: `type:epic` → `epic`; `type:feature`/`enhancement` → `feature`; `bug`/`type:bug` → `bug`; `documentation`/`type:documentation` → `docs`; anything else → `other`. Labels only, checked in that fixed priority order — never inferred from title/body text.
+
+**No issue body, no comments, no assignee/author PII, structurally.** `domain/repository-progress.ts`'s mapping functions only ever read `number`/`title`/`state`/label NAMES/milestone number/`html_url`/`updated_at` off the raw GitHub response; every assembled projection is validated against the vendored, `additionalProperties: false` `repository-progress-view` schema (`assertOmesContract`, fail-closed) before it is ever stored.
+
+**Deferred, not implemented by this issue:** the reserved `source: "github_webhook"` enum value (ADR-0030 explicitly reserves it for a later, additive freshness optimization — polling remains required for backfill regardless); a distinct GitHub credential per tenant (see above); GitHub App installation tokens (only a personal-access-token-shaped `Bearer` token is supported for v1, though the code path does not care which kind of token string it is given).
+
+## Admin screens (`/admin/omes/*`)
+
+Issue ahliweb/omes#200 shipped the first five screens (Overview, Servers, Deployments, Operations, Jobs); issue ahliweb/omes#201 (parent #195) added Health, Backups, and Audit; issue ahliweb/omes#233 adds the ninth, Enrollments. This module's `status` is `active` (ADR-0021 criterion 1, the same `push_delivery` precedent). Every screen is a thin read/submit layer over the endpoints above — no screen executes SQL directly, and hiding a button is UX only: each screen's own permission is exactly the permission its endpoint independently enforces.
+
+- **Overview** (`servers.read`/`deployments.read`/`jobs.read`/`backups.read`/`audit.read`, any-of) — fleet rollup plus quick-links to every other screen an actor can read.
+- **Servers** (`servers.read`, `servers.register`, `servers.delete`) — fleet inventory and per-server enrollment/trust evidence (public-key fingerprint only).
+- **Deployments** (`deployments.read`) — desired vs observed state, always in separate columns.
+- **Operations** (per-operation guard) — submits the safe-operation allowlist; destructive operations link into `/admin/approvals`.
+- **Jobs** (`jobs.read`, `jobs.approve`, `jobs.cancel`) — worker dispatch queue with retry/cancel.
+- **Health** (`servers.read`) — latest health snapshot per server, plus per-server history. Every snapshot is `omes-host`-attributed (the pull worker's own report); an individual `checks` entry may declare its own `source` (e.g. `hermes`, an external provider), rendered as its own badge. A `stale` flag (computed from each snapshot's own `captured_at`, `STALE_HEARTBEAT_THRESHOLD_MS`) renders ALONGSIDE `overallStatus`, never replacing it with a success variant.
+- **Backups** (`backups.read`, `backups.restore`) — artifact metadata (recovery class from the manifest, sha256 checksum, size, a computed `fresh` flag) and the manifest itself, escaped, never raw backup contents. Restore is the one mutation: always destructive, excluded from the safe-operation allowlist, and routed through the SAME `workflow-approval` engine as `stop`/`rollback` — this screen never runs a second approval decision, only submits and links the resulting `workflowInstanceId` into `/admin/approvals`.
+- **Audit** (`audit.read`) — TWO separate, source-labelled sections, never merged: canonical control-plane actor/action events (`awcms_audit_events` via `listAuditEvents`, narrowed to `moduleKey: "omes_control"`) and the remote OMES execution/reconciliation projection (`awcms_omes_audit_projections` via `fetchAuditProjections`). `logging.audit_trail.read`'s own `/admin/audit-trail` remains the cross-module view of the first table; this screen is a narrower, OMES-scoped read of the same data, not a second writer.
+- **Enrollments** (`enrollments.manage`) — issues and revokes worker enrollment tokens, closing the gap #201 deliberately left open. Adds no new write path: both actions call the SAME `POST /api/v1/omes/servers/{id}/enrollment-challenges` and `.../revoke` endpoints #198 shipped, unmodified by this issue. The read side is a new fleet-wide query, `application/enrollment-directory.ts`'s `fetchEnrollments` — `fetchServerDetail` (Servers) only ever looked at one server's enrollments at a time. The issued token is shown exactly once, rendered via the shared `messageBox` helper's `textContent`-only `show()` (never `innerHTML`), never written to `localStorage`/`sessionStorage`, never logged, and disappears the moment the page is left or reloaded. See that screen's own header comment for the full show-once-modal-vs-clipboard-button-vs-download tradeoff analysis, including why a copy-to-clipboard button was drafted and then removed (it pushed this single screen over the repo's client asset budget) in favor of the plain in-page reveal `machine-credentials.astro` already established.
+- **AI privacy** (`ai_privacy.read`, `ai_privacy.approve`) — issue ahliweb/omes#232, the tenth screen. Two sections, never merged: a posture-evidence table (`evidenceFreshness`/`effectiveStatus` always shown, stale/unknown evidence rendered with an explicit badge, never a healthy one) and an egress owner-approval request table. The approve/deny form never offers a control for a RESTRICTED classification resolving to a `cloud_sanitized` destination — UI hiding here is a courtesy on top of the three independent server-side/database refusals described above, never the enforcement boundary itself. This screen introduces no new CSS of its own — it reuses the SAME `styles/admin-screens.css` classes (`data-table`, `status-badge`, `admin-section`, …) every other `omes_control` screen already uses, plus the `.omes-cc` scoped design system (`styles/omes-control-center.css`, ahliweb/omes#246) every other `/admin/omes/*` screen now wraps its content in. It does not edit either shared stylesheet.
+- **Orkestrasi langsung / live orchestration** (`hermes_orchestration.read`) — issue ahliweb/omes#246 part 2, the eleventh screen. Renders the live Hermes manager → agent → subagent tree (depth computed by BFS from the declared root, with a client-side depth filter — pure DOM show/hide, no extra request) plus an activity stream that polls `GET /api/v1/omes/hermes-orchestration/events` every 8 seconds and re-renders from the server's current, authoritative list (never patches in place), tolerating a missed tick or transport interruption by leaving the last-known list rendered rather than clearing it.
+- **Hermes** (`hermes_orchestration.read`) — issue ahliweb/omes#246 part 2, the twelfth screen. A summary of the tenant's currently active (or, absent one, most recently reported) Hermes delegated task: session, goal, status, started-at, step count, and a bounded recent log. Planner/step-budget render as an explicit "not reported" state — see the Hermes orchestration section above for why.
+- **Progres Hermes / Hermes progress** (`hermes_orchestration.read`; configuration form gated by the NEW `repository_progress.configure`) — issue ahliweb/omes#246 part 2, the thirteenth screen; issue ahliweb/omes#249 (ADR-0030) replaces its former "not implemented yet" empty state with a real projection. Renders one of four explicit states — unconfigured, configured-awaiting-first-poll, configured-fresh, configured-stale/error (last successful data retained, never discarded) — plus milestones with accessible `<progress>` bars and an issues table (number/title/state/kind/milestone, each linking out to GitHub). See the Repository progress section above.
+- **Arsitektur / Architecture** (`architecture.read`) — issue ahliweb/omes#246 part 3, the fourteenth and final screen. Renders planes as lanes and capabilities as cards (implementation-status badge per card), sourced from the vendored `architecture-capabilities-view` v1 contract — a PINNED release snapshot (`contracts/v1/fixtures/architecture-capabilities-view/valid-01-generated.json`, re-vendored from an OMES commit via `bun run contracts:omes:sync`, never a live host projection). The screen states this explicitly in both `id`/`en` and renders the snapshot's own `omes_version`/`omes_commit`/`generated_at` rather than letting a reader assume live data. A NEW permission, `architecture.read` (`sql/165`), guards it — deliberately not a reuse of `hermes_orchestration.read`, since this screen's subject (the cross-cutting OMES/Hermes/Omarchy/AWCMS/provider layered-architecture registry, ADR-0017) has no audience overlap with the Hermes delegated-task family the other three #246 screens share one permission for. Unlike every other `/admin/omes/*` screen, it has no database table and no tenant-scoped query — every tenant sees the identical vendored payload.
+
+## Design system (`ahliweb/omes#246` part 1/3)
+
+The 9 screens above render inside a scoped `.omes-cc` wrapper
+(`src/styles/omes-control-center.css`) that brings them to visual parity with
+the OMES Control Panel redesign reference (`ahliweb/omes`
+`omes:redesign/redesign-omes.zip`, `omes:docs/ui-ux-design-system.md`) — the dark
+palette, KPI tiles with monospace numbers and status dots, and the
+Bootstrap → Check → Diff → Apply → Verify → Rollback lifecycle strip on the
+overview screen. Nothing outside `/admin/omes/*` is touched: the wrapper is a
+class each of the 9 pages adds around its own `<AdminLayout>` slot content,
+never a change to `AdminLayout.astro`, `tokens.css`, or any shared component.
+
+**How it composes rather than replaces.** Every component class the 9 screens
+already used — `.stat-card`, `.status-badge`, `.data-table`, `.admin-panel`,
+`.quick-link`, `.empty-state`, `.btn*` (all from `admin.css`/
+`admin-screens.css`) — is reused unmodified. `.omes-cc` overrides the SAME
+custom properties those files already consume (`--color-bg`, `--color-surface`,
+`--color-text*`, the `--color-primary`/`-success`/`-warning`/`-danger`/`-info`
+families, `--color-border*`), scoped under `.omes-cc` so no other admin screen
+is affected. Public Sans and JetBrains Mono are already self-hosted for the
+whole admin (ADR-0120's `tokens.css` `@font-face` rules) — this addition ships
+**no new font file** and widens the CSP by no origin.
+
+**Contrast** — every text/background and accent/background pair below is
+measured against WCAG 2.1 relative luminance (the same method
+`scripts/design-token-contrast-check.ts` uses for the base theme):
+
+| Pair                                                                      | Ratio                | Result                                                                         |
+| ------------------------------------------------------------------------- | -------------------- | ------------------------------------------------------------------------------ |
+| text `#E6EDF3` on canvas `#0B0F13`                                        | 16.28:1              | pass                                                                           |
+| text `#E6EDF3` on panel `#151A20`                                         | 14.80:1              | pass                                                                           |
+| text-muted `#C6D1DA` on canvas `#0B0F13`                                  | 12.39:1              | pass                                                                           |
+| text-muted `#C6D1DA` on panel `#151A20`                                   | 11.27:1              | pass                                                                           |
+| text-faint `#8B99A6` on canvas `#0B0F13`                                  | 6.60:1               | pass                                                                           |
+| text-faint `#8B99A6` on panel `#151A20`                                   | 6.00:1               | pass                                                                           |
+| text-faint `#8B99A6` on surface-2 `#191F26`                               | 5.69:1               | pass                                                                           |
+| dim caption `#7A8894` on panel `#151A20`                                  | 4.81:1               | pass (tightest text pair)                                                      |
+| dim caption `#7A8894` on surface-2 `#191F26`                              | 4.57:1               | pass                                                                           |
+| cyan `#5FC8D6` (primary) on canvas/panel                                  | 9.82 / 8.93:1        | pass                                                                           |
+| green `#6FD08C` (success) on canvas/panel                                 | 10.14 / 9.23:1       | pass                                                                           |
+| amber `#E8B44A` (warning) on canvas/panel                                 | 10.13 / 9.21:1       | pass                                                                           |
+| rose `#E9A9A0` (danger) on canvas/panel                                   | 9.75 / 8.87:1        | pass                                                                           |
+| violet `#8B9CF7` (info) on canvas/panel                                   | 7.51 / 6.83:1        | pass                                                                           |
+| canvas `#0B0F13` on solid cyan/green/amber/rose fill                      | 9.75–10.14:1         | pass (dark-on-light-fill, not white-on-fill)                                   |
+| border-strong `#6A7683` on canvas/panel/surface-2 (WCAG 1.4.11, controls) | 4.15 / 3.78 / 3.58:1 | pass (≥3:1)                                                                    |
+| border `#242C35` (decorative card/table hairline)                         | 1.24–1.36:1          | not 3:1 — deliberate, matches ADR-0120's own decorative-vs-control distinction |
+
+The full derivation (including why the accent hues use a dark, not white,
+foreground on a solid fill) is in `omes-control-center.css`'s own header
+comment.
+
+**Asset budget.** `scripts/client-asset-budget.ts`'s `APP_BUDGET_BYTES` moved
+226,000 → 229,500 B — measured, +3,171 B for
+`src/styles/omes-control-center.css` (the only new file), imported only by
+these 9 screens. See that constant's own docblock for the full before/after
+measurement. No font budget change: no new `@font-face`, no new `.woff2`.
+
+**Scope note.** This lands part 1 of `ahliweb/omes#246` (design system only).
+The 4 missing views (Hermes, Orkestrasi langsung, Arsitektur, Progres Hermes)
+and any new projection they need are later, separate PRs — this change adds
+no new screen, no new endpoint, and no schema/contract change.
+
+### Design system polish (`ahliweb/omes#246` part 1b)
+
+A screenshot review of part 1 found 5 defects, all fixed in one PR across the
+same 9 screens:
+
+1. **Multi-value tiles.** The overview screen's 4 breakdown tiles (server
+   health distribution, job state summary, backup freshness, deployment
+   drift) rendered every part through the same 32px mono `.stat-value` style
+   as a genuine single-number KPI, wrapping onto 2-3 lines at 1440px and worse
+   below it. They now render as `.omes-stat-breakdown`, a compact wrapping
+   list of value+label chips at body text size. Every other `.stat-value` on
+   all 9 screens is a single number and is unaffected.
+2. **Form controls.** The 8 filter/create forms (register-a-server, and every
+   list screen's filter bar) used a bare `.admin-toolbar` with sibling
+   `<label>`/`<input>` markup — no card, no input/select styling, the native
+   light `<select>` popup against this dark page, and labels sitting apart
+   from their control. They now use `.admin-create-form`, the SAME vocabulary
+   the other ~18 admin list screens use (`admin.css`), which already consumes
+   the tokens `.omes-cc` overrides — so this is a markup fix, not a new
+   component, and introduces **no new color pairing** (see the contrast table
+   above; the pairs are the ones already measured there). `omes-control-center.css`
+   adds only the states `.admin-create-form` doesn't itself define: a
+   stronger focus ring (WCAG 1.4.11), placeholder color, and disabled state —
+   all reusing existing tokens.
+3. **Lifecycle strip wrap.** The `→` separator between lifecycle pills was an
+   absolutely-positioned `::before` on the FOLLOWING pill, so a flex-wrap line
+   break moved the pill but orphaned the arrow at the start of the new line.
+   Fixed by making each pill + its trailing arrow one atomic flex item, with
+   the arrow as a plain `::after` inside it — the pair always wraps together.
+   Verified at 360/390/1440px.
+4. **Panel edge/gutter at 1440px.** `.omes-cc`'s negative margin (which bleeds
+   the dark background into `.admin-page-body`'s padding) had two bugs: (a)
+   the horizontal `clamp()` was negated with its min/max bounds in the wrong
+   order, which resolves to a constant −16px instead of tracking the
+   viewport, leaving an 18px light strip on the right edge above ~1133px
+   wide; (b) `min-height: 100%` resolves against the parent's content box
+   (excluding its padding), so on a short screen the panel fell 66px short of
+   the parent's true bottom edge, leaving a light strip beneath it. Both
+   fixed — see `omes-control-center.css`'s own comments for the exact math.
+   The page title/description stays in the light admin shell rather than
+   moving into the dark panel: it is shared chrome (`AdminLayout`'s
+   breadcrumb/title band) used by every admin screen, and duplicating that
+   rendering per-screen would fragment the pattern for a fix that is about
+   the panel's own edges, not the header's placement.
+5. **Sidebar clipping at 1440px**, raised by the same review: not fixed here.
+   `.omes-cc` cannot be the cause architecturally — it is a class scoped to a
+   `<div>` inside `.admin-page-body`, a sibling subtree of `.admin-sidebar`;
+   its token overrides are custom properties, which cascade only to its own
+   descendants, never sideways to the sidebar, and it touches no file the
+   sidebar's own CSS (`admin.css`) or markup (`AdminLayout.astro`) is defined
+   in. Interactive repro attempts against both `0d6c0dfe` (the commit
+   immediately before part 1) and this branch — toggling the collapse control
+   at several transition progress points, and screenshotting immediately after
+   navigation before fonts/CSS settle — rendered the sidebar fully expanded
+   and legible on both; the exact clipped state from the review screenshot
+   could not be reproduced through normal interaction in this environment.
+   Filed as its own `ahliweb/awcms` issue with the original evidence and the
+   repro attempts, rather than guessed at or folded into this scoped PR (see
+   that PR's description for the issue number).
+
+`APP_BUDGET_BYTES` moved 229,500 → 230,400 B for the CSS this polish added
+(the multi-value-tile chip list, the lifecycle wrap fix, and the form-control
+states above) — measured +1,109 B after trimming. See
+`scripts/client-asset-budget.ts`'s own docblock for the full before/after
+accounting.
+
+## Worker enrollment, poll, result, and heartbeat (`ahliweb/omes#199`)
+
+Four routes complete the round trip #198's own header describes: `POST /api/v1/omes/worker/{enroll,poll,result,heartbeat}`. All four are **session-UNauthenticated** — the caller is an OMES host pull worker (ADR-0027's outbound-pull architecture), not an AWCMS user, so there is no session cookie/token to check. This is the highest-risk surface this module ships, and it is authenticated by asymmetric Ed25519 identity instead:
+
+- **Enroll** redeems the single-use, short-lived challenge #198's `POST .../enrollment-challenges` minted, requiring the caller to prove possession of the presented public key's matching private key (a signature over the raw challenge, `X-Omes-Enrollment-Signature`) before the challenge row is ever touched. Redemption is a genuine DB-level compare-and-set (`SELECT ... FOR UPDATE` then an `UPDATE` of the same locked row in the same transaction, in `application/worker-enrollment-exchange.ts`) — not a read-then-write race in application code.
+- **Poll**/**result**/**heartbeat** verify a signature over a canonical string binding method/path/tenant/server/worker/timestamp/nonce/body-hash (`domain/worker-identity.ts`) against the enrolled worker's stored public key, with a persisted, atomic nonce/replay store (`awcms_omes_worker_nonces`, sql/159) and a bounded timestamp window. `application/worker-envelope-guard.ts`'s `verifyWorkerEnvelope` is the single chokepoint all three call before any other side-effecting work (ADR-0063's "authorization must run before the handler does work" discipline, applied to an identity model that has no session to gate on).
+- **Poll** also promotes at most one `approved` `awcms_omes_operation_requests` row per tenant/server into a queued `awcms_omes_jobs` row (`application/worker-job-queue.ts`, `FOR UPDATE SKIP LOCKED`) — #198 left operation requests at `approved` and never itself created a job row — then leases the oldest queued job to the polling worker, also via `FOR UPDATE SKIP LOCKED` so two concurrent pollers for the same server never double-lease.
+- **Result** ingestion is idempotent by `(tenant_id, server_id, idempotency_key)`. `worker-result.request` carries no `job_id` field at all (issue ahliweb/omes#221) — a worker-invented local job-store id had no relationship to anything AWCMS assigned, and the pinned schema's `additionalProperties: false` now rejects a request that still sends one. The still-required response `job_id` is instead the SERVER's own resolved `awcms_omes_jobs.id` on `recorded`/`duplicate_ignored`; the `rejected` path (including an unresolvable job, folded into the same neutral answer) emits the fixed literal `"unknown"` rather than confirming whether a matching job exists. A 2xx response is **never** "the job succeeded": every row `application/worker-result-ingestion.ts` writes is stamped `source = 'worker_reported'` / `reconciled = false` — reconciliation against independently-observed OMES evidence is out of this issue's scope and left `false` rather than silently implied.
+- **Heartbeat** updates `last_heartbeat_at` and redacted, `omes-host`-attributed telemetry, and never resurrects a `decommissioned` server's status regardless of what it reports. Staleness itself stays a pure function of `now` computed on read (`domain/staleness.ts`, #198) — missing evidence never implies healthy.
+
+A failed identity/replay/version check on poll/heartbeat answers the pinned contract's own `re-enroll_required` status (never an HTTP error), identically regardless of the actual cause — wrong tenant, expired signature window, replay, revoked identity, and unknown worker all fold to the same response, so this surface never confirms or denies which of those it was.
+
+**A flagged cross-repository gap**, not silently worked around: the OMES-side reference pull worker as merged for `ahliweb/omes#192` (`lib/omes/py/jobs/worker.py`) does not yet generate a real Ed25519 keypair or send any signature/nonce/timestamp headers — its "public key" is a placeholder string derived from a SHA-256 hash. This module does not relax verification to match that stub; bringing the OMES-side worker up to this wire shape is necessary follow-up work, tracked in the PR that lands this issue rather than guessed at here.
+
+`ahliweb/omes#197`'s `domain/contracts/` (`validateOmesContract`/`validateOmesContractText`, `scanForRawSecrets`, `getOmesStateMachine`, `OMES_CONTRACT_PIN`) is what all four routes validate every inbound envelope against before doing anything else — the wiring point its own header anticipated.

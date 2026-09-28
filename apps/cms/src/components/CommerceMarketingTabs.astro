@@ -50,15 +50,13 @@ const TABS: { key: MarketingTabKey; href: string; label: string }[] = [
   class="admin-segmented admin-marketing-tabs fade-in-up"
   aria-label={t("Marketing sections")}
 >
-  {
-    TABS.map((tab) => (
-      <a
-        class="admin-segmented-option"
-        aria-current={tab.key === active ? "page" : "false"}
-        href={tab.href}
-      >
-        {tab.label}
-      </a>
-    ))
-  }
+  {TABS.map((tab) => (
+    <a
+      class="admin-segmented-option"
+      aria-current={tab.key === active ? "page" : "false"}
+      href={tab.href}
+    >
+      {tab.label}
+    </a>
+  ))}
 </nav>

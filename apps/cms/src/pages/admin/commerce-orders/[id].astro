@@ -96,153 +96,142 @@ const notFound = screen.state === "allowed" && !order;
   title={t("Order detail")}
   description={t("Lines, totals, and the order's own status timeline.")}
 >
-  {
-    !canRead && (
-      <p class="state-notice fade-in-up" id="order-detail-denied">
-        {t("You do not have permission to view this order.")}
-      </p>
-    )
-  }
-  {
-    canRead && loadError && (
-      <p class="state-notice fade-in-up" id="order-detail-error">
-        {t("The order could not be loaded right now. Please try again later.")}
-      </p>
-    )
-  }
-  {
-    canRead && !loadError && notFound && (
-      <p class="state-notice fade-in-up" id="order-detail-not-found">
-        {t("This order could not be found.")}
-      </p>
-    )
-  }
+  {!canRead && (
+    <p class="state-notice fade-in-up" id="order-detail-denied">
+      {t("You do not have permission to view this order.")}
+    </p>
+  )}
+  {canRead && loadError && (
+    <p class="state-notice fade-in-up" id="order-detail-error">
+      {t("The order could not be loaded right now. Please try again later.")}
+    </p>
+  )}
+  {canRead && !loadError && notFound && (
+    <p class="state-notice fade-in-up" id="order-detail-not-found">
+      {t("This order could not be found.")}
+    </p>
+  )}
 
-  {
-    canRead && !loadError && order && (
-      <div class="fade-in-up">
-        <p>
-          <span class="cell-code">{order.orderCode}</span>{" "}
-          <span
-            class="admin-status-pill"
-            data-tone={orderStatusTone[order.status] ?? "neutral"}
-            data-status={order.status}
-          >
-            <span class="admin-status-pill-dot" aria-hidden="true" />
-            {commerceLabel(labels.orderStatus, order.status)}
-          </span>{" "}
-          <span
-            class="admin-status-pill"
-            data-tone="neutral"
-            data-channel={order.channel}
-          >
-            {commerceLabel(labels.orderChannel, order.channel)}
-          </span>
-        </p>
+  {canRead && !loadError && order && (
+    <div class="fade-in-up">
+      <p>
+        <span class="cell-code">{order.orderCode}</span>{" "}
+        <span
+          class="admin-status-pill"
+          data-tone={orderStatusTone[order.status] ?? "neutral"}
+          data-status={order.status}
+        >
+          <span class="admin-status-pill-dot" aria-hidden="true" />
+          {commerceLabel(labels.orderStatus, order.status)}
+        </span>{" "}
+        <span
+          class="admin-status-pill"
+          data-tone="neutral"
+          data-channel={order.channel}
+        >
+          {commerceLabel(labels.orderChannel, order.channel)}
+        </span>
+      </p>
 
-        <div class="admin-order-detail-grid">
-          <div class="admin-order-detail-panel">
-            <h2 class="admin-dashboard-panel-title">{t("Lines")}</h2>
-            <div class="data-table-scroll">
-              <table class="data-table data-table--stack">
-                <caption class="sr-only">{t("Order lines")}</caption>
-                <thead>
+      <div class="admin-order-detail-grid">
+        <div class="admin-order-detail-panel">
+          <h2 class="admin-dashboard-panel-title">{t("Lines")}</h2>
+          <div class="data-table-scroll">
+            <table class="data-table data-table--stack">
+              <caption class="sr-only">{t("Order lines")}</caption>
+              <thead>
+                <tr>
+                  <th scope="col">{t("Product")}</th>
+                  <th scope="col">{t("Unit price")}</th>
+                  <th scope="col">{t("Qty")}</th>
+                  <th scope="col">{t("Line total")}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {order.lines.map((line) => (
                   <tr>
-                    <th scope="col">{t("Product")}</th>
-                    <th scope="col">{t("Unit price")}</th>
-                    <th scope="col">{t("Qty")}</th>
-                    <th scope="col">{t("Line total")}</th>
+                    <td data-label={t("Product")}>
+                      {line.name}
+                      {line.variantName && <> &mdash; {line.variantName}</>}
+                    </td>
+                    <td data-label={t("Unit price")}>{line.unitPrice}</td>
+                    <td data-label={t("Qty")}>{line.quantity}</td>
+                    <td data-label={t("Line total")}>{line.lineTotal}</td>
                   </tr>
-                </thead>
-                <tbody>
-                  {order.lines.map((line) => (
-                    <tr>
-                      <td data-label={t("Product")}>
-                        {line.name}
-                        {line.variantName && <> &mdash; {line.variantName}</>}
-                      </td>
-                      <td data-label={t("Unit price")}>{line.unitPrice}</td>
-                      <td data-label={t("Qty")}>{line.quantity}</td>
-                      <td data-label={t("Line total")}>{line.lineTotal}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-
-            <h2 class="admin-dashboard-panel-title">{t("Totals")}</h2>
-            <ul class="admin-order-totals">
-              <li>
-                <span>{t("Subtotal")}</span>
-                <span>{order.subtotal}</span>
-              </li>
-              <li>
-                <span>{t("Discount")}</span>
-                <span>{order.discount}</span>
-              </li>
-              <li>
-                <span>{t("Shipping")}</span>
-                <span>{order.shippingCost}</span>
-              </li>
-              <li>
-                <span>{t("Insurance")}</span>
-                <span>{order.insuranceFee}</span>
-              </li>
-              <li>
-                <span>{t("Tax")}</span>
-                <span>{order.tax}</span>
-              </li>
-              <li class="admin-order-total-grand">
-                <span>{t("Total")}</span>
-                <span>{order.total}</span>
-              </li>
-            </ul>
-
-            <h2 class="admin-dashboard-panel-title">{t("Payment gateway")}</h2>
-            <div
-              class="order-gateway-panel"
-              data-order-gateway-panel={orderId}
-              data-gateway-labels={JSON.stringify(gatewayLabels)}
-            >
-              <p class="order-gateway-panel-loading">{t("Loading…")}</p>
-            </div>
-            <p
-              id="order-gateway-fetch-error"
-              class="admin-create-error"
-              role="alert"
-              hidden
-            />
-          </div>
-
-          <div class="admin-order-detail-panel">
-            <h2 class="admin-dashboard-panel-title">{t("Timeline")}</h2>
-            {order.timeline.length === 0 ? (
-              <p class="admin-stat-card-caption">
-                {t("No status history recorded for this order yet.")}
-              </p>
-            ) : (
-              <ol class="admin-timeline">
-                {order.timeline.map((entry) => (
-                  <li class="admin-timeline-item">
-                    <div
-                      class="admin-timeline-label"
-                      data-status={entry.status}
-                    >
-                      {commerceLabel(labels.orderStatus, entry.status)}
-                    </div>
-                    <div class="admin-timeline-meta">
-                      {entry.at}
-                      {entry.note && <> &mdash; {entry.note}</>}
-                    </div>
-                  </li>
                 ))}
-              </ol>
-            )}
+              </tbody>
+            </table>
           </div>
+
+          <h2 class="admin-dashboard-panel-title">{t("Totals")}</h2>
+          <ul class="admin-order-totals">
+            <li>
+              <span>{t("Subtotal")}</span>
+              <span>{order.subtotal}</span>
+            </li>
+            <li>
+              <span>{t("Discount")}</span>
+              <span>{order.discount}</span>
+            </li>
+            <li>
+              <span>{t("Shipping")}</span>
+              <span>{order.shippingCost}</span>
+            </li>
+            <li>
+              <span>{t("Insurance")}</span>
+              <span>{order.insuranceFee}</span>
+            </li>
+            <li>
+              <span>{t("Tax")}</span>
+              <span>{order.tax}</span>
+            </li>
+            <li class="admin-order-total-grand">
+              <span>{t("Total")}</span>
+              <span>{order.total}</span>
+            </li>
+          </ul>
+
+          <h2 class="admin-dashboard-panel-title">{t("Payment gateway")}</h2>
+          <div
+            class="order-gateway-panel"
+            data-order-gateway-panel={orderId}
+            data-gateway-labels={JSON.stringify(gatewayLabels)}
+          >
+            <p class="order-gateway-panel-loading">{t("Loading…")}</p>
+          </div>
+          <p
+            id="order-gateway-fetch-error"
+            class="admin-create-error"
+            role="alert"
+            hidden
+          />
+        </div>
+
+        <div class="admin-order-detail-panel">
+          <h2 class="admin-dashboard-panel-title">{t("Timeline")}</h2>
+          {order.timeline.length === 0 ? (
+            <p class="admin-stat-card-caption">
+              {t("No status history recorded for this order yet.")}
+            </p>
+          ) : (
+            <ol class="admin-timeline">
+              {order.timeline.map((entry) => (
+                <li class="admin-timeline-item">
+                  <div class="admin-timeline-label" data-status={entry.status}>
+                    {commerceLabel(labels.orderStatus, entry.status)}
+                  </div>
+                  <div class="admin-timeline-meta">
+                    {entry.at}
+                    {entry.note && <> &mdash; {entry.note}</>}
+                  </div>
+                </li>
+              ))}
+            </ol>
+          )}
         </div>
       </div>
-    )
-  }
+    </div>
+  )}
 </AdminLayout>
 
 <template id="order-gateway-panel-template">

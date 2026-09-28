@@ -221,245 +221,232 @@ const totalTableColumns = 6 + (showActions ? 2 : 0);
     "The tenant's product catalog: filters, full create/edit, images, variants, status, soft delete and restore."
   )}
 >
-  {
-    !canRead && (
-      <p class="state-notice fade-in-up" id="commerce-denied">
-        {t("You do not have permission to view products.")}
-      </p>
-    )
-  }
+  {!canRead && (
+    <p class="state-notice fade-in-up" id="commerce-denied">
+      {t("You do not have permission to view products.")}
+    </p>
+  )}
 
-  {
-    canRead && loadError && (
-      <p class="state-notice fade-in-up" id="commerce-error">
-        {t("Products could not be loaded right now. Please try again later.")}
-      </p>
-    )
-  }
+  {canRead && loadError && (
+    <p class="state-notice fade-in-up" id="commerce-error">
+      {t("Products could not be loaded right now. Please try again later.")}
+    </p>
+  )}
 
-  {
-    canRead && !loadError && statusCounts && (
-      <nav
-        class="admin-segmented fade-in-up"
-        aria-label={t("Quick status filter")}
+  {canRead && !loadError && statusCounts && (
+    <nav
+      class="admin-segmented fade-in-up"
+      aria-label={t("Quick status filter")}
+    >
+      <a
+        class="admin-segmented-option"
+        aria-current={filterStatus === "" ? "page" : "false"}
+        href="/admin/commerce"
       >
-        <a
-          class="admin-segmented-option"
-          aria-current={filterStatus === "" ? "page" : "false"}
-          href="/admin/commerce"
-        >
-          {t("All")} ({totalProductCount})
-        </a>
-        <a
-          class="admin-segmented-option"
-          aria-current={filterStatus === "active" ? "page" : "false"}
-          href="/admin/commerce?status=active"
-        >
-          {t("Published")} ({statusCounts.active})
-        </a>
-        <a
-          class="admin-segmented-option"
-          aria-current={filterStatus === "draft" ? "page" : "false"}
-          href="/admin/commerce?status=draft"
-        >
-          {t("Draft")} ({statusCounts.draft})
-        </a>
-      </nav>
-    )
-  }
-
-  {
-    canRead && !loadError && (
-      <form
-        id="product-filter-form"
-        class="admin-create-form fade-in-up"
-        method="get"
+        {t("All")} ({totalProductCount})
+      </a>
+      <a
+        class="admin-segmented-option"
+        aria-current={filterStatus === "active" ? "page" : "false"}
+        href="/admin/commerce?status=active"
       >
-        <p class="form-legend">{t("Filters")}</p>
-        <label for="filter-categoryId">{t("Category")}</label>
-        <select id="filter-categoryId" name="categoryId">
-          <option value="">{t("All categories")}</option>
-          {categories.map((category) => (
-            <option
-              value={category.id}
-              selected={category.id === filterCategoryId}
-            >
-              {category.name}
-            </option>
-          ))}
-        </select>
+        {t("Published")} ({statusCounts.active})
+      </a>
+      <a
+        class="admin-segmented-option"
+        aria-current={filterStatus === "draft" ? "page" : "false"}
+        href="/admin/commerce?status=draft"
+      >
+        {t("Draft")} ({statusCounts.draft})
+      </a>
+    </nav>
+  )}
 
-        <label for="filter-status">{t("Status")}</label>
-        <select id="filter-status" name="status">
-          <option value="">{t("All statuses")}</option>
-          {PRODUCT_STATUSES.map((status) => (
-            <option value={status} selected={status === filterStatus}>
-              {commerceLabel(labels.productStatus, status)}
-            </option>
-          ))}
-        </select>
+  {canRead && !loadError && (
+    <form
+      id="product-filter-form"
+      class="admin-create-form fade-in-up"
+      method="get"
+    >
+      <p class="form-legend">{t("Filters")}</p>
+      <label for="filter-categoryId">{t("Category")}</label>
+      <select id="filter-categoryId" name="categoryId">
+        <option value="">{t("All categories")}</option>
+        {categories.map((category) => (
+          <option
+            value={category.id}
+            selected={category.id === filterCategoryId}
+          >
+            {category.name}
+          </option>
+        ))}
+      </select>
 
-        <label for="filter-q">{t("Search (name or SKU)")}</label>
-        <input id="filter-q" name="q" type="text" value={filterQuery} />
+      <label for="filter-status">{t("Status")}</label>
+      <select id="filter-status" name="status">
+        <option value="">{t("All statuses")}</option>
+        {PRODUCT_STATUSES.map((status) => (
+          <option value={status} selected={status === filterStatus}>
+            {commerceLabel(labels.productStatus, status)}
+          </option>
+        ))}
+      </select>
 
-        <label>
-          <input
-            type="checkbox"
-            name="featured"
-            value="true"
-            checked={filterFeatured}
-          />{" "}
-          {t("Featured only")}
-        </label>
-        <label>
-          <input
-            type="checkbox"
-            name="recommended"
-            value="true"
-            checked={filterRecommended}
-          />{" "}
-          {t("Recommended only")}
-        </label>
+      <label for="filter-q">{t("Search (name or SKU)")}</label>
+      <input id="filter-q" name="q" type="text" value={filterQuery} />
 
-        <button type="submit">{t("Apply filters")}</button>
-      </form>
-    )
-  }
-
-  {
-    canCreate && (
-      <form id="product-create-form" class="admin-create-form fade-in-up">
-        <p class="form-legend">{t("Create a product")}</p>
-        <p
-          id="product-create-error"
-          class="admin-create-error"
-          role="alert"
-          hidden
-        />
-
-        <label for="create-sku">{t("SKU")}</label>
+      <label>
         <input
-          id="create-sku"
-          name="sku"
-          type="text"
-          required
-          autocomplete="off"
-        />
-
-        <label for="create-name">{t("Name")}</label>
+          type="checkbox"
+          name="featured"
+          value="true"
+          checked={filterFeatured}
+        />{" "}
+        {t("Featured only")}
+      </label>
+      <label>
         <input
-          id="create-name"
-          name="name"
-          type="text"
-          required
-          autocomplete="off"
-        />
+          type="checkbox"
+          name="recommended"
+          value="true"
+          checked={filterRecommended}
+        />{" "}
+        {t("Recommended only")}
+      </label>
 
-        <label for="create-slug">{t("Slug")}</label>
-        <input
-          id="create-slug"
-          name="slug"
-          type="text"
-          required
-          autocomplete="off"
-        />
+      <button type="submit">{t("Apply filters")}</button>
+    </form>
+  )}
 
-        <label for="create-categoryId">{t("Category")}</label>
-        <select id="create-categoryId" name="categoryId">
-          <option value="">{t("None")}</option>
-          {categories.map((category) => (
-            <option value={category.id}>{category.name}</option>
-          ))}
-        </select>
-
-        <label for="create-type">{t("Type")}</label>
-        <select id="create-type" name="type">
-          {PRODUCT_TYPES.map((type) => (
-            <option value={type}>
-              {commerceLabel(labels.productType, type)}
-            </option>
-          ))}
-        </select>
-
-        <label for="create-price">{t("Price")}</label>
-        <input
-          id="create-price"
-          name="price"
-          type="text"
-          required
-          autocomplete="off"
-        />
-
-        <label for="create-discountPercent">{t("Discount percent")}</label>
-        <input
-          id="create-discountPercent"
-          name="discountPercent"
-          type="number"
-          min="0"
-          max="100"
-          value="0"
-        />
-
-        <label for="create-stock">{t("Stock")}</label>
-        <input id="create-stock" name="stock" type="number" min="0" value="0" />
-
-        <label for="create-minPurchase">{t("Minimum purchase")}</label>
-        <input
-          id="create-minPurchase"
-          name="minPurchase"
-          type="number"
-          min="1"
-          value="1"
-        />
-
-        <label for="create-weightGrams">{t("Weight (grams)")}</label>
-        <input
-          id="create-weightGrams"
-          name="weightGrams"
-          type="number"
-          min="0"
-          value="0"
-        />
-
-        <label for="create-description">{t("Description")}</label>
-        <textarea id="create-description" name="description" />
-
-        <label>
-          <input type="checkbox" name="isFeatured" value="true" />{" "}
-          {t("Featured")}
-        </label>
-        <label>
-          <input type="checkbox" name="isRecommended" value="true" />{" "}
-          {t("Recommended")}
-        </label>
-
-        <label for="create-advancedFields">
-          {t("Advanced fields (JSON, optional)")}
-        </label>
-        <textarea
-          id="create-advancedFields"
-          name="advancedFields"
-          rows="4"
-          placeholder="{}"
-        />
-
-        <button type="submit" id="product-create-submit">
-          {t("Create product")}
-        </button>
-      </form>
-    )
-  }
-
-  {
-    canRead && !loadError && (
+  {canCreate && (
+    <form id="product-create-form" class="admin-create-form fade-in-up">
+      <p class="form-legend">{t("Create a product")}</p>
       <p
-        id="product-action-error"
+        id="product-create-error"
         class="admin-create-error"
         role="alert"
         hidden
       />
-    )
-  }
+
+      <label for="create-sku">{t("SKU")}</label>
+      <input
+        id="create-sku"
+        name="sku"
+        type="text"
+        required
+        autocomplete="off"
+      />
+
+      <label for="create-name">{t("Name")}</label>
+      <input
+        id="create-name"
+        name="name"
+        type="text"
+        required
+        autocomplete="off"
+      />
+
+      <label for="create-slug">{t("Slug")}</label>
+      <input
+        id="create-slug"
+        name="slug"
+        type="text"
+        required
+        autocomplete="off"
+      />
+
+      <label for="create-categoryId">{t("Category")}</label>
+      <select id="create-categoryId" name="categoryId">
+        <option value="">{t("None")}</option>
+        {categories.map((category) => (
+          <option value={category.id}>{category.name}</option>
+        ))}
+      </select>
+
+      <label for="create-type">{t("Type")}</label>
+      <select id="create-type" name="type">
+        {PRODUCT_TYPES.map((type) => (
+          <option value={type}>
+            {commerceLabel(labels.productType, type)}
+          </option>
+        ))}
+      </select>
+
+      <label for="create-price">{t("Price")}</label>
+      <input
+        id="create-price"
+        name="price"
+        type="text"
+        required
+        autocomplete="off"
+      />
+
+      <label for="create-discountPercent">{t("Discount percent")}</label>
+      <input
+        id="create-discountPercent"
+        name="discountPercent"
+        type="number"
+        min="0"
+        max="100"
+        value="0"
+      />
+
+      <label for="create-stock">{t("Stock")}</label>
+      <input id="create-stock" name="stock" type="number" min="0" value="0" />
+
+      <label for="create-minPurchase">{t("Minimum purchase")}</label>
+      <input
+        id="create-minPurchase"
+        name="minPurchase"
+        type="number"
+        min="1"
+        value="1"
+      />
+
+      <label for="create-weightGrams">{t("Weight (grams)")}</label>
+      <input
+        id="create-weightGrams"
+        name="weightGrams"
+        type="number"
+        min="0"
+        value="0"
+      />
+
+      <label for="create-description">{t("Description")}</label>
+      <textarea id="create-description" name="description" />
+
+      <label>
+        <input type="checkbox" name="isFeatured" value="true" /> {t("Featured")}
+      </label>
+      <label>
+        <input type="checkbox" name="isRecommended" value="true" />{" "}
+        {t("Recommended")}
+      </label>
+
+      <label for="create-advancedFields">
+        {t("Advanced fields (JSON, optional)")}
+      </label>
+      <textarea
+        id="create-advancedFields"
+        name="advancedFields"
+        rows="4"
+        placeholder="{}"
+      />
+
+      <button type="submit" id="product-create-submit">
+        {t("Create product")}
+      </button>
+    </form>
+  )}
+
+  {canRead && !loadError && (
+    <p
+      id="product-action-error"
+      class="admin-create-error"
+      role="alert"
+      hidden
+    />
+  )}
 
   {
     /**
@@ -563,422 +550,401 @@ const totalTableColumns = 6 + (showActions ? 2 : 0);
     )
   }
 
-  {
-    canRead && !loadError && (
-      <div class="data-table-scroll fade-in-up">
-        <table
-          class="data-table data-table--stack"
-          id="commerce-products-table"
-        >
-          <caption>
-            {tn("{count} product", "{count} products", products.length, {
-              count: products.length
-            })}
-          </caption>
-          <thead>
+  {canRead && !loadError && (
+    <div class="data-table-scroll fade-in-up">
+      <table class="data-table data-table--stack" id="commerce-products-table">
+        <caption>
+          {tn("{count} product", "{count} products", products.length, {
+            count: products.length
+          })}
+        </caption>
+        <thead>
+          <tr>
+            {showActions && products.length > 0 && (
+              <th scope="col" class="bulk-select-col">
+                <input
+                  type="checkbox"
+                  id="commerce-products-select-all"
+                  aria-label={t("Select all products on this page")}
+                />
+              </th>
+            )}
+            <th scope="col">{t("SKU")}</th>
+            <th scope="col">{t("Name")}</th>
+            <th scope="col">{t("Type")}</th>
+            <th scope="col">{t("Price")}</th>
+            <th scope="col">{t("Stock")}</th>
+            <th scope="col">{t("Status")}</th>
+            {showActions && <th scope="col">{t("Actions")}</th>}
+          </tr>
+        </thead>
+        <tbody>
+          {products.length === 0 ? (
             <tr>
-              {showActions && products.length > 0 && (
-                <th scope="col" class="bulk-select-col">
-                  <input
-                    type="checkbox"
-                    id="commerce-products-select-all"
-                    aria-label={t("Select all products on this page")}
-                  />
-                </th>
-              )}
-              <th scope="col">{t("SKU")}</th>
-              <th scope="col">{t("Name")}</th>
-              <th scope="col">{t("Type")}</th>
-              <th scope="col">{t("Price")}</th>
-              <th scope="col">{t("Stock")}</th>
-              <th scope="col">{t("Status")}</th>
-              {showActions && <th scope="col">{t("Actions")}</th>}
+              <td class="data-table-empty" colspan={totalTableColumns}>
+                <div class="empty-state">
+                  <span class="empty-state-icon" aria-hidden="true">
+                    ○
+                  </span>
+                  <span class="empty-state-title">{t("No products yet")}</span>
+                  <span class="empty-state-text">
+                    {t("Products created for this tenant will appear here.")}
+                  </span>
+                </div>
+              </td>
             </tr>
-          </thead>
-          <tbody>
-            {products.length === 0 ? (
-              <tr>
-                <td class="data-table-empty" colspan={totalTableColumns}>
-                  <div class="empty-state">
-                    <span class="empty-state-icon" aria-hidden="true">
-                      ○
-                    </span>
-                    <span class="empty-state-title">
-                      {t("No products yet")}
-                    </span>
-                    <span class="empty-state-text">
-                      {t("Products created for this tenant will appear here.")}
-                    </span>
-                  </div>
-                </td>
-              </tr>
-            ) : (
-              products.map((product) => (
-                <>
-                  <tr data-product-row={product.id}>
-                    {showActions && (
-                      <td data-label={t("Select")} class="bulk-select-col">
-                        <input
-                          type="checkbox"
-                          class="commerce-product-row-select"
-                          data-product-id={product.id}
-                          data-product-sku={product.sku}
-                          aria-label={t("Select {name}", {
-                            name: product.name
-                          })}
-                        />
-                      </td>
-                    )}
-                    <td data-label={t("SKU")}>
-                      <span class="cell-code">{product.sku}</span>
+          ) : (
+            products.map((product) => (
+              <>
+                <tr data-product-row={product.id}>
+                  {showActions && (
+                    <td data-label={t("Select")} class="bulk-select-col">
+                      <input
+                        type="checkbox"
+                        class="commerce-product-row-select"
+                        data-product-id={product.id}
+                        data-product-sku={product.sku}
+                        aria-label={t("Select {name}", {
+                          name: product.name
+                        })}
+                      />
                     </td>
-                    <td data-label={t("Name")}>{product.name}</td>
-                    <td data-label={t("Type")}>
-                      <span class="cell-muted" data-product-type={product.type}>
-                        {commerceLabel(labels.productType, product.type)}
-                      </span>
+                  )}
+                  <td data-label={t("SKU")}>
+                    <span class="cell-code">{product.sku}</span>
+                  </td>
+                  <td data-label={t("Name")}>{product.name}</td>
+                  <td data-label={t("Type")}>
+                    <span class="cell-muted" data-product-type={product.type}>
+                      {commerceLabel(labels.productType, product.type)}
+                    </span>
+                  </td>
+                  <td data-label={t("Price")}>{product.price}</td>
+                  <td data-label={t("Stock")}>{product.stock}</td>
+                  <td data-label={t("Status")}>
+                    <span
+                      class="status-badge"
+                      data-variant={
+                        product.status === "active" ? "success" : "neutral"
+                      }
+                      data-product-status={product.status}
+                    >
+                      <span class="status-dot" aria-hidden="true" />
+                      {commerceLabel(labels.productStatus, product.status)}
+                    </span>
+                  </td>
+                  {showActions && (
+                    <td data-label={t("Actions")} class="stacked-block">
+                      <div class="row-actions">
+                        {canDelete && (
+                          <button
+                            type="button"
+                            class="module-toggle product-delete-btn"
+                            data-product-id={product.id}
+                            data-confirm-title={t("Delete this product?")}
+                            data-confirm-message={t(
+                              "Product {sku} will be moved to trash and can be restored later.",
+                              { sku: product.sku }
+                            )}
+                            data-confirm-label={t("Delete product")}
+                            data-confirm-danger="true"
+                          >
+                            {t("Delete")}
+                          </button>
+                        )}
+                      </div>
                     </td>
-                    <td data-label={t("Price")}>{product.price}</td>
-                    <td data-label={t("Stock")}>{product.stock}</td>
-                    <td data-label={t("Status")}>
-                      <span
-                        class="status-badge"
-                        data-variant={
-                          product.status === "active" ? "success" : "neutral"
-                        }
-                        data-product-status={product.status}
-                      >
-                        <span class="status-dot" aria-hidden="true" />
-                        {commerceLabel(labels.productStatus, product.status)}
-                      </span>
-                    </td>
-                    {showActions && (
-                      <td data-label={t("Actions")} class="stacked-block">
-                        <div class="row-actions">
-                          {canDelete && (
-                            <button
-                              type="button"
-                              class="module-toggle product-delete-btn"
-                              data-product-id={product.id}
-                              data-confirm-title={t("Delete this product?")}
-                              data-confirm-message={t(
-                                "Product {sku} will be moved to trash and can be restored later.",
-                                { sku: product.sku }
-                              )}
-                              data-confirm-label={t("Delete product")}
-                              data-confirm-danger="true"
-                            >
-                              {t("Delete")}
-                            </button>
-                          )}
-                        </div>
-                      </td>
-                    )}
-                  </tr>
-                  {canUpdate && (
-                    <tr>
-                      <td colspan={totalTableColumns}>
-                        <details class="admin-section">
-                          <summary>{t("Edit")}</summary>
+                  )}
+                </tr>
+                {canUpdate && (
+                  <tr>
+                    <td colspan={totalTableColumns}>
+                      <details class="admin-section">
+                        <summary>{t("Edit")}</summary>
 
+                        <form
+                          class="admin-create-form product-edit-form"
+                          data-product-id={product.id}
+                        >
+                          <p
+                            id={`product-edit-error-${product.id}`}
+                            class="admin-create-error"
+                            role="alert"
+                            hidden
+                          />
+                          <label>{t("Name")}</label>
+                          <input name="name" type="text" value={product.name} />
+                          <label>{t("Slug")}</label>
+                          <input name="slug" type="text" value={product.slug} />
+                          <label>{t("Category")}</label>
+                          <select name="categoryId">
+                            <option value="" selected={!product.categoryId}>
+                              {t("None")}
+                            </option>
+                            {categories.map((category) => (
+                              <option
+                                value={category.id}
+                                selected={category.id === product.categoryId}
+                              >
+                                {category.name}
+                              </option>
+                            ))}
+                          </select>
+                          <label>{t("Type")}</label>
+                          <select name="type">
+                            {PRODUCT_TYPES.map((type) => (
+                              <option
+                                value={type}
+                                selected={type === product.type}
+                              >
+                                {commerceLabel(labels.productType, type)}
+                              </option>
+                            ))}
+                          </select>
+                          <label>{t("Price")}</label>
+                          <input
+                            name="price"
+                            type="text"
+                            value={product.price}
+                          />
+                          <label>{t("Discount percent")}</label>
+                          <input
+                            name="discountPercent"
+                            type="number"
+                            min="0"
+                            max="100"
+                            value={product.discountPercent}
+                          />
+                          <label>{t("Stock")}</label>
+                          <input
+                            name="stock"
+                            type="number"
+                            min="0"
+                            value={product.stock}
+                          />
+                          <label>{t("Status")}</label>
+                          <select name="status">
+                            {PRODUCT_STATUSES.map((status) => (
+                              <option
+                                value={status}
+                                selected={status === product.status}
+                              >
+                                {commerceLabel(labels.productStatus, status)}
+                              </option>
+                            ))}
+                          </select>
+                          <label>{t("Minimum purchase")}</label>
+                          <input
+                            name="minPurchase"
+                            type="number"
+                            min="1"
+                            value={product.minPurchase}
+                          />
+                          <label>{t("Weight (grams)")}</label>
+                          <input
+                            name="weightGrams"
+                            type="number"
+                            min="0"
+                            value={product.weightGrams}
+                          />
+                          <label>{t("Description")}</label>
+                          <textarea name="description">
+                              {product.description ?? ""}
+                            </textarea>
+                          <label>
+                            <input
+                              type="checkbox"
+                              name="isFeatured"
+                              value="true"
+                              checked={product.isFeatured}
+                            />{" "}
+                            {t("Featured")}
+                          </label>
+                          <label>
+                            <input
+                              type="checkbox"
+                              name="isRecommended"
+                              value="true"
+                              checked={product.isRecommended}
+                            />{" "}
+                            {t("Recommended")}
+                          </label>
+                          <label>{t("Advanced fields (JSON)")}</label>
+                          <textarea name="advancedFields" rows="6">
+                              {advancedFieldsJson(product)}
+                            </textarea>
+                          <button type="submit">{t("Save")}</button>
+                        </form>
+
+                        <section class="admin-section">
+                          <h3 class="admin-section-title">
+                            {t("Images")}
+                            <span class="count-pill">
+                              {product.images.length}
+                            </span>
+                          </h3>
+                          <ul>
+                            {product.images.map((image) => (
+                              <li data-product-image-row={image.id}>
+                                {image.publicUrl ? (
+                                  <img
+                                    src={image.publicUrl}
+                                    alt={image.altText ?? ""}
+                                    style="max-height:48px;vertical-align:middle;margin-right:8px;"
+                                  />
+                                ) : (
+                                  <span>{t("(unresolved image)")}</span>
+                                )}
+                                <span class="cell-muted">
+                                  {image.altText ?? ""} · #{image.sortOrder}
+                                </span>{" "}
+                                <button
+                                  type="button"
+                                  class="module-toggle product-image-delete-btn"
+                                  data-product-id={product.id}
+                                  data-image-id={image.id}
+                                >
+                                  {t("Remove")}
+                                </button>
+                              </li>
+                            ))}
+                          </ul>
                           <form
-                            class="admin-create-form product-edit-form"
+                            class="admin-create-form product-image-add-form"
                             data-product-id={product.id}
                           >
-                            <p
-                              id={`product-edit-error-${product.id}`}
-                              class="admin-create-error"
-                              role="alert"
-                              hidden
-                            />
-                            <label>{t("Name")}</label>
+                            <label>{t("Media object")}</label>
+                            <select name="mediaObjectId" required>
+                              <option value="">
+                                {t("Select a media object")}
+                              </option>
+                              {mediaOptions.map((media) => (
+                                <option value={media.id}>
+                                  {media.originalFilename ?? media.id}
+                                </option>
+                              ))}
+                            </select>
+                            <label>{t("Alt text")}</label>
+                            <input name="altText" type="text" />
+                            <label>{t("Sort order")}</label>
+                            <input name="sortOrder" type="number" value="0" />
+                            <button type="submit">{t("Add image")}</button>
+                          </form>
+                        </section>
+
+                        <section class="admin-section">
+                          <h3 class="admin-section-title">
+                            {t("Variants")}
+                            <span class="count-pill">
+                              {product.variants.length}
+                            </span>
+                          </h3>
+                          <ul>
+                            {product.variants.map((variant) => (
+                              <li data-product-variant-row={variant.id}>
+                                <span class="cell-muted">
+                                  {variant.name}: {variant.value}
+                                  {variant.sku ? ` (${variant.sku})` : ""}
+                                  {variant.price
+                                    ? ` — ${variant.price}`
+                                    : ""} · {t("stock")} {variant.stock}
+                                </span>{" "}
+                                <button
+                                  type="button"
+                                  class="module-toggle product-variant-delete-btn"
+                                  data-product-id={product.id}
+                                  data-variant-id={variant.id}
+                                >
+                                  {t("Remove")}
+                                </button>
+                              </li>
+                            ))}
+                          </ul>
+                          <form
+                            class="admin-create-form product-variant-add-form"
+                            data-product-id={product.id}
+                          >
+                            <label>{t("Attribute name")}</label>
                             <input
                               name="name"
                               type="text"
-                              value={product.name}
+                              required
+                              placeholder="Size"
                             />
-                            <label>{t("Slug")}</label>
+                            <label>{t("Value")}</label>
                             <input
-                              name="slug"
+                              name="value"
                               type="text"
-                              value={product.slug}
+                              required
+                              placeholder="L"
                             />
-                            <label>{t("Category")}</label>
-                            <select name="categoryId">
-                              <option value="" selected={!product.categoryId}>
-                                {t("None")}
-                              </option>
-                              {categories.map((category) => (
-                                <option
-                                  value={category.id}
-                                  selected={category.id === product.categoryId}
-                                >
-                                  {category.name}
-                                </option>
-                              ))}
-                            </select>
-                            <label>{t("Type")}</label>
-                            <select name="type">
-                              {PRODUCT_TYPES.map((type) => (
-                                <option
-                                  value={type}
-                                  selected={type === product.type}
-                                >
-                                  {commerceLabel(labels.productType, type)}
-                                </option>
-                              ))}
-                            </select>
-                            <label>{t("Price")}</label>
-                            <input
-                              name="price"
-                              type="text"
-                              value={product.price}
-                            />
-                            <label>{t("Discount percent")}</label>
-                            <input
-                              name="discountPercent"
-                              type="number"
-                              min="0"
-                              max="100"
-                              value={product.discountPercent}
-                            />
+                            <label>{t("SKU (optional)")}</label>
+                            <input name="sku" type="text" />
+                            <label>{t("Price (optional)")}</label>
+                            <input name="price" type="text" />
                             <label>{t("Stock")}</label>
                             <input
                               name="stock"
                               type="number"
                               min="0"
-                              value={product.stock}
+                              value="0"
                             />
-                            <label>{t("Status")}</label>
-                            <select name="status">
-                              {PRODUCT_STATUSES.map((status) => (
-                                <option
-                                  value={status}
-                                  selected={status === product.status}
-                                >
-                                  {commerceLabel(labels.productStatus, status)}
-                                </option>
-                              ))}
-                            </select>
-                            <label>{t("Minimum purchase")}</label>
-                            <input
-                              name="minPurchase"
-                              type="number"
-                              min="1"
-                              value={product.minPurchase}
-                            />
-                            <label>{t("Weight (grams)")}</label>
-                            <input
-                              name="weightGrams"
-                              type="number"
-                              min="0"
-                              value={product.weightGrams}
-                            />
-                            <label>{t("Description")}</label>
-                            <textarea name="description">
-                              {product.description ?? ""}
-                            </textarea>
-                            <label>
-                              <input
-                                type="checkbox"
-                                name="isFeatured"
-                                value="true"
-                                checked={product.isFeatured}
-                              />{" "}
-                              {t("Featured")}
-                            </label>
-                            <label>
-                              <input
-                                type="checkbox"
-                                name="isRecommended"
-                                value="true"
-                                checked={product.isRecommended}
-                              />{" "}
-                              {t("Recommended")}
-                            </label>
-                            <label>{t("Advanced fields (JSON)")}</label>
-                            <textarea name="advancedFields" rows="6">
-                              {advancedFieldsJson(product)}
-                            </textarea>
-                            <button type="submit">{t("Save")}</button>
+                            <button type="submit">{t("Add variant")}</button>
                           </form>
+                        </section>
+                      </details>
+                    </td>
+                  </tr>
+                )}
+              </>
+            ))
+          )}
+        </tbody>
+      </table>
+    </div>
+  )}
 
-                          <section class="admin-section">
-                            <h3 class="admin-section-title">
-                              {t("Images")}
-                              <span class="count-pill">
-                                {product.images.length}
-                              </span>
-                            </h3>
-                            <ul>
-                              {product.images.map((image) => (
-                                <li data-product-image-row={image.id}>
-                                  {image.publicUrl ? (
-                                    <img
-                                      src={image.publicUrl}
-                                      alt={image.altText ?? ""}
-                                      style="max-height:48px;vertical-align:middle;margin-right:8px;"
-                                    />
-                                  ) : (
-                                    <span>{t("(unresolved image)")}</span>
-                                  )}
-                                  <span class="cell-muted">
-                                    {image.altText ?? ""} · #{image.sortOrder}
-                                  </span>{" "}
-                                  <button
-                                    type="button"
-                                    class="module-toggle product-image-delete-btn"
-                                    data-product-id={product.id}
-                                    data-image-id={image.id}
-                                  >
-                                    {t("Remove")}
-                                  </button>
-                                </li>
-                              ))}
-                            </ul>
-                            <form
-                              class="admin-create-form product-image-add-form"
-                              data-product-id={product.id}
-                            >
-                              <label>{t("Media object")}</label>
-                              <select name="mediaObjectId" required>
-                                <option value="">
-                                  {t("Select a media object")}
-                                </option>
-                                {mediaOptions.map((media) => (
-                                  <option value={media.id}>
-                                    {media.originalFilename ?? media.id}
-                                  </option>
-                                ))}
-                              </select>
-                              <label>{t("Alt text")}</label>
-                              <input name="altText" type="text" />
-                              <label>{t("Sort order")}</label>
-                              <input name="sortOrder" type="number" value="0" />
-                              <button type="submit">{t("Add image")}</button>
-                            </form>
-                          </section>
-
-                          <section class="admin-section">
-                            <h3 class="admin-section-title">
-                              {t("Variants")}
-                              <span class="count-pill">
-                                {product.variants.length}
-                              </span>
-                            </h3>
-                            <ul>
-                              {product.variants.map((variant) => (
-                                <li data-product-variant-row={variant.id}>
-                                  <span class="cell-muted">
-                                    {variant.name}: {variant.value}
-                                    {variant.sku ? ` (${variant.sku})` : ""}
-                                    {variant.price
-                                      ? ` — ${variant.price}`
-                                      : ""}{" "}
-                                    · {t("stock")} {variant.stock}
-                                  </span>{" "}
-                                  <button
-                                    type="button"
-                                    class="module-toggle product-variant-delete-btn"
-                                    data-product-id={product.id}
-                                    data-variant-id={variant.id}
-                                  >
-                                    {t("Remove")}
-                                  </button>
-                                </li>
-                              ))}
-                            </ul>
-                            <form
-                              class="admin-create-form product-variant-add-form"
-                              data-product-id={product.id}
-                            >
-                              <label>{t("Attribute name")}</label>
-                              <input
-                                name="name"
-                                type="text"
-                                required
-                                placeholder="Size"
-                              />
-                              <label>{t("Value")}</label>
-                              <input
-                                name="value"
-                                type="text"
-                                required
-                                placeholder="L"
-                              />
-                              <label>{t("SKU (optional)")}</label>
-                              <input name="sku" type="text" />
-                              <label>{t("Price (optional)")}</label>
-                              <input name="price" type="text" />
-                              <label>{t("Stock")}</label>
-                              <input
-                                name="stock"
-                                type="number"
-                                min="0"
-                                value="0"
-                              />
-                              <button type="submit">{t("Add variant")}</button>
-                            </form>
-                          </section>
-                        </details>
-                      </td>
-                    </tr>
-                  )}
-                </>
-              ))
-            )}
+  {canRead && !loadError && canRestore && deletedProducts.length > 0 && (
+    <section class="admin-section fade-in-up" id="deleted-products">
+      <h2 class="admin-section-title">
+        {t("Deleted products")}
+        <span class="count-pill">{deletedProducts.length}</span>
+      </h2>
+      <div class="data-table-scroll">
+        <table class="data-table data-table--stack" id="deleted-products-table">
+          <thead>
+            <tr>
+              <th scope="col">{t("SKU")}</th>
+              <th scope="col">{t("Name")}</th>
+              <th scope="col">{t("Actions")}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {deletedProducts.map((product) => (
+              <tr data-deleted-product-row={product.id}>
+                <td data-label={t("SKU")}>
+                  <span class="cell-code">{product.sku}</span>
+                </td>
+                <td data-label={t("Name")}>{product.name}</td>
+                <td data-label={t("Actions")} class="stacked-block">
+                  <div class="row-actions">
+                    <button
+                      type="button"
+                      class="module-toggle product-restore-btn"
+                      data-product-id={product.id}
+                      data-product-sku={product.sku}
+                    >
+                      {t("Restore")}
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
-    )
-  }
-
-  {
-    canRead && !loadError && canRestore && deletedProducts.length > 0 && (
-      <section class="admin-section fade-in-up" id="deleted-products">
-        <h2 class="admin-section-title">
-          {t("Deleted products")}
-          <span class="count-pill">{deletedProducts.length}</span>
-        </h2>
-        <div class="data-table-scroll">
-          <table
-            class="data-table data-table--stack"
-            id="deleted-products-table"
-          >
-            <thead>
-              <tr>
-                <th scope="col">{t("SKU")}</th>
-                <th scope="col">{t("Name")}</th>
-                <th scope="col">{t("Actions")}</th>
-              </tr>
-            </thead>
-            <tbody>
-              {deletedProducts.map((product) => (
-                <tr data-deleted-product-row={product.id}>
-                  <td data-label={t("SKU")}>
-                    <span class="cell-code">{product.sku}</span>
-                  </td>
-                  <td data-label={t("Name")}>{product.name}</td>
-                  <td data-label={t("Actions")} class="stacked-block">
-                    <div class="row-actions">
-                      <button
-                        type="button"
-                        class="module-toggle product-restore-btn"
-                        data-product-id={product.id}
-                        data-product-sku={product.sku}
-                      >
-                        {t("Restore")}
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </section>
-    )
-  }
+    </section>
+  )}
   <CommerceConfirmDialog locale={Astro.locals.locale} />
 </AdminLayout>
 

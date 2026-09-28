@@ -1645,7 +1645,34 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   awcms_omes_jobs: ["SELECT", "DELETE"],
   awcms_omes_health_snapshots: ["SELECT", "DELETE"],
   awcms_omes_backup_snapshots: ["SELECT", "DELETE"],
-  awcms_omes_audit_projections: ["SELECT", "DELETE"]
+  awcms_omes_audit_projections: ["SELECT", "DELETE"],
+  // ahliweb/omes#199 (sql/159) — same generic-purge shape, added alongside
+  // the worker-enrollment/poll/result/heartbeat ingestion endpoints. Those
+  // endpoints themselves run as `awcms_app` (the live request path), never
+  // as this background-job role; `awcms_worker` here gets SELECT+DELETE
+  // only, for a future retention sweep that has not been written yet.
+  awcms_omes_worker_nonces: ["SELECT", "DELETE"],
+  awcms_omes_worker_results: ["SELECT", "DELETE"],
+  // ahliweb/omes#232 (sql/160) — same generic-purge shape: the AI-privacy
+  // posture ingestion and egress-approval submission endpoints run as
+  // `awcms_app` (the live request path); `awcms_worker` here gets
+  // SELECT+DELETE only, for the same generic data-lifecycle retention purge
+  // as every other `omes_control` table above.
+  awcms_omes_ai_privacy_posture: ["SELECT", "DELETE"],
+  awcms_omes_ai_egress_approvals: ["SELECT", "DELETE"],
+  // ahliweb/omes#246 (sql/163) — same generic-purge shape: the Hermes
+  // orchestration tree/event ingestion endpoints run as `awcms_app` (the
+  // live request path); `awcms_worker` here gets SELECT+DELETE only, for
+  // the same generic data-lifecycle retention purge as every other
+  // `omes_control` table above.
+  awcms_omes_hermes_orchestration_trees: ["SELECT", "DELETE"],
+  awcms_omes_hermes_orchestration_events: ["SELECT", "DELETE"],
+  // Issue ahliweb/omes#249 (ADR-0030). The poller reads the config table and
+  // reads+writes the projection table via `awcms_worker`; DELETE is granted
+  // on the config table too, for the generic data-lifecycle retention purge
+  // (sql/166's own header comment on why a hard_delete descriptor needs it).
+  awcms_omes_repository_progress_config: ["SELECT", "DELETE"],
+  awcms_omes_repository_progress: ["SELECT", "INSERT", "UPDATE", "DELETE"]
 };
 
 /**

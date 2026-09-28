@@ -131,230 +131,206 @@ const canUpdate = screen.state === "allowed" && screen.data.canUpdate;
   title={t("Orders")}
   description={t("Guest checkout orders — status, payment, and totals.")}
 >
-  {
-    !canRead && (
-      <p class="state-notice fade-in-up" id="orders-denied">
-        {t("You do not have permission to view orders.")}
-      </p>
-    )
-  }
-  {
-    canRead && loadError && (
-      <p class="state-notice fade-in-up" id="orders-error">
-        {t("Orders could not be loaded right now. Please try again later.")}
-      </p>
-    )
-  }
+  {!canRead && (
+    <p class="state-notice fade-in-up" id="orders-denied">
+      {t("You do not have permission to view orders.")}
+    </p>
+  )}
+  {canRead && loadError && (
+    <p class="state-notice fade-in-up" id="orders-error">
+      {t("Orders could not be loaded right now. Please try again later.")}
+    </p>
+  )}
 
-  {
-    canRead && !loadError && (
-      <p
-        id="order-action-error"
-        class="admin-create-error"
-        role="alert"
-        hidden
-      />
-    )
-  }
+  {canRead && !loadError && (
+    <p id="order-action-error" class="admin-create-error" role="alert" hidden />
+  )}
 
-  {
-    canRead && !loadError && statusCounts && (
-      <nav
-        class="admin-segmented fade-in-up"
-        aria-label={t("Filter by status")}
+  {canRead && !loadError && statusCounts && (
+    <nav class="admin-segmented fade-in-up" aria-label={t("Filter by status")}>
+      <a
+        class="admin-segmented-option"
+        aria-current={activeStatus === null ? "page" : "false"}
+        href="/admin/commerce-orders"
       >
+        {t("All")} ({totalOrders})
+      </a>
+      {ORDER_STATUSES.map((status) => (
         <a
           class="admin-segmented-option"
-          aria-current={activeStatus === null ? "page" : "false"}
-          href="/admin/commerce-orders"
+          aria-current={activeStatus === status ? "page" : "false"}
+          data-status={status}
+          href={`/admin/commerce-orders?status=${status}`}
         >
-          {t("All")} ({totalOrders})
+          {commerceLabel(labels.orderStatus, status)} ({statusCounts[status]})
         </a>
-        {ORDER_STATUSES.map((status) => (
-          <a
-            class="admin-segmented-option"
-            aria-current={activeStatus === status ? "page" : "false"}
-            data-status={status}
-            href={`/admin/commerce-orders?status=${status}`}
-          >
-            {commerceLabel(labels.orderStatus, status)} ({statusCounts[status]})
-          </a>
-        ))}
-      </nav>
-    )
-  }
+      ))}
+    </nav>
+  )}
 
-  {
-    canRead && !loadError && (
-      <div class="data-table-scroll fade-in-up">
-        <table
-          class="data-table data-table--stack"
-          id="commerce-orders-table"
-          data-can-update={canUpdate ? "true" : "false"}
-          data-order-status-meta={JSON.stringify(orderStatusMeta)}
-          data-gateway-labels={JSON.stringify(gatewayLabels)}
-        >
-          <caption>
-            {tn("{count} order", "{count} orders", orders.length, {
-              count: orders.length
-            })}
-          </caption>
-          <thead>
+  {canRead && !loadError && (
+    <div class="data-table-scroll fade-in-up">
+      <table
+        class="data-table data-table--stack"
+        id="commerce-orders-table"
+        data-can-update={canUpdate ? "true" : "false"}
+        data-order-status-meta={JSON.stringify(orderStatusMeta)}
+        data-gateway-labels={JSON.stringify(gatewayLabels)}
+      >
+        <caption>
+          {tn("{count} order", "{count} orders", orders.length, {
+            count: orders.length
+          })}
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">{t("Order code")}</th>
+            <th scope="col">{t("Customer")}</th>
+            <th scope="col">{t("Status")}</th>
+            <th scope="col">{t("Payment")}</th>
+            <th scope="col">{t("Total")}</th>
+            <th scope="col">{t("Placed")}</th>
+            <th scope="col">{t("Payment gateway")}</th>
+            {canUpdate && <th scope="col">{t("Actions")}</th>}
+          </tr>
+        </thead>
+        <tbody>
+          {orders.length === 0 ? (
             <tr>
-              <th scope="col">{t("Order code")}</th>
-              <th scope="col">{t("Customer")}</th>
-              <th scope="col">{t("Status")}</th>
-              <th scope="col">{t("Payment")}</th>
-              <th scope="col">{t("Total")}</th>
-              <th scope="col">{t("Placed")}</th>
-              <th scope="col">{t("Payment gateway")}</th>
-              {canUpdate && <th scope="col">{t("Actions")}</th>}
+              <td class="data-table-empty" colspan={canUpdate ? 8 : 7}>
+                <div class="empty-state">
+                  <span class="empty-state-icon" aria-hidden="true">
+                    ◇
+                  </span>
+                  <span class="empty-state-title">{t("No orders yet")}</span>
+                  <span class="empty-state-text">
+                    {t(
+                      "Orders placed through the storefront will appear here."
+                    )}
+                  </span>
+                </div>
+              </td>
             </tr>
-          </thead>
-          <tbody>
-            {orders.length === 0 ? (
-              <tr>
-                <td class="data-table-empty" colspan={canUpdate ? 8 : 7}>
-                  <div class="empty-state">
-                    <span class="empty-state-icon" aria-hidden="true">
-                      ◇
-                    </span>
-                    <span class="empty-state-title">{t("No orders yet")}</span>
-                    <span class="empty-state-text">
-                      {t(
-                        "Orders placed through the storefront will appear here."
-                      )}
-                    </span>
-                  </div>
-                </td>
-              </tr>
-            ) : (
-              orders.map((order) => {
-                // The confirm dialog's message is composed here with the
-                // order code and the FROM status already substituted — the
-                // TO status is only known once the operator changes the
-                // `<select>`, so `{to}` is deliberately left as a literal
-                // placeholder for the client script to finish (see this
-                // file's own header comment for why that is safe).
-                const confirmMessage = t(
-                  "{orderCode} will move from {from} to {to}.",
-                  {
-                    orderCode: order.orderCode,
-                    from: commerceLabel(labels.orderStatus, order.status)
-                  }
-                );
+          ) : (
+            orders.map((order) => {
+              // The confirm dialog's message is composed here with the
+              // order code and the FROM status already substituted — the
+              // TO status is only known once the operator changes the
+              // `<select>`, so `{to}` is deliberately left as a literal
+              // placeholder for the client script to finish (see this
+              // file's own header comment for why that is safe).
+              const confirmMessage = t(
+                "{orderCode} will move from {from} to {to}.",
+                {
+                  orderCode: order.orderCode,
+                  from: commerceLabel(labels.orderStatus, order.status)
+                }
+              );
 
-                return (
-                  <>
-                    <tr data-order-row={order.id}>
-                      <td data-label={t("Order code")}>
-                        <a
-                          class="cell-code"
-                          href={`/admin/commerce-orders/${order.id}`}
-                        >
-                          {order.orderCode}
-                        </a>
-                      </td>
-                      <td data-label={t("Customer")}>
-                        {order.customerName} ({order.customerPhoneMasked})
-                      </td>
-                      <td
-                        data-label={t("Status")}
-                        class={canUpdate ? "stacked-block" : ""}
+              return (
+                <>
+                  <tr data-order-row={order.id}>
+                    <td data-label={t("Order code")}>
+                      <a
+                        class="cell-code"
+                        href={`/admin/commerce-orders/${order.id}`}
+                      >
+                        {order.orderCode}
+                      </a>
+                    </td>
+                    <td data-label={t("Customer")}>
+                      {order.customerName} ({order.customerPhoneMasked})
+                    </td>
+                    <td
+                      data-label={t("Status")}
+                      class={canUpdate ? "stacked-block" : ""}
+                    >
+                      <span
+                        class="admin-status-pill"
+                        data-tone={orderStatusTone[order.status] ?? "neutral"}
+                        data-status={order.status}
                       >
                         <span
-                          class="admin-status-pill"
-                          data-tone={orderStatusTone[order.status] ?? "neutral"}
-                          data-status={order.status}
-                        >
-                          <span
-                            class="admin-status-pill-dot"
-                            aria-hidden="true"
-                          />
-                          {commerceLabel(labels.orderStatus, order.status)}
-                        </span>
-                        {canUpdate && (
-                          <select
-                            class="order-status-input"
-                            data-order-status={order.id}
-                          >
-                            {ORDER_STATUSES.map((status) => (
-                              <option
-                                value={status}
-                                selected={order.status === status}
-                              >
-                                {commerceLabel(labels.orderStatus, status)}
-                              </option>
-                            ))}
-                          </select>
-                        )}
-                      </td>
-                      <td
-                        data-label={t("Payment")}
-                        data-payment-status={order.paymentStatus}
-                      >
-                        {commerceLabel(
-                          labels.paymentStatus,
-                          order.paymentStatus
-                        )}
-                      </td>
-                      <td data-label={t("Total")}>{order.total}</td>
-                      <td data-label={t("Placed")}>{order.createdAt}</td>
-                      <td
-                        data-label={t("Payment gateway")}
-                        class="stacked-block"
-                      >
-                        <button
-                          type="button"
-                          class="module-toggle order-gateway-toggle-btn"
-                          data-order-id={order.id}
-                        >
-                          {t("View gateway status")}
-                        </button>
-                      </td>
+                          class="admin-status-pill-dot"
+                          aria-hidden="true"
+                        />
+                        {commerceLabel(labels.orderStatus, order.status)}
+                      </span>
                       {canUpdate && (
-                        <td data-label={t("Actions")} class="stacked-block">
-                          <div class="row-actions">
-                            <button
-                              type="button"
-                              class="module-toggle order-status-save-btn"
-                              data-order-id={order.id}
-                              data-confirm-title={t("Change order status?")}
-                              data-confirm-message={confirmMessage}
-                              data-confirm-note-label={t("Note (optional)")}
-                              data-confirm-note-max-length="500"
-                            >
-                              {t("Save")}
-                            </button>
-                          </div>
-                        </td>
-                      )}
-                    </tr>
-                    <tr
-                      class="order-gateway-panel-row"
-                      data-order-gateway-panel-row={order.id}
-                      hidden
-                    >
-                      <td colspan={canUpdate ? 8 : 7}>
-                        <div
-                          class="order-gateway-panel"
-                          data-order-gateway-panel={order.id}
+                        <select
+                          class="order-status-input"
+                          data-order-status={order.id}
                         >
-                          <p class="order-gateway-panel-loading">
-                            {t("Loading…")}
-                          </p>
+                          {ORDER_STATUSES.map((status) => (
+                            <option
+                              value={status}
+                              selected={order.status === status}
+                            >
+                              {commerceLabel(labels.orderStatus, status)}
+                            </option>
+                          ))}
+                        </select>
+                      )}
+                    </td>
+                    <td
+                      data-label={t("Payment")}
+                      data-payment-status={order.paymentStatus}
+                    >
+                      {commerceLabel(labels.paymentStatus, order.paymentStatus)}
+                    </td>
+                    <td data-label={t("Total")}>{order.total}</td>
+                    <td data-label={t("Placed")}>{order.createdAt}</td>
+                    <td data-label={t("Payment gateway")} class="stacked-block">
+                      <button
+                        type="button"
+                        class="module-toggle order-gateway-toggle-btn"
+                        data-order-id={order.id}
+                      >
+                        {t("View gateway status")}
+                      </button>
+                    </td>
+                    {canUpdate && (
+                      <td data-label={t("Actions")} class="stacked-block">
+                        <div class="row-actions">
+                          <button
+                            type="button"
+                            class="module-toggle order-status-save-btn"
+                            data-order-id={order.id}
+                            data-confirm-title={t("Change order status?")}
+                            data-confirm-message={confirmMessage}
+                            data-confirm-note-label={t("Note (optional)")}
+                            data-confirm-note-max-length="500"
+                          >
+                            {t("Save")}
+                          </button>
                         </div>
                       </td>
-                    </tr>
-                  </>
-                );
-              })
-            )}
-          </tbody>
-        </table>
-      </div>
-    )
-  }
+                    )}
+                  </tr>
+                  <tr
+                    class="order-gateway-panel-row"
+                    data-order-gateway-panel-row={order.id}
+                    hidden
+                  >
+                    <td colspan={canUpdate ? 8 : 7}>
+                      <div
+                        class="order-gateway-panel"
+                        data-order-gateway-panel={order.id}
+                      >
+                        <p class="order-gateway-panel-loading">
+                          {t("Loading…")}
+                        </p>
+                      </div>
+                    </td>
+                  </tr>
+                </>
+              );
+            })
+          )}
+        </tbody>
+      </table>
+    </div>
+  )}
   <CommerceConfirmDialog locale={Astro.locals.locale} />
 </AdminLayout>
 

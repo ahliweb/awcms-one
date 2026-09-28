@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:4abe7a4a29ee25acf027e89846bc9a5f79b05461ae50469ffd33e0021cd182dd -->
+<!-- i18n-source-hash: sha256:278c481d7f650fc7404bf720cf6dd6e561da1862c5adec57a7ffb3ad624828d8 -->
 
 # AWCMS Project Skills
 
@@ -44,7 +44,7 @@ Skill Claude Code tingkat-proyek untuk AWCMS. Setiap skill meng-encode standar d
 > (halaman publik + permukaan admin USER, ADR-0070). **KOREKSI:** versi sebelumnya menyatakan
 > implementasi ini "baru fondasi Sprint 1–2" dengan empat modul — itu **sudah
 > lama tidak benar**. Repo ini punya **26 modul terdaftar** dan migration
-> `sql/001` sampai `sql/158` plus milik modul `commerce` sendiri yang dicadangkan di `sql/901` sampai `sql/934`;
+> `sql/001` sampai `sql/167` plus milik modul `commerce` sendiri yang dicadangkan di `sql/901` sampai `sql/934`;
 > lihat [`docs/ARCHITECTURE.md`](../../docs/ARCHITECTURE.md) untuk daftar nyata.
 > Skill yang badannya masih menandai dirinya "BACAAN SAJA" tetap begitu — itu
 > per-skill, bukan pernyataan tentang repo secara keseluruhan.

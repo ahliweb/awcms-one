@@ -259,8 +259,9 @@ describe("commerce-orders.astro", () => {
 
     // Payment status cell.
     expect(code).toContain("data-payment-status={order.paymentStatus}");
-    expect(normalized).toContain(
-      "commerceLabel( labels.paymentStatus, order.paymentStatus )"
+    // Whitespace-tolerant: prettier-plugin-astro may or may not wrap this call.
+    expect(normalized).toMatch(
+      /commerceLabel\(\s*labels\.paymentStatus,\s*order\.paymentStatus\s*\)/
     );
 
     // Gateway panel — session provider/status, event provider/outcome — all
