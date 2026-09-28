@@ -110,7 +110,8 @@ describe("CommerceSettingsSaveBar.astro — static contract", () => {
     const source = await readFile(COMPONENT, "utf8");
 
     expect(source).toContain('role="region"');
-    expect(source).toContain("aria-label={ariaLabel}");
+    expect(source).toContain("aria-label={ariaLabel ?? saveLabel}");
+    expect(source).not.toContain('"Save changes"');
   });
 
   test("its own docblock documents props, a demo, and the sticky-within-its-section contract", async () => {

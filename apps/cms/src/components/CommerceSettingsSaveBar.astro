@@ -35,7 +35,7 @@
  * | `formId`     | `string`  | yes      | `id` of the `<form>` this bar's buttons submit/reset.                 |
  * | `saveLabel`  | `string`  | yes      | Primary button text — pass a translated string (`t("Save features")`).|
  * | `resetLabel` | `string`  | no       | Secondary button text. Omitted -> no secondary button is rendered.    |
- * | `ariaLabel`  | `string`  | no       | Landmark name. Defaults to `"Save changes"` (English fallback only — pass a translated value). |
+ * | `ariaLabel`  | `string`  | no       | Landmark name. Defaults to `saveLabel`, which callers always pass through `t()` — so the region is never announced with an untranslated English fallback. |
  * | `class`      | `string`  | no       | Extra class name(s) merged onto the root, e.g. a screen-specific hook. |
  *
  * A named `status` slot carries the text beside the buttons — "Saved",
@@ -131,7 +131,7 @@ const {
   formId,
   saveLabel,
   resetLabel,
-  ariaLabel = "Save changes",
+  ariaLabel,
   class: className
 } = Astro.props;
 
@@ -141,7 +141,7 @@ const hasStatusSlot = Astro.slots.has("status");
 <div
   class:list={["commerce-save-bar", className]}
   role="region"
-  aria-label={ariaLabel}
+  aria-label={ariaLabel ?? saveLabel}
   data-commerce-save-bar
   data-commerce-save-bar-form={formId}
 >
