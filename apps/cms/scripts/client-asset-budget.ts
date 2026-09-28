@@ -628,6 +628,19 @@ export const READER_BUDGET_BYTES = 24_000;
  * "measured + small margin" convention as every raise above; re-measure on
  * the next commerce screen and tighten if the real total sits well below
  * this.
+ *
+ * **Raised to 261,000 B for Issue #244** — `commerce-settings.astro` adopts
+ * a new shared component, `CommerceSettingsSaveBar.astro` (a sticky
+ * save/reset bar for its two settings forms) plus its optional client half,
+ * `commerce-settings-save-bar-client.ts`. Unlike the #171 raise above, this
+ * one IS a new component and a new client script, not pure reuse of an
+ * existing primitive — the component's own scoped `<style>` (bundled into
+ * the shared `AdminLayout.*.css`) and the page's now-larger `<script>`
+ * import account for the growth. Measured clean build: 260,541 B (up from
+ * 259,000 B headroom already spent by Issue #171). 261,000 keeps the same
+ * tight "measured + small margin" convention as every raise above;
+ * re-measure on the next commerce screen and tighten if the real total sits
+ * well below this.
  */
 /**
  * **Raised to 265,000 B for Issue #242** — `CommerceConfirmDialog.astro` (a
@@ -647,6 +660,8 @@ export const READER_BUDGET_BYTES = 24_000;
  * Measured clean build: 262,861 B (up from 258,829 B). 265,000 is kept
  * rather than tightened to match, since the margin is already small; the
  * next commerce screen's own measurement is the one to tighten against.
+ * Re-measured after merging with Issue #244's save bar (both components
+ * together): 264,573 B — still inside 265,000.
  */
 export const APP_BUDGET_BYTES = 265_000;
 
