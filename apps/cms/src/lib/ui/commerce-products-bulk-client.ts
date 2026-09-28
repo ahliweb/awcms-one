@@ -240,11 +240,7 @@ export function formatBulkFailureSummary(
 /* real browser (or the static-contract test's markup assertions).       */
 /* -------------------------------------------------------------------- */
 
-import {
-  lockElement,
-  messageBox,
-  sendJsonRequest
-} from "./admin-form-client";
+import { lockElement, messageBox, sendJsonRequest } from "./admin-form-client";
 import { confirmCommerceAction } from "./commerce-confirm-dialog-client";
 
 type BulkStatusAction = "publish" | "draft";
@@ -327,8 +323,15 @@ export function initCommerceProductsBulk(): void {
   const elements = queryBulkElements();
   if (!elements) return;
 
-  const { table, selectAll, bar, countEl, publishButton, draftButton, deleteButton } =
-    elements;
+  const {
+    table,
+    selectAll,
+    bar,
+    countEl,
+    publishButton,
+    draftButton,
+    deleteButton
+  } = elements;
 
   const actionError = messageBox("product-action-error");
   const templates = pluralTemplatesOf(countEl);
@@ -406,8 +409,7 @@ export function initCommerceProductsBulk(): void {
   ): Promise<void> {
     actionError.clear();
     const progressTemplate = bar.dataset.progressTemplate ?? "{done}/{total}";
-    const fallbackReason =
-      bar.dataset.genericFailureReason ?? "Unknown error.";
+    const fallbackReason = bar.dataset.genericFailureReason ?? "Unknown error.";
     const unlock = lockElement(
       button,
       fillPlaceholders(progressTemplate, { done: 0, total: items.length })
@@ -464,7 +466,8 @@ export function initCommerceProductsBulk(): void {
 
   if (deleteButton) {
     const failureHeaderTemplate =
-      deleteButton.dataset.failureHeaderTemplate ?? "{failedCount}/{totalCount}";
+      deleteButton.dataset.failureHeaderTemplate ??
+      "{failedCount}/{totalCount}";
     const confirmTemplates: PluralTemplates = {
       one: deleteButton.dataset.confirmMessageTemplateOne ?? "{n}",
       other: deleteButton.dataset.confirmMessageTemplateOther ?? "{n}"

@@ -375,7 +375,9 @@ const totalTableColumns = 6 + (showActions ? 2 : 0);
         <label for="create-type">{t("Type")}</label>
         <select id="create-type" name="type">
           {PRODUCT_TYPES.map((type) => (
-            <option value={type}>{commerceLabel(labels.productType, type)}</option>
+            <option value={type}>
+              {commerceLabel(labels.productType, type)}
+            </option>
           ))}
         </select>
 

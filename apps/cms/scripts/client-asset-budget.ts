@@ -663,7 +663,23 @@ export const READER_BUDGET_BYTES = 24_000;
  * Re-measured after merging with Issue #244's save bar (both components
  * together): 264,573 B — still inside 265,000.
  */
-export const APP_BUDGET_BYTES = 265_000;
+/**
+ * **Raised to 269,000 B for Issue #247** — `commerce.astro` gains a new
+ * shared client module, `commerce-products-bulk-client.ts` (checkbox-column
+ * selection state, the sequential bulk Publish/Move to draft/Delete runner,
+ * and the plural-template filling the live selection count and the
+ * count-aware delete confirmation both need), plus a dozen new i18n
+ * catalogue entries for the bar's copy and per-item failure reporting. No
+ * existing primitive covers a working bulk-action bar yet — `.admin-bulk-bar`
+ * itself is upstream CSS this screen already used display-only since Issue
+ * #171, so the growth here is genuinely new script, not reused chrome, the
+ * same shape as Issue #244's raise above. Measured clean build (after
+ * merging with #242/#244): 268,549 B (up from 264,573 B). 269,000 keeps the
+ * same tight "measured + small margin" convention as every raise above;
+ * re-measure on the next commerce screen and tighten if the real total sits
+ * well below this.
+ */
+export const APP_BUDGET_BYTES = 269_000;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.

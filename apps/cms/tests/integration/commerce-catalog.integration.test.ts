@@ -324,9 +324,9 @@ suite("commerce catalog-parity integration (Issue #23)", () => {
       // The count is NOT narrowed by categoryId/featured — both would leave
       // only SKU-DRAFT-1 (soft-deleted, so absent from the count either way)
       // if applied, but this helper takes no such filter to apply.
-      expect(counts.draft + counts.active + counts.inactive + counts.archived).toBe(
-        2
-      );
+      expect(
+        counts.draft + counts.active + counts.inactive + counts.archived
+      ).toBe(2);
     }, 20000);
 
     test("never counts another tenant's products", async () => {

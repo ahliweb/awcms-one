@@ -81,7 +81,10 @@ describe("resolvePluralForm", () => {
 
 describe("selectionCountText", () => {
   test("English-shaped templates: picks the grammatical form for the count", () => {
-    const templates = { one: "{n} product selected", other: "{n} products selected" };
+    const templates = {
+      one: "{n} product selected",
+      other: "{n} products selected"
+    };
     expect(selectionCountText(templates, 1)).toBe("1 product selected");
     expect(selectionCountText(templates, 0)).toBe("0 products selected");
     expect(selectionCountText(templates, 5)).toBe("5 products selected");
@@ -91,7 +94,10 @@ describe("selectionCountText", () => {
     // `PLURAL_SELECTOR.id` (`lib/i18n/locales.ts`) always picks index 0 — so
     // `commerce.astro` renders the identical string into BOTH data
     // attributes for the `id` locale, and this function must not care.
-    const templates = { one: "{n} produk dipilih", other: "{n} produk dipilih" };
+    const templates = {
+      one: "{n} produk dipilih",
+      other: "{n} produk dipilih"
+    };
     expect(selectionCountText(templates, 1)).toBe("1 produk dipilih");
     expect(selectionCountText(templates, 7)).toBe("7 produk dipilih");
   });
@@ -133,9 +139,7 @@ describe("computeSelectAllState", () => {
 
 describe("bulkIdempotencyKey", () => {
   test("combines the run id and the product id", () => {
-    expect(bulkIdempotencyKey("run-1", "product-a")).toBe(
-      "run-1:product-a"
-    );
+    expect(bulkIdempotencyKey("run-1", "product-a")).toBe("run-1:product-a");
   });
 
   test("two different products in the SAME run never collide", () => {
@@ -175,9 +179,9 @@ describe("errorMessageOf", () => {
   });
 
   test("trims a real message", () => {
-    expect(errorMessageOf({ error: { message: "  Cannot transition.  " } })).toBe(
-      "Cannot transition."
-    );
+    expect(
+      errorMessageOf({ error: { message: "  Cannot transition.  " } })
+    ).toBe("Cannot transition.");
   });
 });
 
@@ -211,7 +215,11 @@ describe("runBulkAction", () => {
   });
 
   test("aggregates failures with their SKU and message, keeps successes out of the list", async () => {
-    const items = [item("1", "SKU-OK"), item("2", "SKU-BAD"), item("3", "SKU-ALSO-BAD")];
+    const items = [
+      item("1", "SKU-OK"),
+      item("2", "SKU-BAD"),
+      item("3", "SKU-ALSO-BAD")
+    ];
 
     const outcome = await runBulkAction(items, async (current) => {
       if (current.sku === "SKU-OK") {
@@ -314,9 +322,9 @@ describe("commerce.astro renders labels via the shared maps everywhere the raw e
 
     // Create-form `<select>` option, the table cell, and the inline-edit
     // `<select>` option — three render sites per the raw-enum-table spec.
-    expect(occurrences(page, "commerceLabel(labels.productType,")).toBeGreaterThanOrEqual(
-      3
-    );
+    expect(
+      occurrences(page, "commerceLabel(labels.productType,")
+    ).toBeGreaterThanOrEqual(3);
   });
 
   test("productStatus: filter-select, badge, and inline-edit select all go through commerceLabel(labels.productStatus, …)", async () => {
@@ -362,7 +370,10 @@ describe("the checkbox column and the bulk bar are hidden until JavaScript wires
     expect(barStart).toBeGreaterThan(-1);
 
     const barTagEnd = page.indexOf(">", barStart);
-    const barOpenTag = page.slice(page.lastIndexOf("<div", barStart), barTagEnd);
+    const barOpenTag = page.slice(
+      page.lastIndexOf("<div", barStart),
+      barTagEnd
+    );
     expect(barOpenTag).toContain("hidden");
   });
 
@@ -427,7 +438,7 @@ describe("bulk delete confirms via CommerceConfirmDialog, count-aware", () => {
     // `sendJson` (the narrow `{ ok, errorCode }` helper) is never imported —
     // a per-item failure reason needs the fuller `payload` that only
     // `sendJsonRequest` returns (Issue #540's own narrow-shape rule).
-    expect(client).not.toContain('import { sendJson }');
+    expect(client).not.toContain("import { sendJson }");
     expect(client).not.toContain(", sendJson,");
     expect(client).not.toContain(", sendJson }");
   });
