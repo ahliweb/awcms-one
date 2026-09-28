@@ -14,12 +14,17 @@ import { loadAdminScreen } from "../../lib/auth/admin-screen";
 import { logAdminPageError } from "../../lib/logging/error-log";
 import { getTranslatorFor } from "../../lib/i18n";
 import {
+  commerceLabel,
+  createCommerceLabels
+} from "../../lib/ui/commerce-admin-labels";
+import {
   fetchCampaign,
   listCampaigns
 } from "../../modules/commerce/application/campaign-directory";
 
 const ssr = Astro.locals.ssrContext!;
 const { t, tn } = getTranslatorFor(Astro.locals.locale);
+const labels = createCommerceLabels(t);
 
 const selectedId = Astro.url.searchParams.get("id");
 
@@ -205,9 +210,13 @@ const selected = screen.state === "allowed" ? screen.data.selected : null;
               ) : (
                 campaigns.map((campaign) => (
                   <tr data-campaign-row={campaign.id}>
-                    <td data-label="Channel">{campaign.channel}</td>
+                    <td data-label="Channel" data-channel={campaign.channel}>
+                      {commerceLabel(labels.campaignChannel, campaign.channel)}
+                    </td>
                     <td data-label="Status">
-                      <span class="status-badge">{campaign.status}</span>
+                      <span class="status-badge" data-status={campaign.status}>
+                        {commerceLabel(labels.campaignStatus, campaign.status)}
+                      </span>
                     </td>
                     <td data-label="Recipients">
                       {campaign.recipientCount ?? "—"}
@@ -234,8 +243,13 @@ const selected = screen.state === "allowed" ? screen.data.selected : null;
             data-campaign-id={selected.id}
           >
             <h2 id="campaign-detail-heading">
-              {selected.channel} ·{" "}
-              <span class="status-badge">{selected.status}</span>
+              <span data-channel={selected.channel}>
+                {commerceLabel(labels.campaignChannel, selected.channel)}
+              </span>{" "}
+              ·{" "}
+              <span class="status-badge" data-status={selected.status}>
+                {commerceLabel(labels.campaignStatus, selected.status)}
+              </span>
             </h2>
 
             {canUpdate && selected.status === "draft" ? (

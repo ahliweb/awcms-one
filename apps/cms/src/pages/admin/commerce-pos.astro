@@ -37,6 +37,10 @@ import "../../styles/admin-screens.css";
 import { loadAdminScreen } from "../../lib/auth/admin-screen";
 import { logAdminPageError } from "../../lib/logging/error-log";
 import { getTranslatorFor } from "../../lib/i18n";
+import {
+  commerceLabel,
+  createCommerceLabels
+} from "../../lib/ui/commerce-admin-labels";
 import { decodeKeysetCursor } from "../../modules/_shared/keyset-pagination";
 import { fetchCommerceFeatures } from "../../modules/commerce/application/commerce-feature-gate";
 import {
@@ -47,6 +51,7 @@ import { POS_WALK_IN_CUSTOMER_NAME } from "../../modules/commerce/domain/pos-ord
 
 const ssr = Astro.locals.ssrContext!;
 const { t, tn } = getTranslatorFor(Astro.locals.locale);
+const labels = createCommerceLabels(t);
 
 const tab =
   Astro.url.searchParams.get("tab") === "history" ? "history" : "sale";
@@ -570,7 +575,9 @@ const paymentLabels: Record<string, string> = {
                         order.paymentMethod}
                     </td>
                     <td data-label={t("Status")}>
-                      <span class="status-badge">{order.status}</span>
+                      <span class="status-badge" data-status={order.status}>
+                        {commerceLabel(labels.orderStatus, order.status)}
+                      </span>
                     </td>
                     <td data-label={t("Total")} class="pos-money">
                       {order.total}

@@ -6,11 +6,16 @@ import "../../styles/admin-screens.css";
 import { loadAdminScreen } from "../../lib/auth/admin-screen";
 import { logAdminPageError } from "../../lib/logging/error-log";
 import { getTranslatorFor } from "../../lib/i18n";
+import {
+  commerceLabel,
+  createCommerceLabels
+} from "../../lib/ui/commerce-admin-labels";
 import MarketingTabs from "../../components/CommerceMarketingTabs.astro";
 import { listVouchers } from "../../modules/commerce/application/voucher-directory";
 
 const ssr = Astro.locals.ssrContext!;
 const { t, tn } = getTranslatorFor(Astro.locals.locale);
+const labels = createCommerceLabels(t);
 
 const screen = await loadAdminScreen({
   ssr,
@@ -112,9 +117,9 @@ const showActions = canUpdate || canDelete;
 
         <label for="voucher-type">{t("Type")}</label>
         <select id="voucher-type" name="type">
-          <option value="percentage">{t("Percentage")}</option>
-          <option value="nominal">{t("Nominal")}</option>
-          <option value="free_shipping">{t("Free shipping")}</option>
+          {Object.entries(labels.voucherType).map(([value, label]) => (
+            <option value={value}>{label}</option>
+          ))}
         </select>
 
         <label for="voucher-value">{t("Value")}</label>
@@ -242,7 +247,9 @@ const showActions = canUpdate || canDelete;
                   <td data-label="Code">
                     <span class="cell-code">{voucher.code}</span>
                   </td>
-                  <td data-label="Type">{voucher.type}</td>
+                  <td data-label="Type" data-type={voucher.type}>
+                    {commerceLabel(labels.voucherType, voucher.type)}
+                  </td>
                   <td
                     data-label="Value"
                     class={canUpdate ? "stacked-block" : ""}
@@ -290,7 +297,9 @@ const showActions = canUpdate || canDelete;
                         </option>
                       </select>
                     ) : (
-                      voucher.status
+                      <span data-status={voucher.status}>
+                        {commerceLabel(labels.voucherStatus, voucher.status)}
+                      </span>
                     )}
                   </td>
                   {showActions && (
