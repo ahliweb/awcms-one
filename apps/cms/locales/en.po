@@ -6018,6 +6018,134 @@ msgstr ""
 msgid "Commerce overview"
 msgstr ""
 
+#. CommerceConfirmDialog.astro (Issue #242) -- shared accessible confirm
+#. dialog rendered once per commerce admin screen; these are its own STATIC
+#. chrome defaults, carried to the client via `data-default-*` attributes.
+#. Per-call title/message/confirmLabel strings are t()-translated
+#. SERVER-side into each trigger button's own `data-confirm-*` attributes
+#. (see `commerce-confirm-dialog-client.ts`'s `confirmFromTrigger`) -- never
+#. a plain JS literal in a screen's own `<script>`.
+msgid "Confirm action"
+msgstr ""
+
+msgid "Confirm"
+msgstr ""
+
+#. Per-screen confirm-dialog copy for the ten `window.confirm()` call sites
+#. Issue #242 replaced. Each action has a short question (the dialog title),
+#. a detail sentence (the dialog message, interpolated per-row where the
+#. action names a specific resource), and an imperative confirm-button label
+#. -- see `CommerceConfirmDialog.astro`'s "Usage" section for the shape.
+msgid "Delete this category?"
+msgstr ""
+
+msgid "Category {name} will be moved to trash and can be restored later."
+msgstr ""
+
+msgid "Delete category"
+msgstr ""
+
+msgid "Send this campaign now?"
+msgstr ""
+
+msgid "This cannot be undone once dispatched."
+msgstr ""
+
+msgid "Send campaign"
+msgstr ""
+
+msgid "Cancel this campaign?"
+msgstr ""
+
+msgid "Already-dispatched recipients will not be un-sent."
+msgstr ""
+
+msgid "Cancel campaign"
+msgstr ""
+
+msgid "Approve this commission?"
+msgstr ""
+
+msgid "This marks the commission as approved."
+msgstr ""
+
+msgid "Approve commission"
+msgstr ""
+
+msgid "Mark this commission as paid?"
+msgstr ""
+
+msgid "This records the commission as paid out."
+msgstr ""
+
+msgid "Void this commission?"
+msgstr ""
+
+msgid "This cannot be undone."
+msgstr ""
+
+msgid "Void commission"
+msgstr ""
+
+msgid "Delete this popup?"
+msgstr ""
+
+msgid "{title} will no longer be shown on the storefront."
+msgstr ""
+
+msgid "Delete popup"
+msgstr ""
+
+msgid "Delete this product?"
+msgstr ""
+
+msgid "Product {sku} will be moved to trash and can be restored later."
+msgstr ""
+
+msgid "Delete product"
+msgstr ""
+
+msgid "Delete this review?"
+msgstr ""
+
+msgid "This review will no longer be visible on the storefront."
+msgstr ""
+
+msgid "Delete review"
+msgstr ""
+
+msgid "Delete this slider?"
+msgstr ""
+
+msgid "Delete slider"
+msgstr ""
+
+msgid "Delete this testimonial?"
+msgstr ""
+
+msgid "{author}'s testimonial will no longer be shown on the storefront."
+msgstr ""
+
+msgid "Delete testimonial"
+msgstr ""
+
+msgid "Delete this voucher?"
+msgstr ""
+
+msgid "Voucher {code} will no longer be usable."
+msgstr ""
+
+msgid "Delete voucher"
+msgstr ""
+
+msgid "Delete this flash sale?"
+msgstr ""
+
+msgid "{name} will no longer run on the storefront."
+msgstr ""
+
+msgid "Delete flash sale"
+
 # commerce admin labels (#243)
 msgid "Pending payment"
 msgstr ""

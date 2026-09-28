@@ -8,6 +8,7 @@
  * convention.
  */
 import AdminLayout from "../../layouts/AdminLayout.astro";
+import CommerceConfirmDialog from "../../components/CommerceConfirmDialog.astro";
 import "../../styles/admin-screens.css";
 import { loadAdminScreen } from "../../lib/auth/admin-screen";
 import { logAdminPageError } from "../../lib/logging/error-log";
@@ -316,6 +317,11 @@ const selected = screen.state === "allowed" ? screen.data.selected : null;
                     class="module-toggle"
                     id="campaign-send-btn"
                     data-campaign-id={selected.id}
+                    data-confirm-title={t("Send this campaign now?")}
+                    data-confirm-message={t(
+                      "This cannot be undone once dispatched."
+                    )}
+                    data-confirm-label={t("Send campaign")}
                   >
                     {t("Send now")}
                   </button>
@@ -332,6 +338,12 @@ const selected = screen.state === "allowed" ? screen.data.selected : null;
                     class="module-toggle campaign-cancel-btn"
                     id="campaign-cancel-btn"
                     data-campaign-id={selected.id}
+                    data-confirm-title={t("Cancel this campaign?")}
+                    data-confirm-message={t(
+                      "Already-dispatched recipients will not be un-sent."
+                    )}
+                    data-confirm-label={t("Cancel campaign")}
+                    data-confirm-danger="true"
                   >
                     {t("Cancel")}
                   </button>
@@ -342,6 +354,7 @@ const selected = screen.state === "allowed" ? screen.data.selected : null;
       </div>
     )
   }
+  <CommerceConfirmDialog locale={Astro.locals.locale} />
 </AdminLayout>
 
 <script>
@@ -354,6 +367,7 @@ const selected = screen.state === "allowed" ? screen.data.selected : null;
     sendJson,
     sendJsonForData
   } from "../../lib/ui/admin-form-client";
+  import { confirmFromTrigger } from "../../lib/ui/commerce-confirm-dialog-client";
 
   const actionError = messageBox("campaigns-action-error");
 
@@ -421,16 +435,11 @@ const selected = screen.state === "allowed" ? screen.data.selected : null;
     }
   });
 
-  onAction("#campaign-send-btn", (button) => {
+  onAction("#campaign-send-btn", async (button) => {
     const id = button.dataset.campaignId;
     if (!id) return;
-    if (
-      !window.confirm(
-        "Send this campaign now? This cannot be undone once dispatched."
-      )
-    ) {
-      return;
-    }
+    const confirmed = await confirmFromTrigger(button);
+    if (!confirmed) return;
 
     return mutateAndReload(
       button,
@@ -444,16 +453,11 @@ const selected = screen.state === "allowed" ? screen.data.selected : null;
     );
   });
 
-  onAction(".campaign-cancel-btn", (button) => {
+  onAction(".campaign-cancel-btn", async (button) => {
     const id = button.dataset.campaignId;
     if (!id) return;
-    if (
-      !window.confirm(
-        "Cancel this campaign? Already-dispatched recipients will not be un-sent."
-      )
-    ) {
-      return;
-    }
+    const confirmed = await confirmFromTrigger(button);
+    if (!confirmed) return;
 
     return mutateAndReload(
       button,
