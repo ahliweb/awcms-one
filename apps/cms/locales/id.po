@@ -6200,3 +6200,12 @@ msgstr "Diabaikan"
 msgid "Log adapter (development)"
 msgstr "Adaptor log (pengembangan)"
 
+msgid "Change order status?"
+msgstr "Ubah status pesanan?"
+
+msgid "{orderCode} will move from {from} to {to}."
+msgstr "Status pesanan {orderCode} akan diubah dari {from} menjadi {to}."
+
+msgid "Note (optional)"
+msgstr "Catatan (opsional)"
+

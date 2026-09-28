@@ -420,6 +420,15 @@ export interface ConfirmTriggerDataset {
   confirmLabel?: string;
   confirmDanger?: string;
   confirmDialogId?: string;
+  /**
+   * The note variant's own three attributes (Issue #246) — additive to this
+   * interface, and ignored by {@link readConfirmOptions}/{@link confirmFromTrigger}
+   * exactly as any other unknown dataset key already is, so no existing
+   * caller's behaviour changes by these three fields existing.
+   */
+  confirmNoteLabel?: string;
+  confirmNoteMaxLength?: string;
+  confirmNotePlaceholder?: string;
 }
 
 /**
@@ -451,4 +460,45 @@ export function readConfirmOptions(
  */
 export function confirmFromTrigger(el: HTMLElement): Promise<boolean> {
   return confirmCommerceAction(readConfirmOptions(el.dataset));
+}
+
+/**
+ * The note variant of {@link readConfirmOptions} (Issue #246, order-status
+ * change) — same pure reader, extended with the three `data-confirm-note-*`
+ * attributes. `confirmNoteMaxLength` is read as a string (every dataset
+ * value is) and parsed with `Number`; a missing or non-numeric attribute
+ * degrades to `undefined`, which `confirmCommerceActionWithNote` already
+ * treats as "use `DEFAULT_NOTE_MAX_LENGTH`" via {@link resolveNoteMaxLength}
+ * — never a thrown error for a screen that omits the attribute.
+ */
+export function readConfirmOptionsWithNote(
+  dataset: ConfirmTriggerDataset
+): ConfirmCommerceActionWithNoteOptions {
+  const parsedMaxLength = dataset.confirmNoteMaxLength
+    ? Number(dataset.confirmNoteMaxLength)
+    : undefined;
+
+  return {
+    ...readConfirmOptions(dataset),
+    noteLabel: dataset.confirmNoteLabel ?? "",
+    noteMaxLength: Number.isFinite(parsedMaxLength)
+      ? parsedMaxLength
+      : undefined,
+    notePlaceholder: dataset.confirmNotePlaceholder
+  };
+}
+
+/**
+ * The note variant of {@link confirmFromTrigger}. Not used by
+ * `commerce-orders.astro` directly — that screen's message needs a
+ * client-side `{to}` substitution and a dynamically-computed `danger` flag
+ * before the dialog opens, so it calls {@link readConfirmOptionsWithNote} and
+ * {@link confirmCommerceActionWithNote} itself rather than through this
+ * wrapper. Exported anyway, symmetrically with {@link confirmFromTrigger},
+ * for a future note-taking trigger whose options need no such adjustment.
+ */
+export function confirmFromTriggerWithNote(
+  el: HTMLElement
+): Promise<{ note: string } | null> {
+  return confirmCommerceActionWithNote(readConfirmOptionsWithNote(el.dataset));
 }

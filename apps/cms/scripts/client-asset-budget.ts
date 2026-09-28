@@ -663,7 +663,22 @@ export const READER_BUDGET_BYTES = 24_000;
  * Re-measured after merging with Issue #244's save bar (both components
  * together): 264,573 B — still inside 265,000.
  */
-export const APP_BUDGET_BYTES = 265_000;
+/**
+ * **Raised to 266,500 B for Issue #246** — `commerce-orders.astro` and
+ * `commerce-orders/[id].astro` adopt `commerce-admin-labels.ts` (Issue #243)
+ * for every raw enum render, and the orders list's status-save flow moves
+ * onto `CommerceConfirmDialog`'s note variant
+ * (`confirmCommerceActionWithNote`/`readConfirmOptionsWithNote`, added
+ * additively to Issue #242's own `commerce-confirm-dialog-client.ts`). No new
+ * component and no new stylesheet — the growth is the two screens' own larger
+ * `<script>` (the label lookup/JSON-dataset plumbing described in each
+ * file's own docblock) plus a handful of new i18n catalogue entries. Measured
+ * clean build: 266,095 B (up from 264,573 B). 266,500 keeps the same tight
+ * "measured + small margin" convention as every raise above; re-measure on
+ * the next commerce screen and tighten if the real total sits well below
+ * this.
+ */
+export const APP_BUDGET_BYTES = 266_500;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.
