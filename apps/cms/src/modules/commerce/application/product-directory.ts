@@ -449,6 +449,48 @@ export async function listProductsForAdmin(
   return { items: rows.map(toAdminRecord), nextCursor };
 }
 
+/**
+ * Per-status product counts for `src/pages/admin/commerce.astro`'s
+ * All/Published/Draft status tabs (Issue #247) — one query, same shape as
+ * `order-directory.ts`'s `countOrdersByStatus` (grouped `count(*)` over every
+ * status, zero-filled for a status with no rows so the caller never has to
+ * guard a missing key).
+ *
+ * **Deliberately ignores `categoryId`/`q`/`featured`/`recommended`** — the
+ * ONLY filter this counts by is `status` itself (which it is grouping BY, so
+ * it cannot also be narrowed by it). This is the same choice
+ * `countOrdersByStatus` made, generalised: that helper takes no filters
+ * at all because the orders screen has none besides status; this screen DOES
+ * have the other four, and the tabs' own `href`s (`?status=active`,
+ * `?status=draft`, plain `/admin/commerce` for "All") already drop
+ * `categoryId`/`q`/`featured`/`recommended` when a tab is clicked — the tabs
+ * are a quick, orthogonal status switch, not a refinement of whatever the
+ * detailed filter form above them is currently narrowed to. Counting WITH
+ * those filters applied would make a tab's own number disagree with what
+ * clicking it shows (the click drops the filters; a filtered count would not
+ * have), which is a worse defect than "the count does not shrink when you
+ * type into the search box".
+ */
+export async function countProductsByStatus(
+  tx: Bun.SQL,
+  tenantId: string
+): Promise<Record<ProductStatus, number>> {
+  const rows = (await tx`
+    SELECT status, count(*)::int AS status_count
+    FROM awcms_commerce_products
+    WHERE tenant_id = ${tenantId} AND deleted_at IS NULL
+    GROUP BY status
+  `) as { status: ProductStatus; status_count: number }[];
+
+  const counts = Object.fromEntries(
+    PRODUCT_STATUSES.map((status) => [status, 0])
+  ) as Record<ProductStatus, number>;
+  for (const row of rows) {
+    counts[row.status] = Number(row.status_count);
+  }
+  return counts;
+}
+
 export async function fetchProductById(
   tx: Bun.SQL,
   tenantId: string,

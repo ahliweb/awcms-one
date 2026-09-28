@@ -6234,3 +6234,46 @@ msgstr ""
 msgid "Note (optional)"
 msgstr ""
 
+msgid "Select all products on this page"
+msgstr ""
+
+msgid "Select {name}"
+msgstr ""
+
+msgid "Bulk actions"
+msgstr ""
+
+msgid "{n} product selected"
+msgid_plural "{n} products selected"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Move to draft"
+msgstr ""
+
+msgid "Delete the selected products?"
+msgstr ""
+
+msgid "{n} selected product will be moved to trash and can be restored later."
+msgid_plural "{n} selected products will be moved to trash and can be restored later."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Delete products"
+msgstr ""
+
+msgid "Processing {done} of {total}…"
+msgstr ""
+
+msgid "Could not process this product. Please try again."
+msgstr ""
+
+msgid "{failedCount} of {totalCount} selected products could not be published."
+msgstr ""
+
+msgid "{failedCount} of {totalCount} selected products could not be moved to draft."
+msgstr ""
+
+msgid "{failedCount} of {totalCount} selected products could not be deleted."
+msgstr ""
+

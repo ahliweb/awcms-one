@@ -678,7 +678,35 @@ export const READER_BUDGET_BYTES = 24_000;
  * the next commerce screen and tighten if the real total sits well below
  * this.
  */
-export const APP_BUDGET_BYTES = 266_500;
+/**
+ * **Raised to 269,000 B for Issue #247** — `commerce.astro` gains a new
+ * shared client module, `commerce-products-bulk-client.ts` (checkbox-column
+ * selection state, the sequential bulk Publish/Move to draft/Delete runner,
+ * and the plural-template filling the live selection count and the
+ * count-aware delete confirmation both need), plus a dozen new i18n
+ * catalogue entries for the bar's copy and per-item failure reporting. No
+ * existing primitive covers a working bulk-action bar yet — `.admin-bulk-bar`
+ * itself is upstream CSS this screen already used display-only since Issue
+ * #171, so the growth here is genuinely new script, not reused chrome, the
+ * same shape as Issue #244's raise above. Measured clean build (after
+ * merging with #242/#244): 268,549 B (up from 264,573 B). 269,000 keeps the
+ * same tight "measured + small margin" convention as every raise above;
+ * re-measure on the next commerce screen and tighten if the real total sits
+ * well below this.
+ */
+/**
+ * **Raised to 270,500 B merging Issues #246 and #247** — both landed on top
+ * of the same 264,573 B baseline and each raised the budget independently
+ * (266,500 for #246, 269,000 for #247); neither PR's own measurement includes
+ * the other's growth. This merge sums both deltas over the shared baseline
+ * (+1,522 B for #246, +3,976 B for #247 → 264,573 + 1,522 + 3,976 = 270,071 B)
+ * and keeps a small margin, 270,500 B, in place of re-running a clean build
+ * for an estimate the next real change will re-measure anyway. Issue #253
+ * (this docblock's own change) adds `t()`-driven `data-label` attributes to
+ * existing table cells — translated strings already present in each
+ * catalogue, not new script — so it does not raise this budget further.
+ */
+export const APP_BUDGET_BYTES = 270_500;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.
