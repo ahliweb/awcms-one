@@ -116,7 +116,10 @@ async function validateMediaObjectIds(
   for (const mediaObjectId of new Set(mediaObjectIds)) {
     const media = await fetchNewsMediaObjectById(tx, tenantId, mediaObjectId);
 
-    if (!media || !isNewsMediaObjectSafeForPublicReference(media.status)) {
+    if (
+      !media ||
+      !isNewsMediaObjectSafeForPublicReference(media.status, media.visibility)
+    ) {
       errors.push({
         field: "config.mediaObjectIds",
         message: `config.mediaObjectIds references "${mediaObjectId}", which does not exist, does not belong to this tenant, or is not a verified R2 media object.`

@@ -42,6 +42,7 @@ function fakeClient(overrides: {
 }): NewsMediaR2Client {
   return {
     presignUploadUrl: () => "https://example.test/presigned",
+    presignDownloadUrl: () => "https://example.test/presigned-get",
     headObject: async () =>
       overrides.head ?? {
         ok: true,
@@ -60,6 +61,7 @@ describe("verifyNewsMediaR2Object (Issue #634)", () => {
     let getCalled = false;
     const client: NewsMediaR2Client = {
       presignUploadUrl: () => "unused",
+      presignDownloadUrl: () => "unused",
       headObject: async () => ({ ok: true, exists: false }),
       getObject: async () => {
         getCalled = true;
@@ -85,6 +87,7 @@ describe("verifyNewsMediaR2Object (Issue #634)", () => {
     let getCalled = false;
     const client: NewsMediaR2Client = {
       presignUploadUrl: () => "unused",
+      presignDownloadUrl: () => "unused",
       headObject: async () => ({
         ok: true,
         exists: true,

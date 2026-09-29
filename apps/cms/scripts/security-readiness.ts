@@ -1602,6 +1602,11 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   // `revokeEntitlementByAdmin`, never a deletion), but the descriptor still
   // requires the grant to exist.
   awcms_commerce_entitlements: ["SELECT", "DELETE"],
+  // Issue #268 (`sql/939`): the protected-media link table's `dataLifecycle`
+  // descriptor (`commerce/module.ts`) is `executionMode: "generic"` with a
+  // real, reachable `hard_delete` (unlike entitlements above, this one IS
+  // matched in practice once a link is older than the 3650-day ceiling).
+  awcms_commerce_protected_media_links: ["SELECT", "DELETE"],
   // Issue #92 (`sql/923`): the affiliate-program tables, same
   // `deleted_at`-cursor reasoning as `commerce.orders`/`commerce.reviews`
   // above — neither table is ever actually soft-deleted by this module's own

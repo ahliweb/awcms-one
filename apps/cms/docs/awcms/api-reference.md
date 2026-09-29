@@ -5453,6 +5453,36 @@ An already-deleted object and an unknown id both answer 404 — a distinct "alre
 | 404    | Resource not found.                                                               | [`ApiError`](#standard-error-envelope) |
 | 409    | The Idempotency-Key was reused with a different request (`IDEMPOTENCY_CONFLICT`). | [`ApiError`](#standard-error-envelope) |
 
+### `GET /api/v1/media/objects/{id}/download-url` — Issue a short-lived presigned GET URL for a media object (staff/ABAC path).
+
+- **operationId**: `mediaObjectDownloadUrl`
+- **Security**: bearerAuth + tenantHeader
+
+Issue #268 (IRMbyDUS). Gated on `media_library.media.download` (ABAC/RBAC, the standard tenant-user permission evaluator — no commerce entitlement applies here). Works for BOTH visibility classes: a `private` object is the whole point, and a `public` object may also be issued a signed URL this way (it simply has no need to, since its `publicUrl` already resolves permanently).
+
+The TTL is bounded server-side at at most 900 seconds regardless of deployment configuration (`NEWS_MEDIA_R2_MAX_PRESIGNED_DOWNLOAD_TTL_SECONDS`).
+
+Every issuance decision that reaches a real object is audited (`media.download`) — a soft-deleted/unverified/unknown id answers 404 with no audit row (nothing was decided, since there is no real object to decide about).
+
+The CUSTOMER-facing, entitlement-gated sibling is `GET /api/v1/commerce/storefront/products/{productId}/download` (`commerce` module fragment).
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                                          | Schema                                 |
+| ------ | ---------------------------------------------------- | -------------------------------------- |
+| 200    | A short-lived presigned GET URL.                     | object                                 |
+| 400    | Validation error.                                    | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                          | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                          | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                  | [`ApiError`](#standard-error-envelope) |
+| 502    | Media storage is not configured for this deployment. | [`ApiError`](#standard-error-envelope) |
+
 ### `POST /api/v1/media/objects/{id}/purge` — Hard-delete the registry row of an already soft-deleted media object.
 
 - **operationId**: `mediaObjectPurge`
@@ -10539,6 +10569,56 @@ Sets deleted_at; the sku and slug are freed for reuse. Restore it with POST /api
 | 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
 | 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
 
+### `PUT /api/v1/commerce/products/{id}/protected-media` — Link a product to the PRIVATE media object its entitlement gates (Issue #268, IRMbyDUS). Gated on products.update.
+
+- **operationId**: `setCommerceProductProtectedMedia`
+- **Security**: bearerAuth + tenantHeader
+
+`mediaObjectId` must resolve, same-tenant, non-deleted, to a `visibility: "private"` object in a downloadable status (`verified`/`attached`). A `public` object is refused — linking one would defeat FR-LIB-002 (the object already has a permanent URL).
+
+Upsert on `(tenant_id, product_id)` — at most one link per product (`sql/939`). High-risk-adjacent (requires `Idempotency-Key`, though not itself in `HIGH_RISK_ACTIONS`).
+
+**Parameters**
+
+| Name              | In     | Required | Type          | Description |
+| ----------------- | ------ | -------- | ------------- | ----------- |
+| `id`              | path   | yes      | string (uuid) |             |
+| `Idempotency-Key` | header | yes      | string        |             |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                          | Schema                                 |
+| ------ | ---------------------------------------------------- | -------------------------------------- |
+| 200    | The link, created or updated.                        | object                                 |
+| 400    | Validation error.                                    | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                          | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                          | [`ApiError`](#standard-error-envelope) |
+| 409    | Idempotency-Key was reused with a different request. | [`ApiError`](#standard-error-envelope) |
+
+### `DELETE /api/v1/commerce/products/{id}/protected-media` — Remove a product's protected-media link (Issue #268, IRMbyDUS). Gated on products.update. Idempotent.
+
+- **operationId**: `clearCommerceProductProtectedMedia`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name              | In     | Required | Type          | Description |
+| ----------------- | ------ | -------- | ------------- | ----------- |
+| `id`              | path   | yes      | string (uuid) |             |
+| `Idempotency-Key` | header | yes      | string        |             |
+
+**Responses**
+
+| Status | Description                                                | Schema                                 |
+| ------ | ---------------------------------------------------------- | -------------------------------------- |
+| 200    | Unlinked (or already unlinked — same response either way). | object                                 |
+| 400    | Validation error.                                          | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                | [`ApiError`](#standard-error-envelope) |
+| 409    | Idempotency-Key was reused with a different request.       | [`ApiError`](#standard-error-envelope) |
+
 ### `POST /api/v1/commerce/products/{id}/restore` — Restore a soft-deleted product (Issue 23).
 
 - **operationId**: `restoreCommerceProduct`
@@ -11891,6 +11971,35 @@ Anonymous, per-IP and per-e-mail rate limited. The code is hashed, 10 minute TTL
 | ------ | ----------------------------------------- | -------------------------------------- |
 | 204    | Removed (or already absent — idempotent). |                                        |
 | 401    | UNAUTHENTICATED.                          | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/storefront/products/{productId}/download` — Issue a short-lived presigned download URL for a purchased product's protected content (Issue #268, IRMbyDUS).
+
+- **operationId**: `downloadCommerceStorefrontProductProtectedMedia`
+- **Security**: customerBearer
+
+Authentication (customer bearer session) → Authorization (the blocked-account gate every bearer-secured storefront route already applies) → Entitlement Verification (`verifyEntitlement` against the product's linked private media object) → short-lived presigned GET URL.
+
+The gated media object is resolved SERVER-SIDE from the product's own protected-media link (`PUT .../products/{id}/protected-media`) — `productId` is the only accepted input, never a media object id, so an entitled customer for one product cannot request another product's file by id.
+
+Missing entitlement → `403 ENTITLEMENT_REQUIRED`, with NO `url` field anywhere in the body — never a broken link, never a URL of any kind.
+
+**Parameters**
+
+| Name        | In   | Required | Type          | Description |
+| ----------- | ---- | -------- | ------------- | ----------- |
+| `productId` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                                                                                                       | Schema                                 |
+| ------ | ----------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | A short-lived presigned GET URL for the product's protected media object.                                         | object                                 |
+| 400    | Validation error.                                                                                                 | [`ApiError`](#standard-error-envelope) |
+| 401    | UNAUTHENTICATED.                                                                                                  | [`ApiError`](#standard-error-envelope) |
+| 403    | ACCOUNT_BLOCKED, or ENTITLEMENT_REQUIRED (no active entitlement for this product — the body never carries a url). | [`ApiError`](#standard-error-envelope) |
+| 404    | This product has no protected content to download.                                                                | [`ApiError`](#standard-error-envelope) |
+| 409    | The product's protected-media link is misconfigured (points at a non-private or non-downloadable object).         | [`ApiError`](#standard-error-envelope) |
+| 502    | Media storage is not configured for this deployment.                                                              | [`ApiError`](#standard-error-envelope) |
 
 ## Commerce Affiliates
 
@@ -14156,13 +14265,14 @@ Every field optional; status may move between active and inactive.
 
 ### Schema: CreateNewsMediaUploadSessionRequest
 
-| Field              | Type    | Required | Nullable | Description                                                                                                                                                                      |
-| ------------------ | ------- | -------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `mimeType`         | string  | yes      | no       | Must be one of the deployment's configured NEWS_MEDIA_R2_ALLOWED_MIME_TYPES (default: image/jpeg, image/png, image/webp, image/gif — image/svg+xml is never allowed by default). |
-| `byteSize`         | integer | yes      | no       | Claimed size in bytes — shape-only check against NEWS_MEDIA_R2_MAX_UPLOAD_BYTES; the real size is re-checked from R2 itself at finalize time.                                    |
-| `originalFilename` | string  | no       | yes      | Stored as display-only metadata — never part of the server-generated object key.                                                                                                 |
-| `altText`          | string  | no       | yes      |                                                                                                                                                                                  |
-| `caption`          | string  | no       | yes      |                                                                                                                                                                                  |
+| Field              | Type                      | Required | Nullable | Description                                                                                                                                                                                                                                                                                           |
+| ------------------ | ------------------------- | -------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `mimeType`         | string                    | yes      | no       | Must be one of the deployment's configured NEWS_MEDIA_R2_ALLOWED_MIME_TYPES (default: image/jpeg, image/png, image/webp, image/gif — image/svg+xml is never allowed by default).                                                                                                                      |
+| `byteSize`         | integer                   | yes      | no       | Claimed size in bytes — shape-only check against NEWS_MEDIA_R2_MAX_UPLOAD_BYTES; the real size is re-checked from R2 itself at finalize time.                                                                                                                                                         |
+| `originalFilename` | string                    | no       | yes      | Stored as display-only metadata — never part of the server-generated object key.                                                                                                                                                                                                                      |
+| `altText`          | string                    | no       | yes      |                                                                                                                                                                                                                                                                                                       |
+| `caption`          | string                    | no       | yes      |                                                                                                                                                                                                                                                                                                       |
+| `visibility`       | enum(`public`, `private`) | no       | no       | Issue #268. Defaults to `public` (a permanent `publicUrl`, exactly like every session created before this issue). `private` never gets a `publicUrl` — read only via a short-lived presigned GET, entitlement-gated for a storefront customer or media_library.media.download-gated for tenant staff. |
 
 **Example**
 
@@ -14172,7 +14282,8 @@ Every field optional; status may move between active and inactive.
   "byteSize": 1,
   "originalFilename": "string",
   "altText": "string",
-  "caption": "string"
+  "caption": "string",
+  "visibility": "public"
 }
 ```
 

@@ -13,6 +13,10 @@ import {
   createNewsMediaR2Client,
   readCappedStream
 } from "../src/modules/media-library/infrastructure/media-r2-client";
+import {
+  boundPresignedDownloadTtlSeconds,
+  NEWS_MEDIA_R2_MAX_PRESIGNED_DOWNLOAD_TTL_SECONDS
+} from "../src/modules/media-library/domain/media-r2-config";
 import { resetProviderCircuitBreakersForTests } from "../src/lib/database/circuit-breaker";
 
 afterEach(() => {
@@ -40,6 +44,67 @@ describe("createNewsMediaR2Client (Issue #634)", () => {
     // Never leaks the raw secret access key into the URL string as-is —
     // presign signs, it does not embed the secret literally.
     expect(url).not.toContain(BASE_CONFIG.secretAccessKey);
+  });
+
+  test("presignDownloadUrl (Issue #268): honors a requested TTL within the bound", () => {
+    const client = createNewsMediaR2Client(BASE_CONFIG);
+    const url = client.presignDownloadUrl({
+      objectKey: "news-media/tenant/2026/07/abc.jpg",
+      ttlSeconds: 120
+    });
+
+    expect(url).toContain("X-Amz-Expires=120");
+    expect(url).not.toContain(BASE_CONFIG.secretAccessKey);
+  });
+
+  test("presignDownloadUrl (Issue #268): clamps a requested TTL above NEWS_MEDIA_R2_MAX_PRESIGNED_DOWNLOAD_TTL_SECONDS down to the ceiling", () => {
+    const client = createNewsMediaR2Client(BASE_CONFIG);
+    const url = client.presignDownloadUrl({
+      objectKey: "news-media/tenant/2026/07/abc.jpg",
+      // Far above the 900s ceiling — must never be honored as-is.
+      ttlSeconds: 1_000_000
+    });
+
+    expect(url).toContain(
+      `X-Amz-Expires=${NEWS_MEDIA_R2_MAX_PRESIGNED_DOWNLOAD_TTL_SECONDS}`
+    );
+    expect(url).not.toContain("X-Amz-Expires=1000000");
+  });
+
+  test("presignDownloadUrl (Issue #268): clamps a non-positive/fractional TTL up to at least 1 second", () => {
+    const client = createNewsMediaR2Client(BASE_CONFIG);
+
+    const zero = client.presignDownloadUrl({
+      objectKey: "k",
+      ttlSeconds: 0
+    });
+    expect(zero).toContain("X-Amz-Expires=1");
+
+    const negative = client.presignDownloadUrl({
+      objectKey: "k",
+      ttlSeconds: -50
+    });
+    expect(negative).toContain("X-Amz-Expires=1");
+
+    const fractional = client.presignDownloadUrl({
+      objectKey: "k",
+      ttlSeconds: 0.9
+    });
+    expect(fractional).toContain("X-Amz-Expires=1");
+  });
+
+  test("boundPresignedDownloadTtlSeconds (Issue #268): the exact clamp presignDownloadUrl enforces, exposed for callers reporting expiresAt", () => {
+    expect(boundPresignedDownloadTtlSeconds(120)).toBe(120);
+    expect(boundPresignedDownloadTtlSeconds(1_000_000)).toBe(
+      NEWS_MEDIA_R2_MAX_PRESIGNED_DOWNLOAD_TTL_SECONDS
+    );
+    expect(boundPresignedDownloadTtlSeconds(0)).toBe(1);
+    expect(boundPresignedDownloadTtlSeconds(-50)).toBe(1);
+    expect(
+      boundPresignedDownloadTtlSeconds(
+        NEWS_MEDIA_R2_MAX_PRESIGNED_DOWNLOAD_TTL_SECONDS
+      )
+    ).toBe(NEWS_MEDIA_R2_MAX_PRESIGNED_DOWNLOAD_TTL_SECONDS);
   });
 
   test("headObject: exists=false for a key the fake server reports as missing", async () => {

@@ -657,6 +657,11 @@
       "source": "factory"
     },
     {
+      "path": "src/pages/api/v1/commerce/products/[id]/protected-media.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
       "path": "src/pages/api/v1/commerce/products/[id]/restore.ts",
       "workClass": "interactive",
       "source": "factory"
@@ -1018,6 +1023,11 @@
     },
     {
       "path": "src/pages/api/v1/media/objects/[id].ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/media/objects/[id]/download-url.ts",
       "workClass": "interactive",
       "source": "factory"
     },

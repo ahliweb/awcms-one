@@ -92,7 +92,12 @@ async function seedMedia(
   userId: string,
   label: string,
   status: string,
-  options: { deleted?: boolean; rights?: RightsFixture } = {}
+  options: {
+    deleted?: boolean;
+    rights?: RightsFixture;
+    /** Issue #268 — defaults to `"public"`, matching every fixture that predates this issue. */
+    visibility?: "public" | "private";
+  } = {}
 ): Promise<string> {
   // `object_key` is CHECK-constrained to `news-media/<tenant_id>/YYYY/MM/<uuid>.<ext>`,
   // verified per-row against the row's OWN tenant_id — so a fixture cannot use a
@@ -117,16 +122,24 @@ async function seedMedia(
       : (rights.rightsVerifiedBy ?? userId);
   const verifiedAt = verificationStatus === "unverified" ? null : new Date();
 
+  // Issue #268 — `sql/168`'s CHECK constraint requires `public_url IS NULL`
+  // for a private object; a fixture that ignored this would be rejected by
+  // the database itself, same as every other invariant this function's
+  // existing comments document.
+  const visibility = options.visibility ?? "public";
+  const publicUrl =
+    visibility === "public" ? `https://cdn.example.test/${label}.png` : null;
+
   const rows = (await getAdminSql()`
     INSERT INTO awcms_news_media_objects
       (tenant_id, module_key, storage_driver, bucket_name, object_key,
-       public_url, mime_type, alt_text, status, owner_resource_type,
+       public_url, visibility, mime_type, alt_text, status, owner_resource_type,
        owner_resource_id, created_by_tenant_user_id, deleted_at,
        credit_line, source_name, rights_notes, copyright_status,
        rights_verification_status, rights_verified_by, rights_verified_at)
     VALUES (
       ${tenantId}, 'news_portal', 'cloudflare_r2', 'bucket', ${objectKey},
-      ${`https://cdn.example.test/${label}.png`}, 'image/png', ${`alt ${label}`},
+      ${publicUrl}, ${visibility}, 'image/png', ${`alt ${label}`},
       ${status}, ${attached ? "blog_post" : null},
       ${attached ? crypto.randomUUID() : null},
       ${userId}, ${options.deleted ? new Date() : null},
@@ -177,7 +190,19 @@ suite("media object batch resolution", () => {
       deletedRow: await seedMedia(TENANT_A, AUTHOR_A, "deleted", "verified", {
         deleted: true
       }),
-      otherTenant: await seedMedia(TENANT_B, AUTHOR_B, "other", "verified")
+      otherTenant: await seedMedia(TENANT_B, AUTHOR_B, "other", "verified"),
+      // Issue #268 — a PRIVATE object, otherwise in every way identical to
+      // `ids.verified` (same status, same tenant, not soft-deleted). If the
+      // exclusion in `media-library-port-adapter.ts`/
+      // `isNewsMediaObjectSafeForPublicReference` regressed to check `status`
+      // alone, this is exactly the row that would start resolving again.
+      privateVerified: await seedMedia(
+        TENANT_A,
+        AUTHOR_A,
+        "private-verified",
+        "verified",
+        { visibility: "private" }
+      )
     };
   });
 
@@ -202,12 +227,30 @@ suite("media object batch resolution", () => {
   test.each([
     ["an unverified upload", "pending"],
     ["a soft-deleted object", "deletedRow"],
-    ["another tenant's object", "otherTenant"]
+    ["another tenant's object", "otherTenant"],
+    // Issue #268 regression: same-tenant, verified, not-deleted — the ONLY
+    // difference from `ids.verified` (which DOES resolve, above) is
+    // `visibility: "private"`. Proves the exclusion holds on `status`'s own
+    // best case, not merely alongside another disqualifying fact.
+    [
+      "a private object, even though verified/same-tenant/not-deleted",
+      "privateVerified"
+    ]
   ])("%s never resolves", async (_label, key) => {
     const result = await resolve(TENANT_A, [ids[key]!]);
 
     expect(result.items).toEqual([]);
     expect(result.unresolved).toEqual([ids[key]!]);
+  });
+
+  test("a private object's publicUrl is NULL at the row level too (sql/168's CHECK), not merely excluded by the resolver", async () => {
+    const rows = (await getAdminSql()`
+      SELECT public_url, visibility FROM awcms_news_media_objects
+      WHERE id = ${ids.privateVerified!}
+    `) as { public_url: string | null; visibility: string }[];
+
+    expect(rows[0]?.visibility).toBe("private");
+    expect(rows[0]?.public_url).toBeNull();
   });
 
   test("an unknown id is unresolved, not an error", async () => {

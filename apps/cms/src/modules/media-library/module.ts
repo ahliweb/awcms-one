@@ -150,6 +150,16 @@ export const mediaLibraryModule = defineModule({
       action: "cancel",
       description: "Cancel one's own not-yet-uploaded media upload session"
     },
+    // Issue #268 (IRMbyDUS) — declared and enforced (`GET /api/v1/media/
+    // objects/{id}/download-url`) in the SAME change, per this file's own
+    // "attach/detach" cautionary tale above. See `media-permissions.ts`'s
+    // `download` doc comment for why this is separate from `read`.
+    {
+      activityCode: MEDIA_PERMISSION_ACTIVITY_CODE,
+      action: "download",
+      description:
+        "Issue a short-lived presigned GET URL for a media object (public or private) — see media_library.media.read for metadata-only access"
+    },
     // ADR-0036 step 5a (migration `054`) — a separate activity code from `media`
     // on purpose: `media.*` governs individual objects, `enforcement.*` governs a
     // tenant-wide content policy. Folding these into `media.create` would hand
