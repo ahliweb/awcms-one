@@ -6178,6 +6178,18 @@ msgstr ""
 msgid "Subscription"
 msgstr ""
 
+msgid "Digital ebook"
+msgstr ""
+
+msgid "Digital program"
+msgstr ""
+
+msgid "Mentoring"
+msgstr ""
+
+msgid "Bundle"
+msgstr ""
+
 msgid "Sending"
 msgstr ""
 
