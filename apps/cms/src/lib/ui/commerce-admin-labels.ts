@@ -266,7 +266,12 @@ export function createCommerceLabels(t: Translator["t"]) {
     physical: t("Physical"),
     digital: t("Digital"),
     service: t("Service"),
-    subscription: t("Subscription")
+    subscription: t("Subscription"),
+    digital_ebook: t("Digital ebook"),
+    digital_program: t("Digital program"),
+    mentoring: t("Mentoring"),
+    bundle: t("Bundle"),
+    event: t("Event")
   } satisfies Record<ProductType, string>;
 
   const voucherType = {

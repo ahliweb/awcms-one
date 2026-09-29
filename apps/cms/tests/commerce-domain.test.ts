@@ -64,7 +64,7 @@ describe("isProductType", () => {
   });
 
   test("rejects an unknown string and a non-string", () => {
-    expect(isProductType("bundle")).toBe(false);
+    expect(isProductType("gift_card")).toBe(false);
     expect(isProductType(42)).toBe(false);
     expect(isProductType(undefined)).toBe(false);
   });
@@ -293,11 +293,27 @@ describe("validateCreateProductInput — bounded fields", () => {
 
   test("type must be one of the declared union", () => {
     expect(
-      validateCreateProductInput({ ...VALID_BODY, type: "bundle" }).valid
+      validateCreateProductInput({ ...VALID_BODY, type: "gift_card" }).valid
     ).toBe(false);
     expect(
       validateCreateProductInput({ ...VALID_BODY, type: "digital" }).valid
     ).toBe(true);
+  });
+
+  test("accepts every issue #266 product type", () => {
+    for (const type of [
+      "digital_ebook",
+      "digital_program",
+      "mentoring",
+      "bundle",
+      "event"
+    ] as const) {
+      const result = validateCreateProductInput({ ...VALID_BODY, type });
+      expect(result.valid).toBe(true);
+      if (result.valid) {
+        expect(result.value.type).toBe(type);
+      }
+    }
   });
 
   test("discountPercent must be an integer between 0 and 100", () => {
