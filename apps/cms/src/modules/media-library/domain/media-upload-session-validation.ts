@@ -14,7 +14,15 @@
  * (`markNewsMediaObjectUploaded`) — the client's claimed `byteSize` here is
  * only an early, cheap rejection of an obviously-oversized request before
  * any presigned URL is even generated.
+ *
+ * `visibility` (Issue #268, IRMbyDUS) — optional, defaults to `"public"`
+ * (every session created before this issue was, structurally, exactly
+ * this). This is the ONLY place a `"private"` object can be created through
+ * this module's own HTTP surface — without it, the private visibility class
+ * would exist in the schema/domain layer with no way to ever instantiate one
+ * outside a test fixture.
  */
+import { isMediaVisibility, type MediaVisibility } from "./media-visibility";
 
 export type ValidationError = {
   field: string;
@@ -29,6 +37,7 @@ export type CreateNewsMediaUploadSessionInput = {
   originalFilename: string | null;
   altText: string | null;
   caption: string | null;
+  visibility: MediaVisibility;
 };
 
 export type CreateNewsMediaUploadSessionValidationResult =
@@ -120,13 +129,32 @@ export function validateCreateNewsMediaUploadSessionInput(
   const altText = validateOptionalText(body.altText, "altText", errors);
   const caption = validateOptionalText(body.caption, "caption", errors);
 
+  let visibility: MediaVisibility = "public";
+  if (body.visibility !== undefined) {
+    if (!isMediaVisibility(body.visibility)) {
+      errors.push({
+        field: "visibility",
+        message: 'visibility must be "public" or "private".'
+      });
+    } else {
+      visibility = body.visibility;
+    }
+  }
+
   if (errors.length > 0) {
     return { valid: false, errors };
   }
 
   return {
     valid: true,
-    value: { mimeType, byteSize, originalFilename, altText, caption }
+    value: {
+      mimeType,
+      byteSize,
+      originalFilename,
+      altText,
+      caption,
+      visibility
+    }
   };
 }
 

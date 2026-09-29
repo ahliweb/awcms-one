@@ -95,7 +95,9 @@ describe("D16 — the unreachable orphan lifecycle is gone", () => {
 
     expect(migration).toContain("'orphaned'");
     expect(migration).toContain("orphaned_at");
-    expect(isNewsMediaObjectSafeForPublicReference("orphaned")).toBe(false);
+    expect(isNewsMediaObjectSafeForPublicReference("orphaned", "public")).toBe(
+      false
+    );
   });
 
   test("the grace-period setting is NOT deleted with it", async () => {

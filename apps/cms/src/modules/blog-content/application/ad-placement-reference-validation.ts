@@ -56,7 +56,10 @@ export async function validateAdPlacementMediaReference(
 ): Promise<AdPlacementReferenceValidationResult> {
   const media = await fetchNewsMediaObjectById(tx, tenantId, mediaObjectId);
 
-  if (!media || !isNewsMediaObjectSafeForPublicReference(media.status)) {
+  if (
+    !media ||
+    !isNewsMediaObjectSafeForPublicReference(media.status, media.visibility)
+  ) {
     return {
       valid: false,
       errors: [

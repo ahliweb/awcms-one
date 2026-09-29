@@ -80,7 +80,8 @@ export const mediaLibraryPortAdapter: MediaLibraryPort = {
   ): Promise<boolean> {
     const media = await fetchNewsMediaObjectById(tx, tenantId, mediaObjectId);
     return (
-      media !== null && isNewsMediaObjectSafeForPublicReference(media.status)
+      media !== null &&
+      isNewsMediaObjectSafeForPublicReference(media.status, media.visibility)
     );
   },
 
@@ -102,17 +103,25 @@ export const mediaLibraryPortAdapter: MediaLibraryPort = {
     );
 
     for (const media of mediaObjects) {
-      if (isNewsMediaObjectSafeForPublicReference(media.status)) {
+      if (
+        isNewsMediaObjectSafeForPublicReference(media.status, media.visibility)
+      ) {
         // Issue #782 — the credit/rights fields are gated separately from the
         // safe-to-reference check above: a `verified`/`attached` OBJECT (the
         // bytes are fine to serve) is not the same fact as `verified`
         // RIGHTS (a human cleared the credit for publication). See
         // `resolvePublicMediaRightsFields` for why an unadjudicated claim
         // fails closed to `null` rather than being passed through.
+        //
+        // Issue #268 — `isNewsMediaObjectSafeForPublicReference` now ALSO
+        // requires `visibility === "public"`, and `sql/168`'s CHECK
+        // constraint guarantees a public object's `publicUrl` is never null
+        // — the non-null assertion below is that DB-enforced invariant, not
+        // an unchecked assumption.
         const rights = resolvePublicMediaRightsFields(media);
 
         resolved.set(media.id, {
-          publicUrl: media.publicUrl,
+          publicUrl: media.publicUrl!,
           altText: media.altText,
           mimeType: media.mimeType,
           width: media.width,

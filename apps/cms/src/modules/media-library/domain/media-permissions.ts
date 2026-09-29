@@ -107,7 +107,23 @@ export const MEDIA_PERMISSIONS = {
    * attached) is a materially lower-risk action than soft-deleting a real,
    * previously-verified media object.
    */
-  cancel: "media_library.media.cancel"
+  cancel: "media_library.media.cancel",
+  /**
+   * Issue #268 (IRMbyDUS) — the TENTH key. Issues a short-lived presigned GET
+   * URL for a media object (public OR private) — the staff/tenant side of
+   * the "private object" download flow (`GET /api/v1/media/objects/{id}/
+   * download-url`). Deliberately separate from `read`: `read` gates
+   * METADATA (`media.read` is explicitly safe for a read-only machine
+   * credential, ADR-0049), while `download` mints a credential-bearing URL
+   * that serves the actual BYTES of a private object, bypassing its lack of
+   * a permanent public URL for the URL's short lifetime. See `sql/169`'s
+   * header for why this is not folded into `read`, and this route's own
+   * header for why NO commerce entitlement applies here — a tenant user
+   * downloading through this permission is administering the tenant's own
+   * content, not purchasing it (the CUSTOMER path is entitlement-gated
+   * instead, via `commerce`'s storefront route).
+   */
+  download: "media_library.media.download"
 } as const;
 
 export type NewsMediaPermissionKey = keyof typeof MEDIA_PERMISSIONS;

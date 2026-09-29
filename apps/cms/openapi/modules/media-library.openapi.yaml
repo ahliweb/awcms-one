@@ -365,6 +365,68 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "403":
           $ref: "#/components/responses/Forbidden"
+  /api/v1/media/objects/{id}/download-url:
+    get:
+      operationId: mediaObjectDownloadUrl
+      tags:
+        - News Media
+      summary: Issue a short-lived presigned GET URL for a media object (staff/ABAC path).
+      description: |
+        Issue #268 (IRMbyDUS). Gated on `media_library.media.download` (ABAC/RBAC, the standard tenant-user permission evaluator — no commerce entitlement applies here). Works for BOTH visibility classes: a `private` object is the whole point, and a `public` object may also be issued a signed URL this way (it simply has no need to, since its `publicUrl` already resolves permanently).
+
+        The TTL is bounded server-side at at most 900 seconds regardless of deployment configuration (`NEWS_MEDIA_R2_MAX_PRESIGNED_DOWNLOAD_TTL_SECONDS`).
+
+        Every issuance decision that reaches a real object is audited (`media.download`) — a soft-deleted/unverified/unknown id answers 404 with no audit row (nothing was decided, since there is no real object to decide about).
+
+        The CUSTOMER-facing, entitlement-gated sibling is `GET /api/v1/commerce/storefront/products/{productId}/download` (`commerce` module fragment).
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: A short-lived presigned GET URL.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum: [true]
+                  data:
+                    type: object
+                    required:
+                      - mediaObjectId
+                      - url
+                      - expiresAt
+                    properties:
+                      mediaObjectId:
+                        type: string
+                        format: uuid
+                      url:
+                        type: string
+                        format: uri
+                      expiresAt:
+                        type: string
+                        format: date-time
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "502":
+          description: Media storage is not configured for this deployment.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
   /api/v1/media/objects/{id}:
     delete:
       operationId: mediaObjectSoftDelete
@@ -905,6 +967,13 @@ components:
         caption:
           type: string
           nullable: true
+        visibility:
+          type: string
+          enum:
+            - public
+            - private
+          default: public
+          description: "Issue #268. Defaults to `public` (a permanent `publicUrl`, exactly like every session created before this issue). `private` never gets a `publicUrl` — read only via a short-lived presigned GET, entitlement-gated for a storefront customer or media_library.media.download-gated for tenant staff."
     FinalizeNewsMediaUploadSessionRequest:
       type: object
       additionalProperties: false
@@ -922,6 +991,7 @@ components:
         - tenantId
         - objectKey
         - publicUrl
+        - visibility
         - mimeType
         - status
         - createdAt
@@ -964,6 +1034,14 @@ components:
         publicUrl:
           type: string
           format: uri
+          nullable: true
+          description: "`null` when `visibility` is `private` — a private object never has a permanent public URL (Issue #268, FR-LIB-002). Read it only via `POST/GET .../download-url`."
+        visibility:
+          type: string
+          enum:
+            - public
+            - private
+          description: "Issue #268. `public` objects resolve a permanent `publicUrl`. `private` objects never do — read only through a short-lived presigned GET."
         mimeType:
           type: string
         sizeBytes:

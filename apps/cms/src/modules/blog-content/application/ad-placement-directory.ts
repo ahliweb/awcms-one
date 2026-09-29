@@ -85,6 +85,8 @@ type AdPlacementRow = {
   media_public_url: string | null;
   media_alt_text: string | null;
   media_status: string | null;
+  /** Issue #268 — `null` only when the LEFT JOIN found no live media object (same nullability as `media_status`). */
+  media_visibility: string | null;
   link_url: string | null;
   rotation_mode: AdRotationMode;
   priority: number;
@@ -112,10 +114,14 @@ function toView(row: AdPlacementRow): AdPlacementView {
     mediaAltText: row.media_alt_text,
     mediaPubliclyReferenceable:
       row.media_status !== null &&
+      row.media_visibility !== null &&
       isNewsMediaObjectSafeForPublicReference(
         row.media_status as Parameters<
           typeof isNewsMediaObjectSafeForPublicReference
-        >[0]
+        >[0],
+        row.media_visibility as Parameters<
+          typeof isNewsMediaObjectSafeForPublicReference
+        >[1]
       ),
     linkUrl: row.link_url,
     rotationMode: row.rotation_mode,
@@ -169,7 +175,7 @@ export async function createAdPlacement(
     -- publicly referenceable.
     SELECT p.id, p.tenant_id, p.placement_key, p.name, p.media_object_id,
       m.public_url AS media_public_url, m.alt_text AS media_alt_text,
-      m.status AS media_status,
+      m.status AS media_status, m.visibility AS media_visibility,
       p.link_url, p.rotation_mode, p.priority, p.is_active, p.starts_at, p.ends_at,
       p.target_type, p.target_id, p.content_class, p.created_at, p.updated_at,
       p.deleted_at, p.deleted_by, p.delete_reason
@@ -205,7 +211,7 @@ export async function fetchAdPlacementById(
   const rows = (await tx`
     SELECT p.id, p.tenant_id, p.placement_key, p.name, p.media_object_id,
       m.public_url AS media_public_url, m.alt_text AS media_alt_text,
-      m.status AS media_status,
+      m.status AS media_status, m.visibility AS media_visibility,
       p.link_url, p.rotation_mode, p.priority, p.is_active, p.starts_at, p.ends_at,
       p.target_type, p.target_id, p.content_class, p.created_at, p.updated_at,
       p.deleted_at, p.deleted_by, p.delete_reason
@@ -232,7 +238,7 @@ export async function listAdPlacements(
   const rows = (await tx`
     SELECT p.id, p.tenant_id, p.placement_key, p.name, p.media_object_id,
       m.public_url AS media_public_url, m.alt_text AS media_alt_text,
-      m.status AS media_status,
+      m.status AS media_status, m.visibility AS media_visibility,
       p.link_url, p.rotation_mode, p.priority, p.is_active, p.starts_at, p.ends_at,
       p.target_type, p.target_id, p.content_class, p.created_at, p.updated_at,
       p.deleted_at, p.deleted_by, p.delete_reason
@@ -297,7 +303,7 @@ export async function updateAdPlacement(
     -- publicly referenceable.
     SELECT p.id, p.tenant_id, p.placement_key, p.name, p.media_object_id,
       m.public_url AS media_public_url, m.alt_text AS media_alt_text,
-      m.status AS media_status,
+      m.status AS media_status, m.visibility AS media_visibility,
       p.link_url, p.rotation_mode, p.priority, p.is_active, p.starts_at, p.ends_at,
       p.target_type, p.target_id, p.content_class, p.created_at, p.updated_at,
       p.deleted_at, p.deleted_by, p.delete_reason
@@ -434,7 +440,7 @@ export async function listActiveAdPlacementsForRendering(
     SELECT p.id, p.name, p.link_url, p.rotation_mode, p.priority, p.created_at,
       p.content_class,
       m.public_url AS media_public_url, m.alt_text AS media_alt_text,
-      m.status AS media_status
+      m.status AS media_status, m.visibility AS media_visibility
     FROM awcms_news_portal_ad_placements p
     JOIN awcms_news_media_objects m
       ON m.id = p.media_object_id AND m.tenant_id = p.tenant_id
@@ -448,14 +454,20 @@ export async function listActiveAdPlacementsForRendering(
       AND (p.ends_at IS NULL OR p.ends_at >= ${now})
       AND m.deleted_at IS NULL
     ORDER BY p.created_at DESC
-  `) as (ActiveAdPlacementRow & { media_status: string })[];
+  `) as (ActiveAdPlacementRow & {
+    media_status: string;
+    media_visibility: string;
+  })[];
 
   return rows
     .filter((row) =>
       isNewsMediaObjectSafeForPublicReference(
         row.media_status as Parameters<
           typeof isNewsMediaObjectSafeForPublicReference
-        >[0]
+        >[0],
+        row.media_visibility as Parameters<
+          typeof isNewsMediaObjectSafeForPublicReference
+        >[1]
       )
     )
     .map((row) => ({

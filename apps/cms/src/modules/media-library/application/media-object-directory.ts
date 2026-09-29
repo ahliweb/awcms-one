@@ -15,6 +15,7 @@ import {
   buildNewsMediaObjectKey,
   buildNewsMediaPublicUrl
 } from "../domain/media-object-key";
+import type { MediaVisibility } from "../domain/media-visibility";
 
 /**
  * Read/write directory for `awcms_news_media_objects` (Issue #633,
@@ -74,8 +75,48 @@ export type NewsMediaOwnerResourceType =
  * validation) MUST use this predicate rather than re-deriving the "which
  * statuses are safe" list themselves, so the status model can only ever
  * change in one place.
+ *
+ * ## `visibility` — the SECOND, REQUIRED half of "safe" (Issue #268)
+ *
+ * A `status` answer alone used to be the whole answer, because every object
+ * was implicitly `visibility: "public"`. That stopped being true the moment
+ * this registry grew a `"private"` class (`domain/media-visibility.ts`):
+ * a `verified`/`attached` PRIVATE object is exactly the wrong content to
+ * expose through a public reference — it is private BECAUSE it must never
+ * resolve to a permanent public URL (FR-LIB-002). `visibility` is therefore
+ * a REQUIRED second parameter, not a defaulted one: a default (even
+ * `"public"`, matching this table's pre-#268 universal behavior) would let
+ * every call site that forgot to pass it keep compiling while silently
+ * treating a private object as public-safe — precisely the "new path
+ * coexisting with a bug in the old one" this issue's own acceptance
+ * criteria rules out. Every caller was updated in the same change that added
+ * this parameter (`media-library-port-adapter.ts`,
+ * `blog-content/application/ad-placement-directory.ts`,
+ * `ad-placement-reference-validation.ts`,
+ * `homepage-section-reference-validation.ts`).
  */
 export function isNewsMediaObjectSafeForPublicReference(
+  status: NewsMediaObjectStatus,
+  visibility: MediaVisibility
+): boolean {
+  return (
+    (status === "verified" || status === "attached") && visibility === "public"
+  );
+}
+
+/**
+ * `true` for exactly the statuses safe to hand out a signed download for
+ * (Issue #268) — deliberately the STATUS half only, no `visibility` check:
+ * unlike `isNewsMediaObjectSafeForPublicReference` (which exists to keep a
+ * PRIVATE object out of a PERMANENT public reference), issuing a short-lived
+ * signed GET is exactly the mechanism BOTH visibility classes may legitimately
+ * use — a `"public"` object may also be downloaded this way (e.g. the
+ * staff-facing `GET /api/v1/media/objects/{id}/download-url`), it simply has
+ * no NEED to, since its `publicUrl` already resolves. Same status set as
+ * public-reference-safety: `pending_upload`/`uploaded` never completed
+ * verification, `failed`/`orphaned`/`deleted` are not live content.
+ */
+export function isMediaObjectDownloadable(
   status: NewsMediaObjectStatus
 ): boolean {
   return status === "verified" || status === "attached";
@@ -91,7 +132,10 @@ export type NewsMediaObjectView = {
   bucketName: string;
   objectKey: string;
   originalFilename: string | null;
-  publicUrl: string;
+  /** `null` when `visibility === "private"` — see `domain/media-visibility.ts`. */
+  publicUrl: string | null;
+  /** Issue #268 — `"public"` (permanent `publicUrl`) or `"private"` (no permanent URL; read only via a short-lived presigned GET, entitlement-gated). */
+  visibility: MediaVisibility;
   mimeType: string;
   sizeBytes: number | null;
   checksumSha256: string | null;
@@ -129,7 +173,8 @@ type NewsMediaObjectRow = {
   bucket_name: string;
   object_key: string;
   original_filename: string | null;
-  public_url: string;
+  public_url: string | null;
+  visibility: MediaVisibility;
   mime_type: string;
   size_bytes: string | number | null;
   checksum_sha256: string | null;
@@ -167,6 +212,7 @@ function toView(row: NewsMediaObjectRow): NewsMediaObjectView {
     objectKey: row.object_key,
     originalFilename: row.original_filename,
     publicUrl: row.public_url,
+    visibility: row.visibility,
     mimeType: row.mime_type,
     sizeBytes: row.size_bytes === null ? null : Number(row.size_bytes),
     checksumSha256: row.checksum_sha256,
@@ -204,6 +250,8 @@ export type CreatePendingNewsMediaObjectInput = {
   originalFilename?: string;
   altText?: string;
   caption?: string;
+  /** Defaults to `"public"` — every object created before Issue #268 was, structurally, exactly this. */
+  visibility?: MediaVisibility;
 };
 
 export class UnsupportedNewsMediaMimeTypeInputError extends Error {
@@ -241,19 +289,27 @@ export async function createPendingNewsMediaObject(
   }
 
   const objectKey = buildNewsMediaObjectKey({ tenantId, mimeType });
-  const publicUrl = buildNewsMediaPublicUrl(config.publicBaseUrl, objectKey);
+  const visibility: MediaVisibility = input.visibility ?? "public";
+  // Issue #268 (FR-LIB-002) — a private object NEVER gets a permanent public
+  // URL, not even one that is simply unused: `null` here, enforced again at
+  // the schema level by `sql/168`'s
+  // `awcms_news_media_objects_visibility_public_url_check`.
+  const publicUrl =
+    visibility === "public"
+      ? buildNewsMediaPublicUrl(config.publicBaseUrl, objectKey)
+      : null;
 
   const rows = (await tx`
     INSERT INTO awcms_news_media_objects
       (tenant_id, bucket_name, object_key, original_filename, public_url,
-       mime_type, alt_text, caption, created_by_tenant_user_id)
+       visibility, mime_type, alt_text, caption, created_by_tenant_user_id)
     VALUES (
       ${tenantId}, ${config.bucket}, ${objectKey}, ${input.originalFilename ?? null},
-      ${publicUrl}, ${mimeType}, ${input.altText ?? null}, ${input.caption ?? null},
+      ${publicUrl}, ${visibility}, ${mimeType}, ${input.altText ?? null}, ${input.caption ?? null},
       ${actorTenantUserId}
     )
     RETURNING id, tenant_id, module_key, owner_resource_type, owner_resource_id,
-      storage_driver, bucket_name, object_key, original_filename, public_url,
+      storage_driver, bucket_name, object_key, original_filename, public_url, visibility,
       mime_type, size_bytes, checksum_sha256, width, height, alt_text, caption,
           credit_line, source_name, rights_notes, copyright_status,
           rights_verification_status, rights_verified_by, rights_verified_at,
@@ -272,7 +328,7 @@ export async function createPendingNewsMediaObject(
     resourceId: created.id,
     severity: "info",
     message: `News media object created (pending upload): ${objectKey}.`,
-    attributes: { objectKey, mimeType },
+    attributes: { objectKey, mimeType, visibility },
     correlationId
   });
 
@@ -292,7 +348,7 @@ export type FetchNewsMediaObjectOptions = {
  */
 const SELECT_COLUMNS =
   "id, tenant_id, module_key, owner_resource_type, owner_resource_id, " +
-  "storage_driver, bucket_name, object_key, original_filename, public_url, " +
+  "storage_driver, bucket_name, object_key, original_filename, public_url, visibility, " +
   "mime_type, size_bytes, checksum_sha256, width, height, alt_text, caption, " +
   // Issue #615 — usage rights. Listed here rather than only on the point
   // lookups because the browse screen shows a credit beside each thumbnail, and
@@ -411,7 +467,7 @@ export async function fetchNewsMediaObjectById(
     options.includeDeleted
       ? await tx`
         SELECT id, tenant_id, module_key, owner_resource_type, owner_resource_id,
-          storage_driver, bucket_name, object_key, original_filename, public_url,
+          storage_driver, bucket_name, object_key, original_filename, public_url, visibility,
           mime_type, size_bytes, checksum_sha256, width, height, alt_text, caption,
           credit_line, source_name, rights_notes, copyright_status,
           rights_verification_status, rights_verified_by, rights_verified_at,
@@ -422,7 +478,7 @@ export async function fetchNewsMediaObjectById(
       `
       : await tx`
         SELECT id, tenant_id, module_key, owner_resource_type, owner_resource_id,
-          storage_driver, bucket_name, object_key, original_filename, public_url,
+          storage_driver, bucket_name, object_key, original_filename, public_url, visibility,
           mime_type, size_bytes, checksum_sha256, width, height, alt_text, caption,
           credit_line, source_name, rights_notes, copyright_status,
           rights_verification_status, rights_verified_by, rights_verified_at,
@@ -462,7 +518,7 @@ export async function fetchNewsMediaObjectsByIds(
     options.includeDeleted
       ? await tx`
         SELECT id, tenant_id, module_key, owner_resource_type, owner_resource_id,
-          storage_driver, bucket_name, object_key, original_filename, public_url,
+          storage_driver, bucket_name, object_key, original_filename, public_url, visibility,
           mime_type, size_bytes, checksum_sha256, width, height, alt_text, caption,
           credit_line, source_name, rights_notes, copyright_status,
           rights_verification_status, rights_verified_by, rights_verified_at,
@@ -473,7 +529,7 @@ export async function fetchNewsMediaObjectsByIds(
       `
       : await tx`
         SELECT id, tenant_id, module_key, owner_resource_type, owner_resource_id,
-          storage_driver, bucket_name, object_key, original_filename, public_url,
+          storage_driver, bucket_name, object_key, original_filename, public_url, visibility,
           mime_type, size_bytes, checksum_sha256, width, height, alt_text, caption,
           credit_line, source_name, rights_notes, copyright_status,
           rights_verification_status, rights_verified_by, rights_verified_at,
@@ -530,7 +586,7 @@ export async function markNewsMediaObjectUploaded(
     WHERE tenant_id = ${tenantId} AND id = ${id}
       AND status = 'pending_upload' AND deleted_at IS NULL
     RETURNING id, tenant_id, module_key, owner_resource_type, owner_resource_id,
-      storage_driver, bucket_name, object_key, original_filename, public_url,
+      storage_driver, bucket_name, object_key, original_filename, public_url, visibility,
       mime_type, size_bytes, checksum_sha256, width, height, alt_text, caption,
           credit_line, source_name, rights_notes, copyright_status,
           rights_verification_status, rights_verified_by, rights_verified_at,
@@ -578,7 +634,7 @@ export async function markNewsMediaObjectVerified(
     WHERE tenant_id = ${tenantId} AND id = ${id}
       AND status = 'uploaded' AND deleted_at IS NULL
     RETURNING id, tenant_id, module_key, owner_resource_type, owner_resource_id,
-      storage_driver, bucket_name, object_key, original_filename, public_url,
+      storage_driver, bucket_name, object_key, original_filename, public_url, visibility,
       mime_type, size_bytes, checksum_sha256, width, height, alt_text, caption,
           credit_line, source_name, rights_notes, copyright_status,
           rights_verification_status, rights_verified_by, rights_verified_at,
@@ -693,7 +749,7 @@ export async function markNewsMediaObjectFailed(
           AND status IN ('pending_upload', 'uploaded') AND deleted_at IS NULL
           AND created_at < ${options.olderThan}
         RETURNING id, tenant_id, module_key, owner_resource_type, owner_resource_id,
-          storage_driver, bucket_name, object_key, original_filename, public_url,
+          storage_driver, bucket_name, object_key, original_filename, public_url, visibility,
           mime_type, size_bytes, checksum_sha256, width, height, alt_text, caption,
           credit_line, source_name, rights_notes, copyright_status,
           rights_verification_status, rights_verified_by, rights_verified_at,
@@ -706,7 +762,7 @@ export async function markNewsMediaObjectFailed(
         WHERE tenant_id = ${tenantId} AND id = ${id}
           AND status IN ('pending_upload', 'uploaded') AND deleted_at IS NULL
         RETURNING id, tenant_id, module_key, owner_resource_type, owner_resource_id,
-          storage_driver, bucket_name, object_key, original_filename, public_url,
+          storage_driver, bucket_name, object_key, original_filename, public_url, visibility,
           mime_type, size_bytes, checksum_sha256, width, height, alt_text, caption,
           credit_line, source_name, rights_notes, copyright_status,
           rights_verification_status, rights_verified_by, rights_verified_at,
@@ -810,18 +866,32 @@ export async function objectKeyExistsForTenant(
  * R2 delete. The question here is the opposite — "may a new advertisement be
  * pointed at this" — and a soft-deleted media object is precisely what must
  * not acquire a fresh public reference.
+ *
+ * Returns `visibility` too (Issue #268) — the caller needs it alongside
+ * `status` for `isNewsMediaObjectSafeForPublicReference`'s now-required
+ * second parameter; this ingest job wires only PUBLIC ad placements, so a
+ * `visibility: "private"` row here is correctly treated as not safe to
+ * reference, exactly like an unverified one.
  */
 export async function fetchNewsMediaObjectByObjectKey(
   tx: Bun.SQL,
   tenantId: string,
   objectKey: string
-): Promise<{ id: string; status: NewsMediaObjectStatus } | null> {
+): Promise<{
+  id: string;
+  status: NewsMediaObjectStatus;
+  visibility: MediaVisibility;
+} | null> {
   const rows = (await tx`
-    SELECT id, status FROM awcms_news_media_objects
+    SELECT id, status, visibility FROM awcms_news_media_objects
     WHERE tenant_id = ${tenantId} AND object_key = ${objectKey}
       AND deleted_at IS NULL
     LIMIT 1
-  `) as { id: string; status: NewsMediaObjectStatus }[];
+  `) as {
+    id: string;
+    status: NewsMediaObjectStatus;
+    visibility: MediaVisibility;
+  }[];
 
   return rows[0] ?? null;
 }
@@ -913,7 +983,7 @@ export async function revertNewsMediaObjectUploadClaim(
     WHERE tenant_id = ${tenantId} AND id = ${id}
       AND status = 'uploaded' AND deleted_at IS NULL
     RETURNING id, tenant_id, module_key, owner_resource_type, owner_resource_id,
-      storage_driver, bucket_name, object_key, original_filename, public_url,
+      storage_driver, bucket_name, object_key, original_filename, public_url, visibility,
       mime_type, size_bytes, checksum_sha256, width, height, alt_text, caption,
           credit_line, source_name, rights_notes, copyright_status,
           rights_verification_status, rights_verified_by, rights_verified_at,
@@ -976,7 +1046,7 @@ export async function restoreNewsMediaObject(
         restored_at = now(), restored_by = ${actorTenantUserId}, updated_at = now()
     WHERE tenant_id = ${tenantId} AND id = ${id} AND deleted_at IS NOT NULL
     RETURNING id, tenant_id, module_key, owner_resource_type, owner_resource_id,
-      storage_driver, bucket_name, object_key, original_filename, public_url,
+      storage_driver, bucket_name, object_key, original_filename, public_url, visibility,
       mime_type, size_bytes, checksum_sha256, width, height, alt_text, caption,
           credit_line, source_name, rights_notes, copyright_status,
           rights_verification_status, rights_verified_by, rights_verified_at,

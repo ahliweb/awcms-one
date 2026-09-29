@@ -72,6 +72,27 @@ export const NEWS_MEDIA_R2_KNOWN_MIME_TYPES = [
 export const NEWS_MEDIA_R2_MAX_PRESIGNED_UPLOAD_TTL_SECONDS = 3600;
 
 /**
+ * Upper bound for `NEWS_MEDIA_R2_PRESIGNED_DOWNLOAD_TTL_SECONDS` (Issue #268,
+ * IRMbyDUS media-library private object class + presigned GET). The SAME
+ * TTL-bounding pattern as `NEWS_MEDIA_R2_MAX_PRESIGNED_UPLOAD_TTL_SECONDS`
+ * directly above — a distinct constant, not a reuse of the upload ceiling,
+ * because a GET and a PUT carry opposite risk shapes: a leaked presigned PUT
+ * URL can only let an attacker overwrite ONE already-known object key (the
+ * object itself was never secret), while a leaked presigned GET URL for a
+ * PRIVATE object (`domain/media-visibility.ts`) hands over the protected
+ * BYTES themselves — a premium PDF, in IRMbyDUS's case (FR-LIB-002). The
+ * ceiling is therefore far tighter: **900 seconds (15 minutes)**, matching
+ * `docs/adr/0004-protected-pdf-private-storage-architecture.md`
+ * (`web-irmbydus.com`, "short TTL, ≤900s recommended, reusing the existing
+ * TTL-bounding pattern"). `infrastructure/media-r2-client.ts`'s
+ * `presignDownloadUrl` clamps to this ceiling BY CONSTRUCTION (never trusts a
+ * caller-supplied `ttlSeconds` alone) — this constant is also asserted by
+ * `isPresignedDownloadTtlTooLong` below for deployments that override the
+ * default via `NEWS_MEDIA_R2_PRESIGNED_DOWNLOAD_TTL_SECONDS`.
+ */
+export const NEWS_MEDIA_R2_MAX_PRESIGNED_DOWNLOAD_TTL_SECONDS = 900;
+
+/**
  * Floor for `NEWS_MEDIA_R2_ORPHAN_GRACE_DAYS` (Issue #690,
  * `r2-backup-lifecycle.md` §3: "Masa tenggang minimum 30 hari sebelum hapus
  * fisik, dapat dikonfigurasi operator"). Unlike
@@ -83,9 +104,17 @@ export const NEWS_MEDIA_R2_MAX_PRESIGNED_UPLOAD_TTL_SECONDS = 3600;
  */
 export const NEWS_MEDIA_R2_MIN_ORPHAN_GRACE_DAYS = 30;
 
+/**
+ * Default `NEWS_MEDIA_R2_PRESIGNED_DOWNLOAD_TTL_SECONDS` (Issue #268) — 5
+ * minutes, the same "enough for one interactive read, too short to be useful
+ * to a leaked URL long after being generated" reasoning
+ * `presignedUploadTtlSeconds`'s own default carries, well under the 900s
+ * ceiling above.
+ */
 export const NEWS_MEDIA_R2_DEFAULTS = {
   enabled: false,
   presignedUploadTtlSeconds: 300,
+  presignedDownloadTtlSeconds: 300,
   maxUploadBytes: 10_485_760,
   allowedMimeTypes: [...NEWS_MEDIA_R2_DEFAULT_ALLOWED_MIME_TYPES] as string[],
   pendingTtlMinutes: 60,
@@ -116,6 +145,8 @@ export type NewsMediaR2Config = {
   bucket: string;
   publicBaseUrl: string;
   presignedUploadTtlSeconds: number;
+  /** Bounded at issuance time by `NEWS_MEDIA_R2_MAX_PRESIGNED_DOWNLOAD_TTL_SECONDS` regardless of what this resolves to — see that constant's header (Issue #268). */
+  presignedDownloadTtlSeconds: number;
   maxUploadBytes: number;
   allowedMimeTypes: string[];
   pendingTtlMinutes: number;
@@ -178,6 +209,9 @@ export function resolveNewsMediaR2Config(
     presignedUploadTtlSeconds:
       parsePositiveInt(env.NEWS_MEDIA_R2_PRESIGNED_UPLOAD_TTL_SECONDS) ??
       NEWS_MEDIA_R2_DEFAULTS.presignedUploadTtlSeconds,
+    presignedDownloadTtlSeconds:
+      parsePositiveInt(env.NEWS_MEDIA_R2_PRESIGNED_DOWNLOAD_TTL_SECONDS) ??
+      NEWS_MEDIA_R2_DEFAULTS.presignedDownloadTtlSeconds,
     maxUploadBytes:
       parsePositiveInt(env.NEWS_MEDIA_R2_MAX_UPLOAD_BYTES) ??
       NEWS_MEDIA_R2_DEFAULTS.maxUploadBytes,
@@ -297,6 +331,43 @@ export function isPresignedUploadTtlTooLong(
   return (
     resolveNewsMediaR2Config(env).presignedUploadTtlSeconds >
     NEWS_MEDIA_R2_MAX_PRESIGNED_UPLOAD_TTL_SECONDS
+  );
+}
+
+/**
+ * The SINGLE clamp formula for a presigned-GET TTL (Issue #268) — exported so
+ * `infrastructure/media-r2-client.ts`'s `presignDownloadUrl` (the ENFORCING
+ * call) and any route reporting `expiresAt` back to a caller compute the
+ * identical bounded value. Duplicating this formula in two places is exactly
+ * the "one value copied by hand until the copies disagree" trap this
+ * repo has already been bitten by (`media-public-origin.ts`'s own header:
+ * "MAX_REASON_LENGTH written out five times") — a route that computed its
+ * own, slightly different clamp would report an `expiresAt` the URL does not
+ * actually honor.
+ */
+export function boundPresignedDownloadTtlSeconds(ttlSeconds: number): number {
+  return Math.min(
+    Math.max(1, Math.trunc(ttlSeconds)),
+    NEWS_MEDIA_R2_MAX_PRESIGNED_DOWNLOAD_TTL_SECONDS
+  );
+}
+
+/**
+ * `true` when `NEWS_MEDIA_R2_PRESIGNED_DOWNLOAD_TTL_SECONDS` exceeds
+ * `NEWS_MEDIA_R2_MAX_PRESIGNED_DOWNLOAD_TTL_SECONDS` (Issue #268). `false`
+ * when disabled or unset (falls back to the safe default). Config-validate
+ * time signal only — `media-r2-client.ts`'s `presignDownloadUrl` ALSO clamps
+ * at issuance time regardless of this check, so a deployment that ignores
+ * this warning still never emits a >900s presigned GET URL.
+ */
+export function isPresignedDownloadTtlTooLong(
+  env: NodeJS.ProcessEnv = process.env
+): boolean {
+  if (env.NEWS_MEDIA_R2_ENABLED !== "true") return false;
+
+  return (
+    resolveNewsMediaR2Config(env).presignedDownloadTtlSeconds >
+    NEWS_MEDIA_R2_MAX_PRESIGNED_DOWNLOAD_TTL_SECONDS
   );
 }
 

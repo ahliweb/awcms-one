@@ -173,7 +173,10 @@ async function main() {
             // this whole job exists to avoid.
             if (
               !media ||
-              !isNewsMediaObjectSafeForPublicReference(media.status)
+              !isNewsMediaObjectSafeForPublicReference(
+                media.status,
+                media.visibility
+              )
             ) {
               residue.push({
                 tenantId: tenant.id,

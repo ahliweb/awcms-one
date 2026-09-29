@@ -60,9 +60,32 @@
  * check is kept as a cheap fast-path (skip an attempt entirely for an
  * object R2 already reports as too big), but it is no longer the only line
  * of defense — the real enforcement now happens during the read itself.
+ *
+ * ## `presignDownloadUrl` (Issue #268, IRMbyDUS private object class)
+ *
+ * A presigned `GET` sibling to `presignUploadUrl` above — same pure, local
+ * HMAC signature computation (no network round-trip), same discipline of
+ * staying out of any `withTenant`/`sql.begin` block. Exists so a PRIVATE
+ * media object (`domain/media-visibility.ts`) can be read for exactly one
+ * short-lived window without ever gaining a permanent public URL
+ * (`domain/media-public-origin.ts` / `media-object-key.ts`'s
+ * `buildNewsMediaPublicUrl` are for `visibility: "public"` objects only —
+ * see FR-LIB-002 in the linked ADR).
+ *
+ * The requested `ttlSeconds` is CLAMPED to
+ * `NEWS_MEDIA_R2_MAX_PRESIGNED_DOWNLOAD_TTL_SECONDS` (900s/15min) INSIDE this
+ * function, never merely validated and rejected — a caller (today, only this
+ * module's own issuance services) can request less, never more, and a future
+ * caller that forgets to check the config-level bound still cannot emit an
+ * over-long URL. This mirrors the "enforcement happens where the bytes
+ * actually flow, not only at the edge" lesson `getObject`'s streaming cap
+ * above already encodes for the size dimension; here it is the TTL
+ * dimension. See `docs/adr/0004-protected-pdf-private-storage-architecture.md`
+ * (`web-irmbydus.com`) for the product-level requirement this implements.
  */
 import { getProviderCircuitBreaker } from "../../../lib/database/circuit-breaker";
 import { withTimeout } from "../../../lib/integration/timeout";
+import { boundPresignedDownloadTtlSeconds } from "../domain/media-r2-config";
 
 const PROVIDER_KEY = "news-media-r2";
 const DEFAULT_TIMEOUT_MS = 10_000;
@@ -87,6 +110,17 @@ export type NewsMediaR2ClientConfig = {
 export type NewsMediaR2PresignUploadInput = {
   objectKey: string;
   mimeType: string;
+  ttlSeconds: number;
+};
+
+export type NewsMediaR2PresignDownloadInput = {
+  objectKey: string;
+  /**
+   * Requested TTL — CLAMPED to
+   * `NEWS_MEDIA_R2_MAX_PRESIGNED_DOWNLOAD_TTL_SECONDS` by `presignDownloadUrl`
+   * itself (never merely validated); a caller may request less than the
+   * ceiling, never more than what is actually issued.
+   */
   ttlSeconds: number;
 };
 
@@ -134,6 +168,18 @@ export type NewsMediaR2Client = {
    * signed URL (`full-online-r2-architecture.md` §8).
    */
   presignUploadUrl(input: NewsMediaR2PresignUploadInput): string;
+  /**
+   * Presigned `GET` URL scoped to exactly one object key, expiring after
+   * AT MOST `NEWS_MEDIA_R2_MAX_PRESIGNED_DOWNLOAD_TTL_SECONDS` (900s) —
+   * `input.ttlSeconds` is clamped down to that ceiling if it exceeds it,
+   * clamped up to 1 if it is non-positive, and never trusted as-is. Issue
+   * #268 (IRMbyDUS): the whole reason a media object can be `visibility:
+   * "private"` is that its bytes are reachable ONLY through a URL this
+   * method issues, for the brief window the caller's issuance service
+   * decided is warranted (entitlement-gated, `commerce-entitlement-
+   * directory.ts`'s `verifyEntitlement`) — never a permanent public URL.
+   */
+  presignDownloadUrl(input: NewsMediaR2PresignDownloadInput): string;
   /**
    * Cheap existence + size check (§9 step 1) — a fast-path only. An object
    * this reports as within-bounds is NOT trusted on its own; `getObject`
@@ -246,6 +292,18 @@ export function createNewsMediaR2Client(
         method: "PUT",
         expiresIn: ttlSeconds,
         type: mimeType
+      });
+    },
+
+    presignDownloadUrl({ objectKey, ttlSeconds }) {
+      // Clamp, never merely validate-and-reject: this is the LAST line of
+      // defense against an over-long-lived private-object URL, so it must
+      // hold even if every caller upstream got the bound wrong.
+      const boundedTtlSeconds = boundPresignedDownloadTtlSeconds(ttlSeconds);
+
+      return client.file(objectKey).presign({
+        method: "GET",
+        expiresIn: boundedTtlSeconds
       });
     },
 

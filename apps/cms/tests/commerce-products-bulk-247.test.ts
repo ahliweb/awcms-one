@@ -445,7 +445,7 @@ describe("bulk delete confirms via CommerceConfirmDialog, count-aware", () => {
 });
 
 describe("no new bulk API route exists (Issue #247 — per-item endpoints only)", () => {
-  test("apps/cms/src/pages/api/v1/commerce/products/** is unchanged: the same route files as before this issue, no bulk-shaped addition", async () => {
+  test("apps/cms/src/pages/api/v1/commerce/products/** has only per-item endpoints, no bulk-shaped addition", async () => {
     const files: string[] = [];
     for await (const file of new Bun.Glob(
       "src/pages/api/v1/commerce/products/**/*.ts"
@@ -453,11 +453,16 @@ describe("no new bulk API route exists (Issue #247 — per-item endpoints only)"
       files.push(file);
     }
 
+    // Issue #268 (IRMbyDUS) added `[id]/protected-media.ts` — a per-item
+    // endpoint (linking ONE product to its protected media object), not a
+    // bulk one, so it belongs on this list rather than breaking the rule the
+    // list pins.
     expect(files.sort()).toEqual(
       [
         "src/pages/api/v1/commerce/products/[id].ts",
         "src/pages/api/v1/commerce/products/[id]/images/[imageId].ts",
         "src/pages/api/v1/commerce/products/[id]/images/index.ts",
+        "src/pages/api/v1/commerce/products/[id]/protected-media.ts",
         "src/pages/api/v1/commerce/products/[id]/restore.ts",
         "src/pages/api/v1/commerce/products/[id]/variants/[variantId].ts",
         "src/pages/api/v1/commerce/products/[id]/variants/index.ts",

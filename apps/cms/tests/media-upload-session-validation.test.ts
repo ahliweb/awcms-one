@@ -22,9 +22,43 @@ describe("validateCreateNewsMediaUploadSessionInput (Issue #634)", () => {
         byteSize: 1024,
         originalFilename: null,
         altText: null,
-        caption: null
+        caption: null,
+        visibility: "public"
       }
     });
+  });
+
+  test("visibility (Issue #268): defaults to public when omitted", () => {
+    const result = validateCreateNewsMediaUploadSessionInput(
+      { mimeType: "image/jpeg", byteSize: 1024 },
+      ALLOWED,
+      MAX_BYTES
+    );
+    expect(result.valid && result.value.visibility).toBe("public");
+  });
+
+  test("visibility (Issue #268): accepts an explicit private", () => {
+    const result = validateCreateNewsMediaUploadSessionInput(
+      { mimeType: "image/jpeg", byteSize: 1024, visibility: "private" },
+      ALLOWED,
+      MAX_BYTES
+    );
+    expect(result.valid && result.value.visibility).toBe("private");
+  });
+
+  test("visibility (Issue #268): rejects an unknown value", () => {
+    const result = validateCreateNewsMediaUploadSessionInput(
+      { mimeType: "image/jpeg", byteSize: 1024, visibility: "hidden" },
+      ALLOWED,
+      MAX_BYTES
+    );
+    expect(result.valid).toBe(false);
+    expect(!result.valid && result.errors).toEqual([
+      {
+        field: "visibility",
+        message: 'visibility must be "public" or "private".'
+      }
+    ]);
   });
 
   test("normalizes mimeType casing/whitespace", () => {

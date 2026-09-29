@@ -605,6 +605,129 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/products/{id}/protected-media:
+    put:
+      operationId: setCommerceProductProtectedMedia
+      tags:
+        - Commerce
+      summary: "Link a product to the PRIVATE media object its entitlement gates (Issue #268, IRMbyDUS). Gated on products.update."
+      description: |
+        `mediaObjectId` must resolve, same-tenant, non-deleted, to a `visibility: "private"` object in a downloadable status (`verified`/`attached`). A `public` object is refused — linking one would defeat FR-LIB-002 (the object already has a permanent URL).
+
+        Upsert on `(tenant_id, product_id)` — at most one link per product (`sql/939`). High-risk-adjacent (requires `Idempotency-Key`, though not itself in `HIGH_RISK_ACTIONS`).
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - mediaObjectId
+              properties:
+                mediaObjectId:
+                  type: string
+                  format: uuid
+      responses:
+        "200":
+          description: The link, created or updated.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum: [true]
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        format: uuid
+                      productId:
+                        type: string
+                        format: uuid
+                      mediaObjectId:
+                        type: string
+                        format: uuid
+                      createdAt:
+                        type: string
+                        format: date-time
+                      updatedAt:
+                        type: string
+                        format: date-time
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: Idempotency-Key was reused with a different request.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+    delete:
+      operationId: clearCommerceProductProtectedMedia
+      tags:
+        - Commerce
+      summary: "Remove a product's protected-media link (Issue #268, IRMbyDUS). Gated on products.update. Idempotent."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Unlinked (or already unlinked — same response either way).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum: [true]
+                  data:
+                    type: object
+                    properties:
+                      productId:
+                        type: string
+                        format: uuid
+                      unlinked:
+                        type: boolean
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: Idempotency-Key was reused with a different request.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
   /api/v1/commerce/products/{id}/images:
     post:
       operationId: createCommerceProductImage
@@ -4191,6 +4314,86 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           description: UNAUTHENTICATED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/storefront/products/{productId}/download:
+    get:
+      operationId: downloadCommerceStorefrontProductProtectedMedia
+      tags:
+        - Commerce Accounts
+      summary: "Issue a short-lived presigned download URL for a purchased product's protected content (Issue #268, IRMbyDUS)."
+      description: |
+        Authentication (customer bearer session) → Authorization (the blocked-account gate every bearer-secured storefront route already applies) → Entitlement Verification (`verifyEntitlement` against the product's linked private media object) → short-lived presigned GET URL.
+
+        The gated media object is resolved SERVER-SIDE from the product's own protected-media link (`PUT .../products/{id}/protected-media`) — `productId` is the only accepted input, never a media object id, so an entitled customer for one product cannot request another product's file by id.
+
+        Missing entitlement → `403 ENTITLEMENT_REQUIRED`, with NO `url` field anywhere in the body — never a broken link, never a URL of any kind.
+      security:
+        - customerBearer: []
+      parameters:
+        - name: productId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: A short-lived presigned GET URL for the product's protected media object.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum: [true]
+                  data:
+                    type: object
+                    required:
+                      - mediaObjectId
+                      - url
+                      - expiresAt
+                    properties:
+                      mediaObjectId:
+                        type: string
+                        format: uuid
+                      url:
+                        type: string
+                        format: uri
+                      expiresAt:
+                        type: string
+                        format: date-time
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          description: UNAUTHENTICATED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "403":
+          description: ACCOUNT_BLOCKED, or ENTITLEMENT_REQUIRED (no active entitlement for this product — the body never carries a url).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "404":
+          description: This product has no protected content to download.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "409":
+          description: The product's protected-media link is misconfigured (points at a non-private or non-downloadable object).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "502":
+          description: Media storage is not configured for this deployment.
           content:
             application/json:
               schema:

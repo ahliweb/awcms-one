@@ -73,7 +73,8 @@ describe("ADR-0056 §B — the three ungated permissions now have guards", () =>
 
     // Non-vacuous: if the descriptor stopped declaring `media.*` entirely, the
     // subset assertions below would all pass while proving nothing.
-    expect(declared.size).toBe(9);
+    // Issue #268 added the tenth `media.*` action, `download`.
+    expect(declared.size).toBe(10);
 
     for (const { file, action } of ROUTES) {
       const actions = guardActionsFrom(await readFile(file, "utf8"));

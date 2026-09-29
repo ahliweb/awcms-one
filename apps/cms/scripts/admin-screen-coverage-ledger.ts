@@ -83,6 +83,16 @@ export const NOT_YET_SCREENED: readonly string[] = [
   "media_library.enforcement.enable",
   "media_library.enforcement.read",
 
+  // media_library (1) — Issue #268 (IRMbyDUS). `media_library.media.download`
+  // landed with its endpoint (`GET /api/v1/media/objects/{id}/download-url`)
+  // in the same change per this module's own "declared and enforced together"
+  // rule, but `/admin/media` has no "Download" affordance next to an object
+  // row yet. A screen edit, not a new surface — `/admin/media` already lists
+  // every object with its status/visibility, so wiring a button there is
+  // reasonable, buildable follow-up work, not a "this should never be
+  // screened" judgement (unlike the DELIBERATELY_UNSCREENED entries above).
+  "media_library.media.download",
+
   // module_management (6)
   "module_management.health.check",
   "module_management.health.read",

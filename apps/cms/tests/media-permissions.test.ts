@@ -35,7 +35,12 @@ describe("MEDIA_PERMISSIONS", () => {
         // cross into the public DTO (Issue #782/PR #791) now needs its own,
         // separately-grantable permission.
         "adjudicate_rights",
-        "verify"
+        "verify",
+        // Issue #268 — the tenth, `sql/169`: issue a short-lived presigned
+        // GET URL for a media object (public or private). Its endpoint
+        // (`GET /api/v1/media/objects/{id}/download-url`) landed in the same
+        // change.
+        "download"
       ].sort()
     );
   });

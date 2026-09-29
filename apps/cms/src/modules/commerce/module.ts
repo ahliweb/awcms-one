@@ -2225,6 +2225,61 @@ export const commerceModule = defineModule({
       backupRestoreNotes:
         "Included in ordinary full-database backup/restore; no standalone archive artifact.",
       executionMode: "generic"
+    },
+    {
+      key: "commerce.protected_media_links",
+      tableName: "awcms_commerce_protected_media_links",
+      ownerModuleKey: "commerce",
+      scope: "tenant",
+      cursorColumn: "updated_at",
+      // Issue #268 (IRMbyDUS). Every row is created/replaced by an
+      // ADMINISTRATOR linking a product to its protected media object
+      // (`PUT .../products/{id}/protected-media`), never by storefront
+      // traffic — the ceiling is the tenant's own product catalogue size,
+      // not a request volume, the same class of argument
+      // `commerce.entitlements` above states for its own row. Unlike that
+      // table, THIS one has a real, reachable hard-delete path
+      // (`clearProtectedMediaLinkForProduct`), so a purge descriptor is not
+      // a fiction here — it just needs a ceiling long enough that the
+      // generic engine's age-based sweep never fires against a link a
+      // product still actively uses. `retentionMaxDays: 3650` (10 years) is
+      // that ceiling: a product whose protected-media link has not been
+      // touched in a decade is, in practice, a discontinued product, not a
+      // live entitlement gate an operator is relying on — the same
+      // "long enough that the theoretical risk is not the practical one"
+      // reasoning `commerce.sales_daily`/`_by_product`/`_by_category`'s own
+      // descriptors state for their identical 3650-day ceiling.
+      retentionClass: "system_event",
+      retentionMinDays: 365,
+      retentionMaxDays: 3650,
+      defaultRetentionDays: 3650,
+      partition: {
+        eligible: false,
+        rationale:
+          "At most one row per product (sql/939's own unique index) — bounded by catalogue size, nowhere near partition-worthy."
+      },
+      archive: {
+        archivable: false,
+        rationale:
+          "The generic engine's only implemented artefact is ordinary backup/restore; no standalone archive exists yet for this table."
+      },
+      deletion: {
+        mode: "hard_delete",
+        rationale:
+          "A straight DELETE, same as the admin-triggered clear path (`clearProtectedMediaLinkForProduct`) — no cascading FK children reference this table."
+      },
+      legalHold: { applicable: false, precedence: "not_applicable" },
+      requiredIndexes: [
+        {
+          columns: ["tenant_id", "updated_at"],
+          purpose:
+            "awcms_commerce_protected_media_links_tenant_updated_idx (sql/939) — the (tenant, cursor) composite the generic purge engine filters + orders by."
+        }
+      ],
+      batchLimit: 5000,
+      backupRestoreNotes:
+        "Included in ordinary full-database backup/restore; no standalone archive artifact.",
+      executionMode: "generic"
     }
   ],
   /**
@@ -2724,6 +2779,17 @@ export const commerceModule = defineModule({
       erasure: "retain_under_obligation",
       rationale:
         "owner_customer_id names a row in commerce.customers, which itself carries no tenant_user/identity/profile/principal id (ADR-0016 D1, same gap commerce.orders'/commerce.customer_accounts' own entries document) — this engine's subject vocabulary still cannot reach it. The row is also the proof of what a customer paid for (source_order_id), the same fiscal-record reasoning commerce.orders states, so it is retained under that obligation rather than erased even if it were reachable."
+    },
+    {
+      key: "commerce.protected_media_links",
+      tableName: "awcms_commerce_protected_media_links",
+      ownerModuleKey: "commerce",
+      unreachableBySubject: true,
+      subjectColumns: [],
+      exportable: false,
+      erasure: "retain_under_obligation",
+      rationale:
+        "Issue #268 (IRMbyDUS) — which product's entitlement gates which private media object. Names a product and a media object, never a person; no column on this table could join a row to any subject even in principle. Retained under the same obligation as commerce.entitlements: the link is what makes an already-sold product's download issuable at all, so it is deployment configuration bound to the product's lifecycle, not personal data."
     }
   ],
   permissions: [

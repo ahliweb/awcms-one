@@ -175,7 +175,8 @@ export const POST: APIRoute = async ({ request, cookies, locals }) => {
           mimeType: input.mimeType,
           originalFilename: input.originalFilename ?? undefined,
           altText: input.altText ?? undefined,
-          caption: input.caption ?? undefined
+          caption: input.caption ?? undefined,
+          visibility: input.visibility
         },
         correlationId
       );

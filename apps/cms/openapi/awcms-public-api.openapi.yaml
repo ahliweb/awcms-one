@@ -10121,6 +10121,131 @@ paths:
           $ref: "#/components/responses/Forbidden"
         "404":
           $ref: "#/components/responses/NotFound"
+  /api/v1/commerce/products/{id}/protected-media:
+    put:
+      operationId: setCommerceProductProtectedMedia
+      tags:
+        - Commerce
+      summary: "Link a product to the PRIVATE media object its entitlement gates (Issue #268, IRMbyDUS). Gated on products.update."
+      description: |
+        `mediaObjectId` must resolve, same-tenant, non-deleted, to a `visibility: "private"` object in a downloadable status (`verified`/`attached`). A `public` object is refused — linking one would defeat FR-LIB-002 (the object already has a permanent URL).
+
+        Upsert on `(tenant_id, product_id)` — at most one link per product (`sql/939`). High-risk-adjacent (requires `Idempotency-Key`, though not itself in `HIGH_RISK_ACTIONS`).
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - mediaObjectId
+              properties:
+                mediaObjectId:
+                  type: string
+                  format: uuid
+      responses:
+        "200":
+          description: The link, created or updated.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        format: uuid
+                      productId:
+                        type: string
+                        format: uuid
+                      mediaObjectId:
+                        type: string
+                        format: uuid
+                      createdAt:
+                        type: string
+                        format: date-time
+                      updatedAt:
+                        type: string
+                        format: date-time
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: Idempotency-Key was reused with a different request.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+    delete:
+      operationId: clearCommerceProductProtectedMedia
+      tags:
+        - Commerce
+      summary: "Remove a product's protected-media link (Issue #268, IRMbyDUS). Gated on products.update. Idempotent."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Unlinked (or already unlinked — same response either way).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      productId:
+                        type: string
+                        format: uuid
+                      unlinked:
+                        type: boolean
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: Idempotency-Key was reused with a different request.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
   /api/v1/commerce/products/{id}/restore:
     post:
       operationId: restoreCommerceProduct
@@ -12306,6 +12431,87 @@ paths:
           $ref: "#/components/responses/NotFound"
         "503":
           description: Media upload is not available on this deployment.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/storefront/products/{productId}/download:
+    get:
+      operationId: downloadCommerceStorefrontProductProtectedMedia
+      tags:
+        - Commerce Accounts
+      summary: "Issue a short-lived presigned download URL for a purchased product's protected content (Issue #268, IRMbyDUS)."
+      description: |
+        Authentication (customer bearer session) → Authorization (the blocked-account gate every bearer-secured storefront route already applies) → Entitlement Verification (`verifyEntitlement` against the product's linked private media object) → short-lived presigned GET URL.
+
+        The gated media object is resolved SERVER-SIDE from the product's own protected-media link (`PUT .../products/{id}/protected-media`) — `productId` is the only accepted input, never a media object id, so an entitled customer for one product cannot request another product's file by id.
+
+        Missing entitlement → `403 ENTITLEMENT_REQUIRED`, with NO `url` field anywhere in the body — never a broken link, never a URL of any kind.
+      security:
+        - customerBearer: []
+      parameters:
+        - name: productId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: A short-lived presigned GET URL for the product's protected media object.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    required:
+                      - mediaObjectId
+                      - url
+                      - expiresAt
+                    properties:
+                      mediaObjectId:
+                        type: string
+                        format: uuid
+                      url:
+                        type: string
+                        format: uri
+                      expiresAt:
+                        type: string
+                        format: date-time
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          description: UNAUTHENTICATED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "403":
+          description: ACCOUNT_BLOCKED, or ENTITLEMENT_REQUIRED (no active entitlement for this product — the body never carries a url).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "404":
+          description: This product has no protected content to download.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "409":
+          description: The product's protected-media link is misconfigured (points at a non-private or non-downloadable object).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "502":
+          description: Media storage is not configured for this deployment.
           content:
             application/json:
               schema:
@@ -16429,6 +16635,69 @@ paths:
           $ref: "#/components/responses/NotFound"
         "409":
           description: The Idempotency-Key was reused with a different request (`IDEMPOTENCY_CONFLICT`).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/media/objects/{id}/download-url:
+    get:
+      operationId: mediaObjectDownloadUrl
+      tags:
+        - News Media
+      summary: Issue a short-lived presigned GET URL for a media object (staff/ABAC path).
+      description: |
+        Issue #268 (IRMbyDUS). Gated on `media_library.media.download` (ABAC/RBAC, the standard tenant-user permission evaluator — no commerce entitlement applies here). Works for BOTH visibility classes: a `private` object is the whole point, and a `public` object may also be issued a signed URL this way (it simply has no need to, since its `publicUrl` already resolves permanently).
+
+        The TTL is bounded server-side at at most 900 seconds regardless of deployment configuration (`NEWS_MEDIA_R2_MAX_PRESIGNED_DOWNLOAD_TTL_SECONDS`).
+
+        Every issuance decision that reaches a real object is audited (`media.download`) — a soft-deleted/unverified/unknown id answers 404 with no audit row (nothing was decided, since there is no real object to decide about).
+
+        The CUSTOMER-facing, entitlement-gated sibling is `GET /api/v1/commerce/storefront/products/{productId}/download` (`commerce` module fragment).
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: A short-lived presigned GET URL.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    required:
+                      - mediaObjectId
+                      - url
+                      - expiresAt
+                    properties:
+                      mediaObjectId:
+                        type: string
+                        format: uuid
+                      url:
+                        type: string
+                        format: uri
+                      expiresAt:
+                        type: string
+                        format: date-time
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "502":
+          description: Media storage is not configured for this deployment.
           content:
             application/json:
               schema:
@@ -30978,6 +31247,13 @@ components:
         caption:
           type: string
           nullable: true
+        visibility:
+          type: string
+          enum:
+            - public
+            - private
+          default: public
+          description: "Issue #268. Defaults to `public` (a permanent `publicUrl`, exactly like every session created before this issue). `private` never gets a `publicUrl` — read only via a short-lived presigned GET, entitlement-gated for a storefront customer or media_library.media.download-gated for tenant staff."
     CreateTenantDomainRequest:
       type: object
       required:
@@ -32567,6 +32843,7 @@ components:
         - tenantId
         - objectKey
         - publicUrl
+        - visibility
         - mimeType
         - status
         - createdAt
@@ -32609,6 +32886,14 @@ components:
         publicUrl:
           type: string
           format: uri
+          nullable: true
+          description: "`null` when `visibility` is `private` — a private object never has a permanent public URL (Issue #268, FR-LIB-002). Read it only via `POST/GET .../download-url`."
+        visibility:
+          type: string
+          enum:
+            - public
+            - private
+          description: "Issue #268. `public` objects resolve a permanent `publicUrl`. `private` objects never do — read only through a short-lived presigned GET."
         mimeType:
           type: string
         sizeBytes:
