@@ -24,6 +24,7 @@ import { commentsModule } from "./comments/module";
 import { idnAdminRegionsModule } from "./idn-admin-regions/module";
 import { pushDeliveryModule } from "./push-delivery/module";
 import { commerceModule } from "./commerce/module";
+import { practiceIrmModule } from "./practice-irm/module";
 import { omesControlModule } from "./omes-control/module";
 
 /**
@@ -170,6 +171,14 @@ const baseModules: ModuleDescriptor[] = [
   // `media_library`'s registry and resolves a public URL through
   // `MediaLibraryPort`. See src/modules/commerce/module.ts's `description`.
   commerceModule,
+  // Issue #270 (IRMbyDUS, ADR-0002 in web-irmbydus.com): the five canonical
+  // IRM domains as admin-editable content, plus practice_sessions (the
+  // 12-field guided-journal record from PRD §16), gated per call by
+  // `commerce`'s `verifyEntitlement`. Depends on tenant_admin/
+  // identity_access/module_management/logging/commerce, all above, so the
+  // DAG stays acyclic. See src/modules/practice-irm/module.ts's
+  // `description`.
+  practiceIrmModule,
   // Admitted by ADR-0122 (Issue ahliweb/omes#196): OMES Control Center domain
   // module for host fleet lifecycle, worker enrollments, desired vs observed
   // deployments, operation requests, worker job dispatch queue, health snapshots,

@@ -1,0 +1,244 @@
+---
+/**
+ * The five canonical IRM domains' admin-editable content (Issue #270,
+ * ADR-0002 in `web-irmbydus.com`).
+ *
+ * ## What this screen is for
+ *
+ * `web-irmbydus.com` renders whatever `GET /api/v1/practice-irm/storefront/
+ * account/content` returns and holds no independent copy of a domain's
+ * name/description/copy — this is the ONLY place that content is authored.
+ * Editing here ships immediately to every entitled customer, with no
+ * frontend deploy (ADR-0002's "preventing terminology drift").
+ *
+ * ## Why there is no screen for practice_sessions
+ *
+ * A session is a customer's own private guided-journal entry. This module
+ * ships no tenant-staff read path into it at all (see `module.ts`'s own
+ * header) — the strongest form of PRD's "Journal leakage" mitigation is
+ * that the content is simply never exposed to an admin screen.
+ *
+ * ## "Reset" never leaves a domain blank
+ *
+ * `DELETE .../domains/{domainKey}` reverts a domain back to the built-in
+ * default copy (`practice-irm-domain-content.ts`'s header) — the public
+ * content is never left empty, only reverted to the source-authoritative
+ * baseline.
+ */
+import AdminLayout from "../../layouts/AdminLayout.astro";
+import "../../styles/admin-screens.css";
+import { loadAdminScreen } from "../../lib/auth/admin-screen";
+import { logAdminPageError } from "../../lib/logging/error-log";
+import { getTranslatorFor } from "../../lib/i18n";
+import { listPracticeIrmDomains } from "../../modules/practice-irm/application/practice-irm-domain-directory";
+import type { PracticeIrmDomainContent } from "../../modules/practice-irm/domain/practice-irm-domain-content";
+
+const ssr = Astro.locals.ssrContext!;
+const { t } = getTranslatorFor(Astro.locals.locale);
+
+const screen = await loadAdminScreen({
+  ssr,
+  workClass: "interactive",
+  authorize: {
+    moduleKey: "practice_irm",
+    activityCode: "domains",
+    action: "read"
+  },
+  load: async ({ tx, can }) => ({
+    domains: await listPracticeIrmDomains(tx, ssr.tenantId),
+    canUpdate: await can({
+      moduleKey: "practice_irm",
+      activityCode: "domains",
+      action: "update"
+    }),
+    canCreate: await can({
+      moduleKey: "practice_irm",
+      activityCode: "domains",
+      action: "create"
+    }),
+    canDelete: await can({
+      moduleKey: "practice_irm",
+      activityCode: "domains",
+      action: "delete"
+    })
+  }),
+  onError: (error) => {
+    logAdminPageError(
+      "admin/practice-irm-domains.astro: failed to load domain content",
+      error,
+      { correlationId: Astro.locals.correlationId }
+    );
+  }
+});
+
+const canRead = screen.state !== "denied";
+const loadError = screen.state === "error";
+const domains: PracticeIrmDomainContent[] =
+  screen.state === "allowed" ? screen.data.domains : [];
+const canManage =
+  screen.state === "allowed" &&
+  (screen.data.canUpdate || screen.data.canCreate);
+const canDelete = screen.state === "allowed" && screen.data.canDelete;
+
+function isLive(domain: PracticeIrmDomainContent): boolean {
+  return !domain.id.startsWith("default:");
+}
+---
+
+<AdminLayout
+  title={t("Practice IRM domains")}
+  description={t(
+    "The five canonical IRM domains — Identify, Neutralize, Navigate, Embed, Reinforce — as they are shown to entitled customers. A domain with no content of its own here still shows the built-in default; editing one here takes effect immediately, with no frontend deploy."
+  )}
+>
+  {!canRead && (
+    <p class="state-notice fade-in-up" id="practice-irm-domains-denied">
+      {t("You do not have permission to read this content.")}
+    </p>
+  )}
+
+  {loadError && (
+    <p class="state-notice fade-in-up" id="practice-irm-domains-error">
+      {t("The domain content could not be loaded. Please try again.")}
+    </p>
+  )}
+
+  <p class="form-error" id="practice-irm-domains-action-error" hidden></p>
+
+  {canRead && !loadError && (
+    <section
+      class="admin-section fade-in-up stagger-children"
+      aria-label="IRM domains"
+    >
+      {domains.map((domain) => (
+        <div class="admin-card" data-domain-key={domain.domainKey}>
+          <h2 class="admin-section-title">
+            {domain.name}
+            {!isLive(domain) && (
+              <span class="status-badge status-badge--info">
+                <span class="status-dot" aria-hidden="true" />
+                {t("Default")}
+              </span>
+            )}
+          </h2>
+
+          <form
+            class="admin-form practice-irm-domain-form"
+            data-domain-key={domain.domainKey}
+            data-live={isLive(domain) ? "true" : "false"}
+          >
+            <label class="field">
+              <span class="field-label">{t("Name")}</span>
+              <input
+                type="text"
+                class="field-input"
+                name="name"
+                value={domain.name}
+                maxlength="200"
+                required
+                disabled={!canManage}
+              />
+            </label>
+            <label class="field">
+              <span class="field-label">{t("Description")}</span>
+              <textarea
+                class="field-input"
+                name="description"
+                rows="2"
+                maxlength="1000"
+                disabled={!canManage}
+              >{domain.description}</textarea>
+            </label>
+            <label class="field">
+              <span class="field-label">{t("Copy")}</span>
+              <textarea
+                class="field-input"
+                name="copy"
+                rows="5"
+                maxlength="5000"
+                disabled={!canManage}
+              >{domain.copy}</textarea>
+            </label>
+
+            {canManage && (
+              <div class="admin-toolbar">
+                <button type="submit" class="btn-primary">
+                  {t("Save")}
+                </button>
+                {canDelete && isLive(domain) && (
+                  <button
+                    type="button"
+                    class="btn-inline btn-inline--danger practice-irm-domain-reset-btn"
+                    data-domain-key={domain.domainKey}
+                  >
+                    {t("Reset to default")}
+                  </button>
+                )}
+              </div>
+            )}
+          </form>
+        </div>
+      ))}
+    </section>
+  )}
+</AdminLayout>
+
+<script>
+  // The import is load-bearing for CSP — see `newsletter.astro`'s own
+  // `<script>` comment for the full reasoning.
+  import {
+    field,
+    messageBox,
+    mutateAndReload,
+    onAction,
+    onSubmitAll,
+    sendJson
+  } from "../../lib/ui/admin-form-client";
+
+  const actionError = messageBox("practice-irm-domains-action-error");
+
+  onSubmitAll(".practice-irm-domain-form", async ({ form, data, submit }) => {
+    if (!submit) return;
+
+    const domainKey = form.dataset.domainKey!;
+    const isLive = form.dataset.live === "true";
+    const body = {
+      domainKey,
+      name: field(data, "name"),
+      description: field(data, "description"),
+      copy: field(data, "copy")
+    };
+
+    await mutateAndReload(
+      submit,
+      actionError,
+      () =>
+        isLive
+          ? sendJson("PUT", `/api/v1/practice-irm/domains/${domainKey}`, body)
+          : sendJson("POST", "/api/v1/practice-irm/domains", body),
+      "Could not save this domain's content. Please try again.",
+      "Saving…"
+    );
+  });
+
+  onAction(".practice-irm-domain-reset-btn", async (button) => {
+    const domainKey = button.dataset.domainKey;
+    if (!domainKey) return;
+
+    if (
+      !window.confirm(
+        "Reset this domain's content back to the built-in default? The current wording will be replaced."
+      )
+    ) {
+      return;
+    }
+
+    await mutateAndReload(
+      button,
+      actionError,
+      () => sendJson("DELETE", `/api/v1/practice-irm/domains/${domainKey}`),
+      "Could not reset this domain. Please try again.",
+      "Resetting…"
+    );
+  });
+</script>

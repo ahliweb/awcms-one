@@ -105,6 +105,10 @@ export const DEFAULT_MODULE_TYPE: Readonly<Record<string, string>> = {
   // Content authoring & media.
   blog_content: "content",
   media_library: "content",
+  // Issue #270 (IRMbyDUS) — the module's one admin screen manages the five
+  // IRM domains' editorial copy, the same kind of content authoring
+  // blog_content/media_library already sit under.
+  practice_irm: "content",
   // Audience engagement.
   comments: "engagement",
   // Issue #598 — a subscriber list is audience engagement, not content: it is
@@ -241,6 +245,7 @@ export const SIDEBAR_LABELS: Readonly<Record<string, string>> = {
   "admin.layout.nav_blog_presentation": "Blog presentation",
   "admin.layout.nav_blog_settings": "Blog settings",
   "admin.layout.nav_media": "Media library",
+  "admin.layout.nav_practice_irm_domains": "Practice IRM domains",
   "admin.layout.nav_reporting": "Reporting operations",
   "admin.layout.nav_approvals": "Approvals",
   "admin.layout.nav_domain_events": "Domain events",
@@ -351,6 +356,7 @@ export const DEFAULT_SIDEBAR_ICONS: Readonly<Record<string, string>> = {
   "admin.layout.nav_blog_presentation": "layers",
   "admin.layout.nav_blog_settings": "gear",
   "admin.layout.nav_media": "image",
+  "admin.layout.nav_practice_irm_domains": "doc",
   // Engagement.
   "admin.layout.nav_comments": "chat",
   "admin.layout.nav_newsletter": "mail",

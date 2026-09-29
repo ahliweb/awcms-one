@@ -7150,3 +7150,27 @@ msgstr "Dokumentasi"
 
 msgid "Other"
 msgstr "Lainnya"
+
+#. practice_irm module display name (sidebar section), Issue #270.
+msgid "Practice IRM"
+msgstr "Practice IRM"
+
+#. admin/practice-irm-domains.astro (Issue #270) — the five canonical IRM
+#. domains' admin-editable content.
+msgid "Practice IRM domains"
+msgstr "Domain IRM praktik"
+
+msgid "The five canonical IRM domains — Identify, Neutralize, Navigate, Embed, Reinforce — as they are shown to entitled customers. A domain with no content of its own here still shows the built-in default; editing one here takes effect immediately, with no frontend deploy."
+msgstr "Kelima domain IRM kanonik — Identify, Neutralize, Navigate, Embed, Reinforce — seperti yang ditampilkan kepada pelanggan yang berhak. Domain tanpa konten sendiri di sini tetap menampilkan bawaan; mengedit di sini langsung berlaku, tanpa deploy frontend."
+
+msgid "You do not have permission to read this content."
+msgstr "Anda tidak memiliki izin untuk membaca konten ini."
+
+msgid "The domain content could not be loaded. Please try again."
+msgstr "Konten domain tidak dapat dimuat. Silakan coba lagi."
+
+msgid "Default"
+msgstr "Bawaan"
+
+msgid "Copy"
+msgstr "Salinan"

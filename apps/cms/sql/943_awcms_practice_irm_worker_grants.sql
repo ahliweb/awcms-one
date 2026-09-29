@@ -1,0 +1,21 @@
+-- `data-lifecycle:archive-purge` runs as `awcms_worker` (`WORKER_DATABASE_URL`)
+-- and, for a `executionMode: "generic"` descriptor, issues:
+--
+--   SELECT * FROM <table> WHERE tenant_id = $1 AND <cursor> < $2 …   -- candidates
+--   DELETE FROM <table> WHERE id IN (SELECT id FROM <table> …)       -- hard_delete
+--
+-- `sql/940`'s `practice_irm.domains` and `sql/941`'s `practice_irm.sessions`
+-- `dataLifecycle` descriptors (`practice-irm/module.ts`) declare exactly this
+-- shape (`cursorColumn: "deleted_at"`, `deletion.mode: "hard_delete"`) —
+-- `data-lifecycle:worker-grants:check` requires the grant to exist even
+-- though, for `practice_irm.sessions`, no code in this PR ever sets
+-- `deleted_at` yet (that descriptor's own rationale) — same "a descriptor
+-- that declares a retention the engine cannot enforce is not retention — it
+-- is a claim" reasoning `sql/937`'s own header states for
+-- `commerce.entitlements`.
+--
+-- No UPDATE: the engine never anonymises either row, only deletes it, and a
+-- privilege the code does not use is a privilege that outlives the reason it
+-- was added.
+GRANT SELECT, DELETE ON awcms_practice_irm_domains TO awcms_worker;
+GRANT SELECT, DELETE ON awcms_practice_irm_sessions TO awcms_worker;

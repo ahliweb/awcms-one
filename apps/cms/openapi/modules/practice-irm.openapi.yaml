@@ -1,0 +1,734 @@
+# Source fragment for the "practice_irm" module (Issue #270, ADR-0002 in
+# `web-irmbydus.com`).
+#
+# Two families of routes:
+#   - `/api/v1/practice-irm/domains*` — tenant-staff admin CRUD for the five
+#     canonical IRM domains' content, gated by `practice_irm.domains.*`.
+#   - `/api/v1/practice-irm/storefront/account/*` — bearer-secured customer
+#     routes (the SAME commerce customer bearer session ADR-0016 describes),
+#     each gated live, on every call, by `verifyEntitlement(ownerCustomerId,
+#     productId)` — a customer without an active entitlement for `productId`
+#     gets `403 ENTITLEMENT_REQUIRED`, never practice content or a session.
+#
+# NOT independently valid OpenAPI: $ref targets pointing at shared components
+# only resolve after `bun run openapi:bundle`. Edit this file, never the
+# bundle.
+paths:
+  /api/v1/practice-irm/domains:
+    get:
+      operationId: practiceIrmDomainsList
+      tags:
+        - Practice IRM
+      summary: List the five canonical IRM domains' content
+      description: >-
+        Gated by `practice_irm.domains.read`. Always returns exactly five
+        entries, one per `domainKey` — a key with no tenant-authored row
+        falls back to the built-in default copy (never omitted, never
+        blank).
+      parameters:
+        - $ref: "#/components/parameters/CorrelationId"
+      responses:
+        "200":
+          description: The five domains, in canonical order.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum: [true]
+                  data:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/PracticeIrmDomain"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+    post:
+      operationId: practiceIrmDomainCreate
+      tags:
+        - Practice IRM
+      summary: Create a domain's content row
+      description: >-
+        Gated by `practice_irm.domains.create`. `409 ALREADY_EXISTS` if a
+        live row already exists for `domainKey` — use `PUT
+        /domains/{domainKey}` to update it instead.
+      parameters:
+        - $ref: "#/components/parameters/CorrelationId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PracticeIrmDomainWriteRequest"
+      responses:
+        "200":
+          description: The created domain content.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum: [true]
+                  data:
+                    $ref: "#/components/schemas/PracticeIrmDomain"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: A live row already exists for this domain key (`ALREADY_EXISTS`).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/practice-irm/domains/{domainKey}:
+    get:
+      operationId: practiceIrmDomainGet
+      tags:
+        - Practice IRM
+      summary: Get one domain's current content
+      description: Gated by `practice_irm.domains.read`.
+      parameters:
+        - name: domainKey
+          in: path
+          required: true
+          schema:
+            type: string
+            enum: [identify, neutralize, navigate, embed, reinforce]
+        - $ref: "#/components/parameters/CorrelationId"
+      responses:
+        "200":
+          description: The domain's current content (live row, or the built-in default).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum: [true]
+                  data:
+                    $ref: "#/components/schemas/PracticeIrmDomain"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+    put:
+      operationId: practiceIrmDomainUpdate
+      tags:
+        - Practice IRM
+      summary: Update a domain's content
+      description: >-
+        Gated by `practice_irm.domains.update`. `404 RESOURCE_NOT_FOUND` if
+        there is no live row yet — create one first with `POST /domains`.
+        Every field is optional; an omitted field keeps its current value.
+      parameters:
+        - name: domainKey
+          in: path
+          required: true
+          schema:
+            type: string
+            enum: [identify, neutralize, navigate, embed, reinforce]
+        - $ref: "#/components/parameters/CorrelationId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  maxLength: 200
+                description:
+                  type: string
+                  maxLength: 1000
+                copy:
+                  type: string
+                  maxLength: 5000
+                displayOrder:
+                  type: integer
+      responses:
+        "200":
+          description: The updated domain content.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum: [true]
+                  data:
+                    $ref: "#/components/schemas/PracticeIrmDomain"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+    delete:
+      operationId: practiceIrmDomainReset
+      tags:
+        - Practice IRM
+      summary: Reset a domain's content back to the built-in default
+      description: >-
+        Gated by `practice_irm.domains.delete`. A status flip
+        (`deleted_at`), never a row removal — the very next read falls
+        straight back to the built-in default copy, so the public content is
+        never left blank.
+      parameters:
+        - name: domainKey
+          in: path
+          required: true
+          schema:
+            type: string
+            enum: [identify, neutralize, navigate, embed, reinforce]
+        - $ref: "#/components/parameters/CorrelationId"
+      responses:
+        "200":
+          description: The domain was reset.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum: [true]
+                  data:
+                    type: object
+                    properties:
+                      domainKey:
+                        type: string
+                      status:
+                        type: string
+                        enum: [reset]
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+  /api/v1/practice-irm/storefront/account/content:
+    get:
+      operationId: practiceIrmAccountContentGet
+      tags:
+        - Practice IRM
+      summary: Read the five IRM domains' content, as an entitled customer
+      security:
+        - customerBearer: []
+      description: >-
+        Bearer-secured (`Authorization: Bearer cs_…`, the commerce customer
+        session — ADR-0016), NOT a tenant permission. `productId` is
+        required; `verifyEntitlement(customerId, productId)` is checked
+        live, every call — `403 ENTITLEMENT_REQUIRED` for a customer without
+        an active entitlement, and NOTHING about the content is returned in
+        that case.
+      parameters:
+        - name: productId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/CorrelationId"
+      responses:
+        "200":
+          description: The five domains, in canonical order.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum: [true]
+                  data:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/PracticeIrmDomain"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: >-
+            Either the account is blocked (`ACCOUNT_BLOCKED`) or the
+            customer holds no active entitlement for `productId`
+            (`ENTITLEMENT_REQUIRED`).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/practice-irm/storefront/account/sessions:
+    get:
+      operationId: practiceIrmSessionsList
+      tags:
+        - Practice IRM
+      summary: List the calling customer's own practice sessions (history)
+      security:
+        - customerBearer: []
+      description: >-
+        Bearer-secured, keyset-paginated, newest first. `productId` scopes
+        the history to one entitlement; `verifyEntitlement` is checked live,
+        every call.
+      parameters:
+        - name: productId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: cursor
+          in: query
+          schema:
+            type: string
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 50
+        - $ref: "#/components/parameters/CorrelationId"
+      responses:
+        "200":
+          description: A page of the customer's own sessions.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum: [true]
+                  data:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/PracticeSession"
+                      nextCursor:
+                        type: string
+                        nullable: true
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: >-
+            Either the account is blocked (`ACCOUNT_BLOCKED`) or the
+            customer holds no active entitlement for `productId`
+            (`ENTITLEMENT_REQUIRED`).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+    post:
+      operationId: practiceIrmSessionCreate
+      tags:
+        - Practice IRM
+      summary: Start a new practice session (draft)
+      security:
+        - customerBearer: []
+      description: >-
+        Bearer-secured. Every field is optional at creation — a draft may
+        be entirely empty ("save-draft" is the point). `intensity`/
+        `postIntensity`, if present, must be integers 0-10.
+      parameters:
+        - $ref: "#/components/parameters/CorrelationId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PracticeSessionWriteRequest"
+      responses:
+        "200":
+          description: The created draft session.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum: [true]
+                  data:
+                    $ref: "#/components/schemas/PracticeSession"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: >-
+            Either the account is blocked (`ACCOUNT_BLOCKED`) or the
+            customer holds no active entitlement for `productId`
+            (`ENTITLEMENT_REQUIRED`).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/practice-irm/storefront/account/sessions/{id}:
+    get:
+      operationId: practiceIrmSessionGet
+      tags:
+        - Practice IRM
+      summary: Read one of the calling customer's own sessions
+      security:
+        - customerBearer: []
+      description: Bearer-secured. Requires `productId` (query), same entitlement gate as every route in this family.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: productId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/CorrelationId"
+      responses:
+        "200":
+          description: The session.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum: [true]
+                  data:
+                    $ref: "#/components/schemas/PracticeSession"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: >-
+            Either the account is blocked (`ACCOUNT_BLOCKED`) or the
+            customer holds no active entitlement for `productId`
+            (`ENTITLEMENT_REQUIRED`).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "404":
+          $ref: "#/components/responses/NotFound"
+    patch:
+      operationId: practiceIrmSessionUpdate
+      tags:
+        - Practice IRM
+      summary: Save a draft session's content fields
+      security:
+        - customerBearer: []
+      description: >-
+        Bearer-secured. `409 SESSION_COMPLETED` once the session is
+        `completed` — a completed session is immutable; log a new one
+        instead.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/CorrelationId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              allOf:
+                - type: object
+                  required:
+                    - productId
+                  properties:
+                    productId:
+                      type: string
+                      format: uuid
+                - $ref: "#/components/schemas/PracticeSessionWriteRequest"
+      responses:
+        "200":
+          description: The updated session.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum: [true]
+                  data:
+                    $ref: "#/components/schemas/PracticeSession"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: >-
+            Either the account is blocked (`ACCOUNT_BLOCKED`) or the
+            customer holds no active entitlement for `productId`
+            (`ENTITLEMENT_REQUIRED`).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: The session is already `completed` (`SESSION_COMPLETED`).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/practice-irm/storefront/account/sessions/{id}/complete:
+    post:
+      operationId: practiceIrmSessionComplete
+      tags:
+        - Practice IRM
+      summary: Complete a practice session
+      security:
+        - customerBearer: []
+      description: >-
+        Bearer-secured. `draft -> completed`, the one status transition this
+        table has. `409 INCOMPLETE_FIELDS` unless `situation`/`intensity`
+        are already filled in — a presence check, never a value judgement.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/CorrelationId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - productId
+              properties:
+                productId:
+                  type: string
+                  format: uuid
+      responses:
+        "200":
+          description: The completed session.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum: [true]
+                  data:
+                    $ref: "#/components/schemas/PracticeSession"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: >-
+            Either the account is blocked (`ACCOUNT_BLOCKED`) or the
+            customer holds no active entitlement for `productId`
+            (`ENTITLEMENT_REQUIRED`).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: >-
+            Either the session is already completed
+            (`ALREADY_COMPLETED`) or is missing the minimum fields to
+            complete (`INCOMPLETE_FIELDS`).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+components:
+  schemas:
+    PracticeIrmDomain:
+      type: object
+      properties:
+        id:
+          type: string
+          description: >-
+            A real row id, or `default:{domainKey}` for a key with no
+            tenant-authored content yet.
+        domainKey:
+          type: string
+          enum: [identify, neutralize, navigate, embed, reinforce]
+        name:
+          type: string
+        description:
+          type: string
+        copy:
+          type: string
+        displayOrder:
+          type: integer
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    PracticeIrmDomainWriteRequest:
+      type: object
+      required:
+        - domainKey
+        - name
+        - description
+        - copy
+      properties:
+        domainKey:
+          type: string
+          enum: [identify, neutralize, navigate, embed, reinforce]
+        name:
+          type: string
+          maxLength: 200
+        description:
+          type: string
+          maxLength: 1000
+        copy:
+          type: string
+          maxLength: 5000
+        displayOrder:
+          type: integer
+    PracticeSession:
+      type: object
+      description: >-
+        The 12 PRD §16 content fields are plain text/integer, and
+        `intensity`/`postIntensity` carry NO derived scoring or
+        classification anywhere in this API.
+      properties:
+        id:
+          type: string
+          format: uuid
+        ownerCustomerId:
+          type: string
+          format: uuid
+        productId:
+          type: string
+          format: uuid
+        status:
+          type: string
+          enum: [draft, completed]
+        situation:
+          type: string
+          nullable: true
+        emotion:
+          type: string
+          nullable: true
+        intensity:
+          type: integer
+          nullable: true
+          minimum: 0
+          maximum: 10
+        body:
+          type: string
+          nullable: true
+        automaticThought:
+          type: string
+          nullable: true
+        meaning:
+          type: string
+          nullable: true
+        neutralize:
+          type: string
+          nullable: true
+        postIntensity:
+          type: integer
+          nullable: true
+          minimum: 0
+          maximum: 10
+        navigate:
+          type: string
+          nullable: true
+        embed:
+          type: string
+          nullable: true
+        reinforce:
+          type: string
+          nullable: true
+        reflection:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        completedAt:
+          type: string
+          format: date-time
+          nullable: true
+    PracticeSessionWriteRequest:
+      type: object
+      required:
+        - productId
+      properties:
+        productId:
+          type: string
+          format: uuid
+        situation:
+          type: string
+        emotion:
+          type: string
+        intensity:
+          type: integer
+          nullable: true
+          minimum: 0
+          maximum: 10
+        body:
+          type: string
+        automaticThought:
+          type: string
+        meaning:
+          type: string
+        neutralize:
+          type: string
+        postIntensity:
+          type: integer
+          nullable: true
+          minimum: 0
+          maximum: 10
+        navigate:
+          type: string
+        embed:
+          type: string
+        reinforce:
+          type: string
+        reflection:
+          type: string

@@ -1607,6 +1607,15 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   // real, reachable `hard_delete` (unlike entitlements above, this one IS
   // matched in practice once a link is older than the 3650-day ceiling).
   awcms_commerce_protected_media_links: ["SELECT", "DELETE"],
+  // Issue #270 (IRMbyDUS, sql/940/941/943): same shape as
+  // `awcms_commerce_entitlements` above for `awcms_practice_irm_domains`
+  // (`deleted_at` means "reset to default", never actually matched by the
+  // generic engine's purge predicate in practice) and, for
+  // `awcms_practice_irm_sessions`, no code in this PR sets `deleted_at` at
+  // all yet — both descriptors still require the grant to exist (`sql/943`'s
+  // own header).
+  awcms_practice_irm_domains: ["SELECT", "DELETE"],
+  awcms_practice_irm_sessions: ["SELECT", "DELETE"],
   // Issue #92 (`sql/923`): the affiliate-program tables, same
   // `deleted_at`-cursor reasoning as `commerce.orders`/`commerce.reviews`
   // above — neither table is ever actually soft-deleted by this module's own

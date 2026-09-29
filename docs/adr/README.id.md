@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:c828edd33e8fd9320735ef6af3277edf8f47c0927600834be7b655ad0666ffc4 -->
+<!-- i18n-source-hash: sha256:33278e812848aad955274f111003298925454b84ae4a87793342d4dd9b59ea95 -->
 
 # Architecture Decision Records
 
@@ -41,6 +41,7 @@ Yang **tidak** butuh ADR: menambah field dalam skema yang sudah diputuskan, kena
 | [0021](0021-zero-github-actions-local-ci-with-exact-sha-statuses.md) | Nol GitHub Actions: CI lokal dengan status komit ber-SHA-eksak | Diterima |
 | [0022](0022-production-deployment-is-server-side-and-explicit.md) | Deployment produksi bersifat server-side dan eksplisit | Diterima (digantikan sebagian oleh [0021](0021-zero-github-actions-local-ci-with-exact-sha-statuses.md)) |
 | [0023](0023-release-images-are-built-signed-and-published-from-a-trusted-release-host.md) | Image rilis dibangun, ditandatangani, dan dipublikasikan dari release host tepercaya | Diterima |
+| [0024](0024-local-only-modules-that-depend-on-commerce-also-live-in-9xx.md) | Modul lokal-saja yang bergantung pada `commerce` juga hidup di `9xx` | Diterima |
 
 ## Mengapa penomoran dimulai dari 0001
 

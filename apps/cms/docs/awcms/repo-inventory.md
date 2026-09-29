@@ -7,13 +7,13 @@
 
 | Aspect                              | Value |
 | ----------------------------------- | ----- |
-| Registered modules                  | 26    |
-| Migrations                          | 208   |
-| `awcms_*` tables                    | 208   |
-| Tables with `FORCE` RLS             | 190   |
+| Registered modules                  | 27    |
+| Migrations                          | 212   |
+| `awcms_*` tables                    | 210   |
+| Tables with `FORCE` RLS             | 192   |
 | RLS-free tables (global, by design) | 18    |
-| Test files                          | 601   |
-| Route files                         | 549   |
+| Test files                          | 606   |
+| Route files                         | 556   |
 | ADR                                 | 250   |
 
 ### Modules
@@ -45,6 +45,7 @@
 | `idn_admin_regions`    | 0.1.0   | active | system | no   | `tenant_admin`, `identity_access`                                                                                                                 |
 | `push_delivery`        | 0.1.0   | active | —      | no   | `tenant_admin`, `logging`                                                                                                                         |
 | `commerce`             | 0.2.0   | active | domain | no   | `tenant_admin`, `identity_access`, `domain_event_runtime`, `media_library`, `module_management`, `email`, `profile_identity`, `idn_admin_regions` |
+| `practice_irm`         | 0.1.0   | active | domain | no   | `tenant_admin`, `identity_access`, `module_management`, `logging`, `commerce`                                                                     |
 | `omes_control`         | 0.1.0   | active | domain | no   | `tenant_admin`, `identity_access`                                                                                                                 |
 
 ### Migrations
@@ -259,6 +260,10 @@
 | 206 | `sql/937_awcms_commerce_entitlements_worker_grants.sql`                     |
 | 207 | `sql/938_awcms_commerce_entitlements_permissions.sql`                       |
 | 208 | `sql/939_awcms_commerce_protected_media_links_schema.sql`                   |
+| 209 | `sql/940_awcms_practice_irm_domains_schema.sql`                             |
+| 210 | `sql/941_awcms_practice_irm_sessions_schema.sql`                            |
+| 211 | `sql/942_awcms_practice_irm_permissions.sql`                                |
+| 212 | `sql/943_awcms_practice_irm_worker_grants.sql`                              |
 
 ### Tables & Row-Level Security
 
@@ -403,6 +408,8 @@
 | `awcms_permissions`                         | `sql/005_awcms_abac_access_control_schema.sql`             | no  | no    |
 | `awcms_plan_entitlements`                   | `sql/109_awcms_entitlement_schema.sql`                     | no  | no    |
 | `awcms_plans`                               | `sql/109_awcms_entitlement_schema.sql`                     | no  | no    |
+| `awcms_practice_irm_domains`                | `sql/940_awcms_practice_irm_domains_schema.sql`            | yes | yes   |
+| `awcms_practice_irm_sessions`               | `sql/941_awcms_practice_irm_sessions_schema.sql`           | yes | yes   |
 | `awcms_principal_mfa_factors`               | `sql/114_awcms_principal_mfa.sql`                          | no  | no    |
 | `awcms_principal_mfa_recovery_codes`        | `sql/114_awcms_principal_mfa.sql`                          | no  | no    |
 | `awcms_principal_preferences`               | `sql/128_awcms_principal_preferences.sql`                  | no  | no    |
@@ -477,17 +484,17 @@
 
 | Directory     | Test files |
 | ------------- | ---------- |
-| `(root)`      | 476        |
+| `(root)`      | 479        |
 | `e2e`         | 20         |
-| `integration` | 104        |
+| `integration` | 106        |
 | `unit`        | 1          |
 
 ### Routes
 
 | Surface         | Files |
 | --------------- | ----- |
-| `/api/v1/**`    | 436   |
-| `/admin/**`     | 83    |
+| `/api/v1/**`    | 442   |
+| `/admin/**`     | 84    |
 | publik / anonim | 30    |
 
 <!-- END GENERATED: repo-inventory -->

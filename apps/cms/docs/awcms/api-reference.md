@@ -12939,6 +12939,280 @@ Gated by omes_control.enrollments.manage. Requires Idempotency-Key, audited.
 | 200    | recorded, duplicate_ignored, or rejected. | unknown                                |
 | 429    | Rate-limited per (tenant, worker).        | [`ApiError`](#standard-error-envelope) |
 
+## Practice IRM
+
+IRMbyDUS practice-irm module (Issue #270, ADR-0002 in web-irmbydus.com) — the five canonical IRM domains (identify/neutralize/navigate/embed/reinforce) as tenant-staff-editable content (practice_irm.domains.* permissions), plus a customerBearer-secured practice_sessions surface (the 12-field guided-journal record from PRD §16) gated live, on every call, by commerce's verifyEntitlement(ownerCustomerId, productId) — a customer without an active entitlement for the given product gets 403 ENTITLEMENT_REQUIRED and never sees practice content or a session. intensity/postIntensity are plain 0-10 integers with no derived scoring or classification anywhere in this API.
+
+### `GET /api/v1/practice-irm/domains` — List the five canonical IRM domains' content
+
+- **operationId**: `practiceIrmDomainsList`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `practice_irm.domains.read`. Always returns exactly five entries, one per `domainKey` — a key with no tenant-authored row falls back to the built-in default copy (never omitted, never blank).
+
+**Parameters**
+
+| Name               | In     | Required | Type   | Description |
+| ------------------ | ------ | -------- | ------ | ----------- |
+| `X-Correlation-ID` | header | no       | string |             |
+
+**Responses**
+
+| Status | Description                           | Schema                                 |
+| ------ | ------------------------------------- | -------------------------------------- |
+| 200    | The five domains, in canonical order. | object                                 |
+| 401    | Missing or invalid session.           | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.           | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/practice-irm/domains` — Create a domain's content row
+
+- **operationId**: `practiceIrmDomainCreate`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `practice_irm.domains.create`. `409 ALREADY_EXISTS` if a live row already exists for `domainKey` — use `PUT /domains/{domainKey}` to update it instead.
+
+**Parameters**
+
+| Name               | In     | Required | Type   | Description |
+| ------------------ | ------ | -------- | ------ | ----------- |
+| `X-Correlation-ID` | header | no       | string |             |
+
+**Request body** (required): [`PracticeIrmDomainWriteRequest`](#schema-practiceirmdomainwriterequest)
+
+**Responses**
+
+| Status | Description                                                       | Schema                                 |
+| ------ | ----------------------------------------------------------------- | -------------------------------------- |
+| 200    | The created domain content.                                       | object                                 |
+| 400    | Validation error.                                                 | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                       | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                       | [`ApiError`](#standard-error-envelope) |
+| 409    | A live row already exists for this domain key (`ALREADY_EXISTS`). | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/practice-irm/domains/{domainKey}` — Get one domain's current content
+
+- **operationId**: `practiceIrmDomainGet`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `practice_irm.domains.read`.
+
+**Parameters**
+
+| Name               | In     | Required | Type                                                             | Description |
+| ------------------ | ------ | -------- | ---------------------------------------------------------------- | ----------- |
+| `domainKey`        | path   | yes      | enum(`identify`, `neutralize`, `navigate`, `embed`, `reinforce`) |             |
+| `X-Correlation-ID` | header | no       | string                                                           |             |
+
+**Responses**
+
+| Status | Description                                                       | Schema                                 |
+| ------ | ----------------------------------------------------------------- | -------------------------------------- |
+| 200    | The domain's current content (live row, or the built-in default). | object                                 |
+| 400    | Validation error.                                                 | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                       | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                       | [`ApiError`](#standard-error-envelope) |
+
+### `PUT /api/v1/practice-irm/domains/{domainKey}` — Update a domain's content
+
+- **operationId**: `practiceIrmDomainUpdate`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `practice_irm.domains.update`. `404 RESOURCE_NOT_FOUND` if there is no live row yet — create one first with `POST /domains`. Every field is optional; an omitted field keeps its current value.
+
+**Parameters**
+
+| Name               | In     | Required | Type                                                             | Description |
+| ------------------ | ------ | -------- | ---------------------------------------------------------------- | ----------- |
+| `domainKey`        | path   | yes      | enum(`identify`, `neutralize`, `navigate`, `embed`, `reinforce`) |             |
+| `X-Correlation-ID` | header | no       | string                                                           |             |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The updated domain content. | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
+
+### `DELETE /api/v1/practice-irm/domains/{domainKey}` — Reset a domain's content back to the built-in default
+
+- **operationId**: `practiceIrmDomainReset`
+- **Security**: bearerAuth + tenantHeader
+
+Gated by `practice_irm.domains.delete`. A status flip (`deleted_at`), never a row removal — the very next read falls straight back to the built-in default copy, so the public content is never left blank.
+
+**Parameters**
+
+| Name               | In     | Required | Type                                                             | Description |
+| ------------------ | ------ | -------- | ---------------------------------------------------------------- | ----------- |
+| `domainKey`        | path   | yes      | enum(`identify`, `neutralize`, `navigate`, `embed`, `reinforce`) |             |
+| `X-Correlation-ID` | header | no       | string                                                           |             |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | The domain was reset.       | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/practice-irm/storefront/account/content` — Read the five IRM domains' content, as an entitled customer
+
+- **operationId**: `practiceIrmAccountContentGet`
+- **Security**: customerBearer
+
+Bearer-secured (`Authorization: Bearer cs_…`, the commerce customer session — ADR-0016), NOT a tenant permission. `productId` is required; `verifyEntitlement(customerId, productId)` is checked live, every call — `403 ENTITLEMENT_REQUIRED` for a customer without an active entitlement, and NOTHING about the content is returned in that case.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description |
+| ------------------ | ------ | -------- | ------------- | ----------- |
+| `productId`        | query  | yes      | string (uuid) |             |
+| `X-Correlation-ID` | header | no       | string        |             |
+
+**Responses**
+
+| Status | Description                                                                                                                             | Schema                                 |
+| ------ | --------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The five domains, in canonical order.                                                                                                   | object                                 |
+| 400    | Validation error.                                                                                                                       | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                             | [`ApiError`](#standard-error-envelope) |
+| 403    | Either the account is blocked (`ACCOUNT_BLOCKED`) or the customer holds no active entitlement for `productId` (`ENTITLEMENT_REQUIRED`). | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/practice-irm/storefront/account/sessions` — List the calling customer's own practice sessions (history)
+
+- **operationId**: `practiceIrmSessionsList`
+- **Security**: customerBearer
+
+Bearer-secured, keyset-paginated, newest first. `productId` scopes the history to one entitlement; `verifyEntitlement` is checked live, every call.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description |
+| ------------------ | ------ | -------- | ------------- | ----------- |
+| `productId`        | query  | yes      | string (uuid) |             |
+| `cursor`           | query  | no       | string        |             |
+| `limit`            | query  | no       | integer       |             |
+| `X-Correlation-ID` | header | no       | string        |             |
+
+**Responses**
+
+| Status | Description                                                                                                                             | Schema                                 |
+| ------ | --------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | A page of the customer's own sessions.                                                                                                  | object                                 |
+| 400    | Validation error.                                                                                                                       | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                             | [`ApiError`](#standard-error-envelope) |
+| 403    | Either the account is blocked (`ACCOUNT_BLOCKED`) or the customer holds no active entitlement for `productId` (`ENTITLEMENT_REQUIRED`). | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/practice-irm/storefront/account/sessions` — Start a new practice session (draft)
+
+- **operationId**: `practiceIrmSessionCreate`
+- **Security**: customerBearer
+
+Bearer-secured. Every field is optional at creation — a draft may be entirely empty ("save-draft" is the point). `intensity`/ `postIntensity`, if present, must be integers 0-10.
+
+**Parameters**
+
+| Name               | In     | Required | Type   | Description |
+| ------------------ | ------ | -------- | ------ | ----------- |
+| `X-Correlation-ID` | header | no       | string |             |
+
+**Request body** (required): [`PracticeSessionWriteRequest`](#schema-practicesessionwriterequest)
+
+**Responses**
+
+| Status | Description                                                                                                                             | Schema                                 |
+| ------ | --------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The created draft session.                                                                                                              | object                                 |
+| 400    | Validation error.                                                                                                                       | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                             | [`ApiError`](#standard-error-envelope) |
+| 403    | Either the account is blocked (`ACCOUNT_BLOCKED`) or the customer holds no active entitlement for `productId` (`ENTITLEMENT_REQUIRED`). | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/practice-irm/storefront/account/sessions/{id}` — Read one of the calling customer's own sessions
+
+- **operationId**: `practiceIrmSessionGet`
+- **Security**: customerBearer
+
+Bearer-secured. Requires `productId` (query), same entitlement gate as every route in this family.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description |
+| ------------------ | ------ | -------- | ------------- | ----------- |
+| `id`               | path   | yes      | string (uuid) |             |
+| `productId`        | query  | yes      | string (uuid) |             |
+| `X-Correlation-ID` | header | no       | string        |             |
+
+**Responses**
+
+| Status | Description                                                                                                                             | Schema                                 |
+| ------ | --------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The session.                                                                                                                            | object                                 |
+| 400    | Validation error.                                                                                                                       | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                             | [`ApiError`](#standard-error-envelope) |
+| 403    | Either the account is blocked (`ACCOUNT_BLOCKED`) or the customer holds no active entitlement for `productId` (`ENTITLEMENT_REQUIRED`). | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                     | [`ApiError`](#standard-error-envelope) |
+
+### `PATCH /api/v1/practice-irm/storefront/account/sessions/{id}` — Save a draft session's content fields
+
+- **operationId**: `practiceIrmSessionUpdate`
+- **Security**: customerBearer
+
+Bearer-secured. `409 SESSION_COMPLETED` once the session is `completed` — a completed session is immutable; log a new one instead.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description |
+| ------------------ | ------ | -------- | ------------- | ----------- |
+| `id`               | path   | yes      | string (uuid) |             |
+| `X-Correlation-ID` | header | no       | string        |             |
+
+**Request body** (required): object & [`PracticeSessionWriteRequest`](#schema-practicesessionwriterequest)
+
+**Responses**
+
+| Status | Description                                                                                                                             | Schema                                 |
+| ------ | --------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The updated session.                                                                                                                    | object                                 |
+| 400    | Validation error.                                                                                                                       | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                             | [`ApiError`](#standard-error-envelope) |
+| 403    | Either the account is blocked (`ACCOUNT_BLOCKED`) or the customer holds no active entitlement for `productId` (`ENTITLEMENT_REQUIRED`). | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 409    | The session is already `completed` (`SESSION_COMPLETED`).                                                                               | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/practice-irm/storefront/account/sessions/{id}/complete` — Complete a practice session
+
+- **operationId**: `practiceIrmSessionComplete`
+- **Security**: customerBearer
+
+Bearer-secured. `draft -> completed`, the one status transition this table has. `409 INCOMPLETE_FIELDS` unless `situation`/`intensity` are already filled in — a presence check, never a value judgement.
+
+**Parameters**
+
+| Name               | In     | Required | Type          | Description |
+| ------------------ | ------ | -------- | ------------- | ----------- |
+| `id`               | path   | yes      | string (uuid) |             |
+| `X-Correlation-ID` | header | no       | string        |             |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                                                                                             | Schema                                 |
+| ------ | --------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The completed session.                                                                                                                  | object                                 |
+| 400    | Validation error.                                                                                                                       | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                             | [`ApiError`](#standard-error-envelope) |
+| 403    | Either the account is blocked (`ACCOUNT_BLOCKED`) or the customer holds no active entitlement for `productId` (`ENTITLEMENT_REQUIRED`). | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 409    | Either the session is already completed (`ALREADY_COMPLETED`) or is missing the minimum fields to complete (`INCOMPLETE_FIELDS`).       | [`ApiError`](#standard-error-envelope) |
+
 ## Schema appendix
 
 Every schema referenced by at least one operation above (excluding the standard envelope schemas, covered in §Standard success/error envelope).
@@ -14900,6 +15174,66 @@ One node of a CLOSED Portable Text vocabulary (ADR-0100). _type is one of block,
   "_key": "string",
   "text": "string",
   "marks": ["string"]
+}
+```
+
+### Schema: PracticeIrmDomainWriteRequest
+
+| Field          | Type                                                             | Required | Nullable | Description |
+| -------------- | ---------------------------------------------------------------- | -------- | -------- | ----------- |
+| `domainKey`    | enum(`identify`, `neutralize`, `navigate`, `embed`, `reinforce`) | yes      | no       |             |
+| `name`         | string                                                           | yes      | no       |             |
+| `description`  | string                                                           | yes      | no       |             |
+| `copy`         | string                                                           | yes      | no       |             |
+| `displayOrder` | integer                                                          | no       | no       |             |
+
+**Example**
+
+```json
+{
+  "domainKey": "identify",
+  "name": "string",
+  "description": "string",
+  "copy": "string",
+  "displayOrder": 0
+}
+```
+
+### Schema: PracticeSessionWriteRequest
+
+| Field              | Type          | Required | Nullable | Description |
+| ------------------ | ------------- | -------- | -------- | ----------- |
+| `productId`        | string (uuid) | yes      | no       |             |
+| `situation`        | string        | no       | no       |             |
+| `emotion`          | string        | no       | no       |             |
+| `intensity`        | integer       | no       | yes      |             |
+| `body`             | string        | no       | no       |             |
+| `automaticThought` | string        | no       | no       |             |
+| `meaning`          | string        | no       | no       |             |
+| `neutralize`       | string        | no       | no       |             |
+| `postIntensity`    | integer       | no       | yes      |             |
+| `navigate`         | string        | no       | no       |             |
+| `embed`            | string        | no       | no       |             |
+| `reinforce`        | string        | no       | no       |             |
+| `reflection`       | string        | no       | no       |             |
+
+**Example**
+
+```json
+{
+  "productId": "00000000-0000-0000-0000-000000000000",
+  "situation": "string",
+  "emotion": "string",
+  "intensity": 0,
+  "body": "string",
+  "automaticThought": "string",
+  "meaning": "string",
+  "neutralize": "string",
+  "postIntensity": 0,
+  "navigate": "string",
+  "embed": "string",
+  "reinforce": "string",
+  "reflection": "string"
 }
 ```
 

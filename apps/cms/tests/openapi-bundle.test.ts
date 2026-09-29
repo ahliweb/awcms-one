@@ -447,6 +447,13 @@ describe("openapi bundle — contract equivalence to pre-migration monolith", ()
       // safe-operation submission, worker jobs, health/backup/audit
       // projections. Genuinely new surface.
       "OMES Control Center",
+      // "Practice IRM" (practice_irm, Issue #270, ADR-0002 in
+      // web-irmbydus.com) — the five canonical IRM domains as admin-editable
+      // content, plus the customerBearer-secured practice_sessions surface,
+      // gated per call by commerce's verifyEntitlement. Genuinely new
+      // surface: no IRM/practice content model existed anywhere in this
+      // codebase before this PR.
+      "Practice IRM",
       // "Push Delivery" (push_delivery, ADR-0074, Issue #466) — the device
       // registration/revocation self-service plus the operator's queue
       // diagnostics, cancel and delivery probe. Genuinely new surface, unlike

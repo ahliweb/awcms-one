@@ -1282,6 +1282,16 @@
       "source": "factory"
     },
     {
+      "path": "src/pages/api/v1/practice-irm/domains/[domainKey].ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/practice-irm/domains/index.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
       "path": "src/pages/api/v1/profiles/[id].ts",
       "workClass": "interactive",
       "source": "default"

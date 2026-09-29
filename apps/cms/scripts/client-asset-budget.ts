@@ -956,7 +956,18 @@ export const READER_BUDGET_BYTES = 24_000;
  * re-measure on the next commerce or control-center screen and tighten if
  * the real total sits well below this.
  */
-export const APP_BUDGET_BYTES = 288_500;
+/**
+ * **Raised to 289,400 B for the practice-irm module's admin screen (Issue
+ * #270)** — `/admin/practice-irm-domains` is a genuinely new screen (five
+ * editable domain-content cards, one shared-helper client script reusing
+ * `src/lib/ui/admin-form-client.ts`'s existing `field`/`messageBox`/
+ * `mutateAndReload`/`onAction`/`onSubmitAll`/`sendJson` — no new client
+ * library, no per-screen copy of their lifecycle logic) plus the two new
+ * catalogue msgids ("Practice IRM"/"Practice IRM domains" and their
+ * Indonesian translations). Measured clean build: 289,234 B. 289,400 keeps
+ * the same tight "measured + small margin" convention as every raise above.
+ */
+export const APP_BUDGET_BYTES = 289_400;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.

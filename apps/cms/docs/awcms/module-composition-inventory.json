@@ -1,5 +1,5 @@
 {
-  "moduleCount": 26,
+  "moduleCount": 27,
   "valid": true,
   "issueCount": 0,
   "modules": [
@@ -271,6 +271,28 @@
       "permissionCount": 18,
       "navigationCount": 14,
       "jobCount": 1,
+      "hasHealthCheck": false,
+      "hasReadinessCheck": false,
+      "deploymentProfiles": null
+    },
+    {
+      "key": "practice_irm",
+      "name": "Practice IRM",
+      "version": "0.1.0",
+      "status": "active",
+      "type": "domain",
+      "dependencies": [
+        "tenant_admin",
+        "identity_access",
+        "module_management",
+        "logging",
+        "commerce"
+      ],
+      "capabilitiesProvided": [],
+      "capabilitiesConsumed": [],
+      "permissionCount": 4,
+      "navigationCount": 1,
+      "jobCount": 0,
       "hasHealthCheck": false,
       "hasReadinessCheck": false,
       "deploymentProfiles": null
