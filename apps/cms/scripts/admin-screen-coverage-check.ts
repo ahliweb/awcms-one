@@ -133,7 +133,21 @@ export const DELIBERATELY_UNSCREENED: Readonly<Record<string, string>> = {
   // Enqueues a notification to an explicit set of users — plausible as an
   // inter-module API, and forcing a button onto it invents an affordance whose
   // correct shape nobody has decided.
-  "email.notification.create": "inter-module API, not an operator affordance"
+  "email.notification.create": "inter-module API, not an operator affordance",
+
+  // Issue #267 (IRMbyDUS entitlement module). This PR ships the grant path
+  // (order-paid consumer, no admin "create" verb at all — see
+  // `COMMERCE_ENTITLEMENT_PERMISSIONS`'s own header) plus a `read`/`update`
+  // API surface only: `GET /api/v1/commerce/entitlements`,
+  // `POST .../entitlements/{id}/revoke`, and the customer-facing "my
+  // entitlements"/entitlement-check routes. A list+revoke admin screen is
+  // reasonable future work — this PR's own scope is the API/data layer
+  // (mirrors #266's own explicit scope note) — so both are recorded as a
+  // deliberate decision for THIS PR rather than left undeclared.
+  "commerce.entitlements.read":
+    "Issue #267 — API-only this PR; a list+revoke admin screen is reasonable follow-up work, not required for the entitlement grant/check/revoke surface to be correct",
+  "commerce.entitlements.update":
+    "Issue #267 — API-only this PR; gates POST .../entitlements/{id}/revoke, called directly today, not from an admin screen"
 
   // `idn_admin_regions.region.read` USED to sit here ("lookup API for other
   // modules' forms; /admin/idn-regions drives dataset.* instead"). Issue #767

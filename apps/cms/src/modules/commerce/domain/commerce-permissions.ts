@@ -165,6 +165,30 @@ export const COMMERCE_ORDER_PERMISSIONS = {
   update: "commerce.orders.update"
 } as const;
 
+/**
+ * Issue #267 (IRMbyDUS entitlement module) — an entitlement is granted only
+ * as a side effect of an order reaching `paid` (the
+ * `commerce.order_paid_entitlement_grantor` domain-event consumer), never
+ * through a direct admin "create an entitlement" route, same "nothing to
+ * enforce it" reasoning `COMMERCE_ORDER_PERMISSIONS`/`COMMERCE_AFFILIATE_
+ * PERMISSIONS` already state — so there is no `create` action. `update`
+ * gates the one admin mutation this module has: revoking a grant
+ * (`POST .../entitlements/{id}/revoke`).
+ *
+ * NOT to be confused with `identity-access`'s `ENTITLEMENT_REQUIRED_POLICY`
+ * (`domain/entitlement.ts`, ADR-0084 tenant/plan feature-gating) — this
+ * activity code and its permission strings are namespaced `commerce.
+ * entitlements.*`, a different module, a different concept. See `sql/936`'s
+ * header for the full disambiguation.
+ */
+export const COMMERCE_ENTITLEMENTS_ACTIVITY_CODE = "entitlements";
+
+export const COMMERCE_ENTITLEMENT_PERMISSIONS = {
+  read: "commerce.entitlements.read",
+  /** Gates the admin revoke transition only — grants happen only via the order-paid consumer. */
+  update: "commerce.entitlements.update"
+} as const;
+
 export const COMMERCE_CUSTOMER_PERMISSIONS = {
   read: "commerce.customers.read",
   update: "commerce.customers.update"

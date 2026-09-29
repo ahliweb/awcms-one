@@ -6,6 +6,7 @@ import {
   getConsumersForEventType
 } from "../src/modules/domain-event-runtime/infrastructure/consumer-registry";
 import { SAMPLE_RECORDED_EVENT_TYPE } from "../src/modules/domain-event-runtime/domain/event-type-registry";
+import { COMMERCE_ORDER_PAID_EVENT_TYPE } from "../src/modules/commerce/domain/commerce-events";
 
 describe("DOMAIN_EVENT_CONSUMERS static registry", () => {
   test("ships at least two representative consumers", () => {
@@ -47,5 +48,20 @@ describe("DOMAIN_EVENT_CONSUMERS static registry", () => {
     const first = DOMAIN_EVENT_CONSUMERS[0]!;
     expect(getConsumerByName(first.name)?.name).toBe(first.name);
     expect(getConsumerByName("not-a-real-consumer")).toBeUndefined();
+  });
+
+  test("commerce.order_paid_entitlement_grantor (Issue #267, IRMbyDUS) is registered and subscribed to the order-paid event", () => {
+    const consumer = getConsumerByName(
+      "commerce.order_paid_entitlement_grantor"
+    );
+    expect(consumer).toBeDefined();
+    expect(consumer!.eventTypes).toContain(COMMERCE_ORDER_PAID_EVENT_TYPE);
+
+    const subscribers = getConsumersForEventType(
+      COMMERCE_ORDER_PAID_EVENT_TYPE
+    );
+    expect(subscribers.map((c) => c.name)).toContain(
+      "commerce.order_paid_entitlement_grantor"
+    );
   });
 });

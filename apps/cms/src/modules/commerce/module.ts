@@ -36,7 +36,8 @@ import {
   COMMERCE_WEBHOOK_ENDPOINTS_ACTIVITY_CODE,
   COMMERCE_WEBHOOK_ENDPOINT_PERMISSIONS,
   COMMERCE_POS_ACTIVITY_CODE,
-  COMMERCE_POS_PERMISSIONS
+  COMMERCE_POS_PERMISSIONS,
+  COMMERCE_ENTITLEMENTS_ACTIVITY_CODE
 } from "./domain/commerce-permissions";
 import {
   COMMERCE_FLASH_SALE_ENDED_EVENT_TYPE,
@@ -2175,6 +2176,55 @@ export const commerceModule = defineModule({
       backupRestoreNotes:
         "Included in ordinary full-database backup/restore; no standalone archive artifact — a rebuild from the order-event log is the restore path.",
       executionMode: "generic"
+    },
+    {
+      key: "commerce.entitlements",
+      tableName: "awcms_commerce_entitlements",
+      ownerModuleKey: "commerce",
+      scope: "tenant",
+      cursorColumn: "revoked_at",
+      // Issue #267 (IRMbyDUS). Fiscal/proof-of-purchase adjacent, the same
+      // reasoning `commerce.orders` above states for its own widest window:
+      // a revoked grant is still evidence of what a customer once paid for,
+      // relevant to exactly the kind of billing/access dispute
+      // `awcms_tenant_entitlements`'s own descriptor (ADR-0084) already
+      // reasons about for the unrelated SaaS-plan concept it covers.
+      retentionClass: "system_event",
+      retentionMinDays: 365,
+      retentionMaxDays: 3650,
+      defaultRetentionDays: 3650,
+      partition: {
+        eligible: false,
+        rationale:
+          "Bounded by a single storefront's own paid-order volume (at most one row per (order, product) — sql/936's own unique index) — nowhere near partition-worthy."
+      },
+      archive: {
+        archivable: false,
+        rationale:
+          "The generic engine's only implemented artefact is ordinary backup/restore; no standalone archive exists yet for this table."
+      },
+      deletion: {
+        mode: "hard_delete",
+        rationale:
+          "Technically the generic engine's only mode, but practically UNREACHABLE: this module never deletes a row — revocation is the status flip to 'revoked' (sql/936's header), so the cursor column never matches a purge predicate keyed on an actual deletion. Same 'sealed by never matching' shape commerce.customer_accounts' descriptor documents for its own blocked-not-deleted status column."
+      },
+      legalHold: { applicable: false, precedence: "not_applicable" },
+      requiredIndexes: [
+        {
+          columns: ["tenant_id", "revoked_at"],
+          purpose:
+            "awcms_commerce_entitlements_tenant_revoked_idx (sql/936) — the (tenant, cursor) composite the generic purge engine filters + orders by."
+        },
+        {
+          columns: ["tenant_id", "owner_customer_id", "product_id"],
+          purpose:
+            "awcms_commerce_entitlements_tenant_owner_product_idx (sql/936) — verifyEntitlement's own lookup shape."
+        }
+      ],
+      batchLimit: 5000,
+      backupRestoreNotes:
+        "Included in ordinary full-database backup/restore; no standalone archive artifact.",
+      executionMode: "generic"
     }
   ],
   /**
@@ -2663,6 +2713,17 @@ export const commerceModule = defineModule({
       erasure: "retain_under_obligation",
       rationale:
         "customer_id names a row in commerce.customers, which itself carries no tenant_user/identity/profile/principal id (ADR-0016 D1, same gap commerce.orders' own entry above documents) — this engine's subject vocabulary still cannot reach it. address_masked is already masked at write time (never a raw e-mail/phone), so there is nothing further to redact on export even if it were reachable."
+    },
+    {
+      key: "commerce.entitlements",
+      tableName: "awcms_commerce_entitlements",
+      ownerModuleKey: "commerce",
+      unreachableBySubject: true,
+      subjectColumns: [],
+      exportable: false,
+      erasure: "retain_under_obligation",
+      rationale:
+        "owner_customer_id names a row in commerce.customers, which itself carries no tenant_user/identity/profile/principal id (ADR-0016 D1, same gap commerce.orders'/commerce.customer_accounts' own entries document) — this engine's subject vocabulary still cannot reach it. The row is also the proof of what a customer paid for (source_order_id), the same fiscal-record reasoning commerce.orders states, so it is retained under that obligation rather than erased even if it were reachable."
     }
   ],
   permissions: [
@@ -2933,6 +2994,18 @@ export const commerceModule = defineModule({
       action: "create",
       description:
         "Create a counter (POS) sale — the only order-creation path that requires a permission at all"
+    },
+    {
+      activityCode: COMMERCE_ENTITLEMENTS_ACTIVITY_CODE,
+      action: "read",
+      description:
+        "List/look up commerce entitlement records (Issue #267, IRMbyDUS)"
+    },
+    {
+      activityCode: COMMERCE_ENTITLEMENTS_ACTIVITY_CODE,
+      action: "update",
+      description:
+        "Revoke a commerce entitlement — the only admin mutation this module has; grants happen only via the order-paid consumer (Issue #267)"
     }
   ]
 });

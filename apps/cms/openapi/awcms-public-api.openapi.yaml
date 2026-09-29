@@ -8534,6 +8534,111 @@ paths:
           $ref: "#/components/responses/Forbidden"
         "404":
           $ref: "#/components/responses/NotFound"
+  /api/v1/commerce/entitlements:
+    get:
+      operationId: listCommerceEntitlements
+      tags:
+        - Commerce
+      summary: "Issue #267 (IRMbyDUS). Admin list of commerce entitlement grants, optional ownerCustomerId/productId/status filters. Gated on entitlements.read."
+      parameters:
+        - name: cursor
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            maximum: 50
+        - name: ownerCustomerId
+          in: query
+          required: false
+          schema:
+            type: string
+            format: uuid
+        - name: productId
+          in: query
+          required: false
+          schema:
+            type: string
+            format: uuid
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - active
+              - revoked
+      responses:
+        "200":
+          description: One page of entitlement records.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/CommerceEntitlement"
+                      nextCursor:
+                        type: string
+                        nullable: true
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+  /api/v1/commerce/entitlements/{id}/revoke:
+    post:
+      operationId: revokeCommerceEntitlement
+      tags:
+        - Commerce
+      summary: "Issue #267 (IRMbyDUS). Admin-only revocation — the only revocation path this module has (no refunded order status/event exists yet to auto-revoke from). Gated on entitlements.update."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Entitlement revoked.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceEntitlement"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: This entitlement has already been revoked.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
   /api/v1/commerce/flash-sales:
     get:
       operationId: listCommerceFlashSales
@@ -11273,6 +11378,98 @@ paths:
                 $ref: "#/components/schemas/ApiError"
         "429":
           description: RATE_LIMITED — either the IP-scoped preflight limiter, or COMMERCE_CONVERSATION_POST_RATE_LIMIT_MAX (default 10) posts per hour for this account.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/storefront/account/entitlements:
+    get:
+      operationId: listCommerceStorefrontAccountEntitlements
+      tags:
+        - Commerce Accounts
+      summary: 'Issue #267 (IRMbyDUS). "My entitlements" — keyset-paginated, bearer session. ownerCustomerId always comes from the verified session, never from request input.'
+      security:
+        - customerBearer: []
+      parameters:
+        - name: cursor
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            maximum: 50
+      responses:
+        "200":
+          description: One page of the account's entitlements.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/CommerceEntitlement"
+                      nextCursor:
+                        type: string
+                        nullable: true
+        "401":
+          description: UNAUTHENTICATED.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/storefront/account/entitlements/check:
+    get:
+      operationId: checkCommerceStorefrontAccountEntitlement
+      tags:
+        - Commerce Accounts
+      summary: "Issue #267 (IRMbyDUS). Entitlement-check for the calling customer + a given productId. Read live on every call — no cache — so a revoke is reflected on the very next check."
+      security:
+        - customerBearer: []
+      parameters:
+        - name: productId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Whether the calling customer holds an active entitlement for productId.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      entitled:
+                        type: boolean
+                      entitlement:
+                        nullable: true
+                        allOf:
+                          - $ref: "#/components/schemas/CommerceEntitlement"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          description: UNAUTHENTICATED.
           content:
             application/json:
               schema:
@@ -28691,6 +28888,40 @@ components:
             - active
             - blocked
         createdAt:
+          type: string
+          format: date-time
+    CommerceEntitlement:
+      type: object
+      description: "Issue #267 (IRMbyDUS entitlement module) — NOT identity-access's ADR-0084 tenant/plan entitlement concept; see sql/936's header. Granted once per (order, product) when the sourcing order reaches paid; revoked only by an admin (no refunded order status/event exists yet to auto-revoke from)."
+      properties:
+        id:
+          type: string
+          format: uuid
+        ownerCustomerId:
+          type: string
+          format: uuid
+        productId:
+          type: string
+          format: uuid
+        sourceOrderId:
+          type: string
+          format: uuid
+        status:
+          type: string
+          enum:
+            - active
+            - revoked
+        grantedAt:
+          type: string
+          format: date-time
+        revokedAt:
+          type: string
+          format: date-time
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
           type: string
           format: date-time
     CommerceFlashSale:

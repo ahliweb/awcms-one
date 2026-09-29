@@ -7,6 +7,11 @@ import {
 } from "../domain/event-type-registry";
 import { applyEventActivityProjectionIncrement } from "../../reporting/application/event-activity-projection";
 import { EVENT_ACTIVITY_PROJECTOR_CONSUMER_NAME } from "../../reporting/domain/projection-keys";
+import { grantEntitlementsForPaidOrder } from "../../commerce/application/commerce-entitlement-directory";
+import {
+  COMMERCE_EVENT_VERSION,
+  COMMERCE_ORDER_PAID_EVENT_TYPE
+} from "../../commerce/domain/commerce-events";
 
 /**
  * Two representative consumers ("provide at least two representative
@@ -167,10 +172,64 @@ export const eventActivityProjectorConsumer: DomainEventConsumerDefinition = {
   }
 };
 
+const ORDER_PAID_ENTITLEMENT_GRANTOR_CONSUMER_NAME =
+  "commerce.order_paid_entitlement_grantor";
+
+/**
+ * `commerce` module consumer (Issue #267, IRMbyDUS) — the second deliberate
+ * cross-module edge in this file, alongside `eventActivityProjectorConsumer`
+ * above: `domain_event_runtime` (this file) imports
+ * `commerce/application/commerce-entitlement-directory.ts`. Same "worth
+ * knowing before you add a fourth/fifth" import-direction note that
+ * consumer's own header states — safe against a FILE-level cycle for the
+ * identical reason: `commerce-entitlement-directory.ts` imports nothing
+ * from `domain_event_runtime` back (it takes an already-open `tx`; only
+ * OTHER commerce files, e.g. `order-directory.ts`'s own
+ * `appendDomainEvent` call, import this module's `application/` layer, and
+ * that is the pre-existing, declared `commerce -> domain_event_runtime`
+ * dependency direction, not a new one this consumer creates).
+ *
+ * Grants one `awcms_commerce_entitlements` row per distinct product on the
+ * order that just turned `paid` — see
+ * `commerce-entitlement-directory.ts`'s own header for the full grant
+ * logic. Idempotency here is `applyConsumerEffectOnce` guarding the whole
+ * handler against a REDELIVERED `order.paid` event; the directory
+ * function's own `ON CONFLICT (tenant_id, source_order_id, product_id) DO
+ * NOTHING` is the second, independent guard against any other path that
+ * could re-run the same grant (see `sql/936`'s header). Together: firing
+ * the same `order.paid` event twice yields exactly one entitlement row per
+ * (order, product), never two.
+ */
+export const orderPaidEntitlementGrantorConsumer: DomainEventConsumerDefinition =
+  {
+    name: ORDER_PAID_ENTITLEMENT_GRANTOR_CONSUMER_NAME,
+    description:
+      "commerce module consumer — grants one awcms_commerce_entitlements row per distinct product on an order the moment it turns paid (Issue #267, IRMbyDUS).",
+    eventTypes: [COMMERCE_ORDER_PAID_EVENT_TYPE],
+    eventVersions: [COMMERCE_EVENT_VERSION],
+    handler: async (tx, event, ctx) => {
+      await applyConsumerEffectOnce(
+        tx,
+        ctx.tenantId,
+        ORDER_PAID_ENTITLEMENT_GRANTOR_CONSUMER_NAME,
+        event.id,
+        async () => {
+          await grantEntitlementsForPaidOrder(
+            tx,
+            ctx.tenantId,
+            event.aggregateId,
+            ctx.correlationId
+          );
+        }
+      );
+    }
+  };
+
 const BASE_DOMAIN_EVENT_CONSUMERS: readonly DomainEventConsumerDefinition[] = [
   sampleAuditProjectorConsumer,
   activityRollupProjectorConsumer,
-  eventActivityProjectorConsumer
+  eventActivityProjectorConsumer,
+  orderPaidEntitlementGrantorConsumer
 ];
 
 /**

@@ -557,6 +557,16 @@
       "source": "factory"
     },
     {
+      "path": "src/pages/api/v1/commerce/entitlements/[id]/revoke.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/entitlements/index.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
       "path": "src/pages/api/v1/commerce/flash-sales/[id].ts",
       "workClass": "interactive",
       "source": "factory"

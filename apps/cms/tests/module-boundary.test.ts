@@ -129,6 +129,25 @@ const DOCUMENTED_EXCEPTIONS: {
       "than remove it. Revisit if consumer registration ever becomes lazy."
   },
   {
+    from: "domain_event_runtime",
+    to: "commerce",
+    reason:
+      "Issue #267 (IRMbyDUS entitlement module). Same shape as the " +
+      "`domain_event_runtime -> reporting` entry immediately above: " +
+      "`infrastructure/consumer-registry.ts` registers " +
+      "`orderPaidEntitlementGrantorConsumer`, which calls " +
+      "`commerce/application/commerce-entitlement-directory.ts`'s " +
+      "`grantEntitlementsForPaidOrder`. It cannot be a `dependencies` edge — " +
+      "`commerce` already declares `domain_event_runtime` (to publish " +
+      "`order.paid` itself via `appendDomainEvent`), so declaring the reverse " +
+      "is a cycle. Safe against a FILE-level cycle for the same reason the " +
+      "entry above is: `commerce-entitlement-directory.ts` imports nothing " +
+      "from `domain_event_runtime` back (it takes an already-open `tx`); only " +
+      "OTHER commerce files (e.g. `order-directory.ts`'s own " +
+      "`appendDomainEvent` call) import this module, and that is the " +
+      "pre-existing declared direction, not a new one this consumer creates."
+  },
+  {
     from: "tenant_admin",
     to: "identity_access",
     reason:

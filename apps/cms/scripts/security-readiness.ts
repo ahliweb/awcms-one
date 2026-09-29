@@ -1595,6 +1595,13 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   // (sql/917's header), so the generic engine's SELECT + DELETE is granted
   // but never actually matches a row in practice.
   awcms_commerce_customer_accounts: ["SELECT", "DELETE"],
+  // Issue #267 (IRMbyDUS, sql/936/937): same shape as
+  // `awcms_commerce_customer_accounts` above — `revoked_at` stays a status
+  // flip, never actually matched by the generic engine's purge predicate in
+  // practice (revocation is `commerce-entitlement-directory.ts`'s
+  // `revokeEntitlementByAdmin`, never a deletion), but the descriptor still
+  // requires the grant to exist.
+  awcms_commerce_entitlements: ["SELECT", "DELETE"],
   // Issue #92 (`sql/923`): the affiliate-program tables, same
   // `deleted_at`-cursor reasoning as `commerce.orders`/`commerce.reviews`
   // above — neither table is ever actually soft-deleted by this module's own

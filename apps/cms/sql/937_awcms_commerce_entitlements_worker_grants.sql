@@ -1,0 +1,19 @@
+-- `data-lifecycle:archive-purge` runs as `awcms_worker` (`WORKER_DATABASE_URL`)
+-- and, for a `executionMode: "generic"` descriptor, issues:
+--
+--   SELECT * FROM <table> WHERE tenant_id = $1 AND <cursor> < $2 …   -- candidates
+--   DELETE FROM <table> WHERE id IN (SELECT id FROM <table> …)       -- hard_delete
+--
+-- `sql/936`'s `commerce.entitlements` `dataLifecycle` descriptor
+-- (`commerce/module.ts`) declares exactly this shape (`cursorColumn:
+-- "revoked_at"`, `deletion.mode: "hard_delete"`) even though the predicate
+-- can never actually match a live/revoked row (that migration's own
+-- descriptor rationale) — `data-lifecycle:worker-grants:check` still
+-- requires the grant to exist, same "a descriptor that declares a retention
+-- the engine cannot enforce is not retention — it is a claim" reasoning
+-- `sql/903`'s own header states for the first two tables this shape covers.
+--
+-- No UPDATE: the engine never anonymises this row, only deletes it (never
+-- reachable in practice), and a privilege the code does not use is a
+-- privilege that outlives the reason it was added.
+GRANT SELECT, DELETE ON awcms_commerce_entitlements TO awcms_worker;
