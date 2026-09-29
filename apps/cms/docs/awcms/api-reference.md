@@ -9820,6 +9820,51 @@ Sets deleted_at; the slug is freed for reuse. Restore it with POST /api/v1/comme
 | 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
 | 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
 
+### `GET /api/v1/commerce/entitlements` — Issue #267 (IRMbyDUS). Admin list of commerce entitlement grants, optional ownerCustomerId/productId/status filters. Gated on entitlements.read.
+
+- **operationId**: `listCommerceEntitlements`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name              | In    | Required | Type                      | Description |
+| ----------------- | ----- | -------- | ------------------------- | ----------- |
+| `cursor`          | query | no       | string                    |             |
+| `limit`           | query | no       | integer                   |             |
+| `ownerCustomerId` | query | no       | string (uuid)             |             |
+| `productId`       | query | no       | string (uuid)             |             |
+| `status`          | query | no       | enum(`active`, `revoked`) |             |
+
+**Responses**
+
+| Status | Description                      | Schema                                 |
+| ------ | -------------------------------- | -------------------------------------- |
+| 200    | One page of entitlement records. | object                                 |
+| 400    | Validation error.                | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.      | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.      | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/entitlements/{id}/revoke` — Issue #267 (IRMbyDUS). Admin-only revocation — the only revocation path this module has (no refunded order status/event exists yet to auto-revoke from). Gated on entitlements.update.
+
+- **operationId**: `revokeCommerceEntitlement`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                                | Schema                                 |
+| ------ | ------------------------------------------ | -------------------------------------- |
+| 200    | Entitlement revoked.                       | object                                 |
+| 401    | Missing or invalid session.                | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                        | [`ApiError`](#standard-error-envelope) |
+| 409    | This entitlement has already been revoked. | [`ApiError`](#standard-error-envelope) |
+
 ### `GET /api/v1/commerce/flash-sales` — List flash sales (Issue 26). Keyset-paginated, newest first. Gated on flash_sales.read.
 
 - **operationId**: `listCommerceFlashSales`
@@ -11633,6 +11678,44 @@ Issue #86 (ADR-0016, epic #32 wave 0) — CONTRACT ONLY, no route file yet (hand
 | 404    | Unknown conversation, or one belonging to another account.                                                                                        | [`ApiError`](#standard-error-envelope) |
 | 409    | CONVERSATION_CLOSED.                                                                                                                              | [`ApiError`](#standard-error-envelope) |
 | 429    | RATE_LIMITED — either the IP-scoped preflight limiter, or COMMERCE_CONVERSATION_POST_RATE_LIMIT_MAX (default 10) posts per hour for this account. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/storefront/account/entitlements` — Issue #267 (IRMbyDUS). "My entitlements" — keyset-paginated, bearer session. ownerCustomerId always comes from the verified session, never from request input.
+
+- **operationId**: `listCommerceStorefrontAccountEntitlements`
+- **Security**: customerBearer
+
+**Parameters**
+
+| Name     | In    | Required | Type    | Description |
+| -------- | ----- | -------- | ------- | ----------- |
+| `cursor` | query | no       | string  |             |
+| `limit`  | query | no       | integer |             |
+
+**Responses**
+
+| Status | Description                             | Schema                                 |
+| ------ | --------------------------------------- | -------------------------------------- |
+| 200    | One page of the account's entitlements. | object                                 |
+| 401    | UNAUTHENTICATED.                        | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/storefront/account/entitlements/check` — Issue #267 (IRMbyDUS). Entitlement-check for the calling customer + a given productId. Read live on every call — no cache — so a revoke is reflected on the very next check.
+
+- **operationId**: `checkCommerceStorefrontAccountEntitlement`
+- **Security**: customerBearer
+
+**Parameters**
+
+| Name        | In    | Required | Type          | Description |
+| ----------- | ----- | -------- | ------------- | ----------- |
+| `productId` | query | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                                                             | Schema                                 |
+| ------ | ----------------------------------------------------------------------- | -------------------------------------- |
+| 200    | Whether the calling customer holds an active entitlement for productId. | object                                 |
+| 400    | Validation error.                                                       | [`ApiError`](#standard-error-envelope) |
+| 401    | UNAUTHENTICATED.                                                        | [`ApiError`](#standard-error-envelope) |
 
 ### `POST /api/v1/commerce/storefront/account/logout` — Issue #89 (implemented, contract #86). Revoke the presented bearer session (D3).
 

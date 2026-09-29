@@ -8,12 +8,12 @@
 | Aspect                              | Value |
 | ----------------------------------- | ----- |
 | Registered modules                  | 26    |
-| Migrations                          | 202   |
-| `awcms_*` tables                    | 206   |
-| Tables with `FORCE` RLS             | 188   |
+| Migrations                          | 204   |
+| `awcms_*` tables                    | 207   |
+| Tables with `FORCE` RLS             | 189   |
 | RLS-free tables (global, by design) | 18    |
-| Test files                          | 596   |
-| Route files                         | 542   |
+| Test files                          | 598   |
+| Route files                         | 546   |
 | ADR                                 | 250   |
 
 ### Modules
@@ -253,6 +253,8 @@
 | 200 | `sql/933_awcms_commerce_reporting_projections_schema.sql`                   |
 | 201 | `sql/934_awcms_commerce_payment_events_amount_mismatch.sql`                 |
 | 202 | `sql/935_awcms_commerce_product_type_extension.sql`                         |
+| 203 | `sql/936_awcms_commerce_entitlements_schema.sql`                            |
+| 204 | `sql/937_awcms_commerce_entitlements_worker_grants.sql`                     |
 
 ### Tables & Row-Level Security
 
@@ -304,6 +306,7 @@
 | `awcms_commerce_customer_otps`              | `sql/917_awcms_commerce_customer_accounts_schema.sql`      | yes | yes   |
 | `awcms_commerce_customer_sessions`          | `sql/917_awcms_commerce_customer_accounts_schema.sql`      | yes | yes   |
 | `awcms_commerce_customers`                  | `sql/913_awcms_commerce_customers_orders_schema.sql`       | yes | yes   |
+| `awcms_commerce_entitlements`               | `sql/936_awcms_commerce_entitlements_schema.sql`           | yes | yes   |
 | `awcms_commerce_flash_sale_products`        | `sql/909_awcms_commerce_marketing_schema.sql`              | yes | yes   |
 | `awcms_commerce_flash_sales`                | `sql/909_awcms_commerce_marketing_schema.sql`              | yes | yes   |
 | `awcms_commerce_messages`                   | `sql/927_awcms_commerce_conversations_schema.sql`          | yes | yes   |
@@ -469,16 +472,16 @@
 
 | Directory     | Test files |
 | ------------- | ---------- |
-| `(root)`      | 474        |
+| `(root)`      | 475        |
 | `e2e`         | 20         |
-| `integration` | 101        |
+| `integration` | 102        |
 | `unit`        | 1          |
 
 ### Routes
 
 | Surface         | Files |
 | --------------- | ----- |
-| `/api/v1/**`    | 429   |
+| `/api/v1/**`    | 433   |
 | `/admin/**`     | 83    |
 | publik / anonim | 30    |
 
