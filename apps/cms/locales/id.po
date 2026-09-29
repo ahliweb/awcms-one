@@ -6153,6 +6153,18 @@ msgstr "Jasa"
 msgid "Subscription"
 msgstr "Berlangganan"
 
+msgid "Digital ebook"
+msgstr "E-book digital"
+
+msgid "Digital program"
+msgstr "Program digital"
+
+msgid "Mentoring"
+msgstr "Mentoring"
+
+msgid "Bundle"
+msgstr "Bundel"
+
 msgid "Sending"
 msgstr "Mengirim"
 

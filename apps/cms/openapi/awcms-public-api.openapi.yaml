@@ -29247,6 +29247,11 @@ components:
             - digital
             - service
             - subscription
+            - digital_ebook
+            - digital_program
+            - mentoring
+            - bundle
+            - event
         sku:
           type: string
         name:
@@ -29404,6 +29409,11 @@ components:
                 - digital
                 - service
                 - subscription
+                - digital_ebook
+                - digital_program
+                - mentoring
+                - bundle
+                - event
               default: physical
             sku:
               type: string
@@ -29583,6 +29593,11 @@ components:
                 - digital
                 - service
                 - subscription
+                - digital_ebook
+                - digital_program
+                - mentoring
+                - bundle
+                - event
             sku:
               type: string
             name:

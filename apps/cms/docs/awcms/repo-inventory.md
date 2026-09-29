@@ -8,7 +8,7 @@
 | Aspect                              | Value |
 | ----------------------------------- | ----- |
 | Registered modules                  | 26    |
-| Migrations                          | 201   |
+| Migrations                          | 202   |
 | `awcms_*` tables                    | 206   |
 | Tables with `FORCE` RLS             | 188   |
 | RLS-free tables (global, by design) | 18    |
@@ -252,6 +252,7 @@
 | 199 | `sql/932_awcms_commerce_pos_permissions.sql`                                |
 | 200 | `sql/933_awcms_commerce_reporting_projections_schema.sql`                   |
 | 201 | `sql/934_awcms_commerce_payment_events_amount_mismatch.sql`                 |
+| 202 | `sql/935_awcms_commerce_product_type_extension.sql`                         |
 
 ### Tables & Row-Level Security
 
