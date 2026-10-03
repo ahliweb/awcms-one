@@ -40,6 +40,7 @@ What does **not** need an ADR: adding a field within an already-decided schema, 
 | [0022](0022-production-deployment-is-server-side-and-explicit.md) | Production deployment is server-side and explicit | Accepted (superseded in part by [0021](0021-zero-github-actions-local-ci-with-exact-sha-statuses.md)) |
 | [0023](0023-release-images-are-built-signed-and-published-from-a-trusted-release-host.md) | Release images are built, signed, and published from a trusted release host | Accepted |
 | [0025](0025-payments-are-an-allocation-ledger-separate-from-order-status.md) | Payments are an append-only allocation ledger, separate from order status | Accepted |
+| [0028](0028-pos-register-sessions-and-cash-up.md) | POS register sessions and cash-up: expected amounts are derived from the payment ledger, a closed shift is immutable | Accepted |
 
 ## Why the numbering starts at 0001
 

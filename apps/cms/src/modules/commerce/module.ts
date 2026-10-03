@@ -1,5 +1,10 @@
 import { defineModule } from "../_shared/module-contract";
 import { DEFAULT_COMMERCE_FEATURES } from "./domain/commerce-features";
+import { DEFAULT_CASH_UP_APPROVAL_THRESHOLD } from "./domain/register";
+import {
+  REGISTER_DATA_LIFECYCLE,
+  REGISTER_SUBJECT_DATA
+} from "./domain/register-lifecycle";
 import {
   COMMERCE_CATEGORIES_ACTIVITY_CODE,
   COMMERCE_CATEGORY_PERMISSIONS,
@@ -41,6 +46,14 @@ import {
   COMMERCE_POS_DUE_PERMISSIONS,
   COMMERCE_PAYMENTS_ACTIVITY_CODE,
   COMMERCE_PAYMENT_PERMISSIONS,
+  COMMERCE_REGISTERS_ACTIVITY_CODE,
+  COMMERCE_REGISTER_PERMISSIONS,
+  COMMERCE_REGISTER_SESSIONS_ACTIVITY_CODE,
+  COMMERCE_REGISTER_SESSION_PERMISSIONS,
+  COMMERCE_REGISTER_CASH_UPS_ACTIVITY_CODE,
+  COMMERCE_REGISTER_CASH_UP_PERMISSIONS,
+  COMMERCE_REGISTER_CORRECTIONS_ACTIVITY_CODE,
+  COMMERCE_REGISTER_CORRECTION_PERMISSIONS,
   COMMERCE_ENTITLEMENTS_ACTIVITY_CODE
 } from "./domain/commerce-permissions";
 import {
@@ -57,7 +70,11 @@ import {
   COMMERCE_VOUCHER_REDEEMED_EVENT_TYPE,
   COMMERCE_REVIEW_PUBLISHED_EVENT_TYPE,
   COMMERCE_PAYMENT_RECORDED_EVENT_TYPE,
-  COMMERCE_PAYMENT_REVERSED_EVENT_TYPE
+  COMMERCE_PAYMENT_REVERSED_EVENT_TYPE,
+  COMMERCE_REGISTER_SESSION_OPENED_EVENT_TYPE,
+  COMMERCE_REGISTER_SESSION_MOVEMENT_RECORDED_EVENT_TYPE,
+  COMMERCE_REGISTER_SESSION_CLOSED_EVENT_TYPE,
+  COMMERCE_REGISTER_SESSION_CORRECTED_EVENT_TYPE
 } from "./domain/commerce-events";
 import {
   SALES_BY_CATEGORY_PROJECTION_KEY,
@@ -286,7 +303,11 @@ export const commerceModule = defineModule({
       COMMERCE_VOUCHER_REDEEMED_EVENT_TYPE,
       COMMERCE_REVIEW_PUBLISHED_EVENT_TYPE,
       COMMERCE_PAYMENT_RECORDED_EVENT_TYPE,
-      COMMERCE_PAYMENT_REVERSED_EVENT_TYPE
+      COMMERCE_PAYMENT_REVERSED_EVENT_TYPE,
+      COMMERCE_REGISTER_SESSION_OPENED_EVENT_TYPE,
+      COMMERCE_REGISTER_SESSION_MOVEMENT_RECORDED_EVENT_TYPE,
+      COMMERCE_REGISTER_SESSION_CLOSED_EVENT_TYPE,
+      COMMERCE_REGISTER_SESSION_CORRECTED_EVENT_TYPE
     ]
   },
   /**
@@ -416,7 +437,9 @@ export const commerceModule = defineModule({
    * verbatim (`mergeEffectiveSettings(defaults, {})` is the empty override
    * case; `defaults` — including `features` — passes straight through).
    *
-   * Every flag defaults `true`: shipping this settings document changes
+   * Every flag but `register` (Issue #284, default OFF: it adds the
+   * obligation of an open register session to every POS sale) defaults
+   * `true`: shipping this settings document changes
    * NOTHING for an existing tenant that never opens the new "Fitur"
    * section (see `commerce-features.ts`'s own header for the full
    * reasoning). `pos` is enforced by issue #116's owner routes
@@ -426,7 +449,14 @@ export const commerceModule = defineModule({
   settings: {
     schemaVersion: 1,
     defaults: {
-      features: { ...DEFAULT_COMMERCE_FEATURES }
+      features: { ...DEFAULT_COMMERCE_FEATURES },
+      // Issue #284 (ADR-0028) — the cash-up variance above which a close needs
+      // a user holding `commerce.register_cash_ups.approve`. `"0.00"` = any
+      // discrepancy needs a supervisor (strict by default); read defensively
+      // by `domain/register.ts`'s `resolveCashUpSettings`. A new top-level
+      // key, so no schemaVersion bump: a tenant that never touches it gets
+      // this default through `mergeEffectiveSettings`.
+      cashUp: { approvalThreshold: DEFAULT_CASH_UP_APPROVAL_THRESHOLD }
     }
   },
   // Full CRUD screens: two as of Issue #23 (`src/pages/admin/commerce.astro`,
@@ -562,6 +592,16 @@ export const commerceModule = defineModule({
       order: 17,
       requiredPermission: "commerce.pos.create",
       requiredFeature: { moduleKey: "commerce", feature: "pos" }
+    },
+    // Issue #284 (ADR-0028) - registers, sessions and cash-up. Gated on the
+    // session-read permission and hidden the moment the tenant turns
+    // `features.register` off (it defaults OFF).
+    {
+      labelKey: "admin.layout.nav_commerce_registers",
+      path: "/admin/commerce-registers",
+      order: 18,
+      requiredPermission: "commerce.register_sessions.read",
+      requiredFeature: { moduleKey: "commerce", feature: "register" }
     }
   ],
   /**
@@ -2284,6 +2324,9 @@ export const commerceModule = defineModule({
         "Included in ordinary full-database backup/restore; no standalone archive artifact. The ledger is the source of truth for settlement: restore it WITH awcms_commerce_orders (payment_status is a cache of it).",
       executionMode: "generic"
     },
+    // Issue #284 (ADR-0028) - the six POS register tables; see
+    // `domain/register-lifecycle.ts`.
+    ...REGISTER_DATA_LIFECYCLE,
     {
       key: "commerce.protected_media_links",
       tableName: "awcms_commerce_protected_media_links",
@@ -2850,6 +2893,8 @@ export const commerceModule = defineModule({
         "Issue #285 - one payment leg or compensating reversal of an order: tender, amount, optional provider reference, and the staff member (a plain uuid stamp, actor_tenant_user_id) who recorded it. It names no customer - the order it points at does, and commerce.orders' own entry documents why that customer is unreachable by this engine's subject vocabulary (ADR-0016 D1). It is a fiscal record of money that changed hands, retained under the same obligation as commerce.orders; provider_reference (a bank/QRIS/gateway reference) is never exported.",
       redactedColumns: ["provider_reference"]
     },
+    // Issue #284 (ADR-0028) - see `domain/register-lifecycle.ts`.
+    ...REGISTER_SUBJECT_DATA,
     {
       key: "commerce.protected_media_links",
       tableName: "awcms_commerce_protected_media_links",
@@ -3156,6 +3201,62 @@ export const commerceModule = defineModule({
         "Record a compensating reversal of a payment — takes money back out of the order's settlement (Issue #285)"
     },
     {
+      activityCode: COMMERCE_REGISTERS_ACTIVITY_CODE,
+      action: "read",
+      description: "List POS registers (Issue #284)"
+    },
+    {
+      activityCode: COMMERCE_REGISTERS_ACTIVITY_CODE,
+      action: "create",
+      description: "Define a POS register (Issue #284)"
+    },
+    {
+      activityCode: COMMERCE_REGISTERS_ACTIVITY_CODE,
+      action: "update",
+      description: "Rename, relabel or (de)activate a POS register (Issue #284)"
+    },
+    {
+      activityCode: COMMERCE_REGISTER_SESSIONS_ACTIVITY_CODE,
+      action: "read",
+      description:
+        "Read register sessions and their cash-up reports (Issue #284)"
+    },
+    {
+      activityCode: COMMERCE_REGISTER_SESSIONS_ACTIVITY_CODE,
+      action: "create",
+      description: "Open a register session with an opening float (Issue #284)"
+    },
+    {
+      activityCode: COMMERCE_REGISTER_SESSIONS_ACTIVITY_CODE,
+      action: "update",
+      description:
+        "Use a register session: record drawer movements and hand it over (Issue #284)"
+    },
+    {
+      activityCode: COMMERCE_REGISTER_SESSIONS_ACTIVITY_CODE,
+      action: "export",
+      description:
+        "Export a register session's cash-up report as CSV (Issue #284)"
+    },
+    {
+      activityCode: COMMERCE_REGISTER_CASH_UPS_ACTIVITY_CODE,
+      action: "create",
+      description:
+        "Close a register session by counting the drawer (cash-up) (Issue #284)"
+    },
+    {
+      activityCode: COMMERCE_REGISTER_CASH_UPS_ACTIVITY_CODE,
+      action: "approve",
+      description:
+        "Approve or reject a cash-up whose variance exceeds the approval threshold (Issue #284)"
+    },
+    {
+      activityCode: COMMERCE_REGISTER_CORRECTIONS_ACTIVITY_CODE,
+      action: "approve",
+      description:
+        "Post a compensating correction to a closed register session (Issue #284)"
+    },
+    {
       activityCode: COMMERCE_ENTITLEMENTS_ACTIVITY_CODE,
       action: "read",
       description:
@@ -3193,5 +3294,9 @@ export {
   COMMERCE_WEBHOOK_ENDPOINT_PERMISSIONS,
   COMMERCE_POS_PERMISSIONS,
   COMMERCE_POS_DUE_PERMISSIONS,
-  COMMERCE_PAYMENT_PERMISSIONS
+  COMMERCE_PAYMENT_PERMISSIONS,
+  COMMERCE_REGISTER_PERMISSIONS,
+  COMMERCE_REGISTER_SESSION_PERMISSIONS,
+  COMMERCE_REGISTER_CASH_UP_PERMISSIONS,
+  COMMERCE_REGISTER_CORRECTION_PERMISSIONS
 };

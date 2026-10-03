@@ -1,0 +1,70 @@
+🇬🇧 English (source) · 🇮🇩 [Bahasa Indonesia](0028-pos-register-sessions-and-cash-up.id.md)
+
+# ADR-0028 — POS register sessions and cash-up: expected amounts are derived from the payment ledger, a closed shift is immutable
+
+- **Status:** Accepted
+- **Date:** 3 October 2026
+- **Decision maker:** ahliweb
+- **Related:** [ADR-0025](0025-payments-are-an-allocation-ledger-separate-from-order-status.md) (the payment-allocation ledger this builds on); [ADR-0003](0003-money-is-numeric-14-2-and-crosses-the-wire-as-a-string.md) (money); [ADR-0015](0015-commerce-migrations-live-in-the-reserved-9xx-range.md) (migration range); [ADR-0017](0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.md) (POS); issue [#284](https://github.com/ahliweb/awcms-one/issues/284) under epic [#281](https://github.com/ahliweb/awcms-one/issues/281).
+
+## Context
+
+POS today rings up sales and settles them (ADR-0025), but nothing answers the question every till owner asks at the end of a shift: *does the drawer hold what it should?* There is no register, no shift, no float, no record of cash that went to the safe or came out for ice, and therefore no cash-up. Epic #281 builds a one-ledger sales model; this ADR is the cash-handling half of it and reuses the payment ledger rather than keeping a second set of totals.
+
+## Decision
+
+### D1 — Six tables, one purpose each (`sql/970`)
+
+`awcms_commerce_registers` (a named till: `code`, `name`, optional location label, `active`), `…_register_sessions` (one shift: opening float, current cashier, `status` `open | closing | closed | corrected`), `…_register_movements` (append-only drawer movements), `…_register_close_requests` (one row per close attempt: variance, reason, approval decision), `…_register_close_lines` (the per-tender expected / counted / variance snapshot of one attempt) and `…_register_corrections` (compensating post-close rows). Every table is FORCE RLS with a `WITH CHECK`, uses composite `(tenant_id, …)` foreign keys backed by `UNIQUE (tenant_id, id)`, and keeps money as `numeric(14,2)`. Staff are plain tenant-user uuid stamps (never FKs — a fiscal record must outlive the account that produced it).
+
+### D2 — Expected amounts are DERIVED from the payment ledger, through a stamp, not a time window
+
+For a session, `expected(cash) = opening float + Σ succeeded cash payment legs − Σ succeeded cash reversal legs + Σ movements in − Σ movements out` and `expected(other tender) = Σ succeeded payments − Σ succeeded reversals of that tender` (a cash leg's `amount` is what was APPLIED, change already excluded — ADR-0025 D5 — so the drawer arithmetic is exact). The legs counted are those STAMPED with the session (`sql/971`: `awcms_commerce_payment_allocations.register_session_id`, frozen by the append-only trigger). A leg is stamped when its order carries a session AND that session is still `open` at the moment the leg is written (`application/register-session-stamp.ts`): a POS tender, but also a balance paid later at the counter or a cash refund recorded during the shift. Nothing is rewritten — a sale and its legs are written exactly as before, plus one uuid, so the cash-up can never change a sale or a payment.
+
+Why not "legs created between `opened_at` and `closed_at`": a leg's `created_at` is its TRANSACTION's start time, so a sale that began just before the session opened (and saw it open after the commit), or one that began just before a close, lands on the wrong side of the window. A stamp written under the session-row lock is exact by construction. The expected figures are SNAPSHOTTED once, onto the close lines, so a closed session's numbers are evidence rather than a query that could be re-run against moved data.
+
+### D3 — One active session per register, and three lock modes on the session row
+
+A partial UNIQUE index `(tenant_id, register_id) WHERE status IN ('open', 'closing')` is the mechanical guarantee; opening also locks the REGISTER row (`FOR NO KEY UPDATE`), so two genuinely concurrent opens serialise and the loser gets a clean `409 REGISTER_SESSION_ALREADY_OPEN` instead of a unique violation. A sale, a movement and a stamped leg lock the session `FOR SHARE` (many in parallel); handover, close, approve and correct lock it `FOR NO KEY UPDATE` — exclusive against every share-locker and each other, but, unlike `FOR UPDATE`, compatible with the `FOR KEY SHARE` an FK insert takes on the session row (the deadlock ADR-0025 D4 recorded, avoided here by construction). Every session-scoped mutation locks FIRST and reads the idempotency store AFTER the lock, so a retry that waited for the first request replays its committed record deterministically.
+
+### D4 — The close workflow, and a threshold on the GROSS variance
+
+The current cashier (`commerce.register_cash_ups.create`) counts the drawer per tender; the body carries only what was COUNTED. A count is required for cash and for every tender with ledger activity. The **gross** variance — the sum of the ABSOLUTE per-tender differences — is compared with the tenant setting `cashUp.approvalThreshold` (commerce module settings, default `"0.00"`: any discrepancy needs a supervisor; read defensively, a corrupt value falls back to the strict default): within it the request is `auto` and the session `closed`; above it, a closer who also holds `commerce.register_cash_ups.approve` closes it in one step (`approved`, by them), and one who does not leaves the session `closing` with a `pending` request that accepts no sale, movement or second close until an approver decides (`approve` → `closed`; `reject`, with a mandatory note → back to `open`, the rejected request kept as history, the next attempt n+1). Gross, not net, so a cash surplus cannot hide a QRIS shortfall by netting to zero. A `varianceReason` is mandatory whenever any tender is off. Net and gross, the threshold in force and the decision are all stored on the request.
+
+### D5 — A closed session is immutable; corrections are compensating rows
+
+A trigger freezes every column of a `closed`/`corrected` session except the one transition `closed → corrected`; movements, close lines and corrections are append-only (a trigger refuses UPDATE, `awcms_app` loses UPDATE and DELETE), a close request changes only `pending → approved | rejected`, and every register table loses `DELETE` for `awcms_app` (only the retention worker may delete, past the ten-year ceiling — `sql/973`; `security-readiness.ts` asserts the exact privilege sets both ways). A correction (`commerce.register_corrections.approve`) adds signed per-tender adjustments to the COUNTED amount; the original request and lines are preserved untouched, the corrected figure is the original plus the sum of its corrections (never negative), and the session becomes `corrected`. Late ledger activity — a balance paid on a closed session's sale — is recorded on the ledger and NOT stamped, so it can never change a closed cash-up; it is not folded in silently either (see Deferred).
+
+### D6 — POS integration: stamped sales, a gate, and an opt-in feature flag that defaults OFF
+
+POS orders gain `register_session_id` (`sql/971`; only a `pos` order may carry one — CHECK; set once at insert, never changed; a trigger refuses attaching to a non-open session even for a writer that skipped the application gate). The `commerce` feature flag `register` (`domain/commerce-features.ts`) is the one flag that defaults OFF: it adds an obligation, so a tenant that never opens "Fitur" must see exactly today's POS. With it ON, `POST /api/v1/commerce/pos/orders` requires `registerId` and the register must have an `open` session whose current cashier is the actor (`400` / `404` / `409 REGISTER_SESSION_REQUIRED | REGISTER_SESSION_CLOSING | NOT_SESSION_CASHIER`, all before anything is written; the session is then locked `FOR SHARE` for the rest of the sale's transaction). With it OFF nothing is stamped and a sale is byte-for-byte what it was — and naming a `registerId` is refused (`409 FEATURE_DISABLED`) rather than silently ignored, so a sale never looks attached when it is not. `registerId` joins the idempotency hash only when present, so a pre-existing payload still replays across the deploy. The whole register surface is gated on the flag (`409 FEATURE_DISABLED` on the owner routes).
+
+### D7 — Permissions: ten keys, existing verbs, none implied by `commerce.pos.create`
+
+`commerce.registers.{read,create,update}`, `commerce.register_sessions.{read,create,update,export}` (open = `create`, use = `update`), `commerce.register_cash_ups.{create,approve}` (close, approve a variance) and `commerce.register_corrections.approve`. Only verbs already in the upstream-owned `AccessAction` union (the `reverse`-verb reasoning of ADR-0025 D9 again); `approve` and `export` are high-risk, so a tenant may author SoD rules against them (e.g. "the cashier who counted may not approve"). A movement, a sale and a close are the CURRENT cashier's; a handover is allowed for the current cashier or a supervisor holding the approve key (checked in the handler, through the chokepoint, only when needed). A cashier holding exactly the shift keys is allowed on every shift route and denied approval, correction, CSV export and register administration — proved by a real `evaluateAccess` test and by route-level tests with principals seeded with exactly those keys.
+
+### D8 — Idempotency, audit and events
+
+Open, movement, handover, close, close-decision and correction require `Idempotency-Key` (shared `awcms_idempotency_keys` store, hash bound to the actor and the resource; the movement, close request and correction rows also carry their own unique `source_key`). Audit actions `register.create|update` and `register_session.open|movement|handover|close_requested|close|close_rejected|correct` carry money, types and ids — never the free text. Events `awcms.commerce.register_session.{opened, movement_recorded, closed, corrected}` ride the SESSION aggregate (`commerce.register_session`); `closed` fires once, only when the session actually reaches `closed`. Registered in `module.ts`, the event-type registry and AsyncAPI.
+
+### D9 — Report and CSV
+
+`GET …/register-sessions/{id}` returns the cash-up report: opening float, sales count/total, per-tender payments / reversals / expected / counted / variance (corrections applied on top, originals untouched), movements, close history, corrections; live while open/closing, the stored snapshot once closed. `GET …/report.csv` (`commerce.register_sessions.export`) serialises it in one sectioned file; every cell is spreadsheet-formula-neutralised (`domain/register-cash-up-csv.ts`: a leading `=`, `+`, `-`, `@`, tab or carriage return is prefixed with `'`; a strictly numeric amount keeps its sign) and no customer data appears.
+
+### D10 — The expense reference is a typed hook, not a column pointing at nothing
+
+An `expense` movement needs a `reference`, free text today. `reference_kind` (CHECK `IN ('free_text')`) is the typed hook: the expenses domain (#294) does not exist, and an id column referencing a table that does not exist would be a claim, not a feature (the discipline ADR-0025 applies to `store_credit`/`gift_card`). The migration that ships the expenses table widens the CHECK and adds the id column.
+
+### D11 — Tenant-safe references, lifecycle, subject data
+
+All references are composite FKs; the two parents (`registers`, `sessions`) carry a `deleted_at` that exists only as the retention engine's cursor and is never set (the `commerce.orders` shape — practically unreachable, which also keeps the append-only children's foreign keys safe from a purge); the four append-only tables key on `created_at` (five-year floor, ten-year ceiling). `subjectData` descriptors name the staff stamps as `tenant_user` columns, retained under the fiscal obligation; free-text notes/reasons are never exported.
+
+## Consequences
+
+- Positive: a till owner can reconcile a shift to the cent from rows that cannot be edited; the cash-up reads the same ledger as every other payment report, so there is no second set of totals to drift; a sale can never land in a counted session; a supervisor's approval is a mechanical consequence of a tenant-set threshold rather than a convention.
+- Cost: a second lock mode and a row lock per sale on the register path (`FOR SHARE` on one session row — contended only by a close or handover, both rare); a nullable column on `awcms_commerce_orders` and on the ledger; a tenant that turns the feature on must define registers and open sessions before cashiers can ring sales (that is the point, and it is opt-in); six tables.
+- Compatibility: purely additive. Feature OFF is today's POS; existing payloads, hashes and responses are unchanged except for the additive `registerSessionId` on the POS 201.
+
+## Deferred (not built here, on purpose)
+
+The expenses domain (#294) and the typed expense reference (D10); late ledger activity on a closed session's sales shown as a "recorded after close" figure in the report (today it is on the ledger, unstamped, and in no cash-up); a counterpart link between a transfer-out and a transfer-in movement on two registers; a blind count (the screen shows expected beside counted, as the issue asks); a per-register threshold override and a per-tender threshold; a cashier picker for handover (the form takes a tenant-user id — a picker would need a staff directory the commerce permissions do not grant); denomination (banknote/coin) counting; offline operation; a cash-up projection for the dashboard (the report is a live aggregate over indexed tables).

@@ -10465,13 +10465,14 @@ The 201 carries `payments` (every ledger row — one per tender, for the receipt
 
 **Responses**
 
-| Status | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | Schema                                 |
-| ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
-| 201    | Order created, already `paid`.                                                                                                                                                                                                                                                                                                                                                                                                                                                      | object                                 |
-| 400    | `VALIDATION_ERROR` (shape, or a `customer.phone` that does not normalise) or `IDEMPOTENCY_REQUIRED` (no `Idempotency-Key` header).                                                                                                                                                                                                                                                                                                                                                  | [`ApiError`](#standard-error-envelope) |
-| 401    | Missing or invalid session.                                                                                                                                                                                                                                                                                                                                                                                                                                                         | [`ApiError`](#standard-error-envelope) |
-| 403    | Access denied by RBAC/ABAC.                                                                                                                                                                                                                                                                                                                                                                                                                                                         | [`ApiError`](#standard-error-envelope) |
-| 409    | `FEATURE_DISABLED` (the tenant turned `pos` off, #118), `IDEMPOTENCY_CONFLICT` (same key, different payload), `CART_CHANGED` (a line's price/stock changed since it was priced — `details.quote` carries the fresh quote), `INSUFFICIENT_TENDER` (the tenders do not cover the total — `details.shortfall`) or `OVERPAYMENT` (non-cash tenders exceed the total — `details.outstanding`/`details.attempted`). `403` also covers `allowDue: true` without `commerce.pos_due.create`. | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 201    | Order created, already `paid`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          | object                                 |
+| 400    | `VALIDATION_ERROR` (shape, or a `customer.phone` that does not normalise) or `IDEMPOTENCY_REQUIRED` (no `Idempotency-Key` header).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 409    | `FEATURE_DISABLED` (the tenant turned `pos` off, #118), `IDEMPOTENCY_CONFLICT` (same key, different payload), `CART_CHANGED` (a line's price/stock changed since it was priced — `details.quote` carries the fresh quote), `INSUFFICIENT_TENDER` (the tenders do not cover the total — `details.shortfall`) or `OVERPAYMENT` (non-cash tenders exceed the total — `details.outstanding`/`details.attempted`) or, with the `register` feature on (Issue #284), `REGISTER_SESSION_REQUIRED` (the register has no open session), `REGISTER_SESSION_CLOSING` or `NOT_SESSION_CASHIER`. `403` also covers `allowDue: true` without `commerce.pos_due.create`; `404` an unknown or other-tenant `registerId`. | [`ApiError`](#standard-error-envelope) |
 
 ### `GET /api/v1/commerce/products` — List products for the current tenant — filterable, sortable, keyset-paginated.
 
@@ -10814,6 +10815,319 @@ Upsert on `(tenant_id, product_id)` — at most one link per product (`sql/939`)
 | 401    | Missing or invalid session.                        | [`ApiError`](#standard-error-envelope) |
 | 403    | Access denied by RBAC/ABAC.                        | [`ApiError`](#standard-error-envelope) |
 | 404    | Resource not found.                                | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/register-sessions` — Issue #284 (ADR-0028). Register sessions, keyset-paginated, newest first. Gated on `commerce.register_sessions.read` and the `register` feature.
+
+- **operationId**: `listCommerceRegisterSessions`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name         | In    | Required | Type                                           | Description                                                   |
+| ------------ | ----- | -------- | ---------------------------------------------- | ------------------------------------------------------------- |
+| `cursor`     | query | no       | string                                         |                                                               |
+| `registerId` | query | no       | string (uuid)                                  |                                                               |
+| `status`     | query | no       | enum(`open`, `closing`, `closed`, `corrected`) |                                                               |
+| `cashier`    | query | no       | string (uuid)                                  | Filter to sessions whose CURRENT cashier is this tenant user. |
+
+**Responses**
+
+| Status | Description                                                                          | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------ | -------------------------------------- |
+| 200    | One page of sessions (limit 50) with an opaque `nextCursor` (null on the last page). | object                                 |
+| 400    | `VALIDATION_ERROR` (a malformed cursor, uuid or status).                             | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                          | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                          | [`ApiError`](#standard-error-envelope) |
+| 409    | `FEATURE_DISABLED` — the tenant's `register` feature is off (it defaults OFF).       | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/register-sessions` — Issue #284 (ADR-0028). Opens a session on a register with a counted opening float; the opener is the first current cashier. Gated on `commerce.register_sessions.create`; requires `Idempotency-Key`.
+
+- **operationId**: `openCommerceRegisterSession`
+- **Security**: bearerAuth + tenantHeader
+
+One ACTIVE (open/closing) session per register: a second open is `409 REGISTER_SESSION_ALREADY_OPEN` (`details.activeSessionId`). Two genuinely concurrent opens serialise on the register row, and a partial unique index is the independent backstop, so exactly one wins. Same key + same body replays the stored 201; same key + a different body is `409 IDEMPOTENCY_CONFLICT`. Emits `awcms.commerce.register_session.opened`.
+
+**Parameters**
+
+| Name              | In     | Required | Type   | Description |
+| ----------------- | ------ | -------- | ------ | ----------- |
+| `Idempotency-Key` | header | yes      | string |             |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                                                                                                                    | Schema                                 |
+| ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 201    | The session (or the stored replay).                                                                                                                            | object                                 |
+| 400    | `VALIDATION_ERROR` or `IDEMPOTENCY_REQUIRED`.                                                                                                                  | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                    | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                    | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                            | [`ApiError`](#standard-error-envelope) |
+| 409    | `REGISTER_SESSION_ALREADY_OPEN`, `REGISTER_INACTIVE`, `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` — the tenant's `register` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/register-sessions/{id}` — Issue #284 (ADR-0028). One session with its cash-up report: opening float, sales, expected / counted / difference per tender, movements, close history and corrections. Gated on `commerce.register_sessions.read`.
+
+- **operationId**: `getCommerceRegisterSession`
+- **Security**: bearerAuth + tenantHeader
+
+Live (derived from the payment ledger and the movements) while the session is open or closing; the stored close snapshot once it is closed, with every correction applied ON TOP (the original lines are never altered). An unknown id and another tenant's id are the same 404.
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                                                                    | Schema                                 |
+| ------ | ------------------------------------------------------------------------------ | -------------------------------------- |
+| 200    | The cash-up report.                                                            | object                                 |
+| 401    | Missing or invalid session.                                                    | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                    | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                            | [`ApiError`](#standard-error-envelope) |
+| 409    | `FEATURE_DISABLED` — the tenant's `register` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/register-sessions/{id}/close` — Issue #284 (ADR-0028). Closes (cash-ups) a session by counting the drawer per tender. Gated on `commerce.register_cash_ups.create`; requires `Idempotency-Key`.
+
+- **operationId**: `closeCommerceRegisterSession`
+- **Security**: bearerAuth + tenantHeader
+
+The expected amount per tender is DERIVED (opening float + the session's stamped payment-ledger legs + drawer movements); the body carries only what was COUNTED. A count is required for `cash` and every tender with activity. The GROSS variance (the sum of the absolute per-tender differences) is compared with the tenant's `cashUp.approvalThreshold` (module setting; default `0.00`): within it the session is `closed`; above it, a caller who ALSO holds `commerce.register_cash_ups.approve` closes it in one step, and one who does not leaves it `closing` (`outcome: pending_approval`) until `.../close-decision`. A `varianceReason` is mandatory whenever any tender differs. Only the session's current cashier may close. The close is exclusive against every sale, movement and stamped payment leg of the session and idempotent: a replay returns the stored body, and two concurrent closes yield exactly one `closed`. Emits `awcms.commerce.register_session.closed` once, when the session actually reaches `closed`. Never rewrites a sale or a payment.
+
+**Parameters**
+
+| Name              | In     | Required | Type          | Description |
+| ----------------- | ------ | -------- | ------------- | ----------- |
+| `id`              | path   | yes      | string (uuid) |             |
+| `Idempotency-Key` | header | yes      | string        |             |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                                                                                                                                     | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The close outcome and the cash-up report (or the stored replay).                                                                                                                | object                                 |
+| 400    | `VALIDATION_ERROR` (a missing required count, a variance with no reason, a malformed amount) or `IDEMPOTENCY_REQUIRED`.                                                         | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                                             | [`ApiError`](#standard-error-envelope) |
+| 409    | `REGISTER_SESSION_NOT_OPEN` (`details.status`), `NOT_SESSION_CASHIER`, `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` — the tenant's `register` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/register-sessions/{id}/close-decision` — Issue #284 (ADR-0028). Approves or rejects a `closing` session's pending close request. Gated on `commerce.register_cash_ups.approve` (a high-risk verb); requires `Idempotency-Key`.
+
+- **operationId**: `decideCommerceRegisterClose`
+- **Security**: bearerAuth + tenantHeader
+
+`approve` closes the session (the cashier who counted stays the closer; the approver is on the request). `reject` (a `note` is required) returns the session to `open` for a recount and keeps the rejected request as history; the next close is attempt n+1. Only a `closing` session has anything to decide (`409 REGISTER_CLOSE_NOT_PENDING`).
+
+**Parameters**
+
+| Name              | In     | Required | Type          | Description |
+| ----------------- | ------ | -------- | ------------- | ----------- |
+| `id`              | path   | yes      | string (uuid) |             |
+| `Idempotency-Key` | header | yes      | string        |             |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                                                                                                               | Schema                                 |
+| ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The outcome (`closed` after an approval, `reopened` after a rejection) and the report (or the stored replay).                                             | object                                 |
+| 400    | `VALIDATION_ERROR` or `IDEMPOTENCY_REQUIRED`.                                                                                                             | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                               | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                               | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                       | [`ApiError`](#standard-error-envelope) |
+| 409    | `REGISTER_CLOSE_NOT_PENDING` (`details.status`), `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` — the tenant's `register` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/register-sessions/{id}/corrections` — Issue #284 (ADR-0028). Posts a compensating correction to a CLOSED session. Gated on `commerce.register_corrections.approve` (a high-risk verb); requires `Idempotency-Key`.
+
+- **operationId**: `correctCommerceRegisterSession`
+- **Security**: bearerAuth + tenantHeader
+
+A closed session is immutable: a correction adds signed per-tender `adjustment`s to the COUNTED amount (the original close request and lines are preserved untouched), moves the session `closed -> corrected` (further corrections keep it `corrected`) and returns the report with the corrected figures. A correction can never make a counted amount negative (`400`), and only a closed or corrected session can be corrected (`409 REGISTER_SESSION_NOT_CLOSED`). Emits `awcms.commerce.register_session.corrected` (never the free-text reason).
+
+**Parameters**
+
+| Name              | In     | Required | Type          | Description |
+| ----------------- | ------ | -------- | ------------- | ----------- |
+| `id`              | path   | yes      | string (uuid) |             |
+| `Idempotency-Key` | header | yes      | string        |             |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                                                                                                                | Schema                                 |
+| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 201    | The report with the correction applied (or the stored replay).                                                                                             | object                                 |
+| 400    | `VALIDATION_ERROR` (including a correction that would make a count negative) or `IDEMPOTENCY_REQUIRED`.                                                    | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                        | [`ApiError`](#standard-error-envelope) |
+| 409    | `REGISTER_SESSION_NOT_CLOSED` (`details.status`), `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` — the tenant's `register` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/register-sessions/{id}/handover` — Issue #284 (ADR-0028). Hands the drawer to another cashier. Gated on `commerce.register_sessions.update`; requires `Idempotency-Key`.
+
+- **operationId**: `handOverCommerceRegisterSession`
+- **Security**: bearerAuth + tenantHeader
+
+Allowed for the session's CURRENT cashier, or for a supervisor holding `commerce.register_cash_ups.approve` (checked by the handler through the same access chokepoint only when the caller is not the current cashier; `403 ACCESS_DENIED` otherwise). The new cashier must be an ACTIVE tenant user of this tenant (`409 UNKNOWN_CASHIER` for an unknown, inactive or foreign id). The history is the audit trail (`register_session.handover`), not a table.
+
+**Parameters**
+
+| Name              | In     | Required | Type          | Description |
+| ----------------- | ------ | -------- | ------------- | ----------- |
+| `id`              | path   | yes      | string (uuid) |             |
+| `Idempotency-Key` | header | yes      | string        |             |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                                                                                                                              | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------- |
+| 200    | The session, now owned by the new cashier (or the stored replay).                                                                                                        | object                                 |
+| 400    | `VALIDATION_ERROR` or `IDEMPOTENCY_REQUIRED`.                                                                                                                            | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                              | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                              | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                                      | [`ApiError`](#standard-error-envelope) |
+| 409    | `REGISTER_SESSION_NOT_OPEN`, `SAME_CASHIER`, `UNKNOWN_CASHIER`, `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` — the tenant's `register` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/register-sessions/{id}/movements` — Issue #284 (ADR-0028). Records a cash drawer movement against an OPEN session. Gated on `commerce.register_sessions.update`; requires `Idempotency-Key`.
+
+- **operationId**: `recordCommerceRegisterMovement`
+- **Security**: bearerAuth + tenantHeader
+
+Append-only and cash only. `cash_in` is always `in`; `cash_out`, `safe_drop` and `expense` are always `out`; `transfer` and `correction` must say `direction`. An `expense`/`transfer` needs a `reference`, a `correction` a `note`. The `reference` is FREE TEXT today — the typed reference to the expenses domain (#294) is a documented hook, not yet a field. Only the session's current cashier may record one. Emits `awcms.commerce.register_session.movement_recorded` (never the free text).
+
+**Parameters**
+
+| Name              | In     | Required | Type          | Description |
+| ----------------- | ------ | -------- | ------------- | ----------- |
+| `id`              | path   | yes      | string (uuid) |             |
+| `Idempotency-Key` | header | yes      | string        |             |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                                                                                                                                     | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 201    | The movement (or the stored replay).                                                                                                                                            | object                                 |
+| 400    | `VALIDATION_ERROR` or `IDEMPOTENCY_REQUIRED`.                                                                                                                                   | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                                             | [`ApiError`](#standard-error-envelope) |
+| 409    | `REGISTER_SESSION_NOT_OPEN` (`details.status`), `NOT_SESSION_CASHIER`, `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` — the tenant's `register` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/register-sessions/{id}/report.csv` — Issue #284 (ADR-0028). The session's cash-up as CSV: summary, per-tender expected/counted/difference, every movement and every correction. Gated on `commerce.register_sessions.export` (the platform's high-risk `export` verb).
+
+- **operationId**: `exportCommerceRegisterSessionCsv`
+- **Security**: bearerAuth + tenantHeader
+
+One `section` column (`summary`, `tender`, `movement`, `correction`) keeps the whole cash-up unambiguous in a spreadsheet. EVERY cell is spreadsheet-formula-neutralised (a cell starting with `=`, `+`, `-`, `@`, a tab or a carriage return is prefixed with `'`; a strictly numeric amount keeps its sign). No customer name or phone appears. `Cache-Control: no-store`.
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                                                                    | Schema                                 |
+| ------ | ------------------------------------------------------------------------------ | -------------------------------------- |
+| 200    | The CSV.                                                                       | string                                 |
+| 401    | Missing or invalid session.                                                    | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                    | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                            | [`ApiError`](#standard-error-envelope) |
+| 409    | `FEATURE_DISABLED` — the tenant's `register` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/registers` — Issue #284 (ADR-0028). The tenant's POS registers (code, name, optional location label, active flag), each with its live (open/closing) session if any. Gated on `commerce.registers.read` and the tenant's `register` feature.
+
+- **operationId**: `listCommerceRegisters`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name              | In    | Required | Type                  | Description                                                                  |
+| ----------------- | ----- | -------- | --------------------- | ---------------------------------------------------------------------------- |
+| `includeInactive` | query | no       | enum(`true`, `false`) | `false` hides deactivated registers; anything else (the default) lists them. |
+
+**Responses**
+
+| Status | Description                                                                    | Schema                                 |
+| ------ | ------------------------------------------------------------------------------ | -------------------------------------- |
+| 200    | The registers, active first then by code (limit 200).                          | object                                 |
+| 401    | Missing or invalid session.                                                    | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                    | [`ApiError`](#standard-error-envelope) |
+| 409    | `FEATURE_DISABLED` — the tenant's `register` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/registers` — Issue #284 (ADR-0028). Defines a POS register. Gated on `commerce.registers.create`; `code` is unique per tenant, case-insensitively.
+
+- **operationId**: `createCommerceRegister`
+- **Security**: bearerAuth + tenantHeader
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                                                             | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 201    | The new register.                                                                                       | object                                 |
+| 400    | `VALIDATION_ERROR`.                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                             | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                             | [`ApiError`](#standard-error-envelope) |
+| 409    | `REGISTER_CODE_TAKEN` or `FEATURE_DISABLED` — the tenant's `register` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/registers/{id}` — Issue #284 (ADR-0028). One register. Gated on `commerce.registers.read`. An unknown id and another tenant's id are the same 404.
+
+- **operationId**: `getCommerceRegister`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                                                                    | Schema                                 |
+| ------ | ------------------------------------------------------------------------------ | -------------------------------------- |
+| 200    | The register.                                                                  | object                                 |
+| 401    | Missing or invalid session.                                                    | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                    | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                            | [`ApiError`](#standard-error-envelope) |
+| 409    | `FEATURE_DISABLED` — the tenant's `register` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
+
+### `PATCH /api/v1/commerce/registers/{id}` — Issue #284 (ADR-0028). Renames, relabels or (de)activates a register. Gated on `commerce.registers.update`. A register with an open/closing session cannot be deactivated.
+
+- **operationId**: `updateCommerceRegister`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                                                                     | Schema                                 |
+| ------ | --------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The updated register.                                                                                           | object                                 |
+| 400    | `VALIDATION_ERROR`.                                                                                             | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                             | [`ApiError`](#standard-error-envelope) |
+| 409    | `REGISTER_HAS_ACTIVE_SESSION` or `FEATURE_DISABLED` — the tenant's `register` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
 
 ### `GET /api/v1/commerce/reviews` — Admin review moderation list (Issue 29). Keyset-paginated; optional status filter. Gated on reviews.read.
 
@@ -15478,7 +15792,7 @@ consumer/subscriber contract in this file).
 }
 ```
 
-### Channels (58)
+### Channels (62)
 
 - `awcms.blog-content.ad.created` — An advertisement was created. Documented contract only; producer is `pages/api/v1/blog/ads/index.ts`'s `blog-content.ad.created` log line.
 - `awcms.blog-content.ad.deleted` — An advertisement was soft-deleted. Documented contract only; producer is `pages/api/v1/blog/ads/[id].ts`'s `blog-content.ad.deleted` log line.
@@ -15522,6 +15836,10 @@ consumer/subscriber contract in this file).
 - `awcms.commerce.product.created` — A product was created (status `draft`). Producer: `commerce/application/product-directory.ts`'s `createProduct`, via `appendDomainEvent` in the same transaction as the row's creation.
 - `awcms.commerce.product.status_changed` — A product's lifecycle status transitioned (`commerce/domain/product-status.ts`'s `LEGAL_TRANSITIONS`). Producer: `commerce/application/product-directory.ts`'s `updateProduct`. Carries `previousStatus` and `status`; a consumer that only cares whether a product is still sellable can key off this without diffing the row.
 - `awcms.commerce.product.updated` — A product's fields other than `status` were changed. Producer: `commerce/application/product-directory.ts`'s `updateProduct`. Published alongside `commerce.product.status_changed` when a single `PATCH` changes both.
+- `awcms.commerce.register_session.closed` — A POS register session was closed (cash-up). Producer: `commerce/application/register-cash-up.ts`'s `closeRegisterSession` / `decideRegisterClose`, in the same transaction as the status change. Fired once per session, only when it actually reaches `closed` (a close awaiting approval, or a rejected one, does not fire it). Payload: `sessionId`, `registerId`, `varianceTotal`, `varianceGross`, `approvalRequired`, and per-tender `lines` (`tenderType`, `expected`, `counted`, `variance`).
+- `awcms.commerce.register_session.corrected` — A compensating correction was recorded against a closed register session; the original close request and lines are preserved untouched. Producer: `commerce/application/register-cash-up.ts`'s `recordRegisterCorrection`. Payload: `sessionId`, `correctionId`, and `adjustments` (`tenderType`, `adjustment`) - never the free-text reason.
+- `awcms.commerce.register_session.movement_recorded` — A cash drawer movement (cash in/out, safe drop, expense, transfer, correction) was recorded against an open register session. Producer: `commerce/application/register-session-directory.ts`'s `recordRegisterMovement`. Payload: `sessionId`, `movementId`, `movementType`, `direction`, `amount` - never the free-text reference or note.
+- `awcms.commerce.register_session.opened` — A POS register session was opened with an opening float (Issue #284, ADR-0028). Producer: `commerce/application/register-session-directory.ts`'s `openRegisterSession`, in the same transaction as the session row. Aggregate: the register session. Payload: `sessionId`, `registerId`, `openingFloat`, `cashierTenantUserId`.
 - `awcms.commerce.review.published` — A pending review was moderated to `published` by an admin. Producer: `commerce/application/review-directory.ts`'s `moderateReview` — never fired on review creation, since a pending review is not yet a fact worth publishing to anyone.
 - `awcms.commerce.voucher.redeemed` — A voucher's `used_count` was incremented by a real order. Producer: `commerce/application/order-directory.ts`'s `createOrderFromCart`, in the same transaction as the order that redeemed it.
 - `awcms.domain-event-runtime.sample.recorded` — Reference/example event used to exercise the domain-event-runtime outbox, dispatcher, ordering, retry/backoff, dead-letter, and replay mechanism end-to-end. Real producer modules publish their OWN event types the same way, via `appendDomainEvent` — this one is intentionally self-contained rather than tied to another module's business logic in this foundation module (see `src/modules/domain-event-runtime/domain/event-type-registry.ts`'s own doc comment). Producer: any caller of `application/append-domain-event.ts`'s `appendDomainEvent` for this event type; consumers: `infrastructure/consumer-registry.ts`'s two reference consumers (a same-process cross-module audit projector and a self-contained read-model activity-rollup projection).

@@ -444,11 +444,11 @@ export type RecordReversalInput = {
   note: string;
 };
 
-function isRecord(value: unknown): value is Record<string, unknown> {
+export function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value);
 }
 
-function optionalText(
+export function optionalText(
   value: unknown,
   field: string,
   max: number,
@@ -470,7 +470,7 @@ function optionalText(
   return trimmed.slice(0, max);
 }
 
-function validateIdempotencyKey(
+export function validateIdempotencyKey(
   key: string,
   errors: ValidationError[]
 ): string {
@@ -490,7 +490,7 @@ function validateIdempotencyKey(
   return key.trim().slice(0, 200);
 }
 
-function positiveMoney(
+export function positiveMoney(
   value: unknown,
   field: string,
   errors: ValidationError[]

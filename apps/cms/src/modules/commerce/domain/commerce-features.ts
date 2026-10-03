@@ -34,12 +34,12 @@
 
 /** Every togglable commerce feature, contract #106 D10's own five. `pos` has no route/screen wired to it YET (issue #116, landing in parallel) — the default exists so the settings document has a stable shape from day one and #116's own gate has nothing left to add here. */
 export type CommerceFeatureKey =
-  "pos" | "inbox" | "campaigns" | "gateway" | "courier";
+  "pos" | "inbox" | "campaigns" | "gateway" | "courier" | "register";
 
 export type CommerceFeatures = Readonly<Record<CommerceFeatureKey, boolean>>;
 
 /**
- * Default-ON for every feature — turning a feature toggle ON by default
+ * Default-ON for every feature but `register` (Issue #284, below) — turning a feature toggle ON by default
  * means shipping this settings document changes NOTHING for an existing
  * tenant that never opens the new "Fitur" section, matching this repo's
  * "migration-free upgrade" convention (`store-settings-validation.ts`'s own
@@ -51,7 +51,12 @@ export const DEFAULT_COMMERCE_FEATURES: CommerceFeatures = {
   inbox: true,
   campaigns: true,
   gateway: true,
-  courier: true
+  courier: true,
+  // Issue #284 (ADR-0028) — the one flag that defaults OFF. Every other
+  // default is ON because it describes what the platform already did; this
+  // one ADDS an obligation (a POS sale needs an open register session), so a
+  // tenant that never opens "Fitur" must see exactly today's POS.
+  register: false
 };
 
 const FEATURE_KEYS: readonly CommerceFeatureKey[] = [
@@ -59,7 +64,8 @@ const FEATURE_KEYS: readonly CommerceFeatureKey[] = [
   "inbox",
   "campaigns",
   "gateway",
-  "courier"
+  "courier",
+  "register"
 ];
 
 function isBoolean(value: unknown): value is boolean {

@@ -112,6 +112,9 @@ import {
   COMMERCE_ORDER_CREATED_EVENT_TYPE
 } from "../domain/commerce-events";
 import { buildCartQuote } from "./cart-quote-service";
+import { fetchCommerceFeatures } from "./commerce-feature-gate";
+import { FeatureDisabledError } from "../domain/commerce-features";
+import { gateSaleToRegisterSession } from "./register-session-directory";
 import { findOrCreateCustomerByPhone } from "./customer-directory";
 import {
   fetchOrderDetailForAdmin,
@@ -162,6 +165,32 @@ export class PosDueRequiresCustomerError extends Error {
 }
 
 /**
+ * Issue #284 (ADR-0028) - the register gate refused a sale. `code` is the
+ * route's `409`/`400`/`404` discriminator:
+ *   - `REGISTER_REQUIRED`: the tenant's `register` feature is on and the
+ *     request named no register (`400 VALIDATION_ERROR` on `registerId`);
+ *   - `REGISTER_NOT_FOUND`: the register does not exist for this tenant (the
+ *     same answer for an unknown and another tenant's id - no oracle);
+ *   - `REGISTER_SESSION_REQUIRED`: the register has no open session;
+ *   - `REGISTER_SESSION_CLOSING`: its session is counting/awaiting approval;
+ *   - `NOT_SESSION_CASHIER`: the session belongs to another cashier.
+ * Raised BEFORE anything is written.
+ */
+export class PosRegisterSessionError extends Error {
+  public readonly code:
+    | "REGISTER_REQUIRED"
+    | "REGISTER_NOT_FOUND"
+    | "REGISTER_SESSION_REQUIRED"
+    | "REGISTER_SESSION_CLOSING"
+    | "NOT_SESSION_CASHIER";
+  constructor(code: PosRegisterSessionError["code"]) {
+    super(`POS sale refused by the register gate: ${code}.`);
+    this.name = "PosRegisterSessionError";
+    this.code = code;
+  }
+}
+
+/**
  * The 201 body — the admin order record (unmasked phone: this is a staff
  * context; it carries the order's `settlement` and its `payments` ledger rows,
  * so a receipt can print every tender) plus the aggregate `change` (the cash
@@ -174,6 +203,8 @@ export type PosOrderRecord = OrderAdminDetailRecord & {
   change: string | null;
   amountTendered: string | null;
   cashierTenantUserId: string;
+  /** Issue #284 - the register session the sale was attached to; `null` when the tenant's `register` feature is off. */
+  registerSessionId: string | null;
 };
 
 /** The legacy single-tender payload, adapted to the tender vocabulary. */
@@ -236,6 +267,9 @@ export async function createPosOrder(
     payment: input.payment ?? undefined,
     tenders: input.tenders ?? undefined,
     allowDue: input.allowDue ? true : undefined,
+    // Issue #284 - `undefined` drops out, so a request without a register
+    // hashes exactly as before.
+    registerId: input.registerId ?? undefined,
     notes: input.notes
   });
 
@@ -253,6 +287,40 @@ export async function createPosOrder(
       kind: "replayed",
       order: existing.responseBody as PosOrderRecord
     };
+  }
+
+  // Issue #284 (ADR-0028) - with the tenant's `register` feature on, the sale
+  // must be rung up on a register with an OPEN session whose current cashier
+  // is the actor; the session is locked FOR SHARE for the rest of this
+  // transaction, so a close cannot land between this check and the order
+  // insert. With the feature off, POS is exactly what it was - and naming a
+  // register is refused (the sale would otherwise look attached and not be).
+  let registerSessionId: string | null = null;
+  const features = await fetchCommerceFeatures(tx, tenantId);
+  if (features.register) {
+    if (!input.registerId)
+      throw new PosRegisterSessionError("REGISTER_REQUIRED");
+    const gate = await gateSaleToRegisterSession(
+      tx,
+      tenantId,
+      input.registerId,
+      actorTenantUserId
+    );
+    switch (gate.kind) {
+      case "ok":
+        registerSessionId = gate.sessionId;
+        break;
+      case "register_not_found":
+        throw new PosRegisterSessionError("REGISTER_NOT_FOUND");
+      case "no_open_session":
+        throw new PosRegisterSessionError("REGISTER_SESSION_REQUIRED");
+      case "session_closing":
+        throw new PosRegisterSessionError("REGISTER_SESSION_CLOSING");
+      case "not_session_cashier":
+        throw new PosRegisterSessionError("NOT_SESSION_CASHIER");
+    }
+  } else if (input.registerId) {
+    throw new FeatureDisabledError("register");
   }
 
   // Walk-in when no phone was given; otherwise find-or-create by the
@@ -333,12 +401,12 @@ export async function createPosOrder(
         INSERT INTO awcms_commerce_orders (
           tenant_id, order_code, customer_id, status, payment_method, payment_status,
           shipping_method, shipping_cost, subtotal, discount, insurance_fee, tax, total,
-          notes, channel, pos_cashier_tenant_user_id
+          notes, channel, pos_cashier_tenant_user_id, register_session_id
         )
         VALUES (
           ${tenantId}, ${candidateCode}, ${customer.id}, 'pending_payment', ${summaryPaymentMethod(plan)}, 'unpaid',
           'self_pickup', '0.00', ${quote.subtotal}, ${quote.discount}, ${quote.insurance.fee}, ${quote.tax.amount},
-          ${quote.total}, ${input.notes}, 'pos', ${actorTenantUserId}
+          ${quote.total}, ${input.notes}, 'pos', ${actorTenantUserId}, ${registerSessionId}
         )
         RETURNING id, order_code
       `) as { id: string; order_code: string }[];
@@ -424,7 +492,8 @@ export async function createPosOrder(
       change,
       due: plan.dueAmount,
       walkIn: isWalkIn,
-      lineCount: quote.lines.length
+      lineCount: quote.lines.length,
+      registerSessionId
     },
     correlationId
   });
@@ -493,7 +562,8 @@ export async function createPosOrder(
     ...record,
     change,
     amountTendered,
-    cashierTenantUserId: actorTenantUserId
+    cashierTenantUserId: actorTenantUserId,
+    registerSessionId
   };
 
   await saveIdempotencyRecord(

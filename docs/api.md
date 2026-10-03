@@ -64,6 +64,25 @@ Pagination: keyset, newest-first by default (`sort=newest`), page size fixed at 
 | `GET`/`PATCH`          | `/api/v1/commerce/customers(/{id})`                               | No `POST`/`DELETE` — a customer row is created only by the anonymous order path                  |
 | `GET`/`PATCH`/`DELETE` | `/api/v1/commerce/reviews(/{id})`                                 | `PATCH {status}` moderates `pending → published/rejected`                                        |
 
+## Owner API: registers, sessions and cash-up (issue #284, epic #281, [ADR-0028](adr/0028-pos-register-sessions-and-cash-up.md))
+
+Every route below is behind the tenant's `register` feature flag (default OFF — `409 FEATURE_DISABLED`), requires a bearer/cookie session, and — for every mutation — an **`Idempotency-Key`** header (`400 IDEMPOTENCY_REQUIRED`). Money is a `numeric(14,2)` STRING; variances and corrections are signed. Ten permissions, none implied by `commerce.pos.create`.
+
+| Method | Path | Permission | Notes |
+| --- | --- | --- | --- |
+| `GET`/`POST` | `commerce/registers` | `commerce.registers.read` / `.create` | List registers with each one's live session / define one (`{ code, name, locationLabel? }`; `code` unique per tenant, case-insensitively → `409 REGISTER_CODE_TAKEN`) |
+| `GET`/`PATCH` | `commerce/registers/{id}` | `commerce.registers.read` / `.update` | Rename, relabel, (de)activate (`409 REGISTER_HAS_ACTIVE_SESSION`); `code` is immutable |
+| `GET`/`POST` | `commerce/register-sessions` | `commerce.register_sessions.read` / `.create` | Keyset history (`?cursor&registerId&status&cashier`) / OPEN a session `{ registerId, openingFloat }` → `201`; `409 REGISTER_SESSION_ALREADY_OPEN` (one active session per register; two concurrent opens → exactly one wins), `REGISTER_INACTIVE` |
+| `GET` | `commerce/register-sessions/{id}` | `commerce.register_sessions.read` | The cash-up report: float, sales, per-tender payments / reversals / expected / counted / variance (corrections on top, originals untouched), movements, close attempts, corrections |
+| `POST` | `commerce/register-sessions/{id}/movements` | `commerce.register_sessions.update` | `{ movementType: cash_in\|cash_out\|safe_drop\|expense\|transfer\|correction, direction?, amount, reference?, note? }`; append-only, cash only; current cashier only (`409 NOT_SESSION_CASHIER`), open session only (`409 REGISTER_SESSION_NOT_OPEN`) |
+| `POST` | `commerce/register-sessions/{id}/handover` | `commerce.register_sessions.update` (+ `commerce.register_cash_ups.approve` for a supervisor taking over) | `{ toTenantUserId, note? }`; `409 UNKNOWN_CASHIER` / `SAME_CASHIER` |
+| `POST` | `commerce/register-sessions/{id}/close` | `commerce.register_cash_ups.create` | `{ counted: { cash, manual_qris?, … }, varianceReason? }` → `200 { outcome: closed\|pending_approval, report }`; exclusive against sales/movements, idempotent (a replay returns the stored body); gross variance above the tenant threshold → `closing` unless the closer also holds the approve key; `400` for a missing count or a variance with no reason |
+| `POST` | `commerce/register-sessions/{id}/close-decision` | `commerce.register_cash_ups.approve` | `{ decision: approve\|reject, note? }` (a note is required to reject) → `200 { outcome: closed\|reopened, report }`; `409 REGISTER_CLOSE_NOT_PENDING` |
+| `POST` | `commerce/register-sessions/{id}/corrections` | `commerce.register_corrections.approve` | `{ reason, adjustments: [{ tenderType, adjustment }] }` (signed deltas to the COUNTED amount) → `201` report; session becomes `corrected`; `409 REGISTER_SESSION_NOT_CLOSED`; never negative (`400`) |
+| `GET` | `commerce/register-sessions/{id}/report.csv` | `commerce.register_sessions.export` | The cash-up as one sectioned CSV, every cell spreadsheet-formula-neutralised; `Cache-Control: no-store` |
+
+The POS route (`POST commerce/pos/orders`) gains an optional **`registerId`**: REQUIRED while the `register` feature is on (the sale is attached to that register's open session, whose current cashier must be the caller — `404` unknown/foreign register, `409 REGISTER_SESSION_REQUIRED | REGISTER_SESSION_CLOSING | NOT_SESSION_CASHIER`, all before anything is written); with the feature off, sending it is `409 FEATURE_DISABLED` and nothing is stamped. The 201 gains `registerSessionId`.
+
 ## Storefront (anonymous) API — `/api/v1/commerce/storefront/*`
 
 Every route resolves its tenant from the request's `Origin`/`Host` against `awcms_tenant_domains` — never from a header the caller controls — answers the `OPTIONS` preflight, echoes the allowed origin verbatim (never `*`), sends `Vary: Origin`, grants no credentials, and rate-limits per IP (order creation also per normalised phone). See [ADR-0007](adr/0007-cart-and-checkout-stay-static-the-browser-calls-anonymous-commerce-endpoints.md) for why this exists instead of a runtime credential.
@@ -242,7 +261,7 @@ No phone → the sale is attached to the tenant's single walk-in customer row (s
 }
 ```
 
-## Authorization: 39 owner permissions (plus the increment-5 keys and, since #285, `commerce.payments.{read,create,revoke}` and `commerce.pos_due.create`)
+## Authorization: 39 owner permissions (plus the increment-5 keys, since #285 `commerce.payments.{read,create,revoke}` and `commerce.pos_due.create`, and since #284 ten register keys: `commerce.registers.{read,create,update}`, `commerce.register_sessions.{read,create,update,export}`, `commerce.register_cash_ups.{create,approve}`, `commerce.register_corrections.approve`)
 
 The `commerce` module declares 39 permission keys in total (10 + 22 + 7 below), grouped by the same three areas as its tables — a count too large for this document's own "spelled number matches a counted set" convention (`bun run audit:dokumen`'s linked-count check only recognises spelled numbers one through twenty), so it is stated here as a numeral instead of inside a guarded block.
 
@@ -256,9 +275,9 @@ Deliberately **no `create`/`delete` for `orders`/`customers`**: an order or cust
 
 The storefront (anonymous) API has **no permission keys at all** — its trust boundary is the Origin-bound tenant resolver, not RBAC/ABAC.
 
-## Domain events: fourteen
+## Domain events: eighteen
 
-All fourteen are registered in the three places `awcms` keeps in sync (`domain-event-runtime/domain/event-type-registry.ts`, `apps/cms/asyncapi/awcms-domain-events.asyncapi.yaml`, `commerce/module.ts`'s `events.publishes`):
+All eighteen are registered in the three places `awcms` keeps in sync (`domain-event-runtime/domain/event-type-registry.ts`, `apps/cms/asyncapi/awcms-domain-events.asyncapi.yaml`, `commerce/module.ts`'s `events.publishes`):
 
 | Aggregate             | Events                                                                                                                                |
 | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
@@ -267,6 +286,7 @@ All fourteen are registered in the three places `awcms` keeps in sync (`domain-e
 | `commerce.voucher`    | `awcms.commerce.voucher.redeemed` — pre-declared as a forward reference in #26, only actually fired once #29's order path redeems one |
 | `commerce.order`      | `awcms.commerce.order.{created,paid,status_changed,cancelled,expired}`, and since #285 `awcms.commerce.payment.{recorded,reversed}` (the payment ledger rides the ORDER aggregate: one ordered stream per order; ids/tender/amounts/resulting settlement, never a customer name/phone or payment reference) |
 | `commerce.review`     | `awcms.commerce.review.published`                                                                                                     |
+| `commerce.register_session` | `awcms.commerce.register_session.{opened,movement_recorded,closed,corrected}` — the shift's own ordered stream (#284); `closed` fires once, only when the session actually reaches `closed`; payloads carry ids/types/amounts/variance, never a movement's free-text reference/note or a close's reason |
 
 `categories` still publishes no domain events — the same choice `tenant_admin` makes for `awcms_offices`; a soft delete is an audit-log fact, not something a downstream consumer needs to react to.
 
@@ -280,7 +300,8 @@ All fourteen are registered in the three places `awcms` keeps in sync (`domain-e
 | `409`  | `CART_CHANGED`                                                                                | A storefront (or POS, #116) order-creation request's re-quote disagrees with the submitted cart; response carries a fresh `details.quote`             |
 | `409`  | `INSUFFICIENT_TENDER`                                                                         | POS only (#116, widened by #285): the tenders do not cover the order total (unless `allowDue`); `details.shortfall` is the `numeric(14,2)` string difference |
 | `409`  | `OVERPAYMENT` / `REVERSAL_EXCEEDS_PAYMENT` / `PAYMENT_NOT_REVERSIBLE` / `PAYMENT_NOT_SETTLED`  | Payment ledger (#285): an amount above what is owed (only cash change may exceed it); a reversal above what remains reversible; a payment that cannot be reversed; a manual `-> paid` before the ledger says the order is settled |
-| `409`  | `FEATURE_DISABLED`                                                                            | An owner route of a feature the tenant turned off (#118) — inbox, campaigns, gateway, courier, and since #116 the POS routes                          |
+| `409`  | `FEATURE_DISABLED`                                                                            | An owner route of a feature the tenant turned off (#118) — inbox, campaigns, gateway, courier, and since #116 the POS routes, and since #284 every register route (the `register` flag defaults OFF; naming a `registerId` on a POS sale while it is off is the same refusal)                          |
+| `409`  | `REGISTER_SESSION_REQUIRED` / `REGISTER_SESSION_CLOSING` / `NOT_SESSION_CASHIER` / `REGISTER_SESSION_ALREADY_OPEN` / `REGISTER_SESSION_NOT_OPEN` / `REGISTER_SESSION_NOT_CLOSED` / `REGISTER_CLOSE_NOT_PENDING` / `REGISTER_CODE_TAKEN` / `REGISTER_HAS_ACTIVE_SESSION` / `REGISTER_INACTIVE` / `UNKNOWN_CASHIER` / `SAME_CASHIER` | Registers and cash-up (#284): the shift's state refuses the action (no open session for a POS sale, a session being counted, another cashier's drawer, a second open session on a register, a movement/close on a non-open session, a correction on a non-closed one, a decision with nothing pending, a duplicate register code, deactivating a register that has a live session, a handover to an unknown/inactive user or to the current cashier) |
 | `409`  | `ORDER_NOT_PAYABLE` / `ORDER_NOT_CANCELLABLE`                                                 | The order's current status does not legally allow the requested action                                                                                |
 | `404`  | `NOT_FOUND`                                                                                   | Unknown resource, or — on the storefront API — a neutral refusal covering "unknown order", "wrong phone", and "belongs to another tenant" identically |
 | `503`  | `MEDIA_UNAVAILABLE`                                                                           | The payment-proof upload-session routes, always, in this increment                                                                                    |

@@ -357,3 +357,60 @@ export const COMMERCE_PAYMENT_PERMISSIONS = {
   /** Record a compensating reversal of a payment (high-risk verb, see above). */
   revoke: "commerce.payments.revoke"
 } as const;
+
+/**
+ * POS registers, register sessions and cash-up (Issue #284, ADR-0028). Four
+ * activity codes, ten permissions, each with its own enforcing route, and
+ * NONE implied by `commerce.pos.create` - ringing up a sale gives a cashier no
+ * report, export, approval or administration authority (the issue's own
+ * rule). Existing `AccessAction` verbs only; the upstream-owned union is not
+ * widened (ADR-0025 D9's reasoning, again):
+ *
+ *   - `registers`: `read` (list), `create` (define), `update` (rename /
+ *     relabel / (de)activate) - the manage-registers authority.
+ *   - `register_sessions`: `read` (list/detail/cash-up report), `create`
+ *     (OPEN a session), `update` (USE it: drawer movements, handover),
+ *     `export` (the cash-up CSV - the platform's existing high-risk verb,
+ *     because the file leaves the system).
+ *   - `register_cash_ups`: `create` (CLOSE a session by counting the drawer),
+ *     `approve` (decide a close whose gross variance exceeds the tenant's
+ *     threshold - a high-risk verb, so a tenant may author SoD rules against
+ *     it, e.g. "the cashier who counted may not also approve").
+ *   - `register_corrections`: `approve` (post a compensating correction to a
+ *     CLOSED session; high-risk for the same reason - it rewrites how a closed
+ *     shift reads). `approve` rather than `create` on purpose: a correction is
+ *     a supervised amendment, and the high-risk verb is what puts it under the
+ *     action-time SoD check.
+ */
+export const COMMERCE_REGISTERS_ACTIVITY_CODE = "registers";
+export const COMMERCE_REGISTER_SESSIONS_ACTIVITY_CODE = "register_sessions";
+export const COMMERCE_REGISTER_CASH_UPS_ACTIVITY_CODE = "register_cash_ups";
+export const COMMERCE_REGISTER_CORRECTIONS_ACTIVITY_CODE =
+  "register_corrections";
+
+export const COMMERCE_REGISTER_PERMISSIONS = {
+  read: "commerce.registers.read",
+  create: "commerce.registers.create",
+  update: "commerce.registers.update"
+} as const;
+
+export const COMMERCE_REGISTER_SESSION_PERMISSIONS = {
+  read: "commerce.register_sessions.read",
+  /** Open a session with an opening float. */
+  create: "commerce.register_sessions.create",
+  /** Use a session: drawer movements and handover. */
+  update: "commerce.register_sessions.update",
+  /** The cash-up CSV. */
+  export: "commerce.register_sessions.export"
+} as const;
+
+export const COMMERCE_REGISTER_CASH_UP_PERMISSIONS = {
+  /** Close a session (cash-up). */
+  create: "commerce.register_cash_ups.create",
+  /** Approve/reject a cash-up above the variance threshold. */
+  approve: "commerce.register_cash_ups.approve"
+} as const;
+
+export const COMMERCE_REGISTER_CORRECTION_PERMISSIONS = {
+  approve: "commerce.register_corrections.approve"
+} as const;

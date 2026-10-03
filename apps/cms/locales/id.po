@@ -7311,3 +7311,482 @@ msgstr "Menampilkan {n} terbesar."
 
 msgid "Total still owed across {n} orders: {amount}."
 msgstr "Total yang masih terutang pada {n} pesanan: {amount}."
+
+# Issue #284 (ADR-0028) — POS registers and cash-up.
+
+msgid "A close whose total difference (the sum of the absolute differences per payment method) is above this amount needs a supervisor's approval. Zero means any difference does."
+msgstr "Penutupan yang total selisihnya (jumlah selisih mutlak per metode pembayaran) di atas nilai ini memerlukan persetujuan supervisor. Nol berarti selisih sekecil apa pun memerlukannya."
+
+msgid "A closed session never changes. A correction adds a signed adjustment to a counted amount; the original count is kept."
+msgstr "Sesi yang sudah ditutup tidak pernah berubah. Koreksi menambahkan penyesuaian bertanda pada jumlah yang dihitung; hitungan aslinya tetap disimpan."
+
+msgid "A deactivated register cannot open a new session. Existing sessions and reports are kept."
+msgstr "Register yang dinonaktifkan tidak dapat membuka sesi baru. Sesi dan laporan yang ada tetap disimpan."
+
+msgid "A note (the reason) is required for a correction."
+msgstr "Catatan (alasan) wajib diisi untuk koreksi."
+
+msgid "A reference is required for an expense or a transfer."
+msgstr "Referensi wajib diisi untuk pengeluaran atau transfer."
+
+msgid "A register with that code already exists."
+msgstr "Register dengan kode itu sudah ada."
+
+msgid "A user with approval permission has to decide this close."
+msgstr "Pengguna dengan izin persetujuan harus memutuskan penutupan ini."
+
+msgid "Adjustment"
+msgstr "Penyesuaian"
+
+msgid "Adjustment (signed)"
+msgstr "Penyesuaian (bertanda)"
+
+msgid "Approval threshold"
+msgstr "Ambang persetujuan"
+
+msgid "Approve close"
+msgstr "Setujui penutupan"
+
+msgid "Approve this close?"
+msgstr "Setujui penutupan ini?"
+
+msgid "Awaiting approval"
+msgstr "Menunggu persetujuan"
+
+msgid "Back to registers"
+msgstr "Kembali ke register"
+
+msgid "Cash in"
+msgstr "Kas masuk"
+
+msgid "Cash in, safe drops and expenses recorded during the shift appear here."
+msgstr "Kas masuk, setoran ke brankas, dan pengeluaran yang dicatat selama shift tampil di sini."
+
+msgid "Cash out"
+msgstr "Kas keluar"
+
+msgid "Cash up"
+msgstr "Tutup kas"
+
+msgid "Cash-up approval threshold"
+msgstr "Ambang persetujuan tutup kas"
+
+msgid "Choose the register you are selling on."
+msgstr "Pilih register tempat Anda berjualan."
+
+msgid "Close awaiting approval"
+msgstr "Penutupan menunggu persetujuan"
+
+msgid "Close session"
+msgstr "Tutup sesi"
+
+msgid "Close the register's open session before deactivating it."
+msgstr "Tutup sesi register yang sedang terbuka sebelum menonaktifkannya."
+
+msgid "Corrected"
+msgstr "Dikoreksi"
+
+msgid "Corrected count"
+msgstr "Hitungan terkoreksi"
+
+msgid "Correction"
+msgstr "Koreksi"
+
+msgid "Corrections"
+msgstr "Koreksi"
+
+msgid "Could not close the session. Please try again."
+msgstr "Sesi tidak dapat ditutup. Silakan coba lagi."
+
+msgid "Could not hand the drawer over. Please try again."
+msgstr "Laci tidak dapat diserahterimakan. Silakan coba lagi."
+
+msgid "Could not open the session. Please try again."
+msgstr "Sesi tidak dapat dibuka. Silakan coba lagi."
+
+msgid "Could not record the correction. Please try again."
+msgstr "Koreksi tidak dapat dicatat. Silakan coba lagi."
+
+msgid "Could not record the decision. Please try again."
+msgstr "Keputusan tidak dapat dicatat. Silakan coba lagi."
+
+msgid "Could not record the movement. Please try again."
+msgstr "Mutasi tidak dapat dicatat. Silakan coba lagi."
+
+msgid "Could not save the register. Please try again."
+msgstr "Register tidak dapat disimpan. Silakan coba lagi."
+
+msgid "Could not save the threshold. Please try again."
+msgstr "Ambang tidak dapat disimpan. Silakan coba lagi."
+
+msgid "Count every payment method listed."
+msgstr "Hitung setiap metode pembayaran yang tercantum."
+
+msgid "Count per payment method"
+msgstr "Hitungan per metode pembayaran"
+
+msgid "Count the cash in the drawer and enter it as the opening float."
+msgstr "Hitung uang tunai di laci dan masukkan sebagai modal awal."
+
+msgid "Count what is in the drawer and what each other payment method settled, then close the session."
+msgstr "Hitung isi laci dan jumlah yang diselesaikan tiap metode pembayaran lain, lalu tutup sesi."
+
+msgid "Counted"
+msgstr "Dihitung"
+
+msgid "Counted amount for {method}"
+msgstr "Jumlah yang dihitung untuk {method}"
+
+msgid "Deactivate this register?"
+msgstr "Nonaktifkan register ini?"
+
+msgid "Define register"
+msgstr "Buat register"
+
+msgid "Define the first register above."
+msgstr "Buat register pertama di atas."
+
+msgid "Difference"
+msgstr "Selisih"
+
+msgid "Direction"
+msgstr "Arah"
+
+msgid "Download cash-up CSV"
+msgstr "Unduh CSV tutup kas"
+
+msgid "Drawer and cash-up"
+msgstr "Laci dan tutup kas"
+
+msgid "Drawer movements"
+msgstr "Mutasi laci"
+
+msgid "Enter a signed amount like -5000 or 5000.50 (not zero)."
+msgstr "Masukkan jumlah bertanda seperti -5000 atau 5000.50 (bukan nol)."
+
+msgid "Enter an amount like 100000 or 100000.50."
+msgstr "Masukkan jumlah seperti 100000 atau 100000.50."
+
+msgid "Enter the counted amounts to see the difference."
+msgstr "Masukkan jumlah yang dihitung untuk melihat selisihnya."
+
+msgid "Enter the new cashier's user ID."
+msgstr "Masukkan ID pengguna kasir yang baru."
+
+msgid "Every active register already has a session. Define a register below, or close a session first."
+msgstr "Setiap register aktif sudah memiliki sesi. Buat register di bawah, atau tutup sebuah sesi terlebih dulu."
+
+msgid "Expected"
+msgstr "Seharusnya"
+
+msgid "Expected amounts are derived live from this session's sales and drawer movements."
+msgstr "Jumlah yang seharusnya diturunkan langsung dari penjualan dan mutasi laci sesi ini."
+
+msgid "Expected cash"
+msgstr "Kas seharusnya"
+
+msgid "Expected, counted and difference"
+msgstr "Seharusnya, dihitung, dan selisih"
+
+msgid "Expense"
+msgstr "Pengeluaran"
+
+msgid "Filter sessions by status"
+msgstr "Saring sesi berdasarkan status"
+
+msgid "Give the reason for rejecting the count."
+msgstr "Berikan alasan menolak hitungan."
+
+msgid "Give the reason for the difference."
+msgstr "Berikan alasan selisihnya."
+
+msgid "Give the register to another cashier. Their user ID is on the Users screen."
+msgstr "Serahkan register ke kasir lain. ID pengguna mereka ada di layar Pengguna."
+
+msgid "Gross difference"
+msgstr "Selisih kotor"
+
+msgid "Hand over"
+msgstr "Serahkan"
+
+msgid "Hand the drawer over"
+msgstr "Serahkan laci"
+
+msgid "In"
+msgstr "Masuk"
+
+msgid "Location label"
+msgstr "Label lokasi"
+
+msgid "Location label (optional)"
+msgstr "Label lokasi (opsional)"
+
+msgid "Movement"
+msgstr "Mutasi"
+
+msgid "Movement recorded."
+msgstr "Mutasi dicatat."
+
+msgid "New cashier's user ID"
+msgstr "ID pengguna kasir baru"
+
+msgid "No corrections"
+msgstr "Tidak ada koreksi"
+
+msgid "No movements yet"
+msgstr "Belum ada mutasi"
+
+msgid "No open session"
+msgstr "Tidak ada sesi terbuka"
+
+msgid "No registers yet"
+msgstr "Belum ada register"
+
+msgid "No sessions yet"
+msgstr "Belum ada sesi"
+
+msgid "Older sessions"
+msgstr "Sesi sebelumnya"
+
+msgid "Only the session's current cashier can do this."
+msgstr "Hanya kasir sesi saat ini yang dapat melakukannya."
+
+msgid "Open a register session"
+msgstr "Buka sesi register"
+
+msgid "Open a register session with a counted float, track the drawer, and cash up at the end of the shift."
+msgstr "Buka sesi register dengan modal awal yang dihitung, pantau laci, dan tutup kas di akhir shift."
+
+msgid "Open a session"
+msgstr "Buka sesi"
+
+msgid "Open a session above to start a shift."
+msgstr "Buka sesi di atas untuk memulai shift."
+
+msgid "Open session"
+msgstr "Buka sesi"
+
+msgid "Open sessions"
+msgstr "Sesi terbuka"
+
+msgid "Opened"
+msgstr "Dibuka"
+
+msgid "Opening float"
+msgstr "Modal awal"
+
+msgid "Out"
+msgstr "Keluar"
+
+msgid "Pending approval"
+msgstr "Menunggu persetujuan"
+
+msgid "Per payment method"
+msgstr "Per metode pembayaran"
+
+msgid "Please wait…"
+msgstr "Mohon tunggu…"
+
+msgid "Reactivate"
+msgstr "Aktifkan kembali"
+
+msgid "Reason for rejecting"
+msgstr "Alasan penolakan"
+
+msgid "Reason for the difference"
+msgstr "Alasan selisih"
+
+msgid "Reason: {reason}"
+msgstr "Alasan: {reason}"
+
+msgid "Record correction"
+msgstr "Catat koreksi"
+
+msgid "Record movement"
+msgstr "Catat mutasi"
+
+msgid "Reference"
+msgstr "Referensi"
+
+msgid "Register defined."
+msgstr "Register dibuat."
+
+msgid "Register definitions"
+msgstr "Definisi register"
+
+msgid "Register figures"
+msgstr "Angka register"
+
+msgid "Register mode is on: open a register session before ringing up a sale."
+msgstr "Mode register aktif: buka sesi register sebelum mencatat penjualan."
+
+msgid "Register session"
+msgstr "Sesi register"
+
+msgid "Register {code}"
+msgstr "Register {code}"
+
+msgid "Registers"
+msgstr "Register"
+
+msgid "Registers and cash-up"
+msgstr "Register dan tutup kas"
+
+msgid "Registers and cash-up are turned off for this store."
+msgstr "Register dan tutup kas dimatikan untuk toko ini."
+
+msgid "Registers could not be loaded right now. Please try again later."
+msgstr "Register tidak dapat dimuat saat ini. Silakan coba lagi nanti."
+
+msgid "Reject count"
+msgstr "Tolak hitungan"
+
+msgid "Reject this count?"
+msgstr "Tolak hitungan ini?"
+
+msgid "Safe drop"
+msgstr "Setoran ke brankas"
+
+msgid "Sales"
+msgstr "Penjualan"
+
+msgid "Save threshold"
+msgstr "Simpan ambang"
+
+msgid "Sell on register"
+msgstr "Jual di register"
+
+msgid "Selling on {register}."
+msgstr "Berjualan di {register}."
+
+msgid "Session open"
+msgstr "Sesi terbuka"
+
+msgid "Session opened."
+msgstr "Sesi dibuka."
+
+msgid "That register already has an open session."
+msgstr "Register itu sudah memiliki sesi terbuka."
+
+msgid "That register is deactivated."
+msgstr "Register itu dinonaktifkan."
+
+msgid "That register no longer exists."
+msgstr "Register itu sudah tidak ada."
+
+msgid "That user already has the drawer."
+msgstr "Pengguna itu sudah memegang laci."
+
+msgid "That user is not an active user of this store."
+msgstr "Pengguna itu bukan pengguna aktif toko ini."
+
+msgid "The correction would make a counted amount negative."
+msgstr "Koreksi akan membuat jumlah yang dihitung menjadi negatif."
+
+msgid "The count differs by {gross} in total, above the threshold of {threshold}."
+msgstr "Hitungan berselisih {gross} secara total, di atas ambang {threshold}."
+
+msgid "The count matches the expected amounts."
+msgstr "Hitungan sesuai dengan jumlah yang seharusnya."
+
+msgid "The drawer, the cash-up and the report of one register session."
+msgstr "Laci, tutup kas, dan laporan satu sesi register."
+
+msgid "The opening float must be an amount like 100000 or 100000.50 (zero is allowed)."
+msgstr "Modal awal harus berupa jumlah seperti 100000 atau 100000.50 (nol diperbolehkan)."
+
+msgid "The session goes back to open and the cashier has to count again. The rejected count is kept as history."
+msgstr "Sesi kembali terbuka dan kasir harus menghitung ulang. Hitungan yang ditolak disimpan sebagai riwayat."
+
+msgid "The session is not open any more. Reload the page."
+msgstr "Sesi sudah tidak terbuka. Muat ulang halaman."
+
+msgid "The session will be closed with the counted amounts and the difference recorded."
+msgstr "Sesi akan ditutup dengan jumlah yang dihitung dan selisihnya dicatat."
+
+msgid "The threshold must be an amount like 50000 or 50000.50 (zero means every difference needs approval)."
+msgstr "Ambang harus berupa jumlah seperti 50000 atau 50000.50 (nol berarti setiap selisih memerlukan persetujuan)."
+
+msgid "The total difference is above the approval threshold: a supervisor has to approve this close."
+msgstr "Total selisih di atas ambang persetujuan: supervisor harus menyetujui penutupan ini."
+
+msgid "The total difference is within the approval threshold."
+msgstr "Total selisih berada dalam ambang persetujuan."
+
+msgid "This register has no open session. Open one on the Registers screen first."
+msgstr "Register ini tidak memiliki sesi terbuka. Buka satu di layar Register terlebih dulu."
+
+msgid "This register session could not be loaded right now. Please try again later."
+msgstr "Sesi register ini tidak dapat dimuat saat ini. Silakan coba lagi nanti."
+
+msgid "This register session does not exist."
+msgstr "Sesi register ini tidak ada."
+
+msgid "This register's session belongs to another cashier. Ask for a handover."
+msgstr "Sesi register ini milik kasir lain. Minta serah terima."
+
+msgid "This register's session is being closed and accepts no sales."
+msgstr "Sesi register ini sedang ditutup dan tidak menerima penjualan."
+
+msgid "This session's close has not been corrected."
+msgstr "Penutupan sesi ini belum dikoreksi."
+
+msgid "Threshold saved."
+msgstr "Ambang disimpan."
+
+msgid "Total difference"
+msgstr "Total selisih"
+
+msgid "Total difference {total}, gross {gross}, threshold {threshold}."
+msgstr "Total selisih {total}, kotor {gross}, ambang {threshold}."
+
+msgid "Transfer"
+msgstr "Transfer"
+
+msgid "Turn them on under Features in the store settings."
+msgstr "Aktifkan di Fitur pada pengaturan toko."
+
+msgid "Within threshold"
+msgstr "Dalam ambang"
+
+msgid "You"
+msgstr "Anda"
+
+msgid "You do not have permission to view register sessions."
+msgstr "Anda tidak memiliki izin untuk melihat sesi register."
+
+msgid "You have several open register sessions."
+msgstr "Anda memiliki beberapa sesi register yang terbuka."
+
+msgid "POS registers and cash-up"
+msgstr "Register POS dan tutup kas"
+
+msgid "{count} close attempt"
+msgid_plural "{count} close attempts"
+msgstr[0] "{count} percobaan penutupan"
+
+msgid "{count} correction"
+msgid_plural "{count} corrections"
+msgstr[0] "{count} koreksi"
+
+msgid "{count} movement"
+msgid_plural "{count} movements"
+msgstr[0] "{count} mutasi"
+
+msgid "{count} register"
+msgid_plural "{count} registers"
+msgstr[0] "{count} register"
+
+msgid "{count} sale"
+msgid_plural "{count} sales"
+msgstr[0] "{count} penjualan"
+
+msgid "{count} session"
+msgid_plural "{count} sessions"
+msgstr[0] "{count} sesi"
+
+msgid "Cash register"
+msgstr "Register kasir"
+
+msgid "Close attempts"
+msgstr "Percobaan penutupan"
