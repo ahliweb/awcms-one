@@ -4,6 +4,19 @@
 
 `awcms-one` is both the BjekMart product and a **template** other applications start from: a build-time `SITE_PROFILE` decides which pages a deployment ships, and an idempotent `bun run template:init` rewrites the brand surface for a repository created from GitHub's own *template repository* flag. This document is the working reference [ADR-0018](adr/0018-awcms-one-is-a-template-with-build-profiles-and-an-idempotent-init.md) commits to: how a new application starts from `awcms-one`, what `template:init` does to make a derived repository its own, the build-profile matrix that decides which pages a deployment ships, and where BjekMart itself fits now that this repository is also a template. Every mechanism this document describes is real, tested, running code — `SITE_PROFILE`'s page-filtering behaviour (`apps/storefront/src/config/profil.ts`, `src/profil/**`, issue #137), `bun run template:init` (`tools/template-init.ts` + `tools/template-init/**`, tested by `tests/template-init.test.mjs`, matrixed by `bun run ci:template`'s four `local-ci/template-*` legs — `tools/ci/runners/template.ts`, formerly `.github/workflows/template-init-smoke.yml`, issue #138/#225), and the neutral per-profile seed sets (`tools/seed-cms.ts`, issue #139). See "Status" at the bottom for the dated landing history and what increment 6 (issue #140) closed out.
 
+## Ownership after creating a derived repository
+
+Creating a repository from this template creates a **new product boundary**, not another tenant of the reference deployment. The derived repository owns and deploys its own `apps/cms`, database, migrations, secrets, domains, provider credentials and product-specific modules. Never configure a derived product to use the live `ahliweb/awcms-one` backend as its production system of record.
+
+When the derived product discovers a missing capability:
+
+1. implement product-specific semantics in the derived repository;
+2. determine whether the missing foundation is genuinely reusable across products;
+3. if reusable, propose a neutral capability back to `awcms-one` (or to `ahliweb/awcms` when that is the actual owner), with ADR, tests, migration and compatibility evidence;
+4. adopt the released template improvement back into the product deliberately — never by creating a permanent runtime dependency on this repository.
+
+This ownership rule is normative; see [ADR-0024](adr/0024-awcms-one-is-template-only-derived-apps-own-their-backend.md).
+
 ## Memulai dari template (starting from the template)
 
 1. **Use this template.** Click "Use this template" on `ahliweb/awcms-one` (the GitHub *template repository* flag is on) to create a new, historyless repository — not a fork. Clone it.
