@@ -1,10 +1,23 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](template.md)
 
-<!-- i18n-source-hash: sha256:0923a9e0e2dbab4849a7bd92a276672016421fb7afca870e8c68c97ecb6fc3c5 -->
+<!-- i18n-source-hash: sha256:2af20f4f45c2885e4bb8aef9d8ec8cec7c7ce199c6b055fce1013ebeaef1cccd -->
 
 # Menggunakan awcms-one sebagai template
 
 `awcms-one` adalah produk BjekMart sekaligus **template** yang menjadi titik awal aplikasi lain: `SITE_PROFILE` saat build memutuskan halaman mana yang dikirim sebuah deployment, dan `bun run template:init` yang idempoten menulis ulang permukaan merek untuk repo yang dibuat lewat flag *template repository* milik GitHub sendiri. Dokumen ini adalah referensi kerja yang dijanjikan [ADR-0018](adr/0018-awcms-one-is-a-template-with-build-profiles-and-an-idempotent-init.id.md): bagaimana aplikasi baru dimulai dari `awcms-one`, apa yang dilakukan `template:init` untuk menjadikan repo turunan miliknya sendiri, matriks profil build yang memutuskan halaman mana yang dikirim sebuah deployment, dan di mana BjekMart sendiri berada sekarang repo ini juga menjadi template. Setiap mekanisme yang dijelaskan dokumen ini adalah kode nyata, teruji, dan berjalan — perilaku penyaringan halaman `SITE_PROFILE` (`apps/storefront/src/config/profil.ts`, `src/profil/**`, issue #137), `bun run template:init` (`tools/template-init.ts` + `tools/template-init/**`, diuji oleh `tests/template-init.test.mjs`, dimatriks oleh keempat leg `local-ci/template-*` milik `bun run ci:template` — `tools/ci/runners/template.ts`, sebelumnya `.github/workflows/template-init-smoke.yml`, issue #138/#225), dan set seed netral per profil (`tools/seed-cms.ts`, issue #139). Lihat "Status" di bagian bawah untuk riwayat landing bertanggal dan apa yang ditutup increment 6 (issue #140).
+
+## Kepemilikan setelah membuat repo turunan
+
+Membuat repository dari template ini membentuk **boundary produk baru**, bukan tenant tambahan dari reference deployment. Repo turunan memiliki dan mendeploy `apps/cms`, basis data, migrasi, secret, domain, kredensial provider, dan modul spesifik produknya sendiri. Jangan pernah mengonfigurasi produk turunan memakai backend hidup `ahliweb/awcms-one` sebagai system of record produksinya.
+
+Ketika produk turunan menemukan capability yang belum tersedia:
+
+1. implementasikan semantik spesifik produk di repo turunan;
+2. tentukan apakah foundation yang belum ada benar-benar reusable lintas produk;
+3. bila reusable, usulkan capability netral kembali ke `awcms-one` (atau ke `ahliweb/awcms` bila itu owner yang sebenarnya), lengkap dengan ADR, tes, migrasi, dan bukti kompatibilitas;
+4. adopsi peningkatan template yang sudah dirilis kembali ke produk secara sengaja — jangan membuat dependency runtime permanen ke repo ini.
+
+Aturan ownership ini bersifat normatif; lihat [ADR-0024](adr/0024-awcms-one-is-template-only-derived-apps-own-their-backend.id.md).
 
 ## Memulai dari template
 
