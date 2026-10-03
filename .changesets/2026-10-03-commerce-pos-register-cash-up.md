@@ -1,0 +1,16 @@
+---
+bump: minor
+type: structure
+impact: public
+---
+
+# POS register sessions, drawer movements and cash-up (issue #284, ADR-0028)
+
+POS could ring up and settle a sale (ADR-0025) but could not answer "does the drawer hold what it should?". It can now: six tables (`awcms_commerce_registers`, `…_register_sessions`, `…_register_movements`, `…_register_close_requests`, `…_register_close_lines`, `…_register_corrections` — migrations `970`–`973` under `apps/cms/sql/`, starting at `apps/cms/sql/970_awcms_commerce_register_schema.sql`) model a till, a shift on it, its drawer movements, the count-and-close attempts and post-close corrections. The "why" is in [ADR-0028](../docs/adr/0028-pos-register-sessions-and-cash-up.md).
+
+- New: staff define registers (`/api/v1/commerce/registers`), open a session with a counted float (`POST /api/v1/commerce/register-sessions`, one active session per register — two concurrent opens, exactly one wins), record cash in / cash out / safe drop / expense / transfer / correction movements, hand the drawer over, close it by counting each tender, approve or reject a close whose variance exceeds a tenant-set threshold, correct a closed session, and download the cash-up as CSV (formula-neutralised). All mutations take an `Idempotency-Key`; events `awcms.commerce.register_session.{opened,movement_recorded,closed,corrected}`; admin screens `/admin/commerce-registers` and `/admin/commerce-registers/{id}`, and a register banner on `/admin/commerce-pos`.
+- The expected closing amount per tender is DERIVED from the payment-allocation ledger (opening float + the session's stamped cash legs + movements for cash; payments − reversals for the rest) via a new `register_session_id` stamp on POS orders and ledger legs — a cash-up never rewrites a sale or a payment. A closed session is immutable (trigger); a correction is a compensating row and the session becomes `corrected`. The approval threshold is `cashUp.approvalThreshold` in the commerce module settings (default `0.00`: any discrepancy needs a supervisor).
+- Ten new permissions, none implied by `commerce.pos.create`: `commerce.registers.{read,create,update}`, `commerce.register_sessions.{read,create,update,export}`, `commerce.register_cash_ups.{create,approve}`, `commerce.register_corrections.approve`. Existing tenants do not gain them retroactively — grant them to the cashier and supervisor roles that need them.
+- **Backward compatible, opt-in.** The whole surface is behind the new `register` feature flag (commerce settings → Features), which defaults OFF: with it off POS behaves exactly as before and nothing is stamped. With it on, `POST /api/v1/commerce/pos/orders` requires a `registerId` whose register has an open session of the acting cashier (`409 REGISTER_SESSION_REQUIRED | REGISTER_SESSION_CLOSING | NOT_SESSION_CASHIER`); naming a `registerId` while the flag is off is `409 FEATURE_DISABLED`. The POS 201 gains `registerSessionId`.
+- Hardening: `awcms_app` loses `DELETE` on all six tables (and `UPDATE` on the three append-only ones); composite tenant-safe FKs; `security-readiness.ts` asserts the exact privilege sets.
+- Not here yet (ADR-0028 Deferred): the expenses domain (#294) and its typed reference on an expense movement, a "recorded after close" figure for late ledger activity, a per-register threshold, a cashier picker for handover.

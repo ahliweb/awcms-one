@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](kamus-data.md)
 
-<!-- i18n-source-hash: sha256:fae948fa951f43f711ca90f193e2cb7d4a8bfb7f0fb7b51d9ecb213abc8cf09d -->
+<!-- i18n-source-hash: sha256:04f7ee0540d76e5bc946985ac5e6cd49876bb33083759a6a2a7b8f60f029b487 -->
 
 # Kamus data
 
@@ -184,6 +184,25 @@ Kasir BjekMart (penjualan konter `commerce_bj_mart`, yang di tabel `orders`/`tra
 | saldo terutang / `allowDue` | `POST /api/v1/commerce/pos/orders` | Penjualan POS yang difinalisasi dengan uang masih terutang (eksplisit, perlu `commerce.pos_due.create` dan telepon pelanggan): `pending_payment`, tanpa kedaluwarsa, `settlement.outstanding` eksplisit |
 | `tenders[]` | request POS, kontrak versi 2 | Payload multi-tender eksplisit (`{ tenderType, amount, reference? }`); saling eksklusif dengan objek `payment` legacy. `amount` non-tunai = diterapkan, `amount` tunai = diserahkan |
 | `commerce.payments.{read,create,revoke}`, `commerce.pos_due.create` | `awcms_permissions` (`sql/941`) | Baca ledger/laporan, catat tender, catat pembalikan (`revoke` adalah verb risiko-tinggi platform), finalisasi penjualan POS dengan saldo terutang |
+
+### Register POS dan tutup kas (issue #284, [ADR-0028](adr/0028-pos-register-sessions-and-cash-up.md))
+
+| Istilah | Tempatnya | Arti |
+| --- | --- | --- |
+| register | `awcms_commerce_registers` | Kasir bernama (`code`, `name`, label lokasi opsional, `active`). Dinonaktifkan, tidak pernah dihapus |
+| sesi register / shift | `awcms_commerce_register_sessions` | Satu shift pada satu register: modal awal, kasir saat ini, `status` `open \| closing \| closed \| corrected`. Paling banyak satu sesi `open`/`closing` per register |
+| modal awal | `opening_float numeric(14,2)` | Uang tunai di laci yang dihitung saat sesi dibuka |
+| kasir (saat ini) | `current_cashier_tenant_user_id` | Satu orang bernama yang bertanggung jawab atas laci; mutasi, penjualan, dan penutupan adalah miliknya; serah terima mengubahnya (riwayatnya adalah jejak audit) |
+| mutasi laci | `awcms_commerce_register_movements` | Mutasi TUNAI append-only: `cash_in`, `cash_out`, `safe_drop`, `expense`, `transfer`, `correction`, masing-masing `in` atau `out` |
+| seharusnya (jumlah penutupan) | diturunkan, di-snapshot pada baris penutupan | Tunai: modal awal + Σ leg tunai yang distempel sesi − Σ pembalikan tunai + mutasi masuk − mutasi keluar. Tender lain: Σ pembayaran − Σ pembalikan tender itu. Tidak pernah total berjalan yang disimpan |
+| stempel sesi-register | `register_session_id` pada pesanan POS dan leg ledgernya | Shift mana yang dimiliki sebuah penjualan / leg pembayaran. Diset saat penulisan di bawah kunci sesi; dibekukan; NULL di luar sesi terbuka |
+| dihitung | `awcms_commerce_register_close_lines.counted` | Apa yang dihitung kasir per tender saat penutupan |
+| selisih | `variance = counted − expected`, bertanda (negatif = kurang) | Per tender; `variance_total` adalah jumlah bersih, `variance_gross` jumlah nilai mutlak |
+| ambang persetujuan | pengaturan modul commerce `cashUp.approvalThreshold` (default `"0.00"`) | Selisih kotor di atas mana penutupan membutuhkan pengguna pemegang `commerce.register_cash_ups.approve` |
+| permintaan / percobaan penutupan | `awcms_commerce_register_close_requests` | Satu percobaan hitung-dan-tutup; keputusan `auto` (dalam ambang), `pending` (sesi `closing`), `approved`, `rejected` (sesi kembali `open`, disimpan sebagai riwayat) |
+| koreksi | `awcms_commerce_register_corrections` | Penyesuaian kompensasi bertanda pada jumlah DIHITUNG sebuah tender pada sesi yang sudah ditutup; baris asli tidak pernah diubah; sesi menjadi `corrected` |
+| fitur `register` | pengaturan modul commerce `features.register` (default MATI) | Menyalakan seluruh permukaan register dan membuat penjualan POS mensyaratkan sesi terbuka pada register yang dipilih |
+| `commerce.registers.*`, `commerce.register_sessions.*`, `commerce.register_cash_ups.*`, `commerce.register_corrections.approve` | `awcms_permissions` (`sql/972`) | Sepuluh kunci: kelola register, baca / buka / pakai / ekspor sesi, tutup / setujui selisih, koreksi sesi yang sudah ditutup |
 
 ## Kolom dan tabel yang ditunda — tidak di-porting
 

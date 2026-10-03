@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](arsitektur.md)
 
-<!-- i18n-source-hash: sha256:efb56bdbc5590dd57cc52452685f3795f59297e5ba517f42b6fcdc54871dbbbd -->
+<!-- i18n-source-hash: sha256:5fa48ecead7feb28e5ba1ecff1d450011a7eaebfd5b55f8e26a444dd5d76a1d2 -->
 
 # Arsitektur
 
@@ -186,6 +186,10 @@ flowchart TB
 ## Pembayaran adalah ledger, bukan kolom (issue #285, [ADR-0025](adr/0025-payments-are-an-allocation-ledger-separate-from-order-status.md))
 
 Setiap cara uang sampai ke sebuah pesanan — tender POS, konfirmasi transfer manual yang diterima, pembayaran yang dicatat staf, webhook gateway terverifikasi atau hasil reconcile — menulis SATU tabel append-only, `awcms_commerce_payment_allocations`, dan tidak ada yang lain yang memutuskan "lunas". Penyelesaian diturunkan dari baris-barisnya (`Σ pembayaran berhasil − Σ pembalikan berhasil`); `orders.payment_status` adalah cache dari turunan itu; siklus hidup pesanan bergerak ke `paid` lewat satu `transitionOrderStatus` yang sudah ada ketika penyelesaian mencapai ambang rilis pesanan, tidak pernah lewat jalur sendiri. Setiap penulis mengunci baris pesanan lebih dulu (`FOR NO KEY UPDATE`, agar kunci key-share FK dari insert anak tidak bisa membuatnya deadlock), itulah yang membuat dua pembayaran final yang bersamaan aman; `source_key` unik milik ledger adalah penjaga kedua yang independen di belakang store idempotensi bersama. `awcms_app` tidak bisa `DELETE` baris ledger dan trigger membekukan setiap kolom kecuali transisi leg gateway `pending → succeeded|failed`. Graf impor lokal-modul tetap satu arah: `payment-allocation-directory.ts` tidak mengimpor apa pun dari `order-directory.ts` dan diberi callback rilis; `payment-recording.ts` menyusun keduanya. Tidak ada panggilan provider yang masuk ke transaksi-transaksi ini (leg gateway dibuka setelah provider kembali dan diselesaikan oleh hasil webhook/reconcile yang terverifikasi).
+
+## Shift adalah turunan atas ledger (issue #284, [ADR-0028](adr/0028-pos-register-sessions-and-cash-up.md))
+
+Tutup kas tidak menyimpan total sendiri. Jumlah penutupan yang seharusnya per tender adalah jumlah atas baris yang sudah ada dan tidak dapat diedit — leg ledger alokasi pembayaran yang distempel dengan sesi, ditambah mutasi laci append-only sesi itu — dihitung di bawah kunci baris sesi dan di-snapshot sekali pada baris penutupan. Stempellah yang membuatnya persis (jendela waktu atas `created_at` tidak: timestamp sebuah leg adalah awal transaksinya). Baris sesi membawa tiga mode kunci — `FOR SHARE` untuk penjualan, mutasi, dan leg yang distempel (banyak sekaligus), `FOR NO KEY UPDATE` untuk serah terima, penutupan, persetujuan, dan koreksi (eksklusif, namun kompatibel dengan `FOR KEY SHARE` yang diambil insert FK, pelajaran ADR-0025 D4) — ditambah indeks unik parsial dan kunci baris register untuk "satu sesi aktif per register". Sesi yang sudah ditutup dibekukan trigger; koreksi adalah baris kompensasi; alur penutupan (`open → closing → closed | open`, `closed → corrected`) tidak pernah menulis ulang penjualan atau pembayaran. Dengan fitur `register` mati (default) tidak ada satu pun dari ini di jalur penjualan.
 
 ## Satu hal lagi yang dilakukan server: memperbaiki halaman yang terbayangi
 

@@ -31,6 +31,7 @@ import {
   type TenderInput
 } from "./payment-allocation";
 import { fromCents, toCents } from "./price-calculation";
+import { isUuid } from "./register";
 
 // One class for "the tenders do not cover the total" across the legacy
 // single-tender arithmetic below and the multi-tender planner
@@ -103,6 +104,15 @@ export type CreatePosOrderInput = {
    * on its ledger until later payments settle it.
    */
   allowDue: boolean;
+  /**
+   * Issue #284 (ADR-0028) - the register the sale is rung up on. Required (by
+   * `createPosOrder`, not by shape) when the tenant's `register` feature is
+   * on: the sale is attached to that register's open session. Optional and
+   * ignored-by-absence when the feature is off, so every pre-existing client
+   * payload keeps working. Sending it while the feature is off is refused
+   * (`409 FEATURE_DISABLED`) rather than silently not attaching the sale.
+   */
+  registerId?: string | null;
   notes: string | null;
 };
 
@@ -371,6 +381,17 @@ export function validateCreatePosOrderInput(
         "tenders must contain at least one entry unless allowDue is true."
     });
   }
+  let registerId: string | null = null;
+  if (record.registerId !== undefined && record.registerId !== null) {
+    if (isUuid(record.registerId)) {
+      registerId = record.registerId;
+    } else {
+      errors.push({
+        field: "registerId",
+        message: "registerId must be a UUID, or null."
+      });
+    }
+  }
   if (
     record.notes !== undefined &&
     record.notes !== null &&
@@ -399,6 +420,7 @@ export function validateCreatePosOrderInput(
       payment,
       tenders,
       allowDue,
+      registerId,
       notes
     }
   };

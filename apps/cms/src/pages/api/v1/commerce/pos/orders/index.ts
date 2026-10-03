@@ -28,13 +28,15 @@ import {
   createPosOrder,
   listPosOrders,
   PosCartChangedError,
-  PosDueRequiresCustomerError
+  PosDueRequiresCustomerError,
+  PosRegisterSessionError
 } from "../../../../../../modules/commerce/application/pos-directory";
 import {
   InvalidTenderPlanError,
   OverpaymentError
 } from "../../../../../../modules/commerce/domain/payment-allocation";
 import { IdempotencyPayloadMismatchError } from "../../../../../../modules/commerce/application/order-directory";
+import { FeatureDisabledError } from "../../../../../../modules/commerce/domain/commerce-features";
 import {
   InsufficientTenderError,
   validateCreatePosOrderInput,
@@ -286,6 +288,54 @@ export const POST = defineTenantRoute<CreatePosOrderInput>({
         return fail(400, "VALIDATION_ERROR", error.message, {}, [
           { field: error.field, message: error.message }
         ]);
+      }
+      if (error instanceof FeatureDisabledError) {
+        return fail(
+          409,
+          "FEATURE_DISABLED",
+          `The "${error.feature}" feature is disabled for this tenant.`
+        );
+      }
+      if (error instanceof PosRegisterSessionError) {
+        // Issue #284 (ADR-0028) - the register gate. A missing register id is
+        // a validation error; an unknown/foreign register is the one neutral
+        // 404; the rest are conflicts with the shift's own state.
+        switch (error.code) {
+          case "REGISTER_REQUIRED":
+            return fail(
+              400,
+              "VALIDATION_ERROR",
+              "registerId is required while the register feature is on.",
+              {},
+              [
+                {
+                  field: "registerId",
+                  message:
+                    "registerId is required while the register feature is on."
+                }
+              ]
+            );
+          case "REGISTER_NOT_FOUND":
+            return fail(404, "RESOURCE_NOT_FOUND", "Register not found.");
+          case "REGISTER_SESSION_REQUIRED":
+            return fail(
+              409,
+              "REGISTER_SESSION_REQUIRED",
+              "The register has no open session; open one before ringing up a sale."
+            );
+          case "REGISTER_SESSION_CLOSING":
+            return fail(
+              409,
+              "REGISTER_SESSION_CLOSING",
+              "The register's session is being closed and accepts no sales."
+            );
+          case "NOT_SESSION_CASHIER":
+            return fail(
+              409,
+              "NOT_SESSION_CASHIER",
+              "The register's session belongs to another cashier; ask for a handover."
+            );
+        }
       }
       if (error instanceof PosDueRequiresCustomerError) {
         return fail(

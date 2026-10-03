@@ -42,6 +42,7 @@
  * went back is a human decision (`domain/order-status.ts`'s header).
  */
 import { recordAuditEvent } from "../../logging/application/audit-log";
+import { resolveRegisterSessionStamp } from "./register-session-stamp";
 import { appendDomainEvent } from "../../domain-event-runtime/application/append-domain-event";
 import {
   fromCents,
@@ -164,6 +165,8 @@ type OrderLedgerHeader = {
   paymentMethod: string;
   dpAmount: string | null;
   paymentStatus: string;
+  /** Issue #284 — the register session a POS sale was rung up in (`null` otherwise). */
+  registerSessionId: string | null;
 };
 
 /**
@@ -188,7 +191,8 @@ export async function lockOrderForSettlement(
   orderId: string
 ): Promise<OrderLedgerHeader | null> {
   const rows = (await tx`
-    SELECT id, order_code, status, total, payment_method, dp_amount, payment_status
+    SELECT id, order_code, status, total, payment_method, dp_amount, payment_status,
+           register_session_id
     FROM awcms_commerce_orders
     WHERE tenant_id = ${tenantId} AND id = ${orderId} AND deleted_at IS NULL
     FOR NO KEY UPDATE
@@ -200,6 +204,7 @@ export async function lockOrderForSettlement(
     payment_method: string;
     dp_amount: string | null;
     payment_status: string;
+    register_session_id: string | null;
   }[];
   const row = rows[0];
   if (!row) return null;
@@ -210,7 +215,8 @@ export async function lockOrderForSettlement(
     total: normalizeMoney(row.total),
     paymentMethod: row.payment_method,
     dpAmount: row.dp_amount !== null ? normalizeMoney(row.dp_amount) : null,
-    paymentStatus: row.payment_status
+    paymentStatus: row.payment_status,
+    registerSessionId: row.register_session_id
   };
 }
 
@@ -314,7 +320,8 @@ export async function fetchOrderPaymentSummary(
   orderId: string
 ): Promise<OrderPaymentSummary | null> {
   const orderRows = (await tx`
-    SELECT id, order_code, status, total, payment_method, dp_amount, payment_status
+    SELECT id, order_code, status, total, payment_method, dp_amount, payment_status,
+           register_session_id
     FROM awcms_commerce_orders
     WHERE tenant_id = ${tenantId} AND id = ${orderId} AND deleted_at IS NULL
   `) as {
@@ -325,6 +332,7 @@ export async function fetchOrderPaymentSummary(
     payment_method: string;
     dp_amount: string | null;
     payment_status: string;
+    register_session_id: string | null;
   }[];
   const order = orderRows[0];
   if (!order) return null;
@@ -336,7 +344,8 @@ export async function fetchOrderPaymentSummary(
     total: normalizeMoney(order.total),
     paymentMethod: order.payment_method,
     dpAmount: order.dp_amount !== null ? normalizeMoney(order.dp_amount) : null,
-    paymentStatus: order.payment_status
+    paymentStatus: order.payment_status,
+    registerSessionId: order.register_session_id
   };
   const allocations = await listAllocationsForOrder(tx, tenantId, orderId);
   const { settlement, paymentStatus } = settlementOf(
@@ -656,17 +665,24 @@ export async function recordPaymentAllocation(
   }
 
   const actor = actorColumns(params.actor);
+  // Issue #284 — a leg recorded while its sale's register session is open
+  // belongs to that session's cash-up (see `register-session-stamp.ts`).
+  const registerSessionId = await resolveRegisterSessionStamp(
+    tx,
+    tenantId,
+    header.registerSessionId
+  );
   const rows = (await tx`
     INSERT INTO awcms_commerce_payment_allocations (
       tenant_id, order_id, kind, tender_type, amount, status,
       provider, provider_reference, tendered_amount, change_amount, note,
-      source, source_key, actor_kind, actor_tenant_user_id, settled_at
+      source, source_key, actor_kind, actor_tenant_user_id, register_session_id, settled_at
     )
     VALUES (
       ${tenantId}, ${header.id}, 'payment', ${params.tenderType}, ${amount}, 'succeeded',
       ${params.provider ?? null}, ${params.providerReference ?? null},
       ${tenderedAmount}, ${changeAmount}, ${note},
-      ${params.source}, ${params.sourceKey}, ${actor.kind}, ${actor.tenantUserId}, now()
+      ${params.source}, ${params.sourceKey}, ${actor.kind}, ${actor.tenantUserId}, ${registerSessionId}, now()
     )
     RETURNING ${tx.unsafe(ALLOCATION_COLUMNS)}
   `) as AllocationRow[];
@@ -1008,17 +1024,24 @@ export async function recordPaymentReversal(
   }
 
   const actor = actorColumns(params.actor);
+  // Issue #284 — a reversal recorded while the sale's register session is
+  // still open (a cash refund at the counter) is part of that cash-up.
+  const registerSessionId = await resolveRegisterSessionStamp(
+    tx,
+    tenantId,
+    header.registerSessionId
+  );
   const rows = (await tx`
     INSERT INTO awcms_commerce_payment_allocations (
       tenant_id, order_id, kind, reverses_allocation_id, tender_type, amount, status,
       provider, provider_reference, note, source, source_key,
-      actor_kind, actor_tenant_user_id, settled_at
+      actor_kind, actor_tenant_user_id, register_session_id, settled_at
     )
     VALUES (
       ${tenantId}, ${header.id}, 'reversal', ${original.id}, ${original.tenderType},
       ${fromCents(amountCents)}, 'succeeded',
       ${original.provider}, ${original.providerReference}, ${params.note}, 'admin', ${params.sourceKey},
-      ${actor.kind}, ${actor.tenantUserId}, now()
+      ${actor.kind}, ${actor.tenantUserId}, ${registerSessionId}, now()
     )
     RETURNING ${tx.unsafe(ALLOCATION_COLUMNS)}
   `) as AllocationRow[];
