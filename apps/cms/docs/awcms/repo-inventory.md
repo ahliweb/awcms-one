@@ -8,12 +8,12 @@
 | Aspect                              | Value |
 | ----------------------------------- | ----- |
 | Registered modules                  | 26    |
-| Migrations                          | 209   |
-| `awcms_*` tables                    | 208   |
-| Tables with `FORCE` RLS             | 190   |
+| Migrations                          | 212   |
+| `awcms_*` tables                    | 211   |
+| Tables with `FORCE` RLS             | 193   |
 | RLS-free tables (global, by design) | 18    |
-| Test files                          | 627   |
-| Route files                         | 553   |
+| Test files                          | 632   |
+| Route files                         | 566   |
 | ADR                                 | 252   |
 
 ### Modules
@@ -260,6 +260,9 @@
 | 207 | `sql/937_awcms_commerce_entitlements_worker_grants.sql`                     |
 | 208 | `sql/938_awcms_commerce_entitlements_permissions.sql`                       |
 | 209 | `sql/939_awcms_commerce_protected_media_links_schema.sql`                   |
+| 210 | `sql/950_awcms_commerce_loyalty_schema.sql`                                 |
+| 211 | `sql/951_awcms_commerce_loyalty_worker_grants.sql`                          |
+| 212 | `sql/952_awcms_commerce_loyalty_permissions.sql`                            |
 
 ### Tables & Row-Level Security
 
@@ -314,6 +317,9 @@
 | `awcms_commerce_entitlements`               | `sql/936_awcms_commerce_entitlements_schema.sql`           | yes | yes   |
 | `awcms_commerce_flash_sale_products`        | `sql/909_awcms_commerce_marketing_schema.sql`              | yes | yes   |
 | `awcms_commerce_flash_sales`                | `sql/909_awcms_commerce_marketing_schema.sql`              | yes | yes   |
+| `awcms_commerce_loyalty_accounts`           | `sql/950_awcms_commerce_loyalty_schema.sql`                | yes | yes   |
+| `awcms_commerce_loyalty_ledger`             | `sql/950_awcms_commerce_loyalty_schema.sql`                | yes | yes   |
+| `awcms_commerce_loyalty_programs`           | `sql/950_awcms_commerce_loyalty_schema.sql`                | yes | yes   |
 | `awcms_commerce_messages`                   | `sql/927_awcms_commerce_conversations_schema.sql`          | yes | yes   |
 | `awcms_commerce_order_events`               | `sql/913_awcms_commerce_customers_orders_schema.sql`       | yes | yes   |
 | `awcms_commerce_order_items`                | `sql/913_awcms_commerce_customers_orders_schema.sql`       | yes | yes   |
@@ -478,17 +484,17 @@
 
 | Directory     | Test files |
 | ------------- | ---------- |
-| `(root)`      | 497        |
+| `(root)`      | 501        |
 | `e2e`         | 21         |
-| `integration` | 108        |
+| `integration` | 109        |
 | `unit`        | 1          |
 
 ### Routes
 
 | Surface         | Files |
 | --------------- | ----- |
-| `/api/v1/**`    | 439   |
-| `/admin/**`     | 84    |
+| `/api/v1/**`    | 451   |
+| `/admin/**`     | 85    |
 | publik / anonim | 30    |
 
 <!-- END GENERATED: repo-inventory -->

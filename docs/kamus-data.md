@@ -167,6 +167,24 @@ BjekMart's kasir (`commerce_bj_mart`'s counter sales, recorded in the legacy `or
 | `commerce.pos.create` | `awcms_permissions` (`sql/932`); `COMMERCE_POS_PERMISSIONS.create` | The ONE permission-gated order-creation path in the module. POS history reuses `commerce.orders.read` |
 | `commerce.pos.sale` | `awcms_audit_events.action` | The audit event every counter sale writes (order code, total, method, tendered, change, walk-in flag, line count — never the customer's name or phone) |
 
+## Loyalty vocabulary (issue #289, [ADR-0026](adr/0026-loyalty-points-are-an-append-only-ledger.md))
+
+This platform's own design — OSPOS's "rewards" is the inspiration, none of its code or schema is carried over.
+
+| Term | Where | Meaning |
+| --- | --- | --- |
+| point | `awcms_commerce_loyalty_ledger.points`, `bigint`, signed | An integer. Never a float and never money; not store credit or stored value (#288). Bounded to ±10¹² and asserted on every decode (`assertPoints`) |
+| `kind` | ledger `CHECK IN ('earn','redeem','expire','adjustment','reversal')` | `earn` points granted for a paid order (> 0, a **lot** that may carry `expires_at`); `redeem` points spent (< 0); `expire` a lot lapsing (<= 0 — 0 is a marker for a lot already fully spent); `adjustment` a manual correction (non-zero, actor + reason mandatory); `reversal` the compensating entry for one earn (non-zero, names `reverses_entry_id`) |
+| `source_type` / `source_id` | ledger | Where a row came from: `order` (an order id), `expiry` (the lapsing lot's entry id), `redemption`, `manual`. No FK on `source_id` |
+| `idempotency_key` | ledger, unique per tenant | `earn:order:<orderId>`, `reversal:order:<orderId>`, `expire:<lotEntryId>`, `redeem:<accountId>:<clientKey>`, `adjust:<accountId>:<clientKey>` — the reason a replayed event, job or retry cannot write a second row |
+| `account_seq` / `balance_after` | ledger | The row's position in its account's history (assigned under the account lock) and the running balance after it — what reconcile verifies |
+| lot | derived (`domain/loyalty-lots.ts`) | A positive ledger entry and how much of it is still spendable, computed by replaying the ledger (earliest-expiry-first). Never stored |
+| program version | `awcms_commerce_loyalty_programs` | One earn rule: `earn_points_per_unit` points per WHOLE `earn_unit_amount` of eligible spend, FLOOR rounding (`earn_rounding = 'floor'`), optional `min_order_amount`, `max_points_per_order`, `expiry_days`. Status `draft` → `active` → `retired`; effective at an instant when `effective_from <= t < effective_to` |
+| eligible spend | computed | The order's `subtotal - discount` (merchandise net of voucher), floored at zero; shipping, insurance and tax never earn |
+| `features.loyalty` | `commerce` module settings, `domain/commerce-features.ts` | The tenant switch, default **false** (the only commerce flag that defaults off) |
+| `commerce.loyalty.{read,manage}`, `commerce.loyalty_adjustments.create`, `commerce.loyalty_redemptions.create` | `awcms_permissions` (`sql/952`) | Four permissions on three activity codes — not `loyalty.adjust`/`.redeem`, because `AccessAction` is upstream-owned |
+| `awcms.commerce.loyalty.entry_recorded` | domain event | One event per ledger row; aggregate `commerce.loyalty_account`; payload carries `kind`, signed `points`, `balanceAfter`, `sourceType`, never PII |
+
 ## Deferred columns and tables — not ported
 
 - **A live RajaOngkir courier-RATE table is done** (issue #107, `sql/924` — `awcms_commerce_courier_destinations`/`_shipping_rates`, a cached rate the order path validates against, never a synchronous provider call). What is still deferred: live courier TRACKING (a shipped parcel's own status) — `shipping_method`/`shipping_service_name` on an order remain merchant-defined labels for the `alternative`/`self_pickup` methods; a `courier` shipment's rate is now live, its post-dispatch tracking is not (named as a follow-up in [ADR-0017](adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.md)).

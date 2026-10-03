@@ -10,8 +10,13 @@ import { EVENT_ACTIVITY_PROJECTOR_CONSUMER_NAME } from "../../reporting/domain/p
 import { grantEntitlementsForPaidOrder } from "../../commerce/application/commerce-entitlement-directory";
 import {
   COMMERCE_EVENT_VERSION,
+  COMMERCE_ORDER_CANCELLED_EVENT_TYPE,
   COMMERCE_ORDER_PAID_EVENT_TYPE
 } from "../../commerce/domain/commerce-events";
+import {
+  earnPointsForPaidOrder,
+  reverseEarnForCancelledOrder
+} from "../../commerce/application/loyalty-ledger";
 
 /**
  * Two representative consumers ("provide at least two representative
@@ -225,11 +230,95 @@ export const orderPaidEntitlementGrantorConsumer: DomainEventConsumerDefinition 
     }
   };
 
+const ORDER_PAID_LOYALTY_EARNER_CONSUMER_NAME =
+  "commerce.order_paid_loyalty_earner";
+const ORDER_CANCELLED_LOYALTY_REVERSER_CONSUMER_NAME =
+  "commerce.order_cancelled_loyalty_reverser";
+
+/**
+ * `commerce` module consumer (Issue #289, ADR-0026 D7) — earns loyalty points
+ * for the order that just turned `paid`. Same documented `domain_event_runtime
+ * -> commerce` module-boundary exception as
+ * `orderPaidEntitlementGrantorConsumer` (`tests/module-boundary.test.ts`).
+ *
+ * UNLIKE the entitlement directory, `loyalty-ledger.ts` publishes a domain
+ * event of its own (`loyalty.entry_recorded`), so it imports
+ * `application/append-domain-event`, which imports THIS registry
+ * (`getConsumersForEventType`) — a file-level import cycle. It is inert: both
+ * sides use the other's exports only inside function bodies (never during
+ * module evaluation), and ES module live bindings resolve them by call time.
+ * Nothing at the top level of either file reads the other.
+ *
+ * Reads the order's own row — never the event payload, which carries no money
+ * — and earns exactly once per order: `applyConsumerEffectOnce` guards the
+ * redelivered event, the ledger's `earn:order:<id>` idempotency key guards
+ * every other replay path. This consumer is what keeps loyalty OUT of
+ * `order-directory.ts`, `pos-directory.ts` and the payment webhook paths: all
+ * of them already publish `order.paid`.
+ */
+export const orderPaidLoyaltyEarnerConsumer: DomainEventConsumerDefinition = {
+  name: ORDER_PAID_LOYALTY_EARNER_CONSUMER_NAME,
+  description:
+    "commerce module consumer — earns loyalty points for an order the moment it turns paid, exactly once per order, from server-side order facts only (Issue #289).",
+  eventTypes: [COMMERCE_ORDER_PAID_EVENT_TYPE],
+  eventVersions: [COMMERCE_EVENT_VERSION],
+  handler: async (tx, event, ctx) => {
+    await applyConsumerEffectOnce(
+      tx,
+      ctx.tenantId,
+      ORDER_PAID_LOYALTY_EARNER_CONSUMER_NAME,
+      event.id,
+      async () => {
+        await earnPointsForPaidOrder(
+          tx,
+          ctx.tenantId,
+          event.aggregateId,
+          ctx.correlationId
+        );
+      }
+    );
+  }
+};
+
+/**
+ * `commerce` module consumer (Issue #289, ADR-0026 D6) — writes the
+ * compensating `reversal` entry for the earn of an order that was cancelled
+ * after it had been paid. Never deletes the earn. A no-op for an order that
+ * never earned (never paid, walk-in, feature off at the time).
+ */
+export const orderCancelledLoyaltyReverserConsumer: DomainEventConsumerDefinition =
+  {
+    name: ORDER_CANCELLED_LOYALTY_REVERSER_CONSUMER_NAME,
+    description:
+      "commerce module consumer — reverses (compensating entry, never a delete) the loyalty points an order earned when that order is cancelled (Issue #289).",
+    eventTypes: [COMMERCE_ORDER_CANCELLED_EVENT_TYPE],
+    eventVersions: [COMMERCE_EVENT_VERSION],
+    handler: async (tx, event, ctx) => {
+      await applyConsumerEffectOnce(
+        tx,
+        ctx.tenantId,
+        ORDER_CANCELLED_LOYALTY_REVERSER_CONSUMER_NAME,
+        event.id,
+        async () => {
+          await reverseEarnForCancelledOrder(
+            tx,
+            ctx.tenantId,
+            event.aggregateId,
+            new Date(),
+            ctx.correlationId
+          );
+        }
+      );
+    }
+  };
+
 const BASE_DOMAIN_EVENT_CONSUMERS: readonly DomainEventConsumerDefinition[] = [
   sampleAuditProjectorConsumer,
   activityRollupProjectorConsumer,
   eventActivityProjectorConsumer,
-  orderPaidEntitlementGrantorConsumer
+  orderPaidEntitlementGrantorConsumer,
+  orderPaidLoyaltyEarnerConsumer,
+  orderCancelledLoyaltyReverserConsumer
 ];
 
 /**
