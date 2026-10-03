@@ -11,13 +11,31 @@
  * 1. **Payment**: `createOrderFromCart` gates the chosen method against
  *    `quote.paymentMethods` (store-settings-driven — manual bank/QRIS/DP/
  *    gateway availability), which knows nothing about `"cash"`. A POS sale
- *    is ALWAYS paid in full, on the spot — there is no `paymentMethods`
- *    availability question to ask.
+ *    is paid on the spot, through one or more TENDERS (Issue #285,
+ *    ADR-0025) — there is no `paymentMethods` availability question to ask.
  * 2. **Status**: `createOrderFromCart` always leaves an order
- *    `pending_payment`. A POS sale is `paid` the instant it exists —
- *    `createPosOrder` inserts `pending_payment` (reusing the SAME initial
- *    `order_events` row shape) and immediately calls
- *    `order-directory.ts`'s `applyPosOrderPaidTransition`, actor `"admin"`.
+ *    `pending_payment`. A POS sale inserts `pending_payment` (reusing the
+ *    SAME initial `order_events` row shape) and then records its tenders in
+ *    the payment-allocation ledger (`payment-allocation-directory.ts`); the
+ *    moment settlement covers the total the order moves to `paid` through
+ *    `order-directory.ts`'s one `transitionOrderStatus` (actor `"admin"`) —
+ *    for an ordinary fully-tendered sale that is within this same call, so
+ *    the observable result is unchanged. A sale rung up with `allowDue`
+ *    (permission `commerce.pos_due.create`) legitimately ends with a balance
+ *    DUE: it stays `pending_payment`, `payment_status` `unpaid`/
+ *    `partially_paid`, `expires_at` NULL (the expiry job never reclaims a
+ *    counter sale's stock), and later payments settle it.
+ *
+ * ## Tenders (Issue #285, ADR-0025)
+ *
+ * The request carries EITHER the legacy `payment: { method, amountTendered }`
+ * (adapted here to exactly one ledger leg — same arithmetic, same errors as
+ * before) OR an explicit `tenders[]`. `domain/payment-allocation.ts`'s
+ * `planTenders` turns either into the legs to write: non-cash tenders are
+ * subtracted from the amount due first, cash is applied to what is left, and
+ * change comes from the cash leg ONLY (never hiding a shortfall on another
+ * tender). `orders.payment_method` is kept as a legacy summary hint (the
+ * tender with the largest applied amount); the ledger is the truth.
  * 3. **No address/voucher/affiliate/DP**: none of `createOrderFromCart`'s
  *    address snapshot, voucher redemption, or affiliate attribution apply
  *    to a counter sale — `shipping` is always `self_pickup`, no address is
@@ -78,10 +96,16 @@ import { generateOrderCode } from "../domain/order-code";
 import type { OrderStatus } from "../domain/order-status";
 import type { CustomerLevel } from "../domain/cart-quote";
 import {
-  computeChange,
   POS_WALK_IN_CUSTOMER_NAME,
   type CreatePosOrderInput
 } from "../domain/pos-order-validation";
+import {
+  planTenders,
+  tenderToOrderPaymentMethod,
+  type TenderInput,
+  type TenderPlan
+} from "../domain/payment-allocation";
+import { fromCents, toCents } from "../domain/price-calculation";
 import {
   COMMERCE_EVENT_VERSION,
   COMMERCE_ORDER_AGGREGATE_TYPE,
@@ -90,13 +114,14 @@ import {
 import { buildCartQuote } from "./cart-quote-service";
 import { findOrCreateCustomerByPhone } from "./customer-directory";
 import {
-  applyPosOrderPaidTransition,
   fetchOrderDetailForAdmin,
   IdempotencyPayloadMismatchError,
+  makeOrderRelease,
   toAdminOrderRecord,
   type OrderAdminDetailRecord,
   type OrderAdminSummary
 } from "./order-directory";
+import { recordPaymentAllocation } from "./payment-allocation-directory";
 import type { CartQuoteResult } from "../domain/cart-quote";
 
 const AUDIT_MODULE_KEY = "commerce";
@@ -123,16 +148,60 @@ export class PosCartChangedError extends Error {
 }
 
 /**
+ * A sale with a balance DUE needs a customer who can be asked to pay it — the
+ * tenant's single walk-in row cannot. Raised before anything is written; the
+ * route answers `400 VALIDATION_ERROR` on `customer.phone`.
+ */
+export class PosDueRequiresCustomerError extends Error {
+  constructor() {
+    super(
+      "A sale left with a balance due must be attached to a customer phone."
+    );
+    this.name = "PosDueRequiresCustomerError";
+  }
+}
+
+/**
  * The 201 body — the admin order record (unmasked phone: this is a staff
- * context) plus the computed `change` (`numeric(14,2)` string for cash,
- * `null` for QRIS), the `amountTendered` echoed back for the receipt, and
- * the cashier's own tenant user id.
+ * context; it carries the order's `settlement` and its `payments` ledger rows,
+ * so a receipt can print every tender) plus the aggregate `change` (the cash
+ * leg's change, `numeric(14,2)` string; `null` when the sale had no cash leg),
+ * the cash `amountTendered` echoed back (`null` when no cash leg), and the
+ * cashier's own tenant user id. `settlement.outstanding` is the explicit due
+ * balance of an `allowDue` sale (`"0.00"` for an ordinary one).
  */
 export type PosOrderRecord = OrderAdminDetailRecord & {
   change: string | null;
   amountTendered: string | null;
   cashierTenantUserId: string;
 };
+
+/** The legacy single-tender payload, adapted to the tender vocabulary. */
+function adaptLegacyPayment(
+  payment: NonNullable<CreatePosOrderInput["payment"]>
+): TenderInput[] {
+  return payment.method === "cash"
+    ? [
+        {
+          tenderType: "cash",
+          amount: payment.amountTendered,
+          reference: null
+        }
+      ]
+    : // A legacy QRIS payload carries no amount: the sale is paid exactly.
+      [{ tenderType: "manual_qris", amount: null, reference: null }];
+}
+
+/** The legacy `orders.payment_method` summary hint: the tender with the largest applied amount (first on a tie); `cash` when nothing was tendered at all. */
+function summaryPaymentMethod(
+  plan: TenderPlan
+): "cash" | "manual_qris" | "manual_bank" | "gateway" {
+  let best: TenderPlan["legs"][number] | null = null;
+  for (const leg of plan.legs) {
+    if (best === null || toCents(leg.amount) > toCents(best.amount)) best = leg;
+  }
+  return best ? tenderToOrderPaymentMethod(best.tenderType) : "cash";
+}
 
 export type CreatePosOrderOutcome =
   | { kind: "replayed"; order: PosOrderRecord }
@@ -162,7 +231,11 @@ export async function createPosOrder(
     actorTenantUserId,
     customer: input.customer,
     lines: input.lines,
-    payment: input.payment,
+    // `undefined` drops out of the hash, so a LEGACY request hashes exactly
+    // as it did before Issue #285 (a replay across the deploy still matches).
+    payment: input.payment ?? undefined,
+    tenders: input.tenders ?? undefined,
+    allowDue: input.allowDue ? true : undefined,
     notes: input.notes
   });
 
@@ -238,12 +311,18 @@ export async function createPosOrder(
     throw new PosCartChangedError(quote);
   }
 
-  // Throws `InsufficientTenderError` on a short tender — the route maps it
-  // to a `409`, never silently records a negative change. QRIS is exact.
-  const change =
-    input.payment.method === "cash" && input.payment.amountTendered !== null
-      ? computeChange(input.payment.amountTendered, quote.total)
-      : null;
+  // Throws `InsufficientTenderError` on a short tender (unless `allowDue`),
+  // `OverpaymentError` when non-cash tenders exceed the total — the route maps
+  // them to a `409`, never silently records a negative change or hides a
+  // shortfall behind another tender's change. A legacy QRIS payload is exact.
+  const tenders: TenderInput[] =
+    input.tenders ?? adaptLegacyPayment(input.payment!);
+  const plan = planTenders(quote.total, tenders, { allowDue: input.allowDue });
+  if (toCents(plan.dueAmount) > 0n && isWalkIn) {
+    throw new PosDueRequiresCustomerError();
+  }
+  const change = plan.changeAmount;
+  const amountTendered = plan.cashTendered;
 
   let orderId = "";
   let orderCode = "";
@@ -257,7 +336,7 @@ export async function createPosOrder(
           notes, channel, pos_cashier_tenant_user_id
         )
         VALUES (
-          ${tenantId}, ${candidateCode}, ${customer.id}, 'pending_payment', ${input.payment.method}, 'unpaid',
+          ${tenantId}, ${candidateCode}, ${customer.id}, 'pending_payment', ${summaryPaymentMethod(plan)}, 'unpaid',
           'self_pickup', '0.00', ${quote.subtotal}, ${quote.discount}, ${quote.insurance.fee}, ${quote.tax.amount},
           ${quote.total}, ${input.notes}, 'pos', ${actorTenantUserId}
         )
@@ -332,13 +411,18 @@ export async function createPosOrder(
     action: POS_SALE_AUDIT_ACTION,
     resourceType: AUDIT_RESOURCE_TYPE,
     resourceId: orderId,
-    message: `POS sale ${orderCode} rung up at the counter (${input.payment.method}).`,
+    message: `POS sale ${orderCode} rung up at the counter (${plan.legs.map((leg) => leg.tenderType).join(" + ") || "on account"}).`,
     attributes: {
       orderCode,
       total: quote.total,
-      method: input.payment.method,
-      amountTendered: input.payment.amountTendered,
+      method: summaryPaymentMethod(plan),
+      tenders: plan.legs.map((leg) => ({
+        tenderType: leg.tenderType,
+        amount: leg.amount
+      })),
+      amountTendered,
       change,
+      due: plan.dueAmount,
       walkIn: isWalkIn,
       lineCount: quote.lines.length
     },
@@ -356,16 +440,45 @@ export async function createPosOrder(
     payload: { orderId, orderCode, total: quote.total, channel: "pos" }
   });
 
-  // `pending_payment -> paid`, actor `"admin"` — see `order-directory.ts`'s
-  // `applyPosOrderPaidTransition` header for why this is a shared function
-  // rather than a second copy of the status-transition bookkeeping.
-  await applyPosOrderPaidTransition(
+  // Settle: one ledger leg per planned tender, in order (non-cash first, the
+  // cash leg last). Each insert re-derives the order's settlement under the
+  // order-row lock; the leg that brings it to the total moves the order
+  // `pending_payment -> paid` through `order-directory.ts`'s one
+  // `transitionOrderStatus` (actor `"admin"`, via `makeOrderRelease`) — never
+  // a second copy of the status bookkeeping. A due balance leaves the order
+  // `pending_payment` with its outstanding amount on the ledger.
+  const release = makeOrderRelease(
     tx,
     tenantId,
+    "admin",
     actorTenantUserId,
     orderId,
     correlationId
   );
+  const releaseNote = "POS counter sale — paid at the register.";
+  for (const [index, leg] of plan.legs.entries()) {
+    await recordPaymentAllocation(tx, tenantId, {
+      orderId,
+      tenderType: leg.tenderType,
+      amount: leg.amount,
+      providerReference: leg.reference,
+      tenderedAmount: leg.tenderedAmount,
+      changeAmount: leg.changeAmount,
+      source: "pos",
+      sourceKey: `pos:${input.idempotencyKey}:${index}`,
+      actor: { kind: "tenant_user", tenantUserId: actorTenantUserId },
+      enforceNoOverpayment: true,
+      allowedOrderStatuses: null,
+      release,
+      releaseNote,
+      correlationId
+    });
+  }
+  if (plan.legs.length === 0 && toCents(quote.total) === 0n) {
+    // A free sale (total 0.00) owes nothing and has no leg to write: settled
+    // by definition, so it is released directly.
+    await release(releaseNote);
+  }
 
   const detail = await fetchOrderDetailForAdmin(
     tx,
@@ -373,11 +486,13 @@ export async function createPosOrder(
     mediaPort,
     orderId
   );
-  const record = await toAdminOrderRecord(tx, tenantId, detail!);
+  const record = await toAdminOrderRecord(tx, tenantId, detail!, {
+    includePayments: true
+  });
   const responseBody: PosOrderRecord = {
     ...record,
     change,
-    amountTendered: input.payment.amountTendered,
+    amountTendered,
     cashierTenantUserId: actorTenantUserId
   };
 
@@ -401,6 +516,8 @@ export async function createPosOrder(
 export type PosOrderSummary = OrderAdminSummary & {
   paymentMethod: string;
   cashierTenantUserId: string | null;
+  /** Issue #285 — what the sale still owes, derived from its payment ledger (`"0.00"` for a settled sale). */
+  outstanding: string;
 };
 
 export type PosOrderListPage = {
@@ -436,9 +553,15 @@ export async function listPosOrders(
     SELECT o.id, o.order_code, o.status, o.payment_status, o.payment_method,
            o.pos_cashier_tenant_user_id, o.total, o.created_at,
            c.name AS customer_name, c.phone AS customer_phone,
+           COALESCE(p.settled, 0) AS settled,
            ${tx.unsafe(keysetCursorCreatedAtSql("o"))} AS created_at_cursor
     FROM awcms_commerce_orders o
     JOIN awcms_commerce_customers c ON c.id = o.customer_id
+    LEFT JOIN LATERAL (
+      SELECT SUM(CASE WHEN a.kind = 'payment' THEN a.amount ELSE -a.amount END) AS settled
+      FROM awcms_commerce_payment_allocations a
+      WHERE a.tenant_id = o.tenant_id AND a.order_id = o.id AND a.status = 'succeeded'
+    ) p ON true
     WHERE o.tenant_id = ${tenantId}
       AND o.channel = 'pos'
       AND o.deleted_at IS NULL
@@ -465,6 +588,7 @@ export async function listPosOrders(
     created_at: Date;
     customer_name: string;
     customer_phone: string;
+    settled: string;
     created_at_cursor: string;
   }[];
 
@@ -485,8 +609,16 @@ export async function listPosOrders(
       customerName: row.customer_name,
       customerPhoneMasked: maskPhone(row.customer_phone),
       total: normalizeMoney(row.total),
+      outstanding: outstandingOf(row.total, row.settled),
       createdAt: row.created_at.toISOString()
     })),
     nextCursor
   };
+}
+
+/** `max(0, total - settled)` in integer cents (ADR-0003). */
+function outstandingOf(total: string, settled: string): string {
+  const owed =
+    toCents(normalizeMoney(total)) - toCents(normalizeMoney(String(settled)));
+  return fromCents(owed > 0n ? owed : 0n);
 }

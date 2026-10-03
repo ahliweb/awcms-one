@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:c828edd33e8fd9320735ef6af3277edf8f47c0927600834be7b655ad0666ffc4 -->
+<!-- i18n-source-hash: sha256:1de563e37089433fece8b946f1cf790380e85235ec6aea4af170759e62767278 -->
 
 # Architecture Decision Records
 
@@ -41,6 +41,7 @@ Yang **tidak** butuh ADR: menambah field dalam skema yang sudah diputuskan, kena
 | [0021](0021-zero-github-actions-local-ci-with-exact-sha-statuses.md) | Nol GitHub Actions: CI lokal dengan status komit ber-SHA-eksak | Diterima |
 | [0022](0022-production-deployment-is-server-side-and-explicit.md) | Deployment produksi bersifat server-side dan eksplisit | Diterima (digantikan sebagian oleh [0021](0021-zero-github-actions-local-ci-with-exact-sha-statuses.md)) |
 | [0023](0023-release-images-are-built-signed-and-published-from-a-trusted-release-host.md) | Image rilis dibangun, ditandatangani, dan dipublikasikan dari release host tepercaya | Diterima |
+| [0025](0025-payments-are-an-allocation-ledger-separate-from-order-status.md) | Pembayaran adalah ledger alokasi append-only, terpisah dari status pesanan | Diterima |
 
 ## Mengapa penomoran dimulai dari 0001
 

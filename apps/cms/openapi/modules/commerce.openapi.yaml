@@ -2669,7 +2669,7 @@ paths:
         "404":
           $ref: "#/components/responses/NotFound"
         "409":
-          description: The requested transition is not legal from the order's current status.
+          description: "`ILLEGAL_STATUS_TRANSITION` (the requested transition is not legal from the order's current status) or `PAYMENT_NOT_SETTLED` (Issue #285 — a manual `-> paid` while the payment-allocation ledger has not reached the order's release threshold; `details.outstanding` carries what is still owed. Record the payment with `POST /api/v1/commerce/orders/{id}/payments` and the order moves to `paid` by itself)."
           content:
             application/json:
               schema:
@@ -2839,7 +2839,7 @@ paths:
       operationId: reviewCommerceOrderPaymentConfirmation
       tags:
         - Commerce
-      summary: Admin accept/reject of a submitted payment confirmation (Issue 29). Accepting moves the order to paid when it is still pending_payment. Gated on orders.update.
+      summary: "Admin accept/reject of a submitted payment confirmation (Issue 29). Accepting records the confirmed amount as a payment-allocation ledger leg (Issue #285 — `manual_qris`/`manual_bank_transfer`, capped at the outstanding balance, idempotent on `confirmation:{id}`); the order moves to paid when settlement reaches its total (for a down-payment order, its down payment), not merely because a confirmation was accepted. Gated on orders.update."
       parameters:
         - name: id
           in: path
@@ -2892,6 +2892,232 @@ paths:
           $ref: "#/components/responses/Forbidden"
         "404":
           $ref: "#/components/responses/NotFound"
+  # --- Issue #285 (ADR-0025) — payment-allocation ledger. ----------------------
+  /api/v1/commerce/orders/{id}/payments:
+    get:
+      operationId: listCommerceOrderPayments
+      tags:
+        - Commerce
+      summary: "Issue #285 (ADR-0025). The order's payment-allocation ledger: the derived settlement (total, paid, reversed, settled, outstanding, overpaid, cached payment status) and every ledger row, oldest first. Gated on `commerce.payments.read`. An unknown order and another tenant's order are the same 404."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: The order's settlement and ledger.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      orderId:
+                        type: string
+                        format: uuid
+                      orderCode:
+                        type: string
+                      orderStatus:
+                        type: string
+                      settlement:
+                        $ref: "#/components/schemas/CommerceSettlement"
+                      payments:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/CommercePaymentAllocation"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+    post:
+      operationId: recordCommerceOrderPayment
+      tags:
+        - Commerce
+      summary: "Issue #285 (ADR-0025). Records one `succeeded` tender (`cash`, `manual_qris`, `manual_bank_transfer`) against an order. Gated on `commerce.payments.create`; requires `Idempotency-Key`."
+      description: >-
+        The order row is locked for the write, so two concurrent final
+        payments cannot over-settle it: the second waits, then fails with
+        `409 OVERPAYMENT`. Overpayment is rejected for every tender — only a
+        `cash` leg may exceed what is owed, and only as change. For `cash`,
+        `amount` is what the customer HANDED OVER; the amount applied
+        (`min(handed, outstanding)`) and the change are derived server-side
+        from the cash leg alone. The leg that brings settlement to the
+        order's release threshold (the total; for a down-payment order, its
+        down payment) moves a `pending_payment` order to `paid` through the
+        order-status machine, firing the usual `order.paid` events. A `gateway`
+        leg cannot be recorded here — only the hosted-checkout flow creates
+        one. Same key + same body replays the stored 201; same key + a different
+        body (or a different staff member, or another order) is
+        `409 IDEMPOTENCY_CONFLICT`. Emits `awcms.commerce.payment.recorded`.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - tenderType
+                - amount
+              properties:
+                tenderType:
+                  type: string
+                  enum:
+                    - cash
+                    - manual_qris
+                    - manual_bank_transfer
+                amount:
+                  type: string
+                  description: "`numeric(14,2)` string, > 0, never a JSON number. For `cash`, the amount handed over."
+                reference:
+                  type: string
+                  nullable: true
+                  maxLength: 100
+                  description: A bank/QRIS reference for the operator's own reconciliation. Never echoed in audit events or domain events.
+                note:
+                  type: string
+                  nullable: true
+                  maxLength: 500
+      responses:
+        "201":
+          description: Recorded (or replayed).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommercePaymentMutation"
+        "400":
+          description: "`VALIDATION_ERROR` or `IDEMPOTENCY_REQUIRED`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`IDEMPOTENCY_CONFLICT`, `OVERPAYMENT` (the amount exceeds what is still owed — `details.outstanding`/`details.attempted`) or `ORDER_NOT_PAYABLE` (a cancelled or expired order)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/orders/{id}/payments/{paymentId}/reversals:
+    post:
+      operationId: reverseCommerceOrderPayment
+      tags:
+        - Commerce
+      summary: "Issue #285 (ADR-0025). Records a compensating reversal of (part of) a succeeded payment — the ledger is append-only, so a refund or a corrected entry is a NEW row, never an edit. Gated on `commerce.payments.revoke` (the platform's high-risk verb); requires `Idempotency-Key`."
+      description: >-
+        `amount` omitted reverses whatever remains reversible of the payment;
+        the sum of a payment's reversals can never exceed the payment
+        (`409 REVERSAL_EXCEEDS_PAYMENT`, checked under the order-row lock). The
+        reversal lowers the settlement and the derived `paymentStatus`
+        (`paid -> partially_paid`, or `refunded` once everything went back) but
+        NEVER moves the order lifecycle (`status`) — cancelling fulfilment is a
+        human decision. The row records the book-keeping fact only: no provider
+        is called and no money moves; returning it is the operator's act. `note`
+        (the reason) is required. The payment and the order are resolved tenant-
+        and order-scoped: another tenant's order, an unknown payment and a payment
+        of a different order are the same 404. Emits
+        `awcms.commerce.payment.reversed`.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: paymentId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - note
+              properties:
+                amount:
+                  type: string
+                  nullable: true
+                  description: "`numeric(14,2)` string, > 0. Omitted/null = the full remaining reversible amount."
+                note:
+                  type: string
+                  maxLength: 500
+                  description: The reason for the reversal (required).
+      responses:
+        "201":
+          description: Recorded (or replayed). `data.payment` is the new reversal row.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommercePaymentMutation"
+        "400":
+          description: "`VALIDATION_ERROR` or `IDEMPOTENCY_REQUIRED`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`IDEMPOTENCY_CONFLICT`, `REVERSAL_EXCEEDS_PAYMENT` (`details.reversible`) or `PAYMENT_NOT_REVERSIBLE` (`details.reason`: `not_a_payment`, `not_succeeded`, `fully_reversed`)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
   /api/v1/commerce/customers:
     get:
       operationId: listCommerceCustomers
@@ -5167,13 +5393,19 @@ paths:
                               properties:
                                 paymentMethod:
                                   type: string
+                                  description: "Legacy summary hint — the tender with the largest applied amount (Issue #285); the ledger is the truth."
                                   enum:
                                     - cash
                                     - manual_qris
+                                    - manual_bank
+                                    - gateway
                                 cashierTenantUserId:
                                   type: string
                                   format: uuid
                                   nullable: true
+                                outstanding:
+                                  type: string
+                                  description: "Issue #285 — what the sale still owes, derived from its payment ledger (`0.00` for a settled sale)."
                       nextCursor:
                         type: string
                         nullable: true
@@ -5213,6 +5445,38 @@ paths:
         same name is ignored. Same key + same body replays the stored 201;
         same key + different body (or a different cashier) is
         `409 IDEMPOTENCY_CONFLICT`.
+
+
+        ### Multi-tender (Issue #285, ADR-0025 — contract version 2)
+
+
+        Send EITHER the legacy `payment` object above (unchanged — adapted to
+        exactly one payment-ledger leg) OR an explicit `tenders[]` array,
+        never both. Each tender is `{ tenderType: cash | manual_qris |
+        manual_bank_transfer, amount, reference? }`. For a NON-cash tender
+        `amount` is the amount applied to the sale; for the (at most one) `cash`
+        tender it is the amount HANDED OVER — the server subtracts every non-cash
+        tender from the amount due first, applies cash to what is left, and
+        derives the change from the cash leg ONLY (`change = handed - applied`,
+        never negative, never offsetting a shortfall on another tender). Non-cash
+        tenders summing above the total are `409 OVERPAYMENT`; tenders that do not
+        cover the total are `409 INSUFFICIENT_TENDER` unless `allowDue` is
+        `true`.
+
+
+        `allowDue: true` (requires `tenders[]`, a customer `phone`, and the
+        SEPARATE permission `commerce.pos_due.create` in addition to
+        `commerce.pos.create`) lets the sale finalize with a balance DUE: the
+        order stays `pending_payment` (`paymentStatus` `unpaid`/`partially_paid`,
+        no expiry) with `settlement.outstanding` explicit, and later payments
+        (`POST /api/v1/commerce/orders/{id}/payments`) settle it. `tenders: []`
+        with `allowDue: true` is a sale entirely on account.
+
+
+        The 201 carries `payments` (every ledger row — one per tender, for the
+        receipt) and `settlement`; `change`/`amountTendered` keep their legacy
+        meaning (the cash leg's change / the cash handed over, `null` when the
+        sale had no cash leg).
       parameters:
         - name: Idempotency-Key
           in: header
@@ -5227,7 +5491,7 @@ paths:
               type: object
               required:
                 - lines
-                - payment
+              description: "Exactly one of `payment` (legacy single tender) / `tenders` (Issue #285 multi-tender)."
               properties:
                 customer:
                   type: object
@@ -5239,7 +5503,33 @@ paths:
                     phone:
                       type: string
                       nullable: true
-                      description: Omitted/blank attaches the sale to this tenant's walk-in customer row; a phone that does not normalise is a `400 VALIDATION_ERROR`.
+                      description: Omitted/blank attaches the sale to this tenant's walk-in customer row; a phone that does not normalise is a `400 VALIDATION_ERROR`. REQUIRED for a sale left with a balance due.
+                tenders:
+                  type: array
+                  maxItems: 10
+                  description: "Issue #285 — the explicit multi-tender payload (mutually exclusive with `payment`). At most one `cash` tender; non-cash tenders may repeat."
+                  items:
+                    type: object
+                    required:
+                      - tenderType
+                      - amount
+                    properties:
+                      tenderType:
+                        type: string
+                        enum:
+                          - cash
+                          - manual_qris
+                          - manual_bank_transfer
+                      amount:
+                        type: string
+                        description: "`numeric(14,2)` string, > 0. Non-cash: applied to the sale. Cash: handed over (change derived server-side)."
+                      reference:
+                        type: string
+                        nullable: true
+                        maxLength: 100
+                allowDue:
+                  type: boolean
+                  description: "Issue #285 — finalize with a balance due. Requires `tenders[]`, a customer phone, and `commerce.pos_due.create`."
                 lines:
                   type: array
                   items:
@@ -5316,7 +5606,7 @@ paths:
         "403":
           $ref: "#/components/responses/Forbidden"
         "409":
-          description: "`FEATURE_DISABLED` (the tenant turned `pos` off, #118), `IDEMPOTENCY_CONFLICT` (same key, different payload), `CART_CHANGED` (a line's price/stock changed since it was priced — `details.quote` carries the fresh quote) or `INSUFFICIENT_TENDER` (cash `amountTendered` less than the total — `details.shortfall`)."
+          description: "`FEATURE_DISABLED` (the tenant turned `pos` off, #118), `IDEMPOTENCY_CONFLICT` (same key, different payload), `CART_CHANGED` (a line's price/stock changed since it was priced — `details.quote` carries the fresh quote), `INSUFFICIENT_TENDER` (the tenders do not cover the total — `details.shortfall`) or `OVERPAYMENT` (non-cash tenders exceed the total — `details.outstanding`/`details.attempted`). `403` also covers `allowDue: true` without `commerce.pos_due.create`."
           content:
             application/json:
               schema:
@@ -6187,6 +6477,122 @@ paths:
                         type: array
                         items:
                           $ref: "#/components/schemas/CommerceSalesByCategoryRow"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+  /api/v1/reports/commerce/tender-mix:
+    get:
+      operationId: getReportsCommerceTenderMix
+      tags:
+        - Commerce
+      summary: "Issue #285 (ADR-0025). Money movement by tender over the inclusive day range, read straight off the payment-allocation ledger (the source of truth — no second projection): payments, reversals and net per tender, plus range totals. Each leg is attributed to the report day it was RECORDED (a refund is the day of the refund); only `succeeded` legs count; a tender with no activity is absent. Gated on `commerce.payments.read`."
+      parameters:
+        - name: from
+          in: query
+          required: false
+          description: "Inclusive first report day (`YYYY-MM-DD`, in the report time zone). Defaults to 29 days before `to`. A range spans at most 366 days."
+          schema:
+            type: string
+            format: date
+        - name: to
+          in: query
+          required: false
+          description: "Inclusive last report day (`YYYY-MM-DD`). Defaults to today in the report time zone."
+          schema:
+            type: string
+            format: date
+      responses:
+        "200":
+          description: Tender mix for the range.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      from:
+                        type: string
+                        format: date
+                      to:
+                        type: string
+                        format: date
+                      timeZone:
+                        type: string
+                        description: The report time zone (`Asia/Jakarta`).
+                      items:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/CommerceTenderMixRow"
+                      totalPayments:
+                        type: string
+                      totalReversals:
+                        type: string
+                      totalNet:
+                        type: string
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+  /api/v1/reports/commerce/outstanding-balances:
+    get:
+      operationId: getReportsCommerceOutstandingBalances
+      tags:
+        - Commerce
+      summary: "Issue #285 (ADR-0025). Every order that still owes money (not cancelled/expired, `total - settled > 0`, `settled` re-derived from the payment-allocation ledger), largest balance first. `count`/`totalOutstanding` cover EVERY match; `items` is the first `limit`. Gated on `commerce.payments.read`."
+      parameters:
+        - name: channel
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - storefront
+              - pos
+        - name: limit
+          in: query
+          required: false
+          description: Rows to return, 1-500 (default 100).
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Outstanding balances.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      channel:
+                        type: string
+                        nullable: true
+                      items:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/CommerceOutstandingBalanceRow"
+                      truncated:
+                        type: boolean
+                      count:
+                        type: integer
+                      totalOutstanding:
+                        type: string
         "400":
           $ref: "#/components/responses/BadRequest"
         "401":
@@ -8209,11 +8615,22 @@ components:
       allOf:
         - $ref: "#/components/schemas/CommerceOrder"
         - type: object
-          description: "Issue 29 — admin detail adds customerId and unmasked customer/address phone; Issue #113 adds the read-only gateway session/payment-events panel."
+          description: "Issue 29 — admin detail adds customerId and unmasked customer/address phone; Issue #113 adds the read-only gateway session/payment-events panel; Issue #285 adds the derived `settlement` (and, on the POS receipt only, the `payments` ledger rows — everywhere else the rows are served by `GET /orders/{id}/payments` behind `commerce.payments.read`)."
           properties:
+            id:
+              type: string
+              format: uuid
+              description: "The order id — the staff-side handle (`/orders/{id}/payments`, `/orders/{id}/status`); the public record carries only the order code."
             customerId:
               type: string
               format: uuid
+            settlement:
+              $ref: "#/components/schemas/CommerceSettlement"
+            payments:
+              type: array
+              description: "Present on the POS 201 receipt only."
+              items:
+                $ref: "#/components/schemas/CommercePaymentAllocation"
             gateway:
               type: object
               description: "Issue #113 — read-only payment-gateway panel. `session` is `null` for an order that was never a gateway order."
@@ -8256,6 +8673,158 @@ components:
                       receivedAt:
                         type: string
                         format: date-time
+    CommerceSettlement:
+      type: object
+      description: "Issue #285 (ADR-0025) — an order's DERIVED settlement. `paid` = sum of succeeded payment legs, `reversed` = sum of succeeded reversals, `settled` = paid - reversed, `outstanding` = max(0, total - settled), `overpaid` = max(0, settled - total). Money is a `numeric(14,2)` decimal string (ADR-0003). `paymentStatus` is the cached derivation (`awcms_commerce_orders.payment_status`), a separate axis from the order lifecycle `status`."
+      properties:
+        total:
+          type: string
+        paid:
+          type: string
+        reversed:
+          type: string
+        settled:
+          type: string
+        outstanding:
+          type: string
+        overpaid:
+          type: string
+        paymentStatus:
+          type: string
+          enum:
+            - unpaid
+            - partially_paid
+            - dp_paid
+            - paid
+            - refunded
+    CommercePaymentAllocation:
+      type: object
+      description: "Issue #285 (ADR-0025) — one row of the append-only payment ledger: a tender leg (`kind: payment`) or a compensating reversal (`kind: reversal`, `reversesAllocationId` set). `amount` is what was APPLIED to the order; for a cash leg `tenderedAmount`/`changeAmount` carry what was handed over and what went back (`tenderedAmount = amount + changeAmount`). Only `succeeded` legs count toward settlement."
+      properties:
+        id:
+          type: string
+          format: uuid
+        orderId:
+          type: string
+          format: uuid
+        kind:
+          type: string
+          enum:
+            - payment
+            - reversal
+        reversesAllocationId:
+          type: string
+          format: uuid
+          nullable: true
+        tenderType:
+          type: string
+          enum:
+            - cash
+            - manual_qris
+            - manual_bank_transfer
+            - gateway
+        amount:
+          type: string
+        status:
+          type: string
+          enum:
+            - pending
+            - succeeded
+            - failed
+        provider:
+          type: string
+          nullable: true
+        providerReference:
+          type: string
+          nullable: true
+        tenderedAmount:
+          type: string
+          nullable: true
+        changeAmount:
+          type: string
+          nullable: true
+        note:
+          type: string
+          nullable: true
+        source:
+          type: string
+          enum:
+            - pos
+            - admin
+            - storefront_manual
+            - gateway_checkout
+            - gateway_webhook
+            - gateway_reconcile
+            - backfill
+        actorKind:
+          type: string
+          enum:
+            - tenant_user
+            - system
+        actorTenantUserId:
+          type: string
+          format: uuid
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+        settledAt:
+          type: string
+          format: date-time
+          nullable: true
+    CommercePaymentMutation:
+      type: object
+      description: "Issue #285 — the 201 body of recording a payment or a reversal: the new ledger row and the order's resulting settlement."
+      properties:
+        payment:
+          $ref: "#/components/schemas/CommercePaymentAllocation"
+        settlement:
+          $ref: "#/components/schemas/CommerceSettlement"
+    CommerceTenderMixRow:
+      type: object
+      description: "Issue #285 — one tender's activity over the report range. Money is a `numeric(14,2)` decimal string."
+      properties:
+        tenderType:
+          type: string
+          enum:
+            - cash
+            - manual_qris
+            - manual_bank_transfer
+            - gateway
+        paymentCount:
+          type: integer
+        payments:
+          type: string
+        reversalCount:
+          type: integer
+        reversals:
+          type: string
+        net:
+          type: string
+    CommerceOutstandingBalanceRow:
+      type: object
+      description: "Issue #285 — one order that still owes money."
+      properties:
+        orderId:
+          type: string
+          format: uuid
+        orderCode:
+          type: string
+        channel:
+          type: string
+        status:
+          type: string
+        paymentStatus:
+          type: string
+        total:
+          type: string
+        settled:
+          type: string
+        outstanding:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
     CommerceOrderSummary:
       type: object
       description: Issue 29 — one row of the admin order list.

@@ -98,5 +98,29 @@ export const COMMERCE_ORDER_EXPIRED_EVENT_TYPE = "awcms.commerce.order.expired";
 export const COMMERCE_REVIEW_PUBLISHED_EVENT_TYPE =
   "awcms.commerce.review.published";
 
+/**
+ * Payment-allocation ledger events (Issue #285, ADR-0025). Both ride on the
+ * ORDER aggregate (`commerce.order`, aggregate id = the order id), not on a
+ * per-allocation aggregate: a consumer reconstructing "what happened to this
+ * order" reads one ordered stream (`order.created`, `payment.recorded`,
+ * `order.paid`, `payment.reversed`, ...) and the platform's per-aggregate
+ * ordering key keeps a reversal from overtaking the payment it compensates.
+ *
+ * `payment.recorded` fires for every ledger leg that becomes a `succeeded`
+ * payment (an operator-recorded tender, a POS tender, an accepted manual
+ * transfer, a confirmed gateway leg) - NOT for a pending gateway leg (no
+ * money has moved yet) and not for the one-time backfill (`sql/943` writes
+ * history, it does not announce it). `payment.reversed` fires for every
+ * compensating reversal. Payloads carry ids, tender, amounts and the order's
+ * resulting settlement - never a customer name/phone and never a payment
+ * reference. Registered in `domain-event-runtime/domain/event-type-registry.ts`
+ * and `asyncapi/awcms-domain-events.asyncapi.yaml` in the same change (this
+ * file's own rule).
+ */
+export const COMMERCE_PAYMENT_RECORDED_EVENT_TYPE =
+  "awcms.commerce.payment.recorded";
+export const COMMERCE_PAYMENT_REVERSED_EVENT_TYPE =
+  "awcms.commerce.payment.reversed";
+
 export const COMMERCE_ORDER_AGGREGATE_TYPE = "commerce.order";
 export const COMMERCE_REVIEW_AGGREGATE_TYPE = "commerce.review";

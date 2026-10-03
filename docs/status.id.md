@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](status.md)
 
-<!-- i18n-source-hash: sha256:01527299c2f4775f71fcb70669b36219017a2a5d3e160db6e54f0479c69590b9 -->
+<!-- i18n-source-hash: sha256:2496c1fba5bbc7f3a4306dd40a1c6f5057977ce48f9ad9ab124bb662f90b6bb5 -->
 
 # Status
 
@@ -25,6 +25,10 @@ Tingkat kepercayaan ketiga, terverifikasi-OTP, di atas pelanggan checkout-tamu: 
 ## Integrasi eksternal (ADR-0017)
 
 Masing-masing adalah port penyedia + adapter + outbox milik `commerce`, mengikuti pola `email` — tidak pernah panggilan sinkron di jalur pesanan ([ADR-0010](adr/0010-manual-payment-and-alternative-courier-first-gateways-via-outbox.md), [ADR-0017](adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.md) D1): caching tarif kurir RajaOngkir, outbox WhatsApp (adapter Fonnte + Meta Cloud API) termasuk OTP WhatsApp, gateway pembayaran Midtrans Snap dengan intake webhook publik beralamat-token dan job `commerce:payments:reconcile`, POS (`orders.channel`, penjualan tunai), proyeksi laporan penjualan, kotak pesan pelanggan, dan kampanye marketing yang di-gate pada `marketing_consent_at`. Harga bertingkat (`price_level_1..4`) berlaku saat kuotasi. **Belum ada:** adapter gateway pembayaran Xendit dan pelacakan kurir, keduanya disebut sebagai tindak lanjut eksplisit di belakang port yang sudah dibangun.
+
+## Pembayaran: ledger alokasi append-only (ADR-0025)
+
+Pembayaran sebuah pesanan tidak lagi satu kolom. `awcms_commerce_payment_allocations` (`sql/940`–`943`) mencatat setiap leg tender (`cash`, `manual_qris`, `manual_bank_transfer`, `gateway`) dan setiap pembalikan kompensasi sebagai baris append-only; penyelesaian (`paid`, `reversed`, `outstanding`, `overpaid`) DITURUNKAN dari baris-baris itu dan `orders.payment_status` (`unpaid | partially_paid | dp_paid | paid | refunded`) adalah cache dari turunan tersebut, independen dari `status` siklus hidup pesanan. Pesanan mencapai `paid` tepat ketika penyelesaian mencapai ambang rilisnya (total; uang muka untuk pesanan uang muka) lewat satu `transitionOrderStatus` yang sudah ada; pembalikan tidak pernah memundurkan siklus hidup. Staf mencatat tender (`POST /api/v1/commerce/orders/{id}/payments`, `commerce.payments.create`) atau pembalikan (`.../payments/{paymentId}/reversals`, `commerce.payments.revoke`) dengan `Idempotency-Key`; konfirmasi transfer manual storefront, webhook/job reconcile Midtrans, dan POS semuanya menulis ledger yang sama (secara idempoten — replay webhook tidak pernah mengalokasikan dua kali). POS menerima payload single-tender legacy tanpa perubahan atau `tenders[]` eksplisit (QRIS + tunai terbagi, kembalian hanya dari leg tunai) dan, dengan `commerce.pos_due.create` yang terpisah, dapat memfinalisasi dengan saldo terutang yang eksplisit. Detail pesanan menampilkan ledger dengan form catat/balik; layar laporan penjualan menampilkan bauran tender dan saldo terutang (`GET /api/v1/reports/commerce/{tender-mix,outstanding-balances}`). **Belum ada:** tender kredit-toko/kartu-hadiah (#288/#289), refund provider otomatis, leg gateway untuk kurang dari seluruh total — lihat bagian Ditunda di [ADR-0025](adr/0025-payments-are-an-allocation-ledger-separate-from-order-status.md).
 
 ## `apps/storefront` — profil build (ADR-0018)
 
@@ -57,6 +61,7 @@ Media (fotografi produk, hero artikel, kreatif iklan) diresolusi lewat `GET /api
 - Ubah e-mail/telepon pada akun pelanggan yang sudah ada, dan verifikasi telepon ([ADR-0016](adr/0016-customer-accounts-are-otp-verified-commerce-accounts-with-bearer-sessions.md) D6).
 - Media library ter-upload sungguhan untuk gambar produk/slider/testimonial — sesi `media_library` berbasis-R2 sudah ada, tapi belum ada yang mengisinya di repo ini (lihat [`docs/deployment.md`](deployment.id.md), [`docs/cms.md`](cms.id.md)).
 - Adapter gateway pembayaran Xendit dan pelacakan kurir, keduanya disebut sebagai tindak lanjut eksplisit di belakang port yang sudah dibangun [ADR-0017](adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.md).
+- Tender kredit-toko / kartu-hadiah dan refund provider otomatis pada ledger pembayaran (Ditunda di [ADR-0025](adr/0025-payments-are-an-allocation-ledger-separate-from-order-status.md)).
 - Pipeline CI yang mempublikasikan image per-profil milik `apps/storefront` ke registry — [ADR-0020](adr/0020-publish-only-the-cms-images-to-ghcr-with-sbom-and-provenance.md) D2 menolak ini secara eksplisit, bukan sekadar menundanya.
 - Konfigurasi reverse-proxy/terminasi-TLS di luar contoh milik [`docs/deployment.md`](deployment.id.md) sendiri, dan PostgreSQL produksi yang dioperasikan repositori ini sendiri.
 - Baseline visual-regression yang di-commit untuk screenshot Playwright di atas — sebuah keputusan yang disengaja (reviewer membuka artifact CI dan melihat sendiri, bukan byte-diff yang menggerbangi jalankan), bukan celah.

@@ -217,7 +217,7 @@ describe("pos-order-validation — shape", () => {
       KEY
     );
     expect(plain.valid).toBe(true);
-    if (plain.valid) expect(plain.value.payment.amountTendered).toBeNull();
+    if (plain.valid) expect(plain.value.payment?.amountTendered).toBeNull();
 
     const withTender = validateCreatePosOrderInput(
       {
@@ -228,7 +228,7 @@ describe("pos-order-validation — shape", () => {
     );
     expect(withTender.valid).toBe(true);
     if (withTender.valid) {
-      expect(withTender.value.payment.amountTendered).toBeNull();
+      expect(withTender.value.payment?.amountTendered).toBeNull();
     }
   });
 
@@ -252,6 +252,93 @@ describe("pos-order-validation — shape", () => {
       expect(fields).toContain("lines");
       expect(fields).toContain("payment");
     }
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Issue #285 — the explicit multi-tender contract (version 2), additive over
+// the legacy `payment` object
+// ---------------------------------------------------------------------------
+
+describe("pos-order-validation — tenders[] / allowDue (Issue #285)", () => {
+  const { payment: _legacy, ...BODY_WITHOUT_PAYMENT } = VALID_BODY;
+
+  test("accepts an explicit tenders[] instead of payment and normalises amounts", () => {
+    const result = validateCreatePosOrderInput(
+      {
+        ...BODY_WITHOUT_PAYMENT,
+        tenders: [
+          { tenderType: "manual_qris", amount: "60000", reference: " RRN-1 " },
+          { tenderType: "cash", amount: "40000.5" }
+        ]
+      },
+      KEY
+    );
+    expect(result.valid).toBe(true);
+    if (!result.valid) return;
+    expect(result.value.payment).toBeNull();
+    expect(result.value.allowDue).toBe(false);
+    expect(result.value.tenders).toEqual([
+      { tenderType: "manual_qris", amount: "60000.00", reference: "RRN-1" },
+      { tenderType: "cash", amount: "40000.50", reference: null }
+    ]);
+  });
+
+  test("the legacy payment object is untouched: tenders stays null, allowDue false", () => {
+    const result = validateCreatePosOrderInput(VALID_BODY, KEY);
+    expect(result.valid).toBe(true);
+    if (!result.valid) return;
+    expect(result.value.tenders).toBeNull();
+    expect(result.value.allowDue).toBe(false);
+  });
+
+  test("payment and tenders together are refused — exactly one payment shape", () => {
+    const result = validateCreatePosOrderInput(
+      {
+        ...VALID_BODY,
+        tenders: [{ tenderType: "cash", amount: "1.00" }]
+      },
+      KEY
+    );
+    expect(result.valid).toBe(false);
+  });
+
+  test("tenders[] must be well-formed: a gateway tender, a JSON-number amount, or an empty list without allowDue is refused", () => {
+    for (const tenders of [
+      [{ tenderType: "gateway", amount: "1.00" }],
+      [{ tenderType: "cash", amount: 5 }],
+      [{ tenderType: "cash", amount: "0.00" }],
+      [],
+      "cash"
+    ]) {
+      expect(
+        validateCreatePosOrderInput({ ...BODY_WITHOUT_PAYMENT, tenders }, KEY)
+          .valid
+      ).toBe(false);
+    }
+  });
+
+  test("allowDue is a boolean, valid only with tenders[]; an empty tenders[] is a sale on account only with allowDue", () => {
+    const onAccount = validateCreatePosOrderInput(
+      { ...BODY_WITHOUT_PAYMENT, tenders: [], allowDue: true },
+      KEY
+    );
+    expect(onAccount.valid).toBe(true);
+    if (onAccount.valid) expect(onAccount.value.allowDue).toBe(true);
+
+    expect(
+      validateCreatePosOrderInput({ ...VALID_BODY, allowDue: true }, KEY).valid
+    ).toBe(false);
+    expect(
+      validateCreatePosOrderInput(
+        {
+          ...BODY_WITHOUT_PAYMENT,
+          tenders: [{ tenderType: "cash", amount: "1.00" }],
+          allowDue: "yes"
+        },
+        KEY
+      ).valid
+    ).toBe(false);
   });
 });
 

@@ -25,7 +25,18 @@
  * checkout, which has no other place to carry it.
  */
 import type { PaymentMethod } from "./commerce-order-types";
+import {
+  InsufficientTenderError,
+  validatePosTenders,
+  type TenderInput
+} from "./payment-allocation";
 import { fromCents, toCents } from "./price-calculation";
+
+// One class for "the tenders do not cover the total" across the legacy
+// single-tender arithmetic below and the multi-tender planner
+// (`payment-allocation.ts`, Issue #285) - re-exported so every existing
+// importer (the route, the integration tests) keeps its import path.
+export { InsufficientTenderError };
 
 export type ValidationError = { field: string; message: string };
 type ValidationResult<T> =
@@ -69,8 +80,29 @@ export type CreatePosOrderInput = {
   idempotencyKey: string;
   customer: PosOrderCustomerInput;
   lines: PosOrderLineInput[];
-  /** `amountTendered` is a `numeric(14,2)` string for `cash`, always `null` for `manual_qris`. */
-  payment: { method: PosPaymentMethod; amountTendered: string | null };
+  /**
+   * The LEGACY single-tender payload (`payment: { method, amountTendered }`) -
+   * `amountTendered` is a `numeric(14,2)` string for `cash`, always `null` for
+   * `manual_qris`. Exactly one of `payment` / `tenders` is non-null; the legacy
+   * form is adapted to one ledger leg (`createPosOrder`), byte-for-byte the
+   * behaviour it had before Issue #285.
+   */
+  payment: { method: PosPaymentMethod; amountTendered: string | null } | null;
+  /**
+   * The explicit multi-tender payload (Issue #285, ADR-0025): `tenders: [
+   * { tenderType, amount, reference? } ]`. For a non-cash tender `amount` is
+   * the amount applied to the sale; for the (single, optional) cash tender it
+   * is the amount HANDED OVER - the server derives what is applied and the
+   * change, from the cash leg only (`payment-allocation.ts`'s `planTenders`).
+   */
+  tenders: TenderInput[] | null;
+  /**
+   * `true` lets the sale finalize with a balance still DUE (an explicit,
+   * permissioned credit sale - `commerce.pos_due.create`). Only valid with
+   * `tenders`; the sale stays `pending_payment` with the outstanding amount
+   * on its ledger until later payments settle it.
+   */
+  allowDue: boolean;
   notes: string | null;
 };
 
@@ -214,7 +246,7 @@ function validateLines(
 function validatePayment(
   value: unknown,
   errors: ValidationError[]
-): CreatePosOrderInput["payment"] {
+): NonNullable<CreatePosOrderInput["payment"]> {
   if (!isRecord(value)) {
     errors.push({
       field: "payment",
@@ -297,7 +329,48 @@ export function validateCreatePosOrderInput(
 
   const customer = validateCustomer(record.customer, errors);
   const lines = validateLines(record.lines, errors);
-  const payment = validatePayment(record.payment, errors);
+
+  // Exactly one payment shape: the legacy `payment` object, or the explicit
+  // `tenders[]` array (Issue #285). Neither falls through to the legacy
+  // validator so an old client that forgot `payment` gets the same message it
+  // always did.
+  const hasTenders = record.tenders !== undefined && record.tenders !== null;
+  const hasPayment = record.payment !== undefined && record.payment !== null;
+  let payment: CreatePosOrderInput["payment"] = null;
+  let tenders: CreatePosOrderInput["tenders"] = null;
+  let allowDue = false;
+  if (hasTenders && hasPayment) {
+    errors.push({
+      field: "payment",
+      message: "Send either payment or tenders, not both."
+    });
+  } else if (hasTenders) {
+    tenders = validatePosTenders(record.tenders, errors);
+  } else {
+    payment = validatePayment(record.payment, errors);
+  }
+  if (record.allowDue !== undefined && record.allowDue !== null) {
+    if (typeof record.allowDue !== "boolean") {
+      errors.push({
+        field: "allowDue",
+        message: "allowDue must be a boolean."
+      });
+    } else if (record.allowDue && tenders === null) {
+      errors.push({
+        field: "allowDue",
+        message: "allowDue is only valid together with tenders[]."
+      });
+    } else {
+      allowDue = record.allowDue;
+    }
+  }
+  if (tenders !== null && tenders.length === 0 && !allowDue) {
+    errors.push({
+      field: "tenders",
+      message:
+        "tenders must contain at least one entry unless allowDue is true."
+    });
+  }
   if (
     record.notes !== undefined &&
     record.notes !== null &&
@@ -324,18 +397,11 @@ export function validateCreatePosOrderInput(
       customer,
       lines,
       payment,
+      tenders,
+      allowDue,
       notes
     }
   };
-}
-
-export class InsufficientTenderError extends Error {
-  public readonly shortfall: string;
-  constructor(shortfall: string) {
-    super("payment.amountTendered is less than the order total.");
-    this.name = "InsufficientTenderError";
-    this.shortfall = shortfall;
-  }
 }
 
 /**

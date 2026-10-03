@@ -702,7 +702,14 @@ export const RETIRED_TENANT_TABLE_PRIVILEGES: Record<string, string[]> = {
   // whole schema, so the migration's `GRANT SELECT, INSERT, UPDATE` withholds
   // nothing on its own — a distinction found by querying a real database, not
   // by reading the migration.
-  awcms_subject_requests: ["SELECT", "INSERT", "UPDATE"]
+  awcms_subject_requests: ["SELECT", "INSERT", "UPDATE"],
+  // Issue #285 / `sql/940`. NOT retired — written on every payment. The same
+  // shape as `awcms_subject_requests` above: the payment-allocation ledger is
+  // append-only, so the role that records payments must not be able to DELETE
+  // one (the `REVOKE` in sql/940 achieves it; sql/019 grants all four verbs by
+  // default). UPDATE stays, narrowed by sql/940's trigger to the one
+  // `pending -> succeeded|failed` gateway-leg transition.
+  awcms_commerce_payment_allocations: ["SELECT", "INSERT", "UPDATE"]
 };
 
 type RlsRow = {
@@ -1602,6 +1609,12 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   // `revokeEntitlementByAdmin`, never a deletion), but the descriptor still
   // requires the grant to exist.
   awcms_commerce_entitlements: ["SELECT", "DELETE"],
+  // Issue #285 (`sql/940`/`sql/942`): the payment-allocation ledger's
+  // `dataLifecycle` descriptor (`commerce/module.ts`, cursor `created_at`,
+  // ten-year ceiling) is `executionMode: "generic"` with `hard_delete`; the
+  // retention worker is the ONLY role that may delete a ledger row (awcms_app
+  // has had DELETE revoked), and only past that ceiling.
+  awcms_commerce_payment_allocations: ["SELECT", "DELETE"],
   // Issue #268 (`sql/939`): the protected-media link table's `dataLifecycle`
   // descriptor (`commerce/module.ts`) is `executionMode: "generic"` with a
   // real, reachable `hard_delete` (unlike entitlements above, this one IS

@@ -575,6 +575,37 @@ channels:
       `commerce/application/review-directory.ts`'s `moderateReview` — never
       fired on review creation, since a pending review is not yet a fact
       worth publishing to anyone.
+  awcms.commerce.payment.recorded:
+    address: awcms.commerce.payment.recorded
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A payment-allocation ledger leg became a `succeeded` payment against an
+      order (an operator-recorded tender, a POS tender, an accepted
+      manual-transfer confirmation, or a confirmed gateway leg). Producer:
+      `commerce/application/payment-allocation-directory.ts`'s
+      `recordPaymentAllocation` / `resolveGatewayAllocation`, in the same
+      transaction as the ledger write. The order aggregate carries the
+      stream, so `payment.recorded` is ordered against `order.paid`. Payload:
+      `orderId`, `orderCode`, `allocationId`, `tenderType`, `amount`,
+      `source`, and the order's resulting `paid`/`outstanding`/
+      `paymentStatus` — never a customer name/phone or a payment reference.
+      A pending gateway leg and the `sql/943` backfill do not fire it.
+  awcms.commerce.payment.reversed:
+    address: awcms.commerce.payment.reversed
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A compensating reversal was recorded against an earlier
+      payment-allocation (a refund or a corrected entry). Producer:
+      `commerce/application/payment-allocation-directory.ts`'s
+      `recordPaymentReversal`, in the same transaction as the ledger insert.
+      Payload: `orderId`, `orderCode`, `allocationId`,
+      `reversesAllocationId`, `tenderType`, `amount`, and the order's
+      resulting `paid`/`outstanding`/`paymentStatus`. Never moves the order
+      lifecycle (`status`).
 operations:
   publishDomainEventRuntimeSampleRecorded:
     action: send
@@ -918,6 +949,18 @@ operations:
       $ref: "#/channels/awcms.commerce.review.published"
     messages:
       - $ref: "#/channels/awcms.commerce.review.published/messages/DomainEvent"
+  publishCommercePaymentRecorded:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.payment.recorded"
+    messages:
+      - $ref: "#/channels/awcms.commerce.payment.recorded/messages/DomainEvent"
+  publishCommercePaymentReversed:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.payment.reversed"
+    messages:
+      - $ref: "#/channels/awcms.commerce.payment.reversed/messages/DomainEvent"
 components:
   messages:
     DomainEvent:

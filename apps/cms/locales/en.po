@@ -7177,3 +7177,164 @@ msgstr ""
 
 msgid "Other"
 msgstr ""
+
+#. Issue #285 (ADR-0025) - payment-allocation ledger, split-tender POS, payments panel
+
+msgid "A cancelled or expired order cannot receive a payment."
+msgstr ""
+
+msgid "A reversal records that money was given back. It does not move the money and does not cancel the order."
+msgstr ""
+
+msgid "A sale left with a balance due needs a customer phone number."
+msgstr ""
+
+msgid "Add at least one payment line, or leave the balance due."
+msgstr ""
+
+msgid "Add one line for each way the customer pays. For cash, enter the amount handed over; change is worked out from the cash line only, after the other lines."
+msgstr ""
+
+msgid "Add payment line"
+msgstr ""
+
+msgid "Amount handed over"
+msgstr ""
+
+msgid "Amount received"
+msgstr ""
+
+msgid "Amount to reverse (blank = all that is left)"
+msgstr ""
+
+msgid "Applied to the sale"
+msgstr ""
+
+msgid "Balance due"
+msgstr ""
+
+msgid "Bank transfer"
+msgstr ""
+
+msgid "Could not record this. Check the amount and try again."
+msgstr ""
+
+msgid "Every payment line needs an amount greater than zero, like 25000 or 25000.50."
+msgstr ""
+
+msgid "For cash, enter the amount handed over; any amount above the balance is returned as change."
+msgstr ""
+
+msgid "Leave the unpaid balance as due (needs a customer phone)"
+msgstr ""
+
+msgid "No payments recorded for this order yet."
+msgstr ""
+
+msgid "Only one cash line is allowed per sale."
+msgstr ""
+
+msgid "Overpaid (to refund)"
+msgstr ""
+
+msgid "Partially paid"
+msgstr ""
+
+msgid "Payment ledger"
+msgstr ""
+
+msgid "Payment line"
+msgstr ""
+
+msgid "Payment status"
+msgstr ""
+
+msgid "Payment summary"
+msgstr ""
+
+msgid "Payment to reverse"
+msgstr ""
+
+msgid "Payments"
+msgstr ""
+
+msgid "Record a payment"
+msgstr ""
+
+msgid "Record a reversal"
+msgstr ""
+
+msgid "Record payment"
+msgstr ""
+
+msgid "Record reversal"
+msgstr ""
+
+msgid "Reference (optional)"
+msgstr ""
+
+msgid "Reversal"
+msgstr ""
+
+msgid "Reversed"
+msgstr ""
+
+msgid "Ring up a counter sale — cash, QRIS or bank transfer, in one or more payments — and browse past POS sales."
+msgstr ""
+
+msgid "Succeeded"
+msgstr ""
+
+msgid "Tendered"
+msgstr ""
+
+msgid "That amount is more than the order still owes."
+msgstr ""
+
+msgid "That payment cannot be reversed."
+msgstr ""
+
+msgid "That reversal is more than what is left of the payment."
+msgstr ""
+
+msgid "The non-cash payments are more than the total. Only a cash payment may exceed it, as change."
+msgstr ""
+
+msgid "The payments entered do not cover the total. Add a payment or leave the balance due."
+msgstr ""
+
+msgid "You do not have permission to leave a balance due."
+msgstr ""
+
+msgid "Given back"
+msgstr ""
+
+msgid "Money received and given back per payment method, {from} to {to}, by the day each payment was recorded."
+msgstr ""
+
+msgid "No outstanding balances"
+msgstr ""
+
+msgid "No payments recorded in this range"
+msgstr ""
+
+msgid "Orders that still owe money, largest balance first (not cancelled or expired)."
+msgstr ""
+
+msgid "Outstanding balances"
+msgstr ""
+
+msgid "Payments by tender"
+msgstr ""
+
+msgid "Received"
+msgstr ""
+
+msgid "Reversals"
+msgstr ""
+
+msgid "Showing the {n} largest."
+msgstr ""
+
+msgid "Total still owed across {n} orders: {amount}."
+msgstr ""

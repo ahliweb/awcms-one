@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](kamus-data.md)
 
-<!-- i18n-source-hash: sha256:e8c8ba5ee52bf90907d2eba2eeeb1cd0940066a4a177f1f36c0074a822246cb0 -->
+<!-- i18n-source-hash: sha256:fae948fa951f43f711ca90f193e2cb7d4a8bfb7f0fb7b51d9ecb213abc8cf09d -->
 
 # Kamus data
 
@@ -168,6 +168,22 @@ Kasir BjekMart (penjualan konter `commerce_bj_mart`, yang di tabel `orders`/`tra
 | telepon sentinel walk-in | `POS_WALK_IN_CUSTOMER_SENTINEL_PHONE` = **`+620000000000`** (`domain/phone-normalisation.ts`, satu-satunya sumber kebenaran untuk literalnya); nama barisnya `POS_WALK_IN_CUSTOMER_NAME` = `Pelanggan Walk-in` | Satu baris `awcms_commerce_customers` per tenant tempat setiap penjualan konter tanpa telepon dikaitkan (`customers.phone` `NOT NULL` dan unik per tenant, sehingga sentinel-lah yang membuat baris itu unik). Sudah dinormalisasi E.164 (`+62` + sepuluh nol — tidak ada nomor pelanggan Indonesia yang bagian nasionalnya berawalan `0`), sehingga ia melewati `normalizePhoneNumber` tanpa berubah dan tidak pernah tertukar dengan pelanggan nyata. Ditolak sebagai identitas pelanggan pada checkout storefront, dan tidak pernah dilayani pencarian pelacakan storefront — nilai yang terdokumentasi tidak boleh menjadi kredensial untuk membaca struk walk-in |
 | `commerce.pos.create` | `awcms_permissions` (`sql/932`); `COMMERCE_POS_PERMISSIONS.create` | SATU-SATUNYA jalur pembuatan pesanan yang di-gate izin di modul ini. Riwayat POS memakai ulang `commerce.orders.read` |
 | `commerce.pos.sale` | `awcms_audit_events.action` | Peristiwa audit yang ditulis setiap penjualan konter (kode pesanan, total, metode, dibayar, kembalian, flag walk-in, jumlah baris — tidak pernah nama atau telepon pelanggan) |
+
+### Ledger alokasi pembayaran (issue #285, [ADR-0025](adr/0025-payments-are-an-allocation-ledger-separate-from-order-status.md))
+
+| Istilah | Di mana | Arti |
+| --- | --- | --- |
+| alokasi / leg pembayaran | baris `awcms_commerce_payment_allocations`, `CommercePaymentAllocation` di wire | Satu leg tender (`kind: payment`) atau satu pembalikan kompensasi (`kind: reversal`) sebuah pesanan. Append-only: koreksi adalah baris pembalikan BARU, tidak pernah edit |
+| `tender_type` | `CHECK IN ('cash','manual_qris','manual_bank_transfer','gateway')`; `PaymentTenderType` | Cara sebuah leg dibayar. `gateway` hanya dibuat alur hosted-checkout. `store_credit`/`gift_card` belum ada. Berbeda dari `orders.payment_method` legacy, kini hanya petunjuk ringkasan (tender dengan jumlah diterapkan terbesar) |
+| `amount` | string `numeric(14,2)` (ADR-0003) | Jumlah yang DITERAPKAN ke pesanan. Untuk leg tunai tidak termasuk kembalian |
+| `tendered_amount` / `change_amount` | hanya leg pembayaran tunai | Yang diserahkan pelanggan / yang dikembalikan; `tendered = amount + change`. Kembalian dihitung HANYA dari leg tunai, setelah setiap tender non-tunai dikurangkan dari jumlah terutang |
+| `settlement` | `SettlementView` (`total`, `paid`, `reversed`, `settled`, `outstanding`, `overpaid`, `paymentStatus`) | DITURUNKAN dari ledger: `settled = Σ pembayaran berhasil − Σ pembalikan berhasil`, `outstanding = max(0, total − settled)`, `overpaid = max(0, settled − total)`. Leg `pending`/`failed` tidak pernah dihitung |
+| `payment_status` | `awcms_commerce_orders.payment_status` — `unpaid`, `partially_paid`, `dp_paid`, `paid`, `refunded` | CACHE dari turunan penyelesaian, independen dari `status` siklus hidup pesanan. `dp_paid` = pesanan uang muka terpenuhi sampai uang mukanya; `refunded` = semua yang masuk sudah kembali |
+| ambang rilis | `releaseThresholdCents` | Jumlah terselesaikan di mana pesanan `pending_payment` pindah ke `paid`: total, atau `dp_amount` pesanan uang muka |
+| `source_key` | `UNIQUE (tenant_id, source_key)` | Kunci idempotensi milik ledger sendiri (`gateway:{provider}:{ref}`, `confirmation:{id}`, `api:{key}`, `reversal:{key}`, `pos:{key}:{n}`, `backfill:{order id}`) |
+| saldo terutang / `allowDue` | `POST /api/v1/commerce/pos/orders` | Penjualan POS yang difinalisasi dengan uang masih terutang (eksplisit, perlu `commerce.pos_due.create` dan telepon pelanggan): `pending_payment`, tanpa kedaluwarsa, `settlement.outstanding` eksplisit |
+| `tenders[]` | request POS, kontrak versi 2 | Payload multi-tender eksplisit (`{ tenderType, amount, reference? }`); saling eksklusif dengan objek `payment` legacy. `amount` non-tunai = diterapkan, `amount` tunai = diserahkan |
+| `commerce.payments.{read,create,revoke}`, `commerce.pos_due.create` | `awcms_permissions` (`sql/941`) | Baca ledger/laporan, catat tender, catat pembalikan (`revoke` adalah verb risiko-tinggi platform), finalisasi penjualan POS dengan saldo terutang |
 
 ## Kolom dan tabel yang ditunda — tidak di-porting
 

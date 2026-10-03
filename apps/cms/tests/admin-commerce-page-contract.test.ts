@@ -89,7 +89,7 @@ async function enforcedTriples(
 }
 
 describe("commerce module descriptor — restore is declared for both activity codes", () => {
-  test("fifty-three permissions total — five per catalog activity code (incl. restore), four per marketing code, two for settings, two each for orders/customers/affiliates/affiliate_commissions/conversations/entitlements, three for reviews, one for whatsapp, three for campaigns, one for webhook_endpoints, one for pos", () => {
+  test("fifty-seven permissions total — five per catalog activity code (incl. restore), four per marketing code, two for settings, two each for orders/customers/affiliates/affiliate_commissions/conversations/entitlements, three for reviews, one for whatsapp, three for campaigns, one for webhook_endpoints, one for pos, one for pos_due, three for payments", () => {
     // Issue #23: categories/products carry read/create/update/delete/restore.
     // Issue #26: flash_sales/vouchers/sliders/testimonials/popups carry
     // read/create/update/delete (soft delete only, no restore — the marketing
@@ -119,8 +119,12 @@ describe("commerce module descriptor — restore is declared for both activity c
     // gated by a permission at all (every other one is anonymous or
     // provider/system-driven), per `commerce-permissions.ts`'s own header.
     const declared = declaredTriples();
+    // Issue #285: pos_due carries create only (a second permission for a
+    // sale left with a balance due), payments carries read/create/revoke
+    // (record a tender / record a reversal — `revoke` is the platform's
+    // existing high-risk verb), each with its own enforcing route.
     expect(declared.size).toBe(
-      2 * 5 + 5 * 4 + 2 + 2 + 2 + 3 + 2 + 2 + 1 + 2 + 3 + 1 + 1 + 2
+      2 * 5 + 5 * 4 + 2 + 2 + 2 + 3 + 2 + 2 + 1 + 2 + 3 + 1 + 1 + 2 + 1 + 3
     );
 
     for (const activityCode of ["categories", "products"]) {
@@ -349,7 +353,9 @@ describe("/admin/commerce-pos permission gates", () => {
 
     expect([...pageKeys].sort()).toEqual([
       "commerce.orders.read",
-      "commerce.pos.create"
+      "commerce.pos.create",
+      // Issue #285 — the credit-sale checkbox; also checked by the endpoint.
+      "commerce.pos_due.create"
     ]);
     expect([...pageKeys].filter((key) => !declared.has(key))).toEqual([]);
 
@@ -365,6 +371,14 @@ describe("/admin/commerce-pos permission gates", () => {
       "orders"
     );
     expect([...enforcedOrders]).toEqual(["commerce.orders.read"]);
+    // Issue #285 — `allowDue` needs a SECOND permission, enforced in the
+    // handler through the same chokepoint (`authorizeInTransaction`).
+    const enforcedDue = await enforcedTriples(
+      POS_ROUTES,
+      "COMMERCE_POS_DUE_ACTIVITY_CODE",
+      "pos_due"
+    );
+    expect([...enforcedDue]).toEqual(["commerce.pos_due.create"]);
   });
 
   test("the page never writes raw SQL — the sale posts to the guarded POS endpoint with an Idempotency-Key", async () => {
@@ -406,5 +420,75 @@ describe("/admin/commerce-pos permission gates", () => {
       /requireCommerceFeatureForOwnerRoute\(tx, tenantId, "pos"\)/g
     );
     expect(gates?.length).toBe(2);
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Issue #285 — the payment-allocation ledger's screens and routes
+// ---------------------------------------------------------------------------
+
+const ORDER_DETAIL_PAGE = "src/pages/admin/commerce-orders/[id].astro";
+const REPORTS_PAGE = "src/pages/admin/commerce-reports.astro";
+const PAYMENT_ROUTES = [
+  "src/pages/api/v1/commerce/orders/[id]/payments/index.ts",
+  "src/pages/api/v1/commerce/orders/[id]/payments/[paymentId]/reversals.ts",
+  "src/pages/api/v1/reports/commerce/tender-mix.ts",
+  "src/pages/api/v1/reports/commerce/outstanding-balances.ts"
+];
+
+describe("payment-allocation ledger permission gates (Issue #285)", () => {
+  test("commerce.payments.{read,create,revoke} are declared, each claimed by the order detail screen and each enforced by exactly its route", async () => {
+    const declared = declaredTriples();
+    const expected: Triple[] = [
+      "commerce.payments.create",
+      "commerce.payments.read",
+      "commerce.payments.revoke"
+    ];
+    for (const key of expected) {
+      expect(declared.has(key)).toBe(true);
+    }
+
+    const page = await readFile(ORDER_DETAIL_PAGE, "utf8");
+    const pageKeys = pageTriplesFrom(page);
+    for (const key of expected) {
+      expect(pageKeys.has(key)).toBe(true);
+    }
+    // The page's own subject is still the order: it keeps `orders.read`.
+    expect(pageKeys.has("commerce.orders.read" as Triple)).toBe(true);
+
+    const enforced = await enforcedTriples(
+      PAYMENT_ROUTES,
+      "COMMERCE_PAYMENTS_ACTIVITY_CODE",
+      "payments"
+    );
+    expect([...enforced].sort()).toEqual(expected);
+  });
+
+  test("a reversal uses the platform's high-risk `revoke` verb, and both mutations require an Idempotency-Key", async () => {
+    const reversal = await readFile(PAYMENT_ROUTES[1]!, "utf8");
+    expect(reversal).toContain('action: "revoke"');
+    for (const route of [PAYMENT_ROUTES[0]!, PAYMENT_ROUTES[1]!]) {
+      const source = await readFile(route, "utf8");
+      expect(source).toContain("IDEMPOTENCY_REQUIRED");
+    }
+  });
+
+  test("the screens never write raw SQL — every mutation posts to a guarded endpoint with an Idempotency-Key", async () => {
+    for (const path of [ORDER_DETAIL_PAGE, REPORTS_PAGE]) {
+      const page = await readFile(path, "utf8");
+      expect(page).not.toMatch(
+        /\b(INSERT\s+INTO|UPDATE\s+awcms_|DELETE\s+FROM)/i
+      );
+    }
+    const detail = await readFile(ORDER_DETAIL_PAGE, "utf8");
+    expect(detail).toContain("/payments`");
+    expect(detail).toContain('"Idempotency-Key"');
+  });
+
+  test("the reports screen reads the ledger through the directory (never a second projection) behind commerce.payments.read", async () => {
+    const page = await readFile(REPORTS_PAGE, "utf8");
+    expect(page).toContain("listTenderMix(");
+    expect(page).toContain("listOutstandingBalances(");
+    expect(page).toContain('activityCode: "payments"');
   });
 });

@@ -60,7 +60,7 @@ import type {
   MediaLibraryPort,
   ResolvedMediaReferenceDTO
 } from "../../_shared/ports/media-library-port";
-import { normalizeMoney } from "../domain/price-calculation";
+import { normalizeMoney, toCents } from "../domain/price-calculation";
 import {
   normalizePhoneNumber,
   maskPhone,
@@ -98,6 +98,18 @@ import {
 import { fetchStoreSettings } from "./store-settings-directory";
 import { listLiveProductImagesByProductIds } from "./product-image-directory";
 import {
+  fetchOrderPaymentSummary,
+  readOrderSettlement,
+  recordPaymentAllocation,
+  resolveGatewayAllocation,
+  type PaymentAllocationRecord,
+  type ReleaseOrderFn
+} from "./payment-allocation-directory";
+import {
+  confirmationMethodToTender,
+  type SettlementView
+} from "../domain/payment-allocation";
+import {
   recordAffiliateCommissionOnOrderCompleted,
   resolveAffiliateForOrder,
   voidAffiliateCommissionForOrder
@@ -124,6 +136,25 @@ export class OrderNotPayableError extends Error {
   constructor() {
     super("Order is not payable (not pending_payment).");
     this.name = "OrderNotPayableError";
+  }
+}
+
+/**
+ * Thrown by `updateOrderStatusByAdmin` for a manual `-> paid` while the
+ * payment-allocation ledger (Issue #285, ADR-0025) says the order has not
+ * reached its release threshold. "Paid" is derived from recorded money, so an
+ * operator who received it records it (`POST .../orders/{id}/payments`) and
+ * the order moves by itself — a status override can no longer claim money the
+ * ledger never saw.
+ */
+export class PaymentNotSettledError extends Error {
+  public readonly outstanding: string;
+  constructor(outstanding: string) {
+    super(
+      "The order has not been paid in full according to its payment ledger; record the payment instead."
+    );
+    this.name = "PaymentNotSettledError";
+    this.outstanding = outstanding;
   }
 }
 
@@ -1100,8 +1131,8 @@ export async function reviewPaymentConfirmation(
     SET status = ${decision}, reviewed_by = ${actorTenantUserId}, reviewed_at = now(), updated_at = now()
     WHERE tenant_id = ${tenantId} AND id = ${confirmationId} AND order_id = ${orderId}
       AND deleted_at IS NULL AND status = 'submitted'
-    RETURNING id, amount
-  `) as { id: string; amount: string }[];
+    RETURNING id, amount, method
+  `) as { id: string; amount: string; method: string }[];
 
   if (rows.length === 0) return false;
 
@@ -1118,32 +1149,91 @@ export async function reviewPaymentConfirmation(
   });
 
   if (decision === "accepted") {
-    // Only drives the order's own status while it is still awaiting payment
-    // — accepting a SECOND confirmation on an order already moved past
-    // `pending_payment` (e.g. a DP top-up confirmation after the order was
-    // already marked `paid`) records the acceptance without attempting an
-    // illegal same-status/backwards transition, which would otherwise throw
-    // and roll back the acceptance itself.
-    const orderRows = (await tx`
-      SELECT status FROM awcms_commerce_orders
-      WHERE tenant_id = ${tenantId} AND id = ${orderId} AND deleted_at IS NULL
-    `) as { status: string }[];
-
-    if (orderRows[0]?.status === "pending_payment") {
-      await transitionOrderStatus(
-        tx,
-        tenantId,
-        actorTenantUserId,
-        "admin",
+    // Issue #285 (ADR-0025): accepting a confirmation no longer flips the
+    // order to `paid` by itself — it records the accepted amount as a ledger
+    // leg (`manual_qris`/`manual_bank_transfer`), and the order moves to
+    // `paid` exactly when settlement reaches its release threshold (the whole
+    // total; for a down-payment order, the down payment). A confirmation for
+    // less than the total therefore leaves the order `pending_payment` /
+    // `partially_paid` with the balance explicit, instead of silently
+    // forgiving it.
+    //
+    // Still never attempts an illegal transition: the release only fires for
+    // a `pending_payment` order (a DP top-up confirmation after the order was
+    // already released just records its leg), and a cancelled/expired order
+    // records the acceptance without any ledger leg. An amount above what is
+    // owed is capped (`clampToOutstanding`), never a reason to refuse the
+    // acceptance. `source_key = confirmation:{id}` makes a re-run a no-op.
+    const confirmation = rows[0]!;
+    if (toCentsSafe(confirmation.amount) > 0n) {
+      await recordPaymentAllocation(tx, tenantId, {
         orderId,
-        "paid",
-        "Payment confirmation accepted.",
+        tenderType: confirmationMethodToTender(confirmation.method),
+        amount: normalizeMoney(confirmation.amount),
+        source: "storefront_manual",
+        sourceKey: `confirmation:${confirmationId}`,
+        actor: { kind: "tenant_user", tenantUserId: actorTenantUserId },
+        enforceNoOverpayment: false,
+        clampToOutstanding: true,
+        allowedOrderStatuses: SETTLEMENT_OPEN_ORDER_STATUSES,
+        release: makeOrderRelease(
+          tx,
+          tenantId,
+          "admin",
+          actorTenantUserId,
+          orderId,
+          correlationId
+        ),
+        releaseNote: "Payment confirmation accepted.",
         correlationId
-      );
+      });
     }
   }
 
   return true;
+}
+
+/** Order statuses in which money may still be recorded: everything but the two dead ends. */
+const SETTLEMENT_OPEN_ORDER_STATUSES: readonly OrderStatus[] = [
+  "pending_payment",
+  "paid",
+  "processing",
+  "shipped",
+  "completed"
+];
+
+function toCentsSafe(amount: string): bigint {
+  return toCents(normalizeMoney(amount));
+}
+
+/**
+ * The {@link ReleaseOrderFn} every ledger writer hands
+ * `payment-allocation-directory.ts`: a closure over THIS file's one
+ * `transitionOrderStatus`, so a payment-driven `pending_payment -> paid`
+ * produces the identical status timestamp, `order_events` row, audit event
+ * and `order.paid`/`order.status_changed` domain events as every other path —
+ * the ledger never forks the transition.
+ */
+export function makeOrderRelease(
+  tx: Bun.SQL,
+  tenantId: string,
+  actor: OrderStatusActor,
+  actorTenantUserId: string | undefined,
+  orderId: string,
+  correlationId?: string
+): ReleaseOrderFn {
+  return async (note) => {
+    await transitionOrderStatus(
+      tx,
+      tenantId,
+      actorTenantUserId,
+      actor,
+      orderId,
+      "paid",
+      note,
+      correlationId
+    );
+  };
 }
 
 // ---------------------------------------------------------------------------
@@ -1395,6 +1485,19 @@ export async function updateOrderStatusByAdmin(
   note: string | null,
   correlationId?: string
 ): Promise<boolean> {
+  // Issue #285 (ADR-0025): `paid` is derived from the payment ledger, so a
+  // manual `-> paid` is refused (`PaymentNotSettledError`, 409
+  // `PAYMENT_NOT_SETTLED`) until the recorded money reaches the order's
+  // release threshold. In that case the order normally has ALREADY moved by
+  // itself when the last payment was recorded; the only status the operator
+  // can still ask for here is a no-op the status machine rejects anyway.
+  if (to === "paid") {
+    const settlement = await readOrderSettlement(tx, tenantId, orderId);
+    if (settlement && !settlement.releaseReached) {
+      throw new PaymentNotSettledError(settlement.view.outstanding);
+    }
+  }
+
   const result = await transitionOrderStatus(
     tx,
     tenantId,
@@ -1406,37 +1509,6 @@ export async function updateOrderStatusByAdmin(
     correlationId
   );
   return result !== null;
-}
-
-/**
- * `createPosOrder` (Issue #116, `application/pos-directory.ts`)'s own call
- * to move its freshly-inserted `pending_payment` counter sale straight to
- * `paid` — reuses the SAME `transitionOrderStatus` every other admin status
- * change goes through (status timestamp, `order_events` row, audit event,
- * `COMMERCE_ORDER_PAID_EVENT_TYPE`/`COMMERCE_ORDER_STATUS_CHANGED_EVENT_TYPE`
- * domain events), rather than `pos-directory.ts` hand-rolling a second copy
- * of that bookkeeping. Actor is always `"admin"` — a POS sale is staff-rung,
- * never `"customer"`/`"system"` — with `actorTenantUserId` carrying WHICH
- * staff member (the audit trail's own actor column; `order_events.actor`
- * itself only ever records the role, see `sql/913`'s own table header).
- */
-export async function applyPosOrderPaidTransition(
-  tx: Bun.SQL,
-  tenantId: string,
-  actorTenantUserId: string,
-  orderId: string,
-  correlationId?: string
-): Promise<void> {
-  await transitionOrderStatus(
-    tx,
-    tenantId,
-    actorTenantUserId,
-    "admin",
-    orderId,
-    "paid",
-    "POS counter sale — paid at the register.",
-    correlationId
-  );
 }
 
 /** `commerce:orders:expire` job's own per-order call — see `scripts/commerce-orders-expire.ts`. */
@@ -1499,12 +1571,37 @@ export type MarkOrderPaidBySystemInput = {
   providerRef: string;
   /** `awcms_commerce_payment_events.event_key` — carried through only for the audit message/correlation, never re-checked here (the caller's own `ON CONFLICT DO NOTHING` already did that). */
   eventKey: string;
+  /**
+   * The provider's own reported amount (`gross_amount`), already through the
+   * amount guard. It is the amount of the ledger leg (Issue #285); absent
+   * only for a provider that reports none (the `log` adapter), in which case
+   * the leg carries the session's charge basis — the order total.
+   */
+  grossAmount?: string;
+  /** Which door the confirmation came through; stamped on a ledger leg that had no pending row to resolve. Default `gateway_webhook`. */
+  source?: "gateway_webhook" | "gateway_reconcile";
 };
 
 export type MarkOrderPaidBySystemResult =
   | { applied: true }
-  | { applied: false; reason: "already_paid" | "not_payable" };
+  | {
+      applied: false;
+      reason: "already_paid" | "not_payable" | "partially_settled";
+    };
 
+/**
+ * Issue #285 (ADR-0025) — the confirmed gateway payment is now a LEDGER fact
+ * first: `resolveGatewayAllocation` resolves the session's pending leg to
+ * `succeeded` (or inserts one) idempotently under the order-row lock, and the
+ * order moves to `paid` through the one `transitionOrderStatus` when
+ * settlement reaches its release threshold. The ledger leg is recorded even
+ * when the order is no longer payable (cancelled/expired/already paid by
+ * another tender) — the provider captured the money — while the ORDER is
+ * still left alone, exactly as before (`not_payable`/`already_paid`); the
+ * excess surfaces as `overpaid` for an operator to refund with a reversal.
+ * A webhook replay, or the reconcile job racing the webhook, finds the leg
+ * already `succeeded` and writes nothing.
+ */
 export async function markOrderPaidBySystem(
   tx: Bun.SQL,
   tenantId: string,
@@ -1512,38 +1609,49 @@ export async function markOrderPaidBySystem(
   gateway: MarkOrderPaidBySystemInput,
   correlationId?: string
 ): Promise<MarkOrderPaidBySystemResult> {
-  const rows = (await tx`
-    SELECT status FROM awcms_commerce_orders
-    WHERE tenant_id = ${tenantId} AND id = ${orderId} AND deleted_at IS NULL
-  `) as { status: string }[];
-  const current = rows[0];
-  if (!current) return { applied: false, reason: "not_payable" };
-
-  if (current.status === "paid") {
-    return { applied: false, reason: "already_paid" };
-  }
-  if (current.status !== "pending_payment") {
-    return { applied: false, reason: "not_payable" };
-  }
-
+  // Stamp the provider/reference pair while the order is still awaiting
+  // payment, before the release below (same transaction — an admin reading
+  // the order's payment panel always sees a consistent pair).
   await tx`
     UPDATE awcms_commerce_orders
     SET gateway_provider = ${gateway.provider}, gateway_ref = ${gateway.providerRef}
     WHERE tenant_id = ${tenantId} AND id = ${orderId} AND deleted_at IS NULL
+      AND status = 'pending_payment'
   `;
 
-  await transitionOrderStatus(
-    tx,
-    tenantId,
-    undefined,
-    "system",
+  const outcome = await resolveGatewayAllocation(tx, tenantId, {
     orderId,
-    "paid",
-    `Payment confirmed by ${gateway.provider} (ref ${gateway.providerRef}, event ${gateway.eventKey}).`,
+    provider: gateway.provider,
+    providerReference: gateway.providerRef,
+    grossAmount: gateway.grossAmount,
+    source: gateway.source ?? "gateway_webhook",
+    release: makeOrderRelease(
+      tx,
+      tenantId,
+      "system",
+      undefined,
+      orderId,
+      correlationId
+    ),
+    releaseNote: `Payment confirmed by ${gateway.provider} (ref ${gateway.providerRef}, event ${gateway.eventKey}).`,
     correlationId
-  );
+  });
 
-  return { applied: true };
+  if (outcome.kind === "order_not_found") {
+    return { applied: false, reason: "not_payable" };
+  }
+  if (outcome.orderStatus === "paid") {
+    return { applied: false, reason: "already_paid" };
+  }
+  if (outcome.orderStatus !== "pending_payment") {
+    return { applied: false, reason: "not_payable" };
+  }
+  if (outcome.kind === "recorded" && outcome.released) {
+    return { applied: true };
+  }
+  // A replay of an already-applied event (the order has moved on — handled
+  // above) or a leg that did not reach the release threshold.
+  return { applied: false, reason: "partially_settled" };
 }
 
 /** Every `pending_payment` order in `tenantId` whose `expires_at` has passed — the expiry job's own scan. */
@@ -1677,24 +1785,43 @@ export async function countOrdersByStatus(
  * record.
  */
 export type OrderAdminDetailRecord = PublicOrderRecord & {
+  /** The order's id — the staff-side handle (`/orders/{id}/payments`); the public record deliberately carries only the order code. */
+  id: string;
   customerId: string;
   customer: PublicOrderRecord["customer"] & { phone: string };
   address: (PublicOrderRecord["address"] & { phone: string }) | null;
+  /** Issue #285 — the order's derived settlement (total/paid/reversed/outstanding/overpaid + the cached payment status). Staff context only: the public record deliberately carries none of it. */
+  settlement: SettlementView;
+  /**
+   * Issue #285 — the payment-allocation ledger rows, oldest first. Present
+   * ONLY when the caller asked for them (`toAdminOrderRecord`'s
+   * `includePayments`): the POS receipt includes them (the cashier who rang
+   * the sale up needs every tender); the order-detail read does not, because
+   * the ledger rows (provider references, who recorded what) belong behind
+   * `commerce.payments.read`, not `commerce.orders.read` — they are served by
+   * `GET .../orders/{id}/payments`.
+   */
+  payments?: PaymentAllocationRecord[];
 };
 
 export async function toAdminOrderRecord(
   tx: Bun.SQL,
   tenantId: string,
-  detail: OrderDetail
+  detail: OrderDetail,
+  options: { includePayments?: boolean } = {}
 ): Promise<OrderAdminDetailRecord> {
   const publicRecord = await toPublicOrderRecord(tx, tenantId, detail);
+  const payments = await fetchOrderPaymentSummary(tx, tenantId, detail.id);
   return {
     ...publicRecord,
+    id: detail.id,
     customerId: detail.customerId,
     customer: { ...publicRecord.customer, phone: detail.customer.phone },
     address: detail.address
       ? { ...publicRecord.address!, phone: detail.address.phone }
-      : null
+      : null,
+    settlement: payments!.settlement,
+    ...(options.includePayments ? { payments: payments!.allocations } : {})
   };
 }
 

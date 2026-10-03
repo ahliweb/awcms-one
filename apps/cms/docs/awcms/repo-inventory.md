@@ -8,12 +8,12 @@
 | Aspect                              | Value |
 | ----------------------------------- | ----- |
 | Registered modules                  | 26    |
-| Migrations                          | 208   |
-| `awcms_*` tables                    | 208   |
-| Tables with `FORCE` RLS             | 190   |
+| Migrations                          | 212   |
+| `awcms_*` tables                    | 209   |
+| Tables with `FORCE` RLS             | 191   |
 | RLS-free tables (global, by design) | 18    |
-| Test files                          | 601   |
-| Route files                         | 549   |
+| Test files                          | 603   |
+| Route files                         | 553   |
 | ADR                                 | 250   |
 
 ### Modules
@@ -259,6 +259,10 @@
 | 206 | `sql/937_awcms_commerce_entitlements_worker_grants.sql`                     |
 | 207 | `sql/938_awcms_commerce_entitlements_permissions.sql`                       |
 | 208 | `sql/939_awcms_commerce_protected_media_links_schema.sql`                   |
+| 209 | `sql/940_awcms_commerce_payment_allocations_schema.sql`                     |
+| 210 | `sql/941_awcms_commerce_payment_allocations_permissions.sql`                |
+| 211 | `sql/942_awcms_commerce_payment_allocations_worker_grants.sql`              |
+| 212 | `sql/943_awcms_commerce_payment_allocations_backfill.sql`                   |
 
 ### Tables & Row-Level Security
 
@@ -317,6 +321,7 @@
 | `awcms_commerce_order_events`               | `sql/913_awcms_commerce_customers_orders_schema.sql`       | yes | yes   |
 | `awcms_commerce_order_items`                | `sql/913_awcms_commerce_customers_orders_schema.sql`       | yes | yes   |
 | `awcms_commerce_orders`                     | `sql/913_awcms_commerce_customers_orders_schema.sql`       | yes | yes   |
+| `awcms_commerce_payment_allocations`        | `sql/940_awcms_commerce_payment_allocations_schema.sql`    | yes | yes   |
 | `awcms_commerce_payment_confirmations`      | `sql/913_awcms_commerce_customers_orders_schema.sql`       | yes | yes   |
 | `awcms_commerce_payment_events`             | `sql/926_awcms_commerce_payment_gateway_schema.sql`        | yes | yes   |
 | `awcms_commerce_payment_gateway_sessions`   | `sql/926_awcms_commerce_payment_gateway_schema.sql`        | yes | yes   |
@@ -477,16 +482,16 @@
 
 | Directory     | Test files |
 | ------------- | ---------- |
-| `(root)`      | 476        |
+| `(root)`      | 477        |
 | `e2e`         | 20         |
-| `integration` | 104        |
+| `integration` | 105        |
 | `unit`        | 1          |
 
 ### Routes
 
 | Surface         | Files |
 | --------------- | ----- |
-| `/api/v1/**`    | 436   |
+| `/api/v1/**`    | 440   |
 | `/admin/**`     | 83    |
 | publik / anonim | 30    |
 

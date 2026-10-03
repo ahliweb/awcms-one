@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](api.md)
 
-<!-- i18n-source-hash: sha256:7d801f2ad48067267061cb118fad62de6c9e687f2880e756a76ace4571f51347 -->
+<!-- i18n-source-hash: sha256:51c5db2b167d3b09c0f3405b75acf3ebe115a21f385368090e037ed280713e06 -->
 
 # API
 
@@ -58,7 +58,10 @@ Paginasi: keyset, terbaru lebih dulu secara default (`sort=newest`), ukuran hala
 | Method                 | Jalur                                                             | Catatan                                                                                            |
 | ---------------------- | ----------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
 | `GET`/`PATCH`          | `/api/v1/commerce/orders(/{id})`, `.../orders/{id}/status`        | Tidak ada `POST`/`DELETE` — pesanan dibuat lewat jalur storefront anonim (di bawah) atau, sejak #116, jalur POS yang di-gate izin (lihat "Kasir (POS)") |
-| `PATCH`                | `/api/v1/commerce/orders/{id}/payment-confirmations/{cid}/review` | `{ decision: "accepted" \| "rejected" }`; menerima mengubah `paymentStatus` pesanan menjadi `paid` |
+| `PATCH`                | `/api/v1/commerce/orders/{id}/payment-confirmations/{cid}/review` | `{ decision: "accepted" \| "rejected" }`; menerima mencatat jumlah terkonfirmasi sebagai leg ledger pembayaran (#285, dibatasi pada saldo terutang) — pesanan mencapai `paid` ketika penyelesaian mencapai totalnya, bukan sekadar karena diterima |
+| `GET`/`POST`           | `/api/v1/commerce/orders/{id}/payments`                           | Issue #285, [ADR-0025](adr/0025-payments-are-an-allocation-ledger-separate-from-order-status.md). `GET` (`commerce.payments.read`) → `{ orderId, orderCode, orderStatus, settlement, payments[] }`. `POST` (`commerce.payments.create`, **`Idempotency-Key` wajib**) `{ tenderType: "cash"\|"manual_qris"\|"manual_bank_transfer", amount, reference?, note? }` — `amount` adalah STRING `numeric(14,2)` (untuk `cash`, jumlah yang diserahkan) → `201 { payment, settlement }`; `409 OVERPAYMENT` (`details.outstanding`), `409 ORDER_NOT_PAYABLE`, `409 IDEMPOTENCY_CONFLICT`; pesanan tenant lain adalah `404` |
+| `POST`                 | `/api/v1/commerce/orders/{id}/payments/{paymentId}/reversals`     | Issue #285. `commerce.payments.revoke` (verb risiko-tinggi platform), **`Idempotency-Key` wajib**. `{ amount?, note }` (`note` = alasan, wajib; `amount` dihilangkan = semua yang masih bisa dibalik) → `201 { payment (baris pembalikan), settlement }`; `409 REVERSAL_EXCEEDS_PAYMENT` (`details.reversible`), `409 PAYMENT_NOT_REVERSIBLE`; pembayaran tak dikenal, milik tenant lain, atau milik pesanan berbeda adalah `404` yang sama. Hanya mencatat fakta pembukuan — tanpa panggilan provider, tidak pernah menggerakkan siklus hidup pesanan |
+| `GET`                  | `/api/v1/reports/commerce/{tender-mix,outstanding-balances}`      | Issue #285, `commerce.payments.read`. `tender-mix?from&to` — pembayaran/pembalikan/neto per tender pada hari laporan `Asia/Jakarta`; `outstanding-balances?channel&limit` — pesanan yang masih terutang, dengan jumlah dan total SEMUA yang cocok. Keduanya membaca ledger langsung |
 | `GET`                  | `/api/v1/commerce/orders/export.csv`                              |                                                                                                    |
 | `GET`/`PATCH`          | `/api/v1/commerce/customers(/{id})`                               | Tidak ada `POST`/`DELETE` — baris pelanggan hanya dibuat oleh jalur pesanan anonim                 |
 | `GET`/`PATCH`/`DELETE` | `/api/v1/commerce/reviews(/{id})`                                 | `PATCH {status}` memoderasi `pending → published/rejected`                                         |
@@ -204,7 +207,7 @@ Satu berkas rute, dua handler (`apps/cms/src/pages/api/v1/commerce/pos/orders/in
 | Method | Path | Auth | Catatan |
 | --- | --- | --- | --- |
 | `GET` | `commerce/pos/orders` | `commerce.orders.read` | Riwayat POS: keyset (`?cursor`), terbaru dulu, hanya `channel = 'pos'`, 50 per halaman; `?dateFrom&dateTo` (inklusif; `YYYY-MM-DD` polos mencakup seluruh hari UTC) dan `?cashier=<uuid tenant user>`. Item adalah ringkasan daftar pesanan admin plus `paymentMethod` (`cash`\|`manual_qris`) dan `cashierTenantUserId` |
-| `POST` | `commerce/pos/orders` | `commerce.pos.create` | **Header `Idempotency-Key` wajib** (`400 IDEMPOTENCY_REQUIRED`). Body `{ customer?: {name?, phone?}, lines: [{productId, variantId?, quantity}], payment: {method: "cash"\|"manual_qris", amountTendered?}, notes? }` — `amountTendered` adalah STRING `numeric(14,2)`, wajib untuk `cash`, diabaikan untuk `manual_qris`. → `201` dengan record pesanan admin (`status: "paid"`, `channel: "pos"`, `shippingMethod: "self_pickup"`) plus `change` (string atau `null`), `amountTendered`, `cashierTenantUserId`; pengulangan kunci-sama/body-sama me-replay `201` yang sama. `400 VALIDATION_ERROR` (bentuk, atau `customer.phone` yang tidak dapat dinormalisasi — tidak pernah diam-diam jadi walk-in); `409 IDEMPOTENCY_CONFLICT` (kunci sama, body beda atau kasir beda); `409 CART_CHANGED` (`details.quote` — harga/stok suatu baris berubah); `409 INSUFFICIENT_TENDER` (`details.shortfall`) |
+| `POST` | `commerce/pos/orders` | `commerce.pos.create` | **Header `Idempotency-Key` wajib** (`400 IDEMPOTENCY_REQUIRED`). Body `{ customer?: {name?, phone?}, lines: [{productId, variantId?, quantity}], payment: {method: "cash"\|"manual_qris", amountTendered?}, notes? }` — `amountTendered` adalah STRING `numeric(14,2)`, wajib untuk `cash`, diabaikan untuk `manual_qris`. **Kontrak versi 2 (#285, aditif):** sebagai ganti `payment`, kirim `tenders: [{ tenderType: "cash"\|"manual_qris"\|"manual_bank_transfer", amount, reference? }]` (tidak pernah keduanya; `amount` non-tunai = diterapkan, `amount` tender tunai tunggal = diserahkan, kembalian hanya dari leg tunai) dan opsional `allowDue: true` (butuh `tenders`, telepon pelanggan, dan izin terpisah `commerce.pos_due.create`) untuk meninggalkan saldo terutang pada pesanan `pending_payment`. `201` juga membawa `payments[]` dan `settlement`; `409 OVERPAYMENT` untuk tender non-tunai di atas total. → `201` dengan record pesanan admin (`status: "paid"`, `channel: "pos"`, `shippingMethod: "self_pickup"`) plus `change` (string atau `null`), `amountTendered`, `cashierTenantUserId`; pengulangan kunci-sama/body-sama me-replay `201` yang sama. `400 VALIDATION_ERROR` (bentuk, atau `customer.phone` yang tidak dapat dinormalisasi — tidak pernah diam-diam jadi walk-in); `409 IDEMPOTENCY_CONFLICT` (kunci sama, body beda atau kasir beda); `409 CART_CHANGED` (`details.quote` — harga/stok suatu baris berubah); `409 INSUFFICIENT_TENDER` (`details.shortfall`) |
 
 Tanpa telepon → penjualan dikaitkan ke satu baris pelanggan walk-in tenant (telepon sentinel `+620000000000`); dengan telepon → cari-atau-buat berdasarkan nomor yang dinormalisasi dan `level` pelanggan memberi harga penjualan. Jalur storefront (`GET storefront/orders/{code}?phone=`, `GET storefront/account/orders(/{code})`) tidak pernah mengembalikan pesanan `channel: "pos"`, dan `POST storefront/orders` menolak baik `payment.method: "cash"` maupun telepon sentinel. Pencarian produk untuk layar POS adalah `GET /api/v1/commerce/products?q=&status=active` yang sudah ada.
 
@@ -241,7 +244,7 @@ Tanpa telepon → penjualan dikaitkan ke satu baris pelanggan walk-in tenant (te
 }
 ```
 
-## Otorisasi: 39 izin owner
+## Otorisasi: 39 izin owner (ditambah kunci increment-5 dan, sejak #285, `commerce.payments.{read,create,revoke}` dan `commerce.pos_due.create`)
 
 Modul `commerce` mendeklarasikan 39 kunci izin secara total (10 + 22 + 7 di bawah), dikelompokkan berdasarkan tiga area yang sama dengan tabelnya — jumlah yang terlalu besar untuk konvensi "angka yang dieja cocok dengan set yang dihitung" milik dokumen ini sendiri (pengecekan hitungan-tertaut milik `bun run audit:dokumen` hanya mengenali angka yang dieja satu sampai dua puluh), sehingga di sini dinyatakan sebagai angka numeral, bukan di dalam blok terjaga.
 
@@ -255,16 +258,16 @@ Sengaja **tanpa `create`/`delete` untuk `orders`/`customers`**: baris pesanan at
 
 API storefront (anonim) sama sekali **tidak punya kunci izin** — batas kepercayaannya adalah tenant resolver yang Origin-bound, bukan RBAC/ABAC.
 
-## Domain event: dua belas
+## Domain event: empat belas
 
-Kedua belas event terdaftar di tiga tempat yang dijaga selaras `awcms` (`domain-event-runtime/domain/event-type-registry.ts`, `apps/cms/asyncapi/awcms-domain-events.asyncapi.yaml`, `events.publishes` milik `commerce/module.ts`):
+Keempat belas event terdaftar di tiga tempat yang dijaga selaras `awcms` (`domain-event-runtime/domain/event-type-registry.ts`, `apps/cms/asyncapi/awcms-domain-events.asyncapi.yaml`, `events.publishes` milik `commerce/module.ts`):
 
 | Agregat               | Event                                                                                                                                                         |
 | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `commerce.product`    | `awcms.commerce.product.{created,updated,status_changed}`                                                                                                     |
 | `commerce.flash_sale` | `awcms.commerce.flash_sale.{started,ended}` — dipicu tepat sekali per transisi oleh job tick, bukan pada setiap pembacaan                                     |
 | `commerce.voucher`    | `awcms.commerce.voucher.redeemed` — dideklarasikan lebih dulu sebagai forward reference di #26, baru benar-benar dipicu begitu jalur pesanan #29 menebus satu |
-| `commerce.order`      | `awcms.commerce.order.{created,paid,status_changed,cancelled,expired}`                                                                                        |
+| `commerce.order`      | `awcms.commerce.order.{created,paid,status_changed,cancelled,expired}`, dan sejak #285 `awcms.commerce.payment.{recorded,reversed}` (ledger pembayaran berjalan pada agregat PESANAN: satu aliran berurutan per pesanan; id/tender/jumlah/penyelesaian hasilnya, tidak pernah nama/telepon pelanggan atau referensi pembayaran) |
 | `commerce.review`     | `awcms.commerce.review.published`                                                                                                                             |
 
 `categories` masih tidak mempublikasikan domain event apa pun — pilihan yang sama diambil `tenant_admin` untuk `awcms_offices`; soft delete adalah fakta log-audit, bukan sesuatu yang perlu direaksi konsumen hilir.
@@ -277,7 +280,8 @@ Kedua belas event terdaftar di tiga tempat yang dijaga selaras `awcms` (`domain-
 | `400`  | —                                                                                             | `categoryId`/`parentId` tidak resolve ke kategori hidup di tenant pemanggil sendiri; `status` yang diminta produk bukan transisi legal                           |
 | `409`  | `CATEGORY_SLUG_ALREADY_EXISTS` / `PRODUCT_SLUG_ALREADY_EXISTS` / `PRODUCT_SKU_ALREADY_EXISTS` | Slug/SKU sudah dipakai baris hidup di tenant ini                                                                                                                 |
 | `409`  | `CART_CHANGED`                                                                                | Re-quote milik request pembuatan-pesanan storefront (atau POS, #116) tidak sepakat dengan keranjang yang dikirim; respons membawa `details.quote` baru          |
-| `409`  | `INSUFFICIENT_TENDER`                                                                         | Hanya POS (#116): `amountTendered` tunai di bawah total pesanan; `details.shortfall` adalah selisihnya sebagai string `numeric(14,2)`                             |
+| `409`  | `INSUFFICIENT_TENDER`                                                                         | Hanya POS (#116, diperlebar #285): tender tidak menutup total pesanan (kecuali `allowDue`); `details.shortfall` adalah selisihnya sebagai string `numeric(14,2)`   |
+| `409`  | `OVERPAYMENT` / `REVERSAL_EXCEEDS_PAYMENT` / `PAYMENT_NOT_REVERSIBLE` / `PAYMENT_NOT_SETTLED`  | Ledger pembayaran (#285): jumlah di atas yang terutang (hanya kembalian tunai yang boleh melebihi); pembalikan di atas sisa yang bisa dibalik; pembayaran yang tidak bisa dibalik; `-> paid` manual sebelum ledger menyatakan pesanan terselesaikan |
 | `409`  | `FEATURE_DISABLED`                                                                            | Rute owner dari fitur yang dimatikan tenant (#118) — kotak masuk, kampanye, gateway, kurir, dan sejak #116 rute POS                                              |
 | `409`  | `ORDER_NOT_PAYABLE` / `ORDER_NOT_CANCELLABLE`                                                 | Status pesanan saat ini secara legal tidak mengizinkan aksi yang diminta                                                                                         |
 | `404`  | `NOT_FOUND`                                                                                   | Resource tak dikenal, atau — pada API storefront — penolakan netral yang mencakup "pesanan tak dikenal", "telepon salah", dan "milik tenant lain" secara identik |
