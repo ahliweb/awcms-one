@@ -12,6 +12,8 @@
  * once `reviewDate` has passed — an exception nobody re-justified is a
  * vulnerability nobody is looking at any more.
  */
+import { existsSync, readFileSync } from "node:fs";
+import { join } from "node:path";
 
 export interface AuditException {
   /** GHSA id exactly as `bun audit --ignore` accepts it, e.g. `GHSA-xxxx-xxxx-xxxx`. */
@@ -68,4 +70,22 @@ export function auditIgnoreArgs(
   const expired = exceptions.filter((entry) => entry.reviewDate < today);
   if (expired.length > 0) return { ok: false, expired };
   return { ok: true, args: exceptions.map((entry) => `--ignore=${entry.advisory}`) };
+}
+
+/**
+ * Read `tools/ci/dependency-audit-exceptions.json` from the worktree under
+ * test (the list is part of the commit being validated, not of the trusted
+ * checkout running the leg) and build its `--ignore` arguments for today.
+ *
+ * An ABSENT file is an empty list — a commit from before the file existed
+ * ignores nothing. A PRESENT but malformed file still throws (see
+ * {@link parseAuditExceptions}).
+ */
+export function loadAuditIgnoreArgs(
+  worktreeRoot: string,
+  today: string = new Date().toISOString().slice(0, 10)
+): { ok: true; args: string[] } | { ok: false; expired: AuditException[] } {
+  const path = join(worktreeRoot, "tools", "ci", "dependency-audit-exceptions.json");
+  if (!existsSync(path)) return { ok: true, args: [] };
+  return auditIgnoreArgs(parseAuditExceptions(readFileSync(path, "utf8")), today);
 }

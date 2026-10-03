@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](AGENTS.md)
 
-<!-- i18n-source-hash: sha256:841c9a185d7c4e93e77c1be422cb1ca57473d4c5e91e342bd728f36b59edc18d -->
+<!-- i18n-source-hash: sha256:f9badddd4f4d3637e336558c7d258a8b421554845f2a3c7c9535cc0d2c1ba27a -->
 
 # AGENTS.md — kontrak kerja awcms-one
 
@@ -11,6 +11,21 @@ Berlaku untuk manusia maupun agen AI yang bekerja di repo ini. Baca ini sebelum 
 **awcms-one** me-re-platform toko komersial borneojek-mart — PHP/Laravel/MySQL/React-Inertia — ke stack AWCMS: Bun, Astro, dan PostgreSQL di bawah row-level security. Ini adalah **re-platform, bukan refactor**: tidak ada kode Laravel yang dibawa. Skema sumber dibaca dari basis data MySQL `commerce_bj_mart` yang hidup dan diekspresikan ulang sebagai tabel modul AWCMS di bawah RLS PostgreSQL. Kerangka lengkap: [issue #1](https://github.com/ahliweb/awcms-one/issues/1).
 
 Tata letak workspace, mekanisme gerbang, dan konvensi changeset dokumen ini diadaptasi dari [`ahliweb/media-lenterakalteng`](https://github.com/ahliweb/media-lenterakalteng). Di mana sebuah aturan di bawah diwarisi dari pelajaran mahal repo itu sendiri alih-alih ditemukan sendiri oleh repo ini, itu dinyatakan.
+
+## Aturan kepemilikan template-only — aplikasi turunan memiliki backend sendiri
+
+**Repo ini tidak boleh menjadi backend runtime bersama untuk produk yang dibuat darinya.** `awcms-one` adalah template/reference implementation. Setelah repo produk dibuat, repo produk tersebut memiliki runtime backend, basis data, migrasi, secret, domain, konfigurasi deployment, data produk, modul spesifik produk, dan lifecycle operasionalnya sendiri. Produk boleh menggunakan ulang kode dan kontrak dari template, tetapi trafik produksinya tidak boleh diarahkan ke `apps/cms` hidup milik repo ini hanya karena capability yang dibutuhkan sudah tersedia. Lihat [ADR-0024](docs/adr/0024-awcms-one-is-template-only-derived-apps-own-their-backend.id.md).
+
+Terapkan aturan berikut pada **setiap implementasi dan setiap issue**:
+
+- **Issue mengikuti kepemilikan kode.** Pekerjaan backend spesifik produk berada di repo produk/consumer yang benar-benar menyimpan kode tersebut. Requirement produk, UX, UAT, legal/compliance, dan deployment juga tetap di repo produk.
+- **Hanya capability template yang reusable yang berada di sini.** Capability yang muncul karena kebutuhan consumer hanya boleh ditambahkan ke `awcms-one` setelah nama consumer, konten spesifik produk, asumsi workflow sekali-pakai, dan konfigurasi deployment spesifik dihilangkan serta reuse lintas aplikasi dapat dibuktikan.
+- **Foundation AWCMS generik tetap mengikuti ownership upstream.** Jika capability merupakan milik `ahliweb/awcms`, implementasikan upstream lalu bawa ke sini melalui subtree sync normal; jangan membuat local divergence baru karena kebutuhan satu consumer.
+- **Tidak ada tenancy runtime consumer di sini.** Jangan membuat tenant produksi, verifikasi domain, API token, konten privat, secret, data pelanggan, atau scheduled job spesifik produk turunan pada reference deployment ini.
+- **Tidak ada dependency runtime lintas-repo ke repo ini.** Repo turunan boleh mengadopsi peningkatan template yang dirilis kemudian secara sengaja, dengan migration/regression plan miliknya sendiri, tetapi availability produk tidak boleh bergantung pada `awcms-one` sedang online.
+- **Promosi capability harus eksplisit.** Saat consumer menemukan foundation yang belum ada, klasifikasikan terlebih dahulu sebagai consumer-specific atau reusable. Implementasi consumer-specific tetap di repo consumer. Pekerjaan reusable membutuhkan ADR template/upstream, tes, rencana migrasi/kompatibilitas, dan penamaan netral sebelum diterima di sini.
+
+Migrasi IRMbyDUS pada issue #297 adalah penerapan pertama aturan ini: improvement generik yang sudah merged tetap menjadi capability template, sedangkan kode practice/program/journal/progress/mentoring spesifik IRM dimiliki oleh `ahliweb/web-irmbydus.com`.
 
 ## Yang ada hari ini, dan yang tidak
 
@@ -65,7 +80,7 @@ Sumber `apps/cms` sendiri adalah pohon milik upstream, dibawa ke sini untuk alas
 - `apps/cms/src/styles/admin-screens.css` — 11 baris yang ditambahkan layar inbox issue #111.
 - `apps/cms/scripts/client-asset-budget.ts` — `APP_BUDGET_BYTES` dinaikkan oleh setiap layar admin commerce sejak issue #23 (upstream berada di 239.956 setelah layar OMES Control Center-nya; embed ini di 293.500 setelah layar ledger pembayaran issue #285 (terukur 293.287 B), naik dari 288.500 setelah sinkronisasi #260 — terukur 288.391 B pada build hasil merge, di atas 284.456 yang diprediksi penjumlahan delta biasa karena bundel CSS `AdminLayout` dan katalog terkompilasi yang dipakai bersama tidak bersifat aditif antar-silsilah; 270.500 setelah epic commerce admin v2 (#249) ditutup — 265.000 setelah issue #242/#244, 259.000 setelah issue #171, 254.500 saat sinkronisasi #170 = 246.500 miliknya sendiri ditambah delta chrome +8.000 milik upstream), setiap kenaikan tercatat di docblock konstanta itu sendiri. Selusin layar pengadopsi milik #245 memakai ulang chrome yang sudah ada dan tak menaikkannya; #246 dan #247 masing-masing menaikkannya secara independen dari basis 264.573 B yang sama (266.500 dan 269.000) dan digabung jadi satu angka 270.500 yang menjumlahkan kedua delta; #253 (menerjemahkan atribut `data-label` ke string yang sudah ada di setiap katalog) tak menambah skrip klien apa pun dan tak menaikkan apa pun. Selesaikan konflik di sini dengan mempertahankan kedua silsilah docblock dan menambahkan delta upstream ke angka repo ini.
 
-- `apps/cms/scripts/dependency-audit-exceptions.ts` dan tesnya `apps/cms/tests/dependency-audit-check.test.ts` — satu pengecualian bertanggal (3 Oktober 2026, ditinjau ulang paling lambat 3 November 2026) untuk `http-cache-semantics` `GHSA-ch52-4w7c-c8xp`, yang tidak diperbaiki oleh rilis terbitan mana pun; satu-satunya konsumennya adalah cache gambar-remote waktu-build milik `astro`. Leg root `local-ci/check-toko` membawa entri yang sama di `tools/ci/dependency-audit-exceptions.json`. Hapus keduanya pada hari rilis perbaikan terbit, atau ambil resolusi upstream sendiri pada sinkronisasi berikutnya.
+- `apps/cms/scripts/dependency-audit-exceptions.ts` dan tesnya `apps/cms/tests/dependency-audit-check.test.ts` — satu pengecualian bertanggal (3 Oktober 2026, ditinjau ulang paling lambat 3 November 2026) untuk `http-cache-semantics` `GHSA-ch52-4w7c-c8xp`, yang tidak diperbaiki oleh rilis terbitan mana pun; satu-satunya konsumennya adalah cache gambar-remote waktu-build milik `astro`. Leg root `local-ci/check-toko` dan `local-ci/security` (keduanya menjalankan `bun audit`) membawa entri yang sama di `tools/ci/dependency-audit-exceptions.json`. Hapus keduanya pada hari rilis perbaikan terbit, atau ambil resolusi upstream sendiri pada sinkronisasi berikutnya.
 
 Versi satu-butir daftar ini ditulis setelah increment 2 dan sudah basi sejak increment 5; sinkronisasi subtree #170 (21 September 2026) menemukan tiga butir di atas lewat konflik dan lewat `git diff awcms/main:<path> HEAD:apps/cms/<path>`, perintah yang harus dijalankan sebelum mengklaim daftar ini lengkap. Semua hal lain yang pernah ditambahkan modul `commerce` adalah pekerjaan modul aditif biasa di dalam disiplin admission `apps/cms` sendiri.
 

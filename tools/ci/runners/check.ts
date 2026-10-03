@@ -9,9 +9,8 @@
  * entries in `tools/ci/dependency-audit-exceptions.json` — see
  * `lib/audit-exceptions.ts`).
  */
-import { readFileSync } from "node:fs";
 import { join } from "node:path";
-import { auditIgnoreArgs, parseAuditExceptions } from "../lib/audit-exceptions.ts";
+import { loadAuditIgnoreArgs } from "../lib/audit-exceptions.ts";
 import { run } from "../lib/exec.ts";
 import type { LegContext, LegOutcome } from "../lib/types.ts";
 
@@ -42,12 +41,7 @@ export async function runCheckLeg(
   ];
 
   if (profile === "toko") {
-    // Read from the worktree under test, not this checkout — the exceptions
-    // list is part of the commit being validated.
-    const exceptions = parseAuditExceptions(
-      readFileSync(join(worktreeRoot, "tools", "ci", "dependency-audit-exceptions.json"), "utf8")
-    );
-    const ignore = auditIgnoreArgs(exceptions, new Date().toISOString().slice(0, 10));
+    const ignore = loadAuditIgnoreArgs(worktreeRoot);
     if (!ignore.ok) {
       return {
         context,

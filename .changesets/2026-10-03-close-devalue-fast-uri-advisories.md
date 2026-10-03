@@ -18,6 +18,7 @@ inherited the failure.
   Its only consumer is `astro`'s build-time remote-image cache, never a shared
   request-time cache, so it is accepted as a dated, reasoned exception (review
   by 2026-11-03) in `apps/cms`'s `deps:audit:check` list and in a new root
-  `tools/ci/dependency-audit-exceptions.json`, which `local-ci/check-toko` now
-  passes to `bun audit --ignore` and which fails the leg once an entry's
-  review date has passed.
+  `tools/ci/dependency-audit-exceptions.json`, which `local-ci/check-toko` and
+  `local-ci/security` (the two legs that run `bun audit`) now pass to
+  `bun audit --ignore`, and which fails either leg once an entry's review date
+  has passed.
