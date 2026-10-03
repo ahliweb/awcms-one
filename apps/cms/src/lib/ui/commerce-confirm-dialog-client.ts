@@ -53,21 +53,18 @@
  * Cancel button here) does not match this contract for a NON-danger action —
  * see `resolveFocusTarget` below.
  *
- * ## The `window.confirm` fallback (the one permitted reference)
+ * ## The no-dialog fallback fails CLOSED (AWCMS v10.4.0 sync, awcms-one#300)
  *
  * `HTMLDialogElement`/`showModal()` is supported by every browser this admin
  * targets, and the dialog markup ships on every commerce screen that calls
- * these functions (`CommerceConfirmDialog.astro`, rendered once per page).
- * The fallback below exists for the one case those two facts do not cover: a
- * caller that renders NO `CommerceConfirmDialog` on the page (a bug — a
- * missing render, not a missing browser feature, in practice) or an
- * environment where `HTMLDialogElement` genuinely is not `showModal`-capable.
- * Silently resolving `false`/`null` in that case would make a destructive
- * button do nothing with no feedback at all, which is worse than the
- * synchronous, unstyled, but FUNCTIONING native confirm this issue is
- * otherwise removing every other reference to. This is therefore the only
- * `window.confirm` call left anywhere in this codebase's commerce surface —
- * `commerce-confirm-dialog.test.ts` asserts no OTHER file has one.
+ * these functions (`CommerceConfirmDialog.astro`, rendered once per page). The
+ * remaining case, a caller that renders NO `CommerceConfirmDialog` (a bug) or
+ * an environment that is not `showModal`-capable, used to fall back to the
+ * native browser confirm. Upstream's `admin-no-raw-browser-dialogs.test.ts`
+ * (ADR-0125) now forbids a raw browser confirm anywhere in admin client code,
+ * with no exemption, so this module follows the posture of upstream's own
+ * `confirm-dialog-client.ts`: refuse silently (`confirmed: false`), the safe
+ * failure mode for a gate whose job is to stop a destructive action.
  */
 
 /** The id `CommerceConfirmDialog.astro` defaults to when a caller omits `dialogId`. */
@@ -237,12 +234,8 @@ function openConfirmDialog(
   const handles = isDialogSupported() ? getDialogHandles(dialogId) : null;
 
   if (!handles) {
-    // The only permitted remaining `window.confirm` reference in this
-    // codebase's commerce surface — see this file's header comment for why.
-    return Promise.resolve({
-      confirmed: window.confirm(opts.message),
-      note: ""
-    });
+    // Fail closed - see this file's header comment.
+    return Promise.resolve({ confirmed: false, note: "" });
   }
 
   const {
