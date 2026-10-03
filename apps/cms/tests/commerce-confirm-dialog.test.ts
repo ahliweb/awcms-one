@@ -135,8 +135,8 @@ describe("resolveFocusTarget", () => {
 describe("isDialogSupported", () => {
   test("reports false rather than throwing when there is no DOM (this test runner)", () => {
     // `bun test`'s default environment has no `HTMLDialogElement` global. This
-    // is the same condition `confirmCommerceAction` falls back to
-    // `window.confirm` under in a real, unsupporting browser — proving the
+    // is the same condition under which `confirmCommerceAction` fails closed
+    // (resolves unconfirmed) in a real, unsupporting browser — proving the
     // check degrades instead of throwing is the point of this test.
     expect(isDialogSupported()).toBe(false);
   });
@@ -467,29 +467,8 @@ describe("CommerceConfirmDialog.astro", () => {
 describe("commerce-confirm-dialog-client.ts", () => {
   const clientPath = "src/lib/ui/commerce-confirm-dialog-client.ts";
 
-  test("is the only file under src/lib/ui referencing window.confirm", async () => {
-    const { readdir } = await import("node:fs/promises");
-    const entries = await readdir("src/lib/ui", { withFileTypes: true });
-    const files = entries
-      .filter((entry) => entry.isFile() && entry.name.endsWith(".ts"))
-      .map((entry) => `src/lib/ui/${entry.name}`);
-
-    const offenders: string[] = [];
-    for (const file of files) {
-      const code = await readCode(file);
-      const hasReference = code.includes("window.confirm(");
-      if (file === clientPath) {
-        expect(hasReference).toBe(true);
-      } else if (hasReference) {
-        offenders.push(file);
-      }
-    }
-
-    expect(offenders).toEqual([]);
-  });
-
-  test("calls window.confirm exactly once — the documented fallback, not a stray second use", async () => {
+  test("never calls window.confirm - the no-dialog fallback fails closed (awcms-one#300)", async () => {
     const code = await readCode(clientPath);
-    expect(occurrences(code, "window.confirm(")).toBe(1);
+    expect(occurrences(code, "window.confirm(")).toBe(0);
   });
 });

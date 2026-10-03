@@ -742,7 +742,7 @@ const tenderLabel = (method: string): string =>
                     {tenderLabel(order.paymentMethod)}
                   </td>
                   <td data-label={t("Status")}>
-                    <span class="status-badge" data-status={order.status}>
+                    <span class="admin-status-pill" data-status={order.status}>
                       {commerceLabel(labels.orderStatus, order.status)}
                     </span>
                   </td>

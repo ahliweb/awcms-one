@@ -82,7 +82,7 @@
  * const { t } = getTranslatorFor(Astro.locals.locale);
  * const labels = createCommerceLabels(t);
  * // …
- * <span class="status-badge" data-tone={orderStatusTone[order.status] ?? "neutral"}>
+ * <span class="admin-status-pill" data-tone={orderStatusTone[order.status] ?? "neutral"}>
  *   {commerceLabel(labels.orderStatus, order.status)}
  * </span>
  * ```
@@ -227,7 +227,7 @@ export type PaymentGatewaySessionProvider = "midtrans" | "log";
  */
 export type PaymentEventOutcome = "applied" | "ignored" | "replay";
 
-/** CSS badge/pill tone name — the same small vocabulary every commerce admin screen's own `STATUS_TONE`/`FRESHNESS_VARIANT` map already uses (`data-tone`/`data-variant` on `.status-badge`/`.admin-status-pill`). */
+/** CSS badge/pill tone name — the same small vocabulary every commerce admin screen's own `STATUS_TONE`/`FRESHNESS_VARIANT` map already uses (`data-tone` on `.admin-status-pill`). */
 export type CommerceTone =
   "success" | "warning" | "info" | "primary" | "danger" | "neutral";
 

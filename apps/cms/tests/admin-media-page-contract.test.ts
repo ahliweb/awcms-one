@@ -190,7 +190,7 @@ describe("/admin/media permission gates", () => {
 
   test("and is declared by the module descriptor, so a migration seeds it", async () => {
     const declared = declaredTriples();
-    // Issue #268 added the tenth `media.*` key, `download` (sql/169) — not
+    // Issue #268 added the tenth `media.*` key, `download` (sql/881) — not
     // yet driven by this page (`admin-screen-coverage-ledger.ts`'s
     // `NOT_YET_SCREENED`, a backlog item, not a DELIBERATE_ABSENCES decision).
     expect(declared.size).toBe(12);
@@ -280,9 +280,18 @@ describe("/admin/media behaviour", () => {
     expect(page).toContain('"Idempotency-Key": crypto.randomUUID()');
     expect(page).not.toContain("idempotent: false");
 
-    // Four call sites plus the helper declaration — delete, restore, purge,
-    // and Issue #615's rights PATCH.
-    expect([...page.matchAll(/(?<!function )idempotency\(\)/g)].length).toBe(4);
+    // Delete (Issue #854 part 3) now opts in via the presence-only
+    // `data-reason-idempotent` attribute on its `ReasonPanel` opener, so it
+    // no longer calls the inline `idempotency()` helper — three call sites
+    // remain: restore, purge, and Issue #615's rights PATCH.
+    expect([...page.matchAll(/(?<!function )idempotency\(\)/g)].length).toBe(3);
+
+    const deleteButton = page.slice(
+      page.indexOf("data-reason-action={`/api/v1/media/objects/${item.id}`}")
+    );
+    expect(deleteButton.slice(0, deleteButton.indexOf("</button>"))).toContain(
+      "data-reason-idempotent"
+    );
   });
 
   test("no <img> renders registry bytes", async () => {
