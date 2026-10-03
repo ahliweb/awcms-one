@@ -277,52 +277,52 @@ const hasFilter = branchFilter !== undefined;
             ) : (
               institutions.map((entry) => (
                 <tr data-institution-row={entry.id}>
-                  <td data-label="Name">
+                  <td data-label={t("Name")}>
                     <span set:text={entry.name} />
                     <span class="cell-muted">
                       {" "}
                       · <span class="cell-code">{entry.slug}</span>
                     </span>
                   </td>
-                  <td data-label="Branch">
+                  <td data-label={t("Branch")}>
                     <span
-                      class="status-badge"
-                      data-variant={
+                      class="admin-status-pill"
+                      data-tone={
                         entry.branch === "legislative" ? "info" : "neutral"
                       }
                     >
-                      <span class="status-dot" aria-hidden="true" />
+                      <span class="admin-status-pill-dot" aria-hidden="true" />
                       {entry.branch}
                     </span>
                   </td>
-                  <td data-label="Region code">
+                  <td data-label={t("Region code")}>
                     {entry.regionCode ? (
                       <span class="cell-code" set:text={entry.regionCode} />
                     ) : (
                       <span class="cell-muted">—</span>
                     )}
                   </td>
-                  <td data-label="SEO title">
+                  <td data-label={t("SEO title")}>
                     {entry.seoTitle ? (
                       <span set:text={entry.seoTitle} />
                     ) : (
                       <span class="cell-muted">—</span>
                     )}
                   </td>
-                  <td data-label="Description">
+                  <td data-label={t("Description")}>
                     {entry.description ? (
                       <span set:text={entry.description} />
                     ) : (
                       <span class="cell-muted">—</span>
                     )}
                   </td>
-                  <td data-label="Updated">
+                  <td data-label={t("Updated")}>
                     <span class="cell-muted">
                       {formatTimestamp(entry.updatedAt)}
                     </span>
                   </td>
                   {showsRowActions && (
-                    <td data-label="Actions">
+                    <td data-label={t("Actions")}>
                       <div class="row-actions">
                         {showDeleted ? (
                           <>
@@ -571,6 +571,7 @@ const hasFilter = branchFilter !== undefined;
     onSubmit,
     sendJson
   } from "../../lib/ui/admin-form-client";
+  import { confirmAction } from "../../lib/ui/confirm-dialog-client";
 
   const actionError = messageBox("institution-action-error");
   const editError = messageBox("institution-edit-error");
@@ -587,10 +588,10 @@ const hasFilter = branchFilter !== undefined;
     // soft and the article links are kept, so promising less would push
     // operators into rebuilding a registry they never actually lost.
     if (
-      !window.confirm(
+      !(await confirmAction(
         `Delete "${name}"? Its articles keep their link to it, and you can ` +
           `restore it from the Deleted view.`
-      )
+      ))
     ) {
       return;
     }
@@ -640,11 +641,11 @@ const hasFilter = branchFilter !== undefined;
     // says only "permanently delete" leaves an operator to discover afterwards
     // that the archive's classification went with it.
     if (
-      !window.confirm(
+      !(await confirmAction(
         `Permanently purge "${name}"? This cannot be undone: every article ` +
           `link to it is deleted too, and those articles lose this ` +
           `classification. Restore it instead if you are unsure.`
-      )
+      ))
     ) {
       return;
     }

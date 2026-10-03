@@ -69,6 +69,25 @@
  * UX-only; `authorizeInTransaction` in the routes is the authority. Pinned by
  * `tests/admin-media-page-contract.test.ts`, which also asserts that the three
  * absences above stay absences rather than quietly becoming gaps.
+ *
+ * ## Issue #864 — `.admin-media-grid` was NOT adopted on this table
+ *
+ * The parity matrix (`docs/awcms/admin-ui-parity-matrix.md` §6.6) names this
+ * screen the "flagship media adoption" for `.admin-media-grid`, but that
+ * primitive is a grid of square `<img>` tiles, and this table renders no
+ * `<img>` at all — deliberately, per "No preview `<img>`" above. Retrofitting
+ * one to force the grid would reverse that decision, not restyle it, which
+ * the matrix's own rule ("never force a primitive onto a screen that does not
+ * fit it") rules out. The counters below use `.admin-stat-card` and the two
+ * status columns use `.admin-status-pill`; both are real, direct class swaps.
+ * The one real `.admin-media-grid`-shaped markup reachable from THIS module
+ * is the shared picker (`src/lib/ui/media-picker-client.ts`,
+ * `.media-picker-panel`/`.media-option` in `src/styles/admin-screens.css`),
+ * rendered on `blog.astro`/`blog-ads.astro`/`blog-homepage.astro`/
+ * `site-profile.astro` — all four outside this issue's file ownership and
+ * mid-flight under other Wave 3/5 work at the time of this change. Migrating
+ * it belongs in a follow-up scoped to that script and its four consumers
+ * together, not smuggled into this screen's own PR.
  */
 import AdminLayout from "../../layouts/AdminLayout.astro";
 import "../../styles/admin-screens.css";
@@ -76,6 +95,7 @@ import { loadAdminScreen } from "../../lib/auth/admin-screen";
 import { logAdminPageError } from "../../lib/logging/error-log";
 import { decodeKeysetCursor } from "../../modules/_shared/keyset-pagination";
 import { MAX_DELETE_REASON_LENGTH } from "../../modules/media-library/domain/media-lifecycle-validation";
+import ReasonPanel from "../../components/ReasonPanel.astro";
 import { getTranslatorFor } from "../../lib/i18n";
 import { resolveNewsMediaR2Config } from "../../modules/media-library/domain/media-r2-config";
 import {
@@ -296,6 +316,31 @@ const STATUS_VARIANT: Record<string, string> = {
   failed: "danger"
 };
 
+/** `NewsMediaObjectStatus` — one screen only. */
+const MEDIA_STATUS_LABEL: Record<string, string> = {
+  pending_upload: t("Pending upload"),
+  uploaded: t("Uploaded"),
+  verified: t("Verified"),
+  attached: t("Attached"),
+  orphaned: t("Orphaned"),
+  deleted: t("Deleted"),
+  failed: t("Failed")
+};
+function mediaStatusLabel(value: string): string {
+  return MEDIA_STATUS_LABEL[value] ?? value;
+}
+
+/** `MediaRightsVerificationStatus` — same "no raw enum in markup" rule as
+ * `MEDIA_STATUS_LABEL` above, for the rights pill in the same table. */
+const RIGHTS_STATUS_LABEL: Record<string, string> = {
+  unverified: t("Unverified"),
+  verified: t("Verified"),
+  rejected: t("Rejected")
+};
+function rightsStatusLabel(value: string): string {
+  return RIGHTS_STATUS_LABEL[value] ?? value;
+}
+
 function formatBytes(bytes: number | null): string {
   if (bytes === null) return "—";
   if (bytes < 1024) return `${bytes} B`;
@@ -404,26 +449,30 @@ const columnCount = canActOnAny ? 9 : 8;
 
   {canRead && !loadError && (
     <section class="admin-section fade-in-up" aria-label="Media summary">
-      <div class="stat-grid stagger-children">
-        <div class="stat-card">
-          <span class="stat-label">{t("On this page")}</span>
-          <span class="stat-value">{objects.length}</span>
-          <span class="stat-hint">
+      <div class="admin-stat-card-grid stagger-children">
+        <div class="admin-stat-card">
+          <span class="admin-stat-card-label">{t("On this page")}</span>
+          <span class="admin-stat-card-value">{objects.length}</span>
+          <span class="admin-stat-card-caption">
             {t("{count} per page", { count: MEDIA_OBJECT_LIST_LIMIT })}
           </span>
         </div>
-        <div class="stat-card">
-          <span class="stat-label">{t("Not publicly referenceable")}</span>
-          <span class="stat-value">{unsafeCount}</span>
+        <div class="admin-stat-card">
+          <span class="admin-stat-card-label">
+            {t("Not publicly referenceable")}
+          </span>
+          <span class="admin-stat-card-value">{unsafeCount}</span>
           {unsafeCount > 0 && (
-            <span class="stat-hint">
+            <span class="admin-stat-card-caption">
               {t("Only verified and attached objects resolve")}
             </span>
           )}
         </div>
-        <div class="stat-card">
-          <span class="stat-label">{t("Soft-deleted (this page)")}</span>
-          <span class="stat-value">{deletedCount}</span>
+        <div class="admin-stat-card">
+          <span class="admin-stat-card-label">
+            {t("Soft-deleted (this page)")}
+          </span>
+          <span class="admin-stat-card-value">{deletedCount}</span>
         </div>
       </div>
     </section>
@@ -528,7 +577,7 @@ const columnCount = canActOnAny ? 9 : 8;
             ) : (
               objects.map((item) => (
                 <tr>
-                  <td data-label="Object">
+                  <td data-label={t("Object")}>
                     {/* `set:text`, never parsed: a filename is caller-supplied
                           and reaches this table verbatim. No image tag either — see
                           this file's header. */}
@@ -538,23 +587,24 @@ const columnCount = canActOnAny ? 9 : 8;
                     />
                     <span class="cell-muted" set:text={item.objectKey} />
                   </td>
-                  <td data-label="Type" set:text={item.mimeType} />
-                  <td data-label="Size">{formatBytes(item.sizeBytes)}</td>
-                  <td data-label="Dimensions">{formatDimensions(item)}</td>
-                  <td data-label="Status">
+                  <td data-label={t("Type")} set:text={item.mimeType} />
+                  <td data-label={t("Size")}>{formatBytes(item.sizeBytes)}</td>
+                  <td data-label={t("Dimensions")}>{formatDimensions(item)}</td>
+                  <td data-label={t("Status")} data-status={item.status}>
                     <span
-                      class={`status-badge status-badge--${STATUS_VARIANT[item.status] ?? "info"}`}
+                      class="admin-status-pill"
+                      data-tone={STATUS_VARIANT[item.status] ?? "info"}
                     >
-                      <span class="status-dot" aria-hidden="true" />
-                      {item.status}
+                      <span class="admin-status-pill-dot" aria-hidden="true" />
+                      {mediaStatusLabel(item.status)}
                     </span>
                   </td>
-                  <td data-label="Created">
+                  <td data-label={t("Created")}>
                     <span class="cell-muted">
                       {formatTimestamp(item.createdAt)}
                     </span>
                   </td>
-                  <td data-label="Deleted">
+                  <td data-label={t("Deleted")}>
                     {item.deletedAt === null ? (
                       <span class="cell-muted">—</span>
                     ) : (
@@ -569,7 +619,7 @@ const columnCount = canActOnAny ? 9 : 8;
                       </>
                     )}
                   </td>
-                  <td data-label="Rights">
+                  <td data-label={t("Rights")}>
                     {/* `set:text` for both — a credit line is caller-supplied
                           and reaches this table verbatim. */}
                     {item.creditLine ? (
@@ -578,14 +628,18 @@ const columnCount = canActOnAny ? 9 : 8;
                       <span class="cell-muted">{t("No credit recorded")}</span>
                     )}
                     <span
-                      class={`status-badge status-badge--${RIGHTS_VARIANT[item.rightsVerificationStatus] ?? "info"}`}
+                      class="admin-status-pill"
+                      data-tone={
+                        RIGHTS_VARIANT[item.rightsVerificationStatus] ?? "info"
+                      }
                     >
-                      <span class="status-dot" aria-hidden="true" />
-                      {t("Rights")}: {item.rightsVerificationStatus}
+                      <span class="admin-status-pill-dot" aria-hidden="true" />
+                      {t("Rights")}:{" "}
+                      {rightsStatusLabel(item.rightsVerificationStatus)}
                     </span>
                   </td>
                   {canActOnAny && (
-                    <td data-label="Actions">
+                    <td data-label={t("Actions")}>
                       <div class="row-actions">
                         {/* Issue #615 — a link, not a button: the editor is
                               server-rendered from `?rights=<id>`, so the URL of
@@ -605,10 +659,20 @@ const columnCount = canActOnAny ? 9 : 8;
                               <button
                                 type="button"
                                 class="btn-inline media-delete-btn"
-                                data-media-id={item.id}
-                                data-media-label={
-                                  item.originalFilename ?? item.objectKey
+                                data-reason-title={t("Delete {label}?", {
+                                  label: item.originalFilename ?? item.objectKey
+                                })}
+                                data-reason-description={t(
+                                  "Every reference to it stops resolving immediately — a published page pointing at it loses its image. Restore undoes this."
+                                )}
+                                data-reason-action={`/api/v1/media/objects/${item.id}`}
+                                data-reason-method="DELETE"
+                                data-reason-label={t("Delete")}
+                                data-reason-max-length={
+                                  MAX_DELETE_REASON_LENGTH
                                 }
+                                data-reason-idempotent
+                                data-reason-danger
                               >
                                 {t("Delete")}
                               </button>
@@ -809,6 +873,16 @@ const columnCount = canActOnAny ? 9 : 8;
       </form>
     </section>
   )}
+
+  <ReasonPanel
+    cancelLabel={t("Cancel")}
+    reasonLabel={t("Reason")}
+    reasonHint={t("Recorded on the media object's audit row.")}
+    defaultSubmitLabel={t("Confirm")}
+    defaultFailureMessage={t(
+      "Could not delete the media object. Please try again."
+    )}
+  />
 </AdminLayout>
 
 <script>
@@ -823,7 +897,8 @@ const columnCount = canActOnAny ? 9 : 8;
     onAction,
     sendJson
   } from "../../lib/ui/admin-form-client";
-  import { MAX_DELETE_REASON_LENGTH } from "../../modules/media-library/domain/media-lifecycle-validation";
+  import { confirmAction } from "../../lib/ui/confirm-dialog-client";
+  import { initReasonPanel } from "../../lib/ui/reason-panel-client";
   import {
     describeUploadFailure,
     formatProgress,
@@ -914,46 +989,11 @@ const columnCount = canActOnAny ? 9 : 8;
     return { "Idempotency-Key": crypto.randomUUID() };
   }
 
-  onAction(".media-delete-btn", async (button) => {
-    const id = button.dataset.mediaId;
-    if (!id) return;
-    const label = button.dataset.mediaLabel ?? "this object";
-
-    // A reason is required by the endpoint and recorded on the audit row,
-    // which outlives the object. Prompt rather than send a placeholder:
-    // "deleted via admin" tells the next reader nothing.
-    const reason = window.prompt(
-      `Why are you deleting ${label}? Every reference to it stops resolving immediately — a published page pointing at it loses its image. Restore undoes this.`
-    );
-    if (reason === null) return;
-
-    if (reason.trim() === "") {
-      actionError.show("A reason is required to delete a media object.");
-      return;
-    }
-
-    if (reason.trim().length > MAX_DELETE_REASON_LENGTH) {
-      actionError.show(
-        `The reason must be at most ${MAX_DELETE_REASON_LENGTH} characters.`
-      );
-      return;
-    }
-
-    await mutateAndReload(
-      button,
-      actionError,
-      () =>
-        sendJson(
-          "DELETE",
-          `/api/v1/media/objects/${id}`,
-          { reason: reason.trim() },
-          idempotency()
-        ),
-      // Generic copy only — never surface internal detail.
-      "Could not delete the media object. Please try again.",
-      "Deleting…"
-    );
-  });
+  // Delete is entirely handled by `ReasonPanel` above (Issue #854 part 3) —
+  // its `data-reason-*` attributes on each button carry the target URL, the
+  // max length, and the `Idempotency-Key` opt-in, so no page-specific
+  // handler remains here.
+  initReasonPanel();
 
   onAction(".media-restore-btn", async (button) => {
     const id = button.dataset.mediaId;
@@ -983,9 +1023,9 @@ const columnCount = canActOnAny ? 9 : 8;
 
     // The one action on this screen that cannot be undone.
     if (
-      !window.confirm(
+      !(await confirmAction(
         `Purge ${label}? This removes its registry row permanently and cannot be undone. The stored file is removed later by the reconciliation job.`
-      )
+      ))
     ) {
       return;
     }

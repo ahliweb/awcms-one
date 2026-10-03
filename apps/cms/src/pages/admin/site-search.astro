@@ -140,12 +140,30 @@ function formatTimestamp(value: string | null): string {
   return parsed.toISOString().replace("T", " ").slice(0, 16);
 }
 
-/** Run status -> the shared `.status-badge` variant vocabulary. */
+/** Run status -> the shared `.admin-status-pill` variant vocabulary. */
 function runStatusVariant(runStatus: string): string {
   if (runStatus === "succeeded" || runStatus === "completed") return "success";
   if (runStatus === "failed") return "danger";
   if (runStatus === "running") return "info";
   return "neutral";
+}
+
+/** `awcms_search_index_runs.run_type`/`.status` (sql/064) — one screen only. */
+const RUN_TYPE_LABEL: Record<string, string> = {
+  rebuild: t("Rebuild"),
+  reconcile: t("Reconcile"),
+  reindex: t("Reindex")
+};
+function runTypeLabel(value: string): string {
+  return RUN_TYPE_LABEL[value] ?? value;
+}
+const RUN_STATUS_LABEL: Record<string, string> = {
+  running: t("Running"),
+  succeeded: t("Succeeded"),
+  failed: t("Failed")
+};
+function runStatusLabel(value: string): string {
+  return RUN_STATUS_LABEL[value] ?? value;
 }
 
 const resourceTypesValue =
@@ -187,32 +205,34 @@ const showIndexActions = canReconcile || canRebuild;
   {canReadIndex && status && (
     <section class="admin-section fade-in-up" id="site-search-status">
       <h2 class="admin-section-title">{t("Index status")}</h2>
-      <div class="stat-grid stagger-children">
-        <div class="stat-card">
-          <span class="stat-label">{t("Documents indexed")}</span>
-          <span class="stat-value">{status.documentCount}</span>
+      <div class="admin-stat-card-grid stagger-children">
+        <div class="admin-stat-card">
+          <span class="admin-stat-card-label">{t("Documents indexed")}</span>
+          <span class="admin-stat-card-value">{status.documentCount}</span>
         </div>
-        <div class="stat-card">
-          <span class="stat-label">{t("Last indexed")}</span>
-          <span class="stat-value stat-value--mono">
+        <div class="admin-stat-card">
+          <span class="admin-stat-card-label">{t("Last indexed")}</span>
+          <span class="admin-stat-card-value admin-stat-card-value--mono">
             {formatTimestamp(status.latestIndexedAt)}
           </span>
-          <span class="stat-hint">{t("UTC")}</span>
+          <span class="admin-stat-card-caption">{t("UTC")}</span>
         </div>
-        <div class="stat-card">
-          <span class="stat-label">{t("Open failures")}</span>
-          <span class="stat-value">{status.openFailureCount}</span>
+        <div class="admin-stat-card">
+          <span class="admin-stat-card-label">{t("Open failures")}</span>
+          <span class="admin-stat-card-value">{status.openFailureCount}</span>
           {status.openFailureCount > 0 && (
-            <span class="stat-hint">{t("See diagnostics below")}</span>
+            <span class="admin-stat-card-caption">
+              {t("See diagnostics below")}
+            </span>
           )}
         </div>
-        <div class="stat-card">
-          <span class="stat-label">{t("Last run")}</span>
-          <span class="stat-value stat-value--mono">
+        <div class="admin-stat-card">
+          <span class="admin-stat-card-label">{t("Last run")}</span>
+          <span class="admin-stat-card-value admin-stat-card-value--mono">
             {status.lastRun ? status.lastRun.runType : "—"}
           </span>
           {status.lastRun && (
-            <span class="stat-hint">
+            <span class="admin-stat-card-caption">
               {formatTimestamp(status.lastRun.startedAt)}
             </span>
           )}
@@ -232,10 +252,10 @@ const showIndexActions = canReconcile || canRebuild;
             <tbody>
               {status.byResourceType.map((row) => (
                 <tr>
-                  <td data-label="Resource type">
+                  <td data-label={t("Resource type")}>
                     <span class="cell-code">{row.resourceType}</span>
                   </td>
-                  <td data-label="Documents">{row.count}</td>
+                  <td data-label={t("Documents")}>{row.count}</td>
                 </tr>
               ))}
             </tbody>
@@ -433,25 +453,27 @@ const showIndexActions = canReconcile || canRebuild;
             )}
             {recentRuns.map((run) => (
               <tr>
-                <td data-label="Started">
+                <td data-label={t("Started")}>
                   <span class="cell-code">
                     {formatTimestamp(run.startedAt)}
                   </span>
                 </td>
-                <td data-label="Type">{run.runType}</td>
-                <td data-label="Status">
+                <td data-label={t("Type")} data-run-type={run.runType}>
+                  {runTypeLabel(run.runType)}
+                </td>
+                <td data-label={t("Status")} data-status={run.status}>
                   <span
-                    class="status-badge"
-                    data-variant={runStatusVariant(run.status)}
+                    class="admin-status-pill"
+                    data-tone={runStatusVariant(run.status)}
                   >
-                    <span class="status-dot" aria-hidden="true" />
-                    {run.status}
+                    <span class="admin-status-pill-dot" aria-hidden="true" />
+                    {runStatusLabel(run.status)}
                   </span>
                 </td>
-                <td data-label="Indexed">{run.documentsIndexed}</td>
-                <td data-label="Updated">{run.documentsUpdated}</td>
-                <td data-label="Removed">{run.documentsRemoved}</td>
-                <td data-label="Failures">
+                <td data-label={t("Indexed")}>{run.documentsIndexed}</td>
+                <td data-label={t("Updated")}>{run.documentsUpdated}</td>
+                <td data-label={t("Removed")}>{run.documentsRemoved}</td>
+                <td data-label={t("Failures")}>
                   {run.failureCount > 0 ? (
                     run.failureCount
                   ) : (
@@ -507,21 +529,21 @@ const showIndexActions = canReconcile || canRebuild;
             )}
             {failures.map((item) => (
               <tr>
-                <td data-label="Source">
+                <td data-label={t("Source")}>
                   <span class="cell-code">{item.sourceKey}</span>
                 </td>
-                <td data-label="Resource">
+                <td data-label={t("Resource")}>
                   <span class="cell-code">{item.resourceId}</span>
                 </td>
-                <td data-label="Locale">{item.locale}</td>
-                <td data-label="Error">
-                  <span class="status-badge" data-variant="danger">
-                    <span class="status-dot" aria-hidden="true" />
+                <td data-label={t("Locale")}>{item.locale}</td>
+                <td data-label={t("Error")}>
+                  <span class="admin-status-pill" data-tone="danger">
+                    <span class="admin-status-pill-dot" aria-hidden="true" />
                     {item.errorClass}
                   </span>
                 </td>
-                <td data-label="Seen">{item.occurrenceCount}</td>
-                <td data-label="Last seen">
+                <td data-label={t("Seen")}>{item.occurrenceCount}</td>
+                <td data-label={t("Last seen")}>
                   <span class="cell-code">
                     {formatTimestamp(item.lastSeenAt)}
                   </span>
@@ -553,6 +575,7 @@ const showIndexActions = canReconcile || canRebuild;
     onSubmit,
     sendJson
   } from "../../lib/ui/admin-form-client";
+  import { confirmAction } from "../../lib/ui/confirm-dialog-client";
 
   const actionError = messageBox("site-search-action-error");
   const settingsError = messageBox("site-search-settings-error");
@@ -593,9 +616,9 @@ const showIndexActions = canReconcile || canRebuild;
     // Destructive: a rebuild empties the index before refilling it, so the
     // public search surface is degraded until it finishes.
     if (
-      !window.confirm(
+      !(await confirmAction(
         "Rebuild the whole search index? Public search results will be incomplete until it finishes."
-      )
+      ))
     ) {
       return;
     }
