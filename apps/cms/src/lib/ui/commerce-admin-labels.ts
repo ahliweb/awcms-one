@@ -131,6 +131,13 @@ import type {
   RegisterMovementType,
   RegisterSessionStatus
 } from "../../modules/commerce/domain/register";
+import type {
+  HeldSaleStatus,
+  IssuedDocumentType,
+  QuotationStatus,
+  WorkOrderPriority,
+  WorkOrderStatus
+} from "../../modules/commerce/domain/documents";
 import type { PopupFrequency } from "../../modules/commerce/domain/popup-validation";
 import type { PaymentGatewayStatus } from "../../modules/commerce/domain/payment-gateway-provider";
 import type { ReviewStatus } from "../../modules/commerce/application/review-directory";
@@ -472,6 +479,49 @@ export function createCommerceLabels(t: Translator["t"]) {
     rejected: t("Rejected")
   } satisfies Record<RegisterCloseDecision, string>;
 
+  /** Issue #286 - a quotation's status (`domain/documents.ts`). */
+  const quotationStatus = {
+    draft: t("Draft"),
+    sent: t("Sent"),
+    accepted: t("Accepted"),
+    rejected: t("Rejected"),
+    expired: t("Expired"),
+    converted: t("Converted to order"),
+    cancelled: t("Cancelled")
+  } satisfies Record<QuotationStatus, string>;
+
+  /** Issue #286 - a work order's operational status. */
+  const workOrderStatus = {
+    received: t("Received"),
+    scheduled: t("Scheduled"),
+    in_progress: t("In progress"),
+    on_hold: t("On hold"),
+    ready: t("Ready"),
+    completed: t("Completed"),
+    cancelled: t("Cancelled")
+  } satisfies Record<WorkOrderStatus, string>;
+
+  const workOrderPriority = {
+    low: t("Low"),
+    normal: t("Normal"),
+    high: t("High"),
+    urgent: t("Urgent")
+  } satisfies Record<WorkOrderPriority, string>;
+
+  /** Issue #286 - a held (parked) sale's effective status. */
+  const heldSaleStatus = {
+    held: t("Held"),
+    resumed: t("Resumed"),
+    discarded: t("Discarded"),
+    expired: t("Expired")
+  } satisfies Record<HeldSaleStatus, string>;
+
+  /** Issue #286 - the two issuable legal documents. */
+  const documentType = {
+    receipt: t("Receipt"),
+    invoice: t("Invoice")
+  } satisfies Record<IssuedDocumentType, string>;
+
   /** `domain/order-status.ts`'s own header documents the domain meaning behind each of these three values — see {@link PaymentEventOutcome}'s own comment above. */
   const paymentEventOutcome = {
     applied: t("Applied"),
@@ -509,7 +559,12 @@ export function createCommerceLabels(t: Translator["t"]) {
     registerSessionStatus,
     registerMovementType,
     registerMovementDirection,
-    registerCloseDecision
+    registerCloseDecision,
+    quotationStatus,
+    workOrderStatus,
+    workOrderPriority,
+    heldSaleStatus,
+    documentType
   };
 }
 
@@ -553,6 +608,36 @@ export const registerSessionStatusTone: Record<
   closing: "warning",
   closed: "neutral",
   corrected: "info"
+};
+
+/** Issue #286 - quotation tone: a live offer is info, an accepted/converted one is a success, a lapsed one a warning. */
+export const quotationStatusTone: Record<QuotationStatus, CommerceTone> = {
+  draft: "neutral",
+  sent: "info",
+  accepted: "success",
+  rejected: "danger",
+  expired: "warning",
+  converted: "success",
+  cancelled: "neutral"
+};
+
+/** Issue #286 - work-order tone. */
+export const workOrderStatusTone: Record<WorkOrderStatus, CommerceTone> = {
+  received: "neutral",
+  scheduled: "info",
+  in_progress: "info",
+  on_hold: "warning",
+  ready: "success",
+  completed: "success",
+  cancelled: "neutral"
+};
+
+/** Issue #286 - held-sale tone. */
+export const heldSaleStatusTone: Record<HeldSaleStatus, CommerceTone> = {
+  held: "info",
+  resumed: "success",
+  discarded: "neutral",
+  expired: "warning"
 };
 
 /** The affiliate half of `commerce-affiliates.astro`'s combined `STATUS_TONE`. */

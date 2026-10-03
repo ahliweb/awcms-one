@@ -74,6 +74,10 @@ import {
   listPosOrders,
   type PosOrderListPage
 } from "../../modules/commerce/application/pos-directory";
+import {
+  listHeldSales,
+  type HeldSaleRecord
+} from "../../modules/commerce/application/held-sale-directory";
 import { POS_WALK_IN_CUSTOMER_NAME } from "../../modules/commerce/domain/pos-order-validation";
 
 const ssr = Astro.locals.ssrContext!;
@@ -122,7 +126,7 @@ const screen = await loadAdminScreen({
   ssr,
   workClass: "interactive",
   authorize: [SALE_ENTRY, HISTORY_ENTRY, DUE_ENTRY],
-  load: async ({ tx, entry }) => {
+  load: async ({ tx, entry, can }) => {
     const features = await fetchCommerceFeatures(tx, ssr.tenantId);
     const canSell = entry[0] === true;
     const canReadHistory = entry[1] === true;
@@ -146,10 +150,42 @@ const screen = await loadAdminScreen({
             })
           ).items
         : [];
+    // Issue #286 (ADR-0029) - the cashier's OWN parked carts, only while the
+    // `documents` feature is on; resuming/holding need their own keys.
+    const heldAvailable =
+      features.pos && features.documents && canSell && tab === "sale";
+    const canHold =
+      heldAvailable &&
+      (await can({
+        moduleKey: "commerce",
+        activityCode: "held_sales",
+        action: "create"
+      }));
+    const canResumeHeld =
+      heldAvailable &&
+      (await can({
+        moduleKey: "commerce",
+        activityCode: "held_sales",
+        action: "update"
+      }));
+    const heldSales: HeldSaleRecord[] = canResumeHeld
+      ? (
+          await listHeldSales(
+            tx,
+            ssr.tenantId,
+            { actorTenantUserId: ssr.tenantUserId, all: false },
+            null,
+            "held"
+          )
+        ).items
+      : [];
     return {
       posEnabled: features.pos,
       registerEnabled: features.register,
       registerSessions,
+      canHold,
+      canResumeHeld,
+      heldSales,
       canSell,
       canReadHistory,
       canSellOnCredit,
@@ -174,6 +210,9 @@ const canReadHistory = allowed && screen.data.canReadHistory;
 // The checkbox is only a convenience: the endpoint re-checks `pos_due.create`.
 const canSellOnCredit = allowed && screen.data.canSellOnCredit && canSell;
 const history = allowed ? screen.data.history : null;
+const canHold = allowed && screen.data.canHold;
+const canResumeHeld = allowed && screen.data.canResumeHeld;
+const heldSales = allowed ? screen.data.heldSales : [];
 const cashierTenantUserId = ssr.tenantUserId;
 const storeName = ssr.display.tenantName?.trim() || "";
 
@@ -261,6 +300,15 @@ const tenderLabel = (method: string): string =>
       id="pos-sale"
       aria-labelledby="pos-sale-heading"
       data-walk-in-name={POS_WALK_IN_CUSTOMER_NAME}
+      data-msg-hold-failed={t("Could not hold the sale. Please try again.")}
+      data-msg-resume-failed={t(
+        "Could not resume the held sale. Please try again."
+      )}
+      data-msg-held-expired={t("That held sale has expired.")}
+      data-msg-held-gone={t("That held sale was already resumed or discarded.")}
+      data-msg-held-limit={t(
+        "Too many parked sales; resume or discard some first."
+      )}
       data-register-mode={registerEnabled ? "true" : "false"}
       data-msg-register-required={t("Choose the register you are selling on.")}
       data-msg-register-session-required={t(
@@ -566,7 +614,29 @@ const tenderLabel = (method: string): string =>
             <button type="button" class="btn-inline" id="pos-clear">
               {t("Clear cart")}
             </button>
+            {canHold && (
+              <button type="button" class="btn-inline" id="pos-hold">
+                {t("Hold sale")}
+              </button>
+            )}
           </div>
+          {canResumeHeld && heldSales.length > 0 && (
+            <div class="admin-form-actions" id="pos-held">
+              <label for="pos-held-select">
+                {t("Held sales")}
+                <select id="pos-held-select">
+                  {heldSales.map((sale) => (
+                    <option value={sale.id}>
+                      {sale.label ?? sale.id.slice(0, 8)} · {sale.lineCount}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <button type="button" class="btn-inline" id="pos-resume">
+                {t("Resume held sale")}
+              </button>
+            </div>
+          )}
         </form>
       </div>
 
@@ -1460,6 +1530,153 @@ const tenderLabel = (method: string): string =>
     cart.length = 0;
     renderCart();
   });
+
+  // Issue #286 (ADR-0029) - hold / resume. A held sale stores lines only (no
+  // prices, no stock reservation); resuming puts the lines back in the cart
+  // and the ordinary checkout re-prices them.
+  el<HTMLButtonElement>("pos-hold")?.addEventListener(
+    "click",
+    async (event) => {
+      saleError.clear();
+      if (cart.length === 0) {
+        saleError.show(msg("msgEmptyCart"));
+        return;
+      }
+      const button = event.currentTarget as HTMLButtonElement;
+      const unlock = lockElement(button, button.textContent ?? "");
+      try {
+        const name = (
+          el<HTMLInputElement>("pos-customer-name")?.value ?? ""
+        ).trim();
+        const phone = (
+          el<HTMLInputElement>("pos-customer-phone")?.value ?? ""
+        ).trim();
+        const notes = (
+          el<HTMLTextAreaElement>("pos-notes")?.value ?? ""
+        ).trim();
+        const registerId = registerEl?.value ?? "";
+        const { ok, errorCode } = await sendJsonForData(
+          "POST",
+          "/api/v1/commerce/held-sales",
+          {
+            lines: cart.map((line) => ({
+              productId: line.productId,
+              variantId: line.variantId,
+              quantity: line.quantity
+            })),
+            customer:
+              name || phone
+                ? { name: name || null, phone: phone || null }
+                : null,
+            notes: notes || null,
+            ...(registerId !== "" ? { registerId } : {})
+          },
+          { "Idempotency-Key": crypto.randomUUID() }
+        );
+        if (!ok) {
+          saleError.show(
+            errorCode === "HELD_SALE_LIMIT"
+              ? msg("msgHeldLimit")
+              : msg("msgHoldFailed")
+          );
+          return;
+        }
+        window.location.reload();
+      } finally {
+        unlock();
+      }
+    }
+  );
+
+  el<HTMLButtonElement>("pos-resume")?.addEventListener(
+    "click",
+    async (event) => {
+      saleError.clear();
+      const id = el<HTMLSelectElement>("pos-held-select")?.value ?? "";
+      if (id === "") return;
+      const button = event.currentTarget as HTMLButtonElement;
+      const unlock = lockElement(button, button.textContent ?? "");
+      try {
+        const { ok, errorCode, data } = await sendJsonForData<{
+          cart: {
+            lines: {
+              productId: string;
+              variantId: string | null;
+              quantity: number;
+            }[];
+            customer: { name: string | null; phone: string | null } | null;
+            notes: string | null;
+          };
+        }>(
+          "POST",
+          `/api/v1/commerce/held-sales/${id}/resume`,
+          {},
+          {
+            "Idempotency-Key": crypto.randomUUID()
+          }
+        );
+        if (!ok || !data) {
+          saleError.show(
+            errorCode === "HELD_SALE_EXPIRED"
+              ? msg("msgHeldExpired")
+              : errorCode === "HELD_SALE_NOT_HELD"
+                ? msg("msgHeldGone")
+                : msg("msgResumeFailed")
+          );
+          return;
+        }
+        // Re-read each product (price, stock, variants) rather than trusting
+        // anything stored: the cart comes back as ids and quantities only.
+        const hits = new Map<string, ProductHit>();
+        for (const line of data.cart.lines) {
+          if (hits.has(line.productId)) continue;
+          const response = await fetch(
+            `/api/v1/commerce/products/${line.productId}`,
+            {
+              credentials: "same-origin"
+            }
+          );
+          const payload = (await response.json().catch(() => null)) as {
+            success?: boolean;
+            data?: ProductHit;
+          } | null;
+          if (response.ok && payload?.success && payload.data) {
+            hits.set(line.productId, payload.data);
+          }
+        }
+        cart.length = 0;
+        for (const line of data.cart.lines) {
+          const hit = hits.get(line.productId);
+          if (!hit) continue;
+          const variant = hit.variants.find(
+            (entry) => entry.id === line.variantId
+          );
+          cart.push({
+            productId: hit.id,
+            variantId: line.variantId,
+            name: variant
+              ? `${hit.name} — ${variant.name}: ${variant.value}`
+              : hit.name,
+            price: variant?.price ?? hit.finalPrice,
+            stock: variant ? variant.stock : hit.stock,
+            quantity: line.quantity
+          });
+        }
+        const nameInput = el<HTMLInputElement>("pos-customer-name");
+        const phoneInput = el<HTMLInputElement>("pos-customer-phone");
+        const notesInput = el<HTMLTextAreaElement>("pos-notes");
+        if (nameInput) nameInput.value = data.cart.customer?.name ?? "";
+        if (phoneInput) phoneInput.value = data.cart.customer?.phone ?? "";
+        if (notesInput) notesInput.value = data.cart.notes ?? "";
+        el<HTMLElement>("pos-held")
+          ?.querySelector<HTMLOptionElement>(`option[value="${id}"]`)
+          ?.remove();
+        renderCart();
+      } finally {
+        unlock();
+      }
+    }
+  );
 
   function renderReceipt(order: PosOrderResponse): void {
     if (!receiptWrapper) return;

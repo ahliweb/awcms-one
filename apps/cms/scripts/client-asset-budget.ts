@@ -996,7 +996,25 @@ export const READER_BUDGET_BYTES = 24_000;
  * raise above; re-measure on the next commerce screen and tighten if the real
  * total sits well below this.
  */
-export const APP_BUDGET_BYTES = 300_700;
+/**
+ * **Raised to 308,000 B for Issue #286** (held sales, quotations, work orders
+ * and receipt/invoice documents, ADR-0029) - one new admin screen and a small
+ * addition to one. The growth is exactly their client scripts plus the screens'
+ * share of `admin-screens.css`, no new shared primitive and no new CSS file:
+ * `commerce-documents.astro` (the line editor, the revise prefill, the
+ * send/accept/reject/cancel/convert actions with the price-changed second
+ * press, the work-order mover, the document issue form and the held-sale
+ * discard - every mutation through `admin-form-client.ts`'s `onSubmit`/
+ * `onAction`/`sendJson`/`messageBox` and the shared confirm dialog, every string
+ * reaching the script as a `data-msg-*` attribute), and the hold/resume pair in
+ * `commerce-pos.astro`'s existing island (it re-reads each product through the
+ * catalogue API rather than trusting anything stored, which is most of its
+ * weight). Measured clean build: 307,774 B (up from 300,423 B); the
+ * largest-file checks still pass. 308,000 keeps the same tight "measured +
+ * small margin" convention as every raise above; re-measure on the next
+ * commerce screen and tighten if the real total sits well below this.
+ */
+export const APP_BUDGET_BYTES = 308_000;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.
