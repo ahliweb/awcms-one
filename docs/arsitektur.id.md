@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](arsitektur.md)
 
-<!-- i18n-source-hash: sha256:5fa48ecead7feb28e5ba1ecff1d450011a7eaebfd5b55f8e26a444dd5d76a1d2 -->
+<!-- i18n-source-hash: sha256:e2c6ad5b09b826489f476720eba4198b66b43d914714e22e47017e531c416b6a -->
 
 # Arsitektur
 
@@ -190,6 +190,10 @@ Setiap cara uang sampai ke sebuah pesanan — tender POS, konfirmasi transfer ma
 ## Shift adalah turunan atas ledger (issue #284, [ADR-0028](adr/0028-pos-register-sessions-and-cash-up.md))
 
 Tutup kas tidak menyimpan total sendiri. Jumlah penutupan yang seharusnya per tender adalah jumlah atas baris yang sudah ada dan tidak dapat diedit — leg ledger alokasi pembayaran yang distempel dengan sesi, ditambah mutasi laci append-only sesi itu — dihitung di bawah kunci baris sesi dan di-snapshot sekali pada baris penutupan. Stempellah yang membuatnya persis (jendela waktu atas `created_at` tidak: timestamp sebuah leg adalah awal transaksinya). Baris sesi membawa tiga mode kunci — `FOR SHARE` untuk penjualan, mutasi, dan leg yang distempel (banyak sekaligus), `FOR NO KEY UPDATE` untuk serah terima, penutupan, persetujuan, dan koreksi (eksklusif, namun kompatibel dengan `FOR KEY SHARE` yang diambil insert FK, pelajaran ADR-0025 D4) — ditambah indeks unik parsial dan kunci baris register untuk "satu sesi aktif per register". Sesi yang sudah ditutup dibekukan trigger; koreksi adalah baris kompensasi; alur penutupan (`open → closing → closed | open`, `closed → corrected`) tidak pernah menulis ulang penjualan atau pembayaran. Dengan fitur `register` mati (default) tidak ada satu pun dari ini di jalur penjualan.
+
+## Pengeluaran sampai ke tutup kas hanya sebagai mutasi (issue #294, [ADR-0031](adr/0031-expenses-are-commerce-local-register-linked-petty-cash.md))
+
+Pengeluaran tidak pernah mengedit total tutup kas. Pengeluaran laci yang diposting menambahkan satu mutasi kas keluar `expense` lewat penulis YANG SAMA dengan rute mutasi manual, dan pembalikan menambahkan `correction` kas masuk penyeimbang — sehingga kas yang diharapkan hasil turunan shift (ADR-0028) bergerak karena sebuah mutasi ada, dan pengeluaran tercermin tepat satu kali secara konstruksi: baris pengeluaran dikunci lebih dulu, mutasi membawa `source_key` `expense:<id>:post` / `:reverse`, dan indeks unik parsial mengizinkan paling banyak satu mutasi keluar dan satu masuk per pengeluaran. Urutan kunci selalu baris pengeluaran (`FOR NO KEY UPDATE`) lalu sesi (`FOR SHARE`), tidak pernah sebaliknya, sehingga penutupan (yang mengambil sesi secara eksklusif) dan posting berjalan serial tanpa siklus. Shift yang sudah ditutup tidak pernah ditulis ulang: pembalikan setelah penutupan mendarat di sesi terbuka register yang sama atau ditolak. Modelnya sengaja lokal-commerce — tiga kata benda (kategori, pengeluaran, posting → mutasi) — agar modul keuangan hulu di masa depan dapat menyerapnya lewat adaptor, bukan mewarisi konvensi akuntansi yang tidak pernah dipilihnya.
 
 ## Satu hal lagi yang dilakukan server: memperbaiki halaman yang terbayangi
 

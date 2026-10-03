@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](api.md)
 
-<!-- i18n-source-hash: sha256:446e2254d72a5f297e302cd3a19928fb869e5e5ea4dd313853e29e425f4111b6 -->
+<!-- i18n-source-hash: sha256:e6955db79f939eae045539b1423a63927a801657352f36f95cfb85c14b0de79a -->
 
 # API
 
@@ -84,6 +84,27 @@ Setiap rute di bawah ini berada di belakang flag fitur `register` milik tenant (
 | `GET` | `commerce/register-sessions/{id}/report.csv` | `commerce.register_sessions.export` | Tutup kas sebagai satu CSV bersekat, setiap sel dinetralkan dari formula spreadsheet; `Cache-Control: no-store` |
 
 Rute POS (`POST commerce/pos/orders`) mendapat **`registerId`** opsional: WAJIB selama fitur `register` nyala (penjualan dilekatkan ke sesi terbuka register itu, yang kasir saat ini-nya harus pemanggil — `404` register tak dikenal/milik tenant lain, `409 REGISTER_SESSION_REQUIRED | REGISTER_SESSION_CLOSING | NOT_SESSION_CASHIER`, semuanya sebelum apa pun ditulis); dengan fitur mati, mengirimnya adalah `409 FEATURE_DISABLED` dan tidak ada yang distempel. 201 mendapat `registerSessionId`.
+
+## API owner: pengeluaran (issue #294, epik #281, [ADR-0031](adr/0031-expenses-are-commerce-local-register-linked-petty-cash.md))
+
+Setiap rute di bawah berada di balik flag fitur `expenses` tenant (bawaan MATI — `409 FEATURE_DISABLED`; pengeluaran laci juga memerlukan `register`), memerlukan sesi bearer/cookie, dan — untuk setiap mutasi kecuali `PATCH` draf yang idempoten secara alami, penulisan kategori, dan pelampiran struk — header **`Idempotency-Key`** (`400 IDEMPOTENCY_REQUIRED`). Uang adalah STRING `numeric(14,2)` (tidak pernah angka JSON). Dua belas izin, tidak ada yang tersirat oleh kunci register atau POS. Id tenant lain adalah `404` yang sama dengan id yang tidak dikenal.
+
+| Metode | Path | Izin | Catatan |
+| --- | --- | --- | --- |
+| `GET`/`POST` | `commerce/expense-categories` | `commerce.expense_categories.read` / `.create` | Daftar / tetapkan (`{ code, name }`; `409 EXPENSE_CATEGORY_CODE_TAKEN`) |
+| `GET`/`PATCH` | `commerce/expense-categories/{id}` | `….read` / `.update` | Ganti nama, (non)aktifkan; `code` tidak dapat diubah |
+| `GET`/`POST` | `commerce/expenses` | `commerce.expenses.read` / `.create` | Riwayat keyset (`?cursor&status&categoryId&registerSessionId&from&to`) / catat DRAF `{ categoryId, amount, tenderType, occurredOn, description, payeeName?, registerSessionId? }` → `201` (pemutaran ulang mengembalikan pengeluaran yang sama); `409 EXPENSE_CATEGORY_INACTIVE`, `REGISTER_SESSION_NOT_OPEN` |
+| `GET`/`PATCH` | `commerce/expenses/{id}` | `….read` / `.update` | Satu pengeluaran (struk hanya `hasReceipt`) / edit DRAF — hanya pembuat atau supervisor (`403 NOT_EXPENSE_OWNER`), selain itu `409 EXPENSE_NOT_DRAFT` |
+| `POST` | `commerce/expenses/{id}/post` | `commerce.expense_postings.create` | Dalam ambang → diposting (`auto`); di atasnya, pemosting yang juga memegang `….approve` dan bukan pembuatnya → diposting (`approved`), selain itu `pending_approval`; pengeluaran laci menambahkan mutasi registernya (`409 REGISTER_SESSION_NOT_OPEN`); `409 EXPENSE_NOT_POSTABLE` untuk non-draf |
+| `POST` | `commerce/expenses/{id}/decision` | `commerce.expense_postings.approve` | `{ decision: approve\|reject, note? }` (catatan wajib untuk menolak → kembali ke `draft`); `403 SEGREGATION_OF_DUTIES` untuk pembuat atau pengajunya; `409 EXPENSE_NOT_PENDING` |
+| `POST` | `commerce/expenses/{id}/reverse` | `commerce.expense_reversals.approve` | `{ reason }` → mutasi penyeimbang untuk pengeluaran laci (sesinya sendiri bila terbuka, selain itu sesi terbuka register tersebut; `409 REGISTER_SESSION_REQUIRED` bila tidak ada); `409 EXPENSE_NOT_REVERSIBLE` |
+| `POST` | `commerce/expenses/{id}/cancel` | `commerce.expenses.update` | Buang DRAF (akhir) |
+| `POST` | `commerce/expenses/{id}/receipt` | `commerce.expense_receipts.create` | `{ mediaObjectId }` — objek privat terverifikasi yang diunggah pemanggil; `409 EXPENSE_RECEIPT_NOT_ELIGIBLE \| _ALREADY_USED \| _ALREADY_ATTACHED` |
+| `GET` | `commerce/expenses/{id}/receipt-url` | `commerce.expense_receipts.read` | GET presigned berumur pendek, `Cache-Control: no-store`, diaudit sebagai `media.download`; diselesaikan di sisi server dari pengeluaran; `409 EXPENSE_RECEIPT_UNAVAILABLE` gagal tertutup |
+| `GET` | `commerce/expenses/summary?from&to` | `commerce.expenses.read` | Total diposting dan dibalik per kategori dan metode (sen yang tepat), jumlah draf / tertunda; rentang wajib, ≤ 366 hari |
+| `GET` | `commerce/expenses/export.csv?from&to` | `commerce.expenses.export` | Satu CSV, dinetralkan dari formula, ≤ 10.000 baris (`X-Export-Truncated`), `no-store` |
+
+Selama fitur `expenses` MENYALA, `POST commerce/register-sessions/{id}/movements` dengan `movementType: "expense"` adalah `409 EXPENSE_REQUIRES_EXPENSE_RECORD` (yang mentah akan melewati ambang); dengan fitur MATI tidak berubah.
 
 ## Storefront (anonim) API — `/api/v1/commerce/storefront/*`
 
@@ -263,7 +284,7 @@ Tanpa telepon → penjualan dikaitkan ke satu baris pelanggan walk-in tenant (te
 }
 ```
 
-## Otorisasi: 39 izin owner (ditambah kunci increment-5, sejak #285 `commerce.payments.{read,create,revoke}` dan `commerce.pos_due.create`, dan sejak #284 sepuluh kunci register: `commerce.registers.{read,create,update}`, `commerce.register_sessions.{read,create,update,export}`, `commerce.register_cash_ups.{create,approve}`, `commerce.register_corrections.approve`)
+## Otorisasi: 39 izin owner (ditambah kunci increment-5, sejak #285 `commerce.payments.{read,create,revoke}` dan `commerce.pos_due.create`, sejak #284 sepuluh kunci register: `commerce.registers.{read,create,update}`, `commerce.register_sessions.{read,create,update,export}`, `commerce.register_cash_ups.{create,approve}`, `commerce.register_corrections.approve`, dan sejak #294 dua belas kunci pengeluaran: `commerce.expense_categories.{read,create,update}`, `commerce.expenses.{read,create,update,export}`, `commerce.expense_postings.{create,approve}`, `commerce.expense_reversals.approve`, `commerce.expense_receipts.{read,create}`)
 
 Modul `commerce` mendeklarasikan 39 kunci izin secara total (10 + 22 + 7 di bawah), dikelompokkan berdasarkan tiga area yang sama dengan tabelnya — jumlah yang terlalu besar untuk konvensi "angka yang dieja cocok dengan set yang dihitung" milik dokumen ini sendiri (pengecekan hitungan-tertaut milik `bun run audit:dokumen` hanya mengenali angka yang dieja satu sampai dua puluh), sehingga di sini dinyatakan sebagai angka numeral, bukan di dalam blok terjaga.
 
@@ -277,9 +298,9 @@ Sengaja **tanpa `create`/`delete` untuk `orders`/`customers`**: baris pesanan at
 
 API storefront (anonim) sama sekali **tidak punya kunci izin** — batas kepercayaannya adalah tenant resolver yang Origin-bound, bukan RBAC/ABAC.
 
-## Domain event: delapan belas
+## Domain event: dua puluh
 
-Kedelapan belas event terdaftar di tiga tempat yang dijaga selaras `awcms` (`domain-event-runtime/domain/event-type-registry.ts`, `apps/cms/asyncapi/awcms-domain-events.asyncapi.yaml`, `events.publishes` milik `commerce/module.ts`):
+Kedua puluh event terdaftar di tiga tempat yang dijaga selaras `awcms` (`domain-event-runtime/domain/event-type-registry.ts`, `apps/cms/asyncapi/awcms-domain-events.asyncapi.yaml`, `events.publishes` milik `commerce/module.ts`):
 
 | Agregat               | Event                                                                                                                                                         |
 | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -288,6 +309,7 @@ Kedelapan belas event terdaftar di tiga tempat yang dijaga selaras `awcms` (`dom
 | `commerce.voucher`    | `awcms.commerce.voucher.redeemed` — dideklarasikan lebih dulu sebagai forward reference di #26, baru benar-benar dipicu begitu jalur pesanan #29 menebus satu |
 | `commerce.order`      | `awcms.commerce.order.{created,paid,status_changed,cancelled,expired}`, dan sejak #285 `awcms.commerce.payment.{recorded,reversed}` (ledger pembayaran berjalan pada agregat PESANAN: satu aliran berurutan per pesanan; id/tender/jumlah/penyelesaian hasilnya, tidak pernah nama/telepon pelanggan atau referensi pembayaran) |
 | `commerce.review`     | `awcms.commerce.review.published`                                                                                                                             |
+| `commerce.expense` | `awcms.commerce.expense.{posted,reversed}` — (#294) masing-masing terbit sekali, ketika status benar-benar berubah (pengajuan tertunda atau penolakan tidak menerbitkan `posted`); payload membawa id, metode, jumlah, dan id mutasi, tidak pernah deskripsi, payee, atau alasan teks bebas |
 | `commerce.register_session` | `awcms.commerce.register_session.{opened,movement_recorded,closed,corrected}` — aliran berurutan shift itu sendiri (#284); `closed` dipicu sekali, hanya ketika sesi benar-benar mencapai `closed`; payload membawa id/tipe/jumlah/selisih, tidak pernah referensi/catatan teks bebas mutasi atau alasan penutupan |
 
 `categories` masih tidak mempublikasikan domain event apa pun — pilihan yang sama diambil `tenant_admin` untuk `awcms_offices`; soft delete adalah fakta log-audit, bukan sesuatu yang perlu direaksi konsumen hilir.
@@ -303,6 +325,8 @@ Kedelapan belas event terdaftar di tiga tempat yang dijaga selaras `awcms` (`dom
 | `409`  | `INSUFFICIENT_TENDER`                                                                         | Hanya POS (#116, diperlebar #285): tender tidak menutup total pesanan (kecuali `allowDue`); `details.shortfall` adalah selisihnya sebagai string `numeric(14,2)`   |
 | `409`  | `OVERPAYMENT` / `REVERSAL_EXCEEDS_PAYMENT` / `PAYMENT_NOT_REVERSIBLE` / `PAYMENT_NOT_SETTLED`  | Ledger pembayaran (#285): jumlah di atas yang terutang (hanya kembalian tunai yang boleh melebihi); pembalikan di atas sisa yang bisa dibalik; pembayaran yang tidak bisa dibalik; `-> paid` manual sebelum ledger menyatakan pesanan terselesaikan |
 | `409`  | `FEATURE_DISABLED`                                                                            | Rute owner dari fitur yang dimatikan tenant (#118) — kotak masuk, kampanye, gateway, kurir, dan sejak #116 rute POS, dan sejak #284 setiap rute register (flag `register` default MATI; menyebut `registerId` pada penjualan POS saat mati adalah penolakan yang sama)                                              |
+| `409`  | `EXPENSE_CATEGORY_INACTIVE` / `EXPENSE_NOT_DRAFT` / `EXPENSE_NOT_POSTABLE` / `EXPENSE_NOT_PENDING` / `EXPENSE_NOT_REVERSIBLE` / `EXPENSE_NOT_ATTACHABLE` / `EXPENSE_RECEIPT_NOT_ELIGIBLE` / `EXPENSE_RECEIPT_ALREADY_USED` / `EXPENSE_RECEIPT_ALREADY_ATTACHED` / `EXPENSE_RECEIPT_UNAVAILABLE` / `EXPENSE_CATEGORY_CODE_TAKEN` / `EXPENSE_REQUIRES_EXPENSE_RECORD` | Pengeluaran (#294): status pengeluaran menolak aksi (kategori yang dinonaktifkan atau duplikat, mengedit/memposting/membuang non-draf, memutuskan yang tidak tertunda, membalik yang tidak diposting, struk yang bukan objek privat terverifikasi yang diunggah pemanggil atau sudah dipakai atau terlampir, struk yang tidak dapat lagi diterbitkan, mutasi laci `expense` mentah selama fitur `expenses` menyala) |
+| `403`  | `SEGREGATION_OF_DUTIES` / `NOT_EXPENSE_OWNER` | Pengeluaran (#294): menyetujui pengeluaran yang Anda buat atau ajukan; mengubah draf yang bukan milik Anda tanpa menjadi supervisor |
 | `409`  | `REGISTER_SESSION_REQUIRED` / `REGISTER_SESSION_CLOSING` / `NOT_SESSION_CASHIER` / `REGISTER_SESSION_ALREADY_OPEN` / `REGISTER_SESSION_NOT_OPEN` / `REGISTER_SESSION_NOT_CLOSED` / `REGISTER_CLOSE_NOT_PENDING` / `REGISTER_CODE_TAKEN` / `REGISTER_HAS_ACTIVE_SESSION` / `REGISTER_INACTIVE` / `UNKNOWN_CASHIER` / `SAME_CASHIER` | Register dan tutup kas (#284): keadaan shift menolak aksi (tidak ada sesi terbuka untuk penjualan POS, sesi yang sedang dihitung, laci kasir lain, sesi terbuka kedua pada satu register, mutasi/penutupan pada sesi tidak terbuka, koreksi pada sesi belum ditutup, keputusan tanpa yang tertunda, kode register ganda, menonaktifkan register yang punya sesi aktif, serah terima ke pengguna tak dikenal/nonaktif atau ke kasir saat ini) |
 | `409`  | `ORDER_NOT_PAYABLE` / `ORDER_NOT_CANCELLABLE`                                                 | Status pesanan saat ini secara legal tidak mengizinkan aksi yang diminta                                                                                         |
 | `404`  | `NOT_FOUND`                                                                                   | Resource tak dikenal, atau — pada API storefront — penolakan netral yang mencakup "pesanan tak dikenal", "telepon salah", dan "milik tenant lain" secara identik |

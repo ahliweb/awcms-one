@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](skema-basis-data.md)
 
-<!-- i18n-source-hash: sha256:6b8dbf9bf0eeaf9f818d073630d2e431dfa7fce6f7e3f7b52218574edd41531c -->
+<!-- i18n-source-hash: sha256:5fef267c9a53d6869e79e6a06ca054b995f7aeea20c76fffae9919152ae0c6c9 -->
 
 # Skema basis data
 
@@ -210,6 +210,19 @@ Enam tabel FORCE-RLS (kebijakan isolasi tenant dengan `WITH CHECK`, FK komposit 
 - **Kolom stempel (`sql/971`).** `awcms_commerce_orders.register_session_id` (CHECK: hanya `channel = 'pos'`; trigger mengisinya sekali saat INSERT, hanya terhadap sesi `open`, dan menolak perubahan berikutnya) dan `awcms_commerce_payment_allocations.register_session_id` (trigger mensyaratkannya sama dengan sesi pesanan leg itu sendiri dan sesi itu `open`; penjaga append-only ledger, yang diganti `sql/971`, membekukannya). Keduanya NULL untuk setiap baris yang dicatat di luar sesi terbuka — langkah expand, tidak ada yang perlu di-backfill.
 - **Hak istimewa.** `awcms_app` kehilangan `DELETE` pada keenamnya; tiga tabel murni-tambah (mutasi, baris penutupan, koreksi) juga kehilangan `UPDATE`. `awcms_worker` mempertahankan `SELECT, DELETE` (`sql/973`) untuk mesin retensi (`commerce.register_*`, batas bawah lima tahun, batas atas sepuluh tahun; dua induk berkursor `deleted_at` yang tidak pernah diset, empat anak berkursor `created_at`). `security-readiness.ts` menegaskan himpunan yang persis di kedua arah.
 - **`sql/972`** men-seed sepuluh kunci izin; `sql/974` ditahan dan tidak dipakai.
+
+## Pengeluaran: dua tabel dan referensi mutasi bertipe (`sql/990`–`993`, issue #294, [ADR-0031](adr/0031-expenses-are-commerce-local-register-linked-petty-cash.md))
+
+Dua tabel FORCE-RLS (kebijakan isolasi tenant dengan `WITH CHECK`, foreign key komposit `(tenant_id, …)` yang didukung `UNIQUE (tenant_id, id)`, setiap kolom FK diindeks, uang `numeric(14,2)`), ditambah `expense_id` pada mutasi register yang append-only.
+
+| Tabel | Isinya | Constraint penting |
+| --- | --- | --- |
+| `awcms_commerce_expense_categories` | `code`, `name`, `active`, stempel pembuat/pengubah, `deleted_at` (tidak pernah diisi — kursor retensi) | `UNIQUE (tenant_id, lower(code))`; CHECK panjang |
+| `awcms_commerce_expenses` | `category_id`, `status` (`draft \| pending_approval \| posted \| reversed \| cancelled`), `amount > 0`, `tender_type` (`cash \| manual_qris \| manual_bank_transfer`), `occurred_on date`, `description`, `payee_name`, `register_session_id`, `receipt_media_object_id`, stempel pembuat / pengaju / pemutus / pemosting / pembalik / pembuang beserta waktunya, `approval_threshold`, `decision` (`auto \| approved \| rejected`), `posted_movement_id`, `reversal_session_id`, `reversal_movement_id` | `register_session_id` ⇒ `tender_type = 'cash'`; pengeluaran yang diposting menyebut pemostingnya dan persetujuannya, dan memiliki mutasi tepat ketika dibayar dari laci; **`approver_check`: pemutus `approved` tidak pernah pembuatnya**; trigger siklus hidup menolak transisi tidak sah dan membekukan isi di luar `draft` (struk boleh ditambahkan sekali pada pengeluaran yang diposting/dibalik); **UNIQUE** parsial pada `receipt_media_object_id` (satu objek privat melayani satu pengeluaran); tanpa `DELETE` untuk `awcms_app` |
+| `awcms_commerce_register_movements` (kolom ditambahkan `sql/991`) | `reference_kind` kini `free_text \| expense`; `expense_id` (FK komposit) | `expense_shape_check`: jenis `expense` ⇔ `expense_id`, dan hanya `expense`/`out` (posting) atau `correction`/`in` (pembaliknya); **UNIQUE** parsial `(tenant_id, expense_id, direction)` — paling banyak satu mutasi keluar dan satu masuk per pengeluaran; tetap append-only |
+
+- **Hak akses.** `awcms_app` kehilangan `DELETE` pada kedua tabel baru (tetap `SELECT, INSERT, UPDATE`; trigger siklus hidup, bukan hak akses, yang membekukan baris yang diposting). `awcms_worker` tetap `SELECT, DELETE` (`sql/993`) untuk mesin retensi (`commerce.expense_categories`, `commerce.expenses`, lantai lima tahun, batas sepuluh tahun, dikunci pada `deleted_at` yang tidak pernah diisi). `security-readiness.ts` menegaskan himpunan persisnya dua arah.
+- **`sql/992`** menyemai dua belas kunci izin.
 
 ## Proyeksi laporan penjualan: tiga tabel turunan (`sql/933`)
 

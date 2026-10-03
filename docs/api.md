@@ -83,6 +83,27 @@ Every route below is behind the tenant's `register` feature flag (default OFF �
 
 The POS route (`POST commerce/pos/orders`) gains an optional **`registerId`**: REQUIRED while the `register` feature is on (the sale is attached to that register's open session, whose current cashier must be the caller — `404` unknown/foreign register, `409 REGISTER_SESSION_REQUIRED | REGISTER_SESSION_CLOSING | NOT_SESSION_CASHIER`, all before anything is written); with the feature off, sending it is `409 FEATURE_DISABLED` and nothing is stamped. The 201 gains `registerSessionId`.
 
+## Owner API: expenses (issue #294, epic #281, [ADR-0031](adr/0031-expenses-are-commerce-local-register-linked-petty-cash.md))
+
+Every route below is behind the tenant's `expenses` feature flag (default OFF — `409 FEATURE_DISABLED`; a drawer expense additionally needs `register`), requires a bearer/cookie session, and — for every mutation but the natural-idempotent draft `PATCH`, the category writes and the receipt attach — an **`Idempotency-Key`** header (`400 IDEMPOTENCY_REQUIRED`). Money is a `numeric(14,2)` STRING (never a JSON number). Twelve permissions, none implied by the register or POS keys. Another tenant's ids are the same `404` as unknown ones.
+
+| Method | Path | Permission | Notes |
+| --- | --- | --- | --- |
+| `GET`/`POST` | `commerce/expense-categories` | `commerce.expense_categories.read` / `.create` | List / define (`{ code, name }`; `409 EXPENSE_CATEGORY_CODE_TAKEN`) |
+| `GET`/`PATCH` | `commerce/expense-categories/{id}` | `….read` / `.update` | Rename, (de)activate; `code` is immutable |
+| `GET`/`POST` | `commerce/expenses` | `commerce.expenses.read` / `.create` | Keyset history (`?cursor&status&categoryId&registerSessionId&from&to`) / record a DRAFT `{ categoryId, amount, tenderType, occurredOn, description, payeeName?, registerSessionId? }` → `201` (a replay returns the same expense); `409 EXPENSE_CATEGORY_INACTIVE`, `REGISTER_SESSION_NOT_OPEN` |
+| `GET`/`PATCH` | `commerce/expenses/{id}` | `….read` / `.update` | One expense (a receipt is only `hasReceipt`) / edit a DRAFT — creator or supervisor only (`403 NOT_EXPENSE_OWNER`), `409 EXPENSE_NOT_DRAFT` otherwise |
+| `POST` | `commerce/expenses/{id}/post` | `commerce.expense_postings.create` | Within the threshold → posted (`auto`); above it, a poster who also holds `….approve` and did not create it → posted (`approved`), else `pending_approval`; a drawer expense appends its register movement (`409 REGISTER_SESSION_NOT_OPEN`); `409 EXPENSE_NOT_POSTABLE` for a non-draft |
+| `POST` | `commerce/expenses/{id}/decision` | `commerce.expense_postings.approve` | `{ decision: approve\|reject, note? }` (a note is required to reject → back to `draft`); `403 SEGREGATION_OF_DUTIES` for its creator or submitter; `409 EXPENSE_NOT_PENDING` |
+| `POST` | `commerce/expenses/{id}/reverse` | `commerce.expense_reversals.approve` | `{ reason }` → compensating movement for a drawer expense (own session if open, else the register's open session; `409 REGISTER_SESSION_REQUIRED` if none); `409 EXPENSE_NOT_REVERSIBLE` |
+| `POST` | `commerce/expenses/{id}/cancel` | `commerce.expenses.update` | Discard a DRAFT (terminal) |
+| `POST` | `commerce/expenses/{id}/receipt` | `commerce.expense_receipts.create` | `{ mediaObjectId }` — a verified private object the caller uploaded; `409 EXPENSE_RECEIPT_NOT_ELIGIBLE \| _ALREADY_USED \| _ALREADY_ATTACHED` |
+| `GET` | `commerce/expenses/{id}/receipt-url` | `commerce.expense_receipts.read` | Short-lived presigned GET, `Cache-Control: no-store`, audited as `media.download`; resolved server-side from the expense; `409 EXPENSE_RECEIPT_UNAVAILABLE` fails closed |
+| `GET` | `commerce/expenses/summary?from&to` | `commerce.expenses.read` | Posted and reversed totals by category and tender (exact cents), draft / pending counts; range required, ≤ 366 days |
+| `GET` | `commerce/expenses/export.csv?from&to` | `commerce.expenses.export` | One CSV, formula-neutralised, ≤ 10,000 rows (`X-Export-Truncated`), `no-store` |
+
+While the `expenses` feature is ON, `POST commerce/register-sessions/{id}/movements` with `movementType: "expense"` is `409 EXPENSE_REQUIRES_EXPENSE_RECORD` (a raw one would bypass the threshold); with the feature OFF it is unchanged.
+
 ## Storefront (anonymous) API — `/api/v1/commerce/storefront/*`
 
 Every route resolves its tenant from the request's `Origin`/`Host` against `awcms_tenant_domains` — never from a header the caller controls — answers the `OPTIONS` preflight, echoes the allowed origin verbatim (never `*`), sends `Vary: Origin`, grants no credentials, and rate-limits per IP (order creation also per normalised phone). See [ADR-0007](adr/0007-cart-and-checkout-stay-static-the-browser-calls-anonymous-commerce-endpoints.md) for why this exists instead of a runtime credential.
@@ -261,7 +282,7 @@ No phone → the sale is attached to the tenant's single walk-in customer row (s
 }
 ```
 
-## Authorization: 39 owner permissions (plus the increment-5 keys, since #285 `commerce.payments.{read,create,revoke}` and `commerce.pos_due.create`, and since #284 ten register keys: `commerce.registers.{read,create,update}`, `commerce.register_sessions.{read,create,update,export}`, `commerce.register_cash_ups.{create,approve}`, `commerce.register_corrections.approve`)
+## Authorization: 39 owner permissions (plus the increment-5 keys, since #285 `commerce.payments.{read,create,revoke}` and `commerce.pos_due.create`, since #284 ten register keys: `commerce.registers.{read,create,update}`, `commerce.register_sessions.{read,create,update,export}`, `commerce.register_cash_ups.{create,approve}`, `commerce.register_corrections.approve`, and since #294 twelve expense keys: `commerce.expense_categories.{read,create,update}`, `commerce.expenses.{read,create,update,export}`, `commerce.expense_postings.{create,approve}`, `commerce.expense_reversals.approve`, `commerce.expense_receipts.{read,create}`)
 
 The `commerce` module declares 39 permission keys in total (10 + 22 + 7 below), grouped by the same three areas as its tables — a count too large for this document's own "spelled number matches a counted set" convention (`bun run audit:dokumen`'s linked-count check only recognises spelled numbers one through twenty), so it is stated here as a numeral instead of inside a guarded block.
 
@@ -275,9 +296,9 @@ Deliberately **no `create`/`delete` for `orders`/`customers`**: an order or cust
 
 The storefront (anonymous) API has **no permission keys at all** — its trust boundary is the Origin-bound tenant resolver, not RBAC/ABAC.
 
-## Domain events: eighteen
+## Domain events: twenty
 
-All eighteen are registered in the three places `awcms` keeps in sync (`domain-event-runtime/domain/event-type-registry.ts`, `apps/cms/asyncapi/awcms-domain-events.asyncapi.yaml`, `commerce/module.ts`'s `events.publishes`):
+All twenty are registered in the three places `awcms` keeps in sync (`domain-event-runtime/domain/event-type-registry.ts`, `apps/cms/asyncapi/awcms-domain-events.asyncapi.yaml`, `commerce/module.ts`'s `events.publishes`):
 
 | Aggregate             | Events                                                                                                                                |
 | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
@@ -286,6 +307,7 @@ All eighteen are registered in the three places `awcms` keeps in sync (`domain-e
 | `commerce.voucher`    | `awcms.commerce.voucher.redeemed` — pre-declared as a forward reference in #26, only actually fired once #29's order path redeems one |
 | `commerce.order`      | `awcms.commerce.order.{created,paid,status_changed,cancelled,expired}`, and since #285 `awcms.commerce.payment.{recorded,reversed}` (the payment ledger rides the ORDER aggregate: one ordered stream per order; ids/tender/amounts/resulting settlement, never a customer name/phone or payment reference) |
 | `commerce.review`     | `awcms.commerce.review.published`                                                                                                     |
+| `commerce.expense` | `awcms.commerce.expense.{posted,reversed}` — (#294) each fires once, when the status actually changes (a pending submission or a rejection does not fire `posted`); payloads carry ids, tender, amount and the movement id, never the free-text description, payee or reason |
 | `commerce.register_session` | `awcms.commerce.register_session.{opened,movement_recorded,closed,corrected}` — the shift's own ordered stream (#284); `closed` fires once, only when the session actually reaches `closed`; payloads carry ids/types/amounts/variance, never a movement's free-text reference/note or a close's reason |
 
 `categories` still publishes no domain events — the same choice `tenant_admin` makes for `awcms_offices`; a soft delete is an audit-log fact, not something a downstream consumer needs to react to.
@@ -301,6 +323,8 @@ All eighteen are registered in the three places `awcms` keeps in sync (`domain-e
 | `409`  | `INSUFFICIENT_TENDER`                                                                         | POS only (#116, widened by #285): the tenders do not cover the order total (unless `allowDue`); `details.shortfall` is the `numeric(14,2)` string difference |
 | `409`  | `OVERPAYMENT` / `REVERSAL_EXCEEDS_PAYMENT` / `PAYMENT_NOT_REVERSIBLE` / `PAYMENT_NOT_SETTLED`  | Payment ledger (#285): an amount above what is owed (only cash change may exceed it); a reversal above what remains reversible; a payment that cannot be reversed; a manual `-> paid` before the ledger says the order is settled |
 | `409`  | `FEATURE_DISABLED`                                                                            | An owner route of a feature the tenant turned off (#118) — inbox, campaigns, gateway, courier, and since #116 the POS routes, and since #284 every register route (the `register` flag defaults OFF; naming a `registerId` on a POS sale while it is off is the same refusal)                          |
+| `409`  | `EXPENSE_CATEGORY_INACTIVE` / `EXPENSE_NOT_DRAFT` / `EXPENSE_NOT_POSTABLE` / `EXPENSE_NOT_PENDING` / `EXPENSE_NOT_REVERSIBLE` / `EXPENSE_NOT_ATTACHABLE` / `EXPENSE_RECEIPT_NOT_ELIGIBLE` / `EXPENSE_RECEIPT_ALREADY_USED` / `EXPENSE_RECEIPT_ALREADY_ATTACHED` / `EXPENSE_RECEIPT_UNAVAILABLE` / `EXPENSE_CATEGORY_CODE_TAKEN` / `EXPENSE_REQUIRES_EXPENSE_RECORD` | Expenses (#294): the expense's state refuses the action (a category that is deactivated or duplicated, editing/posting/discarding a non-draft, deciding what is not pending, reversing what is not posted, a receipt that is not a verified private object the caller uploaded or is already in use or attached, a receipt that can no longer be issued, a raw `expense` drawer movement while the `expenses` feature is on) |
+| `403`  | `SEGREGATION_OF_DUTIES` / `NOT_EXPENSE_OWNER` | Expenses (#294): approving an expense you created or submitted; changing a draft that is not yours without being a supervisor |
 | `409`  | `REGISTER_SESSION_REQUIRED` / `REGISTER_SESSION_CLOSING` / `NOT_SESSION_CASHIER` / `REGISTER_SESSION_ALREADY_OPEN` / `REGISTER_SESSION_NOT_OPEN` / `REGISTER_SESSION_NOT_CLOSED` / `REGISTER_CLOSE_NOT_PENDING` / `REGISTER_CODE_TAKEN` / `REGISTER_HAS_ACTIVE_SESSION` / `REGISTER_INACTIVE` / `UNKNOWN_CASHIER` / `SAME_CASHIER` | Registers and cash-up (#284): the shift's state refuses the action (no open session for a POS sale, a session being counted, another cashier's drawer, a second open session on a register, a movement/close on a non-open session, a correction on a non-closed one, a decision with nothing pending, a duplicate register code, deactivating a register that has a live session, a handover to an unknown/inactive user or to the current cashier) |
 | `409`  | `ORDER_NOT_PAYABLE` / `ORDER_NOT_CANCELLABLE`                                                 | The order's current status does not legally allow the requested action                                                                                |
 | `404`  | `NOT_FOUND`                                                                                   | Unknown resource, or — on the storefront API — a neutral refusal covering "unknown order", "wrong phone", and "belongs to another tenant" identically |

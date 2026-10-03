@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:5633d49920a6906c4617a4639aa7afe1680585bff06395854b8560e062b59b65 -->
+<!-- i18n-source-hash: sha256:b46d61f3bd4761e318832b4e283b301e06e58675ae23a9b41bb5ec32b14cbd4a -->
 
 # Architecture Decision Records
 
@@ -43,6 +43,7 @@ Yang **tidak** butuh ADR: menambah field dalam skema yang sudah diputuskan, kena
 | [0023](0023-release-images-are-built-signed-and-published-from-a-trusted-release-host.md) | Image rilis dibangun, ditandatangani, dan dipublikasikan dari release host tepercaya | Diterima |
 | [0025](0025-payments-are-an-allocation-ledger-separate-from-order-status.md) | Pembayaran adalah ledger alokasi append-only, terpisah dari status pesanan | Diterima |
 | [0028](0028-pos-register-sessions-and-cash-up.md) | Sesi register POS dan tutup kas: jumlah yang seharusnya diturunkan dari ledger pembayaran, shift yang sudah ditutup tidak dapat diubah | Diterima |
+| [0031](0031-expenses-are-commerce-local-register-linked-petty-cash.md) | Pengeluaran adalah kas kecil lokal-commerce yang terhubung ke register, bukan buku besar: pengeluaran yang diposting menambah mutasi register dan tidak pernah mengedit tutup kas | Diterima |
 
 ## Mengapa penomoran dimulai dari 0001
 
