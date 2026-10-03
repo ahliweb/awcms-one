@@ -654,6 +654,34 @@ channels:
       Producer: `commerce/application/register-cash-up.ts`'s
       `recordRegisterCorrection`. Payload: `sessionId`, `correctionId`, and
       `adjustments` (`tenderType`, `adjustment`) - never the free-text reason.
+  awcms.commerce.expense.posted:
+    address: awcms.commerce.expense.posted
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      An expense reached `posted` (Issue #294, ADR-0031): within the tenant's
+      approval threshold, or approved by someone other than its creator.
+      Producer: `commerce/application/expense-posting.ts`'s `postExpense` /
+      `decideExpense`, in the same transaction as the status change and - for
+      a drawer-paid expense - the register `expense` movement. Aggregate:
+      the expense (`commerce.expense`). Fired once; a pending submission or a
+      rejection does not fire it. Payload: `expenseId`, `categoryId`,
+      `amount`, `tenderType`, `registerSessionId`, `movementId`, `decision`
+      - never the free-text description or payee.
+  awcms.commerce.expense.reversed:
+    address: awcms.commerce.expense.reversed
+    messages:
+      DomainEvent:
+        $ref: "#/components/messages/DomainEvent"
+    description: >-
+      A posted expense was reversed with a compensating entry (Issue #294,
+      ADR-0031). Producer: `commerce/application/expense-posting.ts`'s
+      `reverseExpense`, in the same transaction as the status change and -
+      for a drawer-paid expense - the compensating register movement.
+      Aggregate: the expense. Payload: `expenseId`, `categoryId`, `amount`,
+      `tenderType`, `registerSessionId`, `reversalSessionId`, `movementId` -
+      never the free-text reason.
 operations:
   publishDomainEventRuntimeSampleRecorded:
     action: send
@@ -1033,6 +1061,18 @@ operations:
       $ref: "#/channels/awcms.commerce.register_session.corrected"
     messages:
       - $ref: "#/channels/awcms.commerce.register_session.corrected/messages/DomainEvent"
+  publishCommerceExpensePosted:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.expense.posted"
+    messages:
+      - $ref: "#/channels/awcms.commerce.expense.posted/messages/DomainEvent"
+  publishCommerceExpenseReversed:
+    action: send
+    channel:
+      $ref: "#/channels/awcms.commerce.expense.reversed"
+    messages:
+      - $ref: "#/channels/awcms.commerce.expense.reversed/messages/DomainEvent"
 components:
   messages:
     DomainEvent:

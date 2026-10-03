@@ -144,7 +144,23 @@ export const COMMERCE_REGISTER_SESSION_CLOSED_EVENT_TYPE =
 export const COMMERCE_REGISTER_SESSION_CORRECTED_EVENT_TYPE =
   "awcms.commerce.register_session.corrected";
 
+/**
+ * Expense events (Issue #294, ADR-0031). Both ride on the EXPENSE aggregate
+ * (`commerce.expense`, aggregate id = the expense id). `posted` fires once, only
+ * when an expense actually reaches `posted` (a pending submission or a
+ * rejection does not); `reversed` fires once. Payloads carry ids, the category
+ * id, the tender, the amount and the register session / movement ids - never
+ * the free-text description, payee or reason. Registered in
+ * `domain-event-runtime/domain/event-type-registry.ts` and
+ * `asyncapi/awcms-domain-events.asyncapi.yaml` in the same change.
+ */
+export const COMMERCE_EXPENSE_POSTED_EVENT_TYPE =
+  "awcms.commerce.expense.posted";
+export const COMMERCE_EXPENSE_REVERSED_EVENT_TYPE =
+  "awcms.commerce.expense.reversed";
+
 export const COMMERCE_ORDER_AGGREGATE_TYPE = "commerce.order";
+export const COMMERCE_EXPENSE_AGGREGATE_TYPE = "commerce.expense";
 export const COMMERCE_REGISTER_SESSION_AGGREGATE_TYPE =
   "commerce.register_session";
 export const COMMERCE_REVIEW_AGGREGATE_TYPE = "commerce.review";

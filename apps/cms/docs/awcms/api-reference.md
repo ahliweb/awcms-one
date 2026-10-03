@@ -9895,6 +9895,387 @@ Sets deleted_at; the slug is freed for reuse. Restore it with POST /api/v1/comme
 | 404    | Resource not found.                        | [`ApiError`](#standard-error-envelope) |
 | 409    | This entitlement has already been revoked. | [`ApiError`](#standard-error-envelope) |
 
+### `GET /api/v1/commerce/expense-categories` — Issue #294 (ADR-0031). The tenant's expense categories, active first then by code (limit 200). Gated on `commerce.expense_categories.read` and the tenant's `expenses` feature (default OFF).
+
+- **operationId**: `listCommerceExpenseCategories`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name              | In    | Required | Type   | Description                                                                   |
+| ----------------- | ----- | -------- | ------ | ----------------------------------------------------------------------------- |
+| `includeInactive` | query | no       | string | `false` hides deactivated categories; anything else (the default) lists them. |
+
+**Responses**
+
+| Status | Description                                                           | Schema                                 |
+| ------ | --------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The categories.                                                       | object                                 |
+| 401    | Missing or invalid session.                                           | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                           | [`ApiError`](#standard-error-envelope) |
+| 409    | `FEATURE_DISABLED` — the `expenses` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/expense-categories` — Issue #294 (ADR-0031). Defines an expense category. Gated on `commerce.expense_categories.create`; `code` is unique per tenant, case-insensitively.
+
+- **operationId**: `createCommerceExpenseCategory`
+- **Security**: bearerAuth + tenantHeader
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                                                            | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------------------------ | -------------------------------------- |
+| 201    | The new category.                                                                                      | object                                 |
+| 400    | `VALIDATION_ERROR`.                                                                                    | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                            | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                            | [`ApiError`](#standard-error-envelope) |
+| 409    | `EXPENSE_CATEGORY_CODE_TAKEN` or `FEATURE_DISABLED` — the `expenses` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/expense-categories/{id}` — Issue #294 (ADR-0031). One expense category. Gated on `commerce.expense_categories.read`. An unknown id and another tenant's id are the same 404.
+
+- **operationId**: `getCommerceExpenseCategory`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                                                           | Schema                                 |
+| ------ | --------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The category.                                                         | object                                 |
+| 401    | Missing or invalid session.                                           | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                           | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                   | [`ApiError`](#standard-error-envelope) |
+| 409    | `FEATURE_DISABLED` — the `expenses` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
+
+### `PATCH /api/v1/commerce/expense-categories/{id}` — Issue #294 (ADR-0031). Renames or (de)activates a category; the code never changes. Gated on `commerce.expense_categories.update`. A deactivated category accepts no NEW expense; history stays readable.
+
+- **operationId**: `updateCommerceExpenseCategory`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                           | Schema                                 |
+| ------ | --------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The updated category.                                                 | object                                 |
+| 400    | `VALIDATION_ERROR`.                                                   | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                           | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                           | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                   | [`ApiError`](#standard-error-envelope) |
+| 409    | `FEATURE_DISABLED` — the `expenses` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/expenses` — Issue #294 (ADR-0031). Expenses, keyset-paginated, newest first. Gated on `commerce.expenses.read` and the tenant's `expenses` feature (default OFF).
+
+- **operationId**: `listCommerceExpenses`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name                | In    | Required | Type                                                                 | Description                                         |
+| ------------------- | ----- | -------- | -------------------------------------------------------------------- | --------------------------------------------------- |
+| `cursor`            | query | no       | string                                                               |                                                     |
+| `status`            | query | no       | enum(`draft`, `pending_approval`, `posted`, `reversed`, `cancelled`) |                                                     |
+| `categoryId`        | query | no       | string (uuid)                                                        |                                                     |
+| `registerSessionId` | query | no       | string (uuid)                                                        |                                                     |
+| `from`              | query | no       | string (date)                                                        | Inclusive lower bound on `occurredOn` (YYYY-MM-DD). |
+| `to`                | query | no       | string (date)                                                        | Inclusive upper bound on `occurredOn` (YYYY-MM-DD). |
+
+**Responses**
+
+| Status | Description                                                                          | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------ | -------------------------------------- |
+| 200    | One page of expenses (limit 50) with an opaque `nextCursor` (null on the last page). | object                                 |
+| 400    | `VALIDATION_ERROR` (a malformed cursor, uuid, date or status).                       | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                          | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                          | [`ApiError`](#standard-error-envelope) |
+| 409    | `FEATURE_DISABLED` — the `expenses` feature is off (it defaults OFF).                | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/expenses` — Issue #294 (ADR-0031). Records a DRAFT expense. Gated on `commerce.expenses.create`; requires `Idempotency-Key`.
+
+- **operationId**: `createCommerceExpense`
+- **Security**: bearerAuth + tenantHeader
+
+A draft touches no register and no cash-up; posting is `/expenses/{id}/post`. A draft that names a `registerSessionId` must be paid in cash, name an OPEN session of this tenant, and additionally needs the `register` feature. Replaying the same key and body returns the same expense (201); a different body under that key is a conflict.
+
+**Parameters**
+
+| Name              | In     | Required | Type   | Description |
+| ----------------- | ------ | -------- | ------ | ----------- |
+| `Idempotency-Key` | header | yes      | string |             |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                                                                                                                                                               | Schema                                 |
+| ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 201    | The draft (or the stored replay).                                                                                                                                                                         | object                                 |
+| 400    | `VALIDATION_ERROR` or `IDEMPOTENCY_REQUIRED`.                                                                                                                                                             | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                                                               | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                                                               | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                                                                       | [`ApiError`](#standard-error-envelope) |
+| 409    | `EXPENSE_CATEGORY_INACTIVE`, `REGISTER_SESSION_NOT_OPEN`, `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` — the `expenses` feature is off (it defaults OFF), or the `register` feature for a drawer expense. | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/expenses/{id}` — Issue #294 (ADR-0031). One expense. Gated on `commerce.expenses.read`. An unknown id and another tenant's id are the same 404. A receipt is only ever a `hasReceipt` boolean here — read it through `/receipt-url`.
+
+- **operationId**: `getCommerceExpense`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                                                           | Schema                                 |
+| ------ | --------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The expense.                                                          | object                                 |
+| 401    | Missing or invalid session.                                           | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                           | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                   | [`ApiError`](#standard-error-envelope) |
+| 409    | `FEATURE_DISABLED` — the `expenses` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
+
+### `PATCH /api/v1/commerce/expenses/{id}` — Issue #294 (ADR-0031). Edits a DRAFT expense (any subset of the draft fields; `registerSessionId: null` detaches the drawer). Gated on `commerce.expenses.update`.
+
+- **operationId**: `updateCommerceExpense`
+- **Security**: bearerAuth + tenantHeader
+
+Only the draft's creator, or a supervisor (a caller who also holds `commerce.expense_postings.approve`), may edit it (`403 NOT_EXPENSE_OWNER`). A pending, posted, reversed or cancelled expense is frozen (`409 EXPENSE_NOT_DRAFT`), by the schema as well.
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                                                                                                                               | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The updated draft.                                                                                                                                                        | object                                 |
+| 400    | `VALIDATION_ERROR`.                                                                                                                                                       | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                               | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                               | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                                       | [`ApiError`](#standard-error-envelope) |
+| 409    | `EXPENSE_NOT_DRAFT` (`details.status`), `EXPENSE_CATEGORY_INACTIVE`, `REGISTER_SESSION_NOT_OPEN` or `FEATURE_DISABLED` — the `expenses` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/expenses/{id}/cancel` — Issue #294 (ADR-0031). Discards a DRAFT expense (terminal `cancelled`). Gated on `commerce.expenses.update`; requires `Idempotency-Key`. Only the creator or a supervisor; a posted expense is reversed, never deleted.
+
+- **operationId**: `cancelCommerceExpense`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name              | In     | Required | Type          | Description |
+| ----------------- | ------ | -------- | ------------- | ----------- |
+| `id`              | path   | yes      | string (uuid) |             |
+| `Idempotency-Key` | header | yes      | string        |             |
+
+**Responses**
+
+| Status | Description                                                                                                                             | Schema                                 |
+| ------ | --------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The cancelled expense (or the stored replay).                                                                                           | object                                 |
+| 400    | `IDEMPOTENCY_REQUIRED`.                                                                                                                 | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                             | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                             | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 409    | `EXPENSE_NOT_DRAFT` (`details.status`), `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` — the `expenses` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/expenses/{id}/decision` — Issue #294 (ADR-0031). Approves or rejects a `pending_approval` expense. Gated on `commerce.expense_postings.approve` (a high-risk verb); requires `Idempotency-Key`.
+
+- **operationId**: `decideCommerceExpense`
+- **Security**: bearerAuth + tenantHeader
+
+Segregation of duties: an expense cannot be approved by the person who created it or by the person who submitted it (`403 SEGREGATION_OF_DUTIES`, `details.reason`). Approving posts it — a drawer-paid expense appends its register movement with the APPROVER as the movement's actor, and `409 REGISTER_SESSION_NOT_OPEN` leaves it pending when the session has since closed. Rejecting needs a `note` and returns the expense to `draft`.
+
+**Parameters**
+
+| Name              | In     | Required | Type          | Description |
+| ----------------- | ------ | -------- | ------------- | ----------- |
+| `id`              | path   | yes      | string (uuid) |             |
+| `Idempotency-Key` | header | yes      | string        |             |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                                                                                                                            | Schema                                 |
+| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The expense and the outcome (or the stored replay).                                                                                                                    | object                                 |
+| 400    | `VALIDATION_ERROR` or `IDEMPOTENCY_REQUIRED`.                                                                                                                          | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                            | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                            | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                                    | [`ApiError`](#standard-error-envelope) |
+| 409    | `EXPENSE_NOT_PENDING` (`details.status`), `REGISTER_SESSION_NOT_OPEN`, `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` — the `expenses` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/expenses/{id}/post` — Issue #294 (ADR-0031). Submits a draft for posting. Gated on `commerce.expense_postings.create`; requires `Idempotency-Key`.
+
+- **operationId**: `postCommerceExpense`
+- **Security**: bearerAuth + tenantHeader
+
+Within the tenant's `expenses.approvalThreshold` the expense is posted outright (`outcome: posted`, decision `auto`). Above it, a caller who ALSO holds `commerce.expense_postings.approve` and did not create the expense posts it in one step (decision `approved`); anyone else leaves it `pending_approval` for a second person. Posting a drawer-paid expense appends a register `expense` cash-out movement to its session (409 `REGISTER_SESSION_NOT_OPEN` when it is not open) — it never edits a cash-up total — and emits `awcms.commerce.expense.posted` once. Idempotent: the same key replays the stored answer; a new key on an already-posted expense is `409 EXPENSE_NOT_POSTABLE`.
+
+**Parameters**
+
+| Name              | In     | Required | Type          | Description |
+| ----------------- | ------ | -------- | ------------- | ----------- |
+| `id`              | path   | yes      | string (uuid) |             |
+| `Idempotency-Key` | header | yes      | string        |             |
+
+**Responses**
+
+| Status | Description                                                                                                                                                                                          | Schema                                 |
+| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The expense and the outcome (or the stored replay).                                                                                                                                                  | object                                 |
+| 400    | `IDEMPOTENCY_REQUIRED`.                                                                                                                                                                              | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                                                          | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                                                          | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                                                                  | [`ApiError`](#standard-error-envelope) |
+| 409    | `EXPENSE_NOT_POSTABLE` (`details.status`), `EXPENSE_CATEGORY_INACTIVE`, `REGISTER_SESSION_NOT_OPEN`, `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` — the `expenses` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/expenses/{id}/receipt` — Issue #294 (ADR-0031). Attaches a PRIVATE receipt (a media-library object) to an expense. Gated on `commerce.expense_receipts.create`.
+
+- **operationId**: `attachCommerceExpenseReceipt`
+- **Security**: bearerAuth + tenantHeader
+
+The object must exist in this tenant, be `visibility: private`, verified, and uploaded by the CALLER (a confused-deputy guard — otherwise any private object could be attached and read back); it must not already be a receipt or a product's protected download. A draft's receipt may be replaced by its creator or a supervisor; a posted or reversed expense accepts one once and never replaces it. The object is never returned — read it through `/receipt-url`.
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                                                                                                                                                           | Schema                                 |
+| ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The expense (`hasReceipt: true`).                                                                                                                                                                     | object                                 |
+| 400    | `VALIDATION_ERROR`.                                                                                                                                                                                   | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                                                           | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                                                           | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                                                                   | [`ApiError`](#standard-error-envelope) |
+| 409    | `EXPENSE_RECEIPT_NOT_ELIGIBLE`, `EXPENSE_RECEIPT_ALREADY_USED`, `EXPENSE_RECEIPT_ALREADY_ATTACHED`, `EXPENSE_NOT_ATTACHABLE` or `FEATURE_DISABLED` — the `expenses` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/expenses/{id}/receipt-url` — Issue #294 (ADR-0031). A short-lived presigned GET URL for the expense's PRIVATE receipt. Gated on `commerce.expense_receipts.read` — not implied by `commerce.expenses.read`.
+
+- **operationId**: `getCommerceExpenseReceiptUrl`
+- **Security**: bearerAuth + tenantHeader
+
+Resolves the object server-side from THIS expense (never a caller-supplied media id), re-verifies on every call that it is still a verified private object, audits the issuance decision (`media.download`), and answers `Cache-Control: no-store`. Fails closed: no receipt is a 404, a public-by-mistake or unavailable object is `409 EXPENSE_RECEIPT_UNAVAILABLE`, an unconfigured storage is `502 PROVIDER_ERROR`.
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                                                                                            | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------------------------ | -------------------------------------- |
+| 200    | The URL and its expiry.                                                                                | object                                 |
+| 401    | Missing or invalid session.                                                                            | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                            | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                    | [`ApiError`](#standard-error-envelope) |
+| 409    | `EXPENSE_RECEIPT_UNAVAILABLE` or `FEATURE_DISABLED` — the `expenses` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
+| 502    | `PROVIDER_ERROR` — media storage is not configured.                                                    | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/expenses/{id}/reverse` — Issue #294 (ADR-0031). Reverses a POSTED expense with a compensating entry. Gated on `commerce.expense_reversals.approve` (a high-risk verb); requires `Idempotency-Key` and a `reason`.
+
+- **operationId**: `reverseCommerceExpense`
+- **Security**: bearerAuth + tenantHeader
+
+A drawer-paid expense appends a `correction` cash-IN movement for the same amount — to its own session when still open, else to the open session of the SAME register — and never edits the original movement or a closed cash-up. With no open session on the register it is refused (`409 REGISTER_SESSION_REQUIRED`). Emits `awcms.commerce.expense.reversed` once. A reversed expense is terminal.
+
+**Parameters**
+
+| Name              | In     | Required | Type          | Description |
+| ----------------- | ------ | -------- | ------------- | ----------- |
+| `id`              | path   | yes      | string (uuid) |             |
+| `Idempotency-Key` | header | yes      | string        |             |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                                                                                                                               | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The expense and the outcome (or the stored replay).                                                                                                                       | object                                 |
+| 400    | `VALIDATION_ERROR` or `IDEMPOTENCY_REQUIRED`.                                                                                                                             | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                               | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                               | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                                       | [`ApiError`](#standard-error-envelope) |
+| 409    | `EXPENSE_NOT_REVERSIBLE` (`details.status`), `REGISTER_SESSION_REQUIRED`, `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` — the `expenses` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/expenses/export.csv` — Issue #294 (ADR-0031). The expenses of a date range as CSV. Gated on `commerce.expenses.export` — the high-risk `export` verb; reading expenses grants none.
+
+- **operationId**: `exportCommerceExpensesCsv`
+- **Security**: bearerAuth + tenantHeader
+
+Every cell is spreadsheet-formula-neutralised (a leading `=`, `+`, `-`, `@`, tab or carriage return is prefixed with `'`; a strictly numeric amount keeps its sign). No receipt URL, media key or customer datum appears. Bounded: at most 366 days and 10,000 rows; `X-Export-Truncated: true` says a longer range was cut, never silently. `Cache-Control: no-store`.
+
+**Parameters**
+
+| Name   | In    | Required | Type          | Description |
+| ------ | ----- | -------- | ------------- | ----------- |
+| `from` | query | yes      | string (date) |             |
+| `to`   | query | yes      | string (date) |             |
+
+**Responses**
+
+| Status | Description                                                             | Schema                                 |
+| ------ | ----------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The CSV.                                                                | string                                 |
+| 400    | `VALIDATION_ERROR` (a missing, malformed, inverted or over-long range). | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                             | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                             | [`ApiError`](#standard-error-envelope) |
+| 409    | `FEATURE_DISABLED` — the `expenses` feature is off (it defaults OFF).   | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/expenses/summary` — Issue #294 (ADR-0031). The expense summary of a date range: posted and reversed totals by category and tender, plus draft / pending counts. Gated on `commerce.expenses.read`.
+
+- **operationId**: `getCommerceExpenseSummary`
+- **Security**: bearerAuth + tenantHeader
+
+Only POSTED expenses count as spent; REVERSED ones are reported beside them (never netted away); drafts and pending approvals are counted but belong to no total. All sums are exact `numeric(14,2)` strings (integer cents). `from` and `to` are required and the range spans at most 366 days.
+
+**Parameters**
+
+| Name   | In    | Required | Type          | Description |
+| ------ | ----- | -------- | ------------- | ----------- |
+| `from` | query | yes      | string (date) |             |
+| `to`   | query | yes      | string (date) |             |
+
+**Responses**
+
+| Status | Description                                                             | Schema                                 |
+| ------ | ----------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The summary.                                                            | object                                 |
+| 400    | `VALIDATION_ERROR` (a missing, malformed, inverted or over-long range). | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                             | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                             | [`ApiError`](#standard-error-envelope) |
+| 409    | `FEATURE_DISABLED` — the `expenses` feature is off (it defaults OFF).   | [`ApiError`](#standard-error-envelope) |
+
 ### `GET /api/v1/commerce/flash-sales` — List flash sales (Issue 26). Keyset-paginated, newest first. Gated on flash_sales.read.
 
 - **operationId**: `listCommerceFlashSales`
@@ -11002,7 +11383,7 @@ Allowed for the session's CURRENT cashier, or for a supervisor holding `commerce
 - **operationId**: `recordCommerceRegisterMovement`
 - **Security**: bearerAuth + tenantHeader
 
-Append-only and cash only. `cash_in` is always `in`; `cash_out`, `safe_drop` and `expense` are always `out`; `transfer` and `correction` must say `direction`. An `expense`/`transfer` needs a `reference`, a `correction` a `note`. The `reference` is FREE TEXT today — the typed reference to the expenses domain (#294) is a documented hook, not yet a field. Only the session's current cashier may record one. Emits `awcms.commerce.register_session.movement_recorded` (never the free text).
+Append-only and cash only. `cash_in` is always `in`; `cash_out`, `safe_drop` and `expense` are always `out`; `transfer` and `correction` must say `direction`. An `expense`/`transfer` needs a `reference`, a `correction` a `note`. The `reference` here is FREE TEXT. Since Issue #294 (ADR-0031) a tenant whose `expenses` feature is ON records expenses through the expenses domain, whose posting appends the typed `expense` movement itself — so a raw `expense` movement is refused there (`409 EXPENSE_REQUIRES_EXPENSE_RECORD`): it would bypass the approval threshold. With the feature OFF (the default) nothing changes. Only the session's current cashier may record one. Emits `awcms.commerce.register_session.movement_recorded` (never the free text).
 
 **Parameters**
 
@@ -11015,14 +11396,14 @@ Append-only and cash only. `cash_in` is always `in`; `cash_out`, `safe_drop` and
 
 **Responses**
 
-| Status | Description                                                                                                                                                                     | Schema                                 |
-| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
-| 201    | The movement (or the stored replay).                                                                                                                                            | object                                 |
-| 400    | `VALIDATION_ERROR` or `IDEMPOTENCY_REQUIRED`.                                                                                                                                   | [`ApiError`](#standard-error-envelope) |
-| 401    | Missing or invalid session.                                                                                                                                                     | [`ApiError`](#standard-error-envelope) |
-| 403    | Access denied by RBAC/ABAC.                                                                                                                                                     | [`ApiError`](#standard-error-envelope) |
-| 404    | Resource not found.                                                                                                                                                             | [`ApiError`](#standard-error-envelope) |
-| 409    | `REGISTER_SESSION_NOT_OPEN` (`details.status`), `NOT_SESSION_CASHIER`, `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` — the tenant's `register` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                                                                                                                                                                                   | Schema                                 |
+| ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 201    | The movement (or the stored replay).                                                                                                                                                                                                                                          | object                                 |
+| 400    | `VALIDATION_ERROR` or `IDEMPOTENCY_REQUIRED`.                                                                                                                                                                                                                                 | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                                                                                                                                   | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                                                                                                                                   | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                                                                                                                                           | [`ApiError`](#standard-error-envelope) |
+| 409    | `REGISTER_SESSION_NOT_OPEN` (`details.status`), `NOT_SESSION_CASHIER`, `EXPENSE_REQUIRES_EXPENSE_RECORD` (an `expense` movement while the `expenses` feature is on), `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` — the tenant's `register` feature is off (it defaults OFF). | [`ApiError`](#standard-error-envelope) |
 
 ### `GET /api/v1/commerce/register-sessions/{id}/report.csv` — Issue #284 (ADR-0028). The session's cash-up as CSV: summary, per-tender expected/counted/difference, every movement and every correction. Gated on `commerce.register_sessions.export` (the platform's high-risk `export` verb).
 
@@ -15792,7 +16173,7 @@ consumer/subscriber contract in this file).
 }
 ```
 
-### Channels (62)
+### Channels (64)
 
 - `awcms.blog-content.ad.created` — An advertisement was created. Documented contract only; producer is `pages/api/v1/blog/ads/index.ts`'s `blog-content.ad.created` log line.
 - `awcms.blog-content.ad.deleted` — An advertisement was soft-deleted. Documented contract only; producer is `pages/api/v1/blog/ads/[id].ts`'s `blog-content.ad.deleted` log line.
@@ -15824,6 +16205,8 @@ consumer/subscriber contract in this file).
 - `awcms.comments.comment.approved` — A comment became publicly visible, either by auto-approval under the thread policy or by a moderator's approve decision. Producers: `comments/application/comment-service.ts`'s `submitComment` and `comments/application/comment-moderation.ts`'s `moderateComment`. The reply-notification consumer keys off THIS event rather than `comment.submitted`, so a comment still held for moderation never triggers a notification.
 - `awcms.comments.comment.submitted` — A comment was submitted against a published, public commentable resource (ADR-0041). Producer: `comments/application/comment-service.ts`'s `submitComment`. The payload carries opaque references only — comment and thread id, resource type, the server-derived public URL, and the resulting status. Never the body text, the author address, or any identity hash.
 - `awcms.comments.reply.created` — A submitted comment was a reply to an existing comment. Producer: `comments/application/comment-service.ts`'s `submitComment`, published alongside `comment.submitted` so a consumer can distinguish thread replies without re-reading the row. The recipient address is resolved from encrypted storage by the dispatcher at send time and is never carried here.
+- `awcms.commerce.expense.posted` — An expense reached `posted` (Issue #294, ADR-0031): within the tenant's approval threshold, or approved by someone other than its creator. Producer: `commerce/application/expense-posting.ts`'s `postExpense` / `decideExpense`, in the same transaction as the status change and - for a drawer-paid expense - the register `expense` movement. Aggregate: the expense (`commerce.expense`). Fired once; a pending submission or a rejection does not fire it. Payload: `expenseId`, `categoryId`, `amount`, `tenderType`, `registerSessionId`, `movementId`, `decision` - never the free-text description or payee.
+- `awcms.commerce.expense.reversed` — A posted expense was reversed with a compensating entry (Issue #294, ADR-0031). Producer: `commerce/application/expense-posting.ts`'s `reverseExpense`, in the same transaction as the status change and - for a drawer-paid expense - the compensating register movement. Aggregate: the expense. Payload: `expenseId`, `categoryId`, `amount`, `tenderType`, `registerSessionId`, `reversalSessionId`, `movementId` - never the free-text reason.
 - `awcms.commerce.flash_sale.ended` — A flash sale's derived status crossed into `ended` (`now()` passed `ends_at`). Producer: `commerce/application/flash-sale-directory.ts`'s `tickFlashSalesForTenant`, run by the scheduled `commerce:flash-sales:tick` job.
 - `awcms.commerce.flash_sale.started` — A flash sale's derived status crossed into `active` (`now()` entered `[starts_at, ends_at]`). Producer: `commerce/application/flash-sale-directory.ts`'s `tickFlashSalesForTenant`, run by the scheduled `commerce:flash-sales:tick` job — never a direct admin `PATCH`.
 - `awcms.commerce.order.cancelled` — An order was cancelled, by the customer (while `pending_payment`) or an admin. Producer: `commerce/application/order-directory.ts`'s `transitionOrderStatus`, published alongside `commerce.order.status_changed`; its line items are restocked and any redeemed voucher un-redeemed in the same transaction.

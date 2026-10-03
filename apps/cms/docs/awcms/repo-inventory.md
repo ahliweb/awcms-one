@@ -8,12 +8,12 @@
 | Aspect                              | Value |
 | ----------------------------------- | ----- |
 | Registered modules                  | 26    |
-| Migrations                          | 216   |
-| `awcms_*` tables                    | 215   |
-| Tables with `FORCE` RLS             | 197   |
+| Migrations                          | 220   |
+| `awcms_*` tables                    | 217   |
+| Tables with `FORCE` RLS             | 199   |
 | RLS-free tables (global, by design) | 18    |
-| Test files                          | 607   |
-| Route files                         | 565   |
+| Test files                          | 611   |
+| Route files                         | 578   |
 | ADR                                 | 250   |
 
 ### Modules
@@ -267,6 +267,10 @@
 | 214 | `sql/971_awcms_commerce_register_stamping.sql`                              |
 | 215 | `sql/972_awcms_commerce_register_permissions.sql`                           |
 | 216 | `sql/973_awcms_commerce_register_worker_grants.sql`                         |
+| 217 | `sql/990_awcms_commerce_expenses_schema.sql`                                |
+| 218 | `sql/991_awcms_commerce_expenses_register_link.sql`                         |
+| 219 | `sql/992_awcms_commerce_expenses_permissions.sql`                           |
+| 220 | `sql/993_awcms_commerce_expenses_worker_grants.sql`                         |
 
 ### Tables & Row-Level Security
 
@@ -319,6 +323,8 @@
 | `awcms_commerce_customer_sessions`          | `sql/917_awcms_commerce_customer_accounts_schema.sql`      | yes | yes   |
 | `awcms_commerce_customers`                  | `sql/913_awcms_commerce_customers_orders_schema.sql`       | yes | yes   |
 | `awcms_commerce_entitlements`               | `sql/936_awcms_commerce_entitlements_schema.sql`           | yes | yes   |
+| `awcms_commerce_expense_categories`         | `sql/990_awcms_commerce_expenses_schema.sql`               | yes | yes   |
+| `awcms_commerce_expenses`                   | `sql/990_awcms_commerce_expenses_schema.sql`               | yes | yes   |
 | `awcms_commerce_flash_sale_products`        | `sql/909_awcms_commerce_marketing_schema.sql`              | yes | yes   |
 | `awcms_commerce_flash_sales`                | `sql/909_awcms_commerce_marketing_schema.sql`              | yes | yes   |
 | `awcms_commerce_messages`                   | `sql/927_awcms_commerce_conversations_schema.sql`          | yes | yes   |
@@ -492,17 +498,17 @@
 
 | Directory     | Test files |
 | ------------- | ---------- |
-| `(root)`      | 479        |
+| `(root)`      | 481        |
 | `e2e`         | 20         |
-| `integration` | 107        |
+| `integration` | 109        |
 | `unit`        | 1          |
 
 ### Routes
 
 | Surface         | Files |
 | --------------- | ----- |
-| `/api/v1/**`    | 450   |
-| `/admin/**`     | 85    |
+| `/api/v1/**`    | 462   |
+| `/admin/**`     | 86    |
 | publik / anonim | 30    |
 
 <!-- END GENERATED: repo-inventory -->

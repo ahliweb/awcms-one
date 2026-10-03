@@ -996,7 +996,24 @@ export const READER_BUDGET_BYTES = 24_000;
  * raise above; re-measure on the next commerce screen and tighten if the real
  * total sits well below this.
  */
-export const APP_BUDGET_BYTES = 300_700;
+/**
+ * **Raised to 305,000 B for Issue #294** (register-linked expenses, ADR-0031) —
+ * one new admin screen, `commerce-expenses.astro`, and nothing else on the
+ * client: its single `<script>` (the draft form, the per-row post / approve /
+ * reject / reverse / discard / receipt actions, the category form and the
+ * threshold form) plus its share of `admin-screens.css`. No new shared
+ * primitive and no new CSS file: every mutation goes through
+ * `admin-form-client.ts` (`onSubmit` / `onAction` / `sendJson` /
+ * `messageBox`) and the shared confirm dialog's note variant
+ * (`confirmFromTriggerWithNote`, which carries the reject / reverse reason and
+ * the receipt id), and every string reaches the script as a `data-msg-*`
+ * attribute (the SSR-only catalogue entries add nothing here). The CSV export
+ * is a plain GET form, no script. Measured clean build: 304,685 B (up from
+ * 300,423 B). 305,000 keeps the same tight "measured + small margin"
+ * convention as every raise above; re-measure on the next commerce screen and
+ * tighten if the real total sits well below this.
+ */
+export const APP_BUDGET_BYTES = 305_000;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.

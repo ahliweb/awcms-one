@@ -89,7 +89,7 @@ async function enforcedTriples(
 }
 
 describe("commerce module descriptor — restore is declared for both activity codes", () => {
-  test("sixty-seven permissions total — five per catalog activity code (incl. restore), four per marketing code, two for settings, two each for orders/customers/affiliates/affiliate_commissions/conversations/entitlements, three for reviews, one for whatsapp, three for campaigns, one for webhook_endpoints, one for pos, one for pos_due, three for payments, ten for registers/cash-up", () => {
+  test("seventy-nine permissions total — five per catalog activity code (incl. restore), four per marketing code, two for settings, two each for orders/customers/affiliates/affiliate_commissions/conversations/entitlements, three for reviews, one for whatsapp, three for campaigns, one for webhook_endpoints, one for pos, one for pos_due, three for payments, ten for registers/cash-up, twelve for expenses", () => {
     // Issue #23: categories/products carry read/create/update/delete/restore.
     // Issue #26: flash_sales/vouchers/sliders/testimonials/popups carry
     // read/create/update/delete (soft delete only, no restore — the marketing
@@ -126,8 +126,29 @@ describe("commerce module descriptor — restore is declared for both activity c
     // Issue #284: registers carries read/create/update, register_sessions
     // read/create/update/export, register_cash_ups create/approve and
     // register_corrections approve (ten keys, none implied by pos.create).
+    // Issue #294: expense_categories read/create/update, expenses
+    // read/create/update/export, expense_postings create/approve,
+    // expense_reversals approve and expense_receipts read/create (twelve keys,
+    // none implied by register_sessions.update or pos.create).
     expect(declared.size).toBe(
-      2 * 5 + 5 * 4 + 2 + 2 + 2 + 3 + 2 + 2 + 1 + 2 + 3 + 1 + 1 + 2 + 1 + 3 + 10
+      2 * 5 +
+        5 * 4 +
+        2 +
+        2 +
+        2 +
+        3 +
+        2 +
+        2 +
+        1 +
+        2 +
+        3 +
+        1 +
+        1 +
+        2 +
+        1 +
+        3 +
+        10 +
+        12
     );
 
     for (const activityCode of ["categories", "products"]) {
@@ -638,5 +659,135 @@ describe("register screens' permission gates (Issue #284)", () => {
       expect(source).toContain(`"${code}"`);
     }
     expect(source).toContain("PosRegisterSessionError");
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Issue #294 — register-linked expenses (ADR-0031)
+// ---------------------------------------------------------------------------
+
+const EXPENSES_PAGE = "src/pages/admin/commerce-expenses.astro";
+const EXPENSE_ROUTES = [
+  "src/pages/api/v1/commerce/expense-categories/index.ts",
+  "src/pages/api/v1/commerce/expense-categories/[id].ts",
+  "src/pages/api/v1/commerce/expenses/index.ts",
+  "src/pages/api/v1/commerce/expenses/[id]/index.ts",
+  "src/pages/api/v1/commerce/expenses/[id]/post.ts",
+  "src/pages/api/v1/commerce/expenses/[id]/decision.ts",
+  "src/pages/api/v1/commerce/expenses/[id]/reverse.ts",
+  "src/pages/api/v1/commerce/expenses/[id]/cancel.ts",
+  "src/pages/api/v1/commerce/expenses/[id]/receipt.ts",
+  "src/pages/api/v1/commerce/expenses/[id]/receipt-url.ts",
+  "src/pages/api/v1/commerce/expenses/summary.ts",
+  "src/pages/api/v1/commerce/expenses/export.csv.ts"
+];
+const EXPENSE_ACTIVITY_CODES = [
+  ["COMMERCE_EXPENSE_CATEGORIES_ACTIVITY_CODE", "expense_categories"],
+  ["COMMERCE_EXPENSES_ACTIVITY_CODE", "expenses"],
+  ["COMMERCE_EXPENSE_POSTINGS_ACTIVITY_CODE", "expense_postings"],
+  ["COMMERCE_EXPENSE_REVERSALS_ACTIVITY_CODE", "expense_reversals"],
+  ["COMMERCE_EXPENSE_RECEIPTS_ACTIVITY_CODE", "expense_receipts"]
+] as const;
+
+async function enforcedExpenseTriples(): Promise<Set<Triple>> {
+  const enforced = new Set<Triple>();
+  for (const [constant, code] of EXPENSE_ACTIVITY_CODES) {
+    for (const triple of await enforcedTriples(
+      EXPENSE_ROUTES,
+      constant,
+      code
+    )) {
+      enforced.add(triple);
+    }
+  }
+  return enforced;
+}
+
+describe("expense screen and routes (Issue #294)", () => {
+  test("every one of the twelve expense permissions is enforced by a route", async () => {
+    const enforced = await enforcedExpenseTriples();
+    const declared = [...declaredTriples()].filter((key) =>
+      EXPENSE_ACTIVITY_CODES.some(([, code]) =>
+        key.startsWith(`commerce.${code}.`)
+      )
+    );
+    expect(declared).toHaveLength(12);
+    expect(declared.filter((key) => !enforced.has(key))).toEqual([]);
+  });
+
+  test("the screen claims only declared permissions, each enforced by an endpoint behind it", async () => {
+    const page = await readFile(EXPENSES_PAGE, "utf8");
+    const claimed = pageTriplesFrom(page);
+    const declared = declaredTriples();
+    expect([...claimed].filter((key) => !declared.has(key))).toEqual([]);
+
+    const enforced = await enforcedExpenseTriples();
+    // The register session read is the one key the screen borrows from #284 (the
+    // drawer picker); the generic settings guard is module_management's own.
+    const borrowed = new Set<Triple>(["commerce.register_sessions.read"]);
+    expect(
+      [...claimed].filter((key) => !enforced.has(key) && !borrowed.has(key))
+    ).toEqual([]);
+    expect(page).toContain("MODULE_SETTINGS_UPDATE_GUARD");
+    expect(page).toContain("fetchCommerceFeatures(");
+    expect(page).toContain("listExpenses(");
+  });
+
+  test("the screen never writes raw SQL or innerHTML, never uses window.confirm, and every mutation carries an Idempotency-Key", async () => {
+    const page = await readFile(EXPENSES_PAGE, "utf8");
+    expect(page).not.toMatch(
+      /\b(INSERT\s+INTO|UPDATE\s+awcms_|DELETE\s+FROM)/i
+    );
+    expect(page).not.toMatch(/\.innerHTML\s*=/);
+    expect(page).not.toContain("window.confirm");
+    expect(page).toContain('"Idempotency-Key"');
+    for (const suffix of [
+      "/post",
+      "/decision",
+      "/reverse",
+      "/cancel",
+      "/receipt"
+    ]) {
+      expect(page).toContain("`${base}" + suffix + "`");
+    }
+    expect(page).toContain('"/api/v1/commerce/expenses"');
+    expect(page).toContain("confirmFromTriggerWithNote");
+  });
+
+  test("the sidebar entry points at the screen, is gated on expense read, and requires the expenses feature", () => {
+    const nav = listModules()
+      .find((module) => module.key === "commerce")
+      ?.navigation?.find((entry) => entry.path === "/admin/commerce-expenses");
+    expect(nav).toBeDefined();
+    expect(nav!.requiredPermission).toBe("commerce.expenses.read");
+    expect(declaredTriples().has(nav!.requiredPermission as Triple)).toBe(true);
+    expect(nav!.requiredFeature).toEqual({
+      moduleKey: "commerce",
+      feature: "expenses"
+    });
+  });
+
+  test("every expense route is feature-gated, and the receipt is resolved from the expense, never from the request", async () => {
+    for (const route of EXPENSE_ROUTES) {
+      const source = await readFile(route, "utf8");
+      expect(source).toContain("requireExpenseFeature(");
+    }
+    const receiptUrl = await readFile(
+      "src/pages/api/v1/commerce/expenses/[id]/receipt-url.ts",
+      "utf8"
+    );
+    // The object is resolved from THE EXPENSE, never from the request.
+    expect(receiptUrl).toContain("fetchExpenseReceiptObjectId(");
+    expect(receiptUrl).not.toContain("searchParams");
+    expect(receiptUrl).not.toContain("request.json");
+    expect(receiptUrl).toContain("recordMediaDownloadIssuance(");
+  });
+
+  test("the raw expense movement refusal is wired into the movements route", async () => {
+    const source = await readFile(
+      "src/pages/api/v1/commerce/register-sessions/[id]/movements.ts",
+      "utf8"
+    );
+    expect(source).toContain("EXPENSE_REQUIRES_EXPENSE_RECORD");
   });
 });

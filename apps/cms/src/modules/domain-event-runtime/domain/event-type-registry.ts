@@ -121,6 +121,11 @@ export const COMMERCE_REGISTER_SESSION_CLOSED_EVENT_TYPE =
   "awcms.commerce.register_session.closed";
 export const COMMERCE_REGISTER_SESSION_CORRECTED_EVENT_TYPE =
   "awcms.commerce.register_session.corrected";
+/** Issue #294 (ADR-0031) — expense events. */
+export const COMMERCE_EXPENSE_POSTED_EVENT_TYPE =
+  "awcms.commerce.expense.posted";
+export const COMMERCE_EXPENSE_REVERSED_EVENT_TYPE =
+  "awcms.commerce.expense.reversed";
 
 export const DOMAIN_EVENT_TYPE_REGISTRY: readonly RegisteredDomainEventType[] =
   [
@@ -301,6 +306,18 @@ export const DOMAIN_EVENT_TYPE_REGISTRY: readonly RegisteredDomainEventType[] =
       eventVersion: COMMERCE_EVENT_VERSION,
       description:
         "A compensating correction was recorded against a closed register session (the original cash-up is preserved). Producer: commerce/application/register-cash-up.ts's recordRegisterCorrection. Carries the per-tender adjustments, never the free-text reason."
+    },
+    {
+      eventType: COMMERCE_EXPENSE_POSTED_EVENT_TYPE,
+      eventVersion: COMMERCE_EVENT_VERSION,
+      description:
+        "An expense reached posted (within the approval threshold, or approved by someone other than its creator). Producer: commerce/application/expense-posting.ts's postExpense / decideExpense, in the same transaction as the status change and - for a drawer-paid expense - the register expense movement. Fired once; a pending submission or a rejection does not fire it. Carries ids, tender, amount and the movement id - never the free-text description or payee."
+    },
+    {
+      eventType: COMMERCE_EXPENSE_REVERSED_EVENT_TYPE,
+      eventVersion: COMMERCE_EVENT_VERSION,
+      description:
+        "A posted expense was reversed with a compensating entry. Producer: commerce/application/expense-posting.ts's reverseExpense, in the same transaction as the status change and - for a drawer-paid expense - the compensating register movement. Carries ids, tender, amount and the compensating movement id - never the free-text reason."
     }
   ];
 

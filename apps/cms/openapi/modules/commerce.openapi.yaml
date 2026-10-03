@@ -3513,9 +3513,13 @@ paths:
         Append-only and cash only. `cash_in` is always `in`; `cash_out`,
         `safe_drop` and `expense` are always `out`; `transfer` and `correction`
         must say `direction`. An `expense`/`transfer` needs a `reference`, a
-        `correction` a `note`. The `reference` is FREE TEXT today — the typed
-        reference to the expenses domain (#294) is a documented hook, not yet a
-        field. Only the session's current cashier may record one. Emits
+        `correction` a `note`. The `reference` here is FREE TEXT. Since Issue
+        #294 (ADR-0031) a tenant whose `expenses` feature is ON records expenses
+        through the expenses domain, whose posting appends the typed `expense`
+        movement itself — so a raw `expense` movement is refused there
+        (`409 EXPENSE_REQUIRES_EXPENSE_RECORD`): it would bypass the approval
+        threshold. With the feature OFF (the default) nothing changes. Only the
+        session's current cashier may record one. Emits
         `awcms.commerce.register_session.movement_recorded` (never the free
         text).
       parameters:
@@ -3593,7 +3597,7 @@ paths:
         "404":
           $ref: "#/components/responses/NotFound"
         "409":
-          description: "`REGISTER_SESSION_NOT_OPEN` (`details.status`), `NOT_SESSION_CASHIER`, `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` — the tenant's `register` feature is off (it defaults OFF)."
+          description: "`REGISTER_SESSION_NOT_OPEN` (`details.status`), `NOT_SESSION_CASHIER`, `EXPENSE_REQUIRES_EXPENSE_RECORD` (an `expense` movement while the `expenses` feature is on), `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` — the tenant's `register` feature is off (it defaults OFF)."
           content:
             application/json:
               schema:
@@ -7454,6 +7458,995 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "403":
           $ref: "#/components/responses/Forbidden"
+  /api/v1/commerce/expense-categories:
+    get:
+      operationId: listCommerceExpenseCategories
+      tags:
+        - Commerce
+      summary: "Issue #294 (ADR-0031). The tenant's expense categories, active first then by code (limit 200). Gated on `commerce.expense_categories.read` and the tenant's `expenses` feature (default OFF)."
+      parameters:
+        - name: includeInactive
+          in: query
+          required: false
+          description: "`false` hides deactivated categories; anything else (the default) lists them."
+          schema:
+            type: string
+      responses:
+        "200":
+          description: "The categories."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/CommerceExpenseCategory"
+
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: "`FEATURE_DISABLED` — the `expenses` feature is off (it defaults OFF)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+    post:
+      operationId: createCommerceExpenseCategory
+      tags:
+        - Commerce
+      summary: "Issue #294 (ADR-0031). Defines an expense category. Gated on `commerce.expense_categories.create`; `code` is unique per tenant, case-insensitively."
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - code
+                - name
+              properties:
+                code:
+                  type: string
+                  maxLength: 40
+                  description: Letters, digits, '.', '_' and '-'; starts with a letter or digit.
+                name:
+                  type: string
+                  maxLength: 120
+      responses:
+        "201":
+          description: "The new category."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceExpenseCategory"
+        "400":
+          description: "`VALIDATION_ERROR`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: "`EXPENSE_CATEGORY_CODE_TAKEN` or `FEATURE_DISABLED` — the `expenses` feature is off (it defaults OFF)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/expense-categories/{id}:
+    get:
+      operationId: getCommerceExpenseCategory
+      tags:
+        - Commerce
+      summary: "Issue #294 (ADR-0031). One expense category. Gated on `commerce.expense_categories.read`. An unknown id and another tenant's id are the same 404."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: "The category."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceExpenseCategory"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`FEATURE_DISABLED` — the `expenses` feature is off (it defaults OFF)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+    patch:
+      operationId: updateCommerceExpenseCategory
+      tags:
+        - Commerce
+      summary: "Issue #294 (ADR-0031). Renames or (de)activates a category; the code never changes. Gated on `commerce.expense_categories.update`. A deactivated category accepts no NEW expense; history stays readable."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  maxLength: 120
+                active:
+                  type: boolean
+      responses:
+        "200":
+          description: "The updated category."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceExpenseCategory"
+        "400":
+          description: "`VALIDATION_ERROR`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`FEATURE_DISABLED` — the `expenses` feature is off (it defaults OFF)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/expenses:
+    get:
+      operationId: listCommerceExpenses
+      tags:
+        - Commerce
+      summary: "Issue #294 (ADR-0031). Expenses, keyset-paginated, newest first. Gated on `commerce.expenses.read` and the tenant's `expenses` feature (default OFF)."
+      parameters:
+        - name: cursor
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - draft
+              - pending_approval
+              - posted
+              - reversed
+              - cancelled
+        - name: categoryId
+          in: query
+          required: false
+          schema:
+            type: string
+            format: uuid
+        - name: registerSessionId
+          in: query
+          required: false
+          schema:
+            type: string
+            format: uuid
+        - name: from
+          in: query
+          required: false
+          description: Inclusive lower bound on `occurredOn` (YYYY-MM-DD).
+          schema:
+            type: string
+            format: date
+        - name: to
+          in: query
+          required: false
+          description: Inclusive upper bound on `occurredOn` (YYYY-MM-DD).
+          schema:
+            type: string
+            format: date
+      responses:
+        "200":
+          description: "One page of expenses (limit 50) with an opaque `nextCursor` (null on the last page)."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/CommerceExpense"
+                      nextCursor:
+                        type: string
+                        nullable: true
+        "400":
+          description: "`VALIDATION_ERROR` (a malformed cursor, uuid, date or status)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: "`FEATURE_DISABLED` — the `expenses` feature is off (it defaults OFF)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+    post:
+      operationId: createCommerceExpense
+      tags:
+        - Commerce
+      summary: "Issue #294 (ADR-0031). Records a DRAFT expense. Gated on `commerce.expenses.create`; requires `Idempotency-Key`."
+      description: >-
+        A draft touches no register and no cash-up; posting is
+        `/expenses/{id}/post`. A draft that names a `registerSessionId` must be
+        paid in cash, name an OPEN session of this tenant, and additionally
+        needs the `register` feature. Replaying the same key and body returns
+        the same expense (201); a different body under that key is a conflict.
+      parameters:
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - categoryId
+                - amount
+                - tenderType
+                - occurredOn
+                - description
+              properties:
+                categoryId:
+                  type: string
+                  format: uuid
+                amount:
+                  type: string
+                  description: "`numeric(14,2)` string, > 0 — never a JSON number."
+                tenderType:
+                  type: string
+                  enum:
+                    - cash
+                    - manual_qris
+                    - manual_bank_transfer
+                occurredOn:
+                  type: string
+                  format: date
+                  description: Not more than one day in the future.
+                description:
+                  type: string
+                  maxLength: 500
+                  description: The reason. Free text — never in audit, events or the cash-up.
+                payeeName:
+                  type: string
+                  nullable: true
+                  maxLength: 120
+                  description: Free text payee. A typed party reference is a documented follow-up (ADR-0031 D8).
+                registerSessionId:
+                  type: string
+                  format: uuid
+                  nullable: true
+                  description: The OPEN drawer session the cash came from (cash only; needs the `register` feature).
+      responses:
+        "201":
+          description: "The draft (or the stored replay)."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceExpense"
+        "400":
+          description: "`VALIDATION_ERROR` or `IDEMPOTENCY_REQUIRED`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`EXPENSE_CATEGORY_INACTIVE`, `REGISTER_SESSION_NOT_OPEN`, `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` — the `expenses` feature is off (it defaults OFF), or the `register` feature for a drawer expense."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/expenses/{id}:
+    get:
+      operationId: getCommerceExpense
+      tags:
+        - Commerce
+      summary: "Issue #294 (ADR-0031). One expense. Gated on `commerce.expenses.read`. An unknown id and another tenant's id are the same 404. A receipt is only ever a `hasReceipt` boolean here — read it through `/receipt-url`."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: "The expense."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceExpense"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`FEATURE_DISABLED` — the `expenses` feature is off (it defaults OFF)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+    patch:
+      operationId: updateCommerceExpense
+      tags:
+        - Commerce
+      summary: "Issue #294 (ADR-0031). Edits a DRAFT expense (any subset of the draft fields; `registerSessionId: null` detaches the drawer). Gated on `commerce.expenses.update`."
+      description: >-
+        Only the draft's creator, or a supervisor (a caller who also holds
+        `commerce.expense_postings.approve`), may edit it (`403
+        NOT_EXPENSE_OWNER`). A pending, posted, reversed or cancelled expense is
+        frozen (`409 EXPENSE_NOT_DRAFT`), by the schema as well.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                categoryId:
+                  type: string
+                  format: uuid
+                amount:
+                  type: string
+                  description: "`numeric(14,2)` string, > 0 — never a JSON number."
+                tenderType:
+                  type: string
+                  enum:
+                    - cash
+                    - manual_qris
+                    - manual_bank_transfer
+                occurredOn:
+                  type: string
+                  format: date
+                  description: Not more than one day in the future.
+                description:
+                  type: string
+                  maxLength: 500
+                  description: The reason. Free text — never in audit, events or the cash-up.
+                payeeName:
+                  type: string
+                  nullable: true
+                  maxLength: 120
+                  description: Free text payee. A typed party reference is a documented follow-up (ADR-0031 D8).
+                registerSessionId:
+                  type: string
+                  format: uuid
+                  nullable: true
+                  description: The OPEN drawer session the cash came from (cash only; needs the `register` feature).
+      responses:
+        "200":
+          description: "The updated draft."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceExpense"
+        "400":
+          description: "`VALIDATION_ERROR`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`EXPENSE_NOT_DRAFT` (`details.status`), `EXPENSE_CATEGORY_INACTIVE`, `REGISTER_SESSION_NOT_OPEN` or `FEATURE_DISABLED` — the `expenses` feature is off (it defaults OFF)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/expenses/{id}/post:
+    post:
+      operationId: postCommerceExpense
+      tags:
+        - Commerce
+      summary: "Issue #294 (ADR-0031). Submits a draft for posting. Gated on `commerce.expense_postings.create`; requires `Idempotency-Key`."
+      description: >-
+        Within the tenant's `expenses.approvalThreshold` the expense is posted
+        outright (`outcome: posted`, decision `auto`). Above it, a caller who
+        ALSO holds `commerce.expense_postings.approve` and did not create the
+        expense posts it in one step (decision `approved`); anyone else leaves
+        it `pending_approval` for a second person. Posting a drawer-paid expense
+        appends a register `expense` cash-out movement to its session (409
+        `REGISTER_SESSION_NOT_OPEN` when it is not open) — it never edits a
+        cash-up total — and emits `awcms.commerce.expense.posted` once.
+        Idempotent: the same key replays the stored answer; a new key on an
+        already-posted expense is `409 EXPENSE_NOT_POSTABLE`.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: "The expense and the outcome (or the stored replay)."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceExpenseAction"
+        "400":
+          description: "`IDEMPOTENCY_REQUIRED`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`EXPENSE_NOT_POSTABLE` (`details.status`), `EXPENSE_CATEGORY_INACTIVE`, `REGISTER_SESSION_NOT_OPEN`, `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` — the `expenses` feature is off (it defaults OFF)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/expenses/{id}/decision:
+    post:
+      operationId: decideCommerceExpense
+      tags:
+        - Commerce
+      summary: "Issue #294 (ADR-0031). Approves or rejects a `pending_approval` expense. Gated on `commerce.expense_postings.approve` (a high-risk verb); requires `Idempotency-Key`."
+      description: >-
+        Segregation of duties: an expense cannot be approved by the person who
+        created it or by the person who submitted it (`403
+        SEGREGATION_OF_DUTIES`, `details.reason`). Approving posts it — a
+        drawer-paid expense appends its register movement with the APPROVER as
+        the movement's actor, and `409 REGISTER_SESSION_NOT_OPEN` leaves it
+        pending when the session has since closed. Rejecting needs a `note` and
+        returns the expense to `draft`.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - decision
+              properties:
+                decision:
+                  type: string
+                  enum:
+                    - approve
+                    - reject
+                note:
+                  type: string
+                  maxLength: 500
+                  description: Required when rejecting.
+      responses:
+        "200":
+          description: "The expense and the outcome (or the stored replay)."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceExpenseAction"
+        "400":
+          description: "`VALIDATION_ERROR` or `IDEMPOTENCY_REQUIRED`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`EXPENSE_NOT_PENDING` (`details.status`), `REGISTER_SESSION_NOT_OPEN`, `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` — the `expenses` feature is off (it defaults OFF)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/expenses/{id}/reverse:
+    post:
+      operationId: reverseCommerceExpense
+      tags:
+        - Commerce
+      summary: "Issue #294 (ADR-0031). Reverses a POSTED expense with a compensating entry. Gated on `commerce.expense_reversals.approve` (a high-risk verb); requires `Idempotency-Key` and a `reason`."
+      description: >-
+        A drawer-paid expense appends a `correction` cash-IN movement for the
+        same amount — to its own session when still open, else to the open
+        session of the SAME register — and never edits the original movement or
+        a closed cash-up. With no open session on the register it is refused
+        (`409 REGISTER_SESSION_REQUIRED`). Emits
+        `awcms.commerce.expense.reversed` once. A reversed expense is terminal.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - reason
+              properties:
+                reason:
+                  type: string
+                  maxLength: 500
+                  description: Free text. Kept on the expense; never in audit, events or the cash-up.
+      responses:
+        "200":
+          description: "The expense and the outcome (or the stored replay)."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceExpenseAction"
+        "400":
+          description: "`VALIDATION_ERROR` or `IDEMPOTENCY_REQUIRED`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`EXPENSE_NOT_REVERSIBLE` (`details.status`), `REGISTER_SESSION_REQUIRED`, `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` — the `expenses` feature is off (it defaults OFF)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/expenses/{id}/cancel:
+    post:
+      operationId: cancelCommerceExpense
+      tags:
+        - Commerce
+      summary: "Issue #294 (ADR-0031). Discards a DRAFT expense (terminal `cancelled`). Gated on `commerce.expenses.update`; requires `Idempotency-Key`. Only the creator or a supervisor; a posted expense is reversed, never deleted."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: "The cancelled expense (or the stored replay)."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceExpense"
+        "400":
+          description: "`IDEMPOTENCY_REQUIRED`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`EXPENSE_NOT_DRAFT` (`details.status`), `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED` — the `expenses` feature is off (it defaults OFF)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/expenses/{id}/receipt:
+    post:
+      operationId: attachCommerceExpenseReceipt
+      tags:
+        - Commerce
+      summary: "Issue #294 (ADR-0031). Attaches a PRIVATE receipt (a media-library object) to an expense. Gated on `commerce.expense_receipts.create`."
+      description: >-
+        The object must exist in this tenant, be `visibility: private`,
+        verified, and uploaded by the CALLER (a confused-deputy guard —
+        otherwise any private object could be attached and read back); it must
+        not already be a receipt or a product's protected download. A draft's
+        receipt may be replaced by its creator or a supervisor; a posted or
+        reversed expense accepts one once and never replaces it. The object is
+        never returned — read it through `/receipt-url`.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - mediaObjectId
+              properties:
+                mediaObjectId:
+                  type: string
+                  format: uuid
+      responses:
+        "200":
+          description: "The expense (`hasReceipt: true`)."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceExpense"
+        "400":
+          description: "`VALIDATION_ERROR`."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`EXPENSE_RECEIPT_NOT_ELIGIBLE`, `EXPENSE_RECEIPT_ALREADY_USED`, `EXPENSE_RECEIPT_ALREADY_ATTACHED`, `EXPENSE_NOT_ATTACHABLE` or `FEATURE_DISABLED` — the `expenses` feature is off (it defaults OFF)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/expenses/{id}/receipt-url:
+    get:
+      operationId: getCommerceExpenseReceiptUrl
+      tags:
+        - Commerce
+      summary: "Issue #294 (ADR-0031). A short-lived presigned GET URL for the expense's PRIVATE receipt. Gated on `commerce.expense_receipts.read` — not implied by `commerce.expenses.read`."
+      description: >-
+        Resolves the object server-side from THIS expense (never a
+        caller-supplied media id), re-verifies on every call that it is still a
+        verified private object, audits the issuance decision
+        (`media.download`), and answers `Cache-Control: no-store`. Fails closed:
+        no receipt is a 404, a public-by-mistake or unavailable object is `409
+        EXPENSE_RECEIPT_UNAVAILABLE`, an unconfigured storage is `502
+        PROVIDER_ERROR`.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: "The URL and its expiry."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    type: object
+                    properties:
+                      expenseId:
+                        type: string
+                        format: uuid
+                      url:
+                        type: string
+                      expiresAt:
+                        type: string
+                        format: date-time
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "`EXPENSE_RECEIPT_UNAVAILABLE` or `FEATURE_DISABLED` — the `expenses` feature is off (it defaults OFF)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "502":
+          description: "`PROVIDER_ERROR` — media storage is not configured."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/expenses/summary:
+    get:
+      operationId: getCommerceExpenseSummary
+      tags:
+        - Commerce
+      summary: "Issue #294 (ADR-0031). The expense summary of a date range: posted and reversed totals by category and tender, plus draft / pending counts. Gated on `commerce.expenses.read`."
+      description: >-
+        Only POSTED expenses count as spent; REVERSED ones are reported beside
+        them (never netted away); drafts and pending approvals are counted but
+        belong to no total. All sums are exact `numeric(14,2)` strings (integer
+        cents). `from` and `to` are required and the range spans at most 366
+        days.
+      parameters:
+        - name: from
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+        - name: to
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+      responses:
+        "200":
+          description: "The summary."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                      - true
+                  data:
+                    $ref: "#/components/schemas/CommerceExpenseSummary"
+        "400":
+          description: "`VALIDATION_ERROR` (a missing, malformed, inverted or over-long range)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: "`FEATURE_DISABLED` — the `expenses` feature is off (it defaults OFF)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /api/v1/commerce/expenses/export.csv:
+    get:
+      operationId: exportCommerceExpensesCsv
+      tags:
+        - Commerce
+      summary: "Issue #294 (ADR-0031). The expenses of a date range as CSV. Gated on `commerce.expenses.export` — the high-risk `export` verb; reading expenses grants none."
+      description: >-
+        Every cell is spreadsheet-formula-neutralised (a leading `=`, `+`, `-`,
+        `@`, tab or carriage return is prefixed with `'`; a strictly numeric
+        amount keeps its sign). No receipt URL, media key or customer datum
+        appears. Bounded: at most 366 days and 10,000 rows; `X-Export-Truncated:
+        true` says a longer range was cut, never silently. `Cache-Control:
+        no-store`.
+      parameters:
+        - name: from
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+        - name: to
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+      responses:
+        "200":
+          description: The CSV.
+          headers:
+            X-Export-Truncated:
+              schema:
+                type: string
+                enum:
+                  - "true"
+                  - "false"
+          content:
+            text/csv:
+              schema:
+                type: string
+        "400":
+          description: "`VALIDATION_ERROR` (a missing, malformed, inverted or over-long range)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: "`FEATURE_DISABLED` — the `expenses` feature is off (it defaults OFF)."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
 components:
   schemas:
     CommerceSalesDailyRow:
@@ -9745,7 +10738,7 @@ components:
         reference:
           type: string
           nullable: true
-          description: Free text today; the typed reference to the expenses domain (#294) is a documented hook.
+          description: "Free text, or - for a movement an expense produced (Issue #294, ADR-0031) - the expense's short code (`EXP-XXXXXXXX`). The movement's link to its expense is a column, not part of this shape."
         note:
           type: string
           nullable: true
@@ -10453,3 +11446,208 @@ components:
           type: string
           format: date-time
           nullable: true
+    CommerceExpenseCategory:
+      type: object
+      description: "Issue #294 (ADR-0031) — an expense category."
+      properties:
+        id:
+          type: string
+          format: uuid
+        code:
+          type: string
+        name:
+          type: string
+        active:
+          type: boolean
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    CommerceExpense:
+      type: object
+      description: "Issue #294 (ADR-0031) — an expense. Money is a `numeric(14,2)` string. A receipt is only a boolean; its object id and key never leave through this shape."
+      properties:
+        id:
+          type: string
+          format: uuid
+        categoryId:
+          type: string
+          format: uuid
+        categoryCode:
+          type: string
+        categoryName:
+          type: string
+        status:
+          type: string
+          enum:
+            - draft
+            - pending_approval
+            - posted
+            - reversed
+            - cancelled
+        amount:
+          type: string
+        tenderType:
+          type: string
+          enum:
+            - cash
+            - manual_qris
+            - manual_bank_transfer
+        occurredOn:
+          type: string
+          format: date
+        description:
+          type: string
+        payeeName:
+          type: string
+          nullable: true
+        registerSessionId:
+          type: string
+          format: uuid
+          nullable: true
+        hasReceipt:
+          type: boolean
+        createdByTenantUserId:
+          type: string
+          format: uuid
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        submittedByTenantUserId:
+          type: string
+          format: uuid
+          nullable: true
+        submittedAt:
+          type: string
+          format: date-time
+          nullable: true
+        approvalThreshold:
+          type: string
+          nullable: true
+          description: The tenant threshold in force when it was submitted / posted.
+        decision:
+          type: string
+          nullable: true
+          enum:
+            - auto
+            - approved
+            - rejected
+        decidedByTenantUserId:
+          type: string
+          format: uuid
+          nullable: true
+        decidedAt:
+          type: string
+          format: date-time
+          nullable: true
+        decisionNote:
+          type: string
+          nullable: true
+        postedByTenantUserId:
+          type: string
+          format: uuid
+          nullable: true
+        postedAt:
+          type: string
+          format: date-time
+          nullable: true
+        postedMovementId:
+          type: string
+          format: uuid
+          nullable: true
+          description: The register `expense` cash-out movement a drawer-paid posting produced.
+        reversedByTenantUserId:
+          type: string
+          format: uuid
+          nullable: true
+        reversedAt:
+          type: string
+          format: date-time
+          nullable: true
+        reversalReason:
+          type: string
+          nullable: true
+        reversalSessionId:
+          type: string
+          format: uuid
+          nullable: true
+        reversalMovementId:
+          type: string
+          format: uuid
+          nullable: true
+          description: The compensating register `correction` cash-in movement.
+        cancelledByTenantUserId:
+          type: string
+          format: uuid
+          nullable: true
+        cancelledAt:
+          type: string
+          format: date-time
+          nullable: true
+    CommerceExpenseAction:
+      type: object
+      description: "Issue #294 (ADR-0031) — what a post / decision / reversal answers (and what an idempotent replay returns)."
+      properties:
+        expense:
+          $ref: "#/components/schemas/CommerceExpense"
+        outcome:
+          type: string
+          enum:
+            - posted
+            - pending_approval
+            - rejected
+            - reversed
+    CommerceExpenseSummary:
+      type: object
+      description: "Issue #294 (ADR-0031) — a date range's expense totals, exact `numeric(14,2)` strings."
+      properties:
+        from:
+          type: string
+          format: date
+        to:
+          type: string
+          format: date
+        postedTotal:
+          type: string
+        reversedTotal:
+          type: string
+        byCategory:
+          type: array
+          items:
+            type: object
+            properties:
+              categoryId:
+                type: string
+                format: uuid
+              categoryCode:
+                type: string
+              categoryName:
+                type: string
+              postedTotal:
+                type: string
+              postedCount:
+                type: integer
+              reversedTotal:
+                type: string
+              reversedCount:
+                type: integer
+        byTender:
+          type: array
+          items:
+            type: object
+            properties:
+              tenderType:
+                type: string
+              postedTotal:
+                type: string
+              postedCount:
+                type: integer
+        draftCount:
+          type: integer
+        pendingApprovalCount:
+          type: integer

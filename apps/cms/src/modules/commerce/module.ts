@@ -1,6 +1,11 @@
 import { defineModule } from "../_shared/module-contract";
 import { DEFAULT_COMMERCE_FEATURES } from "./domain/commerce-features";
 import { DEFAULT_CASH_UP_APPROVAL_THRESHOLD } from "./domain/register";
+import { DEFAULT_EXPENSE_APPROVAL_THRESHOLD } from "./domain/expense";
+import {
+  EXPENSE_DATA_LIFECYCLE,
+  EXPENSE_SUBJECT_DATA
+} from "./domain/expense-lifecycle";
 import {
   REGISTER_DATA_LIFECYCLE,
   REGISTER_SUBJECT_DATA
@@ -54,6 +59,16 @@ import {
   COMMERCE_REGISTER_CASH_UP_PERMISSIONS,
   COMMERCE_REGISTER_CORRECTIONS_ACTIVITY_CODE,
   COMMERCE_REGISTER_CORRECTION_PERMISSIONS,
+  COMMERCE_EXPENSE_CATEGORIES_ACTIVITY_CODE,
+  COMMERCE_EXPENSE_CATEGORY_PERMISSIONS,
+  COMMERCE_EXPENSES_ACTIVITY_CODE,
+  COMMERCE_EXPENSE_PERMISSIONS,
+  COMMERCE_EXPENSE_POSTINGS_ACTIVITY_CODE,
+  COMMERCE_EXPENSE_POSTING_PERMISSIONS,
+  COMMERCE_EXPENSE_REVERSALS_ACTIVITY_CODE,
+  COMMERCE_EXPENSE_REVERSAL_PERMISSIONS,
+  COMMERCE_EXPENSE_RECEIPTS_ACTIVITY_CODE,
+  COMMERCE_EXPENSE_RECEIPT_PERMISSIONS,
   COMMERCE_ENTITLEMENTS_ACTIVITY_CODE
 } from "./domain/commerce-permissions";
 import {
@@ -74,7 +89,9 @@ import {
   COMMERCE_REGISTER_SESSION_OPENED_EVENT_TYPE,
   COMMERCE_REGISTER_SESSION_MOVEMENT_RECORDED_EVENT_TYPE,
   COMMERCE_REGISTER_SESSION_CLOSED_EVENT_TYPE,
-  COMMERCE_REGISTER_SESSION_CORRECTED_EVENT_TYPE
+  COMMERCE_REGISTER_SESSION_CORRECTED_EVENT_TYPE,
+  COMMERCE_EXPENSE_POSTED_EVENT_TYPE,
+  COMMERCE_EXPENSE_REVERSED_EVENT_TYPE
 } from "./domain/commerce-events";
 import {
   SALES_BY_CATEGORY_PROJECTION_KEY,
@@ -307,7 +324,9 @@ export const commerceModule = defineModule({
       COMMERCE_REGISTER_SESSION_OPENED_EVENT_TYPE,
       COMMERCE_REGISTER_SESSION_MOVEMENT_RECORDED_EVENT_TYPE,
       COMMERCE_REGISTER_SESSION_CLOSED_EVENT_TYPE,
-      COMMERCE_REGISTER_SESSION_CORRECTED_EVENT_TYPE
+      COMMERCE_REGISTER_SESSION_CORRECTED_EVENT_TYPE,
+      COMMERCE_EXPENSE_POSTED_EVENT_TYPE,
+      COMMERCE_EXPENSE_REVERSED_EVENT_TYPE
     ]
   },
   /**
@@ -456,7 +475,13 @@ export const commerceModule = defineModule({
       // by `domain/register.ts`'s `resolveCashUpSettings`. A new top-level
       // key, so no schemaVersion bump: a tenant that never touches it gets
       // this default through `mergeEffectiveSettings`.
-      cashUp: { approvalThreshold: DEFAULT_CASH_UP_APPROVAL_THRESHOLD }
+      cashUp: { approvalThreshold: DEFAULT_CASH_UP_APPROVAL_THRESHOLD },
+      // Issue #294 (ADR-0031) - the expense amount above which posting needs
+      // a user holding `commerce.expense_postings.approve` who did not create
+      // the expense. `"0.00"` = every expense needs a second person (strict by
+      // default); read defensively by `domain/expense.ts`'s
+      // `resolveExpenseSettings`. Same shallow-merge rule as `cashUp`.
+      expenses: { approvalThreshold: DEFAULT_EXPENSE_APPROVAL_THRESHOLD }
     }
   },
   // Full CRUD screens: two as of Issue #23 (`src/pages/admin/commerce.astro`,
@@ -602,6 +627,16 @@ export const commerceModule = defineModule({
       order: 18,
       requiredPermission: "commerce.register_sessions.read",
       requiredFeature: { moduleKey: "commerce", feature: "register" }
+    },
+    // Issue #294 (ADR-0031) - petty cash and operational expenses. Gated on
+    // the expense-read permission and hidden the moment the tenant turns
+    // `features.expenses` off (it defaults OFF).
+    {
+      labelKey: "admin.layout.nav_commerce_expenses",
+      path: "/admin/commerce-expenses",
+      order: 19,
+      requiredPermission: "commerce.expenses.read",
+      requiredFeature: { moduleKey: "commerce", feature: "expenses" }
     }
   ],
   /**
@@ -2327,6 +2362,9 @@ export const commerceModule = defineModule({
     // Issue #284 (ADR-0028) - the six POS register tables; see
     // `domain/register-lifecycle.ts`.
     ...REGISTER_DATA_LIFECYCLE,
+    // Issue #294 (ADR-0031) - the two expense tables; see
+    // `domain/expense-lifecycle.ts`.
+    ...EXPENSE_DATA_LIFECYCLE,
     {
       key: "commerce.protected_media_links",
       tableName: "awcms_commerce_protected_media_links",
@@ -2895,6 +2933,8 @@ export const commerceModule = defineModule({
     },
     // Issue #284 (ADR-0028) - see `domain/register-lifecycle.ts`.
     ...REGISTER_SUBJECT_DATA,
+    // Issue #294 (ADR-0031) - see `domain/expense-lifecycle.ts`.
+    ...EXPENSE_SUBJECT_DATA,
     {
       key: "commerce.protected_media_links",
       tableName: "awcms_commerce_protected_media_links",
@@ -3267,6 +3307,69 @@ export const commerceModule = defineModule({
       action: "update",
       description:
         "Revoke a commerce entitlement — the only admin mutation this module has; grants happen only via the order-paid consumer (Issue #267)"
+    },
+    {
+      activityCode: COMMERCE_EXPENSE_CATEGORIES_ACTIVITY_CODE,
+      action: "read",
+      description: "List expense categories (Issue #294)"
+    },
+    {
+      activityCode: COMMERCE_EXPENSE_CATEGORIES_ACTIVITY_CODE,
+      action: "create",
+      description: "Define an expense category (Issue #294)"
+    },
+    {
+      activityCode: COMMERCE_EXPENSE_CATEGORIES_ACTIVITY_CODE,
+      action: "update",
+      description: "Rename or (de)activate an expense category (Issue #294)"
+    },
+    {
+      activityCode: COMMERCE_EXPENSES_ACTIVITY_CODE,
+      action: "read",
+      description: "List and read expenses and the expense summary (Issue #294)"
+    },
+    {
+      activityCode: COMMERCE_EXPENSES_ACTIVITY_CODE,
+      action: "create",
+      description: "Create a draft expense (Issue #294)"
+    },
+    {
+      activityCode: COMMERCE_EXPENSES_ACTIVITY_CODE,
+      action: "update",
+      description: "Edit or discard a draft expense (Issue #294)"
+    },
+    {
+      activityCode: COMMERCE_EXPENSES_ACTIVITY_CODE,
+      action: "export",
+      description: "Export expenses as CSV (Issue #294)"
+    },
+    {
+      activityCode: COMMERCE_EXPENSE_POSTINGS_ACTIVITY_CODE,
+      action: "create",
+      description: "Submit a draft expense for posting (Issue #294)"
+    },
+    {
+      activityCode: COMMERCE_EXPENSE_POSTINGS_ACTIVITY_CODE,
+      action: "approve",
+      description:
+        "Approve or reject an expense above the approval threshold (Issue #294)"
+    },
+    {
+      activityCode: COMMERCE_EXPENSE_REVERSALS_ACTIVITY_CODE,
+      action: "approve",
+      description:
+        "Reverse a posted expense with a compensating entry (Issue #294)"
+    },
+    {
+      activityCode: COMMERCE_EXPENSE_RECEIPTS_ACTIVITY_CODE,
+      action: "read",
+      description:
+        "Issue a short-lived download URL for an expense receipt (Issue #294)"
+    },
+    {
+      activityCode: COMMERCE_EXPENSE_RECEIPTS_ACTIVITY_CODE,
+      action: "create",
+      description: "Attach a private receipt to an expense (Issue #294)"
     }
   ]
 });
@@ -3298,5 +3401,10 @@ export {
   COMMERCE_REGISTER_PERMISSIONS,
   COMMERCE_REGISTER_SESSION_PERMISSIONS,
   COMMERCE_REGISTER_CASH_UP_PERMISSIONS,
-  COMMERCE_REGISTER_CORRECTION_PERMISSIONS
+  COMMERCE_REGISTER_CORRECTION_PERMISSIONS,
+  COMMERCE_EXPENSE_CATEGORY_PERMISSIONS,
+  COMMERCE_EXPENSE_PERMISSIONS,
+  COMMERCE_EXPENSE_POSTING_PERMISSIONS,
+  COMMERCE_EXPENSE_REVERSAL_PERMISSIONS,
+  COMMERCE_EXPENSE_RECEIPT_PERMISSIONS
 };
