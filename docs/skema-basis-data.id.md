@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](skema-basis-data.md)
 
-<!-- i18n-source-hash: sha256:71d1b8e169cca5f5dadccba05cb39d460d55ea961d5db24b683f6577424b9192 -->
+<!-- i18n-source-hash: sha256:d535ab309f5912442514c80441784174032700d115f5dd9378177bfb5531d930 -->
 
 # Skema basis data
 
@@ -195,6 +195,18 @@ Issue #117, D7 kontrak #106 — read model dari tiga proyeksi reporting `cursor_
 | `awcms_commerce_sales_by_category` | `PRIMARY KEY (tenant_id, day, category_id)`, `category_name text` (snapshot), `qty integer`, `gross numeric(14,2)` | Per hari dan kategori produk, diatribusikan lewat `products.category_id` saat pemrosesan. `category_id` `NOT NULL` karena bagian dari kunci: produk tanpa kategori mendarat di uuid sentinel serba-nol, yang oleh rute baca dipetakan kembali menjadi `categoryId: null`. Indeks `(tenant_id, category_id)` |
 
 Ketiganya: RLS `ENABLE`+`FORCE`, policy isolasi tenant, `updated_at`, uang sebagai `numeric(14,2)` yang ditulis dari sen bilangan bulat sebagai string desimal (tak pernah float). Baris di-upsert menurut primary key dengan `INSERT ... ON CONFLICT DO UPDATE SET x = x + EXCLUDED.x` di dalam transaksi pass terbatas milik mesin, setelah advisory lock (tenant, proyeksi) dan sebelum kursor maju; rebuild men-`DELETE` baris tenant dalam transaksi yang sama dengan reset kursor. `awcms_worker` diberi `SELECT, INSERT, UPDATE, DELETE` (`bun run reporting:projections:refresh` meng-upsert; purge data-lifecycle generik menghapus; delete milik reset rebuild sendiri berjalan sebagai `awcms_app` dalam transaksi rute API) — dicerminkan di `WORKER_ROLE_GRANTS`. Retensi: tiga deskriptor `dataLifecycle` di `commerce/module.ts` (`commerce.sales_daily`/`_by_product`/`_by_category`, kursor `day`, jendela 365–3650 hari yang sama dengan `commerce.order_events` — baris yang lebih tua dari retensi sumbernya tak pernah bisa dibangun ulang dan aman dipurge). Data subjek: `NO_SUBJECT_DATA` di ledger skrip (angka per hari/produk/kategori adalah fakta tentang tidak seorang pun).
+
+## Buku besar poin loyalitas: tiga tabel (`sql/950`, grant worker `sql/951`, seed izin `sql/952`)
+
+Issue #289 ([ADR-0026](adr/0026-loyalty-points-are-an-append-only-ledger.md)). Poin adalah bilangan bulat (`bigint`, `CHECK` dalam ±10¹²) — bukan float, bukan uang.
+
+| Tabel | Kolom kunci | Catatan |
+| --- | --- | --- |
+| `awcms_commerce_loyalty_programs` | `version integer` (unik per tenant), `status` (`draft`/`active`/`retired`), `effective_from`/`effective_to timestamptz`, `earn_unit_amount numeric(14,2) > 0`, `earn_points_per_unit integer`, `earn_rounding = 'floor'`, `min_order_amount`, `max_points_per_order`, `expiry_days` | Satu baris adalah satu VERSI aturan. Tidak dapat diubah setelah aktif (baris ledger menyebut versi tempat poin diperoleh). "Paling banyak satu versi terbuka" ditegakkan oleh transaksi aktivasi di bawah advisory lock per tenant, bukan exclusion constraint |
+| `awcms_commerce_loyalty_accounts` | `customer_id` (unik per tenant), `balance bigint`, `version bigint` | PROYEKSI dari ledger (`balance = SUM(points)`), diperbarui dalam transaksi yang sama dengan setiap insert ledger di bawah `FOR UPDATE`. Bisa negatif hanya setelah pembatalan mengambil kembali poin yang sudah dipakai. FK komposit `(tenant_id, customer_id)` ke pelanggan, yang mendapat indeks unik `(tenant_id, id)` untuk itu |
+| `awcms_commerce_loyalty_ledger` | `account_id`, `account_seq` (1,2,3… per akun, ditetapkan di bawah kunci), `kind` (`earn`/`redeem`/`expire`/`adjustment`/`reversal`), `points bigint` (bertanda), `balance_after`, `program_id`, `source_type`/`source_id`, `idempotency_key` (unik per tenant), `reverses_entry_id`, `expires_at`, `actor_tenant_user_id`, `reason`, `created_at default clock_timestamp()` | Append-only: `awcms_app` dicabut `UPDATE`/`DELETE` dan trigger menolak setiap `UPDATE`. CHECK: tanda per jenis (earn > 0, redeem < 0, expire <= 0, adjustment/reversal <> 0), reversal menyebut targetnya, hanya earn yang membawa `expires_at`, adjustment punya aktor dan alasan tidak kosong. Indeks unik parsial: satu `reversal` per entri asal, satu penanda `expire` per lot perolehan (`source_id`). FK komposit `(tenant_id, id)` ke accounts/programs/dirinya sendiri (`reverses_entry_id`, `ON DELETE CASCADE`). `source_id` sengaja tanpa FK — ledger hidup lebih lama dari order yang dipurge |
+
+Ketiganya: RLS `ENABLE`+`FORCE` dengan kebijakan isolasi tenant standar. `awcms_worker` (dispatcher, job kedaluwarsa, purge generik) memegang programs `SELECT, DELETE`, accounts `SELECT, INSERT, UPDATE, DELETE`, ledger `SELECT, INSERT, DELETE` (tidak pernah `UPDATE`), dan — baru untuk worker — `SELECT` pada `awcms_module_settings`, karena consumer perolehan membaca `features.loyalty`. Retensi: tiga deskriptor `dataLifecycle` (batas bawah 5 tahun, default dan batas atas 10) yang cursor-nya (`created_at`, `updated_at`, `effective_to`) hanya menjangkau baris yang sudah mati; ketiganya `unreachableBySubject`/`retain_under_obligation`.
 
 ## Row-level security: `ENABLE` dan `FORCE`, terbukti di bawah role tak-berhak-istimewa
 

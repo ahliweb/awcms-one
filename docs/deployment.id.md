@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](deployment.md)
 
-<!-- i18n-source-hash: sha256:35471b11f3c5dcf08f6736d629e0b43b7da4b64af8d58955931ade6d3dbc00ec -->
+<!-- i18n-source-hash: sha256:da01eda3cfe033dac2178935b4efe3e116f16938489af6563514386e797c98d0 -->
 
 # Deployment
 
@@ -401,6 +401,8 @@ Topologi reproducible untuk deployment self-hosted: `postgres` (tanpa port host 
 ### Job terjadwal
 
 `bun run jobs:crontab:generate` (di dalam `apps/cms`) sudah menggenerate `apps/cms/ops/awcms-jobs.crontab` dari registry job modul — satu-satunya sumber kebenaran tentang job mana yang ada dan kapan berjalan; `jobs:crontab:check` (bagian dari `bun run check`) gagal bila menyimpang. Variabel `AWCMS_RUN_JOB` file itu dirancang untuk `docker run` biasa terhadap image yang dipublikasikan (`apps/cms/ops/run-job.sh`); deployment docker-compose mengarahkannya ke `ops/run-job-compose.sh` sebagai gantinya (skrip baru milik repositori ini sendiri, ADR-0019 D3) — signature `<target> [args...]` yang sama, memanggil `docker compose -f compose.production.yaml --profile jobs run --rm jobs bun run <target>`. Pasang crontab yang SAMA yang sudah digenerate bagaimanapun caranya; hanya kontainer mana yang menjalankan setiap job yang berubah.
+
+Dua job milik buku besar loyalitas (issue #289, [ADR-0026](adr/0026-loyalty-points-are-an-append-only-ledger.id.md)), keduanya sudah ada di crontab yang digenerate: `commerce:loyalty:expire` (tiap jam; menambahkan baris `expire` per lot perolehan yang kedaluwarsa, idempoten, 200 akun per tenant per run) dan `commerce:loyalty:reconcile` (harian, di luar jam sibuk; **hanya-baca**, keluar non-nol bila menemukan saldo yang tidak cocok dengan ledger agar scheduler menampakkannya — perbaikannya adalah `POST /api/v1/commerce/loyalty/reconcile {"repair": true}` yang terautentikasi). Keduanya tidak memanggil provider eksternal dan aman di profil apa pun. Keduanya, dan consumer `domain-events:dispatch` yang memberi dan membatalkan poin, berjalan sebagai `awcms_worker` bila `WORKER_DATABASE_URL` dikonfigurasi; `sql/951` memberi role itu persis yang dibutuhkan (termasuk `SELECT` pada `awcms_module_settings`, untuk flag `features.loyalty`) dan tidak pernah `UPDATE` pada ledger.
 
 ### Preflight produksi fail-closed
 
