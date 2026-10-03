@@ -9850,6 +9850,57 @@ Sets deleted_at; the slug is freed for reuse. Restore it with POST /api/v1/comme
 | 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
 | 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
 
+### `GET /api/v1/commerce/document-deliveries` — Issue #295 (ADR-0034). The delivery history of one receipt, invoice, quotation or work order, newest first. Gated on `commerce.document_deliveries.read`.
+
+- **operationId**: `listCommerceDocumentDeliveries`
+- **Security**: bearerAuth + tenantHeader
+
+Each entry is the append-only REQUEST (who asked, which immutable source, which channel, the MASKED recipient, the template version, the content hash) joined with the live state of the existing e-mail or WhatsApp outbox row it produced (`outbox`: status, provider message id, retry count, last error) - read, never copied, so it cannot drift. For `targetType: quotation_version` the `targetId` is the quotation's id and the history spans every version. An unknown id and another tenant's id are the same empty list. Needs the `documents` and `documentDelivery` features.
+
+**Parameters**
+
+| Name         | In    | Required | Type                                                | Description |
+| ------------ | ----- | -------- | --------------------------------------------------- | ----------- |
+| `targetType` | query | yes      | enum(`document`, `quotation_version`, `work_order`) |             |
+| `targetId`   | query | yes      | string (uuid)                                       |             |
+
+**Responses**
+
+| Status | Description                                                                                                           | Schema                                 |
+| ------ | --------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | The history, newest first (at most 50 entries).                                                                       | object                                 |
+| 400    | `VALIDATION_ERROR` (missing or malformed `targetType` / `targetId`).                                                  | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                           | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                           | [`ApiError`](#standard-error-envelope) |
+| 409    | `FEATURE_DISABLED` - the tenant's `documents` or `documentDelivery` feature is off (`documentDelivery` defaults OFF). | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/document-deliveries` — Issue #295 (ADR-0034). Requests delivery of a receipt, invoice, quotation version or work-order notice by e-mail or WhatsApp. Gated on `commerce.document_deliveries.create`; requires `Idempotency-Key`.
+
+- **operationId**: `requestCommerceDocumentDelivery`
+- **Security**: bearerAuth + tenantHeader
+
+Transactional, not marketing: the message is built from the STORED source only (a document's snapshot after its SHA-256 is re-verified, a quotation version row, a work order read at the request) and enqueued into the channel's EXISTING outbox in this transaction; a dispatcher calls the provider later. The default recipient is the customer the source names; any other recipient needs `commerce.document_delivery_overrides.create` (checked before the source is read). A replay of the same `Idempotency-Key` returns the stored result and enqueues nothing; a NEW key is an explicit re-send (`resendOfId` names the delivery it repeats). `includeLink` (documents only) adds an opaque private link valid for `linkTtlHours` (default 72, at most 168) - only its SHA-256 is stored and it is never returned. At most 5 requests per source per rolling hour (`429 DELIVERY_RATE_LIMITED`). Emits `awcms.commerce.document.delivery_requested`; audited as `document_delivery.request` / `document_delivery.denied`.
+
+**Parameters**
+
+| Name              | In     | Required | Type   | Description |
+| ----------------- | ------ | -------- | ------ | ----------- |
+| `Idempotency-Key` | header | yes      | string |             |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                                                                                                                                                                                                                                                                                                                                               | Schema                                 |
+| ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 201    | The delivery request (or the stored replay). `outbox.status` is `queued` until a dispatcher moves it.                                                                                                                                                                                                                                                                                     | object                                 |
+| 400    | `VALIDATION_ERROR` or `IDEMPOTENCY_REQUIRED`.                                                                                                                                                                                                                                                                                                                                             | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                                                                                                                                                                                                                                               | [`ApiError`](#standard-error-envelope) |
+| 403    | `ACCESS_DENIED` - the caller lacks `commerce.document_deliveries.create`, or named a recipient without `commerce.document_delivery_overrides.create`.                                                                                                                                                                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                                                                                                                                                                                                                                                       | [`ApiError`](#standard-error-envelope) |
+| 409    | `CHANNEL_UNAVAILABLE` (the channel is not enabled on this deployment), `RECIPIENT_UNAVAILABLE` (the source names no usable recipient for the channel), `RECIPIENT_SUPPRESSED` or `TEMPLATE_UNAVAILABLE` (`details` is the recorded, not-enqueued delivery), `SOURCE_NOT_DELIVERABLE` (a cancelled quotation), `DOCUMENT_INTEGRITY_FAILURE`, `IDEMPOTENCY_CONFLICT` or `FEATURE_DISABLED`. | [`ApiError`](#standard-error-envelope) |
+| 429    | `DELIVERY_RATE_LIMITED` - too many requests for this source in the rolling window; `Retry-After` is in seconds.                                                                                                                                                                                                                                                                           | [`ApiError`](#standard-error-envelope) |
+
 ### `GET /api/v1/commerce/documents` — Issue #286 (ADR-0029). Lists receipt and invoice documents, newest first. Gated on `commerce.documents.read`.
 
 - **operationId**: `listCommerceDocuments`
@@ -11752,6 +11803,28 @@ One `section` column (`summary`, `tender`, `movement`, `correction`) keeps the w
 | 400    | Validation error.                                                                                                         | [`ApiError`](#standard-error-envelope) |
 | 404    | Unresolvable tenant, disabled module, or a rate-limited caller — the same neutral body (contract's own anti-oracle rule). | [`ApiError`](#standard-error-envelope) |
 | 429    | Rate limited.                                                                                                             | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/commerce/storefront/document-links/{token}` — Issue #295 (ADR-0034 D6). Anonymous: opens the print page of a receipt or invoice through the opaque private link a delivery carried.
+
+- **operationId**: `openCommerceDocumentLink`
+- **Security**: none (public endpoint)
+
+The token IS the credential: 32 random bytes with a `dl_` prefix, only its SHA-256 stored, a hard expiry of at most 168 hours. The page is the stored snapshot rendered (hash re-verified), served `no-store` under a locked-down CSP. An unknown, malformed or other-tenant token and a disabled feature are the same neutral `404`; a known token past its expiry is `410 LINK_EXPIRED`. Every open (and every expired open) is audited without an actor or recipient.
+
+**Parameters**
+
+| Name    | In   | Required | Type   | Description |
+| ------- | ---- | -------- | ------ | ----------- |
+| `token` | path | yes      | string |             |
+
+**Responses**
+
+| Status | Description                | Schema                                 |
+| ------ | -------------------------- | -------------------------------------- |
+| 200    | The document's print page. | string                                 |
+| 404    | Resource not found.        | [`ApiError`](#standard-error-envelope) |
+| 410    | `LINK_EXPIRED`.            | [`ApiError`](#standard-error-envelope) |
+| 429    | Rate limited.              | [`ApiError`](#standard-error-envelope) |
 
 ### `POST /api/v1/commerce/storefront/orders` — Anonymous order creation (Issue 29), with an optional customer bearer (Issue #91). Idempotent by the client-supplied idempotencyKey; re-quotes the cart inside the write transaction. No permission check required — a valid bearer is accepted, never required.
 
@@ -16249,7 +16322,7 @@ consumer/subscriber contract in this file).
 }
 ```
 
-### Channels (66)
+### Channels (67)
 
 - `awcms.blog-content.ad.created` — An advertisement was created. Documented contract only; producer is `pages/api/v1/blog/ads/index.ts`'s `blog-content.ad.created` log line.
 - `awcms.blog-content.ad.deleted` — An advertisement was soft-deleted. Documented contract only; producer is `pages/api/v1/blog/ads/[id].ts`'s `blog-content.ad.deleted` log line.
@@ -16281,6 +16354,7 @@ consumer/subscriber contract in this file).
 - `awcms.comments.comment.approved` — A comment became publicly visible, either by auto-approval under the thread policy or by a moderator's approve decision. Producers: `comments/application/comment-service.ts`'s `submitComment` and `comments/application/comment-moderation.ts`'s `moderateComment`. The reply-notification consumer keys off THIS event rather than `comment.submitted`, so a comment still held for moderation never triggers a notification.
 - `awcms.comments.comment.submitted` — A comment was submitted against a published, public commentable resource (ADR-0041). Producer: `comments/application/comment-service.ts`'s `submitComment`. The payload carries opaque references only — comment and thread id, resource type, the server-derived public URL, and the resulting status. Never the body text, the author address, or any identity hash.
 - `awcms.comments.reply.created` — A submitted comment was a reply to an existing comment. Producer: `comments/application/comment-service.ts`'s `submitComment`, published alongside `comment.submitted` so a consumer can distinguish thread replies without re-reading the row. The recipient address is resolved from encrypted storage by the dispatcher at send time and is never carried here.
+- `awcms.commerce.document.delivery_requested` — A delivery of a commercial document (receipt, invoice, quotation version or work-order notice) was requested (Issue #295, ADR-0034): handed to the e-mail or commerce WhatsApp outbox, or refused at the hand-off (a suppressed address). Producer: `commerce/application/document-delivery-directory.ts`'s `requestDocumentDelivery`, in the same transaction as the outbox row. Aggregate: the delivery request. Payload: `deliveryId`, `targetType`, `targetId`, `docNumber`, `channel`, `status` (`queued` or `not_enqueued`), `failureReason` - never a recipient or message content; the provider outcome lives in the outbox, not in this event.
 - `awcms.commerce.document.issued` — A numbered receipt or invoice document was issued for a finalized order (Issue #286, ADR-0029 D1-D3): an immutable snapshot. Producer: `commerce/application/document-directory.ts`'s `issueDocument`, in the same transaction as the numbered row. Aggregate: the document. Payload: `documentId`, `docType`, `number`, `sourceType`, `sourceId`, `sourceVersion`, `total` - never the customer.
 - `awcms.commerce.flash_sale.ended` — A flash sale's derived status crossed into `ended` (`now()` passed `ends_at`). Producer: `commerce/application/flash-sale-directory.ts`'s `tickFlashSalesForTenant`, run by the scheduled `commerce:flash-sales:tick` job.
 - `awcms.commerce.flash_sale.started` — A flash sale's derived status crossed into `active` (`now()` entered `[starts_at, ends_at]`). Producer: `commerce/application/flash-sale-directory.ts`'s `tickFlashSalesForTenant`, run by the scheduled `commerce:flash-sales:tick` job — never a direct admin `PATCH`.

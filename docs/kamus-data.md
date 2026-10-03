@@ -225,3 +225,22 @@ This platform's own design — nothing here is ported from the legacy store. Sta
 - **A live RajaOngkir courier-RATE table is done** (issue #107, `sql/924` — `awcms_commerce_courier_destinations`/`_shipping_rates`, a cached rate the order path validates against, never a synchronous provider call). What is still deferred: live courier TRACKING (a shipped parcel's own status) — `shipping_method`/`shipping_service_name` on an order remain merchant-defined labels for the `alternative`/`self_pickup` methods; a `courier` shipment's rate is now live, its post-dispatch tracking is not (named as a follow-up in [ADR-0017](adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.md)).
 - **A payment-gateway transaction record is done** — `awcms_commerce_payment_gateway_sessions`/`_payment_events` (`sql/926`, issues #110/#113), built through the outbox per [ADR-0010](adr/0010-manual-payment-and-alternative-courier-first-gateways-via-outbox.md)/[ADR-0017](adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.md). Deferred: a Xendit adapter behind the same `PaymentGatewayProvider` port (`midtrans`/`log` only today).
 - **A real media upload for product images, slider media, payment-confirmation proof images, and ad-placement creatives** — resolved through `media_library`'s existing reference/URL mechanism, but this increment's seed uses placeholder SVGs/PNGs and the anonymous proof-upload endpoint is a stub (`503 MEDIA_UNAVAILABLE`); ad placements need a REAL R2-verified media object (`mediaObjectId` is required, not optional), so issue #57's seed step creates none of the 12 locally — see [`docs/cms.md`](cms.md) and [`docs/deployment.md`](deployment.md).
+
+## Document delivery vocabulary (issue #295, [ADR-0034](adr/0034-commercial-documents-are-delivered-through-the-existing-outboxes-as-transactional-messages-built-from-immutable-sources.md))
+
+This platform's own design — nothing here is ported from the legacy store. Statuses are `text` + `CHECK`, never a native enum.
+
+| Field | Values / shape | Meaning |
+| --- | --- | --- |
+| delivery `target_type` | `document`, `quotation_version`, `work_order` | what is delivered; the API's `targetId` is a document id, a **quotation** id (with an optional `version`, default current) or a work-order id |
+| delivery `channel` | `email`, `whatsapp` | the existing outbox the message goes into |
+| delivery `purpose` | `transactional` (the only value) | never marketing; campaigns keep their own consent predicate |
+| delivery `recipient_source` | `source_customer`, `override` | the customer the source names, or a recipient typed in by a holder of `commerce.document_delivery_overrides.create` |
+| delivery `status` | `queued`, `not_enqueued` | the hand-off outcome only |
+| delivery `failure_reason` | `RECIPIENT_SUPPRESSED`, `TEMPLATE_UNAVAILABLE` | why a message was not enqueued |
+| delivery `template_key` / `template_version` | `derived.transactional` (e-mail) / `commerce.document` (WhatsApp); `1` | the versioned contract that rendered it; bumped when the variable list or wording changes |
+| delivery `content_hash` | 64 lowercase hex | SHA-256 of the canonical JSON of the variables sent; equal for two sends of one immutable source |
+| `recipient_masked` | `s*****@example.test`, `+62812•••7890` | the only form of the recipient this platform stores outside the outbox row |
+| private link token | `dl_` + 43 base64url characters; stored as `sha256:` + 64 hex | opaque, expires within at most 168 hours (default 72), never a document id |
+| outbox status (history) | `queued`, `sending`, `sent`, `failed`, `retry_wait`, `cancelled`, `suppressed`; `null` when never created or purged | the live state of the e-mail or WhatsApp row; WhatsApp uses the first four |
+| neutral message variables | `documentLabel`, `documentNumber`, `storeName`, `body`, `link` | mapped onto `derived.transactional`'s `subject`/`body`/`actionUrl` for e-mail and used as-is by `commerce.document` for WhatsApp |

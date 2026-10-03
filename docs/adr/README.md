@@ -42,6 +42,7 @@ What does **not** need an ADR: adding a field within an already-decided schema, 
 | [0025](0025-payments-are-an-allocation-ledger-separate-from-order-status.md) | Payments are an append-only allocation ledger, separate from order status | Accepted |
 | [0028](0028-pos-register-sessions-and-cash-up.md) | POS register sessions and cash-up: expected amounts are derived from the payment ledger, a closed shift is immutable | Accepted |
 | [0029](0029-commerce-documents-are-separate-records-and-numbered-documents-are-immutable-order-snapshots.md) | Commerce documents: held sale, quotation, work order and receipt/invoice are separate records, and a numbered document is an immutable snapshot of an order | Accepted |
+| [0034](0034-commercial-documents-are-delivered-through-the-existing-outboxes-as-transactional-messages-built-from-immutable-sources.md) | Commercial documents are delivered through the existing outboxes, as transactional messages built from immutable sources | Accepted |
 
 ## Why the numbering starts at 0001
 

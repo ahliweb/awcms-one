@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:8f1b97a31e1d46faa8a2fce8fbe9cd2e4e6802d1cb821d1865e0484fc4b05d87 -->
+<!-- i18n-source-hash: sha256:2e4c0e72eac4890a81e564e2120fa85e21e8ae7c17da7b32ff5d5adf51384361 -->
 
 # Architecture Decision Records
 
@@ -44,6 +44,7 @@ Yang **tidak** butuh ADR: menambah field dalam skema yang sudah diputuskan, kena
 | [0025](0025-payments-are-an-allocation-ledger-separate-from-order-status.md) | Pembayaran adalah ledger alokasi append-only, terpisah dari status pesanan | Diterima |
 | [0028](0028-pos-register-sessions-and-cash-up.md) | Sesi register POS dan tutup kas: jumlah yang seharusnya diturunkan dari ledger pembayaran, shift yang sudah ditutup tidak dapat diubah | Diterima |
 | [0029](0029-commerce-documents-are-separate-records-and-numbered-documents-are-immutable-order-snapshots.md) | Dokumen commerce: penjualan tertahan, penawaran, perintah kerja, dan struk/faktur adalah rekaman terpisah, dan dokumen bernomor adalah snapshot pesanan yang tidak dapat diubah | Diterima |
+| [0034](0034-commercial-documents-are-delivered-through-the-existing-outboxes-as-transactional-messages-built-from-immutable-sources.md) | Dokumen komersial dikirim lewat outbox yang sudah ada, sebagai pesan transaksional yang disusun dari sumber yang tidak dapat diubah | Diterima |
 
 ## Mengapa penomoran dimulai dari 0001
 

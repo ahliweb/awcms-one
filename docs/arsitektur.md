@@ -213,3 +213,14 @@ What [ADR-0016](adr/0016-customer-accounts-are-otp-verified-commerce-accounts-wi
 - [`docs/api.md`](api.md), [`docs/cms.md`](cms.md) — the commerce API (owner and anonymous) and the authoring/publishing workflow behind it.
 - [`docs/routing.md`](routing.md) — the full public URL map.
 - [`knowledge/curated/monorepo-map.md`](../knowledge/curated/monorepo-map.md) — the workspace layout, structurally, kept separate from this document because that file names the STRUCTURE and this one names the DECISIONS behind it.
+
+## A delivery is a request in front of the outboxes that already exist (issue #295, [ADR-0034](adr/0034-commercial-documents-are-delivered-through-the-existing-outboxes-as-transactional-messages-built-from-immutable-sources.md))
+
+Four ideas keep document delivery from becoming a third notification subsystem.
+
+1. **The queue is not ours.** `apps/cms/src/modules/commerce/application/document-delivery-directory.ts` enqueues into `awcms_email_messages` (through the `email` module's own `enqueueDirectAddressEmail`) or `awcms_commerce_whatsapp_messages` (through `enqueueWhatsappMessage`) inside the caller's transaction, and never calls a provider. The two existing dispatchers do, later, outside any transaction, with their own lease, retry, backoff and circuit breaker.
+2. **Status is read, not copied.** The request row is append-only and says only whether the hand-off worked. The history joins the outbox on the shared `correlation_id` (the delivery id), so a provider failure appears on the document's history without anything updating a row, and the two can never disagree.
+3. **A message is a function of a stored source.** A document's snapshot (hash re-verified first), one quotation version, a work order read at the request: the delivery code reads no live order, price or stock row, and a unit test pins that. A re-send therefore says exactly what the first did, whatever happened to the order since; `content_hash` proves it.
+4. **Idempotency is in the same transaction as the enqueue.** A replayed key returns the stored delivery before anything is enqueued; two concurrent same-key requests race on the idempotency insert and the loser throws, rolling back its own outbox row. A new key is an explicit re-send that points at the one it repeats.
+
+One platform fact shaped the e-mail leg: a `derived.*` e-mail category exists only in a process that imported the module registering it, and `bun run email:dispatch` imports none of the commerce code — so the dispatcher would drop every variable of a derived category and send an empty body. Delivery therefore uses the **base** extension category `derived.transactional`, registered everywhere.

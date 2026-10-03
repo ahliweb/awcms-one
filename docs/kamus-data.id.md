@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](kamus-data.md)
 
-<!-- i18n-source-hash: sha256:7033bff4067d4d727bf67b4a6d8def105f1371af7004989c136ebbea85c09a38 -->
+<!-- i18n-source-hash: sha256:ac662e929c9d97dfa22fbe027408bb7f26898f7a898a87dbc5abe5ca5104f977 -->
 
 # Kamus data
 
@@ -227,3 +227,22 @@ Rancangan platform ini sendiri — tidak ada yang di-port dari toko lama. Status
 - **Tabel RATE kurir RajaOngkir live sudah selesai** (issue #107, `sql/924` — `awcms_commerce_courier_destinations`/`_shipping_rates`, rate ter-cache yang divalidasi jalur pesanan, tidak pernah panggilan provider sinkron). Yang masih ditunda: pelacakan (TRACKING) kurir live (status paket yang sudah dikirim) — `shipping_method`/`shipping_service_name` pada order tetap label yang ditentukan merchant untuk metode `alternative`/`self_pickup`; rate pengiriman `courier` kini live, pelacakan pasca-kirimnya belum (tercatat sebagai follow-up di [ADR-0017](adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.id.md)).
 - **Catatan transaksi payment-gateway sudah selesai** — `awcms_commerce_payment_gateway_sessions`/`_payment_events` (`sql/926`, issue #110/#113), dibangun lewat outbox sesuai [ADR-0010](adr/0010-manual-payment-and-alternative-courier-first-gateways-via-outbox.id.md)/[ADR-0017](adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.id.md). Ditunda: adapter Xendit di belakang port `PaymentGatewayProvider` yang sama (hari ini hanya `midtrans`/`log`).
 - **Upload media sungguhan untuk gambar produk, media slider, gambar bukti konfirmasi pembayaran, dan kreatif ad placement** — diselesaikan lewat mekanisme referensi/URL yang sudah ada milik `media_library`, tapi seed increment ini memakai SVG/PNG placeholder dan endpoint upload-bukti anonim adalah stub (`503 MEDIA_UNAVAILABLE`); ad placement butuh media object ter-verifikasi-R2 SUNGGUHAN (`mediaObjectId` wajib, bukan opsional), jadi langkah seed issue #57 tidak membuat satu pun dari 12 placement secara lokal — lihat [`docs/cms.md`](cms.id.md) dan [`docs/deployment.md`](deployment.id.md).
+
+## Kosakata pengiriman dokumen (issue #295, [ADR-0034](adr/0034-commercial-documents-are-delivered-through-the-existing-outboxes-as-transactional-messages-built-from-immutable-sources.md))
+
+Rancangan platform ini sendiri — tidak ada yang diporting dari toko lama. Status adalah `text` + `CHECK`, tidak pernah enum bawaan.
+
+| Field | Nilai / bentuk | Arti |
+| --- | --- | --- |
+| `target_type` pengiriman | `document`, `quotation_version`, `work_order` | apa yang dikirim; `targetId` pada API adalah id dokumen, id **penawaran** (dengan `version` opsional, bawaan versi saat ini), atau id perintah kerja |
+| `channel` pengiriman | `email`, `whatsapp` | outbox yang sudah ada tempat pesan masuk |
+| `purpose` pengiriman | `transactional` (satu-satunya nilai) | tidak pernah pemasaran; kampanye menyimpan predikat persetujuannya sendiri |
+| `recipient_source` pengiriman | `source_customer`, `override` | pelanggan yang disebut sumber, atau penerima yang diketik pemegang `commerce.document_delivery_overrides.create` |
+| `status` pengiriman | `queued`, `not_enqueued` | hanya hasil serah-terima |
+| `failure_reason` pengiriman | `RECIPIENT_SUPPRESSED`, `TEMPLATE_UNAVAILABLE` | mengapa pesan tidak diantrekan |
+| `template_key` / `template_version` pengiriman | `derived.transactional` (e-mail) / `commerce.document` (WhatsApp); `1` | kontrak berversi yang merendernya; dinaikkan saat daftar variabel atau redaksi berubah |
+| `content_hash` pengiriman | 64 hex huruf kecil | SHA-256 dari JSON kanonik variabel yang dikirim; sama untuk dua pengiriman dari satu sumber tak-berubah |
+| `recipient_masked` | `s*****@example.test`, `+62812•••7890` | satu-satunya bentuk penerima yang disimpan platform ini di luar baris outbox |
+| token tautan pribadi | `dl_` + 43 karakter base64url; disimpan sebagai `sha256:` + 64 hex | buram, kedaluwarsa paling lama 168 jam (bawaan 72), tidak pernah id dokumen |
+| status outbox (riwayat) | `queued`, `sending`, `sent`, `failed`, `retry_wait`, `cancelled`, `suppressed`; `null` bila tidak pernah dibuat atau sudah dipurge | keadaan hidup baris e-mail atau WhatsApp; WhatsApp memakai empat yang pertama |
+| variabel pesan netral | `documentLabel`, `documentNumber`, `storeName`, `body`, `link` | dipetakan ke `subject`/`body`/`actionUrl` milik `derived.transactional` untuk e-mail dan dipakai apa adanya oleh `commerce.document` untuk WhatsApp |

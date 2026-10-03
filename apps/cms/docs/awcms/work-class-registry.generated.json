@@ -557,6 +557,11 @@
       "source": "factory"
     },
     {
+      "path": "src/pages/api/v1/commerce/document-deliveries/index.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
       "path": "src/pages/api/v1/commerce/documents/[id]/index.ts",
       "workClass": "interactive",
       "source": "factory"
