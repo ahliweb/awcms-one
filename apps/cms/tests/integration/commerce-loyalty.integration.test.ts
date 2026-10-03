@@ -335,6 +335,47 @@ suite("commerce loyalty ledger integration (Issue #289)", () => {
       expect(await balanceOf(TENANT_A, customerId)).toBe(12);
     });
 
+    test("an earn key that belongs to another account is a recorded, non-retryable skip, never a throw", async () => {
+      await activeProgram(TENANT_A);
+      const alice = await seedCustomer(TENANT_A, "+6281200000091");
+      const bob = await seedCustomer(TENANT_A, "+6281200000092");
+      const orderId = await seedOrder(TENANT_A, alice);
+
+      const event = fakeEvent(PAID, orderId);
+      await runConsumer(orderPaidLoyaltyEarnerConsumer, TENANT_A, event);
+      expect(await balanceOf(TENANT_A, alice)).toBe(10);
+
+      // The order's customer is reassigned after the earn; a replayed paid
+      // event now resolves the earn key against Bob's account.
+      await getAdminSql()`
+        UPDATE awcms_commerce_orders SET customer_id = ${bob}
+        WHERE tenant_id = ${TENANT_A} AND id = ${orderId}
+      `;
+      const direct = await inTenant(TENANT_A, (tx) =>
+        earnPointsForPaidOrder(tx, TENANT_A, orderId)
+      );
+      expect(direct.kind).toBe("skipped_conflict");
+
+      // Through the consumer: resolves (so the event is marked handled and is
+      // not redelivered forever), writes nothing for Bob, leaves Alice alone.
+      await runConsumer(
+        orderPaidLoyaltyEarnerConsumer,
+        TENANT_A,
+        fakeEvent(PAID, orderId)
+      );
+      expect(await ledgerFor(TENANT_A, bob)).toHaveLength(0);
+      expect(await ledgerFor(TENANT_A, alice)).toHaveLength(1);
+      expect(await balanceOf(TENANT_A, alice)).toBe(10);
+
+      const audits = (await getAdminSql()`
+        SELECT count(*)::int AS n FROM awcms_audit_events
+        WHERE tenant_id = ${TENANT_A}
+          AND action = 'commerce.loyalty.earn_skipped_conflict'
+          AND severity = 'warning'
+      `) as { n: number }[];
+      expect(audits[0]!.n).toBe(2);
+    });
+
     test("calling the earn function directly twice reports already_earned and writes nothing", async () => {
       await activeProgram(TENANT_A);
       const customerId = await seedCustomer(TENANT_A, "+6281200000002");
@@ -1536,8 +1577,59 @@ suite("commerce loyalty ledger integration (Issue #289)", () => {
         accountsChecked: 1,
         drifted: [],
         ledgerBreaks: [],
+        unrepairable: [],
         repaired: 0
       });
+    });
+
+    test("an account whose early history was purged is reported unrepairable and its balance is never rewritten", async () => {
+      const customerId = await twoEntries();
+      // The retention purge ages the OLDEST rows out (seq 1 here), leaving a
+      // survivor that sums to -3 while the balance is really 7.
+      await getAdminSql()`
+        DELETE FROM awcms_commerce_loyalty_ledger
+        WHERE tenant_id = ${TENANT_A} AND account_seq = 1
+      `;
+      expect(await balanceOf(TENANT_A, customerId)).toBe(7);
+
+      const detect = await inTenant(TENANT_A, (tx) =>
+        reconcileLoyaltyForTenant(tx, TENANT_A, { repair: false })
+      );
+      expect(detect.drifted).toHaveLength(1);
+      expect(detect.unrepairable).toHaveLength(1);
+      expect(detect.unrepairable[0]!.reason).toBe(
+        "unrepairable_history_purged"
+      );
+
+      const repair = await inTenant(TENANT_A, (tx) =>
+        reconcileLoyaltyForTenant(tx, TENANT_A, {
+          repair: true,
+          actorTenantUserId: ACTOR
+        })
+      );
+      expect(repair.repaired).toBe(0);
+      expect(repair.unrepairable).toHaveLength(1);
+      // The real balance and version survive, and no repair was audited.
+      expect(await balanceOf(TENANT_A, customerId)).toBe(7);
+      const audits = (await getAdminSql()`
+        SELECT count(*)::int AS n FROM awcms_audit_events
+        WHERE tenant_id = ${TENANT_A}
+          AND action = 'commerce.loyalty.projection_repaired'
+      `) as { n: number }[];
+      expect(audits[0]!.n).toBe(0);
+    });
+
+    test("a fully purged ledger beside a non-zero balance is unrepairable too", async () => {
+      const customerId = await twoEntries();
+      await getAdminSql()`
+        DELETE FROM awcms_commerce_loyalty_ledger WHERE tenant_id = ${TENANT_A}
+      `;
+      const repair = await inTenant(TENANT_A, (tx) =>
+        reconcileLoyaltyForTenant(tx, TENANT_A, { repair: true })
+      );
+      expect(repair.repaired).toBe(0);
+      expect(repair.unrepairable).toHaveLength(1);
+      expect(await balanceOf(TENANT_A, customerId)).toBe(7);
     });
 
     test("drift is detected read-only, then repaired by rewriting only the projection", async () => {

@@ -9162,6 +9162,18 @@ components:
                 format: uuid
               badRows:
                 type: integer
+        unrepairable:
+          type: array
+          description: "Drifted accounts whose surviving ledger is not a complete history (it does not start at account_seq 1, has gaps, or is empty while the balance is not) because a retention purge aged early rows out. Reported, never repaired: SUM(ledger) is not their balance. A subset of drifted."
+          items:
+            type: object
+            properties:
+              accountId:
+                type: string
+                format: uuid
+              reason:
+                type: string
+                enum: [unrepairable_history_purged]
         repaired:
           type: integer
     CommerceOrder:

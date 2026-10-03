@@ -485,6 +485,12 @@ export async function expireDueLotsForLockedAccount(
 export type EarnOutcome =
   | { kind: "earned"; entry: LoyaltyLedgerEntry }
   | { kind: "already_earned"; entry: LoyaltyLedgerEntry }
+  /**
+   * The `earn:order:<id>` key already belongs to another account or amount
+   * (e.g. the order's customer was reassigned after the earn). Retrying can
+   * never succeed, so this is a recorded, non-retryable outcome, not a throw.
+   */
+  | { kind: "skipped_conflict"; orderId: string }
   | {
       kind: "skipped";
       reason:
@@ -575,16 +581,37 @@ export async function earnPointsForPaidOrder(
     tenantId,
     order.customer_id
   );
-  const result = await appendLedgerEntry(tx, tenantId, account, {
-    kind: "earn",
-    points,
-    programId: program.id,
-    sourceType: "order",
-    sourceId: orderId,
-    idempotencyKey: `earn:order:${orderId}`,
-    expiresAt: computeExpiresAt(paidAt, program.expiryDays),
-    correlationId
-  });
+  let result: AppendEntryResult;
+  try {
+    result = await appendLedgerEntry(tx, tenantId, account, {
+      kind: "earn",
+      points,
+      programId: program.id,
+      sourceType: "order",
+      sourceId: orderId,
+      idempotencyKey: `earn:order:${orderId}`,
+      expiresAt: computeExpiresAt(paidAt, program.expiryDays),
+      correlationId
+    });
+  } catch (error) {
+    if (!(error instanceof LoyaltyIdempotencyConflictError)) throw error;
+    // Thrown before any write (the key lookup precedes the INSERT), so the
+    // transaction is intact. Redelivery cannot change the answer, so surface a
+    // warning for an operator and let the consumer mark the event handled.
+    await recordAuditEvent(tx, {
+      tenantId,
+      moduleKey: AUDIT_MODULE_KEY,
+      action: "commerce.loyalty.earn_skipped_conflict",
+      resourceType: AUDIT_RESOURCE_TYPE,
+      resourceId: order.customer_id,
+      severity: "warning",
+      message:
+        "Loyalty earn skipped: the order's earn key already belongs to another account or amount (customer reassigned?).",
+      attributes: { orderId, customerId: order.customer_id },
+      correlationId
+    });
+    return { kind: "skipped_conflict", orderId };
+  }
 
   return result.inserted
     ? { kind: "earned", entry: result.entry }
@@ -1316,6 +1343,14 @@ export type LoyaltyReconcileReport = {
   drifted: LoyaltyDrift[];
   /** Accounts with a ledger row whose running `balance_after` is not the running sum — a tampered/corrupt ledger no projection rewrite can fix. */
   ledgerBreaks: { accountId: string; badRows: number }[];
+  /**
+   * Drifted accounts whose surviving ledger is NOT a complete history (it does
+   * not start at `account_seq = 1`, has gaps, or is empty while the projection
+   * is not) — a retention purge aged the early rows out. `SUM(ledger)` is then
+   * not the balance, so these are never repaired, only reported. A subset of
+   * `drifted`.
+   */
+  unrepairable: { accountId: string; reason: "unrepairable_history_purged" }[];
   /** Projections rewritten (only with `repair: true`). */
   repaired: number;
 };
@@ -1328,6 +1363,13 @@ export type LoyaltyReconcileReport = {
  * never edited. A `ledgerBreak` (a row whose `balance_after` is not the
  * running sum) is reported, never "repaired": there is no safe automatic
  * answer to an append-only table that disagrees with itself.
+ *
+ * Only a COMPLETE history is repaired from `SUM(ledger)`: the retention purge
+ * ages early ledger rows out, after which the survivors no longer sum to the
+ * balance, and "repairing" would zero a real balance. An account whose
+ * surviving ledger does not start at `account_seq = 1` (or has gaps, or is
+ * empty while the projection is not) is reported as
+ * `unrepairable_history_purged` and left untouched.
  */
 export async function reconcileLoyaltyForTenant(
   tx: Bun.SQL,
@@ -1395,6 +1437,42 @@ export async function reconcileLoyaltyForTenant(
     ledgerVersion: assertPoints(row.ledger_version)
   }));
 
+  const unrepairable: LoyaltyReconcileReport["unrepairable"] = [];
+  const unrepairableIds = new Set<string>();
+  const markUnrepairable = (accountId: string) => {
+    if (unrepairableIds.has(accountId)) return;
+    unrepairableIds.add(accountId);
+    unrepairable.push({
+      accountId,
+      reason: "unrepairable_history_purged"
+    });
+  };
+  // A history is complete only when it starts at 1 and has no gaps.
+  const isCompleteHistory = (stats: {
+    count: number;
+    minSeq: number;
+    maxSeq: number;
+  }) => stats.count > 0 && stats.minSeq === 1 && stats.maxSeq === stats.count;
+
+  for (const drift of drifted) {
+    const stats = (await tx`
+      SELECT COUNT(*)::int AS count,
+        COALESCE(MIN(account_seq), 0)::int AS min_seq,
+        COALESCE(MAX(account_seq), 0)::int AS max_seq
+      FROM awcms_commerce_loyalty_ledger
+      WHERE tenant_id = ${tenantId} AND account_id = ${drift.accountId}
+    `) as { count: number; min_seq: number; max_seq: number }[];
+    if (
+      !isCompleteHistory({
+        count: Number(stats[0]!.count),
+        minSeq: Number(stats[0]!.min_seq),
+        maxSeq: Number(stats[0]!.max_seq)
+      })
+    ) {
+      markUnrepairable(drift.accountId);
+    }
+  }
+
   let repaired = 0;
   if (options.repair) {
     for (const drift of drifted) {
@@ -1403,12 +1481,29 @@ export async function reconcileLoyaltyForTenant(
       // Recompute under the lock: the figure in the report may be stale.
       const fresh = (await tx`
         SELECT COALESCE(SUM(points), 0) AS balance,
-          COALESCE(MAX(account_seq), 0) AS version
+          COALESCE(MAX(account_seq), 0) AS version,
+          COUNT(*)::int AS count,
+          COALESCE(MIN(account_seq), 0)::int AS min_seq
         FROM awcms_commerce_loyalty_ledger
         WHERE tenant_id = ${tenantId} AND account_id = ${drift.accountId}
-      `) as { balance: string | number; version: string | number | bigint }[];
+      `) as {
+        balance: string | number;
+        version: string | number | bigint;
+        count: number;
+        min_seq: number;
+      }[];
       const balance = Number(fresh[0]!.balance);
       const version = assertPoints(fresh[0]!.version);
+      if (
+        !isCompleteHistory({
+          count: Number(fresh[0]!.count),
+          minSeq: Number(fresh[0]!.min_seq),
+          maxSeq: version
+        })
+      ) {
+        markUnrepairable(drift.accountId);
+        continue;
+      }
       if (balance === locked.balance && version === locked.version) continue;
 
       await tx`
@@ -1443,6 +1538,7 @@ export async function reconcileLoyaltyForTenant(
       accountId: row.account_id,
       badRows: Number(row.bad_rows)
     })),
+    unrepairable,
     repaired
   };
 }

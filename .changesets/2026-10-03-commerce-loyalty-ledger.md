@@ -16,3 +16,4 @@ impact: public
 - Permissions are `commerce.loyalty.{read,manage}`, `commerce.loyalty_adjustments.create` and `commerce.loyalty_redemptions.create`, not `loyalty.adjust|redeem`, so the upstream-owned `AccessAction` union is not widened (a new subtree divergence).
 - `awcms_worker` gains `SELECT` on `awcms_module_settings` (the earn consumer reads the feature flag).
 - Deferred, with reasons in the ADR: redemption into checkout pricing/POS tender (needs #285), tiers, per-line return compensation (#287), campaign eligibility (#280), a storefront balance page.
+- **Review hardening.** Reconcile repair now rewrites only complete ledger histories (an account whose early rows were purged is reported `unrepairable_history_purged`), and an earn whose key belongs to another account is a recorded `skipped_conflict` instead of an endless retry.
