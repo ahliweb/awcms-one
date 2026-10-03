@@ -39,6 +39,10 @@ import { normalizePhoneNumber } from "../domain/phone-normalisation";
 import { isOrderPayable, type OrderStatus } from "../domain/order-status";
 import type { PaymentGatewayProvider } from "../domain/payment-gateway-provider";
 import { requireCustomerSession } from "./customer-session-auth";
+import {
+  failPendingGatewayAllocation,
+  openPendingGatewayAllocation
+} from "./payment-allocation-directory";
 
 const POSTGRES_UNIQUE_VIOLATION = "23505";
 const PROVIDER_REF_CONSTRAINT =
@@ -271,6 +275,17 @@ export async function createGatewaySession(
         RETURNING id, order_id, provider, provider_ref, redirect_url, status, expires_at
       `) as SessionRow[];
 
+      // Issue #285 (ADR-0025): the in-flight leg of the payment-allocation
+      // ledger. Pending — it counts toward nothing until the verified
+      // webhook/reconcile outcome resolves it — and written here, in the
+      // persist transaction AFTER the provider call returned, never during it.
+      await openPendingGatewayAllocation(tx, tenantId, {
+        orderId: validated.orderId,
+        amount: validated.total,
+        provider: providerKey,
+        providerReference: created.providerRef
+      });
+
       return { kind: "created", session: toRecord(rows[0]!) };
     });
   } catch (error) {
@@ -331,14 +346,28 @@ export async function updateGatewaySessionStatus(
   status: string,
   rawStatus: unknown
 ): Promise<void> {
-  await tx`
+  const updated = (await tx`
     UPDATE awcms_commerce_payment_gateway_sessions
     SET status = ${status},
         raw_status = ${JSON.stringify(rawStatus ?? null)},
         last_checked_at = now(),
         updated_at = now()
     WHERE tenant_id = ${tenantId} AND id = ${sessionId}
-  `;
+    RETURNING provider, provider_ref
+  `) as { provider: string; provider_ref: string }[];
+
+  // Issue #285: a session that ended without a payment resolves its pending
+  // ledger leg to `failed` (an expired/failed leg never counted toward
+  // settlement; this only makes the ledger say what happened). `paid` is
+  // resolved by `markOrderPaidBySystem`, never here.
+  if ((status === "failed" || status === "expired") && updated[0]) {
+    await failPendingGatewayAllocation(
+      tx,
+      tenantId,
+      updated[0].provider,
+      updated[0].provider_ref
+    );
+  }
 }
 
 export type PendingGatewaySessionForReconcile = {

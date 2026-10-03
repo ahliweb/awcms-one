@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](arsitektur.md)
 
-<!-- i18n-source-hash: sha256:f6e10b63862a6b3c182f84e04c02682f5b7644a422a20ec035c8e94a9cca7ba3 -->
+<!-- i18n-source-hash: sha256:efb56bdbc5590dd57cc52452685f3795f59297e5ba517f42b6fcdc54871dbbbd -->
 
 # Arsitektur
 
@@ -182,6 +182,10 @@ flowchart TB
 | `PaymentGatewayProvider` (issue #110/#113) | `midtrans`, `log` | `awcms_commerce_payment_gateway_sessions`, `awcms_commerce_payment_events` (buku besar anti-replay), `awcms_commerce_webhook_endpoints` (token di-hash) | `commerce:payments:reconcile` (tiap 2 menit) |
 
 **Webhook masuk tidak pernah mempercayai payload untuk identitas tenant.** `POST /api/v1/commerce/webhooks/{provider}/{endpointToken}` publik me-resolve `(tenant, provider)` dari token per-tenant yang opak dan di-hash lewat fungsi bootstrap `SECURITY DEFINER` yang meniru `awcms_resolve_tenant_domain_lookup` — body webhook yang mengklaim `tenant_id` akan menjadi oracle yang tidak terverifikasi, sesuai tabel alternatif-yang-ditolak milik ADR-0017 D2 sendiri. Perlindungan replay adalah constraint `UNIQUE (tenant_id, provider, event_key)` pada `awcms_commerce_payment_events`, sehingga pengiriman at-least-once milik penyedia menjadi idempoten: event yang di-replay tetap menjawab `200`, hanya tanpa efek samping kedua. Ketidakcocokan jumlah antara `gross_amount` webhook dan total pesanan sendiri dicatat (`outcome = 'amount_mismatch'`) tapi tidak pernah menandai pesanan lunas — `sql/934` menambahkan guard itu setelah #110 dikirim, menutup celah yang ditandai #113. Karena webhook bisa hilang dalam perjalanan, `commerce:payments:reconcile` mem-poll `fetchStatus` setiap sesi gateway yang masih `pending`/`created` pada jadwalnya sendiri — jalur `markOrderPaidBySystem` yang sama yang dipakai handler webhook, sehingga webhook yang hilang menyembuhkan dirinya sendiri dalam interval job itu alih-alih membuat pesanan terdampar selamanya di `pending_payment`.
+
+## Pembayaran adalah ledger, bukan kolom (issue #285, [ADR-0025](adr/0025-payments-are-an-allocation-ledger-separate-from-order-status.md))
+
+Setiap cara uang sampai ke sebuah pesanan — tender POS, konfirmasi transfer manual yang diterima, pembayaran yang dicatat staf, webhook gateway terverifikasi atau hasil reconcile — menulis SATU tabel append-only, `awcms_commerce_payment_allocations`, dan tidak ada yang lain yang memutuskan "lunas". Penyelesaian diturunkan dari baris-barisnya (`Σ pembayaran berhasil − Σ pembalikan berhasil`); `orders.payment_status` adalah cache dari turunan itu; siklus hidup pesanan bergerak ke `paid` lewat satu `transitionOrderStatus` yang sudah ada ketika penyelesaian mencapai ambang rilis pesanan, tidak pernah lewat jalur sendiri. Setiap penulis mengunci baris pesanan lebih dulu (`FOR NO KEY UPDATE`, agar kunci key-share FK dari insert anak tidak bisa membuatnya deadlock), itulah yang membuat dua pembayaran final yang bersamaan aman; `source_key` unik milik ledger adalah penjaga kedua yang independen di belakang store idempotensi bersama. `awcms_app` tidak bisa `DELETE` baris ledger dan trigger membekukan setiap kolom kecuali transisi leg gateway `pending → succeeded|failed`. Graf impor lokal-modul tetap satu arah: `payment-allocation-directory.ts` tidak mengimpor apa pun dari `order-directory.ts` dan diberi callback rilis; `payment-recording.ts` menyusun keduanya. Tidak ada panggilan provider yang masuk ke transaksi-transaksi ini (leg gateway dibuka setelah provider kembali dan diselesaikan oleh hasil webhook/reconcile yang terverifikasi).
 
 ## Satu hal lagi yang dilakukan server: memperbaiki halaman yang terbayangi
 

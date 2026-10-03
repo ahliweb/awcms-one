@@ -37,6 +37,10 @@ import {
   COMMERCE_WEBHOOK_ENDPOINT_PERMISSIONS,
   COMMERCE_POS_ACTIVITY_CODE,
   COMMERCE_POS_PERMISSIONS,
+  COMMERCE_POS_DUE_ACTIVITY_CODE,
+  COMMERCE_POS_DUE_PERMISSIONS,
+  COMMERCE_PAYMENTS_ACTIVITY_CODE,
+  COMMERCE_PAYMENT_PERMISSIONS,
   COMMERCE_ENTITLEMENTS_ACTIVITY_CODE
 } from "./domain/commerce-permissions";
 import {
@@ -51,7 +55,9 @@ import {
   COMMERCE_ORDER_CANCELLED_EVENT_TYPE,
   COMMERCE_ORDER_EXPIRED_EVENT_TYPE,
   COMMERCE_VOUCHER_REDEEMED_EVENT_TYPE,
-  COMMERCE_REVIEW_PUBLISHED_EVENT_TYPE
+  COMMERCE_REVIEW_PUBLISHED_EVENT_TYPE,
+  COMMERCE_PAYMENT_RECORDED_EVENT_TYPE,
+  COMMERCE_PAYMENT_REVERSED_EVENT_TYPE
 } from "./domain/commerce-events";
 import {
   SALES_BY_CATEGORY_PROJECTION_KEY,
@@ -278,7 +284,9 @@ export const commerceModule = defineModule({
       COMMERCE_ORDER_CANCELLED_EVENT_TYPE,
       COMMERCE_ORDER_EXPIRED_EVENT_TYPE,
       COMMERCE_VOUCHER_REDEEMED_EVENT_TYPE,
-      COMMERCE_REVIEW_PUBLISHED_EVENT_TYPE
+      COMMERCE_REVIEW_PUBLISHED_EVENT_TYPE,
+      COMMERCE_PAYMENT_RECORDED_EVENT_TYPE,
+      COMMERCE_PAYMENT_REVERSED_EVENT_TYPE
     ]
   },
   /**
@@ -2227,6 +2235,56 @@ export const commerceModule = defineModule({
       executionMode: "generic"
     },
     {
+      key: "commerce.payment_allocations",
+      tableName: "awcms_commerce_payment_allocations",
+      ownerModuleKey: "commerce",
+      scope: "tenant",
+      // Issue #285 (ADR-0025). Append-only ledger - no `deleted_at` (and no
+      // `updated_at`): the cursor is `created_at`, the same exception
+      // `commerce.order_events` documents for an append-only table.
+      cursorColumn: "created_at",
+      // Fiscal record: every row is evidence of money that changed hands, the
+      // same reasoning `commerce.orders` states for its own widest window. The
+      // floor is five years (a payment must outlive any billing/tax dispute
+      // about the order it settled) and the ceiling ten.
+      retentionClass: "system_event",
+      retentionMinDays: 1825,
+      retentionMaxDays: 3650,
+      defaultRetentionDays: 3650,
+      partition: {
+        eligible: false,
+        rationale:
+          "Bounded by a tenant's own order volume (a handful of legs per order at most) - nowhere near partition-worthy."
+      },
+      archive: {
+        archivable: false,
+        rationale:
+          "The generic engine's only implemented artefact is ordinary backup/restore; no standalone archive exists yet for this table."
+      },
+      deletion: {
+        mode: "hard_delete",
+        rationale:
+          "The generic engine's only mode. Reachable only past the ten-year ceiling, and only by the retention worker: awcms_app has no DELETE on this table (sql/940's REVOKE) and a trigger freezes every column of a row, so the ledger is append-only for every runtime path."
+      },
+      legalHold: { applicable: false, precedence: "not_applicable" },
+      requiredIndexes: [
+        {
+          columns: ["tenant_id", "created_at"],
+          purpose:
+            "awcms_commerce_payment_allocations_tenant_created_idx (sql/940) - the (tenant, cursor) composite the generic purge engine filters + orders by, and the tender-mix report's range scan."
+        },
+        {
+          columns: ["tenant_id", "order_id", "created_at"],
+          purpose:
+            "awcms_commerce_payment_allocations_tenant_order_idx (sql/940) - an order's own ledger read and settlement sum."
+        }
+      ],
+      batchLimit: 5000,
+      backupRestoreNotes:
+        "Included in ordinary full-database backup/restore; no standalone archive artifact. The ledger is the source of truth for settlement: restore it WITH awcms_commerce_orders (payment_status is a cache of it).",
+      executionMode: "generic"
+    },
+    {
       key: "commerce.protected_media_links",
       tableName: "awcms_commerce_protected_media_links",
       ownerModuleKey: "commerce",
@@ -2781,6 +2839,18 @@ export const commerceModule = defineModule({
         "owner_customer_id names a row in commerce.customers, which itself carries no tenant_user/identity/profile/principal id (ADR-0016 D1, same gap commerce.orders'/commerce.customer_accounts' own entries document) — this engine's subject vocabulary still cannot reach it. The row is also the proof of what a customer paid for (source_order_id), the same fiscal-record reasoning commerce.orders states, so it is retained under that obligation rather than erased even if it were reachable."
     },
     {
+      key: "commerce.payment_allocations",
+      tableName: "awcms_commerce_payment_allocations",
+      ownerModuleKey: "commerce",
+      unreachableBySubject: true,
+      subjectColumns: [],
+      exportable: false,
+      erasure: "retain_under_obligation",
+      rationale:
+        "Issue #285 - one payment leg or compensating reversal of an order: tender, amount, optional provider reference, and the staff member (a plain uuid stamp, actor_tenant_user_id) who recorded it. It names no customer - the order it points at does, and commerce.orders' own entry documents why that customer is unreachable by this engine's subject vocabulary (ADR-0016 D1). It is a fiscal record of money that changed hands, retained under the same obligation as commerce.orders; provider_reference (a bank/QRIS/gateway reference) is never exported.",
+      redactedColumns: ["provider_reference"]
+    },
+    {
       key: "commerce.protected_media_links",
       tableName: "awcms_commerce_protected_media_links",
       ownerModuleKey: "commerce",
@@ -3062,6 +3132,30 @@ export const commerceModule = defineModule({
         "Create a counter (POS) sale — the only order-creation path that requires a permission at all"
     },
     {
+      activityCode: COMMERCE_POS_DUE_ACTIVITY_CODE,
+      action: "create",
+      description:
+        "Finalize a POS sale that leaves a balance due instead of settling in full (Issue #285)"
+    },
+    {
+      activityCode: COMMERCE_PAYMENTS_ACTIVITY_CODE,
+      action: "read",
+      description:
+        "Read an order's payment-allocation ledger and the tender-mix / outstanding-balance reports (Issue #285)"
+    },
+    {
+      activityCode: COMMERCE_PAYMENTS_ACTIVITY_CODE,
+      action: "create",
+      description:
+        "Record an additional payment (tender) against an order (Issue #285)"
+    },
+    {
+      activityCode: COMMERCE_PAYMENTS_ACTIVITY_CODE,
+      action: "revoke",
+      description:
+        "Record a compensating reversal of a payment — takes money back out of the order's settlement (Issue #285)"
+    },
+    {
       activityCode: COMMERCE_ENTITLEMENTS_ACTIVITY_CODE,
       action: "read",
       description:
@@ -3097,5 +3191,7 @@ export {
   COMMERCE_CONVERSATION_PERMISSIONS,
   COMMERCE_CAMPAIGN_PERMISSIONS,
   COMMERCE_WEBHOOK_ENDPOINT_PERMISSIONS,
-  COMMERCE_POS_PERMISSIONS
+  COMMERCE_POS_PERMISSIONS,
+  COMMERCE_POS_DUE_PERMISSIONS,
+  COMMERCE_PAYMENT_PERMISSIONS
 };

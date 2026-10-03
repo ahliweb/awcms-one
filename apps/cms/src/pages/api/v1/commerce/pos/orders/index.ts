@@ -23,11 +23,17 @@ import {
 } from "../../../../../../modules/_shared/keyset-pagination";
 import { mediaLibraryPortAdapter } from "../../../../../../modules/media-library/application/media-library-port-adapter";
 import { requireCommerceFeatureForOwnerRoute } from "../../../../../../modules/commerce/application/commerce-feature-gate";
+import { authorizeInTransaction } from "../../../../../../modules/identity-access/application/access-guard";
 import {
   createPosOrder,
   listPosOrders,
-  PosCartChangedError
+  PosCartChangedError,
+  PosDueRequiresCustomerError
 } from "../../../../../../modules/commerce/application/pos-directory";
+import {
+  InvalidTenderPlanError,
+  OverpaymentError
+} from "../../../../../../modules/commerce/domain/payment-allocation";
 import { IdempotencyPayloadMismatchError } from "../../../../../../modules/commerce/application/order-directory";
 import {
   InsufficientTenderError,
@@ -36,7 +42,8 @@ import {
 } from "../../../../../../modules/commerce/domain/pos-order-validation";
 import {
   COMMERCE_ORDERS_ACTIVITY_CODE,
-  COMMERCE_POS_ACTIVITY_CODE
+  COMMERCE_POS_ACTIVITY_CODE,
+  COMMERCE_POS_DUE_ACTIVITY_CODE
 } from "../../../../../../modules/commerce/domain/commerce-permissions";
 
 const READ_GUARD = {
@@ -48,6 +55,21 @@ const READ_GUARD = {
 const CREATE_GUARD = {
   moduleKey: "commerce",
   activityCode: COMMERCE_POS_ACTIVITY_CODE,
+  action: "create"
+} as const;
+
+/**
+ * Issue #285 (ADR-0025) — finalizing a sale with a balance DUE (`allowDue:
+ * true`) is a different authority from ringing up a settled one: it hands
+ * goods over on credit. The primary guard above (`commerce.pos.create`) is
+ * checked for every caller before the handler runs; this second guard is made
+ * in the handler, through the same chokepoint (`authorizeInTransaction`), only
+ * when the body asks for a due sale — the shape `media/objects/{id}.ts`
+ * established for a body-dependent second permission.
+ */
+const DUE_GUARD = {
+  moduleKey: "commerce",
+  activityCode: COMMERCE_POS_DUE_ACTIVITY_CODE,
   action: "create"
 } as const;
 
@@ -170,9 +192,20 @@ export const POST = defineTenantRoute<CreatePosOrderInput>({
     return result.value;
   },
   authorize: CREATE_GUARD,
-  handler: async ({ tx, tenantId, auth, prepared, locals }) => {
+  handler: async ({ tx, tenantId, auth, prepared, locals, tokenHash, now }) => {
     const gate = await requireCommerceFeatureForOwnerRoute(tx, tenantId, "pos");
     if (gate) return gate;
+
+    if (prepared.allowDue) {
+      const dueAuth = await authorizeInTransaction(
+        tx,
+        tenantId,
+        tokenHash,
+        now,
+        DUE_GUARD
+      );
+      if (!dueAuth.allowed) return dueAuth.denied;
+    }
 
     try {
       const outcome = await createPosOrder(
@@ -235,9 +268,38 @@ export const POST = defineTenantRoute<CreatePosOrderInput>({
         return fail(
           409,
           "INSUFFICIENT_TENDER",
-          "payment.amountTendered is less than the order total.",
+          "The tenders do not cover the order total.",
           {},
           { shortfall: error.shortfall }
+        );
+      }
+      if (error instanceof OverpaymentError) {
+        return fail(
+          409,
+          "OVERPAYMENT",
+          "The non-cash tenders exceed the order total; only a cash tender may exceed it, as change.",
+          {},
+          { outstanding: error.outstanding, attempted: error.attempted }
+        );
+      }
+      if (error instanceof InvalidTenderPlanError) {
+        return fail(400, "VALIDATION_ERROR", error.message, {}, [
+          { field: error.field, message: error.message }
+        ]);
+      }
+      if (error instanceof PosDueRequiresCustomerError) {
+        return fail(
+          400,
+          "VALIDATION_ERROR",
+          "customer.phone is required for a sale left with a balance due.",
+          {},
+          [
+            {
+              field: "customer.phone",
+              message:
+                "customer.phone is required for a sale left with a balance due."
+            }
+          ]
         );
       }
       throw error;

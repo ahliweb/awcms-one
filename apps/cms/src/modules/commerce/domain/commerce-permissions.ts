@@ -315,3 +315,45 @@ export const COMMERCE_POS_PERMISSIONS = {
   /** The only order-creation path in this module gated by a permission at all — every other one is anonymous (storefront) or provider/system-driven (gateway webhook). */
   create: "commerce.pos.create"
 } as const;
+
+/**
+ * POS due sales (Issue #285, ADR-0025). ONE permission — `create` — gating
+ * the `allowDue: true` flag of `POST /api/v1/commerce/pos/orders`: finalizing
+ * a sale that leaves a balance DUE hands goods over on credit, a different
+ * authority from `COMMERCE_POS_PERMISSIONS.create` (ring up a settled sale).
+ * Checked IN ADDITION to `commerce.pos.create`, only when the body asks for a
+ * due sale (the handler's second `authorizeInTransaction`, the shape
+ * `media/objects/{id}.ts` established). Own activity code rather than a
+ * second action under `pos` so a tenant role can grant it (or withhold it)
+ * without touching the cashier's base permission.
+ */
+export const COMMERCE_POS_DUE_ACTIVITY_CODE = "pos_due";
+
+export const COMMERCE_POS_DUE_PERMISSIONS = {
+  create: "commerce.pos_due.create"
+} as const;
+
+/**
+ * Payment-allocation ledger (Issue #285, ADR-0025). Three actions, each with
+ * its own enforcing route (no permission without one):
+ *
+ *   - `read`   — `GET .../orders/{id}/payments`, the tender-mix and
+ *     outstanding-balance reports.
+ *   - `create` — `POST .../orders/{id}/payments`, record an additional tender.
+ *   - `revoke` — `POST .../orders/{id}/payments/{paymentId}/reversals`,
+ *     record a compensating reversal. `revoke` is the platform's existing
+ *     HIGH-RISK action verb (`identity-access`'s `AccessAction`), reused
+ *     rather than adding a `reverse` verb to that upstream-owned union: taking
+ *     recorded money back out of the books is exactly what the high-risk set
+ *     (and the SoD rules a tenant may author against it) is for, so a role
+ *     that may record a payment need not be trusted to un-record one.
+ */
+export const COMMERCE_PAYMENTS_ACTIVITY_CODE = "payments";
+
+export const COMMERCE_PAYMENT_PERMISSIONS = {
+  read: "commerce.payments.read",
+  /** Record an additional payment (tender) against an order. */
+  create: "commerce.payments.create",
+  /** Record a compensating reversal of a payment (high-risk verb, see above). */
+  revoke: "commerce.payments.revoke"
+} as const;

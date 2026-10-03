@@ -956,7 +956,25 @@ export const READER_BUDGET_BYTES = 24_000;
  * re-measure on the next commerce or control-center screen and tighten if
  * the real total sits well below this.
  */
-export const APP_BUDGET_BYTES = 288_500;
+/**
+ * **Raised to 293,500 B for Issue #285** (payment-allocation ledger,
+ * ADR-0025) — three admin screens grow, none of them by a new shared
+ * primitive: `commerce-pos.astro`'s client island replaces its single
+ * cash/QRIS selector with split tender lines (a row template, per-line
+ * labelling, the `bigint`-cents mirror of `planTenders`' plan, the live
+ * applied/change/balance summary, the per-tender receipt);
+ * `commerce-orders/[id].astro` gains a second `<script>` for the
+ * record-payment and record-reversal forms (two `Idempotency-Key`
+ * submissions) plus the ledger panel's CSS; and `commerce-reports.astro`
+ * gains two SSR tables (no script). The remainder is the compiled
+ * Indonesian catalogue's ~50 new msgids and three new label maps. Measured
+ * clean build: 293,287 B (up from 288,391 B); the largest-file checks still
+ * pass. 293,500 keeps the same tight "measured + small margin" convention as
+ * every raise above;
+ * re-measure on the next commerce screen and tighten if the real total sits
+ * well below this.
+ */
+export const APP_BUDGET_BYTES = 293_500;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.

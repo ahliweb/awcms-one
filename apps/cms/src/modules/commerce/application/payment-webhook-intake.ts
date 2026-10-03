@@ -309,7 +309,9 @@ export async function applyVerifiedWebhookEvent(
         {
           provider: input.provider,
           providerRef: input.providerRef,
-          eventKey: input.eventKey
+          eventKey: input.eventKey,
+          grossAmount: input.grossAmount,
+          source: "gateway_webhook"
         },
         input.correlationId
       );

@@ -40,6 +40,7 @@ What does **not** need an ADR: adding a field within an already-decided schema, 
 | [0022](0022-production-deployment-is-server-side-and-explicit.md) | Production deployment is server-side and explicit | Accepted (superseded in part by [0021](0021-zero-github-actions-local-ci-with-exact-sha-statuses.md)) |
 | [0023](0023-release-images-are-built-signed-and-published-from-a-trusted-release-host.md) | Release images are built, signed, and published from a trusted release host | Accepted |
 | [0024](0024-awcms-one-is-template-only-derived-apps-own-their-backend.md) | awcms-one is template-only; every derived application owns its backend and runtime | Accepted |
+| [0025](0025-payments-are-an-allocation-ledger-separate-from-order-status.md) | Payments are an append-only allocation ledger, separate from order status | Accepted |
 
 ## Why the numbering starts at 0001
 

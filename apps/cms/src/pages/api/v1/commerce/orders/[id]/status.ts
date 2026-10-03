@@ -6,6 +6,7 @@ import {
 } from "../../../../../../lib/security/request-body-limit";
 import {
   IllegalOrderStatusTransitionError,
+  PaymentNotSettledError,
   updateOrderStatusByAdmin
 } from "../../../../../../modules/commerce/application/order-directory";
 import { COMMERCE_ORDERS_ACTIVITY_CODE } from "../../../../../../modules/commerce/domain/commerce-permissions";
@@ -66,6 +67,18 @@ export const PATCH = defineTenantRoute({
       if (!updated) return fail(404, "RESOURCE_NOT_FOUND", "Order not found.");
       return ok({ status: prepared.status });
     } catch (error) {
+      if (error instanceof PaymentNotSettledError) {
+        // Issue #285: `paid` is derived from the payment ledger — record the
+        // payment (`POST .../orders/{id}/payments`) and the order moves by
+        // itself once settlement reaches the total.
+        return fail(
+          409,
+          "PAYMENT_NOT_SETTLED",
+          error.message,
+          {},
+          { outstanding: error.outstanding }
+        );
+      }
       if (error instanceof IllegalOrderStatusTransitionError) {
         return fail(
           409,

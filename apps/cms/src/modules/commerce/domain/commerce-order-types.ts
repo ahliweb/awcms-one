@@ -34,7 +34,14 @@ export type OrderStatus =
 export type PaymentMethod =
   "manual_bank" | "manual_qris" | "dp" | "gateway" | "cash";
 
-export type PaymentStatus = "unpaid" | "dp_paid" | "paid" | "refunded";
+/**
+ * The cached order-level payment axis (`awcms_commerce_orders.payment_status`)
+ * - a DERIVATION of the payment-allocation ledger (Issue #285, ADR-0025),
+ * independent of the order lifecycle `OrderStatus`. `partially_paid` is the
+ * state between `unpaid` and `paid` (money recorded, balance still owed).
+ */
+export type PaymentStatus =
+  "unpaid" | "partially_paid" | "dp_paid" | "paid" | "refunded";
 
 export type ShippingMethod = "alternative" | "self_pickup" | "courier";
 

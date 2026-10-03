@@ -167,6 +167,22 @@ BjekMart's kasir (`commerce_bj_mart`'s counter sales, recorded in the legacy `or
 | `commerce.pos.create` | `awcms_permissions` (`sql/932`); `COMMERCE_POS_PERMISSIONS.create` | The ONE permission-gated order-creation path in the module. POS history reuses `commerce.orders.read` |
 | `commerce.pos.sale` | `awcms_audit_events.action` | The audit event every counter sale writes (order code, total, method, tendered, change, walk-in flag, line count — never the customer's name or phone) |
 
+### Payment allocation ledger (issue #285, [ADR-0025](adr/0025-payments-are-an-allocation-ledger-separate-from-order-status.md))
+
+| Term | Where it lives | Meaning |
+| --- | --- | --- |
+| allocation / payment leg | `awcms_commerce_payment_allocations` row, `CommercePaymentAllocation` on the wire | One tender leg (`kind: payment`) or one compensating reversal (`kind: reversal`) of an order. Append-only: a correction is a NEW reversal row, never an edit |
+| `tender_type` | `CHECK IN ('cash','manual_qris','manual_bank_transfer','gateway')`; `PaymentTenderType` | How a leg was paid. `gateway` is created only by the hosted-checkout flow. `store_credit`/`gift_card` do not exist yet. Distinct from the legacy `orders.payment_method`, now only a summary hint (the tender with the largest applied amount) |
+| `amount` | `numeric(14,2)` string (ADR-0003) | The amount APPLIED to the order. For a cash leg it excludes change |
+| `tendered_amount` / `change_amount` | cash payment legs only | What the customer handed over / what went back; `tendered = amount + change`. Change is computed from the cash leg ONLY, after every non-cash tender is subtracted from the amount due |
+| `settlement` | `SettlementView` (`total`, `paid`, `reversed`, `settled`, `outstanding`, `overpaid`, `paymentStatus`) | DERIVED from the ledger: `settled = Σ succeeded payments − Σ succeeded reversals`, `outstanding = max(0, total − settled)`, `overpaid = max(0, settled − total)`. A `pending`/`failed` leg never counts |
+| `payment_status` | `awcms_commerce_orders.payment_status` — `unpaid`, `partially_paid`, `dp_paid`, `paid`, `refunded` | A CACHE of the settlement derivation, independent of the order lifecycle `status`. `dp_paid` = a down-payment order covered up to its down payment; `refunded` = everything that came in went back |
+| release threshold | `releaseThresholdCents` | The settled amount at which a `pending_payment` order moves to `paid`: the total, or a down-payment order's `dp_amount` |
+| `source_key` | `UNIQUE (tenant_id, source_key)` | The ledger's own idempotency key (`gateway:{provider}:{ref}`, `confirmation:{id}`, `api:{key}`, `reversal:{key}`, `pos:{key}:{n}`, `backfill:{order id}`) |
+| due balance / `allowDue` | `POST /api/v1/commerce/pos/orders` | A POS sale finalized with money still owed (explicit, needs `commerce.pos_due.create` and a customer phone): `pending_payment`, no expiry, `settlement.outstanding` explicit |
+| `tenders[]` | POS request, contract version 2 | The explicit multi-tender payload (`{ tenderType, amount, reference? }`); mutually exclusive with the legacy `payment` object. Non-cash `amount` = applied, cash `amount` = handed over |
+| `commerce.payments.{read,create,revoke}`, `commerce.pos_due.create` | `awcms_permissions` (`sql/941`) | Read the ledger/reports, record a tender, record a reversal (`revoke` is the platform's high-risk verb), finalize a POS sale with a balance due |
+
 ## Deferred columns and tables — not ported
 
 - **A live RajaOngkir courier-RATE table is done** (issue #107, `sql/924` — `awcms_commerce_courier_destinations`/`_shipping_rates`, a cached rate the order path validates against, never a synchronous provider call). What is still deferred: live courier TRACKING (a shipped parcel's own status) — `shipping_method`/`shipping_service_name` on an order remain merchant-defined labels for the `alternative`/`self_pickup` methods; a `courier` shipment's rate is now live, its post-dispatch tracking is not (named as a follow-up in [ADR-0017](adr/0017-external-providers-are-commerce-owned-ports-with-env-credentials-and-token-addressed-webhooks.md)).
