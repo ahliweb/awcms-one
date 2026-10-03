@@ -48,6 +48,7 @@
  */
 import AdminLayout from "../../layouts/AdminLayout.astro";
 import "../../styles/admin-screens.css";
+import SettingsSaveBar from "../../components/SettingsSaveBar.astro";
 import { loadAdminScreen } from "../../lib/auth/admin-screen";
 import { logAdminPageError } from "../../lib/logging/error-log";
 import {
@@ -229,24 +230,24 @@ const showLifecycleActions = canPublish || canRetire || canPreview;
           </thead>
           <tbody>
             <tr>
-              <td data-label="What">{t("Live theme")}</td>
-              <td data-label="Value">
+              <td data-label={t("What")}>{t("Live theme")}</td>
+              <td data-label={t("Value")}>
                 {state?.activeThemeKey ? (
-                  <span class="status-badge" data-variant="success">
-                    <span class="status-dot" aria-hidden="true" />
+                  <span class="admin-status-pill" data-tone="success">
+                    <span class="admin-status-pill-dot" aria-hidden="true" />
                     {activeThemeName ?? state.activeThemeKey}
                   </span>
                 ) : (
-                  <span class="status-badge" data-variant="neutral">
-                    <span class="status-dot" aria-hidden="true" />
+                  <span class="admin-status-pill" data-tone="neutral">
+                    <span class="admin-status-pill-dot" aria-hidden="true" />
                     {t("none \u2014 falling back to the default theme")}
                   </span>
                 )}
               </td>
             </tr>
             <tr>
-              <td data-label="What">{t("Live version")}</td>
-              <td data-label="Value">
+              <td data-label={t("What")}>{t("Live version")}</td>
+              <td data-label={t("Value")}>
                 {state?.activeVersionId ? (
                   <span class="cell-code">{state.activeVersionId}</span>
                 ) : (
@@ -255,11 +256,11 @@ const showLifecycleActions = canPublish || canRetire || canPreview;
               </td>
             </tr>
             <tr>
-              <td data-label="What">{t("Saved draft")}</td>
-              <td data-label="Value">
+              <td data-label={t("What")}>{t("Saved draft")}</td>
+              <td data-label={t("Value")}>
                 {draft ? (
-                  <span class="status-badge" data-variant="info">
-                    <span class="status-dot" aria-hidden="true" />
+                  <span class="admin-status-pill" data-tone="info">
+                    <span class="admin-status-pill-dot" aria-hidden="true" />
                     {draft.themeKey}
                   </span>
                 ) : (
@@ -476,20 +477,18 @@ const showLifecycleActions = canPublish || canRetire || canPreview;
         </p>
 
         <div class="admin-toolbar">
-          {canUpdate && (
-            <button
-              type="submit"
-              id="theming-draft-submit"
-              class="module-toggle"
-            >
-              {t("Save draft")}
-            </button>
-          )}
           <button type="button" id="theming-validate" class="btn-inline">
             {t("Validate")}
           </button>
         </div>
       </form>
+
+      {canUpdate && (
+        <SettingsSaveBar
+          formId="theming-draft-form"
+          saveLabel={t("Save draft")}
+        />
+      )}
 
       <div
         id="theming-validate-result"
@@ -590,35 +589,37 @@ const showLifecycleActions = canPublish || canRetire || canPreview;
             )}
             {versions.map((version) => (
               <tr>
-                <td data-label="Version">{version.versionNumber ?? "—"}</td>
-                <td data-label="Theme">
+                <td data-label={t("Version")}>
+                  {version.versionNumber ?? "—"}
+                </td>
+                <td data-label={t("Theme")}>
                   <span class="cell-code">{version.themeKey}</span>
                 </td>
-                <td data-label="Config hash">
+                <td data-label={t("Config hash")}>
                   <span class="cell-code">
                     {version.configHash.slice(0, 12)}
                   </span>
                 </td>
-                <td data-label="Published">
+                <td data-label={t("Published")}>
                   <span class="cell-code">
                     {formatTimestamp(version.publishedAt)}
                   </span>
                 </td>
-                <td data-label="Status">
+                <td data-label={t("Status")}>
                   {state?.activeVersionId === version.id ? (
-                    <span class="status-badge" data-variant="success">
-                      <span class="status-dot" aria-hidden="true" />
+                    <span class="admin-status-pill" data-tone="success">
+                      <span class="admin-status-pill-dot" aria-hidden="true" />
                       {t("live")}
                     </span>
                   ) : (
-                    <span class="status-badge" data-variant="neutral">
-                      <span class="status-dot" aria-hidden="true" />
+                    <span class="admin-status-pill" data-tone="neutral">
+                      <span class="admin-status-pill-dot" aria-hidden="true" />
                       {t("published")}
                     </span>
                   )}
                 </td>
                 {canRollback && (
-                  <td data-label="Actions">
+                  <td data-label={t("Actions")}>
                     <div class="row-actions">
                       {state?.activeVersionId === version.id ? (
                         <span class="cell-muted">{t("already live")}</span>
@@ -664,9 +665,13 @@ const showLifecycleActions = canPublish || canRetire || canPreview;
     sendJson,
     sendJsonForData
   } from "../../lib/ui/admin-form-client";
+  import { confirmAction } from "../../lib/ui/confirm-dialog-client";
+  import { initSettingsSaveBars } from "../../lib/ui/settings-save-bar-client";
 
   const actionError = messageBox("theming-action-error");
   const draftError = messageBox("theming-draft-error");
+
+  initSettingsSaveBars();
 
   /**
    * `validate` and `preview` are the two calls on this screen whose whole point
@@ -922,9 +927,9 @@ const showLifecycleActions = canPublish || canRetire || canPreview;
     // Destructive in the sense that matters: it changes what every visitor sees,
     // and the version it creates can never be edited afterwards.
     if (
-      !window.confirm(
+      !(await confirmAction(
         "Publish the saved draft? It becomes the live look immediately, and the published version is immutable."
-      )
+      ))
     ) {
       return;
     }
@@ -939,9 +944,9 @@ const showLifecycleActions = canPublish || canRetire || canPreview;
 
   onAction("#theming-retire", async (button) => {
     if (
-      !window.confirm(
+      !(await confirmAction(
         "Retire the live theme? The site falls back to the default theme until you publish or roll back."
-      )
+      ))
     ) {
       return;
     }
@@ -961,9 +966,9 @@ const showLifecycleActions = canPublish || canRetire || canPreview;
       ? `version ${button.dataset.versionNumber}`
       : "this version";
     if (
-      !window.confirm(
+      !(await confirmAction(
         `Roll the live theme back to ${label}? It becomes the live look immediately.`
-      )
+      ))
     ) {
       return;
     }

@@ -151,13 +151,15 @@ describe("parseAuditOutput", () => {
 });
 
 describe("the shipped exception list", () => {
-  test("holds only the one dated no-fix-published entry — everything else is closed by an override", () => {
-    // Not style: a near-empty list makes the next exception stand out, so it
-    // cannot be added without a reviewer seeing it. Same reasoning ADR-0058
-    // settled for the permission-enforcement gate. awcms-one embed divergence
-    // (root AGENTS.md): `http-cache-semantics` has no fixed release at all.
-    expect(EXCEPTIONS.map((entry) => entry.advisoryUrl)).toEqual([
-      "https://github.com/advisories/GHSA-ch52-4w7c-c8xp"
+  test("holds exactly the one advisory with no patched release", () => {
+    // Not style: pinning the exact set makes the next exception a visible edit
+    // here, so it cannot be added without a reviewer seeing it. Same reasoning
+    // ADR-0058 settled for the permission-enforcement gate. Empty is still the
+    // target: once http-cache-semantics ships a fix, close it with `overrides`
+    // and this list goes back to `[]` (`deps:audit:check` fails on a stale
+    // entry, so it cannot linger).
+    expect(EXCEPTIONS.map((e) => `${e.packageName} ${e.advisoryUrl}`)).toEqual([
+      "http-cache-semantics https://github.com/advisories/GHSA-ch52-4w7c-c8xp"
     ]);
   });
 
