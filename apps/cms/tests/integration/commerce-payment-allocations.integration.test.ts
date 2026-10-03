@@ -42,7 +42,9 @@ import { createProduct } from "../../src/modules/commerce/application/product-di
 import {
   createOrderFromCart,
   createPaymentConfirmation,
+  expireOrderBySystem,
   IdempotencyPayloadMismatchError,
+  listExpirableOrderIds,
   PaymentNotSettledError,
   reviewPaymentConfirmation,
   updateOrderStatusByAdmin
@@ -54,6 +56,7 @@ import {
 import { applyVerifiedWebhookEvent } from "../../src/modules/commerce/application/payment-webhook-intake";
 import { reconcilePendingSessionsForTenant } from "../../src/modules/commerce/application/payment-reconcile";
 import {
+  AllocationSourceKeyConflictError,
   fetchOrderPaymentSummary,
   listAllocationsForOrder,
   listOutstandingBalances,
@@ -557,9 +560,74 @@ suite("commerce payment-allocation ledger (Issue #285)", () => {
       });
     });
 
-    test("a manual -> paid status override is refused until the ledger says the order is settled", async () => {
+    test("a manual -> paid status override on an order with NO ledger leg records one full-amount manual leg, audits it, releases the order, and replays safely", async () => {
       const productId = await seedActiveProduct(TENANT_A);
       const order = await createStorefrontOrder(TENANT_A, productId);
+
+      const updated = await inTenant(TENANT_A, (tx) =>
+        updateOrderStatusByAdmin(
+          tx,
+          TENANT_A,
+          STAFF_1,
+          order.id,
+          "paid",
+          "cash on pickup"
+        )
+      );
+      expect(updated).toBe(true);
+      expect((await orderRow(TENANT_A, order.id)).status).toBe("paid");
+      expect((await orderRow(TENANT_A, order.id)).payment_status).toBe("paid");
+
+      const legs = await inTenant(TENANT_A, (tx) =>
+        listAllocationsForOrder(tx, TENANT_A, order.id)
+      );
+      expect(legs).toHaveLength(1);
+      expect(legs[0]).toMatchObject({
+        kind: "payment",
+        status: "succeeded",
+        amount: "10000.00",
+        tenderType: "manual_qris",
+        source: "admin",
+        actorKind: "tenant_user",
+        actorTenantUserId: STAFF_1
+      });
+      expect(
+        await countRows(
+          "awcms_audit_events",
+          "tenant_id = $1 AND resource_id = $2 AND action = 'payment.record'",
+          TENANT_A,
+          legs[0]!.id
+        )
+      ).toBe(1);
+      expect(await paidTransitions(order.id)).toBe(1);
+
+      // A replay finds the order already paid: the status machine refuses it
+      // and no second leg is ever written.
+      await expect(
+        inTenant(TENANT_A, (tx) =>
+          updateOrderStatusByAdmin(
+            tx,
+            TENANT_A,
+            STAFF_1,
+            order.id,
+            "paid",
+            null
+          )
+        )
+      ).rejects.toBeInstanceOf(Error);
+      expect(
+        await countRows(
+          "awcms_commerce_payment_allocations",
+          "order_id = $1",
+          order.id
+        )
+      ).toBe(1);
+    });
+
+    test("a manual -> paid override on an order that HAS legs but is not settled is refused with the outstanding amount, and writes nothing", async () => {
+      const productId = await seedActiveProduct(TENANT_A);
+      const order = await createStorefrontOrder(TENANT_A, productId);
+      await pay(TENANT_A, order.id, recordInput({ amount: "4000.00" }));
 
       let caught: unknown;
       try {
@@ -577,10 +645,17 @@ suite("commerce payment-allocation ledger (Issue #285)", () => {
         caught = error;
       }
       expect(caught).toBeInstanceOf(PaymentNotSettledError);
-      expect((caught as PaymentNotSettledError).outstanding).toBe("10000.00");
+      expect((caught as PaymentNotSettledError).outstanding).toBe("6000.00");
       expect((await orderRow(TENANT_A, order.id)).status).toBe(
         "pending_payment"
       );
+      expect(
+        await countRows(
+          "awcms_commerce_payment_allocations",
+          "order_id = $1",
+          order.id
+        )
+      ).toBe(1);
     });
 
     test("a down-payment order is released at its down payment, stays dp_paid, and settles fully on the top-up", async () => {
@@ -661,6 +736,106 @@ suite("commerce payment-allocation ledger (Issue #285)", () => {
           TENANT_A
         )
       ).toBe(1);
+    });
+
+    test("with the idempotency store forgotten, the same key aimed at another order is an AllocationSourceKeyConflictError (route: 409 IDEMPOTENCY_CONFLICT)", async () => {
+      const productId = await seedActiveProduct(TENANT_A);
+      const order = await createStorefrontOrder(TENANT_A, productId);
+      const other = await createStorefrontOrder(TENANT_A, productId);
+      const input = recordInput({ amount: "2500.00" });
+      await pay(TENANT_A, order.id, input);
+      await getAdminSql()`DELETE FROM awcms_idempotency_keys WHERE tenant_id = ${TENANT_A}`;
+
+      await expect(pay(TENANT_A, other.id, input)).rejects.toBeInstanceOf(
+        AllocationSourceKeyConflictError
+      );
+
+      // Same for a reversal key reused against another order's payment.
+      const first = await pay(
+        TENANT_A,
+        order.id,
+        recordInput({ amount: "3000.00" })
+      );
+      if (first.kind !== "created") throw new Error("expected created");
+      const rev = reversalInput({ amount: "1000.00" });
+      await reverse(TENANT_A, order.id, first.body.payment.id, rev);
+      await getAdminSql()`DELETE FROM awcms_idempotency_keys WHERE tenant_id = ${TENANT_A}`;
+      const otherPay = await pay(
+        TENANT_A,
+        other.id,
+        recordInput({ amount: "3000.00" })
+      );
+      if (otherPay.kind !== "created") throw new Error("expected created");
+      await expect(
+        reverse(TENANT_A, other.id, otherPay.body.payment.id, rev)
+      ).rejects.toBeInstanceOf(AllocationSourceKeyConflictError);
+    });
+
+    test("with the idempotency store forgotten, a reused key with a different amount or tender is a conflict, never a silent replay of the old row", async () => {
+      const productId = await seedActiveProduct(TENANT_A);
+      const order = await createStorefrontOrder(TENANT_A, productId);
+      const input = recordInput({ amount: "2500.00" });
+      await pay(TENANT_A, order.id, input);
+      await getAdminSql()`DELETE FROM awcms_idempotency_keys WHERE tenant_id = ${TENANT_A}`;
+
+      await expect(
+        pay(TENANT_A, order.id, { ...input, amount: "2600.00" })
+      ).rejects.toBeInstanceOf(AllocationSourceKeyConflictError);
+      await expect(
+        pay(TENANT_A, order.id, { ...input, tenderType: "manual_qris" })
+      ).rejects.toBeInstanceOf(AllocationSourceKeyConflictError);
+      // The identical request is still a clean replay.
+      expect((await pay(TENANT_A, order.id, input)).kind).toBe("replayed");
+
+      // A reversal replayed with a different amount.
+      const first = await pay(
+        TENANT_A,
+        order.id,
+        recordInput({ amount: "3000.00" })
+      );
+      if (first.kind !== "created") throw new Error("expected created");
+      const rev = reversalInput({ amount: "1000.00" });
+      await reverse(TENANT_A, order.id, first.body.payment.id, rev);
+      await getAdminSql()`DELETE FROM awcms_idempotency_keys WHERE tenant_id = ${TENANT_A}`;
+      await expect(
+        reverse(TENANT_A, order.id, first.body.payment.id, {
+          ...rev,
+          amount: "1500.00"
+        })
+      ).rejects.toBeInstanceOf(AllocationSourceKeyConflictError);
+      expect(
+        (await reverse(TENANT_A, order.id, first.body.payment.id, rev)).kind
+      ).toBe("replayed");
+    });
+
+    test("a POS sale whose key collides with an existing ledger leg of another order is an AllocationSourceKeyConflictError", async () => {
+      const productId = await seedActiveProduct(TENANT_A);
+      const key = crypto.randomUUID();
+      const posInput = (): CreatePosOrderInput => ({
+        idempotencyKey: key,
+        customer: { name: null, phone: null },
+        lines: [{ productId, variantId: null, quantity: 1 }],
+        payment: null,
+        tenders: [{ tenderType: "cash", amount: "10000.00", reference: null }],
+        allowDue: false,
+        notes: null
+      });
+      const ring = () =>
+        inTenant(TENANT_A, (tx) =>
+          createPosOrder(
+            tx,
+            TENANT_A,
+            STAFF_1,
+            mediaLibraryPortAdapter,
+            posInput(),
+            NOW
+          )
+        );
+      expect((await ring()).kind).toBe("created");
+      await getAdminSql()`DELETE FROM awcms_idempotency_keys WHERE tenant_id = ${TENANT_A}`;
+      await expect(ring()).rejects.toBeInstanceOf(
+        AllocationSourceKeyConflictError
+      );
     });
 
     test("the ledger's own source_key is a second guard even when the idempotency store forgets", async () => {
@@ -1548,6 +1723,112 @@ suite("commerce payment-allocation ledger (Issue #285)", () => {
   // -------------------------------------------------------------------------
   // POS
   // -------------------------------------------------------------------------
+
+  describe("partially settled orders (gateway sessions and expiry)", () => {
+    test("a gateway session is refused for an order that already holds received money, and a settled-then-fully-reversed order may use one again", async () => {
+      const productId = await seedActiveProduct(TENANT_A);
+      const order = await createStorefrontOrder(TENANT_A, productId, "gateway");
+      const auth: CreateGatewaySessionAuth = {
+        kind: "phone",
+        phone: "081311112222"
+      };
+      const open = () =>
+        createGatewaySession(
+          getRuntimeSql(),
+          TENANT_A,
+          order.code,
+          auth,
+          LOG_PROVIDER,
+          "log"
+        );
+      const paid = await pay(
+        TENANT_A,
+        order.id,
+        recordInput({ amount: "4000.00" })
+      );
+      if (paid.kind !== "created") throw new Error("expected created");
+
+      expect(await open()).toEqual({
+        kind: "partially_settled",
+        outstanding: "6000.00"
+      });
+      expect(
+        await countRows(
+          "awcms_commerce_payment_gateway_sessions",
+          "order_id = $1",
+          order.id
+        )
+      ).toBe(0);
+
+      await reverse(TENANT_A, order.id, paid.body.payment.id, reversalInput());
+      expect((await open()).kind).toBe("created");
+    });
+
+    test("an existing live session is not handed back once money has been received", async () => {
+      const productId = await seedActiveProduct(TENANT_A);
+      const order = await createStorefrontOrder(TENANT_A, productId, "gateway");
+      const auth: CreateGatewaySessionAuth = {
+        kind: "phone",
+        phone: "081311112222"
+      };
+      const open = () =>
+        createGatewaySession(
+          getRuntimeSql(),
+          TENANT_A,
+          order.code,
+          auth,
+          LOG_PROVIDER,
+          "log"
+        );
+      expect((await open()).kind).toBe("created");
+      await pay(TENANT_A, order.id, recordInput({ amount: "4000.00" }));
+      expect((await open()).kind).toBe("partially_settled");
+    });
+
+    test("the expiry job never expires (or restocks) an order that holds received money; an untouched expired order still expires", async () => {
+      const productId = await seedActiveProduct(TENANT_A);
+      const stockOf = async (): Promise<number> => {
+        const rows = (await getAdminSql()`
+          SELECT stock FROM awcms_commerce_products WHERE id = ${productId}
+        `) as { stock: number }[];
+        return Number(rows[0]!.stock);
+      };
+      const part = await createStorefrontOrder(TENANT_A, productId);
+      const untouched = await createStorefrontOrder(TENANT_A, productId);
+      await pay(TENANT_A, part.id, recordInput({ amount: "4000.00" }));
+      await getAdminSql()`
+        UPDATE awcms_commerce_orders SET expires_at = now() - interval '1 hour'
+        WHERE id IN (${part.id}, ${untouched.id})
+      `;
+      const stockBefore = await stockOf();
+
+      const ids = await inTenant(TENANT_A, (tx) =>
+        listExpirableOrderIds(tx, TENANT_A, new Date())
+      );
+      expect(ids).toEqual([untouched.id]);
+
+      // Even called directly (a stale scan), the system expiry skips it.
+      await inTenant(TENANT_A, (tx) =>
+        expireOrderBySystem(tx, TENANT_A, part.id)
+      );
+      expect((await orderRow(TENANT_A, part.id)).status).toBe(
+        "pending_payment"
+      );
+      expect(await stockOf()).toBe(stockBefore);
+
+      await inTenant(TENANT_A, (tx) =>
+        expireOrderBySystem(tx, TENANT_A, untouched.id)
+      );
+      expect((await orderRow(TENANT_A, untouched.id)).status).toBe("expired");
+      expect(await stockOf()).toBe(stockBefore + 1);
+
+      // It stays on the outstanding-balances report.
+      const report = await inTenant(TENANT_A, (tx) =>
+        listOutstandingBalances(tx, TENANT_A, { channel: null, limit: 50 })
+      );
+      expect(JSON.stringify(report)).toContain(part.id);
+    });
+  });
 
   describe("POS tenders", () => {
     function posInput(

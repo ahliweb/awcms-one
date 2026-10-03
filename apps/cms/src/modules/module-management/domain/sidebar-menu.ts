@@ -280,6 +280,9 @@ export const SIDEBAR_LABELS: Readonly<Record<string, string>> = {
   "admin.layout.nav_commerce_pos": "POS",
   "admin.layout.nav_commerce_registers": "Registers",
   "admin.layout.nav_commerce_documents": "Documents",
+  "admin.layout.nav_commerce_attributes": "Product attributes",
+  "admin.layout.nav_commerce_catalog_import": "Catalog import/export",
+  "admin.layout.nav_commerce_loyalty": "Loyalty",
   "admin.layout.nav_omes_overview": "OMES overview",
   "admin.layout.nav_omes_servers": "OMES servers",
   "admin.layout.nav_omes_deployments": "OMES deployments",
@@ -293,7 +296,8 @@ export const SIDEBAR_LABELS: Readonly<Record<string, string>> = {
   "admin.layout.nav_omes_orkestrasi_langsung": "OMES live orchestration",
   "admin.layout.nav_omes_hermes": "OMES Hermes",
   "admin.layout.nav_omes_progres_hermes": "OMES Hermes progress",
-  "admin.layout.nav_omes_arsitektur": "OMES architecture"
+  "admin.layout.nav_omes_arsitektur": "OMES architecture",
+  "admin.layout.nav_omes_mission_control": "OMES Mission Control"
 };
 
 /**
@@ -401,6 +405,9 @@ export const DEFAULT_SIDEBAR_ICONS: Readonly<Record<string, string>> = {
   "admin.layout.nav_commerce_pos": "cart",
   "admin.layout.nav_commerce_registers": "layers",
   "admin.layout.nav_commerce_documents": "file",
+  "admin.layout.nav_commerce_attributes": "tag",
+  "admin.layout.nav_commerce_catalog_import": "inbox",
+  "admin.layout.nav_commerce_loyalty": "tag",
   "admin.layout.nav_omes_overview": "dashboard",
   "admin.layout.nav_omes_servers": "monitor",
   "admin.layout.nav_omes_deployments": "layers",
@@ -414,7 +421,8 @@ export const DEFAULT_SIDEBAR_ICONS: Readonly<Record<string, string>> = {
   "admin.layout.nav_omes_orkestrasi_langsung": "bolt",
   "admin.layout.nav_omes_hermes": "layers",
   "admin.layout.nav_omes_progres_hermes": "chart",
-  "admin.layout.nav_omes_arsitektur": "map"
+  "admin.layout.nav_omes_arsitektur": "map",
+  "admin.layout.nav_omes_mission_control": "globe"
 };
 
 /** Display name for the synthetic core group. Rendered as a module sub-label. */

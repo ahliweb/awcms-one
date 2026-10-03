@@ -82,7 +82,7 @@
  * const { t } = getTranslatorFor(Astro.locals.locale);
  * const labels = createCommerceLabels(t);
  * // …
- * <span class="status-badge" data-tone={orderStatusTone[order.status] ?? "neutral"}>
+ * <span class="admin-status-pill" data-tone={orderStatusTone[order.status] ?? "neutral"}>
  *   {commerceLabel(labels.orderStatus, order.status)}
  * </span>
  * ```
@@ -116,6 +116,9 @@ import type {
 } from "../../modules/commerce/domain/payment-allocation";
 import type { ProductStatus } from "../../modules/commerce/domain/product-status";
 import type { ProductType } from "../../modules/commerce/domain/product-type";
+import type { AttributeAppliesTo } from "../../modules/commerce/domain/attribute-definition";
+import type { AttributeValueType } from "../../modules/commerce/domain/attribute-value";
+import type { ImportRowAction } from "../../modules/commerce/domain/catalog-import";
 import type {
   VoucherType,
   VoucherStatus
@@ -149,6 +152,10 @@ import type {
 import type { AdminConversationRecord } from "../../modules/commerce/application/conversation-directory";
 import type { CustomerAdminRecord } from "../../modules/commerce/application/customer-directory";
 import type { WebhookEndpointProvider } from "../../modules/commerce/application/webhook-endpoint-directory";
+import type {
+  LoyaltyEntryKind,
+  LoyaltyProgramStatus
+} from "../../modules/commerce/domain/loyalty";
 import type { ProjectionFreshnessStatus } from "../../modules/reporting/domain/freshness";
 import type { RebuildRunStatus } from "../../modules/reporting/application/rebuild-run-store";
 
@@ -234,7 +241,7 @@ export type PaymentGatewaySessionProvider = "midtrans" | "log";
  */
 export type PaymentEventOutcome = "applied" | "ignored" | "replay";
 
-/** CSS badge/pill tone name — the same small vocabulary every commerce admin screen's own `STATUS_TONE`/`FRESHNESS_VARIANT` map already uses (`data-tone`/`data-variant` on `.status-badge`/`.admin-status-pill`). */
+/** CSS badge/pill tone name — the same small vocabulary every commerce admin screen's own `STATUS_TONE`/`FRESHNESS_VARIANT` map already uses (`data-tone` on `.admin-status-pill`). */
 export type CommerceTone =
   "success" | "warning" | "info" | "primary" | "danger" | "neutral";
 
@@ -292,6 +299,31 @@ export function createCommerceLabels(t: Translator["t"]) {
     bundle: t("Bundle"),
     event: t("Event")
   } satisfies Record<ProductType, string>;
+
+  /** Issue #291 — a catalog attribute's value type (`domain/attribute-value.ts`). */
+  const attributeValueType = {
+    text: t("Text"),
+    integer: t("Whole number"),
+    decimal: t("Decimal number"),
+    boolean: t("Yes/No"),
+    date: t("Date"),
+    enum: t("Choice list")
+  } satisfies Record<AttributeValueType, string>;
+
+  /** Issue #291 — which catalog entity an attribute definition applies to. */
+  const attributeAppliesTo = {
+    product: t("Products"),
+    variant: t("Variants"),
+    both: t("Products and variants")
+  } satisfies Record<AttributeAppliesTo, string>;
+
+  /** Issue #291 — the catalog import dry-run's per-row verdict. */
+  const importRowAction = {
+    create: t("Create"),
+    update: t("Update"),
+    unchanged: t("Unchanged"),
+    error: t("Error")
+  } satisfies Record<ImportRowAction, string>;
 
   const voucherType = {
     percentage: t("Percentage"),
@@ -529,12 +561,31 @@ export function createCommerceLabels(t: Translator["t"]) {
     replay: t("Replay")
   } satisfies Record<PaymentEventOutcome, string>;
 
+  /** Issue #289 — the five ledger entry kinds of the loyalty points ledger. */
+  const loyaltyEntryKind = {
+    earn: t("Earned"),
+    redeem: t("Redeemed"),
+    expire: t("Expired"),
+    adjustment: t("Adjustment"),
+    reversal: t("Reversal")
+  } satisfies Record<LoyaltyEntryKind, string>;
+
+  /** Issue #289 — a loyalty program version's lifecycle. `draft`/`active` reuse existing msgids; `retired` is new. */
+  const loyaltyProgramStatus = {
+    draft: t("Draft"),
+    active: t("Active"),
+    retired: t("Retired")
+  } satisfies Record<LoyaltyProgramStatus, string>;
+
   return {
     orderStatus,
     paymentStatus,
     orderChannel,
     productStatus,
     productType,
+    attributeValueType,
+    attributeAppliesTo,
+    importRowAction,
     voucherType,
     campaignStatus,
     campaignChannel,
@@ -564,7 +615,9 @@ export function createCommerceLabels(t: Translator["t"]) {
     workOrderStatus,
     workOrderPriority,
     heldSaleStatus,
-    documentType
+    documentType,
+    loyaltyEntryKind,
+    loyaltyProgramStatus
   };
 }
 
@@ -684,4 +737,14 @@ export const reportRunStatusTone: Record<RebuildRunStatus, CommerceTone> = {
   completed: "success",
   failed: "danger",
   cancelled: "neutral"
+};
+
+/** Issue #289 — a draft is awaiting activation (warning), the open active version is success, a retired one is neutral. */
+export const loyaltyProgramStatusTone: Record<
+  LoyaltyProgramStatus,
+  CommerceTone
+> = {
+  draft: "warning",
+  active: "success",
+  retired: "neutral"
 };

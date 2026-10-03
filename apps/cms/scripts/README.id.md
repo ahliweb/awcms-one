@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:d812b9f42475c61e3edccc38eacf805952106b02d376a3b4f151d8a0d783ef3a -->
+<!-- i18n-source-hash: sha256:e2b461d64ec709975db5b7e45d2280ccc6212632c6f9444bfdf9663a05b24495 -->
 
 # Scripts AWCMS
 
@@ -27,7 +27,7 @@ lalu membangun duplikatnya.
 
 <!-- Dihasilkan `bun run scripts:inventory:generate`. JANGAN diedit tangan. -->
 
-139 target menjalankan berkas di `scripts/`; 57 di antaranya
+141 target menjalankan berkas di `scripts/`; 57 di antaranya
 ada di rantai `bun run check` (kolom **Gate**), sisanya dijalankan manual,
 terjadwal, atau oleh workflow CI tertentu.
 
@@ -73,6 +73,8 @@ terjadwal, atau oleh workflow CI tertentu.
 | `commerce:customer-auth:purge`            | `commerce-customer-auth-purge.ts`              | —    |
 | `commerce:deploy:preflight`               | `commerce-deploy-preflight.ts`                 | —    |
 | `commerce:flash-sales:tick`               | `commerce-flash-sales-tick.ts`                 | —    |
+| `commerce:loyalty:expire`                 | `commerce-loyalty-expire.ts`                   | —    |
+| `commerce:loyalty:reconcile`              | `commerce-loyalty-reconcile.ts`                | —    |
 | `commerce:orders:expire`                  | `commerce-orders-expire.ts`                    | —    |
 | `commerce:payments:reconcile`             | `commerce-payments-reconcile.ts`               | —    |
 | `commerce:shipping-rates:purge`           | `commerce-shipping-rates-purge.ts`             | —    |

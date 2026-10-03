@@ -46,6 +46,8 @@ import {
 } from "../domain/email-template-render";
 import type { EmailProvider } from "../domain/email-provider-contract";
 import { resolveEmailProvider } from "../infrastructure/email-provider-resolver";
+// awcms-one divergence (#311): registers the commerce `derived.*` categories in the separate `email:dispatch` process.
+import "../../commerce/domain/email-template-categories";
 
 const DEFAULT_RENDER_LOCALE = "en";
 

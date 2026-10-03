@@ -165,6 +165,24 @@ export const COMMERCE_QUOTATION_AGGREGATE_TYPE = "commerce.quotation";
 export const COMMERCE_WORK_ORDER_AGGREGATE_TYPE = "commerce.work_order";
 export const COMMERCE_DOCUMENT_AGGREGATE_TYPE = "commerce.document";
 
+/**
+ * Loyalty points ledger (Issue #289, ADR-0026 D8). ONE event type for every
+ * ledger row — an earn, redemption, expiry, adjustment or reversal — with the
+ * `kind` in the payload, because every consumer that wants "the balance
+ * changed" wants all five and a consumer that wants only one filters on
+ * `kind` instead of subscribing five times. Fired from
+ * `application/loyalty-ledger.ts`'s `appendLedgerEntry`, the only writer, in
+ * the same transaction as the insert. The aggregate is the loyalty ACCOUNT
+ * (not the order or the customer), so per-aggregate ordering of an account's
+ * events matches its `account_seq` order. The payload carries no PII — never
+ * a name, phone, or the free-text `reason`.
+ */
+export const COMMERCE_LOYALTY_ENTRY_RECORDED_EVENT_TYPE =
+  "awcms.commerce.loyalty.entry_recorded";
+
+export const COMMERCE_LOYALTY_ACCOUNT_AGGREGATE_TYPE =
+  "commerce.loyalty_account";
+
 export const COMMERCE_ORDER_AGGREGATE_TYPE = "commerce.order";
 export const COMMERCE_REGISTER_SESSION_AGGREGATE_TYPE =
   "commerce.register_session";

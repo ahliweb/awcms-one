@@ -131,6 +131,13 @@ export const COMMERCE_WORK_ORDER_STATUS_CHANGED_EVENT_TYPE =
 export const COMMERCE_DOCUMENT_ISSUED_EVENT_TYPE =
   "awcms.commerce.document.issued";
 
+/**
+ * Loyalty points ledger (Issue #289, ADR-0026) — ONE event type for every
+ * ledger row, `kind` in the payload.
+ */
+export const COMMERCE_LOYALTY_ENTRY_RECORDED_EVENT_TYPE =
+  "awcms.commerce.loyalty.entry_recorded";
+
 export const DOMAIN_EVENT_TYPE_REGISTRY: readonly RegisteredDomainEventType[] =
   [
     {
@@ -334,6 +341,12 @@ export const DOMAIN_EVENT_TYPE_REGISTRY: readonly RegisteredDomainEventType[] =
       eventVersion: COMMERCE_EVENT_VERSION,
       description:
         "A numbered receipt or invoice document was issued for a finalized order (an immutable snapshot). Producer: commerce/application/document-directory.ts's issueDocument, in the same transaction as the numbered row. Carries the document type/number, the source order id and the total - never the customer."
+    },
+    {
+      eventType: COMMERCE_LOYALTY_ENTRY_RECORDED_EVENT_TYPE,
+      eventVersion: COMMERCE_EVENT_VERSION,
+      description:
+        "A row was appended to the append-only loyalty points ledger (Issue #289) — an earn for a paid order, a redemption, an expiry, a manual adjustment or a reversal. Producer: commerce/application/loyalty-ledger.ts's appendLedgerEntry, in the same transaction as the ledger insert and the account projection update. Aggregate is the loyalty account; the payload carries entryId, customerId, kind, signed integer points, balanceAfter and sourceType — never a name, phone or free-text reason."
     }
   ];
 

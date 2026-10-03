@@ -318,6 +318,32 @@ export async function lockSessionExclusive(
   return toLocked(rows[0]);
 }
 
+/**
+ * The open session whose current cashier is `tenantUserId`, if any (a cashier
+ * holds at most one drawer at a time in practice; the oldest wins if not).
+ * Read-only, no lock: it only offers the admin order screen a default for
+ * "pay this refund from my drawer"; the reversal API re-checks everything
+ * under the session lock.
+ */
+export async function findOpenSessionForCashier(
+  tx: Bun.SQL,
+  tenantId: string,
+  tenantUserId: string
+): Promise<{ sessionId: string; registerCode: string } | null> {
+  const rows = (await tx`
+    SELECT s.id, r.code
+    FROM awcms_commerce_register_sessions s
+    JOIN awcms_commerce_registers r
+      ON r.tenant_id = s.tenant_id AND r.id = s.register_id
+    WHERE s.tenant_id = ${tenantId} AND s.status = 'open'
+      AND s.current_cashier_tenant_user_id = ${tenantUserId}
+      AND s.deleted_at IS NULL
+    ORDER BY s.opened_at ASC
+    LIMIT 1
+  `) as { id: string; code: string }[];
+  return rows[0] ? { sessionId: rows[0].id, registerCode: rows[0].code } : null;
+}
+
 // ---------------------------------------------------------------------------
 // The POS gate
 // ---------------------------------------------------------------------------

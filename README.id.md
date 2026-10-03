@@ -1,12 +1,14 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:9802750aa5df52a90f5ed32a1a3810c617bce815eaea8f21f5c881ebfb6f4aaf -->
+<!-- i18n-source-hash: sha256:13a50554aade955c418ed05138eefca14fa1bc3a8d3d8fd4f7b1f9ed06be66d4 -->
 
 [![License](https://img.shields.io/badge/License-MIT-blue)](LICENSE) [![runtime](https://img.shields.io/badge/runtime-Bun-blue?logo=bun&logoColor=white)](https://bun.sh)
 
 # awcms-one
 
 **awcms-one** adalah platform commerce-dan-berita berbasis Bun/Astro/PostgreSQL, dan sebuah [template GitHub](#gunakan-sebagai-template) yang menjadi titik awal aplikasi lain. Deployment hidupnya sendiri me-re-platform toko komersial borneojek-mart — PHP/Laravel/MySQL/React-Inertia — ke Bun, Astro, dan PostgreSQL di bawah row-level security, sebuah re-platform sungguhan, bukan refactor (tidak ada kode Laravel yang dibawa; skema sumber dibaca dari basis data MySQL `commerce_bj_mart` yang hidup dan diekspresikan ulang sebagai tabel modul AWCMS — lihat [issue #1](https://github.com/ahliweb/awcms-one/issues/1)).
+
+> **Aturan runtime template-only:** aplikasi yang dibuat dari `awcms-one` memiliki dan menjalankan **backend, basis data, migrasi, secret, domain, dan deployment miliknya sendiri** di repositorinya sendiri. Repo ini adalah template/reference implementation, **bukan backend produksi bersama** bagi produk turunan. Kebutuhan consumer hanya boleh dipromosikan kembali ke sini setelah digeneralisasi menjadi capability template yang reusable. Lihat [ADR-0024](docs/adr/0024-awcms-one-is-template-only-derived-apps-own-their-backend.id.md).
 
 ## Tangkapan layar
 

@@ -23,11 +23,18 @@ describe("resolveCommerceFeatures", () => {
   test("defaults every flag to true when settings are absent, except `register` (Issue #284), which adds an obligation and so defaults OFF", () => {
     expect(DEFAULT_COMMERCE_FEATURES.register).toBe(false);
     expect(DEFAULT_COMMERCE_FEATURES.documents).toBe(false);
+    expect(DEFAULT_COMMERCE_FEATURES.loyalty).toBe(false);
     expect(
       Object.entries(DEFAULT_COMMERCE_FEATURES)
-        .filter(([key]) => key !== "register" && key !== "documents")
+        .filter(
+          ([key]) =>
+            key !== "register" && key !== "documents" && key !== "loyalty"
+        )
         .every(([, value]) => value === true)
     ).toBe(true);
+  });
+
+  test("defaults every pre-#289 flag to true (and loyalty, new in #289, to false) when settings are absent", () => {
     expect(resolveCommerceFeatures(undefined)).toEqual(
       DEFAULT_COMMERCE_FEATURES
     );
@@ -44,7 +51,22 @@ describe("resolveCommerceFeatures", () => {
       gateway: true,
       courier: true,
       register: false,
-      documents: false
+      documents: false,
+      loyalty: false
+    });
+  });
+
+  test("loyalty (Issue #289) defaults OFF and can be turned on without disturbing the other flags", () => {
+    expect(DEFAULT_COMMERCE_FEATURES.loyalty).toBe(false);
+    expect(resolveCommerceFeatures({ features: { loyalty: true } })).toEqual({
+      pos: true,
+      inbox: true,
+      campaigns: true,
+      gateway: true,
+      courier: true,
+      register: false,
+      documents: false,
+      loyalty: true
     });
   });
 
@@ -64,7 +86,8 @@ describe("resolveCommerceFeatures", () => {
         gateway: false,
         courier: false,
         register: false,
-        documents: false
+        documents: false,
+        loyalty: false
       }
     });
     expect(resolved).toEqual({
@@ -74,7 +97,8 @@ describe("resolveCommerceFeatures", () => {
       gateway: false,
       courier: false,
       register: false,
-      documents: false
+      documents: false,
+      loyalty: false
     });
     // ...and the one flag that defaults off can be turned on.
     expect(
