@@ -1,7 +1,8 @@
 /**
  * Exceptions for `bun run deps:audit:check` — advisories knowingly accepted.
  *
- * **The list is EMPTY, and empty is the target state.** The reasoning is the
+ * **Empty is the target state.** (In the awcms-one embed it holds one dated
+ * entry — `http-cache-semantics`, no fixed release published — see below.) The reasoning is the
  * one ADR-0058 settled for the permission-enforcement gate: an empty list makes
  * the NEXT exception the only entry, so it cannot be added without being seen.
  * A list with five reasonable-looking entries is where the sixth hides.
@@ -47,4 +48,21 @@ export type AuditException = {
   reviewDate: string;
 };
 
-export const EXCEPTIONS: readonly AuditException[] = [];
+export const EXCEPTIONS: readonly AuditException[] = [
+  // awcms-one local divergence (2026-10-03, root AGENTS.md "Known local
+  // divergences"): no release of `http-cache-semantics` fixes this advisory
+  // (`<=4.2.0` vulnerable, `4.2.0` is the latest published version), so no
+  // `overrides` entry can close it. Drop this entry the day a fixed version is
+  // published, or when upstream `ahliweb/awcms` lands its own resolution.
+  {
+    packageName: "http-cache-semantics",
+    advisoryUrl: "https://github.com/advisories/GHSA-ch52-4w7c-c8xp",
+    reason:
+      "Only consumer is astro's build-time remote-image cache (astro/dist/assets/build/remote.js, " +
+      "verified by grep over astro@7.3.5's dist/); it runs once per `astro build` for one operator, " +
+      "never behind a shared multi-user HTTP cache at request time, which is the precondition for a " +
+      "cross-user max-stale disclosure. No published version fixes it, so no override can.",
+    owner: "awcms-one maintainers (ahliweb)",
+    reviewDate: "2026-11-03"
+  }
+];
