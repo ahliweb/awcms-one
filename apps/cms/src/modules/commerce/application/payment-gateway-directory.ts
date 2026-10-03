@@ -34,11 +34,16 @@
  */
 import { getProviderCircuitBreaker } from "../../../lib/database/circuit-breaker";
 import { withTenantOrThrow } from "../../../lib/database/tenant-context";
-import { normalizeMoney } from "../domain/price-calculation";
+import { normalizeMoney, toCents } from "../domain/price-calculation";
 import { normalizePhoneNumber } from "../domain/phone-normalisation";
 import { isOrderPayable, type OrderStatus } from "../domain/order-status";
 import type { PaymentGatewayProvider } from "../domain/payment-gateway-provider";
 import { requireCustomerSession } from "./customer-session-auth";
+import {
+  failPendingGatewayAllocation,
+  openPendingGatewayAllocation,
+  readOrderSettlement
+} from "./payment-allocation-directory";
 
 const POSTGRES_UNIQUE_VIOLATION = "23505";
 const PROVIDER_REF_CONSTRAINT =
@@ -63,6 +68,13 @@ export type CreateGatewaySessionOutcome =
   | { kind: "not_found" }
   | { kind: "unauthenticated" }
   | { kind: "not_applicable" }
+  /**
+   * Issue #285 (ADR-0025): money has already been received against the order
+   * (`settled > 0`), so a hosted-checkout session — which charges the whole
+   * order total — would double-charge the part already paid. Part-amount
+   * gateway legs are deferred; the balance is settled with a manual tender.
+   */
+  | { kind: "partially_settled"; outstanding: string }
   | { kind: "gateway_unavailable" };
 
 type OrderRow = {
@@ -157,7 +169,8 @@ type ValidateResult =
     }
   | { kind: "not_found" }
   | { kind: "unauthenticated" }
-  | { kind: "not_applicable" };
+  | { kind: "not_applicable" }
+  | { kind: "partially_settled"; outstanding: string };
 
 async function validateAndCheckReuse(
   sql: Bun.SQL,
@@ -199,6 +212,16 @@ async function validateAndCheckReuse(
       return { kind: "not_applicable" };
     }
 
+    // Issue #285: a session charges `order.total`, so it must never be
+    // created OR handed back for an order that already holds received money.
+    const settlement = await readOrderSettlement(tx, tenantId, order.id);
+    if (settlement && toCents(settlement.view.settled) > 0n) {
+      return {
+        kind: "partially_settled",
+        outstanding: settlement.view.outstanding
+      };
+    }
+
     const live = await fetchLiveSession(tx, tenantId, order.id);
     if (live) return { kind: "reuse", session: live };
 
@@ -236,6 +259,7 @@ export async function createGatewaySession(
   if (validated.kind === "not_found") return { kind: "not_found" };
   if (validated.kind === "unauthenticated") return { kind: "unauthenticated" };
   if (validated.kind === "not_applicable") return { kind: "not_applicable" };
+  if (validated.kind === "partially_settled") return validated;
   if (validated.kind === "reuse") {
     return { kind: "reused", session: toRecord(validated.session) };
   }
@@ -260,6 +284,20 @@ export async function createGatewaySession(
   // -- Persist — second, independent short transaction. --------------------
   try {
     return await withTenantOrThrow(sql, tenantId, async (tx) => {
+      // Re-check: a payment may have been recorded while the provider call
+      // was in flight (no lock is held across it). Nothing is inserted, so
+      // the provider-side session is simply never used.
+      const recheck = await readOrderSettlement(
+        tx,
+        tenantId,
+        validated.orderId
+      );
+      if (recheck && toCents(recheck.view.settled) > 0n) {
+        return {
+          kind: "partially_settled" as const,
+          outstanding: recheck.view.outstanding
+        };
+      }
       const rows = (await tx`
         INSERT INTO awcms_commerce_payment_gateway_sessions (
           tenant_id, order_id, provider, provider_ref, redirect_url, status, expires_at
@@ -270,6 +308,17 @@ export async function createGatewaySession(
         )
         RETURNING id, order_id, provider, provider_ref, redirect_url, status, expires_at
       `) as SessionRow[];
+
+      // Issue #285 (ADR-0025): the in-flight leg of the payment-allocation
+      // ledger. Pending — it counts toward nothing until the verified
+      // webhook/reconcile outcome resolves it — and written here, in the
+      // persist transaction AFTER the provider call returned, never during it.
+      await openPendingGatewayAllocation(tx, tenantId, {
+        orderId: validated.orderId,
+        amount: validated.total,
+        provider: providerKey,
+        providerReference: created.providerRef
+      });
 
       return { kind: "created", session: toRecord(rows[0]!) };
     });
@@ -331,14 +380,28 @@ export async function updateGatewaySessionStatus(
   status: string,
   rawStatus: unknown
 ): Promise<void> {
-  await tx`
+  const updated = (await tx`
     UPDATE awcms_commerce_payment_gateway_sessions
     SET status = ${status},
         raw_status = ${JSON.stringify(rawStatus ?? null)},
         last_checked_at = now(),
         updated_at = now()
     WHERE tenant_id = ${tenantId} AND id = ${sessionId}
-  `;
+    RETURNING provider, provider_ref
+  `) as { provider: string; provider_ref: string }[];
+
+  // Issue #285: a session that ended without a payment resolves its pending
+  // ledger leg to `failed` (an expired/failed leg never counted toward
+  // settlement; this only makes the ledger say what happened). `paid` is
+  // resolved by `markOrderPaidBySystem`, never here.
+  if ((status === "failed" || status === "expired") && updated[0]) {
+    await failPendingGatewayAllocation(
+      tx,
+      tenantId,
+      updated[0].provider,
+      updated[0].provider_ref
+    );
+  }
 }
 
 export type PendingGatewaySessionForReconcile = {

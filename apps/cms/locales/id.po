@@ -7151,6 +7151,110 @@ msgstr "Dokumentasi"
 msgid "Other"
 msgstr "Lainnya"
 
+#. Issue #285 (ADR-0025) - payment-allocation ledger, split-tender POS, payments panel
+
+msgid "A cancelled or expired order cannot receive a payment."
+msgstr "Pesanan yang dibatalkan atau kedaluwarsa tidak dapat menerima pembayaran."
+
+msgid "A reversal records that money was given back. It does not move the money and does not cancel the order."
+msgstr "Pembalikan mencatat bahwa uang dikembalikan. Pembalikan tidak memindahkan uang dan tidak membatalkan pesanan."
+
+msgid "A sale left with a balance due needs a customer phone number."
+msgstr "Penjualan dengan sisa tagihan memerlukan nomor telepon pelanggan."
+
+msgid "Add at least one payment line, or leave the balance due."
+msgstr "Tambahkan minimal satu baris pembayaran, atau biarkan sisa tagihan."
+
+msgid "Add one line for each way the customer pays. For cash, enter the amount handed over; change is worked out from the cash line only, after the other lines."
+msgstr "Tambahkan satu baris untuk setiap cara pelanggan membayar. Untuk tunai, isi jumlah yang diserahkan; kembalian dihitung hanya dari baris tunai, setelah baris lainnya."
+
+msgid "Add payment line"
+msgstr "Tambah baris pembayaran"
+
+msgid "Amount handed over"
+msgstr "Jumlah yang diserahkan"
+
+msgid "Amount received"
+msgstr "Jumlah diterima"
+
+msgid "Amount to reverse (blank = all that is left)"
+msgstr "Jumlah yang dibalik (kosong = seluruh sisanya)"
+
+msgid "Applied to the sale"
+msgstr "Diterapkan ke penjualan"
+
+msgid "Balance due"
+msgstr "Sisa tagihan"
+
+msgid "Bank transfer"
+msgstr "Transfer bank"
+
+msgid "Could not record this. Check the amount and try again."
+msgstr "Tidak dapat mencatat ini. Periksa jumlahnya lalu coba lagi."
+
+msgid "Every payment line needs an amount greater than zero, like 25000 or 25000.50."
+msgstr "Setiap baris pembayaran memerlukan jumlah di atas nol, misalnya 25000 atau 25000.50."
+
+msgid "For cash, enter the amount handed over; any amount above the balance is returned as change."
+msgstr "Untuk tunai, isi jumlah yang diserahkan; kelebihan di atas sisa tagihan dikembalikan sebagai kembalian."
+
+msgid "Leave the unpaid balance as due (needs a customer phone)"
+msgstr "Biarkan sisa yang belum dibayar sebagai tagihan (perlu nomor telepon pelanggan)"
+
+msgid "No payments recorded for this order yet."
+msgstr "Belum ada pembayaran yang tercatat untuk pesanan ini."
+
+msgid "Only one cash line is allowed per sale."
+msgstr "Hanya satu baris tunai yang diizinkan per penjualan."
+
+msgid "Overpaid (to refund)"
+msgstr "Kelebihan bayar (perlu dikembalikan)"
+
+msgid "Partially paid"
+msgstr "Dibayar sebagian"
+
+msgid "Payment ledger"
+msgstr "Buku besar pembayaran"
+
+msgid "Payment line"
+msgstr "Baris pembayaran"
+
+msgid "Payment status"
+msgstr "Status pembayaran"
+
+msgid "Payment summary"
+msgstr "Ringkasan pembayaran"
+
+msgid "Payment to reverse"
+msgstr "Pembayaran yang dibalik"
+
+msgid "Payments"
+msgstr "Pembayaran"
+
+msgid "Record a payment"
+msgstr "Catat pembayaran"
+
+msgid "Record a reversal"
+msgstr "Catat pembalikan"
+
+msgid "Record payment"
+msgstr "Catat pembayaran"
+
+msgid "Record reversal"
+msgstr "Catat pembalikan"
+
+msgid "Reference (optional)"
+msgstr "Referensi (opsional)"
+
+msgid "Reversal"
+msgstr "Pembalikan"
+
+msgid "Reversed"
+msgstr "Dibalik"
+
+msgid "Ring up a counter sale — cash, QRIS or bank transfer, in one or more payments — and browse past POS sales."
+msgstr "Catat penjualan kasir — tunai, QRIS, atau transfer bank, dalam satu atau beberapa pembayaran — dan telusuri penjualan POS sebelumnya."
+
 #. Catalog attributes, CSV import/export (Issue #291)
 msgid "A blank cell in a product column leaves that field unchanged (or uses the default for a new product). A blank cell in an attr: column clears that attribute."
 msgstr "Sel kosong pada kolom produk membiarkan kolom itu tidak berubah (atau memakai nilai bawaan untuk produk baru). Sel kosong pada kolom attr: menghapus atribut tersebut."
@@ -7457,9 +7561,6 @@ msgstr "Pensiunkan versi"
 
 msgid "Retired"
 msgstr "Dipensiunkan"
-
-msgid "Reversal"
-msgstr "Pembatalan"
 
 msgid "Run balance check"
 msgstr "Jalankan pemeriksaan saldo"
@@ -7912,6 +8013,60 @@ msgstr "Memulai"
 
 msgid "Succeeded"
 msgstr "Berhasil"
+
+msgid "Tendered"
+msgstr "Diserahkan"
+
+msgid "That amount is more than the order still owes."
+msgstr "Jumlah itu melebihi sisa tagihan pesanan."
+
+msgid "That payment cannot be reversed."
+msgstr "Pembayaran itu tidak dapat dibalik."
+
+msgid "That reversal is more than what is left of the payment."
+msgstr "Pembalikan itu melebihi sisa pembayaran."
+
+msgid "The non-cash payments are more than the total. Only a cash payment may exceed it, as change."
+msgstr "Pembayaran non-tunai melebihi total. Hanya pembayaran tunai yang boleh melebihinya, sebagai kembalian."
+
+msgid "The payments entered do not cover the total. Add a payment or leave the balance due."
+msgstr "Pembayaran yang dimasukkan belum menutup total. Tambahkan pembayaran atau biarkan sisa tagihan."
+
+msgid "You do not have permission to leave a balance due."
+msgstr "Anda tidak memiliki izin untuk meninggalkan sisa tagihan."
+
+msgid "Given back"
+msgstr "Dikembalikan"
+
+msgid "Money received and given back per payment method, {from} to {to}, by the day each payment was recorded."
+msgstr "Uang yang diterima dan dikembalikan per metode pembayaran, {from} sampai {to}, menurut hari saat setiap pembayaran dicatat."
+
+msgid "No outstanding balances"
+msgstr "Tidak ada saldo terutang"
+
+msgid "No payments recorded in this range"
+msgstr "Tidak ada pembayaran yang tercatat pada rentang ini"
+
+msgid "Orders that still owe money, largest balance first (not cancelled or expired)."
+msgstr "Pesanan yang masih terutang, saldo terbesar lebih dulu (tidak termasuk yang dibatalkan atau kedaluwarsa)."
+
+msgid "Outstanding balances"
+msgstr "Saldo terutang"
+
+msgid "Payments by tender"
+msgstr "Pembayaran per metode"
+
+msgid "Received"
+msgstr "Diterima"
+
+msgid "Reversals"
+msgstr "Pembalikan"
+
+msgid "Showing the {n} largest."
+msgstr "Menampilkan {n} terbesar."
+
+msgid "Total still owed across {n} orders: {amount}."
+msgstr "Total yang masih terutang pada {n} pesanan: {amount}."
 
 msgid "Success"
 msgstr "Berhasil"

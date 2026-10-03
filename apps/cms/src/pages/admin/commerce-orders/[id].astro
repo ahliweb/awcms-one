@@ -17,6 +17,17 @@
  * requires only that its PARENT page exist — `/admin/commerce-orders`,
  * which links to this page from its own order-code cell.
  *
+ * ## Payments panel (Issue #285, ADR-0025)
+ *
+ * A "Payments" panel shows the order's DERIVED settlement (total, paid,
+ * reversed, outstanding, overpaid) and its append-only payment ledger. It is
+ * gated on `commerce.payments.read`; the "Record a payment" form needs
+ * `commerce.payments.create` and the "Record a reversal" form
+ * `commerce.payments.revoke` (the endpoints behind both decide for
+ * themselves). The page's entry permission is still `commerce.orders.read` —
+ * a staff member holding only a payments permission sees nothing here.
+ * Nothing on the panel edits a ledger row: a correction is a NEW reversal.
+ *
  * Same permission as the list (`commerce.orders.read`); the list's own
  * "Save status" control is NOT duplicated here — this is a read view, so a
  * user with `orders.update` still makes the status change from the list.
@@ -37,6 +48,11 @@ import {
   fetchOrderDetailForAdmin,
   toAdminOrderRecord
 } from "../../../modules/commerce/application/order-directory";
+import {
+  fetchOrderPaymentSummary,
+  type OrderPaymentSummary
+} from "../../../modules/commerce/application/payment-allocation-directory";
+import { toCents } from "../../../modules/commerce/domain/price-calculation";
 import { mediaLibraryPortAdapter } from "../../../modules/media-library/application/media-library-port-adapter";
 import {
   createCommerceLabels,
@@ -57,25 +73,78 @@ const gatewayLabels = {
   outcome: labels.paymentEventOutcome
 };
 
+const ORDER_READ = {
+  moduleKey: "commerce",
+  activityCode: "orders",
+  action: "read"
+} as const;
+/** Issue #285 — the payments panel's three permissions, each claimed here (and enforced by the routes the panel calls). */
+const PAYMENTS_READ = {
+  moduleKey: "commerce",
+  activityCode: "payments",
+  action: "read"
+} as const;
+const PAYMENTS_CREATE = {
+  moduleKey: "commerce",
+  activityCode: "payments",
+  action: "create"
+} as const;
+const PAYMENTS_REVOKE = {
+  moduleKey: "commerce",
+  activityCode: "payments",
+  action: "revoke"
+} as const;
+
 const screen = await loadAdminScreen({
   ssr,
   workClass: "interactive",
-  authorize: {
-    moduleKey: "commerce",
-    activityCode: "orders",
-    action: "read"
-  },
-  load: async ({ tx }) => {
-    if (!orderId) return { order: null };
+  authorize: [ORDER_READ, PAYMENTS_READ, PAYMENTS_CREATE, PAYMENTS_REVOKE],
+  load: async ({ tx, entry }) => {
+    // The entry is any-of; THIS page's subject is the order, so it still
+    // needs `orders.read` itself — holding only a payments permission must
+    // not unlock the order detail.
+    const canReadOrder = entry[0] === true;
+    const canReadPayments = entry[1] === true;
+    const canRecordPayment = entry[2] === true;
+    const canRecordReversal = entry[3] === true;
+    if (!orderId || !canReadOrder) {
+      return {
+        order: null,
+        canReadOrder,
+        canReadPayments,
+        canRecordPayment,
+        canRecordReversal,
+        payments: null as OrderPaymentSummary | null
+      };
+    }
     const detail = await fetchOrderDetailForAdmin(
       tx,
       ssr.tenantId,
       mediaLibraryPortAdapter,
       orderId
     );
-    if (!detail) return { order: null };
+    if (!detail) {
+      return {
+        order: null,
+        canReadOrder,
+        canReadPayments,
+        canRecordPayment,
+        canRecordReversal,
+        payments: null as OrderPaymentSummary | null
+      };
+    }
     const record = await toAdminOrderRecord(tx, ssr.tenantId, detail);
-    return { order: record };
+    const payments = canReadPayments
+      ? await fetchOrderPaymentSummary(tx, ssr.tenantId, orderId)
+      : null;
+    return {
+      order: record,
+      canReadOrder,
+      canReadPayments,
+      canRecordPayment,
+      canRecordReversal,
+      payments
+    };
   },
   onError: (error) => {
     logAdminPageError(
@@ -86,10 +155,25 @@ const screen = await loadAdminScreen({
   }
 });
 
-const canRead = screen.state !== "denied";
+const canRead =
+  screen.state !== "denied" &&
+  (screen.state !== "allowed" || screen.data.canReadOrder);
 const loadError = screen.state === "error";
 const order = screen.state === "allowed" ? screen.data.order : null;
-const notFound = screen.state === "allowed" && !order;
+const notFound = screen.state === "allowed" && canRead && !order;
+const payments = screen.state === "allowed" ? screen.data.payments : null;
+const canRecordPayment =
+  screen.state === "allowed" && screen.data.canRecordPayment;
+const canRecordReversal =
+  screen.state === "allowed" && screen.data.canRecordReversal;
+/** Succeeded payment legs that still have something left to reverse — the reversal form's choices. */
+const reversiblePayments = (payments?.allocations ?? []).filter((leg) => {
+  if (leg.kind !== "payment" || leg.status !== "succeeded") return false;
+  const reversed = (payments?.allocations ?? [])
+    .filter((other) => other.reversesAllocationId === leg.id)
+    .reduce((sum, other) => sum + toCents(other.amount), 0n);
+  return toCents(leg.amount) > reversed;
+});
 ---
 
 <AdminLayout
@@ -191,6 +275,265 @@ const notFound = screen.state === "allowed" && !order;
             </li>
           </ul>
 
+          {payments && (
+            <section
+              id="order-payments"
+              aria-labelledby="order-payments-heading"
+              data-order-id={orderId}
+              data-msg-overpayment={t(
+                "That amount is more than the order still owes."
+              )}
+              data-msg-not-payable={t(
+                "A cancelled or expired order cannot receive a payment."
+              )}
+              data-msg-exceeds={t(
+                "That reversal is more than what is left of the payment."
+              )}
+              data-msg-not-reversible={t("That payment cannot be reversed.")}
+              data-msg-generic={t(
+                "Could not record this. Check the amount and try again."
+              )}
+              data-busy-label={t("Saving…")}
+            >
+              <h2
+                class="admin-dashboard-panel-title"
+                id="order-payments-heading"
+              >
+                {t("Payments")}
+              </h2>
+              <ul class="admin-order-totals" id="order-settlement">
+                <li>
+                  <span>{t("Payment status")}</span>
+                  <span>
+                    {commerceLabel(
+                      labels.paymentStatus,
+                      payments.settlement.paymentStatus
+                    )}
+                  </span>
+                </li>
+                <li>
+                  <span>{t("Total")}</span>
+                  <span>{payments.settlement.total}</span>
+                </li>
+                <li>
+                  <span>{t("Paid")}</span>
+                  <span>{payments.settlement.paid}</span>
+                </li>
+                <li>
+                  <span>{t("Reversed")}</span>
+                  <span>{payments.settlement.reversed}</span>
+                </li>
+                <li class="admin-order-total-grand">
+                  <span>{t("Balance due")}</span>
+                  <span>{payments.settlement.outstanding}</span>
+                </li>
+                {payments.settlement.overpaid !== "0.00" && (
+                  <li>
+                    <span>{t("Overpaid (to refund)")}</span>
+                    <span>{payments.settlement.overpaid}</span>
+                  </li>
+                )}
+              </ul>
+
+              {payments.allocations.length === 0 ? (
+                <p class="admin-stat-card-caption">
+                  {t("No payments recorded for this order yet.")}
+                </p>
+              ) : (
+                <div class="data-table-scroll">
+                  <table class="data-table data-table--stack">
+                    <caption class="sr-only">{t("Payment ledger")}</caption>
+                    <thead>
+                      <tr>
+                        <th scope="col">{t("Type")}</th>
+                        <th scope="col">{t("Payment method")}</th>
+                        <th scope="col">{t("Amount")}</th>
+                        <th scope="col">{t("Status")}</th>
+                        <th scope="col">{t("Recorded")}</th>
+                        <th scope="col">{t("Note")}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {payments.allocations.map((leg) => (
+                        <tr data-allocation-id={leg.id}>
+                          <th scope="row" data-label={t("Type")}>
+                            {commerceLabel(
+                              labels.paymentAllocationKind,
+                              leg.kind
+                            )}
+                          </th>
+                          <td data-label={t("Payment method")}>
+                            {commerceLabel(
+                              labels.paymentTenderType,
+                              leg.tenderType
+                            )}
+                          </td>
+                          <td data-label={t("Amount")}>
+                            {leg.kind === "reversal" ? "−" : ""}
+                            {leg.amount}
+                            {leg.tenderedAmount !== null && (
+                              <span class="cell-muted">
+                                {" "}
+                                ({t("Tendered")} {leg.tenderedAmount},{" "}
+                                {t("Change")} {leg.changeAmount})
+                              </span>
+                            )}
+                          </td>
+                          <td data-label={t("Status")}>
+                            {commerceLabel(
+                              labels.paymentAllocationStatus,
+                              leg.status
+                            )}
+                          </td>
+                          <td data-label={t("Recorded")}>{leg.createdAt}</td>
+                          <td data-label={t("Note")}>{leg.note ?? "—"}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+
+              {canRecordPayment && (
+                <form class="admin-form" id="order-payment-form">
+                  <h3>{t("Record a payment")}</h3>
+                  <p
+                    id="order-payment-error"
+                    class="admin-create-error"
+                    role="alert"
+                    hidden
+                  />
+                  <label for="order-payment-tender">
+                    {t("Payment method")}
+                    <select
+                      id="order-payment-tender"
+                      name="tenderType"
+                      required
+                    >
+                      <option value="cash">{t("Cash")}</option>
+                      <option value="manual_qris">{t("QRIS")}</option>
+                      <option value="manual_bank_transfer">
+                        {t("Bank transfer")}
+                      </option>
+                    </select>
+                  </label>
+                  <label for="order-payment-amount">
+                    {t("Amount received")}
+                    <input
+                      type="text"
+                      id="order-payment-amount"
+                      name="amount"
+                      inputmode="decimal"
+                      pattern="\d{1,12}(\.\d{1,2})?"
+                      placeholder="0.00"
+                      autocomplete="off"
+                      required
+                    />
+                  </label>
+                  <p class="form-hint">
+                    {t(
+                      "For cash, enter the amount handed over; any amount above the balance is returned as change."
+                    )}
+                  </p>
+                  <label for="order-payment-reference">
+                    {t("Reference (optional)")}
+                    <input
+                      type="text"
+                      id="order-payment-reference"
+                      name="reference"
+                      maxlength="100"
+                      autocomplete="off"
+                    />
+                  </label>
+                  <label for="order-payment-note">
+                    {t("Note")}
+                    <textarea
+                      id="order-payment-note"
+                      name="note"
+                      rows="2"
+                      maxlength="500"
+                    />
+                  </label>
+                  <div class="admin-form-actions">
+                    <button
+                      type="submit"
+                      class="module-toggle"
+                      id="order-payment-submit"
+                    >
+                      {t("Record payment")}
+                    </button>
+                  </div>
+                </form>
+              )}
+
+              {canRecordReversal && reversiblePayments.length > 0 && (
+                <form class="admin-form" id="order-reversal-form">
+                  <h3>{t("Record a reversal")}</h3>
+                  <p
+                    id="order-reversal-error"
+                    class="admin-create-error"
+                    role="alert"
+                    hidden
+                  />
+                  <label for="order-reversal-payment">
+                    {t("Payment to reverse")}
+                    <select
+                      id="order-reversal-payment"
+                      name="paymentId"
+                      required
+                    >
+                      {reversiblePayments.map((leg) => (
+                        <option value={leg.id}>
+                          {commerceLabel(
+                            labels.paymentTenderType,
+                            leg.tenderType
+                          )}{" "}
+                          — {leg.amount}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                  <label for="order-reversal-amount">
+                    {t("Amount to reverse (blank = all that is left)")}
+                    <input
+                      type="text"
+                      id="order-reversal-amount"
+                      name="amount"
+                      inputmode="decimal"
+                      pattern="\d{1,12}(\.\d{1,2})?"
+                      placeholder="0.00"
+                      autocomplete="off"
+                    />
+                  </label>
+                  <label for="order-reversal-note">
+                    {t("Reason")}
+                    <textarea
+                      id="order-reversal-note"
+                      name="note"
+                      rows="2"
+                      maxlength="500"
+                      required
+                    />
+                  </label>
+                  <p class="form-hint">
+                    {t(
+                      "A reversal records that money was given back. It does not move the money and does not cancel the order."
+                    )}
+                  </p>
+                  <div class="admin-form-actions">
+                    <button
+                      type="submit"
+                      class="btn-inline btn-inline--danger"
+                      id="order-reversal-submit"
+                    >
+                      {t("Record reversal")}
+                    </button>
+                  </div>
+                </form>
+              )}
+            </section>
+          )}
+
           <h2 class="admin-dashboard-panel-title">{t("Payment gateway")}</h2>
           <div
             class="order-gateway-panel"
@@ -255,6 +598,109 @@ const notFound = screen.state === "allowed" && !order;
     <p data-field="events-empty">{t("No payment events recorded yet.")}</p>
   </div>
 </template>
+
+<script>
+  // Issue #285 — the payments panel's two mutations. Each posts to the
+  // guarded endpoint with a fresh `Idempotency-Key` per submission (a retry of
+  // the SAME submission would replay it), then reloads so the server-rendered
+  // settlement and ledger are the single source of what is on screen.
+  import {
+    lockElement,
+    messageBox,
+    sendJsonForData
+  } from "../../../lib/ui/admin-form-client";
+
+  const panel = document.getElementById("order-payments");
+  const orderIdForPayments = panel?.dataset.orderId ?? "";
+  const m = (key: string): string => panel?.dataset[key] ?? "";
+  const MONEY = /^\d{1,12}(\.\d{1,2})?$/;
+
+  function errorMessage(code: string | null): string {
+    const map: Record<string, string> = {
+      OVERPAYMENT: m("msgOverpayment"),
+      ORDER_NOT_PAYABLE: m("msgNotPayable"),
+      REVERSAL_EXCEEDS_PAYMENT: m("msgExceeds"),
+      PAYMENT_NOT_REVERSIBLE: m("msgNotReversible")
+    };
+    return map[code ?? ""] ?? m("msgGeneric");
+  }
+
+  const paymentForm = document.getElementById(
+    "order-payment-form"
+  ) as HTMLFormElement | null;
+  const paymentError = messageBox("order-payment-error");
+  paymentForm?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    paymentError.clear();
+    const data = new FormData(paymentForm);
+    const amount = String(data.get("amount") ?? "").trim();
+    if (!MONEY.test(amount)) {
+      paymentError.show(m("msgGeneric"));
+      return;
+    }
+    const submit = document.getElementById(
+      "order-payment-submit"
+    ) as HTMLButtonElement | null;
+    if (!submit) return;
+    const unlock = lockElement(submit, m("busyLabel"));
+    try {
+      const { ok, errorCode } = await sendJsonForData(
+        "POST",
+        `/api/v1/commerce/orders/${orderIdForPayments}/payments`,
+        {
+          tenderType: String(data.get("tenderType") ?? "cash"),
+          amount,
+          reference: String(data.get("reference") ?? "").trim() || null,
+          note: String(data.get("note") ?? "").trim() || null
+        },
+        { "Idempotency-Key": crypto.randomUUID() }
+      );
+      if (!ok) {
+        paymentError.show(errorMessage(errorCode));
+        return;
+      }
+      window.location.reload();
+    } finally {
+      unlock();
+    }
+  });
+
+  const reversalForm = document.getElementById(
+    "order-reversal-form"
+  ) as HTMLFormElement | null;
+  const reversalError = messageBox("order-reversal-error");
+  reversalForm?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    reversalError.clear();
+    const data = new FormData(reversalForm);
+    const amount = String(data.get("amount") ?? "").trim();
+    const note = String(data.get("note") ?? "").trim();
+    if ((amount !== "" && !MONEY.test(amount)) || note === "") {
+      reversalError.show(m("msgGeneric"));
+      return;
+    }
+    const submit = document.getElementById(
+      "order-reversal-submit"
+    ) as HTMLButtonElement | null;
+    if (!submit) return;
+    const unlock = lockElement(submit, m("busyLabel"));
+    try {
+      const { ok, errorCode } = await sendJsonForData(
+        "POST",
+        `/api/v1/commerce/orders/${orderIdForPayments}/payments/${encodeURIComponent(String(data.get("paymentId") ?? ""))}/reversals`,
+        { amount: amount === "" ? null : amount, note },
+        { "Idempotency-Key": crypto.randomUUID() }
+      );
+      if (!ok) {
+        reversalError.show(errorMessage(errorCode));
+        return;
+      }
+      window.location.reload();
+    } finally {
+      unlock();
+    }
+  });
+</script>
 
 <script>
   // A REGULAR `<script>` with an import — never `define:vars` (that

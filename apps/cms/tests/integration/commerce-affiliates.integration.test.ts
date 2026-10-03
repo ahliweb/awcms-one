@@ -21,6 +21,7 @@ import {
   updateOrderStatusByAdmin
 } from "../../src/modules/commerce/application/order-directory";
 import { findOrCreateCustomerByPhone } from "../../src/modules/commerce/application/customer-directory";
+import { recordOwnerPayment } from "../../src/modules/commerce/application/payment-recording";
 import {
   fetchAffiliateCommissionRate,
   fetchStoreSettings,
@@ -174,9 +175,34 @@ function orderInput(
   };
 }
 
-/** Walks an order through every legal admin transition up to `completed`. */
+/**
+ * Walks an order through every legal admin transition up to `completed`.
+ *
+ * Issue #285: `paid` is no longer an operator-asserted status — the payment
+ * ledger releases the order when it is settled (`PATCH .../status -> paid`
+ * answers 409 PAYMENT_NOT_SETTLED). So the walk records the full balance as a
+ * manual-transfer payment first; that single ledger write moves the order
+ * `pending_payment -> paid` through the one status machine, and the remaining
+ * transitions are the operator's own.
+ */
 async function completeOrder(tenantId: string, orderId: string): Promise<void> {
-  for (const to of ["paid", "processing", "shipped", "completed"] as const) {
+  const totals = (await inTenant(
+    tenantId,
+    (tx) => tx`SELECT total FROM awcms_commerce_orders WHERE id = ${orderId}`
+  )) as Array<{ total: string }>;
+  const payment = await inTenant(tenantId, (tx) =>
+    recordOwnerPayment(tx, tenantId, ACTOR, orderId, {
+      idempotencyKey: crypto.randomUUID(),
+      tenderType: "manual_bank_transfer",
+      amount: String(totals[0]?.total ?? ""),
+      reference: null,
+      note: null
+    })
+  );
+  if (payment.kind !== "created") {
+    throw new Error(`Recording the payment failed: ${payment.kind}`);
+  }
+  for (const to of ["processing", "shipped", "completed"] as const) {
     const ok = await inTenant(tenantId, (tx) =>
       updateOrderStatusByAdmin(tx, tenantId, ACTOR, orderId, to, null)
     );

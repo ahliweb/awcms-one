@@ -672,6 +672,16 @@
       "source": "factory"
     },
     {
+      "path": "src/pages/api/v1/commerce/orders/[id]/payments/[paymentId]/reversals.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/orders/[id]/payments/index.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
       "path": "src/pages/api/v1/commerce/orders/[id]/status.ts",
       "workClass": "interactive",
       "source": "factory"
@@ -1447,6 +1457,11 @@
       "source": "factory"
     },
     {
+      "path": "src/pages/api/v1/reports/commerce/outstanding-balances.ts",
+      "workClass": "reporting",
+      "source": "factory"
+    },
+    {
       "path": "src/pages/api/v1/reports/commerce/sales-by-category.ts",
       "workClass": "reporting",
       "source": "factory"
@@ -1458,6 +1473,11 @@
     },
     {
       "path": "src/pages/api/v1/reports/commerce/sales-daily.ts",
+      "workClass": "reporting",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/reports/commerce/tender-mix.ts",
       "workClass": "reporting",
       "source": "factory"
     },

@@ -8,6 +8,18 @@
  * API route serves, filtered `channel = pos`, with date/cashier filters and
  * keyset "next page" links.
  *
+ * ## Split tender and due balances (Issue #285, ADR-0025)
+ *
+ * The payment panel takes ONE OR MORE tender lines (cash, QRIS, bank
+ * transfer) and posts the explicit `tenders[]` contract. Non-cash lines are
+ * amounts applied to the sale; the (single) cash line is what the customer
+ * handed over — the live summary below the lines (and the server, which is
+ * authoritative) computes change from the cash line only, after the non-cash
+ * lines are subtracted. The "leave the balance due" checkbox appears only for
+ * a cashier holding `commerce.pos_due.create` (a SECOND permission, checked
+ * by the endpoint as well); it also needs a customer phone. The receipt
+ * prints every tender and any balance still due.
+ *
  * Entry is any-of `commerce.pos.create` (the sale panel) / `commerce.orders
  * .read` (the history tab) — a staff member holding only the read
  * permission sees the history and never the sale form, and the endpoints
@@ -84,15 +96,22 @@ const HISTORY_ENTRY = {
   activityCode: "orders",
   action: "read"
 } as const;
+/** Issue #285 — finalizing a sale with a balance due (credit); a SECOND permission beyond `commerce.pos.create`. */
+const DUE_ENTRY = {
+  moduleKey: "commerce",
+  activityCode: "pos_due",
+  action: "create"
+} as const;
 
 const screen = await loadAdminScreen({
   ssr,
   workClass: "interactive",
-  authorize: [SALE_ENTRY, HISTORY_ENTRY],
+  authorize: [SALE_ENTRY, HISTORY_ENTRY, DUE_ENTRY],
   load: async ({ tx, entry }) => {
     const features = await fetchCommerceFeatures(tx, ssr.tenantId);
     const canSell = entry[0] === true;
     const canReadHistory = entry[1] === true;
+    const canSellOnCredit = entry[2] === true;
     const history: PosOrderListPage | null =
       features.pos && canReadHistory && tab === "history"
         ? await listPosOrders(tx, ssr.tenantId, cursor, {
@@ -101,7 +120,13 @@ const screen = await loadAdminScreen({
             cashierTenantUserId: cashierFilter
           })
         : null;
-    return { posEnabled: features.pos, canSell, canReadHistory, history };
+    return {
+      posEnabled: features.pos,
+      canSell,
+      canReadHistory,
+      canSellOnCredit,
+      history
+    };
   },
   onError: (error) => {
     logAdminPageError("admin/commerce-pos.astro: failed to load", error, {
@@ -116,6 +141,8 @@ const loadError = screen.state === "error";
 const posEnabled = allowed && screen.data.posEnabled;
 const canSell = allowed && screen.data.canSell;
 const canReadHistory = allowed && screen.data.canReadHistory;
+// The checkbox is only a convenience: the endpoint re-checks `pos_due.create`.
+const canSellOnCredit = allowed && screen.data.canSellOnCredit && canSell;
 const history = allowed ? screen.data.history : null;
 const cashierTenantUserId = ssr.tenantUserId;
 const storeName = ssr.display.tenantName?.trim() || "";
@@ -129,16 +156,21 @@ function historyHref(next: { cursor?: string | null } = {}): string {
   return `/admin/commerce-pos?${params.toString()}`;
 }
 
-const paymentLabels: Record<string, string> = {
-  cash: t("Cash"),
-  manual_qris: t("QRIS")
+/** `orders.payment_method` is a legacy summary hint (the tender with the largest applied amount); it maps onto the tender labels. */
+const METHOD_TO_TENDER: Record<string, string> = {
+  cash: "cash",
+  manual_qris: "manual_qris",
+  manual_bank: "manual_bank_transfer",
+  gateway: "gateway"
 };
+const tenderLabel = (method: string): string =>
+  commerceLabel(labels.paymentTenderType, METHOD_TO_TENDER[method] ?? method);
 ---
 
 <AdminLayout
   title={t("Point of Sale")}
   description={t(
-    "Ring up a counter sale — cash or QRIS, paid immediately — and browse past POS sales."
+    "Ring up a counter sale — cash, QRIS or bank transfer, in one or more payments — and browse past POS sales."
   )}
 >
   {denied && (
@@ -203,7 +235,25 @@ const paymentLabels: Record<string, string> = {
       data-msg-cart-changed={t(
         "One or more items changed price or stock. Search for them again and retry."
       )}
-      data-msg-insufficient={t("The amount tendered is less than the total.")}
+      data-msg-insufficient={t(
+        "The payments entered do not cover the total. Add a payment or leave the balance due."
+      )}
+      data-msg-overpayment={t(
+        "The non-cash payments are more than the total. Only a cash payment may exceed it, as change."
+      )}
+      data-msg-two-cash={t("Only one cash line is allowed per sale.")}
+      data-msg-bad-amount={t(
+        "Every payment line needs an amount greater than zero, like 25000 or 25000.50."
+      )}
+      data-msg-due-phone={t(
+        "A sale left with a balance due needs a customer phone number."
+      )}
+      data-msg-due-denied={t(
+        "You do not have permission to leave a balance due."
+      )}
+      data-msg-no-tender={t(
+        "Add at least one payment line, or leave the balance due."
+      )}
       data-msg-feature-disabled={t(
         "Point of sale is turned off for this store."
       )}
@@ -216,6 +266,15 @@ const paymentLabels: Record<string, string> = {
       data-label-remove={t("Remove")}
       data-label-cash={t("Cash")}
       data-label-qris={t("QRIS")}
+      data-label-bank={t("Bank transfer")}
+      data-label-tender={t("Payment line")}
+      data-label-amount={t("Amount")}
+      data-label-amount-cash={t("Amount handed over")}
+      data-label-reference={t("Reference (optional)")}
+      data-label-method={t("Payment method")}
+      data-label-balance-due={t("Balance due")}
+      data-label-tendered={t("Amount tendered")}
+      data-label-change={t("Change")}
       data-label-walk-in={t("Walk-in customer")}
       data-busy-label={t("Completing…")}
     >
@@ -323,38 +382,62 @@ const paymentLabels: Record<string, string> = {
 
           <fieldset>
             <legend>{t("Payment")}</legend>
-            <label for="pos-payment-method">
-              {t("Payment method")}
-              <select id="pos-payment-method" name="method">
-                <option value="cash" selected>
-                  {t("Cash")}
-                </option>
-                <option value="manual_qris">{t("QRIS")}</option>
-              </select>
-            </label>
-            <label for="pos-amount-tendered" id="pos-tendered-field">
-              {t("Amount tendered")}
-              <input
-                type="text"
-                id="pos-amount-tendered"
-                name="amountTendered"
-                inputmode="decimal"
-                pattern="\d{1,12}(\.\d{1,2})?"
-                placeholder="0.00"
-                autocomplete="off"
-              />
-            </label>
-            <p class="pos-change-line" id="pos-change-line">
-              <span>{t("Change")}</span>
-              <output
-                class="admin-status-pill pos-money"
-                data-tone="neutral"
-                id="pos-change"
-                for="pos-amount-tendered"
-              >
-                0.00
-              </output>
+            <p class="form-hint">
+              {t(
+                "Add one line for each way the customer pays. For cash, enter the amount handed over; change is worked out from the cash line only, after the other lines."
+              )}
             </p>
+            <div id="pos-tenders" class="pos-tenders" />
+            <p>
+              <button type="button" class="btn-inline" id="pos-add-tender">
+                {t("Add payment line")}
+              </button>
+            </p>
+            <dl
+              class="pos-tender-summary"
+              id="pos-tender-summary"
+              aria-live="polite"
+              aria-label={t("Payment summary")}
+            >
+              <dt>{t("Total")}</dt>
+              <dd>
+                <output class="pos-money" id="pos-sum-total">
+                  0.00
+                </output>
+              </dd>
+              <dt>{t("Applied to the sale")}</dt>
+              <dd>
+                <output class="pos-money" id="pos-sum-applied">
+                  0.00
+                </output>
+              </dd>
+              <dt>{t("Change")}</dt>
+              <dd>
+                <output
+                  class="admin-status-pill pos-money"
+                  data-tone="neutral"
+                  id="pos-change"
+                >
+                  0.00
+                </output>
+              </dd>
+              <dt>{t("Balance due")}</dt>
+              <dd>
+                <output
+                  class="admin-status-pill pos-money"
+                  data-tone="neutral"
+                  id="pos-sum-due"
+                >
+                  0.00
+                </output>
+              </dd>
+            </dl>
+            {canSellOnCredit && (
+              <label class="pos-allow-due" for="pos-allow-due">
+                <input type="checkbox" id="pos-allow-due" name="allowDue" />
+                {t("Leave the unpaid balance as due (needs a customer phone)")}
+              </label>
+            )}
             <label for="pos-notes">
               {t("Notes")}
               <textarea id="pos-notes" name="notes" rows="2" maxlength="1000" />
@@ -417,12 +500,15 @@ const paymentLabels: Record<string, string> = {
             <dd data-receipt="tax" />
             <dt>{t("Total")}</dt>
             <dd data-receipt="total" />
-            <dt>{t("Payment method")}</dt>
-            <dd data-receipt="method" />
-            <dt>{t("Amount tendered")}</dt>
-            <dd data-receipt="amountTendered" />
+          </dl>
+          <dl class="pos-receipt-totals" data-receipt="payments" />
+          <dl class="pos-receipt-totals">
             <dt>{t("Change")}</dt>
             <dd data-receipt="change" />
+            <dt data-receipt="outstanding-label" hidden>
+              {t("Balance due")}
+            </dt>
+            <dd data-receipt="outstanding" hidden />
           </dl>
           <p class="pos-receipt-footer">{t("Thank you for your purchase.")}</p>
         </div>
@@ -503,6 +589,7 @@ const paymentLabels: Record<string, string> = {
               <th scope="col">{t("Payment method")}</th>
               <th scope="col">{t("Status")}</th>
               <th scope="col">{t("Total")}</th>
+              <th scope="col">{t("Balance due")}</th>
               <th scope="col">{t("Cashier")}</th>
               <th scope="col">{t("Created")}</th>
             </tr>
@@ -510,7 +597,7 @@ const paymentLabels: Record<string, string> = {
           <tbody>
             {history.items.length === 0 ? (
               <tr>
-                <td class="data-table-empty" colspan="7">
+                <td class="data-table-empty" colspan="8">
                   <div class="empty-state">
                     <span class="empty-state-icon" aria-hidden="true">
                       ◇
@@ -537,7 +624,7 @@ const paymentLabels: Record<string, string> = {
                     <span class="cell-muted"> {order.customerPhoneMasked}</span>
                   </td>
                   <td data-label={t("Payment method")}>
-                    {paymentLabels[order.paymentMethod] ?? order.paymentMethod}
+                    {tenderLabel(order.paymentMethod)}
                   </td>
                   <td data-label={t("Status")}>
                     <span class="admin-status-pill" data-status={order.status}>
@@ -546,6 +633,9 @@ const paymentLabels: Record<string, string> = {
                   </td>
                   <td data-label={t("Total")} class="pos-money">
                     {order.total}
+                  </td>
+                  <td data-label={t("Balance due")} class="pos-money">
+                    {order.outstanding === "0.00" ? "—" : order.outstanding}
                   </td>
                   <td data-label={t("Cashier")}>
                     <span class="cell-muted">
@@ -585,6 +675,44 @@ const paymentLabels: Record<string, string> = {
       <span class="cell-muted" data-field="stock"></span>
     </button>
   </li>
+</template>
+
+<template id="pos-tender-row-template">
+  <div class="pos-tender-row" role="group">
+    <label>
+      <span data-field="type-label"></span>
+      <select data-field="type">
+        <option value="cash">{t("Cash")}</option>
+        <option value="manual_qris">{t("QRIS")}</option>
+        <option value="manual_bank_transfer">{t("Bank transfer")}</option>
+      </select>
+    </label>
+    <label>
+      <span data-field="amount-label"></span>
+      <input
+        type="text"
+        data-field="amount"
+        inputmode="decimal"
+        pattern="\d{1,12}(\.\d{1,2})?"
+        placeholder="0.00"
+        autocomplete="off"
+      />
+    </label>
+    <label data-field="reference-wrap">
+      <span data-field="reference-label"></span>
+      <input
+        type="text"
+        data-field="reference"
+        maxlength="100"
+        autocomplete="off"
+      />
+    </label>
+    <button
+      type="button"
+      class="btn-inline btn-inline--danger"
+      data-field="remove"
+    ></button>
+  </div>
 </template>
 
 <template id="pos-cart-row-template">
@@ -655,12 +783,33 @@ const paymentLabels: Record<string, string> = {
   .pos-qty-input {
     width: 5.5rem;
   }
-  .pos-change-line {
-    display: flex;
-    justify-content: space-between;
+  .pos-tenders {
+    display: grid;
     gap: var(--sp-3);
-    margin: 0;
+  }
+  .pos-tender-row {
+    display: grid;
+    gap: var(--sp-2);
+    grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+    align-items: end;
+    padding-bottom: var(--sp-2);
+    border-bottom: 1px solid var(--color-border-soft);
+  }
+  .pos-tender-summary {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: var(--sp-1) var(--sp-3);
+    margin: var(--sp-3) 0;
     font-weight: 600;
+  }
+  .pos-tender-summary dd {
+    margin: 0;
+    text-align: right;
+  }
+  .pos-allow-due {
+    display: flex;
+    gap: var(--sp-2);
+    align-items: center;
   }
   .pos-receipt-actions {
     align-items: center;
@@ -777,6 +926,15 @@ const paymentLabels: Record<string, string> = {
     variants: ProductVariant[];
   };
 
+  type PosPayment = {
+    kind: "payment" | "reversal";
+    status: string;
+    tenderType: string;
+    amount: string;
+    tenderedAmount: string | null;
+    changeAmount: string | null;
+  };
+
   type PosOrderResponse = {
     orderCode: string;
     createdAt: string;
@@ -786,6 +944,8 @@ const paymentLabels: Record<string, string> = {
     total: string;
     change: string | null;
     amountTendered: string | null;
+    settlement: { outstanding: string };
+    payments?: PosPayment[];
     customer: { name: string; phone: string };
     lines: {
       name: string;
@@ -818,10 +978,12 @@ const paymentLabels: Record<string, string> = {
   const cartBody = el<HTMLTableSectionElement>("pos-cart-body");
   const subtotalEl = el<HTMLElement>("pos-cart-subtotal");
   const changeEl = el<HTMLElement>("pos-change");
-  const tenderedInput = el<HTMLInputElement>("pos-amount-tendered");
-  const tenderedField = el<HTMLElement>("pos-tendered-field");
-  const changeLine = el<HTMLElement>("pos-change-line");
-  const methodSelect = el<HTMLSelectElement>("pos-payment-method");
+  const tendersEl = el<HTMLElement>("pos-tenders");
+  const tenderRowTemplate = el<HTMLTemplateElement>("pos-tender-row-template");
+  const sumTotalEl = el<HTMLElement>("pos-sum-total");
+  const sumAppliedEl = el<HTMLElement>("pos-sum-applied");
+  const sumDueEl = el<HTMLElement>("pos-sum-due");
+  const allowDueInput = el<HTMLInputElement>("pos-allow-due");
   const searchInput = el<HTMLInputElement>("pos-search-input");
   const searchResults = el<HTMLUListElement>("pos-search-results");
   const resultTemplate = el<HTMLTemplateElement>("pos-result-template");
@@ -897,29 +1059,167 @@ const paymentLabels: Record<string, string> = {
     });
 
     subtotalEl.textContent = fromCents(cartSubtotalCents());
-    recomputeChange();
+    recomputeSummary();
   }
 
-  function recomputeChange(): void {
-    if (!changeEl) return;
-    const tendered = tenderedInput?.value.trim() ?? "";
-    if (methodSelect?.value !== "cash" || !MONEY.test(tendered)) {
-      changeEl.textContent = "0.00";
-      changeEl.dataset.tone = "neutral";
-      return;
+  // ---- tender lines (Issue #285) ----------------------------------------
+  type TenderLine = {
+    row: HTMLElement;
+    type: HTMLSelectElement;
+    amount: HTMLInputElement;
+    reference: HTMLInputElement;
+    referenceWrap: HTMLElement;
+    remove: HTMLButtonElement;
+    amountLabel: HTMLElement;
+  };
+  const tenderLines: TenderLine[] = [];
+
+  function tenderLine(row: HTMLElement): TenderLine {
+    const q = <T extends HTMLElement>(name: string) =>
+      row.querySelector(`[data-field="${name}"]`) as T;
+    return {
+      row,
+      type: q<HTMLSelectElement>("type"),
+      amount: q<HTMLInputElement>("amount"),
+      reference: q<HTMLInputElement>("reference"),
+      referenceWrap: q<HTMLElement>("reference-wrap"),
+      remove: q<HTMLButtonElement>("remove"),
+      amountLabel: q<HTMLElement>("amount-label")
+    };
+  }
+
+  /** Re-labels every line (ordinal, cash vs non-cash amount wording, reference only for non-cash) and re-runs the summary. */
+  function syncTenderLines(): void {
+    tenderLines.forEach((line, index) => {
+      const cash = line.type.value === "cash";
+      line.row.setAttribute("aria-label", `${msg("labelTender")} ${index + 1}`);
+      line.amountLabel.textContent = cash
+        ? msg("labelAmountCash")
+        : msg("labelAmount");
+      line.referenceWrap.hidden = cash;
+      line.remove.textContent = msg("labelRemove");
+      line.remove.setAttribute(
+        "aria-label",
+        `${msg("labelRemove")}: ${msg("labelTender")} ${index + 1}`
+      );
+      line.remove.hidden = tenderLines.length <= 1 && !allowDueInput?.checked;
+    });
+    recomputeSummary();
+  }
+
+  function addTenderLine(type: string, focus: boolean): void {
+    if (!tendersEl || !tenderRowTemplate) return;
+    const fragment = tenderRowTemplate.content.cloneNode(
+      true
+    ) as DocumentFragment;
+    const row = fragment.querySelector<HTMLElement>(".pos-tender-row");
+    if (!row) return;
+    const line = tenderLine(row);
+    const methodLabel = row.querySelector<HTMLElement>(
+      '[data-field="type-label"]'
+    );
+    const referenceLabel = row.querySelector<HTMLElement>(
+      '[data-field="reference-label"]'
+    );
+    if (methodLabel) methodLabel.textContent = msg("labelMethod");
+    if (referenceLabel) referenceLabel.textContent = msg("labelReference");
+    line.type.value = type;
+    line.type.addEventListener("change", syncTenderLines);
+    line.amount.addEventListener("input", recomputeSummary);
+    line.remove.addEventListener("click", () => {
+      const index = tenderLines.indexOf(line);
+      if (index >= 0) tenderLines.splice(index, 1);
+      line.row.remove();
+      syncTenderLines();
+    });
+    tenderLines.push(line);
+    tendersEl.appendChild(fragment);
+    syncTenderLines();
+    if (focus) line.amount.focus();
+  }
+
+  function resetTenderLines(): void {
+    tenderLines.length = 0;
+    if (tendersEl) tendersEl.textContent = "";
+    addTenderLine("cash", false);
+  }
+
+  type Plan = {
+    totalCents: bigint;
+    nonCashCents: bigint;
+    cashCount: number;
+    cashHandedCents: bigint;
+    appliedCashCents: bigint;
+    changeCents: bigint;
+    dueCents: bigint;
+    overpaid: boolean;
+    badAmount: boolean;
+  };
+
+  /**
+   * Mirrors `domain/payment-allocation.ts`'s `planTenders` in `bigint` cents
+   * (ADR-0003): non-cash lines first, cash applied to what is left, change
+   * from the cash line only. The preview runs against the cart SUBTOTAL; the
+   * server adds store tax and its own plan is what the receipt prints.
+   */
+  function planFromLines(): Plan {
+    const totalCents = cartSubtotalCents();
+    let nonCash = 0n;
+    let cashHanded = 0n;
+    let cashCount = 0;
+    let badAmount = false;
+    for (const line of tenderLines) {
+      const raw = line.amount.value.trim();
+      if (raw === "") continue;
+      if (!MONEY.test(raw) || toCents(raw) <= 0n) {
+        badAmount = true;
+        continue;
+      }
+      if (line.type.value === "cash") {
+        cashCount += 1;
+        cashHanded += toCents(raw);
+      } else {
+        nonCash += toCents(raw);
+      }
     }
-    const diff = toCents(tendered) - cartSubtotalCents();
-    changeEl.textContent = fromCents(diff);
-    changeEl.dataset.tone =
-      diff < 0n ? "danger" : diff === 0n ? "neutral" : "success";
+    const remaining = totalCents > nonCash ? totalCents - nonCash : 0n;
+    const appliedCash = cashHanded >= remaining ? remaining : cashHanded;
+    const change = cashHanded - appliedCash;
+    const due = totalCents - nonCash - appliedCash;
+    return {
+      totalCents,
+      nonCashCents: nonCash,
+      cashCount,
+      cashHandedCents: cashHanded,
+      appliedCashCents: appliedCash,
+      changeCents: change,
+      dueCents: due > 0n ? due : 0n,
+      overpaid: nonCash > totalCents,
+      badAmount
+    };
   }
 
-  function syncPaymentFields(): void {
-    const cash = methodSelect?.value === "cash";
-    if (tenderedField) tenderedField.hidden = !cash;
-    if (changeLine) changeLine.hidden = !cash;
-    if (tenderedInput) tenderedInput.required = cash;
-    recomputeChange();
+  function recomputeSummary(): void {
+    const plan = planFromLines();
+    if (sumTotalEl) sumTotalEl.textContent = fromCents(plan.totalCents);
+    if (sumAppliedEl) {
+      sumAppliedEl.textContent = fromCents(
+        plan.nonCashCents + plan.appliedCashCents
+      );
+    }
+    if (changeEl) {
+      changeEl.textContent = fromCents(plan.changeCents);
+      changeEl.dataset.tone = plan.changeCents > 0n ? "success" : "neutral";
+    }
+    if (sumDueEl) {
+      sumDueEl.textContent = fromCents(plan.dueCents);
+      sumDueEl.dataset.tone =
+        plan.dueCents === 0n
+          ? "neutral"
+          : allowDueInput?.checked
+            ? "warning"
+            : "danger";
+    }
   }
 
   function addToCart(line: Omit<CartLine, "quantity">): void {
@@ -1032,8 +1332,12 @@ const paymentLabels: Record<string, string> = {
     }, 250);
   });
 
-  methodSelect?.addEventListener("change", syncPaymentFields);
-  tenderedInput?.addEventListener("input", recomputeChange);
+  el<HTMLButtonElement>("pos-add-tender")?.addEventListener("click", () => {
+    // New lines default to QRIS: the first line is cash, and a second cash
+    // line is refused (one cash tender per sale).
+    addTenderLine("manual_qris", true);
+  });
+  allowDueInput?.addEventListener("change", syncTenderLines);
 
   el<HTMLButtonElement>("pos-clear")?.addEventListener("click", () => {
     cart.length = 0;
@@ -1059,12 +1363,53 @@ const paymentLabels: Record<string, string> = {
     set("subtotal", order.subtotal);
     set("tax", order.tax);
     set("total", order.total);
-    set(
-      "method",
-      order.paymentMethod === "cash" ? msg("labelCash") : msg("labelQris")
-    );
-    set("amountTendered", order.amountTendered ?? "—");
     set("change", order.change ?? "—");
+
+    // One entry per tender (Issue #285): the amount APPLIED, and for the cash
+    // leg what was handed over. Built with `textContent` (never `innerHTML`).
+    const payments = receiptWrapper.querySelector<HTMLElement>(
+      '[data-receipt="payments"]'
+    );
+    if (payments) {
+      payments.textContent = "";
+      const methodNames: Record<string, string> = {
+        cash: msg("labelCash"),
+        manual_qris: msg("labelQris"),
+        manual_bank_transfer: msg("labelBank")
+      };
+      const addRow = (label: string, value: string) => {
+        const dt = document.createElement("dt");
+        dt.textContent = label;
+        const dd = document.createElement("dd");
+        dd.textContent = value;
+        payments.append(dt, dd);
+      };
+      for (const payment of order.payments ?? []) {
+        if (payment.kind !== "payment" || payment.status !== "succeeded") {
+          continue;
+        }
+        addRow(
+          methodNames[payment.tenderType] ?? payment.tenderType,
+          payment.amount
+        );
+        if (payment.tenderedAmount !== null) {
+          addRow(msg("labelTendered"), payment.tenderedAmount);
+        }
+      }
+    }
+    const outstanding = order.settlement.outstanding;
+    const owing = outstanding !== "0.00";
+    const outstandingLabel = receiptWrapper.querySelector<HTMLElement>(
+      '[data-receipt="outstanding-label"]'
+    );
+    const outstandingValue = receiptWrapper.querySelector<HTMLElement>(
+      '[data-receipt="outstanding"]'
+    );
+    if (outstandingLabel) outstandingLabel.hidden = !owing;
+    if (outstandingValue) {
+      outstandingValue.hidden = !owing;
+      outstandingValue.textContent = outstanding;
+    }
 
     const lines = receiptWrapper.querySelector<HTMLElement>(
       '[data-receipt="lines"]'
@@ -1101,15 +1446,38 @@ const paymentLabels: Record<string, string> = {
     if (!submit) return;
 
     const data = new FormData(checkoutForm);
-    const method = String(data.get("method") ?? "cash");
-    const tendered = String(data.get("amountTendered") ?? "").trim();
     const name = String(data.get("name") ?? "").trim();
     const phone = String(data.get("phone") ?? "").trim();
     const notes = String(data.get("notes") ?? "").trim();
+    const allowDue = allowDueInput?.checked === true;
 
-    if (method === "cash" && !MONEY.test(tendered)) {
+    const plan = planFromLines();
+    const filled = tenderLines.filter(
+      (line) => line.amount.value.trim() !== ""
+    );
+    if (plan.badAmount) {
+      saleError.show(msg("msgBadAmount"));
+      return;
+    }
+    if (plan.cashCount > 1) {
+      saleError.show(msg("msgTwoCash"));
+      return;
+    }
+    if (plan.overpaid) {
+      saleError.show(msg("msgOverpayment"));
+      return;
+    }
+    if (filled.length === 0 && !allowDue) {
+      saleError.show(msg("msgNoTender"));
+      return;
+    }
+    if (plan.dueCents > 0n && !allowDue) {
       saleError.show(msg("msgInsufficient"));
-      tenderedInput?.focus();
+      return;
+    }
+    if (plan.dueCents > 0n && phone === "") {
+      saleError.show(msg("msgDuePhone"));
+      el<HTMLInputElement>("pos-customer-phone")?.focus();
       return;
     }
 
@@ -1133,10 +1501,18 @@ const paymentLabels: Record<string, string> = {
             variantId: line.variantId,
             quantity: line.quantity
           })),
-          payment: {
-            method,
-            amountTendered: method === "cash" ? tendered : null
-          },
+          // The explicit multi-tender contract (Issue #285). Non-cash: the
+          // amount applied; cash: the amount handed over — the server derives
+          // the applied amount and the change from the cash line only.
+          tenders: filled.map((line) => ({
+            tenderType: line.type.value,
+            amount: fromCents(toCents(line.amount.value.trim())),
+            reference:
+              line.type.value === "cash"
+                ? null
+                : line.reference.value.trim() || null
+          })),
+          ...(allowDue ? { allowDue: true } : {}),
           notes: notes || null
         },
         { "Idempotency-Key": idempotencyKey }
@@ -1146,6 +1522,8 @@ const paymentLabels: Record<string, string> = {
         const messages: Record<string, string> = {
           CART_CHANGED: msg("msgCartChanged"),
           INSUFFICIENT_TENDER: msg("msgInsufficient"),
+          OVERPAYMENT: msg("msgOverpayment"),
+          ACCESS_DENIED: msg("msgDueDenied"),
           FEATURE_DISABLED: msg("msgFeatureDisabled"),
           VALIDATION_ERROR: phone ? msg("msgInvalidPhone") : msg("msgGeneric")
         };
@@ -1157,7 +1535,7 @@ const paymentLabels: Record<string, string> = {
       cart.length = 0;
       renderCart();
       checkoutForm.reset();
-      syncPaymentFields();
+      resetTenderLines();
     } finally {
       unlock();
     }
@@ -1171,6 +1549,6 @@ const paymentLabels: Record<string, string> = {
     searchInput?.focus();
   });
 
+  resetTenderLines();
   renderCart();
-  syncPaymentFields();
 </script>

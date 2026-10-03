@@ -107,6 +107,11 @@ export const COMMERCE_VOUCHER_REDEEMED_EVENT_TYPE =
   "awcms.commerce.voucher.redeemed";
 export const COMMERCE_REVIEW_PUBLISHED_EVENT_TYPE =
   "awcms.commerce.review.published";
+/** Issue #285 (ADR-0025) — payment-allocation ledger events. */
+export const COMMERCE_PAYMENT_RECORDED_EVENT_TYPE =
+  "awcms.commerce.payment.recorded";
+export const COMMERCE_PAYMENT_REVERSED_EVENT_TYPE =
+  "awcms.commerce.payment.reversed";
 /**
  * Loyalty points ledger (Issue #289, ADR-0026) — ONE event type for every
  * ledger row, `kind` in the payload.
@@ -257,6 +262,18 @@ export const DOMAIN_EVENT_TYPE_REGISTRY: readonly RegisteredDomainEventType[] =
       eventVersion: COMMERCE_EVENT_VERSION,
       description:
         "A pending review was moderated to published by an admin. Producer: commerce/application/review-directory.ts's moderateReview — never fired on review creation, since a pending review is not yet a fact worth publishing to anyone."
+    },
+    {
+      eventType: COMMERCE_PAYMENT_RECORDED_EVENT_TYPE,
+      eventVersion: COMMERCE_EVENT_VERSION,
+      description:
+        "A payment-allocation ledger leg became a succeeded payment against an order (an operator-recorded tender, a POS tender, an accepted manual-transfer confirmation, or a confirmed gateway leg). Producer: commerce/application/payment-allocation-directory.ts's recordPaymentAllocation / resolveGatewayAllocation, in the same transaction as the ledger write. Carries the order's resulting settlement (paid/outstanding/paymentStatus); a pending gateway leg and the sql/943 backfill do not fire it."
+    },
+    {
+      eventType: COMMERCE_PAYMENT_REVERSED_EVENT_TYPE,
+      eventVersion: COMMERCE_EVENT_VERSION,
+      description:
+        "A compensating reversal was recorded against an earlier payment-allocation (a refund or a corrected entry). Producer: commerce/application/payment-allocation-directory.ts's recordPaymentReversal, in the same transaction as the ledger insert. Carries the order's resulting settlement; never moves the order lifecycle."
     },
     {
       eventType: COMMERCE_LOYALTY_ENTRY_RECORDED_EVENT_TYPE,

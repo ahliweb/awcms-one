@@ -1251,6 +1251,26 @@ export const READER_BUDGET_BYTES = 24_000;
  * `.status-badge`/`.stat-grid` classes onto `.admin-status-pill`/
  * `.admin-stat-card-grid` cost only the longer class names). 344,000 keeps
  * the "measured + small margin" convention; re-measure on the next sync.
+
+ *
+ * **Issue #285's own raise (293,500 B before the v10.4.0 sync; the final
+ * figure after the sync is 349,000 B, see the last paragraph)** (payment-allocation ledger,
+ * ADR-0025) — three admin screens grow, none of them by a new shared
+ * primitive: `commerce-pos.astro`'s client island replaces its single
+ * cash/QRIS selector with split tender lines (a row template, per-line
+ * labelling, the `bigint`-cents mirror of `planTenders`' plan, the live
+ * applied/change/balance summary, the per-tender receipt);
+ * `commerce-orders/[id].astro` gains a second `<script>` for the
+ * record-payment and record-reversal forms (two `Idempotency-Key`
+ * submissions) plus the ledger panel's CSS; and `commerce-reports.astro`
+ * gains two SSR tables (no script). The remainder is the compiled
+ * Indonesian catalogue's ~50 new msgids and three new label maps. Measured
+ * clean build: 293,287 B (up from 288,391 B); the largest-file checks still
+ * pass. 293,500 keeps the same tight "measured + small margin" convention as
+ * every raise above;
+ * re-measure on the next commerce screen and tighten if the real total sits
+ * well below this.
+
  */
 /**
  * **Raised to 351,600 B when awcms-one#291 (typed catalog attributes) was
@@ -1268,6 +1288,11 @@ export const READER_BUDGET_BYTES = 24_000;
  * is MEASURED on the merged build: 346,862 B (the sync's 343,962 B plus the
  * loyalty screen's own script and 76 catalogue entries, +2,900 B). 347,000
  * keeps the "measured + small margin" convention.
+ *
+ * **Re-measured at 351,900 B when awcms-one#285 (payment-allocation ledger)
+ * was merged onto main with #289** — MEASURED 351,758 B on the merged build
+ * (#289's 346,862 B plus #285's three screens, +4,896 B); a measurement, not a
+ * sum.
  */
 /**
  * **Raised to 354,500 B when awcms-one#291 (typed catalog attributes) was
@@ -1277,8 +1302,13 @@ export const READER_BUDGET_BYTES = 24_000;
  * 354,420 B (loyalty's 346,862 B plus the attribute / catalog-import screens,
  * their shared client and ~100 new catalogue entries, +7,558 B). 354,500
  * keeps the "measured + small margin" convention.
+ *
+ * **Re-measured at 359,400 B when awcms-one#285 (payment-allocation ledger)
+ * was merged onto main with #289 and #291** — MEASURED 359,316 B on the
+ * merged build (#291's 354,420 B plus #285's three screens, +4,896 B); a
+ * measurement, not a sum.
  */
-export const APP_BUDGET_BYTES = 354_500;
+export const APP_BUDGET_BYTES = 359_400;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.

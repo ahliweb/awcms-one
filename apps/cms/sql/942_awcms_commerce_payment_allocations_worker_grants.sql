@@ -1,0 +1,14 @@
+-- `data-lifecycle:archive-purge` runs as `awcms_worker` (`WORKER_DATABASE_URL`)
+-- and, for an `executionMode: "generic"` descriptor, issues a SELECT of
+-- candidates by `(tenant_id, <cursor>)` and a `hard_delete` DELETE. `sql/940`'s
+-- `commerce.payment_allocations` descriptor (`commerce/module.ts`) declares
+-- exactly that shape (`cursorColumn: "created_at"`, ten-year ceiling), so the
+-- grant must exist (`data-lifecycle:worker-grants:check`) — the same reasoning
+-- `sql/937` states for entitlements.
+--
+-- No UPDATE: the engine never rewrites a ledger row, and `sql/940`'s trigger
+-- would refuse it anyway. `awcms_app`, by contrast, keeps INSERT/UPDATE and
+-- LOSES DELETE (sql/940's REVOKE): the role that records payments must not be
+-- the role that can remove them; only the retention engine, past the
+-- ten-year fiscal horizon, may.
+GRANT SELECT, DELETE ON awcms_commerce_payment_allocations TO awcms_worker;

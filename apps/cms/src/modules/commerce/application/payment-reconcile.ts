@@ -122,7 +122,9 @@ async function applyFetchedStatus(
           {
             provider: providerKey,
             providerRef: session.providerRef,
-            eventKey: `reconcile:${session.providerRef}`
+            eventKey: `reconcile:${session.providerRef}`,
+            grossAmount: readReportedGrossAmount(raw),
+            source: "gateway_reconcile"
           },
           correlationId
         );

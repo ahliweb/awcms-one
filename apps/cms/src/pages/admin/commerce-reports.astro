@@ -55,6 +55,12 @@ import {
   SALES_REPORT_PROJECTION_KEYS
 } from "../../modules/commerce/domain/sales-report-keys";
 import { SALES_REPORT_TIME_ZONE } from "../../modules/commerce/domain/sales-report-deltas";
+import {
+  listOutstandingBalances,
+  listTenderMix,
+  type OutstandingBalancesReport,
+  type TenderMixReport
+} from "../../modules/commerce/application/payment-allocation-directory";
 import { listProjectionSummariesForTenant } from "../../modules/reporting/application/projection-directory";
 import type { ProjectionSummaryView } from "../../modules/reporting/application/projection-directory";
 import {
@@ -83,6 +89,7 @@ const range = rangeValidation.valid
 const rangeErrors = rangeValidation.valid ? [] : rangeValidation.errors;
 
 const PRODUCT_LIMIT = 50;
+const OUTSTANDING_LIMIT = 50;
 
 const screen = await loadAdminScreen({
   ssr,
@@ -114,6 +121,24 @@ const screen = await loadAdminScreen({
       activityCode: "exports",
       action: "export"
     });
+    // Issue #285 — tender mix and outstanding balances read the payment
+    // ledger directly; a figure about money by tender is a payments read, so
+    // the two panels need `commerce.payments.read` on top of this screen's
+    // own `reporting.dashboard.read` entry.
+    const canReadPayments = await can({
+      moduleKey: "commerce",
+      activityCode: "payments",
+      action: "read"
+    });
+    const tenderMix: TenderMixReport | null = canReadPayments
+      ? await listTenderMix(tx, ssr.tenantId, range, SALES_REPORT_TIME_ZONE)
+      : null;
+    const outstanding: OutstandingBalancesReport | null = canReadPayments
+      ? await listOutstandingBalances(tx, ssr.tenantId, {
+          channel: null,
+          limit: OUTSTANDING_LIMIT
+        })
+      : null;
 
     const projections = canReadProjections
       ? (
@@ -146,7 +171,9 @@ const screen = await loadAdminScreen({
       projections,
       exportRuns,
       canTriggerExport,
-      canReadExports
+      canReadExports,
+      tenderMix,
+      outstanding
     };
   },
   onError: (error) => {
@@ -170,6 +197,8 @@ const exportRuns: ExportRunRow[] =
 const canTriggerExport =
   screen.state === "allowed" && screen.data.canTriggerExport;
 const canReadExports = screen.state === "allowed" && screen.data.canReadExports;
+const tenderMix = screen.state === "allowed" ? screen.data.tenderMix : null;
+const outstanding = screen.state === "allowed" ? screen.data.outstanding : null;
 
 const CURRENCY = "IDR";
 const money = (value: string) =>
@@ -595,6 +624,180 @@ function formatTimestamp(value: Date | string | null): string {
           </table>
         </div>
       </section>
+
+      {tenderMix && (
+        <section
+          class="admin-section fade-in-up"
+          id="sales-tender-mix"
+          aria-labelledby="sales-tender-mix-title"
+        >
+          <h2 class="admin-section-title" id="sales-tender-mix-title">
+            {t("Payments by tender")}
+            <span class="count-pill">{tenderMix.items.length}</span>
+          </h2>
+          <div class="data-table-scroll">
+            <table
+              class="data-table data-table--stack"
+              id="sales-tender-mix-table"
+            >
+              <caption>
+                {t(
+                  "Money received and given back per payment method, {from} to {to}, by the day each payment was recorded.",
+                  { from: range.from, to: range.to }
+                )}
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col">{t("Payment method")}</th>
+                  <th scope="col">{t("Payments")}</th>
+                  <th scope="col">{t("Received")}</th>
+                  <th scope="col">{t("Reversals")}</th>
+                  <th scope="col">{t("Given back")}</th>
+                  <th scope="col">{t("Net")}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {tenderMix.items.length === 0 ? (
+                  <tr>
+                    <td class="data-table-empty" colspan="6">
+                      <div class="empty-state">
+                        <span class="empty-state-icon" aria-hidden="true">
+                          ◇
+                        </span>
+                        <span class="empty-state-title">
+                          {t("No payments recorded in this range")}
+                        </span>
+                      </div>
+                    </td>
+                  </tr>
+                ) : (
+                  tenderMix.items.map((row) => (
+                    <tr data-tender={row.tenderType}>
+                      <th scope="row" data-label={t("Payment method")}>
+                        {commerceLabel(
+                          labels.paymentTenderType,
+                          row.tenderType
+                        )}
+                      </th>
+                      <td data-label={t("Payments")}>
+                        {count(row.paymentCount)}
+                      </td>
+                      <td data-label={t("Received")}>{money(row.payments)}</td>
+                      <td data-label={t("Reversals")}>
+                        {count(row.reversalCount)}
+                      </td>
+                      <td data-label={t("Given back")}>
+                        {money(row.reversals)}
+                      </td>
+                      <td data-label={t("Net")}>{money(row.net)}</td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+              {tenderMix.items.length > 0 && (
+                <tfoot>
+                  <tr>
+                    <th scope="row">{t("Total")}</th>
+                    <td></td>
+                    <td data-label={t("Received")}>
+                      {money(tenderMix.totalPayments)}
+                    </td>
+                    <td></td>
+                    <td data-label={t("Given back")}>
+                      {money(tenderMix.totalReversals)}
+                    </td>
+                    <td data-label={t("Net")}>{money(tenderMix.totalNet)}</td>
+                  </tr>
+                </tfoot>
+              )}
+            </table>
+          </div>
+        </section>
+      )}
+
+      {outstanding && (
+        <section
+          class="admin-section fade-in-up"
+          id="sales-outstanding"
+          aria-labelledby="sales-outstanding-title"
+        >
+          <h2 class="admin-section-title" id="sales-outstanding-title">
+            {t("Outstanding balances")}
+            <span class="count-pill">{outstanding.count}</span>
+          </h2>
+          <p class="admin-stat-card-caption">
+            {t("Total still owed across {n} orders: {amount}.", {
+              n: outstanding.count,
+              amount: money(outstanding.totalOutstanding)
+            })}
+            {outstanding.truncated && (
+              <>
+                {" "}
+                {t("Showing the {n} largest.", { n: outstanding.items.length })}
+              </>
+            )}
+          </p>
+          <div class="data-table-scroll">
+            <table
+              class="data-table data-table--stack"
+              id="sales-outstanding-table"
+            >
+              <caption>
+                {t(
+                  "Orders that still owe money, largest balance first (not cancelled or expired)."
+                )}
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col">{t("Order code")}</th>
+                  <th scope="col">{t("Channel")}</th>
+                  <th scope="col">{t("Payment status")}</th>
+                  <th scope="col">{t("Total")}</th>
+                  <th scope="col">{t("Paid")}</th>
+                  <th scope="col">{t("Balance due")}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {outstanding.items.length === 0 ? (
+                  <tr>
+                    <td class="data-table-empty" colspan="6">
+                      <div class="empty-state">
+                        <span class="empty-state-icon" aria-hidden="true">
+                          ◇
+                        </span>
+                        <span class="empty-state-title">
+                          {t("No outstanding balances")}
+                        </span>
+                      </div>
+                    </td>
+                  </tr>
+                ) : (
+                  outstanding.items.map((row) => (
+                    <tr data-outstanding-order={row.orderId}>
+                      <th scope="row" data-label={t("Order code")}>
+                        <a href={`/admin/commerce-orders/${row.orderId}`}>
+                          {row.orderCode}
+                        </a>
+                      </th>
+                      <td data-label={t("Channel")}>
+                        {commerceLabel(labels.orderChannel, row.channel)}
+                      </td>
+                      <td data-label={t("Payment status")}>
+                        {commerceLabel(labels.paymentStatus, row.paymentStatus)}
+                      </td>
+                      <td data-label={t("Total")}>{money(row.total)}</td>
+                      <td data-label={t("Paid")}>{money(row.settled)}</td>
+                      <td data-label={t("Balance due")}>
+                        {money(row.outstanding)}
+                      </td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
+        </section>
+      )}
 
       {canReadExports && (
         <section

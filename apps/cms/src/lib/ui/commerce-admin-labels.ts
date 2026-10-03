@@ -109,6 +109,11 @@ import type { Translator } from "../i18n";
 
 import type { OrderStatus } from "../../modules/commerce/domain/order-status";
 import type { PaymentStatus } from "../../modules/commerce/domain/commerce-order-types";
+import type {
+  PaymentAllocationKind,
+  PaymentAllocationStatus,
+  PaymentTenderType
+} from "../../modules/commerce/domain/payment-allocation";
 import type { ProductStatus } from "../../modules/commerce/domain/product-status";
 import type { ProductType } from "../../modules/commerce/domain/product-type";
 import type { AttributeAppliesTo } from "../../modules/commerce/domain/attribute-definition";
@@ -245,6 +250,7 @@ export function createCommerceLabels(t: Translator["t"]) {
 
   const paymentStatus = {
     unpaid: t("Unpaid"),
+    partially_paid: t("Partially paid"),
     dp_paid: t("Down payment paid"),
     paid: t("Paid"),
     refunded: t("Refunded")
@@ -439,6 +445,27 @@ export function createCommerceLabels(t: Translator["t"]) {
     log: t("Log adapter (development)")
   } satisfies Record<PaymentGatewaySessionProvider, string>;
 
+  /** Issue #285 - the payment-allocation ledger's tender vocabulary (`domain/payment-allocation.ts`). `gateway` is created only by the hosted-checkout flow, never typed by staff, but still labelled: it appears in every ledger. */
+  const paymentTenderType = {
+    cash: t("Cash"),
+    manual_qris: t("QRIS"),
+    manual_bank_transfer: t("Bank transfer"),
+    gateway: t("Payment gateway")
+  } satisfies Record<PaymentTenderType, string>;
+
+  /** Issue #285 - a ledger row's own state; only `succeeded` legs count toward settlement. */
+  const paymentAllocationStatus = {
+    pending: t("Pending"),
+    succeeded: t("Succeeded"),
+    failed: t("Failed")
+  } satisfies Record<PaymentAllocationStatus, string>;
+
+  /** Issue #285 - a ledger row is a payment, or a compensating reversal of one. */
+  const paymentAllocationKind = {
+    payment: t("Payment"),
+    reversal: t("Reversal")
+  } satisfies Record<PaymentAllocationKind, string>;
+
   /** `domain/order-status.ts`'s own header documents the domain meaning behind each of these three values — see {@link PaymentEventOutcome}'s own comment above. */
   const paymentEventOutcome = {
     applied: t("Applied"),
@@ -489,6 +516,9 @@ export function createCommerceLabels(t: Translator["t"]) {
     webhookEndpointProvider,
     paymentGatewaySessionProvider,
     paymentEventOutcome,
+    paymentTenderType,
+    paymentAllocationStatus,
+    paymentAllocationKind,
     loyaltyEntryKind,
     loyaltyProgramStatus
   };

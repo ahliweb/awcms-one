@@ -10501,7 +10501,7 @@ Records the points DEBIT only. Converting points into a discount at checkout nee
 | 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
 | 404    | Resource not found.         | [`ApiError`](#standard-error-envelope) |
 
-### `PATCH /api/v1/commerce/orders/{id}/payment-confirmations/{cid}/review` — Admin accept/reject of a submitted payment confirmation (Issue 29). Accepting moves the order to paid when it is still pending_payment. Gated on orders.update.
+### `PATCH /api/v1/commerce/orders/{id}/payment-confirmations/{cid}/review` — Admin accept/reject of a submitted payment confirmation (Issue 29). Accepting records the confirmed amount as a payment-allocation ledger leg (Issue #285 — `manual_qris`/`manual_bank_transfer`, capped at the outstanding balance, idempotent on `confirmation:{id}`); the order moves to paid when settlement reaches its total (for a down-payment order, its down payment), not merely because a confirmation was accepted. Gated on orders.update.
 
 - **operationId**: `reviewCommerceOrderPaymentConfirmation`
 - **Security**: bearerAuth + tenantHeader
@@ -10550,6 +10550,81 @@ Calls `provider.fetchStatus` for this order's most recent payment-gateway sessio
 | 409    | NO_PAYMENT_SESSION — this order has no gateway payment session at all.               | [`ApiError`](#standard-error-envelope) |
 | 503    | GATEWAY_UNAVAILABLE — no payment-gateway provider is configured for this deployment. | [`ApiError`](#standard-error-envelope) |
 
+### `GET /api/v1/commerce/orders/{id}/payments` — Issue #285 (ADR-0025). The order's payment-allocation ledger: the derived settlement (total, paid, reversed, settled, outstanding, overpaid, cached payment status) and every ledger row, oldest first. Gated on `commerce.payments.read`. An unknown order and another tenant's order are the same 404.
+
+- **operationId**: `listCommerceOrderPayments`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name | In   | Required | Type          | Description |
+| ---- | ---- | -------- | ------------- | ----------- |
+| `id` | path | yes      | string (uuid) |             |
+
+**Responses**
+
+| Status | Description                        | Schema                                 |
+| ------ | ---------------------------------- | -------------------------------------- |
+| 200    | The order's settlement and ledger. | object                                 |
+| 401    | Missing or invalid session.        | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.        | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/orders/{id}/payments` — Issue #285 (ADR-0025). Records one `succeeded` tender (`cash`, `manual_qris`, `manual_bank_transfer`) against an order. Gated on `commerce.payments.create`; requires `Idempotency-Key`.
+
+- **operationId**: `recordCommerceOrderPayment`
+- **Security**: bearerAuth + tenantHeader
+
+The order row is locked for the write, so two concurrent final payments cannot over-settle it: the second waits, then fails with `409 OVERPAYMENT`. Overpayment is rejected for every tender — only a `cash` leg may exceed what is owed, and only as change. For `cash`, `amount` is what the customer HANDED OVER; the amount applied (`min(handed, outstanding)`) and the change are derived server-side from the cash leg alone. The leg that brings settlement to the order's release threshold (the total; for a down-payment order, its down payment) moves a `pending_payment` order to `paid` through the order-status machine, firing the usual `order.paid` events. A `gateway` leg cannot be recorded here — only the hosted-checkout flow creates one. Same key + same body replays the stored 201; same key + a different body (or a different staff member, or another order) is `409 IDEMPOTENCY_CONFLICT`. Emits `awcms.commerce.payment.recorded`.
+
+**Parameters**
+
+| Name              | In     | Required | Type          | Description |
+| ----------------- | ------ | -------- | ------------- | ----------- |
+| `id`              | path   | yes      | string (uuid) |             |
+| `Idempotency-Key` | header | yes      | string        |             |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                                                                                                                                      | Schema                                 |
+| ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 201    | Recorded (or replayed).                                                                                                                                                          | object                                 |
+| 400    | `VALIDATION_ERROR` or `IDEMPOTENCY_REQUIRED`.                                                                                                                                    | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                                      | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                                      | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                                              | [`ApiError`](#standard-error-envelope) |
+| 409    | `IDEMPOTENCY_CONFLICT`, `OVERPAYMENT` (the amount exceeds what is still owed — `details.outstanding`/`details.attempted`) or `ORDER_NOT_PAYABLE` (a cancelled or expired order). | [`ApiError`](#standard-error-envelope) |
+
+### `POST /api/v1/commerce/orders/{id}/payments/{paymentId}/reversals` — Issue #285 (ADR-0025). Records a compensating reversal of (part of) a succeeded payment — the ledger is append-only, so a refund or a corrected entry is a NEW row, never an edit. Gated on `commerce.payments.revoke` (the platform's high-risk verb); requires `Idempotency-Key`.
+
+- **operationId**: `reverseCommerceOrderPayment`
+- **Security**: bearerAuth + tenantHeader
+
+`amount` omitted reverses whatever remains reversible of the payment; the sum of a payment's reversals can never exceed the payment (`409 REVERSAL_EXCEEDS_PAYMENT`, checked under the order-row lock). The reversal lowers the settlement and the derived `paymentStatus` (`paid -> partially_paid`, or `refunded` once everything went back) but NEVER moves the order lifecycle (`status`) — cancelling fulfilment is a human decision. The row records the book-keeping fact only: no provider is called and no money moves; returning it is the operator's act. `note` (the reason) is required. The payment and the order are resolved tenant- and order-scoped: another tenant's order, an unknown payment and a payment of a different order are the same 404. Emits `awcms.commerce.payment.reversed`.
+
+**Parameters**
+
+| Name              | In     | Required | Type          | Description |
+| ----------------- | ------ | -------- | ------------- | ----------- |
+| `id`              | path   | yes      | string (uuid) |             |
+| `paymentId`       | path   | yes      | string (uuid) |             |
+| `Idempotency-Key` | header | yes      | string        |             |
+
+**Request body** (required): object
+
+**Responses**
+
+| Status | Description                                                                                                                                                                   | Schema                                 |
+| ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 201    | Recorded (or replayed). `data.payment` is the new reversal row.                                                                                                               | object                                 |
+| 400    | `VALIDATION_ERROR` or `IDEMPOTENCY_REQUIRED`.                                                                                                                                 | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                                   | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                                   | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                                           | [`ApiError`](#standard-error-envelope) |
+| 409    | `IDEMPOTENCY_CONFLICT`, `REVERSAL_EXCEEDS_PAYMENT` (`details.reversible`) or `PAYMENT_NOT_REVERSIBLE` (`details.reason`: `not_a_payment`, `not_succeeded`, `fully_reversed`). | [`ApiError`](#standard-error-envelope) |
+
 ### `PATCH /api/v1/commerce/orders/{id}/status` — Admin status transition, enforced through the legal-transition table (Issue 29). Gated on orders.update.
 
 - **operationId**: `updateCommerceOrderStatus`
@@ -10565,14 +10640,14 @@ Calls `provider.fetchStatus` for this order's most recent payment-gateway sessio
 
 **Responses**
 
-| Status | Description                                                            | Schema                                 |
-| ------ | ---------------------------------------------------------------------- | -------------------------------------- |
-| 200    | Status updated.                                                        | object                                 |
-| 400    | Validation error.                                                      | [`ApiError`](#standard-error-envelope) |
-| 401    | Missing or invalid session.                                            | [`ApiError`](#standard-error-envelope) |
-| 403    | Access denied by RBAC/ABAC.                                            | [`ApiError`](#standard-error-envelope) |
-| 404    | Resource not found.                                                    | [`ApiError`](#standard-error-envelope) |
-| 409    | The requested transition is not legal from the order's current status. | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | Schema                                 |
+| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 200    | Status updated.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | object                                 |
+| 400    | Validation error.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | [`ApiError`](#standard-error-envelope) |
+| 409    | `ILLEGAL_STATUS_TRANSITION` (the requested transition is not legal from the order's current status) or `PAYMENT_NOT_SETTLED` (Issue #285 — a manual `-> paid` for an order that HAS payment-allocation legs but whose ledger has not reached the order's release threshold; `details.outstanding` carries what is still owed. Record the payment with `POST /api/v1/commerce/orders/{id}/payments` and the order moves to `paid` by itself. An order with NO ledger leg at all is not refused: the call records one full-amount succeeded leg and releases the order). | [`ApiError`](#standard-error-envelope) |
 
 ### `GET /api/v1/commerce/orders/export.csv` — Admin CSV export of the most recent orders (Issue 29, bounded to ~2000 rows). Gated on orders.read.
 
@@ -10732,6 +10807,14 @@ Calls `provider.fetchStatus` for this order's most recent payment-gateway sessio
 
 Requires `Idempotency-Key`. `orders.channel` is set `pos`; `order_events` records the acting STAFF member (`admin`), never `system` and never `customer` — `pos_cashier_tenant_user_id` on the order row carries WHICH staff member. Payment is `cash` or `manual_qris` and the order is created already `paid` — there is no `pending_payment` step visible to the caller for a counter sale. `customer` is optional in full: an omitted/blank `phone` attaches the sale to this tenant's single WALK-IN customer row (a documented sentinel phone, `docs/kamus-data.md`); a given `phone` finds or creates a customer by that (normalised) phone, same as a storefront guest checkout (and prices the sale at that customer's level, #118). `payment.amountTendered` is REQUIRED for `cash` and ignored for `manual_qris`; it is a `numeric(14,2)` string, and the response's `change` is computed server-side, also as a string (ADR-0003 — never a float). The idempotency key is the HEADER only — a body field of the same name is ignored. Same key + same body replays the stored 201; same key + different body (or a different cashier) is `409 IDEMPOTENCY_CONFLICT`.
 
+### Multi-tender (Issue #285, ADR-0025 — contract version 2)
+
+Send EITHER the legacy `payment` object above (unchanged — adapted to exactly one payment-ledger leg) OR an explicit `tenders[]` array, never both. Each tender is `{ tenderType: cash | manual_qris | manual_bank_transfer, amount, reference? }`. For a NON-cash tender `amount` is the amount applied to the sale; for the (at most one) `cash` tender it is the amount HANDED OVER — the server subtracts every non-cash tender from the amount due first, applies cash to what is left, and derives the change from the cash leg ONLY (`change = handed - applied`, never negative, never offsetting a shortfall on another tender). Non-cash tenders summing above the total are `409 OVERPAYMENT`; tenders that do not cover the total are `409 INSUFFICIENT_TENDER` unless `allowDue` is `true`.
+
+`allowDue: true` (requires `tenders[]`, a customer `phone`, and the SEPARATE permission `commerce.pos_due.create` in addition to `commerce.pos.create`) lets the sale finalize with a balance DUE: the order stays `pending_payment` (`paymentStatus` `unpaid`/`partially_paid`, no expiry) with `settlement.outstanding` explicit, and later payments (`POST /api/v1/commerce/orders/{id}/payments`) settle it. `tenders: []` with `allowDue: true` is a sale entirely on account.
+
+The 201 carries `payments` (every ledger row — one per tender, for the receipt) and `settlement`; `change`/`amountTendered` keep their legacy meaning (the cash leg's change / the cash handed over, `null` when the sale had no cash leg).
+
 **Parameters**
 
 | Name              | In     | Required | Type   | Description |
@@ -10742,13 +10825,13 @@ Requires `Idempotency-Key`. `orders.channel` is set `pos`; `order_events` record
 
 **Responses**
 
-| Status | Description                                                                                                                                                                                                                                                                                                           | Schema                                 |
-| ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
-| 201    | Order created, already `paid`.                                                                                                                                                                                                                                                                                        | object                                 |
-| 400    | `VALIDATION_ERROR` (shape, or a `customer.phone` that does not normalise) or `IDEMPOTENCY_REQUIRED` (no `Idempotency-Key` header).                                                                                                                                                                                    | [`ApiError`](#standard-error-envelope) |
-| 401    | Missing or invalid session.                                                                                                                                                                                                                                                                                           | [`ApiError`](#standard-error-envelope) |
-| 403    | Access denied by RBAC/ABAC.                                                                                                                                                                                                                                                                                           | [`ApiError`](#standard-error-envelope) |
-| 409    | `FEATURE_DISABLED` (the tenant turned `pos` off, #118), `IDEMPOTENCY_CONFLICT` (same key, different payload), `CART_CHANGED` (a line's price/stock changed since it was priced — `details.quote` carries the fresh quote) or `INSUFFICIENT_TENDER` (cash `amountTendered` less than the total — `details.shortfall`). | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | Schema                                 |
+| ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 201    | Order created, already `paid`.                                                                                                                                                                                                                                                                                                                                                                                                                                                      | object                                 |
+| 400    | `VALIDATION_ERROR` (shape, or a `customer.phone` that does not normalise) or `IDEMPOTENCY_REQUIRED` (no `Idempotency-Key` header).                                                                                                                                                                                                                                                                                                                                                  | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session.                                                                                                                                                                                                                                                                                                                                                                                                                                                         | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC.                                                                                                                                                                                                                                                                                                                                                                                                                                                         | [`ApiError`](#standard-error-envelope) |
+| 409    | `FEATURE_DISABLED` (the tenant turned `pos` off, #118), `IDEMPOTENCY_CONFLICT` (same key, different payload), `CART_CHANGED` (a line's price/stock changed since it was priced — `details.quote` carries the fresh quote), `INSUFFICIENT_TENDER` (the tenders do not cover the total — `details.shortfall`) or `OVERPAYMENT` (non-cash tenders exceed the total — `details.outstanding`/`details.attempted`). `403` also covers `allowDue: true` without `commerce.pos_due.create`. | [`ApiError`](#standard-error-envelope) |
 
 ### `GET /api/v1/commerce/products` — List products for the current tenant — filterable, sortable, keyset-paginated.
 
@@ -11550,14 +11633,14 @@ Issue #91 (implemented, contract #86): an OPTIONAL `Authorization: Bearer <custo
 
 **Responses**
 
-| Status | Description                                                                                                    | Schema                                 |
-| ------ | -------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
-| 201    | Session created (or the still-live session for this order was returned).                                       | object                                 |
-| 400    | Validation error.                                                                                              | [`ApiError`](#standard-error-envelope) |
-| 401    | UNAUTHENTICATED — an Authorization header was present but not a live session.                                  | [`ApiError`](#standard-error-envelope) |
-| 404    | Resource not found.                                                                                            | [`ApiError`](#standard-error-envelope) |
-| 409    | PAYMENT_NOT_APPLICABLE — the order's `paymentMethod` is not `gateway`, or its status is not `pending_payment`. | [`ApiError`](#standard-error-envelope) |
-| 503    | GATEWAY_UNAVAILABLE — `COMMERCE_PAYMENT_GATEWAY=none`, unset, or the provider call itself failed/timed out.    | [`ApiError`](#standard-error-envelope) |
+| Status | Description                                                                                                                                                                                                                                                                                                                                                                                       | Schema                                 |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 201    | Session created (or the still-live session for this order was returned).                                                                                                                                                                                                                                                                                                                          | object                                 |
+| 400    | Validation error.                                                                                                                                                                                                                                                                                                                                                                                 | [`ApiError`](#standard-error-envelope) |
+| 401    | UNAUTHENTICATED — an Authorization header was present but not a live session.                                                                                                                                                                                                                                                                                                                     | [`ApiError`](#standard-error-envelope) |
+| 404    | Resource not found.                                                                                                                                                                                                                                                                                                                                                                               | [`ApiError`](#standard-error-envelope) |
+| 409    | `PAYMENT_NOT_APPLICABLE` — the order's `paymentMethod` is not `gateway`, or its status is not `pending_payment`; or `ORDER_PARTIALLY_SETTLED` (Issue #285, ADR-0025) — money has already been received against the order, so a hosted checkout (which charges the whole total) is neither created nor handed back; `details.outstanding` carries the balance, to be settled with a manual tender. | [`ApiError`](#standard-error-envelope) |
+| 503    | GATEWAY_UNAVAILABLE — `COMMERCE_PAYMENT_GATEWAY=none`, unset, or the provider call itself failed/timed out.                                                                                                                                                                                                                                                                                       | [`ApiError`](#standard-error-envelope) |
 
 ### `POST /api/v1/commerce/storefront/orders/{orderCode}/payment-proof/upload-sessions` — Reserved for a future increment (Issue 29) — always 503 MEDIA_UNAVAILABLE today. See the module README for why.
 
@@ -11932,6 +12015,27 @@ Anonymous by definition — a provider callback carries no session. Replay-prote
 | 401    | Bad or missing provider signature.                                           | [`ApiError`](#standard-error-envelope) |
 | 404    | Unknown `endpointToken`, or a `provider` value the token was not minted for. | [`ApiError`](#standard-error-envelope) |
 
+### `GET /api/v1/reports/commerce/outstanding-balances` — Issue #285 (ADR-0025). Every order that still owes money (not cancelled/expired, `total - settled > 0`, `settled` re-derived from the payment-allocation ledger), largest balance first. `count`/`totalOutstanding` cover EVERY match; `items` is the first `limit`. Gated on `commerce.payments.read`.
+
+- **operationId**: `getReportsCommerceOutstandingBalances`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name      | In    | Required | Type                      | Description                          |
+| --------- | ----- | -------- | ------------------------- | ------------------------------------ |
+| `channel` | query | no       | enum(`storefront`, `pos`) |                                      |
+| `limit`   | query | no       | integer                   | Rows to return, 1-500 (default 100). |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | Outstanding balances.       | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
+
 ### `GET /api/v1/reports/commerce/sales-by-category` — Issue #117 (contract #106, ADR-0017 D7). The `commerce.sales_by_category` projection grouped over the inclusive day range — quantity and gross per product category from paid orders, reversals subtracted, attributed through the product's category at processing time; lines whose product has no category are returned as one bucket with `categoryId: null`. Gated on `reporting.dashboard.read`.
 
 - **operationId**: `getReportsCommerceSalesByCategory`
@@ -11995,6 +12099,27 @@ Anonymous by definition — a provider callback carries no session. Replay-prote
 | 400    | Validation error.                    | [`ApiError`](#standard-error-envelope) |
 | 401    | Missing or invalid session.          | [`ApiError`](#standard-error-envelope) |
 | 403    | Access denied by RBAC/ABAC.          | [`ApiError`](#standard-error-envelope) |
+
+### `GET /api/v1/reports/commerce/tender-mix` — Issue #285 (ADR-0025). Money movement by tender over the inclusive day range, read straight off the payment-allocation ledger (the source of truth — no second projection): payments, reversals and net per tender, plus range totals. Each leg is attributed to the report day it was RECORDED (a refund is the day of the refund); only `succeeded` legs count; a tender with no activity is absent. Gated on `commerce.payments.read`.
+
+- **operationId**: `getReportsCommerceTenderMix`
+- **Security**: bearerAuth + tenantHeader
+
+**Parameters**
+
+| Name   | In    | Required | Type          | Description                                                                                                                          |
+| ------ | ----- | -------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| `from` | query | no       | string (date) | Inclusive first report day (`YYYY-MM-DD`, in the report time zone). Defaults to 29 days before `to`. A range spans at most 366 days. |
+| `to`   | query | no       | string (date) | Inclusive last report day (`YYYY-MM-DD`). Defaults to today in the report time zone.                                                 |
+
+**Responses**
+
+| Status | Description                 | Schema                                 |
+| ------ | --------------------------- | -------------------------------------- |
+| 200    | Tender mix for the range.   | object                                 |
+| 400    | Validation error.           | [`ApiError`](#standard-error-envelope) |
+| 401    | Missing or invalid session. | [`ApiError`](#standard-error-envelope) |
+| 403    | Access denied by RBAC/ABAC. | [`ApiError`](#standard-error-envelope) |
 
 ## Commerce Accounts
 
@@ -16025,7 +16150,7 @@ consumer/subscriber contract in this file).
 }
 ```
 
-### Channels (57)
+### Channels (59)
 
 - `awcms.blog-content.ad.created` — An advertisement was created. Documented contract only; producer is `pages/api/v1/blog/ads/index.ts`'s `blog-content.ad.created` log line.
 - `awcms.blog-content.ad.deleted` — An advertisement was soft-deleted. Documented contract only; producer is `pages/api/v1/blog/ads/[id].ts`'s `blog-content.ad.deleted` log line.
@@ -16059,12 +16184,14 @@ consumer/subscriber contract in this file).
 - `awcms.comments.reply.created` — A submitted comment was a reply to an existing comment. Producer: `comments/application/comment-service.ts`'s `submitComment`, published alongside `comment.submitted` so a consumer can distinguish thread replies without re-reading the row. The recipient address is resolved from encrypted storage by the dispatcher at send time and is never carried here.
 - `awcms.commerce.flash_sale.ended` — A flash sale's derived status crossed into `ended` (`now()` passed `ends_at`). Producer: `commerce/application/flash-sale-directory.ts`'s `tickFlashSalesForTenant`, run by the scheduled `commerce:flash-sales:tick` job.
 - `awcms.commerce.flash_sale.started` — A flash sale's derived status crossed into `active` (`now()` entered `[starts_at, ends_at]`). Producer: `commerce/application/flash-sale-directory.ts`'s `tickFlashSalesForTenant`, run by the scheduled `commerce:flash-sales:tick` job — never a direct admin `PATCH`.
-- `awcms.commerce.loyalty.entry_recorded` — A row was appended to the append-only loyalty points ledger (Issue #289) — an earn for a paid order, a redemption, an expiry, a manual adjustment or a reversal. Producer: `commerce/application/loyalty-ledger.ts`'s `appendLedgerEntry`, in the same transaction as the ledger insert and the account projection update. Aggregate is the loyalty account; the payload carries `entryId`, `customerId`, `kind`, signed integer `points`, `balanceAfter` and `sourceType` — never a name, phone or free-text reason.
+- `awcms.commerce.loyalty.entry_recorded` — A payment-allocation ledger leg became a `succeeded` payment against an order (an operator-recorded tender, a POS tender, an accepted manual-transfer confirmation, or a confirmed gateway leg). Producer: `commerce/application/payment-allocation-directory.ts`'s `recordPaymentAllocation` / `resolveGatewayAllocation`, in the same transaction as the ledger write. The order aggregate carries the stream, so `payment.recorded` is ordered against `order.paid`. Payload: `orderId`, `orderCode`, `allocationId`, `tenderType`, `amount`, `source`, and the order's resulting `paid`/`outstanding`/ `paymentStatus` — never a customer name/phone or a payment reference. A pending gateway leg and the `sql/943` backfill do not fire it.
 - `awcms.commerce.order.cancelled` — An order was cancelled, by the customer (while `pending_payment`) or an admin. Producer: `commerce/application/order-directory.ts`'s `transitionOrderStatus`, published alongside `commerce.order.status_changed`; its line items are restocked and any redeemed voucher un-redeemed in the same transaction.
 - `awcms.commerce.order.created` — An order was created via the anonymous storefront checkout path. Producer: `commerce/application/order-directory.ts`'s `createOrderFromCart`, in the same transaction as the order/order-items insert, the stock/flash-sale-quota decrement, and (when a voucher was used) its redemption.
 - `awcms.commerce.order.expired` — A `pending_payment` order's payment window elapsed. Producer: `commerce/application/order-directory.ts`'s `transitionOrderStatus`, run by the scheduled `commerce:orders:expire` job; its line items are restocked and any redeemed voucher un-redeemed in the same transaction.
 - `awcms.commerce.order.paid` — An order's status transitioned to `paid` — normally an admin accepting a payment confirmation. Producer: `commerce/application/order-directory.ts`'s `transitionOrderStatus`, published alongside `commerce.order.status_changed`.
 - `awcms.commerce.order.status_changed` — An order's status transitioned (`commerce/domain/order-status.ts`'s `LEGAL_ORDER_STATUS_TRANSITIONS`). Producer: `commerce/application/order-directory.ts`'s `transitionOrderStatus`. Carries `from`/`to` status; a consumer that only cares an order moved can key off this without diffing the row.
+- `awcms.commerce.payment.recorded` —
+- `awcms.commerce.payment.reversed` — A compensating reversal was recorded against an earlier payment-allocation (a refund or a corrected entry). Producer: `commerce/application/payment-allocation-directory.ts`'s `recordPaymentReversal`, in the same transaction as the ledger insert. Payload: `orderId`, `orderCode`, `allocationId`, `reversesAllocationId`, `tenderType`, `amount`, and the order's resulting `paid`/`outstanding`/`paymentStatus`. Never moves the order lifecycle (`status`). A row was appended to the append-only loyalty points ledger (Issue #289) — an earn for a paid order, a redemption, an expiry, a manual adjustment or a reversal. Producer: `commerce/application/loyalty-ledger.ts`'s `appendLedgerEntry`, in the same transaction as the ledger insert and the account projection update. Aggregate is the loyalty account; the payload carries `entryId`, `customerId`, `kind`, signed integer `points`, `balanceAfter` and `sourceType` — never a name, phone or free-text reason.
 - `awcms.commerce.product.created` — A product was created (status `draft`). Producer: `commerce/application/product-directory.ts`'s `createProduct`, via `appendDomainEvent` in the same transaction as the row's creation.
 - `awcms.commerce.product.status_changed` — A product's lifecycle status transitioned (`commerce/domain/product-status.ts`'s `LEGAL_TRANSITIONS`). Producer: `commerce/application/product-directory.ts`'s `updateProduct`. Carries `previousStatus` and `status`; a consumer that only cares whether a product is still sellable can key off this without diffing the row.
 - `awcms.commerce.product.updated` — A product's fields other than `status` were changed. Producer: `commerce/application/product-directory.ts`'s `updateProduct`. Published alongside `commerce.product.status_changed` when a single `PATCH` changes both.

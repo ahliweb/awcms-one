@@ -179,6 +179,8 @@ function posInput(
     customer: { name: null, phone: null },
     lines: [{ productId, variantId: null, quantity: 2 }],
     payment: { method: "cash", amountTendered: "50000.00" },
+    tenders: null,
+    allowDue: false,
     notes: null,
     ...overrides
   };

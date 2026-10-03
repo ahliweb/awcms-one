@@ -8,12 +8,12 @@
 | Aspect                              | Value |
 | ----------------------------------- | ----- |
 | Registered modules                  | 26    |
-| Migrations                          | 217   |
-| `awcms_*` tables                    | 214   |
-| Tables with `FORCE` RLS             | 196   |
+| Migrations                          | 221   |
+| `awcms_*` tables                    | 215   |
+| Tables with `FORCE` RLS             | 197   |
 | RLS-free tables (global, by design) | 18    |
-| Test files                          | 637   |
-| Route files                         | 574   |
+| Test files                          | 639   |
+| Route files                         | 578   |
 | ADR                                 | 252   |
 
 ### Modules
@@ -260,14 +260,18 @@
 | 207 | `sql/937_awcms_commerce_entitlements_worker_grants.sql`                     |
 | 208 | `sql/938_awcms_commerce_entitlements_permissions.sql`                       |
 | 209 | `sql/939_awcms_commerce_protected_media_links_schema.sql`                   |
-| 210 | `sql/950_awcms_commerce_loyalty_schema.sql`                                 |
-| 211 | `sql/951_awcms_commerce_loyalty_worker_grants.sql`                          |
-| 212 | `sql/952_awcms_commerce_loyalty_permissions.sql`                            |
-| 213 | `sql/960_awcms_commerce_attributes_schema.sql`                              |
-| 214 | `sql/961_awcms_commerce_attributes_permissions.sql`                         |
-| 215 | `sql/962_awcms_commerce_attributes_worker_grants.sql`                       |
-| 216 | `sql/963_awcms_commerce_attributes_value_indexes.sql`                       |
-| 217 | `sql/964_awcms_commerce_catalog_import_batches.sql`                         |
+| 210 | `sql/940_awcms_commerce_payment_allocations_schema.sql`                     |
+| 211 | `sql/941_awcms_commerce_payment_allocations_permissions.sql`                |
+| 212 | `sql/942_awcms_commerce_payment_allocations_worker_grants.sql`              |
+| 213 | `sql/943_awcms_commerce_payment_allocations_backfill.sql`                   |
+| 214 | `sql/950_awcms_commerce_loyalty_schema.sql`                                 |
+| 215 | `sql/951_awcms_commerce_loyalty_worker_grants.sql`                          |
+| 216 | `sql/952_awcms_commerce_loyalty_permissions.sql`                            |
+| 217 | `sql/960_awcms_commerce_attributes_schema.sql`                              |
+| 218 | `sql/961_awcms_commerce_attributes_permissions.sql`                         |
+| 219 | `sql/962_awcms_commerce_attributes_worker_grants.sql`                       |
+| 220 | `sql/963_awcms_commerce_attributes_value_indexes.sql`                       |
+| 221 | `sql/964_awcms_commerce_catalog_import_batches.sql`                         |
 
 ### Tables & Row-Level Security
 
@@ -331,6 +335,7 @@
 | `awcms_commerce_order_events`               | `sql/913_awcms_commerce_customers_orders_schema.sql`       | yes | yes   |
 | `awcms_commerce_order_items`                | `sql/913_awcms_commerce_customers_orders_schema.sql`       | yes | yes   |
 | `awcms_commerce_orders`                     | `sql/913_awcms_commerce_customers_orders_schema.sql`       | yes | yes   |
+| `awcms_commerce_payment_allocations`        | `sql/940_awcms_commerce_payment_allocations_schema.sql`    | yes | yes   |
 | `awcms_commerce_payment_confirmations`      | `sql/913_awcms_commerce_customers_orders_schema.sql`       | yes | yes   |
 | `awcms_commerce_payment_events`             | `sql/926_awcms_commerce_payment_gateway_schema.sql`        | yes | yes   |
 | `awcms_commerce_payment_gateway_sessions`   | `sql/926_awcms_commerce_payment_gateway_schema.sql`        | yes | yes   |
@@ -492,16 +497,16 @@
 
 | Directory     | Test files |
 | ------------- | ---------- |
-| `(root)`      | 504        |
+| `(root)`      | 505        |
 | `e2e`         | 21         |
-| `integration` | 111        |
+| `integration` | 112        |
 | `unit`        | 1          |
 
 ### Routes
 
 | Surface         | Files |
 | --------------- | ----- |
-| `/api/v1/**`    | 457   |
+| `/api/v1/**`    | 461   |
 | `/admin/**`     | 87    |
 | publik / anonim | 30    |
 
