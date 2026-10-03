@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { readdirSync, readFileSync, statSync } from "node:fs";
+import { readdirSync, readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 
 import { COMMERCE_DERIVED_EMAIL_CATEGORIES } from "../src/modules/commerce/domain/email-template-categories";
@@ -90,9 +90,9 @@ describe("derived e-mail categories in the email:dispatch process (Issue #311)",
   test("every derived.* registration under src/ lives in the one commerce side-effect file", () => {
     const offenders: string[] = [];
     const walk = (dir: string) => {
-      for (const entry of readdirSync(dir)) {
-        const path = join(dir, entry);
-        if (statSync(path).isDirectory()) {
+      for (const entry of readdirSync(dir, { withFileTypes: true })) {
+        const path = join(dir, entry.name);
+        if (entry.isDirectory()) {
           walk(path);
         } else if (
           path.endsWith(".ts") &&
