@@ -457,9 +457,23 @@ describe("no new bulk API route exists (Issue #247 — per-item endpoints only)"
     // endpoint (linking ONE product to its protected media object), not a
     // bulk one, so it belongs on this list rather than breaking the rule the
     // list pins.
+    //
+    // Issue #291 adds `[id]/attributes.ts` and `[id]/variants/[variantId]/
+    // attributes.ts` (per-item, like images/variants) and TWO deliberately
+    // bulk endpoints, `import.ts` and `export.csv.ts`. Those are not what this
+    // rule guards against: the rule is that the admin selection bar (#247)
+    // loops over per-item endpoints instead of inventing a `bulk` API for
+    // publish/draft/delete. A CSV import/export is a different feature with its
+    // own permissions (`products.import`/`.export`), idempotency, dry-run and
+    // all-or-nothing contract — see ADR-0027 — and is named here explicitly
+    // so a THIRD bulk-shaped file still fails this list.
     expect(files.sort()).toEqual(
       [
         "src/pages/api/v1/commerce/products/[id].ts",
+        "src/pages/api/v1/commerce/products/[id]/attributes.ts",
+        "src/pages/api/v1/commerce/products/[id]/variants/[variantId]/attributes.ts",
+        "src/pages/api/v1/commerce/products/export.csv.ts",
+        "src/pages/api/v1/commerce/products/import.ts",
         "src/pages/api/v1/commerce/products/[id]/images/[imageId].ts",
         "src/pages/api/v1/commerce/products/[id]/images/index.ts",
         "src/pages/api/v1/commerce/products/[id]/protected-media.ts",

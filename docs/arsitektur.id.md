@@ -1,7 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](arsitektur.md)
 
-<!-- i18n-source-hash: sha256:5fa48ecead7feb28e5ba1ecff1d450011a7eaebfd5b55f8e26a444dd5d76a1d2 -->
-<!-- i18n-source-hash: sha256:dc76237cd004b482f7d5cb7d2c19f792260570a5ddb4bc849b4381e5a27a90a8 -->
+<!-- i18n-source-hash: sha256:cbf2f3a7416fc6b44c58b4833023f6c6dd6fb82c43dc6039f26f53480898ad52 -->
 
 # Arsitektur
 

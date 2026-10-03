@@ -492,6 +492,16 @@
       "source": "factory"
     },
     {
+      "path": "src/pages/api/v1/commerce/attributes/[id].ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/attributes/index.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
       "path": "src/pages/api/v1/commerce/campaigns/[id]/cancel.ts",
       "workClass": "interactive",
       "source": "factory"
@@ -712,6 +722,11 @@
       "source": "factory"
     },
     {
+      "path": "src/pages/api/v1/commerce/products/[id]/attributes.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
       "path": "src/pages/api/v1/commerce/products/[id]/images/[imageId].ts",
       "workClass": "interactive",
       "source": "factory"
@@ -737,6 +752,11 @@
       "source": "factory"
     },
     {
+      "path": "src/pages/api/v1/commerce/products/[id]/variants/[variantId]/attributes.ts",
+      "workClass": "interactive",
+      "source": "factory"
+    },
+    {
       "path": "src/pages/api/v1/commerce/products/[id]/variants/index.ts",
       "workClass": "interactive",
       "source": "factory"
@@ -744,6 +764,16 @@
     {
       "path": "src/pages/api/v1/commerce/products/by-slug/[slug].ts",
       "workClass": "interactive",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/products/export.csv.ts",
+      "workClass": "reporting",
+      "source": "factory"
+    },
+    {
+      "path": "src/pages/api/v1/commerce/products/import.ts",
+      "workClass": "background_sync",
       "source": "factory"
     },
     {

@@ -1,0 +1,432 @@
+---
+/**
+ * Catalog CSV export and validated import (Issue #291).
+ *
+ * Export is a plain download link (`GET .../products/export.csv`, gated on
+ * `commerce.products.export`). Import is a two-step flow that mirrors the API:
+ * "Validate" posts the file as a dry-run and shows the per-row report without
+ * writing anything; "Apply" is only enabled once that report is clean, asks for
+ * confirmation, and sends the SAME bytes back with the dry-run's SHA-256 and an
+ * `Idempotency-Key` — all rows are applied or none are. See
+ * `docs/adr/0027-catalog-custom-attributes-are-typed-and-allowlisted.md`.
+ *
+ * Every sentence the client shows is rendered here (translated) into `data-*`
+ * attributes of `#catalog-import`; the module `commerce-catalog-import-client`
+ * owns no English text. Per-row diagnostics (`column: message`) come from the
+ * API's validators and are shown verbatim.
+ */
+import AdminLayout from "../../layouts/AdminLayout.astro";
+import CommerceConfirmDialog from "../../components/CommerceConfirmDialog.astro";
+import "../../styles/admin-screens.css";
+import { loadAdminScreen } from "../../lib/auth/admin-screen";
+import { logAdminPageError } from "../../lib/logging/error-log";
+import { getTranslatorFor } from "../../lib/i18n";
+import {
+  MAX_CATALOG_EXPORT_ROWS,
+  MAX_CATALOG_IMPORT_ROWS
+} from "../../modules/commerce/domain/catalog-import";
+import {
+  commerceLabel,
+  createCommerceLabels
+} from "../../lib/ui/commerce-admin-labels";
+
+const ssr = Astro.locals.ssrContext!;
+const { t } = getTranslatorFor(Astro.locals.locale);
+const labels = createCommerceLabels(t);
+
+const screen = await loadAdminScreen({
+  ssr,
+  workClass: "interactive",
+  // Either half of the screen is enough to open it.
+  authorize: [
+    { moduleKey: "commerce", activityCode: "products", action: "import" },
+    { moduleKey: "commerce", activityCode: "products", action: "export" }
+  ],
+  load: async ({ can }) => ({
+    canImport: await can({
+      moduleKey: "commerce",
+      activityCode: "products",
+      action: "import"
+    }),
+    canExport: await can({
+      moduleKey: "commerce",
+      activityCode: "products",
+      action: "export"
+    }),
+    canCreate: await can({
+      moduleKey: "commerce",
+      activityCode: "products",
+      action: "create"
+    }),
+    canUpdate: await can({
+      moduleKey: "commerce",
+      activityCode: "products",
+      action: "update"
+    })
+  }),
+  onError: (error) => {
+    logAdminPageError(
+      "admin/commerce-catalog-import.astro: failed to load permissions",
+      error,
+      { correlationId: Astro.locals.correlationId }
+    );
+  }
+});
+
+const canRead = screen.state !== "denied";
+const loadError = screen.state === "error";
+const allowed = screen.state === "allowed" ? screen.data : null;
+const canImport = allowed?.canImport ?? false;
+const canExport = allowed?.canExport ?? false;
+const canApply =
+  canImport && (allowed?.canCreate ?? false) && (allowed?.canUpdate ?? false);
+---
+
+<AdminLayout
+  title={t("Catalog import and export")}
+  description={t(
+    "Download the catalog as CSV, or validate and apply a CSV import with a per-row report."
+  )}
+>
+  {!canRead && (
+    <p class="state-notice fade-in-up" id="catalog-import-denied">
+      {t("You do not have permission to import or export the catalog.")}
+    </p>
+  )}
+
+  {canRead && loadError && (
+    <p class="state-notice fade-in-up" id="catalog-import-error">
+      {t("This page could not be loaded right now. Please try again later.")}
+    </p>
+  )}
+
+  {canExport && (
+    <section class="admin-section fade-in-up" id="catalog-export">
+      <h2 class="admin-section-title">{t("Export")}</h2>
+      <p>
+        {t(
+          "Download the live product catalog as a CSV file (UTF-8). It includes one column per product attribute and re-imports without changes."
+        )}
+      </p>
+      <p class="form-hint">
+        {t("At most {count} products are exported.", {
+          count: MAX_CATALOG_EXPORT_ROWS
+        })}
+      </p>
+      <a
+        class="module-toggle"
+        id="catalog-export-link"
+        href="/api/v1/commerce/products/export.csv"
+        download="products.csv"
+      >
+        {t("Download CSV")}
+      </a>
+    </section>
+  )}
+
+  {canImport && !loadError && (
+    <section
+      class="admin-section fade-in-up"
+      id="catalog-import"
+      data-summary-template={t(
+        "{rows} rows checked: {create} to create, {update} to update, {unchanged} unchanged, {error} with errors."
+      )}
+      data-line-template={t("line {line}")}
+      data-action-create={commerceLabel(labels.importRowAction, "create")}
+      data-action-update={commerceLabel(labels.importRowAction, "update")}
+      data-action-unchanged={commerceLabel(labels.importRowAction, "unchanged")}
+      data-action-error={commerceLabel(labels.importRowAction, "error")}
+      data-column-row={t("Row")}
+      data-column-line={t("Line")}
+      data-column-sku={t("SKU")}
+      data-column-action={t("Result")}
+      data-column-details={t("Details")}
+      data-status-validating={t("Checking the file…")}
+      data-status-valid={t(
+        "The file is valid. Review the report, then apply the import."
+      )}
+      data-status-invalid={t(
+        "The file has errors. Nothing was imported; fix the file and validate again."
+      )}
+      data-status-applying={t("Applying the import…")}
+      data-status-applied={t(
+        "The import was applied: {create} created, {update} updated, {unchanged} unchanged."
+      )}
+      data-status-conflict={t(
+        "A row conflicted with the catalog while writing. Nothing was imported; validate the file again."
+      )}
+      data-status-mismatch={t(
+        "The file changed after it was validated. Validate it again before applying."
+      )}
+      data-status-failed={t("The request failed. Please try again.")}
+      data-status-nofile={t("Choose a CSV file first.")}
+      data-confirm-message-template={t(
+        "Apply this file? {create} products will be created and {update} updated. All rows are applied together, or none."
+      )}
+    >
+      <h2 class="admin-section-title">{t("Import")}</h2>
+      <p>
+        {t(
+          "Rows are matched on the sku column: a product with that SKU is updated, any other SKU creates a product. Upload the file, validate it, then apply it."
+        )}
+      </p>
+      <p class="form-hint">
+        {t("At most {count} rows per file.", {
+          count: MAX_CATALOG_IMPORT_ROWS
+        })}
+      </p>
+
+      <details class="admin-section">
+        <summary>{t("File format")}</summary>
+        <ul>
+          <li>
+            {t(
+              "Columns: sku (required), name, slug, type, status, categorySlug, price, discountPercent, stock, weightGrams, minPurchase, description, isFeatured, isRecommended."
+            )}
+          </li>
+          <li>
+            {t(
+              "Add a column named attr: followed by the attribute key for each product attribute (for example attr:weight). An unknown column rejects the file."
+            )}
+          </li>
+          <li>
+            {t(
+              "A blank cell in a product column leaves that field unchanged (or uses the default for a new product). A blank cell in an attr: column clears that attribute."
+            )}
+          </li>
+          <li>
+            {t(
+              "Numbers use digits and a dot only (1234.5). A decimal comma or thousands separator is rejected. Dates are YYYY-MM-DD."
+            )}
+          </li>
+          <li>
+            {t(
+              "Images and other media are not imported here: a media column rejects the file."
+            )}
+          </li>
+        </ul>
+      </details>
+
+      <p
+        id="catalog-import-status"
+        class="form-hint"
+        role="status"
+        aria-live="polite"
+      ></p>
+
+      <label for="catalog-import-file">{t("CSV file")}</label>
+      <input
+        id="catalog-import-file"
+        type="file"
+        accept=".csv,text/csv"
+        aria-describedby="catalog-import-status"
+      />
+
+      <div class="row-actions">
+        <button
+          type="button"
+          class="module-toggle"
+          id="catalog-import-validate"
+          data-busy={t("Checking the file…")}
+        >
+          {t("Validate file")}
+        </button>
+        {canApply && (
+          <button
+            type="button"
+            class="module-toggle"
+            id="catalog-import-apply"
+            disabled
+            data-busy={t("Applying the import…")}
+            data-confirm-title={t("Apply this import?")}
+            data-confirm-message=""
+            data-confirm-label={t("Apply import")}
+            data-confirm-danger="true"
+          >
+            {t("Apply import")}
+          </button>
+        )}
+      </div>
+
+      <p id="catalog-import-summary" class="state-notice" hidden></p>
+      <ul
+        id="catalog-import-fatal"
+        class="admin-create-error"
+        role="alert"
+        hidden
+      ></ul>
+
+      <div class="data-table-scroll">
+        <table
+          class="data-table data-table--stack"
+          id="catalog-import-report"
+          hidden
+        >
+          <caption>{t("Per-row report")}</caption>
+          <thead>
+            <tr>
+              <th scope="col">{t("Row")}</th>
+              <th scope="col">{t("Line")}</th>
+              <th scope="col">{t("SKU")}</th>
+              <th scope="col">{t("Result")}</th>
+              <th scope="col">{t("Details")}</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <p id="catalog-import-truncated" class="form-hint" hidden>
+        {t(
+          "This file is large, so only the rows with errors are listed. The counts above cover every row."
+        )}
+      </p>
+    </section>
+  )}
+  <CommerceConfirmDialog locale={Astro.locals.locale} />
+</AdminLayout>
+
+<style>
+  /* Row details are `column: message` lines; keep their line breaks. */
+  #catalog-import-report td[data-label]:last-child {
+    white-space: pre-line;
+  }
+  #catalog-import-report tr[data-action="error"] {
+    background: color-mix(
+      in srgb,
+      var(--color-danger, #c0392b) 8%,
+      transparent
+    );
+  }
+</style>
+
+<script>
+  import { confirmFromTrigger } from "../../lib/ui/commerce-confirm-dialog-client";
+  import {
+    fillTemplate,
+    newIdempotencyKey,
+    paintReport,
+    postCatalogCsv,
+    type ImportReportView
+  } from "../../lib/ui/commerce-catalog-import-client";
+
+  const root = document.getElementById("catalog-import");
+  const fileInput = document.getElementById("catalog-import-file");
+  const validateButton = document.getElementById("catalog-import-validate");
+  const applyButton = document.getElementById("catalog-import-apply");
+  const statusEl = document.getElementById("catalog-import-status");
+  const summaryEl = document.getElementById("catalog-import-summary");
+  const fatalEl = document.getElementById("catalog-import-fatal");
+  const reportTable = document.getElementById("catalog-import-report");
+  const truncatedEl = document.getElementById("catalog-import-truncated");
+
+  if (
+    root &&
+    fileInput instanceof HTMLInputElement &&
+    validateButton instanceof HTMLButtonElement &&
+    statusEl &&
+    summaryEl &&
+    fatalEl &&
+    reportTable instanceof HTMLTableElement
+  ) {
+    const tbody = reportTable.tBodies[0] as HTMLTableSectionElement;
+    const text = (key: string): string => root.dataset[key] ?? "";
+    let reviewed: { csv: string; report: ImportReportView } | null = null;
+    let applyKey: string | null = null;
+
+    const say = (
+      key: string,
+      values: Record<string, string | number> = {}
+    ): void => {
+      statusEl.textContent = fillTemplate(text(key), values);
+    };
+    const show = (report: ImportReportView): void => {
+      paintReport(report, root, tbody, summaryEl, fatalEl);
+      summaryEl.hidden = report.fatalErrors.length > 0;
+      reportTable.hidden = report.rows.length === 0;
+      if (truncatedEl) truncatedEl.hidden = !report.rowsTruncated;
+    };
+    const setApplyEnabled = (enabled: boolean): void => {
+      if (applyButton instanceof HTMLButtonElement)
+        applyButton.disabled = !enabled;
+    };
+
+    // Any change of file invalidates the review.
+    fileInput.addEventListener("change", () => {
+      reviewed = null;
+      applyKey = null;
+      setApplyEnabled(false);
+    });
+
+    validateButton.addEventListener("click", async () => {
+      const file = fileInput.files?.[0];
+      if (!file) {
+        say("statusNofile");
+        return;
+      }
+      validateButton.disabled = true;
+      setApplyEnabled(false);
+      say("statusValidating");
+
+      const csv = await file.text();
+      const result = await postCatalogCsv("dry_run", csv);
+      validateButton.disabled = false;
+
+      if (!result.report) {
+        say("statusFailed");
+        return;
+      }
+      show(result.report);
+      if (result.report.valid && result.report.rowCount > 0) {
+        reviewed = { csv, report: result.report };
+        applyKey = newIdempotencyKey();
+        say("statusValid");
+        if (applyButton instanceof HTMLButtonElement) {
+          applyButton.dataset.confirmMessage = fillTemplate(
+            text("confirmMessageTemplate"),
+            result.report.summary
+          );
+        }
+        setApplyEnabled(true);
+      } else {
+        reviewed = null;
+        say("statusInvalid");
+      }
+    });
+
+    if (applyButton instanceof HTMLButtonElement) {
+      applyButton.addEventListener("click", async () => {
+        if (!reviewed || !applyKey) return;
+        const confirmed = await confirmFromTrigger(applyButton);
+        if (!confirmed) return;
+
+        const { csv, report } = reviewed;
+        setApplyEnabled(false);
+        validateButton.disabled = true;
+        say("statusApplying");
+
+        const result = await postCatalogCsv("apply", csv, {
+          expectedSha256: report.fileSha256,
+          idempotencyKey: applyKey
+        });
+        validateButton.disabled = false;
+
+        if (result.ok && result.report) {
+          show(result.report);
+          say("statusApplied", result.report.summary);
+          reviewed = null;
+          applyKey = null;
+          return;
+        }
+        if (result.report) show(result.report);
+        if (result.code === "IMPORT_FILE_MISMATCH") say("statusMismatch");
+        else if (result.code === "IMPORT_CONFLICT") say("statusConflict");
+        else if (result.code === "IMPORT_VALIDATION_FAILED")
+          say("statusInvalid");
+        else say("statusFailed");
+        // The review is spent either way; a retry starts from "Validate".
+        reviewed = null;
+        applyKey = null;
+      });
+    }
+  }
+</script>

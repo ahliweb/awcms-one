@@ -1,0 +1,143 @@
+---
+/**
+ * Typed inputs for a product's or variant's custom attributes (Issue #291) —
+ * one control per applicable definition, in the definition's own `sort_order`,
+ * each named `attr:<key>` so `commerce-attributes-client.ts`'s
+ * `collectAttributeValues` can read them back.
+ *
+ *   text      -> text input (`maxlength` from the definition)
+ *   integer   -> text input, `inputmode="numeric"`, digits only
+ *   decimal   -> text input, `inputmode="decimal"`, digits and a dot
+ *   boolean   -> tri-state select (not set / yes / no)
+ *   date      -> native date input (always an ISO value)
+ *   enum      -> select of the definition's options (+ not set)
+ *
+ * Numbers are text inputs on purpose: `<input type="number">` accepts
+ * browser- and locale-dependent spellings (a decimal comma, `1e3`) that the
+ * server's grammar rejects. A blank control CLEARS the attribute. The label is
+ * the tenant-authored label for the viewer's locale; the surrounding chrome is
+ * translated like every other screen. Server validation is the authority.
+ *
+ * Under `src/components/`, never `src/pages/admin/` (see
+ * `CommerceAttributeConstraintFields.astro`).
+ */
+import { getTranslatorFor } from "../lib/i18n";
+import type { AttributeDefinitionRecord } from "../modules/commerce/application/attribute-definition-directory";
+import type { AttributeValueDTO } from "../modules/commerce/application/attribute-value-directory";
+import { resolveAttributeLabel } from "../modules/commerce/domain/attribute-definition";
+
+interface Props {
+  locale: string | undefined;
+  /** Unique on the page: prefixes every control id. */
+  idPrefix: string;
+  definitions: readonly AttributeDefinitionRecord[];
+  values: readonly AttributeValueDTO[];
+}
+
+const { locale, idPrefix, definitions, values } = Astro.props;
+const { t } = getTranslatorFor(locale);
+
+const valueByKey = new Map(
+  values.map((entry: AttributeValueDTO) => [entry.key, entry.value])
+);
+
+function current(key: string): string {
+  const value = valueByKey.get(key);
+  return value === undefined ? "" : String(value);
+}
+---
+
+{definitions.map((definition) => {
+  const id = `${idPrefix}-${definition.key}`;
+  const hintId = `${id}-hint`;
+  const label = resolveAttributeLabel(definition, locale);
+  const name = `attr:${definition.key}`;
+  const value = current(definition.key);
+  const { constraints } = definition;
+  return (
+    <>
+      <label for={id}>{label}</label>
+      {definition.valueType === "text" && (
+        <input
+          id={id}
+          name={name}
+          type="text"
+          value={value}
+          maxlength={constraints.maxLength ?? 500}
+          autocomplete="off"
+        />
+      )}
+      {definition.valueType === "integer" && (
+        <input
+          id={id}
+          name={name}
+          type="text"
+          inputmode="numeric"
+          pattern="[+\-]?[0-9]+"
+          value={value}
+          autocomplete="off"
+          aria-describedby={hintId}
+        />
+      )}
+      {definition.valueType === "decimal" && (
+        <input
+          id={id}
+          name={name}
+          type="text"
+          inputmode="decimal"
+          pattern="[+\-]?[0-9]+(\.[0-9]+)?"
+          value={value}
+          autocomplete="off"
+          aria-describedby={hintId}
+        />
+      )}
+      {definition.valueType === "date" && (
+        <input
+          id={id}
+          name={name}
+          type="date"
+          value={value}
+          min={constraints.min}
+          max={constraints.max}
+        />
+      )}
+      {definition.valueType === "boolean" && (
+        <select id={id} name={name}>
+          <option value="" selected={value === ""}>
+            {t("Not set")}
+          </option>
+          <option value="true" selected={value === "true"}>
+            {t("Yes")}
+          </option>
+          <option value="false" selected={value === "false"}>
+            {t("No")}
+          </option>
+        </select>
+      )}
+      {definition.valueType === "enum" && (
+        <select id={id} name={name}>
+          <option value="" selected={value === ""}>
+            {t("Not set")}
+          </option>
+          {(constraints.options ?? []).map((option) => (
+            <option value={option.value} selected={value === option.value}>
+              {option.label}
+            </option>
+          ))}
+        </select>
+      )}
+      {(definition.valueType === "integer" ||
+        definition.valueType === "decimal") && (
+        <p id={hintId} class="form-hint">
+          {definition.valueType === "integer"
+            ? t("Digits only, for example 42.")
+            : t("Digits and a dot only, for example 12.5.")}
+          {constraints.min !== undefined &&
+            ` ${t("Minimum: {value}.", { value: constraints.min })}`}
+          {constraints.max !== undefined &&
+            ` ${t("Maximum: {value}.", { value: constraints.max })}`}
+        </p>
+      )}
+    </>
+  );
+})}

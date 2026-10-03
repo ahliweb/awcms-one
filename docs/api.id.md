@@ -1,7 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](api.md)
 
-<!-- i18n-source-hash: sha256:75a2075f810bda2c72256d0bbf895879dbcb2ccdb0ea22d7c1612866579be7ad -->
-<!-- i18n-source-hash: sha256:1f392a7b0891d0e1afb31906cde7c9e765ec16a02690091ee1582f87011bf280 -->
+<!-- i18n-source-hash: sha256:66b36c51219e3d5631054d61261b33a9c8c789ff03747335a148e2dcf66cabf1 -->
 
 # API
 
@@ -34,6 +33,21 @@ Dikelompokkan berdasarkan tiga area yang sama yang dideskripsikan [`docs/arsitek
 | `POST`/`PATCH`/`DELETE`                     | `/api/v1/commerce/products/{id}/variants(/{variantId})` | Keunikan SKU diperiksa terhadap `awcms_commerce_products` maupun tabel varian itu sendiri                                                                            |
 
 Paginasi: keyset, terbaru lebih dulu secara default (`sort=newest`), ukuran halaman tetap 100 di sisi server. Sort `price_asc`/`price_desc`/`name` mengembalikan satu halaman terbatas tunggal (`nextCursor: null`) alih-alih penelusuran keyset — `cursor` yang dikombinasikan dengan sort selain `newest` ditolak 400.
+
+### Atribut katalog, impor dan ekspor (issue #291, [ADR-0027](adr/0027-catalog-custom-attributes-are-typed-and-allowlisted.md))
+
+| Metode | Path | Izin | Catatan |
+| --- | --- | --- | --- |
+| `GET`/`POST` | `/api/v1/commerce/attributes` | `attributes.read` / `attributes.manage` | Definisi atribut tenant (≤ 100, tidak dipaginasi); `key` (slug) dan `valueType` tetap sejak dibuat |
+| `GET`/`PATCH`/`DELETE` | `/api/v1/commerce/attributes/{id}` | `attributes.read` / `.manage` | `PATCH` yang menyebut `key`/`valueType` adalah 400; menghapus opsi enum yang dipakai atau mempersempit `appliesTo` di bawah nilai tersimpan adalah 409 |
+| `GET` | `/api/v1/commerce/products/{id}/attributes` | `attributes.read` | Himpunan atribut lengkap (admin) beserta definisi yang berlaku. Dijaga `attributes.read`, **bukan** `products.read`: kredensial etalase memegang yang terakhir |
+| `PUT` | `/api/v1/commerce/products/{id}/attributes` | `products.update` | `{ "attributes": { "<key>": <nilai> \| null } }`; `null` menghapus; satu nilai tidak valid menolak seluruh request, tidak ada yang ditulis |
+| `PUT` | `/api/v1/commerce/products/{id}/variants/{variantId}/attributes` | `products.update` | Kembaran tingkat varian, definisi yang `appliesTo`-nya mencakup varian |
+| `GET` | `/api/v1/commerce/products?attr=<key>:<op>:<value>` | `products.read` | Dapat diulang (≤ 5, di-AND); `op` ∈ `eq`, `in`, `gte`, `lte`, `contains`. Hanya audiens publik: kunci `filterable && visible_public`; kunci tak dikenal, tak dapat difilter, atau tak publik adalah satu dan sama 400. `q` juga mencocokkan atribut `searchable && visible_public` |
+| `GET` | `/api/v1/commerce/products/export.csv` | `products.export` | RFC 4180, UTF-8 dengan BOM, formula dinetralkan; ≤ 5000 baris (`X-AWCMS-Export-Truncated`) |
+| `POST` | `/api/v1/commerce/products/import?mode=dry_run\|apply` | `products.import` (+ `create` + `update` untuk apply) | Body `text/csv`, ≤ 5 MiB dan 5000 baris. Dry-run tidak menulis apa pun; apply semua-atau-tidak-sama-sekali, butuh `Idempotency-Key`, `expectedSha256` opsional |
+
+Respons produk (`GET /products`, `/{id}`, `/by-slug/{slug}`) mendapat `attributes[]` **aditif** pada produk dan setiap varian: `{ key, label, labels, valueType, value, valueLabel }`, hanya nilai `visible_public`. `value` adalah angka JSON untuk `integer`, **string** desimal untuk `decimal`, boolean, string ISO `YYYY-MM-DD` untuk `date`, dan string untuk `text`/`enum`. Angka hanya memakai digit dan `.` (`1,5` adalah 400). Error impor: `422 IMPORT_VALIDATION_FAILED` (rencana memiliki error; `error.details` adalah laporan per baris, tidak ada yang ditulis), `409 IMPORT_CONFLICT` (konflik saat-tulis; tidak ada yang ditulis), `409 IMPORT_FILE_MISMATCH`, `409 IDEMPOTENCY_CONFLICT`, `400 IDEMPOTENCY_REQUIRED`, `413`, `415`; definisi: `409 ATTRIBUTE_KEY_ALREADY_EXISTS`, `ATTRIBUTE_DEFINITION_LIMIT_REACHED`, `ATTRIBUTE_OPTION_IN_USE`, `ATTRIBUTE_APPLIES_TO_IN_USE`.
 
 ### Marketing (issue #26)
 

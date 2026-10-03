@@ -1642,6 +1642,13 @@ export const WORKER_ROLE_GRANTS: Record<string, string[]> = {
   awcms_commerce_register_close_requests: ["SELECT", "DELETE"],
   awcms_commerce_register_close_lines: ["SELECT", "DELETE"],
   awcms_commerce_register_corrections: ["SELECT", "DELETE"],
+  // Issue #291 (`sql/960`/`962`/`964`): catalog attributes. Definitions and
+  // values are soft-deleted (`deleted_at` cursor) and aged out by the generic
+  // purge engine, which needs SELECT + DELETE; an import batch is an
+  // append-only record purged by `created_at`.
+  awcms_commerce_attribute_definitions: ["SELECT", "DELETE"],
+  awcms_commerce_product_attribute_values: ["SELECT", "DELETE"],
+  awcms_commerce_catalog_import_batches: ["SELECT", "DELETE"],
   // Issue #289 (sql/950/951): the loyalty tables. The domain-event dispatcher
   // runs the order-paid earn / order-cancelled reversal consumers and the
   // `commerce:loyalty:expire` job appends ledger rows, all as this role.

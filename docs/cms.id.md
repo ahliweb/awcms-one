@@ -1,7 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](cms.md)
 
-<!-- i18n-source-hash: sha256:2846284045a15c25bb8d8af91b14b070f7c869aca1ef85546b4574c7305344a2 -->
-<!-- i18n-source-hash: sha256:c5f7d7d189ed0a88687a52e04d8ada5eebf34f5e4485da01687fcfc005589040 -->
+<!-- i18n-source-hash: sha256:6d3cad6e987d87e928e7665935c95941c977d766406e7a6819c677bf48983008 -->
 
 # CMS: authoring, publikasi, izin, audit, media, taksonomi
 
