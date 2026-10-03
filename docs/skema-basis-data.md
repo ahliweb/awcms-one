@@ -194,6 +194,48 @@ Issue #117, contract #106's D7 — the read models of the three `cursor_table` r
 
 All three: RLS `ENABLE`+`FORCE`, tenant-isolation policy, `updated_at`, money as `numeric(14,2)` written from integer cents as decimal strings (never a float). Rows are upserted by primary key with `INSERT ... ON CONFLICT DO UPDATE SET x = x + EXCLUDED.x` inside the engine's bounded pass transaction, after the (tenant, projection) advisory lock and before the cursor advance; a rebuild `DELETE`s the tenant's rows in the same transaction that resets the cursor. `awcms_worker` is granted `SELECT, INSERT, UPDATE, DELETE` (`bun run reporting:projections:refresh` upserts; the generic data-lifecycle purge deletes; the rebuild reset's own delete runs as `awcms_app` in the API route's transaction) — mirrored in `WORKER_ROLE_GRANTS`. Retention: three `dataLifecycle` descriptors in `commerce/module.ts` (`commerce.sales_daily`/`_by_product`/`_by_category`, cursor `day`, the same 365–3650-day window as `commerce.order_events` — a row older than its source's retention can never be rebuilt and is safe to purge). Subject data: `NO_SUBJECT_DATA` in the script ledger (a day/product/category figure is a fact about nobody).
 
+## Catalog attributes: definitions, values, import batches (`sql/960`–`sql/964`)
+
+Typed custom attributes ([ADR-0027](adr/0027-catalog-custom-attributes-are-typed-and-allowlisted.md)). All three tables are `ENABLE` + `FORCE` row level security with the one tenant-isolation policy, and carry `tenant_id` referencing `awcms_tenants`. `sql/960` also adds `UNIQUE (tenant_id, id)` on `awcms_commerce_products` and `UNIQUE (id, product_id)` on `awcms_commerce_product_variants` — the referenced sides of the composite FKs below (no new constraint a row could violate: `id` is already the PK).
+
+### `awcms_commerce_attribute_definitions` (`sql/960`)
+
+| Column | Type | Notes |
+| --- | --- | --- |
+| `id` | `uuid` | PK |
+| `key` | `text NOT NULL` | `CHECK (key ~ '^[a-z][a-z0-9_]{0,62}$')`; unique per tenant among live rows; immutable |
+| `label` / `labels` | `text NOT NULL` / `jsonb NOT NULL DEFAULT '{}'` | `labels` is a locale → label object (`CHECK jsonb_typeof = 'object'`) |
+| `value_type` | `text NOT NULL` | `CHECK IN ('text','integer','decimal','boolean','date','enum')`; immutable |
+| `constraints` | `jsonb NOT NULL DEFAULT '{}'` | a closed per-type document, validated in `domain/attribute-definition.ts` |
+| `applies_to` | `text NOT NULL DEFAULT 'product'` | `CHECK IN ('product','variant','both')` |
+| `is_searchable`, `is_filterable` | `boolean NOT NULL DEFAULT false` | `searchable` only for `text`/`enum` (`CHECK`) |
+| `visible_admin` / `visible_public` | `boolean NOT NULL DEFAULT true` / `false` | `visible_public` is what the catalog API may expose |
+| `sort_order` | `integer NOT NULL DEFAULT 0` | `CHECK BETWEEN 0 AND 10000` |
+| `created_at`/`updated_at`/`deleted_at` | `timestamptz` | soft delete; the key is freed for reuse |
+
+**Indexes:** unique `(tenant_id, key) WHERE deleted_at IS NULL`; unique `(tenant_id, id)` (the composite-FK target); `(tenant_id)`; `(tenant_id, deleted_at)` (purge cursor).
+
+### `awcms_commerce_product_attribute_values` (`sql/960`, indexes `sql/963`)
+
+| Column | Type | Notes |
+| --- | --- | --- |
+| `id` | `uuid` | PK |
+| `definition_id` | `uuid NOT NULL` | FK `(tenant_id, definition_id)` → definitions `(tenant_id, id)`, `ON DELETE CASCADE` |
+| `product_id` | `uuid NOT NULL` | FK `(tenant_id, product_id)` → products `(tenant_id, id)`, `ON DELETE CASCADE` |
+| `variant_id` | `uuid` | nullable; FK `(variant_id, product_id)` → variants `(id, product_id)`, `ON DELETE CASCADE` — a variant value cannot name another product's variant |
+| `value_text`, `value_boolean`, `value_date` | `text`, `boolean`, `date` | exactly one of the four typed columns is non-null (`CHECK num_nonnulls(...) = 1`) |
+| `value_scaled` | `bigint` | integer/decimal as `value × 10^6` — exact, and `int8` operators are leakproof so a range filter can use a b-tree under RLS (`numeric`'s are not) |
+| `value_search` | `text` | NFKC + lower-cased text/enum value: what text/enum equality, `contains` and the free-text search read |
+| `created_at`/`updated_at`/`deleted_at` | `timestamptz` | clearing a value stamps `deleted_at`; a live row has `NULL` |
+
+**Indexes:** unique `(tenant_id, definition_id, product_id) WHERE variant_id IS NULL AND deleted_at IS NULL` and unique `(tenant_id, definition_id, variant_id) WHERE variant_id IS NOT NULL AND deleted_at IS NULL` (one live value per entity and definition); FK/read composites `(tenant_id)`, `(tenant_id, product_id)`, `(variant_id)`, `(tenant_id, definition_id)`; purge cursor `(tenant_id, deleted_at)`; and — chosen from measured plans — partial `(tenant_id, definition_id, value_scaled)`, `(…, value_date)` and `(…, value_search)`, each `WHERE <column> IS NOT NULL AND deleted_at IS NULL` (`sql/963`; the measurements, and the two indexes rejected, are in ADR-0027 D6).
+
+### `awcms_commerce_catalog_import_batches` (`sql/964`)
+
+One row per **applied** catalog CSV import (a dry-run writes nothing; an all-or-nothing apply that fails leaves no row): `file_sha256` (`CHECK ~ '^[0-9a-f]{64}$'`), `idempotency_key_hash` (the SHA-256 of the `Idempotency-Key`, never the key), `row_count`/`created_count`/`updated_count`/`unchanged_count` (`CHECK` that the three add up to `row_count`), `actor_tenant_user_id`, `created_at`. **Indexes:** unique `(tenant_id, idempotency_key_hash)` — the structural second guard against applying one key twice — `(tenant_id)`, `(tenant_id, created_at)` (purge cursor).
+
+Migration `961` seeds `commerce.attributes.{read,manage}` and `commerce.products.{export,import}`; `962` grants `awcms_worker` `SELECT, DELETE` on definitions and values for the purge engine, and `964` the same on the batches table.
+
 ## Row-level security: `ENABLE` and `FORCE`, proven under the unprivileged role
 
 Every table above carries `ALTER TABLE ... ENABLE ROW LEVEL SECURITY` **and** `ALTER TABLE ... FORCE ROW LEVEL SECURITY`, with one tenant-isolation policy each:

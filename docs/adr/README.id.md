@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](README.md)
 
-<!-- i18n-source-hash: sha256:5267c05820c51ca02e8e09d873dff2c3fe9973c23f710a2584002c8822f13a89 -->
+<!-- i18n-source-hash: sha256:bbc7bc4e2d2b35743f684fb2ee31b8454c688b0e5346bcc5d9b9500b1edd8310 -->
 
 # Architecture Decision Records
 
@@ -42,6 +42,7 @@ Yang **tidak** butuh ADR: menambah field dalam skema yang sudah diputuskan, kena
 | [0022](0022-production-deployment-is-server-side-and-explicit.md) | Deployment produksi bersifat server-side dan eksplisit | Diterima (digantikan sebagian oleh [0021](0021-zero-github-actions-local-ci-with-exact-sha-statuses.md)) |
 | [0023](0023-release-images-are-built-signed-and-published-from-a-trusted-release-host.md) | Image rilis dibangun, ditandatangani, dan dipublikasikan dari release host tepercaya | Diterima |
 | [0024](0024-awcms-one-is-template-only-derived-apps-own-their-backend.md) | awcms-one hanya template; setiap aplikasi turunan memiliki backend dan runtime sendiri | Diterima |
+| [0027](0027-catalog-custom-attributes-are-typed-and-allowlisted.md) | Atribut kustom katalog bertipe dan di-allowlist, dan impor massal adalah validasi-lalu-terapkan | Diterima |
 
 ## Mengapa penomoran dimulai dari 0001
 

@@ -37,7 +37,9 @@ import {
   COMMERCE_WEBHOOK_ENDPOINT_PERMISSIONS,
   COMMERCE_POS_ACTIVITY_CODE,
   COMMERCE_POS_PERMISSIONS,
-  COMMERCE_ENTITLEMENTS_ACTIVITY_CODE
+  COMMERCE_ENTITLEMENTS_ACTIVITY_CODE,
+  COMMERCE_ATTRIBUTES_ACTIVITY_CODE,
+  COMMERCE_ATTRIBUTE_PERMISSIONS
 } from "./domain/commerce-permissions";
 import {
   COMMERCE_FLASH_SALE_ENDED_EVENT_TYPE,
@@ -554,6 +556,20 @@ export const commerceModule = defineModule({
       order: 17,
       requiredPermission: "commerce.pos.create",
       requiredFeature: { moduleKey: "commerce", feature: "pos" }
+    },
+    // Issue #291 — typed catalog attributes (definition management) and the
+    // catalog CSV import/export screen.
+    {
+      labelKey: "admin.layout.nav_commerce_attributes",
+      path: "/admin/commerce-attributes",
+      order: 20,
+      requiredPermission: "commerce.attributes.read"
+    },
+    {
+      labelKey: "admin.layout.nav_commerce_catalog_import",
+      path: "/admin/commerce-catalog-import",
+      order: 21,
+      requiredPermission: "commerce.products.import"
     }
   ],
   /**
@@ -2280,6 +2296,131 @@ export const commerceModule = defineModule({
       backupRestoreNotes:
         "Included in ordinary full-database backup/restore; no standalone archive artifact.",
       executionMode: "generic"
+    },
+    {
+      key: "commerce.attribute_definitions",
+      tableName: "awcms_commerce_attribute_definitions",
+      ownerModuleKey: "commerce",
+      scope: "tenant",
+      cursorColumn: "deleted_at",
+      // Issue #291. Same window and reasoning as `commerce.categories`: the
+      // window is how long a SOFT-DELETED definition may sit before a sweep
+      // may hard-purge it (its values cascade away with it, `sql/960`).
+      retentionClass: "system_event",
+      retentionMinDays: 30,
+      retentionMaxDays: 3650,
+      defaultRetentionDays: 365,
+      partition: {
+        eligible: false,
+        rationale:
+          "A tenant is capped at 100 live definitions (MAX_ATTRIBUTE_DEFINITIONS_PER_TENANT) — a schema, not a traffic-driven table."
+      },
+      archive: {
+        archivable: false,
+        rationale:
+          "A definition is tenant-authored metadata (key, labels, type, constraints) — reconstructible from the tenant's own records, not evidence of anything."
+      },
+      deletion: {
+        mode: "hard_delete",
+        rationale:
+          "The generic engine's only implemented mode; safe because the cursor column (deleted_at) is NULL for every live row, so a live definition is never a purge candidate."
+      },
+      legalHold: { applicable: false, precedence: "not_applicable" },
+      requiredIndexes: [
+        {
+          columns: ["tenant_id", "deleted_at"],
+          purpose:
+            "awcms_commerce_attribute_definitions_tenant_deleted_idx (sql/960) — the (tenant, cursor) composite the generic purge engine filters + orders by."
+        }
+      ],
+      batchLimit: 5000,
+      backupRestoreNotes:
+        "Included in ordinary full-database backup/restore; no standalone archive artifact.",
+      executionMode: "generic"
+    },
+    {
+      key: "commerce.product_attribute_values",
+      tableName: "awcms_commerce_product_attribute_values",
+      ownerModuleKey: "commerce",
+      scope: "tenant",
+      cursorColumn: "deleted_at",
+      // Issue #291. A LIVE value has `deleted_at IS NULL`, so the generic
+      // purge engine can never reach one; only a value the operator CLEARED
+      // (a soft delete) ages out, after the window below. The window is the
+      // same "wide, an accidental clear is often noticed late" range
+      // `commerce.categories` uses. Values also cascade away with their
+      // product, variant or purged definition (sql/960).
+      retentionClass: "system_event",
+      retentionMinDays: 30,
+      retentionMaxDays: 3650,
+      defaultRetentionDays: 365,
+      partition: {
+        eligible: false,
+        rationale:
+          "At most one live row per (entity, definition) by unique index and 100 definitions per tenant, so a tenant's live values are bounded by catalogue size x 100 — a catalog table, nowhere near partition-worthy; cleared rows are short-lived."
+      },
+      archive: {
+        archivable: false,
+        rationale:
+          "A value is the merchant's own catalog description of a product (colour, weight, material...) — reconstructible from their records and not evidence of anything; the audit log already records which attribute keys changed."
+      },
+      deletion: {
+        mode: "hard_delete",
+        rationale:
+          "The generic engine's only implemented mode; safe because the cursor column (deleted_at) is NULL for every live value, so a live value is never a purge candidate."
+      },
+      legalHold: { applicable: false, precedence: "not_applicable" },
+      requiredIndexes: [
+        {
+          columns: ["tenant_id", "deleted_at"],
+          purpose:
+            "awcms_commerce_product_attribute_values_tenant_deleted_idx (sql/960) — the (tenant, cursor) composite the generic purge engine filters + orders by."
+        }
+      ],
+      batchLimit: 5000,
+      backupRestoreNotes:
+        "Included in ordinary full-database backup/restore; no standalone archive artifact.",
+      executionMode: "generic"
+    },
+    {
+      key: "commerce.catalog_import_batches",
+      tableName: "awcms_commerce_catalog_import_batches",
+      ownerModuleKey: "commerce",
+      scope: "tenant",
+      cursorColumn: "created_at",
+      // Issue #291. An append-only record of an applied import: audit-shaped
+      // evidence of a bulk catalog change, so a long window like the audit log's.
+      retentionClass: "system_event",
+      retentionMinDays: 90,
+      retentionMaxDays: 3650,
+      defaultRetentionDays: 730,
+      partition: {
+        eligible: false,
+        rationale:
+          "One row per APPLIED import — an operator action, a handful per day at most, nowhere near partition-worthy volume."
+      },
+      archive: {
+        archivable: false,
+        rationale:
+          "The generic engine's only implemented artefact is ordinary backup/restore; the row's evidentiary content (file hash, counts) is also in the audit log."
+      },
+      deletion: {
+        mode: "hard_delete",
+        rationale:
+          "A straight DELETE once past retention; nothing references a batch row."
+      },
+      legalHold: { applicable: false, precedence: "not_applicable" },
+      requiredIndexes: [
+        {
+          columns: ["tenant_id", "created_at"],
+          purpose:
+            "awcms_commerce_catalog_import_batches_tenant_created_idx (sql/964) — the (tenant, cursor) composite the generic purge engine filters + orders by."
+        }
+      ],
+      batchLimit: 5000,
+      backupRestoreNotes:
+        "Included in ordinary full-database backup/restore; no standalone archive artifact.",
+      executionMode: "generic"
     }
   ],
   /**
@@ -2790,6 +2931,39 @@ export const commerceModule = defineModule({
       erasure: "retain_under_obligation",
       rationale:
         "Issue #268 (IRMbyDUS) — which product's entitlement gates which private media object. Names a product and a media object, never a person; no column on this table could join a row to any subject even in principle. Retained under the same obligation as commerce.entitlements: the link is what makes an already-sold product's download issuable at all, so it is deployment configuration bound to the product's lifecycle, not personal data."
+    },
+    {
+      key: "commerce.attribute_definitions",
+      tableName: "awcms_commerce_attribute_definitions",
+      ownerModuleKey: "commerce",
+      unreachableBySubject: true,
+      subjectColumns: [],
+      exportable: false,
+      erasure: "retain_under_obligation",
+      rationale:
+        "Issue #291 — a tenant-authored attribute schema (key, labels, type, constraints, flags). Merchandising metadata about what the tenant sells, never about a person; no column identifies one."
+    },
+    {
+      key: "commerce.product_attribute_values",
+      tableName: "awcms_commerce_product_attribute_values",
+      ownerModuleKey: "commerce",
+      unreachableBySubject: true,
+      subjectColumns: [],
+      exportable: false,
+      erasure: "retain_under_obligation",
+      rationale:
+        "Issue #291 — a typed attribute value on a product or variant (colour, weight, material...). Catalog description the tenant authored, bound to the product's lifecycle (it cascades away with its product); no column identifies a person."
+    },
+    {
+      key: "commerce.catalog_import_batches",
+      tableName: "awcms_commerce_catalog_import_batches",
+      ownerModuleKey: "commerce",
+      unreachableBySubject: true,
+      subjectColumns: [],
+      exportable: false,
+      erasure: "retain_under_obligation",
+      rationale:
+        "Issue #291 — the identity of an applied catalog import (file hash, hashed idempotency key, counts). actor_tenant_user_id names the staff member who ran it, but that is audit evidence of an administrative act on the catalog, retained like the audit log itself rather than erased on a subject request."
     }
   ],
   permissions: [
@@ -3072,6 +3246,27 @@ export const commerceModule = defineModule({
       action: "update",
       description:
         "Revoke a commerce entitlement — the only admin mutation this module has; grants happen only via the order-paid consumer (Issue #267)"
+    },
+    {
+      activityCode: COMMERCE_ATTRIBUTES_ACTIVITY_CODE,
+      action: "read",
+      description: "List catalog attribute definitions (Issue #291)"
+    },
+    {
+      activityCode: COMMERCE_ATTRIBUTES_ACTIVITY_CODE,
+      action: "manage",
+      description:
+        "Create, update and delete catalog attribute definitions (Issue #291)"
+    },
+    {
+      activityCode: COMMERCE_PRODUCTS_ACTIVITY_CODE,
+      action: "export",
+      description: "Export the product catalog as CSV (Issue #291)"
+    },
+    {
+      activityCode: COMMERCE_PRODUCTS_ACTIVITY_CODE,
+      action: "import",
+      description: "Dry-run and apply a product catalog CSV import (Issue #291)"
     }
   ]
 });
@@ -3097,5 +3292,6 @@ export {
   COMMERCE_CONVERSATION_PERMISSIONS,
   COMMERCE_CAMPAIGN_PERMISSIONS,
   COMMERCE_WEBHOOK_ENDPOINT_PERMISSIONS,
-  COMMERCE_POS_PERMISSIONS
+  COMMERCE_POS_PERMISSIONS,
+  COMMERCE_ATTRIBUTE_PERMISSIONS
 };

@@ -956,7 +956,20 @@ export const READER_BUDGET_BYTES = 24_000;
  * re-measure on the next commerce or control-center screen and tighten if
  * the real total sits well below this.
  */
-export const APP_BUDGET_BYTES = 288_500;
+/**
+ * **Raised to 296_500 B in awcms-one (issue awcms-one#291, ADR-0027)** — two
+ * new commerce admin screens (`/admin/commerce-attributes`,
+ * `/admin/commerce-catalog-import`: their page scripts, a shared
+ * `commerce-attributes-client`, and the one 291-byte stylesheet), the
+ * attribute filter/forms/export link in `/admin/commerce`'s script, a small
+ * `sendTextRequest` in `admin-form-client` (the CSV upload must go through
+ * the shared client core — a hand-built mutation `fetch` is forbidden by
+ * `admin-json-client-core.test.ts`), and the compiled i18n catalogue's ~100
+ * new msgids. Measured clean build: 295,949 B (+7,449 B over 288,500).
+ * Per-screen duplication was checked: both screens reuse `admin-form-client`
+ * and the shared chrome; nothing is hand-copied.
+ */
+export const APP_BUDGET_BYTES = 296_500;
 
 /**
  * Largest file at baseline 16,800 B (2026-08-05) + 25% was 21,000 B.

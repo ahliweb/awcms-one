@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](skema-basis-data.md)
 
-<!-- i18n-source-hash: sha256:71d1b8e169cca5f5dadccba05cb39d460d55ea961d5db24b683f6577424b9192 -->
+<!-- i18n-source-hash: sha256:9f2183d94e403db263976dcefe292cdc72f9a7da9a9d36a04e2e2ab4c761fecd -->
 
 # Skema basis data
 
@@ -195,6 +195,48 @@ Issue #117, D7 kontrak #106 — read model dari tiga proyeksi reporting `cursor_
 | `awcms_commerce_sales_by_category` | `PRIMARY KEY (tenant_id, day, category_id)`, `category_name text` (snapshot), `qty integer`, `gross numeric(14,2)` | Per hari dan kategori produk, diatribusikan lewat `products.category_id` saat pemrosesan. `category_id` `NOT NULL` karena bagian dari kunci: produk tanpa kategori mendarat di uuid sentinel serba-nol, yang oleh rute baca dipetakan kembali menjadi `categoryId: null`. Indeks `(tenant_id, category_id)` |
 
 Ketiganya: RLS `ENABLE`+`FORCE`, policy isolasi tenant, `updated_at`, uang sebagai `numeric(14,2)` yang ditulis dari sen bilangan bulat sebagai string desimal (tak pernah float). Baris di-upsert menurut primary key dengan `INSERT ... ON CONFLICT DO UPDATE SET x = x + EXCLUDED.x` di dalam transaksi pass terbatas milik mesin, setelah advisory lock (tenant, proyeksi) dan sebelum kursor maju; rebuild men-`DELETE` baris tenant dalam transaksi yang sama dengan reset kursor. `awcms_worker` diberi `SELECT, INSERT, UPDATE, DELETE` (`bun run reporting:projections:refresh` meng-upsert; purge data-lifecycle generik menghapus; delete milik reset rebuild sendiri berjalan sebagai `awcms_app` dalam transaksi rute API) — dicerminkan di `WORKER_ROLE_GRANTS`. Retensi: tiga deskriptor `dataLifecycle` di `commerce/module.ts` (`commerce.sales_daily`/`_by_product`/`_by_category`, kursor `day`, jendela 365–3650 hari yang sama dengan `commerce.order_events` — baris yang lebih tua dari retensi sumbernya tak pernah bisa dibangun ulang dan aman dipurge). Data subjek: `NO_SUBJECT_DATA` di ledger skrip (angka per hari/produk/kategori adalah fakta tentang tidak seorang pun).
+
+## Atribut katalog: definisi, nilai, batch impor (`sql/960`–`sql/964`)
+
+Atribut kustom bertipe ([ADR-0027](adr/0027-catalog-custom-attributes-are-typed-and-allowlisted.md)). Ketiga tabel `ENABLE` + `FORCE` row level security dengan satu kebijakan isolasi tenant, dan membawa `tenant_id` yang mereferensikan `awcms_tenants`. `sql/960` juga menambah `UNIQUE (tenant_id, id)` pada `awcms_commerce_products` dan `UNIQUE (id, product_id)` pada `awcms_commerce_product_variants` — sisi yang dirujuk FK komposit di bawah (bukan constraint baru yang bisa dilanggar baris: `id` sudah PK).
+
+### `awcms_commerce_attribute_definitions` (`sql/960`)
+
+| Kolom | Tipe | Catatan |
+| --- | --- | --- |
+| `id` | `uuid` | PK |
+| `key` | `text NOT NULL` | `CHECK (key ~ '^[a-z][a-z0-9_]{0,62}$')`; unik per tenant di antara baris aktif; tidak dapat diubah |
+| `label` / `labels` | `text NOT NULL` / `jsonb NOT NULL DEFAULT '{}'` | `labels` adalah objek locale → label (`CHECK jsonb_typeof = 'object'`) |
+| `value_type` | `text NOT NULL` | `CHECK IN ('text','integer','decimal','boolean','date','enum')`; tidak dapat diubah |
+| `constraints` | `jsonb NOT NULL DEFAULT '{}'` | dokumen tertutup per tipe, divalidasi di `domain/attribute-definition.ts` |
+| `applies_to` | `text NOT NULL DEFAULT 'product'` | `CHECK IN ('product','variant','both')` |
+| `is_searchable`, `is_filterable` | `boolean NOT NULL DEFAULT false` | `searchable` hanya untuk `text`/`enum` (`CHECK`) |
+| `visible_admin` / `visible_public` | `boolean NOT NULL DEFAULT true` / `false` | `visible_public` adalah yang boleh ditampilkan API katalog |
+| `sort_order` | `integer NOT NULL DEFAULT 0` | `CHECK BETWEEN 0 AND 10000` |
+| `created_at`/`updated_at`/`deleted_at` | `timestamptz` | soft delete; kuncinya dibebaskan untuk dipakai ulang |
+
+**Indeks:** unik `(tenant_id, key) WHERE deleted_at IS NULL`; unik `(tenant_id, id)` (target FK komposit); `(tenant_id)`; `(tenant_id, deleted_at)` (kursor purge).
+
+### `awcms_commerce_product_attribute_values` (`sql/960`, indeks `sql/963`)
+
+| Kolom | Tipe | Catatan |
+| --- | --- | --- |
+| `id` | `uuid` | PK |
+| `definition_id` | `uuid NOT NULL` | FK `(tenant_id, definition_id)` → definisi `(tenant_id, id)`, `ON DELETE CASCADE` |
+| `product_id` | `uuid NOT NULL` | FK `(tenant_id, product_id)` → produk `(tenant_id, id)`, `ON DELETE CASCADE` |
+| `variant_id` | `uuid` | nullable; FK `(variant_id, product_id)` → varian `(id, product_id)`, `ON DELETE CASCADE` — nilai varian tidak dapat menyebut varian produk lain |
+| `value_text`, `value_boolean`, `value_date` | `text`, `boolean`, `date` | tepat satu dari empat kolom bertipe non-null (`CHECK num_nonnulls(...) = 1`) |
+| `value_scaled` | `bigint` | integer/desimal sebagai `nilai × 10^6` — eksak, dan operator `int8` leakproof sehingga filter rentang dapat memakai b-tree di bawah RLS (milik `numeric` tidak) |
+| `value_search` | `text` | nilai teks/enum NFKC + huruf kecil: yang dibaca kesetaraan teks/enum, `contains`, dan pencarian teks bebas |
+| `created_at`/`updated_at`/`deleted_at` | `timestamptz` | menghapus nilai memberi cap `deleted_at`; baris aktif bernilai `NULL` |
+
+**Indeks:** unik `(tenant_id, definition_id, product_id) WHERE variant_id IS NULL AND deleted_at IS NULL` dan unik `(tenant_id, definition_id, variant_id) WHERE variant_id IS NOT NULL AND deleted_at IS NULL` (satu nilai aktif per entitas dan definisi); komposit FK/baca `(tenant_id)`, `(tenant_id, product_id)`, `(variant_id)`, `(tenant_id, definition_id)`; kursor purge `(tenant_id, deleted_at)`; dan — dipilih dari rencana terukur — parsial `(tenant_id, definition_id, value_scaled)`, `(…, value_date)`, dan `(…, value_search)`, masing-masing `WHERE <kolom> IS NOT NULL AND deleted_at IS NULL` (`sql/963`; pengukuran, dan dua indeks yang ditolak, ada di ADR-0027 D6).
+
+### `awcms_commerce_catalog_import_batches` (`sql/964`)
+
+Satu baris per impor CSV katalog yang **diterapkan** (dry-run tidak menulis apa pun; apply semua-atau-tidak-sama-sekali yang gagal tidak meninggalkan baris): `file_sha256` (`CHECK ~ '^[0-9a-f]{64}$'`), `idempotency_key_hash` (SHA-256 dari `Idempotency-Key`, bukan kuncinya), `row_count`/`created_count`/`updated_count`/`unchanged_count` (`CHECK` bahwa ketiganya berjumlah `row_count`), `actor_tenant_user_id`, `created_at`. **Indeks:** unik `(tenant_id, idempotency_key_hash)` — penjaga struktural kedua terhadap penerapan satu kunci dua kali — `(tenant_id)`, `(tenant_id, created_at)` (kursor purge).
+
+Migrasi `961` menyemai `commerce.attributes.{read,manage}` dan `commerce.products.{export,import}`; `962` memberi `awcms_worker` `SELECT, DELETE` pada definisi dan nilai untuk mesin purge, dan `964` hal yang sama pada tabel batch.
 
 ## Row-level security: `ENABLE` dan `FORCE`, terbukti di bawah role tak-berhak-istimewa
 

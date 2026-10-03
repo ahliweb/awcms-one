@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](kamus-data.md)
 
-<!-- i18n-source-hash: sha256:e8c8ba5ee52bf90907d2eba2eeeb1cd0940066a4a177f1f36c0074a822246cb0 -->
+<!-- i18n-source-hash: sha256:285289e85d51184bc9db155a4c5bc1bbf58f1122b4e46fa5356c2d836f90f6ee -->
 
 # Kamus data
 
@@ -168,6 +168,31 @@ Kasir BjekMart (penjualan konter `commerce_bj_mart`, yang di tabel `orders`/`tra
 | telepon sentinel walk-in | `POS_WALK_IN_CUSTOMER_SENTINEL_PHONE` = **`+620000000000`** (`domain/phone-normalisation.ts`, satu-satunya sumber kebenaran untuk literalnya); nama barisnya `POS_WALK_IN_CUSTOMER_NAME` = `Pelanggan Walk-in` | Satu baris `awcms_commerce_customers` per tenant tempat setiap penjualan konter tanpa telepon dikaitkan (`customers.phone` `NOT NULL` dan unik per tenant, sehingga sentinel-lah yang membuat baris itu unik). Sudah dinormalisasi E.164 (`+62` + sepuluh nol — tidak ada nomor pelanggan Indonesia yang bagian nasionalnya berawalan `0`), sehingga ia melewati `normalizePhoneNumber` tanpa berubah dan tidak pernah tertukar dengan pelanggan nyata. Ditolak sebagai identitas pelanggan pada checkout storefront, dan tidak pernah dilayani pencarian pelacakan storefront — nilai yang terdokumentasi tidak boleh menjadi kredensial untuk membaca struk walk-in |
 | `commerce.pos.create` | `awcms_permissions` (`sql/932`); `COMMERCE_POS_PERMISSIONS.create` | SATU-SATUNYA jalur pembuatan pesanan yang di-gate izin di modul ini. Riwayat POS memakai ulang `commerce.orders.read` |
 | `commerce.pos.sale` | `awcms_audit_events.action` | Peristiwa audit yang ditulis setiap penjualan konter (kode pesanan, total, metode, dibayar, kembalian, flag walk-in, jumlah baris — tidak pernah nama atau telepon pelanggan) |
+
+## Kosakata atribut katalog (issue #291)
+
+Atribut kustom **bertipe** buatan tenant — desain milik platform ini sendiri (atribut item yang dapat diperluas milik OSPOS adalah pemicunya; tidak ada yang di-porting dari `commerce_bj_mart`, yang tidak memilikinya). Keputusan: [ADR-0027](adr/0027-catalog-custom-attributes-are-typed-and-allowlisted.md).
+
+| Istilah | Di mana | Arti |
+| --- | --- | --- |
+| definisi atribut | `awcms_commerce_attribute_definitions`; `CommerceAttributeDefinition` | Entri skema tenant: `key` stabil, `label` + `labels` per-locale, `valueType`, `constraints`, penanda, `appliesTo` |
+| `key` | `^[a-z][a-z0-9_]{0,62}$` | Identitas atribut di kawat (kolom CSV `attr:<key>`, filter `attr=<key>:…`). Tidak dapat diubah; tidak pernah digabung ke SQL |
+| `valueType` | `text` · `integer` · `decimal` · `boolean` · `date` · `enum` | Tidak dapat diubah. Menentukan kolom bertipe tempat nilai disimpan dan tata bahasa parse-nya |
+| `constraints` | `jsonb`, skema tertutup per tipe | teks: `minLength`/`maxLength`; integer/desimal: `min`/`max` (+ `scale` ≤ 6); tanggal: `min`/`max`; enum: `options[]`. Tanpa regex, tanpa ekspresi |
+| `appliesTo` | `product` · `variant` · `both` | Entitas mana yang boleh membawa nilai |
+| `isSearchable` | penanda | Nilai ikut pencocokan teks-bebas `q` (hanya tipe teks dan enum) |
+| `isFilterable` | penanda | Atribut boleh disebut dalam filter `attr=` |
+| `visibleAdmin` / `visiblePublic` | penanda | `visiblePublic` adalah yang boleh ditampilkan dan difilter API katalog |
+| nilai atribut | `awcms_commerce_product_attribute_values` | Satu nilai bertipe per (produk atau varian, definisi) |
+| `value_scaled` | `bigint` | Nilai integer/desimal sebagai `nilai × 10^6` — eksak; representasi yang dipakai filter rentang |
+| `value_search` | `text` | Nilai teks/enum NFKC + huruf kecil, yang dicocokkan kesetaraan/`contains`/`q` |
+| tata bahasa desimal | `[+-]?[0-9]+(\.[0-9]+)?` | Hanya `.`; `1,5` dan `1.234,5` ditolak, tidak pernah ditafsirkan |
+| filter atribut | `attr=<key>:<op>:<value>` | `op` ∈ `eq`, `in`, `gte`, `lte`, `contains`; di-resolve terhadap definisi, di-parse dengan tata bahasa bertipe, di-bind sebagai parameter |
+| kolom `attr:<key>` | CSV katalog | Satu kolom per atribut produk; sel kosong menghapus atribut |
+| batch impor | `awcms_commerce_catalog_import_batches` | Satu impor yang diterapkan: hash file, `Idempotency-Key` ter-hash, jumlah, aktor |
+| `expectedSha256` | query `POST /products/import` | `fileSha256` dari dry-run, untuk menerapkan persis file yang ditinjau |
+| `commerce.attributes.read` / `.manage` | `awcms_permissions` (`sql/961`) | Melihat / mengubah definisi; `read` juga menjaga himpunan atribut lengkap produk |
+| `commerce.products.export` / `.import` | `awcms_permissions` (`sql/961`) | Mengunduh / mengimpor CSV katalog; apply juga butuh `create` + `update` |
 
 ## Kolom dan tabel yang ditunda — tidak di-porting
 
