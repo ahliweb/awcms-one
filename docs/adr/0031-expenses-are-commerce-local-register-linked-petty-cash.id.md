@@ -1,6 +1,6 @@
 🇮🇩 Bahasa Indonesia · 🇬🇧 [English (source)](0031-expenses-are-commerce-local-register-linked-petty-cash.md)
 
-<!-- i18n-source-hash: sha256:3dd4b76b33b6b5e46c9adb27cc1fdff98df6bdc49a2461b7edd4f79b215ff9d2 -->
+<!-- i18n-source-hash: sha256:9f3d79c683f92f57f080a1d6240fec8f6b07c189d5e9138d798e882a9167d2e4 -->
 
 <!-- i18n-source-hash: sha256:placeholder -->
 
@@ -75,7 +75,7 @@ Struk memakai ulang kelas `visibility = 'private'` pustaka media dan GET presign
 - `GET …/receipt-url` memerlukan `commerce.expense_receipts.read`, yang **tidak** tersirat oleh `commerce.expenses.read` (struk dapat menampilkan nama orang atau nomor rekening) dan tidak dipenuhi oleh `media_library.media.download`; ia memverifikasi ulang setiap panggilan bahwa objek masih objek privat terverifikasi, gagal tertutup (objek publik-karena-kesalahan atau yang di-soft-delete tidak pernah ditandatangani), mengaudit setiap keputusan penerbitan yang menjangkau objek nyata lewat penulis `media.download` bersama, mengembalikan `Cache-Control: no-store`, dan memendekkan umur URL dengan batas TTL pustaka media yang ada;
 - badan pengeluaran hanya mengekspos `hasReceipt`; id media dan kunci objek tidak pernah keluar lewatnya, dan CSV hanya membawa boolean itu.
 
-**Lingkup karyawan.** Draf milik pembuatnya: mengedit, membuang, atau melampirkan padanya diizinkan untuk pembuat atau supervisor (pemanggil yang juga memegang kunci approve, diselesaikan lewat chokepoint akses hanya bila perlu), tidak pernah untuk karyawan lain yang sekadar memegang `commerce.expenses.update` (`403 NOT_EXPENSE_OWNER`). Membaca tetap pada `commerce.expenses.read`.
+**Lingkup karyawan.** Pengeluaran milik pembuatnya: mengedit atau membuang draf, dan melampirkan struk pada keadaan apa pun yang dapat dilampiri (draf, diposting, dibalik — jika tidak, siapa pun pemegang `receipts.create` dapat menempati satu-satunya slot struk pengeluaran yang diposting), diizinkan untuk pembuat atau supervisor (pemanggil yang juga memegang kunci approve, diselesaikan lewat chokepoint akses hanya bila perlu), tidak pernah untuk karyawan lain yang sekadar memegang `commerce.expenses.update` (`403 NOT_EXPENSE_OWNER`). Membaca tetap pada `commerce.expenses.read`.
 
 ### D8 — Payee adalah teks bebas; referensi pihak bertipe adalah penundaan yang terdokumentasi
 

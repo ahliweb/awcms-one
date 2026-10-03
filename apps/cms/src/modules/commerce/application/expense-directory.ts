@@ -628,7 +628,7 @@ export type AttachReceiptOutcome =
 
 /**
  * Attaches a private receipt. Rules, each one a guard against a different
- * misuse (ADR-0031 D5):
+ * misuse (ADR-0031 D7):
  *
  *   - the object must exist in this tenant, be `visibility = private` and be
  *     downloadable (verified) - a PUBLIC object would leak through a permanent
@@ -641,7 +641,9 @@ export type AttachReceiptOutcome =
  *     UNIQUE index lets one object serve one expense only;
  *   - a draft's receipt may be replaced by its creator or a supervisor; a
  *     posted/reversed expense accepts one ONCE (a receipt often arrives after
- *     the cash left) and is never replaced - the table's trigger agrees.
+ *     the cash left) and is never replaced - the table's trigger agrees;
+ *   - in every attachable state only the expense's creator or a supervisor may
+ *     attach (employee scope).
  */
 export async function attachExpenseReceipt(
   tx: Bun.SQL,
@@ -666,19 +668,20 @@ export async function attachExpenseReceipt(
   if (!current) return { kind: "not_found" };
   const status = current.status as ExpenseStatus;
 
-  if (status === "draft") {
-    if (
-      current.created_by_tenant_user_id !== actorTenantUserId &&
-      !(await actorIsSupervisor())
-    ) {
-      return { kind: "forbidden" };
-    }
-  } else if (status === "posted" || status === "reversed") {
-    if (current.receipt_media_object_id !== null) {
-      return { kind: "receipt_already_attached" };
-    }
-  } else {
+  if (status !== "draft" && status !== "posted" && status !== "reversed") {
     return { kind: "not_attachable", status };
+  }
+  // Employee scope applies to every attachable state: otherwise any holder of
+  // `receipts.create` could occupy a posted expense's single receipt slot with a
+  // file of their own, and the real receipt could then never be attached.
+  if (
+    current.created_by_tenant_user_id !== actorTenantUserId &&
+    !(await actorIsSupervisor())
+  ) {
+    return { kind: "forbidden" };
+  }
+  if (status !== "draft" && current.receipt_media_object_id !== null) {
+    return { kind: "receipt_already_attached" };
   }
 
   const media = await fetchNewsMediaObjectById(tx, tenantId, mediaObjectId);

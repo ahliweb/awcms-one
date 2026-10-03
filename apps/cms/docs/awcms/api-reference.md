@@ -10156,7 +10156,7 @@ Within the tenant's `expenses.approvalThreshold` the expense is posted outright 
 - **operationId**: `attachCommerceExpenseReceipt`
 - **Security**: bearerAuth + tenantHeader
 
-The object must exist in this tenant, be `visibility: private`, verified, and uploaded by the CALLER (a confused-deputy guard — otherwise any private object could be attached and read back); it must not already be a receipt or a product's protected download. A draft's receipt may be replaced by its creator or a supervisor; a posted or reversed expense accepts one once and never replaces it. The object is never returned — read it through `/receipt-url`.
+The object must exist in this tenant, be `visibility: private`, verified, and uploaded by the CALLER (a confused-deputy guard — otherwise any private object could be attached and read back); it must not already be a receipt or a product's protected download. In every attachable state only the expense's creator or a supervisor may attach (`403 NOT_EXPENSE_OWNER`); a draft's receipt may be replaced, a posted or reversed expense accepts one once and never replaces it. The object is never returned — read it through `/receipt-url`.
 
 **Parameters**
 

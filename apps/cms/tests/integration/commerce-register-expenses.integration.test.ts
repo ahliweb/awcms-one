@@ -1476,6 +1476,26 @@ suite(
         });
       const first = await seedMedia(owner.tenantId, clerk.tenantUserId);
       const second = await seedMedia(owner.tenantId, clerk.tenantUserId);
+
+      // Employee scope holds after posting too: another employee holding
+      // `receipts.create` cannot occupy the posted expense's single receipt slot.
+      const squatter = await seedPrincipal(
+        owner.tenantId,
+        "squatter",
+        CLERK_PERMISSIONS
+      );
+      const squatted = await invoke<Envelope>(attachReceipt, {
+        method: "POST",
+        path: `/api/v1/commerce/expenses/${expenseId}/receipt`,
+        headers: headers(squatter),
+        params: { id: expenseId },
+        body: {
+          mediaObjectId: await seedMedia(owner.tenantId, squatter.tenantUserId)
+        }
+      });
+      expect(squatted.status).toBe(403);
+      expect(squatted.body.error?.code).toBe("NOT_EXPENSE_OWNER");
+
       expect((await attach(first)).status).toBe(200);
       const replaced = await attach(second);
       expect(replaced.status).toBe(409);
